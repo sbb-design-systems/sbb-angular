@@ -18,7 +18,7 @@ ng_module(
     assets = [":checkbox-panel/checkbox-panel.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/checkbox-panel",
     deps = [
-        "//src/core/base",
+        "//src/core/base/checkbox",
         "//src/icons/status",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

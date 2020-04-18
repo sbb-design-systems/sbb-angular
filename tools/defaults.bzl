@@ -1,7 +1,7 @@
 # Re-export of Bazel rules with repository-wide defaults
 
 load("@io_bazel_rules_sass//:defs.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
-load("@npm_angular_bazel//:index.bzl", _ng_module = "ng_module", _ng_package = "ng_package")
+load("@npm_angular_bazel//:index.bzl", _ng_package = "ng_package")
 load("@npm_bazel_jasmine//:index.bzl", _jasmine_node_test = "jasmine_node_test")
 load("@npm_bazel_karma//:index.bzl", _karma_web_test = "karma_web_test", _karma_web_test_suite = "karma_web_test_suite")
 load("@npm_bazel_protractor//:index.bzl", _protractor_web_test_suite = "protractor_web_test_suite")
@@ -52,6 +52,7 @@ def ts_library(tsconfig = None, deps = [], testonly = False, **kwargs):
 def ng_module(
         deps = [],
         srcs = [],
+        assets = [],
         tsconfig = None,
         module_name = None,
         flat_module_out_file = None,
@@ -59,25 +60,6 @@ def ng_module(
         **kwargs):
     if not tsconfig:
         tsconfig = _getDefaultTsConfig(testonly)
-
-    # We only generate a flat module if there is a "public-api.ts" file that
-    # will be picked up by NGC or ngtsc.
-    needs_flat_module = "public-api.ts" in srcs
-
-    # Targets which have a module name and are not used for tests, should
-    # have a default flat module out file named "index". This is necessary
-    # as imports to that target should go through the flat module bundle.
-    if needs_flat_module and module_name and not flat_module_out_file and not testonly:
-        flat_module_out_file = "index"
-
-    # Workaround to avoid a lot of changes to the Bazel build rules. Since
-    # for most targets the flat module out file is "index.js", we cannot
-    # include "index.ts" (if present) as source-file. This would resolve
-    # in a conflict in the metadata bundler. Once we switch to Ivy and
-    # no longer need metadata bundles, we can remove this logic.
-    if flat_module_out_file == "index":
-        if "index.ts" in srcs:
-            srcs.remove("index.ts")
 
     local_deps = [
         # Add tslib because we use import helpers for all public packages.
@@ -90,10 +72,11 @@ def ng_module(
         if d not in local_deps:
             local_deps = local_deps + [d]
 
-    _ng_module(
+    _ts_library(
         srcs = srcs,
         module_name = module_name,
-        flat_module_out_file = flat_module_out_file,
+        angular_assets = assets,
+        use_angular_plugin = True,
         deps = local_deps,
         tsconfig = tsconfig,
         testonly = testonly,

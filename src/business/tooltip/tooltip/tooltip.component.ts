@@ -20,7 +20,7 @@ import {
   SBB_TOOLTIP_SCROLL_STRATEGY,
   TooltipBase,
   TooltipRegistryService
-} from '@sbb-esta/angular-core/base';
+} from '@sbb-esta/angular-core/base/tooltip';
 
 // TODO: Find solution for template and style
 @Component({

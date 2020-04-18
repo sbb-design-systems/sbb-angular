@@ -98,7 +98,7 @@ export class TagExampleComponent implements OnInit, OnDestroy {
 
   subscribeOnTags(): Subscription {
     return this.tags.valueChanges.subscribe(() => {
-      this.tags.controls.map((c, i) => {
+      this.tags.controls.forEach((c, i) => {
         this.tagItemsReactive[i].selected = c.value;
       });
     });

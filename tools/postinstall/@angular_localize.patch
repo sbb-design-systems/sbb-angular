@@ -1,0 +1,19 @@
+--- node_modules/@angular/localize/src/tools/src/translate/source_files/source_file_utils.d.ts
++++ node_modules/@angular/localize/src/tools/src/translate/source_files/source_file_utils.d.ts
+@@ -16,14 +17,14 @@
+  * @param expression The expression to check.
+  * @param localizeName The configured name of `$localize`.
+  */
+-export declare function isLocalize(expression: NodePath, localizeName: string): expression is NodePath<t.Identifier>;
++export declare function isLocalize(expression: NodePath<any>, localizeName: string): expression is NodePath<t.Identifier>;
+ /**
+  * Is the given `expression` an identifier with the correct `name`?
+  *
+  * @param expression The expression to check.
+  * @param name The name of the identifier we are looking for.
+  */
+-export declare function isNamedIdentifier(expression: NodePath, name: string): expression is NodePath<t.Identifier>;
++export declare function isNamedIdentifier(expression: NodePath<any>, name: string): expression is NodePath<t.Identifier>;
+ /**
+  * Is the given `identifier` declared globally.
+  * @param identifier The identifier to check.

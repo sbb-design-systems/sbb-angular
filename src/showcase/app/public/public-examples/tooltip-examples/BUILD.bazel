@@ -20,7 +20,6 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/core/base",
         "//src/icons/navigation",
         "//src/public/field",
         "//src/public/tooltip",

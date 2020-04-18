@@ -21,7 +21,6 @@
     "node_modules/@angular/bazel/**",
     "node_modules/@angular/common/upgrade*",
     "node_modules/@angular/compiler-cli/**",
-    "node_modules/@angular/router/upgrade*",
-    "node_modules/@angular/localize/src/tools/**"
+    "node_modules/@angular/router/upgrade*"
   ]
 }

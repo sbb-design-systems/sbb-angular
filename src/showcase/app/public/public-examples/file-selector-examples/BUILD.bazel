@@ -18,7 +18,6 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/core/base",
         "//src/public/checkbox",
         "//src/public/file-selector",
         "@npm//@angular/common",

@@ -1,5 +1,9 @@
 entryPoints = [
     "base",
+    "base/button",
+    "base/checkbox",
+    "base/processflow",
+    "base/tooltip",
     "breakpoints",
     "common-behaviors",
     "datetime",

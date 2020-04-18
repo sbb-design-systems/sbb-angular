@@ -2,7 +2,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base';
+import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base/tooltip';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 import { IconQuestionMarkModule } from '@sbb-esta/angular-icons/status';

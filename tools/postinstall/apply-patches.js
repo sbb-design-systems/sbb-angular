@@ -26,6 +26,9 @@ const PATCHES_PER_FILE = {};
 shelljs.set('-e');
 shelljs.cd(projectDir);
 
+// Fix @angular/localize babel types
+applyPatch(path.join(__dirname, './@angular_localize.patch'));
+
 // Workaround for https://github.com/angular/angular/issues/18810.
 shelljs.exec('ngc -p angular-tsconfig.json');
 

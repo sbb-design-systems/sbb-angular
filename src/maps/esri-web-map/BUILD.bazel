@@ -4,6 +4,7 @@ load(
     "ng_module",
     "ng_test_library",
     "ng_web_test_suite",
+    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -14,6 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
+    assets = [":esri-web-map/esri-web-map.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-maps/esri-web-map",
     deps = [
         "//src/maps/core",
@@ -21,6 +23,11 @@ ng_module(
         "@npm//@angular/core",
         "@npm//@types/arcgis-js-api",
     ],
+)
+
+sass_binary(
+    name = "esri_web_map_esri_web_map_component_scss",
+    src = "esri-web-map/esri-web-map.component.scss",
 )
 
 ng_test_library(

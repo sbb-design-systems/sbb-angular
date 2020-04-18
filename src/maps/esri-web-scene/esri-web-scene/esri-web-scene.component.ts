@@ -84,7 +84,8 @@ export class EsriWebSceneComponent implements OnInit {
     this._setSceneViewCamera(this._camera);
     this._registerEvents();
 
-    this.sceneView.when(() => {
+    // TODO(WyssTobi): Does adding the await have a side-effect?
+    await this.sceneView.when(() => {
       this.mapReady.emit(this.sceneView);
     });
   }
