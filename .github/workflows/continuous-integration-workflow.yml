@@ -58,8 +58,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-bazel-build-${{ steps.bazel-cache-key-name.outputs.bazel_cache_key }}-
 
-    - name: "Build: Migrate public to business components"
-      run: yarn -s build:public2business
     - name: "Build: Bazel"
       run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
 
