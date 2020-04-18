@@ -92,5 +92,7 @@ jobs:
 
     - name: "Build: Migrate public to business components"
       run: yarn -s build:public2business
+    - name: "Build: Ngcc"
+      run: yarn ngcc
     - name: "Build: Showcase"
       run: yarn -s build:showcase
