@@ -64,6 +64,7 @@ def ng_module(
     local_deps = [
         # Add tslib because we use import helpers for all public packages.
         "@npm//tslib",
+        "@npm//@angular/compiler-cli",
         "@npm//@angular/platform-browser",
     ]
 
