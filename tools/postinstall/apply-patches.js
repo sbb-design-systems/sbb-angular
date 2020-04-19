@@ -124,7 +124,8 @@ searchAndReplace(
 // Fix view-engine compilation
 searchAndReplace(
   'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {',
-  'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {console.error(`VIEW-ENGINE SUMMARY: ${libraryFileName}`);',
+  'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {' +
+    'if (libraryFileName.endsWith(`@angular/cdk/scrolling/index.d.ts`)) {console.error(`VIEW-ENGINE SUMMARY: ${libraryFileName}`);console.error(json);}',
   'node_modules/@angular/compiler/bundles/compiler.umd.js'
 );
 
