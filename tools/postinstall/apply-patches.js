@@ -121,11 +121,13 @@ searchAndReplace(
   `define('esri-loader', ['exports'], factory)`,
   'node_modules/esri-loader/dist/umd/esri-loader.js'
 );
-// Fix view-engine compilation
+// Fix view-engine compilation. It seems in the CDK scrolling module, the .ngfactory path
+// is mistakenly changed to an invalid path during bazel compilation.
 searchAndReplace(
   'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {',
   'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {' +
-    'if (libraryFileName.endsWith(`@angular/cdk/scrolling/index.d.ts`)) {console.error(`VIEW-ENGINE SUMMARY: ${libraryFileName}`);console.error(json);}',
+    'if (libraryFileName.endsWith(`@angular/cdk/scrolling/index.d.ts`)) {' +
+    'json = json.replace(/"./virtual-scroll-viewport.ngfactory"/g, `"./index.ngfactory"`)}',
   'node_modules/@angular/compiler/bundles/compiler.umd.js'
 );
 
