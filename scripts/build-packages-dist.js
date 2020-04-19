@@ -88,7 +88,7 @@ function buildReleasePackages(useIvy, distPath) {
   packageNames.forEach(pkgName => {
     const outputPath = getOutputPath(pkgName);
     const targetFolder = join(distPath, pkgName);
-    console.log(`> Copying package output to "${targetFolder}"`);
+    console.log(`> Copying package output to "${targetFolder}" (from "${outputPath}")`);
     cp('-R', outputPath, targetFolder);
     chmod('-R', 'u+w', targetFolder);
   });

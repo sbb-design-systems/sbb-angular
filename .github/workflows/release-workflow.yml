@@ -60,27 +60,27 @@ jobs:
       env: 
         REF: ${{ github.ref }}
     - name: "Publish: @sbb-esta/angular-core"
-      run: yarn publish dist/release/core --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
+      run: yarn publish dist/releases/core --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-icons"
-      run: yarn publish dist/release/icons --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/icons --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-keycloak"
-      run: yarn publish dist/release/keycloak --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/keycloak --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-public"
-      run: yarn publish dist/release/public --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/public --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-maps"
-      run: yarn publish dist/release/maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-business"
-      run: yarn publish dist/release/business --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/business --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
