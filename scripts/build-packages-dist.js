@@ -55,20 +55,7 @@ function buildReleasePackages(useIvy, distPath) {
   console.log('######################################');
 
   // List of targets to build. e.g. "src/business:npm_package", or "src/public:npm_package".
-  // We manually define the order of execution, in order to avoid symlink build errors.
-  // See https://github.com/angular/angular/issues/24143#issuecomment-460934490
-  const targets = ['core', 'icons', 'keycloak', 'maps', 'business', 'public'].map(
-    n => `//src/${n}:npm_package`
-  );
-  const verifyTargets = exec(queryPackagesCmd, true).split(/\r?\n/);
-  // Verify that we have defined all available targets.
-  if (verifyTargets.some(v => !targets.includes(v))) {
-    const missing = verifyTargets.filter(x => !targets.includes(x));
-    throw Error(
-      `The targets ${missing.join(', ')} are missing in the targets list! Please add them manually.`
-    );
-  }
-
+  const targets = exec(queryPackagesCmd, true).split(/\r?\n/);
   const packageNames = getPackageNamesOfTargets(targets);
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
   const getOutputPath = pkgName => join(bazelBinPath, 'src', pkgName, 'npm_package');
@@ -86,9 +73,11 @@ function buildReleasePackages(useIvy, distPath) {
 
   // Build with "--config=release" so that Bazel runs the workspace stamping script. The
   // stamping script ensures that the version placeholder is populated in the release output.
-  for (const target of targets) {
-    exec(`${bazelCmd} build --config=release --config=${useIvy ? 'ivy' : 'view-engine'} ${target}`);
-  }
+  exec(
+    `${bazelCmd} build --config=release --config=${useIvy ? 'ivy' : 'view-engine'} ${targets.join(
+      ' '
+    )}`
+  );
 
   // Delete the distribution directory so that the output is guaranteed to be clean. Re-create
   // the empty directory so that we can copy the release packages into it later.
