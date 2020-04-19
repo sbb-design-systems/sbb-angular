@@ -109,18 +109,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-bazelisk-
 
-    - name: "Bazel: Create hash key"
-      id: bazel-cache-key-name
-      run: echo "::set-output name=bazel_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
-    - name: "Bazel: Restore artifacts from cache"
-      uses: actions/cache@v1
-      id: bazel-cache
-      with:
-        path: "/home/runner/bazel_repository_cache"
-        key: ${{ runner.os }}-bazel-packages-${{ steps.bazel-cache-key-name.outputs.bazel_cache_key }}-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-bazel-packages-${{ steps.bazel-cache-key-name.outputs.bazel_cache_key }}-
-
     - name: "Build: Packages"
       run: yarn -s build
 
