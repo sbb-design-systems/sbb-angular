@@ -11,14 +11,14 @@ import {
 import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
-  declarations: [
+  imports: [CommonModule, OverlayModule],
+  exports: [
     DropdownComponent,
     DropdownItemDirective,
     DropdownOriginDirective,
     DropdownTriggerDirective
   ],
-  imports: [CommonModule, OverlayModule],
-  exports: [
+  declarations: [
     DropdownComponent,
     DropdownItemDirective,
     DropdownOriginDirective,

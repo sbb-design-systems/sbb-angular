@@ -23,35 +23,8 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
         scope: sbb-esta
 
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Bazelisk: Create hash key"
-      id: bazelisk-cache-key-name
-      run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion)"
-    - name: "Bazelisk: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: bazelisk-cache
-      with:
-        path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}
-        restore-keys: |
-          ${{ runner.os }}-bazelisk-
-
     - name: "Build: Packages"
       run: yarn -s build
       
@@ -60,7 +33,7 @@ jobs:
         name: packages
         path: dist/releases
 
-    - name: Determine npm tag
+    - name: "Publish: Determine npm tag"
       id: npm_tag
       run: |
         if [[ "$REF" == *"-"* ]]
