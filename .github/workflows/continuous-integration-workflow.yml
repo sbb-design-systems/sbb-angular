@@ -2,10 +2,10 @@ name: Continuous Integration
 on:
   push:
     tags-ignore:
-      - **
+      - '**'
   pull_request:
     tags-ignore:
-      - **
+      - '**'
 env:
   BAZEL_COMMAND: bazelisk
 
