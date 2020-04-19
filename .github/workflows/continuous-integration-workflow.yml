@@ -1,9 +1,13 @@
 name: Continuous Integration
 on:
   push:
+    branches:
+      - '**'
     tags-ignore:
       - '**'
   pull_request:
+    branches:
+      - '**'
     tags-ignore:
       - '**'
 env:
