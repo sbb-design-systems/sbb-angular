@@ -122,27 +122,15 @@ jobs:
 
     - name: "Bazelisk: Create hash key"
       id: bazelisk-cache-key-name
-      run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion)"
-    - name: "Bazelisk: Restore dependencies from cache"
+      run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
+    - name: "Bazelisk: Restore from cache"
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
         path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}
+        key: ${{ runner.os }}-bazelisk-showcase-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazelisk-
-
-    - name: "Bazel: Create hash key"
-      id: bazel-cache-key-name
-      run: echo "::set-output name=bazel_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
-    - name: "Bazel: Restore artifacts from cache"
-      uses: actions/cache@v1
-      id: bazel-cache
-      with:
-        path: "/home/runner/bazel_repository_cache"
-        key: ${{ runner.os }}-bazel-showcase-${{ steps.bazel-cache-key-name.outputs.bazel_cache_key }}-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-bazel-showcase-${{ steps.bazel-cache-key-name.outputs.bazel_cache_key }}-
+          ${{ runner.os }}-bazelisk-showcase-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Showcase"
       run: yarn -s build:showcase
