@@ -21,8 +21,11 @@ and rebuild. The browser should refresh automatically when changes are made.
 
 ## Bazel
 
-[Bazel](https://www.bazel.build/) is a build system. It allows incremental builds by caching build artifacts. To install bazel globally, we recommend
-installing it with `yarn global add @bazel/bazel`, after following the steps above.
+[Bazel](https://www.bazel.build/) is a build system. It allows incremental builds by caching build artifacts.
+
+To install bazel globally, we recommend installing it with `yarn global add @bazel/bazelisk`, after
+following the steps above. This will add `bazel` and `bazelisk` to the global path.
+(`bazelisk` will check the version in `.bazelversion` and use the appropriate bazel version.)
 
 - [Bazel Concepts](https://docs.bazel.build/versions/master/build-ref.html)
 - [Bazel CLI](https://docs.bazel.build/versions/master/command-line-reference.html)

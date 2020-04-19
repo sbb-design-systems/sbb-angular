@@ -7,7 +7,7 @@ import {
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
-import { BaseButton } from '@sbb-esta/angular-core/base';
+import { BaseButton } from '@sbb-esta/angular-core/base/button';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 
 @Component({

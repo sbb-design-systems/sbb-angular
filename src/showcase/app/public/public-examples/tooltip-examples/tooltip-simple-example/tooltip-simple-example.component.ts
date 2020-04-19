@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SbbTooltipChangeEvent } from '@sbb-esta/angular-core/base';
+import { SbbTooltipChangeEvent } from '@sbb-esta/angular-public/tooltip';
 
 @Component({
   selector: 'sbb-tooltip-simple-example',

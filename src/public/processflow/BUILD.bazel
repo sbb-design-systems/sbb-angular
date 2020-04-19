@@ -18,7 +18,7 @@ ng_module(
     assets = [":processflow/processflow.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/processflow",
     deps = [
-        "//src/core/base",
+        "//src/core/base/processflow",
         "//src/icons/arrow",
         "@npm//@angular/common",
         "@npm//@angular/core",

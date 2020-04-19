@@ -6,7 +6,7 @@ import {
   QueryList,
   ViewEncapsulation
 } from '@angular/core';
-import { ProcessflowBase } from '@sbb-esta/angular-core/base';
+import { ProcessflowBase } from '@sbb-esta/angular-core/base/processflow';
 
 import { ProcessflowStepComponent } from '../processflow-step/processflow-step.component';
 

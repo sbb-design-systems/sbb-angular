@@ -3,11 +3,12 @@ on:
   push:
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+-*'
 env:
   BAZEL_COMMAND: bazelisk
 
 jobs:
-  build:
+  packages:
     runs-on: ubuntu-latest
     steps:
     - name: Shallow checkout
@@ -27,7 +28,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Create hash key"
       id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn hash yarn.lock tools/postinstall/apply-patches.js)"
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache
@@ -41,7 +42,7 @@ jobs:
 
     - name: "Bazelisk: Create hash key"
       id: bazelisk-cache-key-name
-      run: echo "::set-output name=bazelisk_cache_key::$(yarn hash WORKSPACE .bazelversion)"
+      run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion)"
     - name: "Bazelisk: Restore dependencies from cache"
       uses: actions/cache@v1
       id: bazelisk-cache
@@ -50,7 +51,7 @@ jobs:
         key: ${{ runner.os }}-bazelisk-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}
         restore-keys: |
           ${{ runner.os }}-bazelisk-
-  
+
     - name: "Build: Packages"
       run: yarn -s build
       
@@ -59,28 +60,39 @@ jobs:
         name: packages
         path: dist/releases
 
-    - name: Publish @sbb-esta/angular-core
-      run: yarn publish dist/release/core || true
+    - name: Determine npm tag
+      id: npm_tag
+      run: |
+        if [[ "$REF" == *"-"* ]]
+        then
+            echo "::set-output name=npm_tag::next"
+        else
+            echo "::set-output name=npm_tag::latest"
+        fi
+      env: 
+        REF: ${{ github.ref }}
+    - name: "Publish: @sbb-esta/angular-core"
+      run: yarn publish dist/release/core --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Publish @sbb-esta/angular-icons
-      run: yarn publish dist/release/icons || true
+    - name: "Publish: @sbb-esta/angular-icons"
+      run: yarn publish dist/release/icons --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Publish @sbb-esta/angular-keycloak
-      run: yarn publish dist/release/keycloak || true
+    - name: "Publish: @sbb-esta/angular-keycloak"
+      run: yarn publish dist/release/keycloak --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Publish @sbb-esta/angular-public
-      run: yarn publish dist/release/public || true
+    - name: "Publish: @sbb-esta/angular-public"
+      run: yarn publish dist/release/public --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Publish @sbb-esta/angular-maps
-      run: yarn publish dist/release/maps || true
+    - name: "Publish: @sbb-esta/angular-maps"
+      run: yarn publish dist/release/maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Publish @sbb-esta/angular-business
-      run: yarn publish dist/release/business || true
+    - name: "Publish: @sbb-esta/angular-business"
+      run: yarn publish dist/release/business --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -106,41 +118,51 @@ jobs:
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Create hash key"
+      id: yarn-cache-key-name
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-{{ hashFiles('**/tools/postinstall/apply-patches.js') }}
+        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
         restore-keys: |
           ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
+    - name: "Bazelisk: Create hash key"
+      id: bazelisk-cache-key-name
+      run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion)"
     - name: "Bazelisk: Restore dependencies from cache"
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
         path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}
+        key: ${{ runner.os }}-bazelisk-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}
         restore-keys: |
           ${{ runner.os }}-bazelisk-
 
-    - name: "Bazel: Restore prod artifacts from cache"
+    - name: "Bazel: Create hash key"
+      id: bazel-cache-key-name
+      run: echo "::set-output name=bazel_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
+    - name: "Bazel: Restore artifacts from cache"
       uses: actions/cache@v1
       id: bazel-cache
       with:
         path: "/home/runner/bazel_repository_cache"
-        key: ${{ runner.os }}-bazel-prod-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-bazel-showcase-${{ steps.bazel-cache-key-name.outputs.bazel_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazel-prod-
+          ${{ runner.os }}-bazel-showcase-${{ steps.bazel-cache-key-name.outputs.bazel_cache_key }}-
 
-    - name: "Build: Migrate public to business components"
-      run: yarn -s build:public2business
     - name: "Build: Showcase"
       run: yarn -s build:showcase
+
+    - name: "Docker: Parse release version"
+      id: docker_release_version
+      run: echo ::set-output name=docker_release_version::${GITHUB_REF/refs\/tags\//}
     - name: "Build: Docker image"
-      run: docker build -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${GITHUB_REF/refs\/tags\//} .
+      run: docker build -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} .
     - name: "Publish: Docker image"
-      run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${GITHUB_REF/refs\/tags\//}
-      run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${GITHUB_REF/refs\/tags\//}
+      run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }}

@@ -24,7 +24,6 @@ ng_module(
     deps = [
         "//src/business/field",
         "//src/business/tooltip",
-        "//src/core/base",
         "//src/icons/navigation",
         "@npm//@angular/common",
         "@npm//@angular/core",

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { ProcessflowStepBase } from '@sbb-esta/angular-core/base';
+import { ProcessflowStepBase } from '@sbb-esta/angular-core/base/processflow';
 
 @Component({
   selector: 'sbb-processflow-step',

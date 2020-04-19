@@ -24,29 +24,45 @@ import {
 import { TableComponent } from './table/table.component';
 import { TextColumnComponent } from './text-column/text-column.component';
 
-const EXPORTED_DECLARATIONS = [
-  TableComponent,
-  TextColumnComponent,
-  CellDirective,
-  HeaderCellDirective,
-  CellDefDirective,
-  HeaderCellDefDirective,
-  FooterCellDefDirective,
-  FooterCellDirective,
-  ColumnDefDirective,
-  HeaderRowComponent,
-  FooterRowComponent,
-  RowComponent,
-  RowDefDirective,
-  HeaderRowDefDirective,
-  FooterRowDefDirective,
-  SbbSortDirective,
-  SbbSortHeaderComponent
-];
-
 @NgModule({
   imports: [CdkTableModule, CommonModule],
-  declarations: EXPORTED_DECLARATIONS,
-  exports: EXPORTED_DECLARATIONS
+  declarations: [
+    TableComponent,
+    TextColumnComponent,
+    CellDirective,
+    HeaderCellDirective,
+    CellDefDirective,
+    HeaderCellDefDirective,
+    FooterCellDefDirective,
+    FooterCellDirective,
+    ColumnDefDirective,
+    HeaderRowComponent,
+    FooterRowComponent,
+    RowComponent,
+    RowDefDirective,
+    HeaderRowDefDirective,
+    FooterRowDefDirective,
+    SbbSortDirective,
+    SbbSortHeaderComponent
+  ],
+  exports: [
+    TableComponent,
+    TextColumnComponent,
+    CellDirective,
+    HeaderCellDirective,
+    CellDefDirective,
+    HeaderCellDefDirective,
+    FooterCellDefDirective,
+    FooterCellDirective,
+    ColumnDefDirective,
+    HeaderRowComponent,
+    FooterRowComponent,
+    RowComponent,
+    RowDefDirective,
+    HeaderRowDefDirective,
+    FooterRowDefDirective,
+    SbbSortDirective,
+    SbbSortHeaderComponent
+  ]
 })
 export class TableModule {}

@@ -18,7 +18,7 @@ import {
   Optional,
   ViewContainerRef
 } from '@angular/core';
-import { SBB_TOOLTIP_SCROLL_STRATEGY } from '@sbb-esta/angular-core/base';
+import { SBB_TOOLTIP_SCROLL_STRATEGY } from '@sbb-esta/angular-core/base/tooltip';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 

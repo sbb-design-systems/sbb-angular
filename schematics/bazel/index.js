@@ -3,6 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var schematics = require('@angular-devkit/schematics');
+var tasks = require('@angular-devkit/schematics/tasks');
 var core = require('@angular-devkit/core');
 var astUtils = require('@schematics/angular/utility/ast-utils');
 var typescript = require('typescript');
@@ -270,14 +271,19 @@ class ShowcasePackage {
 function bazel(options) {
     return (tree, context) => {
         const srcDir = tree.getDir('src');
-        return schematics.chain(srcDir.subdirs
-            .filter(d => !options.filter || d === options.filter)
-            .map(d => srcDir.dir(d))
-            .map(packageDir => packageDir.path.endsWith('showcase')
-            ? new ShowcasePackage(packageDir, tree, context)
-            : new NgPackage(packageDir, tree, context))
-            .reduce((current, next) => current.concat(next.render()), [])
-            .concat(() => context.logger.info('Please run `yarn format:bazel`, when bazel files have been updated.')));
+        if (!options.filter) {
+            srcDir.subdirs.forEach(d => context.addTask(new tasks.RunSchematicTask('bazel', { filter: d })));
+        }
+        else {
+            return schematics.chain(srcDir.subdirs
+                .filter(d => !options.filter || d === options.filter)
+                .map(d => srcDir.dir(d))
+                .map(packageDir => packageDir.path.endsWith('showcase')
+                ? new ShowcasePackage(packageDir, tree, context)
+                : new NgPackage(packageDir, tree, context))
+                .reduce((current, next) => current.concat(next.render()), [])
+                .concat(() => context.logger.info('Please run `yarn format:bazel`, when bazel files have been updated.')));
+        }
     };
 }
 

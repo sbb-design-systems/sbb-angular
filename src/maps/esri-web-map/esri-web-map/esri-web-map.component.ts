@@ -82,7 +82,8 @@ export class EsriWebMapComponent implements OnInit {
     this._setMapExtent(this._extent);
     this._registerEvents();
 
-    this.mapView.when(() => {
+    // TODO(WyssTobi): Does adding the await have a side-effect?
+    await this.mapView.when(() => {
       this.mapReady.emit(this.mapView);
     });
   }

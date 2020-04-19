@@ -6,6 +6,7 @@ export * from './tooltip/tooltip-animations';
 export {
   TooltipBase,
   TooltipRegistryService,
+  SbbTooltipChangeEvent,
   SBB_TOOLTIP_SCROLL_STRATEGY,
   SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY
-} from '@sbb-esta/angular-core/base';
+} from '@sbb-esta/angular-core/base/tooltip';
