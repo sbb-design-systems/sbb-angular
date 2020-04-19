@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.4.1-next.8](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.7...9.4.1-next.8) (2020-04-19)
+
+
+### Bug Fixes
+
+* package entry points should point to correct files ([2fb9c20](https://github.com/sbb-design-systems/sbb-angular/commit/2fb9c208a811ad29b62f1f96fde9fbc7b5c76086))
+
 ### [9.4.1-next.7](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.6...9.4.1-next.7) (2020-04-19)
 
 ### [9.4.1-next.6](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.5...9.4.1-next.6) (2020-04-19)
