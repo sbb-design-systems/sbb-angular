@@ -77,7 +77,7 @@ ng_package(
         ":typography",
     ],
     entry_point = ":public-api.ts",
-    entry_point_name = "public",
+    entry_point_name = "angular-public",
     nested_packages = ["//src/public/schematics:npm_package"],
     readme_md = "README.md",
     tags = ["release-package"],

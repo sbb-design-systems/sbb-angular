@@ -75,7 +75,7 @@ ng_package(
     data = [
     ],
     entry_point = ":public-api.ts",
-    entry_point_name = "keycloak",
+    entry_point_name = "angular-keycloak",
     readme_md = "README.md",
     tags = ["release-package"],
     deps = KEYCLOAK_TARGETS + KEYCLOAK_TESTING_TARGETS,

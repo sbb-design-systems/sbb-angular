@@ -51,7 +51,7 @@ ng_package(
     data = [
     ],
     entry_point = ":public-api.ts",
-    entry_point_name = "maps",
+    entry_point_name = "angular-maps",
     tags = ["release-package"],
     deps = MAPS_TARGETS + MAPS_TESTING_TARGETS,
 )

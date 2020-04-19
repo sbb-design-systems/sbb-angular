@@ -46,7 +46,7 @@ ng_package(
     data = [
     ],
     entry_point = ":public-api.ts",
-    entry_point_name = "core",
+    entry_point_name = "angular-core",
     tags = ["release-package"],
     deps = CORE_TARGETS + CORE_TESTING_TARGETS,
 )

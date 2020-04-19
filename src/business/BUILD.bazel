@@ -74,7 +74,7 @@ ng_package(
         ":typography",
     ],
     entry_point = ":public-api.ts",
-    entry_point_name = "business",
+    entry_point_name = "angular-business",
     nested_packages = ["//src/business/schematics:npm_package"],
     tags = ["release-package"],
     deps = BUSINESS_TARGETS + BUSINESS_TESTING_TARGETS,

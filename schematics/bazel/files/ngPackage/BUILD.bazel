@@ -106,7 +106,7 @@ ng_package(
         ":typography",<% } %>
     ],
     entry_point = ":public-api.ts",
-    entry_point_name = "<%= name %>",<% if (hasSchematics) { %>
+    entry_point_name = "angular-<%= name %>",<% if (hasSchematics) { %>
     nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %><% if (hasReadme) { %>
     readme_md = "README.md",<% } %>
     tags = ["release-package"],

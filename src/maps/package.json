@@ -1,14 +1,6 @@
 {
   "name": "@sbb-esta/angular-maps",
   "version": "0.0.0-PLACEHOLDER",
-  "main": "./bundles/maps.umd.js",
-  "fesm5": "./fesm5/maps.js",
-  "fesm2015": "./fesm2015/maps.js",
-  "esm5": "./esm5/index.js",
-  "esm2015": "./esm2015/index.js",
-  "typings": "./index.d.ts",
-  "module": "./fesm5/maps.js",
-  "es2015": "./fesm2015/maps.js",
   "peerDependencies": {
     "@angular/common": "0.0.0-NG",
     "@angular/core": "0.0.0-NG",

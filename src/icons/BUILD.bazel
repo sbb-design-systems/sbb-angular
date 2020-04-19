@@ -49,7 +49,7 @@ ng_package(
     data = [
     ],
     entry_point = ":public-api.ts",
-    entry_point_name = "icons",
+    entry_point_name = "angular-icons",
     nested_packages = ["//src/icons/schematics:npm_package"],
     tags = ["release-package"],
     deps = ICONS_TARGETS + ICONS_TESTING_TARGETS,
