@@ -121,6 +121,12 @@ searchAndReplace(
   `define('esri-loader', ['exports'], factory)`,
   'node_modules/esri-loader/dist/umd/esri-loader.js'
 );
+// Fix view-engine compilation
+searchAndReplace(
+  'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {',
+  'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {console.error(`VIEW-ENGINE SUMMARY: ${libraryFileName}`);',
+  'node_modules/@angular/compiler/bundles/compiler.umd.js'
+);
 
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1208.
 applyPatch(path.join(__dirname, './manifest_externs_hermeticity.patch'));
