@@ -121,6 +121,17 @@ searchAndReplace(
   `define('esri-loader', ['exports'], factory)`,
   'node_modules/esri-loader/dist/umd/esri-loader.js'
 );
+// Fix view-engine compilation. It seems in the CDK scrolling module, the .ngfactory path
+// is mistakenly changed to an invalid path during bazel compilation.
+searchAndReplace(
+  'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {',
+  'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {' +
+    ' if (libraryFileName.endsWith(`@angular/cdk/scrolling/index.d.ts`)) {' +
+    'json = json.replace(/virtual-scroll-viewport.ngfactory/g, `index.ngfactory`)}' +
+    ' if (libraryFileName.endsWith(`@angular/cdk/table/index.d.ts`)) {' +
+    'json = json.replace(/[a-z-]+.ngfactory/g, `index.ngfactory`)}',
+  'node_modules/@angular/compiler/bundles/compiler.umd.js'
+);
 
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1208.
 applyPatch(path.join(__dirname, './manifest_externs_hermeticity.patch'));

@@ -66,8 +66,6 @@ yarn_install(
     ],
     package_json = "//:package.json",
     quiet = False,
-    # Disable symlink for node_modules, since they seem to unexpectedly fail for ViewEngine compilation
-    symlink_node_modules = False,
     yarn_lock = "//:yarn.lock",
 )
 
