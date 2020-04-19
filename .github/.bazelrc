@@ -9,7 +9,3 @@ common --announce_rc
 # Save downloaded repositories in a location that can be cached by GitHub Actions. This helps us
 # speeding up the analysis time significantly with Bazel managed node dependencies on the CI.
 build --repository_cache=/home/runner/bazel_repository_cache
-
-# Try to avoid https://github.com/angular/angular/issues/24143#issuecomment-460934490
-build --nobuild_runfile_links
-build --noenable_runfiles
