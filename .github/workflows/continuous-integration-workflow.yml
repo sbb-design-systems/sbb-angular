@@ -90,6 +90,8 @@ jobs:
       with:
         node-version: 12
 
+    - name: "Bazel: Clean"
+      run: bazelisk clean --expunge
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
     - name: "Build: Packages"
