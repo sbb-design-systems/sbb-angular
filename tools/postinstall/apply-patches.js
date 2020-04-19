@@ -127,7 +127,7 @@ searchAndReplace(
   'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {',
   'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {' +
     'if (libraryFileName.endsWith(`@angular/cdk/scrolling/index.d.ts`)) {' +
-    'json = json.replace(/"./virtual-scroll-viewport.ngfactory"/g, `"./index.ngfactory"`)}',
+    'json = json.replace(/virtual-scroll-viewport.ngfactory/g, `index.ngfactory`)}',
   'node_modules/@angular/compiler/bundles/compiler.umd.js'
 );
 
