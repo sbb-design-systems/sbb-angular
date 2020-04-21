@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { IconHimDisruptionModule } from '@sbb-esta/angular-icons/him-cus';
 import { IconHimReplacementbusModule } from '@sbb-esta/angular-icons/him-cus';
 import { IconHimConstructionModule } from '@sbb-esta/angular-icons/him-cus';
+import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { GhettoboxModule } from '@sbb-esta/angular-public/ghettobox';
 
 import { GhettoboxExampleComponent } from './ghettobox-example/ghettobox-example.component';
@@ -17,7 +18,8 @@ const EXAMPLES = [GhettoboxExampleComponent];
     IconHimDisruptionModule,
     IconHimReplacementbusModule,
     IconHimConstructionModule,
-    GhettoboxModule
+    GhettoboxModule,
+    ButtonModule
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES
