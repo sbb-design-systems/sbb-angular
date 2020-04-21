@@ -6,16 +6,16 @@ import { NotificationModule } from '@sbb-esta/angular-business/notification';
 import { IconBulbOnModule } from '@sbb-esta/angular-icons/community';
 import { IconClockModule } from '@sbb-esta/angular-icons/timetable';
 
-import { ClosableNotificationComponent } from './closable-notification/closable-notification.component';
-import { CustomIconNotificationComponent } from './custom-icon-notification/custom-icon-notification.component';
-import { JumpmarkNotificationComponent } from './jumpmark-notification/jumpmark-notification.component';
-import { SimpleNotificationComponent } from './simple-notification/simple-notification.component';
+import { ClosableNotificationExampleComponent } from './closable-notification-example/closable-notification-example.component';
+import { CustomIconNotificationExampleComponent } from './custom-icon-notification-example/custom-icon-notification-example.component';
+import { JumpmarkNotificationExampleComponent } from './jumpmark-notification-example/jumpmark-notification-example.component';
+import { SimpleNotificationExampleComponent } from './simple-notification-example/simple-notification-example.component';
 
 const EXAMPLES = [
-  ClosableNotificationComponent,
-  CustomIconNotificationComponent,
-  JumpmarkNotificationComponent,
-  SimpleNotificationComponent
+  ClosableNotificationExampleComponent,
+  CustomIconNotificationExampleComponent,
+  JumpmarkNotificationExampleComponent,
+  SimpleNotificationExampleComponent
 ];
 
 @NgModule({

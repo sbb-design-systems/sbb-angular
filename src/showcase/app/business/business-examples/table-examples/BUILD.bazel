@@ -8,18 +8,18 @@ package(default_visibility = ["//visibility:public"])
 ng_module(
     name = "table-examples",
     srcs = [
-        "grouped-columns-table/grouped-columns-table.component.ts",
-        "grouped-rows-table/grouped-rows-table.component.ts",
-        "simple-table/simple-table.component.ts",
-        "sortable-table/sortable-table.component.ts",
+        "grouped-columns-table-example/grouped-columns-table-example.component.ts",
+        "grouped-rows-table-example/grouped-rows-table-example.component.ts",
+        "simple-table-example/simple-table-example.component.ts",
+        "sortable-table-example/sortable-table-example.component.ts",
         "table-example-data.ts",
         "table-examples.module.ts",
     ],
     assets = [
-        "grouped-columns-table/grouped-columns-table.component.html",
-        "grouped-rows-table/grouped-rows-table.component.html",
-        "simple-table/simple-table.component.html",
-        "sortable-table/sortable-table.component.html",
+        "grouped-columns-table-example/grouped-columns-table-example.component.html",
+        "grouped-rows-table-example/grouped-rows-table-example.component.html",
+        "simple-table-example/simple-table-example.component.html",
+        "sortable-table-example/sortable-table-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [

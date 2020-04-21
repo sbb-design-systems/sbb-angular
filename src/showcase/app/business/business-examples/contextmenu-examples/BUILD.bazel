@@ -10,11 +10,11 @@ ng_module(
     name = "contextmenu-examples",
     srcs = [
         "contextmenu-examples.module.ts",
-        "simple-contextmenu/simple-contextmenu.component.ts",
+        "simple-contextmenu-example/simple-contextmenu-example.component.ts",
     ],
     assets = [
-        ":simple-contextmenu/simple-contextmenu.component.css",
-        "simple-contextmenu/simple-contextmenu.component.html",
+        ":simple-contextmenu-example/simple-contextmenu-example.component.css",
+        "simple-contextmenu-example/simple-contextmenu-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -35,6 +35,6 @@ filegroup(
 )
 
 sass_binary(
-    name = "simple_contextmenu_simple_contextmenu_component_scss",
-    src = "simple-contextmenu/simple-contextmenu.component.scss",
+    name = "simple_contextmenu_example_simple_contextmenu_example_component_scss",
+    src = "simple-contextmenu-example/simple-contextmenu-example.component.scss",
 )

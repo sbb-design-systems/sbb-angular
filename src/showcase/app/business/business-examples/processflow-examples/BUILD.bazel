@@ -10,11 +10,11 @@ ng_module(
     name = "processflow-examples",
     srcs = [
         "processflow-examples.module.ts",
-        "skippable-processflow/skippable-processflow.component.ts",
+        "skippable-processflow-example/skippable-processflow-example.component.ts",
     ],
     assets = [
-        ":skippable-processflow/skippable-processflow.component.css",
-        "skippable-processflow/skippable-processflow.component.html",
+        ":skippable-processflow-example/skippable-processflow-example.component.css",
+        "skippable-processflow-example/skippable-processflow-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -34,6 +34,6 @@ filegroup(
 )
 
 sass_binary(
-    name = "skippable_processflow_skippable_processflow_component_scss",
-    src = "skippable-processflow/skippable-processflow.component.scss",
+    name = "skippable_processflow_example_skippable_processflow_example_component_scss",
+    src = "skippable-processflow-example/skippable-processflow-example.component.scss",
 )
