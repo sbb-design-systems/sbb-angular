@@ -111,10 +111,10 @@ export class BusinessComponent implements ExampleProvider {
       )
     },
     processflow: {
-      'skippable-processflow': new ComponentPortal(SkippableProcessflowComponent)
+      'skippable-processflow-example': new ComponentPortal(SkippableProcessflowComponent)
     },
     contextmenu: {
-      'simple-contextmenu': new ComponentPortal(SimpleContextmenuComponent)
+      'simple-contextmenu-example': new ComponentPortal(SimpleContextmenuComponent)
     },
     tooltip: {
       'tooltip-simple-example': new ComponentPortal(TooltipSimpleExampleComponent),
@@ -135,30 +135,30 @@ export class BusinessComponent implements ExampleProvider {
       'pagination-example': new ComponentPortal(PaginationExampleComponent)
     },
     notification: {
-      'simple-notification': new ComponentPortal(SimpleNotificationComponent),
-      'custom-icon-notification': new ComponentPortal(CustomIconNotificationComponent),
-      'jumpmark-notification': new ComponentPortal(JumpmarkNotificationComponent),
-      'closable-notification': new ComponentPortal(ClosableNotificationComponent)
+      'simple-notification-example': new ComponentPortal(SimpleNotificationComponent),
+      'custom-icon-notification-example': new ComponentPortal(CustomIconNotificationComponent),
+      'jumpmark-notification-example': new ComponentPortal(JumpmarkNotificationComponent),
+      'closable-notification-example': new ComponentPortal(ClosableNotificationComponent)
     },
     table: {
-      'simple-table': new ComponentPortal(SimpleTableComponent),
-      'grouped-columns-table': new ComponentPortal(GroupedColumnsTableComponent),
-      'grouped-rows-table': new ComponentPortal(GroupedRowsTableComponent),
-      'sortable-table': new ComponentPortal(SortableTableComponent)
+      'simple-table-example': new ComponentPortal(SimpleTableComponent),
+      'grouped-columns-table-example': new ComponentPortal(GroupedColumnsTableComponent),
+      'grouped-rows-table-example': new ComponentPortal(GroupedRowsTableComponent),
+      'sortable-table-example': new ComponentPortal(SortableTableComponent)
     },
     chip: {
-      'forms-chip-input': new ComponentPortal(FormsChipInputComponent),
-      'reactive-forms-chip-input': new ComponentPortal(ReactiveFormsChipInputComponent),
-      'disabled-chip-input': new ComponentPortal(DisabledChipInputComponent),
-      'autocomplete-chip-input': new ComponentPortal(AutocompleteChipInputComponent)
+      'forms-chip-input-example': new ComponentPortal(FormsChipInputComponent),
+      'reactive-forms-chip-input-example': new ComponentPortal(ReactiveFormsChipInputComponent),
+      'disabled-chip-input-example': new ComponentPortal(DisabledChipInputComponent),
+      'autocomplete-chip-input-example': new ComponentPortal(AutocompleteChipInputComponent)
     },
     select: {
-      'select-reactive-forms': new ComponentPortal(SelectReactiveFormsComponent),
-      'select-forms': new ComponentPortal(SelectFormsComponent),
-      'select-native': new ComponentPortal(SelectNativeComponent),
-      'select-multi-selection': new ComponentPortal(SelectMultiSelectionComponent),
-      'select-option-groups': new ComponentPortal(SelectOptionGroupsComponent),
-      'select-option-groups-multi-selection': new ComponentPortal(
+      'select-reactive-forms-example': new ComponentPortal(SelectReactiveFormsComponent),
+      'select-forms-example': new ComponentPortal(SelectFormsComponent),
+      'select-native-example': new ComponentPortal(SelectNativeComponent),
+      'select-multi-selection-example': new ComponentPortal(SelectMultiSelectionComponent),
+      'select-option-groups-example': new ComponentPortal(SelectOptionGroupsComponent),
+      'select-option-groups-multi-selection-example': new ComponentPortal(
         SelectOptionGroupsMultiSelectionComponent
       )
     },
@@ -167,7 +167,7 @@ export class BusinessComponent implements ExampleProvider {
       'textarea-reactive-forms-with-sbb-field-example': new ComponentPortal(
         TextareaReactiveFormsWithSbbFieldExampleComponent
       ),
-      'textarea-native': new ComponentPortal(TextareaNativeExampleComponent)
+      'textarea-native-example': new ComponentPortal(TextareaNativeExampleComponent)
     }
   };
 

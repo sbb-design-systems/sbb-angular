@@ -133,12 +133,12 @@ export class PublicComponent implements ExampleProvider {
     },
     search: { 'search-example': new ComponentPortal(SearchExampleComponent) },
     select: {
-      'select-reactive-forms': new ComponentPortal(SelectReactiveFormsComponent),
-      'select-forms': new ComponentPortal(SelectFormsComponent),
-      'select-native': new ComponentPortal(SelectNativeComponent),
-      'select-multi-selection': new ComponentPortal(SelectMultiSelectionComponent),
-      'select-option-groups': new ComponentPortal(SelectOptionGroupsComponent),
-      'select-option-groups-multi-selection': new ComponentPortal(
+      'select-reactive-forms-example': new ComponentPortal(SelectReactiveFormsComponent),
+      'select-forms-example': new ComponentPortal(SelectFormsComponent),
+      'select-native-example': new ComponentPortal(SelectNativeComponent),
+      'select-multi-selection-example': new ComponentPortal(SelectMultiSelectionComponent),
+      'select-option-groups-example': new ComponentPortal(SelectOptionGroupsComponent),
+      'select-option-groups-multi-selection-example': new ComponentPortal(
         SelectOptionGroupsMultiSelectionComponent
       )
     },
@@ -148,7 +148,7 @@ export class PublicComponent implements ExampleProvider {
       'textarea-reactive-forms-with-sbb-field-example': new ComponentPortal(
         TextareaReactiveFormsWithSbbFieldExampleComponent
       ),
-      'textarea-native': new ComponentPortal(TextareaNativeExampleComponent)
+      'textarea-native-example': new ComponentPortal(TextareaNativeExampleComponent)
     },
     'time-input': { 'time-input-example': new ComponentPortal(TimeInputExampleComponent) },
     toggle: { 'toggle-example': new ComponentPortal(ToggleExampleComponent) },
