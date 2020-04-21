@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'sbb-select-option-groups',
-  templateUrl: './select-option-groups.component.html'
+  selector: 'sbb-select-option-groups-example',
+  templateUrl: './select-option-groups-example.component.html'
 })
-export class SelectOptionGroupsComponent {
+export class SelectOptionGroupsExampleComponent {
   form: FormGroup;
   foodFromTheWorld = [
     {

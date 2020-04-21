@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'sbb-select-multi-selection',
-  templateUrl: './select-multi-selection.component.html'
+  selector: 'sbb-select-reactive-forms-example',
+  templateUrl: './select-reactive-forms-example.component.html',
+  styleUrls: ['./select-reactive-forms-example.component.css']
 })
-export class SelectMultiSelectionComponent {
+export class SelectReactiveFormsExampleComponent {
   form: FormGroup;
 
   constructor(formBuilder: FormBuilder) {
     this.form = formBuilder.group({
-      value: [[]],
+      value: '',
       optionDisabled: false
     });
   }

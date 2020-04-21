@@ -30,12 +30,12 @@ import { ProcessflowExampleComponent } from '../public-examples/processflow-exam
 import { RadioButtonExampleComponent } from '../public-examples/radio-button-examples/radio-button-example/radio-button-example.component';
 import { RadioButtonPanelExampleComponent } from '../public-examples/radio-button-panel-examples/radio-button-panel-example/radio-button-panel-example.component';
 import { SearchExampleComponent } from '../public-examples/search-examples/search-example/search-example.component';
-import { SelectFormsComponent } from '../public-examples/select-examples/select-forms/select-forms.component';
-import { SelectMultiSelectionComponent } from '../public-examples/select-examples/select-multi-selection/select-multi-selection.component';
-import { SelectNativeComponent } from '../public-examples/select-examples/select-native/select-native.component';
-import { SelectOptionGroupsMultiSelectionComponent } from '../public-examples/select-examples/select-option-groups-multi-selection/select-option-groups-multi-selection.component';
-import { SelectOptionGroupsComponent } from '../public-examples/select-examples/select-option-groups/select-option-groups.component';
-import { SelectReactiveFormsComponent } from '../public-examples/select-examples/select-reactive-forms/select-reactive-forms.component';
+import { SelectFormsExampleComponent } from '../public-examples/select-examples/select-forms-example/select-forms-example.component';
+import { SelectMultiSelectionExampleComponent } from '../public-examples/select-examples/select-multi-selection-example/select-multi-selection-example.component';
+import { SelectNativeExampleComponent } from '../public-examples/select-examples/select-native-example/select-native-example.component';
+import { SelectOptionGroupsExampleComponent } from '../public-examples/select-examples/select-option-groups-example/select-option-groups-example.component';
+import { SelectOptionGroupsMultiSelectionExampleComponent } from '../public-examples/select-examples/select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component';
+import { SelectReactiveFormsExampleComponent } from '../public-examples/select-examples/select-reactive-forms-example/select-reactive-forms-example.component';
 import { TableExampleComponent } from '../public-examples/table-examples/table-example/table-example.component';
 import { TabsExampleComponent } from '../public-examples/tabs-examples/tabs-example/tabs-example.component';
 import { TagExampleComponent } from '../public-examples/tag-examples/tag-example/tag-example.component';
@@ -133,13 +133,13 @@ export class PublicComponent implements ExampleProvider {
     },
     search: { 'search-example': new ComponentPortal(SearchExampleComponent) },
     select: {
-      'select-reactive-forms-example': new ComponentPortal(SelectReactiveFormsComponent),
-      'select-forms-example': new ComponentPortal(SelectFormsComponent),
-      'select-native-example': new ComponentPortal(SelectNativeComponent),
-      'select-multi-selection-example': new ComponentPortal(SelectMultiSelectionComponent),
-      'select-option-groups-example': new ComponentPortal(SelectOptionGroupsComponent),
+      'select-reactive-forms-example': new ComponentPortal(SelectReactiveFormsExampleComponent),
+      'select-forms-example': new ComponentPortal(SelectFormsExampleComponent),
+      'select-native-example': new ComponentPortal(SelectNativeExampleComponent),
+      'select-multi-selection-example': new ComponentPortal(SelectMultiSelectionExampleComponent),
+      'select-option-groups-example': new ComponentPortal(SelectOptionGroupsExampleComponent),
       'select-option-groups-multi-selection-example': new ComponentPortal(
-        SelectOptionGroupsMultiSelectionComponent
+        SelectOptionGroupsMultiSelectionExampleComponent
       )
     },
     tag: { 'tag-example': new ComponentPortal(TagExampleComponent) },
