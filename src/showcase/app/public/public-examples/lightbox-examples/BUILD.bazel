@@ -24,6 +24,7 @@ ng_module(
     deps = [
         "//src/icons/arrow",
         "//src/icons/navigation",
+        "//src/public/button",
         "//src/public/field",
         "//src/public/lightbox",
         "//src/public/radio-button",
