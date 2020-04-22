@@ -21,6 +21,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/business/button",
         "//src/business/dialog",
         "//src/business/field",
         "@npm//@angular/common",
