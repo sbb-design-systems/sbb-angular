@@ -1,29 +1,31 @@
-<div>
+<div class="sbbsc-block">
   <sbb-processflow #processflow skippable>
-    <sbb-processflow-step title="Schritt 1">
+    <sbb-processflow-step title="Step 1">
       <div>
-        Schrittinhalt 1
+        Step content 1
       </div>
     </sbb-processflow-step>
-    <sbb-processflow-step title="Schritt 2">
+    <sbb-processflow-step title="Step 2">
       <div>
-        Schrittinhalt 2
+        Step content 2
       </div>
     </sbb-processflow-step>
-    <sbb-processflow-step title="Schritt 3">
+    <sbb-processflow-step title="Step 3">
       <div>
-        Schrittinhalt 3
+        Step content 3
       </div>
     </sbb-processflow-step>
   </sbb-processflow>
-  <button sbbButton (click)="processflow.prevStep()">
-    Vorheriger Schritt
-  </button>
-  <button sbbButton (click)="processflow.nextStep()">
-    Nächster Schritt
-  </button>
 </div>
 <div>
-  <h4>Properties</h4>
-  <button mode="ghost" sbbButton (click)="reset()">Reset</button>
+  <h4 class="sbbsc-block">Processflow Controls</h4>
+  <button sbbButton (click)="processflow.prevStep()">
+    Previous step
+  </button>
+  <button sbbButton (click)="processflow.nextStep()" style="margin-left: 0.5rem">
+    Next step
+  </button>
+  <button sbbButton mode="ghost" (click)="processflow.reset()" style="margin-left: 0.5rem">
+    Reset
+  </button>
 </div>

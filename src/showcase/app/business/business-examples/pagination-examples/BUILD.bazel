@@ -16,9 +16,9 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/business/button",
         "//src/business/field",
         "//src/business/pagination",
-        "//src/public/button",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

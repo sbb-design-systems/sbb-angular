@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -13,7 +12,6 @@ ng_module(
         "processflow-examples.module.ts",
     ],
     assets = [
-        ":processflow-example/processflow-example.component.css",
         "processflow-example/processflow-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
@@ -32,9 +30,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "processflow_example_processflow_example_component_scss",
-    src = "processflow-example/processflow-example.component.scss",
 )
