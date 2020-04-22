@@ -11,10 +11,10 @@
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
       <sbb-field mode="long" label="Length">
-        <input type="number" [(ngModel)]="length" name="length" sbbInput />
+        <input sbbInput type="number" [(ngModel)]="length" name="length" />
       </sbb-field>
       <sbb-field mode="long" label="Page index">
-        <input type="number" [(ngModel)]="pageIndex" name="pageIndex" sbbInput />
+        <input sbbInput type="number" [(ngModel)]="pageIndex" name="pageIndex" />
       </sbb-field>
     </div>
   </div>
@@ -34,7 +34,7 @@
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
       <sbb-field label="Page title" mode="long" class="sbbsc-block">
-        <input type="text" name="newPage" [(ngModel)]="newPage.title" sbbInput />
+        <input sbbInput type="text" name="newPage" [(ngModel)]="newPage.title" />
       </sbb-field>
       <button sbbButton (click)="addPage()" class="sbbsc-block">Add new page</button>
     </div>
