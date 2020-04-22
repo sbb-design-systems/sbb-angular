@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { HtmlLoader } from '../../../shared/html-loader.service';
+import { HtmlLoader } from '../../html-loader.service';
 
 @Component({
   selector: 'sbb-example-viewer',
