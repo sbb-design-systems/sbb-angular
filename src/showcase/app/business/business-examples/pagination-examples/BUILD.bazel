@@ -18,6 +18,7 @@ ng_module(
     deps = [
         "//src/business/field",
         "//src/business/pagination",
+        "//src/public/button",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
