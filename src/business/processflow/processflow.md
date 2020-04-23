@@ -2,19 +2,19 @@ You can use process flow component as a workflow divided into step as seen below
 
 ```html
 <sbb-processflow>
-  <sbb-processflow-step title="Schritt 1">
+  <sbb-processflow-step title="Step 1">
     <div>
-      Schrittinhalt 1
+      Step content 1
     </div>
   </sbb-processflow-step>
-  <sbb-processflow-step title="Schritt 2">
+  <sbb-processflow-step title="Step 2">
     <div>
-      Schrittinhalt 2
+      Step content 2
     </div>
   </sbb-processflow-step>
-  <sbb-processflow-step title="Schritt 3">
+  <sbb-processflow-step title="Step 3">
     <div>
-      Schrittinhalt 3
+      Step content 3
     </div>
   </sbb-processflow-step>
 </sbb-processflow>
@@ -69,19 +69,19 @@ In case the desired behaviour is to have skippable steps, the `skippable` flag c
 
 ```html
 <sbb-processflow skippable="true">
-  <sbb-processflow-step title="Schritt 1">
+  <sbb-processflow-step title="Step 1">
     <div>
-      Schrittinhalt 1
+      Step content 1
     </div>
   </sbb-processflow-step>
-  <sbb-processflow-step title="Schritt 2">
+  <sbb-processflow-step title="Step 2">
     <div>
-      Schrittinhalt 2
+      Step content 2
     </div>
   </sbb-processflow-step>
-  <sbb-processflow-step title="Schritt 3">
+  <sbb-processflow-step title="Step 3">
     <div>
-      Schrittinhalt 3
+      Step content 3
     </div>
   </sbb-processflow-step>
 </sbb-processflow>

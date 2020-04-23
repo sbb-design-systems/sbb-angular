@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
 import { AccordionModule } from '@sbb-esta/angular-public/accordion';
+import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { RadioButtonModule } from '@sbb-esta/angular-public/radio-button';
@@ -20,7 +21,8 @@ const EXAMPLES = [AccordionExampleComponent];
     AccordionModule,
     CheckboxModule,
     FieldModule,
-    RadioButtonModule
+    RadioButtonModule,
+    ButtonModule
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES

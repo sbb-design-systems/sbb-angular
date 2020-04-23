@@ -20,6 +20,7 @@ ng_module(
     deps = [
         "//src/core/models",
         "//src/icons/him-cus",
+        "//src/public/button",
         "//src/public/ghettobox",
         "@npm//@angular/common",
         "@npm//@angular/core",

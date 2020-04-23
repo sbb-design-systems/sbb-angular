@@ -1,6 +1,11 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { DropdownTriggerDirective } from '@sbb-esta/angular-public/dropdown';
 
+interface DropdownLink {
+  page: number;
+  text: string;
+}
+
 @Component({
   selector: 'sbb-dropdown-example',
   templateUrl: './dropdown-example.component.html',
@@ -9,13 +14,13 @@ import { DropdownTriggerDirective } from '@sbb-esta/angular-public/dropdown';
 export class DropdownExampleComponent {
   @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
 
-  links: Array<any> = [
+  links: Array<DropdownLink> = [
     { page: 1, text: 'Test 1' },
     { page: 2, text: 'Test 2' },
     { page: 3, text: 'Test 3' }
   ];
 
-  linkGenerator(page: string) {
+  linkGenerator(page: number) {
     return {
       queryParams: { page: page },
       routerLink: ['.']

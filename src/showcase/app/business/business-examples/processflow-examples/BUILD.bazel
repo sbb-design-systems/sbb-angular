@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -10,14 +9,14 @@ ng_module(
     name = "processflow-examples",
     srcs = [
         "processflow-examples.module.ts",
-        "skippable-processflow/skippable-processflow.component.ts",
+        "skippable-processflow-example/skippable-processflow-example.component.ts",
     ],
     assets = [
-        ":skippable-processflow/skippable-processflow.component.css",
-        "skippable-processflow/skippable-processflow.component.html",
+        "skippable-processflow-example/skippable-processflow-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/business/button",
         "//src/business/processflow",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -31,9 +30,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "skippable_processflow_skippable_processflow_component_scss",
-    src = "skippable-processflow/skippable-processflow.component.scss",
 )

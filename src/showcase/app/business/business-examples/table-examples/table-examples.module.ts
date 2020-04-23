@@ -2,16 +2,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { TableModule } from '@sbb-esta/angular-business/table';
 
-import { GroupedColumnsTableComponent } from './grouped-columns-table/grouped-columns-table.component';
-import { GroupedRowsTableComponent } from './grouped-rows-table/grouped-rows-table.component';
-import { SimpleTableComponent } from './simple-table/simple-table.component';
-import { SortableTableComponent } from './sortable-table/sortable-table.component';
+import { GroupedColumnsTableExampleComponent } from './grouped-columns-table-example/grouped-columns-table-example.component';
+import { GroupedRowsTableExampleComponent } from './grouped-rows-table-example/grouped-rows-table-example.component';
+import { SimpleTableExampleComponent } from './simple-table-example/simple-table-example.component';
+import { SortableTableExampleComponent } from './sortable-table-example/sortable-table-example.component';
 
 const EXAMPLES = [
-  GroupedColumnsTableComponent,
-  GroupedRowsTableComponent,
-  SimpleTableComponent,
-  SortableTableComponent
+  GroupedColumnsTableExampleComponent,
+  GroupedRowsTableExampleComponent,
+  SimpleTableExampleComponent,
+  SortableTableExampleComponent
 ];
 
 @NgModule({
