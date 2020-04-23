@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AutocompleteExamplesModule } from './autocomplete-examples/autocomplete-examples.module';
 import { BreadcrumbExamplesModule } from './breadcrumb-examples/breadcrumb-examples.module';
+import { CheckboxExamplesModule } from './checkbox-examples/checkbox-examples.module';
 import { ChipExamplesModule } from './chip-examples/chip-examples.module';
 import { ContextmenuExamplesModule } from './contextmenu-examples/contextmenu-examples.module';
 import { DatepickerExamplesModule } from './datepicker-examples/datepicker-examples.module';
@@ -21,6 +22,7 @@ const EXAMPLES = [
   DatepickerExamplesModule,
   TooltipExamplesModule,
   AutocompleteExamplesModule,
+  CheckboxExamplesModule,
   ChipExamplesModule,
   ContextmenuExamplesModule,
   DialogExamplesModule,

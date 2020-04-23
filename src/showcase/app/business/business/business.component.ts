@@ -7,6 +7,7 @@ import { AutocompleteHintExampleComponent } from '../business-examples/autocompl
 import { AutocompleteOptionGroupExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 import { BreadcrumbExampleComponent } from '../business-examples/breadcrumb-examples/breadcrumb-example/breadcrumb-example.component';
+import { CheckboxExampleComponent } from '../business-examples/checkbox-examples/checkbox-example/checkbox-example.component';
 import { AutocompleteChipInputComponent } from '../business-examples/chip-examples/autocomplete-chip-input/autocomplete-chip-input.component';
 import { DisabledChipInputComponent } from '../business-examples/chip-examples/disabled-chip-input/disabled-chip-input.component';
 import { FormsChipInputComponent } from '../business-examples/chip-examples/forms-chip-input/forms-chip-input.component';
@@ -96,6 +97,9 @@ export class BusinessComponent implements ExampleProvider {
     },
     breadcrumb: {
       'breadcrumb-example': new ComponentPortal(BreadcrumbExampleComponent)
+    },
+    checkbox: {
+      'checkbox-example': new ComponentPortal(CheckboxExampleComponent)
     },
     datepicker: {
       'datepicker-simple-reactive-example': new ComponentPortal(

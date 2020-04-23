@@ -14,6 +14,7 @@ ng_module(
     deps = [
         "//src/showcase/app/business/business-examples/autocomplete-examples",
         "//src/showcase/app/business/business-examples/breadcrumb-examples",
+        "//src/showcase/app/business/business-examples/checkbox-examples",
         "//src/showcase/app/business/business-examples/chip-examples",
         "//src/showcase/app/business/business-examples/contextmenu-examples",
         "//src/showcase/app/business/business-examples/datepicker-examples",

@@ -7,6 +7,7 @@
 $checkBoxContainerBorder: if($sbbBusiness, 1, 2);
 $radioButtonGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 $checkBoxGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
+$checkBoxDisabledLabelColor: if($sbbBusiness, $sbbColorStorm, $sbbColorGrey);
 
 $checkboxRadioButtonPanelHeight: 64;
 $checkboxRadioButtonPanelHeightWithSubtitle: 88;
@@ -156,11 +157,11 @@ $checkboxRadioButtonPanelImageHeight: 40;
       background-color: $sbbColorMilk;
 
       & > .sbb-checkbox-checked {
-        @include svgIconColor($sbbColorGrey);
+        @include svgIconColor($checkBoxGreyColor);
       }
 
       & + .sbb-checkbox-label-content {
-        color: $checkBoxGreyColor;
+        color: $checkBoxDisabledLabelColor;
       }
     }
   }
