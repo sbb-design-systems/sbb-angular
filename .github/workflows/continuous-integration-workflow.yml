@@ -158,7 +158,7 @@ jobs:
     - name: "Build: Showcase"
       run: yarn -s build:showcase
     - name: "Pack: Showcase"
-      run: yarn pack --cwd ./dist/releases/showcase --filename ./sbb-esta-angular-showcase.tgz
+      run: tar -C ./dist/releases/showcase -cvzf ./sbb-esta-angular-showcase.tgz .
     - name: "Deploy: Staging"
       run: |
         curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
