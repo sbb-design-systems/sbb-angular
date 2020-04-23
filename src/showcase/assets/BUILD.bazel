@@ -20,6 +20,8 @@ package_docs_content(
         # Package the overviews into the docs content
         "//src/business:overviews": "overviews/business",
         "//src/core:overviews": "overviews/core",
+        "//src/icons:overviews": "overviews/icons",
+        "//src/keycloak:overviews": "overviews/keycloak",
         "//src/maps:overviews": "overviews/maps",
         "//src/public:overviews": "overviews/public",
 
