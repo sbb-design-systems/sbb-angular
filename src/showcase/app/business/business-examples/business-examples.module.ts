@@ -10,6 +10,7 @@ import { DialogExamplesModule } from './dialog-examples/dialog-examples.module';
 import { NotificationExamplesModule } from './notification-examples/notification-examples.module';
 import { PaginationExamplesModule } from './pagination-examples/pagination-examples.module';
 import { ProcessflowExamplesModule } from './processflow-examples/processflow-examples.module';
+import { RadioButtonExamplesModule } from './radio-button-examples/radio-button-examples.module';
 import { SelectExamplesModule } from './select-examples/select-examples.module';
 import { TableExamplesModule } from './table-examples/table-examples.module';
 import { TabsExamplesModule } from './tabs-examples/tabs-examples.module';
@@ -29,6 +30,7 @@ const EXAMPLES = [
   NotificationExamplesModule,
   PaginationExamplesModule,
   ProcessflowExamplesModule,
+  RadioButtonExamplesModule,
   SelectExamplesModule,
   TableExamplesModule,
   TabsExamplesModule,

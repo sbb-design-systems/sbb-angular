@@ -25,6 +25,7 @@ import { JumpmarkNotificationComponent } from '../business-examples/notification
 import { SimpleNotificationComponent } from '../business-examples/notification-examples/simple-notification/simple-notification.component';
 import { PaginationExampleComponent } from '../business-examples/pagination-examples/pagination-example/pagination-example.component';
 import { SkippableProcessflowComponent } from '../business-examples/processflow-examples/skippable-processflow/skippable-processflow.component';
+import { RadioButtonExampleComponent } from '../business-examples/radio-button-examples/radio-button-example/radio-button-example.component';
 import { SelectFormsComponent } from '../business-examples/select-examples/select-forms/select-forms.component';
 import { SelectMultiSelectionComponent } from '../business-examples/select-examples/select-multi-selection/select-multi-selection.component';
 import { SelectNativeComponent } from '../business-examples/select-examples/select-native/select-native.component';
@@ -155,6 +156,9 @@ export class BusinessComponent implements ExampleProvider {
       'reactive-forms-chip-input': new ComponentPortal(ReactiveFormsChipInputComponent),
       'disabled-chip-input': new ComponentPortal(DisabledChipInputComponent),
       'autocomplete-chip-input': new ComponentPortal(AutocompleteChipInputComponent)
+    },
+    'radio-button': {
+      'radio-button-example': new ComponentPortal(RadioButtonExampleComponent)
     },
     select: {
       'select-reactive-forms': new ComponentPortal(SelectReactiveFormsComponent),
