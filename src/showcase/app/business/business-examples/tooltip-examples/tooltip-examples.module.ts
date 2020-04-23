@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { IconPlusModule } from '@sbb-esta/angular-icons/navigation';
@@ -24,7 +25,8 @@ const EXAMPLES = [
     ReactiveFormsModule,
     FieldModule,
     TooltipModule,
-    IconPlusModule
+    IconPlusModule,
+    ButtonModule
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES

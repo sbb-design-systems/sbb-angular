@@ -3,8 +3,7 @@ import { ProcessflowComponent, ProcessflowStep } from '@sbb-esta/angular-public/
 
 @Component({
   selector: 'sbb-processflow-example',
-  templateUrl: './processflow-example.component.html',
-  styleUrls: ['./processflow-example.component.css']
+  templateUrl: './processflow-example.component.html'
 })
 export class ProcessflowExampleComponent implements AfterViewInit {
   @ViewChild('processflow', { static: true }) processflow: ProcessflowComponent;

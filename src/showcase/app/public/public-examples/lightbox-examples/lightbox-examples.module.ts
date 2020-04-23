@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
 import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
+import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { LightboxModule } from '@sbb-esta/angular-public/lightbox';
 import { RadioButtonModule } from '@sbb-esta/angular-public/radio-button';
@@ -44,7 +45,8 @@ const EXAMPLES = [
     IconCrossModule,
     FieldModule,
     LightboxModule,
-    RadioButtonModule
+    RadioButtonModule,
+    ButtonModule
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES

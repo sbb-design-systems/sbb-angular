@@ -20,6 +20,7 @@ ng_module(
     deps = [
         "//src/icons/arrow",
         "//src/public/accordion",
+        "//src/public/button",
         "//src/public/checkbox",
         "//src/public/field",
         "//src/public/radio-button",

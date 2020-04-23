@@ -10,24 +10,24 @@ ng_module(
     name = "select-examples",
     srcs = [
         "select-examples.module.ts",
-        "select-forms/select-forms.component.ts",
-        "select-multi-selection/select-multi-selection.component.ts",
-        "select-native/select-native.component.ts",
-        "select-option-groups-multi-selection/select-option-groups-multi-selection.component.ts",
-        "select-option-groups/select-option-groups.component.ts",
-        "select-reactive-forms/select-reactive-forms.component.ts",
+        "select-forms-example/select-forms-example.component.ts",
+        "select-multi-selection-example/select-multi-selection-example.component.ts",
+        "select-native-example/select-native-example.component.ts",
+        "select-option-groups-example/select-option-groups-example.component.ts",
+        "select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component.ts",
+        "select-reactive-forms-example/select-reactive-forms-example.component.ts",
     ],
     assets = [
-        ":select-native/select-native.component.css",
-        ":select-option-groups/select-option-groups.component.css",
-        ":select-option-groups-multi-selection/select-option-groups-multi-selection.component.css",
-        ":select-reactive-forms/select-reactive-forms.component.css",
-        "select-forms/select-forms.component.html",
-        "select-multi-selection/select-multi-selection.component.html",
-        "select-native/select-native.component.html",
-        "select-option-groups-multi-selection/select-option-groups-multi-selection.component.html",
-        "select-option-groups/select-option-groups.component.html",
-        "select-reactive-forms/select-reactive-forms.component.html",
+        ":select-native-example/select-native-example.component.css",
+        ":select-option-groups-example/select-option-groups-example.component.css",
+        ":select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component.css",
+        ":select-reactive-forms-example/select-reactive-forms-example.component.css",
+        "select-forms-example/select-forms-example.component.html",
+        "select-multi-selection-example/select-multi-selection-example.component.html",
+        "select-native-example/select-native-example.component.html",
+        "select-option-groups-example/select-option-groups-example.component.html",
+        "select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component.html",
+        "select-reactive-forms-example/select-reactive-forms-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -50,21 +50,21 @@ filegroup(
 )
 
 sass_binary(
-    name = "select_native_select_native_component_scss",
-    src = "select-native/select-native.component.scss",
+    name = "select_native_example_select_native_example_component_scss",
+    src = "select-native-example/select-native-example.component.scss",
 )
 
 sass_binary(
-    name = "select_option_groups_select_option_groups_component_scss",
-    src = "select-option-groups/select-option-groups.component.scss",
+    name = "select_option_groups_example_select_option_groups_example_component_scss",
+    src = "select-option-groups-example/select-option-groups-example.component.scss",
 )
 
 sass_binary(
-    name = "select_option_groups_multi_selection_select_option_groups_multi_selection_component_scss",
-    src = "select-option-groups-multi-selection/select-option-groups-multi-selection.component.scss",
+    name = "select_option_groups_multi_selection_example_select_option_groups_multi_selection_example_component_scss",
+    src = "select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component.scss",
 )
 
 sass_binary(
-    name = "select_reactive_forms_select_reactive_forms_component_scss",
-    src = "select-reactive-forms/select-reactive-forms.component.scss",
+    name = "select_reactive_forms_example_select_reactive_forms_example_component_scss",
+    src = "select-reactive-forms-example/select-reactive-forms-example.component.scss",
 )

@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { ContextmenuModule } from '@sbb-esta/angular-business/contextmenu';
 import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
 
-import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
+import { SimpleContextmenuExampleComponent } from './simple-contextmenu-example/simple-contextmenu-example.component';
 
-const EXAMPLES = [SimpleContextmenuComponent];
+const EXAMPLES = [SimpleContextmenuExampleComponent];
 
 @NgModule({
   imports: [CommonModule, ContextmenuModule, DropdownModule],

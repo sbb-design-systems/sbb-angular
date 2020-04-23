@@ -5,20 +5,20 @@ import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { SelectModule } from '@sbb-esta/angular-public/select';
 
-import { SelectFormsComponent } from './select-forms/select-forms.component';
-import { SelectMultiSelectionComponent } from './select-multi-selection/select-multi-selection.component';
-import { SelectNativeComponent } from './select-native/select-native.component';
-import { SelectOptionGroupsMultiSelectionComponent } from './select-option-groups-multi-selection/select-option-groups-multi-selection.component';
-import { SelectOptionGroupsComponent } from './select-option-groups/select-option-groups.component';
-import { SelectReactiveFormsComponent } from './select-reactive-forms/select-reactive-forms.component';
+import { SelectFormsExampleComponent } from './select-forms-example/select-forms-example.component';
+import { SelectMultiSelectionExampleComponent } from './select-multi-selection-example/select-multi-selection-example.component';
+import { SelectNativeExampleComponent } from './select-native-example/select-native-example.component';
+import { SelectOptionGroupsExampleComponent } from './select-option-groups-example/select-option-groups-example.component';
+import { SelectOptionGroupsMultiSelectionExampleComponent } from './select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component';
+import { SelectReactiveFormsExampleComponent } from './select-reactive-forms-example/select-reactive-forms-example.component';
 
 const EXAMPLES = [
-  SelectFormsComponent,
-  SelectMultiSelectionComponent,
-  SelectNativeComponent,
-  SelectOptionGroupsMultiSelectionComponent,
-  SelectOptionGroupsComponent,
-  SelectReactiveFormsComponent
+  SelectFormsExampleComponent,
+  SelectMultiSelectionExampleComponent,
+  SelectNativeExampleComponent,
+  SelectOptionGroupsMultiSelectionExampleComponent,
+  SelectOptionGroupsExampleComponent,
+  SelectReactiveFormsExampleComponent
 ];
 
 @NgModule({

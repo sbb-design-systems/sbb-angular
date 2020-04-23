@@ -7,33 +7,33 @@ import { AutocompleteHintExampleComponent } from '../business-examples/autocompl
 import { AutocompleteOptionGroupExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 import { BreadcrumbExampleComponent } from '../business-examples/breadcrumb-examples/breadcrumb-example/breadcrumb-example.component';
-import { AutocompleteChipInputComponent } from '../business-examples/chip-examples/autocomplete-chip-input/autocomplete-chip-input.component';
-import { DisabledChipInputComponent } from '../business-examples/chip-examples/disabled-chip-input/disabled-chip-input.component';
-import { FormsChipInputComponent } from '../business-examples/chip-examples/forms-chip-input/forms-chip-input.component';
-import { ReactiveFormsChipInputComponent } from '../business-examples/chip-examples/reactive-forms-chip-input/reactive-forms-chip-input.component';
-import { SimpleContextmenuComponent } from '../business-examples/contextmenu-examples/simple-contextmenu/simple-contextmenu.component';
+import { AutocompleteChipInputExampleComponent } from '../business-examples/chip-examples/autocomplete-chip-input-example/autocomplete-chip-input-example.component';
+import { DisabledChipInputExampleComponent } from '../business-examples/chip-examples/disabled-chip-input-example/disabled-chip-input-example.component';
+import { FormsChipInputExampleComponent } from '../business-examples/chip-examples/forms-chip-input-example/forms-chip-input-example.component';
+import { ReactiveFormsChipInputExampleComponent } from '../business-examples/chip-examples/reactive-forms-chip-input-example/reactive-forms-chip-input-example.component';
+import { SimpleContextmenuExampleComponent } from '../business-examples/contextmenu-examples/simple-contextmenu-example/simple-contextmenu-example.component';
 import { DatepickerBusinessDateAdapterExampleComponent } from '../business-examples/datepicker-examples/datepicker-business-date-adapter-example/datepicker-business-date-adapter-example.component';
 import { DatepickerDateFilterExampleComponent } from '../business-examples/datepicker-examples/datepicker-date-filter-example/datepicker-date-filter-example.component';
 import { DatepickerMasterSlaveExampleComponent } from '../business-examples/datepicker-examples/datepicker-master-slave-example/datepicker-master-slave-example.component';
 import { DatepickerSimpleReactiveExampleComponent } from '../business-examples/datepicker-examples/datepicker-simple-reactive-example/datepicker-simple-reactive-example.component';
 import { DatepickerStandaloneFormsExampleComponent } from '../business-examples/datepicker-examples/datepicker-standalone-forms-example/datepicker-standalone-forms-example.component';
 import { DialogExampleComponent } from '../business-examples/dialog-examples/dialog-example/dialog-example.component';
-import { ClosableNotificationComponent } from '../business-examples/notification-examples/closable-notification/closable-notification.component';
-import { CustomIconNotificationComponent } from '../business-examples/notification-examples/custom-icon-notification/custom-icon-notification.component';
-import { JumpmarkNotificationComponent } from '../business-examples/notification-examples/jumpmark-notification/jumpmark-notification.component';
-import { SimpleNotificationComponent } from '../business-examples/notification-examples/simple-notification/simple-notification.component';
+import { ClosableNotificationExampleComponent } from '../business-examples/notification-examples/closable-notification-example/closable-notification-example.component';
+import { CustomIconNotificationExampleComponent } from '../business-examples/notification-examples/custom-icon-notification-example/custom-icon-notification-example.component';
+import { JumpmarkNotificationExampleComponent } from '../business-examples/notification-examples/jumpmark-notification-example/jumpmark-notification-example.component';
+import { SimpleNotificationExampleComponent } from '../business-examples/notification-examples/simple-notification-example/simple-notification-example.component';
 import { PaginationExampleComponent } from '../business-examples/pagination-examples/pagination-example/pagination-example.component';
-import { SkippableProcessflowComponent } from '../business-examples/processflow-examples/skippable-processflow/skippable-processflow.component';
-import { SelectFormsComponent } from '../business-examples/select-examples/select-forms/select-forms.component';
-import { SelectMultiSelectionComponent } from '../business-examples/select-examples/select-multi-selection/select-multi-selection.component';
-import { SelectNativeComponent } from '../business-examples/select-examples/select-native/select-native.component';
-import { SelectOptionGroupsMultiSelectionComponent } from '../business-examples/select-examples/select-option-groups-multi-selection/select-option-groups-multi-selection.component';
-import { SelectOptionGroupsComponent } from '../business-examples/select-examples/select-option-groups/select-option-groups.component';
-import { SelectReactiveFormsComponent } from '../business-examples/select-examples/select-reactive-forms/select-reactive-forms.component';
-import { GroupedColumnsTableComponent } from '../business-examples/table-examples/grouped-columns-table/grouped-columns-table.component';
-import { GroupedRowsTableComponent } from '../business-examples/table-examples/grouped-rows-table/grouped-rows-table.component';
-import { SimpleTableComponent } from '../business-examples/table-examples/simple-table/simple-table.component';
-import { SortableTableComponent } from '../business-examples/table-examples/sortable-table/sortable-table.component';
+import { SkippableProcessflowExampleComponent } from '../business-examples/processflow-examples/skippable-processflow-example/skippable-processflow-example.component';
+import { SelectFormsExampleComponent } from '../business-examples/select-examples/select-forms-example/select-forms-example.component';
+import { SelectMultiSelectionExampleComponent } from '../business-examples/select-examples/select-multi-selection-example/select-multi-selection-example.component';
+import { SelectNativeExampleComponent } from '../business-examples/select-examples/select-native-example/select-native-example.component';
+import { SelectOptionGroupsExampleComponent } from '../business-examples/select-examples/select-option-groups-example/select-option-groups-example.component';
+import { SelectOptionGroupsMultiSelectionExampleComponent } from '../business-examples/select-examples/select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component';
+import { SelectReactiveFormsExampleComponent } from '../business-examples/select-examples/select-reactive-forms-example/select-reactive-forms-example.component';
+import { GroupedColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-columns-table-example/grouped-columns-table-example.component';
+import { GroupedRowsTableExampleComponent } from '../business-examples/table-examples/grouped-rows-table-example/grouped-rows-table-example.component';
+import { SimpleTableExampleComponent } from '../business-examples/table-examples/simple-table-example/simple-table-example.component';
+import { SortableTableExampleComponent } from '../business-examples/table-examples/sortable-table-example/sortable-table-example.component';
 import { TabsExampleComponent } from '../business-examples/tabs-examples/tabs-example/tabs-example.component';
 import { TextareaFormsExampleComponent } from '../business-examples/textarea-examples/textarea-forms-example/textarea-forms-example.component';
 import { TextareaNativeExampleComponent } from '../business-examples/textarea-examples/textarea-native-example/textarea-native-example.component';
@@ -111,10 +111,10 @@ export class BusinessComponent implements ExampleProvider {
       )
     },
     processflow: {
-      'skippable-processflow': new ComponentPortal(SkippableProcessflowComponent)
+      'skippable-processflow-example': new ComponentPortal(SkippableProcessflowExampleComponent)
     },
     contextmenu: {
-      'simple-contextmenu': new ComponentPortal(SimpleContextmenuComponent)
+      'simple-contextmenu-example': new ComponentPortal(SimpleContextmenuExampleComponent)
     },
     tooltip: {
       'tooltip-simple-example': new ComponentPortal(TooltipSimpleExampleComponent),
@@ -135,31 +135,35 @@ export class BusinessComponent implements ExampleProvider {
       'pagination-example': new ComponentPortal(PaginationExampleComponent)
     },
     notification: {
-      'simple-notification': new ComponentPortal(SimpleNotificationComponent),
-      'custom-icon-notification': new ComponentPortal(CustomIconNotificationComponent),
-      'jumpmark-notification': new ComponentPortal(JumpmarkNotificationComponent),
-      'closable-notification': new ComponentPortal(ClosableNotificationComponent)
+      'simple-notification-example': new ComponentPortal(SimpleNotificationExampleComponent),
+      'custom-icon-notification-example': new ComponentPortal(
+        CustomIconNotificationExampleComponent
+      ),
+      'jumpmark-notification-example': new ComponentPortal(JumpmarkNotificationExampleComponent),
+      'closable-notification-example': new ComponentPortal(ClosableNotificationExampleComponent)
     },
     table: {
-      'simple-table': new ComponentPortal(SimpleTableComponent),
-      'grouped-columns-table': new ComponentPortal(GroupedColumnsTableComponent),
-      'grouped-rows-table': new ComponentPortal(GroupedRowsTableComponent),
-      'sortable-table': new ComponentPortal(SortableTableComponent)
+      'simple-table-example': new ComponentPortal(SimpleTableExampleComponent),
+      'grouped-columns-table-example': new ComponentPortal(GroupedColumnsTableExampleComponent),
+      'grouped-rows-table-example': new ComponentPortal(GroupedRowsTableExampleComponent),
+      'sortable-table-example': new ComponentPortal(SortableTableExampleComponent)
     },
     chip: {
-      'forms-chip-input': new ComponentPortal(FormsChipInputComponent),
-      'reactive-forms-chip-input': new ComponentPortal(ReactiveFormsChipInputComponent),
-      'disabled-chip-input': new ComponentPortal(DisabledChipInputComponent),
-      'autocomplete-chip-input': new ComponentPortal(AutocompleteChipInputComponent)
+      'forms-chip-input-example': new ComponentPortal(FormsChipInputExampleComponent),
+      'reactive-forms-chip-input-example': new ComponentPortal(
+        ReactiveFormsChipInputExampleComponent
+      ),
+      'disabled-chip-input-example': new ComponentPortal(DisabledChipInputExampleComponent),
+      'autocomplete-chip-input-example': new ComponentPortal(AutocompleteChipInputExampleComponent)
     },
     select: {
-      'select-reactive-forms': new ComponentPortal(SelectReactiveFormsComponent),
-      'select-forms': new ComponentPortal(SelectFormsComponent),
-      'select-native': new ComponentPortal(SelectNativeComponent),
-      'select-multi-selection': new ComponentPortal(SelectMultiSelectionComponent),
-      'select-option-groups': new ComponentPortal(SelectOptionGroupsComponent),
-      'select-option-groups-multi-selection': new ComponentPortal(
-        SelectOptionGroupsMultiSelectionComponent
+      'select-reactive-forms-example': new ComponentPortal(SelectReactiveFormsExampleComponent),
+      'select-forms-example': new ComponentPortal(SelectFormsExampleComponent),
+      'select-native-example': new ComponentPortal(SelectNativeExampleComponent),
+      'select-multi-selection-example': new ComponentPortal(SelectMultiSelectionExampleComponent),
+      'select-option-groups-example': new ComponentPortal(SelectOptionGroupsExampleComponent),
+      'select-option-groups-multi-selection-example': new ComponentPortal(
+        SelectOptionGroupsMultiSelectionExampleComponent
       )
     },
     textarea: {
@@ -167,7 +171,7 @@ export class BusinessComponent implements ExampleProvider {
       'textarea-reactive-forms-with-sbb-field-example': new ComponentPortal(
         TextareaReactiveFormsWithSbbFieldExampleComponent
       ),
-      'textarea-native': new ComponentPortal(TextareaNativeExampleComponent)
+      'textarea-native-example': new ComponentPortal(TextareaNativeExampleComponent)
     }
   };
 
