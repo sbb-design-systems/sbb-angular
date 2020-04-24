@@ -292,6 +292,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
       color: inherit;
       cursor: pointer;
       display: flex;
+      align-items: center;
 
       @include publicOnly() {
         @include mq($from: desktop4k) {
