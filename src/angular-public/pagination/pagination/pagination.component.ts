@@ -29,7 +29,7 @@ export class PageChangeEvent {
     public index: number,
     /** Page number displayed. */
     public displayNumber: number,
-    /** The current page size */
+    /** The current page size (only used in business package) */
     public pageSize: number
   ) {}
 }
@@ -61,7 +61,10 @@ export class PaginationComponent extends SbbPaginationMixinBase
   @HostBinding('attr.role')
   role = 'navigation';
 
-  /** Number of items to display on a page. By default set to 50. */
+  /**
+   * Number of items to display on a page. By default set to 50.
+   * Only used in business package
+   **/
   @Input()
   get pageSize(): number {
     return this._pageSize;

@@ -12,7 +12,7 @@ export class TablePaginationExampleComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'power', 'description'];
 
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_PAGINATION_EXAMPLE_DATA);
-  @ViewChild(PaginationComponent, { static: true }) paginator: PaginationComponent;
+  @ViewChild('pagination', { static: true }) paginator: PaginationComponent;
 
   pageSize: number = 5;
 
