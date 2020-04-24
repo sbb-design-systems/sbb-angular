@@ -14,18 +14,23 @@ ng_ts_library(
         "sortable-table-example/sortable-table-example.component.ts",
         "table-example-data.ts",
         "table-examples.module.ts",
+        "table-pagination-example/table-pagination-example.component.ts",
     ],
     assets = [
         "grouped-columns-table-example/grouped-columns-table-example.component.html",
         "grouped-rows-table-example/grouped-rows-table-example.component.html",
         "simple-table-example/simple-table-example.component.html",
         "sortable-table-example/sortable-table-example.component.html",
+        "table-pagination-example/table-pagination-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/angular-business",
+        "//src/angular-business/pagination",
         "//src/angular-business/table",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/forms",
     ],
 )
 

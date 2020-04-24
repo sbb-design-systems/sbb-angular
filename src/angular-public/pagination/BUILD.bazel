@@ -22,7 +22,9 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/pagination",
     deps = [
+        "//src/core",
         "//src/angular-icons/arrow",
+        "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

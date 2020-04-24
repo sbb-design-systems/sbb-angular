@@ -116,6 +116,9 @@ export class SbbTableDataSource<T> extends DataSource<T> {
 
   set paginator(paginator: any | null) {
     this._paginator = paginator;
+    if (typeof paginator.mode !== 'undefined') {
+      this.paginator.mode = 'table';
+    }
     this._updateChangeSubscription();
   }
 
