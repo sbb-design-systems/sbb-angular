@@ -28,7 +28,7 @@ export class SortableTableExampleComponent {
         case 'word':
           return this.compare(a.word, b.word, isAsc);
         case 'date':
-          return this.compare(a.date.toString(), b.date.toString(), isAsc);
+          return this.compare(a.date.getTime(), b.date.getTime(), isAsc);
         default:
           return 0;
       }
