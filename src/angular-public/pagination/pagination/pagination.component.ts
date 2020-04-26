@@ -20,7 +20,6 @@ import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 const range = (length: number, offset = 0) => Array.from({ length }, (_, k) => k + offset);
 
 const MAX_PAGE_NUMBERS_DISPLAYED = 3;
-/** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 50;
 
 export class PageChangeEvent {
@@ -32,6 +31,10 @@ export class PageChangeEvent {
     /** The current page size (only used in business package) */
     public pageSize: number
   ) {}
+
+  equals(other: PageChangeEvent): boolean {
+    return this.index === other.index && this.pageSize === other.pageSize;
+  }
 }
 
 // Boilerplate for applying mixins to Pagination.
@@ -100,7 +103,7 @@ export class PaginationComponent extends SbbPaginationMixinBase
   pageChange = new EventEmitter<PageChangeEvent>();
   /** @docs-private */
   readonly page = this.pageChange;
-  private _pageChangeGuard = new Subject<PageChangeEvent>();
+  private _pageChangeDistinctForwarder = new Subject<PageChangeEvent>();
 
   /** Reference to list of page buttons of the sbb-pagination.  */
   @ViewChildren('pageButton') _buttons: QueryList<ElementRef>;
@@ -120,15 +123,13 @@ export class PaginationComponent extends SbbPaginationMixinBase
   private _destroyed = new Subject<void>();
 
   ngOnInit(): void {
-    this._pageChangeGuard
+    this._pageChangeDistinctForwarder
       .pipe(
         takeUntil(this._destroyed),
-        distinctUntilChanged(
-          (eventA: PageChangeEvent, eventB: PageChangeEvent) =>
-            eventA.index === eventB.index && eventA.pageSize === eventB.pageSize
-        )
+        distinctUntilChanged((a: PageChangeEvent, b: PageChangeEvent) => a.equals(b))
       )
       .subscribe(pageChangeEvent => this.pageChange.emit(pageChangeEvent));
+
     const currentPage = this._currentPage.asObservable().pipe(distinctUntilChanged());
     const maxPage = this._maxPage.asObservable().pipe(distinctUntilChanged());
     this.hasPreviousPage = currentPage.pipe(map(p => p > 0));
@@ -182,7 +183,7 @@ export class PaginationComponent extends SbbPaginationMixinBase
   }
 
   private _emitPageChangeEvent() {
-    this._pageChangeGuard.next(
+    this._pageChangeDistinctForwarder.next(
       new PageChangeEvent(this.pageIndex, this.pageIndex + 1, this.pageSize)
     );
   }
