@@ -71,9 +71,7 @@ export class PaginationComponent extends SbbPaginationMixinBase
   }
   set pageSize(value: number) {
     this._pageSize = Math.max(coerceNumberProperty(value), 1);
-    this._setMaxPage();
-    this._correctPageIndex();
-    this._emitPageChangeEvent();
+    this._setMaxPageAndCorrectPageIndex();
   }
   private _pageSize: number = DEFAULT_PAGE_SIZE;
 
@@ -84,18 +82,9 @@ export class PaginationComponent extends SbbPaginationMixinBase
   }
   set length(length: number) {
     this._length = coerceNumberProperty(length);
-    this._setMaxPage();
-    if (this.mode === 'table') {
-      // tableDataSource will take care of correcting pageIndex
-      return;
-    }
-    this._correctPageIndex();
+    this._setMaxPageAndCorrectPageIndex();
   }
   private _length: number;
-
-  private get _maxPageNumber() {
-    return this.mode === 'table' ? Math.ceil(this._length / this.pageSize) : this._length;
-  }
 
   /** The currently selected page (zero-based). */
   @Input()
@@ -177,25 +166,25 @@ export class PaginationComponent extends SbbPaginationMixinBase
     this._emitPageChangeEvent();
   }
 
-  private _emitPageChangeEvent() {
-    this._pageChangeGuard.next(
-      new PageChangeEvent(this.pageIndex, this.pageIndex + 1, this.pageSize)
-    );
-  }
-
   /** @docs-private */
   _pageClick(index: number) {
     this.selectByIndex(index);
   }
 
-  private _setMaxPage() {
-    this._maxPage.next(this._maxPageNumber);
+  private _setMaxPageAndCorrectPageIndex() {
+    const maxPageNumber =
+      this.mode === 'table' ? Math.ceil(this._length / this.pageSize) : this._length;
+    this._maxPage.next(maxPageNumber);
+    if (maxPageNumber <= this.pageIndex) {
+      this.pageIndex = maxPageNumber - 1;
+    }
+    this._emitPageChangeEvent();
   }
 
-  private _correctPageIndex() {
-    if (this._maxPageNumber <= this.pageIndex) {
-      this.pageIndex = this._maxPageNumber - 1;
-    }
+  private _emitPageChangeEvent() {
+    this._pageChangeGuard.next(
+      new PageChangeEvent(this.pageIndex, this.pageIndex + 1, this.pageSize)
+    );
   }
 
   ngOnDestroy(): void {
