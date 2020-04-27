@@ -115,7 +115,7 @@ searchAndReplace(
   `$1 + [m for dep in ctx.attr.deps if hasattr(dep, "angular") for m in dep.angular.metadata],`,
   'node_modules/@angular/bazel/src/ng_module.bzl'
 );
-// Replace umd modules in esri-loader package.json with esm modules
+// Name umd module in esri-loader
 searchAndReplace(
   `define(['exports'], factory)`,
   `define('esri-loader', ['exports'], factory)`,

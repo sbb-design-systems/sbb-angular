@@ -108,7 +108,7 @@ highlight_files(
 _ASSETS = [
     ":styles.css",
     "@npm//:node_modules/highlight.js/styles/github.css",
-    "@npm//:node_modules/zone.js/dist/zone.min.js",
+    "@npm//:node_modules/zone.js/dist/zone.js",
     "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.min.js",
 ]
 
@@ -144,6 +144,7 @@ ts_devserver(
     entry_module = "sbb_angular/src/showcase/main.dev",
     port = 4200,
     scripts = [
+        "//tools/esri-loader:esri_loader_umd_module",
         "@npm//:node_modules/tslib/tslib.js",
         "//tools/rxjs:rxjs_umd_modules",
     ],
