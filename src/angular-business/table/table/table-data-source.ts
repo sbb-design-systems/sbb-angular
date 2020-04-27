@@ -1,5 +1,6 @@
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { DataSource } from '@angular/cdk/table';
+import { PAGINATION_MODE } from '@sbb-esta/angular-business/pagination';
 import {
   BehaviorSubject,
   combineLatest,
@@ -116,8 +117,8 @@ export class SbbTableDataSource<T> extends DataSource<T> {
 
   set paginator(paginator: any | null) {
     this._paginator = paginator;
-    if (typeof paginator.mode !== 'undefined') {
-      this.paginator.mode = 'table';
+    if (typeof paginator[PAGINATION_MODE] !== 'undefined') {
+      this.paginator[PAGINATION_MODE] = 'table';
     }
     this._updateChangeSubscription();
   }

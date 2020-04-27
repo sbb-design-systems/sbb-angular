@@ -48,6 +48,8 @@ export const SbbPaginationMixinBase: HasInitializedCtor & typeof PaginationBase 
 /** @docs-private */
 type Mode = 'standalone' | 'table';
 
+export const PAGINATION_MODE = Symbol('paginationMode');
+
 @Component({
   selector: 'sbb-pagination',
   templateUrl: './pagination.component.html',
@@ -58,7 +60,7 @@ type Mode = 'standalone' | 'table';
 export class PaginationComponent extends SbbPaginationMixinBase
   implements OnInit, OnDestroy, HasInitialized {
   /** @docs-private */
-  mode: Mode = 'standalone';
+  [PAGINATION_MODE]: Mode = 'standalone';
 
   /** @docs-private */
   @HostBinding('attr.role')
@@ -81,7 +83,7 @@ export class PaginationComponent extends SbbPaginationMixinBase
   /** Amount of pages of the pagination. */
   @Input()
   get length() {
-    return this.mode === 'table' ? this._length : this._maxPage.value;
+    return this[PAGINATION_MODE] === 'table' ? this._length : this._maxPage.value;
   }
   set length(length: number) {
     this._length = coerceNumberProperty(length);
@@ -174,7 +176,7 @@ export class PaginationComponent extends SbbPaginationMixinBase
 
   private _setMaxPageAndCorrectPageIndex() {
     const maxPageNumber =
-      this.mode === 'table' ? Math.ceil(this._length / this.pageSize) : this._length;
+      this[PAGINATION_MODE] === 'table' ? Math.ceil(this._length / this.pageSize) : this._length;
     this._maxPage.next(maxPageNumber);
     if (maxPageNumber <= this.pageIndex) {
       this.pageIndex = maxPageNumber - 1;
