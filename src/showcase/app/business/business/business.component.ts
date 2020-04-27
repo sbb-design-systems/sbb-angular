@@ -7,6 +7,7 @@ import { AutocompleteHintExampleComponent } from '../business-examples/autocompl
 import { AutocompleteOptionGroupExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 import { BreadcrumbExampleComponent } from '../business-examples/breadcrumb-examples/breadcrumb-example/breadcrumb-example.component';
+import { CheckboxExampleComponent } from '../business-examples/checkbox-examples/checkbox-example/checkbox-example.component';
 import { AutocompleteChipInputExampleComponent } from '../business-examples/chip-examples/autocomplete-chip-input-example/autocomplete-chip-input-example.component';
 import { DisabledChipInputExampleComponent } from '../business-examples/chip-examples/disabled-chip-input-example/disabled-chip-input-example.component';
 import { FormsChipInputExampleComponent } from '../business-examples/chip-examples/forms-chip-input-example/forms-chip-input-example.component';
@@ -24,6 +25,7 @@ import { JumpmarkNotificationExampleComponent } from '../business-examples/notif
 import { SimpleNotificationExampleComponent } from '../business-examples/notification-examples/simple-notification-example/simple-notification-example.component';
 import { PaginationExampleComponent } from '../business-examples/pagination-examples/pagination-example/pagination-example.component';
 import { SkippableProcessflowExampleComponent } from '../business-examples/processflow-examples/skippable-processflow-example/skippable-processflow-example.component';
+import { RadioButtonExampleComponent } from '../business-examples/radio-button-examples/radio-button-example/radio-button-example.component';
 import { SelectFormsExampleComponent } from '../business-examples/select-examples/select-forms-example/select-forms-example.component';
 import { SelectMultiSelectionExampleComponent } from '../business-examples/select-examples/select-multi-selection-example/select-multi-selection-example.component';
 import { SelectNativeExampleComponent } from '../business-examples/select-examples/select-native-example/select-native-example.component';
@@ -97,6 +99,9 @@ export class BusinessComponent implements ExampleProvider {
     breadcrumb: {
       'breadcrumb-example': new ComponentPortal(BreadcrumbExampleComponent)
     },
+    checkbox: {
+      'checkbox-example': new ComponentPortal(CheckboxExampleComponent)
+    },
     datepicker: {
       'datepicker-simple-reactive-example': new ComponentPortal(
         DatepickerSimpleReactiveExampleComponent
@@ -155,6 +160,9 @@ export class BusinessComponent implements ExampleProvider {
       ),
       'disabled-chip-input-example': new ComponentPortal(DisabledChipInputExampleComponent),
       'autocomplete-chip-input-example': new ComponentPortal(AutocompleteChipInputExampleComponent)
+    },
+    'radio-button': {
+      'radio-button-example': new ComponentPortal(RadioButtonExampleComponent)
     },
     select: {
       'select-reactive-forms-example': new ComponentPortal(SelectReactiveFormsExampleComponent),
