@@ -44,6 +44,9 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
+    - name: "Bazelisk: Get artifacts cache directory path"
+      id: bazelisk-cache-dir-path
+      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
     - name: "Bazelisk: Create hash key"
       id: bazelisk-cache-key-name
       run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
@@ -51,10 +54,10 @@ jobs:
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
-        path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-build-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
+        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazelisk-build-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
+          ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Bazel"
       run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
@@ -95,6 +98,9 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
+    - name: "Bazelisk: Get artifacts cache directory path"
+      id: bazelisk-cache-dir-path
+      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
     - name: "Bazelisk: Create hash key"
       id: bazelisk-cache-key-name
       run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
@@ -102,10 +108,10 @@ jobs:
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
-        path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-packages-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
+        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-bazelisk-packages-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazelisk-packages-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
+          ${{ runner.os }}-bazelisk-packages-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Packages"
       run: yarn -s build
@@ -143,17 +149,20 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
+    - name: "Bazelisk: Get artifacts cache directory path"
+      id: bazelisk-cache-dir-path
+      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
     - name: "Bazelisk: Create hash key"
       id: bazelisk-cache-key-name
       run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
-    - name: "Bazelisk: Restore dependencies from cache"
+    - name: "Bazelisk: Restore from cache"
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
-        path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-showcase-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
+        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazelisk-showcase-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
+          ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Showcase"
       run: yarn -s build:showcase

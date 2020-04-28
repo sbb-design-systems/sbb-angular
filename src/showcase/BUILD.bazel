@@ -108,12 +108,12 @@ highlight_files(
 _ASSETS = [
     ":styles.css",
     "@npm//:node_modules/highlight.js/styles/github.css",
-    "@npm//:node_modules/zone.js/dist/zone.js",
+    "@npm//:node_modules/zone.js/dist/zone.min.js",
     "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.min.js",
 ]
 
 # Insert script tags into index.html
-# Supports differential loading by providing a.js and a.es2015.js
+# Supports differential loading by providing a.js and a.mjs
 html_insert_assets(
     name = "index_html_dev",
     outs = ["_/index.html"],
