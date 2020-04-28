@@ -27,11 +27,6 @@
       "@sbb-esta/angular-public/*": ["../public/*"]
     }
   },
-  "angularCompilerOptions": {
-    "enableIvy": true,
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  },
   "bazelOptions": {
     // See https://github.com/angular/angular/issues/29107
     "devmodeTargetOverride": "es5"

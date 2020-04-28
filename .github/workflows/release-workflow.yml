@@ -28,7 +28,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Create hash key"
       id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache
@@ -108,7 +108,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Create hash key"
       id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache

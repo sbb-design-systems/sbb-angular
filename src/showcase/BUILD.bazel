@@ -279,7 +279,7 @@ history_server(
     tags = ["prod-showcase"],
     templated_args = [
         "-a",
-        "$(rlocation sbb_angular/src/showcase/prodapp)",
+        "$$(rlocation $(rootpath :prodapp))",
     ],
 )
 

@@ -32,7 +32,7 @@ function buildShowcase(distPath) {
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
   const outputPath = join(bazelBinPath, 'src', pkgName, 'prodapp');
 
-  exec(`${bazelCmd} build src/${pkgName}:prodapp`);
+  exec(`${bazelCmd} build --config=release src/${pkgName}:prodapp`);
 
   // Delete the distribution directory so that the output is guaranteed to be clean. Re-create
   // the empty directory so that we can copy the release packages into it later.
