@@ -17,7 +17,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: printenv
     - name: Shallow checkout
       uses: actions/checkout@v2
       with:
@@ -30,6 +29,7 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: '11'
+    - run: printenv
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
@@ -51,7 +51,7 @@ jobs:
     - run: df -h
 
     - name: "Bazelisk: Sync"
-      run: bazelisk sync
+      run: bazelisk --server_javabase=${JAVA_HOME} sync
     - run: df -h
     - name: "Bazelisk: Get artifacts cache directory path"
       id: bazelisk-cache-dir-path
