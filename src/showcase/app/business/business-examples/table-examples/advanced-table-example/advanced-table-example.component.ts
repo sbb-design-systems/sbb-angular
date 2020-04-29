@@ -32,7 +32,7 @@ export class AdvancedTableExampleDataSource extends DataSource<VehicleExampleIte
   set paginator(paginator: PaginationComponent | null) {
     this._paginator = paginator;
     this.paginator[PAGINATION_MODE] = 'table';
-    this.paginator.length = this.data.length;
+    Promise.resolve().then(() => (this.paginator.length = this.data.length));
   }
   private _paginator: PaginationComponent | null;
 
