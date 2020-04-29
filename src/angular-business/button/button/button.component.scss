@@ -1,0 +1,109 @@
+$sbbBusiness: true;
+@import '../../../angular-core/styles/common';
+
+/*** ALTERNATIVE PRIMARY BUTTON ***/
+@mixin alternativePrimaryButton {
+  color: $buttonDefaultColor;
+  border: none;
+  background-color: $buttonAlternativeBgColor;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background-color: $buttonAlternativeBgColorHover;
+      border: none;
+      color: $buttonAlternativeColor;
+
+      .sbb-svgsprite-icon {
+        @include svgIconColor($buttonAlternativeColor);
+      }
+    }
+  }
+}
+
+/***
+* ALTERNATIVE PRIMARY BUTTON PLACEHOLDER
+* - Include primary mixin in order to allow extension
+* 	in order to get a more compact compiled css
+***/
+%alternativePrimaryButton {
+  @include alternativePrimaryButton();
+}
+
+/*** ALTERNATIVE PRIMARY BUTTON WITH ICON ***/
+@mixin alternativePrimaryIconButton {
+  @extend %alternativePrimaryButton;
+  @extend %arrowbuttons;
+}
+
+/*** ICON BUTTON ***/
+@mixin iconButton {
+  @extend %secondaryIconButton;
+  min-width: 36px;
+  width: 36px;
+
+  padding-left: pxToEm(36, $buttonSizeFontDefault);
+  padding-right: 0;
+
+  .sbb-svgsprite-icon:first-of-type {
+    opacity: 1;
+    margin-left: pxToEm(-4, $buttonSizeFontDefault);
+  }
+
+  .sbb-svgsprite-icon:last-of-type {
+    opacity: 0;
+  }
+}
+
+%iconButton {
+  @include iconButton;
+}
+
+@mixin businessButtonTypes {
+  &.sbb-button {
+    // button types for both themes: primary, secondary, ghost
+    @include buttonTypes;
+
+    // Alternative primary button with icon
+    &-alternative.sbb-button-has-icon {
+      @include alternativePrimaryIconButton;
+    }
+
+    // Alternative primary button NO icon
+    &-alternative:not(.sbb-button-has-icon) {
+      @include alternativePrimaryButton;
+    }
+
+    &-icon {
+      @include iconButton;
+    }
+  }
+}
+
+.sbb-button {
+  // Kickstart basic button styles
+  @include buttons();
+  @include businessButtonTypes;
+
+  &:disabled {
+    opacity: 0.4;
+  }
+
+  &-primary.sbb-button-has-icon:disabled,
+  &-primary:not(.sbb-button-has-icon):disabled,
+  &-alternative.sbb-button-has-icon:disabled,
+  &-alternative:not(.sbb-button-has-icon):disabled {
+    color: rgba($buttonDefaultColor, 0.5);
+  }
+
+  &-secondary.sbb-button-has-icon:disabled,
+  &-secondary:not(.sbb-button-has-icon):disabled,
+  &-icon:disabled {
+    color: rgba($buttonSecondaryColor, 0.5);
+  }
+
+  &-ghost.sbb-button-has-icon,
+  &-ghost:not(.sbb-button-has-icon) {
+    color: rgba($buttonSecondaryColor, 0.4);
+  }
+}

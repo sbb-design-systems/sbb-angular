@@ -1,0 +1,42 @@
+@import '../../../angular-core/styles/common';
+
+$sbb-chip-input-field-height: 37;
+$sbb-chip-border-radius: 2;
+
+:host(.sbb-chip-input-active) {
+  border-color: $sbbColorGranite;
+}
+
+:host(.sbb-chip-input-disabled) {
+  border-color: $sbbColorCloud;
+  background-color: $sbbColorMilk;
+}
+
+:host(.ng-touched.ng-invalid) {
+  color: $sbbColorRed125;
+  border-color: $sbbColorRed125;
+  background-color: $sbbColorMilk;
+}
+
+:host {
+  width: 100%;
+  border: 1px solid $sbbColorGraphite;
+  border-radius: pxToRem($sbb-chip-border-radius);
+  min-height: pxToRem($sbb-chip-input-field-height);
+  display: flex;
+  flex-wrap: wrap;
+
+  .sbb-chip-input-textfield {
+    width: 0;
+    flex: 1 1 auto;
+  }
+
+  .sbb-chip {
+    max-width: 100%;
+    margin: 0.25em;
+  }
+
+  input {
+    border: none;
+  }
+}
