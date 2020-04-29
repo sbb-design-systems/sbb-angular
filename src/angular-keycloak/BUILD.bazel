@@ -1,5 +1,5 @@
 load(
-    "//src/keycloak:config.bzl",
+    "//src/angular-keycloak:config.bzl",
     "KEYCLOAK_ENTRYPOINTS",
     "KEYCLOAK_MARKDOWN_TARGETS",
     "KEYCLOAK_TARGETS",
@@ -18,7 +18,7 @@ package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-keycloak" entry-point.
 ng_module(
-    name = "keycloak",
+    name = "angular-keycloak",
     srcs = glob(
         [
             "*.ts",
@@ -27,7 +27,7 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     module_name = "@sbb-esta/angular-keycloak",
-    deps = ["//src/keycloak/%s" % p for p in KEYCLOAK_ENTRYPOINTS] + [
+    deps = ["//src/angular-keycloak/%s" % p for p in KEYCLOAK_ENTRYPOINTS] + [
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//keycloak-js",
@@ -42,7 +42,7 @@ ng_test_library(
         exclude = ["src/**/*.e2e.spec.ts"],
     ),
     deps = [
-        ":keycloak",
+        ":angular-keycloak",
         "@npm//@angular/common",
         "@npm//keycloak-js",
         "@npm//rxjs",
@@ -63,7 +63,7 @@ markdown_to_html(
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/keycloak/%s:overview" % name for name in KEYCLOAK_MARKDOWN_TARGETS],
+    srcs = [":overview"] + ["//src/angular-keycloak/%s:overview" % name for name in KEYCLOAK_MARKDOWN_TARGETS],
 )
 
 # Creates the @sbb-esta/angular-keycloak package published to npm.
