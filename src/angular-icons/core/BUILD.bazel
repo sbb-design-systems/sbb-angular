@@ -6,7 +6,7 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "base",
+    name = "core",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],

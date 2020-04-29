@@ -1,10 +1,11 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ICON_COMPONENT_META_INFORMATION } from '@sbb-esta/angular-icons';
 import { IconBase } from '@sbb-esta/angular-icons';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+
+import { ICON_COMPONENT_META_INFORMATION } from '../icon-list';
 
 @Component({
   selector: 'sbb-icon-search',

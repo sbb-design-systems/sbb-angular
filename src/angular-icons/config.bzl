@@ -1,11 +1,11 @@
 entryPoints = [
     "arrow",
     "audio",
-    "base",
     "basic",
     "building",
     "career",
     "community",
+    "core",
     "document",
     "experimental",
     "experimental/fpl",
