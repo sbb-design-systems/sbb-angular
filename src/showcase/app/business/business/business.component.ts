@@ -34,7 +34,7 @@ import { SelectOptionGroupsMultiSelectionExampleComponent } from '../business-ex
 import { SelectReactiveFormsExampleComponent } from '../business-examples/select-examples/select-reactive-forms-example/select-reactive-forms-example.component';
 import { AdvancedTableExampleComponent } from '../business-examples/table-examples/advanced-table-example/advanced-table-example.component';
 import { GroupedColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-columns-table-example/grouped-columns-table-example.component';
-import { GroupedRowsTableExampleComponent } from '../business-examples/table-examples/grouped-rows-table-example/grouped-rows-table-example.component';
+import { GroupedRowsAndColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-rows-and-columns-table-example/grouped-rows-and-columns-table-example.component';
 import { PaginationTableExampleComponent } from '../business-examples/table-examples/pagination-table-example/pagination-table-example.component';
 import { SimpleTableExampleComponent } from '../business-examples/table-examples/simple-table-example/simple-table-example.component';
 import { SortableTableExampleComponent } from '../business-examples/table-examples/sortable-table-example/sortable-table-example.component';
@@ -152,10 +152,12 @@ export class BusinessComponent implements ExampleProvider {
     table: {
       'simple-table-example': new ComponentPortal(SimpleTableExampleComponent),
       'grouped-columns-table-example': new ComponentPortal(GroupedColumnsTableExampleComponent),
-      'grouped-rows-table-example': new ComponentPortal(GroupedRowsTableExampleComponent),
+      'grouped-rows-and-columns-table-example': new ComponentPortal(
+        GroupedRowsAndColumnsTableExampleComponent
+      ),
       'sortable-table-example': new ComponentPortal(SortableTableExampleComponent),
-      'pagination-table-example': new ComponentPortal<any>(PaginationTableExampleComponent),
-      'advanced-table-example': new ComponentPortal<any>(AdvancedTableExampleComponent)
+      'pagination-table-example': new ComponentPortal(PaginationTableExampleComponent),
+      'advanced-table-example': new ComponentPortal(AdvancedTableExampleComponent)
     },
     chip: {
       'forms-chip-input-example': new ComponentPortal(FormsChipInputExampleComponent),
