@@ -27,8 +27,8 @@ function public2business(_options) {
     };
 }
 function copyAndAdaptPublicModule(tree, moduleName) {
-    const publicDir = tree.getDir(`src/public/${moduleName}`);
-    const businessDir = tree.getDir(`src/business/${moduleName}`);
+    const publicDir = tree.getDir(`src/angular-public/${moduleName}`);
+    const businessDir = tree.getDir(`src/angular-business/${moduleName}`);
     if (tree.exists(businessDir.path)) {
         businessDir.visit(path => tree.delete(path));
     }

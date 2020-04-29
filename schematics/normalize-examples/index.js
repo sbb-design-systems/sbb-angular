@@ -8,7 +8,7 @@ const prettier = require('prettier');
 function normalizeExamples() {
     return (tree, _context) => {
         const iconLookup = {};
-        const iconsDir = tree.getDir('src/icons');
+        const iconsDir = tree.getDir('src/angular-icons');
         iconsDir.visit(path => {
             const fileName = core.basename(path);
             if (fileName.endsWith('.module.ts') && fileName.startsWith('icon-')) {

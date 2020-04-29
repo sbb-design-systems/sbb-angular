@@ -36,9 +36,9 @@ In order to automatically generate BUILD.bazel files, we implemented a schematic
 
 ## Running tests
 
-To run unit tests, run `yarn test <target>`. The `target` can be either a short name (e.g. `yarn test button`) or an explicit path `yarn test src/business/contextmenu`.
-You can also directly use bazel: `bazel test src/...` (to test everything) or `bazel test src/public/...`
-(e.g. to test the public package) or `bazel test src/public/button:unit_tests` (e.g. to test the public button module).
+To run unit tests, run `yarn test <target>`. The `target` can be either a short name (e.g. `yarn test button`) or an explicit path `yarn test src/angular-business/contextmenu`.
+You can also directly use bazel: `bazel test src/...` (to test everything) or `bazel test src/angular-public/...`
+(e.g. to test the public package) or `bazel test src/angular-public/button:unit_tests` (e.g. to test the public button module).
 
 To run lint, run `yarn lint`.
 

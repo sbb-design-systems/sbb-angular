@@ -27,7 +27,7 @@ class NgModule {
         this.name = core.basename(this.path);
         const packageName = core.split(this.path)[2];
         const moduleName = core.relative(this._tree.getDir('src').dir(packageName).path, this.path);
-        this.moduleName = `@sbb-esta/angular-${packageName}/${moduleName}`;
+        this.moduleName = `@sbb-esta/${packageName}/${moduleName}`;
         this.hasMarkdown = this._dir.subfiles.includes(core.fragment(`${core.basename(this.path)}.md`));
         this.dependencies = this._findDependencies();
         this.hasTests = !!this._specFiles.length;
@@ -69,7 +69,7 @@ class NgModule {
     }
     _resolveTsImport(importPath, _fileEntry) {
         if (importPath.startsWith('@sbb-esta/')) {
-            return importPath.replace('@sbb-esta/angular-', '//src/');
+            return importPath.replace('@sbb-esta/', '//src/');
         }
         else if (importPath.startsWith('.')) {
             return '';
@@ -112,7 +112,7 @@ class NgModule {
         const dependencies = this._tsFiles
             .reduce((current, f) => current.concat(this._findImportsAndReexports(f)), [])
             .filter((v, i, a) => a.indexOf(v) === i);
-        if (this.path.includes('src/maps/')) {
+        if (this.path.includes('src/angular-maps/')) {
             dependencies.push('@npm//@types/arcgis-js-api');
         }
         else if (this.path.includes('captcha')) {
@@ -160,8 +160,8 @@ class NgModule {
         return matches
             .map(s => s.substring(9, s.length - 2))
             .map(importPath => {
-            if (importPath.includes('/core/styles/common')) {
-                return '//src/core/styles:common_scss_lib';
+            if (importPath.includes('/angular-core/styles/common')) {
+                return '//src/angular-core/styles:common_scss_lib';
             }
             else if (this._isInModule(core.join(entry.path, importPath))) {
                 return `:${core.basename(this.path)}_scss_lib`;
@@ -193,6 +193,7 @@ class NgPackage extends NgModule {
     constructor(dir, tree, context) {
         super(dir, tree, context);
         this._templateUrl = './files/ngPackage';
+        this.shortName = this.name.replace('angular-', '');
         const ngModules = this.ngModules().slice(1);
         this.entryPoints = ngModules.map(m => this._resolvePath(m));
         this.hasReadme = dir.subfiles.includes(core.fragment('README.md'));

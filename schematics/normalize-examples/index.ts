@@ -16,7 +16,7 @@ interface Imports {
 export function normalizeExamples(): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const iconLookup: { [key: string]: Imports } = {};
-    const iconsDir = tree.getDir('src/icons');
+    const iconsDir = tree.getDir('src/angular-icons');
     iconsDir.visit(path => {
       const fileName = basename(path);
       if (fileName.endsWith('.module.ts') && fileName.startsWith('icon-')) {

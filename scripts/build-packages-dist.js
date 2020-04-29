@@ -54,7 +54,7 @@ function buildReleasePackages(useIvy, distPath) {
   console.log(`  Compiling with Ivy: ${useIvy}`);
   console.log('######################################');
 
-  // List of targets to build. e.g. "src/business:npm_package", or "src/public:npm_package".
+  // List of targets to build. e.g. "src/angular-business:npm_package", or "src/angular-public:npm_package".
   const targets = exec(queryPackagesCmd, true).split(/\r?\n/);
   const packageNames = getPackageNamesOfTargets(targets);
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
@@ -96,7 +96,7 @@ function buildReleasePackages(useIvy, distPath) {
 
 /**
  * Gets the package names of the specified Bazel targets.
- * e.g. //src/public:npm_package -> public
+ * e.g. //src/angular-public:npm_package -> public
  */
 function getPackageNamesOfTargets(targets) {
   return targets.map(targetName => {

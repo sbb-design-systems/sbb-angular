@@ -22,22 +22,26 @@
     "types": ["arcgis-js-api", "grecaptcha", "jasmine"],
     "baseUrl": ".",
     "paths": {
-      "@sbb-esta/angular-public": ["src/public"],
-      "@sbb-esta/angular-public/*": ["src/public/*"],
-      "@sbb-esta/angular-business": ["src/business"],
-      "@sbb-esta/angular-business/*": ["src/business/*"],
-      "@sbb-esta/angular-icons": ["src/icons"],
-      "@sbb-esta/angular-icons/*": ["src/icons/*"],
-      "@sbb-esta/angular-keycloak": ["src/keycloak"],
-      "@sbb-esta/angular-keycloak/*": ["src/keycloak/*"],
-      "@sbb-esta/angular-core": ["src/core"],
-      "@sbb-esta/angular-core/*": ["src/core/*"],
-      "@sbb-esta/angular-maps": ["src/maps"],
-      "@sbb-esta/angular-maps/*": ["src/maps/*"]
+      "@sbb-esta/angular-public": ["src/angular-public"],
+      "@sbb-esta/angular-public/*": ["src/angular-public/*"],
+      "@sbb-esta/angular-business": ["src/angular-business"],
+      "@sbb-esta/angular-business/*": ["src/angular-business/*"],
+      "@sbb-esta/angular-icons": ["src/angular-icons"],
+      "@sbb-esta/angular-icons/*": ["src/angular-icons/*"],
+      "@sbb-esta/angular-keycloak": ["src/angular-keycloak"],
+      "@sbb-esta/angular-keycloak/*": ["src/angular-keycloak/*"],
+      "@sbb-esta/angular-core": ["src/angular-core"],
+      "@sbb-esta/angular-core/*": ["src/angular-core/*"],
+      "@sbb-esta/angular-maps": ["src/angular-maps"],
+      "@sbb-esta/angular-maps/*": ["src/angular-maps/*"]
     }
   },
   "include": ["src/**/*.ts", "e2e/**/*.ts", "schematics/**/*.ts", "test/**/*.ts", "tools/**/*.ts"],
-  "exclude": ["node_modules/", "schematics/*/files/**/*", "src/icons/schematics/*/files/**/*"],
+  "exclude": [
+    "node_modules/",
+    "schematics/*/files/**/*",
+    "src/angular-icons/schematics/*/files/**/*"
+  ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true
   }

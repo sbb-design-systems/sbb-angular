@@ -100,6 +100,15 @@ def ng_module(
         **kwargs
     )
 
+def ng_ts_library(assets = [], **kwargs):
+    _ts_library(
+        angular_assets = assets,
+        compiler = "//tools:tsc_wrapped_with_angular",
+        supports_workers = True,
+        use_angular_plugin = True,
+        **kwargs
+    )
+
 def ng_package(name, data = [], deps = [], globals = ROLLUP_GLOBALS, readme_md = None, **kwargs):
     # If no readme file has been specified explicitly, use the default readme for
     # release packages from "src/README.md".

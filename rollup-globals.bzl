@@ -1,9 +1,9 @@
-load("//src/business:config.bzl", "BUSINESS_ENTRYPOINTS")
-load("//src/core:config.bzl", "CORE_ENTRYPOINTS")
-load("//src/icons:config.bzl", "ICONS_ENTRYPOINTS")
-load("//src/keycloak:config.bzl", "KEYCLOAK_ENTRYPOINTS")
-load("//src/maps:config.bzl", "MAPS_ENTRYPOINTS")
-load("//src/public:config.bzl", "PUBLIC_ENTRYPOINTS")
+load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS")
+load("//src/angular-core:config.bzl", "CORE_ENTRYPOINTS")
+load("//src/angular-icons:config.bzl", "ICONS_ENTRYPOINTS")
+load("//src/angular-keycloak:config.bzl", "KEYCLOAK_ENTRYPOINTS")
+load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS")
+load("//src/angular-public:config.bzl", "PUBLIC_ENTRYPOINTS")
 
 # Base rollup globals for everything in the repo. Note that we want to disable
 # sorting of the globals as we manually group dict entries.
