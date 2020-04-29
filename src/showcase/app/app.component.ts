@@ -2,6 +2,7 @@ import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ROUTER_ANIMATION } from './shared/animations';
+// @ts-ignore versions.ts is generated automatically by bazel
 import { angularVersion, libraryVersion } from './versions';
 
 @Component({

@@ -22,7 +22,7 @@ export class LoaderBuilder {
   }
 
   fromApiDocumentation() {
-    return this.from((library, id) => `assets/docs-content/api-docs/${library}-${id}.html`);
+    return this.from((library, id) => `assets/docs-content/api-docs/angular-${library}-${id}.html`);
   }
 
   fromExamples(example: string, type: 'html' | 'ts' | 'scss') {

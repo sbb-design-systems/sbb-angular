@@ -47,10 +47,10 @@ dgeni_api_docs(
         "@npm//@angular/platform-browser",
     ],
     entry_points = {
-        "business": businessApiEntryPoints,
-        "core": coreApiEntryPoints,
-        "maps": mapsApiEntryPoints,
-        "public": publicApiEntryPoints,
+        "angular-business": businessApiEntryPoints,
+        "angular-core": coreApiEntryPoints,
+        "angular-maps": mapsApiEntryPoints,
+        "angular-public": publicApiEntryPoints,
     },
     tags = ["docs-package"],
 )
