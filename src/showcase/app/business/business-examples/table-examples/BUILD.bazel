@@ -8,6 +8,7 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "table-examples",
     srcs = [
+        "advanced-table-example/advanced-table-example.component.ts",
         "grouped-columns-table-example/grouped-columns-table-example.component.ts",
         "grouped-rows-table-example/grouped-rows-table-example.component.ts",
         "pagination-table-example/pagination-table-example.component.ts",
@@ -17,6 +18,7 @@ ng_ts_library(
         "table-examples.module.ts",
     ],
     assets = [
+        "advanced-table-example/advanced-table-example.component.html",
         "grouped-columns-table-example/grouped-columns-table-example.component.html",
         "grouped-rows-table-example/grouped-rows-table-example.component.html",
         "pagination-table-example/pagination-table-example.component.html",
@@ -28,9 +30,11 @@ ng_ts_library(
         "//src/angular-business",
         "//src/angular-business/pagination",
         "//src/angular-business/table",
+        "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
+        "@npm//rxjs",
     ],
 )
 

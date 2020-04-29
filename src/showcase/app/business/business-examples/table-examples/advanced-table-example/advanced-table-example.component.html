@@ -1,0 +1,34 @@
+<sbb-field label="Global search">
+  <input sbbInput (keyup)="applyFilter($event, 'all')" />
+</sbb-field>
+<table sbbTable aria-describedby="sbb-table" sbbSort>
+  <ng-container *ngFor="let column of displayedColumns" [sbbColumnDef]="column">
+    <th sbbHeaderCell [sbbSortHeader]="column" *sbbHeaderCellDef>
+      {{ column }}
+    </th>
+    <td sbbCell *sbbCellDef="let element">{{ element[column] }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="filter-position">
+    <th sbbHeaderCell *sbbHeaderCellDef></th>
+  </ng-container>
+  <ng-container sbbColumnDef="filter-name">
+    <th sbbHeaderCell *sbbHeaderCellDef>
+      <input sbbInput (keyup)="applyFilter($event, 'name')" style="width:100%" />
+    </th>
+  </ng-container>
+  <ng-container sbbColumnDef="filter-power">
+    <th sbbHeaderCell *sbbHeaderCellDef></th>
+  </ng-container>
+  <ng-container sbbColumnDef="filter-description">
+    <th sbbHeaderCell *sbbHeaderCellDef>
+      <input sbbInput (keyup)="applyFilter($event, 'description')" style="width:100%" />
+    </th>
+  </ng-container>
+
+  <tr sbbHeaderRow *sbbHeaderRowDef="displayedColumns"></tr>
+  <tr sbbHeaderRow *sbbHeaderRowDef="displayedColumnsFilter"></tr>
+  <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<sbb-pagination [pageSize]="5"></sbb-pagination>

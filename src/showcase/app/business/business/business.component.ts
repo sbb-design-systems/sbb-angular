@@ -32,6 +32,7 @@ import { SelectNativeExampleComponent } from '../business-examples/select-exampl
 import { SelectOptionGroupsExampleComponent } from '../business-examples/select-examples/select-option-groups-example/select-option-groups-example.component';
 import { SelectOptionGroupsMultiSelectionExampleComponent } from '../business-examples/select-examples/select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component';
 import { SelectReactiveFormsExampleComponent } from '../business-examples/select-examples/select-reactive-forms-example/select-reactive-forms-example.component';
+import { AdvancedTableExampleComponent } from '../business-examples/table-examples/advanced-table-example/advanced-table-example.component';
 import { GroupedColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-columns-table-example/grouped-columns-table-example.component';
 import { GroupedRowsTableExampleComponent } from '../business-examples/table-examples/grouped-rows-table-example/grouped-rows-table-example.component';
 import { PaginationTableExampleComponent } from '../business-examples/table-examples/pagination-table-example/pagination-table-example.component';
@@ -153,7 +154,8 @@ export class BusinessComponent implements ExampleProvider {
       'grouped-columns-table-example': new ComponentPortal(GroupedColumnsTableExampleComponent),
       'grouped-rows-table-example': new ComponentPortal(GroupedRowsTableExampleComponent),
       'sortable-table-example': new ComponentPortal(SortableTableExampleComponent),
-      'pagination-table-example': new ComponentPortal<any>(PaginationTableExampleComponent)
+      'pagination-table-example': new ComponentPortal<any>(PaginationTableExampleComponent),
+      'advanced-table-example': new ComponentPortal<any>(AdvancedTableExampleComponent)
     },
     chip: {
       'forms-chip-input-example': new ComponentPortal(FormsChipInputExampleComponent),
