@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageChangeEvent, PaginationComponent } from '@sbb-esta/angular-business/pagination';
 import { SbbTableDataSource } from '@sbb-esta/angular-business/table';
 
-import { TABLE_PAGINATION_EXAMPLE_DATA } from '../table-example-data';
+import { VehicleExampleItem, VEHICLE_EXAMPLE_DATA } from '../table-example-data';
 
 @Component({
   selector: 'sbb-pagination-table-example',
@@ -11,7 +11,7 @@ import { TABLE_PAGINATION_EXAMPLE_DATA } from '../table-example-data';
 export class PaginationTableExampleComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'power', 'description'];
 
-  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_PAGINATION_EXAMPLE_DATA);
+  dataSource: SbbTableDataSource<VehicleExampleItem> = new SbbTableDataSource(VEHICLE_EXAMPLE_DATA);
   @ViewChild('pagination', { static: true }) paginator: PaginationComponent;
 
   pageSize: number = 5;
@@ -25,7 +25,9 @@ export class PaginationTableExampleComponent implements OnInit {
   }
 
   rowCount(rowCount: number) {
-    this.dataSource = new SbbTableDataSource<any>(TABLE_PAGINATION_EXAMPLE_DATA.slice(0, rowCount));
+    this.dataSource = new SbbTableDataSource<VehicleExampleItem>(
+      VEHICLE_EXAMPLE_DATA.slice(0, rowCount)
+    );
     this.dataSource.paginator = this.paginator;
   }
 }

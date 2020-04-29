@@ -125,7 +125,14 @@ export const TABLE_EXAMPLE_DATA = [
   }
 ];
 
-export const TABLE_PAGINATION_EXAMPLE_DATA = [
+export interface VehicleExampleItem {
+  position: number;
+  name: string;
+  power: number;
+  description: string;
+}
+
+export const VEHICLE_EXAMPLE_DATA: VehicleExampleItem[] = [
   { position: 1, name: 'Bem 550', power: 0, description: 'Gleichstromfahrzeug 1500 V' },
   { position: 2, name: 'RABDe 510', power: 2444, description: '«Mirage», «Goldküstenexpress»' },
   { position: 3, name: 'RABDe 500', power: 5200, description: 'InterCity-Neigezug (ICN)' },
