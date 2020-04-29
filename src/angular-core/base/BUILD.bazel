@@ -13,10 +13,10 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular-core/base",
     deps = [
-        "//src/core/base/button",
-        "//src/core/base/checkbox",
-        "//src/core/base/processflow",
-        "//src/core/base/tooltip",
+        "//src/angular-core/base/button",
+        "//src/angular-core/base/checkbox",
+        "//src/angular-core/base/processflow",
+        "//src/angular-core/base/tooltip",
     ],
 )
 

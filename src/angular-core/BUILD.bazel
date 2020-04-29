@@ -1,5 +1,5 @@
 load(
-    "//src/core:config.bzl",
+    "//src/angular-core:config.bzl",
     "CORE_ENTRYPOINTS",
     "CORE_MARKDOWN_TARGETS",
     "CORE_TARGETS",
@@ -16,13 +16,13 @@ package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-core" entry-point.
 ng_module(
-    name = "core",
+    name = "angular-core",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     module_name = "@sbb-esta/angular-core",
-    deps = ["//src/core/%s" % p for p in CORE_ENTRYPOINTS],
+    deps = ["//src/angular-core/%s" % p for p in CORE_ENTRYPOINTS],
 )
 
 markdown_to_html(
@@ -34,7 +34,7 @@ markdown_to_html(
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/core/%s:overview" % name for name in CORE_MARKDOWN_TARGETS],
+    srcs = [":overview"] + ["//src/angular-core/%s:overview" % name for name in CORE_MARKDOWN_TARGETS],
 )
 
 # Creates the @sbb-esta/angular-core package published to npm.

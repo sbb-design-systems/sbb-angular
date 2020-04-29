@@ -31,11 +31,11 @@ CORE_TESTING_ENTRYPOINTS = [
 ]
 
 # List of all non-testing entry-point targets of the Core package.
-CORE_TARGETS = ["//src/core"] + \
-               ["//src/core/%s" % ep for ep in CORE_ENTRYPOINTS]
+CORE_TARGETS = ["//src/angular-core"] + \
+               ["//src/angular-core/%s" % ep for ep in CORE_ENTRYPOINTS]
 
-# List of all testing entry-point targets of the Core package.
-CORE_TESTING_TARGETS = ["//src/core/%s" % ep for ep in CORE_TESTING_ENTRYPOINTS]
+# List of all testing entry-point targets of the Angular-core package.
+CORE_TESTING_TARGETS = ["//src/angular-core/%s" % ep for ep in CORE_TESTING_ENTRYPOINTS]
 
 CORE_MARKDOWN_TARGETS = [
     "breakpoints",
