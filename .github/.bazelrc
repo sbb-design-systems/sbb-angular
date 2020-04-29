@@ -6,6 +6,5 @@
 # Bazel issues that show up on GitHub Actions.
 common --announce_rc
 
-# Save downloaded repositories in a location that can be cached by GitHub Actions. This helps us
-# speeding up the analysis time significantly with Bazel managed node dependencies on the CI.
-build --repository_cache=/home/runner/bazel_repository_cache
+# Use the JDK from GitHub Actions
+common --host_javabase=@local_jdk//:jdk

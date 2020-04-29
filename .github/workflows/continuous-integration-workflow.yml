@@ -18,20 +18,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: printenv
-    - run: df -h
-    - run: echo $PWD
     - name: Shallow checkout
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-    - run: df -h
-    - run: echo $PWD
     - name: Copy bazel.rc to user home
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
         node-version: 12
-    - run: df -h
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '11'
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
@@ -69,103 +67,12 @@ jobs:
         key: ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
+    - run: bazelisk info
     - run: df -h
-    - run: du -h /home/runner/.cache
-    - run: du -h /home/runner/bazel_repository_cache
+    - run: du -h /home/runner/.cache -d 5
 
-    - name: "Build: Bazel core"
-      run: bazelisk build src/angular-core/... --build_tag_filters=-release-package,-prod-showcase
-    - run: df -h
-    - name: "Build: Bazel keycloak"
-      run: bazelisk build src/angular-keycloak/... --build_tag_filters=-release-package,-prod-showcase
-    - run: df -h
-    - name: "Build: Bazel icons"
-      run: bazelisk build src/angular-icons/... --build_tag_filters=-release-package,-prod-showcase
-    - run: df -h
-    - name: "Build: Bazel maps"
-      run: bazelisk build src/angular-maps/... --build_tag_filters=-release-package,-prod-showcase
-    - run: df -h
-    - name: "Build: Bazel business"
-      run: bazelisk build src/angular-business/... --build_tag_filters=-release-package,-prod-showcase
-    - run: df -h
-      
-    - run: bazelisk build src/angular-public/loading/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/notification/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/option/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/pagination/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/processflow/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/radio-button/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/radio-button-panel/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/schematics/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/search/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/select/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/table/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/tabs/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/tag/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/textarea/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/textexpand/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/time-input/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/toggle/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/tooltip/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/usermenu/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/accordion/...
-    - run: df -h     
-    - run: bazelisk build src/angular-public/autocomplete/...
-    - run: df -h  
-    - run: bazelisk build src/angular-public/badge/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/breadcrumb/...
-    - run: df -h    
-    - run: bazelisk build src/angular-public/button/...
-    - run: df -h        
-    - run: bazelisk build src/angular-public/captcha/...
-    - run: df -h       
-    - run: bazelisk build src/angular-public/checkbox/...
-    - run: df -h      
-    - run: bazelisk build src/angular-public/checkbox-panel/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/datepicker/...
-    - run: df -h    
-    - run: bazelisk build src/angular-public/dropdown/...
-    - run: df -h      
-    - run: bazelisk build src/angular-public/field/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/file-selector/...
-    - run: df -h 
-    - run: bazelisk build src/angular-public/ghettobox/...
-    - run: df -h     
-    - run: bazelisk build src/angular-public/input/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/lightbox/...
-    - run: df -h
-    - run: bazelisk build src/angular-public/links/...
-    - run: df -h
-
-    - name: "Build: Bazel public"
-      run: bazelisk build src/angular-public/... --build_tag_filters=-release-package,-prod-showcase
-    - run: df -h
-    - name: "Build: Bazel showcase"
-      run: bazelisk build src/showcase/... --build_tag_filters=-release-package,-prod-showcase
-    - run: df -h
+    - name: "Build: Bazel"
+      run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
             
     - name: "Test: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
