@@ -61,9 +61,21 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
-    - name: "Build: Bazel"
-      run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
-
+    - name: "Build: Bazel core"
+      run: bazelisk build src/angular-core/... --build_tag_filters=-release-package,-prod-showcase
+    - name: "Build: Bazel keycloak"
+      run: bazelisk build src/angular-keycloak/... --build_tag_filters=-release-package,-prod-showcase
+    - name: "Build: Bazel icons"
+      run: bazelisk build src/angular-icons/... --build_tag_filters=-release-package,-prod-showcase
+    - name: "Build: Bazel maps"
+      run: bazelisk build src/angular-maps/... --build_tag_filters=-release-package,-prod-showcase
+    - name: "Build: Bazel business"
+      run: bazelisk build src/angular-business/... --build_tag_filters=-release-package,-prod-showcase
+    - name: "Build: Bazel public"
+      run: bazelisk build src/angular-public/... --build_tag_filters=-release-package,-prod-showcase
+    - name: "Build: Bazel showcase"
+      run: bazelisk build src/showcase/... --build_tag_filters=-release-package,-prod-showcase
+            
     - name: "Test: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
 
