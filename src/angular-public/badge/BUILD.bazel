@@ -1,0 +1,40 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "badge",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":badge/badge.component.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/badge",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+sass_binary(
+    name = "badge_badge_component_scss",
+    src = "badge/badge.component.scss",
+    deps = [
+        "//src/angular-core/styles:common_scss_lib",
+    ],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":badge.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

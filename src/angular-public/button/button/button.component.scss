@@ -1,0 +1,33 @@
+@import '../../../angular-core/styles/common';
+
+@mixin publicButtonTypes() {
+  &.sbb-button {
+    // button types for both themes: primary, secondary, ghost
+    @include buttonTypes;
+
+    // Frameless button with icon
+    &-frameless.sbb-button-has-icon {
+      @include framelessIconButton;
+    }
+
+    // Frameless button NO icon
+    &-frameless:not(.sbb-button-has-icon) {
+      @include framelessButton;
+    }
+  }
+}
+
+.sbb-button {
+  // Kickstart basic button styles
+  @include buttons();
+
+  // If is not a disabled button
+  &:not(:disabled) {
+    @include publicButtonTypes;
+  }
+
+  // Disabled button
+  &:disabled {
+    @include disabledButton;
+  }
+}

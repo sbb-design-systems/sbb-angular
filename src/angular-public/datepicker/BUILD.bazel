@@ -1,0 +1,89 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+    "sass_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "datepicker",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":datepicker/datepicker.component.css",
+        ":datepicker-content/datepicker-content.component.css",
+    ] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/datepicker",
+    deps = [
+        "//src/angular-core/datetime",
+        "//src/angular-icons/arrow",
+        "//src/angular-icons/basic",
+        "//src/angular-public/input",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+sass_library(
+    name = "datepicker_scss_lib",
+    srcs = glob(["**/_*.scss"]),
+    deps = ["//src/angular-core/styles:common_scss_lib"],
+)
+
+sass_binary(
+    name = "datepicker_datepicker_component_scss",
+    src = "datepicker/datepicker.component.scss",
+    deps = [
+        ":datepicker_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "datepicker_content_datepicker_content_component_scss",
+    src = "datepicker-content/datepicker-content.component.scss",
+    deps = [
+        ":datepicker_scss_lib",
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":datepicker",
+        "//src/angular-core/datetime",
+        "//src/angular-core/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/forms",
+        "@npm//@angular/platform-browser",
+        "@npm//@angular/platform-browser-dynamic",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":datepicker.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

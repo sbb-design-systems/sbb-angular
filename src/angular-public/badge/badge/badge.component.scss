@@ -1,0 +1,11 @@
+@import '../../../angular-core/styles/common';
+
+:host.sbb-badge {
+  @include baseBadgePill();
+  background-color: $sbbColorMetal;
+  margin-left: pxToEm(8);
+
+  &.sbb-badge-active {
+    background-color: $sbbColorRed;
+  }
+}

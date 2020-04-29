@@ -1,0 +1,7 @@
+@import '../../../angular-core/styles/common';
+
+.sbb-checkbox {
+  & > label {
+    @include checkboxBase();
+  }
+}
