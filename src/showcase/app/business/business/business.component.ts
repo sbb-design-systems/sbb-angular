@@ -34,9 +34,9 @@ import { SelectOptionGroupsMultiSelectionExampleComponent } from '../business-ex
 import { SelectReactiveFormsExampleComponent } from '../business-examples/select-examples/select-reactive-forms-example/select-reactive-forms-example.component';
 import { GroupedColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-columns-table-example/grouped-columns-table-example.component';
 import { GroupedRowsTableExampleComponent } from '../business-examples/table-examples/grouped-rows-table-example/grouped-rows-table-example.component';
+import { PaginationTableExampleComponent } from '../business-examples/table-examples/pagination-table-example/pagination-table-example.component';
 import { SimpleTableExampleComponent } from '../business-examples/table-examples/simple-table-example/simple-table-example.component';
 import { SortableTableExampleComponent } from '../business-examples/table-examples/sortable-table-example/sortable-table-example.component';
-import { TablePaginationExampleComponent } from '../business-examples/table-examples/table-pagination-example/table-pagination-example.component';
 import { TabsExampleComponent } from '../business-examples/tabs-examples/tabs-example/tabs-example.component';
 import { TextareaFormsExampleComponent } from '../business-examples/textarea-examples/textarea-forms-example/textarea-forms-example.component';
 import { TextareaNativeExampleComponent } from '../business-examples/textarea-examples/textarea-native-example/textarea-native-example.component';
@@ -153,7 +153,7 @@ export class BusinessComponent implements ExampleProvider {
       'grouped-columns-table-example': new ComponentPortal(GroupedColumnsTableExampleComponent),
       'grouped-rows-table-example': new ComponentPortal(GroupedRowsTableExampleComponent),
       'sortable-table-example': new ComponentPortal(SortableTableExampleComponent),
-      'table-pagination-example': new ComponentPortal<any>(TablePaginationExampleComponent)
+      'pagination-table-example': new ComponentPortal<any>(PaginationTableExampleComponent)
     },
     chip: {
       'forms-chip-input-example': new ComponentPortal(FormsChipInputExampleComponent),

@@ -5,10 +5,10 @@ import { SbbTableDataSource } from '@sbb-esta/angular-business/table';
 import { TABLE_PAGINATION_EXAMPLE_DATA } from '../table-example-data';
 
 @Component({
-  selector: 'sbb-table-pagination-example',
-  templateUrl: 'table-pagination-example.component.html'
+  selector: 'sbb-pagination-table-example',
+  templateUrl: './pagination-table-example.component.html'
 })
-export class TablePaginationExampleComponent implements OnInit {
+export class PaginationTableExampleComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'power', 'description'];
 
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_PAGINATION_EXAMPLE_DATA);
