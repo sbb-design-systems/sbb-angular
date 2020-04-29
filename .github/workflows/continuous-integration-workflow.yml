@@ -70,6 +70,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
     - run: df -h
+    - run: du -h /home/runner/.cache
+    - run: du -h /home/runner/bazel_repository_cache
 
     - name: "Build: Bazel core"
       run: bazelisk build src/angular-core/... --build_tag_filters=-release-package,-prod-showcase
