@@ -1,4 +1,4 @@
-import { CdkTable, CDK_TABLE_TEMPLATE } from '@angular/cdk/table';
+import { CdkTable, CDK_TABLE_TEMPLATE, DataSource } from '@angular/cdk/table';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -32,7 +32,7 @@ export class TableComponent<T> extends CdkTable<T> implements AfterViewInit {
   @ContentChildren(CellDirective, { descendants: true, read: ElementRef })
   rowElements: QueryList<ElementRef>;
 
-  dataSource: SbbTableDataSource<any>;
+  dataSource: DataSource<T>;
 
   /** Overrides the sticky CSS class set by the `CdkTable`. */
   protected _stickyCssClass = 'sbb-table-sticky';
@@ -42,8 +42,13 @@ export class TableComponent<T> extends CdkTable<T> implements AfterViewInit {
     this.rowElements.changes.subscribe(value => this._setGroupClasses(value));
   }
 
+  // TODO: set class manually in template and remove code below @breaking-change
   private _setGroupClasses(elements: QueryList<ElementRef>) {
-    if (this.dataSource.groups && elements.length) {
+    if (
+      this.dataSource instanceof SbbTableDataSource &&
+      this.dataSource.groups &&
+      elements.length
+    ) {
       this.dataSource.groups.forEach(group => {
         if (group.length > 1) {
           // remove right border from all cells except the last one, where the left one is removed
