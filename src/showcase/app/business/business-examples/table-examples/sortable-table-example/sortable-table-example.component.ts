@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { SbbTableDataSource, Sort } from '@sbb-esta/angular-business/table';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { SbbSortDirective, SbbTableDataSource } from '@sbb-esta/angular-business/table';
 
 import { TABLE_EXAMPLE_DATA } from '../table-example-data';
 
@@ -7,35 +7,13 @@ import { TABLE_EXAMPLE_DATA } from '../table-example-data';
   selector: 'sbb-table-sort-example',
   templateUrl: './sortable-table-example.component.html'
 })
-export class SortableTableExampleComponent {
+export class SortableTableExampleComponent implements AfterViewInit {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA.slice());
 
-  sortData(sort: Sort) {
-    const data = this.dataSource.data.slice();
-    if (!sort.active || sort.direction === '') {
-      this.dataSource.data = TABLE_EXAMPLE_DATA;
-      return;
-    }
+  @ViewChild(SbbSortDirective) sort: SbbSortDirective;
 
-    this.dataSource.data = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'letter':
-          return this.compare(a.letter, b.letter, isAsc);
-        case 'number':
-          return this.compare(a.number, b.number, isAsc);
-        case 'word':
-          return this.compare(a.word, b.word, isAsc);
-        case 'date':
-          return this.compare(a.date.getTime(), b.date.getTime(), isAsc);
-        default:
-          return 0;
-      }
-    });
-  }
-
-  compare(a: number | string, b: number | string, isAsc: boolean) {
-    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
   }
 }
