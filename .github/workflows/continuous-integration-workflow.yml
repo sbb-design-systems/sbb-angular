@@ -51,7 +51,7 @@ jobs:
     - run: df -h
 
     - name: "Bazelisk: Sync"
-      run: bazelisk --server_javabase=${JAVA_HOME} sync
+      run: bazelisk sync
     - run: df -h
     - name: "Bazelisk: Get artifacts cache directory path"
       id: bazelisk-cache-dir-path

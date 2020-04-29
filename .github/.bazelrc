@@ -10,3 +10,6 @@ common --announce_rc
 build --host_javabase=@local_jdk//:jdk
 run --host_javabase=@local_jdk//:jdk
 test --host_javabase=@local_jdk//:jdk
+build --javabase=@local_jdk//:jdk
+run --javabase=@local_jdk//:jdk
+test --javabase=@local_jdk//:jdk
