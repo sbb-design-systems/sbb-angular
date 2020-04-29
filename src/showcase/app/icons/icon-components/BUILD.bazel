@@ -11,6 +11,7 @@ ng_ts_library(
     srcs = [
         "icon-components.module.ts",
         "icon-components-routing.module.ts",
+        "icon-list.ts",
         "icon-search/icon-search.component.ts",
         "icon-viewer/icon-viewer.component.ts",
     ],
