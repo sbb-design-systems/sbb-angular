@@ -17,6 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - run: printenv
     - run: df -h
     - run: echo $PWD
     - name: Shallow checkout
@@ -53,6 +54,7 @@ jobs:
 
     - name: "Bazelisk: Sync"
       run: bazelisk sync
+    - run: df -h
     - name: "Bazelisk: Get artifacts cache directory path"
       id: bazelisk-cache-dir-path
       run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
@@ -67,6 +69,7 @@ jobs:
         key: ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
+    - run: df -h
 
     - name: "Build: Bazel core"
       run: bazelisk build src/angular-core/... --build_tag_filters=-release-package,-prod-showcase
