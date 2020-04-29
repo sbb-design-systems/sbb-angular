@@ -18,7 +18,7 @@ ng_module(
     assets = [":esri-web-map/esri-web-map.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-maps/esri-web-map",
     deps = [
-        "//src/maps/core",
+        "//src/angular-maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@types/arcgis-js-api",

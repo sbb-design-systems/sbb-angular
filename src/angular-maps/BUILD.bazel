@@ -1,5 +1,5 @@
 load(
-    "//src/maps:config.bzl",
+    "//src/angular-maps:config.bzl",
     "MAPS_ENTRYPOINTS",
     "MAPS_MARKDOWN_TARGETS",
     "MAPS_TARGETS",
@@ -16,13 +16,13 @@ package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-maps" entry-point.
 ng_module(
-    name = "maps",
+    name = "angular-maps",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     module_name = "@sbb-esta/angular-maps",
-    deps = ["//src/maps/%s" % p for p in MAPS_ENTRYPOINTS],
+    deps = ["//src/angular-maps/%s" % p for p in MAPS_ENTRYPOINTS],
 )
 
 markdown_to_html(
@@ -39,7 +39,7 @@ markdown_to_html(
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/maps/%s:overview" % name for name in MAPS_MARKDOWN_TARGETS],
+    srcs = [":overview"] + ["//src/angular-maps/%s:overview" % name for name in MAPS_MARKDOWN_TARGETS],
 )
 
 # Creates the @sbb-esta/angular-maps package published to npm.
