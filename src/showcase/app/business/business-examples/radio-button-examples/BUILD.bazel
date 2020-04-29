@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "radio-button-examples",
     srcs = [
         "radio-button-example/radio-button-example.component.ts",
@@ -18,8 +18,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/checkbox",
-        "//src/business/radio-button",
+        "//src/angular-business/checkbox",
+        "//src/angular-business/radio-button",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

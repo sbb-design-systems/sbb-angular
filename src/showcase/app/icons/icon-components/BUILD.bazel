@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "icon-components",
     srcs = [
         "icon-components.module.ts",
@@ -22,8 +22,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/icons",
-        "//src/public/search",
+        "//src/angular-icons",
+        "//src/angular-public/search",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -37,7 +37,7 @@ sass_binary(
     name = "icon_search_icon_search_component_scss",
     src = "icon-search/icon-search.component.scss",
     deps = [
-        "//src/core/styles:common_scss_lib",
+        "//src/angular-core/styles:common_scss_lib",
     ],
 )
 

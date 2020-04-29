@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "icons",
     srcs = [
         "icons.module.ts",
@@ -32,6 +32,6 @@ sass_binary(
     name = "icons_icons_component_scss",
     src = "icons/icons.component.scss",
     deps = [
-        "//src/core/styles:common_scss_lib",
+        "//src/angular-core/styles:common_scss_lib",
     ],
 )

@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "contextmenu-examples",
     srcs = [
         "contextmenu-examples.module.ts",
@@ -18,8 +18,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/contextmenu",
-        "//src/business/dropdown",
+        "//src/angular-business/contextmenu",
+        "//src/angular-business/dropdown",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "toggle-examples",
     srcs = [
         "toggle-example/toggle-example.component.ts",
@@ -18,11 +18,11 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/core/radio-button",
-        "//src/icons/arrow",
-        "//src/public/datepicker",
-        "//src/public/field",
-        "//src/public/toggle",
+        "//src/angular-core/radio-button",
+        "//src/angular-icons/arrow",
+        "//src/angular-public/datepicker",
+        "//src/angular-public/field",
+        "//src/angular-public/toggle",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

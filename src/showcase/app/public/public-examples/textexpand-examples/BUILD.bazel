@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "textexpand-examples",
     srcs = [
         "textexpand-example/textexpand-example.component.ts",
@@ -18,7 +18,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/public/textexpand",
+        "//src/angular-public/textexpand",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

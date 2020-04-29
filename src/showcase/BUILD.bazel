@@ -3,10 +3,10 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("@npm//@babel/cli:index.bzl", "babel")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
-load("@npm_angular_bazel//:index.bzl", "ng_module")
 load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
 load("@npm_bazel_terser//:index.bzl", "terser_minified")
 load("@npm_bazel_typescript//:index.bzl", "ts_devserver")
+load("//tools:defaults.bzl", "ng_ts_library")
 load("//tools/differential-loading-merge:index.bzl", "differential_loading_merge")
 load("//tools/highlight-files:index.bzl", "highlight_files")
 
@@ -17,10 +17,10 @@ sass_binary(
     name = "styles",
     src = "styles.scss",
     include_paths = ["external/npm/node_modules"],
-    deps = ["//src/core/styles:core_scss_lib"],
+    deps = ["//src/angular-core/styles:core_scss_lib"],
 )
 
-ng_module(
+ng_ts_library(
     name = "showcase",
     srcs = glob(
         include = ["*.ts"],

@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "dropdown-examples",
     srcs = [
         "dropdown-example/dropdown-example.component.ts",
@@ -18,9 +18,9 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/icons/user",
-        "//src/public/button",
-        "//src/public/dropdown",
+        "//src/angular-icons/user",
+        "//src/angular-public/button",
+        "//src/angular-public/dropdown",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

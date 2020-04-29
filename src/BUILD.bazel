@@ -1,8 +1,8 @@
 load("@npm_bazel_typescript//:index.bzl", "ts_config")
-load("//src/business:config.bzl", "BUSINESS_ENTRYPOINTS", "BUSINESS_TESTING_ENTRYPOINTS")
-load("//src/core:config.bzl", "CORE_ENTRYPOINTS", "CORE_TESTING_ENTRYPOINTS")
-load("//src/maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")
-load("//src/public:config.bzl", "PUBLIC_ENTRYPOINTS", "PUBLIC_TESTING_ENTRYPOINTS")
+load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS", "BUSINESS_TESTING_ENTRYPOINTS")
+load("//src/angular-core:config.bzl", "CORE_ENTRYPOINTS", "CORE_TESTING_ENTRYPOINTS")
+load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")
+load("//src/angular-public:config.bzl", "PUBLIC_ENTRYPOINTS", "PUBLIC_TESTING_ENTRYPOINTS")
 load("//tools/dgeni:index.bzl", "dgeni_api_docs")
 
 package(default_visibility = ["//visibility:public"])
@@ -28,10 +28,10 @@ mapsApiEntryPoints = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
 publicApiEntryPoints = PUBLIC_ENTRYPOINTS + PUBLIC_TESTING_ENTRYPOINTS
 
 # List that contains all source files that need to be processed by Dgeni.
-apiSourceFiles = ["//src/business/%s:source-files" % name for name in businessApiEntryPoints] + \
-                 ["//src/core/%s:source-files" % name for name in coreApiEntryPoints] + \
-                 ["//src/maps/%s:source-files" % name for name in mapsApiEntryPoints] + \
-                 ["//src/public/%s:source-files" % name for name in publicApiEntryPoints]
+apiSourceFiles = ["//src/angular-business/%s:source-files" % name for name in businessApiEntryPoints] + \
+                 ["//src/angular-core/%s:source-files" % name for name in coreApiEntryPoints] + \
+                 ["//src/angular-maps/%s:source-files" % name for name in mapsApiEntryPoints] + \
+                 ["//src/angular-public/%s:source-files" % name for name in publicApiEntryPoints]
 
 dgeni_api_docs(
     name = "api-docs",

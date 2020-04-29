@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "core",
     srcs = [
         "core.module.ts",
@@ -19,7 +19,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/public/tabs",
+        "//src/angular-public/tabs",
         "//src/showcase/app/shared",
         "//src/showcase/app/shared/component-viewer",
         "@npm//@angular/cdk",

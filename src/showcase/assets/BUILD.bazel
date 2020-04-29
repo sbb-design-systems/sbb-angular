@@ -18,12 +18,12 @@ package_docs_content(
     name = "docs-content",
     srcs = {
         # Package the overviews into the docs content
-        "//src/business:overviews": "overviews/business",
-        "//src/core:overviews": "overviews/core",
-        "//src/icons:overviews": "overviews/icons",
-        "//src/keycloak:overviews": "overviews/keycloak",
-        "//src/maps:overviews": "overviews/maps",
-        "//src/public:overviews": "overviews/public",
+        "//src/angular-business:overviews": "overviews/business",
+        "//src/angular-core:overviews": "overviews/core",
+        "//src/angular-icons:overviews": "overviews/icons",
+        "//src/angular-keycloak:overviews": "overviews/keycloak",
+        "//src/angular-maps:overviews": "overviews/maps",
+        "//src/angular-public:overviews": "overviews/public",
 
         # In order to be able to run examples in StackBlitz, we also want to package the
         # plain source files into the docs-content.

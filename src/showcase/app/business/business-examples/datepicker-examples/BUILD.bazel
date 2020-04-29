@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "datepicker-examples",
     srcs = [
         "datepicker-business-date-adapter-example/datepicker-business-date-adapter-example.component.ts",
@@ -24,10 +24,10 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/checkbox",
-        "//src/business/datepicker",
-        "//src/business/field",
-        "//src/core/datetime",
+        "//src/angular-business/checkbox",
+        "//src/angular-business/datepicker",
+        "//src/angular-business/field",
+        "//src/angular-core/datetime",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

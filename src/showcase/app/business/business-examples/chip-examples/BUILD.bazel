@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "chip-examples",
     srcs = [
         "autocomplete-chip-input-example/autocomplete-chip-input-example.component.ts",
@@ -22,9 +22,9 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/autocomplete",
-        "//src/business/chip",
-        "//src/business/field",
+        "//src/angular-business/autocomplete",
+        "//src/angular-business/chip",
+        "//src/angular-business/field",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

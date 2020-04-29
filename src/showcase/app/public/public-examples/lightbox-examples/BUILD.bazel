@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "lightbox-examples",
     srcs = [
         "lightbox-example/lightbox-example.component.ts",
@@ -22,12 +22,12 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/icons/arrow",
-        "//src/icons/navigation",
-        "//src/public/button",
-        "//src/public/field",
-        "//src/public/lightbox",
-        "//src/public/radio-button",
+        "//src/angular-icons/arrow",
+        "//src/angular-icons/navigation",
+        "//src/angular-public/button",
+        "//src/angular-public/field",
+        "//src/angular-public/lightbox",
+        "//src/angular-public/radio-button",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

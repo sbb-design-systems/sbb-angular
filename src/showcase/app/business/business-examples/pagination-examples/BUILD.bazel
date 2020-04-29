@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "pagination-examples",
     srcs = [
         "pagination-example/pagination-example.component.ts",
@@ -16,9 +16,9 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/button",
-        "//src/business/field",
-        "//src/business/pagination",
+        "//src/angular-business/button",
+        "//src/angular-business/field",
+        "//src/angular-business/pagination",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

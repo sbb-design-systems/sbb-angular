@@ -1,6 +1,6 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
@@ -19,7 +19,7 @@ genrule(
     tools = ["//tools/package-info:bazel-bin"],
 )
 
-ng_module(
+ng_ts_library(
     name = "app",
     srcs = [
         "app.component.ts",
@@ -36,7 +36,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/header",
+        "//src/angular-business/header",
         "//src/showcase/app/business",
         "//src/showcase/app/core",
         "//src/showcase/app/icons",
@@ -61,6 +61,6 @@ sass_binary(
     name = "introduction_introduction_component_scss",
     src = "introduction/introduction.component.scss",
     deps = [
-        "//src/core/styles:common_scss_lib",
+        "//src/angular-core/styles:common_scss_lib",
     ],
 )

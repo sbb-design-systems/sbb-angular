@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "notification-examples",
     srcs = [
         "notification-example/notification-example.component.ts",
@@ -18,11 +18,11 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/icons/community",
-        "//src/icons/timetable",
-        "//src/icons/weather",
-        "//src/public/field",
-        "//src/public/notification",
+        "//src/angular-icons/community",
+        "//src/angular-icons/timetable",
+        "//src/angular-icons/weather",
+        "//src/angular-public/field",
+        "//src/angular-public/notification",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

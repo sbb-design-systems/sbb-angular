@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "checkbox-panel-examples",
     srcs = [
         "checkbox-panel-example/checkbox-panel-example.component.ts",
@@ -18,9 +18,9 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/icons/basic",
-        "//src/public/checkbox",
-        "//src/public/checkbox-panel",
+        "//src/angular-icons/basic",
+        "//src/angular-public/checkbox",
+        "//src/angular-public/checkbox-panel",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "captcha-examples",
     srcs = [
         "captcha-example/captcha-example.component.ts",
@@ -18,8 +18,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/public/button",
-        "//src/public/captcha",
+        "//src/angular-public/button",
+        "//src/angular-public/captcha",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

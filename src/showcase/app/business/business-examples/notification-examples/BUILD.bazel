@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "notification-examples",
     srcs = [
         "closable-notification-example/closable-notification-example.component.ts",
@@ -26,10 +26,10 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/field",
-        "//src/business/notification",
-        "//src/icons/community",
-        "//src/icons/timetable",
+        "//src/angular-business/field",
+        "//src/angular-business/notification",
+        "//src/angular-icons/community",
+        "//src/angular-icons/timetable",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "processflow-examples",
     srcs = [
         "processflow-examples.module.ts",
@@ -16,8 +16,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/button",
-        "//src/business/processflow",
+        "//src/angular-business/button",
+        "//src/angular-business/processflow",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

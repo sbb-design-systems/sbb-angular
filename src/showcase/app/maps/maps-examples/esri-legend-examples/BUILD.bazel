@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "esri-legend-examples",
     srcs = [
         "esri-legend-example/esri-legend-example.component.ts",
@@ -18,8 +18,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/maps/esri-legend",
-        "//src/maps/esri-web-scene",
+        "//src/angular-maps/esri-legend",
+        "//src/angular-maps/esri-web-scene",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],
