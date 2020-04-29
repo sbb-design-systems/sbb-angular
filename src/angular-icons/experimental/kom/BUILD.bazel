@@ -1,0 +1,41 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "kom",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    module_name = "@sbb-esta/angular-icons/experimental/kom",
+    deps = [
+        "//src/angular-icons/experimental/kom/arrow",
+        "//src/angular-icons/experimental/kom/audio",
+        "//src/angular-icons/experimental/kom/basic",
+        "//src/angular-icons/experimental/kom/building",
+        "//src/angular-icons/experimental/kom/career",
+        "//src/angular-icons/experimental/kom/community",
+        "//src/angular-icons/experimental/kom/document",
+        "//src/angular-icons/experimental/kom/hardware",
+        "//src/angular-icons/experimental/kom/installation",
+        "//src/angular-icons/experimental/kom/leisure",
+        "//src/angular-icons/experimental/kom/location",
+        "//src/angular-icons/experimental/kom/navigation",
+        "//src/angular-icons/experimental/kom/station",
+        "//src/angular-icons/experimental/kom/status",
+        "//src/angular-icons/experimental/kom/ticket",
+        "//src/angular-icons/experimental/kom/timetable",
+        "//src/angular-icons/experimental/kom/transport",
+        "//src/angular-icons/experimental/kom/user",
+        "//src/angular-icons/experimental/kom/weather",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
