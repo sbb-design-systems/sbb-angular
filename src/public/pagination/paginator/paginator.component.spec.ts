@@ -222,19 +222,19 @@ describe('SbbPaginatorComponent', () => {
 });
 
 function getPreviousButton(fixture: ComponentFixture<any>) {
-  return fixture.nativeElement.querySelector('.sbb-pagination-item-boundary');
+  return fixture.nativeElement.querySelector('.sbb-paginator-item-boundary');
 }
 
 function getNextButton(fixture: ComponentFixture<any>) {
-  return fixture.nativeElement.querySelector('.sbb-pagination-item-boundary:nth-child(2)');
+  return fixture.nativeElement.querySelector('.sbb-paginator-item-boundary:nth-child(2)');
 }
 
 function getFirstButton(fixture: ComponentFixture<any>) {
-  return fixture.nativeElement.querySelector('.sbb-pagination-item');
+  return fixture.nativeElement.querySelector('.sbb-paginator-item');
 }
 
 function getLastButton(fixture: ComponentFixture<any>) {
-  return fixture.nativeElement.querySelector('.sbb-pagination-item:last-child');
+  return fixture.nativeElement.querySelector('.sbb-paginator-item:last-child');
 }
 
 @Component({

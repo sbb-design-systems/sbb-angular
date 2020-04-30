@@ -3,13 +3,11 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  DoCheck,
   EventEmitter,
   HostBinding,
   Inject,
   InjectionToken,
   Input,
-  OnDestroy,
   OnInit,
   Optional,
   Output,
@@ -23,8 +21,6 @@ import {
   mixinDisabled,
   mixinInitialized
 } from '@sbb-esta/angular-core';
-import { Subject } from 'rxjs';
-import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 /** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 50;
@@ -53,14 +49,6 @@ export class PageEvent {
     /** The current total number of items being paged */
     public length: number
   ) {}
-
-  equals(other: PageEvent): boolean {
-    return (
-      this.pageIndex === other.pageIndex &&
-      this.pageSize === other.pageSize &&
-      this.length === other.length
-    );
-  }
 }
 
 /** Object that can be used to configure the default options for the paginator module. */
@@ -96,7 +84,7 @@ const sbbPaginatorBase: CanDisableCtor &
   encapsulation: ViewEncapsulation.None
 })
 export class SbbPaginatorComponent extends sbbPaginatorBase
-  implements OnInit, OnDestroy, DoCheck, CanDisable, HasInitialized {
+  implements OnInit, CanDisable, HasInitialized {
   /** @docs-private */
   @HostBinding('attr.role')
   role = 'navigation';
@@ -105,8 +93,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   @HostBinding('class.sbb-paginator')
   sbbPaginatorClass = true;
 
-  private _pageChangeDistinctForwarder = new Subject<PageEvent>();
-  private _destroyed = new Subject<void>();
+  private _initialized: boolean;
 
   /** The zero-based page index of the displayed list of items. Defaulted to 0. */
   @Input()
@@ -138,11 +125,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     return this._pageSize;
   }
   set pageSize(value: number) {
-    // containing the previous page's first item.
-    const startIndex = this.pageIndex * this.pageSize;
-
-    this._pageSize = Math.max(coerceNumberProperty(value), 0);
-    this.pageIndex = Math.floor(startIndex / this._pageSize) || 0;
+    this._changePageSize(coerceNumberProperty(value));
   }
   private _pageSize: number = DEFAULT_PAGE_SIZE;
 
@@ -164,27 +147,16 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
         this._pageSize = pageSize;
       }
     }
-
-    this._pageChangeDistinctForwarder
-      .pipe(
-        takeUntil(this._destroyed),
-        distinctUntilChanged((a: PageEvent, b: PageEvent) => a.equals(b))
-      )
-      .subscribe(pageEvent => this.page.emit(pageEvent));
   }
 
   ngOnInit() {
+    this._initialized = true;
     this._markInitialized();
   }
 
-  ngDoCheck(): void {
-    // this._emitPageEvent(0);
-  }
-
-  ngOnDestroy(): void {
-    this._destroyed.next();
-  }
-
+  /**
+   * @docs-private
+   */
   _pageRange(): Array<number | null> {
     const m = this.numberOfPages();
     const c = this.pageIndex;
@@ -248,11 +220,29 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     return Math.ceil(this.length / this.pageSize);
   }
 
+  /**
+   * Changes the page size so that the first item displayed on the page will still be
+   * displayed using the new page size.
+   *
+   * For example, if the page size is 10 and on the second page (items indexed 10-19) then
+   * switching so that the page size is 5 will set the third page as the current page so
+   * that the 10th item will still be displayed.
+   */
+  private _changePageSize(pageSize: number) {
+    // Current page needs to be updated to reflect the new page size. Navigate to the page
+    // containing the previous page's first item.
+    const startIndex = this.pageIndex * this.pageSize;
+
+    this._pageSize = Math.max(pageSize, 0);
+    this.pageIndex = Math.floor(startIndex / this._pageSize) || 0;
+  }
+
   /** Emits an event notifying that a change of the paginator's properties has been triggered. */
   private _emitPageEvent(previousPageIndex: number) {
-    this._pageChangeDistinctForwarder.next(
-      new PageEvent(this.pageIndex, previousPageIndex, this.pageSize, this.length)
-    );
+    if (!this._initialized || this.pageIndex === previousPageIndex) {
+      return;
+    }
+    this.page.emit(new PageEvent(this.pageIndex, previousPageIndex, this.pageSize, this.length));
   }
 
   private _correctDownPageIndexIfNecessary(value: number): number {
