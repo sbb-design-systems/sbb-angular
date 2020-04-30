@@ -1,0 +1,278 @@
+import { Component, Provider, Type, ViewChild } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
+
+import { PaginationModule, SbbPaginatorComponent } from '../../pagination';
+
+import { SbbPaginatorDefaultOptions, SBB_PAGINATOR_DEFAULT_OPTIONS } from './paginator.component';
+
+describe('SbbPaginatorComponent', () => {
+  function createComponent<T>(type: Type<T>, providers: Provider[] = []): ComponentFixture<T> {
+    TestBed.configureTestingModule({
+      imports: [PaginationModule, NoopAnimationsModule],
+      declarations: [type],
+      providers: [...providers]
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(type);
+    fixture.detectChanges();
+    return fixture;
+  }
+
+  describe('when navigating with the next and previous buttons', () => {
+    it('should be able to go to the next page', () => {
+      const fixture = createComponent(SbbPaginatorTestComponent);
+      const component = fixture.componentInstance;
+      const paginator = component.paginator;
+      expect(paginator.pageIndex).toBe(0);
+
+      dispatchMouseEvent(getNextButton(fixture), 'click');
+
+      expect(paginator.pageIndex).toBe(1);
+      expect(component.pageEvent).toHaveBeenCalledWith(
+        jasmine.objectContaining({
+          previousPageIndex: 0,
+          pageIndex: 1
+        })
+      );
+    });
+
+    it('should be able to go to the previous page', () => {
+      const fixture = createComponent(SbbPaginatorTestComponent);
+      const component = fixture.componentInstance;
+      const paginator = component.paginator;
+      paginator.pageIndex = 1;
+      fixture.detectChanges();
+      expect(paginator.pageIndex).toBe(1);
+
+      dispatchMouseEvent(getPreviousButton(fixture), 'click');
+
+      expect(paginator.pageIndex).toBe(0);
+      expect(component.pageEvent).toHaveBeenCalledWith(
+        jasmine.objectContaining({
+          previousPageIndex: 1,
+          pageIndex: 0
+        })
+      );
+    });
+  });
+
+  it('should mark itself as initialized', fakeAsync(() => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    const paginator = component.paginator;
+    let isMarkedInitialized = false;
+    paginator.initialized.subscribe(() => (isMarkedInitialized = true));
+
+    tick();
+    expect(isMarkedInitialized).toBeTruthy();
+  }));
+
+  it('should not allow a negative pageSize', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    const paginator = component.paginator;
+    paginator.pageSize = -1337;
+    expect(paginator.pageSize).toBeGreaterThanOrEqual(0);
+  });
+
+  it('should not allow a negative pageIndex', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    const paginator = component.paginator;
+    paginator.pageIndex = -42;
+    expect(paginator.pageIndex).toBeGreaterThanOrEqual(0);
+  });
+
+  it('should default the page size to the first page size option if not provided', () => {
+    const fixture = createComponent(SbbPaginatorWithoutInputsTestComponent);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.paginator.pageSize).toEqual(10);
+  });
+
+  it('should be able to change the page size while keeping the first item present', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    const paginator = component.paginator;
+
+    // Start on the third page of a list of 100 with a page size of 10.
+    component.pageIndex = 4;
+    component.pageSize = 10;
+    component.length = 100;
+    fixture.detectChanges();
+
+    // The first item of the page should be item with index 40
+    expect(paginator.pageIndex * paginator.pageSize).toBe(40);
+
+    // The first item on the page is now 25. Change the page size to 25 so that we should now be
+    // on the second page where the top item is index 25.
+    component.pageEvent.calls.reset();
+    // containing the previous page's first item.
+    const startIndex2 = paginator.pageIndex * paginator.pageSize;
+
+    paginator._pageSize = 25;
+    paginator.pageIndex = Math.floor(startIndex2 / 25) || 0;
+
+    expect(component.pageEvent).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        pageIndex: 1,
+        pageSize: 25
+      })
+    );
+
+    // The first item on the page is still 25. Change the page size to 8 so that we should now be
+    // on the fourth page where the top item is index 24.
+    component.pageEvent.calls.reset();
+    // containing the previous page's first item.
+    const startIndex1 = paginator.pageIndex * paginator.pageSize;
+
+    paginator._pageSize = 8;
+    paginator.pageIndex = Math.floor(startIndex1 / 8) || 0;
+
+    expect(component.pageEvent).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        pageIndex: 3,
+        pageSize: 8
+      })
+    );
+
+    // The first item on the page is 24. Change the page size to 16 so that we should now be
+    // on the first page where the top item is index 0.
+    component.pageEvent.calls.reset();
+    // containing the previous page's first item.
+    const startIndex = paginator.pageIndex * paginator.pageSize;
+
+    paginator._pageSize = 25;
+    paginator.pageIndex = Math.floor(startIndex / 25) || 0;
+
+    expect(component.pageEvent).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        pageIndex: 0,
+        pageSize: 25
+      })
+    );
+  });
+
+  it('should keep track of the right number of pages', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    const paginator = component.paginator;
+
+    component.pageSize = 10;
+    component.length = 100;
+    fixture.detectChanges();
+    expect(paginator.numberOfPages()).toBe(10);
+
+    component.pageSize = 10;
+    component.length = 0;
+    fixture.detectChanges();
+    expect(paginator.numberOfPages()).toBe(0);
+
+    component.pageSize = 10;
+    component.length = 10;
+    fixture.detectChanges();
+    expect(paginator.numberOfPages()).toBe(1);
+  });
+
+  it('should handle the number inputs being passed in as strings', () => {
+    const fixture = createComponent(SbbPaginatorWithStringValuesTestComponent);
+    fixture.detectChanges();
+
+    const withStringPaginator = fixture.componentInstance.paginator;
+    expect(withStringPaginator.pageIndex).toEqual(0);
+    expect(withStringPaginator.length).toEqual(100);
+    expect(withStringPaginator.pageSize).toEqual(10);
+  });
+
+  it('should be able to disable all the controls in the paginator via the binding', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+
+    fixture.componentInstance.pageIndex = 1;
+    fixture.detectChanges();
+
+    expect(getPreviousButton(fixture).hasAttribute('disabled')).toBe(false);
+    expect(getNextButton(fixture).hasAttribute('disabled')).toBe(false);
+    expect(getFirstButton(fixture).hasAttribute('disabled')).toBe(false);
+    expect(getLastButton(fixture).hasAttribute('disabled')).toBe(false);
+
+    fixture.componentInstance.disabled = true;
+    fixture.detectChanges();
+
+    expect(getPreviousButton(fixture).hasAttribute('disabled')).toBe(true);
+    expect(getNextButton(fixture).hasAttribute('disabled')).toBe(true);
+    expect(getFirstButton(fixture).hasAttribute('disabled')).toBe(true);
+    expect(getLastButton(fixture).hasAttribute('disabled')).toBe(true);
+  });
+
+  it('should be able to configure the default options via a provider', () => {
+    const fixture = createComponent(SbbPaginatorWithoutInputsTestComponent, [
+      {
+        provide: SBB_PAGINATOR_DEFAULT_OPTIONS,
+        useValue: {
+          pageSize: 7
+        } as SbbPaginatorDefaultOptions
+      }
+    ]);
+    const paginator = fixture.componentInstance.paginator;
+
+    expect(paginator.pageSize).toBe(7);
+  });
+});
+
+function getPreviousButton(fixture: ComponentFixture<any>) {
+  return fixture.nativeElement.querySelector('.sbb-pagination-item-boundary');
+}
+
+function getNextButton(fixture: ComponentFixture<any>) {
+  return fixture.nativeElement.querySelector('.sbb-pagination-item-boundary:nth-child(2)');
+}
+
+function getFirstButton(fixture: ComponentFixture<any>) {
+  return fixture.nativeElement.querySelector('.sbb-pagination-item');
+}
+
+function getLastButton(fixture: ComponentFixture<any>) {
+  return fixture.nativeElement.querySelector('.sbb-pagination-item:last-child');
+}
+
+@Component({
+  template: `
+    <sbb-paginator
+      [pageIndex]="pageIndex"
+      [pageSize]="pageSize"
+      [length]="length"
+      [disabled]="disabled"
+      (page)="pageEvent($event)"
+    >
+    </sbb-paginator>
+  `
+})
+class SbbPaginatorTestComponent {
+  pageIndex = 0;
+  pageSize = 10;
+  length = 100;
+  disabled: boolean;
+  pageEvent = jasmine.createSpy('page event');
+
+  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
+}
+
+@Component({
+  template: `
+    <sbb-paginator></sbb-paginator>
+  `
+})
+class SbbPaginatorWithoutInputsTestComponent {
+  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
+}
+
+@Component({
+  template: `
+    <sbb-paginator pageIndex="0" pageSize="10" length="100"> </sbb-paginator>
+  `
+})
+class SbbPaginatorWithStringValuesTestComponent {
+  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
+}

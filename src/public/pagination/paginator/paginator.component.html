@@ -1,0 +1,45 @@
+<ul class="sbb-paginator">
+  <li class="sbb-paginator-item">
+    <button
+      type="button"
+      i18n-aria-label="@@paginationPreviousPage"
+      aria-label="Vorherige Seite"
+      class="sbb-paginator-item-boundary"
+      [disabled]="!hasPreviousPage()"
+      [class.sbb-paginator-item-disabled]="!hasPreviousPage()"
+      (click)="previousPage()"
+    >
+      <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
+    </button>
+  </li>
+
+  <li *ngFor="let page of _pageRange()" class="sbb-paginator-item">
+    <ng-container *ngIf="page === null">
+      <span class="sbb-paginator-item-ellipsis">...</span>
+    </ng-container>
+    <ng-container *ngIf="page !== null">
+      <button
+        type="button"
+        [attr.tabindex]="page === pageIndex ? '-1' : null"
+        [class.sbb-paginator-item-selected]="page === pageIndex"
+        [attr.aria-current]="page === pageIndex"
+        (click)="selectPage(page)"
+      >
+        <ng-container>{{ page + 1 }}</ng-container>
+      </button>
+    </ng-container>
+  </li>
+  <li class="sbb-paginator-item">
+    <button
+      type="button"
+      i18n-aria-label="@@paginationNextPage"
+      aria-label="Nächste Seite"
+      class="sbb-paginator-item-boundary"
+      [disabled]="!hasNextPage()"
+      [class.sbb-paginator-item-disabled]="!hasNextPage()"
+      (click)="nextPage()"
+    >
+      <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
+    </button>
+  </li>
+</ul>

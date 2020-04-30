@@ -8,10 +8,11 @@ import {
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { SbbPaginatorComponent } from './paginator/paginator.component';
 
 @NgModule({
-  declarations: [PaginationComponent, NavigationComponent],
+  declarations: [PaginationComponent, NavigationComponent, SbbPaginatorComponent],
   imports: [CommonModule, RouterModule, IconChevronSmallLeftModule, IconChevronSmallRightModule],
-  exports: [PaginationComponent, NavigationComponent]
+  exports: [PaginationComponent, NavigationComponent, SbbPaginatorComponent]
 })
 export class PaginationModule {}
