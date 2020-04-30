@@ -34,19 +34,17 @@ const range = (length: number, offset = 0) => Array.from({ length }, (_, k) => k
  * different page size or navigates to another page.
  */
 export class PageEvent {
+  /**
+   *
+   * @param pageIndex current page index
+   * @param previousPageIndex index of the page that was selected previously
+   * @param pageSize current page size
+   * @param length current total number of items being paged
+   */
   constructor(
-    /** The current page index. */
     public pageIndex: number,
-
-    /**
-     * Index of the page that was selected previously.
-     */
     public previousPageIndex: number,
-
-    /** The current page size */
     public pageSize: number,
-
-    /** The current total number of items being paged */
     public length: number
   ) {}
 }
@@ -245,8 +243,11 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     this.page.emit(new PageEvent(this.pageIndex, previousPageIndex, this.pageSize, this.length));
   }
 
+  /**
+   * ensures that pageIndex is in range of pages
+   */
   private _correctDownPageIndexIfNecessary(value: number): number {
-    return Math.max(Math.min(Math.max(value, 0), this.length - 1), 0);
+    return Math.max(Math.min(Math.max(value, 0), this.numberOfPages() - 1), 0);
   }
 
   // tslint:disable: member-ordering

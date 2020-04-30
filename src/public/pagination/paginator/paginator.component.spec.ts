@@ -1,11 +1,65 @@
 import { Component, Provider, Type, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 
 import { PaginationModule, SbbPaginatorComponent } from '../../pagination';
 
 import { SbbPaginatorDefaultOptions, SBB_PAGINATOR_DEFAULT_OPTIONS } from './paginator.component';
+
+@Component({
+  template: `
+    <sbb-paginator
+      [pageIndex]="pageIndex"
+      [pageSize]="pageSize"
+      [length]="length"
+      [disabled]="disabled"
+      (page)="pageEvent($event)"
+    >
+    </sbb-paginator>
+  `
+})
+class SbbPaginatorTestComponent {
+  pageIndex = 0;
+  pageSize = 10;
+  length = 100;
+  disabled: boolean;
+  pageEvent = jasmine.createSpy('page event');
+
+  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
+}
+
+@Component({
+  template: `
+    <!-- order of attributes is important for test -->
+    <sbb-paginator (page)="pageEvent($event)" [pageSize]="10" [length]="100" [pageIndex]="5">
+    </sbb-paginator>
+  `
+})
+class SbbPaginatorInitializedTestComponent {
+  pageEvent = jasmine.createSpy('page event');
+
+  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
+}
+
+@Component({
+  template: `
+    <sbb-paginator></sbb-paginator>
+  `
+})
+class SbbPaginatorWithoutInputsTestComponent {
+  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
+}
+
+@Component({
+  template: `
+    <sbb-paginator pageIndex="0" pageSize="10" length="100"> </sbb-paginator>
+  `
+})
+class SbbPaginatorWithStringValuesTestComponent {
+  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
+}
 
 describe('SbbPaginatorComponent', () => {
   function createComponent<T>(type: Type<T>, providers: Provider[] = []): ComponentFixture<T> {
@@ -83,6 +137,55 @@ describe('SbbPaginatorComponent', () => {
     const paginator = component.paginator;
     paginator.pageIndex = -42;
     expect(paginator.pageIndex).toBeGreaterThanOrEqual(0);
+  });
+
+  it('should not allow a pageIndex greater than max page', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    const paginator = component.paginator;
+    component.pageIndex = 10;
+    fixture.detectChanges();
+    expect(component.pageEvent).toHaveBeenCalledTimes(1);
+    expect(paginator.pageIndex).toBe(9);
+  });
+
+  it('should correct down index when decrease length and pageIndex would be out of range', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    const paginator = component.paginator;
+    component.pageIndex = 9;
+    component.length = 90;
+    fixture.detectChanges();
+    expect(component.pageEvent).toHaveBeenCalledTimes(2);
+    expect(paginator.pageIndex).toBe(8);
+  });
+
+  it('should not touch pageIndex when decrease length and pageIndex would be in range', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    const paginator = component.paginator;
+    component.length = 90;
+    fixture.detectChanges();
+    expect(component.pageEvent).not.toHaveBeenCalled();
+    expect(paginator.pageIndex).toBe(0);
+  });
+
+  it('should handle length 0 correctly', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    const paginator = component.paginator;
+    component.pageIndex = 10;
+    component.length = 0;
+    fixture.detectChanges();
+    expect(component.pageEvent).toHaveBeenCalledTimes(2);
+    expect(paginator.pageIndex).toBe(0);
+  });
+
+  it('should not emit pageEvent when not initialized', () => {
+    const fixture = createComponent(SbbPaginatorInitializedTestComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(component.pageEvent).not.toHaveBeenCalled();
   });
 
   it('should default the page size to 50', () => {
@@ -206,6 +309,36 @@ describe('SbbPaginatorComponent', () => {
     expect(getLastButton(fixture).hasAttribute('disabled')).toBe(true);
   });
 
+  it('should should disable previous button when on first page', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const paginator = fixture.componentInstance.paginator;
+
+    paginator.pageIndex = 1;
+    fixture.detectChanges();
+
+    expect(getPreviousButton(fixture).hasAttribute('disabled')).toBe(false);
+
+    paginator.firstPage();
+    fixture.detectChanges();
+
+    expect(getPreviousButton(fixture).hasAttribute('disabled')).toBe(true);
+  });
+
+  it('should should disable next button when on last page', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const paginator = fixture.componentInstance.paginator;
+
+    paginator.pageIndex = 1;
+    fixture.detectChanges();
+
+    expect(getNextButton(fixture).hasAttribute('disabled')).toBe(false);
+
+    paginator.lastPage();
+    fixture.detectChanges();
+
+    expect(getNextButton(fixture).hasAttribute('disabled')).toBe(true);
+  });
+
   it('should be able to configure the default options via a provider', () => {
     const fixture = createComponent(SbbPaginatorWithoutInputsTestComponent, [
       {
@@ -218,6 +351,52 @@ describe('SbbPaginatorComponent', () => {
     const paginator = fixture.componentInstance.paginator;
 
     expect(paginator.pageSize).toBe(7);
+  });
+
+  describe('with more than 5 pages', () => {
+    describe('ellipsis', () => {
+      it('should show one ellipsis with first,second and third page selected', () => {
+        const fixture = createComponent(SbbPaginatorTestComponent);
+        const component = fixture.componentInstance;
+        component.pageIndex = 0;
+        fixture.detectChanges();
+        let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.pageIndex = 1;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.pageIndex = 2;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.pageIndex = 3;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(2);
+      });
+
+      it('should show one ellipsis with last, last -1 and last-2 page selected', () => {
+        const fixture = createComponent(SbbPaginatorTestComponent);
+        const component = fixture.componentInstance;
+        component.pageIndex = 9;
+        fixture.detectChanges();
+        let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.pageIndex = 8;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.pageIndex = 7;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.pageIndex = 6;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-paginator-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(2);
+      });
+    });
   });
 });
 
@@ -235,44 +414,4 @@ function getFirstButton(fixture: ComponentFixture<any>) {
 
 function getLastButton(fixture: ComponentFixture<any>) {
   return fixture.nativeElement.querySelector('.sbb-paginator-item:nth-last-child(2)>button');
-}
-
-@Component({
-  template: `
-    <sbb-paginator
-      [pageIndex]="pageIndex"
-      [pageSize]="pageSize"
-      [length]="length"
-      [disabled]="disabled"
-      (page)="pageEvent($event)"
-    >
-    </sbb-paginator>
-  `
-})
-class SbbPaginatorTestComponent {
-  pageIndex = 0;
-  pageSize = 10;
-  length = 100;
-  disabled: boolean;
-  pageEvent = jasmine.createSpy('page event');
-
-  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
-}
-
-@Component({
-  template: `
-    <sbb-paginator></sbb-paginator>
-  `
-})
-class SbbPaginatorWithoutInputsTestComponent {
-  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
-}
-
-@Component({
-  template: `
-    <sbb-paginator pageIndex="0" pageSize="10" length="100"> </sbb-paginator>
-  `
-})
-class SbbPaginatorWithStringValuesTestComponent {
-  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
 }
