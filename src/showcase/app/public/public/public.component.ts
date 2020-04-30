@@ -25,7 +25,8 @@ import { LightboxExampleComponent } from '../public-examples/lightbox-examples/l
 import { LinksExampleComponent } from '../public-examples/links-examples/links-example/links-example.component';
 import { LoadingExampleComponent } from '../public-examples/loading-examples/loading-example/loading-example.component';
 import { NotificationExampleComponent } from '../public-examples/notification-examples/notification-example/notification-example.component';
-import { PaginationExampleComponent } from '../public-examples/pagination-examples/pagination-example/pagination-example.component';
+import { NavigationExampleComponent } from '../public-examples/pagination-examples/navigation-example/navigation-example.component';
+import { PaginatorExampleComponent } from '../public-examples/pagination-examples/paginator-example/paginator-example.component';
 import { ProcessflowExampleComponent } from '../public-examples/processflow-examples/processflow-example/processflow-example.component';
 import { RadioButtonExampleComponent } from '../public-examples/radio-button-examples/radio-button-example/radio-button-example.component';
 import { RadioButtonPanelExampleComponent } from '../public-examples/radio-button-panel-examples/radio-button-panel-example/radio-button-panel-example.component';
@@ -156,7 +157,10 @@ export class PublicComponent implements ExampleProvider {
     breadcrumb: { 'breadcrumb-example': new ComponentPortal(BreadcrumbExampleComponent) },
     ghettobox: { 'ghettobox-example': new ComponentPortal(GhettoboxExampleComponent) },
     notification: { 'notification-example': new ComponentPortal(NotificationExampleComponent) },
-    pagination: { 'pagination-example': new ComponentPortal(PaginationExampleComponent) },
+    pagination: {
+      'paginator-example': new ComponentPortal(PaginatorExampleComponent),
+      'navigation-example': new ComponentPortal(NavigationExampleComponent)
+    },
     processflow: { 'processflow-example': new ComponentPortal(ProcessflowExampleComponent) },
     table: { 'table-example': new ComponentPortal(TableExampleComponent) },
     tabs: { 'tabs-example': new ComponentPortal(TabsExampleComponent) },

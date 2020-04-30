@@ -9,12 +9,13 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "pagination-examples",
     srcs = [
-        "pagination-example/pagination-example.component.ts",
+        "navigation-example/navigation-example.component.ts",
         "pagination-examples.module.ts",
+        "paginator-example/paginator-example.component.ts",
     ],
     assets = [
-        ":pagination-example/pagination-example.component.css",
-        "pagination-example/pagination-example.component.html",
+        "navigation-example/navigation-example.component.html",
+        "paginator-example/paginator-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -24,7 +25,6 @@ ng_ts_library(
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
-        "@npm//@angular/router",
     ],
 )
 
@@ -35,9 +35,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "pagination_example_pagination_example_component_scss",
-    src = "pagination-example/pagination-example.component.scss",
 )

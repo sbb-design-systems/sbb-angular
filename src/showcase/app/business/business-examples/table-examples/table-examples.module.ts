@@ -8,7 +8,7 @@ import { TableModule } from '@sbb-esta/angular-business/table';
 import { AdvancedTableExampleComponent } from './advanced-table-example/advanced-table-example.component';
 import { GroupedColumnsTableExampleComponent } from './grouped-columns-table-example/grouped-columns-table-example.component';
 import { GroupedRowsAndColumnsTableExampleComponent } from './grouped-rows-and-columns-table-example/grouped-rows-and-columns-table-example.component';
-import { PaginationTableExampleComponent } from './pagination-table-example/pagination-table-example.component';
+import { PaginatorTableExampleComponent } from './paginator-table-example/paginator-table-example.component';
 import { SimpleTableExampleComponent } from './simple-table-example/simple-table-example.component';
 import { SortableTableExampleComponent } from './sortable-table-example/sortable-table-example.component';
 
@@ -17,7 +17,7 @@ const EXAMPLES = [
   GroupedRowsAndColumnsTableExampleComponent,
   SimpleTableExampleComponent,
   SortableTableExampleComponent,
-  PaginationTableExampleComponent,
+  PaginatorTableExampleComponent,
   AdvancedTableExampleComponent
 ];
 

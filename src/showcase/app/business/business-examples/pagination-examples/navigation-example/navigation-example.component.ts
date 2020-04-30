@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NavigationPageChangeEvent } from '@sbb-esta/angular-business/pagination';
 
 @Component({
-  selector: 'sbb-pagination-example',
-  templateUrl: './pagination-example.component.html',
-  styleUrls: ['./pagination-example.component.css']
+  selector: 'sbb-navigation-example',
+  templateUrl: './navigation-example.component.html'
 })
-export class PaginationExampleComponent {
-  constructor(private _route: ActivatedRoute) {}
+export class NavigationExampleComponent {
+  constructor() {}
 
-  length = 7;
-  pageIndex = 5;
-
-  pages = ['Einführung', 'Kapitel 1', 'Kapitel 2', 'Kapitel 3'].map((page, index) => {
+  pages = ['Introduction', 'Chapter 1', 'Chapter 2', 'Chapter 3'].map((page, index) => {
     return { title: page, index: index };
   });
 
@@ -22,18 +18,15 @@ export class PaginationExampleComponent {
   get previousPage(): string | null {
     return this.hasPrevious ? this.hasPrevious.title : null;
   }
+
   get nextPage(): string | null {
     return this.hasNext ? this.hasNext.title : null;
   }
 
   newPage = { title: '' };
 
-  onPageChange($event: any) {
-    console.log($event);
-  }
-
-  onPageChangeNavigation($event: any) {
-    if ($event === 'next') {
+  pageChange(event: NavigationPageChangeEvent) {
+    if (event === 'next') {
       this.hasPrevious = this.hasNext;
       this.hasNext = this.pages[this.hasNext.index + 1];
     } else {

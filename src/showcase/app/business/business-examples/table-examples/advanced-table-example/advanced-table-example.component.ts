@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { PaginationComponent, PAGINATION_MODE } from '@sbb-esta/angular-business/pagination';
+import { SbbPaginatorComponent } from '@sbb-esta/angular-business/pagination';
 import { SbbSortDirective, TableComponent } from '@sbb-esta/angular-business/table';
 import { merge, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -26,15 +26,14 @@ export class AdvancedTableExampleDataSource extends DataSource<VehicleExampleIte
    * e.g. `[pageLength]=100` or `[pageIndex]=1`, then be sure that the paginator's view has been
    * initialized before assigning it to this data source.
    */
-  get paginator(): PaginationComponent | null {
+  get paginator(): SbbPaginatorComponent | null {
     return this._paginator;
   }
-  set paginator(paginator: PaginationComponent | null) {
+  set paginator(paginator: SbbPaginatorComponent | null) {
     this._paginator = paginator;
-    this.paginator[PAGINATION_MODE] = 'table';
     Promise.resolve().then(() => (this.paginator.length = this.data.length));
   }
-  private _paginator: PaginationComponent | null;
+  private _paginator: SbbPaginatorComponent | null;
 
   constructor() {
     super();
@@ -111,7 +110,7 @@ function compare(a: string | number, b: string | number, isAsc: boolean) {
 export class AdvancedTableExampleComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'name', 'power', 'description'];
 
-  @ViewChild(PaginationComponent) paginator: PaginationComponent;
+  @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
   @ViewChild(SbbSortDirective) sort: SbbSortDirective;
   @ViewChild(TableComponent) table: TableComponent<VehicleExampleItem>;
 

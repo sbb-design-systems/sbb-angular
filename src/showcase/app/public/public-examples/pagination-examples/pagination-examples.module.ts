@@ -5,9 +5,10 @@ import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { PaginationModule } from '@sbb-esta/angular-public/pagination';
 
-import { PaginationExampleComponent } from './pagination-example/pagination-example.component';
+import { NavigationExampleComponent } from './navigation-example/navigation-example.component';
+import { PaginatorExampleComponent } from './paginator-example/paginator-example.component';
 
-const EXAMPLES = [PaginationExampleComponent];
+const EXAMPLES = [PaginatorExampleComponent, NavigationExampleComponent];
 
 @NgModule({
   imports: [

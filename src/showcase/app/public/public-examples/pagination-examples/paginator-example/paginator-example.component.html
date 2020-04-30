@@ -1,0 +1,15 @@
+<div class="sbbsc-block">
+  <sbb-paginator
+    (page)="pageChange($event)"
+    [pageSize]="1"
+    [length]="length"
+    [pageIndex]="pageIndex"
+  ></sbb-paginator>
+</div>
+<h4>Properties</h4>
+<sbb-field mode="long" label="Length">
+  <input sbbInput type="number" [(ngModel)]="length" [min]="0" />
+</sbb-field>
+<sbb-field mode="long" label="Page index">
+  <input sbbInput type="number" [(ngModel)]="pageIndex" [min]="0" />
+</sbb-field>
