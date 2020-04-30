@@ -48,6 +48,13 @@ sbb-paginator {
         &:hover {
           color: $sbbColorGrey;
         }
+
+        &-disabled {
+          color: $sbbColorSilver;
+          &:hover {
+            color: $sbbColorSilver;
+          }
+        }
       }
 
       > button,
@@ -155,6 +162,10 @@ sbb-paginator {
           &:hover {
             color: $sbbColorGrey;
             cursor: default;
+          }
+
+          &.sbb-paginator-item-selected {
+            border-color: $sbbColorSilver;
           }
         }
       }

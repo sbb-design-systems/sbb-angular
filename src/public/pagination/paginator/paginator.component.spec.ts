@@ -85,11 +85,11 @@ describe('SbbPaginatorComponent', () => {
     expect(paginator.pageIndex).toBeGreaterThanOrEqual(0);
   });
 
-  it('should default the page size to the first page size option if not provided', () => {
+  it('should default the page size to 50', () => {
     const fixture = createComponent(SbbPaginatorWithoutInputsTestComponent);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.paginator.pageSize).toEqual(10);
+    expect(fixture.componentInstance.paginator.pageSize).toEqual(50);
   });
 
   it('should be able to change the page size while keeping the first item present', () => {
@@ -112,7 +112,7 @@ describe('SbbPaginatorComponent', () => {
     // containing the previous page's first item.
     const startIndex2 = paginator.pageIndex * paginator.pageSize;
 
-    paginator._pageSize = 25;
+    paginator.pageSize = 25;
     paginator.pageIndex = Math.floor(startIndex2 / 25) || 0;
 
     expect(component.pageEvent).toHaveBeenCalledWith(
@@ -128,7 +128,7 @@ describe('SbbPaginatorComponent', () => {
     // containing the previous page's first item.
     const startIndex1 = paginator.pageIndex * paginator.pageSize;
 
-    paginator._pageSize = 8;
+    paginator.pageSize = 8;
     paginator.pageIndex = Math.floor(startIndex1 / 8) || 0;
 
     expect(component.pageEvent).toHaveBeenCalledWith(
@@ -144,7 +144,7 @@ describe('SbbPaginatorComponent', () => {
     // containing the previous page's first item.
     const startIndex = paginator.pageIndex * paginator.pageSize;
 
-    paginator._pageSize = 25;
+    paginator.pageSize = 25;
     paginator.pageIndex = Math.floor(startIndex / 25) || 0;
 
     expect(component.pageEvent).toHaveBeenCalledWith(
@@ -226,15 +226,15 @@ function getPreviousButton(fixture: ComponentFixture<any>) {
 }
 
 function getNextButton(fixture: ComponentFixture<any>) {
-  return fixture.nativeElement.querySelector('.sbb-paginator-item-boundary:nth-child(2)');
+  return fixture.nativeElement.querySelectorAll('.sbb-paginator-item-boundary')[1];
 }
 
 function getFirstButton(fixture: ComponentFixture<any>) {
-  return fixture.nativeElement.querySelector('.sbb-paginator-item');
+  return fixture.nativeElement.querySelector('.sbb-paginator-item:nth-child(2)>button');
 }
 
 function getLastButton(fixture: ComponentFixture<any>) {
-  return fixture.nativeElement.querySelector('.sbb-paginator-item:last-child');
+  return fixture.nativeElement.querySelector('.sbb-paginator-item:nth-last-child(2)>button');
 }
 
 @Component({
