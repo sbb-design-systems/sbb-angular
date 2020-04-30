@@ -120,8 +120,6 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
-    - name: "Bazelisk: Sync"
-      run: bazelisk sync
     - name: "Bazelisk: Get artifacts cache directory path"
       id: bazelisk-cache-dir-path
       run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
