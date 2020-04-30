@@ -140,7 +140,7 @@ Sorting will apply when one of the following actions takes place:
 
 ### Pagination
 
-It's easy to split up a datasource into pages. You can use the <sbb-pagination> component to achieve pagination. To connect the pagination component to your dataSource you have to set `dataSource.paginator` to the viewReference of the PaginationComponent in your controller (see example below and on examples page).
+It's easy to split up a datasource into pages. You can use the <sbb-paginator> component to achieve pagination. To connect the paginator component to your dataSource you have to set `dataSource.paginator` to the viewReference of the SbbPaginatorComponent in your controller (see example below and on examples page).
 
 #### Html
 
@@ -149,15 +149,15 @@ It's easy to split up a datasource into pages. You can use the <sbb-pagination> 
   ...
 </table>
 
-<sbb-pagination [pageSize]="pageSize" #pagination></sbb-pagination>
+<sbb-paginator pageSize="5" #paginator></sbb-paginator>
 ```
 
 #### Typescript
 
 ```ts
-export class TablePaginationExampleComponent implements OnInit {
+export class TablePaginatorExampleComponent implements OnInit {
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource([]);
-  @ViewChild('pagination', { static: true }) paginator: PaginationComponent;
+  @ViewChild('paginator', { static: true }) paginator: SbbPaginatorComponent;
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;

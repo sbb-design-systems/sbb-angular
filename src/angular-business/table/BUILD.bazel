@@ -19,7 +19,6 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/table",
     deps = [
-        "//src/business/pagination",
         "//src/core",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
