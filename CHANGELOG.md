@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.4.1-next.10](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.9...9.4.1-next.10) (2020-04-30)
+
+
+### Bug Fixes
+
+* scss bundle should not duplicate imports ([#387](https://github.com/sbb-design-systems/sbb-angular/issues/387)) ([1242f40](https://github.com/sbb-design-systems/sbb-angular/commit/1242f40ce84b9390e258cdb7ab8f52959236eb31))
+
 ### [9.4.1-next.9](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.8...9.4.1-next.9) (2020-04-30)
 
 
