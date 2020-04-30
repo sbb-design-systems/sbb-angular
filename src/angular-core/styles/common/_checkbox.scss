@@ -1,9 +1,3 @@
-@import './variants';
-@import './colors';
-@import './functions';
-@import './mediaqueries';
-@import './mixins';
-
 $checkBoxContainerBorder: if($sbbBusiness, 1, 2);
 $radioButtonGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 $radioButtonDisabledLabelColor: if($sbbBusiness, $sbbColorStorm, $sbbColorGrey);
