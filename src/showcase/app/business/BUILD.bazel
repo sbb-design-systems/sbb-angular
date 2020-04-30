@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "business",
     srcs = [
         "business.module.ts",
@@ -25,7 +25,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/tabs",
+        "//src/angular-business/tabs",
         "//src/showcase/app/business/business-examples",
         "//src/showcase/app/business/business-examples/autocomplete-examples",
         "//src/showcase/app/business/business-examples/breadcrumb-examples",
@@ -67,6 +67,6 @@ sass_binary(
     name = "business_example_viewer_business_example_viewer_component_scss",
     src = "business-example-viewer/business-example-viewer.component.scss",
     deps = [
-        "//src/core/styles:common_scss_lib",
+        "//src/angular-core/styles:common_scss_lib",
     ],
 )

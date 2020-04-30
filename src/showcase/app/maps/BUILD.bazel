@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "maps",
     srcs = [
         "maps.module.ts",
@@ -19,7 +19,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/maps",
+        "//src/angular-maps",
         "//src/showcase/app/maps/maps-examples",
         "//src/showcase/app/maps/maps-examples/esri-basemap-gallery-examples",
         "//src/showcase/app/maps/maps-examples/esri-layer-list-examples",

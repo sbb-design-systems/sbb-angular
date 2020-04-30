@@ -4,6 +4,7 @@ import { DirEntry, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NgModule } from './ng-module';
 
 export class NgPackage extends NgModule {
+  shortName: string;
   entryPoints: string[];
   hasReadme: boolean;
   hasSchematics: boolean;
@@ -17,6 +18,7 @@ export class NgPackage extends NgModule {
 
   constructor(dir: DirEntry, tree: Tree, context: SchematicContext) {
     super(dir, tree, context);
+    this.shortName = this.name.replace('angular-', '');
     const ngModules = this.ngModules().slice(1);
     this.entryPoints = ngModules.map(m => this._resolvePath(m));
     this.hasReadme = dir.subfiles.includes(fragment('README.md'));

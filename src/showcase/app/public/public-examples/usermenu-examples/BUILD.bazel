@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "usermenu-examples",
     srcs = [
         "usermenu-example/usermenu-example.component.ts",
@@ -18,8 +18,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/public/dropdown",
-        "//src/public/usermenu",
+        "//src/angular-public/dropdown",
+        "//src/angular-public/usermenu",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

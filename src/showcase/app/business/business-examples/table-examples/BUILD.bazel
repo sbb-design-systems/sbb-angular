@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "table-examples",
     srcs = [
         "grouped-columns-table-example/grouped-columns-table-example.component.ts",
@@ -23,7 +23,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/table",
+        "//src/angular-business/table",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

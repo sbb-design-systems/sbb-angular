@@ -28,7 +28,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Create hash key"
       id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache
@@ -60,27 +60,27 @@ jobs:
       env: 
         REF: ${{ github.ref }}
     - name: "Publish: @sbb-esta/angular-core"
-      run: yarn publish dist/releases/core --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
+      run: yarn publish dist/releases/angular-core --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-icons"
-      run: yarn publish dist/releases/icons --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/angular-icons --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-keycloak"
-      run: yarn publish dist/releases/keycloak --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/angular-keycloak --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-public"
-      run: yarn publish dist/releases/public --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/angular-public --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-maps"
-      run: yarn publish dist/releases/maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/angular-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-business"
-      run: yarn publish dist/releases/business --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+      run: yarn publish dist/releases/angular-business --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -108,7 +108,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Create hash key"
       id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache
@@ -120,6 +120,9 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
+    - name: "Bazelisk: Get artifacts cache directory path"
+      id: bazelisk-cache-dir-path
+      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
     - name: "Bazelisk: Create hash key"
       id: bazelisk-cache-key-name
       run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
@@ -127,10 +130,10 @@ jobs:
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
-        path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-showcase-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
+        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazelisk-showcase-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
+          ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Showcase"
       run: yarn -s build:showcase

@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "public",
     srcs = [
         "public.module.ts",
@@ -19,7 +19,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/public/tabs",
+        "//src/angular-public/tabs",
         "//src/showcase/app/public/public-examples",
         "//src/showcase/app/public/public-examples/accordion-examples",
         "//src/showcase/app/public/public-examples/autocomplete-examples",

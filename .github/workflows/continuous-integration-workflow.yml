@@ -32,7 +32,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Create hash key"
       id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache
@@ -44,6 +44,9 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
+    - name: "Bazelisk: Get artifacts cache directory path"
+      id: bazelisk-cache-dir-path
+      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
     - name: "Bazelisk: Create hash key"
       id: bazelisk-cache-key-name
       run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
@@ -51,14 +54,14 @@ jobs:
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
-        path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-build-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
+        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazelisk-build-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
+          ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Bazel"
       run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
-
+            
     - name: "Test: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
 
@@ -83,7 +86,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Create hash key"
       id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache
@@ -95,6 +98,9 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
+    - name: "Bazelisk: Get artifacts cache directory path"
+      id: bazelisk-cache-dir-path
+      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
     - name: "Bazelisk: Create hash key"
       id: bazelisk-cache-key-name
       run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
@@ -102,17 +108,16 @@ jobs:
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
-        path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-packages-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
+        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-bazelisk-packages-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazelisk-packages-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
+          ${{ runner.os }}-bazelisk-packages-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Packages"
       run: yarn -s build
 
   showcase:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
     env:
       PR_NUMBER: ${{ github.event.number }}
     steps:
@@ -131,7 +136,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Create hash key"
       id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js tools/postinstall/update-ngcc-main-fields.js)"
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache
@@ -143,23 +148,27 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
+    - name: "Bazelisk: Get artifacts cache directory path"
+      id: bazelisk-cache-dir-path
+      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
     - name: "Bazelisk: Create hash key"
       id: bazelisk-cache-key-name
       run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
-    - name: "Bazelisk: Restore dependencies from cache"
+    - name: "Bazelisk: Restore from cache"
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
-        path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-showcase-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
+        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazelisk-showcase-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
+          ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Showcase"
       run: yarn -s build:showcase
     - name: "Pack: Showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
     - name: "Deploy: Staging"
+      if: github.event_name == 'pull_request'
       run: |
         curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
         -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \

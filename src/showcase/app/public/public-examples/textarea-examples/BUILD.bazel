@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "textarea-examples",
     srcs = [
         "textarea-examples.module.ts",
@@ -23,9 +23,9 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/public/checkbox",
-        "//src/public/field",
-        "//src/public/textarea",
+        "//src/angular-public/checkbox",
+        "//src/angular-public/field",
+        "//src/angular-public/textarea",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

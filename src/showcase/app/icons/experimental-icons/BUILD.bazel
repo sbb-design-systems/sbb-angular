@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "experimental-icons",
     srcs = [
         "experimental-icon-search/experimental-icon-search.component.ts",
@@ -19,10 +19,10 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/tooltip",
-        "//src/icons/experimental/_meta",
-        "//src/public/checkbox-panel",
-        "//src/public/search",
+        "//src/angular-business/tooltip",
+        "//src/angular-icons/experimental/_meta",
+        "//src/angular-public/checkbox-panel",
+        "//src/angular-public/search",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -36,6 +36,6 @@ sass_binary(
     name = "experimental_icon_search_experimental_icon_search_component_scss",
     src = "experimental-icon-search/experimental-icon-search.component.scss",
     deps = [
-        "//src/core/styles:common_scss_lib",
+        "//src/angular-core/styles:common_scss_lib",
     ],
 )

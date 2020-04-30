@@ -2,9 +2,10 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IconBase } from '@sbb-esta/angular-icons';
-import { ICON_COMPONENT_META_INFORMATION } from '@sbb-esta/angular-icons';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { ICON_COMPONENT_META_INFORMATION } from '../icon-list';
 
 @Component({
   selector: 'sbb-icon-viewer',

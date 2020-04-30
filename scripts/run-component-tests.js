@@ -7,7 +7,7 @@
  *   node ./scripts/run-component-tests all               | Runs tests for all components
  *   node ./scripts/run-component-tests button            | Runs public button tests
  *   node ./scripts/run-component-tests contextmenu       | Runs business contextmenu tests
- *   node ./scripts/run-component-tests src/core/oauth    | Runs core oauth tests
+ *   node ./scripts/run-component-tests src/angular-core/oauth    | Runs core oauth tests
  *   node ./scripts/run-component-tests chip contextmenu  | Runs business chip and contextmenu tests
  *
  * Supported command line flags:

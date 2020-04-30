@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "shared",
     srcs = [
         "animations.ts",
@@ -28,7 +28,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/public/tabs",
+        "//src/angular-public/tabs",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

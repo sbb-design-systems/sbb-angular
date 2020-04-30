@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "loading-examples",
     srcs = [
         "loading-example/loading-example.component.ts",
@@ -18,9 +18,9 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/icons/arrow",
-        "//src/public/button",
-        "//src/public/loading",
+        "//src/angular-icons/arrow",
+        "//src/angular-public/button",
+        "//src/angular-public/loading",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "table-examples",
     srcs = [
         "table-example/table-example.component.ts",
@@ -18,11 +18,11 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/public/button",
-        "//src/public/checkbox",
-        "//src/public/field",
-        "//src/public/radio-button",
-        "//src/public/table",
+        "//src/angular-public/button",
+        "//src/angular-public/checkbox",
+        "//src/angular-public/field",
+        "//src/angular-public/radio-button",
+        "//src/angular-public/table",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

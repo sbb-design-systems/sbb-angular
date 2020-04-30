@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "breadcrumb-examples",
     srcs = [
         "breadcrumb-example/breadcrumb-example.component.ts",
@@ -16,8 +16,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/breadcrumb",
-        "//src/icons/navigation",
+        "//src/angular-business/breadcrumb",
+        "//src/angular-icons/navigation",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

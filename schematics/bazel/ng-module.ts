@@ -53,7 +53,7 @@ export class NgModule {
     this.name = basename(this.path);
     const packageName = split(this.path)[2];
     const moduleName = relative(this._tree.getDir('src').dir(packageName).path, this.path);
-    this.moduleName = `@sbb-esta/angular-${packageName}/${moduleName}`;
+    this.moduleName = `@sbb-esta/${packageName}/${moduleName}`;
     this.hasMarkdown = this._dir.subfiles.includes(fragment(`${basename(this.path)}.md`));
     this.dependencies = this._findDependencies();
     this.hasTests = !!this._specFiles.length;
@@ -104,7 +104,7 @@ export class NgModule {
 
   protected _resolveTsImport(importPath: string, _fileEntry: FileEntry) {
     if (importPath.startsWith('@sbb-esta/')) {
-      return importPath.replace('@sbb-esta/angular-', '//src/');
+      return importPath.replace('@sbb-esta/', '//src/');
     } else if (importPath.startsWith('.')) {
       return '';
     } else {
@@ -143,7 +143,7 @@ export class NgModule {
     const dependencies = this._tsFiles
       .reduce((current, f) => current.concat(this._findImportsAndReexports(f)), [] as string[])
       .filter((v, i, a) => a.indexOf(v) === i);
-    if (this.path.includes('src/maps/')) {
+    if (this.path.includes('src/angular-maps/')) {
       dependencies.push('@npm//@types/arcgis-js-api');
     } else if (this.path.includes('captcha')) {
       dependencies.push('@npm//@types/grecaptcha');
@@ -205,8 +205,8 @@ export class NgModule {
     return matches
       .map(s => s.substring(9, s.length - 2))
       .map(importPath => {
-        if (importPath.includes('/core/styles/common')) {
-          return '//src/core/styles:common_scss_lib';
+        if (importPath.includes('/angular-core/styles/common')) {
+          return '//src/angular-core/styles:common_scss_lib';
         } else if (this._isInModule(join(entry.path, importPath))) {
           return `:${basename(this.path)}_scss_lib`;
         } else if (importPath.includes('/node_modules/')) {

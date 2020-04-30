@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "links-examples",
     srcs = [
         "links-example/links-example.component.ts",
@@ -18,8 +18,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/public/field",
-        "//src/public/links",
+        "//src/angular-public/field",
+        "//src/angular-public/links",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

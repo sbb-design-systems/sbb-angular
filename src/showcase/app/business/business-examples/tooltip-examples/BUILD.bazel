@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_module",
+    "ng_ts_library",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_module(
+ng_ts_library(
     name = "tooltip-examples",
     srcs = [
         "tooltip-custom-content-example/tooltip-custom-content-example.component.ts",
@@ -22,10 +22,10 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/business/button",
-        "//src/business/field",
-        "//src/business/tooltip",
-        "//src/icons/navigation",
+        "//src/angular-business/button",
+        "//src/angular-business/field",
+        "//src/angular-business/tooltip",
+        "//src/angular-icons/navigation",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

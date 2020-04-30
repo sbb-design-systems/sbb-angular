@@ -13,6 +13,7 @@ export default readdirSync(__dirname, { withFileTypes: true })
     external: [
       '@angular/cdk/schematics',
       '@angular-devkit/schematics',
+      '@angular-devkit/schematics/tasks',
       '@angular-devkit/core',
       '@angular-devkit/core/src/utils/strings',
       '@schematics/angular/utility/ast-utils',
