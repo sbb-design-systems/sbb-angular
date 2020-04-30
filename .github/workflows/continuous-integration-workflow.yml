@@ -26,10 +26,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '11'
-    - run: printenv
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
@@ -45,12 +41,9 @@ jobs:
         key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
         restore-keys: |
           ${{ runner.os }}-yarn-
-    - run: df -h
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
-    - run: df -h
 
-    - run: df -h
     - name: "Bazelisk: Get artifacts cache directory path"
       id: bazelisk-cache-dir-path
       run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
@@ -65,9 +58,6 @@ jobs:
         key: ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
-    - run: bazelisk info
-    - run: df -h
-    - run: du -h /home/runner/.cache -d 5
 
     - name: "Build: Bazel"
       run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
@@ -128,7 +118,6 @@ jobs:
 
   showcase:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
     env:
       PR_NUMBER: ${{ github.event.number }}
     steps:
@@ -179,6 +168,7 @@ jobs:
     - name: "Pack: Showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
     - name: "Deploy: Staging"
+      if: github.event_name == 'pull_request'
       run: |
         curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
         -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
