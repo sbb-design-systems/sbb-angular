@@ -5,8 +5,8 @@
       i18n-aria-label="@@paginationPreviousPage"
       aria-label="Vorherige Seite"
       class="sbb-paginator-item-boundary"
-      [disabled]="disabled || !hasPreviousPage()"
-      [class.sbb-paginator-item-disabled]="disabled || !hasPreviousPage()"
+      [disabled]="_previousButtonDisabled()"
+      [class.sbb-paginator-item-disabled]="_previousButtonDisabled()"
       (click)="previousPage()"
     >
       <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
@@ -41,8 +41,8 @@
       i18n-aria-label="@@paginationNextPage"
       aria-label="Nächste Seite"
       class="sbb-paginator-item-boundary"
-      [disabled]="disabled || !hasNextPage()"
-      [class.sbb-paginator-item-disabled]="disabled || !hasNextPage()"
+      [disabled]="_nextButtonDisabled()"
+      [class.sbb-paginator-item-disabled]="_nextButtonDisabled()"
       (click)="nextPage()"
     >
       <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>

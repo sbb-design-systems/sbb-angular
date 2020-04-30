@@ -244,6 +244,22 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   }
 
   /**
+   * @docs-private
+   * Checks whether the buttons for going forwards should be disabled.
+   */
+  _nextButtonDisabled() {
+    return this.disabled || !this.hasNextPage();
+  }
+
+  /**
+   * @docs-private
+   * Checks whether the buttons for going backwards should be disabled.
+   */
+  _previousButtonDisabled() {
+    return this.disabled || !this.hasPreviousPage();
+  }
+
+  /**
    * ensures that pageIndex is in range of pages
    */
   private _correctDownPageIndexIfNecessary(value: number): number {
