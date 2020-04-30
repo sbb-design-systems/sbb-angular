@@ -9,7 +9,7 @@ A sbb-paginator requires a length property, which defines the length of the data
 Optionally a pageIndex property (defaults to 0) to select the displayed page, and a pageSize property (defaults to 50) which defines how many entries are on a page, can be set.
 Note that the pageIndex is Zero-based.
 
-The paginator emits a pageEvent, when the page changes. The event contains the new
+The paginator emits a PageEvent, when the page changes. The event contains the new
 page index, the previous page index, the page size and the length property.
 
 If you like to define the amount of pages manually, just set pageSize to 1 and length to the count of pages.

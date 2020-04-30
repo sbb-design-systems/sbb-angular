@@ -25,7 +25,6 @@ import {
 /** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 50;
 
-/** TODO */
 const MAX_PAGE_NUMBERS_DISPLAYED = 3;
 const range = (length: number, offset = 0) => Array.from({ length }, (_, k) => k + offset);
 
@@ -86,10 +85,6 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   /** @docs-private */
   @HostBinding('attr.role')
   role = 'navigation';
-
-  /** @docs-private */
-  @HostBinding('class.sbb-paginator')
-  sbbPaginatorClass = true;
 
   private _initialized: boolean;
 

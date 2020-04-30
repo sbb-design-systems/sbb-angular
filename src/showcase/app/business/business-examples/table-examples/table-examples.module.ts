@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FieldModule } from '@sbb-esta/angular-business';
+import { FieldModule } from '@sbb-esta/angular-business/field';
 import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { TableModule } from '@sbb-esta/angular-business/table';
 
