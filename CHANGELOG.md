@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.4.1-next.9](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.8...9.4.1-next.9) (2020-04-30)
+
+
+### Bug Fixes
+
+* center align login button in usermenu (IE/Firefox) ([#378](https://github.com/sbb-design-systems/sbb-angular/issues/378)) ([48e354f](https://github.com/sbb-design-systems/sbb-angular/commit/48e354fd13cf4277cbce7a577d383f830b3a97e9)), closes [#370](https://github.com/sbb-design-systems/sbb-angular/issues/370)
+* **business:** change label color for disabled radio-button and checkbox ([#375](https://github.com/sbb-design-systems/sbb-angular/issues/375)) ([ca685ed](https://github.com/sbb-design-systems/sbb-angular/commit/ca685ed8573f7564c2cdecf8675564829f395eed)), closes [#364](https://github.com/sbb-design-systems/sbb-angular/issues/364)
+* **showcase:** display getting started of icons and keycloak lib ([#376](https://github.com/sbb-design-systems/sbb-angular/issues/376)) ([6b27268](https://github.com/sbb-design-systems/sbb-angular/commit/6b27268212a25aaa54313791bdb82a7b743b6c76))
+* **showcase:** fix showcases to work with bazel ([#372](https://github.com/sbb-design-systems/sbb-angular/issues/372)) ([5fd8fcc](https://github.com/sbb-design-systems/sbb-angular/commit/5fd8fcce0b0faac70984cfbaa5a35c6b6ed798e3))
+
 ### [9.4.1-next.8](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.7...9.4.1-next.8) (2020-04-19)
 
 
