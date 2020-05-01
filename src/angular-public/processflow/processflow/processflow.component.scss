@@ -50,6 +50,7 @@ $processflowStepButtonPaddingBottom5K: 42;
   }
   .sbb-processflow-step {
     display: flex;
+    flex: 1 0 auto;
     &::before {
       content: '';
     }
