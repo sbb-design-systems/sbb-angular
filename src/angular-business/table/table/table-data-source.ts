@@ -17,6 +17,33 @@ import { map } from 'rxjs/operators';
  */
 const MAX_SAFE_INTEGER = 9007199254740991;
 
+export const matchesStringCaseInsensitive = (data: string, search: string): boolean => {
+  return data.toLowerCase().indexOf(search.trim().toLowerCase()) !== -1;
+};
+
+export const reduceObjectToString = (data: Object) => {
+  return Object.keys(data).reduce((currentTerm: string, key: string) => {
+    // Use an obscure Unicode character to delimit the words in the concatenated string.
+    // This avoids matches where the values of two columns combined will match the user's query
+    // (e.g. `Flute` and `Stop` will match `Test`). The character is intended to be something
+    // that has a very low chance of being typed in by somebody in a text field. This one in
+    // particular is "White up-pointing triangle with dot" from
+    // https://en.wikipedia.org/wiki/List_of_Unicode_characters
+    return currentTerm + (data as { [key: string]: any })[key] + '◬';
+  }, '');
+};
+
+/**
+ * TableFilter can be extended to define columns (keys) to search for in a DataSource.
+ * The '_' property is used for a global search.
+ */
+export interface TableFilter {
+  /**
+   * Global Search: searching all entries
+   */
+  _?: string;
+}
+
 /**
  * Data source that accepts a client-side data array and includes native support of filtering,
  * sorting (using Sort), and pagination (using Paginator).
@@ -25,7 +52,10 @@ const MAX_SAFE_INTEGER = 9007199254740991;
  * properties are accessed. Also allows for filter customization by overriding filterTermAccessor,
  * which defines how row data is converted to a string for filter matching.
  */
-export class SbbTableDataSource<T> extends DataSource<T> {
+export class SbbTableDataSource<
+  T,
+  TFilter extends TableFilter | string = string
+> extends DataSource<T> {
   /** Stream that emits when a new data array is set on the data source. */
   private readonly _data: BehaviorSubject<T[]>;
 
@@ -36,7 +66,7 @@ export class SbbTableDataSource<T> extends DataSource<T> {
   private readonly _renderData = new BehaviorSubject<T[]>([]);
 
   /** Stream that emits when a new filter string is set on the data source. */
-  private readonly _filter = new BehaviorSubject<string>('');
+  private readonly _filter = new BehaviorSubject<TFilter>(null!);
 
   /** Used to react to internal changes of the paginator that are made by the data source itself. */
   private readonly _internalPageChanges = new Subject<void>();
@@ -77,11 +107,11 @@ export class SbbTableDataSource<T> extends DataSource<T> {
    * Filter term that should be used to filter out objects from the data array. To override how
    * data objects match to this filter string, provide a custom function for filterPredicate.
    */
-  get filter(): string {
+  get filter(): TFilter {
     return this._filter.value;
   }
 
-  set filter(filter: string) {
+  set filter(filter: TFilter) {
     this._filter.next(filter);
   }
 
@@ -190,33 +220,45 @@ export class SbbTableDataSource<T> extends DataSource<T> {
   };
 
   /**
+   * This method can be called by two filter types: string or an Object which extends TableFilter.
+   *
+   *  # String variant
    * Checks if a data object matches the data source's filter string. By default, each data object
    * is converted to a string of its properties and returns true if the filter has
-   * at least one occurrence in that string. By default, the filter string has its whitespace
-   * trimmed and the match is case-insensitive. May be overridden for a custom implementation of
-   * filter matching.
+   * at least one occurrence in that string.
+   *
+   * # TableFilter variant
+   * Checks if a data object matches the data source's filter object. If several columns are defined,
+   * the and operator is applied. The '_' property of the TableFilter can be used to search globally in all columns
+   * (like the string variant above).
+   *
+   * By default, the filter string has its whitespace trimmed and the match is case-insensitive.
+   * May be overridden for a custom implementation of filter matching.
    * @param data Data object used to check against the filter.
-   * @param filter Filter string that has been set on the data source.
+   * @param filter Filter string or Object which extends TableFilter that has been set on the data source.
    * @returns Whether the filter matches against the data
    */
-  filterPredicate: (data: T, filter: string) => boolean = (data: T, filter: string): boolean => {
-    // Transform the data into a lowercase string of all property values.
-    const dataStr = Object.keys(data)
-      .reduce((currentTerm: string, key: string) => {
-        // Use an obscure Unicode character to delimit the words in the concatenated string.
-        // This avoids matches where the values of two columns combined will match the user's query
-        // (e.g. `Flute` and `Stop` will match `Test`). The character is intended to be something
-        // that has a very low chance of being typed in by somebody in a text field. This one in
-        // particular is "White up-pointing triangle with dot" from
-        // https://en.wikipedia.org/wiki/List_of_Unicode_characters
-        return currentTerm + (data as { [key: string]: any })[key] + '◬';
-      }, '')
-      .toLowerCase();
+  filterPredicate: (data: T, filter: TFilter) => boolean = (data: T, filter: TFilter): boolean => {
+    const tableData = data as { [key: string]: any };
+    const tableFilter: { [key: string]: any } & TableFilter =
+      typeof filter === 'string'
+        ? ({ _: filter } as TableFilter)
+        : (filter as { [key: string]: any } & TableFilter);
 
-    // Transform the filter by converting it to lowercase and removing whitespace.
-    const transformedFilter = filter.trim().toLowerCase();
+    let matchesGlobal = true;
+    if (typeof tableFilter._ === 'string') {
+      matchesGlobal = matchesStringCaseInsensitive(reduceObjectToString(tableData), tableFilter._!);
+    }
 
-    return dataStr.indexOf(transformedFilter) !== -1;
+    const matchesEveryColumnSearched = Object.keys(tableFilter)
+      .filter(key => key !== '_')
+      .filter(
+        key => typeof tableFilter[key] !== 'undefined' && ('' + tableFilter[key]).trim() !== ''
+      ) // filter filter columns which have an empty search string
+      .filter(key => typeof tableData[key] !== 'undefined' && tableData[key] !== null) // filter table columns which are not defined
+      .every(key => matchesStringCaseInsensitive('' + tableData[key], '' + tableFilter[key]));
+
+    return matchesEveryColumnSearched && matchesGlobal;
   };
 
   constructor(initialData: T[] = [], groups?: string[][]) {
