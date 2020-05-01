@@ -1,107 +1,74 @@
-import { DataSource } from '@angular/cdk/collections';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { SbbPaginatorComponent } from '@sbb-esta/angular-business/pagination';
-import { SbbSortDirective, TableComponent } from '@sbb-esta/angular-business/table';
-import { merge, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {
+  SbbSortDirective,
+  SbbTableDataSource,
+  TableComponent
+} from '@sbb-esta/angular-business/table';
 
 import { VehicleExampleItem, VEHICLE_EXAMPLE_DATA } from '../table-example-data';
+
+interface VehicleFilter {
+  global?: string;
+  name?: string;
+  description?: string;
+}
 
 /**
  * Data source for the AdvancedTableExample view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class AdvancedTableExampleDataSource extends DataSource<VehicleExampleItem> {
-  data = VEHICLE_EXAMPLE_DATA;
-  sort: SbbSortDirective;
-
-  /**
-   * Instance of the Paginator component used by the table to control what page of the data is
-   * displayed. Page changes emitted by the Paginator will trigger an update to the
-   * table's rendered data.
-   *
-   * Note that the data source uses the paginator's properties to calculate which page of data
-   * should be displayed. If the paginator receives its properties as template inputs,
-   * e.g. `[pageLength]=100` or `[pageIndex]=1`, then be sure that the paginator's view has been
-   * initialized before assigning it to this data source.
-   */
-  get paginator(): SbbPaginatorComponent | null {
-    return this._paginator;
-  }
-  set paginator(paginator: SbbPaginatorComponent | null) {
-    this._paginator = paginator;
-    Promise.resolve().then(() => (this.paginator.length = this.data.length));
-  }
-  private _paginator: SbbPaginatorComponent | null;
-
-  constructor() {
-    super();
+export class AdvancedTableExampleDataSource extends SbbTableDataSource<VehicleExampleItem> {
+  constructor(data: VehicleExampleItem[]) {
+    super(data);
   }
 
-  /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
-   */
-  connect(): Observable<VehicleExampleItem[]> {
-    // Combine everything that affects the rendered data into one update
-    // stream for the data-table to consume.
-    const dataMutations = [of(this.data), this.paginator.page, this.sort.sbbSortChange];
+  /** Stream that emits when a new filter string is set on the data source. */
+  // private readonly _filter = new BehaviorSubject<string>('{}');
 
-    return merge(...dataMutations).pipe(
-      map(() => {
-        return this._getPagedData(this._getSortedData([...this.data]));
-      })
-    );
-  }
+  filterPredicate: (data: VehicleExampleItem, filter: string) => boolean = (
+    data: VehicleExampleItem,
+    filter: string
+  ): boolean => {
+    const vehicleFilter: VehicleFilter = JSON.parse(filter);
 
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
-  disconnect() {}
+    let matchesName = true;
+    let matchesDescription = true;
+    let matchesGlobal = true;
 
-  /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private _getPagedData(data: VehicleExampleItem[]) {
-    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-    return data.splice(startIndex, this.paginator.pageSize);
-  }
+    if (vehicleFilter.global) {
+      // Transform the data into a lowercase string of all property values.
+      const dataStr = Object.keys(data)
+        .reduce((currentTerm: string, key: string) => {
+          // Use an obscure Unicode character to delimit the words in the concatenated string.
+          // This avoids matches where the values of two columns combined will match the user's query
+          // (e.g. `Flute` and `Stop` will match `Test`). The character is intended to be something
+          // that has a very low chance of being typed in by somebody in a text field. This one in
+          // particular is "White up-pointing triangle with dot" from
+          // https://en.wikipedia.org/wiki/List_of_Unicode_characters
+          return currentTerm + (data as { [key: string]: any })[key] + '◬';
+        }, '')
+        .toLowerCase();
 
-  /**
-   * Sort the data (client-side). If you're using server-side sorting,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private _getSortedData(data: VehicleExampleItem[]) {
-    if (!this.sort.active || this.sort.direction === '') {
-      return data;
+      matchesGlobal = matchesData(dataStr, vehicleFilter.global);
     }
 
-    return data.sort((a, b) => {
-      const isAsc = this.sort.direction === 'asc';
-      switch (this.sort.active) {
-        case 'position':
-          return compare(+a.position, +b.position, isAsc);
-        case 'name':
-          return compare(a.name, b.name, isAsc);
-        case 'power':
-          return compare(+a.power, +b.power, isAsc);
-        case 'description':
-          return compare(a.description, b.description, isAsc);
-        default:
-          return 0;
-      }
-    });
-  }
+    if (vehicleFilter.name) {
+      matchesName = matchesData(data.name, vehicleFilter.name);
+    }
+
+    if (vehicleFilter.description) {
+      matchesDescription = matchesData(data.description, vehicleFilter.description);
+    }
+
+    return matchesName && matchesDescription && matchesGlobal;
+  };
 }
 
-/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a: string | number, b: string | number, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
+const matchesData = (data: string, search: string): boolean => {
+  return data.toLowerCase().indexOf(search.trim().toLowerCase()) !== -1;
+};
 
 @Component({
   selector: 'sbb-advanced-table-example',
@@ -114,7 +81,11 @@ export class AdvancedTableExampleComponent implements AfterViewInit {
   @ViewChild(SbbSortDirective) sort: SbbSortDirective;
   @ViewChild(TableComponent) table: TableComponent<VehicleExampleItem>;
 
-  dataSource: AdvancedTableExampleDataSource = new AdvancedTableExampleDataSource();
+  dataSource: AdvancedTableExampleDataSource = new AdvancedTableExampleDataSource(
+    VEHICLE_EXAMPLE_DATA
+  );
+
+  vehicleFilter: VehicleFilter = {};
 
   get displayedColumnsFilter(): string[] {
     return this.displayedColumns.map(value => 'filter-' + value);
@@ -126,7 +97,7 @@ export class AdvancedTableExampleComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
 
-  applyFilter(event: KeyboardEvent, column: string) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter() {
+    this.dataSource.filter = JSON.stringify(this.vehicleFilter);
   }
 }

@@ -1,5 +1,5 @@
-<sbb-field label="Global search">
-  <input sbbInput (keyup)="applyFilter($event, 'all')" />
+<sbb-field label="Global search" class="sbbsc-block">
+  <input sbbInput [(ngModel)]="vehicleFilter.global" (ngModelChange)="applyFilter()" />
 </sbb-field>
 <table sbbTable aria-describedby="sbb-table" sbbSort>
   <ng-container *ngFor="let column of displayedColumns" [sbbColumnDef]="column">
@@ -14,7 +14,12 @@
   </ng-container>
   <ng-container sbbColumnDef="filter-name">
     <th sbbHeaderCell *sbbHeaderCellDef>
-      <input sbbInput (keyup)="applyFilter($event, 'name')" style="width:100%" />
+      <input
+        sbbInput
+        [(ngModel)]="vehicleFilter.name"
+        (ngModelChange)="applyFilter()"
+        style="width:100%;margin-bottom: 1em"
+      />
     </th>
   </ng-container>
   <ng-container sbbColumnDef="filter-power">
@@ -22,7 +27,12 @@
   </ng-container>
   <ng-container sbbColumnDef="filter-description">
     <th sbbHeaderCell *sbbHeaderCellDef>
-      <input sbbInput (keyup)="applyFilter($event, 'description')" style="width:100%" />
+      <input
+        sbbInput
+        [(ngModel)]="vehicleFilter.description"
+        (ngModelChange)="applyFilter()"
+        style="width:100%"
+      />
     </th>
   </ng-container>
 
