@@ -33,7 +33,7 @@ import { SelectNativeExampleComponent } from '../business-examples/select-exampl
 import { SelectOptionGroupsExampleComponent } from '../business-examples/select-examples/select-option-groups-example/select-option-groups-example.component';
 import { SelectOptionGroupsMultiSelectionExampleComponent } from '../business-examples/select-examples/select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component';
 import { SelectReactiveFormsExampleComponent } from '../business-examples/select-examples/select-reactive-forms-example/select-reactive-forms-example.component';
-import { AdvancedTableExampleComponent } from '../business-examples/table-examples/advanced-table-example/advanced-table-example.component';
+import { FilterSortPaginatorTableExampleComponent } from '../business-examples/table-examples/filter-sort-paginator-table-example/filter-sort-paginator-table-example.component';
 import { GroupedColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-columns-table-example/grouped-columns-table-example.component';
 import { GroupedRowsAndColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-rows-and-columns-table-example/grouped-rows-and-columns-table-example.component';
 import { PaginatorTableExampleComponent } from '../business-examples/table-examples/paginator-table-example/paginator-table-example.component';
@@ -159,7 +159,9 @@ export class BusinessComponent implements ExampleProvider {
       ),
       'sortable-table-example': new ComponentPortal(SortableTableExampleComponent),
       'paginator-table-example': new ComponentPortal(PaginatorTableExampleComponent),
-      'advanced-table-example': new ComponentPortal(AdvancedTableExampleComponent)
+      'filter-sort-paginator-table-example': new ComponentPortal(
+        FilterSortPaginatorTableExampleComponent
+      )
     },
     chip: {
       'forms-chip-input-example': new ComponentPortal(FormsChipInputExampleComponent),

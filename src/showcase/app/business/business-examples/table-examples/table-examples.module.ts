@@ -5,7 +5,7 @@ import { FieldModule } from '@sbb-esta/angular-business/field';
 import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { TableModule } from '@sbb-esta/angular-business/table';
 
-import { AdvancedTableExampleComponent } from './advanced-table-example/advanced-table-example.component';
+import { FilterSortPaginatorTableExampleComponent } from './filter-sort-paginator-table-example/filter-sort-paginator-table-example.component';
 import { GroupedColumnsTableExampleComponent } from './grouped-columns-table-example/grouped-columns-table-example.component';
 import { GroupedRowsAndColumnsTableExampleComponent } from './grouped-rows-and-columns-table-example/grouped-rows-and-columns-table-example.component';
 import { PaginatorTableExampleComponent } from './paginator-table-example/paginator-table-example.component';
@@ -18,7 +18,7 @@ const EXAMPLES = [
   SimpleTableExampleComponent,
   SortableTableExampleComponent,
   PaginatorTableExampleComponent,
-  AdvancedTableExampleComponent
+  FilterSortPaginatorTableExampleComponent
 ];
 
 @NgModule({

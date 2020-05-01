@@ -1,6 +1,7 @@
-<sbb-field label="Global search" class="sbbsc-block">
-  <input sbbInput [(ngModel)]="vehicleFilter.global" (ngModelChange)="applyFilter()" />
+<sbb-field label="Global search" class="sbbsc-block" mode="long">
+  <input sbbInput [(ngModel)]="vehicleFilter._" (ngModelChange)="applyFilter()" />
 </sbb-field>
+
 <table sbbTable aria-describedby="sbb-table" sbbSort>
   <ng-container *ngFor="let column of displayedColumns" [sbbColumnDef]="column">
     <th sbbHeaderCell [sbbSortHeader]="column" *sbbHeaderCellDef>
@@ -31,7 +32,7 @@
         sbbInput
         [(ngModel)]="vehicleFilter.description"
         (ngModelChange)="applyFilter()"
-        style="width:100%"
+        style="width:100%;margin-bottom: 1em"
       />
     </th>
   </ng-container>
