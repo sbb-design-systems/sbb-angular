@@ -14,7 +14,7 @@
     "experimentalDecorators": true,
     "types": []
   },
-  "include": ["node_modules/@angular/**/*"],
+  "include": ["node_modules/@angular/**/*", "node_modules/ngx-perfect-scrollbar/**/*"],
   "exclude": [
     "node_modules/@angular/**/schematics/**",
     "node_modules/@angular/**/testing/**",
