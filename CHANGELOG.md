@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.4.1](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.10...9.4.1) (2020-05-01)
+
+
+### Bug Fixes
+
+* processflow steps should not shrink ([#385](https://github.com/sbb-design-systems/sbb-angular/issues/385)) ([9349704](https://github.com/sbb-design-systems/sbb-angular/commit/93497046c2a3baa415861d431e289c2a491a271e)), closes [#382](https://github.com/sbb-design-systems/sbb-angular/issues/382)
+
 ### [9.4.1-next.10](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.9...9.4.1-next.10) (2020-04-30)
 
 
