@@ -19,6 +19,7 @@ ng_ts_library(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/button",
+        "//src/angular-business/checkbox",
         "//src/angular-business/field",
         "//src/angular-business/pagination",
         "@npm//@angular/common",

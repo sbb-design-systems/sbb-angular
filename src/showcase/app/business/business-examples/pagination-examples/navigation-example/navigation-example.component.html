@@ -1,11 +1,9 @@
-<div class="sbbsc-block">
-  <sbb-navigation
-    (pageChange)="pageChange($event)"
-    [nextPage]="nextPage"
-    [previousPage]="previousPage"
-  >
-  </sbb-navigation>
-</div>
+<sbb-navigation
+  (pageChange)="pageChange($event)"
+  [nextPage]="nextPage"
+  [previousPage]="previousPage"
+>
+</sbb-navigation>
 <h4 class="sbbsc-block">Properties</h4>
 <sbb-field label="Page title" mode="long" class="sbbsc-block">
   <input sbbInput type="text" [(ngModel)]="newPage.title" />

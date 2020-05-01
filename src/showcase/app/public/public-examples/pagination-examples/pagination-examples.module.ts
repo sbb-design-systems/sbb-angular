@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
+import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { PaginationModule } from '@sbb-esta/angular-public/pagination';
 
@@ -17,7 +18,8 @@ const EXAMPLES = [PaginatorExampleComponent, NavigationExampleComponent];
     ReactiveFormsModule,
     FieldModule,
     PaginationModule,
-    ButtonModule
+    ButtonModule,
+    CheckboxModule
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES

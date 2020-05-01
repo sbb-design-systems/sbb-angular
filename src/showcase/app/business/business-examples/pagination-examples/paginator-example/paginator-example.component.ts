@@ -6,10 +6,9 @@ import { PageEvent } from '@sbb-esta/angular-business/pagination';
   templateUrl: './paginator-example.component.html'
 })
 export class PaginatorExampleComponent {
-  constructor() {}
-
   length = 7;
   pageIndex = 5;
+  disabled = false;
 
   pageChange(event: PageEvent) {
     Promise.resolve().then(() => (this.pageIndex = event.pageIndex));
