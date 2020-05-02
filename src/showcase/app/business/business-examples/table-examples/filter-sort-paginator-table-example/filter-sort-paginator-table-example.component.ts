@@ -29,10 +29,6 @@ export class FilterSortPaginatorTableExampleComponent implements AfterViewInit {
 
   vehicleFilter: VehicleFilter = {};
 
-  get displayedColumnsFilter(): string[] {
-    return this.displayedColumns.map(value => 'filter-' + value);
-  }
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
