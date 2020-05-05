@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { TableModule } from '@sbb-esta/angular-business/table';
@@ -9,6 +10,7 @@ import { FilterSortPaginatorTableExampleComponent } from './filter-sort-paginato
 import { GroupedColumnsTableExampleComponent } from './grouped-columns-table-example/grouped-columns-table-example.component';
 import { GroupedRowsAndColumnsTableExampleComponent } from './grouped-rows-and-columns-table-example/grouped-rows-and-columns-table-example.component';
 import { PaginatorTableExampleComponent } from './paginator-table-example/paginator-table-example.component';
+import { SelectableTableExampleComponent } from './selectable-table-example/selectable-table-example.component';
 import { SimpleTableExampleComponent } from './simple-table-example/simple-table-example.component';
 import { SortableTableExampleComponent } from './sortable-table-example/sortable-table-example.component';
 
@@ -18,11 +20,12 @@ const EXAMPLES = [
   SimpleTableExampleComponent,
   SortableTableExampleComponent,
   PaginatorTableExampleComponent,
-  FilterSortPaginatorTableExampleComponent
+  FilterSortPaginatorTableExampleComponent,
+  SelectableTableExampleComponent
 ];
 
 @NgModule({
-  imports: [CommonModule, TableModule, PaginationModule, FormsModule, FieldModule],
+  imports: [CommonModule, TableModule, PaginationModule, FormsModule, FieldModule, CheckboxModule],
   declarations: EXAMPLES,
   exports: EXAMPLES
 })

@@ -37,6 +37,7 @@ import { FilterSortPaginatorTableExampleComponent } from '../business-examples/t
 import { GroupedColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-columns-table-example/grouped-columns-table-example.component';
 import { GroupedRowsAndColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-rows-and-columns-table-example/grouped-rows-and-columns-table-example.component';
 import { PaginatorTableExampleComponent } from '../business-examples/table-examples/paginator-table-example/paginator-table-example.component';
+import { SelectableTableExampleComponent } from '../business-examples/table-examples/selectable-table-example/selectable-table-example.component';
 import { SimpleTableExampleComponent } from '../business-examples/table-examples/simple-table-example/simple-table-example.component';
 import { SortableTableExampleComponent } from '../business-examples/table-examples/sortable-table-example/sortable-table-example.component';
 import { TabsExampleComponent } from '../business-examples/tabs-examples/tabs-example/tabs-example.component';
@@ -159,6 +160,7 @@ export class BusinessComponent implements ExampleProvider {
       ),
       'sortable-table-example': new ComponentPortal(SortableTableExampleComponent),
       'paginator-table-example': new ComponentPortal(PaginatorTableExampleComponent),
+      'selectable-table-example': new ComponentPortal(SelectableTableExampleComponent),
       'filter-sort-paginator-table-example': new ComponentPortal(
         FilterSortPaginatorTableExampleComponent
       )
