@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
 const MAX_SAFE_INTEGER = 9007199254740991;
 
 export const matchesStringCaseInsensitive = (data: string, search: string): boolean => {
-  return data.toLowerCase().indexOf(search.trim().toLowerCase()) !== -1;
+  return data.toUpperCase().indexOf(search.trim().toUpperCase()) !== -1;
 };
 
 export const reduceObjectToString = (data: Object) => {
@@ -245,20 +245,24 @@ export class SbbTableDataSource<
         ? ({ _: filter } as TableFilter)
         : (filter as { [key: string]: any } & TableFilter);
 
-    let matchesGlobal = true;
-    if (typeof tableFilter._ === 'string') {
-      matchesGlobal = matchesStringCaseInsensitive(reduceObjectToString(tableData), tableFilter._!);
+    if (
+      typeof tableFilter._ === 'string' &&
+      !matchesStringCaseInsensitive(reduceObjectToString(tableData), tableFilter._!)
+    ) {
+      return false;
     }
 
-    const matchesEveryColumnSearched = Object.keys(tableFilter)
-      .filter(key => key !== '_')
-      .filter(
-        key => typeof tableFilter[key] !== 'undefined' && ('' + tableFilter[key]).trim() !== ''
-      ) // filter filter columns which have an empty search string
-      .filter(key => typeof tableData[key] !== 'undefined' && tableData[key] !== null) // filter table columns which are not defined
-      .every(key => matchesStringCaseInsensitive('' + tableData[key], '' + tableFilter[key]));
+    return Object.keys(tableFilter)
+      .filter(key => {
+        const globalSearch = key === '_';
+        const emptySearchString =
+          typeof tableFilter[key] === 'undefined' || ('' + tableFilter[key]).trim() === '';
+        const undefinedFilterColumn =
+          typeof tableData[key] === 'undefined' || tableData[key] === null;
 
-    return matchesEveryColumnSearched && matchesGlobal;
+        return !globalSearch && !emptySearchString && !undefinedFilterColumn;
+      })
+      .every(key => matchesStringCaseInsensitive('' + tableData[key], '' + tableFilter[key]));
   };
 
   constructor(initialData: T[] = [], groups?: string[][]) {
