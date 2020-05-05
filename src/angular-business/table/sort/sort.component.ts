@@ -9,7 +9,11 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { HasInitialized, HasInitializedCtor, mixinInitialized } from '@sbb-esta/angular-core';
+import {
+  HasInitialized,
+  HasInitializedCtor,
+  mixinInitialized
+} from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
 
 import { SortDirection } from './sort-direction';

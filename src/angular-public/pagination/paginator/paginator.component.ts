@@ -20,7 +20,7 @@ import {
   HasInitializedCtor,
   mixinDisabled,
   mixinInitialized
-} from '@sbb-esta/angular-core';
+} from '@sbb-esta/angular-core/common-behaviors';
 
 /** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 50;
