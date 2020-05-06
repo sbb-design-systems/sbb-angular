@@ -62,90 +62,182 @@ describe('SbbTableDataSource', () => {
   });
 
   describe('filtering', () => {
+    interface Params<T> {
+      filter: T;
+      expected: boolean;
+    }
+
+    interface TestRow {
+      colNumber: number;
+      colString: string;
+      colNull?: null;
+      colUndefined?: undefined;
+    }
+
+    const testRow: TestRow = {
+      colNumber: 1,
+      colString: 'Content'
+    };
+
+    const testRowWith0: TestRow = {
+      colNumber: 0,
+      colString: 'Content'
+    };
+
+    const testRowAdvanced: TestRow = {
+      colNumber: 1,
+      colString: 'Content',
+      colNull: null,
+      colUndefined: undefined
+    };
+
     it('should filter by string', () => {
-      interface TestRow {
-        colNumber: number;
-        colString: string;
-      }
       const dataTableSource = new SbbTableDataSource<TestRow>();
-      const dataEntry: TestRow = {
-        colNumber: 1,
-        colString: 'Content'
-      };
 
-      interface Params {
-        filterString: string;
-        expected: boolean;
-      }
-
-      const params: Params[] = [
-        { filterString: '1', expected: true },
-        { filterString: ' 1', expected: true },
-        { filterString: '1 ', expected: true },
-        { filterString: 'c ', expected: true },
-        { filterString: 'CONTENT', expected: true },
-        { filterString: 'z ', expected: false },
-        { filterString: '', expected: true }
+      const params: Params<string>[] = [
+        { filter: '1', expected: true },
+        { filter: ' 1', expected: true },
+        { filter: '1 ', expected: true },
+        { filter: 'c ', expected: true },
+        { filter: 'CONTENT', expected: true },
+        { filter: 'z ', expected: false },
+        { filter: '', expected: true }
       ];
 
       params.forEach(param =>
-        expect(dataTableSource.filterPredicate(dataEntry, param.filterString)).toBe(param.expected)
+        expect(dataTableSource.filterPredicate(testRow, param.filter)).toBe(param.expected)
+      );
+    });
+
+    it('should filter by string[]', () => {
+      const dataTableSource = new SbbTableDataSource<TestRow, string[]>();
+
+      const params: Params<string[]>[] = [
+        { filter: ['1'], expected: true },
+        { filter: [' 1'], expected: true },
+        { filter: ['1 '], expected: true },
+        { filter: ['c '], expected: true },
+        { filter: ['CONTENT'], expected: true },
+        { filter: ['z '], expected: false },
+        { filter: [''], expected: true }
+      ];
+
+      params.forEach(param =>
+        expect(dataTableSource.filterPredicate(testRow, param.filter)).toBe(param.expected)
+      );
+    });
+
+    it('should filter by number', () => {
+      const dataTableSource = new SbbTableDataSource<TestRow, number>();
+
+      const params: Params<number>[] = [
+        { filter: 0, expected: true },
+        { filter: 2, expected: false }
+      ];
+
+      params.forEach(param =>
+        expect(dataTableSource.filterPredicate(testRowWith0, param.filter)).toBe(param.expected)
+      );
+    });
+
+    it('should filter by number[]', () => {
+      const dataTableSource = new SbbTableDataSource<TestRow, number[]>();
+
+      const params: Params<number[]>[] = [
+        { filter: [0], expected: true },
+        { filter: [2], expected: false },
+        { filter: [], expected: true }
+      ];
+
+      params.forEach(param =>
+        expect(dataTableSource.filterPredicate(testRowWith0, param.filter)).toBe(param.expected)
       );
     });
 
     it('should filter by tableFilter', () => {
-      interface TestRow {
-        colNumber: number;
-        colString: string;
-        colNull: null;
-        colUndefined: undefined;
-      }
       interface TestFilter extends TableFilter {
-        colNumber?: string | number;
+        colNumber?: number;
         colString?: string;
         colNull?: string;
         colUndefined?: string;
         colNonexistent?: string;
       }
       const dataTableSource = new SbbTableDataSource<TestRow, TestFilter>();
-      const dataEntry: TestRow = {
-        colNumber: 1,
-        colString: 'Content',
-        colNull: null,
-        colUndefined: undefined
-      };
 
-      interface Params {
-        tableFilter: TestFilter;
-        expected: boolean;
-      }
-
-      const params: Params[] = [
-        { tableFilter: {}, expected: true },
-        { tableFilter: { _: '', colString: '', colNumber: '' }, expected: true },
-        { tableFilter: { colString: '', colNumber: '' }, expected: true },
-        { tableFilter: { colNumber: '' }, expected: true },
-        { tableFilter: { colNumber: '  ' }, expected: true },
-        { tableFilter: { _: '' }, expected: true },
-        { tableFilter: { colNull: 'search' }, expected: true },
-        { tableFilter: { colUndefined: 'search' }, expected: true },
-        { tableFilter: { colNonexistent: 'search' }, expected: true },
-        { tableFilter: { colNumber: '  1  ' }, expected: true },
-        { tableFilter: { colString: '  Content  ' }, expected: true },
-        { tableFilter: { colString: 'CONTENT' }, expected: true },
-        { tableFilter: { colString: 'tent' }, expected: true },
-        { tableFilter: { colString: 'tent', colNumber: '1' }, expected: true },
-        { tableFilter: { colString: 'tent', colNumber: '2' }, expected: false },
-        { tableFilter: { _: 'tent', colNumber: '2' }, expected: false },
-        { tableFilter: { _: '', colNumber: '1', colString: 'tent' }, expected: true },
-        { tableFilter: { _: 'hello', colNumber: '1', colString: 'tent' }, expected: false },
-        { tableFilter: { _: 'tent' }, expected: true },
-        { tableFilter: { colNumber: 0 }, expected: false },
-        { tableFilter: { colNumber: 1 }, expected: true }
+      const params: Params<TestFilter>[] = [
+        { filter: {}, expected: true },
+        { filter: { _: '', colString: '' }, expected: true },
+        { filter: { colString: '', colNumber: undefined }, expected: true },
+        { filter: { colNumber: undefined }, expected: true },
+        { filter: { _: '' }, expected: true },
+        { filter: { colNull: 'search' }, expected: true },
+        { filter: { colNull: null } as any, expected: true },
+        { filter: { colString: null } as any, expected: true },
+        { filter: { colUndefined: 'search' }, expected: true },
+        { filter: { colNonexistent: 'search' }, expected: true },
+        { filter: { colNumber: 1 }, expected: true },
+        { filter: { colString: '  Content  ' }, expected: true },
+        { filter: { colString: 'CONTENT' }, expected: true },
+        { filter: { colString: 'tent' }, expected: true },
+        { filter: { colString: 'tent', colNumber: 1 }, expected: true },
+        { filter: { colString: 'tent', colNumber: 2 }, expected: false },
+        { filter: { _: 'tent', colNumber: 2 }, expected: false },
+        { filter: { _: '', colNumber: 1, colString: 'tent' }, expected: true },
+        { filter: { _: 'hello', colNumber: 1, colString: 'tent' }, expected: false },
+        { filter: { _: 'tent' }, expected: true },
+        { filter: { colNumber: 0 }, expected: false },
+        { filter: { colNumber: 1 }, expected: true }
       ];
 
       params.forEach(param =>
-        expect(dataTableSource.filterPredicate(dataEntry, param.tableFilter)).toBe(param.expected)
+        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter)).toBe(param.expected)
+      );
+    });
+
+    it('should filter by tableFilter with arrays', () => {
+      interface TestFilter extends TableFilter {
+        colNumber?: number[];
+        colString?: string[];
+        colNull?: string[];
+        colUndefined?: string[];
+        colNonexistent?: string[];
+      }
+      const dataTableSource = new SbbTableDataSource<TestRow, TestFilter>();
+
+      const params: Params<TestFilter>[] = [
+        { filter: {}, expected: true },
+        { filter: { _: '', colString: [''], colNumber: [] }, expected: true },
+        { filter: { colString: [''], colNumber: [] }, expected: true },
+        { filter: { colNumber: [] }, expected: true },
+        { filter: { colNumber: [] }, expected: true },
+        { filter: { _: '' }, expected: true },
+        { filter: { colNull: ['search'] }, expected: true },
+        { filter: { colUndefined: ['search'] }, expected: true },
+        { filter: { colNonexistent: ['search'] }, expected: true },
+        { filter: { colNumber: [1] }, expected: true },
+        { filter: { colString: ['  Content  '] }, expected: true },
+        { filter: { colString: ['CONTENT'] }, expected: true },
+        { filter: { colString: ['tent'] }, expected: true },
+        { filter: { colString: ['tent'], colNumber: [1] }, expected: true },
+        { filter: { colString: ['tent'], colNumber: [2] }, expected: false },
+        { filter: { _: ['tent'], colNumber: [2] }, expected: false },
+        { filter: { _: [''], colNumber: [1], colString: ['tent'] }, expected: true },
+        { filter: { _: ['hello'], colNumber: [1], colString: ['tent'] }, expected: false },
+        { filter: { _: ['tent'] }, expected: true },
+        { filter: { colNumber: [0] }, expected: false },
+        { filter: { colNumber: [0, 2] }, expected: false },
+        { filter: { colNumber: [1] }, expected: true },
+        { filter: { colNumber: [1, 0] }, expected: true },
+        { filter: { colString: ['con', 'TENT'] }, expected: true },
+        { filter: { colString: ['', 'TENT'] }, expected: true },
+        { filter: { colString: ['', ''] }, expected: true },
+        { filter: { colString: ['con', 'search'] }, expected: true },
+        { filter: { colString: ['hi', 'search'] }, expected: false },
+        { filter: { colString: [] }, expected: true }
+      ];
+
+      params.forEach(param =>
+        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter)).toBe(param.expected)
       );
     });
   });

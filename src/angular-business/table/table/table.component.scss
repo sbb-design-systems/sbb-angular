@@ -4,6 +4,10 @@ $sbbBusiness: true;
 $sbb-row-height: 36px;
 $sbb-row-horizontal-padding: 16px;
 
+$inputBorderWidth: 1px;
+$inputPaddingLeft: 8px;
+$filterInputPadding: $sbb-row-horizontal-padding - $inputPaddingLeft - $inputBorderWidth;
+
 /**
  * Native HTML table structure
  */
@@ -45,6 +49,18 @@ table.sbb-table {
     text-overflow: ellipsis;
   }
 
+  th.sbb-header-cell.sbb-header-cell-filter {
+    &-input,
+    &-select {
+      padding: 0 $filterInputPadding $filterInputPadding $filterInputPadding;
+
+      input {
+        width: 100%;
+        font-family: $fontSbbRoman;
+      }
+    }
+  }
+
   // Note: we use `first-of-type`/`last-of-type` here in order to prevent extra
   // elements like ripples or badges from throwing off the layout.
   th.sbb-header-cell:first-of-type,
@@ -58,6 +74,16 @@ table.sbb-table {
       padding-right: $sbb-row-horizontal-padding;
     }
   }
+  th.sbb-header-cell:first-of-type.sbb-header-cell-filter {
+    &-input,
+    &-select {
+      padding-left: $filterInputPadding;
+
+      [dir='rtl'] & {
+        padding-right: $filterInputPadding;
+      }
+    }
+  }
 
   th.sbb-header-cell:last-of-type,
   td.sbb-cell:last-of-type,
@@ -68,6 +94,16 @@ table.sbb-table {
     [dir='rtl'] & {
       padding-right: 0;
       padding-left: $sbb-row-horizontal-padding;
+    }
+  }
+  th.sbb-header-cell:last-of-type.sbb-header-cell-filter {
+    &-input,
+    &-select {
+      padding-right: $filterInputPadding;
+
+      [dir='rtl'] & {
+        padding-left: $filterInputPadding;
+      }
     }
   }
 

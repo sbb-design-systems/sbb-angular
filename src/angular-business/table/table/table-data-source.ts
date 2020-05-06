@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
 const MAX_SAFE_INTEGER = 9007199254740991;
 
 export const matchesStringCaseInsensitive = (data: string, search: string): boolean => {
-  return data.toUpperCase().indexOf(search.trim().toUpperCase()) !== -1;
+  return data.toUpperCase().indexOf(search.toUpperCase()) !== -1;
 };
 
 export const reduceObjectToString = (data: Object) => {
@@ -33,15 +33,49 @@ export const reduceObjectToString = (data: Object) => {
   }, '');
 };
 
+export const normalizeTableFilter = (tableFilter: TableFilter): NormalizedTableFilter => {
+  const normalizedTableFilter: NormalizedTableFilter = { _: [] };
+  Object.keys(tableFilter).forEach(key => {
+    if (typeof tableFilter[key] === 'undefined' || `${tableFilter[key]}`.trim() === '') {
+      return;
+    }
+
+    if (typeof tableFilter[key] === 'string' || typeof tableFilter[key] === 'number') {
+      normalizedTableFilter[key] = [`${tableFilter[key]}`.trim()];
+      return;
+    }
+
+    const entry = tableFilter[key];
+    if (Array.isArray(entry) && entry.length > 0) {
+      normalizedTableFilter[key] = (entry as []).map(value => `${value}`.trim());
+    }
+  });
+  return normalizedTableFilter;
+};
+
 /**
- * TableFilter can be extended to define columns (keys) to search for in a DataSource.
- * The '_' property is used for a global search.
+ * TableFilter can be extended to define columns (keys) to filter for in a DataSource.
+ * The '_' property is used for a global filter. If an array is used, entries will be combined with the or-operator.
  */
 export interface TableFilter {
   /**
-   * Global Search: searching all entries
+   * Global filter: filtering all entries
    */
-  _?: string;
+  _?: string | number | string[] | number[];
+
+  [key: string]: string | number | string[] | number[] | undefined;
+}
+
+/**
+ * Normalized TableFilter which only holds string arrays
+ */
+export interface NormalizedTableFilter {
+  /**
+   * Global filter: filtering all entries
+   */
+  _: string[];
+
+  [key: string]: string[];
 }
 
 /**
@@ -54,7 +88,7 @@ export interface TableFilter {
  */
 export class SbbTableDataSource<
   T,
-  TFilter extends TableFilter | string = string
+  TFilter extends TableFilter | string | number | string[] | number[] = string
 > extends DataSource<T> {
   /** Stream that emits when a new data array is set on the data source. */
   private readonly _data: BehaviorSubject<T[]>;
@@ -229,7 +263,8 @@ export class SbbTableDataSource<
    *
    * # TableFilter variant
    * Checks if a data object matches the data source's filter object. If several columns are defined,
-   * the and operator is applied. The '_' property of the TableFilter can be used to search globally in all columns
+   * the and-operator is applied. If a column filter is a list, the or-operator inside the list is applied.
+   * The '_' property of the TableFilter can be used to search globally in all columns
    * (like the string variant above).
    *
    * By default, the filter string has its whitespace trimmed and the match is case-insensitive.
@@ -240,29 +275,37 @@ export class SbbTableDataSource<
    */
   filterPredicate: (data: T, filter: TFilter) => boolean = (data: T, filter: TFilter): boolean => {
     const tableData = data as { [key: string]: any };
-    const tableFilter: { [key: string]: any } & TableFilter =
-      typeof filter === 'string'
+    const tableFilter: TableFilter =
+      typeof filter === 'string' || typeof filter === 'number' || Array.isArray(filter)
         ? ({ _: filter } as TableFilter)
-        : (filter as { [key: string]: any } & TableFilter);
+        : (filter as TableFilter);
 
+    const normalizedTableFilter = normalizeTableFilter(tableFilter);
+
+    // global filter
     if (
-      typeof tableFilter._ === 'string' &&
-      !matchesStringCaseInsensitive(reduceObjectToString(tableData), tableFilter._!)
+      normalizedTableFilter._.length > 0 &&
+      !normalizedTableFilter._.some(value =>
+        matchesStringCaseInsensitive(reduceObjectToString(tableData), value)
+      )
     ) {
       return false;
     }
 
-    return Object.keys(tableFilter)
+    // custom filter columns
+    return Object.keys(normalizedTableFilter)
       .filter(key => {
         const globalSearch = key === '_';
-        const emptySearchString =
-          typeof tableFilter[key] === 'undefined' || ('' + tableFilter[key]).trim() === '';
         const undefinedFilterColumn =
           typeof tableData[key] === 'undefined' || tableData[key] === null;
 
-        return !globalSearch && !emptySearchString && !undefinedFilterColumn;
+        return !globalSearch && !undefinedFilterColumn;
       })
-      .every(key => matchesStringCaseInsensitive('' + tableData[key], '' + tableFilter[key]));
+      .every(key =>
+        normalizedTableFilter[key].some(value =>
+          matchesStringCaseInsensitive(`${tableData[key]}`, value)
+        )
+      );
   };
 
   constructor(initialData: T[] = [], groups?: string[][]) {

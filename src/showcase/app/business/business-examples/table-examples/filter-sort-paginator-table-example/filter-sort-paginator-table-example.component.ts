@@ -10,6 +10,7 @@ import {
 import { VehicleExampleItem, VEHICLE_EXAMPLE_DATA } from '../table-example-data';
 
 interface VehicleFilter extends TableFilter {
+  category?: string[];
   name?: string;
   description?: string;
 }
@@ -19,13 +20,14 @@ interface VehicleFilter extends TableFilter {
   templateUrl: './filter-sort-paginator-table-example.component.html'
 })
 export class FilterSortPaginatorTableExampleComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'power', 'description'];
+  displayedColumns: string[] = ['position', 'name', 'power', 'description', 'category'];
 
   @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
   @ViewChild(SbbSortDirective) sort: SbbSortDirective;
   @ViewChild(TableComponent) table: TableComponent<VehicleExampleItem>;
 
   dataSource = new SbbTableDataSource<VehicleExampleItem, VehicleFilter>(VEHICLE_EXAMPLE_DATA);
+  categories = new Set(VEHICLE_EXAMPLE_DATA.map(vehicleExampleItem => vehicleExampleItem.category));
 
   vehicleFilter: VehicleFilter = {};
 

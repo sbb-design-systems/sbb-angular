@@ -32,6 +32,7 @@ ng_ts_library(
         "//src/angular-business/checkbox",
         "//src/angular-business/field",
         "//src/angular-business/pagination",
+        "//src/angular-business/select",
         "//src/angular-business/table",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

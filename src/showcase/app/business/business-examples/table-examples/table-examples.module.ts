@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { PaginationModule } from '@sbb-esta/angular-business/pagination';
+import { SelectModule } from '@sbb-esta/angular-business/select';
 import { TableModule } from '@sbb-esta/angular-business/table';
 
 import { FilterSortPaginatorTableExampleComponent } from './filter-sort-paginator-table-example/filter-sort-paginator-table-example.component';
@@ -25,7 +26,15 @@ const EXAMPLES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, TableModule, PaginationModule, FormsModule, FieldModule, CheckboxModule],
+  imports: [
+    CommonModule,
+    TableModule,
+    PaginationModule,
+    FormsModule,
+    FieldModule,
+    CheckboxModule,
+    SelectModule
+  ],
   declarations: EXAMPLES,
   exports: EXAMPLES
 })
