@@ -38,6 +38,7 @@ ng_ts_library(
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
+        "@npm//rxjs",
     ],
 )
 

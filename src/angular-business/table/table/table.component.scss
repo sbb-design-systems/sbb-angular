@@ -49,7 +49,7 @@ table.sbb-table {
     text-overflow: ellipsis;
   }
 
-  th.sbb-header-cell.sbb-header-cell-filter {
+  th.sbb-header-cell.sbb-table-filter {
     &-input,
     &-select {
       padding: 0 $filterInputPadding $filterInputPadding $filterInputPadding;
@@ -74,7 +74,7 @@ table.sbb-table {
       padding-right: $sbb-row-horizontal-padding;
     }
   }
-  th.sbb-header-cell:first-of-type.sbb-header-cell-filter {
+  th.sbb-header-cell:first-of-type.sbb-table-filter {
     &-input,
     &-select {
       padding-left: $filterInputPadding;
@@ -96,7 +96,7 @@ table.sbb-table {
       padding-left: $sbb-row-horizontal-padding;
     }
   }
-  th.sbb-header-cell:last-of-type.sbb-header-cell-filter {
+  th.sbb-header-cell:last-of-type.sbb-table-filter {
     &-input,
     &-select {
       padding-right: $filterInputPadding;

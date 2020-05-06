@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { PaginationModule } from '@sbb-esta/angular-business/pagination';
@@ -31,6 +31,7 @@ const EXAMPLES = [
     TableModule,
     PaginationModule,
     FormsModule,
+    ReactiveFormsModule,
     FieldModule,
     CheckboxModule,
     SelectModule
