@@ -50,14 +50,11 @@ table.sbb-table {
   }
 
   th.sbb-header-cell.sbb-table-filter {
-    &-input,
-    &-select {
-      padding: 0 $filterInputPadding $filterInputPadding $filterInputPadding;
+    padding: 0 $filterInputPadding $filterInputPadding $filterInputPadding;
+    font-family: $fontSbbRoman;
 
-      input {
-        width: 100%;
-        font-family: $fontSbbRoman;
-      }
+    input {
+      width: 100%;
     }
   }
 
@@ -75,13 +72,10 @@ table.sbb-table {
     }
   }
   th.sbb-header-cell:first-of-type.sbb-table-filter {
-    &-input,
-    &-select {
-      padding-left: $filterInputPadding;
+    padding-left: $filterInputPadding;
 
-      [dir='rtl'] & {
-        padding-right: $filterInputPadding;
-      }
+    [dir='rtl'] & {
+      padding-right: $filterInputPadding;
     }
   }
 
@@ -97,13 +91,10 @@ table.sbb-table {
     }
   }
   th.sbb-header-cell:last-of-type.sbb-table-filter {
-    &-input,
-    &-select {
-      padding-right: $filterInputPadding;
+    padding-right: $filterInputPadding;
 
-      [dir='rtl'] & {
-        padding-left: $filterInputPadding;
-      }
+    [dir='rtl'] & {
+      padding-left: $filterInputPadding;
     }
   }
 

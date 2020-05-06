@@ -12,17 +12,17 @@
     </ng-container>
 
     <ng-container sbbColumnDef="filter-name">
-      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter-input">
+      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
         <input formControlName="name" />
       </th>
     </ng-container>
     <ng-container sbbColumnDef="filter-description">
-      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter-input">
+      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
         <input formControlName="description" />
       </th>
     </ng-container>
     <ng-container sbbColumnDef="filter-category">
-      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter-select">
+      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
         <sbb-select formControlName="category" multiple>
           <sbb-option *ngFor="let category of categories" [value]="category">{{
             category
