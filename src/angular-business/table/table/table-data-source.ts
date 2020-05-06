@@ -17,42 +17,6 @@ import { map } from 'rxjs/operators';
  */
 const MAX_SAFE_INTEGER = 9007199254740991;
 
-export const matchesStringCaseInsensitive = (data: string, search: string): boolean => {
-  return data.toUpperCase().indexOf(search.toUpperCase()) !== -1;
-};
-
-export const reduceObjectToString = (data: Object) => {
-  return Object.keys(data).reduce((currentTerm: string, key: string) => {
-    // Use an obscure Unicode character to delimit the words in the concatenated string.
-    // This avoids matches where the values of two columns combined will match the user's query
-    // (e.g. `Flute` and `Stop` will match `Test`). The character is intended to be something
-    // that has a very low chance of being typed in by somebody in a text field. This one in
-    // particular is "White up-pointing triangle with dot" from
-    // https://en.wikipedia.org/wiki/List_of_Unicode_characters
-    return currentTerm + (data as { [key: string]: any })[key] + '◬';
-  }, '');
-};
-
-export const normalizeTableFilter = (tableFilter: TableFilter): NormalizedTableFilter => {
-  const normalizedTableFilter: NormalizedTableFilter = { _: [] };
-  Object.keys(tableFilter).forEach(key => {
-    if (typeof tableFilter[key] === 'undefined' || `${tableFilter[key]}`.trim() === '') {
-      return;
-    }
-
-    if (typeof tableFilter[key] === 'string' || typeof tableFilter[key] === 'number') {
-      normalizedTableFilter[key] = [`${tableFilter[key]}`.trim()];
-      return;
-    }
-
-    const entry = tableFilter[key];
-    if (Array.isArray(entry) && entry.length > 0) {
-      normalizedTableFilter[key] = (entry as []).map(value => `${value}`.trim());
-    }
-  });
-  return normalizedTableFilter;
-};
-
 /**
  * TableFilter can be extended to define columns (keys) to filter for in a DataSource.
  * The '_' property is used for a global filter. If an array is used, entries will be combined with the or-operator.
@@ -67,18 +31,6 @@ export interface TableFilter {
 }
 
 /**
- * Normalized TableFilter which only holds string arrays
- */
-export interface NormalizedTableFilter {
-  /**
-   * Global filter: filtering all entries
-   */
-  _: string[];
-
-  [key: string]: string[];
-}
-
-/**
  * Data source that accepts a client-side data array and includes native support of filtering,
  * sorting (using Sort), and pagination (using Paginator).
  *
@@ -88,7 +40,7 @@ export interface NormalizedTableFilter {
  */
 export class SbbTableDataSource<
   T,
-  TFilter extends TableFilter | string | number | string[] | number[] = string
+  TFilter extends TableFilter | string = string
 > extends DataSource<T> {
   /** Stream that emits when a new data array is set on the data source. */
   private readonly _data: BehaviorSubject<T[]>;
@@ -275,37 +227,19 @@ export class SbbTableDataSource<
    */
   filterPredicate: (data: T, filter: TFilter) => boolean = (data: T, filter: TFilter): boolean => {
     const tableData = data as { [key: string]: any };
-    const tableFilter: TableFilter =
-      typeof filter === 'string' || typeof filter === 'number' || Array.isArray(filter)
-        ? ({ _: filter } as TableFilter)
-        : (filter as TableFilter);
 
-    const normalizedTableFilter = normalizeTableFilter(tableFilter);
-
-    // global filter
-    if (
-      normalizedTableFilter._.length > 0 &&
-      !normalizedTableFilter._.some(value =>
-        matchesStringCaseInsensitive(reduceObjectToString(tableData), value)
-      )
-    ) {
-      return false;
+    if (typeof filter === 'string') {
+      return this._filterGlobally([filter.trim()], tableData);
     }
 
-    // custom filter columns
-    return Object.keys(normalizedTableFilter)
-      .filter(key => {
-        const globalSearch = key === '_';
-        const undefinedFilterColumn =
-          typeof tableData[key] === 'undefined' || tableData[key] === null;
+    const { _: globalFilter, ...propertyFilters } = this._normalizeTableFilter(
+      filter as TableFilter
+    );
 
-        return !globalSearch && !undefinedFilterColumn;
-      })
-      .every(key =>
-        normalizedTableFilter[key].some(value =>
-          matchesStringCaseInsensitive(`${tableData[key]}`, value)
-        )
-      );
+    return (
+      this._filterGlobally(globalFilter, tableData) &&
+      this._filterProperties(propertyFilters, tableData)
+    );
   };
 
   constructor(initialData: T[] = [], groups?: string[][]) {
@@ -446,4 +380,77 @@ export class SbbTableDataSource<
    * @docs-private
    */
   disconnect() {}
+
+  /**
+   * Converts a TableFilter object to a key value object of strings.
+   */
+  _normalizeTableFilter(tableFilter: TableFilter): { [key: string]: string[] } {
+    const normalizedTableFilter: { [key: string]: string[] } = { _: [] };
+    Object.keys(tableFilter).forEach(key => {
+      if (typeof tableFilter[key] === 'undefined' || `${tableFilter[key]}`.trim() === '') {
+        return;
+      }
+
+      if (typeof tableFilter[key] === 'string' || typeof tableFilter[key] === 'number') {
+        normalizedTableFilter[key] = [`${tableFilter[key]}`.trim()];
+        return;
+      }
+
+      const entry = tableFilter[key];
+      if (Array.isArray(entry) && entry.length > 0) {
+        normalizedTableFilter[key] = (entry as []).map(value => `${value}`.trim());
+      }
+    });
+    return normalizedTableFilter;
+  }
+
+  /**
+   * Filters properties against tableData and returns true if matching data was found.
+   */
+  _filterProperties(
+    propertyFilters: { [key: string]: string[] },
+    tableData: { [p: string]: any }
+  ): boolean {
+    return Object.keys(propertyFilters)
+      .filter(key => typeof tableData[key] !== 'undefined' && tableData[key] !== null)
+      .every(key =>
+        propertyFilters[key].some(value =>
+          this._matchesStringCaseInsensitive(`${tableData[key]}`, value)
+        )
+      );
+  }
+
+  /**
+   * Filters a list of strings against tableData and returns true if matching data was found.
+   */
+  _filterGlobally(filters: string[], tableData: { [key: string]: any }): boolean {
+    return (
+      filters.length === 0 ||
+      filters.some(value =>
+        this._matchesStringCaseInsensitive(this._reduceObjectToString(tableData), value)
+      )
+    );
+  }
+
+  /**
+   * Checks if search string is in data (case insensitive).
+   */
+  _matchesStringCaseInsensitive(data: string, search: string): boolean {
+    return data.toUpperCase().indexOf(search.toUpperCase()) !== -1;
+  }
+
+  /**
+   * Reduces an object to a string.
+   */
+  _reduceObjectToString(data: Object): string {
+    return Object.keys(data).reduce((currentTerm: string, key: string) => {
+      // Use an obscure Unicode character to delimit the words in the concatenated string.
+      // This avoids matches where the values of two columns combined will match the user's query
+      // (e.g. `Flute` and `Stop` will match `Test`). The character is intended to be something
+      // that has a very low chance of being typed in by somebody in a text field. This one in
+      // particular is "White up-pointing triangle with dot" from
+      // https://en.wikipedia.org/wiki/List_of_Unicode_characters
+      return currentTerm + (data as { [key: string]: any })[key] + '◬';
+    }, '');
+  }
 }

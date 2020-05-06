@@ -79,11 +79,6 @@ describe('SbbTableDataSource', () => {
       colString: 'Content'
     };
 
-    const testRowWith0: TestRow = {
-      colNumber: 0,
-      colString: 'Content'
-    };
-
     const testRowAdvanced: TestRow = {
       colNumber: 1,
       colString: 'Content',
@@ -106,51 +101,6 @@ describe('SbbTableDataSource', () => {
 
       params.forEach(param =>
         expect(dataTableSource.filterPredicate(testRow, param.filter)).toBe(param.expected)
-      );
-    });
-
-    it('should filter by string[]', () => {
-      const dataTableSource = new SbbTableDataSource<TestRow, string[]>();
-
-      const params: Params<string[]>[] = [
-        { filter: ['1'], expected: true },
-        { filter: [' 1'], expected: true },
-        { filter: ['1 '], expected: true },
-        { filter: ['c '], expected: true },
-        { filter: ['CONTENT'], expected: true },
-        { filter: ['z '], expected: false },
-        { filter: [''], expected: true }
-      ];
-
-      params.forEach(param =>
-        expect(dataTableSource.filterPredicate(testRow, param.filter)).toBe(param.expected)
-      );
-    });
-
-    it('should filter by number', () => {
-      const dataTableSource = new SbbTableDataSource<TestRow, number>();
-
-      const params: Params<number>[] = [
-        { filter: 0, expected: true },
-        { filter: 2, expected: false }
-      ];
-
-      params.forEach(param =>
-        expect(dataTableSource.filterPredicate(testRowWith0, param.filter)).toBe(param.expected)
-      );
-    });
-
-    it('should filter by number[]', () => {
-      const dataTableSource = new SbbTableDataSource<TestRow, number[]>();
-
-      const params: Params<number[]>[] = [
-        { filter: [0], expected: true },
-        { filter: [2], expected: false },
-        { filter: [], expected: true }
-      ];
-
-      params.forEach(param =>
-        expect(dataTableSource.filterPredicate(testRowWith0, param.filter)).toBe(param.expected)
       );
     });
 
@@ -191,6 +141,28 @@ describe('SbbTableDataSource', () => {
 
       params.forEach(param =>
         expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter)).toBe(param.expected)
+      );
+    });
+
+    it('should filter by tableFilter with number entry 0', () => {
+      interface TestFilter extends TableFilter {
+        colNumber?: number;
+      }
+      const dataTableSource = new SbbTableDataSource<TestRow, TestFilter>();
+
+      const dataRowWith0 = {
+        colNumber: 0,
+        colString: 'Content'
+      };
+
+      const params: Params<TestFilter>[] = [
+        { filter: { colNumber: 0 }, expected: true },
+        { filter: { colNumber: 1 }, expected: false },
+        { filter: { colNumber: -1 }, expected: false }
+      ];
+
+      params.forEach(param =>
+        expect(dataTableSource.filterPredicate(dataRowWith0, param.filter)).toBe(param.expected)
       );
     });
 
