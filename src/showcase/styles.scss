@@ -115,6 +115,23 @@ pre code {
 
   .docs-api-deprecated-marker {
     font-style: italic;
+
+    &:before {
+      content: '\26A0';
+    }
+  }
+
+  .docs-api-class-deprecated-marker,
+  .docs-api-interface-deprecated-marker,
+  .docs-api-constant-deprecated-marker,
+  .docs-api-type-alias-deprecated-marker {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #efefef;
+
+    &:before {
+      content: '\26A0';
+    }
   }
 
   .docs-api-class-selector-name {
