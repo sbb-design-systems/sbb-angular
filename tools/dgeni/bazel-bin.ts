@@ -80,7 +80,7 @@ if (require.main === module) {
         const entryPointIndexPath = `${entryPointPath}/index.ts`;
 
         entryPointGrouper.entryPoints.push(entryPointPath);
-        tsParser.options.paths![`@sbb-esta/angular-${entryPointPath}`] = [entryPointIndexPath];
+        tsParser.options.paths![`@sbb-esta/${entryPointPath}`] = [entryPointIndexPath];
         readTypeScriptModules.sourceFiles.push(entryPointIndexPath);
       });
     }
