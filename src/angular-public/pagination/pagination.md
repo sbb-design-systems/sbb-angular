@@ -16,7 +16,7 @@ If you like to define the amount of pages manually, just set pageSize to 1 and l
 
 ```html
 <sbb-paginator
-  (pageChange)="onPageChange($event)"
+  (page)="onPageChange($event)"
   [pageSize]="pageSize"
   [length]="length"
   [pageIndex]="pageIndex"
