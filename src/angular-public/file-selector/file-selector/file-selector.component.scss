@@ -52,7 +52,7 @@
   }
 
   &-label {
-    display: inline-block;
+    display: inline-flex;
     overflow: hidden;
 
     &:hover {
@@ -104,6 +104,7 @@
       width: pxToEm(32);
       height: pxToEm(32);
       margin-left: pxToEm(8);
+      cursor: pointer;
 
       @include publicOnly() {
         @include svgIconColor($sbbColorAnthracite);
