@@ -19,6 +19,9 @@ import { DatepickerMasterSlaveExampleComponent } from '../business-examples/date
 import { DatepickerSimpleReactiveExampleComponent } from '../business-examples/datepicker-examples/datepicker-simple-reactive-example/datepicker-simple-reactive-example.component';
 import { DatepickerStandaloneFormsExampleComponent } from '../business-examples/datepicker-examples/datepicker-standalone-forms-example/datepicker-standalone-forms-example.component';
 import { DialogExampleComponent } from '../business-examples/dialog-examples/dialog-example/dialog-example.component';
+import { MultipleModeDefaultFileSelectorExampleComponent } from '../business-examples/file-selector-examples/multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component';
+import { MultipleModePersistentFileSelectorExampleComponent } from '../business-examples/file-selector-examples/multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component';
+import { SimpleFileSelectorExampleComponent } from '../business-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
 import { ClosableNotificationExampleComponent } from '../business-examples/notification-examples/closable-notification-example/closable-notification-example.component';
 import { CustomIconNotificationExampleComponent } from '../business-examples/notification-examples/custom-icon-notification-example/custom-icon-notification-example.component';
 import { JumpmarkNotificationExampleComponent } from '../business-examples/notification-examples/jumpmark-notification-example/jumpmark-notification-example.component';
@@ -59,6 +62,7 @@ export class BusinessComponent implements ExampleProvider {
     chip: 'Chip Input',
     datepicker: 'Datepicker',
     field: 'Field',
+    'file-selector': 'File Selector',
     'radio-button': 'Radiobutton',
     select: 'Select',
     textarea: 'Textarea',
@@ -180,6 +184,15 @@ export class BusinessComponent implements ExampleProvider {
         TextareaReactiveFormsWithSbbFieldExampleComponent
       ),
       'textarea-native-example': new ComponentPortal(TextareaNativeExampleComponent)
+    },
+    'file-selector': {
+      'simple-file-selector-example': new ComponentPortal(SimpleFileSelectorExampleComponent),
+      'multiple-mode-default-file-selector-example': new ComponentPortal(
+        MultipleModeDefaultFileSelectorExampleComponent
+      ),
+      'multiple-mode-persistent-file-selector-example': new ComponentPortal(
+        MultipleModePersistentFileSelectorExampleComponent
+      )
     }
   };
 
