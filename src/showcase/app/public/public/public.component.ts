@@ -19,7 +19,9 @@ import { DatepickerSimpleReactiveExampleComponent } from '../public-examples/dat
 import { DatepickerStandaloneFormsExampleComponent } from '../public-examples/datepicker-examples/datepicker-standalone-forms-example/datepicker-standalone-forms-example.component';
 import { DropdownExampleComponent } from '../public-examples/dropdown-examples/dropdown-example/dropdown-example.component';
 import { FieldExampleComponent } from '../public-examples/field-examples/field-example/field-example.component';
-import { FileSelectorExampleComponent } from '../public-examples/file-selector-examples/file-selector-example/file-selector-example.component';
+import { MultipleModeDefaultFileSelectorExampleComponent } from '../public-examples/file-selector-examples/multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component';
+import { MultipleModePersistentFileSelectorExampleComponent } from '../public-examples/file-selector-examples/multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component';
+import { SimpleFileSelectorExampleComponent } from '../public-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
 import { GhettoboxExampleComponent } from '../public-examples/ghettobox-examples/ghettobox-example/ghettobox-example.component';
 import { LightboxExampleComponent } from '../public-examples/lightbox-examples/lightbox-example/lightbox-example.component';
 import { LinksExampleComponent } from '../public-examples/links-examples/links-example/links-example.component';
@@ -125,7 +127,13 @@ export class PublicComponent implements ExampleProvider {
     },
     field: { 'field-example': new ComponentPortal(FieldExampleComponent) },
     'file-selector': {
-      'file-selector-example': new ComponentPortal(FileSelectorExampleComponent)
+      'simple-file-selector-example': new ComponentPortal(SimpleFileSelectorExampleComponent),
+      'multiple-mode-default-file-selector-example': new ComponentPortal(
+        MultipleModeDefaultFileSelectorExampleComponent
+      ),
+      'multiple-mode-persistent-file-selector-example': new ComponentPortal(
+        MultipleModePersistentFileSelectorExampleComponent
+      )
     },
     'radio-button': { 'radio-button-example': new ComponentPortal(RadioButtonExampleComponent) },
     'radio-button-panel': {
