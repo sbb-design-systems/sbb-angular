@@ -147,21 +147,21 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
   /** Handle keydown event calling to toggle() if appropriate. */
   @HostListener('keydown', ['$event'])
   keydown(event: KeyboardEvent) {
-    if (this.isFocused()) {
-      switch (event.keyCode) {
-        // Toggle for space and enter keys.
-        case SPACE:
-        case ENTER:
+    switch (event.keyCode) {
+      // Toggle for space and enter keys.
+      case SPACE:
+      case ENTER:
+        if (this._isFocused()) {
           event.preventDefault();
           this.toggle();
-          break;
-        default:
-          if (this.panel.accordion) {
-            this.panel.accordion.handleHeaderKeydown(event);
-          }
+        }
+        break;
+      default:
+        if (this.panel.accordion) {
+          this.panel.accordion.handleHeaderKeydown(event);
+        }
 
-          return;
-      }
+        return;
     }
   }
 
@@ -179,7 +179,7 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
     this._focusMonitor.stopMonitoring(this._element.nativeElement);
   }
 
-  private isFocused() {
+  private _isFocused() {
     return this._document?.activeElement === this._element.nativeElement;
   }
 }

@@ -237,6 +237,7 @@ describe('ExpansionPanelComponent', () => {
 
     spyOn(fixture.componentInstance.panel, 'toggle');
 
+    headerEl.focus();
     const event = dispatchKeyboardEvent(headerEl, 'keydown', SPACE);
     fixture.detectChanges();
 
@@ -252,6 +253,7 @@ describe('ExpansionPanelComponent', () => {
 
     spyOn(fixture.componentInstance.panel, 'toggle');
 
+    headerEl.focus();
     const event = dispatchKeyboardEvent(headerEl, 'keydown', ENTER);
     fixture.detectChanges();
 
