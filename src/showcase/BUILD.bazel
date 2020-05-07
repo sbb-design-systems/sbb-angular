@@ -7,7 +7,6 @@ load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
 load("@npm_bazel_terser//:index.bzl", "terser_minified")
 load("@npm_bazel_typescript//:index.bzl", "ts_devserver")
 load("//tools:defaults.bzl", "ng_ts_library")
-load("//tools/differential-loading-merge:index.bzl", "differential_loading_merge")
 load("//tools/highlight-files:index.bzl", "highlight_files")
 
 package(default_visibility = ["//visibility:public"])
@@ -15,6 +14,7 @@ package(default_visibility = ["//visibility:public"])
 # Run the sass compiler to output "styles.css"
 sass_binary(
     name = "styles",
+    sourcemap = False,
     src = "styles.scss",
     include_paths = ["external/npm/node_modules"],
     deps = ["//src/angular-core/styles:core_scss_lib"],
@@ -161,10 +161,6 @@ ts_devserver(
 
 rollup_bundle(
     name = "bundle-es2015",
-    args = [
-        "--entryFileNames=[name].mjs",
-        "--chunkFileNames=[name]-[hash].mjs",
-    ],
     config_file = "rollup.config.js",
     entry_points = {
         ":main.prod.ts": "index",
@@ -174,7 +170,6 @@ rollup_bundle(
     deps = [
         "//src/showcase",
         "@npm//@rollup/plugin-alias",
-        "@npm//@rollup/plugin-replace",
         "@npm//rollup-plugin-commonjs",
         "@npm//rollup-plugin-node-resolve",
     ],
@@ -194,6 +189,7 @@ babel(
     data = [
         ":bundle-es2015",
         "@npm//@babel/preset-env",
+        "@npm//@babel/plugin-transform-modules-systemjs",
     ],
     output_dir = True,
     tags = ["prod-showcase"],
@@ -201,24 +197,30 @@ babel(
 
 terser_minified(
     name = "bundle-es2015.min",
+    sourcemap = False,
     src = ":bundle-es2015",
     tags = ["prod-showcase"],
 )
 
 terser_minified(
     name = "bundle-es5.min",
+    sourcemap = False,
     src = ":bundle-es5",
     tags = ["prod-showcase"],
 )
 
-# Merge the differential loading bundles into the same directory.
-differential_loading_merge(
-    name = "bundle",
-    srcs = [
-        "//src/showcase:bundle-es2015.min",
-        "//src/showcase:bundle-es5.min",
-    ],
+terser_minified(
+    name = "regenerator",
+    sourcemap = False,
+    src = "@npm//:node_modules/regenerator-runtime/runtime.js",
     tags = ["prod-showcase"],
+)
+
+genrule(
+    name = "stamp_init",
+    srcs = ["initializer.js"],
+    outs = ["init.js"],
+    cmd = "sed \"s/0-STAMP/$$(date +%s)/g\" $< > $@"
 )
 
 # Insert script tags into index.html
@@ -239,12 +241,11 @@ html_insert_assets(
         "$(RULEDIR)",
         "--assets",
     ] + ["$(execpath %s)" % s for s in _ASSETS] + [
-        "bundle/index.js",
-        "bundle/index.mjs",
+        "init.js"
     ],
     data = _ASSETS + [
         ":index.prod.html",
-        ":bundle",
+        ":init.js",
     ],
     tags = ["prod-showcase"],
 )
@@ -252,11 +253,14 @@ html_insert_assets(
 pkg_web(
     name = "prodapp",
     srcs = _ASSETS + [
-        ":bundle",
+        ":bundle-es2015.min",
+        ":bundle-es5.min",
         ":index_html_prod",
+        ":init.js",
+        ":regenerator",
         "//src/showcase/assets",
         # Include polyfills that will be requested by old browsers
-        "@npm//:node_modules/systemjs/dist/system.js",
+        "@npm//:node_modules/systemjs/dist/system.min.js",
         "@npm//:node_modules/core-js/client/core.min.js",
     ],
     # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
