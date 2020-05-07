@@ -23,7 +23,8 @@ import { ClosableNotificationExampleComponent } from '../business-examples/notif
 import { CustomIconNotificationExampleComponent } from '../business-examples/notification-examples/custom-icon-notification-example/custom-icon-notification-example.component';
 import { JumpmarkNotificationExampleComponent } from '../business-examples/notification-examples/jumpmark-notification-example/jumpmark-notification-example.component';
 import { SimpleNotificationExampleComponent } from '../business-examples/notification-examples/simple-notification-example/simple-notification-example.component';
-import { PaginationExampleComponent } from '../business-examples/pagination-examples/pagination-example/pagination-example.component';
+import { NavigationExampleComponent } from '../business-examples/pagination-examples/navigation-example/navigation-example.component';
+import { PaginatorExampleComponent } from '../business-examples/pagination-examples/paginator-example/paginator-example.component';
 import { SkippableProcessflowExampleComponent } from '../business-examples/processflow-examples/skippable-processflow-example/skippable-processflow-example.component';
 import { RadioButtonExampleComponent } from '../business-examples/radio-button-examples/radio-button-example/radio-button-example.component';
 import { SelectFormsExampleComponent } from '../business-examples/select-examples/select-forms-example/select-forms-example.component';
@@ -32,8 +33,11 @@ import { SelectNativeExampleComponent } from '../business-examples/select-exampl
 import { SelectOptionGroupsExampleComponent } from '../business-examples/select-examples/select-option-groups-example/select-option-groups-example.component';
 import { SelectOptionGroupsMultiSelectionExampleComponent } from '../business-examples/select-examples/select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component';
 import { SelectReactiveFormsExampleComponent } from '../business-examples/select-examples/select-reactive-forms-example/select-reactive-forms-example.component';
+import { FilterSortPaginatorTableExampleComponent } from '../business-examples/table-examples/filter-sort-paginator-table-example/filter-sort-paginator-table-example.component';
 import { GroupedColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-columns-table-example/grouped-columns-table-example.component';
-import { GroupedRowsTableExampleComponent } from '../business-examples/table-examples/grouped-rows-table-example/grouped-rows-table-example.component';
+import { GroupedRowsAndColumnsTableExampleComponent } from '../business-examples/table-examples/grouped-rows-and-columns-table-example/grouped-rows-and-columns-table-example.component';
+import { PaginatorTableExampleComponent } from '../business-examples/table-examples/paginator-table-example/paginator-table-example.component';
+import { SelectableTableExampleComponent } from '../business-examples/table-examples/selectable-table-example/selectable-table-example.component';
 import { SimpleTableExampleComponent } from '../business-examples/table-examples/simple-table-example/simple-table-example.component';
 import { SortableTableExampleComponent } from '../business-examples/table-examples/sortable-table-example/sortable-table-example.component';
 import { TabsExampleComponent } from '../business-examples/tabs-examples/tabs-example/tabs-example.component';
@@ -137,7 +141,8 @@ export class BusinessComponent implements ExampleProvider {
       'dialog-example': new ComponentPortal(DialogExampleComponent)
     },
     pagination: {
-      'pagination-example': new ComponentPortal(PaginationExampleComponent)
+      'paginator-example': new ComponentPortal(PaginatorExampleComponent),
+      'navigation-example': new ComponentPortal(NavigationExampleComponent)
     },
     notification: {
       'simple-notification-example': new ComponentPortal(SimpleNotificationExampleComponent),
@@ -150,8 +155,15 @@ export class BusinessComponent implements ExampleProvider {
     table: {
       'simple-table-example': new ComponentPortal(SimpleTableExampleComponent),
       'grouped-columns-table-example': new ComponentPortal(GroupedColumnsTableExampleComponent),
-      'grouped-rows-table-example': new ComponentPortal(GroupedRowsTableExampleComponent),
-      'sortable-table-example': new ComponentPortal(SortableTableExampleComponent)
+      'grouped-rows-and-columns-table-example': new ComponentPortal(
+        GroupedRowsAndColumnsTableExampleComponent
+      ),
+      'sortable-table-example': new ComponentPortal(SortableTableExampleComponent),
+      'paginator-table-example': new ComponentPortal(PaginatorTableExampleComponent),
+      'selectable-table-example': new ComponentPortal(SelectableTableExampleComponent),
+      'filter-sort-paginator-table-example': new ComponentPortal(
+        FilterSortPaginatorTableExampleComponent
+      )
     },
     chip: {
       'forms-chip-input-example': new ComponentPortal(FormsChipInputExampleComponent),

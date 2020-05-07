@@ -1,0 +1,49 @@
+<ng-container [formGroup]="vehicleFilterForm">
+  <sbb-field label="Global Filter" class="sbbsc-block" mode="long">
+    <input sbbInput formControlName="_" />
+  </sbb-field>
+
+  <table sbbTable aria-describedby="sbb-table" sbbSort>
+    <ng-container *ngFor="let column of displayedColumns" [sbbColumnDef]="column">
+      <th sbbHeaderCell [sbbSortHeader]="column" *sbbHeaderCellDef style="width:20%">
+        {{ column }}
+      </th>
+      <td sbbCell *sbbCellDef="let element">{{ element[column] }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="filter-name">
+      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
+        <input formControlName="name" />
+      </th>
+    </ng-container>
+    <ng-container sbbColumnDef="filter-description">
+      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
+        <input formControlName="description" />
+      </th>
+    </ng-container>
+    <ng-container sbbColumnDef="filter-category">
+      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
+        <sbb-select formControlName="category" multiple>
+          <sbb-option *ngFor="let category of categories" [value]="category">{{
+            category
+          }}</sbb-option>
+        </sbb-select>
+      </th>
+    </ng-container>
+
+    <ng-container sbbColumnDef="empty">
+      <th sbbHeaderCell *sbbHeaderCellDef></th>
+    </ng-container>
+
+    <tr sbbHeaderRow *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr
+      sbbHeaderRow
+      *sbbHeaderRowDef="['empty', 'filter-name', 'empty', 'filter-description', 'filter-category']"
+    ></tr>
+    <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <p *ngIf="dataSource.filteredData.length === 0">No keywords match your filters.</p>
+
+  <sbb-paginator [pageSize]="5"></sbb-paginator>
+</ng-container>

@@ -137,3 +137,30 @@ Sorting will apply when one of the following actions takes place:
 - Clicking on a table column header, sorting ascendingly.
 - Clicking (a second time) on a table column header, sorting descendingly.
 - Clicking (a third time) on a table column header, removing sorting.
+
+### Pagination
+
+It's easy to split up a datasource into pages. You can use the <sbb-paginator> component to achieve pagination. To connect the paginator component to your dataSource you have to set `dataSource.paginator` to the viewReference of the SbbPaginatorComponent in your controller (see example below and on examples page).
+
+#### Html
+
+```html
+<table sbbTable [dataSource]="dataSource">
+  ...
+</table>
+
+<sbb-paginator pageSize="5" #paginator></sbb-paginator>
+```
+
+#### Typescript
+
+```ts
+export class TablePaginatorExampleComponent implements OnInit {
+  dataSource: SbbTableDataSource<any> = new SbbTableDataSource([]);
+  @ViewChild('paginator', { static: true }) paginator: SbbPaginatorComponent;
+
+  ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+}
+```

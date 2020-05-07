@@ -2,6 +2,8 @@ load(
     "//tools:defaults.bzl",
     "markdown_to_html",
     "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
     "sass_binary",
 )
 
@@ -19,6 +21,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/table",
     deps = [
+        "//src/angular-core/common-behaviors",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
@@ -41,6 +44,23 @@ sass_binary(
     deps = [
         "//src/angular-core/styles:common_scss_lib",
     ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":table",
+        "@npm//@angular/platform-browser",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
 )
 
 markdown_to_html(

@@ -93,7 +93,7 @@ if (!components.length) {
   );
   console.info(chalk.yellow('Below are a few examples of how the script can be run:'));
   console.info(chalk.yellow(` - yarn test all`));
-  console.info(chalk.yellow(` - yarn test public/button business/contextmenu`));
+  console.info(chalk.yellow(` - yarn test angular-public/button angular-business/contextmenu`));
   console.info(chalk.yellow(` - yarn test button contextmenu`));
   process.exit(1);
 }
