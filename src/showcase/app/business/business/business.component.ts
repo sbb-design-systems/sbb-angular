@@ -7,6 +7,7 @@ import { AutocompleteHintExampleComponent } from '../business-examples/autocompl
 import { AutocompleteOptionGroupExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 import { BreadcrumbExampleComponent } from '../business-examples/breadcrumb-examples/breadcrumb-example/breadcrumb-example.component';
+import { ButtonExampleComponent } from '../business-examples/button-examples/button-example/button-example.component';
 import { CheckboxExampleComponent } from '../business-examples/checkbox-examples/checkbox-example/checkbox-example.component';
 import { AutocompleteChipInputExampleComponent } from '../business-examples/chip-examples/autocomplete-chip-input-example/autocomplete-chip-input-example.component';
 import { DisabledChipInputExampleComponent } from '../business-examples/chip-examples/disabled-chip-input-example/disabled-chip-input-example.component';
@@ -193,7 +194,8 @@ export class BusinessComponent implements ExampleProvider {
       'multiple-mode-persistent-file-selector-example': new ComponentPortal(
         MultipleModePersistentFileSelectorExampleComponent
       )
-    }
+    },
+    button: { 'button-example': new ComponentPortal(ButtonExampleComponent) }
   };
 
   resolveExample<TComponent = any>(

@@ -1,0 +1,36 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "button-examples",
+    srcs = [
+        "button-example/button-example.component.ts",
+        "button-examples.module.ts",
+    ],
+    assets = [
+        "button-example/button-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/button",
+        "//src/angular-business/checkbox",
+        "//src/angular-business/field",
+        "//src/angular-icons/basic",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

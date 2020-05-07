@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AutocompleteExamplesModule } from './autocomplete-examples/autocomplete-examples.module';
 import { BreadcrumbExamplesModule } from './breadcrumb-examples/breadcrumb-examples.module';
+import { ButtonExamplesModule } from './button-examples/button-examples.module';
 import { CheckboxExamplesModule } from './checkbox-examples/checkbox-examples.module';
 import { ChipExamplesModule } from './chip-examples/chip-examples.module';
 import { ContextmenuExamplesModule } from './contextmenu-examples/contextmenu-examples.module';
@@ -37,7 +38,8 @@ const EXAMPLES = [
   TabsExamplesModule,
   TextareaExamplesModule,
   UsermenuExamplesModule,
-  FileSelectorExamplesModule
+  FileSelectorExamplesModule,
+  ButtonExamplesModule
 ];
 
 @NgModule({
