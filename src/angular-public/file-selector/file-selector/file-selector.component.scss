@@ -14,21 +14,20 @@
         }
       }
     }
-    // Disabled button
-    @if $sbbBusiness {
+
+    @include businessOnly() {
       .sbb-svgsprite-icon {
         display: none;
       }
+    }
 
-      // :not(:disabled) is needed to overwrite button base styles
-      &.sbb-file-selector-disabled:not(:disabled) {
+    @if $sbbBusiness {
+      &.sbb-file-selector-disabled {
         &,
         &:hover,
         &:focus {
-          background-color: $buttonSecondaryBgColor;
-          color: rgba($buttonSecondaryColor, 0.5);
           border: none;
-          opacity: 0.4;
+          @include sbbButtonSecondaryDisabledBusiness;
         }
 
         &:hover,

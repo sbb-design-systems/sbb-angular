@@ -100,8 +100,7 @@ $sbbBusiness: true;
   &-secondary.sbb-button-has-icon:disabled,
   &-secondary:not(.sbb-button-has-icon):disabled,
   &-icon:disabled {
-    background-color: rgba($buttonSecondaryBgColor, 0.4);
-    color: rgba($buttonSecondaryColor, 0.5);
+    @include sbbButtonSecondaryDisabledBusiness;
   }
 
   &-ghost.sbb-button-has-icon:disabled,
