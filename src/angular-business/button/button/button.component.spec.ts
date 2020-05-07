@@ -112,16 +112,12 @@ describe('ButtonComponent', () => {
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
     });
 
-    it('should have a red background color of rgb(235, 0, 0)/#EB0000', () => {
-      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgb(235, 0, 0)');
+    it('should have a red background color of rgb(235, 0, 0, 0.4)/#EB0000', () => {
+      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgba(235, 0, 0, 0.4)');
     });
 
     it('should have a white text color with opacity', () => {
       expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgba(255, 255, 255, 0.5)');
-    });
-
-    it('should have opacity 0.4', () => {
-      expect(sbbButtonStyle.getPropertyValue('opacity')).toBe('0.4');
     });
   });
 });
