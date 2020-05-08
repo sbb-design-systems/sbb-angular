@@ -44,6 +44,7 @@ ng_ts_library(
         "//src/showcase/app/business/business-examples/table-examples",
         "//src/showcase/app/business/business-examples/tabs-examples",
         "//src/showcase/app/business/business-examples/textarea-examples",
+        "//src/showcase/app/business/business-examples/textexpand-examples",
         "//src/showcase/app/business/business-examples/tooltip-examples",
         "//src/showcase/app/business/business-examples/usermenu-examples",
         "//src/showcase/app/shared",
