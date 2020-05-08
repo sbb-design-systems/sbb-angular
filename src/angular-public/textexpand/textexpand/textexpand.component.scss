@@ -1,17 +1,24 @@
 @import '../../../angular-core/styles/common';
 
 :host.sbb-textexpand {
-  color: $sbbColorMetal;
-  letter-spacing: 0;
-  line-height: 1.538;
-  font-size: pxToRem(13);
+  @if $sbbBusiness {
+    color: $sbbColorBlack;
+    font-size: pxToRem($sizeFontDefault);
+  } @else {
+    $fontSizeTextexpand: 13;
 
-  @include mq($from: desktop4k) {
-    font-size: pxToRem(13 * $scalingFactor4k);
-  }
+    color: $sbbColorMetal;
+    letter-spacing: 0;
+    line-height: 1.538;
+    font-size: pxToRem($fontSizeTextexpand);
 
-  @include mq($from: desktop5k) {
-    font-size: pxToRem(13 * $scalingFactor5k);
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($fontSizeTextexpand * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($fontSizeTextexpand * $scalingFactor5k);
+    }
   }
 
   .sbb-textexpand-button {
@@ -24,7 +31,8 @@
 
     &:focus,
     &:hover {
-      color: $sbbColorRed;
+      cursor: pointer;
+      color: $sbbColorCallToActionHover;
     }
 
     &-label {

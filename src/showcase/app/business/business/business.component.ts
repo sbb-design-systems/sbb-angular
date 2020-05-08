@@ -50,6 +50,7 @@ import { TabsExampleComponent } from '../business-examples/tabs-examples/tabs-ex
 import { TextareaFormsExampleComponent } from '../business-examples/textarea-examples/textarea-forms-example/textarea-forms-example.component';
 import { TextareaNativeExampleComponent } from '../business-examples/textarea-examples/textarea-native-example/textarea-native-example.component';
 import { TextareaReactiveFormsWithSbbFieldExampleComponent } from '../business-examples/textarea-examples/textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component';
+import { TextexpandExampleComponent } from '../business-examples/textexpand-examples/textexpand-example/textexpand-example.component';
 import { TooltipCustomContentExampleComponent } from '../business-examples/tooltip-examples/tooltip-custom-content-example/tooltip-custom-content-example.component';
 import { TooltipCustomIconExampleComponent } from '../business-examples/tooltip-examples/tooltip-custom-icon-example/tooltip-custom-icon-example.component';
 import { TooltipHoverExampleComponent } from '../business-examples/tooltip-examples/tooltip-hover-example/tooltip-hover-example.component';
@@ -73,6 +74,7 @@ export class BusinessComponent implements ExampleProvider {
     'radio-button': 'Radiobutton',
     select: 'Select',
     textarea: 'Textarea',
+    textexpand: 'Textexpand',
     'time-input': 'Time Input'
   };
   navigationComponents = {
@@ -214,7 +216,8 @@ export class BusinessComponent implements ExampleProvider {
     links: {
       'simple-link-example': new ComponentPortal(SimpleLinkExampleComponent),
       'icon-link-example': new ComponentPortal(IconLinkExampleComponent)
-    }
+    },
+    textexpand: { 'textexpand-example': new ComponentPortal(TextexpandExampleComponent) }
   };
 
   resolveExample<TComponent = any>(

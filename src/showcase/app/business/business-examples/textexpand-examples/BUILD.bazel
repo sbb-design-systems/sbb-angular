@@ -16,7 +16,7 @@ ng_ts_library(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-public/textexpand",
+        "//src/angular-business/textexpand",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],
