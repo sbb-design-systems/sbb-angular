@@ -23,6 +23,8 @@ import { DialogExampleComponent } from '../business-examples/dialog-examples/dia
 import { MultipleModeDefaultFileSelectorExampleComponent } from '../business-examples/file-selector-examples/multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component';
 import { MultipleModePersistentFileSelectorExampleComponent } from '../business-examples/file-selector-examples/multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component';
 import { SimpleFileSelectorExampleComponent } from '../business-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
+import { IconLinkExampleComponent } from '../business-examples/links-examples/icon-link-example/icon-link-example.component';
+import { SimpleLinkExampleComponent } from '../business-examples/links-examples/simple-link-example/simple-link-example.component';
 import { ClosableNotificationExampleComponent } from '../business-examples/notification-examples/closable-notification-example/closable-notification-example.component';
 import { CustomIconNotificationExampleComponent } from '../business-examples/notification-examples/custom-icon-notification-example/custom-icon-notification-example.component';
 import { JumpmarkNotificationExampleComponent } from '../business-examples/notification-examples/jumpmark-notification-example/jumpmark-notification-example.component';
@@ -88,7 +90,8 @@ export class BusinessComponent implements ExampleProvider {
   };
   buttonAndIndicatorComponents = {
     button: 'Button',
-    contextmenu: 'Contextmenu'
+    contextmenu: 'Contextmenu',
+    links: 'Links'
   };
   popupsAndModals = {
     tooltip: 'Tooltip',
@@ -207,7 +210,11 @@ export class BusinessComponent implements ExampleProvider {
         MultipleModePersistentFileSelectorExampleComponent
       )
     },
-    button: { 'button-example': new ComponentPortal(ButtonExampleComponent) }
+    button: { 'button-example': new ComponentPortal(ButtonExampleComponent) },
+    links: {
+      'simple-link-example': new ComponentPortal(SimpleLinkExampleComponent),
+      'icon-link-example': new ComponentPortal(IconLinkExampleComponent)
+    }
   };
 
   resolveExample<TComponent = any>(

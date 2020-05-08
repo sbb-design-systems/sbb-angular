@@ -1,0 +1,36 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "links-examples",
+    srcs = [
+        "icon-link-example/icon-link-example.component.ts",
+        "links-examples.module.ts",
+        "simple-link-example/simple-link-example.component.ts",
+    ],
+    assets = [
+        "icon-link-example/icon-link-example.component.html",
+        "simple-link-example/simple-link-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/field",
+        "//src/angular-business/links",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
