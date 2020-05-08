@@ -15,6 +15,7 @@ function public2business(_options) {
             'dropdown',
             'field',
             'input',
+            'file-selector',
             'option',
             'pagination',
             'radio-button',

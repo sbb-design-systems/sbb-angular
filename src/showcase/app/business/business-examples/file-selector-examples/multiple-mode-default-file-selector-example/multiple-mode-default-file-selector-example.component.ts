@@ -1,20 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { CheckboxChange } from '@sbb-esta/angular-public/checkbox';
-import { FileSelectorTypesService, FileTypeCategory } from '@sbb-esta/angular-public/file-selector';
+import { CheckboxChange } from '@sbb-esta/angular-business/checkbox';
+import {
+  FileSelectorTypesService,
+  FileTypeCategory
+} from '@sbb-esta/angular-business/file-selector';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'sbb-file-selector-example',
-  templateUrl: './file-selector-example.component.html',
-  styleUrls: ['./file-selector-example.component.css']
+  selector: 'sbb-multiple-mode-default-file-selector-example',
+  templateUrl: './multiple-mode-default-file-selector-example.component.html'
 })
-export class FileSelectorExampleComponent implements OnInit, OnDestroy {
-  filesList1: File[] = [];
-
-  filesList2: File[] = [];
-
-  filesList3: File[] = [];
+export class MultipleModeDefaultFileSelectorExampleComponent implements OnInit, OnDestroy {
+  filesList: File[] = [];
 
   disabled: boolean;
 
@@ -32,7 +30,7 @@ export class FileSelectorExampleComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fileControlSubscription = this.fileControl.valueChanges.subscribe((files: File[]) => {
-      this.filesList3 = files;
+      this.filesList = files;
     });
   }
 
@@ -40,23 +38,17 @@ export class FileSelectorExampleComponent implements OnInit, OnDestroy {
     this.fileControlSubscription.unsubscribe();
   }
 
-  fileChanged(filesList: File[]) {
-    this.filesList1 = filesList;
-  }
-
   beautifyFileList(filesList: File[]) {
-    if (!filesList) {
-      return undefined;
+    if (filesList) {
+      return filesList.map(f => {
+        return {
+          name: f.name,
+          size: f.size,
+          type: f.type,
+          lastModified: f.lastModified
+        };
+      });
     }
-
-    return filesList.map(f => {
-      return {
-        name: f.name,
-        size: f.size,
-        type: f.type,
-        lastModified: f.lastModified
-      };
-    });
   }
 
   setDisabled(sbbCheckboxChange: CheckboxChange) {

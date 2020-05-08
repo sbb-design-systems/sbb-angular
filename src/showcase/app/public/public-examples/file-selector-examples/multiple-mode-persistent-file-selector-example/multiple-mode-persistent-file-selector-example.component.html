@@ -1,0 +1,10 @@
+<sbb-file-selector
+  multiple="true"
+  multipleMode="persistent"
+  [(ngModel)]="filesList"
+  [disabled]="disabled"
+></sbb-file-selector>
+<h4 class="sbbsc-block">Properties</h4>
+<sbb-checkbox value="disabled" [(ngModel)]="disabled">Disabled</sbb-checkbox>
+<h4 class="sbbsc-block">Model</h4>
+<pre>{{ beautifyFileList(filesList) | json }}</pre>

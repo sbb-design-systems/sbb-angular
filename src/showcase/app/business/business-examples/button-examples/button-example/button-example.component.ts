@@ -8,11 +8,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ButtonExampleComponent {
   buttonForm = new FormGroup({
     mode: new FormControl('primary'),
-    icon: new FormControl('arrow'),
     disabled: new FormControl(false)
   });
 
-  icons = ['arrow', 'plus', 'download'];
-
-  modes = ['primary', 'secondary', 'ghost', 'frameless'];
+  modes = ['primary', 'secondary', 'ghost', 'alternative', 'icon'];
 }

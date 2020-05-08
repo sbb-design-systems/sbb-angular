@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
-import { FileSelectorModule } from '@sbb-esta/angular-public/file-selector';
+import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
+import { FileSelectorModule } from '@sbb-esta/angular-business/file-selector';
 
 import { MultipleModeDefaultFileSelectorExampleComponent } from './multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component';
 import { MultipleModePersistentFileSelectorExampleComponent } from './multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component';

@@ -159,6 +159,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   /**
    * Applies changes on sbb-file-selector.
    * @param files Files uploaded.
+   * @param action add or remove
    */
   applyChanges(files: File[], action: 'add' | 'remove' = 'add'): void {
     const filesToAdd = action === 'add' ? this._getFileListByMode(files) : files;
