@@ -17,6 +17,7 @@ import { SelectExamplesModule } from './select-examples/select-examples.module';
 import { TableExamplesModule } from './table-examples/table-examples.module';
 import { TabsExamplesModule } from './tabs-examples/tabs-examples.module';
 import { TextareaExamplesModule } from './textarea-examples/textarea-examples.module';
+import { TextexpandExamplesModule } from './textexpand-examples/textexpand-examples.module';
 import { TooltipExamplesModule } from './tooltip-examples/tooltip-examples.module';
 import { UsermenuExamplesModule } from './usermenu-examples/usermenu-examples.module';
 
@@ -39,7 +40,8 @@ const EXAMPLES = [
   TextareaExamplesModule,
   UsermenuExamplesModule,
   FileSelectorExamplesModule,
-  ButtonExamplesModule
+  ButtonExamplesModule,
+  TextexpandExamplesModule
 ];
 
 @NgModule({
