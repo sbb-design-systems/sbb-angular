@@ -10,16 +10,16 @@ ng_ts_library(
     srcs = [
         "icon-link-example/icon-link-example.component.ts",
         "links-examples.module.ts",
-        "social-link-example/social-link-example.component.ts",
+        "simple-link-example/simple-link-example.component.ts",
     ],
     assets = [
         "icon-link-example/icon-link-example.component.html",
-        "social-link-example/social-link-example.component.html",
+        "simple-link-example/simple-link-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-public/field",
-        "//src/angular-public/links",
+        "//src/angular-business/field",
+        "//src/angular-business/links",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
