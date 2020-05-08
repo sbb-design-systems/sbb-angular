@@ -14,9 +14,9 @@ package(default_visibility = ["//visibility:public"])
 # Run the sass compiler to output "styles.css"
 sass_binary(
     name = "styles",
-    sourcemap = False,
     src = "styles.scss",
     include_paths = ["external/npm/node_modules"],
+    sourcemap = False,
     deps = ["//src/angular-core/styles:core_scss_lib"],
 )
 
@@ -197,22 +197,22 @@ babel(
 
 terser_minified(
     name = "bundle-es2015.min",
-    sourcemap = False,
     src = ":bundle-es2015",
+    sourcemap = False,
     tags = ["prod-showcase"],
 )
 
 terser_minified(
     name = "bundle-es5.min",
-    sourcemap = False,
     src = ":bundle-es5",
+    sourcemap = False,
     tags = ["prod-showcase"],
 )
 
 terser_minified(
     name = "regenerator",
-    sourcemap = False,
     src = "@npm//:node_modules/regenerator-runtime/runtime.js",
+    sourcemap = False,
     tags = ["prod-showcase"],
 )
 
@@ -220,7 +220,7 @@ genrule(
     name = "stamp_init",
     srcs = ["initializer.js"],
     outs = ["init.js"],
-    cmd = "sed \"s/0-STAMP/$$(date +%s)/g\" $< > $@"
+    cmd = "sed \"s/0-STAMP/$$(date +%s)/g\" $< > $@",
 )
 
 # Insert script tags into index.html
@@ -241,7 +241,7 @@ html_insert_assets(
         "$(RULEDIR)",
         "--assets",
     ] + ["$(execpath %s)" % s for s in _ASSETS] + [
-        "init.js"
+        "init.js",
     ],
     data = _ASSETS + [
         ":index.prod.html",

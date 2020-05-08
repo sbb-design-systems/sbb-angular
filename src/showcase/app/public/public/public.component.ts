@@ -24,7 +24,8 @@ import { MultipleModePersistentFileSelectorExampleComponent } from '../public-ex
 import { SimpleFileSelectorExampleComponent } from '../public-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
 import { GhettoboxExampleComponent } from '../public-examples/ghettobox-examples/ghettobox-example/ghettobox-example.component';
 import { LightboxExampleComponent } from '../public-examples/lightbox-examples/lightbox-example/lightbox-example.component';
-import { LinksExampleComponent } from '../public-examples/links-examples/links-example/links-example.component';
+import { IconLinkExampleComponent } from '../public-examples/links-examples/icon-link-example/icon-link-example.component';
+import { SocialLinkExampleComponent } from '../public-examples/links-examples/social-link-example/social-link-example.component';
 import { LoadingExampleComponent } from '../public-examples/loading-examples/loading-example/loading-example.component';
 import { NotificationExampleComponent } from '../public-examples/notification-examples/notification-example/notification-example.component';
 import { NavigationExampleComponent } from '../public-examples/pagination-examples/navigation-example/navigation-example.component';
@@ -176,7 +177,10 @@ export class PublicComponent implements ExampleProvider {
     usermenu: { 'usermenu-example': new ComponentPortal(UsermenuExampleComponent) },
     badge: { 'badge-example': new ComponentPortal(BadgeExampleComponent) },
     button: { 'button-example': new ComponentPortal(ButtonExampleComponent) },
-    links: { 'links-example': new ComponentPortal(LinksExampleComponent) },
+    links: {
+      'icon-link-example': new ComponentPortal(IconLinkExampleComponent),
+      'social-link-example': new ComponentPortal(SocialLinkExampleComponent)
+    },
     loading: { 'loading-example': new ComponentPortal(LoadingExampleComponent) },
     dropdown: { 'dropdown-example': new ComponentPortal(DropdownExampleComponent) },
     lightbox: { 'lightbox-example': new ComponentPortal(LightboxExampleComponent) },
