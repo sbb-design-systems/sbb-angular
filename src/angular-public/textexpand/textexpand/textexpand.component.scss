@@ -31,7 +31,12 @@
 
     &:focus,
     &:hover {
-      color: $sbbColorRed;
+      cursor: pointer;
+      @if $sbbBusiness {
+        color: $sbbColorCallToActionHover;
+      } @else {
+        color: $sbbColorRed;
+      }
     }
 
     &-label {
