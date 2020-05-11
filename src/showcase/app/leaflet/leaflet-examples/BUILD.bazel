@@ -1,0 +1,27 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "leaflet-examples",
+    srcs = [
+        "leaflet-examples.module.ts",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/showcase/app/leaflet/leaflet-examples/leaflet-map-examples",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

@@ -11,7 +11,7 @@ import { EsriWebSceneExampleComponent } from '../maps-examples/esri-web-scene-ex
 @Component({
   selector: 'sbb-maps',
   templateUrl: './maps.component.html',
-  styleUrls: ['./maps.component.css'],
+  styleUrls: ['./maps.component.scss'],
   providers: [{ provide: ExampleProvider, useExisting: MapsComponent }]
 })
 export class MapsComponent implements ExampleProvider {

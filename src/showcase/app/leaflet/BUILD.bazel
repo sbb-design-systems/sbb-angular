@@ -1,0 +1,37 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "leaflet",
+    srcs = [
+        "leaflet.module.ts",
+        "leaflet-routing.module.ts",
+        "leaflet/leaflet.component.ts",
+    ],
+    assets = [
+        ":leaflet/leaflet.component.css",
+        "leaflet/leaflet.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-leaflet",
+        "//src/showcase/app/leaflet/leaflet-examples",
+        "//src/showcase/app/leaflet/leaflet-examples/leaflet-map-examples",
+        "//src/showcase/app/shared",
+        "//src/showcase/app/shared/component-viewer",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+sass_binary(
+    name = "leaflet_leaflet_component_scss",
+    src = "leaflet/leaflet.component.scss",
+)

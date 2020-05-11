@@ -4,6 +4,6 @@
   padding: 3rem;
 }
 
-:host-context(sbb-public, sbb-business, sbb-core, sbb-icons, sbb-maps) {
+:host-context(sbb-public, sbb-business, sbb-core, sbb-icons, sbb-maps, sbb-leaflet) {
   margin-left: 300px;
 }

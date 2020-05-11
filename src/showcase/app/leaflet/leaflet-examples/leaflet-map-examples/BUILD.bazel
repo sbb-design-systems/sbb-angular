@@ -1,0 +1,43 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "leaflet-map-examples",
+    srcs = [
+        "leaflet-map-example/leaflet-map-example.component.ts",
+        "leaflet-map-examples.module.ts",
+    ],
+    assets = [
+        ":leaflet-map-example/leaflet-map-example.component.css",
+        "leaflet-map-example/leaflet-map-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-leaflet/leaflet-map",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//leaflet",
+        "@npm//@types/leaflet",
+        "@npm//esri-leaflet",
+        "@npm//@types/esri-leaflet"
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "leaflet_map_example_leaflet_map_example_component_scss",
+    src = "leaflet-map-example/leaflet-map-example.component.scss",
+)

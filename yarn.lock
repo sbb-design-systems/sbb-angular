@@ -1340,6 +1340,18 @@
     remark "^12.0.0"
     unist-util-find-all-after "^3.0.1"
 
+"@terraformer/arcgis@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@terraformer/arcgis/-/arcgis-2.0.1.tgz#7bc8a0f0c3cf1b80c677133f53194529a74b8046"
+  integrity sha512-6w/dtLdB8jJrDJ5Yog4gMA0z0oY4R7tGv/EZrAmatApLWdA6/ZrPvu4TzHP9a4h9tvcFAJSKg12fo5z2eawoOw==
+  dependencies:
+    "@terraformer/common" "^2.0.0"
+
+"@terraformer/common@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@terraformer/common/-/common-2.0.0.tgz#f36f7a314b5aa4fe3e9968bdb8ed1babf21e447f"
+  integrity sha512-17ZsM314vSvLblAXI8aZ+fDXVGorbU3+BVbSWdvMpwmTIX2QTKm1Gnp6zo23F5nPbZetOm0C9ksi8yCMZQ5Yjw==
+
 "@types/arcgis-js-api@~4.14.0":
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/@types/arcgis-js-api/-/arcgis-js-api-4.14.0.tgz#9e647e91fc0c6a3d9644d3cbfaa6dad46ab3f838"
@@ -1398,6 +1410,13 @@
   resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.5.tgz#b14efa8852b7768d898906613c23f688713e02cd"
   integrity sha512-Q1y515GcOdTHgagaVFhHnIFQ38ygs/kmxdNpvpou+raI9UO3YZcHDngBSYKQklcKlvA7iuQlmIKbzvmxcOE9CQ==
 
+"@types/esri-leaflet@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@types/esri-leaflet/-/esri-leaflet-2.1.5.tgz#d28d33a2894004abd02411de989ca2c8bff69d97"
+  integrity sha512-YNP4WrPS19CAfd3Sf3aM/qw6DRH4Bh5TivBe+q3AuQsP+33uCsH02nHMRg2DBLbrwryMmLVDRwWYZDmAye2bvQ==
+  dependencies:
+    "@types/leaflet" "*"
+
 "@types/estree@*":
   version "0.0.44"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.44.tgz#980cc5a29a3ef3bea6ff1f7d021047d7ea575e21"
@@ -1419,6 +1438,11 @@
   integrity sha512-UoOfVEzAUpeSPmjm7h1uk5MH6KZma2z2O7a75onTGjnNvAvMVrPzPL/vBbT65iIGHWj6rokwfmYcmxmlSf2uwg==
   dependencies:
     "@types/node" "*"
+
+"@types/geojson@*":
+  version "7946.0.7"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.7.tgz#c8fa532b60a0042219cdf173ca21a975ef0666ad"
+  integrity sha512-wE2v81i4C4Ol09RtsWFAqg3BUitWbHSpSlIo+bNdsCJijO9sjme+zm+73ZMCa/qMC8UEERxzGbvmr1cffo2SiQ==
 
 "@types/glob@^7.1.1":
   version "7.1.1"
@@ -1455,6 +1479,20 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
+
+"@types/leaflet@*":
+  version "1.5.12"
+  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.5.12.tgz#9953b7e47a53e0a70cdd7a903a43dc3c343cf623"
+  integrity sha512-61HRMIng+bWvnnAIqUWLBlrd/TQZc4gU+gN1JL4K47EDtwIrcMEhWgi7PdcpbG1YmpH4F0EfOimkvV82gJIl9w==
+  dependencies:
+    "@types/geojson" "*"
+
+"@types/leaflet@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.5.4.tgz#851783ba730ab5430ea3e51a2ab7f35e43968f99"
+  integrity sha512-hAiiY7S25N8Ax+vA7FX29j1Hzn7bTziRnkKSj5jfOpud2JUcp/qZHGKCgxWW2TH581a00fDVBhto4xRox8GHXw==
+  dependencies:
+    "@types/geojson" "*"
 
 "@types/lodash.debounce@^4.0.6":
   version "4.0.6"
@@ -3783,6 +3821,14 @@ esprima@^4.0.0:
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
 
+esri-leaflet@2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/esri-leaflet/-/esri-leaflet-2.4.0.tgz#ccf950fd69e731575f1b951168fea9b7086c5755"
+  integrity sha512-uzSvE7odFnDPk09WS/UoXU2tVxmt667ASINdpIf+zvymCZLObASqgw6HBceHWGvPrF/XBDRbw4TcF4lyJx5cbA==
+  dependencies:
+    "@terraformer/arcgis" "^2.0.1"
+    tiny-binary-search "^1.0.3"
+
 esri-loader@~2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/esri-loader/-/esri-loader-2.13.0.tgz#2faea3dc21f34b2ecc1421c29420829f871577a8"
@@ -5917,6 +5963,11 @@ lcid@^2.0.0:
   integrity sha512-avPEb8P8EGnwXKClwsNUgryVjllcRqtMYa49NTsbQagYuT1DcXnl1915oxWjoyGrXR6zH/Y0Zc96xWsPcoDKeA==
   dependencies:
     invert-kv "^2.0.0"
+
+leaflet@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.6.0.tgz#aecbb044b949ec29469eeb31c77a88e2f448f308"
+  integrity sha512-CPkhyqWUKZKFJ6K8umN5/D2wrJ2+/8UIpXppY7QDnUZW5bZL5+SEI2J7GBpwh4LIupOKqbNSQXgqmrEJopHVNQ==
 
 leven@^3.1.0:
   version "3.1.0"
@@ -9381,6 +9432,11 @@ timsort@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
+
+tiny-binary-search@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-binary-search/-/tiny-binary-search-1.0.3.tgz#9d52e3d16dd1171eb74486caf704ba08c0c62186"
+  integrity sha512-STSHX/L5nI9WTLv6wrzJbAPbO7OIISX83KFBh2GVbX1Uz/vgZOU/ANn/8iV6t35yMTpoPzzO+3OQid3mifE0CA==
 
 title-case@^2.1.0:
   version "2.1.1"

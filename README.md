@@ -41,6 +41,12 @@ The package containing components to display 2D/3D maps and to provide map inter
 
 [Component List](https://angular.app.sbb.ch/latest/maps)
 
+### [@sbb-esta/angular-leaflet](https://www.npmjs.com/package/@sbb-esta/angular-leaflet)
+
+The package containing components to display a 2D leaflet-map.
+
+[Component List](https://angular.app.sbb.ch/latest/leaflet)
+
 ### [@sbb-esta/angular-keycloak](https://www.npmjs.com/package/@sbb-esta/angular-keycloak)
 
 The package containing the authentication module keycloak.

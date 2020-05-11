@@ -41,6 +41,7 @@ ng_ts_library(
         "//src/showcase/app/core",
         "//src/showcase/app/icons",
         "//src/showcase/app/keycloak",
+        "//src/showcase/app/leaflet",
         "//src/showcase/app/maps",
         "//src/showcase/app/public",
         "//src/showcase/app/shared",

@@ -1,0 +1,30 @@
+{
+  "name": "@sbb-esta/angular-leaflet",
+  "version": "0.0.0-PLACEHOLDER",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-NG",
+    "@angular/core": "0.0.0-NG",
+    "leaflet": "1.6.0",
+    "esri-leaflet": "2.4.0"
+  },
+  "devDependencies": {
+    "@types/leaflet": "1.5.4",
+    "@types/esri-leaflet": "2.1.2"
+  },
+  "ng-update": {
+    "packageGroup": [
+      "@sbb-esta/angular-business",
+      "@sbb-esta/angular-core",
+      "@sbb-esta/angular-icons",
+      "@sbb-esta/angular-keycloak",
+      "@sbb-esta/angular-leaflet",
+      "@sbb-esta/angular-maps",
+      "@sbb-esta/angular-public"
+    ],
+    "packageGroupName": "@sbb-esta/angular-core"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  }
+}

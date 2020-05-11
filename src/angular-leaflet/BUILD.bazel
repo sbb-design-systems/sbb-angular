@@ -1,0 +1,52 @@
+load(
+    "//src/angular-leaflet:config.bzl",
+    "LEAFLET_ENTRYPOINTS",
+    "LEAFLET_MARKDOWN_TARGETS",
+    "LEAFLET_TARGETS",
+    "LEAFLET_TESTING_TARGETS",
+)
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_package",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+# Root "@sbb-esta/angular-leaflet" entry-point.
+ng_module(
+    name = "angular-leaflet",
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    module_name = "@sbb-esta/angular-leaflet",
+    deps = ["//src/angular-leaflet/%s" % p for p in LEAFLET_ENTRYPOINTS],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [
+      ":getting-started.md"
+    ],
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"] + ["//src/angular-leaflet/%s:overview" % name for name in LEAFLET_MARKDOWN_TARGETS],
+)
+
+# Creates the @sbb-esta/angular-leaflet package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+    ],
+    entry_point = ":public-api.ts",
+    entry_point_name = "angular-leaflet",
+    tags = ["release-package"],
+    deps = LEAFLET_TARGETS + LEAFLET_TESTING_TARGETS,
+)

@@ -13,6 +13,8 @@
       "@sbb-esta/angular-icons/*": ["../angular-icons/*"],
       "@sbb-esta/angular-keycloak": ["../angular-keycloak"],
       "@sbb-esta/angular-keycloak/*": ["../angular-keycloak/*"],
+      "@sbb-esta/angular-leaflet": ["../angular-leaflet"],
+      "@sbb-esta/angular-leaflet/*": ["../angular-leaflet/*"],
       "@sbb-esta/angular-maps/*": ["./*"],
       "@sbb-esta/angular-public": ["../angular-public"],
       "@sbb-esta/angular-public/*": ["../angular-public/*"]

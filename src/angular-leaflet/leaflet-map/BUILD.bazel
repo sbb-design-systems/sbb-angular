@@ -1,0 +1,59 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "leaflet-map",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":leaflet-map/leaflet-map.component.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-leaflet/leaflet-map",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@types/leaflet",
+        "@npm//leaflet",
+    ],
+)
+
+sass_binary(
+    name = "leaflet_map_leaflet_map_component_scss",
+    src = "leaflet-map/leaflet-map.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":leaflet-map",
+        "@npm//esri-leaflet",
+        "@npm//leaflet",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":leaflet-map.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

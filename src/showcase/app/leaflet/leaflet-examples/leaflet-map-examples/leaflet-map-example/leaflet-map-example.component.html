@@ -1,0 +1,16 @@
+<article class="container-fluid">
+  <div class="row">
+    <div>
+      <h4>Basic WebMap with eventhandlers</h4>
+      <sbb-leaflet-map
+        class="leaflet-map"
+        (mapClicked)="mapClicked($event)"
+        (mapExtentChanged)="mapExtentChanged($event)"
+        (mapReady)="mapReady($event)"
+        [mapOptions]="options"
+        [layersControlConfig]="lc"
+        #leafletMap
+      ></sbb-leaflet-map>
+    </div>
+  </div>
+</article>

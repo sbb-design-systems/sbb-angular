@@ -5,6 +5,6 @@ filegroup(
     srcs = [
         # do not sort
         ":esri_amd_loader_config.js",
-        "@npm//:node_modules/esri-loader/dist/umd/esri-loader.js",
+        "@npm//:node_modules/esri-loader/dist/umd/esri-loader.js"
     ],
 )

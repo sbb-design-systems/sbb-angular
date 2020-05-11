@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'sbb-esri-web-map-example',
   templateUrl: './esri-web-map-example.component.html',
-  styleUrls: ['./esri-web-map-example.component.css']
+  styleUrls: ['./esri-web-map-example.component.scss']
 })
 export class EsriWebMapExampleComponent implements OnInit {
   public activeExtent: { xmin: number; xmax: number; ymin: number; ymax: number };

@@ -55,6 +55,7 @@ ALL_EXAMPLES = [
     "//src/showcase/app/business/business-examples/textarea-examples",
     "//src/showcase/app/business/business-examples/tooltip-examples",
     "//src/showcase/app/business/business-examples/usermenu-examples",
+    "//src/showcase/app/leaflet/leaflet-examples/leaflet-map-examples",
     "//src/showcase/app/maps/maps-examples/esri-basemap-gallery-examples",
     "//src/showcase/app/maps/maps-examples/esri-layer-list-examples",
     "//src/showcase/app/maps/maps-examples/esri-legend-examples",
@@ -146,6 +147,8 @@ ts_devserver(
     scripts = [
         "//tools/esri-loader:esri_loader_umd_module",
         "@npm//:node_modules/tslib/tslib.js",
+        "@npm//:node_modules/leaflet/dist/leaflet-src.js",
+        "@npm//:node_modules/esri-leaflet/dist/esri-leaflet-debug.js",
         "//tools/rxjs:rxjs_umd_modules",
     ],
     static_files = _ASSETS + [
@@ -155,7 +158,7 @@ ts_devserver(
     ],
     deps = [
         "//src/showcase",
-        "//src/showcase/assets",
+        "//src/showcase/assets"
     ],
 )
 

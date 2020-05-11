@@ -7,7 +7,7 @@ import { EsriTypesService } from '@sbb-esta/angular-maps/core';
 @Component({
   selector: 'sbb-esri-basemap-gallery',
   templateUrl: './esri-basemap-gallery.component.html',
-  styleUrls: ['./esri-basemap-gallery.component.css'],
+  styleUrls: ['./esri-basemap-gallery.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EsriBasemapGalleryComponent implements OnInit {
