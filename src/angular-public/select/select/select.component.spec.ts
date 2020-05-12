@@ -67,8 +67,8 @@ import { SelectComponent } from './select.component';
         [formControl]="control"
         [required]="isRequired"
         [tabIndex]="tabIndexOverride"
-        [attr.aria-label]="ariaLabel"
-        [attr.aria-labelledby]="ariaLabelledby"
+        [aria-label]="ariaLabel"
+        [aria-labelledby]="ariaLabelledby"
         [panelClass]="panelClass"
       >
         <sbb-option *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
@@ -742,8 +742,6 @@ describe('SelectComponent', () => {
           expect(select.getAttribute('aria-label')).toEqual('Custom Label');
         }));
 
-        /*
-        TODO: Figure out why this test is failing.
         it('should not set an aria-label if aria-labelledby is specified', fakeAsync(() => {
           fixture.componentInstance.ariaLabelledby = 'myLabelId';
           fixture.detectChanges();
@@ -751,7 +749,6 @@ describe('SelectComponent', () => {
           expect(select.getAttribute('aria-label')).toBeFalsy('Expected no aria-label to be set.');
           expect(select.getAttribute('aria-labelledby')).toBe('myLabelId');
         }));
-        */
 
         it('should not have aria-labelledby in the DOM if it`s not specified', fakeAsync(() => {
           fixture.detectChanges();
