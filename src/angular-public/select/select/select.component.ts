@@ -180,7 +180,6 @@ export class SelectComponent extends SbbSelectMixinBase
    */
   @HostBinding('attr.role') role = 'listbox';
 
-  @HostBinding('attr.tabindex')
   @Input()
   get tabIndex(): number {
     return this.disabled ? -1 : this._tabIndex;
@@ -942,8 +941,10 @@ export class SelectComponent extends SbbSelectMixinBase
     this.keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
       // Restore focus to the trigger before closing. Ensures that the focus
       // position won't be lost if the user got focus into the overlay.
-      this.focus();
-      this.close();
+      if (this.panelOpen) {
+        this.focus();
+        this.close();
+      }
     });
 
     this.keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
