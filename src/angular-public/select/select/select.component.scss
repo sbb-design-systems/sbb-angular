@@ -20,9 +20,23 @@ $selectTriggerPaddingRight: 44;
 
 sbb-select.sbb-select {
   outline: 0;
+  display: block;
+  @include inputfields;
+  padding: 0;
+  cursor: pointer;
+
+  &.sbb-select-focused {
+    @include autocompleteInputActive();
+  }
+
+  &.sbb-select-disabled {
+    cursor: default;
+    background-color: $sbbColorMilk;
+    border-color: $sbbColorAluminum;
+  }
 
   .sbb-select-trigger {
-    @include inputfields;
+    @include inputFieldPadding();
     position: relative;
     cursor: pointer;
     display: flex;
@@ -37,22 +51,6 @@ sbb-select.sbb-select {
       @include mq($from: desktop5k) {
         padding-right: toPx($selectTriggerPaddingRight * $scalingFactor5k);
       }
-    }
-
-    &[aria-expanded='true'] {
-      &:not(.sbb-select-input-above) {
-        @include autocompleteInputActive();
-      }
-
-      &.sbb-select-input-above {
-        @include autocompleteInputActive($mode: reverse);
-      }
-    }
-
-    &.sbb-select-disabled {
-      cursor: default;
-      background-color: $sbbColorMilk;
-      border-color: $sbbColorAluminum;
     }
 
     .sbb-select-value {

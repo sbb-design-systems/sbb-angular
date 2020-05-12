@@ -759,14 +759,14 @@ describe('SelectComponent', () => {
         }));
 
         it('should set the tabindex of the select to 0 by default', fakeAsync(() => {
-          expect(trigger.getAttribute('tabindex')).toEqual('0');
+          expect(select.getAttribute('tabindex')).toEqual('0');
         }));
 
         it('should be able to override the tabindex', fakeAsync(() => {
           fixture.componentInstance.tabIndexOverride = 3;
           fixture.detectChanges();
 
-          expect(trigger.getAttribute('tabindex')).toBe('3');
+          expect(select.getAttribute('tabindex')).toBe('3');
         }));
 
         it('should set aria-required for required selects', fakeAsync(() => {
@@ -828,11 +828,11 @@ describe('SelectComponent', () => {
           fixture.componentInstance.control.disable();
           flush();
           fixture.detectChanges();
-          expect(trigger.getAttribute('tabindex')).toEqual('-1');
+          expect(select.getAttribute('tabindex')).toEqual('-1');
 
           fixture.componentInstance.control.enable();
           fixture.detectChanges();
-          expect(trigger.getAttribute('tabindex')).toEqual('0');
+          expect(select.getAttribute('tabindex')).toEqual('0');
         }));
 
         it('should not set `aria-labelledby` if there is a placeholder', () => {
@@ -1346,11 +1346,13 @@ describe('SelectComponent', () => {
     describe('overlay panel', () => {
       let fixture: ComponentFixture<BasicSelectComponent>;
       let trigger: HTMLElement;
+      let select: HTMLElement;
 
       beforeEach(() => {
         fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
         trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
       });
 
       it('should not throw when attempting to open too early', () => {
@@ -1417,7 +1419,7 @@ describe('SelectComponent', () => {
 
         expect(fixture.componentInstance.select.panelOpen).toBe(true);
 
-        dispatchKeyboardEvent(trigger, 'keydown', TAB);
+        dispatchKeyboardEvent(select, 'keydown', TAB);
         fixture.detectChanges();
         flush();
 
@@ -1436,7 +1438,7 @@ describe('SelectComponent', () => {
         // Use a spy since focus can be flaky in unit tests.
         spyOn(select, 'focus').and.callThrough();
 
-        dispatchKeyboardEvent(trigger, 'keydown', TAB);
+        dispatchKeyboardEvent(select, 'keydown', TAB);
         fixture.detectChanges();
         flush();
 
@@ -1466,7 +1468,7 @@ describe('SelectComponent', () => {
         trigger.click();
         fixture.detectChanges();
 
-        const event = dispatchKeyboardEvent(trigger, 'keydown', HOME);
+        const event = dispatchKeyboardEvent(select, 'keydown', HOME);
         fixture.detectChanges();
 
         expect(fixture.componentInstance.select.keyManager.activeItemIndex).toBe(0);
@@ -1480,7 +1482,7 @@ describe('SelectComponent', () => {
         trigger.click();
         fixture.detectChanges();
 
-        const event = dispatchKeyboardEvent(trigger, 'keydown', END);
+        const event = dispatchKeyboardEvent(select, 'keydown', END);
         fixture.detectChanges();
 
         expect(fixture.componentInstance.select.keyManager.activeItemIndex).toBe(7);
@@ -1547,11 +1549,13 @@ describe('SelectComponent', () => {
     describe('selection logic', () => {
       let fixture: ComponentFixture<BasicSelectComponent>;
       let trigger: HTMLElement;
+      let select: HTMLElement;
 
       beforeEach(() => {
         fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
         trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
       });
 
       it('should select an option when it is clicked', () => {
@@ -1729,7 +1733,7 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        expect(trigger.textContent).toContain('Potatoes');
+        expect(select.textContent).toContain('Potatoes');
         expect(fixture.componentInstance.select.selected).toBe(
           fixture.componentInstance.options.last
         );
@@ -1740,13 +1744,13 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
 
         // tslint:disable-next-line:no-non-null-assertion
-        expect(trigger.textContent!.trim()).toBe('Pizza');
+        expect(select.textContent!.trim()).toBe('Pizza');
 
         fixture.componentInstance.foods[1].viewValue = 'Calzone';
         fixture.detectChanges();
 
         // tslint:disable-next-line:no-non-null-assertion
-        expect(trigger.textContent!.trim()).toBe('Calzone');
+        expect(select.textContent!.trim()).toBe('Calzone');
       }));
 
       it('should not select disabled options', fakeAsync(() => {
@@ -1811,11 +1815,13 @@ describe('SelectComponent', () => {
     describe('forms integration', () => {
       let fixture: ComponentFixture<BasicSelectComponent>;
       let trigger: HTMLElement;
+      let select: HTMLElement;
 
       beforeEach(() => {
         fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
         trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
       });
 
       it('should take an initial view value with reactive forms', () => {
@@ -1828,7 +1834,6 @@ describe('SelectComponent', () => {
           `Expected trigger to be populated by the control's initial value.`
         );
 
-        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
         trigger.click();
         fixture.detectChanges();
 
@@ -1897,7 +1902,7 @@ describe('SelectComponent', () => {
           'Food',
           `Expected trigger to show the placeholder.`
         );
-        expect(trigger.textContent).not.toContain(
+        expect(select.textContent).not.toContain(
           'Pizza',
           `Expected trigger is cleared when option value is not found.`
         );
@@ -1929,7 +1934,7 @@ describe('SelectComponent', () => {
           'Food',
           `Expected trigger to show the placeholder.`
         );
-        expect(trigger.textContent).not.toContain(
+        expect(select.textContent).not.toContain(
           'Pizza',
           `Expected trigger is cleared when option value is not found.`
         );
@@ -1954,7 +1959,7 @@ describe('SelectComponent', () => {
         );
 
         trigger.click();
-        dispatchFakeEvent(trigger, 'blur');
+        dispatchFakeEvent(select, 'blur');
         fixture.detectChanges();
         flush();
 
@@ -1967,7 +1972,7 @@ describe('SelectComponent', () => {
           '.cdk-overlay-backdrop'
         ) as HTMLElement;
         backdrop.click();
-        dispatchFakeEvent(trigger, 'blur');
+        dispatchFakeEvent(select, 'blur');
         fixture.detectChanges();
         flush();
 
@@ -1984,7 +1989,7 @@ describe('SelectComponent', () => {
         );
 
         trigger.click();
-        dispatchFakeEvent(trigger, 'blur');
+        dispatchFakeEvent(select, 'blur');
         fixture.detectChanges();
         flush();
 
@@ -2010,7 +2015,7 @@ describe('SelectComponent', () => {
         );
 
         fixture.componentInstance.control.disable();
-        dispatchFakeEvent(trigger, 'blur');
+        dispatchFakeEvent(select, 'blur');
 
         expect(fixture.componentInstance.control.touched).toBe(
           false,
@@ -2062,8 +2067,9 @@ describe('SelectComponent', () => {
         fixture.componentInstance.control.disable();
         fixture.detectChanges();
 
+        const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
         const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-        expect(getComputedStyle(trigger).getPropertyValue('cursor')).toEqual(
+        expect(getComputedStyle(select).getPropertyValue('cursor')).toEqual(
           'default',
           `Expected cursor to be default arrow on disabled control.`
         );
@@ -2082,7 +2088,7 @@ describe('SelectComponent', () => {
 
         fixture.componentInstance.control.enable();
         fixture.detectChanges();
-        expect(getComputedStyle(trigger).getPropertyValue('cursor')).toEqual(
+        expect(getComputedStyle(select).getPropertyValue('cursor')).toEqual(
           'pointer',
           `Expected cursor to be a pointer on enabled control.`
         );
@@ -2175,8 +2181,9 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
 
       fixture.detectChanges();
+      const select = fixture.debugElement.query(By.css('.sbb-select')).nativeElement;
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-      expect(getComputedStyle(trigger).getPropertyValue('cursor')).toEqual(
+      expect(getComputedStyle(select).getPropertyValue('cursor')).toEqual(
         'default',
         `Expected cursor to be default arrow on disabled control.`
       );
@@ -2587,9 +2594,9 @@ describe('SelectComponent', () => {
       flush();
       fixture.detectChanges();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
 
-      expect(trigger.textContent).toContain('Pizza');
+      expect(select.textContent).toContain('Pizza');
       expect(fixture.componentInstance.options.toArray()[1].selected).toBe(true);
     }));
   });
@@ -2629,31 +2636,31 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
       flush();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const select = fixture.debugElement.query(By.css('.sbb-select')).nativeElement;
 
       fixture.detectChanges();
       flush();
 
-      expect(trigger.textContent).toContain('Pizza');
+      expect(select.textContent).toContain('Pizza');
     }));
 
     it('should update the trigger based on the value', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectOnPushComponent);
       fixture.detectChanges();
       flush();
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const select = fixture.debugElement.query(By.css('.sbb-select')).nativeElement;
 
       fixture.componentInstance.control.setValue('pizza-1');
       fixture.detectChanges();
       flush();
 
-      expect(trigger.textContent).toContain('Pizza');
+      expect(select.textContent).toContain('Pizza');
 
       fixture.componentInstance.control.reset();
       fixture.detectChanges();
       flush();
 
-      expect(trigger.textContent).not.toContain('Pizza');
+      expect(select.textContent).not.toContain('Pizza');
     }));
   });
 
@@ -2683,7 +2690,8 @@ describe('SelectComponent', () => {
 
       expect(fixture.componentInstance.selectedFood).toBe('steak-0');
       expect(fixture.componentInstance.select.value).toBe('steak-0');
-      expect(trigger.textContent).toContain('Steak');
+      const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
+      expect(select.textContent).toContain('Steak');
 
       trigger.click();
       fixture.detectChanges();
@@ -2707,7 +2715,8 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
 
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-      expect(trigger.textContent).toContain('Sandwich');
+      const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
+      expect(select.textContent).toContain('Sandwich');
 
       trigger.click();
       fixture.detectChanges();
@@ -2726,6 +2735,7 @@ describe('SelectComponent', () => {
       expect(fixture.componentInstance.selectedFood).toBeFalsy();
 
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
 
       trigger.click();
       fixture.detectChanges();
@@ -2737,14 +2747,14 @@ describe('SelectComponent', () => {
 
       expect(fixture.componentInstance.selectedFood).toBe('steak-0');
       expect(fixture.componentInstance.select.value).toBe('steak-0');
-      expect(trigger.textContent).toContain('Steak');
+      expect(select.textContent).toContain('Steak');
 
       fixture.componentInstance.selectedFood = null;
       fixture.detectChanges();
       flush();
 
       expect(fixture.componentInstance.select.value).toBeNull();
-      expect(trigger.textContent).not.toContain('Steak');
+      expect(select.textContent).not.toContain('Steak');
     }));
 
     it('should reflect the preselected value', async () => {
@@ -2753,9 +2763,10 @@ describe('SelectComponent', () => {
 
       await fixture.whenRenderingDone();
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
       fixture.detectChanges();
 
-      expect(trigger.textContent).toContain('Pizza');
+      expect(select.textContent).toContain('Pizza');
 
       trigger.click();
       fixture.detectChanges();
@@ -2775,6 +2786,7 @@ describe('SelectComponent', () => {
       expect(fixture.componentInstance.selectedFoods).toBeFalsy();
 
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
 
       trigger.click();
       fixture.detectChanges();
@@ -2787,21 +2799,21 @@ describe('SelectComponent', () => {
 
       expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0']);
       expect(fixture.componentInstance.select.value).toEqual(['steak-0']);
-      expect(trigger.textContent).toContain('Steak');
+      expect(select.textContent).toContain('Steak');
 
       options[2].click();
       fixture.detectChanges();
 
       expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0', 'sandwich-2']);
       expect(fixture.componentInstance.select.value).toEqual(['steak-0', 'sandwich-2']);
-      expect(trigger.textContent).toContain('Steak, Sandwich');
+      expect(select.textContent).toContain('Steak, Sandwich');
 
       options[1].click();
       fixture.detectChanges();
 
       expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0', 'pizza-1', 'sandwich-2']);
       expect(fixture.componentInstance.select.value).toEqual(['steak-0', 'pizza-1', 'sandwich-2']);
-      expect(trigger.textContent).toContain('Steak, Pizza, Sandwich');
+      expect(select.textContent).toContain('Steak, Pizza, Sandwich');
     });
 
     it('should update the data binding before emitting the change event', fakeAsync(() => {
@@ -2834,12 +2846,14 @@ describe('SelectComponent', () => {
     let fixture: ComponentFixture<MultiSelectComponent>;
     let testInstance: MultiSelectComponent;
     let trigger: HTMLElement;
+    let select: HTMLElement;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(MultiSelectComponent);
       testInstance = fixture.componentInstance;
       fixture.detectChanges();
       trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
     });
 
     it('should be able to select multiple values', () => {
@@ -2886,12 +2900,12 @@ describe('SelectComponent', () => {
       options[5].click();
       fixture.detectChanges();
 
-      expect(trigger.textContent).toContain('Steak, Tacos, Eggs');
+      expect(select.textContent).toContain('Steak, Tacos, Eggs');
 
       options[2].click();
       fixture.detectChanges();
 
-      expect(trigger.textContent).toContain('Steak, Eggs');
+      expect(select.textContent).toContain('Steak, Eggs');
     });
 
     it('should be able to set the selected value by taking an array', fakeAsync(() => {
@@ -2962,7 +2976,7 @@ describe('SelectComponent', () => {
       options[1].click();
       fixture.detectChanges();
 
-      expect(trigger.textContent).toContain('Steak, Pizza, Tacos');
+      expect(select.textContent).toContain('Steak, Pizza, Tacos');
       expect(fixture.componentInstance.control.value).toEqual(['steak-0', 'pizza-1', 'tacos-2']);
     });
 
@@ -2973,7 +2987,7 @@ describe('SelectComponent', () => {
       testInstance.control.setValue(['tacos-2', 'steak-0', 'pizza-1']);
       fixture.detectChanges();
       flush();
-      expect(trigger.textContent).toContain('Steak, Pizza, Tacos');
+      expect(select.textContent).toContain('Steak, Pizza, Tacos');
     }));
 
     it('should pass the `multiple` value to all of the option instances', fakeAsync(() => {
