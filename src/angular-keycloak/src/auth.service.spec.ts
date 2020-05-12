@@ -55,7 +55,7 @@ describe('AuthService', () => {
       login: () => {
         loginCalled = true;
         return KeycloakPromise.resolveAfterwards();
-      }
+      },
     } as any;
     // when
     await sut.login();
@@ -71,7 +71,7 @@ describe('AuthService', () => {
       logout: () => {
         logoutCalled = true;
         return KeycloakPromise.resolveAfterwards();
-      }
+      },
     } as any;
     // when
     await sut.logout();
@@ -83,7 +83,7 @@ describe('AuthService', () => {
     // given
     const sut = new AuthService();
     sut.keycloak = {
-      authenticated: true
+      authenticated: true,
     } as any;
     // when
     const isAuthenticated = sut.authenticated();
@@ -102,12 +102,12 @@ describe('AuthService', () => {
     expect(token).toBe(expectedToken);
   });
 
-  it(`should return a promise when we call refreshToken. This promise must be resolved when the refresh was successfull`, async done => {
+  it(`should return a promise when we call refreshToken. This promise must be resolved when the refresh was successfull`, async (done) => {
     // given
     const sut = new AuthService();
     const minValidity = 5;
     const keyCloakMock = {
-      updateToken: () => KeycloakPromise.resolveAfterwards(true)
+      updateToken: () => KeycloakPromise.resolveAfterwards(true),
     };
     sut.keycloak = keyCloakMock as any;
     // when
@@ -123,7 +123,7 @@ describe('AuthService', () => {
     const minValidity = 5;
     const errorMessage = 'The refresh of the token failed';
     const keyCloakMock = {
-      updateToken: () => KeycloakPromise.rejectAfterwards(errorMessage)
+      updateToken: () => KeycloakPromise.rejectAfterwards(errorMessage),
     };
     sut.keycloak = keyCloakMock as any;
     try {
@@ -138,7 +138,7 @@ describe('AuthService', () => {
     const sut = new AuthService();
     const profile: KeycloakProfile = {
       firstName: 'Ruffy',
-      lastName: 'Monkey D'
+      lastName: 'Monkey D',
     };
     sut.keycloak = { profile } as any;
     spyOn(sut, 'authenticated').and.returnValue(false);
@@ -150,7 +150,7 @@ describe('AuthService', () => {
     const sut = new AuthService();
     const profile: KeycloakProfile = {
       firstName: 'Ruffy',
-      lastName: 'Monkey D'
+      lastName: 'Monkey D',
     };
     sut.keycloak = { profile } as any;
     spyOn(sut, 'authenticated').and.returnValue(true);
@@ -162,11 +162,11 @@ describe('AuthService', () => {
     const sut = new AuthService();
     const userprofile = {
       firstname: 'Ruffy',
-      name: 'Monkey D'
+      name: 'Monkey D',
     } as Keycloak.KeycloakProfile;
     sut.keycloak = {
       profile: undefined,
-      loadUserProfile: () => KeycloakPromise.resolveAfterwards(userprofile)
+      loadUserProfile: () => KeycloakPromise.resolveAfterwards(userprofile),
     } as any;
     spyOn(sut, 'authenticated').and.returnValue(true);
     const profile = await sut.getUserInfo().toPromise();
@@ -179,7 +179,7 @@ describe('AuthService', () => {
     const errorMessage = 'An error occured while loading the profile';
     sut.keycloak = {
       profile: false,
-      loadUserProfile: () => KeycloakPromise.rejectAfterwards(errorMessage)
+      loadUserProfile: () => KeycloakPromise.rejectAfterwards(errorMessage),
     } as any;
     spyOn(sut, 'authenticated').and.returnValue(true);
     // when - then

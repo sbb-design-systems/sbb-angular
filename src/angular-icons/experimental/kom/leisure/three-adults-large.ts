@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 48 48',
     class: 'sbb-icon sbb-icon-kom sbb-icon-leisure',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconThreeAdultsLarge {}
 
 @Component({
   selector: 'sbb-icon-three-adults-large',
-  template: `
-    <svg sbbIconThreeAdultsLarge></svg>
-  `,
+  template: ` <svg sbbIconThreeAdultsLarge></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconThreeAdultsLarge {}
 
 @NgModule({
   declarations: [SvgIconThreeAdultsLarge, IconThreeAdultsLarge],
-  exports: [SvgIconThreeAdultsLarge, IconThreeAdultsLarge]
+  exports: [SvgIconThreeAdultsLarge, IconThreeAdultsLarge],
 })
 export class IconThreeAdultsLargeModule {}

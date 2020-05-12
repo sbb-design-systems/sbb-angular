@@ -8,6 +8,6 @@ import { ContextmenuComponent } from './contextmenu/contextmenu.component';
 @NgModule({
   imports: [CommonModule, IconContextMenuModule, DropdownModule],
   declarations: [ContextmenuComponent],
-  exports: [ContextmenuComponent, DropdownModule]
+  exports: [ContextmenuComponent, DropdownModule],
 })
 export class ContextmenuModule {}

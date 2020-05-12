@@ -41,11 +41,11 @@ const EXAMPLES = [
   UsermenuExamplesModule,
   FileSelectorExamplesModule,
   ButtonExamplesModule,
-  TextexpandExamplesModule
+  TextexpandExamplesModule,
 ];
 
 @NgModule({
   imports: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class BusinessExamplesModule {}

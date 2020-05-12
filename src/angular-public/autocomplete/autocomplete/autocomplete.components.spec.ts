@@ -11,7 +11,7 @@ import {
   QueryList,
   Type,
   ViewChild,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import {
   async,
@@ -20,7 +20,7 @@ import {
   flush,
   inject,
   TestBed,
-  tick
+  tick,
 } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -28,7 +28,7 @@ import {
   clearElement,
   dispatchEvent,
   dispatchFakeEvent,
-  dispatchKeyboardEvent
+  dispatchKeyboardEvent,
 } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { MockNgZone } from '@sbb-esta/angular-core/testing';
@@ -37,7 +37,7 @@ import { FieldComponent, FieldModule } from '@sbb-esta/angular-public/field';
 import {
   OptionComponent,
   OptionModule,
-  SBBOptionSelectionChange
+  SBBOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -47,7 +47,7 @@ import { AutocompleteModule } from '../autocomplete.module';
 import {
   AutocompleteTriggerDirective,
   getSbbAutocompleteMissingPanelError,
-  SBB_AUTOCOMPLETE_SCROLL_STRATEGY
+  SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
 } from './autocomplete-trigger.directive';
 import { AutocompleteComponent, SbbAutocompleteSelectedEvent } from './autocomplete.component';
 
@@ -70,7 +70,7 @@ import { AutocompleteComponent, SbbAutocompleteSelectedEvent } from './autocompl
         <span>{{ num.code }}: {{ num.name }}</span>
       </sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 class SimpleAutocompleteComponent implements OnDestroy {
   numberCtrl = new FormControl();
@@ -99,14 +99,14 @@ class SimpleAutocompleteComponent implements OnDestroy {
     { code: '7', name: 'Sieben' },
     { code: '8', name: 'Acht' },
     { code: '9', name: 'Neun' },
-    { code: '10', name: 'Zehn' }
+    { code: '10', name: 'Zehn' },
   ];
 
   constructor() {
     this.filteredNumbers = this.numbers;
-    this.valueSub = this.numberCtrl.valueChanges.subscribe(val => {
+    this.valueSub = this.numberCtrl.valueChanges.subscribe((val) => {
       this.filteredNumbers = val
-        ? this.numbers.filter(s => s.name.match(new RegExp(val, 'gi')))
+        ? this.numbers.filter((s) => s.name.match(new RegExp(val, 'gi')))
         : this.numbers;
     });
   }
@@ -131,7 +131,7 @@ class SimpleAutocompleteComponent implements OnDestroy {
         {{ option }}
       </sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 class NgIfAutocompleteComponent {
   optionCtrl = new FormControl();
@@ -148,7 +148,7 @@ class NgIfAutocompleteComponent {
       startWith(null),
       map((val: string) => {
         return val
-          ? this.options.filter(option => new RegExp(val, 'gi').test(option))
+          ? this.options.filter((option) => new RegExp(val, 'gi').test(option))
           : this.options.slice();
       })
     );
@@ -170,7 +170,7 @@ class NgIfAutocompleteComponent {
         <span> {{ num }} </span>
       </sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 class AutocompleteWithoutFormsComponent {
   filteredNumbers: any[];
@@ -181,7 +181,7 @@ class AutocompleteWithoutFormsComponent {
   }
 
   onInput(value: any) {
-    this.filteredNumbers = this.numbers.filter(s => new RegExp(value, 'gi').test(s));
+    this.filteredNumbers = this.numbers.filter((s) => new RegExp(value, 'gi').test(s));
   }
 }
 
@@ -201,7 +201,7 @@ class AutocompleteWithoutFormsComponent {
         <span>{{ num }}</span>
       </sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 class AutocompleteWithNgModelComponent {
   filteredNumbers: any[];
@@ -213,7 +213,7 @@ class AutocompleteWithNgModelComponent {
   }
 
   onInput(value: any) {
-    this.filteredNumbers = this.numbers.filter(s => new RegExp(value, 'gi').test(s));
+    this.filteredNumbers = this.numbers.filter((s) => new RegExp(value, 'gi').test(s));
   }
 }
 
@@ -228,7 +228,7 @@ class AutocompleteWithNgModelComponent {
         <span>{{ number }}</span>
       </sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 class AutocompleteWithNumbersComponent {
   selectedNumber: number;
@@ -245,7 +245,7 @@ class AutocompleteWithNumbersComponent {
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 class AutocompleteWithOnPushDelayComponent implements OnInit {
   @ViewChild(AutocompleteTriggerDirective, { static: true })
@@ -268,7 +268,7 @@ class AutocompleteWithOnPushDelayComponent implements OnInit {
         {{ option }}
       </sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 class AutocompleteWithNativeInputComponent {
   optionCtrl = new FormControl();
@@ -284,7 +284,7 @@ class AutocompleteWithNativeInputComponent {
       startWith(null),
       map((val: string) => {
         return val
-          ? this.options.filter(option => new RegExp(val, 'gi').test(option))
+          ? this.options.filter((option) => new RegExp(val, 'gi').test(option))
           : this.options.slice();
       })
     );
@@ -292,9 +292,7 @@ class AutocompleteWithNativeInputComponent {
 }
 
 @Component({
-  template: `
-    <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="control" />
-  `
+  template: ` <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="control" /> `,
 })
 class AutocompleteWithoutPanelComponent {
   @ViewChild(AutocompleteTriggerDirective, { static: true })
@@ -313,7 +311,7 @@ class AutocompleteWithoutPanelComponent {
         <span>{{ num }}</span>
       </sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 class AutocompleteWithSelectEventComponent {
   selectedNumber: string;
@@ -330,7 +328,7 @@ class AutocompleteWithSelectEventComponent {
   template: `
     <input [formControl]="formControl" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
-  `
+  `,
 })
 class PlainAutocompleteInputWithFormControlComponent {
   formControl = new FormControl();
@@ -345,7 +343,7 @@ class PlainAutocompleteInputWithFormControlComponent {
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let value of values" [value]="value">{{ value }}</sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 class AutocompleteWithNumberInputAndNgModelComponent {
   selectedValue: number;
@@ -356,14 +354,14 @@ class AutocompleteWithNumberInputAndNgModelComponent {
   template: `
     <input autocomplete="changed" [(ngModel)]="value" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
-  `
+  `,
 })
 class AutocompleteWithNativeAutocompleteAttributeComponent {
   value: string;
 }
 
 @Component({
-  template: '<input [sbbAutocomplete]="null" sbbAutocompleteDisabled>'
+  template: '<input [sbbAutocomplete]="null" sbbAutocompleteDisabled>',
 })
 class InputWithoutAutocompleteAndDisabledComponent {}
 
@@ -377,7 +375,7 @@ describe('AutocompleteComponent', () => {
     TestBed.configureTestingModule({
       imports: [AutocompleteModule, FieldModule, FormsModule, ReactiveFormsModule, OptionModule],
       declarations: [component],
-      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }, ...providers]
+      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }, ...providers],
     });
 
     TestBed.compileComponents();
@@ -899,7 +897,7 @@ describe('AutocompleteComponent', () => {
     it('should fill the text field correctly if value is set to obj programmatically', fakeAsync(() => {
       fixture.componentInstance.numberCtrl.setValue({
         code: '1',
-        name: 'Eins'
+        name: 'Eins',
       });
       fixture.detectChanges();
       tick();
@@ -1562,7 +1560,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
 
       const componentOptions = fixture.componentInstance.options.toArray();
-      componentOptions.forEach(option => spyOn(option, 'deselect'));
+      componentOptions.forEach((option) => spyOn(option, 'deselect'));
 
       expect(componentOptions[0].selected).toBe(true, `Clicked option should be selected.`);
 
@@ -1571,7 +1569,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
 
       expect(componentOptions[0].deselect).toHaveBeenCalled();
-      componentOptions.slice(1).forEach(option => expect(option.deselect).not.toHaveBeenCalled());
+      componentOptions.slice(1).forEach((option) => expect(option.deselect).not.toHaveBeenCalled());
     }));
 
     it('should be able to preselect the first option', fakeAsync(() => {
@@ -1822,13 +1820,13 @@ describe('AutocompleteComponent', () => {
       const fixture = createComponent(SimpleAutocompleteComponent, [
         {
           provide: ScrollDispatcher,
-          useValue: { scrolled: () => scrolledSubject.asObservable() }
+          useValue: { scrolled: () => scrolledSubject.asObservable() },
         },
         {
           provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
           useFactory: (overlay: Overlay) => () => overlay.scrollStrategies.close(),
-          deps: [Overlay]
-        }
+          deps: [Overlay],
+        },
       ]);
 
       fixture.detectChanges();

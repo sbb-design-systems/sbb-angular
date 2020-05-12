@@ -7,7 +7,7 @@ import {
   ElementRef,
   HostBinding,
   QueryList,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { CellDirective, HeaderCellDirective } from '../table-cell/table-cell.component';
@@ -21,7 +21,7 @@ import { SbbTableDataSource } from './table-data-source';
   styleUrls: ['table.component.css'],
   providers: [{ provide: CdkTable, useExisting: TableComponent }],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class TableComponent<T> extends CdkTable<T> implements AfterViewInit {
   @HostBinding('class.sbb-table') sbbTable = true;
@@ -38,8 +38,8 @@ export class TableComponent<T> extends CdkTable<T> implements AfterViewInit {
   protected _stickyCssClass = 'sbb-table-sticky';
 
   ngAfterViewInit(): void {
-    this.headerElements.changes.subscribe(value => this._setGroupClasses(value));
-    this.rowElements.changes.subscribe(value => this._setGroupClasses(value));
+    this.headerElements.changes.subscribe((value) => this._setGroupClasses(value));
+    this.rowElements.changes.subscribe((value) => this._setGroupClasses(value));
   }
 
   // TODO: set class manually in template and remove code below @breaking-change
@@ -49,15 +49,15 @@ export class TableComponent<T> extends CdkTable<T> implements AfterViewInit {
       this.dataSource.groups &&
       elements.length
     ) {
-      this.dataSource.groups.forEach(group => {
+      this.dataSource.groups.forEach((group) => {
         if (group.length > 1) {
           // remove right border from all cells except the last one, where the left one is removed
           group.forEach((name, index) => {
-            const cells = elements.filter(item =>
+            const cells = elements.filter((item) =>
               item.nativeElement.classList.contains(`sbb-column-${name}`)
             );
             if (index !== group.length - 1) {
-              cells.forEach(cell => cell.nativeElement.classList.add('sbb-no-border-left'));
+              cells.forEach((cell) => cell.nativeElement.classList.add('sbb-no-border-left'));
             }
           });
         }

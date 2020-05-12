@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-timetable',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconPercentTagSmall {}
 
 @Component({
   selector: 'sbb-icon-percent-tag-small',
-  template: `
-    <svg sbbIconPercentTagSmall></svg>
-  `,
+  template: ` <svg sbbIconPercentTagSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconPercentTagSmall {}
 
 @NgModule({
   declarations: [SvgIconPercentTagSmall, IconPercentTagSmall],
-  exports: [SvgIconPercentTagSmall, IconPercentTagSmall]
+  exports: [SvgIconPercentTagSmall, IconPercentTagSmall],
 })
 export class IconPercentTagSmallModule {}

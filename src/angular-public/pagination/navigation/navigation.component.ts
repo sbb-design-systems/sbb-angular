@@ -7,7 +7,7 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 export type NavigationPageChangeEvent = 'next' | 'previous';
@@ -17,7 +17,7 @@ export type NavigationPageChangeEvent = 'next' | 'previous';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent implements OnChanges {
   /** @docs-private */

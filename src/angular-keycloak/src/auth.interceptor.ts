@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-  HTTP_INTERCEPTORS
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { ClassProvider, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
@@ -14,7 +14,7 @@ import { AuthService } from './auth.service';
 
 enum HttpStatusCode {
   UNAUTHORIZED = 401,
-  FORBIDDEN = 403
+  FORBIDDEN = 403,
 }
 
 @Injectable()
@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private _authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError(error => this._handleErrorResponses(error)));
+    return next.handle(req).pipe(catchError((error) => this._handleErrorResponses(error)));
   }
 
   private _handleErrorResponses(error: any): Observable<any> | Promise<any> {
@@ -37,5 +37,5 @@ export class AuthInterceptor implements HttpInterceptor {
 export const AUTH_INTERCEPTOR: ClassProvider = {
   provide: HTTP_INTERCEPTORS,
   useClass: AuthInterceptor,
-  multi: true
+  multi: true,
 };

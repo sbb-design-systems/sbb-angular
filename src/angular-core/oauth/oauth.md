@@ -20,7 +20,7 @@ import { resourceAccess } from '@sbb-esta/angular-core/oauth';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ExampleService {
   private roles: null | { [resource: string]: { roles: string[] } };
@@ -78,7 +78,7 @@ import { environment } from '../environments/environment';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   get claims() {
@@ -95,7 +95,7 @@ export class AppComponent {
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
     // Automatically redirect to the page the user was on before the login.
     // This reads the state set in login().
-    this.oauthService.events.pipe(first(e => e.type === 'token_received')).subscribe(() => {
+    this.oauthService.events.pipe(first((e) => e.type === 'token_received')).subscribe(() => {
       if (this.oauthService.state) {
         this.router.navigate([this.oauthService.state]);
       }

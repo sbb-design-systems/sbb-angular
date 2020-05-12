@@ -65,11 +65,11 @@ const EXAMPLES = [
   TextexpandExamplesModule,
   TimeInputExamplesModule,
   ToggleExamplesModule,
-  UsermenuExamplesModule
+  UsermenuExamplesModule,
 ];
 
 @NgModule({
   imports: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class PublicExamplesModule {}

@@ -10,6 +10,6 @@ import { SBB_SELECT_SCROLL_STRATEGY_PROVIDER, SelectComponent } from './select/s
   imports: [IconChevronSmallDownModule, OptionModule, CommonModule, OverlayModule],
   declarations: [SelectComponent],
   exports: [OptionModule, OverlayModule, SelectComponent],
-  providers: [SBB_SELECT_SCROLL_STRATEGY_PROVIDER]
+  providers: [SBB_SELECT_SCROLL_STRATEGY_PROVIDER],
 })
 export class SelectModule {}

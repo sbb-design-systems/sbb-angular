@@ -9,6 +9,6 @@ import { ChipComponent } from './chip/chip.component';
 @NgModule({
   declarations: [ChipComponent, ChipInputComponent],
   imports: [IconCrossModule, AutocompleteModule, CommonModule],
-  exports: [ChipInputComponent, ChipComponent]
+  exports: [ChipInputComponent, ChipComponent],
 })
 export class ChipModule {}

@@ -10,7 +10,7 @@ import { ICON_COMPONENT_META_INFORMATION } from '../icon-list';
 @Component({
   selector: 'sbb-icon-search',
   templateUrl: './icon-search.component.html',
-  styleUrls: ['./icon-search.component.css']
+  styleUrls: ['./icon-search.component.css'],
 })
 export class IconSearchComponent {
   filter = new FormControl('');
@@ -20,15 +20,15 @@ export class IconSearchComponent {
   constructor() {
     this.icons = this.filter.valueChanges.pipe(
       startWith(''),
-      map(f =>
-        ICON_COMPONENT_META_INFORMATION.filter(i => i.name.substring(4).includes(f))
-          .concat(ICON_COMPONENT_META_INFORMATION.filter(i => i.meta.some(m => m.includes(f))))
-          .filter((v, i, a) => a.findIndex(j => j.selector === v.selector) === i)
+      map((f) =>
+        ICON_COMPONENT_META_INFORMATION.filter((i) => i.name.substring(4).includes(f))
+          .concat(ICON_COMPONENT_META_INFORMATION.filter((i) => i.meta.some((m) => m.includes(f))))
+          .filter((v, i, a) => a.findIndex((j) => j.selector === v.selector) === i)
       ),
-      map(icons =>
-        icons.map(i => ({
+      map((icons) =>
+        icons.map((i) => ({
           selector: i.selector,
-          portal: new ComponentPortal<IconBase>(i.component)
+          portal: new ComponentPortal<IconBase>(i.component),
         }))
       )
     );

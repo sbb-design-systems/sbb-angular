@@ -36,7 +36,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconAlarmClockComponent extends IconBase {
   constructor() {
@@ -47,6 +47,6 @@ export class IconAlarmClockComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconAlarmClockComponent],
-  exports: [IconAlarmClockComponent]
+  exports: [IconAlarmClockComponent],
 })
 export class IconAlarmClockModule {}

@@ -8,7 +8,7 @@ import {
   Directive,
   HostBinding,
   Input,
-  QueryList
+  QueryList,
 } from '@angular/core';
 
 import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansion-panel-header.component';
@@ -22,9 +22,9 @@ import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
   providers: [
     {
       provide: SBB_ACCORDION,
-      useExisting: AccordionDirective
-    }
-  ]
+      useExisting: AccordionDirective,
+    },
+  ],
 })
 export class AccordionDirective extends CdkAccordion implements IAccordionBase, AfterContentInit {
   private _keyManager: FocusKeyManager<ExpansionPanelHeaderComponent>;

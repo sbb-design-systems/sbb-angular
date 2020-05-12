@@ -4,7 +4,7 @@ import {
   HostListener,
   Inject,
   Input,
-  Optional
+  Optional,
 } from '@angular/core';
 
 import { FORM_FIELD } from '../form-field-token';
@@ -14,7 +14,7 @@ import { HasFormFieldControl } from '../has-form-field-control';
   selector: 'sbb-label',
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LabelComponent {
   /**

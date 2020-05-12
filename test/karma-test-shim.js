@@ -6,14 +6,14 @@ Error.stackTraceLimit = Infinity;
 // take longer in some situations (e.g Saucelabs and Browserstack tunnels)
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
-__karma__.loaded = function() {};
+__karma__.loaded = function () {};
 
 var specFiles = Object.keys(window.__karma__.files).filter(isMaterialSpecFile);
 
 // Configure the Angular test bed and run all specs once configured.
 configureTestBed()
   .then(runMaterialSpecs)
-  .then(__karma__.start, function(error) {
+  .then(__karma__.start, function (error) {
     // Passing in the error object directly to Karma won't log out the stack trace and
     // passing the `originalErr` doesn't work correctly either. We have to log out the
     // stack trace so we can actually debug errors before the tests have started.
@@ -25,7 +25,7 @@ configureTestBed()
 function runMaterialSpecs() {
   // By importing all spec files, Karma will run the tests directly.
   return Promise.all(
-    specFiles.map(function(fileName) {
+    specFiles.map(function (fileName) {
       return System.import(fileName);
     })
   );
@@ -41,8 +41,8 @@ function configureTestBed() {
   return Promise.all([
     System.import('@angular/core'),
     System.import('@angular/core/testing'),
-    System.import('@angular/platform-browser-dynamic/testing')
-  ]).then(function(providers) {
+    System.import('@angular/platform-browser-dynamic/testing'),
+  ]).then(function (providers) {
     var core = providers[0];
     var testing = providers[1];
     var testingBrowser = providers[2];
@@ -78,9 +78,9 @@ function patchTestBedToDestroyFixturesAfterEveryTest(testBed) {
   // Monkey-patch the resetTestingModule to destroy fixtures outside of a try/catch block.
   // With https://github.com/angular/angular/commit/2c5a67134198a090a24f6671dcdb7b102fea6eba
   // errors when destroying components are no longer causing Jasmine to fail.
-  testBed.resetTestingModule = function() {
+  testBed.resetTestingModule = function () {
     try {
-      this._activeFixtures.forEach(function(fixture) {
+      this._activeFixtures.forEach(function (fixture) {
         fixture.destroy();
       });
     } finally {
@@ -94,7 +94,7 @@ function patchTestBedToDestroyFixturesAfterEveryTest(testBed) {
   // for us because it doesn't allow developers to see what test actually failed.
   // Fixing this by resetting the testing module after each test.
   // https://github.com/angular/angular/blob/master/packages/core/testing/src/before_each.ts#L25
-  afterEach(function() {
+  afterEach(function () {
     testBed.resetTestingModule();
   });
 }

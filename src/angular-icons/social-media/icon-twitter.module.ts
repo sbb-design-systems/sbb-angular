@@ -18,7 +18,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </svg>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconTwitterComponent extends IconBase {
   constructor() {
@@ -29,6 +29,6 @@ export class IconTwitterComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconTwitterComponent],
-  exports: [IconTwitterComponent]
+  exports: [IconTwitterComponent],
 })
 export class IconTwitterModule {}

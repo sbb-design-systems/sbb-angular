@@ -11,12 +11,12 @@ import { SimpleFileSelectorExampleComponent } from './simple-file-selector-examp
 const EXAMPLES = [
   SimpleFileSelectorExampleComponent,
   MultipleModeDefaultFileSelectorExampleComponent,
-  MultipleModePersistentFileSelectorExampleComponent
+  MultipleModePersistentFileSelectorExampleComponent,
 ];
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule, FileSelectorModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class FileSelectorExamplesModule {}

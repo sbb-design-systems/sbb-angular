@@ -11,7 +11,7 @@ import {
   isMethod,
   isNgModule,
   isProperty,
-  isService
+  isService,
 } from '../common/decorators';
 import {
   CategorizedClassDoc,
@@ -20,7 +20,7 @@ import {
   CategorizedFunctionExportDoc,
   CategorizedMethodMemberDoc,
   CategorizedPropertyMemberDoc,
-  CategorizedTypeAliasExportDoc
+  CategorizedTypeAliasExportDoc,
 } from '../common/dgeni-definitions';
 import { getDirectiveMetadata } from '../common/directive-metadata';
 import { normalizeFunctionParameters } from '../common/normalize-function-parameters';
@@ -28,7 +28,7 @@ import { isPublicDoc } from '../common/private-docs';
 import { getInputBindingData, getOutputBindingData } from '../common/property-bindings';
 import {
   sortCategorizedMethodMembers,
-  sortCategorizedPropertyMembers
+  sortCategorizedPropertyMembers,
 } from '../common/sort-members';
 
 /**
@@ -58,18 +58,20 @@ export class Categorizer implements Processor {
 
   $process(docs: DocCollection) {
     docs
-      .filter(doc => doc.docType === 'class' || doc.docType === 'interface')
-      .forEach(doc => this._decorateClassLikeDoc(doc));
+      .filter((doc) => doc.docType === 'class' || doc.docType === 'interface')
+      .forEach((doc) => this._decorateClassLikeDoc(doc));
 
     docs
-      .filter(doc => doc.docType === 'function')
-      .forEach(doc => this._decorateFunctionExportDoc(doc));
-
-    docs.filter(doc => doc.docType === 'const').forEach(doc => this._decorateConstExportDoc(doc));
+      .filter((doc) => doc.docType === 'function')
+      .forEach((doc) => this._decorateFunctionExportDoc(doc));
 
     docs
-      .filter(doc => doc.docType === 'type-alias')
-      .forEach(doc => this._decorateTypeAliasExportDoc(doc));
+      .filter((doc) => doc.docType === 'const')
+      .forEach((doc) => this._decorateConstExportDoc(doc));
+
+    docs
+      .filter((doc) => doc.docType === 'type-alias')
+      .forEach((doc) => this._decorateTypeAliasExportDoc(doc));
   }
 
   /**
@@ -93,8 +95,8 @@ export class Categorizer implements Processor {
     }
 
     // Call decorate hooks that can modify the method and property docs.
-    classLikeDoc.methods.forEach(doc => this._decorateMethodDoc(doc));
-    classLikeDoc.properties.forEach(doc => this._decoratePropertyDoc(doc));
+    classLikeDoc.methods.forEach((doc) => this._decorateMethodDoc(doc));
+    classLikeDoc.properties.forEach((doc) => this._decoratePropertyDoc(doc));
 
     decorateDeprecatedDoc(classLikeDoc);
 
@@ -221,11 +223,11 @@ export class Categorizer implements Processor {
    * test harness classes by checking the inheritance chain for "ComponentHarness".
    */
   private _isTestHarness(doc: CategorizedClassDoc): boolean {
-    return doc.inheritedDocs.some(d => d.name === 'ComponentHarness');
+    return doc.inheritedDocs.some((d) => d.name === 'ComponentHarness');
   }
 }
 
 /** Filters any duplicate classDoc members from an array */
 function filterDuplicateMembers(item: MemberDoc, _index: number, array: MemberDoc[]) {
-  return array.filter(memberDoc => memberDoc.name === item.name)[0] === item;
+  return array.filter((memberDoc) => memberDoc.name === item.name)[0] === item;
 }

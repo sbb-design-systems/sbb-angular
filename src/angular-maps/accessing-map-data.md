@@ -66,7 +66,7 @@ _app.component.ts_:
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   public mapView: __esri.MapView;
@@ -77,7 +77,7 @@ export class AppComponent {
   }
 
   private loadDataFromLayer() {
-    this.mapView.on('layerview-create', async event => {
+    this.mapView.on('layerview-create', async (event) => {
       const { layer } = event;
       if (layer.id === 'Accidental_Deaths_8938') {
         const featureLayer = layer as __esri.FeatureLayer;

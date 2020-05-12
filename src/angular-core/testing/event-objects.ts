@@ -37,7 +37,7 @@ export function createMouseEvent(type: string, x = 0, y = 0, button = 0) {
   Object.defineProperty(event, 'buttons', { get: () => 1 });
 
   // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
-  event.preventDefault = function() {
+  event.preventDefault = function () {
     Object.defineProperty(event, 'defaultPrevented', { get: () => true, configurable: true });
     return originalPreventDefault();
   };
@@ -63,7 +63,7 @@ export function createTouchEvent(type: string, pageX = 0, pageY = 0) {
   Object.defineProperties(event, {
     touches: { value: [touchDetails] },
     targetTouches: { value: [touchDetails] },
-    changedTouches: { value: [touchDetails] }
+    changedTouches: { value: [touchDetails] },
   });
 
   return event;
@@ -139,11 +139,11 @@ export function createKeyboardEvent(
     ctrlKey: { get: () => !!modifiers.control, configurable: true },
     altKey: { get: () => !!modifiers.alt, configurable: true },
     shiftKey: { get: () => !!modifiers.shift, configurable: true },
-    metaKey: { get: () => !!modifiers.meta, configurable: true }
+    metaKey: { get: () => !!modifiers.meta, configurable: true },
   });
 
   // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
-  event.preventDefault = function() {
+  event.preventDefault = function () {
     Object.defineProperty(event, 'defaultPrevented', { get: () => true, configurable: true });
     return originalPreventDefault.apply(this, arguments);
   };

@@ -11,7 +11,7 @@ import {
   FooterCellDefDirective,
   FooterCellDirective,
   HeaderCellDefDirective,
-  HeaderCellDirective
+  HeaderCellDirective,
 } from './table-cell/table-cell.component';
 import {
   FooterRowComponent,
@@ -19,7 +19,7 @@ import {
   HeaderRowComponent,
   HeaderRowDefDirective,
   RowComponent,
-  RowDefDirective
+  RowDefDirective,
 } from './table-row/table-row.component';
 import { TableComponent } from './table/table.component';
 import { TextColumnComponent } from './text-column/text-column.component';
@@ -43,7 +43,7 @@ import { TextColumnComponent } from './text-column/text-column.component';
     HeaderRowDefDirective,
     FooterRowDefDirective,
     SbbSortDirective,
-    SbbSortHeaderComponent
+    SbbSortHeaderComponent,
   ],
   exports: [
     TableComponent,
@@ -62,7 +62,7 @@ import { TextColumnComponent } from './text-column/text-column.component';
     HeaderRowDefDirective,
     FooterRowDefDirective,
     SbbSortDirective,
-    SbbSortHeaderComponent
-  ]
+    SbbSortHeaderComponent,
+  ],
 })
 export class TableModule {}

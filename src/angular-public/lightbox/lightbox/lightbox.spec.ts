@@ -11,7 +11,7 @@ import {
   NgModule,
   TemplateRef,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import {
   ComponentFixture,
@@ -20,7 +20,7 @@ import {
   flushMicrotasks,
   inject,
   TestBed,
-  tick
+  tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,7 +40,7 @@ class DirectiveWithViewContainerDirective {
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: 'hello'
+  template: 'hello',
 })
 class ComponentWithOnPushViewContainerComponent {
   constructor(public viewContainerRef: ViewContainerRef) {}
@@ -48,9 +48,7 @@ class ComponentWithOnPushViewContainerComponent {
 
 @Component({
   selector: 'sbb-arbitrary-component',
-  template: `
-    <div sbbDirWithViewContainer></div>
-  `
+  template: ` <div sbbDirWithViewContainer></div> `,
 })
 class ComponentWithChildViewContainerComponent {
   @ViewChild(DirectiveWithViewContainerDirective, { static: true })
@@ -67,7 +65,7 @@ class ComponentWithChildViewContainerComponent {
     <ng-template let-data let-lightboxRef="lightboxRef">
       Cheese {{ localValue }} {{ data?.value }}{{ setLightboxRef(lightboxRef) }}</ng-template
     >
-  `
+  `,
 })
 class ComponentWithTemplateRefComponent {
   localValue: string;
@@ -108,7 +106,7 @@ class PizzaMsgComponent {
       </button>
       <div sbbLightboxClose>Should not close</div>
     </sbb-lightbox-footer>
-  `
+  `,
 })
 class ContentElementLightboxComponent {}
 
@@ -132,7 +130,7 @@ class ContentElementLightboxComponent {}
         <div sbbLightboxClose>Should not close</div>
       </sbb-lightbox-footer>
     </ng-template>
-  `
+  `,
 })
 class ComponentWithContentElementTemplateRefComponent {
   @ViewChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
@@ -140,7 +138,7 @@ class ComponentWithContentElementTemplateRefComponent {
 
 @Component({
   template: '',
-  providers: [Lightbox]
+  providers: [Lightbox],
 })
 class ComponentThatProvidesLightboxComponent {
   constructor(public lightbox: Lightbox) {}
@@ -166,7 +164,7 @@ const TEST_DIRECTIVES = [
   ContentElementLightboxComponent,
   LightboxWithInjectedDataComponent,
   LightboxWithoutFocusableElementsComponent,
-  ComponentWithContentElementTemplateRefComponent
+  ComponentWithContentElementTemplateRefComponent,
 ];
 
 @NgModule({
@@ -179,8 +177,8 @@ const TEST_DIRECTIVES = [
     PizzaMsgComponent,
     ContentElementLightboxComponent,
     LightboxWithInjectedDataComponent,
-    LightboxWithoutFocusableElementsComponent
-  ]
+    LightboxWithoutFocusableElementsComponent,
+  ],
 })
 class LightboxTestModule {}
 
@@ -204,10 +202,10 @@ describe('Lightbox', () => {
           useFactory: () => ({
             scrolled: () => scrolledSubject.asObservable(),
             register() {},
-            deregister() {}
-          })
-        }
-      ]
+            deregister() {},
+          }),
+        },
+      ],
     });
 
     TestBed.compileComponents();
@@ -236,7 +234,7 @@ describe('Lightbox', () => {
 
   it('should open a lightbox with a component', () => {
     const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
 
     viewContainerFixture.detectChanges();
@@ -260,7 +258,7 @@ describe('Lightbox', () => {
     const data = { value: 'Knees' };
 
     const lightboxRef = lightbox.openLightbox(templateRefFixture.componentInstance.templateRef, {
-      data
+      data,
     });
 
     viewContainerFixture.detectChanges();
@@ -280,7 +278,7 @@ describe('Lightbox', () => {
 
   it('should emit when lightbox opening animation is complete', fakeAsync(() => {
     const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
     const spy = jasmine.createSpy('afterOpen spy');
 
@@ -297,7 +295,7 @@ describe('Lightbox', () => {
 
   it('should use injector from viewContainerRef for lightboxInjector', () => {
     const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
 
     viewContainerFixture.detectChanges();
@@ -341,7 +339,7 @@ describe('Lightbox', () => {
 
   it('should apply the specified `aria-describedby`', () => {
     lightbox.openLightbox(PizzaMsgComponent, {
-      ariaDescribedBy: 'description-element'
+      ariaDescribedBy: 'description-element',
     });
 
     viewContainerFixture.detectChanges();
@@ -354,7 +352,7 @@ describe('Lightbox', () => {
 
   it('should close a lightbox and get back a result', fakeAsync(() => {
     const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
     const afterCloseCallback = jasmine.createSpy('afterClose callback');
 
@@ -371,7 +369,7 @@ describe('Lightbox', () => {
     inject([Overlay], (overlay: Overlay) => {
       const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
         viewContainerRef: testViewContainerRef,
-        scrollStrategy: overlay.scrollStrategies.close()
+        scrollStrategy: overlay.scrollStrategies.close(),
       });
       const beforeCloseCallback = jasmine.createSpy('beforeClosed callback');
       const afterCloseCallback = jasmine.createSpy('afterClosed callback');
@@ -390,7 +388,7 @@ describe('Lightbox', () => {
 
   it('should close a lightbox and get back a result before it is closed', fakeAsync(() => {
     const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
 
     flush();
@@ -414,7 +412,7 @@ describe('Lightbox', () => {
 
   it('should close a lightbox via the escape key', fakeAsync(() => {
     lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
 
     dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
@@ -430,7 +428,7 @@ describe('Lightbox', () => {
     onPushFixture.detectChanges();
 
     const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: onPushFixture.componentInstance.viewContainerRef
+      viewContainerRef: onPushFixture.componentInstance.viewContainerRef,
     });
 
     flushMicrotasks();
@@ -455,7 +453,7 @@ describe('Lightbox', () => {
 
   it('should emit the keyboardEvent stream when key events target the overlay', fakeAsync(() => {
     const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
 
     const spy = jasmine.createSpy('keyboardEvent spy');
@@ -472,25 +470,25 @@ describe('Lightbox', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   }));
 
-  it('should notify the observers if a lightbox has been opened', done => {
+  it('should notify the observers if a lightbox has been opened', (done) => {
     let lightboxRef: LightboxRef<any>;
 
-    lightbox.afterOpen.pipe(delay(0)).subscribe(ref => {
+    lightbox.afterOpen.pipe(delay(0)).subscribe((ref) => {
       expect(lightboxRef).toBe(ref);
       done();
     });
 
     lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
   });
 
   it('should notify the observers if all open lightboxes have finished closing', fakeAsync(() => {
     const ref1 = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
     const ref2 = lightbox.openLightbox(ContentElementLightboxComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
     const spy = jasmine.createSpy('afterAllClosed spy');
 
@@ -532,7 +530,7 @@ describe('Lightbox', () => {
 
   it('should set the proper animation states', () => {
     const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-      viewContainerRef: testViewContainerRef
+      viewContainerRef: testViewContainerRef,
     });
     const lightboxContainer: LightboxContainerComponent = viewContainerFixture.debugElement.query(
       By.directive(LightboxContainerComponent)
@@ -614,8 +612,8 @@ describe('Lightbox', () => {
       const config = {
         data: {
           stringParam: 'hello',
-          dateParam: new Date()
-        }
+          dateParam: new Date(),
+        },
       };
 
       const instance = lightbox.openLightbox(LightboxWithInjectedDataComponent, config)
@@ -675,7 +673,7 @@ describe('Lightbox', () => {
     it('should have custom panel class', () => {
       lightbox.openLightbox(PizzaMsgComponent, {
         panelClass: 'custom-panel-class',
-        viewContainerRef: testViewContainerRef
+        viewContainerRef: testViewContainerRef,
       });
 
       viewContainerFixture.detectChanges();
@@ -691,7 +689,7 @@ describe('Lightbox', () => {
 
     it('should focus the first tabbable element of the lightbox on open', fakeAsync(() => {
       lightbox.openLightbox(PizzaMsgComponent, {
-        viewContainerRef: testViewContainerRef
+        viewContainerRef: testViewContainerRef,
       });
 
       viewContainerFixture.detectChanges();
@@ -706,7 +704,7 @@ describe('Lightbox', () => {
     it('should allow disabling focus of the first tabbable element', fakeAsync(() => {
       lightbox.openLightbox(PizzaMsgComponent, {
         viewContainerRef: testViewContainerRef,
-        autoFocus: false
+        autoFocus: false,
       });
 
       viewContainerFixture.detectChanges();
@@ -723,7 +721,7 @@ describe('Lightbox', () => {
       button.focus();
 
       const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-        viewContainerRef: testViewContainerRef
+        viewContainerRef: testViewContainerRef,
       });
 
       flushMicrotasks();
@@ -766,7 +764,7 @@ describe('Lightbox', () => {
       button.focus();
 
       const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
-        viewContainerRef: testViewContainerRef
+        viewContainerRef: testViewContainerRef,
       });
 
       tick(500);
@@ -807,7 +805,7 @@ describe('Lightbox', () => {
     describe('inside component lightbox', () => {
       beforeEach(fakeAsync(() => {
         lightboxRef = lightbox.openLightbox(ContentElementLightboxComponent, {
-          viewContainerRef: testViewContainerRef
+          viewContainerRef: testViewContainerRef,
         });
         viewContainerFixture.detectChanges();
         flush();
@@ -822,7 +820,7 @@ describe('Lightbox', () => {
         fixture.detectChanges();
 
         lightboxRef = lightbox.openLightbox(fixture.componentInstance.templateRef, {
-          viewContainerRef: testViewContainerRef
+          viewContainerRef: testViewContainerRef,
         });
 
         viewContainerFixture.detectChanges();
@@ -880,7 +878,7 @@ describe('Lightbox', () => {
     it('should be able to set a custom aria-label', () => {
       lightbox.openLightbox(PizzaMsgComponent, {
         ariaLabel: 'Hello there',
-        viewContainerRef: testViewContainerRef
+        viewContainerRef: testViewContainerRef,
       });
       viewContainerFixture.detectChanges();
 
@@ -891,7 +889,7 @@ describe('Lightbox', () => {
     it('should not set the aria-labelledby automatically if it has an aria-label', fakeAsync(() => {
       lightbox.openLightbox(ContentElementLightboxComponent, {
         ariaLabel: 'Hello there',
-        viewContainerRef: testViewContainerRef
+        viewContainerRef: testViewContainerRef,
       });
       viewContainerFixture.detectChanges();
       tick();
@@ -919,10 +917,10 @@ describe('Lightbox with a parent Lightbox', () => {
           useFactory: () => {
             overlayContainerElement = document.createElement('div');
             return { getContainerElement: () => overlayContainerElement };
-          }
+          },
         },
-        { provide: Location, useClass: SpyLocation }
-      ]
+        { provide: Location, useClass: SpyLocation },
+      ],
     });
 
     TestBed.compileComponents();

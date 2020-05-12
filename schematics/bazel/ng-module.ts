@@ -10,7 +10,7 @@ import {
   SchematicContext,
   template,
   Tree,
-  url
+  url,
 } from '@angular-devkit/schematics';
 import { findNodes } from '@schematics/angular/utility/ast-utils';
 import {
@@ -19,7 +19,7 @@ import {
   ExportDeclaration,
   ImportDeclaration,
   ScriptTarget,
-  SyntaxKind
+  SyntaxKind,
 } from 'typescript';
 
 import { SassBinary } from './sass-binary';
@@ -60,12 +60,12 @@ export class NgModule {
     this.testDependencies = this.hasTests ? this._findTestDependencies() : [];
     this.hasSassLibrary = !!this._scssLibaryFiles.length;
     this.sassBinaries = this._findSassBinaries();
-    this.stylesheets = this.sassBinaries.map(s => s.path.replace('.scss', '.css'));
+    this.stylesheets = this.sassBinaries.map((s) => s.path.replace('.scss', '.css'));
   }
 
   ngModules(): NgModule[] {
     return this._modules.reduce((current, next) => current.concat(next.ngModules()), [
-      this
+      this,
     ] as NgModule[]);
   }
 
@@ -75,7 +75,7 @@ export class NgModule {
         apply(url(this._templateUrl), [
           template(this._templateOptions()),
           move(this.path),
-          forEach(fileEntry => {
+          forEach((fileEntry) => {
             if (!this._tree.exists(fileEntry.path)) {
               return fileEntry;
             } else if (
@@ -84,9 +84,9 @@ export class NgModule {
               this._tree.overwrite(fileEntry.path, fileEntry.content);
             }
             return null;
-          })
+          }),
         ])
-      )
+      ),
     ]);
   }
 
@@ -113,7 +113,7 @@ export class NgModule {
   }
 
   private _findFiles(dir: DirEntry, skipModuleCheck = true) {
-    if (['schematics', 'styles'].some(d => basename(dir.path) === d)) {
+    if (['schematics', 'styles'].some((d) => basename(dir.path) === d)) {
       return;
     } else if (!skipModuleCheck && this._isModuleDir(dir)) {
       this._modules.push(this._createSubModule(dir));
@@ -136,7 +136,7 @@ export class NgModule {
       }
     }
 
-    dir.subdirs.forEach(d => this._findFiles(dir.dir(d), false));
+    dir.subdirs.forEach((d) => this._findFiles(dir.dir(d), false));
   }
 
   private _findDependencies() {
@@ -156,7 +156,7 @@ export class NgModule {
     return this._specFiles
       .reduce((current, f) => current.concat(this._findImportsAndReexports(f)), [] as string[])
       .filter((v, i, a) => a.indexOf(v) === i)
-      .filter(i => i !== '@npm//@angular/core')
+      .filter((i) => i !== '@npm//@angular/core')
       .sort();
   }
 
@@ -169,7 +169,7 @@ export class NgModule {
     );
     return [
       ...findNodes(file, SyntaxKind.ImportDeclaration, undefined, true),
-      ...findNodes(file, SyntaxKind.ExportDeclaration, undefined, true)
+      ...findNodes(file, SyntaxKind.ExportDeclaration, undefined, true),
     ]
       .map(
         (n: ImportDeclaration | ExportDeclaration) =>
@@ -177,22 +177,22 @@ export class NgModule {
       )
       .concat(
         findNodes(file, SyntaxKind.ImportKeyword, undefined, true)
-          .filter(n => n.getFullText().match(/ import/))
-          .map(n => (n.parent as CallExpression).arguments[0].getText().replace(/['"]/g, ''))
+          .filter((n) => n.getFullText().match(/ import/))
+          .map((n) => (n.parent as CallExpression).arguments[0].getText().replace(/['"]/g, ''))
       )
-      .map(i => this._resolveTsImport(i, fileEntry))
-      .filter(i => !!i);
+      .map((i) => this._resolveTsImport(i, fileEntry))
+      .filter((i) => !!i);
   }
 
   private _findSassBinaries() {
     return this._scssFiles
-      .filter(f => f.path.endsWith('.scss') && !basename(f.path).startsWith('_'))
-      .map(file => {
+      .filter((f) => f.path.endsWith('.scss') && !basename(f.path).startsWith('_'))
+      .map((file) => {
         const stylesheetPath = relative(this.path, file.path);
         return {
           name: stylesheetPath.replace(/[^a-z0-9]/g, '_'),
           path: stylesheetPath,
-          dependencies: this._findStylesheetDependencies(file)
+          dependencies: this._findStylesheetDependencies(file),
         };
       });
   }
@@ -203,8 +203,8 @@ export class NgModule {
       return [];
     }
     return matches
-      .map(s => s.substring(9, s.length - 2))
-      .map(importPath => {
+      .map((s) => s.substring(9, s.length - 2))
+      .map((importPath) => {
         if (importPath.includes('/angular-core/styles/common')) {
           return '//src/angular-core/styles:common_scss_lib';
         } else if (this._isInModule(join(entry.path, importPath))) {
@@ -220,7 +220,7 @@ export class NgModule {
           return '';
         }
       })
-      .filter(d => !!d)
+      .filter((d) => !!d)
       .filter((v, i, a) => a.indexOf(v) === i);
   }
 

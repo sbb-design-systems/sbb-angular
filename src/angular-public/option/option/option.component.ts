@@ -18,7 +18,7 @@ import {
   Optional,
   Output,
   QueryList,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -61,7 +61,7 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentCom
   styleUrls: ['option.component.css'],
   templateUrl: 'option.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
   mostRecentViewValue = '';
@@ -240,7 +240,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
       const escapedValue = value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
       const replacement = new RegExp(`${escapedValue}+`, 'i');
       const nodes = this._findAllTextNodesWithMatch(replacement);
-      nodes.forEach(n => this._highlightNode(n, replacement));
+      nodes.forEach((n) => this._highlightNode(n, replacement));
       this._highlighted = !!nodes.length;
     }
   }
@@ -297,7 +297,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     } while (match);
 
     const parent = node.parentNode!;
-    nodes.forEach(n => parent.insertBefore(n, node));
+    nodes.forEach((n) => parent.insertBefore(n, node));
     parent.removeChild(node);
   }
 

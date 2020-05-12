@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'sbb-table-example',
   templateUrl: './table-example.component.html',
   styleUrls: ['./table-example.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TableExampleComponent {
   headers = [
@@ -12,7 +12,7 @@ export class TableExampleComponent {
     'Personenkilometer (Mio. Pkm)',
     'Nettotonnenkilometer (Mio. Ntkm)',
     'Trassenkilometer (Mio. Trkm)',
-    'Personal (FTE)'
+    'Personal (FTE)',
   ];
 
   private _rows = [
@@ -23,7 +23,7 @@ export class TableExampleComponent {
       text4: 'Langer Text um zu sehen wie genau die Zelle umbricht',
       text5: '24 882',
       scope: 'row',
-      describedby: 'legend_item_1'
+      describedby: 'legend_item_1',
     },
     {
       text1: 'SZDC (CZ) *2',
@@ -32,7 +32,7 @@ export class TableExampleComponent {
       text4: '161',
       text5: '17 380',
       scope: 'row',
-      describedby: 'legend_item_2'
+      describedby: 'legend_item_2',
     },
     {
       text1: 'DB AG (DE) *3',
@@ -41,7 +41,7 @@ export class TableExampleComponent {
       text4: '1 037',
       text5: '286 237',
       scope: 'row',
-      describedby: 'legend_item_3'
+      describedby: 'legend_item_3',
     },
     {
       text1: 'FS (IT) *3',
@@ -50,7 +50,7 @@ export class TableExampleComponent {
       text4: '316',
       text5: '72 341',
       scope: 'row',
-      describedby: 'legend_item_3'
+      describedby: 'legend_item_3',
     },
     {
       text1: 'JR (JP) *3',
@@ -59,7 +59,7 @@ export class TableExampleComponent {
       text4: '693',
       text5: '127 989',
       scope: 'row',
-      describedby: 'legend_item_3'
+      describedby: 'legend_item_3',
     },
     {
       text1: 'NS (NL) *1',
@@ -68,8 +68,8 @@ export class TableExampleComponent {
       text4: '-',
       text5: '7 959',
       scope: 'row',
-      describedby: 'legend_item_1'
-    }
+      describedby: 'legend_item_1',
+    },
   ];
 
   rows = this._rows.slice();
@@ -92,7 +92,7 @@ export class TableExampleComponent {
     const value = evt.target.value;
 
     if (value !== '') {
-      this.rows = this._rows.filter(row => {
+      this.rows = this._rows.filter((row) => {
         if (row.text1.indexOf(value) !== -1) {
           return true;
         }

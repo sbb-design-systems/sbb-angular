@@ -19,32 +19,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-arrow',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconArrowLongLeftMedium {}
 
 @Component({
   selector: 'sbb-icon-arrow-long-left-medium',
-  template: `
-    <svg sbbIconArrowLongLeftMedium></svg>
-  `,
+  template: ` <svg sbbIconArrowLongLeftMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconArrowLongLeftMedium {}
 
 @NgModule({
   declarations: [SvgIconArrowLongLeftMedium, IconArrowLongLeftMedium],
-  exports: [SvgIconArrowLongLeftMedium, IconArrowLongLeftMedium]
+  exports: [SvgIconArrowLongLeftMedium, IconArrowLongLeftMedium],
 })
 export class IconArrowLongLeftMediumModule {}

@@ -7,11 +7,11 @@ import {
   DateAdapter,
   DATE_PIPE_DATE_FORMATS,
   NativeDateAdapter,
-  SBB_DATE_FORMATS
+  SBB_DATE_FORMATS,
 } from '@sbb-esta/angular-core/datetime';
 import {
   IconChevronSmallLeftModule,
-  IconChevronSmallRightModule
+  IconChevronSmallRightModule,
 } from '@sbb-esta/angular-icons/arrow';
 import { IconCalendarModule } from '@sbb-esta/angular-icons/basic';
 
@@ -22,7 +22,7 @@ import { DatepickerContentComponent } from './datepicker-content/datepicker-cont
 import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
 import {
   DatepickerComponent,
-  SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER
+  SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
 } from './datepicker/datepicker.component';
 import { MonthViewComponent } from './month-view/month-view.component';
 
@@ -34,7 +34,7 @@ import { MonthViewComponent } from './month-view/month-view.component';
     IconCalendarModule,
     PortalModule,
     A11yModule,
-    OverlayModule
+    OverlayModule,
   ],
   declarations: [
     DatepickerComponent,
@@ -44,7 +44,7 @@ import { MonthViewComponent } from './month-view/month-view.component';
     CalendarHeaderComponent,
     MonthViewComponent,
     CalendarBodyComponent,
-    DateInputDirective
+    DateInputDirective,
   ],
   exports: [
     DatepickerComponent,
@@ -54,13 +54,13 @@ import { MonthViewComponent } from './month-view/month-view.component';
     CalendarHeaderComponent,
     MonthViewComponent,
     CalendarBodyComponent,
-    DateInputDirective
+    DateInputDirective,
   ],
   providers: [
     SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
     { provide: DateAdapter, useClass: NativeDateAdapter },
-    { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS }
+    { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS },
   ],
-  entryComponents: [DatepickerContentComponent, CalendarHeaderComponent]
+  entryComponents: [DatepickerContentComponent, CalendarHeaderComponent],
 })
 export class DatepickerModule {}

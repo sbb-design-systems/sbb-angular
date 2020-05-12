@@ -18,10 +18,10 @@ describe('BusinessDateAdapter', () => {
       { input: 'Sa,01012020', expectedYear: 2020, expectedMonth: 1, expectedDay: 1 },
       { input: '01012020', expectedYear: 2020, expectedMonth: 1, expectedDay: 1 },
       { input: '010100', expectedYear: 2000, expectedMonth: 1, expectedDay: 1 },
-      { input: '01011802', expectedYear: 1802, expectedMonth: 1, expectedDay: 1 }
+      { input: '01011802', expectedYear: 1802, expectedMonth: 1, expectedDay: 1 },
     ];
 
-    params.forEach(param =>
+    params.forEach((param) =>
       expect(businessDateAdapter.parse(param.input)!.getTime()).toBe(
         new Date(param.expectedYear, param.expectedMonth - 1, param.expectedDay).getTime()
       )
@@ -37,9 +37,9 @@ describe('BusinessDateAdapter', () => {
       { input: '0000' },
       { input: '00000' },
       { input: '0000000' },
-      { input: '000000000' }
+      { input: '000000000' },
     ];
 
-    params.forEach(param => expect(businessDateAdapter.parse(param.input)).toBeNull());
+    params.forEach((param) => expect(businessDateAdapter.parse(param.input)).toBeNull());
   });
 });

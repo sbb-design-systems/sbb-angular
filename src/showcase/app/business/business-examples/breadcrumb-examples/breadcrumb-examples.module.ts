@@ -11,6 +11,6 @@ const EXAMPLES = [BreadcrumbExampleComponent];
 @NgModule({
   imports: [CommonModule, RouterModule, BreadcrumbModule, IconHouseModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class BreadcrumbExamplesModule {}

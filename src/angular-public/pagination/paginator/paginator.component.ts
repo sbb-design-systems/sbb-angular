@@ -11,7 +11,7 @@ import {
   OnInit,
   Optional,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   CanDisable,
@@ -19,7 +19,7 @@ import {
   HasInitialized,
   HasInitializedCtor,
   mixinDisabled,
-  mixinInitialized
+  mixinInitialized,
 } from '@sbb-esta/angular-core/common-behaviors';
 
 /** The default page size if there is no page size and there are no provided page size options. */
@@ -78,7 +78,7 @@ const sbbPaginatorBase: CanDisableCtor &
   styleUrls: ['./paginator.component.css'],
   inputs: ['disabled'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class SbbPaginatorComponent extends sbbPaginatorBase
   implements OnInit, CanDisable, HasInitialized {
@@ -161,7 +161,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
       return [
         0,
         null,
-        ...range(MAX_PAGE_NUMBERS_DISPLAYED + 1, m - 1 - MAX_PAGE_NUMBERS_DISPLAYED)
+        ...range(MAX_PAGE_NUMBERS_DISPLAYED + 1, m - 1 - MAX_PAGE_NUMBERS_DISPLAYED),
       ];
     } else {
       return [0, null, c - 1, c, c + 1, null, m - 1];

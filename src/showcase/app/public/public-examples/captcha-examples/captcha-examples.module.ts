@@ -11,6 +11,6 @@ const EXAMPLES = [CaptchaExampleComponent];
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, CaptchaModule, ButtonModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class CaptchaExamplesModule {}

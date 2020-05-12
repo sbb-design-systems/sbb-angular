@@ -10,6 +10,6 @@ const EXAMPLES = [EsriLayerListExampleComponent];
 @NgModule({
   imports: [CommonModule, EsriLayerListModule, EsriWebSceneModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class EsriLayerListExamplesModule {}

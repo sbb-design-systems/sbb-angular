@@ -6,6 +6,6 @@ import { KeycloakComponent } from './keycloak/keycloak.component';
 
 @NgModule({
   declarations: [KeycloakComponent],
-  imports: [CommonModule, KeycloakRoutingModule]
+  imports: [CommonModule, KeycloakRoutingModule],
 })
 export class KeycloakModule {}

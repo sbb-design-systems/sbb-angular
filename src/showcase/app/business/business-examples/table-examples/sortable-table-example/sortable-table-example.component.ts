@@ -5,7 +5,7 @@ import { TABLE_EXAMPLE_DATA } from '../table-example-data';
 
 @Component({
   selector: 'sbb-table-sort-example',
-  templateUrl: './sortable-table-example.component.html'
+  templateUrl: './sortable-table-example.component.html',
 })
 export class SortableTableExampleComponent implements AfterViewInit {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];

@@ -18,18 +18,18 @@ import {
   QueryList,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   Breakpoints,
   SCALING_FACTOR_4K,
-  SCALING_FACTOR_5K
+  SCALING_FACTOR_5K,
 } from '@sbb-esta/angular-core/breakpoints';
 import {
   DropdownComponent,
   DropdownOriginDirective,
   DropdownTriggerDirective,
-  DROPDOWN_SCROLL_STRATEGY
+  DROPDOWN_SCROLL_STRATEGY,
 } from '@sbb-esta/angular-public/dropdown';
 
 /**
@@ -55,7 +55,7 @@ export const BREADCRUMB_LEVEL_OFFSET = 60;
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.css'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent extends DropdownTriggerDirective implements AfterViewInit {
   /**

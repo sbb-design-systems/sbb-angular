@@ -103,11 +103,11 @@ const modules = [
   IconProductRxModule,
   IconProductSnModule,
   IconProductTgvModule,
-  IconProductVaeModule
+  IconProductVaeModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionTimetableProductsModule {}

@@ -8,7 +8,7 @@ import { EsriTypesService } from '../esri-types/esri-types.service';
 import { MarkerSymbolFactory } from './marker-symbol-factory/marker-symbol.factory';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GraphicService {
   private _markerSymbolFactory: MarkerSymbolFactory;
@@ -33,7 +33,7 @@ export class GraphicService {
     const markerSymbol = this._markerSymbolFactory.createCircleSymbol();
     const graphicProperties: __esri.GraphicProperties = {
       geometry: point,
-      symbol: markerSymbol
+      symbol: markerSymbol,
     };
     return new this._esri.Graphic(graphicProperties);
   }
@@ -43,7 +43,7 @@ export class GraphicService {
     const pointProperties: __esri.PointProperties = {
       x: geometry.x,
       y: geometry.y,
-      spatialReference: geometry.spatialReference
+      spatialReference: geometry.spatialReference,
     };
 
     return new this._esri.Point(pointProperties);

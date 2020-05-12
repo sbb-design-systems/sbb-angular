@@ -7,7 +7,7 @@ import {
   PAGE_DOWN,
   PAGE_UP,
   RIGHT_ARROW,
-  UP_ARROW
+  UP_ARROW,
 } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -16,7 +16,7 @@ import {
   DateAdapter,
   DATE_PIPE_DATE_FORMATS,
   NativeDateAdapter,
-  SBB_DATE_FORMATS
+  SBB_DATE_FORMATS,
 } from '@sbb-esta/angular-core/datetime';
 import { DEC, FEB, JAN, MAR, NOV } from '@sbb-esta/angular-core/testing';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
@@ -26,9 +26,7 @@ import { CalendarBodyComponent } from '../calendar-body/calendar-body.component'
 import { MonthViewComponent } from './month-view.component';
 
 @Component({
-  template: `
-    <sbb-month-view [(activeDate)]="date" [(selected)]="selected"></sbb-month-view>
-  `
+  template: ` <sbb-month-view [(activeDate)]="date" [(selected)]="selected"></sbb-month-view> `,
 })
 class StandardMonthViewComponent {
   date = new Date(2017, JAN, 5);
@@ -38,7 +36,7 @@ class StandardMonthViewComponent {
 @Component({
   template: `
     <sbb-month-view [activeDate]="activeDate" [dateFilter]="dateFilter"></sbb-month-view>
-  `
+  `,
 })
 class MonthViewWithDateFilterComponent {
   activeDate = new Date(2017, JAN, 1);
@@ -56,12 +54,12 @@ describe('MonthViewComponent', () => {
 
         // Test components.
         StandardMonthViewComponent,
-        MonthViewWithDateFilterComponent
+        MonthViewWithDateFilterComponent,
       ],
       providers: [
         { provide: DateAdapter, useClass: NativeDateAdapter },
-        { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS }
-      ]
+        { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS },
+      ],
     }).compileComponents();
   }));
 

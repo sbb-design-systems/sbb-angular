@@ -8,9 +8,7 @@ import { SocialLinkComponent } from './social-link.component';
 
 @Component({
   selector: 'sbb-test-social-link',
-  template: `
-    <a sbbSocialLink [mode]="mode" [icon]="icon">test</a>
-  `
+  template: ` <a sbbSocialLink [mode]="mode" [icon]="icon">test</a> `,
 })
 class TestSocialLinkComponent {
   icon: 'facebook' | 'instagram' | 'linkedin' | 'pinterest' | 'twitter' | 'xing' | 'youtube';
@@ -23,7 +21,7 @@ describe('SocialLinkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestSocialLinkComponent],
-      imports: [LinksModule]
+      imports: [LinksModule],
     }).compileComponents();
   }));
 

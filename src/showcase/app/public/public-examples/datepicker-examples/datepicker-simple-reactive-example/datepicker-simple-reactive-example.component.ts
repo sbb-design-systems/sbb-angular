@@ -5,7 +5,7 @@ import { SbbDateInputEvent } from '@sbb-esta/angular-public/datepicker';
 
 @Component({
   selector: 'sbb-datepicker-simple-reactive-example',
-  templateUrl: './datepicker-simple-reactive-example.component.html'
+  templateUrl: './datepicker-simple-reactive-example.component.html',
 })
 export class DatepickerSimpleReactiveExampleComponent {
   formGroup = new FormGroup({ date: new FormControl(new Date()) });

@@ -3,7 +3,7 @@ import {
   ComponentPortal,
   ComponentType,
   PortalInjector,
-  TemplatePortal
+  TemplatePortal,
 } from '@angular/cdk/portal';
 import { Location } from '@angular/common';
 import {
@@ -14,7 +14,7 @@ import {
   OnDestroy,
   Optional,
   SkipSelf,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
@@ -46,7 +46,7 @@ export function SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY(
 export const DIALOG_SCROLL_STRATEGY_PROVIDER = {
   provide: DIALOG_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY
+  useFactory: SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
 /**
@@ -152,7 +152,7 @@ export class Dialog implements OnDestroy {
    * @returns Dialog reference associated to the input id.
    */
   getDialogById(id: string): DialogRef<any> | undefined {
-    return this.openDialogs.find(dialog => dialog.id === id);
+    return this.openDialogs.find((dialog) => dialog.id === id);
   }
 
   ngOnDestroy() {
@@ -190,7 +190,7 @@ export class Dialog implements OnDestroy {
       minHeight: dialogConfig.minHeight,
       maxHeight: dialogConfig.maxHeight,
       width: dialogConfig.width,
-      height: dialogConfig.height
+      height: dialogConfig.height,
     });
   }
 
@@ -242,7 +242,7 @@ export class Dialog implements OnDestroy {
       dialogContainer.attachTemplatePortal(
         new TemplatePortal<T>(componentOrTemplateRef, null!, <any>{
           $implicit: config.data,
-          dialogRef
+          dialogRef,
         })
       );
     } else {
@@ -280,7 +280,7 @@ export class Dialog implements OnDestroy {
     const injectionTokens = new WeakMap<any, any>([
       [DialogContainerComponent, dialogContainer],
       [DIALOG_DATA, config.data],
-      [DialogRef, dialogRef]
+      [DialogRef, dialogRef],
     ]);
 
     return new PortalInjector(userInjector || this._injector, injectionTokens);

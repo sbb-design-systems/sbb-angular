@@ -8,26 +8,26 @@ const tagItems: Tag[] = [
     id: 'tag-1',
     label: 'Services',
     amount: 8,
-    selected: false
+    selected: false,
   },
   {
     id: 'tag-2',
     label: 'Restaurants / Take Away',
     amount: 9,
-    selected: false
+    selected: false,
   },
   {
     id: 'tag-3',
     label: 'Blumen',
     amount: 10,
-    selected: false
+    selected: false,
   },
   {
     id: 'tag-4',
     label: 'Elektronik / Musik / Foto',
     amount: 11,
-    selected: false
-  }
+    selected: false,
+  },
 ];
 
 const tagItems2: Tag[] = [
@@ -35,33 +35,33 @@ const tagItems2: Tag[] = [
     id: 'tag-2-1',
     label: 'Services',
     amount: 8,
-    selected: false
+    selected: false,
   },
   {
     id: 'tag-2-2',
     label: 'Restaurants / Take Away',
     amount: 9,
-    selected: false
+    selected: false,
   },
   {
     id: 'tag-2-3',
     label: 'Blumen',
     amount: 10,
-    selected: false
+    selected: false,
   },
   {
     id: 'tag-2-4',
     label: 'Elektronik / Musik / Foto',
     amount: 11,
-    selected: false
-  }
+    selected: false,
+  },
 ];
 
 @Component({
   selector: 'sbb-tag-example',
   templateUrl: './tag-example.component.html',
   styleUrls: ['./tag-example.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TagExampleComponent implements OnInit, OnDestroy {
   form: FormGroup;
@@ -82,7 +82,7 @@ export class TagExampleComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.form = this._formBuilder.group({
-      tags: this.buildTags()
+      tags: this.buildTags(),
     });
 
     this._tagFormSubscription = this.subscribeOnTags();
@@ -105,19 +105,19 @@ export class TagExampleComponent implements OnInit, OnDestroy {
   }
 
   subscribeOnChangeAmount(): Subscription {
-    return this.changeAmount.valueChanges.subscribe(val => {
+    return this.changeAmount.valueChanges.subscribe((val) => {
       this.tagItems[0].amount = val;
     });
   }
 
   subscribeOnChangeAmountReactive(): Subscription {
-    return this.changeAmountReactive.valueChanges.subscribe(val => {
+    return this.changeAmountReactive.valueChanges.subscribe((val) => {
       this.tagItemsReactive[0].amount = val;
     });
   }
 
   buildTags(): FormArray {
-    const arr = this.tagItemsReactive.map(tag => {
+    const arr = this.tagItemsReactive.map((tag) => {
       return this._formBuilder.control(tag.selected);
     });
 
@@ -140,7 +140,7 @@ export class TagExampleComponent implements OnInit, OnDestroy {
     const itemToAdd: Tag = {
       label: 'New Item',
       amount: 20,
-      selected: true
+      selected: true,
     };
 
     switch (mode) {

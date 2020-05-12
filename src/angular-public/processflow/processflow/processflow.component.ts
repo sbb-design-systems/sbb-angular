@@ -4,7 +4,7 @@ import {
   Component,
   ContentChildren,
   QueryList,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { ProcessflowBase } from '@sbb-esta/angular-core/base/processflow';
 
@@ -15,7 +15,7 @@ import { ProcessflowStepComponent } from '../processflow-step/processflow-step.c
   templateUrl: './processflow.component.html',
   styleUrls: ['./processflow.component.css'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepComponent> {
   /** @docs-private */

@@ -20,9 +20,9 @@ const EXAMPLES = [NotificationExampleComponent];
     IconClockModule,
     IconCloudSunshineModule,
     FieldModule,
-    NotificationModule
+    NotificationModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class NotificationExamplesModule {}

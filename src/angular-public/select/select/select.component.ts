@@ -10,14 +10,14 @@ import {
   LEFT_ARROW,
   RIGHT_ARROW,
   SPACE,
-  UP_ARROW
+  UP_ARROW,
 } from '@angular/cdk/keycodes';
 import {
   CdkConnectedOverlay,
   ConnectedPosition,
   Overlay,
   RepositionScrollStrategy,
-  ScrollStrategy
+  ScrollStrategy,
 } from '@angular/cdk/overlay';
 import {
   AfterContentInit,
@@ -45,13 +45,13 @@ import {
   Self,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
   CanUpdateErrorState,
   CanUpdateErrorStateCtor,
-  mixinErrorState
+  mixinErrorState,
 } from '@sbb-esta/angular-core/common-behaviors';
 import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
@@ -62,7 +62,7 @@ import {
   OptionComponent,
   OptionGroupComponent,
   SBBOptionSelectionChange,
-  SBB_OPTION_PARENT_COMPONENT
+  SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular-public/option';
 import { defer, merge, Observable, Subject } from 'rxjs';
 import { filter, first, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
@@ -118,7 +118,7 @@ export function SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY(
 export const SBB_SELECT_SCROLL_STRATEGY_PROVIDER = {
   provide: SBB_SELECT_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY
+  useFactory: SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
 /** Change event object that is emitted when the select value has changed. */
@@ -156,8 +156,8 @@ export const SbbSelectMixinBase: CanUpdateErrorStateCtor & typeof SbbSelectBase 
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: FormFieldControl, useExisting: SelectComponent },
-    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent }
-  ]
+    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent },
+  ],
 })
 export class SelectComponent extends SbbSelectMixinBase
   implements
@@ -318,7 +318,7 @@ export class SelectComponent extends SbbSelectMixinBase
   /** Combined stream of all of the child options' change events. */
   readonly optionSelectionChanges: Observable<SBBOptionSelectionChange> = defer(() => {
     if (this.options) {
-      return merge(...this.options.map(option => option.onSelectionChange));
+      return merge(...this.options.map((option) => option.onSelectionChange));
     }
 
     return this._ngZone.onStable.asObservable().pipe(
@@ -332,13 +332,13 @@ export class SelectComponent extends SbbSelectMixinBase
 
   /** Event emitted when the select has been opened. */
   @Output() readonly opened: Observable<void> = this.openedChange.pipe(
-    filter(o => o),
+    filter((o) => o),
     map(() => {})
   );
 
   /** Event emitted when the select has been closed. */
   @Output() readonly closed: Observable<void> = this.openedChange.pipe(
-    filter(o => !o),
+    filter((o) => !o),
     map(() => {})
   );
 
@@ -381,14 +381,14 @@ export class SelectComponent extends SbbSelectMixinBase
       originX: 'start',
       originY: 'bottom',
       overlayX: 'start',
-      overlayY: 'top'
+      overlayY: 'top',
     },
     {
       originX: 'start',
       originY: 'top',
       overlayX: 'start',
-      overlayY: 'bottom'
-    }
+      overlayY: 'bottom',
+    },
   ];
 
   /** Flag used to rotate the icon on the select trigger  */
@@ -572,9 +572,9 @@ export class SelectComponent extends SbbSelectMixinBase
     this._initKeyManager();
 
     // tslint:disable-next-line:no-non-null-assertion
-    this.selectionModel.changed!.pipe(takeUntil(this._destroy)).subscribe(event => {
-      event.added.forEach(option => option.select());
-      event.removed.forEach(option => option.deselect());
+    this.selectionModel.changed!.pipe(takeUntil(this._destroy)).subscribe((event) => {
+      event.added.forEach((option) => option.select());
+      event.removed.forEach((option) => option.deselect());
     });
 
     this.options.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
@@ -721,7 +721,7 @@ export class SelectComponent extends SbbSelectMixinBase
     }
 
     if (this._multiple) {
-      const selectedOptions = this.selectionModel.selected.map(option => option.viewValue);
+      const selectedOptions = this.selectionModel.selected.map((option) => option.viewValue);
 
       return selectedOptions.join(', ');
     }
@@ -774,9 +774,9 @@ export class SelectComponent extends SbbSelectMixinBase
       manager.activeItem.selectViaInteraction();
     } else if (this._multiple && keyCode === A && event.ctrlKey) {
       event.preventDefault();
-      const hasDeselectedOptions = this.options.some(opt => !opt.disabled && !opt.selected);
+      const hasDeselectedOptions = this.options.some((opt) => !opt.disabled && !opt.selected);
 
-      this.options.forEach(option => {
+      this.options.forEach((option) => {
         if (!option.disabled) {
           hasDeselectedOptions ? option.select() : option.deselect();
         }
@@ -825,7 +825,7 @@ export class SelectComponent extends SbbSelectMixinBase
    * Callback that is invoked when the overlay panel has been attached.
    */
   onAttached(): void {
-    this.overlayDir.positionChange.pipe(first()).subscribe(positions => {
+    this.overlayDir.positionChange.pipe(first()).subscribe((positions) => {
       if (positions.connectionPair.originY === 'top') {
         this.panel.nativeElement.classList.add('sbb-select-panel-above');
         this.trigger.nativeElement.classList.add('sbb-select-input-above');
@@ -959,7 +959,7 @@ export class SelectComponent extends SbbSelectMixinBase
   private _resetOptions(): void {
     const changedOrDestroyed = merge(this.options.changes, this._destroy);
 
-    this.optionSelectionChanges.pipe(takeUntil(changedOrDestroyed)).subscribe(event => {
+    this.optionSelectionChanges.pipe(takeUntil(changedOrDestroyed)).subscribe((event) => {
       this._onSelect(event.source, event.isUserInput);
 
       if (event.isUserInput && !this.multiple && this._panelOpen) {
@@ -970,7 +970,7 @@ export class SelectComponent extends SbbSelectMixinBase
 
     // Listen to changes in the internal state of the options and react accordingly.
     // Handles cases like the labels of the selected options changing.
-    merge(...this.options.map(option => option.stateChanges))
+    merge(...this.options.map((option) => option.stateChanges))
       .pipe(takeUntil(changedOrDestroyed))
       .subscribe(() => {
         this._changeDetectorRef.markForCheck();
@@ -1029,7 +1029,7 @@ export class SelectComponent extends SbbSelectMixinBase
     let valueToEmit: any = null;
 
     if (this.multiple) {
-      valueToEmit = (this.selected as OptionComponent[]).map(option => option.value);
+      valueToEmit = (this.selected as OptionComponent[]).map((option) => option.value);
     } else {
       valueToEmit = this.selected ? (this.selected as OptionComponent).value : fallbackValue;
     }
@@ -1043,7 +1043,7 @@ export class SelectComponent extends SbbSelectMixinBase
 
   /** Records option IDs to pass to the aria-owns property. */
   private _setOptionIds() {
-    this.optionIds = this.options.map(option => option.id).join(' ');
+    this.optionIds = this.options.map((option) => option.id).join(' ');
   }
 
   /**

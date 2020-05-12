@@ -29,7 +29,7 @@ import { CheckboxPanelComponent } from './checkbox-panel.component';
     >
       Test option selection 2
     </sbb-checkbox-panel>
-  `
+  `,
 })
 class ModelOptionSelectionMultipleTestComponent {
   checkValue1 = false;
@@ -44,7 +44,7 @@ describe('CheckboxPanelComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, CheckboxPanelModule],
-      declarations: [ModelOptionSelectionMultipleTestComponent]
+      declarations: [ModelOptionSelectionMultipleTestComponent],
     }).compileComponents();
   }));
 
@@ -70,7 +70,7 @@ describe('CheckboxPanelComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, CheckboxPanelModule],
-      declarations: [ModelOptionSelectionMultipleTestComponent]
+      declarations: [ModelOptionSelectionMultipleTestComponent],
     }).compileComponents();
   }));
 
@@ -104,13 +104,13 @@ describe('CheckboxPanelComponent using mock component', () => {
     opt1.toggle();
     modelComponentFixture.detectChanges();
 
-    let checkedComponents = modelComponent.optionSelections.filter(o => !!o.checked);
+    let checkedComponents = modelComponent.optionSelections.filter((o) => !!o.checked);
     expect(checkedComponents.length).toBe(1);
 
     opt2.toggle();
     modelComponentFixture.detectChanges();
 
-    checkedComponents = modelComponent.optionSelections.filter(o => !!o.checked);
+    checkedComponents = modelComponent.optionSelections.filter((o) => !!o.checked);
     expect(checkedComponents.length).toBe(2);
   });
 

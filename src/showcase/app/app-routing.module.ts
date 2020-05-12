@@ -5,40 +5,40 @@ import { IntroductionComponent } from './introduction/introduction.component';
 const routes: Routes = [
   {
     path: '',
-    component: IntroductionComponent
+    component: IntroductionComponent,
   },
   {
     path: 'business',
-    loadChildren: () => import('./business/business.module').then(m => m.BusinessModule)
+    loadChildren: () => import('./business/business.module').then((m) => m.BusinessModule),
   },
   {
     path: 'core',
-    loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
+    loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
   },
   {
     path: 'icons',
-    loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule)
+    loadChildren: () => import('./icons/icons.module').then((m) => m.IconsModule),
   },
   {
     path: 'keycloak',
-    loadChildren: () => import('./keycloak/keycloak.module').then(m => m.KeycloakModule)
+    loadChildren: () => import('./keycloak/keycloak.module').then((m) => m.KeycloakModule),
   },
   {
     path: 'public',
-    loadChildren: () => import('./public/public.module').then(m => m.PublicModule)
+    loadChildren: () => import('./public/public.module').then((m) => m.PublicModule),
   },
   {
     path: 'maps',
-    loadChildren: () => import('./maps/maps.module').then(m => m.MapsModule)
+    loadChildren: () => import('./maps/maps.module').then((m) => m.MapsModule),
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

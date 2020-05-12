@@ -5,7 +5,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-autocomplete-option-group-example',
-  templateUrl: './autocomplete-option-group-example.component.html'
+  templateUrl: './autocomplete-option-group-example.component.html',
 })
 export class AutocompleteOptionGroupExampleComponent implements OnInit {
   myControlStatic = new FormControl('');
@@ -22,7 +22,7 @@ export class AutocompleteOptionGroupExampleComponent implements OnInit {
     'Sieben',
     'Acht',
     'Neun',
-    'Zehn'
+    'Zehn',
   ];
   staticOptions: string[] = ['statische Option eins', 'statische Option zwei'];
 
@@ -30,11 +30,11 @@ export class AutocompleteOptionGroupExampleComponent implements OnInit {
     this.myControlStatic.valueChanges
       .pipe(debounceTime(500))
       .pipe(distinctUntilChanged())
-      .subscribe(newValue => {
+      .subscribe((newValue) => {
         if (newValue.length >= 2) {
           this.options$.next(
             this.options.filter(
-              option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+              (option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
             )
           );
         } else {

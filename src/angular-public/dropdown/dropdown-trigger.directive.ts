@@ -8,7 +8,7 @@ import {
   LEFT_ARROW,
   RIGHT_ARROW,
   SPACE,
-  UP_ARROW
+  UP_ARROW,
 } from '@angular/cdk/keycodes';
 import {
   ConnectedPosition,
@@ -17,7 +17,7 @@ import {
   OverlayConfig,
   OverlayRef,
   PositionStrategy,
-  ScrollStrategy
+  ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewportRuler } from '@angular/cdk/scrolling';
@@ -35,7 +35,7 @@ import {
   NgZone,
   OnDestroy,
   Optional,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
@@ -45,14 +45,14 @@ import {
   Observable,
   of as observableOf,
   Subject,
-  Subscription
+  Subscription,
 } from 'rxjs';
 import { delay, filter, first, map, switchMap, take, tap } from 'rxjs/operators';
 
 import {
   DropdownItemDirective,
   DropdownSelectionChange,
-  getDropdownItemScrollPosition
+  getDropdownItemScrollPosition,
 } from './dropdown-item.directive';
 import { DropdownOriginDirective } from './dropdown-origin.directive';
 import { DropdownComponent } from './dropdown/dropdown.component';
@@ -88,7 +88,7 @@ export const DROPDOWN_PANEL_HEIGHT = 404;
 export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: DROPDOWN_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY
+  useFactory: SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY,
 };
 
 const panelPositionNames: { [key: string]: ConnectedPosition } = {
@@ -96,26 +96,26 @@ const panelPositionNames: { [key: string]: ConnectedPosition } = {
     originX: 'end',
     originY: 'bottom',
     overlayX: 'end',
-    overlayY: 'top'
+    overlayY: 'top',
   },
   TOP_LEFT: {
     originX: 'end',
     originY: 'top',
     overlayX: 'end',
-    overlayY: 'bottom'
+    overlayY: 'bottom',
   },
   BOTTOM_RIGHT: {
     originX: 'start',
     originY: 'bottom',
     overlayX: 'start',
-    overlayY: 'top'
+    overlayY: 'top',
   },
   TOP_RIGHT: {
     originX: 'start',
     originY: 'top',
     overlayX: 'start',
-    overlayY: 'bottom'
-  }
+    overlayY: 'bottom',
+  },
 };
 
 const panelPositionMappings: { [key: string]: ConnectedPosition[] } = {
@@ -125,14 +125,14 @@ const panelPositionMappings: { [key: string]: ConnectedPosition[] } = {
     panelPositionNames.BOTTOM_LEFT,
     panelPositionNames.TOP_LEFT,
     panelPositionNames.BOTTOM_RIGHT,
-    panelPositionNames.TOP_RIGHT
+    panelPositionNames.TOP_RIGHT,
   ],
   'prefer-right': [
     panelPositionNames.BOTTOM_RIGHT,
     panelPositionNames.TOP_RIGHT,
     panelPositionNames.BOTTOM_LEFT,
-    panelPositionNames.TOP_LEFT
-  ]
+    panelPositionNames.TOP_LEFT,
+  ],
 };
 
 @Directive({
@@ -142,9 +142,9 @@ const panelPositionMappings: { [key: string]: ConnectedPosition[] } = {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DropdownTriggerDirective),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class DropdownTriggerDirective implements OnDestroy {
   /** Role on a dropdown trigger. */
@@ -195,7 +195,7 @@ export class DropdownTriggerDirective implements OnDestroy {
         : observableOf()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map(event => (event instanceof DropdownSelectionChange ? event : null))
+      map((event) => (event instanceof DropdownSelectionChange ? event : null))
     );
   }
 
@@ -234,7 +234,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   /** Stream of dropdown option selections. */
   readonly optionSelections: Observable<DropdownSelectionChange> = defer(() => {
     if (this.dropdown && this.dropdown.options) {
-      return merge(...this.dropdown.options.map(option => option.selectionChange));
+      return merge(...this.dropdown.options.map((option) => option.selectionChange));
     }
 
     // If there are any subscribers before `ngAfterViewInit`, the `dropdown` will be undefined.
@@ -385,7 +385,7 @@ export class DropdownTriggerDirective implements OnDestroy {
       fromEvent<MouseEvent>(this._document, 'click'),
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
-      filter(event => {
+      filter((event) => {
         const clickTarget = event.target as HTMLElement;
 
         return (
@@ -460,7 +460,7 @@ export class DropdownTriggerDirective implements OnDestroy {
           first()
         )
         // set the value, close the panel, and complete.
-        .subscribe(event => this._setValueAndClose(event))
+        .subscribe((event) => this._setValueAndClose(event))
     );
   }
 
@@ -492,7 +492,7 @@ export class DropdownTriggerDirective implements OnDestroy {
    * Clear any previous selected option and emit a selection change event for this option
    */
   private _clearPreviousSelectedOption(skip: DropdownItemDirective) {
-    this.dropdown.options.forEach(item => {
+    this.dropdown.options.forEach((item) => {
       // tslint:disable-next-line:triple-equals
       if (item != skip && item.selected) {
         item.deselect();
@@ -509,34 +509,40 @@ export class DropdownTriggerDirective implements OnDestroy {
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       if (this._positionStrategy) {
-        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(position => {
-          if (this.dropdown.panel) {
-            if (position.connectionPair.originY === 'top') {
-              this.dropdown.panel.nativeElement.classList.add('sbb-dropdown-panel-above');
-              this._getConnectedElement().nativeElement.classList.add('sbb-dropdown-trigger-above');
-            } else {
-              this.dropdown.panel.nativeElement.classList.remove('sbb-dropdown-panel-above');
-              this._getConnectedElement().nativeElement.classList.remove(
-                'sbb-dropdown-trigger-above'
-              );
-            }
+        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(
+          (position) => {
+            if (this.dropdown.panel) {
+              if (position.connectionPair.originY === 'top') {
+                this.dropdown.panel.nativeElement.classList.add('sbb-dropdown-panel-above');
+                this._getConnectedElement().nativeElement.classList.add(
+                  'sbb-dropdown-trigger-above'
+                );
+              } else {
+                this.dropdown.panel.nativeElement.classList.remove('sbb-dropdown-panel-above');
+                this._getConnectedElement().nativeElement.classList.remove(
+                  'sbb-dropdown-trigger-above'
+                );
+              }
 
-            if (position.connectionPair.originX === 'end') {
-              this.dropdown.panel.nativeElement.classList.add('sbb-dropdown-panel-left');
-              this._getConnectedElement().nativeElement.classList.add('sbb-dropdown-trigger-left');
-            } else {
-              this.dropdown.panel.nativeElement.classList.remove('sbb-dropdown-panel-left');
-              this._getConnectedElement().nativeElement.classList.remove(
-                'sbb-dropdown-trigger-left'
-              );
+              if (position.connectionPair.originX === 'end') {
+                this.dropdown.panel.nativeElement.classList.add('sbb-dropdown-panel-left');
+                this._getConnectedElement().nativeElement.classList.add(
+                  'sbb-dropdown-trigger-left'
+                );
+              } else {
+                this.dropdown.panel.nativeElement.classList.remove('sbb-dropdown-panel-left');
+                this._getConnectedElement().nativeElement.classList.remove(
+                  'sbb-dropdown-trigger-left'
+                );
+              }
             }
           }
-        });
+        );
       }
 
       // Use the `keydownEvents` in order to take advantage of
       // the overlay event targeting provided by the CDK overlay.
-      this._overlayRef.keydownEvents().subscribe(event => {
+      this._overlayRef.keydownEvents().subscribe((event) => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
         if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
@@ -580,7 +586,7 @@ export class DropdownTriggerDirective implements OnDestroy {
       scrollStrategy: this._scrollStrategy(),
       width: this._getPanelWidth(),
       panelClass: [this.panelClass, 'sbb-overlay-panel'],
-      minHeight: 30
+      minHeight: 30,
     });
   }
 

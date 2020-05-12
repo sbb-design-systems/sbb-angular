@@ -7,11 +7,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import {
   createMouseEvent,
   dispatchEvent,
-  dispatchMouseEvent
+  dispatchMouseEvent,
 } from '@sbb-esta/angular-core/testing';
 import {
   IconChevronRightModule,
-  IconChevronSmallDownCircleModule
+  IconChevronSmallDownCircleModule,
 } from '@sbb-esta/angular-icons/arrow';
 import { IconHouseModule } from '@sbb-esta/angular-icons/navigation';
 import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
@@ -38,7 +38,7 @@ import { BreadcrumbsComponent } from './breadcrumbs.component';
         <a routerLink="." [queryParams]="{ level: '2' }" routerLinkActive="sbb-selected">Level 2</a>
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
-  `
+  `,
 })
 export class BreadcrumbsTestComponent {}
 
@@ -92,7 +92,7 @@ export class BreadcrumbsTestComponent {}
         </sbb-dropdown>
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
-  `
+  `,
 })
 export class BreadcrumbsTest2Component {}
 
@@ -126,7 +126,7 @@ export class BreadcrumbsTest2Component {}
         </sbb-dropdown>
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
-  `
+  `,
 })
 export class BreadcrumbsTest3Component {}
 
@@ -141,8 +141,8 @@ describe('BreadcrumbsComponent', () => {
         CommonModule,
         DropdownModule,
         IconChevronRightModule,
-        IconChevronSmallDownCircleModule
-      ]
+        IconChevronSmallDownCircleModule,
+      ],
     }).compileComponents();
   }));
 
@@ -167,7 +167,7 @@ describe('Breadcrumb behaviour Test', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHouseModule],
-      declarations: [BreadcrumbsTestComponent]
+      declarations: [BreadcrumbsTestComponent],
     }).compileComponents();
   }));
 
@@ -275,9 +275,9 @@ describe('Breadcrumb behaviour Test 2', () => {
         RouterTestingModule,
         CommonModule,
         IconHouseModule,
-        DropdownModule
+        DropdownModule,
       ],
-      declarations: [BreadcrumbsTest2Component]
+      declarations: [BreadcrumbsTest2Component],
     }).compileComponents();
   }));
 
@@ -443,9 +443,9 @@ describe('Breadcrumb behaviour Test 3', () => {
         RouterTestingModule,
         CommonModule,
         IconHouseModule,
-        DropdownModule
+        DropdownModule,
       ],
-      declarations: [BreadcrumbsTest3Component]
+      declarations: [BreadcrumbsTest3Component],
     }).compileComponents();
   }));
 

@@ -6,7 +6,7 @@ import { from, Observable, of } from 'rxjs';
 import { KEYCLOAK_LOGIN_OPTIONS } from './auth.tokens';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   keycloak: KeycloakInstance;

@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 @Component({
   selector: 'svg[sbbIconPlusMedium]',
-  template: `
-    <svg:path fill="none" stroke="#000" d="M17.25 31.5V6M30 18.75H4.5" />
-  `,
+  template: ` <svg:path fill="none" stroke="#000" d="M17.25 31.5V6M30 18.75H4.5" /> `,
   styles: [
     `
       :host-context(.sbb-icon-fixed-size) {
@@ -19,32 +17,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-navigation',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconPlusMedium {}
 
 @Component({
   selector: 'sbb-icon-plus-medium',
-  template: `
-    <svg sbbIconPlusMedium></svg>
-  `,
+  template: ` <svg sbbIconPlusMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconPlusMedium {}
 
 @NgModule({
   declarations: [SvgIconPlusMedium, IconPlusMedium],
-  exports: [SvgIconPlusMedium, IconPlusMedium]
+  exports: [SvgIconPlusMedium, IconPlusMedium],
 })
 export class IconPlusMediumModule {}

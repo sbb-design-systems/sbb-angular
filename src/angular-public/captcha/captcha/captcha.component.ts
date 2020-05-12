@@ -15,7 +15,7 @@ import {
   NgZone,
   OnDestroy,
   Optional,
-  Output
+  Output,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -33,10 +33,10 @@ let nextId = 0;
     {
       multi: true,
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CaptchaComponent)
-    }
+      useExisting: forwardRef(() => CaptchaComponent),
+    },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
   /**
@@ -220,7 +220,7 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueA
       size: this.size,
       tabindex: this.tabIndex,
       theme: this.theme,
-      type: this.type
+      type: this.type,
     });
 
     if (this._executeRequested === true) {

@@ -10,7 +10,7 @@ describe('EsriLegendComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EsriLegendComponent],
-      providers: [EsriTypesService]
+      providers: [EsriTypesService],
     }).compileComponents();
   }));
 

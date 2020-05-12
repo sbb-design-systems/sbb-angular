@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { EsriLoaderService } from '@sbb-esta/angular-maps/esri-config';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EsriTypesService {
   private _point: __esri.PointConstructor;
@@ -97,7 +97,7 @@ export class EsriTypesService {
         this._legend,
         this._webMap,
         this._mapView,
-        this._extent
+        this._extent,
       ] = await this._loader.load<
         __esri.PointConstructor,
         __esri.GraphicConstructor,
@@ -123,7 +123,7 @@ export class EsriTypesService {
         'esri/widgets/Legend',
         'esri/WebMap',
         'esri/views/MapView',
-        'esri/geometry/Extent'
+        'esri/geometry/Extent',
       ]);
     }
   }

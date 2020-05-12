@@ -10,7 +10,7 @@ describe('EsriLayerListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EsriLayerListComponent],
-      providers: [EsriTypesService]
+      providers: [EsriTypesService],
     }).compileComponents();
   }));
 

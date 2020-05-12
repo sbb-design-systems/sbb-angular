@@ -42,7 +42,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconSwisspassTemporaryComponent extends IconBase {
   constructor() {
@@ -53,6 +53,6 @@ export class IconSwisspassTemporaryComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconSwisspassTemporaryComponent],
-  exports: [IconSwisspassTemporaryComponent]
+  exports: [IconSwisspassTemporaryComponent],
 })
 export class IconSwisspassTemporaryModule {}

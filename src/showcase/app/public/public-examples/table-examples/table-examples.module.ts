@@ -20,9 +20,9 @@ const EXAMPLES = [TableExampleComponent];
     FieldModule,
     RadioButtonModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class TableExamplesModule {}

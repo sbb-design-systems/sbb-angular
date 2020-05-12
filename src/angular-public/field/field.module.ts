@@ -9,6 +9,6 @@ import { LabelComponent } from './label/label.component';
 @NgModule({
   imports: [CommonModule, InputModule],
   declarations: [FieldComponent, FormErrorDirective, LabelComponent],
-  exports: [FieldComponent, FormErrorDirective, LabelComponent, InputModule]
+  exports: [FieldComponent, FormErrorDirective, LabelComponent, InputModule],
 })
 export class FieldModule {}

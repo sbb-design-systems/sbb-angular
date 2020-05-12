@@ -7,7 +7,7 @@ import { GraphicService } from './graphic.service';
 describe('GraphicService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [GraphicService, EsriTypesService]
+      providers: [GraphicService, EsriTypesService],
     })
   );
 

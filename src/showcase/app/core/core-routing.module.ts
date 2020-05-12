@@ -16,34 +16,34 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'introduction/getting-started',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'core' }
+        data: { library: 'core' },
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'core' }
+        data: { library: 'core' },
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'core' }
+        data: { library: 'core' },
       },
       {
         path: 'api/:id',
         component: ApiViewerComponent,
-        data: { library: 'core' }
-      }
-    ]
-  }
+        data: { library: 'core' },
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class CoreRoutingModule {}

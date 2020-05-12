@@ -6,7 +6,7 @@ import {
   forwardRef,
   HostBinding,
   NgZone,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
@@ -20,15 +20,15 @@ import { first } from 'rxjs/operators';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ToggleComponent),
-      multi: true
+      multi: true,
     },
     {
       provide: RadioGroupDirective,
-      useExisting: ToggleComponent
-    }
+      useExisting: ToggleComponent,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ToggleComponent extends RadioGroupDirective
   implements ControlValueAccessor, AfterContentInit {
@@ -45,7 +45,7 @@ export class ToggleComponent extends RadioGroupDirective
     this._zone.onStable.pipe(first()).subscribe(() =>
       this._zone.run(() => {
         this._checkNumOfOptions();
-        if (this._radios.toArray().every(r => this.value !== r.value)) {
+        if (this._radios.toArray().every((r) => this.value !== r.value)) {
           this.value = this._radios.first.value;
         }
       })

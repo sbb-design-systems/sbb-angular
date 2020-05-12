@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
   IconCircleInformationModule,
-  IconSignExclamationPointModule
+  IconSignExclamationPointModule,
 } from '@sbb-esta/angular-icons/basic';
 import createSpy = jasmine.createSpy;
 import Spy = jasmine.Spy;
@@ -17,7 +17,7 @@ import { NotificationComponent, NotificationType } from './notification.componen
 @Component({
   selector: 'sbb-notification-mock',
   template:
-    '<sbb-notification [type]="type" [jumpMarks]="jumpMarks" (dismissed)="dismissed($event)" [readonly]="readonly">{{message}}</sbb-notification>'
+    '<sbb-notification [type]="type" [jumpMarks]="jumpMarks" (dismissed)="dismissed($event)" [readonly]="readonly">{{message}}</sbb-notification>',
 })
 export class NotificationMockComponent {
   message = 'Suchen';
@@ -41,9 +41,9 @@ describe('NotificationComponent', () => {
           IconCrossModule,
           IconTickModule,
           IconSignExclamationPointModule,
-          IconCircleInformationModule
+          IconCircleInformationModule,
         ],
-        declarations: [NotificationComponent]
+        declarations: [NotificationComponent],
       }).compileComponents();
     }));
 
@@ -70,9 +70,9 @@ describe('NotificationComponent', () => {
           IconCrossModule,
           IconTickModule,
           IconSignExclamationPointModule,
-          IconCircleInformationModule
+          IconCircleInformationModule,
         ],
-        declarations: [NotificationComponent, NotificationMockComponent]
+        declarations: [NotificationComponent, NotificationMockComponent],
       }).compileComponents();
     }));
 
@@ -132,7 +132,7 @@ describe('NotificationComponent', () => {
 
       testComponent.jumpMarks = [
         { elementId: '#here', title: 'Here' },
-        { elementId: '#there', title: 'There' }
+        { elementId: '#there', title: 'There' },
       ];
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(
@@ -169,7 +169,7 @@ describe('NotificationComponent', () => {
         By.css('.sbb-notification-jump-mark > a')
       );
       notificationLink.triggerEventHandler('click', {
-        preventDefault: createSpy('prevent-default-mock')
+        preventDefault: createSpy('prevent-default-mock'),
       });
       expect(callbackMock).toHaveBeenCalled();
     });

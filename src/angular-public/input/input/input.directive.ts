@@ -13,7 +13,7 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  Self
+  Self,
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { CanUpdateErrorStateCtor, mixinErrorState } from '@sbb-esta/angular-core/common-behaviors';
@@ -32,7 +32,7 @@ const SBB_INPUT_INVALID_TYPES = [
   'radio',
   'range',
   'reset',
-  'submit'
+  'submit',
 ];
 
 /** @docs-private */
@@ -52,7 +52,7 @@ export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof InputBase = mi
 @Directive({
   selector: 'input[sbbInput], select[sbbInput], textarea[sbbInput]',
   exportAs: 'sbbInput',
-  providers: [{ provide: FormFieldControl, useExisting: InputDirective }]
+  providers: [{ provide: FormFieldControl, useExisting: InputDirective }],
 })
 export class InputDirective extends SbbNativeInputBase
   implements FormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
@@ -216,8 +216,8 @@ export class InputDirective extends SbbNativeInputBase
     'datetime-local',
     'month',
     'time',
-    'week'
-  ].filter(t => getSupportedInputTypes().has(t));
+    'week',
+  ].filter((t) => getSupportedInputTypes().has(t));
 
   constructor(
     /** @docs-private */
@@ -245,7 +245,7 @@ export class InputDirective extends SbbNativeInputBase
 
   ngOnInit() {
     if (this._platform.isBrowser) {
-      this._autofillMonitor.monitor(this._elementRef.nativeElement).subscribe(event => {
+      this._autofillMonitor.monitor(this._elementRef.nativeElement).subscribe((event) => {
         this.autofilled = event.isAutofilled;
         this.stateChanges.next();
       });

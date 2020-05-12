@@ -19,9 +19,9 @@ const EXAMPLES = [GhettoboxExampleComponent];
     IconHimReplacementbusModule,
     IconHimConstructionModule,
     GhettoboxModule,
-    ButtonModule
+    ButtonModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class GhettoboxExamplesModule {}

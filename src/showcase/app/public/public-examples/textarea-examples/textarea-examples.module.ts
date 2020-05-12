@@ -12,7 +12,7 @@ import { TextareaReactiveFormsWithSbbFieldExampleComponent } from './textarea-re
 const EXAMPLES = [
   TextareaFormsExampleComponent,
   TextareaNativeExampleComponent,
-  TextareaReactiveFormsWithSbbFieldExampleComponent
+  TextareaReactiveFormsWithSbbFieldExampleComponent,
 ];
 
 @NgModule({
@@ -22,9 +22,9 @@ const EXAMPLES = [
     ReactiveFormsModule,
     CheckboxModule,
     FieldModule,
-    TextareaModule
+    TextareaModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class TextareaExamplesModule {}

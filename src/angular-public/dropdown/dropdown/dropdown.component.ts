@@ -14,12 +14,12 @@ import {
   QueryList,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 import {
   DropdownItemDirective,
-  SBB_DROPDOWN_ITEM_PARENT_COMPONENT
+  SBB_DROPDOWN_ITEM_PARENT_COMPONENT,
 } from '../dropdown-item.directive';
 
 /**
@@ -54,9 +54,9 @@ export interface DropdownDefaultOptions {
   providers: [
     {
       provide: SBB_DROPDOWN_ITEM_PARENT_COMPONENT,
-      useExisting: DropdownComponent
-    }
-  ]
+      useExisting: DropdownComponent,
+    },
+  ],
 })
 export class DropdownComponent implements AfterContentInit {
   /**
@@ -124,7 +124,7 @@ export class DropdownComponent implements AfterContentInit {
   @Input('class')
   set classList(value: string) {
     if (value && value.length) {
-      value.split(' ').forEach(className => (this._classList[className.trim()] = true));
+      value.split(' ').forEach((className) => (this._classList[className.trim()] = true));
       this._elementRef.nativeElement.className = '';
     }
   }

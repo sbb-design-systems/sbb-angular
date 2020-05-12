@@ -9,7 +9,7 @@ interface DropdownLink {
 @Component({
   selector: 'sbb-dropdown-example',
   templateUrl: './dropdown-example.component.html',
-  styleUrls: ['./dropdown-example.component.css']
+  styleUrls: ['./dropdown-example.component.css'],
 })
 export class DropdownExampleComponent {
   @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
@@ -17,13 +17,13 @@ export class DropdownExampleComponent {
   links: Array<DropdownLink> = [
     { page: 1, text: 'Test 1' },
     { page: 2, text: 'Test 2' },
-    { page: 3, text: 'Test 3' }
+    { page: 3, text: 'Test 3' },
   ];
 
   linkGenerator(page: number) {
     return {
       queryParams: { page: page },
-      routerLink: ['.']
+      routerLink: ['.'],
     };
   }
 
@@ -34,7 +34,7 @@ export class DropdownExampleComponent {
   addNewLink() {
     this.links.push({
       page: this.links.length + 1,
-      text: 'Test ' + (this.links.length + 1)
+      text: 'Test ' + (this.links.length + 1),
     });
   }
 }

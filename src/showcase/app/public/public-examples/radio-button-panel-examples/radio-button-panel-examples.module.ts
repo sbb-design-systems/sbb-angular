@@ -16,9 +16,9 @@ const EXAMPLES = [RadioButtonPanelExampleComponent];
     ReactiveFormsModule,
     IconHeartModule,
     CheckboxModule,
-    RadioButtonPanelModule
+    RadioButtonPanelModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class RadioButtonPanelExamplesModule {}

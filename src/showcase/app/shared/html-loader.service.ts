@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LoaderBuilder } from './loader-builder';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HtmlLoader {
   constructor(private _http: HttpClient) {}

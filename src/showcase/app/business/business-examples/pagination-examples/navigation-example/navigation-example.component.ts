@@ -3,7 +3,7 @@ import { NavigationPageChangeEvent } from '@sbb-esta/angular-business/pagination
 
 @Component({
   selector: 'sbb-navigation-example',
-  templateUrl: './navigation-example.component.html'
+  templateUrl: './navigation-example.component.html',
 })
 export class NavigationExampleComponent {
   constructor() {}

@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-user',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconUserGroupMedium {}
 
 @Component({
   selector: 'sbb-icon-user-group-medium',
-  template: `
-    <svg sbbIconUserGroupMedium></svg>
-  `,
+  template: ` <svg sbbIconUserGroupMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconUserGroupMedium {}
 
 @NgModule({
   declarations: [SvgIconUserGroupMedium, IconUserGroupMedium],
-  exports: [SvgIconUserGroupMedium, IconUserGroupMedium]
+  exports: [SvgIconUserGroupMedium, IconUserGroupMedium],
 })
 export class IconUserGroupMediumModule {}

@@ -12,7 +12,7 @@ describe('AuthInterceptor', () => {
     authService = jasmine.createSpyObj<AuthService>('authService', [
       'getAuthHeader',
       'login',
-      'authenticated'
+      'authenticated',
     ]);
     sut = new AuthInterceptor(authService);
   });
@@ -40,7 +40,7 @@ describe('AuthInterceptor', () => {
     const next = jasmine.createSpyObj<HttpHandler>('next', ['handle']);
     const error = {
       error: 'Something went wrong',
-      status: 401
+      status: 401,
     };
     const httpError = new HttpErrorResponse(error);
 
@@ -57,7 +57,7 @@ describe('AuthInterceptor', () => {
     const next = jasmine.createSpyObj<HttpHandler>('next', ['handle']);
     const error = {
       error: 'Something went wrong',
-      status: 403
+      status: 403,
     };
     const httpError = new HttpErrorResponse(error);
 

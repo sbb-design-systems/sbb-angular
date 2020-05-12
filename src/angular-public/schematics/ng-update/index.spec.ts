@@ -11,7 +11,7 @@ export const migrationCollection = require.resolve('../migration.json');
 const workspaceOptions: WorkspaceOptions = {
   name: 'workspace',
   newProjectRoot: 'projects',
-  version: '9.0.0'
+  version: '9.0.0',
 };
 
 const appOptions: ApplicationOptions = {
@@ -21,7 +21,7 @@ const appOptions: ApplicationOptions = {
   routing: false,
   skipPackageJson: false,
   skipTests: false,
-  style: Style.Css
+  style: Style.Css,
 };
 
 describe('updateToV9', () => {
@@ -52,7 +52,7 @@ describe('updateToV9', () => {
 
       // expect that there is a "node-package" install task. The task is
       // needed to update the lock file.
-      expect(runner.tasks.some(t => t.name === 'node-package')).toBe(true);
+      expect(runner.tasks.some((t) => t.name === 'node-package')).toBe(true);
     });
 
     it('should do nothing if @sbb-esta/angular-core is in "package.json" file', async () => {
@@ -70,7 +70,7 @@ describe('updateToV9', () => {
 
       // expect that there is a "node-package" install task. The task is
       // needed to update the lock file.
-      expect(runner.tasks.some(t => t.name === 'node-package')).toBe(true);
+      expect(runner.tasks.some((t) => t.name === 'node-package')).toBe(true);
     });
   });
 });

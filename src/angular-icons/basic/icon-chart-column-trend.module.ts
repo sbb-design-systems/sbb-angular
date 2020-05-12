@@ -49,7 +49,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconChartColumnTrendComponent extends IconBase {
   constructor() {
@@ -60,6 +60,6 @@ export class IconChartColumnTrendComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconChartColumnTrendComponent],
-  exports: [IconChartColumnTrendComponent]
+  exports: [IconChartColumnTrendComponent],
 })
 export class IconChartColumnTrendModule {}

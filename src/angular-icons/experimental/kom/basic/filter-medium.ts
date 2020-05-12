@@ -19,32 +19,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-basic',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconFilterMedium {}
 
 @Component({
   selector: 'sbb-icon-filter-medium',
-  template: `
-    <svg sbbIconFilterMedium></svg>
-  `,
+  template: ` <svg sbbIconFilterMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconFilterMedium {}
 
 @NgModule({
   declarations: [SvgIconFilterMedium, IconFilterMedium],
-  exports: [SvgIconFilterMedium, IconFilterMedium]
+  exports: [SvgIconFilterMedium, IconFilterMedium],
 })
 export class IconFilterMediumModule {}

@@ -14,7 +14,7 @@ const EXAMPLES = [
   AutocompleteChipInputExampleComponent,
   DisabledChipInputExampleComponent,
   FormsChipInputExampleComponent,
-  ReactiveFormsChipInputExampleComponent
+  ReactiveFormsChipInputExampleComponent,
 ];
 
 @NgModule({
@@ -24,9 +24,9 @@ const EXAMPLES = [
     ReactiveFormsModule,
     AutocompleteModule,
     ChipModule,
-    FieldModule
+    FieldModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class ChipExamplesModule {}

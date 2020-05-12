@@ -14,13 +14,13 @@ import {
   QueryList,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   HasOptions,
   OptionComponent,
   OptionGroupComponent,
-  SBB_OPTION_PARENT_COMPONENT
+  SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular-public/option';
 
 /**
@@ -55,9 +55,9 @@ export interface SbbAutocompleteDefaultOptions {
   providers: [
     {
       provide: SBB_OPTION_PARENT_COMPONENT,
-      useExisting: AutocompleteComponent
-    }
-  ]
+      useExisting: AutocompleteComponent,
+    },
+  ],
 })
 export class AutocompleteComponent implements AfterContentInit, HasOptions {
   /** All of the defined select options. */
@@ -133,7 +133,7 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   @Input('class')
   set classList(value: string) {
     if (value && value.length) {
-      value.split(' ').forEach(className => (this._classList[className.trim()] = true));
+      value.split(' ').forEach((className) => (this._classList[className.trim()] = true));
       this._elementRef.nativeElement.className = '';
     }
   }

@@ -9,6 +9,6 @@ import { WindowRef } from './captcha/windowref.service';
   declarations: [CaptchaComponent],
   imports: [CommonModule],
   exports: [CaptchaComponent],
-  providers: [CaptchaLoaderService, WindowRef]
+  providers: [CaptchaLoaderService, WindowRef],
 })
 export class CaptchaModule {}

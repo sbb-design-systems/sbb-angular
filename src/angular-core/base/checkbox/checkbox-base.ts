@@ -9,7 +9,7 @@ import {
   HostBinding,
   Input,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
@@ -114,7 +114,7 @@ export abstract class CheckboxBase<TChange extends SbbCheckboxChange = SbbCheckb
     this.id = `sbb-${type}-${++nextId}`;
     this.inputId = `${this.id}-input`;
     this.tabIndex = parseInt(tabIndex, 10) || 0;
-    this._focusMonitor.monitor(elementRef, true).subscribe(focusOrigin => {
+    this._focusMonitor.monitor(elementRef, true).subscribe((focusOrigin) => {
       if (!focusOrigin) {
         // When a focused element becomes disabled, the browser *immediately* fires a blur event.
         // Angular does not expect events to be raised during change detection, so any state change

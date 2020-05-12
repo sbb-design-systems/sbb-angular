@@ -121,7 +121,7 @@ import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 
 @NgModule({
   imports: [ButtonModule, CheckboxModule],
-  exports: [ButtonModule, CheckboxModule]
+  exports: [ButtonModule, CheckboxModule],
 })
 export class SbbModule {}
 ```

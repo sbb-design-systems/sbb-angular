@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting
+  platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
 
 /*
@@ -39,7 +39,7 @@ function patchTestBedToDestroyFixturesAfterEveryTest(testBedInstance: TestBed) {
   // Monkey-patch the resetTestingModule to destroy fixtures outside of a try/catch block.
   // With https://github.com/angular/angular/commit/2c5a67134198a090a24f6671dcdb7b102fea6eba
   // errors when destroying components are no longer causing Jasmine to fail.
-  testBedInstance.resetTestingModule = function(this: {
+  testBedInstance.resetTestingModule = function (this: {
     _activeFixtures: ComponentFixture<any>[];
   }) {
     try {

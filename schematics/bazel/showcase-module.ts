@@ -8,7 +8,7 @@ export class ShowcaseModule extends NgModule {
   customTsConfig = '//src/showcase:tsconfig.json';
 
   protected _isModuleDir(dir: DirEntry) {
-    return dir.subfiles.some(f => f.endsWith('.module.ts'));
+    return dir.subfiles.some((f) => f.endsWith('.module.ts'));
   }
 
   protected _createSubModule(dir: DirEntry) {
@@ -42,8 +42,8 @@ export class ShowcaseModule extends NgModule {
   protected _templateOptions() {
     return {
       ...this,
-      tsFiles: this._tsFiles.map(f => relative(this.path, f.path)).sort(),
-      htmlFiles: this._htmlFiles.map(f => relative(this.path, f.path)).sort()
+      tsFiles: this._tsFiles.map((f) => relative(this.path, f.path)).sort(),
+      htmlFiles: this._htmlFiles.map((f) => relative(this.path, f.path)).sort(),
     };
   }
 }

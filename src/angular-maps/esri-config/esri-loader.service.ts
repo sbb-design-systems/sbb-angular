@@ -9,7 +9,7 @@ import { EsriConfiguration } from './esri-configuration';
 import { EsriConfigConsts } from './esri-standard-values.const';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EsriLoaderService {
   private _configuration: Promise<void>;
@@ -86,11 +86,11 @@ export class EsriLoaderService {
 
     esriConfig.request.interceptors!.push({
       before: (params: any) => {
-        if (originsWithCredentialsRequired.some(o => params.url.includes(o))) {
+        if (originsWithCredentialsRequired.some((o) => params.url.includes(o))) {
           params.requestOptions.withCredentials = true;
         }
       },
-      error: () => {}
+      error: () => {},
     });
   }
 }

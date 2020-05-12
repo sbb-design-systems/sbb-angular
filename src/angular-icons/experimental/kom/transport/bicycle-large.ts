@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 48 48',
     class: 'sbb-icon sbb-icon-kom sbb-icon-transport',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconBicycleLarge {}
 
 @Component({
   selector: 'sbb-icon-bicycle-large',
-  template: `
-    <svg sbbIconBicycleLarge></svg>
-  `,
+  template: ` <svg sbbIconBicycleLarge></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconBicycleLarge {}
 
 @NgModule({
   declarations: [SvgIconBicycleLarge, IconBicycleLarge],
-  exports: [SvgIconBicycleLarge, IconBicycleLarge]
+  exports: [SvgIconBicycleLarge, IconBicycleLarge],
 })
 export class IconBicycleLargeModule {}

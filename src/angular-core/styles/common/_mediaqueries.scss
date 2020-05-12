@@ -29,7 +29,7 @@ $mqBreakpoints: (
   desktopLargePlus: $sizeBreakpointDesktopLargePlus,
   desktopMaxWidth: $sizeBreakpointDesktopMaxWidth,
   desktop4k: $sizeBreakpointDesktop4k,
-  desktop5k: $sizeBreakpointDesktop5k
+  desktop5k: $sizeBreakpointDesktop5k,
 );
 
 /**
@@ -156,7 +156,7 @@ $mqShowBreakpoints: (
  */
 @function mqAddBreakpoint($name, $breakpoint) {
   $newBreakpoint: (
-    $name: $breakpoint
+    $name: $breakpoint,
   );
   @return map-merge($mqBreakpoints, $newBreakpoint);
 }

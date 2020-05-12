@@ -4,7 +4,7 @@ import {
   BasePortalOutlet,
   CdkPortalOutlet,
   ComponentPortal,
-  TemplatePortal
+  TemplatePortal,
 } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -20,7 +20,7 @@ import {
   Inject,
   Optional,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { DIALOG_ANIMATIONS } from '../dialog/dialog-animations';
@@ -46,7 +46,7 @@ export function throwDialogContentAlreadyAttachedError() {
   encapsulation: ViewEncapsulation.None,
   // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
   changeDetection: ChangeDetectionStrategy.Default,
-  animations: [DIALOG_ANIMATIONS.slideDialog]
+  animations: [DIALOG_ANIMATIONS.slideDialog],
 })
 export class DialogContainerComponent extends BasePortalOutlet {
   /** The portal outlet inside of this container into which the dialog content will be loaded. */

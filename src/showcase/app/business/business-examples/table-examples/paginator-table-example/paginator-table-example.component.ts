@@ -6,7 +6,7 @@ import { VehicleExampleItem, VEHICLE_EXAMPLE_DATA } from '../table-example-data'
 
 @Component({
   selector: 'sbb-paginator-table-example',
-  templateUrl: './paginator-table-example.component.html'
+  templateUrl: './paginator-table-example.component.html',
 })
 export class PaginatorTableExampleComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'power', 'description'];

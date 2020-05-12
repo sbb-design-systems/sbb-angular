@@ -10,7 +10,7 @@ import {
   LightboxContentComponent,
   LightboxFooterComponent,
   LightboxHeaderComponent,
-  LightboxTitleDirective
+  LightboxTitleDirective,
 } from './lightbox/lightbox-content';
 import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox.service';
 
@@ -22,7 +22,7 @@ import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox
     LightboxHeaderComponent,
     LightboxContentComponent,
     LightboxFooterComponent,
-    LightboxTitleDirective
+    LightboxTitleDirective,
   ],
   declarations: [
     LightboxContainerComponent,
@@ -30,9 +30,9 @@ import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox
     LightboxHeaderComponent,
     LightboxFooterComponent,
     LightboxContentComponent,
-    LightboxTitleDirective
+    LightboxTitleDirective,
   ],
   providers: [Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER],
-  entryComponents: [LightboxContainerComponent]
+  entryComponents: [LightboxContainerComponent],
 })
 export class LightboxModule {}

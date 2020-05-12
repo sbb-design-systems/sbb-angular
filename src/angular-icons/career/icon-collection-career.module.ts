@@ -7,11 +7,11 @@ import { IconShipSteeringWheelModule } from './icon-ship-steering-wheel.module';
 const modules = [
   IconCurriculumVitaeModule,
   IconHandGraduationCapModule,
-  IconShipSteeringWheelModule
+  IconShipSteeringWheelModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionCareerModule {}

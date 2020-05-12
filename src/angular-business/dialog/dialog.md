@@ -31,7 +31,7 @@ you can use the `data` option to pass information to the dialog component.
 
 ```ts
 const dialogRef = this.dialog.openDialog(DialogShowcaseExampleContentComponent, {
-  data: { name: this.name, animal: this.animal }
+  data: { name: this.name, animal: this.animal },
 });
 ```
 
@@ -43,7 +43,7 @@ result of the `afterClosed` promise.
 ```ts
 @Component({
   selector: 'sbb-dialog-showcase-content-1',
-  templateUrl: 'dialog-showcase-content-1.component.html'
+  templateUrl: 'dialog-showcase-content-1.component.html',
 })
 export class DialogShowcaseExampleContentComponent {
   constructor(
@@ -58,7 +58,7 @@ export class DialogShowcaseExampleContentComponent {
 ```
 
 ```ts
-dialogRef.afterClosed().subscribe(result => {
+dialogRef.afterClosed().subscribe((result) => {
   console.log('Dialog sharing data was closed');
   this.animal = result;
 });
@@ -72,7 +72,7 @@ passing it the template reference:
 ```ts
 @Component({
   selector: 'sbb-dialog-showcase-example-3',
-  templateUrl: 'dialog-showcase-content-3.component.html'
+  templateUrl: 'dialog-showcase-content-3.component.html',
 })
 export class DialogShowcaseExample3Component {
   @ViewChild('sampleDialogTemplate', { static: true }) sampleDialogTemplate: TemplateRef<any>;
@@ -81,7 +81,7 @@ export class DialogShowcaseExample3Component {
   openDialog() {
     const dialogRef = this.dialog.openDialog(this.sampleDialogTemplate);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -123,13 +123,13 @@ export class DialogShowcaseExample3Component {
         Open with confirmation button in separate one
       </button>
     </div>
-  `
+  `,
 })
 export class DialogShowcaseExample5Component {
   constructor(public dialog: Dialog) {}
   openDialog() {
     const dialogRef = this.dialog.openDialog(DialogShowcaseExample5ContentComponent, {
-      disableClose: true
+      disableClose: true,
     });
     dialogRef.afterClosed().subscribe(() => {
       console.log(`Dialog confirmed`);

@@ -17,9 +17,9 @@ const EXAMPLES = [PersonListComponent, TabsExampleComponent];
     ReactiveFormsModule,
     CheckboxModule,
     FieldModule,
-    TabsModule
+    TabsModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class TabsExamplesModule {}

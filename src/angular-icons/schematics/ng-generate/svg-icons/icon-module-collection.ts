@@ -22,7 +22,7 @@ export class IconModuleCollection {
   }
 
   addAll(iconModules: IconModule[]) {
-    iconModules.forEach(i =>
+    iconModules.forEach((i) =>
       i.collections.reduce((current, next) => current.getCollection(next), this).addIcon(i)
     );
     return this;

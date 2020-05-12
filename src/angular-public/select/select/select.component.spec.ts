@@ -7,7 +7,7 @@ import {
   RIGHT_ARROW,
   SPACE,
   TAB,
-  UP_ARROW
+  UP_ARROW,
 } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
@@ -18,7 +18,7 @@ import {
   DebugElement,
   QueryList,
   ViewChild,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import {
   async,
@@ -27,7 +27,7 @@ import {
   flush,
   inject,
   TestBed,
-  tick
+  tick,
 } from '@angular/core/testing';
 import {
   ControlValueAccessor,
@@ -37,7 +37,7 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,7 +45,7 @@ import {
   dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent,
-  dispatchMouseEvent
+  dispatchMouseEvent,
 } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { FieldModule } from '@sbb-esta/angular-public/field';
@@ -77,7 +77,7 @@ import { SelectComponent } from './select.component';
       </sbb-select>
     </sbb-field>
     <div [style.height.px]="heightBelow"></div>
-  `
+  `,
 })
 class BasicSelectComponent {
   foods: any[] = [
@@ -88,7 +88,7 @@ class BasicSelectComponent {
     { value: 'chips-4', viewValue: 'Chips' },
     { value: 'eggs-5', viewValue: 'Eggs' },
     { value: 'pasta-6', viewValue: 'Pasta' },
-    { value: 'sushi-7', viewValue: 'Sushi' }
+    { value: 'sushi-7', viewValue: 'Sushi' },
   ];
   control = new FormControl();
   isRequired: boolean;
@@ -113,13 +113,13 @@ class BasicSelectComponent {
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class NgModelSelectComponent {
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' }
+    { value: 'tacos-2', viewValue: 'Tacos' },
   ];
   isDisabled: boolean;
 
@@ -142,7 +142,7 @@ class NgModelSelectComponent {
         <sbb-option value="four">four</sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class ManySelectsComponent {}
 
@@ -158,14 +158,14 @@ class ManySelectsComponent {}
         </sbb-select>
       </sbb-field>
     </div>
-  `
+  `,
 })
 class NgIfSelectComponent {
   isShowing = false;
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' }
+    { value: 'tacos-2', viewValue: 'Tacos' },
   ];
   control = new FormControl('pizza-1');
 
@@ -180,7 +180,7 @@ class NgIfSelectComponent {
         <sbb-option *ngFor="let food of foods" [value]="food">{{ food }}</sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class SelectWithChangeEventComponent {
   foods: string[] = [
@@ -191,7 +191,7 @@ class SelectWithChangeEventComponent {
     'chips-4',
     'eggs-5',
     'pasta-6',
-    'sushi-7'
+    'sushi-7',
   ];
 
   changeListener = jasmine.createSpy('SelectComponent change listener');
@@ -207,7 +207,7 @@ class SelectWithChangeEventComponent {
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class SelectInitWithoutOptionsComponent {
   foods: any[];
@@ -220,23 +220,21 @@ class SelectInitWithoutOptionsComponent {
     this.foods = [
       { value: 'steak-0', viewValue: 'Steak' },
       { value: 'pizza-1', viewValue: 'Pizza' },
-      { value: 'tacos-2', viewValue: 'Tacos' }
+      { value: 'tacos-2', viewValue: 'Tacos' },
     ];
   }
 }
 
 @Component({
   selector: 'sbb-custom-select-accessor',
-  template: `
-    <sbb-field><sbb-select></sbb-select></sbb-field>
-  `,
+  template: ` <sbb-field><sbb-select></sbb-select></sbb-field> `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: CustomSelectAccessorComponent,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 class CustomSelectAccessorComponent implements ControlValueAccessor {
   @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
@@ -257,13 +255,13 @@ class CustomSelectAccessorComponent implements ControlValueAccessor {
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class BasicSelectOnPushComponent {
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' }
+    { value: 'tacos-2', viewValue: 'Tacos' },
   ];
   control = new FormControl();
 }
@@ -279,13 +277,13 @@ class BasicSelectOnPushComponent {
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class BasicSelectOnPushPreselectedComponent {
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' }
+    { value: 'tacos-2', viewValue: 'Tacos' },
   ];
   control = new FormControl('pizza-1');
 }
@@ -300,7 +298,7 @@ class BasicSelectOnPushPreselectedComponent {
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class MultiSelectComponent {
   foods: any[] = [
@@ -311,7 +309,7 @@ class MultiSelectComponent {
     { value: 'chips-4', viewValue: 'Chips' },
     { value: 'eggs-5', viewValue: 'Eggs' },
     { value: 'pasta-6', viewValue: 'Pasta' },
-    { value: 'sushi-7', viewValue: 'Sushi' }
+    { value: 'sushi-7', viewValue: 'Sushi' },
   ];
   control = new FormControl();
 
@@ -321,9 +319,7 @@ class MultiSelectComponent {
 
 @Component({
   selector: 'sbb-select-with-plain-tabindex',
-  template: `
-    <sbb-field><sbb-select tabindex="5"></sbb-select></sbb-field>
-  `
+  template: ` <sbb-field><sbb-select tabindex="5"></sbb-select></sbb-field> `,
 })
 class SelectWithPlainTabindexComponent {}
 
@@ -334,7 +330,7 @@ class SelectWithPlainTabindexComponent {}
       <sbb-select #select="sbbSelect"></sbb-select>
     </sbb-field>
     <div *ngIf="select.selected"></div>
-  `
+  `,
 })
 class SelectEarlyAccessSiblingComponent {}
 
@@ -346,7 +342,7 @@ class SelectEarlyAccessSiblingComponent {}
         <sbb-option value="value">There are no other options</sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class BasicSelectInitiallyHiddenComponent {
   isVisible = false;
@@ -360,7 +356,7 @@ class BasicSelectInitiallyHiddenComponent {
         <sbb-option value="value">There are no other options</sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class BasicSelectNoPlaceholderComponent {}
 
@@ -373,12 +369,12 @@ class BasicSelectNoPlaceholderComponent {}
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class FalsyValueSelectComponent {
   foods: any[] = [
     { value: 0, viewValue: 'Steak' },
-    { value: 1, viewValue: 'Pizza' }
+    { value: 1, viewValue: 'Pizza' },
   ];
   control = new FormControl();
   @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
@@ -401,7 +397,7 @@ class FalsyValueSelectComponent {
         <sbb-option value="mime-11">Mr. Mime</sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class SelectWithGroupsComponent {
   control = new FormControl();
@@ -411,8 +407,8 @@ class SelectWithGroupsComponent {
       pokemon: [
         { value: 'bulbasaur-0', viewValue: 'Bulbasaur' },
         { value: 'oddish-1', viewValue: 'Oddish' },
-        { value: 'bellsprout-2', viewValue: 'Bellsprout' }
-      ]
+        { value: 'bellsprout-2', viewValue: 'Bellsprout' },
+      ],
     },
     {
       name: 'Water',
@@ -420,24 +416,24 @@ class SelectWithGroupsComponent {
       pokemon: [
         { value: 'squirtle-3', viewValue: 'Squirtle' },
         { value: 'psyduck-4', viewValue: 'Psyduck' },
-        { value: 'horsea-5', viewValue: 'Horsea' }
-      ]
+        { value: 'horsea-5', viewValue: 'Horsea' },
+      ],
     },
     {
       name: 'Fire',
       pokemon: [
         { value: 'charmander-6', viewValue: 'Charmander' },
         { value: 'vulpix-7', viewValue: 'Vulpix' },
-        { value: 'flareon-8', viewValue: 'Flareon' }
-      ]
+        { value: 'flareon-8', viewValue: 'Flareon' },
+      ],
     },
     {
       name: 'Psychic',
       pokemon: [
         { value: 'mew-9', viewValue: 'Mew' },
-        { value: 'mewtwo-10', viewValue: 'Mewtwo' }
-      ]
-    }
+        { value: 'mewtwo-10', viewValue: 'Mewtwo' },
+      ],
+    },
   ];
 
   @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
@@ -456,15 +452,15 @@ class SelectWithGroupsComponent {
         </sbb-option-group>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class SelectWithGroupsAndNgContainerComponent {
   control = new FormControl();
   pokemonTypes = [
     {
       name: 'Grass',
-      pokemon: [{ value: 'bulbasaur-0', viewValue: 'Bulbasaur' }]
-    }
+      pokemon: [{ value: 'bulbasaur-0', viewValue: 'Bulbasaur' }],
+    },
   ];
 }
 
@@ -475,7 +471,7 @@ class SelectWithGroupsAndNgContainerComponent {
         <sbb-select [(ngModel)]="value"></sbb-select>
       </sbb-field>
     </form>
-  `
+  `,
 })
 class InvalidSelectInFormComponent {
   value: any;
@@ -493,14 +489,14 @@ class InvalidSelectInFormComponent {
         <sbb-form-error>This field is required</sbb-form-error>
       </sbb-field>
     </form>
-  `
+  `,
 })
 class SelectInsideFormGroupComponent {
   @ViewChild(FormGroupDirective, { static: true }) formGroupDirective: FormGroupDirective;
   @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
   formControl = new FormControl('', Validators.required);
   formGroup = new FormGroup({
-    food: this.formControl
+    food: this.formControl,
   });
 }
 
@@ -513,14 +509,14 @@ class SelectInsideFormGroupComponent {
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class BasicSelectWithoutFormsComponent {
   selectedFood: string | null;
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'sandwich-2', viewValue: 'Sandwich' }
+    { value: 'sandwich-2', viewValue: 'Sandwich' },
   ];
 
   @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
@@ -535,13 +531,13 @@ class BasicSelectWithoutFormsComponent {
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class BasicSelectWithoutFormsPreselectedComponent {
   selectedFood = 'pizza-1';
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' }
+    { value: 'pizza-1', viewValue: 'Pizza' },
   ];
 
   @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
@@ -556,14 +552,14 @@ class BasicSelectWithoutFormsPreselectedComponent {
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class BasicSelectWithoutFormsMultipleComponent {
   selectedFoods: string[];
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'sandwich-2', viewValue: 'Sandwich' }
+    { value: 'sandwich-2', viewValue: 'Sandwich' },
   ];
 
   @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
@@ -581,17 +577,17 @@ class BasicSelectWithoutFormsMultipleComponent {
         <sbb-option *ngFor="let food of foods" [value]="food">{{ food.viewValue }}</sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class NgModelCompareWithSelectComponent {
   foods: { value: string; viewValue: string }[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' }
+    { value: 'tacos-2', viewValue: 'Tacos' },
   ];
   selectedFood: { value: string; viewValue: string } = {
     value: 'pizza-1',
-    viewValue: 'Pizza'
+    viewValue: 'Pizza',
   };
   comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
@@ -632,13 +628,13 @@ class NgModelCompareWithSelectComponent {
         </sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class SingleSelectWithPreselectedArrayValuesComponent {
   foods: any[] = [
     { value: ['steak-0', 'steak-1'], viewValue: 'Steak' },
     { value: ['pizza-1', 'pizza-2'], viewValue: 'Pizza' },
-    { value: ['tacos-2', 'tacos-3'], viewValue: 'Tacos' }
+    { value: ['tacos-2', 'tacos-3'], viewValue: 'Tacos' },
   ];
 
   selectedFoods = this.foods[1].value;
@@ -656,7 +652,7 @@ class SingleSelectWithPreselectedArrayValuesComponent {
         <sbb-option value="thing">A thing</sbb-option>
       </sbb-select>
     </sbb-field>
-  `
+  `,
 })
 class SelectWithFormFieldLabelComponent {
   placeholder: string;
@@ -684,10 +680,10 @@ describe('SelectComponent', () => {
           useFactory: () => ({
             scrolled: () => scrolledSubject.asObservable(),
             register() {},
-            deregister() {}
-          })
-        }
-      ]
+            deregister() {},
+          }),
+        },
+      ],
     }).compileComponents();
 
     inject([OverlayContainer, Platform], (oc: OverlayContainer, p: Platform) => {
@@ -709,7 +705,7 @@ describe('SelectComponent', () => {
         SelectWithGroupsComponent,
         SelectWithGroupsAndNgContainerComponent,
         SelectWithFormFieldLabelComponent,
-        SelectWithChangeEventComponent
+        SelectWithChangeEventComponent,
       ]);
     }));
 
@@ -1716,7 +1712,7 @@ describe('SelectComponent', () => {
       it('should select an option that was added after initialization', fakeAsync(() => {
         fixture.componentInstance.foods.push({
           viewValue: 'Potatoes',
-          value: 'potatoes-8'
+          value: 'potatoes-8',
         });
         trigger.click();
         fixture.detectChanges();
@@ -2620,7 +2616,7 @@ describe('SelectComponent', () => {
     beforeEach(async(() =>
       configureSbbSelectTestingModule([
         BasicSelectOnPushComponent,
-        BasicSelectOnPushPreselectedComponent
+        BasicSelectOnPushPreselectedComponent,
       ])));
 
     it('should set the trigger text based on the value when initialized', fakeAsync(() => {
@@ -2662,7 +2658,7 @@ describe('SelectComponent', () => {
       configureSbbSelectTestingModule([
         BasicSelectWithoutFormsComponent,
         BasicSelectWithoutFormsPreselectedComponent,
-        BasicSelectWithoutFormsMultipleComponent
+        BasicSelectWithoutFormsMultipleComponent,
       ])));
 
     it('should set the value when options are clicked', fakeAsync(() => {
@@ -2981,7 +2977,7 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
       flush();
 
-      expect(testInstance.options.toArray().every(option => !!option.multiple)).toBe(
+      expect(testInstance.options.toArray().every((option) => !!option.multiple)).toBe(
         true,
         'Expected `multiple` to have been added to initial set of options.'
       );
@@ -2989,7 +2985,7 @@ describe('SelectComponent', () => {
       testInstance.foods.push({ value: 'cake-8', viewValue: 'Cake' });
       fixture.detectChanges();
       flush();
-      expect(testInstance.options.toArray().every(option => !!option.multiple)).toBe(
+      expect(testInstance.options.toArray().every((option) => !!option.multiple)).toBe(
         true,
         'Expected `multiple` to have been set on dynamically-added option.'
       );
@@ -3014,7 +3010,7 @@ describe('SelectComponent', () => {
       fixture.componentInstance.foods = [
         { value: null, viewValue: 'Steak' },
         { value: 'pizza-1', viewValue: 'Pizza' },
-        { value: null, viewValue: 'Tacos' }
+        { value: null, viewValue: 'Tacos' },
       ];
 
       fixture.detectChanges();
@@ -3037,7 +3033,7 @@ describe('SelectComponent', () => {
       const options = fixture.componentInstance.options.toArray();
 
       expect(testInstance.control.value).toBeFalsy();
-      expect(options.every(option => option.selected)).toBe(false);
+      expect(options.every((option) => option.selected)).toBe(false);
 
       fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
@@ -3047,7 +3043,7 @@ describe('SelectComponent', () => {
       dispatchEvent(selectElement, event);
       fixture.detectChanges();
 
-      expect(options.every(option => option.selected)).toBe(true);
+      expect(options.every((option) => option.selected)).toBe(true);
       expect(testInstance.control.value).toEqual([
         'steak-0',
         'pizza-1',
@@ -3056,7 +3052,7 @@ describe('SelectComponent', () => {
         'chips-4',
         'eggs-5',
         'pasta-6',
-        'sushi-7'
+        'sushi-7',
       ]);
     }));
 
@@ -3083,7 +3079,7 @@ describe('SelectComponent', () => {
         'chips-4',
         'eggs-5',
         'pasta-6',
-        'sushi-7'
+        'sushi-7',
       ]);
     }));
 
@@ -3095,7 +3091,7 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
       flush();
       expect(testInstance.control.value).toEqual(['steak-0']);
-      expect(options.some(option => option.selected)).toBe(true);
+      expect(options.some((option) => option.selected)).toBe(true);
 
       fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
@@ -3105,7 +3101,7 @@ describe('SelectComponent', () => {
       dispatchEvent(selectElement, event);
       fixture.detectChanges();
 
-      expect(options.every(option => option.selected)).toBe(true);
+      expect(options.every((option) => option.selected)).toBe(true);
       expect(testInstance.control.value).toEqual([
         'steak-0',
         'pizza-1',
@@ -3114,7 +3110,7 @@ describe('SelectComponent', () => {
         'chips-4',
         'eggs-5',
         'pasta-6',
-        'sushi-7'
+        'sushi-7',
       ]);
     }));
 
@@ -3122,7 +3118,7 @@ describe('SelectComponent', () => {
       const selectElement = fixture.nativeElement.querySelector('sbb-select');
       const options = fixture.componentInstance.options.toArray();
 
-      options.forEach(option => option.select());
+      options.forEach((option) => option.select());
       fixture.detectChanges();
       flush();
       expect(testInstance.control.value).toEqual([
@@ -3133,9 +3129,9 @@ describe('SelectComponent', () => {
         'chips-4',
         'eggs-5',
         'pasta-6',
-        'sushi-7'
+        'sushi-7',
       ]);
-      expect(options.every(option => option.selected)).toBe(true);
+      expect(options.every((option) => option.selected)).toBe(true);
 
       fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
@@ -3145,7 +3141,7 @@ describe('SelectComponent', () => {
       dispatchEvent(selectElement, event);
       fixture.detectChanges();
       flush();
-      expect(options.some(option => option.selected)).toBe(false);
+      expect(options.some((option) => option.selected)).toBe(false);
       expect(testInstance.control.value).toEqual([]);
     }));
   });

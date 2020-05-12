@@ -9,6 +9,6 @@ import { UserMenuComponent } from './usermenu/usermenu.component';
 @NgModule({
   declarations: [UserMenuComponent],
   imports: [CommonModule, DropdownModule, IconChevronSmallDownModule, IconUserModule],
-  exports: [UserMenuComponent, DropdownModule]
+  exports: [UserMenuComponent, DropdownModule],
 })
 export class UsermenuModule {}

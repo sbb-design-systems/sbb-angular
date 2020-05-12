@@ -31,11 +31,11 @@ const modules = [
   IconUtilizationHighModule,
   IconUtilizationLowModule,
   IconUtilizationMediumModule,
-  IconUtilizationNoneModule
+  IconUtilizationNoneModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionHimCusModule {}

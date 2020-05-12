@@ -10,7 +10,7 @@ import { ICON_COMPONENT_META_INFORMATION } from '../icon-list';
 @Component({
   selector: 'sbb-icon-viewer',
   templateUrl: './icon-viewer.component.html',
-  styleUrls: ['./icon-viewer.component.css']
+  styleUrls: ['./icon-viewer.component.css'],
 })
 export class IconViewerComponent implements OnInit {
   title: Observable<string>;
@@ -26,12 +26,12 @@ export class IconViewerComponent implements OnInit {
   ngOnInit() {
     this.title = this._route.params.pipe(map(({ id }) => id));
     this.icon = this.title.pipe(
-      map(s => ICON_COMPONENT_META_INFORMATION.filter(i => i.selector === s)[0]),
-      map(i => ({
+      map((s) => ICON_COMPONENT_META_INFORMATION.filter((i) => i.selector === s)[0]),
+      map((i) => ({
         selector: i.selector,
         name: i.name,
         modules: i.modules,
-        portal: new ComponentPortal<IconBase>(i.component)
+        portal: new ComponentPortal<IconBase>(i.component),
       }))
     );
   }

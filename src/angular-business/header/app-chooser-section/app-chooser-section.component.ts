@@ -6,7 +6,7 @@ import { Header, SBB_HEADER } from '../header/header';
   selector: 'sbb-app-chooser-section',
   templateUrl: './app-chooser-section.component.html',
   styleUrls: ['./app-chooser-section.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppChooserSectionComponent {
   @Input() label: string;

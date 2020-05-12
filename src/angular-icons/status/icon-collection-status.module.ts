@@ -19,11 +19,11 @@ const modules = [
   IconLockOpenModule,
   IconQuestionMarkModule,
   IconTickModule,
-  IconTickClipboardModule
+  IconTickClipboardModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionStatusModule {}

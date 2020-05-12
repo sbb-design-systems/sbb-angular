@@ -35,7 +35,7 @@ export enum FileTypeCategory {
   PDF,
   AUDIO,
   VIDEO,
-  ZIP
+  ZIP,
 }
 
 export const FILE_TYPES: { [key: string]: string[] } = {
@@ -71,7 +71,7 @@ export const FILE_TYPES: { [key: string]: string[] } = {
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
     'application/vnd.ms-word.document.macroEnabled.12',
-    'application/vnd.ms-word.template.macroEnabled.12'
+    'application/vnd.ms-word.template.macroEnabled.12',
   ],
 
   MS_EXCEL: [
@@ -83,7 +83,7 @@ export const FILE_TYPES: { [key: string]: string[] } = {
     'application/vnd.ms-excel.sheet.macroEnabled.12',
     'application/vnd.ms-excel.template.macroEnabled.12',
     'application/vnd.ms-excel.addin.macroEnabled.12',
-    'application/vnd.ms-excel.sheet.binary.macroEnabled.12'
+    'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
   ],
 
   MS_POWERPOINT: [
@@ -97,7 +97,7 @@ export const FILE_TYPES: { [key: string]: string[] } = {
     'application/vnd.ms-powerpoint.addin.macroEnabled.12',
     'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
     'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
-    'application/vnd.ms-powerpoint.slideshow.macroEnabled.12'
+    'application/vnd.ms-powerpoint.slideshow.macroEnabled.12',
   ],
 
   ZIP: [
@@ -112,6 +112,6 @@ export const FILE_TYPES: { [key: string]: string[] } = {
     'application/x-7z-compressed',
     'application/gzip',
     'application/zip',
-    'application/x-bzip2'
-  ]
+    'application/x-bzip2',
+  ],
 };

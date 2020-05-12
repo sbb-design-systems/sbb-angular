@@ -12,33 +12,33 @@ import { EsriWebSceneExampleComponent } from '../maps-examples/esri-web-scene-ex
   selector: 'sbb-maps',
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.css'],
-  providers: [{ provide: ExampleProvider, useExisting: MapsComponent }]
+  providers: [{ provide: ExampleProvider, useExisting: MapsComponent }],
 })
 export class MapsComponent implements ExampleProvider {
   maps = {
     'esri-web-map': 'WebMap',
-    'esri-web-scene': 'WebScene'
+    'esri-web-scene': 'WebScene',
   };
   mapUtilities = {
     'esri-layer-list': 'Layerlist',
     'esri-basemap-gallery': 'Basemap Gallery',
-    'esri-legend': 'Legend'
+    'esri-legend': 'Legend',
   };
 
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
     'esri-web-map': { 'esri-web-map-example': new ComponentPortal(EsriWebMapExampleComponent) },
     'esri-web-scene': {
-      'esri-web-scene-example': new ComponentPortal(EsriWebSceneExampleComponent)
+      'esri-web-scene-example': new ComponentPortal(EsriWebSceneExampleComponent),
     },
     'esri-basemap-gallery': {
-      'esri-basemap-gallery-example': new ComponentPortal(EsriBasemapGalleryExampleComponent)
+      'esri-basemap-gallery-example': new ComponentPortal(EsriBasemapGalleryExampleComponent),
     },
     'esri-legend': {
-      'esri-legend-example': new ComponentPortal(EsriLegendExampleComponent)
+      'esri-legend-example': new ComponentPortal(EsriLegendExampleComponent),
     },
     'esri-layer-list': {
-      'esri-layer-list-example': new ComponentPortal(EsriLayerListExampleComponent)
-    }
+      'esri-layer-list-example': new ComponentPortal(EsriLayerListExampleComponent),
+    },
   };
 
   resolveExample<TComponent = any>(

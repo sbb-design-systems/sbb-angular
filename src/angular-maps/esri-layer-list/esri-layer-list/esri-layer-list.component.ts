@@ -8,7 +8,7 @@ import { EsriTypesService } from '@sbb-esta/angular-maps/core';
   selector: 'sbb-esri-layer-list',
   templateUrl: './esri-layer-list.component.html',
   styleUrls: ['./esri-layer-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EsriLayerListComponent implements OnInit {
   /** References the map or scene to load the the layer list */
@@ -25,7 +25,7 @@ export class EsriLayerListComponent implements OnInit {
 
     this.layerList = new this._esri.LayerList({
       view: this.mapView,
-      container: this._hostReference.nativeElement
+      container: this._hostReference.nativeElement,
     });
   }
 }

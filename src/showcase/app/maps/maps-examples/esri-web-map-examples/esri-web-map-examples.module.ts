@@ -9,6 +9,6 @@ const EXAMPLES = [EsriWebMapExampleComponent];
 @NgModule({
   imports: [CommonModule, EsriWebMapModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class EsriWebMapExamplesModule {}

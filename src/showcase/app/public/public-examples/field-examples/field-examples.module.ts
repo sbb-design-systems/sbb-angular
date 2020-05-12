@@ -20,9 +20,9 @@ const EXAMPLES = [FieldExampleComponent];
     DatepickerModule,
     FieldModule,
     SelectModule,
-    ButtonModule
+    ButtonModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class FieldExamplesModule {}

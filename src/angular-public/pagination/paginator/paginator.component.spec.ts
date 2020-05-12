@@ -18,7 +18,7 @@ import { SbbPaginatorDefaultOptions, SBB_PAGINATOR_DEFAULT_OPTIONS } from './pag
       (page)="pageEvent($event)"
     >
     </sbb-paginator>
-  `
+  `,
 })
 class SbbPaginatorTestComponent {
   pageIndex = 0;
@@ -35,7 +35,7 @@ class SbbPaginatorTestComponent {
     <!-- order of attributes is important for test -->
     <sbb-paginator (page)="pageEvent($event)" [pageSize]="10" [length]="100" [pageIndex]="5">
     </sbb-paginator>
-  `
+  `,
 })
 class SbbPaginatorInitializedTestComponent {
   pageEvent = jasmine.createSpy('page event');
@@ -44,18 +44,14 @@ class SbbPaginatorInitializedTestComponent {
 }
 
 @Component({
-  template: `
-    <sbb-paginator></sbb-paginator>
-  `
+  template: ` <sbb-paginator></sbb-paginator> `,
 })
 class SbbPaginatorWithoutInputsTestComponent {
   @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
 }
 
 @Component({
-  template: `
-    <sbb-paginator pageIndex="0" pageSize="10" length="100"> </sbb-paginator>
-  `
+  template: ` <sbb-paginator pageIndex="0" pageSize="10" length="100"> </sbb-paginator> `,
 })
 class SbbPaginatorWithStringValuesTestComponent {
   @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
@@ -66,7 +62,7 @@ describe('SbbPaginatorComponent', () => {
     TestBed.configureTestingModule({
       imports: [PaginationModule, NoopAnimationsModule],
       declarations: [type],
-      providers: [...providers]
+      providers: [...providers],
     }).compileComponents();
 
     const fixture = TestBed.createComponent(type);
@@ -87,7 +83,7 @@ describe('SbbPaginatorComponent', () => {
       expect(component.pageEvent).toHaveBeenCalledWith(
         jasmine.objectContaining({
           previousPageIndex: 0,
-          pageIndex: 1
+          pageIndex: 1,
         })
       );
     });
@@ -106,7 +102,7 @@ describe('SbbPaginatorComponent', () => {
       expect(component.pageEvent).toHaveBeenCalledWith(
         jasmine.objectContaining({
           previousPageIndex: 1,
-          pageIndex: 0
+          pageIndex: 0,
         })
       );
     });
@@ -221,7 +217,7 @@ describe('SbbPaginatorComponent', () => {
     expect(component.pageEvent).toHaveBeenCalledWith(
       jasmine.objectContaining({
         pageIndex: 1,
-        pageSize: 25
+        pageSize: 25,
       })
     );
 
@@ -237,7 +233,7 @@ describe('SbbPaginatorComponent', () => {
     expect(component.pageEvent).toHaveBeenCalledWith(
       jasmine.objectContaining({
         pageIndex: 3,
-        pageSize: 8
+        pageSize: 8,
       })
     );
 
@@ -253,7 +249,7 @@ describe('SbbPaginatorComponent', () => {
     expect(component.pageEvent).toHaveBeenCalledWith(
       jasmine.objectContaining({
         pageIndex: 0,
-        pageSize: 25
+        pageSize: 25,
       })
     );
   });
@@ -344,9 +340,9 @@ describe('SbbPaginatorComponent', () => {
       {
         provide: SBB_PAGINATOR_DEFAULT_OPTIONS,
         useValue: {
-          pageSize: 7
-        } as SbbPaginatorDefaultOptions
-      }
+          pageSize: 7,
+        } as SbbPaginatorDefaultOptions,
+      },
     ]);
     const paginator = fixture.componentInstance.paginator;
 

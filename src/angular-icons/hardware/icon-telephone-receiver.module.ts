@@ -36,7 +36,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconTelephoneReceiverComponent extends IconBase {
   constructor() {
@@ -47,6 +47,6 @@ export class IconTelephoneReceiverComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconTelephoneReceiverComponent],
-  exports: [IconTelephoneReceiverComponent]
+  exports: [IconTelephoneReceiverComponent],
 })
 export class IconTelephoneReceiverModule {}

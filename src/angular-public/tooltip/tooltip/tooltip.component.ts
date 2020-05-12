@@ -7,12 +7,12 @@ import {
   Inject,
   NgZone,
   Optional,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   SBB_TOOLTIP_SCROLL_STRATEGY,
   TooltipBase,
-  TooltipRegistryService
+  TooltipRegistryService,
 } from '@sbb-esta/angular-core/base/tooltip';
 
 @Component({
@@ -20,7 +20,7 @@ import {
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.css'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipComponent extends TooltipBase {
   constructor(

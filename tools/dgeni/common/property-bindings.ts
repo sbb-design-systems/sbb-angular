@@ -42,12 +42,12 @@ function getBindingPropertyData(
 ) {
   if (metadata) {
     const metadataValues: string[] = metadata.get(propertyName) || [];
-    const foundValue = metadataValues.find(value => value.split(':')[0] === doc.name);
+    const foundValue = metadataValues.find((value) => value.split(':')[0] === doc.name);
 
     if (foundValue) {
       return {
         name: doc.name,
-        alias: foundValue.split(':')[1]
+        alias: foundValue.split(':')[1],
       };
     }
   }
@@ -55,7 +55,7 @@ function getBindingPropertyData(
   if (hasMemberDecorator(doc, decoratorName)) {
     return {
       name: doc.name,
-      alias: doc.decorators!.find(d => d.name == decoratorName)!.arguments![0]
+      alias: doc.decorators!.find((d) => d.name == decoratorName)!.arguments![0],
     };
   }
 

@@ -11,7 +11,7 @@ import {
   HostListener,
   Inject,
   OnDestroy,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -28,7 +28,7 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
   styleUrls: ['./expansion-panel-header.component.css'],
   templateUrl: './expansion-panel-header.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption {
   /**
@@ -74,7 +74,7 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
     @Inject(DOCUMENT) document?: any
   ) {
     const accordionHideToggleChange = panel.accordion
-      ? panel.accordion._stateChanges.pipe(filter(changes => !!changes.hideToggle))
+      ? panel.accordion._stateChanges.pipe(filter((changes) => !!changes.hideToggle))
       : EMPTY;
 
     // Since the toggle state depends on an @Input on the panel, we
@@ -83,7 +83,7 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
       panel.opened,
       panel.closed,
       accordionHideToggleChange,
-      panel._inputChanges.pipe(filter(changes => !!(changes.hideToggle || changes.disabled)))
+      panel._inputChanges.pipe(filter((changes) => !!(changes.hideToggle || changes.disabled)))
     ).subscribe(() => this._changeDetectorRef.markForCheck());
 
     // Avoids focus being lost if the panel contained the focused element and was closed.
@@ -91,7 +91,7 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
       .pipe(filter(() => panel.containsFocus()))
       .subscribe(() => _focusMonitor.focusVia(_element.nativeElement, 'program'));
 
-    _focusMonitor.monitor(_element.nativeElement).subscribe(origin => {
+    _focusMonitor.monitor(_element.nativeElement).subscribe((origin) => {
       if (origin && panel.accordion) {
         panel.accordion.handleHeaderFocus(this);
       }

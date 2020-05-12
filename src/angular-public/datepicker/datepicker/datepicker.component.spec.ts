@@ -11,7 +11,7 @@ import {
   dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent,
-  dispatchMouseEvent
+  dispatchMouseEvent,
 } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
@@ -26,7 +26,7 @@ import { DatepickerComponent } from './datepicker.component';
     <sbb-datepicker #d [disabled]="disabled" [opened]="opened">
       <input sbbDateInput [value]="date" />
     </sbb-datepicker>
-  `
+  `,
 })
 class StandardDatepickerComponent {
   opened = false;
@@ -43,14 +43,12 @@ class StandardDatepickerComponent {
       <input sbbDateInput />
       <input sbbDateInput />
     </sbb-datepicker>
-  `
+  `,
 })
 class MultiInputDatepickerComponent {}
 
 @Component({
-  template: `
-    <sbb-datepicker #d></sbb-datepicker>
-  `
+  template: ` <sbb-datepicker #d></sbb-datepicker> `,
 })
 class NoInputDatepickerComponent {
   @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
@@ -61,7 +59,7 @@ class NoInputDatepickerComponent {
     <sbb-datepicker #d [startAt]="startDate">
       <input sbbDateInput [value]="date" />
     </sbb-datepicker>
-  `
+  `,
 })
 class DatepickerWithStartAtComponent {
   date = new Date(2020, JAN, 1);
@@ -74,7 +72,7 @@ class DatepickerWithStartAtComponent {
     <sbb-datepicker #d>
       <input [(ngModel)]="selected" sbbDateInput />
     </sbb-datepicker>
-  `
+  `,
 })
 class DatepickerWithNgModelComponent {
   selected: Date | null = null;
@@ -87,7 +85,7 @@ class DatepickerWithNgModelComponent {
     <sbb-datepicker #d>
       <input [formControl]="formControl" sbbDateInput />
     </sbb-datepicker>
-  `
+  `,
 })
 class DatepickerWithFormControlComponent {
   formControl = new FormControl();
@@ -100,7 +98,7 @@ class DatepickerWithFormControlComponent {
     <sbb-datepicker #d>
       <input sbbDateInput />
     </sbb-datepicker>
-  `
+  `,
 })
 class DatepickerWithToggleComponent {
   @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
@@ -112,7 +110,7 @@ class DatepickerWithToggleComponent {
     <sbb-datepicker #d>
       <input sbbDateInput [(ngModel)]="date" [min]="minDate" [max]="maxDate" />
     </sbb-datepicker>
-  `
+  `,
 })
 class DatepickerWithMinAndMaxValidationComponent {
   @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
@@ -126,7 +124,7 @@ class DatepickerWithMinAndMaxValidationComponent {
     <sbb-datepicker (opened)="openedSpy()" (closed)="closedSpy()" #d>
       <input [(ngModel)]="selected" sbbDateInput />
     </sbb-datepicker>
-  `
+  `,
 })
 class DatepickerWithEventsComponent {
   selected: Date | null = null;
@@ -140,7 +138,7 @@ class DatepickerWithEventsComponent {
     <sbb-datepicker #d>
       <input (focus)="d.openDatepicker()" sbbDateInput />
     </sbb-datepicker>
-  `
+  `,
 })
 class DatepickerOpeningOnFocusComponent {
   @ViewChild(DatepickerComponent, { static: true }) datepicker: DatepickerComponent<Date>;
@@ -160,16 +158,16 @@ describe('DatepickerComponent', () => {
         DatepickerModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
-        ...imports
+        ...imports,
       ],
       providers,
-      declarations: [component, ...entryComponents]
+      declarations: [component, ...entryComponents],
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [entryComponents]
-      }
+        entryComponents: [entryComponents],
+      },
     }).compileComponents();
 
     return TestBed.createComponent(component);

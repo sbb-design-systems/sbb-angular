@@ -5,7 +5,7 @@
 
 const bazelKarma = require('@bazel/karma');
 
-module.exports = config => {
+module.exports = (config) => {
   const overwrites = {};
 
   // By default "@bazel/karma" configures Chrome as browser. Since we don't want
@@ -15,7 +15,7 @@ module.exports = config => {
   Object.defineProperty(overwrites, 'browsers', {
     get: () => [],
     set: () => {},
-    enumerable: true
+    enumerable: true,
   });
 
   // Ensures that tests start executing once browsers have been manually connected. We need
@@ -23,7 +23,7 @@ module.exports = config => {
   Object.defineProperty(overwrites, 'autoWatch', {
     get: () => true,
     set: () => {},
-    enumerable: true
+    enumerable: true,
   });
 
   // When not running with ibazel, do not set up the `@bazel/karma` watcher. This one

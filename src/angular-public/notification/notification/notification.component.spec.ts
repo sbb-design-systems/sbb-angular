@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
   IconCircleInformationModule,
-  IconSignExclamationPointModule
+  IconSignExclamationPointModule,
 } from '@sbb-esta/angular-icons/basic';
 import createSpy = jasmine.createSpy;
 import { IconTickModule } from '@sbb-esta/angular-icons/status';
@@ -15,7 +15,7 @@ import { NotificationComponent, NotificationType } from './notification.componen
 @Component({
   selector: 'sbb-notification-mock',
   template:
-    '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks"></sbb-notification>'
+    '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks"></sbb-notification>',
 })
 export class NotificationMockComponent {
   message = 'Suchen';
@@ -34,9 +34,9 @@ describe('NotificationComponent', () => {
           IconTickModule,
           IconSignExclamationPointModule,
           IconCircleInformationModule,
-          CommonModule
+          CommonModule,
         ],
-        declarations: [NotificationComponent]
+        declarations: [NotificationComponent],
       }).compileComponents();
     }));
 
@@ -62,9 +62,9 @@ describe('NotificationComponent', () => {
           FormsModule,
           IconTickModule,
           IconSignExclamationPointModule,
-          IconCircleInformationModule
+          IconCircleInformationModule,
         ],
-        declarations: [NotificationComponent, NotificationMockComponent]
+        declarations: [NotificationComponent, NotificationMockComponent],
       }).compileComponents();
     }));
 
@@ -113,7 +113,7 @@ describe('NotificationComponent', () => {
 
       testComponent.jumpMarks = [
         { elementId: '#here', title: 'Here' },
-        { elementId: '#there', title: 'There' }
+        { elementId: '#there', title: 'There' },
       ];
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(
@@ -133,7 +133,7 @@ describe('NotificationComponent', () => {
         By.css('.sbb-notification-jump-mark > a')
       );
       notificationLink.triggerEventHandler('click', {
-        preventDefault: createSpy('prevent-default-mock')
+        preventDefault: createSpy('prevent-default-mock'),
       });
       expect(callbackMock).toHaveBeenCalled();
     });

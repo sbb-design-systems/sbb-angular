@@ -11,6 +11,6 @@ const EXAMPLES = [BadgeExampleComponent];
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, BadgeModule, CheckboxModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class BadgeExamplesModule {}

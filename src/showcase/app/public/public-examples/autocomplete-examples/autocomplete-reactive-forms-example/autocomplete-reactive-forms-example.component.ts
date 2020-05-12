@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'sbb-autocomplete-reactive-forms-example',
-  templateUrl: './autocomplete-reactive-forms-example.component.html'
+  templateUrl: './autocomplete-reactive-forms-example.component.html',
 })
 export class AutocompleteReactiveFormsExampleComponent implements OnInit {
   myControl = new FormControl('');
@@ -18,14 +18,14 @@ export class AutocompleteReactiveFormsExampleComponent implements OnInit {
     'Sieben',
     'Acht',
     'Neun',
-    'Zehn'
+    'Zehn',
   ];
   filteredOptions = this.options.slice(0);
 
   ngOnInit() {
-    this.myControl.valueChanges.subscribe(newValue => {
+    this.myControl.valueChanges.subscribe((newValue) => {
       this.filteredOptions = this.options.filter(
-        option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+        (option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
       );
     });
   }

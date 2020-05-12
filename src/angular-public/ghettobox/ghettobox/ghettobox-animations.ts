@@ -4,7 +4,7 @@ import {
   state,
   style,
   transition,
-  trigger
+  trigger,
 } from '@angular/animations';
 
 /** Time and timing curve for ghettobox animations. */
@@ -21,6 +21,6 @@ export const GHETTOBOX_ANIMATIONS: {
     state('added', style({ marginTop: '0' })),
     state('deleted', style({ marginTop: '-100%' })),
     transition('void => added', animate(GHETTOBOX_PANEL_ANIMATION_TIMING)),
-    transition('added => deleted', animate(GHETTOBOX_PANEL_ONDELETE_TIMING))
-  ])
+    transition('added => deleted', animate(GHETTOBOX_PANEL_ONDELETE_TIMING)),
+  ]),
 };

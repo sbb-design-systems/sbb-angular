@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-audio',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconFastForwardSmall {}
 
 @Component({
   selector: 'sbb-icon-fast-forward-small',
-  template: `
-    <svg sbbIconFastForwardSmall></svg>
-  `,
+  template: ` <svg sbbIconFastForwardSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconFastForwardSmall {}
 
 @NgModule({
   declarations: [SvgIconFastForwardSmall, IconFastForwardSmall],
-  exports: [SvgIconFastForwardSmall, IconFastForwardSmall]
+  exports: [SvgIconFastForwardSmall, IconFastForwardSmall],
 })
 export class IconFastForwardSmallModule {}

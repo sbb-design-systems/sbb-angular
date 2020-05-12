@@ -53,18 +53,18 @@ export function createSvgOptimizer() {
           type: 'perItem',
           active: true,
           description: 'Angular namespacing',
-          fn: function(data: SvgNode) {
+          fn: function (data: SvgNode) {
             if (data.elem !== 'svg') {
               data.elem = `svg:${data.elem}`;
             }
 
             return data;
-          }
-        }
-      } as any
-    ]
+          },
+        },
+      } as any,
+    ],
   });
-  return async (svg: string) => await svgo.optimize(svg).then(r => r.data);
+  return async (svg: string) => await svgo.optimize(svg).then((r) => r.data);
 }
 
 function tryLoadSvgo(): new (config: import('svgo').Options) => import('svgo') {

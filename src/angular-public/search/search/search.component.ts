@@ -7,7 +7,7 @@ import {
   OverlayConfig,
   OverlayRef,
   PositionStrategy,
-  ScrollStrategy
+  ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewportRuler } from '@angular/cdk/scrolling';
@@ -32,7 +32,7 @@ import {
   TemplateRef,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
@@ -42,13 +42,13 @@ import {
   AUTOCOMPLETE_OPTION_HEIGHT,
   AUTOCOMPLETE_PANEL_HEIGHT,
   getSbbAutocompleteMissingPanelError,
-  SBB_AUTOCOMPLETE_SCROLL_STRATEGY
+  SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
 } from '@sbb-esta/angular-public/autocomplete';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
   OptionComponent,
-  SBBOptionSelectionChange
+  SBBOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
 import { defer, fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
 import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
@@ -67,7 +67,7 @@ export function SBB_SEARCH_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => Scro
 export const SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_SEARCH_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_SEARCH_SCROLL_STRATEGY_FACTORY
+  useFactory: SBB_SEARCH_SCROLL_STRATEGY_FACTORY,
 };
 
 // TODO: check if necessary
@@ -94,9 +94,9 @@ const ANIMATION_DURATION = 300;
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SearchComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
   /** @docs-private */
@@ -242,7 +242,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
     if (this.autocomplete && this.autocomplete.options) {
       return merge<SBBOptionSelectionChange>(
-        ...this.autocomplete.options.map(option => option.onSelectionChange)
+        ...this.autocomplete.options.map((option) => option.onSelectionChange)
       );
     }
 
@@ -429,7 +429,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
         : of()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map(event => (event instanceof SBBOptionSelectionChange ? event : null))
+      map((event) => (event instanceof SBBOptionSelectionChange ? event : null))
     );
   }
 
@@ -457,7 +457,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       fromEvent<MouseEvent>(this._document, 'click'),
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
-      filter(event => {
+      filter((event) => {
         const clickTarget = event.target as HTMLElement;
 
         return (
@@ -558,8 +558,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       .pipe()
       .subscribe(() => {
         this.autocomplete.options
-          .filter(option => !option.group)
-          .forEach(option => option._highlight(value));
+          .filter((option) => !option.group)
+          .forEach((option) => option._highlight(value));
       });
   }
 
@@ -640,7 +640,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
           first()
         )
         // set the value, close the panel, and complete.
-        .subscribe(event => {
+        .subscribe((event) => {
           this._setValueAndClose(event);
         })
     );
@@ -694,7 +694,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * Clear any previous selected option and emit a selection change event for this option
    */
   private _clearPreviousSelectedOption(skip: OptionComponent) {
-    this.autocomplete.options.forEach(option => {
+    this.autocomplete.options.forEach((option) => {
       // tslint:disable-next-line:triple-equals
       if (option != skip && option.selected) {
         option.deselect();
@@ -711,28 +711,30 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       if (this._positionStrategy) {
-        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(position => {
-          if (this.autocomplete.panel) {
-            if (position.connectionPair.originY === 'top') {
-              this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
-              this._getConnectedElement().nativeElement.classList.add(
-                'sbb-autocomplete-input-above'
-              );
-            } else {
-              this.autocomplete.panel.nativeElement.classList.remove(
-                'sbb-autocomplete-panel-above'
-              );
-              this._getConnectedElement().nativeElement.classList.remove(
-                'sbb-autocomplete-input-above'
-              );
+        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(
+          (position) => {
+            if (this.autocomplete.panel) {
+              if (position.connectionPair.originY === 'top') {
+                this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
+                this._getConnectedElement().nativeElement.classList.add(
+                  'sbb-autocomplete-input-above'
+                );
+              } else {
+                this.autocomplete.panel.nativeElement.classList.remove(
+                  'sbb-autocomplete-panel-above'
+                );
+                this._getConnectedElement().nativeElement.classList.remove(
+                  'sbb-autocomplete-input-above'
+                );
+              }
             }
           }
-        });
+        );
       }
 
       // Use the `keydownEvents` in order to take advantage of
       // the overlay event targeting provided by the CDK overlay.
-      this._overlayRef.keydownEvents().subscribe(event => {
+      this._overlayRef.keydownEvents().subscribe((event) => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
         if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
@@ -773,7 +775,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   private _openAnimation(element: HTMLElement) {
     const myAnimation = this._animationBuilder.build([
       style({ width: 0, opacity: 0 }),
-      animate(ANIMATION_DURATION, style({ width: this._getPanelWidth(), opacity: 1 }))
+      animate(ANIMATION_DURATION, style({ width: this._getPanelWidth(), opacity: 1 })),
     ]);
     const player = myAnimation.create(element);
     player.play();
@@ -783,7 +785,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   private _closeAnimation(element: HTMLElement) {
     const myAnimation = this._animationBuilder.build([
       style({ width: this._getPanelWidth(), opacity: 1 }),
-      animate(ANIMATION_DURATION, style({ width: 0, opacity: 0 }))
+      animate(ANIMATION_DURATION, style({ width: 0, opacity: 0 })),
     ]);
     const player = myAnimation.create(element);
     player.play();
@@ -796,7 +798,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       scrollStrategy: this._scrollStrategy(),
       width: this._getPanelWidth(),
       panelClass: ['sbb-search-panel', 'sbb-overlay-panel'],
-      minHeight: 30
+      minHeight: 30,
     });
   }
 
@@ -811,14 +813,14 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
           originX: 'start',
           originY: 'bottom',
           overlayX: 'start',
-          overlayY: 'top'
+          overlayY: 'top',
         },
         {
           originX: 'start',
           originY: 'top',
           overlayX: 'start',
-          overlayY: 'bottom'
-        }
+          overlayY: 'bottom',
+        },
       ]);
 
     return this._positionStrategy;

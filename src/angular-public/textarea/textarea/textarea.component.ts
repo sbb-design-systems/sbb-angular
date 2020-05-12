@@ -3,7 +3,7 @@ import {
   BooleanInput,
   coerceBooleanProperty,
   coerceNumberProperty,
-  NumberInput
+  NumberInput,
 } from '@angular/cdk/coercion';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
@@ -20,13 +20,13 @@ import {
   OnDestroy,
   Optional,
   Self,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
   CanUpdateErrorState,
   CanUpdateErrorStateCtor,
-  mixinErrorState
+  mixinErrorState,
 } from '@sbb-esta/angular-core/common-behaviors';
 import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
@@ -55,7 +55,7 @@ export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
   templateUrl: './textarea.component.html',
   styleUrls: ['./textarea.component.css'],
   providers: [{ provide: FormFieldControl, useExisting: TextareaComponent }],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextareaComponent extends SbbTextareaMixinBase
   implements

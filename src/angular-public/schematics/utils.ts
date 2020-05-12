@@ -2,7 +2,7 @@ import { SchematicContext, SchematicsException, Tree } from '@angular-devkit/sch
 import {
   addPackageJsonDependency,
   NodeDependency,
-  NodeDependencyType
+  NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
 import { getPackageJsonDependency } from '@schematics/angular/utility/dependencies';
 
@@ -44,7 +44,7 @@ export function addDefaultDependency(
     type: NodeDependencyType.Default,
     name: name,
     version: version,
-    overwrite: false
+    overwrite: false,
   };
   addPackageJsonDependency(host, nodeDependency);
   if (context) {

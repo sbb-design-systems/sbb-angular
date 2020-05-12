@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-community',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconFaceNeutralMedium {}
 
 @Component({
   selector: 'sbb-icon-face-neutral-medium',
-  template: `
-    <svg sbbIconFaceNeutralMedium></svg>
-  `,
+  template: ` <svg sbbIconFaceNeutralMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconFaceNeutralMedium {}
 
 @NgModule({
   declarations: [SvgIconFaceNeutralMedium, IconFaceNeutralMedium],
-  exports: [SvgIconFaceNeutralMedium, IconFaceNeutralMedium]
+  exports: [SvgIconFaceNeutralMedium, IconFaceNeutralMedium],
 })
 export class IconFaceNeutralMediumModule {}

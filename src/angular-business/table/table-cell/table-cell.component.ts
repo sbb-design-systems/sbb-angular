@@ -9,13 +9,13 @@ import {
   CdkFooterCell,
   CdkFooterCellDef,
   CdkHeaderCell,
-  CdkHeaderCellDef
+  CdkHeaderCellDef,
 } from '@angular/cdk/table';
 import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
 
 @Directive({
   selector: '[sbbCellDef]',
-  providers: [{ provide: CdkCellDef, useExisting: CellDefDirective }]
+  providers: [{ provide: CdkCellDef, useExisting: CellDefDirective }],
 })
 export class CellDefDirective extends CdkCellDef {}
 
@@ -25,7 +25,7 @@ export class CellDefDirective extends CdkCellDef {}
  */
 @Directive({
   selector: '[sbbHeaderCellDef]',
-  providers: [{ provide: CdkHeaderCellDef, useExisting: HeaderCellDefDirective }]
+  providers: [{ provide: CdkHeaderCellDef, useExisting: HeaderCellDefDirective }],
 })
 export class HeaderCellDefDirective extends CdkHeaderCellDef {}
 
@@ -35,7 +35,7 @@ export class HeaderCellDefDirective extends CdkHeaderCellDef {}
  */
 @Directive({
   selector: '[sbbFooterCellDef]',
-  providers: [{ provide: CdkFooterCellDef, useExisting: FooterCellDefDirective }]
+  providers: [{ provide: CdkFooterCellDef, useExisting: FooterCellDefDirective }],
 })
 export class FooterCellDefDirective extends CdkFooterCellDef {}
 
@@ -48,8 +48,8 @@ export class FooterCellDefDirective extends CdkFooterCellDef {}
   inputs: ['sticky'],
   providers: [
     { provide: CdkColumnDef, useExisting: ColumnDefDirective },
-    { provide: 'SORT_HEADER_COLUMN_DEF', useExisting: ColumnDefDirective }
-  ]
+    { provide: 'SORT_HEADER_COLUMN_DEF', useExisting: ColumnDefDirective },
+  ],
 })
 export class ColumnDefDirective extends CdkColumnDef {
   static ngAcceptInputTypeSticky: boolean | string | null | undefined = undefined;
@@ -60,7 +60,7 @@ export class ColumnDefDirective extends CdkColumnDef {
 
 /** Header cell template container that adds the right classes and role. */
 @Directive({
-  selector: 'sbbHeaderCell, th[sbbHeaderCell]'
+  selector: 'sbbHeaderCell, th[sbbHeaderCell]',
 })
 export class HeaderCellDirective extends CdkHeaderCell {
   @HostBinding('class.sbb-header-cell') sbbHeaderCell = true;
@@ -74,7 +74,7 @@ export class HeaderCellDirective extends CdkHeaderCell {
 
 /** Footer cell template container that adds the right classes and role. */
 @Directive({
-  selector: 'sbbFooterCell, td[sbbFooterCell]'
+  selector: 'sbbFooterCell, td[sbbFooterCell]',
 })
 export class FooterCellDirective extends CdkFooterCell {
   @HostBinding('class.sbb-footer-cell') sbbFooterCell = true;
@@ -88,7 +88,7 @@ export class FooterCellDirective extends CdkFooterCell {
 
 /** Cell template container that adds the right classes and role. */
 @Directive({
-  selector: 'sbbCell, td[sbbCell]'
+  selector: 'sbbCell, td[sbbCell]',
 })
 export class CellDirective extends CdkCell {
   @HostBinding('class.sbb-cell') sbbCell = true;

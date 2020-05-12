@@ -11,9 +11,9 @@ export class EsriConfigModule {
       providers: [
         {
           provide: ESRI_CONFIG_TOKEN,
-          useValue: config
-        }
-      ]
+          useValue: config,
+        },
+      ],
     };
   }
 }

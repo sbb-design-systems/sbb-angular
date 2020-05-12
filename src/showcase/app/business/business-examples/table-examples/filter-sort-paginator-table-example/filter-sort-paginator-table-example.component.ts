@@ -5,7 +5,7 @@ import {
   SbbSortDirective,
   SbbTableDataSource,
   TableComponent,
-  TableFilter
+  TableFilter,
 } from '@sbb-esta/angular-business/table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -20,7 +20,7 @@ interface VehicleFilter extends TableFilter {
 
 @Component({
   selector: 'sbb-filter-sort-paginator-table-example',
-  templateUrl: './filter-sort-paginator-table-example.component.html'
+  templateUrl: './filter-sort-paginator-table-example.component.html',
 })
 export class FilterSortPaginatorTableExampleComponent implements AfterViewInit, OnDestroy {
   @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
@@ -30,13 +30,15 @@ export class FilterSortPaginatorTableExampleComponent implements AfterViewInit, 
   displayedColumns: string[] = ['position', 'name', 'power', 'description', 'category'];
 
   dataSource = new SbbTableDataSource<VehicleExampleItem, VehicleFilter>(VEHICLE_EXAMPLE_DATA);
-  categories = new Set(VEHICLE_EXAMPLE_DATA.map(vehicleExampleItem => vehicleExampleItem.category));
+  categories = new Set(
+    VEHICLE_EXAMPLE_DATA.map((vehicleExampleItem) => vehicleExampleItem.category)
+  );
 
   vehicleFilterForm = new FormGroup({
     _: new FormControl(''),
     category: new FormControl(),
     name: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
   });
 
   private _destroyed = new Subject<void>();

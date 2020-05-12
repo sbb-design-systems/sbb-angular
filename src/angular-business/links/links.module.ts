@@ -8,6 +8,6 @@ import { LinkComponent } from './link/link.component';
 @NgModule({
   imports: [CommonModule, IconArrowRightModule, IconDownloadModule],
   declarations: [LinkComponent],
-  exports: [LinkComponent]
+  exports: [LinkComponent],
 })
 export class LinksModule {}

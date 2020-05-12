@@ -13,12 +13,12 @@ const EXAMPLES = [
   AutocompleteFormsExampleComponent,
   AutocompleteHintExampleComponent,
   AutocompleteOptionGroupExampleComponent,
-  AutocompleteReactiveFormsExampleComponent
+  AutocompleteReactiveFormsExampleComponent,
 ];
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, AutocompleteModule, FieldModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class AutocompleteExamplesModule {}

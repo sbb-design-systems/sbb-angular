@@ -11,6 +11,6 @@ const EXAMPLES = [RadioButtonExampleComponent];
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule, RadioButtonModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class RadioButtonExamplesModule {}

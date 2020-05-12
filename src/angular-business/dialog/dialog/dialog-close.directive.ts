@@ -5,7 +5,7 @@ import {
   HostListener,
   Input,
   OnInit,
-  Optional
+  Optional,
 } from '@angular/core';
 
 import { DialogHelperService } from './dialog-helper.service';
@@ -17,7 +17,7 @@ import { Dialog } from './dialog.service';
  */
 @Directive({
   selector: `button[sbbDialogClose]`,
-  exportAs: 'sbbDialogClose'
+  exportAs: 'sbbDialogClose',
 })
 export class DialogCloseDirective implements OnInit {
   /** Screenreader label for the button. */

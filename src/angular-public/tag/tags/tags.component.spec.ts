@@ -25,7 +25,7 @@ import { TagsComponent } from './tags.component';
         ></sbb-tag>
       </ng-container>
     </sbb-tags>
-  `
+  `,
 })
 class TagsTestFixtureComponent {
   tagItems: Tag[] = [
@@ -33,13 +33,13 @@ class TagsTestFixtureComponent {
       id: 'tag-1',
       label: 'Services',
       amount: 8,
-      selected: false
+      selected: false,
     },
     {
       label: 'Restaurants / Take Away',
       amount: 9,
-      selected: false
-    }
+      selected: false,
+    },
   ];
 
   change(evt: TagChange) {}
@@ -51,7 +51,7 @@ class TagsTestFixtureComponent {
     <a href="#">
       <sbb-tag label="Link tag" amount="5"></sbb-tag>
     </a>
-  `
+  `,
 })
 class TagLinkTestFixtureComponent {}
 
@@ -62,7 +62,7 @@ describe('TagsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BadgeModule],
-      declarations: [TagsComponent, TagComponent]
+      declarations: [TagsComponent, TagComponent],
     }).compileComponents();
   }));
 
@@ -88,7 +88,7 @@ describe('TagsComponent with Model attached', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, BadgeModule],
-      declarations: [TagsComponent, TagComponent, TagsTestFixtureComponent]
+      declarations: [TagsComponent, TagComponent, TagsTestFixtureComponent],
     }).compileComponents();
   }));
 
@@ -121,7 +121,7 @@ describe('TagsComponent with Model attached', () => {
   it('should have all its sbb-tag children with linkMode set to false', () => {
     const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
 
-    const foundLinkModes = tags.findIndex(tag => tag.componentInstance.linkMode === true) !== -1;
+    const foundLinkModes = tags.findIndex((tag) => tag.componentInstance.linkMode === true) !== -1;
 
     expect(foundLinkModes).toBeFalsy();
   });
@@ -129,7 +129,7 @@ describe('TagsComponent with Model attached', () => {
   it('should set an amount', () => {
     const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
 
-    tags.forEach(tag => {
+    tags.forEach((tag) => {
       const tagAmount = tag.componentInstance.amount;
       expect(tagAmount).toBeDefined();
       expect(tagAmount).not.toBeNaN();
@@ -210,7 +210,7 @@ describe('TagsComponent with Model attached', () => {
     tags.splice(0, 1);
 
     const hasTruthyValues =
-      tags.findIndex(t => t.componentInstance.checked && t.componentInstance.active) !== -1;
+      tags.findIndex((t) => t.componentInstance.checked && t.componentInstance.active) !== -1;
 
     expect(hasTruthyValues).toBeFalsy();
   });
@@ -234,7 +234,7 @@ describe('TagComponent as a Link Tag', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BadgeModule],
-      declarations: [TagComponent, TagLinkTestFixtureComponent]
+      declarations: [TagComponent, TagLinkTestFixtureComponent],
     }).compileComponents();
   }));
 

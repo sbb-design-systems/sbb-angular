@@ -7,7 +7,7 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 @Component({
   selector: 'sbb-search-example',
   templateUrl: './search-example.component.html',
-  styleUrls: ['./search-example.component.css']
+  styleUrls: ['./search-example.component.css'],
 })
 export class SearchExampleComponent implements OnInit {
   myControl = new FormControl('');
@@ -26,7 +26,7 @@ export class SearchExampleComponent implements OnInit {
     'Sieben',
     'Acht',
     'Neun',
-    'Zehn'
+    'Zehn',
   ];
   filter: '';
   filteredOptions = this.options.slice(0);
@@ -44,7 +44,7 @@ export class SearchExampleComponent implements OnInit {
     'Lucerne',
     'St. Gallen',
     'Lugano',
-    'Thun'
+    'Thun',
   ];
 
   filteredOptions2 = this.topics.slice(0);
@@ -53,15 +53,15 @@ export class SearchExampleComponent implements OnInit {
   constructor(private _http: HttpClient) {}
 
   ngOnInit() {
-    this.myControl.valueChanges.subscribe(newValue => {
+    this.myControl.valueChanges.subscribe((newValue) => {
       this.filteredOptions = this.options.filter(
-        option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+        (option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
       );
     });
 
-    this.myControl2.valueChanges.subscribe(newValue => {
+    this.myControl2.valueChanges.subscribe((newValue) => {
       this.filteredOptions2 = this.topics.filter(
-        option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+        (option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
       );
     });
 
@@ -70,11 +70,11 @@ export class SearchExampleComponent implements OnInit {
     this.myControlStatic.valueChanges
       .pipe(debounceTime(500))
       .pipe(distinctUntilChanged())
-      .subscribe(newValue => {
+      .subscribe((newValue) => {
         if (newValue.length >= 2) {
           this.options$.next(
             this.options.filter(
-              option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+              (option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
             )
           );
         } else {
@@ -82,7 +82,7 @@ export class SearchExampleComponent implements OnInit {
         }
       });
 
-    this.searchSubject.pipe(distinctUntilChanged()).subscribe(searchTerm => {
+    this.searchSubject.pipe(distinctUntilChanged()).subscribe((searchTerm) => {
       this.showSpinner = true;
       this._http
         .get<any>(
@@ -91,13 +91,13 @@ export class SearchExampleComponent implements OnInit {
               .trim()
               .toLowerCase()}`
         )
-        .subscribe(results => {
+        .subscribe((results) => {
           const searchResults = results;
           console.log(searchResults);
           this.searchResults = searchResults.records.map((record: any) => {
             return {
               id: record.fields.filename.id,
-              station: record.fields.bahnhof
+              station: record.fields.bahnhof,
             };
           });
           this.showSpinner = false;

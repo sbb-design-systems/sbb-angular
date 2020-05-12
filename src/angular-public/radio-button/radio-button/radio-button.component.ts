@@ -6,7 +6,7 @@ import {
   Component,
   ElementRef,
   forwardRef,
-  Optional
+  Optional,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
@@ -20,11 +20,11 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RadioButtonComponent),
-      multi: true
+      multi: true,
     },
-    { provide: RadioButton, useExisting: RadioButtonComponent }
+    { provide: RadioButton, useExisting: RadioButtonComponent },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonComponent extends RadioButton {
   constructor(

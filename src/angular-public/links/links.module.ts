@@ -9,7 +9,7 @@ import {
   IconPinterestModule,
   IconTwitterModule,
   IconXingModule,
-  IconYoutubeModule
+  IconYoutubeModule,
 } from '@sbb-esta/angular-icons/social-media';
 
 import { LinkComponent } from './link/link.component';
@@ -26,9 +26,9 @@ import { SocialLinkComponent } from './social-link/social-link.component';
     IconTwitterModule,
     IconYoutubeModule,
     IconXingModule,
-    IconLinkedinModule
+    IconLinkedinModule,
   ],
   declarations: [LinkComponent, SocialLinkComponent],
-  exports: [LinkComponent, SocialLinkComponent]
+  exports: [LinkComponent, SocialLinkComponent],
 })
 export class LinksModule {}

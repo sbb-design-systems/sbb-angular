@@ -53,7 +53,7 @@ function buildShowcase(distPath) {
     JSON.stringify({
       name: '@sbb-esta/angular-showcase',
       version,
-      publishConfig: { access: 'public' }
+      publishConfig: { access: 'public' },
     }),
     'utf8'
   );
@@ -68,7 +68,7 @@ function buildShowcase(distPath) {
 function exec(command, captureStdout) {
   const stdout = execSync(command, {
     cwd: projectDir,
-    stdio: ['inherit', captureStdout ? 'pipe' : 'inherit', 'inherit']
+    stdio: ['inherit', captureStdout ? 'pipe' : 'inherit', 'inherit'],
   });
 
   if (captureStdout) {

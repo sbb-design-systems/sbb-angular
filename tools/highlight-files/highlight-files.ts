@@ -20,9 +20,7 @@ function getBazelActionArguments() {
   // If Bazel uses a parameter file, we've specified that it passes the file in the following
   // format: "arg0 arg1 --param-file={path_to_param_file}"
   if (args[0].startsWith('--param-file=')) {
-    return readFileSync(args[0].split('=')[1], 'utf8')
-      .trim()
-      .split('\n');
+    return readFileSync(args[0].split('=')[1], 'utf8').trim().split('\n');
   }
 
   return args;
@@ -35,7 +33,7 @@ if (require.main === module) {
 
   // Walk through each input file and write transformed markdown output to the specified
   // Bazel bin directory.
-  inputFiles.forEach(inputPath => {
+  inputFiles.forEach((inputPath) => {
     const fileExtension = extname(inputPath).substring(1);
     // Convert "my-component-example.ts" into "my-component-example-ts.html"
     const baseOutputPath = inputPath.replace(`.${fileExtension}`, `-${fileExtension}.html`);

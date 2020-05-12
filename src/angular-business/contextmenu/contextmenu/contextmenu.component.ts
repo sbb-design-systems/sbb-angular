@@ -5,7 +5,7 @@ import {
   ContentChild,
   HostBinding,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { DropdownComponent, DropdownTriggerDirective } from '@sbb-esta/angular-business/dropdown';
 
@@ -14,7 +14,7 @@ import { DropdownComponent, DropdownTriggerDirective } from '@sbb-esta/angular-b
   templateUrl: './contextmenu.component.html',
   styleUrls: ['./contextmenu.component.css'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContextmenuComponent implements AfterContentInit {
   /** @docs-private */

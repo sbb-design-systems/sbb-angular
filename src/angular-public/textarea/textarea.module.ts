@@ -7,6 +7,6 @@ import { TextareaComponent } from './textarea/textarea.component';
 @NgModule({
   imports: [CommonModule, TextFieldModule],
   declarations: [TextareaComponent],
-  exports: [TextareaComponent]
+  exports: [TextareaComponent],
 })
 export class TextareaModule {}

@@ -20,9 +20,9 @@ const EXAMPLES = [ToggleExampleComponent];
     IconArrowsRightLeftModule,
     DatepickerModule,
     FieldModule,
-    ToggleModule
+    ToggleModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class ToggleExamplesModule {}

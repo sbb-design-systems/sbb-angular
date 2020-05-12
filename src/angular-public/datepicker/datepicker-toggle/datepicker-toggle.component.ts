@@ -10,7 +10,7 @@ import {
   OnChanges,
   OnDestroy,
   SimpleChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { merge, of, Subscription } from 'rxjs';
 
@@ -20,7 +20,7 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
   selector: 'sbb-datepicker-toggle',
   templateUrl: './datepicker-toggle.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, AfterContentInit {
   private _stateChanges = Subscription.EMPTY;

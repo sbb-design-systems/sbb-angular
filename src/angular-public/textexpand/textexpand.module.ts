@@ -8,6 +8,6 @@ import { TextexpandComponent } from './textexpand/textexpand.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [TextexpandComponent, TextexpandCollapsedComponent, TextexpandExpandedComponent],
-  exports: [TextexpandComponent, TextexpandCollapsedComponent, TextexpandExpandedComponent]
+  exports: [TextexpandComponent, TextexpandCollapsedComponent, TextexpandExpandedComponent],
 })
 export class TextexpandModule {}

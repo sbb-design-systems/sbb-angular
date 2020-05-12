@@ -3,7 +3,7 @@ import {
   Rule,
   SchematicContext,
   SchematicsException,
-  Tree
+  Tree,
 } from '@angular-devkit/schematics';
 import { getProjectFromWorkspace } from '@angular/cdk/schematics';
 import { getWorkspace } from '@schematics/angular/utility/config';
@@ -27,8 +27,10 @@ export function svgIcons(options: Schema): Rule {
     const project = getProjectFromWorkspace(workspace, options.project);
     const iconModules = await new IconModuleFactory(tree, registryFileEntry).createIconModules();
     const duplicates = iconModules
-      .map(i => i.normalizedName)
-      .filter((n, i, a) => a.findIndex(m => m === n) === i && a.filter(m => m === n).length > 1);
+      .map((i) => i.normalizedName)
+      .filter(
+        (n, i, a) => a.findIndex((m) => m === n) === i && a.filter((m) => m === n).length > 1
+      );
     if (duplicates.length) {
       throw new SchematicsException(`Duplicate normalized names found: ${duplicates.join(', ')}`);
     }

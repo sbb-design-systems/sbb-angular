@@ -6,7 +6,7 @@ import { VehicleExampleItem, VEHICLE_EXAMPLE_DATA } from '../table-example-data'
 
 @Component({
   selector: 'sbb-table-selection-example',
-  templateUrl: './selectable-table-example.component.html'
+  templateUrl: './selectable-table-example.component.html',
 })
 export class SelectableTableExampleComponent {
   displayedColumns: string[] = ['select', 'position', 'name', 'power', 'description', 'category'];
@@ -24,7 +24,7 @@ export class SelectableTableExampleComponent {
   masterToggle() {
     this.isAllSelected()
       ? this.selection.clear()
-      : this.dataSource.data.forEach(row => this.selection.select(row));
+      : this.dataSource.data.forEach((row) => this.selection.select(row));
   }
 
   /** The label for the checkbox on the passed row */

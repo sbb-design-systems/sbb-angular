@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 48 48',
     class: 'sbb-icon sbb-icon-kom sbb-icon-basic',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconShoppingCartLarge {}
 
 @Component({
   selector: 'sbb-icon-shopping-cart-large',
-  template: `
-    <svg sbbIconShoppingCartLarge></svg>
-  `,
+  template: ` <svg sbbIconShoppingCartLarge></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconShoppingCartLarge {}
 
 @NgModule({
   declarations: [SvgIconShoppingCartLarge, IconShoppingCartLarge],
-  exports: [SvgIconShoppingCartLarge, IconShoppingCartLarge]
+  exports: [SvgIconShoppingCartLarge, IconShoppingCartLarge],
 })
 export class IconShoppingCartLargeModule {}

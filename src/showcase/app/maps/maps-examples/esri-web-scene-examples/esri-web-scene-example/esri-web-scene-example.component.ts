@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'sbb-esri-web-scene-example',
   templateUrl: './esri-web-scene-example.component.html',
-  styleUrls: ['./esri-web-scene-example.component.css']
+  styleUrls: ['./esri-web-scene-example.component.css'],
 })
 export class EsriWebSceneExampleComponent implements OnInit {
   public centerPoint: { x: number; y: number; z: number };

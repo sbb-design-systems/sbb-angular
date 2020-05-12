@@ -7,6 +7,6 @@ import { CheckboxPanelComponent } from './checkbox-panel/checkbox-panel.componen
 @NgModule({
   imports: [CommonModule, IconTickModule],
   declarations: [CheckboxPanelComponent],
-  exports: [CheckboxPanelComponent]
+  exports: [CheckboxPanelComponent],
 })
 export class CheckboxPanelModule {}

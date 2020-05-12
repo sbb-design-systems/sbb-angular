@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sbb-icon-link-example',
-  templateUrl: './icon-link-example.component.html'
+  templateUrl: './icon-link-example.component.html',
 })
 export class IconLinkExampleComponent {
   linkMode = 'normal';

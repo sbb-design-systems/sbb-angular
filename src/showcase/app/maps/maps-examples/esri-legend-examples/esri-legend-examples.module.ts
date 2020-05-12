@@ -10,6 +10,6 @@ const EXAMPLES = [EsriLegendExampleComponent];
 @NgModule({
   imports: [CommonModule, EsriLegendModule, EsriWebSceneModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class EsriLegendExamplesModule {}

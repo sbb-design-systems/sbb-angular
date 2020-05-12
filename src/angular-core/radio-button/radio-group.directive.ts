@@ -9,7 +9,7 @@ import {
   HostBinding,
   Input,
   Output,
-  QueryList
+  QueryList,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -26,9 +26,9 @@ let nextUniqueId = 0;
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RadioGroupDirective),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class RadioGroupDirective implements AfterContentInit, ControlValueAccessor, RadioGroup {
   /**
@@ -108,10 +108,7 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
   @Output() readonly change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 
   /** Child radio buttons. */
-  @ContentChildren(
-    forwardRef(() => RadioButton),
-    { descendants: true }
-  )
+  @ContentChildren(forwardRef(() => RadioButton), { descendants: true })
   _radios: QueryList<RadioButton>;
 
   /** Selected value for the radio group. */
@@ -183,7 +180,7 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
 
   _markRadiosForCheck() {
     if (this._radios) {
-      this._radios.forEach(radio => radio._markForCheck());
+      this._radios.forEach((radio) => radio._markForCheck());
     }
   }
 
@@ -224,7 +221,7 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
 
   private _updateRadioButtonNames(): void {
     if (this._radios) {
-      this._radios.forEach(radio => {
+      this._radios.forEach((radio) => {
         radio.name = this.name;
         radio._markForCheck();
       });
@@ -238,7 +235,7 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
 
     if (this._radios && !isAlreadySelected) {
       this._selected = null;
-      this._radios.forEach(radio => {
+      this._radios.forEach((radio) => {
         radio.checked = this.value === radio.value;
         if (radio.checked) {
           this._selected = radio;

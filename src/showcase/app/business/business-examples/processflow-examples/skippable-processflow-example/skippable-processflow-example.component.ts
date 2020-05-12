@@ -3,7 +3,7 @@ import { ProcessflowComponent, ProcessflowStep } from '@sbb-esta/angular-busines
 
 @Component({
   selector: 'sbb-skippable-processflow-example',
-  templateUrl: './skippable-processflow-example.component.html'
+  templateUrl: './skippable-processflow-example.component.html',
 })
 export class SkippableProcessflowExampleComponent implements AfterViewInit {
   @ViewChild('processflow', { static: true }) processflow: ProcessflowComponent;

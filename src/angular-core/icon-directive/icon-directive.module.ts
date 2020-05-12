@@ -4,6 +4,6 @@ import { IconDirective } from './icon.directive';
 
 @NgModule({
   declarations: [IconDirective],
-  exports: [IconDirective]
+  exports: [IconDirective],
 })
 export class IconDirectiveModule {}

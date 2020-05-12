@@ -7,6 +7,6 @@ import { EsriWebMapComponent } from './esri-web-map/esri-web-map.component';
   declarations: [EsriWebMapComponent],
   providers: [],
   imports: [CommonModule],
-  exports: [EsriWebMapComponent]
+  exports: [EsriWebMapComponent],
 })
 export class EsriWebMapModule {}

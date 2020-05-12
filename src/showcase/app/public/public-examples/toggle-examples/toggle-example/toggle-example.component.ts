@@ -6,7 +6,7 @@ import { RadioChange } from '@sbb-esta/angular-core/radio-button';
   selector: 'sbb-toggle-example',
   templateUrl: './toggle-example.component.html',
   styleUrls: ['./toggle-example.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ToggleExampleComponent implements OnInit {
   modelValue = 'Option_1';
@@ -15,11 +15,11 @@ export class ToggleExampleComponent implements OnInit {
   toggleValues: any;
 
   form = new FormGroup({
-    test: new FormControl()
+    test: new FormControl(),
   });
 
   ngOnInit() {
-    this.form.get('test')!.valueChanges.subscribe(val => {
+    this.form.get('test')!.valueChanges.subscribe((val) => {
       this.modelReactive = val;
     });
   }

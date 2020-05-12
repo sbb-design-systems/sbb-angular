@@ -4,15 +4,15 @@ export const TABLE_EXAMPLE_DATA_SIMPLE = [
     columnTwo: 'columnTwo',
     columnThree: 'columnThree',
     columnFour: 'columnFour',
-    columnFive: 'columnFive'
+    columnFive: 'columnFive',
   },
   {
     columnOne: 'columnOne',
     columnTwo: 'columnTwo',
     columnThree: 'columnThree',
     columnFour: 'columnFour',
-    columnFive: 'columnFive'
-  }
+    columnFive: 'columnFive',
+  },
 ];
 
 export const TABLE_EXAMPLE_DATA_GROUPED_COLS = [
@@ -21,75 +21,75 @@ export const TABLE_EXAMPLE_DATA_GROUPED_COLS = [
     groupedOne: 'groupedOne1',
     groupedTwo: 'groupedTwo1',
     groupedThree: 'groupedThree1',
-    center: 'center1'
+    center: 'center1',
   },
   {
     left: 'left2',
     groupedOne: 'groupedOne2',
     groupedTwo: 'groupedTwo2',
     groupedThree: 'groupedThree2',
-    center: 'center2'
+    center: 'center2',
   },
   {
     left: 'left3',
     groupedOne: 'groupedOne3',
     groupedTwo: 'groupedTwo3',
     groupedThree: 'groupedThree3',
-    center: 'center3'
+    center: 'center3',
   },
   {
     left: 'left4',
     groupedOne: 'groupedOne4',
     groupedTwo: 'groupedTwo4',
     groupedThree: 'groupedThree4',
-    center: 'center4'
+    center: 'center4',
   },
   {
     left: 'left5',
     groupedOne: 'groupedOne5',
     groupedTwo: 'groupedTwo5',
     groupedThree: 'groupedThree5',
-    center: 'center5'
-  }
+    center: 'center5',
+  },
 ];
 
 export const TABLE_EXAMPLE_DATA_GROUPED_ROWS = [
   {
     title: 'Mobile Workplace IT',
-    isGroupBy: true
+    isGroupBy: true,
   },
   {
     deviceName: 'iPhone order form',
     orderDate: '01.01.2017',
     arrivalDate: '01.01.2017',
     lifecycleEnd: '01.01.2020',
-    status: 'Delivered'
+    status: 'Delivered',
   },
   {
     deviceName: 'Samsung A5',
     orderDate: '01.01.2018',
     arrivalDate: '-',
     lifecycleEnd: '-',
-    status: 'Ordered'
+    status: 'Ordered',
   },
   {
     title: 'Standard Workplace IT',
-    isGroupBy: true
+    isGroupBy: true,
   },
   {
     deviceName: 'Lenovo Laptop charger',
     orderDate: '01.01.2017',
     arrivalDate: '10.01.2017',
     lifecycleEnd: '01.01.2020',
-    status: 'Installed'
+    status: 'Installed',
   },
   {
     deviceName: 'Lenovo Laptop',
     orderDate: '01.01.2017',
     arrivalDate: '10.01.2017',
     lifecycleEnd: '01.01.2020',
-    status: 'Installed'
-  }
+    status: 'Installed',
+  },
 ];
 
 export const TABLE_EXAMPLE_DATA = [
@@ -97,32 +97,32 @@ export const TABLE_EXAMPLE_DATA = [
     letter: 'A',
     number: 5,
     word: 'abc',
-    date: new Date(1097777640)
+    date: new Date(1097777640),
   },
   {
     letter: 'B',
     number: 4,
     word: 'def',
-    date: new Date(939924840)
+    date: new Date(939924840),
   },
   {
     letter: 'C',
     number: 3,
     word: 'ghj',
-    date: new Date(782158440)
+    date: new Date(782158440),
   },
   {
     letter: 'D',
     number: 2,
     word: 'klm',
-    date: new Date(1413310440)
+    date: new Date(1413310440),
   },
   {
     letter: 'E',
     number: 1,
     word: 'nop',
-    date: new Date(1255544040)
-  }
+    date: new Date(1255544040),
+  },
 ];
 
 export interface VehicleExampleItem {
@@ -139,28 +139,28 @@ export const VEHICLE_EXAMPLE_DATA: VehicleExampleItem[] = [
     category: 'Railcar',
     name: 'Bem 550',
     power: 0,
-    description: 'Gleichstromfahrzeug 1500 V'
+    description: 'Gleichstromfahrzeug 1500 V',
   },
   {
     position: 2,
     category: 'Trainset',
     name: 'RABDe 510',
     power: 2444,
-    description: '«Mirage», «Goldküstenexpress»'
+    description: '«Mirage», «Goldküstenexpress»',
   },
   {
     position: 3,
     category: 'Trainset',
     name: 'RABDe 500',
     power: 5200,
-    description: 'InterCity-Neigezug (ICN)'
+    description: 'InterCity-Neigezug (ICN)',
   },
   {
     position: 4,
     category: 'Trainset',
     name: 'RABe 511',
     power: 4000,
-    description: 'KISS, RV-Dosto'
+    description: 'KISS, RV-Dosto',
   },
   { position: 5, category: 'Trainset', name: 'RABe 501', power: 6000, description: 'Giruno' },
   {
@@ -168,7 +168,7 @@ export const VEHICLE_EXAMPLE_DATA: VehicleExampleItem[] = [
     category: 'Trainset',
     name: 'RABDe 502',
     power: 7500,
-    description: 'Twindexx IC 200, FV-Dosto'
+    description: 'Twindexx IC 200, FV-Dosto',
   },
   { position: 7, category: 'Trainset', name: 'ETR 610', power: 5500, description: 'Astoro' },
   {
@@ -176,7 +176,7 @@ export const VEHICLE_EXAMPLE_DATA: VehicleExampleItem[] = [
     category: 'Trainset',
     name: 'RABe 514',
     power: 3200,
-    description: 'S-Bahn Zürich Doppelstocktriebzug (DTZ)'
+    description: 'S-Bahn Zürich Doppelstocktriebzug (DTZ)',
   },
   { position: 9, category: 'Trainset', name: 'RABe 520', power: 760, description: 'Seetal GTW' },
   { position: 10, category: 'Trainset', name: 'RABe 526', power: 1100, description: 'GTW' },
@@ -186,7 +186,7 @@ export const VEHICLE_EXAMPLE_DATA: VehicleExampleItem[] = [
     category: 'Railcar',
     name: 'RAe 591',
     power: 835,
-    description: 'Churchill-Pfeil'
+    description: 'Churchill-Pfeil',
   },
   { position: 13, category: 'Trainset', name: 'TGV PSE', power: 6450, description: 'TGV' },
   { position: 14, category: 'Trainset', name: 'TGV POS', power: 9200, description: 'TGV' },
@@ -200,6 +200,6 @@ export const VEHICLE_EXAMPLE_DATA: VehicleExampleItem[] = [
     category: 'Locomotive',
     name: 'Re 460',
     power: 6100,
-    description: 'Locomotive 2000'
-  }
+    description: 'Locomotive 2000',
+  },
 ];

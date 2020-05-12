@@ -24,32 +24,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-ticket',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconTicketHeartSmall {}
 
 @Component({
   selector: 'sbb-icon-ticket-heart-small',
-  template: `
-    <svg sbbIconTicketHeartSmall></svg>
-  `,
+  template: ` <svg sbbIconTicketHeartSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconTicketHeartSmall {}
 
 @NgModule({
   declarations: [SvgIconTicketHeartSmall, IconTicketHeartSmall],
-  exports: [SvgIconTicketHeartSmall, IconTicketHeartSmall]
+  exports: [SvgIconTicketHeartSmall, IconTicketHeartSmall],
 })
 export class IconTicketHeartSmallModule {}

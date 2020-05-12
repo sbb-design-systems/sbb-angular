@@ -17,7 +17,7 @@ import { CheckboxComponent } from './checkbox.component';
     <sbb-checkbox [(ngModel)]="checkValue2" inputId="test-check-2" value="2"
       >Test check button 2</sbb-checkbox
     >
-  `
+  `,
 })
 class ModelCheckboxTestComponent {
   checkValue1 = false;
@@ -31,7 +31,7 @@ describe('CheckboxComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, IconTickModule],
-      declarations: [CheckboxComponent]
+      declarations: [CheckboxComponent],
     }).compileComponents();
   }));
 
@@ -57,7 +57,7 @@ describe('CheckboxComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, IconTickModule],
-      declarations: [CheckboxComponent, ModelCheckboxTestComponent]
+      declarations: [CheckboxComponent, ModelCheckboxTestComponent],
     }).compileComponents();
   }));
 

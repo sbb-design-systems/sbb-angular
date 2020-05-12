@@ -18,7 +18,7 @@ export class MarkerSymbolSettings {
     size: MarkerSizes.standardSize,
     outline: {
       color: MarkerColors.lilaColor,
-      width: MarkerSizes.standardOutlineWidth
-    }
+      width: MarkerSizes.standardOutlineWidth,
+    },
   } as __esri.SimpleMarkerSymbolProperties;
 }

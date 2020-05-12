@@ -3,7 +3,7 @@ import { SbbTooltipChangeEvent } from '@sbb-esta/angular-business/tooltip';
 
 @Component({
   selector: 'sbb-tooltip-hover-example',
-  templateUrl: './tooltip-hover-example.component.html'
+  templateUrl: './tooltip-hover-example.component.html',
 })
 export class TooltipHoverExampleComponent {
   hoverHideDelay = 0;

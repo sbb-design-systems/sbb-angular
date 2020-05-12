@@ -57,11 +57,11 @@ const modules = [
   IconToiletModule,
   IconTrainStationModule,
   IconWaitingRoomModule,
-  IconWineCheeseModule
+  IconWineCheeseModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionStationModule {}

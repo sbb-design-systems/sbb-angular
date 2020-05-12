@@ -19,7 +19,7 @@ import { RadioButtonComponent } from './radio-button.component';
         Test radio button 2
       </sbb-radio-button>
     </sbb-radio-group>
-  `
+  `,
 })
 class ModelRadioButtonTestComponent {
   testValue = '2';
@@ -32,7 +32,7 @@ describe('RadioButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule],
-      declarations: [RadioButtonComponent]
+      declarations: [RadioButtonComponent],
     }).compileComponents();
   }));
 
@@ -59,7 +59,7 @@ describe('RadioButtonComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, ɵRadioButtonModule],
-      declarations: [RadioButtonComponent, ModelRadioButtonTestComponent]
+      declarations: [RadioButtonComponent, ModelRadioButtonTestComponent],
     }).compileComponents();
   }));
 

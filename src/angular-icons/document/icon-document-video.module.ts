@@ -36,7 +36,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconDocumentVideoComponent extends IconBase {
   constructor() {
@@ -47,6 +47,6 @@ export class IconDocumentVideoComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconDocumentVideoComponent],
-  exports: [IconDocumentVideoComponent]
+  exports: [IconDocumentVideoComponent],
 })
 export class IconDocumentVideoModule {}

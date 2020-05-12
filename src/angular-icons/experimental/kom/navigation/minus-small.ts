@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 @Component({
   selector: 'svg[sbbIconMinusSmall]',
-  template: `
-    <svg:path fill="none" stroke="#000" d="M20 12.5H3" />
-  `,
+  template: ` <svg:path fill="none" stroke="#000" d="M20 12.5H3" /> `,
   styles: [
     `
       :host-context(.sbb-icon-fixed-size) {
@@ -19,32 +17,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-navigation',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconMinusSmall {}
 
 @Component({
   selector: 'sbb-icon-minus-small',
-  template: `
-    <svg sbbIconMinusSmall></svg>
-  `,
+  template: ` <svg sbbIconMinusSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconMinusSmall {}
 
 @NgModule({
   declarations: [SvgIconMinusSmall, IconMinusSmall],
-  exports: [SvgIconMinusSmall, IconMinusSmall]
+  exports: [SvgIconMinusSmall, IconMinusSmall],
 })
 export class IconMinusSmallModule {}

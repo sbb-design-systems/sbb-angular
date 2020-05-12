@@ -6,7 +6,7 @@ import {
   OverlayConfig,
   OverlayRef,
   PositionStrategy,
-  ScrollStrategy
+  ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewportRuler } from '@angular/cdk/scrolling';
@@ -24,14 +24,14 @@ import {
   NgZone,
   OnDestroy,
   Optional,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
   OptionComponent,
-  SBBOptionSelectionChange
+  SBBOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
 import {
   defer,
@@ -40,7 +40,7 @@ import {
   Observable,
   of as observableOf,
   Subject,
-  Subscription
+  Subscription,
 } from 'rxjs';
 import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
 
@@ -78,7 +78,7 @@ export const AUTOCOMPLETE_PANEL_HEIGHT = 404;
 export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY
+  useFactory: SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY,
 };
 
 @Directive({
@@ -88,9 +88,9 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => AutocompleteTriggerDirective),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDestroy {
   private _overlayRef: OverlayRef | null;
@@ -153,7 +153,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
     if (this.autocomplete && this.autocomplete.options) {
       return merge<SBBOptionSelectionChange>(
-        ...this.autocomplete.options.map(option => option.onSelectionChange)
+        ...this.autocomplete.options.map((option) => option.onSelectionChange)
       );
     }
 
@@ -295,7 +295,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         : observableOf()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map(event => (event instanceof SBBOptionSelectionChange ? event : null))
+      map((event) => (event instanceof SBBOptionSelectionChange ? event : null))
     );
   }
 
@@ -322,7 +322,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       fromEvent<MouseEvent>(this._document, 'click'),
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
-      filter(event => {
+      filter((event) => {
         const clickTarget = event.target as HTMLElement;
 
         return (
@@ -415,8 +415,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       .pipe(first())
       .subscribe(() => {
         this.autocomplete.options
-          .filter(option => !option.group)
-          .forEach(option => option._highlight(value));
+          .filter((option) => !option.group)
+          .forEach((option) => option._highlight(value));
       });
   }
 
@@ -500,7 +500,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
           first()
         )
         // set the value, close the panel, and complete.
-        .subscribe(event => this._setValueAndClose(event))
+        .subscribe((event) => this._setValueAndClose(event))
     );
   }
 
@@ -550,7 +550,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
    * Clear any previous selected option and emit a selection change event for this option
    */
   private _clearPreviousSelectedOption(skip: OptionComponent) {
-    this.autocomplete.options.forEach(option => {
+    this.autocomplete.options.forEach((option) => {
       // tslint:disable-next-line:triple-equals
       if (option != skip && option.selected) {
         option.deselect();
@@ -567,28 +567,30 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       if (this._positionStrategy) {
-        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(position => {
-          if (this.autocomplete.panel) {
-            if (position.connectionPair.originY === 'top') {
-              this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
-              this._getConnectedElement().nativeElement.classList.add(
-                'sbb-autocomplete-input-above'
-              );
-            } else {
-              this.autocomplete.panel.nativeElement.classList.remove(
-                'sbb-autocomplete-panel-above'
-              );
-              this._getConnectedElement().nativeElement.classList.remove(
-                'sbb-autocomplete-input-above'
-              );
+        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(
+          (position) => {
+            if (this.autocomplete.panel) {
+              if (position.connectionPair.originY === 'top') {
+                this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
+                this._getConnectedElement().nativeElement.classList.add(
+                  'sbb-autocomplete-input-above'
+                );
+              } else {
+                this.autocomplete.panel.nativeElement.classList.remove(
+                  'sbb-autocomplete-panel-above'
+                );
+                this._getConnectedElement().nativeElement.classList.remove(
+                  'sbb-autocomplete-input-above'
+                );
+              }
             }
           }
-        });
+        );
       }
 
       // Use the `keydownEvents` in order to take advantage of
       // the overlay event targeting provided by the CDK overlay.
-      this._overlayRef.keydownEvents().subscribe(event => {
+      this._overlayRef.keydownEvents().subscribe((event) => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
         if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
@@ -632,7 +634,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       scrollStrategy: this._scrollStrategy(),
       width: this._getPanelWidth(),
       panelClass: 'sbb-overlay-panel',
-      minHeight: 30
+      minHeight: 30,
     });
   }
 
@@ -647,14 +649,14 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
           originX: 'start',
           originY: 'bottom',
           overlayX: 'start',
-          overlayY: 'top'
+          overlayY: 'top',
         },
         {
           originX: 'start',
           originY: 'top',
           overlayX: 'start',
-          overlayY: 'bottom'
-        }
+          overlayY: 'bottom',
+        },
       ]);
 
     return this._positionStrategy;
