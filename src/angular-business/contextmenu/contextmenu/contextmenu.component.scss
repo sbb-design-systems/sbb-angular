@@ -3,7 +3,7 @@ $sbbBusiness: true;
 
 $sbbContextmenuIconSize: 24px;
 $sbbContextmenuPadding: 6px;
-$sbbContextmenuMaskWidth: $sbbContextmenuIconSize + ($sbbContextmenuPadding * 2) + 0.35px;
+$sbbContextmenuMaskWidth: $sbbContextmenuIconSize + ($sbbContextmenuPadding * 2);
 $sbbContextmenuBorderRadius: 2px;
 
 .sbb-contextmenu {
@@ -49,10 +49,8 @@ $sbbContextmenuBorderRadius: 2px;
   border: 1px solid $sbbColorGranite;
   border-radius: $sbbContextmenuBorderRadius;
   margin: 0;
-
-  &::after {
-    border-bottom: 0;
-  }
+  overflow: inherit;
+  box-shadow: autocompleteBoxShadow(1, 1);
 
   > .sbb-dropdown-panel-mask {
     display: block;
@@ -65,7 +63,6 @@ $sbbContextmenuBorderRadius: 2px;
 
 .sbb-dropdown-panel.sbb-contextmenu-dropdown:not(.sbb-dropdown-panel-above) {
   transform: translateY(-1px);
-  border-bottom: none;
 
   &:not(.sbb-dropdown-panel-left) {
     border-top-left-radius: 0;
@@ -86,7 +83,7 @@ $sbbContextmenuBorderRadius: 2px;
 
 .sbb-dropdown-panel.sbb-contextmenu-dropdown.sbb-dropdown-panel-above {
   transform: translateY(1px);
-  border-top: none;
+  box-shadow: autocompleteBoxShadow(-1, 1);
 
   &:not(.sbb-dropdown-panel-left) {
     border-bottom-left-radius: 0;
