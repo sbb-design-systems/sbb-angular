@@ -532,6 +532,11 @@ export class SelectComponent extends SbbSelectMixinBase
       : null;
   }
 
+  /** Attribute that refers to the expansion of the dropdown panel. */
+  @HostBinding('attr.aria-expanded') get ariaExpanded(): string | null {
+    return this.disabled ? null : this.panelOpen.toString();
+  }
+
   constructor(
     @Self() @Optional() public ngControl: NgControl,
     public _elementRef: ElementRef,

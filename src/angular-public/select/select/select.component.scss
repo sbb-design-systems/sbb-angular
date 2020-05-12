@@ -106,7 +106,7 @@ sbb-select.sbb-select {
     }
   }
 
-  &.ng-touched.ng-invalid .sbb-select-trigger:not([aria-expanded='true']) {
+  &.ng-touched.ng-invalid:not([aria-expanded='true']) {
     color: $sbbColorError;
     border-color: $sbbColorError;
   }
