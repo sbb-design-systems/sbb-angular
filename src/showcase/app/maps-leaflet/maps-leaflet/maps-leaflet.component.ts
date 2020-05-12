@@ -2,15 +2,15 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
-import { LeafletMapExampleComponent } from '../leaflet-examples/leaflet-map-examples/leaflet-map-example/leaflet-map-example.component';
+import { LeafletMapExampleComponent } from '../maps-leaflet-examples/leaflet-map-examples/leaflet-map-example/leaflet-map-example.component';
 
 @Component({
-  selector: 'sbb-leaflet',
-  templateUrl: './leaflet.component.html',
-  styleUrls: ['./leaflet.component.scss'],
-  providers: [{ provide: ExampleProvider, useExisting: LeafletComponent }]
+  selector: 'sbb-maps-leaflet',
+  templateUrl: './maps-leaflet.component.html',
+  styleUrls: ['./maps-leaflet.component.scss'],
+  providers: [{ provide: ExampleProvider, useExisting: MapsLeafletComponent }]
 })
-export class LeafletComponent implements ExampleProvider {
+export class MapsLeafletComponent implements ExampleProvider {
   maps = {
     'leaflet-map': 'Leaflet Map'
   };

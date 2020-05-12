@@ -79,8 +79,8 @@ jobs:
       run: yarn publish dist/releases/angular-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: "Publish: @sbb-esta/angular-leaflet"
-      run: yarn publish dist/releases/angular-leaflet --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+    - name: "Publish: @sbb-esta/angular-maps-leaflet"
+      run: yarn publish dist/releases/angular-maps-leaflet --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-business"

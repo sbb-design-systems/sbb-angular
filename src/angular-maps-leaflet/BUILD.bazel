@@ -1,5 +1,5 @@
 load(
-    "//src/angular-leaflet:config.bzl",
+    "//src/angular-maps-leaflet:config.bzl",
     "LEAFLET_ENTRYPOINTS",
     "LEAFLET_MARKDOWN_TARGETS",
     "LEAFLET_TARGETS",
@@ -14,30 +14,31 @@ load(
 
 package(default_visibility = ["//visibility:public"])
 
-# Root "@sbb-esta/angular-leaflet" entry-point.
+# Root "@sbb-esta/angular-maps-leaflet" entry-point.
 ng_module(
-    name = "angular-leaflet",
+    name = "angular-maps-leaflet",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-leaflet",
-    deps = ["//src/angular-leaflet/%s" % p for p in LEAFLET_ENTRYPOINTS],
+    module_name = "@sbb-esta/angular-maps-leaflet",
+    deps = ["//src/angular-maps-leaflet/%s" % p for p in LEAFLET_ENTRYPOINTS],
 )
 
 markdown_to_html(
     name = "overview",
     srcs = [
-      ":getting-started.md"
+      ":getting-started.md",
+      ":esri-leaflet.md",
     ],
 )
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/angular-leaflet/%s:overview" % name for name in LEAFLET_MARKDOWN_TARGETS],
+    srcs = [":overview"] + ["//src/angular-maps-leaflet/%s:overview" % name for name in LEAFLET_MARKDOWN_TARGETS],
 )
 
-# Creates the @sbb-esta/angular-leaflet package published to npm.
+# Creates the @sbb-esta/angular-maps-leaflet package published to npm.
 ng_package(
     name = "npm_package",
     srcs = [
@@ -46,7 +47,7 @@ ng_package(
     data = [
     ],
     entry_point = ":public-api.ts",
-    entry_point_name = "angular-leaflet",
+    entry_point_name = "angular-maps-leaflet",
     tags = ["release-package"],
     deps = LEAFLET_TARGETS + LEAFLET_TESTING_TARGETS,
 )

@@ -55,7 +55,7 @@ ALL_EXAMPLES = [
     "//src/showcase/app/business/business-examples/textarea-examples",
     "//src/showcase/app/business/business-examples/tooltip-examples",
     "//src/showcase/app/business/business-examples/usermenu-examples",
-    "//src/showcase/app/leaflet/leaflet-examples/leaflet-map-examples",
+    "//src/showcase/app/maps-leaflet/maps-leaflet-examples/leaflet-map-examples",
     "//src/showcase/app/maps/maps-examples/esri-basemap-gallery-examples",
     "//src/showcase/app/maps/maps-examples/esri-layer-list-examples",
     "//src/showcase/app/maps/maps-examples/esri-legend-examples",

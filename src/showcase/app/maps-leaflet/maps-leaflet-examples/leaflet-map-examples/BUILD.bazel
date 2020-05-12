@@ -18,7 +18,7 @@ ng_ts_library(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-leaflet/leaflet-map",
+        "//src/angular-maps-leaflet/leaflet-map",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//leaflet",

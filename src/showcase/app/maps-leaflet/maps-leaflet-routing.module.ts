@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
-import { LeafletComponent } from './leaflet/leaflet.component';
+import { MapsLeafletComponent } from './maps-leaflet/maps-leaflet.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LeafletComponent,
-    data: { library: 'leaflet' },
+    component: MapsLeafletComponent,
+    data: { library: 'maps-leaflet' },
     children: [
       {
         path: '',
@@ -20,22 +20,22 @@ const routes: Routes = [
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'leaflet' }
+        data: { library: 'maps-leaflet' }
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'leaflet' }
+        data: { library: 'maps-leaflet' }
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'leaflet' }
+        data: { library: 'maps-leaflet' }
       },
       {
         path: 'advanced/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'leaflet' }
+        data: { library: 'maps-leaflet' }
       }
     ]
   }
@@ -45,4 +45,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class LeafletRoutingModule {}
+export class MapsLeafletRoutingModule {}

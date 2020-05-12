@@ -32,8 +32,8 @@
       "@sbb-esta/angular-keycloak/*": ["src/angular-keycloak/*"],
       "@sbb-esta/angular-core": ["src/angular-core"],
       "@sbb-esta/angular-core/*": ["src/angular-core/*"],
-      "@sbb-esta/angular-leaflet": ["src/angular-leaflet"],
-      "@sbb-esta/angular-leaflet/*": ["src/angular-leaflet/*"],
+      "@sbb-esta/angular-maps-leaflet": ["src/angular-maps-leaflet"],
+      "@sbb-esta/angular-maps-leaflet/*": ["src/angular-maps-leaflet/*"],
       "@sbb-esta/angular-maps": ["src/angular-maps"],
       "@sbb-esta/angular-maps/*": ["src/angular-maps/*"]
     }

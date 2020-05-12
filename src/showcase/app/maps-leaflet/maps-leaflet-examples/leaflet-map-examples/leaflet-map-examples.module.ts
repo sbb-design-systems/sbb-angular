@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { LeafletMapModule } from '@sbb-esta/angular-leaflet/leaflet-map';
+import { LeafletMapModule } from '@sbb-esta/angular-maps-leaflet/leaflet-map';
 
 import { LeafletMapExampleComponent } from './leaflet-map-example/leaflet-map-example.component';
 

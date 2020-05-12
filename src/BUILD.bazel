@@ -1,7 +1,7 @@
 load("@npm_bazel_typescript//:index.bzl", "ts_config")
 load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS", "BUSINESS_TESTING_ENTRYPOINTS")
 load("//src/angular-core:config.bzl", "CORE_ENTRYPOINTS", "CORE_TESTING_ENTRYPOINTS")
-load("//src/angular-leaflet:config.bzl", "LEAFLET_ENTRYPOINTS", "LEAFLET_TESTING_ENTRYPOINTS")
+load("//src/angular-maps-leaflet:config.bzl", "LEAFLET_ENTRYPOINTS", "LEAFLET_TESTING_ENTRYPOINTS")
 load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")
 load("//src/angular-public:config.bzl", "PUBLIC_ENTRYPOINTS", "PUBLIC_TESTING_ENTRYPOINTS")
 load("//tools/dgeni:index.bzl", "dgeni_api_docs")
@@ -33,7 +33,7 @@ publicApiEntryPoints = PUBLIC_ENTRYPOINTS + PUBLIC_TESTING_ENTRYPOINTS
 # List that contains all source files that need to be processed by Dgeni.
 apiSourceFiles = ["//src/angular-business/%s:source-files" % name for name in businessApiEntryPoints] + \
                  ["//src/angular-core/%s:source-files" % name for name in coreApiEntryPoints] + \
-                 ["//src/angular-leaflet/%s:source-files" % name for name in leafletApiEntryPoints] + \
+                 ["//src/angular-maps-leaflet/%s:source-files" % name for name in leafletApiEntryPoints] + \
                  ["//src/angular-maps/%s:source-files" % name for name in mapsApiEntryPoints] + \
                  ["//src/angular-public/%s:source-files" % name for name in publicApiEntryPoints]
 
@@ -53,7 +53,7 @@ dgeni_api_docs(
     entry_points = {
         "angular-business": businessApiEntryPoints,
         "angular-core": coreApiEntryPoints,
-        "angular-leaflet": leafletApiEntryPoints,
+        "angular-maps-leaflet": leafletApiEntryPoints,
         "angular-maps": mapsApiEntryPoints,
         "angular-public": publicApiEntryPoints,
     },

@@ -1,11 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { LeafletMapComponent } from '@sbb-esta/angular-leaflet/leaflet-map';
-import { LayersControl } from '@sbb-esta/angular-leaflet/leaflet-map/leaflet-map/model/map-config.model';
+import { LeafletMapComponent } from '@sbb-esta/angular-maps-leaflet/leaflet-map';
+import { LayersControl } from '@sbb-esta/angular-maps-leaflet/leaflet-map/leaflet-map/model/map-config.model';
 import { featureLayer } from 'esri-leaflet';
 import {
   Canvas,
   circle,
-  circleMarker,
   latLng,
   LatLng,
   LatLngBounds,
@@ -19,8 +18,6 @@ import {
   tileLayer,
   Util
 } from 'leaflet';
-
-// import { layersControlConfig, mapOptions } from './config/map-config';
 
 export let mapOptions: MapOptions = {
   zoom: 12,
@@ -36,31 +33,9 @@ export let layersControlConfig: LayersControl = {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       })
-    },
-    {
-      title: 'OSM2',
-      visible: false,
-      layer: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      })
     }
   ],
   overLays: [
-    {
-      title: 'Standort',
-      visible: false,
-      layer: featureLayer({
-        url: 'https://geo-dev.sbb.ch/site/rest/services/ESTA_PUBLIC/Altlasten/FeatureServer/2',
-        useCors: true,
-        renderer: new Canvas()
-      }).bindPopup((l: any) => {
-        return Util.template(
-          '<p>Standort <strong>{NAME}</strong> in {GEMEINDE}.',
-          l.feature.properties
-        );
-      })
-    },
     {
       title: 'AGOL',
       visible: true,
@@ -68,33 +43,10 @@ export let layersControlConfig: LayersControl = {
         url:
           'https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Hazards_Uptown_Charlotte/FeatureServer/0',
         renderer: new Canvas(),
-        useCors: false
+        useCors: true
       }).bindPopup((l: any) => {
         return Util.template(
           '<p>Standort <strong>{NAME}</strong> in {GEMEINDE}.',
-          l.feature.properties
-        );
-      })
-    },
-    {
-      title: 'Einzelobjekte',
-      visible: false,
-      layer: featureLayer({
-        url:
-          'https://geo-dev.sbb.ch/site/rest/services/DENKMALPFLEGE_PUBLIC/ISBA_REPORTS/FeatureServer/1',
-        useCors: false,
-        renderer: new Canvas(),
-        isModern: false,
-        pointToLayer(geojson, latlng) {
-          return circleMarker(latlng, {
-            color: 'green',
-            fillOpacity: 0.2,
-            radius: 5
-          });
-        }
-      }).bindPopup((l: any) => {
-        return Util.template(
-          `<p>Standort <strong>{OBJEKTTITEL_EO}</strong> in {GEMEINDE}/{KANTON}.<br>`,
           l.feature.properties
         );
       })

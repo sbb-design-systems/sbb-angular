@@ -26,7 +26,7 @@
       "@sbb-esta/angular-core",
       "@sbb-esta/angular-icons",
       "@sbb-esta/angular-keycloak",
-      "@sbb-esta/angular-leaflet",
+      "@sbb-esta/angular-maps-leaflet",
       "@sbb-esta/angular-maps",
       "@sbb-esta/angular-public"
     ],

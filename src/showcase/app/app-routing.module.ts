@@ -32,8 +32,8 @@ const routes: Routes = [
     loadChildren: () => import('./maps/maps.module').then(m => m.MapsModule)
   },
   {
-    path: 'leaflet',
-    loadChildren: () => import('./leaflet/leaflet.module').then(m => m.LeafletModule)
+    path: 'maps-leaflet',
+    loadChildren: () => import('./maps-leaflet/maps-leaflet.module').then(m => m.MapsLeafletModule)
   },
   {
     path: '**',

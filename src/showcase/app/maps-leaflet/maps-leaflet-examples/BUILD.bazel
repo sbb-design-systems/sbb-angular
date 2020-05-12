@@ -6,13 +6,13 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_ts_library(
-    name = "leaflet-examples",
+    name = "maps-leaflet-examples",
     srcs = [
-        "leaflet-examples.module.ts",
+        "maps-leaflet-examples.module.ts",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/showcase/app/leaflet/leaflet-examples/leaflet-map-examples",
+        "//src/showcase/app/maps-leaflet/maps-leaflet-examples/leaflet-map-examples",
         "@npm//@angular/core",
     ],
 )

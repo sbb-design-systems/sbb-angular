@@ -1,5 +1,5 @@
 {
-  "name": "@sbb-esta/angular-leaflet",
+  "name": "@sbb-esta/angular-maps-leaflet",
   "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
     "@angular/common": "0.0.0-NG",
@@ -17,7 +17,7 @@
       "@sbb-esta/angular-core",
       "@sbb-esta/angular-icons",
       "@sbb-esta/angular-keycloak",
-      "@sbb-esta/angular-leaflet",
+      "@sbb-esta/angular-maps-leaflet",
       "@sbb-esta/angular-maps",
       "@sbb-esta/angular-public"
     ],

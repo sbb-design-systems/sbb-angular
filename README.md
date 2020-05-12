@@ -41,7 +41,7 @@ The package containing components to display 2D/3D maps and to provide map inter
 
 [Component List](https://angular.app.sbb.ch/latest/maps)
 
-### [@sbb-esta/angular-leaflet](https://www.npmjs.com/package/@sbb-esta/angular-leaflet)
+### [@sbb-esta/angular-maps-leaflet](https://www.npmjs.com/package/@sbb-esta/angular-maps-leaflet)
 
 The package containing components to display a 2D leaflet-map.
 

@@ -8,4 +8,4 @@ const EXAMPLES = [LeafletMapExamplesModule];
   imports: EXAMPLES,
   exports: EXAMPLES
 })
-export class LeafletExamplesModule {}
+export class MapsLeafletExamplesModule {}

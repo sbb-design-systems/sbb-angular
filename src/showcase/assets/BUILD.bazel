@@ -22,7 +22,7 @@ package_docs_content(
         "//src/angular-core:overviews": "overviews/core",
         "//src/angular-icons:overviews": "overviews/icons",
         "//src/angular-keycloak:overviews": "overviews/keycloak",
-        "//src/angular-leaflet:overviews": "overviews/leaflet",
+        "//src/angular-maps-leaflet:overviews": "overviews/maps-leaflet",
         "//src/angular-maps:overviews": "overviews/maps",
         "//src/angular-public:overviews": "overviews/public",
 

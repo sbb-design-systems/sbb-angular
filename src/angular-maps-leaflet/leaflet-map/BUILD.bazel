@@ -16,7 +16,7 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":leaflet-map/leaflet-map.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-leaflet/leaflet-map",
+    module_name = "@sbb-esta/angular-maps-leaflet/leaflet-map",
     deps = [
         "@npm//@angular/common",
         "@npm//@angular/core",

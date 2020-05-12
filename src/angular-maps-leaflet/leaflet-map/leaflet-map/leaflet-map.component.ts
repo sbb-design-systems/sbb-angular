@@ -103,7 +103,7 @@ export class LeafletMapComponent implements OnInit {
     this._map.whenReady(() => {
       this.mapReady.next(this._map);
       // update map size when map is ready
-      setTimeout(() => this._map.invalidateSize(), 2000);
+      setTimeout(() => this._map.invalidateSize(), 200);
     });
 
     this._map.on('click', this._mapClicked.bind(this));
@@ -129,10 +129,7 @@ export class LeafletMapComponent implements OnInit {
   }
 
   /**
-   * Adds an overlay to the map..
-   * @param title This title shows up in the layerscontrol.
-   * @param layer the layer to show on the map.
-   * @param visible Whether the layer should be directly displayed on the map or not.
+   * Adds a new overlay to the map.
    */
   public addOverlayToMap(layersControlLayer: LayersControlLayer) {
     const { layer, title, visible } = layersControlLayer;
