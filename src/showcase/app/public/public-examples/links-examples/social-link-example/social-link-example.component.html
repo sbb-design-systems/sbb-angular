@@ -1,0 +1,7 @@
+<a sbbSocialLink [icon]="socialLinkIcon" href="#"></a>
+<h4 class="sbbsc-block">Properties</h4>
+<sbb-field label="Icon" mode="medium">
+  <select [(ngModel)]="socialLinkIcon" sbbInput>
+    <option *ngFor="let social of socials" [ngValue]="social">{{ social }}</option>
+  </select>
+</sbb-field>

@@ -106,14 +106,6 @@ export class AccordionExampleComponent implements OnInit, OnDestroy {
     evt.stopPropagation();
   }
 
-  logAndPreventOpeningPanelKeyDown(evt: KeyboardEvent, message: any) {
-    if (evt.keyCode === 13 || evt.keyCode === 32) {
-      console.log(message);
-      evt.preventDefault();
-      evt.stopPropagation();
-    }
-  }
-
   ngOnDestroy() {
     this.onRadioChange.unsubscribe();
     this.onDisabledChange.unsubscribe();

@@ -6,8 +6,14 @@ import {
   isDevMode,
   OnChanges,
   OnDestroy,
+  OnInit,
   Output
 } from '@angular/core';
+import {
+  HasInitialized,
+  HasInitializedCtor,
+  mixinInitialized
+} from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
 
 import { SortDirection } from './sort-direction';
@@ -38,13 +44,21 @@ export interface Sort {
   direction: SortDirection;
 }
 
+// Boilerplate for applying mixins to Sort.
+/** @docs-private */
+export class SbbSortDirectiveBase {}
+/** @docs-private */
+export const SbbSortDirectiveMixinBase: HasInitializedCtor &
+  typeof SbbSortDirectiveBase = mixinInitialized(SbbSortDirectiveBase);
+
 /** Container for SbbSortables to manage the sort state and provide default sort parameters. */
 @Directive({
   selector: '[sbbSort]',
   exportAs: 'sbbSort',
   inputs: ['disabled: sbbSortDisabled']
 })
-export class SbbSortDirective implements OnChanges, OnDestroy {
+export class SbbSortDirective extends SbbSortDirectiveMixinBase
+  implements OnInit, OnChanges, OnDestroy, HasInitialized {
   /** The sort direction of the currently active SbbSortable. */
   @Input('sbbSortDirection')
   get direction(): SortDirection {
@@ -89,6 +103,7 @@ export class SbbSortDirective implements OnChanges, OnDestroy {
 
   /** Event emitted when the user changes either the active sort or sort direction. */
   @Output() readonly sbbSortChange: EventEmitter<Sort> = new EventEmitter<Sort>();
+  readonly sortChange = this.sbbSortChange;
 
   /**
    * Register function to be used by the contained SbbSortables. Adds the SbbSortable to the
@@ -141,6 +156,10 @@ export class SbbSortDirective implements OnChanges, OnDestroy {
       nextDirectionIndex = 0;
     }
     return sortDirectionCycle[nextDirectionIndex];
+  }
+
+  ngOnInit(): void {
+    this._markInitialized();
   }
 
   ngOnChanges() {

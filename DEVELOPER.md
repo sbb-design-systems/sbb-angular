@@ -31,8 +31,10 @@ following the steps above. This will add `bazel` and `bazelisk` to the global pa
 - [Bazel CLI](https://docs.bazel.build/versions/master/command-line-reference.html)
 - [Bazel JavaScript Rules](https://bazelbuild.github.io/rules_nodejs/index.html)
 
+### Generate Bazel files
+
 In order to automatically generate BUILD.bazel files, we implemented a schematic. You can run it with
-`ng g .:bazel --filter package` (package can be public, business, ..., showcase).
+`ng g .:bazel --filter package` (package can be angular-public, angular-business, ..., showcase).
 
 ## Running tests
 

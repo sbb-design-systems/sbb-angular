@@ -1,0 +1,32 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "textexpand-examples",
+    srcs = [
+        "textexpand-example/textexpand-example.component.ts",
+        "textexpand-examples.module.ts",
+    ],
+    assets = [
+        "textexpand-example/textexpand-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/textexpand",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

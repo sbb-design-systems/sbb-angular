@@ -1,7 +1,6 @@
 const node = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const alias = require('@rollup/plugin-alias');
-const replace = require('@rollup/plugin-replace');
 
 module.exports = {
   plugins: [
@@ -12,20 +11,9 @@ module.exports = {
         replacement: `${__dirname}/../angular-${pkg}`
       }))
     }),
-    // TODO: Check if this can be removed
-    replace({
-      patterns: [
-        {
-          // Work-around for the generated Angular ViewEngine ngfactory imports that
-          // starts with `sbb_angular/external/npm/node_modules/`.
-          match: /\.ngfactory\.mjs/,
-          test: 'sbb_angular/external/npm/node_modules/',
-          replace: ''
-        }
-      ]
-    }),
     node({
-      mainFields: ['es2015', 'module', 'browser', 'jsnext:main', 'main']
+      mainFields: ['es2015', 'module', 'browser', 'jsnext:main', 'main'],
+      extensions: ['.mjs']
     }),
     commonjs()
   ]

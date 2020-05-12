@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -9,22 +8,23 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "pagination-examples",
     srcs = [
-        "pagination-example/pagination-example.component.ts",
+        "navigation-example/navigation-example.component.ts",
         "pagination-examples.module.ts",
+        "paginator-example/paginator-example.component.ts",
     ],
     assets = [
-        ":pagination-example/pagination-example.component.css",
-        "pagination-example/pagination-example.component.html",
+        "navigation-example/navigation-example.component.html",
+        "paginator-example/paginator-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/button",
+        "//src/angular-public/checkbox",
         "//src/angular-public/field",
         "//src/angular-public/pagination",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
-        "@npm//@angular/router",
     ],
 )
 
@@ -35,9 +35,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "pagination_example_pagination_example_component_scss",
-    src = "pagination-example/pagination-example.component.scss",
 )

@@ -23,7 +23,7 @@ export type TooltipVisibility = 'initial' | 'visible' | 'hidden';
 @Component({
   selector: 'sbb-tooltip-container',
   templateUrl: './tooltip-container.component.html',
-  styleUrls: ['./tooltip-container.component.css'],
+  styleUrls: ['./tooltip.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sbbTooltipAnimations.tooltipState]

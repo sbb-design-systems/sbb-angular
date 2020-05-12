@@ -1,15 +1,7 @@
-FROM nginx:alpine
+FROM nginxinc/nginx-unprivileged:stable
 
-#!/bin/sh
-
-COPY ./.github/nginx.conf /etc/nginx/nginx.conf
-
-## Remove default nginx index page
-RUN rm -rf /usr/share/nginx/html/*
+# Copy nginx configuration
+COPY ./.github/default.conf /etc/nginx/conf.d/default.conf
 
 # Copy showcase
 COPY ./dist/releases/showcase /usr/share/nginx/html
-
-EXPOSE 8080
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -6,20 +6,52 @@
 
     &:not(.sbb-file-selector-disabled) {
       @include secondaryButton;
-      @include arrowbuttons;
+      @include publicOnly() {
+        @include arrowbuttons;
 
-      .sbb-svgsprite-icon {
-        @include svgIconColor($buttonSecondaryColor);
+        .sbb-svgsprite-icon {
+          @include svgIconColor($buttonSecondaryColor);
+        }
       }
     }
-    // Disabled button
-    &.sbb-file-selector-disabled {
-      @include disabledButton;
+
+    @include businessOnly() {
+      .sbb-svgsprite-icon {
+        display: none;
+      }
+    }
+
+    @if $sbbBusiness {
+      &.sbb-file-selector-disabled {
+        &,
+        &:hover,
+        &:focus {
+          border: none;
+          @include sbbButtonSecondaryDisabledBusiness;
+        }
+
+        &:hover,
+        &:focus {
+          cursor: default;
+        }
+      }
+    } @else {
+      // :not(:disabled) is needed to overwrite button base styles
+      &.sbb-file-selector-disabled:not(:disabled) {
+        @include disabledButton;
+
+        &:hover,
+        &:focus {
+          color: $buttonGhostColor;
+          border-color: $buttonGhostBorderColor;
+          cursor: default;
+        }
+      }
     }
   }
 
   &-label {
-    display: inline-block;
+    display: inline-flex;
     overflow: hidden;
 
     &:hover {
@@ -32,12 +64,14 @@
     padding: 0;
     margin: 0;
 
-    @include mq($from: desktop4k) {
-      font-size: toEm(1 * $scalingFactor4k);
-    }
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        font-size: toEm(1 * $scalingFactor4k);
+      }
 
-    @include mq($from: desktop5k) {
-      font-size: toEm(1 * $scalingFactor5k);
+      @include mq($from: desktop5k) {
+        font-size: toEm(1 * $scalingFactor5k);
+      }
     }
 
     li {
@@ -64,14 +98,18 @@
 
     &-remove-icon {
       @include buttonResetFrameless();
-      @include svgIconColor($sbbColorAnthracite);
       margin-bottom: pxToEm(2);
       position: relative;
       width: pxToEm(32);
       height: pxToEm(32);
       margin-left: pxToEm(8);
-      border: pxToEm(1) solid $sbbColorStorm;
-      border-radius: 50%;
+      cursor: pointer;
+
+      @include publicOnly() {
+        @include svgIconColor($sbbColorAnthracite);
+        border: pxToEm(1) solid $sbbColorStorm;
+        border-radius: 50%;
+      }
 
       svg {
         @include absoluteCenterXY();

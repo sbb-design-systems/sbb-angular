@@ -18,6 +18,19 @@ import { map } from 'rxjs/operators';
 const MAX_SAFE_INTEGER = 9007199254740991;
 
 /**
+ * TableFilter can be extended to define columns (keys) to filter for in a DataSource.
+ * The '_' property is used for a global filter. If an array is used, entries will be combined with the or-operator.
+ */
+export interface TableFilter {
+  /**
+   * Global filter: filtering all entries
+   */
+  _?: string | number | string[] | number[];
+
+  [key: string]: string | number | string[] | number[] | undefined;
+}
+
+/**
  * Data source that accepts a client-side data array and includes native support of filtering,
  * sorting (using Sort), and pagination (using Paginator).
  *
@@ -25,7 +38,10 @@ const MAX_SAFE_INTEGER = 9007199254740991;
  * properties are accessed. Also allows for filter customization by overriding filterTermAccessor,
  * which defines how row data is converted to a string for filter matching.
  */
-export class SbbTableDataSource<T> extends DataSource<T> {
+export class SbbTableDataSource<
+  T,
+  TFilter extends TableFilter | string = string
+> extends DataSource<T> {
   /** Stream that emits when a new data array is set on the data source. */
   private readonly _data: BehaviorSubject<T[]>;
 
@@ -36,7 +52,7 @@ export class SbbTableDataSource<T> extends DataSource<T> {
   private readonly _renderData = new BehaviorSubject<T[]>([]);
 
   /** Stream that emits when a new filter string is set on the data source. */
-  private readonly _filter = new BehaviorSubject<string>('');
+  private readonly _filter = new BehaviorSubject<TFilter>(null!);
 
   /** Used to react to internal changes of the paginator that are made by the data source itself. */
   private readonly _internalPageChanges = new Subject<void>();
@@ -77,11 +93,11 @@ export class SbbTableDataSource<T> extends DataSource<T> {
    * Filter term that should be used to filter out objects from the data array. To override how
    * data objects match to this filter string, provide a custom function for filterPredicate.
    */
-  get filter(): string {
+  get filter(): TFilter {
     return this._filter.value;
   }
 
-  set filter(filter: string) {
+  set filter(filter: TFilter) {
     this._filter.next(filter);
   }
 
@@ -190,33 +206,40 @@ export class SbbTableDataSource<T> extends DataSource<T> {
   };
 
   /**
+   * This method can be called by two filter types: string or an Object which extends TableFilter.
+   *
+   *  # String variant
    * Checks if a data object matches the data source's filter string. By default, each data object
    * is converted to a string of its properties and returns true if the filter has
-   * at least one occurrence in that string. By default, the filter string has its whitespace
-   * trimmed and the match is case-insensitive. May be overridden for a custom implementation of
-   * filter matching.
+   * at least one occurrence in that string.
+   *
+   * # TableFilter variant
+   * Checks if a data object matches the data source's filter object. If several columns are defined,
+   * the and-operator is applied. If a column filter is a list, the or-operator inside the list is applied.
+   * The '_' property of the TableFilter can be used to search globally in all columns
+   * (like the string variant above).
+   *
+   * By default, the filter string has its whitespace trimmed and the match is case-insensitive.
+   * May be overridden for a custom implementation of filter matching.
    * @param data Data object used to check against the filter.
-   * @param filter Filter string that has been set on the data source.
+   * @param filter Filter string or Object which extends TableFilter that has been set on the data source.
    * @returns Whether the filter matches against the data
    */
-  filterPredicate: (data: T, filter: string) => boolean = (data: T, filter: string): boolean => {
-    // Transform the data into a lowercase string of all property values.
-    const dataStr = Object.keys(data)
-      .reduce((currentTerm: string, key: string) => {
-        // Use an obscure Unicode character to delimit the words in the concatenated string.
-        // This avoids matches where the values of two columns combined will match the user's query
-        // (e.g. `Flute` and `Stop` will match `Test`). The character is intended to be something
-        // that has a very low chance of being typed in by somebody in a text field. This one in
-        // particular is "White up-pointing triangle with dot" from
-        // https://en.wikipedia.org/wiki/List_of_Unicode_characters
-        return currentTerm + (data as { [key: string]: any })[key] + '◬';
-      }, '')
-      .toLowerCase();
+  filterPredicate: (data: T, filter: TFilter) => boolean = (data: T, filter: TFilter): boolean => {
+    const tableData = data as { [key: string]: any };
 
-    // Transform the filter by converting it to lowercase and removing whitespace.
-    const transformedFilter = filter.trim().toLowerCase();
+    if (typeof filter === 'string') {
+      return this._filterGlobally([filter.trim()], tableData);
+    }
 
-    return dataStr.indexOf(transformedFilter) !== -1;
+    const { _: globalFilter, ...propertyFilters } = this._normalizeTableFilter(
+      filter as TableFilter
+    );
+
+    return (
+      this._filterGlobally(globalFilter, tableData) &&
+      this._filterProperties(propertyFilters, tableData)
+    );
   };
 
   constructor(initialData: T[] = [], groups?: string[][]) {
@@ -357,4 +380,77 @@ export class SbbTableDataSource<T> extends DataSource<T> {
    * @docs-private
    */
   disconnect() {}
+
+  /**
+   * Converts a TableFilter object to a key value object of strings.
+   */
+  _normalizeTableFilter(tableFilter: TableFilter): { [key: string]: string[] } {
+    const normalizedTableFilter: { [key: string]: string[] } = { _: [] };
+    Object.keys(tableFilter).forEach(key => {
+      if (typeof tableFilter[key] === 'undefined' || `${tableFilter[key]}`.trim() === '') {
+        return;
+      }
+
+      if (typeof tableFilter[key] === 'string' || typeof tableFilter[key] === 'number') {
+        normalizedTableFilter[key] = [`${tableFilter[key]}`.trim()];
+        return;
+      }
+
+      const entry = tableFilter[key];
+      if (Array.isArray(entry) && entry.length > 0) {
+        normalizedTableFilter[key] = (entry as []).map(value => `${value}`.trim());
+      }
+    });
+    return normalizedTableFilter;
+  }
+
+  /**
+   * Filters properties against tableData and returns true if matching data was found.
+   */
+  _filterProperties(
+    propertyFilters: { [key: string]: string[] },
+    tableData: { [p: string]: any }
+  ): boolean {
+    return Object.keys(propertyFilters)
+      .filter(key => typeof tableData[key] !== 'undefined' && tableData[key] !== null)
+      .every(key =>
+        propertyFilters[key].some(value =>
+          this._matchesStringCaseInsensitive(`${tableData[key]}`, value)
+        )
+      );
+  }
+
+  /**
+   * Filters a list of strings against tableData and returns true if matching data was found.
+   */
+  _filterGlobally(filters: string[], tableData: { [key: string]: any }): boolean {
+    return (
+      filters.length === 0 ||
+      filters.some(value =>
+        this._matchesStringCaseInsensitive(this._reduceObjectToString(tableData), value)
+      )
+    );
+  }
+
+  /**
+   * Checks if search string is in data (case insensitive).
+   */
+  _matchesStringCaseInsensitive(data: string, search: string): boolean {
+    return data.toUpperCase().indexOf(search.toUpperCase()) !== -1;
+  }
+
+  /**
+   * Reduces an object to a string.
+   */
+  _reduceObjectToString(data: Object): string {
+    return Object.keys(data).reduce((currentTerm: string, key: string) => {
+      // Use an obscure Unicode character to delimit the words in the concatenated string.
+      // This avoids matches where the values of two columns combined will match the user's query
+      // (e.g. `Flute` and `Stop` will match `Test`). The character is intended to be something
+      // that has a very low chance of being typed in by somebody in a text field. This one in
+      // particular is "White up-pointing triangle with dot" from
+      // https://en.wikipedia.org/wiki/List_of_Unicode_characters
+      return currentTerm + (data as { [key: string]: any })[key] + '◬';
+    }, '');
+  }
 }

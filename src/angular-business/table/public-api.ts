@@ -1,6 +1,6 @@
 export * from './table.module';
 
-export { SbbTableDataSource } from './table/table-data-source';
+export * from './table/table-data-source';
 export * from './table/table.component';
 export * from './sort/sort-direction';
 export * from './sort-header/sort-header.component';

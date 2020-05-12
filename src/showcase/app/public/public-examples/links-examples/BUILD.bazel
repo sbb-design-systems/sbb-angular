@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -9,12 +8,13 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "links-examples",
     srcs = [
-        "links-example/links-example.component.ts",
+        "icon-link-example/icon-link-example.component.ts",
         "links-examples.module.ts",
+        "social-link-example/social-link-example.component.ts",
     ],
     assets = [
-        ":links-example/links-example.component.css",
-        "links-example/links-example.component.html",
+        "icon-link-example/icon-link-example.component.html",
+        "social-link-example/social-link-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -33,9 +33,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "links_example_links_example_component_scss",
-    src = "links-example/links-example.component.scss",
 )

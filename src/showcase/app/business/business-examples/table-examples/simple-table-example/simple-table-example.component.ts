@@ -4,7 +4,7 @@ import { SbbTableDataSource } from '@sbb-esta/angular-business/table';
 import { TABLE_EXAMPLE_DATA_SIMPLE } from '../table-example-data';
 
 @Component({
-  selector: 'sbb-table-simple-example-example',
+  selector: 'sbb-table-simple-example',
   templateUrl: './simple-table-example.component.html'
 })
 export class SimpleTableExampleComponent {

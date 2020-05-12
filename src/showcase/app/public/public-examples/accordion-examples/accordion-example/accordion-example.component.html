@@ -220,12 +220,6 @@
                 (click)="
                   logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')
                 "
-                (keydown)="
-                  logAndPreventOpeningPanelKeyDown(
-                    $event,
-                    'activated button with keyboard and prevent panel to open'
-                  )
-                "
               >
                 Test button
                 <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>

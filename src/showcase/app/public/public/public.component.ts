@@ -19,13 +19,17 @@ import { DatepickerSimpleReactiveExampleComponent } from '../public-examples/dat
 import { DatepickerStandaloneFormsExampleComponent } from '../public-examples/datepicker-examples/datepicker-standalone-forms-example/datepicker-standalone-forms-example.component';
 import { DropdownExampleComponent } from '../public-examples/dropdown-examples/dropdown-example/dropdown-example.component';
 import { FieldExampleComponent } from '../public-examples/field-examples/field-example/field-example.component';
-import { FileSelectorExampleComponent } from '../public-examples/file-selector-examples/file-selector-example/file-selector-example.component';
+import { MultipleModeDefaultFileSelectorExampleComponent } from '../public-examples/file-selector-examples/multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component';
+import { MultipleModePersistentFileSelectorExampleComponent } from '../public-examples/file-selector-examples/multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component';
+import { SimpleFileSelectorExampleComponent } from '../public-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
 import { GhettoboxExampleComponent } from '../public-examples/ghettobox-examples/ghettobox-example/ghettobox-example.component';
 import { LightboxExampleComponent } from '../public-examples/lightbox-examples/lightbox-example/lightbox-example.component';
-import { LinksExampleComponent } from '../public-examples/links-examples/links-example/links-example.component';
+import { IconLinkExampleComponent } from '../public-examples/links-examples/icon-link-example/icon-link-example.component';
+import { SocialLinkExampleComponent } from '../public-examples/links-examples/social-link-example/social-link-example.component';
 import { LoadingExampleComponent } from '../public-examples/loading-examples/loading-example/loading-example.component';
 import { NotificationExampleComponent } from '../public-examples/notification-examples/notification-example/notification-example.component';
-import { PaginationExampleComponent } from '../public-examples/pagination-examples/pagination-example/pagination-example.component';
+import { NavigationExampleComponent } from '../public-examples/pagination-examples/navigation-example/navigation-example.component';
+import { PaginatorExampleComponent } from '../public-examples/pagination-examples/paginator-example/paginator-example.component';
 import { ProcessflowExampleComponent } from '../public-examples/processflow-examples/processflow-example/processflow-example.component';
 import { RadioButtonExampleComponent } from '../public-examples/radio-button-examples/radio-button-example/radio-button-example.component';
 import { RadioButtonPanelExampleComponent } from '../public-examples/radio-button-panel-examples/radio-button-panel-example/radio-button-panel-example.component';
@@ -125,7 +129,13 @@ export class PublicComponent implements ExampleProvider {
     },
     field: { 'field-example': new ComponentPortal(FieldExampleComponent) },
     'file-selector': {
-      'file-selector-example': new ComponentPortal(FileSelectorExampleComponent)
+      'simple-file-selector-example': new ComponentPortal(SimpleFileSelectorExampleComponent),
+      'multiple-mode-default-file-selector-example': new ComponentPortal(
+        MultipleModeDefaultFileSelectorExampleComponent
+      ),
+      'multiple-mode-persistent-file-selector-example': new ComponentPortal(
+        MultipleModePersistentFileSelectorExampleComponent
+      )
     },
     'radio-button': { 'radio-button-example': new ComponentPortal(RadioButtonExampleComponent) },
     'radio-button-panel': {
@@ -156,7 +166,10 @@ export class PublicComponent implements ExampleProvider {
     breadcrumb: { 'breadcrumb-example': new ComponentPortal(BreadcrumbExampleComponent) },
     ghettobox: { 'ghettobox-example': new ComponentPortal(GhettoboxExampleComponent) },
     notification: { 'notification-example': new ComponentPortal(NotificationExampleComponent) },
-    pagination: { 'pagination-example': new ComponentPortal(PaginationExampleComponent) },
+    pagination: {
+      'paginator-example': new ComponentPortal(PaginatorExampleComponent),
+      'navigation-example': new ComponentPortal(NavigationExampleComponent)
+    },
     processflow: { 'processflow-example': new ComponentPortal(ProcessflowExampleComponent) },
     table: { 'table-example': new ComponentPortal(TableExampleComponent) },
     tabs: { 'tabs-example': new ComponentPortal(TabsExampleComponent) },
@@ -164,7 +177,10 @@ export class PublicComponent implements ExampleProvider {
     usermenu: { 'usermenu-example': new ComponentPortal(UsermenuExampleComponent) },
     badge: { 'badge-example': new ComponentPortal(BadgeExampleComponent) },
     button: { 'button-example': new ComponentPortal(ButtonExampleComponent) },
-    links: { 'links-example': new ComponentPortal(LinksExampleComponent) },
+    links: {
+      'icon-link-example': new ComponentPortal(IconLinkExampleComponent),
+      'social-link-example': new ComponentPortal(SocialLinkExampleComponent)
+    },
     loading: { 'loading-example': new ComponentPortal(LoadingExampleComponent) },
     dropdown: { 'dropdown-example': new ComponentPortal(DropdownExampleComponent) },
     lightbox: { 'lightbox-example': new ComponentPortal(LightboxExampleComponent) },
