@@ -1,21 +1,24 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FeatureLayer } from 'esri-leaflet';
 import {
   circle,
   latLng,
   LatLng,
   LatLngBounds,
-  Layer,
   layerGroup,
   LayerGroup,
+  LeafletEvent,
+  LeafletMouseEvent,
   Map,
   TileLayer
 } from 'leaflet';
-import { DEFAULT_CENTER, DEFAULT_ZOOM } from './config/leaflet.const';
-import { LayersControl, LayersControlLayer } from './config/map-config.model';
-import { LeafletMapComponent } from './leaflet-map.component';
 
-fdescribe('LeafletMapComponent', () => {
+import { DEFAULT_CENTER, DEFAULT_ZOOM } from './config/leaflet.const';
+import { LeafletMapComponent } from './leaflet-map.component';
+import { LayersControl, LayersControlLayer } from './model/map-config.model';
+
+describe('LeafletMapComponent', () => {
   let leafletMapComponent: LeafletMapComponent;
   let fixture: ComponentFixture<LeafletMapComponent>;
 
@@ -36,7 +39,11 @@ fdescribe('LeafletMapComponent', () => {
     overLays: [
       {
         title: 'overlay1',
-        layer: new FeatureLayer({ url: 'overlay1' }),
+        layer: layerGroup([
+          circle([46.948212, 7.455189], {
+            color: 'red'
+          })
+        ]),
         visible: true
       },
       {
@@ -69,7 +76,7 @@ fdescribe('LeafletMapComponent', () => {
   });
 
   it('should initialize map with default mapOptions config', async(() => {
-    leafletMapComponent.mapOptions = null;
+    leafletMapComponent.mapOptions = {};
     leafletMapComponent.mapReady.subscribe((map: Map) => {
       expect(map.getCenter()).toEqual(DEFAULT_CENTER);
       expect(map.getZoom()).toEqual(DEFAULT_ZOOM);
@@ -93,7 +100,7 @@ fdescribe('LeafletMapComponent', () => {
       let i = 0;
       map.eachLayer(() => i++);
       map.eachLayer(l => console.log(l));
-      expect(i).toEqual(5);
+      expect(i).toEqual(6);
     });
     leafletMapComponent.ngOnInit();
   }));
@@ -105,26 +112,38 @@ fdescribe('LeafletMapComponent', () => {
 
   it('should emit mapClicked', async(() => {
     let map: Map;
-    leafletMapComponent.mapReady.subscribe(m => (map = m));
-    leafletMapComponent.mapClicked.subscribe(e => expect(e.type).toBe('click'));
+    leafletMapComponent.mapReady.subscribe((m: Map) => {
+      map = m;
+      map.fireEvent('click');
+    });
+    leafletMapComponent.mapClicked.subscribe((e: LeafletMouseEvent) =>
+      expect(e.type).toBe('click')
+    );
     leafletMapComponent.ngOnInit();
-    map.fireEvent('click');
   }));
 
   it('should emit mapExtentChanged with zoom', async(() => {
     let map: Map;
-    leafletMapComponent.mapReady.subscribe(m => (map = m));
-    leafletMapComponent.mapExtentChanged.subscribe(e => expect(e.type).toBe('zoom'));
+    leafletMapComponent.mapReady.subscribe((m: Map) => {
+      map = m;
+      map.fireEvent('zoom');
+    });
+    leafletMapComponent.mapExtentChanged.subscribe((e: LeafletEvent) =>
+      expect(e.type).toBe('zoom')
+    );
     leafletMapComponent.ngOnInit();
-    map.fireEvent('zoom');
   }));
 
   it('should emit mapExtentChanged with move', async(() => {
     let map: Map;
-    leafletMapComponent.mapReady.subscribe(m => (map = m));
-    leafletMapComponent.mapExtentChanged.subscribe(e => expect(e.type).toBe('move'));
+    leafletMapComponent.mapReady.subscribe((m: Map) => {
+      map = m;
+      map.fireEvent('move');
+    });
+    leafletMapComponent.mapExtentChanged.subscribe((e: LeafletEvent) =>
+      expect(e.type).toBe('move')
+    );
     leafletMapComponent.ngOnInit();
-    map.fireEvent('move');
   }));
 
   it('should fly to coordinate', async(() => {

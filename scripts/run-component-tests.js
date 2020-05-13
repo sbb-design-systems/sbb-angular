@@ -32,7 +32,7 @@ const packagesDir = path.join(projectDir, 'src/');
 // List of packages where the specified component could be defined in. The script uses the
 // first package that contains the component (if no package is specified explicitly).
 // e.g. "button" will become "public/button", and "contextmenu" becomes "business/contextmenu".
-const orderedGuessPackages = ['public', 'business', 'maps', 'core', 'keycloak'];
+const orderedGuessPackages = ['public', 'business', 'maps', 'core', 'keycloak', 'maps-leaflet'];
 
 /** Map of common typos in target names. The key is the typo, the value is the correct form. */
 const commonTypos = new Map([]);

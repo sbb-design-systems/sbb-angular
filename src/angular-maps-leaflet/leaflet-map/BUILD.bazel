@@ -40,6 +40,8 @@ ng_test_library(
         ":leaflet-map",
         "@npm//esri-leaflet",
         "@npm//leaflet",
+        "@npm//@types/leaflet",
+        "@npm//@types/esri-leaflet",
     ],
 )
 

@@ -173,6 +173,7 @@ def karma_web_test_suite(name, **kwargs):
     kwargs["deps"] = [
         "//tools/rxjs:rxjs_umd_modules",
         "//tools/esri-loader:esri_loader_umd_module",
+        "//tools/leaflet:leaflet_umd_module",
         "//tools/angular-localize:angular_localize_umd_module",
     ] + kwargs.get("deps", [])
 
