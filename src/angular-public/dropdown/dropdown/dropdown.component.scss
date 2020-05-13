@@ -27,8 +27,8 @@
     width: 100%;
     color: $sbbColorGrey;
 
-    &:hover,
-    &:focus,
+    &:not(:disabled):hover,
+    &:not(:disabled):focus,
     &.sbb-selected {
       color: $sbbColorRed125;
     }

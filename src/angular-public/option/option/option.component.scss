@@ -66,6 +66,26 @@ sbb-option[disabled],
   opacity: 0.5;
 }
 
+sbb-option[disabled]:not(.sbb-active),
+.sbb-option-disabled:not(.sbb-active) {
+  .sbb-select-content & {
+    &:hover,
+    &:focus,
+    &:hover strong,
+    &:focus strong {
+      color: $sbbColorGrey;
+      @include businessOnly() {
+        color: $sbbColorGranite;
+      }
+
+      &,
+      &:not(.sbb-option-multiple)::after {
+        content: none;
+      }
+    }
+  }
+}
+
 sbb-option[aria-disabled='true'] {
   user-select: none;
   cursor: default;

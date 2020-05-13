@@ -414,10 +414,10 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
     }
   }
 
-  &:hover,
-  &:focus,
-  &:hover strong,
-  &:focus strong {
+  &:not(:disabled):hover,
+  &:not(:disabled):focus,
+  &:not(:disabled):hover strong,
+  &:not(:disabled):focus strong {
     color: $autocompleteOptionHoverColor;
 
     &,
@@ -426,8 +426,8 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
     }
   }
 
-  &:first-of-type:hover,
-  &:first-of-type,
+  &:not(:disabled):first-of-type:hover,
+  &:not(:disabled):first-of-type,
   &:first-of-type.sbb-active {
     &::after {
       top: toPx($optionSelectedBarTopFirst);
