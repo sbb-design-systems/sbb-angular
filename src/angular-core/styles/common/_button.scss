@@ -374,6 +374,7 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
   &:hover,
   &:focus {
     padding-left: toEm(30 / $fontSize);
+    padding-right: 0;
 
     .sbb-svgsprite-icon {
       @include svgIconColor($buttonFramelessColorHover);
