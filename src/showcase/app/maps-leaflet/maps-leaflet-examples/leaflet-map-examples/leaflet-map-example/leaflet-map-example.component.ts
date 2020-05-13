@@ -6,7 +6,6 @@ import {
   Canvas,
   circle,
   latLng,
-  LatLng,
   LatLngBounds,
   LayerGroup,
   layerGroup,
@@ -86,8 +85,9 @@ export let layersControlConfig: LayersControl = {
 export class LeafletMapExampleComponent {
   private _map: L.Map;
   private _myPointLayerGroup: LayerGroup<any>;
+
   @ViewChild('leafletMap', { static: true })
-  private leafLetMap: LeafletMapComponent;
+  private _leafLetMap: LeafletMapComponent;
 
   public options = mapOptions;
   public lc = layersControlConfig;
@@ -102,7 +102,7 @@ export class LeafletMapExampleComponent {
 
   private _removeLayerFromMap(l: any) {
     if (l) {
-      this.leafLetMap.removeLayerFromMap(l);
+      this._leafLetMap.removeLayerFromMap(l);
     }
   }
 
@@ -123,14 +123,14 @@ export class LeafletMapExampleComponent {
   }
 
   public goToPoint(lat: number, lng: number, zoomlvl: number) {
-    this.leafLetMap.flyTo(latLng(lat, lng), zoomlvl);
+    this._leafLetMap.flyTo(latLng(lat, lng), zoomlvl);
   }
 
   public goToArea(lat1: number, lng1: number, lat2: number, lng2: number) {
-    const latlng1 = new LatLng(lat1, lng1);
-    const latlng2 = new LatLng(lat2, lng2);
+    const latlng1 = latLng(lat1, lng1);
+    const latlng2 = latLng(lat2, lng2);
     const bounds = new LatLngBounds(latlng1, latlng2);
-    this.leafLetMap.flyToBounds(bounds);
+    this._leafLetMap.flyToBounds(bounds);
   }
 
   public mapClicked(e: LeafletMouseEvent) {
@@ -149,7 +149,7 @@ export class LeafletMapExampleComponent {
 
     const myPoints = this._generatePoints();
     this._myPointLayerGroup = this._createLayerGroup(myPoints);
-    this.leafLetMap.addOverlayToMap({
+    this._leafLetMap.addOverlayToMap({
       title: 'sample',
       layer: this._myPointLayerGroup,
       visible: true
