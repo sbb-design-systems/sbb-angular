@@ -234,7 +234,10 @@ export class SelectComponent extends SbbSelectMixinBase
    */
   @HostBinding('class.sbb-select') cssClass = true;
 
-  /** Trigger that opens the select. */
+  /**
+   * Trigger that opens the select.
+   * @deprecated No longer in use.
+   */
   @ViewChild('trigger', { static: true }) trigger: ElementRef<HTMLElement>;
 
   /** Panel containing the select options. */
@@ -407,6 +410,7 @@ export class SelectComponent extends SbbSelectMixinBase
   onTouched = () => {};
 
   /** Whether the select is focused. */
+  @HostBinding('class.sbb-select-focused')
   get focused(): boolean {
     return this._focused || this._panelOpen;
   }
@@ -528,6 +532,11 @@ export class SelectComponent extends SbbSelectMixinBase
       : null;
   }
 
+  /** Attribute that refers to the expansion of the dropdown panel. */
+  @HostBinding('attr.aria-expanded') get ariaExpanded(): string | null {
+    return this.disabled ? null : this.panelOpen.toString();
+  }
+
   constructor(
     @Self() @Optional() public ngControl: NgControl,
     public _elementRef: ElementRef,
@@ -622,11 +631,13 @@ export class SelectComponent extends SbbSelectMixinBase
       return;
     }
 
-    this.triggerRect = this.trigger.nativeElement.getBoundingClientRect();
+    this.triggerRect = this._elementRef.nativeElement.getBoundingClientRect();
     // Note: The computed font-size will be a string pixel value (e.g. "16px").
     // `parseInt` ignores the trailing 'px' and converts this to a number.
     // tslint:disable-next-line:radix
-    this.triggerFontSize = parseInt(getComputedStyle(this.trigger.nativeElement).fontSize || '0');
+    this.triggerFontSize = parseInt(
+      getComputedStyle(this._elementRef.nativeElement).fontSize || '0'
+    );
     this.rotateIcon = true;
     this._panelOpen = true;
     this.keyManager.withHorizontalOrientation(null);
@@ -828,10 +839,8 @@ export class SelectComponent extends SbbSelectMixinBase
     this.overlayDir.positionChange.pipe(first()).subscribe((positions) => {
       if (positions.connectionPair.originY === 'top') {
         this.panel.nativeElement.classList.add('sbb-select-panel-above');
-        this.trigger.nativeElement.classList.add('sbb-select-input-above');
       } else {
         this.panel.nativeElement.classList.remove('sbb-select-panel-above');
-        this.trigger.nativeElement.classList.remove('sbb-select-input-above');
       }
       this._changeDetectorRef.detectChanges();
 
@@ -942,8 +951,10 @@ export class SelectComponent extends SbbSelectMixinBase
     this.keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
       // Restore focus to the trigger before closing. Ensures that the focus
       // position won't be lost if the user got focus into the overlay.
-      this.focus();
-      this.close();
+      if (this.panelOpen) {
+        this.focus();
+        this.close();
+      }
     });
 
     this.keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
