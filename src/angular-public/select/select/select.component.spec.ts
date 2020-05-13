@@ -1424,8 +1424,6 @@ describe('SelectComponent', () => {
       }));
 
       it('should restore focus to the host before tabbing away', fakeAsync(() => {
-        const select = fixture.nativeElement.querySelector('.sbb-select');
-
         trigger.click();
         fixture.detectChanges();
         flush();
@@ -1659,7 +1657,7 @@ describe('SelectComponent', () => {
       }));
 
       it('should remove selection if option has been removed', fakeAsync(() => {
-        const select = fixture.componentInstance.select;
+        const selectComponent = fixture.componentInstance.select;
 
         trigger.click();
         fixture.detectChanges();
@@ -1672,13 +1670,16 @@ describe('SelectComponent', () => {
         firstOption.click();
         fixture.detectChanges();
 
-        expect(select.selected).toBe(select.options.first, 'Expected first option to be selected.');
+        expect(selectComponent.selected).toBe(
+          selectComponent.options.first,
+          'Expected first option to be selected.'
+        );
 
         fixture.componentInstance.foods = [];
         fixture.detectChanges();
         flush();
 
-        expect(select.selected).toBeUndefined(
+        expect(selectComponent.selected).toBeUndefined(
           'Expected selection to be removed when option no longer exists.'
         );
       }));
