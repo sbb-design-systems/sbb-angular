@@ -7,7 +7,7 @@ package(default_visibility = ["//visibility:public"])
 
 sass_library(
     name = "common_scss_lib",
-    srcs = ["_common.scss"] + glob(["common/_*.scss"]),
+    srcs = ["_common.scss"] + glob(["includes/_*.scss"]),
 )
 
 sass_library(
@@ -18,4 +18,29 @@ sass_library(
         "@npm//:node_modules/@angular/cdk/_overlay.scss",
     ] + glob(["typography/_*.scss"]),
     deps = [":common_scss_lib"],
+)
+
+filegroup(
+    name = "legacy_scss",
+    srcs = glob(["common/*.scss"]),
+)
+
+genrule(
+    name = "legacy_scss_asdf",
+    srcs = ["common/_legacy.scss"],
+    outs = [
+        "styles/common/_colors.scss",
+        "styles/common/_variables.scss",
+        "styles/common/_functions.scss",
+        "styles/common/_mediaqueries.scss",
+        "styles/common/_mixins.scss",
+    ],
+    cmd = """
+        declare -a arr=("_colors" "_variables" "_functions" "_mediaqueries" "_mixins")
+        mkdir -p styles/common
+        for i in "$${arr[@]}"
+        do
+            cp $< "styles/common/$$i.scss"
+        done
+    """,
 )
