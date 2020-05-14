@@ -1,45 +1,83 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-autocomplete-option-group-example',
   templateUrl: './autocomplete-option-group-example.component.html',
 })
 export class AutocompleteOptionGroupExampleComponent implements OnInit {
-  myControlStatic = new FormControl('');
+  myControlStatic = new FormControl('one');
 
-  options$ = new Subject<string[]>();
+  options: Observable<string[]>;
 
-  options: string[] = [
-    'Eins',
-    'Zwei',
-    'Drei',
-    'Vier',
-    'Fünf',
-    'Sechs',
-    'Sieben',
-    'Acht',
-    'Neun',
-    'Zehn',
-  ];
-  staticOptions: string[] = ['statische Option eins', 'statische Option zwei'];
+  staticOptions: string[] = ['static option one', 'static option two'];
 
   ngOnInit() {
-    this.myControlStatic.valueChanges
-      .pipe(debounceTime(500))
-      .pipe(distinctUntilChanged())
-      .subscribe((newValue) => {
-        if (newValue.length >= 2) {
-          this.options$.next(
-            this.options.filter(
-              (option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+    this.options = this.myControlStatic.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      map((newValue) =>
+        newValue.length <= 2
+          ? []
+          : options.filter(
+              (option) => option.toLocaleUpperCase().indexOf(newValue.toLocaleUpperCase()) > -1
             )
-          );
-        } else {
-          this.options$.next([]);
-        }
-      });
+      )
+    );
   }
 }
+
+const options: string[] = [
+  'zero',
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+  'ten',
+  'eleven',
+  'twelve',
+  'thirteen',
+  'fourteen',
+  'fifteen',
+  'sixteen',
+  'seventeen',
+  'eighteen',
+  'nineteen',
+  'twenty ',
+  'twenty one',
+  'twenty two',
+  'twenty three',
+  'twenty four',
+  'twenty five',
+  'twenty six',
+  'twenty seven',
+  'twenty eight',
+  'twenty nine',
+  'thirty ',
+  'thirty one',
+  'thirty two',
+  'thirty three',
+  'thirty four',
+  'thirty five',
+  'thirty six',
+  'thirty seven',
+  'thirty eight',
+  'thirty nine',
+  'forty ',
+  'forty one',
+  'forty two',
+  'forty three',
+  'forty four',
+  'forty five',
+  'forty six',
+  'forty seven',
+  'forty eight',
+  'forty nine',
+];

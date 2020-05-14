@@ -98,6 +98,15 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   @Input() displayWith: ((value: any) => string) | null = null;
 
   /**
+   * Function which normalizes input values to highlight them in options.
+   * E.g. If your function is <code>(value: string) => value.replace(new RegExp('[ö]', 'i'), 'o')</code>
+   * and you search for 'Faroer', an option like 'Faröer' will be highlighted.
+   * IMPORTANT: The provided function MAY NOT change the order of the characters or the length of the string.
+   * (e.g. changing `ä` to `ae` would break the highlighting function)
+   */
+  @Input() localeNormalizer: ((value: string) => string) | null = null;
+
+  /**
    * Whether the first option should be highlighted when the autocomplete panel is opened.
    */
   @Input()

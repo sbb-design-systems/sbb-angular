@@ -2,7 +2,7 @@
   <input sbbInput type="text" [formControl]="myControlStatic" [sbbAutocomplete]="autoStatic" />
 </sbb-field>
 <sbb-autocomplete #autoStatic="sbbAutocomplete">
-  <sbb-option *ngFor="let option of options$ | async" [value]="option">
+  <sbb-option *ngFor="let option of options | async" [value]="option">
     {{ option }}
   </sbb-option>
   <sbb-option-group label="Oft gesucht:">

@@ -34,6 +34,8 @@ import {
   SBBOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
 import {
+  BehaviorSubject,
+  combineLatest,
   defer,
   fromEvent,
   merge,
@@ -42,7 +44,18 @@ import {
   Subject,
   Subscription,
 } from 'rxjs';
-import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
+import {
+  delay,
+  filter,
+  first,
+  map,
+  mapTo,
+  startWith,
+  switchMap,
+  take,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
 
 import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
 import { AutocompleteComponent } from './autocomplete.component';
@@ -114,6 +127,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   /** Subscription to viewport size changes. */
   private _viewportSubscription = Subscription.EMPTY;
   private _positionSubscription = Subscription.EMPTY;
+
+  /** Subscription to highlight options */
+  private _highlightSubscription = Subscription.EMPTY;
+
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused,
    * closed autocomplete from being reopened if the user switches to another browser tab and then
@@ -125,13 +142,46 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   private readonly _closeKeyEventStream = new Subject<void>();
   private _overlayAttached = false;
 
+  private _inputValue = new BehaviorSubject('');
+
   @HostBinding('attr.role') get role() {
     return this._autocompleteDisabled ? null : 'combobox';
   }
 
   /** The autocomplete panel to be attached to this trigger. */
   // tslint:disable-next-line:no-input-rename
-  @Input('sbbAutocomplete') autocomplete: AutocompleteComponent;
+  @Input('sbbAutocomplete')
+  get autocomplete(): AutocompleteComponent {
+    return this._autocomplete;
+  }
+  set autocomplete(autocomplete: AutocompleteComponent) {
+    this._autocomplete = autocomplete;
+
+    this._highlightSubscription.unsubscribe();
+    if (!autocomplete) {
+      return;
+    }
+
+    const onReady = autocomplete.options ? observableOf(null) : this._zone.onStable.asObservable();
+    this._highlightSubscription = onReady
+      .pipe(
+        switchMap(() =>
+          combineLatest([
+            this._inputValue,
+            (autocomplete.options.changes as Observable<OptionComponent[]>).pipe(
+              startWith(autocomplete.options.toArray())
+            ),
+          ])
+        ),
+        filter((value) => !!value[1] && !!value[1].length)
+      )
+      .subscribe(([inputValue, options]) => {
+        options.forEach((option) =>
+          option._highlight(inputValue, this.autocomplete.localeNormalizer)
+        );
+      });
+  }
+  private _autocomplete: AutocompleteComponent;
 
   /**
    * Reference relative to which to position the autocomplete panel.
@@ -234,6 +284,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
     this._viewportSubscription.unsubscribe();
     this._positionSubscription.unsubscribe();
+    this._highlightSubscription.unsubscribe();
     this._componentDestroyed = true;
     this._destroyPanel();
     this._closeKeyEventStream.complete();
@@ -384,7 +435,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         this.scrollToOption();
       }
     }
-    this.highlightOptionsByInput(this._elementRef.nativeElement.value);
   }
 
   scrollToOption(): void {
@@ -405,20 +455,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this.autocomplete.setScrollTop(newScrollPosition);
   }
 
-  highlightOptionsByInput(value: string) {
-    if (!this.autocomplete) {
-      return;
-    }
-
-    this._zone.onStable
-      .asObservable()
-      .pipe(first())
-      .subscribe(() => {
-        this.autocomplete.options
-          .filter((option) => !option.group)
-          .forEach((option) => option._highlight(value));
-      });
-  }
+  /**
+   * @deprecated don't use it
+   */
+  highlightOptionsByInput(value: string) {}
 
   /** @docs-private */
   @HostListener('input', ['$event'])
@@ -439,7 +479,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     if (this._previousValue !== value && document.activeElement === event.target) {
       this._previousValue = value;
       this.onChange(value);
-      this.highlightOptionsByInput(target.value);
+      this._inputValue.next(target.value);
 
       if (this._canOpen()) {
         this.openPanel();
@@ -527,6 +567,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     // through change detection.
     this._elementRef.nativeElement.value = inputValue;
     this._previousValue = inputValue;
+    this._inputValue.next(inputValue);
   }
 
   /**

@@ -224,7 +224,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   }
 
   /** @docs-private */
-  _highlight(value: string) {
+  _highlight(value: string, localeNormalizer?: ((value: string) => string) | null) {
     if (this._originalInnerHtml === undefined) {
       this._originalInnerHtml = this._elementRef.nativeElement.innerHTML;
     } else if (value === this._highlightValue) {
@@ -236,11 +236,13 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
     this._highlightValue = value;
     if (value && this._originalInnerHtml) {
+      const normalizer = localeNormalizer || ((v) => v);
+      value = normalizer(value);
       // Escape all regex characters
       const escapedValue = value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-      const replacement = new RegExp(`${escapedValue}+`, 'i');
-      const nodes = this._findAllTextNodesWithMatch(replacement);
-      nodes.forEach((n) => this._highlightNode(n, replacement));
+      const matcher = new RegExp(`${escapedValue}+`, 'i');
+      const nodes = this._findAllTextNodesWithMatch(matcher, normalizer);
+      nodes.forEach((n) => this._highlightNode(n, matcher, normalizer));
       this._highlighted = !!nodes.length;
     }
   }
@@ -251,6 +253,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
   private _findAllTextNodesWithMatch(
     matcher: RegExp,
+    localeNormalizer: (value: string) => string,
     node: Node = this._elementRef.nativeElement
   ): ChildNode[] {
     const nodes: ChildNode[] = [];
@@ -258,10 +261,10 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     for (let i = 0; i < childNodes.length; i++) {
       const childNode = childNodes[i];
       // Text nodes are nodeType 3
-      if (childNode.nodeType === 3 && matcher.test(childNode.textContent || '')) {
+      if (childNode.nodeType === 3 && matcher.test(localeNormalizer(childNode.textContent || ''))) {
         nodes.push(childNode);
       } else if (childNode.childNodes.length) {
-        nodes.push(...this._findAllTextNodesWithMatch(matcher, childNode));
+        nodes.push(...this._findAllTextNodesWithMatch(matcher, localeNormalizer, childNode));
       }
     }
 
@@ -273,15 +276,20 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
    * which contain the highlightable content.
    * @param node The node with (partial) content to highlight.
    * @param matcher The content to highlight.
+   * @param localeNormalizer function to normalize locale chars
    */
-  private _highlightNode(node: ChildNode, matcher: RegExp) {
+  private _highlightNode(
+    node: ChildNode,
+    matcher: RegExp,
+    localeNormalizer: (value: string) => string
+  ) {
     const nodes: Node[] = [];
     const doc: Document = this._document;
     matcher.lastIndex = 0;
     let text = node.textContent || '';
     let match: RegExpMatchArray | null;
     do {
-      match = text.match(matcher);
+      match = localeNormalizer(text).match(matcher);
       if (!match) {
         nodes.push(doc.createTextNode(text));
         continue;
@@ -291,7 +299,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
       }
 
       const strong = doc.createElement('strong');
-      strong.textContent = match[0];
+      strong.textContent = text.substring(0, match[0].length);
       nodes.push(strong);
       text = text.substring(match[0].length);
     } while (match);
