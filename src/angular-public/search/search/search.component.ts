@@ -588,6 +588,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
 
   /**
+   * @docs-private
    * @deprecated don't use it
    */
   highlightOptionsByInput(value: string) {}
