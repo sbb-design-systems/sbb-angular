@@ -51,9 +51,9 @@
           <sbb-field label="Number" [mode]="inputMode">
             <select sbbInput formControlName="select1">
               <option></option>
-              <option>Eins</option>
-              <option>Zwei</option>
-              <option>Drei</option>
+              <option>One</option>
+              <option>Two</option>
+              <option>Three</option>
             </select>
             <sbb-form-error *ngIf="form.get('select1')?.errors?.required"
               >Number is required!</sbb-form-error

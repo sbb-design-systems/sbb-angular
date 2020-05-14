@@ -50,8 +50,18 @@ import {
   OptionComponent,
   SBBOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
-import { defer, fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
-import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  combineLatest,
+  defer,
+  fromEvent,
+  merge,
+  Observable,
+  of,
+  Subject,
+  Subscription,
+} from 'rxjs';
+import { delay, filter, first, map, startWith, switchMap, tap } from 'rxjs/operators';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_SEARCH_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -155,6 +165,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   /** Subscription to viewport size changes. */
   private _viewportSubscription = Subscription.EMPTY;
   private _positionSubscription = Subscription.EMPTY;
+
+  /** Subscription to highlight options */
+  private _highlightSubscription = Subscription.EMPTY;
+
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused,
    * closed autocomplete from being reopened if the user switches to another browser tab and then
@@ -166,6 +180,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   private readonly _closeKeyEventStream = new Subject<void>();
 
   private _overlayAttached = false;
+
+  private _inputValue = new BehaviorSubject('');
 
   /**
    * Used to switch from trigger to search box when in 'header' mode
@@ -189,9 +205,33 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   get autocomplete(): AutocompleteComponent {
     return this._autocomplete;
   }
-  set autocomplete(value: AutocompleteComponent) {
-    this._autocomplete = value;
+  set autocomplete(autocomplete: AutocompleteComponent) {
+    this._autocomplete = autocomplete;
     this._autocompleteDisabled = false;
+
+    this._highlightSubscription.unsubscribe();
+    if (!autocomplete) {
+      return;
+    }
+
+    const onReady = autocomplete.options ? of(null) : this._zone.onStable.asObservable();
+    this._highlightSubscription = onReady
+      .pipe(
+        switchMap(() =>
+          combineLatest([
+            this._inputValue,
+            (autocomplete.options.changes as Observable<OptionComponent[]>).pipe(
+              startWith(autocomplete.options.toArray())
+            ),
+          ])
+        ),
+        filter((value) => !!value[1] && !!value[1].length)
+      )
+      .subscribe(([inputValue, options]) => {
+        options.forEach((option) =>
+          option._highlight(inputValue, this.autocomplete.localeNormalizer)
+        );
+      });
   }
   private _autocomplete: AutocompleteComponent;
 
@@ -370,6 +410,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
     this._viewportSubscription.unsubscribe();
     this._positionSubscription.unsubscribe();
+    this._highlightSubscription.unsubscribe();
     this._componentDestroyed = true;
     this._destroyPanel();
     this._closeKeyEventStream.complete();
@@ -523,7 +564,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     } else if (keyCode === ENTER) {
       this.emitSearch();
     }
-    this.highlightOptionsByInput(this.input.nativeElement.value);
   }
 
   /**
@@ -547,21 +587,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this.autocomplete.setScrollTop(newScrollPosition);
   }
 
-  /** @docs-private */
-  highlightOptionsByInput(value: string) {
-    if (this.autocompleteDisabled) {
-      return;
-    }
-
-    this._zone.onStable
-      .asObservable()
-      .pipe()
-      .subscribe(() => {
-        this.autocomplete.options
-          .filter((option) => !option.group)
-          .forEach((option) => option._highlight(value));
-      });
-  }
+  /**
+   * @deprecated don't use it
+   */
+  highlightOptionsByInput(value: string) {}
 
   /** @docs-private */
   emitSearch() {
@@ -586,7 +615,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     if (this._previousValue !== value && document.activeElement === event.target) {
       this._previousValue = value;
       this.onChange(value);
-      this.highlightOptionsByInput(target.value);
+      this._inputValue.next(target.value);
 
       if (this._canOpen()) {
         this.openPanel();
@@ -670,6 +699,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     if (this.input) {
       this.input.nativeElement.value = inputValue;
       this._previousValue = inputValue;
+      this._inputValue.next(inputValue);
     }
   }
 
