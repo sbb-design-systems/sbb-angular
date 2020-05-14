@@ -26,13 +26,13 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
   clearElement,
+  createKeyboardEvent,
   dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent,
+  MockNgZone,
+  typeInElement,
 } from '@sbb-esta/angular-core/testing';
-import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
-import { MockNgZone } from '@sbb-esta/angular-core/testing';
-import { typeInElement } from '@sbb-esta/angular-core/testing';
 import { FieldComponent, FieldModule } from '@sbb-esta/angular-public/field';
 import {
   OptionComponent,
@@ -337,7 +337,7 @@ class PlainAutocompleteInputWithFormControlComponent {
 @Component({
   template: `
     <sbb-field>
-      <input type="number" [sbbAutocomplete]="auto" [(ngModel)]="selectedValue" />
+      <input type="number" [sbbAutocomplete]="auto" [(ngModel)]="selectedValue" sbbInput />
     </sbb-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
@@ -364,6 +364,35 @@ class AutocompleteWithNativeAutocompleteAttributeComponent {
   template: '<input [sbbAutocomplete]="null" sbbAutocompleteDisabled>',
 })
 class InputWithoutAutocompleteAndDisabledComponent {}
+
+@Component({
+  template: ` <sbb-field>
+      <input type="text" sbbInput [(ngModel)]="value" [sbbAutocomplete]="auto" />
+    </sbb-field>
+    <sbb-autocomplete #auto="sbbAutocomplete" [localeNormalizer]="normalizer">
+      <sbb-option *ngFor="let option of options" [value]="option">
+        {{ option }}
+      </sbb-option>
+    </sbb-autocomplete>`,
+})
+class AutocompleteLocaleNormalizerComponent {
+  @ViewChild(AutocompleteTriggerDirective, { static: true })
+  trigger: AutocompleteTriggerDirective;
+
+  value: string;
+
+  options = ['Faröer', 'Français', 'Hur mår du?', 'Dobry wieczór!', 'Ćao'];
+
+  normalizer: ((value: string) => string) | null = (value: string) =>
+    value
+      .replace(/[àâäãåá]/gi, 'a')
+      .replace(/[ç,ć]/gi, 'c')
+      .replace(/[éèêë]/gi, 'e')
+      .replace(/[íìîï]/gi, 'i')
+      .replace(/[ñ]/gi, 'n')
+      .replace(/[òôöóõø]/gi, 'o')
+      .replace(/[ùûüú]/gi, 'u');
+}
 
 describe('AutocompleteComponent', () => {
   let overlayContainer: OverlayContainer;
@@ -1990,4 +2019,88 @@ describe('AutocompleteComponent', () => {
 
     expect(formControl.value).toBe('Cal', 'Expected new value to be propagated to model');
   }));
+
+  describe('highlighting', () => {
+    let fixture: ComponentFixture<AutocompleteLocaleNormalizerComponent>;
+    let input: HTMLInputElement;
+
+    const countOfHighlightedSnippets = () =>
+      overlayContainerElement.querySelectorAll('sbb-option strong').length;
+
+    beforeEach(() => {
+      fixture = createComponent(AutocompleteLocaleNormalizerComponent);
+      fixture.detectChanges();
+      input = fixture.nativeElement.querySelector('input');
+    });
+
+    it('should highlight normalized options', fakeAsync(() => {
+      fixture.componentInstance.trigger.openPanel();
+
+      expect(countOfHighlightedSnippets()).toBe(0);
+
+      const params = [
+        { value: 'test', expectedCount: 0 },
+        { value: 'far', expectedCount: 1 },
+        { value: 'FAR', expectedCount: 1 },
+        { value: 'FÄR', expectedCount: 1 },
+        { value: 'fär', expectedCount: 1 },
+        { value: 'Ća', expectedCount: 2 },
+      ];
+      params.forEach(({ expectedCount, value }) => {
+        clearElement(input);
+        typeInElement(input, value);
+        fixture.detectChanges();
+        zone.simulateZoneExit();
+        expect(countOfHighlightedSnippets()).toBe(expectedCount);
+      });
+    }));
+
+    it('should highlight non normalized options', fakeAsync(() => {
+      fixture.componentInstance.normalizer = null;
+      fixture.componentInstance.trigger.openPanel();
+
+      expect(countOfHighlightedSnippets()).toBe(0);
+
+      const params = [
+        { value: 'test', expectedCount: 0 },
+        { value: 'far', expectedCount: 1 },
+        { value: 'FAR', expectedCount: 1 },
+        { value: 'FÄR', expectedCount: 0 },
+        { value: 'fär', expectedCount: 0 },
+        { value: 'Ća', expectedCount: 1 },
+      ];
+      params.forEach(({ expectedCount, value }) => {
+        clearElement(input);
+        typeInElement(input, value);
+        fixture.detectChanges();
+        zone.simulateZoneExit();
+        expect(countOfHighlightedSnippets()).toBe(expectedCount);
+      });
+    }));
+
+    it('should highlight options which are loaded later', () => {
+      typeInElement(input, 'far');
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+      expect(countOfHighlightedSnippets()).toBe(1);
+
+      fixture.componentInstance.options.push('Far 2');
+
+      fixture.detectChanges();
+      expect(countOfHighlightedSnippets()).toBe(2);
+    });
+
+    it('should highlight options when opening dropdown', fakeAsync(() => {
+      fixture.componentInstance.value = 'far';
+      fixture.detectChanges();
+      flush();
+      expect(countOfHighlightedSnippets()).toBe(0);
+
+      fixture.componentInstance.trigger.openPanel();
+
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+      expect(countOfHighlightedSnippets()).toBe(1);
+    }));
+  });
 });

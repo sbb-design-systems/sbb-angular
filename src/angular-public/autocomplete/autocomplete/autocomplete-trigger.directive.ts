@@ -176,7 +176,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         filter((value) => !!value[1] && !!value[1].length)
       )
       .subscribe(([inputValue, options]) => {
-        options.forEach((option) => option._highlight(inputValue));
+        options.forEach((option) =>
+          option._highlight(inputValue, this.autocomplete.localeNormalizer)
+        );
       });
   }
   private _autocomplete: AutocompleteComponent;
