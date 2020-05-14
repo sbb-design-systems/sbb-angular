@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { ExampleProvider } from '../../shared/example-provider';
 import { AutocompleteFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
-import { AutocompleteLocaleNormalizerExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-normalizer-example/autocomplete-locale-normalizer-example.component';
+import { AutocompleteLocaleNormalizerExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-locale-normalizer-example/autocomplete-locale-normalizer-example.component';
 import { AutocompleteOptionGroupExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 import { BreadcrumbExampleComponent } from '../business-examples/breadcrumb-examples/breadcrumb-example/breadcrumb-example.component';
