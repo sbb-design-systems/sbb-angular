@@ -5,6 +5,7 @@ import { ExampleProvider } from '../../shared/example-provider';
 import { AccordionExampleComponent } from '../public-examples/accordion-examples/accordion-example/accordion-example.component';
 import { AutocompleteFormsExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
+import { AutocompleteLocaleNormalizerExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-normalizer-example/autocomplete-locale-normalizer-example.component';
 import { AutocompleteOptionGroupExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 import { BadgeExampleComponent } from '../public-examples/badge-examples/badge-example/badge-example.component';
@@ -110,6 +111,9 @@ export class PublicComponent implements ExampleProvider {
       'autocomplete-hint-example': new ComponentPortal(AutocompleteHintExampleComponent),
       'autocomplete-option-group-example': new ComponentPortal(
         AutocompleteOptionGroupExampleComponent
+      ),
+      'autocomplete-locale-normalizer-example': new ComponentPortal(
+        AutocompleteLocaleNormalizerExampleComponent
       ),
     },
     captcha: { 'captcha-example': new ComponentPortal(CaptchaExampleComponent) },
