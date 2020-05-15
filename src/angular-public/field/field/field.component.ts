@@ -5,6 +5,7 @@ import {
   Component,
   ContentChild,
   ContentChildren,
+  ElementRef,
   HostBinding,
   Input,
   OnDestroy,
@@ -67,7 +68,10 @@ export class FieldComponent implements AfterContentInit, OnDestroy {
 
   private _destroyed = new Subject<void>();
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    public _elementRef: ElementRef<HTMLElement>
+  ) {}
 
   ngAfterContentInit() {
     if (this._control) {

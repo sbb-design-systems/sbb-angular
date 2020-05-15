@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { AccordionExampleComponent } from '../public-examples/accordion-examples/accordion-example/accordion-example.component';
+import { AutocompleteDisplayWithExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-display-with-example/autocomplete-display-with-example.component';
 import { AutocompleteFormsExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
 import { AutocompleteLocaleNormalizerExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-locale-normalizer-example/autocomplete-locale-normalizer-example.component';
@@ -111,6 +112,9 @@ export class PublicComponent implements ExampleProvider {
       'autocomplete-hint-example': new ComponentPortal(AutocompleteHintExampleComponent),
       'autocomplete-option-group-example': new ComponentPortal(
         AutocompleteOptionGroupExampleComponent
+      ),
+      'autocomplete-display-with-example': new ComponentPortal(
+        AutocompleteDisplayWithExampleComponent
       ),
       'autocomplete-locale-normalizer-example': new ComponentPortal(
         AutocompleteLocaleNormalizerExampleComponent

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 
+import { AutocompleteDisplayWithExampleComponent } from './autocomplete-display-with-example/autocomplete-display-with-example.component';
 import { AutocompleteFormsExampleComponent } from './autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from './autocomplete-hint-example/autocomplete-hint-example.component';
 import { AutocompleteLocaleNormalizerExampleComponent } from './autocomplete-locale-normalizer-example/autocomplete-locale-normalizer-example.component';
@@ -11,6 +12,7 @@ import { AutocompleteOptionGroupExampleComponent } from './autocomplete-option-g
 import { AutocompleteReactiveFormsExampleComponent } from './autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 
 const EXAMPLES = [
+  AutocompleteDisplayWithExampleComponent,
   AutocompleteFormsExampleComponent,
   AutocompleteHintExampleComponent,
   AutocompleteOptionGroupExampleComponent,
