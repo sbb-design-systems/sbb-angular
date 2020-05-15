@@ -47,11 +47,17 @@ export class PageEvent {
     public length: number
   ) {}
 
+  /**
+   * Creates PageEvent with previousPageIndex set to previousPageIndex of this object
+   */
   next(pageIndex: number, pageSize: number, length: number): PageEvent {
     return new PageEvent(pageIndex, this.pageIndex, pageSize, length);
   }
 
-  hasChangesToEmit(other: PageEvent) {
+  /**
+   * Whether a PageEvent should be emitted
+   */
+  hasChangesToEmit(other: PageEvent): boolean {
     return other.pageIndex !== this.pageIndex || other.pageSize !== this.pageSize;
   }
 }
