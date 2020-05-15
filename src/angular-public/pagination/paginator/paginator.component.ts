@@ -46,6 +46,14 @@ export class PageEvent {
     public pageSize: number,
     public length: number
   ) {}
+
+  next(pageIndex: number, pageSize: number, length: number): PageEvent {
+    return new PageEvent(pageIndex, this.pageIndex, pageSize, length);
+  }
+
+  hasChangesToEmit(other: PageEvent) {
+    return other.pageIndex !== this.pageIndex || other.pageSize !== this.pageSize;
+  }
 }
 
 /** Object that can be used to configure the default options for the paginator module. */
@@ -95,9 +103,8 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     return this._pageIndex;
   }
   set pageIndex(value: number) {
-    const previousPageIndex = this._pageIndex;
     this._pageIndex = this._correctDownPageIndexIfNecessary(coerceNumberProperty(value));
-    this._emitPageEvent(previousPageIndex);
+    this._emitPageEvent();
     this._changeDetectorRef.markForCheck();
   }
   private _pageIndex = 0;
@@ -233,16 +240,15 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   }
 
   /** Emits an event notifying that a change of the paginator's properties has been triggered. */
-  private _emitPageEvent(previousPageIndex: number) {
-    const pageEvent = new PageEvent(this.pageIndex, previousPageIndex, this.pageSize, this.length);
-    if (
-      !this._initialized ||
-      (this.pageIndex === previousPageIndex && this.pageSize === this._lastPageEvent.pageSize)
-    ) {
+  private _emitPageEvent() {
+    if (!this._initialized) {
       return;
     }
-    this._lastPageEvent = pageEvent;
-    this.page.emit(pageEvent);
+    const nextPageEvent = this._lastPageEvent.next(this.pageIndex, this.pageSize, this.length);
+    if (nextPageEvent.hasChangesToEmit(this._lastPageEvent)) {
+      this.page.emit(nextPageEvent);
+    }
+    this._lastPageEvent = nextPageEvent;
   }
 
   /**
