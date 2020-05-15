@@ -588,7 +588,7 @@ export class AutocompleteTriggerDirective
 
     // If it's used within a `SbbField`, we should set it through the property so it can go
     // through change detection.
-    if (this._formField) {
+    if (this._formField && this._formField._control) {
       this._formField._control.value = inputValue;
     } else {
       this._elementRef.nativeElement.value = inputValue;

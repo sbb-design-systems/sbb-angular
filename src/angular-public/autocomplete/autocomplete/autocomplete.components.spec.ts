@@ -261,7 +261,7 @@ class AutocompleteWithOnPushDelayComponent implements OnInit {
 
 @Component({
   template: `
-    <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl" />
+    <input sbbInput placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl" />
 
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
