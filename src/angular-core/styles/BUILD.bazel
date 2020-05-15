@@ -24,23 +24,3 @@ filegroup(
     name = "legacy_scss",
     srcs = glob(["common/*.scss"]),
 )
-
-genrule(
-    name = "legacy_scss_asdf",
-    srcs = ["common/_legacy.scss"],
-    outs = [
-        "styles/common/_colors.scss",
-        "styles/common/_variables.scss",
-        "styles/common/_functions.scss",
-        "styles/common/_mediaqueries.scss",
-        "styles/common/_mixins.scss",
-    ],
-    cmd = """
-        declare -a arr=("_colors" "_variables" "_functions" "_mediaqueries" "_mixins")
-        mkdir -p styles/common
-        for i in "$${arr[@]}"
-        do
-            cp $< "styles/common/$$i.scss"
-        done
-    """,
-)
