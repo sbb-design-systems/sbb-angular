@@ -87,7 +87,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   role = 'navigation';
 
   private _initialized: boolean;
-  private _lastPageEvent: PageEvent;
+  private _previousPageSize: number;
 
   /** The zero-based page index of the displayed list of items. Defaulted to 0. */
   @Input()
@@ -95,8 +95,9 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     return this._pageIndex;
   }
   set pageIndex(value: number) {
+    const previousPageIndex = this._pageIndex;
     this._pageIndex = this._correctDownPageIndexIfNecessary(coerceNumberProperty(value));
-    this._emitPageEvent();
+    this._emitPageEvent(previousPageIndex);
     this._changeDetectorRef.markForCheck();
   }
   private _pageIndex = 0;
@@ -143,9 +144,9 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   }
 
   ngOnInit() {
+    this._previousPageSize = this._pageSize;
     this._initialized = true;
     this._markInitialized();
-    this._lastPageEvent = new PageEvent(this.pageIndex, 0, this.pageSize, this.length);
   }
 
   /**
@@ -227,28 +228,20 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     // containing the previous page's first item.
     const startIndex = this.pageIndex * this.pageSize;
 
+    this._previousPageSize = this._pageSize;
     this._pageSize = Math.max(pageSize, 0);
     this.pageIndex = Math.floor(startIndex / this._pageSize) || 0;
   }
 
   /** Emits an event notifying that a change of the paginator's properties has been triggered. */
-  private _emitPageEvent() {
-    if (!this._initialized) {
+  private _emitPageEvent(previousPageIndex: number) {
+    if (
+      !this._initialized ||
+      (this.pageIndex === previousPageIndex && this._previousPageSize === this.pageSize)
+    ) {
       return;
     }
-    const nextPageEvent = new PageEvent(
-      this.pageIndex,
-      this._lastPageEvent.pageIndex,
-      this.pageSize,
-      this.length
-    );
-    if (
-      this._lastPageEvent.pageIndex !== nextPageEvent.pageIndex ||
-      this._lastPageEvent.pageSize !== nextPageEvent.pageSize
-    ) {
-      this.page.emit(nextPageEvent);
-    }
-    this._lastPageEvent = nextPageEvent;
+    this.page.emit(new PageEvent(this.pageIndex, previousPageIndex, this.pageSize, this.length));
   }
 
   /**
