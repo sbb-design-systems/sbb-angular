@@ -275,22 +275,33 @@ describe('SbbPaginatorComponent', () => {
     expect(paginator.numberOfPages()).toBe(1);
   });
 
-  it('should emit event when changing pageSize but not changing index', () => {
+  it('should emit PageEvent when changing pageSize but not changing index', () => {
     const fixture = createComponent(SbbPaginatorTestComponent);
     const component = fixture.componentInstance;
-
     component.pageEvent.calls.reset();
 
     component.pageSize = 11;
 
     fixture.detectChanges();
-
     expect(component.pageEvent).toHaveBeenCalledWith(
       jasmine.objectContaining({
         pageIndex: 0,
         pageSize: 11,
       })
     );
+  });
+
+  it('should not emit PageEvent when only changing length after pageSize has changed', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const component = fixture.componentInstance;
+    component.pageSize = 11;
+    fixture.detectChanges();
+    component.pageEvent.calls.reset();
+
+    component.length = 99;
+
+    fixture.detectChanges();
+    expect(component.pageEvent).not.toHaveBeenCalled();
   });
 
   it('should handle the number inputs being passed in as strings', () => {
