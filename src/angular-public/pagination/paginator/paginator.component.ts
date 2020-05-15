@@ -46,20 +46,6 @@ export class PageEvent {
     public pageSize: number,
     public length: number
   ) {}
-
-  /**
-   * Creates PageEvent with previousPageIndex set to previousPageIndex of this object.
-   */
-  next(pageIndex: number, pageSize: number, length: number): PageEvent {
-    return new PageEvent(pageIndex, this.pageIndex, pageSize, length);
-  }
-
-  /**
-   * Whether a PageEvent should be emitted.
-   */
-  hasChangesToEmit(other: PageEvent): boolean {
-    return other.pageIndex !== this.pageIndex || other.pageSize !== this.pageSize;
-  }
 }
 
 /** Object that can be used to configure the default options for the paginator module. */
@@ -250,8 +236,16 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     if (!this._initialized) {
       return;
     }
-    const nextPageEvent = this._lastPageEvent.next(this.pageIndex, this.pageSize, this.length);
-    if (nextPageEvent.hasChangesToEmit(this._lastPageEvent)) {
+    const nextPageEvent = new PageEvent(
+      this.pageIndex,
+      this._lastPageEvent.pageIndex,
+      this.pageSize,
+      this.length
+    );
+    if (
+      this._lastPageEvent.pageIndex !== nextPageEvent.pageIndex ||
+      this._lastPageEvent.pageSize !== nextPageEvent.pageSize
+    ) {
       this.page.emit(nextPageEvent);
     }
     this._lastPageEvent = nextPageEvent;
