@@ -87,6 +87,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   role = 'navigation';
 
   private _initialized: boolean;
+  private _previousPageSize: number;
 
   /** The zero-based page index of the displayed list of items. Defaulted to 0. */
   @Input()
@@ -143,6 +144,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   }
 
   ngOnInit() {
+    this._previousPageSize = this._pageSize;
     this._initialized = true;
     this._markInitialized();
   }
@@ -228,11 +230,15 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
 
     this._pageSize = Math.max(pageSize, 0);
     this.pageIndex = Math.floor(startIndex / this._pageSize) || 0;
+    this._previousPageSize = this._pageSize;
   }
 
   /** Emits an event notifying that a change of the paginator's properties has been triggered. */
   private _emitPageEvent(previousPageIndex: number) {
-    if (!this._initialized || this.pageIndex === previousPageIndex) {
+    if (
+      !this._initialized ||
+      (this.pageIndex === previousPageIndex && this._previousPageSize === this.pageSize)
+    ) {
       return;
     }
     this.page.emit(new PageEvent(this.pageIndex, previousPageIndex, this.pageSize, this.length));

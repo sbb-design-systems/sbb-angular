@@ -15,7 +15,6 @@ ng_ts_library(
         "selectable-table-example/selectable-table-example.component.ts",
         "simple-table-example/simple-table-example.component.ts",
         "sortable-table-example/sortable-table-example.component.ts",
-        "table-example-data.ts",
         "table-examples.module.ts",
     ],
     assets = [
