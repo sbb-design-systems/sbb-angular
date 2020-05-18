@@ -49,7 +49,7 @@ import {
   Subject,
   Subscription,
 } from 'rxjs';
-import { delay, filter, first, map, startWith, switchMap, tap, take } from 'rxjs/operators';
+import { delay, filter, map, startWith, switchMap, take, tap } from 'rxjs/operators';
 
 import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
 import { AutocompleteComponent } from './autocomplete.component';
@@ -205,7 +205,7 @@ export class AutocompleteTriggerDirective
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
     // Return a stream that we'll replace with the real one once everything is in place.
     return this._zone.onStable.asObservable().pipe(
-      first(),
+      take(1),
       switchMap(() => this.optionSelections)
     );
   });
@@ -526,7 +526,7 @@ export class AutocompleteTriggerDirective
    * stream every time the option list changes.
    */
   private _subscribeToClosingActions(): Subscription {
-    const firstStable = this._zone.onStable.asObservable().pipe(first());
+    const firstStable = this._zone.onStable.asObservable().pipe(take(1));
     const optionChanges = this.autocomplete.options.changes.pipe(
       tap(() => this._positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing
