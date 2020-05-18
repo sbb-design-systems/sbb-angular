@@ -158,6 +158,22 @@ searchAndReplace(
   'node_modules/esri-leaflet/dist/esri-leaflet-debug.js'
 );
 
+// Add module to leaflet package.json
+searchAndReplace(
+  `"main": "dist/leaflet-src.js",
+  "style": "dist/leaflet.css",`,
+  `"main": "dist/leaflet-src.js",
+  "module": "dist/leaflet-src.esm.js",
+  "style": "dist/leaflet.css",`,
+  'node_modules/leaflet/package.json'
+);
+
+// Fix broken import in esri-leaflet's FeatureGrid.js
+searchAndReplace(
+  `toLatLngBounds as latLngBounds,`,
+  `latLngBounds,`,
+  'node_modules/esri-leaflet/src/Layers/FeatureLayer/FeatureGrid.js'
+);
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1208.
 applyPatch(path.join(__dirname, './manifest_externs_hermeticity.patch'));
 
