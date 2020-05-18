@@ -228,9 +228,9 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     // containing the previous page's first item.
     const startIndex = this.pageIndex * this.pageSize;
 
-    this._previousPageSize = this._pageSize;
     this._pageSize = Math.max(pageSize, 0);
     this.pageIndex = Math.floor(startIndex / this._pageSize) || 0;
+    this._previousPageSize = this._pageSize;
   }
 
   /** Emits an event notifying that a change of the paginator's properties has been triggered. */
