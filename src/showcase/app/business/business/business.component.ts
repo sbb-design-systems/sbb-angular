@@ -2,6 +2,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
+import { AutocompleteDisplayWithExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-display-with-example/autocomplete-display-with-example.component';
 import { AutocompleteFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
 import { AutocompleteLocaleNormalizerExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-locale-normalizer-example/autocomplete-locale-normalizer-example.component';
@@ -109,6 +110,9 @@ export class BusinessComponent implements ExampleProvider {
       'autocomplete-hint-example': new ComponentPortal(AutocompleteHintExampleComponent),
       'autocomplete-option-group-example': new ComponentPortal(
         AutocompleteOptionGroupExampleComponent
+      ),
+      'autocomplete-display-with-example': new ComponentPortal(
+        AutocompleteDisplayWithExampleComponent
       ),
       'autocomplete-locale-normalizer-example': new ComponentPortal(
         AutocompleteLocaleNormalizerExampleComponent

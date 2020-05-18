@@ -8,6 +8,7 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "autocomplete-examples",
     srcs = [
+        "autocomplete-display-with-example/autocomplete-display-with-example.component.ts",
         "autocomplete-examples.module.ts",
         "autocomplete-forms-example/autocomplete-forms-example.component.ts",
         "autocomplete-hint-example/autocomplete-hint-example.component.ts",
@@ -16,6 +17,7 @@ ng_ts_library(
         "autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component.ts",
     ],
     assets = [
+        "autocomplete-display-with-example/autocomplete-display-with-example.component.html",
         "autocomplete-forms-example/autocomplete-forms-example.component.html",
         "autocomplete-hint-example/autocomplete-hint-example.component.html",
         "autocomplete-locale-normalizer-example/autocomplete-locale-normalizer-example.component.html",
