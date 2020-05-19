@@ -1,0 +1,9 @@
+<sbb-loading
+  *ngIf="showSpinner"
+  mode="fullscreen"
+  aria-valuetext="Loading, please wait"
+></sbb-loading>
+
+<button (click)="activateSpinner()" sbbButton mode="primary">
+  Activate Fullscreen Spinner
+</button>
