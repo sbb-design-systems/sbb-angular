@@ -4,9 +4,15 @@ import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { LoadingModule } from '@sbb-esta/angular-business/loading';
 import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
 
-import { LoadingExampleComponent } from './loading-example/loading-example.component';
+import { FullboxLoadingExampleComponent } from './fullbox-loading-example/fullbox-loading-example.component';
+import { FullscreenLoadingExampleComponent } from './fullscreen-loading-example/fullscreen-loading-example.component';
+import { SimpleLoadingExampleComponent } from './simple-loading-example/simple-loading-example.component';
 
-const EXAMPLES = [LoadingExampleComponent];
+const EXAMPLES = [
+  SimpleLoadingExampleComponent,
+  FullscreenLoadingExampleComponent,
+  FullboxLoadingExampleComponent,
+];
 
 @NgModule({
   imports: [CommonModule, IconArrowRightModule, LoadingModule, ButtonModule],
