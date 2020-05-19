@@ -46,7 +46,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconMoneyExchangeComponent extends IconBase {
   constructor() {
@@ -57,6 +57,6 @@ export class IconMoneyExchangeComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconMoneyExchangeComponent],
-  exports: [IconMoneyExchangeComponent]
+  exports: [IconMoneyExchangeComponent],
 })
 export class IconMoneyExchangeModule {}

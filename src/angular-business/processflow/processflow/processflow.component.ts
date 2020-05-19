@@ -9,7 +9,7 @@ import {
   Input,
   Output,
   QueryList,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { ProcessflowBase, ProcessflowStep } from '@sbb-esta/angular-core/base/processflow';
 
@@ -21,7 +21,7 @@ import { ProcessflowStepComponent } from '../processflow-step/processflow-step.c
   templateUrl: './processflow.component.html',
   styleUrls: ['./processflow.component.css'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepComponent>
   implements AfterContentInit {
@@ -55,7 +55,7 @@ export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepCompone
 
   setSkippableSteps() {
     if (this.skippable) {
-      this.steps.forEach(s => (s.disabled = false));
+      this.steps.forEach((s) => (s.disabled = false));
     }
   }
 

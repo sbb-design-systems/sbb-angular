@@ -5,12 +5,13 @@ import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 
 import { RadioButtonExampleComponent } from './radio-button-example/radio-button-example.component';
+import { RadioButtonGroupExampleComponent } from './radio-button-group-example/radio-button-group-example.component';
 
-const EXAMPLES = [RadioButtonExampleComponent];
+const EXAMPLES = [RadioButtonExampleComponent, RadioButtonGroupExampleComponent];
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule, RadioButtonModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class RadioButtonExamplesModule {}

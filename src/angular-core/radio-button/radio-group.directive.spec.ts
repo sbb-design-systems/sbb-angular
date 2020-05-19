@@ -6,7 +6,7 @@ import {
   DebugElement,
   ElementRef,
   Optional,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
@@ -52,7 +52,7 @@ import { RadioButton, RadioChange, RadioGroupDirective, ɵRadioButtonModule } fr
     </label>
   `,
   inputs: ['tabIndex'],
-  providers: [{ provide: RadioButton, useExisting: RadioButtonComponent }]
+  providers: [{ provide: RadioButton, useExisting: RadioButtonComponent }],
 })
 class RadioButtonComponent extends RadioButton {
   constructor(
@@ -84,7 +84,7 @@ class RadioButtonComponent extends RadioButton {
         Bulbasaur
       </sbb-radio-button>
     </sbb-radio-group>
-  `
+  `,
 })
 class RadiosInsideRadioGroupComponent {
   isFirstDisabled = false;
@@ -115,7 +115,7 @@ class RadiosInsideRadioGroupComponent {
     </sbb-radio-button>
     <sbb-radio-button name="fruit" value="raspberry">Raspberry</sbb-radio-button>
     <sbb-radio-button id="nameless" value="no-name">No name</sbb-radio-button>
-  `
+  `,
 })
 class StandaloneRadioButtonsComponent {
   ariaLabel = 'Banana';
@@ -130,7 +130,7 @@ class StandaloneRadioButtonsComponent {
         {{ option.label }}
       </sbb-radio-button>
     </sbb-radio-group>
-  `
+  `,
 })
 class RadioGroupWithNgModelComponent {
   modelValue: string;
@@ -138,15 +138,13 @@ class RadioGroupWithNgModelComponent {
   options = [
     { label: 'Vanilla', value: 'vanilla' },
     { label: 'Chocolate', value: 'chocolate' },
-    { label: 'Strawberry', value: 'strawberry' }
+    { label: 'Strawberry', value: 'strawberry' },
   ];
   lastEvent: RadioChange;
 }
 
 @Component({
-  template: `
-    <sbb-radio-button>One</sbb-radio-button>
-  `
+  template: ` <sbb-radio-button>One</sbb-radio-button> `,
 })
 class DisableableRadioButtonComponent {
   @ViewChild(RadioButton) radioButton: RadioButton;
@@ -161,16 +159,14 @@ class DisableableRadioButtonComponent {
     <sbb-radio-group [formControl]="formControl">
       <sbb-radio-button value="1">One</sbb-radio-button>
     </sbb-radio-group>
-  `
+  `,
 })
 class RadioGroupWithFormControlComponent {
   formControl = new FormControl();
 }
 
 @Component({
-  template: `
-    <sbb-radio-button [tabIndex]="tabIndex"></sbb-radio-button>
-  `
+  template: ` <sbb-radio-button [tabIndex]="tabIndex"></sbb-radio-button> `,
 })
 class FocusableRadioButtonComponent {
   tabIndex: number;
@@ -183,30 +179,26 @@ class FocusableRadioButtonComponent {
         <sbb-radio-button [value]="option.value">{{ option.label }}</sbb-radio-button>
       </transcluding-wrapper>
     </sbb-radio-group>
-  `
+  `,
 })
 class InterleavedRadioGroupComponent {
   modelValue = 'strawberry';
   options = [
     { label: 'Vanilla', value: 'vanilla' },
     { label: 'Chocolate', value: 'chocolate' },
-    { label: 'Strawberry', value: 'strawberry' }
+    { label: 'Strawberry', value: 'strawberry' },
   ];
 }
 
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'transcluding-wrapper',
-  template: `
-    <div><ng-content></ng-content></div>
-  `
+  template: ` <div><ng-content></ng-content></div> `,
 })
 class TranscludingWrapperComponent {}
 
 @Component({
-  template: `
-    <sbb-radio-button tabindex="0"></sbb-radio-button>
-  `
+  template: ` <sbb-radio-button tabindex="0"></sbb-radio-button> `,
 })
 class RadioButtonWithPredefinedTabindexComponent {}
 
@@ -217,7 +209,7 @@ class RadioButtonWithPredefinedTabindexComponent {}
       aria-describedby="something"
       aria-labelledby="something-else"
     ></sbb-radio-button>
-  `
+  `,
 })
 class RadioButtonWithPredefinedAriaAttributesComponent {}
 
@@ -236,8 +228,8 @@ describe('RadioButton', () => {
         InterleavedRadioGroupComponent,
         TranscludingWrapperComponent,
         RadioButtonWithPredefinedTabindexComponent,
-        RadioButtonWithPredefinedAriaAttributesComponent
-      ]
+        RadioButtonWithPredefinedAriaAttributesComponent,
+      ],
     });
 
     TestBed.compileComponents();
@@ -264,14 +256,14 @@ describe('RadioButton', () => {
       groupInstance = groupDebugElement.injector.get<RadioGroupDirective>(RadioGroupDirective);
 
       radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButtonComponent));
-      radioNativeElements = radioDebugElements.map(debugEl => debugEl.nativeElement);
-      radioInstances = radioDebugElements.map(debugEl => debugEl.componentInstance);
+      radioNativeElements = radioDebugElements.map((debugEl) => debugEl.nativeElement);
+      radioInstances = radioDebugElements.map((debugEl) => debugEl.componentInstance);
 
       radioLabelElements = radioDebugElements.map(
-        debugEl => debugEl.query(By.css('label'))!.nativeElement
+        (debugEl) => debugEl.query(By.css('label'))!.nativeElement
       );
       radioInputElements = radioDebugElements.map(
-        debugEl => debugEl.query(By.css('input'))!.nativeElement
+        (debugEl) => debugEl.query(By.css('input'))!.nativeElement
       );
     }));
 
@@ -427,7 +419,7 @@ describe('RadioButton', () => {
 
       groupInstance.value = null;
 
-      expect(radioInstances.every(radio => !radio.checked)).toBe(true);
+      expect(radioInstances.every((radio) => !radio.checked)).toBe(true);
     });
 
     it(`should update the group's selected radio to null when unchecking that radio programmatically`, () => {
@@ -446,7 +438,7 @@ describe('RadioButton', () => {
 
       expect(changeSpy).not.toHaveBeenCalled();
       expect(groupInstance.value).toBeFalsy();
-      expect(radioInstances.every(radio => !radio.checked)).toBe(true);
+      expect(radioInstances.every((radio) => !radio.checked)).toBe(true);
       expect(groupInstance.selected).toBeNull();
     });
 
@@ -517,11 +509,11 @@ describe('RadioButton', () => {
       groupNgModel = groupDebugElement.injector.get<NgModel>(NgModel);
 
       radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButtonComponent));
-      radioInstances = radioDebugElements.map(debugEl => debugEl.componentInstance);
+      radioInstances = radioDebugElements.map((debugEl) => debugEl.componentInstance);
       innerRadios = fixture.debugElement.queryAll(By.css('input[type="radio"]'));
 
       radioLabelElements = radioDebugElements.map(
-        debugEl => debugEl.query(By.css('label'))!.nativeElement
+        (debugEl) => debugEl.query(By.css('label'))!.nativeElement
       );
     });
 
@@ -539,9 +531,9 @@ describe('RadioButton', () => {
     });
 
     it('should update the name of radio DOM elements if the name of the group changes', () => {
-      const nodes: HTMLInputElement[] = innerRadios.map(radio => radio.nativeElement);
+      const nodes: HTMLInputElement[] = innerRadios.map((radio) => radio.nativeElement);
 
-      expect(nodes.every(radio => radio.getAttribute('name') === groupInstance.name)).toBe(
+      expect(nodes.every((radio) => radio.getAttribute('name') === groupInstance.name)).toBe(
         true,
         'Expected all radios to have the initial name.'
       );
@@ -550,7 +542,7 @@ describe('RadioButton', () => {
       fixture.detectChanges();
 
       expect(groupInstance.name).toBe('changed-name');
-      expect(nodes.every(radio => radio.getAttribute('name') === groupInstance.name)).toBe(
+      expect(nodes.every((radio) => radio.getAttribute('name') === groupInstance.name)).toBe(
         true,
         'Expected all radios to have the new name.'
       );
@@ -712,18 +704,18 @@ describe('RadioButton', () => {
 
       radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButtonComponent));
       seasonRadioInstances = radioDebugElements
-        .filter(debugEl => debugEl.componentInstance.name === 'season')
-        .map(debugEl => debugEl.componentInstance);
+        .filter((debugEl) => debugEl.componentInstance.name === 'season')
+        .map((debugEl) => debugEl.componentInstance);
       weatherRadioInstances = radioDebugElements
-        .filter(debugEl => debugEl.componentInstance.name === 'weather')
-        .map(debugEl => debugEl.componentInstance);
+        .filter((debugEl) => debugEl.componentInstance.name === 'weather')
+        .map((debugEl) => debugEl.componentInstance);
       fruitRadioInstances = radioDebugElements
-        .filter(debugEl => debugEl.componentInstance.name === 'fruit')
-        .map(debugEl => debugEl.componentInstance);
+        .filter((debugEl) => debugEl.componentInstance.name === 'fruit')
+        .map((debugEl) => debugEl.componentInstance);
 
       const fruitRadioNativeElements = radioDebugElements
-        .filter(debugEl => debugEl.componentInstance.name === 'fruit')
-        .map(debugEl => debugEl.nativeElement);
+        .filter((debugEl) => debugEl.componentInstance.name === 'fruit')
+        .map((debugEl) => debugEl.nativeElement);
 
       fruitRadioNativeInputs = [];
       for (const element of fruitRadioNativeElements) {
@@ -915,7 +907,7 @@ describe('RadioButton', () => {
       groupDebugElement = fixture.debugElement.query(By.directive(RadioGroupDirective))!;
       groupInstance = groupDebugElement.injector.get<RadioGroupDirective>(RadioGroupDirective);
       radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButtonComponent));
-      radioInstances = radioDebugElements.map(debugEl => debugEl.componentInstance);
+      radioInstances = radioDebugElements.map((debugEl) => debugEl.componentInstance);
     }));
 
     it('should initialize selection of radios based on model value', () => {

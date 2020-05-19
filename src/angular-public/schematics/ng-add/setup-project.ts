@@ -4,7 +4,7 @@ import {
   getAppModulePath,
   getProjectFromWorkspace,
   getProjectMainFile,
-  hasNgModuleImport
+  hasNgModuleImport,
 } from '@angular/cdk/schematics';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/config';
 

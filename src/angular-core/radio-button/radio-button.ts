@@ -13,7 +13,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
 
@@ -217,7 +217,7 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   }
 
   ngAfterViewInit() {
-    this._focusMonitor.monitor(this._elementRef, true).subscribe(focusOrigin => {
+    this._focusMonitor.monitor(this._elementRef, true).subscribe((focusOrigin) => {
       if (!focusOrigin && this.radioGroup) {
         this.radioGroup._touch();
       }

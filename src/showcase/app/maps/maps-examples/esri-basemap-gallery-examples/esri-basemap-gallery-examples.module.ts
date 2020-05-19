@@ -10,6 +10,6 @@ const EXAMPLES = [EsriBasemapGalleryExampleComponent];
 @NgModule({
   imports: [CommonModule, EsriBasemapGalleryModule, EsriWebSceneModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class EsriBasemapGalleryExamplesModule {}

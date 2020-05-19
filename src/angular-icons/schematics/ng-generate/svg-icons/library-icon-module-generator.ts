@@ -9,7 +9,7 @@ import {
   SchematicsException,
   template,
   Tree,
-  url
+  url,
 } from '@angular-devkit/schematics';
 import { rename } from '@angular-devkit/schematics/src/rules/rename';
 
@@ -44,14 +44,14 @@ export class LibraryIconModuleGenerator extends ApplicationIconModuleGenerator {
             prefix: this._prefix,
             icons: this._recursiveIcons(this._rootCollection),
             packageName: this._packageName,
-            path: relative(this._projectRootDir, this._targetDir)
+            path: relative(this._projectRootDir, this._targetDir),
           }),
-          move(this._targetDir)
+          move(this._targetDir),
         ])
       ),
       rename(
-        path => path.endsWith('schematics-package.json'),
-        path => path.replace('schematics-package.json', 'package.json')
+        (path) => path.endsWith('schematics-package.json'),
+        (path) => path.replace('schematics-package.json', 'package.json')
       )
     );
   }
@@ -64,14 +64,14 @@ export class LibraryIconModuleGenerator extends ApplicationIconModuleGenerator {
             template({
               ...collection,
               packageName: this._packageName,
-              path: relative(this._projectRootDir, targetDir)
+              path: relative(this._projectRootDir, targetDir),
             }),
-            move(targetDir)
+            move(targetDir),
           ])
         ),
-        this._generateIcons(collection.icons, join(targetDir, 'src'))
+        this._generateIcons(collection.icons, join(targetDir, 'src')),
       ]),
-      ...this._generateCollections(collection.collections, targetDir)
+      ...this._generateCollections(collection.collections, targetDir),
     ];
   }
 
@@ -80,7 +80,7 @@ export class LibraryIconModuleGenerator extends ApplicationIconModuleGenerator {
       ...collection.icons,
       ...Array.from(collection.collections)
         .map(([_, c]) => this._recursiveIcons(c))
-        .reduce((current, next) => current.concat(next), [] as IconModule[])
+        .reduce((current, next) => current.concat(next), [] as IconModule[]),
     ];
   }
 }

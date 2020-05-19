@@ -6,9 +6,7 @@ import { LinksModule } from '../links.module';
 
 @Component({
   selector: 'sbb-test-link',
-  template: `
-    <a sbbLink [mode]="mode" [icon]="icon">test</a>
-  `
+  template: ` <a sbbLink [mode]="mode" [icon]="icon">test</a> `,
 })
 class TestLinkComponent {
   mode: 'normal' | 'stretch' | 'form' = 'normal';
@@ -22,7 +20,7 @@ describe('LinkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestLinkComponent],
-      imports: [LinksModule]
+      imports: [LinksModule],
     }).compileComponents();
   }));
 

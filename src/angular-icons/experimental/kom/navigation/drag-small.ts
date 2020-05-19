@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 @Component({
   selector: 'svg[sbbIconDragSmall]',
-  template: `
-    <svg:path fill="none" stroke="#000" d="M20 7.5H4h16zm0 8H4h16zm0-4H4h16z" />
-  `,
+  template: ` <svg:path fill="none" stroke="#000" d="M20 7.5H4h16zm0 8H4h16zm0-4H4h16z" /> `,
   styles: [
     `
       :host-context(.sbb-icon-fixed-size) {
@@ -19,32 +17,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-navigation',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconDragSmall {}
 
 @Component({
   selector: 'sbb-icon-drag-small',
-  template: `
-    <svg sbbIconDragSmall></svg>
-  `,
+  template: ` <svg sbbIconDragSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconDragSmall {}
 
 @NgModule({
   declarations: [SvgIconDragSmall, IconDragSmall],
-  exports: [SvgIconDragSmall, IconDragSmall]
+  exports: [SvgIconDragSmall, IconDragSmall],
 })
 export class IconDragSmallModule {}

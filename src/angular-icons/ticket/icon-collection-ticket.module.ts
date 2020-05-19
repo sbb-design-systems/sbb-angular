@@ -27,11 +27,11 @@ const modules = [
   IconTicketParkingModule,
   IconTicketPercentModule,
   IconTicketRouteModule,
-  IconTicketStarModule
+  IconTicketStarModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionTicketModule {}

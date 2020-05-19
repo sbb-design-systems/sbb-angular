@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sbb-select-reactive-forms-example',
-  templateUrl: './select-reactive-forms-example.component.html'
+  templateUrl: './select-reactive-forms-example.component.html',
 })
 export class SelectReactiveFormsExampleComponent {
   form: FormGroup;
@@ -11,7 +11,7 @@ export class SelectReactiveFormsExampleComponent {
   constructor(formBuilder: FormBuilder) {
     this.form = formBuilder.group({
       value: '',
-      optionDisabled: false
+      optionDisabled: false,
     });
   }
 }

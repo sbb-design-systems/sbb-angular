@@ -15,29 +15,29 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'introduction/getting-started',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'public' }
+        data: { library: 'public' },
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'public' }
+        data: { library: 'public' },
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'public' }
-      }
-    ]
-  }
+        data: { library: 'public' },
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class PublicRoutingModule {}

@@ -25,28 +25,22 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
     this.example = this._route.params.pipe(
       takeUntil(this._destroyed),
       map(({ id }) => this._exampleProvider.resolveExample(id)),
-      map(examples =>
-        examples ? Object.keys(examples).map(name => ({ name, portal: examples[name] })) : null
+      map((examples) =>
+        examples ? Object.keys(examples).map((name) => ({ name, portal: examples[name] })) : null
       )
     );
-    this.overview = this._htmlLoader
-      .with(this._route)
-      .fromModuleDocumentation()
-      .observe();
-    this.api = this._htmlLoader
-      .with(this._route)
-      .fromApiDocumentation()
-      .observe();
+    this.overview = this._htmlLoader.with(this._route).fromModuleDocumentation().observe();
+    this.api = this._htmlLoader.with(this._route).fromApiDocumentation().observe();
   }
 
   ngAfterViewInit(): void {
     this._route.params
       .pipe(
         first(),
-        filter(p => p.section),
-        map(p => (p.section === 'api' ? 1 : 2))
+        filter((p) => p.section),
+        map((p) => (p.section === 'api' ? 1 : 2))
       )
-      .subscribe(s => this.tabs.openTabByIndex(s));
+      .subscribe((s) => this.tabs.openTabByIndex(s));
     this._route.params
       .pipe(
         takeUntil(this._destroyed),

@@ -9,7 +9,7 @@ import {
   Output,
   QueryList,
   ViewChildren,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
@@ -38,7 +38,7 @@ export class PageChangeEvent {
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class PaginationComponent implements OnInit {
   /** @docs-private */
@@ -90,7 +90,7 @@ export class PaginationComponent implements OnInit {
 
     const currentPage = this._currentPage.asObservable().pipe(distinctUntilChanged());
     const maxPage = this._maxPage.asObservable().pipe(distinctUntilChanged());
-    this.hasPreviousPage = currentPage.pipe(map(p => p > 0));
+    this.hasPreviousPage = currentPage.pipe(map((p) => p > 0));
     this.hasNextPage = combineLatest(currentPage, maxPage, (c, m) => c < m - 1);
     this.pageRange = combineLatest(currentPage, maxPage, (c, m) => {
       if (m <= MAX_PAGE_SIZE + 2) {

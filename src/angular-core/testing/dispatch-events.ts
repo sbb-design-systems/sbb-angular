@@ -3,7 +3,7 @@ import {
   createKeyboardEvent,
   createMouseEvent,
   createTouchEvent,
-  ModifierKeys
+  ModifierKeys,
 } from './event-objects';
 
 /**

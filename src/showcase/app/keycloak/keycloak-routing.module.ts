@@ -14,14 +14,14 @@ const routes: Routes = [
       {
         path: '',
         component: MarkdownViewerComponent,
-        data: { library: 'keycloak', id: 'README' }
-      }
-    ]
-  }
+        data: { library: 'keycloak', id: 'README' },
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class KeycloakRoutingModule {}

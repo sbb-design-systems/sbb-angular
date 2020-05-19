@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 @Component({
   selector: 'svg[sbbIconTickMedium]',
-  template: `
-    <svg:path fill="none" stroke="#000" d="M9 22.5l6 6 13.5-13.485" />
-  `,
+  template: ` <svg:path fill="none" stroke="#000" d="M9 22.5l6 6 13.5-13.485" /> `,
   styles: [
     `
       :host-context(.sbb-icon-fixed-size) {
@@ -19,32 +17,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-status',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconTickMedium {}
 
 @Component({
   selector: 'sbb-icon-tick-medium',
-  template: `
-    <svg sbbIconTickMedium></svg>
-  `,
+  template: ` <svg sbbIconTickMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconTickMedium {}
 
 @NgModule({
   declarations: [SvgIconTickMedium, IconTickMedium],
-  exports: [SvgIconTickMedium, IconTickMedium]
+  exports: [SvgIconTickMedium, IconTickMedium],
 })
 export class IconTickMediumModule {}

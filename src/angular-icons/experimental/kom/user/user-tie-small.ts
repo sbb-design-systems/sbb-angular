@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-user',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconUserTieSmall {}
 
 @Component({
   selector: 'sbb-icon-user-tie-small',
-  template: `
-    <svg sbbIconUserTieSmall></svg>
-  `,
+  template: ` <svg sbbIconUserTieSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconUserTieSmall {}
 
 @NgModule({
   declarations: [SvgIconUserTieSmall, IconUserTieSmall],
-  exports: [SvgIconUserTieSmall, IconUserTieSmall]
+  exports: [SvgIconUserTieSmall, IconUserTieSmall],
 })
 export class IconUserTieSmallModule {}

@@ -11,7 +11,7 @@ import {
   OnInit,
   Optional,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   CanDisable,
@@ -19,7 +19,7 @@ import {
   HasInitialized,
   HasInitializedCtor,
   mixinDisabled,
-  mixinInitialized
+  mixinInitialized,
 } from '@sbb-esta/angular-core/common-behaviors';
 
 /** The default page size if there is no page size and there are no provided page size options. */
@@ -78,7 +78,7 @@ const sbbPaginatorBase: CanDisableCtor &
   styleUrls: ['./paginator.component.css'],
   inputs: ['disabled'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class SbbPaginatorComponent extends sbbPaginatorBase
   implements OnInit, CanDisable, HasInitialized {
@@ -87,6 +87,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   role = 'navigation';
 
   private _initialized: boolean;
+  private _previousPageSize: number;
 
   /** The zero-based page index of the displayed list of items. Defaulted to 0. */
   @Input()
@@ -143,6 +144,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   }
 
   ngOnInit() {
+    this._previousPageSize = this._pageSize;
     this._initialized = true;
     this._markInitialized();
   }
@@ -161,7 +163,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
       return [
         0,
         null,
-        ...range(MAX_PAGE_NUMBERS_DISPLAYED + 1, m - 1 - MAX_PAGE_NUMBERS_DISPLAYED)
+        ...range(MAX_PAGE_NUMBERS_DISPLAYED + 1, m - 1 - MAX_PAGE_NUMBERS_DISPLAYED),
       ];
     } else {
       return [0, null, c - 1, c, c + 1, null, m - 1];
@@ -228,11 +230,15 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
 
     this._pageSize = Math.max(pageSize, 0);
     this.pageIndex = Math.floor(startIndex / this._pageSize) || 0;
+    this._previousPageSize = this._pageSize;
   }
 
   /** Emits an event notifying that a change of the paginator's properties has been triggered. */
   private _emitPageEvent(previousPageIndex: number) {
-    if (!this._initialized || this.pageIndex === previousPageIndex) {
+    if (
+      !this._initialized ||
+      (this.pageIndex === previousPageIndex && this._previousPageSize === this.pageSize)
+    ) {
       return;
     }
     this.page.emit(new PageEvent(this.pageIndex, previousPageIndex, this.pageSize, this.length));

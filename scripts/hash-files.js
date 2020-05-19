@@ -16,7 +16,7 @@ function generateHashFromFiles(files) {
   }
 
   const hash = createHash('sha512');
-  files.forEach(f => {
+  files.forEach((f) => {
     const file = join(projectDir, f);
     const content = readFileSync(file, 'utf8');
     hash.write(content);

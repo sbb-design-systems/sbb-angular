@@ -65,11 +65,11 @@ const modules = [
   IconSunriseModule,
   IconSunshineModule,
   IconSunMoonModule,
-  IconWeatherUnknownModule
+  IconWeatherUnknownModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionWeatherModule {}

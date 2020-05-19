@@ -10,7 +10,7 @@ import {
   Inject,
   Input,
   OnDestroy,
-  Output
+  Output,
 } from '@angular/core';
 import { CanDisableCtor, mixinDisabled } from '@sbb-esta/angular-core/common-behaviors';
 
@@ -23,7 +23,7 @@ const _HeaderMenuItemBase: CanDisableCtor & typeof HeaderMenuItemBase = mixinDis
 );
 
 @Directive({
-  selector: '[sbbHeaderMenuItem]'
+  selector: '[sbbHeaderMenuItem]',
 })
 export class HeaderMenuItemDirective extends _HeaderMenuItemBase
   implements FocusableOption, OnDestroy {

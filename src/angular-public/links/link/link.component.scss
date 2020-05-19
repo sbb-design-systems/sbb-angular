@@ -4,7 +4,7 @@
   word-break: break-word;
   display: block;
   position: relative;
-  margin: 1em 0 2em;
+  margin: 1em 0 2em; // TODO: remove margin
   padding-left: 0;
   padding-right: toEm(70 / $sizeFontDefault);
   hyphens: auto;

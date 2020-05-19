@@ -16,7 +16,7 @@ const mediaQueriesBreakpoints = [
   { min: 643, em: 1 },
   { min: 1025, em: 1 },
   { min: 2561, em: 1.5 },
-  { min: 3841, em: 2 }
+  { min: 3841, em: 2 },
 ];
 
 export class MediaQueryResizableComponent {

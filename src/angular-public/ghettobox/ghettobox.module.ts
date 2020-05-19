@@ -19,9 +19,9 @@ import { GhettoboxComponent } from './ghettobox/ghettobox.component';
     IconArrowRightModule,
     IconHimInfoModule,
     PortalModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [GhettoboxComponent, GhettoboxContainerComponent, IconDirectiveModule],
-  entryComponents: [GhettoboxComponent]
+  entryComponents: [GhettoboxComponent],
 })
 export class GhettoboxModule {}

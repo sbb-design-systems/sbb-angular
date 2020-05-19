@@ -16,7 +16,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 import { Subject } from 'rxjs';
@@ -34,7 +34,7 @@ export type CalendarView = 'month';
   selector: 'sbb-calendar-header',
   templateUrl: './calendar-header.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarHeaderComponent<D> {
   public calendar: CalendarComponent<D>;
@@ -157,7 +157,7 @@ export class CalendarHeaderComponent<D> {
   templateUrl: 'calendar.component.html',
   exportAs: 'sbbCalendar',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarComponent<D>
   implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {

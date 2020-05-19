@@ -20,7 +20,7 @@ import { ExperimentalIconsRoutingModule } from './experimental-icons-routing.mod
     SearchModule,
     TooltipModule,
     ExperimentalIconsRoutingModule,
-    ɵIconModule
-  ]
+    ɵIconModule,
+  ],
 })
 export class ExperimentalIconsModule {}

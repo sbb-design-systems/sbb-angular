@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-import { HasFormFieldControl } from './has-form-field-control';
+import type { FieldComponent } from './field/field.component';
 
-export const FORM_FIELD = new InjectionToken<HasFormFieldControl>('SBB_FORM_FIELD');
+export const FORM_FIELD = new InjectionToken<FieldComponent>('SBB_FORM_FIELD');

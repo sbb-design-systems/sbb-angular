@@ -85,25 +85,43 @@ $sbbBusiness: true;
   @include buttons();
   @include businessButtonTypes;
 
-  &:disabled {
-    opacity: 0.4;
+  &-primary.sbb-button-has-icon:disabled,
+  &-primary:not(.sbb-button-has-icon):disabled {
+    background-color: rgba($buttonDefaultBgColor, 0.4);
+    color: rgba($buttonDefaultColor, 0.5);
   }
 
-  &-primary.sbb-button-has-icon:disabled,
-  &-primary:not(.sbb-button-has-icon):disabled,
   &-alternative.sbb-button-has-icon:disabled,
   &-alternative:not(.sbb-button-has-icon):disabled {
+    background-color: rgba($buttonAlternativeBgColor, 0.4);
     color: rgba($buttonDefaultColor, 0.5);
   }
 
   &-secondary.sbb-button-has-icon:disabled,
   &-secondary:not(.sbb-button-has-icon):disabled,
   &-icon:disabled {
-    color: rgba($buttonSecondaryColor, 0.5);
+    @include sbbButtonSecondaryDisabledBusiness;
+  }
+
+  &-ghost.sbb-button-has-icon:disabled,
+  &-ghost:not(.sbb-button-has-icon):disabled {
+    background-color: rgba($buttonDefaultColor, 0.4);
+    border-color: rgba($buttonSecondaryColor, 0.4);
+    color: rgba($buttonGhostColor, 0.5);
   }
 
   &-ghost.sbb-button-has-icon,
   &-ghost:not(.sbb-button-has-icon) {
     color: rgba($buttonSecondaryColor, 0.4);
+  }
+
+  &-primary,
+  &-secondary,
+  &-alternative,
+  &-icon,
+  &-ghost {
+    &.sbb-button-has-icon:disabled .sbb-icon-component {
+      opacity: 0.4;
+    }
   }
 }

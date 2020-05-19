@@ -17,9 +17,9 @@ import { IntroductionComponent } from './introduction/introduction.component';
     BrowserAnimationsModule,
     ScrollingModule,
     HeaderModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

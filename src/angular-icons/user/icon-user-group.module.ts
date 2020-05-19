@@ -49,7 +49,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconUserGroupComponent extends IconBase {
   constructor() {
@@ -60,6 +60,6 @@ export class IconUserGroupComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconUserGroupComponent],
-  exports: [IconUserGroupComponent]
+  exports: [IconUserGroupComponent],
 })
 export class IconUserGroupModule {}

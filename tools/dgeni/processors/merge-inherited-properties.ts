@@ -31,15 +31,15 @@ export class MergeInheritedProperties implements Processor {
 
   $process(docs: DocCollection) {
     return docs
-      .filter(doc => doc.docType === 'class')
-      .forEach(doc => this._addInheritedProperties(doc));
+      .filter((doc) => doc.docType === 'class')
+      .forEach((doc) => this._addInheritedProperties(doc));
   }
 
   private _addInheritedProperties(doc: ClassExportDoc) {
     // Note that we need to get check all base documents. We cannot assume
     // that directive base documents already have merged inherited members.
-    getInheritedDocsOfClass(doc, this._exportSymbolsToDocsMap).forEach(d => {
-      d.members.forEach(member => {
+    getInheritedDocsOfClass(doc, this._exportSymbolsToDocsMap).forEach((d) => {
+      d.members.forEach((member) => {
         // only add inherited class members which are not "protected" or "private".
         if (member.accessibility === 'public') {
           this._addMemberDocIfNotPresent(doc, member);
@@ -49,7 +49,7 @@ export class MergeInheritedProperties implements Processor {
   }
 
   private _addMemberDocIfNotPresent(destination: ClassExportDoc, memberDoc: MemberDoc) {
-    if (!destination.members.find(member => member.name === memberDoc.name)) {
+    if (!destination.members.find((member) => member.name === memberDoc.name)) {
       // To be able to differentiate between member docs from the heritage clause and the
       // member doc for the destination class, we clone the member doc. It's important to keep
       // the prototype and reference because later, Dgeni identifies members and properties

@@ -16,7 +16,7 @@ import { CalendarComponent } from './calendar.component';
       (monthSelected)="selectedMonth = $event"
     >
     </sbb-calendar>
-  `
+  `,
 })
 class StandardCalendarComponent {
   selected: Date;
@@ -31,8 +31,8 @@ describe('CalendarHeaderComponent', () => {
       imports: [DatepickerModule],
       declarations: [
         // Test components.
-        StandardCalendarComponent
-      ]
+        StandardCalendarComponent,
+      ],
     }).compileComponents();
   }));
 

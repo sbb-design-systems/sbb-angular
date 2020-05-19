@@ -5,7 +5,7 @@ import {
   OverlayConfig,
   OverlayRef,
   PositionStrategy,
-  ScrollStrategy
+  ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
@@ -25,7 +25,7 @@ import {
   Optional,
   Output,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { DateAdapter } from '@sbb-esta/angular-core/datetime';
 import { merge, Subject, Subscription } from 'rxjs';
@@ -53,7 +53,7 @@ export function SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => 
 export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_DATEPICKER_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY
+  useFactory: SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY,
 };
 
 @Component({
@@ -64,7 +64,7 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   exportAs: 'sbbDatepicker',
   providers: [{ provide: SBB_DATEPICKER, useExisting: DatepickerComponent }],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class DatepickerComponent<D> implements OnDestroy {
   /** An input indicating the type of the custom header component for the calendar, if set. */
@@ -417,7 +417,7 @@ export class DatepickerComponent<D> implements OnDestroy {
   private _getPanelClasses(): Array<string> {
     return [
       'sbb-datepicker-popup',
-      this.arrows ? 'sbb-datepicker-with-arrows' : 'sbb-datepicker-no-arrows'
+      this.arrows ? 'sbb-datepicker-with-arrows' : 'sbb-datepicker-no-arrows',
     ];
   }
 
@@ -457,7 +457,7 @@ export class DatepickerComponent<D> implements OnDestroy {
       hasBackdrop: true,
       backdropClass: 'sbb-overlay-transparent-backdrop',
       scrollStrategy: this._scrollStrategy(),
-      panelClass: this._getPanelClasses()
+      panelClass: this._getPanelClasses(),
     });
 
     this.popupRef = this._overlay.create(overlayConfig);
@@ -467,7 +467,7 @@ export class DatepickerComponent<D> implements OnDestroy {
       this.popupRef.backdropClick(),
       this.popupRef.detachments(),
       this.popupRef.keydownEvents().pipe(
-        filter(event => {
+        filter((event) => {
           // Closing on alt + up is only valid when there's an input associated with the datepicker.
           return (
             event.keyCode === ESCAPE ||
@@ -492,29 +492,29 @@ export class DatepickerComponent<D> implements OnDestroy {
           originX: 'start',
           originY: 'bottom',
           overlayX: 'start',
-          overlayY: 'top'
+          overlayY: 'top',
         },
         {
           originX: 'start',
           originY: 'top',
           overlayX: 'start',
-          overlayY: 'bottom'
+          overlayY: 'bottom',
         },
         {
           originX: 'end',
           originY: 'bottom',
           overlayX: 'end',
-          overlayY: 'top'
+          overlayY: 'top',
         },
         {
           originX: 'end',
           originY: 'top',
           overlayX: 'end',
-          overlayY: 'bottom'
-        }
+          overlayY: 'bottom',
+        },
       ]);
 
-    this._posStrategySubsription = posStrategy.positionChanges.subscribe(pos => {
+    this._posStrategySubsription = posStrategy.positionChanges.subscribe((pos) => {
       if (pos.connectionPair.originY === 'top') {
         this.popupRef.hostElement.classList.add('sbb-datepicker-popup-above');
       } else {

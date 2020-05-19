@@ -8,7 +8,7 @@ describe('EsriWebMapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EsriWebMapComponent]
+      declarations: [EsriWebMapComponent],
     }).compileComponents();
   }));
 

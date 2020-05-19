@@ -4,7 +4,7 @@ import {
   Component,
   HostBinding,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { CalendarComponent } from '../calendar/calendar.component';
@@ -23,7 +23,7 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
   styleUrls: ['datepicker-content.component.css'],
   exportAs: 'sbbDatepickerContent',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatepickerContentComponent<D> implements AfterViewInit {
   @HostBinding('class.sbb-datepicker-content') cssClass = true;

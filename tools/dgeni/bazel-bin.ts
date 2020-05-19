@@ -19,9 +19,7 @@ function getBazelActionArguments() {
   // If Bazel uses a parameter file, we've specified that it passes the file in the following
   // format: "arg0 arg1 --param-file={path_to_param_file}"
   if (args[0].startsWith('--param-file=')) {
-    return readFileSync(args[0].split('=')[1], 'utf8')
-      .trim()
-      .split('\n');
+    return readFileSync(args[0].split('=')[1], 'utf8').trim().split('\n');
   }
 
   return args;
@@ -41,7 +39,7 @@ if (require.main === module) {
   const packagePath = join(execRootPath, bazelLabelPackagePath);
 
   // Configure the Dgeni docs package to respect our passed options from the Bazel rule.
-  apiDocsPackage.config(function(
+  apiDocsPackage.config(function (
     readTypeScriptModules: ReadTypeScriptModules,
     tsParser: TsParser,
     entryPointGrouper: EntryPointGrouper,
@@ -75,7 +73,7 @@ if (require.main === module) {
       // "readTypeScriptModules" processor so that it will parse it. Additionally we want
       // to setup path mapping for that entry-point, so that we are able to merge
       // inherited class members across entry points or packages.
-      entryPoints.forEach(entryPointName => {
+      entryPoints.forEach((entryPointName) => {
         const entryPointPath = `${packageName}/${entryPointName}`;
         const entryPointIndexPath = `${entryPointPath}/index.ts`;
 

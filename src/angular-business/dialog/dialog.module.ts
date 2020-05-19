@@ -18,16 +18,16 @@ import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog/dialog.service
     DialogCloseDirective,
     DialogHeaderComponent,
     DialogContentComponent,
-    DialogFooterComponent
+    DialogFooterComponent,
   ],
   declarations: [
     DialogContainerComponent,
     DialogCloseDirective,
     DialogHeaderComponent,
     DialogFooterComponent,
-    DialogContentComponent
+    DialogContentComponent,
   ],
   providers: [Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER],
-  entryComponents: [DialogContainerComponent]
+  entryComponents: [DialogContainerComponent],
 })
 export class DialogModule {}

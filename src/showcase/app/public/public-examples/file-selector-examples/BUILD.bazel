@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -9,12 +8,15 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "file-selector-examples",
     srcs = [
-        "file-selector-example/file-selector-example.component.ts",
         "file-selector-examples.module.ts",
+        "multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component.ts",
+        "multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component.ts",
+        "simple-file-selector-example/simple-file-selector-example.component.ts",
     ],
     assets = [
-        ":file-selector-example/file-selector-example.component.css",
-        "file-selector-example/file-selector-example.component.html",
+        "multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component.html",
+        "multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component.html",
+        "simple-file-selector-example/simple-file-selector-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -34,9 +36,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "file_selector_example_file_selector_example_component_scss",
-    src = "file-selector-example/file-selector-example.component.scss",
 )

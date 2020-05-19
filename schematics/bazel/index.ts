@@ -8,13 +8,13 @@ export function bazel(options: { filter?: string }): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const srcDir = tree.getDir('src');
     if (!options.filter) {
-      srcDir.subdirs.forEach(d => context.addTask(new RunSchematicTask('bazel', { filter: d })));
+      srcDir.subdirs.forEach((d) => context.addTask(new RunSchematicTask('bazel', { filter: d })));
     } else {
       return chain(
         srcDir.subdirs
-          .filter(d => !options.filter || d === options.filter)
-          .map(d => srcDir.dir(d))
-          .map(packageDir =>
+          .filter((d) => !options.filter || d === options.filter)
+          .map((d) => srcDir.dir(d))
+          .map((packageDir) =>
             packageDir.path.endsWith('showcase')
               ? new ShowcasePackage(packageDir, tree, context)
               : new NgPackage(packageDir, tree, context)

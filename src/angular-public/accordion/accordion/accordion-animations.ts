@@ -4,7 +4,7 @@ import {
   state,
   style,
   transition,
-  trigger
+  trigger,
 } from '@angular/animations';
 
 /** Time and timing curve for expansion panel animations. */
@@ -18,6 +18,6 @@ export const sbbExpansionAnimations: {
   bodyExpansion: trigger('bodyExpansion', [
     state('collapsed', style({ height: '0px', visibility: 'hidden' })),
     state('expanded', style({ height: '*', visibility: 'visible' })),
-    transition('expanded <=> collapsed', animate(EXPANSION_PANEL_ANIMATION_TIMING))
-  ])
+    transition('expanded <=> collapsed', animate(EXPANSION_PANEL_ANIMATION_TIMING)),
+  ]),
 };

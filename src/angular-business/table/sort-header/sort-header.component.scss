@@ -22,19 +22,26 @@ $sbb-sort-header-arrow-hint-opacity: 0.38;
 .sbb-sort-header-button {
   border: none;
   background: 0 0;
-  display: flex;
-  align-items: center;
+  display: block;
   padding: 0;
   cursor: inherit;
   outline: 0;
   font: inherit;
   color: currentColor;
+  text-align: left;
+  width: 100%;
 
   // The `outline: 0` from above works on all browsers, however Firefox also
   // adds a special `focus-inner` which we have to disable explicitly. See:
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Firefox
   &::-moz-focus-inner {
     border: 0;
+  }
+}
+
+.sbb-col-center-align {
+  .sbb-sort-header-button {
+    text-align: center;
   }
 }
 

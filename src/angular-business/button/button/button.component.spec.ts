@@ -12,7 +12,7 @@ import { ButtonComponent } from './button.component';
     <button sbbButton [mode]="mode" [disabled]="disabled" (click)="testClick()">
       Bezeichnung
     </button>
-  `
+  `,
 })
 export class ButtonTestComponent {
   mode: string;
@@ -28,7 +28,7 @@ export class ButtonTestComponent {
     <button sbbButton mode="icon" [disabled]="disabled" (click)="testClick()">
       <sbb-icon-arrow-right size="fixed"></sbb-icon-arrow-right>
     </button>
-  `
+  `,
 })
 export class IconButtonTestComponent {
   mode: string;
@@ -44,7 +44,7 @@ describe('ButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IconArrowRightModule],
-      declarations: [ButtonComponent, ButtonTestComponent, IconButtonTestComponent]
+      declarations: [ButtonComponent, ButtonTestComponent, IconButtonTestComponent],
     }).compileComponents();
   }));
 
@@ -112,16 +112,12 @@ describe('ButtonComponent', () => {
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
     });
 
-    it('should have a red background color of rgb(235, 0, 0)/#EB0000', () => {
-      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgb(235, 0, 0)');
+    it('should have a red background color of rgb(235, 0, 0, 0.4)/#EB0000', () => {
+      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgba(235, 0, 0, 0.4)');
     });
 
     it('should have a white text color with opacity', () => {
       expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgba(255, 255, 255, 0.5)');
-    });
-
-    it('should have opacity 0.4', () => {
-      expect(sbbButtonStyle.getPropertyValue('opacity')).toBe('0.4');
     });
   });
 });

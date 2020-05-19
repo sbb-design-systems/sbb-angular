@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.5.0...9.6.0) (2020-05-18)
+
+
+### Features
+
+* locale normalizer in autocomplete ([#412](https://github.com/sbb-design-systems/sbb-angular/issues/412)) ([7d1879c](https://github.com/sbb-design-systems/sbb-angular/commit/7d1879c624ad0ae62d70e7d2afd266afc0b47157)), closes [#405](https://github.com/sbb-design-systems/sbb-angular/issues/405) [#386](https://github.com/sbb-design-systems/sbb-angular/issues/386)
+
+
+### Bug Fixes
+
+* respect sbb-field integration in autocomplete ([#417](https://github.com/sbb-design-systems/sbb-angular/issues/417)) ([d24272f](https://github.com/sbb-design-systems/sbb-angular/commit/d24272f6bd946fcdef15760bb0d5fbff6a53b099))
+* send pageEvent on paginator also when pageSize changes ([#416](https://github.com/sbb-design-systems/sbb-angular/issues/416)) ([58212e4](https://github.com/sbb-design-systems/sbb-angular/commit/58212e4fde1d934bff5b53d997cc03aec3236ced))
+* **business:** fix borders of contextmenu ([#403](https://github.com/sbb-design-systems/sbb-angular/issues/403)) ([b22780f](https://github.com/sbb-design-systems/sbb-angular/commit/b22780f9b9eaa89dcce2d1522f6663beb12b6c2f)), closes [#398](https://github.com/sbb-design-systems/sbb-angular/issues/398)
+* **core:** re-add individual styles .scss files ([#414](https://github.com/sbb-design-systems/sbb-angular/issues/414)) ([fa50fe1](https://github.com/sbb-design-systems/sbb-angular/commit/fa50fe1171032b4befb74fa54c1109d272ed5ddc)), closes [#406](https://github.com/sbb-design-systems/sbb-angular/issues/406)
+* **public:** fix expanding of width on frameless button when hovering ([#410](https://github.com/sbb-design-systems/sbb-angular/issues/410)) ([c6c9b7f](https://github.com/sbb-design-systems/sbb-angular/commit/c6c9b7fe1bf241b947a10c9f34a1e797a414914b)), closes [#369](https://github.com/sbb-design-systems/sbb-angular/issues/369)
+* **public:** fix overflow on checkbox-panel and radio-button-panel ([#413](https://github.com/sbb-design-systems/sbb-angular/issues/413)) ([d489ff5](https://github.com/sbb-design-systems/sbb-angular/commit/d489ff58aef2c9906c5267e1ee78892945003369)), closes [#274](https://github.com/sbb-design-systems/sbb-angular/issues/274)
+* **showcase:** add example docs ([#408](https://github.com/sbb-design-systems/sbb-angular/issues/408)) ([831ed45](https://github.com/sbb-design-systems/sbb-angular/commit/831ed45bc32f27fc7c3551589628375af6894786))
+* fix tabbing to and from sbb-select ([#404](https://github.com/sbb-design-systems/sbb-angular/issues/404)) ([9d083b1](https://github.com/sbb-design-systems/sbb-angular/commit/9d083b19ae73bed22db488171a2d2ef7ef9870f7)), closes [#383](https://github.com/sbb-design-systems/sbb-angular/issues/383)
+
+## [9.5.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1...9.5.0) (2020-05-08)
+
+
+### Features
+
+* **business:** apply file-selector business styling ([#352](https://github.com/sbb-design-systems/sbb-angular/issues/352)) ([d44f937](https://github.com/sbb-design-systems/sbb-angular/commit/d44f937e10de1639ca12f9d4ea4028829e81b3be)), closes [#81](https://github.com/sbb-design-systems/sbb-angular/issues/81)
+* **business:** apply textexpand business styling ([#351](https://github.com/sbb-design-systems/sbb-angular/issues/351)) ([2db0ba9](https://github.com/sbb-design-systems/sbb-angular/commit/2db0ba94bcc0a94251825f440e7fcffe017cd082)), closes [#89](https://github.com/sbb-design-systems/sbb-angular/issues/89)
+* **business:** implement business link module ([#350](https://github.com/sbb-design-systems/sbb-angular/issues/350)) ([c61a12f](https://github.com/sbb-design-systems/sbb-angular/commit/c61a12fb88569e5c95c9df220fc7191bfb247984)), closes [#82](https://github.com/sbb-design-systems/sbb-angular/issues/82)
+* add pagination, sort and filtering functionality to table-data-source ([#379](https://github.com/sbb-design-systems/sbb-angular/issues/379)) ([a41b083](https://github.com/sbb-design-systems/sbb-angular/commit/a41b083912072df7daebd90281c30279f90e8513)), closes [#363](https://github.com/sbb-design-systems/sbb-angular/issues/363) [#339](https://github.com/sbb-design-systems/sbb-angular/issues/339)
+
+
+### Bug Fixes
+
+* **accordion:** toggle expansion-panel-header only if focused ([#394](https://github.com/sbb-design-systems/sbb-angular/issues/394)) ([420a983](https://github.com/sbb-design-systems/sbb-angular/commit/420a98368439208a03113e2e6567d95d4649306f)), closes [#377](https://github.com/sbb-design-systems/sbb-angular/issues/377)
+* correct processflow steps spacing ([#397](https://github.com/sbb-design-systems/sbb-angular/issues/397)) ([25a5643](https://github.com/sbb-design-systems/sbb-angular/commit/25a564390222c5edca51c03533cb13b0d39c1ff4))
+* **business:** fix styling of tooltip directive ([#392](https://github.com/sbb-design-systems/sbb-angular/issues/392)) ([ef1203f](https://github.com/sbb-design-systems/sbb-angular/commit/ef1203f593203915fb1af7ff93610b70393bbf9c)), closes [#390](https://github.com/sbb-design-systems/sbb-angular/issues/390)
+* **showcase:** fix showcase for ie11 and edge ([#393](https://github.com/sbb-design-systems/sbb-angular/issues/393)) ([e45bbdc](https://github.com/sbb-design-systems/sbb-angular/commit/e45bbdc25a1011add639ae7337bef4d3c4066a7d))
+
 ### [9.4.1](https://github.com/sbb-design-systems/sbb-angular/compare/9.4.1-next.10...9.4.1) (2020-05-01)
 
 

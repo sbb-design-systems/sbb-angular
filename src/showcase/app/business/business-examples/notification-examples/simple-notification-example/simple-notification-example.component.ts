@@ -6,7 +6,7 @@ import { NOTIFICATION_TYPES } from '../notification-data';
 @Component({
   selector: 'sbb-simple-notification-example',
   templateUrl: './simple-notification-example.component.html',
-  styleUrls: ['./simple-notification-example.component.css']
+  styleUrls: ['./simple-notification-example.component.css'],
 })
 export class SimpleNotificationExampleComponent {
   type = NotificationType.SUCCESS;

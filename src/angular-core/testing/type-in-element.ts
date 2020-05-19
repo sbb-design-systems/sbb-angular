@@ -49,9 +49,9 @@ export function typeInElement(element: HTMLElement, ...modifiersAndKeys: any) {
     rest = modifiersAndKeys;
   }
   const keys: { keyCode?: number; key?: string }[] = rest
-    .map(k =>
+    .map((k) =>
       typeof k === 'string'
-        ? k.split('').map(c => ({ keyCode: c.toUpperCase().charCodeAt(0), key: c }))
+        ? k.split('').map((c) => ({ keyCode: c.toUpperCase().charCodeAt(0), key: c }))
         : [k]
     )
     .reduce((arr, k) => arr.concat(k), []);

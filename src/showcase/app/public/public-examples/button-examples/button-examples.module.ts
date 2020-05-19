@@ -22,9 +22,9 @@ const EXAMPLES = [ButtonExampleComponent];
     IconPlusModule,
     ButtonModule,
     CheckboxModule,
-    FieldModule
+    FieldModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class ButtonExamplesModule {}

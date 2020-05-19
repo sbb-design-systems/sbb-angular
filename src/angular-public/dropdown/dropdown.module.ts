@@ -6,7 +6,7 @@ import { DropdownItemDirective } from './dropdown-item.directive';
 import { DropdownOriginDirective } from './dropdown-origin.directive';
 import {
   DropdownTriggerDirective,
-  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER
+  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER,
 } from './dropdown-trigger.directive';
 import { DropdownComponent } from './dropdown/dropdown.component';
 
@@ -16,14 +16,14 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     DropdownComponent,
     DropdownItemDirective,
     DropdownOriginDirective,
-    DropdownTriggerDirective
+    DropdownTriggerDirective,
   ],
   declarations: [
     DropdownComponent,
     DropdownItemDirective,
     DropdownOriginDirective,
-    DropdownTriggerDirective
+    DropdownTriggerDirective,
   ],
-  providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER]
+  providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class DropdownModule {}

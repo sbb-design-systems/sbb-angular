@@ -29,32 +29,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 16 16',
     class: 'sbb-icon sbb-icon-fpl sbb-icon-him-cus',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconCancellation {}
 
 @Component({
   selector: 'sbb-icon-cancellation',
-  template: `
-    <svg sbbIconCancellation></svg>
-  `,
+  template: ` <svg sbbIconCancellation></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconCancellation {}
 
 @NgModule({
   declarations: [SvgIconCancellation, IconCancellation],
-  exports: [SvgIconCancellation, IconCancellation]
+  exports: [SvgIconCancellation, IconCancellation],
 })
 export class IconCancellationModule {}

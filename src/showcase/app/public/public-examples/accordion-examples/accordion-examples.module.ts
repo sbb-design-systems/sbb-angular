@@ -22,9 +22,9 @@ const EXAMPLES = [AccordionExampleComponent];
     CheckboxModule,
     FieldModule,
     RadioButtonModule,
-    ButtonModule
+    ButtonModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class AccordionExamplesModule {}

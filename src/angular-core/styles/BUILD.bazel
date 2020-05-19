@@ -7,7 +7,7 @@ package(default_visibility = ["//visibility:public"])
 
 sass_library(
     name = "common_scss_lib",
-    srcs = ["_common.scss"] + glob(["common/_*.scss"]),
+    srcs = ["_common.scss"] + glob(["includes/_*.scss"]),
 )
 
 sass_library(
@@ -18,4 +18,9 @@ sass_library(
         "@npm//:node_modules/@angular/cdk/_overlay.scss",
     ] + glob(["typography/_*.scss"]),
     deps = [":common_scss_lib"],
+)
+
+filegroup(
+    name = "legacy_scss",
+    srcs = glob(["common/*.scss"]),
 )

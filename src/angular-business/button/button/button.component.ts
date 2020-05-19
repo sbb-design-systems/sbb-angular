@@ -5,7 +5,7 @@ import {
   HostBinding,
   Input,
   TemplateRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { BaseButton } from '@sbb-esta/angular-core/base/button';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
@@ -16,7 +16,7 @@ import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ButtonComponent extends BaseButton {
   /**

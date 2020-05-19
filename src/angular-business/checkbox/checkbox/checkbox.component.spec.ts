@@ -20,7 +20,7 @@ import { CheckboxComponent } from './checkbox.component';
       #check1
       >Test check 1</sbb-checkbox
     >
-  `
+  `,
 })
 class ModelCheckboxTestComponent {
   checked = false;
@@ -37,7 +37,7 @@ describe('CheckboxComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, IconTickModule],
-      declarations: [CheckboxComponent]
+      declarations: [CheckboxComponent],
     }).compileComponents();
   }));
 
@@ -63,7 +63,7 @@ describe('CheckboxComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, IconTickModule],
-      declarations: [CheckboxComponent, ModelCheckboxTestComponent]
+      declarations: [CheckboxComponent, ModelCheckboxTestComponent],
     }).compileComponents();
   }));
 

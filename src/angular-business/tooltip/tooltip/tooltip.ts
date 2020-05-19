@@ -16,7 +16,7 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { SBB_TOOLTIP_SCROLL_STRATEGY } from '@sbb-esta/angular-core/base/tooltip';
 import { Subject } from 'rxjs';
@@ -54,7 +54,7 @@ export const SBB_TOOLTIP_DEFAULT_OPTIONS = new InjectionToken<SbbTooltipDefaultO
   'sbb-tooltip-default-options',
   {
     providedIn: 'root',
-    factory: SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY
+    factory: SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY,
   }
 );
 
@@ -64,7 +64,7 @@ export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions 
   return {
     showDelay: 0,
     hideDelay: 0,
-    touchendHideDelay: 1500
+    touchendHideDelay: 1500,
   };
 }
 
@@ -74,7 +74,7 @@ export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions 
  */
 @Directive({
   selector: '[sbbTooltip]',
-  exportAs: 'sbbTooltip'
+  exportAs: 'sbbTooltip',
 })
 export class Tooltip implements OnDestroy, OnInit {
   /** Disables the display of the tooltip. */
@@ -150,7 +150,7 @@ export class Tooltip implements OnDestroy, OnInit {
     _focusMonitor
       .monitor(_elementRef)
       .pipe(takeUntil(this._destroyed))
-      .subscribe(origin => {
+      .subscribe((origin) => {
         // Note that the focus monitor runs outside the Angular zone.
         if (!origin) {
           _ngZone.run(() => this.hide(0));
@@ -318,45 +318,45 @@ export class Tooltip implements OnDestroy, OnInit {
           originX: 'center',
           originY: 'bottom',
           overlayX: 'center',
-          overlayY: 'top'
+          overlayY: 'top',
         },
         {
           originX: 'end',
           originY: 'bottom',
           overlayX: 'end',
           overlayY: 'top',
-          offsetX: 5
+          offsetX: 5,
         },
         {
           originX: 'start',
           originY: 'bottom',
           overlayX: 'start',
           overlayY: 'top',
-          offsetX: -5
+          offsetX: -5,
         },
         {
           originX: 'center',
           originY: 'top',
           overlayX: 'center',
-          overlayY: 'bottom'
+          overlayY: 'bottom',
         },
         {
           originX: 'end',
           originY: 'top',
           overlayX: 'end',
           overlayY: 'bottom',
-          offsetX: 5
+          offsetX: 5,
         },
         {
           originX: 'start',
           originY: 'top',
           overlayX: 'start',
           overlayY: 'bottom',
-          offsetX: -5
-        }
+          offsetX: -5,
+        },
       ]);
 
-    strategy.positionChanges.pipe(takeUntil(this._destroyed)).subscribe(change => {
+    strategy.positionChanges.pipe(takeUntil(this._destroyed)).subscribe((change) => {
       if (this._tooltipInstance) {
         this._tooltipInstance._connectionPositionPair = change.connectionPair;
         this._tooltipInstance._markForCheck();
@@ -376,7 +376,7 @@ export class Tooltip implements OnDestroy, OnInit {
       direction: this._dir,
       positionStrategy: strategy,
       panelClass: TOOLTIP_PANEL_CLASS,
-      scrollStrategy: this._scrollStrategy()
+      scrollStrategy: this._scrollStrategy(),
     });
 
     this._overlayRef

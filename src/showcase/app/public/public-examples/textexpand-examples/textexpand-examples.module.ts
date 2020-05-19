@@ -9,6 +9,6 @@ const EXAMPLES = [TextexpandExampleComponent];
 @NgModule({
   imports: [CommonModule, TextexpandModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class TextexpandExamplesModule {}

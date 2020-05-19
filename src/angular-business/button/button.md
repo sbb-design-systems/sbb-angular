@@ -22,7 +22,7 @@ ghost and icon as shown in the example.
 To use the icon mode, simply use an icon with the button.
 
 ```html
-<button sbbButton>
-  <sbb-icon-pen size="fixed"></sbb-icon-pen>
+<button sbbButton mode="icon">
+  <sbb-icon-pen *sbbIcon></sbb-icon-pen>
 </button>
 ```

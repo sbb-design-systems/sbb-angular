@@ -5,7 +5,7 @@ import {
   Overlay,
   OverlayConfig,
   OverlayRef,
-  ScrollStrategy
+  ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
 import {
@@ -21,7 +21,7 @@ import {
   OnDestroy,
   Optional,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
@@ -44,7 +44,7 @@ export function SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () =>
 export const SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_HEADER_MENU_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY
+  useFactory: SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY,
 };
 
 /** Options for binding a passive event listener. */
@@ -56,7 +56,7 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
   templateUrl: './header-menu-trigger.component.html',
   styleUrls: ['./header-menu-trigger.component.css'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
-  exportAs: 'sbbHeaderMenu'
+  exportAs: 'sbbHeaderMenu',
 })
 export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
   /** @docs-private */
@@ -146,7 +146,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
     );
     this._isDesktop = this._breakpointObserver.observe(Breakpoints.DesktopAndAbove).pipe(
       takeUntil(this._destroyed),
-      map(m => m.matches),
+      map((m) => m.matches),
       distinctUntilChanged()
     );
     this._scrollStrategy = scrollStrategy;
@@ -335,7 +335,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
         .withTransformOriginOn('.sbb-header-menu-panel'),
       backdropClass: 'cdk-overlay-transparent-backdrop',
       scrollStrategy: this._scrollStrategy(),
-      width: this._getHostWidth()
+      width: this._getHostWidth(),
     });
   }
 
@@ -346,7 +346,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
    */
   private _setPosition(positionStrategy: FlexibleConnectedPositionStrategy) {
     positionStrategy.withPositions([
-      { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' }
+      { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
     ]);
   }
 
@@ -360,13 +360,13 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
     const backdrop = this._overlayRef ? this._overlayRef.backdropClick() : NEVER;
     const detachments = this._overlayRef ? this._overlayRef.detachments() : NEVER;
     const dimensionChange = this._breakpointObserver.observe(Breakpoints.DesktopAndAbove).pipe(
-      map(m => m.matches),
-      filter(m => !m)
+      map((m) => m.matches),
+      filter((m) => !m)
     );
     const routeChange = this._router
-      ? this._router.events.pipe(filter(e => e instanceof NavigationStart))
+      ? this._router.events.pipe(filter((e) => e instanceof NavigationStart))
       : NEVER;
-    const itemClicks = this.menu._items.toArray().map(i => i.click);
+    const itemClicks = this.menu._items.toArray().map((i) => i.click);
     return merge(backdrop, detachments, dimensionChange, routeChange, ...itemClicks);
   }
 }

@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 48 48',
     class: 'sbb-icon sbb-icon-kom sbb-icon-leisure',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconLocomotiveViaductLarge {}
 
 @Component({
   selector: 'sbb-icon-locomotive-viaduct-large',
-  template: `
-    <svg sbbIconLocomotiveViaductLarge></svg>
-  `,
+  template: ` <svg sbbIconLocomotiveViaductLarge></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconLocomotiveViaductLarge {}
 
 @NgModule({
   declarations: [SvgIconLocomotiveViaductLarge, IconLocomotiveViaductLarge],
-  exports: [SvgIconLocomotiveViaductLarge, IconLocomotiveViaductLarge]
+  exports: [SvgIconLocomotiveViaductLarge, IconLocomotiveViaductLarge],
 })
 export class IconLocomotiveViaductLargeModule {}

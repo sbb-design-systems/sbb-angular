@@ -10,6 +10,6 @@ const EXAMPLES = [SimpleContextmenuExampleComponent];
 @NgModule({
   imports: [CommonModule, ContextmenuModule, DropdownModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class ContextmenuExamplesModule {}

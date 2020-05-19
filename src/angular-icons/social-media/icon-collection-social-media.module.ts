@@ -15,11 +15,11 @@ const modules = [
   IconYoutubeModule,
   IconLinkedinModule,
   IconPinterestModule,
-  IconXingModule
+  IconXingModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionSocialMediaModule {}

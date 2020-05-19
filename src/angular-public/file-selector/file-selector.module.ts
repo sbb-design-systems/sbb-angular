@@ -8,14 +8,14 @@ import {
   IconDocumentStandardModule,
   IconDocumentTextModule,
   IconDocumentVideoModule,
-  IconDocumentZipModule
+  IconDocumentZipModule,
 } from '@sbb-esta/angular-icons/document';
 
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import {
   FileExtension,
   FileNameNoExtension,
-  FileSizeFormatted
+  FileSizeFormatted,
 } from './file-selector/file-selector.pipes';
 
 @NgModule({
@@ -30,8 +30,8 @@ import {
     IconDocumentZipModule,
     IconDocumentStandardModule,
     IconTrashModule,
-    IconUploadModule
+    IconUploadModule,
   ],
-  exports: [FileSelectorComponent]
+  exports: [FileSelectorComponent],
 })
 export class FileSelectorModule {}

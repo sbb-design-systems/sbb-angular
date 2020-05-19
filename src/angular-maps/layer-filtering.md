@@ -41,7 +41,7 @@ _app.component.ts_:
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   public mapView: __esri.MapView;
@@ -64,7 +64,7 @@ _app.component.ts_:
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   public mapView: __esri.MapView;
@@ -75,7 +75,7 @@ export class AppComponent {
   }
 
   private putMyMapFilterOn() {
-    this.mapView.on('layerview-create', event => {
+    this.mapView.on('layerview-create', (event) => {
       const { layer } = event;
       if (layer.id === 'Accidental_Deaths_8938') {
         const featureLayer = layer as __esri.FeatureLayer;

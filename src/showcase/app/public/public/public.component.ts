@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { AccordionExampleComponent } from '../public-examples/accordion-examples/accordion-example/accordion-example.component';
+import { AutocompleteDisplayWithExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-display-with-example/autocomplete-display-with-example.component';
 import { AutocompleteFormsExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
+import { AutocompleteLocaleNormalizerExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-locale-normalizer-example/autocomplete-locale-normalizer-example.component';
 import { AutocompleteOptionGroupExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 import { BadgeExampleComponent } from '../public-examples/badge-examples/badge-example/badge-example.component';
@@ -19,10 +21,13 @@ import { DatepickerSimpleReactiveExampleComponent } from '../public-examples/dat
 import { DatepickerStandaloneFormsExampleComponent } from '../public-examples/datepicker-examples/datepicker-standalone-forms-example/datepicker-standalone-forms-example.component';
 import { DropdownExampleComponent } from '../public-examples/dropdown-examples/dropdown-example/dropdown-example.component';
 import { FieldExampleComponent } from '../public-examples/field-examples/field-example/field-example.component';
-import { FileSelectorExampleComponent } from '../public-examples/file-selector-examples/file-selector-example/file-selector-example.component';
+import { MultipleModeDefaultFileSelectorExampleComponent } from '../public-examples/file-selector-examples/multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component';
+import { MultipleModePersistentFileSelectorExampleComponent } from '../public-examples/file-selector-examples/multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component';
+import { SimpleFileSelectorExampleComponent } from '../public-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
 import { GhettoboxExampleComponent } from '../public-examples/ghettobox-examples/ghettobox-example/ghettobox-example.component';
 import { LightboxExampleComponent } from '../public-examples/lightbox-examples/lightbox-example/lightbox-example.component';
-import { LinksExampleComponent } from '../public-examples/links-examples/links-example/links-example.component';
+import { IconLinkExampleComponent } from '../public-examples/links-examples/icon-link-example/icon-link-example.component';
+import { SocialLinkExampleComponent } from '../public-examples/links-examples/social-link-example/social-link-example.component';
 import { LoadingExampleComponent } from '../public-examples/loading-examples/loading-example/loading-example.component';
 import { NotificationExampleComponent } from '../public-examples/notification-examples/notification-example/notification-example.component';
 import { NavigationExampleComponent } from '../public-examples/pagination-examples/navigation-example/navigation-example.component';
@@ -55,7 +60,7 @@ import { UsermenuExampleComponent } from '../public-examples/usermenu-examples/u
   selector: 'sbb-public',
   templateUrl: './public.component.html',
   styleUrls: ['./public.component.css'],
-  providers: [{ provide: ExampleProvider, useExisting: PublicComponent }]
+  providers: [{ provide: ExampleProvider, useExisting: PublicComponent }],
 })
 export class PublicComponent implements ExampleProvider {
   formComponents = {
@@ -73,7 +78,7 @@ export class PublicComponent implements ExampleProvider {
     tag: 'Tag',
     textarea: 'Textarea',
     'time-input': 'Time Input',
-    toggle: 'Toggle'
+    toggle: 'Toggle',
   };
   layoutComponents = {
     accordion: 'Accordion',
@@ -85,18 +90,18 @@ export class PublicComponent implements ExampleProvider {
     table: 'Table',
     tabs: 'Tabs',
     textexpand: 'Textexpand',
-    usermenu: 'Usermenu'
+    usermenu: 'Usermenu',
   };
   buttonAndIndicatorComponents = {
     badge: 'Badge',
     button: 'Button',
     links: 'Links',
-    loading: 'Loading'
+    loading: 'Loading',
   };
   popupsAndModals = {
     dropdown: 'Dropdown',
     lightbox: 'Lightbox',
-    tooltip: 'Tooltip'
+    tooltip: 'Tooltip',
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
     autocomplete: {
@@ -107,12 +112,18 @@ export class PublicComponent implements ExampleProvider {
       'autocomplete-hint-example': new ComponentPortal(AutocompleteHintExampleComponent),
       'autocomplete-option-group-example': new ComponentPortal(
         AutocompleteOptionGroupExampleComponent
-      )
+      ),
+      'autocomplete-display-with-example': new ComponentPortal(
+        AutocompleteDisplayWithExampleComponent
+      ),
+      'autocomplete-locale-normalizer-example': new ComponentPortal(
+        AutocompleteLocaleNormalizerExampleComponent
+      ),
     },
     captcha: { 'captcha-example': new ComponentPortal(CaptchaExampleComponent) },
     checkbox: { 'checkbox-example': new ComponentPortal(CheckboxExampleComponent) },
     'checkbox-panel': {
-      'checkbox-panel-example': new ComponentPortal(CheckboxPanelExampleComponent)
+      'checkbox-panel-example': new ComponentPortal(CheckboxPanelExampleComponent),
     },
     datepicker: {
       'datepicker-simple-reactive-example': new ComponentPortal(
@@ -122,15 +133,21 @@ export class PublicComponent implements ExampleProvider {
       'datepicker-date-filter-example': new ComponentPortal(DatepickerDateFilterExampleComponent),
       'datepicker-standalone-forms-example': new ComponentPortal(
         DatepickerStandaloneFormsExampleComponent
-      )
+      ),
     },
     field: { 'field-example': new ComponentPortal(FieldExampleComponent) },
     'file-selector': {
-      'file-selector-example': new ComponentPortal(FileSelectorExampleComponent)
+      'simple-file-selector-example': new ComponentPortal(SimpleFileSelectorExampleComponent),
+      'multiple-mode-default-file-selector-example': new ComponentPortal(
+        MultipleModeDefaultFileSelectorExampleComponent
+      ),
+      'multiple-mode-persistent-file-selector-example': new ComponentPortal(
+        MultipleModePersistentFileSelectorExampleComponent
+      ),
     },
     'radio-button': { 'radio-button-example': new ComponentPortal(RadioButtonExampleComponent) },
     'radio-button-panel': {
-      'radio-button-panel-example': new ComponentPortal(RadioButtonPanelExampleComponent)
+      'radio-button-panel-example': new ComponentPortal(RadioButtonPanelExampleComponent),
     },
     search: { 'search-example': new ComponentPortal(SearchExampleComponent) },
     select: {
@@ -141,7 +158,7 @@ export class PublicComponent implements ExampleProvider {
       'select-option-groups-example': new ComponentPortal(SelectOptionGroupsExampleComponent),
       'select-option-groups-multi-selection-example': new ComponentPortal(
         SelectOptionGroupsMultiSelectionExampleComponent
-      )
+      ),
     },
     tag: { 'tag-example': new ComponentPortal(TagExampleComponent) },
     textarea: {
@@ -149,7 +166,7 @@ export class PublicComponent implements ExampleProvider {
       'textarea-reactive-forms-with-sbb-field-example': new ComponentPortal(
         TextareaReactiveFormsWithSbbFieldExampleComponent
       ),
-      'textarea-native-example': new ComponentPortal(TextareaNativeExampleComponent)
+      'textarea-native-example': new ComponentPortal(TextareaNativeExampleComponent),
     },
     'time-input': { 'time-input-example': new ComponentPortal(TimeInputExampleComponent) },
     toggle: { 'toggle-example': new ComponentPortal(ToggleExampleComponent) },
@@ -159,7 +176,7 @@ export class PublicComponent implements ExampleProvider {
     notification: { 'notification-example': new ComponentPortal(NotificationExampleComponent) },
     pagination: {
       'paginator-example': new ComponentPortal(PaginatorExampleComponent),
-      'navigation-example': new ComponentPortal(NavigationExampleComponent)
+      'navigation-example': new ComponentPortal(NavigationExampleComponent),
     },
     processflow: { 'processflow-example': new ComponentPortal(ProcessflowExampleComponent) },
     table: { 'table-example': new ComponentPortal(TableExampleComponent) },
@@ -168,15 +185,18 @@ export class PublicComponent implements ExampleProvider {
     usermenu: { 'usermenu-example': new ComponentPortal(UsermenuExampleComponent) },
     badge: { 'badge-example': new ComponentPortal(BadgeExampleComponent) },
     button: { 'button-example': new ComponentPortal(ButtonExampleComponent) },
-    links: { 'links-example': new ComponentPortal(LinksExampleComponent) },
+    links: {
+      'icon-link-example': new ComponentPortal(IconLinkExampleComponent),
+      'social-link-example': new ComponentPortal(SocialLinkExampleComponent),
+    },
     loading: { 'loading-example': new ComponentPortal(LoadingExampleComponent) },
     dropdown: { 'dropdown-example': new ComponentPortal(DropdownExampleComponent) },
     lightbox: { 'lightbox-example': new ComponentPortal(LightboxExampleComponent) },
     tooltip: {
       'tooltip-simple-example': new ComponentPortal(TooltipSimpleExampleComponent),
       'tooltip-custom-content-example': new ComponentPortal(TooltipCustomContentExampleComponent),
-      'tooltip-custom-icon-example': new ComponentPortal(TooltipCustomIconExampleComponent)
-    }
+      'tooltip-custom-icon-example': new ComponentPortal(TooltipCustomIconExampleComponent),
+    },
   };
 
   resolveExample<TComponent = any>(

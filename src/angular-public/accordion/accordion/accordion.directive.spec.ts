@@ -9,7 +9,7 @@ import {
   AccordionDirective,
   AccordionModule,
   ExpansionPanelComponent,
-  ExpansionPanelHeaderComponent
+  ExpansionPanelHeaderComponent,
 } from '../public-api';
 
 // tslint:disable:i18n
@@ -21,7 +21,7 @@ import {
         <p>Content</p>
       </sbb-expansion-panel>
     </sbb-accordion>
-  `
+  `,
 })
 class SetOfItemsComponent {
   @ViewChild(AccordionDirective, { static: true }) accordion: AccordionDirective;
@@ -42,7 +42,7 @@ class SetOfItemsComponent {
         </sbb-expansion-panel>
       </sbb-expansion-panel>
     </sbb-accordion>
-  `
+  `,
 })
 class NestedPanelComponent {
   @ViewChild('outerPanel', { static: true }) outerPanel: ExpansionPanelComponent;
@@ -57,7 +57,7 @@ class NestedPanelComponent {
         <p>Content</p>
       </sbb-expansion-panel>
     </sbb-accordion>
-  `
+  `,
 })
 class AccordionWithHideToggleComponent {
   hideToggle = false;
@@ -67,7 +67,7 @@ describe('AccordionDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, AccordionModule],
-      declarations: [AccordionWithHideToggleComponent, NestedPanelComponent, SetOfItemsComponent]
+      declarations: [AccordionWithHideToggleComponent, NestedPanelComponent, SetOfItemsComponent],
     }).compileComponents();
   }));
 
@@ -183,7 +183,7 @@ describe('AccordionDirective', () => {
     dispatchEvent(headerElements[0].nativeElement, new KeyboardEvent('focus'));
     fixture.detectChanges();
 
-    headers.forEach(header => spyOn(header, 'focus'));
+    headers.forEach((header) => spyOn(header, 'focus'));
 
     // Stop at the second-last header so focus doesn't wrap around.
     for (let i = 0; i < headerElements.length - 1; i++) {
@@ -207,7 +207,7 @@ describe('AccordionDirective', () => {
     );
     fixture.detectChanges();
 
-    headers.forEach(header => spyOn(header, 'focus'));
+    headers.forEach((header) => spyOn(header, 'focus'));
 
     // Stop before the first header
     for (let i = headers.length - 1; i > 0; i--) {
@@ -228,7 +228,7 @@ describe('AccordionDirective', () => {
     dispatchEvent(headerElements[0].nativeElement, new KeyboardEvent('focus'));
     fixture.detectChanges();
 
-    headers.forEach(header => spyOn(header, 'focus'));
+    headers.forEach((header) => spyOn(header, 'focus'));
     panels[1].disabled = true;
     fixture.detectChanges();
 
@@ -246,7 +246,7 @@ describe('AccordionDirective', () => {
     const headerElements = fixture.debugElement.queryAll(By.css('sbb-expansion-panel-header'));
     const headers = fixture.componentInstance.headers.toArray();
 
-    headers.forEach(header => spyOn(header, 'focus'));
+    headers.forEach((header) => spyOn(header, 'focus'));
     dispatchKeyboardEvent(headerElements[headerElements.length - 1].nativeElement, 'keydown', HOME);
     fixture.detectChanges();
 
@@ -260,7 +260,7 @@ describe('AccordionDirective', () => {
     const headerElements = fixture.debugElement.queryAll(By.css('sbb-expansion-panel-header'));
     const headers = fixture.componentInstance.headers.toArray();
 
-    headers.forEach(header => spyOn(header, 'focus'));
+    headers.forEach((header) => spyOn(header, 'focus'));
     dispatchKeyboardEvent(headerElements[0].nativeElement, 'keydown', END);
     fixture.detectChanges();
 

@@ -29,7 +29,7 @@ import { GhettoboxContainerComponent } from './ghettobox-container.component';
       <sbb-icon-him-replacementbus></sbb-icon-him-replacementbus>
     </ng-template>
   `,
-  entryComponents: [GhettoboxComponent]
+  entryComponents: [GhettoboxComponent],
 })
 export class GhettoboxContainerTestComponent {
   @ViewChild('testIcon1', { read: TemplateRef })
@@ -40,7 +40,7 @@ const linkGenerator = (): LinkGeneratorResult => {
   return {
     routerLink: ['.'],
     queryParams: { test: 10 },
-    fragment: 'test'
+    fragment: 'test',
   };
 };
 
@@ -57,13 +57,13 @@ describe('GhettoboxContainerComponent', () => {
         IconArrowRightModule,
         IconHimInfoModule,
         NoopAnimationsModule,
-        PortalModule
+        PortalModule,
       ],
       declarations: [
         GhettoboxContainerComponent,
         GhettoboxContainerTestComponent,
-        GhettoboxComponent
-      ]
+        GhettoboxComponent,
+      ],
     }).compileComponents();
   }));
 
@@ -99,7 +99,7 @@ describe('GhettoboxContainerComponent', () => {
     const ghettoboxToAdd: Ghettobox = {
       message: 'TEST MESSAGE',
       link: linkGenerator(),
-      icon: component.testIcon
+      icon: component.testIcon,
     };
 
     ghettoboxService.add(ghettoboxToAdd);
@@ -124,7 +124,7 @@ describe('GhettoboxContainerComponent', () => {
     const ghettoboxToAdd: Ghettobox = {
       message: 'TEST MESSAGE',
       link: linkGenerator(),
-      icon: component.testIcon
+      icon: component.testIcon,
     };
 
     ghettoboxService.add(ghettoboxToAdd);
@@ -154,7 +154,7 @@ describe('GhettoboxContainerComponent', () => {
     const ghettoboxToAdd: Ghettobox = {
       message: 'TEST MESSAGE',
       link: linkGenerator(),
-      icon: component.testIcon
+      icon: component.testIcon,
     };
 
     ghettoboxService.add(ghettoboxToAdd);
@@ -182,7 +182,7 @@ describe('GhettoboxContainerComponent', () => {
     const ghettoboxToAdd: Ghettobox = {
       message: 'TEST MESSAGE',
       link: linkGenerator(),
-      icon: component.testIcon
+      icon: component.testIcon,
     };
 
     const addedGhettobox = ghettoboxService.add(ghettoboxToAdd);
@@ -209,7 +209,7 @@ describe('GhettoboxContainerComponent', () => {
     const ghettoboxToAdd: Ghettobox = {
       message: 'TEST MESSAGE',
       link: linkGenerator(),
-      icon: component.testIcon
+      icon: component.testIcon,
     };
 
     ghettoboxService.add(ghettoboxToAdd);
@@ -220,7 +220,7 @@ describe('GhettoboxContainerComponent', () => {
 
     const attachedGhettoboxesCopy = ghettoboxService.attachedGhettoboxes.slice();
 
-    ghettoboxService.attachedGhettoboxes.forEach(g => {
+    ghettoboxService.attachedGhettoboxes.forEach((g) => {
       g.componentInstance.afterDelete.subscribe((gs: GhettoboxDeletedEvent) =>
         expect(gs.ghettoboxState).toBe('deleted')
       );
@@ -234,7 +234,7 @@ describe('GhettoboxContainerComponent', () => {
 
     expect(ghettoboxService.attachedGhettoboxes).toEqual([]);
 
-    attachedGhettoboxesCopy.forEach(g => {
+    attachedGhettoboxesCopy.forEach((g) => {
       expect(g.componentInstance.visible).toBe(false);
     });
   });

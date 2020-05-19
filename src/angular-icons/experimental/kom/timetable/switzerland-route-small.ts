@@ -28,32 +28,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-timetable',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconSwitzerlandRouteSmall {}
 
 @Component({
   selector: 'sbb-icon-switzerland-route-small',
-  template: `
-    <svg sbbIconSwitzerlandRouteSmall></svg>
-  `,
+  template: ` <svg sbbIconSwitzerlandRouteSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconSwitzerlandRouteSmall {}
 
 @NgModule({
   declarations: [SvgIconSwitzerlandRouteSmall, IconSwitzerlandRouteSmall],
-  exports: [SvgIconSwitzerlandRouteSmall, IconSwitzerlandRouteSmall]
+  exports: [SvgIconSwitzerlandRouteSmall, IconSwitzerlandRouteSmall],
 })
 export class IconSwitzerlandRouteSmallModule {}

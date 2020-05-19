@@ -3,40 +3,40 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sbb-select-option-groups-example',
-  templateUrl: './select-option-groups-example.component.html'
+  templateUrl: './select-option-groups-example.component.html',
 })
 export class SelectOptionGroupsExampleComponent {
   form: FormGroup;
   foodFromTheWorld = [
     {
-      nation: 'Italien',
+      nation: 'Italy',
       food: [
         { value: 'lasagna', viewValue: 'Lasagna' },
         { value: 'parmigiana', viewValue: 'Parmigiana' },
-        { value: 'krm', viewValue: 'Kartoffeln, Reis und Muscheln' }
-      ]
+        { value: 'pasta', viewValue: 'Pasta' },
+      ],
     },
     {
-      nation: 'Deutschland',
+      nation: 'Germany',
       food: [
         { value: 'weißwurst', viewValue: 'Weißwurst' },
         { value: 'eisbein', viewValue: 'Eisbein' },
-        { value: 'rheinische-muscheln', viewValue: 'Rheinische Muscheln' }
-      ]
+        { value: 'rheinische-muscheln', viewValue: 'Rheinische Muscheln' },
+      ],
     },
     {
-      nation: 'Schweiz',
+      nation: 'Switzerland',
       food: [
         { value: 'birchermüesli', viewValue: 'Birchermüesli' },
         { value: 'rösti', viewValue: 'Rösti' },
-        { value: 'bündnernusstorte', viewValue: 'Bündnernusstorte' }
-      ]
-    }
+        { value: 'bündnernusstorte', viewValue: 'Bündnernusstorte' },
+      ],
+    },
   ];
 
   constructor(formBuilder: FormBuilder) {
     this.form = formBuilder.group({
-      value: ''
+      value: '',
     });
   }
 }

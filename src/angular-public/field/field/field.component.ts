@@ -5,11 +5,12 @@ import {
   Component,
   ContentChild,
   ContentChildren,
+  ElementRef,
   HostBinding,
   Input,
   OnDestroy,
   QueryList,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
 import { Subject } from 'rxjs';
@@ -25,7 +26,7 @@ import { LabelComponent } from '../label/label.component';
   styleUrls: ['./field.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [{ provide: FORM_FIELD, useExisting: FieldComponent }]
+  providers: [{ provide: FORM_FIELD, useExisting: FieldComponent }],
 })
 export class FieldComponent implements AfterContentInit, OnDestroy {
   /** @docs-private */
@@ -67,7 +68,10 @@ export class FieldComponent implements AfterContentInit, OnDestroy {
 
   private _destroyed = new Subject<void>();
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    public _elementRef: ElementRef<HTMLElement>
+  ) {}
 
   ngAfterContentInit() {
     if (this._control) {
@@ -111,7 +115,7 @@ export class FieldComponent implements AfterContentInit, OnDestroy {
     if (this._control) {
       const ids: string[] =
         this.formErrors && this.formErrors.length && this._control.errorState
-          ? this.formErrors.map(e => e.id)
+          ? this.formErrors.map((e) => e.id)
           : [];
       this._control.setDescribedByIds(ids);
     }

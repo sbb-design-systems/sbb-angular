@@ -12,7 +12,7 @@ import {
   OnDestroy,
   Output,
   QueryList,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import { merge, Observable, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -25,7 +25,7 @@ let counter = 0;
   selector: 'sbb-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
   /** @docs-private */
@@ -66,8 +66,8 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
     this._tabsSubscription = this.tabs$
       .pipe(
-        map(tabs => tabs.map(t => t._stateChanges)),
-        switchMap(stateChanges => merge(...stateChanges))
+        map((tabs) => tabs.map((t) => t._stateChanges)),
+        switchMap((stateChanges) => merge(...stateChanges))
       )
       .subscribe(() => this._changeDetector.markForCheck());
   }
@@ -77,7 +77,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   initTabs() {
     this.tabs$ = merge<TabComponent[]>(of(this.tabs.toArray()), this.tabs.changes);
 
-    const activeTabs = this.tabs.filter(tab => tab.active);
+    const activeTabs = this.tabs.filter((tab) => tab.active);
 
     if (activeTabs.length !== 1) {
       this.selectTab(this.tabs.first, true);
@@ -134,7 +134,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     // respond only to arrows and tab
     if (this._allowedKeyCodes.indexOf(event.keyCode) !== -1) {
       if (event.keyCode === TAB) {
-        this.tabListIndex = this.tabs.map(t => t.active).indexOf(true);
+        this.tabListIndex = this.tabs.map((t) => t.active).indexOf(true);
       } else {
         this._handleKeyUp(event.keyCode);
       }

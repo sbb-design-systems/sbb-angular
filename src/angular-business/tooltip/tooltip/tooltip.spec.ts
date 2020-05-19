@@ -10,7 +10,7 @@ import {
   DebugElement,
   ElementRef,
   NgZone,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import {
   async,
@@ -20,7 +20,7 @@ import {
   flushMicrotasks,
   inject,
   TestBed,
-  tick
+  tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +30,7 @@ import {
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
-  patchElementFocus
+  patchElementFocus,
 } from '@sbb-esta/angular-core/testing';
 
 import { TooltipModule } from '../tooltip.module';
@@ -61,7 +61,7 @@ describe('Tooltip', () => {
         DynamicTooltipsDemoComponent,
         TooltipOnTextFieldsComponent,
         TooltipOnDraggableElementComponent,
-        DataBoundAriaLabelTooltipComponent
+        DataBoundAriaLabelTooltipComponent,
       ],
       providers: [
         { provide: Platform, useFactory: () => platform },
@@ -69,9 +69,9 @@ describe('Tooltip', () => {
           provide: Directionality,
           useFactory: () => {
             return (dir = { value: 'ltr' });
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
 
     TestBed.compileComponents();
@@ -182,9 +182,9 @@ describe('Tooltip', () => {
           providers: [
             {
               provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
-              useValue: { showDelay: 1337, hideDelay: 7331 }
-            }
-          ]
+              useValue: { showDelay: 1337, hideDelay: 7331 },
+            },
+          ],
         })
         .compileComponents();
 
@@ -439,7 +439,7 @@ describe('Tooltip', () => {
         fromState: 'visible',
         toState: 'hidden',
         totalTime: 150,
-        phaseName: 'done'
+        phaseName: 'done',
       } as AnimationEvent);
     }));
 
@@ -913,7 +913,7 @@ describe('Tooltip', () => {
     >
       Button
     </button>
-  `
+  `,
 })
 class BasicTooltipDemoComponent {
   message: any = initialTooltipMessage;
@@ -935,7 +935,7 @@ class BasicTooltipDemoComponent {
         Button
       </button>
     </div>
-  `
+  `,
 })
 class ScrollableTooltipDemoComponent {
   message: string = initialTooltipMessage;
@@ -961,7 +961,7 @@ class ScrollableTooltipDemoComponent {
       Button
     </button>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class OnPushTooltipDemoComponent {
   message: string = initialTooltipMessage;
@@ -971,16 +971,14 @@ class OnPushTooltipDemoComponent {
   selector: 'sbb-app',
   template: `
     <button *ngFor="let tooltip of tooltips" [sbbTooltip]="tooltip">Button {{ tooltip }}</button>
-  `
+  `,
 })
 class DynamicTooltipsDemoComponent {
   tooltips: Array<string> = [];
 }
 
 @Component({
-  template: `
-    <button [sbbTooltip]="message" [attr.aria-label]="message">Click me</button>
-  `
+  template: ` <button [sbbTooltip]="message" [attr.aria-label]="message">Click me</button> `,
 })
 class DataBoundAriaLabelTooltipComponent {
   message = 'Hello there';
@@ -991,7 +989,7 @@ class DataBoundAriaLabelTooltipComponent {
     <input #input sbbTooltip="Something" />
 
     <textarea #textarea sbbTooltip="Another thing"></textarea>
-  `
+  `,
 })
 class TooltipOnTextFieldsComponent {
   @ViewChild('input') input: ElementRef<HTMLInputElement>;
@@ -999,9 +997,7 @@ class TooltipOnTextFieldsComponent {
 }
 
 @Component({
-  template: `
-    <button #button draggable="true" sbbTooltip="Drag me"></button>
-  `
+  template: ` <button #button draggable="true" sbbTooltip="Drag me"></button> `,
 })
 class TooltipOnDraggableElementComponent {
   @ViewChild('button') button: ElementRef;
@@ -1009,9 +1005,7 @@ class TooltipOnDraggableElementComponent {
 
 @Component({
   selector: 'sbb-app',
-  template: `
-    <button #button [sbbTooltip]="message">Button</button>
-  `
+  template: ` <button #button [sbbTooltip]="message">Button</button> `,
 })
 class TooltipDemoWithoutPositionBindingComponent {
   message: any = initialTooltipMessage;

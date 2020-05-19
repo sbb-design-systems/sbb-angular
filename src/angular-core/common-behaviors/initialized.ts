@@ -41,7 +41,7 @@ export function mixinInitialized<T extends Constructor<{}>>(base: T): HasInitial
      * Observable stream that emits when the directive initializes. If already initialized, the
      * subscriber is stored to be notified once _markInitialized is called.
      */
-    initialized = new Observable<void>(subscriber => {
+    initialized = new Observable<void>((subscriber) => {
       // If initialized, immediately notify the subscriber. Otherwise store the subscriber to notify
       // when _markInitialized is called.
       if (this._isInitialized) {

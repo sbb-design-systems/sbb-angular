@@ -8,7 +8,7 @@ describe('EsriWebSceneComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EsriWebSceneComponent]
+      declarations: [EsriWebSceneComponent],
     }).compileComponents();
   }));
 

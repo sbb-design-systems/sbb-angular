@@ -96,7 +96,7 @@ export class EntryPointGrouper implements Processor {
   $process(docs: DocCollection) {
     const entryPoints = new Map<string, EntryPointDoc>();
 
-    docs.forEach(doc => {
+    docs.forEach((doc) => {
       const moduleInfo = this._getModulePackageInfo(doc);
 
       const packageName = moduleInfo.packageName;
@@ -153,7 +153,7 @@ export class EntryPointGrouper implements Processor {
     // For each entry-point where no explicit primary export has been specified
     // through the "@docs-primary-export" tag, we determine a primary export by
     // looking for possible "NgModule" classes or test harnesses.
-    entryPoints.forEach(entryPoint => {
+    entryPoints.forEach((entryPoint) => {
       if (entryPoint.primaryExportName !== null) {
         return;
       }
@@ -219,7 +219,7 @@ export class EntryPointGrouper implements Processor {
     return {
       name: moduleName,
       packageName: pathSegments[0],
-      entryPointName: entryPointName.join('/')
+      entryPointName: entryPointName.join('/'),
     };
   }
 

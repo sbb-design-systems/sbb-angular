@@ -26,32 +26,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 59 20',
     class: 'sbb-icon sbb-icon-fpl sbb-icon-timetable-products',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconProductIc2 {}
 
 @Component({
   selector: 'sbb-icon-product-ic-2',
-  template: `
-    <svg sbbIconProductIc2></svg>
-  `,
+  template: ` <svg sbbIconProductIc2></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconProductIc2 {}
 
 @NgModule({
   declarations: [SvgIconProductIc2, IconProductIc2],
-  exports: [SvgIconProductIc2, IconProductIc2]
+  exports: [SvgIconProductIc2, IconProductIc2],
 })
 export class IconProductIc2Module {}

@@ -6,12 +6,12 @@ import { ExperimentalIconSearchComponent } from './experimental-icon-search/expe
 const routes: Routes = [
   {
     path: '',
-    component: ExperimentalIconSearchComponent
-  }
+    component: ExperimentalIconSearchComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class ExperimentalIconsRoutingModule {}

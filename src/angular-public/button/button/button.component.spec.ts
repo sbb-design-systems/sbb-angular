@@ -13,7 +13,7 @@ import { ButtonComponent } from './button.component';
       Bezeichnung
     </button>
     <ng-template #icon><sbb-icon-arrow-right></sbb-icon-arrow-right></ng-template>
-  `
+  `,
 })
 export class ButtonTemplateTestComponent {
   mode: string;
@@ -29,7 +29,7 @@ describe('ButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IconArrowRightModule],
-      declarations: [ButtonComponent, ButtonTemplateTestComponent]
+      declarations: [ButtonComponent, ButtonTemplateTestComponent],
     }).compileComponents();
   }));
 

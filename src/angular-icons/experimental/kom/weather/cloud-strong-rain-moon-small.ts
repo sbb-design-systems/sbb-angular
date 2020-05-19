@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-weather',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconCloudStrongRainMoonSmall {}
 
 @Component({
   selector: 'sbb-icon-cloud-strong-rain-moon-small',
-  template: `
-    <svg sbbIconCloudStrongRainMoonSmall></svg>
-  `,
+  template: ` <svg sbbIconCloudStrongRainMoonSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconCloudStrongRainMoonSmall {}
 
 @NgModule({
   declarations: [SvgIconCloudStrongRainMoonSmall, IconCloudStrongRainMoonSmall],
-  exports: [SvgIconCloudStrongRainMoonSmall, IconCloudStrongRainMoonSmall]
+  exports: [SvgIconCloudStrongRainMoonSmall, IconCloudStrongRainMoonSmall],
 })
 export class IconCloudStrongRainMoonSmallModule {}

@@ -17,7 +17,7 @@ import { ContextmenuComponent } from './contextmenu.component';
         <button sbbDropdownItem type="button" (click)="action3()">Action 2</button>
       </sbb-dropdown>
     </sbb-contextmenu>
-  `
+  `,
 })
 class ContextmenuTest1Component {
   action1() {}
@@ -32,7 +32,7 @@ describe('ContextmenuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ContextmenuComponent, ContextmenuTest1Component],
-      imports: [CommonModule, DropdownModule, IconContextMenuModule]
+      imports: [CommonModule, DropdownModule, IconContextMenuModule],
     }).compileComponents();
   }));
 

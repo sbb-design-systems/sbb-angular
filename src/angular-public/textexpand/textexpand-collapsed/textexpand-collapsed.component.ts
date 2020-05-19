@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   selector: 'sbb-textexpand-collapsed',
   templateUrl: './textexpand-collapsed.component.html',
   styleUrls: ['./textexpand-collapsed.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextexpandCollapsedComponent {
   /**

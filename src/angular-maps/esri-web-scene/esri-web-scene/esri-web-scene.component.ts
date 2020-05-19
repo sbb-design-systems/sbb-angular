@@ -8,7 +8,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import { EsriTypesService, GraphicService, HitTestService } from '@sbb-esta/angular-maps/core';
 
@@ -18,7 +18,7 @@ import { SBBEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
   selector: 'sbb-esri-web-scene',
   templateUrl: './esri-web-scene.component.html',
   styleUrls: ['./esri-web-scene.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EsriWebSceneComponent implements OnInit {
   private _camera: SBBEsri3DCamera;
@@ -76,8 +76,8 @@ export class EsriWebSceneComponent implements OnInit {
     await this._esri.load();
     this.webScene = new this._esri.WebScene({
       portalItem: {
-        id: this.portalItemId
-      }
+        id: this.portalItemId,
+      },
     });
     this.sceneView = new this._esri.SceneView(this._mergeSceneViewProperties());
 
@@ -111,8 +111,8 @@ export class EsriWebSceneComponent implements OnInit {
   }
 
   private _registerEvents() {
-    this.sceneView.on('click', e => this._handleMouseClick(e));
-    this.sceneView.watch('camera', camera => this._handleCameraChange(camera));
+    this.sceneView.on('click', (e) => this._handleMouseClick(e));
+    this.sceneView.watch('camera', (camera) => this._handleCameraChange(camera));
   }
 
   private async _handleMouseClick(e: __esri.SceneViewClickEvent) {
@@ -129,7 +129,7 @@ export class EsriWebSceneComponent implements OnInit {
       position: newCam.position,
       tilt: newCam.tilt,
       heading: newCam.heading,
-      fov: newCam.fov
+      fov: newCam.fov,
     });
   }
 }

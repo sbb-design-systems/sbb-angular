@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-career',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconShipSteeringWheelMedium {}
 
 @Component({
   selector: 'sbb-icon-ship-steering-wheel-medium',
-  template: `
-    <svg sbbIconShipSteeringWheelMedium></svg>
-  `,
+  template: ` <svg sbbIconShipSteeringWheelMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconShipSteeringWheelMedium {}
 
 @NgModule({
   declarations: [SvgIconShipSteeringWheelMedium, IconShipSteeringWheelMedium],
-  exports: [SvgIconShipSteeringWheelMedium, IconShipSteeringWheelMedium]
+  exports: [SvgIconShipSteeringWheelMedium, IconShipSteeringWheelMedium],
 })
 export class IconShipSteeringWheelMediumModule {}

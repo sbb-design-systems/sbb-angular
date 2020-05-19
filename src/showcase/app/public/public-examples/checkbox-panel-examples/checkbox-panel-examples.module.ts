@@ -16,9 +16,9 @@ const EXAMPLES = [CheckboxPanelExampleComponent];
     ReactiveFormsModule,
     IconHeartModule,
     CheckboxModule,
-    CheckboxPanelModule
+    CheckboxPanelModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class CheckboxPanelExamplesModule {}

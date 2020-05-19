@@ -4,12 +4,12 @@ import { JumpMark, NotificationType } from '@sbb-esta/angular-public/notificatio
 @Component({
   selector: 'sbb-notification-example',
   templateUrl: './notification-example.component.html',
-  styleUrls: ['./notification-example.component.css']
+  styleUrls: ['./notification-example.component.css'],
 })
 export class NotificationExampleComponent {
   jumpMarks: JumpMark[] = [
     { elementId: '#default', title: 'Hello' },
-    { elementId: '#default', title: 'Suchen' }
+    { elementId: '#default', title: 'Suchen' },
   ];
 
   type = NotificationType.SUCCESS;

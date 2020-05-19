@@ -45,11 +45,11 @@ const modules = [
   IconTelephoneGsmModule,
   IconTelephoneReceiverModule,
   IconWalkieTalkieModule,
-  IconWeightModule
+  IconWeightModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionHardwareModule {}

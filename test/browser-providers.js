@@ -34,7 +34,7 @@ const browserConfig = {
   iOS9: { unitTest: { target: null } },
   iOS10: { unitTest: { target: null } },
   iOS11: { unitTest: { target: 'saucelabs' } },
-  WindowsPhone: { unitTest: { target: null } }
+  WindowsPhone: { unitTest: { target: null } },
 };
 
 /** Exports all available custom Karma browsers. */
@@ -44,13 +44,13 @@ exports.customLaunchers = require('./karma-browsers.json');
 exports.platformMap = {
   saucelabs: buildConfiguration('unitTest', 'saucelabs'),
   browserstack: buildConfiguration('unitTest', 'browserstack'),
-  local: buildConfiguration('unitTest', 'local')
+  local: buildConfiguration('unitTest', 'local'),
 };
 
 /** Build a list of configuration (custom launcher names). */
 function buildConfiguration(type, target) {
   const targetBrowsers = Object.keys(browserConfig)
-    .map(browserName => [browserName, browserConfig[browserName][type]])
+    .map((browserName) => [browserName, browserConfig[browserName][type]])
     .filter(([, config]) => config.target === target)
     .map(([browserName]) => browserName);
 
@@ -61,7 +61,7 @@ function buildConfiguration(type, target) {
     return targetBrowsers;
   }
 
-  return targetBrowsers.map(browserName => {
+  return targetBrowsers.map((browserName) => {
     return `${target.toUpperCase()}_${browserName.toUpperCase()}`;
   });
 }

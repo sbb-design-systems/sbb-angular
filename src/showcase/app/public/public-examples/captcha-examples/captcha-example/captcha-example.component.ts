@@ -9,7 +9,7 @@ export interface FormModel {
 @Component({
   selector: 'sbb-captcha-example',
   templateUrl: './captcha-example.component.html',
-  styleUrls: ['./captcha-example.component.css']
+  styleUrls: ['./captcha-example.component.css'],
 })
 export class CaptchaExampleComponent implements OnInit, OnDestroy {
   basicCaptchaResponse: string;
@@ -27,10 +27,10 @@ export class CaptchaExampleComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.formCaptcha = new FormGroup({
-      captcha: this.captcha
+      captcha: this.captcha,
     });
 
-    this.captchaSubscription = this.formCaptcha.get('captcha')!.valueChanges.subscribe(value => {
+    this.captchaSubscription = this.formCaptcha.get('captcha')!.valueChanges.subscribe((value) => {
       this.formModelReactive.captcha = value;
     });
   }

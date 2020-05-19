@@ -26,7 +26,7 @@ you can use the `data` option to pass information to the dialog component.
 
 ```ts
 const lightboxRef = this.lightbox.openLightbox(LightboxShowcaseExampleContentComponent, {
-  data: { name: this.name, animal: this.animal }
+  data: { name: this.name, animal: this.animal },
 });
 ```
 
@@ -38,7 +38,7 @@ result of the `afterClosed` promise.
 ```ts
 @Component({
   selector: 'sbb-lightbox-showcase-content-1',
-  templateUrl: 'lightbox-showcase-content-1.component.html'
+  templateUrl: 'lightbox-showcase-content-1.component.html',
 })
 export class LightboxShowcaseExampleContentComponent {
   constructor(
@@ -53,7 +53,7 @@ export class LightboxShowcaseExampleContentComponent {
 ```
 
 ```ts
-lightboxRef.afterClosed().subscribe(result => {
+lightboxRef.afterClosed().subscribe((result) => {
   console.log('Lighbox sharing data was closed');
   this.animal = result;
 });
@@ -67,7 +67,7 @@ passing it the template reference:
 ```ts
 @Component({
   selector: 'sbb-lightbox-showcase-example-3',
-  templateUrl: 'lightbox-showcase-content-3.component.html'
+  templateUrl: 'lightbox-showcase-content-3.component.html',
 })
 export class LightboxShowcaseExample3Component {
   @ViewChild('sampleLightboxTemplate') sampleLightboxTemplate: TemplateRef<any>;
@@ -76,7 +76,7 @@ export class LightboxShowcaseExample3Component {
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(this.sampleLightboxTemplate);
 
-    lightboxRef.afterClosed().subscribe(result => {
+    lightboxRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -122,13 +122,13 @@ export class LightboxShowcaseExample3Component {
         Open with confirmation button in separate one
       </button>
     </div>
-  `
+  `,
 })
 export class LightboxShowcaseExample5Component {
   constructor(public lightbox: Lightbox) {}
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(LightboxShowcaseExample5ContentComponent, {
-      disableClose: true
+      disableClose: true,
     });
     lightboxRef.afterClosed().subscribe(() => {
       console.log(`Lightbox confirmed`);

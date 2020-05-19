@@ -6,7 +6,7 @@ import {
   ContentChild,
   EventEmitter,
   HostBinding,
-  Output
+  Output,
 } from '@angular/core';
 
 import { TextexpandCollapsedComponent } from '../textexpand-collapsed/textexpand-collapsed.component';
@@ -18,7 +18,7 @@ let counter = 0;
   selector: 'sbb-textexpand',
   templateUrl: './textexpand.component.html',
   styleUrls: ['./textexpand.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextexpandComponent implements AfterContentInit {
   /**

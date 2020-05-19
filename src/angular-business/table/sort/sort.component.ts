@@ -7,12 +7,12 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import {
   HasInitialized,
   HasInitializedCtor,
-  mixinInitialized
+  mixinInitialized,
 } from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
 
@@ -20,7 +20,7 @@ import { SortDirection } from './sort-direction';
 import {
   getSortDuplicateSortableIdError,
   getSortHeaderMissingIdError,
-  getSortInvalidDirectionError
+  getSortInvalidDirectionError,
 } from './sort-error-functions';
 
 /** Interface for a directive that holds sorting state consumed by `SbbSortHeader`. */
@@ -55,7 +55,7 @@ export const SbbSortDirectiveMixinBase: HasInitializedCtor &
 @Directive({
   selector: '[sbbSort]',
   exportAs: 'sbbSort',
-  inputs: ['disabled: sbbSortDisabled']
+  inputs: ['disabled: sbbSortDisabled'],
 })
 export class SbbSortDirective extends SbbSortDirectiveMixinBase
   implements OnInit, OnChanges, OnDestroy, HasInitialized {

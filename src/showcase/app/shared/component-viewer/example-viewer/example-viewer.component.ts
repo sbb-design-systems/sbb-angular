@@ -9,7 +9,7 @@ import { HtmlLoader } from '../../html-loader.service';
 @Component({
   selector: 'sbb-example-viewer',
   templateUrl: './example-viewer.component.html',
-  styleUrls: ['./example-viewer.component.css']
+  styleUrls: ['./example-viewer.component.css'],
 })
 export class ExampleViewerComponent implements OnInit {
   @Input() example: ComponentPortal<any>;
@@ -22,7 +22,7 @@ export class ExampleViewerComponent implements OnInit {
   get label() {
     return this.name
       .replace(/-/g, ' ')
-      .replace(/(^[a-z]| [a-z])/g, m => m.toUpperCase())
+      .replace(/(^[a-z]| [a-z])/g, (m) => m.toUpperCase())
       .replace(' Showcase', '');
   }
 
@@ -33,24 +33,15 @@ export class ExampleViewerComponent implements OnInit {
       map(([p, d]) => ({ ...p, ...d })),
       map(({ id }) =>
         (id as string)
-          .replace(/^([a-z])/, m => m.toUpperCase())
-          .replace(/-([a-z])/g, m => ` ${m.toUpperCase()}`)
+          .replace(/^([a-z])/, (m) => m.toUpperCase())
+          .replace(/-([a-z])/g, (m) => ` ${m.toUpperCase()}`)
       )
     );
 
-    this.html = this._htmlLoader
-      .with(this._route)
-      .fromExamples(this.name, 'html')
-      .observe();
+    this.html = this._htmlLoader.with(this._route).fromExamples(this.name, 'html').observe();
 
-    this.ts = this._htmlLoader
-      .with(this._route)
-      .fromExamples(this.name, 'ts')
-      .observe();
+    this.ts = this._htmlLoader.with(this._route).fromExamples(this.name, 'ts').observe();
 
-    this.scss = this._htmlLoader
-      .with(this._route)
-      .fromExamples(this.name, 'scss')
-      .observe();
+    this.scss = this._htmlLoader.with(this._route).fromExamples(this.name, 'scss').observe();
   }
 }

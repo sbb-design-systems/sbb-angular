@@ -10,7 +10,7 @@ import { ChipComponent } from './chip.component';
   selector: 'sbb-test-chip',
   template: `
     <sbb-chip [disabled]="disabled" [label]="label" (dismissed)="dismissed($event)"></sbb-chip>
-  `
+  `,
 })
 class ChipTestComponent {
   disabled = false;
@@ -26,7 +26,7 @@ describe('ChipComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ChipComponent, ChipTestComponent],
-      imports: [CommonModule, IconCrossModule]
+      imports: [CommonModule, IconCrossModule],
     }).compileComponents();
   }));
 
@@ -77,7 +77,7 @@ describe('ChipComponent', () => {
     fixture.detectChanges();
 
     const chips = fixture.debugElement.queryAll(By.directive(ChipComponent));
-    chips.forEach(chip => expect(chip.attributes['aria-hidden']).toBe('true'));
-    chips.forEach(chip => expect(chip.properties['hidden']).toBe(true));
+    chips.forEach((chip) => expect(chip.attributes['aria-hidden']).toBe('true'));
+    chips.forEach((chip) => expect(chip.properties['hidden']).toBe(true));
   });
 });

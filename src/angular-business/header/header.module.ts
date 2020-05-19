@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import {
   IconChevronSmallDownModule,
   IconChevronSmallLeftModule,
-  IconChevronSmallUpModule
+  IconChevronSmallUpModule,
 } from '@sbb-esta/angular-icons/arrow';
 import { IconCrossModule, IconHamburgerMenuModule } from '@sbb-esta/angular-icons/navigation';
 
@@ -13,7 +13,7 @@ import { AppChooserSectionComponent } from './app-chooser-section/app-chooser-se
 import { HeaderMenuItemDirective } from './header-menu-item/header-menu-item.directive';
 import {
   HeaderMenuTriggerComponent,
-  SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER
+  SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER,
 } from './header-menu-trigger/header-menu-trigger.component';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { HeaderComponent } from './header/header.component';
@@ -27,22 +27,22 @@ import { HeaderComponent } from './header/header.component';
     IconCrossModule,
     IconChevronSmallDownModule,
     IconChevronSmallLeftModule,
-    IconChevronSmallUpModule
+    IconChevronSmallUpModule,
   ],
   declarations: [
     HeaderComponent,
     AppChooserSectionComponent,
     HeaderMenuComponent,
     HeaderMenuTriggerComponent,
-    HeaderMenuItemDirective
+    HeaderMenuItemDirective,
   ],
   exports: [
     HeaderComponent,
     AppChooserSectionComponent,
     HeaderMenuComponent,
     HeaderMenuTriggerComponent,
-    HeaderMenuItemDirective
+    HeaderMenuItemDirective,
   ],
-  providers: [SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER]
+  providers: [SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class HeaderModule {}

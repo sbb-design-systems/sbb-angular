@@ -7,7 +7,7 @@ import {
   Inject,
   Optional,
   Renderer2,
-  Self
+  Self,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
@@ -16,7 +16,7 @@ const REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/;
 const REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/;
 
 @Directive({
-  selector: 'input[sbbTimeInput]'
+  selector: 'input[sbbTimeInput]',
 })
 export class TimeInputDirective {
   private _document: Document;

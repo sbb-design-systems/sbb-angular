@@ -6,7 +6,7 @@ import {
   Input,
   OnInit,
   Optional,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { DialogHelperService } from '../dialog/dialog-helper.service';
@@ -21,10 +21,8 @@ import { Dialog } from '../dialog/dialog.service';
   selector: `sbb-dialog-footer, [sbbDialogFooter]`,
   styleUrls: ['./dialog-footer.component.css'],
   encapsulation: ViewEncapsulation.None,
-  template: `
-    <ng-content select="button"></ng-content>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  template: ` <ng-content select="button"></ng-content> `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogFooterComponent implements OnInit {
   /** Class attribute for the footer.  */

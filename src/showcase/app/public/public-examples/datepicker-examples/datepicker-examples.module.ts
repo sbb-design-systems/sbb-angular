@@ -14,7 +14,7 @@ const EXAMPLES = [
   DatepickerDateFilterExampleComponent,
   DatepickerMasterSlaveExampleComponent,
   DatepickerSimpleReactiveExampleComponent,
-  DatepickerStandaloneFormsExampleComponent
+  DatepickerStandaloneFormsExampleComponent,
 ];
 
 @NgModule({
@@ -24,9 +24,9 @@ const EXAMPLES = [
     ReactiveFormsModule,
     CheckboxModule,
     DatepickerModule,
-    FieldModule
+    FieldModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class DatepickerExamplesModule {}

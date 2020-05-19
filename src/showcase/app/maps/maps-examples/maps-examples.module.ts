@@ -11,11 +11,11 @@ const EXAMPLES = [
   EsriLayerListExamplesModule,
   EsriLegendExamplesModule,
   EsriWebMapExamplesModule,
-  EsriWebSceneExamplesModule
+  EsriWebSceneExamplesModule,
 ];
 
 @NgModule({
   imports: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class MapsExamplesModule {}

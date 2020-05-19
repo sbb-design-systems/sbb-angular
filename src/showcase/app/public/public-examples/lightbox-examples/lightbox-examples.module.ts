@@ -19,7 +19,7 @@ import {
   LightboxExampleExample5ContentComponent,
   LightboxExampleExample6ContentComponent,
   LightboxExampleExampleComponent,
-  LightboxExampleExampleContentComponent
+  LightboxExampleExampleContentComponent,
 } from './lightbox-example/lightbox-example.component';
 
 const EXAMPLES = [
@@ -33,7 +33,7 @@ const EXAMPLES = [
   LightboxExampleExample5ContentComponent,
   LightboxExampleExample6ContentComponent,
   LightboxExampleExampleComponent,
-  LightboxExampleExampleContentComponent
+  LightboxExampleExampleContentComponent,
 ];
 
 @NgModule({
@@ -46,9 +46,9 @@ const EXAMPLES = [
     FieldModule,
     LightboxModule,
     RadioButtonModule,
-    ButtonModule
+    ButtonModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class LightboxExamplesModule {}

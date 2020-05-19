@@ -18,7 +18,7 @@ import { TooltipComponent } from './tooltip.component';
     <sbb-tooltip #t1 trigger="hover">
       <p>Dies ist ein Tooltip mit einer Schaltfläche im Inneren.</p>
     </sbb-tooltip>
-  `
+  `,
 })
 class TooltipHoverTrueTestComponent {
   @ViewChild('t1', { static: true }) t1: TooltipComponent;
@@ -30,7 +30,7 @@ class TooltipHoverTrueTestComponent {
     <sbb-tooltip #t1 trigger="hover" hoverHideDelay="2000" hoverShowDelay="2000">
       <p>Dies ist ein Tooltip mit einer Schaltfläche im Inneren.</p>
     </sbb-tooltip>
-  `
+  `,
 })
 class TooltipHoverTrueAndDelaySettingsTestComponent {
   @ViewChild('t1', { static: true }) t1: TooltipComponent;
@@ -44,7 +44,7 @@ describe('TooltipComponent', () => {
     TestBed.configureTestingModule({
       imports: [IconQuestionMarkModule, IconCrossModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
-      declarations: [TooltipComponent]
+      declarations: [TooltipComponent],
     }).compileComponents();
   }));
 
@@ -71,7 +71,7 @@ describe('Tooltip using hover configuration with default delay', () => {
     TestBed.configureTestingModule({
       imports: [CommonModule, PortalModule, OverlayModule, TooltipModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
-      declarations: [TooltipHoverTrueTestComponent]
+      declarations: [TooltipHoverTrueTestComponent],
     }).compileComponents();
   }));
 
@@ -112,7 +112,7 @@ describe('Tooltip using hover configuration and delay settings for open and clos
     TestBed.configureTestingModule({
       imports: [CommonModule, PortalModule, OverlayModule, TooltipModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
-      declarations: [TooltipHoverTrueAndDelaySettingsTestComponent]
+      declarations: [TooltipHoverTrueAndDelaySettingsTestComponent],
     }).compileComponents();
   }));
 

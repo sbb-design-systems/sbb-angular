@@ -7,7 +7,7 @@ import {
   clearElement,
   dispatchFakeEvent,
   dispatchMouseEvent,
-  typeInElement
+  typeInElement,
 } from '@sbb-esta/angular-core/testing';
 import { FieldModule, FormErrorDirective } from '@sbb-esta/angular-public/field';
 
@@ -26,7 +26,7 @@ import { TextareaComponent } from './textarea.component';
       [readonly]="readonly"
       [disabled]="disabled"
     ></sbb-textarea>
-  `
+  `,
 })
 class TextareaTestComponent {
   required: boolean;
@@ -48,11 +48,11 @@ class TextareaTestComponent {
         >
       </sbb-field>
     </form>
-  `
+  `,
 })
 class TextareaSbbFieldTestComponent {
   form: FormGroup = new FormGroup({
-    textarea: new FormControl('SBB')
+    textarea: new FormControl('SBB'),
   });
 }
 
@@ -62,7 +62,7 @@ describe('TextareaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextareaModule]
+      imports: [TextareaModule],
     }).compileComponents();
   }));
 
@@ -85,7 +85,7 @@ describe('TextareaComponent behaviour', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TextareaModule, FormsModule],
-      declarations: [TextareaTestComponent]
+      declarations: [TextareaTestComponent],
     }).compileComponents();
   }));
 
@@ -128,7 +128,7 @@ describe('TextareaComponent behaviour', () => {
   it('should have a min length attribute', () => {
     component.minlength = 20;
     const textarea = innerComponent.query(
-      e => e.nativeElement.nodeName.toLowerCase() === 'textarea'
+      (e) => e.nativeElement.nodeName.toLowerCase() === 'textarea'
     );
     typeInElement(textarea.nativeElement, 'SBB');
     fixture.detectChanges();
@@ -194,7 +194,7 @@ describe('TextareaComponent digits counter', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextareaModule]
+      imports: [TextareaModule],
     }).compileComponents();
   }));
 
@@ -235,7 +235,7 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TextareaModule, ReactiveFormsModule, FormsModule, FieldModule],
-      declarations: [TextareaSbbFieldTestComponent]
+      declarations: [TextareaSbbFieldTestComponent],
     }).compileComponents();
   }));
 

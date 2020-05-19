@@ -15,7 +15,7 @@ import {
   Optional,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
@@ -30,12 +30,12 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ToggleOptionComponent),
-      multi: true
+      multi: true,
     },
-    { provide: RadioButton, useExisting: ToggleOptionComponent }
+    { provide: RadioButton, useExisting: ToggleOptionComponent },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ToggleOptionComponent extends RadioButton implements AfterViewInit {
   /** @docs-private */

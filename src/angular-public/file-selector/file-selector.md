@@ -43,7 +43,7 @@ const fileSelectorOptions: FileSelectorOptions = {
   accept: 'image/jpeg,video.mp4',
   multiple: true,
   multipleMode: 'persistent',
-  capture: 'user'
+  capture: 'user',
 };
 ```
 
@@ -52,7 +52,7 @@ Configure them in the providers section of your module:
 ```ts
 providers: [
   { provide: FILE_TYPES, useValue: fileCategories },
-  { provide: FILE_SELECTOR_OPTIONS, useValue: fileSelectorOptions }
+  { provide: FILE_SELECTOR_OPTIONS, useValue: fileSelectorOptions },
 ];
 ```
 

@@ -41,11 +41,11 @@ const modules = [
   IconChevronSmallUpModule,
   IconChevronSmallUpCircleModule,
   IconIncreaseSizeModule,
-  IconReduceSizeModule
+  IconReduceSizeModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionArrowModule {}

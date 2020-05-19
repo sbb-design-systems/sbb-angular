@@ -17,7 +17,7 @@ import { CoreComponent } from './core/core.component';
     SharedModule,
     ComponentViewerModule,
     TabsModule,
-    CoreRoutingModule
-  ]
+    CoreRoutingModule,
+  ],
 })
 export class CoreModule {}

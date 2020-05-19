@@ -12,7 +12,7 @@ import {
   Output,
   Renderer2,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -31,9 +31,9 @@ let counter = 0;
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => FileSelectorComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class FileSelectorComponent implements ControlValueAccessor, FileSelectorOptions {
   /**
@@ -159,6 +159,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   /**
    * Applies changes on sbb-file-selector.
    * @param files Files uploaded.
+   * @param action add or remove
    */
   applyChanges(files: File[], action: 'add' | 'remove' = 'add'): void {
     const filesToAdd = action === 'add' ? this._getFileListByMode(files) : files;
@@ -183,7 +184,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
    * @returns List of files without the file deleted.
    */
   removeFile(file: File): void {
-    const filteredList = this.filesList.filter(f => !this._checkFileEquality(f, file));
+    const filteredList = this.filesList.filter((f) => !this._checkFileEquality(f, file));
     this.applyChanges(filteredList, 'remove');
   }
 
@@ -195,8 +196,8 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   private _getFileListByMode(incomingFiles: File[]): File[] {
     if (this.multiple && this.multipleMode === 'persistent') {
       return incomingFiles
-        .filter(f => {
-          return this.filesList.findIndex(flItem => this._checkFileEquality(f, flItem)) === -1;
+        .filter((f) => {
+          return this.filesList.findIndex((flItem) => this._checkFileEquality(f, flItem)) === -1;
         })
         .concat(this.filesList);
     }

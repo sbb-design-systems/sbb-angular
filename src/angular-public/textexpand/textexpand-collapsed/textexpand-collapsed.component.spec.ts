@@ -8,7 +8,7 @@ describe('TextexpandCollapsedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextexpandCollapsedComponent]
+      declarations: [TextexpandCollapsedComponent],
     }).compileComponents();
   }));
 

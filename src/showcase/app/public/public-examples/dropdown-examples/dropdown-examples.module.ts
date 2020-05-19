@@ -12,6 +12,6 @@ const EXAMPLES = [DropdownExampleComponent];
 @NgModule({
   imports: [CommonModule, RouterModule, IconUserModule, DropdownModule, ButtonModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class DropdownExamplesModule {}

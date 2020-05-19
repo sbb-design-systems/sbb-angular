@@ -9,8 +9,8 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "icons",
     srcs = [
-        "icons.module.ts",
         "icons-routing.module.ts",
+        "icons.module.ts",
         "icons/icons.component.ts",
     ],
     assets = [

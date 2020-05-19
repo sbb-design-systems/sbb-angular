@@ -19,7 +19,7 @@ import { PublicComponent } from './public/public.component';
     SharedModule,
     ComponentViewerModule,
     TabsModule,
-    PublicRoutingModule
-  ]
+    PublicRoutingModule,
+  ],
 })
 export class PublicModule {}

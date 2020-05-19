@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-location',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconLocationPinSurroundingAreaSmall {}
 
 @Component({
   selector: 'sbb-icon-location-pin-surrounding-area-small',
-  template: `
-    <svg sbbIconLocationPinSurroundingAreaSmall></svg>
-  `,
+  template: ` <svg sbbIconLocationPinSurroundingAreaSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconLocationPinSurroundingAreaSmall {}
 
 @NgModule({
   declarations: [SvgIconLocationPinSurroundingAreaSmall, IconLocationPinSurroundingAreaSmall],
-  exports: [SvgIconLocationPinSurroundingAreaSmall, IconLocationPinSurroundingAreaSmall]
+  exports: [SvgIconLocationPinSurroundingAreaSmall, IconLocationPinSurroundingAreaSmall],
 })
 export class IconLocationPinSurroundingAreaSmallModule {}

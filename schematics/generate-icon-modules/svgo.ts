@@ -42,8 +42,8 @@ export class Svgo {
           { convertShapeToPath: true },
           { sortAttrs: true },
           { removeDimensions: true },
-          { removeAttrs: { attrs: '(font-family)' } }
-        ]
+          { removeAttrs: { attrs: '(font-family)' } },
+        ],
       });
     } catch {
       throw new SchematicsException(

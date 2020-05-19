@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-checkbox-panel-example',
   templateUrl: './checkbox-panel-example.component.html',
-  styleUrls: ['./checkbox-panel-example.component.css']
+  styleUrls: ['./checkbox-panel-example.component.css'],
 })
 export class CheckboxPanelExampleComponent {
   required2: boolean;
@@ -15,17 +15,17 @@ export class CheckboxPanelExampleComponent {
     {
       name: 'Check 1',
       value: 'value1',
-      selected: true
+      selected: true,
     },
     {
       name: 'Check 2',
       value: 'value2',
-      selected: false
+      selected: false,
     },
     {
       name: 'Check 3',
       value: 'value3',
-      selected: false
-    }
+      selected: false,
+    },
   ];
 }

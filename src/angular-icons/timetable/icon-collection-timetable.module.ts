@@ -45,11 +45,11 @@ const modules = [
   IconWheelchairInaccessibleModule,
   IconWheelchairPartiallyModule,
   IconWheelchairReservationModule,
-  IconWheelchairUncertainModule
+  IconWheelchairUncertainModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionTimetableModule {}

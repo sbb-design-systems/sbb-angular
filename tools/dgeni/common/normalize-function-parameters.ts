@@ -1,7 +1,7 @@
 import { ApiDoc } from 'dgeni-packages/typescript/api-doc-types/ApiDoc';
 import {
   ParameterContainer,
-  ParamTag
+  ParamTag,
 } from 'dgeni-packages/typescript/api-doc-types/ParameterContainer';
 
 export interface NormalizedFunctionParameters {
@@ -31,7 +31,7 @@ export type DefaultFunctionDoc = NormalizedFunctionParameters & ParameterContain
  */
 export function normalizeFunctionParameters(doc: DefaultFunctionDoc) {
   if (doc.parameters) {
-    doc.parameters.forEach(parameter => {
+    doc.parameters.forEach((parameter) => {
       let [parameterName, parameterType] = parameter.split(':');
 
       // If the parameter is optional, the name here will contain a '?'. We store whether the
@@ -52,14 +52,14 @@ export function normalizeFunctionParameters(doc: DefaultFunctionDoc) {
         return;
       }
 
-      const existingParameterInfo = doc.params.find(p => p.name == parameterName);
+      const existingParameterInfo = doc.params.find((p) => p.name == parameterName);
 
       if (!existingParameterInfo) {
         doc.params.push({
           name: parameterName,
           type: parameterType.trim(),
           isOptional: isOptional,
-          description: ''
+          description: '',
         });
       } else {
         existingParameterInfo.type = parameterType.trim();

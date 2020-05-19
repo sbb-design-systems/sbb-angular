@@ -12,7 +12,7 @@ describe('BreadcrumbComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BreadcrumbComponent],
-      imports: [CommonModule, DropdownModule, IconChevronRightModule, IconChevronSmallDownModule]
+      imports: [CommonModule, DropdownModule, IconChevronRightModule, IconChevronSmallDownModule],
     }).compileComponents();
   }));
 

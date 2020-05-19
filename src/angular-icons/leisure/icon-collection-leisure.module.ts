@@ -39,11 +39,11 @@ const modules = [
   IconSoccerBallModule,
   IconThreeAdultsModule,
   IconTrainSkiModule,
-  IconTwoAdultsKidModule
+  IconTwoAdultsKidModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionLeisureModule {}

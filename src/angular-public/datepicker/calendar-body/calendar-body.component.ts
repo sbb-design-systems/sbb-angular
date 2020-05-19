@@ -9,7 +9,7 @@ import {
   NgZone,
   Optional,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 import { first } from 'rxjs/operators';
@@ -34,7 +34,7 @@ export class CalendarCell {
   templateUrl: './calendar-body.component.html',
   exportAs: 'sbbCalendarBody',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarBodyComponent {
   @HostBinding('attr.role') role = 'grid';

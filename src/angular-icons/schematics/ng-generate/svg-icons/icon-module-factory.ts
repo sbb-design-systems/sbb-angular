@@ -16,7 +16,7 @@ export class IconModuleFactory {
 
   async createIconModules() {
     const root = dirname(this._registryFileEntry.path);
-    const iconFactories = Object.keys(this._registry).map(async f => {
+    const iconFactories = Object.keys(this._registry).map(async (f) => {
       const path = join(root, f);
       const svgContent = this._readSvgContent(path);
       const width = this._determineWidth(svgContent, path);

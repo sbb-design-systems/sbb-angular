@@ -1,25 +1,21 @@
 <form [formGroup]="form">
-  <div>
-    <sbb-field mode="long">
-      <sbb-label>Lieblingsessen</sbb-label>
-      <sbb-select placeholder="Lieblingsessen" formControlName="value" multiple>
-        <sbb-option
-          *ngFor="let food of ['Beefsteak', 'Pizza', 'Nudeln']; first as isFirst"
-          [disabled]="isFirst && form.get('optionDisabled')?.value"
-          [value]="food"
-        >
-          {{ food }}
-        </sbb-option>
-      </sbb-select>
-    </sbb-field>
-  </div>
-  <div>
-    <h4>Properties</h4>
-    <pre>{{ form.get('value')?.value | json }}</pre>
-    <sbb-checkbox
-      (change)="$event.checked ? form.get('value')?.disable() : form.get('value')?.enable()"
-      >disabled</sbb-checkbox
-    >
-    <sbb-checkbox formControlName="optionDisabled">first option disabled</sbb-checkbox>
-  </div>
+  <sbb-field mode="long">
+    <sbb-label>Favourite meal</sbb-label>
+    <sbb-select placeholder="Favourite meal" formControlName="value" multiple>
+      <sbb-option
+        *ngFor="let food of ['Beefsteak', 'Pizza', 'Pasta']; first as isFirst"
+        [disabled]="isFirst && form.get('optionDisabled')?.value"
+        [value]="food"
+      >
+        {{ food }}
+      </sbb-option>
+    </sbb-select>
+  </sbb-field>
+  <h4>Properties</h4>
+  <pre>{{ form.get('value')?.value | json }}</pre>
+  <sbb-checkbox
+    (change)="$event.checked ? form.get('value')?.disable() : form.get('value')?.enable()"
+    >Disabled
+  </sbb-checkbox>
+  <sbb-checkbox formControlName="optionDisabled">First option disabled</sbb-checkbox>
 </form>

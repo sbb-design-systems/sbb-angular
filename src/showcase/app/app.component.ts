@@ -9,7 +9,7 @@ import { angularVersion, libraryVersion } from './versions';
   selector: 'sbb-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [ROUTER_ANIMATION]
+  animations: [ROUTER_ANIMATION],
 })
 export class AppComponent {
   @HostBinding('class.menu-push') showMenu = false;

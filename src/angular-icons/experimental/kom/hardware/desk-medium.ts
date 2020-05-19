@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 @Component({
   selector: 'svg[sbbIconDeskMedium]',
-  template: `
-    <svg:path fill="none" stroke="#000" d="M5.25 31.5V15.75h25.5V31.5m0-12.75H5.25" />
-  `,
+  template: ` <svg:path fill="none" stroke="#000" d="M5.25 31.5V15.75h25.5V31.5m0-12.75H5.25" /> `,
   styles: [
     `
       :host-context(.sbb-icon-fixed-size) {
@@ -19,32 +17,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-hardware',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconDeskMedium {}
 
 @Component({
   selector: 'sbb-icon-desk-medium',
-  template: `
-    <svg sbbIconDeskMedium></svg>
-  `,
+  template: ` <svg sbbIconDeskMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconDeskMedium {}
 
 @NgModule({
   declarations: [SvgIconDeskMedium, IconDeskMedium],
-  exports: [SvgIconDeskMedium, IconDeskMedium]
+  exports: [SvgIconDeskMedium, IconDeskMedium],
 })
 export class IconDeskMediumModule {}

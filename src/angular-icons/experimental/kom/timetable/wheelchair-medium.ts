@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-timetable',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconWheelchairMedium {}
 
 @Component({
   selector: 'sbb-icon-wheelchair-medium',
-  template: `
-    <svg sbbIconWheelchairMedium></svg>
-  `,
+  template: ` <svg sbbIconWheelchairMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconWheelchairMedium {}
 
 @NgModule({
   declarations: [SvgIconWheelchairMedium, IconWheelchairMedium],
-  exports: [SvgIconWheelchairMedium, IconWheelchairMedium]
+  exports: [SvgIconWheelchairMedium, IconWheelchairMedium],
 })
 export class IconWheelchairMediumModule {}

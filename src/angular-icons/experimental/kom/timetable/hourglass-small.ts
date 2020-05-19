@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-timetable',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconHourglassSmall {}
 
 @Component({
   selector: 'sbb-icon-hourglass-small',
-  template: `
-    <svg sbbIconHourglassSmall></svg>
-  `,
+  template: ` <svg sbbIconHourglassSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconHourglassSmall {}
 
 @NgModule({
   declarations: [SvgIconHourglassSmall, IconHourglassSmall],
-  exports: [SvgIconHourglassSmall, IconHourglassSmall]
+  exports: [SvgIconHourglassSmall, IconHourglassSmall],
 })
 export class IconHourglassSmallModule {}

@@ -3,7 +3,7 @@ import {
   Component,
   HostBinding,
   Input,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 @Component({
@@ -12,7 +12,7 @@ import {
   templateUrl: './social-link.component.html',
   styleUrls: ['./social-link.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class SocialLinkComponent {
   /** @docs-private */

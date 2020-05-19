@@ -10,6 +10,6 @@ const EXAMPLES = [SkippableProcessflowExampleComponent];
 @NgModule({
   imports: [CommonModule, ProcessflowModule, ButtonModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class ProcessflowExamplesModule {}

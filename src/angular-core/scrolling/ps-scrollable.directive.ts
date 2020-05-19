@@ -12,7 +12,7 @@ import { merge, Observable } from 'rxjs';
 @Directive({
   // tslint:disable-next-line: directive-selector
   selector: '[perfectScrollbar]',
-  providers: [{ provide: CdkScrollable, useExisting: PsDirectiveScrollable }]
+  providers: [{ provide: CdkScrollable, useExisting: PsDirectiveScrollable }],
 })
 // tslint:disable-next-line: directive-class-suffix
 export class PsDirectiveScrollable extends CdkScrollable implements OnDestroy {
@@ -40,7 +40,7 @@ export class PsDirectiveScrollable extends CdkScrollable implements OnDestroy {
 @Directive({
   // tslint:disable-next-line: directive-selector
   selector: 'perfect-scrollbar',
-  providers: [{ provide: CdkScrollable, useExisting: PsComponentScrollable }]
+  providers: [{ provide: CdkScrollable, useExisting: PsComponentScrollable }],
 })
 // tslint:disable-next-line: directive-class-suffix
 export class PsComponentScrollable extends CdkScrollable {

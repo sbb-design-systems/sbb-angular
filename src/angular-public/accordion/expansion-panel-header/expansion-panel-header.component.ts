@@ -1,5 +1,6 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
+import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -8,8 +9,9 @@ import {
   Host,
   HostBinding,
   HostListener,
+  Inject,
   OnDestroy,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -26,7 +28,7 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
   styleUrls: ['./expansion-panel-header.component.css'],
   templateUrl: './expansion-panel-header.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption {
   /**
@@ -59,6 +61,8 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
 
   private _parentChangeSubscription = Subscription.EMPTY;
 
+  private _document: Document;
+
   constructor(
     /**
      * Class property that refers to the ExpansionPanelComponent.
@@ -66,10 +70,11 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
     @Host() public panel: ExpansionPanelComponent,
     private _element: ElementRef,
     private _focusMonitor: FocusMonitor,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Inject(DOCUMENT) document?: any
   ) {
     const accordionHideToggleChange = panel.accordion
-      ? panel.accordion._stateChanges.pipe(filter(changes => !!changes.hideToggle))
+      ? panel.accordion._stateChanges.pipe(filter((changes) => !!changes.hideToggle))
       : EMPTY;
 
     // Since the toggle state depends on an @Input on the panel, we
@@ -78,7 +83,7 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
       panel.opened,
       panel.closed,
       accordionHideToggleChange,
-      panel._inputChanges.pipe(filter(changes => !!(changes.hideToggle || changes.disabled)))
+      panel._inputChanges.pipe(filter((changes) => !!(changes.hideToggle || changes.disabled)))
     ).subscribe(() => this._changeDetectorRef.markForCheck());
 
     // Avoids focus being lost if the panel contained the focused element and was closed.
@@ -86,11 +91,13 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
       .pipe(filter(() => panel.containsFocus()))
       .subscribe(() => _focusMonitor.focusVia(_element.nativeElement, 'program'));
 
-    _focusMonitor.monitor(_element.nativeElement).subscribe(origin => {
+    _focusMonitor.monitor(_element.nativeElement).subscribe((origin) => {
       if (origin && panel.accordion) {
         panel.accordion.handleHeaderFocus(this);
       }
     });
+
+    this._document = document;
   }
 
   /**
@@ -144,8 +151,10 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
       // Toggle for space and enter keys.
       case SPACE:
       case ENTER:
-        event.preventDefault();
-        this.toggle();
+        if (this._isFocused()) {
+          event.preventDefault();
+          this.toggle();
+        }
         break;
       default:
         if (this.panel.accordion) {
@@ -168,5 +177,9 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
   ngOnDestroy() {
     this._parentChangeSubscription.unsubscribe();
     this._focusMonitor.stopMonitoring(this._element.nativeElement);
+  }
+
+  private _isFocused() {
+    return this._document?.activeElement === this._element.nativeElement;
   }
 }

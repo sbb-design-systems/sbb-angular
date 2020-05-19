@@ -23,11 +23,11 @@ const modules = [
   IconLocationPinPulseSurroundingAreaModule,
   IconLocationPinSurroundingAreaModule,
   IconMountainMinusModule,
-  IconMountainPlusModule
+  IconMountainPlusModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionLocationModule {}

@@ -10,6 +10,6 @@ import { SubmenuComponent } from './submenu/submenu.component';
 @NgModule({
   declarations: [SubmenuComponent, MarkdownViewerComponent, ApiViewerComponent],
   imports: [CommonModule, PortalModule, TabsModule],
-  exports: [SubmenuComponent, MarkdownViewerComponent, ApiViewerComponent]
+  exports: [SubmenuComponent, MarkdownViewerComponent, ApiViewerComponent],
 })
 export class SharedModule {}

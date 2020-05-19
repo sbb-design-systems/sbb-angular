@@ -22,7 +22,7 @@ const INTERNAL_METHODS = [
   'constructor',
 
   // tabIndex exists on all elements, no need to document it
-  'tabIndex'
+  'tabIndex',
 ];
 
 /** Checks whether the given API document is public. */

@@ -13,7 +13,7 @@ export class DocsPrivateFilter implements Processor {
   $runAfter = ['mergeInheritedProperties'];
 
   $process(docs: DocCollection) {
-    return docs.filter(doc => {
+    return docs.filter((doc) => {
       const isPublic = isPublicDoc(doc);
 
       // Update the API document name in case the "@docs-public" tag is used
@@ -28,7 +28,7 @@ export class DocsPrivateFilter implements Processor {
       // Filter out private class members which could be annotated
       // with the "@docs-private" tag.
       if (isPublic && doc instanceof ClassExportDoc) {
-        doc.members = doc.members.filter(memberDoc => isPublicDoc(memberDoc));
+        doc.members = doc.members.filter((memberDoc) => isPublicDoc(memberDoc));
       }
 
       return isPublic;

@@ -42,7 +42,7 @@ export abstract class IconBase {
 
     this._inputWidth = this._coerceDimensionValue(value);
     if (!this._inputHeight && !value.endsWith('%')) {
-      this._inputHeight = this._resolveInput(value, v => v / this._dimension.ratio);
+      this._inputHeight = this._resolveInput(value, (v) => v / this._dimension.ratio);
     }
   }
   /**
@@ -60,7 +60,7 @@ export abstract class IconBase {
     }
     this._inputHeight = this._coerceDimensionValue(value);
     if (!this._inputWidth && !value.endsWith('%')) {
-      this._inputWidth = this._resolveInput(value, v => v * this._dimension.ratio);
+      this._inputWidth = this._resolveInput(value, (v) => v * this._dimension.ratio);
     }
   }
   /**

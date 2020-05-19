@@ -10,7 +10,6 @@ export interface Person {
 @Component({
   selector: 'sbb-tabs-example',
   templateUrl: './tabs-example.component.html',
-  styleUrls: ['./tabs-example.component.css']
 })
 export class TabsExampleComponent implements OnInit {
   @ViewChild('tabs', { static: true }) tabsComponent: TabsComponent;
@@ -35,7 +34,7 @@ export class TabsExampleComponent implements OnInit {
     { name: 'Veronika', surname: 'Schmidt' },
     { name: 'Petra', surname: 'Ivanov' },
     { name: 'Alexandra', surname: 'Maurer' },
-    { name: 'Adriana', surname: 'Lima' }
+    { name: 'Adriana', surname: 'Lima' },
   ];
 
   ngOnInit() {
@@ -50,7 +49,7 @@ export class TabsExampleComponent implements OnInit {
         this.person.push({
           id: counter,
           name: item.name,
-          surname: item.surname
+          surname: item.surname,
         });
       }
     }
@@ -66,8 +65,8 @@ export class TabsExampleComponent implements OnInit {
 
   openPrevTabByTabIdOrDefault(tabId: string) {
     const tabsArray = this.tabsComponent.tabs.toArray();
-    const activeTab = tabsArray.findIndex(currTab => currTab.active);
-    const selectedTabIndex = tabsArray.findIndex(tab => tab.id === tabId);
+    const activeTab = tabsArray.findIndex((currTab) => currTab.active);
+    const selectedTabIndex = tabsArray.findIndex((tab) => tab.id === tabId);
 
     if (activeTab === selectedTabIndex) {
       if (selectedTabIndex > 0) {

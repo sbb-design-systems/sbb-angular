@@ -9,7 +9,7 @@ import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
  * Service in charge to add/delete ghettoboxes from/to the container
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GhettoboxService {
   /**

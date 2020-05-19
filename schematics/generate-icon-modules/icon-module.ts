@@ -8,12 +8,12 @@ export class IconModule {
   readonly modules: string[];
   get sizes() {
     return this._files
-      .map(f => f.size)
-      .filter(s => !!s)
+      .map((f) => f.size)
+      .filter((s) => !!s)
       .sort();
   }
   get meta() {
-    return this._files.map(f => f.filepath);
+    return this._files.map((f) => f.filepath);
   }
   private _files: SvgFile[];
 
@@ -31,12 +31,12 @@ export class IconModule {
           ...strings,
           iconBaseImport,
           ...this._files[0],
-          ...(this._files.some(f => ['large', 'medium', 'small'].includes(f.size))
+          ...(this._files.some((f) => ['large', 'medium', 'small'].includes(f.size))
             ? { width: '24px', height: '24px', ratio: 1 }
             : undefined),
-          ...(this._files.length > 1 ? { template: this._mergeTemplates() } : undefined)
+          ...(this._files.length > 1 ? { template: this._mergeTemplates() } : undefined),
         }),
-        move(directory.path)
+        move(directory.path),
       ])
     );
   }

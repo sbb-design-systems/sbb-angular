@@ -19,10 +19,10 @@ import { TooltipComponent } from './tooltip/tooltip.component';
     OverlayModule,
     IconQuestionMarkModule,
     IconCrossModule,
-    IconDirectiveModule
+    IconDirectiveModule,
   ],
   providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
   exports: [TooltipComponent, IconDirectiveModule, Tooltip, TooltipContainerComponent],
-  entryComponents: [TooltipContainerComponent]
+  entryComponents: [TooltipContainerComponent],
 })
 export class TooltipModule {}

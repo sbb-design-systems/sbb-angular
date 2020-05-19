@@ -9,7 +9,7 @@ describe('MixinHasInitialized', () => {
     instance = new classWithHasInitialized();
   });
 
-  it('should emit for subscriptions made before the directive was marked as initialized', done => {
+  it('should emit for subscriptions made before the directive was marked as initialized', (done) => {
     // Listen for an event from the initialized stream and mark the test as done when it emits.
     instance.initialized.subscribe(() => done());
 
@@ -17,7 +17,7 @@ describe('MixinHasInitialized', () => {
     instance._markInitialized();
   });
 
-  it('should emit for subscriptions made after the directive was marked as initialized', done => {
+  it('should emit for subscriptions made after the directive was marked as initialized', (done) => {
     // Mark the class as initialized so the stream emits when subscribed and the test completes.
     instance._markInitialized();
 
@@ -25,7 +25,7 @@ describe('MixinHasInitialized', () => {
     instance.initialized.subscribe(() => done());
   });
 
-  it('should emit for multiple subscriptions made before and after marked as initialized', done => {
+  it('should emit for multiple subscriptions made before and after marked as initialized', (done) => {
     // Should expect the number of notifications to match the number of subscriptions.
     const expectedNotificationCount = 4;
     let currentNotificationCount = 0;

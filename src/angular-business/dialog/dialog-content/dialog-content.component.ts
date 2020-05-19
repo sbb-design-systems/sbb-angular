@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } fr
   styleUrls: ['./dialog-content.component.css'],
   encapsulation: ViewEncapsulation.None,
   template: '<ng-content></ng-content>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogContentComponent {
   /** Class attribute for dialog content */

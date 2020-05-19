@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { SbbTableDataSource } from '@sbb-esta/angular-business/table';
 
-import { TABLE_EXAMPLE_DATA_SIMPLE } from '../table-example-data';
-
 @Component({
   selector: 'sbb-table-simple-example',
-  templateUrl: './simple-table-example.component.html'
+  templateUrl: './simple-table-example.component.html',
 })
 export class SimpleTableExampleComponent {
   displayedColumns: string[] = [
@@ -13,7 +11,24 @@ export class SimpleTableExampleComponent {
     'columnTwo',
     'columnThree',
     'columnFour',
-    'columnFive'
+    'columnFive',
   ];
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA_SIMPLE);
 }
+
+const TABLE_EXAMPLE_DATA_SIMPLE = [
+  {
+    columnOne: 'columnOne',
+    columnTwo: 'columnTwo',
+    columnThree: 'columnThree',
+    columnFour: 'columnFour',
+    columnFive: 'columnFive',
+  },
+  {
+    columnOne: 'columnOne',
+    columnTwo: 'columnTwo',
+    columnThree: 'columnThree',
+    columnFour: 'columnFour',
+    columnFive: 'columnFive',
+  },
+];

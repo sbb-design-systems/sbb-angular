@@ -18,7 +18,7 @@ const EXAMPLES = [
   SelectNativeExampleComponent,
   SelectOptionGroupsMultiSelectionExampleComponent,
   SelectOptionGroupsExampleComponent,
-  SelectReactiveFormsExampleComponent
+  SelectReactiveFormsExampleComponent,
 ];
 
 @NgModule({
@@ -28,9 +28,9 @@ const EXAMPLES = [
     ReactiveFormsModule,
     CheckboxModule,
     FieldModule,
-    SelectModule
+    SelectModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class SelectExamplesModule {}

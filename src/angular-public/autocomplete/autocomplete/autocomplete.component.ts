@@ -14,13 +14,13 @@ import {
   QueryList,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   HasOptions,
   OptionComponent,
   OptionGroupComponent,
-  SBB_OPTION_PARENT_COMPONENT
+  SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular-public/option';
 
 /**
@@ -55,17 +55,11 @@ export interface SbbAutocompleteDefaultOptions {
   providers: [
     {
       provide: SBB_OPTION_PARENT_COMPONENT,
-      useExisting: AutocompleteComponent
-    }
-  ]
+      useExisting: AutocompleteComponent,
+    },
+  ],
 })
 export class AutocompleteComponent implements AfterContentInit, HasOptions {
-  /** All of the defined select options. */
-  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
-
-  /** All of the defined groups of options. */
-  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
-
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<OptionComponent>;
 
@@ -94,8 +88,23 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   /** Element for the panel containing the autocomplete options. */
   @ViewChild('panel') panel: ElementRef;
 
+  /** All of the defined select options. */
+  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
+
+  /** All of the defined groups of options. */
+  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
+
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
+
+  /**
+   * Function which normalizes input values to highlight them in options.
+   * E.g. If your function is <code>(value: string) => value.replace(new RegExp('[ö]', 'i'), 'o')</code>
+   * and you search for 'Faroer', an option like 'Faröer' will be highlighted.
+   * IMPORTANT: The provided function MAY NOT change the order of the characters or the length of the string.
+   * (e.g. changing `ä` to `ae` would break the highlighting function)
+   */
+  @Input() localeNormalizer: ((value: string) => string) | null = null;
 
   /**
    * Whether the first option should be highlighted when the autocomplete panel is opened.
@@ -133,9 +142,16 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   @Input('class')
   set classList(value: string) {
     if (value && value.length) {
-      value.split(' ').forEach(className => (this._classList[className.trim()] = true));
-      this._elementRef.nativeElement.className = '';
+      this._classList = value.split(' ').reduce((classList, className) => {
+        classList[className.trim()] = true;
+        return classList;
+      }, {} as { [key: string]: boolean });
+    } else {
+      this._classList = {};
     }
+
+    this._setVisibilityClasses(this._classList);
+    this._elementRef.nativeElement.className = '';
   }
   _classList: { [key: string]: boolean } = {};
 
@@ -171,8 +187,7 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   /** Panel should hide itself when the option list is empty. */
   setVisibility() {
     this.showPanel = !!this.options.length;
-    this._classList['sbb-autocomplete-visible'] = this.showPanel;
-    this._classList['sbb-autocomplete-hidden'] = !this.showPanel;
+    this._setVisibilityClasses(this._classList);
     this._changeDetectorRef.markForCheck();
   }
 
@@ -180,6 +195,12 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   emitSelectEvent(option: OptionComponent): void {
     const event = new SbbAutocompleteSelectedEvent(this, option);
     this.optionSelected.emit(event);
+  }
+
+  /** Sets the autocomplete visibility classes on a classlist based on the panel is visible. */
+  private _setVisibilityClasses(classList: { [key: string]: boolean }) {
+    classList['sbb-autocomplete-visible'] = this.showPanel;
+    classList['sbb-autocomplete-hidden'] = !this.showPanel;
   }
 
   // tslint:disable: member-ordering

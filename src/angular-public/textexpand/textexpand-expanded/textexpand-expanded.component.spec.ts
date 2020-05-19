@@ -8,7 +8,7 @@ describe('TextexpandExpandedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextexpandExpandedComponent]
+      declarations: [TextexpandExpandedComponent],
     }).compileComponents();
   }));
 

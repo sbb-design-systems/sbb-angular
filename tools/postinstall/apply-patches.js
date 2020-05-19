@@ -192,13 +192,13 @@ shelljs.rm('-rf', [
   'node_modules/rxjs/Subject.*',
   'node_modules/rxjs/SubjectSubscription.*',
   'node_modules/rxjs/Subscriber.*',
-  'node_modules/rxjs/Subscription.*'
+  'node_modules/rxjs/Subscription.*',
 ]);
 
 // Apply all collected patches on a per-file basis. This is necessary because
 // multiple edits might apply to the same file, and we only want to mark a given
 // file as patched once all edits have been made.
-Object.keys(PATCHES_PER_FILE).forEach(filePath => {
+Object.keys(PATCHES_PER_FILE).forEach((filePath) => {
   if (hasFileBeenPatched(filePath)) {
     console.info('File ' + filePath + ' is already patched. Skipping..');
     return;
@@ -208,7 +208,7 @@ Object.keys(PATCHES_PER_FILE).forEach(filePath => {
   const patchFunctions = PATCHES_PER_FILE[filePath];
 
   console.info(`Patching file ${filePath} with ${patchFunctions.length} edits..`);
-  patchFunctions.forEach(patchFn => (content = patchFn(content)));
+  patchFunctions.forEach((patchFn) => (content = patchFn(content)));
 
   fs.writeFileSync(filePath, content, 'utf8');
   writePatchMarker(filePath);
@@ -243,7 +243,7 @@ function searchAndReplace(search, replacement, relativeFilePath) {
   const filePath = path.join(projectDir, relativeFilePath);
   const fileEdits = PATCHES_PER_FILE[filePath] || (PATCHES_PER_FILE[filePath] = []);
 
-  fileEdits.push(originalContent => {
+  fileEdits.push((originalContent) => {
     const newFileContent = originalContent.replace(search, replacement);
     if (originalContent === newFileContent) {
       throw Error(`Could not perform replacement in: ${filePath}.`);
@@ -262,9 +262,6 @@ function hasFileBeenPatched(filePath) {
   const markerFilePath = `${filePath}.patch_marker`;
   return (
     shelljs.test('-e', markerFilePath) &&
-    shelljs
-      .cat(markerFilePath)
-      .toString()
-      .trim() === `${PATCH_VERSION}`
+    shelljs.cat(markerFilePath).toString().trim() === `${PATCH_VERSION}`
   );
 }

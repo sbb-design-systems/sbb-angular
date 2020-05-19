@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-arrow',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconChevronSmallUpCircleMedium {}
 
 @Component({
   selector: 'sbb-icon-chevron-small-up-circle-medium',
-  template: `
-    <svg sbbIconChevronSmallUpCircleMedium></svg>
-  `,
+  template: ` <svg sbbIconChevronSmallUpCircleMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconChevronSmallUpCircleMedium {}
 
 @NgModule({
   declarations: [SvgIconChevronSmallUpCircleMedium, IconChevronSmallUpCircleMedium],
-  exports: [SvgIconChevronSmallUpCircleMedium, IconChevronSmallUpCircleMedium]
+  exports: [SvgIconChevronSmallUpCircleMedium, IconChevronSmallUpCircleMedium],
 })
 export class IconChevronSmallUpCircleMediumModule {}

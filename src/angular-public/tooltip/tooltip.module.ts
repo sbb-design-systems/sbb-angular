@@ -17,9 +17,9 @@ import { TooltipComponent } from './tooltip/tooltip.component';
     OverlayModule,
     IconQuestionMarkModule,
     IconCrossModule,
-    IconDirectiveModule
+    IconDirectiveModule,
   ],
   providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
-  exports: [TooltipComponent, IconDirectiveModule]
+  exports: [TooltipComponent, IconDirectiveModule],
 })
 export class TooltipModule {}

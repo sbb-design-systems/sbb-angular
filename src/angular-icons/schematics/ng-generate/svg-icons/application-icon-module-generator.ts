@@ -9,7 +9,7 @@ import {
   SchematicsException,
   template,
   Tree,
-  url
+  url,
 } from '@angular-devkit/schematics';
 
 import { IconModule } from './icon-module';
@@ -38,24 +38,24 @@ export class ApplicationIconModuleGenerator {
   protected _generateCollection(collection: IconModuleCollection, targetDir: Path): Rule[] {
     return [
       this._generateIcons(collection.icons, targetDir),
-      ...this._generateCollections(collection.collections, targetDir)
+      ...this._generateCollections(collection.collections, targetDir),
     ];
   }
 
   protected _generateIcons(icons: IconModule[], targetDir: Path): Rule {
     return chain(
-      icons.map(i =>
+      icons.map((i) =>
         mergeWith(
           apply(url('./files/icon'), [
             template({
               ...strings,
               ...i,
               prefix: this._prefix,
-              cssClasses: i.collections.map(c => `${this._prefix}-icon-${c}`).join(' '),
+              cssClasses: i.collections.map((c) => `${this._prefix}-icon-${c}`).join(' '),
               template: this._extractTemplate(i),
-              attributes: this._extractAttributes(i)
+              attributes: this._extractAttributes(i),
             }),
-            move(targetDir)
+            move(targetDir),
           ])
         )
       )
@@ -93,11 +93,11 @@ export class ApplicationIconModuleGenerator {
       return [];
     }
 
-    return attributesMatch.map(m => {
+    return attributesMatch.map((m) => {
       const index = m.indexOf('=');
       return {
         key: m.substring(0, index),
-        value: m.substring(index + 2, m.length - 1)
+        value: m.substring(index + 2, m.length - 1),
       };
     });
   }

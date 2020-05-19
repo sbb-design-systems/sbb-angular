@@ -19,9 +19,7 @@ function getBazelActionArguments() {
   // If Bazel uses a parameter file, we've specified that it passes the file in the following
   // format: "arg0 arg1 --param-file={path_to_param_file}"
   if (args[0].startsWith('--param-file=')) {
-    return readFileSync(args[0].split('=')[1], 'utf8')
-      .trim()
-      .split('\n');
+    return readFileSync(args[0].split('=')[1], 'utf8').trim().split('\n');
   }
 
   return args;
@@ -30,7 +28,7 @@ function getBazelActionArguments() {
 if (require.main === module) {
   // Process all file pairs that have been passed to this executable. Each argument will
   // consist of the input file path and the desired output location.
-  getBazelActionArguments().forEach(argument => {
+  getBazelActionArguments().forEach((argument) => {
     // Each argument that has been passed consists of an input file path and the expected
     // output path. e.g. {path_to_input_file},{expected_output_path}
     const [inputFilePath, outputPath] = argument.split(',', 2);

@@ -26,7 +26,7 @@ import { GhettoboxComponent } from './ghettobox.component';
       This is a simple link text with custom icon
     </sbb-ghettobox>
   `,
-  entryComponents: [GhettoboxComponent]
+  entryComponents: [GhettoboxComponent],
 })
 export class GhettoboxTestComponent {
   afterDelete() {}
@@ -44,9 +44,9 @@ describe('GhettoboxComponent', () => {
         IconCrossModule,
         IconArrowRightModule,
         IconHimInfoModule,
-        IconDirectiveModule
+        IconDirectiveModule,
       ],
-      declarations: [GhettoboxTestComponent, GhettoboxComponent]
+      declarations: [GhettoboxTestComponent, GhettoboxComponent],
     }).compileComponents();
   }));
 

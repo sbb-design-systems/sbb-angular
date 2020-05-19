@@ -7,7 +7,7 @@ import {
   Observable,
   of as observableOf,
   Subject,
-  Subscription
+  Subscription,
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -286,7 +286,9 @@ export class SbbTableDataSource<
     );
     // Watched for paged data changes and send the result to the table to render.
     this._renderChangesSubscription.unsubscribe();
-    this._renderChangesSubscription = paginatedData.subscribe(data => this._renderData.next(data));
+    this._renderChangesSubscription = paginatedData.subscribe((data) =>
+      this._renderData.next(data)
+    );
   }
 
   /**
@@ -300,7 +302,7 @@ export class SbbTableDataSource<
     // May be overridden for customization.
     this.filteredData = !this.filter
       ? data
-      : data.filter(obj => this.filterPredicate(obj, this.filter));
+      : data.filter((obj) => this.filterPredicate(obj, this.filter));
 
     if (this.paginator) {
       this._updatePaginator(this.filteredData.length);
@@ -386,7 +388,7 @@ export class SbbTableDataSource<
    */
   _normalizeTableFilter(tableFilter: TableFilter): { [key: string]: string[] } {
     const normalizedTableFilter: { [key: string]: string[] } = { _: [] };
-    Object.keys(tableFilter).forEach(key => {
+    Object.keys(tableFilter).forEach((key) => {
       if (typeof tableFilter[key] === 'undefined' || `${tableFilter[key]}`.trim() === '') {
         return;
       }
@@ -398,7 +400,7 @@ export class SbbTableDataSource<
 
       const entry = tableFilter[key];
       if (Array.isArray(entry) && entry.length > 0) {
-        normalizedTableFilter[key] = (entry as []).map(value => `${value}`.trim());
+        normalizedTableFilter[key] = (entry as []).map((value) => `${value}`.trim());
       }
     });
     return normalizedTableFilter;
@@ -412,9 +414,9 @@ export class SbbTableDataSource<
     tableData: { [p: string]: any }
   ): boolean {
     return Object.keys(propertyFilters)
-      .filter(key => typeof tableData[key] !== 'undefined' && tableData[key] !== null)
-      .every(key =>
-        propertyFilters[key].some(value =>
+      .filter((key) => typeof tableData[key] !== 'undefined' && tableData[key] !== null)
+      .every((key) =>
+        propertyFilters[key].some((value) =>
           this._matchesStringCaseInsensitive(`${tableData[key]}`, value)
         )
       );
@@ -426,7 +428,7 @@ export class SbbTableDataSource<
   _filterGlobally(filters: string[], tableData: { [key: string]: any }): boolean {
     return (
       filters.length === 0 ||
-      filters.some(value =>
+      filters.some((value) =>
         this._matchesStringCaseInsensitive(this._reduceObjectToString(tableData), value)
       )
     );

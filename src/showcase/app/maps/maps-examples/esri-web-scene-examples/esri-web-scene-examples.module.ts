@@ -9,6 +9,6 @@ const EXAMPLES = [EsriWebSceneExampleComponent];
 @NgModule({
   imports: [CommonModule, EsriWebSceneModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class EsriWebSceneExamplesModule {}

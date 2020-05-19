@@ -7,7 +7,7 @@ import {
   HostBinding,
   HostListener,
   OnDestroy,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
@@ -26,7 +26,7 @@ export type TooltipVisibility = 'initial' | 'visible' | 'hidden';
   styleUrls: ['./tooltip.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [sbbTooltipAnimations.tooltipState]
+  animations: [sbbTooltipAnimations.tooltipState],
 })
 export class TooltipContainerComponent implements OnDestroy {
   /**

@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-arrow',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconChevronSmallLeftCircleSmall {}
 
 @Component({
   selector: 'sbb-icon-chevron-small-left-circle-small',
-  template: `
-    <svg sbbIconChevronSmallLeftCircleSmall></svg>
-  `,
+  template: ` <svg sbbIconChevronSmallLeftCircleSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconChevronSmallLeftCircleSmall {}
 
 @NgModule({
   declarations: [SvgIconChevronSmallLeftCircleSmall, IconChevronSmallLeftCircleSmall],
-  exports: [SvgIconChevronSmallLeftCircleSmall, IconChevronSmallLeftCircleSmall]
+  exports: [SvgIconChevronSmallLeftCircleSmall, IconChevronSmallLeftCircleSmall],
 })
 export class IconChevronSmallLeftCircleSmallModule {}

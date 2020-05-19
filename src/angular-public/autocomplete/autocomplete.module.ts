@@ -8,7 +8,7 @@ import { AutocompleteHintComponent } from './autocomplete-hint/autocomplete-hint
 import { AutocompleteOriginDirective } from './autocomplete/autocomplete-origin.directive';
 import {
   AutocompleteTriggerDirective,
-  SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER
+  SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER,
 } from './autocomplete/autocomplete-trigger.directive';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 
@@ -18,7 +18,7 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
     AutocompleteComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
-    AutocompleteHintComponent
+    AutocompleteHintComponent,
   ],
   exports: [
     OptionModule,
@@ -26,8 +26,8 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
     AutocompleteComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
-    AutocompleteHintComponent
+    AutocompleteHintComponent,
   ],
-  providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER]
+  providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class AutocompleteModule {}

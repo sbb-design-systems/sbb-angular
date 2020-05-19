@@ -28,7 +28,7 @@ import { ProcessflowComponent } from './processflow.component';
         </div>
       </sbb-processflow-step>
     </sbb-processflow>
-  `
+  `,
 })
 export class ProcessflowTestComponent {
   @ViewChild('processflow', { static: true }) processflow: ProcessflowComponent;
@@ -41,7 +41,7 @@ describe('ProcessflowComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IconChevronRightModule],
-      declarations: [ProcessflowComponent]
+      declarations: [ProcessflowComponent],
     }).compileComponents();
   }));
 
@@ -63,7 +63,7 @@ describe('ProcessflowComponent user interaction', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ProcessflowModule],
-      declarations: [ProcessflowTestComponent]
+      declarations: [ProcessflowTestComponent],
     }).compileComponents();
   }));
 

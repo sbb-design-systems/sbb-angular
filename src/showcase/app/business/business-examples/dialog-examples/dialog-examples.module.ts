@@ -6,21 +6,21 @@ import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 
 import {
-  DialogExampleComponent,
-  DialogExampleExample2Component,
-  DialogExampleExample2ContentComponent,
-  DialogExampleExample3Component,
-  DialogExampleExampleComponent,
-  DialogExampleExampleContentComponent
-} from './dialog-example/dialog-example.component';
+  ComponentDataDialogComponent,
+  ComponentDataDialogExampleComponent,
+} from './component-data-dialog-example/component-data-dialog-example.component';
+import {
+  SharedDataDialogComponent,
+  SharedDataDialogExampleComponent,
+} from './shared-data-dialog-example/shared-data-dialog-example.component';
+import { TemplateDialogExampleComponent } from './template-dialog-example/template-dialog-example.component';
 
 const EXAMPLES = [
-  DialogExampleComponent,
-  DialogExampleExample2Component,
-  DialogExampleExample2ContentComponent,
-  DialogExampleExample3Component,
-  DialogExampleExampleComponent,
-  DialogExampleExampleContentComponent
+  TemplateDialogExampleComponent,
+  ComponentDataDialogExampleComponent,
+  SharedDataDialogExampleComponent,
+  ComponentDataDialogComponent,
+  SharedDataDialogComponent,
 ];
 
 @NgModule({
@@ -30,9 +30,9 @@ const EXAMPLES = [
     ReactiveFormsModule,
     DialogModule,
     FieldModule,
-    ButtonModule
+    ButtonModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class DialogExamplesModule {}

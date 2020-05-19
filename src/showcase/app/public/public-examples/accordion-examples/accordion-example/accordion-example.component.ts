@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'sbb-accordion-example',
   templateUrl: './accordion-example.component.html',
-  styleUrls: ['./accordion-example.component.css']
+  styleUrls: ['./accordion-example.component.css'],
 })
 export class AccordionExampleComponent implements OnInit, OnDestroy {
   @ViewChild(AccordionDirective, { static: true }) firstAccordion: AccordionDirective;
@@ -29,12 +29,12 @@ export class AccordionExampleComponent implements OnInit, OnDestroy {
   radioOptions = [
     {
       name: 'Open all',
-      value: 'openAll'
+      value: 'openAll',
     },
     {
       name: 'Close all',
-      value: 'closeAll'
-    }
+      value: 'closeAll',
+    },
   ];
 
   constructor() {
@@ -43,12 +43,12 @@ export class AccordionExampleComponent implements OnInit, OnDestroy {
       disabled: new FormControl(this.disabled),
       multi: new FormControl(this.multi),
       panelMode: new FormControl(this.panelMode),
-      hideToggle: new FormControl(this.hideToggle)
+      hideToggle: new FormControl(this.hideToggle),
     });
   }
 
   ngOnInit() {
-    this.onRadioChange = this.accordionForm.get('radioModes')!.valueChanges.subscribe(value => {
+    this.onRadioChange = this.accordionForm.get('radioModes')!.valueChanges.subscribe((value) => {
       switch (value) {
         case 'openAll':
           this.firstAccordion.openAll();
@@ -59,7 +59,7 @@ export class AccordionExampleComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.onMultiChange = this.accordionForm.get('multi')!.valueChanges.subscribe(value => {
+    this.onMultiChange = this.accordionForm.get('multi')!.valueChanges.subscribe((value) => {
       this.multi = value;
 
       if (this.multi === true) {
@@ -71,15 +71,15 @@ export class AccordionExampleComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.onDisabledChange = this.accordionForm.get('disabled')!.valueChanges.subscribe(value => {
+    this.onDisabledChange = this.accordionForm.get('disabled')!.valueChanges.subscribe((value) => {
       this.disabled = value;
     });
 
-    this.onHideToggle = this.accordionForm.get('hideToggle')!.valueChanges.subscribe(value => {
+    this.onHideToggle = this.accordionForm.get('hideToggle')!.valueChanges.subscribe((value) => {
       this.hideToggle = value;
     });
 
-    this.onModeChange = this.accordionForm.get('panelMode')!.valueChanges.subscribe(value => {
+    this.onModeChange = this.accordionForm.get('panelMode')!.valueChanges.subscribe((value) => {
       this.panelMode = value;
     });
   }
@@ -104,14 +104,6 @@ export class AccordionExampleComponent implements OnInit, OnDestroy {
     console.log(message);
     evt.preventDefault();
     evt.stopPropagation();
-  }
-
-  logAndPreventOpeningPanelKeyDown(evt: KeyboardEvent, message: any) {
-    if (evt.keyCode === 13 || evt.keyCode === 32) {
-      console.log(message);
-      evt.preventDefault();
-      evt.stopPropagation();
-    }
   }
 
   ngOnDestroy() {

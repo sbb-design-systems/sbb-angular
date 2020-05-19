@@ -11,6 +11,6 @@ const EXAMPLES = [LoadingExampleComponent];
 @NgModule({
   imports: [CommonModule, IconArrowRightModule, LoadingModule, ButtonModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class LoadingExamplesModule {}

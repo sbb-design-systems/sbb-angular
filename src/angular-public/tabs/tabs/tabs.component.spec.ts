@@ -31,7 +31,7 @@ import { TabsComponent } from './tabs.component';
         <p>Here comes the content for tab 3 ...</p>
       </sbb-tab>
     </sbb-tabs>
-  `
+  `,
 })
 class TabsTestComponent {
   isVisible = true;
@@ -47,7 +47,7 @@ describe('TabsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TabsTestComponent, TabsComponent, TabComponent],
-      imports: [BadgeModule]
+      imports: [BadgeModule],
     }).compileComponents();
   }));
 

@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
   IconChevronSmallLeftModule,
-  IconChevronSmallRightModule
+  IconChevronSmallRightModule,
 } from '@sbb-esta/angular-icons/arrow';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 
@@ -27,7 +27,7 @@ import { NavigationComponent, NavigationPageChangeEvent } from './navigation.com
     <button id="new-page-button" sbbButton (click)="addPage()">
       Add new page
     </button>
-  `
+  `,
 })
 export class NavigationTestComponent {
   @ViewChild('navigation', { static: true }) navigation: NavigationComponent;
@@ -74,9 +74,9 @@ describe('NavigationComponent', () => {
         IconChevronSmallLeftModule,
         IconChevronSmallRightModule,
         CommonModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      declarations: [NavigationComponent]
+      declarations: [NavigationComponent],
     }).compileComponents();
   }));
 
@@ -98,7 +98,7 @@ describe('NavigationComponent behaviour', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [PaginationModule, RouterTestingModule, ButtonModule, FormsModule],
-      declarations: [NavigationTestComponent]
+      declarations: [NavigationTestComponent],
     }).compileComponents();
   }));
 

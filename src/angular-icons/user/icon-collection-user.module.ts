@@ -31,11 +31,11 @@ const modules = [
   IconUserHeadsetModule,
   IconUserKeyModule,
   IconUserPlusModule,
-  IconUserTieModule
+  IconUserTieModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionUserModule {}

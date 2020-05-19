@@ -5,7 +5,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
-  NoopAnimationsModule
+  NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
@@ -16,9 +16,7 @@ import { SearchModule } from '../search.module';
 
 @Component({
   selector: 'sbb-simple-search-component',
-  template: `
-    <sbb-search (search)="search()" placeholder="Suchen"> </sbb-search>
-  `
+  template: ` <sbb-search (search)="search()" placeholder="Suchen"> </sbb-search> `,
 })
 export class SimpleSearchComponent {
   searchCounter = 0;
@@ -39,7 +37,7 @@ export class SimpleSearchComponent {
         {{ option }}
       </sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 export class SimpleSearchAutocompleteComponent {
   lastSearch = '';
@@ -55,7 +53,7 @@ export class SimpleSearchAutocompleteComponent {
     'Sieben',
     'Acht',
     'Neun',
-    'Zehn'
+    'Zehn',
   ];
   filteredOptions = this.options.slice(0);
 
@@ -66,9 +64,7 @@ export class SimpleSearchAutocompleteComponent {
 
 @Component({
   selector: 'sbb-simple-search-header-component',
-  template: `
-    <sbb-search mode="header" (search)="search()" placeholder="Suchen"> </sbb-search>
-  `
+  template: ` <sbb-search mode="header" (search)="search()" placeholder="Suchen"> </sbb-search> `,
 })
 export class SimpleSearchHeaderComponent {
   searchCounter = 0;
@@ -94,7 +90,7 @@ export class SimpleSearchHeaderComponent {
         {{ option }}
       </sbb-option>
     </sbb-autocomplete>
-  `
+  `,
 })
 export class SimpleSearchAutocompleteHeaderComponent {
   lastSearch = '';
@@ -110,7 +106,7 @@ export class SimpleSearchAutocompleteHeaderComponent {
     'Sieben',
     'Acht',
     'Neun',
-    'Zehn'
+    'Zehn',
   ];
   filteredOptions = this.options.slice(0);
 
@@ -127,7 +123,7 @@ describe('SearchComponent', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [SearchModule, NoopAnimationsModule],
-        declarations: [SimpleSearchComponent]
+        declarations: [SimpleSearchComponent],
       }).compileComponents();
     }));
 
@@ -172,7 +168,7 @@ describe('SearchComponent', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
-        declarations: [SimpleSearchAutocompleteComponent]
+        declarations: [SimpleSearchAutocompleteComponent],
       }).compileComponents();
     }));
 
@@ -285,7 +281,7 @@ describe('SearchComponent', () => {
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           imports: [SearchModule, BrowserAnimationsModule, AutocompleteModule, OverlayModule],
-          declarations: [SimpleSearchHeaderComponent]
+          declarations: [SimpleSearchHeaderComponent],
         }).compileComponents();
       }));
 
@@ -329,7 +325,7 @@ describe('SearchComponent', () => {
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
-          declarations: [SimpleSearchAutocompleteHeaderComponent]
+          declarations: [SimpleSearchAutocompleteHeaderComponent],
         }).compileComponents();
       }));
 

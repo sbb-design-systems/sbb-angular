@@ -2,7 +2,7 @@ import {
   BasePortalOutlet,
   CdkPortalOutlet,
   ComponentPortal,
-  TemplatePortal
+  TemplatePortal,
 } from '@angular/cdk/portal';
 import {
   AfterContentInit,
@@ -15,7 +15,7 @@ import {
   Input,
   OnDestroy,
   QueryList,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 
 import { Ghettobox, GhettoboxRef } from '../ghettobox/ghettobox-ref';
@@ -33,7 +33,7 @@ let counter = 0;
 @Component({
   selector: 'sbb-ghettobox-container',
   templateUrl: './ghettobox-container.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GhettoboxContainerComponent extends BasePortalOutlet
   implements AfterContentInit, OnDestroy {
@@ -74,7 +74,7 @@ export class GhettoboxContainerComponent extends BasePortalOutlet
   ngAfterContentInit() {
     // Load inital entries into the attached ghettobox collection kept in the GhettoboxService
     this._ghettoboxContainerService.loadInitialGhettoboxes(
-      this.initialGhettoboxes.toArray().map(g => new GhettoboxRef(g))
+      this.initialGhettoboxes.toArray().map((g) => new GhettoboxRef(g))
     );
   }
 

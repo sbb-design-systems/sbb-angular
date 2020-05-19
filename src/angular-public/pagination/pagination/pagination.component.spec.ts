@@ -7,7 +7,7 @@ import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
 import {
   IconChevronSmallLeftModule,
-  IconChevronSmallRightModule
+  IconChevronSmallRightModule,
 } from '@sbb-esta/angular-icons/arrow';
 
 import { PaginationModule } from '../pagination.module';
@@ -24,7 +24,7 @@ import { PaginationComponent } from './pagination.component';
       [length]="length"
       [pageIndex]="pageIndex"
     ></sbb-pagination>
-  `
+  `,
 })
 export class PaginationTestComponent {
   length = 5;
@@ -45,9 +45,9 @@ describe('PaginationComponent', () => {
         IconChevronSmallLeftModule,
         IconChevronSmallRightModule,
         CommonModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      declarations: [PaginationComponent]
+      declarations: [PaginationComponent],
     }).compileComponents();
   }));
 
@@ -70,7 +70,7 @@ describe('PaginationComponent behaviour', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [PaginationModule, RouterTestingModule],
-      declarations: [PaginationTestComponent]
+      declarations: [PaginationTestComponent],
     }).compileComponents();
   }));
 

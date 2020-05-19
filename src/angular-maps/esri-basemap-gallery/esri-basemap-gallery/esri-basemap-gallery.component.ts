@@ -8,7 +8,7 @@ import { EsriTypesService } from '@sbb-esta/angular-maps/core';
   selector: 'sbb-esri-basemap-gallery',
   templateUrl: './esri-basemap-gallery.component.html',
   styleUrls: ['./esri-basemap-gallery.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EsriBasemapGalleryComponent implements OnInit {
   /** References the map or scene to load the basemap gallery. */
@@ -25,7 +25,7 @@ export class EsriBasemapGalleryComponent implements OnInit {
 
     this.basemapGallery = new this._esri.BasemapGallery({
       view: this.mapView,
-      container: this._hostReference.nativeElement
+      container: this._hostReference.nativeElement,
     });
   }
 }

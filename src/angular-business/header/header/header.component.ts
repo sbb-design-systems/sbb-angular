@@ -23,7 +23,7 @@ import {
   Output,
   QueryList,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
@@ -46,21 +46,21 @@ export type SbbHeaderMenuToggleResult = 'open' | 'close';
       state(
         'open',
         style({
-          left: 0
+          left: 0,
         })
       ),
       state(
         'void',
         style({
           left: -305,
-          visibility: 'hidden'
+          visibility: 'hidden',
         })
       ),
-      transition('open => void, void => open', [animate('0.3s ease-in-out')])
-    ])
+      transition('open => void, void => open', [animate('0.3s ease-in-out')]),
+    ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: SBB_HEADER, useExisting: HeaderComponent }]
+  providers: [{ provide: SBB_HEADER, useExisting: HeaderComponent }],
 })
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   /** @docs-private */
@@ -121,7 +121,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output('opened')
   get _openedStream(): Observable<void> {
     return this.openedChange.pipe(
-      filter(o => o),
+      filter((o) => o),
       map(() => {})
     );
   }
@@ -130,7 +130,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output()
   get openedStart(): Observable<void> {
     return this._animationStarted.pipe(
-      filter(e => e.fromState !== e.toState && e.toState.indexOf('open') === 0),
+      filter((e) => e.fromState !== e.toState && e.toState.indexOf('open') === 0),
       map(() => {})
     );
   }
@@ -139,7 +139,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output('closed')
   get _closedStream(): Observable<void> {
     return this.openedChange.pipe(
-      filter(o => !o),
+      filter((o) => !o),
       map(() => {})
     );
   }
@@ -148,7 +148,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output()
   get closedStart(): Observable<void> {
     return this._animationStarted.pipe(
-      filter(e => e.fromState !== e.toState && e.toState === 'void'),
+      filter((e) => e.fromState !== e.toState && e.toState === 'void'),
       map(() => {})
     );
   }
@@ -201,10 +201,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
           this._ngZone.runOutsideAngular(() => {
             merge(
               fromEvent<KeyboardEvent>(this._menuElement.nativeElement, 'keydown').pipe(
-                filter(event => event.keyCode === ESCAPE && !hasModifierKey(event))
+                filter((event) => event.keyCode === ESCAPE && !hasModifierKey(event))
               ),
               this._router
-                ? this._router.events.pipe(filter(e => e instanceof NavigationStart))
+                ? this._router.events.pipe(filter((e) => e instanceof NavigationStart))
                 : NEVER
             )
               .pipe(takeUntil(this.openedChange))
@@ -247,10 +247,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       .observe(Breakpoints.DesktopAndAbove)
       .pipe(
         takeUntil(this._destroyed),
-        map(r => r.matches),
+        map((r) => r.matches),
         distinctUntilChanged()
       )
-      .subscribe(isDesktop => {
+      .subscribe((isDesktop) => {
         if (isDesktop) {
           this._sideMenuOutlet.detach();
           this._mainMenuOutlet.attachTemplatePortal(this._navigationPortal);
@@ -328,8 +328,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this._updateFocusTrapState();
 
-    return new Promise<SbbHeaderMenuToggleResult>(resolve => {
-      this.openedChange.pipe(take(1)).subscribe(open => resolve(open ? 'open' : 'close'));
+    return new Promise<SbbHeaderMenuToggleResult>((resolve) => {
+      this.openedChange.pipe(take(1)).subscribe((open) => resolve(open ? 'open' : 'close'));
     });
   }
 
@@ -352,7 +352,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Traps focus inside the header menu. */
   private _trapFocus() {
-    this._focusTrap.focusInitialElementWhenReady().then(hasMovedFocus => {
+    this._focusTrap.focusInitialElementWhenReady().then((hasMovedFocus) => {
       // If there were no focusable elements, focus the sidenav itself so the keyboard navigation
       // still works. We need to check that `focus` is a function due to Universal.
       if (!hasMovedFocus && typeof this._menuElement.nativeElement.focus === 'function') {

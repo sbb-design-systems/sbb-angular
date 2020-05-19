@@ -15,13 +15,13 @@ import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.compo
     AccordionDirective,
     ExpansionPanelComponent,
     ExpansionPanelHeaderComponent,
-    ExpansionPanelContentDirective
+    ExpansionPanelContentDirective,
   ],
   declarations: [
     AccordionDirective,
     ExpansionPanelComponent,
     ExpansionPanelHeaderComponent,
-    ExpansionPanelContentDirective
-  ]
+    ExpansionPanelContentDirective,
+  ],
 })
 export class AccordionModule {}

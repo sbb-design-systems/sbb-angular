@@ -9,6 +9,6 @@ import { PsComponentScrollable, PsDirectiveScrollable } from './ps-scrollable.di
 @NgModule({
   declarations: [PsComponentScrollable, PsDirectiveScrollable],
   exports: [PerfectScrollbarModule, PsComponentScrollable, PsDirectiveScrollable],
-  imports: [PerfectScrollbarModule]
+  imports: [PerfectScrollbarModule],
 })
 export class ScrollingModule {}

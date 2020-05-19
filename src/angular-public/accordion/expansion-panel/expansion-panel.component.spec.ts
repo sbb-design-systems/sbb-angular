@@ -21,7 +21,7 @@ import { AccordionModule, ExpansionPanelComponent } from '../public-api';
       <p>Some content</p>
       <button>I am a button</button>
     </sbb-expansion-panel>
-  `
+  `,
 })
 class PanelWithContentComponent {
   expanded = false;
@@ -40,7 +40,7 @@ class PanelWithContentComponent {
         <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
       </sbb-expansion-panel>
     </div>
-  `
+  `,
 })
 class PanelWithContentInNgIfComponent {
   expansionShown = true;
@@ -54,14 +54,14 @@ class PanelWithContentInNgIfComponent {
       sbb-expansion-panel {
         margin: 13px 37px;
       }
-    `
+    `,
   ],
   template: `
     <sbb-expansion-panel [expanded]="expanded">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores officia, aliquam dicta
       corrupti maxime voluptate accusamus impedit atque incidunt pariatur.
     </sbb-expansion-panel>
-  `
+  `,
 })
 class PanelWithCustomMarginComponent {
   expanded = false;
@@ -77,7 +77,7 @@ class PanelWithCustomMarginComponent {
         <button>I am a button</button>
       </ng-template>
     </sbb-expansion-panel>
-  `
+  `,
 })
 class LazyPanelWithContentComponent {
   expanded = false;
@@ -92,7 +92,7 @@ class LazyPanelWithContentComponent {
         <p>Some content</p>
       </ng-template>
     </sbb-expansion-panel>
-  `
+  `,
 })
 class LazyPanelOpenOnLoadComponent {}
 
@@ -101,7 +101,7 @@ class LazyPanelOpenOnLoadComponent {}
     <sbb-expansion-panel [(expanded)]="expanded">
       <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
     </sbb-expansion-panel>
-  `
+  `,
 })
 class PanelWithTwoWayBindingComponent {
   expanded = false;
@@ -110,12 +110,12 @@ class PanelWithTwoWayBindingComponent {
 describe('ExpansionPanelComponent', () => {
   let originalTimeout: number;
 
-  beforeEach(function() {
+  beforeEach(function () {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000;
   });
 
-  afterEach(function() {
+  afterEach(function () {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
@@ -128,8 +128,8 @@ describe('ExpansionPanelComponent', () => {
         PanelWithCustomMarginComponent,
         LazyPanelWithContentComponent,
         LazyPanelOpenOnLoadComponent,
-        PanelWithTwoWayBindingComponent
-      ]
+        PanelWithTwoWayBindingComponent,
+      ],
     }).compileComponents();
   }));
 
@@ -237,6 +237,7 @@ describe('ExpansionPanelComponent', () => {
 
     spyOn(fixture.componentInstance.panel, 'toggle');
 
+    headerEl.focus();
     const event = dispatchKeyboardEvent(headerEl, 'keydown', SPACE);
     fixture.detectChanges();
 
@@ -252,6 +253,7 @@ describe('ExpansionPanelComponent', () => {
 
     spyOn(fixture.componentInstance.panel, 'toggle');
 
+    headerEl.focus();
     const event = dispatchKeyboardEvent(headerEl, 'keydown', ENTER);
     fixture.detectChanges();
 

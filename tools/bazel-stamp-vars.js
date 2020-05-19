@@ -22,26 +22,18 @@ console.log(`BUILD_SCM_USER ${getCurrentGitUser()}`);
 
 /** Returns the commit SHA for the current git HEAD of the project. */
 function getCurrentCommitSha() {
-  return spawnSync('git', ['rev-parse', 'HEAD'])
-    .stdout.toString()
-    .trim();
+  return spawnSync('git', ['rev-parse', 'HEAD']).stdout.toString().trim();
 }
 
 /** Returns the name of the currently checked out branch of the project. */
 function getCurrentBranchName() {
-  return spawnSync('git', ['symbolic-ref', '--short', 'HEAD'])
-    .stdout.toString()
-    .trim();
+  return spawnSync('git', ['symbolic-ref', '--short', 'HEAD']).stdout.toString().trim();
 }
 
 /** Returns the name and email of the Git user that creates this release build. */
 function getCurrentGitUser() {
-  const userName = spawnSync('git', ['config', 'user.name'])
-    .stdout.toString()
-    .trim();
-  const userEmail = spawnSync('git', ['config', 'user.email'])
-    .stdout.toString()
-    .trim();
+  const userName = spawnSync('git', ['config', 'user.name']).stdout.toString().trim();
+  const userEmail = spawnSync('git', ['config', 'user.email']).stdout.toString().trim();
 
   return `${userName} <${userEmail}>`;
 }
