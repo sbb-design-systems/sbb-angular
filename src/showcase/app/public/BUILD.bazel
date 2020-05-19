@@ -9,8 +9,8 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "public",
     srcs = [
-        "public.module.ts",
         "public-routing.module.ts",
+        "public.module.ts",
         "public/public.component.ts",
     ],
     assets = [

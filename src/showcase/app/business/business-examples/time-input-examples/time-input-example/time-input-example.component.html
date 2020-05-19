@@ -1,0 +1,12 @@
+<h4 class="sbbsc-block">Simple time input</h4>
+<form novalidate>
+  <input sbbTimeInput />
+</form>
+
+<h4 class="sbbsc-block">Form time input</h4>
+<form [formGroup]="form" novalidate>
+  <input formControlName="time" sbbTimeInput />
+</form>
+
+<h4 class="sbbsc-block">Model</h4>
+<pre>{{ form.get('time')?.value | json }}</pre>

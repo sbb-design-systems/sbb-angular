@@ -10,7 +10,6 @@ export interface Person {
 @Component({
   selector: 'sbb-tabs-example',
   templateUrl: './tabs-example.component.html',
-  styleUrls: ['./tabs-example.component.css'],
 })
 export class TabsExampleComponent implements OnInit {
   @ViewChild('tabs', { static: true }) tabsComponent: TabsComponent;

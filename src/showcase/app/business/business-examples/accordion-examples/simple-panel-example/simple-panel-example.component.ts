@@ -1,0 +1,32 @@
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AccordionDirective } from '@sbb-esta/angular-business/accordion';
+
+@Component({
+  selector: 'sbb-simple-panel-example',
+  templateUrl: './simple-panel-example.component.html',
+})
+export class SimplePanelExampleComponent {
+  @ViewChild(AccordionDirective, { static: true }) firstAccordion: AccordionDirective;
+
+  panelMode = 'panel 1';
+  panels = ['panel 1', 'panel 2', 'panel 3', 'panel 4', 'panel 5'];
+  accordionForm: FormGroup;
+
+  radioOptions = [
+    {
+      name: 'Open all',
+      value: 'openAll',
+    },
+    {
+      name: 'Close all',
+      value: 'closeAll',
+    },
+  ];
+
+  constructor() {
+    this.accordionForm = new FormGroup({
+      panelMode: new FormControl(this.panelMode),
+    });
+  }
+}

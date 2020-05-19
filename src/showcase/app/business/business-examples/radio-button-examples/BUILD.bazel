@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -11,10 +10,11 @@ ng_ts_library(
     srcs = [
         "radio-button-example/radio-button-example.component.ts",
         "radio-button-examples.module.ts",
+        "radio-button-group-example/radio-button-group-example.component.ts",
     ],
     assets = [
-        ":radio-button-example/radio-button-example.component.css",
         "radio-button-example/radio-button-example.component.html",
+        "radio-button-group-example/radio-button-group-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -33,9 +33,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "radio_button_example_radio_button_example_component_scss",
-    src = "radio-button-example/radio-button-example.component.scss",
 )

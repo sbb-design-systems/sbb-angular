@@ -1,0 +1,16 @@
+<p>
+  This implementation shows how to share data between parent component and dialog component.
+</p>
+<ol>
+  <li>
+    <input type="text" [(ngModel)]="name" placeholder="What's your name?" />
+  </li>
+  <li>
+    <button sbbButton mode="secondary" (click)="openDialog()">
+      Pick one
+    </button>
+  </li>
+  <li *ngIf="animal">
+    You chose: <i>{{ animal }}</i>
+  </li>
+</ol>

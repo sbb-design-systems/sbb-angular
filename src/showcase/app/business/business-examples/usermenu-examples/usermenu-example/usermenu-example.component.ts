@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-usermenu-example',
   templateUrl: './usermenu-example.component.html',
-  styleUrls: ['./usermenu-example.component.css'],
 })
 export class UsermenuExampleComponent {
   userName = 'walter_14';

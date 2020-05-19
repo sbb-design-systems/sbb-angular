@@ -1,0 +1,33 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "time-input-examples",
+    srcs = [
+        "time-input-example/time-input-example.component.ts",
+        "time-input-examples.module.ts",
+    ],
+    assets = [
+        "time-input-example/time-input-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/time-input",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
