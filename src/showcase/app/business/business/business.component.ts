@@ -27,6 +27,7 @@ import { MultipleModePersistentFileSelectorExampleComponent } from '../business-
 import { SimpleFileSelectorExampleComponent } from '../business-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
 import { IconLinkExampleComponent } from '../business-examples/links-examples/icon-link-example/icon-link-example.component';
 import { SimpleLinkExampleComponent } from '../business-examples/links-examples/simple-link-example/simple-link-example.component';
+import { LoadingExampleComponent } from '../business-examples/loading-examples/loading-example/loading-example.component';
 import { ClosableNotificationExampleComponent } from '../business-examples/notification-examples/closable-notification-example/closable-notification-example.component';
 import { CustomIconNotificationExampleComponent } from '../business-examples/notification-examples/custom-icon-notification-example/custom-icon-notification-example.component';
 import { JumpmarkNotificationExampleComponent } from '../business-examples/notification-examples/jumpmark-notification-example/jumpmark-notification-example.component';
@@ -96,6 +97,7 @@ export class BusinessComponent implements ExampleProvider {
     button: 'Button',
     contextmenu: 'Contextmenu',
     links: 'Links',
+    loading: 'Loading',
   };
   popupsAndModals = {
     tooltip: 'Tooltip',
@@ -226,6 +228,7 @@ export class BusinessComponent implements ExampleProvider {
       'icon-link-example': new ComponentPortal(IconLinkExampleComponent),
     },
     textexpand: { 'textexpand-example': new ComponentPortal(TextexpandExampleComponent) },
+    loading: { 'loading-example': new ComponentPortal(LoadingExampleComponent) },
   };
 
   resolveExample<TComponent = any>(
