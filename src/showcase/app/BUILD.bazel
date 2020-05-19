@@ -22,9 +22,9 @@ genrule(
 ng_ts_library(
     name = "app",
     srcs = [
-        "app-routing.module.ts",
         "app.component.ts",
         "app.module.ts",
+        "app-routing.module.ts",
         "introduction/introduction.component.ts",
         ":versions.ts",
     ],

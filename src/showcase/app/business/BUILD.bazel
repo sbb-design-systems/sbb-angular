@@ -9,10 +9,10 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "business",
     srcs = [
+        "business.module.ts",
         "business-component-viewer/business-component-viewer.component.ts",
         "business-example-viewer/business-example-viewer.component.ts",
         "business-routing.module.ts",
-        "business.module.ts",
         "business/business.component.ts",
     ],
     assets = [

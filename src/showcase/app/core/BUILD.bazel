@@ -9,8 +9,8 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "core",
     srcs = [
-        "core-routing.module.ts",
         "core.module.ts",
+        "core-routing.module.ts",
         "core/core.component.ts",
     ],
     assets = [

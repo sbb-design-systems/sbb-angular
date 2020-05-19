@@ -10,8 +10,8 @@ ng_ts_library(
     name = "experimental-icons",
     srcs = [
         "experimental-icon-search/experimental-icon-search.component.ts",
-        "experimental-icons-routing.module.ts",
         "experimental-icons.module.ts",
+        "experimental-icons-routing.module.ts",
     ],
     assets = [
         ":experimental-icon-search/experimental-icon-search.component.css",

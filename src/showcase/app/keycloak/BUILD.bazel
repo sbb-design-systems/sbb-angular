@@ -9,8 +9,8 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "keycloak",
     srcs = [
-        "keycloak-routing.module.ts",
         "keycloak.module.ts",
+        "keycloak-routing.module.ts",
         "keycloak/keycloak.component.ts",
     ],
     assets = [
