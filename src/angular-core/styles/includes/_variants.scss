@@ -1,0 +1,13 @@
+$sbbBusiness: false !default;
+
+@mixin publicOnly() {
+  @if $sbbBusiness == false {
+    @content;
+  }
+}
+
+@mixin businessOnly() {
+  @if $sbbBusiness {
+    @content;
+  }
+}

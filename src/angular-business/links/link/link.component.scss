@@ -1,0 +1,33 @@
+@import '../../../angular-core/styles/common';
+
+.sbb-link-business {
+  word-break: break-word;
+  display: block;
+  position: relative;
+  padding-right: toEm(70 / $sizeFontDefault);
+  hyphens: auto;
+  text-decoration: none !important;
+
+  .sbb-svgsprite-icon {
+    @include svgIconColor($sbbColorBlack);
+    position: absolute;
+    width: toPx(24);
+    height: toPx(24);
+    margin-left: toPx(8) !important;
+    pointer-events: none;
+    top: 50%;
+    transform: translate(0px, -50%);
+  }
+
+  &.sbb-link-stretch .sbb-svgsprite-icon {
+    right: 0;
+  }
+
+  &:hover,
+  &:focus {
+    color: $sbbColorCallToActionHover;
+    .sbb-svgsprite-icon {
+      @include svgIconColor($sbbColorCallToActionHover);
+    }
+  }
+}
