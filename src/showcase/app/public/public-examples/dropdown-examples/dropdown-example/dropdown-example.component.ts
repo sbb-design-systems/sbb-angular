@@ -1,5 +1,5 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
-import { DropdownTriggerDirective } from '@sbb-esta/angular-public/dropdown';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { DropdownSelectedEvent } from '@sbb-esta/angular-public/dropdown';
 
 interface DropdownLink {
   page: number;
@@ -12,13 +12,13 @@ interface DropdownLink {
   styleUrls: ['./dropdown-example.component.css'],
 })
 export class DropdownExampleComponent {
-  @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
-
   links: Array<DropdownLink> = [
     { page: 1, text: 'Test 1' },
     { page: 2, text: 'Test 2' },
     { page: 3, text: 'Test 3' },
   ];
+
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 
   linkGenerator(page: number) {
     return {
@@ -36,5 +36,13 @@ export class DropdownExampleComponent {
       page: this.links.length + 1,
       text: 'Test ' + (this.links.length + 1),
     });
+  }
+
+  logEvent(event: DropdownSelectedEvent) {
+    console.log(event.item);
+  }
+
+  dropdownChanged() {
+    setTimeout(() => this._changeDetectorRef.detectChanges(), 0);
   }
 }

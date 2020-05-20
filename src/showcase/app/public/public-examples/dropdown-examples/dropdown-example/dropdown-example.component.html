@@ -5,7 +5,7 @@
       <button sbbButton type="button" [sbbDropdown]="dropdown">
         Open dropdown
       </button>
-      <sbb-dropdown #dropdown="sbbDropdown">
+      <sbb-dropdown #dropdown="sbbDropdown" (optionSelected)="logEvent($event)">
         <a
           *ngFor="let link of links"
           sbbDropdownItem
@@ -48,7 +48,7 @@
         </div>
         <div *ngIf="dropdown2.open">William Tell</div>
       </div>
-      <sbb-dropdown #dropdown2="sbbDropdown">
+      <sbb-dropdown #dropdown2="sbbDropdown" (optionSelected)="logEvent($event)">
         <a
           *ngFor="let link of links"
           sbbDropdownItem
@@ -84,7 +84,12 @@
         </div>
         <div>William Tell</div>
       </div>
-      <sbb-dropdown #dropdown3="sbbDropdown">
+      <sbb-dropdown
+        #dropdown3="sbbDropdown"
+        (optionSelected)="logEvent($event)"
+        (closed)="dropdownChanged()"
+        (opened)="dropdownChanged()"
+      >
         <a
           *ngFor="let link of links"
           sbbDropdownItem

@@ -283,13 +283,6 @@ export class DropdownTriggerDirective implements OnDestroy {
     this._closeKeyEventStream.complete();
   }
 
-  @HostListener('blur')
-  onBlur() {
-    if (!!this.connectedTo) {
-      this.closePanel();
-    }
-  }
-
   @HostListener('keydown', ['$event'])
   onKeydown($event: KeyboardEvent) {
     this.handleKeydown($event);
@@ -383,10 +376,16 @@ export class DropdownTriggerDirective implements OnDestroy {
 
     return merge(
       fromEvent<MouseEvent>(this._document, 'click'),
-      fromEvent<TouchEvent>(this._document, 'touchend')
+      fromEvent<TouchEvent>(this._document, 'touchend'),
+      fromEvent<Event>(this._document?.defaultView || window, 'blur').pipe(
+        filter(() => this._document.activeElement !== this._elementRef.nativeElement)
+      )
     ).pipe(
       filter((event) => {
         const clickTarget = event.target as HTMLElement;
+        if (clickTarget instanceof Window) {
+          return true;
+        }
 
         return (
           this._overlayAttached &&
