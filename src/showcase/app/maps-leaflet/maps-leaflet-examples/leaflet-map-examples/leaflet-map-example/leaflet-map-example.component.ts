@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, HostListener, ViewChild } from '@angular/core';
 import { LeafletMapComponent } from '@sbb-esta/angular-maps-leaflet/leaflet-map';
 import { LayersControl } from '@sbb-esta/angular-maps-leaflet/leaflet-map/leaflet-map/model/map-config.model';
 import { featureLayer } from 'esri-leaflet';
@@ -9,7 +9,6 @@ import {
   LatLngBounds,
   LayerGroup,
   layerGroup,
-  LeafletEvent,
   LeafletMouseEvent,
   MapOptions,
   polygon,
@@ -82,7 +81,7 @@ export let layersControlConfig: LayersControl = {
   templateUrl: './leaflet-map-example.component.html',
   styleUrls: ['./leaflet-map-example.component.scss']
 })
-export class LeafletMapExampleComponent {
+export class LeafletMapExampleComponent implements AfterViewChecked {
   private _map: L.Map;
   private _myPointLayerGroup: LayerGroup<any>;
 
@@ -114,12 +113,27 @@ export class LeafletMapExampleComponent {
     return pointArray;
   }
 
+  ngAfterViewChecked() {
+    // get new mapsize when "examples"-tab is clicked
+    if (this._map) {
+      setTimeout(() => this._map.invalidateSize(), 300);
+    }
+  }
+
   private _randomNumber(min, max) {
     return Math.random() * (max - min) + min;
   }
 
   public mapReady(map: L.Map) {
     this._map = map;
+  }
+
+  @HostListener('document:onchange', [])
+  onResize() {
+    console.log('asd');
+    if (this._map) {
+      this._map.invalidateSize();
+    }
   }
 
   public goToPoint(lat: number, lng: number, zoomlvl: number) {
@@ -139,10 +153,6 @@ export class LeafletMapExampleComponent {
       .setContent('You clicked the map at: ' + e.latlng.toString())
       .openOn(this._map);
   }
-
-  public mapExtentChanged(e: LeafletEvent) {}
-
-  public mapZoomed(e: LeafletEvent) {}
 
   public addPointLayerToMap() {
     this._removeLayerFromMap(this._myPointLayerGroup);
