@@ -28,7 +28,9 @@ import { GhettoboxExampleComponent } from '../public-examples/ghettobox-examples
 import { LightboxExampleComponent } from '../public-examples/lightbox-examples/lightbox-example/lightbox-example.component';
 import { IconLinkExampleComponent } from '../public-examples/links-examples/icon-link-example/icon-link-example.component';
 import { SocialLinkExampleComponent } from '../public-examples/links-examples/social-link-example/social-link-example.component';
-import { LoadingExampleComponent } from '../public-examples/loading-examples/loading-example/loading-example.component';
+import { FullboxLoadingExampleComponent } from '../public-examples/loading-examples/fullbox-loading-example/fullbox-loading-example.component';
+import { FullscreenLoadingExampleComponent } from '../public-examples/loading-examples/fullscreen-loading-example/fullscreen-loading-example.component';
+import { SimpleLoadingExampleComponent } from '../public-examples/loading-examples/simple-loading-example/simple-loading-example.component';
 import { NotificationExampleComponent } from '../public-examples/notification-examples/notification-example/notification-example.component';
 import { NavigationExampleComponent } from '../public-examples/pagination-examples/navigation-example/navigation-example.component';
 import { PaginatorExampleComponent } from '../public-examples/pagination-examples/paginator-example/paginator-example.component';
@@ -189,7 +191,11 @@ export class PublicComponent implements ExampleProvider {
       'icon-link-example': new ComponentPortal(IconLinkExampleComponent),
       'social-link-example': new ComponentPortal(SocialLinkExampleComponent),
     },
-    loading: { 'loading-example': new ComponentPortal(LoadingExampleComponent) },
+    loading: {
+      'simple-loading-example': new ComponentPortal(SimpleLoadingExampleComponent),
+      'fullbox-loading-example': new ComponentPortal(FullboxLoadingExampleComponent),
+      'fullscreen-loading-example': new ComponentPortal(FullscreenLoadingExampleComponent),
+    },
     dropdown: { 'dropdown-example': new ComponentPortal(DropdownExampleComponent) },
     lightbox: { 'lightbox-example': new ComponentPortal(LightboxExampleComponent) },
     tooltip: {
