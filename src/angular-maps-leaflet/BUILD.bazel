@@ -29,6 +29,8 @@ markdown_to_html(
     name = "overview",
     srcs = [
       ":getting-started.md",
+      ":mapping-basics.md",
+      ":overview-and-usage.md",
       ":esri-leaflet.md",
     ],
 )

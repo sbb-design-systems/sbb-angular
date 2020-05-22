@@ -1,12 +1,12 @@
 # Access ArcGIS-services
 
-In order to access geo-services hosted on ArcGIS Online or on an ArcGIS Server Onpremise installation, you can use the npm package `esri-leaflet`.
+In order to access geo services hosted on ArcGIS Online or on an on premise ArcGIS Enterprise installation (such as the SBB G-Sharp services and Geoportal) with Leaflet, you can use the [`esri-leaflet`](https://esri.github.io/esri-leaflet/) npm package.
 
 ### Step 0: Prerequisites
 
-Setup teh `@sbb-esta/angular-maps-leaflet` as described in [Getting started section](leaflet/introduction/getting-started).
+Setup `@sbb-esta/angular-maps-leaflet` as described in [Getting started](leaflet/introduction/getting-started).
 
-You can create now your project as described in the official [Angular CLI documentation](https://cli.angular.io/).
+You can now create your project as described in the official [Angular CLI documentation](https://cli.angular.io/).
 
 ### Step 1: Install `esri-leaflet`
 
@@ -78,6 +78,6 @@ export class MyLeafletSampleComponent {
 }
 ```
 
-_Note: If you want to use services from G-Sharp, SBB's OnPremise installation of ArcGIS Server, don't forget to add the properties `useCors=false` and `isModern=false` to the `featureLayer()` method._
+_Note: If you want to use services from G-Sharp (the SBB on premise installation of ArcGIS Enterprise), don't forget to add the properties `useCors=false` and `isModern=false` to the `featureLayer()` method. This is unfortunate but required until Esri fixes bug BUG-000130672._
 
 _Note 2: For layers with many features (5000+) consider to use `renderer=new LCanvas()` to gain performance. You can get more information about renderers in leaflet [here](https://esri.github.io/esri-leaflet/api-reference/layers/feature-layer.html)._
