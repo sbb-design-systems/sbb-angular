@@ -1,7 +1,5 @@
 # Mapping basics
 
-<img src="/assets/images/angular-maps/map_layers.jpg" alt="Typcial map layer composition" title="Typical map layer composition (image by United States Geological Survey [Public domain]" style="float: right; margin-left: 10px;" />
-
 Maps are a very relevant part of our daily routine. A few years ago, paper maps were all around. Today, map viewer applications provide all the details we need. 3D has become an important visual advantage for maps too.
 
 > A map is almost universally a two-dimensional representation of a piece of three-dimensional space. Only with the advent of modern computer graphics were three-dimensional maps made possible. Maps serve two map functions; they are a spatial database and a communication device. The science of making maps is called cartography.
@@ -10,7 +8,9 @@ Maps are a very relevant part of our daily routine. A few years ago, paper maps 
 
 Maps are composed of a series of map layers drawn in a particular order. A map layer defines how a GIS dataset is symbolized and labeled in your map view.
 
-From a technical point of view, maps in `@sbb-esta/angular-maps` are composed of different layer types, representing different data sources. Details about this are laid out in our [Overview and usage](/site/introduction/overview-and-usage) section.
+![Typcial map layer composition](/assets/images/angular-maps/map_layers.jpg 'Typical map layer composition (image by United States Geological Survey [Public domain]')
+
+From a technical point of view, maps in `@sbb-esta/angular-maps` and `@sbb-esta/angular-maps-leaflet` are composed of different layer types, representing different data sources. Details about this are laid out in our [Overview and usage](/maps/introduction/overview-and-usage) section.
 
 ### Good maps
 
@@ -35,7 +35,7 @@ The full list is at [33 Map Elements to Include in Cartographic Design: A ‘How
 
 Using a map in your application can improve usability and ease access to complex data. Once you deal with spatial data and your application provides answers to location based questions you will end up using maps as a way to communicate. Furthermore, today everybody is used to read and handle maps in applications and thus, maps belong to standard UI toolkits.
 
-The blog post [7 reasons why maps are important](https://barrachd.co.uk/insights/blog/7-reasons-why-maps-are-important-in-data-analytics/) wraps up why and when using maps is a great opportunity:
+The blog post [7 reasons why maps are important](https://web.archive.org/web/20170919140259/http://barrachd.co.uk/insights/blog/7-reasons-why-maps-are-important-in-data-analytics/) wraps up nicely why and when using maps is a great opportunity:
 
 1. Simplification of complex patterns
 2. Allow to gain a better insight to spatial patterns
