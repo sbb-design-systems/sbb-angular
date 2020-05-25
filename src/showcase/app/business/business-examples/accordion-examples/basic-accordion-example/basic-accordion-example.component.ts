@@ -12,17 +12,14 @@ export class BasicAccordionExampleComponent implements OnInit, OnDestroy {
   @ViewChild(AccordionDirective, { static: true }) firstAccordion: AccordionDirective;
 
   panelOpenState = false;
-  step = 0;
   disabled = false;
   panelMode = 'panel 1';
   panels = ['panel 1', 'panel 2', 'panel 3', 'panel 4', 'panel 5'];
+  multiValue = false;
   accordionForm: FormGroup;
-  onRadioChange: Subscription;
   onModeChange: Subscription;
   onDisabledChange: Subscription;
-  onMultiChange: Subscription;
   onHideToggle: Subscription;
-  multi = false;
   hideToggle = false;
 
   radioOptions = [
@@ -38,38 +35,13 @@ export class BasicAccordionExampleComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.accordionForm = new FormGroup({
-      radioModes: new FormControl({ value: null, disabled: true }),
       disabled: new FormControl(this.disabled),
-      multi: new FormControl(this.multi),
       panelMode: new FormControl(this.panelMode),
       hideToggle: new FormControl(this.hideToggle),
     });
   }
 
   ngOnInit() {
-    this.onRadioChange = this.accordionForm.get('radioModes')!.valueChanges.subscribe((value) => {
-      switch (value) {
-        case 'openAll':
-          this.firstAccordion.openAll();
-          break;
-        case 'closeAll':
-          this.firstAccordion.closeAll();
-          break;
-      }
-    });
-
-    this.onMultiChange = this.accordionForm.get('multi')!.valueChanges.subscribe((value) => {
-      this.multi = value;
-
-      if (this.multi === true) {
-        this.accordionForm.get('radioModes')!.enable();
-        this.accordionForm.get('panelMode')!.disable();
-      } else {
-        this.accordionForm.get('radioModes')!.disable();
-        this.accordionForm.get('panelMode')!.enable();
-      }
-    });
-
     this.onDisabledChange = this.accordionForm.get('disabled')!.valueChanges.subscribe((value) => {
       this.disabled = value;
     });
@@ -83,6 +55,17 @@ export class BasicAccordionExampleComponent implements OnInit, OnDestroy {
     });
   }
 
+  toggleRadio(event) {
+    switch (event.value) {
+      case 'openAll':
+        this.firstAccordion.openAll();
+        break;
+      case 'closeAll':
+        this.firstAccordion.closeAll();
+        break;
+    }
+  }
+
   log(...args: any[]) {
     console.log(args);
   }
@@ -94,9 +77,7 @@ export class BasicAccordionExampleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.onRadioChange.unsubscribe();
     this.onDisabledChange.unsubscribe();
-    this.onMultiChange.unsubscribe();
     this.onHideToggle.unsubscribe();
     this.onModeChange.unsubscribe();
   }

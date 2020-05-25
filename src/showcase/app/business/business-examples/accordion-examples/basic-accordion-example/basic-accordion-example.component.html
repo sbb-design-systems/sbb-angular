@@ -1,4 +1,4 @@
-<sbb-accordion [multi]="multi">
+<sbb-accordion [multi]="multiValue">
   <sbb-expansion-panel [expanded]="panelMode === 'panel 1'" [hideToggle]="hideToggle">
     <sbb-expansion-panel-header>
       Some generic content accordion panel
@@ -219,14 +219,14 @@
   </sbb-expansion-panel>
 </sbb-accordion>
 
-<form [formGroup]="accordionForm" class="flex-col">
+<div class="flex-col">
   <h4 class="pb-1">Properties</h4>
   <sbb-field label="Multi panel" class="pb-1">
-    <sbb-checkbox value="multi" formControlName="multi" class="inline-block">
+    <sbb-checkbox value="multiValue" class="inline-block" [(ngModel)]="multiValue">
       Open the panels of the accordion together
     </sbb-checkbox>
-    <ng-container *ngIf="accordionForm.get('multi').value">
-      <sbb-radio-group formControlName="radioModes" class="sbbsc-block">
+    <ng-container *ngIf="multiValue">
+      <sbb-radio-group (change)="toggleRadio($event)" class="sbbsc-block">
         <div *ngFor="let option of radioOptions">
           <sbb-radio-button [value]="option.value">{{ option.name }}</sbb-radio-button>
         </div>
@@ -234,28 +234,30 @@
     </ng-container>
   </sbb-field>
 
-  <sbb-field label="Disabled accordion panel" class="pb-1">
-    <sbb-checkbox value="disabled" formControlName="disabled" class="inline-block">
-      Disabled
-    </sbb-checkbox>
-  </sbb-field>
+  <form [formGroup]="accordionForm">
+    <sbb-field label="Disabled accordion panel" class="pb-1">
+      <sbb-checkbox value="disabled" formControlName="disabled" class="inline-block">
+        Disabled
+      </sbb-checkbox>
+    </sbb-field>
 
-  <sbb-field label="Panel toggles" class="pb-1">
-    <sbb-checkbox value="hideToggle" formControlName="hideToggle" class="inline-block">
-      Hide Toggle
-    </sbb-checkbox>
-  </sbb-field>
+    <sbb-field label="Panel toggles" class="pb-1">
+      <sbb-checkbox value="hideToggle" formControlName="hideToggle" class="inline-block">
+        Hide Toggle
+      </sbb-checkbox>
+    </sbb-field>
 
-  <sbb-field label="Programmatically open panel" class="pb-1">
-    <select formControlName="panelMode" id="panelMode" sbbInput>
-      <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
-    </select>
-  </sbb-field>
-  <div class="flex-col">
-    <small>*You can choose "Open all/Close all" if multi panel checkbox is selected </small>
-    <small
-      >*You can choose one panel into select field to expand if the multi panel checkbox isn't
-      selected</small
-    >
-  </div>
-</form>
+    <sbb-field label="Programmatically open panel" class="pb-1">
+      <select formControlName="panelMode" id="panelMode" sbbInput>
+        <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
+      </select>
+    </sbb-field>
+    <div class="flex-col">
+      <small>*You can choose "Open all/Close all" if multi panel checkbox is selected </small>
+      <small
+        >*You can choose one panel into select field to expand if the multi panel checkbox isn't
+        selected</small
+      >
+    </div>
+  </form>
+</div>
