@@ -16,17 +16,17 @@
   </sbb-tab>
   <!-- Third tab with some generated content to be tracked on badge -->
   <sbb-tab
-    label="Persons"
-    id="persons-tab"
-    labelId="persons"
-    [badgePill]="getCountOfPersons()"
+    label="People"
+    id="people-tab"
+    labelId="people"
+    [badgePill]="getPeopleCount()"
     [disabled]="disabled"
     *ngIf="!removed"
     (disableChange)="disableChange($event)"
     (removeChange)="removeChange($event)"
   >
-    <h4>List of Persons</h4>
-    <sbb-person-list [person]="person"></sbb-person-list>
+    <h4>List of people</h4>
+    <sbb-people-list [people]="people"></sbb-people-list>
   </sbb-tab>
   <sbb-tab label="Tab 4" id="content4-tab" labelId="content4">
     <h4>Content 4</h4>

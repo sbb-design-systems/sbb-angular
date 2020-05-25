@@ -20,11 +20,11 @@ export class TabsExampleComponent implements OnInit {
   dataSet = '1';
   data = ['1', '50', '550'];
 
-  personInitialLoad: Person = { id: 1, name: 'Max', surname: 'Muster' };
+  peopleInitialLoad: Person = { id: 1, name: 'Max', surname: 'Muster' };
 
-  person: Person[] = [];
+  people: Person[] = [];
 
-  personList: Person[] = [
+  peopleList: Person[] = [
     { name: 'Peter', surname: 'Hahn' },
     { name: 'Andreas', surname: 'Hofstetter' },
     { name: 'Paul', surname: 'Walker' },
@@ -38,15 +38,15 @@ export class TabsExampleComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.person.push(this.personInitialLoad);
+    this.people.push(this.peopleInitialLoad);
   }
 
   private _initialPersonArrayByAmount(amount: number): void {
     let counter = 0;
     while (counter < amount) {
-      for (const item of this.personList) {
+      for (const item of this.peopleList) {
         counter++;
-        this.person.push({
+        this.people.push({
           id: counter,
           name: item.name,
           surname: item.surname,
@@ -78,9 +78,9 @@ export class TabsExampleComponent implements OnInit {
   }
 
   onChangeOfDataSet(event: string) {
-    this.person = [];
+    this.people = [];
     if (event.startsWith('1')) {
-      this.person.push(this.personInitialLoad);
+      this.people.push(this.peopleInitialLoad);
     }
     if (event.startsWith('50')) {
       this._initialPersonArrayByAmount(50);
@@ -90,7 +90,7 @@ export class TabsExampleComponent implements OnInit {
     }
   }
 
-  getCountOfPersons(): number {
-    return Object.keys(this.person).length;
+  getPeopleCount(): number {
+    return Object.keys(this.people).length;
   }
 }
