@@ -1,4 +1,4 @@
-<sbb-accordion [multi]="multiValue">
+<sbb-accordion [multi]="multi">
   <sbb-expansion-panel [expanded]="panelMode === 'panel 1'" [hideToggle]="hideToggle">
     <sbb-expansion-panel-header>
       Some generic content accordion panel
@@ -222,10 +222,10 @@
 <div class="flex-col">
   <h4 class="pb-1">Properties</h4>
   <sbb-field label="Multi panel" class="pb-1">
-    <sbb-checkbox value="multiValue" class="inline-block" [(ngModel)]="multiValue">
+    <sbb-checkbox value="multi" class="inline-block" [(ngModel)]="multi">
       Open the panels of the accordion together
     </sbb-checkbox>
-    <ng-container *ngIf="multiValue">
+    <ng-container *ngIf="multi">
       <sbb-radio-group (change)="toggleRadio($event)" class="sbbsc-block">
         <div *ngFor="let option of radioOptions">
           <sbb-radio-button [value]="option.value">{{ option.name }}</sbb-radio-button>
