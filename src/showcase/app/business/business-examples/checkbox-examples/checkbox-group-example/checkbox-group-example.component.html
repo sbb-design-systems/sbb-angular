@@ -1,5 +1,7 @@
 <ng-container *ngFor="let option of checkboxOptions">
-  <sbb-checkbox [(ngModel)]="option.selected">{{ option.name }}</sbb-checkbox>
+  <div class="sbbsc-block">
+    <sbb-checkbox [(ngModel)]="option.selected">{{ option.name }}</sbb-checkbox>
+  </div>
 </ng-container>
 <h4>Model</h4>
 <pre>{{ checkboxOptions | json }}</pre>

@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'sbb-basic-accordion-example',
   templateUrl: './basic-accordion-example.component.html',
-  styleUrls: ['./basic-accordion-example.component.scss'],
+  styleUrls: ['./basic-accordion-example.component.css'],
 })
 export class BasicAccordionExampleComponent implements OnInit, OnDestroy {
   @ViewChild(AccordionDirective, { static: true }) firstAccordion: AccordionDirective;

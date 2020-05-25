@@ -7,8 +7,6 @@ import { AccordionDirective } from '@sbb-esta/angular-business/accordion';
   templateUrl: './simple-panel-example.component.html',
 })
 export class SimplePanelExampleComponent {
-  @ViewChild(AccordionDirective, { static: true }) firstAccordion: AccordionDirective;
-
   panelMode = 'panel 1';
   panels = ['panel 1', 'panel 2', 'panel 3', 'panel 4', 'panel 5'];
   accordionForm: FormGroup;

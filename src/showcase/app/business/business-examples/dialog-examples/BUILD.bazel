@@ -20,7 +20,6 @@ ng_ts_library(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-business",
         "//src/angular-business/button",
         "//src/angular-business/dialog",
         "//src/angular-business/field",

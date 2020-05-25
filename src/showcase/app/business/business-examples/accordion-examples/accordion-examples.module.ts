@@ -29,8 +29,6 @@ const EXAMPLES = [
     FieldModule,
     RadioButtonModule,
     ButtonModule,
-    RadioButtonModule,
-    RadioButtonModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

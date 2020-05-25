@@ -46,7 +46,12 @@
 </small>
 <h4 class="sbbsc-block">Properties</h4>
 <sbb-field label="Set data-set for tabs content / tab pill">
-  <select [(ngModel)]="dataSet" (ngModelChange)="onChangeOfDataSet($event)" sbbInput>
+  <select
+    [(ngModel)]="dataSet"
+    (ngModelChange)="onChangeOfDataSet($event)"
+    sbbInput
+    class="sbbsc-block"
+  >
     <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
   </select>
 </sbb-field>

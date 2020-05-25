@@ -8,8 +8,14 @@
   Test label
 </sbb-checkbox>
 
-<h4>Properties</h4>
-<sbb-checkbox [(ngModel)]="checked">Checked</sbb-checkbox>
-<sbb-checkbox [(ngModel)]="required">Required</sbb-checkbox>
-<sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>
+<h4 class="sbbsc-block">Properties</h4>
+<div class="sbbsc-block">
+  <sbb-checkbox [(ngModel)]="checked">Checked</sbb-checkbox>
+</div>
+<div class="sbbsc-block">
+  <sbb-checkbox [(ngModel)]="required">Required</sbb-checkbox>
+</div>
+<div class="sbbsc-block">
+  <sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>
+</div>
 <p>Change Counter: {{ changeCounter }}</p>
