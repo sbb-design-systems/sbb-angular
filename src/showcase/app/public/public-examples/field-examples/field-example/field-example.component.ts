@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CheckboxChange } from '@sbb-esta/angular-business/checkbox';
+import { CheckboxChange } from '@sbb-esta/angular-public/checkbox';
 
 @Component({
   selector: 'sbb-field-example',

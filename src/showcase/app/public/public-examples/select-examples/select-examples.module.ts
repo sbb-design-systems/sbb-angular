@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
-import { FieldModule } from '@sbb-esta/angular-business/field';
-import { SelectModule } from '@sbb-esta/angular-business/select';
+import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
+import { FieldModule } from '@sbb-esta/angular-public/field';
+import { SelectModule } from '@sbb-esta/angular-public/select';
 
 import { SelectFormsExampleComponent } from './select-forms-example/select-forms-example.component';
 import { SelectMultiSelectionExampleComponent } from './select-multi-selection-example/select-multi-selection-example.component';

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TabsComponent } from '@sbb-esta/angular-business/tabs';
+import { TabsComponent } from '@sbb-esta/angular-public/tabs';
 
 export interface Person {
   id?: number;

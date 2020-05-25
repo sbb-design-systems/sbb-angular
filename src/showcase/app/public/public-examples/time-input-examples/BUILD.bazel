@@ -16,7 +16,7 @@ ng_ts_library(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-business/time-input",
+        "//src/angular-public/time-input",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

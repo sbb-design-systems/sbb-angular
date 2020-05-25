@@ -7,7 +7,7 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_ts_library(
-    name = "accordion-examples-1",
+    name = "accordion-examples",
     srcs = [
         "accordion-examples.module.ts",
         "basic-accordion-example/basic-accordion-example.component.ts",
@@ -33,6 +33,15 @@ ng_ts_library(
         "@npm//@angular/forms",
         "@npm//rxjs",
     ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
 )
 
 sass_binary(

@@ -2,7 +2,9 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
-import { AccordionExampleComponent } from '../public-examples/accordion-examples/accordion-example/accordion-example.component';
+import { BasicAccordionExampleComponent } from '../public-examples/accordion-examples/basic-accordion-example/basic-accordion-example.component';
+import { SimplePanelExampleComponent } from '../public-examples/accordion-examples/simple-panel-example/simple-panel-example.component';
+import { WizardAccordionExampleComponent } from '../public-examples/accordion-examples/wizard-accordion-example/wizard-accordion-example.component';
 import { AutocompleteDisplayWithExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-display-with-example/autocomplete-display-with-example.component';
 import { AutocompleteFormsExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
@@ -14,7 +16,7 @@ import { BreadcrumbExampleComponent } from '../public-examples/breadcrumb-exampl
 import { ButtonExampleComponent } from '../public-examples/button-examples/button-example/button-example.component';
 import { CaptchaExampleComponent } from '../public-examples/captcha-examples/captcha-example/captcha-example.component';
 import { CheckboxExampleComponent } from '../public-examples/checkbox-examples/checkbox-example/checkbox-example.component';
-import { CheckboxPanelExampleComponent } from '../public-examples/checkbox-panel-examples/checkbox-panel-example/checkbox-panel-example.component';
+import { CheckboxGroupExampleComponent } from '../public-examples/checkbox-examples/checkbox-group-example/checkbox-group-example.component';
 import { DatepickerDateFilterExampleComponent } from '../public-examples/datepicker-examples/datepicker-date-filter-example/datepicker-date-filter-example.component';
 import { DatepickerMasterSlaveExampleComponent } from '../public-examples/datepicker-examples/datepicker-master-slave-example/datepicker-master-slave-example.component';
 import { DatepickerSimpleReactiveExampleComponent } from '../public-examples/datepicker-examples/datepicker-simple-reactive-example/datepicker-simple-reactive-example.component';
@@ -36,6 +38,7 @@ import { NavigationExampleComponent } from '../public-examples/pagination-exampl
 import { PaginatorExampleComponent } from '../public-examples/pagination-examples/paginator-example/paginator-example.component';
 import { ProcessflowExampleComponent } from '../public-examples/processflow-examples/processflow-example/processflow-example.component';
 import { RadioButtonExampleComponent } from '../public-examples/radio-button-examples/radio-button-example/radio-button-example.component';
+import { RadioButtonGroupExampleComponent } from '../public-examples/radio-button-examples/radio-button-group-example/radio-button-group-example.component';
 import { RadioButtonPanelExampleComponent } from '../public-examples/radio-button-panel-examples/radio-button-panel-example/radio-button-panel-example.component';
 import { SearchExampleComponent } from '../public-examples/search-examples/search-example/search-example.component';
 import { SelectFormsExampleComponent } from '../public-examples/select-examples/select-forms-example/select-forms-example.component';
@@ -106,6 +109,11 @@ export class PublicComponent implements ExampleProvider {
     tooltip: 'Tooltip',
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
+    accordion: {
+      'basic-accordion-example': new ComponentPortal(BasicAccordionExampleComponent),
+      'wizard-accordion-example': new ComponentPortal(WizardAccordionExampleComponent),
+      'simple-panel-example': new ComponentPortal(SimplePanelExampleComponent),
+    },
     autocomplete: {
       'autocomplete-reactive-forms-example': new ComponentPortal(
         AutocompleteReactiveFormsExampleComponent
@@ -123,9 +131,9 @@ export class PublicComponent implements ExampleProvider {
       ),
     },
     captcha: { 'captcha-example': new ComponentPortal(CaptchaExampleComponent) },
-    checkbox: { 'checkbox-example': new ComponentPortal(CheckboxExampleComponent) },
-    'checkbox-panel': {
-      'checkbox-panel-example': new ComponentPortal(CheckboxPanelExampleComponent),
+    checkbox: {
+      'checkbox-example': new ComponentPortal(CheckboxExampleComponent),
+      'checkbox-group-example': new ComponentPortal(CheckboxGroupExampleComponent),
     },
     datepicker: {
       'datepicker-simple-reactive-example': new ComponentPortal(
@@ -147,7 +155,10 @@ export class PublicComponent implements ExampleProvider {
         MultipleModePersistentFileSelectorExampleComponent
       ),
     },
-    'radio-button': { 'radio-button-example': new ComponentPortal(RadioButtonExampleComponent) },
+    'radio-button': {
+      'single-radio-button-example': new ComponentPortal(RadioButtonExampleComponent),
+      'radio-button-group-example': new ComponentPortal(RadioButtonGroupExampleComponent),
+    },
     'radio-button-panel': {
       'radio-button-panel-example': new ComponentPortal(RadioButtonPanelExampleComponent),
     },
@@ -172,7 +183,6 @@ export class PublicComponent implements ExampleProvider {
     },
     'time-input': { 'time-input-example': new ComponentPortal(TimeInputExampleComponent) },
     toggle: { 'toggle-example': new ComponentPortal(ToggleExampleComponent) },
-    accordion: { 'accordion-example': new ComponentPortal(AccordionExampleComponent) },
     breadcrumb: { 'breadcrumb-example': new ComponentPortal(BreadcrumbExampleComponent) },
     ghettobox: { 'ghettobox-example': new ComponentPortal(GhettoboxExampleComponent) },
     notification: { 'notification-example': new ComponentPortal(NotificationExampleComponent) },

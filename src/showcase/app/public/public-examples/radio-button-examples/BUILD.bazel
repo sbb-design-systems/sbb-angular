@@ -18,8 +18,8 @@ ng_ts_library(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-business/checkbox",
-        "//src/angular-business/radio-button",
+        "//src/angular-public/checkbox",
+        "//src/angular-public/radio-button",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

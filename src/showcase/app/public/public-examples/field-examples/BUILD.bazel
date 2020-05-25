@@ -16,8 +16,8 @@ ng_ts_library(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-business",
-        "//src/angular-business/checkbox",
+        "//src/angular-public",
+        "//src/angular-public/checkbox",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

@@ -7,7 +7,7 @@ import {
   DatepickerModule,
   FieldModule,
   SelectModule,
-} from '@sbb-esta/angular-business';
+} from '@sbb-esta/angular-public';
 
 import { FieldExampleComponent } from './field-example/field-example.component';
 

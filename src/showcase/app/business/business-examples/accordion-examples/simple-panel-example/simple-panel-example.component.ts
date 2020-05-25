@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AccordionDirective } from '@sbb-esta/angular-business/accordion';
 
 @Component({
   selector: 'sbb-simple-panel-example',
