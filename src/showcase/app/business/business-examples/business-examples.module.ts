@@ -11,6 +11,7 @@ import { DatepickerExamplesModule } from './datepicker-examples/datepicker-examp
 import { DialogExamplesModule } from './dialog-examples/dialog-examples.module';
 import { FieldExamplesModule } from './field-examples/field-examples.module';
 import { FileSelectorExamplesModule } from './file-selector-examples/file-selector-examples.module';
+import { LoadingExamplesModule } from './loading-examples/loading-examples.module';
 import { NotificationExamplesModule } from './notification-examples/notification-examples.module';
 import { PaginationExamplesModule } from './pagination-examples/pagination-examples.module';
 import { ProcessflowExamplesModule } from './processflow-examples/processflow-examples.module';
@@ -48,6 +49,7 @@ const EXAMPLES = [
   ButtonExamplesModule,
   TextexpandExamplesModule,
   TimeInputExamplesModule,
+  LoadingExamplesModule,
 ];
 
 @NgModule({

@@ -34,6 +34,9 @@ import { MultipleModePersistentFileSelectorExampleComponent } from '../business-
 import { SimpleFileSelectorExampleComponent } from '../business-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
 import { IconLinkExampleComponent } from '../business-examples/links-examples/icon-link-example/icon-link-example.component';
 import { SimpleLinkExampleComponent } from '../business-examples/links-examples/simple-link-example/simple-link-example.component';
+import { FullboxLoadingExampleComponent } from '../business-examples/loading-examples/fullbox-loading-example/fullbox-loading-example.component';
+import { FullscreenLoadingExampleComponent } from '../business-examples/loading-examples/fullscreen-loading-example/fullscreen-loading-example.component';
+import { SimpleLoadingExampleComponent } from '../business-examples/loading-examples/simple-loading-example/simple-loading-example.component';
 import { ClosableNotificationExampleComponent } from '../business-examples/notification-examples/closable-notification-example/closable-notification-example.component';
 import { CustomIconNotificationExampleComponent } from '../business-examples/notification-examples/custom-icon-notification-example/custom-icon-notification-example.component';
 import { JumpmarkNotificationExampleComponent } from '../business-examples/notification-examples/jumpmark-notification-example/jumpmark-notification-example.component';
@@ -105,6 +108,7 @@ export class BusinessComponent implements ExampleProvider {
     button: 'Button',
     contextmenu: 'Contextmenu',
     links: 'Links',
+    loading: 'Loading',
   };
   popupsAndModals = {
     tooltip: 'Tooltip',
@@ -248,6 +252,11 @@ export class BusinessComponent implements ExampleProvider {
     },
     textexpand: { 'textexpand-example': new ComponentPortal(TextexpandExampleComponent) },
     'time-input': { 'time-input-example': new ComponentPortal(TimeInputExampleComponent) },
+    loading: {
+      'simple-loading-example': new ComponentPortal(SimpleLoadingExampleComponent),
+      'fullbox-loading-example': new ComponentPortal(FullboxLoadingExampleComponent),
+      'fullscreen-loading-example': new ComponentPortal(FullscreenLoadingExampleComponent),
+    },
   };
 
   resolveExample<TComponent = any>(

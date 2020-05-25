@@ -51,6 +51,7 @@ ALL_EXAMPLES = [
     "//src/showcase/app/business/business-examples/dialog-examples",
     "//src/showcase/app/business/business-examples/field-examples",
     "//src/showcase/app/business/business-examples/file-selector-examples",
+    "//src/showcase/app/business/business-examples/loading-examples",
     "//src/showcase/app/business/business-examples/links-examples",
     "//src/showcase/app/business/business-examples/notification-examples",
     "//src/showcase/app/business/business-examples/pagination-examples",

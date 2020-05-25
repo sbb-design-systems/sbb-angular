@@ -11,7 +11,7 @@ We appreciate all kinds of contributions. As a contributor, here are the guideli
 
 ## <a name="issue"></a> Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by
-[submitting an issue](#submit-issue) to our [GitHub Repository][github]. Including an issue 
+[submitting an issue](#submit-issue) to our [GitHub Repository][github]. Including an issue
 reproduction (via StackBlitz, JsBin, Plunkr, etc.) is the absolute best way to help the team quickly
 diagnose the problem. Screenshots are also helpful.
 
@@ -21,7 +21,7 @@ You can help the team even more and [submit a Pull Request](#submit-pr) with a f
 ## <a name="feature"></a> Want a Feature?
 You can *request* a new feature by [submitting an issue](#submit-issue) to our [GitHub
 Repository][github]. If you would like to *implement* a new feature, please submit an issue with
-a proposal for your work first, to be sure that we can use it. 
+a proposal for your work first, to be sure that we can use it.
 Please consider what kind of change it is:
 
 * For a **Major Feature**, first open an issue and outline your proposal so that it can be
@@ -189,3 +189,7 @@ padding: 1rem 2rem;
 ```
 
 For business components in `projects/sbb-esta/angular-business`, it is required to put `$sbbBusiness: true;` at the top of .scss files.
+
+## Language
+
+We recommend using US English in all docs or examples.
