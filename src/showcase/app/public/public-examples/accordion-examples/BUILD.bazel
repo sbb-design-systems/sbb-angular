@@ -7,14 +7,18 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_ts_library(
-    name = "accordion-examples",
+    name = "accordion-examples-1",
     srcs = [
-        "accordion-example/accordion-example.component.ts",
         "accordion-examples.module.ts",
+        "basic-accordion-example/basic-accordion-example.component.ts",
+        "simple-panel-example/simple-panel-example.component.ts",
+        "wizard-accordion-example/wizard-accordion-example.component.ts",
     ],
     assets = [
-        ":accordion-example/accordion-example.component.css",
-        "accordion-example/accordion-example.component.html",
+        ":basic-accordion-example/basic-accordion-example.component.css",
+        "basic-accordion-example/basic-accordion-example.component.html",
+        "simple-panel-example/simple-panel-example.component.html",
+        "wizard-accordion-example/wizard-accordion-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -31,16 +35,7 @@ ng_ts_library(
     ],
 )
 
-filegroup(
-    name = "source-files",
-    srcs = glob([
-        "**/*.html",
-        "**/*.scss",
-        "**/*.ts",
-    ]),
-)
-
 sass_binary(
-    name = "accordion_example_accordion_example_component_scss",
-    src = "accordion-example/accordion-example.component.scss",
+    name = "basic_accordion_example_basic_accordion_example_component_scss",
+    src = "basic-accordion-example/basic-accordion-example.component.scss",
 )

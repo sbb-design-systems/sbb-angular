@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -13,16 +12,12 @@ ng_ts_library(
         "field-examples.module.ts",
     ],
     assets = [
-        ":field-example/field-example.component.css",
         "field-example/field-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-public/button",
-        "//src/angular-public/checkbox",
-        "//src/angular-public/datepicker",
-        "//src/angular-public/field",
-        "//src/angular-public/select",
+        "//src/angular-business",
+        "//src/angular-business/checkbox",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
@@ -36,9 +31,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "field_example_field_example_component_scss",
-    src = "field-example/field-example.component.scss",
 )

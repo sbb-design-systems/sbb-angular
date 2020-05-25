@@ -1,18 +1,12 @@
-<article class="container-fluid">
-  <div class="row">
-    <div class="col-lg-6">
-      <h4 class="sbbsc-block">Example</h4>
-      <form novalidate>
-        <input sbbTimeInput />
-      </form>
+<h4 class="sbbsc-block">Simple time input</h4>
+<form novalidate>
+  <input sbbTimeInput />
+</form>
 
-      <h4 class="sbbsc-block">Form Example</h4>
-      <form [formGroup]="form" novalidate>
-        <input formControlName="time" sbbTimeInput />
-      </form>
+<h4 class="sbbsc-block">Form time input</h4>
+<form [formGroup]="form" novalidate>
+  <input formControlName="time" sbbTimeInput />
+</form>
 
-      <p>Model:</p>
-      <pre>{{ form.get('time')?.value | json }}</pre>
-    </div>
-  </div>
-</article>
+<h4 class="sbbsc-block">Model</h4>
+<pre>{{ form.get('time')?.value | json }}</pre>

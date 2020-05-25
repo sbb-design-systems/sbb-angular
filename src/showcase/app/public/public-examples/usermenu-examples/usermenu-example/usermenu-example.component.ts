@@ -3,24 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-usermenu-example',
   templateUrl: './usermenu-example.component.html',
-  styleUrls: ['./usermenu-example.component.css'],
 })
 export class UsermenuExampleComponent {
-  userName1 = 'john_64';
-  userName2 = 'max_98';
-  userName3 = 'walter_14';
+  userName = 'walter_14';
 
-  user1 = {
-    userName: '',
-    displayName: 'John Scott',
-  };
-
-  user2 = {
-    userName: '',
-    displayName: 'Max Muster',
-  };
-
-  user3 = {
+  user = {
     userName: '',
     displayName: 'Walter Scotti',
   };
@@ -39,17 +26,7 @@ export class UsermenuExampleComponent {
   }
 
   login() {
-    this.user1.userName = this.userName1;
-    console.log('login successful');
-  }
-
-  login2() {
-    this.user2.userName = this.userName2;
-    console.log('login successful');
-  }
-
-  login3() {
-    this.user3.userName = this.userName3;
+    this.user.userName = this.userName;
     console.log('login successful');
   }
 

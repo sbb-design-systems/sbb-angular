@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -11,10 +10,11 @@ ng_ts_library(
     srcs = [
         "checkbox-example/checkbox-example.component.ts",
         "checkbox-examples.module.ts",
+        "checkbox-group-example/checkbox-group-example.component.ts",
     ],
     assets = [
-        ":checkbox-example/checkbox-example.component.css",
         "checkbox-example/checkbox-example.component.html",
+        "checkbox-group-example/checkbox-group-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -32,9 +32,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "checkbox_example_checkbox_example_component_scss",
-    src = "checkbox-example/checkbox-example.component.scss",
 )

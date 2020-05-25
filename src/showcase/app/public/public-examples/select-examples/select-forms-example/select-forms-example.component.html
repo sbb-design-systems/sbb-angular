@@ -1,20 +1,20 @@
-<div>
-  <sbb-field mode="long">
-    <sbb-label>Lieblingsessen</sbb-label>
-    <sbb-select placeholder="Lieblingsessen" [(ngModel)]="value" [disabled]="disabled">
-      <sbb-option
-        *ngFor="let food of ['Beefsteak', 'Pizza', 'Nudeln']; first as isFirst"
-        [disabled]="isFirst && optionDisabled"
-        [value]="food"
-      >
-        {{ food }}
-      </sbb-option>
-    </sbb-select>
-  </sbb-field>
+<sbb-field mode="long">
+  <sbb-label>Favorite meal</sbb-label>
+  <sbb-select placeholder="Favorite meal" [(ngModel)]="value" [disabled]="disabled">
+    <sbb-option
+      *ngFor="let food of ['Beefsteak', 'Pizza', 'Pasta']; first as isFirst"
+      [disabled]="isFirst && optionDisabled"
+      [value]="food"
+    >
+      {{ food }}
+    </sbb-option>
+  </sbb-select>
+</sbb-field>
+<h4>Properties</h4>
+<pre>{{ value | json }}</pre>
+<div class="sbbsc-block">
+  <sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>
 </div>
-<div>
-  <h4>Properties</h4>
-  <pre>{{ value | json }}</pre>
-  <sbb-checkbox [(ngModel)]="disabled">disabled</sbb-checkbox>
-  <sbb-checkbox [(ngModel)]="optionDisabled">first option disabled</sbb-checkbox>
+<div class="sbbsc-block">
+  <sbb-checkbox [(ngModel)]="optionDisabled">First option disabled</sbb-checkbox>
 </div>
