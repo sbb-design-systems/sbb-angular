@@ -42,7 +42,7 @@ export class BasicAccordionExampleComponent implements OnInit, OnDestroy {
       disabled: new FormControl(this.disabled),
       multi: new FormControl(this.multi),
       panelMode: new FormControl(this.panelMode),
-      showToggle: new FormControl(this.hideToggle),
+      hideToggle: new FormControl(this.hideToggle),
     });
   }
 
