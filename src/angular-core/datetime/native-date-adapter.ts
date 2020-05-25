@@ -68,11 +68,11 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         format = 'LLL';
         break;
     }
-    return range(12, i => this._datePipe.transform(new Date(2017, i, 1), format)!);
+    return range(12, (i) => this._datePipe.transform(new Date(2017, i, 1), format)!);
   }
 
   getDateNames(): string[] {
-    return range(31, i => this._datePipe.transform(new Date(2017, 0, i + 1), 'd')!);
+    return range(31, (i) => this._datePipe.transform(new Date(2017, 0, i + 1), 'd')!);
   }
 
   getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[] {
@@ -88,7 +88,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         format = 'EEE';
         break;
     }
-    return range(7, i => this._datePipe.transform(new Date(2017, 0, i + 1), format)!);
+    return range(7, (i) => this._datePipe.transform(new Date(2017, 0, i + 1), format)!);
   }
 
   getYearName(date: Date): string {

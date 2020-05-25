@@ -8,7 +8,7 @@ const sonarParams = {
   'sonar.projectVersion': pkg.version,
   'sonar.links.homepage': pkg.homepage,
   'sonar.links.issues': pkg.bugs.url,
-  'sonar.links.scm': pkg.repository.url
+  'sonar.links.scm': pkg.repository.url,
 };
 
 const sonarPropertiesFile = join(__dirname, '../sonar-project.properties');

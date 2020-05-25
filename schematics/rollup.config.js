@@ -4,11 +4,11 @@ import { join } from 'path';
 
 export default readdirSync(__dirname, { withFileTypes: true })
   .filter(isBuildable)
-  .map(d => ({
+  .map((d) => ({
     input: join(__dirname, d.name, 'index.ts'),
     output: {
       file: join(__dirname, d.name, 'index.js'),
-      format: 'cjs'
+      format: 'cjs',
     },
     external: [
       '@angular/cdk/schematics',
@@ -32,14 +32,14 @@ export default readdirSync(__dirname, { withFileTypes: true })
       'rxjs',
       'rxjs/operators',
       'svgo',
-      'typescript'
+      'typescript',
     ],
     plugins: [
       ts({
         browserslist: false,
-        tsconfig: join(__dirname, 'tsconfig.json')
-      })
-    ]
+        tsconfig: join(__dirname, 'tsconfig.json'),
+      }),
+    ],
   }));
 
 function isBuildable(d) {
@@ -50,8 +50,8 @@ function isBuildable(d) {
   const indexTs = join(dir, 'index.ts');
   const indexJs = join(dir, 'index.js');
   const lastModified = readdirSync(dir, { withFileTypes: true })
-    .filter(d => d.isFile() && d.name.endsWith('.ts'))
-    .map(d => statSync(join(dir, d.name)).mtimeMs)
+    .filter((d) => d.isFile() && d.name.endsWith('.ts'))
+    .map((d) => statSync(join(dir, d.name)).mtimeMs)
     .reduce((x, y) => Math.max(x, y), 0);
   return existsSync(indexTs) && (!existsSync(indexJs) || lastModified > statSync(indexJs).mtimeMs);
 }

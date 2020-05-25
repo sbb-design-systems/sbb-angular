@@ -10,7 +10,7 @@ import {
   OnDestroy,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
@@ -19,7 +19,7 @@ const stickySupported =
   typeof CSS !== 'undefined' &&
   typeof CSS.supports === 'function' &&
   CSS.supports(
-    ['', '-o-', '-webkit-', '-moz-', '-ms-'].map(p => `(position: ${p}sticky)`).join(' or ')
+    ['', '-o-', '-webkit-', '-moz-', '-ms-'].map((p) => `(position: ${p}sticky)`).join(' or ')
   );
 
 @Component({
@@ -27,7 +27,7 @@ const stickySupported =
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TableComponent implements OnChanges, OnDestroy {
   /** Table identifier. */
@@ -92,7 +92,7 @@ export class TableComponent implements OnChanges, OnDestroy {
             map(() => this._scrollContainer.nativeElement.scrollLeft > 0),
             distinctUntilChanged()
           )
-          .subscribe(v =>
+          .subscribe((v) =>
             this._zone.run(() => {
               this._scrolling = v;
               this._changeDetectorRef.markForCheck();

@@ -503,7 +503,7 @@ import {
   IconWifiComponent,
   IconWineCheeseComponent,
   IconXingComponent,
-  IconYoutubeComponent
+  IconYoutubeComponent,
 } from '@sbb-esta/angular-icons';
 
 export const ICON_COMPONENT_META_INFORMATION = [
@@ -513,7 +513,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSa1Module', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_1.svg'],
-    component: IconSa1Component
+    component: IconSa1Component,
   },
   {
     selector: 'sbb-icon-sa-2',
@@ -521,7 +521,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSa2Module', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_2.svg'],
-    component: IconSa2Component
+    component: IconSa2Component,
   },
   {
     selector: 'sbb-icon-sa-aw',
@@ -529,7 +529,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaAwModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_aw.svg'],
-    component: IconSaAwComponent
+    component: IconSaAwComponent,
   },
   {
     selector: 'sbb-icon-sa-b',
@@ -537,7 +537,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaBModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_b.svg'],
-    component: IconSaBComponent
+    component: IconSaBComponent,
   },
   {
     selector: 'sbb-icon-sa-be',
@@ -545,7 +545,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaBeModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_be.svg'],
-    component: IconSaBeComponent
+    component: IconSaBeComponent,
   },
   {
     selector: 'sbb-icon-sa-bk',
@@ -553,7 +553,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaBkModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_bk.svg'],
-    component: IconSaBkComponent
+    component: IconSaBkComponent,
   },
   {
     selector: 'sbb-icon-sa-bl',
@@ -561,7 +561,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaBlModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_bl.svg'],
-    component: IconSaBlComponent
+    component: IconSaBlComponent,
   },
   {
     selector: 'sbb-icon-sa-br',
@@ -569,7 +569,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaBrModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_br.svg'],
-    component: IconSaBrComponent
+    component: IconSaBrComponent,
   },
   {
     selector: 'sbb-icon-sa-bv',
@@ -577,7 +577,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaBvModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_bv.svg'],
-    component: IconSaBvComponent
+    component: IconSaBvComponent,
   },
   {
     selector: 'sbb-icon-sa-bz',
@@ -585,7 +585,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaBzModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_bz.svg'],
-    component: IconSaBzComponent
+    component: IconSaBzComponent,
   },
   {
     selector: 'sbb-icon-sa-cc',
@@ -593,7 +593,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaCcModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_cc.svg'],
-    component: IconSaCcComponent
+    component: IconSaCcComponent,
   },
   {
     selector: 'sbb-icon-sa-dz',
@@ -601,7 +601,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaDzModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_dz.svg'],
-    component: IconSaDzComponent
+    component: IconSaDzComponent,
   },
   {
     selector: 'sbb-icon-sa-ep',
@@ -609,7 +609,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaEpModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_ep.svg'],
-    component: IconSaEpComponent
+    component: IconSaEpComponent,
   },
   {
     selector: 'sbb-icon-sa-fa',
@@ -617,7 +617,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaFaModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_fa.svg'],
-    component: IconSaFaComponent
+    component: IconSaFaComponent,
   },
   {
     selector: 'sbb-icon-sa-fl',
@@ -625,7 +625,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaFlModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_fl.svg'],
-    component: IconSaFlComponent
+    component: IconSaFlComponent,
   },
   {
     selector: 'sbb-icon-sa-fw',
@@ -633,7 +633,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaFwModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_fw.svg'],
-    component: IconSaFwComponent
+    component: IconSaFwComponent,
   },
   {
     selector: 'sbb-icon-sa-fz',
@@ -641,7 +641,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaFzModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_fz.svg'],
-    component: IconSaFzComponent
+    component: IconSaFzComponent,
   },
   {
     selector: 'sbb-icon-sa-gl',
@@ -649,7 +649,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaGlModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_gl.svg'],
-    component: IconSaGlComponent
+    component: IconSaGlComponent,
   },
   {
     selector: 'sbb-icon-sa-gn',
@@ -657,7 +657,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaGnModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_gn.svg'],
-    component: IconSaGnComponent
+    component: IconSaGnComponent,
   },
   {
     selector: 'sbb-icon-sa-gp',
@@ -665,7 +665,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaGpModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_gp.svg'],
-    component: IconSaGpComponent
+    component: IconSaGpComponent,
   },
   {
     selector: 'sbb-icon-sa-gr',
@@ -673,7 +673,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaGrModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_gr.svg'],
-    component: IconSaGrComponent
+    component: IconSaGrComponent,
   },
   {
     selector: 'sbb-icon-sa-gz',
@@ -681,7 +681,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaGzModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_gz.svg'],
-    component: IconSaGzComponent
+    component: IconSaGzComponent,
   },
   {
     selector: 'sbb-icon-sa-hk',
@@ -689,7 +689,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaHkModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_hk.svg'],
-    component: IconSaHkComponent
+    component: IconSaHkComponent,
   },
   {
     selector: 'sbb-icon-sa-hn',
@@ -697,7 +697,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaHnModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_hn.svg'],
-    component: IconSaHnComponent
+    component: IconSaHnComponent,
   },
   {
     selector: 'sbb-icon-sa-je',
@@ -705,7 +705,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaJeModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_je.svg'],
-    component: IconSaJeComponent
+    component: IconSaJeComponent,
   },
   {
     selector: 'sbb-icon-sa-kw',
@@ -713,7 +713,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaKwModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_kw.svg'],
-    component: IconSaKwComponent
+    component: IconSaKwComponent,
   },
   {
     selector: 'sbb-icon-sa-lc',
@@ -721,7 +721,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaLcModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_lc.svg'],
-    component: IconSaLcComponent
+    component: IconSaLcComponent,
   },
   {
     selector: 'sbb-icon-sa-le',
@@ -729,7 +729,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaLeModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_le.svg'],
-    component: IconSaLeComponent
+    component: IconSaLeComponent,
   },
   {
     selector: 'sbb-icon-sa-me',
@@ -737,7 +737,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaMeModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_me.svg'],
-    component: IconSaMeComponent
+    component: IconSaMeComponent,
   },
   {
     selector: 'sbb-icon-sa-mi',
@@ -745,7 +745,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaMiModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_mi.svg'],
-    component: IconSaMiComponent
+    component: IconSaMiComponent,
   },
   {
     selector: 'sbb-icon-sa-mp',
@@ -753,7 +753,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaMpModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_mp.svg'],
-    component: IconSaMpComponent
+    component: IconSaMpComponent,
   },
   {
     selector: 'sbb-icon-sa-nf',
@@ -761,7 +761,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaNfModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_nf.svg'],
-    component: IconSaNfComponent
+    component: IconSaNfComponent,
   },
   {
     selector: 'sbb-icon-sa-nj',
@@ -769,7 +769,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaNjModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_nj.svg'],
-    component: IconSaNjComponent
+    component: IconSaNjComponent,
   },
   {
     selector: 'sbb-icon-sa-p',
@@ -777,7 +777,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaPModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_p.svg'],
-    component: IconSaPComponent
+    component: IconSaPComponent,
   },
   {
     selector: 'sbb-icon-sa-pa',
@@ -785,7 +785,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaPaModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_pa.svg'],
-    component: IconSaPaComponent
+    component: IconSaPaComponent,
   },
   {
     selector: 'sbb-icon-sa-pl',
@@ -793,7 +793,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaPlModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_pl.svg'],
-    component: IconSaPlComponent
+    component: IconSaPlComponent,
   },
   {
     selector: 'sbb-icon-sa-pr',
@@ -801,7 +801,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaPrModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_pr.svg'],
-    component: IconSaPrComponent
+    component: IconSaPrComponent,
   },
   {
     selector: 'sbb-icon-sa-r',
@@ -809,7 +809,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaRModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_r.svg'],
-    component: IconSaRComponent
+    component: IconSaRComponent,
   },
   {
     selector: 'sbb-icon-sa-rb',
@@ -817,7 +817,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaRbModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_rb.svg'],
-    component: IconSaRbComponent
+    component: IconSaRbComponent,
   },
   {
     selector: 'sbb-icon-sa-rc',
@@ -825,7 +825,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaRcModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_rc.svg'],
-    component: IconSaRcComponent
+    component: IconSaRcComponent,
   },
   {
     selector: 'sbb-icon-sa-re',
@@ -833,7 +833,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaReModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_re.svg'],
-    component: IconSaReComponent
+    component: IconSaReComponent,
   },
   {
     selector: 'sbb-icon-sa-rq',
@@ -841,7 +841,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaRqModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_rq.svg'],
-    component: IconSaRqComponent
+    component: IconSaRqComponent,
   },
   {
     selector: 'sbb-icon-sa-rr',
@@ -849,7 +849,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaRrModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_rr.svg'],
-    component: IconSaRrComponent
+    component: IconSaRrComponent,
   },
   {
     selector: 'sbb-icon-sa-rt',
@@ -857,7 +857,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaRtModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_rt.svg'],
-    component: IconSaRtComponent
+    component: IconSaRtComponent,
   },
   {
     selector: 'sbb-icon-sa-ry',
@@ -865,7 +865,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaRyModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_ry.svg'],
-    component: IconSaRyComponent
+    component: IconSaRyComponent,
   },
   {
     selector: 'sbb-icon-sa-rz',
@@ -873,7 +873,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaRzModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_rz.svg'],
-    component: IconSaRzComponent
+    component: IconSaRzComponent,
   },
   {
     selector: 'sbb-icon-sa-s',
@@ -881,7 +881,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaSModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_s.svg'],
-    component: IconSaSComponent
+    component: IconSaSComponent,
   },
   {
     selector: 'sbb-icon-sa-sb',
@@ -889,7 +889,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaSbModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_sb.svg'],
-    component: IconSaSbComponent
+    component: IconSaSbComponent,
   },
   {
     selector: 'sbb-icon-sa-sc',
@@ -897,7 +897,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaScModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_sc.svg'],
-    component: IconSaScComponent
+    component: IconSaScComponent,
   },
   {
     selector: 'sbb-icon-sa-sd',
@@ -905,7 +905,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaSdModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_sd.svg'],
-    component: IconSaSdComponent
+    component: IconSaSdComponent,
   },
   {
     selector: 'sbb-icon-sa-sh',
@@ -913,7 +913,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaShModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_sh.svg'],
-    component: IconSaShComponent
+    component: IconSaShComponent,
   },
   {
     selector: 'sbb-icon-sa-sl',
@@ -921,7 +921,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaSlModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_sl.svg'],
-    component: IconSaSlComponent
+    component: IconSaSlComponent,
   },
   {
     selector: 'sbb-icon-sa-sm',
@@ -929,7 +929,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaSmModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_sm.svg'],
-    component: IconSaSmComponent
+    component: IconSaSmComponent,
   },
   {
     selector: 'sbb-icon-sa-sn',
@@ -937,7 +937,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaSnModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_sn.svg'],
-    component: IconSaSnComponent
+    component: IconSaSnComponent,
   },
   {
     selector: 'sbb-icon-sa-sv',
@@ -945,7 +945,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaSvModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_sv.svg'],
-    component: IconSaSvComponent
+    component: IconSaSvComponent,
   },
   {
     selector: 'sbb-icon-sa-sz',
@@ -953,7 +953,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaSzModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_sz.svg'],
-    component: IconSaSzComponent
+    component: IconSaSzComponent,
   },
   {
     selector: 'sbb-icon-sa-tc',
@@ -961,7 +961,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaTcModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_tc.svg'],
-    component: IconSaTcComponent
+    component: IconSaTcComponent,
   },
   {
     selector: 'sbb-icon-sa-tf',
@@ -969,7 +969,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaTfModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_tf.svg'],
-    component: IconSaTfComponent
+    component: IconSaTfComponent,
   },
   {
     selector: 'sbb-icon-sa-tg',
@@ -977,7 +977,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaTgModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_tg.svg'],
-    component: IconSaTgComponent
+    component: IconSaTgComponent,
   },
   {
     selector: 'sbb-icon-sa-tk',
@@ -985,7 +985,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaTkModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_tk.svg'],
-    component: IconSaTkComponent
+    component: IconSaTkComponent,
   },
   {
     selector: 'sbb-icon-sa-ts',
@@ -993,7 +993,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaTsModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_ts.svg'],
-    component: IconSaTsComponent
+    component: IconSaTsComponent,
   },
   {
     selector: 'sbb-icon-sa-tt',
@@ -1001,7 +1001,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaTtModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_tt.svg'],
-    component: IconSaTtComponent
+    component: IconSaTtComponent,
   },
   {
     selector: 'sbb-icon-sa-vi',
@@ -1009,7 +1009,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaViModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_vi.svg'],
-    component: IconSaViComponent
+    component: IconSaViComponent,
   },
   {
     selector: 'sbb-icon-sa-vl',
@@ -1017,7 +1017,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaVlModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_vl.svg'],
-    component: IconSaVlComponent
+    component: IconSaVlComponent,
   },
   {
     selector: 'sbb-icon-sa-vn',
@@ -1025,7 +1025,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaVnModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_vn.svg'],
-    component: IconSaVnComponent
+    component: IconSaVnComponent,
   },
   {
     selector: 'sbb-icon-sa-vp',
@@ -1033,7 +1033,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaVpModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_vp.svg'],
-    component: IconSaVpComponent
+    component: IconSaVpComponent,
   },
   {
     selector: 'sbb-icon-sa-vr',
@@ -1041,7 +1041,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaVrModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_vr.svg'],
-    component: IconSaVrComponent
+    component: IconSaVrComponent,
   },
   {
     selector: 'sbb-icon-sa-vx',
@@ -1049,7 +1049,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaVxModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_vx.svg'],
-    component: IconSaVxComponent
+    component: IconSaVxComponent,
   },
   {
     selector: 'sbb-icon-sa-wl',
@@ -1057,7 +1057,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaWlModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_wl.svg'],
-    component: IconSaWlComponent
+    component: IconSaWlComponent,
   },
   {
     selector: 'sbb-icon-sa-wr',
@@ -1065,7 +1065,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaWrModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_wr.svg'],
-    component: IconSaWrComponent
+    component: IconSaWrComponent,
   },
   {
     selector: 'sbb-icon-sa-ws',
@@ -1073,7 +1073,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaWsModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_ws.svg'],
-    component: IconSaWsComponent
+    component: IconSaWsComponent,
   },
   {
     selector: 'sbb-icon-sa-wv',
@@ -1081,7 +1081,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaWvModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_wv.svg'],
-    component: IconSaWvComponent
+    component: IconSaWvComponent,
   },
   {
     selector: 'sbb-icon-sa-x',
@@ -1089,7 +1089,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaXModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_x.svg'],
-    component: IconSaXComponent
+    component: IconSaXComponent,
   },
   {
     selector: 'sbb-icon-sa-xp',
@@ -1097,7 +1097,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaXpModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_xp.svg'],
-    component: IconSaXpComponent
+    component: IconSaXpComponent,
   },
   {
     selector: 'sbb-icon-sa-xr',
@@ -1105,7 +1105,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaXrModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_xr.svg'],
-    component: IconSaXrComponent
+    component: IconSaXrComponent,
   },
   {
     selector: 'sbb-icon-sa-xt',
@@ -1113,7 +1113,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaXtModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_xt.svg'],
-    component: IconSaXtComponent
+    component: IconSaXtComponent,
   },
   {
     selector: 'sbb-icon-sa-y',
@@ -1121,7 +1121,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaYModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_y.svg'],
-    component: IconSaYComponent
+    component: IconSaYComponent,
   },
   {
     selector: 'sbb-icon-sa-yb',
@@ -1129,7 +1129,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaYbModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_yb.svg'],
-    component: IconSaYbComponent
+    component: IconSaYbComponent,
   },
   {
     selector: 'sbb-icon-sa-ym',
@@ -1137,7 +1137,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaYmModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_ym.svg'],
-    component: IconSaYmComponent
+    component: IconSaYmComponent,
   },
   {
     selector: 'sbb-icon-sa-yt',
@@ -1145,7 +1145,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaYtModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_yt.svg'],
-    component: IconSaYtComponent
+    component: IconSaYtComponent,
   },
   {
     selector: 'sbb-icon-sa-z',
@@ -1153,7 +1153,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaZModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_z.svg'],
-    component: IconSaZComponent
+    component: IconSaZComponent,
   },
   {
     selector: 'sbb-icon-sa-zm',
@@ -1161,7 +1161,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSaZmModule', 'IconCollectionTimetableAttributesModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/Attribut/sbb_sa_zm.svg'],
-    component: IconSaZmComponent
+    component: IconSaZmComponent,
   },
   {
     selector: 'sbb-icon-add-stop',
@@ -1169,7 +1169,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconAddStopModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_add_stop.svg'],
-    component: IconAddStopComponent
+    component: IconAddStopComponent,
   },
   {
     selector: 'sbb-icon-alternative',
@@ -1177,7 +1177,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconAlternativeModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_alternative.svg'],
-    component: IconAlternativeComponent
+    component: IconAlternativeComponent,
   },
   {
     selector: 'sbb-icon-cancellation',
@@ -1185,7 +1185,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconCancellationModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_cancellation.svg'],
-    component: IconCancellationComponent
+    component: IconCancellationComponent,
   },
   {
     selector: 'sbb-icon-him-construction',
@@ -1193,7 +1193,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconHimConstructionModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_construction.svg'],
-    component: IconHimConstructionComponent
+    component: IconHimConstructionComponent,
   },
   {
     selector: 'sbb-icon-delay',
@@ -1201,7 +1201,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconDelayModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_delay.svg'],
-    component: IconDelayComponent
+    component: IconDelayComponent,
   },
   {
     selector: 'sbb-icon-him-disruption',
@@ -1209,7 +1209,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconHimDisruptionModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_disruption.svg'],
-    component: IconHimDisruptionComponent
+    component: IconHimDisruptionComponent,
   },
   {
     selector: 'sbb-icon-him-info',
@@ -1217,7 +1217,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconHimInfoModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_info.svg'],
-    component: IconHimInfoComponent
+    component: IconHimInfoComponent,
   },
   {
     selector: 'sbb-icon-missed-connection',
@@ -1225,7 +1225,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconMissedConnectionModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_missed_connection.svg'],
-    component: IconMissedConnectionComponent
+    component: IconMissedConnectionComponent,
   },
   {
     selector: 'sbb-icon-platform-change',
@@ -1233,7 +1233,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconPlatformChangeModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_platform_change.svg'],
-    component: IconPlatformChangeComponent
+    component: IconPlatformChangeComponent,
   },
   {
     selector: 'sbb-icon-him-replacementbus',
@@ -1241,7 +1241,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconHimReplacementbusModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_replacementbus.svg'],
-    component: IconHimReplacementbusComponent
+    component: IconHimReplacementbusComponent,
   },
   {
     selector: 'sbb-icon-reroute',
@@ -1249,7 +1249,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconRerouteModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/sbb_reroute.svg'],
-    component: IconRerouteComponent
+    component: IconRerouteComponent,
   },
   {
     selector: 'sbb-icon-utilization-high',
@@ -1257,7 +1257,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconUtilizationHighModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/utilization_high.svg'],
-    component: IconUtilizationHighComponent
+    component: IconUtilizationHighComponent,
   },
   {
     selector: 'sbb-icon-utilization-low',
@@ -1265,7 +1265,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconUtilizationLowModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/utilization_low.svg'],
-    component: IconUtilizationLowComponent
+    component: IconUtilizationLowComponent,
   },
   {
     selector: 'sbb-icon-utilization-medium',
@@ -1273,7 +1273,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconUtilizationMediumModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: ['medium'],
     meta: ['/svg/FPL/HIM_CUS/utilization_medium.svg'],
-    component: IconUtilizationMediumComponent
+    component: IconUtilizationMediumComponent,
   },
   {
     selector: 'sbb-icon-utilization-none',
@@ -1281,7 +1281,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconUtilizationNoneModule', 'IconCollectionHimCusModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/FPL/HIM_CUS/utilization_none.svg'],
-    component: IconUtilizationNoneComponent
+    component: IconUtilizationNoneComponent,
   },
   {
     selector: 'sbb-icon-product-bex',
@@ -1289,11 +1289,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductBexModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_bex.svg'],
-    component: IconProductBexComponent
+    component: IconProductBexComponent,
   },
   {
     selector: 'sbb-icon-product-cnl',
@@ -1301,11 +1301,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductCnlModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_cnl.svg'],
-    component: IconProductCnlComponent
+    component: IconProductCnlComponent,
   },
   {
     selector: 'sbb-icon-product-ec',
@@ -1313,11 +1313,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductEcModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ec.svg'],
-    component: IconProductEcComponent
+    component: IconProductEcComponent,
   },
   {
     selector: 'sbb-icon-product-en',
@@ -1325,11 +1325,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductEnModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_en.svg'],
-    component: IconProductEnComponent
+    component: IconProductEnComponent,
   },
   {
     selector: 'sbb-icon-product-gex',
@@ -1337,11 +1337,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductGexModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_gex.svg'],
-    component: IconProductGexComponent
+    component: IconProductGexComponent,
   },
   {
     selector: 'sbb-icon-product-ic',
@@ -1349,11 +1349,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIcModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic.svg'],
-    component: IconProductIcComponent
+    component: IconProductIcComponent,
   },
   {
     selector: 'sbb-icon-product-ice',
@@ -1361,11 +1361,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIceModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ice.svg'],
-    component: IconProductIceComponent
+    component: IconProductIceComponent,
   },
   {
     selector: 'sbb-icon-product-icn',
@@ -1373,11 +1373,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIcnModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_icn.svg'],
-    component: IconProductIcnComponent
+    component: IconProductIcnComponent,
   },
   {
     selector: 'sbb-icon-product-ic-1',
@@ -1385,11 +1385,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc1Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_1.svg'],
-    component: IconProductIc1Component
+    component: IconProductIc1Component,
   },
   {
     selector: 'sbb-icon-product-ic-11',
@@ -1397,11 +1397,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc11Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_11.svg'],
-    component: IconProductIc11Component
+    component: IconProductIc11Component,
   },
   {
     selector: 'sbb-icon-product-ic-2',
@@ -1409,11 +1409,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc2Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_2.svg'],
-    component: IconProductIc2Component
+    component: IconProductIc2Component,
   },
   {
     selector: 'sbb-icon-product-ic-21',
@@ -1421,11 +1421,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc21Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_21.svg'],
-    component: IconProductIc21Component
+    component: IconProductIc21Component,
   },
   {
     selector: 'sbb-icon-product-ic-3',
@@ -1433,11 +1433,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc3Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_3.svg'],
-    component: IconProductIc3Component
+    component: IconProductIc3Component,
   },
   {
     selector: 'sbb-icon-product-ic-4',
@@ -1445,11 +1445,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc4Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_4.svg'],
-    component: IconProductIc4Component
+    component: IconProductIc4Component,
   },
   {
     selector: 'sbb-icon-product-ic-5',
@@ -1457,11 +1457,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc5Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_5.svg'],
-    component: IconProductIc5Component
+    component: IconProductIc5Component,
   },
   {
     selector: 'sbb-icon-product-ic-51',
@@ -1469,11 +1469,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc51Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_51.svg'],
-    component: IconProductIc51Component
+    component: IconProductIc51Component,
   },
   {
     selector: 'sbb-icon-product-ic-6',
@@ -1481,11 +1481,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc6Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_6.svg'],
-    component: IconProductIc6Component
+    component: IconProductIc6Component,
   },
   {
     selector: 'sbb-icon-product-ic-61',
@@ -1493,11 +1493,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc61Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_61.svg'],
-    component: IconProductIc61Component
+    component: IconProductIc61Component,
   },
   {
     selector: 'sbb-icon-product-ic-7',
@@ -1505,11 +1505,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc7Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_7.svg'],
-    component: IconProductIc7Component
+    component: IconProductIc7Component,
   },
   {
     selector: 'sbb-icon-product-ic-8',
@@ -1517,11 +1517,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc8Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_8.svg'],
-    component: IconProductIc8Component
+    component: IconProductIc8Component,
   },
   {
     selector: 'sbb-icon-product-ic-9',
@@ -1529,11 +1529,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIc9Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ic_9.svg'],
-    component: IconProductIc9Component
+    component: IconProductIc9Component,
   },
   {
     selector: 'sbb-icon-product-ir',
@@ -1541,11 +1541,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIrModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir.svg'],
-    component: IconProductIrComponent
+    component: IconProductIrComponent,
   },
   {
     selector: 'sbb-icon-product-ir-13',
@@ -1553,11 +1553,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr13Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_13.svg'],
-    component: IconProductIr13Component
+    component: IconProductIr13Component,
   },
   {
     selector: 'sbb-icon-product-ir-15',
@@ -1565,11 +1565,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr15Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_15.svg'],
-    component: IconProductIr15Component
+    component: IconProductIr15Component,
   },
   {
     selector: 'sbb-icon-product-ir-16',
@@ -1577,11 +1577,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr16Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_16.svg'],
-    component: IconProductIr16Component
+    component: IconProductIr16Component,
   },
   {
     selector: 'sbb-icon-product-ir-17',
@@ -1589,11 +1589,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr17Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_17.svg'],
-    component: IconProductIr17Component
+    component: IconProductIr17Component,
   },
   {
     selector: 'sbb-icon-product-ir-25',
@@ -1601,11 +1601,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr25Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_25.svg'],
-    component: IconProductIr25Component
+    component: IconProductIr25Component,
   },
   {
     selector: 'sbb-icon-product-ir-26',
@@ -1613,11 +1613,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr26Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_26.svg'],
-    component: IconProductIr26Component
+    component: IconProductIr26Component,
   },
   {
     selector: 'sbb-icon-product-ir-27',
@@ -1625,11 +1625,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr27Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_27.svg'],
-    component: IconProductIr27Component
+    component: IconProductIr27Component,
   },
   {
     selector: 'sbb-icon-product-ir-35',
@@ -1637,11 +1637,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr35Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_35.svg'],
-    component: IconProductIr35Component
+    component: IconProductIr35Component,
   },
   {
     selector: 'sbb-icon-product-ir-36',
@@ -1649,11 +1649,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr36Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_36.svg'],
-    component: IconProductIr36Component
+    component: IconProductIr36Component,
   },
   {
     selector: 'sbb-icon-product-ir-37',
@@ -1661,11 +1661,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr37Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_37.svg'],
-    component: IconProductIr37Component
+    component: IconProductIr37Component,
   },
   {
     selector: 'sbb-icon-product-ir-45',
@@ -1673,11 +1673,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr45Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_45.svg'],
-    component: IconProductIr45Component
+    component: IconProductIr45Component,
   },
   {
     selector: 'sbb-icon-product-ir-46',
@@ -1685,11 +1685,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr46Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_46.svg'],
-    component: IconProductIr46Component
+    component: IconProductIr46Component,
   },
   {
     selector: 'sbb-icon-product-ir-55',
@@ -1697,11 +1697,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr55Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_55.svg'],
-    component: IconProductIr55Component
+    component: IconProductIr55Component,
   },
   {
     selector: 'sbb-icon-product-ir-56',
@@ -1709,11 +1709,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr56Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_56.svg'],
-    component: IconProductIr56Component
+    component: IconProductIr56Component,
   },
   {
     selector: 'sbb-icon-product-ir-65',
@@ -1721,11 +1721,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr65Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_65.svg'],
-    component: IconProductIr65Component
+    component: IconProductIr65Component,
   },
   {
     selector: 'sbb-icon-product-ir-66',
@@ -1733,11 +1733,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr66Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_66.svg'],
-    component: IconProductIr66Component
+    component: IconProductIr66Component,
   },
   {
     selector: 'sbb-icon-product-ir-70',
@@ -1745,11 +1745,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr70Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_70.svg'],
-    component: IconProductIr70Component
+    component: IconProductIr70Component,
   },
   {
     selector: 'sbb-icon-product-ir-75',
@@ -1757,11 +1757,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr75Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_75.svg'],
-    component: IconProductIr75Component
+    component: IconProductIr75Component,
   },
   {
     selector: 'sbb-icon-product-ir-90',
@@ -1769,11 +1769,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr90Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_90.svg'],
-    component: IconProductIr90Component
+    component: IconProductIr90Component,
   },
   {
     selector: 'sbb-icon-product-ir-95',
@@ -1781,11 +1781,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductIr95Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_ir_95.svg'],
-    component: IconProductIr95Component
+    component: IconProductIr95Component,
   },
   {
     selector: 'sbb-icon-product-nj',
@@ -1793,11 +1793,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductNjModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_nj.svg'],
-    component: IconProductNjComponent
+    component: IconProductNjComponent,
   },
   {
     selector: 'sbb-icon-product-pe',
@@ -1805,11 +1805,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductPeModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_pe.svg'],
-    component: IconProductPeComponent
+    component: IconProductPeComponent,
   },
   {
     selector: 'sbb-icon-product-re',
@@ -1817,11 +1817,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductReModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_re.svg'],
-    component: IconProductReComponent
+    component: IconProductReComponent,
   },
   {
     selector: 'sbb-icon-product-rj',
@@ -1829,11 +1829,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductRjModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_rj.svg'],
-    component: IconProductRjComponent
+    component: IconProductRjComponent,
   },
   {
     selector: 'sbb-icon-product-rjx',
@@ -1841,11 +1841,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductRjxModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_rjx.svg'],
-    component: IconProductRjxComponent
+    component: IconProductRjxComponent,
   },
   {
     selector: 'sbb-icon-product-rx',
@@ -1853,11 +1853,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductRxModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_rx.svg'],
-    component: IconProductRxComponent
+    component: IconProductRxComponent,
   },
   {
     selector: 'sbb-icon-product-sn',
@@ -1865,11 +1865,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductSnModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_sn.svg'],
-    component: IconProductSnComponent
+    component: IconProductSnComponent,
   },
   {
     selector: 'sbb-icon-product-tgv',
@@ -1877,11 +1877,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductTgvModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_tgv.svg'],
-    component: IconProductTgvComponent
+    component: IconProductTgvComponent,
   },
   {
     selector: 'sbb-icon-product-vae',
@@ -1889,11 +1889,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconProductVaeModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: [],
     meta: ['/svg/FPL/Produkt/sbb_product_vae.svg'],
-    component: IconProductVaeComponent
+    component: IconProductVaeComponent,
   },
   {
     selector: 'sbb-icon-calendar',
@@ -1903,9 +1903,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/010_Basic/calendar_6_small.svg',
       '/svg/KOM/responsive/medium/010_Basic/calendar_6_medium.svg',
-      '/svg/KOM/responsive/large/010_Basic/calendar_6_large.svg'
+      '/svg/KOM/responsive/large/010_Basic/calendar_6_large.svg',
     ],
-    component: IconCalendarComponent
+    component: IconCalendarComponent,
   },
   {
     selector: 'sbb-icon-chart-column-trend',
@@ -1915,9 +1915,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/010_Basic/chart_column_trend_284_small.svg',
       '/svg/KOM/responsive/medium/010_Basic/chart_column_trend_284_medium.svg',
-      '/svg/KOM/responsive/large/010_Basic/chart_column_trend_284_large.svg'
+      '/svg/KOM/responsive/large/010_Basic/chart_column_trend_284_large.svg',
     ],
-    component: IconChartColumnTrendComponent
+    component: IconChartColumnTrendComponent,
   },
   {
     selector: 'sbb-icon-coins',
@@ -1925,7 +1925,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconCoinsModule', 'IconCollectionBasicModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/010_Basic/coins_325_large.svg'],
-    component: IconCoinsComponent
+    component: IconCoinsComponent,
   },
   {
     selector: 'sbb-icon-rocket',
@@ -1933,7 +1933,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconRocketModule', 'IconCollectionBasicModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/010_Basic/rocket_319_large.svg'],
-    component: IconRocketComponent
+    component: IconRocketComponent,
   },
   {
     selector: 'sbb-icon-shopping-cart',
@@ -1943,9 +1943,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/010_Basic/shopping_cart_4_small.svg',
       '/svg/KOM/responsive/medium/010_Basic/shopping_cart_4_medium.svg',
-      '/svg/KOM/responsive/large/010_Basic/shopping_cart_4_large.svg'
+      '/svg/KOM/responsive/large/010_Basic/shopping_cart_4_large.svg',
     ],
-    component: IconShoppingCartComponent
+    component: IconShoppingCartComponent,
   },
   {
     selector: 'sbb-icon-alarm-clock',
@@ -1954,9 +1954,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/alarm_clock_19_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/alarm_clock_19_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/alarm_clock_19_medium.svg',
     ],
-    component: IconAlarmClockComponent
+    component: IconAlarmClockComponent,
   },
   {
     selector: 'sbb-icon-apple-bag',
@@ -1965,9 +1965,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/apple_bag_308_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/apple_bag_308_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/apple_bag_308_medium.svg',
     ],
-    component: IconAppleBagComponent
+    component: IconAppleBagComponent,
   },
   {
     selector: 'sbb-icon-app-icon',
@@ -1976,9 +1976,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/app_icon_283_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/app_icon_283_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/app_icon_283_medium.svg',
     ],
-    component: IconAppIconComponent
+    component: IconAppIconComponent,
   },
   {
     selector: 'sbb-icon-backpack',
@@ -1987,9 +1987,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/backpack_348_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/backpack_348_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/backpack_348_medium.svg',
     ],
-    component: IconBackpackComponent
+    component: IconBackpackComponent,
   },
   {
     selector: 'sbb-icon-bell',
@@ -1998,9 +1998,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/bell_183_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/bell_183_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/bell_183_medium.svg',
     ],
-    component: IconBellComponent
+    component: IconBellComponent,
   },
   {
     selector: 'sbb-icon-binoculars',
@@ -2009,9 +2009,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/binoculars_338_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/binoculars_338_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/binoculars_338_medium.svg',
     ],
-    component: IconBinocularsComponent
+    component: IconBinocularsComponent,
   },
   {
     selector: 'sbb-icon-browser',
@@ -2020,9 +2020,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/browser_159_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/browser_159_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/browser_159_medium.svg',
     ],
-    component: IconBrowserComponent
+    component: IconBrowserComponent,
   },
   {
     selector: 'sbb-icon-camera',
@@ -2031,9 +2031,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/camera_203_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/camera_203_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/camera_203_medium.svg',
     ],
-    component: IconCameraComponent
+    component: IconCameraComponent,
   },
   {
     selector: 'sbb-icon-chart-column',
@@ -2042,9 +2042,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/chart_column_163_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/chart_column_163_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/chart_column_163_medium.svg',
     ],
-    component: IconChartColumnComponent
+    component: IconChartColumnComponent,
   },
   {
     selector: 'sbb-icon-chart-line',
@@ -2053,9 +2053,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/chart_line_345_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/chart_line_345_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/chart_line_345_medium.svg',
     ],
-    component: IconChartLineComponent
+    component: IconChartLineComponent,
   },
   {
     selector: 'sbb-icon-chart-pie',
@@ -2064,9 +2064,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/chart_pie_340_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/chart_pie_340_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/chart_pie_340_medium.svg',
     ],
-    component: IconChartPieComponent
+    component: IconChartPieComponent,
   },
   {
     selector: 'sbb-icon-circle-information',
@@ -2075,9 +2075,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/circle_information_11_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/circle_information_11_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/circle_information_11_medium.svg',
     ],
-    component: IconCircleInformationComponent
+    component: IconCircleInformationComponent,
   },
   {
     selector: 'sbb-icon-circle-information-small',
@@ -2085,14 +2085,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconCircleInformationSmallModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/circle_information_small_206_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/circle_information_small_206_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/circle_information_small_206_medium.svg',
     ],
-    component: IconCircleInformationSmallComponent
+    component: IconCircleInformationSmallComponent,
   },
   {
     selector: 'sbb-icon-circle-play',
@@ -2101,9 +2101,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/circle_play_209_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/circle_play_209_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/circle_play_209_medium.svg',
     ],
-    component: IconCirclePlayComponent
+    component: IconCirclePlayComponent,
   },
   {
     selector: 'sbb-icon-circle-question-mark',
@@ -2112,9 +2112,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/circle_question_mark_137_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/circle_question_mark_137_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/circle_question_mark_137_medium.svg',
     ],
-    component: IconCircleQuestionMarkComponent
+    component: IconCircleQuestionMarkComponent,
   },
   {
     selector: 'sbb-icon-contact',
@@ -2123,9 +2123,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/contact_166_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/contact_166_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/contact_166_medium.svg',
     ],
-    component: IconContactComponent
+    component: IconContactComponent,
   },
   {
     selector: 'sbb-icon-controls',
@@ -2134,9 +2134,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/controls_29_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/controls_29_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/controls_29_medium.svg',
     ],
-    component: IconControlsComponent
+    component: IconControlsComponent,
   },
   {
     selector: 'sbb-icon-cup-hot',
@@ -2145,9 +2145,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/cup_hot_281_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/cup_hot_281_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/cup_hot_281_medium.svg',
     ],
-    component: IconCupHotComponent
+    component: IconCupHotComponent,
   },
   {
     selector: 'sbb-icon-cutlery',
@@ -2156,9 +2156,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/cutlery_22_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/cutlery_22_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/cutlery_22_medium.svg',
     ],
-    component: IconCutleryComponent
+    component: IconCutleryComponent,
   },
   {
     selector: 'sbb-icon-database',
@@ -2167,9 +2167,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/database_171_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/database_171_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/database_171_medium.svg',
     ],
-    component: IconDatabaseComponent
+    component: IconDatabaseComponent,
   },
   {
     selector: 'sbb-icon-dog',
@@ -2178,9 +2178,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/dog_180_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/dog_180_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/dog_180_medium.svg',
     ],
-    component: IconDogComponent
+    component: IconDogComponent,
   },
   {
     selector: 'sbb-icon-download',
@@ -2189,9 +2189,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/download_27_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/download_27_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/download_27_medium.svg',
     ],
-    component: IconDownloadComponent
+    component: IconDownloadComponent,
   },
   {
     selector: 'sbb-icon-download-large-data',
@@ -2200,9 +2200,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/download_large_data_128_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/download_large_data_128_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/download_large_data_128_medium.svg',
     ],
-    component: IconDownloadLargeDataComponent
+    component: IconDownloadLargeDataComponent,
   },
   {
     selector: 'sbb-icon-download-small-data',
@@ -2211,9 +2211,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/download_small_data_129_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/download_small_data_129_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/download_small_data_129_medium.svg',
     ],
-    component: IconDownloadSmallDataComponent
+    component: IconDownloadSmallDataComponent,
   },
   {
     selector: 'sbb-icon-entrance',
@@ -2222,9 +2222,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/entrance_278_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/entrance_278_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/entrance_278_medium.svg',
     ],
-    component: IconEntranceComponent
+    component: IconEntranceComponent,
   },
   {
     selector: 'sbb-icon-envelope',
@@ -2233,9 +2233,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/envelope_3_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/envelope_3_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/envelope_3_medium.svg',
     ],
-    component: IconEnvelopeComponent
+    component: IconEnvelopeComponent,
   },
   {
     selector: 'sbb-icon-envelope-open',
@@ -2244,9 +2244,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/envelope_open_336_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/envelope_open_336_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/envelope_open_336_medium.svg',
     ],
-    component: IconEnvelopeOpenComponent
+    component: IconEnvelopeOpenComponent,
   },
   {
     selector: 'sbb-icon-exit',
@@ -2255,9 +2255,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/exit_277_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/exit_277_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/exit_277_medium.svg',
     ],
-    component: IconExitComponent
+    component: IconExitComponent,
   },
   {
     selector: 'sbb-icon-face-king',
@@ -2266,9 +2266,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/face_king_339_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/face_king_339_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/face_king_339_medium.svg',
     ],
-    component: IconFaceKingComponent
+    component: IconFaceKingComponent,
   },
   {
     selector: 'sbb-icon-face-worker',
@@ -2277,9 +2277,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/face_worker_341_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/face_worker_341_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/face_worker_341_medium.svg',
     ],
-    component: IconFaceWorkerComponent
+    component: IconFaceWorkerComponent,
   },
   {
     selector: 'sbb-icon-factory',
@@ -2288,9 +2288,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/factory_305_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/factory_305_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/factory_305_medium.svg',
     ],
-    component: IconFactoryComponent
+    component: IconFactoryComponent,
   },
   {
     selector: 'sbb-icon-filter',
@@ -2299,9 +2299,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/filter_24_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/filter_24_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/filter_24_medium.svg',
     ],
-    component: IconFilterComponent
+    component: IconFilterComponent,
   },
   {
     selector: 'sbb-icon-filter-x',
@@ -2310,9 +2310,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/filter_x_279_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/filter_x_279_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/filter_x_279_medium.svg',
     ],
-    component: IconFilterXComponent
+    component: IconFilterXComponent,
   },
   {
     selector: 'sbb-icon-flashlight-on',
@@ -2321,9 +2321,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/flashlight_on_346_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/flashlight_on_346_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/flashlight_on_346_medium.svg',
     ],
-    component: IconFlashlightOnComponent
+    component: IconFlashlightOnComponent,
   },
   {
     selector: 'sbb-icon-form',
@@ -2332,9 +2332,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/form_280_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/form_280_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/form_280_medium.svg',
     ],
-    component: IconFormComponent
+    component: IconFormComponent,
   },
   {
     selector: 'sbb-icon-gears',
@@ -2343,9 +2343,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/gears_14_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/gears_14_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/gears_14_medium.svg',
     ],
-    component: IconGearsComponent
+    component: IconGearsComponent,
   },
   {
     selector: 'sbb-icon-gift',
@@ -2354,9 +2354,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/gift_33_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/gift_33_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/gift_33_medium.svg',
     ],
-    component: IconGiftComponent
+    component: IconGiftComponent,
   },
   {
     selector: 'sbb-icon-globe',
@@ -2365,9 +2365,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/globe_210_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/globe_210_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/globe_210_medium.svg',
     ],
-    component: IconGlobeComponent
+    component: IconGlobeComponent,
   },
   {
     selector: 'sbb-icon-hand-heart',
@@ -2376,9 +2376,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/hand_heart_344_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/hand_heart_344_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/hand_heart_344_medium.svg',
     ],
-    component: IconHandHeartComponent
+    component: IconHandHeartComponent,
   },
   {
     selector: 'sbb-icon-hand-with-service-bell',
@@ -2387,9 +2387,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/hand_with_service_bell_333_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/hand_with_service_bell_333_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/hand_with_service_bell_333_medium.svg',
     ],
-    component: IconHandWithServiceBellComponent
+    component: IconHandWithServiceBellComponent,
   },
   {
     selector: 'sbb-icon-heart',
@@ -2398,9 +2398,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/heart_31_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/heart_31_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/heart_31_medium.svg',
     ],
-    component: IconHeartComponent
+    component: IconHeartComponent,
   },
   {
     selector: 'sbb-icon-hierarchy',
@@ -2409,9 +2409,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/hierarchy_17_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/hierarchy_17_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/hierarchy_17_medium.svg',
     ],
-    component: IconHierarchyComponent
+    component: IconHierarchyComponent,
   },
   {
     selector: 'sbb-icon-lighthouse',
@@ -2420,9 +2420,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/lighthouse_282_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/lighthouse_282_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/lighthouse_282_medium.svg',
     ],
-    component: IconLighthouseComponent
+    component: IconLighthouseComponent,
   },
   {
     selector: 'sbb-icon-link',
@@ -2431,9 +2431,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/link_152_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/link_152_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/link_152_medium.svg',
     ],
-    component: IconLinkComponent
+    component: IconLinkComponent,
   },
   {
     selector: 'sbb-icon-link-external',
@@ -2442,9 +2442,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/link_external_127_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/link_external_127_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/link_external_127_medium.svg',
     ],
-    component: IconLinkExternalComponent
+    component: IconLinkExternalComponent,
   },
   {
     selector: 'sbb-icon-list',
@@ -2453,9 +2453,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/list_272_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/list_272_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/list_272_medium.svg',
     ],
-    component: IconListComponent
+    component: IconListComponent,
   },
   {
     selector: 'sbb-icon-magnifying-glass',
@@ -2464,9 +2464,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/magnifying_glass_9_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/magnifying_glass_9_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/magnifying_glass_9_medium.svg',
     ],
-    component: IconMagnifyingGlassComponent
+    component: IconMagnifyingGlassComponent,
   },
   {
     selector: 'sbb-icon-mug-hot',
@@ -2475,9 +2475,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/mug_hot_23_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/mug_hot_23_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/mug_hot_23_medium.svg',
     ],
-    component: IconMugHotComponent
+    component: IconMugHotComponent,
   },
   {
     selector: 'sbb-icon-newspaper',
@@ -2486,9 +2486,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/newspaper_175_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/newspaper_175_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/newspaper_175_medium.svg',
     ],
-    component: IconNewspaperComponent
+    component: IconNewspaperComponent,
   },
   {
     selector: 'sbb-icon-paper-aeroplane',
@@ -2497,9 +2497,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/paper_aeroplane_142_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/paper_aeroplane_142_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/paper_aeroplane_142_medium.svg',
     ],
-    component: IconPaperAeroplaneComponent
+    component: IconPaperAeroplaneComponent,
   },
   {
     selector: 'sbb-icon-paper-clip',
@@ -2508,9 +2508,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/paper_clip_121_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/paper_clip_121_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/paper_clip_121_medium.svg',
     ],
-    component: IconPaperClipComponent
+    component: IconPaperClipComponent,
   },
   {
     selector: 'sbb-icon-pen',
@@ -2519,9 +2519,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/pen_16_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/pen_16_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/pen_16_medium.svg',
     ],
-    component: IconPenComponent
+    component: IconPenComponent,
   },
   {
     selector: 'sbb-icon-picture',
@@ -2530,9 +2530,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/picture_147_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/picture_147_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/picture_147_medium.svg',
     ],
-    component: IconPictureComponent
+    component: IconPictureComponent,
   },
   {
     selector: 'sbb-icon-pin',
@@ -2541,9 +2541,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/pin_148_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/pin_148_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/pin_148_medium.svg',
     ],
-    component: IconPinComponent
+    component: IconPinComponent,
   },
   {
     selector: 'sbb-icon-rss',
@@ -2552,9 +2552,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/rss_321_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/rss_321_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/rss_321_medium.svg',
     ],
-    component: IconRssComponent
+    component: IconRssComponent,
   },
   {
     selector: 'sbb-icon-service-bell',
@@ -2563,9 +2563,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/service_bell_15_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/service_bell_15_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/service_bell_15_medium.svg',
     ],
-    component: IconServiceBellComponent
+    component: IconServiceBellComponent,
   },
   {
     selector: 'sbb-icon-sign-exclamation-point',
@@ -2573,14 +2573,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconSignExclamationPointModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/sign_exclamation_point_1_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/sign_exclamation_point_1_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/sign_exclamation_point_1_medium.svg',
     ],
-    component: IconSignExclamationPointComponent
+    component: IconSignExclamationPointComponent,
   },
   {
     selector: 'sbb-icon-sign-x',
@@ -2589,9 +2589,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/sign_x_126_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/sign_x_126_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/sign_x_126_medium.svg',
     ],
-    component: IconSignXComponent
+    component: IconSignXComponent,
   },
   {
     selector: 'sbb-icon-spanner',
@@ -2600,9 +2600,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/spanner_342_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/spanner_342_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/spanner_342_medium.svg',
     ],
-    component: IconSpannerComponent
+    component: IconSpannerComponent,
   },
   {
     selector: 'sbb-icon-star',
@@ -2611,9 +2611,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/star_5_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/star_5_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/star_5_medium.svg',
     ],
-    component: IconStarComponent
+    component: IconStarComponent,
   },
   {
     selector: 'sbb-icon-switzerland',
@@ -2622,9 +2622,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/switzerland_343_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/switzerland_343_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/switzerland_343_medium.svg',
     ],
-    component: IconSwitzerlandComponent
+    component: IconSwitzerlandComponent,
   },
   {
     selector: 'sbb-icon-tag',
@@ -2633,9 +2633,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/tag_30_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/tag_30_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/tag_30_medium.svg',
     ],
-    component: IconTagComponent
+    component: IconTagComponent,
   },
   {
     selector: 'sbb-icon-target',
@@ -2644,9 +2644,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/target_347_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/target_347_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/target_347_medium.svg',
     ],
-    component: IconTargetComponent
+    component: IconTargetComponent,
   },
   {
     selector: 'sbb-icon-torch',
@@ -2655,9 +2655,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/torch_337_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/torch_337_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/torch_337_medium.svg',
     ],
-    component: IconTorchComponent
+    component: IconTorchComponent,
   },
   {
     selector: 'sbb-icon-trash',
@@ -2666,9 +2666,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/trash_8_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/trash_8_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/trash_8_medium.svg',
     ],
-    component: IconTrashComponent
+    component: IconTrashComponent,
   },
   {
     selector: 'sbb-icon-tree',
@@ -2677,9 +2677,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/tree_335_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/tree_335_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/tree_335_medium.svg',
     ],
-    component: IconTreeComponent
+    component: IconTreeComponent,
   },
   {
     selector: 'sbb-icon-upload',
@@ -2688,9 +2688,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/upload_28_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/upload_28_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/upload_28_medium.svg',
     ],
-    component: IconUploadComponent
+    component: IconUploadComponent,
   },
   {
     selector: 'sbb-icon-wallet',
@@ -2699,9 +2699,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/wallet_146_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/wallet_146_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/wallet_146_medium.svg',
     ],
-    component: IconWalletComponent
+    component: IconWalletComponent,
   },
   {
     selector: 'sbb-icon-warning-light',
@@ -2710,9 +2710,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/warning_light_334_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/warning_light_334_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/warning_light_334_medium.svg',
     ],
-    component: IconWarningLightComponent
+    component: IconWarningLightComponent,
   },
   {
     selector: 'sbb-icon-wifi',
@@ -2721,9 +2721,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/010_Basic/wifi_20_small.svg',
-      '/svg/KOM/responsive/medium/010_Basic/wifi_20_medium.svg'
+      '/svg/KOM/responsive/medium/010_Basic/wifi_20_medium.svg',
     ],
-    component: IconWifiComponent
+    component: IconWifiComponent,
   },
   {
     selector: 'sbb-icon-bulb-on',
@@ -2733,9 +2733,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/050_Community/bulb_on_48_small.svg',
       '/svg/KOM/responsive/medium/050_Community/bulb_on_48_medium.svg',
-      '/svg/KOM/responsive/large/050_Community/bulb_on_48_large.svg'
+      '/svg/KOM/responsive/large/050_Community/bulb_on_48_large.svg',
     ],
-    component: IconBulbOnComponent
+    component: IconBulbOnComponent,
   },
   {
     selector: 'sbb-icon-handshake',
@@ -2745,9 +2745,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/050_Community/handshake_58_small.svg',
       '/svg/KOM/responsive/medium/050_Community/handshake_58_medium.svg',
-      '/svg/KOM/responsive/large/050_Community/handshake_58_large.svg'
+      '/svg/KOM/responsive/large/050_Community/handshake_58_large.svg',
     ],
-    component: IconHandshakeComponent
+    component: IconHandshakeComponent,
   },
   {
     selector: 'sbb-icon-network',
@@ -2757,9 +2757,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/050_Community/network_55_small.svg',
       '/svg/KOM/responsive/medium/050_Community/network_55_medium.svg',
-      '/svg/KOM/responsive/large/050_Community/network_55_large.svg'
+      '/svg/KOM/responsive/large/050_Community/network_55_large.svg',
     ],
-    component: IconNetworkComponent
+    component: IconNetworkComponent,
   },
   {
     selector: 'sbb-icon-two-speech-bubbles',
@@ -2767,15 +2767,15 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconTwoSpeechBubblesModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['large', 'medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/two_speech_bubbles_51_small.svg',
       '/svg/KOM/responsive/medium/050_Community/two_speech_bubbles_51_medium.svg',
-      '/svg/KOM/responsive/large/050_Community/two_speech_bubbles_51_large.svg'
+      '/svg/KOM/responsive/large/050_Community/two_speech_bubbles_51_large.svg',
     ],
-    component: IconTwoSpeechBubblesComponent
+    component: IconTwoSpeechBubblesComponent,
   },
   {
     selector: 'sbb-icon-bulb-off',
@@ -2784,9 +2784,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/bulb_off_49_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/bulb_off_49_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/bulb_off_49_medium.svg',
     ],
-    component: IconBulbOffComponent
+    component: IconBulbOffComponent,
   },
   {
     selector: 'sbb-icon-face-grinning',
@@ -2795,9 +2795,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/face_grinning_273_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/face_grinning_273_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/face_grinning_273_medium.svg',
     ],
-    component: IconFaceGrinningComponent
+    component: IconFaceGrinningComponent,
   },
   {
     selector: 'sbb-icon-face-neutral',
@@ -2806,9 +2806,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/face_neutral_274_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/face_neutral_274_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/face_neutral_274_medium.svg',
     ],
-    component: IconFaceNeutralComponent
+    component: IconFaceNeutralComponent,
   },
   {
     selector: 'sbb-icon-face-sad',
@@ -2817,9 +2817,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/face_sad_275_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/face_sad_275_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/face_sad_275_medium.svg',
     ],
-    component: IconFaceSadComponent
+    component: IconFaceSadComponent,
   },
   {
     selector: 'sbb-icon-face-smiling',
@@ -2828,9 +2828,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/face_smiling_276_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/face_smiling_276_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/face_smiling_276_medium.svg',
     ],
-    component: IconFaceSmilingComponent
+    component: IconFaceSmilingComponent,
   },
   {
     selector: 'sbb-icon-onboarding',
@@ -2839,9 +2839,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/onboarding_213_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/onboarding_213_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/onboarding_213_medium.svg',
     ],
-    component: IconOnboardingComponent
+    component: IconOnboardingComponent,
   },
   {
     selector: 'sbb-icon-question-answer',
@@ -2850,9 +2850,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/question_answer_212_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/question_answer_212_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/question_answer_212_medium.svg',
     ],
-    component: IconQuestionAnswerComponent
+    component: IconQuestionAnswerComponent,
   },
   {
     selector: 'sbb-icon-share',
@@ -2861,9 +2861,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/share_25_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/share_25_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/share_25_medium.svg',
     ],
-    component: IconShareComponent
+    component: IconShareComponent,
   },
   {
     selector: 'sbb-icon-speech-bubble',
@@ -2872,9 +2872,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/speech_bubble_50_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/speech_bubble_50_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/speech_bubble_50_medium.svg',
     ],
-    component: IconSpeechBubbleComponent
+    component: IconSpeechBubbleComponent,
   },
   {
     selector: 'sbb-icon-speech-bubble-group-empty',
@@ -2882,14 +2882,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconSpeechBubbleGroupEmptyModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/speech_bubble_group_empty_54_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/speech_bubble_group_empty_54_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/speech_bubble_group_empty_54_medium.svg',
     ],
-    component: IconSpeechBubbleGroupEmptyComponent
+    component: IconSpeechBubbleGroupEmptyComponent,
   },
   {
     selector: 'sbb-icon-thumb-down',
@@ -2898,9 +2898,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/thumb_down_60_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/thumb_down_60_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/thumb_down_60_medium.svg',
     ],
-    component: IconThumbDownComponent
+    component: IconThumbDownComponent,
   },
   {
     selector: 'sbb-icon-thumb-up',
@@ -2909,9 +2909,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/thumb_up_52_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/thumb_up_52_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/thumb_up_52_medium.svg',
     ],
-    component: IconThumbUpComponent
+    component: IconThumbUpComponent,
   },
   {
     selector: 'sbb-icon-translate',
@@ -2920,9 +2920,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/050_Community/translate_287_small.svg',
-      '/svg/KOM/responsive/medium/050_Community/translate_287_medium.svg'
+      '/svg/KOM/responsive/medium/050_Community/translate_287_medium.svg',
     ],
-    component: IconTranslateComponent
+    component: IconTranslateComponent,
   },
   {
     selector: 'sbb-icon-employees-sbb',
@@ -2930,7 +2930,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconEmployeesSbbModule', 'IconCollectionUserModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/060_User/employees_sbb_317_large.svg'],
-    component: IconEmployeesSbbComponent
+    component: IconEmployeesSbbComponent,
   },
   {
     selector: 'sbb-icon-user-group',
@@ -2940,9 +2940,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/060_User/user_group_57_small.svg',
       '/svg/KOM/responsive/medium/060_User/user_group_57_medium.svg',
-      '/svg/KOM/responsive/large/060_User/user_group_57_large.svg'
+      '/svg/KOM/responsive/large/060_User/user_group_57_large.svg',
     ],
-    component: IconUserGroupComponent
+    component: IconUserGroupComponent,
   },
   {
     selector: 'sbb-icon-avatar-police',
@@ -2951,9 +2951,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/avatar_police_352_small.svg',
-      '/svg/KOM/responsive/medium/060_User/avatar_police_352_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/avatar_police_352_medium.svg',
     ],
-    component: IconAvatarPoliceComponent
+    component: IconAvatarPoliceComponent,
   },
   {
     selector: 'sbb-icon-key',
@@ -2962,9 +2962,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/key_162_small.svg',
-      '/svg/KOM/responsive/medium/060_User/key_162_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/key_162_medium.svg',
     ],
-    component: IconKeyComponent
+    component: IconKeyComponent,
   },
   {
     selector: 'sbb-icon-pie',
@@ -2973,9 +2973,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/pie_94_small.svg',
-      '/svg/KOM/responsive/medium/060_User/pie_94_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/pie_94_medium.svg',
     ],
-    component: IconPieComponent
+    component: IconPieComponent,
   },
   {
     selector: 'sbb-icon-two-users',
@@ -2984,9 +2984,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/two_users_93_small.svg',
-      '/svg/KOM/responsive/medium/060_User/two_users_93_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/two_users_93_medium.svg',
     ],
-    component: IconTwoUsersComponent
+    component: IconTwoUsersComponent,
   },
   {
     selector: 'sbb-icon-user',
@@ -2995,9 +2995,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/user_92_small.svg',
-      '/svg/KOM/responsive/medium/060_User/user_92_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/user_92_medium.svg',
     ],
-    component: IconUserComponent
+    component: IconUserComponent,
   },
   {
     selector: 'sbb-icon-user-change',
@@ -3006,9 +3006,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/user_change_97_small.svg',
-      '/svg/KOM/responsive/medium/060_User/user_change_97_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/user_change_97_medium.svg',
     ],
-    component: IconUserChangeComponent
+    component: IconUserChangeComponent,
   },
   {
     selector: 'sbb-icon-user-group-round-table',
@@ -3017,9 +3017,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/user_group_round_table_353_small.svg',
-      '/svg/KOM/responsive/medium/060_User/user_group_round_table_353_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/user_group_round_table_353_medium.svg',
     ],
-    component: IconUserGroupRoundTableComponent
+    component: IconUserGroupRoundTableComponent,
   },
   {
     selector: 'sbb-icon-user-group-row',
@@ -3028,9 +3028,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/user_group_row_56_small.svg',
-      '/svg/KOM/responsive/medium/060_User/user_group_row_56_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/user_group_row_56_medium.svg',
     ],
-    component: IconUserGroupRowComponent
+    component: IconUserGroupRowComponent,
   },
   {
     selector: 'sbb-icon-user-hat',
@@ -3039,9 +3039,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/user_hat_169_small.svg',
-      '/svg/KOM/responsive/medium/060_User/user_hat_169_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/user_hat_169_medium.svg',
     ],
-    component: IconUserHatComponent
+    component: IconUserHatComponent,
   },
   {
     selector: 'sbb-icon-user-headset',
@@ -3050,9 +3050,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/user_headset_156_small.svg',
-      '/svg/KOM/responsive/medium/060_User/user_headset_156_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/user_headset_156_medium.svg',
     ],
-    component: IconUserHeadsetComponent
+    component: IconUserHeadsetComponent,
   },
   {
     selector: 'sbb-icon-user-key',
@@ -3061,9 +3061,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/user_key_124_small.svg',
-      '/svg/KOM/responsive/medium/060_User/user_key_124_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/user_key_124_medium.svg',
     ],
-    component: IconUserKeyComponent
+    component: IconUserKeyComponent,
   },
   {
     selector: 'sbb-icon-user-plus',
@@ -3072,9 +3072,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/user_plus_310_small.svg',
-      '/svg/KOM/responsive/medium/060_User/user_plus_310_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/user_plus_310_medium.svg',
     ],
-    component: IconUserPlusComponent
+    component: IconUserPlusComponent,
   },
   {
     selector: 'sbb-icon-user-tie',
@@ -3083,9 +3083,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/060_User/user_tie_351_small.svg',
-      '/svg/KOM/responsive/medium/060_User/user_tie_351_medium.svg'
+      '/svg/KOM/responsive/medium/060_User/user_tie_351_medium.svg',
     ],
-    component: IconUserTieComponent
+    component: IconUserTieComponent,
   },
   {
     selector: 'sbb-icon-percent',
@@ -3095,9 +3095,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/percent_78_small.svg',
       '/svg/KOM/responsive/medium/080_Timetable/percent_78_medium.svg',
-      '/svg/KOM/responsive/large/080_Timetable/percent_78_large.svg'
+      '/svg/KOM/responsive/large/080_Timetable/percent_78_large.svg',
     ],
-    component: IconPercentComponent
+    component: IconPercentComponent,
   },
   {
     selector: 'sbb-icon-switzerland-route',
@@ -3105,15 +3105,15 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconSwitzerlandRouteModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['large', 'medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/switzerland_route_204_small.svg',
       '/svg/KOM/responsive/medium/080_Timetable/switzerland_route_204_medium.svg',
-      '/svg/KOM/responsive/large/080_Timetable/switzerland_route_204_large.svg'
+      '/svg/KOM/responsive/large/080_Timetable/switzerland_route_204_large.svg',
     ],
-    component: IconSwitzerlandRouteComponent
+    component: IconSwitzerlandRouteComponent,
   },
   {
     selector: 'sbb-icon-arrow-change',
@@ -3122,9 +3122,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/arrow_change_68_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/arrow_change_68_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/arrow_change_68_medium.svg',
     ],
-    component: IconArrowChangeComponent
+    component: IconArrowChangeComponent,
   },
   {
     selector: 'sbb-icon-avatar-train-staff',
@@ -3132,14 +3132,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconAvatarTrainStaffModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/avatar_train_staff_71_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/avatar_train_staff_71_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/avatar_train_staff_71_medium.svg',
     ],
-    component: IconAvatarTrainStaffComponent
+    component: IconAvatarTrainStaffComponent,
   },
   {
     selector: 'sbb-icon-avatar-train-staff-disabled',
@@ -3147,14 +3147,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconAvatarTrainStaffDisabledModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/avatar_train_staff_disabled_72_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/avatar_train_staff_disabled_72_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/avatar_train_staff_disabled_72_medium.svg',
     ],
-    component: IconAvatarTrainStaffDisabledComponent
+    component: IconAvatarTrainStaffDisabledComponent,
   },
   {
     selector: 'sbb-icon-clock',
@@ -3163,9 +3163,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/clock_10_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/clock_10_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/clock_10_medium.svg',
     ],
-    component: IconClockComponent
+    component: IconClockComponent,
   },
   {
     selector: 'sbb-icon-hourglass',
@@ -3174,9 +3174,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/hourglass_217_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/hourglass_217_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/hourglass_217_medium.svg',
     ],
-    component: IconHourglassComponent
+    component: IconHourglassComponent,
   },
   {
     selector: 'sbb-icon-locomotive',
@@ -3185,9 +3185,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/locomotive_83_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/locomotive_83_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/locomotive_83_medium.svg',
     ],
-    component: IconLocomotiveComponent
+    component: IconLocomotiveComponent,
   },
   {
     selector: 'sbb-icon-percent-tag',
@@ -3196,9 +3196,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/percent_tag_141_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/percent_tag_141_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/percent_tag_141_medium.svg',
     ],
-    component: IconPercentTagComponent
+    component: IconPercentTagComponent,
   },
   {
     selector: 'sbb-icon-punctuality',
@@ -3207,9 +3207,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/punctuality_216_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/punctuality_216_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/punctuality_216_medium.svg',
     ],
-    component: IconPunctualityComponent
+    component: IconPunctualityComponent,
   },
   {
     selector: 'sbb-icon-route-circle-end',
@@ -3218,9 +3218,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/route_circle_end_139_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/route_circle_end_139_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/route_circle_end_139_medium.svg',
     ],
-    component: IconRouteCircleEndComponent
+    component: IconRouteCircleEndComponent,
   },
   {
     selector: 'sbb-icon-route-circle-start',
@@ -3228,14 +3228,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconRouteCircleStartModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/route_circle_start_140_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/route_circle_start_140_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/route_circle_start_140_medium.svg',
     ],
-    component: IconRouteCircleStartComponent
+    component: IconRouteCircleStartComponent,
   },
   {
     selector: 'sbb-icon-seat-window',
@@ -3244,9 +3244,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/seat_window_288_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/seat_window_288_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/seat_window_288_medium.svg',
     ],
-    component: IconSeatWindowComponent
+    component: IconSeatWindowComponent,
   },
   {
     selector: 'sbb-icon-timetable',
@@ -3255,9 +3255,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/timetable_215_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/timetable_215_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/timetable_215_medium.svg',
     ],
-    component: IconTimetableComponent
+    component: IconTimetableComponent,
   },
   {
     selector: 'sbb-icon-walk',
@@ -3266,9 +3266,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/walk_70_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/walk_70_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/walk_70_medium.svg',
     ],
-    component: IconWalkComponent
+    component: IconWalkComponent,
   },
   {
     selector: 'sbb-icon-walk-fast',
@@ -3277,9 +3277,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/walk_fast_290_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/walk_fast_290_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/walk_fast_290_medium.svg',
     ],
-    component: IconWalkFastComponent
+    component: IconWalkFastComponent,
   },
   {
     selector: 'sbb-icon-walk-slow',
@@ -3288,9 +3288,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/walk_slow_289_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/walk_slow_289_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/walk_slow_289_medium.svg',
     ],
-    component: IconWalkSlowComponent
+    component: IconWalkSlowComponent,
   },
   {
     selector: 'sbb-icon-wheelchair',
@@ -3299,9 +3299,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/wheelchair_73_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_73_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_73_medium.svg',
     ],
-    component: IconWheelchairComponent
+    component: IconWheelchairComponent,
   },
   {
     selector: 'sbb-icon-wheelchair-inaccessible',
@@ -3309,14 +3309,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconWheelchairInaccessibleModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/wheelchair_inaccessible_77_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_inaccessible_77_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_inaccessible_77_medium.svg',
     ],
-    component: IconWheelchairInaccessibleComponent
+    component: IconWheelchairInaccessibleComponent,
   },
   {
     selector: 'sbb-icon-wheelchair-partially',
@@ -3324,14 +3324,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconWheelchairPartiallyModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/wheelchair_partially_74_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_partially_74_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_partially_74_medium.svg',
     ],
-    component: IconWheelchairPartiallyComponent
+    component: IconWheelchairPartiallyComponent,
   },
   {
     selector: 'sbb-icon-wheelchair-reservation',
@@ -3339,14 +3339,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconWheelchairReservationModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/wheelchair_reservation_75_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_reservation_75_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_reservation_75_medium.svg',
     ],
-    component: IconWheelchairReservationComponent
+    component: IconWheelchairReservationComponent,
   },
   {
     selector: 'sbb-icon-wheelchair-uncertain',
@@ -3354,14 +3354,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconWheelchairUncertainModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/080_Timetable/wheelchair_uncertain_76_small.svg',
-      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_uncertain_76_medium.svg'
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_uncertain_76_medium.svg',
     ],
-    component: IconWheelchairUncertainComponent
+    component: IconWheelchairUncertainComponent,
   },
   {
     selector: 'sbb-icon-lotus',
@@ -3371,9 +3371,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/100_Station/lotus_294_small.svg',
       '/svg/KOM/responsive/medium/100_Station/lotus_294_medium.svg',
-      '/svg/KOM/responsive/large/100_Station/lotus_294_large.svg'
+      '/svg/KOM/responsive/large/100_Station/lotus_294_large.svg',
     ],
-    component: IconLotusComponent
+    component: IconLotusComponent,
   },
   {
     selector: 'sbb-icon-platform',
@@ -3381,7 +3381,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconPlatformModule', 'IconCollectionStationModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/100_Station/platform_311_large.svg'],
-    component: IconPlatformComponent
+    component: IconPlatformComponent,
   },
   {
     selector: 'sbb-icon-station',
@@ -3391,9 +3391,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/100_Station/station_117_small.svg',
       '/svg/KOM/responsive/medium/100_Station/station_117_medium.svg',
-      '/svg/KOM/responsive/large/100_Station/station_117_large.svg'
+      '/svg/KOM/responsive/large/100_Station/station_117_large.svg',
     ],
-    component: IconStationComponent
+    component: IconStationComponent,
   },
   {
     selector: 'sbb-icon-book',
@@ -3402,9 +3402,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/book_293_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/book_293_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/book_293_medium.svg',
     ],
-    component: IconBookComponent
+    component: IconBookComponent,
   },
   {
     selector: 'sbb-icon-bottle-apple',
@@ -3413,9 +3413,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/bottle_apple_296_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/bottle_apple_296_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/bottle_apple_296_medium.svg',
     ],
-    component: IconBottleAppleComponent
+    component: IconBottleAppleComponent,
   },
   {
     selector: 'sbb-icon-customer-assistance-sbb',
@@ -3423,14 +3423,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconCustomerAssistanceSbbModule',
       'IconCollectionStationModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/customer_assistance_sbb_223_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/customer_assistance_sbb_223_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/customer_assistance_sbb_223_medium.svg',
     ],
-    component: IconCustomerAssistanceSbbComponent
+    component: IconCustomerAssistanceSbbComponent,
   },
   {
     selector: 'sbb-icon-escalator',
@@ -3439,9 +3439,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/escalator_231_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/escalator_231_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/escalator_231_medium.svg',
     ],
-    component: IconEscalatorComponent
+    component: IconEscalatorComponent,
   },
   {
     selector: 'sbb-icon-general-display',
@@ -3450,9 +3450,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/general_display_227_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/general_display_227_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/general_display_227_medium.svg',
     ],
-    component: IconGeneralDisplayComponent
+    component: IconGeneralDisplayComponent,
   },
   {
     selector: 'sbb-icon-hand-plus-circle',
@@ -3461,9 +3461,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/hand_plus_circle_116_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/hand_plus_circle_116_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/hand_plus_circle_116_medium.svg',
     ],
-    component: IconHandPlusCircleComponent
+    component: IconHandPlusCircleComponent,
   },
   {
     selector: 'sbb-icon-hand-sbb',
@@ -3472,9 +3472,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/hand_sbb_297_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/hand_sbb_297_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/hand_sbb_297_medium.svg',
     ],
-    component: IconHandSbbComponent
+    component: IconHandSbbComponent,
   },
   {
     selector: 'sbb-icon-hostel',
@@ -3483,9 +3483,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/hostel_119_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/hostel_119_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/hostel_119_medium.svg',
     ],
-    component: IconHostelComponent
+    component: IconHostelComponent,
   },
   {
     selector: 'sbb-icon-lift',
@@ -3494,9 +3494,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/lift_229_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/lift_229_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/lift_229_medium.svg',
     ],
-    component: IconLiftComponent
+    component: IconLiftComponent,
   },
   {
     selector: 'sbb-icon-locker',
@@ -3505,9 +3505,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/locker_298_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/locker_298_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/locker_298_medium.svg',
     ],
-    component: IconLockerComponent
+    component: IconLockerComponent,
   },
   {
     selector: 'sbb-icon-meeting-point',
@@ -3516,9 +3516,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/meeting_point_118_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/meeting_point_118_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/meeting_point_118_medium.svg',
     ],
-    component: IconMeetingPointComponent
+    component: IconMeetingPointComponent,
   },
   {
     selector: 'sbb-icon-money-exchange',
@@ -3527,9 +3527,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/money_exchange_120_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/money_exchange_120_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/money_exchange_120_medium.svg',
     ],
-    component: IconMoneyExchangeComponent
+    component: IconMoneyExchangeComponent,
   },
   {
     selector: 'sbb-icon-platform-display',
@@ -3538,9 +3538,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/platform_display_230_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/platform_display_230_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/platform_display_230_medium.svg',
     ],
-    component: IconPlatformDisplayComponent
+    component: IconPlatformDisplayComponent,
   },
   {
     selector: 'sbb-icon-screen-inside-train',
@@ -3549,9 +3549,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/screen_inside_train_224_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/screen_inside_train_224_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/screen_inside_train_224_medium.svg',
     ],
-    component: IconScreenInsideTrainComponent
+    component: IconScreenInsideTrainComponent,
   },
   {
     selector: 'sbb-icon-shirt-shoe',
@@ -3560,9 +3560,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/shirt_shoe_292_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/shirt_shoe_292_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/shirt_shoe_292_medium.svg',
     ],
-    component: IconShirtShoeComponent
+    component: IconShirtShoeComponent,
   },
   {
     selector: 'sbb-icon-shopping-bag',
@@ -3571,9 +3571,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/shopping_bag_299_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/shopping_bag_299_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/shopping_bag_299_medium.svg',
     ],
-    component: IconShoppingBagComponent
+    component: IconShoppingBagComponent,
   },
   {
     selector: 'sbb-icon-shopping-bag-coupon',
@@ -3582,9 +3582,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/shopping_bag_coupon_134_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/shopping_bag_coupon_134_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/shopping_bag_coupon_134_medium.svg',
     ],
-    component: IconShoppingBagCouponComponent
+    component: IconShoppingBagCouponComponent,
   },
   {
     selector: 'sbb-icon-shopping-bag-fast',
@@ -3593,9 +3593,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/shopping_bag_fast_323_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/shopping_bag_fast_323_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/shopping_bag_fast_323_medium.svg',
     ],
-    component: IconShoppingBagFastComponent
+    component: IconShoppingBagFastComponent,
   },
   {
     selector: 'sbb-icon-station-surrounding-area',
@@ -3603,14 +3603,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconStationSurroundingAreaModule',
       'IconCollectionStationModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/station_surrounding_area_322_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/station_surrounding_area_322_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/station_surrounding_area_322_medium.svg',
     ],
-    component: IconStationSurroundingAreaComponent
+    component: IconStationSurroundingAreaComponent,
   },
   {
     selector: 'sbb-icon-ticket-machine',
@@ -3619,9 +3619,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/ticket_machine_225_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/ticket_machine_225_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/ticket_machine_225_medium.svg',
     ],
-    component: IconTicketMachineComponent
+    component: IconTicketMachineComponent,
   },
   {
     selector: 'sbb-icon-ticket-machine-ticket',
@@ -3629,14 +3629,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconTicketMachineTicketModule',
       'IconCollectionStationModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/ticket_machine_ticket_228_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/ticket_machine_ticket_228_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/ticket_machine_ticket_228_medium.svg',
     ],
-    component: IconTicketMachineTicketComponent
+    component: IconTicketMachineTicketComponent,
   },
   {
     selector: 'sbb-icon-toilet',
@@ -3645,9 +3645,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/toilet_233_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/toilet_233_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/toilet_233_medium.svg',
     ],
-    component: IconToiletComponent
+    component: IconToiletComponent,
   },
   {
     selector: 'sbb-icon-train-station',
@@ -3656,9 +3656,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/train_station_295_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/train_station_295_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/train_station_295_medium.svg',
     ],
-    component: IconTrainStationComponent
+    component: IconTrainStationComponent,
   },
   {
     selector: 'sbb-icon-waiting-room',
@@ -3667,9 +3667,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/waiting_room_232_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/waiting_room_232_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/waiting_room_232_medium.svg',
     ],
-    component: IconWaitingRoomComponent
+    component: IconWaitingRoomComponent,
   },
   {
     selector: 'sbb-icon-wine-cheese',
@@ -3678,9 +3678,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/100_Station/wine_cheese_359_small.svg',
-      '/svg/KOM/responsive/medium/100_Station/wine_cheese_359_medium.svg'
+      '/svg/KOM/responsive/medium/100_Station/wine_cheese_359_medium.svg',
     ],
-    component: IconWineCheeseComponent
+    component: IconWineCheeseComponent,
   },
   {
     selector: 'sbb-icon-laptop-smartphone',
@@ -3690,9 +3690,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/laptop_smartphone_165_small.svg',
       '/svg/KOM/responsive/medium/120_Hardware/laptop_smartphone_165_medium.svg',
-      '/svg/KOM/responsive/large/120_Hardware/laptop_smartphone_165_large.svg'
+      '/svg/KOM/responsive/large/120_Hardware/laptop_smartphone_165_large.svg',
     ],
-    component: IconLaptopSmartphoneComponent
+    component: IconLaptopSmartphoneComponent,
   },
   {
     selector: 'sbb-icon-archive-box',
@@ -3701,9 +3701,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/archive_box_303_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/archive_box_303_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/archive_box_303_medium.svg',
     ],
-    component: IconArchiveBoxComponent
+    component: IconArchiveBoxComponent,
   },
   {
     selector: 'sbb-icon-briefcase',
@@ -3712,9 +3712,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/briefcase_300_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/briefcase_300_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/briefcase_300_medium.svg',
     ],
-    component: IconBriefcaseComponent
+    component: IconBriefcaseComponent,
   },
   {
     selector: 'sbb-icon-brochure',
@@ -3723,9 +3723,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/brochure_236_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/brochure_236_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/brochure_236_medium.svg',
     ],
-    component: IconBrochureComponent
+    component: IconBrochureComponent,
   },
   {
     selector: 'sbb-icon-desk',
@@ -3734,9 +3734,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/desk_88_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/desk_88_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/desk_88_medium.svg',
     ],
-    component: IconDeskComponent
+    component: IconDeskComponent,
   },
   {
     selector: 'sbb-icon-desk-adjustable',
@@ -3745,9 +3745,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/desk_adjustable_89_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/desk_adjustable_89_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/desk_adjustable_89_medium.svg',
     ],
-    component: IconDeskAdjustableComponent
+    component: IconDeskAdjustableComponent,
   },
   {
     selector: 'sbb-icon-display',
@@ -3756,9 +3756,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/display_85_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/display_85_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/display_85_medium.svg',
     ],
-    component: IconDisplayComponent
+    component: IconDisplayComponent,
   },
   {
     selector: 'sbb-icon-keyboard',
@@ -3767,9 +3767,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/keyboard_86_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/keyboard_86_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/keyboard_86_medium.svg',
     ],
-    component: IconKeyboardComponent
+    component: IconKeyboardComponent,
   },
   {
     selector: 'sbb-icon-laptop',
@@ -3778,9 +3778,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/laptop_167_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/laptop_167_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/laptop_167_medium.svg',
     ],
-    component: IconLaptopComponent
+    component: IconLaptopComponent,
   },
   {
     selector: 'sbb-icon-megaphone',
@@ -3789,9 +3789,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/megaphone_302_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/megaphone_302_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/megaphone_302_medium.svg',
     ],
-    component: IconMegaphoneComponent
+    component: IconMegaphoneComponent,
   },
   {
     selector: 'sbb-icon-office-chair',
@@ -3800,9 +3800,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/office_chair_87_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/office_chair_87_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/office_chair_87_medium.svg',
     ],
-    component: IconOfficeChairComponent
+    component: IconOfficeChairComponent,
   },
   {
     selector: 'sbb-icon-power-plug',
@@ -3811,9 +3811,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/power_plug_154_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/power_plug_154_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/power_plug_154_medium.svg',
     ],
-    component: IconPowerPlugComponent
+    component: IconPowerPlugComponent,
   },
   {
     selector: 'sbb-icon-printer',
@@ -3822,9 +3822,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/printer_21_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/printer_21_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/printer_21_medium.svg',
     ],
-    component: IconPrinterComponent
+    component: IconPrinterComponent,
   },
   {
     selector: 'sbb-icon-scanner',
@@ -3833,9 +3833,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/scanner_178_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/scanner_178_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/scanner_178_medium.svg',
     ],
-    component: IconScannerComponent
+    component: IconScannerComponent,
   },
   {
     selector: 'sbb-icon-smartphone',
@@ -3844,9 +3844,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/smartphone_84_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/smartphone_84_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/smartphone_84_medium.svg',
     ],
-    component: IconSmartphoneComponent
+    component: IconSmartphoneComponent,
   },
   {
     selector: 'sbb-icon-speaker',
@@ -3855,9 +3855,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/speaker_237_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/speaker_237_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/speaker_237_medium.svg',
     ],
-    component: IconSpeakerComponent
+    component: IconSpeakerComponent,
   },
   {
     selector: 'sbb-icon-suitcase',
@@ -3866,9 +3866,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/suitcase_90_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/suitcase_90_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/suitcase_90_medium.svg',
     ],
-    component: IconSuitcaseComponent
+    component: IconSuitcaseComponent,
   },
   {
     selector: 'sbb-icon-suitcase-disabled',
@@ -3877,9 +3877,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/suitcase_disabled_91_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/suitcase_disabled_91_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/suitcase_disabled_91_medium.svg',
     ],
-    component: IconSuitcaseDisabledComponent
+    component: IconSuitcaseDisabledComponent,
   },
   {
     selector: 'sbb-icon-telephone-gsm',
@@ -3888,9 +3888,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/telephone_gsm_172_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/telephone_gsm_172_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/telephone_gsm_172_medium.svg',
     ],
-    component: IconTelephoneGsmComponent
+    component: IconTelephoneGsmComponent,
   },
   {
     selector: 'sbb-icon-telephone-receiver',
@@ -3898,14 +3898,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconTelephoneReceiverModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/telephone_receiver_164_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/telephone_receiver_164_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/telephone_receiver_164_medium.svg',
     ],
-    component: IconTelephoneReceiverComponent
+    component: IconTelephoneReceiverComponent,
   },
   {
     selector: 'sbb-icon-walkie-talkie',
@@ -3914,9 +3914,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/walkie_talkie_177_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/walkie_talkie_177_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/walkie_talkie_177_medium.svg',
     ],
-    component: IconWalkieTalkieComponent
+    component: IconWalkieTalkieComponent,
   },
   {
     selector: 'sbb-icon-weight',
@@ -3925,9 +3925,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/120_Hardware/weight_301_small.svg',
-      '/svg/KOM/responsive/medium/120_Hardware/weight_301_medium.svg'
+      '/svg/KOM/responsive/medium/120_Hardware/weight_301_medium.svg',
     ],
-    component: IconWeightComponent
+    component: IconWeightComponent,
   },
   {
     selector: 'sbb-icon-bicycle',
@@ -3937,9 +3937,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/170_Transport/bicycle_248_small.svg',
       '/svg/KOM/responsive/medium/170_Transport/bicycle_248_medium.svg',
-      '/svg/KOM/responsive/large/170_Transport/bicycle_248_large.svg'
+      '/svg/KOM/responsive/large/170_Transport/bicycle_248_large.svg',
     ],
-    component: IconBicycleComponent
+    component: IconBicycleComponent,
   },
   {
     selector: 'sbb-icon-train',
@@ -3949,9 +3949,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/170_Transport/train_249_small.svg',
       '/svg/KOM/responsive/medium/170_Transport/train_249_medium.svg',
-      '/svg/KOM/responsive/large/170_Transport/train_249_large.svg'
+      '/svg/KOM/responsive/large/170_Transport/train_249_large.svg',
     ],
-    component: IconTrainComponent
+    component: IconTrainComponent,
   },
   {
     selector: 'sbb-icon-airplane',
@@ -3960,9 +3960,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/airplane_285_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/airplane_285_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/airplane_285_medium.svg',
     ],
-    component: IconAirplaneComponent
+    component: IconAirplaneComponent,
   },
   {
     selector: 'sbb-icon-bus',
@@ -3971,9 +3971,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/bus_240_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/bus_240_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/bus_240_medium.svg',
     ],
-    component: IconBusComponent
+    component: IconBusComponent,
   },
   {
     selector: 'sbb-icon-bus-circle',
@@ -3982,9 +3982,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/bus_circle_243_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/bus_circle_243_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/bus_circle_243_medium.svg',
     ],
-    component: IconBusCircleComponent
+    component: IconBusCircleComponent,
   },
   {
     selector: 'sbb-icon-bus-sbb',
@@ -3993,9 +3993,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/bus_sbb_242_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/bus_sbb_242_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/bus_sbb_242_medium.svg',
     ],
-    component: IconBusSbbComponent
+    component: IconBusSbbComponent,
   },
   {
     selector: 'sbb-icon-bus-stop',
@@ -4004,9 +4004,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/bus_stop_241_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/bus_stop_241_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/bus_stop_241_medium.svg',
     ],
-    component: IconBusStopComponent
+    component: IconBusStopComponent,
   },
   {
     selector: 'sbb-icon-car',
@@ -4015,9 +4015,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/car_238_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/car_238_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/car_238_medium.svg',
     ],
-    component: IconCarComponent
+    component: IconCarComponent,
   },
   {
     selector: 'sbb-icon-car-parking',
@@ -4026,9 +4026,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/car_parking_360_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/car_parking_360_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/car_parking_360_medium.svg',
     ],
-    component: IconCarParkingComponent
+    component: IconCarParkingComponent,
   },
   {
     selector: 'sbb-icon-charging-station',
@@ -4037,9 +4037,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/charging_station_361_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/charging_station_361_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/charging_station_361_medium.svg',
     ],
-    component: IconChargingStationComponent
+    component: IconChargingStationComponent,
   },
   {
     selector: 'sbb-icon-combined-mobility',
@@ -4047,14 +4047,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconCombinedMobilityModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/combined_mobility_324_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/combined_mobility_324_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/combined_mobility_324_medium.svg',
     ],
-    component: IconCombinedMobilityComponent
+    component: IconCombinedMobilityComponent,
   },
   {
     selector: 'sbb-icon-container',
@@ -4063,9 +4063,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/container_304_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/container_304_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/container_304_medium.svg',
     ],
-    component: IconContainerComponent
+    component: IconContainerComponent,
   },
   {
     selector: 'sbb-icon-driverless-bus',
@@ -4074,9 +4074,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/driverless_bus_362_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/driverless_bus_362_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/driverless_bus_362_medium.svg',
     ],
-    component: IconDriverlessBusComponent
+    component: IconDriverlessBusComponent,
   },
   {
     selector: 'sbb-icon-freight-wagon',
@@ -4085,9 +4085,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/freight_wagon_286_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/freight_wagon_286_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/freight_wagon_286_medium.svg',
     ],
-    component: IconFreightWagonComponent
+    component: IconFreightWagonComponent,
   },
   {
     selector: 'sbb-icon-k-r',
@@ -4096,9 +4096,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/k_r_244_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/k_r_244_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/k_r_244_medium.svg',
     ],
-    component: IconKRComponent
+    component: IconKRComponent,
   },
   {
     selector: 'sbb-icon-park-and-rail',
@@ -4107,9 +4107,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/park_and_rail_245_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/park_and_rail_245_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/park_and_rail_245_medium.svg',
     ],
-    component: IconParkAndRailComponent
+    component: IconParkAndRailComponent,
   },
   {
     selector: 'sbb-icon-petrol-station',
@@ -4118,9 +4118,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/petrol_station_239_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/petrol_station_239_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/petrol_station_239_medium.svg',
     ],
-    component: IconPetrolStationComponent
+    component: IconPetrolStationComponent,
   },
   {
     selector: 'sbb-icon-shuttle',
@@ -4129,9 +4129,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/shuttle_364_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/shuttle_364_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/shuttle_364_medium.svg',
     ],
-    component: IconShuttleComponent
+    component: IconShuttleComponent,
   },
   {
     selector: 'sbb-icon-taxi',
@@ -4140,9 +4140,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/taxi_246_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/taxi_246_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/taxi_246_medium.svg',
     ],
-    component: IconTaxiComponent
+    component: IconTaxiComponent,
   },
   {
     selector: 'sbb-icon-tram',
@@ -4151,9 +4151,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/170_Transport/tram_247_small.svg',
-      '/svg/KOM/responsive/medium/170_Transport/tram_247_medium.svg'
+      '/svg/KOM/responsive/medium/170_Transport/tram_247_medium.svg',
     ],
-    component: IconTramComponent
+    component: IconTramComponent,
   },
   {
     selector: 'sbb-icon-adult-kids',
@@ -4161,7 +4161,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconAdultKidsModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/adult_kids_262_large.svg'],
-    component: IconAdultKidsComponent
+    component: IconAdultKidsComponent,
   },
   {
     selector: 'sbb-icon-balloons',
@@ -4169,7 +4169,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconBalloonsModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/balloons_264_large.svg'],
-    component: IconBalloonsComponent
+    component: IconBalloonsComponent,
   },
   {
     selector: 'sbb-icon-christmas-tree-shopping-bag',
@@ -4177,11 +4177,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconChristmasTreeShoppingBagModule',
       'IconCollectionLeisureModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/christmas_tree_shopping_bag_269_large.svg'],
-    component: IconChristmasTreeShoppingBagComponent
+    component: IconChristmasTreeShoppingBagComponent,
   },
   {
     selector: 'sbb-icon-elephant',
@@ -4189,7 +4189,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconElephantModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/elephant_271_large.svg'],
-    component: IconElephantComponent
+    component: IconElephantComponent,
   },
   {
     selector: 'sbb-icon-ferris-wheel',
@@ -4197,7 +4197,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconFerrisWheelModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/ferris_wheel_259_large.svg'],
-    component: IconFerrisWheelComponent
+    component: IconFerrisWheelComponent,
   },
   {
     selector: 'sbb-icon-hiking-boot',
@@ -4205,7 +4205,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconHikingBootModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/hiking_boot_268_large.svg'],
-    component: IconHikingBootComponent
+    component: IconHikingBootComponent,
   },
   {
     selector: 'sbb-icon-leaf',
@@ -4213,7 +4213,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconLeafModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/leaf_260_large.svg'],
-    component: IconLeafComponent
+    component: IconLeafComponent,
   },
   {
     selector: 'sbb-icon-locomotive-viaduct',
@@ -4221,7 +4221,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconLocomotiveViaductModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/locomotive_viaduct_252_large.svg'],
-    component: IconLocomotiveViaductComponent
+    component: IconLocomotiveViaductComponent,
   },
   {
     selector: 'sbb-icon-lucerne-chapel-bridge',
@@ -4229,11 +4229,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconLucerneChapelBridgeModule',
       'IconCollectionLeisureModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/lucerne_chapel_bridge_257_large.svg'],
-    component: IconLucerneChapelBridgeComponent
+    component: IconLucerneChapelBridgeComponent,
   },
   {
     selector: 'sbb-icon-market-shopping-bag',
@@ -4241,7 +4241,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconMarketShoppingBagModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/market_shopping_bag_258_large.svg'],
-    component: IconMarketShoppingBagComponent
+    component: IconMarketShoppingBagComponent,
   },
   {
     selector: 'sbb-icon-mountain-sun',
@@ -4251,9 +4251,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/180_Leisure/mountain_sun_251_small.svg',
       '/svg/KOM/responsive/medium/180_Leisure/mountain_sun_251_medium.svg',
-      '/svg/KOM/responsive/large/180_Leisure/mountain_sun_251_large.svg'
+      '/svg/KOM/responsive/large/180_Leisure/mountain_sun_251_large.svg',
     ],
-    component: IconMountainSunComponent
+    component: IconMountainSunComponent,
   },
   {
     selector: 'sbb-icon-museum',
@@ -4261,7 +4261,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconMuseumModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/museum_256_large.svg'],
-    component: IconMuseumComponent
+    component: IconMuseumComponent,
   },
   {
     selector: 'sbb-icon-music-rock-hand-gesture',
@@ -4269,11 +4269,11 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconMusicRockHandGestureModule',
       'IconCollectionLeisureModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/music_rock_hand_gesture_255_large.svg'],
-    component: IconMusicRockHandGestureComponent
+    component: IconMusicRockHandGestureComponent,
   },
   {
     selector: 'sbb-icon-railway-ship',
@@ -4281,7 +4281,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconRailwayShipModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/railway_ship_250_large.svg'],
-    component: IconRailwayShipComponent
+    component: IconRailwayShipComponent,
   },
   {
     selector: 'sbb-icon-sledge-snowshoe',
@@ -4289,7 +4289,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSledgeSnowshoeModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/sledge_snowshoe_261_large.svg'],
-    component: IconSledgeSnowshoeComponent
+    component: IconSledgeSnowshoeComponent,
   },
   {
     selector: 'sbb-icon-soccer-ball',
@@ -4297,7 +4297,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconSoccerBallModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/soccer_ball_265_large.svg'],
-    component: IconSoccerBallComponent
+    component: IconSoccerBallComponent,
   },
   {
     selector: 'sbb-icon-three-adults',
@@ -4305,7 +4305,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconThreeAdultsModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/three_adults_254_large.svg'],
-    component: IconThreeAdultsComponent
+    component: IconThreeAdultsComponent,
   },
   {
     selector: 'sbb-icon-train-ski',
@@ -4313,7 +4313,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconTrainSkiModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/train_ski_263_large.svg'],
-    component: IconTrainSkiComponent
+    component: IconTrainSkiComponent,
   },
   {
     selector: 'sbb-icon-two-adults-kid',
@@ -4321,7 +4321,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconTwoAdultsKidModule', 'IconCollectionLeisureModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/180_Leisure/two_adults_kid_253_large.svg'],
-    component: IconTwoAdultsKidComponent
+    component: IconTwoAdultsKidComponent,
   },
   {
     selector: 'sbb-icon-railway-switch',
@@ -4329,15 +4329,15 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconRailwaySwitchModule',
       'IconCollectionInstallationModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['large', 'medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/190_Installation/railway_switch_313_small.svg',
       '/svg/KOM/responsive/medium/190_Installation/railway_switch_313_medium.svg',
-      '/svg/KOM/responsive/large/190_Installation/railway_switch_313_large.svg'
+      '/svg/KOM/responsive/large/190_Installation/railway_switch_313_large.svg',
     ],
-    component: IconRailwaySwitchComponent
+    component: IconRailwaySwitchComponent,
   },
   {
     selector: 'sbb-icon-train-signal',
@@ -4345,7 +4345,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconTrainSignalModule', 'IconCollectionInstallationModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/190_Installation/train_signal_312_large.svg'],
-    component: IconTrainSignalComponent
+    component: IconTrainSignalComponent,
   },
   {
     selector: 'sbb-icon-train-tracks',
@@ -4353,7 +4353,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconTrainTracksModule', 'IconCollectionInstallationModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/190_Installation/train_tracks_314_large.svg'],
-    component: IconTrainTracksComponent
+    component: IconTrainTracksComponent,
   },
   {
     selector: 'sbb-icon-construction',
@@ -4362,9 +4362,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/190_Installation/construction_350_small.svg',
-      '/svg/KOM/responsive/medium/190_Installation/construction_350_medium.svg'
+      '/svg/KOM/responsive/medium/190_Installation/construction_350_medium.svg',
     ],
-    component: IconConstructionComponent
+    component: IconConstructionComponent,
   },
   {
     selector: 'sbb-icon-building-tree',
@@ -4372,7 +4372,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconBuildingTreeModule', 'IconCollectionBuildingModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/200_Building/building_tree_315_large.svg'],
-    component: IconBuildingTreeComponent
+    component: IconBuildingTreeComponent,
   },
   {
     selector: 'sbb-icon-city',
@@ -4382,9 +4382,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     meta: [
       '/svg/KOM/responsive/small/200_Building/city_316_small.svg',
       '/svg/KOM/responsive/medium/200_Building/city_316_medium.svg',
-      '/svg/KOM/responsive/large/200_Building/city_316_large.svg'
+      '/svg/KOM/responsive/large/200_Building/city_316_large.svg',
     ],
-    component: IconCityComponent
+    component: IconCityComponent,
   },
   {
     selector: 'sbb-icon-curriculum-vitae',
@@ -4392,7 +4392,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconCurriculumVitaeModule', 'IconCollectionCareerModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/210_Career/curriculum_vitae_318_large.svg'],
-    component: IconCurriculumVitaeComponent
+    component: IconCurriculumVitaeComponent,
   },
   {
     selector: 'sbb-icon-hand-graduation-cap',
@@ -4400,7 +4400,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconHandGraduationCapModule', 'IconCollectionCareerModule', 'IconCollectionModule'],
     sizes: ['large'],
     meta: ['/svg/KOM/responsive/large/210_Career/hand_graduation_cap_320_large.svg'],
-    component: IconHandGraduationCapComponent
+    component: IconHandGraduationCapComponent,
   },
   {
     selector: 'sbb-icon-ship-steering-wheel',
@@ -4409,9 +4409,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/210_Career/ship_steering_wheel_363_small.svg',
-      '/svg/KOM/responsive/medium/210_Career/ship_steering_wheel_363_medium.svg'
+      '/svg/KOM/responsive/medium/210_Career/ship_steering_wheel_363_medium.svg',
     ],
-    component: IconShipSteeringWheelComponent
+    component: IconShipSteeringWheelComponent,
   },
   {
     selector: 'sbb-icon-arrows-circle',
@@ -4420,9 +4420,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/arrows_circle_2_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/arrows_circle_2_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_circle_2_medium.svg',
     ],
-    component: IconArrowsCircleComponent
+    component: IconArrowsCircleComponent,
   },
   {
     selector: 'sbb-icon-arrows-left-right',
@@ -4431,9 +4431,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/arrows_left_right_47_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/arrows_left_right_47_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_left_right_47_medium.svg',
     ],
-    component: IconArrowsLeftRightComponent
+    component: IconArrowsLeftRightComponent,
   },
   {
     selector: 'sbb-icon-arrows-left-right-down-up',
@@ -4441,14 +4441,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconArrowsLeftRightDownUpModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/arrows_left_right_down_up_349_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/arrows_left_right_down_up_349_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_left_right_down_up_349_medium.svg',
     ],
-    component: IconArrowsLeftRightDownUpComponent
+    component: IconArrowsLeftRightDownUpComponent,
   },
   {
     selector: 'sbb-icon-arrows-right-left',
@@ -4457,9 +4457,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/arrows_right_left_39_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/arrows_right_left_39_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_right_left_39_medium.svg',
     ],
-    component: IconArrowsRightLeftComponent
+    component: IconArrowsRightLeftComponent,
   },
   {
     selector: 'sbb-icon-arrows-up-down',
@@ -4468,9 +4468,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/arrows_up_down_125_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/arrows_up_down_125_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_up_down_125_medium.svg',
     ],
-    component: IconArrowsUpDownComponent
+    component: IconArrowsUpDownComponent,
   },
   {
     selector: 'sbb-icon-arrow-circle',
@@ -4479,9 +4479,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/arrow_circle_7_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/arrow_circle_7_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/arrow_circle_7_medium.svg',
     ],
-    component: IconArrowCircleComponent
+    component: IconArrowCircleComponent,
   },
   {
     selector: 'sbb-icon-arrow-long-left',
@@ -4490,9 +4490,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/arrow_long_left_36_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/arrow_long_left_36_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/arrow_long_left_36_medium.svg',
     ],
-    component: IconArrowLongLeftComponent
+    component: IconArrowLongLeftComponent,
   },
   {
     selector: 'sbb-icon-arrow-long-right',
@@ -4501,9 +4501,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/arrow_long_right_38_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/arrow_long_right_38_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/arrow_long_right_38_medium.svg',
     ],
-    component: IconArrowLongRightComponent
+    component: IconArrowLongRightComponent,
   },
   {
     selector: 'sbb-icon-arrow-right',
@@ -4512,9 +4512,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/arrow_right_174_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/arrow_right_174_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/arrow_right_174_medium.svg',
     ],
-    component: IconArrowRightComponent
+    component: IconArrowRightComponent,
   },
   {
     selector: 'sbb-icon-chevron-right',
@@ -4523,9 +4523,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/chevron_right_37_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/chevron_right_37_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_right_37_medium.svg',
     ],
-    component: IconChevronRightComponent
+    component: IconChevronRightComponent,
   },
   {
     selector: 'sbb-icon-chevron-small-down',
@@ -4534,9 +4534,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/chevron_small_down_43_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_down_43_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_down_43_medium.svg',
     ],
-    component: IconChevronSmallDownComponent
+    component: IconChevronSmallDownComponent,
   },
   {
     selector: 'sbb-icon-chevron-small-down-circle',
@@ -4544,14 +4544,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconChevronSmallDownCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/chevron_small_down_circle_40_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_down_circle_40_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_down_circle_40_medium.svg',
     ],
-    component: IconChevronSmallDownCircleComponent
+    component: IconChevronSmallDownCircleComponent,
   },
   {
     selector: 'sbb-icon-chevron-small-left',
@@ -4560,9 +4560,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/chevron_small_left_44_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_left_44_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_left_44_medium.svg',
     ],
-    component: IconChevronSmallLeftComponent
+    component: IconChevronSmallLeftComponent,
   },
   {
     selector: 'sbb-icon-chevron-small-left-circle',
@@ -4570,14 +4570,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconChevronSmallLeftCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/chevron_small_left_circle_41_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_left_circle_41_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_left_circle_41_medium.svg',
     ],
-    component: IconChevronSmallLeftCircleComponent
+    component: IconChevronSmallLeftCircleComponent,
   },
   {
     selector: 'sbb-icon-chevron-small-right',
@@ -4586,9 +4586,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/chevron_small_right_45_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_right_45_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_right_45_medium.svg',
     ],
-    component: IconChevronSmallRightComponent
+    component: IconChevronSmallRightComponent,
   },
   {
     selector: 'sbb-icon-chevron-small-right-circle',
@@ -4596,14 +4596,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconChevronSmallRightCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/chevron_small_right_circle_42_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_right_circle_42_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_right_circle_42_medium.svg',
     ],
-    component: IconChevronSmallRightCircleComponent
+    component: IconChevronSmallRightCircleComponent,
   },
   {
     selector: 'sbb-icon-chevron-small-up',
@@ -4612,9 +4612,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/chevron_small_up_34_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_up_34_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_up_34_medium.svg',
     ],
-    component: IconChevronSmallUpComponent
+    component: IconChevronSmallUpComponent,
   },
   {
     selector: 'sbb-icon-chevron-small-up-circle',
@@ -4622,14 +4622,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconChevronSmallUpCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/chevron_small_up_circle_46_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_up_circle_46_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_up_circle_46_medium.svg',
     ],
-    component: IconChevronSmallUpCircleComponent
+    component: IconChevronSmallUpCircleComponent,
   },
   {
     selector: 'sbb-icon-increase-size',
@@ -4638,9 +4638,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/increase_size_144_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/increase_size_144_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/increase_size_144_medium.svg',
     ],
-    component: IconIncreaseSizeComponent
+    component: IconIncreaseSizeComponent,
   },
   {
     selector: 'sbb-icon-reduce-size',
@@ -4649,9 +4649,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/020_Arrow/reduce_size_145_small.svg',
-      '/svg/KOM/responsive/medium/020_Arrow/reduce_size_145_medium.svg'
+      '/svg/KOM/responsive/medium/020_Arrow/reduce_size_145_medium.svg',
     ],
-    component: IconReduceSizeComponent
+    component: IconReduceSizeComponent,
   },
   {
     selector: 'sbb-icon-button-power',
@@ -4660,9 +4660,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/030_Status/button_power_53_small.svg',
-      '/svg/KOM/responsive/medium/030_Status/button_power_53_medium.svg'
+      '/svg/KOM/responsive/medium/030_Status/button_power_53_medium.svg',
     ],
-    component: IconButtonPowerComponent
+    component: IconButtonPowerComponent,
   },
   {
     selector: 'sbb-icon-exclamation-point',
@@ -4671,9 +4671,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/030_Status/exclamation_point_35_small.svg',
-      '/svg/KOM/responsive/medium/030_Status/exclamation_point_35_medium.svg'
+      '/svg/KOM/responsive/medium/030_Status/exclamation_point_35_medium.svg',
     ],
-    component: IconExclamationPointComponent
+    component: IconExclamationPointComponent,
   },
   {
     selector: 'sbb-icon-eye',
@@ -4682,9 +4682,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/030_Status/eye_96_small.svg',
-      '/svg/KOM/responsive/medium/030_Status/eye_96_medium.svg'
+      '/svg/KOM/responsive/medium/030_Status/eye_96_medium.svg',
     ],
-    component: IconEyeComponent
+    component: IconEyeComponent,
   },
   {
     selector: 'sbb-icon-eye-disabled',
@@ -4693,9 +4693,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/030_Status/eye_disabled_95_small.svg',
-      '/svg/KOM/responsive/medium/030_Status/eye_disabled_95_medium.svg'
+      '/svg/KOM/responsive/medium/030_Status/eye_disabled_95_medium.svg',
     ],
-    component: IconEyeDisabledComponent
+    component: IconEyeDisabledComponent,
   },
   {
     selector: 'sbb-icon-lock-closed',
@@ -4704,9 +4704,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/030_Status/lock_closed_114_small.svg',
-      '/svg/KOM/responsive/medium/030_Status/lock_closed_114_medium.svg'
+      '/svg/KOM/responsive/medium/030_Status/lock_closed_114_medium.svg',
     ],
-    component: IconLockClosedComponent
+    component: IconLockClosedComponent,
   },
   {
     selector: 'sbb-icon-lock-open',
@@ -4715,9 +4715,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/030_Status/lock_open_113_small.svg',
-      '/svg/KOM/responsive/medium/030_Status/lock_open_113_medium.svg'
+      '/svg/KOM/responsive/medium/030_Status/lock_open_113_medium.svg',
     ],
-    component: IconLockOpenComponent
+    component: IconLockOpenComponent,
   },
   {
     selector: 'sbb-icon-question-mark',
@@ -4726,9 +4726,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/030_Status/question_mark_115_small.svg',
-      '/svg/KOM/responsive/medium/030_Status/question_mark_115_medium.svg'
+      '/svg/KOM/responsive/medium/030_Status/question_mark_115_medium.svg',
     ],
-    component: IconQuestionMarkComponent
+    component: IconQuestionMarkComponent,
   },
   {
     selector: 'sbb-icon-tick',
@@ -4737,9 +4737,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/030_Status/tick_112_small.svg',
-      '/svg/KOM/responsive/medium/030_Status/tick_112_medium.svg'
+      '/svg/KOM/responsive/medium/030_Status/tick_112_medium.svg',
     ],
-    component: IconTickComponent
+    component: IconTickComponent,
   },
   {
     selector: 'sbb-icon-tick-clipboard',
@@ -4748,9 +4748,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/030_Status/tick_clipboard_168_small.svg',
-      '/svg/KOM/responsive/medium/030_Status/tick_clipboard_168_medium.svg'
+      '/svg/KOM/responsive/medium/030_Status/tick_clipboard_168_medium.svg',
     ],
-    component: IconTickClipboardComponent
+    component: IconTickClipboardComponent,
   },
   {
     selector: 'sbb-icon-circle-minus',
@@ -4759,9 +4759,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/circle_minus_181_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/circle_minus_181_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/circle_minus_181_medium.svg',
     ],
-    component: IconCircleMinusComponent
+    component: IconCircleMinusComponent,
   },
   {
     selector: 'sbb-icon-circle-plus',
@@ -4770,9 +4770,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/circle_plus_182_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/circle_plus_182_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/circle_plus_182_medium.svg',
     ],
-    component: IconCirclePlusComponent
+    component: IconCirclePlusComponent,
   },
   {
     selector: 'sbb-icon-context-menu',
@@ -4781,9 +4781,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/context_menu_106_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/context_menu_106_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/context_menu_106_medium.svg',
     ],
-    component: IconContextMenuComponent
+    component: IconContextMenuComponent,
   },
   {
     selector: 'sbb-icon-cross',
@@ -4792,9 +4792,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/cross_104_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/cross_104_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/cross_104_medium.svg',
     ],
-    component: IconCrossComponent
+    component: IconCrossComponent,
   },
   {
     selector: 'sbb-icon-drag',
@@ -4803,9 +4803,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/drag_205_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/drag_205_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/drag_205_medium.svg',
     ],
-    component: IconDragComponent
+    component: IconDragComponent,
   },
   {
     selector: 'sbb-icon-hamburger-menu',
@@ -4814,9 +4814,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/hamburger_menu_102_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/hamburger_menu_102_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/hamburger_menu_102_medium.svg',
     ],
-    component: IconHamburgerMenuComponent
+    component: IconHamburgerMenuComponent,
   },
   {
     selector: 'sbb-icon-house',
@@ -4825,9 +4825,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/house_101_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/house_101_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/house_101_medium.svg',
     ],
-    component: IconHouseComponent
+    component: IconHouseComponent,
   },
   {
     selector: 'sbb-icon-layers',
@@ -4836,9 +4836,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/layers_325_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/layers_325_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/layers_325_medium.svg',
     ],
-    component: IconLayersComponent
+    component: IconLayersComponent,
   },
   {
     selector: 'sbb-icon-minus',
@@ -4847,9 +4847,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/minus_105_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/minus_105_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/minus_105_medium.svg',
     ],
-    component: IconMinusComponent
+    component: IconMinusComponent,
   },
   {
     selector: 'sbb-icon-plus',
@@ -4858,9 +4858,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/plus_103_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/plus_103_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/plus_103_medium.svg',
     ],
-    component: IconPlusComponent
+    component: IconPlusComponent,
   },
   {
     selector: 'sbb-icon-two-finger-tap',
@@ -4869,9 +4869,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/040_Navigation/two_finger_tap_179_small.svg',
-      '/svg/KOM/responsive/medium/040_Navigation/two_finger_tap_179_medium.svg'
+      '/svg/KOM/responsive/medium/040_Navigation/two_finger_tap_179_medium.svg',
     ],
-    component: IconTwoFingerTapComponent
+    component: IconTwoFingerTapComponent,
   },
   {
     selector: 'sbb-icon-document-check',
@@ -4880,9 +4880,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_check_176_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_check_176_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_check_176_medium.svg',
     ],
-    component: IconDocumentCheckComponent
+    component: IconDocumentCheckComponent,
   },
   {
     selector: 'sbb-icon-document-image',
@@ -4891,9 +4891,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_image_62_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_image_62_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_image_62_medium.svg',
     ],
-    component: IconDocumentImageComponent
+    component: IconDocumentImageComponent,
   },
   {
     selector: 'sbb-icon-document-lock',
@@ -4902,9 +4902,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_lock_354_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_lock_354_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_lock_354_medium.svg',
     ],
-    component: IconDocumentLockComponent
+    component: IconDocumentLockComponent,
   },
   {
     selector: 'sbb-icon-document-pdf',
@@ -4913,9 +4913,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_pdf_61_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_pdf_61_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_pdf_61_medium.svg',
     ],
-    component: IconDocumentPdfComponent
+    component: IconDocumentPdfComponent,
   },
   {
     selector: 'sbb-icon-document-plus',
@@ -4924,9 +4924,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_plus_355_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_plus_355_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_plus_355_medium.svg',
     ],
-    component: IconDocumentPlusComponent
+    component: IconDocumentPlusComponent,
   },
   {
     selector: 'sbb-icon-document-ppt',
@@ -4935,9 +4935,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_ppt_356_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_ppt_356_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_ppt_356_medium.svg',
     ],
-    component: IconDocumentPptComponent
+    component: IconDocumentPptComponent,
   },
   {
     selector: 'sbb-icon-document-sbb',
@@ -4946,9 +4946,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_sbb_214_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_sbb_214_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_sbb_214_medium.svg',
     ],
-    component: IconDocumentSbbComponent
+    component: IconDocumentSbbComponent,
   },
   {
     selector: 'sbb-icon-document-sound',
@@ -4957,9 +4957,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_sound_64_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_sound_64_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_sound_64_medium.svg',
     ],
-    component: IconDocumentSoundComponent
+    component: IconDocumentSoundComponent,
   },
   {
     selector: 'sbb-icon-document-standard',
@@ -4968,9 +4968,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_standard_67_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_standard_67_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_standard_67_medium.svg',
     ],
-    component: IconDocumentStandardComponent
+    component: IconDocumentStandardComponent,
   },
   {
     selector: 'sbb-icon-document-text',
@@ -4979,9 +4979,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_text_63_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_text_63_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_text_63_medium.svg',
     ],
-    component: IconDocumentTextComponent
+    component: IconDocumentTextComponent,
   },
   {
     selector: 'sbb-icon-document-video',
@@ -4990,9 +4990,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_video_65_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_video_65_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_video_65_medium.svg',
     ],
-    component: IconDocumentVideoComponent
+    component: IconDocumentVideoComponent,
   },
   {
     selector: 'sbb-icon-document-zip',
@@ -5001,9 +5001,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/document_zip_66_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/document_zip_66_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/document_zip_66_medium.svg',
     ],
-    component: IconDocumentZipComponent
+    component: IconDocumentZipComponent,
   },
   {
     selector: 'sbb-icon-folder-info',
@@ -5012,9 +5012,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/folder_info_131_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/folder_info_131_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/folder_info_131_medium.svg',
     ],
-    component: IconFolderInfoComponent
+    component: IconFolderInfoComponent,
   },
   {
     selector: 'sbb-icon-folder-lock',
@@ -5023,9 +5023,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/folder_lock_358_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/folder_lock_358_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/folder_lock_358_medium.svg',
     ],
-    component: IconFolderLockComponent
+    component: IconFolderLockComponent,
   },
   {
     selector: 'sbb-icon-folder-open',
@@ -5034,9 +5034,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/folder_open_59_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/folder_open_59_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/folder_open_59_medium.svg',
     ],
-    component: IconFolderOpenComponent
+    component: IconFolderOpenComponent,
   },
   {
     selector: 'sbb-icon-folder-open-arrow',
@@ -5045,9 +5045,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/folder_open_arrow_160_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/folder_open_arrow_160_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/folder_open_arrow_160_medium.svg',
     ],
-    component: IconFolderOpenArrowComponent
+    component: IconFolderOpenArrowComponent,
   },
   {
     selector: 'sbb-icon-folder-plus',
@@ -5056,9 +5056,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/folder_plus_130_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/folder_plus_130_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/folder_plus_130_medium.svg',
     ],
-    component: IconFolderPlusComponent
+    component: IconFolderPlusComponent,
   },
   {
     selector: 'sbb-icon-metadata',
@@ -5067,9 +5067,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/metadata_357_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/metadata_357_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/metadata_357_medium.svg',
     ],
-    component: IconMetadataComponent
+    component: IconMetadataComponent,
   },
   {
     selector: 'sbb-icon-two-folders',
@@ -5078,9 +5078,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/070_Document/two_folders_18_small.svg',
-      '/svg/KOM/responsive/medium/070_Document/two_folders_18_medium.svg'
+      '/svg/KOM/responsive/medium/070_Document/two_folders_18_medium.svg',
     ],
-    component: IconTwoFoldersComponent
+    component: IconTwoFoldersComponent,
   },
   {
     selector: 'sbb-icon-qrcode',
@@ -5089,9 +5089,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/qrcode_221_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/qrcode_221_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/qrcode_221_medium.svg',
     ],
-    component: IconQrcodeComponent
+    component: IconQrcodeComponent,
   },
   {
     selector: 'sbb-icon-qrcode-disabled',
@@ -5100,9 +5100,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/qrcode_disabled_309_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/qrcode_disabled_309_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/qrcode_disabled_309_medium.svg',
     ],
-    component: IconQrcodeDisabledComponent
+    component: IconQrcodeDisabledComponent,
   },
   {
     selector: 'sbb-icon-swisspass',
@@ -5111,9 +5111,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/swisspass_222_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/swisspass_222_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/swisspass_222_medium.svg',
     ],
-    component: IconSwisspassComponent
+    component: IconSwisspassComponent,
   },
   {
     selector: 'sbb-icon-swisspass-temporary',
@@ -5122,9 +5122,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/swisspass_temporary_219_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/swisspass_temporary_219_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/swisspass_temporary_219_medium.svg',
     ],
-    component: IconSwisspassTemporaryComponent
+    component: IconSwisspassTemporaryComponent,
   },
   {
     selector: 'sbb-icon-tickets-class',
@@ -5133,9 +5133,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/tickets_class_69_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/tickets_class_69_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/tickets_class_69_medium.svg',
     ],
-    component: IconTicketsClassComponent
+    component: IconTicketsClassComponent,
   },
   {
     selector: 'sbb-icon-ticket-day',
@@ -5144,9 +5144,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/ticket_day_135_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/ticket_day_135_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_day_135_medium.svg',
     ],
-    component: IconTicketDayComponent
+    component: IconTicketDayComponent,
   },
   {
     selector: 'sbb-icon-ticket-disabled',
@@ -5155,9 +5155,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/ticket_disabled_138_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/ticket_disabled_138_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_disabled_138_medium.svg',
     ],
-    component: IconTicketDisabledComponent
+    component: IconTicketDisabledComponent,
   },
   {
     selector: 'sbb-icon-ticket-heart',
@@ -5166,9 +5166,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/ticket_heart_136_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/ticket_heart_136_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_heart_136_medium.svg',
     ],
-    component: IconTicketHeartComponent
+    component: IconTicketHeartComponent,
   },
   {
     selector: 'sbb-icon-ticket-journey',
@@ -5177,9 +5177,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/ticket_journey_218_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/ticket_journey_218_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_journey_218_medium.svg',
     ],
-    component: IconTicketJourneyComponent
+    component: IconTicketJourneyComponent,
   },
   {
     selector: 'sbb-icon-ticket-parking',
@@ -5188,9 +5188,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/ticket_parking_291_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/ticket_parking_291_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_parking_291_medium.svg',
     ],
-    component: IconTicketParkingComponent
+    component: IconTicketParkingComponent,
   },
   {
     selector: 'sbb-icon-ticket-percent',
@@ -5199,9 +5199,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/ticket_percent_220_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/ticket_percent_220_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_percent_220_medium.svg',
     ],
-    component: IconTicketPercentComponent
+    component: IconTicketPercentComponent,
   },
   {
     selector: 'sbb-icon-ticket-route',
@@ -5210,9 +5210,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/ticket_route_143_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/ticket_route_143_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_route_143_medium.svg',
     ],
-    component: IconTicketRouteComponent
+    component: IconTicketRouteComponent,
   },
   {
     selector: 'sbb-icon-ticket-star',
@@ -5221,9 +5221,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/090_Ticket/ticket_star_32_small.svg',
-      '/svg/KOM/responsive/medium/090_Ticket/ticket_star_32_medium.svg'
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_star_32_medium.svg',
     ],
-    component: IconTicketStarComponent
+    component: IconTicketStarComponent,
   },
   {
     selector: 'sbb-icon-arrow-compass',
@@ -5232,9 +5232,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/arrow_compass_235_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/arrow_compass_235_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/arrow_compass_235_medium.svg',
     ],
-    component: IconArrowCompassComponent
+    component: IconArrowCompassComponent,
   },
   {
     selector: 'sbb-icon-gps',
@@ -5243,9 +5243,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/gps_12_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/gps_12_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/gps_12_medium.svg',
     ],
-    component: IconGpsComponent
+    component: IconGpsComponent,
   },
   {
     selector: 'sbb-icon-gps-disabled',
@@ -5254,9 +5254,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/gps_disabled_13_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/gps_disabled_13_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/gps_disabled_13_medium.svg',
     ],
-    component: IconGpsDisabledComponent
+    component: IconGpsDisabledComponent,
   },
   {
     selector: 'sbb-icon-location-pin',
@@ -5265,9 +5265,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/location_pin_98_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/location_pin_98_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/location_pin_98_medium.svg',
     ],
-    component: IconLocationPinComponent
+    component: IconLocationPinComponent,
   },
   {
     selector: 'sbb-icon-location-pin-a',
@@ -5276,9 +5276,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/location_pin_a_99_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/location_pin_a_99_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/location_pin_a_99_medium.svg',
     ],
-    component: IconLocationPinAComponent
+    component: IconLocationPinAComponent,
   },
   {
     selector: 'sbb-icon-location-pin-b',
@@ -5287,9 +5287,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/location_pin_b_100_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/location_pin_b_100_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/location_pin_b_100_medium.svg',
     ],
-    component: IconLocationPinBComponent
+    component: IconLocationPinBComponent,
   },
   {
     selector: 'sbb-icon-location-pin-map',
@@ -5298,9 +5298,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/location_pin_map_173_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/location_pin_map_173_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/location_pin_map_173_medium.svg',
     ],
-    component: IconLocationPinMapComponent
+    component: IconLocationPinMapComponent,
   },
   {
     selector: 'sbb-icon-location-pin-pulse-surrounding-area',
@@ -5308,14 +5308,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconLocationPinPulseSurroundingAreaModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/location_pin_pulse_surrounding_area_234_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/location_pin_pulse_surrounding_area_234_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/location_pin_pulse_surrounding_area_234_medium.svg',
     ],
-    component: IconLocationPinPulseSurroundingAreaComponent
+    component: IconLocationPinPulseSurroundingAreaComponent,
   },
   {
     selector: 'sbb-icon-location-pin-surrounding-area',
@@ -5323,14 +5323,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconLocationPinSurroundingAreaModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/location_pin_surrounding_area_207_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/location_pin_surrounding_area_207_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/location_pin_surrounding_area_207_medium.svg',
     ],
-    component: IconLocationPinSurroundingAreaComponent
+    component: IconLocationPinSurroundingAreaComponent,
   },
   {
     selector: 'sbb-icon-mountain-minus',
@@ -5339,9 +5339,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/mountain_minus_122_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/mountain_minus_122_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/mountain_minus_122_medium.svg',
     ],
-    component: IconMountainMinusComponent
+    component: IconMountainMinusComponent,
   },
   {
     selector: 'sbb-icon-mountain-plus',
@@ -5350,9 +5350,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/110_Location/mountain_plus_123_small.svg',
-      '/svg/KOM/responsive/medium/110_Location/mountain_plus_123_medium.svg'
+      '/svg/KOM/responsive/medium/110_Location/mountain_plus_123_medium.svg',
     ],
-    component: IconMountainPlusComponent
+    component: IconMountainPlusComponent,
   },
   {
     selector: 'sbb-icon-cloud',
@@ -5361,9 +5361,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_194_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_194_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_194_medium.svg',
     ],
-    component: IconCloudComponent
+    component: IconCloudComponent,
   },
   {
     selector: 'sbb-icon-cloud-dense-fog',
@@ -5372,9 +5372,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_dense_fog_326_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_dense_fog_326_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_dense_fog_326_medium.svg',
     ],
-    component: IconCloudDenseFogComponent
+    component: IconCloudDenseFogComponent,
   },
   {
     selector: 'sbb-icon-cloud-drops',
@@ -5383,9 +5383,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_drops_195_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_drops_195_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_drops_195_medium.svg',
     ],
-    component: IconCloudDropsComponent
+    component: IconCloudDropsComponent,
   },
   {
     selector: 'sbb-icon-cloud-drops-moon',
@@ -5394,9 +5394,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_drops_moon_190_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_drops_moon_190_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_drops_moon_190_medium.svg',
     ],
-    component: IconCloudDropsMoonComponent
+    component: IconCloudDropsMoonComponent,
   },
   {
     selector: 'sbb-icon-cloud-fog',
@@ -5405,9 +5405,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_fog_327_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_fog_327_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_fog_327_medium.svg',
     ],
-    component: IconCloudFogComponent
+    component: IconCloudFogComponent,
   },
   {
     selector: 'sbb-icon-cloud-ice',
@@ -5416,9 +5416,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_ice_185_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_ice_185_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_ice_185_medium.svg',
     ],
-    component: IconCloudIceComponent
+    component: IconCloudIceComponent,
   },
   {
     selector: 'sbb-icon-cloud-lightning',
@@ -5427,9 +5427,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_lightning_202_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_lightning_202_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_lightning_202_medium.svg',
     ],
-    component: IconCloudLightningComponent
+    component: IconCloudLightningComponent,
   },
   {
     selector: 'sbb-icon-cloud-lightning-moon',
@@ -5437,14 +5437,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconCloudLightningMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_lightning_moon_189_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_lightning_moon_189_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_lightning_moon_189_medium.svg',
     ],
-    component: IconCloudLightningMoonComponent
+    component: IconCloudLightningMoonComponent,
   },
   {
     selector: 'sbb-icon-cloud-little-snow-moon',
@@ -5452,14 +5452,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconCloudLittleSnowMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_little_snow_moon_330_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_little_snow_moon_330_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_little_snow_moon_330_medium.svg',
     ],
-    component: IconCloudLittleSnowMoonComponent
+    component: IconCloudLittleSnowMoonComponent,
   },
   {
     selector: 'sbb-icon-cloud-little-snow-sun',
@@ -5467,14 +5467,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconCloudLittleSnowSunModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_little_snow_sun_331_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_little_snow_sun_331_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_little_snow_sun_331_medium.svg',
     ],
-    component: IconCloudLittleSnowSunComponent
+    component: IconCloudLittleSnowSunComponent,
   },
   {
     selector: 'sbb-icon-cloud-moon',
@@ -5483,9 +5483,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_moon_187_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_moon_187_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_moon_187_medium.svg',
     ],
-    component: IconCloudMoonComponent
+    component: IconCloudMoonComponent,
   },
   {
     selector: 'sbb-icon-cloud-rain',
@@ -5494,9 +5494,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_rain_199_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_199_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_199_medium.svg',
     ],
-    component: IconCloudRainComponent
+    component: IconCloudRainComponent,
   },
   {
     selector: 'sbb-icon-cloud-rain-snow',
@@ -5505,9 +5505,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_rain_snow_328_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_snow_328_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_snow_328_medium.svg',
     ],
-    component: IconCloudRainSnowComponent
+    component: IconCloudRainSnowComponent,
   },
   {
     selector: 'sbb-icon-cloud-rain-snow-moon',
@@ -5516,9 +5516,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_rain_snow_moon_329_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_snow_moon_329_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_snow_moon_329_medium.svg',
     ],
-    component: IconCloudRainSnowMoonComponent
+    component: IconCloudRainSnowMoonComponent,
   },
   {
     selector: 'sbb-icon-cloud-rain-snow-sun',
@@ -5527,9 +5527,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_rain_snow_sun_215_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_snow_sun_215_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_snow_sun_215_medium.svg',
     ],
-    component: IconCloudRainSnowSunComponent
+    component: IconCloudRainSnowSunComponent,
   },
   {
     selector: 'sbb-icon-cloud-rain-sun',
@@ -5538,9 +5538,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_rain_sun_198_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_sun_198_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_sun_198_medium.svg',
     ],
-    component: IconCloudRainSunComponent
+    component: IconCloudRainSunComponent,
   },
   {
     selector: 'sbb-icon-cloud-snowflake',
@@ -5549,9 +5549,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_snowflake_201_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_snowflake_201_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snowflake_201_medium.svg',
     ],
-    component: IconCloudSnowflakeComponent
+    component: IconCloudSnowflakeComponent,
   },
   {
     selector: 'sbb-icon-cloud-snowflake-sun',
@@ -5560,9 +5560,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_snowflake_sun_200_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_snowflake_sun_200_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snowflake_sun_200_medium.svg',
     ],
-    component: IconCloudSnowflakeSunComponent
+    component: IconCloudSnowflakeSunComponent,
   },
   {
     selector: 'sbb-icon-cloud-snow',
@@ -5571,9 +5571,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_snow_196_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_196_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_196_medium.svg',
     ],
-    component: IconCloudSnowComponent
+    component: IconCloudSnowComponent,
   },
   {
     selector: 'sbb-icon-cloud-snow-lightning',
@@ -5581,14 +5581,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconCloudSnowLightningModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_snow_lightning_184_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_lightning_184_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_lightning_184_medium.svg',
     ],
-    component: IconCloudSnowLightningComponent
+    component: IconCloudSnowLightningComponent,
   },
   {
     selector: 'sbb-icon-cloud-snow-moon',
@@ -5597,9 +5597,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_snow_moon_188_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_moon_188_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_moon_188_medium.svg',
     ],
-    component: IconCloudSnowMoonComponent
+    component: IconCloudSnowMoonComponent,
   },
   {
     selector: 'sbb-icon-cloud-snow-sun',
@@ -5608,9 +5608,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_snow_sun_193_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_sun_193_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_sun_193_medium.svg',
     ],
-    component: IconCloudSnowSunComponent
+    component: IconCloudSnowSunComponent,
   },
   {
     selector: 'sbb-icon-cloud-strong-rain-moon',
@@ -5618,14 +5618,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconCloudStrongRainMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_strong_rain_moon_191_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_strong_rain_moon_191_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_strong_rain_moon_191_medium.svg',
     ],
-    component: IconCloudStrongRainMoonComponent
+    component: IconCloudStrongRainMoonComponent,
   },
   {
     selector: 'sbb-icon-cloud-strong-rain-sun',
@@ -5633,14 +5633,14 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: [
       'IconCloudStrongRainSunModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule'
+      'IconCollectionModule',
     ],
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_strong_rain_sun_192_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_strong_rain_sun_192_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_strong_rain_sun_192_medium.svg',
     ],
-    component: IconCloudStrongRainSunComponent
+    component: IconCloudStrongRainSunComponent,
   },
   {
     selector: 'sbb-icon-cloud-sunshine',
@@ -5649,9 +5649,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_sunshine_197_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_sunshine_197_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_sunshine_197_medium.svg',
     ],
-    component: IconCloudSunshineComponent
+    component: IconCloudSunshineComponent,
   },
   {
     selector: 'sbb-icon-cloud-sun',
@@ -5660,9 +5660,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/cloud_sun_186_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/cloud_sun_186_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/cloud_sun_186_medium.svg',
     ],
-    component: IconCloudSunComponent
+    component: IconCloudSunComponent,
   },
   {
     selector: 'sbb-icon-fog',
@@ -5671,9 +5671,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/fog_150_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/fog_150_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/fog_150_medium.svg',
     ],
-    component: IconFogComponent
+    component: IconFogComponent,
   },
   {
     selector: 'sbb-icon-moon',
@@ -5682,9 +5682,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/moon_151_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/moon_151_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/moon_151_medium.svg',
     ],
-    component: IconMoonComponent
+    component: IconMoonComponent,
   },
   {
     selector: 'sbb-icon-sunrise',
@@ -5693,9 +5693,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/sunrise_208_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/sunrise_208_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/sunrise_208_medium.svg',
     ],
-    component: IconSunriseComponent
+    component: IconSunriseComponent,
   },
   {
     selector: 'sbb-icon-sunshine',
@@ -5704,9 +5704,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/sunshine_149_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/sunshine_149_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/sunshine_149_medium.svg',
     ],
-    component: IconSunshineComponent
+    component: IconSunshineComponent,
   },
   {
     selector: 'sbb-icon-sun-moon',
@@ -5715,9 +5715,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/sun_moon_211_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/sun_moon_211_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/sun_moon_211_medium.svg',
     ],
-    component: IconSunMoonComponent
+    component: IconSunMoonComponent,
   },
   {
     selector: 'sbb-icon-weather-unknown',
@@ -5726,9 +5726,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/140_Weather/weather_unknown_332_small.svg',
-      '/svg/KOM/responsive/medium/140_Weather/weather_unknown_332_medium.svg'
+      '/svg/KOM/responsive/medium/140_Weather/weather_unknown_332_medium.svg',
     ],
-    component: IconWeatherUnknownComponent
+    component: IconWeatherUnknownComponent,
   },
   {
     selector: 'sbb-icon-fast-forward',
@@ -5737,9 +5737,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/160_Audio/fast_forward_161_small.svg',
-      '/svg/KOM/responsive/medium/160_Audio/fast_forward_161_medium.svg'
+      '/svg/KOM/responsive/medium/160_Audio/fast_forward_161_medium.svg',
     ],
-    component: IconFastForwardComponent
+    component: IconFastForwardComponent,
   },
   {
     selector: 'sbb-icon-next',
@@ -5748,9 +5748,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/160_Audio/next_155_small.svg',
-      '/svg/KOM/responsive/medium/160_Audio/next_155_medium.svg'
+      '/svg/KOM/responsive/medium/160_Audio/next_155_medium.svg',
     ],
-    component: IconNextComponent
+    component: IconNextComponent,
   },
   {
     selector: 'sbb-icon-pause',
@@ -5759,9 +5759,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/160_Audio/pause_158_small.svg',
-      '/svg/KOM/responsive/medium/160_Audio/pause_158_medium.svg'
+      '/svg/KOM/responsive/medium/160_Audio/pause_158_medium.svg',
     ],
-    component: IconPauseComponent
+    component: IconPauseComponent,
   },
   {
     selector: 'sbb-icon-play',
@@ -5770,9 +5770,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/160_Audio/play_132_small.svg',
-      '/svg/KOM/responsive/medium/160_Audio/play_132_medium.svg'
+      '/svg/KOM/responsive/medium/160_Audio/play_132_medium.svg',
     ],
-    component: IconPlayComponent
+    component: IconPlayComponent,
   },
   {
     selector: 'sbb-icon-previous',
@@ -5781,9 +5781,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/160_Audio/previous_157_small.svg',
-      '/svg/KOM/responsive/medium/160_Audio/previous_157_medium.svg'
+      '/svg/KOM/responsive/medium/160_Audio/previous_157_medium.svg',
     ],
-    component: IconPreviousComponent
+    component: IconPreviousComponent,
   },
   {
     selector: 'sbb-icon-record',
@@ -5792,9 +5792,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/160_Audio/record_153_small.svg',
-      '/svg/KOM/responsive/medium/160_Audio/record_153_medium.svg'
+      '/svg/KOM/responsive/medium/160_Audio/record_153_medium.svg',
     ],
-    component: IconRecordComponent
+    component: IconRecordComponent,
   },
   {
     selector: 'sbb-icon-rewind',
@@ -5803,9 +5803,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/160_Audio/rewind_170_small.svg',
-      '/svg/KOM/responsive/medium/160_Audio/rewind_170_medium.svg'
+      '/svg/KOM/responsive/medium/160_Audio/rewind_170_medium.svg',
     ],
-    component: IconRewindComponent
+    component: IconRewindComponent,
   },
   {
     selector: 'sbb-icon-stop',
@@ -5814,9 +5814,9 @@ export const ICON_COMPONENT_META_INFORMATION = [
     sizes: ['medium', 'small'],
     meta: [
       '/svg/KOM/responsive/small/160_Audio/stop_133_small.svg',
-      '/svg/KOM/responsive/medium/160_Audio/stop_133_medium.svg'
+      '/svg/KOM/responsive/medium/160_Audio/stop_133_medium.svg',
     ],
-    component: IconStopComponent
+    component: IconStopComponent,
   },
   {
     selector: 'sbb-icon-twitter',
@@ -5824,7 +5824,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconTwitterModule', 'IconCollectionSocialMediaModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/SocialMedia/SBB_107_twitter.svg'],
-    component: IconTwitterComponent
+    component: IconTwitterComponent,
   },
   {
     selector: 'sbb-icon-facebook',
@@ -5832,7 +5832,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconFacebookModule', 'IconCollectionSocialMediaModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/SocialMedia/SBB_108_facebook.svg'],
-    component: IconFacebookComponent
+    component: IconFacebookComponent,
   },
   {
     selector: 'sbb-icon-instagram',
@@ -5840,7 +5840,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconInstagramModule', 'IconCollectionSocialMediaModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/SocialMedia/SBB_109_instagram.svg'],
-    component: IconInstagramComponent
+    component: IconInstagramComponent,
   },
   {
     selector: 'sbb-icon-youtube',
@@ -5848,7 +5848,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconYoutubeModule', 'IconCollectionSocialMediaModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/SocialMedia/SBB_111_youtube.svg'],
-    component: IconYoutubeComponent
+    component: IconYoutubeComponent,
   },
   {
     selector: 'sbb-icon-linkedin',
@@ -5856,7 +5856,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconLinkedinModule', 'IconCollectionSocialMediaModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/SocialMedia/SBB_112_linkedin.svg'],
-    component: IconLinkedinComponent
+    component: IconLinkedinComponent,
   },
   {
     selector: 'sbb-icon-pinterest',
@@ -5864,7 +5864,7 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconPinterestModule', 'IconCollectionSocialMediaModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/SocialMedia/SBB_113_pinterest.svg'],
-    component: IconPinterestComponent
+    component: IconPinterestComponent,
   },
   {
     selector: 'sbb-icon-xing',
@@ -5872,6 +5872,6 @@ export const ICON_COMPONENT_META_INFORMATION = [
     modules: ['IconXingModule', 'IconCollectionSocialMediaModule', 'IconCollectionModule'],
     sizes: [],
     meta: ['/svg/SocialMedia/SBB_114_xing.svg'],
-    component: IconXingComponent
-  }
+    component: IconXingComponent,
+  },
 ];

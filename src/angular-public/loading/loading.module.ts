@@ -6,6 +6,6 @@ import { LoadingComponent } from './loading/loading.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [LoadingComponent],
-  exports: [LoadingComponent]
+  exports: [LoadingComponent],
 })
 export class LoadingModule {}

@@ -40,11 +40,11 @@ describe('resourceAccess', () => {
     const data = resourceAccess(accessTokenWithResourceAccess);
     expect(data).toEqual({
       'example-client': {
-        roles: ['service-owner', 'test1']
+        roles: ['service-owner', 'test1'],
       },
       account: {
-        roles: ['view-profile']
-      }
+        roles: ['view-profile'],
+      },
     });
   });
 });

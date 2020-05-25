@@ -14,35 +14,35 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'introduction/getting-started',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'icons' }
+        data: { library: 'icons' },
       },
       {
         path: 'search',
-        redirectTo: 'components'
+        redirectTo: 'components',
       },
       {
         path: 'components',
         loadChildren: () =>
-          import('./icon-components/icon-components.module').then(m => m.IconComponentsModule)
+          import('./icon-components/icon-components.module').then((m) => m.IconComponentsModule),
       },
       {
         path: 'experimental',
         loadChildren: () =>
           import('./experimental-icons/experimental-icons.module').then(
-            m => m.ExperimentalIconsModule
-          )
-      }
-    ]
-  }
+            (m) => m.ExperimentalIconsModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class IconsRoutingModule {}

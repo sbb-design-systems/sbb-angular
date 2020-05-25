@@ -10,7 +10,7 @@ import { GhettoboxContainerComponent } from './ghettobox-container.component';
  * @docs-private
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GhettoboxContainerService {
   /**
@@ -87,7 +87,7 @@ export class GhettoboxContainerService {
    */
   clearAll() {
     const attachedGettoboxCopy = this._attachedGhettoboxes.slice();
-    attachedGettoboxCopy.forEach(g => g.delete());
+    attachedGettoboxCopy.forEach((g) => g.delete());
   }
 
   /** @docs-private */
@@ -97,7 +97,7 @@ export class GhettoboxContainerService {
 
   /** @docs-private */
   deleteFromAttachedGhettoboxesCollection(ghettoboxId: string): void {
-    const index = this._attachedGhettoboxes.findIndex(g => g.id === ghettoboxId);
+    const index = this._attachedGhettoboxes.findIndex((g) => g.id === ghettoboxId);
     if (index !== -1) {
       this._attachedGhettoboxes.splice(index, 1);
     }
@@ -114,7 +114,7 @@ export class GhettoboxContainerService {
 
   /** @docs-private */
   private _getGhettoboxById(ghettoboxId: string): GhettoboxRef | undefined {
-    return this._attachedGhettoboxes.find(g => g.id === ghettoboxId);
+    return this._attachedGhettoboxes.find((g) => g.id === ghettoboxId);
   }
 
   /** @docs-private */

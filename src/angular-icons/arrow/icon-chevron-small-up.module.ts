@@ -28,7 +28,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconChevronSmallUpComponent extends IconBase {
   constructor() {
@@ -39,6 +39,6 @@ export class IconChevronSmallUpComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconChevronSmallUpComponent],
-  exports: [IconChevronSmallUpComponent]
+  exports: [IconChevronSmallUpComponent],
 })
 export class IconChevronSmallUpModule {}

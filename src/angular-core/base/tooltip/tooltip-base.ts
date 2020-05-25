@@ -4,7 +4,7 @@ import {
   OverlayConfig,
   OverlayRef,
   PositionStrategy,
-  ScrollStrategy
+  ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
@@ -20,7 +20,7 @@ import {
   OnDestroy,
   Output,
   TemplateRef,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 import { fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
@@ -42,7 +42,7 @@ export function SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => Scr
 export const SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_TOOLTIP_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY
+  useFactory: SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY,
 };
 
 export class SbbTooltipChangeEvent<TTooltip extends TooltipBase = TooltipBase> {
@@ -98,7 +98,7 @@ export abstract class TooltipBase implements OnDestroy {
         : of()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map(event => (event instanceof SbbTooltipChangeEvent ? event : null))
+      map((event) => (event instanceof SbbTooltipChangeEvent ? event : null))
     );
   }
 
@@ -241,7 +241,7 @@ export abstract class TooltipBase implements OnDestroy {
           originY: 'bottom',
           overlayX: 'center',
           overlayY: 'top',
-          panelClass: 'sbb-tooltip-content-below'
+          panelClass: 'sbb-tooltip-content-below',
         },
         {
           originX: 'end',
@@ -249,7 +249,7 @@ export abstract class TooltipBase implements OnDestroy {
           overlayX: 'end',
           overlayY: 'top',
           offsetX: 5,
-          panelClass: ['sbb-tooltip-content-below', 'sbb-tooltip-content-left']
+          panelClass: ['sbb-tooltip-content-below', 'sbb-tooltip-content-left'],
         },
         {
           originX: 'start',
@@ -257,14 +257,14 @@ export abstract class TooltipBase implements OnDestroy {
           overlayX: 'start',
           overlayY: 'top',
           offsetX: -5,
-          panelClass: ['sbb-tooltip-content-below', 'sbb-tooltip-content-right']
+          panelClass: ['sbb-tooltip-content-below', 'sbb-tooltip-content-right'],
         },
         {
           originX: 'center',
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          panelClass: 'sbb-tooltip-content-above'
+          panelClass: 'sbb-tooltip-content-above',
         },
         {
           originX: 'end',
@@ -272,7 +272,7 @@ export abstract class TooltipBase implements OnDestroy {
           overlayX: 'end',
           overlayY: 'bottom',
           offsetX: 5,
-          panelClass: ['sbb-tooltip-content-above', 'sbb-tooltip-content-left']
+          panelClass: ['sbb-tooltip-content-above', 'sbb-tooltip-content-left'],
         },
         {
           originX: 'start',
@@ -280,8 +280,8 @@ export abstract class TooltipBase implements OnDestroy {
           overlayX: 'start',
           overlayY: 'bottom',
           offsetX: -5,
-          panelClass: ['sbb-tooltip-content-above', 'sbb-tooltip-content-right']
-        }
+          panelClass: ['sbb-tooltip-content-above', 'sbb-tooltip-content-right'],
+        },
       ]);
   }
 
@@ -295,7 +295,7 @@ export abstract class TooltipBase implements OnDestroy {
       fromEvent<MouseEvent>(this._document, 'click'),
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
-      filter(event => {
+      filter((event) => {
         const clickTarget = event.target as HTMLElement;
 
         return (
@@ -340,7 +340,7 @@ export abstract class TooltipBase implements OnDestroy {
       positionStrategy: this._createTooltipPositionStrategy(),
       hasBackdrop: false,
       scrollStrategy: this._scrollStrategy(),
-      panelClass: this._panelClass
+      panelClass: this._panelClass,
     });
 
     this.tooltipRef = this._overlay.create(overlayConfig);
@@ -348,7 +348,7 @@ export abstract class TooltipBase implements OnDestroy {
 
     // Use the `keydownEvents` in order to take advantage of
     // the overlay event targeting provided by the CDK overlay.
-    this.tooltipRef.keydownEvents().subscribe(event => {
+    this.tooltipRef.keydownEvents().subscribe((event) => {
       // Close when pressing ESCAPE, based on the a11y guidelines.
       // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
       if (event.keyCode === ESCAPE) {

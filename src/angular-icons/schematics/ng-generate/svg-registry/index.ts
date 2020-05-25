@@ -16,12 +16,12 @@ export function svgRegistry(options: Schema): Rule {
       ? JSON.parse(registryFileContent.toString('utf8'))
       : {};
     findSvgFiles(svgDir)
-      .map(f => relative(svgDir.path, f))
-      .filter(f => !(f in registry))
-      .forEach(file => {
+      .map((f) => relative(svgDir.path, f))
+      .filter((f) => !(f in registry))
+      .forEach((file) => {
         registry[file] = {
           normalizedName: normalizeName(file, options),
-          collections: resolveCollections(file, options)
+          collections: resolveCollections(file, options),
         };
       });
 
@@ -38,7 +38,7 @@ export function svgRegistry(options: Schema): Rule {
 
 function findSvgFiles(directory: DirEntry) {
   const result: Path[] = [];
-  directory.visit(path => {
+  directory.visit((path) => {
     if (path.endsWith('.svg')) {
       result.push(path);
     }
@@ -55,18 +55,15 @@ function normalizeName(file: Path, options: Schema): string {
     filename = filename.replace(/^\d+-/, '').replace(/-\d+-/g, '-');
   }
 
-  return filename
-    .replace(/^-+/, '')
-    .replace(/-+/g, '-')
-    .replace(/-+$/, '');
+  return filename.replace(/^-+/, '').replace(/-+/g, '-').replace(/-+$/, '');
 }
 
 function resolveCollections(file: Path, options: Schema): string[] {
   const collectionParts = split(dirname(file));
   const collections = options.stripNumberIdInCollection
-    ? collectionParts.map(c => c.replace(/^\d+[^a-zA-Z0-9]/, ''))
+    ? collectionParts.map((c) => c.replace(/^\d+[^a-zA-Z0-9]/, ''))
     : collectionParts;
-  return collections.map(c => dasherize(c));
+  return collections.map((c) => dasherize(c));
 }
 
 function toSortedJSON(registry: Registry) {

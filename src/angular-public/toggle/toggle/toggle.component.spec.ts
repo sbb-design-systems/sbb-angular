@@ -41,7 +41,7 @@ import { ToggleModule } from '../toggle.module';
         </sbb-toggle-option>
       </sbb-toggle>
     </form>
-  `
+  `,
 })
 class ToggleReactiveTestComponent implements OnInit {
   modelReactive = 'Option_2';
@@ -50,22 +50,22 @@ class ToggleReactiveTestComponent implements OnInit {
   constructor() {}
 
   form = new FormGroup({
-    test: new FormControl()
+    test: new FormControl(),
   });
 
   toggleOptions: Observable<any> = of([
     {
       label: 'Einfache Fahrt',
-      value: 'Option_1'
+      value: 'Option_1',
     },
     {
       label: 'Hin- und Rückfahrt',
-      value: 'Option_2'
-    }
+      value: 'Option_2',
+    },
   ]);
 
   ngOnInit() {
-    this.form.get('test')!.valueChanges.subscribe(val => {
+    this.form.get('test')!.valueChanges.subscribe((val) => {
       this.modelReactive = val;
     });
   }
@@ -98,29 +98,29 @@ class ToggleReactiveTestComponent implements OnInit {
         </sbb-toggle-option>
       </sbb-toggle>
     </form>
-  `
+  `,
 })
 class ToggleReactiveDefaultValueTestComponent implements OnInit {
   modelReactive = 'Option_2';
   @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
 
   form = new FormGroup({
-    test: new FormControl('Option_2')
+    test: new FormControl('Option_2'),
   });
 
   toggleOptions: Observable<any> = of([
     {
       label: 'Einfache Fahrt',
-      value: 'Option_1'
+      value: 'Option_1',
     },
     {
       label: 'Hin- und Rückfahrt',
-      value: 'Option_2'
-    }
+      value: 'Option_2',
+    },
   ]);
 
   ngOnInit() {
-    this.form.get('test')!.valueChanges.subscribe(val => (this.modelReactive = val));
+    this.form.get('test')!.valueChanges.subscribe((val) => (this.modelReactive = val));
   }
 }
 
@@ -150,7 +150,7 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
         </p>
       </sbb-toggle-option>
     </sbb-toggle>
-  `
+  `,
 })
 class ToggleTemplateDrivenTestComponent {
   @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
@@ -160,12 +160,12 @@ class ToggleTemplateDrivenTestComponent {
   toggleOptions: Observable<any> = of([
     {
       label: 'Einfache Fahrt',
-      value: 'Option_1'
+      value: 'Option_1',
     },
     {
       label: 'Hin- und Rückfahrt',
-      value: 'Option_2'
-    }
+      value: 'Option_2',
+    },
   ]);
 }
 
@@ -182,7 +182,7 @@ class ToggleTemplateDrivenTestComponent {
       >
       </sbb-toggle-option>
     </sbb-toggle>
-  `
+  `,
 })
 class ToggleSimpleCaseTestComponent {
   @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
@@ -204,9 +204,9 @@ describe('ToggleComponent case reactive using mock component', () => {
         DatepickerModule,
         FieldModule,
         ReactiveFormsModule,
-        IconDirectiveModule
+        IconDirectiveModule,
       ],
-      declarations: [ToggleReactiveTestComponent]
+      declarations: [ToggleReactiveTestComponent],
     }).compileComponents();
   }));
 
@@ -303,9 +303,9 @@ describe('ToggleComponent case reactive with default value using mock component'
         DatepickerModule,
         FieldModule,
         ReactiveFormsModule,
-        IconDirectiveModule
+        IconDirectiveModule,
       ],
-      declarations: [ToggleReactiveDefaultValueTestComponent]
+      declarations: [ToggleReactiveDefaultValueTestComponent],
     }).compileComponents();
   }));
 
@@ -348,9 +348,9 @@ describe('ToggleComponent case template driven using mock component', () => {
         IconArrowsRightLeftModule,
         DatepickerModule,
         FieldModule,
-        FormsModule
+        FormsModule,
       ],
-      declarations: [ToggleTemplateDrivenTestComponent]
+      declarations: [ToggleTemplateDrivenTestComponent],
     }).compileComponents();
   }));
 
@@ -407,7 +407,7 @@ describe('ToggleComponent simple case using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ToggleModule, CommonModule],
-      declarations: [ToggleSimpleCaseTestComponent]
+      declarations: [ToggleSimpleCaseTestComponent],
     }).compileComponents();
   }));
 

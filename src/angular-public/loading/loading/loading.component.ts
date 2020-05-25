@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   selector: 'sbb-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingComponent {
   /** The aria-busy of loading component. */

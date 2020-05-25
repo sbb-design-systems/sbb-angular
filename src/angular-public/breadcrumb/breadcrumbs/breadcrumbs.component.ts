@@ -7,13 +7,13 @@ import {
   HostBinding,
   QueryList,
   TemplateRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import {
   BreadcrumbComponent,
-  SBB_BREADCRUMB_PARENT_COMPONENT
+  SBB_BREADCRUMB_PARENT_COMPONENT,
 } from '../breadcrumb/breadcrumb.component';
 
 @Component({
@@ -25,9 +25,9 @@ import {
   providers: [
     {
       provide: SBB_BREADCRUMB_PARENT_COMPONENT,
-      useExisting: BreadcrumbsComponent
-    }
-  ]
+      useExisting: BreadcrumbsComponent,
+    },
+  ],
 })
 export class BreadcrumbsComponent implements AfterViewInit {
   /**

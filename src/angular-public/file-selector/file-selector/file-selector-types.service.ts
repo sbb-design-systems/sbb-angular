@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FileTypeCategory, FILE_TYPES } from './file-selector-base';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FileSelectorTypesService {
   /**
@@ -129,7 +129,7 @@ export class FileSelectorTypesService {
           'VIDEO_MOV',
           'VIDEO_WEBM',
           'VIDEO_AVI',
-          'VIDEO_WMV'
+          'VIDEO_WMV',
         ];
         break;
       case FileTypeCategory.ZIP:

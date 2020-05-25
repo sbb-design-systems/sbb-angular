@@ -18,9 +18,9 @@ const EXAMPLES = [TagExampleComponent];
     ReactiveFormsModule,
     FieldModule,
     TagModule,
-    ButtonModule
+    ButtonModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class TagExamplesModule {}

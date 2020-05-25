@@ -17,13 +17,13 @@ export function normalizeExamples(): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const iconLookup: { [key: string]: Imports } = {};
     const iconsDir = tree.getDir('src/angular-icons');
-    iconsDir.visit(path => {
+    iconsDir.visit((path) => {
       const fileName = basename(path);
       if (fileName.endsWith('.module.ts') && fileName.startsWith('icon-')) {
         const key = fileName.split('.')[0];
         iconLookup[key] = {
           path: `@sbb-esta/angular-icons/${relative(iconsDir.path, dirname(path))}`,
-          moduleName: `${strings.classify(key)}Module`
+          moduleName: `${strings.classify(key)}Module`,
         };
       }
     });
@@ -31,22 +31,22 @@ export function normalizeExamples(): Rule {
     [
       'src/showcase/app/business/business-examples',
       'src/showcase/app/maps/maps-examples',
-      'src/showcase/app/public/public-examples'
+      'src/showcase/app/public/public-examples',
     ]
-      .map(d => tree.getDir(d))
-      .forEach(d => normalizeExampleModules(d));
+      .map((d) => tree.getDir(d))
+      .forEach((d) => normalizeExampleModules(d));
 
     function normalizeExampleModules(dir: DirEntry) {
       // const moduleName = basename(dir.parent!.path);
-      dir.subdirs.map(d => dir.dir(d)).forEach(d => normalizeExampleModule(d));
+      dir.subdirs.map((d) => dir.dir(d)).forEach((d) => normalizeExampleModule(d));
 
       const dirName = basename(dir.path);
       const moduleName = `${strings.classify(dirName)}Module`;
       const moduleImports = dir.subdirs
         .sort()
-        .map(d => `import { ${strings.classify(d)}Module } from './${d}/${d}.module';`)
+        .map((d) => `import { ${strings.classify(d)}Module } from './${d}/${d}.module';`)
         .join('\n');
-      const moduleList = dir.subdirs.map(d => `${strings.classify(d)}Module`).join(',\n  ');
+      const moduleList = dir.subdirs.map((d) => `${strings.classify(d)}Module`).join(',\n  ');
       const content = `import { NgModule } from '@angular/core';
 
 ${moduleImports}
@@ -63,7 +63,7 @@ export class ${moduleName} {}
 `;
       const formattedContent = prettier.format(content, {
         parser: 'typescript',
-        ...require('../../package.json').prettier
+        ...require('../../package.json').prettier,
       });
 
       const moduleFile = dir.file(fragment(`${dirName}.module.ts`))!;
@@ -105,15 +105,15 @@ export class ${moduleName} {}
         : '';
       const moduleName = `${strings.classify(dirName)}Module`;
       const moduleImports = imports
-        .map(i => `import { ${i.moduleName} } from '${i.path}';`)
+        .map((i) => `import { ${i.moduleName} } from '${i.path}';`)
         .join('\n');
       const componentImports = exampleComponents
-        .map(c => `import { ${c.components.join(', ')} } from '${c.path}';`)
+        .map((c) => `import { ${c.components.join(', ')} } from '${c.path}';`)
         .join('\n');
       const componentsList = exampleComponents
         .reduce((current, next) => current.concat(next.components), [] as string[])
         .join(',\n  ');
-      let moduleList = imports.map(i => i.moduleName).join(',\n    ');
+      let moduleList = imports.map((i) => i.moduleName).join(',\n    ');
       if (angularModules.forms) {
         moduleList = `FormsModule,\n  ReactiveFormsModule,\n  ${moduleList}`;
       }
@@ -143,7 +143,7 @@ export class ${moduleName} {}
 `;
       const formattedContent = prettier.format(content, {
         parser: 'typescript',
-        ...require('../../package.json').prettier
+        ...require('../../package.json').prettier,
       });
 
       const moduleFile = dir.file(fragment(`${dirName}.module.ts`))!;
@@ -170,11 +170,11 @@ export class ${moduleName} {}
 
       return {
         exampleComponents: exampleComponents
-          .filter((v, i, a) => a.findIndex(vi => JSON.stringify(vi) === JSON.stringify(v)) === i)
+          .filter((v, i, a) => a.findIndex((vi) => JSON.stringify(vi) === JSON.stringify(v)) === i)
           .sort((a, b) => a.path.localeCompare(b.path)),
         imports: imports
-          .filter((v, i, a) => a.findIndex(vi => JSON.stringify(vi) === JSON.stringify(v)) === i)
-          .sort((a, b) => a.path.localeCompare(b.path))
+          .filter((v, i, a) => a.findIndex((vi) => JSON.stringify(vi) === JSON.stringify(v)) === i)
+          .sort((a, b) => a.path.localeCompare(b.path)),
       };
     }
 
@@ -182,7 +182,7 @@ export class ${moduleName} {}
       const content = entry.content.toString();
       const components = content
         .match(/export class \w+Component/g)
-        ?.map(m => m.substring(13))
+        ?.map((m) => m.substring(13))
         .sort();
       return components
         ? [{ path: `./${relative(dir.path, entry.path).replace(/\.ts$/, '')}`, components }]
@@ -195,12 +195,12 @@ export class ${moduleName} {}
         content
           .match(/@sbb-esta\/angular-\w+\/[^']+/g)
           ?.filter((v, i, a) => a.indexOf(v) === i)
-          .filter(i =>
+          .filter((i) =>
             ['base', 'models', 'datetime', 'angular-core/radio-button'].every(
-              m => !i.endsWith(`/${m}`)
+              (m) => !i.endsWith(`/${m}`)
             )
           )
-          .map(i => ({ path: i, moduleName: `${strings.classify(i.split('/')[2])}Module` })) ?? []
+          .map((i) => ({ path: i, moduleName: `${strings.classify(i.split('/')[2])}Module` })) ?? []
       );
     }
 
@@ -211,13 +211,13 @@ export class ${moduleName} {}
       return (
         content
           .match(/<sbb-[^ >]+/g)
-          ?.map(t => t.substring(5).trim())
+          ?.map((t) => t.substring(5).trim())
           .filter(
-            t =>
+            (t) =>
               t !== 'option' && (packageRoot.subdirs.includes(fragment(t)) || t.startsWith('icon'))
           )
           .filter((v, i, a) => a.indexOf(v) === i)
-          .map(i =>
+          .map((i) =>
             i.startsWith('icon') ? resolveIconImport(i) : resolveImport(packageName, i)
           ) ?? []
       );
@@ -230,14 +230,14 @@ export class ${moduleName} {}
     function resolveImport(packageName: string, moduleName: string) {
       return {
         path: `@sbb-esta/angular-${packageName}/${moduleName}`,
-        moduleName: `${strings.classify(moduleName)}Module`
+        moduleName: `${strings.classify(moduleName)}Module`,
       };
     }
 
     function detectUsedAngularModules(dir: DirEntry) {
       const modules = {
         forms: false,
-        router: false
+        router: false,
       };
       dir.visit((path, entry) => {
         if (path.endsWith('html') && entry) {

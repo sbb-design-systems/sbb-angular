@@ -3,13 +3,13 @@ import { FormControl } from '@angular/forms';
 import { CheckboxChange } from '@sbb-esta/angular-business/checkbox';
 import {
   FileSelectorTypesService,
-  FileTypeCategory
+  FileTypeCategory,
 } from '@sbb-esta/angular-business/file-selector';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'sbb-multiple-mode-default-file-selector-example',
-  templateUrl: './multiple-mode-default-file-selector-example.component.html'
+  templateUrl: './multiple-mode-default-file-selector-example.component.html',
 })
 export class MultipleModeDefaultFileSelectorExampleComponent implements OnInit, OnDestroy {
   filesList: File[] = [];
@@ -24,7 +24,7 @@ export class MultipleModeDefaultFileSelectorExampleComponent implements OnInit, 
   constructor(private _fileTypeService: FileSelectorTypesService) {
     this.accept = this._fileTypeService.getAcceptString([
       FileTypeCategory.IMAGE,
-      FileTypeCategory.ZIP
+      FileTypeCategory.ZIP,
     ]);
   }
 
@@ -40,12 +40,12 @@ export class MultipleModeDefaultFileSelectorExampleComponent implements OnInit, 
 
   beautifyFileList(filesList: File[]) {
     if (filesList) {
-      return filesList.map(f => {
+      return filesList.map((f) => {
         return {
           name: f.name,
           size: f.size,
           type: f.type,
-          lastModified: f.lastModified
+          lastModified: f.lastModified,
         };
       });
     }

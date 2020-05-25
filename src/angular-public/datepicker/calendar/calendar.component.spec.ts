@@ -10,7 +10,7 @@ import {
   JAN,
   JUL,
   MockNgZone,
-  NOV
+  NOV,
 } from '@sbb-esta/angular-core/testing';
 
 import { CalendarComponent, DatepickerModule } from '../public-api';
@@ -24,7 +24,7 @@ import { CalendarComponent, DatepickerModule } from '../public-api';
       (monthSelected)="selectedMonth = $event"
     >
     </sbb-calendar>
-  `
+  `,
 })
 class StandardCalendarComponent {
   selected: Date;
@@ -36,7 +36,7 @@ class StandardCalendarComponent {
 @Component({
   template: `
     <sbb-calendar [startAt]="startAt" [minDate]="minDate" [maxDate]="maxDate"></sbb-calendar>
-  `
+  `,
 })
 class CalendarWithMinMaxComponent {
   startAt: Date;
@@ -48,7 +48,7 @@ class CalendarWithMinMaxComponent {
   template: `
     <sbb-calendar [startAt]="startDate" [(selected)]="selected" [dateFilter]="dateFilter">
     </sbb-calendar>
-  `
+  `,
 })
 class CalendarWithDateFilterComponent {
   selected: Date;
@@ -68,7 +68,7 @@ class CalendarWithDateFilterComponent {
       [minDate]="selected"
     >
     </sbb-calendar>
-  `
+  `,
 })
 class CalendarWithSelectableMinDateComponent {
   startAt = new Date(2018, JUL, 0);
@@ -95,9 +95,9 @@ describe('CalendarComponent', () => {
         StandardCalendarComponent,
         CalendarWithMinMaxComponent,
         CalendarWithDateFilterComponent,
-        CalendarWithSelectableMinDateComponent
+        CalendarWithSelectableMinDateComponent,
       ],
-      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }]
+      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }],
     }).compileComponents();
   }));
 
@@ -140,7 +140,7 @@ describe('CalendarComponent', () => {
     it('should complete the stateChanges stream', () => {
       const spy = jasmine.createSpy('complete spy');
       const subscription = calendarInstance.stateChanges.subscribe({
-        complete: spy
+        complete: spy,
       });
 
       fixture.destroy();
@@ -294,12 +294,12 @@ describe('CalendarComponent', () => {
 
       let cells = Array.from(calendarElement.querySelectorAll('.sbb-calendar-body-cell'));
 
-      expect(cells.slice(0, 9).every(c => c.classList.contains(disabledClass))).toBe(
+      expect(cells.slice(0, 9).every((c) => c.classList.contains(disabledClass))).toBe(
         true,
         'Expected dates up to the 10th to be disabled.'
       );
 
-      expect(cells.slice(9).every(c => c.classList.contains(disabledClass))).toBe(
+      expect(cells.slice(9).every((c) => c.classList.contains(disabledClass))).toBe(
         false,
         'Expected dates after the 10th to be enabled.'
       );
@@ -308,12 +308,12 @@ describe('CalendarComponent', () => {
       dynamicFixture.detectChanges();
       cells = Array.from(calendarElement.querySelectorAll('.sbb-calendar-body-cell'));
 
-      expect(cells.slice(0, 14).every(c => c.classList.contains(disabledClass))).toBe(
+      expect(cells.slice(0, 14).every((c) => c.classList.contains(disabledClass))).toBe(
         true,
         'Expected dates up to the 14th to be disabled.'
       );
 
-      expect(cells.slice(14).every(c => c.classList.contains(disabledClass))).toBe(
+      expect(cells.slice(14).every((c) => c.classList.contains(disabledClass))).toBe(
         false,
         'Expected dates after the 14th to be enabled.'
       );

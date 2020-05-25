@@ -22,7 +22,7 @@ const EXAMPLES = [
   SortableTableExampleComponent,
   PaginatorTableExampleComponent,
   FilterSortPaginatorTableExampleComponent,
-  SelectableTableExampleComponent
+  SelectableTableExampleComponent,
 ];
 
 @NgModule({
@@ -34,9 +34,9 @@ const EXAMPLES = [
     ReactiveFormsModule,
     FieldModule,
     CheckboxModule,
-    SelectModule
+    SelectModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class TableExamplesModule {}

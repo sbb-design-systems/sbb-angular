@@ -23,7 +23,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </svg>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconProductIc1Component extends IconBase {
   constructor() {
@@ -34,6 +34,6 @@ export class IconProductIc1Component extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconProductIc1Component],
-  exports: [IconProductIc1Component]
+  exports: [IconProductIc1Component],
 })
 export class IconProductIc1Module {}

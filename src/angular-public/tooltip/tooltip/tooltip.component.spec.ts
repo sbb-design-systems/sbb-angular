@@ -26,7 +26,7 @@ import { TooltipComponent } from './tooltip.component';
         </button>
       </sbb-field>
     </sbb-tooltip>
-  `
+  `,
 })
 class TooltipTestComponent {
   @ViewChild('t1', { static: true }) t1: TooltipComponent;
@@ -49,7 +49,7 @@ class TooltipTestComponent {
       <p>Dies ist ein weiterer Tooltip mit einem Link!</p>
       <a href="#" sbbLink>Bezeichnung</a>
     </sbb-tooltip>
-  `
+  `,
 })
 class DoubleTooltipTestComponent {
   @ViewChild('t1', { static: true }) t1: TooltipComponent;
@@ -67,7 +67,7 @@ describe('TooltipComponent', () => {
     TestBed.configureTestingModule({
       imports: [IconQuestionMarkModule, IconCrossModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
-      declarations: [TooltipComponent]
+      declarations: [TooltipComponent],
     }).compileComponents();
   }));
 
@@ -93,7 +93,7 @@ describe('TooltipComponent using mock component for single tooltip', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TooltipModule, FieldModule, ButtonModule],
-      declarations: [TooltipTestComponent]
+      declarations: [TooltipTestComponent],
     }).compileComponents();
   }));
 
@@ -176,7 +176,7 @@ describe('TooltipComponent using mock component for double tooltip', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TooltipModule, FieldModule],
-      declarations: [DoubleTooltipTestComponent]
+      declarations: [DoubleTooltipTestComponent],
     }).compileComponents();
   }));
 

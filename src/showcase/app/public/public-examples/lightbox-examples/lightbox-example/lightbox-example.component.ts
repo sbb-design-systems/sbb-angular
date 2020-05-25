@@ -6,7 +6,7 @@ import {
   OnInit,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { Lightbox, LightboxRef, LIGHTBOX_DATA } from '@sbb-esta/angular-public/lightbox';
 
@@ -20,7 +20,7 @@ export interface LightboxData {
  */
 @Component({
   selector: 'sbb-lightbox-example-content-1',
-  templateUrl: 'lightbox-example-content-1.component.html'
+  templateUrl: 'lightbox-example-content-1.component.html',
 })
 export class LightboxExampleExampleContentComponent {
   constructor(
@@ -49,7 +49,7 @@ export class LightboxExampleExampleContentComponent {
         You chose: <i>{{ animal }}</i>
       </li>
     </ol>
-  `
+  `,
 })
 export class LightboxExampleExampleComponent {
   animal: string;
@@ -59,10 +59,10 @@ export class LightboxExampleExampleComponent {
 
   openLightbox(): void {
     const lightboxRef = this.lightbox.openLightbox(LightboxExampleExampleContentComponent, {
-      data: { name: this.name, animal: this.animal }
+      data: { name: this.name, animal: this.animal },
     });
 
-    lightboxRef.afterClosed().subscribe(result => {
+    lightboxRef.afterClosed().subscribe((result) => {
       console.log('Lighbox sharing data was closed');
       this.animal = result;
     });
@@ -74,7 +74,7 @@ export class LightboxExampleExampleComponent {
  */
 @Component({
   selector: 'sbb-lightbox-example-content-2',
-  templateUrl: 'lightbox-example-content-2.component.html'
+  templateUrl: 'lightbox-example-content-2.component.html',
 })
 export class LightboxExampleExample2ContentComponent {
   alignment = 'center';
@@ -91,7 +91,7 @@ export class LightboxExampleExample2ContentComponent {
         Open Lightbox from Component
       </button>
     </div>
-  `
+  `,
 })
 export class LightboxExampleExample2Component {
   constructor(public lightbox: Lightbox) {}
@@ -99,7 +99,7 @@ export class LightboxExampleExample2Component {
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(LightboxExampleExample2ContentComponent);
 
-    lightboxRef.afterClosed().subscribe(result => {
+    lightboxRef.afterClosed().subscribe((result) => {
       console.log(`Lightbox result: ${result}`);
     });
   }
@@ -110,7 +110,7 @@ export class LightboxExampleExample2Component {
  */
 @Component({
   selector: 'sbb-lightbox-example-example-3',
-  templateUrl: 'lightbox-example-content-3.component.html'
+  templateUrl: 'lightbox-example-content-3.component.html',
 })
 export class LightboxExampleExample3Component {
   @ViewChild('sampleLightboxTemplate', { static: true }) sampleLightboxTemplate: TemplateRef<any>;
@@ -119,7 +119,7 @@ export class LightboxExampleExample3Component {
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(this.sampleLightboxTemplate);
 
-    lightboxRef.afterClosed().subscribe(result => {
+    lightboxRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -132,7 +132,7 @@ export class LightboxExampleExample3Component {
 @Component({
   selector: 'sbb-lightbox-example-content-4',
   templateUrl: 'lightbox-example-content-4.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LightboxExampleExample4ContentComponent implements OnInit {
   confirmPanel = false;
@@ -158,17 +158,17 @@ export class LightboxExampleExample4ContentComponent implements OnInit {
         Open with confirmation button in one Lightbox
       </button>
     </div>
-  `
+  `,
 })
 export class LightboxExampleExample4Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(LightboxExampleExample4ContentComponent, {
-      disableClose: true
+      disableClose: true,
     });
 
-    lightboxRef.afterClosed().subscribe(result => {
+    lightboxRef.afterClosed().subscribe((result) => {
       console.log(`Lightbox ${result}`);
     });
   }
@@ -192,7 +192,7 @@ export class LightboxExampleExample4Component {
       </button>
       <button sbbButton (click)="closeAllLightbox()">Fenster schliessen</button>
     </div>
-  `
+  `,
 })
 export class LightboxExampleExample6ContentComponent {
   constructor(
@@ -219,7 +219,7 @@ export class LightboxExampleExample6ContentComponent {
         appear when trying to close this lightbox
       </h3>
     </div>
-  `
+  `,
 })
 export class LightboxExampleExample5ContentComponent implements OnInit {
   constructor(
@@ -245,14 +245,14 @@ export class LightboxExampleExample5ContentComponent implements OnInit {
         Open with confirmation button in separate one
       </button>
     </div>
-  `
+  `,
 })
 export class LightboxExampleExample5Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(LightboxExampleExample5ContentComponent, {
-      disableClose: true
+      disableClose: true,
     });
 
     lightboxRef.afterClosed().subscribe(() => {
@@ -265,6 +265,6 @@ export class LightboxExampleExample5Component {
   selector: 'sbb-lightbox-example',
   templateUrl: 'lightbox-example.component.html',
   styleUrls: ['lightbox-example.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class LightboxExampleComponent {}

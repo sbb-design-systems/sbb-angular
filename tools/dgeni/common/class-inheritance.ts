@@ -26,7 +26,7 @@ export function getInheritedDocsOfClass(
       // Add direct class-like types resolved from the expression.
       result.push(...docs);
       // Resolve inherited docs of the resolved documents.
-      docs.forEach(d => result.push(...getInheritedDocsOfClass(d, exportSymbolsToDocsMap)));
+      docs.forEach((d) => result.push(...getInheritedDocsOfClass(d, exportSymbolsToDocsMap)));
     }
   }
   return result;

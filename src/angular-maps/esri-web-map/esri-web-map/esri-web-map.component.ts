@@ -8,7 +8,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import { EsriTypesService, GraphicService, HitTestService } from '@sbb-esta/angular-maps/core';
 
@@ -18,7 +18,7 @@ import { SBBEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
   selector: 'sbb-esri-web-map',
   templateUrl: './esri-web-map.component.html',
   styleUrls: ['./esri-web-map.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EsriWebMapComponent implements OnInit {
   private _extent: SBBEsriExtent2D;
@@ -70,13 +70,13 @@ export class EsriWebMapComponent implements OnInit {
     await this._esri.load();
     this.webMap = new this._esri.WebMap({
       portalItem: {
-        id: this.portalItemId
-      }
+        id: this.portalItemId,
+      },
     });
 
     this.mapView = new this._esri.MapView({
       map: this.webMap,
-      container: this._elementRef.nativeElement
+      container: this._elementRef.nativeElement,
     });
 
     this._setMapExtent(this._extent);
@@ -95,14 +95,14 @@ export class EsriWebMapComponent implements OnInit {
         xmax: newExtent.xmax,
         ymin: newExtent.ymin,
         ymax: newExtent.ymax,
-        spatialReference: newExtent.spatialReference
+        spatialReference: newExtent.spatialReference,
       });
     }
   }
 
   private _registerEvents() {
-    this.mapView.on('click', e => this._emitMouseClick(e));
-    this.mapView.watch('extent', extent => this._emitExtentChange(extent));
+    this.mapView.on('click', (e) => this._emitMouseClick(e));
+    this.mapView.watch('extent', (extent) => this._emitExtentChange(extent));
   }
 
   private async _emitMouseClick(e: __esri.MapViewClickEvent) {

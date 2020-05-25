@@ -8,6 +8,6 @@ import { ExampleViewerComponent } from './example-viewer/example-viewer.componen
 
 @NgModule({
   declarations: [ExampleViewerComponent, ComponentViewerComponent],
-  imports: [CommonModule, PortalModule, TabsModule]
+  imports: [CommonModule, PortalModule, TabsModule],
 })
 export class ComponentViewerModule {}

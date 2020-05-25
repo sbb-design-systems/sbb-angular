@@ -6,7 +6,7 @@ import { Directive, ElementRef } from '@angular/core';
  */
 @Directive({
   selector: '[sbbAutocompleteOrigin]',
-  exportAs: 'sbbAutocompleteOrigin'
+  exportAs: 'sbbAutocompleteOrigin',
 })
 export class AutocompleteOriginDirective {
   constructor(

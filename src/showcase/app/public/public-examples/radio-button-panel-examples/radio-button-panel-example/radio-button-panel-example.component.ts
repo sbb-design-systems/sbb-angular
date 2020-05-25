@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-radio-button-panel-example',
   templateUrl: './radio-button-panel-example.component.html',
-  styleUrls: ['./radio-button-panel-example.component.css']
+  styleUrls: ['./radio-button-panel-example.component.css'],
 })
 export class RadioButtonPanelExampleComponent {
   required: boolean;
@@ -14,16 +14,16 @@ export class RadioButtonPanelExampleComponent {
   radioOptions = [
     {
       name: 'Option 1',
-      value: 'value1'
+      value: 'value1',
     },
     {
       name: 'Option 2',
-      value: 'value2'
+      value: 'value2',
     },
     {
       name: 'Option 3',
-      value: 'value3'
-    }
+      value: 'value3',
+    },
   ];
 
   required2: boolean;
@@ -35,17 +35,17 @@ export class RadioButtonPanelExampleComponent {
     {
       name: 'Check 1',
       value: 'value1',
-      selected: true
+      selected: true,
     },
     {
       name: 'Check 2',
       value: 'value2',
-      selected: false
+      selected: false,
     },
     {
       name: 'Check 3',
       value: 'value3',
-      selected: false
-    }
+      selected: false,
+    },
   ];
 }

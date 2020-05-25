@@ -3,7 +3,7 @@ import {
   Component,
   HostBinding,
   Input,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 @Component({
@@ -11,7 +11,7 @@ import {
   styleUrls: ['./option.component.css'],
   templateUrl: './pseudo-checkbox.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PseudoCheckboxComponent {
   /** Display state of the checkbox. */

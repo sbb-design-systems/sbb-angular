@@ -12,6 +12,6 @@ const EXAMPLES = [IconLinkExampleComponent, SimpleLinkExampleComponent];
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, FieldModule, LinksModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class LinksExamplesModule {}

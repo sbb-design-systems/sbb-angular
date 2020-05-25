@@ -9,11 +9,11 @@ const modules = [
   IconRailwaySwitchModule,
   IconTrainSignalModule,
   IconTrainTracksModule,
-  IconConstructionModule
+  IconConstructionModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionInstallationModule {}

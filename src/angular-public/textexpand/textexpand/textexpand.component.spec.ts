@@ -16,7 +16,7 @@ import { TextexpandComponent } from './textexpand.component';
       <sbb-textexpand-collapsed>Hello Davide! &nbsp;</sbb-textexpand-collapsed>
       <sbb-textexpand-expanded>Hello Marco! &nbsp;</sbb-textexpand-expanded>
     </sbb-textexpand>
-  `
+  `,
 })
 class TextexpandTestComponent {
   @ViewChild('textexpand', { static: true }) textexpand: TextexpandComponent;
@@ -40,7 +40,11 @@ describe('TextexpandComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextexpandComponent, TextexpandCollapsedComponent, TextexpandExpandedComponent]
+      declarations: [
+        TextexpandComponent,
+        TextexpandCollapsedComponent,
+        TextexpandExpandedComponent,
+      ],
     }).compileComponents();
   }));
 
@@ -96,7 +100,7 @@ describe('TextexpandComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TextexpandModule],
-      declarations: [TextexpandTestComponent]
+      declarations: [TextexpandTestComponent],
     }).compileComponents();
   }));
 

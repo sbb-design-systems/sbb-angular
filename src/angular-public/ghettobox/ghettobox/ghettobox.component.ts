@@ -12,7 +12,7 @@ import {
   Self,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
@@ -40,7 +40,7 @@ let counter = 0;
   styleUrls: ['./ghettobox.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  animations: [GHETTOBOX_ANIMATIONS.addDelete]
+  animations: [GHETTOBOX_ANIMATIONS.addDelete],
 })
 export class GhettoboxComponent {
   visible = true;
@@ -185,7 +185,7 @@ export class GhettoboxComponent {
     this._changeDetector.markForCheck();
     this.afterDelete.emit({
       ghettoboxState: this.ghettoboxState,
-      ghettoboxId: this.id
+      ghettoboxId: this.id,
     });
   }
 }

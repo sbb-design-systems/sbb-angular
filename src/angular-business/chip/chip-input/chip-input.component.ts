@@ -16,18 +16,18 @@ import {
   Output,
   Self,
   SimpleChanges,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
   AutocompleteComponent,
   AutocompleteOriginDirective,
-  SbbAutocompleteSelectedEvent
+  SbbAutocompleteSelectedEvent,
 } from '@sbb-esta/angular-business/autocomplete';
 import {
   CanUpdateErrorState,
   CanUpdateErrorStateCtor,
-  mixinErrorState
+  mixinErrorState,
 } from '@sbb-esta/angular-core/common-behaviors';
 import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
@@ -66,7 +66,7 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
   templateUrl: './chip-input.component.html',
   styleUrls: ['./chip-input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: FormFieldControl, useExisting: ChipInputComponent }]
+  providers: [{ provide: FormFieldControl, useExisting: ChipInputComponent }],
 })
 export class ChipInputComponent extends SbbChipsMixinBase
   implements
@@ -226,7 +226,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   writeValue(value: string[]): void {
     this.selectionModel.clear();
     if (Array.isArray(value)) {
-      value.forEach(v => this.selectionModel.select(v));
+      value.forEach((v) => this.selectionModel.select(v));
     }
     this._propagateChanges();
   }
@@ -262,7 +262,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
    */
   onEnter(option: string) {
     if (this.autocomplete) {
-      if (!this.autocomplete.options.some(opt => opt.active)) {
+      if (!this.autocomplete.options.some((opt) => opt.active)) {
         this.onSelect(option);
       }
     } else {

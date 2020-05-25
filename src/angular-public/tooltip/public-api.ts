@@ -5,5 +5,5 @@ export {
   TooltipRegistryService,
   SbbTooltipChangeEvent,
   SBB_TOOLTIP_SCROLL_STRATEGY,
-  SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY
+  SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY,
 } from '@sbb-esta/angular-core/base/tooltip';

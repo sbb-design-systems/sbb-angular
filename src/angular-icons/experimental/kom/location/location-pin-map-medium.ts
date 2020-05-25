@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-location',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconLocationPinMapMedium {}
 
 @Component({
   selector: 'sbb-icon-location-pin-map-medium',
-  template: `
-    <svg sbbIconLocationPinMapMedium></svg>
-  `,
+  template: ` <svg sbbIconLocationPinMapMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconLocationPinMapMedium {}
 
 @NgModule({
   declarations: [SvgIconLocationPinMapMedium, IconLocationPinMapMedium],
-  exports: [SvgIconLocationPinMapMedium, IconLocationPinMapMedium]
+  exports: [SvgIconLocationPinMapMedium, IconLocationPinMapMedium],
 })
 export class IconLocationPinMapMediumModule {}

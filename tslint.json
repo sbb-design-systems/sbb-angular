@@ -152,7 +152,6 @@
         "grouped-imports": true
       }
     ],
-    "parameter-properties": [true, "leading"],
     "prefer-const": true,
     "prettier": true,
     "radix": true,

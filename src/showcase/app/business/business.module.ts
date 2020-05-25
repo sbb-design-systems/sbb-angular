@@ -15,7 +15,7 @@ import { BusinessComponent } from './business/business.component';
   declarations: [
     BusinessComponent,
     BusinessComponentViewerComponent,
-    BusinessExampleViewerComponent
+    BusinessExampleViewerComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +23,7 @@ import { BusinessComponent } from './business/business.component';
     BusinessExamplesModule,
     SharedModule,
     TabsModule,
-    BusinessRoutingModule
-  ]
+    BusinessRoutingModule,
+  ],
 })
 export class BusinessModule {}

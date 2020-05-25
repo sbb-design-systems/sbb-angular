@@ -1,0 +1,45 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "loading-examples",
+    srcs = [
+        "fullbox-loading-example/fullbox-loading-example.component.ts",
+        "fullscreen-loading-example/fullscreen-loading-example.component.ts",
+        "loading-examples.module.ts",
+        "simple-loading-example/simple-loading-example.component.ts",
+    ],
+    assets = [
+        ":simple-loading-example/simple-loading-example.component.css",
+        "fullbox-loading-example/fullbox-loading-example.component.html",
+        "fullscreen-loading-example/fullscreen-loading-example.component.html",
+        "simple-loading-example/simple-loading-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/button",
+        "//src/angular-business/loading",
+        "//src/angular-icons/arrow",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "simple_loading_example_simple_loading_example_component_scss",
+    src = "simple-loading-example/simple-loading-example.component.scss",
+)

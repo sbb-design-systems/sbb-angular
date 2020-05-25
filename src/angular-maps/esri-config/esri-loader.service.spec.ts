@@ -14,14 +14,14 @@ describe('EsriLoaderService', () => {
     arcgisJsUrl: 'arcgisJsURL',
     trustedServers: ['t1', 't2'],
     portalUrl: 'urlToPortalInstance',
-    originsWithCredentialsRequired: ['o1', 'o2']
+    originsWithCredentialsRequired: ['o1', 'o2'],
   };
 
   class EsriConfigMock implements Partial<__esri.config> {
     portalUrl: string;
     request: __esri.configRequest = {
       trustedServers: [],
-      interceptors: []
+      interceptors: [],
     };
   }
 
@@ -35,7 +35,7 @@ describe('EsriLoaderService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EsriLoaderService]
+      providers: [EsriLoaderService],
     });
     loaderService = TestBed.inject(EsriLoaderService);
   });

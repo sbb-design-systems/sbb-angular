@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sbb-select-multi-selection-example',
-  templateUrl: './select-multi-selection-example.component.html'
+  templateUrl: './select-multi-selection-example.component.html',
 })
 export class SelectMultiSelectionExampleComponent {
   form: FormGroup;
@@ -11,7 +11,7 @@ export class SelectMultiSelectionExampleComponent {
   constructor(formBuilder: FormBuilder) {
     this.form = formBuilder.group({
       value: [[]],
-      optionDisabled: false
+      optionDisabled: false,
     });
   }
 }

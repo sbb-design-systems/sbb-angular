@@ -7,16 +7,16 @@ import { IconViewerComponent } from './icon-viewer/icon-viewer.component';
 const routes: Routes = [
   {
     path: '',
-    component: IconSearchComponent
+    component: IconSearchComponent,
   },
   {
     path: ':id',
-    component: IconViewerComponent
-  }
+    component: IconViewerComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class IconComponentsRoutingModule {}

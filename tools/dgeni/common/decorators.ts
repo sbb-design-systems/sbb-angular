@@ -60,7 +60,7 @@ export function getDirectiveSelectors(classDoc: CategorizedClassDoc) {
       return directiveSelectors
         .replace(/[\r\n]/g, '')
         .split(/\s*,\s*/)
-        .filter(s => s !== '');
+        .filter((s) => s !== '');
     }
   }
   return undefined;
@@ -78,7 +78,7 @@ export function hasDecorator(doc: HasDecoratorsDoc, decoratorName: string) {
   return (
     !!doc.decorators &&
     doc.decorators.length > 0 &&
-    doc.decorators.some(d => d.name == decoratorName)
+    doc.decorators.some((d) => d.name == decoratorName)
   );
 }
 

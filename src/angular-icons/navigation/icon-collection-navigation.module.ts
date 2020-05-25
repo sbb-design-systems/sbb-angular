@@ -23,11 +23,11 @@ const modules = [
   IconLayersModule,
   IconMinusModule,
   IconPlusModule,
-  IconTwoFingerTapModule
+  IconTwoFingerTapModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionNavigationModule {}

@@ -10,6 +10,6 @@ const EXAMPLES = [CheckboxExampleComponent];
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class CheckboxExamplesModule {}

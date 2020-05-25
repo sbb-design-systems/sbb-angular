@@ -12,7 +12,7 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  Output
+  Output,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -22,7 +22,7 @@ import {
   ValidationErrors,
   Validator,
   ValidatorFn,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular-public/input';
@@ -54,14 +54,14 @@ export const SBB_DATE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   // tslint:disable-next-line:no-use-before-declare
   useExisting: forwardRef(() => DateInputDirective),
-  multi: true
+  multi: true,
 };
 
 export const SBB_DATE_VALIDATORS: any = {
   provide: NG_VALIDATORS,
   // tslint:disable-next-line:no-use-before-declare
   useExisting: forwardRef(() => DateInputDirective),
-  multi: true
+  multi: true,
 };
 
 @Directive({
@@ -70,8 +70,8 @@ export const SBB_DATE_VALIDATORS: any = {
   providers: [
     SBB_DATE_VALUE_ACCESSOR,
     SBB_DATE_VALIDATORS,
-    { provide: SBB_INPUT_VALUE_ACCESSOR, useExisting: DateInputDirective }
-  ]
+    { provide: SBB_INPUT_VALUE_ACCESSOR, useExisting: DateInputDirective },
+  ],
 })
 export class DateInputDirective<D> implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   @HostBinding('class.sbb-date-input') cssClass = true;
@@ -248,7 +248,7 @@ export class DateInputDirective<D> implements ControlValueAccessor, Validator, O
     this._parseValidator,
     this._minValidator,
     this._maxValidator,
-    this._filterValidator
+    this._filterValidator,
   ]);
 
   constructor(

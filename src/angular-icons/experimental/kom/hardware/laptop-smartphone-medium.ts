@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-hardware',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconLaptopSmartphoneMedium {}
 
 @Component({
   selector: 'sbb-icon-laptop-smartphone-medium',
-  template: `
-    <svg sbbIconLaptopSmartphoneMedium></svg>
-  `,
+  template: ` <svg sbbIconLaptopSmartphoneMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconLaptopSmartphoneMedium {}
 
 @NgModule({
   declarations: [SvgIconLaptopSmartphoneMedium, IconLaptopSmartphoneMedium],
-  exports: [SvgIconLaptopSmartphoneMedium, IconLaptopSmartphoneMedium]
+  exports: [SvgIconLaptopSmartphoneMedium, IconLaptopSmartphoneMedium],
 })
 export class IconLaptopSmartphoneMediumModule {}

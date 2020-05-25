@@ -8,7 +8,7 @@ import { debounceTime, map, startWith } from 'rxjs/operators';
 @Component({
   selector: 'sbb-experimental-icon-search',
   templateUrl: './experimental-icon-search.component.html',
-  styleUrls: ['./experimental-icon-search.component.css']
+  styleUrls: ['./experimental-icon-search.component.css'],
 })
 export class ExperimentalIconSearchComponent {
   form: FormGroup;
@@ -27,17 +27,17 @@ export class ExperimentalIconSearchComponent {
     this.form = formBuilder.group({
       filter: '',
       color: false,
-      fixed: false
+      fixed: false,
     });
     this.icons = this.form.controls.filter.valueChanges.pipe(
       startWith(''),
       debounceTime(400),
-      map(f =>
+      map((f) =>
         ICON_META.filter(
-          i => i.elementSelector.substring(4).includes(f) || i.elementSelector.includes(f)
-        ).map(i => ({
+          (i) => i.elementSelector.substring(4).includes(f) || i.elementSelector.includes(f)
+        ).map((i) => ({
           ...i,
-          portal: new ComponentPortal<any>(i.component)
+          portal: new ComponentPortal<any>(i.component),
         }))
       )
     );

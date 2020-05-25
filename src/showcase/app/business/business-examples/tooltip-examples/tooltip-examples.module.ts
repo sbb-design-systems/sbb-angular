@@ -15,7 +15,7 @@ const EXAMPLES = [
   TooltipCustomContentExampleComponent,
   TooltipCustomIconExampleComponent,
   TooltipHoverExampleComponent,
-  TooltipSimpleExampleComponent
+  TooltipSimpleExampleComponent,
 ];
 
 @NgModule({
@@ -26,9 +26,9 @@ const EXAMPLES = [
     FieldModule,
     TooltipModule,
     IconPlusModule,
-    ButtonModule
+    ButtonModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class TooltipExamplesModule {}

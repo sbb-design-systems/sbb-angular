@@ -11,7 +11,7 @@ import {
   DialogExampleExample2ContentComponent,
   DialogExampleExample3Component,
   DialogExampleExampleComponent,
-  DialogExampleExampleContentComponent
+  DialogExampleExampleContentComponent,
 } from './dialog-example/dialog-example.component';
 
 const EXAMPLES = [
@@ -20,7 +20,7 @@ const EXAMPLES = [
   DialogExampleExample2ContentComponent,
   DialogExampleExample3Component,
   DialogExampleExampleComponent,
-  DialogExampleExampleContentComponent
+  DialogExampleExampleContentComponent,
 ];
 
 @NgModule({
@@ -30,9 +30,9 @@ const EXAMPLES = [
     ReactiveFormsModule,
     DialogModule,
     FieldModule,
-    ButtonModule
+    ButtonModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class DialogExamplesModule {}

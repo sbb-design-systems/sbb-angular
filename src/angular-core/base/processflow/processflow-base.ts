@@ -5,7 +5,7 @@ import {
   EventEmitter,
   HostBinding,
   Output,
-  QueryList
+  QueryList,
 } from '@angular/core';
 
 import { ProcessflowStep, ProcessflowStepBase } from './processflow-step-base';
@@ -58,7 +58,7 @@ export abstract class ProcessflowBase<TProcessflowStepComponent extends Processf
   }
 
   protected _findActiveStepIndex(steps: TProcessflowStepComponent[]) {
-    return steps.findIndex(s => !!s.active);
+    return steps.findIndex((s) => !!s.active);
   }
 
   /**
@@ -105,7 +105,7 @@ export abstract class ProcessflowBase<TProcessflowStepComponent extends Processf
   }
 
   reset() {
-    this.steps.forEach(s => {
+    this.steps.forEach((s) => {
       s.active = false;
       s.disabled = true;
     });

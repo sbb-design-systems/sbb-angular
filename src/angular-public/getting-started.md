@@ -121,7 +121,7 @@ import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 
 @NgModule({
   imports: [ButtonModule, CheckboxModule],
-  exports: [ButtonModule, CheckboxModule]
+  exports: [ButtonModule, CheckboxModule],
 })
 export class SbbModule {}
 ```
@@ -145,14 +145,4 @@ SCSS mode and import `_styles.scss` from the library into your `styles.scss`:
 
 ```scss
 @import '../node_modules/@sbb-esta/angular-public/styles';
-```
-
-If you need more fine-grained usage of the SCSS sources, you can import from `@sbb-esta/angular-core/styles/common/*`:
-
-```scss
-@import '../node_modules/@sbb-esta/angular-core/styles/common/colors';
-@import '../node_modules/@sbb-esta/angular-core/styles/common/variables';
-@import '../node_modules/@sbb-esta/angular-core/styles/common/functions';
-@import '../node_modules/@sbb-esta/angular-core/styles/common/mixins';
-@import '../node_modules/@sbb-esta/angular-core/styles/common/mediaqueries';
 ```

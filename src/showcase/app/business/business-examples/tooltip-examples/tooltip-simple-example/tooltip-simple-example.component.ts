@@ -3,7 +3,7 @@ import { SbbTooltipChangeEvent } from '@sbb-esta/angular-business/tooltip';
 
 @Component({
   selector: 'sbb-tooltip-simple-example',
-  templateUrl: './tooltip-simple-example.component.html'
+  templateUrl: './tooltip-simple-example.component.html',
 })
 export class TooltipSimpleExampleComponent {
   tooltipContent = 'Tooltip text content';

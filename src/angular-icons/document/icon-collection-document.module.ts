@@ -39,11 +39,11 @@ const modules = [
   IconFolderOpenArrowModule,
   IconFolderPlusModule,
   IconMetadataModule,
-  IconTwoFoldersModule
+  IconTwoFoldersModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionDocumentModule {}

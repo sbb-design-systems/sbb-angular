@@ -9,6 +9,7 @@ import { ContextmenuExamplesModule } from './contextmenu-examples/contextmenu-ex
 import { DatepickerExamplesModule } from './datepicker-examples/datepicker-examples.module';
 import { DialogExamplesModule } from './dialog-examples/dialog-examples.module';
 import { FileSelectorExamplesModule } from './file-selector-examples/file-selector-examples.module';
+import { LoadingExamplesModule } from './loading-examples/loading-examples.module';
 import { NotificationExamplesModule } from './notification-examples/notification-examples.module';
 import { PaginationExamplesModule } from './pagination-examples/pagination-examples.module';
 import { ProcessflowExamplesModule } from './processflow-examples/processflow-examples.module';
@@ -41,11 +42,12 @@ const EXAMPLES = [
   UsermenuExamplesModule,
   FileSelectorExamplesModule,
   ButtonExamplesModule,
-  TextexpandExamplesModule
+  TextexpandExamplesModule,
+  LoadingExamplesModule,
 ];
 
 @NgModule({
   imports: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class BusinessExamplesModule {}

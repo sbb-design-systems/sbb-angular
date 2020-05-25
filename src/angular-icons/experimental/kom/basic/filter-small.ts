@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 @Component({
   selector: 'svg[sbbIconFilterSmall]',
-  template: `
-    <svg:path fill="none" stroke="#000" d="M19.5 5.5l-6 7v7h-3v-7l-6-7z" />
-  `,
+  template: ` <svg:path fill="none" stroke="#000" d="M19.5 5.5l-6 7v7h-3v-7l-6-7z" /> `,
   styles: [
     `
       :host-context(.sbb-icon-fixed-size) {
@@ -19,32 +17,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-basic',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconFilterSmall {}
 
 @Component({
   selector: 'sbb-icon-filter-small',
-  template: `
-    <svg sbbIconFilterSmall></svg>
-  `,
+  template: ` <svg sbbIconFilterSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconFilterSmall {}
 
 @NgModule({
   declarations: [SvgIconFilterSmall, IconFilterSmall],
-  exports: [SvgIconFilterSmall, IconFilterSmall]
+  exports: [SvgIconFilterSmall, IconFilterSmall],
 })
 export class IconFilterSmallModule {}

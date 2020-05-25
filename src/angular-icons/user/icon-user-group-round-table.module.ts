@@ -36,7 +36,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconUserGroupRoundTableComponent extends IconBase {
   constructor() {
@@ -47,6 +47,6 @@ export class IconUserGroupRoundTableComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconUserGroupRoundTableComponent],
-  exports: [IconUserGroupRoundTableComponent]
+  exports: [IconUserGroupRoundTableComponent],
 })
 export class IconUserGroupRoundTableModule {}

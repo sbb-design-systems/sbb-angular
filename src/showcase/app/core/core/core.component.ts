@@ -7,14 +7,14 @@ import { ExampleProvider } from '../../shared/example-provider';
   selector: 'sbb-core',
   templateUrl: './core.component.html',
   styleUrls: ['./core.component.css'],
-  providers: [{ provide: ExampleProvider, useExisting: CoreComponent }]
+  providers: [{ provide: ExampleProvider, useExisting: CoreComponent }],
 })
 export class CoreComponent implements ExampleProvider {
   modules = {
     breakpoints: 'Breakpoints',
     datetime: 'Datetime',
     oauth: 'OAuth',
-    scrolling: 'Scrolling'
+    scrolling: 'Scrolling',
   };
 
   resolveExample<TComponent = any>(

@@ -8,7 +8,7 @@ import { Schema } from './schema';
 import {
   BROWSER_ANIMATIONS_MODULE_NAME,
   NOOP_ANIMATIONS_MODULE_NAME,
-  TYPOGRAPHY_CSS_PATH
+  TYPOGRAPHY_CSS_PATH,
 } from './setup-project';
 
 /** Path to the schematic collection that includes the migrations. */
@@ -18,7 +18,7 @@ export const collection = require.resolve('../collection.json');
 const workspaceOptions: WorkspaceOptions = {
   name: 'workspace',
   newProjectRoot: 'projects',
-  version: '9.0.0'
+  version: '9.0.0',
 };
 
 const appOptions: ApplicationOptions = {
@@ -28,7 +28,7 @@ const appOptions: ApplicationOptions = {
   routing: false,
   skipPackageJson: false,
   skipTests: false,
-  style: Style.Css
+  style: Style.Css,
 };
 
 describe('ngAdd', () => {
@@ -52,20 +52,24 @@ describe('ngAdd', () => {
       '0.0.0'
     );
 
-    expect(runner.tasks.some(task => task.name === 'run-schematic')).toBe(
+    expect(runner.tasks.some((task) => task.name === 'run-schematic')).toBe(
       false,
       'Expected the setup-project schematic not to be scheduled.'
     );
   });
 
   it('should add @sbb-esta/angular-core, @sbb-esta/angular-icons, @angular/cdk and @angular/animations to "package.json" file', async () => {
-    ['@sbb-esta/angular-core', '@sbb-esta/angular-icons', '@angular/cdk'].forEach(dependencyName =>
+    [
+      '@sbb-esta/angular-core',
+      '@sbb-esta/angular-icons',
+      '@angular/cdk',
+    ].forEach((dependencyName) =>
       expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBeUndefined()
     );
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
-    ['@sbb-esta/angular-core', '@sbb-esta/angular-icons'].forEach(dependencyName =>
+    ['@sbb-esta/angular-core', '@sbb-esta/angular-icons'].forEach((dependencyName) =>
       expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBe(
         `~0.0.0-PLACEHOLDER`
       )
@@ -77,8 +81,8 @@ describe('ngAdd', () => {
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
-    expect(runner.tasks.some(task => task.name === 'node-package')).toBe(true);
-    expect(runner.tasks.some(task => task.name === 'run-schematic')).toBe(
+    expect(runner.tasks.some((task) => task.name === 'node-package')).toBe(true);
+    expect(runner.tasks.some((task) => task.name === 'run-schematic')).toBe(
       true,
       'Expected the setup-project schematic to be scheduled.'
     );
@@ -99,8 +103,8 @@ describe('ngAdd', () => {
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
-    expect(runner.tasks.some(task => task.name === 'node-package')).toBe(true);
-    expect(runner.tasks.some(task => task.name === 'run-schematic')).toBe(
+    expect(runner.tasks.some((task) => task.name === 'node-package')).toBe(true);
+    expect(runner.tasks.some((task) => task.name === 'run-schematic')).toBe(
       true,
       'Expected the setup-project schematic to be scheduled.'
     );

@@ -7,6 +7,6 @@ const modules = [IconBuildingTreeModule, IconCityModule];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionBuildingModule {}

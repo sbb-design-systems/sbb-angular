@@ -30,9 +30,9 @@ export class AuthModule {
           provide: APP_INITIALIZER,
           useFactory: authInit,
           multi: true,
-          deps: [KEYCLOAK_OPTIONS, KEYCLOAK_CONFIG, AuthService]
-        }
-      ]
+          deps: [KEYCLOAK_OPTIONS, KEYCLOAK_CONFIG, AuthService],
+        },
+      ],
     };
   }
 }

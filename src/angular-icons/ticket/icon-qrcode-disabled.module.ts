@@ -40,7 +40,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconQrcodeDisabledComponent extends IconBase {
   constructor() {
@@ -51,6 +51,6 @@ export class IconQrcodeDisabledComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconQrcodeDisabledComponent],
-  exports: [IconQrcodeDisabledComponent]
+  exports: [IconQrcodeDisabledComponent],
 })
 export class IconQrcodeDisabledModule {}

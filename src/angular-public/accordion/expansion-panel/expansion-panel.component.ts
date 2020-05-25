@@ -23,7 +23,7 @@ import {
   SkipSelf,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, first, startWith } from 'rxjs/operators';
@@ -58,9 +58,9 @@ let uniqueId = 0;
   providers: [
     {
       provide: SBB_ACCORDION,
-      useValue: undefined
-    }
-  ]
+      useValue: undefined,
+    },
+  ],
 })
 export class ExpansionPanelComponent extends CdkAccordionItem
   implements AfterContentInit, OnChanges, OnDestroy {

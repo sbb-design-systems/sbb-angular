@@ -1,7 +1,7 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-module.exports = function(packageName) {
-  return function(config) {
+module.exports = function (packageName) {
+  return function (config) {
     const dist = require('path').join(__dirname, `../coverage/sbb-esta/${packageName}`);
     config.set({
       basePath: '',
@@ -14,30 +14,30 @@ module.exports = function(packageName) {
         require('karma-jasmine-html-reporter'),
         require('karma-sonarqube-reporter'),
         require('karma-coverage-istanbul-reporter'),
-        require('@angular-devkit/build-angular/plugins/karma')
+        require('@angular-devkit/build-angular/plugins/karma'),
       ],
       client: {
         clearContext: false, // leave Jasmine Spec Runner output visible in browser
         jasmine: {
-          timeout: 100000
-        }
+          timeout: 100000,
+        },
       },
       browserStack: {
         project: `@sbb-esta/${packageName} Unit Tests`,
         startTunnel: true,
         retryLimit: 3,
         timeout: 1800,
-        video: false
+        video: false,
       },
       sonarqubeReporter: {
         basePath: `projects/sbb-esta/${packageName}`,
         outputFolder: dist,
-        reportName: () => 'sonarqube.xml'
+        reportName: () => 'sonarqube.xml',
       },
       coverageIstanbulReporter: {
         dir: dist,
         reports: ['html', 'lcovonly', 'cobertura'],
-        fixWebpackSourcePaths: true
+        fixWebpackSourcePaths: true,
       },
       reporters: ['progress', 'kjhtml', 'sonarqube'],
       port: 9876,
@@ -50,15 +50,15 @@ module.exports = function(packageName) {
       // Try Websocket for a faster transmission first. Fallback to polling if necessary.
       transports: ['websocket', 'polling'],
       browserNoActivityTimeout: 300000,
-      browserDisconnectTolerance: 1
+      browserDisconnectTolerance: 1,
     });
 
     if (process.env.GITHUB_WORKSPACE) {
       config.reporters = config.reporters
-        .filter(r => r !== 'progress' && r !== 'kjhtml')
+        .filter((r) => r !== 'progress' && r !== 'kjhtml')
         .concat('dots');
       config.coverageIstanbulReporter.reports = config.coverageIstanbulReporter.reports.filter(
-        r => r !== 'html'
+        (r) => r !== 'html'
       );
 
       // This defines how often a given browser should be launched in the same GitHub
@@ -72,7 +72,7 @@ module.exports = function(packageName) {
         config.plugins.push(require('karma-parallel'));
         config.parallelOptions = {
           executors: parallelBrowserInstances,
-          shardStrategy: 'round-robin'
+          shardStrategy: 'round-robin',
         };
       }
 

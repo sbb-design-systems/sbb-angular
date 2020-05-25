@@ -21,6 +21,7 @@ ng_ts_library(
         "//src/showcase/app/business/business-examples/datepicker-examples",
         "//src/showcase/app/business/business-examples/dialog-examples",
         "//src/showcase/app/business/business-examples/file-selector-examples",
+        "//src/showcase/app/business/business-examples/loading-examples",
         "//src/showcase/app/business/business-examples/notification-examples",
         "//src/showcase/app/business/business-examples/pagination-examples",
         "//src/showcase/app/business/business-examples/processflow-examples",

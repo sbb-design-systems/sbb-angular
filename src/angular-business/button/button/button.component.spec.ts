@@ -12,7 +12,7 @@ import { ButtonComponent } from './button.component';
     <button sbbButton [mode]="mode" [disabled]="disabled" (click)="testClick()">
       Bezeichnung
     </button>
-  `
+  `,
 })
 export class ButtonTestComponent {
   mode: string;
@@ -28,7 +28,7 @@ export class ButtonTestComponent {
     <button sbbButton mode="icon" [disabled]="disabled" (click)="testClick()">
       <sbb-icon-arrow-right size="fixed"></sbb-icon-arrow-right>
     </button>
-  `
+  `,
 })
 export class IconButtonTestComponent {
   mode: string;
@@ -44,7 +44,7 @@ describe('ButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IconArrowRightModule],
-      declarations: [ButtonComponent, ButtonTestComponent, IconButtonTestComponent]
+      declarations: [ButtonComponent, ButtonTestComponent, IconButtonTestComponent],
     }).compileComponents();
   }));
 

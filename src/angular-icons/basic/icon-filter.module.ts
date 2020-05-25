@@ -28,7 +28,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconFilterComponent extends IconBase {
   constructor() {
@@ -39,6 +39,6 @@ export class IconFilterComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconFilterComponent],
-  exports: [IconFilterComponent]
+  exports: [IconFilterComponent],
 })
 export class IconFilterModule {}

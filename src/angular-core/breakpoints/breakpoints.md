@@ -11,6 +11,6 @@ export const Breakpoints = {
   Desktop: '(min-width: 1025px) and (max-width: 1440.99px)',
   DesktopLargePlus: '(min-width: 1441px) and (max-width: 2560.99px)',
   Desktop4k: '(min-width: 2561px) and (max-width: 3840.99px)',
-  Desktop5k: '(min-width: 3841px)'
+  Desktop5k: '(min-width: 3841px)',
 };
 ```

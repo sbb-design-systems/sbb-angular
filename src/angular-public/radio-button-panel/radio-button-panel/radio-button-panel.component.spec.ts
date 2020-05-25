@@ -21,7 +21,7 @@ import { RadioButtonPanelComponent } from './radio-button-panel.component';
         Test option selection 2
       </sbb-radio-button-panel>
     </sbb-radio-group>
-  `
+  `,
 })
 class ModelOptionSelectionTestComponent {
   testValue = '2';
@@ -35,7 +35,7 @@ describe('RadioButtonPanelComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, RadioButtonPanelModule],
-      declarations: [ModelOptionSelectionTestComponent]
+      declarations: [ModelOptionSelectionTestComponent],
     }).compileComponents();
   }));
 
@@ -61,7 +61,7 @@ describe('RadioButtonPanelComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, RadioButtonPanelModule, ɵRadioButtonModule],
-      declarations: [ModelOptionSelectionTestComponent]
+      declarations: [ModelOptionSelectionTestComponent],
     }).compileComponents();
   }));
 
@@ -93,13 +93,13 @@ describe('RadioButtonPanelComponent using mock component', () => {
     label1.nativeElement.click();
     modelComponentFixture.detectChanges();
 
-    let checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
+    let checkedComponents = modelComponent.optionSelections.filter((o) => o.checked === true);
     expect(checkedComponents.length).toBe(1);
 
     label2.nativeElement.click();
     modelComponentFixture.detectChanges();
 
-    checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
+    checkedComponents = modelComponent.optionSelections.filter((o) => o.checked === true);
     expect(checkedComponents.length).toBe(1);
   });
 

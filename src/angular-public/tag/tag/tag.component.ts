@@ -15,7 +15,7 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base/checkbox';
@@ -37,11 +37,11 @@ export interface TagChange extends SbbCheckboxChange<TagComponent> {}
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TagComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnDestroy {
   /** @docs-private  */

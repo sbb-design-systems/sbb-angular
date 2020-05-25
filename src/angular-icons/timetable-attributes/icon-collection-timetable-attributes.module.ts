@@ -165,11 +165,11 @@ const modules = [
   IconSaYmModule,
   IconSaYtModule,
   IconSaZModule,
-  IconSaZmModule
+  IconSaZmModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionTimetableAttributesModule {}

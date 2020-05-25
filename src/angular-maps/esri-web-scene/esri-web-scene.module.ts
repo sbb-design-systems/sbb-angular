@@ -6,6 +6,6 @@ import { EsriWebSceneComponent } from './esri-web-scene/esri-web-scene.component
 @NgModule({
   declarations: [EsriWebSceneComponent],
   imports: [CommonModule],
-  exports: [EsriWebSceneComponent]
+  exports: [EsriWebSceneComponent],
 })
 export class EsriWebSceneModule {}

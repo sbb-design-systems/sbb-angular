@@ -36,7 +36,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconBulbOffComponent extends IconBase {
   constructor() {
@@ -47,6 +47,6 @@ export class IconBulbOffComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconBulbOffComponent],
-  exports: [IconBulbOffComponent]
+  exports: [IconBulbOffComponent],
 })
 export class IconBulbOffModule {}

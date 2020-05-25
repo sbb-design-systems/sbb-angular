@@ -15,7 +15,7 @@ const EXAMPLES = [
   ClosableNotificationExampleComponent,
   CustomIconNotificationExampleComponent,
   JumpmarkNotificationExampleComponent,
-  SimpleNotificationExampleComponent
+  SimpleNotificationExampleComponent,
 ];
 
 @NgModule({
@@ -26,9 +26,9 @@ const EXAMPLES = [
     FieldModule,
     NotificationModule,
     IconBulbOnModule,
-    IconClockModule
+    IconClockModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class NotificationExamplesModule {}

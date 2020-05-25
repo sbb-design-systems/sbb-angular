@@ -8,7 +8,7 @@ import {
   HostListener,
   Input,
   OnInit,
-  Optional
+  Optional,
 } from '@angular/core';
 
 import { LightboxRef } from './lightbox-ref';
@@ -22,7 +22,7 @@ let lightboxElementUid = 0;
  */
 @Directive({
   selector: `button[sbbLightboxClose]`,
-  exportAs: 'sbbLightboxClose'
+  exportAs: 'sbbLightboxClose',
 })
 export class LightboxCloseDirective implements OnInit {
   /** Screenreader label for the button. */
@@ -82,7 +82,7 @@ export class LightboxCloseDirective implements OnInit {
     </button>
   `,
   exportAs: 'sbbLightboxHeader',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LightboxHeaderComponent implements OnInit {
   /** Disables lightbox header when lightbox is closed.  */
@@ -124,7 +124,7 @@ export class LightboxHeaderComponent implements OnInit {
 }
 
 @Directive({
-  selector: `[sbbLightboxTitle]`
+  selector: `[sbbLightboxTitle]`,
 })
 export class LightboxTitleDirective implements OnInit {
   /** Identifier of lightbox title. */
@@ -164,7 +164,7 @@ export class LightboxTitleDirective implements OnInit {
 @Component({
   selector: `sbb-lightbox-content, [sbbLightboxContent]`,
   template: '<ng-content></ng-content>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LightboxContentComponent {
   /** Class attribute for lightbox content */
@@ -180,7 +180,7 @@ export class LightboxContentComponent {
 @Component({
   selector: `sbb-lightbox-footer, [sbbLightboxFooter]`,
   template: '<ng-content select="button"></ng-content>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LightboxFooterComponent implements OnInit {
   /** Class attribute for the footer.  */
@@ -243,5 +243,5 @@ function getClosestLightbox(element: ElementRef<HTMLElement>, openLightboxes: Li
     parent = parent.parentElement;
   }
 
-  return parent ? openLightboxes.find(lightbox => lightbox.id === parent!.id) : null;
+  return parent ? openLightboxes.find((lightbox) => lightbox.id === parent!.id) : null;
 }

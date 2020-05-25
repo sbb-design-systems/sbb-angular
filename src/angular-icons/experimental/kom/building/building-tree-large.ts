@@ -26,32 +26,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 48 48',
     class: 'sbb-icon sbb-icon-kom sbb-icon-building',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconBuildingTreeLarge {}
 
 @Component({
   selector: 'sbb-icon-building-tree-large',
-  template: `
-    <svg sbbIconBuildingTreeLarge></svg>
-  `,
+  template: ` <svg sbbIconBuildingTreeLarge></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconBuildingTreeLarge {}
 
 @NgModule({
   declarations: [SvgIconBuildingTreeLarge, IconBuildingTreeLarge],
-  exports: [SvgIconBuildingTreeLarge, IconBuildingTreeLarge]
+  exports: [SvgIconBuildingTreeLarge, IconBuildingTreeLarge],
 })
 export class IconBuildingTreeLargeModule {}

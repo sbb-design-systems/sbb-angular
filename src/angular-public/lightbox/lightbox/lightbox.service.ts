@@ -3,7 +3,7 @@ import {
   ComponentPortal,
   ComponentType,
   PortalInjector,
-  TemplatePortal
+  TemplatePortal,
 } from '@angular/cdk/portal';
 import { Location } from '@angular/common';
 import {
@@ -14,7 +14,7 @@ import {
   OnDestroy,
   Optional,
   SkipSelf,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
@@ -47,7 +47,7 @@ export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(
 export const LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
   provide: LIGHTBOX_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY
+  useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
 /**
@@ -157,7 +157,7 @@ export class Lightbox implements OnDestroy {
    * @returns Lightbox reference associated to the input id.
    */
   getLightboxById(id: string): LightboxRef<any> | undefined {
-    return this.openLightboxes.find(lightbox => lightbox.id === id);
+    return this.openLightboxes.find((lightbox) => lightbox.id === id);
   }
 
   ngOnDestroy() {
@@ -189,7 +189,7 @@ export class Lightbox implements OnDestroy {
       scrollStrategy: lightboxConfig.scrollStrategy || this._scrollStrategy(),
       panelClass: lightboxConfig.panelClass,
       width: lightboxConfig.width,
-      height: lightboxConfig.height
+      height: lightboxConfig.height,
     });
   }
 
@@ -246,7 +246,7 @@ export class Lightbox implements OnDestroy {
       lightboxContainer.attachTemplatePortal(
         new TemplatePortal<T>(componentOrTemplateRef, null!, <any>{
           $implicit: config.data,
-          lightboxRef
+          lightboxRef,
         })
       );
     } else {
@@ -282,7 +282,7 @@ export class Lightbox implements OnDestroy {
     const injectionTokens = new WeakMap<any, any>([
       [LightboxContainerComponent, lightboxContainer],
       [LIGHTBOX_DATA, config.data],
-      [LightboxRef, lightboxRef]
+      [LightboxRef, lightboxRef],
     ]);
 
     return new PortalInjector(userInjector || this._injector, injectionTokens);

@@ -14,8 +14,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     DropdownModule,
     LayoutModule,
     IconChevronRightModule,
-    IconChevronSmallDownModule
+    IconChevronSmallDownModule,
   ],
-  exports: [BreadcrumbsComponent, BreadcrumbComponent]
+  exports: [BreadcrumbsComponent, BreadcrumbComponent],
 })
 export class BreadcrumbModule {}

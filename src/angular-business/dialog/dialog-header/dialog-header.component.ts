@@ -8,7 +8,7 @@ import {
   ElementRef,
   HostBinding,
   OnInit,
-  Optional
+  Optional,
 } from '@angular/core';
 
 import { DialogHelperService } from '../dialog/dialog-helper.service';
@@ -33,7 +33,7 @@ import { Dialog } from '../dialog/dialog.service';
     </button>
   `,
   exportAs: 'sbbDialogHeader',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogHeaderComponent implements OnInit {
   /** Disables dialog header when dialog is closed.  */

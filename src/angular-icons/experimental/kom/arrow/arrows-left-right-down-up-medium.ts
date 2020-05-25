@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-arrow',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconArrowsLeftRightDownUpMedium {}
 
 @Component({
   selector: 'sbb-icon-arrows-left-right-down-up-medium',
-  template: `
-    <svg sbbIconArrowsLeftRightDownUpMedium></svg>
-  `,
+  template: ` <svg sbbIconArrowsLeftRightDownUpMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconArrowsLeftRightDownUpMedium {}
 
 @NgModule({
   declarations: [SvgIconArrowsLeftRightDownUpMedium, IconArrowsLeftRightDownUpMedium],
-  exports: [SvgIconArrowsLeftRightDownUpMedium, IconArrowsLeftRightDownUpMedium]
+  exports: [SvgIconArrowsLeftRightDownUpMedium, IconArrowsLeftRightDownUpMedium],
 })
 export class IconArrowsLeftRightDownUpMediumModule {}

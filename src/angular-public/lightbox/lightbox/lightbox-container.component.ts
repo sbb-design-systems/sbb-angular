@@ -4,7 +4,7 @@ import {
   BasePortalOutlet,
   CdkPortalOutlet,
   ComponentPortal,
-  TemplatePortal
+  TemplatePortal,
 } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -20,7 +20,7 @@ import {
   Inject,
   Optional,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { LIGHTBOX_ANIMATIONS } from './lightbox-animations';
@@ -46,7 +46,7 @@ export function throwLightboxContentAlreadyAttachedError() {
   encapsulation: ViewEncapsulation.None,
   // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
   changeDetection: ChangeDetectionStrategy.Default,
-  animations: [LIGHTBOX_ANIMATIONS.slideLightbox]
+  animations: [LIGHTBOX_ANIMATIONS.slideLightbox],
 })
 export class LightboxContainerComponent extends BasePortalOutlet {
   /** The portal outlet inside of this container into which the lightbox content will be loaded. */

@@ -20,7 +20,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </svg>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconSaTgComponent extends IconBase {
   constructor() {
@@ -31,6 +31,6 @@ export class IconSaTgComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconSaTgComponent],
-  exports: [IconSaTgComponent]
+  exports: [IconSaTgComponent],
 })
 export class IconSaTgModule {}

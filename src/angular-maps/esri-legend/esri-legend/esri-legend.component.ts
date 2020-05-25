@@ -8,7 +8,7 @@ import { EsriTypesService } from '@sbb-esta/angular-maps/core';
   selector: 'sbb-esri-legend',
   templateUrl: './esri-legend.component.html',
   styleUrls: ['./esri-legend.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EsriLegendComponent implements OnInit {
   /** References the map or scene to load the legend for.*/
@@ -32,7 +32,7 @@ export class EsriLegendComponent implements OnInit {
     this.legend = new this._esri.Legend({
       view: this.mapView,
       style: this.sbblegendStyle,
-      container: this._hostReference.nativeElement
+      container: this._hostReference.nativeElement,
     });
   }
 }

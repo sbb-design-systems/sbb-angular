@@ -5,7 +5,7 @@ import {
   DateAdapter,
   DATE_PIPE_DATE_FORMATS,
   NativeDateAdapter,
-  SBB_DATE_FORMATS
+  SBB_DATE_FORMATS,
 } from '@sbb-esta/angular-core/datetime';
 
 import { CalendarBodyComponent, CalendarCell } from './calendar-body.component';
@@ -23,14 +23,14 @@ import { CalendarBodyComponent, CalendarCell } from './calendar-body.component';
       [activeCell]="10"
       (selectedValueChange)="onSelect($event)"
     ></table>
-  `
+  `,
 })
 class StandardCalendarBodyComponent {
   label = 'Jan 2017';
   rows = [
     [1, 2, 3, 4, 5, 6, 7],
-    [8, 9, 10, 11, 12, 13, 14]
-  ].map(r => r.map(createCell));
+    [8, 9, 10, 11, 12, 13, 14],
+  ].map((r) => r.map(createCell));
   todayValue = 3;
   selectedValue = 4;
   labelMinRequiredCells = 3;
@@ -49,11 +49,11 @@ class StandardCalendarBodyComponent {
       [allowDisabledSelection]="allowDisabledSelection"
       (selectedValueChange)="selected = $event"
     ></table>
-  `
+  `,
 })
 class CalendarBodyWithDisabledCellsComponent {
-  rows = [[1, 2, 3, 4]].map(r =>
-    r.map(d => {
+  rows = [[1, 2, 3, 4]].map((r) =>
+    r.map((d) => {
       const cell = createCell(d);
       cell.enabled = d % 2 === 0;
       return cell;
@@ -75,12 +75,12 @@ describe('SbbCalendarBody', () => {
 
         // Test components.
         StandardCalendarBodyComponent,
-        CalendarBodyWithDisabledCellsComponent
+        CalendarBodyWithDisabledCellsComponent,
       ],
       providers: [
         { provide: DateAdapter, useClass: NativeDateAdapter },
-        { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS }
-      ]
+        { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS },
+      ],
     }).compileComponents();
   }));
 
@@ -136,8 +136,8 @@ describe('SbbCalendarBody', () => {
     });
 
     it('should set aria-selected correctly', () => {
-      const selectedCells = cellEls.filter(c => c.getAttribute('aria-selected') === 'true');
-      const deselectedCells = cellEls.filter(c => c.getAttribute('aria-selected') === 'false');
+      const selectedCells = cellEls.filter((c) => c.getAttribute('aria-selected') === 'true');
+      const deselectedCells = cellEls.filter((c) => c.getAttribute('aria-selected') === 'false');
 
       expect(selectedCells.length).toBe(1, 'Expected one cell to be marked as selected.');
       expect(deselectedCells.length).toBe(

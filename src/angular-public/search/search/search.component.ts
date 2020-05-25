@@ -7,7 +7,7 @@ import {
   OverlayConfig,
   OverlayRef,
   PositionStrategy,
-  ScrollStrategy
+  ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewportRuler } from '@angular/cdk/scrolling';
@@ -32,7 +32,7 @@ import {
   TemplateRef,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
@@ -42,16 +42,26 @@ import {
   AUTOCOMPLETE_OPTION_HEIGHT,
   AUTOCOMPLETE_PANEL_HEIGHT,
   getSbbAutocompleteMissingPanelError,
-  SBB_AUTOCOMPLETE_SCROLL_STRATEGY
+  SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
 } from '@sbb-esta/angular-public/autocomplete';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
   OptionComponent,
-  SBBOptionSelectionChange
+  SBBOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
-import { defer, fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
-import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  combineLatest,
+  defer,
+  fromEvent,
+  merge,
+  Observable,
+  of,
+  Subject,
+  Subscription,
+} from 'rxjs';
+import { delay, filter, first, map, startWith, switchMap, tap } from 'rxjs/operators';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_SEARCH_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -67,7 +77,7 @@ export function SBB_SEARCH_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => Scro
 export const SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_SEARCH_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_SEARCH_SCROLL_STRATEGY_FACTORY
+  useFactory: SBB_SEARCH_SCROLL_STRATEGY_FACTORY,
 };
 
 // TODO: check if necessary
@@ -94,9 +104,9 @@ const ANIMATION_DURATION = 300;
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SearchComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
   /** @docs-private */
@@ -155,6 +165,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   /** Subscription to viewport size changes. */
   private _viewportSubscription = Subscription.EMPTY;
   private _positionSubscription = Subscription.EMPTY;
+
+  /** Subscription to highlight options */
+  private _highlightSubscription = Subscription.EMPTY;
+
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused,
    * closed autocomplete from being reopened if the user switches to another browser tab and then
@@ -166,6 +180,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   private readonly _closeKeyEventStream = new Subject<void>();
 
   private _overlayAttached = false;
+
+  private _inputValue = new BehaviorSubject('');
 
   /**
    * Used to switch from trigger to search box when in 'header' mode
@@ -189,9 +205,33 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   get autocomplete(): AutocompleteComponent {
     return this._autocomplete;
   }
-  set autocomplete(value: AutocompleteComponent) {
-    this._autocomplete = value;
+  set autocomplete(autocomplete: AutocompleteComponent) {
+    this._autocomplete = autocomplete;
     this._autocompleteDisabled = false;
+
+    this._highlightSubscription.unsubscribe();
+    if (!autocomplete) {
+      return;
+    }
+
+    const onReady = autocomplete.options ? of(null) : this._zone.onStable.asObservable();
+    this._highlightSubscription = onReady
+      .pipe(
+        switchMap(() =>
+          combineLatest([
+            this._inputValue,
+            (autocomplete.options.changes as Observable<OptionComponent[]>).pipe(
+              startWith(autocomplete.options.toArray())
+            ),
+          ])
+        ),
+        filter((value) => !!value[1] && !!value[1].length)
+      )
+      .subscribe(([inputValue, options]) => {
+        options.forEach((option) =>
+          option._highlight(inputValue, this.autocomplete.localeNormalizer)
+        );
+      });
   }
   private _autocomplete: AutocompleteComponent;
 
@@ -242,7 +282,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
     if (this.autocomplete && this.autocomplete.options) {
       return merge<SBBOptionSelectionChange>(
-        ...this.autocomplete.options.map(option => option.onSelectionChange)
+        ...this.autocomplete.options.map((option) => option.onSelectionChange)
       );
     }
 
@@ -370,6 +410,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
     this._viewportSubscription.unsubscribe();
     this._positionSubscription.unsubscribe();
+    this._highlightSubscription.unsubscribe();
     this._componentDestroyed = true;
     this._destroyPanel();
     this._closeKeyEventStream.complete();
@@ -429,7 +470,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
         : of()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map(event => (event instanceof SBBOptionSelectionChange ? event : null))
+      map((event) => (event instanceof SBBOptionSelectionChange ? event : null))
     );
   }
 
@@ -457,7 +498,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       fromEvent<MouseEvent>(this._document, 'click'),
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
-      filter(event => {
+      filter((event) => {
         const clickTarget = event.target as HTMLElement;
 
         return (
@@ -523,7 +564,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     } else if (keyCode === ENTER) {
       this.emitSearch();
     }
-    this.highlightOptionsByInput(this.input.nativeElement.value);
   }
 
   /**
@@ -547,21 +587,11 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this.autocomplete.setScrollTop(newScrollPosition);
   }
 
-  /** @docs-private */
-  highlightOptionsByInput(value: string) {
-    if (this.autocompleteDisabled) {
-      return;
-    }
-
-    this._zone.onStable
-      .asObservable()
-      .pipe()
-      .subscribe(() => {
-        this.autocomplete.options
-          .filter(option => !option.group)
-          .forEach(option => option._highlight(value));
-      });
-  }
+  /**
+   * @docs-private
+   * @deprecated don't use it
+   */
+  highlightOptionsByInput(value: string) {}
 
   /** @docs-private */
   emitSearch() {
@@ -586,7 +616,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     if (this._previousValue !== value && document.activeElement === event.target) {
       this._previousValue = value;
       this.onChange(value);
-      this.highlightOptionsByInput(target.value);
+      this._inputValue.next(target.value);
 
       if (this._canOpen()) {
         this.openPanel();
@@ -640,7 +670,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
           first()
         )
         // set the value, close the panel, and complete.
-        .subscribe(event => {
+        .subscribe((event) => {
           this._setValueAndClose(event);
         })
     );
@@ -670,6 +700,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     if (this.input) {
       this.input.nativeElement.value = inputValue;
       this._previousValue = inputValue;
+      this._inputValue.next(inputValue);
     }
   }
 
@@ -694,7 +725,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * Clear any previous selected option and emit a selection change event for this option
    */
   private _clearPreviousSelectedOption(skip: OptionComponent) {
-    this.autocomplete.options.forEach(option => {
+    this.autocomplete.options.forEach((option) => {
       // tslint:disable-next-line:triple-equals
       if (option != skip && option.selected) {
         option.deselect();
@@ -711,28 +742,30 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       if (this._positionStrategy) {
-        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(position => {
-          if (this.autocomplete.panel) {
-            if (position.connectionPair.originY === 'top') {
-              this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
-              this._getConnectedElement().nativeElement.classList.add(
-                'sbb-autocomplete-input-above'
-              );
-            } else {
-              this.autocomplete.panel.nativeElement.classList.remove(
-                'sbb-autocomplete-panel-above'
-              );
-              this._getConnectedElement().nativeElement.classList.remove(
-                'sbb-autocomplete-input-above'
-              );
+        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(
+          (position) => {
+            if (this.autocomplete.panel) {
+              if (position.connectionPair.originY === 'top') {
+                this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
+                this._getConnectedElement().nativeElement.classList.add(
+                  'sbb-autocomplete-input-above'
+                );
+              } else {
+                this.autocomplete.panel.nativeElement.classList.remove(
+                  'sbb-autocomplete-panel-above'
+                );
+                this._getConnectedElement().nativeElement.classList.remove(
+                  'sbb-autocomplete-input-above'
+                );
+              }
             }
           }
-        });
+        );
       }
 
       // Use the `keydownEvents` in order to take advantage of
       // the overlay event targeting provided by the CDK overlay.
-      this._overlayRef.keydownEvents().subscribe(event => {
+      this._overlayRef.keydownEvents().subscribe((event) => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
         if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
@@ -773,7 +806,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   private _openAnimation(element: HTMLElement) {
     const myAnimation = this._animationBuilder.build([
       style({ width: 0, opacity: 0 }),
-      animate(ANIMATION_DURATION, style({ width: this._getPanelWidth(), opacity: 1 }))
+      animate(ANIMATION_DURATION, style({ width: this._getPanelWidth(), opacity: 1 })),
     ]);
     const player = myAnimation.create(element);
     player.play();
@@ -783,7 +816,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   private _closeAnimation(element: HTMLElement) {
     const myAnimation = this._animationBuilder.build([
       style({ width: this._getPanelWidth(), opacity: 1 }),
-      animate(ANIMATION_DURATION, style({ width: 0, opacity: 0 }))
+      animate(ANIMATION_DURATION, style({ width: 0, opacity: 0 })),
     ]);
     const player = myAnimation.create(element);
     player.play();
@@ -796,7 +829,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       scrollStrategy: this._scrollStrategy(),
       width: this._getPanelWidth(),
       panelClass: ['sbb-search-panel', 'sbb-overlay-panel'],
-      minHeight: 30
+      minHeight: 30,
     });
   }
 
@@ -811,14 +844,14 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
           originX: 'start',
           originY: 'bottom',
           overlayX: 'start',
-          overlayY: 'top'
+          overlayY: 'top',
         },
         {
           originX: 'start',
           originY: 'top',
           overlayX: 'start',
-          overlayY: 'bottom'
-        }
+          overlayY: 'bottom',
+        },
       ]);
 
     return this._positionStrategy;

@@ -11,7 +11,7 @@ import {
   DropdownItemDirective,
   DropdownOriginDirective,
   DropdownTriggerDirective,
-  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER
+  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER,
 } from '../public-api';
 
 import { DropdownComponent } from './dropdown.component';
@@ -39,7 +39,7 @@ import { DropdownComponent } from './dropdown.component';
         Abmeldung
       </button>
     </sbb-dropdown>
-  `
+  `,
 })
 export class DropdownTestComponent {
   @ViewChildren(DropdownTriggerDirective)
@@ -51,13 +51,13 @@ export class DropdownTestComponent {
   links: Array<any> = [
     { page: 1, text: 'Test 1' },
     { page: 2, text: 'Test 2' },
-    { page: 3, text: 'Test 3' }
+    { page: 3, text: 'Test 3' },
   ];
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
       queryParams: { page: page },
-      routerLink: ['.']
+      routerLink: ['.'],
     };
   }
 
@@ -68,7 +68,7 @@ export class DropdownTestComponent {
   addNewLink() {
     this.links.push({
       page: this.links.length + 1,
-      text: 'Test ' + (this.links.length + 1)
+      text: 'Test ' + (this.links.length + 1),
     });
   }
 }
@@ -83,10 +83,10 @@ describe('DropdownComponent', () => {
         DropdownComponent,
         DropdownItemDirective,
         DropdownOriginDirective,
-        DropdownTriggerDirective
+        DropdownTriggerDirective,
       ],
       imports: [CommonModule],
-      providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER]
+      providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER],
     }).compileComponents();
   }));
 
@@ -110,7 +110,7 @@ describe('DropdownComponent test', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DropdownTestComponent],
-      imports: [DropdownModule, RouterTestingModule]
+      imports: [DropdownModule, RouterTestingModule],
     }).compileComponents();
   }));
 

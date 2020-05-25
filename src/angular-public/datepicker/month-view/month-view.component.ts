@@ -7,7 +7,7 @@ import {
   PAGE_DOWN,
   PAGE_UP,
   RIGHT_ARROW,
-  UP_ARROW
+  UP_ARROW,
 } from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
@@ -21,7 +21,7 @@ import {
   Optional,
   Output,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 
@@ -38,7 +38,7 @@ const DAYS_PER_WEEK = 7;
   templateUrl: './month-view.component.html',
   exportAs: 'sbbMonthView',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MonthViewComponent<D> implements AfterContentInit {
   /**

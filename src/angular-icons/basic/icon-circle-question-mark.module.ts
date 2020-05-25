@@ -46,7 +46,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </ng-container>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconCircleQuestionMarkComponent extends IconBase {
   constructor() {
@@ -57,6 +57,6 @@ export class IconCircleQuestionMarkComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconCircleQuestionMarkComponent],
-  exports: [IconCircleQuestionMarkComponent]
+  exports: [IconCircleQuestionMarkComponent],
 })
 export class IconCircleQuestionMarkModule {}

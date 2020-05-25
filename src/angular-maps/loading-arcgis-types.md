@@ -55,7 +55,7 @@ import { Injectable } from '@angular/core';
 import { EsriLoaderService } from '@sbb-esta/angular-maps';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EsriTypesService {
   private _point: __esri.PointConstructor;
@@ -97,7 +97,7 @@ import { EsriTypesService } from './path/to/esri-types.service';
 @Component({
   selector: 'app-my-sample',
   templateUrl: './my-sample.component.html',
-  styleUrls: ['./my-sample.component.scss']
+  styleUrls: ['./my-sample.component.scss'],
 })
 export class MySampleComponent implements OnInit {
   point: __esri.Point;

@@ -7,7 +7,7 @@ import {
   Rule,
   template,
   Tree,
-  url
+  url,
 } from '@angular-devkit/schematics';
 
 import { SvgSource } from './svg-source';
@@ -25,12 +25,12 @@ export function generateIconModules(): Rule {
         apply(url('./files/root'), [
           template({
             ...strings,
-            icons
+            icons,
           }),
-          move(dist.path)
+          move(dist.path),
         ])
       ),
-      collection.apply(dist)
+      collection.apply(dist),
     ]);
   };
 }

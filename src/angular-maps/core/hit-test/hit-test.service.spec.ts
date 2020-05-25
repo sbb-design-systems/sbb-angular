@@ -7,7 +7,7 @@ import { HitTestService } from './hit-test.service';
 describe('HitTestService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [HitTestService, EsriTypesService]
+      providers: [HitTestService, EsriTypesService],
     })
   );
 

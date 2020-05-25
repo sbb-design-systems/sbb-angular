@@ -6,14 +6,14 @@ import {
   Input,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 
 export enum NotificationType {
   SUCCESS = 'success',
   ERROR = 'error',
-  INFO = 'info'
+  INFO = 'info',
 }
 
 export interface JumpMark {
@@ -29,7 +29,7 @@ export interface JumpMark {
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationComponent {
   /** @docs-private */

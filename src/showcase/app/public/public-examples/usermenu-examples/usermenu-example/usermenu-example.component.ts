@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-usermenu-example',
   templateUrl: './usermenu-example.component.html',
-  styleUrls: ['./usermenu-example.component.css']
+  styleUrls: ['./usermenu-example.component.css'],
 })
 export class UsermenuExampleComponent {
   userName1 = 'john_64';
@@ -12,29 +12,29 @@ export class UsermenuExampleComponent {
 
   user1 = {
     userName: '',
-    displayName: 'John Scott'
+    displayName: 'John Scott',
   };
 
   user2 = {
     userName: '',
-    displayName: 'Max Muster'
+    displayName: 'Max Muster',
   };
 
   user3 = {
     userName: '',
-    displayName: 'Walter Scotti'
+    displayName: 'Walter Scotti',
   };
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
     { page: 2, text: 'Eintrag 2' },
-    { page: 3, text: 'Eintrag 3' }
+    { page: 3, text: 'Eintrag 3' },
   ];
 
   linkGenerator(page: string) {
     return {
       queryParams: { page: page },
-      routerLink: ['.']
+      routerLink: ['.'],
     };
   }
 

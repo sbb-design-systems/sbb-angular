@@ -6,7 +6,7 @@ import {
   HostBinding,
   Input,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { DropdownComponent } from '@sbb-esta/angular-public/dropdown';
 
@@ -17,7 +17,7 @@ let counter = 0;
   templateUrl: './usermenu.component.html',
   styleUrls: ['./usermenu.component.css'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserMenuComponent {
   /**

@@ -11,7 +11,7 @@ export interface DialogData {
  */
 @Component({
   selector: 'sbb-dialog-example-content-1',
-  templateUrl: 'dialog-example-content-1.component.html'
+  templateUrl: 'dialog-example-content-1.component.html',
 })
 export class DialogExampleExampleContentComponent {
   constructor(
@@ -40,7 +40,7 @@ export class DialogExampleExampleContentComponent {
         You chose: <i>{{ animal }}</i>
       </li>
     </ol>
-  `
+  `,
 })
 export class DialogExampleExampleComponent {
   animal: string;
@@ -50,10 +50,10 @@ export class DialogExampleExampleComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.openDialog(DialogExampleExampleContentComponent, {
-      data: { name: this.name, animal: this.animal }
+      data: { name: this.name, animal: this.animal },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('Dialog sharing data was closed');
       this.animal = result;
     });
@@ -65,7 +65,7 @@ export class DialogExampleExampleComponent {
  */
 @Component({
   selector: 'sbb-dialog-example-content-2',
-  templateUrl: 'dialog-example-content-2.component.html'
+  templateUrl: 'dialog-example-content-2.component.html',
 })
 export class DialogExampleExample2ContentComponent {}
 
@@ -80,7 +80,7 @@ export class DialogExampleExample2ContentComponent {}
         Open Dialog from Component
       </button>
     </div>
-  `
+  `,
 })
 export class DialogExampleExample2Component {
   constructor(public dialog: Dialog) {}
@@ -89,10 +89,10 @@ export class DialogExampleExample2Component {
     const dialogRef = this.dialog.openDialog(DialogExampleExample2ContentComponent, {
       width: '40rem',
       height: '40rem',
-      position: { top: '10px' }
+      position: { top: '10px' },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -103,7 +103,7 @@ export class DialogExampleExample2Component {
  */
 @Component({
   selector: 'sbb-dialog-example-example-3',
-  templateUrl: 'dialog-example-content-3.component.html'
+  templateUrl: 'dialog-example-content-3.component.html',
 })
 export class DialogExampleExample3Component {
   @ViewChild('sampleDialogTemplate', { static: true }) sampleDialogTemplate: TemplateRef<any>;
@@ -113,7 +113,7 @@ export class DialogExampleExample3Component {
   openDialog() {
     const dialogRef = this.dialog.openDialog(this.sampleDialogTemplate);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -123,6 +123,6 @@ export class DialogExampleExample3Component {
   selector: 'sbb-dialog-example',
   templateUrl: 'dialog-example.component.html',
   styleUrls: ['dialog-example.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class DialogExampleComponent {}

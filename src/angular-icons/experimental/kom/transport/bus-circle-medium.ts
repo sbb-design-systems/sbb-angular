@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-transport',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconBusCircleMedium {}
 
 @Component({
   selector: 'sbb-icon-bus-circle-medium',
-  template: `
-    <svg sbbIconBusCircleMedium></svg>
-  `,
+  template: ` <svg sbbIconBusCircleMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconBusCircleMedium {}
 
 @NgModule({
   declarations: [SvgIconBusCircleMedium, IconBusCircleMedium],
-  exports: [SvgIconBusCircleMedium, IconBusCircleMedium]
+  exports: [SvgIconBusCircleMedium, IconBusCircleMedium],
 })
 export class IconBusCircleMediumModule {}

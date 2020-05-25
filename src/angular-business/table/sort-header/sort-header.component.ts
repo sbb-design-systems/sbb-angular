@@ -10,7 +10,7 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { merge, Subscription } from 'rxjs';
 
@@ -69,8 +69,8 @@ interface SbbSortHeaderColumnDef {
     sbbSortAnimations.rightPointer,
     sbbSortAnimations.arrowOpacity,
     sbbSortAnimations.arrowPosition,
-    sbbSortAnimations.allowChildren
-  ]
+    sbbSortAnimations.allowChildren,
+  ],
 })
 export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   /** Overrides the disable clear value of the containing SbbSort for this SbbSortable. */
@@ -161,7 +161,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
     // Initialize the direction of the arrow and set the view state to be immediately that state.
     this._updateArrowDirection();
     this._setAnimationTransitionState({
-      toState: this._isSorted() ? 'active' : this._arrowDirection
+      toState: this._isSorted() ? 'active' : this._arrowDirection,
     });
 
     this._sort.register(this);

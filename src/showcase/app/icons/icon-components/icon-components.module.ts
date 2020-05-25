@@ -17,7 +17,7 @@ import { IconViewerComponent } from './icon-viewer/icon-viewer.component';
     PortalModule,
     SearchModule,
     IconCollectionModule,
-    IconComponentsRoutingModule
-  ]
+    IconComponentsRoutingModule,
+  ],
 })
 export class IconComponentsModule {}

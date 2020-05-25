@@ -18,7 +18,7 @@ import {
   OnDestroy,
   Output,
   QueryList,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { Observable, Subject, Subscription } from 'rxjs';
@@ -38,9 +38,9 @@ let nextId = 0;
     trigger('open', [
       state('closed', style({ transform: 'translateX(-100vw)' })),
       state('open-menu', style({ transform: 'translateX(0)' })),
-      transition('closed <=> open-menu', animate('0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)'))
-    ])
-  ]
+      transition('closed <=> open-menu', animate('0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)')),
+    ]),
+  ],
 })
 export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
   /** @docs-private */
@@ -135,9 +135,9 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
       .pipe(
         startWith(this._items.toArray()),
         takeUntil(this._destroyed),
-        map(i => !!i.length)
+        map((i) => !!i.length)
       )
-      .subscribe(s => (this.showPanel = s));
+      .subscribe((s) => (this.showPanel = s));
     this._keyManager = new FocusKeyManager(this._items).withWrap().withTypeAhead();
     this._tabSubscription = this._keyManager.tabOut.subscribe(() => this.closed.emit('tab'));
   }

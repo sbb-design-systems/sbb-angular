@@ -6,6 +6,6 @@ import { EsriBasemapGalleryComponent } from './esri-basemap-gallery/esri-basemap
 @NgModule({
   declarations: [EsriBasemapGalleryComponent],
   imports: [CommonModule],
-  exports: [EsriBasemapGalleryComponent]
+  exports: [EsriBasemapGalleryComponent],
 })
 export class EsriBasemapGalleryModule {}

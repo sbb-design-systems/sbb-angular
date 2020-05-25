@@ -7,6 +7,6 @@ import { RadioButtonPanelComponent } from './radio-button-panel/radio-button-pan
 @NgModule({
   imports: [CommonModule, ɵRadioButtonModule],
   declarations: [RadioButtonPanelComponent],
-  exports: [RadioButtonPanelComponent, ɵRadioButtonModule]
+  exports: [RadioButtonPanelComponent, ɵRadioButtonModule],
 })
 export class RadioButtonPanelModule {}

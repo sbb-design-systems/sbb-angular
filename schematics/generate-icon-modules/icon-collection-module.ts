@@ -7,7 +7,7 @@ import {
   move,
   Rule,
   template,
-  url
+  url,
 } from '@angular-devkit/schematics';
 
 import { IconModule } from './icon-module';
@@ -21,7 +21,7 @@ export class IconCollectionModule {
   get iconsRecursive(): IconModule[] {
     return [
       ...this.icons,
-      ...this.collections.reduce((current, next) => [...current, ...next.iconsRecursive], [])
+      ...this.collections.reduce((current, next) => [...current, ...next.iconsRecursive], []),
     ];
   }
 
@@ -36,13 +36,13 @@ export class IconCollectionModule {
         apply(url('./files/collection'), [
           template({
             ...strings,
-            ...this
+            ...this,
           }),
-          move(directory.path)
+          move(directory.path),
         ])
       ),
-      ...this.collections.map(c => c.apply(directory)),
-      ...this.icons.map(i => i.apply(directory))
+      ...this.collections.map((c) => c.apply(directory)),
+      ...this.icons.map((i) => i.apply(directory)),
     ]);
   }
 }

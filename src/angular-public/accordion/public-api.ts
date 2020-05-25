@@ -4,7 +4,7 @@ export {
   /**
    * @deprecated use AccordionDirective
    */
-  AccordionDirective as AccordionComponent
+  AccordionDirective as AccordionComponent,
 } from './accordion/accordion.directive';
 export * from './accordion/accordion-base';
 export * from './expansion-panel/expansion-panel.component';

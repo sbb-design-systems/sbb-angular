@@ -18,7 +18,7 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
     </svg>
   `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconYoutubeComponent extends IconBase {
   constructor() {
@@ -29,6 +29,6 @@ export class IconYoutubeComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconYoutubeComponent],
-  exports: [IconYoutubeComponent]
+  exports: [IconYoutubeComponent],
 })
 export class IconYoutubeModule {}

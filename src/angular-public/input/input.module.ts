@@ -6,6 +6,6 @@ import { InputDirective } from './input/input.directive';
 @NgModule({
   declarations: [InputDirective],
   imports: [CommonModule],
-  exports: [InputDirective]
+  exports: [InputDirective],
 })
 export class InputModule {}

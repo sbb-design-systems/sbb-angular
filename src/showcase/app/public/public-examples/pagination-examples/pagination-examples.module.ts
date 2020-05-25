@@ -19,9 +19,9 @@ const EXAMPLES = [PaginatorExampleComponent, NavigationExampleComponent];
     FieldModule,
     PaginationModule,
     ButtonModule,
-    CheckboxModule
+    CheckboxModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class PaginationExamplesModule {}

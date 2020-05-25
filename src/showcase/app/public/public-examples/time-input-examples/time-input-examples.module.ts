@@ -10,6 +10,6 @@ const EXAMPLES = [TimeInputExampleComponent];
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, TimeInputModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class TimeInputExamplesModule {}

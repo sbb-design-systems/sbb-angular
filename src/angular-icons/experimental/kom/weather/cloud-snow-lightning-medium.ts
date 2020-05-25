@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-weather',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconCloudSnowLightningMedium {}
 
 @Component({
   selector: 'sbb-icon-cloud-snow-lightning-medium',
-  template: `
-    <svg sbbIconCloudSnowLightningMedium></svg>
-  `,
+  template: ` <svg sbbIconCloudSnowLightningMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconCloudSnowLightningMedium {}
 
 @NgModule({
   declarations: [SvgIconCloudSnowLightningMedium, IconCloudSnowLightningMedium],
-  exports: [SvgIconCloudSnowLightningMedium, IconCloudSnowLightningMedium]
+  exports: [SvgIconCloudSnowLightningMedium, IconCloudSnowLightningMedium],
 })
 export class IconCloudSnowLightningMediumModule {}

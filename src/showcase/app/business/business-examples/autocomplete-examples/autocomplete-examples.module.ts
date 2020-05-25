@@ -4,21 +4,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 
+import { AutocompleteDisplayWithExampleComponent } from './autocomplete-display-with-example/autocomplete-display-with-example.component';
 import { AutocompleteFormsExampleComponent } from './autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from './autocomplete-hint-example/autocomplete-hint-example.component';
+import { AutocompleteLocaleNormalizerExampleComponent } from './autocomplete-locale-normalizer-example/autocomplete-locale-normalizer-example.component';
 import { AutocompleteOptionGroupExampleComponent } from './autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from './autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 
 const EXAMPLES = [
+  AutocompleteDisplayWithExampleComponent,
   AutocompleteFormsExampleComponent,
   AutocompleteHintExampleComponent,
   AutocompleteOptionGroupExampleComponent,
-  AutocompleteReactiveFormsExampleComponent
+  AutocompleteReactiveFormsExampleComponent,
+  AutocompleteLocaleNormalizerExampleComponent,
 ];
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, AutocompleteModule, FieldModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class AutocompleteExamplesModule {}

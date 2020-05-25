@@ -28,32 +28,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
     class: 'sbb-icon sbb-icon-kom sbb-icon-timetable',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconAvatarTrainStaffDisabledSmall {}
 
 @Component({
   selector: 'sbb-icon-avatar-train-staff-disabled-small',
-  template: `
-    <svg sbbIconAvatarTrainStaffDisabledSmall></svg>
-  `,
+  template: ` <svg sbbIconAvatarTrainStaffDisabledSmall></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconAvatarTrainStaffDisabledSmall {}
 
 @NgModule({
   declarations: [SvgIconAvatarTrainStaffDisabledSmall, IconAvatarTrainStaffDisabledSmall],
-  exports: [SvgIconAvatarTrainStaffDisabledSmall, IconAvatarTrainStaffDisabledSmall]
+  exports: [SvgIconAvatarTrainStaffDisabledSmall, IconAvatarTrainStaffDisabledSmall],
 })
 export class IconAvatarTrainStaffDisabledSmallModule {}

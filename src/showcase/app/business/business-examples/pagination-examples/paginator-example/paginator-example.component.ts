@@ -3,7 +3,7 @@ import { PageEvent } from '@sbb-esta/angular-business/pagination';
 
 @Component({
   selector: 'sbb-paginator-example',
-  templateUrl: './paginator-example.component.html'
+  templateUrl: './paginator-example.component.html',
 })
 export class PaginatorExampleComponent {
   length = 7;

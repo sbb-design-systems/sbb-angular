@@ -8,7 +8,7 @@ import {
   HostBinding,
   HostListener,
   InjectionToken,
-  Output
+  Output,
 } from '@angular/core';
 
 let counter = 0;

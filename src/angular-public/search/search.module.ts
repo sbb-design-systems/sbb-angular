@@ -9,7 +9,7 @@ import { ButtonModule } from '@sbb-esta/angular-public/button';
 
 import {
   SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER,
-  SearchComponent
+  SearchComponent,
 } from './search/search.component';
 
 @NgModule({
@@ -21,9 +21,9 @@ import {
     PortalModule,
     OverlayModule,
     AutocompleteModule,
-    ButtonModule
+    ButtonModule,
   ],
   exports: [SearchComponent, PortalModule, OverlayModule, IconDirectiveModule],
-  providers: [SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER]
+  providers: [SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class SearchModule {}

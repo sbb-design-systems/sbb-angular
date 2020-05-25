@@ -14,6 +14,6 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     </ng-container>
   `,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class TextColumnComponent<T> extends CdkTextColumn<T> {}

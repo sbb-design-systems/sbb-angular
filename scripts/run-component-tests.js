@@ -44,7 +44,7 @@ shelljs.cd(projectDir);
 // Extracts the supported command line options.
 const { _: components, local, firefox, watch } = minimist(args, {
   boolean: ['local', 'firefox', 'watch'],
-  default: { watch: true }
+  default: { watch: true },
 });
 
 // TODO: Firefox currently disabled due to missing windows support. Check if available with next version.
@@ -100,8 +100,8 @@ if (!components.length) {
 
 const bazelAction = local ? 'run' : 'test';
 const testLabels = components
-  .map(t => correctTypos(t))
-  .map(t => `${getBazelPackageOfComponentName(t)}:${testTargetName}`);
+  .map((t) => correctTypos(t))
+  .map((t) => `${getBazelPackageOfComponentName(t)}:${testTargetName}`);
 
 // Runs Bazel for the determined test labels.
 shelljs.exec(`${bazelBinary} ${bazelAction} ${testLabels.join(' ')}`);

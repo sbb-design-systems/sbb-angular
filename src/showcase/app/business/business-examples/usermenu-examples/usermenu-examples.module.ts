@@ -11,6 +11,6 @@ const EXAMPLES = [UsermenuExampleComponent];
 @NgModule({
   imports: [CommonModule, RouterModule, DropdownModule, UsermenuModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class UsermenuExamplesModule {}

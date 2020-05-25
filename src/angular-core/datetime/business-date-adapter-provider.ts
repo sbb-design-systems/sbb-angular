@@ -5,5 +5,5 @@ import { DateAdapter } from './date-adapter';
 
 export const SBB_BUSINESS_DATE_ADAPTER: Provider = {
   provide: DateAdapter,
-  useClass: BusinessDateAdapter
+  useClass: BusinessDateAdapter,
 };

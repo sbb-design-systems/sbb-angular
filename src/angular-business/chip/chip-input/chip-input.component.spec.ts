@@ -8,7 +8,7 @@ import {
   FormsModule,
   NgModel,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
@@ -18,7 +18,7 @@ import {
   dispatchEvent,
   dispatchFakeEvent,
   dispatchMouseEvent,
-  typeInElement
+  typeInElement,
 } from '@sbb-esta/angular-core/testing';
 import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 
@@ -40,7 +40,7 @@ import { ChipInputComponent } from './chip-input.component';
         </sbb-form-error>
       </sbb-field>
     </form>
-  `
+  `,
 })
 class ChipInputReactiveFormsTestComponent {
   options = ['option-1', 'option-2'];
@@ -48,7 +48,7 @@ class ChipInputReactiveFormsTestComponent {
 
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
-      chip: [['option-1'], Validators.required]
+      chip: [['option-1'], Validators.required],
     });
   }
 }
@@ -67,7 +67,7 @@ class ChipInputReactiveFormsTestComponent {
         >This field is required.</sbb-form-error
       >
     </sbb-field>
-  `
+  `,
 })
 class ChipInputFormsTestComponent {
   value: string[] = [];
@@ -95,8 +95,8 @@ describe('ChipInputComponent', () => {
           AutocompleteModule,
           IconCrossModule,
           ReactiveFormsModule,
-          FieldModule
-        ]
+          FieldModule,
+        ],
       }).compileComponents();
     }));
 
@@ -112,7 +112,7 @@ describe('ChipInputComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should contain one option chip through preselection', done => {
+    it('should contain one option chip through preselection', (done) => {
       fixture.whenStable().then(() => {
         const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
         expect(chipComponents.length).toBe(1);
@@ -157,7 +157,7 @@ describe('ChipInputComponent', () => {
       const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
       fixture.detectChanges();
 
-      chipComponents.forEach(chipComponent =>
+      chipComponents.forEach((chipComponent) =>
         expect(chipComponent.classes['sbb-chip-disabled']).toBe(true)
       );
       expect(chipInputComponent.classes['sbb-chip-input-disabled']).toBe(true);
@@ -195,7 +195,7 @@ describe('ChipInputComponent', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [ChipInputComponent, ChipComponent, ChipInputFormsTestComponent],
-        imports: [CommonModule, AutocompleteModule, IconCrossModule, FormsModule, FieldModule]
+        imports: [CommonModule, AutocompleteModule, IconCrossModule, FormsModule, FieldModule],
       }).compileComponents();
     }));
 
@@ -255,7 +255,7 @@ describe('ChipInputComponent', () => {
       const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
       fixture.detectChanges();
 
-      chipComponents.forEach(chipComponent =>
+      chipComponents.forEach((chipComponent) =>
         expect(chipComponent.classes['sbb-chip-disabled']).toBe(true)
       );
       expect(chipInputComponent.classes['sbb-chip-input-disabled']).toBe(true);

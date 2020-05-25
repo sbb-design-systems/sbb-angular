@@ -28,32 +28,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 19 16',
     class: 'sbb-icon sbb-icon-fpl sbb-icon-him-cus',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconUtilizationMedium {}
 
 @Component({
   selector: 'sbb-icon-utilization-medium',
-  template: `
-    <svg sbbIconUtilizationMedium></svg>
-  `,
+  template: ` <svg sbbIconUtilizationMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconUtilizationMedium {}
 
 @NgModule({
   declarations: [SvgIconUtilizationMedium, IconUtilizationMedium],
-  exports: [SvgIconUtilizationMedium, IconUtilizationMedium]
+  exports: [SvgIconUtilizationMedium, IconUtilizationMedium],
 })
 export class IconUtilizationMediumModule {}

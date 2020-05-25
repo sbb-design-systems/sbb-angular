@@ -3,7 +3,7 @@ import { Directive, HostBinding, Input } from '@angular/core';
 let nextId = 0;
 
 @Directive({
-  selector: 'sbb-form-error, [sbbFormError]'
+  selector: 'sbb-form-error, [sbbFormError]',
 })
 export class FormErrorDirective {
   @HostBinding()

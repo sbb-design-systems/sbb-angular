@@ -17,11 +17,11 @@ const modules = [
   IconPreviousModule,
   IconRecordModule,
   IconRewindModule,
-  IconStopModule
+  IconStopModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionAudioModule {}

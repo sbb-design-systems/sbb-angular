@@ -6,9 +6,7 @@ import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing'
 import { TimeInputDirective } from './time-input.directive';
 
 @Component({
-  template: `
-    <input sbbTimeInput />
-  `
+  template: ` <input sbbTimeInput /> `,
 })
 class TimeInputTestComponent {}
 
@@ -19,7 +17,7 @@ describe('TimeInputDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TimeInputTestComponent, TimeInputDirective]
+      declarations: [TimeInputTestComponent, TimeInputDirective],
     }).compileComponents();
   }));
 

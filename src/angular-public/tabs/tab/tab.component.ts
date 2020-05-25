@@ -9,7 +9,7 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -18,7 +18,7 @@ let counter = 0;
 @Component({
   selector: 'sbb-tab',
   templateUrl: './tab.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabComponent implements OnInit, OnChanges, OnDestroy {
   /**

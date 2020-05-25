@@ -45,26 +45,26 @@ import { UserMenuComponent } from './usermenu.component';
         </button>
       </sbb-dropdown>
     </sbb-usermenu>
-  `
+  `,
 })
 class UsermenuTestComponent {
   userName1 = 'john_64';
 
   user1 = {
     userName: '',
-    displayName: 'John Scott'
+    displayName: 'John Scott',
   };
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
     { page: 2, text: 'Eintrag 2' },
-    { page: 3, text: 'Eintrag 3' }
+    { page: 3, text: 'Eintrag 3' },
   ];
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
       queryParams: { page: page },
-      routerLink: ['.']
+      routerLink: ['.'],
     };
   }
 
@@ -103,26 +103,26 @@ class UsermenuTestComponent {
         </button>
       </sbb-dropdown>
     </sbb-usermenu>
-  `
+  `,
 })
 class UsermenuTest2Component {
   userName2 = 'max_98';
 
   user2 = {
     userName: '',
-    displayName: 'Max Muster'
+    displayName: 'Max Muster',
   };
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
     { page: 2, text: 'Eintrag 2' },
-    { page: 3, text: 'Eintrag 3' }
+    { page: 3, text: 'Eintrag 3' },
   ];
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
       queryParams: { page: page },
-      routerLink: ['.']
+      routerLink: ['.'],
     };
   }
 
@@ -155,26 +155,26 @@ class UsermenuTest2Component {
         </button>
       </sbb-dropdown>
     </sbb-usermenu>
-  `
+  `,
 })
 class UsermenuTest3Component {
   userName3 = 'walter_14';
 
   user3 = {
     userName: '',
-    displayName: 'Walter Scotti'
+    displayName: 'Walter Scotti',
   };
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
     { page: 2, text: 'Eintrag 2' },
-    { page: 3, text: 'Eintrag 3' }
+    { page: 3, text: 'Eintrag 3' },
   ];
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
       queryParams: { page: page },
-      routerLink: ['.']
+      routerLink: ['.'],
     };
   }
 
@@ -197,7 +197,7 @@ describe('UserMenuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [UserMenuComponent],
-      imports: [CommonModule, DropdownModule, IconChevronSmallDownModule, IconUserModule]
+      imports: [CommonModule, DropdownModule, IconChevronSmallDownModule, IconUserModule],
     }).compileComponents();
   }));
 
@@ -230,9 +230,9 @@ describe('Usermenu test case: user with custom image using mock component', () =
         DropdownModule,
         IconChevronSmallDownModule,
         IconUserModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      declarations: [UsermenuTestComponent]
+      declarations: [UsermenuTestComponent],
     }).compileComponents();
   }));
 
@@ -389,9 +389,9 @@ describe('Usermenu test case: usermenu without user image but with initial lette
         DropdownModule,
         IconChevronSmallDownModule,
         IconUserModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      declarations: [UsermenuTest2Component]
+      declarations: [UsermenuTest2Component],
     }).compileComponents();
   }));
 
@@ -515,9 +515,9 @@ describe('Usermenu test case: usermenu only with userName using mock component',
         DropdownModule,
         IconChevronSmallDownModule,
         IconUserModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      declarations: [UsermenuTest3Component]
+      declarations: [UsermenuTest3Component],
     }).compileComponents();
   }));
 

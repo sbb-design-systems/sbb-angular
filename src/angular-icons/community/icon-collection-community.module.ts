@@ -35,11 +35,11 @@ const modules = [
   IconSpeechBubbleGroupEmptyModule,
   IconThumbDownModule,
   IconThumbUpModule,
-  IconTranslateModule
+  IconTranslateModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionCommunityModule {}

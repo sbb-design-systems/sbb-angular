@@ -113,7 +113,7 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
     height: 100%;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.6);
-    z-index: 999;
+    z-index: 1000;
 
     > div {
       position: absolute;

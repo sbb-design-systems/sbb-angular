@@ -23,32 +23,30 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
       :host-context(.sbb-icon-inherit-color) [stroke]:not([stroke='none']) {
         stroke: currentColor;
       }
-    `
+    `,
   ],
   host: {
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 36 36',
     class: 'sbb-icon sbb-icon-kom sbb-icon-station',
-    focusable: 'false'
+    focusable: 'false',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconWaitingRoomMedium {}
 
 @Component({
   selector: 'sbb-icon-waiting-room-medium',
-  template: `
-    <svg sbbIconWaitingRoomMedium></svg>
-  `,
+  template: ` <svg sbbIconWaitingRoomMedium></svg> `,
   host: {
-    class: 'sbb-icon-wrapper'
+    class: 'sbb-icon-wrapper',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconWaitingRoomMedium {}
 
 @NgModule({
   declarations: [SvgIconWaitingRoomMedium, IconWaitingRoomMedium],
-  exports: [SvgIconWaitingRoomMedium, IconWaitingRoomMedium]
+  exports: [SvgIconWaitingRoomMedium, IconWaitingRoomMedium],
 })
 export class IconWaitingRoomMediumModule {}

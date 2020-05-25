@@ -19,7 +19,7 @@ import { MapsComponent } from './maps/maps.component';
     SharedModule,
     ComponentViewerModule,
     MapsExamplesModule,
-    MapsRoutingModule
-  ]
+    MapsRoutingModule,
+  ],
 })
 export class MapsModule {}

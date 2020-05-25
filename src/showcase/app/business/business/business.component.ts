@@ -2,8 +2,10 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
+import { AutocompleteDisplayWithExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-display-with-example/autocomplete-display-with-example.component';
 import { AutocompleteFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
+import { AutocompleteLocaleNormalizerExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-locale-normalizer-example/autocomplete-locale-normalizer-example.component';
 import { AutocompleteOptionGroupExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
 import { BreadcrumbExampleComponent } from '../business-examples/breadcrumb-examples/breadcrumb-example/breadcrumb-example.component';
@@ -25,6 +27,9 @@ import { MultipleModePersistentFileSelectorExampleComponent } from '../business-
 import { SimpleFileSelectorExampleComponent } from '../business-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
 import { IconLinkExampleComponent } from '../business-examples/links-examples/icon-link-example/icon-link-example.component';
 import { SimpleLinkExampleComponent } from '../business-examples/links-examples/simple-link-example/simple-link-example.component';
+import { FullboxLoadingExampleComponent } from '../business-examples/loading-examples/fullbox-loading-example/fullbox-loading-example.component';
+import { FullscreenLoadingExampleComponent } from '../business-examples/loading-examples/fullscreen-loading-example/fullscreen-loading-example.component';
+import { SimpleLoadingExampleComponent } from '../business-examples/loading-examples/simple-loading-example/simple-loading-example.component';
 import { ClosableNotificationExampleComponent } from '../business-examples/notification-examples/closable-notification-example/closable-notification-example.component';
 import { CustomIconNotificationExampleComponent } from '../business-examples/notification-examples/custom-icon-notification-example/custom-icon-notification-example.component';
 import { JumpmarkNotificationExampleComponent } from '../business-examples/notification-examples/jumpmark-notification-example/jumpmark-notification-example.component';
@@ -61,7 +66,7 @@ import { UsermenuExampleComponent } from '../business-examples/usermenu-examples
   selector: 'sbb-business',
   templateUrl: './business.component.html',
   styleUrls: ['./business.component.css'],
-  providers: [{ provide: ExampleProvider, useExisting: BusinessComponent }]
+  providers: [{ provide: ExampleProvider, useExisting: BusinessComponent }],
 })
 export class BusinessComponent implements ExampleProvider {
   formComponents = {
@@ -75,10 +80,10 @@ export class BusinessComponent implements ExampleProvider {
     select: 'Select',
     textarea: 'Textarea',
     textexpand: 'Textexpand',
-    'time-input': 'Time Input'
+    'time-input': 'Time Input',
   };
   navigationComponents = {
-    header: 'Header'
+    header: 'Header',
   };
   layoutComponents = {
     accordion: 'Accordion',
@@ -88,16 +93,17 @@ export class BusinessComponent implements ExampleProvider {
     processflow: 'Processflow',
     tabs: 'Tabs',
     usermenu: 'Usermenu',
-    table: 'Table'
+    table: 'Table',
   };
   buttonAndIndicatorComponents = {
     button: 'Button',
     contextmenu: 'Contextmenu',
-    links: 'Links'
+    links: 'Links',
+    loading: 'Loading',
   };
   popupsAndModals = {
     tooltip: 'Tooltip',
-    dialog: 'Dialog'
+    dialog: 'Dialog',
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
     autocomplete: {
@@ -108,13 +114,19 @@ export class BusinessComponent implements ExampleProvider {
       'autocomplete-hint-example': new ComponentPortal(AutocompleteHintExampleComponent),
       'autocomplete-option-group-example': new ComponentPortal(
         AutocompleteOptionGroupExampleComponent
-      )
+      ),
+      'autocomplete-display-with-example': new ComponentPortal(
+        AutocompleteDisplayWithExampleComponent
+      ),
+      'autocomplete-locale-normalizer-example': new ComponentPortal(
+        AutocompleteLocaleNormalizerExampleComponent
+      ),
     },
     breadcrumb: {
-      'breadcrumb-example': new ComponentPortal(BreadcrumbExampleComponent)
+      'breadcrumb-example': new ComponentPortal(BreadcrumbExampleComponent),
     },
     checkbox: {
-      'checkbox-example': new ComponentPortal(CheckboxExampleComponent)
+      'checkbox-example': new ComponentPortal(CheckboxExampleComponent),
     },
     datepicker: {
       'datepicker-simple-reactive-example': new ComponentPortal(
@@ -127,32 +139,32 @@ export class BusinessComponent implements ExampleProvider {
       ),
       'datepicker-business-date-adapter-example': new ComponentPortal(
         DatepickerBusinessDateAdapterExampleComponent
-      )
+      ),
     },
     processflow: {
-      'skippable-processflow-example': new ComponentPortal(SkippableProcessflowExampleComponent)
+      'skippable-processflow-example': new ComponentPortal(SkippableProcessflowExampleComponent),
     },
     contextmenu: {
-      'simple-contextmenu-example': new ComponentPortal(SimpleContextmenuExampleComponent)
+      'simple-contextmenu-example': new ComponentPortal(SimpleContextmenuExampleComponent),
     },
     tooltip: {
       'tooltip-simple-example': new ComponentPortal(TooltipSimpleExampleComponent),
       'tooltip-custom-content-example': new ComponentPortal(TooltipCustomContentExampleComponent),
       'tooltip-custom-icon-example': new ComponentPortal(TooltipCustomIconExampleComponent),
-      'tooltip-hover-example': new ComponentPortal(TooltipHoverExampleComponent)
+      'tooltip-hover-example': new ComponentPortal(TooltipHoverExampleComponent),
     },
     usermenu: {
-      'usermenu-example': new ComponentPortal(UsermenuExampleComponent)
+      'usermenu-example': new ComponentPortal(UsermenuExampleComponent),
     },
     tabs: {
-      'tabs-example': new ComponentPortal(TabsExampleComponent)
+      'tabs-example': new ComponentPortal(TabsExampleComponent),
     },
     dialog: {
-      'dialog-example': new ComponentPortal(DialogExampleComponent)
+      'dialog-example': new ComponentPortal(DialogExampleComponent),
     },
     pagination: {
       'paginator-example': new ComponentPortal(PaginatorExampleComponent),
-      'navigation-example': new ComponentPortal(NavigationExampleComponent)
+      'navigation-example': new ComponentPortal(NavigationExampleComponent),
     },
     notification: {
       'simple-notification-example': new ComponentPortal(SimpleNotificationExampleComponent),
@@ -160,7 +172,7 @@ export class BusinessComponent implements ExampleProvider {
         CustomIconNotificationExampleComponent
       ),
       'jumpmark-notification-example': new ComponentPortal(JumpmarkNotificationExampleComponent),
-      'closable-notification-example': new ComponentPortal(ClosableNotificationExampleComponent)
+      'closable-notification-example': new ComponentPortal(ClosableNotificationExampleComponent),
     },
     table: {
       'simple-table-example': new ComponentPortal(SimpleTableExampleComponent),
@@ -173,7 +185,7 @@ export class BusinessComponent implements ExampleProvider {
       'selectable-table-example': new ComponentPortal(SelectableTableExampleComponent),
       'filter-sort-paginator-table-example': new ComponentPortal(
         FilterSortPaginatorTableExampleComponent
-      )
+      ),
     },
     chip: {
       'forms-chip-input-example': new ComponentPortal(FormsChipInputExampleComponent),
@@ -181,10 +193,10 @@ export class BusinessComponent implements ExampleProvider {
         ReactiveFormsChipInputExampleComponent
       ),
       'disabled-chip-input-example': new ComponentPortal(DisabledChipInputExampleComponent),
-      'autocomplete-chip-input-example': new ComponentPortal(AutocompleteChipInputExampleComponent)
+      'autocomplete-chip-input-example': new ComponentPortal(AutocompleteChipInputExampleComponent),
     },
     'radio-button': {
-      'radio-button-example': new ComponentPortal(RadioButtonExampleComponent)
+      'radio-button-example': new ComponentPortal(RadioButtonExampleComponent),
     },
     select: {
       'select-reactive-forms-example': new ComponentPortal(SelectReactiveFormsExampleComponent),
@@ -194,14 +206,14 @@ export class BusinessComponent implements ExampleProvider {
       'select-option-groups-example': new ComponentPortal(SelectOptionGroupsExampleComponent),
       'select-option-groups-multi-selection-example': new ComponentPortal(
         SelectOptionGroupsMultiSelectionExampleComponent
-      )
+      ),
     },
     textarea: {
       'textarea-forms-example': new ComponentPortal(TextareaFormsExampleComponent),
       'textarea-reactive-forms-with-sbb-field-example': new ComponentPortal(
         TextareaReactiveFormsWithSbbFieldExampleComponent
       ),
-      'textarea-native-example': new ComponentPortal(TextareaNativeExampleComponent)
+      'textarea-native-example': new ComponentPortal(TextareaNativeExampleComponent),
     },
     'file-selector': {
       'simple-file-selector-example': new ComponentPortal(SimpleFileSelectorExampleComponent),
@@ -210,14 +222,19 @@ export class BusinessComponent implements ExampleProvider {
       ),
       'multiple-mode-persistent-file-selector-example': new ComponentPortal(
         MultipleModePersistentFileSelectorExampleComponent
-      )
+      ),
     },
     button: { 'button-example': new ComponentPortal(ButtonExampleComponent) },
     links: {
       'simple-link-example': new ComponentPortal(SimpleLinkExampleComponent),
-      'icon-link-example': new ComponentPortal(IconLinkExampleComponent)
+      'icon-link-example': new ComponentPortal(IconLinkExampleComponent),
     },
-    textexpand: { 'textexpand-example': new ComponentPortal(TextexpandExampleComponent) }
+    textexpand: { 'textexpand-example': new ComponentPortal(TextexpandExampleComponent) },
+    loading: {
+      'simple-loading-example': new ComponentPortal(SimpleLoadingExampleComponent),
+      'fullbox-loading-example': new ComponentPortal(FullboxLoadingExampleComponent),
+      'fullscreen-loading-example': new ComponentPortal(FullscreenLoadingExampleComponent),
+    },
   };
 
   resolveExample<TComponent = any>(

@@ -6,11 +6,11 @@ import { PsComponentScrollable, PsDirectiveScrollable } from './ps-scrollable.di
 describe('PsDirectiveScrollable', () => {
   const perfectScrollbarMock = {
     psScrollY: new Subject(),
-    psScrollX: new Subject()
+    psScrollX: new Subject(),
   };
   const scrollDispatcherMock = {
     register(): void {},
-    deregister(): void {}
+    deregister(): void {},
   };
 
   it('should emit on inner scroll', () => {
@@ -33,11 +33,11 @@ describe('PsDirectiveScrollable', () => {
 describe('PsComponentScrollable', () => {
   const perfectScrollbarMock = {
     psScrollY: new Subject(),
-    psScrollX: new Subject()
+    psScrollX: new Subject(),
   };
   const scrollDispatcherMock = {
     register(): void {},
-    deregister(): void {}
+    deregister(): void {},
   };
 
   it('should emit on inner scroll', () => {

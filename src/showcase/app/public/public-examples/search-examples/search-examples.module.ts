@@ -18,9 +18,9 @@ const EXAMPLES = [SearchExampleComponent];
     IconCircleInformationModule,
     AutocompleteModule,
     LoadingModule,
-    SearchModule
+    SearchModule,
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class SearchExamplesModule {}

@@ -9,6 +9,6 @@ import { ToggleComponent } from './toggle/toggle.component';
 @NgModule({
   declarations: [ToggleComponent, ToggleOptionComponent],
   imports: [CommonModule, IconDirectiveModule, ɵRadioButtonModule],
-  exports: [ToggleComponent, ToggleOptionComponent, IconDirectiveModule, ɵRadioButtonModule]
+  exports: [ToggleComponent, ToggleOptionComponent, IconDirectiveModule, ɵRadioButtonModule],
 })
 export class ToggleModule {}

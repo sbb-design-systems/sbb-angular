@@ -50,7 +50,7 @@ export class LightboxRef<T, R = any> {
     // Emit when opening animation completes
     containerInstance.animationStateChanged
       .pipe(
-        filter(event => event.phaseName === 'done' && event.toState === 'enter'),
+        filter((event) => event.phaseName === 'done' && event.toState === 'enter'),
         first()
       )
       .subscribe(() => {
@@ -61,7 +61,7 @@ export class LightboxRef<T, R = any> {
     // Dispose overlay when closing animation is complete
     containerInstance.animationStateChanged
       .pipe(
-        filter(event => event.phaseName === 'done' && event.toState === 'exit'),
+        filter((event) => event.phaseName === 'done' && event.toState === 'exit'),
         first()
       )
       .subscribe(() => this._overlayRef.dispose());
@@ -78,12 +78,12 @@ export class LightboxRef<T, R = any> {
 
     _overlayRef
       .keydownEvents()
-      .pipe(filter(event => event.keyCode === ESCAPE && !this.disableClose))
+      .pipe(filter((event) => event.keyCode === ESCAPE && !this.disableClose))
       .subscribe(() => this.close());
 
     _overlayRef
       .keydownEvents()
-      .pipe(filter(event => event.keyCode === ESCAPE && !!this.disableClose))
+      .pipe(filter((event) => event.keyCode === ESCAPE && !!this.disableClose))
       .subscribe(() => this.manualCloseAction.next(null!));
 
     if (location) {
@@ -108,7 +108,7 @@ export class LightboxRef<T, R = any> {
     // Transition the backdrop in parallel to the lightbox.
     this.containerInstance.animationStateChanged
       .pipe(
-        filter(event => event.phaseName === 'start'),
+        filter((event) => event.phaseName === 'start'),
         first()
       )
       .subscribe(() => {

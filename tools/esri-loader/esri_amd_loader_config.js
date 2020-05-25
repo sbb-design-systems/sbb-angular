@@ -1,5 +1,5 @@
-(function() {
-  var globalObject = (function() {
+(function () {
+  var globalObject = (function () {
     if (typeof global !== 'undefined' && typeof global !== 'function') {
       // global spec defines a reference to the global object called 'global'
       // //github.com/tc39/proposal-global
@@ -16,10 +16,10 @@
   })();
 
   if (globalObject.require) {
-    var isArray = function(it) {
+    var isArray = function (it) {
       return toString.call(it) == '[object Array]';
     };
-    var forEach = function(vector, callback) {
+    var forEach = function (vector, callback) {
       if (vector) {
         for (var i = 0; i < vector.length; ) {
           callback(vector[i++]);
@@ -27,27 +27,27 @@
       }
     };
     var listenerQueues = {};
-    globalObject.require.signal = function(type, args) {
+    globalObject.require.signal = function (type, args) {
       var queue = listenerQueues[type];
       // notice we run a copy of the queue; this allows listeners to add/remove
       // other listeners without affecting this particular signal
-      forEach(queue && queue.slice(0), function(listener) {
+      forEach(queue && queue.slice(0), function (listener) {
         listener.apply(null, isArray(args) ? args : [args]);
       });
     };
-    globalObject.require.on = function(type, listener) {
+    globalObject.require.on = function (type, listener) {
       // notice a queue is not created until a client actually connects
       var queue = listenerQueues[type] || (listenerQueues[type] = []);
       queue.push(listener);
       return {
-        remove: function() {
+        remove: function () {
           for (var i = 0; i < queue.length; i++) {
             if (queue[i] === listener) {
               queue.splice(i, 1);
               return;
             }
           }
-        }
+        },
       };
     };
     globalObject.require.config({
@@ -64,8 +64,8 @@
           '//js.arcgis.com/4.12/maquette-css-transitions/dist/maquette-css-transitions.umd',
         'maquette-jsx': '//js.arcgis.com/4.12/maquette-jsx/dist/maquette-jsx.umd',
         moment: '//js.arcgis.com/4.12/moment',
-        tslib: '//js.arcgis.com/4.12/tslib/tslib'
-      }
+        tslib: '//js.arcgis.com/4.12/tslib/tslib',
+      },
     });
   }
 })();

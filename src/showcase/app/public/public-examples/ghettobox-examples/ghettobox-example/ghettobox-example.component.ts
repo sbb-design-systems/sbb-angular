@@ -3,14 +3,14 @@ import {
   Component,
   OnDestroy,
   TemplateRef,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import {
   GhettoboxDeletedEvent,
   GhettoboxRef,
-  GhettoboxService
+  GhettoboxService,
 } from '@sbb-esta/angular-public/ghettobox';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -19,7 +19,7 @@ import { first } from 'rxjs/operators';
   selector: 'sbb-ghettobox-example',
   templateUrl: './ghettobox-example.component.html',
   styleUrls: ['./ghettobox-example.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GhettoboxExampleComponent implements OnDestroy {
   afterDeleteResponse1: any = {};
@@ -35,7 +35,7 @@ export class GhettoboxExampleComponent implements OnDestroy {
     this._ghettoboxInitLoadSubscription = this._ghettoboxService.containerReady.subscribe(() => {
       const ghetto = this._ghettoboxService.add({
         message: 'This ghettobox is loaded at page load',
-        icon: this.testIcon1
+        icon: this.testIcon1,
       });
       this._subscribeToAfterDeleteResponse(ghetto);
     });
@@ -50,7 +50,7 @@ export class GhettoboxExampleComponent implements OnDestroy {
       routerLink: ['.'],
       queryParams: { test: randomParam },
       queryParamsHandling: 'merge',
-      relativeTo: this._route
+      relativeTo: this._route,
     };
   };
 
@@ -58,7 +58,7 @@ export class GhettoboxExampleComponent implements OnDestroy {
     const ghetto = this._ghettoboxService.add({
       message: message,
       link: this.linkGenerator(getRandomInt(10)),
-      icon: this.testIcon2
+      icon: this.testIcon2,
     });
     this._subscribeToAfterDeleteResponse(ghetto);
   }
@@ -99,7 +99,7 @@ export class GhettoboxExampleComponent implements OnDestroy {
   }
 
   printAttachedGhettoboxesIDS(): string[] {
-    return this._ghettoboxService.attachedGhettoboxes.map(g => g.id);
+    return this._ghettoboxService.attachedGhettoboxes.map((g) => g.id);
   }
 }
 

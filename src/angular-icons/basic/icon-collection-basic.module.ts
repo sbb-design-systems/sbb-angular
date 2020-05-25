@@ -151,11 +151,11 @@ const modules = [
   IconUploadModule,
   IconWalletModule,
   IconWarningLightModule,
-  IconWifiModule
+  IconWifiModule,
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
 export class IconCollectionBasicModule {}
