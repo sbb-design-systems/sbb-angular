@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Dialog } from '@sbb-esta/angular-business';
+import { Dialog } from '@sbb-esta/angular-business/dialog';
 
 @Component({
   selector: 'sbb-component-data-dialog-example',
