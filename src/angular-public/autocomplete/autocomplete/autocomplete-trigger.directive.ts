@@ -30,8 +30,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FORM_FIELD } from '@sbb-esta/angular-public/field';
-import type { FieldComponent } from '@sbb-esta/angular-public/field';
+import { FORM_FIELD, HasFormFieldControl } from '@sbb-esta/angular-public/field';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
@@ -268,7 +267,8 @@ export class AutocompleteTriggerDirective
     @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy: any,
     private _viewportRuler: ViewportRuler,
     @Optional() @Inject(DOCUMENT) document: any,
-    @Optional() @Inject(FORM_FIELD) @Host() private _formField: FieldComponent
+    // TODO: Replace with type import of FieldComponent
+    @Optional() @Inject(FORM_FIELD) @Host() private _formField: HasFormFieldControl
   ) {
     this._document = document;
   }
