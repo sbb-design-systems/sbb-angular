@@ -35,7 +35,7 @@ npm install --save @types/esri-leaflet leaflet @sbb-esta/angular-maps-leaflet
 or, if using yarn:
 
 ```sh
-yarn add @types/arcgis-js-api esri-loader @sbb-esta/angular-maps
+yarn add @types/esri-leaflet leaflet @sbb-esta/angular-maps-leaflet
 ```
 
 ### Step 2: Import the component modules

@@ -80,4 +80,4 @@ export class MyLeafletSampleComponent {
 
 _Note: If you want to use services from G-Sharp (the SBB on premise installation of ArcGIS Enterprise), don't forget to add the properties `useCors=false` and `isModern=false` to the `featureLayer()` method. This is unfortunate but required until Esri fixes bug BUG-000130672._
 
-_Note 2: For layers with many features (5000+) consider to use `renderer=new LCanvas()` to gain performance. You can get more information about renderers in leaflet [here](https://esri.github.io/esri-leaflet/api-reference/layers/feature-layer.html)._
+_Note 2: For layers with many features (5000+) consider to use `renderer=new L.Canvas()` to gain performance. You can get more information about renderers in leaflet [here](https://esri.github.io/esri-leaflet/api-reference/layers/feature-layer.html)._
