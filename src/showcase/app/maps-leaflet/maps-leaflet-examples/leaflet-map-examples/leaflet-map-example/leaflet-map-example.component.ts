@@ -14,12 +14,12 @@ import {
   polygon,
   popup,
   tileLayer,
-  Util
+  Util,
 } from 'leaflet';
 
 export let mapOptions: MapOptions = {
   zoom: 12,
-  center: latLng(46.948094, 7.451563)
+  center: latLng(46.948094, 7.451563),
 };
 
 export let layersControlConfig: LayersControl = {
@@ -29,9 +29,9 @@ export let layersControlConfig: LayersControl = {
       visible: true,
       layer: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      })
-    }
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }),
+    },
   ],
   overLays: [
     {
@@ -41,13 +41,13 @@ export let layersControlConfig: LayersControl = {
         url:
           'https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Hazards_Uptown_Charlotte/FeatureServer/0',
         renderer: new Canvas(),
-        useCors: true
+        useCors: true,
       }).bindPopup((l: any) => {
         return Util.template(
           '<p>Standort <strong>{NAME}</strong> in {GEMEINDE}.',
           l.feature.properties
         );
-      })
+      }),
     },
     {
       title: 'Shapes',
@@ -59,27 +59,27 @@ export let layersControlConfig: LayersControl = {
             [46.945798, 7.441306],
             [46.94634, 7.441016],
             [46.94608, 7.439305],
-            [46.945443, 7.439611]
+            [46.945443, 7.439611],
           ],
           {
-            color: 'red'
+            color: 'red',
           }
         ).bindPopup(`<b>test</p>`),
         circle([46.948212, 7.455189], {
           color: 'red',
           fillColor: '#f03',
           fillOpacity: 0.2,
-          radius: 200
-        }).bindPopup('sample')
-      ])
-    }
-  ]
+          radius: 200,
+        }).bindPopup('sample'),
+      ]),
+    },
+  ],
 };
 
 @Component({
   selector: 'sbb-leaflet-map-example',
   templateUrl: './leaflet-map-example.component.html',
-  styleUrls: ['./leaflet-map-example.component.scss']
+  styleUrls: ['./leaflet-map-example.component.scss'],
 })
 export class LeafletMapExampleComponent implements AfterViewChecked {
   private _map: L.Map;
@@ -93,7 +93,7 @@ export class LeafletMapExampleComponent implements AfterViewChecked {
 
   private _createLayerGroup(myPoints: [number, number][]): LayerGroup<any> {
     const l = new LayerGroup();
-    myPoints.forEach(p => {
+    myPoints.forEach((p) => {
       l.addLayer(circle(p, { color: 'blue', radius: 10 }).bindPopup('Hi, I am a point.'));
     });
     return l;
@@ -162,7 +162,7 @@ export class LeafletMapExampleComponent implements AfterViewChecked {
     this._leafLetMap.addOverlayToMap({
       title: 'sample',
       layer: this._myPointLayerGroup,
-      visible: true
+      visible: true,
     });
   }
 }

@@ -7,6 +7,6 @@ import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
   declarations: [LeafletMapComponent],
   providers: [],
   imports: [CommonModule],
-  exports: [LeafletMapComponent]
+  exports: [LeafletMapComponent],
 })
 export class LeafletMapModule {}

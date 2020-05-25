@@ -10,6 +10,6 @@ const EXAMPLES = [LeafletMapExampleComponent];
 @NgModule({
   imports: [CommonModule, LeafletMapModule, ButtonModule],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
 })
 export class LeafletMapExamplesModule {}

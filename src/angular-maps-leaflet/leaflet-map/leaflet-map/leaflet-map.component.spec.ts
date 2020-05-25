@@ -9,7 +9,7 @@ import {
   LeafletEvent,
   LeafletMouseEvent,
   Map,
-  TileLayer
+  TileLayer,
 } from 'leaflet';
 
 import { DEFAULT_CENTER, DEFAULT_ZOOM } from './config/leaflet.const';
@@ -22,8 +22,8 @@ describe('LeafletMapComponent', () => {
 
   const sampleLayerGroup: LayerGroup = layerGroup([
     circle([56.948212, 8.455189], {
-      color: 'blue'
-    })
+      color: 'blue',
+    }),
   ]);
 
   const layersControl: LayersControl = {
@@ -31,34 +31,34 @@ describe('LeafletMapComponent', () => {
       {
         title: 'sample1',
         layer: new TileLayer('sample1'),
-        visible: true
-      }
+        visible: true,
+      },
     ],
     overLays: [
       {
         title: 'overlay1',
         layer: layerGroup([
           circle([46.948212, 7.455189], {
-            color: 'red'
-          })
+            color: 'red',
+          }),
         ]),
-        visible: true
+        visible: true,
       },
       {
         title: 'Shapes',
         visible: true,
         layer: layerGroup([
           circle([46.948212, 7.455189], {
-            color: 'red'
-          })
-        ])
-      }
-    ]
+            color: 'red',
+          }),
+        ]),
+      },
+    ],
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LeafletMapComponent]
+      declarations: [LeafletMapComponent],
     }).compileComponents();
   }));
 
@@ -97,7 +97,7 @@ describe('LeafletMapComponent', () => {
     leafletMapComponent.mapReady.subscribe((map: Map) => {
       let i = 0;
       map.eachLayer(() => i++);
-      map.eachLayer(l => console.log(l));
+      map.eachLayer((l) => console.log(l));
       expect(i).toEqual(6);
     });
     leafletMapComponent.ngOnInit();
@@ -170,13 +170,13 @@ describe('LeafletMapComponent', () => {
     const lc: LayersControlLayer = {
       title: 'myNewLayer',
       layer: sampleLayerGroup,
-      visible: true
+      visible: true,
     };
 
     leafletMapComponent.mapReady.subscribe((m: Map) => {
       leafletMapComponent.addOverlayToMap(lc);
       let layerFound = false;
-      m.eachLayer(l => {
+      m.eachLayer((l) => {
         if (l === lc.layer) {
           layerFound = true;
         }
@@ -190,14 +190,14 @@ describe('LeafletMapComponent', () => {
     const lc: LayersControlLayer = {
       title: 'myNewLayer',
       layer: sampleLayerGroup,
-      visible: true
+      visible: true,
     };
 
     leafletMapComponent.mapReady.subscribe((m: Map) => {
       leafletMapComponent.addOverlayToMap(lc);
       leafletMapComponent.removeLayerFromMap(lc.layer);
       let layerFound = false;
-      m.eachLayer(l => {
+      m.eachLayer((l) => {
         if (l === lc.layer) {
           layerFound = true;
         }

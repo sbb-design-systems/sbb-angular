@@ -9,7 +9,7 @@ import {
   LeafletMouseEvent,
   Map,
   MapOptions,
-  ZoomPanOptions
+  ZoomPanOptions,
 } from 'leaflet';
 
 import { DEFAULT_CENTER, DEFAULT_ZOOM } from './config/leaflet.const';
@@ -18,7 +18,7 @@ import { LayersControl, LayersControlLayer } from './model/map-config.model';
 @Component({
   selector: 'sbb-leaflet-map',
   templateUrl: './leaflet-map.component.html',
-  styleUrls: ['./leaflet-map.component.scss']
+  styleUrls: ['./leaflet-map.component.scss'],
 })
 export class LeafletMapComponent implements OnInit {
   constructor(private _elementRef: ElementRef) {}
@@ -71,7 +71,7 @@ export class LeafletMapComponent implements OnInit {
     const { baseLayers, overLays } = this.layersControlConfig;
     this._layersControl = control.layers();
     if (baseLayers) {
-      baseLayers.forEach(l => {
+      baseLayers.forEach((l) => {
         this._layersControl.addBaseLayer(l.layer, l.title);
         if (l.visible) {
           l.layer.addTo(this._map);
@@ -79,7 +79,7 @@ export class LeafletMapComponent implements OnInit {
       });
     }
     if (overLays) {
-      overLays.forEach(l => {
+      overLays.forEach((l) => {
         this._layersControl.addOverlay(l.layer, l.title);
         if (l.visible) {
           l.layer.addTo(this._map);

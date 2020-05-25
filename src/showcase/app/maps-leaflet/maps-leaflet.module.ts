@@ -17,7 +17,7 @@ import { MapsLeafletComponent } from './maps-leaflet/maps-leaflet.component';
     SharedModule,
     ComponentViewerModule,
     MapsLeafletExamplesModule,
-    MapsLeafletRoutingModule
-  ]
+    MapsLeafletRoutingModule,
+  ],
 })
 export class MapsLeafletModule {}

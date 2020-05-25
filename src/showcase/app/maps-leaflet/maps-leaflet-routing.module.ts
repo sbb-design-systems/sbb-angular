@@ -15,34 +15,34 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'introduction/getting-started',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'maps-leaflet' }
+        data: { library: 'maps-leaflet' },
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'maps-leaflet' }
+        data: { library: 'maps-leaflet' },
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'maps-leaflet' }
+        data: { library: 'maps-leaflet' },
       },
       {
         path: 'advanced/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'maps-leaflet' }
-      }
-    ]
-  }
+        data: { library: 'maps-leaflet' },
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class MapsLeafletRoutingModule {}
