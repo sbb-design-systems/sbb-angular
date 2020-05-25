@@ -7,8 +7,8 @@ import {
   Optional,
 } from '@angular/core';
 
-import type { FieldComponent } from '../field/field.component';
 import { FORM_FIELD } from '../form-field-token';
+import { HasFormFieldControl } from '../has-form-field-control';
 
 @Component({
   selector: 'sbb-label',
@@ -29,7 +29,8 @@ export class LabelComponent {
   }
   private _for: string | null = null;
 
-  constructor(@Inject(FORM_FIELD) @Optional() private _formField: FieldComponent) {}
+  // TODO: Replace with type import of FieldComponent
+  constructor(@Inject(FORM_FIELD) @Optional() private _formField: HasFormFieldControl) {}
 
   private _inputId() {
     return this._hasFormFieldControl() ? this._formField._control.id : null;
