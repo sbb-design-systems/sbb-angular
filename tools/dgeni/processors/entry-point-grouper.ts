@@ -100,7 +100,9 @@ export class EntryPointGrouper implements Processor {
       const moduleInfo = this._getModulePackageInfo(doc);
 
       const packageName = moduleInfo.packageName;
-      const packageDisplayName = packageName === 'cdk' ? 'CDK' : 'Material';
+      const packageDisplayName = packageName
+        .split('angular-')[1]
+        .replace(/^\w/, (m) => m.toUpperCase());
 
       const moduleImportPath = `@sbb-esta/${packageName}/${moduleInfo.entryPointName}`;
       const entryPointName = packageName + '-' + moduleInfo.name;
