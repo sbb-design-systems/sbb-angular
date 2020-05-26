@@ -17,6 +17,7 @@ import { ButtonExampleComponent } from '../public-examples/button-examples/butto
 import { CaptchaExampleComponent } from '../public-examples/captcha-examples/captcha-example/captcha-example.component';
 import { CheckboxExampleComponent } from '../public-examples/checkbox-examples/checkbox-example/checkbox-example.component';
 import { CheckboxGroupExampleComponent } from '../public-examples/checkbox-examples/checkbox-group-example/checkbox-group-example.component';
+import { CheckboxPanelExampleComponent } from '../public-examples/checkbox-panel-examples/checkbox-panel-example/checkbox-panel-example.component';
 import { DatepickerDateFilterExampleComponent } from '../public-examples/datepicker-examples/datepicker-date-filter-example/datepicker-date-filter-example.component';
 import { DatepickerMasterSlaveExampleComponent } from '../public-examples/datepicker-examples/datepicker-master-slave-example/datepicker-master-slave-example.component';
 import { DatepickerSimpleReactiveExampleComponent } from '../public-examples/datepicker-examples/datepicker-simple-reactive-example/datepicker-simple-reactive-example.component';
@@ -134,6 +135,9 @@ export class PublicComponent implements ExampleProvider {
     checkbox: {
       'checkbox-example': new ComponentPortal(CheckboxExampleComponent),
       'checkbox-group-example': new ComponentPortal(CheckboxGroupExampleComponent),
+    },
+    'checkbox-panel': {
+      'checkbox-panel-example': new ComponentPortal(CheckboxPanelExampleComponent),
     },
     datepicker: {
       'datepicker-simple-reactive-example': new ComponentPortal(

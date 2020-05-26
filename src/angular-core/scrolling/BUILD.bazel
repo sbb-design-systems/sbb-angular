@@ -42,7 +42,6 @@ ng_web_test_suite(
     name = "unit_tests",
     srcs = [
         "@npm//:node_modules/perfect-scrollbar/dist/perfect-scrollbar.js",
-        "@npm//:node_modules/resize-observer-polyfill/dist/ResizeObserver.js",
     ],
     deps = [":unit_test_sources"],
 )
