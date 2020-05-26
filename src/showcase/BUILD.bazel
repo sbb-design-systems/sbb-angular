@@ -227,10 +227,10 @@ terser_minified(
 )
 
 genrule(
-    name = "stamp_init",
-    srcs = ["initializer.js"],
-    outs = ["init.js"],
-    cmd = "sed \"s/0-STAMP/$$(date +%s)/g\" $< > $@",
+    name = "stamp_index",
+    srcs = ["index.prod.html"],
+    outs = ["stamped_index.html"],
+    cmd = "sed \"s/TIMESTAMP-VARIABLE/$$(date +%s)/g\" $< > $@",
 )
 
 # Insert script tags into index.html
@@ -244,18 +244,15 @@ html_insert_assets(
     outs = ["_prodapp/src/index.html"],
     args = [
         "--html",
-        "$(execpath :index.prod.html)",
+        "$(execpath :stamped_index.html)",
         "--out",
         "$@",
         "--roots",
         "$(RULEDIR)",
         "--assets",
-    ] + ["$(execpath %s)" % s for s in _ASSETS] + [
-        "init.js",
-    ],
+    ] + ["$(execpath %s)" % s for s in _ASSETS],
     data = _ASSETS + [
-        ":index.prod.html",
-        ":init.js",
+        ":stamped_index.html",
     ],
     tags = ["prod-showcase"],
 )
@@ -266,7 +263,6 @@ pkg_web(
         ":bundle-es2015.min",
         ":bundle-es5.min",
         ":index_html_prod",
-        ":init.js",
         ":regenerator",
         "//src/showcase/assets",
         # Include polyfills that will be requested by old browsers
