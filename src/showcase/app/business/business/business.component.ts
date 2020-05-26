@@ -2,6 +2,9 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
+import { BasicAccordionExampleComponent } from '../business-examples/accordion-examples/basic-accordion-example/basic-accordion-example.component';
+import { SimplePanelExampleComponent } from '../business-examples/accordion-examples/simple-panel-example/simple-panel-example.component';
+import { WizardAccordionExampleComponent } from '../business-examples/accordion-examples/wizard-accordion-example/wizard-accordion-example.component';
 import { AutocompleteDisplayWithExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-display-with-example/autocomplete-display-with-example.component';
 import { AutocompleteFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
 import { AutocompleteHintExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
@@ -11,6 +14,7 @@ import { AutocompleteReactiveFormsExampleComponent } from '../business-examples/
 import { BreadcrumbExampleComponent } from '../business-examples/breadcrumb-examples/breadcrumb-example/breadcrumb-example.component';
 import { ButtonExampleComponent } from '../business-examples/button-examples/button-example/button-example.component';
 import { CheckboxExampleComponent } from '../business-examples/checkbox-examples/checkbox-example/checkbox-example.component';
+import { CheckboxGroupExampleComponent } from '../business-examples/checkbox-examples/checkbox-group-example/checkbox-group-example.component';
 import { AutocompleteChipInputExampleComponent } from '../business-examples/chip-examples/autocomplete-chip-input-example/autocomplete-chip-input-example.component';
 import { DisabledChipInputExampleComponent } from '../business-examples/chip-examples/disabled-chip-input-example/disabled-chip-input-example.component';
 import { FormsChipInputExampleComponent } from '../business-examples/chip-examples/forms-chip-input-example/forms-chip-input-example.component';
@@ -21,7 +25,10 @@ import { DatepickerDateFilterExampleComponent } from '../business-examples/datep
 import { DatepickerMasterSlaveExampleComponent } from '../business-examples/datepicker-examples/datepicker-master-slave-example/datepicker-master-slave-example.component';
 import { DatepickerSimpleReactiveExampleComponent } from '../business-examples/datepicker-examples/datepicker-simple-reactive-example/datepicker-simple-reactive-example.component';
 import { DatepickerStandaloneFormsExampleComponent } from '../business-examples/datepicker-examples/datepicker-standalone-forms-example/datepicker-standalone-forms-example.component';
-import { DialogExampleComponent } from '../business-examples/dialog-examples/dialog-example/dialog-example.component';
+import { ComponentDataDialogExampleComponent } from '../business-examples/dialog-examples/component-data-dialog-example/component-data-dialog-example.component';
+import { SharedDataDialogExampleComponent } from '../business-examples/dialog-examples/shared-data-dialog-example/shared-data-dialog-example.component';
+import { TemplateDialogExampleComponent } from '../business-examples/dialog-examples/template-dialog-example/template-dialog-example.component';
+import { FieldExampleComponent } from '../business-examples/field-examples/field-example/field-example.component';
 import { MultipleModeDefaultFileSelectorExampleComponent } from '../business-examples/file-selector-examples/multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component';
 import { MultipleModePersistentFileSelectorExampleComponent } from '../business-examples/file-selector-examples/multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component';
 import { SimpleFileSelectorExampleComponent } from '../business-examples/file-selector-examples/simple-file-selector-example/simple-file-selector-example.component';
@@ -38,6 +45,7 @@ import { NavigationExampleComponent } from '../business-examples/pagination-exam
 import { PaginatorExampleComponent } from '../business-examples/pagination-examples/paginator-example/paginator-example.component';
 import { SkippableProcessflowExampleComponent } from '../business-examples/processflow-examples/skippable-processflow-example/skippable-processflow-example.component';
 import { RadioButtonExampleComponent } from '../business-examples/radio-button-examples/radio-button-example/radio-button-example.component';
+import { RadioButtonGroupExampleComponent } from '../business-examples/radio-button-examples/radio-button-group-example/radio-button-group-example.component';
 import { SelectFormsExampleComponent } from '../business-examples/select-examples/select-forms-example/select-forms-example.component';
 import { SelectMultiSelectionExampleComponent } from '../business-examples/select-examples/select-multi-selection-example/select-multi-selection-example.component';
 import { SelectNativeExampleComponent } from '../business-examples/select-examples/select-native-example/select-native-example.component';
@@ -56,6 +64,7 @@ import { TextareaFormsExampleComponent } from '../business-examples/textarea-exa
 import { TextareaNativeExampleComponent } from '../business-examples/textarea-examples/textarea-native-example/textarea-native-example.component';
 import { TextareaReactiveFormsWithSbbFieldExampleComponent } from '../business-examples/textarea-examples/textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component';
 import { TextexpandExampleComponent } from '../business-examples/textexpand-examples/textexpand-example/textexpand-example.component';
+import { TimeInputExampleComponent } from '../business-examples/time-input-examples/time-input-example/time-input-example.component';
 import { TooltipCustomContentExampleComponent } from '../business-examples/tooltip-examples/tooltip-custom-content-example/tooltip-custom-content-example.component';
 import { TooltipCustomIconExampleComponent } from '../business-examples/tooltip-examples/tooltip-custom-icon-example/tooltip-custom-icon-example.component';
 import { TooltipHoverExampleComponent } from '../business-examples/tooltip-examples/tooltip-hover-example/tooltip-hover-example.component';
@@ -106,6 +115,11 @@ export class BusinessComponent implements ExampleProvider {
     dialog: 'Dialog',
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
+    accordion: {
+      'basic-accordion-example': new ComponentPortal(BasicAccordionExampleComponent),
+      'wizard-accordion-example': new ComponentPortal(WizardAccordionExampleComponent),
+      'simple-panel-example': new ComponentPortal(SimplePanelExampleComponent),
+    },
     autocomplete: {
       'autocomplete-reactive-forms-example': new ComponentPortal(
         AutocompleteReactiveFormsExampleComponent
@@ -127,6 +141,7 @@ export class BusinessComponent implements ExampleProvider {
     },
     checkbox: {
       'checkbox-example': new ComponentPortal(CheckboxExampleComponent),
+      'checkbox-group-example': new ComponentPortal(CheckboxGroupExampleComponent),
     },
     datepicker: {
       'datepicker-simple-reactive-example': new ComponentPortal(
@@ -140,6 +155,9 @@ export class BusinessComponent implements ExampleProvider {
       'datepicker-business-date-adapter-example': new ComponentPortal(
         DatepickerBusinessDateAdapterExampleComponent
       ),
+    },
+    field: {
+      'field-example': new ComponentPortal(FieldExampleComponent),
     },
     processflow: {
       'skippable-processflow-example': new ComponentPortal(SkippableProcessflowExampleComponent),
@@ -160,7 +178,9 @@ export class BusinessComponent implements ExampleProvider {
       'tabs-example': new ComponentPortal(TabsExampleComponent),
     },
     dialog: {
-      'dialog-example': new ComponentPortal(DialogExampleComponent),
+      'component-data-dialog-example': new ComponentPortal(ComponentDataDialogExampleComponent),
+      'template-dialog-example': new ComponentPortal(TemplateDialogExampleComponent),
+      'shared-data-dialog-example': new ComponentPortal(SharedDataDialogExampleComponent),
     },
     pagination: {
       'paginator-example': new ComponentPortal(PaginatorExampleComponent),
@@ -196,7 +216,8 @@ export class BusinessComponent implements ExampleProvider {
       'autocomplete-chip-input-example': new ComponentPortal(AutocompleteChipInputExampleComponent),
     },
     'radio-button': {
-      'radio-button-example': new ComponentPortal(RadioButtonExampleComponent),
+      'single-radio-button-example': new ComponentPortal(RadioButtonExampleComponent),
+      'radio-button-group-example': new ComponentPortal(RadioButtonGroupExampleComponent),
     },
     select: {
       'select-reactive-forms-example': new ComponentPortal(SelectReactiveFormsExampleComponent),
@@ -230,6 +251,7 @@ export class BusinessComponent implements ExampleProvider {
       'icon-link-example': new ComponentPortal(IconLinkExampleComponent),
     },
     textexpand: { 'textexpand-example': new ComponentPortal(TextexpandExampleComponent) },
+    'time-input': { 'time-input-example': new ComponentPortal(TimeInputExampleComponent) },
     loading: {
       'simple-loading-example': new ComponentPortal(SimpleLoadingExampleComponent),
       'fullbox-loading-example': new ComponentPortal(FullboxLoadingExampleComponent),

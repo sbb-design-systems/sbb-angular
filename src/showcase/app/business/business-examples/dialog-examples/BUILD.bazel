@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -9,15 +8,15 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "dialog-examples",
     srcs = [
-        "dialog-example/dialog-example.component.ts",
+        "component-data-dialog-example/component-data-dialog-example.component.ts",
         "dialog-examples.module.ts",
+        "shared-data-dialog-example/shared-data-dialog-example.component.ts",
+        "template-dialog-example/template-dialog-example.component.ts",
     ],
     assets = [
-        ":dialog-example/dialog-example.component.css",
-        "dialog-example/dialog-example-content-1.component.html",
-        "dialog-example/dialog-example-content-2.component.html",
-        "dialog-example/dialog-example-content-3.component.html",
-        "dialog-example/dialog-example.component.html",
+        "component-data-dialog-example/component-data-dialog-example.component.html",
+        "shared-data-dialog-example/shared-data-dialog-example.component.html",
+        "template-dialog-example/template-dialog-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -37,9 +36,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "dialog_example_dialog_example_component_scss",
-    src = "dialog-example/dialog-example.component.scss",
 )

@@ -9,15 +9,15 @@ export class SelectOptionGroupsExampleComponent {
   form: FormGroup;
   foodFromTheWorld = [
     {
-      nation: 'Italien',
+      nation: 'Italy',
       food: [
         { value: 'lasagna', viewValue: 'Lasagna' },
         { value: 'parmigiana', viewValue: 'Parmigiana' },
-        { value: 'krm', viewValue: 'Kartoffeln, Reis und Muscheln' },
+        { value: 'pasta', viewValue: 'Pasta' },
       ],
     },
     {
-      nation: 'Deutschland',
+      nation: 'Germany',
       food: [
         { value: 'weißwurst', viewValue: 'Weißwurst' },
         { value: 'eisbein', viewValue: 'Eisbein' },
@@ -25,7 +25,7 @@ export class SelectOptionGroupsExampleComponent {
       ],
     },
     {
-      nation: 'Schweiz',
+      nation: 'Switzerland',
       food: [
         { value: 'birchermüesli', viewValue: 'Birchermüesli' },
         { value: 'rösti', viewValue: 'Rösti' },

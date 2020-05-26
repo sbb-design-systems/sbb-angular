@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -18,10 +17,6 @@ ng_ts_library(
         "select-reactive-forms-example/select-reactive-forms-example.component.ts",
     ],
     assets = [
-        ":select-native-example/select-native-example.component.css",
-        ":select-option-groups-example/select-option-groups-example.component.css",
-        ":select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component.css",
-        ":select-reactive-forms-example/select-reactive-forms-example.component.css",
         "select-forms-example/select-forms-example.component.html",
         "select-multi-selection-example/select-multi-selection-example.component.html",
         "select-native-example/select-native-example.component.html",
@@ -47,24 +42,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "select_native_example_select_native_example_component_scss",
-    src = "select-native-example/select-native-example.component.scss",
-)
-
-sass_binary(
-    name = "select_option_groups_example_select_option_groups_example_component_scss",
-    src = "select-option-groups-example/select-option-groups-example.component.scss",
-)
-
-sass_binary(
-    name = "select_option_groups_multi_selection_example_select_option_groups_multi_selection_example_component_scss",
-    src = "select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component.scss",
-)
-
-sass_binary(
-    name = "select_reactive_forms_example_select_reactive_forms_example_component_scss",
-    src = "select-reactive-forms-example/select-reactive-forms-example.component.scss",
 )

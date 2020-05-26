@@ -1,0 +1,37 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "field-examples",
+    srcs = [
+        "field-example/field-example.component.ts",
+        "field-examples.module.ts",
+    ],
+    assets = [
+        "field-example/field-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/button",
+        "//src/angular-business/checkbox",
+        "//src/angular-business/datepicker",
+        "//src/angular-business/field",
+        "//src/angular-business/select",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

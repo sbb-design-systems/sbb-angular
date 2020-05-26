@@ -8,9 +8,15 @@ import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { RadioButtonModule } from '@sbb-esta/angular-public/radio-button';
 
-import { AccordionExampleComponent } from './accordion-example/accordion-example.component';
+import { BasicAccordionExampleComponent } from './basic-accordion-example/basic-accordion-example.component';
+import { SimplePanelExampleComponent } from './simple-panel-example/simple-panel-example.component';
+import { WizardAccordionExampleComponent } from './wizard-accordion-example/wizard-accordion-example.component';
 
-const EXAMPLES = [AccordionExampleComponent];
+const EXAMPLES = [
+  BasicAccordionExampleComponent,
+  WizardAccordionExampleComponent,
+  SimplePanelExampleComponent,
+];
 
 @NgModule({
   imports: [

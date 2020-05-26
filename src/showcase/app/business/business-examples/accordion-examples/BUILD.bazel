@@ -1,0 +1,50 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "accordion-examples",
+    srcs = [
+        "accordion-examples.module.ts",
+        "basic-accordion-example/basic-accordion-example.component.ts",
+        "simple-panel-example/simple-panel-example.component.ts",
+        "wizard-accordion-example/wizard-accordion-example.component.ts",
+    ],
+    assets = [
+        ":basic-accordion-example/basic-accordion-example.component.css",
+        "basic-accordion-example/basic-accordion-example.component.html",
+        "simple-panel-example/simple-panel-example.component.html",
+        "wizard-accordion-example/wizard-accordion-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/accordion",
+        "//src/angular-business/button",
+        "//src/angular-business/checkbox",
+        "//src/angular-business/field",
+        "//src/angular-business/radio-button",
+        "//src/angular-icons/arrow",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "basic_accordion_example_basic_accordion_example_component_scss",
+    src = "basic-accordion-example/basic-accordion-example.component.scss",
+)

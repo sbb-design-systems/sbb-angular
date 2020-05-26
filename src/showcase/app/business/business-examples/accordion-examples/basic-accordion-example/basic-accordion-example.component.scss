@@ -1,0 +1,21 @@
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.panel-button {
+  flex: 1 0 auto;
+  text-align: right;
+}
+
+.inline-block {
+  display: inline-block;
+}

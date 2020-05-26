@@ -4,8 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 
 import { CheckboxExampleComponent } from './checkbox-example/checkbox-example.component';
+import { CheckboxGroupExampleComponent } from './checkbox-group-example/checkbox-group-example.component';
 
-const EXAMPLES = [CheckboxExampleComponent];
+const EXAMPLES = [CheckboxExampleComponent, CheckboxGroupExampleComponent];
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule],

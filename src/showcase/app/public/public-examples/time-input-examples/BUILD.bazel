@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -13,7 +12,6 @@ ng_ts_library(
         "time-input-examples.module.ts",
     ],
     assets = [
-        ":time-input-example/time-input-example.component.css",
         "time-input-example/time-input-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
@@ -32,9 +30,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "time_input_example_time_input_example_component_scss",
-    src = "time-input-example/time-input-example.component.scss",
 )

@@ -5,10 +5,10 @@ import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { TabsModule } from '@sbb-esta/angular-public/tabs';
 
-import { PersonListComponent } from './tabs-example/person-list/person-list.component';
+import { PeopleListComponent } from './tabs-example/people-list/people-list.component';
 import { TabsExampleComponent } from './tabs-example/tabs-example.component';
 
-const EXAMPLES = [PersonListComponent, TabsExampleComponent];
+const EXAMPLES = [PeopleListComponent, TabsExampleComponent];
 
 @NgModule({
   imports: [
