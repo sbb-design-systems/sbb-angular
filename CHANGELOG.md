@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.6.0...9.7.0) (2020-05-26)
+
+
+### Features
+
+* **business:** loading component ([#424](https://github.com/sbb-design-systems/sbb-angular/issues/424)) ([392d1ec](https://github.com/sbb-design-systems/sbb-angular/commit/392d1ec3d459cc54645995caaeb10eade8c89c48))
+
+
+### Bug Fixes
+
+* revert type imports ([#431](https://github.com/sbb-design-systems/sbb-angular/issues/431)) ([8469531](https://github.com/sbb-design-systems/sbb-angular/commit/8469531341f7255d7b918597744ce8c515702306)), closes [#432](https://github.com/sbb-design-systems/sbb-angular/issues/432)
+
 ## [9.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.5.0...9.6.0) (2020-05-18)
 
 
