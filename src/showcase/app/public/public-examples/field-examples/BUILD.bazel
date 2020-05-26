@@ -16,8 +16,11 @@ ng_ts_library(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-public",
+        "//src/angular-public/button",
         "//src/angular-public/checkbox",
+        "//src/angular-public/datepicker",
+        "//src/angular-public/field",
+        "//src/angular-public/select",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
