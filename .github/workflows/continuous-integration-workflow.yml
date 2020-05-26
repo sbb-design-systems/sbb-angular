@@ -23,14 +23,12 @@ jobs:
         fetch-depth: 1
     - name: Copy bazel.rc to user home
       run: cp ./.github/.bazelrc ~/
-    - if: github.event_name == 'push'
+    - name: "Bazel Cache: Configure credentials"
+      if: github.event_name == 'push'
       run: sed -i "s#--remote_http_cache=https://#--remote_http_cache=https://${{ secrets.BAZEL_CACHE_UPDATE_KEY }}@#" .bazelrc
-    - if: github.event_name == 'push'
-      run: echo "build --config=remote" >> ~/.bazelrc
-    - if: github.event_name == 'push'
-      run: cat .bazelrc
-    - if: github.event_name == 'push'
-      run: cat ~/.bazelrc
+    - name: "Bazel Cache: Configure cache push"
+      if: github.event_name == 'push'
+      run: echo "build --config=remote-http-caching" >> ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
         node-version: 12
