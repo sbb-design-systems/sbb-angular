@@ -54,12 +54,12 @@ jobs:
         fetch-depth: 1
     - name: Copy bazel.rc to user home
       run: cp ./.github/.bazelrc ~/
-    - name: "Bazel Cache: Configure credentials"
+    - name: "Bazel Cache: Apply configuration"
       if: github.event_name == 'push'
-      run: echo "${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}" > ~/credentials.json
-    - name: "Bazel Cache: Configure cache push"
-      if: github.event_name == 'push'
-      run: echo "build --google_credentials=~/credentials.json\nbuild --config=remote-http-caching" >> ~/.bazelrc
+      run: |
+        echo "${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}" > ~/credentials.json
+        echo "build --google_credentials=~/credentials.json" >> ~/.bazelrc
+        echo "build --config=remote-http-caching" >> ~/.bazelrc
     - run: cat ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
@@ -106,12 +106,12 @@ jobs:
         fetch-depth: 1
     - name: Copy bazel.rc to user home
       run: cp ./.github/.bazelrc ~/
-    - name: "Bazel Cache: Configure credentials"
+    - name: "Bazel Cache: Apply configuration"
       if: github.event_name == 'push'
-      run: echo "${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}" > ~/credentials.json
-    - name: "Bazel Cache: Configure cache push"
-      if: github.event_name == 'push'
-      run: echo "build --google_credentials=~/credentials.json\nbuild --config=remote-http-caching" >> ~/.bazelrc
+      run: |
+        echo "${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}" > ~/credentials.json
+        echo "build --google_credentials=~/credentials.json" >> ~/.bazelrc
+        echo "build --config=remote-http-caching" >> ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
         node-version: 12
