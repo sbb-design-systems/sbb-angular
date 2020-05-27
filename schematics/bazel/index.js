@@ -34,11 +34,11 @@ class NgModule {
         this.testDependencies = this.hasTests ? this._findTestDependencies() : [];
         this.hasSassLibrary = !!this._scssLibaryFiles.length;
         this.sassBinaries = this._findSassBinaries();
-        this.stylesheets = this.sassBinaries.map(s => s.path.replace('.scss', '.css'));
+        this.stylesheets = this.sassBinaries.map((s) => s.path.replace('.scss', '.css'));
     }
     ngModules() {
         return this._modules.reduce((current, next) => current.concat(next.ngModules()), [
-            this
+            this,
         ]);
     }
     render() {
@@ -46,7 +46,7 @@ class NgModule {
             schematics.mergeWith(schematics.apply(schematics.url(this._templateUrl), [
                 schematics.template(this._templateOptions()),
                 schematics.move(this.path),
-                schematics.forEach(fileEntry => {
+                schematics.forEach((fileEntry) => {
                     if (!this._tree.exists(fileEntry.path)) {
                         return fileEntry;
                     }
@@ -54,8 +54,8 @@ class NgModule {
                         this._tree.overwrite(fileEntry.path, fileEntry.content);
                     }
                     return null;
-                })
-            ]))
+                }),
+            ])),
         ]);
     }
     _templateOptions() {
@@ -79,7 +79,7 @@ class NgModule {
         }
     }
     _findFiles(dir, skipModuleCheck = true) {
-        if (['schematics', 'styles'].some(d => core.basename(dir.path) === d)) {
+        if (['schematics', 'styles'].some((d) => core.basename(dir.path) === d)) {
             return;
         }
         else if (!skipModuleCheck && this._isModuleDir(dir)) {
@@ -106,7 +106,7 @@ class NgModule {
                 this._scssFiles.push(dir.file(file));
             }
         }
-        dir.subdirs.forEach(d => this._findFiles(dir.dir(d), false));
+        dir.subdirs.forEach((d) => this._findFiles(dir.dir(d), false));
     }
     _findDependencies() {
         const dependencies = this._tsFiles
@@ -124,31 +124,31 @@ class NgModule {
         return this._specFiles
             .reduce((current, f) => current.concat(this._findImportsAndReexports(f)), [])
             .filter((v, i, a) => a.indexOf(v) === i)
-            .filter(i => i !== '@npm//@angular/core')
+            .filter((i) => i !== '@npm//@angular/core')
             .sort();
     }
     _findImportsAndReexports(fileEntry) {
         const file = typescript.createSourceFile(core.basename(fileEntry.path), fileEntry.content.toString(), typescript.ScriptTarget.ESNext, true);
         return [
             ...astUtils.findNodes(file, typescript.SyntaxKind.ImportDeclaration, undefined, true),
-            ...astUtils.findNodes(file, typescript.SyntaxKind.ExportDeclaration, undefined, true)
+            ...astUtils.findNodes(file, typescript.SyntaxKind.ExportDeclaration, undefined, true),
         ]
             .map((n) => { var _a, _b; return (_b = (_a = n.moduleSpecifier) === null || _a === void 0 ? void 0 : _a.getText().replace(/['"]/g, '')) !== null && _b !== void 0 ? _b : ''; })
             .concat(astUtils.findNodes(file, typescript.SyntaxKind.ImportKeyword, undefined, true)
-            .filter(n => n.getFullText().match(/ import/))
-            .map(n => n.parent.arguments[0].getText().replace(/['"]/g, '')))
-            .map(i => this._resolveTsImport(i, fileEntry))
-            .filter(i => !!i);
+            .filter((n) => n.getFullText().match(/ import/))
+            .map((n) => n.parent.arguments[0].getText().replace(/['"]/g, '')))
+            .map((i) => this._resolveTsImport(i, fileEntry))
+            .filter((i) => !!i);
     }
     _findSassBinaries() {
         return this._scssFiles
-            .filter(f => f.path.endsWith('.scss') && !core.basename(f.path).startsWith('_'))
-            .map(file => {
+            .filter((f) => f.path.endsWith('.scss') && !core.basename(f.path).startsWith('_'))
+            .map((file) => {
             const stylesheetPath = core.relative(this.path, file.path);
             return {
                 name: stylesheetPath.replace(/[^a-z0-9]/g, '_'),
                 path: stylesheetPath,
-                dependencies: this._findStylesheetDependencies(file)
+                dependencies: this._findStylesheetDependencies(file),
             };
         });
     }
@@ -158,8 +158,8 @@ class NgModule {
             return [];
         }
         return matches
-            .map(s => s.substring(9, s.length - 2))
-            .map(importPath => {
+            .map((s) => s.substring(9, s.length - 2))
+            .map((importPath) => {
             if (importPath.includes('/angular-core/styles/common')) {
                 return '//src/angular-core/styles:common_scss_lib';
             }
@@ -177,7 +177,7 @@ class NgModule {
                 return '';
             }
         })
-            .filter(d => !!d)
+            .filter((d) => !!d)
             .filter((v, i, a) => a.indexOf(v) === i);
     }
     _isInModule(path) {
@@ -195,14 +195,14 @@ class NgPackage extends NgModule {
         this._templateUrl = './files/ngPackage';
         this.shortName = this.name.replace('angular-', '');
         const ngModules = this.ngModules().slice(1);
-        this.entryPoints = ngModules.map(m => this._resolvePath(m));
+        this.entryPoints = ngModules.map((m) => this._resolvePath(m));
         this.hasReadme = dir.subfiles.includes(core.fragment('README.md'));
         this.hasSchematics = dir.subdirs.includes(core.fragment('schematics'));
         this.hasSrcFiles = dir.subdirs.includes(core.fragment('src'));
         this.hasStyleBundle = dir.subfiles.includes(core.fragment('_style_bundle.scss'));
         this.hasTypography = dir.subfiles.includes(core.fragment('typography.scss'));
-        this.markdownFiles = this._markdownFiles.map(f => core.basename(f.path));
-        this.markdownModules = ngModules.filter(m => m.hasMarkdown).map(m => this._resolvePath(m));
+        this.markdownFiles = this._markdownFiles.map((f) => core.basename(f.path));
+        this.markdownModules = ngModules.filter((m) => m.hasMarkdown).map((m) => this._resolvePath(m));
     }
     _resolvePath(m) {
         return core.relative(this.path, m.path);
@@ -212,7 +212,7 @@ class NgPackage extends NgModule {
             ...core.strings,
             uc: (s) => s.toUpperCase(),
             ...this,
-            dependencies: this.dependencies.filter(d => !d.startsWith(`//src/${this.name}`))
+            dependencies: this.dependencies.filter((d) => !d.startsWith(`//src/${this.name}`)),
         };
     }
 }
@@ -224,7 +224,7 @@ class ShowcaseModule extends NgModule {
         this.customTsConfig = '//src/showcase:tsconfig.json';
     }
     _isModuleDir(dir) {
-        return dir.subfiles.some(f => f.endsWith('.module.ts'));
+        return dir.subfiles.some((f) => f.endsWith('.module.ts'));
     }
     _createSubModule(dir) {
         return new ShowcaseModule(dir, this._tree, this._context);
@@ -251,8 +251,8 @@ class ShowcaseModule extends NgModule {
     _templateOptions() {
         return {
             ...this,
-            tsFiles: this._tsFiles.map(f => core.relative(this.path, f.path)).sort(),
-            htmlFiles: this._htmlFiles.map(f => core.relative(this.path, f.path)).sort()
+            tsFiles: this._tsFiles.map((f) => core.relative(this.path, f.path)).sort(),
+            htmlFiles: this._htmlFiles.map((f) => core.relative(this.path, f.path)).sort(),
         };
     }
 }
@@ -273,13 +273,13 @@ function bazel(options) {
     return (tree, context) => {
         const srcDir = tree.getDir('src');
         if (!options.filter) {
-            srcDir.subdirs.forEach(d => context.addTask(new tasks.RunSchematicTask('bazel', { filter: d })));
+            srcDir.subdirs.forEach((d) => context.addTask(new tasks.RunSchematicTask('bazel', { filter: d })));
         }
         else {
             return schematics.chain(srcDir.subdirs
-                .filter(d => !options.filter || d === options.filter)
-                .map(d => srcDir.dir(d))
-                .map(packageDir => packageDir.path.endsWith('showcase')
+                .filter((d) => !options.filter || d === options.filter)
+                .map((d) => srcDir.dir(d))
+                .map((packageDir) => packageDir.path.endsWith('showcase')
                 ? new ShowcasePackage(packageDir, tree, context)
                 : new NgPackage(packageDir, tree, context))
                 .reduce((current, next) => current.concat(next.render()), [])

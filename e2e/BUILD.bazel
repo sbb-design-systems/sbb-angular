@@ -8,7 +8,7 @@ ts_library(
     data = [
         "//:tsconfig.json",
     ],
-    tsconfig = ":tsconfig.e2e.json" if len(glob(["tsconfig.e2e.json"])) else ":tsconfig.json",
+    tsconfig = ":tsconfig.json",
     deps = [
         "@npm//@types/jasmine",
         "@npm//@types/jasminewd2",

@@ -41,6 +41,7 @@ ng_test_library(
 ng_web_test_suite(
     name = "unit_tests",
     srcs = [
+        # do not sort
         "@npm//:node_modules/resize-observer-polyfill/dist/ResizeObserver.js",
         "@npm//:node_modules/perfect-scrollbar/dist/perfect-scrollbar.js",
     ],

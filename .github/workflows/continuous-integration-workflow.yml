@@ -14,6 +14,37 @@ env:
   BAZEL_COMMAND: bazelisk
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Create hash key"
+      id: yarn-cache-key-name
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
+    - name: "Yarn: Restore dependencies from cache"
+      uses: actions/cache@v1
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
+  
+    - name: "Lint: Run tslint and bazel linter"
+      run: yarn lint
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +54,14 @@ jobs:
         fetch-depth: 1
     - name: Copy bazel.rc to user home
       run: cp ./.github/.bazelrc ~/
+    - name: "Bazel Cache: Apply configuration"
+      if: github.event_name == 'push'
+      env:
+        GCS_KEY: ${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}
+      run: |
+        echo "$GCS_KEY" > ~/credentials.json
+        echo "build --google_credentials=$HOME/credentials.json" >> ~/.bazelrc
+        echo "build --config=remote-http-caching" >> ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
         node-version: 12
@@ -41,127 +80,12 @@ jobs:
         key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
         restore-keys: |
           ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Bazelisk: Get artifacts cache directory path"
-      id: bazelisk-cache-dir-path
-      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
-    - name: "Bazelisk: Create hash key"
-      id: bazelisk-cache-key-name
-      run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
-    - name: "Bazelisk: Restore from cache"
-      uses: actions/cache@v1
-      id: bazelisk-cache
-      with:
-        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-bazelisk-build-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Bazel"
       run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
             
     - name: "Test: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
-
-    - name: "Lint: Run tslint"
-      run: yarn tslint
-
-  packages:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - name: Copy bazel.rc to user home
-      run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Bazelisk: Get artifacts cache directory path"
-      id: bazelisk-cache-dir-path
-      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
-    - name: "Bazelisk: Create hash key"
-      id: bazelisk-cache-key-name
-      run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
-    - name: "Bazelisk: Restore from cache"
-      uses: actions/cache@v1
-      id: bazelisk-cache
-      with:
-        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-bazelisk-packages-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-bazelisk-packages-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
-
-    - name: "Build: Packages"
-      run: yarn -s build
-
-  showcase:
-    runs-on: ubuntu-latest
-    env:
-      PR_NUMBER: ${{ github.event.number }}
-    steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - name: Copy bazel.rc to user home
-      run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Bazelisk: Get artifacts cache directory path"
-      id: bazelisk-cache-dir-path
-      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
-    - name: "Bazelisk: Create hash key"
-      id: bazelisk-cache-key-name
-      run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
-    - name: "Bazelisk: Restore from cache"
-      uses: actions/cache@v1
-      id: bazelisk-cache
-      with:
-        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
 
     - name: "Build: Showcase"
       run: yarn -s build:showcase
@@ -173,3 +97,44 @@ jobs:
         curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
         -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
         -F "tarball=@sbb-esta-angular-showcase.tgz"
+
+  packages:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Copy bazel.rc to user home
+      run: cp ./.github/.bazelrc ~/
+    - name: "Bazel Cache: Apply configuration"
+      if: github.event_name == 'push'
+      env:
+        GCS_KEY: ${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}
+      run: |
+        echo "$GCS_KEY" > ~/credentials.json
+        echo "build --google_credentials=$HOME/credentials.json" >> ~/.bazelrc
+        echo "build --config=remote-http-caching" >> ~/.bazelrc
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Create hash key"
+      id: yarn-cache-key-name
+      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
+    - name: "Yarn: Restore dependencies from cache"
+      uses: actions/cache@v1
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
+
+    - name: "Build: Packages"
+      run: yarn -s build

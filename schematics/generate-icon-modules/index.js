@@ -16,7 +16,7 @@ class IconCollectionModule {
     get iconsRecursive() {
         return [
             ...this.icons,
-            ...this.collections.reduce((current, next) => [...current, ...next.iconsRecursive], [])
+            ...this.collections.reduce((current, next) => [...current, ...next.iconsRecursive], []),
         ];
     }
     apply(root) {
@@ -25,12 +25,12 @@ class IconCollectionModule {
             schematics.mergeWith(schematics.apply(schematics.url('./files/collection'), [
                 schematics.template({
                     ...core.strings,
-                    ...this
+                    ...this,
                 }),
-                schematics.move(directory.path)
+                schematics.move(directory.path),
             ])),
-            ...this.collections.map(c => c.apply(directory)),
-            ...this.icons.map(i => i.apply(directory))
+            ...this.collections.map((c) => c.apply(directory)),
+            ...this.icons.map((i) => i.apply(directory)),
         ]);
     }
 }
@@ -43,12 +43,12 @@ class IconModule {
     }
     get sizes() {
         return this._files
-            .map(f => f.size)
-            .filter(s => !!s)
+            .map((f) => f.size)
+            .filter((s) => !!s)
             .sort();
     }
     get meta() {
-        return this._files.map(f => f.filepath);
+        return this._files.map((f) => f.filepath);
     }
     apply(directory) {
         const iconBaseImport = () => `${'../'.repeat(this.modules.length)}icon-base`;
@@ -57,12 +57,12 @@ class IconModule {
                 ...core.strings,
                 iconBaseImport,
                 ...this._files[0],
-                ...(this._files.some(f => ['large', 'medium', 'small'].includes(f.size))
+                ...(this._files.some((f) => ['large', 'medium', 'small'].includes(f.size))
                     ? { width: '24px', height: '24px', ratio: 1 }
                     : undefined),
-                ...(this._files.length > 1 ? { template: this._mergeTemplates() } : undefined)
+                ...(this._files.length > 1 ? { template: this._mergeTemplates() } : undefined),
             }),
-            schematics.move(directory.path)
+            schematics.move(directory.path),
         ]));
     }
     _mergeTemplates() {
@@ -77,14 +77,14 @@ class IconModule {
 const sizes = ['small', 'medium', 'large'];
 const invalidModules = ['', 'svg', 'FPL', 'KOM', 'non-responsive', 'responsive', ...sizes];
 const rules = [
-    file => sizes.filter(size => file.name.endsWith(size)).forEach(size => (file.size = size)),
-    file => (file.modules = file.modules.filter(m => !invalidModules.includes(m))),
-    file => (file.modules = file.modules.map(m => m
+    (file) => sizes.filter((size) => file.name.endsWith(size)).forEach((size) => (file.size = size)),
+    (file) => (file.modules = file.modules.filter((m) => !invalidModules.includes(m))),
+    (file) => (file.modules = file.modules.map((m) => m
         .replace(/^Attribut$/, 'TimetableAttributes')
         .replace(/^HIM_CUS$/, 'HimCus')
         .replace(/^Produkt$/, 'TimetableProducts')
         .replace(/^\d+_/, ''))),
-    file => (file.name = file.name
+    (file) => (file.name = file.name
         .replace(/^sbb_info$/, 'him_info')
         .replace(/^sbb_disruption$/, 'him_disruption')
         .replace(/^sbb_construction$/, 'him_construction')
@@ -92,9 +92,9 @@ const rules = [
         .replace(/^sbb_(\d+\_)?/i, '')
         .replace(/_[ ]?(\d{1,3}_)+(small|medium|large)$/, '')
         .replace(/_/g, '-')),
-    file => (file.modules = file.modules.map((v, i, a) => `${a.slice(0, i).join('')}${v}`))
+    (file) => (file.modules = file.modules.map((v, i, a) => `${a.slice(0, i).join('')}${v}`)),
 ];
-var namingRules = rules.map(r => (f) => {
+var namingRules = rules.map((r) => (f) => {
     r(f);
     return f;
 });
@@ -138,8 +138,8 @@ class Svgo {
                     { convertShapeToPath: true },
                     { sortAttrs: true },
                     { removeDimensions: true },
-                    { removeAttrs: { attrs: '(font-family)' } }
-                ]
+                    { removeAttrs: { attrs: '(font-family)' } },
+                ],
             });
         }
         catch (_a) {
@@ -201,18 +201,18 @@ class SvgSource {
                 files.push(SvgFile.from(path, entry));
             }
         });
-        const resolvedFiles = (await Promise.all(files)).map(f => namingRules.reduce((current, next) => next(current), f));
+        const resolvedFiles = (await Promise.all(files)).map((f) => namingRules.reduce((current, next) => next(current), f));
         return new SvgSource(resolvedFiles);
     }
     assertNoDuplicates() {
         const duplicates = this._files
-            .map((file, i, a) => i === a.findIndex(f => f.name === file.name && f.size === file.size)
-            ? a.filter(f => f.name === file.name && f.size === file.size)
+            .map((file, i, a) => i === a.findIndex((f) => f.name === file.name && f.size === file.size)
+            ? a.filter((f) => f.name === file.name && f.size === file.size)
             : [])
-            .filter(f => f.length > 1);
+            .filter((f) => f.length > 1);
         if (duplicates.length) {
             const duplicateOutput = duplicates
-                .map(d => d.map(f => `  ${f.name}: ${f.filepath}`).join('\n'))
+                .map((d) => d.map((f) => `  ${f.name}: ${f.filepath}`).join('\n'))
                 .join('\n');
             throw new schematics.SchematicsException(`\nDuplicates found:\n${duplicateOutput}`);
         }
@@ -221,14 +221,14 @@ class SvgSource {
     toCollectionModules() {
         const iconModules = this._toIconModules();
         const moduleTrees = iconModules
-            .map(i => i.modules)
-            .filter((v, i, a) => i === a.findIndex(vi => vi.join(',') === v.join(',')));
+            .map((i) => i.modules)
+            .filter((v, i, a) => i === a.findIndex((vi) => vi.join(',') === v.join(',')));
         const collectionMap = new Map();
         const rootCollection = new IconCollectionModule();
         for (const moduleTree of moduleTrees) {
             let collection = rootCollection;
             for (const moduleName of moduleTree) {
-                let localCollection = collection.collections.find(c => c.name === moduleName);
+                let localCollection = collection.collections.find((c) => c.name === moduleName);
                 if (!localCollection) {
                     localCollection = new IconCollectionModule(moduleName);
                     collectionMap.set(moduleTree.join(','), localCollection);
@@ -237,14 +237,14 @@ class SvgSource {
                 collection = localCollection;
             }
         }
-        iconModules.forEach(i => 
+        iconModules.forEach((i) => 
         // tslint:disable-next-line:no-non-null-assertion
         collectionMap.get(i.modules.join(',')).icons.push(i));
         return rootCollection;
     }
     _toIconModules() {
         const svgMap = this._files.reduce((current, next) => current.set(next.name, [...(current.get(next.name) || []), next]), new Map());
-        return Array.from(svgMap.values()).map(g => new IconModule(g));
+        return Array.from(svgMap.values()).map((g) => new IconModule(g));
     }
 }
 
@@ -259,11 +259,11 @@ function generateIconModules() {
             schematics.mergeWith(schematics.apply(schematics.url('./files/root'), [
                 schematics.template({
                     ...core.strings,
-                    icons
+                    icons,
                 }),
-                schematics.move(dist.path)
+                schematics.move(dist.path),
             ])),
-            collection.apply(dist)
+            collection.apply(dist),
         ]);
     };
 }
