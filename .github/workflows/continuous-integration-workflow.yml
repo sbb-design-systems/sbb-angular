@@ -56,8 +56,10 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - name: "Bazel Cache: Apply configuration"
       if: github.event_name == 'push'
+      env:
+        GCS_KEY: ${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}
       run: |
-        echo "${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}" > ~/credentials.json
+        echo "$GCS_KEY" > ~/credentials.json
         echo "build --google_credentials=$HOME/credentials.json" >> ~/.bazelrc
         echo "build --config=remote-http-caching" >> ~/.bazelrc
     - run: cat ~/.bazelrc
@@ -108,8 +110,10 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - name: "Bazel Cache: Apply configuration"
       if: github.event_name == 'push'
+      env:
+        GCS_KEY: ${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}
       run: |
-        echo "${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}" > ~/credentials.json
+        echo "$GCS_KEY" > ~/credentials.json
         echo "build --google_credentials=$HOME/credentials.json" >> ~/.bazelrc
         echo "build --config=remote-http-caching" >> ~/.bazelrc
     - uses: actions/setup-node@v1
