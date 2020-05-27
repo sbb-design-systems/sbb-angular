@@ -7,11 +7,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-    - run: printenv
     - name: Shallow checkout
       uses: actions/checkout@v2
       with:
@@ -39,5 +34,8 @@ jobs:
 
     - name: "Lint: Pull request title"
       env:
-        PR_TITLE: ${{ github.event.title }}
+        PR_TITLE: ${{ github.event.pull_request.title }}
       run: echo "$PR_TITLE" | yarn commitlint
+
+    - name: "Warning: Pull request title must match patterns defined in CONTRIBUTING.md in section Commit Message Guidelines!"
+      if: ${{ failure() }}
