@@ -56,10 +56,11 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - name: "Bazel Cache: Configure credentials"
       if: github.event_name == 'push'
-      run: sed -i "s#--remote_http_cache=https://#--remote_http_cache=https://${{ secrets.BAZEL_CACHE_UPDATE_KEY }}@#" .bazelrc
+      run: echo "${{ sectrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}" > ~/credentials.json
     - name: "Bazel Cache: Configure cache push"
       if: github.event_name == 'push'
-      run: echo "build --config=remote-http-caching" >> ~/.bazelrc
+      run: echo "build --google_credentials=~/credentials.json\nbuild --config=remote-http-caching" >> ~/.bazelrc
+    - run: cat ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
         node-version: 12
@@ -85,6 +86,17 @@ jobs:
     - name: "Test: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
 
+    - name: "Build: Showcase"
+      run: yarn -s build:showcase
+    - name: "Pack: Showcase"
+      run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
+    - name: "Deploy: Staging"
+      if: github.event_name == 'pull_request'
+      run: |
+        curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
+        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
+        -F "tarball=@sbb-esta-angular-showcase.tgz"
+
   packages:
     runs-on: ubuntu-latest
     steps:
@@ -94,6 +106,12 @@ jobs:
         fetch-depth: 1
     - name: Copy bazel.rc to user home
       run: cp ./.github/.bazelrc ~/
+    - name: "Bazel Cache: Configure credentials"
+      if: github.event_name == 'push'
+      run: echo "${{ sectrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}" > ~/credentials.json
+    - name: "Bazel Cache: Configure cache push"
+      if: github.event_name == 'push'
+      run: echo "build --google_credentials=~/credentials.json\nbuild --config=remote-http-caching" >> ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
         node-version: 12
@@ -117,46 +135,3 @@ jobs:
 
     - name: "Build: Packages"
       run: yarn -s build
-
-  showcase:
-    runs-on: ubuntu-latest
-    env:
-      PR_NUMBER: ${{ github.event.number }}
-    steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - name: Copy bazel.rc to user home
-      run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Build: Showcase"
-      run: yarn -s build:showcase
-    - name: "Pack: Showcase"
-      run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
-    - name: "Deploy: Staging"
-      if: github.event_name == 'pull_request'
-      run: |
-        curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
-        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
-        -F "tarball=@sbb-esta-angular-showcase.tgz"
