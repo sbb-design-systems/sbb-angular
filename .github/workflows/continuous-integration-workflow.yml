@@ -62,7 +62,6 @@ jobs:
         echo "$GCS_KEY" > ~/credentials.json
         echo "build --google_credentials=$HOME/credentials.json" >> ~/.bazelrc
         echo "build --config=remote-http-caching" >> ~/.bazelrc
-    - run: cat ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
         node-version: 12
