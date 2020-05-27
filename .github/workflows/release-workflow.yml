@@ -120,21 +120,6 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
-    - name: "Bazelisk: Get artifacts cache directory path"
-      id: bazelisk-cache-dir-path
-      run: echo "::set-output name=dir::$(bazelisk info bazel-bin)"
-    - name: "Bazelisk: Create hash key"
-      id: bazelisk-cache-key-name
-      run: echo "::set-output name=bazelisk_cache_key::$(yarn -s hash WORKSPACE .bazelversion yarn.lock)"
-    - name: "Bazelisk: Restore from cache"
-      uses: actions/cache@v1
-      id: bazelisk-cache
-      with:
-        path: ${{ steps.bazelisk-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-bazelisk-showcase-artifacts-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}-
-
     - name: "Build: Showcase"
       run: yarn -s build:showcase
 
