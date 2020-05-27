@@ -127,6 +127,14 @@ jobs:
       id: docker_release_version
       run: echo ::set-output name=docker_release_version::${GITHUB_REF/refs\/tags\//}
     - name: "Build: Docker image"
-      run: docker build -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} .
+      run: |
+        docker build \
+        -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} \
+        -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:latest \
+        .
     - name: "Publish: Docker image"
       run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }}
+    - name: "Publish: Docker image as latest"
+      run: |
+        docker rmi docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:latest
+        docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:latest
