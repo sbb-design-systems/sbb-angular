@@ -54,7 +54,7 @@ build --config=ivy
 #######################
 # Remote HTTP Caching #
 #######################
-build --remote_http_cache=https://sbb-angular-bazel-cache.app.test04.otc-test.sbb.ch
+build --remote_http_cache=https://sbb-angular-bazel-cache.app.sbb.ch
 build --remote_accept_cached=true
 build --remote_upload_local_results=false
 
