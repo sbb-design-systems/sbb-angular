@@ -153,7 +153,7 @@ ts_devserver(
     port = 4200,
     scripts = [
         "//tools/esri-loader:esri_loader_umd_module",
-        "//tools/leaflet:leaflet_umd_module",
+        "@npm//:node_modules/leaflet/dist/leaflet-src.js",
         "@npm//:node_modules/tslib/tslib.js",
         "@npm//:node_modules/esri-leaflet/dist/esri-leaflet-debug.js",
         "//tools/rxjs:rxjs_umd_modules",

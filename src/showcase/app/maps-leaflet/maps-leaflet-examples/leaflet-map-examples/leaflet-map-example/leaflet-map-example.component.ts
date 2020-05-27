@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, HostListener, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ViewChild } from '@angular/core';
 import { LeafletMapComponent } from '@sbb-esta/angular-maps-leaflet/leaflet-map';
 import { LayersControl } from '@sbb-esta/angular-maps-leaflet/leaflet-map/leaflet-map/model/map-config.model';
 import { featureLayer } from 'esri-leaflet';
@@ -44,7 +44,7 @@ export let layersControlConfig: LayersControl = {
         useCors: true,
       }).bindPopup((l: any) => {
         return Util.template(
-          '<p>Standort <strong>{NAME}</strong> in {GEMEINDE}.',
+          '<p>Type: <strong>{HazardType}</strong><br> {Description}',
           l.feature.properties
         );
       }),
@@ -89,7 +89,55 @@ export class LeafletMapExampleComponent implements AfterViewChecked {
   private _leafLetMap: LeafletMapComponent;
 
   public options = mapOptions;
-  public lc = layersControlConfig;
+  public layersControl = layersControlConfig;
+
+  mapReady(map: L.Map) {
+    this._map = map;
+  }
+
+  goToPoint(lat: number, lng: number, zoomlvl: number) {
+    this._leafLetMap.flyTo(latLng(lat, lng), zoomlvl);
+  }
+
+  goToArea(lat1: number, lng1: number, lat2: number, lng2: number) {
+    const latlng1 = latLng(lat1, lng1);
+    const latlng2 = latLng(lat2, lng2);
+    const bounds = new LatLngBounds(latlng1, latlng2);
+    this._leafLetMap.flyToBounds(bounds);
+  }
+
+  mapClicked(e: LeafletMouseEvent) {
+    popup()
+      .setLatLng(e.latlng)
+      .setContent('You clicked the map at: ' + e.latlng.toString())
+      .openOn(this._map);
+  }
+
+  addPointLayerToMap() {
+    this._removeLayerFromMap(this._myPointLayerGroup);
+
+    const myPoints = this._generatePoints();
+    this._myPointLayerGroup = this._createLayerGroup(myPoints);
+    this._leafLetMap.addOverlayToMap({
+      title: 'sample',
+      layer: this._myPointLayerGroup,
+      visible: true,
+    });
+  }
+
+  /**
+   * The map gets it's size, when it is added to the DOM.
+   * At this point it is not yet displayed, but only when the user clicks the "examples"-tab.
+   * This leads to not enough tiles being loaded when the map is actually displayed, which turns out in a grey map.
+   * All required tiles will not be loaded until you call `map.invalidateSize()`.
+   * Because it is not possible to get notified when the user clicks the "examples"-tab,
+   * we use ngAfterviewChecked to get the new mapsize and load the according tiles.
+   */
+  ngAfterViewChecked() {
+    if (this._map) {
+      setTimeout(() => this._map.invalidateSize());
+    }
+  }
 
   private _createLayerGroup(myPoints: [number, number][]): LayerGroup<any> {
     const l = new LayerGroup();
@@ -113,56 +161,7 @@ export class LeafletMapExampleComponent implements AfterViewChecked {
     return pointArray;
   }
 
-  ngAfterViewChecked() {
-    // get new mapsize when "examples"-tab is clicked
-    if (this._map) {
-      setTimeout(() => this._map.invalidateSize(), 300);
-    }
-  }
-
   private _randomNumber(min, max) {
     return Math.random() * (max - min) + min;
-  }
-
-  public mapReady(map: L.Map) {
-    this._map = map;
-  }
-
-  @HostListener('document:onchange', [])
-  onResize() {
-    console.log('asd');
-    if (this._map) {
-      this._map.invalidateSize();
-    }
-  }
-
-  public goToPoint(lat: number, lng: number, zoomlvl: number) {
-    this._leafLetMap.flyTo(latLng(lat, lng), zoomlvl);
-  }
-
-  public goToArea(lat1: number, lng1: number, lat2: number, lng2: number) {
-    const latlng1 = latLng(lat1, lng1);
-    const latlng2 = latLng(lat2, lng2);
-    const bounds = new LatLngBounds(latlng1, latlng2);
-    this._leafLetMap.flyToBounds(bounds);
-  }
-
-  public mapClicked(e: LeafletMouseEvent) {
-    popup()
-      .setLatLng(e.latlng)
-      .setContent('You clicked the map at: ' + e.latlng.toString())
-      .openOn(this._map);
-  }
-
-  public addPointLayerToMap() {
-    this._removeLayerFromMap(this._myPointLayerGroup);
-
-    const myPoints = this._generatePoints();
-    this._myPointLayerGroup = this._createLayerGroup(myPoints);
-    this._leafLetMap.addOverlayToMap({
-      title: 'sample',
-      layer: this._myPointLayerGroup,
-      visible: true,
-    });
   }
 }

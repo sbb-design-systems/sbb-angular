@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
 import {
   control,
   Control,
@@ -21,8 +21,6 @@ import { LayersControl, LayersControlLayer } from './model/map-config.model';
   styleUrls: ['./leaflet-map.component.scss'],
 })
 export class LeafletMapComponent implements OnInit {
-  constructor(private _elementRef: ElementRef) {}
-
   /** The leaflet map instance. Gets exposed through mapReady output. */
   private _map: Map;
   /** The layerscontrol to change visibility of the maplayers. */
@@ -44,23 +42,59 @@ export class LeafletMapComponent implements OnInit {
   @Output() mapReady: EventEmitter<Map> = new EventEmitter();
 
   /** Returns the reference to the layer control. */
-  public get layersControl(): Control.Layers {
+  get layersControl(): Control.Layers {
     return this._layersControl;
   }
+
+  constructor(private _elementRef: ElementRef, private _ngZone: NgZone) {}
 
   ngOnInit() {
     if (!this.mapOptions) {
       this.mapOptions = {};
     }
 
-    this._setup();
+    this._initializeMap();
+    this._initializeLayersControl();
     this._registerEventHandlers();
   }
 
+  /** Centers the map at a given point and an optional zoom level. */
+  flyTo(center: LatLng, zoomLvl?: number, zoomPanOptions?: ZoomPanOptions) {
+    this._map.flyTo(center, zoomLvl, zoomPanOptions);
+  }
+
+  /** Centers the map to given bounds. */
+  flyToBounds(bounds: L.LatLngBounds, fitBoundsOptions?: FitBoundsOptions) {
+    this._map.flyToBounds(bounds, fitBoundsOptions);
+  }
+
+  /**
+   * Adds a new overlay to the map.
+   */
+  addOverlayToMap(layersControlLayer: LayersControlLayer) {
+    const { layer, title, visible } = layersControlLayer;
+    this._layersControl.addOverlay(layer, title);
+    if (visible) {
+      layer.addTo(this._map);
+    }
+  }
+
+  /**
+   * Removes a given layer from the map.
+   * @param layer the layer to remove
+   */
+  removeLayerFromMap(layer: Layer) {
+    this._layersControl.removeLayer(layer);
+    layer.removeFrom(this._map);
+  }
+
   /** @docs-private */
-  private _setup() {
-    this._initializeMap();
-    this._initializeLayersControl();
+  private _initializeMap() {
+    const { center, zoom } = this.mapOptions;
+    this._map = new Map(this._elementRef.nativeElement, this.mapOptions).setView(
+      center ? center : DEFAULT_CENTER,
+      zoom ? zoom : DEFAULT_ZOOM
+    );
   }
 
   /** @docs-private */
@@ -89,16 +123,10 @@ export class LeafletMapComponent implements OnInit {
     this._layersControl.addTo(this._map);
   }
 
-  /** @docs-private */
-  private _initializeMap() {
-    const { center, zoom } = this.mapOptions;
-    this._map = new Map(this._elementRef.nativeElement, this.mapOptions).setView(
-      center ? center : DEFAULT_CENTER,
-      zoom ? zoom : DEFAULT_ZOOM
-    );
-  }
-
-  /** @docs-private */
+  /**
+   * When the map is ready, we have to call the maps `invalidateSize()`-method.
+   * The delay of 200 millis is necessary because, otherwise Firefox and Safari won't load the map correctly.
+   */
   private _registerEventHandlers() {
     this._map.whenReady(() => {
       this.mapReady.next(this._map);
@@ -106,45 +134,7 @@ export class LeafletMapComponent implements OnInit {
       setTimeout(() => this._map.invalidateSize(), 200);
     });
 
-    this._map.on('click', this._mapClicked.bind(this));
-    this._map.on('move zoom', this._mapExtentChanged.bind(this));
-  }
-
-  private _mapClicked(e: L.LeafletMouseEvent) {
-    this.mapClicked.next(e);
-  }
-
-  private _mapExtentChanged(e: L.LeafletEvent) {
-    this.mapExtentChanged.next(e);
-  }
-
-  /** Centers the map at a given point and an optional zoom level. */
-  public flyTo(center: LatLng, zoomLvl?: number, zoomPanOptions?: ZoomPanOptions) {
-    this._map.flyTo(center, zoomLvl, zoomPanOptions);
-  }
-
-  /** Centers the map to given bounds. */
-  public flyToBounds(bounds: L.LatLngBounds, fitBoundsOptions?: FitBoundsOptions) {
-    this._map.flyToBounds(bounds, fitBoundsOptions);
-  }
-
-  /**
-   * Adds a new overlay to the map.
-   */
-  public addOverlayToMap(layersControlLayer: LayersControlLayer) {
-    const { layer, title, visible } = layersControlLayer;
-    this._layersControl.addOverlay(layer, title);
-    if (visible) {
-      layer.addTo(this._map);
-    }
-  }
-
-  /**
-   * Removes a given layer from the map.
-   * @param layer the layer to remove
-   */
-  public removeLayerFromMap(layer: Layer) {
-    this._layersControl.removeLayer(layer);
-    layer.removeFrom(this._map);
+    this._map.on('click', (e) => this.mapClicked.next(e as LeafletMouseEvent));
+    this._map.on('move zoom', (e) => this.mapExtentChanged.next(e));
   }
 }

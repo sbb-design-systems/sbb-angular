@@ -172,8 +172,8 @@ def karma_web_test_suite(name, **kwargs):
     kwargs["srcs"] = ["@npm//:node_modules/tslib/tslib.js"] + kwargs.get("srcs", [])
     kwargs["deps"] = [
         "//tools/rxjs:rxjs_umd_modules",
+        "@npm//:node_modules/leaflet/dist/leaflet-src.js",
         "//tools/esri-loader:esri_loader_umd_module",
-        "//tools/leaflet:leaflet_umd_module",
         "//tools/angular-localize:angular_localize_umd_module",
     ] + kwargs.get("deps", [])
 
