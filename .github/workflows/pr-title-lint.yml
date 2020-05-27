@@ -39,4 +39,4 @@ jobs:
 
     - name: "Warning: Pull request title must match patterns defined in CONTRIBUTING.md in section Commit Message Guidelines!"
       if: ${{ failure() }}
-      run: echo "Warning: Pull request title must match patterns defined in CONTRIBUTING.md in section Commit Message Guidelines!"
+      run: echo "Pull request title must match patterns defined in CONTRIBUTING.md in section Commit Message Guidelines!"
