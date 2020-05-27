@@ -7,8 +7,13 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "${{ github }}"
-    - run: echo "${{ github.event }}"
+    - run: echo "${{ GITHUB_CONTEXT }}"
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+    - run: echo "${{ GITHUB_CONTEXT }}"
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github.event) }}
+    - run: printenv
     - name: Shallow checkout
       uses: actions/checkout@v2
       with:
