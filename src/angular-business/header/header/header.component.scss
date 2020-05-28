@@ -173,12 +173,14 @@ nav {
   border-right: 1px solid $sbbColorGranite;
   box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.15);
   z-index: $sbbHeaderSideMenuZIndex;
+  overflow-y: auto;
 
   div.sbb-header-side-menu-title-section {
     display: flex;
     align-items: center;
     height: $sbbHeaderHeight;
     margin-bottom: 12px;
+    flex: 0 0 auto;
   }
 
   nav {
