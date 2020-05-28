@@ -18,6 +18,7 @@ import {
   Overlay,
   RepositionScrollStrategy,
   ScrollStrategy,
+  ViewportRuler,
 } from '@angular/cdk/overlay';
 import {
   AfterContentInit,
@@ -546,7 +547,8 @@ export class SelectComponent extends SbbSelectMixinBase
     defaultErrorStateMatcher: ErrorStateMatcher,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
-    @Attribute('tabindex') tabIndex: string
+    @Attribute('tabindex') tabIndex: string,
+    private _viewportRuler: ViewportRuler
   ) {
     super(_elementRef, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
 
@@ -575,6 +577,16 @@ export class SelectComponent extends SbbSelectMixinBase
       this.overlayDir.offsetX = 0;
       this._changeDetectorRef.markForCheck();
     }
+
+    this._viewportRuler
+      .change()
+      .pipe(takeUntil(this._destroy))
+      .subscribe(() => {
+        if (this._panelOpen) {
+          this.triggerRect = this._elementRef.nativeElement.getBoundingClientRect();
+          this._changeDetectorRef.markForCheck();
+        }
+      });
   }
 
   ngAfterContentInit() {
