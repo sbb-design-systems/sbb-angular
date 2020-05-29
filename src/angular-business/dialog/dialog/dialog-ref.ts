@@ -2,7 +2,7 @@ import { ESCAPE } from '@angular/cdk/keycodes';
 import { GlobalPositionStrategy, OverlayRef } from '@angular/cdk/overlay';
 import { Location } from '@angular/common';
 import { Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
-import { filter, first } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 
 import { DialogContainerComponent } from '../dialog-container/dialog-container.component';
 
@@ -53,7 +53,7 @@ export class DialogRef<T, R = any> {
     containerInstance.animationStateChanged
       .pipe(
         filter((event) => event.phaseName === 'done' && event.toState === 'enter'),
-        first()
+        take(1)
       )
       .subscribe(() => {
         this._afterOpen.next();
@@ -64,7 +64,7 @@ export class DialogRef<T, R = any> {
     containerInstance.animationStateChanged
       .pipe(
         filter((event) => event.phaseName === 'done' && event.toState === 'exit'),
-        first()
+        take(1)
       )
       .subscribe(() => this._overlayRef.dispose());
 
@@ -111,7 +111,7 @@ export class DialogRef<T, R = any> {
     this.containerInstance.animationStateChanged
       .pipe(
         filter((event) => event.phaseName === 'start'),
-        first()
+        take(1)
       )
       .subscribe(() => {
         this._beforeClose.next(dialogResult);

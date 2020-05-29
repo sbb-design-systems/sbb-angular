@@ -2,7 +2,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { AfterViewInit, Directive, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, filter, first, map, skip, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, skip, take, takeUntil } from 'rxjs/operators';
 
 import { ExampleProvider } from './example-provider';
 import { HtmlLoader } from './html-loader.service';
@@ -36,7 +36,7 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this._route.params
       .pipe(
-        first(),
+        take(1),
         filter((p) => p.section),
         map((p) => (p.section === 'api' ? 1 : 2))
       )

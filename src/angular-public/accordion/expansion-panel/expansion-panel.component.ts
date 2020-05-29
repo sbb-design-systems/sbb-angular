@@ -26,7 +26,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { filter, first, startWith } from 'rxjs/operators';
+import { filter, startWith, take } from 'rxjs/operators';
 
 import { sbbExpansionAnimations } from '../accordion/accordion-animations';
 import { IAccordionBase, SBB_ACCORDION } from '../accordion/accordion-base';
@@ -152,7 +152,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
         .pipe(
           startWith(true),
           filter(() => this.expanded && !this.portal),
-          first()
+          take(1)
         )
         .subscribe(() => {
           this.portal = new TemplatePortal(this.lazyContent._template, this._viewContainerRef);

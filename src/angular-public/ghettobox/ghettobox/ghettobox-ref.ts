@@ -1,7 +1,7 @@
 import { ComponentRef, TemplateRef } from '@angular/core';
 import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import { Subject } from 'rxjs';
-import { filter, first } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 
 import { GhettoboxComponent, GhettoboxDeletedEvent } from './ghettobox.component';
 
@@ -42,7 +42,7 @@ export class GhettoboxRef {
   constructor(private _ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent) {
     this.afterDelete
       .pipe(
-        first(),
+        take(1),
         filter(() => this._ref instanceof ComponentRef)
       )
       .subscribe(() => this._ref.destroy());

@@ -29,7 +29,7 @@ import {
 } from '@angular/core';
 import { DateAdapter } from '@sbb-esta/angular-core/datetime';
 import { merge, Subject, Subscription } from 'rxjs';
-import { bufferCount, filter, first, mapTo, tap } from 'rxjs/operators';
+import { bufferCount, filter, mapTo, take, tap } from 'rxjs/operators';
 
 import { DateInputDirective } from '../date-input/date-input.directive';
 import { DatepickerContentComponent } from '../datepicker-content/datepicker-content.component';
@@ -443,7 +443,7 @@ export class DatepickerComponent<D> implements OnDestroy {
       // Update the position once the calendar has rendered.
       this._ngZone.onStable
         .asObservable()
-        .pipe(first())
+        .pipe(take(1))
         .subscribe(() => {
           this.popupRef.updatePosition();
         });

@@ -12,7 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 /**
  * An internal class that represents the data corresponding to a single calendar cell.
@@ -119,7 +119,7 @@ export class CalendarBodyComponent {
     this._ngZone.runOutsideAngular(() => {
       this._ngZone.onStable
         .asObservable()
-        .pipe(first())
+        .pipe(take(1))
         .subscribe(() => {
           const activeCell: HTMLElement | null = this._elementRef.nativeElement.querySelector(
             '.sbb-calendar-body-active'

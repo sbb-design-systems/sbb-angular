@@ -13,7 +13,7 @@ import {
   GhettoboxService,
 } from '@sbb-esta/angular-public/ghettobox';
 import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-ghettobox-example',
@@ -64,7 +64,7 @@ export class GhettoboxExampleComponent implements OnDestroy {
   }
 
   private _subscribeToAfterDeleteResponse(ghetto: GhettoboxRef) {
-    ghetto.afterDelete.pipe(first()).subscribe((evt: GhettoboxDeletedEvent) => {
+    ghetto.afterDelete.pipe(take(1)).subscribe((evt: GhettoboxDeletedEvent) => {
       this.afterDeleteContainer(evt);
     });
   }

@@ -66,7 +66,7 @@ import {
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular-public/option';
 import { defer, merge, Observable, Subject } from 'rxjs';
-import { filter, first, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
+import { filter, map, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
 let nextUniqueId = 0;
 
@@ -326,7 +326,7 @@ export class SelectComponent extends SbbSelectMixinBase
     }
 
     return this._ngZone.onStable.asObservable().pipe(
-      first(),
+      take(1),
       switchMap(() => this.optionSelectionChanges)
     );
   }) as Observable<SBBOptionSelectionChange>;
@@ -659,7 +659,7 @@ export class SelectComponent extends SbbSelectMixinBase
     // Set the font size on the panel element once it exists.
     this._ngZone.onStable
       .asObservable()
-      .pipe(first())
+      .pipe(take(1))
       .subscribe(() => {
         if (
           this.triggerFontSize &&
@@ -848,7 +848,7 @@ export class SelectComponent extends SbbSelectMixinBase
    * Callback that is invoked when the overlay panel has been attached.
    */
   onAttached(): void {
-    this.overlayDir.positionChange.pipe(first()).subscribe((positions) => {
+    this.overlayDir.positionChange.pipe(take(1)).subscribe((positions) => {
       if (positions.connectionPair.originY === 'top') {
         this.panel.nativeElement.classList.add('sbb-select-panel-above');
       } else {
