@@ -40,8 +40,10 @@ $processflowStepButtonPaddingBottom5K: 42;
   margin: 0;
   padding: 0;
   display: block;
-  overflow-x: hidden;
 
+  .sbb-processflow-header-wrapper {
+    overflow-x: hidden;
+  }
   .sbb-processflow-header {
     display: flex;
     align-items: center;
