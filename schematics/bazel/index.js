@@ -42,6 +42,9 @@ class NgModule {
         ]);
     }
     render() {
+        if (this.name === 'scrolling') {
+            return [schematics.noop()];
+        }
         return this._modules.reduce((current, next) => current.concat(next.render()), [
             schematics.mergeWith(schematics.apply(schematics.url(this._templateUrl), [
                 schematics.template(this._templateOptions()),

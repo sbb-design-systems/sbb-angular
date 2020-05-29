@@ -6,6 +6,7 @@ import {
   forEach,
   mergeWith,
   move,
+  noop,
   Rule,
   SchematicContext,
   template,
@@ -70,6 +71,9 @@ export class NgModule {
   }
 
   render(): Rule[] {
+    if (this.name === 'scrolling') {
+      return [noop()];
+    }
     return this._modules.reduce((current, next) => current.concat(next.render()), [
       mergeWith(
         apply(url(this._templateUrl), [
