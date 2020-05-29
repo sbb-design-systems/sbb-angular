@@ -9,6 +9,12 @@ export default readdirSync(__dirname, { withFileTypes: true })
     output: {
       file: join(__dirname, d.name, 'index.js'),
       format: 'cjs',
+      plugins: [
+        {
+          name: 'eol-normalizer',
+          renderChunk: (code) => code.replace(/\r\n/g, '\n'),
+        },
+      ],
     },
     external: [
       '@angular/cdk/schematics',
