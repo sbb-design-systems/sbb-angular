@@ -31,7 +31,7 @@ import {
 import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
 import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
-import { auditTime, first, takeUntil } from 'rxjs/operators';
+import { auditTime, take, takeUntil } from 'rxjs/operators';
 
 let nextId = 0;
 
@@ -248,7 +248,7 @@ export class TextareaComponent extends SbbTextareaMixinBase
    * Trigger the resize of the textarea to fit the content
    */
   triggerResize() {
-    this._ngZone.onStable.pipe(first()).subscribe(() => this.autosize.resizeToFitContent());
+    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent());
   }
 
   /**

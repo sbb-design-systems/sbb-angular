@@ -6,10 +6,9 @@ import {
   ContentChildren,
   HostBinding,
   QueryList,
-  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 import {
   BreadcrumbComponent,
@@ -57,7 +56,7 @@ export class BreadcrumbsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (this.levels && this.levels.first) {
-      this.levels.first.expandEvent.pipe(first()).subscribe(() => {
+      this.levels.first.expandEvent.pipe(take(1)).subscribe(() => {
         this._expanded = true;
         this._changeDetectorRef.markForCheck();
       });

@@ -20,7 +20,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base/checkbox';
 import { Subject } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 /**
  * Injection token used to provide the parent component to TagComponent.
@@ -114,7 +114,7 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
       this.tagChecking$.next(e.checked);
     });
     this._zone.onStable
-      .pipe(first())
+      .pipe(take(1))
       .subscribe(() => this._zone.run(() => this.tagChecking$.next(this.checked)));
   }
 

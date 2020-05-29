@@ -47,7 +47,7 @@ import {
   Subject,
   Subscription,
 } from 'rxjs';
-import { delay, filter, first, map, switchMap, take, tap } from 'rxjs/operators';
+import { delay, filter, map, switchMap, take, tap } from 'rxjs/operators';
 
 import {
   DropdownItemDirective,
@@ -431,7 +431,7 @@ export class DropdownTriggerDirective implements OnDestroy {
    * stream every time the option list changes.
    */
   private _subscribeToClosingActions(): Subscription {
-    const firstStable = this._zone.onStable.asObservable().pipe(first());
+    const firstStable = this._zone.onStable.asObservable().pipe(take(1));
     const optionChanges = this.dropdown.options.changes.pipe(
       tap(() => this._positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing
@@ -457,7 +457,7 @@ export class DropdownTriggerDirective implements OnDestroy {
             return this.panelClosingActions;
           }),
           // when the first closing event occurs...
-          first()
+          take(1)
         )
         // set the value, close the panel, and complete.
         .subscribe((event) => this._setValueAndClose(event))

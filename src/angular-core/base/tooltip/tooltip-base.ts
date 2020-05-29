@@ -24,7 +24,7 @@ import {
 } from '@angular/core';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 import { fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
-import { filter, first, map, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap, take } from 'rxjs/operators';
 
 import { TooltipRegistryService } from './tooltip-registry.service';
 
@@ -314,7 +314,7 @@ export abstract class TooltipBase implements OnDestroy {
    * stream every time the option list changes.
    */
   private _subscribeToClosingActions(): Subscription {
-    const firstStable = this._zone.onStable.asObservable().pipe(first());
+    const firstStable = this._zone.onStable.asObservable().pipe(take(1));
 
     // When the zone is stable initially, and when the option list changes...
     return (
@@ -326,7 +326,7 @@ export abstract class TooltipBase implements OnDestroy {
             return this.panelClosingActions;
           }),
           // when the first closing event occurs...
-          first()
+          take(1)
         )
         // set the value, close the panel, and complete.
         .subscribe(() => {

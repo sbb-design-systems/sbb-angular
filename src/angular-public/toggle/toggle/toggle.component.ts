@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-toggle',
@@ -42,7 +42,7 @@ export class ToggleComponent extends RadioGroupDirective
 
   ngAfterContentInit() {
     super.ngAfterContentInit();
-    this._zone.onStable.pipe(first()).subscribe(() =>
+    this._zone.onStable.pipe(take(1)).subscribe(() =>
       this._zone.run(() => {
         this._checkNumOfOptions();
         if (this._radios.toArray().every((r) => this.value !== r.value)) {
