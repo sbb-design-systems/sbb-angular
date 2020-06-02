@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   circle,
+  imageOverlay,
   latLng,
   LatLng,
   LatLngBounds,
@@ -69,10 +70,6 @@ describe('LeafletMapComponent', () => {
     leafletMapComponent.layersControlConfig = layersControl;
   });
 
-  it('should create', () => {
-    expect(leafletMapComponent).toBeTruthy();
-  });
-
   it('should initialize map with default mapOptions config', async(() => {
     leafletMapComponent.mapOptions = {};
     leafletMapComponent.mapReady.subscribe((map: Map) => {
@@ -97,7 +94,6 @@ describe('LeafletMapComponent', () => {
     leafletMapComponent.mapReady.subscribe((map: Map) => {
       let i = 0;
       map.eachLayer(() => i++);
-      map.eachLayer((l) => console.log(l));
       expect(i).toEqual(6);
     });
     leafletMapComponent.ngOnInit();
@@ -204,6 +200,20 @@ describe('LeafletMapComponent', () => {
       });
       expect(layerFound).toBeFalsy();
     });
+    leafletMapComponent.ngOnInit();
+  }));
+
+  it('should remove all layers onDestroy', async(() => {
+    leafletMapComponent.mapReady.subscribe((map: Map) => {
+      let i = 0;
+      map.eachLayer(() => i++);
+      expect(i).toEqual(6);
+      leafletMapComponent.ngOnDestroy();
+      let j = 0;
+      map.eachLayer(() => j++);
+      expect(j).toEqual(0);
+    });
+
     leafletMapComponent.ngOnInit();
   }));
 });

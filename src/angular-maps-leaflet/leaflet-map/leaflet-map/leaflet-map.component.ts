@@ -1,4 +1,13 @@
-import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   control,
   Control,
@@ -20,7 +29,7 @@ import { LayersControl, LayersControlLayer } from './model/map-config.model';
   templateUrl: './leaflet-map.component.html',
   styleUrls: ['./leaflet-map.component.scss'],
 })
-export class LeafletMapComponent implements OnInit {
+export class LeafletMapComponent implements OnInit, OnDestroy {
   /** The leaflet map instance. Gets exposed through mapReady output. */
   private _map: Map;
   /** The layerscontrol to change visibility of the maplayers. */
@@ -56,6 +65,15 @@ export class LeafletMapComponent implements OnInit {
     this._initializeMap();
     this._initializeLayersControl();
     this._registerEventHandlers();
+  }
+
+  /**
+   * If we not remove the layers in onDestroy, the map has problems with loading the tilelayers again, if the map gets recreated.
+   */
+  ngOnDestroy() {
+    this._map.eachLayer((l) => {
+      this._map.removeLayer(l);
+    });
   }
 
   /** Centers the map at a given point and an optional zoom level. */

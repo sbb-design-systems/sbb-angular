@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { LeafletMapComponent } from '@sbb-esta/angular-maps-leaflet/leaflet-map';
 import { LayersControl } from '@sbb-esta/angular-maps-leaflet/leaflet-map/leaflet-map/model/map-config.model';
 import { featureLayer } from 'esri-leaflet';
@@ -14,6 +14,7 @@ import {
   polygon,
   popup,
   tileLayer,
+  TileLayer,
   Util,
 } from 'leaflet';
 
@@ -25,8 +26,25 @@ export let mapOptions: MapOptions = {
 export let layersControlConfig: LayersControl = {
   baseLayers: [
     {
-      title: 'OSM',
+      title: 'Mapbox',
       visible: true,
+      layer: new TileLayer(
+        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken:
+            'pk.eyJ1IjoidG9iaWFzd3lzcyIsImEiOiJja2F4bnpzd3EwN3c2MzR1bGhoejR0ZWJoIn0.VBz7YJs-cDlR75f_FQzkSw',
+        }
+      ),
+    },
+    {
+      title: 'OSM2',
+      visible: false,
       layer: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -35,18 +53,15 @@ export let layersControlConfig: LayersControl = {
   ],
   overLays: [
     {
-      title: 'AGOL',
+      title: 'Hospitals in Switzerland.',
       visible: true,
       layer: featureLayer({
         url:
-          'https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Hazards_Uptown_Charlotte/FeatureServer/0',
+          'https://services7.arcgis.com/fhCHtFls7KqrvbDz/ArcGIS/rest/services/Spit%c3%a4ler_Schweiz/FeatureServer/0',
         renderer: new Canvas(),
         useCors: true,
       }).bindPopup((l: any) => {
-        return Util.template(
-          '<p>Type: <strong>{HazardType}</strong><br> {Description}',
-          l.feature.properties
-        );
+        return Util.template('<p>{Standort}</p>', l.feature.properties);
       }),
     },
     {
