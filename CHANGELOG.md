@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.7.1](https://github.com/sbb-design-systems/sbb-angular/compare/9.7.0...9.7.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* move processflow overflow style rules to nested element ([#442](https://github.com/sbb-design-systems/sbb-angular/issues/442)) ([ef2da56](https://github.com/sbb-design-systems/sbb-angular/commit/ef2da56682a453d3181ada26b1a48277b16d73b6)), closes [#399](https://github.com/sbb-design-systems/sbb-angular/issues/399)
+* **public:** correct checkbox panel styling ([#441](https://github.com/sbb-design-systems/sbb-angular/issues/441)) ([742b150](https://github.com/sbb-design-systems/sbb-angular/commit/742b15031297c81a911fa4ea4c22eb6447731724)), closes [#433](https://github.com/sbb-design-systems/sbb-angular/issues/433)
+* sbb-select dropdown should adapt to changing width ([#440](https://github.com/sbb-design-systems/sbb-angular/issues/440)) ([40657d0](https://github.com/sbb-design-systems/sbb-angular/commit/40657d0ca3555b46b5976d03de88682418fb2fe4)), closes [#423](https://github.com/sbb-design-systems/sbb-angular/issues/423)
+* **business:** allow header menu to scroll ([#439](https://github.com/sbb-design-systems/sbb-angular/issues/439)) ([e9375d5](https://github.com/sbb-design-systems/sbb-angular/commit/e9375d57082df66874242fd8869ff6c386926797)), closes [#428](https://github.com/sbb-design-systems/sbb-angular/issues/428)
+
 ## [9.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.6.0...9.7.0) (2020-05-26)
 
 
