@@ -42,6 +42,9 @@ class NgModule {
         ]);
     }
     render() {
+        if (this.name === 'scrolling') {
+            return [schematics.noop()];
+        }
         return this._modules.reduce((current, next) => current.concat(next.render()), [
             schematics.mergeWith(schematics.apply(schematics.url(this._templateUrl), [
                 schematics.template(this._templateOptions()),
@@ -261,10 +264,27 @@ class ShowcasePackage {
     constructor(_dir, _tree, context) {
         this._dir = _dir;
         this._tree = _tree;
-        const appDir = this._dir.dir(core.fragment('app'));
-        this._appModule = new ShowcaseModule(appDir, this._tree, context);
+        this._appDir = this._dir.dir(core.fragment('app'));
+        this._appModule = new ShowcaseModule(this._appDir, this._tree, context);
     }
     render() {
+        const exampleModules = this._appDir.subdirs
+            .map((d) => {
+            const dir = this._appDir.dir(d);
+            const examplesDirName = core.fragment(`${core.basename(dir.path)}-examples`);
+            if (!dir.subdirs.includes(examplesDirName)) {
+                return [];
+            }
+            const examplesDir = dir.dir(examplesDirName);
+            return examplesDir.subdirs.map((e) => `    "/${examplesDir.dir(e).path}",`);
+        })
+            .reduce((current, next) => current.concat(next))
+            .sort()
+            .join('\n');
+        const buildFile = this._dir.file(core.fragment('BUILD.bazel'));
+        this._tree.overwrite(buildFile.path, buildFile.content
+            .toString()
+            .replace(/ALL_EXAMPLES = \[[^\]]+\]/m, `ALL_EXAMPLES = [\n${exampleModules}\n]`));
         return this._appModule.render();
     }
 }

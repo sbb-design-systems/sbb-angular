@@ -103,7 +103,8 @@ ng_package(
     ],
     data = [<% if (hasStyleBundle) { %>
         ":styles_bundle",<% } %><% if (hasTypography) { %>
-        ":typography",<% } %>
+        ":typography",<% } %><% if (name === 'angular-core') { %>
+        "//src/angular-core/styles:legacy_scss",<% } %>
     ],
     entry_point = ":public-api.ts",
     entry_point_name = "<%= name %>",<% if (hasSchematics) { %>
