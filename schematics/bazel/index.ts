@@ -1,4 +1,10 @@
-import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import {
+  chain,
+  Rule,
+  SchematicContext,
+  SchematicsException,
+  Tree,
+} from '@angular-devkit/schematics';
 import { RunSchematicTask } from '@angular-devkit/schematics/tasks';
 
 import { NgPackage } from './ng-package';
@@ -6,6 +12,10 @@ import { ShowcasePackage } from './showcase-package';
 
 export function bazel(options: { filter?: string }): Rule {
   return (tree: Tree, context: SchematicContext) => {
+    if (!isRunViaBuildBazelYarnCommand()) {
+      throw new SchematicsException(`Please run this schematic via 'yarn generate:bazel'`);
+    }
+
     const srcDir = tree.getDir('src');
     if (!options.filter) {
       srcDir.subdirs.forEach((d) => context.addTask(new RunSchematicTask('bazel', { filter: d })));
@@ -20,11 +30,15 @@ export function bazel(options: { filter?: string }): Rule {
               : new NgPackage(packageDir, tree, context)
           )
           .reduce((current, next) => current.concat(next.render()), [] as Rule[])
-          .concat(() =>
-            context.logger.info(
-              'Please run `yarn format:bazel`, when bazel files have been updated.'
-            )
-          )
+      );
+    }
+
+    function isRunViaBuildBazelYarnCommand() {
+      return (
+        process.env.npm_config_user_agent &&
+        process.env.npm_config_user_agent.startsWith('yarn') &&
+        process.env.npm_lifecycle_event &&
+        process.env.npm_lifecycle_event === 'build:bazel'
       );
     }
   };

@@ -26,10 +26,10 @@
     "format:bazel": "yarn -s bazel:buildifier --lint=fix --mode=fix",
     "format": "yarn -s format:prettier && yarn -s format:bazel",
     "build:public2business": "ng g .:public2business",
-    "build:bazel": "ng g .:bazel && yarn -s format:bazel",
     "build:schematics": "rollup --config schematics/rollup.config.js",
     "build:svg-icons": "ng g .:svg-icons --project @sbb-esta/angular-icons --targetDir experimental",
     "build:svg-registry": "ng g .:svg-registry --stripNumberIdInCollection --stripNumberIds --stripSbbInName",
+    "generate:bazel": "ng g .:bazel && yarn -s format:bazel",
     "release": "standard-version --tag-prefix=\"\"",
     "forceinstall-husky": "node node_modules/husky/lib/installer/bin install"
   },

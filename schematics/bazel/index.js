@@ -291,6 +291,9 @@ class ShowcasePackage {
 
 function bazel(options) {
     return (tree, context) => {
+        if (!isRunViaBuildBazelYarnCommand()) {
+            throw new schematics.SchematicsException(`Please run this schematic via 'yarn generate:bazel'`);
+        }
         const srcDir = tree.getDir('src');
         if (!options.filter) {
             srcDir.subdirs.forEach((d) => context.addTask(new tasks.RunSchematicTask('bazel', { filter: d })));
@@ -302,8 +305,13 @@ function bazel(options) {
                 .map((packageDir) => packageDir.path.endsWith('showcase')
                 ? new ShowcasePackage(packageDir, tree, context)
                 : new NgPackage(packageDir, tree, context))
-                .reduce((current, next) => current.concat(next.render()), [])
-                .concat(() => context.logger.info('Please run `yarn format:bazel`, when bazel files have been updated.')));
+                .reduce((current, next) => current.concat(next.render()), []));
+        }
+        function isRunViaBuildBazelYarnCommand() {
+            return (process.env.npm_config_user_agent &&
+                process.env.npm_config_user_agent.startsWith('yarn') &&
+                process.env.npm_lifecycle_event &&
+                process.env.npm_lifecycle_event === 'build:bazel');
         }
     };
 }
