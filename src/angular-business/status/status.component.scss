@@ -1,0 +1,38 @@
+@import '../../angular-core/styles/common';
+
+.sbb-status {
+  display: inline-flex;
+  align-items: center;
+
+  .sbb-status-icon {
+    width: pxToRem(24px);
+    height: pxToRem(24px);
+    border-radius: pxToRem(1px);
+  }
+
+  .sbb-status-icon-valid {
+    background-color: $sbbColorGreen;
+    @include svgIconColor($sbbColorWhite);
+  }
+
+  .sbb-status-icon-warning {
+    background-color: $sbbColorOrange;
+    @include svgIconColor($sbbColorWhite);
+  }
+
+  .sbb-status-icon-invalid {
+    background-color: $sbbColorRed;
+    @include svgIconColor($sbbColorWhite);
+  }
+
+  .sbb-status-message {
+    background-color: $sbbColorMilk;
+    color: $sbbColorGranite;
+    font-family: $fontSbbRoman;
+    font-size: pxToRem(15px);
+    height: pxToRem(24px);
+    line-height: pxToRem(23px);
+    margin-left: pxToEm(6px);
+    padding: pxToEm(0px) pxToEm(8px) pxToEm(1px) pxToEm(8px);
+  }
+}
