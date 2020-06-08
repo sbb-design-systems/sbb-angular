@@ -9,6 +9,7 @@ $tableTheadCellPaddingMobile: pxToEm(29) pxToEm(12) pxToEm(30) pxToEm(12);
 $tableTheadCellPadding: pxToEm(29) pxToEm(16) pxToEm(30) pxToEm(16);
 $tableTbodyCellPaddingMobile: pxToEm(18) pxToEm(12) pxToEm(19) pxToEm(12);
 $tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
+$tableTrowHeightBusiness: pxToEm(36);
 $tableCaptionColor: $sbbColorGrey;
 
 @mixin tableCaption() {
@@ -23,7 +24,7 @@ $tableCaptionColor: $sbbColorGrey;
   @if $sbbBusiness {
     border-collapse: collapse;
   } @else {
-    padding-bottom: pxToEm(16);
+    padding-bottom: $tableTbodyPadding;
 
     @include mq($from: desktop4k) {
       font-size: toEm(1 * $scalingFactor4k);
@@ -108,29 +109,29 @@ $tableCaptionColor: $sbbColorGrey;
       th,
       td {
         @if $sbbBusiness {
-          height: pxToEm(36);
-          padding: 0 16px;
+          height: $tableTrowHeightBusiness;
+          padding: 0 $tableTbodyPadding;
           border-right: 1px solid $sbbColorAluminum;
           overflow: hidden;
           text-overflow: ellipsis;
 
-          &:first-of-type {
-            padding-left: 16px;
+          &:first-child {
+            padding-left: $tableTbodyPadding;
             border-left: none;
 
             [dir='rtl'] & {
               padding-left: 0;
-              padding-right: 16px;
+              padding-right: $tableTbodyPadding;
             }
           }
 
-          &:last-of-type {
-            padding-right: 16px;
+          &:last-child {
+            padding-right: $tableTbodyPadding;
             border-right: none;
 
             [dir='rtl'] & {
               padding-right: 0;
-              padding-left: 16px;
+              padding-left: $tableTbodyPadding;
             }
           }
         }

@@ -1,100 +1,39 @@
 $sbbBusiness: true;
 @import '../../../angular-core/styles/common';
 
-$sbb-row-height: 36px;
-$sbb-row-horizontal-padding: 16px;
-
-$inputBorderWidth: 1px;
-$inputPaddingLeft: 8px;
+$sbb-row-horizontal-padding: pxToEm(16);
+$inputBorderWidth: pxToEm(1);
+$inputPaddingLeft: pxToEm(8);
 $filterInputPadding: $sbb-row-horizontal-padding - $inputPaddingLeft - $inputBorderWidth;
 
 /**
  * Native HTML table structure
  */
 table.sbb-table {
-  border-spacing: 0;
-  width: 100%;
-  border-collapse: collapse;
-
-  tr.sbb-header-row,
-  tr.sbb-row,
-  tr.sbb-footer-row {
-    height: pxToEm($sbb-row-height);
-  }
-
-  tr.sbb-row {
-    background-color: $sbbColorWhite;
-    border-bottom: 1px solid $sbbColorAluminum;
-
-    &:hover {
-      background-color: $sbbColorCloud;
-    }
-  }
-
   th.sbb-header-cell {
-    text-align: left;
-    background-color: $sbbColorMilk;
+    &.sbb-table-filter {
+      padding: 0 $filterInputPadding $filterInputPadding $filterInputPadding;
+      font-family: $fontSbbRoman;
 
-    [dir='rtl'] & {
-      text-align: right;
+      input {
+        width: 100%;
+      }
     }
-  }
 
-  th.sbb-header-cell,
-  td.sbb-cell,
-  td.sbb-footer-cell {
-    padding: 0 $sbb-row-horizontal-padding;
-    border-right: 1px solid $sbbColorAluminum;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  th.sbb-header-cell.sbb-table-filter {
-    padding: 0 $filterInputPadding $filterInputPadding $filterInputPadding;
-    font-family: $fontSbbRoman;
-
-    input {
-      width: 100%;
-    }
-  }
-
-  // Note: we use `first-of-type`/`last-of-type` here in order to prevent extra
-  // elements like ripples or badges from throwing off the layout.
-  th.sbb-header-cell:first-of-type,
-  td.sbb-cell:first-of-type,
-  td.sbb-footer-cell:first-of-type {
-    padding-left: $sbb-row-horizontal-padding;
-    border-left: none;
-
-    [dir='rtl'] & {
-      padding-left: 0;
-      padding-right: $sbb-row-horizontal-padding;
-    }
-  }
-  th.sbb-header-cell:first-of-type.sbb-table-filter {
-    padding-left: $filterInputPadding;
-
-    [dir='rtl'] & {
-      padding-right: $filterInputPadding;
-    }
-  }
-
-  th.sbb-header-cell:last-of-type,
-  td.sbb-cell:last-of-type,
-  td.sbb-footer-cell:last-of-type {
-    padding-right: $sbb-row-horizontal-padding;
-    border-right: none;
-
-    [dir='rtl'] & {
-      padding-right: 0;
-      padding-left: $sbb-row-horizontal-padding;
-    }
-  }
-  th.sbb-header-cell:last-of-type.sbb-table-filter {
-    padding-right: $filterInputPadding;
-
-    [dir='rtl'] & {
+    &:first-of-type.sbb-table-filter {
       padding-left: $filterInputPadding;
+
+      [dir='rtl'] & {
+        padding-right: $filterInputPadding;
+      }
+    }
+
+    &:last-of-type.sbb-table-filter {
+      padding-right: $filterInputPadding;
+
+      [dir='rtl'] & {
+        padding-left: $filterInputPadding;
+      }
     }
   }
 

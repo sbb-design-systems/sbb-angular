@@ -65,7 +65,6 @@ export class RowDefDirective<T> extends CdkRowDef<T> {}
   providers: [{ provide: CdkHeaderRow, useExisting: HeaderRowComponent }],
 })
 export class HeaderRowComponent extends CdkHeaderRow {
-  @HostBinding('class.sbb-header-row') sbbHeaderRow = true;
   @HostBinding('attr.role') row = 'row';
 }
 
@@ -81,7 +80,6 @@ export class HeaderRowComponent extends CdkHeaderRow {
   providers: [{ provide: CdkFooterRow, useExisting: FooterRowComponent }],
 })
 export class FooterRowComponent extends CdkFooterRow {
-  @HostBinding('class.sbb-footer-row') sbbFooterRow = true;
   @HostBinding('attr.role') row = 'row';
 }
 
@@ -97,6 +95,5 @@ export class FooterRowComponent extends CdkFooterRow {
   providers: [{ provide: CdkRow, useExisting: RowComponent }],
 })
 export class RowComponent extends CdkRow {
-  @HostBinding('class.sbb-row') sbbRow = true;
   @HostBinding('attr.role') row = 'row';
 }
