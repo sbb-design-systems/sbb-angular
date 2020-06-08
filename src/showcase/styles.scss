@@ -55,6 +55,7 @@ sbb-business,
     @include sbbSelect();
     @include sbbFieldset();
     @include sbbTimeInputField();
+    @include sbbTable();
   }
 }
 
