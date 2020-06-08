@@ -311,7 +311,7 @@ function bazel(options) {
             return (process.env.npm_config_user_agent &&
                 process.env.npm_config_user_agent.startsWith('yarn') &&
                 process.env.npm_lifecycle_event &&
-                process.env.npm_lifecycle_event === 'build:bazel');
+                process.env.npm_lifecycle_event === 'generate:bazel');
         }
     };
 }
