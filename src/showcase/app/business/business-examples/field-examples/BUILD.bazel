@@ -21,6 +21,7 @@ ng_ts_library(
         "//src/angular-business/datepicker",
         "//src/angular-business/field",
         "//src/angular-business/select",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

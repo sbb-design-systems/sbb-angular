@@ -26,6 +26,7 @@ ng_ts_library(
         "//src/angular-public/checkbox",
         "//src/angular-public/datepicker",
         "//src/angular-public/field",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

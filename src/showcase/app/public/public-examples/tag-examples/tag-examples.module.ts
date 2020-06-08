@@ -6,9 +6,15 @@ import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { TagModule } from '@sbb-esta/angular-public/tag';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { TagExampleComponent } from './tag-example/tag-example.component';
 
 const EXAMPLES = [TagExampleComponent];
+
+const EXAMPLE_INDEX = {
+  'tag-example': TagExampleComponent,
+};
 
 @NgModule({
   imports: [
@@ -16,11 +22,12 @@ const EXAMPLES = [TagExampleComponent];
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    ButtonModule,
     FieldModule,
     TagModule,
-    ButtonModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('public', 'tag', EXAMPLE_INDEX)],
 })
 export class TagExamplesModule {}

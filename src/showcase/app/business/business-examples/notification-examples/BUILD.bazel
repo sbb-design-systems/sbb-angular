@@ -30,6 +30,7 @@ ng_ts_library(
         "//src/angular-business/notification",
         "//src/angular-icons/community",
         "//src/angular-icons/timetable",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

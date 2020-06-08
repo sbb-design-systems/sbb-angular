@@ -20,6 +20,7 @@ ng_ts_library(
     deps = [
         "//src/angular-business/contextmenu",
         "//src/angular-business/dropdown",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

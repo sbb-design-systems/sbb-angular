@@ -5,6 +5,8 @@ import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { SelectModule } from '@sbb-esta/angular-business/select';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { SelectFormsExampleComponent } from './select-forms-example/select-forms-example.component';
 import { SelectMultiSelectionExampleComponent } from './select-multi-selection-example/select-multi-selection-example.component';
 import { SelectNativeExampleComponent } from './select-native-example/select-native-example.component';
@@ -16,10 +18,19 @@ const EXAMPLES = [
   SelectFormsExampleComponent,
   SelectMultiSelectionExampleComponent,
   SelectNativeExampleComponent,
-  SelectOptionGroupsMultiSelectionExampleComponent,
   SelectOptionGroupsExampleComponent,
+  SelectOptionGroupsMultiSelectionExampleComponent,
   SelectReactiveFormsExampleComponent,
 ];
+
+const EXAMPLE_INDEX = {
+  'select-forms-example': SelectFormsExampleComponent,
+  'select-multi-selection-example': SelectMultiSelectionExampleComponent,
+  'select-native-example': SelectNativeExampleComponent,
+  'select-option-groups-example': SelectOptionGroupsExampleComponent,
+  'select-option-groups-multi-selection-example': SelectOptionGroupsMultiSelectionExampleComponent,
+  'select-reactive-forms-example': SelectReactiveFormsExampleComponent,
+};
 
 @NgModule({
   imports: [
@@ -32,5 +43,6 @@ const EXAMPLES = [
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('business', 'select', EXAMPLE_INDEX)],
 })
 export class SelectExamplesModule {}

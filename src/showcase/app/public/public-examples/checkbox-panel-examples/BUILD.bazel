@@ -21,6 +21,7 @@ ng_ts_library(
         "//src/angular-icons/basic",
         "//src/angular-public/checkbox",
         "//src/angular-public/checkbox-panel",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

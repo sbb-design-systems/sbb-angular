@@ -18,6 +18,7 @@ ng_ts_library(
     deps = [
         "//src/angular-business/button",
         "//src/angular-business/processflow",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

@@ -25,6 +25,7 @@ ng_ts_library(
         "//src/angular-business/autocomplete",
         "//src/angular-business/chip",
         "//src/angular-business/field",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

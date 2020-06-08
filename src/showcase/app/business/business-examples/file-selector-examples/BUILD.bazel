@@ -22,6 +22,7 @@ ng_ts_library(
     deps = [
         "//src/angular-business/checkbox",
         "//src/angular-business/file-selector",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

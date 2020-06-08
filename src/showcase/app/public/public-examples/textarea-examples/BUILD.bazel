@@ -12,20 +12,21 @@ ng_ts_library(
         "textarea-examples.module.ts",
         "textarea-forms-example/textarea-forms-example.component.ts",
         "textarea-native-example/textarea-native-example.component.ts",
-        "textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component.ts",
+        "textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component.ts",
     ],
     assets = [
         ":textarea-forms-example/textarea-forms-example.component.css",
-        ":textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component.css",
+        ":textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component.css",
         "textarea-forms-example/textarea-forms-example.component.html",
         "textarea-native-example/textarea-native-example.component.html",
-        "textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component.html",
+        "textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/checkbox",
         "//src/angular-public/field",
         "//src/angular-public/textarea",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
@@ -47,6 +48,6 @@ sass_binary(
 )
 
 sass_binary(
-    name = "textarea_reactive_forms_with_sbbfield_example_textarea_reactive_forms_with_sbb_field_example_component_scss",
-    src = "textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component.scss",
+    name = "textarea_reactive_forms_with_sbb_field_example_textarea_reactive_forms_with_sbb_field_example_component_scss",
+    src = "textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component.scss",
 )

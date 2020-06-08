@@ -8,6 +8,8 @@ import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { SelectModule } from '@sbb-esta/angular-business/select';
 import { TableModule } from '@sbb-esta/angular-business/table';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { FilterSortPaginatorTableExampleComponent } from './filter-sort-paginator-table-example/filter-sort-paginator-table-example.component';
 import { GroupedColumnsTableExampleComponent } from './grouped-columns-table-example/grouped-columns-table-example.component';
 import { GroupedRowsAndColumnsTableExampleComponent } from './grouped-rows-and-columns-table-example/grouped-rows-and-columns-table-example.component';
@@ -17,28 +19,39 @@ import { SimpleTableExampleComponent } from './simple-table-example/simple-table
 import { SortableTableExampleComponent } from './sortable-table-example/sortable-table-example.component';
 
 const EXAMPLES = [
+  FilterSortPaginatorTableExampleComponent,
   GroupedColumnsTableExampleComponent,
   GroupedRowsAndColumnsTableExampleComponent,
+  PaginatorTableExampleComponent,
+  SelectableTableExampleComponent,
   SimpleTableExampleComponent,
   SortableTableExampleComponent,
-  PaginatorTableExampleComponent,
-  FilterSortPaginatorTableExampleComponent,
-  SelectableTableExampleComponent,
 ];
+
+const EXAMPLE_INDEX = {
+  'filter-sort-paginator-table-example': FilterSortPaginatorTableExampleComponent,
+  'grouped-columns-table-example': GroupedColumnsTableExampleComponent,
+  'grouped-rows-and-columns-table-example': GroupedRowsAndColumnsTableExampleComponent,
+  'paginator-table-example': PaginatorTableExampleComponent,
+  'selectable-table-example': SelectableTableExampleComponent,
+  'simple-table-example': SimpleTableExampleComponent,
+  'sortable-table-example': SortableTableExampleComponent,
+};
 
 @NgModule({
   imports: [
     CommonModule,
-    TableModule,
-    PaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    FieldModule,
     CheckboxModule,
+    FieldModule,
+    PaginationModule,
     SelectModule,
+    TableModule,
     AutocompleteModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('business', 'table', EXAMPLE_INDEX)],
 })
 export class TableExamplesModule {}

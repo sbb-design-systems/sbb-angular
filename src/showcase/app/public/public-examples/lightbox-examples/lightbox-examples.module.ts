@@ -8,6 +8,8 @@ import { FieldModule } from '@sbb-esta/angular-public/field';
 import { LightboxModule } from '@sbb-esta/angular-public/lightbox';
 import { RadioButtonModule } from '@sbb-esta/angular-public/radio-button';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import {
   LightboxExampleComponent,
   LightboxExampleExample2Component,
@@ -36,6 +38,10 @@ const EXAMPLES = [
   LightboxExampleExampleContentComponent,
 ];
 
+const EXAMPLE_INDEX = {
+  'lightbox-example': LightboxExampleComponent,
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -43,12 +49,13 @@ const EXAMPLES = [
     ReactiveFormsModule,
     IconArrowRightModule,
     IconCrossModule,
+    ButtonModule,
     FieldModule,
     LightboxModule,
     RadioButtonModule,
-    ButtonModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('public', 'lightbox', EXAMPLE_INDEX)],
 })
 export class LightboxExamplesModule {}

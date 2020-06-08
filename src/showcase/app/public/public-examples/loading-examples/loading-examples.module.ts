@@ -1,22 +1,30 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { LoadingModule } from '@sbb-esta/angular-public/loading';
+
+import { provideExamples } from '../../../shared/example-provider';
 
 import { FullboxLoadingExampleComponent } from './fullbox-loading-example/fullbox-loading-example.component';
 import { FullscreenLoadingExampleComponent } from './fullscreen-loading-example/fullscreen-loading-example.component';
 import { SimpleLoadingExampleComponent } from './simple-loading-example/simple-loading-example.component';
 
 const EXAMPLES = [
-  SimpleLoadingExampleComponent,
-  FullscreenLoadingExampleComponent,
   FullboxLoadingExampleComponent,
+  FullscreenLoadingExampleComponent,
+  SimpleLoadingExampleComponent,
 ];
 
+const EXAMPLE_INDEX = {
+  'fullbox-loading-example': FullboxLoadingExampleComponent,
+  'fullscreen-loading-example': FullscreenLoadingExampleComponent,
+  'simple-loading-example': SimpleLoadingExampleComponent,
+};
+
 @NgModule({
-  imports: [CommonModule, IconArrowRightModule, LoadingModule, ButtonModule],
+  imports: [CommonModule, ButtonModule, LoadingModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('public', 'loading', EXAMPLE_INDEX)],
 })
 export class LoadingExamplesModule {}

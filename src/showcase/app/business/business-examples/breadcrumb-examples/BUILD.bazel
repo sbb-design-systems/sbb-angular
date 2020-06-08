@@ -18,6 +18,7 @@ ng_ts_library(
     deps = [
         "//src/angular-business/breadcrumb",
         "//src/angular-icons/navigation",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

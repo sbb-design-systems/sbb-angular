@@ -6,7 +6,9 @@ const prettier: {
 
 interface ExampleComponents {
   path: string;
+  dirName: string;
   components: string[];
+  exampleComponent: string;
 }
 interface Imports {
   path: string;
@@ -37,7 +39,6 @@ export function normalizeExamples(): Rule {
       .forEach((d) => normalizeExampleModules(d));
 
     function normalizeExampleModules(dir: DirEntry) {
-      // const moduleName = basename(dir.parent!.path);
       dir.subdirs.map((d) => dir.dir(d)).forEach((d) => normalizeExampleModule(d));
 
       const dirName = basename(dir.path);
@@ -96,6 +97,8 @@ export class ${moduleName} {}
     function renderModuleContent(dir: DirEntry) {
       const { exampleComponents, imports } = findExampleComponentsAndImports(dir);
       const dirName = basename(dir.path);
+      const packageShortName = basename(dir.parent!.path).split('-')[0];
+      const moduleShortName = basename(dir.path).split('-')[0];
       const angularModules = detectUsedAngularModules(dir);
       const formImport = angularModules.forms
         ? `import { FormsModule, ReactiveFormsModule } from '@angular/forms';`
@@ -113,6 +116,9 @@ export class ${moduleName} {}
       const componentsList = exampleComponents
         .reduce((current, next) => current.concat(next.components), [] as string[])
         .join(',\n  ');
+      const examplesIndex = exampleComponents
+        .map((e) => `'${e.dirName}': ${e.exampleComponent}`)
+        .join(',\n  ');
       let moduleList = imports.map((i) => i.moduleName).join(',\n    ');
       if (angularModules.forms) {
         moduleList = `FormsModule,\n  ReactiveFormsModule,\n  ${moduleList}`;
@@ -125,11 +131,17 @@ export class ${moduleName} {}
 import { NgModule } from '@angular/core';${formImport}${routerImport}
 ${moduleImports}
 
+import { provideExamples } from '../../../shared/example-provider';
+
 ${componentImports}
 
 const EXAMPLES = [
   ${componentsList}
 ];
+
+const EXAMPLE_INDEX = {
+  ${examplesIndex}
+};
 
 @NgModule({
   imports: [
@@ -137,7 +149,8 @@ const EXAMPLES = [
     ${moduleList}
   ],
   declarations: EXAMPLES,
-  exports: EXAMPLES
+  exports: EXAMPLES,
+  providers: [provideExamples('${packageShortName}', '${moduleShortName}', EXAMPLE_INDEX)]
 })
 export class ${moduleName} {}
 `;
@@ -153,7 +166,7 @@ export class ${moduleName} {}
     }
 
     function findExampleComponentsAndImports(dir: DirEntry) {
-      const packageName = split(dir.path)[4];
+      const packageName = `angular-${split(dir.path)[4]}`;
       const exampleComponents: ExampleComponents[] = [];
       const moduleName = basename(dir.path).split('-examples')[0];
       const imports: Imports[] = [resolveImport(packageName, moduleName)];
@@ -163,6 +176,7 @@ export class ${moduleName} {}
         } else if (path.endsWith('.ts') && !path.endsWith('module.ts')) {
           exampleComponents.push(...findComponents(dir, entry));
           imports.push(...findTypeScriptImports(entry));
+          imports.push(...findHtmlTagUsages(entry, packageName));
         } else if (path.endsWith('.html')) {
           imports.push(...findHtmlTagUsages(entry, packageName));
         }
@@ -184,8 +198,19 @@ export class ${moduleName} {}
         .match(/export class \w+Component/g)
         ?.map((m) => m.substring(13))
         .sort();
+      const dirName = basename(dirname(entry.path));
+      const exampleComponent = `${dirName
+        .replace(/^\w/, (m) => m.toUpperCase())
+        .replace(/-\w/g, (m) => m.substring(1).toUpperCase())}Component`;
       return components
-        ? [{ path: `./${relative(dir.path, entry.path).replace(/\.ts$/, '')}`, components }]
+        ? [
+            {
+              path: `./${relative(dir.path, entry.path).replace(/\.ts$/, '')}`,
+              dirName,
+              components,
+              exampleComponent,
+            },
+          ]
         : [];
     }
 
@@ -207,20 +232,30 @@ export class ${moduleName} {}
     function findHtmlTagUsages(entry: Readonly<FileEntry>, packageName: string): Imports[] {
       const content = entry.content.toString();
       const packageRoot = tree.getDir(`src/${packageName}`);
-
-      return (
+      const elementSelectors =
+        content.match(/<sbb-[^ >]+/g)?.map((t) => t.substring(5).trim()) ?? [];
+      const attributeSelectors =
         content
-          .match(/<sbb-[^ >]+/g)
-          ?.map((t) => t.substring(5).trim())
-          .filter(
-            (t) =>
-              t !== 'option' && (packageRoot.subdirs.includes(fragment(t)) || t.startsWith('icon'))
+          .match(/ sbb[^= ><]+/g)
+          ?.filter((m) => !m.includes('sbbsc') && !m.includes('sbb-label'))
+          .map((t) =>
+            t
+              .substring(4)
+              .trim()
+              .replace(/^-/, '')
+              .replace(/[A-Z]/g, (m, i) => `${i > 0 ? '-' : ''}${m.toLowerCase()}`)
+              .replace(/^link$/, 'links')
           )
-          .filter((v, i, a) => a.indexOf(v) === i)
-          .map((i) =>
-            i.startsWith('icon') ? resolveIconImport(i) : resolveImport(packageName, i)
-          ) ?? []
-      );
+          .filter((m) => m !== 'input' && m !== 'icon') ?? [];
+      const selectors = elementSelectors.concat(attributeSelectors);
+
+      return selectors
+        .filter(
+          (t) =>
+            t !== 'option' && (packageRoot.subdirs.includes(fragment(t)) || t.startsWith('icon'))
+        )
+        .filter((v, i, a) => a.indexOf(v) === i)
+        .map((i) => (i.startsWith('icon') ? resolveIconImport(i) : resolveImport(packageName, i)));
     }
 
     function resolveIconImport(tagName: string) {
@@ -229,7 +264,7 @@ export class ${moduleName} {}
 
     function resolveImport(packageName: string, moduleName: string) {
       return {
-        path: `@sbb-esta/angular-${packageName}/${moduleName}`,
+        path: `@sbb-esta/${packageName}/${moduleName}`,
         moduleName: `${strings.classify(moduleName)}Module`,
       };
     }

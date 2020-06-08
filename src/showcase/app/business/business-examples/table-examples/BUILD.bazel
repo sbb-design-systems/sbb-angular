@@ -34,6 +34,7 @@ ng_ts_library(
         "//src/angular-business/pagination",
         "//src/angular-business/select",
         "//src/angular-business/table",
+        "//src/showcase/app/shared",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",

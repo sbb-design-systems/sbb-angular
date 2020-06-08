@@ -21,6 +21,7 @@ ng_ts_library(
         "//src/angular-public/button",
         "//src/angular-public/field",
         "//src/angular-public/tag",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
