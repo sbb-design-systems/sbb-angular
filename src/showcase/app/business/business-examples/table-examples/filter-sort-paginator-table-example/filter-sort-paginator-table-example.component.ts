@@ -63,6 +63,10 @@ export class FilterSortPaginatorTableExampleComponent implements AfterViewInit, 
   ngOnDestroy(): void {
     this._destroyed.next();
   }
+
+  get descriptions() {
+    return this.dataSource.filteredData.map((vehicle) => vehicle.description);
+  }
 }
 
 const VEHICLE_EXAMPLE_DATA: VehicleExampleItem[] = [

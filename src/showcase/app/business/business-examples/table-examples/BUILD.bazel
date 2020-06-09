@@ -28,6 +28,7 @@ ng_ts_library(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/angular-business/autocomplete",
         "//src/angular-business/checkbox",
         "//src/angular-business/field",
         "//src/angular-business/pagination",

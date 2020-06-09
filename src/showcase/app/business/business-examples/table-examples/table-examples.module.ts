@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { PaginationModule } from '@sbb-esta/angular-business/pagination';
@@ -35,6 +36,7 @@ const EXAMPLES = [
     FieldModule,
     CheckboxModule,
     SelectModule,
+    AutocompleteModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
