@@ -20,7 +20,7 @@
       <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
         <input formControlName="description" [sbbAutocomplete]="descriptionsAuto" />
         <sbb-autocomplete #descriptionsAuto="sbbAutocomplete">
-          <sbb-option *ngFor="let option of descriptions" [value]="option">
+          <sbb-option *ngFor="let option of descriptions | async" [value]="option">
             {{ option }}
           </sbb-option>
         </sbb-autocomplete>

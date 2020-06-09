@@ -7,7 +7,7 @@ import {
   TableComponent,
   TableFilter,
 } from '@sbb-esta/angular-business/table';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
 interface VehicleExampleItem {
@@ -47,7 +47,7 @@ export class FilterSortPaginatorTableExampleComponent implements AfterViewInit, 
     description: new FormControl(''),
   });
 
-  descriptions: string[];
+  descriptions: Observable<string[]>;
 
   private _destroyed = new Subject<void>();
 
@@ -61,20 +61,14 @@ export class FilterSortPaginatorTableExampleComponent implements AfterViewInit, 
         this.dataSource.filter = vehicleFilterForm;
       });
 
-    this.vehicleFilterForm
-      .get('description')
-      .valueChanges.pipe(
-        takeUntil(this._destroyed),
-        distinctUntilChanged(),
-        map((newValue) =>
-          newValue.length === 0
-            ? []
-            : [
-                ...new Set(this.dataSource.filteredData.map((vehicle) => vehicle.description)),
-              ].sort()
-        )
+    this.descriptions = this.vehicleFilterForm.get('description').valueChanges.pipe(
+      distinctUntilChanged(),
+      map((newValue) =>
+        newValue.length === 0
+          ? []
+          : [...new Set(this.dataSource.filteredData.map((vehicle) => vehicle.description))].sort()
       )
-      .subscribe((descriptions) => (this.descriptions = descriptions));
+    );
   }
 
   ngOnDestroy(): void {
