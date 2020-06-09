@@ -18,7 +18,12 @@
     </ng-container>
     <ng-container sbbColumnDef="filter-description">
       <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
-        <input formControlName="description" />
+        <input formControlName="description" [sbbAutocomplete]="descriptionsAuto" />
+        <sbb-autocomplete #descriptionsAuto="sbbAutocomplete">
+          <sbb-option *ngFor="let option of descriptions | async" [value]="option">
+            {{ option }}
+          </sbb-option>
+        </sbb-autocomplete>
       </th>
     </ng-container>
     <ng-container sbbColumnDef="filter-category">
