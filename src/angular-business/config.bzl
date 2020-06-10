@@ -1,4 +1,5 @@
 entryPoints = [
+    # do not sort
     "accordion",
     "autocomplete",
     "badge",

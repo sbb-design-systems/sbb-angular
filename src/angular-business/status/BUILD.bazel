@@ -18,7 +18,6 @@ ng_module(
     assets = [":status.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/status",
     deps = [
-        "//src/angular-icons/basic",
         "//src/angular-icons/navigation",
         "//src/angular-icons/status",
         "@npm//@angular/common",

@@ -1,4 +1,5 @@
 entryPoints = [
+    # do not sort
     "core",
     "esri-basemap-gallery",
     "esri-config",

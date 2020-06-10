@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -9,21 +8,18 @@ package(default_visibility = ["//visibility:public"])
 ng_ts_library(
     name = "status-examples",
     srcs = [
-        "status-custom-icon-example/status-custom-icon-example.component.ts",
         "status-example/status-example.component.ts",
         "status-examples.module.ts",
         "status-with-message-example/status-with-message-example.component.ts",
     ],
     assets = [
-        ":status-custom-icon-example/status-custom-icon-example.component.css",
-        "status-custom-icon-example/status-custom-icon-example.component.html",
         "status-example/status-example.component.html",
         "status-with-message-example/status-with-message-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/status",
-        "//src/angular-icons/weather",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],
@@ -36,9 +32,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "status_custom_icon_example_status_custom_icon_example_component_scss",
-    src = "status-custom-icon-example/status-custom-icon-example.component.scss",
 )
