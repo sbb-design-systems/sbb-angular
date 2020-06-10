@@ -1,5 +1,5 @@
 import { Injectable, NgModule, OnDestroy } from '@angular/core';
-import { MatIconRegistry } from '@sbb-esta/angular-core/icon';
+import { SbbIconRegistry } from '@sbb-esta/angular-core/icon';
 import { Observable, of as observableOf } from 'rxjs';
 
 // tslint:disable:no-any Impossible to tell param types.
@@ -13,7 +13,7 @@ type PublicApi<T> = {
  * icons.
  */
 @Injectable()
-export class FakeMatIconRegistry implements PublicApi<MatIconRegistry>, OnDestroy {
+export class FakeSbbIconRegistry implements PublicApi<SbbIconRegistry>, OnDestroy {
   addSvgIcon(): this {
     return this;
   }
@@ -55,7 +55,7 @@ export class FakeMatIconRegistry implements PublicApi<MatIconRegistry>, OnDestro
   }
 
   getDefaultFontSetClass() {
-    return 'material-icons';
+    return 'sbb-icons';
   }
 
   getSvgIconFromUrl(): Observable<SVGElement> {
@@ -75,7 +75,7 @@ export class FakeMatIconRegistry implements PublicApi<MatIconRegistry>, OnDestro
   private _generateEmptySvg(): SVGElement {
     const emptySvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     emptySvg.classList.add('fake-testing-svg');
-    // Emulate real icon characteristics from `MatIconRegistry` so size remains consistent in tests.
+    // Emulate real icon characteristics from `SbbIconRegistry` so size remains consistent in tests.
     emptySvg.setAttribute('fit', '');
     emptySvg.setAttribute('height', '100%');
     emptySvg.setAttribute('width', '100%');
@@ -87,6 +87,6 @@ export class FakeMatIconRegistry implements PublicApi<MatIconRegistry>, OnDestro
 
 /** Import this module in tests to install the null icon registry. */
 @NgModule({
-  providers: [{ provide: MatIconRegistry, useClass: FakeMatIconRegistry }],
+  providers: [{ provide: SbbIconRegistry, useClass: FakeSbbIconRegistry }],
 })
-export class MatIconTestingModule {}
+export class SbbIconTestingModule {}
