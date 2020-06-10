@@ -1,26 +1,35 @@
 load(
     "//tools:defaults.bzl",
+    "markdown_to_html",
     "ng_module",
     "ng_test_library",
     "ng_web_test_suite",
+    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "common-behaviors",
+    name = "icon",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-core/common-behaviors",
+    assets = [":icon.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-core/icon",
     deps = [
-        "//src/angular-core/error",
+        "//src/angular-core/common-behaviors/color",
         "@npm//@angular/cdk",
+        "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//@angular/forms",
+        "@npm//@angular/platform-browser",
         "@npm//rxjs",
     ],
+)
+
+sass_binary(
+    name = "icon_scss",
+    src = "icon.scss",
 )
 
 ng_test_library(
@@ -30,13 +39,21 @@ ng_test_library(
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
-        ":common-behaviors",
+        ":icon",
+        "//src/angular-core/testing/private/wrapped-error-message",
+        "@npm//@angular/common",
+        "@npm//@angular/platform-browser",
     ],
 )
 
 ng_web_test_suite(
     name = "unit_tests",
     deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":icon.md"],
 )
 
 filegroup(
