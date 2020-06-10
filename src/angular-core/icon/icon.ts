@@ -17,25 +17,25 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { CanColor, CanColorCtor, mixinColor } from '@sbb-esta/angular-core/common-behaviors/color';
+import { CanColor, CanColorCtor, mixinColor } from '@sbb-esta/angular-core/common-behaviors';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { MatIconRegistry } from './icon-registry';
+import { SbbIconRegistry } from './icon-registry';
 
 // Boilerplate for applying mixins to SbbIconComponent.
 /** @docs-private */
-class MatIconBase {
+class SbbIconBase {
   constructor(public _elementRef: ElementRef) {}
 }
-export const SbbIconMixinBase: CanColorCtor & typeof MatIconBase = mixinColor(MatIconBase);
+export const SbbIconMixinBase: CanColorCtor & typeof SbbIconBase = mixinColor(SbbIconBase);
 
 /**
  * Injection token used to provide the current location to `SbbIconComponent`.
  * Used to handle server-side rendering and to stub out during unit tests.
  * @docs-private
  */
-export const MAT_ICON_LOCATION = new InjectionToken<MatIconLocation>('mat-icon-location', {
+export const SBB_ICON_LOCATION = new InjectionToken<SbbIconLocation>('sbb-icon-location', {
   providedIn: 'root',
   factory: SBB_ICON_LOCATION_FACTORY,
 });
@@ -44,12 +44,12 @@ export const MAT_ICON_LOCATION = new InjectionToken<MatIconLocation>('mat-icon-l
  * Stubbed out location for `SbbIconComponent`.
  * @docs-private
  */
-export interface MatIconLocation {
+export interface SbbIconLocation {
   getPathname: () => string;
 }
 
 /** @docs-private */
-export function SBB_ICON_LOCATION_FACTORY(): MatIconLocation {
+export function SBB_ICON_LOCATION_FACTORY(): SbbIconLocation {
   const document = inject(DOCUMENT);
   const location = document ? document.location : null;
 
@@ -87,39 +87,39 @@ const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
  *
  * - Specify the svgIcon input to load an SVG icon from a URL previously registered with the
  *   addSvgIcon, addSvgIconInNamespace, addSvgIconSet, or addSvgIconSetInNamespace methods of
- *   MatIconRegistry. If the svgIcon value contains a colon it is assumed to be in the format
+ *   SbbIconRegistry. If the svgIcon value contains a colon it is assumed to be in the format
  *   "[namespace]:[name]", if not the value will be the name of an icon in the default namespace.
  *   Examples:
- *     `<mat-icon svgIcon="left-arrow"></mat-icon>
- *     <mat-icon svgIcon="animals:cat"></mat-icon>`
+ *     `<sbb-icon svgIcon="left-arrow"></sbb-icon>
+ *     <sbb-icon svgIcon="animals:cat"></sbb-icon>`
  *
- * - Use a font ligature as an icon by putting the ligature text in the content of the `<mat-icon>`
- *   component. By default the Material icons font is used as described at
- *   http://google.github.io/material-design-icons/#icon-font-for-the-web. You can specify an
+ * - Use a font ligature as an icon by putting the ligature text in the content of the `<sbb-icon>`
+ *   component. By default the sbb icons font is used as described at
+ *   http://google.github.io/material-design-icons/#icon-font-for-the-web (TODO). You can specify an
  *   alternate font by setting the fontSet input to either the CSS class to apply to use the
- *   desired font, or to an alias previously registered with MatIconRegistry.registerFontClassAlias.
+ *   desired font, or to an alias previously registered with SbbIconRegistry.registerFontClassAlias.
  *   Examples:
- *     `<mat-icon>home</mat-icon>
- *     <mat-icon fontSet="myfont">sun</mat-icon>`
+ *     `<sbb-icon>home</sbb-icon>
+ *     <sbb-icon fontSet="myfont">sun</sbb-icon>`
  *
  * - Specify a font glyph to be included via CSS rules by setting the fontSet input to specify the
  *   font, and the fontIcon input to specify the icon. Typically the fontIcon will specify a
  *   CSS class which causes the glyph to be displayed via a :before selector, as in
  *   https://fortawesome.github.io/Font-Awesome/examples/
  *   Example:
- *     `<mat-icon fontSet="fa" fontIcon="alarm"></mat-icon>`
+ *     `<sbb-icon fontSet="fa" fontIcon="alarm"></sbb-icon>`
  */
 @Component({
   template: '<ng-content></ng-content>',
   selector: 'sbb-icon',
-  exportAs: 'matIcon',
+  exportAs: 'sbbIcon',
   styleUrls: ['icon.css'],
   inputs: ['color'],
   host: {
     role: 'img',
-    class: 'mat-icon notranslate',
-    '[class.mat-icon-inline]': 'inline',
-    '[class.mat-icon-no-color]': 'color !== "primary" && color !== "accent" && color !== "warn"',
+    class: 'sbb-icon notranslate',
+    '[class.sbb-icon-inline]': 'inline',
+    '[class.sbb-icon-no-color]': 'color !== "primary" && color !== "accent" && color !== "warn"',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -158,9 +158,9 @@ export class SbbIconComponent extends SbbIconMixinBase
 
   constructor(
     elementRef: ElementRef<HTMLElement>,
-    private _iconRegistry: MatIconRegistry,
+    private _iconRegistry: SbbIconRegistry,
     @Attribute('aria-hidden') ariaHidden: string,
-    @Inject(MAT_ICON_LOCATION) private _location: MatIconLocation,
+    @Inject(SBB_ICON_LOCATION) private _location: SbbIconLocation,
     private readonly _errorHandler: ErrorHandler
   ) {
     super(elementRef);
@@ -252,7 +252,7 @@ export class SbbIconComponent extends SbbIconMixinBase
 
   ngOnInit() {
     // Update font classes because ngOnChanges won't be called if none of the inputs are present,
-    // e.g. <mat-icon>arrow</mat-icon> In this case we need to add a CSS class for the default font.
+    // e.g. <sbb-icon>arrow</sbb-icon> In this case we need to add a CSS class for the default font.
     if (this._usingFontIcon()) {
       this._updateFontIconClasses();
     }

@@ -19,18 +19,18 @@ import { catchError, finalize, map, share, tap } from 'rxjs/operators';
  * load an icon with a name that cannot be found.
  * @docs-private
  */
-export function getMatIconNameNotFoundError(iconName: string): Error {
+export function getSbbIconNameNotFoundError(iconName: string): Error {
   return Error(`Unable to find icon with the name "${iconName}"`);
 }
 
 /**
  * Returns an exception to be thrown when the consumer attempts to use
- * `<mat-icon>` without including @angular/common/http.
+ * `<sbb-icon>` without including @angular/common/http.
  * @docs-private
  */
-export function getMatIconNoHttpProviderError(): Error {
+export function getSbbIconNoHttpProviderError(): Error {
   return Error(
-    'Could not find HttpClient provider for use with Angular Material icons. ' +
+    'Could not find HttpClient provider for use with Sbb Angular icons. ' +
       'Please include the HttpClientModule from @angular/common/http in your ' +
       'app imports.'
   );
@@ -41,9 +41,9 @@ export function getMatIconNoHttpProviderError(): Error {
  * @param url URL that was attempted to be sanitized.
  * @docs-private
  */
-export function getMatIconFailedToSanitizeUrlError(url: SafeResourceUrl): Error {
+export function getSbbIconFailedToSanitizeUrlError(url: SafeResourceUrl): Error {
   return Error(
-    `The URL provided to MatIconRegistry was not trusted as a resource URL ` +
+    `The URL provided to SbbIconRegistry was not trusted as a resource URL ` +
       `via Angular's DomSanitizer. Attempted URL was "${url}".`
   );
 }
@@ -53,9 +53,9 @@ export function getMatIconFailedToSanitizeUrlError(url: SafeResourceUrl): Error 
  * @param literal HTML that was attempted to be sanitized.
  * @docs-private
  */
-export function getMatIconFailedToSanitizeLiteralError(literal: SafeHtml): Error {
+export function getSbbIconFailedToSanitizeLiteralError(literal: SafeHtml): Error {
   return Error(
-    `The literal provided to MatIconRegistry was not trusted as safe HTML by ` +
+    `The literal provided to SbbIconRegistry was not trusted as safe HTML by ` +
       `Angular's DomSanitizer. Attempted literal was "${literal}".`
   );
 }
@@ -89,14 +89,14 @@ class SvgIconConfig {
 }
 
 /**
- * Service to register and display icons used by the `<mat-icon>` component.
+ * Service to register and display icons used by the `<sbb-icon>` component.
  * - Registers icon URLs by namespace and name.
  * - Registers icon set URLs by namespace.
  * - Registers aliases for CSS classes, for use with icon fonts.
  * - Loads icons from URLs and extracts individual icons from icon sets.
  */
 @Injectable({ providedIn: 'root' })
-export class MatIconRegistry implements OnDestroy {
+export class SbbIconRegistry implements OnDestroy {
   private _document: Document;
 
   /**
@@ -120,11 +120,12 @@ export class MatIconRegistry implements OnDestroy {
   private _fontCssClassesByAlias = new Map<string, string>();
 
   /**
-   * The CSS class to apply when an `<mat-icon>` component has no icon name, url, or font specified.
-   * The default 'material-icons' value assumes that the material icon font has been loaded as
+   * The CSS class to apply when an `<sbb-icon>` component has no icon name, url, or font specified.
+   * The default 'sbb-icons' value assumes that the sbb icon font has been loaded as
    * described at http://google.github.io/material-design-icons/#icon-font-for-the-web
+   * TODO
    */
-  private _defaultFontSetClass = 'material-icons';
+  private _defaultFontSetClass = 'sbb-icons';
 
   constructor(
     @Optional() private _httpClient: HttpClient,
@@ -181,7 +182,7 @@ export class MatIconRegistry implements OnDestroy {
     const sanitizedLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
 
     if (!sanitizedLiteral) {
-      throw getMatIconFailedToSanitizeLiteralError(literal);
+      throw getSbbIconFailedToSanitizeLiteralError(literal);
     }
 
     const svgElement = this._createSvgElementForSingleIcon(sanitizedLiteral, options);
@@ -224,7 +225,7 @@ export class MatIconRegistry implements OnDestroy {
     const sanitizedLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
 
     if (!sanitizedLiteral) {
-      throw getMatIconFailedToSanitizeLiteralError(literal);
+      throw getSbbIconFailedToSanitizeLiteralError(literal);
     }
 
     const svgElement = this._svgElementFromString(sanitizedLiteral);
@@ -232,9 +233,9 @@ export class MatIconRegistry implements OnDestroy {
   }
 
   /**
-   * Defines an alias for a CSS class name to be used for icon fonts. Creating an matIcon
+   * Defines an alias for a CSS class name to be used for icon fonts. Creating an sbbIcon
    * component with the alias as the fontSet input will cause the class name to be applied
-   * to the `<mat-icon>` element.
+   * to the `<sbb-icon>` element.
    *
    * @param alias Alias for the font.
    * @param className Class name override to be used instead of the alias.
@@ -253,7 +254,7 @@ export class MatIconRegistry implements OnDestroy {
   }
 
   /**
-   * Sets the CSS class name to be used for icon fonts when an `<mat-icon>` component does not
+   * Sets the CSS class name to be used for icon fonts when an `<sbb-icon>` component does not
    * have a fontSet input value, and is not loading an icon by name or URL.
    */
   setDefaultFontSetClass(className: string): this {
@@ -262,7 +263,7 @@ export class MatIconRegistry implements OnDestroy {
   }
 
   /**
-   * Returns the CSS class name to be used for icon fonts when an `<mat-icon>` component does not
+   * Returns the CSS class name to be used for icon fonts when an `<sbb-icon>` component does not
    * have a fontSet input value, and is not loading an icon by name or URL.
    */
   getDefaultFontSetClass(): string {
@@ -281,7 +282,7 @@ export class MatIconRegistry implements OnDestroy {
     const url = this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, safeUrl);
 
     if (!url) {
-      throw getMatIconFailedToSanitizeUrlError(safeUrl);
+      throw getSbbIconFailedToSanitizeUrlError(safeUrl);
     }
 
     const cachedIcon = this._cachedIconsByUrl.get(url);
@@ -320,7 +321,7 @@ export class MatIconRegistry implements OnDestroy {
       return this._getSvgFromIconSetConfigs(name, iconSetConfigs);
     }
 
-    return observableThrow(getMatIconNameNotFoundError(key));
+    return observableThrow(getSbbIconNameNotFoundError(key));
   }
 
   ngOnDestroy() {
@@ -395,7 +396,7 @@ export class MatIconRegistry implements OnDestroy {
         const foundIcon = this._extractIconWithNameFromAnySet(name, iconSetConfigs);
 
         if (!foundIcon) {
-          throw getMatIconNameNotFoundError(name);
+          throw getSbbIconNameNotFoundError(name);
         }
 
         return foundIcon;
@@ -581,7 +582,7 @@ export class MatIconRegistry implements OnDestroy {
     const withCredentials = options?.withCredentials ?? false;
 
     if (!this._httpClient) {
-      throw getMatIconNoHttpProviderError();
+      throw getSbbIconNoHttpProviderError();
     }
 
     if (safeUrl == null) {
@@ -591,7 +592,7 @@ export class MatIconRegistry implements OnDestroy {
     const url = this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, safeUrl);
 
     if (!url) {
-      throw getMatIconFailedToSanitizeUrlError(safeUrl);
+      throw getSbbIconFailedToSanitizeUrlError(safeUrl);
     }
 
     // Store in-progress fetches to avoid sending a duplicate request for a URL when there is
@@ -645,21 +646,21 @@ export class MatIconRegistry implements OnDestroy {
 
 /** @docs-private */
 export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
-  parentRegistry: MatIconRegistry,
+  parentRegistry: SbbIconRegistry,
   httpClient: HttpClient,
   sanitizer: DomSanitizer,
   errorHandler: ErrorHandler,
   document?: any
 ) {
-  return parentRegistry || new MatIconRegistry(httpClient, sanitizer, document, errorHandler);
+  return parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);
 }
 
 /** @docs-private */
 export const SBB_ICON_REGISTRY_PROVIDER = {
-  // If there is already an MatIconRegistry available, use that. Otherwise, provide a new one.
-  provide: MatIconRegistry,
+  // If there is already an SbbIconRegistry available, use that. Otherwise, provide a new one.
+  provide: SbbIconRegistry,
   deps: [
-    [new Optional(), new SkipSelf(), MatIconRegistry],
+    [new Optional(), new SkipSelf(), SbbIconRegistry],
     [new Optional(), HttpClient],
     DomSanitizer,
     ErrorHandler,
