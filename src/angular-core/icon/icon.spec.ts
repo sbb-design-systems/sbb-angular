@@ -6,11 +6,11 @@ import {
 import { Component, ErrorHandler } from '@angular/core';
 import { async, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
-import { wrappedErrorMessage } from '@sbb-esta/angular-core/testing/private/wrapped-error-message';
+import { wrappedErrorMessage } from '@sbb-esta/angular-core/testing';
 
 import { FAKE_SVGS } from './fake-svgs';
-import { getMatIconNoHttpProviderError, MatIconRegistry } from './icon-registry';
-import { MatIconModule, MAT_ICON_LOCATION } from './index';
+import { getSbbIconNoHttpProviderError, SbbIconRegistry } from './icon-registry';
+import { SbbIconModule, SBB_ICON_LOCATION } from './index';
 
 /** Returns the CSS classes assigned to an element as a sorted array. */
 function sortedClassNames(element: Element): string[] {
@@ -52,7 +52,7 @@ describe('SbbIconComponent', () => {
     errorHandler = jasmine.createSpyObj('errorHandler', ['handleError']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatIconModule],
+      imports: [HttpClientTestingModule, SbbIconModule],
       declarations: [
         IconWithColorComponent,
         IconWithLigatureComponent,
@@ -66,7 +66,7 @@ describe('SbbIconComponent', () => {
       ],
       providers: [
         {
-          provide: MAT_ICON_LOCATION,
+          provide: SBB_ICON_LOCATION,
           useValue: { getPathname: () => fakePath },
         },
         {
@@ -79,13 +79,13 @@ describe('SbbIconComponent', () => {
     TestBed.compileComponents();
   }));
 
-  let iconRegistry: MatIconRegistry;
+  let iconRegistry: SbbIconRegistry;
   let http: HttpTestingController;
   let sanitizer: DomSanitizer;
 
   beforeEach(inject(
-    [MatIconRegistry, HttpTestingController, DomSanitizer],
-    (mir: MatIconRegistry, h: HttpTestingController, ds: DomSanitizer) => {
+    [SbbIconRegistry, HttpTestingController, DomSanitizer],
+    (mir: SbbIconRegistry, h: HttpTestingController, ds: DomSanitizer) => {
       iconRegistry = mir;
       http = h;
       sanitizer = ds;
@@ -95,9 +95,9 @@ describe('SbbIconComponent', () => {
   it('should include notranslate class by default', () => {
     const fixture = TestBed.createComponent(IconWithColorComponent);
 
-    const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
-    expect(matIconElement.classList.contains('notranslate')).toBeTruthy(
-      'Expected the mat-icon element to include the notranslate class'
+    const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
+    expect(sbbIconElement.classList.contains('notranslate')).toBeTruthy(
+      'Expected the sbb-icon element to include the notranslate class'
     );
   });
 
@@ -105,15 +105,15 @@ describe('SbbIconComponent', () => {
     const fixture = TestBed.createComponent(IconWithColorComponent);
 
     const testComponent = fixture.componentInstance;
-    const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+    const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
     testComponent.iconName = 'home';
     testComponent.iconColor = 'primary';
     fixture.detectChanges();
-    expect(sortedClassNames(matIconElement)).toEqual([
-      'mat-icon',
-      'mat-primary',
-      'material-icons',
+    expect(sortedClassNames(sbbIconElement)).toEqual([
       'notranslate',
+      'sbb-icon',
+      'sbb-icons',
+      'sbb-primary',
     ]);
   });
 
@@ -121,64 +121,64 @@ describe('SbbIconComponent', () => {
     const fixture = TestBed.createComponent(IconWithColorComponent);
 
     const testComponent = fixture.componentInstance;
-    const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+    const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
     testComponent.iconName = 'home';
     testComponent.iconColor = '';
     fixture.detectChanges();
 
-    expect(sortedClassNames(matIconElement)).toEqual([
-      'mat-icon',
-      'mat-icon-no-color',
-      'material-icons',
+    expect(sortedClassNames(sbbIconElement)).toEqual([
       'notranslate',
+      'sbb-icon',
+      'sbb-icon-no-color',
+      'sbb-icons',
     ]);
   });
 
-  it('should mark mat-icon as aria-hidden by default', () => {
+  it('should mark sbb-icon as aria-hidden by default', () => {
     const fixture = TestBed.createComponent(IconWithLigatureComponent);
-    const iconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+    const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
     expect(iconElement.getAttribute('aria-hidden')).toBe(
       'true',
-      'Expected the mat-icon element has aria-hidden="true" by default'
+      'Expected the sbb-icon element has aria-hidden="true" by default'
     );
   });
 
   it('should not override a user-provided aria-hidden attribute', () => {
     const fixture = TestBed.createComponent(IconWithAriaHiddenFalseComponent);
-    const iconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+    const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
     expect(iconElement.getAttribute('aria-hidden')).toBe(
       'false',
-      'Expected the mat-icon element has the user-provided aria-hidden value'
+      'Expected the sbb-icon element has the user-provided aria-hidden value'
     );
   });
 
   it('should apply inline styling', () => {
     const fixture = TestBed.createComponent(InlineIconComponent);
-    const iconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
-    expect(iconElement.classList.contains('mat-icon-inline')).toBeFalsy(
-      'Expected the mat-icon element to not include the inline styling class'
+    const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
+    expect(iconElement.classList.contains('sbb-icon-inline')).toBeFalsy(
+      'Expected the sbb-icon element to not include the inline styling class'
     );
 
     fixture.debugElement.componentInstance.inline = true;
     fixture.detectChanges();
-    expect(iconElement.classList.contains('mat-icon-inline')).toBeTruthy(
-      'Expected the mat-icon element to include the inline styling class'
+    expect(iconElement.classList.contains('sbb-icon-inline')).toBeTruthy(
+      'Expected the sbb-icon element to include the inline styling class'
     );
   });
 
   describe('Ligature icons', () => {
-    it('should add material-icons class by default', () => {
+    it('should add sbb-icons class by default', () => {
       const fixture = TestBed.createComponent(IconWithLigatureComponent);
 
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       testComponent.iconName = 'home';
       fixture.detectChanges();
-      expect(sortedClassNames(matIconElement)).toEqual([
-        'mat-icon',
-        'mat-icon-no-color',
-        'material-icons',
+      expect(sortedClassNames(sbbIconElement)).toEqual([
         'notranslate',
+        'sbb-icon',
+        'sbb-icon-no-color',
+        'sbb-icons',
       ]);
     });
 
@@ -188,14 +188,14 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconWithLigatureComponent);
 
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       testComponent.iconName = 'home';
       fixture.detectChanges();
-      expect(sortedClassNames(matIconElement)).toEqual([
-        'mat-icon',
-        'mat-icon-no-color',
+      expect(sortedClassNames(sbbIconElement)).toEqual([
         'myfont',
         'notranslate',
+        'sbb-icon',
+        'sbb-icon-no-color',
       ]);
     });
 
@@ -203,11 +203,11 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconWithLigatureAndSvgBindingComponent);
 
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       testComponent.iconName = undefined;
       fixture.detectChanges();
 
-      expect(matIconElement.textContent.trim()).toBe('house');
+      expect(sbbIconElement.textContent.trim()).toBe('house');
     });
   });
 
@@ -221,7 +221,7 @@ describe('SbbIconComponent', () => {
       let svgElement: SVGElement;
       let testRequest: TestRequest;
       const testComponent = fixture.componentInstance;
-      const iconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
       fixture.detectChanges();
@@ -267,7 +267,7 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       let svgElement: SVGElement;
       const testComponent = fixture.componentInstance;
-      const iconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
       fixture.detectChanges();
@@ -351,7 +351,7 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
       let svgChild: any;
 
@@ -359,8 +359,8 @@ describe('SbbIconComponent', () => {
       fixture.detectChanges();
       http.expectOne('farm-set-1.svg').flush(FAKE_SVGS.farmSet1);
 
-      expect(matIconElement.childNodes.length).toBe(1);
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      expect(sbbIconElement.childNodes.length).toBe(1);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       expect(svgElement.childNodes.length).toBe(1);
       svgChild = svgElement.childNodes[0];
       // The first <svg> child should be the <g id="pig"> element.
@@ -371,7 +371,7 @@ describe('SbbIconComponent', () => {
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'farm:cow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       svgChild = svgElement.childNodes[0];
       // The first <svg> child should be the <g id="cow"> element.
       expect(svgChild.tagName.toLowerCase()).toBe('g');
@@ -384,7 +384,7 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
       let svgChild: any;
 
@@ -392,8 +392,8 @@ describe('SbbIconComponent', () => {
       fixture.detectChanges();
       http.expectOne('farm-set-4.svg').flush(FAKE_SVGS.farmSet4);
 
-      expect(matIconElement.childNodes.length).toBe(1);
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      expect(sbbIconElement.childNodes.length).toBe(1);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       expect(svgElement.childNodes.length).toBe(1);
       svgChild = svgElement.childNodes[0];
       // The first <svg> child should be the <g id="pig"> element.
@@ -427,7 +427,7 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
       let svgChild: any;
 
@@ -436,7 +436,7 @@ describe('SbbIconComponent', () => {
       http.expectOne('farm-set-1.svg').flush(FAKE_SVGS.farmSet1);
       http.expectOne('farm-set-2.svg').flush(FAKE_SVGS.farmSet2);
 
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       expect(svgElement.childNodes.length).toBe(1);
       svgChild = svgElement.childNodes[0];
       // The <svg> child should be the <g id="pig"> element.
@@ -451,7 +451,7 @@ describe('SbbIconComponent', () => {
       // and no additional HTTP request should be made.
       testComponent.iconName = 'farm:cow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       svgChild = svgElement.childNodes[0];
       // The first <svg> child should be the <g id="cow"> element.
       expect(svgChild.tagName.toLowerCase()).toBe('g');
@@ -469,8 +469,8 @@ describe('SbbIconComponent', () => {
       fixture.detectChanges();
       http.expectOne('farm-set-1.svg').flush(FAKE_SVGS.farmSet1);
 
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
-      const svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
+      const svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
 
       expect(svgElement.hasAttribute('id')).toBe(false);
     });
@@ -480,13 +480,13 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'farm:duck';
       fixture.detectChanges();
       http.expectOne('farm-set-3.svg').flush(FAKE_SVGS.farmSet3);
 
-      const svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      const svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       const firstChild = svgElement.childNodes[0];
 
       expect(svgElement.querySelector('symbol')).toBeFalsy();
@@ -500,13 +500,13 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'farm:duck';
       fixture.detectChanges();
       http.expectOne('farm-set-5.svg').flush(FAKE_SVGS.farmSet5);
 
-      const svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      const svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 13 37');
       expect(svgElement.getAttribute('id')).toBeFalsy();
       expect(svgElement.querySelector('symbol')).toBeFalsy();
@@ -517,7 +517,7 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
 
       testComponent.iconName = 'left-arrow';
@@ -526,7 +526,7 @@ describe('SbbIconComponent', () => {
 
       // arrow-set.svg stores its icons as nested <svg> elements, so they should be used
       // directly and not wrapped in an outer <svg> tag like the <g> elements in other sets.
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'left');
     });
 
@@ -535,13 +535,13 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
 
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
       http.expectOne('arrow-set.svg').flush(FAKE_SVGS.arrows);
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'left');
       // Modify the SVG element by setting a viewBox attribute.
       svgElement.setAttribute('viewBox', '0 0 100 100');
@@ -549,13 +549,13 @@ describe('SbbIconComponent', () => {
       // Switch to a different icon.
       testComponent.iconName = 'right-arrow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'right');
 
       // Switch back to the first icon. The viewBox attribute should not be present.
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'left');
       expect(svgElement.getAttribute('viewBox')).toBeFalsy();
     });
@@ -582,13 +582,13 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
 
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
       http.expectOne('arrow-set.svg').flush(FAKE_SVGS.arrows);
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
 
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 43 43');
     });
@@ -599,7 +599,7 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
 
       const testComponent = fixture.componentInstance;
-      const icon = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const icon = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
@@ -618,7 +618,7 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(SvgIconWithUserContentComponent);
       const testComponent = fixture.componentInstance;
-      const iconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
       fixture.detectChanges();
@@ -640,7 +640,7 @@ describe('SbbIconComponent', () => {
       iconRegistry.addSvgIcon('fido', trustUrl('dog.svg'));
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
-      const iconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       // Assign the slow icon first.
       fixture.componentInstance.iconName = 'fido';
@@ -677,7 +677,7 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       let svgElement: SVGElement;
       const testComponent = fixture.componentInstance;
-      const iconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
       fixture.detectChanges();
@@ -704,7 +704,7 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       let svgElement: SVGElement;
       const testComponent = fixture.componentInstance;
-      const iconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.iconName = 'fido';
       fixture.detectChanges();
@@ -732,15 +732,15 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
       let svgChild: any;
 
       testComponent.iconName = 'farm:pig';
       fixture.detectChanges();
 
-      expect(matIconElement.childNodes.length).toBe(1);
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      expect(sbbIconElement.childNodes.length).toBe(1);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       expect(svgElement.childNodes.length).toBe(1);
       svgChild = svgElement.childNodes[0];
 
@@ -752,7 +752,7 @@ describe('SbbIconComponent', () => {
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'farm:cow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       svgChild = svgElement.childNodes[0];
 
       // The first <svg> child should be the <g id="cow"> element.
@@ -767,14 +767,14 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
       let svgChild: any;
 
       testComponent.iconName = 'farm:pig';
       fixture.detectChanges();
 
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       expect(svgElement.childNodes.length).toBe(1);
       svgChild = svgElement.childNodes[0];
 
@@ -790,7 +790,7 @@ describe('SbbIconComponent', () => {
       // and no additional HTTP request should be made.
       testComponent.iconName = 'farm:cow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       svgChild = svgElement.childNodes[0];
 
       // The first <svg> child should be the <g id="cow"> element.
@@ -805,12 +805,12 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
 
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'left');
 
       // Modify the SVG element by setting a viewBox attribute.
@@ -819,13 +819,13 @@ describe('SbbIconComponent', () => {
       // Switch to a different icon.
       testComponent.iconName = 'right-arrow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'right');
 
       // Switch back to the first icon. The viewBox attribute should not be present.
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'left');
       expect(svgElement.getAttribute('viewBox')).toBeFalsy();
     });
@@ -835,12 +835,12 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
 
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
-      svgElement = verifyAndGetSingleSvgChild(matIconElement);
+      svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
 
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 43 43');
     });
@@ -859,7 +859,7 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
-      const styleTag = fixture.nativeElement.querySelector('mat-icon svg style');
+      const styleTag = fixture.nativeElement.querySelector('sbb-icon svg style');
 
       // Note the extra whitespace at the end which is what we're testing for. This is a
       // workaround for IE and Edge ignoring `style` tags in dynamically-created SVGs.
@@ -885,7 +885,7 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
-      const circle = fixture.nativeElement.querySelector('mat-icon svg circle');
+      const circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
       // We use a regex to match here, rather than the exact value, because different browsers
       // return different quotes through `getAttribute`, while some even omit the quotes altogether.
@@ -911,7 +911,7 @@ describe('SbbIconComponent', () => {
       let fixture = TestBed.createComponent(IconFromSvgNameComponent);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
-      let circle = fixture.nativeElement.querySelector('mat-icon svg circle');
+      let circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
       expect(circle.getAttribute('filter')).toMatch(/^url\(['"]?\/\$fake-path#blur['"]?\)$/);
       tick();
@@ -921,7 +921,7 @@ describe('SbbIconComponent', () => {
       fixture = TestBed.createComponent(IconFromSvgNameComponent);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
-      circle = fixture.nativeElement.querySelector('mat-icon svg circle');
+      circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
       expect(circle.getAttribute('filter')).toMatch(
         /^url\(['"]?\/\$another-fake-path#blur['"]?\)$/
@@ -946,7 +946,7 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
-      const circle = fixture.nativeElement.querySelector('mat-icon svg circle');
+      const circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
 
       // We use a regex to match here, rather than the exact value, because different browsers
       // return different quotes through `getAttribute`, while some even omit the quotes altogether.
@@ -967,56 +967,56 @@ describe('SbbIconComponent', () => {
 
       const fixture = TestBed.createComponent(IconWithCustomFontCssComponent);
       const testComponent = fixture.componentInstance;
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       testComponent.fontSet = 'f1';
       testComponent.fontIcon = 'house';
       fixture.detectChanges();
-      expect(sortedClassNames(matIconElement)).toEqual([
+      expect(sortedClassNames(sbbIconElement)).toEqual([
         'font1',
         'house',
-        'mat-icon',
-        'mat-icon-no-color',
         'notranslate',
+        'sbb-icon',
+        'sbb-icon-no-color',
       ]);
 
       testComponent.fontSet = 'f2';
       testComponent.fontIcon = 'igloo';
       fixture.detectChanges();
-      expect(sortedClassNames(matIconElement)).toEqual([
+      expect(sortedClassNames(sbbIconElement)).toEqual([
         'f2',
         'igloo',
-        'mat-icon',
-        'mat-icon-no-color',
         'notranslate',
+        'sbb-icon',
+        'sbb-icon-no-color',
       ]);
 
       testComponent.fontSet = 'f3';
       testComponent.fontIcon = 'tent';
       fixture.detectChanges();
-      expect(sortedClassNames(matIconElement)).toEqual([
+      expect(sortedClassNames(sbbIconElement)).toEqual([
         'f3',
-        'mat-icon',
-        'mat-icon-no-color',
         'notranslate',
+        'sbb-icon',
+        'sbb-icon-no-color',
         'tent',
       ]);
     });
 
     it('should handle values with extraneous spaces being passed in to `fontSet`', () => {
       const fixture = TestBed.createComponent(IconWithCustomFontCssComponent);
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       expect(() => {
         fixture.componentInstance.fontSet = 'font set';
         fixture.detectChanges();
       }).not.toThrow();
 
-      expect(sortedClassNames(matIconElement)).toEqual([
+      expect(sortedClassNames(sbbIconElement)).toEqual([
         'font',
-        'mat-icon',
-        'mat-icon-no-color',
         'notranslate',
+        'sbb-icon',
+        'sbb-icon-no-color',
       ]);
 
       expect(() => {
@@ -1024,29 +1024,29 @@ describe('SbbIconComponent', () => {
         fixture.detectChanges();
       }).not.toThrow();
 
-      expect(sortedClassNames(matIconElement)).toEqual([
+      expect(sortedClassNames(sbbIconElement)).toEqual([
         'changed',
-        'mat-icon',
-        'mat-icon-no-color',
         'notranslate',
+        'sbb-icon',
+        'sbb-icon-no-color',
       ]);
     });
 
     it('should handle values with extraneous spaces being passed in to `fontIcon`', () => {
       const fixture = TestBed.createComponent(IconWithCustomFontCssComponent);
-      const matIconElement = fixture.debugElement.nativeElement.querySelector('mat-icon');
+      const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       expect(() => {
         fixture.componentInstance.fontIcon = 'font icon';
         fixture.detectChanges();
       }).not.toThrow();
 
-      expect(sortedClassNames(matIconElement)).toEqual([
+      expect(sortedClassNames(sbbIconElement)).toEqual([
         'font',
-        'mat-icon',
-        'mat-icon-no-color',
-        'material-icons',
         'notranslate',
+        'sbb-icon',
+        'sbb-icon-no-color',
+        'sbb-icons',
       ]);
 
       expect(() => {
@@ -1054,12 +1054,12 @@ describe('SbbIconComponent', () => {
         fixture.detectChanges();
       }).not.toThrow();
 
-      expect(sortedClassNames(matIconElement)).toEqual([
+      expect(sortedClassNames(sbbIconElement)).toEqual([
         'changed',
-        'mat-icon',
-        'mat-icon-no-color',
-        'material-icons',
         'notranslate',
+        'sbb-icon',
+        'sbb-icon-no-color',
+        'sbb-icons',
       ]);
     });
   });
@@ -1076,25 +1076,25 @@ describe('SbbIconComponent', () => {
 });
 
 describe('SbbIconComponent without HttpClientModule', () => {
-  let iconRegistry: MatIconRegistry;
+  let iconRegistry: SbbIconRegistry;
   let sanitizer: DomSanitizer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MatIconModule],
+      imports: [SbbIconModule],
       declarations: [IconFromSvgNameComponent],
     });
 
     TestBed.compileComponents();
   }));
 
-  beforeEach(inject([MatIconRegistry, DomSanitizer], (mir: MatIconRegistry, ds: DomSanitizer) => {
+  beforeEach(inject([SbbIconRegistry, DomSanitizer], (mir: SbbIconRegistry, ds: DomSanitizer) => {
     iconRegistry = mir;
     sanitizer = ds;
   }));
 
   it('should throw an error when trying to load a remote icon', () => {
-    const expectedError = wrappedErrorMessage(getMatIconNoHttpProviderError());
+    const expectedError = wrappedErrorMessage(getSbbIconNoHttpProviderError());
 
     expect(() => {
       iconRegistry.addSvgIcon('fido', sanitizer.bypassSecurityTrustResourceUrl('dog.svg'));

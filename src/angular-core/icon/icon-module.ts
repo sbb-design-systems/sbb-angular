@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SbbIconComponent } from './icon';
 
 @NgModule({
-  exports: [SbbIconComponent],
   declarations: [SbbIconComponent],
+  exports: [SbbIconComponent],
 })
-export class MatIconModule {}
+export class SbbIconModule {}
