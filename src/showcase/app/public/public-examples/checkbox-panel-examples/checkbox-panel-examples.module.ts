@@ -26,6 +26,6 @@ const EXAMPLE_INDEX = {
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  providers: [provideExamples('public', 'checkbox', EXAMPLE_INDEX)],
+  providers: [provideExamples('public', 'checkbox-panel', EXAMPLE_INDEX)],
 })
 export class CheckboxPanelExamplesModule {}

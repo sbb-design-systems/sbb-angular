@@ -20,10 +20,10 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'autocomplete-chip-input-example': AutocompleteChipInputExampleComponent,
-  'disabled-chip-input-example': DisabledChipInputExampleComponent,
-  'forms-chip-input-example': FormsChipInputExampleComponent,
   'reactive-forms-chip-input-example': ReactiveFormsChipInputExampleComponent,
+  'forms-chip-input-example': FormsChipInputExampleComponent,
+  'disabled-chip-input-example': DisabledChipInputExampleComponent,
+  'autocomplete-chip-input-example': AutocompleteChipInputExampleComponent,
 };
 
 @NgModule({

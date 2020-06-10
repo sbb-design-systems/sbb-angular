@@ -12,8 +12,8 @@ import { SimpleLinkExampleComponent } from './simple-link-example/simple-link-ex
 const EXAMPLES = [IconLinkExampleComponent, SimpleLinkExampleComponent];
 
 const EXAMPLE_INDEX = {
-  'icon-link-example': IconLinkExampleComponent,
   'simple-link-example': SimpleLinkExampleComponent,
+  'icon-link-example': IconLinkExampleComponent,
 };
 
 @NgModule({

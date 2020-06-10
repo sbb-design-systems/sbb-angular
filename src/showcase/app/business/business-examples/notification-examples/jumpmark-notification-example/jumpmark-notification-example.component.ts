@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
-import { JUMPMARKS } from '../notification-data';
-
 @Component({
   selector: 'sbb-jumpmark-notification-example',
   templateUrl: './jumpmark-notification-example.component.html',
 })
 export class JumpmarkNotificationExampleComponent {
-  jumpmarks = JUMPMARKS;
+  jumpmarks = [
+    { elementId: '#tip1', title: 'Tip 1' },
+    { elementId: '#tip2', title: 'Tip 2' },
+  ];
 }

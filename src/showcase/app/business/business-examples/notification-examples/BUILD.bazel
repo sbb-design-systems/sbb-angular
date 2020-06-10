@@ -12,7 +12,6 @@ ng_ts_library(
         "closable-notification-example/closable-notification-example.component.ts",
         "custom-icon-notification-example/custom-icon-notification-example.component.ts",
         "jumpmark-notification-example/jumpmark-notification-example.component.ts",
-        "notification-data.ts",
         "notification-examples.module.ts",
         "simple-notification-example/simple-notification-example.component.ts",
     ],

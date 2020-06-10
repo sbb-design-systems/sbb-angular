@@ -29,13 +29,13 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'filter-sort-paginator-table-example': FilterSortPaginatorTableExampleComponent,
+  'simple-table-example': SimpleTableExampleComponent,
   'grouped-columns-table-example': GroupedColumnsTableExampleComponent,
   'grouped-rows-and-columns-table-example': GroupedRowsAndColumnsTableExampleComponent,
+  'sortable-table-example': SortableTableExampleComponent,
   'paginator-table-example': PaginatorTableExampleComponent,
   'selectable-table-example': SelectableTableExampleComponent,
-  'simple-table-example': SimpleTableExampleComponent,
-  'sortable-table-example': SortableTableExampleComponent,
+  'filter-sort-paginator-table-example': FilterSortPaginatorTableExampleComponent,
 };
 
 @NgModule({

@@ -27,8 +27,8 @@ const EXAMPLES = [
 
 const EXAMPLE_INDEX = {
   'component-data-dialog-example': ComponentDataDialogExampleComponent,
-  'shared-data-dialog-example': SharedDataDialogExampleComponent,
   'template-dialog-example': TemplateDialogExampleComponent,
+  'shared-data-dialog-example': SharedDataDialogExampleComponent,
 };
 
 @NgModule({

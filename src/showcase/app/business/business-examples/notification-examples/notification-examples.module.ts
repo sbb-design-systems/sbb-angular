@@ -21,10 +21,10 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'closable-notification-example': ClosableNotificationExampleComponent,
+  'simple-notification-example': SimpleNotificationExampleComponent,
   'custom-icon-notification-example': CustomIconNotificationExampleComponent,
   'jumpmark-notification-example': JumpmarkNotificationExampleComponent,
-  'simple-notification-example': SimpleNotificationExampleComponent,
+  'closable-notification-example': ClosableNotificationExampleComponent,
 };
 
 @NgModule({

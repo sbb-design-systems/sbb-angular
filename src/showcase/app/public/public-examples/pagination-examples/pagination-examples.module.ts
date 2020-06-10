@@ -14,8 +14,8 @@ import { PaginatorExampleComponent } from './paginator-example/paginator-example
 const EXAMPLES = [NavigationExampleComponent, PaginatorExampleComponent];
 
 const EXAMPLE_INDEX = {
-  'navigation-example': NavigationExampleComponent,
   'paginator-example': PaginatorExampleComponent,
+  'navigation-example': NavigationExampleComponent,
 };
 
 @NgModule({

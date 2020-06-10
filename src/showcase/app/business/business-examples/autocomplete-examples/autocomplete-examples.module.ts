@@ -23,12 +23,12 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'autocomplete-display-with-example': AutocompleteDisplayWithExampleComponent,
+  'autocomplete-reactive-forms-example': AutocompleteReactiveFormsExampleComponent,
   'autocomplete-forms-example': AutocompleteFormsExampleComponent,
   'autocomplete-hint-example': AutocompleteHintExampleComponent,
-  'autocomplete-locale-normalizer-example': AutocompleteLocaleNormalizerExampleComponent,
   'autocomplete-option-group-example': AutocompleteOptionGroupExampleComponent,
-  'autocomplete-reactive-forms-example': AutocompleteReactiveFormsExampleComponent,
+  'autocomplete-display-with-example': AutocompleteDisplayWithExampleComponent,
+  'autocomplete-locale-normalizer-example': AutocompleteLocaleNormalizerExampleComponent,
 };
 
 @NgModule({

@@ -20,9 +20,9 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'datepicker-date-filter-example': DatepickerDateFilterExampleComponent,
-  'datepicker-master-slave-example': DatepickerMasterSlaveExampleComponent,
   'datepicker-simple-reactive-example': DatepickerSimpleReactiveExampleComponent,
+  'datepicker-master-slave-example': DatepickerMasterSlaveExampleComponent,
+  'datepicker-date-filter-example': DatepickerDateFilterExampleComponent,
   'datepicker-standalone-forms-example': DatepickerStandaloneFormsExampleComponent,
 };
 

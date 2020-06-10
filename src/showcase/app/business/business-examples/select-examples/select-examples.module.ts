@@ -24,12 +24,12 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
+  'select-reactive-forms-example': SelectReactiveFormsExampleComponent,
   'select-forms-example': SelectFormsExampleComponent,
-  'select-multi-selection-example': SelectMultiSelectionExampleComponent,
   'select-native-example': SelectNativeExampleComponent,
+  'select-multi-selection-example': SelectMultiSelectionExampleComponent,
   'select-option-groups-example': SelectOptionGroupsExampleComponent,
   'select-option-groups-multi-selection-example': SelectOptionGroupsMultiSelectionExampleComponent,
-  'select-reactive-forms-example': SelectReactiveFormsExampleComponent,
 };
 
 @NgModule({

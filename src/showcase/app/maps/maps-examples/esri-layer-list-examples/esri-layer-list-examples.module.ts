@@ -17,6 +17,6 @@ const EXAMPLE_INDEX = {
   imports: [CommonModule, EsriLayerListModule, EsriWebSceneModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  providers: [provideExamples('maps', 'esri', EXAMPLE_INDEX)],
+  providers: [provideExamples('maps', 'esri-layer-list', EXAMPLE_INDEX)],
 })
 export class EsriLayerListExamplesModule {}

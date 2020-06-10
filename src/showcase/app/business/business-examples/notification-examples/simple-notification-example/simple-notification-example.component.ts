@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NotificationType } from '@sbb-esta/angular-business/notification';
 
-import { NOTIFICATION_TYPES } from '../notification-data';
-
 @Component({
   selector: 'sbb-simple-notification-example',
   templateUrl: './simple-notification-example.component.html',
@@ -10,5 +8,5 @@ import { NOTIFICATION_TYPES } from '../notification-data';
 })
 export class SimpleNotificationExampleComponent {
   type = NotificationType.SUCCESS;
-  types = NOTIFICATION_TYPES.slice();
+  types = ['success', 'info', 'error', 'warn'];
 }

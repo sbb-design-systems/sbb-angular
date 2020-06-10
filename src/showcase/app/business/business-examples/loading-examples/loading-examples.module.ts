@@ -16,9 +16,9 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
+  'simple-loading-example': SimpleLoadingExampleComponent,
   'fullbox-loading-example': FullboxLoadingExampleComponent,
   'fullscreen-loading-example': FullscreenLoadingExampleComponent,
-  'simple-loading-example': SimpleLoadingExampleComponent,
 };
 
 @NgModule({

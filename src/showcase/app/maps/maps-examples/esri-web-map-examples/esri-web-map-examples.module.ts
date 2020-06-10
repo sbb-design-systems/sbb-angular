@@ -16,6 +16,6 @@ const EXAMPLE_INDEX = {
   imports: [CommonModule, EsriWebMapModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  providers: [provideExamples('maps', 'esri', EXAMPLE_INDEX)],
+  providers: [provideExamples('maps', 'esri-web-map', EXAMPLE_INDEX)],
 })
 export class EsriWebMapExamplesModule {}

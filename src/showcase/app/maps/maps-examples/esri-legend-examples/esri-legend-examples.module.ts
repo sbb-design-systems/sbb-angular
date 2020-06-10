@@ -17,6 +17,6 @@ const EXAMPLE_INDEX = {
   imports: [CommonModule, EsriLegendModule, EsriWebSceneModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  providers: [provideExamples('maps', 'esri', EXAMPLE_INDEX)],
+  providers: [provideExamples('maps', 'esri-legend', EXAMPLE_INDEX)],
 })
 export class EsriLegendExamplesModule {}

@@ -17,15 +17,15 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
+  'simple-file-selector-example': SimpleFileSelectorExampleComponent,
   'multiple-mode-default-file-selector-example': MultipleModeDefaultFileSelectorExampleComponent,
   'multiple-mode-persistent-file-selector-example': MultipleModePersistentFileSelectorExampleComponent,
-  'simple-file-selector-example': SimpleFileSelectorExampleComponent,
 };
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule, FileSelectorModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  providers: [provideExamples('business', 'file', EXAMPLE_INDEX)],
+  providers: [provideExamples('business', 'file-selector', EXAMPLE_INDEX)],
 })
 export class FileSelectorExamplesModule {}

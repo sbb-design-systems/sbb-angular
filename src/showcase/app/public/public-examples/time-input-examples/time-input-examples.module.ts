@@ -17,6 +17,6 @@ const EXAMPLE_INDEX = {
   imports: [CommonModule, FormsModule, ReactiveFormsModule, TimeInputModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  providers: [provideExamples('public', 'time', EXAMPLE_INDEX)],
+  providers: [provideExamples('public', 'time-input', EXAMPLE_INDEX)],
 })
 export class TimeInputExamplesModule {}

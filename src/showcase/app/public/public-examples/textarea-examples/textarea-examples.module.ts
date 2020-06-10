@@ -18,9 +18,9 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
+  'textarea-reactive-forms-with-sbb-field-example': TextareaReactiveFormsWithSbbFieldExampleComponent,
   'textarea-forms-example': TextareaFormsExampleComponent,
   'textarea-native-example': TextareaNativeExampleComponent,
-  'textarea-reactive-forms-with-sbb-field-example': TextareaReactiveFormsWithSbbFieldExampleComponent,
 };
 
 @NgModule({

@@ -22,8 +22,8 @@ const EXAMPLES = [
 
 const EXAMPLE_INDEX = {
   'basic-accordion-example': BasicAccordionExampleComponent,
-  'simple-panel-example': SimplePanelExampleComponent,
   'wizard-accordion-example': WizardAccordionExampleComponent,
+  'simple-panel-example': SimplePanelExampleComponent,
 };
 
 @NgModule({

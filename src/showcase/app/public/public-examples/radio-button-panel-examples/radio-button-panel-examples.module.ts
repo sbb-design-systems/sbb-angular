@@ -26,6 +26,6 @@ const EXAMPLE_INDEX = {
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  providers: [provideExamples('public', 'radio', EXAMPLE_INDEX)],
+  providers: [provideExamples('public', 'radio-button-panel', EXAMPLE_INDEX)],
 })
 export class RadioButtonPanelExamplesModule {}

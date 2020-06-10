@@ -22,11 +22,11 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'datepicker-business-date-adapter-example': DatepickerBusinessDateAdapterExampleComponent,
-  'datepicker-date-filter-example': DatepickerDateFilterExampleComponent,
-  'datepicker-master-slave-example': DatepickerMasterSlaveExampleComponent,
   'datepicker-simple-reactive-example': DatepickerSimpleReactiveExampleComponent,
+  'datepicker-master-slave-example': DatepickerMasterSlaveExampleComponent,
+  'datepicker-date-filter-example': DatepickerDateFilterExampleComponent,
   'datepicker-standalone-forms-example': DatepickerStandaloneFormsExampleComponent,
+  'datepicker-business-date-adapter-example': DatepickerBusinessDateAdapterExampleComponent,
 };
 
 @NgModule({

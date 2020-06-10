@@ -20,6 +20,6 @@ const EXAMPLE_INDEX = {
   imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule, RadioButtonModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  providers: [provideExamples('public', 'radio', EXAMPLE_INDEX)],
+  providers: [provideExamples('public', 'radio-button', EXAMPLE_INDEX)],
 })
 export class RadioButtonExamplesModule {}

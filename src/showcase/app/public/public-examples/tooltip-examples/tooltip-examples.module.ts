@@ -20,9 +20,9 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
+  'tooltip-simple-example': TooltipSimpleExampleComponent,
   'tooltip-custom-content-example': TooltipCustomContentExampleComponent,
   'tooltip-custom-icon-example': TooltipCustomIconExampleComponent,
-  'tooltip-simple-example': TooltipSimpleExampleComponent,
 };
 
 @NgModule({
