@@ -10,6 +10,8 @@ entryPoints = [
     "datetime",
     "error",
     "forms",
+    "icon",
+    "icon/testing",
     "icon-directive",
     "models",
     "oauth",
@@ -41,5 +43,6 @@ CORE_TESTING_TARGETS = ["//src/angular-core/%s" % ep for ep in CORE_TESTING_ENTR
 CORE_MARKDOWN_TARGETS = [
     "breakpoints",
     "datetime",
+    "icon",
     "oauth",
 ]
