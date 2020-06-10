@@ -413,13 +413,14 @@ export class SbbTableDataSource<
     propertyFilters: { [key: string]: string[] },
     tableData: { [p: string]: any }
   ): boolean {
-    return Object.keys(propertyFilters)
-      .filter((key) => typeof tableData[key] !== 'undefined' && tableData[key] !== null)
-      .every((key) =>
-        propertyFilters[key].some((value) =>
+    return Object.keys(propertyFilters).every((key) =>
+      propertyFilters[key].some(
+        (value) =>
+          typeof tableData[key] !== 'undefined' &&
+          tableData[key] !== null &&
           this._matchesStringCaseInsensitive(`${tableData[key]}`, value)
-        )
-      );
+      )
+    );
   }
 
   /**
