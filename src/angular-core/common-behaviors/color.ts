@@ -35,10 +35,10 @@ export function mixinColor<T extends Constructor<HasElementRef>>(
 
       if (colorPalette !== this._color) {
         if (this._color) {
-          this._elementRef.nativeElement.classList.remove(`mat-${this._color}`);
+          this._elementRef.nativeElement.classList.remove(`sbb-${this._color}`);
         }
         if (colorPalette) {
-          this._elementRef.nativeElement.classList.add(`mat-${colorPalette}`);
+          this._elementRef.nativeElement.classList.add(`sbb-${colorPalette}`);
         }
 
         this._color = colorPalette;
