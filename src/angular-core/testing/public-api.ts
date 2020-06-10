@@ -4,3 +4,4 @@ export * from './type-in-element';
 export * from './element-focus';
 export * from './month-constants';
 export * from './mock-ng-zone';
+export * from './wrapped-error-message';
