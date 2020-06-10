@@ -1,14 +1,14 @@
 // The width/height of the icon element.
-$mat-icon-size: 24px !default;
+$sbb-icon-size: 24px !default;
 
-.mat-icon {
+.sbb-icon {
   background-repeat: no-repeat;
   display: inline-block;
   fill: currentColor;
-  height: $mat-icon-size;
-  width: $mat-icon-size;
+  height: $sbb-icon-size;
+  width: $sbb-icon-size;
 
-  &.mat-icon-inline {
+  &.sbb-icon-inline {
     font-size: inherit;
     height: inherit;
     line-height: inherit;
@@ -17,18 +17,18 @@ $mat-icon-size: 24px !default;
 }
 
 // Icons that will be mirrored in RTL.
-[dir='rtl'] .mat-icon-rtl-mirror {
+[dir='rtl'] .sbb-icon-rtl-mirror {
   transform: scale(-1, 1);
 }
 
-.mat-form-field:not(.mat-form-field-appearance-legacy) {
-  .mat-form-field-prefix,
-  .mat-form-field-suffix {
-    .mat-icon {
+.sbb-form-field:not(.sbb-form-field-appearance-legacy) {
+  .sbb-form-field-prefix,
+  .sbb-form-field-suffix {
+    .sbb-icon {
       display: block;
     }
 
-    .mat-icon-button .mat-icon {
+    .sbb-icon-button .sbb-icon {
       margin: auto;
     }
   }
