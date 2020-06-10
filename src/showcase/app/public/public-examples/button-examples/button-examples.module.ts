@@ -8,9 +8,15 @@ import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { ButtonExampleComponent } from './button-example/button-example.component';
 
 const EXAMPLES = [ButtonExampleComponent];
+
+const EXAMPLE_INDEX = {
+  'button-example': ButtonExampleComponent,
+};
 
 @NgModule({
   imports: [
@@ -26,5 +32,6 @@ const EXAMPLES = [ButtonExampleComponent];
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('public', 'button', EXAMPLE_INDEX)],
 })
 export class ButtonExamplesModule {}

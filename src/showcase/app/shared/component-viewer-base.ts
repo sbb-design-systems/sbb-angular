@@ -1,10 +1,10 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { AfterViewInit, Directive, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Directive, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, skip, take, takeUntil } from 'rxjs/operators';
 
-import { ExampleProvider } from './example-provider';
+import { ExampleProvider, EXAMPLES } from './example-provider';
 import { HtmlLoader } from './html-loader.service';
 
 @Directive()
@@ -16,17 +16,25 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   private _destroyed = new Subject<void>();
 
   constructor(
+    @Inject(EXAMPLES) private _examples: ExampleProvider[],
     private _htmlLoader: HtmlLoader,
-    private _exampleProvider: ExampleProvider,
     private _route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.example = this._route.params.pipe(
+    this.example = combineLatest(this._route.params, this._route.data).pipe(
       takeUntil(this._destroyed),
-      map(({ id }) => this._exampleProvider.resolveExample(id)),
+      map(
+        ([{ id }, { library }]) =>
+          this._examples.find((e) => e.library === library && e.moduleName === id)?.examples
+      ),
       map((examples) =>
-        examples ? Object.keys(examples).map((name) => ({ name, portal: examples[name] })) : null
+        examples
+          ? Object.keys(examples).map((name) => ({
+              name,
+              portal: new ComponentPortal(examples[name]),
+            }))
+          : null
       )
     );
     this.overview = this._htmlLoader.with(this._route).fromModuleDocumentation().observe();

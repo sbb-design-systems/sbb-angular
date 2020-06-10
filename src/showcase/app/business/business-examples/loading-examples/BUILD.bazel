@@ -24,7 +24,7 @@ ng_ts_library(
     deps = [
         "//src/angular-business/button",
         "//src/angular-business/loading",
-        "//src/angular-icons/arrow",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

@@ -5,6 +5,8 @@ import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { DatepickerDateFilterExampleComponent } from './datepicker-date-filter-example/datepicker-date-filter-example.component';
 import { DatepickerMasterSlaveExampleComponent } from './datepicker-master-slave-example/datepicker-master-slave-example.component';
 import { DatepickerSimpleReactiveExampleComponent } from './datepicker-simple-reactive-example/datepicker-simple-reactive-example.component';
@@ -17,6 +19,13 @@ const EXAMPLES = [
   DatepickerStandaloneFormsExampleComponent,
 ];
 
+const EXAMPLE_INDEX = {
+  'datepicker-simple-reactive-example': DatepickerSimpleReactiveExampleComponent,
+  'datepicker-master-slave-example': DatepickerMasterSlaveExampleComponent,
+  'datepicker-date-filter-example': DatepickerDateFilterExampleComponent,
+  'datepicker-standalone-forms-example': DatepickerStandaloneFormsExampleComponent,
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -28,5 +37,6 @@ const EXAMPLES = [
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('public', 'datepicker', EXAMPLE_INDEX)],
 })
 export class DatepickerExamplesModule {}

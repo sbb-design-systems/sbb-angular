@@ -7,9 +7,15 @@ import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { ToggleModule } from '@sbb-esta/angular-public/toggle';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { ToggleExampleComponent } from './toggle-example/toggle-example.component';
 
 const EXAMPLES = [ToggleExampleComponent];
+
+const EXAMPLE_INDEX = {
+  'toggle-example': ToggleExampleComponent,
+};
 
 @NgModule({
   imports: [
@@ -24,5 +30,6 @@ const EXAMPLES = [ToggleExampleComponent];
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('public', 'toggle', EXAMPLE_INDEX)],
 })
 export class ToggleExamplesModule {}

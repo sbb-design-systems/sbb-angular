@@ -7,22 +7,29 @@ import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { SelectModule } from '@sbb-esta/angular-public/select';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { FieldExampleComponent } from './field-example/field-example.component';
 
 const EXAMPLES = [FieldExampleComponent];
+
+const EXAMPLE_INDEX = {
+  'field-example': FieldExampleComponent,
+};
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FieldModule,
+    ButtonModule,
     CheckboxModule,
     DatepickerModule,
+    FieldModule,
     SelectModule,
-    ButtonModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('public', 'field', EXAMPLE_INDEX)],
 })
 export class FieldExamplesModule {}

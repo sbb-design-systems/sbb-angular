@@ -21,6 +21,7 @@ ng_ts_library(
         "//src/angular-public/datepicker",
         "//src/angular-public/field",
         "//src/angular-public/select",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

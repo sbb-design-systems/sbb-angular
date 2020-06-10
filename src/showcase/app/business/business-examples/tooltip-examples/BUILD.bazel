@@ -26,6 +26,7 @@ ng_ts_library(
         "//src/angular-business/field",
         "//src/angular-business/tooltip",
         "//src/angular-icons/navigation",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

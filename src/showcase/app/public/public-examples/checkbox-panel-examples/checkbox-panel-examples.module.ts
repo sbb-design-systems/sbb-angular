@@ -5,9 +5,15 @@ import { IconHeartModule } from '@sbb-esta/angular-icons/basic';
 import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { CheckboxPanelModule } from '@sbb-esta/angular-public/checkbox-panel';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { CheckboxPanelExampleComponent } from './checkbox-panel-example/checkbox-panel-example.component';
 
 const EXAMPLES = [CheckboxPanelExampleComponent];
+
+const EXAMPLE_INDEX = {
+  'checkbox-panel-example': CheckboxPanelExampleComponent,
+};
 
 @NgModule({
   imports: [
@@ -20,5 +26,6 @@ const EXAMPLES = [CheckboxPanelExampleComponent];
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('public', 'checkbox-panel', EXAMPLE_INDEX)],
 })
 export class CheckboxPanelExamplesModule {}

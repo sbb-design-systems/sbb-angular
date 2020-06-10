@@ -20,6 +20,7 @@ ng_ts_library(
     deps = [
         "//src/angular-public/button",
         "//src/angular-public/captcha",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

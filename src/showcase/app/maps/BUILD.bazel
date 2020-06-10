@@ -21,11 +21,6 @@ ng_ts_library(
     deps = [
         "//src/angular-maps",
         "//src/showcase/app/maps/maps-examples",
-        "//src/showcase/app/maps/maps-examples/esri-basemap-gallery-examples",
-        "//src/showcase/app/maps/maps-examples/esri-layer-list-examples",
-        "//src/showcase/app/maps/maps-examples/esri-legend-examples",
-        "//src/showcase/app/maps/maps-examples/esri-web-map-examples",
-        "//src/showcase/app/maps/maps-examples/esri-web-scene-examples",
         "//src/showcase/app/shared",
         "//src/showcase/app/shared/component-viewer",
         "@npm//@angular/cdk",

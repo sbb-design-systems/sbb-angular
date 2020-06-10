@@ -34,8 +34,6 @@ import { TooltipExamplesModule } from './tooltip-examples/tooltip-examples.modul
 import { UsermenuExamplesModule } from './usermenu-examples/usermenu-examples.module';
 
 const EXAMPLES = [
-  DatepickerExamplesModule,
-  TooltipExamplesModule,
   AccordionExamplesModule,
   AutocompleteExamplesModule,
   BadgeExamplesModule,
@@ -44,6 +42,7 @@ const EXAMPLES = [
   CaptchaExamplesModule,
   CheckboxExamplesModule,
   CheckboxPanelExamplesModule,
+  DatepickerExamplesModule,
   DropdownExamplesModule,
   FieldExamplesModule,
   FileSelectorExamplesModule,
@@ -65,6 +64,7 @@ const EXAMPLES = [
   TextexpandExamplesModule,
   TimeInputExamplesModule,
   ToggleExamplesModule,
+  TooltipExamplesModule,
   UsermenuExamplesModule,
 ];
 

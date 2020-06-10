@@ -5,6 +5,8 @@ import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { DatepickerModule } from '@sbb-esta/angular-business/datepicker';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { DatepickerBusinessDateAdapterExampleComponent } from './datepicker-business-date-adapter-example/datepicker-business-date-adapter-example.component';
 import { DatepickerDateFilterExampleComponent } from './datepicker-date-filter-example/datepicker-date-filter-example.component';
 import { DatepickerMasterSlaveExampleComponent } from './datepicker-master-slave-example/datepicker-master-slave-example.component';
@@ -19,6 +21,14 @@ const EXAMPLES = [
   DatepickerStandaloneFormsExampleComponent,
 ];
 
+const EXAMPLE_INDEX = {
+  'datepicker-simple-reactive-example': DatepickerSimpleReactiveExampleComponent,
+  'datepicker-master-slave-example': DatepickerMasterSlaveExampleComponent,
+  'datepicker-date-filter-example': DatepickerDateFilterExampleComponent,
+  'datepicker-standalone-forms-example': DatepickerStandaloneFormsExampleComponent,
+  'datepicker-business-date-adapter-example': DatepickerBusinessDateAdapterExampleComponent,
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -30,5 +40,6 @@ const EXAMPLES = [
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('business', 'datepicker', EXAMPLE_INDEX)],
 })
 export class DatepickerExamplesModule {}

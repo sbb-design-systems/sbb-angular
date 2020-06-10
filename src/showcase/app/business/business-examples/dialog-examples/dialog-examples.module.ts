@@ -5,6 +5,8 @@ import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import {
   ComponentDataDialogComponent,
   ComponentDataDialogExampleComponent,
@@ -16,23 +18,30 @@ import {
 import { TemplateDialogExampleComponent } from './template-dialog-example/template-dialog-example.component';
 
 const EXAMPLES = [
-  TemplateDialogExampleComponent,
-  ComponentDataDialogExampleComponent,
-  SharedDataDialogExampleComponent,
   ComponentDataDialogComponent,
+  ComponentDataDialogExampleComponent,
   SharedDataDialogComponent,
+  SharedDataDialogExampleComponent,
+  TemplateDialogExampleComponent,
 ];
+
+const EXAMPLE_INDEX = {
+  'component-data-dialog-example': ComponentDataDialogExampleComponent,
+  'template-dialog-example': TemplateDialogExampleComponent,
+  'shared-data-dialog-example': SharedDataDialogExampleComponent,
+};
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ButtonModule,
     DialogModule,
     FieldModule,
-    ButtonModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('business', 'dialog', EXAMPLE_INDEX)],
 })
 export class DialogExamplesModule {}

@@ -28,6 +28,7 @@ ng_ts_library(
     deps = [
         "//src/angular-business/autocomplete",
         "//src/angular-business/field",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

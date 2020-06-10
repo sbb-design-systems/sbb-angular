@@ -21,6 +21,7 @@ ng_ts_library(
         "//src/angular-icons/navigation",
         "//src/angular-public/breadcrumb",
         "//src/angular-public/dropdown",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

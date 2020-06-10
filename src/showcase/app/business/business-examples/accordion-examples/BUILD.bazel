@@ -28,6 +28,7 @@ ng_ts_library(
         "//src/angular-business/field",
         "//src/angular-business/radio-button",
         "//src/angular-icons/arrow",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

@@ -23,6 +23,7 @@ ng_ts_library(
         "//src/angular-business/button",
         "//src/angular-business/dialog",
         "//src/angular-business/field",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

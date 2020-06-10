@@ -30,6 +30,7 @@
     "build:svg-icons": "ng g .:svg-icons --project @sbb-esta/angular-icons --targetDir experimental",
     "build:svg-registry": "ng g .:svg-registry --stripNumberIdInCollection --stripNumberIds --stripSbbInName",
     "generate:bazel": "ng g .:bazel && yarn -s format:bazel",
+    "generate:examples": "ng g .:normalize-examples && yarn -s generate:bazel",
     "release": "standard-version --tag-prefix=\"\"",
     "forceinstall-husky": "node node_modules/husky/lib/installer/bin install"
   },

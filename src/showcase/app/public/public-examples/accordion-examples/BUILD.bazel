@@ -28,6 +28,7 @@ ng_ts_library(
         "//src/angular-public/checkbox",
         "//src/angular-public/field",
         "//src/angular-public/radio-button",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

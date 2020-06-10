@@ -22,6 +22,7 @@ ng_ts_library(
         "//src/angular-business/checkbox",
         "//src/angular-business/field",
         "//src/angular-business/pagination",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

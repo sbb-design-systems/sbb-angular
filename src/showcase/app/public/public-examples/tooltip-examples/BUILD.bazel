@@ -25,6 +25,7 @@ ng_ts_library(
         "//src/angular-public/field",
         "//src/angular-public/links",
         "//src/angular-public/tooltip",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

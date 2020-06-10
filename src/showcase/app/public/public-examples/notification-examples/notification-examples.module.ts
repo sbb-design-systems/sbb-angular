@@ -7,9 +7,15 @@ import { IconCloudSunshineModule } from '@sbb-esta/angular-icons/weather';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { NotificationModule } from '@sbb-esta/angular-public/notification';
 
+import { provideExamples } from '../../../shared/example-provider';
+
 import { NotificationExampleComponent } from './notification-example/notification-example.component';
 
 const EXAMPLES = [NotificationExampleComponent];
+
+const EXAMPLE_INDEX = {
+  'notification-example': NotificationExampleComponent,
+};
 
 @NgModule({
   imports: [
@@ -24,5 +30,6 @@ const EXAMPLES = [NotificationExampleComponent];
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  providers: [provideExamples('public', 'notification', EXAMPLE_INDEX)],
 })
 export class NotificationExamplesModule {}

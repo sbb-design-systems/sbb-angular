@@ -20,6 +20,7 @@ ng_ts_library(
     deps = [
         "//src/angular-maps/esri-layer-list",
         "//src/angular-maps/esri-web-scene",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

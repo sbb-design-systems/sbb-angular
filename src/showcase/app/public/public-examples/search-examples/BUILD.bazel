@@ -22,6 +22,7 @@ ng_ts_library(
         "//src/angular-public/autocomplete",
         "//src/angular-public/loading",
         "//src/angular-public/search",
+        "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
