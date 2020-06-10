@@ -8,21 +8,21 @@
     width: pxToRem(24px);
     height: pxToRem(24px);
     border-radius: pxToRem(1px);
-  }
 
-  .sbb-status-icon-valid {
-    background-color: $sbbColorGreen;
-    @include svgIconColor($sbbColorWhite);
-  }
+    &.sbb-status-icon-valid {
+      background-color: $sbbColorGreen;
+      @include svgIconColor($sbbColorWhite);
+    }
 
-  .sbb-status-icon-warning {
-    background-color: $sbbColorOrange;
-    @include svgIconColor($sbbColorWhite);
-  }
+    &.sbb-status-icon-warning {
+      background-color: $sbbColorOrange;
+      @include svgIconColor($sbbColorWhite);
+    }
 
-  .sbb-status-icon-invalid {
-    background-color: $sbbColorRed;
-    @include svgIconColor($sbbColorWhite);
+    &.sbb-status-icon-invalid {
+      background-color: $sbbColorRed;
+      @include svgIconColor($sbbColorWhite);
+    }
   }
 
   .sbb-status-message {

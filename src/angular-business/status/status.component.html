@@ -12,7 +12,6 @@
     [svgClass]="'sbb-status-warning'"
   ></sbb-icon-exclamation-point>
   <sbb-icon-cross *ngSwitchCase="'invalid'" [svgClass]="'sbb-status-invalid'"></sbb-icon-cross>
-  <ng-content *ngSwitchDefault select="[icon],[sbbIcon]"></ng-content>
 </div>
 
 <div *ngIf="message" class="sbb-status-message">{{ message }}</div>
