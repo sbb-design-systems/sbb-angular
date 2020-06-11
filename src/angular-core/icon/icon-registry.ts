@@ -324,6 +324,10 @@ export class SbbIconRegistry implements OnDestroy {
     return observableThrow(getSbbIconNameNotFoundError(key));
   }
 
+  hasNamespaceSvgIcon(namespace: string, iconName: string): boolean {
+    return this._svgIconConfigs.has(iconKey(namespace, iconName));
+  }
+
   ngOnDestroy() {
     this._svgIconConfigs.clear();
     this._iconSetConfigs.clear();
