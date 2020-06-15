@@ -6,7 +6,8 @@ import {
   ContentChild,
   EventEmitter,
   HostBinding,
-  Input,
+  Inject,
+  Optional,
   Output,
   TemplateRef,
   ViewChild,
@@ -14,18 +15,15 @@ import {
 } from '@angular/core';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 
+import { NotificationConfig } from './notification-config';
+import { NotificationRef } from './notification-ref';
+import { NOTIFICATION_DATA } from './notification.service';
+
 export enum NotificationType {
   SUCCESS = 'success',
   ERROR = 'error',
   INFO = 'info',
   WARN = 'warn',
-}
-
-export enum NotificationToastPosition {
-  TOPLEFT = 'top-left',
-  TOPRIGHT = 'top-right',
-  BOTTOMLEFT = 'bottom-left',
-  BOTTOMRIGHT = 'bottom-right',
 }
 
 export interface JumpMark {
@@ -51,49 +49,25 @@ export class NotificationComponent {
   /** @docs-private */
   @HostBinding('class.sbb-notification-success')
   get typeSuccess(): boolean {
-    return this.type === NotificationType.SUCCESS;
+    return this.config.type === NotificationType.SUCCESS;
   }
 
   /** @docs-private */
   @HostBinding('class.sbb-notification-info')
   get typeInfo(): boolean {
-    return this.type === NotificationType.INFO;
+    return this.config.type === NotificationType.INFO;
   }
 
   /** @docs-private */
   @HostBinding('class.sbb-notification-error')
   get typeError(): boolean {
-    return this.type === NotificationType.ERROR;
+    return this.config.type === NotificationType.ERROR;
   }
 
   /** @docs-private */
   @HostBinding('class.sbb-notification-warn')
   get typeWarn(): boolean {
-    return this.type === NotificationType.WARN;
-  }
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-toast-top-left')
-  get positionTopLeft(): boolean {
-    return this.toastPosition === NotificationToastPosition.TOPLEFT;
-  }
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-toast-top-right')
-  get positionTopRight(): boolean {
-    return this.toastPosition === NotificationToastPosition.TOPRIGHT;
-  }
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-toast-bottom-left')
-  get positionBottomLeft(): boolean {
-    return this.toastPosition === NotificationToastPosition.BOTTOMLEFT;
-  }
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-toast-bottom-right')
-  get positionBottomRight(): boolean {
-    return this.toastPosition === NotificationToastPosition.BOTTOMRIGHT;
+    return this.config.type === NotificationType.WARN;
   }
 
   @HostBinding('attr.aria-hidden') ariaHidden: 'false' | 'true';
@@ -104,15 +78,6 @@ export class NotificationComponent {
   }
 
   /** Type of notification. */
-  @Input()
-  type: 'success' | 'info' | 'error' | 'warn' = NotificationType.SUCCESS;
-
-  /** Type of notification. */
-  @Input()
-  toastPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-
-  /** Type of notification. */
-  @Input()
   set readonly(value: boolean) {
     this._readonly = coerceBooleanProperty(value);
     this._changeDetectorRef.markForCheck();
@@ -140,7 +105,6 @@ export class NotificationComponent {
    *  By default uses three icons for SUCCESS, ERROR or INFO notification type,
    *  but the user can use his own icon using the NotificationIconDirective.
    */
-  @Input()
   set icon(notificationIcon: TemplateRef<any> | null) {
     this._icon = notificationIcon;
   }
@@ -150,7 +114,7 @@ export class NotificationComponent {
     } else if (this._icon) {
       return this._icon;
     }
-    switch (this.type) {
+    switch (this.config.type) {
       case NotificationType.SUCCESS:
         return this.checkIcon;
       case NotificationType.ERROR:
@@ -162,6 +126,7 @@ export class NotificationComponent {
         return null;
     }
   }
+
   private _icon: TemplateRef<any> | null;
 
   /**
@@ -171,19 +136,22 @@ export class NotificationComponent {
   @ContentChild(IconDirective, { read: TemplateRef })
   _contentIcon: TemplateRef<any>;
 
-  /** List of in page links displayed on the bottom of the notification */
-  @Input() jumpMarks?: JumpMark[];
-
   @Output()
   dismissed: EventEmitter<boolean> = new EventEmitter();
 
   /** @docs-private */
   @HostBinding('class.sbb-notification-has-jump-marks')
   get hasJumpMarks() {
-    return this.jumpMarks && this.jumpMarks.length;
+    return this.config.jumpMarks && this.config.jumpMarks.length;
   }
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Optional() private _notificationRef: NotificationRef<any>,
+    @Inject(NOTIFICATION_DATA) public config: NotificationConfig
+  ) {
+    this.readonly = config.readonly || false;
+  }
 
   /**
    * Used to scroll to an element identified by a jump mark
