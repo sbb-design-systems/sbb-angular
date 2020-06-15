@@ -1,8 +1,10 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ContentChild,
   EventEmitter,
   HostBinding,
   Input,
@@ -10,8 +12,12 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  TemplateRef,
+  ViewContainerRef,
 } from '@angular/core';
 import { Subject } from 'rxjs';
+
+import { TabContent } from './tab-content';
 
 let counter = 0;
 
@@ -92,11 +98,24 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
    * Event generated if a tab is removed
    */
   @Output() removeChange = new EventEmitter();
+  /**
+   * Template provided in the tab content, which is lazily rendered
+   */
+  @ContentChild(TabContent, { read: TemplateRef, static: true }) _lazyTabContent: TemplateRef<any>;
+
+  /**
+   * Portal holding the user's lazy tab content
+   * @docs-private
+   */
+  _contentPortal: TemplatePortal | null = null;
 
   /** Emits whenever the internal state of the tab changes. */
   readonly _stateChanges = new Subject<void>();
 
-  constructor(private _changeDetector: ChangeDetectorRef) {}
+  constructor(
+    private _changeDetector: ChangeDetectorRef,
+    private _viewContainerRef: ViewContainerRef
+  ) {}
 
   ngOnInit() {
     if (!this.id) {
@@ -112,6 +131,12 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   tabMarkForCheck() {
+    if (this.active && this._lazyTabContent) {
+      this._contentPortal = new TemplatePortal(this._lazyTabContent, this._viewContainerRef);
+    } else if (this._lazyTabContent) {
+      this._contentPortal = null;
+    }
+
     this._changeDetector.markForCheck();
   }
 

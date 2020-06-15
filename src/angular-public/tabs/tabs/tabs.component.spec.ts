@@ -1,10 +1,12 @@
-import { Component, DebugElement } from '@angular/core';
+import { PortalModule } from '@angular/cdk/portal';
+import { Component, DebugElement, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
 import { BadgeModule } from '@sbb-esta/angular-public/badge';
 
+import { TabContent } from '../tab/tab-content';
 import { TabComponent } from '../tab/tab.component';
 
 import { TabsComponent } from './tabs.component';
@@ -12,7 +14,7 @@ import { TabsComponent } from './tabs.component';
 // tslint:disable:i18n
 @Component({
   template: `
-    <sbb-tabs>
+    <sbb-tabs #tabs>
       <sbb-tab label="TAB 1">
         <h4>Content 1</h4>
         <p>Here comes the content for tab 1 ...</p>
@@ -30,13 +32,34 @@ import { TabsComponent } from './tabs.component';
         <h4>Content 3</h4>
         <p>Here comes the content for tab 3 ...</p>
       </sbb-tab>
+      <sbb-tab label="TAB 4">
+        <ng-template sbbTabContent>
+          <sbb-tab-content-test (ngOnInitCalled)="onContentInitalized()"></sbb-tab-content-test>
+        </ng-template>
+      </sbb-tab>
     </sbb-tabs>
   `,
 })
 class TabsTestComponent {
+  @ViewChild('tabs') tabsComponent: TabsComponent;
   isVisible = true;
+  numberOfTimesSubComponentHasBeenInitialized = 0;
   disableChange() {}
   removeChange() {}
+  onContentInitalized() {
+    this.numberOfTimesSubComponentHasBeenInitialized++;
+  }
+}
+
+@Component({
+  template: '',
+  selector: 'sbb-tab-content-test',
+})
+class TabContentTestComponent implements OnInit {
+  @Output() ngOnInitCalled = new EventEmitter<void>();
+  ngOnInit() {
+    this.ngOnInitCalled.emit();
+  }
 }
 
 describe('TabsComponent', () => {
@@ -46,8 +69,14 @@ describe('TabsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TabsTestComponent, TabsComponent, TabComponent],
-      imports: [BadgeModule],
+      declarations: [
+        TabsTestComponent,
+        TabContentTestComponent,
+        TabsComponent,
+        TabComponent,
+        TabContent,
+      ],
+      imports: [BadgeModule, PortalModule],
     }).compileComponents();
   }));
 
@@ -103,7 +132,7 @@ describe('TabsComponent', () => {
     fixture.detectChanges();
 
     const tabsLabels = fixture.debugElement.queryAll(By.css('.sbb-tabs-tablist-item-button'));
-    expect(tabsLabels.length).toBe(2);
+    expect(tabsLabels.length).toBe(3);
   });
 
   it('should when removing a tab emit an event', () => {
@@ -113,5 +142,42 @@ describe('TabsComponent', () => {
     fixture.detectChanges();
 
     expect(component.removeChange).toHaveBeenCalled();
+  });
+
+  it('should not render lazy tab content', () => {
+    fixture.detectChanges();
+
+    expect(component.numberOfTimesSubComponentHasBeenInitialized).toEqual(0);
+  });
+
+  it('should render lazy tab content, when opening tab', async () => {
+    component.tabsComponent.openTabByIndex(3);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    component.tabsComponent.openTabByIndex(1);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.numberOfTimesSubComponentHasBeenInitialized).toEqual(1);
+  });
+
+  it('should render lazy tab content multiple times, when switching tabs', async () => {
+    component.tabsComponent.openTabByIndex(3);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.tabsComponent.openTabByIndex(1);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.tabsComponent.openTabByIndex(3);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.tabsComponent.openTabByIndex(1);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.numberOfTimesSubComponentHasBeenInitialized).toEqual(2);
   });
 });
