@@ -17,18 +17,10 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { CanColor, CanColorCtor, mixinColor } from '@sbb-esta/angular-core/common-behaviors';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { SbbIconRegistry } from './icon-registry';
-
-// Boilerplate for applying mixins to SbbIconComponent.
-/** @docs-private */
-class SbbIconBase {
-  constructor(public _elementRef: ElementRef) {}
-}
-export const SbbIconMixinBase: CanColorCtor & typeof SbbIconBase = mixinColor(SbbIconBase);
 
 /**
  * Injection token used to provide the current location to `SbbIconComponent`.
@@ -119,13 +111,11 @@ const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
     role: 'img',
     class: 'sbb-icon notranslate',
     '[class.sbb-icon-inline]': 'inline',
-    '[class.sbb-icon-no-color]': 'color !== "primary" && color !== "accent" && color !== "warn"',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbIconComponent extends SbbIconMixinBase
-  implements OnChanges, OnInit, AfterViewChecked, CanColor, OnDestroy {
+export class SbbIconComponent implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
   /**
    * Whether the icon should be inlined, automatically sizing the icon to match the font size of
    * the element the icon is contained in.
@@ -137,6 +127,10 @@ export class SbbIconComponent extends SbbIconMixinBase
   set inline(inline: boolean) {
     this._inline = coerceBooleanProperty(inline);
   }
+  private _inline: boolean = false;
+
+  /** Name of the icon in the SVG icon set. */
+  @Input() svgIcon: string;
 
   /** Font set that the icon is a part of. */
   @Input()
@@ -146,6 +140,7 @@ export class SbbIconComponent extends SbbIconMixinBase
   set fontSet(value: string) {
     this._fontSet = this._cleanupFontValue(value);
   }
+  private _fontSet: string;
 
   /** Name of an icon within a font set. */
   @Input()
@@ -155,29 +150,6 @@ export class SbbIconComponent extends SbbIconMixinBase
   set fontIcon(value: string) {
     this._fontIcon = this._cleanupFontValue(value);
   }
-
-  constructor(
-    elementRef: ElementRef<HTMLElement>,
-    private _iconRegistry: SbbIconRegistry,
-    @Attribute('aria-hidden') ariaHidden: string,
-    @Inject(SBB_ICON_LOCATION) private _location: SbbIconLocation,
-    private readonly _errorHandler: ErrorHandler
-  ) {
-    super(elementRef);
-
-    // If the user has not explicitly set aria-hidden, mark the icon as hidden, as this is
-    // the right thing to do for the majority of icon use-cases.
-    if (!ariaHidden) {
-      elementRef.nativeElement.setAttribute('aria-hidden', 'true');
-    }
-  }
-
-  static ngAcceptInputType_inline: BooleanInput;
-  private _inline: boolean = false;
-
-  /** Name of the icon in the SVG icon set. */
-  @Input() svgIcon: string;
-  private _fontSet: string;
   private _fontIcon: string;
 
   private _previousFontSetClass: string;
@@ -191,6 +163,20 @@ export class SbbIconComponent extends SbbIconMixinBase
 
   /** Subscription to the current in-progress SVG icon request. */
   private _currentIconFetch = Subscription.EMPTY;
+
+  constructor(
+    private _elementRef: ElementRef<HTMLElement>,
+    private _iconRegistry: SbbIconRegistry,
+    @Attribute('aria-hidden') ariaHidden: string,
+    @Inject(SBB_ICON_LOCATION) private _location: SbbIconLocation,
+    private readonly _errorHandler: ErrorHandler
+  ) {
+    // If the user has not explicitly set aria-hidden, mark the icon as hidden, as this is
+    // the right thing to do for the majority of icon use-cases.
+    if (!ariaHidden) {
+      this._elementRef.nativeElement.setAttribute('aria-hidden', 'true');
+    }
+  }
 
   /**
    * Splits an svgIcon binding value into its icon set and icon name components.
@@ -416,4 +402,8 @@ export class SbbIconComponent extends SbbIconMixinBase
       });
     }
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_inline: BooleanInput;
+  // tslint:enable: member-ordering
 }
