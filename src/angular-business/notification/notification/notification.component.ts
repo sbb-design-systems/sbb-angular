@@ -109,9 +109,7 @@ export class NotificationComponent {
     this._icon = notificationIcon;
   }
   get icon(): TemplateRef<any> | null {
-    if (this._contentIcon) {
-      return this._contentIcon;
-    } else if (this._icon) {
+    if (this._icon) {
       return this._icon;
     }
     switch (this.config.type) {
@@ -129,13 +127,6 @@ export class NotificationComponent {
 
   private _icon: TemplateRef<any> | null;
 
-  /**
-   * icon placed in template
-   * @docs-private
-   */
-  @ContentChild(IconDirective, { read: TemplateRef })
-  _contentIcon: TemplateRef<any>;
-
   @Output()
   dismissed: EventEmitter<boolean> = new EventEmitter();
 
@@ -150,7 +141,8 @@ export class NotificationComponent {
     @Optional() private _notificationRef: NotificationRef<any>,
     @Inject(NOTIFICATION_DATA) public config: NotificationConfig
   ) {
-    this.readonly = config.readonly || false;
+    this.readonly = config.readonly != null ? config.readonly : true;
+    this.icon = config.icon || null;
   }
 
   /**

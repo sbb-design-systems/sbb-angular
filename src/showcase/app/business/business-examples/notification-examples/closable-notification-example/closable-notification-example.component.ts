@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
+import { Notification } from '@sbb-esta/angular-business/notification';
 
 @Component({
   selector: 'sbb-custom-icon-notification-example',
   templateUrl: './closable-notification-example.component.html',
-  styleUrls: ['./closable-notification-example.component.css'],
 })
 export class ClosableNotificationExampleComponent {
-  dismissed() {
-    console.log('Notification dismissed');
+  constructor(private _notification: Notification) {}
+
+  showNotification() {
+    this._notification.open('test', {
+      readonly: false,
+    });
   }
 }

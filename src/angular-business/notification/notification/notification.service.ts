@@ -134,7 +134,7 @@ export class Notification implements OnDestroy {
 
   private _createOverlay(config: NotificationConfig): OverlayRef {
     const overlayConfig = new OverlayConfig();
-    overlayConfig.direction = config.direction;
+    overlayConfig.direction = 'ltr';
 
     const positionStrategy = this._overlay.position().global();
 
@@ -208,13 +208,6 @@ export class Notification implements OnDestroy {
     } else {
       // If no snack bar is in view, enter the new snack bar.
       notificationRef.containerInstance.enter();
-    }
-
-    // If a dismiss timeout is provided, set up dismiss based on after the snackbar is opened.
-    if (config.duration && config.duration > 0) {
-      notificationRef
-        .afterOpened()
-        .subscribe(() => notificationRef._dismissAfter(config.duration!));
     }
   }
 }
