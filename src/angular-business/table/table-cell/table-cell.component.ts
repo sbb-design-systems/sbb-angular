@@ -63,6 +63,8 @@ export class ColumnDefDirective extends CdkColumnDef {
   selector: 'sbbHeaderCell, th[sbbHeaderCell]',
 })
 export class HeaderCellDirective extends CdkHeaderCell {
+  @HostBinding('class.sbb-header-cell') sbbHeaderCell = true;
+
   @HostBinding('attr.role') gridCell = 'gridcell';
 
   constructor(columnDef: CdkColumnDef, elementRef: ElementRef<HTMLElement>) {
@@ -76,6 +78,7 @@ export class HeaderCellDirective extends CdkHeaderCell {
   selector: 'sbbFooterCell, td[sbbFooterCell]',
 })
 export class FooterCellDirective extends CdkFooterCell {
+  @HostBinding('class.sbb-footer-cell') sbbFooterCell = true;
   @HostBinding('attr.role') gridCell = 'gridcell';
 
   constructor(columnDef: CdkColumnDef, elementRef: ElementRef) {
@@ -89,6 +92,7 @@ export class FooterCellDirective extends CdkFooterCell {
   selector: 'sbbCell, td[sbbCell]',
 })
 export class CellDirective extends CdkCell {
+  @HostBinding('class.sbb-cell') sbbCell = true;
   @HostBinding('attr.role') gridCell = 'gridcell';
 
   constructor(columnDef: CdkColumnDef, elementRef: ElementRef<HTMLElement>) {
