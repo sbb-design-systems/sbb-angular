@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { NotificationModule } from '@sbb-esta/angular-business/notification';
 import { IconBulbOnModule } from '@sbb-esta/angular-icons/community';
@@ -36,6 +37,7 @@ const EXAMPLE_INDEX = {
     NotificationModule,
     IconBulbOnModule,
     IconClockModule,
+    ButtonModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

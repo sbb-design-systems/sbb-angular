@@ -17,7 +17,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { NotificationConfig } from '../notification/notification-config';
@@ -39,7 +39,7 @@ export class NotificationContainerComponent extends BasePortalOutlet implements 
 
   readonly _onExit: Subject<any> = new Subject();
 
-  readonly _onEnter: Subject<any> = new Subject();
+  readonly _onEnter: ReplaySubject<any> = new ReplaySubject();
 
   constructor(
     private _ngZone: NgZone,
@@ -77,6 +77,8 @@ export class NotificationContainerComponent extends BasePortalOutlet implements 
   enter(): void {
     if (!this._destroyed) {
       this._changeDetectorRef.detectChanges();
+      this._onEnter.next();
+      this._onEnter.complete();
     }
   }
 
@@ -108,9 +110,8 @@ export class NotificationContainerComponent extends BasePortalOutlet implements 
       }
     }
 
-    if (this.notificationConfig.horizontalPosition === 'center') {
-      element.classList.add('notification-center');
-    }
+    // currently, only a centered position is supported
+    element.classList.add('notification-center');
 
     if (this.notificationConfig.verticalPosition === 'top') {
       element.classList.add('notification-top');

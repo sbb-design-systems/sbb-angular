@@ -12,15 +12,9 @@ export type NotificationVerticalPosition = 'top' | 'bottom';
 export class NotificationConfig<D = any> {
   viewContainerRef?: ViewContainerRef;
 
-  duration?: number = 0;
-
   panelClass?: string | string[];
 
-  direction?: Direction;
-
   message?: string;
-
-  horizontalPosition?: NotificationHorizontalPosition = 'center';
 
   verticalPosition?: NotificationVerticalPosition = 'bottom';
 

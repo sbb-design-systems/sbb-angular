@@ -33,12 +33,6 @@ export class NotificationRef<T> {
     clearTimeout(this._durationTimeoutId);
   }
 
-  _dismissAfter(duration: number): void {
-    // Note that we need to cap the duration to the maximum value for setTimeout, because
-    // it'll revert to 1 if somebody passes in something greater (e.g. `Infinity`). See #17234.
-    setTimeout(() => this.dismiss(), duration);
-  }
-
   private _finishDismiss(): void {
     this._overlayRef.dispose();
 
