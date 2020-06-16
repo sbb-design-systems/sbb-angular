@@ -31,6 +31,7 @@
     "build:svg-registry": "ng g .:svg-registry --stripNumberIdInCollection --stripNumberIds --stripSbbInName",
     "generate:bazel": "ng g .:bazel && yarn -s format:bazel",
     "generate:examples": "ng g .:normalize-examples && yarn -s generate:bazel",
+    "generate:icon-cdn-provider": "ng g .:icon-cdn-provider --target-dir angular-core/icon",
     "release": "standard-version --tag-prefix=\"\"",
     "forceinstall-husky": "node node_modules/husky/lib/installer/bin install"
   },

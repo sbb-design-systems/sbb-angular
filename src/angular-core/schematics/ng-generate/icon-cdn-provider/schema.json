@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "cdnIndexUrl": {
+      "type": "string",
+      "description": "The URL to the CDN index.",
+      "default": "https://icons.app.sbb.ch/index.json"
+    },
+    "cdnBaseUrl": {
+      "type": "string",
+      "description": "The base URL of the CDN.",
+      "default": "https://icons.app.sbb.ch"
+    },
+    "targetDir": {
+      "type": "string",
+      "description": "The directory into which the icons will be generated, relative to projects.[project].root.",
+      "default": "."
+    }
+  }
+}

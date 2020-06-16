@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "angular-showcase": {
-      "root": "src/showcase",
+      "root": "src",
       "sourceRoot": "src/showcase",
       "projectType": "application",
       "prefix": "sbb",

@@ -5,11 +5,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { SbbIconRegistry } from './icon-registry';
 
-/** @docs-private */
-export const SBB_MODULE_ICONS = new InjectionToken<string[]>('SBB_MODULE_ICONS');
+export const SBB_CDN_URL = 'https://icons.app.sbb.ch';
 
-/** Base url of icon cdn for sbb icons TODO: replace CDN-Url*/
-export const SBB_ICON_CDN_URL = '/assets/';
+/** @docs-private */
+export const SBB_MODULE_ICONS_TOKEN = new InjectionToken<string[]>('SBB_MODULE_ICONS');
 
 /** @docs-private */
 export function SBB_MODULE_ICON_REGISTRY_PROVIDER_FACTORY(
@@ -29,7 +28,7 @@ export function SBB_MODULE_ICON_REGISTRY_PROVIDER_FACTORY(
       registry.addSvgIconInNamespace(
         namespace,
         iconName,
-        sanitizer.bypassSecurityTrustResourceUrl(`${SBB_ICON_CDN_URL}${namespace}/${iconName}.svg`)
+        sanitizer.bypassSecurityTrustResourceUrl(`${SBB_CDN_URL}/${namespace}/${iconName}.svg`)
       );
     }
   }
@@ -46,7 +45,7 @@ export const SBB_MODULE_ICON_REGISTRY_PROVIDER = {
     [new Optional(), HttpClient],
     DomSanitizer,
     ErrorHandler,
-    SBB_MODULE_ICONS,
+    SBB_MODULE_ICONS_TOKEN,
     [new Optional(), DOCUMENT as InjectionToken<any>],
   ],
   useFactory: SBB_MODULE_ICON_REGISTRY_PROVIDER_FACTORY,
