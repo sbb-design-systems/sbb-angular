@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "icon-cdn-provider": {
+      "description": "Create the CDN icon provider, which registers all available icons from the CDN",
+      "factory": "./ng-generate/icon-cdn-provider/index#iconCdnProvider",
+      "schema": "./ng-generate/icon-cdn-provider/schema.json"
+    }
+  }
+}
