@@ -15,6 +15,7 @@
     "@angular/common": "0.0.0-NG",
     "@angular/core": "0.0.0-NG"
   },
+  "schematics": "./schematics/collection.json",
   "ng-update": {
     "packageGroup": [
       "@sbb-esta/angular-business",
@@ -24,6 +25,7 @@
       "@sbb-esta/angular-maps",
       "@sbb-esta/angular-public"
     ],
-    "packageGroupName": "@sbb-esta/angular-core"
+    "packageGroupName": "@sbb-esta/angular-core",
+    "migrations": "./schematics/migration.json"
   }
 }
