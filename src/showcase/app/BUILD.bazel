@@ -37,6 +37,7 @@ ng_ts_library(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/header",
+        "//src/angular-core/icon",
         "//src/showcase/app/business",
         "//src/showcase/app/core",
         "//src/showcase/app/icons",
