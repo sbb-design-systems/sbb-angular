@@ -98,7 +98,7 @@ describe('SbbTableDataSource', () => {
       ];
 
       params.forEach((param) =>
-        expect(dataTableSource.filterPredicate(testRow, param.filter)).toBe(param.expected)
+        expect(dataTableSource.filterPredicate(testRow, param.filter)).toBe(param.expected, param)
       );
     });
 
@@ -118,11 +118,11 @@ describe('SbbTableDataSource', () => {
         { filter: { colString: '', colNumber: undefined }, expected: true },
         { filter: { colNumber: undefined }, expected: true },
         { filter: { _: '' }, expected: true },
-        { filter: { colNull: 'search' }, expected: true },
+        { filter: { colNull: 'search' }, expected: false },
         { filter: { colNull: null } as any, expected: true },
         { filter: { colString: null } as any, expected: true },
-        { filter: { colUndefined: 'search' }, expected: true },
-        { filter: { colNonexistent: 'search' }, expected: true },
+        { filter: { colUndefined: 'search' }, expected: false },
+        { filter: { colNonexistent: 'search' }, expected: false },
         { filter: { colNumber: 1 }, expected: true },
         { filter: { colString: '  Content  ' }, expected: true },
         { filter: { colString: 'CONTENT' }, expected: true },
@@ -138,7 +138,10 @@ describe('SbbTableDataSource', () => {
       ];
 
       params.forEach((param) =>
-        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter)).toBe(param.expected)
+        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter)).toBe(
+          param.expected,
+          param
+        )
       );
     });
 
@@ -160,7 +163,10 @@ describe('SbbTableDataSource', () => {
       ];
 
       params.forEach((param) =>
-        expect(dataTableSource.filterPredicate(dataRowWith0, param.filter)).toBe(param.expected)
+        expect(dataTableSource.filterPredicate(dataRowWith0, param.filter)).toBe(
+          param.expected,
+          param
+        )
       );
     });
 
@@ -181,9 +187,9 @@ describe('SbbTableDataSource', () => {
         { filter: { colNumber: [] }, expected: true },
         { filter: { colNumber: [] }, expected: true },
         { filter: { _: '' }, expected: true },
-        { filter: { colNull: ['search'] }, expected: true },
-        { filter: { colUndefined: ['search'] }, expected: true },
-        { filter: { colNonexistent: ['search'] }, expected: true },
+        { filter: { colNull: ['search'] }, expected: false },
+        { filter: { colUndefined: ['search'] }, expected: false },
+        { filter: { colNonexistent: ['search'] }, expected: false },
         { filter: { colNumber: [1] }, expected: true },
         { filter: { colString: ['  Content  '] }, expected: true },
         { filter: { colString: ['CONTENT'] }, expected: true },
@@ -207,7 +213,10 @@ describe('SbbTableDataSource', () => {
       ];
 
       params.forEach((param) =>
-        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter)).toBe(param.expected)
+        expect(dataTableSource.filterPredicate(testRowAdvanced, param.filter)).toBe(
+          param.expected,
+          param
+        )
       );
     });
   });

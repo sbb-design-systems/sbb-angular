@@ -26,6 +26,7 @@ interface VehicleFilter extends TableFilter {
 
 @Component({
   selector: 'sbb-filter-sort-paginator-table-example',
+  styleUrls: ['./filter-sort-paginator-table-example.component.css'],
   templateUrl: './filter-sort-paginator-table-example.component.html',
 })
 export class FilterSortPaginatorTableExampleComponent implements AfterViewInit, OnDestroy {
