@@ -17,7 +17,6 @@ ng_module(
     deps = [
         "//src/angular-core/error",
         "@npm//@angular/cdk",
-        "@npm//@angular/core",
         "@npm//@angular/forms",
         "@npm//rxjs",
     ],
