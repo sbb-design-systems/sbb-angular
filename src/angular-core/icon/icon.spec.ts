@@ -54,7 +54,6 @@ describe('SbbIconComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, SbbIconModule],
       declarations: [
-        IconWithColorComponent,
         IconWithLigatureComponent,
         IconWithCustomFontCssComponent,
         IconFromSvgNameComponent,
@@ -93,45 +92,12 @@ describe('SbbIconComponent', () => {
   ));
 
   it('should include notranslate class by default', () => {
-    const fixture = TestBed.createComponent(IconWithColorComponent);
+    const fixture = TestBed.createComponent(IconFromSvgNameComponent);
 
     const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
     expect(sbbIconElement.classList.contains('notranslate')).toBeTruthy(
       'Expected the sbb-icon element to include the notranslate class'
     );
-  });
-
-  it('should apply class based on color attribute', () => {
-    const fixture = TestBed.createComponent(IconWithColorComponent);
-
-    const testComponent = fixture.componentInstance;
-    const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
-    testComponent.iconName = 'home';
-    testComponent.iconColor = 'primary';
-    fixture.detectChanges();
-    expect(sortedClassNames(sbbIconElement)).toEqual([
-      'notranslate',
-      'sbb-icon',
-      'sbb-icons',
-      'sbb-primary',
-    ]);
-  });
-
-  it('should apply a class if there is no color', () => {
-    const fixture = TestBed.createComponent(IconWithColorComponent);
-
-    const testComponent = fixture.componentInstance;
-    const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
-    testComponent.iconName = 'home';
-    testComponent.iconColor = '';
-    fixture.detectChanges();
-
-    expect(sortedClassNames(sbbIconElement)).toEqual([
-      'notranslate',
-      'sbb-icon',
-      'sbb-icon-no-color',
-      'sbb-icons',
-    ]);
   });
 
   it('should mark sbb-icon as aria-hidden by default', () => {
@@ -174,12 +140,7 @@ describe('SbbIconComponent', () => {
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       testComponent.iconName = 'home';
       fixture.detectChanges();
-      expect(sortedClassNames(sbbIconElement)).toEqual([
-        'notranslate',
-        'sbb-icon',
-        'sbb-icon-no-color',
-        'sbb-icons',
-      ]);
+      expect(sortedClassNames(sbbIconElement)).toEqual(['notranslate', 'sbb-icon', 'sbb-icons']);
     });
 
     it('should use alternate icon font if set', () => {
@@ -191,12 +152,7 @@ describe('SbbIconComponent', () => {
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       testComponent.iconName = 'home';
       fixture.detectChanges();
-      expect(sortedClassNames(sbbIconElement)).toEqual([
-        'myfont',
-        'notranslate',
-        'sbb-icon',
-        'sbb-icon-no-color',
-      ]);
+      expect(sortedClassNames(sbbIconElement)).toEqual(['myfont', 'notranslate', 'sbb-icon']);
     });
 
     it('should not clear the text of a ligature icon if the svgIcon is bound to something falsy', () => {
@@ -977,30 +933,17 @@ describe('SbbIconComponent', () => {
         'house',
         'notranslate',
         'sbb-icon',
-        'sbb-icon-no-color',
       ]);
 
       testComponent.fontSet = 'f2';
       testComponent.fontIcon = 'igloo';
       fixture.detectChanges();
-      expect(sortedClassNames(sbbIconElement)).toEqual([
-        'f2',
-        'igloo',
-        'notranslate',
-        'sbb-icon',
-        'sbb-icon-no-color',
-      ]);
+      expect(sortedClassNames(sbbIconElement)).toEqual(['f2', 'igloo', 'notranslate', 'sbb-icon']);
 
       testComponent.fontSet = 'f3';
       testComponent.fontIcon = 'tent';
       fixture.detectChanges();
-      expect(sortedClassNames(sbbIconElement)).toEqual([
-        'f3',
-        'notranslate',
-        'sbb-icon',
-        'sbb-icon-no-color',
-        'tent',
-      ]);
+      expect(sortedClassNames(sbbIconElement)).toEqual(['f3', 'notranslate', 'sbb-icon', 'tent']);
     });
 
     it('should handle values with extraneous spaces being passed in to `fontSet`', () => {
@@ -1012,24 +955,14 @@ describe('SbbIconComponent', () => {
         fixture.detectChanges();
       }).not.toThrow();
 
-      expect(sortedClassNames(sbbIconElement)).toEqual([
-        'font',
-        'notranslate',
-        'sbb-icon',
-        'sbb-icon-no-color',
-      ]);
+      expect(sortedClassNames(sbbIconElement)).toEqual(['font', 'notranslate', 'sbb-icon']);
 
       expect(() => {
         fixture.componentInstance.fontSet = ' changed';
         fixture.detectChanges();
       }).not.toThrow();
 
-      expect(sortedClassNames(sbbIconElement)).toEqual([
-        'changed',
-        'notranslate',
-        'sbb-icon',
-        'sbb-icon-no-color',
-      ]);
+      expect(sortedClassNames(sbbIconElement)).toEqual(['changed', 'notranslate', 'sbb-icon']);
     });
 
     it('should handle values with extraneous spaces being passed in to `fontIcon`', () => {
@@ -1045,7 +978,6 @@ describe('SbbIconComponent', () => {
         'font',
         'notranslate',
         'sbb-icon',
-        'sbb-icon-no-color',
         'sbb-icons',
       ]);
 
@@ -1058,7 +990,6 @@ describe('SbbIconComponent', () => {
         'changed',
         'notranslate',
         'sbb-icon',
-        'sbb-icon-no-color',
         'sbb-icons',
       ]);
     });
@@ -1110,12 +1041,6 @@ describe('SbbIconComponent without HttpClientModule', () => {
 @Component({ template: ` <sbb-icon>{{ iconName }}</sbb-icon>` })
 class IconWithLigatureComponent {
   iconName = '';
-}
-
-@Component({ template: ` <sbb-icon [color]="iconColor">{{ iconName }}</sbb-icon>` })
-class IconWithColorComponent {
-  iconName = '';
-  iconColor = 'primary';
 }
 
 @Component({ template: ` <sbb-icon [fontSet]="fontSet" [fontIcon]="fontIcon"></sbb-icon>` })
