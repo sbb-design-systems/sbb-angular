@@ -37,6 +37,7 @@ export class BusinessComponent {
     contextmenu: 'Contextmenu',
     links: 'Links',
     loading: 'Loading',
+    status: 'Status',
   };
   popupsAndModals = {
     tooltip: 'Tooltip',

@@ -1,4 +1,5 @@
 entryPoints = [
+    # do not sort
     "accordion",
     "autocomplete",
     "badge",
@@ -22,6 +23,7 @@ entryPoints = [
     "processflow",
     "radio-button",
     "select",
+    "status",
     "table",
     "tabs",
     "textarea",
@@ -74,6 +76,7 @@ BUSINESS_MARKDOWN_TARGETS = [
     "processflow",
     "radio-button",
     "select",
+    "status",
     "table",
     "tabs",
     "textarea",

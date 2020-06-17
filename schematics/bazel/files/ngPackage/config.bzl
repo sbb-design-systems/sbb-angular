@@ -1,4 +1,5 @@
-entryPoints = [<% for (let entryPoint of entryPoints) { %>
+entryPoints = [
+    # do not sort<% for (let entryPoint of entryPoints) { %>
     "<%= entryPoint %>",<% } %>
 ]
 

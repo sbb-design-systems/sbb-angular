@@ -1,4 +1,5 @@
 entryPoints = [
+    # do not sort
 ]
 
 # List of all non-testing entry-points of the Keycloak package.

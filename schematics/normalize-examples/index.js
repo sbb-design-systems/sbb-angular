@@ -202,7 +202,10 @@ export class ${moduleName} {}
                 .sort()
                 .map((d) => `import { ${core.strings.classify(d)}Module } from './${d}/${d}.module';`)
                 .join('\n');
-            const moduleList = dir.subdirs.map((d) => `${core.strings.classify(d)}Module`).join(',\n  ');
+            const moduleList = dir.subdirs
+                .sort()
+                .map((d) => `${core.strings.classify(d)}Module`)
+                .join(',\n  ');
             const content = `import { NgModule } from '@angular/core';
 
 ${moduleImports}

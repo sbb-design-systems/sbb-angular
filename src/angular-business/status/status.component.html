@@ -1,0 +1,17 @@
+<div
+  class="sbb-status-icon"
+  [ngClass]="_iconClass"
+  [attr.aria-label]="ariaLabel"
+  [attr.aria-labelledby]="ariaLabelledby"
+  [attr.aria-describedby]="ariaDescribedby"
+  [ngSwitch]="type"
+>
+  <sbb-icon-tick *ngSwitchCase="'valid'" [svgClass]="'sbb-status-valid'"></sbb-icon-tick>
+  <sbb-icon-exclamation-point
+    *ngSwitchCase="'warning'"
+    [svgClass]="'sbb-status-warning'"
+  ></sbb-icon-exclamation-point>
+  <sbb-icon-cross *ngSwitchCase="'invalid'" [svgClass]="'sbb-status-invalid'"></sbb-icon-cross>
+</div>
+
+<div *ngIf="message" class="sbb-status-message">{{ message }}</div>
