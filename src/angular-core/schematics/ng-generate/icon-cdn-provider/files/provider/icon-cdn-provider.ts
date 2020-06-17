@@ -4,7 +4,7 @@ import { ErrorHandler, InjectionToken, Optional, SkipSelf } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser';
 import { SbbIconRegistry } from '@sbb-esta/angular-core/icon';
 
-/** 
+/**
  * This providers registers all icons added below, which can then be used with <sbb-icon>.
  * Example:
  *   `
@@ -15,7 +15,7 @@ import { SbbIconRegistry } from '@sbb-esta/angular-core/icon';
  *     )
  *   `
  *   `<sbb-icon svgIcon="namespace-example:icon-example"></sbb-icon>`
- * 
+ *
  * Register this in your AppModule:
  *   `
  *     @NgModule({
@@ -45,7 +45,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 /**
  * Generated from version <%= cdnIndex.version %> of the icon CDN.
  * Icons that are not needed by your app can be removed.
- * 
+ *
  * You can also add additional icons from your assets:
  *   `
  *     .addSvgIconInNamespace(
@@ -63,7 +63,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
  *     )
  *   `
  *   `<sbb-icon svgIcon="lego"></sbb-icon>`
- * 
+ *
  * You can also self-host the CDN icons, by downloading the icons from the CDN
  * or from https://github.com/sbb-design-systems/icon-library/tree/master/icons/svg
  * and adapting the url:
@@ -74,7 +74,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
  *       sanitizer.bypassSecurityTrustResourceUrl('/assets/path/to/sa-1.svg')
  *     )
  *   `
- * 
+ *
  * @docs-private
  */
 export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
@@ -84,11 +84,13 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
   errorHandler: ErrorHandler,
   document?: any
 ) {
-  return (parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler))<% for (const icon of cdnIndex.icons) { %>
-    .addSvgIconInNamespace(
-      '<%= icon.namespace %>',
-      '<%= icon.name %>',
-      sanitizer.bypassSecurityTrustResourceUrl('<%= cdnBaseUrl %>/<%= icon.namespace %>/<%= icon.name %>.svg')
-    )<% } %>;
+  const registry = parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);
+  const icons = [<% for (const icon of cdnIndex.icons) { %>
+    ['<%= icon.namespace %>', '<%= icon.name %>', '<%= cdnBaseUrl %>/<%= icon.namespace %>/<%= icon.name %>.svg'],<% } %>
+  ];
+  for (const [namespace, icon, url] of icons) {
+    registry.addSvgIconInNamespace(namespace, icon, sanitizer.bypassSecurityTrustResourceUrl(url));
+  }
+  return registry;
 }
 
