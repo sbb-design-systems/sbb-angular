@@ -64,6 +64,7 @@ export class ColumnDefDirective extends CdkColumnDef {
 })
 export class HeaderCellDirective extends CdkHeaderCell {
   @HostBinding('class.sbb-header-cell') sbbHeaderCell = true;
+
   @HostBinding('attr.role') gridCell = 'gridcell';
 
   constructor(columnDef: CdkColumnDef, elementRef: ElementRef<HTMLElement>) {
