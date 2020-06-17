@@ -40,6 +40,7 @@ ng_module(
     deps = [
         "//src/angular-business/header",
         "//src/angular-public/checkbox",
+        "//src/angular-core/icon",
         "//src/showcase/app/business",
         "//src/showcase/app/core",
         "//src/showcase/app/icons",
