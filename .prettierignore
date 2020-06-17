@@ -4,8 +4,9 @@ dist
 angular.json
 .github/*
 .vscode/*
-src/**/schematics/*/*/index.js
-src/**/schematics/*/*/files
+src/*/schematics/*/*/index.js
+src/*/schematics/*/*/files
+src/angular-core/icon/icon-cdn-provider.ts
 schematics/*/index.js
 schematics/*/files
 coverage

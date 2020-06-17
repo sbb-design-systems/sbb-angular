@@ -4,7 +4,31 @@ import { ErrorHandler, InjectionToken, Optional, SkipSelf } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser';
 import { SbbIconRegistry } from '@sbb-esta/angular-core/icon';
 
-/** @docs-private */
+/** 
+ * This providers registers all icons added below, which can then be used with <sbb-icon>.
+ * Example:
+ *   `
+ *     .addSvgIconInNamespace(
+ *       'namespace-example',
+ *       'icon-example',
+ *       sanitizer.bypassSecurityTrustResourceUrl('url/to/icon.svg')
+ *     )
+ *   `
+ *   `<sbb-icon svgIcon="namespace-example:icon-example"></sbb-icon>`
+ * 
+ * Register this in your AppModule:
+ *   `
+ *     @NgModule({
+ *       ...
+ *       providers: [
+ *         ...
+ *         SBB_ICON_REGISTRY_PROVIDER
+ *       ]
+ *     })
+ *     export class AppModule {
+ *       ...
+ *   `
+ */
 export const SBB_ICON_REGISTRY_PROVIDER = {
   // If there is already an SbbIconRegistry available, use that. Otherwise, provide a new one.
   provide: SbbIconRegistry,
@@ -19,7 +43,38 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Version <%= cdnIndex.version %> of CDN
+ * Generated from version <%= cdnIndex.version %> of the icon CDN.
+ * Icons that are not needed by your app can be removed.
+ * 
+ * You can also add additional icons from your assets:
+ *   `
+ *     .addSvgIconInNamespace(
+ *       'my-icons',
+ *       'lego',
+ *       sanitizer.bypassSecurityTrustResourceUrl('/assets/path/to/your/icon/in/assets/directory.svg')
+ *     )
+ *   `
+ *   `<sbb-icon svgIcon="my-icons:lego"></sbb-icon>`
+ *   or without namespace
+ *   `
+ *     .addSvgIcon(
+ *       'lego',
+ *       sanitizer.bypassSecurityTrustResourceUrl('/assets/path/to/your/icon/in/assets/directory.svg')
+ *     )
+ *   `
+ *   `<sbb-icon svgIcon="lego"></sbb-icon>`
+ * 
+ * You can also self-host the CDN icons, by downloading the icons from the CDN
+ * or from https://github.com/sbb-design-systems/icon-library/tree/master/icons/svg
+ * and adapting the url:
+ *   `
+ *     .addSvgIconInNamespace(
+ *       'fpl',
+ *       'sa-1',
+ *       sanitizer.bypassSecurityTrustResourceUrl('/assets/path/to/sa-1.svg')
+ *     )
+ *   `
+ * 
  * @docs-private
  */
 export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
@@ -29,11 +84,11 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
   errorHandler: ErrorHandler,
   document?: any
 ) {
-  return parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler)<% for (const icon of cdnIndex.icons) { %>
+  return (parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler))<% for (const icon of cdnIndex.icons) { %>
     .addSvgIconInNamespace(
       '<%= icon.namespace %>',
       '<%= icon.name %>',
-      sanitizer.bypassSecurityTrustResourceUrl('<%= cdnBaseUrl =>/<%= icon.namespace %>/<%= icon.name %>.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('<%= cdnBaseUrl %>/<%= icon.namespace %>/<%= icon.name %>.svg')
     )<% } %>;
 }
 
