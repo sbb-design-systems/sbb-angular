@@ -4,14 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        // Run yarn add @angular-devkit/schematics-cli before running this
         {
             "type": "node",
             "request": "launch",
-            "name": "generate-from-svg-registry",
+            "name": "icon-cdn-provider",
             "program": "${workspaceFolder}/node_modules/@angular-devkit/schematics-cli/bin/schematics.js",
-            "args": [
-                ".:generate-from-svg-registry", "--project=@sbb-esta/angular-icons", "--targetDir=experimental", "--verbose"
-            ]
+            "args": [".:icon-cdn-provider", "--path=src/angular-core/icon"]
         }
     ]
 }

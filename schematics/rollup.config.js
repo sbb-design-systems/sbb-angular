@@ -28,6 +28,7 @@ export default readdirSync(__dirname, { withFileTypes: true })
       '@angular-devkit/core/src/utils/strings',
       '@schematics/angular/utility/ast-utils',
       '@schematics/angular/utility/config',
+      '@schematics/angular/utility/workspace-models',
       'dgeni',
       'dgeni-packages/typescript/api-doc-types/ApiDoc',
       'dgeni-packages/typescript/api-doc-types/ClassExportDoc',
