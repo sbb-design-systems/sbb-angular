@@ -82,14 +82,13 @@ const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
  *   SbbIconRegistry. If the svgIcon value contains a colon it is assumed to be in the format
  *   "[namespace]:[name]", if not the value will be the name of an icon in the default namespace.
  *   Examples:
- *     `<sbb-icon svgIcon="left-arrow"></sbb-icon>
- *     <sbb-icon svgIcon="animals:cat"></sbb-icon>`
+ *     `<sbb-icon svgIcon="example"></sbb-icon>
+ *     <sbb-icon svgIcon="kom:cloud-ice-medium"></sbb-icon>`
  *
  * - Use a font ligature as an icon by putting the ligature text in the content of the `<sbb-icon>`
- *   component. By default the sbb icons font is used as described at
- *   http://google.github.io/material-design-icons/#icon-font-for-the-web (TODO). You can specify an
- *   alternate font by setting the fontSet input to either the CSS class to apply to use the
- *   desired font, or to an alias previously registered with SbbIconRegistry.registerFontClassAlias.
+ *   component. You can specify a font by setting the fontSet input to either the CSS class to
+ *   apply to use the desired font, or to an alias previously registered with
+ *   SbbIconRegistry.registerFontClassAlias.
  *   Examples:
  *     `<sbb-icon>home</sbb-icon>
  *     <sbb-icon fontSet="myfont">sun</sbb-icon>`
@@ -164,6 +163,9 @@ export class SbbIconComponent implements OnChanges, OnInit, AfterViewChecked, On
   /** Subscription to the current in-progress SVG icon request. */
   private _currentIconFetch = Subscription.EMPTY;
 
+  /** @docs-private */
+  private _namespaceClass: string | null = null;
+
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _iconRegistry: SbbIconRegistry,
@@ -186,8 +188,8 @@ export class SbbIconComponent implements OnChanges, OnInit, AfterViewChecked, On
    * the icon name. If the argument is falsy, returns an array of two empty strings.
    * Throws an error if the name contains two or more ':' separators.
    * Examples:
-   *   `'social:cake' -> ['social', 'cake']
-   *   'penguin' -> ['', 'penguin']
+   *   `'kom:cloud-ice-medium' -> ['kom', 'cloud-ice-medium']
+   *   'custom-icon' -> ['', 'custom-icon']
    *   null -> ['', '']
    *   'a:b:c' -> (throws Error)`
    */
@@ -220,7 +222,7 @@ export class SbbIconComponent implements OnChanges, OnInit, AfterViewChecked, On
           .getNamedSvgIcon(iconName, namespace)
           .pipe(take(1))
           .subscribe(
-            (svg) => this._setSvgElement(svg),
+            (svg) => this._setSvgElement(svg, namespace),
             (err: Error) => {
               const errorMessage = `Error retrieving icon ${namespace}:${iconName}! ${err.message}`;
               this._errorHandler.handleError(new Error(errorMessage));
@@ -275,8 +277,17 @@ export class SbbIconComponent implements OnChanges, OnInit, AfterViewChecked, On
     return !this.svgIcon;
   }
 
-  private _setSvgElement(svg: SVGElement) {
+  private _setSvgElement(svg: SVGElement, namespace: string) {
     this._clearSvgElement();
+
+    // Add css class for current namespace. We want to do this, in order to apply
+    // specific css rules for fpl and kom, because these two namespaces have
+    // different structures in regard to stroke and fill.
+    if (this._namespaceClass) {
+      this._elementRef.nativeElement.classList.remove(this._namespaceClass);
+    }
+    this._namespaceClass = `sbb-icon-namespace-${namespace}`;
+    this._elementRef.nativeElement.classList.add(this._namespaceClass);
 
     // Workaround for IE11 and Edge ignoring `style` tags inside dynamically-created SVGs.
     // See: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10898469/

@@ -121,9 +121,7 @@ export class SbbIconRegistry implements OnDestroy {
 
   /**
    * The CSS class to apply when an `<sbb-icon>` component has no icon name, url, or font specified.
-   * The default 'sbb-icons' value assumes that the sbb icon font has been loaded as
-   * described at http://google.github.io/material-design-icons/#icon-font-for-the-web
-   * TODO
+   * The default is 'sbb-icons'.
    */
   private _defaultFontSetClass = 'sbb-icons';
 
