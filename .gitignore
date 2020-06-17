@@ -5,6 +5,7 @@
 /dist
 /tmp
 /out-tsc
+src/angular-core/schematics/*/*/*.js
 
 # dependencies
 /node_modules
