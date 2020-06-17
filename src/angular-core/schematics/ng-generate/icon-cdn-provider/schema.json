@@ -1,5 +1,11 @@
 {
   "properties": {
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path where the provider is created.",
+      "visible": false
+    },
     "project": {
       "type": "string",
       "description": "The name of the project.",
@@ -16,11 +22,6 @@
       "type": "string",
       "description": "The base URL of the CDN.",
       "default": "https://icons.app.sbb.ch"
-    },
-    "targetDir": {
-      "type": "string",
-      "description": "The directory into which the icons will be generated, relative to projects.[project].root.",
-      "default": "."
     }
   }
 }
