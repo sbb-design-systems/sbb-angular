@@ -5,7 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { SbbIconRegistry } from './icon-registry';
 
-/** 
+/**
  * This providers registers all icons added below, which can then be used with <sbb-icon>.
  * Example:
  *   `
@@ -16,7 +16,7 @@ import { SbbIconRegistry } from './icon-registry';
  *     )
  *   `
  *   `<sbb-icon svgIcon="namespace-example:icon-example"></sbb-icon>`
- * 
+ *
  * Register this in your AppModule:
  *   `
  *     @NgModule({
@@ -46,7 +46,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 /**
  * Generated from version v1.0.5 of the icon CDN.
  * Icons that are not needed by your app can be removed.
- * 
+ *
  * You can also add additional icons from your assets:
  *   `
  *     .addSvgIconInNamespace(
@@ -64,7 +64,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
  *     )
  *   `
  *   `<sbb-icon svgIcon="lego"></sbb-icon>`
- * 
+ *
  * You can also self-host the CDN icons, by downloading the icons from the CDN
  * or from https://github.com/sbb-design-systems/icon-library/tree/master/icons/svg
  * and adapting the url:
@@ -75,7 +75,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
  *       sanitizer.bypassSecurityTrustResourceUrl('/assets/path/to/sa-1.svg')
  *     )
  *   `
- * 
+ *
  * @docs-private
  */
 export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
@@ -85,4951 +85,1657 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
   errorHandler: ErrorHandler,
   document?: any
 ) {
-  return (parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler))
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-1',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-1.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-2',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-2.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-aa',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-aa.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-af',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-af.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-at',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-at.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-aw',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-aw.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-b',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-b.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-bb',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-bb.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-be',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-be.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-bi',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-bi.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-bk',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-bk.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-bl',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-bl.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-br',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-br.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-bs',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-bs.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-bv',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-bv.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-bz',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-bz.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-cc',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-cc.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ds',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ds.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-dz',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-dz.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ep',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ep.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-fa',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-fa.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-fl',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-fl.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-fw',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-fw.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-fz',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-fz.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-gk',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-gk.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-gl',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-gl.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-gn',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-gn.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-gp',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-gp.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-gr',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-gr.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-gx',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-gx.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-gz',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-gz.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-hk',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-hk.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-hn',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-hn.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ii',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ii.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-je',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-je.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-kb',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-kb.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-kw',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-kw.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-lc',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-lc.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-le',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-le.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-me',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-me.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-mi',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-mi.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-mp',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-mp.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-nf',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-nf.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-nj',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-nj.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-nv',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-nv.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ob',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ob.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-om',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-om.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-p',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-p.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-pa',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-pa.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ph',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ph.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-pl',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-pl.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-pr',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-pr.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-r',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-r.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-rb',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-rb.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-rc',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-rc.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-re',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-re.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-rq',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-rq.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-rr',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-rr.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-rt',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-rt.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ry',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ry.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-rz',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-rz.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-s',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-s.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sb',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sb.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sc',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sc.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sd',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sd.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sf',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sf.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sh',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sh.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sk',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sk.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sl',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sl.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sm',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sm.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sn',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sn.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sv',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sv.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-sz',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-sz.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ta',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ta.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-tc',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-tc.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-td',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-td.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-tf',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-tf.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-tg',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-tg.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-tk',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-tk.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-tn',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-tn.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ts',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ts.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-tt',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-tt.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-tx',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-tx.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-vc',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-vc.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-vi',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-vi.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-vl',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-vl.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-vn',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-vn.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-vp',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-vp.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-vr',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-vr.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-vt',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-vt.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-vx',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-vx.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-wb',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-wb.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-wl',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-wl.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-wr',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-wr.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ws',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ws.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-wv',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-wv.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-x',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-x.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-xp',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-xp.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-xr',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-xr.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-xt',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-xt.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-y',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-y.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-yb',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-yb.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-ym',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-ym.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-yt',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-yt.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-z',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-z.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'sa-zm',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/sa-zm.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'add-stop',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/add-stop.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'alternative',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/alternative.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'cancellation',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/cancellation.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'construction',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/construction.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'delay',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/delay.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'disruption',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/disruption.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'info',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/info.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'missed-connection',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/missed-connection.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'platform-change',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/platform-change.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'replacementbus',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/replacementbus.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'reroute',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/reroute.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'utilization-high',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/utilization-high.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'utilization-low',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/utilization-low.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'utilization-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/utilization-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'utilization-none',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/utilization-none.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-bex',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-bex.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-cnl',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-cnl.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ec',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ec.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-en',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-en.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-gex',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-gex.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-1',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-1.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-11',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-11.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-2',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-2.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-21',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-21.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-3',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-3.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-4',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-4.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-5',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-5.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-51',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-51.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-6',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-6.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-61',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-61.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-7',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-7.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-8',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-8.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-81',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-81.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ic-9',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ic-9.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ice',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ice.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-icn',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-icn.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-13',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-13.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-15',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-15.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-16',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-16.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-17',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-17.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-25',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-25.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-26',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-26.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-27',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-27.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-35',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-35.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-36',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-36.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-37',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-37.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-40',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-40.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-45',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-45.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-46',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-46.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-55',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-55.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-56',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-56.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-65',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-65.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-66',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-66.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-67',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-67.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-70',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-70.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-75',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-75.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-90',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-90.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-ir-95',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-ir-95.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-nj',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-nj.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-pe',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-pe.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-re',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-re.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-rj',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-rj.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-rjx',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-rjx.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-rx',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-rx.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-sn',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-sn.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-tgv',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-tgv.svg')
-    )
-    .addSvgIconInNamespace(
-      'fpl',
-      'product-vae',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/fpl/product-vae.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'calendar-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/calendar-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'calendar-one-day-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/calendar-one-day-large.svg')
-    )
-    .addSvgIconInNamespace(
+  const registry =
+    parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);
+  const icons = [
+    ['fpl', 'sa-1', 'https://icons.app.sbb.ch/fpl/sa-1.svg'],
+    ['fpl', 'sa-2', 'https://icons.app.sbb.ch/fpl/sa-2.svg'],
+    ['fpl', 'sa-aa', 'https://icons.app.sbb.ch/fpl/sa-aa.svg'],
+    ['fpl', 'sa-af', 'https://icons.app.sbb.ch/fpl/sa-af.svg'],
+    ['fpl', 'sa-at', 'https://icons.app.sbb.ch/fpl/sa-at.svg'],
+    ['fpl', 'sa-aw', 'https://icons.app.sbb.ch/fpl/sa-aw.svg'],
+    ['fpl', 'sa-b', 'https://icons.app.sbb.ch/fpl/sa-b.svg'],
+    ['fpl', 'sa-bb', 'https://icons.app.sbb.ch/fpl/sa-bb.svg'],
+    ['fpl', 'sa-be', 'https://icons.app.sbb.ch/fpl/sa-be.svg'],
+    ['fpl', 'sa-bi', 'https://icons.app.sbb.ch/fpl/sa-bi.svg'],
+    ['fpl', 'sa-bk', 'https://icons.app.sbb.ch/fpl/sa-bk.svg'],
+    ['fpl', 'sa-bl', 'https://icons.app.sbb.ch/fpl/sa-bl.svg'],
+    ['fpl', 'sa-br', 'https://icons.app.sbb.ch/fpl/sa-br.svg'],
+    ['fpl', 'sa-bs', 'https://icons.app.sbb.ch/fpl/sa-bs.svg'],
+    ['fpl', 'sa-bv', 'https://icons.app.sbb.ch/fpl/sa-bv.svg'],
+    ['fpl', 'sa-bz', 'https://icons.app.sbb.ch/fpl/sa-bz.svg'],
+    ['fpl', 'sa-cc', 'https://icons.app.sbb.ch/fpl/sa-cc.svg'],
+    ['fpl', 'sa-ds', 'https://icons.app.sbb.ch/fpl/sa-ds.svg'],
+    ['fpl', 'sa-dz', 'https://icons.app.sbb.ch/fpl/sa-dz.svg'],
+    ['fpl', 'sa-ep', 'https://icons.app.sbb.ch/fpl/sa-ep.svg'],
+    ['fpl', 'sa-fa', 'https://icons.app.sbb.ch/fpl/sa-fa.svg'],
+    ['fpl', 'sa-fl', 'https://icons.app.sbb.ch/fpl/sa-fl.svg'],
+    ['fpl', 'sa-fw', 'https://icons.app.sbb.ch/fpl/sa-fw.svg'],
+    ['fpl', 'sa-fz', 'https://icons.app.sbb.ch/fpl/sa-fz.svg'],
+    ['fpl', 'sa-gk', 'https://icons.app.sbb.ch/fpl/sa-gk.svg'],
+    ['fpl', 'sa-gl', 'https://icons.app.sbb.ch/fpl/sa-gl.svg'],
+    ['fpl', 'sa-gn', 'https://icons.app.sbb.ch/fpl/sa-gn.svg'],
+    ['fpl', 'sa-gp', 'https://icons.app.sbb.ch/fpl/sa-gp.svg'],
+    ['fpl', 'sa-gr', 'https://icons.app.sbb.ch/fpl/sa-gr.svg'],
+    ['fpl', 'sa-gx', 'https://icons.app.sbb.ch/fpl/sa-gx.svg'],
+    ['fpl', 'sa-gz', 'https://icons.app.sbb.ch/fpl/sa-gz.svg'],
+    ['fpl', 'sa-hk', 'https://icons.app.sbb.ch/fpl/sa-hk.svg'],
+    ['fpl', 'sa-hn', 'https://icons.app.sbb.ch/fpl/sa-hn.svg'],
+    ['fpl', 'sa-ii', 'https://icons.app.sbb.ch/fpl/sa-ii.svg'],
+    ['fpl', 'sa-je', 'https://icons.app.sbb.ch/fpl/sa-je.svg'],
+    ['fpl', 'sa-kb', 'https://icons.app.sbb.ch/fpl/sa-kb.svg'],
+    ['fpl', 'sa-kw', 'https://icons.app.sbb.ch/fpl/sa-kw.svg'],
+    ['fpl', 'sa-lc', 'https://icons.app.sbb.ch/fpl/sa-lc.svg'],
+    ['fpl', 'sa-le', 'https://icons.app.sbb.ch/fpl/sa-le.svg'],
+    ['fpl', 'sa-me', 'https://icons.app.sbb.ch/fpl/sa-me.svg'],
+    ['fpl', 'sa-mi', 'https://icons.app.sbb.ch/fpl/sa-mi.svg'],
+    ['fpl', 'sa-mp', 'https://icons.app.sbb.ch/fpl/sa-mp.svg'],
+    ['fpl', 'sa-nf', 'https://icons.app.sbb.ch/fpl/sa-nf.svg'],
+    ['fpl', 'sa-nj', 'https://icons.app.sbb.ch/fpl/sa-nj.svg'],
+    ['fpl', 'sa-nv', 'https://icons.app.sbb.ch/fpl/sa-nv.svg'],
+    ['fpl', 'sa-ob', 'https://icons.app.sbb.ch/fpl/sa-ob.svg'],
+    ['fpl', 'sa-om', 'https://icons.app.sbb.ch/fpl/sa-om.svg'],
+    ['fpl', 'sa-p', 'https://icons.app.sbb.ch/fpl/sa-p.svg'],
+    ['fpl', 'sa-pa', 'https://icons.app.sbb.ch/fpl/sa-pa.svg'],
+    ['fpl', 'sa-ph', 'https://icons.app.sbb.ch/fpl/sa-ph.svg'],
+    ['fpl', 'sa-pl', 'https://icons.app.sbb.ch/fpl/sa-pl.svg'],
+    ['fpl', 'sa-pr', 'https://icons.app.sbb.ch/fpl/sa-pr.svg'],
+    ['fpl', 'sa-r', 'https://icons.app.sbb.ch/fpl/sa-r.svg'],
+    ['fpl', 'sa-rb', 'https://icons.app.sbb.ch/fpl/sa-rb.svg'],
+    ['fpl', 'sa-rc', 'https://icons.app.sbb.ch/fpl/sa-rc.svg'],
+    ['fpl', 'sa-re', 'https://icons.app.sbb.ch/fpl/sa-re.svg'],
+    ['fpl', 'sa-rq', 'https://icons.app.sbb.ch/fpl/sa-rq.svg'],
+    ['fpl', 'sa-rr', 'https://icons.app.sbb.ch/fpl/sa-rr.svg'],
+    ['fpl', 'sa-rt', 'https://icons.app.sbb.ch/fpl/sa-rt.svg'],
+    ['fpl', 'sa-ry', 'https://icons.app.sbb.ch/fpl/sa-ry.svg'],
+    ['fpl', 'sa-rz', 'https://icons.app.sbb.ch/fpl/sa-rz.svg'],
+    ['fpl', 'sa-s', 'https://icons.app.sbb.ch/fpl/sa-s.svg'],
+    ['fpl', 'sa-sb', 'https://icons.app.sbb.ch/fpl/sa-sb.svg'],
+    ['fpl', 'sa-sc', 'https://icons.app.sbb.ch/fpl/sa-sc.svg'],
+    ['fpl', 'sa-sd', 'https://icons.app.sbb.ch/fpl/sa-sd.svg'],
+    ['fpl', 'sa-sf', 'https://icons.app.sbb.ch/fpl/sa-sf.svg'],
+    ['fpl', 'sa-sh', 'https://icons.app.sbb.ch/fpl/sa-sh.svg'],
+    ['fpl', 'sa-sk', 'https://icons.app.sbb.ch/fpl/sa-sk.svg'],
+    ['fpl', 'sa-sl', 'https://icons.app.sbb.ch/fpl/sa-sl.svg'],
+    ['fpl', 'sa-sm', 'https://icons.app.sbb.ch/fpl/sa-sm.svg'],
+    ['fpl', 'sa-sn', 'https://icons.app.sbb.ch/fpl/sa-sn.svg'],
+    ['fpl', 'sa-sv', 'https://icons.app.sbb.ch/fpl/sa-sv.svg'],
+    ['fpl', 'sa-sz', 'https://icons.app.sbb.ch/fpl/sa-sz.svg'],
+    ['fpl', 'sa-ta', 'https://icons.app.sbb.ch/fpl/sa-ta.svg'],
+    ['fpl', 'sa-tc', 'https://icons.app.sbb.ch/fpl/sa-tc.svg'],
+    ['fpl', 'sa-td', 'https://icons.app.sbb.ch/fpl/sa-td.svg'],
+    ['fpl', 'sa-tf', 'https://icons.app.sbb.ch/fpl/sa-tf.svg'],
+    ['fpl', 'sa-tg', 'https://icons.app.sbb.ch/fpl/sa-tg.svg'],
+    ['fpl', 'sa-tk', 'https://icons.app.sbb.ch/fpl/sa-tk.svg'],
+    ['fpl', 'sa-tn', 'https://icons.app.sbb.ch/fpl/sa-tn.svg'],
+    ['fpl', 'sa-ts', 'https://icons.app.sbb.ch/fpl/sa-ts.svg'],
+    ['fpl', 'sa-tt', 'https://icons.app.sbb.ch/fpl/sa-tt.svg'],
+    ['fpl', 'sa-tx', 'https://icons.app.sbb.ch/fpl/sa-tx.svg'],
+    ['fpl', 'sa-vc', 'https://icons.app.sbb.ch/fpl/sa-vc.svg'],
+    ['fpl', 'sa-vi', 'https://icons.app.sbb.ch/fpl/sa-vi.svg'],
+    ['fpl', 'sa-vl', 'https://icons.app.sbb.ch/fpl/sa-vl.svg'],
+    ['fpl', 'sa-vn', 'https://icons.app.sbb.ch/fpl/sa-vn.svg'],
+    ['fpl', 'sa-vp', 'https://icons.app.sbb.ch/fpl/sa-vp.svg'],
+    ['fpl', 'sa-vr', 'https://icons.app.sbb.ch/fpl/sa-vr.svg'],
+    ['fpl', 'sa-vt', 'https://icons.app.sbb.ch/fpl/sa-vt.svg'],
+    ['fpl', 'sa-vx', 'https://icons.app.sbb.ch/fpl/sa-vx.svg'],
+    ['fpl', 'sa-wb', 'https://icons.app.sbb.ch/fpl/sa-wb.svg'],
+    ['fpl', 'sa-wl', 'https://icons.app.sbb.ch/fpl/sa-wl.svg'],
+    ['fpl', 'sa-wr', 'https://icons.app.sbb.ch/fpl/sa-wr.svg'],
+    ['fpl', 'sa-ws', 'https://icons.app.sbb.ch/fpl/sa-ws.svg'],
+    ['fpl', 'sa-wv', 'https://icons.app.sbb.ch/fpl/sa-wv.svg'],
+    ['fpl', 'sa-x', 'https://icons.app.sbb.ch/fpl/sa-x.svg'],
+    ['fpl', 'sa-xp', 'https://icons.app.sbb.ch/fpl/sa-xp.svg'],
+    ['fpl', 'sa-xr', 'https://icons.app.sbb.ch/fpl/sa-xr.svg'],
+    ['fpl', 'sa-xt', 'https://icons.app.sbb.ch/fpl/sa-xt.svg'],
+    ['fpl', 'sa-y', 'https://icons.app.sbb.ch/fpl/sa-y.svg'],
+    ['fpl', 'sa-yb', 'https://icons.app.sbb.ch/fpl/sa-yb.svg'],
+    ['fpl', 'sa-ym', 'https://icons.app.sbb.ch/fpl/sa-ym.svg'],
+    ['fpl', 'sa-yt', 'https://icons.app.sbb.ch/fpl/sa-yt.svg'],
+    ['fpl', 'sa-z', 'https://icons.app.sbb.ch/fpl/sa-z.svg'],
+    ['fpl', 'sa-zm', 'https://icons.app.sbb.ch/fpl/sa-zm.svg'],
+    ['fpl', 'add-stop', 'https://icons.app.sbb.ch/fpl/add-stop.svg'],
+    ['fpl', 'alternative', 'https://icons.app.sbb.ch/fpl/alternative.svg'],
+    ['fpl', 'cancellation', 'https://icons.app.sbb.ch/fpl/cancellation.svg'],
+    ['fpl', 'construction', 'https://icons.app.sbb.ch/fpl/construction.svg'],
+    ['fpl', 'delay', 'https://icons.app.sbb.ch/fpl/delay.svg'],
+    ['fpl', 'disruption', 'https://icons.app.sbb.ch/fpl/disruption.svg'],
+    ['fpl', 'info', 'https://icons.app.sbb.ch/fpl/info.svg'],
+    ['fpl', 'missed-connection', 'https://icons.app.sbb.ch/fpl/missed-connection.svg'],
+    ['fpl', 'platform-change', 'https://icons.app.sbb.ch/fpl/platform-change.svg'],
+    ['fpl', 'replacementbus', 'https://icons.app.sbb.ch/fpl/replacementbus.svg'],
+    ['fpl', 'reroute', 'https://icons.app.sbb.ch/fpl/reroute.svg'],
+    ['fpl', 'utilization-high', 'https://icons.app.sbb.ch/fpl/utilization-high.svg'],
+    ['fpl', 'utilization-low', 'https://icons.app.sbb.ch/fpl/utilization-low.svg'],
+    ['fpl', 'utilization-medium', 'https://icons.app.sbb.ch/fpl/utilization-medium.svg'],
+    ['fpl', 'utilization-none', 'https://icons.app.sbb.ch/fpl/utilization-none.svg'],
+    ['fpl', 'product-bex', 'https://icons.app.sbb.ch/fpl/product-bex.svg'],
+    ['fpl', 'product-cnl', 'https://icons.app.sbb.ch/fpl/product-cnl.svg'],
+    ['fpl', 'product-ec', 'https://icons.app.sbb.ch/fpl/product-ec.svg'],
+    ['fpl', 'product-en', 'https://icons.app.sbb.ch/fpl/product-en.svg'],
+    ['fpl', 'product-gex', 'https://icons.app.sbb.ch/fpl/product-gex.svg'],
+    ['fpl', 'product-ic', 'https://icons.app.sbb.ch/fpl/product-ic.svg'],
+    ['fpl', 'product-ic-1', 'https://icons.app.sbb.ch/fpl/product-ic-1.svg'],
+    ['fpl', 'product-ic-11', 'https://icons.app.sbb.ch/fpl/product-ic-11.svg'],
+    ['fpl', 'product-ic-2', 'https://icons.app.sbb.ch/fpl/product-ic-2.svg'],
+    ['fpl', 'product-ic-21', 'https://icons.app.sbb.ch/fpl/product-ic-21.svg'],
+    ['fpl', 'product-ic-3', 'https://icons.app.sbb.ch/fpl/product-ic-3.svg'],
+    ['fpl', 'product-ic-4', 'https://icons.app.sbb.ch/fpl/product-ic-4.svg'],
+    ['fpl', 'product-ic-5', 'https://icons.app.sbb.ch/fpl/product-ic-5.svg'],
+    ['fpl', 'product-ic-51', 'https://icons.app.sbb.ch/fpl/product-ic-51.svg'],
+    ['fpl', 'product-ic-6', 'https://icons.app.sbb.ch/fpl/product-ic-6.svg'],
+    ['fpl', 'product-ic-61', 'https://icons.app.sbb.ch/fpl/product-ic-61.svg'],
+    ['fpl', 'product-ic-7', 'https://icons.app.sbb.ch/fpl/product-ic-7.svg'],
+    ['fpl', 'product-ic-8', 'https://icons.app.sbb.ch/fpl/product-ic-8.svg'],
+    ['fpl', 'product-ic-81', 'https://icons.app.sbb.ch/fpl/product-ic-81.svg'],
+    ['fpl', 'product-ic-9', 'https://icons.app.sbb.ch/fpl/product-ic-9.svg'],
+    ['fpl', 'product-ice', 'https://icons.app.sbb.ch/fpl/product-ice.svg'],
+    ['fpl', 'product-icn', 'https://icons.app.sbb.ch/fpl/product-icn.svg'],
+    ['fpl', 'product-ir', 'https://icons.app.sbb.ch/fpl/product-ir.svg'],
+    ['fpl', 'product-ir-13', 'https://icons.app.sbb.ch/fpl/product-ir-13.svg'],
+    ['fpl', 'product-ir-15', 'https://icons.app.sbb.ch/fpl/product-ir-15.svg'],
+    ['fpl', 'product-ir-16', 'https://icons.app.sbb.ch/fpl/product-ir-16.svg'],
+    ['fpl', 'product-ir-17', 'https://icons.app.sbb.ch/fpl/product-ir-17.svg'],
+    ['fpl', 'product-ir-25', 'https://icons.app.sbb.ch/fpl/product-ir-25.svg'],
+    ['fpl', 'product-ir-26', 'https://icons.app.sbb.ch/fpl/product-ir-26.svg'],
+    ['fpl', 'product-ir-27', 'https://icons.app.sbb.ch/fpl/product-ir-27.svg'],
+    ['fpl', 'product-ir-35', 'https://icons.app.sbb.ch/fpl/product-ir-35.svg'],
+    ['fpl', 'product-ir-36', 'https://icons.app.sbb.ch/fpl/product-ir-36.svg'],
+    ['fpl', 'product-ir-37', 'https://icons.app.sbb.ch/fpl/product-ir-37.svg'],
+    ['fpl', 'product-ir-40', 'https://icons.app.sbb.ch/fpl/product-ir-40.svg'],
+    ['fpl', 'product-ir-45', 'https://icons.app.sbb.ch/fpl/product-ir-45.svg'],
+    ['fpl', 'product-ir-46', 'https://icons.app.sbb.ch/fpl/product-ir-46.svg'],
+    ['fpl', 'product-ir-55', 'https://icons.app.sbb.ch/fpl/product-ir-55.svg'],
+    ['fpl', 'product-ir-56', 'https://icons.app.sbb.ch/fpl/product-ir-56.svg'],
+    ['fpl', 'product-ir-65', 'https://icons.app.sbb.ch/fpl/product-ir-65.svg'],
+    ['fpl', 'product-ir-66', 'https://icons.app.sbb.ch/fpl/product-ir-66.svg'],
+    ['fpl', 'product-ir-67', 'https://icons.app.sbb.ch/fpl/product-ir-67.svg'],
+    ['fpl', 'product-ir-70', 'https://icons.app.sbb.ch/fpl/product-ir-70.svg'],
+    ['fpl', 'product-ir-75', 'https://icons.app.sbb.ch/fpl/product-ir-75.svg'],
+    ['fpl', 'product-ir-90', 'https://icons.app.sbb.ch/fpl/product-ir-90.svg'],
+    ['fpl', 'product-ir-95', 'https://icons.app.sbb.ch/fpl/product-ir-95.svg'],
+    ['fpl', 'product-nj', 'https://icons.app.sbb.ch/fpl/product-nj.svg'],
+    ['fpl', 'product-pe', 'https://icons.app.sbb.ch/fpl/product-pe.svg'],
+    ['fpl', 'product-re', 'https://icons.app.sbb.ch/fpl/product-re.svg'],
+    ['fpl', 'product-rj', 'https://icons.app.sbb.ch/fpl/product-rj.svg'],
+    ['fpl', 'product-rjx', 'https://icons.app.sbb.ch/fpl/product-rjx.svg'],
+    ['fpl', 'product-rx', 'https://icons.app.sbb.ch/fpl/product-rx.svg'],
+    ['fpl', 'product-sn', 'https://icons.app.sbb.ch/fpl/product-sn.svg'],
+    ['fpl', 'product-tgv', 'https://icons.app.sbb.ch/fpl/product-tgv.svg'],
+    ['fpl', 'product-vae', 'https://icons.app.sbb.ch/fpl/product-vae.svg'],
+    ['kom', 'calendar-large', 'https://icons.app.sbb.ch/kom/calendar-large.svg'],
+    ['kom', 'calendar-one-day-large', 'https://icons.app.sbb.ch/kom/calendar-one-day-large.svg'],
+    [
       'kom',
       'certificate-ribbon-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/certificate-ribbon-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/certificate-ribbon-large.svg',
+    ],
+    [
       'kom',
       'chart-column-trend-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chart-column-trend-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chart-column-trend-large.svg',
+    ],
+    [
       'kom',
       'circle-information-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-information-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'coins-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/coins-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-information-large.svg',
+    ],
+    ['kom', 'coins-large', 'https://icons.app.sbb.ch/kom/coins-large.svg'],
+    [
       'kom',
       'magnifying-glass-minus-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/magnifying-glass-minus-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/magnifying-glass-minus-large.svg',
+    ],
+    [
       'kom',
       'magnifying-glass-plus-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/magnifying-glass-plus-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'paper-clip-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/paper-clip-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'piggy-bank-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/piggy-bank-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'rocket-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/rocket-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shopping-cart-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shopping-cart-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'target-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/target-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bulb-on-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bulb-on-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'handshake-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/handshake-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'network-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/network-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/magnifying-glass-plus-large.svg',
+    ],
+    ['kom', 'paper-clip-large', 'https://icons.app.sbb.ch/kom/paper-clip-large.svg'],
+    ['kom', 'piggy-bank-large', 'https://icons.app.sbb.ch/kom/piggy-bank-large.svg'],
+    ['kom', 'rocket-large', 'https://icons.app.sbb.ch/kom/rocket-large.svg'],
+    ['kom', 'shopping-cart-large', 'https://icons.app.sbb.ch/kom/shopping-cart-large.svg'],
+    ['kom', 'target-large', 'https://icons.app.sbb.ch/kom/target-large.svg'],
+    ['kom', 'bulb-on-large', 'https://icons.app.sbb.ch/kom/bulb-on-large.svg'],
+    ['kom', 'handshake-large', 'https://icons.app.sbb.ch/kom/handshake-large.svg'],
+    ['kom', 'network-large', 'https://icons.app.sbb.ch/kom/network-large.svg'],
+    [
       'kom',
       'two-speech-bubbles-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-speech-bubbles-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/two-speech-bubbles-large.svg',
+    ],
+    [
       'kom',
       'circle-triangle-square-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-triangle-square-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'employees-sbb-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/employees-sbb-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-group-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-group-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'clock-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/clock-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'percent-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/percent-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'punctuality-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/punctuality-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'switzerland-route-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/switzerland-route-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hand-plus-circle-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-plus-circle-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lotus-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lotus-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'platform-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/platform-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'station-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/station-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-triangle-square-large.svg',
+    ],
+    ['kom', 'employees-sbb-large', 'https://icons.app.sbb.ch/kom/employees-sbb-large.svg'],
+    ['kom', 'user-group-large', 'https://icons.app.sbb.ch/kom/user-group-large.svg'],
+    ['kom', 'clock-large', 'https://icons.app.sbb.ch/kom/clock-large.svg'],
+    ['kom', 'percent-large', 'https://icons.app.sbb.ch/kom/percent-large.svg'],
+    ['kom', 'punctuality-large', 'https://icons.app.sbb.ch/kom/punctuality-large.svg'],
+    ['kom', 'switzerland-route-large', 'https://icons.app.sbb.ch/kom/switzerland-route-large.svg'],
+    ['kom', 'hand-plus-circle-large', 'https://icons.app.sbb.ch/kom/hand-plus-circle-large.svg'],
+    ['kom', 'lotus-large', 'https://icons.app.sbb.ch/kom/lotus-large.svg'],
+    ['kom', 'platform-large', 'https://icons.app.sbb.ch/kom/platform-large.svg'],
+    ['kom', 'station-large', 'https://icons.app.sbb.ch/kom/station-large.svg'],
+    [
       'kom',
       'location-pin-surrounding-area-power-plug-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-surrounding-area-power-plug-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'laptop-smartphone-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/laptop-smartphone-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'smartphone-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/smartphone-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bicycle-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bicycle-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/location-pin-surrounding-area-power-plug-large.svg',
+    ],
+    ['kom', 'laptop-smartphone-large', 'https://icons.app.sbb.ch/kom/laptop-smartphone-large.svg'],
+    ['kom', 'smartphone-large', 'https://icons.app.sbb.ch/kom/smartphone-large.svg'],
+    ['kom', 'bicycle-large', 'https://icons.app.sbb.ch/kom/bicycle-large.svg'],
+    [
       'kom',
       'bicycle-profile-user-group-circle-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bicycle-profile-user-group-circle-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'car-profile-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bicycle-profile-user-group-circle-large.svg',
+    ],
+    ['kom', 'car-profile-large', 'https://icons.app.sbb.ch/kom/car-profile-large.svg'],
+    [
       'kom',
       'car-profile-power-plug-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-power-plug-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/car-profile-power-plug-large.svg',
+    ],
+    [
       'kom',
       'car-profile-sign-parking-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-sign-parking-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/car-profile-sign-parking-large.svg',
+    ],
+    [
       'kom',
       'car-profile-user-group-circle-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-user-group-circle-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sign-parking-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sign-parking-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'taxi-profile-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/taxi-profile-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-profile-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-profile-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'adult-kids-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/adult-kids-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'balloons-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/balloons-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/car-profile-user-group-circle-large.svg',
+    ],
+    ['kom', 'sign-parking-large', 'https://icons.app.sbb.ch/kom/sign-parking-large.svg'],
+    ['kom', 'taxi-profile-large', 'https://icons.app.sbb.ch/kom/taxi-profile-large.svg'],
+    ['kom', 'train-large', 'https://icons.app.sbb.ch/kom/train-large.svg'],
+    ['kom', 'train-profile-large', 'https://icons.app.sbb.ch/kom/train-profile-large.svg'],
+    ['kom', 'adult-kids-large', 'https://icons.app.sbb.ch/kom/adult-kids-large.svg'],
+    ['kom', 'balloons-large', 'https://icons.app.sbb.ch/kom/balloons-large.svg'],
+    [
       'kom',
       'christmas-tree-shopping-bag-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/christmas-tree-shopping-bag-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'elephant-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/elephant-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ferris-wheel-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ferris-wheel-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hiking-boot-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hiking-boot-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'leaf-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/leaf-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/christmas-tree-shopping-bag-large.svg',
+    ],
+    ['kom', 'elephant-large', 'https://icons.app.sbb.ch/kom/elephant-large.svg'],
+    ['kom', 'ferris-wheel-large', 'https://icons.app.sbb.ch/kom/ferris-wheel-large.svg'],
+    ['kom', 'hiking-boot-large', 'https://icons.app.sbb.ch/kom/hiking-boot-large.svg'],
+    ['kom', 'leaf-large', 'https://icons.app.sbb.ch/kom/leaf-large.svg'],
+    [
       'kom',
       'locomotive-viaduct-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/locomotive-viaduct-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/locomotive-viaduct-large.svg',
+    ],
+    [
       'kom',
       'lucerne-chapel-bridge-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lucerne-chapel-bridge-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/lucerne-chapel-bridge-large.svg',
+    ],
+    [
       'kom',
       'market-shopping-bag-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/market-shopping-bag-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'mountain-sun-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/mountain-sun-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'museum-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/museum-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/market-shopping-bag-large.svg',
+    ],
+    ['kom', 'mountain-sun-large', 'https://icons.app.sbb.ch/kom/mountain-sun-large.svg'],
+    ['kom', 'museum-large', 'https://icons.app.sbb.ch/kom/museum-large.svg'],
+    [
       'kom',
       'music-rock-hand-gesture-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/music-rock-hand-gesture-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'railway-ship-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/railway-ship-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sledge-snowshoe-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sledge-snowshoe-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'soccer-ball-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/soccer-ball-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sunshade-sun-sand-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sunshade-sun-sand-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'three-adults-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/three-adults-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-ski-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-ski-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'two-adults-kid-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-adults-kid-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'railway-switch-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/railway-switch-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-signal-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-signal-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-tracks-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-tracks-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'building-tree-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/building-tree-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'city-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/city-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'curriculum-vitae-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/curriculum-vitae-large.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/music-rock-hand-gesture-large.svg',
+    ],
+    ['kom', 'railway-ship-large', 'https://icons.app.sbb.ch/kom/railway-ship-large.svg'],
+    ['kom', 'sledge-snowshoe-large', 'https://icons.app.sbb.ch/kom/sledge-snowshoe-large.svg'],
+    ['kom', 'soccer-ball-large', 'https://icons.app.sbb.ch/kom/soccer-ball-large.svg'],
+    ['kom', 'sunshade-sun-sand-large', 'https://icons.app.sbb.ch/kom/sunshade-sun-sand-large.svg'],
+    ['kom', 'three-adults-large', 'https://icons.app.sbb.ch/kom/three-adults-large.svg'],
+    ['kom', 'train-ski-large', 'https://icons.app.sbb.ch/kom/train-ski-large.svg'],
+    ['kom', 'two-adults-kid-large', 'https://icons.app.sbb.ch/kom/two-adults-kid-large.svg'],
+    ['kom', 'railway-switch-large', 'https://icons.app.sbb.ch/kom/railway-switch-large.svg'],
+    ['kom', 'train-signal-large', 'https://icons.app.sbb.ch/kom/train-signal-large.svg'],
+    ['kom', 'train-tracks-large', 'https://icons.app.sbb.ch/kom/train-tracks-large.svg'],
+    ['kom', 'building-tree-large', 'https://icons.app.sbb.ch/kom/building-tree-large.svg'],
+    ['kom', 'city-large', 'https://icons.app.sbb.ch/kom/city-large.svg'],
+    ['kom', 'curriculum-vitae-large', 'https://icons.app.sbb.ch/kom/curriculum-vitae-large.svg'],
+    [
       'kom',
       'hand-graduation-cap-large',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-graduation-cap-large.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'alarm-clock-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/alarm-clock-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'app-icon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/app-icon-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'apple-bag-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/apple-bag-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'backpack-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/backpack-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/hand-graduation-cap-large.svg',
+    ],
+    ['kom', 'alarm-clock-medium', 'https://icons.app.sbb.ch/kom/alarm-clock-medium.svg'],
+    ['kom', 'app-icon-medium', 'https://icons.app.sbb.ch/kom/app-icon-medium.svg'],
+    ['kom', 'apple-bag-medium', 'https://icons.app.sbb.ch/kom/apple-bag-medium.svg'],
+    ['kom', 'backpack-medium', 'https://icons.app.sbb.ch/kom/backpack-medium.svg'],
+    [
       'kom',
       'battery-level-empty-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/battery-level-empty-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/battery-level-empty-medium.svg',
+    ],
+    [
       'kom',
       'battery-level-high-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/battery-level-high-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/battery-level-high-medium.svg',
+    ],
+    [
       'kom',
       'battery-level-low-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/battery-level-low-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/battery-level-low-medium.svg',
+    ],
+    [
       'kom',
       'battery-level-medium-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/battery-level-medium-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bell-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bell-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'binoculars-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/binoculars-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'browser-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/browser-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/battery-level-medium-medium.svg',
+    ],
+    ['kom', 'bell-medium', 'https://icons.app.sbb.ch/kom/bell-medium.svg'],
+    ['kom', 'binoculars-medium', 'https://icons.app.sbb.ch/kom/binoculars-medium.svg'],
+    ['kom', 'browser-medium', 'https://icons.app.sbb.ch/kom/browser-medium.svg'],
+    [
       'kom',
       'bucket-foam-broom-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bucket-foam-broom-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'calendar-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/calendar-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'calendar-one-day-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/calendar-one-day-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'camera-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/camera-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bucket-foam-broom-medium.svg',
+    ],
+    ['kom', 'calendar-medium', 'https://icons.app.sbb.ch/kom/calendar-medium.svg'],
+    ['kom', 'calendar-one-day-medium', 'https://icons.app.sbb.ch/kom/calendar-one-day-medium.svg'],
+    ['kom', 'camera-medium', 'https://icons.app.sbb.ch/kom/camera-medium.svg'],
+    [
       'kom',
       'certificate-ribbon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/certificate-ribbon-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chart-column-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chart-column-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/certificate-ribbon-medium.svg',
+    ],
+    ['kom', 'chart-column-medium', 'https://icons.app.sbb.ch/kom/chart-column-medium.svg'],
+    [
       'kom',
       'chart-column-trend-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chart-column-trend-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chart-line-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chart-line-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chart-pie-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chart-pie-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chart-column-trend-medium.svg',
+    ],
+    ['kom', 'chart-line-medium', 'https://icons.app.sbb.ch/kom/chart-line-medium.svg'],
+    ['kom', 'chart-pie-medium', 'https://icons.app.sbb.ch/kom/chart-pie-medium.svg'],
+    [
       'kom',
       'circle-information-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-information-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-information-medium.svg',
+    ],
+    [
       'kom',
       'circle-information-small-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-information-small-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-play-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-play-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-information-small-medium.svg',
+    ],
+    ['kom', 'circle-play-medium', 'https://icons.app.sbb.ch/kom/circle-play-medium.svg'],
+    [
       'kom',
       'circle-question-mark-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-question-mark-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'coins-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/coins-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'contact-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/contact-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'controls-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/controls-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cup-hot-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cup-hot-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cutlery-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cutlery-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'database-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/database-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'dog-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/dog-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-question-mark-medium.svg',
+    ],
+    ['kom', 'coins-medium', 'https://icons.app.sbb.ch/kom/coins-medium.svg'],
+    ['kom', 'contact-medium', 'https://icons.app.sbb.ch/kom/contact-medium.svg'],
+    ['kom', 'controls-medium', 'https://icons.app.sbb.ch/kom/controls-medium.svg'],
+    ['kom', 'cup-hot-medium', 'https://icons.app.sbb.ch/kom/cup-hot-medium.svg'],
+    ['kom', 'cutlery-medium', 'https://icons.app.sbb.ch/kom/cutlery-medium.svg'],
+    ['kom', 'database-medium', 'https://icons.app.sbb.ch/kom/database-medium.svg'],
+    ['kom', 'dog-medium', 'https://icons.app.sbb.ch/kom/dog-medium.svg'],
+    [
       'kom',
       'download-large-data-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/download-large-data-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'download-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/download-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/download-large-data-medium.svg',
+    ],
+    ['kom', 'download-medium', 'https://icons.app.sbb.ch/kom/download-medium.svg'],
+    [
       'kom',
       'download-small-data-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/download-small-data-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'entrance-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/entrance-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'envelope-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/envelope-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'envelope-open-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/envelope-open-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'exit-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/exit-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-king-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-king-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-worker-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-worker-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'factory-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/factory-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'filter-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/filter-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'filter-x-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/filter-x-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'flashlight-on-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/flashlight-on-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'form-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/form-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'fullscreen-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/fullscreen-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'gears-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/gears-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'gift-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/gift-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'globe-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/globe-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/download-small-data-medium.svg',
+    ],
+    ['kom', 'entrance-medium', 'https://icons.app.sbb.ch/kom/entrance-medium.svg'],
+    ['kom', 'envelope-medium', 'https://icons.app.sbb.ch/kom/envelope-medium.svg'],
+    ['kom', 'envelope-open-medium', 'https://icons.app.sbb.ch/kom/envelope-open-medium.svg'],
+    ['kom', 'exit-medium', 'https://icons.app.sbb.ch/kom/exit-medium.svg'],
+    ['kom', 'face-king-medium', 'https://icons.app.sbb.ch/kom/face-king-medium.svg'],
+    ['kom', 'face-worker-medium', 'https://icons.app.sbb.ch/kom/face-worker-medium.svg'],
+    ['kom', 'factory-medium', 'https://icons.app.sbb.ch/kom/factory-medium.svg'],
+    ['kom', 'filter-medium', 'https://icons.app.sbb.ch/kom/filter-medium.svg'],
+    ['kom', 'filter-x-medium', 'https://icons.app.sbb.ch/kom/filter-x-medium.svg'],
+    ['kom', 'flashlight-on-medium', 'https://icons.app.sbb.ch/kom/flashlight-on-medium.svg'],
+    ['kom', 'form-medium', 'https://icons.app.sbb.ch/kom/form-medium.svg'],
+    ['kom', 'fullscreen-medium', 'https://icons.app.sbb.ch/kom/fullscreen-medium.svg'],
+    ['kom', 'gears-medium', 'https://icons.app.sbb.ch/kom/gears-medium.svg'],
+    ['kom', 'gift-medium', 'https://icons.app.sbb.ch/kom/gift-medium.svg'],
+    ['kom', 'globe-medium', 'https://icons.app.sbb.ch/kom/globe-medium.svg'],
+    [
       'kom',
       'hand-fingers-snap-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-fingers-snap-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hand-heart-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-heart-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/hand-fingers-snap-medium.svg',
+    ],
+    ['kom', 'hand-heart-medium', 'https://icons.app.sbb.ch/kom/hand-heart-medium.svg'],
+    [
       'kom',
       'hand-with-service-bell-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-with-service-bell-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'heart-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/heart-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hierarchy-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hierarchy-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lighthouse-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lighthouse-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'link-external-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/link-external-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'link-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/link-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'list-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/list-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'magnifying-glass-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/magnifying-glass-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/hand-with-service-bell-medium.svg',
+    ],
+    ['kom', 'heart-medium', 'https://icons.app.sbb.ch/kom/heart-medium.svg'],
+    ['kom', 'hierarchy-medium', 'https://icons.app.sbb.ch/kom/hierarchy-medium.svg'],
+    ['kom', 'lighthouse-medium', 'https://icons.app.sbb.ch/kom/lighthouse-medium.svg'],
+    ['kom', 'link-external-medium', 'https://icons.app.sbb.ch/kom/link-external-medium.svg'],
+    ['kom', 'link-medium', 'https://icons.app.sbb.ch/kom/link-medium.svg'],
+    ['kom', 'list-medium', 'https://icons.app.sbb.ch/kom/list-medium.svg'],
+    ['kom', 'magnifying-glass-medium', 'https://icons.app.sbb.ch/kom/magnifying-glass-medium.svg'],
+    [
       'kom',
       'magnifying-glass-minus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/magnifying-glass-minus-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/magnifying-glass-minus-medium.svg',
+    ],
+    [
       'kom',
       'magnifying-glass-plus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/magnifying-glass-plus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'mug-hot-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/mug-hot-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'newspaper-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/newspaper-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'paper-aeroplane-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/paper-aeroplane-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'paper-clip-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/paper-clip-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'pen-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/pen-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'picture-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/picture-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'piggy-bank-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/piggy-bank-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'pin-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/pin-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'rss-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/rss-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'service-bell-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/service-bell-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shopping-cart-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shopping-cart-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/magnifying-glass-plus-medium.svg',
+    ],
+    ['kom', 'mug-hot-medium', 'https://icons.app.sbb.ch/kom/mug-hot-medium.svg'],
+    ['kom', 'newspaper-medium', 'https://icons.app.sbb.ch/kom/newspaper-medium.svg'],
+    ['kom', 'paper-aeroplane-medium', 'https://icons.app.sbb.ch/kom/paper-aeroplane-medium.svg'],
+    ['kom', 'paper-clip-medium', 'https://icons.app.sbb.ch/kom/paper-clip-medium.svg'],
+    ['kom', 'pen-medium', 'https://icons.app.sbb.ch/kom/pen-medium.svg'],
+    ['kom', 'picture-medium', 'https://icons.app.sbb.ch/kom/picture-medium.svg'],
+    ['kom', 'piggy-bank-medium', 'https://icons.app.sbb.ch/kom/piggy-bank-medium.svg'],
+    ['kom', 'pin-medium', 'https://icons.app.sbb.ch/kom/pin-medium.svg'],
+    ['kom', 'rss-medium', 'https://icons.app.sbb.ch/kom/rss-medium.svg'],
+    ['kom', 'service-bell-medium', 'https://icons.app.sbb.ch/kom/service-bell-medium.svg'],
+    ['kom', 'shopping-cart-medium', 'https://icons.app.sbb.ch/kom/shopping-cart-medium.svg'],
+    [
       'kom',
       'sign-exclamation-point-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sign-exclamation-point-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sign-x-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sign-x-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'spanner-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/spanner-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'star-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/star-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'switzerland-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/switzerland-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tag-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tag-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'target-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/target-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'torch-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/torch-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'trash-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/trash-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tree-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tree-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'upload-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/upload-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wallet-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wallet-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'warning-light-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/warning-light-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wifi-disabled-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wifi-disabled-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wifi-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wifi-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-circle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-circle-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-long-left-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-long-left-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-long-right-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-long-right-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-right-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-right-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrows-circle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-circle-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/sign-exclamation-point-medium.svg',
+    ],
+    ['kom', 'sign-x-medium', 'https://icons.app.sbb.ch/kom/sign-x-medium.svg'],
+    ['kom', 'spanner-medium', 'https://icons.app.sbb.ch/kom/spanner-medium.svg'],
+    ['kom', 'star-medium', 'https://icons.app.sbb.ch/kom/star-medium.svg'],
+    ['kom', 'switzerland-medium', 'https://icons.app.sbb.ch/kom/switzerland-medium.svg'],
+    ['kom', 'tag-medium', 'https://icons.app.sbb.ch/kom/tag-medium.svg'],
+    ['kom', 'target-medium', 'https://icons.app.sbb.ch/kom/target-medium.svg'],
+    ['kom', 'torch-medium', 'https://icons.app.sbb.ch/kom/torch-medium.svg'],
+    ['kom', 'trash-medium', 'https://icons.app.sbb.ch/kom/trash-medium.svg'],
+    ['kom', 'tree-medium', 'https://icons.app.sbb.ch/kom/tree-medium.svg'],
+    ['kom', 'upload-medium', 'https://icons.app.sbb.ch/kom/upload-medium.svg'],
+    ['kom', 'wallet-medium', 'https://icons.app.sbb.ch/kom/wallet-medium.svg'],
+    ['kom', 'warning-light-medium', 'https://icons.app.sbb.ch/kom/warning-light-medium.svg'],
+    ['kom', 'wifi-disabled-medium', 'https://icons.app.sbb.ch/kom/wifi-disabled-medium.svg'],
+    ['kom', 'wifi-medium', 'https://icons.app.sbb.ch/kom/wifi-medium.svg'],
+    ['kom', 'arrow-circle-medium', 'https://icons.app.sbb.ch/kom/arrow-circle-medium.svg'],
+    ['kom', 'arrow-long-left-medium', 'https://icons.app.sbb.ch/kom/arrow-long-left-medium.svg'],
+    ['kom', 'arrow-long-right-medium', 'https://icons.app.sbb.ch/kom/arrow-long-right-medium.svg'],
+    ['kom', 'arrow-right-medium', 'https://icons.app.sbb.ch/kom/arrow-right-medium.svg'],
+    ['kom', 'arrows-circle-medium', 'https://icons.app.sbb.ch/kom/arrows-circle-medium.svg'],
+    [
       'kom',
       'arrows-left-right-down-up-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-left-right-down-up-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/arrows-left-right-down-up-medium.svg',
+    ],
+    [
       'kom',
       'arrows-left-right-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-left-right-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/arrows-left-right-medium.svg',
+    ],
+    [
       'kom',
       'arrows-right-left-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-right-left-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrows-up-down-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-up-down-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chevron-left-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-left-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chevron-right-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-right-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/arrows-right-left-medium.svg',
+    ],
+    ['kom', 'arrows-up-down-medium', 'https://icons.app.sbb.ch/kom/arrows-up-down-medium.svg'],
+    ['kom', 'chevron-left-medium', 'https://icons.app.sbb.ch/kom/chevron-left-medium.svg'],
+    ['kom', 'chevron-right-medium', 'https://icons.app.sbb.ch/kom/chevron-right-medium.svg'],
+    [
       'kom',
       'chevron-small-down-circle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-down-circle-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-down-circle-medium.svg',
+    ],
+    [
       'kom',
       'chevron-small-down-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-down-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-down-medium.svg',
+    ],
+    [
       'kom',
       'chevron-small-left-circle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-left-circle-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-left-circle-medium.svg',
+    ],
+    [
       'kom',
       'chevron-small-left-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-left-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-left-medium.svg',
+    ],
+    [
       'kom',
       'chevron-small-right-circle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-right-circle-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-right-circle-medium.svg',
+    ],
+    [
       'kom',
       'chevron-small-right-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-right-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-right-medium.svg',
+    ],
+    [
       'kom',
       'chevron-small-up-circle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-up-circle-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chevron-small-up-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-up-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'increase-size-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/increase-size-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'reduce-size-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/reduce-size-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'button-power-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/button-power-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-cross-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-cross-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-tick-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-tick-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'clipboard-cross-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/clipboard-cross-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-up-circle-medium.svg',
+    ],
+    ['kom', 'chevron-small-up-medium', 'https://icons.app.sbb.ch/kom/chevron-small-up-medium.svg'],
+    ['kom', 'increase-size-medium', 'https://icons.app.sbb.ch/kom/increase-size-medium.svg'],
+    ['kom', 'reduce-size-medium', 'https://icons.app.sbb.ch/kom/reduce-size-medium.svg'],
+    ['kom', 'button-power-medium', 'https://icons.app.sbb.ch/kom/button-power-medium.svg'],
+    ['kom', 'circle-cross-medium', 'https://icons.app.sbb.ch/kom/circle-cross-medium.svg'],
+    ['kom', 'circle-tick-medium', 'https://icons.app.sbb.ch/kom/circle-tick-medium.svg'],
+    ['kom', 'clipboard-cross-medium', 'https://icons.app.sbb.ch/kom/clipboard-cross-medium.svg'],
+    [
       'kom',
       'clipboard-question-mark-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/clipboard-question-mark-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'clipboard-tick-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/clipboard-tick-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/clipboard-question-mark-medium.svg',
+    ],
+    ['kom', 'clipboard-tick-medium', 'https://icons.app.sbb.ch/kom/clipboard-tick-medium.svg'],
+    [
       'kom',
       'exclamation-point-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/exclamation-point-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'eye-disabled-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/eye-disabled-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'eye-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/eye-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lock-closed-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lock-closed-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lock-open-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lock-open-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'question-mark-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/question-mark-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tick-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tick-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-minus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-minus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-plus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-plus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'context-menu-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/context-menu-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cross-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cross-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'drag-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/drag-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hamburger-menu-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hamburger-menu-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'house-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/house-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'layers-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/layers-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'minus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/minus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'nine-squares-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/nine-squares-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'plus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/plus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'two-finger-tap-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-finger-tap-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bulb-off-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bulb-off-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bulb-on-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bulb-on-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-grinning-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-grinning-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-neutral-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-neutral-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-sad-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-sad-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-smiling-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-smiling-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'handshake-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/handshake-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'network-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/network-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'onboarding-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/onboarding-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'question-answer-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/question-answer-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'share-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/share-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/exclamation-point-medium.svg',
+    ],
+    ['kom', 'eye-disabled-medium', 'https://icons.app.sbb.ch/kom/eye-disabled-medium.svg'],
+    ['kom', 'eye-medium', 'https://icons.app.sbb.ch/kom/eye-medium.svg'],
+    ['kom', 'lock-closed-medium', 'https://icons.app.sbb.ch/kom/lock-closed-medium.svg'],
+    ['kom', 'lock-open-medium', 'https://icons.app.sbb.ch/kom/lock-open-medium.svg'],
+    ['kom', 'question-mark-medium', 'https://icons.app.sbb.ch/kom/question-mark-medium.svg'],
+    ['kom', 'tick-medium', 'https://icons.app.sbb.ch/kom/tick-medium.svg'],
+    ['kom', 'circle-minus-medium', 'https://icons.app.sbb.ch/kom/circle-minus-medium.svg'],
+    ['kom', 'circle-plus-medium', 'https://icons.app.sbb.ch/kom/circle-plus-medium.svg'],
+    ['kom', 'context-menu-medium', 'https://icons.app.sbb.ch/kom/context-menu-medium.svg'],
+    ['kom', 'cross-medium', 'https://icons.app.sbb.ch/kom/cross-medium.svg'],
+    ['kom', 'drag-medium', 'https://icons.app.sbb.ch/kom/drag-medium.svg'],
+    ['kom', 'hamburger-menu-medium', 'https://icons.app.sbb.ch/kom/hamburger-menu-medium.svg'],
+    ['kom', 'house-medium', 'https://icons.app.sbb.ch/kom/house-medium.svg'],
+    ['kom', 'layers-medium', 'https://icons.app.sbb.ch/kom/layers-medium.svg'],
+    ['kom', 'minus-medium', 'https://icons.app.sbb.ch/kom/minus-medium.svg'],
+    ['kom', 'nine-squares-medium', 'https://icons.app.sbb.ch/kom/nine-squares-medium.svg'],
+    ['kom', 'plus-medium', 'https://icons.app.sbb.ch/kom/plus-medium.svg'],
+    ['kom', 'two-finger-tap-medium', 'https://icons.app.sbb.ch/kom/two-finger-tap-medium.svg'],
+    ['kom', 'bulb-off-medium', 'https://icons.app.sbb.ch/kom/bulb-off-medium.svg'],
+    ['kom', 'bulb-on-medium', 'https://icons.app.sbb.ch/kom/bulb-on-medium.svg'],
+    ['kom', 'face-grinning-medium', 'https://icons.app.sbb.ch/kom/face-grinning-medium.svg'],
+    ['kom', 'face-neutral-medium', 'https://icons.app.sbb.ch/kom/face-neutral-medium.svg'],
+    ['kom', 'face-sad-medium', 'https://icons.app.sbb.ch/kom/face-sad-medium.svg'],
+    ['kom', 'face-smiling-medium', 'https://icons.app.sbb.ch/kom/face-smiling-medium.svg'],
+    ['kom', 'handshake-medium', 'https://icons.app.sbb.ch/kom/handshake-medium.svg'],
+    ['kom', 'network-medium', 'https://icons.app.sbb.ch/kom/network-medium.svg'],
+    ['kom', 'onboarding-medium', 'https://icons.app.sbb.ch/kom/onboarding-medium.svg'],
+    ['kom', 'question-answer-medium', 'https://icons.app.sbb.ch/kom/question-answer-medium.svg'],
+    ['kom', 'share-medium', 'https://icons.app.sbb.ch/kom/share-medium.svg'],
+    [
       'kom',
       'speech-bubble-group-empty-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/speech-bubble-group-empty-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'speech-bubble-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/speech-bubble-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'thumb-down-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/thumb-down-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'thumb-up-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/thumb-up-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'translate-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/translate-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/speech-bubble-group-empty-medium.svg',
+    ],
+    ['kom', 'speech-bubble-medium', 'https://icons.app.sbb.ch/kom/speech-bubble-medium.svg'],
+    ['kom', 'thumb-down-medium', 'https://icons.app.sbb.ch/kom/thumb-down-medium.svg'],
+    ['kom', 'thumb-up-medium', 'https://icons.app.sbb.ch/kom/thumb-up-medium.svg'],
+    ['kom', 'translate-medium', 'https://icons.app.sbb.ch/kom/translate-medium.svg'],
+    [
       'kom',
       'two-speech-bubbles-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-speech-bubbles-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'avatar-police-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/avatar-police-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/two-speech-bubbles-medium.svg',
+    ],
+    ['kom', 'avatar-police-medium', 'https://icons.app.sbb.ch/kom/avatar-police-medium.svg'],
+    [
       'kom',
       'circle-triangle-square-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-triangle-square-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'key-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/key-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'pie-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/pie-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'two-users-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-users-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-change-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-change-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-group-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-group-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-triangle-square-medium.svg',
+    ],
+    ['kom', 'key-medium', 'https://icons.app.sbb.ch/kom/key-medium.svg'],
+    ['kom', 'pie-medium', 'https://icons.app.sbb.ch/kom/pie-medium.svg'],
+    ['kom', 'two-users-medium', 'https://icons.app.sbb.ch/kom/two-users-medium.svg'],
+    ['kom', 'user-change-medium', 'https://icons.app.sbb.ch/kom/user-change-medium.svg'],
+    ['kom', 'user-group-medium', 'https://icons.app.sbb.ch/kom/user-group-medium.svg'],
+    [
       'kom',
       'user-group-round-table-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-group-round-table-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-group-row-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-group-row-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-hat-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-hat-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-headset-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-headset-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-key-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-key-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-plus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-plus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-tie-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-tie-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-check-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-check-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-image-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-image-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-lock-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-lock-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-pdf-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-pdf-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-plus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-plus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-ppt-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-ppt-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-sbb-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-sbb-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/user-group-round-table-medium.svg',
+    ],
+    ['kom', 'user-group-row-medium', 'https://icons.app.sbb.ch/kom/user-group-row-medium.svg'],
+    ['kom', 'user-hat-medium', 'https://icons.app.sbb.ch/kom/user-hat-medium.svg'],
+    ['kom', 'user-headset-medium', 'https://icons.app.sbb.ch/kom/user-headset-medium.svg'],
+    ['kom', 'user-key-medium', 'https://icons.app.sbb.ch/kom/user-key-medium.svg'],
+    ['kom', 'user-medium', 'https://icons.app.sbb.ch/kom/user-medium.svg'],
+    ['kom', 'user-plus-medium', 'https://icons.app.sbb.ch/kom/user-plus-medium.svg'],
+    ['kom', 'user-tie-medium', 'https://icons.app.sbb.ch/kom/user-tie-medium.svg'],
+    ['kom', 'document-check-medium', 'https://icons.app.sbb.ch/kom/document-check-medium.svg'],
+    ['kom', 'document-image-medium', 'https://icons.app.sbb.ch/kom/document-image-medium.svg'],
+    ['kom', 'document-lock-medium', 'https://icons.app.sbb.ch/kom/document-lock-medium.svg'],
+    ['kom', 'document-pdf-medium', 'https://icons.app.sbb.ch/kom/document-pdf-medium.svg'],
+    ['kom', 'document-plus-medium', 'https://icons.app.sbb.ch/kom/document-plus-medium.svg'],
+    ['kom', 'document-ppt-medium', 'https://icons.app.sbb.ch/kom/document-ppt-medium.svg'],
+    ['kom', 'document-sbb-medium', 'https://icons.app.sbb.ch/kom/document-sbb-medium.svg'],
+    [
       'kom',
       'document-signature-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-signature-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-sound-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-sound-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/document-signature-medium.svg',
+    ],
+    ['kom', 'document-sound-medium', 'https://icons.app.sbb.ch/kom/document-sound-medium.svg'],
+    [
       'kom',
       'document-standard-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-standard-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-text-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-text-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-video-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-video-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-xls-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-xls-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-zip-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-zip-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'folder-info-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-info-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'folder-lock-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-lock-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/document-standard-medium.svg',
+    ],
+    ['kom', 'document-text-medium', 'https://icons.app.sbb.ch/kom/document-text-medium.svg'],
+    ['kom', 'document-video-medium', 'https://icons.app.sbb.ch/kom/document-video-medium.svg'],
+    ['kom', 'document-xls-medium', 'https://icons.app.sbb.ch/kom/document-xls-medium.svg'],
+    ['kom', 'document-zip-medium', 'https://icons.app.sbb.ch/kom/document-zip-medium.svg'],
+    ['kom', 'folder-info-medium', 'https://icons.app.sbb.ch/kom/folder-info-medium.svg'],
+    ['kom', 'folder-lock-medium', 'https://icons.app.sbb.ch/kom/folder-lock-medium.svg'],
+    [
       'kom',
       'folder-open-arrow-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-open-arrow-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'folder-open-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-open-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'folder-plus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-plus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'metadata-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/metadata-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'two-folders-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-folders-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-change-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-change-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/folder-open-arrow-medium.svg',
+    ],
+    ['kom', 'folder-open-medium', 'https://icons.app.sbb.ch/kom/folder-open-medium.svg'],
+    ['kom', 'folder-plus-medium', 'https://icons.app.sbb.ch/kom/folder-plus-medium.svg'],
+    ['kom', 'metadata-medium', 'https://icons.app.sbb.ch/kom/metadata-medium.svg'],
+    ['kom', 'two-folders-medium', 'https://icons.app.sbb.ch/kom/two-folders-medium.svg'],
+    ['kom', 'arrow-change-medium', 'https://icons.app.sbb.ch/kom/arrow-change-medium.svg'],
+    [
       'kom',
       'avatar-train-staff-disabled-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/avatar-train-staff-disabled-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/avatar-train-staff-disabled-medium.svg',
+    ],
+    [
       'kom',
       'avatar-train-staff-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/avatar-train-staff-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'clock-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/clock-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hourglass-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hourglass-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'locomotive-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/locomotive-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'percent-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/percent-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'percent-tag-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/percent-tag-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'punctuality-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/punctuality-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'route-circle-end-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/route-circle-end-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/avatar-train-staff-medium.svg',
+    ],
+    ['kom', 'clock-medium', 'https://icons.app.sbb.ch/kom/clock-medium.svg'],
+    ['kom', 'hourglass-medium', 'https://icons.app.sbb.ch/kom/hourglass-medium.svg'],
+    ['kom', 'locomotive-medium', 'https://icons.app.sbb.ch/kom/locomotive-medium.svg'],
+    ['kom', 'percent-medium', 'https://icons.app.sbb.ch/kom/percent-medium.svg'],
+    ['kom', 'percent-tag-medium', 'https://icons.app.sbb.ch/kom/percent-tag-medium.svg'],
+    ['kom', 'punctuality-medium', 'https://icons.app.sbb.ch/kom/punctuality-medium.svg'],
+    ['kom', 'route-circle-end-medium', 'https://icons.app.sbb.ch/kom/route-circle-end-medium.svg'],
+    [
       'kom',
       'route-circle-start-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/route-circle-start-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'seat-window-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/seat-window-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/route-circle-start-medium.svg',
+    ],
+    ['kom', 'seat-window-medium', 'https://icons.app.sbb.ch/kom/seat-window-medium.svg'],
+    [
       'kom',
       'switzerland-route-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/switzerland-route-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'timetable-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/timetable-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walk-fast-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walk-fast-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walk-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walk-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walk-slow-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walk-slow-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/switzerland-route-medium.svg',
+    ],
+    ['kom', 'timetable-medium', 'https://icons.app.sbb.ch/kom/timetable-medium.svg'],
+    ['kom', 'walk-fast-medium', 'https://icons.app.sbb.ch/kom/walk-fast-medium.svg'],
+    ['kom', 'walk-medium', 'https://icons.app.sbb.ch/kom/walk-medium.svg'],
+    ['kom', 'walk-slow-medium', 'https://icons.app.sbb.ch/kom/walk-slow-medium.svg'],
+    [
       'kom',
       'wheelchair-inaccessible-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-inaccessible-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wheelchair-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/wheelchair-inaccessible-medium.svg',
+    ],
+    ['kom', 'wheelchair-medium', 'https://icons.app.sbb.ch/kom/wheelchair-medium.svg'],
+    [
       'kom',
       'wheelchair-partially-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-partially-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/wheelchair-partially-medium.svg',
+    ],
+    [
       'kom',
       'wheelchair-reservation-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-reservation-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/wheelchair-reservation-medium.svg',
+    ],
+    [
       'kom',
       'wheelchair-uncertain-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-uncertain-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'half-fare-card-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/half-fare-card-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'qrcode-disabled-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/qrcode-disabled-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'qrcode-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/qrcode-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'swisspass-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/swisspass-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/wheelchair-uncertain-medium.svg',
+    ],
+    ['kom', 'half-fare-card-medium', 'https://icons.app.sbb.ch/kom/half-fare-card-medium.svg'],
+    ['kom', 'qrcode-disabled-medium', 'https://icons.app.sbb.ch/kom/qrcode-disabled-medium.svg'],
+    ['kom', 'qrcode-medium', 'https://icons.app.sbb.ch/kom/qrcode-medium.svg'],
+    ['kom', 'swisspass-medium', 'https://icons.app.sbb.ch/kom/swisspass-medium.svg'],
+    [
       'kom',
       'swisspass-temporary-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/swisspass-temporary-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-day-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-day-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-disabled-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-disabled-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-heart-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-heart-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-journey-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-journey-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-moon-star-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-moon-star-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-parking-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-parking-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-percent-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-percent-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-route-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-route-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-star-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-star-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tickets-class-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tickets-class-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'book-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/book-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bottle-apple-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bottle-apple-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/swisspass-temporary-medium.svg',
+    ],
+    ['kom', 'ticket-day-medium', 'https://icons.app.sbb.ch/kom/ticket-day-medium.svg'],
+    ['kom', 'ticket-disabled-medium', 'https://icons.app.sbb.ch/kom/ticket-disabled-medium.svg'],
+    ['kom', 'ticket-heart-medium', 'https://icons.app.sbb.ch/kom/ticket-heart-medium.svg'],
+    ['kom', 'ticket-journey-medium', 'https://icons.app.sbb.ch/kom/ticket-journey-medium.svg'],
+    ['kom', 'ticket-moon-star-medium', 'https://icons.app.sbb.ch/kom/ticket-moon-star-medium.svg'],
+    ['kom', 'ticket-parking-medium', 'https://icons.app.sbb.ch/kom/ticket-parking-medium.svg'],
+    ['kom', 'ticket-percent-medium', 'https://icons.app.sbb.ch/kom/ticket-percent-medium.svg'],
+    ['kom', 'ticket-route-medium', 'https://icons.app.sbb.ch/kom/ticket-route-medium.svg'],
+    ['kom', 'ticket-star-medium', 'https://icons.app.sbb.ch/kom/ticket-star-medium.svg'],
+    ['kom', 'tickets-class-medium', 'https://icons.app.sbb.ch/kom/tickets-class-medium.svg'],
+    ['kom', 'book-medium', 'https://icons.app.sbb.ch/kom/book-medium.svg'],
+    ['kom', 'bottle-apple-medium', 'https://icons.app.sbb.ch/kom/bottle-apple-medium.svg'],
+    [
       'kom',
       'customer-assistance-sbb-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/customer-assistance-sbb-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'escalator-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/escalator-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'general-display-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/general-display-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hand-plus-circle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-plus-circle-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hand-sbb-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-sbb-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hostel-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hostel-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lift-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lift-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'locker-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/locker-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lotus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lotus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'meeting-point-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/meeting-point-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'money-exchange-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/money-exchange-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'platform-display-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/platform-display-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/customer-assistance-sbb-medium.svg',
+    ],
+    ['kom', 'escalator-medium', 'https://icons.app.sbb.ch/kom/escalator-medium.svg'],
+    ['kom', 'general-display-medium', 'https://icons.app.sbb.ch/kom/general-display-medium.svg'],
+    ['kom', 'hand-plus-circle-medium', 'https://icons.app.sbb.ch/kom/hand-plus-circle-medium.svg'],
+    ['kom', 'hand-sbb-medium', 'https://icons.app.sbb.ch/kom/hand-sbb-medium.svg'],
+    ['kom', 'hostel-medium', 'https://icons.app.sbb.ch/kom/hostel-medium.svg'],
+    ['kom', 'lift-medium', 'https://icons.app.sbb.ch/kom/lift-medium.svg'],
+    ['kom', 'locker-medium', 'https://icons.app.sbb.ch/kom/locker-medium.svg'],
+    ['kom', 'lotus-medium', 'https://icons.app.sbb.ch/kom/lotus-medium.svg'],
+    ['kom', 'meeting-point-medium', 'https://icons.app.sbb.ch/kom/meeting-point-medium.svg'],
+    ['kom', 'money-exchange-medium', 'https://icons.app.sbb.ch/kom/money-exchange-medium.svg'],
+    ['kom', 'platform-display-medium', 'https://icons.app.sbb.ch/kom/platform-display-medium.svg'],
+    [
       'kom',
       'screen-inside-train-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/screen-inside-train-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shirt-shoe-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shirt-shoe-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/screen-inside-train-medium.svg',
+    ],
+    ['kom', 'shirt-shoe-medium', 'https://icons.app.sbb.ch/kom/shirt-shoe-medium.svg'],
+    [
       'kom',
       'shopping-bag-coupon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shopping-bag-coupon-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/shopping-bag-coupon-medium.svg',
+    ],
+    [
       'kom',
       'shopping-bag-fast-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shopping-bag-fast-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shopping-bag-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shopping-bag-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'station-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/station-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/shopping-bag-fast-medium.svg',
+    ],
+    ['kom', 'shopping-bag-medium', 'https://icons.app.sbb.ch/kom/shopping-bag-medium.svg'],
+    ['kom', 'station-medium', 'https://icons.app.sbb.ch/kom/station-medium.svg'],
+    [
       'kom',
       'station-surrounding-area-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/station-surrounding-area-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-machine-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-machine-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/station-surrounding-area-medium.svg',
+    ],
+    ['kom', 'ticket-machine-medium', 'https://icons.app.sbb.ch/kom/ticket-machine-medium.svg'],
+    [
       'kom',
       'ticket-machine-ticket-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-machine-ticket-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'toilet-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/toilet-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-station-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-station-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'waiting-room-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/waiting-room-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wine-cheese-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wine-cheese-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-compass-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-compass-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'gps-disabled-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/gps-disabled-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'gps-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/gps-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'location-pin-a-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-a-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'location-pin-b-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-b-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'location-pin-map-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-map-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'location-pin-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/ticket-machine-ticket-medium.svg',
+    ],
+    ['kom', 'toilet-medium', 'https://icons.app.sbb.ch/kom/toilet-medium.svg'],
+    ['kom', 'train-station-medium', 'https://icons.app.sbb.ch/kom/train-station-medium.svg'],
+    ['kom', 'waiting-room-medium', 'https://icons.app.sbb.ch/kom/waiting-room-medium.svg'],
+    ['kom', 'wine-cheese-medium', 'https://icons.app.sbb.ch/kom/wine-cheese-medium.svg'],
+    ['kom', 'arrow-compass-medium', 'https://icons.app.sbb.ch/kom/arrow-compass-medium.svg'],
+    ['kom', 'gps-disabled-medium', 'https://icons.app.sbb.ch/kom/gps-disabled-medium.svg'],
+    ['kom', 'gps-medium', 'https://icons.app.sbb.ch/kom/gps-medium.svg'],
+    ['kom', 'location-pin-a-medium', 'https://icons.app.sbb.ch/kom/location-pin-a-medium.svg'],
+    ['kom', 'location-pin-b-medium', 'https://icons.app.sbb.ch/kom/location-pin-b-medium.svg'],
+    ['kom', 'location-pin-map-medium', 'https://icons.app.sbb.ch/kom/location-pin-map-medium.svg'],
+    ['kom', 'location-pin-medium', 'https://icons.app.sbb.ch/kom/location-pin-medium.svg'],
+    [
       'kom',
       'location-pin-pulse-surrounding-area-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-pulse-surrounding-area-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/location-pin-pulse-surrounding-area-medium.svg',
+    ],
+    [
       'kom',
       'location-pin-surrounding-area-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-surrounding-area-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/location-pin-surrounding-area-medium.svg',
+    ],
+    [
       'kom',
       'location-pin-surrounding-area-power-plug-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-surrounding-area-power-plug-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'mountain-minus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/mountain-minus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'mountain-plus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/mountain-plus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'archive-box-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/archive-box-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'briefcase-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/briefcase-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'brochure-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/brochure-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cash-register-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cash-register-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'desk-adjustable-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/desk-adjustable-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'desk-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/desk-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'display-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/display-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'highlighter-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/highlighter-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'keyboard-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/keyboard-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'laptop-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/laptop-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/location-pin-surrounding-area-power-plug-medium.svg',
+    ],
+    ['kom', 'mountain-minus-medium', 'https://icons.app.sbb.ch/kom/mountain-minus-medium.svg'],
+    ['kom', 'mountain-plus-medium', 'https://icons.app.sbb.ch/kom/mountain-plus-medium.svg'],
+    ['kom', 'archive-box-medium', 'https://icons.app.sbb.ch/kom/archive-box-medium.svg'],
+    ['kom', 'briefcase-medium', 'https://icons.app.sbb.ch/kom/briefcase-medium.svg'],
+    ['kom', 'brochure-medium', 'https://icons.app.sbb.ch/kom/brochure-medium.svg'],
+    ['kom', 'cash-register-medium', 'https://icons.app.sbb.ch/kom/cash-register-medium.svg'],
+    ['kom', 'desk-adjustable-medium', 'https://icons.app.sbb.ch/kom/desk-adjustable-medium.svg'],
+    ['kom', 'desk-medium', 'https://icons.app.sbb.ch/kom/desk-medium.svg'],
+    ['kom', 'display-medium', 'https://icons.app.sbb.ch/kom/display-medium.svg'],
+    ['kom', 'highlighter-medium', 'https://icons.app.sbb.ch/kom/highlighter-medium.svg'],
+    ['kom', 'keyboard-medium', 'https://icons.app.sbb.ch/kom/keyboard-medium.svg'],
+    ['kom', 'laptop-medium', 'https://icons.app.sbb.ch/kom/laptop-medium.svg'],
+    [
       'kom',
       'laptop-smartphone-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/laptop-smartphone-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'megaphone-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/megaphone-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'microphone-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/microphone-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'office-chair-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/office-chair-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'power-plug-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/power-plug-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'printer-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/printer-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'scanner-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/scanner-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'smartphone-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/smartphone-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'speaker-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/speaker-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/laptop-smartphone-medium.svg',
+    ],
+    ['kom', 'megaphone-medium', 'https://icons.app.sbb.ch/kom/megaphone-medium.svg'],
+    ['kom', 'microphone-medium', 'https://icons.app.sbb.ch/kom/microphone-medium.svg'],
+    ['kom', 'office-chair-medium', 'https://icons.app.sbb.ch/kom/office-chair-medium.svg'],
+    ['kom', 'power-plug-medium', 'https://icons.app.sbb.ch/kom/power-plug-medium.svg'],
+    ['kom', 'printer-medium', 'https://icons.app.sbb.ch/kom/printer-medium.svg'],
+    ['kom', 'scanner-medium', 'https://icons.app.sbb.ch/kom/scanner-medium.svg'],
+    ['kom', 'smartphone-medium', 'https://icons.app.sbb.ch/kom/smartphone-medium.svg'],
+    ['kom', 'speaker-medium', 'https://icons.app.sbb.ch/kom/speaker-medium.svg'],
+    [
       'kom',
       'suitcase-disabled-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/suitcase-disabled-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'suitcase-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/suitcase-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'telephone-gsm-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/telephone-gsm-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/suitcase-disabled-medium.svg',
+    ],
+    ['kom', 'suitcase-medium', 'https://icons.app.sbb.ch/kom/suitcase-medium.svg'],
+    ['kom', 'telephone-gsm-medium', 'https://icons.app.sbb.ch/kom/telephone-gsm-medium.svg'],
+    [
       'kom',
       'telephone-receiver-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/telephone-receiver-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walkie-talkie-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walkie-talkie-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'weight-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/weight-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-dense-fog-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-dense-fog-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-drops-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-drops-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-drops-moon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-drops-moon-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-fog-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-fog-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-ice-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-ice-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-lightning-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-lightning-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/telephone-receiver-medium.svg',
+    ],
+    ['kom', 'walkie-talkie-medium', 'https://icons.app.sbb.ch/kom/walkie-talkie-medium.svg'],
+    ['kom', 'weight-medium', 'https://icons.app.sbb.ch/kom/weight-medium.svg'],
+    ['kom', 'cloud-dense-fog-medium', 'https://icons.app.sbb.ch/kom/cloud-dense-fog-medium.svg'],
+    ['kom', 'cloud-drops-medium', 'https://icons.app.sbb.ch/kom/cloud-drops-medium.svg'],
+    ['kom', 'cloud-drops-moon-medium', 'https://icons.app.sbb.ch/kom/cloud-drops-moon-medium.svg'],
+    ['kom', 'cloud-fog-medium', 'https://icons.app.sbb.ch/kom/cloud-fog-medium.svg'],
+    ['kom', 'cloud-ice-medium', 'https://icons.app.sbb.ch/kom/cloud-ice-medium.svg'],
+    ['kom', 'cloud-lightning-medium', 'https://icons.app.sbb.ch/kom/cloud-lightning-medium.svg'],
+    [
       'kom',
       'cloud-lightning-moon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-lightning-moon-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-lightning-moon-medium.svg',
+    ],
+    [
       'kom',
       'cloud-little-snow-moon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-little-snow-moon-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-little-snow-moon-medium.svg',
+    ],
+    [
       'kom',
       'cloud-little-snow-sun-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-little-snow-sun-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-moon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-moon-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-rain-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-rain-snow-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-snow-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-little-snow-sun-medium.svg',
+    ],
+    ['kom', 'cloud-medium', 'https://icons.app.sbb.ch/kom/cloud-medium.svg'],
+    ['kom', 'cloud-moon-medium', 'https://icons.app.sbb.ch/kom/cloud-moon-medium.svg'],
+    ['kom', 'cloud-rain-medium', 'https://icons.app.sbb.ch/kom/cloud-rain-medium.svg'],
+    ['kom', 'cloud-rain-snow-medium', 'https://icons.app.sbb.ch/kom/cloud-rain-snow-medium.svg'],
+    [
       'kom',
       'cloud-rain-snow-moon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-snow-moon-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-rain-snow-moon-medium.svg',
+    ],
+    [
       'kom',
       'cloud-rain-snow-sun-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-snow-sun-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-rain-sun-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-sun-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-rain-snow-sun-medium.svg',
+    ],
+    ['kom', 'cloud-rain-sun-medium', 'https://icons.app.sbb.ch/kom/cloud-rain-sun-medium.svg'],
+    [
       'kom',
       'cloud-snow-lightning-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snow-lightning-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-snow-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snow-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-snow-moon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snow-moon-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-snow-sun-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snow-sun-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-snowflake-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snowflake-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-snow-lightning-medium.svg',
+    ],
+    ['kom', 'cloud-snow-medium', 'https://icons.app.sbb.ch/kom/cloud-snow-medium.svg'],
+    ['kom', 'cloud-snow-moon-medium', 'https://icons.app.sbb.ch/kom/cloud-snow-moon-medium.svg'],
+    ['kom', 'cloud-snow-sun-medium', 'https://icons.app.sbb.ch/kom/cloud-snow-sun-medium.svg'],
+    ['kom', 'cloud-snowflake-medium', 'https://icons.app.sbb.ch/kom/cloud-snowflake-medium.svg'],
+    [
       'kom',
       'cloud-snowflake-sun-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snowflake-sun-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-snowflake-sun-medium.svg',
+    ],
+    [
       'kom',
       'cloud-strong-rain-moon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-strong-rain-moon-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-strong-rain-moon-medium.svg',
+    ],
+    [
       'kom',
       'cloud-strong-rain-sun-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-strong-rain-sun-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-sun-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-sun-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-sunshine-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-sunshine-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'fog-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/fog-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'moon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/moon-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sun-moon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sun-moon-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sunrise-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sunrise-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sunshine-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sunshine-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'weather-unknown-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/weather-unknown-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'fast-forward-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/fast-forward-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'next-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/next-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'pause-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/pause-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'play-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/play-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'previous-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/previous-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'record-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/record-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'rewind-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/rewind-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'stop-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/stop-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'airplane-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/airplane-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bicycle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bicycle-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-strong-rain-sun-medium.svg',
+    ],
+    ['kom', 'cloud-sun-medium', 'https://icons.app.sbb.ch/kom/cloud-sun-medium.svg'],
+    ['kom', 'cloud-sunshine-medium', 'https://icons.app.sbb.ch/kom/cloud-sunshine-medium.svg'],
+    ['kom', 'fog-medium', 'https://icons.app.sbb.ch/kom/fog-medium.svg'],
+    ['kom', 'moon-medium', 'https://icons.app.sbb.ch/kom/moon-medium.svg'],
+    ['kom', 'sun-moon-medium', 'https://icons.app.sbb.ch/kom/sun-moon-medium.svg'],
+    ['kom', 'sunrise-medium', 'https://icons.app.sbb.ch/kom/sunrise-medium.svg'],
+    ['kom', 'sunshine-medium', 'https://icons.app.sbb.ch/kom/sunshine-medium.svg'],
+    ['kom', 'weather-unknown-medium', 'https://icons.app.sbb.ch/kom/weather-unknown-medium.svg'],
+    ['kom', 'fast-forward-medium', 'https://icons.app.sbb.ch/kom/fast-forward-medium.svg'],
+    ['kom', 'next-medium', 'https://icons.app.sbb.ch/kom/next-medium.svg'],
+    ['kom', 'pause-medium', 'https://icons.app.sbb.ch/kom/pause-medium.svg'],
+    ['kom', 'play-medium', 'https://icons.app.sbb.ch/kom/play-medium.svg'],
+    ['kom', 'previous-medium', 'https://icons.app.sbb.ch/kom/previous-medium.svg'],
+    ['kom', 'record-medium', 'https://icons.app.sbb.ch/kom/record-medium.svg'],
+    ['kom', 'rewind-medium', 'https://icons.app.sbb.ch/kom/rewind-medium.svg'],
+    ['kom', 'stop-medium', 'https://icons.app.sbb.ch/kom/stop-medium.svg'],
+    ['kom', 'airplane-medium', 'https://icons.app.sbb.ch/kom/airplane-medium.svg'],
+    ['kom', 'bicycle-medium', 'https://icons.app.sbb.ch/kom/bicycle-medium.svg'],
+    [
       'kom',
       'bicycle-profile-user-group-circle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bicycle-profile-user-group-circle-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bicycle-profile-user-group-circle-medium.svg',
+    ],
+    [
       'kom',
       'bike-profile-power-plug-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bike-profile-power-plug-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bike-profile-power-plug-medium.svg',
+    ],
+    [
       'kom',
       'bike-profile-sign-parking-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bike-profile-sign-parking-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bus-sbb-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bus-sbb-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bus-stop-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bus-stop-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bike-profile-sign-parking-medium.svg',
+    ],
+    ['kom', 'bus-medium', 'https://icons.app.sbb.ch/kom/bus-medium.svg'],
+    ['kom', 'bus-sbb-medium', 'https://icons.app.sbb.ch/kom/bus-sbb-medium.svg'],
+    ['kom', 'bus-stop-medium', 'https://icons.app.sbb.ch/kom/bus-stop-medium.svg'],
+    [
       'kom',
       'bus-surrounding-area-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bus-surrounding-area-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'car-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'car-profile-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bus-surrounding-area-medium.svg',
+    ],
+    ['kom', 'car-medium', 'https://icons.app.sbb.ch/kom/car-medium.svg'],
+    ['kom', 'car-profile-medium', 'https://icons.app.sbb.ch/kom/car-profile-medium.svg'],
+    [
       'kom',
       'car-profile-power-plug-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-power-plug-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/car-profile-power-plug-medium.svg',
+    ],
+    [
       'kom',
       'car-profile-sign-parking-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-sign-parking-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/car-profile-sign-parking-medium.svg',
+    ],
+    [
       'kom',
       'car-profile-user-group-circle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-user-group-circle-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'car-sign-parking-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-sign-parking-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'charging-station-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/charging-station-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/car-profile-user-group-circle-medium.svg',
+    ],
+    ['kom', 'car-sign-parking-medium', 'https://icons.app.sbb.ch/kom/car-sign-parking-medium.svg'],
+    ['kom', 'charging-station-medium', 'https://icons.app.sbb.ch/kom/charging-station-medium.svg'],
+    [
       'kom',
       'combined-mobility-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/combined-mobility-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'container-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/container-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/combined-mobility-medium.svg',
+    ],
+    ['kom', 'container-medium', 'https://icons.app.sbb.ch/kom/container-medium.svg'],
+    [
       'kom',
       'driverless-bus-profile-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/driverless-bus-profile-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'freight-wagon-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/freight-wagon-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'home-power-plug-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/home-power-plug-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'k-r-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/k-r-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/driverless-bus-profile-medium.svg',
+    ],
+    ['kom', 'freight-wagon-medium', 'https://icons.app.sbb.ch/kom/freight-wagon-medium.svg'],
+    ['kom', 'home-power-plug-medium', 'https://icons.app.sbb.ch/kom/home-power-plug-medium.svg'],
+    ['kom', 'k-r-medium', 'https://icons.app.sbb.ch/kom/k-r-medium.svg'],
+    [
       'kom',
       'microscooter-profile-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/microscooter-profile-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/microscooter-profile-medium.svg',
+    ],
+    [
       'kom',
       'microscooter-profile-power-plug-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/microscooter-profile-power-plug-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'moving-bus-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/moving-bus-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'park-and-rail-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/park-and-rail-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'petrol-station-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/petrol-station-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'scooter-profile-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/scooter-profile-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/microscooter-profile-power-plug-medium.svg',
+    ],
+    ['kom', 'moving-bus-medium', 'https://icons.app.sbb.ch/kom/moving-bus-medium.svg'],
+    ['kom', 'park-and-rail-medium', 'https://icons.app.sbb.ch/kom/park-and-rail-medium.svg'],
+    ['kom', 'petrol-station-medium', 'https://icons.app.sbb.ch/kom/petrol-station-medium.svg'],
+    ['kom', 'scooter-profile-medium', 'https://icons.app.sbb.ch/kom/scooter-profile-medium.svg'],
+    [
       'kom',
       'scooter-profile-power-plug-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/scooter-profile-power-plug-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shuttle-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shuttle-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sign-parking-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sign-parking-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'taxi-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/taxi-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'taxi-profile-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/taxi-profile-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-profile-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-profile-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tram-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tram-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walk-large-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walk-large-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'mountain-sun-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/mountain-sun-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'skis-ski-poles-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/skis-ski-poles-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/scooter-profile-power-plug-medium.svg',
+    ],
+    ['kom', 'shuttle-medium', 'https://icons.app.sbb.ch/kom/shuttle-medium.svg'],
+    ['kom', 'sign-parking-medium', 'https://icons.app.sbb.ch/kom/sign-parking-medium.svg'],
+    ['kom', 'taxi-medium', 'https://icons.app.sbb.ch/kom/taxi-medium.svg'],
+    ['kom', 'taxi-profile-medium', 'https://icons.app.sbb.ch/kom/taxi-profile-medium.svg'],
+    ['kom', 'train-medium', 'https://icons.app.sbb.ch/kom/train-medium.svg'],
+    ['kom', 'train-profile-medium', 'https://icons.app.sbb.ch/kom/train-profile-medium.svg'],
+    ['kom', 'tram-medium', 'https://icons.app.sbb.ch/kom/tram-medium.svg'],
+    ['kom', 'walk-large-medium', 'https://icons.app.sbb.ch/kom/walk-large-medium.svg'],
+    ['kom', 'mountain-sun-medium', 'https://icons.app.sbb.ch/kom/mountain-sun-medium.svg'],
+    ['kom', 'skis-ski-poles-medium', 'https://icons.app.sbb.ch/kom/skis-ski-poles-medium.svg'],
+    [
       'kom',
       'sunshade-sun-sand-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sunshade-sun-sand-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'construction-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/construction-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'railway-switch-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/railway-switch-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-signal-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-signal-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-tracks-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-tracks-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'city-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/city-medium.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/sunshade-sun-sand-medium.svg',
+    ],
+    ['kom', 'construction-medium', 'https://icons.app.sbb.ch/kom/construction-medium.svg'],
+    ['kom', 'railway-switch-medium', 'https://icons.app.sbb.ch/kom/railway-switch-medium.svg'],
+    ['kom', 'train-signal-medium', 'https://icons.app.sbb.ch/kom/train-signal-medium.svg'],
+    ['kom', 'train-tracks-medium', 'https://icons.app.sbb.ch/kom/train-tracks-medium.svg'],
+    ['kom', 'city-medium', 'https://icons.app.sbb.ch/kom/city-medium.svg'],
+    [
       'kom',
       'ship-steering-wheel-medium',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ship-steering-wheel-medium.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'alarm-clock-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/alarm-clock-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'app-icon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/app-icon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'apple-bag-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/apple-bag-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'backpack-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/backpack-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/ship-steering-wheel-medium.svg',
+    ],
+    ['kom', 'alarm-clock-small', 'https://icons.app.sbb.ch/kom/alarm-clock-small.svg'],
+    ['kom', 'app-icon-small', 'https://icons.app.sbb.ch/kom/app-icon-small.svg'],
+    ['kom', 'apple-bag-small', 'https://icons.app.sbb.ch/kom/apple-bag-small.svg'],
+    ['kom', 'backpack-small', 'https://icons.app.sbb.ch/kom/backpack-small.svg'],
+    [
       'kom',
       'battery-level-empty-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/battery-level-empty-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/battery-level-empty-small.svg',
+    ],
+    [
       'kom',
       'battery-level-high-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/battery-level-high-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'battery-level-low-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/battery-level-low-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/battery-level-high-small.svg',
+    ],
+    ['kom', 'battery-level-low-small', 'https://icons.app.sbb.ch/kom/battery-level-low-small.svg'],
+    [
       'kom',
       'battery-level-medium-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/battery-level-medium-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bell-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bell-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'binoculars-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/binoculars-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'browser-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/browser-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bucket-foam-broom-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bucket-foam-broom-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'calendar-one-day-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/calendar-one-day-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'calendar-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/calendar-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'camera-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/camera-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/battery-level-medium-small.svg',
+    ],
+    ['kom', 'bell-small', 'https://icons.app.sbb.ch/kom/bell-small.svg'],
+    ['kom', 'binoculars-small', 'https://icons.app.sbb.ch/kom/binoculars-small.svg'],
+    ['kom', 'browser-small', 'https://icons.app.sbb.ch/kom/browser-small.svg'],
+    ['kom', 'bucket-foam-broom-small', 'https://icons.app.sbb.ch/kom/bucket-foam-broom-small.svg'],
+    ['kom', 'calendar-one-day-small', 'https://icons.app.sbb.ch/kom/calendar-one-day-small.svg'],
+    ['kom', 'calendar-small', 'https://icons.app.sbb.ch/kom/calendar-small.svg'],
+    ['kom', 'camera-small', 'https://icons.app.sbb.ch/kom/camera-small.svg'],
+    [
       'kom',
       'certificate-ribbon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/certificate-ribbon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chart-column-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chart-column-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/certificate-ribbon-small.svg',
+    ],
+    ['kom', 'chart-column-small', 'https://icons.app.sbb.ch/kom/chart-column-small.svg'],
+    [
       'kom',
       'chart-column-trend-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chart-column-trend-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chart-line-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chart-line-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chart-pie-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chart-pie-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chart-column-trend-small.svg',
+    ],
+    ['kom', 'chart-line-small', 'https://icons.app.sbb.ch/kom/chart-line-small.svg'],
+    ['kom', 'chart-pie-small', 'https://icons.app.sbb.ch/kom/chart-pie-small.svg'],
+    [
       'kom',
       'circle-information-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-information-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-information-small.svg',
+    ],
+    [
       'kom',
       'circle-information-small-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-information-small-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-play-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-play-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-information-small-small.svg',
+    ],
+    ['kom', 'circle-play-small', 'https://icons.app.sbb.ch/kom/circle-play-small.svg'],
+    [
       'kom',
       'circle-question-mark-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-question-mark-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'coins-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/coins-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'contact-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/contact-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'controls-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/controls-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cup-hot-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cup-hot-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cutlery-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cutlery-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'database-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/database-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'dog-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/dog-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-question-mark-small.svg',
+    ],
+    ['kom', 'coins-small', 'https://icons.app.sbb.ch/kom/coins-small.svg'],
+    ['kom', 'contact-small', 'https://icons.app.sbb.ch/kom/contact-small.svg'],
+    ['kom', 'controls-small', 'https://icons.app.sbb.ch/kom/controls-small.svg'],
+    ['kom', 'cup-hot-small', 'https://icons.app.sbb.ch/kom/cup-hot-small.svg'],
+    ['kom', 'cutlery-small', 'https://icons.app.sbb.ch/kom/cutlery-small.svg'],
+    ['kom', 'database-small', 'https://icons.app.sbb.ch/kom/database-small.svg'],
+    ['kom', 'dog-small', 'https://icons.app.sbb.ch/kom/dog-small.svg'],
+    [
       'kom',
       'download-large-data-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/download-large-data-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'download-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/download-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/download-large-data-small.svg',
+    ],
+    ['kom', 'download-small', 'https://icons.app.sbb.ch/kom/download-small.svg'],
+    [
       'kom',
       'download-small-data-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/download-small-data-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'entrance-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/entrance-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'envelope-open-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/envelope-open-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'envelope-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/envelope-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'exit-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/exit-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-king-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-king-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-worker-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-worker-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'factory-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/factory-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'filter-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/filter-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'filter-x-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/filter-x-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'flashlight-on-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/flashlight-on-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'form-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/form-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'fullscreen-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/fullscreen-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'gears-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/gears-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'gift-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/gift-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'globe-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/globe-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hand-fingers-snap-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-fingers-snap-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hand-heart-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-heart-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/download-small-data-small.svg',
+    ],
+    ['kom', 'entrance-small', 'https://icons.app.sbb.ch/kom/entrance-small.svg'],
+    ['kom', 'envelope-open-small', 'https://icons.app.sbb.ch/kom/envelope-open-small.svg'],
+    ['kom', 'envelope-small', 'https://icons.app.sbb.ch/kom/envelope-small.svg'],
+    ['kom', 'exit-small', 'https://icons.app.sbb.ch/kom/exit-small.svg'],
+    ['kom', 'face-king-small', 'https://icons.app.sbb.ch/kom/face-king-small.svg'],
+    ['kom', 'face-worker-small', 'https://icons.app.sbb.ch/kom/face-worker-small.svg'],
+    ['kom', 'factory-small', 'https://icons.app.sbb.ch/kom/factory-small.svg'],
+    ['kom', 'filter-small', 'https://icons.app.sbb.ch/kom/filter-small.svg'],
+    ['kom', 'filter-x-small', 'https://icons.app.sbb.ch/kom/filter-x-small.svg'],
+    ['kom', 'flashlight-on-small', 'https://icons.app.sbb.ch/kom/flashlight-on-small.svg'],
+    ['kom', 'form-small', 'https://icons.app.sbb.ch/kom/form-small.svg'],
+    ['kom', 'fullscreen-small', 'https://icons.app.sbb.ch/kom/fullscreen-small.svg'],
+    ['kom', 'gears-small', 'https://icons.app.sbb.ch/kom/gears-small.svg'],
+    ['kom', 'gift-small', 'https://icons.app.sbb.ch/kom/gift-small.svg'],
+    ['kom', 'globe-small', 'https://icons.app.sbb.ch/kom/globe-small.svg'],
+    ['kom', 'hand-fingers-snap-small', 'https://icons.app.sbb.ch/kom/hand-fingers-snap-small.svg'],
+    ['kom', 'hand-heart-small', 'https://icons.app.sbb.ch/kom/hand-heart-small.svg'],
+    [
       'kom',
       'hand-with-service-bell-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-with-service-bell-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'heart-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/heart-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hierarchy-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hierarchy-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lighthouse-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lighthouse-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'link-external-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/link-external-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'link-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/link-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'list-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/list-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/hand-with-service-bell-small.svg',
+    ],
+    ['kom', 'heart-small', 'https://icons.app.sbb.ch/kom/heart-small.svg'],
+    ['kom', 'hierarchy-small', 'https://icons.app.sbb.ch/kom/hierarchy-small.svg'],
+    ['kom', 'lighthouse-small', 'https://icons.app.sbb.ch/kom/lighthouse-small.svg'],
+    ['kom', 'link-external-small', 'https://icons.app.sbb.ch/kom/link-external-small.svg'],
+    ['kom', 'link-small', 'https://icons.app.sbb.ch/kom/link-small.svg'],
+    ['kom', 'list-small', 'https://icons.app.sbb.ch/kom/list-small.svg'],
+    [
       'kom',
       'magnifying-glass-minus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/magnifying-glass-minus-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/magnifying-glass-minus-small.svg',
+    ],
+    [
       'kom',
       'magnifying-glass-plus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/magnifying-glass-plus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'magnifying-glass-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/magnifying-glass-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'mug-hot-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/mug-hot-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'newspaper-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/newspaper-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'paper-aeroplane-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/paper-aeroplane-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'paper-clip-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/paper-clip-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'pen-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/pen-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'picture-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/picture-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'piggy-bank-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/piggy-bank-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'pin-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/pin-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'rss-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/rss-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'service-bell-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/service-bell-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shopping-cart-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shopping-cart-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/magnifying-glass-plus-small.svg',
+    ],
+    ['kom', 'magnifying-glass-small', 'https://icons.app.sbb.ch/kom/magnifying-glass-small.svg'],
+    ['kom', 'mug-hot-small', 'https://icons.app.sbb.ch/kom/mug-hot-small.svg'],
+    ['kom', 'newspaper-small', 'https://icons.app.sbb.ch/kom/newspaper-small.svg'],
+    ['kom', 'paper-aeroplane-small', 'https://icons.app.sbb.ch/kom/paper-aeroplane-small.svg'],
+    ['kom', 'paper-clip-small', 'https://icons.app.sbb.ch/kom/paper-clip-small.svg'],
+    ['kom', 'pen-small', 'https://icons.app.sbb.ch/kom/pen-small.svg'],
+    ['kom', 'picture-small', 'https://icons.app.sbb.ch/kom/picture-small.svg'],
+    ['kom', 'piggy-bank-small', 'https://icons.app.sbb.ch/kom/piggy-bank-small.svg'],
+    ['kom', 'pin-small', 'https://icons.app.sbb.ch/kom/pin-small.svg'],
+    ['kom', 'rss-small', 'https://icons.app.sbb.ch/kom/rss-small.svg'],
+    ['kom', 'service-bell-small', 'https://icons.app.sbb.ch/kom/service-bell-small.svg'],
+    ['kom', 'shopping-cart-small', 'https://icons.app.sbb.ch/kom/shopping-cart-small.svg'],
+    [
       'kom',
       'sign-exclamation-point-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sign-exclamation-point-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sign-x-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sign-x-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'spanner-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/spanner-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'star-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/star-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'switzerland-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/switzerland-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tag-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tag-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'target-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/target-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'torch-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/torch-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'trash-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/trash-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tree-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tree-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'upload-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/upload-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wallet-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wallet-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'warning-light-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/warning-light-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wifi-disabled-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wifi-disabled-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wifi-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wifi-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-circle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-circle-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-long-left-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-long-left-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-long-right-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-long-right-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-right-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-right-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrows-circle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-circle-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/sign-exclamation-point-small.svg',
+    ],
+    ['kom', 'sign-x-small', 'https://icons.app.sbb.ch/kom/sign-x-small.svg'],
+    ['kom', 'spanner-small', 'https://icons.app.sbb.ch/kom/spanner-small.svg'],
+    ['kom', 'star-small', 'https://icons.app.sbb.ch/kom/star-small.svg'],
+    ['kom', 'switzerland-small', 'https://icons.app.sbb.ch/kom/switzerland-small.svg'],
+    ['kom', 'tag-small', 'https://icons.app.sbb.ch/kom/tag-small.svg'],
+    ['kom', 'target-small', 'https://icons.app.sbb.ch/kom/target-small.svg'],
+    ['kom', 'torch-small', 'https://icons.app.sbb.ch/kom/torch-small.svg'],
+    ['kom', 'trash-small', 'https://icons.app.sbb.ch/kom/trash-small.svg'],
+    ['kom', 'tree-small', 'https://icons.app.sbb.ch/kom/tree-small.svg'],
+    ['kom', 'upload-small', 'https://icons.app.sbb.ch/kom/upload-small.svg'],
+    ['kom', 'wallet-small', 'https://icons.app.sbb.ch/kom/wallet-small.svg'],
+    ['kom', 'warning-light-small', 'https://icons.app.sbb.ch/kom/warning-light-small.svg'],
+    ['kom', 'wifi-disabled-small', 'https://icons.app.sbb.ch/kom/wifi-disabled-small.svg'],
+    ['kom', 'wifi-small', 'https://icons.app.sbb.ch/kom/wifi-small.svg'],
+    ['kom', 'arrow-circle-small', 'https://icons.app.sbb.ch/kom/arrow-circle-small.svg'],
+    ['kom', 'arrow-long-left-small', 'https://icons.app.sbb.ch/kom/arrow-long-left-small.svg'],
+    ['kom', 'arrow-long-right-small', 'https://icons.app.sbb.ch/kom/arrow-long-right-small.svg'],
+    ['kom', 'arrow-right-small', 'https://icons.app.sbb.ch/kom/arrow-right-small.svg'],
+    ['kom', 'arrows-circle-small', 'https://icons.app.sbb.ch/kom/arrows-circle-small.svg'],
+    [
       'kom',
       'arrows-left-right-down-up-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-left-right-down-up-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrows-left-right-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-left-right-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrows-right-left-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-right-left-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrows-up-down-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrows-up-down-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chevron-left-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-left-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chevron-right-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-right-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/arrows-left-right-down-up-small.svg',
+    ],
+    ['kom', 'arrows-left-right-small', 'https://icons.app.sbb.ch/kom/arrows-left-right-small.svg'],
+    ['kom', 'arrows-right-left-small', 'https://icons.app.sbb.ch/kom/arrows-right-left-small.svg'],
+    ['kom', 'arrows-up-down-small', 'https://icons.app.sbb.ch/kom/arrows-up-down-small.svg'],
+    ['kom', 'chevron-left-small', 'https://icons.app.sbb.ch/kom/chevron-left-small.svg'],
+    ['kom', 'chevron-right-small', 'https://icons.app.sbb.ch/kom/chevron-right-small.svg'],
+    [
       'kom',
       'chevron-small-down-circle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-down-circle-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-down-circle-small.svg',
+    ],
+    [
       'kom',
       'chevron-small-down-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-down-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-down-small.svg',
+    ],
+    [
       'kom',
       'chevron-small-left-circle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-left-circle-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-left-circle-small.svg',
+    ],
+    [
       'kom',
       'chevron-small-left-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-left-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-left-small.svg',
+    ],
+    [
       'kom',
       'chevron-small-right-circle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-right-circle-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-right-circle-small.svg',
+    ],
+    [
       'kom',
       'chevron-small-right-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-right-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-right-small.svg',
+    ],
+    [
       'kom',
       'chevron-small-up-circle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-up-circle-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'chevron-small-up-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/chevron-small-up-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'increase-size-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/increase-size-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'reduce-size-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/reduce-size-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'button-power-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/button-power-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-cross-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-cross-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-tick-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-tick-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'clipboard-cross-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/clipboard-cross-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/chevron-small-up-circle-small.svg',
+    ],
+    ['kom', 'chevron-small-up-small', 'https://icons.app.sbb.ch/kom/chevron-small-up-small.svg'],
+    ['kom', 'increase-size-small', 'https://icons.app.sbb.ch/kom/increase-size-small.svg'],
+    ['kom', 'reduce-size-small', 'https://icons.app.sbb.ch/kom/reduce-size-small.svg'],
+    ['kom', 'button-power-small', 'https://icons.app.sbb.ch/kom/button-power-small.svg'],
+    ['kom', 'circle-cross-small', 'https://icons.app.sbb.ch/kom/circle-cross-small.svg'],
+    ['kom', 'circle-tick-small', 'https://icons.app.sbb.ch/kom/circle-tick-small.svg'],
+    ['kom', 'clipboard-cross-small', 'https://icons.app.sbb.ch/kom/clipboard-cross-small.svg'],
+    [
       'kom',
       'clipboard-question-mark-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/clipboard-question-mark-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'clipboard-tick-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/clipboard-tick-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'exclamation-point-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/exclamation-point-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'eye-disabled-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/eye-disabled-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'eye-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/eye-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lock-closed-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lock-closed-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lock-open-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lock-open-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'question-mark-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/question-mark-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tick-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tick-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-minus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-minus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'circle-plus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-plus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'context-menu-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/context-menu-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cross-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cross-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'drag-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/drag-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hamburger-menu-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hamburger-menu-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'house-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/house-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'layers-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/layers-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'minus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/minus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'nine-squares-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/nine-squares-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'plus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/plus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'two-finger-tap-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-finger-tap-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bulb-off-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bulb-off-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bulb-on-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bulb-on-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-grinning-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-grinning-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-neutral-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-neutral-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-sad-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-sad-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'face-smiling-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/face-smiling-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'handshake-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/handshake-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'network-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/network-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'onboarding-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/onboarding-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'question-answer-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/question-answer-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'share-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/share-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/clipboard-question-mark-small.svg',
+    ],
+    ['kom', 'clipboard-tick-small', 'https://icons.app.sbb.ch/kom/clipboard-tick-small.svg'],
+    ['kom', 'exclamation-point-small', 'https://icons.app.sbb.ch/kom/exclamation-point-small.svg'],
+    ['kom', 'eye-disabled-small', 'https://icons.app.sbb.ch/kom/eye-disabled-small.svg'],
+    ['kom', 'eye-small', 'https://icons.app.sbb.ch/kom/eye-small.svg'],
+    ['kom', 'lock-closed-small', 'https://icons.app.sbb.ch/kom/lock-closed-small.svg'],
+    ['kom', 'lock-open-small', 'https://icons.app.sbb.ch/kom/lock-open-small.svg'],
+    ['kom', 'question-mark-small', 'https://icons.app.sbb.ch/kom/question-mark-small.svg'],
+    ['kom', 'tick-small', 'https://icons.app.sbb.ch/kom/tick-small.svg'],
+    ['kom', 'circle-minus-small', 'https://icons.app.sbb.ch/kom/circle-minus-small.svg'],
+    ['kom', 'circle-plus-small', 'https://icons.app.sbb.ch/kom/circle-plus-small.svg'],
+    ['kom', 'context-menu-small', 'https://icons.app.sbb.ch/kom/context-menu-small.svg'],
+    ['kom', 'cross-small', 'https://icons.app.sbb.ch/kom/cross-small.svg'],
+    ['kom', 'drag-small', 'https://icons.app.sbb.ch/kom/drag-small.svg'],
+    ['kom', 'hamburger-menu-small', 'https://icons.app.sbb.ch/kom/hamburger-menu-small.svg'],
+    ['kom', 'house-small', 'https://icons.app.sbb.ch/kom/house-small.svg'],
+    ['kom', 'layers-small', 'https://icons.app.sbb.ch/kom/layers-small.svg'],
+    ['kom', 'minus-small', 'https://icons.app.sbb.ch/kom/minus-small.svg'],
+    ['kom', 'nine-squares-small', 'https://icons.app.sbb.ch/kom/nine-squares-small.svg'],
+    ['kom', 'plus-small', 'https://icons.app.sbb.ch/kom/plus-small.svg'],
+    ['kom', 'two-finger-tap-small', 'https://icons.app.sbb.ch/kom/two-finger-tap-small.svg'],
+    ['kom', 'bulb-off-small', 'https://icons.app.sbb.ch/kom/bulb-off-small.svg'],
+    ['kom', 'bulb-on-small', 'https://icons.app.sbb.ch/kom/bulb-on-small.svg'],
+    ['kom', 'face-grinning-small', 'https://icons.app.sbb.ch/kom/face-grinning-small.svg'],
+    ['kom', 'face-neutral-small', 'https://icons.app.sbb.ch/kom/face-neutral-small.svg'],
+    ['kom', 'face-sad-small', 'https://icons.app.sbb.ch/kom/face-sad-small.svg'],
+    ['kom', 'face-smiling-small', 'https://icons.app.sbb.ch/kom/face-smiling-small.svg'],
+    ['kom', 'handshake-small', 'https://icons.app.sbb.ch/kom/handshake-small.svg'],
+    ['kom', 'network-small', 'https://icons.app.sbb.ch/kom/network-small.svg'],
+    ['kom', 'onboarding-small', 'https://icons.app.sbb.ch/kom/onboarding-small.svg'],
+    ['kom', 'question-answer-small', 'https://icons.app.sbb.ch/kom/question-answer-small.svg'],
+    ['kom', 'share-small', 'https://icons.app.sbb.ch/kom/share-small.svg'],
+    [
       'kom',
       'speech-bubble-group-empty-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/speech-bubble-group-empty-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'speech-bubble-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/speech-bubble-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'thumb-down-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/thumb-down-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'thumb-up-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/thumb-up-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'translate-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/translate-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/speech-bubble-group-empty-small.svg',
+    ],
+    ['kom', 'speech-bubble-small', 'https://icons.app.sbb.ch/kom/speech-bubble-small.svg'],
+    ['kom', 'thumb-down-small', 'https://icons.app.sbb.ch/kom/thumb-down-small.svg'],
+    ['kom', 'thumb-up-small', 'https://icons.app.sbb.ch/kom/thumb-up-small.svg'],
+    ['kom', 'translate-small', 'https://icons.app.sbb.ch/kom/translate-small.svg'],
+    [
       'kom',
       'two-speech-bubbles-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-speech-bubbles-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'avatar-police-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/avatar-police-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/two-speech-bubbles-small.svg',
+    ],
+    ['kom', 'avatar-police-small', 'https://icons.app.sbb.ch/kom/avatar-police-small.svg'],
+    [
       'kom',
       'circle-triangle-square-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/circle-triangle-square-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'key-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/key-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'pie-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/pie-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'two-users-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-users-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-change-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-change-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/circle-triangle-square-small.svg',
+    ],
+    ['kom', 'key-small', 'https://icons.app.sbb.ch/kom/key-small.svg'],
+    ['kom', 'pie-small', 'https://icons.app.sbb.ch/kom/pie-small.svg'],
+    ['kom', 'two-users-small', 'https://icons.app.sbb.ch/kom/two-users-small.svg'],
+    ['kom', 'user-change-small', 'https://icons.app.sbb.ch/kom/user-change-small.svg'],
+    [
       'kom',
       'user-group-round-table-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-group-round-table-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-group-row-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-group-row-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-group-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-group-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-hat-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-hat-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-headset-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-headset-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-key-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-key-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-plus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-plus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'user-tie-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/user-tie-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-check-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-check-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-image-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-image-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-lock-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-lock-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-pdf-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-pdf-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-plus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-plus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-ppt-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-ppt-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-sbb-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-sbb-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/user-group-round-table-small.svg',
+    ],
+    ['kom', 'user-group-row-small', 'https://icons.app.sbb.ch/kom/user-group-row-small.svg'],
+    ['kom', 'user-group-small', 'https://icons.app.sbb.ch/kom/user-group-small.svg'],
+    ['kom', 'user-hat-small', 'https://icons.app.sbb.ch/kom/user-hat-small.svg'],
+    ['kom', 'user-headset-small', 'https://icons.app.sbb.ch/kom/user-headset-small.svg'],
+    ['kom', 'user-key-small', 'https://icons.app.sbb.ch/kom/user-key-small.svg'],
+    ['kom', 'user-plus-small', 'https://icons.app.sbb.ch/kom/user-plus-small.svg'],
+    ['kom', 'user-small', 'https://icons.app.sbb.ch/kom/user-small.svg'],
+    ['kom', 'user-tie-small', 'https://icons.app.sbb.ch/kom/user-tie-small.svg'],
+    ['kom', 'document-check-small', 'https://icons.app.sbb.ch/kom/document-check-small.svg'],
+    ['kom', 'document-image-small', 'https://icons.app.sbb.ch/kom/document-image-small.svg'],
+    ['kom', 'document-lock-small', 'https://icons.app.sbb.ch/kom/document-lock-small.svg'],
+    ['kom', 'document-pdf-small', 'https://icons.app.sbb.ch/kom/document-pdf-small.svg'],
+    ['kom', 'document-plus-small', 'https://icons.app.sbb.ch/kom/document-plus-small.svg'],
+    ['kom', 'document-ppt-small', 'https://icons.app.sbb.ch/kom/document-ppt-small.svg'],
+    ['kom', 'document-sbb-small', 'https://icons.app.sbb.ch/kom/document-sbb-small.svg'],
+    [
       'kom',
       'document-signature-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-signature-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-sound-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-sound-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-standard-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-standard-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-text-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-text-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-video-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-video-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-xls-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-xls-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'document-zip-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/document-zip-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'folder-info-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-info-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'folder-lock-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-lock-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'folder-open-arrow-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-open-arrow-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'folder-open-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-open-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'folder-plus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/folder-plus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'metadata-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/metadata-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'two-folders-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/two-folders-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-change-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-change-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/document-signature-small.svg',
+    ],
+    ['kom', 'document-sound-small', 'https://icons.app.sbb.ch/kom/document-sound-small.svg'],
+    ['kom', 'document-standard-small', 'https://icons.app.sbb.ch/kom/document-standard-small.svg'],
+    ['kom', 'document-text-small', 'https://icons.app.sbb.ch/kom/document-text-small.svg'],
+    ['kom', 'document-video-small', 'https://icons.app.sbb.ch/kom/document-video-small.svg'],
+    ['kom', 'document-xls-small', 'https://icons.app.sbb.ch/kom/document-xls-small.svg'],
+    ['kom', 'document-zip-small', 'https://icons.app.sbb.ch/kom/document-zip-small.svg'],
+    ['kom', 'folder-info-small', 'https://icons.app.sbb.ch/kom/folder-info-small.svg'],
+    ['kom', 'folder-lock-small', 'https://icons.app.sbb.ch/kom/folder-lock-small.svg'],
+    ['kom', 'folder-open-arrow-small', 'https://icons.app.sbb.ch/kom/folder-open-arrow-small.svg'],
+    ['kom', 'folder-open-small', 'https://icons.app.sbb.ch/kom/folder-open-small.svg'],
+    ['kom', 'folder-plus-small', 'https://icons.app.sbb.ch/kom/folder-plus-small.svg'],
+    ['kom', 'metadata-small', 'https://icons.app.sbb.ch/kom/metadata-small.svg'],
+    ['kom', 'two-folders-small', 'https://icons.app.sbb.ch/kom/two-folders-small.svg'],
+    ['kom', 'arrow-change-small', 'https://icons.app.sbb.ch/kom/arrow-change-small.svg'],
+    [
       'kom',
       'avatar-train-staff-disabled-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/avatar-train-staff-disabled-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/avatar-train-staff-disabled-small.svg',
+    ],
+    [
       'kom',
       'avatar-train-staff-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/avatar-train-staff-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'clock-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/clock-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hourglass-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hourglass-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'locomotive-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/locomotive-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'percent-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/percent-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'percent-tag-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/percent-tag-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'punctuality-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/punctuality-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'route-circle-end-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/route-circle-end-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/avatar-train-staff-small.svg',
+    ],
+    ['kom', 'clock-small', 'https://icons.app.sbb.ch/kom/clock-small.svg'],
+    ['kom', 'hourglass-small', 'https://icons.app.sbb.ch/kom/hourglass-small.svg'],
+    ['kom', 'locomotive-small', 'https://icons.app.sbb.ch/kom/locomotive-small.svg'],
+    ['kom', 'percent-small', 'https://icons.app.sbb.ch/kom/percent-small.svg'],
+    ['kom', 'percent-tag-small', 'https://icons.app.sbb.ch/kom/percent-tag-small.svg'],
+    ['kom', 'punctuality-small', 'https://icons.app.sbb.ch/kom/punctuality-small.svg'],
+    ['kom', 'route-circle-end-small', 'https://icons.app.sbb.ch/kom/route-circle-end-small.svg'],
+    [
       'kom',
       'route-circle-start-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/route-circle-start-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'seat-window-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/seat-window-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'switzerland-route-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/switzerland-route-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'timetable-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/timetable-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walk-fast-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walk-fast-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walk-slow-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walk-slow-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walk-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walk-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/route-circle-start-small.svg',
+    ],
+    ['kom', 'seat-window-small', 'https://icons.app.sbb.ch/kom/seat-window-small.svg'],
+    ['kom', 'switzerland-route-small', 'https://icons.app.sbb.ch/kom/switzerland-route-small.svg'],
+    ['kom', 'timetable-small', 'https://icons.app.sbb.ch/kom/timetable-small.svg'],
+    ['kom', 'walk-fast-small', 'https://icons.app.sbb.ch/kom/walk-fast-small.svg'],
+    ['kom', 'walk-slow-small', 'https://icons.app.sbb.ch/kom/walk-slow-small.svg'],
+    ['kom', 'walk-small', 'https://icons.app.sbb.ch/kom/walk-small.svg'],
+    [
       'kom',
       'wheelchair-inaccessible-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-inaccessible-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/wheelchair-inaccessible-small.svg',
+    ],
+    [
       'kom',
       'wheelchair-partially-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-partially-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/wheelchair-partially-small.svg',
+    ],
+    [
       'kom',
       'wheelchair-reservation-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-reservation-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wheelchair-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/wheelchair-reservation-small.svg',
+    ],
+    ['kom', 'wheelchair-small', 'https://icons.app.sbb.ch/kom/wheelchair-small.svg'],
+    [
       'kom',
       'wheelchair-uncertain-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wheelchair-uncertain-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'half-fare-card-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/half-fare-card-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'qrcode-disabled-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/qrcode-disabled-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'qrcode-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/qrcode-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'swisspass-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/swisspass-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/wheelchair-uncertain-small.svg',
+    ],
+    ['kom', 'half-fare-card-small', 'https://icons.app.sbb.ch/kom/half-fare-card-small.svg'],
+    ['kom', 'qrcode-disabled-small', 'https://icons.app.sbb.ch/kom/qrcode-disabled-small.svg'],
+    ['kom', 'qrcode-small', 'https://icons.app.sbb.ch/kom/qrcode-small.svg'],
+    ['kom', 'swisspass-small', 'https://icons.app.sbb.ch/kom/swisspass-small.svg'],
+    [
       'kom',
       'swisspass-temporary-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/swisspass-temporary-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-day-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-day-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-disabled-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-disabled-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-heart-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-heart-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-journey-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-journey-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-moon-star-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-moon-star-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-parking-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-parking-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-percent-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-percent-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-route-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-route-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-star-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-star-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tickets-class-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tickets-class-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'book-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/book-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bottle-apple-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bottle-apple-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/swisspass-temporary-small.svg',
+    ],
+    ['kom', 'ticket-day-small', 'https://icons.app.sbb.ch/kom/ticket-day-small.svg'],
+    ['kom', 'ticket-disabled-small', 'https://icons.app.sbb.ch/kom/ticket-disabled-small.svg'],
+    ['kom', 'ticket-heart-small', 'https://icons.app.sbb.ch/kom/ticket-heart-small.svg'],
+    ['kom', 'ticket-journey-small', 'https://icons.app.sbb.ch/kom/ticket-journey-small.svg'],
+    ['kom', 'ticket-moon-star-small', 'https://icons.app.sbb.ch/kom/ticket-moon-star-small.svg'],
+    ['kom', 'ticket-parking-small', 'https://icons.app.sbb.ch/kom/ticket-parking-small.svg'],
+    ['kom', 'ticket-percent-small', 'https://icons.app.sbb.ch/kom/ticket-percent-small.svg'],
+    ['kom', 'ticket-route-small', 'https://icons.app.sbb.ch/kom/ticket-route-small.svg'],
+    ['kom', 'ticket-star-small', 'https://icons.app.sbb.ch/kom/ticket-star-small.svg'],
+    ['kom', 'tickets-class-small', 'https://icons.app.sbb.ch/kom/tickets-class-small.svg'],
+    ['kom', 'book-small', 'https://icons.app.sbb.ch/kom/book-small.svg'],
+    ['kom', 'bottle-apple-small', 'https://icons.app.sbb.ch/kom/bottle-apple-small.svg'],
+    [
       'kom',
       'customer-assistance-sbb-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/customer-assistance-sbb-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'escalator-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/escalator-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'general-display-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/general-display-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hand-plus-circle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-plus-circle-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hand-sbb-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hand-sbb-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'hostel-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/hostel-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lift-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lift-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'locker-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/locker-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'lotus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/lotus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'meeting-point-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/meeting-point-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'money-exchange-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/money-exchange-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'platform-display-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/platform-display-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/customer-assistance-sbb-small.svg',
+    ],
+    ['kom', 'escalator-small', 'https://icons.app.sbb.ch/kom/escalator-small.svg'],
+    ['kom', 'general-display-small', 'https://icons.app.sbb.ch/kom/general-display-small.svg'],
+    ['kom', 'hand-plus-circle-small', 'https://icons.app.sbb.ch/kom/hand-plus-circle-small.svg'],
+    ['kom', 'hand-sbb-small', 'https://icons.app.sbb.ch/kom/hand-sbb-small.svg'],
+    ['kom', 'hostel-small', 'https://icons.app.sbb.ch/kom/hostel-small.svg'],
+    ['kom', 'lift-small', 'https://icons.app.sbb.ch/kom/lift-small.svg'],
+    ['kom', 'locker-small', 'https://icons.app.sbb.ch/kom/locker-small.svg'],
+    ['kom', 'lotus-small', 'https://icons.app.sbb.ch/kom/lotus-small.svg'],
+    ['kom', 'meeting-point-small', 'https://icons.app.sbb.ch/kom/meeting-point-small.svg'],
+    ['kom', 'money-exchange-small', 'https://icons.app.sbb.ch/kom/money-exchange-small.svg'],
+    ['kom', 'platform-display-small', 'https://icons.app.sbb.ch/kom/platform-display-small.svg'],
+    [
       'kom',
       'screen-inside-train-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/screen-inside-train-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shirt-shoe-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shirt-shoe-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/screen-inside-train-small.svg',
+    ],
+    ['kom', 'shirt-shoe-small', 'https://icons.app.sbb.ch/kom/shirt-shoe-small.svg'],
+    [
       'kom',
       'shopping-bag-coupon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shopping-bag-coupon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shopping-bag-fast-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shopping-bag-fast-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shopping-bag-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shopping-bag-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'station-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/station-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/shopping-bag-coupon-small.svg',
+    ],
+    ['kom', 'shopping-bag-fast-small', 'https://icons.app.sbb.ch/kom/shopping-bag-fast-small.svg'],
+    ['kom', 'shopping-bag-small', 'https://icons.app.sbb.ch/kom/shopping-bag-small.svg'],
+    ['kom', 'station-small', 'https://icons.app.sbb.ch/kom/station-small.svg'],
+    [
       'kom',
       'station-surrounding-area-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/station-surrounding-area-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'ticket-machine-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-machine-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/station-surrounding-area-small.svg',
+    ],
+    ['kom', 'ticket-machine-small', 'https://icons.app.sbb.ch/kom/ticket-machine-small.svg'],
+    [
       'kom',
       'ticket-machine-ticket-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ticket-machine-ticket-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'toilet-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/toilet-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-station-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-station-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'waiting-room-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/waiting-room-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'wine-cheese-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/wine-cheese-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'arrow-compass-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/arrow-compass-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'gps-disabled-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/gps-disabled-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'gps-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/gps-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'location-pin-a-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-a-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'location-pin-b-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-b-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'location-pin-map-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-map-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/ticket-machine-ticket-small.svg',
+    ],
+    ['kom', 'toilet-small', 'https://icons.app.sbb.ch/kom/toilet-small.svg'],
+    ['kom', 'train-station-small', 'https://icons.app.sbb.ch/kom/train-station-small.svg'],
+    ['kom', 'waiting-room-small', 'https://icons.app.sbb.ch/kom/waiting-room-small.svg'],
+    ['kom', 'wine-cheese-small', 'https://icons.app.sbb.ch/kom/wine-cheese-small.svg'],
+    ['kom', 'arrow-compass-small', 'https://icons.app.sbb.ch/kom/arrow-compass-small.svg'],
+    ['kom', 'gps-disabled-small', 'https://icons.app.sbb.ch/kom/gps-disabled-small.svg'],
+    ['kom', 'gps-small', 'https://icons.app.sbb.ch/kom/gps-small.svg'],
+    ['kom', 'location-pin-a-small', 'https://icons.app.sbb.ch/kom/location-pin-a-small.svg'],
+    ['kom', 'location-pin-b-small', 'https://icons.app.sbb.ch/kom/location-pin-b-small.svg'],
+    ['kom', 'location-pin-map-small', 'https://icons.app.sbb.ch/kom/location-pin-map-small.svg'],
+    [
       'kom',
       'location-pin-pulse-surrounding-area-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-pulse-surrounding-area-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'location-pin-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/location-pin-pulse-surrounding-area-small.svg',
+    ],
+    ['kom', 'location-pin-small', 'https://icons.app.sbb.ch/kom/location-pin-small.svg'],
+    [
       'kom',
       'location-pin-surrounding-area-power-plug-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-surrounding-area-power-plug-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/location-pin-surrounding-area-power-plug-small.svg',
+    ],
+    [
       'kom',
       'location-pin-surrounding-area-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/location-pin-surrounding-area-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'mountain-minus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/mountain-minus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'mountain-plus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/mountain-plus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'archive-box-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/archive-box-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'briefcase-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/briefcase-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'brochure-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/brochure-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cash-register-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cash-register-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'desk-adjustable-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/desk-adjustable-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'desk-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/desk-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'display-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/display-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'highlighter-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/highlighter-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'keyboard-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/keyboard-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'laptop-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/laptop-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'laptop-smartphone-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/laptop-smartphone-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'megaphone-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/megaphone-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'microphone-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/microphone-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'office-chair-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/office-chair-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'power-plug-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/power-plug-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'printer-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/printer-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'scanner-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/scanner-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'smartphone-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/smartphone-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'speaker-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/speaker-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'suitcase-disabled-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/suitcase-disabled-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'suitcase-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/suitcase-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'telephone-gsm-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/telephone-gsm-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/location-pin-surrounding-area-small.svg',
+    ],
+    ['kom', 'mountain-minus-small', 'https://icons.app.sbb.ch/kom/mountain-minus-small.svg'],
+    ['kom', 'mountain-plus-small', 'https://icons.app.sbb.ch/kom/mountain-plus-small.svg'],
+    ['kom', 'archive-box-small', 'https://icons.app.sbb.ch/kom/archive-box-small.svg'],
+    ['kom', 'briefcase-small', 'https://icons.app.sbb.ch/kom/briefcase-small.svg'],
+    ['kom', 'brochure-small', 'https://icons.app.sbb.ch/kom/brochure-small.svg'],
+    ['kom', 'cash-register-small', 'https://icons.app.sbb.ch/kom/cash-register-small.svg'],
+    ['kom', 'desk-adjustable-small', 'https://icons.app.sbb.ch/kom/desk-adjustable-small.svg'],
+    ['kom', 'desk-small', 'https://icons.app.sbb.ch/kom/desk-small.svg'],
+    ['kom', 'display-small', 'https://icons.app.sbb.ch/kom/display-small.svg'],
+    ['kom', 'highlighter-small', 'https://icons.app.sbb.ch/kom/highlighter-small.svg'],
+    ['kom', 'keyboard-small', 'https://icons.app.sbb.ch/kom/keyboard-small.svg'],
+    ['kom', 'laptop-small', 'https://icons.app.sbb.ch/kom/laptop-small.svg'],
+    ['kom', 'laptop-smartphone-small', 'https://icons.app.sbb.ch/kom/laptop-smartphone-small.svg'],
+    ['kom', 'megaphone-small', 'https://icons.app.sbb.ch/kom/megaphone-small.svg'],
+    ['kom', 'microphone-small', 'https://icons.app.sbb.ch/kom/microphone-small.svg'],
+    ['kom', 'office-chair-small', 'https://icons.app.sbb.ch/kom/office-chair-small.svg'],
+    ['kom', 'power-plug-small', 'https://icons.app.sbb.ch/kom/power-plug-small.svg'],
+    ['kom', 'printer-small', 'https://icons.app.sbb.ch/kom/printer-small.svg'],
+    ['kom', 'scanner-small', 'https://icons.app.sbb.ch/kom/scanner-small.svg'],
+    ['kom', 'smartphone-small', 'https://icons.app.sbb.ch/kom/smartphone-small.svg'],
+    ['kom', 'speaker-small', 'https://icons.app.sbb.ch/kom/speaker-small.svg'],
+    ['kom', 'suitcase-disabled-small', 'https://icons.app.sbb.ch/kom/suitcase-disabled-small.svg'],
+    ['kom', 'suitcase-small', 'https://icons.app.sbb.ch/kom/suitcase-small.svg'],
+    ['kom', 'telephone-gsm-small', 'https://icons.app.sbb.ch/kom/telephone-gsm-small.svg'],
+    [
       'kom',
       'telephone-receiver-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/telephone-receiver-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walkie-talkie-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walkie-talkie-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'weight-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/weight-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-dense-fog-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-dense-fog-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-drops-moon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-drops-moon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-drops-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-drops-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-fog-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-fog-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-ice-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-ice-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/telephone-receiver-small.svg',
+    ],
+    ['kom', 'walkie-talkie-small', 'https://icons.app.sbb.ch/kom/walkie-talkie-small.svg'],
+    ['kom', 'weight-small', 'https://icons.app.sbb.ch/kom/weight-small.svg'],
+    ['kom', 'cloud-dense-fog-small', 'https://icons.app.sbb.ch/kom/cloud-dense-fog-small.svg'],
+    ['kom', 'cloud-drops-moon-small', 'https://icons.app.sbb.ch/kom/cloud-drops-moon-small.svg'],
+    ['kom', 'cloud-drops-small', 'https://icons.app.sbb.ch/kom/cloud-drops-small.svg'],
+    ['kom', 'cloud-fog-small', 'https://icons.app.sbb.ch/kom/cloud-fog-small.svg'],
+    ['kom', 'cloud-ice-small', 'https://icons.app.sbb.ch/kom/cloud-ice-small.svg'],
+    [
       'kom',
       'cloud-lightning-moon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-lightning-moon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-lightning-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-lightning-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-lightning-moon-small.svg',
+    ],
+    ['kom', 'cloud-lightning-small', 'https://icons.app.sbb.ch/kom/cloud-lightning-small.svg'],
+    [
       'kom',
       'cloud-little-snow-moon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-little-snow-moon-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-little-snow-moon-small.svg',
+    ],
+    [
       'kom',
       'cloud-little-snow-sun-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-little-snow-sun-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-moon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-moon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-rain-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-little-snow-sun-small.svg',
+    ],
+    ['kom', 'cloud-moon-small', 'https://icons.app.sbb.ch/kom/cloud-moon-small.svg'],
+    ['kom', 'cloud-rain-small', 'https://icons.app.sbb.ch/kom/cloud-rain-small.svg'],
+    [
       'kom',
       'cloud-rain-snow-moon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-snow-moon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-rain-snow-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-snow-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-rain-snow-moon-small.svg',
+    ],
+    ['kom', 'cloud-rain-snow-small', 'https://icons.app.sbb.ch/kom/cloud-rain-snow-small.svg'],
+    [
       'kom',
       'cloud-rain-snow-sun-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-snow-sun-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-rain-sun-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-rain-sun-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-rain-snow-sun-small.svg',
+    ],
+    ['kom', 'cloud-rain-sun-small', 'https://icons.app.sbb.ch/kom/cloud-rain-sun-small.svg'],
+    ['kom', 'cloud-small', 'https://icons.app.sbb.ch/kom/cloud-small.svg'],
+    [
       'kom',
       'cloud-snow-lightning-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snow-lightning-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-snow-moon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snow-moon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-snow-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snow-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-snow-sun-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snow-sun-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-snowflake-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snowflake-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-snow-lightning-small.svg',
+    ],
+    ['kom', 'cloud-snow-moon-small', 'https://icons.app.sbb.ch/kom/cloud-snow-moon-small.svg'],
+    ['kom', 'cloud-snow-small', 'https://icons.app.sbb.ch/kom/cloud-snow-small.svg'],
+    ['kom', 'cloud-snow-sun-small', 'https://icons.app.sbb.ch/kom/cloud-snow-sun-small.svg'],
+    ['kom', 'cloud-snowflake-small', 'https://icons.app.sbb.ch/kom/cloud-snowflake-small.svg'],
+    [
       'kom',
       'cloud-snowflake-sun-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-snowflake-sun-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-snowflake-sun-small.svg',
+    ],
+    [
       'kom',
       'cloud-strong-rain-moon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-strong-rain-moon-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-strong-rain-moon-small.svg',
+    ],
+    [
       'kom',
       'cloud-strong-rain-sun-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-strong-rain-sun-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-sun-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-sun-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'cloud-sunshine-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/cloud-sunshine-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'fog-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/fog-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'moon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/moon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sun-moon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sun-moon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sunrise-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sunrise-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sunshine-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sunshine-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'weather-unknown-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/weather-unknown-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'fast-forward-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/fast-forward-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'next-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/next-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'pause-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/pause-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'play-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/play-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'previous-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/previous-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'record-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/record-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'rewind-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/rewind-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'stop-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/stop-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'airplane-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/airplane-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/cloud-strong-rain-sun-small.svg',
+    ],
+    ['kom', 'cloud-sun-small', 'https://icons.app.sbb.ch/kom/cloud-sun-small.svg'],
+    ['kom', 'cloud-sunshine-small', 'https://icons.app.sbb.ch/kom/cloud-sunshine-small.svg'],
+    ['kom', 'fog-small', 'https://icons.app.sbb.ch/kom/fog-small.svg'],
+    ['kom', 'moon-small', 'https://icons.app.sbb.ch/kom/moon-small.svg'],
+    ['kom', 'sun-moon-small', 'https://icons.app.sbb.ch/kom/sun-moon-small.svg'],
+    ['kom', 'sunrise-small', 'https://icons.app.sbb.ch/kom/sunrise-small.svg'],
+    ['kom', 'sunshine-small', 'https://icons.app.sbb.ch/kom/sunshine-small.svg'],
+    ['kom', 'weather-unknown-small', 'https://icons.app.sbb.ch/kom/weather-unknown-small.svg'],
+    ['kom', 'fast-forward-small', 'https://icons.app.sbb.ch/kom/fast-forward-small.svg'],
+    ['kom', 'next-small', 'https://icons.app.sbb.ch/kom/next-small.svg'],
+    ['kom', 'pause-small', 'https://icons.app.sbb.ch/kom/pause-small.svg'],
+    ['kom', 'play-small', 'https://icons.app.sbb.ch/kom/play-small.svg'],
+    ['kom', 'previous-small', 'https://icons.app.sbb.ch/kom/previous-small.svg'],
+    ['kom', 'record-small', 'https://icons.app.sbb.ch/kom/record-small.svg'],
+    ['kom', 'rewind-small', 'https://icons.app.sbb.ch/kom/rewind-small.svg'],
+    ['kom', 'stop-small', 'https://icons.app.sbb.ch/kom/stop-small.svg'],
+    ['kom', 'airplane-small', 'https://icons.app.sbb.ch/kom/airplane-small.svg'],
+    [
       'kom',
       'bicycle-profile-user-group-circle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bicycle-profile-user-group-circle-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bicycle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bicycle-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bicycle-profile-user-group-circle-small.svg',
+    ],
+    ['kom', 'bicycle-small', 'https://icons.app.sbb.ch/kom/bicycle-small.svg'],
+    [
       'kom',
       'bike-profile-power-plug-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bike-profile-power-plug-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bike-profile-power-plug-small.svg',
+    ],
+    [
       'kom',
       'bike-profile-sign-parking-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bike-profile-sign-parking-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bus-sbb-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bus-sbb-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'bus-stop-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bus-stop-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bike-profile-sign-parking-small.svg',
+    ],
+    ['kom', 'bus-sbb-small', 'https://icons.app.sbb.ch/kom/bus-sbb-small.svg'],
+    ['kom', 'bus-small', 'https://icons.app.sbb.ch/kom/bus-small.svg'],
+    ['kom', 'bus-stop-small', 'https://icons.app.sbb.ch/kom/bus-stop-small.svg'],
+    [
       'kom',
       'bus-surrounding-area-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/bus-surrounding-area-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/bus-surrounding-area-small.svg',
+    ],
+    [
       'kom',
       'car-profile-power-plug-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-power-plug-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/car-profile-power-plug-small.svg',
+    ],
+    [
       'kom',
       'car-profile-sign-parking-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-sign-parking-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'car-profile-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/car-profile-sign-parking-small.svg',
+    ],
+    ['kom', 'car-profile-small', 'https://icons.app.sbb.ch/kom/car-profile-small.svg'],
+    [
       'kom',
       'car-profile-user-group-circle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-profile-user-group-circle-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'car-sign-parking-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-sign-parking-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'car-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/car-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'charging-station-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/charging-station-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'combined-mobility-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/combined-mobility-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'container-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/container-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/car-profile-user-group-circle-small.svg',
+    ],
+    ['kom', 'car-sign-parking-small', 'https://icons.app.sbb.ch/kom/car-sign-parking-small.svg'],
+    ['kom', 'car-small', 'https://icons.app.sbb.ch/kom/car-small.svg'],
+    ['kom', 'charging-station-small', 'https://icons.app.sbb.ch/kom/charging-station-small.svg'],
+    ['kom', 'combined-mobility-small', 'https://icons.app.sbb.ch/kom/combined-mobility-small.svg'],
+    ['kom', 'container-small', 'https://icons.app.sbb.ch/kom/container-small.svg'],
+    [
       'kom',
       'driverless-bus-profile-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/driverless-bus-profile-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'freight-wagon-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/freight-wagon-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'home-power-plug-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/home-power-plug-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'k-r-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/k-r-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/driverless-bus-profile-small.svg',
+    ],
+    ['kom', 'freight-wagon-small', 'https://icons.app.sbb.ch/kom/freight-wagon-small.svg'],
+    ['kom', 'home-power-plug-small', 'https://icons.app.sbb.ch/kom/home-power-plug-small.svg'],
+    ['kom', 'k-r-small', 'https://icons.app.sbb.ch/kom/k-r-small.svg'],
+    [
       'kom',
       'microscooter-profile-power-plug-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/microscooter-profile-power-plug-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/microscooter-profile-power-plug-small.svg',
+    ],
+    [
       'kom',
       'microscooter-profile-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/microscooter-profile-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'moving-bus-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/moving-bus-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'park-and-rail-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/park-and-rail-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'petrol-station-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/petrol-station-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/microscooter-profile-small.svg',
+    ],
+    ['kom', 'moving-bus-small', 'https://icons.app.sbb.ch/kom/moving-bus-small.svg'],
+    ['kom', 'park-and-rail-small', 'https://icons.app.sbb.ch/kom/park-and-rail-small.svg'],
+    ['kom', 'petrol-station-small', 'https://icons.app.sbb.ch/kom/petrol-station-small.svg'],
+    [
       'kom',
       'scooter-profile-power-plug-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/scooter-profile-power-plug-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'scooter-profile-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/scooter-profile-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'shuttle-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/shuttle-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sign-parking-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sign-parking-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'taxi-profile-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/taxi-profile-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'taxi-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/taxi-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-profile-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-profile-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'tram-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/tram-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'walk-large-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/walk-large-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'mountain-sun-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/mountain-sun-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'skis-ski-poles-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/skis-ski-poles-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'sunshade-sun-sand-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/sunshade-sun-sand-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'construction-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/construction-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'railway-switch-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/railway-switch-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-signal-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-signal-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'train-tracks-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/train-tracks-small.svg')
-    )
-    .addSvgIconInNamespace(
-      'kom',
-      'city-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/city-small.svg')
-    )
-    .addSvgIconInNamespace(
+      'https://icons.app.sbb.ch/kom/scooter-profile-power-plug-small.svg',
+    ],
+    ['kom', 'scooter-profile-small', 'https://icons.app.sbb.ch/kom/scooter-profile-small.svg'],
+    ['kom', 'shuttle-small', 'https://icons.app.sbb.ch/kom/shuttle-small.svg'],
+    ['kom', 'sign-parking-small', 'https://icons.app.sbb.ch/kom/sign-parking-small.svg'],
+    ['kom', 'taxi-profile-small', 'https://icons.app.sbb.ch/kom/taxi-profile-small.svg'],
+    ['kom', 'taxi-small', 'https://icons.app.sbb.ch/kom/taxi-small.svg'],
+    ['kom', 'train-profile-small', 'https://icons.app.sbb.ch/kom/train-profile-small.svg'],
+    ['kom', 'train-small', 'https://icons.app.sbb.ch/kom/train-small.svg'],
+    ['kom', 'tram-small', 'https://icons.app.sbb.ch/kom/tram-small.svg'],
+    ['kom', 'walk-large-small', 'https://icons.app.sbb.ch/kom/walk-large-small.svg'],
+    ['kom', 'mountain-sun-small', 'https://icons.app.sbb.ch/kom/mountain-sun-small.svg'],
+    ['kom', 'skis-ski-poles-small', 'https://icons.app.sbb.ch/kom/skis-ski-poles-small.svg'],
+    ['kom', 'sunshade-sun-sand-small', 'https://icons.app.sbb.ch/kom/sunshade-sun-sand-small.svg'],
+    ['kom', 'construction-small', 'https://icons.app.sbb.ch/kom/construction-small.svg'],
+    ['kom', 'railway-switch-small', 'https://icons.app.sbb.ch/kom/railway-switch-small.svg'],
+    ['kom', 'train-signal-small', 'https://icons.app.sbb.ch/kom/train-signal-small.svg'],
+    ['kom', 'train-tracks-small', 'https://icons.app.sbb.ch/kom/train-tracks-small.svg'],
+    ['kom', 'city-small', 'https://icons.app.sbb.ch/kom/city-small.svg'],
+    [
       'kom',
       'ship-steering-wheel-small',
-      sanitizer.bypassSecurityTrustResourceUrl('https://icons.app.sbb.ch/kom/ship-steering-wheel-small.svg')
-    );
+      'https://icons.app.sbb.ch/kom/ship-steering-wheel-small.svg',
+    ],
+  ];
+  for (const [namespace, icon, url] of icons) {
+    registry.addSvgIconInNamespace(namespace, icon, sanitizer.bypassSecurityTrustResourceUrl(url));
+  }
+  return registry;
 }
-
