@@ -18,7 +18,6 @@ ng_module(
     assets = [":icon.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-core/icon",
     deps = [
-        "//src/angular-core/common-behaviors",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
