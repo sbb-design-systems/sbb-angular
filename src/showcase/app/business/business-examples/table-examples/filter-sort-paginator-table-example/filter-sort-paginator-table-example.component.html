@@ -27,7 +27,7 @@
       </th>
     </ng-container>
     <ng-container sbbColumnDef="filter-category">
-      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter" style="max-width:0">
+      <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
         <sbb-select formControlName="category" multiple>
           <sbb-option *ngFor="let category of categories" [value]="category">{{
             category

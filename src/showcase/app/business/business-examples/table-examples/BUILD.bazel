@@ -1,6 +1,7 @@
 load(
     "//tools:defaults.bzl",
     "ng_ts_library",
+    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -18,6 +19,7 @@ ng_ts_library(
         "table-examples.module.ts",
     ],
     assets = [
+        ":filter-sort-paginator-table-example/filter-sort-paginator-table-example.component.css",
         "filter-sort-paginator-table-example/filter-sort-paginator-table-example.component.html",
         "grouped-columns-table-example/grouped-columns-table-example.component.html",
         "grouped-rows-and-columns-table-example/grouped-rows-and-columns-table-example.component.html",
@@ -49,4 +51,9 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
+)
+
+sass_binary(
+    name = "filter_sort_paginator_table_example_filter_sort_paginator_table_example_component_scss",
+    src = "filter-sort-paginator-table-example/filter-sort-paginator-table-example.component.scss",
 )
