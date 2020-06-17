@@ -1,12 +1,17 @@
-// The width/height of the icon element.
-$sbb-icon-size: 24px !default;
-
 .sbb-icon {
   background-repeat: no-repeat;
   display: inline-block;
-  fill: currentColor;
-  height: $sbb-icon-size;
-  width: $sbb-icon-size;
+
+  &.sbb-icon-fit,
+  &.sbb-icon-fit svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:not(.sbb-icon-namespace-fpl) * {
+    fill: currentColor;
+    stroke: currentColor;
+  }
 
   &.sbb-icon-inline {
     font-size: inherit;
@@ -19,17 +24,4 @@ $sbb-icon-size: 24px !default;
 // Icons that will be mirrored in RTL.
 [dir='rtl'] .sbb-icon-rtl-mirror {
   transform: scale(-1, 1);
-}
-
-.sbb-form-field:not(.sbb-form-field-appearance-legacy) {
-  .sbb-form-field-prefix,
-  .sbb-form-field-suffix {
-    .sbb-icon {
-      display: block;
-    }
-
-    .sbb-icon-button .sbb-icon {
-      margin: auto;
-    }
-  }
 }
