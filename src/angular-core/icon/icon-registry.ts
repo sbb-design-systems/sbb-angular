@@ -4,11 +4,9 @@ import {
   ErrorHandler,
   Inject,
   Injectable,
-  InjectionToken,
   OnDestroy,
   Optional,
   SecurityContext,
-  SkipSelf,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { forkJoin, Observable, of as observableOf, throwError as observableThrow } from 'rxjs';
@@ -645,31 +643,6 @@ export class SbbIconRegistry implements OnDestroy {
     return this;
   }
 }
-
-/** @docs-private */
-export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
-  parentRegistry: SbbIconRegistry,
-  httpClient: HttpClient,
-  sanitizer: DomSanitizer,
-  errorHandler: ErrorHandler,
-  document?: any
-) {
-  return parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);
-}
-
-/** @docs-private */
-export const SBB_ICON_REGISTRY_PROVIDER = {
-  // If there is already an SbbIconRegistry available, use that. Otherwise, provide a new one.
-  provide: SbbIconRegistry,
-  deps: [
-    [new Optional(), new SkipSelf(), SbbIconRegistry],
-    [new Optional(), HttpClient],
-    DomSanitizer,
-    ErrorHandler,
-    [new Optional(), DOCUMENT as InjectionToken<any>],
-  ],
-  useFactory: SBB_ICON_REGISTRY_PROVIDER_FACTORY,
-};
 
 /** Clones an SVGElement while preserving type information. */
 function cloneSvg(svg: SVGElement): SVGElement {
