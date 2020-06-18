@@ -32,7 +32,7 @@ The browser loads and caches the icons from the [SBB Icon CDN](https://icons.app
 2. Include `<sbb-icon>` in your template and add your icon name to the `svgIcon` attribute.
 
 ```html
-<sbb-icon svgIcon="kom:cloud-small" aria-label="Cloudy weather"></sbb-icon>
+<sbb-icon svgIcon="kom:cloud-small" aria-label="Cloudy weather" aria-hidden="false"></sbb-icon>
 ```
 
 ##### Decrease icon registry size
