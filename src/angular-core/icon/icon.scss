@@ -8,9 +8,14 @@
     height: 100%;
   }
 
-  &:not(.sbb-icon-namespace-fpl) * {
-    fill: currentColor;
-    stroke: currentColor;
+  &:not(.sbb-icon-namespace-fpl) {
+    [fill]:not([fill='none']) {
+      fill: currentColor;
+    }
+
+    [stroke]:not([stroke='none']) {
+      stroke: currentColor;
+    }
   }
 
   &.sbb-icon-inline {
@@ -19,9 +24,4 @@
     line-height: inherit;
     width: inherit;
   }
-}
-
-// Icons that will be mirrored in RTL.
-[dir='rtl'] .sbb-icon-rtl-mirror {
-  transform: scale(-1, 1);
 }
