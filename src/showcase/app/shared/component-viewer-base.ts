@@ -1,5 +1,5 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { AfterViewInit, Directive, Inject, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Directive, Inject, OnDestroy, OnInit, Optional } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, skip, take, takeUntil } from 'rxjs/operators';
@@ -16,10 +16,14 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   private _destroyed = new Subject<void>();
 
   constructor(
-    @Inject(EXAMPLES) private _examples: ExampleProvider[],
+    @Optional() @Inject(EXAMPLES) private _examples: ExampleProvider[],
     private _htmlLoader: HtmlLoader,
     private _route: ActivatedRoute
-  ) {}
+  ) {
+    if (!this._examples) {
+      this._examples = [];
+    }
+  }
 
   ngOnInit() {
     this.example = combineLatest(this._route.params, this._route.data).pipe(
