@@ -69,10 +69,8 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
  * or from https://github.com/sbb-design-systems/icon-library/tree/master/icons/svg
  * and adapting the url:
  *   `
- *     .addSvgIconInNamespace(
- *       'fpl',
- *       'sa-1',
- *       sanitizer.bypassSecurityTrustResourceUrl('/assets/path/to/sa-1.svg')
+ *     ['fpl', 'sa-1', '/assets/path/to/sa-1.svg'],
+ *     ...
  *     )
  *   `
  *

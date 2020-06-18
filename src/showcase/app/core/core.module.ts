@@ -6,6 +6,7 @@ import { TabsModule } from '@sbb-esta/angular-public/tabs';
 import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';
 import { SharedModule } from '../shared/shared.module';
 
+import { CoreExamplesModule } from './core-examples/core-examples.module';
 import { CoreRoutingModule } from './core-routing.module';
 import { CoreComponent } from './core/core.component';
 
@@ -18,6 +19,7 @@ import { CoreComponent } from './core/core.component';
     ComponentViewerModule,
     TabsModule,
     CoreRoutingModule,
+    CoreExamplesModule,
   ],
 })
 export class CoreModule {}
