@@ -70,6 +70,10 @@ export class FakeSbbIconRegistry implements PublicApi<SbbIconRegistry>, OnDestro
     return this;
   }
 
+  hasNamespaceSvgIcon(): boolean {
+    return true;
+  }
+
   ngOnDestroy() {}
 
   private _generateEmptySvg(): SVGElement {
@@ -77,8 +81,6 @@ export class FakeSbbIconRegistry implements PublicApi<SbbIconRegistry>, OnDestro
     emptySvg.classList.add('fake-testing-svg');
     // Emulate real icon characteristics from `SbbIconRegistry` so size remains consistent in tests.
     emptySvg.setAttribute('fit', '');
-    emptySvg.setAttribute('height', '100%');
-    emptySvg.setAttribute('width', '100%');
     emptySvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     emptySvg.setAttribute('focusable', 'false');
     return emptySvg;
