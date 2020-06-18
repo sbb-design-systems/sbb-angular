@@ -20,6 +20,7 @@ ng_ts_library(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/tabs",
+        "//src/showcase/app/core/core-examples",
         "//src/showcase/app/shared",
         "//src/showcase/app/shared/component-viewer",
         "@npm//@angular/cdk",

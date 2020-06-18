@@ -1,4 +1,3 @@
-import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,6 +9,7 @@ export class CoreComponent {
   modules = {
     breakpoints: 'Breakpoints',
     datetime: 'Datetime',
+    icon: 'Icon',
     oauth: 'OAuth',
     scrolling: 'Scrolling',
   };
