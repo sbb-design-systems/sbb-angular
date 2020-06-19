@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.7.1...9.8.0) (2020-06-19)
+
+
+### Features
+
+* implement status module ([#448](https://github.com/sbb-design-systems/sbb-angular/issues/448)) ([37c3b46](https://github.com/sbb-design-systems/sbb-angular/commit/37c3b4689687b265f1086a5dc115343cbe0b17a8)), closes [#86](https://github.com/sbb-design-systems/sbb-angular/issues/86)
+* **business:** extract table business styling ([#450](https://github.com/sbb-design-systems/sbb-angular/issues/450)) ([4fb1c07](https://github.com/sbb-design-systems/sbb-angular/commit/4fb1c07cf2619b68388f2925b49216170dd1b56e))
+* **tabs:** allow tabs to be lazy rendered by sbbTabContent directive ([#457](https://github.com/sbb-design-systems/sbb-angular/issues/457)) ([8c3b284](https://github.com/sbb-design-systems/sbb-angular/commit/8c3b284c79cd8b22159ba8b16ed713d04d025912)), closes [#456](https://github.com/sbb-design-systems/sbb-angular/issues/456)
+
+
+### Bug Fixes
+
+* **business:** filter null/undefined in table data source ([#455](https://github.com/sbb-design-systems/sbb-angular/issues/455)) ([4262188](https://github.com/sbb-design-systems/sbb-angular/commit/42621881be63e1fe3d1ac5ed7a0be4a09a30cda8)), closes [#445](https://github.com/sbb-design-systems/sbb-angular/issues/445)
+* **showcase:** display documentation of angular core ([#460](https://github.com/sbb-design-systems/sbb-angular/issues/460)) ([2714795](https://github.com/sbb-design-systems/sbb-angular/commit/2714795c43af9b13164819ac766e69cf640d24f7))
+
 ### [9.7.1](https://github.com/sbb-design-systems/sbb-angular/compare/9.7.0...9.7.1) (2020-06-02)
 
 
