@@ -9,8 +9,9 @@ export class ClosableNotificationExampleComponent {
   constructor(private _notification: Notification) {}
 
   showNotification() {
-    this._notification.open('test', {
-      readonly: false,
-    });
+    this._notification
+      .open('test', { readonly: false })
+      .afterDismissed()
+      .subscribe(() => console.log('closed'));
   }
 }

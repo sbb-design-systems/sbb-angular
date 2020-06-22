@@ -14,9 +14,12 @@ export class SimpleNotificationExampleComponent {
   constructor(private _notification: Notification) {}
 
   showNotification() {
-    this._notification.open('test', {
-      type: this.type,
-      verticalPosition: this.position,
-    });
+    this._notification
+      .open('test', {
+        type: this.type,
+        verticalPosition: this.position,
+      })
+      .afterOpened()
+      .subscribe(() => console.log('opened'));
   }
 }
