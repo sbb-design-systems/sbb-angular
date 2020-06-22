@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild,
   EventEmitter,
   HostBinding,
   Inject,
@@ -13,11 +12,10 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 
 import { NotificationConfig } from './notification-config';
 import { NotificationRef } from './notification-ref';
-import { NOTIFICATION_DATA } from './notification.service';
+import { NOTIFICATION_CONFIG } from './notification.service';
 
 export enum NotificationType {
   SUCCESS = 'success',
@@ -139,7 +137,7 @@ export class NotificationComponent {
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() private _notificationRef: NotificationRef<any>,
-    @Inject(NOTIFICATION_DATA) public config: NotificationConfig
+    @Inject(NOTIFICATION_CONFIG) public config: NotificationConfig
   ) {
     this.readonly = config.readonly != null ? config.readonly : true;
     this.icon = config.icon || null;
@@ -163,7 +161,7 @@ export class NotificationComponent {
 
   dismiss() {
     this.ariaHidden = 'true';
-    this.dismissed.emit(false);
+    this._notificationRef.dismiss(true);
   }
 
   // tslint:disable: member-ordering

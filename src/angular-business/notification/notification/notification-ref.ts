@@ -25,10 +25,13 @@ export class NotificationRef<T> {
     containerInstance._onExit.subscribe(() => this._finishDismiss());
   }
 
-  dismiss(): void {
+  dismiss(dismissedByAction: boolean = false): void {
+    this._dismissedByAction = dismissedByAction;
     if (!this._afterDismissed.closed) {
       this.containerInstance.exit();
-      (this.instance as any).dismiss();
+      if (!this._dismissedByAction) {
+        (this.instance as any).dismiss();
+      }
     }
     clearTimeout(this._durationTimeoutId);
   }

@@ -18,7 +18,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import { NotificationConfig } from '../notification/notification-config';
 
@@ -38,7 +37,6 @@ export class NotificationContainerComponent extends BasePortalOutlet implements 
   @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
 
   readonly _onExit: Subject<any> = new Subject();
-
   readonly _onEnter: ReplaySubject<any> = new ReplaySubject();
 
   constructor(
@@ -69,7 +67,7 @@ export class NotificationContainerComponent extends BasePortalOutlet implements 
   };
 
   exit(): Observable<void> {
-    this._elementRef.nativeElement.setAttribute('exit', '');
+    this._completeExit();
 
     return this._onExit;
   }
@@ -88,13 +86,8 @@ export class NotificationContainerComponent extends BasePortalOutlet implements 
   }
 
   private _completeExit() {
-    this._ngZone.onMicrotaskEmpty
-      .asObservable()
-      .pipe(take(1))
-      .subscribe(() => {
-        this._onExit.next();
-        this._onExit.complete();
-      });
+    this._onExit.next();
+    this._onExit.complete();
   }
 
   private _applyNotificationClasses() {

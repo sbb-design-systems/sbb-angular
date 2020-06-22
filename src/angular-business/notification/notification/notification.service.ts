@@ -21,7 +21,7 @@ import { NotificationConfig } from './notification-config';
 import { NotificationRef } from './notification-ref';
 import { NotificationComponent } from './notification.component';
 
-export const NOTIFICATION_DATA = new InjectionToken<any>('NotificationData');
+export const NOTIFICATION_CONFIG = new InjectionToken<any>('NotificationData');
 
 export const NOTIFICATION_DEFAULT_OPTIONS = new InjectionToken<NotificationConfig>(
   'notification-default-options',
@@ -159,7 +159,7 @@ export class Notification implements OnDestroy {
       userInjector || this._injector,
       new WeakMap<any, any>([
         [NotificationRef, notificationRef],
-        [NOTIFICATION_DATA, config],
+        [NOTIFICATION_CONFIG, config],
       ])
     );
   }
