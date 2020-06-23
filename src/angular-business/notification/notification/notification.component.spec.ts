@@ -137,7 +137,7 @@ describe('NotificationComponent', () => {
       testFixture.detectChanges();
       const notifications = overlayContainerElement.querySelectorAll('.sbb-notification-success');
       expect(notifications.length).toBe(1);
-      const icons = notifications[0].querySelectorAll('sbb-icon-sign-tick');
+      const icons = notifications[0].querySelectorAll('sbb-icon-tick');
       expect(icons.length).toBe(1);
     });
 
