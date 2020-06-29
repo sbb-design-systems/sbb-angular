@@ -11,10 +11,13 @@ import {
   IconTickModule,
 } from '@sbb-esta/angular-icons';
 
-import { NotificationContainerComponent } from '../notification-container/notification-container.component';
+import {
+  NotificationContainerComponent,
+  NotificationType,
+} from '../notification-container/notification-container.component';
 
 import { NotificationConfig } from './notification-config';
-import { NotificationComponent, NotificationType } from './notification.component';
+import { NotificationComponent } from './notification.component';
 import { Notification, NOTIFICATION_CONFIG } from './notification.service';
 import createSpy = jasmine.createSpy;
 import Spy = jasmine.Spy;
