@@ -15,10 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [
-        ":notification/notification.component.css",
-        ":notification-container/notification-container.component.css",
-    ] + glob(["**/*.html"]),
+    assets = [":notification-container/notification-container.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/notification",
     deps = [
         "//src/angular-core/icon-directive",
@@ -30,11 +27,6 @@ ng_module(
         "@npm//@angular/core",
         "@npm//rxjs",
     ],
-)
-
-sass_binary(
-    name = "notification_notification_component_scss",
-    src = "notification/notification.component.scss",
 )
 
 sass_binary(
