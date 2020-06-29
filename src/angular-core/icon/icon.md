@@ -5,14 +5,13 @@ icon fonts and SVG icons, but not bitmap-based formats (png, jpg, etc.).
 
 See [Icon Overview](TODO)
 
-## Usage
-
-#### Simple usage from Icon CDN
+### Usage
 
 In most use cases it is recommended to use the pre-registered icons as shown below.
 The browser loads and caches the icons from the [SBB Icon CDN](https://icons.app.sbb.ch) at runtime.
+(See the bottom sections for alternatives and optimizations.)
 
-1. Add `SBB_ICON_REGISTRY_PROVIDER` to your providers list of the AppModule (or any other NgModule you like).
+1. Add `SBB_ICON_REGISTRY_PROVIDER` to your providers list of the AppModule (or another appropriate NgModule).
 
    ```ts
    import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
@@ -32,45 +31,20 @@ The browser loads and caches the icons from the [SBB Icon CDN](https://icons.app
 2. Include `<sbb-icon>` in your template and add your icon name to the `svgIcon` attribute.
 
 ```html
-<sbb-icon svgIcon="kom:cloud-small" aria-label="Cloudy weather" aria-hidden="false"></sbb-icon>
+<sbb-icon svgIcon="kom:cloud-small"></sbb-icon>
 ```
+See the Accessibility section below on how to provide meaningful context for screen readers.
 
-##### Decrease icon registry size
+#### Sizing
 
-If you like to decrease the size of the icon registry, run `ng generate @sbb-esta/angular-core:icon-cdn-provider`
-to create our own registry and remove all icons you don't need. Don't forget to include the registry in your AppModule's providers.
-
-#### Self-Hosting
-
-You can also self-host the CDN icons, by downloading the icons from the [SBB Icon CDN](https://icons.app.sbb.ch)
-or from (https://github.com/sbb-design-systems/icon-library/tree/master/icons/svg) and adding them to your assets.
-Instead of using our pre-defined `SBB_ICON_REGISTRY_PROVIDER` constant, you have to create your own registry provider and provider factory.
-Run `ng generate @sbb-esta/angular-core:icon-cdn-provider` to create your own icon-cdn-provider and adapt the urls of the icon list.
-Don't forget to include the registry in your AppModule's providers.
-
-E.g. replace
-
-```ts
-... ['fpl', 'sa-1', 'https://icons.app.sbb.ch/fpl/sa-1.svg'], ...
-```
-
-by
-
-```ts
-... ['fpl', 'sa-1', '/assets/path/to/sa-1.svg'], ...
-```
-
-\*Make sure, that the namespace of 'fpl' remains, because these icons need a special handling regarding the styling.
-
-#### Fit parent's element size
-
-If you like to have the icon size fitted to your parent element size, then add the `sbb-icon-fit` css class to your `<sbb-icon>` tag.
+The SBB icons have a predefined size. If you want the icons to expand to the parent element's size
+add the `sbb-icon-fit` css class to your `<sbb-icon>` tag.
 
 ```html
 <sbb-icon svgIcon="kom:cloud-small" class="sbb-icon-fit"></sbb-icon>
 ```
 
-## Accessibility
+### Accessibility
 
 Similar to an `<img>` element, an icon alone does not convey any useful information for a
 screen-reader user. The user of `<sbb-icon>` must provide additional information pertaining to how
@@ -110,11 +84,11 @@ screen-readers. The most straightforward way to do this is to
 2. Add the `cdk-visually-hidden` class to the `<span>`. This will make the message invisible
    on-screen but still available to screen-reader users.
 
-## Use your own icons
+### Use your own icons
 
-`sbb-icon` is designed very neutral and therefore allows you to use it with your own icons.
+`sbb-icon` is designed as icon agnistic and therefore allows you to use it with your own icons.
 
-### Registering icons
+#### Registering icons
 
 `SbbIconRegistry` is an injectable service that allows you to associate icon names with SVG URLs,
 HTML strings and to define aliases for CSS font classes. Its methods are discussed below and listed
@@ -135,7 +109,7 @@ as a child of itself. This approach offers an advantage over an `<img>` tag or a
 `background-image` because it allows styling the SVG with CSS. For example, the default color of the
 SVG content is the CSS
 [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentColor_keyword)
-value. This makes SVG icons by default have the same color as surrounding text, and allows you to
+value. This makes SVG icons inherit the same color as surrounding text, and allows you to
 change the color by setting the `color` style on the `sbb-icon` element.
 
 In order to guard against XSS vulnerabilities, any SVG URLs and HTML strings passed to the
@@ -216,3 +190,33 @@ as for individually registered icons.
 
 Multiple icon sets can be registered in the same namespace. Requesting an icon whose id appears in
 more than one icon set, the icon from the most recently registered set will be used.
+
+
+### Optimize icon registry size
+
+If you like to optimize the size of the icon registry, run `ng generate @sbb-esta/angular-core:icon-cdn-provider`
+to create your own registry. Manually remove all icons you don't need and register the generated registry in
+your AppModule (and remove the `SBB_ICON_REGISTRY_PROVIDER` import from `@sbb-esta/angular-core/icon`).
+
+### Self-Hosting
+
+You can also self-host the CDN icons, by downloading the icons from the [SBB Icon CDN](https://icons.app.sbb.ch)
+or from (https://github.com/sbb-design-systems/icon-library/tree/master/icons/svg) and adding them to your assets.
+Instead of using our pre-defined `SBB_ICON_REGISTRY_PROVIDER` constant, you have to create your own registry provider and provider factory.
+Run `ng generate @sbb-esta/angular-core:icon-cdn-provider` to create your own registry and adapt the urls of the icon list.
+Don't forget to include the registry in your AppModule's providers.
+
+E.g. replace
+
+```ts
+... ['fpl', 'sa-1', 'https://icons.app.sbb.ch/fpl/sa-1.svg'], ...
+```
+
+by
+
+```ts
+... ['fpl', 'sa-1', '/assets/path/to/sa-1.svg'], ...
+```
+
+\*Make sure, that the namespace of 'fpl' remains, because these icons need a special handling regarding the styling.
+
