@@ -29,7 +29,7 @@ export class NotificationRef<T> {
     this._dismissedByAction = dismissedByAction;
     if (!this._afterDismissed.closed) {
       this.containerInstance.exit();
-      if (!this._dismissedByAction) {
+      if (!this._dismissedByAction && (this.instance as any).dismiss) {
         (this.instance as any).dismiss();
       }
     }

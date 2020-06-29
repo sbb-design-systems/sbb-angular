@@ -10,6 +10,10 @@ import { IconClockModule } from '@sbb-esta/angular-icons/timetable';
 import { provideExamples } from '../../../shared/example-provider';
 
 import { ClosableNotificationExampleComponent } from './closable-notification-example/closable-notification-example.component';
+import {
+  ComponentNotificationExampleComponent,
+  ExampleComponent,
+} from './component-notification-example/component-notification-example.component';
 import { CustomIconNotificationExampleComponent } from './custom-icon-notification-example/custom-icon-notification-example.component';
 import { JumpmarkNotificationExampleComponent } from './jumpmark-notification-example/jumpmark-notification-example.component';
 import { SimpleNotificationExampleComponent } from './simple-notification-example/simple-notification-example.component';
@@ -21,10 +25,13 @@ const EXAMPLES = [
   JumpmarkNotificationExampleComponent,
   SimpleNotificationExampleComponent,
   TemplateNotificationExampleComponent,
+  ComponentNotificationExampleComponent,
+  ExampleComponent,
 ];
 
 const EXAMPLE_INDEX = {
   'simple-notification-example': SimpleNotificationExampleComponent,
+  'component-notification-example': ComponentNotificationExampleComponent,
   'custom-icon-notification-example': CustomIconNotificationExampleComponent,
   'jumpmark-notification-example': JumpmarkNotificationExampleComponent,
   'closable-notification-example': ClosableNotificationExampleComponent,
