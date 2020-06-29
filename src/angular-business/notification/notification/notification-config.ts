@@ -1,7 +1,8 @@
-import { Direction } from '@angular/cdk/bidi';
 import { TemplateRef, ViewContainerRef } from '@angular/core';
 
-import { JumpMark, NotificationType } from './notification.component';
+import { NotificationType } from '../notification-container/notification-container.component';
+
+import { JumpMark } from './notification.component';
 
 /** Possible values for horizontalPosition on NotificationConfig. */
 export type NotificationHorizontalPosition = 'center';

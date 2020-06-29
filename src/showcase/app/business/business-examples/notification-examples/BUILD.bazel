@@ -10,6 +10,7 @@ ng_module(
     name = "notification-examples",
     srcs = [
         "closable-notification-example/closable-notification-example.component.ts",
+        "component-notification-example/component-notification-example.component.ts",
         "custom-icon-notification-example/custom-icon-notification-example.component.ts",
         "jumpmark-notification-example/jumpmark-notification-example.component.ts",
         "notification-examples.module.ts",
@@ -18,6 +19,7 @@ ng_module(
     ],
     assets = [
         "closable-notification-example/closable-notification-example.component.html",
+        "component-notification-example/component-notification-example.component.html",
         "custom-icon-notification-example/custom-icon-notification-example.component.html",
         "jumpmark-notification-example/jumpmark-notification-example.component.html",
         "simple-notification-example/simple-notification-example.component.html",

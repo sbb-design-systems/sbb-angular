@@ -191,7 +191,7 @@ export class Notification implements OnDestroy {
     const containerRef: ComponentRef<NotificationContainerComponent> = overlayRef.attach(
       containerPortal
     );
-    containerRef.instance.notificationConfig = config;
+    containerRef.instance.config = config;
     return containerRef.instance;
   }
 
