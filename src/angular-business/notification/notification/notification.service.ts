@@ -63,9 +63,18 @@ export class Notification implements OnDestroy {
   open(message: string, config?: NotificationConfig): NotificationRef<NotificationComponent> {
     const notificationConfig = { ...this._defaultConfig, ...config };
 
-    // Since the user doesn't have access to the component, we can
-    // override the data to pass in our own message and action.
     notificationConfig.message = message;
+
+    return this.openFromComponent(NotificationComponent, notificationConfig);
+  }
+
+  openFromTemplate(
+    template: string,
+    config?: NotificationConfig
+  ): NotificationRef<NotificationComponent> {
+    const notificationConfig = { ...this._defaultConfig, ...config };
+
+    notificationConfig.message = template;
 
     return this.openFromComponent(NotificationComponent, notificationConfig);
   }
