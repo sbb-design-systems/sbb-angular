@@ -21,7 +21,7 @@ export class ComponentNotificationExampleComponent {
   styles: [
     `
       .example-style {
-        color: red;
+        color: darkred;
       }
     `,
   ],
