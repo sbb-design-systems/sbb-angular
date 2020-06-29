@@ -96,7 +96,6 @@ export class NotificationComponent {
   @Input()
   toastPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-  /**  @deprecated readonly should now be defined in NotificationConfig.*/
   @Input()
   set readonly(value: boolean) {
     this._readonly = coerceBooleanProperty(value);
@@ -121,11 +120,6 @@ export class NotificationComponent {
   @ViewChild('info', { read: TemplateRef, static: true })
   infoIcon: TemplateRef<any>;
 
-  /** The icon to be used into the notification left side.
-   *  By default uses three icons for SUCCESS, ERROR or INFO notification type,
-   *  but the user can use his own icon using the NotificationIconDirective.
-   *  @deprecated icon should now be defined in NotificationConfig.
-   */
   @Input()
   set icon(notificationIcon: TemplateRef<any> | null) {
     this._icon = notificationIcon;
