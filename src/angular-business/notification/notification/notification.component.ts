@@ -6,6 +6,7 @@ import {
   EventEmitter,
   HostBinding,
   Inject,
+  Input,
   Optional,
   Output,
   TemplateRef,
@@ -22,6 +23,14 @@ export enum NotificationType {
   ERROR = 'error',
   INFO = 'info',
   WARN = 'warn',
+}
+
+/** @deprecated position should now be defined using NotificationVerticalPosition. */
+export enum NotificationToastPosition {
+  TOPLEFT = 'top-left',
+  TOPRIGHT = 'top-right',
+  BOTTOMLEFT = 'bottom-left',
+  BOTTOMRIGHT = 'bottom-right',
 }
 
 export interface JumpMark {
@@ -75,7 +84,20 @@ export class NotificationComponent {
     return this.ariaHidden === 'true';
   }
 
-  /** Type of notification. */
+  /**
+   *  @deprecated type should now be defined in NotificationConfig.
+   * */
+  @Input()
+  type: 'success' | 'info' | 'error' | 'warn' = NotificationType.SUCCESS;
+
+  /** Type of notification.
+   *  @deprecated position should now be defined in NotificationConfig.
+   * */
+  @Input()
+  toastPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
+  /**  @deprecated readonly should now be defined in NotificationConfig.*/
+  @Input()
   set readonly(value: boolean) {
     this._readonly = coerceBooleanProperty(value);
     this._changeDetectorRef.markForCheck();
@@ -102,10 +124,13 @@ export class NotificationComponent {
   /** The icon to be used into the notification left side.
    *  By default uses three icons for SUCCESS, ERROR or INFO notification type,
    *  but the user can use his own icon using the NotificationIconDirective.
+   *  @deprecated icon should now be defined in NotificationConfig.
    */
+  @Input()
   set icon(notificationIcon: TemplateRef<any> | null) {
     this._icon = notificationIcon;
   }
+
   get icon(): TemplateRef<any> | null {
     if (this._icon) {
       return this._icon;
@@ -123,6 +148,10 @@ export class NotificationComponent {
     }
   }
 
+  /** List of in page links displayed on the bottom of the notification
+   *  @deprecated jumpMarks should now be defined in NotificationConfig.
+   */
+  @Input() jumpMarks?: JumpMark[];
   private _icon: TemplateRef<any> | null;
 
   @Output()
