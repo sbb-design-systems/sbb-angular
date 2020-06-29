@@ -13,12 +13,14 @@ import { ClosableNotificationExampleComponent } from './closable-notification-ex
 import { CustomIconNotificationExampleComponent } from './custom-icon-notification-example/custom-icon-notification-example.component';
 import { JumpmarkNotificationExampleComponent } from './jumpmark-notification-example/jumpmark-notification-example.component';
 import { SimpleNotificationExampleComponent } from './simple-notification-example/simple-notification-example.component';
+import { TemplateNotificationExampleComponent } from './template-notification-example/template-notification-example.component';
 
 const EXAMPLES = [
   ClosableNotificationExampleComponent,
   CustomIconNotificationExampleComponent,
   JumpmarkNotificationExampleComponent,
   SimpleNotificationExampleComponent,
+  TemplateNotificationExampleComponent,
 ];
 
 const EXAMPLE_INDEX = {
@@ -26,6 +28,7 @@ const EXAMPLE_INDEX = {
   'custom-icon-notification-example': CustomIconNotificationExampleComponent,
   'jumpmark-notification-example': JumpmarkNotificationExampleComponent,
   'closable-notification-example': ClosableNotificationExampleComponent,
+  'template-notification-example': TemplateNotificationExampleComponent,
 };
 
 @NgModule({

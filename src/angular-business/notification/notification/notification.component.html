@@ -3,9 +3,7 @@
 </span>
 
 <div class="sbb-notification-content">
-  <div class="sbb-notification-content-message">
-    {{ config.message }}
-  </div>
+  <div class="sbb-notification-content-message" [innerHTML]="config.message"></div>
   <div *ngIf="config.jumpMarks">
     <span
       *ngFor="let jumpMark of config.jumpMarks; let isLast = last"
