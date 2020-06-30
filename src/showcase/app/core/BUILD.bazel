@@ -12,10 +12,13 @@ ng_module(
         "core.module.ts",
         "core-routing.module.ts",
         "core/core.component.ts",
+        "icon-overview/icon-overview.component.ts",
     ],
     assets = [
         ":core/core.component.css",
+        ":icon-overview/icon-overview.component.css",
         "core/core.component.html",
+        "icon-overview/icon-overview.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -33,4 +36,9 @@ ng_module(
 sass_binary(
     name = "core_core_component_scss",
     src = "core/core.component.scss",
+)
+
+sass_binary(
+    name = "icon_overview_icon_overview_component_scss",
+    src = "icon-overview/icon-overview.component.scss",
 )
