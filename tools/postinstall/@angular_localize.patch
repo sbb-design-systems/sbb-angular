@@ -1,5 +1,5 @@
---- node_modules/@angular/localize/src/tools/src/translate/source_files/source_file_utils.d.ts
-+++ node_modules/@angular/localize/src/tools/src/translate/source_files/source_file_utils.d.ts
+--- node_modules/@angular/localize/src/tools/src/source_file_utils.d.ts
++++ node_modules/@angular/localize/src/tools/src/source_file_utils.d.ts
 @@ -16,14 +17,14 @@
   * @param expression The expression to check.
   * @param localizeName The configured name of `$localize`.
