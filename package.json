@@ -124,6 +124,8 @@
     "protractor": "~7.0.0",
     "requirejs": "2.3.6",
     "rollup": "1.27.5",
+    "rollup-plugin-commonjs": "10.1.0",
+    "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "sass": "1.22.10",
     "scss-bundle": "^3.0.2",
