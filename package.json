@@ -86,8 +86,6 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@rollup/plugin-alias": "^3.1.0",
-    "@rollup/plugin-commonjs": "13.0.0",
-    "@rollup/plugin-node-resolve": "8.1.0",
     "@types/arcgis-js-api": "~4.14.0",
     "@types/grecaptcha": "^2.0.36",
     "@types/highlight.js": "^9.12.3",
