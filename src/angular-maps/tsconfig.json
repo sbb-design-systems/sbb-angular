@@ -1,6 +1,6 @@
 // Configuration for IDEs only.
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "..",
     "baseUrl": ".",
