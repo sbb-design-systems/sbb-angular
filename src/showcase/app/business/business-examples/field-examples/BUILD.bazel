@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_ts_library",
+    "ng_module",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_ts_library(
+ng_module(
     name = "field-examples",
     srcs = [
         "field-example/field-example.component.ts",

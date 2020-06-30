@@ -1,6 +1,6 @@
 load(
     "//tools:defaults.bzl",
-    "ng_ts_library",<% if (hasTests) { %>
+    "ng_module",<% if (hasTests) { %>
     "ng_test_library",
     "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
     "sass_binary",<% } %>
@@ -21,7 +21,7 @@ genrule(
     tools = ["//tools/package-info:bazel-bin"],
 )<% } %>
 
-ng_ts_library(
+ng_module(
     name = "<%= name %>",
     srcs = [<% for (let src of tsFiles) { %>
         "<%= src %>",<% } %><% if (name === 'app') { %>
