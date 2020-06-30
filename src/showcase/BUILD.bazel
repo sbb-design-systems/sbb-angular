@@ -181,8 +181,8 @@ rollup_bundle(
     deps = [
         "//src/showcase",
         "@npm//@rollup/plugin-alias",
-        "@npm//rollup-plugin-commonjs",
-        "@npm//rollup-plugin-node-resolve",
+        "@npm//@rollup/plugin-commonjs",
+        "@npm//@rollup/plugin-node-resolve",
     ],
 )
 
