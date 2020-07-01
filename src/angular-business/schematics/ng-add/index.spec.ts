@@ -18,7 +18,7 @@ export const collection = require.resolve('../collection.json');
 const workspaceOptions: WorkspaceOptions = {
   name: 'workspace',
   newProjectRoot: 'projects',
-  version: '9.0.0',
+  version: '10.0.0',
 };
 
 const appOptions: ApplicationOptions = {
