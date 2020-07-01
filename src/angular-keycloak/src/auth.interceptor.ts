@@ -17,6 +17,9 @@ enum HttpStatusCode {
   FORBIDDEN = 403,
 }
 
+/**
+ * @deprecated Use the angular-oauth2-oidc package.
+ */
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private _authService: AuthService) {}
@@ -34,6 +37,9 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 }
 
+/**
+ * @deprecated Use the angular-oauth2-oidc package.
+ */
 export const AUTH_INTERCEPTOR: ClassProvider = {
   provide: HTTP_INTERCEPTORS,
   useClass: AuthInterceptor,
