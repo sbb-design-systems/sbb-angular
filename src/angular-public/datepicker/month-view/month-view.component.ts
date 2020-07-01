@@ -28,8 +28,8 @@ import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-co
 import { CalendarBodyComponent, CalendarCell } from '../calendar-body/calendar-body.component';
 import { DateRange } from '../date-range';
 import { createMissingDateImplError } from '../datepicker-errors';
-import { DatepickerStructure } from '../datepicker-structure';
 import { SBB_DATEPICKER } from '../datepicker-token';
+import type { DatepickerComponent } from '../datepicker/datepicker.component';
 
 const DAYS_PER_WEEK = 7;
 
@@ -134,7 +134,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
     @Inject(LOCALE_ID) public locale: string,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
-    @Optional() @Inject(SBB_DATEPICKER) datepicker: DatepickerStructure<D>
+    @Optional() @Inject(SBB_DATEPICKER) datepicker: DatepickerComponent<D>
   ) {
     if (!this.dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -144,22 +144,22 @@ export class MonthViewComponent<D> implements AfterContentInit {
     }
     if (
       datepicker &&
-      datepicker.slave &&
+      datepicker.connected &&
       datepicker.datepickerInput.value &&
-      datepicker.slave.datepickerInput.value
+      datepicker.connected.datepickerInput.value
     ) {
       this.dateRange = new DateRange(
         datepicker.datepickerInput.value,
-        datepicker.slave.datepickerInput.value
+        datepicker.connected.datepickerInput.value
       );
     } else if (
       datepicker &&
-      datepicker.master &&
+      datepicker.main &&
       datepicker.datepickerInput.value &&
-      datepicker.master.datepickerInput.value
+      datepicker.main.datepickerInput.value
     ) {
       this.dateRange = new DateRange(
-        datepicker.master.datepickerInput.value,
+        datepicker.main.datepickerInput.value,
         datepicker.datepickerInput.value
       );
     }
