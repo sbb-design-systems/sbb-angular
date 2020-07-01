@@ -133,21 +133,8 @@ function applyPatches() {
       ' if (libraryFileName.endsWith(`@angular/cdk/scrolling/index.d.ts`)) {' +
       'json = json.replace(/virtual-scroll-viewport.ngfactory/g, `index.ngfactory`)}' +
       ' if (libraryFileName.endsWith(`@angular/cdk/table/index.d.ts`)) {' +
-      'json = json.replace(/[a-z-]+.ngfactory/g, `index.ngfactory`)}' +
-      ' if (libraryFileName.endsWith(`ngx-perfect-scrollbar/ngx-perfect-scrollbar.d.ts`)) {' +
-      'json = json.replace(/.\\/lib\\/perfect-scrollbar.component.ngfactory/g, `./ngx-perfect-scrollbar.ngfactory`)}',
+      'json = json.replace(/[a-z-]+.ngfactory/g, `index.ngfactory`)}',
     'node_modules/@angular/compiler/bundles/compiler.umd.js'
-  );
-  // Name umd modules for perfect-scrollbar and 'resize-observer-polyfill'
-  searchAndReplace(
-    'define(factory)',
-    `define('perfect-scrollbar', factory)`,
-    'node_modules/perfect-scrollbar/dist/perfect-scrollbar.js'
-  );
-  searchAndReplace(
-    'define(factory)',
-    `define('resize-observer-polyfill', factory)`,
-    'node_modules/resize-observer-polyfill/dist/ResizeObserver.js'
   );
 
   // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1208.
