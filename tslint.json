@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint-plugin-prettier", "tslint-config-prettier"],
+  "extends": ["tslint-plugin-prettier", "tslint-config-prettier", "rxjs-tslint-rules"],
   "rulesDirectory": ["node_modules/codelyzer", "node_modules/tslint-consistent-codestyle/rules"],
   "linterOptions": {
     "exclude": ["tools/dgeni/**/*.ts"]
@@ -184,6 +184,8 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": false
+    "directive-class-suffix": false,
+    "rxjs-no-unsafe-takeuntil": true,
+    "rxjs-no-unsafe-catch": true
   }
 }

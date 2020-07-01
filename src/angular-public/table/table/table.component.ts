@@ -88,9 +88,9 @@ export class TableComponent implements OnChanges, OnDestroy {
         fromEvent(this._scrollContainer.nativeElement, 'scroll')
           .pipe(
             startWith(null),
-            takeUntil(this._scrollListener),
             map(() => this._scrollContainer.nativeElement.scrollLeft > 0),
-            distinctUntilChanged()
+            distinctUntilChanged(),
+            takeUntil(this._scrollListener)
           )
           .subscribe((v) =>
             this._zone.run(() => {

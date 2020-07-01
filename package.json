@@ -61,6 +61,7 @@
     "ngx-perfect-scrollbar": "^9.0.0",
     "regenerator-runtime": "^0.13.5",
     "rxjs": "~6.5.4",
+    "rxjs-tslint-rules": "^4.33.1",
     "systemjs": "^6.2.6",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
