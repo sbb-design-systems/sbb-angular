@@ -9,6 +9,7 @@ export interface Person {
 
 @Component({
   selector: 'sbb-tabs-example',
+  styleUrls: ['./tabs-example.component.css'],
   templateUrl: './tabs-example.component.html',
 })
 export class TabsExampleComponent implements OnInit {
