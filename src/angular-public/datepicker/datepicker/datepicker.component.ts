@@ -112,21 +112,44 @@ export class DatepickerComponent<D> implements OnDestroy {
    * Second datepicker to be used in 2 datepickers use case
    */
   @Input()
-  set slave(value: DatepickerComponent<D> | null) {
-    if (value !== this._slave && this._slave) {
-      this._slave.master = null;
+  set connected(value: DatepickerComponent<D> | null) {
+    if (value !== this._connected && this._connected) {
+      this._connected.main = null;
     }
     if (value) {
-      value.master = this;
+      value.main = this;
     }
-    this._slave = value;
+    this._connected = value;
   }
-  get slave(): DatepickerComponent<D> | null {
-    return this._slave;
+  get connected(): DatepickerComponent<D> | null {
+    return this._connected;
   }
-  private _slave: DatepickerComponent<D> | null;
+  private _connected: DatepickerComponent<D> | null;
 
-  master: DatepickerComponent<D> | null;
+  main: DatepickerComponent<D> | null;
+
+  /**
+   * @deprecated use main property instead
+   */
+  get master(): DatepickerComponent<D> | null {
+    return this.main;
+  }
+
+  /**
+   * @deprecated use connected property instead
+   */
+  get slave() {
+    return this.connected;
+  }
+
+  /**
+   * Second datepicker to be used in 2 datepickers use case
+   * @deprecated
+   */
+  @Input()
+  set slave(value: DatepickerComponent<D> | null) {
+    this.connected = value;
+  }
 
   @HostBinding('class.sbb-datepicker') cssClass = true;
 
@@ -238,7 +261,7 @@ export class DatepickerComponent<D> implements OnDestroy {
 
   private _inputDisabledSubscription = Subscription.EMPTY;
 
-  private _slaveSubscription = Subscription.EMPTY;
+  private _connectedDatepickerSubscription = Subscription.EMPTY;
 
   private _posStrategySubsription = Subscription.EMPTY;
 
@@ -271,7 +294,7 @@ export class DatepickerComponent<D> implements OnDestroy {
     this.close();
     this._inputSubscription.unsubscribe();
     this._inputDisabledSubscription.unsubscribe();
-    this._slaveSubscription.unsubscribe();
+    this._connectedDatepickerSubscription.unsubscribe();
     this.disabledChange.complete();
 
     if (this.popupRef) {
@@ -319,10 +342,10 @@ export class DatepickerComponent<D> implements OnDestroy {
     this._inputDisabledSubscription = this.datepickerInput.disabledChange.subscribe(() =>
       this._changeDetectorRef.markForCheck()
     );
-    // The slave datepicker is only opened on the following conditions:
-    // This datepicker has a slave and has been opened, a value selected, closed
-    // and the slave datepicker has no value or a value before the selected date.
-    this._slaveSubscription = merge(
+    // The connected datepicker is only opened on the following conditions:
+    // This datepicker has a connected datepicker and has been opened, a value selected, closed
+    // and the connected datepicker has no value or a value before the selected date.
+    this._connectedDatepickerSubscription = merge(
       this.openedStream.pipe(mapTo('opened')),
       this.selectedChanged.pipe(mapTo('selected')),
       this.closedStream.pipe(mapTo('closed'))
@@ -331,24 +354,24 @@ export class DatepickerComponent<D> implements OnDestroy {
         bufferCount(3, 1),
         filter(
           ([o, s, c]) =>
-            !!this.slave &&
+            !!this.connected &&
             !!this.datepickerInput.value &&
             o === 'opened' &&
             s === 'selected' &&
             c === 'closed' &&
-            (!this.slave.datepickerInput.value ||
+            (!this.connected.datepickerInput.value ||
               this._dateAdapter.compareDate(
                 this.datepickerInput.value,
-                this.slave.datepickerInput.value
+                this.connected.datepickerInput.value
               ) > 0)
         ),
         tap(() => {
-          if (this.slave!.datepickerInput.value) {
-            this.slave!.datepickerInput.value = null;
+          if (this.connected!.datepickerInput.value) {
+            this.connected!.datepickerInput.value = null;
           }
         })
       )
-      .subscribe(() => this.slave!.openDatepicker());
+      .subscribe(() => this.connected!.openDatepicker());
   }
 
   /**

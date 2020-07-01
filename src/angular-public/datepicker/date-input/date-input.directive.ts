@@ -134,10 +134,10 @@ export class DateInputDirective<D> implements ControlValueAccessor, Validator, O
     return (
       this._min ||
       (this._datepicker &&
-      this._datepicker.master &&
-      this._datepicker.master.datepickerInput &&
-      this._datepicker.master.datepickerInput.value
-        ? this._datepicker.master.datepickerInput.value
+      this._datepicker.main &&
+      this._datepicker.main.datepickerInput &&
+      this._datepicker.main.datepickerInput.value
+        ? this._datepicker.main.datepickerInput.value
         : null)
     );
   }

@@ -49,16 +49,16 @@ The initial focus for the datepicker is the current date value.
 
 ### Connected Datepickers
 
-Datepickers can be connected. On selecting a date in the first/master datepicker, the second/slave
-datepicker will have its datepicker opened if it was empty or the value of the slave is before the
-newly selected date. Also the value of the master is set to be the min value of the slave, if no
+Datepickers can be connected. On selecting a date in the first/main datepicker, the second/connected
+datepicker will have its datepicker opened if it was empty or the value of the connected datepicker is before the
+newly selected date. Also the value of the main datepicker is set to be the min value of the connected datepicker, if no
 manual min has been set.
 
 ```html
 <form [formGroup]="twoDatepickersForm">
   <sbb-field mode="medium">
     <sbb-label for="Datum">Datumsbereich innerhalb eines Monats</sbb-label>
-    <sbb-datepicker [slave]="second" arrows>
+    <sbb-datepicker [connected]="second" arrows>
       <input sbbDateInput sbbInput formControlName="firstDatepicker" />
     </sbb-datepicker>
   </sbb-field>
