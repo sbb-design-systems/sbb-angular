@@ -26,7 +26,9 @@
     (removeChange)="removeChange($event)"
   >
     <h4>List of people</h4>
-    <sbb-people-list [people]="people"></sbb-people-list>
+    <ol class="list">
+      <li *ngFor="let p of people">{{ p.name }} {{ p.surname }}</li>
+    </ol>
   </sbb-tab>
   <sbb-tab label="Tab 4" id="content4-tab" labelId="content4">
     <h4>Content 4</h4>

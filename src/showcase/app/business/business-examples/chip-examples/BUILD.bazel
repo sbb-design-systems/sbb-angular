@@ -1,11 +1,11 @@
 load(
     "//tools:defaults.bzl",
-    "ng_ts_library",
+    "ng_module",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_ts_library(
+ng_module(
     name = "chip-examples",
     srcs = [
         "autocomplete-chip-input-example/autocomplete-chip-input-example.component.ts",

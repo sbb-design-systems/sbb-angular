@@ -858,12 +858,12 @@ describe('Tooltip', () => {
 
       expect(inputStyle.userSelect).toBeFalsy();
       expect(inputStyle.webkitUserSelect).toBeFalsy();
-      expect(inputStyle.msUserSelect).toBeFalsy();
+      expect((inputStyle as any).msUserSelect).toBeFalsy();
       expect((inputStyle as any).MozUserSelect).toBeFalsy();
 
       expect(textareaStyle.userSelect).toBeFalsy();
       expect(textareaStyle.webkitUserSelect).toBeFalsy();
-      expect(textareaStyle.msUserSelect).toBeFalsy();
+      expect((textareaStyle as any).msUserSelect).toBeFalsy();
       expect((textareaStyle as any).MozUserSelect).toBeFalsy();
     });
 

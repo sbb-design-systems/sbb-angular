@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_ts_library",
+    "ng_module",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_ts_library(
+ng_module(
     name = "loading-examples",
     srcs = [
         "fullbox-loading-example/fullbox-loading-example.component.ts",

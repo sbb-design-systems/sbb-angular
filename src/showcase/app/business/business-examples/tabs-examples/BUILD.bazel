@@ -1,21 +1,19 @@
 load(
     "//tools:defaults.bzl",
-    "ng_ts_library",
+    "ng_module",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_ts_library(
+ng_module(
     name = "tabs-examples",
     srcs = [
-        "tabs-example/people-list/people-list.component.ts",
         "tabs-example/tabs-example.component.ts",
         "tabs-examples.module.ts",
     ],
     assets = [
-        ":tabs-example/people-list/people-list.component.css",
-        "tabs-example/people-list/people-list.component.html",
+        ":tabs-example/tabs-example.component.css",
         "tabs-example/tabs-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
@@ -40,6 +38,6 @@ filegroup(
 )
 
 sass_binary(
-    name = "tabs_example_people_list_people_list_component_scss",
-    src = "tabs-example/people-list/people-list.component.scss",
+    name = "tabs_example_tabs_example_component_scss",
+    src = "tabs-example/tabs-example.component.scss",
 )

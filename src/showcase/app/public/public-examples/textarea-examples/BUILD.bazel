@@ -1,12 +1,12 @@
 load(
     "//tools:defaults.bzl",
-    "ng_ts_library",
+    "ng_module",
     "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
-ng_ts_library(
+ng_module(
     name = "textarea-examples",
     srcs = [
         "textarea-examples.module.ts",

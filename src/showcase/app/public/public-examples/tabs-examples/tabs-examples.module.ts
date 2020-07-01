@@ -7,13 +7,11 @@ import { TabsModule } from '@sbb-esta/angular-public/tabs';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { PeopleListComponent } from './tabs-example/people-list/people-list.component';
 import { TabsExampleComponent } from './tabs-example/tabs-example.component';
 
-const EXAMPLES = [PeopleListComponent, TabsExampleComponent];
+const EXAMPLES = [TabsExampleComponent];
 
 const EXAMPLE_INDEX = {
-  'people-list': PeopleListComponent,
   'tabs-example': TabsExampleComponent,
 };
 

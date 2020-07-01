@@ -82,7 +82,7 @@
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/sbb-esta/angular-public/tsconfig.lib.json",
+            "tsConfig": "src/bazel-tsconfig-build.json",
             "project": "projects/sbb-esta/angular-public/ng-package.json"
           }
         },
@@ -90,7 +90,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/sbb-esta/angular-public/test.ts",
-            "tsConfig": "projects/sbb-esta/angular-public/tsconfig.spec.json",
+            "tsConfig": "src/bazel-tsconfig-test.json",
             "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js"
           }
         },

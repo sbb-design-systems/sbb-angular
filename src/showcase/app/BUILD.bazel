@@ -1,6 +1,6 @@
 load(
     "//tools:defaults.bzl",
-    "ng_ts_library",
+    "ng_module",
     "sass_binary",
 )
 
@@ -19,7 +19,7 @@ genrule(
     tools = ["//tools/package-info:bazel-bin"],
 )
 
-ng_ts_library(
+ng_module(
     name = "app",
     srcs = [
         "app.component.ts",
