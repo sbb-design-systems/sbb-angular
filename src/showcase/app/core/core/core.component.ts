@@ -11,6 +11,5 @@ export class CoreComponent {
     breakpoints: 'Breakpoints',
     datetime: 'Datetime',
     oauth: 'OAuth',
-    scrolling: 'Scrolling',
   };
 }

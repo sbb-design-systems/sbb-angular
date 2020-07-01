@@ -45,7 +45,6 @@ ROLLUP_GLOBALS = {
     "@angular/cdk/tree": "ng.cdk.tree",
 
     # Third-party libraries.
-    "ngx-perfect-scrollbar": "ngxPerfectScrollbar",
     "esri-loader": "esriLoader",
     "protractor": "protractor",
     "rxjs": "rxjs",
