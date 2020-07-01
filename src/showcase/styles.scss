@@ -60,7 +60,8 @@ sbb-business,
 }
 
 sbb-markdown-viewer,
-sbb-component-viewer {
+sbb-component-viewer,
+sbb-how-to-update {
   pre {
     background-color: #efefef;
     padding: 1rem 3rem;
@@ -176,4 +177,27 @@ pre code {
 sbb-tabs.sbbsc-tabs > .sbb-tabs-content > sbb-tab,
 sbb-tabs.sbbsc-tabs > sbb-tab {
   outline: 0;
+}
+
+sbb-introduction,
+sbb-how-to-update {
+  display: block;
+  padding: 0 3rem;
+
+  h1 {
+    color: #eb0000;
+    font-size: 24px;
+    font-weight: 200;
+    line-height: 27px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    max-width: 700px;
+  }
+
+  a {
+    line-height: pxToEm(23px);
+    font-size: pxToRem($sizeFontDefault);
+  }
 }
