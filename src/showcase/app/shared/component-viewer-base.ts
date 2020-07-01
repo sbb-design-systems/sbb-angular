@@ -26,8 +26,7 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.example = combineLatest(this._route.params, this._route.data).pipe(
-      takeUntil(this._destroyed),
+    this.example = combineLatest([this._route.params, this._route.data]).pipe(
       map(
         ([{ id }, { library }]) =>
           this._examples.find((e) => e.library === library && e.moduleName === id)?.examples
@@ -39,7 +38,8 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
               portal: new ComponentPortal(examples[name]),
             }))
           : null
-      )
+      ),
+      takeUntil(this._destroyed)
     );
     this.overview = this._htmlLoader.with(this._route).fromModuleDocumentation().observe();
     this.api = this._htmlLoader.with(this._route).fromApiDocumentation().observe();
@@ -55,10 +55,10 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((s) => this.tabs.openTabByIndex(s));
     this._route.params
       .pipe(
-        takeUntil(this._destroyed),
         map(({ id }) => id),
         distinctUntilChanged(),
-        skip(1)
+        skip(1),
+        takeUntil(this._destroyed)
       )
       .subscribe(() => this.tabs.openTabByIndex(0));
   }

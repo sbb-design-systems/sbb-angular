@@ -145,9 +145,9 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
       passiveEventListenerOptions
     );
     this._isDesktop = this._breakpointObserver.observe(Breakpoints.DesktopAndAbove).pipe(
-      takeUntil(this._destroyed),
       map((m) => m.matches),
-      distinctUntilChanged()
+      distinctUntilChanged(),
+      takeUntil(this._destroyed)
     );
     this._scrollStrategy = scrollStrategy;
   }

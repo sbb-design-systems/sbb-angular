@@ -134,8 +134,8 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
     (this._items.changes as Observable<HeaderMenuItemDirective[]>)
       .pipe(
         startWith(this._items.toArray()),
-        takeUntil(this._destroyed),
-        map((i) => !!i.length)
+        map((i) => !!i.length),
+        takeUntil(this._destroyed)
       )
       .subscribe((s) => (this.showPanel = s));
     this._keyManager = new FocusKeyManager(this._items).withWrap().withTypeAhead();

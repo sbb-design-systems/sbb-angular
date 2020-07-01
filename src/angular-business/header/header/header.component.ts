@@ -246,9 +246,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this._breakpointObserver
       .observe(Breakpoints.DesktopAndAbove)
       .pipe(
-        takeUntil(this._destroyed),
         map((r) => r.matches),
-        distinctUntilChanged()
+        distinctUntilChanged(),
+        takeUntil(this._destroyed)
       )
       .subscribe((isDesktop) => {
         if (isDesktop) {
