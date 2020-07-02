@@ -87,7 +87,7 @@ export class Dialog implements OnDestroy {
     private _overlay: Overlay,
     private _injector: Injector,
     @Optional() private _location: Location,
-    @Optional() @Inject(DIALOG_DEFAULT_OPTIONS) private _defaultOptions: any,
+    @Optional() @Inject(DIALOG_DEFAULT_OPTIONS) private _defaultOptions: DialogConfig,
     @Inject(DIALOG_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() @SkipSelf() private _parentDialog: Dialog
   ) {}

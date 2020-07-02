@@ -6,6 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  HostBinding,
   Inject,
   Input,
   Optional,
@@ -19,7 +20,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FileSelectorOptions, FileTypeCategory, FILE_SELECTOR_OPTIONS } from './file-selector-base';
 import { FileSelectorTypesService } from './file-selector-types.service';
 
-let counter = 0;
+let nextId = 0;
 
 @Component({
   selector: 'sbb-file-selector',
@@ -36,18 +37,22 @@ let counter = 0;
   ],
 })
 export class FileSelectorComponent implements ControlValueAccessor, FileSelectorOptions {
-  /**
-   * Categories of file types accepted by sbb-file-selector component.
-   */
+  private _uniqueId = `sbb-file-selector-${++nextId}`;
+
+  /** Unique id of the element. */
+  @Input() @HostBinding('attr.id') id = this._uniqueId;
+
+  /** Id for the inner input field. */
+  get inputId() {
+    return `${this.id || this._uniqueId}-input`;
+  }
+
+  /** Categories of file types accepted by sbb-file-selector component. */
   @Input() accept?: string;
-  /**
-   * Attribute whose state specifies the preferred facing mode for the media capture mechanism.
-   */
+  /** Attribute whose state specifies the preferred facing mode for the media capture mechanism. */
   @Input() capture?: 'user' | 'environment';
 
-  /**
-   * Mode on file selector component to chose more files to upload.
-   */
+  /** Mode on file selector component to chose more files to upload. */
   @Input()
   get multiple() {
     return this._multiple;
@@ -57,14 +62,10 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   }
   private _multiple = false;
 
-  /**
-   * Set if the component should add files on top of the already selected ones or keep default input file behaviour.
-   */
+  /** Set if the component should add files on top of the already selected ones or keep default input file behaviour. */
   @Input() multipleMode: 'default' | 'persistent' = 'default';
 
-  /**
-   * Mode to disable the choice of files to upload.
-   */
+  /** Mode to disable the choice of files to upload. */
   @Input()
   get disabled() {
     return this._disabled;
@@ -74,40 +75,20 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   }
   private _disabled = false;
 
-  /**
-   * Identifier of a sbb-file-selector component.
-   * @deprecated This will be replaced by an internal getter, based on the id property.
-   */
-  @Input() inputId = `sbb-file-selector-${counter++}`;
-
-  /**
-   * Event emitted to a change on file selector component (for example the uploading of files).
-   */
+  /** Event emitted to a change on file selector component (for example the uploading of files). */
   @Output() fileChanged = new EventEmitter<File[]>();
-
-  /**
-   * @docs-private
-   */
+  /** @docs-private */
   @ViewChild('fileInput', { static: true }) fileInput: ElementRef<HTMLInputElement>;
 
-  /**
-   * List of files uploaded.
-   */
+  /** List of files uploaded. */
   filesList: File[];
-
-  /**
-   * File type category available.
-   */
+  /** File type category available. */
   fileTypeCategory = FileTypeCategory;
 
-  /**
-   * Property that listens changes on file selector.
-   */
+  /** Property that listens changes on file selector. */
   onChange = (_: File[]) => {};
 
-  /**
-   * Property that catches the interaction with user.
-   */
+  /** Property that catches the interaction with user. */
   onTouched = () => {};
 
   constructor(

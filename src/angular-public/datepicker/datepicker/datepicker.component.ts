@@ -82,12 +82,6 @@ export class DatepickerComponent<D> implements OnDestroy {
   }
   private _startAt: D | null;
 
-  /**
-   * The view that the calendar should start in.
-   * @deprecated We only support month view.
-   */
-  @Input() startView = 'month';
-
   /** Whether the datepicker pop-up should be disabled. */
   @Input()
   get disabled(): boolean {

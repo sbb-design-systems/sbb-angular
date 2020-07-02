@@ -118,17 +118,11 @@ describe('CalendarComponent', () => {
       testComponent = fixture.componentInstance;
     });
 
-    it('should be in month view with specified month active', () => {
-      expect(calendarInstance.currentView).toBe('month');
-      expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 31));
-    });
-
     it('should select date in month view', () => {
       const monthCells = calendarElement.querySelectorAll('.sbb-calendar-body-cell');
       (monthCells[monthCells.length - 1] as HTMLElement).click();
       fixture.detectChanges();
 
-      expect(calendarInstance.currentView).toBe('month');
       expect(testComponent.selected).toEqual(new Date(2017, JAN, 31));
     });
 
@@ -361,7 +355,6 @@ describe('CalendarComponent', () => {
       });
 
       it('should not allow selection of disabled date in month view', () => {
-        expect(calendarInstance.currentView).toBe('month');
         expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 1));
 
         dispatchKeyboardEvent(tableBodyEl, 'keydown', ENTER);

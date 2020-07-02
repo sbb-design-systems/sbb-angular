@@ -11,12 +11,8 @@ import { CheckboxComponent } from './checkbox.component';
 @Component({
   selector: 'sbb-model-checkbox-test',
   template: `
-    <sbb-checkbox [(ngModel)]="checkValue1" inputId="test-check-1" value="1"
-      >Test check 1</sbb-checkbox
-    >
-    <sbb-checkbox [(ngModel)]="checkValue2" inputId="test-check-2" value="2"
-      >Test check button 2</sbb-checkbox
-    >
+    <sbb-checkbox [(ngModel)]="checkValue1" value="1">Test check 1</sbb-checkbox>
+    <sbb-checkbox [(ngModel)]="checkValue2" value="2">Test check button 2</sbb-checkbox>
   `,
 })
 class ModelCheckboxTestComponent {
@@ -83,9 +79,7 @@ describe('CheckboxComponent using mock component', () => {
   });
 
   it('should check when click the label', () => {
-    const checkboxLabel = modelComponentFixture.debugElement.query(
-      By.css('label[for="test-check-1"]')
-    );
+    const checkboxLabel = modelComponentFixture.debugElement.queryAll(By.css('label[for]'))[0];
     expect(checkboxLabel).toBeTruthy();
 
     checkboxLabel.nativeElement.click();
@@ -101,9 +95,7 @@ describe('CheckboxComponent using mock component', () => {
   });
 
   it('should checked if model is true', async () => {
-    const checkboxLabel = modelComponentFixture.debugElement.query(
-      By.css('label[for="test-check-1"]')
-    );
+    const checkboxLabel = modelComponentFixture.debugElement.queryAll(By.css('label[for]'))[0];
     expect(checkboxLabel).toBeTruthy();
 
     modelComponent.checkValue1 = true;
@@ -115,9 +107,7 @@ describe('CheckboxComponent using mock component', () => {
     expect(components[0].componentInstance._checked).toBe(true);
     expect(modelComponent.checkValue1).toBe(true);
 
-    const checkboxLabel2 = modelComponentFixture.debugElement.query(
-      By.css('label[for="test-check-2"]')
-    );
+    const checkboxLabel2 = modelComponentFixture.debugElement.queryAll(By.css('label[for]'))[1];
     expect(checkboxLabel2).toBeTruthy();
 
     checkboxLabel2.nativeElement.click();

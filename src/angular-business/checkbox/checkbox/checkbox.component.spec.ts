@@ -12,12 +12,7 @@ import { CheckboxComponent } from './checkbox.component';
 @Component({
   selector: 'sbb-model-checkbox-test',
   template: `
-    <sbb-checkbox
-      [checked]="checked"
-      [indeterminate]="indeterminate"
-      inputId="test-check-1"
-      value="1"
-      #check1
+    <sbb-checkbox [checked]="checked" [indeterminate]="indeterminate" value="1" #check1
       >Test check 1</sbb-checkbox
     >
   `,

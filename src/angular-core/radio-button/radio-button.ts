@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
 
-import { RadioGroup } from './radio-group';
+import type { RadioGroupDirective } from './radio-group.directive';
 
 /** Change event object emitted by RadioButtonComponent. */
 export class RadioChange {
@@ -41,21 +41,20 @@ const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTab
   RadioButtonBase
 );
 
-let nextUniqueId = 0;
+let nextId = 0;
 
 @Directive()
 export abstract class RadioButton extends _RadioButtonMixinBase
   implements OnInit, AfterViewInit, OnDestroy {
-  private _uniqueId = `sbb-radio-button-${++nextUniqueId}`;
+  private _uniqueId = `sbb-radio-button-${++nextId}`;
 
   /** The id of this component. */
   // tslint:disable-next-line: no-input-rename
   @Input() @HostBinding('attr.id') id: string = this._uniqueId;
-  /**
-   * Radio input identifier.
-   * @deprecated This will be replaced by an internal getter, based on the id property.
-   */
-  @Input() inputId = `${this.id}-input`;
+  /** Id for the inner input field. */
+  get inputId() {
+    return `${this.id || this._uniqueId}-input`;
+  }
   /** Analog to HTML 'name' attribute used to group radios for unique selection. */
   @Input() name: string;
   /** Used to set the 'aria-label' attribute on the underlying input element. */
@@ -165,7 +164,7 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   private _removeUniqueSelectionListener: () => void = () => {};
 
   constructor(
-    readonly radioGroup: RadioGroup,
+    readonly radioGroup: RadioGroupDirective,
     protected readonly _changeDetector: ChangeDetectorRef,
     private _elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,

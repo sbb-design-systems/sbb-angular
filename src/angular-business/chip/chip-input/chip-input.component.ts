@@ -33,7 +33,7 @@ import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
 import { Subject } from 'rxjs';
 
-let nextUniqueId = 0;
+let nextId = 0;
 
 /** Change event object that is emitted when the chip-input value has changed. */
 export class SbbChipInputChange {
@@ -100,10 +100,15 @@ export class ChipInputComponent extends SbbChipsMixinBase
     return this._id;
   }
   set id(value: string) {
-    this._id = value || this._uid;
+    this._id = value || this._uniqueId;
     this.stateChanges.next();
   }
   private _id: string;
+
+  /** Id for the inner input field. */
+  get inputId() {
+    return `${this.id || this._uniqueId}-input`;
+  }
 
   /** Whether the component is required. */
   @HostBinding('class.sbb-chip-input-required')
@@ -136,14 +141,6 @@ export class ChipInputComponent extends SbbChipsMixinBase
   }
   private _value: string[] = [];
 
-  /**
-   * Implemented as part of FormFieldControl.
-   * @docs-private
-   */
-  get inputId() {
-    return this.id;
-  }
-
   /** Whether the chip-input has a value. */
   get empty(): boolean {
     return !this.selectionModel || this.selectionModel.isEmpty();
@@ -158,13 +155,12 @@ export class ChipInputComponent extends SbbChipsMixinBase
 
   /**
    * Whether the select is focused.
-   * Note: Setting focused will be removed in the next major release
+   * @deprecated Setting focused will be removed in the next major release
    * */
   get focused(): boolean {
     return this._focused;
   }
   set focused(focused: boolean) {
-    // TODO remove setter
     this._focused = focused;
   }
   private _focused = false;
@@ -180,7 +176,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   private _ariaDescribedby: string;
 
   /** Unique id for this input. */
-  private _uid = `sbb-chip-input-${nextUniqueId++}`;
+  private _uniqueId = `sbb-chip-input-${nextId++}`;
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();

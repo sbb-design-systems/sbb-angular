@@ -85,8 +85,8 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
 
   /**
    * A subject on tag checking.
+   * @deprecated Use the change event
    */
-  // TODO: Check usage and rename without $ for Angular 9.
   readonly tagChecking$ = new Subject<any>();
 
   /** Refers if a tag is active. */

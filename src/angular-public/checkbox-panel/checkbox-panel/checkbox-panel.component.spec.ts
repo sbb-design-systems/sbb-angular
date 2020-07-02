@@ -13,20 +13,10 @@ import { CheckboxPanelComponent } from './checkbox-panel.component';
 @Component({
   selector: 'sbb-model-sbb-checkbox-panel-test',
   template: `
-    <sbb-checkbox-panel
-      [(ngModel)]="checkValue1"
-      inputId="test-option-1"
-      name="test-option"
-      value="1"
-    >
+    <sbb-checkbox-panel [(ngModel)]="checkValue1" name="test-option" value="1">
       Test option selection 1
     </sbb-checkbox-panel>
-    <sbb-checkbox-panel
-      [(ngModel)]="checkValue2"
-      inputId="test-option-2"
-      name="test-option"
-      value="2"
-    >
+    <sbb-checkbox-panel [(ngModel)]="checkValue2" name="test-option" value="2">
       Test option selection 2
     </sbb-checkbox-panel>
   `,

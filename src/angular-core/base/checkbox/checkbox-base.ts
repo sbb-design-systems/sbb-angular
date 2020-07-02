@@ -28,23 +28,20 @@ export class SbbCheckboxChange<TCheckbox extends CheckboxBase = CheckboxBase> {
 @Directive()
 export abstract class CheckboxBase<TChange extends SbbCheckboxChange = SbbCheckboxChange<any>>
   implements ControlValueAccessor {
+  private _uniqueId: string;
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() @HostBinding() id: string;
-  /**
-   * Identifier of a checkbox field
-   * @deprecated This will be replaced by an internal getter, based on the id property.
-   */
-  @Input() inputId: string;
+  /** Id for the inner input field. */
+  get inputId() {
+    return `${this.id || this._uniqueId}-input`;
+  }
   /** Value contained in a checkbox field */
   @Input() value: any;
   /** Used to set the 'aria-label' attribute on the underlying input element. */
-  // tslint:disable-next-line:no-input-rename
   @Input('aria-label') ariaLabel: string;
   /** The 'aria-labelledby' attribute takes precedence as the element's text alternative. */
-  // tslint:disable-next-line:no-input-rename
   @Input('aria-labelledby') ariaLabelledby: string;
   /** The 'aria-describedby' attribute is read after the element's label and field type. */
-  // tslint:disable-next-line:no-input-rename
   @Input('aria-describedby') ariaDescribedby: string;
   /** The tabindex of the checkbox */
   tabIndex: number;
@@ -95,13 +92,9 @@ export abstract class CheckboxBase<TChange extends SbbCheckboxChange = SbbCheckb
   @Output() readonly change = new EventEmitter<TChange>();
   /** @docs-private */
   @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
-  /**
-   * Property that describes the status change of a checkbox field
-   */
+  /** Property that describes the status change of a checkbox field */
   private _onChange = (_: any) => {};
-  /**
-   * Property that describes an updating of checkbox
-   */
+  /** Property that describes an updating of checkbox */
   private _onTouched = () => {};
 
   constructor(
@@ -111,8 +104,8 @@ export abstract class CheckboxBase<TChange extends SbbCheckboxChange = SbbCheckb
     @Attribute('tabindex') tabIndex: string,
     type = 'checkbox'
   ) {
-    this.id = `sbb-${type}-${++nextId}`;
-    this.inputId = `${this.id}-input`;
+    this._uniqueId = `sbb-${type}-${++nextId}`;
+    this.id = this._uniqueId;
     this.tabIndex = parseInt(tabIndex, 10) || 0;
     this._focusMonitor.monitor(elementRef, true).subscribe((focusOrigin) => {
       if (!focusOrigin) {

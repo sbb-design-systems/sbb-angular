@@ -24,12 +24,6 @@ import { Subject } from 'rxjs';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { MonthViewComponent } from '../month-view/month-view.component';
 
-/**
- * Possible views for the calendar.
- * @docs-private
- */
-export type CalendarView = 'month';
-
 @Component({
   selector: 'sbb-calendar-header',
   templateUrl: './calendar-header.component.html',
@@ -58,11 +52,6 @@ export class CalendarHeaderComponent<D> {
   /** The label for the current calendar view. */
   get yearText(): string {
     return this._dateAdapter.getYearName(this.calendar.activeDate);
-  }
-
-  /** Handles user clicks on the period label. */
-  currentPeriodClicked(): void {
-    this.calendar.currentView = 'month';
   }
 
   /** Handles user clicks on the previous button. */
@@ -186,12 +175,6 @@ export class CalendarComponent<D>
   }
   private _startAt: D | null;
 
-  /**
-   * Whether the calendar should be started in month or year view.
-   * @deprecated We only support month view.
-   */
-  @Input() startView: CalendarView = 'month';
-
   /** The currently selected date. */
   @Input()
   get selected(): D | null {
@@ -247,16 +230,6 @@ export class CalendarComponent<D>
   }
   private _clampedActiveDate: D;
 
-  /** Whether the calendar is in month view. */
-  get currentView(): CalendarView {
-    return this._currentView;
-  }
-  set currentView(value: CalendarView) {
-    this._currentView = value;
-    this._moveFocusOnNextTick = true;
-  }
-  private _currentView: CalendarView;
-
   /**
    * Emits whenever there is a state change that the header may need to respond to.
    */
@@ -281,9 +254,6 @@ export class CalendarComponent<D>
       this.headerComponent || CalendarHeaderComponent
     );
     this.activeDate = this.startAt || this._dateAdapter.today();
-
-    // Assign to the private property since we don't want to move focus on init.
-    this._currentView = this.startView;
   }
 
   ngAfterViewChecked() {

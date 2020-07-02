@@ -14,7 +14,6 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { RadioButton, RadioChange } from './radio-button';
-import { RadioGroup } from './radio-group';
 
 let nextUniqueId = 0;
 
@@ -30,7 +29,7 @@ let nextUniqueId = 0;
     },
   ],
 })
-export class RadioGroupDirective implements AfterContentInit, ControlValueAccessor, RadioGroup {
+export class RadioGroupDirective implements AfterContentInit, ControlValueAccessor {
   /**
    * Role of sbb-toggle.
    */

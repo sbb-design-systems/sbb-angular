@@ -32,7 +32,7 @@ import { distinctUntilChanged, filter, map, take, takeUntil } from 'rxjs/operato
 
 import { AppChooserSectionComponent } from '../app-chooser-section/app-chooser-section.component';
 
-import { SBB_HEADER } from './header';
+import { SBB_HEADER } from './header-token';
 
 /** Result of the toggle promise that indicates the state of the header menu. */
 export type SbbHeaderMenuToggleResult = 'open' | 'close';
