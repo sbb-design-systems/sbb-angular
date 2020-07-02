@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.0.0-next.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.8.0...10.0.0-next.0) (2020-07-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* Removes inputId inputs on form components (does not affect id inputs). Also removes internal interfaces for accordion, header, radio-button and a few other deprecations.
+* Removes scrolling module and drops support for ngx-perfect-scrollbar.
+* Upgrading to version 10 of Angular.
+
+### Bug Fixes
+
+* **icons:** correct schematics path ([#484](https://github.com/sbb-design-systems/sbb-angular/issues/484)) ([f74ca39](https://github.com/sbb-design-systems/sbb-angular/commit/f74ca39753b34097f413dc35044199e0ac34f156))
+
+
+* remove scrolling module ([#471](https://github.com/sbb-design-systems/sbb-angular/issues/471)) ([c783fd1](https://github.com/sbb-design-systems/sbb-angular/commit/c783fd140555d0a4eb65b9a342d0a91d77606323))
+* remove various deprecations ([#481](https://github.com/sbb-design-systems/sbb-angular/issues/481)) ([ce0a284](https://github.com/sbb-design-systems/sbb-angular/commit/ce0a284fd444a8ba099b548e20c18366eee8b76a))
+* update to angular 10 ([#467](https://github.com/sbb-design-systems/sbb-angular/issues/467)) ([427a70e](https://github.com/sbb-design-systems/sbb-angular/commit/427a70eb789d76ab2c684b313d0b74a99d5aedcf))
+
 ## [9.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.7.1...9.8.0) (2020-06-19)
 
 
