@@ -6,6 +6,9 @@ import { AuthService } from './auth.service';
 import { KEYCLOAK_CONFIG, KEYCLOAK_LOGIN_OPTIONS, KEYCLOAK_OPTIONS } from './auth.tokens';
 import { KeycloakConfig } from './keycloak-config';
 
+/**
+ * @deprecated Use the angular-oauth2-oidc package.
+ */
 @NgModule()
 export class AuthModule {
   /**
@@ -14,6 +17,7 @@ export class AuthModule {
    * @param options An options object. Defaults to { onLoad: 'check-sso', flow: 'implicit' }.
    * @param loginOptions An object for login options. Defaults to { idpHint: 'azure_sbb_prod' }.
    *  To avoid configuring an idpHint, provide an object with no idpHint key.
+   * @deprecated Use the angular-oauth2-oidc package.
    */
   static forRoot(
     config: string | KeycloakConfig,

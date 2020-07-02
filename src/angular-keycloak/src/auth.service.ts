@@ -5,6 +5,9 @@ import { from, Observable, of } from 'rxjs';
 
 import { KEYCLOAK_LOGIN_OPTIONS } from './auth.tokens';
 
+/**
+ * @deprecated Use the angular-oauth2-oidc package.
+ */
 @Injectable({
   providedIn: 'root',
 })

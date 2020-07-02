@@ -8,6 +8,9 @@ import { KeycloakConfig } from './keycloak-config';
 // tslint:disable-next-line: naming-convention
 const Keycloak = Keycloak_;
 
+/**
+ * @deprecated Use the angular-oauth2-oidc package.
+ */
 export function authInit(
   keycloakOptions: KeycloakInitOptions,
   keycloakConfig: string | KeycloakConfig,
