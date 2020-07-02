@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { HowToUpdateComponent } from './howtoupdate/how-to-update.component';
 import { IntroductionComponent } from './introduction/introduction.component';
+
 const routes: Routes = [
   {
     path: '',
     component: IntroductionComponent,
+  },
+  {
+    path: 'howtoupdate',
+    component: HowToUpdateComponent,
   },
   {
     path: 'business',

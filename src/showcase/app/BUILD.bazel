@@ -25,6 +25,7 @@ ng_module(
         "app.component.ts",
         "app.module.ts",
         "app-routing.module.ts",
+        "howtoupdate/how-to-update.component.ts",
         "introduction/introduction.component.ts",
         ":versions.ts",
     ],
@@ -32,11 +33,13 @@ ng_module(
         ":app.component.css",
         ":introduction/introduction.component.css",
         "app.component.html",
+        "howtoupdate/how-to-update.component.html",
         "introduction/introduction.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/header",
+        "//src/angular-public/checkbox",
         "//src/showcase/app/business",
         "//src/showcase/app/core",
         "//src/showcase/app/icons",
@@ -47,6 +50,7 @@ ng_module(
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
     ],
@@ -60,7 +64,4 @@ sass_binary(
 sass_binary(
     name = "introduction_introduction_component_scss",
     src = "introduction/introduction.component.scss",
-    deps = [
-        "//src/angular-core/styles:common_scss_lib",
-    ],
 )
