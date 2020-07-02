@@ -65,6 +65,24 @@ export class TextareaComponent extends SbbTextareaMixinBase
     DoCheck,
     AfterViewInit,
     OnDestroy {
+  private _uniqueId = `sbb-textarea-${++nextId}`;
+  /** Unique id of the element. */
+  @Input()
+  @HostBinding('attr.id')
+  get id(): string {
+    return this._id;
+  }
+  set id(value: string) {
+    this._id = value;
+    this.stateChanges.next();
+  }
+  private _id = this._uniqueId;
+
+  /** Id for the inner input field. */
+  get inputId() {
+    return `${this.id || this._uniqueId}-input`;
+  }
+
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
 
@@ -140,18 +158,6 @@ export class TextareaComponent extends SbbTextareaMixinBase
   }
   private _required = false;
 
-  /** Unique id of the element. */
-  @Input()
-  @HostBinding('attr.id')
-  get id(): string {
-    return this._id;
-  }
-  set id(value: string) {
-    this._id = value;
-    this.stateChanges.next();
-  }
-  private _id = `sbb-textarea-id-${++nextId}`;
-
   /** Whether the textarea is focused. */
   get focused(): boolean {
     return this.focusedClass;
@@ -179,11 +185,6 @@ export class TextareaComponent extends SbbTextareaMixinBase
 
   /** Placeholder value for the textarea. */
   @Input() placeholder = '';
-  /**
-   * Identifier of textarea.
-   * @deprecated This will be replaced by an internal getter, based on the id property.
-   */
-  @Input() inputId = `sbb-textarea-input-id-${++nextId}`;
   /** @docs-private */
   @ViewChild('textarea', { static: true }) _textarea: ElementRef<HTMLTextAreaElement>;
   /** Class property that automatically resize a textarea to fit its content. */

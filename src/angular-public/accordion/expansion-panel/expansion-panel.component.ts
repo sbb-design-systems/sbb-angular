@@ -29,7 +29,8 @@ import { Subject } from 'rxjs';
 import { filter, startWith, take } from 'rxjs/operators';
 
 import { sbbExpansionAnimations } from '../accordion/accordion-animations';
-import { IAccordionBase, SBB_ACCORDION } from '../accordion/accordion-base';
+import { SBB_ACCORDION } from '../accordion/accordion-token';
+import type { AccordionDirective } from '../accordion/accordion.directive';
 
 import { ExpansionPanelContentDirective } from './expansion-panel-content';
 
@@ -113,7 +114,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
   readonly _inputChanges = new Subject<SimpleChanges>();
 
   /** Optionally defined accordion the expansion panel belongs to. */
-  accordion: IAccordionBase;
+  accordion: AccordionDirective;
 
   /** Content that will be rendered lazily. */
   @ContentChild(ExpansionPanelContentDirective)
@@ -130,7 +131,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
 
   constructor(
     private _viewContainerRef: ViewContainerRef,
-    @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: IAccordionBase,
+    @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: AccordionDirective,
     changeDetectorRef: ChangeDetectorRef,
     uniqueSelectionDispatcher: UniqueSelectionDispatcher,
     @Inject(DOCUMENT) document?: any

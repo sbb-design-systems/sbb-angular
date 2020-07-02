@@ -90,7 +90,7 @@ export class Lightbox implements OnDestroy {
     private _overlay: Overlay,
     private _injector: Injector,
     @Optional() private _location: Location,
-    @Optional() @Inject(LIGHTBOX_DEFAULT_OPTIONS) private _defaultOptions: any,
+    @Optional() @Inject(LIGHTBOX_DEFAULT_OPTIONS) private _defaultOptions: LightboxConfig,
     @Inject(LIGHTBOX_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() @SkipSelf() private _parentLightbox: Lightbox
   ) {}

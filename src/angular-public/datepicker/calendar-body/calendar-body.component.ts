@@ -4,14 +4,11 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
-  Inject,
   Input,
   NgZone,
-  Optional,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 import { take } from 'rxjs/operators';
 
 /**
@@ -76,18 +73,7 @@ export class CalendarBodyComponent {
   /** Emits when a new value is selected. */
   @Output() readonly selectedValueChange: EventEmitter<number> = new EventEmitter<number>();
 
-  /**
-   * @deprecated No longer used.
-   */
-  a11yFormat: string;
-
-  constructor(
-    private _elementRef: ElementRef<HTMLElement>,
-    private _ngZone: NgZone,
-    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats
-  ) {
-    this.a11yFormat = this._dateFormats.dateA11yLabel;
-  }
+  constructor(private _elementRef: ElementRef<HTMLElement>, private _ngZone: NgZone) {}
 
   cellClicked(cell: CalendarCell): void {
     if (!this.allowDisabledSelection && !cell.enabled) {

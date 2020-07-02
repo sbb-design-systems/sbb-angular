@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostListener, Inject, Input } from '@angular/core';
 
-import { Header, SBB_HEADER } from '../header/header';
+import { SBB_HEADER } from '../header/header-token';
+import type { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'sbb-app-chooser-section',
@@ -11,7 +12,7 @@ import { Header, SBB_HEADER } from '../header/header';
 export class AppChooserSectionComponent {
   @Input() label: string;
 
-  constructor(@Inject(SBB_HEADER) private _header: Header) {}
+  constructor(@Inject(SBB_HEADER) private _header: HeaderComponent) {}
 
   /** Close the header menu when any a or button child element is clicked. */
   @HostListener('click', ['$event'])

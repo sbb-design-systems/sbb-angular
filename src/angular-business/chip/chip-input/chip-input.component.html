@@ -9,6 +9,7 @@
   #chipInputTextfield
   *ngIf="autocomplete; else noAutocomplete"
   type="text"
+  [id]="inputId"
   [value]="inputModel"
   [disabled]="disabled"
   [sbbAutocomplete]="autocomplete"
@@ -22,6 +23,7 @@
   <input
     #chipInputTextfield
     type="text"
+    [id]="inputId"
     [value]="inputModel"
     [disabled]="disabled"
     (focus)="_onFocus()"

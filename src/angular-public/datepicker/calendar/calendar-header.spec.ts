@@ -61,11 +61,6 @@ describe('CalendarHeaderComponent', () => {
       testComponent = fixture.componentInstance;
     });
 
-    it('should be in month view with specified month active', () => {
-      expect(calendarInstance.currentView).toBe('month');
-      expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 31));
-    });
-
     it('should go to next and previous month', () => {
       expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 31));
 

@@ -11,11 +11,6 @@ export abstract class FormFieldControl<TValue> {
   readonly stateChanges: Observable<void>;
   /** The id of the form field. */
   readonly id: string;
-  /**
-   * The id of the inner input field. Can be the same as the id property.
-   * @deprecated This will be replaced by an internal getter, based on the id property.
-   */
-  readonly inputId: string;
   /** The attached NgControl, if any exists. */
   readonly ngControl: NgControl | undefined;
   /** Whether the control is focused. */

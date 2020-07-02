@@ -13,7 +13,7 @@ import {
 
 import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansion-panel-header.component';
 
-import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
+import { SBB_ACCORDION } from './accordion-token';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
@@ -26,7 +26,7 @@ import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
     },
   ],
 })
-export class AccordionDirective extends CdkAccordion implements IAccordionBase, AfterContentInit {
+export class AccordionDirective extends CdkAccordion implements AfterContentInit {
   private _keyManager: FocusKeyManager<ExpansionPanelHeaderComponent>;
   /**
    * Whether the accordion should allow multiple expanded accordion items.

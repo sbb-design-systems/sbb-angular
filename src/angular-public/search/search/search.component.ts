@@ -80,17 +80,7 @@ export const SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   useFactory: SBB_SEARCH_SCROLL_STRATEGY_FACTORY,
 };
 
-// TODO: check if necessary
-export class SearchChangeEvent {
-  constructor(
-    /** Instance of search field component. */
-    public instance: SearchComponent,
-    /** States if the search field has been opened by a click. */
-    public isUserInput = false
-  ) {}
-}
-
-let searchFieldCounter = 1;
+let nextId = 1;
 
 const ANIMATION_DURATION = 300;
 
@@ -131,12 +121,14 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * Identifier of search.
    */
   @HostBinding('attr.id')
-  searchFieldId = 'sbb-search-id-' + searchFieldCounter++;
+  id = 'sbb-search-id-' + nextId++;
 
   /**
    * Identifier of search content.
    */
-  contentId = 'sbb-search-content-id-' + searchFieldCounter;
+  get contentId() {
+    return `${this.id}-content`;
+  }
 
   /**
    * Css class on search component.
@@ -586,12 +578,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
     this.autocomplete.setScrollTop(newScrollPosition);
   }
-
-  /**
-   * @docs-private
-   * @deprecated don't use it
-   */
-  highlightOptionsByInput(value: string) {}
 
   /** @docs-private */
   emitSearch() {

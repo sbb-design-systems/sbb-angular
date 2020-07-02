@@ -235,12 +235,6 @@ export class SelectComponent extends SbbSelectMixinBase
    */
   @HostBinding('class.sbb-select') cssClass = true;
 
-  /**
-   * Trigger that opens the select.
-   * @deprecated No longer in use.
-   */
-  @ViewChild('trigger', { static: true }) trigger: ElementRef<HTMLElement>;
-
   /** Panel containing the select options. */
   @ViewChild('panel') panel: ElementRef<HTMLElement>;
 
@@ -309,15 +303,6 @@ export class SelectComponent extends SbbSelectMixinBase
     this.stateChanges.next();
   }
   private _id: string;
-
-  /**
-   * Implemented as part of FormFieldControl.
-   * @deprecated This will be replaced by an internal getter, based on the id property.
-   * @docs-private
-   */
-  get inputId() {
-    return this.id;
-  }
 
   /** Combined stream of all of the child options' change events. */
   readonly optionSelectionChanges: Observable<SBBOptionSelectionChange> = defer(() => {
