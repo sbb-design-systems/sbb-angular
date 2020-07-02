@@ -11,5 +11,5 @@ import { libraryVersion } from '../versions';
 export class HowToUpdateComponent {
   libraryMajorVersion: number = +libraryVersion.split('.')[0];
   libraryPredecessorMajorVersion = this.libraryMajorVersion - 1;
-  form: FormGroup = new FormGroup({ fullCommand: new FormControl(false) });
+  fullCommand = new FormControl(false);
 }
