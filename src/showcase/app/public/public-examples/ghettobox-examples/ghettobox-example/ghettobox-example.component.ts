@@ -18,7 +18,6 @@ import { take } from 'rxjs/operators';
 @Component({
   selector: 'sbb-ghettobox-example',
   templateUrl: './ghettobox-example.component.html',
-  styleUrls: ['./ghettobox-example.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GhettoboxExampleComponent implements OnDestroy {

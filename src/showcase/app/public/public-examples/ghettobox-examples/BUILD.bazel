@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -13,13 +12,12 @@ ng_module(
         "ghettobox-examples.module.ts",
     ],
     assets = [
-        ":ghettobox-example/ghettobox-example.component.css",
         "ghettobox-example/ghettobox-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/angular-core/icon",
         "//src/angular-core/models",
-        "//src/angular-icons/him-cus",
         "//src/angular-public/button",
         "//src/angular-public/ghettobox",
         "//src/showcase/app/shared",
@@ -37,9 +35,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "ghettobox_example_ghettobox_example_component_scss",
-    src = "ghettobox-example/ghettobox-example.component.scss",
 )
