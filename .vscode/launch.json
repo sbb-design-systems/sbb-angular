@@ -12,6 +12,15 @@
             "args": [
                 ".:generate-from-svg-registry", "--project=@sbb-esta/angular-icons", "--targetDir=experimental", "--verbose"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "public2business",
+            "program": "${workspaceFolder}/node_modules/@angular-devkit/schematics-cli/bin/schematics.js",
+            "args": [
+                ".:public2business"
+            ]
         }
     ]
 }

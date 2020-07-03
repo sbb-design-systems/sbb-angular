@@ -6,7 +6,6 @@ import {
   forEach,
   mergeWith,
   move,
-  noop,
   Rule,
   SchematicContext,
   template,
@@ -24,6 +23,7 @@ import {
 } from 'typescript';
 
 import { SassBinary } from './sass-binary';
+import { formatBazelFile } from './format-bazel-file';
 
 export class NgModule {
   path: Path;
@@ -77,6 +77,14 @@ export class NgModule {
           template(this._templateOptions()),
           move(this.path),
           forEach((fileEntry) => {
+            const content = formatBazelFile(
+              relative(this._tree.root.path, fileEntry.path),
+              fileEntry.content.toString()
+            );
+            fileEntry = {
+              path: fileEntry.path,
+              content: Buffer.from(content),
+            };
             if (!this._tree.exists(fileEntry.path)) {
               return fileEntry;
             } else if (

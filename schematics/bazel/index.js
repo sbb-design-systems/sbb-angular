@@ -7,6 +7,35 @@ var tasks = require('@angular-devkit/schematics/tasks');
 var core = require('@angular-devkit/core');
 var astUtils = require('@schematics/angular/utility/ast-utils');
 var typescript = require('typescript');
+var child_process = require('child_process');
+var crypto = require('crypto');
+var fs = require('fs');
+var os = require('os');
+var path = require('path');
+
+const { getNativeBinary } = require('@bazel/buildifier/buildifier');
+const buildifierArguments = parseBuildifierArguments();
+function parseBuildifierArguments() {
+    const pckg = require('../../package.json');
+    const script = pckg.scripts['bazel:buildifier'];
+    if (!script) {
+        throw new schematics.SchematicsException('Could not find script bazel:buildifier in package.json');
+    }
+    const args = script.split('xargs buildifier -v')[1];
+    if (!args) {
+        throw new schematics.SchematicsException('Could not find `xargs buildifier -v` in bazel:buildifier in package.json');
+    }
+    return `${args} --lint=fix --mode=fix`;
+}
+function formatBazelFile(relativePath, content) {
+    const tmpPath = path.join(os.tmpdir(), `bazel_file_to_format_${crypto.randomBytes(32).toString('hex')}.bazel`);
+    fs.writeFileSync(tmpPath, content, 'utf8');
+    const binary = getNativeBinary();
+    child_process.execSync(`"${binary}" ${buildifierArguments} -path=${relativePath} "${tmpPath}"`);
+    const result = fs.readFileSync(tmpPath, 'utf8');
+    fs.unlinkSync(tmpPath);
+    return result;
+}
 
 class NgModule {
     constructor(_dir, _tree, _context) {
@@ -47,6 +76,11 @@ class NgModule {
                 schematics.template(this._templateOptions()),
                 schematics.move(this.path),
                 schematics.forEach((fileEntry) => {
+                    const content = formatBazelFile(core.relative(this._tree.root.path, fileEntry.path), fileEntry.content.toString());
+                    fileEntry = {
+                        path: fileEntry.path,
+                        content: Buffer.from(content),
+                    };
                     if (!this._tree.exists(fileEntry.path)) {
                         return fileEntry;
                     }
