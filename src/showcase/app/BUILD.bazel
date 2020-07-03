@@ -39,8 +39,8 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/header",
-        "//src/angular-public/checkbox",
         "//src/angular-core/icon",
+        "//src/angular-public/checkbox",
         "//src/showcase/app/business",
         "//src/showcase/app/core",
         "//src/showcase/app/icons",
