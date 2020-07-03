@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IconHimDisruptionModule } from '@sbb-esta/angular-icons/him-cus';
-import { IconHimReplacementbusModule } from '@sbb-esta/angular-icons/him-cus';
-import { IconHimConstructionModule } from '@sbb-esta/angular-icons/him-cus';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { GhettoboxModule } from '@sbb-esta/angular-public/ghettobox';
 
@@ -18,15 +16,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    IconHimDisruptionModule,
-    IconHimReplacementbusModule,
-    IconHimConstructionModule,
-    ButtonModule,
-    GhettoboxModule,
-  ],
+  imports: [CommonModule, RouterModule, ButtonModule, GhettoboxModule, SbbIconModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('public', 'ghettobox', EXAMPLE_INDEX)],
