@@ -43,83 +43,81 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
         margin-right: 8.5%;
       }
 
-      .sbb-ghettobox {
-        &-icon-container {
-          flex: 0 0 $ghettobox-icon-size;
+      .sbb-ghettobox-icon-container {
+        flex: 0 0 $ghettobox-icon-size;
+      }
+
+      .sbb-ghettobox-icon {
+        /* @deprecated: remove when old icons are removed */
+        @include svgIconColor($ghettobox-color);
+        position: relative;
+        width: $ghettobox-icon-size;
+        height: $ghettobox-icon-size;
+        background-color: $ghettobox-icon-bg;
+        border-radius: $ghettobox-icon-radius;
+        line-height: 1;
+
+        /* @deprecated: remove when old icons are removed */
+        .sbb-icon-component {
+          @include absoluteCenterXY();
+          display: block;
+          width: $ghettobox-icon-inner-size;
+          height: $ghettobox-icon-inner-size;
+        }
+      }
+
+      .sbb-ghettobox-content {
+        /* @deprecated: remove when old icons are removed */
+        @include svgIconColor($ghettobox-color);
+        flex: 0 1 auto;
+        padding: 0 $ghettobox-icon-size 0 pxToEm(12);
+
+        @include mq($from: desktop) {
+          padding: 0 pxToEm(24);
         }
 
-        &-icon {
-          @include svgIconColor($ghettobox-color);
-          position: relative;
-          width: $ghettobox-icon-size;
-          height: $ghettobox-icon-size;
-          background-color: $ghettobox-icon-bg;
-          border-radius: $ghettobox-icon-radius;
-          line-height: 1;
+        a {
+          color: $ghettobox-color;
 
-          .sbb-icon-component {
-            @include absoluteCenterXY();
-            display: block;
-            width: $ghettobox-icon-inner-size;
-            height: $ghettobox-icon-inner-size;
-          }
-        }
-
-        &-content {
-          @include svgIconColor($ghettobox-color);
-          flex: 0 1 auto;
-          padding: 0 $ghettobox-icon-size 0 pxToEm(12);
-
-          @include mq($from: desktop) {
-            padding: 0 pxToEm(24);
-          }
-
-          a {
-            color: $ghettobox-color;
-
-            &[sbbGhettoboxLink] {
-              text-decoration: none;
-            }
-          }
-
-          &-link-icon {
-            width: $ghettobox-link-icon-size;
-            height: $ghettobox-link-icon-size;
-            display: inline-block;
-            vertical-align: top;
+          &[sbbGhettoboxLink] {
+            text-decoration: none;
           }
         }
 
-        &-close {
-          position: absolute;
-          top: $ghettobox-wrapper-padding;
-          right: pxToEm(12);
-          line-height: 1;
+        .sbb-ghettobox-content-link-icon {
+          width: $ghettobox-link-icon-size;
+          height: $ghettobox-link-icon-size;
+          line-height: 0;
+          vertical-align: top;
+        }
+      }
 
-          @include mq($from: desktop) {
-            top: $ghettobox-wrapper-padding-desktop-y;
-          }
+      .sbb-ghettobox-close {
+        position: absolute;
+        top: $ghettobox-wrapper-padding;
+        right: pxToEm(12);
+        line-height: 0;
+
+        @include mq($from: desktop) {
+          top: $ghettobox-wrapper-padding-desktop-y;
+        }
+      }
+
+      .sbb-ghettobox-close-button {
+        @include buttonResetFrameless();
+        width: $ghettobox-icon-size;
+        height: $ghettobox-icon-size;
+        border: pxToEm(1) solid $ghettobox-color;
+        border-radius: 50%;
+        color: $sbbColorWhite;
+        line-height: 0;
+
+        sbb-icon {
+          padding: pxToEm(3);
         }
 
-        &-close-button {
-          @include buttonResetFrameless();
-          @include svgIconColor($ghettobox-color);
-          position: relative;
-          width: $ghettobox-icon-size;
-          height: $ghettobox-icon-size;
-          border: pxToEm(1) solid $ghettobox-color;
-          border-radius: 50%;
-
-          &:hover {
-            cursor: pointer;
-          }
-
-          .sbb-icon-component {
-            @include absoluteCenterXY();
-            display: block;
-            width: $ghettobox-icon-inner-size;
-            height: $ghettobox-icon-inner-size;
-          }
+        &:hover {
+          cursor: pointer;
         }
       }
     }
