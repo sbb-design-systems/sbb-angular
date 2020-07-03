@@ -22,8 +22,8 @@ import {
   SyntaxKind,
 } from 'typescript';
 
-import { SassBinary } from './sass-binary';
 import { formatBazelFile } from './format-bazel-file';
+import { SassBinary } from './sass-binary';
 
 export class NgModule {
   path: Path;
