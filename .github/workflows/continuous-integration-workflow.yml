@@ -83,12 +83,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-
 
-    - name: "Yarn: Install"
-      run: yarn
-
-    - name: "Build: Public2Business"
-      run: yarn -s build:public2business
-
     - name: "Build: Bazel"
       run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
 
