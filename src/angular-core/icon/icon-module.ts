@@ -14,7 +14,7 @@ export class SbbIconModule {
    * @param icons The icons to register for the consuming module.
    * @docs-private
    */
-  static ɵforInternalModule(icons: string[]): ModuleWithProviders {
+  static ɵforInternalModule(icons: string[]): ModuleWithProviders<SbbIconModule> {
     return {
       ngModule: SbbIconModule,
       providers: [
