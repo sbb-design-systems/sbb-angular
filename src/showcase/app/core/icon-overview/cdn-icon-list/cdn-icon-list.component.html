@@ -1,5 +1,9 @@
-<div>
-  Search
-  {{ cdnIcons.version }}
-</div>
-<sbb-cdn-icon *ngFor="let cdnIcon of cdnIcons.icons" [cdnIcon]="cdnIcon"></sbb-cdn-icon>
+<form [formGroup]="filterForm">
+  <sbb-search placeholder="Search icons" formControlName="filter"></sbb-search>
+  <sbb-checkbox formControlName="fpl">fpl</sbb-checkbox>
+  <sbb-checkbox formControlName="kom">kom</sbb-checkbox>
+</form>
+
+{{ cdnIcons.version }}
+
+<sbb-cdn-icon *ngFor="let cdnIcon of filteredIcons | async" [cdnIcon]="cdnIcon"></sbb-cdn-icon>

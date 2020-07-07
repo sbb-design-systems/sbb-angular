@@ -1,11 +1,14 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from '@sbb-esta/angular-business/button';
+import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { LoadingModule } from '@sbb-esta/angular-business/loading';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SearchModule } from '@sbb-esta/angular-public/search';
 import { TabsModule } from '@sbb-esta/angular-public/tabs';
 
 import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';
@@ -40,6 +43,9 @@ import { IconOverviewComponent } from './icon-overview/icon-overview.component';
     LoadingModule,
     DialogModule,
     ButtonModule,
+    CheckboxModule,
+    SearchModule,
+    ReactiveFormsModule,
   ],
 })
 export class CoreModule {}
