@@ -3,10 +3,6 @@ import { existsSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
 
 export default readdirSync(__dirname, { withFileTypes: true })
-  .concat({
-    name: '../src/angular-core/schematics/ng-generate/icon-cdn-provider',
-    isDirectory: () => true,
-  })
   .filter(isBuildable)
   .map((d) => ({
     input: join(__dirname, d.name, 'index.ts'),

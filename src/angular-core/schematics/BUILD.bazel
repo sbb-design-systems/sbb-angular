@@ -9,7 +9,6 @@ filegroup(
     srcs = glob([
         "ng-generate/*/files/**/*",
         "**/*.json",
-        # Schematics template files should be declared here, if available
     ]),
 )
 
@@ -36,10 +35,19 @@ ts_library(
     ],
 )
 
+genrule(
+    name = "used-icons",
+    srcs = ["//src:used-icons.json"],
+    outs = ["ng-generate/icon-cdn-provider/used-icons.json"],
+    cmd = "cp $< $@",
+)
+
 # This package is intended to be combined into the main @sbb-esta/angular-public package as a dep.
 pkg_npm(
     name = "npm_package",
-    srcs = [":schematics_assets"],
+    srcs = [
+        ":schematics_assets",
+    ],
     substitutions = VERSION_PLACEHOLDER_REPLACEMENTS,
-    deps = [":schematics"],
+    deps = [":schematics", ":used-icons"],
 )

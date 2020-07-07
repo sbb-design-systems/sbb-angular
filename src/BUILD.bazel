@@ -20,11 +20,8 @@ ts_config(
 )
 
 businessApiEntryPoints = BUSINESS_ENTRYPOINTS + BUSINESS_TESTING_ENTRYPOINTS
-
 coreApiEntryPoints = CORE_ENTRYPOINTS + CORE_TESTING_ENTRYPOINTS
-
 mapsApiEntryPoints = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
-
 publicApiEntryPoints = PUBLIC_ENTRYPOINTS + PUBLIC_TESTING_ENTRYPOINTS
 
 # List that contains all source files that need to be processed by Dgeni.
@@ -53,4 +50,23 @@ dgeni_api_docs(
         "angular-public": publicApiEntryPoints,
     },
     tags = ["docs-package"],
+)
+
+filegroup(
+    name = "used-icons-source-files",
+    srcs = apiSourceFiles,
+)
+
+genrule(
+    name = "used-icons",
+    srcs = [":used-icons-source-files"],
+    outs = ["used-icons.json"],
+    cmd = """
+      # Run the bazel entry-point for generating the package info.
+      ./$(execpath //tools/icons-in-library:bazel-bin) \
+          "$(execpath used-icons.json)" \
+          "$$PWD/src"
+    """,
+    output_to_bindir = True,
+    tools = ["//tools/icons-in-library:bazel-bin"],
 )
