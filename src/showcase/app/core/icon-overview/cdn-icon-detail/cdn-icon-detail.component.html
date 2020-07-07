@@ -1,0 +1,20 @@
+<div sbbDialogHeader>
+  <p>Icon {{ path }}</p>
+</div>
+<div sbbDialogContent>
+  <div class="sbb-icon-original-size">
+    <h4>Original size</h4>
+    <sbb-icon [svgIcon]="path"></sbb-icon>
+    <code>&lt;sbb-icon svgIcon="{{ path }}"&gt;&lt;/sbb-icon&gt;</code>
+  </div>
+  <div class="sbb-icon-resized-icon">
+    <h4>Icon fits element size of parent</h4>
+    <sbb-icon [svgIcon]="path" class="sbb-icon-fit"></sbb-icon>
+    <code>&lt;sbb-icon svgIcon="{{ path }}" class="sbb-icon-fit"&gt;&lt;/sbb-icon&gt;</code>
+  </div>
+</div>
+<div sbbDialogFooter>
+  <button sbbButton mode="secondary" sbbDialogClose>
+    Close
+  </button>
+</div>

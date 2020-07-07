@@ -20,6 +20,11 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'icon-overview',
+        component: IconOverviewComponent,
+        data: { library: 'core' },
+      },
+      {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
         data: { library: 'core' },
@@ -37,11 +42,6 @@ const routes: Routes = [
       {
         path: 'api/:id',
         component: ApiViewerComponent,
-        data: { library: 'core' },
-      },
-      {
-        path: 'icon-overview',
-        component: IconOverviewComponent,
         data: { library: 'core' },
       },
     ],
