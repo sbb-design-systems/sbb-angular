@@ -33,12 +33,13 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/button",
-        "//src/angular-business/checkbox",
         "//src/angular-business/dialog",
-        "//src/angular-business/loading",
         "//src/angular-business/tooltip",
         "//src/angular-core/icon",
-        "//src/angular-public/search",
+        "//src/angular-public/checkbox",
+        "//src/angular-public/field",
+        "//src/angular-public/loading",
+        "//src/angular-public/select",
         "//src/angular-public/tabs",
         "//src/showcase/app/core/core-examples",
         "//src/showcase/app/shared",
@@ -78,4 +79,7 @@ sass_binary(
 sass_binary(
     name = "icon_overview_cdn_icon_list_cdn_icon_list_component_scss",
     src = "icon-overview/cdn-icon-list/cdn-icon-list.component.scss",
+    deps = [
+        "//src/angular-core/styles:common_scss_lib",
+    ],
 )

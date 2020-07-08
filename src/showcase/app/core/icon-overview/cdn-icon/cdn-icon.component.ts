@@ -11,14 +11,15 @@ import { CdnIcon } from '../cdn-icon.service';
 })
 export class CdnIconComponent {
   @Input() cdnIcon: CdnIcon;
+  @Input() fitIcons: boolean;
 
-  get path() {
+  get cdnIconPath() {
     return `${this.cdnIcon.namespace}:${this.cdnIcon.name}`;
   }
 
   constructor(private _dialog: Dialog) {}
 
   openDialog() {
-    this._dialog.openDialog(CdnIconDetailComponent, { data: { path: this.path } });
+    this._dialog.openDialog(CdnIconDetailComponent, { data: { cdnIcon: this.cdnIcon } });
   }
 }

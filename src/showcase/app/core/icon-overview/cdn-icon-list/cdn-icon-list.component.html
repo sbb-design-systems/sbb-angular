@@ -1,9 +1,25 @@
-<form [formGroup]="filterForm">
-  <sbb-search placeholder="Search icons" formControlName="filter"></sbb-search>
-  <sbb-checkbox formControlName="fpl">fpl</sbb-checkbox>
-  <sbb-checkbox formControlName="kom">kom</sbb-checkbox>
+<form [formGroup]="filterForm" class="sbb-cdn-icon-filter-bar">
+  <sbb-field mode="long" label="Fulltext Filter">
+    <input sbbInput formControlName="fulltext" />
+  </sbb-field>
+
+  <sbb-field mode="long" label="Namespaces">
+    <sbb-select placeholder="Namespaces" formControlName="namespaces" multiple>
+      <sbb-option *ngFor="let namespace of namespaces" [value]="namespace">
+        {{ namespace }}
+      </sbb-option>
+    </sbb-select>
+  </sbb-field>
+
+  <sbb-field mode="long" label="Icon Size">
+    <sbb-checkbox [formControl]="fitIcons">Fit icon size to parent element</sbb-checkbox>
+  </sbb-field>
 </form>
 
-{{ cdnIcons.version }}
+<sbb-cdn-icon
+  *ngFor="let cdnIcon of filteredIcons | async"
+  [cdnIcon]="cdnIcon"
+  [fitIcons]="fitIcons.value"
+></sbb-cdn-icon>
 
-<sbb-cdn-icon *ngFor="let cdnIcon of filteredIcons | async" [cdnIcon]="cdnIcon"></sbb-cdn-icon>
+<p>Icon CDN Version: {{ cdnIcons.version }}</p>

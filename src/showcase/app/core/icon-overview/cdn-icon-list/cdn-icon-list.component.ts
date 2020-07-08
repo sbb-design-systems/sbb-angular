@@ -11,32 +11,43 @@ import { CdnIcon, CdnIcons } from '../cdn-icon.service';
   styleUrls: ['./cdn-icon-list.component.scss'],
 })
 export class CdnIconListComponent {
-  @Input() cdnIcons: CdnIcons;
+  @Input()
+  set cdnIcons(newCdnIcons: CdnIcons) {
+    this._cdnIcons = newCdnIcons;
+    this.namespaces = Array.from(new Set(newCdnIcons.icons.map((cdnIcon) => cdnIcon.namespace)));
+    this.filterForm.patchValue({ namespaces: this.namespaces });
+  }
+  get cdnIcons(): CdnIcons {
+    return this._cdnIcons;
+  }
+  private _cdnIcons: CdnIcons;
 
   filterForm: FormGroup = new FormGroup({
-    filter: new FormControl(''),
-    fpl: new FormControl(true),
-    kom: new FormControl(true),
+    fulltext: new FormControl(''),
+    namespaces: new FormControl([]),
   });
 
   filteredIcons: Observable<CdnIcon[]>;
 
+  fitIcons = new FormControl(true);
+
+  namespaces: string[];
+
   constructor() {
     this.filteredIcons = merge(
-      this.filterForm.controls.fpl.valueChanges,
-      this.filterForm.controls.kom.valueChanges,
-      this.filterForm.controls.filter.valueChanges.pipe(debounceTime(200), startWith(''))
+      this.filterForm.controls.namespaces.valueChanges,
+      this.filterForm.controls.fulltext.valueChanges.pipe(debounceTime(200), startWith(''))
     ).pipe(
       map(() => {
-        const values = this.filterForm.value;
-        const filter = values.filter.toUpperCase();
-        return this.cdnIcons.icons.filter(
+        const fulltext = this.filterForm.get('fulltext').value.toUpperCase();
+        const namespaces: string[] = this.filterForm.get('namespaces').value;
+
+        return this._cdnIcons.icons.filter(
           (i) =>
-            ((i.namespace === 'kom' && values.kom === true) ||
-              (i.namespace === 'fpl' && values.fpl === true)) &&
-            (i.namespace.toUpperCase().indexOf(filter) !== -1 ||
-              i.name.toUpperCase().indexOf(filter) !== -1 ||
-              i.tags.some((tag) => tag.toUpperCase().indexOf(filter) !== -1))
+            namespaces.some((namespace) => i.namespace === namespace) &&
+            (i.namespace.toUpperCase().indexOf(fulltext) !== -1 ||
+              i.name.toUpperCase().indexOf(fulltext) !== -1 ||
+              i.tags.some((tag) => tag.toUpperCase().indexOf(fulltext) !== -1))
         );
       })
     );
