@@ -49,5 +49,8 @@ pkg_npm(
         ":schematics_assets",
     ],
     substitutions = VERSION_PLACEHOLDER_REPLACEMENTS,
-    deps = [":schematics", ":used-icons"],
+    deps = [
+        ":schematics",
+        ":used-icons",
+    ],
 )
