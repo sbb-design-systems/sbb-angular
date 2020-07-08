@@ -12,11 +12,6 @@
     "public2business": {
       "description": "Copy public components to business",
       "factory": "./public2business/index#public2business"
-    },
-    "icon-cdn-provider": {
-      "description": "Create the CDN icon provider, which registers all available icons from the CDN",
-      "factory": "../src/angular-core/schematics/ng-generate/icon-cdn-provider/index#iconCdnProvider",
-      "schema": "../src/angular-core/schematics/ng-generate/icon-cdn-provider/schema.json"
     }
   }
 }
