@@ -13,21 +13,21 @@ ng_module(
         "core-routing.module.ts",
         "core/core.component.ts",
         "icon-overview/cdn-icon.service.ts",
-        "icon-overview/cdn-icon-detail/cdn-icon-detail.component.ts",
+        "icon-overview/cdn-icon-list/cdn-icon-detail/cdn-icon-detail.component.ts",
         "icon-overview/cdn-icon-list/cdn-icon-list.component.ts",
-        "icon-overview/cdn-icon/cdn-icon.component.ts",
+        "icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.ts",
         "icon-overview/icon-overview.component.ts",
     ],
     assets = [
         ":core/core.component.css",
         ":icon-overview/icon-overview.component.css",
-        ":icon-overview/cdn-icon/cdn-icon.component.css",
-        ":icon-overview/cdn-icon-detail/cdn-icon-detail.component.css",
         ":icon-overview/cdn-icon-list/cdn-icon-list.component.css",
+        ":icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.css",
+        ":icon-overview/cdn-icon-list/cdn-icon-detail/cdn-icon-detail.component.css",
         "core/core.component.html",
-        "icon-overview/cdn-icon-detail/cdn-icon-detail.component.html",
+        "icon-overview/cdn-icon-list/cdn-icon-detail/cdn-icon-detail.component.html",
         "icon-overview/cdn-icon-list/cdn-icon-list.component.html",
-        "icon-overview/cdn-icon/cdn-icon.component.html",
+        "icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.html",
         "icon-overview/icon-overview.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
@@ -64,22 +64,22 @@ sass_binary(
 )
 
 sass_binary(
-    name = "icon_overview_cdn_icon_cdn_icon_component_scss",
-    src = "icon-overview/cdn-icon/cdn-icon.component.scss",
-    deps = [
-        "//src/angular-core/styles:common_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "icon_overview_cdn_icon_detail_cdn_icon_detail_component_scss",
-    src = "icon-overview/cdn-icon-detail/cdn-icon-detail.component.scss",
-)
-
-sass_binary(
     name = "icon_overview_cdn_icon_list_cdn_icon_list_component_scss",
     src = "icon-overview/cdn-icon-list/cdn-icon-list.component.scss",
     deps = [
         "//src/angular-core/styles:common_scss_lib",
     ],
+)
+
+sass_binary(
+    name = "icon_overview_cdn_icon_list_cdn_icon_cdn_icon_component_scss",
+    src = "icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.scss",
+    deps = [
+        "//src/angular-core/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "icon_overview_cdn_icon_list_cdn_icon_detail_cdn_icon_detail_component_scss",
+    src = "icon-overview/cdn-icon-list/cdn-icon-detail/cdn-icon-detail.component.scss",
 )

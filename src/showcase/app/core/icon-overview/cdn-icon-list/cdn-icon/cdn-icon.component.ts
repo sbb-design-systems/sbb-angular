@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Dialog } from '@sbb-esta/angular-business/dialog';
 
-import { CdnIconDetailComponent } from '../cdn-icon-detail/cdn-icon-detail.component';
-import { CdnIcon } from '../cdn-icon.service';
+import { CdnIcon } from '../../cdn-icon.service';
+import { CdnIconDialogComponent } from '../cdn-icon-detail/cdn-icon-detail.component';
 
 @Component({
   selector: 'sbb-cdn-icon',
@@ -20,6 +20,6 @@ export class CdnIconComponent {
   constructor(private _dialog: Dialog) {}
 
   openDialog() {
-    this._dialog.openDialog(CdnIconDetailComponent, { data: { cdnIcon: this.cdnIcon } });
+    this._dialog.openDialog(CdnIconDialogComponent, { data: { cdnIcon: this.cdnIcon } });
   }
 }
