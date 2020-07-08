@@ -14,7 +14,9 @@ export class CdnIconListComponent {
   @Input()
   set cdnIcons(newCdnIcons: CdnIcons) {
     this._cdnIcons = newCdnIcons;
-    this.namespaces = Array.from(new Set(newCdnIcons.icons.map((cdnIcon) => cdnIcon.namespace)));
+    this.namespaces = Array.from(
+      new Set(newCdnIcons.icons.map((cdnIcon) => cdnIcon.namespace))
+    ).sort();
     this.filterForm.patchValue({ namespaces: this.namespaces });
   }
   get cdnIcons(): CdnIcons {
