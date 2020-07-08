@@ -54,3 +54,22 @@ dgeni_api_docs(
     },
     tags = ["docs-package"],
 )
+
+filegroup(
+    name = "used-icons-source-files",
+    srcs = apiSourceFiles,
+)
+
+genrule(
+    name = "used-icons",
+    srcs = [":used-icons-source-files"],
+    outs = ["used-icons.json"],
+    cmd = """
+      # Run the bazel entry-point for generating the package info.
+      ./$(execpath //tools/icons-in-library:bazel-bin) \
+          "$(execpath used-icons.json)" \
+          "$$PWD/src"
+    """,
+    output_to_bindir = True,
+    tools = ["//tools/icons-in-library:bazel-bin"],
+)

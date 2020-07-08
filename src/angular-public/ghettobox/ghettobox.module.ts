@@ -10,13 +10,7 @@ import { GhettoboxComponent } from './ghettobox/ghettobox.component';
 
 @NgModule({
   declarations: [GhettoboxComponent, GhettoboxContainerComponent],
-  imports: [
-    CommonModule,
-    IconDirectiveModule,
-    PortalModule,
-    RouterModule,
-    SbbIconModule.ɵforInternalModule(['kom:cross-small', 'fpl:info', 'kom:arrow-long-right-small']),
-  ],
+  imports: [CommonModule, IconDirectiveModule, PortalModule, RouterModule, SbbIconModule],
   exports: [GhettoboxComponent, GhettoboxContainerComponent, IconDirectiveModule],
   entryComponents: [GhettoboxComponent],
 })
