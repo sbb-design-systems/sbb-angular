@@ -20,7 +20,7 @@ export { Schema as IconCdnProviderOptions } from './schema';
 
 interface CdnIndexResponse {
   version: string;
-  icons: Array<{ name: string; namepsace: string }>;
+  icons: Array<{ name: string; namespace: string }>;
 }
 
 export function iconCdnProvider(options: IconCdnProviderOptions): Rule {
@@ -44,7 +44,12 @@ export function iconCdnProvider(options: IconCdnProviderOptions): Rule {
 
     return mergeWith(
       apply(url('./files/provider'), [
-        template({ cdnIndex, cdnBaseUrl: options.cdnBaseUrl }),
+        template({
+          cdnIndex,
+          namespacedIcons: toNamespacedIcons(cdnIndex),
+          cdnBaseUrl: options.cdnBaseUrl,
+          moduleIcons: require('./used-icons.json'),
+        }),
         move(path),
         forEach((fileEntry: FileEntry) => {
           // Just by adding this is allows the file to be overwritten if it already exists
@@ -87,5 +92,18 @@ export function iconCdnProvider(options: IconCdnProviderOptions): Rule {
         reject(error);
       });
     });
+  }
+
+  function toNamespacedIcons(cdnIndex: CdnIndexResponse) {
+    return Array.from(
+      cdnIndex.icons.reduce((map, icon) => {
+        if (!map.has(icon.namespace)) {
+          map.set(icon.namespace, [icon.name]);
+        } else {
+          map.get(icon.namespace)!.push(icon.name);
+        }
+        return map;
+      }, new Map<string, string[]>())
+    );
   }
 }

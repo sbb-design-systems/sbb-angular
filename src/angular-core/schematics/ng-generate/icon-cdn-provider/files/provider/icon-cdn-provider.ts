@@ -82,13 +82,33 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
   errorHandler: ErrorHandler,
   document?: any
 ) {
-  const registry = parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);
-  const icons = [<% for (const icon of cdnIndex.icons) { %>
-    ['<%= icon.namespace %>', '<%= icon.name %>', '<%= cdnBaseUrl %>/<%= icon.namespace %>/<%= icon.name %>.svg'],<% } %>
+  /*
+   * @sbb-esta Required Icons
+   * ========================
+   * Our libraries require the following icons. Please do not remove them
+   * or make sure you provide them yourself.
+   *
+   * Icons:<% for (const entry of moduleIcons) { %>
+   *  - <%= entry.module %>: <%= entry.icons.join(', ') %><% } %>
+   */
+  const registry =
+    parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);
+  const cdnUrl = '<%= cdnBaseUrl %>';
+  const namespacedIcons = [<% for (const namespace of namespacedIcons) { %>
+    {
+      namespace: '<%= namespace[0] %>',
+      icons: [<% for (const icon of namespace[1]) { %>
+        '<%= icon %>',<% } %>
+      ]
+    },<% } %>
   ];
-  for (const [namespace, icon, url] of icons) {
-    registry.addSvgIconInNamespace(namespace, icon, sanitizer.bypassSecurityTrustResourceUrl(url));
+  for (const entry of namespacedIcons) {
+    for (const icon of entry.icons) {
+      registry.addSvgIconInNamespace(
+        entry.namespace,
+        icon,
+        sanitizer.bypassSecurityTrustResourceUrl(`${cdnUrl}/${entry.namespace}/${icon}.svg`));
+    }
   }
   return registry;
 }
-
