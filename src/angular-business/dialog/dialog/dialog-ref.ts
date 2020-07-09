@@ -88,6 +88,14 @@ export class DialogRef<T, R = any> {
       .pipe(filter((event) => event.keyCode === ESCAPE && !!this.disableClose))
       .subscribe(() => this.manualCloseAction.next(null!));
 
+    _overlayRef.backdropClick().subscribe(() => {
+      if (this.disableClose) {
+        this.containerInstance.recaptureFocus();
+      } else {
+        this.close();
+      }
+    });
+
     if (location) {
       // Close the dialog when the user goes forwards/backwards in history or when the location
       // hash changes. Note that this usually doesn't include clicking on links (unless the user
@@ -165,6 +173,13 @@ export class DialogRef<T, R = any> {
    */
   beforeClose(): Observable<R | undefined> {
     return this._beforeClose.asObservable();
+  }
+
+  /**
+   * Gets an observable that emits when the overlay's backdrop has been clicked.
+   */
+  backdropClick(): Observable<MouseEvent> {
+    return this._overlayRef.backdropClick();
   }
 
   /**

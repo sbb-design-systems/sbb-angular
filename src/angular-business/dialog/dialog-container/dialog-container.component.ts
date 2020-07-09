@@ -1,5 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
-import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
+import { ConfigurableFocusTrap, ConfigurableFocusTrapFactory } from '@angular/cdk/a11y';
 import {
   BasePortalOutlet,
   CdkPortalOutlet,
@@ -102,7 +102,7 @@ export class DialogContainerComponent extends BasePortalOutlet {
   }
 
   /** The class that traps and manages focus within the dialog. */
-  private _focusTrap: FocusTrap;
+  private _focusTrap: ConfigurableFocusTrap;
 
   /** Element that was focused before the dialog was opened. Save this to restore upon close. */
   private _elementFocusedBeforeDialogWasOpened: HTMLElement | null = null;
@@ -125,7 +125,7 @@ export class DialogContainerComponent extends BasePortalOutlet {
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private _focusTrapFactory: FocusTrapFactory,
+    private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(DOCUMENT) private _document: any,
     /** The dialog configuration. */
@@ -143,7 +143,7 @@ export class DialogContainerComponent extends BasePortalOutlet {
       throwDialogContentAlreadyAttachedError();
     }
 
-    this._savePreviouslyFocusedElement();
+    this._setupFocusTrap();
     return this.portalOutlet.attachComponentPortal(portal);
   }
 
@@ -156,21 +156,24 @@ export class DialogContainerComponent extends BasePortalOutlet {
       throwDialogContentAlreadyAttachedError();
     }
 
-    this._savePreviouslyFocusedElement();
+    this._setupFocusTrap();
     return this.portalOutlet.attachTemplatePortal(portal);
   }
 
   /** Moves the focus inside the focus trap. */
   private _trapFocus() {
-    if (!this._focusTrap) {
-      this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
-    }
-
-    // If were to attempt to focus immediately, then the content of the dialog would not yet be
+    // If we were to attempt to focus immediately, then the content of the dialog would not yet be
     // ready in instances where change detection has to run first. To deal with this, we simply
     // wait for the microtask queue to be empty.
     if (this.config.autoFocus) {
       this._focusTrap.focusInitialElementWhenReady();
+    } else if (!this._containsFocus()) {
+      // Otherwise ensure that focus is on the dialog container. It's possible that a different
+      // component tried to move focus while the open animation was running. See:
+      // https://github.com/angular/components/issues/16215. Note that we only want to do this
+      // if the focus isn't inside the dialog already, because it's possible that the consumer
+      // turned off `autoFocus` in order to move focus themselves.
+      this._elementRef.nativeElement.focus();
     }
   }
 
@@ -180,7 +183,21 @@ export class DialogContainerComponent extends BasePortalOutlet {
 
     // We need the extra check, because IE can set the `activeElement` to null in some cases.
     if (toFocus && typeof toFocus.focus === 'function') {
-      toFocus.focus();
+      const activeElement = this._document.activeElement;
+      const element = this._elementRef.nativeElement;
+
+      // Make sure that focus is still inside the dialog or is on the body (usually because a
+      // non-focusable element like the backdrop was clicked) before moving it. It's possible that
+      // the consumer moved it themselves before the animation was done, in which case we shouldn't
+      // do anything.
+      if (
+        !activeElement ||
+        activeElement === this._document.body ||
+        activeElement === element ||
+        element.contains(activeElement)
+      ) {
+        toFocus.focus();
+      }
     }
 
     if (this._focusTrap) {
@@ -188,19 +205,44 @@ export class DialogContainerComponent extends BasePortalOutlet {
     }
   }
 
-  /** Saves a reference to the element that was focused before the dialog was opened. */
-  private _savePreviouslyFocusedElement() {
+  /** Moves focus back into the dialog if it was moved out. */
+  recaptureFocus() {
+    if (!this._containsFocus()) {
+      const focusContainer = !this.config.autoFocus || !this._focusTrap.focusInitialElement();
+
+      if (focusContainer) {
+        this._elementRef.nativeElement.focus();
+      }
+    }
+  }
+
+  /**
+   * Sets up the focus trand and saves a reference to the
+   * element that was focused before the dialog was opened.
+   */
+  private _setupFocusTrap() {
+    if (!this._focusTrap) {
+      this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
+    }
+
     if (this._document) {
       this._elementFocusedBeforeDialogWasOpened = this._document.activeElement as HTMLElement;
 
       // Note that there is no focus method when rendering on the server.
       if (this._elementRef.nativeElement.focus) {
         // Move focus onto the dialog immediately in order to prevent the user from accidentally
-        // opening multiple dialoges at the same time. Needs to be async, because the element
+        // opening multiple dialogs at the same time. Needs to be async, because the element
         // may not be focusable immediately.
         Promise.resolve().then(() => this._elementRef.nativeElement.focus());
       }
     }
+  }
+
+  /** Returns whether focus is inside the dialog. */
+  private _containsFocus() {
+    const element = this._elementRef.nativeElement;
+    const activeElement = this._document.activeElement;
+    return element === activeElement || element.contains(activeElement);
   }
 
   /** Callback, invoked whenever an animation on the host completes. */
