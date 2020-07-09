@@ -1,0 +1,24 @@
+<div sbbDialogHeader>Icon {{ cdnIconPath }}</div>
+<div sbbDialogContent>
+  <div class="sbb-icon-code-wrapper">
+    <div class="sbb-icon-original-size">
+      <h4>Original size</h4>
+      <sbb-icon [svgIcon]="cdnIconPath"></sbb-icon>
+      <code>&lt;sbb-icon svgIcon="{{ cdnIconPath }}"&gt;&lt;/sbb-icon&gt;</code>
+    </div>
+    <div class="sbb-icon-resized-icon">
+      <h4>Icon fits element size of parent</h4>
+      <sbb-icon [svgIcon]="cdnIconPath" class="sbb-icon-fit"></sbb-icon>
+      <code
+        >&lt;sbb-icon svgIcon="{{ cdnIconPath }}" class="sbb-icon-fit"&gt;&lt;/sbb-icon&gt;</code
+      >
+    </div>
+  </div>
+  <h4>Tags</h4>
+  <p>{{ tags }}</p>
+</div>
+<div sbbDialogFooter>
+  <button sbbButton mode="secondary" sbbDialogClose>
+    Close
+  </button>
+</div>
