@@ -6,6 +6,7 @@ import { ComponentViewerComponent } from '../shared/component-viewer/component-v
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
 import { CoreComponent } from './core/core.component';
+import { IconOverviewComponent } from './icon-overview/icon-overview.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
         path: '',
         redirectTo: 'introduction/getting-started',
         pathMatch: 'full',
+      },
+      {
+        path: 'icon-overview',
+        component: IconOverviewComponent,
+        data: { library: 'core' },
       },
       {
         path: 'introduction/:id',

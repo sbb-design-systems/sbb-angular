@@ -3,7 +3,7 @@ icon fonts and SVG icons, but not bitmap-based formats (png, jpg, etc.).
 
 ### Available Sbb Icons
 
-See [Icon Overview](TODO)
+See [Icon Overview](/core/icon-overview)
 
 ### Usage
 
@@ -33,6 +33,7 @@ The browser loads and caches the icons from the [SBB Icon CDN](https://icons.app
 ```html
 <sbb-icon svgIcon="kom:cloud-small"></sbb-icon>
 ```
+
 See the Accessibility section below on how to provide meaningful context for screen readers.
 
 #### Sizing
@@ -191,7 +192,6 @@ as for individually registered icons.
 Multiple icon sets can be registered in the same namespace. Requesting an icon whose id appears in
 more than one icon set, the icon from the most recently registered set will be used.
 
-
 ### Optimize icon registry size
 
 If you like to optimize the size of the icon registry, run `ng generate @sbb-esta/angular-core:icon-cdn-provider`
@@ -219,4 +219,3 @@ by
 ```
 
 \*Make sure, that the namespace of 'fpl' remains, because these icons need a special handling regarding the styling.
-
