@@ -32,7 +32,7 @@ export class SharedDataDialogExampleComponent {
   selector: 'sbb-shared-data-dialog',
   template: `
     <div sbbDialogHeader>
-      <p>Hi {{ data.name }}</p>
+      <span>Hi {{ data.name }}</span>
     </div>
     <div sbbDialogContent>
       <div>
