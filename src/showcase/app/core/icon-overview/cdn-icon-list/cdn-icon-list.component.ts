@@ -27,11 +27,10 @@ export class CdnIconListComponent {
   filterForm: FormGroup = new FormGroup({
     fulltext: new FormControl(''),
     namespaces: new FormControl([]),
+    fitIcons: new FormControl(true),
   });
 
   filteredIcons: Observable<CdnIcon[]>;
-
-  fitIcons = new FormControl(true);
 
   namespaces: string[];
 
