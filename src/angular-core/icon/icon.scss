@@ -2,6 +2,9 @@
   background-repeat: no-repeat;
   display: inline-block;
 
+  // If any ancestor has .sbb-icon-fit as a class, this rule will be applied.
+  .sbb-icon-fit &,
+  .sbb-icon-fit & svg,
   &.sbb-icon-fit,
   &.sbb-icon-fit svg {
     width: 100%;

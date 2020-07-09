@@ -15,11 +15,7 @@
     <sbb-checkbox formControlName="fitIcons">Fit icon size to parent element</sbb-checkbox>
   </sbb-field>
 </form>
-
-<sbb-cdn-icon
-  *ngFor="let cdnIcon of filteredIcons | async"
-  [cdnIcon]="cdnIcon"
-  [fitIcons]="filterForm.get('fitIcons').value"
-></sbb-cdn-icon>
-
+<div [class.sbb-icon-fit]="filterForm.get('fitIcons').value">
+  <sbb-cdn-icon *ngFor="let cdnIcon of filteredIcons | async" [cdnIcon]="cdnIcon"></sbb-cdn-icon>
+</div>
 <p>Icon CDN Version: {{ cdnIcons.version }}</p>
