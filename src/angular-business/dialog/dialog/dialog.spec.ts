@@ -25,19 +25,13 @@ import {
   tick,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  createKeyboardEvent,
-  dispatchEvent,
-  dispatchKeyboardEvent,
-} from '@sbb-esta/angular-core/testing';
+import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { Subject } from 'rxjs';
 
 import { Dialog, DialogModule, DialogRef, DIALOG_DATA } from '../index';
 
-// tslint:disable-strict-null-checks
-
 // tslint:disable-next-line:directive-selector
-@Directive({ selector: 'dir-with-view-container' })
+@Directive({ selector: 'sbb-dir-with-view-container' })
 class DirectiveWithViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
@@ -52,7 +46,7 @@ class ComponentWithOnPushViewContainerComponent {
 
 @Component({
   selector: 'sbb-arbitrary-component',
-  template: `<dir-with-view-container></dir-with-view-container>`,
+  template: `<sbb-dir-with-view-container></sbb-dir-with-view-container>`,
 })
 class ComponentWithChildViewContainerComponent {
   @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;
@@ -233,8 +227,7 @@ describe('SbbDialog', () => {
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
     expect(dialogRef.componentInstance instanceof PizzaMsgComponent).toBe(true);
-    // @ts-ignore
-    expect(dialogRef.componentInstance.dialogRef).toBe(dialogRef);
+    expect(dialogRef.componentInstance!.dialogRef).toBe(dialogRef);
 
     viewContainerFixture.detectChanges();
     const dialogContainerElement = overlayContainerElement.querySelector('sbb-dialog-container')!;
@@ -287,11 +280,9 @@ describe('SbbDialog', () => {
 
     viewContainerFixture.detectChanges();
 
-    // @ts-ignore
-    const dialogInjector = dialogRef.componentInstance.dialogInjector;
+    const dialogInjector = dialogRef.componentInstance!.dialogInjector;
 
-    // @ts-ignore
-    expect(dialogRef.componentInstance.dialogRef).toBe(dialogRef);
+    expect(dialogRef.componentInstance!.dialogRef).toBe(dialogRef);
     expect(dialogInjector.get<DirectiveWithViewContainer>(DirectiveWithViewContainer)).toBeTruthy(
       'Expected the dialog component to be created with the injector from the viewContainerRef.'
     );
@@ -304,8 +295,7 @@ describe('SbbDialog', () => {
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
     expect(dialogRef.componentInstance instanceof PizzaMsgComponent).toBe(true);
-    // @ts-ignore
-    expect(dialogRef.componentInstance.dialogRef).toBe(dialogRef);
+    expect(dialogRef.componentInstance!.dialogRef).toBe(dialogRef);
 
     viewContainerFixture.detectChanges();
     const dialogContainerElement = overlayContainerElement.querySelector('sbb-dialog-container')!;
@@ -843,18 +833,15 @@ describe('SbbDialog', () => {
 
       const instance = dialog.openDialog(DialogWithInjectedDataComponent, config).componentInstance;
 
-      // @ts-ignore
-      expect(instance.data.stringParam).toBe(config.data.stringParam);
+      expect(instance!.data.stringParam).toBe(config.data.stringParam);
 
-      // @ts-ignore
-      expect(instance.data.dateParam).toBe(config.data.dateParam);
+      expect(instance!.data.dateParam).toBe(config.data.dateParam);
     });
 
     it('should default to null if no data is passed', () => {
       expect(() => {
         const dialogRef = dialog.openDialog(DialogWithInjectedDataComponent);
-        // @ts-ignore
-        expect(dialogRef.componentInstance.data).toBeNull();
+        expect(dialogRef.componentInstance!.data).toBeNull();
       }).not.toThrow();
     });
   });
