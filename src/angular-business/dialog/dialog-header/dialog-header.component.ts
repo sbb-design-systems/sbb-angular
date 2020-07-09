@@ -23,14 +23,6 @@ import { Dialog } from '../dialog/dialog.service';
     <button type="button" sbbDialogClose *ngIf="!isCloseDisabled" class="sbb-dialog-close-btn">
       <sbb-icon-cross></sbb-icon-cross>
     </button>
-    <button
-      *ngIf="isCloseDisabled"
-      type="button"
-      (click)="emitManualCloseAction()"
-      class="sbb-dialog-close-btn"
-    >
-      <sbb-icon-cross></sbb-icon-cross>
-    </button>
   `,
   exportAs: 'sbbDialogHeader',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -68,12 +60,6 @@ export class DialogHeaderComponent implements OnInit {
           this._changeDetectorRef.markForCheck();
         }
       });
-    }
-  }
-
-  emitManualCloseAction() {
-    if (this._dialogRef) {
-      this._dialogRef.manualCloseAction.next(null!);
     }
   }
 }

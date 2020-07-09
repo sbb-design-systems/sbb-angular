@@ -20,7 +20,10 @@ export class DialogRef<T, R = any> {
 
   /** Whether the user is allowed to close the dialog. */
   disableClose: boolean | undefined = this.containerInstance.config.disableClose;
-  /** Observable to close manually a dialog. */
+
+  /** Observable to close manually a dialog.
+   * @deprecated not in use anymore. Will be removed in next major version.
+   * @breaking-change */
   manualCloseAction = new Subject<void>();
 
   /** Subject for notifying the user that the dialog has finished opening. */
@@ -82,11 +85,6 @@ export class DialogRef<T, R = any> {
       .keydownEvents()
       .pipe(filter((event) => event.keyCode === ESCAPE && !this.disableClose))
       .subscribe(() => this.close());
-
-    _overlayRef
-      .keydownEvents()
-      .pipe(filter((event) => event.keyCode === ESCAPE && !!this.disableClose))
-      .subscribe(() => this.manualCloseAction.next(null!));
 
     _overlayRef.backdropClick().subscribe(() => {
       if (this.disableClose) {
