@@ -1,4 +1,15 @@
-<button sbbButton mode="ghost" class="sbb-svg-icon-wrapper" (click)="openDialog()">
-  <sbb-icon [svgIcon]="cdnIconPath" [class.sbb-icon-fit]="fitIcons"></sbb-icon>
+<button
+  sbbButton
+  mode="ghost"
+  class="sbb-svg-icon-wrapper"
+  (click)="openDialog()"
+  aria-label="Open icon details"
+>
+  <sbb-icon
+    [svgIcon]="cdnIconPath"
+    [class.sbb-icon-fit]="fitIcons"
+    aria-hidden="false"
+    [attr.aria-label]="cdnIconPath"
+  ></sbb-icon>
 </button>
 <span class="sbb-svg-icon-path" [sbbTooltip]="cdnIconPath">{{ cdnIconPath }}</span>
