@@ -65,6 +65,7 @@ $breadcrumbTriggerBorder: solid 2px white;
   }
 
   .sbb-breadcrumb-trigger {
+    outline: 0;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -197,6 +198,7 @@ $breadcrumbTriggerBorder: solid 2px white;
   }
   a,
   button {
+    outline: 0;
     @include svgIconColor($sbbColorGranite);
     color: $sbbColorGranite;
     &:hover,
