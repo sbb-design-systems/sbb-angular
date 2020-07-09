@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { merge, Observable } from 'rxjs';
 import { debounceTime, map, startWith } from 'rxjs/operators';
 
@@ -24,17 +24,19 @@ export class CdnIconListComponent {
   }
   private _cdnIcons: CdnIcons;
 
-  filterForm: FormGroup = new FormGroup({
-    fulltext: new FormControl(''),
-    namespaces: new FormControl([]),
-    fitIcons: new FormControl(true),
-  });
+  filterForm: FormGroup;
 
   filteredIcons: Observable<CdnIcon[]>;
 
   namespaces: string[];
 
-  constructor() {
+  constructor(formBuilder: FormBuilder) {
+    this.filterForm = formBuilder.group({
+      fulltext: [''],
+      namespaces: [[]],
+      fitIcons: [true],
+    });
+
     this.filteredIcons = merge(
       this.filterForm.controls.namespaces.valueChanges,
       this.filterForm.controls.fulltext.valueChanges.pipe(debounceTime(200), startWith(''))
