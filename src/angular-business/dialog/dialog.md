@@ -3,7 +3,7 @@ The dialog can be used to seek confirmation as see below
 ```html
 <div sbbDialog>
   <div sbbDialogHeader>
-    <span>Hi {{ data.name }}</span>
+    Hi {{ data.name }}
   </div>
   <div sbbDialogContent>
     <div>
@@ -92,7 +92,7 @@ export class DialogShowcaseExample3Component {
 <ng-template #sampleDialogTemplate>
   <div sbbDialog>
     <div sbbDialogHeader>
-      <span>Terms and conditions</span>
+      Terms and conditions
     </div>
     <div sbbDialogContent>
       <div>

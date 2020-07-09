@@ -23,7 +23,7 @@ export class ComponentDataDialogExampleComponent {
   selector: 'sbb-component-data-dialog',
   template: `
     <div sbbDialogHeader>
-      <span>Install Angular</span>
+      Install Angular
     </div>
     <div sbbDialogContent>
       <div>
