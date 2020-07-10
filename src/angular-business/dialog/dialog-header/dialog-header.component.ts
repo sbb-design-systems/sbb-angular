@@ -62,7 +62,6 @@ export class DialogHeaderComponent implements OnInit {
       });
     }
   }
-  
   /**
    * @deprecated Not available for dialogs.
    */
