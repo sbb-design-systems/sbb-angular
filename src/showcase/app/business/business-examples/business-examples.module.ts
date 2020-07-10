@@ -9,6 +9,7 @@ import { ChipExamplesModule } from './chip-examples/chip-examples.module';
 import { ContextmenuExamplesModule } from './contextmenu-examples/contextmenu-examples.module';
 import { DatepickerExamplesModule } from './datepicker-examples/datepicker-examples.module';
 import { DialogExamplesModule } from './dialog-examples/dialog-examples.module';
+import { DropdownExamplesModule } from './dropdown-examples/dropdown-examples.module';
 import { FieldExamplesModule } from './field-examples/field-examples.module';
 import { FileSelectorExamplesModule } from './file-selector-examples/file-selector-examples.module';
 import { LinksExamplesModule } from './links-examples/links-examples.module';
@@ -54,6 +55,7 @@ const EXAMPLES = [
   TimeInputExamplesModule,
   TooltipExamplesModule,
   UsermenuExamplesModule,
+  DropdownExamplesModule,
 ];
 
 @NgModule({

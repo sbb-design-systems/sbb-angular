@@ -1,0 +1,43 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "dropdown-examples",
+    srcs = [
+        "dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.ts",
+        "dropdown-examples.module.ts",
+    ],
+    assets = [
+        ":dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.css",
+        "dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/button",
+        "//src/angular-business/dropdown",
+        "//src/angular-icons/user",
+        "//src/showcase/app/shared",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "dropdown_custom_trigger_example_dropdown_custom_trigger_example_component_scss",
+    src = "dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.scss",
+)
