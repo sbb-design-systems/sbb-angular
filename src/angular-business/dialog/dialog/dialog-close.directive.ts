@@ -22,11 +22,13 @@ import { Dialog } from './dialog.service';
 export class DialogCloseDirective implements OnInit {
   /** Screenreader label for the button. */
   @HostBinding('attr.aria-label')
+  @Input('aria-label')
   ariaLabel = 'Close dialog';
 
-  /**  Prevents accidental form submits. **/
+  /** Default to "button" to prevents accidental form submits. */
   @HostBinding('attr.type')
-  btnType = 'button';
+  @Input()
+  type: 'submit' | 'button' | 'reset' = 'button';
 
   /** dialog close input **/
   // tslint:disable-next-line:no-input-rename

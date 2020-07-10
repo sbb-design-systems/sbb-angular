@@ -248,7 +248,7 @@ export class Dialog implements OnDestroy {
     } else {
       const injector = this._createInjector<T>(config, dialogRef, dialogContainer);
       const contentRef = dialogContainer.attachComponentPortal<T>(
-        new ComponentPortal(componentOrTemplateRef, undefined, injector)
+        new ComponentPortal(componentOrTemplateRef, config.viewContainerRef, injector)
       );
       dialogRef.componentInstance = contentRef.instance;
     }

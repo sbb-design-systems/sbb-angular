@@ -3,7 +3,7 @@ The dialog can be used to seek confirmation as see below
 ```html
 <div sbbDialog>
   <div sbbDialogHeader>
-    <p>Hi {{ data.name }}</p>
+    Hi {{ data.name }}
   </div>
   <div sbbDialogContent>
     <div>
@@ -26,7 +26,7 @@ The dialog can be used to seek confirmation as see below
 
 ### Sharing data with the Dialog component
 
-A dialog is opened by calling the `open` method and if you want to share data with your dialog,
+A dialog is opened by calling the `openDialog` method and if you want to share data with your dialog,
 you can use the `data` option to pass information to the dialog component.
 
 ```ts
@@ -66,7 +66,7 @@ dialogRef.afterClosed().subscribe((result) => {
 
 ### Dialog with content loaded from Template
 
-You can use `Dialog` to load content from a TemplateRef by calling `open` method and
+You can use `Dialog` to load content from a TemplateRef by calling `openDialog` method and
 passing it the template reference:
 
 ```ts
@@ -92,7 +92,7 @@ export class DialogShowcaseExample3Component {
 <ng-template #sampleDialogTemplate>
   <div sbbDialog>
     <div sbbDialogHeader>
-      <p>Terms and conditions</p>
+      Terms and conditions
     </div>
     <div sbbDialogContent>
       <div>
@@ -109,58 +109,4 @@ export class DialogShowcaseExample3Component {
     </div>
   </div>
 </ng-template>
-```
-
-- You can also use the disableClose property on `Dialog` to close the dialog manually and
-  listening changes with `manualCloseAction` method of DialogRef istance:
-
-```ts
-@Component({
-  selector: 'sbb-dialog-showcase-example-5',
-  template: `
-    <div class="sbbsc-block">
-      <button sbbButton mode="secondary" (click)="openDialog()">
-        Open with confirmation button in separate one
-      </button>
-    </div>
-  `,
-})
-export class DialogShowcaseExample5Component {
-  constructor(public dialog: Dialog) {}
-  openDialog() {
-    const dialogRef = this.dialog.openDialog(DialogShowcaseExample5ContentComponent, {
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      console.log(`Dialog confirmed`);
-    });
-  }
-}
-```
-
-```ts
-export class DialogShowcaseExample5ContentComponent implements OnInit {
-  constructor(
-    private _dialogRef: DialogRef<DialogShowcaseExample5ContentComponent>,
-    public dialog: Dialog
-  ) {}
-  ngOnInit() {
-    this._dialogRef.manualCloseAction.subscribe(() => {
-      this.dialog.openDialog(DialogShowcaseExample6ContentComponent);
-    });
-  }
-}
-
-export class DialogShowcaseExample6ContentComponent {
-  constructor(
-    private _dialogRef: DialogRef<DialogShowcaseExample5ContentComponent>,
-    public dialog: Dialog
-  ) {}
-  closeThisDialog() {
-    this._dialogRef.close();
-  }
-  closeAllDialog() {
-    this.dialog.closeAll();
-  }
-}
 ```

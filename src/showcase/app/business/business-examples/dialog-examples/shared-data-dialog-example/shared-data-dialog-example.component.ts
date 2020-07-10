@@ -31,9 +31,7 @@ export class SharedDataDialogExampleComponent {
 @Component({
   selector: 'sbb-shared-data-dialog',
   template: `
-    <div sbbDialogHeader>
-      <p>Hi {{ data.name }}</p>
-    </div>
+    <div sbbDialogHeader>Hi {{ data.name }}</div>
     <div sbbDialogContent>
       <div>
         What's your favorite animal?
