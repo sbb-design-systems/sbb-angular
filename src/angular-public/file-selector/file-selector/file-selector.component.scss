@@ -1,7 +1,7 @@
 @import '../../../angular-core/styles/common';
 
 .sbb-file-selector {
-  &-button {
+  .sbb-file-selector-button {
     @include buttons;
 
     &:not(.sbb-file-selector-disabled) {
@@ -50,7 +50,7 @@
     }
   }
 
-  &-label {
+  .sbb-file-selector-label {
     display: inline-flex;
     overflow: hidden;
 
@@ -59,7 +59,7 @@
     }
   }
 
-  &-list {
+  .sbb-file-selector-list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -79,24 +79,24 @@
       padding-left: 0;
     }
 
-    &-type-icon,
-    &-remove-icon {
+    .sbb-file-selector-list-type-icon,
+    .sbb-file-selector-list-remove-icon {
       display: inline-block;
       vertical-align: middle;
     }
 
-    &-type-icon {
+    .sbb-file-selector-list-type-icon {
       width: pxToEm(24);
       height: pxToEm(24);
       margin-right: 0.5em;
       margin-bottom: pxToEm(2);
     }
 
-    &-desc {
+    .sbb-file-selector-list-desc {
       text-decoration: underline;
     }
 
-    &-remove-icon {
+    .sbb-file-selector-list-remove-icon {
       @include buttonResetFrameless();
       margin-bottom: pxToEm(2);
       position: relative;
@@ -118,7 +118,7 @@
       }
     }
 
-    &-file-ext {
+    .sbb-file-selector-list-file-ext {
       text-transform: uppercase;
     }
   }
