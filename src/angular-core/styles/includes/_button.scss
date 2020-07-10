@@ -286,7 +286,7 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
   color: $buttonGhostColor;
   transition: border-color $linkiconAnimation, height $linkiconAnimation,
     padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
-  line-height: 1.1;
+  line-height: pxToEm(17);
 
   @media screen and (-ms-high-contrast: active) {
     border: pxToEm(1) solid currentColor;
