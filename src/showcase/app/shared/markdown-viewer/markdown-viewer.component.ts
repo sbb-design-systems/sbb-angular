@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, HostBinding, OnDestroy } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -14,9 +15,13 @@ export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
   private _destroyed = new Subject<void>();
 
   @HostBinding('innerHTML')
-  content: string;
+  content: SafeHtml;
 
-  constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
+  constructor(
+    private _htmlLoader: HtmlLoader,
+    private _route: ActivatedRoute,
+    private _domSanitizer: DomSanitizer
+  ) {}
 
   ngAfterViewInit(): void {
     this._htmlLoader
@@ -24,7 +29,7 @@ export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
       .fromDocumentation()
       .observe()
       .pipe(takeUntil(this._destroyed))
-      .subscribe((content) => (this.content = content));
+      .subscribe((content) => (this.content = this._domSanitizer.bypassSecurityTrustHtml(content)));
   }
 
   ngOnDestroy(): void {
