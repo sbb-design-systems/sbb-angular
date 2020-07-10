@@ -836,8 +836,10 @@ export class SelectComponent extends SbbSelectMixinBase
     this.overlayDir.positionChange.pipe(take(1)).subscribe((positions) => {
       if (positions.connectionPair.originY === 'top') {
         this.panel.nativeElement.classList.add('sbb-select-panel-above');
+        this._elementRef.nativeElement.classList.add('sbb-select-input-above');
       } else {
         this.panel.nativeElement.classList.remove('sbb-select-panel-above');
+        this._elementRef.nativeElement.classList.remove('sbb-select-input-above');
       }
       this._changeDetectorRef.detectChanges();
 

@@ -26,7 +26,17 @@ sbb-select.sbb-select {
   cursor: pointer;
 
   &.sbb-select-focused {
-    @include autocompleteInputActive();
+    border-color: $sbbColorGrey;
+
+    &[aria-expanded='true'] {
+      &:not(.sbb-select-input-above) {
+        @include autocompleteInputActive();
+      }
+
+      &.sbb-select-input-above {
+        @include autocompleteInputActive($mode: reverse);
+      }
+    }
   }
 
   &.sbb-select-disabled {
