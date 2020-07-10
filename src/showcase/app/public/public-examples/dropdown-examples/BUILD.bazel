@@ -9,12 +9,12 @@ package(default_visibility = ["//visibility:public"])
 ng_module(
     name = "dropdown-examples",
     srcs = [
-        "dropdown-example/dropdown-example.component.ts",
+        "dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.ts",
         "dropdown-examples.module.ts",
     ],
     assets = [
-        ":dropdown-example/dropdown-example.component.css",
-        "dropdown-example/dropdown-example.component.html",
+        ":dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.css",
+        "dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -38,6 +38,6 @@ filegroup(
 )
 
 sass_binary(
-    name = "dropdown_example_dropdown_example_component_scss",
-    src = "dropdown-example/dropdown-example.component.scss",
+    name = "dropdown_custom_trigger_example_dropdown_custom_trigger_example_component_scss",
+    src = "dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.scss",
 )

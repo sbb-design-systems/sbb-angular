@@ -7,12 +7,12 @@ import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { DropdownExampleComponent } from './dropdown-example/dropdown-example.component';
+import { DropdownCustomTriggerExampleComponent } from './dropdown-custom-trigger-example/dropdown-custom-trigger-example.component';
 
-const EXAMPLES = [DropdownExampleComponent];
+const EXAMPLES = [DropdownCustomTriggerExampleComponent];
 
 const EXAMPLE_INDEX = {
-  'dropdown-example': DropdownExampleComponent,
+  'dropdown-custom-trigger-example': DropdownCustomTriggerExampleComponent,
 };
 
 @NgModule({

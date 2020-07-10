@@ -1,0 +1,26 @@
+<div
+  class="dropdown-avatar"
+  [sbbDropdown]="dropdown"
+  tabindex="0"
+  [class.dropdown-avatar-active]="dropdown.open"
+>
+  <div class="avatar-icon">
+    <sbb-icon-user></sbb-icon-user>
+  </div>
+  <div *ngIf="dropdown.open">William Tell</div>
+</div>
+<sbb-dropdown #dropdown="sbbDropdown">
+  <a
+    *ngFor="let link of links"
+    sbbDropdownItem
+    [routerLink]="linkGenerator(link.page).routerLink"
+    [queryParams]="linkGenerator(link.page).queryParams"
+    routerLinkActive="sbb-selected"
+  >
+    {{ link.text }}
+  </a>
+  <hr />
+  <button sbbDropdownItem type="button" (click)="onClick()">
+    Do something
+  </button>
+</sbb-dropdown>

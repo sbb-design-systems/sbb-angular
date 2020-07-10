@@ -1,12 +1,5 @@
-This module contains the component:
-
-- sbb-dropdown
-
-and the directives:
-
-- sbb-dropdown-trigger
-- sbb-dropdown-origin
-- sbb-dropdown-item
+This module provides a simple dropdown mechanism.
+However, for most cases we strongly recommend using sbb-select or sbb-autocomplete where possible.
 
 ### How to use
 
@@ -23,29 +16,11 @@ In the case below, a button has been used:
 <button sbbButton type="button" [sbbDropdown]="dropdown">Open dropdown</button>
 
 <sbb-dropdown #dropdown="sbbDropdown">
-  <a
-    sbbDropdownItem
-    [routerLink]="['.']"
-    [queryParams]="{ page : 1}"
-    routerLinkActive="sbb-selected"
-    >Test</a
-  >
-  <a
-    sbbDropdownItem
-    [routerLink]="['.']"
-    [queryParams]="{ page : 2}"
-    routerLinkActive="sbb-selected"
-    >Test 2</a
-  >
-  <a
-    sbbDropdownItem
-    [routerLink]="['.']"
-    [queryParams]="{ page : 3}"
-    routerLinkActive="sbb-selected"
-    >Test 3</a
-  >
+  <a sbbDropdownItem routerLink="./example1" routerLinkActive="sbb-selected">Test 1</a>
+  <a sbbDropdownItem routerLink="./example2" routerLinkActive="sbb-selected">Test 2</a>
+  <a sbbDropdownItem routerLink="./example3" routerLinkActive="sbb-selected">Test 3</a>
   <hr />
-  <button sbbDropdownItem type="button" (click)="onClick()">Logout</button>
+  <button sbbDropdownItem type="button" (click)="onClick()">Do something</button>
 </sbb-dropdown>
 ```
 
