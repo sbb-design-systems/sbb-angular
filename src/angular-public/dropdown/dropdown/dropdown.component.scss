@@ -3,6 +3,7 @@
 .sbb-dropdown-panel {
   @include autocompleteBase();
   @include autocompleteDirectionalRules();
+  @include optionGroupDivider();
 
   &.sbb-dropdown-panel-above {
     @include autocompleteDirectionalRules($mode: reverse);

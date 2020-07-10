@@ -11,10 +11,10 @@ $selectTriggerPaddingRight: 44;
 
 .sbb-select-panel {
   @include autocompleteBase();
-  @include autocompleteDirectionalRules($selectMode: true);
+  @include autocompleteDirectionalRules();
 
   &.sbb-select-panel-above {
-    @include autocompleteDirectionalRules($mode: reverse, $selectMode: true);
+    @include autocompleteDirectionalRules($mode: reverse);
   }
 }
 

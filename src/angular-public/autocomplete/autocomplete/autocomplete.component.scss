@@ -3,6 +3,7 @@
 .sbb-autocomplete-panel {
   @include autocompleteBase();
   @include autocompleteDirectionalRules();
+  @include optionGroupDivider();
 
   &.sbb-autocomplete-panel-above {
     @include autocompleteDirectionalRules($mode: reverse);

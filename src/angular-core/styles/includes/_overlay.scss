@@ -118,16 +118,7 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
   top: toPx($offset-top);
 }
 
-@mixin autocompleteDirectionalRules($mode: default, $selectMode: false) {
-  sbb-option-group + sbb-option-group,
-  sbb-option + sbb-option-group,
-  sbb-option-group + sbb-option {
-    @include optionGroupBaseDirectional($selectMode);
-  }
-  sbb-option-group sbb-option {
-    padding-left: $optionGroupItemPaddingLeft;
-  }
-
+@mixin autocompleteDirectionalRules($mode: default) {
   @if $mode == default {
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -256,8 +247,10 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
   }
 }
 
-@mixin optionGroupBaseDirectional($selectMode: false) {
-  @if $selectMode == false {
+@mixin optionGroupDivider() {
+  sbb-option-group + sbb-option-group,
+  sbb-option + sbb-option-group,
+  sbb-option-group + sbb-option {
     border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
 
     @include publicOnly() {
