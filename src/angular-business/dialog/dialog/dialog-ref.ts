@@ -23,7 +23,7 @@ export class DialogRef<T, R = any> {
 
   /** Observable to close manually a dialog.
    * @deprecated not in use anymore. Will be removed in next major version.
-   * @breaking-change */
+   */
   manualCloseAction = new Subject<void>();
 
   /** Subject for notifying the user that the dialog has finished opening. */
