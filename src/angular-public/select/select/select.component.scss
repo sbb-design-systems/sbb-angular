@@ -11,10 +11,10 @@ $selectTriggerPaddingRight: 44;
 
 .sbb-select-panel {
   @include autocompleteBase();
-  @include autocompleteDirectionalRules($selectMode: true);
+  @include autocompleteDirectionalRules();
 
   &.sbb-select-panel-above {
-    @include autocompleteDirectionalRules($mode: reverse, $selectMode: true);
+    @include autocompleteDirectionalRules($mode: reverse);
   }
 }
 
@@ -26,7 +26,17 @@ sbb-select.sbb-select {
   cursor: pointer;
 
   &.sbb-select-focused {
-    @include autocompleteInputActive();
+    border-color: $sbbColorGrey;
+
+    &[aria-expanded='true'] {
+      &:not(.sbb-select-input-above) {
+        @include autocompleteInputActive();
+      }
+
+      &.sbb-select-input-above {
+        @include autocompleteInputActive($mode: reverse);
+      }
+    }
   }
 
   &.sbb-select-disabled {

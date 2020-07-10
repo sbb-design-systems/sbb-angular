@@ -1,0 +1,24 @@
+$sbbColorGrey: #666;
+.dropdown-avatar {
+  max-width: 250px;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  height: 56px;
+  color: $sbbColorGrey;
+
+  svg > path {
+    stroke: $sbbColorGrey;
+  }
+
+  .avatar-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  &.dropdown-avatar-active {
+    outline: 0;
+    border: 2px solid $sbbColorGrey;
+  }
+}
