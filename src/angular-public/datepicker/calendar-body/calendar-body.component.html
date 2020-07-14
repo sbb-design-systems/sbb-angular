@@ -11,8 +11,8 @@
     aria-hidden="true"
     class="sbb-calendar-body-label"
     [attr.colspan]="firstRowOffset"
-    [style.paddingTop.%]="(50 * cellAspectRatio) / numCols"
-    [style.paddingBottom.%]="(50 * cellAspectRatio) / numCols"
+    [style.paddingTop.%]="(45 * cellAspectRatio) / numCols"
+    [style.paddingBottom.%]="(45 * cellAspectRatio) / numCols"
   ></td>
   <td
     *ngFor="let item of row; let colIndex = index"
@@ -31,8 +31,8 @@
     [attr.aria-selected]="selectedValue === item.value"
     (click)="cellClicked(item)"
     [style.width.%]="100 / numCols"
-    [style.paddingTop.%]="(50 * cellAspectRatio) / numCols"
-    [style.paddingBottom.%]="(50 * cellAspectRatio) / numCols"
+    [style.paddingTop.%]="(45 * cellAspectRatio) / numCols"
+    [style.paddingBottom.%]="(45 * cellAspectRatio) / numCols"
   >
     <div class="sbb-calendar-body-cell-content">
       {{ item.displayValue }}

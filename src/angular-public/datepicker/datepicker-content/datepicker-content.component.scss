@@ -7,9 +7,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 75%;
-  height: 75%;
+  width: 72%;
+  height: 81%;
+  @include mq($from: tabletPortrait) {
+    height: 84%;
+  }
   line-height: 1;
+  padding-left: pxToEm(1);
+  padding-bottom: pxToEm(1);
 }
 
 @mixin datePickerToggleArrow($dir: calendarDown) {
