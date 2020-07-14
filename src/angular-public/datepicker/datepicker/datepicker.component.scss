@@ -3,6 +3,7 @@
 .sbb-datepicker {
   display: inline-block;
   width: 100%;
+  min-width: pxToEm($datePickerMinWidth);
 
   @include defaultDatePickerTheme();
 
@@ -87,6 +88,7 @@
   position: relative;
 
   .sbb-date-input {
+    min-width: pxToEm($datePickerMinWidth);
     width: 100%;
   }
 
