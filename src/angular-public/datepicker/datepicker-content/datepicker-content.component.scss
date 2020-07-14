@@ -210,6 +210,7 @@
         border-spacing: 0;
         border-collapse: collapse;
         margin: 0;
+        position: relative;
 
         td,
         th {
@@ -221,8 +222,14 @@
             content: '';
             display: block;
             position: absolute;
-            width: calc(100% - #{pxToEm(4)});
-            left: pxToEm(2);
+            top: pxToEm(33);
+
+            width: calc(100% + #{pxToEm(2 * 11)});
+            left: pxToEm(-11);
+            @include mq($from: tabletPortrait) {
+              width: calc(100% + #{pxToEm(2 * 18)});
+              left: pxToEm(-18);
+            }
 
             border-bottom: 1px solid $sbbColorPlatinum;
 
@@ -235,6 +242,10 @@
                 border-bottom-width: toPx(1 * $scalingFactor5k);
               }
             }
+          }
+
+          .sbb-calendar-table-header-divider {
+            height: pxToEm(15);
           }
 
           tr th {
