@@ -143,8 +143,8 @@
             display: block;
             position: absolute;
             width: 0;
-            height: calc(100% - #{pxToEm($datePickerCalendarBorderWidth)});
-            top: pxToEm($datePickerCalendarBorderWidth);
+            height: 100%;
+            top: 0;
             right: 0;
             border-right: 1px solid $sbbColorPlatinum;
 
