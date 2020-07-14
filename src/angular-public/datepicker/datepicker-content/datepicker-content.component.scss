@@ -186,6 +186,8 @@
         &-icon {
           display: flex;
           justify-content: center;
+
+          @include svgIconColor($sbbColorGranite);
         }
 
         &-left-arrow {
