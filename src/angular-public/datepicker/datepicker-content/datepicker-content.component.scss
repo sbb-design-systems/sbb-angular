@@ -164,7 +164,6 @@
         .sbb-calendar-controls-right-arrow {
           width: pxToEm($defaultPickerIconSize);
           height: $datePickerCalendarHeaderHeight;
-          margin-top: pxToEm($datePickerCalendarBorderWidth);
           vertical-align: middle;
 
           @include publicOnly() {
