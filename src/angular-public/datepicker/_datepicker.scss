@@ -50,8 +50,8 @@ $datePickerCalendarTableColor: $sbbColorGrey;
 $datePickerCalendarDisabledCellColor: $sbbColorCement;
 $datePickerCalendarDisabledTextCellColor: $sbbColorCement;
 $datePickerDisabledCellWidth: 32;
-$datePickerDisabledCellTop: 22;
-$datePickerDisabledCellLeft: 16;
+$datePickerDisabledCellTop: 20;
+$datePickerDisabledCellLeft: 18;
 
 @if $sbbBusiness {
   $dateInputBorderWidth: 0;
@@ -99,8 +99,8 @@ $datePickerDisabledCellLeft: 16;
 
   $datePickerCalendarDisabledTextCellColor: $sbbColorSilver;
   $datePickerDisabledCellWidth: 24;
-  $datePickerDisabledCellTop: 19;
-  $datePickerDisabledCellLeft: 10;
+  $datePickerDisabledCellTop: 17;
+  $datePickerDisabledCellLeft: 12;
 }
 
 $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -

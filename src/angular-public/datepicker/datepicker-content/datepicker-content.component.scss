@@ -340,7 +340,7 @@
 
               @include publicOnly() {
                 @include mq($from: tabletPortrait) {
-                  top: pxToEm(27);
+                  top: pxToEm(26);
                 }
               }
             }
