@@ -63,6 +63,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    margin-top: pxToEm(25);
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -75,7 +76,6 @@
     }
 
     li {
-      margin-bottom: pxToEm(17);
       padding-left: 0;
     }
 
