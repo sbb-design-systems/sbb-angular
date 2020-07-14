@@ -55,7 +55,7 @@
     @extend %pickerIconsSize;
     @include absoluteCenterY();
 
-    &-left {
+    &.sbb-datepicker-arrow-left {
       left: toPx($withArrowsLeftArrowOffset);
 
       @include publicOnly() {
@@ -69,7 +69,7 @@
       }
     }
 
-    &-right {
+    &.sbb-datepicker-arrow-right {
       right: toPx($withArrowsRightArrowOffset);
 
       @include publicOnly() {

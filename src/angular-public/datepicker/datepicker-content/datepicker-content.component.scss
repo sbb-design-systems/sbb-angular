@@ -76,7 +76,7 @@
     }
   }
 
-  &-arrow {
+  .sbb-datepicker-popup-arrow {
     @include datePickerToggleArrow();
   }
 
@@ -102,7 +102,7 @@
         height: $datePickerCalendarHeight;
       }
 
-      &-content {
+      .sbb-calendar-content {
         padding: $datePickerCalendarTableContentPaddingMobile;
 
         @include mq($from: tabletPortrait) {
@@ -110,7 +110,7 @@
         }
       }
 
-      &-header {
+      .sbb-calendar-header {
         border-bottom: 1px solid $sbbColorPlatinum;
 
         @include publicOnly() {
@@ -124,20 +124,20 @@
         }
       }
 
-      &-controls {
+      .sbb-calendar-controls {
         display: flex;
         height: $datePickerCalendarHeaderHeight;
         align-items: center;
 
-        &-months,
-        &-years {
+        .sbb-calendar-controls-months,
+        .sbb-calendar-controls-years {
           height: $datePickerCalendarHeaderHeight;
           flex: 1 0 50%;
           text-align: center;
           position: relative;
         }
 
-        &-months {
+        .sbb-calendar-controls-months {
           &::after {
             content: '';
             display: block;
@@ -160,8 +160,8 @@
           }
         }
 
-        &-left-arrow,
-        &-right-arrow {
+        .sbb-calendar-controls-left-arrow,
+        .sbb-calendar-controls-right-arrow {
           width: pxToEm($defaultPickerIconSize);
           height: $datePickerCalendarHeaderHeight;
           margin-top: pxToEm($datePickerCalendarBorderWidth);
@@ -183,30 +183,30 @@
           }
         }
 
-        &-icon {
+        .sbb-calendar-controls-icon {
           display: flex;
           justify-content: center;
 
           @include svgIconColor($sbbColorGranite);
         }
 
-        &-left-arrow {
+        .sbb-calendar-controls-left-arrow {
           float: left;
         }
 
-        &-label {
+        .sbb-calendar-controls-label {
           font-size: $datePickerCalendarHeaderLabelFontSize;
           color: $datePickerCalendarHeaderColor;
           font-family: $fontSbbLight;
           line-height: $datePickerCalendarHeaderLabelLineHeight;
         }
 
-        &-right-arrow {
+        .sbb-calendar-controls-right-arrow {
           float: right;
         }
       }
 
-      &-table {
+      .sbb-calendar-table {
         width: 100%;
         border-spacing: 0;
         border-collapse: collapse;
@@ -217,7 +217,7 @@
           color: $datePickerCalendarTableColor;
         }
 
-        &-header {
+        .sbb-calendar-table-header {
           &::after {
             content: '';
             display: block;
@@ -248,8 +248,8 @@
         }
       }
 
-      &-body {
-        &-cell {
+      .sbb-calendar-body {
+        .sbb-calendar-body-cell {
           position: relative;
           height: 0;
           line-height: 0;
@@ -329,7 +329,7 @@
             }
           }
 
-          &-content {
+          .sbb-calendar-body-cell-content {
             border-color: transparent;
             border-width: pxToEm(2);
             border-style: solid;
