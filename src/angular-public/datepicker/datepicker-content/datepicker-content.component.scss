@@ -9,8 +9,10 @@
   justify-content: center;
   width: 72%;
   height: 81%;
-  @include mq($from: tabletPortrait) {
-    height: 84%;
+  @include publicOnly() {
+    @include mq($from: tabletPortrait) {
+      height: 84%;
+    }
   }
   line-height: 1;
   padding-left: pxToEm(1);
