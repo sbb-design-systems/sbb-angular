@@ -33,7 +33,6 @@ ng_test_library(
         ":time-input",
         "//src/angular-core/testing",
         "//src/angular-public/field",
-        "//src/angular-public/input",
         "@npm//@angular/platform-browser",
     ],
 )
