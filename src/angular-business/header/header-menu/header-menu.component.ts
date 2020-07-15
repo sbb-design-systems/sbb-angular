@@ -21,6 +21,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith, takeUntil } from 'rxjs/operators';
 
@@ -194,7 +195,7 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
   }
 
   @HostListener('keydown', ['$event'])
-  _handleMenuKeydown(event: KeyboardEvent) {
+  _handleMenuKeydown(event: TypeRef<KeyboardEvent>) {
     if (event.keyCode === ESCAPE) {
       this.open = false;
     }
