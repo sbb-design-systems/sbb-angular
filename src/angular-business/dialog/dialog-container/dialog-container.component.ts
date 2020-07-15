@@ -22,6 +22,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
 import { DIALOG_ANIMATIONS } from '../dialog/dialog-animations';
 import { DialogConfig } from '../dialog/dialog-config';
@@ -247,7 +248,7 @@ export class DialogContainerComponent extends BasePortalOutlet {
 
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@slideDialog.done', ['$event'])
-  onAnimationDone(event: AnimationEvent) {
+  onAnimationDone(event: TypeRef<AnimationEvent>) {
     if (event.toState === 'enter') {
       this._trapFocus();
     } else if (event.toState === 'exit') {
@@ -259,7 +260,7 @@ export class DialogContainerComponent extends BasePortalOutlet {
 
   /** Callback, invoked when an animation on the host starts. */
   @HostListener('@slideDialog.start', ['$event'])
-  onAnimationStart(event: AnimationEvent) {
+  onAnimationStart(event: TypeRef<AnimationEvent>) {
     this.animationStateChanged.emit(event);
   }
 

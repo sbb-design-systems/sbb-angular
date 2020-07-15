@@ -53,6 +53,7 @@ import {
   CanUpdateErrorState,
   CanUpdateErrorStateCtor,
   mixinErrorState,
+  TypeRef,
 } from '@sbb-esta/angular-core/common-behaviors';
 import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
@@ -739,7 +740,7 @@ export class SelectComponent extends SbbSelectMixinBase
 
   /** Handles all keydown events on the select. */
   @HostListener('keydown', ['$event'])
-  handleKeydown(event: KeyboardEvent): void {
+  handleKeydown(event: TypeRef<KeyboardEvent>): void {
     if (!this.disabled) {
       this.panelOpen ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
     }

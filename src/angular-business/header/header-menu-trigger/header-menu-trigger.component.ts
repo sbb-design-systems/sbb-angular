@@ -25,6 +25,7 @@ import {
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { merge, NEVER, Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 
@@ -223,7 +224,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
 
   /** Handles mouse presses on the trigger. */
   @HostListener('mousedown', ['$event'])
-  _handleMousedown(event: MouseEvent): void {
+  _handleMousedown(event: TypeRef<MouseEvent>): void {
     if (!isFakeMousedownFromScreenReader(event)) {
       // Since right or middle button clicks won't trigger the `click` event,
       // we shouldn't consider the menu as opened by mouse in those cases.

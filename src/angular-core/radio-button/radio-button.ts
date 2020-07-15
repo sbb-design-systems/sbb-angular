@@ -15,7 +15,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
+import { HasTabIndexCtor, mixinTabIndex, TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
 import type { RadioGroupDirective } from './radio-group.directive';
 
@@ -164,7 +164,7 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   private _removeUniqueSelectionListener: () => void = () => {};
 
   constructor(
-    readonly radioGroup: RadioGroupDirective,
+    readonly radioGroup: TypeRef<RadioGroupDirective>,
     protected readonly _changeDetector: ChangeDetectorRef,
     private _elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,

@@ -20,6 +20,7 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
 
 import { OptionGroupComponent } from '../option-group/option-group.component';
@@ -136,7 +137,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   ) {}
 
   @HostListener('keydown', ['$event'])
-  handleKeydown(event: KeyboardEvent): void {
+  handleKeydown(event: TypeRef<KeyboardEvent>): void {
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
       this.selectViaInteraction();
 

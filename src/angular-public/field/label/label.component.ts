@@ -6,6 +6,7 @@ import {
   Input,
   Optional,
 } from '@angular/core';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
 import type { FieldComponent } from '../field/field.component';
 import { FORM_FIELD } from '../form-field-token';
@@ -29,14 +30,14 @@ export class LabelComponent {
   }
   private _for: string | null = null;
 
-  constructor(@Inject(FORM_FIELD) @Optional() private _formField: FieldComponent) {}
+  constructor(@Inject(FORM_FIELD) @Optional() private _formField: TypeRef<FieldComponent>) {}
 
   private _inputId() {
     return this._hasFormFieldControl() ? this._formField._control.id : null;
   }
 
   @HostListener('click', ['$event'])
-  onContainerClick($event: Event) {
+  onContainerClick($event: TypeRef<Event>) {
     if (this._hasFormFieldControl() && this._formField._control.onContainerClick) {
       this._formField._control.onContainerClick($event);
     }

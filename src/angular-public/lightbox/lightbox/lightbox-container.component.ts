@@ -22,6 +22,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { TypeRef } from '@sbb-esta/angular-core';
 
 import { LIGHTBOX_ANIMATIONS } from './lightbox-animations';
 import { LightboxConfig } from './lightbox-config';
@@ -205,7 +206,7 @@ export class LightboxContainerComponent extends BasePortalOutlet {
 
   /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@slideLightbox.done', ['$event'])
-  onAnimationDone(event: AnimationEvent) {
+  onAnimationDone(event: TypeRef<AnimationEvent>) {
     if (event.toState === 'enter') {
       this._trapFocus();
     } else if (event.toState === 'exit') {
@@ -217,7 +218,7 @@ export class LightboxContainerComponent extends BasePortalOutlet {
 
   /** Callback, invoked when an animation on the host starts. */
   @HostListener('@slideLightbox.start', ['$event'])
-  onAnimationStart(event: AnimationEvent) {
+  onAnimationStart(event: TypeRef<AnimationEvent>) {
     this.animationStateChanged.emit(event);
   }
 
