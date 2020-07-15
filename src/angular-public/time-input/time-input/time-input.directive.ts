@@ -31,8 +31,7 @@ export class TimeInputDirective {
     return this._placeholder;
   }
   set placeholder(value: string) {
-    this._placeholder =
-      typeof value === 'undefined' || value === null ? PLACEHOLDER_DEFAULT : value;
+    this._placeholder = value ?? PLACEHOLDER_DEFAULT;
 
     if (this._input) {
       this._input.placeholder = this._placeholder;
