@@ -1,10 +1,9 @@
 $checkBoxContainerBorder: if($sbbBusiness, 1, 2);
-$radioButtonGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
-$radioButtonDisabledLabelColor: if($sbbBusiness, $sbbColorStorm, $sbbColorGrey);
-$checkBoxGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
-$checkBoxDisabledLabelColor: if($sbbBusiness, $sbbColorStorm, $sbbColorGrey);
 
+$checkboxRadioButtonGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
+$checkboxRadioButtonFocusedLabelColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
 $checkboxRadioButtonCheckedLabelColor: if($sbbBusiness, $sbbColorIron, $sbbColorBlack);
+$checkboxRadioButtonDisabledLabelColor: if($sbbBusiness, $sbbColorStorm, $sbbColorGrey);
 $checkboxRadioButtonPanelHeight: 64;
 $checkboxRadioButtonPanelHeightWithSubtitle: 88;
 $checkboxRadioButtonPanelBorderRadius: 2;
@@ -103,13 +102,13 @@ $checkboxRadioButtonPanelImageHeight: 40;
           line-height: toEm(21 / $sizeFontDefault);
         }
 
-        color: $checkBoxGreyColor;
+        color: $checkboxRadioButtonGreyColor;
         transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
       }
     }
 
     &:focus + .sbb-checkbox-container {
-      border-color: $checkBoxGreyColor;
+      border-color: $checkboxRadioButtonFocusedLabelColor;
     }
 
     &:checked + .sbb-checkbox-container,
@@ -153,11 +152,11 @@ $checkboxRadioButtonPanelImageHeight: 40;
       background-color: $sbbColorMilk;
 
       & > .sbb-checkbox-checked {
-        @include svgIconColor($checkBoxGreyColor);
+        @include svgIconColor($checkboxRadioButtonGreyColor);
       }
 
       & + .sbb-checkbox-label-content {
-        color: $checkBoxDisabledLabelColor;
+        color: $checkboxRadioButtonDisabledLabelColor;
       }
     }
   }
@@ -231,7 +230,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
 
       & + .sbb-radio-label-content {
         user-select: auto;
-        color: $radioButtonGreyColor;
+        color: $checkboxRadioButtonGreyColor;
         transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
         @include businessOnly() {
@@ -243,7 +242,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
     }
 
     &:focus + .sbb-radio-circle-container {
-      border-color: $radioButtonGreyColor;
+      border-color: $checkboxRadioButtonFocusedLabelColor;
     }
 
     &:checked + .sbb-radio-circle-container,
@@ -263,11 +262,11 @@ $checkboxRadioButtonPanelImageHeight: 40;
       background-color: $sbbColorMilk;
 
       & > .sbb-radio-circle-checked {
-        background-color: $radioButtonGreyColor;
+        background-color: $checkboxRadioButtonGreyColor;
       }
 
       & + .sbb-radio-label-content {
-        color: $radioButtonDisabledLabelColor;
+        color: $checkboxRadioButtonDisabledLabelColor;
       }
     }
   }
