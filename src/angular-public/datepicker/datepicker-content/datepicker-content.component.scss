@@ -7,9 +7,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 75%;
-  height: 75%;
+  width: 72%;
+  height: 81%;
+  @include publicOnly() {
+    @include mq($from: tabletPortrait) {
+      height: 84%;
+    }
+  }
   line-height: 1;
+  padding-left: pxToEm(1);
+  padding-bottom: pxToEm(1);
 }
 
 @mixin datePickerToggleArrow($dir: calendarDown) {
@@ -76,7 +83,7 @@
     }
   }
 
-  &-arrow {
+  .sbb-datepicker-popup-arrow {
     @include datePickerToggleArrow();
   }
 
@@ -102,7 +109,7 @@
         height: $datePickerCalendarHeight;
       }
 
-      &-content {
+      .sbb-calendar-content {
         padding: $datePickerCalendarTableContentPaddingMobile;
 
         @include mq($from: tabletPortrait) {
@@ -110,7 +117,7 @@
         }
       }
 
-      &-header {
+      .sbb-calendar-header {
         border-bottom: 1px solid $sbbColorPlatinum;
 
         @include publicOnly() {
@@ -124,27 +131,27 @@
         }
       }
 
-      &-controls {
+      .sbb-calendar-controls {
         display: flex;
         height: $datePickerCalendarHeaderHeight;
         align-items: center;
 
-        &-months,
-        &-years {
+        .sbb-calendar-controls-months,
+        .sbb-calendar-controls-years {
           height: $datePickerCalendarHeaderHeight;
           flex: 1 0 50%;
           text-align: center;
           position: relative;
         }
 
-        &-months {
+        .sbb-calendar-controls-months {
           &::after {
             content: '';
             display: block;
             position: absolute;
             width: 0;
-            height: calc(100% - #{pxToEm($datePickerCalendarBorderWidth)});
-            top: pxToEm($datePickerCalendarBorderWidth);
+            height: 100%;
+            top: 0;
             right: 0;
             border-right: 1px solid $sbbColorPlatinum;
 
@@ -160,11 +167,10 @@
           }
         }
 
-        &-left-arrow,
-        &-right-arrow {
+        .sbb-calendar-controls-left-arrow,
+        .sbb-calendar-controls-right-arrow {
           width: pxToEm($defaultPickerIconSize);
           height: $datePickerCalendarHeaderHeight;
-          margin-top: pxToEm($datePickerCalendarBorderWidth);
           vertical-align: middle;
 
           @include publicOnly() {
@@ -183,45 +189,54 @@
           }
         }
 
-        &-icon {
+        .sbb-calendar-controls-icon {
           display: flex;
           justify-content: center;
+
+          @include svgIconColor($sbbColorGranite);
         }
 
-        &-left-arrow {
+        .sbb-calendar-controls-left-arrow {
           float: left;
         }
 
-        &-label {
+        .sbb-calendar-controls-label {
           font-size: $datePickerCalendarHeaderLabelFontSize;
           color: $datePickerCalendarHeaderColor;
           font-family: $fontSbbLight;
           line-height: $datePickerCalendarHeaderLabelLineHeight;
         }
 
-        &-right-arrow {
+        .sbb-calendar-controls-right-arrow {
           float: right;
         }
       }
 
-      &-table {
+      .sbb-calendar-table {
         width: 100%;
         border-spacing: 0;
         border-collapse: collapse;
         margin: 0;
+        position: relative;
 
         td,
         th {
           color: $datePickerCalendarTableColor;
         }
 
-        &-header {
+        .sbb-calendar-table-header {
           &::after {
             content: '';
             display: block;
             position: absolute;
-            width: calc(100% - #{pxToEm(4)});
-            left: pxToEm(2);
+            top: pxToEm(33);
+
+            width: calc(100% + #{pxToEm(2 * 11)});
+            left: pxToEm(-11);
+            @include mq($from: tabletPortrait) {
+              width: calc(100% + #{pxToEm(2 * 18)});
+              left: pxToEm(-18);
+            }
 
             border-bottom: 1px solid $sbbColorPlatinum;
 
@@ -236,6 +251,10 @@
             }
           }
 
+          .sbb-calendar-table-header-divider {
+            height: pxToEm(15);
+          }
+
           tr th {
             font-family: $fontSbbRoman;
             font-weight: 400;
@@ -246,8 +265,8 @@
         }
       }
 
-      &-body {
-        &-cell {
+      .sbb-calendar-body {
+        .sbb-calendar-body-cell {
           position: relative;
           height: 0;
           line-height: 0;
@@ -321,13 +340,13 @@
 
               @include publicOnly() {
                 @include mq($from: tabletPortrait) {
-                  top: pxToEm(27);
+                  top: pxToEm(26);
                 }
               }
             }
           }
 
-          &-content {
+          .sbb-calendar-body-cell-content {
             border-color: transparent;
             border-width: pxToEm(2);
             border-style: solid;

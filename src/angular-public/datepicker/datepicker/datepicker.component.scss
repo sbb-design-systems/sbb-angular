@@ -3,12 +3,17 @@
 .sbb-datepicker {
   display: inline-block;
   width: 100%;
+  min-width: pxToEm($datePickerMinWidth);
 
   @include defaultDatePickerTheme();
 
   .sbb-datepicker-toggle,
   .sbb-datepicker-arrow {
     display: block;
+
+    .sbb-icon-component {
+      @include svgIconColor($sbbColorGranite);
+    }
 
     button {
       width: 100%;
@@ -51,7 +56,7 @@
     @extend %pickerIconsSize;
     @include absoluteCenterY();
 
-    &-left {
+    &.sbb-datepicker-arrow-left {
       left: toPx($withArrowsLeftArrowOffset);
 
       @include publicOnly() {
@@ -65,7 +70,7 @@
       }
     }
 
-    &-right {
+    &.sbb-datepicker-arrow-right {
       right: toPx($withArrowsRightArrowOffset);
 
       @include publicOnly() {
@@ -83,6 +88,7 @@
   position: relative;
 
   .sbb-date-input {
+    min-width: pxToEm($datePickerMinWidth);
     width: 100%;
   }
 

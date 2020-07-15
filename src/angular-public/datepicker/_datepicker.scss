@@ -9,6 +9,7 @@ $dateInputTwoIconPadding: 72;
 $withArrowsToggleLeftOffset: $defaultPickerIconSize + ($defaultPickerIconSize / 2) + 4;
 $withArrowsLeftArrowOffset: $defaultPickerIconSize / 2;
 $withArrowsRightArrowOffset: $defaultPickerIconSize / 2;
+$datePickerMinWidth: 116;
 
 $datePickerContentTop: 17;
 
@@ -36,10 +37,10 @@ $datePickerCalendarBoxShadow: 0 pxToEm(8) 0 rgba(0, 0, 0, 0.15);
 $datePickerRevertCalendarBoxShadow: 0 pxToEm(-8) 0 rgba(0, 0, 0, 0.15);
 $datePickerCalendarHeaderHeight: pxToEm(68);
 $datePickerCalendarHeaderLabelFontSize: pxToEm(21);
-$datePickerCalendarHeaderLabelLineHeight: 3.5;
+$datePickerCalendarHeaderLabelLineHeight: 3.2;
 
-$datePickerCalendarTableContentPaddingMobile: 0 pxToEm(11) pxToEm(8) pxToEm(11);
-$datePickerCalendarTableContentPadding: 0 pxToEm(22) pxToEm(16) pxToEm(22);
+$datePickerCalendarTableContentPaddingMobile: 0 pxToEm(11) pxToEm(0) pxToEm(11);
+$datePickerCalendarTableContentPadding: 0 pxToEm(18) pxToEm(0) pxToEm(18);
 $datePickerCalendarTableTodayFontFamily: $fontSbbBold;
 $datePickerCalendarTableTodayColor: $sbbColorBlack;
 $datePickerCalendarTableActiveColor: $sbbColorRed125;
@@ -50,8 +51,8 @@ $datePickerCalendarTableColor: $sbbColorGrey;
 $datePickerCalendarDisabledCellColor: $sbbColorCement;
 $datePickerCalendarDisabledTextCellColor: $sbbColorCement;
 $datePickerDisabledCellWidth: 32;
-$datePickerDisabledCellTop: 22;
-$datePickerDisabledCellLeft: 16;
+$datePickerDisabledCellTop: 20;
+$datePickerDisabledCellLeft: 18;
 
 @if $sbbBusiness {
   $dateInputBorderWidth: 0;
@@ -66,6 +67,10 @@ $datePickerDisabledCellLeft: 16;
   $withArrowsRightArrowOffset: 6;
 
   $datePickerCalendarBorderWidth: 1;
+
+  $datePickerCalendarWidthMobile: pxToEm(303);
+  $datePickerCalendarHeightMobile: pxToEm(303);
+
   $datePickerCalendarWidth: pxToEm(303);
   $datePickerCalendarHeight: pxToEm(303);
 
@@ -95,8 +100,8 @@ $datePickerDisabledCellLeft: 16;
 
   $datePickerCalendarDisabledTextCellColor: $sbbColorSilver;
   $datePickerDisabledCellWidth: 24;
-  $datePickerDisabledCellTop: 19;
-  $datePickerDisabledCellLeft: 10;
+  $datePickerDisabledCellTop: 17;
+  $datePickerDisabledCellLeft: 12;
 }
 
 $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
