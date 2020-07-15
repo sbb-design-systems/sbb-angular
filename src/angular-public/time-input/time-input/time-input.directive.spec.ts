@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { FieldModule } from '@sbb-esta/angular-public/field';
-import { InputModule } from '@sbb-esta/angular-public/input';
 
 import { TimeInputDirective } from './time-input.directive';
 
@@ -49,7 +48,7 @@ describe('TimeInputDirective', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [TimeInputWithSbbInputTestComponent, TimeInputDirective],
-        imports: [FieldModule, InputModule],
+        imports: [FieldModule],
       }).compileComponents();
     }));
 
