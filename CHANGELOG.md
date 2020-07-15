@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.0.0...10.1.0) (2020-07-15)
+
+
+### Features
+
+* **business:** enable dialog backdrop click ([#497](https://github.com/sbb-design-systems/sbb-angular/issues/497)) ([4b8386c](https://github.com/sbb-design-systems/sbb-angular/commit/4b8386ca43a1263f049dcaa0f2449dcc12738e40)), closes [#464](https://github.com/sbb-design-systems/sbb-angular/issues/464)
+
+
+### Bug Fixes
+
+* add default placeholder to time input ([#509](https://github.com/sbb-design-systems/sbb-angular/issues/509)) ([d233f84](https://github.com/sbb-design-systems/sbb-angular/commit/d233f8461417b168ee8649b2b55c23d85ad1696d))
+* breadcrumb styles ([#498](https://github.com/sbb-design-systems/sbb-angular/issues/498)) ([49bc6c6](https://github.com/sbb-design-systems/sbb-angular/commit/49bc6c6e2f691c54a4bd486a3c50e02b35e10d70)), closes [#469](https://github.com/sbb-design-systems/sbb-angular/issues/469)
+* correct color for remaining chars in textarea ([#508](https://github.com/sbb-design-systems/sbb-angular/issues/508)) ([2c20f90](https://github.com/sbb-design-systems/sbb-angular/commit/2c20f90d7a3c0c1716c064148e6d1834e9d4fb66))
+* correct datepicker styles ([#505](https://github.com/sbb-design-systems/sbb-angular/issues/505)) ([3eb7b84](https://github.com/sbb-design-systems/sbb-angular/commit/3eb7b84aa24cf551c3f303b1f617ad9c2dad5f12))
+* correct hover styles of fileselector ([#507](https://github.com/sbb-design-systems/sbb-angular/issues/507)) ([2842da0](https://github.com/sbb-design-systems/sbb-angular/commit/2842da0cd1aef781fe9ad8cc7b8f5cc8b85f30a0))
+* styling issues in select and dropdown ([#501](https://github.com/sbb-design-systems/sbb-angular/issues/501)) ([5e74d8f](https://github.com/sbb-design-systems/sbb-angular/commit/5e74d8fb880fba22ca761be1e40e7f16961f937d)), closes [#470](https://github.com/sbb-design-systems/sbb-angular/issues/470)
+* use TypeRef to avoid meta data break ([#510](https://github.com/sbb-design-systems/sbb-angular/issues/510)) ([7c2e510](https://github.com/sbb-design-systems/sbb-angular/commit/7c2e51089efc74a7e951251d4d5217cd1a8cf3b5))
+* **showcase:** adapt urls for staging ([#506](https://github.com/sbb-design-systems/sbb-angular/issues/506)) ([be47440](https://github.com/sbb-design-systems/sbb-angular/commit/be47440e2f48898a82b52eef7e48237b03072468))
+* **showcase:** do not cache reverse proxy response ([#503](https://github.com/sbb-design-systems/sbb-angular/issues/503)) ([78d6861](https://github.com/sbb-design-systems/sbb-angular/commit/78d6861f9c7e1aebd0a9c353ea0af4f3244574fd))
+* parse html with domsanitizer ([#502](https://github.com/sbb-design-systems/sbb-angular/issues/502)) ([16e64f5](https://github.com/sbb-design-systems/sbb-angular/commit/16e64f5f624e6889c635084bd7f0fdc7295f6e4a))
+* vertically center text in ghost button ([#499](https://github.com/sbb-design-systems/sbb-angular/issues/499)) ([4e8a9b3](https://github.com/sbb-design-systems/sbb-angular/commit/4e8a9b3487a76d80c7b23ff3d286cd44fd106fba)), closes [#468](https://github.com/sbb-design-systems/sbb-angular/issues/468)
+
 ## [10.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.0.0-next.0...10.0.0) (2020-07-03)
 
 ## [10.0.0-next.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.8.0...10.0.0-next.0) (2020-07-02)
