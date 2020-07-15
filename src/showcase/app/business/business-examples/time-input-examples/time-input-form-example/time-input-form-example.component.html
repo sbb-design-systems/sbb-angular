@@ -1,0 +1,11 @@
+<form [formGroup]="form" novalidate>
+  <sbb-field label="Time Input">
+    <input formControlName="time" sbbTimeInput />
+  </sbb-field>
+
+  <h4>Properties</h4>
+  <pre>{{ form.get('time')?.value | json }}</pre>
+  <sbb-checkbox (change)="$event.checked ? form.get('time')?.disable() : form.get('time')?.enable()"
+    >Disabled
+  </sbb-checkbox>
+</form>
