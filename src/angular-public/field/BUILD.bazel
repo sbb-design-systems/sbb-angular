@@ -19,6 +19,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/field",
     deps = [
+        "//src/angular-core/common-behaviors",
         "//src/angular-core/forms",
         "//src/angular-public/input",
         "@npm//@angular/common",

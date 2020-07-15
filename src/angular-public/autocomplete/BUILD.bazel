@@ -21,6 +21,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/autocomplete",
     deps = [
+        "//src/angular-core/common-behaviors",
         "//src/angular-public/field",
         "//src/angular-public/option",
         "@npm//@angular/cdk",
