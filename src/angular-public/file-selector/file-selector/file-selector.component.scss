@@ -63,6 +63,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    margin-top: pxToEm(25);
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -75,7 +76,6 @@
     }
 
     li {
-      margin-bottom: pxToEm(17);
       padding-left: 0;
     }
 
@@ -104,9 +104,10 @@
       height: pxToEm(32);
       margin-left: pxToEm(8);
       cursor: pointer;
+      outline: 0;
 
       @include publicOnly() {
-        @include svgIconColor($sbbColorAnthracite);
+        @include svgIconColor($sbbColorGranite);
         border: pxToEm(1) solid $sbbColorStorm;
         border-radius: 50%;
       }
@@ -115,6 +116,13 @@
         @include absoluteCenterXY();
         width: pxToEm(24);
         height: pxToEm(24);
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        @include svgIconColor($sbbColorRed125);
+        border-color: $sbbColorRed125;
       }
     }
 
