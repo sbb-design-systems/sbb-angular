@@ -7,11 +7,17 @@ import { provideExamples } from '../../../shared/example-provider';
 
 import { CheckboxExampleComponent } from './checkbox-example/checkbox-example.component';
 import { CheckboxGroupExampleComponent } from './checkbox-group-example/checkbox-group-example.component';
+import { CheckboxIndeterminateStateExampleComponent } from './checkbox-indeterminate-state-example/checkbox-indeterminate-state-example.component';
 
-const EXAMPLES = [CheckboxExampleComponent, CheckboxGroupExampleComponent];
+const EXAMPLES = [
+  CheckboxExampleComponent,
+  CheckboxGroupExampleComponent,
+  CheckboxIndeterminateStateExampleComponent,
+];
 
 const EXAMPLE_INDEX = {
   'checkbox-example': CheckboxExampleComponent,
+  'checkbox-indeterminate-state-example': CheckboxIndeterminateStateExampleComponent,
   'checkbox-group-example': CheckboxGroupExampleComponent,
 };
 
