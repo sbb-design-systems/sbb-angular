@@ -5,30 +5,53 @@ import {
   HostBinding,
   HostListener,
   Inject,
+  Input,
   Optional,
   Renderer2,
   Self,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { InputDirective } from '@sbb-esta/angular-public/input';
 
 const REGEX_PATTERN = /[0-9]{3,4}/;
 const REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/;
 const REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/;
+const PLACEHOLDER_DEFAULT = 'HH:MM';
 
 @Directive({
   selector: 'input[sbbTimeInput]',
 })
 export class TimeInputDirective {
+  /**
+   * placeholder (defaults to HH:MM)
+   */
+  @Input()
+  @HostBinding('attr.placeholder')
+  get placeholder(): string {
+    return this._placeholder;
+  }
+  set placeholder(value: string) {
+    this._placeholder = value ?? PLACEHOLDER_DEFAULT;
+
+    if (this._input) {
+      this._input.placeholder = this._placeholder;
+    }
+  }
+  private _placeholder: string;
+
   private _document: Document;
 
   constructor(
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
     @Self() @Optional() private _control: NgControl,
-    @Inject(DOCUMENT) document: any
+    @Inject(DOCUMENT) document: any,
+    @Optional() private _input: InputDirective
   ) {
     this._document = document;
+    this.placeholder = PLACEHOLDER_DEFAULT;
   }
+
   /**
    * Value type allowed
    */
