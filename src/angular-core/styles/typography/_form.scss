@@ -39,7 +39,7 @@
   text-align: center;
 
   @include publicOnly() {
-    $timeInputWidth: 70;
+    $timeInputWidth: 84;
     $timeInputHeight: 48;
 
     width: toPx($timeInputWidth);
@@ -57,7 +57,7 @@
   }
 
   @include businessOnly() {
-    width: 68px;
+    width: 70px;
     height: 36px;
   }
 }

@@ -5,6 +5,7 @@ import {
   HostBinding,
   HostListener,
   Inject,
+  Input,
   Optional,
   Renderer2,
   Self,
@@ -19,6 +20,22 @@ const REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/;
   selector: 'input[sbbTimeInput]',
 })
 export class TimeInputDirective {
+  /**
+   * placeholder defaults to HH:MM
+   */
+  @Input()
+  @HostBinding('attr.placeholder')
+  get placeholder(): string {
+    if (typeof this._placeholder === 'undefined' || this._placeholder === null) {
+      return 'HH:MM';
+    }
+    return this._placeholder;
+  }
+  set placeholder(value: string) {
+    this._placeholder = value;
+  }
+  private _placeholder: string;
+
   private _document: Document;
 
   constructor(
@@ -29,6 +46,7 @@ export class TimeInputDirective {
   ) {
     this._document = document;
   }
+
   /**
    * Value type allowed
    */

@@ -6,9 +6,11 @@ import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing'
 import { TimeInputDirective } from './time-input.directive';
 
 @Component({
-  template: ` <input sbbTimeInput /> `,
+  template: ` <input sbbTimeInput [placeholder]="placeholder" /> `,
 })
-class TimeInputTestComponent {}
+class TimeInputTestComponent {
+  placeholder: string;
+}
 
 describe('TimeInputDirective', () => {
   let component: TimeInputTestComponent;
@@ -37,6 +39,7 @@ describe('TimeInputDirective', () => {
     expect(input.getAttribute('pattern')).toEqual('[0-9]*');
     expect(input.getAttribute('inputmode')).toEqual('numeric');
     expect(input.getAttribute('class')).toEqual('sbb-time-input');
+    expect(input.getAttribute('placeholder')).toEqual('HH:MM');
   });
 
   it('should take as input digits with no numbers in it and leave unchanged the value', () => {
@@ -94,5 +97,15 @@ describe('TimeInputDirective', () => {
     fixture.detectChanges();
 
     expect(input.value).toEqual('01:02');
+  });
+
+  it('should take placeholder from input', () => {
+    component.placeholder = 'Time';
+    fixture.detectChanges();
+    expect(input.getAttribute('placeholder')).toEqual('Time');
+
+    component.placeholder = '';
+    fixture.detectChanges();
+    expect(input.getAttribute('placeholder')).toEqual('');
   });
 });
