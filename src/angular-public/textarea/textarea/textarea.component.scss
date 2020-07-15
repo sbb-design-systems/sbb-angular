@@ -29,11 +29,14 @@
     }
   }
 
-  div {
+  .sbb-textarea-remaining-chars {
     position: relative;
     float: right;
     background: transparent;
     color: $sbbColorBlack;
+    @include businessOnly() {
+      color: $sbbColorMetal;
+    }
     letter-spacing: 0;
     line-height: pxToRem(13);
     font-size: pxToRem(13);
