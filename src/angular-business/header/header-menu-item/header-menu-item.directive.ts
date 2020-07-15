@@ -12,7 +12,7 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { CanDisableCtor, mixinDisabled } from '@sbb-esta/angular-core/common-behaviors';
+import { CanDisableCtor, mixinDisabled, TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
 // Boilerplate for applying mixins to HeaderMenuItemDirective.
 /** @docs-private */
@@ -85,7 +85,7 @@ export class HeaderMenuItemDirective extends _HeaderMenuItemBase
 
   /** Prevents the default element actions if it is disabled. */
   @HostListener('click', ['$event'])
-  _checkDisabled(event: Event): void {
+  _checkDisabled(event: TypeRef<Event>): void {
     if (this.disabled) {
       event.preventDefault();
       event.stopPropagation();

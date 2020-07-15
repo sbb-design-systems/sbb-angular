@@ -24,6 +24,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular-public/input';
 import { Subscription } from 'rxjs';
@@ -327,7 +328,7 @@ export class DateInputDirective<D> implements ControlValueAccessor, Validator, O
   }
 
   @HostListener('keydown', ['$event'])
-  onKeydown(event: KeyboardEvent) {
+  onKeydown(event: TypeRef<KeyboardEvent>) {
     if (this._datepicker && event.altKey && event.keyCode === DOWN_ARROW) {
       this._datepicker.openDatepicker();
       event.preventDefault();

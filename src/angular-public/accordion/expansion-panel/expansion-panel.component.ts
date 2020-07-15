@@ -25,6 +25,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
 import { filter, startWith, take } from 'rxjs/operators';
 
@@ -131,7 +132,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
 
   constructor(
     private _viewContainerRef: ViewContainerRef,
-    @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: AccordionDirective,
+    @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: TypeRef<AccordionDirective>,
     changeDetectorRef: ChangeDetectorRef,
     uniqueSelectionDispatcher: UniqueSelectionDispatcher,
     @Inject(DOCUMENT) document?: any

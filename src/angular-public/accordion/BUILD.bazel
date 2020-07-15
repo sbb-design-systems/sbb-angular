@@ -22,6 +22,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/accordion",
     deps = [
+        "//src/angular-core/common-behaviors",
         "//src/angular-icons/navigation",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",

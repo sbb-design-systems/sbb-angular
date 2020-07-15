@@ -30,6 +30,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { FORM_FIELD } from '@sbb-esta/angular-public/field';
 import type { FieldComponent } from '@sbb-esta/angular-public/field';
 import {
@@ -268,7 +269,7 @@ export class AutocompleteTriggerDirective
     @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy: any,
     private _viewportRuler: ViewportRuler,
     @Optional() @Inject(DOCUMENT) document: any,
-    @Optional() @Inject(FORM_FIELD) @Host() private _formField: FieldComponent
+    @Optional() @Inject(FORM_FIELD) @Host() private _formField: TypeRef<FieldComponent>
   ) {
     this._document = document;
   }
@@ -414,7 +415,7 @@ export class AutocompleteTriggerDirective
 
   /** @docs-private */
   @HostListener('keydown', ['$event'])
-  handleKeydown(event: KeyboardEvent): void {
+  handleKeydown(event: TypeRef<KeyboardEvent>): void {
     const keyCode = event.keyCode;
 
     // Prevent the default action on all escape key presses. This is here primarily to bring IE
@@ -447,7 +448,7 @@ export class AutocompleteTriggerDirective
 
   /** @docs-private */
   @HostListener('input', ['$event'])
-  handleInput(event: KeyboardEvent): void {
+  handleInput(event: TypeRef<KeyboardEvent>): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
 

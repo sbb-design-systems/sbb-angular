@@ -10,6 +10,7 @@ import {
   InjectionToken,
   Output,
 } from '@angular/core';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
 let counter = 0;
 
@@ -115,7 +116,7 @@ export class DropdownItemDirective implements Highlightable {
   }
 
   @HostListener('keydown', ['$event'])
-  handleKeydown(event: KeyboardEvent): void {
+  handleKeydown(event: TypeRef<KeyboardEvent>): void {
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
       this.selectViaInteraction();
 

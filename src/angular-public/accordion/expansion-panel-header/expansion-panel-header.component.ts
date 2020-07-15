@@ -13,6 +13,7 @@ import {
   OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -146,7 +147,7 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
 
   /** Handle keydown event calling to toggle() if appropriate. */
   @HostListener('keydown', ['$event'])
-  keydown(event: KeyboardEvent) {
+  keydown(event: TypeRef<KeyboardEvent>) {
     switch (event.keyCode) {
       // Toggle for space and enter keys.
       case SPACE:

@@ -38,6 +38,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import {
   defer,
   fromEvent,
@@ -291,7 +292,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   }
 
   @HostListener('keydown', ['$event'])
-  onKeydown($event: KeyboardEvent) {
+  onKeydown($event: TypeRef<KeyboardEvent>) {
     this.handleKeydown($event);
   }
 

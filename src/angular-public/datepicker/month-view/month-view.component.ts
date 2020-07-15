@@ -23,6 +23,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 
 import { CalendarBodyComponent, CalendarCell } from '../calendar-body/calendar-body.component';
@@ -134,7 +135,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
     @Inject(LOCALE_ID) public locale: string,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
-    @Optional() @Inject(SBB_DATEPICKER) datepicker: DatepickerComponent<D>
+    @Optional() @Inject(SBB_DATEPICKER) datepicker: TypeRef<DatepickerComponent<D>>
   ) {
     if (!this.dateAdapter) {
       throw createMissingDateImplError('DateAdapter');

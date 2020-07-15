@@ -22,6 +22,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/datepicker",
     deps = [
+        "//src/angular-core/common-behaviors",
         "//src/angular-core/datetime",
         "//src/angular-icons/arrow",
         "//src/angular-icons/basic",
