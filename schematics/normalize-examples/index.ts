@@ -214,24 +214,9 @@ export class ${moduleName} {}
               t !== 'option' && (packageRoot.subdirs.includes(fragment(t)) || t.startsWith('icon'))
           )
           .filter((v, i, a) => a.indexOf(v) === i)
-          .map((i) =>
-            i.startsWith('icon') ? iconLookup[i] : ModuleImport.fromPackageModule(packageName, i)
-          );
+          .map((i) => ModuleImport.fromPackageModule(packageName, i));
       }
     }
-
-    const iconLookup: { [key: string]: ModuleImport } = {};
-    const iconsDir = tree.getDir('src/angular-icons');
-    iconsDir.visit((path) => {
-      const fileName = basename(path);
-      if (fileName.endsWith('.module.ts') && fileName.startsWith('icon-')) {
-        const key = fileName.split('.')[0];
-        iconLookup[key] = new ModuleImport(
-          `@sbb-esta/angular-icons/${relative(iconsDir.path, dirname(path))}`,
-          `${strings.classify(key)}Module`
-        );
-      }
-    });
 
     [
       'src/showcase/app/business/business-examples',

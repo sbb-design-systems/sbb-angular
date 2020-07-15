@@ -43,7 +43,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.0.7 of the icon CDN.
+ * Generated from version v1.1.0 of the icon CDN.
  * Icons that are not needed by your app can be removed.
  *
  * You can also add additional icons from your assets:
@@ -273,7 +273,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'product-sn',
         'product-tgv',
         'product-vae',
-      ],
+      ]
     },
     {
       namespace: 'kom',
@@ -354,8 +354,11 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'battery-level-high-medium',
         'battery-level-low-medium',
         'battery-level-medium-medium',
+        'bell-disabled-medium',
         'bell-medium',
         'binoculars-medium',
+        'bluetooth-disabled-medium',
+        'bluetooth-medium',
         'browser-medium',
         'bucket-foam-broom-medium',
         'calendar-medium',
@@ -532,6 +535,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'folder-plus-medium',
         'metadata-medium',
         'two-folders-medium',
+        'arrow-change-horizontal-medium',
         'arrow-change-medium',
         'avatar-train-staff-disabled-medium',
         'avatar-train-staff-medium',
@@ -556,7 +560,9 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'wheelchair-uncertain-medium',
         'half-fare-card-medium',
         'qrcode-disabled-medium',
+        'qrcode-disabled-two-tickets-medium',
         'qrcode-medium',
+        'qrcode-two-tickets-medium',
         'swisspass-medium',
         'swisspass-temporary-medium',
         'ticket-day-medium',
@@ -727,8 +733,11 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'battery-level-high-small',
         'battery-level-low-small',
         'battery-level-medium-small',
+        'bell-disabled-small',
         'bell-small',
         'binoculars-small',
+        'bluetooth-disabled-small',
+        'bluetooth-small',
         'browser-small',
         'bucket-foam-broom-small',
         'calendar-one-day-small',
@@ -905,6 +914,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'folder-plus-small',
         'metadata-small',
         'two-folders-small',
+        'arrow-change-horizontal-small',
         'arrow-change-small',
         'avatar-train-staff-disabled-small',
         'avatar-train-staff-small',
@@ -929,7 +939,9 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'wheelchair-uncertain-small',
         'half-fare-card-small',
         'qrcode-disabled-small',
+        'qrcode-disabled-two-tickets-small',
         'qrcode-small',
+        'qrcode-two-tickets-small',
         'swisspass-small',
         'swisspass-temporary-small',
         'ticket-day-small',
@@ -1092,7 +1104,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'train-tracks-small',
         'city-small',
         'ship-steering-wheel-small',
-      ],
+      ]
     },
   ];
   for (const entry of namespacedIcons) {
@@ -1100,8 +1112,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
       registry.addSvgIconInNamespace(
         entry.namespace,
         icon,
-        sanitizer.bypassSecurityTrustResourceUrl(`${cdnUrl}/${entry.namespace}/${icon}.svg`)
-      );
+        sanitizer.bypassSecurityTrustResourceUrl(`${cdnUrl}/${entry.namespace}/${icon}.svg`));
     }
   }
   return registry;

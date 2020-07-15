@@ -1,10 +1,15 @@
 {
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "migration-v9": {
-      "version": "9",
-      "description": "Update @sbb-esta/angular-public to v9",
-      "factory": "./ng-update/index#updateToV9"
+    "migration-v10": {
+      "version": "10.0.0",
+      "description": "Update sbb-angular to v10",
+      "factory": "./ng-update/index#updateToV10"
+    },
+    "migration-v11": {
+      "version": "11.0.0-0",
+      "description": "Update sbb-angular to v11",
+      "factory": "./ng-update/index#updateToV11"
     }
   }
 }
