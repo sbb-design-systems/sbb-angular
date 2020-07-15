@@ -1,9 +1,9 @@
 You can use the time input directive as seen below
 
 ```html
-<form>
-  <input sbbTimeInput />
-</form>
+<sbb-field label="Time Input">
+  <input sbbTimeInput sbbInput />
+</sbb-field>
 ```
 
 The time input field accepts any numeric values and one character
