@@ -59,7 +59,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
     }
 
     @include businessOnly() {
-      @include svgIconColor($sbbColorGranite);
+      @include svgIconColor($sbbColorIron);
     }
 
     line-height: 0;
@@ -221,7 +221,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
         }
 
         @include businessOnly() {
-          background-color: $sbbColorGranite;
+          background-color: $sbbColorIron;
         }
       }
 
