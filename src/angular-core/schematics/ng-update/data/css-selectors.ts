@@ -1,6 +1,6 @@
 import { VersionChanges } from '@angular/cdk/schematics';
 
-export interface MaterialCssSelectorData {
+export interface SbbAngularCssSelectorData {
   /** The CSS selector to replace. */
   replace: string;
   /** The new CSS selector. */
@@ -16,4 +16,4 @@ export interface MaterialCssSelectorData {
   };
 }
 
-export const cssSelectors: VersionChanges<MaterialCssSelectorData> = {};
+export const cssSelectors: VersionChanges<SbbAngularCssSelectorData> = {};
