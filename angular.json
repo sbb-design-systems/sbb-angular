@@ -15,10 +15,17 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular/bazel:build",
+          "builder": "no-builder",
           "options": {
-            "targetLabel": "//src/showcase:prodapp",
-            "bazelCommand": "build"
+            "outputPath": "dist/defunct",
+            "index": "src/showcase/index.html",
+            "main": "src/showcase/main.ts",
+            "polyfills": "src/showcase/polyfills.ts",
+            "tsConfig": "tsconfig.json",
+            "aot": true,
+            "styles": [
+              "src/showcase/styles.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -58,48 +65,6 @@
             "tsConfig": [
               "tsconfig.json",
               "src/bazel-tsconfig-test.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "library": {
-      "root": ".",
-      "sourceRoot": "src",
-      "projectType": "library",
-      "prefix": "sbb",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush",
-          "viewEncapsulation": "None"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "src/bazel-tsconfig-build.json",
-            "project": "projects/sbb-esta/angular-public/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/sbb-esta/angular-public/test.ts",
-            "tsConfig": "src/bazel-tsconfig-test.json",
-            "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/sbb-esta/angular-public/tsconfig.lib.json",
-              "projects/sbb-esta/angular-public/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

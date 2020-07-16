@@ -1,9 +1,9 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import { SbbIconComponent } from './icon';
+import { SbbIcon } from './icon';
 
 @NgModule({
-  declarations: [SbbIconComponent],
-  exports: [SbbIconComponent],
+  declarations: [SbbIcon],
+  exports: [SbbIcon],
 })
 export class SbbIconModule {}

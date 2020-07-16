@@ -114,7 +114,7 @@ const funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbIconComponent implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
+export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
   /**
    * Whether the icon should be inlined, automatically sizing the icon to match the font size of
    * the element the icon is contained in.
