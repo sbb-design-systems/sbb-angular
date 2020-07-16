@@ -22,8 +22,6 @@ sbb-option {
 
   &.sbb-option-multiple {
     display: flex;
-    align-items: center;
-
     padding-left: toPx($optionMultipleCheckboxPaddingLeft);
 
     @include publicOnly() {
@@ -38,6 +36,9 @@ sbb-option {
 
     sbb-pseudo-checkbox {
       @include checkboxContainer;
+      @include businessOnly() {
+        margin-top: 0;
+      }
 
       & > .sbb-checkbox-checked {
         display: none;

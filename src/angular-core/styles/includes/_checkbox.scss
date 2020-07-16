@@ -26,7 +26,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
   border: toPx($checkBoxContainerBorder) solid $sbbColorGraphite;
   border-radius: toPx(2);
   margin-right: toPx(8);
-  margin-top: toPx(2);
+  margin-top: toPx(2.5);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -36,7 +36,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
       min-height: toPx(20 * $scalingFactor4k);
       border: toPx(2 * $scalingFactor4k) solid $sbbColorGraphite;
       margin-right: toPx(8 * $scalingFactor4k);
-      margin-top: toPx(2 * $scalingFactor4k);
+      margin-top: toPx(2.5 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
@@ -46,7 +46,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
       min-height: toPx(20 * $scalingFactor5k);
       border: toPx(2 * $scalingFactor5k) solid $sbbColorGraphite;
       margin-right: toPx(8 * $scalingFactor5k);
-      margin-top: toPx(2 * $scalingFactor5k);
+      margin-top: toPx(2.5 * $scalingFactor5k);
     }
   }
 
@@ -204,7 +204,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
       }
 
       @include publicOnly() {
-        margin-top: toPx(2);
+        margin-top: toPx(2.5);
         border: toPx(2) solid $sbbColorGraphite;
 
         @include mq($from: desktop4k) {
@@ -214,7 +214,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
           min-height: toPx(20 * $scalingFactor4k);
           border: toPx(2 * $scalingFactor4k) solid $sbbColorGraphite;
           margin-right: toPx(8 * $scalingFactor4k);
-          margin-top: toPx(2 * $scalingFactor4k);
+          margin-top: toPx(2.5 * $scalingFactor4k);
         }
 
         @include mq($from: desktop5k) {
@@ -224,7 +224,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
           min-height: toPx(20 * $scalingFactor5k);
           border: toPx(2 * $scalingFactor5k) solid $sbbColorGraphite;
           margin-right: toPx(8 * $scalingFactor5k);
-          margin-top: toPx(2 * $scalingFactor5k);
+          margin-top: toPx(2.5 * $scalingFactor5k);
         }
       }
 
