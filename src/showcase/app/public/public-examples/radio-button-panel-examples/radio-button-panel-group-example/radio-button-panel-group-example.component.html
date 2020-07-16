@@ -1,0 +1,10 @@
+<sbb-radio-group [formControl]="radioGroup">
+  <sbb-radio-button-panel
+    *ngFor="let option of radioOptions"
+    [value]="option.value"
+    [label]="option.name"
+  ></sbb-radio-button-panel>
+</sbb-radio-group>
+
+<h4>Model</h4>
+<pre>{{ radioGroup.value }}</pre>
