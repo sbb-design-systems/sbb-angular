@@ -8,12 +8,18 @@ import { provideExamples } from '../../../shared/example-provider';
 
 import { RadioButtonExampleComponent } from './radio-button-example/radio-button-example.component';
 import { RadioButtonGroupExampleComponent } from './radio-button-group-example/radio-button-group-example.component';
+import { RadioButtonGroupReactiveFormsExampleComponent } from './radio-button-group-reactive-forms-example/radio-button-group-reactive-forms-example.component';
 
-const EXAMPLES = [RadioButtonExampleComponent, RadioButtonGroupExampleComponent];
+const EXAMPLES = [
+  RadioButtonExampleComponent,
+  RadioButtonGroupExampleComponent,
+  RadioButtonGroupReactiveFormsExampleComponent,
+];
 
 const EXAMPLE_INDEX = {
-  'radio-button-example': RadioButtonExampleComponent,
+  'radio-button-group-reactive-forms-example': RadioButtonGroupReactiveFormsExampleComponent,
   'radio-button-group-example': RadioButtonGroupExampleComponent,
+  'radio-button-example': RadioButtonExampleComponent,
 };
 
 @NgModule({

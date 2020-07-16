@@ -11,10 +11,12 @@ ng_module(
         "radio-button-example/radio-button-example.component.ts",
         "radio-button-examples.module.ts",
         "radio-button-group-example/radio-button-group-example.component.ts",
+        "radio-button-group-reactive-forms-example/radio-button-group-reactive-forms-example.component.ts",
     ],
     assets = [
         "radio-button-example/radio-button-example.component.html",
         "radio-button-group-example/radio-button-group-example.component.html",
+        "radio-button-group-reactive-forms-example/radio-button-group-reactive-forms-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [

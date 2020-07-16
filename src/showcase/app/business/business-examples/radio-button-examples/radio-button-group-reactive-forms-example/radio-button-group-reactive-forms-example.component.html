@@ -1,0 +1,13 @@
+<sbb-radio-group [formControl]="radioGroup">
+  <sbb-radio-button *ngFor="let option of radioOptions" [value]="option.value">
+    {{ option.name }}
+  </sbb-radio-button>
+</sbb-radio-group>
+<h4 class="sbbsc-block">Properties</h4>
+<div class="sbbsc-block">
+  <sbb-checkbox (change)="radioGroup.disabled ? radioGroup.enable() : radioGroup.disable()"
+    >Disabled</sbb-checkbox
+  >
+</div>
+<h4>Model</h4>
+<pre>{{ radioGroup.value }}</pre>
