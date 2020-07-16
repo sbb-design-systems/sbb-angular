@@ -415,8 +415,12 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
 }
 
 @mixin checkboxRadioButtonVerticalSpacing($selector) {
-  display: block;
-  & + #{$selector} {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+
+  #{$selector} + #{$selector} {
     margin-top: toPx($checkboxRadioButtonVerticalSpace);
 
     @include publicOnly() {
@@ -431,21 +435,27 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
   }
 }
 
-@mixin checkboxRadioButtonHorizontalSpacing() {
-  display: inline-block;
-  margin-right: toPx($checkboxRadioButtonHorizontalSpace);
+@mixin checkboxRadioButtonHorizontalSpacing($selector) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
 
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      margin-right: toPx($checkboxRadioButtonHorizontalSpace * $scalingFactor4k);
+  #{$selector} {
+    margin-right: toPx($checkboxRadioButtonHorizontalSpace);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        margin-right: toPx($checkboxRadioButtonHorizontalSpace * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-right: toPx($checkboxRadioButtonHorizontalSpace * $scalingFactor5k);
+      }
     }
 
-    @include mq($from: desktop5k) {
-      margin-right: toPx($checkboxRadioButtonHorizontalSpace * $scalingFactor5k);
+    &:last-of-type {
+      margin-right: 0;
     }
-  }
-
-  &:last-of-type {
-    margin-right: 0;
   }
 }

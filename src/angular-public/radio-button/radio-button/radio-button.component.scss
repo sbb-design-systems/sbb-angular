@@ -7,10 +7,10 @@
   }
 }
 
-.sbb-radio-group-vertical .sbb-radio-button {
+.sbb-radio-group-vertical {
   @include checkboxRadioButtonVerticalSpacing('.sbb-radio-button');
 }
 
-.sbb-radio-group-horizontal .sbb-radio-button {
-  @include checkboxRadioButtonHorizontalSpacing();
+.sbb-radio-group-horizontal {
+  @include checkboxRadioButtonHorizontalSpacing('.sbb-radio-button');
 }
