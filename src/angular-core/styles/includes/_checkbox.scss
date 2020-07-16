@@ -90,6 +90,16 @@ $checkboxRadioButtonPanelImageHeight: 40;
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
 
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
   & > input[type='checkbox'] {
     & + .sbb-checkbox-container {
       @include checkboxContainer();
@@ -167,6 +177,16 @@ $checkboxRadioButtonPanelImageHeight: 40;
   display: flex;
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
 
   & > input[type='radio'] {
     & + .sbb-radio-circle-container {
