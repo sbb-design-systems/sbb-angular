@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -11,13 +10,14 @@ ng_module(
     srcs = [
         "checkbox-example/checkbox-example.component.ts",
         "checkbox-examples.module.ts",
-        "checkbox-group-example/checkbox-group-example.component.ts",
+        "checkbox-group-horizontal-example/checkbox-group-horizontal-example.component.ts",
+        "checkbox-group-reactive-forms-vertical-example/checkbox-group-reactive-forms-vertical-example.component.ts",
         "checkbox-indeterminate-state-example/checkbox-indeterminate-state-example.component.ts",
     ],
     assets = [
-        ":checkbox-indeterminate-state-example/checkbox-indeterminate-state-example.component.css",
         "checkbox-example/checkbox-example.component.html",
-        "checkbox-group-example/checkbox-group-example.component.html",
+        "checkbox-group-horizontal-example/checkbox-group-horizontal-example.component.html",
+        "checkbox-group-reactive-forms-vertical-example/checkbox-group-reactive-forms-vertical-example.component.html",
         "checkbox-indeterminate-state-example/checkbox-indeterminate-state-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
@@ -38,9 +38,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "checkbox_indeterminate_state_example_checkbox_indeterminate_state_example_component_scss",
-    src = "checkbox-indeterminate-state-example/checkbox-indeterminate-state-example.component.scss",
 )

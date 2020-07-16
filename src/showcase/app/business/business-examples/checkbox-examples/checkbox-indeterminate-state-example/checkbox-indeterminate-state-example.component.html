@@ -1,16 +1,16 @@
-<sbb-checkbox
-  class="sbbsc-block"
-  (change)="$event ? masterToggle() : null"
-  [checked]="selection.hasValue() && isAllSelected()"
-  [indeterminate]="selection.hasValue() && !isAllSelected()"
->
-  All Waggons
-</sbb-checkbox>
-<sbb-checkbox
-  class="sbbsc-block"
-  *ngFor="let option of options"
-  (change)="$event ? selection.toggle(option) : null"
-  [checked]="selection.isSelected(option)"
->
-  {{ option }}
-</sbb-checkbox>
+<div class="sbb-checkbox-group-vertical">
+  <sbb-checkbox
+    (change)="$event ? masterToggle() : null"
+    [checked]="selection.hasValue() && isAllSelected()"
+    [indeterminate]="selection.hasValue() && !isAllSelected()"
+  >
+    All Waggons
+  </sbb-checkbox>
+  <sbb-checkbox
+    *ngFor="let option of options"
+    (change)="$event ? selection.toggle(option) : null"
+    [checked]="selection.isSelected(option)"
+  >
+    {{ option }}
+  </sbb-checkbox>
+</div>

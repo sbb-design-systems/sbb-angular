@@ -5,9 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './checkbox-example.component.html',
 })
 export class CheckboxExampleComponent {
-  required: boolean;
   disabled: boolean;
-  checked: boolean;
   changeCounter = 0;
 
   incrementChangeCounter() {

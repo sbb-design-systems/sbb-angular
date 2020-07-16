@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sbb-checkbox-indeterminate-state-example',
-  styleUrls: ['./checkbox-indeterminate-state-example.component.css'],
   templateUrl: './checkbox-indeterminate-state-example.component.html',
 })
 export class CheckboxIndeterminateStateExampleComponent {
