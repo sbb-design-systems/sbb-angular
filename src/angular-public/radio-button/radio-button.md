@@ -25,6 +25,13 @@ would make that impossible (e.g., radio-buttons inside of table cells). The radi
 
 Individual radio-buttons inside of a radio-group will inherit the `name` of the group.
 
+#### Radio button alignment inside radio group
+
+By adding the corresponding css class, it's possible to align the radio buttons inside a radio group:
+
+- vertical alignment of radio buttons: `<sbb-radio-group class="sbb-radio-group-vertical">`
+- horizontal alignment of radio buttons: `<sbb-radio-group class="sbb-radio-group-horizontal">`
+
 ### Use with `@angular/forms`
 
 `<sbb-radio-group>` is compatible with `@angular/forms` and supports both `FormsModule`

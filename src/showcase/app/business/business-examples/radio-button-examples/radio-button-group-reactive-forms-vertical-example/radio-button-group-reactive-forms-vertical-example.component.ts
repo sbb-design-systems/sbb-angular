@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'sbb-radio-button-group-reactive-forms-example',
-  templateUrl: './radio-button-group-reactive-forms-example.component.html',
+  selector: 'sbb-radio-button-group-reactive-forms-vertical-example',
+  templateUrl: './radio-button-group-reactive-forms-vertical-example.component.html',
 })
-export class RadioButtonGroupReactiveFormsExampleComponent {
+export class RadioButtonGroupReactiveFormsVerticalExampleComponent {
   radioOptions = [
     {
       name: 'Radio 1',

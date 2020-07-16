@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'sbb-radio-button-group-example',
-  templateUrl: './radio-button-group-example.component.html',
+  selector: 'sbb-radio-button-group-horizontal-example',
+  templateUrl: './radio-button-group-horizontal-example.component.html',
 })
-export class RadioButtonGroupExampleComponent {
+export class RadioButtonGroupHorizontalExampleComponent {
   modelValue = 'value1';
 
   radioOptions = [

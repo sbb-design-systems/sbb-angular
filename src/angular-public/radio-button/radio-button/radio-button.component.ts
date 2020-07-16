@@ -7,6 +7,7 @@ import {
   ElementRef,
   forwardRef,
   Optional,
+  ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
@@ -16,6 +17,7 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.css'],
   inputs: ['tabIndex'],
+  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -7,18 +7,18 @@ import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 import { provideExamples } from '../../../shared/example-provider';
 
 import { RadioButtonExampleComponent } from './radio-button-example/radio-button-example.component';
-import { RadioButtonGroupExampleComponent } from './radio-button-group-example/radio-button-group-example.component';
-import { RadioButtonGroupReactiveFormsExampleComponent } from './radio-button-group-reactive-forms-example/radio-button-group-reactive-forms-example.component';
+import { RadioButtonGroupHorizontalExampleComponent } from './radio-button-group-horizontal-example/radio-button-group-horizontal-example.component';
+import { RadioButtonGroupReactiveFormsVerticalExampleComponent } from './radio-button-group-reactive-forms-vertical-example/radio-button-group-reactive-forms-vertical-example.component';
 
 const EXAMPLES = [
   RadioButtonExampleComponent,
-  RadioButtonGroupExampleComponent,
-  RadioButtonGroupReactiveFormsExampleComponent,
+  RadioButtonGroupHorizontalExampleComponent,
+  RadioButtonGroupReactiveFormsVerticalExampleComponent,
 ];
 
 const EXAMPLE_INDEX = {
-  'radio-button-group-reactive-forms-example': RadioButtonGroupReactiveFormsExampleComponent,
-  'radio-button-group-example': RadioButtonGroupExampleComponent,
+  'radio-button-group-reactive-forms-vertical-example': RadioButtonGroupReactiveFormsVerticalExampleComponent,
+  'radio-button-group-horizontal-example': RadioButtonGroupHorizontalExampleComponent,
   'radio-button-example': RadioButtonExampleComponent,
 };
 
