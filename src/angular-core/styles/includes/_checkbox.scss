@@ -24,7 +24,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
   border: toPx($checkBoxContainerBorder) solid $sbbColorGraphite;
   border-radius: toPx(2);
   margin-right: toPx(8);
-  margin-top: toPx(1);
+  margin-top: toPx(2);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -34,7 +34,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
       min-height: toPx(20 * $scalingFactor4k);
       border: toPx(2 * $scalingFactor4k) solid $sbbColorGraphite;
       margin-right: toPx(8 * $scalingFactor4k);
-      margin-top: toPx(1 * $scalingFactor4k);
+      margin-top: toPx(2 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
@@ -44,12 +44,13 @@ $checkboxRadioButtonPanelImageHeight: 40;
       min-height: toPx(20 * $scalingFactor5k);
       border: toPx(2 * $scalingFactor5k) solid $sbbColorGraphite;
       margin-right: toPx(8 * $scalingFactor5k);
-      margin-top: toPx(1 * $scalingFactor5k);
+      margin-top: toPx(2 * $scalingFactor5k);
     }
   }
 
   @include businessOnly() {
     border-width: 1px;
+    margin-top: toPx(1);
   }
 
   .sbb-checkbox-checked {
@@ -181,7 +182,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
       }
 
       @include publicOnly() {
-        margin-top: toPx(1);
+        margin-top: toPx(2);
         border: toPx(2) solid $sbbColorGraphite;
 
         @include mq($from: desktop4k) {
@@ -191,7 +192,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
           min-height: toPx(20 * $scalingFactor4k);
           border: toPx(2 * $scalingFactor4k) solid $sbbColorGraphite;
           margin-right: toPx(8 * $scalingFactor4k);
-          margin-top: toPx(1 * $scalingFactor4k);
+          margin-top: toPx(2 * $scalingFactor4k);
         }
 
         @include mq($from: desktop5k) {
@@ -201,7 +202,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
           min-height: toPx(20 * $scalingFactor5k);
           border: toPx(2 * $scalingFactor5k) solid $sbbColorGraphite;
           margin-right: toPx(8 * $scalingFactor5k);
-          margin-top: toPx(1 * $scalingFactor5k);
+          margin-top: toPx(2 * $scalingFactor5k);
         }
       }
 
