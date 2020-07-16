@@ -57,5 +57,7 @@
     <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
   </select>
 </sbb-field>
-<sbb-checkbox value="disabled" [(ngModel)]="disabled">Set a tab disabled</sbb-checkbox>
-<sbb-checkbox value="disabled" [(ngModel)]="removed">Remove a tab</sbb-checkbox>
+<div class="sbb-checkbox-group-vertical">
+  <sbb-checkbox value="disabled" [(ngModel)]="disabled">Set a tab disabled</sbb-checkbox>
+  <sbb-checkbox value="disabled" [(ngModel)]="removed">Remove a tab</sbb-checkbox>
+</div>
