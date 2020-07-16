@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
 import { IconUserModule } from '@sbb-esta/angular-icons/user';
 
@@ -16,7 +15,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, RouterModule, IconUserModule, ButtonModule, DropdownModule],
+  imports: [CommonModule, RouterModule, DropdownModule, IconUserModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('business', 'dropdown', EXAMPLE_INDEX)],

@@ -12,9 +12,9 @@ import { CheckboxPanelIconExampleComponent } from './checkbox-panel-icon-example
 import { CheckboxPanelImgExampleComponent } from './checkbox-panel-img-example/checkbox-panel-img-example.component';
 
 const EXAMPLES = [
+  CheckboxPanelGroupExampleComponent,
   CheckboxPanelIconExampleComponent,
   CheckboxPanelImgExampleComponent,
-  CheckboxPanelGroupExampleComponent,
 ];
 
 const EXAMPLE_INDEX = {

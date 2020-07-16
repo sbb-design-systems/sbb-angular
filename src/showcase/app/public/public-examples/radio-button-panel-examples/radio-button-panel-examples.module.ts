@@ -12,9 +12,9 @@ import { RadioButtonPanelIconExampleComponent } from './radio-button-panel-icon-
 import { RadioButtonPanelImgExampleComponent } from './radio-button-panel-img-example/radio-button-panel-img-example.component';
 
 const EXAMPLES = [
-  RadioButtonPanelImgExampleComponent,
   RadioButtonPanelGroupExampleComponent,
   RadioButtonPanelIconExampleComponent,
+  RadioButtonPanelImgExampleComponent,
 ];
 
 const EXAMPLE_INDEX = {

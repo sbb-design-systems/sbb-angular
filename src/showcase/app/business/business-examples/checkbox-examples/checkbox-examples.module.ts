@@ -13,8 +13,8 @@ import { CheckboxIndeterminateStateExampleComponent } from './checkbox-indetermi
 const EXAMPLES = [
   CheckboxExampleComponent,
   CheckboxGroupHorizontalExampleComponent,
-  CheckboxIndeterminateStateExampleComponent,
   CheckboxGroupReactiveFormsVerticalExampleComponent,
+  CheckboxIndeterminateStateExampleComponent,
 ];
 
 const EXAMPLE_INDEX = {

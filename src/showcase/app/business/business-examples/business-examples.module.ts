@@ -38,6 +38,7 @@ const EXAMPLES = [
   ContextmenuExamplesModule,
   DatepickerExamplesModule,
   DialogExamplesModule,
+  DropdownExamplesModule,
   FieldExamplesModule,
   FileSelectorExamplesModule,
   LinksExamplesModule,
@@ -55,7 +56,6 @@ const EXAMPLES = [
   TimeInputExamplesModule,
   TooltipExamplesModule,
   UsermenuExamplesModule,
-  DropdownExamplesModule,
 ];
 
 @NgModule({
