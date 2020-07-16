@@ -1,8 +1,5 @@
 @import '../../../angular-core/styles/common';
 
-$verticalSpace: if($sbbBusiness, 5, 16);
-$horizontalSpace: if($sbbBusiness, 15, 32);
-
 .sbb-radio-button {
   & > label {
     user-select: none;
@@ -11,37 +8,9 @@ $horizontalSpace: if($sbbBusiness, 15, 32);
 }
 
 .sbb-radio-group-vertical .sbb-radio-button {
-  display: block;
-  & + .sbb-radio-button {
-    margin-top: toPx($verticalSpace);
-
-    @include publicOnly() {
-      @include mq($from: desktop4k) {
-        margin-top: toPx($verticalSpace * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        margin-top: toPx($verticalSpace * $scalingFactor5k);
-      }
-    }
-  }
+  @include checkboxRadioButtonVerticalSpacing('.sbb-radio-button');
 }
 
 .sbb-radio-group-horizontal .sbb-radio-button {
-  display: inline-block;
-  margin-right: toPx($horizontalSpace);
-
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      margin-right: toPx($horizontalSpace * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      margin-right: toPx($horizontalSpace * $scalingFactor5k);
-    }
-  }
-
-  &:last-of-type {
-    margin-right: 0;
-  }
+  @include checkboxRadioButtonHorizontalSpacing();
 }

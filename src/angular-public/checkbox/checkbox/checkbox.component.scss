@@ -5,3 +5,11 @@
     @include checkboxBase();
   }
 }
+
+.sbb-checkbox-group-vertical .sbb-checkbox {
+  @include checkboxRadioButtonVerticalSpacing('.sbb-checkbox');
+}
+
+.sbb-checkbox-group-horizontal .sbb-checkbox {
+  @include checkboxRadioButtonHorizontalSpacing();
+}

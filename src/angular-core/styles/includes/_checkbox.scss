@@ -14,6 +14,8 @@ $checkboxRadioButtonPanelSubtitleFontSize: 13;
 $checkboxRadioButtonPanelHeaderPaddingLeft: 28;
 $checkboxRadioButtonPanelImageWidth: 64;
 $checkboxRadioButtonPanelImageHeight: 40;
+$checkboxRadioButtonVerticalSpace: if($sbbBusiness, 3, 16);
+$checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
 
 @mixin checkboxContainer() {
   width: toPx(20);
@@ -409,5 +411,41 @@ $checkboxRadioButtonPanelImageHeight: 40;
       max-width: 100%;
       max-height: 100%;
     }
+  }
+}
+
+@mixin checkboxRadioButtonVerticalSpacing($selector) {
+  display: block;
+  & + #{$selector} {
+    margin-top: toPx($checkboxRadioButtonVerticalSpace);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        margin-top: toPx($checkboxRadioButtonVerticalSpace * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-top: toPx($checkboxRadioButtonVerticalSpace * $scalingFactor5k);
+      }
+    }
+  }
+}
+
+@mixin checkboxRadioButtonHorizontalSpacing() {
+  display: inline-block;
+  margin-right: toPx($checkboxRadioButtonHorizontalSpace);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      margin-right: toPx($checkboxRadioButtonHorizontalSpace * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-right: toPx($checkboxRadioButtonHorizontalSpace * $scalingFactor5k);
+    }
+  }
+
+  &:last-of-type {
+    margin-right: 0;
   }
 }

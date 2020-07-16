@@ -19,6 +19,15 @@ The checkbox label is provided as the content to the `<sbb-checkbox>` element.
 `<sbb-checkbox>` is compatible with `@angular/forms` and supports both `FormsModule`
 and `ReactiveFormsModule`.
 
+### Checkbox Groups
+
+By creating a wrapper around `<sbb-checkbox>`-elements and adding the corresponding css class, it's possible to align the checkboxes:
+
+- vertical alignment of checkboxes:
+  `<div class="sbb-checkbox-group-vertical"><sbb-checkbox></sbb-checkbox>...</div>`
+- horizontal alignment of checkboxes:
+  `<div class="sbb-checkbox-group-horizontal"><sbb-checkbox></sbb-checkbox>...</div>`
+
 ### Accessibility
 
 The `<sbb-checkbox>` uses an internal `<input type="checkbox">` to provide an accessible experience.
