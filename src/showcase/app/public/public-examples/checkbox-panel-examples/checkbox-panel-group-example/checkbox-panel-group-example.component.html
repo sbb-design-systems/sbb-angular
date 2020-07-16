@@ -1,0 +1,9 @@
+<div *ngFor="let option of checkboxOptions" class="sbbsc-block">
+  <sbb-checkbox-panel
+    [(ngModel)]="option.selected"
+    [value]="option.value"
+    [label]="option.name"
+  ></sbb-checkbox-panel>
+</div>
+<h4>Model</h4>
+<pre>{{ checkboxOptions | json }}</pre>
