@@ -21,7 +21,7 @@ import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 export class ButtonComponent extends BaseButton {
   /**
    * @docs-private
-   * fit icons to host parent site
+   * Fit icons to host parent size
    */
   @HostBinding('class.sbb-icon-fit') _iconFitClass = true;
 
