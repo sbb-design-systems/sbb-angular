@@ -14,6 +14,7 @@ $sbbBusiness: true;
       border: none;
       color: $buttonAlternativeColor;
 
+      // TODO(icon-migration) remove this rule (new icons take text-color)
       .sbb-svgsprite-icon {
         @include svgIconColor($buttonAlternativeColor);
       }
@@ -115,6 +116,7 @@ $sbbBusiness: true;
     color: rgba($buttonSecondaryColor, 0.4);
   }
 
+  // TODO(icon-migration) remove this rule (new icons take text-color)
   &-primary,
   &-secondary,
   &-alternative,
