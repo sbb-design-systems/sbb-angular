@@ -6,8 +6,10 @@
  */
 
 const { execSync } = require('child_process');
+const { readFileSync, writeFileSync } = require('fs');
 const { join, relative } = require('path');
-const { chmod, cp, mkdir, rm, set, test } = require('shelljs');
+const prettier = require('prettier');
+const { chmod, cp, mkdir, rm, set } = require('shelljs');
 
 // ShellJS should exit if a command fails.
 set('-e');
@@ -41,6 +43,8 @@ function generateIconRegistry(distPath) {
 
   const schematicPath = `./${relative(projectDir, targetFolder).replace(/\\/g, '/')}`;
   exec(`yarn ng generate ${schematicPath}:icon-cdn-provider --path src/angular-core/icon`);
+
+  replaceIconImport();
 }
 
 /**
@@ -59,4 +63,20 @@ function exec(command, captureStdout) {
     process.stdout.write(stdout);
     return stdout.toString().trim();
   }
+}
+
+function replaceIconImport() {
+  const cdnIconProviderPath = join(projectDir, 'src/angular-core/icon/icon-cdn-provider.ts');
+
+  const content = readFileSync(cdnIconProviderPath, 'utf8').replace(
+    `import { SbbIconRegistry } from '@sbb-esta/angular-core/icon';`,
+    `\nimport { SbbIconRegistry } from './icon-registry';`
+  );
+
+  const formattedContent = prettier.format(content, {
+    parser: 'typescript',
+    ...require('../package.json').prettier,
+  });
+
+  writeFileSync(cdnIconProviderPath, formattedContent, 'utf8');
 }

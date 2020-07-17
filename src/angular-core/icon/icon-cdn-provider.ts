@@ -2,7 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ErrorHandler, InjectionToken, Optional, SkipSelf } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SbbIconRegistry } from '@sbb-esta/angular-core/icon';
+
+import { SbbIconRegistry } from './icon-registry';
 
 /**
  * This providers registers all icons added below, which can then be used with <sbb-icon>.
@@ -43,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.1.0 of the icon CDN.
+ * Generated from version v1.2.0 of the icon CDN.
  * Icons that are not needed by your app can be removed.
  *
  * You can also add additional icons from your assets:
@@ -273,7 +274,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'product-sn',
         'product-tgv',
         'product-vae',
-      ]
+      ],
     },
     {
       namespace: 'kom',
@@ -589,11 +590,13 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'meeting-point-medium',
         'money-exchange-medium',
         'platform-display-medium',
+        'ramp-user-medium',
         'screen-inside-train-medium',
         'shirt-shoe-medium',
         'shopping-bag-coupon-medium',
         'shopping-bag-fast-medium',
         'shopping-bag-medium',
+        'stairs-user-medium',
         'station-medium',
         'station-surrounding-area-medium',
         'ticket-machine-medium',
@@ -968,11 +971,13 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'meeting-point-small',
         'money-exchange-small',
         'platform-display-small',
+        'ramp-user-small',
         'screen-inside-train-small',
         'shirt-shoe-small',
         'shopping-bag-coupon-small',
         'shopping-bag-fast-small',
         'shopping-bag-small',
+        'stairs-user-small',
         'station-small',
         'station-surrounding-area-small',
         'ticket-machine-small',
@@ -1104,7 +1109,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'train-tracks-small',
         'city-small',
         'ship-steering-wheel-small',
-      ]
+      ],
     },
   ];
   for (const entry of namespacedIcons) {
@@ -1112,7 +1117,8 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
       registry.addSvgIconInNamespace(
         entry.namespace,
         icon,
-        sanitizer.bypassSecurityTrustResourceUrl(`${cdnUrl}/${entry.namespace}/${icon}.svg`));
+        sanitizer.bypassSecurityTrustResourceUrl(`${cdnUrl}/${entry.namespace}/${icon}.svg`)
+      );
     }
   }
   return registry;
