@@ -16,10 +16,12 @@ const parse: typeof import('parse5') = parse5;
 
 export class IconMigration extends Migration<any, DevkitContext> {
   readonly sbbIconModule = 'SbbIconModule';
+  readonly sbbIconTestingModule = 'SbbIconTestingModule';
   readonly sbbIconComponent = 'SbbIcon';
   readonly sbbIconFitClass = 'sbb-icon-fit';
-  readonly sbbIconCssReplacement =
-    '.sbb-icon /* TODO(icon-migration): Check if still working as intended */';
+  readonly sbbIconMigrationWarning =
+    '/* TODO(icon-migration): Check if still working as intended */';
+  readonly sbbIconCssReplacement = `.sbb-icon ${this.sbbIconMigrationWarning}`;
   printer = ts.createPrinter();
   // TODO: Adapt for TargetVersion.V11
   enabled: boolean = this.targetVersion === ('version 11' as TargetVersion);
@@ -48,11 +50,18 @@ export class IconMigration extends Migration<any, DevkitContext> {
    * allows us to only walk the program source files once per program and not per
    * migration rule (significant performance boost).
    */
-  visitNode(declaration: ts.Node): void {
-    // Only look at import declarations.
+  visitNode(node: ts.Node): void {
+    if (this._isInSbbAngularIconsModule(node.getSourceFile().fileName)) {
+      return;
+    } else if (ts.isImportDeclaration(node)) {
+      this._visitImportNode(node);
+    } else if (this._isSpecFile(node) && ts.isStringLiteral(node)) {
+      this._visitStringLiteralNode(node);
+    }
+  }
+
+  private _visitImportNode(declaration: ts.ImportDeclaration) {
     if (
-      this._isInSbbAngularIconsModule(declaration.getSourceFile().fileName) ||
-      !ts.isImportDeclaration(declaration) ||
       !ts.isStringLiteralLike(declaration.moduleSpecifier) ||
       !declaration.importClause ||
       !declaration.importClause.namedBindings ||
@@ -67,7 +76,22 @@ export class IconMigration extends Migration<any, DevkitContext> {
       return;
     }
 
-    const sourceFile = declaration.getSourceFile();
+    const context = this._resolveMigrationContext(declaration.getSourceFile());
+    context.declarations.push(declaration);
+    context.identifiers.push(...namedBindings.elements.map((e) => e.name).filter(ts.isIdentifier));
+  }
+
+  private _visitStringLiteralNode(stringLiteral: ts.StringLiteral) {
+    const matches = this._matchCssIconRules(stringLiteral.text);
+    if (!matches.length) {
+      return;
+    }
+
+    const context = this._resolveMigrationContext(stringLiteral.getSourceFile());
+    context.stringLiterals.set(stringLiteral, matches);
+  }
+
+  private _resolveMigrationContext(sourceFile: ts.SourceFile) {
     let context = this._tsIconOccurences.get(sourceFile);
     if (!context) {
       const filePath = this.fileSystem.resolve(sourceFile.fileName);
@@ -76,8 +100,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
       this._tsIconOccurences.set(sourceFile, context);
     }
 
-    context.declarations.push(declaration);
-    context.identifiers.push(...namedBindings.elements.map((e) => e.name).filter(ts.isIdentifier));
+    return context;
   }
 
   /** Method that will be called for each Angular template in the program. */
@@ -128,17 +151,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
       return;
     }
 
-    const iconRegex = new RegExp(this._stylesheetRulesRegExp, 'gm');
-    const content = stylesheet.content;
-    const matches: StylesheetOccurence[] = [];
-    let m: RegExpExecArray | null;
-    while ((m = iconRegex.exec(content))) {
-      matches.push({
-        start: m.index + m[0].indexOf(m[2]),
-        width: m[2].length,
-      });
-    }
-
+    const matches = this._matchCssIconRules(stylesheet.content);
     if (!matches.length) {
       return;
     }
@@ -177,11 +190,27 @@ export class IconMigration extends Migration<any, DevkitContext> {
     );
   }
 
+  private _matchCssIconRules(content: string) {
+    const iconRegex = new RegExp(this._stylesheetRulesRegExp, 'gm');
+    const matches: RuleOccurence[] = [];
+    let m: RegExpExecArray | null;
+    while ((m = iconRegex.exec(content))) {
+      matches.push({
+        match: m[2],
+        start: m.index + m[0].indexOf(m[2]),
+        width: m[2].length,
+      });
+    }
+
+    return matches;
+  }
+
   private _processTypeScriptFiles() {
     this._tsIconOccurences.forEach((context) => {
       this._replaceModules(context);
       this._replaceComponents(context);
       this._replaceImports(context);
+      this._replaceStringLiterals(context);
     });
   }
 
@@ -190,6 +219,10 @@ export class IconMigration extends Migration<any, DevkitContext> {
     if (!moduleIdentifiers.length) {
       return;
     }
+
+    const iconModule = this._isSpecFile(context.sourceFile)
+      ? this.sbbIconTestingModule
+      : this.sbbIconModule;
     const identifierOccurences = getSourceNodes(context.sourceFile).filter((n) =>
       moduleIdentifiers.some((i) => i.text === n.getText())
     );
@@ -205,7 +238,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
     arraysWithIconModules.forEach((iconModules, array) => {
       const [firstModule, ...otherModules] = iconModules;
       context.recorder.remove(firstModule.getStart(), firstModule.getWidth());
-      context.recorder.insertRight(firstModule.getStart(), this.sbbIconModule);
+      context.recorder.insertRight(firstModule.getStart(), iconModule);
       otherModules.forEach((m) => {
         const children = array
           .getChildren()
@@ -242,30 +275,102 @@ export class IconMigration extends Migration<any, DevkitContext> {
   }
 
   private _replaceImports(context: TsMigrationContext) {
-    const singleQuoteImport = context.declarations[0].moduleSpecifier.getText()[0] === `'`;
-    const importSpecifiers = [
-      context.componentIdentifiers.length ? this.sbbIconComponent : undefined,
-      context.moduleIdentifiers.length ? this.sbbIconModule : undefined,
-    ]
-      .filter((v): v is string => !!v)
-      .map((v) => ts.createImportSpecifier(undefined, ts.createIdentifier(v)));
+    if (!context.declarations.length) {
+      return;
+    }
 
-    const newImport = ts.createImportDeclaration(
-      undefined,
-      undefined,
-      ts.createImportClause(undefined, ts.createNamedImports(importSpecifiers)),
-      createStringLiteral('@sbb-esta/angular-core/icon', singleQuoteImport)
-    );
-    const newImportStatement = this.printer.printNode(
-      ts.EmitHint.Unspecified,
-      newImport,
-      context.sourceFile
-    );
+    const singleQuoteImport = context.declarations[0].moduleSpecifier.getText()[0] === `'`;
+    const componentImportSpecifier = context.componentIdentifiers.length
+      ? this.sbbIconComponent
+      : undefined;
+    const moduleImportSpecifier = context.moduleIdentifiers.length ? this.sbbIconModule : undefined;
+    const testingModuleImportSpecifier = context.moduleIdentifiers.length
+      ? this.sbbIconTestingModule
+      : undefined;
+
+    const importDeclarations: ts.ImportDeclaration[] = [];
+    if (!this._isSpecFile(context.sourceFile)) {
+      importDeclarations.push(
+        this._createImports(
+          [componentImportSpecifier, moduleImportSpecifier].filter((s): s is string => !!s),
+          '@sbb-esta/angular-core/icon',
+          singleQuoteImport
+        )
+      );
+    } else {
+      if (componentImportSpecifier) {
+        importDeclarations.push(
+          this._createImports(
+            [componentImportSpecifier],
+            '@sbb-esta/angular-core/icon',
+            singleQuoteImport
+          )
+        );
+      }
+      if (testingModuleImportSpecifier) {
+        importDeclarations.push(
+          this._createImports(
+            [testingModuleImportSpecifier],
+            '@sbb-esta/angular-core/icon/testing',
+            singleQuoteImport
+          )
+        );
+      }
+    }
+    const newImportStatement = importDeclarations
+      .map((newImport) =>
+        this.printer.printNode(ts.EmitHint.Unspecified, newImport, context.sourceFile)
+      )
+      .join('\n');
 
     const [firstDeclaration, ...declarations] = context.declarations;
     context.recorder.remove(firstDeclaration.getStart(), firstDeclaration.getWidth());
     context.recorder.insertRight(firstDeclaration.getStart(), newImportStatement);
     declarations.forEach((d) => context.recorder.remove(d.getStart(), d.getWidth()));
+  }
+
+  private _createImports(
+    importSpecifiers: string[],
+    importPath: string,
+    singleQuoteImport: boolean
+  ) {
+    return ts.createImportDeclaration(
+      undefined,
+      undefined,
+      ts.createImportClause(
+        undefined,
+        ts.createNamedImports(
+          importSpecifiers.map((s) => ts.createImportSpecifier(undefined, ts.createIdentifier(s)))
+        )
+      ),
+      createStringLiteral(importPath, singleQuoteImport)
+    );
+  }
+
+  private _replaceStringLiterals(context: TsMigrationContext) {
+    context.stringLiterals.forEach((matches, stringLiteral) => {
+      const replacedValue = matches
+        .sort((a, b) => b.start - a.start)
+        .reduce((value, match) => {
+          const replacement = this._createReplacementCssRule(match);
+          return (
+            value.substring(0, match.start) +
+            replacement +
+            value.substring(match.start + match.width)
+          );
+        }, stringLiteral.text);
+      const singleQuote = stringLiteral.getFullText()[0] === `'`;
+      const newValue = this.printer.printNode(
+        ts.EmitHint.Unspecified,
+        createStringLiteral(replacedValue, singleQuote),
+        context.sourceFile
+      );
+      context.recorder.remove(stringLiteral.getStart(), stringLiteral.getWidth());
+      context.recorder.insertRight(
+        stringLiteral.getStart(),
+        `${newValue} ${this.sbbIconMigrationWarning}`
+      );
+    });
   }
 
   private _processTemplates() {
@@ -390,10 +495,26 @@ export class IconMigration extends Migration<any, DevkitContext> {
         for (const rule of rules) {
           const start = resource.start + rule.start;
           context.recorder.remove(start, rule.width);
-          context.recorder.insertRight(start, this.sbbIconCssReplacement);
+          context.recorder.insertRight(
+            start,
+            `${this._createReplacementCssRule(rule)} ${this.sbbIconMigrationWarning}`
+          );
         }
       });
     });
+  }
+
+  private _isSpecFile(node: ts.Node) {
+    return node.getSourceFile().fileName.endsWith('.spec.ts');
+  }
+
+  private _createReplacementCssRule(rule: RuleOccurence) {
+    return rule.match.startsWith('.sbb-icon') || !(rule.match in ICON_MAPPINGS)
+      ? '.sbb-icon'
+      : `.sbb-icon[svgIcon="${ICON_MAPPINGS[rule.match][0].replace(
+          /-(small|medium|large)$/,
+          ''
+        )}"]`;
   }
 
   private _escapeRegExp(value: string) {
@@ -416,6 +537,7 @@ function createStringLiteral(text: string, singleQuotes: boolean): ts.StringLite
 class TsMigrationContext {
   readonly declarations: ts.ImportDeclaration[] = [];
   readonly identifiers: ts.Identifier[] = [];
+  readonly stringLiterals = new Map<ts.StringLiteral, RuleOccurence[]>();
   get moduleIdentifiers() {
     return this.identifiers.filter((i) => i.text.endsWith('Module'));
   }
@@ -430,13 +552,14 @@ class TemplateMigrationContext {
   constructor(readonly recorder: UpdateRecorder) {}
 }
 
-interface StylesheetOccurence {
+interface RuleOccurence {
+  match: string;
   start: number;
   width: number;
 }
 
 class StylesheetMigrationContext {
-  readonly resources = new Map<ResolvedResource, StylesheetOccurence[]>();
+  readonly resources = new Map<ResolvedResource, RuleOccurence[]>();
   constructor(readonly recorder: UpdateRecorder) {}
 }
 
