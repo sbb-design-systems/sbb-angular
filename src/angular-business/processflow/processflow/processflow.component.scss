@@ -50,8 +50,11 @@ $processflowStepButtonPaddingBottom5K: 42;
     align-items: center;
     list-style-type: none;
     overflow-x: auto;
+    /*
+    TODO: enable with v11 as breaking change
     margin: 0 0 2em 0;
     padding: 0;
+    */
   }
   .sbb-processflow-step {
     display: flex;
