@@ -68,7 +68,10 @@ filegroup(
 genrule(
     name = "used-icons",
     srcs = [":used-icons-source-files"],
-    outs = ["used-icons.json", "_used-icons.MF"],
+    outs = [
+        "used-icons.json",
+        "_used-icons.MF",
+    ],
     cmd = """
       echo "$(execpaths //src:used-icons-source-files)" > $(execpath _used-icons.MF)
 
