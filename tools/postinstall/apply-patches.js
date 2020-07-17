@@ -130,10 +130,10 @@ function applyPatches() {
   searchAndReplace(
     'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {',
     'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {' +
-      ' if (libraryFileName.endsWith(`@angular/cdk/scrolling/index.d.ts`)) {' +
-      'json = json.replace(/virtual-scroll-viewport.ngfactory/g, `index.ngfactory`)}' +
-      ' if (libraryFileName.endsWith(`@angular/cdk/table/index.d.ts`)) {' +
-      'json = json.replace(/[a-z-]+.ngfactory/g, `index.ngfactory`)}',
+      ' if (libraryFileName.endsWith("@angular/cdk/scrolling/index.d.ts")) {' +
+      'json = json.replace(/virtual-scroll-viewport.ngfactory/g, "index.ngfactory")}' +
+      ' if (libraryFileName.endsWith("@angular/cdk/table/index.d.ts")) {' +
+      'json = json.replace(/[a-z-]+.ngfactory/g, "index.ngfactory")}',
     'node_modules/@angular/compiler/bundles/compiler.umd.js'
   );
 
@@ -241,7 +241,7 @@ function searchAndReplace(search, replacement, relativeFilePath) {
     const newFileContent = originalContent.replace(search, replacement);
     if (originalContent === newFileContent) {
       throw Error(
-        `Could not perform replacement in: ${filePath}.\n` + `Searched for pattern: ${search}`
+        `Could not perform replacement in: ${filePath}.\nSearched for pattern: ${search}`
       );
     }
     return newFileContent;
