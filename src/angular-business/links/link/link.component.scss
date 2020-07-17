@@ -9,7 +9,6 @@
   text-decoration: none !important;
 
   .sbb-svgsprite-icon {
-    @include svgIconColor($sbbColorBlack);
     position: absolute;
     width: toPx(24);
     height: toPx(24);
@@ -26,8 +25,5 @@
   &:hover,
   &:focus {
     color: $sbbColorCallToActionHover;
-    .sbb-svgsprite-icon {
-      @include svgIconColor($sbbColorCallToActionHover);
-    }
   }
 }

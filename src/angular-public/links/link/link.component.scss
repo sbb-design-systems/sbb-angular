@@ -13,7 +13,7 @@
   text-decoration: none !important;
 
   .sbb-svgsprite-icon {
-    @include svgIconColor($sbbColorCallToAction);
+    color: $sbbColorCallToAction;
     line-height: 1.25;
     position: absolute;
     width: toPx(24);
@@ -84,15 +84,16 @@
   }
 
   &.sbb-link-form {
-    color: $sbbColorGrey;
+    &,
     .sbb-svgsprite-icon {
-      @include svgIconColor($sbbColorGrey);
+      color: $sbbColorGrey;
     }
+
     &:hover,
     &:focus {
-      color: $sbbColorCallToActionHover;
+      &,
       .sbb-svgsprite-icon {
-        @include svgIconColor($sbbColorCallToActionHover);
+        color: $sbbColorCallToActionHover;
       }
     }
   }
@@ -103,9 +104,9 @@
     }
     &:hover,
     &:focus {
-      color: $sbbColorCallToActionHover;
+      &,
       .sbb-svgsprite-icon {
-        @include svgIconColor($sbbColorCallToActionHover);
+        color: $sbbColorCallToActionHover;
       }
     }
   }

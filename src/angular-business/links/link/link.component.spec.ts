@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { LinksModule } from '../links.module';
 
@@ -20,7 +21,7 @@ describe('LinkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestLinkComponent],
-      imports: [LinksModule],
+      imports: [LinksModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -34,39 +35,43 @@ describe('LinkComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have one sbb-icon-arrow-right components', () => {
+  it('should have one sbb-icon arrow right icon', () => {
     component.icon = 'arrow';
     fixture.detectChanges();
 
-    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-right'));
+    const icons = fixture.debugElement.queryAll(
+      By.css('sbb-icon[svgIcon="kom:arrow-right-small"]')
+    );
     expect(icons).toBeTruthy();
     expect(icons.length).toBe(1);
   });
 
-  it('should have one sbb-icon-download components', () => {
+  it('should have one sbb-icon download icon', () => {
     component.icon = 'download';
     fixture.detectChanges();
 
-    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-download'));
+    const icons = fixture.debugElement.queryAll(By.css('sbb-icon[svgIcon="kom:download-small"]'));
     expect(icons).toBeTruthy();
     expect(icons.length).toBe(1);
   });
 
-  it('should have a sbb-icon-download components in stretch mode', () => {
+  it('should have a sbb-icon download icon in stretch mode', () => {
     component.icon = 'download';
     component.mode = 'stretch';
     fixture.detectChanges();
 
-    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-download'));
+    const icons = fixture.debugElement.queryAll(By.css('sbb-icon[svgIcon="kom:download-small"]'));
     expect(icons).toBeTruthy();
     expect(icons.length).toBe(1);
   });
 
-  it('should have a sbb-icon-arrow-right components in stretch mode', () => {
+  it('should have a sbb-icon arrow-right icon in stretch mode', () => {
     component.mode = 'stretch';
     fixture.detectChanges();
 
-    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-right'));
+    const icons = fixture.debugElement.queryAll(
+      By.css('sbb-icon[svgIcon="kom:arrow-right-small"]')
+    );
     expect(icons).toBeTruthy();
     expect(icons.length).toBe(1);
   });
@@ -78,11 +83,12 @@ describe('LinkComponent', () => {
 
     expect(elementStyle.getPropertyValue('color')).toBe('rgb(0, 0, 0)');
 
-    const icon = fixture.debugElement.query(By.css('sbb-icon-arrow-right svg'));
+    const icon = fixture.debugElement.query(By.css('sbb-icon[svgIcon="kom:arrow-right-small"]'));
+    console.error(icon);
     expect(icon).toBeTruthy();
 
     const iconStyle = getComputedStyle(icon.nativeElement);
 
-    expect(iconStyle.getPropertyValue('fill')).toBe('rgb(0, 0, 0)');
+    expect(iconStyle.getPropertyValue('color')).toBe('rgb(0, 0, 0)');
   });
 });

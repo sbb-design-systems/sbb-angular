@@ -1,6 +1,14 @@
 <ng-content></ng-content>
 
 <ng-container [ngSwitch]="icon">
-  <sbb-icon-arrow-right *ngSwitchCase="'arrow'" class="sbb-svgsprite-icon"></sbb-icon-arrow-right>
-  <sbb-icon-download *ngSwitchCase="'download'" class="sbb-svgsprite-icon"></sbb-icon-download>
+  <sbb-icon
+    svgIcon="kom:arrow-right-small"
+    *ngSwitchCase="'arrow'"
+    class="sbb-svgsprite-icon"
+  ></sbb-icon>
+  <sbb-icon
+    svgIcon="kom:download-small"
+    *ngSwitchCase="'download'"
+    class="sbb-svgsprite-icon"
+  ></sbb-icon>
 </ng-container>
