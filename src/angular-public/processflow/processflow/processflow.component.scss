@@ -15,8 +15,8 @@ $processflowArrowMargins5K: 48;
 $processflowArrowWidth5K: 48;
 $processflowArrowHeight5K: 48;
 
-$processflowStepButtonFontSizeMP: 21;
-$processflowStepButtonLineHeightMP: 21;
+$processflowStepButtonFontSizeMP: 20;
+$processflowStepButtonLineHeightMP: 20;
 $processflowStepButtonPaddingBottomMP: 11;
 
 $processflowStepButtonFontSizeTP: 21;
@@ -49,24 +49,28 @@ $processflowStepButtonPaddingBottom5K: 42;
     align-items: center;
     list-style-type: none;
     overflow-x: auto;
+    /*
+    TODO: enable with v11 as breaking change
+    margin: 0 0 2em 0;
+    padding: 0;
+    */
   }
   .sbb-processflow-step {
     display: flex;
     flex: 0 0 auto;
     &::before {
       content: '';
+      padding: 0;
+      margin: 0;
     }
-    &-arrow {
+    .sbb-processflow-step-arrow {
       @include svgIconColor($sbbColorGrey);
       width: toPx($processflowArrowWidth);
       height: toPx($processflowArrowHeight);
       line-height: toPx($processflowArrowLineHeight);
       margin-bottom: auto;
-
-      @include mq($from: mobilePortrait) {
-        margin-left: toPx($processflowArrowMarginsMP);
-        margin-right: toPx($processflowArrowMarginsMP);
-      }
+      margin-left: toPx($processflowArrowMarginsMP);
+      margin-right: toPx($processflowArrowMarginsMP);
 
       @include mq($from: tabletPortrait) {
         margin-left: toPx($processflowArrowMarginsTP);
@@ -100,11 +104,9 @@ $processflowStepButtonPaddingBottom5K: 42;
       text-decoration: none;
       position: relative;
 
-      @include mq($from: mobilePortrait) {
-        font-size: toPx($processflowStepButtonFontSizeMP);
-        line-height: toPx($processflowStepButtonLineHeightMP);
-        padding-bottom: toPx($processflowStepButtonPaddingBottomMP);
-      }
+      font-size: toPx($processflowStepButtonFontSizeMP);
+      line-height: toPx($processflowStepButtonLineHeightMP);
+      padding-bottom: toPx($processflowStepButtonPaddingBottomMP);
 
       @include mq($from: tabletPortrait) {
         font-size: toPx($processflowStepButtonFontSizeTP);
