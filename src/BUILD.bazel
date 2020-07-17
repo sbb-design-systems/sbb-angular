@@ -33,6 +33,11 @@ apiSourceFiles = ["//src/angular-business/%s:source-files" % name for name in bu
                  ["//src/angular-maps/%s:source-files" % name for name in mapsApiEntryPoints] + \
                  ["//src/angular-public/%s:source-files" % name for name in publicApiEntryPoints]
 
+htmlSourceFiles = ["//src/angular-business/%s:html-source-files" % name for name in businessApiEntryPoints] + \
+                 ["//src/angular-core/%s:html-source-files" % name for name in coreApiEntryPoints] + \
+                 ["//src/angular-maps/%s:html-source-files" % name for name in mapsApiEntryPoints] + \
+                 ["//src/angular-public/%s:html-source-files" % name for name in publicApiEntryPoints]
+
 dgeni_api_docs(
     name = "api-docs",
     srcs = apiSourceFiles + [
@@ -57,14 +62,16 @@ dgeni_api_docs(
 
 filegroup(
     name = "used-icons-source-files",
-    srcs = apiSourceFiles,
+    srcs = htmlSourceFiles,
 )
 
 genrule(
     name = "used-icons",
     srcs = [":used-icons-source-files"],
-    outs = ["used-icons.json"],
+    outs = ["used-icons.json", "_used-icons.MF"],
     cmd = """
+      echo "$(execpaths //src:used-icons-source-files)" > $(execpath _used-icons.MF)
+
       # Run the bazel entry-point for generating the package info.
       ./$(execpath //tools/icons-in-library:bazel-bin) \
           "$(execpath used-icons.json)" \
