@@ -12,7 +12,8 @@
     color $linkiconAnimation;
   text-decoration: none !important;
 
-  .sbb-svgsprite-icon {
+  /* Use tag and class selector to be more specific than the icon rule for width and height */
+  sbb-icon.sbb-icon {
     color: $sbbColorCallToAction;
     line-height: 1.25;
     position: absolute;
@@ -47,7 +48,7 @@
   }
 
   &:not(.sbb-link-stretch) {
-    .sbb-svgsprite-icon:first-of-type {
+    .sbb-icon:first-of-type {
       margin-left: pxToEm(-30, $sizeFontDefault) !important;
       opacity: 0;
       transform: translate(pxToEm(-26, $sizeFontDefault), -50%);
@@ -60,7 +61,7 @@
       padding-left: pxToEm(30, $sizeFontDefault);
       padding-right: pxToEm(40, $sizeFontDefault);
 
-      .sbb-svgsprite-icon:first-of-type {
+      .sbb-icon:first-of-type {
         opacity: 1;
         margin-right: toPx(8);
         transform: translate(0, -50%);
@@ -69,7 +70,7 @@
         }
       }
 
-      .sbb-svgsprite-icon:last-of-type {
+      .sbb-icon:last-of-type {
         opacity: 0;
         transform: translateX(pxToEm(26), -50%);
         @include mq($from: desktop5k) {
@@ -85,27 +86,27 @@
 
   &.sbb-link-form {
     &,
-    .sbb-svgsprite-icon {
+    .sbb-icon {
       color: $sbbColorGrey;
     }
 
     &:hover,
     &:focus {
       &,
-      .sbb-svgsprite-icon {
+      .sbb-icon {
         color: $sbbColorCallToActionHover;
       }
     }
   }
 
   &.sbb-link-stretch {
-    .sbb-svgsprite-icon {
+    .sbb-icon {
       right: 0;
     }
     &:hover,
     &:focus {
       &,
-      .sbb-svgsprite-icon {
+      .sbb-icon {
         color: $sbbColorCallToActionHover;
       }
     }

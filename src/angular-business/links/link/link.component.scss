@@ -8,7 +8,8 @@
   hyphens: auto;
   text-decoration: none !important;
 
-  .sbb-svgsprite-icon {
+  /* Use tag and class selector to be more specific than the icon rule for width and height */
+  sbb-icon.sbb-icon {
     position: absolute;
     width: toPx(24);
     height: toPx(24);
@@ -18,7 +19,7 @@
     transform: translate(0px, -50%);
   }
 
-  &.sbb-link-stretch .sbb-svgsprite-icon {
+  &.sbb-link-stretch .sbb-icon {
     right: 0;
   }
 
