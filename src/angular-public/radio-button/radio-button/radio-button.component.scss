@@ -1,8 +1,16 @@
 @import '../../../angular-core/styles/common';
 
-:host {
+.sbb-radio-button {
   & > label {
     user-select: none;
     @include radioButtonBase();
   }
+}
+
+.sbb-radio-group-vertical {
+  @include checkboxRadioButtonVerticalSpacing('.sbb-radio-button');
+}
+
+.sbb-radio-group-horizontal {
+  @include checkboxRadioButtonHorizontalSpacing('.sbb-radio-button');
 }

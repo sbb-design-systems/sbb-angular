@@ -7,12 +7,20 @@ import { CheckboxPanelModule } from '@sbb-esta/angular-public/checkbox-panel';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { CheckboxPanelExampleComponent } from './checkbox-panel-example/checkbox-panel-example.component';
+import { CheckboxPanelGroupExampleComponent } from './checkbox-panel-group-example/checkbox-panel-group-example.component';
+import { CheckboxPanelIconExampleComponent } from './checkbox-panel-icon-example/checkbox-panel-icon-example.component';
+import { CheckboxPanelImgExampleComponent } from './checkbox-panel-img-example/checkbox-panel-img-example.component';
 
-const EXAMPLES = [CheckboxPanelExampleComponent];
+const EXAMPLES = [
+  CheckboxPanelGroupExampleComponent,
+  CheckboxPanelIconExampleComponent,
+  CheckboxPanelImgExampleComponent,
+];
 
 const EXAMPLE_INDEX = {
-  'checkbox-panel-example': CheckboxPanelExampleComponent,
+  'checkbox-panel-img-example': CheckboxPanelImgExampleComponent,
+  'checkbox-panel-icon-example': CheckboxPanelIconExampleComponent,
+  'checkbox-panel-group-example': CheckboxPanelGroupExampleComponent,
 };
 
 @NgModule({

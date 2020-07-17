@@ -1,0 +1,13 @@
+<div class="sbb-checkbox-group-vertical" [formGroup]="form">
+  <sbb-checkbox
+    *ngFor="let formControl of form.controls | keyvalue"
+    [formControlName]="formControl.key"
+    >{{ formControl.key }}</sbb-checkbox
+  >
+</div>
+<h4 class="sbbsc-block">Properties</h4>
+<div class="sbbsc-block">
+  <sbb-checkbox (change)="form.disabled ? form.enable() : form.disable()">Disable All</sbb-checkbox>
+</div>
+<h4>Model</h4>
+<pre>{{ form.value | json }}</pre>

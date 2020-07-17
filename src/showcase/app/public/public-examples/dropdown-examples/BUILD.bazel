@@ -19,7 +19,6 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-icons/user",
-        "//src/angular-public/button",
         "//src/angular-public/dropdown",
         "//src/showcase/app/shared",
         "@npm//@angular/common",

@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -9,12 +8,15 @@ package(default_visibility = ["//visibility:public"])
 ng_module(
     name = "radio-button-panel-examples",
     srcs = [
-        "radio-button-panel-example/radio-button-panel-example.component.ts",
         "radio-button-panel-examples.module.ts",
+        "radio-button-panel-group-example/radio-button-panel-group-example.component.ts",
+        "radio-button-panel-icon-example/radio-button-panel-icon-example.component.ts",
+        "radio-button-panel-img-example/radio-button-panel-img-example.component.ts",
     ],
     assets = [
-        ":radio-button-panel-example/radio-button-panel-example.component.css",
-        "radio-button-panel-example/radio-button-panel-example.component.html",
+        "radio-button-panel-group-example/radio-button-panel-group-example.component.html",
+        "radio-button-panel-icon-example/radio-button-panel-icon-example.component.html",
+        "radio-button-panel-img-example/radio-button-panel-img-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -35,9 +37,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "radio_button_panel_example_radio_button_panel_example_component_scss",
-    src = "radio-button-panel-example/radio-button-panel-example.component.scss",
 )

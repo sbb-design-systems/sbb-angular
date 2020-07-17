@@ -26,6 +26,15 @@ While the `indeterminate` property of the checkbox is true, it will render as in
 regardless of the `checked` value. Any interaction with the checkbox by a user (i.e., clicking) will
 remove the indeterminate state.
 
+### Checkbox Groups
+
+By creating a wrapper around `<sbb-checkbox>`-elements and adding the corresponding css class, it's possible to align the checkboxes:
+
+- vertical alignment of checkboxes:
+  `<div class="sbb-checkbox-group-vertical"><sbb-checkbox></sbb-checkbox>...</div>`
+- horizontal alignment of checkboxes:
+  `<div class="sbb-checkbox-group-horizontal"><sbb-checkbox></sbb-checkbox>...</div>`
+
 ### Accessibility
 
 The `<sbb-checkbox>` uses an internal `<input type="checkbox">` to provide an accessible experience.

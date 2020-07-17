@@ -1,9 +1,9 @@
 $checkBoxContainerBorder: if($sbbBusiness, 1, 2);
-$radioButtonGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
-$radioButtonDisabledLabelColor: if($sbbBusiness, $sbbColorStorm, $sbbColorGrey);
-$checkBoxGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
-$checkBoxDisabledLabelColor: if($sbbBusiness, $sbbColorStorm, $sbbColorGrey);
 
+$checkboxRadioButtonGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
+$checkboxRadioButtonFocusedLabelColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
+$checkboxRadioButtonCheckedLabelColor: if($sbbBusiness, $sbbColorIron, $sbbColorBlack);
+$checkboxRadioButtonDisabledLabelColor: if($sbbBusiness, $sbbColorStorm, $sbbColorGrey);
 $checkboxRadioButtonPanelHeight: 64;
 $checkboxRadioButtonPanelHeightWithSubtitle: 88;
 $checkboxRadioButtonPanelBorderRadius: 2;
@@ -14,6 +14,8 @@ $checkboxRadioButtonPanelSubtitleFontSize: 13;
 $checkboxRadioButtonPanelHeaderPaddingLeft: 28;
 $checkboxRadioButtonPanelImageWidth: 64;
 $checkboxRadioButtonPanelImageHeight: 40;
+$checkboxRadioButtonVerticalSpace: if($sbbBusiness, 3, 16);
+$checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
 
 @mixin checkboxContainer() {
   width: toPx(20);
@@ -24,7 +26,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
   border: toPx($checkBoxContainerBorder) solid $sbbColorGraphite;
   border-radius: toPx(2);
   margin-right: toPx(8);
-  margin-top: toPx(1);
+  margin-top: toPx(2.5);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -34,7 +36,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
       min-height: toPx(20 * $scalingFactor4k);
       border: toPx(2 * $scalingFactor4k) solid $sbbColorGraphite;
       margin-right: toPx(8 * $scalingFactor4k);
-      margin-top: toPx(1 * $scalingFactor4k);
+      margin-top: toPx(2.5 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
@@ -44,12 +46,13 @@ $checkboxRadioButtonPanelImageHeight: 40;
       min-height: toPx(20 * $scalingFactor5k);
       border: toPx(2 * $scalingFactor5k) solid $sbbColorGraphite;
       margin-right: toPx(8 * $scalingFactor5k);
-      margin-top: toPx(1 * $scalingFactor5k);
+      margin-top: toPx(2.5 * $scalingFactor5k);
     }
   }
 
   @include businessOnly() {
     border-width: 1px;
+    margin-top: toPx(1);
   }
 
   .sbb-checkbox-checked {
@@ -58,7 +61,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
     }
 
     @include businessOnly() {
-      @include svgIconColor($sbbColorGranite);
+      @include svgIconColor($sbbColorIron);
     }
 
     line-height: 0;
@@ -89,6 +92,16 @@ $checkboxRadioButtonPanelImageHeight: 40;
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
 
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
   & > input[type='checkbox'] {
     & + .sbb-checkbox-container {
       @include checkboxContainer();
@@ -102,13 +115,13 @@ $checkboxRadioButtonPanelImageHeight: 40;
           line-height: toEm(21 / $sizeFontDefault);
         }
 
-        color: $checkBoxGreyColor;
+        color: $checkboxRadioButtonGreyColor;
         transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
       }
     }
 
     &:focus + .sbb-checkbox-container {
-      border-color: $checkBoxGreyColor;
+      border-color: $checkboxRadioButtonFocusedLabelColor;
     }
 
     &:checked + .sbb-checkbox-container,
@@ -118,7 +131,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
       }
 
       & + .sbb-checkbox-label-content {
-        color: $sbbColorBlack;
+        color: $checkboxRadioButtonCheckedLabelColor;
       }
     }
 
@@ -152,11 +165,11 @@ $checkboxRadioButtonPanelImageHeight: 40;
       background-color: $sbbColorMilk;
 
       & > .sbb-checkbox-checked {
-        @include svgIconColor($checkBoxGreyColor);
+        @include svgIconColor($checkboxRadioButtonGreyColor);
       }
 
       & + .sbb-checkbox-label-content {
-        color: $checkBoxDisabledLabelColor;
+        color: $checkboxRadioButtonDisabledLabelColor;
       }
     }
   }
@@ -166,6 +179,16 @@ $checkboxRadioButtonPanelImageHeight: 40;
   display: flex;
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
 
   & > input[type='radio'] {
     & + .sbb-radio-circle-container {
@@ -181,7 +204,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
       }
 
       @include publicOnly() {
-        margin-top: toPx(1);
+        margin-top: toPx(2.5);
         border: toPx(2) solid $sbbColorGraphite;
 
         @include mq($from: desktop4k) {
@@ -191,7 +214,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
           min-height: toPx(20 * $scalingFactor4k);
           border: toPx(2 * $scalingFactor4k) solid $sbbColorGraphite;
           margin-right: toPx(8 * $scalingFactor4k);
-          margin-top: toPx(1 * $scalingFactor4k);
+          margin-top: toPx(2.5 * $scalingFactor4k);
         }
 
         @include mq($from: desktop5k) {
@@ -201,7 +224,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
           min-height: toPx(20 * $scalingFactor5k);
           border: toPx(2 * $scalingFactor5k) solid $sbbColorGraphite;
           margin-right: toPx(8 * $scalingFactor5k);
-          margin-top: toPx(1 * $scalingFactor5k);
+          margin-top: toPx(2.5 * $scalingFactor5k);
         }
       }
 
@@ -220,7 +243,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
         }
 
         @include businessOnly() {
-          background-color: $sbbColorGranite;
+          background-color: $sbbColorIron;
         }
       }
 
@@ -230,7 +253,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
 
       & + .sbb-radio-label-content {
         user-select: auto;
-        color: $radioButtonGreyColor;
+        color: $checkboxRadioButtonGreyColor;
         transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
         @include businessOnly() {
@@ -242,7 +265,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
     }
 
     &:focus + .sbb-radio-circle-container {
-      border-color: $radioButtonGreyColor;
+      border-color: $checkboxRadioButtonFocusedLabelColor;
     }
 
     &:checked + .sbb-radio-circle-container,
@@ -252,7 +275,7 @@ $checkboxRadioButtonPanelImageHeight: 40;
       }
 
       & + .sbb-radio-label-content {
-        color: $sbbColorBlack;
+        color: $checkboxRadioButtonCheckedLabelColor;
       }
     }
 
@@ -262,11 +285,11 @@ $checkboxRadioButtonPanelImageHeight: 40;
       background-color: $sbbColorMilk;
 
       & > .sbb-radio-circle-checked {
-        background-color: $radioButtonGreyColor;
+        background-color: $checkboxRadioButtonGreyColor;
       }
 
       & + .sbb-radio-label-content {
-        color: $radioButtonDisabledLabelColor;
+        color: $checkboxRadioButtonDisabledLabelColor;
       }
     }
   }
@@ -387,6 +410,52 @@ $checkboxRadioButtonPanelImageHeight: 40;
     * {
       max-width: 100%;
       max-height: 100%;
+    }
+  }
+}
+
+@mixin checkboxRadioButtonVerticalSpacing($selector) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+
+  #{$selector} + #{$selector} {
+    margin-top: toPx($checkboxRadioButtonVerticalSpace);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        margin-top: toPx($checkboxRadioButtonVerticalSpace * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-top: toPx($checkboxRadioButtonVerticalSpace * $scalingFactor5k);
+      }
+    }
+  }
+}
+
+@mixin checkboxRadioButtonHorizontalSpacing($selector) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+
+  #{$selector} {
+    margin-right: toPx($checkboxRadioButtonHorizontalSpace);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        margin-right: toPx($checkboxRadioButtonHorizontalSpace * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-right: toPx($checkboxRadioButtonHorizontalSpace * $scalingFactor5k);
+      }
+    }
+
+    &:last-of-type {
+      margin-right: 0;
     }
   }
 }

@@ -7,12 +7,20 @@ import { RadioButtonPanelModule } from '@sbb-esta/angular-public/radio-button-pa
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { RadioButtonPanelExampleComponent } from './radio-button-panel-example/radio-button-panel-example.component';
+import { RadioButtonPanelGroupExampleComponent } from './radio-button-panel-group-example/radio-button-panel-group-example.component';
+import { RadioButtonPanelIconExampleComponent } from './radio-button-panel-icon-example/radio-button-panel-icon-example.component';
+import { RadioButtonPanelImgExampleComponent } from './radio-button-panel-img-example/radio-button-panel-img-example.component';
 
-const EXAMPLES = [RadioButtonPanelExampleComponent];
+const EXAMPLES = [
+  RadioButtonPanelGroupExampleComponent,
+  RadioButtonPanelIconExampleComponent,
+  RadioButtonPanelImgExampleComponent,
+];
 
 const EXAMPLE_INDEX = {
-  'radio-button-panel-example': RadioButtonPanelExampleComponent,
+  'radio-button-panel-img-example': RadioButtonPanelImgExampleComponent,
+  'radio-button-panel-icon-example': RadioButtonPanelIconExampleComponent,
+  'radio-button-panel-group-example': RadioButtonPanelGroupExampleComponent,
 };
 
 @NgModule({

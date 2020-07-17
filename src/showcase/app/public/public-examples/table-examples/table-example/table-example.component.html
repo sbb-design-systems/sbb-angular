@@ -63,7 +63,7 @@
 
 <h4 class="sbbsc-block">Text Alignment *</h4>
 <sbb-field label="Text Alignment" mode="default" class="sbbsc-block">
-  <sbb-radio-group [(ngModel)]="currentAlignment">
+  <sbb-radio-group [(ngModel)]="currentAlignment" class="sbb-radio-group-horizontal">
     <sbb-radio-button *ngFor="let alignment of alignments" [value]="alignment">{{
       alignment
     }}</sbb-radio-button>
