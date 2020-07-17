@@ -33,11 +33,6 @@ apiSourceFiles = ["//src/angular-business/%s:source-files" % name for name in bu
                  ["//src/angular-maps/%s:source-files" % name for name in mapsApiEntryPoints] + \
                  ["//src/angular-public/%s:source-files" % name for name in publicApiEntryPoints]
 
-htmlSourceFiles = ["//src/angular-business/%s:html-source-files" % name for name in businessApiEntryPoints] + \
-                 ["//src/angular-core/%s:html-source-files" % name for name in coreApiEntryPoints] + \
-                 ["//src/angular-maps/%s:html-source-files" % name for name in mapsApiEntryPoints] + \
-                 ["//src/angular-public/%s:html-source-files" % name for name in publicApiEntryPoints]
-
 dgeni_api_docs(
     name = "api-docs",
     srcs = apiSourceFiles + [
@@ -60,6 +55,11 @@ dgeni_api_docs(
     tags = ["docs-package"],
 )
 
+htmlSourceFiles = ["//src/angular-business/%s:html-source-files" % name for name in businessApiEntryPoints] + \
+                  ["//src/angular-core/%s:html-source-files" % name for name in coreApiEntryPoints] + \
+                  ["//src/angular-maps/%s:html-source-files" % name for name in mapsApiEntryPoints] + \
+                  ["//src/angular-public/%s:html-source-files" % name for name in publicApiEntryPoints]
+
 filegroup(
     name = "used-icons-source-files",
     srcs = htmlSourceFiles,
@@ -74,8 +74,8 @@ genrule(
 
       # Run the bazel entry-point for generating the package info.
       ./$(execpath //tools/icons-in-library:bazel-bin) \
-          "$(execpath used-icons.json)" \
-          "$$PWD/src"
+          "$(execpath _used-icons.MF)" \
+          "$(execpath used-icons.json)"
     """,
     output_to_bindir = True,
     tools = ["//tools/icons-in-library:bazel-bin"],
