@@ -6,8 +6,8 @@
  */
 
 const { execSync } = require('child_process');
-const { join, relative } = require('path');
-const { chmod, cp, mkdir, rm, set, test } = require('shelljs');
+const { join } = require('path');
+const { chmod, cp, mkdir, rm, set } = require('shelljs');
 
 // ShellJS should exit if a command fails.
 set('-e');
@@ -39,7 +39,6 @@ function generateIconRegistry(distPath) {
   cp('-R', outputPath, targetFolder);
   chmod('-R', 'u+w', targetFolder);
 
-  const schematicPath = `./${relative(projectDir, targetFolder).replace(/\\/g, '/')}`;
   exec(`yarn ng update @sbb-esta/angular-core --migrateOnly --allow-dirty --from=10 --to=11`);
 }
 
