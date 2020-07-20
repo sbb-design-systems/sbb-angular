@@ -1,3 +1,4 @@
+import { AnimationEvent } from '@angular/animations';
 import {
   BasePortalOutlet,
   CdkPortalOutlet,
@@ -22,6 +23,8 @@ import { Observable, ReplaySubject, Subject } from 'rxjs';
 
 import { NotificationSimpleConfig } from '../notification-simple/notification-simple-config';
 
+import { NOTIFICATION_ANIMATIONS } from './notification-animations';
+
 @Component({
   selector: 'sbb-notification-container',
   templateUrl: './notification-simple-container.component.html',
@@ -32,6 +35,7 @@ import { NotificationSimpleConfig } from '../notification-simple/notification-si
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
+  animations: [NOTIFICATION_ANIMATIONS.notificationState],
   host: {
     class: 'sbb-notification',
     '[class.sbb-notification-success]': 'config.type === "success"',
@@ -43,6 +47,8 @@ import { NotificationSimpleConfig } from '../notification-simple/notification-si
     '[attr.aria-label]': 'null',
     '[attr.aria-labelledby]': 'null',
     '[attr.aria-describedby]': 'null',
+    '[@state]': '_animationState',
+    '(@state.done)': 'onAnimationEnd($event)',
   },
 })
 export class NotificationSimpleContainerComponent extends BasePortalOutlet implements OnDestroy {
@@ -80,6 +86,7 @@ export class NotificationSimpleContainerComponent extends BasePortalOutlet imple
   }
 
   ariaHidden: 'true' | 'false' = 'false';
+  _animationState = 'void';
 
   readonly _onExit: Subject<any> = new Subject();
   readonly _onEnter: ReplaySubject<any> = new ReplaySubject();
@@ -115,8 +122,28 @@ export class NotificationSimpleContainerComponent extends BasePortalOutlet imple
     return this._portalOutlet.attachDomPortal(portal);
   };
 
+  onAnimationEnd(event: AnimationEvent) {
+    const { fromState, toState } = event;
+
+    if ((toState === 'void' && fromState !== 'void') || toState === 'hidden') {
+      this._completeExit();
+    }
+
+    if (toState === 'visible') {
+      // Note: we shouldn't use `this` inside the zone callback,
+      // because it can cause a memory leak.
+      const onEnter = this._onEnter;
+
+      this._ngZone.run(() => {
+        onEnter.next();
+        onEnter.complete();
+      });
+    }
+  }
+
   exit(): Observable<void> {
     this.ariaHidden = 'true';
+    this._animationState = 'hidden';
     this._completeExit();
 
     return this._onExit;
@@ -124,6 +151,7 @@ export class NotificationSimpleContainerComponent extends BasePortalOutlet imple
 
   enter(): void {
     if (!this._destroyed) {
+      this._animationState = 'visible';
       this._changeDetectorRef.detectChanges();
       this._onEnter.next();
       this._onEnter.complete();
