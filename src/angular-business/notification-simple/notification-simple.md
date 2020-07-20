@@ -35,7 +35,7 @@ this._notification.open('test', {
 });
 ```
 
-### Duration
+### Notification duration
 
 It is also possible to define a notificaiton duration (in milliseconds), after which the notification is automatically dismissed.
 
