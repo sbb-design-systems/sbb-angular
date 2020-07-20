@@ -1,4 +1,3 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   BasePortalOutlet,
   CdkPortalOutlet,
