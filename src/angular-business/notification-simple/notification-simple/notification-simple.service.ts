@@ -214,14 +214,14 @@ export class Notification implements OnDestroy {
     });
 
     if (this._openedNotificationRef) {
-      // If a snack bar is already in view, dismiss it and enter the
-      // new snack bar after exit animation is complete.
+      // If a notification is already in view, dismiss it and enter the
+      // new notification after exit animation is complete.
       this._openedNotificationRef.afterDismissed().subscribe(() => {
         notificationRef.containerInstance.enter();
       });
       this._openedNotificationRef.dismiss();
     } else {
-      // If no snack bar is in view, enter the new snack bar.
+      // If no notification is in view, enter the new notification.
       notificationRef.containerInstance.enter();
     }
   }

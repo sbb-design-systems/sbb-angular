@@ -22,6 +22,7 @@ ng_module(
         "//src/angular-icons/basic",
         "//src/angular-icons/navigation",
         "//src/angular-icons/status",
+        "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
