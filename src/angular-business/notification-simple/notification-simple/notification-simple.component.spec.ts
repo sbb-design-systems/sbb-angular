@@ -11,10 +11,7 @@ import {
   IconTickModule,
 } from '@sbb-esta/angular-icons';
 
-import {
-  NotificationSimpleContainerComponent,
-  NotificationType,
-} from '../notification-simple-container/notification-simple-container.component';
+import { NotificationSimpleContainerComponent } from '../notification-simple-container/notification-simple-container.component';
 
 import { NotificationSimpleConfig } from './notification-simple-config';
 import { NotificationSimpleComponent } from './notification-simple.component';
@@ -130,7 +127,7 @@ describe('NotificationComponent', () => {
     });
 
     it('should have error icon when type is ERROR', () => {
-      testComponent.showNotification({ type: NotificationType.ERROR });
+      testComponent.showNotification({ type: 'error' });
       testFixture.detectChanges();
       const notifications = overlayContainerElement.querySelectorAll('.sbb-notification-error');
       expect(notifications.length).toBe(1);
@@ -139,7 +136,7 @@ describe('NotificationComponent', () => {
     });
 
     it('should have tick icon when type is SUCCESS', () => {
-      testComponent.showNotification({ type: NotificationType.SUCCESS });
+      testComponent.showNotification({ type: 'success' });
       testFixture.detectChanges();
       const notifications = overlayContainerElement.querySelectorAll('.sbb-notification-success');
       expect(notifications.length).toBe(1);
@@ -148,7 +145,7 @@ describe('NotificationComponent', () => {
     });
 
     it('should have info icon when type is INFO', () => {
-      testComponent.showNotification({ type: NotificationType.INFO });
+      testComponent.showNotification({ type: 'info' });
       testFixture.detectChanges();
       const notifications = overlayContainerElement.querySelectorAll('.sbb-notification-info');
       expect(notifications.length).toBe(1);
@@ -157,7 +154,7 @@ describe('NotificationComponent', () => {
     });
 
     it('should have warn icon when type is WARN', () => {
-      testComponent.showNotification({ type: NotificationType.WARN });
+      testComponent.showNotification({ type: 'warn' });
       testFixture.detectChanges();
       const notifications = overlayContainerElement.querySelectorAll('.sbb-notification-warn');
       expect(notifications.length).toBe(1);
