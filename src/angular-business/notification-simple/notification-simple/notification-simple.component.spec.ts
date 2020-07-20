@@ -12,13 +12,13 @@ import {
 } from '@sbb-esta/angular-icons';
 
 import {
-  NotificationContainerComponent,
+  NotificationSimpleContainerComponent,
   NotificationType,
-} from '../notification-container/notification-container.component';
+} from '../notification-simple-container/notification-simple-container.component';
 
-import { NotificationConfig } from './notification-config';
-import { NotificationComponent } from './notification.component';
-import { Notification, NOTIFICATION_CONFIG } from './notification.service';
+import { NotificationSimpleConfig } from './notification-simple-config';
+import { NotificationSimpleComponent } from './notification-simple.component';
+import { Notification, NOTIFICATION_CONFIG } from './notification-simple.service';
 import createSpy = jasmine.createSpy;
 import Spy = jasmine.Spy;
 
@@ -36,7 +36,7 @@ export class NotificationMockComponent {
     { elementId: '#tip2', title: 'Tip 2' },
   ];
 
-  showNotification(config: NotificationConfig) {
+  showNotification(config: NotificationSimpleConfig) {
     this._notification
       .open(config.message || 'test', {
         jumpMarks: config.jumpMarks,
@@ -53,8 +53,8 @@ export class NotificationMockComponent {
 
 describe('NotificationComponent', () => {
   describe('core', () => {
-    let component: NotificationComponent;
-    let fixture: ComponentFixture<NotificationComponent>;
+    let component: NotificationSimpleComponent;
+    let fixture: ComponentFixture<NotificationSimpleComponent>;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -68,13 +68,16 @@ describe('NotificationComponent', () => {
           PortalModule,
           OverlayModule,
         ],
-        declarations: [NotificationComponent, NotificationContainerComponent],
-        providers: [Notification, { provide: NOTIFICATION_CONFIG, useValue: NotificationConfig }],
+        declarations: [NotificationSimpleComponent, NotificationSimpleContainerComponent],
+        providers: [
+          Notification,
+          { provide: NOTIFICATION_CONFIG, useValue: NotificationSimpleConfig },
+        ],
       }).compileComponents();
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(NotificationComponent);
+      fixture = TestBed.createComponent(NotificationSimpleComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
@@ -102,13 +105,13 @@ describe('NotificationComponent', () => {
           OverlayModule,
         ],
         declarations: [
-          NotificationComponent,
+          NotificationSimpleComponent,
           NotificationMockComponent,
-          NotificationContainerComponent,
+          NotificationSimpleContainerComponent,
         ],
         providers: [
           Notification,
-          { provide: NOTIFICATION_CONFIG, useValue: NotificationConfig },
+          { provide: NOTIFICATION_CONFIG, useValue: NotificationSimpleConfig },
           {
             provide: OverlayContainer,
             useFactory: () => {

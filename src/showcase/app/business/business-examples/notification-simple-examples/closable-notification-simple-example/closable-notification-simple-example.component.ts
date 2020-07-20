@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Notification } from '@sbb-esta/angular-business/notification';
+import { Notification } from '@sbb-esta/angular-business/notification-simple';
 
 @Component({
   selector: 'sbb-custom-icon-notification-example',
-  templateUrl: './closable-notification-example.component.html',
+  templateUrl: './closable-notification-simple-example.component.html',
 })
-export class ClosableNotificationExampleComponent {
+export class ClosableNotificationSimpleExampleComponent {
   constructor(private _notification: Notification) {}
 
   showNotification() {

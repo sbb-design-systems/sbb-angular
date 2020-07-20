@@ -1,16 +1,16 @@
 import { TemplateRef, ViewContainerRef } from '@angular/core';
 
-import { NotificationType } from '../notification-container/notification-container.component';
+import { NotificationType } from '../notification-simple-container/notification-simple-container.component';
 
-import { JumpMark } from './notification.component';
+import { JumpMark } from './notification-simple.component';
 
-/** Possible values for horizontalPosition on NotificationConfig. */
+/** Possible values for horizontalPosition on NotificationSimpleConfig. */
 export type NotificationHorizontalPosition = 'center';
 
-/** Possible values for verticalPosition on NotificationConfig. */
+/** Possible values for verticalPosition on NotificationSimpleConfig. */
 export type NotificationVerticalPosition = 'top' | 'bottom';
 
-export class NotificationConfig<D = any> {
+export class NotificationSimpleConfig<D = any> {
   viewContainerRef?: ViewContainerRef;
 
   panelClass?: string | string[];

@@ -22,7 +22,7 @@ import {
 } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 
-import { NotificationConfig } from '../notification/notification-config';
+import { NotificationSimpleConfig } from '../notification-simple/notification-simple-config';
 
 export enum NotificationType {
   SUCCESS = 'success',
@@ -33,8 +33,8 @@ export enum NotificationType {
 
 @Component({
   selector: 'sbb-notification-container',
-  templateUrl: './notification-container.component.html',
-  styleUrls: ['./notification-container.component.scss'],
+  templateUrl: './notification-simple-container.component.html',
+  styleUrls: ['./notification-simple-container.component.scss'],
   // In Ivy embedded views will be change detected from their declaration place, rather than
   // where they were stamped out. This means that we can't have the notification container be OnPush,
   // because it might cause notifications that were opened from a template not to be out of date.
@@ -42,7 +42,7 @@ export enum NotificationType {
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
 })
-export class NotificationContainerComponent extends BasePortalOutlet implements OnDestroy {
+export class NotificationSimpleContainerComponent extends BasePortalOutlet implements OnDestroy {
   private _destroyed = false;
   /** @docs-private */
   @HostBinding('class.sbb-notification')
@@ -139,7 +139,7 @@ export class NotificationContainerComponent extends BasePortalOutlet implements 
     private _ngZone: NgZone,
     private _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef,
-    public config: NotificationConfig
+    public config: NotificationSimpleConfig
   ) {
     super();
   }

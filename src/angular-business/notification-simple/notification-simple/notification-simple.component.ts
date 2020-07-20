@@ -13,11 +13,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { NotificationType } from '../notification-container/notification-container.component';
+import { NotificationType } from '../notification-simple-container/notification-simple-container.component';
 
-import { NotificationConfig } from './notification-config';
-import { NotificationRef } from './notification-ref';
-import { NOTIFICATION_CONFIG } from './notification.service';
+import { NotificationSimpleConfig } from './notification-simple-config';
+import { NotificationSimpleRef } from './notification-simple-ref';
+import { NOTIFICATION_CONFIG } from './notification-simple.service';
 
 /** @deprecated position should now be defined using NotificationVerticalPosition. */
 export enum NotificationToastPosition {
@@ -37,17 +37,17 @@ export interface JumpMark {
 
 @Component({
   selector: 'sbb-notification',
-  templateUrl: './notification.component.html',
+  templateUrl: './notification-simple.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotificationComponent {
-  /** @deprecated type should now be defined in NotificationConfig. */
+export class NotificationSimpleComponent {
+  /** @deprecated type should now be defined in NotificationSimpleConfig. */
   @Input()
   type: 'success' | 'info' | 'error' | 'warn' = NotificationType.SUCCESS;
 
   /** Type of notification.
-   *  @deprecated position should now be defined in NotificationConfig.
+   *  @deprecated position should now be defined in NotificationSimpleConfig.
    */
   @Input()
   toastPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
@@ -99,7 +99,7 @@ export class NotificationComponent {
   }
 
   /** List of in page links displayed on the bottom of the notification
-   *  @deprecated jumpMarks should now be defined in NotificationConfig.
+   *  @deprecated jumpMarks should now be defined in NotificationSimpleConfig.
    */
   @Input() jumpMarks?: JumpMark[];
   private _icon: TemplateRef<any> | null;
@@ -109,8 +109,8 @@ export class NotificationComponent {
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() private _notificationRef: NotificationRef<any>,
-    @Inject(NOTIFICATION_CONFIG) public config: NotificationConfig
+    @Optional() private _notificationRef: NotificationSimpleRef<any>,
+    @Inject(NOTIFICATION_CONFIG) public config: NotificationSimpleConfig
   ) {}
 
   /**

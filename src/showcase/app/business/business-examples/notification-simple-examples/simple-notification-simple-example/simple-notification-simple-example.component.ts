@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Notification, NotificationType } from '@sbb-esta/angular-business/notification';
+import { Notification, NotificationType } from '@sbb-esta/angular-business/notification-simple';
 
 @Component({
   selector: 'sbb-simple-notification-example',
-  templateUrl: './simple-notification-example.component.html',
+  templateUrl: './simple-notification-simple-example.component.html',
 })
-export class SimpleNotificationExampleComponent {
+export class SimpleNotificationSimpleExampleComponent {
   type = NotificationType.SUCCESS;
   types = ['success', 'info', 'error', 'warn'];
   positions = ['top', 'bottom'];

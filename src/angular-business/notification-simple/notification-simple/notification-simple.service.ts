@@ -15,15 +15,15 @@ import {
 } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 
-import { NotificationContainerComponent } from '../notification-container/notification-container.component';
+import { NotificationSimpleContainerComponent } from '../notification-simple-container/notification-simple-container.component';
 
-import { NotificationConfig } from './notification-config';
-import { NotificationRef } from './notification-ref';
-import { NotificationComponent } from './notification.component';
+import { NotificationSimpleConfig } from './notification-simple-config';
+import { NotificationSimpleRef } from './notification-simple-ref';
+import { NotificationSimpleComponent } from './notification-simple.component';
 
 export const NOTIFICATION_CONFIG = new InjectionToken<any>('NotificationData');
 
-export const NOTIFICATION_DEFAULT_OPTIONS = new InjectionToken<NotificationConfig>(
+export const NOTIFICATION_DEFAULT_OPTIONS = new InjectionToken<NotificationSimpleConfig>(
   'notification-default-options',
   {
     providedIn: 'root',
@@ -31,20 +31,20 @@ export const NOTIFICATION_DEFAULT_OPTIONS = new InjectionToken<NotificationConfi
   }
 );
 
-export function notificationDefaultOptionsFactory(): NotificationConfig {
-  return new NotificationConfig();
+export function notificationDefaultOptionsFactory(): NotificationSimpleConfig {
+  return new NotificationSimpleConfig();
 }
 
 @Injectable()
 export class Notification implements OnDestroy {
-  private _notificationRefAtThisLevel: NotificationRef<any> | null = null;
+  private _notificationRefAtThisLevel: NotificationSimpleRef<any> | null = null;
 
-  get _openedNotificationRef(): NotificationRef<any> | null {
+  get _openedNotificationRef(): NotificationSimpleRef<any> | null {
     const parent = this._parentNotification;
     return parent ? parent._openedNotificationRef : this._notificationRefAtThisLevel;
   }
 
-  set _openedNotificationRef(value: NotificationRef<any> | null) {
+  set _openedNotificationRef(value: NotificationSimpleRef<any> | null) {
     if (this._parentNotification) {
       this._parentNotification._openedNotificationRef = value;
     } else {
@@ -57,26 +57,29 @@ export class Notification implements OnDestroy {
     private _injector: Injector,
     private _breakpointObserver: BreakpointObserver,
     @Optional() @SkipSelf() private _parentNotification: Notification,
-    @Inject(NOTIFICATION_DEFAULT_OPTIONS) private _defaultConfig: NotificationConfig
+    @Inject(NOTIFICATION_DEFAULT_OPTIONS) private _defaultConfig: NotificationSimpleConfig
   ) {}
 
-  open(message: string, config?: NotificationConfig): NotificationRef<NotificationComponent> {
+  open(
+    message: string,
+    config?: NotificationSimpleConfig
+  ): NotificationSimpleRef<NotificationSimpleComponent> {
     const notificationConfig = { ...this._defaultConfig, ...config };
 
     notificationConfig.message = message;
 
-    return this.openFromComponent(NotificationComponent, notificationConfig);
+    return this.openFromComponent(NotificationSimpleComponent, notificationConfig);
   }
 
   openFromTemplate(
     template: string,
-    config?: NotificationConfig
-  ): NotificationRef<NotificationComponent> {
+    config?: NotificationSimpleConfig
+  ): NotificationSimpleRef<NotificationSimpleComponent> {
     const notificationConfig = { ...this._defaultConfig, ...config };
 
     notificationConfig.message = template;
 
-    return this.openFromComponent(NotificationComponent, notificationConfig);
+    return this.openFromComponent(NotificationSimpleComponent, notificationConfig);
   }
 
   dismiss(): void {
@@ -94,19 +97,22 @@ export class Notification implements OnDestroy {
 
   openFromComponent<T>(
     component: ComponentType<T>,
-    config?: NotificationConfig
-  ): NotificationRef<T> {
-    return this._attach(component, config) as NotificationRef<T>;
+    config?: NotificationSimpleConfig
+  ): NotificationSimpleRef<T> {
+    return this._attach(component, config) as NotificationSimpleRef<T>;
   }
 
   private _attach<T>(
     content: ComponentType<T> | TemplateRef<T>,
-    userConfig?: NotificationConfig
-  ): NotificationRef<T | EmbeddedViewRef<any>> {
-    const config = { ...new NotificationConfig(), ...this._defaultConfig, ...userConfig };
+    userConfig?: NotificationSimpleConfig
+  ): NotificationSimpleRef<T | EmbeddedViewRef<any>> {
+    const config = { ...new NotificationSimpleConfig(), ...this._defaultConfig, ...userConfig };
     const overlayRef = this._createOverlay(config);
     const container = this._attachNotificationContainer(overlayRef, config);
-    const notificationRef = new NotificationRef<T | EmbeddedViewRef<any>>(container, overlayRef);
+    const notificationRef = new NotificationSimpleRef<T | EmbeddedViewRef<any>>(
+      container,
+      overlayRef
+    );
 
     if (content instanceof TemplateRef) {
       const portal = new TemplatePortal(content, null!, {
@@ -141,7 +147,7 @@ export class Notification implements OnDestroy {
     return notificationRef;
   }
 
-  private _createOverlay(config: NotificationConfig): OverlayRef {
+  private _createOverlay(config: NotificationSimpleConfig): OverlayRef {
     const overlayConfig = new OverlayConfig();
     overlayConfig.direction = 'ltr';
 
@@ -159,15 +165,15 @@ export class Notification implements OnDestroy {
   }
 
   private _createInjector<T>(
-    config: NotificationConfig,
-    notificationRef: NotificationRef<T>
+    config: NotificationSimpleConfig,
+    notificationRef: NotificationSimpleRef<T>
   ): PortalInjector {
     const userInjector = config?.viewContainerRef?.injector;
 
     return new PortalInjector(
       userInjector || this._injector,
       new WeakMap<any, any>([
-        [NotificationRef, notificationRef],
+        [NotificationSimpleRef, notificationRef],
         [NOTIFICATION_CONFIG, config],
       ])
     );
@@ -175,20 +181,20 @@ export class Notification implements OnDestroy {
 
   private _attachNotificationContainer(
     overlayRef: OverlayRef,
-    config: NotificationConfig
-  ): NotificationContainerComponent {
+    config: NotificationSimpleConfig
+  ): NotificationSimpleContainerComponent {
     const userInjector = config?.viewContainerRef?.injector;
     const injector = new PortalInjector(
       userInjector || this._injector,
-      new WeakMap([[NotificationConfig, config]])
+      new WeakMap([[NotificationSimpleConfig, config]])
     );
 
     const containerPortal = new ComponentPortal(
-      NotificationContainerComponent,
+      NotificationSimpleContainerComponent,
       config.viewContainerRef,
       injector
     );
-    const containerRef: ComponentRef<NotificationContainerComponent> = overlayRef.attach(
+    const containerRef: ComponentRef<NotificationSimpleContainerComponent> = overlayRef.attach(
       containerPortal
     );
     containerRef.instance.config = config;
@@ -196,8 +202,8 @@ export class Notification implements OnDestroy {
   }
 
   private _subscribeToNotificationChanges(
-    notificationRef: NotificationRef<any>,
-    config: NotificationConfig
+    notificationRef: NotificationSimpleRef<any>,
+    config: NotificationSimpleConfig
   ) {
     // When the snackbar is dismissed, clear the reference to it.
     notificationRef.afterDismissed().subscribe(() => {

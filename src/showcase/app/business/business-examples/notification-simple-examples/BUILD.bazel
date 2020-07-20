@@ -1,0 +1,48 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_ts_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_ts_library(
+    name = "notification-simple-examples",
+    srcs = [
+        "closable-notification-simple-example/closable-notification-simple-example.component.ts",
+        "component-notification-simple-example/component-notification-simple-example.component.ts",
+        "custom-icon-notification-simple-example/custom-icon-notification-simple-example.component.ts",
+        "jumpmark-notification-simple-example/jumpmark-notification-simple-example.component.ts",
+        "notification-simple-examples.module.ts",
+        "simple-notification-simple-example/simple-notification-simple-example.component.ts",
+        "template-notification-simple-example/template-notification-simple-example.component.ts",
+    ],
+    assets = [
+        "closable-notification-simple-example/closable-notification-simple-example.component.html",
+        "component-notification-simple-example/component-notification-simple-example.component.html",
+        "custom-icon-notification-simple-example/custom-icon-notification-simple-example.component.html",
+        "jumpmark-notification-simple-example/jumpmark-notification-simple-example.component.html",
+        "simple-notification-simple-example/simple-notification-simple-example.component.html",
+        "template-notification-simple-example/template-notification-simple-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/button",
+        "//src/angular-business/field",
+        "//src/angular-business/notification-simple",
+        "//src/angular-icons/community",
+        "//src/angular-icons/timetable",
+        "//src/showcase/app/shared",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
