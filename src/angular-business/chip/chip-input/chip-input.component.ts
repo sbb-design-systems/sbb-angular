@@ -68,7 +68,7 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'sbb-chip-input',
-    '[class.sbb-chip-input-active]': '!this.disabled && this._focused',
+    '[class.sbb-chip-input-active]': '!this.disabled && this.focused',
     '[attr.aria-describedby]': 'this._ariaDescribedby',
   },
   providers: [{ provide: FormFieldControl, useExisting: ChipInputComponent }],
