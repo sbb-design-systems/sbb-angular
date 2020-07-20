@@ -13,8 +13,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { NotificationType } from '../notification-simple-container/notification-simple-container.component';
-
 import { NotificationSimpleConfig } from './notification-simple-config';
 import { NotificationSimpleRef } from './notification-simple-ref';
 import { NOTIFICATION_CONFIG } from './notification-simple.service';
@@ -44,7 +42,7 @@ export interface JumpMark {
 export class NotificationSimpleComponent {
   /** @deprecated type should now be defined in NotificationSimpleConfig. */
   @Input()
-  type: 'success' | 'info' | 'error' | 'warn' = NotificationType.SUCCESS;
+  type: 'success' | 'info' | 'error' | 'warn' = 'success';
 
   /** Type of notification.
    *  @deprecated position should now be defined in NotificationSimpleConfig.
@@ -86,12 +84,12 @@ export class NotificationSimpleComponent {
       return this._icon;
     }
     switch (this.config.type) {
-      case NotificationType.SUCCESS:
+      case 'success':
         return this.checkIcon;
-      case NotificationType.ERROR:
-      case NotificationType.WARN:
+      case 'error':
+      case 'warn':
         return this.errorIcon;
-      case NotificationType.INFO:
+      case 'info':
         return this.infoIcon;
       default:
         return null;
