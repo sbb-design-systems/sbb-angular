@@ -1,7 +1,6 @@
 @import '../../../angular-core/styles/common';
 
 $chip-close-button-size: 24;
-$chip-close-icon-size: 24;
 $chip-left-padding: 14;
 $chip-right-padding: 8;
 $chip-vertical-padding: 3;
@@ -10,6 +9,7 @@ $chip-height: 30;
 $chip-min-width: 75;
 
 :host {
+  color: $sbbColorIron;
   height: pxToEm($chip-height);
   max-width: 100%;
   min-width: pxToEm($chip-min-width);
@@ -26,27 +26,13 @@ $chip-min-width: 75;
     white-space: nowrap;
   }
 
-  .sbb-chip-close-btn {
+  .sbb-chip-close-button {
     @include buttonResetFrameless();
-    @include svgIconColor($sbbColorGrey);
 
+    cursor: pointer;
     margin-left: 8px;
     min-width: pxToEm($chip-close-button-size);
     min-height: pxToEm($chip-close-button-size);
-    width: pxToEm($chip-close-button-size);
-    height: pxToEm($chip-close-button-size);
-
-    svg {
-      @include absoluteCenterXY();
-      width: pxToEm($chip-close-icon-size);
-      height: pxToEm($chip-close-icon-size);
-    }
-
-    &:hover,
-    &:focus {
-      @include svgIconColor($sbbColorRed125);
-      cursor: pointer;
-    }
   }
 
   &.sbb-chip-disabled {
@@ -54,7 +40,6 @@ $chip-min-width: 75;
     min-width: pxToEm(45);
     padding: pxToEm($chip-vertical-padding) pxToEm($chip-left-padding)
       pxToEm($chip-vertical-padding) pxToEm($chip-left-padding);
-    @include svgIconColor($sbbColorIron);
   }
 
   &.sbb-chip-active {

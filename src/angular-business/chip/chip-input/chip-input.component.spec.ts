@@ -13,6 +13,8 @@ import {
 import { By } from '@angular/platform-browser';
 import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
 import { FieldModule, FormErrorDirective } from '@sbb-esta/angular-business/field';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
   createKeyboardEvent,
   dispatchEvent,
@@ -20,7 +22,6 @@ import {
   dispatchMouseEvent,
   typeInElement,
 } from '@sbb-esta/angular-core/testing';
-import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 
 import { ChipComponent } from '../chip/chip.component';
 
@@ -93,7 +94,8 @@ describe('ChipInputComponent', () => {
         imports: [
           CommonModule,
           AutocompleteModule,
-          IconCrossModule,
+          SbbIconModule,
+          SbbIconTestingModule,
           ReactiveFormsModule,
           FieldModule,
         ],
@@ -195,7 +197,14 @@ describe('ChipInputComponent', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [ChipInputComponent, ChipComponent, ChipInputFormsTestComponent],
-        imports: [CommonModule, AutocompleteModule, IconCrossModule, FormsModule, FieldModule],
+        imports: [
+          CommonModule,
+          AutocompleteModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          FormsModule,
+          FieldModule,
+        ],
       }).compileComponents();
     }));
 
