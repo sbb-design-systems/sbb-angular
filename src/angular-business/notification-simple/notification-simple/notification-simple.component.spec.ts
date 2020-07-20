@@ -3,6 +3,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import {
   IconCircleInformationModule,
@@ -16,7 +17,6 @@ import { NotificationSimpleContainerComponent } from '../notification-simple-con
 import { NotificationSimpleConfig } from './notification-simple-config';
 import { NotificationSimpleComponent } from './notification-simple.component';
 import { Notification, NOTIFICATION_CONFIG } from './notification-simple.service';
-import createSpy = jasmine.createSpy;
 import Spy = jasmine.Spy;
 
 @Component({
@@ -35,13 +35,10 @@ export class NotificationMockComponent {
 
   showNotification(config: NotificationSimpleConfig) {
     this._notification
-      .open(config.message || 'test', {
-        jumpMarks: config.jumpMarks,
+      .open(config.announcementMessage || 'test', {
         type: config.type,
-        icon: config.icon,
-        readonly: config.readonly,
         verticalPosition: config.verticalPosition,
-        message: config.message,
+        announcementMessage: config.announcementMessage,
       })
       .afterDismissed()
       .subscribe(() => this.dismissed.emit());
@@ -64,6 +61,7 @@ describe('NotificationComponent', () => {
           IconDirectiveModule,
           PortalModule,
           OverlayModule,
+          NoopAnimationsModule,
         ],
         declarations: [NotificationSimpleComponent, NotificationSimpleContainerComponent],
         providers: [
@@ -100,6 +98,7 @@ describe('NotificationComponent', () => {
           IconDirectiveModule,
           PortalModule,
           OverlayModule,
+          NoopAnimationsModule,
         ],
         declarations: [
           NotificationSimpleComponent,
@@ -162,22 +161,9 @@ describe('NotificationComponent', () => {
       expect(icons.length).toBe(1);
     });
 
-    it('should house jump marks', () => {
-      testComponent.showNotification({
-        jumpMarks: [
-          { elementId: '#here', title: 'Here' },
-          { elementId: '#there', title: 'There' },
-        ],
-      });
-
-      testFixture.detectChanges();
-      const notifications = overlayContainerElement.querySelectorAll('.sbb-notification-jump-mark');
-      expect(notifications.length).toBe(2);
-    });
-
     it('should emit when closing notification', () => {
       const dismissedSpy: Spy = spyOn(testComponent.dismissed, 'emit');
-      testComponent.showNotification({ readonly: false });
+      testComponent.showNotification({});
       testFixture.detectChanges();
       const closeButton = overlayContainerElement.querySelector(
         '.sbb-notification-icon-close-wrapper'
@@ -191,20 +177,13 @@ describe('NotificationComponent', () => {
       });
     });
 
-    it('should call callback of jump mark', () => {
-      const callbackMock = createSpy('mock-callback');
-      testComponent.showNotification({
-        jumpMarks: [{ callback: callbackMock, title: 'Here' }],
-      });
-      testFixture.detectChanges();
-      const notificationLinkContainer = overlayContainerElement.querySelector(
-        '.sbb-notification-jump-mark'
-      ) as HTMLElement;
-      expect(notificationLinkContainer).toBeDefined();
-      expect(notificationLinkContainer).not.toBeNull();
-      const notificationLink = notificationLinkContainer.firstChild as HTMLElement;
-      notificationLink.click();
-      expect(callbackMock).toHaveBeenCalled();
+    it('should close automatically after set duration', () => {
+      const dismissedSpy: Spy = spyOn(testComponent.dismissed, 'emit');
+      testComponent.showNotification({ duration: 250 });
+      setTimeout(() => {
+        testFixture.detectChanges();
+        expect(dismissedSpy).toHaveBeenCalledTimes(1);
+      }, 300);
     });
   });
 });

@@ -1,3 +1,4 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ComponentType, Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector, TemplatePortal } from '@angular/cdk/portal';
@@ -55,6 +56,7 @@ export class Notification implements OnDestroy {
   constructor(
     private _overlay: Overlay,
     private _injector: Injector,
+    private _live: LiveAnnouncer,
     private _breakpointObserver: BreakpointObserver,
     @Optional() @SkipSelf() private _parentNotification: Notification,
     @Inject(NOTIFICATION_DEFAULT_OPTIONS) private _defaultConfig: NotificationSimpleConfig
@@ -66,7 +68,13 @@ export class Notification implements OnDestroy {
   ): NotificationSimpleRef<NotificationSimpleComponent> {
     const notificationConfig = { ...this._defaultConfig, ...config };
 
-    notificationConfig.message = message;
+    // Since the notification has `role="alert"`, we don't
+    // want to announce the same message twice.
+    if (notificationConfig.announcementMessage === message) {
+      notificationConfig.announcementMessage = undefined;
+    } else {
+      notificationConfig.announcementMessage = message;
+    }
 
     return this.openFromComponent(NotificationSimpleComponent, notificationConfig);
   }
@@ -77,7 +85,13 @@ export class Notification implements OnDestroy {
   ): NotificationSimpleRef<NotificationSimpleComponent> {
     const notificationConfig = { ...this._defaultConfig, ...config };
 
-    notificationConfig.message = template;
+    // Since the notification has `role="alert"`, we don't
+    // want to announce the same message twice.
+    if (notificationConfig.announcementMessage === template) {
+      notificationConfig.announcementMessage = undefined;
+    } else {
+      notificationConfig.announcementMessage = template;
+    }
 
     return this.openFromComponent(NotificationSimpleComponent, notificationConfig);
   }
@@ -116,7 +130,7 @@ export class Notification implements OnDestroy {
 
     if (content instanceof TemplateRef) {
       const portal = new TemplatePortal(content, null!, {
-        $implicit: config.message,
+        $implicit: config.announcementMessage,
         notificationRef,
       } as any);
 
@@ -213,16 +227,44 @@ export class Notification implements OnDestroy {
       }
     });
 
+    this._animateNotification(notificationRef, config);
+  }
+
+  private _animateNotification(
+    notificationRef: NotificationSimpleRef<any>,
+    config: NotificationSimpleConfig
+  ) {
+    // When the snackbar is dismissed, clear the reference to it.
+    notificationRef.afterDismissed().subscribe(() => {
+      // Clear the snackbar ref if it hasn't already been replaced by a newer snackbar.
+      if (this._openedNotificationRef === notificationRef) {
+        this._openedNotificationRef = null;
+      }
+
+      if (config.announcementMessage) {
+        this._live.clear();
+      }
+    });
+
     if (this._openedNotificationRef) {
-      // If a notification is already in view, dismiss it and enter the
-      // new notification after exit animation is complete.
+      // If a snack bar is already in view, dismiss it and enter the
+      // new snack bar after exit animation is complete.
       this._openedNotificationRef.afterDismissed().subscribe(() => {
         notificationRef.containerInstance.enter();
       });
       this._openedNotificationRef.dismiss();
     } else {
-      // If no notification is in view, enter the new notification.
+      // If no snack bar is in view, enter the new snack bar.
       notificationRef.containerInstance.enter();
+    }
+
+    // If a dismiss timeout is provided, set up dismiss based on after the snackbar is opened.
+    if (config.duration && config.duration > 0) {
+      notificationRef.afterOpened().subscribe(() => notificationRef.dismissAfter(config.duration!));
+    }
+
+    if (config.announcementMessage) {
+      this._live.announce(config.announcementMessage, config.politeness);
     }
   }
 }

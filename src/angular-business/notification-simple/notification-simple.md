@@ -35,49 +35,13 @@ this._notification.open('test', {
 });
 ```
 
-### Custom Icon
+### Duration
 
-It is also possible to send a notification message with a custom icon as seen below
-
-```html
-<ng-template #anotherIcon>
-  <sbb-icon-clock></sbb-icon-clock>
-</ng-template>
-```
+It is also possible to define a notificaiton duration (in milliseconds), after which the notification is automatically dismissed.
 
 ```typescript
-@ViewChild('anotherIcon', { read: TemplateRef, static: true })
-anotherIcon: TemplateRef<any>;
-
-open() {
-    this._notification.open('test', {
-      icon: this.anotherIcon,
-    });
-}
-```
-
-### Jump Marks
-
-It is possible to provide a list of jump marks to the notification, which will be
-displayed with links to the given element ids. An additional callback can be provided to execute a function upon jumpmark click.
-
-```ts
-export interface JumpMark {
-  /** Title of an element in jump marks. */
-  title: string;
-  /** Identifier of an element in jump marks. */
-  elementId?: string;
-  /** Callback function for the jumpmark */
-  callback?: (event$: any, jumpMark: JumpMark) => void;
-}
-```
-
-```typescript
-this._notification.open('text', {
-  jumpMarks: [
-    { elementId: '#tip1', title: 'Tip 1' },
-    { elementId: '#tip2', title: 'Tip 2' },
-  ],
+this._notification.open('test', {
+  duration: 3000,
 });
 ```
 

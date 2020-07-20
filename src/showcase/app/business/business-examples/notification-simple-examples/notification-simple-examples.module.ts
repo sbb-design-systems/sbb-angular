@@ -9,20 +9,16 @@ import { IconClockModule } from '@sbb-esta/angular-icons/timetable';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { ClosableNotificationSimpleExampleComponent } from './closable-notification-simple-example/closable-notification-simple-example.component';
 import {
   ComponentNotificationSimpleExampleComponent,
   ExampleComponent,
 } from './component-notification-simple-example/component-notification-simple-example.component';
-import { CustomIconNotificationSimpleExampleComponent } from './custom-icon-notification-simple-example/custom-icon-notification-simple-example.component';
-import { JumpmarkNotificationSimpleExampleComponent } from './jumpmark-notification-simple-example/jumpmark-notification-simple-example.component';
+import { DurationNotificationSimpleExampleComponent } from './duration-notification-simple-example/duration-notification-simple-example.component';
 import { SimpleNotificationSimpleExampleComponent } from './simple-notification-simple-example/simple-notification-simple-example.component';
 import { TemplateNotificationSimpleExampleComponent } from './template-notification-simple-example/template-notification-simple-example.component';
 
 const EXAMPLES = [
-  ClosableNotificationSimpleExampleComponent,
-  CustomIconNotificationSimpleExampleComponent,
-  JumpmarkNotificationSimpleExampleComponent,
+  DurationNotificationSimpleExampleComponent,
   SimpleNotificationSimpleExampleComponent,
   TemplateNotificationSimpleExampleComponent,
   ComponentNotificationSimpleExampleComponent,
@@ -30,12 +26,10 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'simple-notification-simple-example': SimpleNotificationSimpleExampleComponent,
-  'component-notification-simple-example': ComponentNotificationSimpleExampleComponent,
-  'custom-icon-notification-simple-example': CustomIconNotificationSimpleExampleComponent,
-  'jumpmark-notification-simple-example': JumpmarkNotificationSimpleExampleComponent,
-  'closable-notification-simple-example': ClosableNotificationSimpleExampleComponent,
-  'template-notification-simple-example': TemplateNotificationSimpleExampleComponent,
+  'duration-notification-example': DurationNotificationSimpleExampleComponent,
+  'simple-notification-example': SimpleNotificationSimpleExampleComponent,
+  'component-notification-example': ComponentNotificationSimpleExampleComponent,
+  'template-notification-example': TemplateNotificationSimpleExampleComponent,
 };
 
 @NgModule({

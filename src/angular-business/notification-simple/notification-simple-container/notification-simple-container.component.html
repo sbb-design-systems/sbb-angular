@@ -5,11 +5,7 @@
   <ng-template cdkPortalOutlet></ng-template>
 </div>
 
-<button
-  (click)="exit()"
-  class="sbb-notification-icon-wrapper sbb-notification-icon-close-wrapper"
-  *ngIf="!config.readonly"
->
+<button (click)="exit()" class="sbb-notification-icon-wrapper sbb-notification-icon-close-wrapper">
   <sbb-icon-cross></sbb-icon-cross>
 </button>
 
