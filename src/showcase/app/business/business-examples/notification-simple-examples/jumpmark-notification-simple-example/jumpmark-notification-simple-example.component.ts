@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Notification } from '@sbb-esta/angular-business/notification-simple';
 
 @Component({
-  selector: 'sbb-jumpmark-notification-example',
+  selector: 'sbb-jumpmark-notification-simple-example',
   templateUrl: './jumpmark-notification-simple-example.component.html',
 })
 export class JumpmarkNotificationSimpleExampleComponent {

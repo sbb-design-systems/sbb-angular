@@ -30,12 +30,12 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'simple-notification-example': SimpleNotificationSimpleExampleComponent,
-  'component-notification-example': ComponentNotificationSimpleExampleComponent,
-  'custom-icon-notification-example': CustomIconNotificationSimpleExampleComponent,
-  'jumpmark-notification-example': JumpmarkNotificationSimpleExampleComponent,
-  'closable-notification-example': ClosableNotificationSimpleExampleComponent,
-  'template-notification-example': TemplateNotificationSimpleExampleComponent,
+  'simple-notification-simple-example': SimpleNotificationSimpleExampleComponent,
+  'component-notification-simple-example': ComponentNotificationSimpleExampleComponent,
+  'custom-icon-notification-simple-example': CustomIconNotificationSimpleExampleComponent,
+  'jumpmark-notification-simple-example': JumpmarkNotificationSimpleExampleComponent,
+  'closable-notification-simple-example': ClosableNotificationSimpleExampleComponent,
+  'template-notification-simple-example': TemplateNotificationSimpleExampleComponent,
 };
 
 @NgModule({
@@ -51,6 +51,6 @@ const EXAMPLE_INDEX = {
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  providers: [provideExamples('business', 'notification', EXAMPLE_INDEX)],
+  providers: [provideExamples('business', 'notification-simple', EXAMPLE_INDEX)],
 })
 export class NotificationSimpleExamplesModule {}

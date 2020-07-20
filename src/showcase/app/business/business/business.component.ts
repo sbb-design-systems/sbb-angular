@@ -27,6 +27,7 @@ export class BusinessComponent {
     breadcrumb: 'Breadcrumb',
     pagination: 'Pagination',
     notification: 'Notification',
+    'notification-simple': 'Simple Notification',
     processflow: 'Processflow',
     tabs: 'Tabs',
     usermenu: 'Usermenu',
