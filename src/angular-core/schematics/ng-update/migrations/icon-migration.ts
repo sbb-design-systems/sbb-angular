@@ -221,7 +221,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
     }
 
     const iconModule = this._isSpecFile(context.sourceFile)
-      ? this.sbbIconTestingModule
+      ? `${this.sbbIconModule}, ${this.sbbIconTestingModule}`
       : this.sbbIconModule;
     const identifierOccurences = getSourceNodes(context.sourceFile).filter((n) =>
       moduleIdentifiers.some((i) => i.text === n.getText())
@@ -287,35 +287,21 @@ export class IconMigration extends Migration<any, DevkitContext> {
     const testingModuleImportSpecifier = context.moduleIdentifiers.length
       ? this.sbbIconTestingModule
       : undefined;
+    const iconImports = [componentImportSpecifier, moduleImportSpecifier].filter(
+      (s): s is string => !!s
+    );
 
-    const importDeclarations: ts.ImportDeclaration[] = [];
-    if (!this._isSpecFile(context.sourceFile)) {
+    const importDeclarations: ts.ImportDeclaration[] = [
+      this._createImports(iconImports, '@sbb-esta/angular-core/icon', singleQuoteImport),
+    ];
+    if (this._isSpecFile(context.sourceFile) && testingModuleImportSpecifier) {
       importDeclarations.push(
         this._createImports(
-          [componentImportSpecifier, moduleImportSpecifier].filter((s): s is string => !!s),
-          '@sbb-esta/angular-core/icon',
+          [testingModuleImportSpecifier],
+          '@sbb-esta/angular-core/icon/testing',
           singleQuoteImport
         )
       );
-    } else {
-      if (componentImportSpecifier) {
-        importDeclarations.push(
-          this._createImports(
-            [componentImportSpecifier],
-            '@sbb-esta/angular-core/icon',
-            singleQuoteImport
-          )
-        );
-      }
-      if (testingModuleImportSpecifier) {
-        importDeclarations.push(
-          this._createImports(
-            [testingModuleImportSpecifier],
-            '@sbb-esta/angular-core/icon/testing',
-            singleQuoteImport
-          )
-        );
-      }
     }
     const newImportStatement = importDeclarations
       .map((newImport) =>
