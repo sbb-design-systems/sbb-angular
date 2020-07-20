@@ -13,7 +13,6 @@ import {
   ComponentRef,
   ElementRef,
   EmbeddedViewRef,
-  HostBinding,
   NgZone,
   OnDestroy,
   TemplateRef,
@@ -23,13 +22,6 @@ import {
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 
 import { NotificationSimpleConfig } from '../notification-simple/notification-simple-config';
-
-export enum NotificationType {
-  SUCCESS = 'success',
-  ERROR = 'error',
-  INFO = 'info',
-  WARN = 'warn',
-}
 
 @Component({
   selector: 'sbb-notification-container',
@@ -41,54 +33,23 @@ export enum NotificationType {
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-notification',
+    '[class.sbb-notification-success]': 'config.type === "success"',
+    '[class.sbb-notification-info]': 'config.type === "info"',
+    '[class.sbb-notification-warn]': 'config.type === "warn"',
+    '[class.sbb-notification-error]': 'config.type === "error"',
+    '[class.sbb-notification-has-jump-marks]': 'config.jumpMarks && config.jumpMarks.length',
+    '[attr.aria-hidden]': 'ariaHidden',
+    '[attr.aria-label]': 'null',
+    '[attr.aria-labelledby]': 'null',
+    '[attr.aria-describedby]': 'null',
+  },
 })
 export class NotificationSimpleContainerComponent extends BasePortalOutlet implements OnDestroy {
   private _destroyed = false;
-  /** @docs-private */
-  @HostBinding('class.sbb-notification')
-  baseCssClass = true;
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-success')
-  get typeSuccess(): boolean {
-    return this.config.type === NotificationType.SUCCESS;
-  }
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-info')
-  get typeInfo(): boolean {
-    return this.config.type === NotificationType.INFO;
-  }
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-error')
-  get typeError(): boolean {
-    return this.config.type === NotificationType.ERROR;
-  }
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-warn')
-  get typeWarn(): boolean {
-    return this.config.type === NotificationType.WARN;
-  }
-
-  @HostBinding('attr.aria-hidden') ariaHidden: 'false' | 'true';
-
-  @HostBinding('hidden')
-  get hidden() {
-    return this.ariaHidden === 'true';
-  }
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-has-jump-marks')
-  get hasJumpMarks() {
-    return this.config.jumpMarks && this.config.jumpMarks.length;
-  }
 
   @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
-  set icon(notificationIcon: TemplateRef<any> | null) {
-    this._icon = notificationIcon;
-  }
 
   /** @docs-private */
   @ViewChild('error', { read: TemplateRef, static: true })
@@ -107,29 +68,19 @@ export class NotificationSimpleContainerComponent extends BasePortalOutlet imple
       return this._icon;
     }
     switch (this.config.type) {
-      case NotificationType.SUCCESS:
+      case 'success':
         return this.checkIcon;
-      case NotificationType.ERROR:
-      case NotificationType.WARN:
+      case 'error':
+      case 'warn':
         return this.errorIcon;
-      case NotificationType.INFO:
+      case 'info':
         return this.infoIcon;
       default:
         return null;
     }
   }
-  set readonly(value: boolean) {
-    this._readonly = coerceBooleanProperty(value);
-    this._changeDetectorRef.markForCheck();
-  }
 
-  get readonly() {
-    return this._readonly;
-  }
-
-  private _readonly = false;
-
-  type: 'success' | 'info' | 'error' | 'warn' = NotificationType.SUCCESS;
+  ariaHidden: 'true' | 'false' = 'false';
 
   readonly _onExit: Subject<any> = new Subject();
   readonly _onEnter: ReplaySubject<any> = new ReplaySubject();
@@ -142,6 +93,9 @@ export class NotificationSimpleContainerComponent extends BasePortalOutlet imple
     public config: NotificationSimpleConfig
   ) {
     super();
+    if (config.icon) {
+      this._icon = config.icon;
+    }
   }
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
