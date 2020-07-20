@@ -65,7 +65,7 @@ describe('ChipComponent', () => {
 
   it('should emit dismissed event when dismissed button is pressed', () => {
     const dismissedSpy = spyOn(component, 'dismissed');
-    const dismissButton = fixture.debugElement.query(By.css('.sbb-chip-close-btn'));
+    const dismissButton = fixture.debugElement.query(By.css('.sbb-chip-close-button'));
     dismissButton.nativeElement.click();
 
     expect(dismissedSpy).toHaveBeenCalledTimes(1);
@@ -73,7 +73,7 @@ describe('ChipComponent', () => {
   });
 
   it('should hide chip when dismissed button is pressed', () => {
-    const dismissButton = fixture.debugElement.query(By.css('.sbb-chip-close-btn'));
+    const dismissButton = fixture.debugElement.query(By.css('.sbb-chip-close-button'));
     dismissButton.nativeElement.click();
     fixture.detectChanges();
 
