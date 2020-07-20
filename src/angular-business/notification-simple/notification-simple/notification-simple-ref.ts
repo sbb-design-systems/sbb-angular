@@ -1,16 +1,16 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Observable, Subject } from 'rxjs';
 
-import { NotificationContainerComponent } from '../notification-container/notification-container.component';
+import { NotificationSimpleContainerComponent } from '../notification-simple-container/notification-simple-container.component';
 
 export interface NotificationDismiss {
   dismissedByAction: boolean;
 }
 
-export class NotificationRef<T> {
+export class NotificationSimpleRef<T> {
   instance: T;
 
-  containerInstance: NotificationContainerComponent;
+  containerInstance: NotificationSimpleContainerComponent;
 
   private readonly _afterDismissed = new Subject<NotificationDismiss>();
 
@@ -20,7 +20,10 @@ export class NotificationRef<T> {
 
   private _dismissedByAction = false;
 
-  constructor(containerInstance: NotificationContainerComponent, private _overlayRef: OverlayRef) {
+  constructor(
+    containerInstance: NotificationSimpleContainerComponent,
+    private _overlayRef: OverlayRef
+  ) {
     this.containerInstance = containerInstance;
     containerInstance._onExit.subscribe(() => this._finishDismiss());
   }

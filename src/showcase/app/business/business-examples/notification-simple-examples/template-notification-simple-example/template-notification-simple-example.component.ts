@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Notification } from '@sbb-esta/angular-business/notification';
+import { Notification } from '@sbb-esta/angular-business/notification-simple';
 
 @Component({
   selector: 'sbb-template-notification-example',
-  templateUrl: './template-notification-example.component.html',
+  templateUrl: './template-notification-simple-example.component.html',
 })
-export class TemplateNotificationExampleComponent {
+export class TemplateNotificationSimpleExampleComponent {
   constructor(private _notification: Notification) {}
 
   showNotification() {

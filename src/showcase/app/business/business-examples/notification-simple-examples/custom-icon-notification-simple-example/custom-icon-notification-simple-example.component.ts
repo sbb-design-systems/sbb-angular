@@ -1,11 +1,11 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { Notification } from '@sbb-esta/angular-business/notification';
+import { Notification } from '@sbb-esta/angular-business/notification-simple';
 
 @Component({
   selector: 'sbb-custom-icon-notification-example',
-  templateUrl: './custom-icon-notification-example.component.html',
+  templateUrl: './custom-icon-notification-simple-example.component.html',
 })
-export class CustomIconNotificationExampleComponent {
+export class CustomIconNotificationSimpleExampleComponent {
   constructor(private _notification: Notification) {}
 
   @ViewChild('anotherIcon', { read: TemplateRef, static: true })

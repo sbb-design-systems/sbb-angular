@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Notification } from '@sbb-esta/angular-business/notification';
+import { Notification } from '@sbb-esta/angular-business/notification-simple';
 
 @Component({
   selector: 'sbb-jumpmark-notification-example',
-  templateUrl: './jumpmark-notification-example.component.html',
+  templateUrl: './jumpmark-notification-simple-example.component.html',
 })
-export class JumpmarkNotificationExampleComponent {
+export class JumpmarkNotificationSimpleExampleComponent {
   constructor(private _notification: Notification) {}
 
   jumpmarks = [

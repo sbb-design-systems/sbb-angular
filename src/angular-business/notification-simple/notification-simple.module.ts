@@ -10,9 +10,9 @@ import {
 import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 import { IconTickModule } from '@sbb-esta/angular-icons/status';
 
-import { NotificationContainerComponent } from './notification-container/notification-container.component';
-import { NotificationComponent } from './notification/notification.component';
-import { Notification } from './notification/notification.service';
+import { NotificationSimpleContainerComponent } from './notification-simple-container/notification-simple-container.component';
+import { NotificationSimpleComponent } from './notification-simple/notification-simple.component';
+import { Notification } from './notification-simple/notification-simple.service';
 
 @NgModule({
   imports: [
@@ -25,9 +25,9 @@ import { Notification } from './notification/notification.service';
     PortalModule,
     OverlayModule,
   ],
-  declarations: [NotificationComponent, NotificationContainerComponent],
-  exports: [NotificationComponent, NotificationContainerComponent, IconDirectiveModule],
-  entryComponents: [NotificationContainerComponent],
+  declarations: [NotificationSimpleComponent, NotificationSimpleContainerComponent],
+  exports: [NotificationSimpleComponent, NotificationSimpleContainerComponent, IconDirectiveModule],
+  entryComponents: [NotificationSimpleContainerComponent],
   providers: [Notification],
 })
-export class NotificationModule {}
+export class NotificationSimpleModule {}
