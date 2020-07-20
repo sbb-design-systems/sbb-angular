@@ -13,12 +13,18 @@ import { DropdownComponent, DropdownTriggerDirective } from '@sbb-esta/angular-b
   selector: 'sbb-contextmenu',
   templateUrl: './contextmenu.component.html',
   styleUrls: ['./contextmenu.component.css'],
+  host: {
+    class: 'sbb-contextmenu',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContextmenuComponent implements AfterContentInit {
-  /** @docs-private */
-  @HostBinding('class.sbb-contextmenu') sbbClass = true;
+  /**
+   * @docs-private
+   * @deprecated
+   */
+  sbbClass = true;
   /** @docs-private */
   @ContentChild(DropdownComponent, { static: true }) _dropdown: DropdownComponent;
   /** @docs-private */
