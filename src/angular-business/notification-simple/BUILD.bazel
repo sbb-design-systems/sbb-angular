@@ -50,6 +50,7 @@ ng_test_library(
         "//src/angular-icons",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
+        "@npm//@angular/platform-browser",
     ],
 )
 

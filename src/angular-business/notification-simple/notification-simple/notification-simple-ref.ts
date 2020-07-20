@@ -7,6 +7,8 @@ export interface NotificationDismiss {
   dismissedByAction: boolean;
 }
 
+const MAX_TIMEOUT = Math.pow(2, 31) - 1;
+
 export class NotificationSimpleRef<T> {
   instance: T;
 
@@ -16,7 +18,7 @@ export class NotificationSimpleRef<T> {
 
   private readonly _afterOpened = new Subject<void>();
 
-  private _durationTimeoutId: number;
+  private _durationTimeoutId: any;
 
   private _dismissedByAction = false;
 
@@ -47,8 +49,22 @@ export class NotificationSimpleRef<T> {
     this._dismissedByAction = false;
   }
 
+  /** Dismisses the snack bar after some duration */
+  dismissAfter(duration: number): void {
+    // Note that we need to cap the duration to the maximum value for setTimeout, because
+    // it'll revert to 1 if somebody passes in something greater (e.g. `Infinity`). See #17234.
+    this._durationTimeoutId = setTimeout(() => this.dismiss(), Math.min(duration, MAX_TIMEOUT));
+  }
+
   afterDismissed(): Observable<NotificationDismiss> {
     return this._afterDismissed.asObservable();
+  }
+
+  open(): void {
+    if (!this._afterOpened.closed) {
+      this._afterOpened.next();
+      this._afterOpened.complete();
+    }
   }
 
   afterOpened(): Observable<void> {

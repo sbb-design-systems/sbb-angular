@@ -42,7 +42,7 @@ import { NOTIFICATION_ANIMATIONS } from './notification-animations';
     '[class.sbb-notification-info]': 'config.type === "info"',
     '[class.sbb-notification-warn]': 'config.type === "warn"',
     '[class.sbb-notification-error]': 'config.type === "error"',
-    '[class.sbb-notification-has-jump-marks]': 'config.jumpMarks && config.jumpMarks.length',
+    '[attr.role]': '_role',
     '[attr.aria-hidden]': 'ariaHidden',
     '[attr.aria-label]': 'null',
     '[attr.aria-labelledby]': 'null',
@@ -69,9 +69,6 @@ export class NotificationSimpleContainerComponent extends BasePortalOutlet imple
   infoIcon: TemplateRef<any>;
 
   get icon(): TemplateRef<any> | null {
-    if (this._icon) {
-      return this._icon;
-    }
     switch (this.config.type) {
       case 'success':
         return this.checkIcon;
@@ -87,10 +84,10 @@ export class NotificationSimpleContainerComponent extends BasePortalOutlet imple
 
   ariaHidden: 'true' | 'false' = 'false';
   _animationState = 'void';
+  _role: 'alert' | 'status' | null;
 
   readonly _onExit: Subject<any> = new Subject();
   readonly _onEnter: ReplaySubject<any> = new ReplaySubject();
-  private _icon: TemplateRef<any> | null;
 
   constructor(
     private _ngZone: NgZone,
@@ -99,8 +96,14 @@ export class NotificationSimpleContainerComponent extends BasePortalOutlet imple
     public config: NotificationSimpleConfig
   ) {
     super();
-    if (config.icon) {
-      this._icon = config.icon;
+    // Based on the ARIA spec, `alert` and `status` roles have an
+    // implicit `assertive` and `polite` politeness respectively.
+    if (config.politeness === 'assertive' && !config.announcementMessage) {
+      this._role = 'alert';
+    } else if (config.politeness === 'off') {
+      this._role = null;
+    } else {
+      this._role = 'status';
     }
   }
 
