@@ -338,7 +338,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
       const replacedValue = matches
         .sort((a, b) => b.start - a.start)
         .reduce((value, match) => {
-          const replacement = this._createReplacementCssRule(match);
+          const replacement = this._createReplacementCssRule(match, true);
           return (
             value.substring(0, match.start) +
             replacement +
@@ -483,7 +483,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
           context.recorder.remove(start, rule.width);
           context.recorder.insertRight(
             start,
-            `${this._createReplacementCssRule(rule)} ${this.sbbIconMigrationWarning}`
+            `${this._createReplacementCssRule(rule, false)} ${this.sbbIconMigrationWarning}`
           );
         }
       });
@@ -494,10 +494,11 @@ export class IconMigration extends Migration<any, DevkitContext> {
     return node.getSourceFile().fileName.endsWith('.spec.ts');
   }
 
-  private _createReplacementCssRule(rule: RuleOccurence) {
+  private _createReplacementCssRule(rule: RuleOccurence, camelCase: boolean) {
+    const svgIconSelector = camelCase ? 'svgIcon' : 'svgicon';
     return rule.match.startsWith('.sbb-icon') || !(rule.match in ICON_MAPPINGS)
       ? '.sbb-icon'
-      : `.sbb-icon[svgIcon="${ICON_MAPPINGS[rule.match][0].replace(
+      : `.sbb-icon[${svgIconSelector}^="${ICON_MAPPINGS[rule.match][0].replace(
           /-(small|medium|large)$/,
           ''
         )}"]`;
