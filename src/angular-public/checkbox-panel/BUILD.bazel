@@ -19,7 +19,7 @@ ng_module(
     module_name = "@sbb-esta/angular-public/checkbox-panel",
     deps = [
         "//src/angular-core/base/checkbox",
-        "//src/angular-icons/status",
+        "//src/angular-core/icon",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
