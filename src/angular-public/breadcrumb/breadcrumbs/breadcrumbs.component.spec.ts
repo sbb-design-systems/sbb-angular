@@ -4,16 +4,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
   createMouseEvent,
   dispatchEvent,
   dispatchMouseEvent,
 } from '@sbb-esta/angular-core/testing';
-import {
-  IconChevronRightModule,
-  IconChevronSmallDownCircleModule,
-} from '@sbb-esta/angular-icons/arrow';
-import { IconHouseModule } from '@sbb-esta/angular-icons/navigation';
 import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { BreadcrumbModule } from '../breadcrumb.module';
@@ -28,7 +25,7 @@ import { BreadcrumbsComponent } from './breadcrumbs.component';
     <sbb-breadcrumbs>
       <sbb-breadcrumb>
         <a routerLink="." [queryParams]="{ level: 'home' }" routerLinkActive="sbb-selected">
-          <sbb-icon-house></sbb-icon-house>
+          <sbb-icon svgIcon="kom:house-small"></sbb-icon>
         </a>
       </sbb-breadcrumb>
       <sbb-breadcrumb>
@@ -48,7 +45,7 @@ export class BreadcrumbsTestComponent {}
     <sbb-breadcrumbs>
       <sbb-breadcrumb>
         <a routerLink="." [queryParams]="{ level: 'home' }" routerLinkActive="sbb-selected">
-          <sbb-icon-house></sbb-icon-house>
+          <sbb-icon svgIcon="kom:house-small"></sbb-icon>
         </a>
       </sbb-breadcrumb>
 
@@ -102,7 +99,7 @@ export class BreadcrumbsTest2Component {}
     <sbb-breadcrumbs>
       <sbb-breadcrumb>
         <a routerLink="." [queryParams]="{ level: 'home' }">
-          <sbb-icon-house></sbb-icon-house>
+          <sbb-icon svgIcon="kom:house-small"></sbb-icon>
         </a>
       </sbb-breadcrumb>
 
@@ -137,12 +134,7 @@ describe('BreadcrumbsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BreadcrumbsComponent],
-      imports: [
-        CommonModule,
-        DropdownModule,
-        IconChevronRightModule,
-        IconChevronSmallDownCircleModule,
-      ],
+      imports: [CommonModule, DropdownModule, SbbIconModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -166,7 +158,13 @@ describe('Breadcrumb behaviour Test', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHouseModule],
+      imports: [
+        BreadcrumbModule,
+        RouterTestingModule,
+        CommonModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+      ],
       declarations: [BreadcrumbsTestComponent],
     }).compileComponents();
   }));
@@ -201,9 +199,8 @@ describe('Breadcrumb behaviour Test', () => {
       fixtureTest.detectChanges();
       expect(location.path()).toContain('?level=home');
 
-      const iconHome = breadcrumbLevelHomeComponent.query(
-        By.css('.sbb-dropdown-trigger .sbb-icon-component')
-      ).nativeElement;
+      const iconHome = breadcrumbLevelHomeComponent.query(By.css('.sbb-dropdown-trigger .sbb-icon'))
+        .nativeElement;
       expect(iconHome).toBeTruthy();
     });
   }));
@@ -274,7 +271,8 @@ describe('Breadcrumb behaviour Test 2', () => {
         BreadcrumbModule,
         RouterTestingModule,
         CommonModule,
-        IconHouseModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         DropdownModule,
       ],
       declarations: [BreadcrumbsTest2Component],
@@ -334,9 +332,8 @@ describe('Breadcrumb behaviour Test 2', () => {
       fixtureTest.detectChanges();
       expect(location.path()).toContain('?level=home');
 
-      const iconHome = breadcrumbLevelHomeComponent.query(
-        By.css('.sbb-dropdown-trigger .sbb-icon-component')
-      ).nativeElement;
+      const iconHome = breadcrumbLevelHomeComponent.query(By.css('.sbb-dropdown-trigger .sbb-icon'))
+        .nativeElement;
       expect(iconHome).toBeTruthy();
     });
   }));
@@ -442,7 +439,8 @@ describe('Breadcrumb behaviour Test 3', () => {
         BreadcrumbModule,
         RouterTestingModule,
         CommonModule,
-        IconHouseModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         DropdownModule,
       ],
       declarations: [BreadcrumbsTest3Component],
@@ -478,9 +476,8 @@ describe('Breadcrumb behaviour Test 3', () => {
       fixtureTest.detectChanges();
       expect(location.path()).toContain('?level=home');
 
-      const iconHome = breadcrumbLevelHomeComponent.query(
-        By.css('.sbb-dropdown-trigger .sbb-icon-component')
-      ).nativeElement;
+      const iconHome = breadcrumbLevelHomeComponent.query(By.css('.sbb-dropdown-trigger .sbb-icon'))
+        .nativeElement;
       expect(iconHome).toBeTruthy();
     });
   }));
