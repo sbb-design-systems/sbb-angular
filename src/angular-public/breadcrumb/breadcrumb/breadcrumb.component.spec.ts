@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IconChevronRightModule, IconChevronSmallDownModule } from '@sbb-esta/angular-icons/arrow';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
@@ -12,7 +13,7 @@ describe('BreadcrumbComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BreadcrumbComponent],
-      imports: [CommonModule, DropdownModule, IconChevronRightModule, IconChevronSmallDownModule],
+      imports: [CommonModule, DropdownModule, SbbIconModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 

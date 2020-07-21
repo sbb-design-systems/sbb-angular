@@ -18,7 +18,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-icons/navigation",
+        "//src/angular-core/icon",
         "//src/angular-public/breadcrumb",
         "//src/angular-public/dropdown",
         "//src/showcase/app/shared",
