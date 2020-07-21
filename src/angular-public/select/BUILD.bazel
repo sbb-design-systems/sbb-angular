@@ -21,7 +21,7 @@ ng_module(
         "//src/angular-core/common-behaviors",
         "//src/angular-core/error",
         "//src/angular-core/forms",
-        "//src/angular-icons/arrow",
+        "//src/angular-core/icon",
         "//src/angular-public/option",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
@@ -47,6 +47,7 @@ ng_test_library(
     ),
     deps = [
         ":select",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
         "//src/angular-public/field",
         "//src/angular-public/option",
