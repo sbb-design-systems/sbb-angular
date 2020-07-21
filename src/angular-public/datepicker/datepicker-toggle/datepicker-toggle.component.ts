@@ -5,7 +5,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  HostBinding,
   Input,
   OnChanges,
   OnDestroy,
@@ -24,6 +23,7 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
   host: {
     class: 'sbb-datepicker-toggle',
     '[class.sbb-datepicker-toggle-active]': 'this.datepickerToggleActive',
+    '[attr.tabindex]': 'null',
   },
 })
 export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, AfterContentInit {
@@ -56,7 +56,9 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
    */
   sbbDatepickerToggleCssClass = true;
 
-  @HostBinding('attr.tabindex')
+  /**
+   * @deprecated internal use
+   */
   tabindex = null;
 
   get datepickerToggleActive() {

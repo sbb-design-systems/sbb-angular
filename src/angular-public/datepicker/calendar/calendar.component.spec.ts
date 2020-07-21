@@ -2,7 +2,7 @@ import { ENTER } from '@angular/cdk/keycodes';
 import { Component, NgZone } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { SbbIconModule } from '@sbb-esta/angular-core';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
   DEC,
