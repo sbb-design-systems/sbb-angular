@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SbbIconModule } from '@sbb-esta/angular-core';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
