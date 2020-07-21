@@ -4,11 +4,9 @@ import { By } from '@angular/platform-browser';
 
 import { LinksModule } from '../links.module';
 
-import { SocialLinkComponent } from './social-link.component';
-
 @Component({
   selector: 'sbb-test-social-link',
-  template: ` <a sbbSocialLink [mode]="mode" [icon]="icon">test</a> `,
+  template: ` <a sbbSocialLink [icon]="icon">test</a> `,
 })
 class TestSocialLinkComponent {
   icon: 'facebook' | 'instagram' | 'linkedin' | 'pinterest' | 'twitter' | 'xing' | 'youtube';

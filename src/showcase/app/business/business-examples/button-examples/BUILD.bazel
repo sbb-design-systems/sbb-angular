@@ -19,7 +19,7 @@ ng_module(
         "//src/angular-business/button",
         "//src/angular-business/checkbox",
         "//src/angular-business/field",
-        "//src/angular-icons/basic",
+        "//src/angular-core/icon",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",

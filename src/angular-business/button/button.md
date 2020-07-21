@@ -23,6 +23,6 @@ To use the icon mode, simply use an icon with the button.
 
 ```html
 <button sbbButton mode="icon">
-  <sbb-icon-pen *sbbIcon></sbb-icon-pen>
+  <sbb-icon svgIcon="kom:pen-small" *sbbIcon></sbb-icon>
 </button>
 ```
