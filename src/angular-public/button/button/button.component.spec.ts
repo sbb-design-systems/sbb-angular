@@ -1,6 +1,7 @@
 import { Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { ButtonComponent } from './button.component';
@@ -28,7 +29,7 @@ describe('ButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SbbIconTestingModule],
+      imports: [SbbIconModule, SbbIconTestingModule],
       declarations: [ButtonComponent, ButtonTemplateTestComponent],
     }).compileComponents();
   }));

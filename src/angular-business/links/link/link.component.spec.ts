@@ -84,7 +84,6 @@ describe('LinkComponent', () => {
     expect(elementStyle.getPropertyValue('color')).toBe('rgb(0, 0, 0)');
 
     const icon = fixture.debugElement.query(By.css('sbb-icon[svgIcon="kom:arrow-right-small"]'));
-    console.error(icon);
     expect(icon).toBeTruthy();
 
     const iconStyle = getComputedStyle(icon.nativeElement);

@@ -9,10 +9,11 @@ import {
  */
 
 const testBed = TestBed.initTestEnvironment(
-  BrowserDynamicTestingModule,
+  [BrowserDynamicTestingModule],
   platformBrowserDynamicTesting()
 );
 patchTestBedToDestroyFixturesAfterEveryTest(testBed);
+patchConsoleToDetectWarningsOrErrors();
 
 (window as any).module = {};
 (window as any).isNode = false;
@@ -56,4 +57,19 @@ function patchTestBedToDestroyFixturesAfterEveryTest(testBedInstance: TestBed) {
   // Fixing this by resetting the testing module after each test.
   // https://github.com/angular/angular/blob/master/packages/core/testing/src/before_each.ts#L25
   afterEach(() => testBedInstance.resetTestingModule());
+}
+
+/**
+ * Monkey patch console warn and error to fail if a test makes calls to console.warn or console.error.
+ * https://github.com/angular/angular/issues/36430
+ */
+function patchConsoleToDetectWarningsOrErrors(): void {
+  console.warn = function (message?: any, ...optionalParams: any[]): void {
+    const params = optionalParams ? `\nParams: ${optionalParams}` : '';
+    throw new Error(`Test contained console warning:\n${message}${params}`);
+  };
+  console.error = function (message?: any, ...optionalParams: any[]): void {
+    const params = optionalParams ? `\nParams: ${optionalParams}` : '';
+    throw new Error(`Test contained console error:\n${message}${params}`);
+  };
 }
