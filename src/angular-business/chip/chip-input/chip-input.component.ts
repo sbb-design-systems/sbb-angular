@@ -66,6 +66,11 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
   templateUrl: './chip-input.component.html',
   styleUrls: ['./chip-input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-chip-input',
+    '[class.sbb-chip-input-active]': '!this.disabled && this.focused',
+    '[attr.aria-describedby]': 'this._ariaDescribedby',
+  },
   providers: [{ provide: FormFieldControl, useExisting: ChipInputComponent }],
 })
 export class ChipInputComponent extends SbbChipsMixinBase
@@ -110,7 +115,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
     return `${this.id || this._uniqueId}-input`;
   }
 
-  /** Whether the component is required. */
+  /** Whether filling out the chip-input is required in the form. */
   @HostBinding('class.sbb-chip-input-required')
   @Input()
   get required(): boolean {
@@ -120,13 +125,20 @@ export class ChipInputComponent extends SbbChipsMixinBase
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
+  private _required = false;
 
-  /** @docs-private */
-  @HostBinding('class.sbb-chip-input-active')
+  /**
+   * @docs-private
+   * @deprecated
+   */
   get _isActive() {
     return !this.disabled && this._focused;
   }
 
+  /**
+   * TODO: Prefix with _
+   * @deprecated
+   */
   @ViewChild('chipInputTextfield', { static: false })
   inputElement: ElementRef;
 
@@ -156,7 +168,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   /**
    * Whether the select is focused.
    * @deprecated Setting focused will be removed in the next major release
-   * */
+   */
   get focused(): boolean {
     return this._focused;
   }
@@ -166,20 +178,22 @@ export class ChipInputComponent extends SbbChipsMixinBase
   private _focused = false;
 
   inputModel = '';
-  origin = new AutocompleteOriginDirective(this._elementRef);
   selectionModel: SelectionModel<string>;
-
-  /** Whether filling out the chip-input is required in the form. */
-  private _required = false;
-
-  /** The aria-describedby attribute on the chip-input for improved a11y. */
-  private _ariaDescribedby: string;
-
-  /** Unique id for this input. */
-  private _uniqueId = `sbb-chip-input-${nextId++}`;
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
+
+  /**
+   * TODO: Prefix with _
+   * @deprecated
+   */
+  origin = new AutocompleteOriginDirective(this._elementRef);
+
+  /** The aria-describedby attribute on the chip-input for improved a11y. */
+  _ariaDescribedby: string;
+
+  /** Unique id for this input. */
+  private _uniqueId = `sbb-chip-input-${nextId++}`;
 
   private _onTouchedCallback: () => void = () => {};
   private _onChangeCallback: (_: any) => void = () => {};
@@ -213,6 +227,24 @@ export class ChipInputComponent extends SbbChipsMixinBase
     }
   }
 
+  ngDoCheck() {
+    if (this.ngControl) {
+      this.updateErrorState();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // Updating the disabled state is handled by `mixinDisabled`, but we need to additionally let
+    // the parent form field know to run change detection when the disabled state changes.
+    if (changes.disabled) {
+      this.stateChanges.next();
+    }
+  }
+
+  ngOnDestroy() {
+    this.stateChanges.complete();
+  }
+
   /**
    * Sets the chip input's value. Part of the ControlValueAccessor interface
    * required to integrate with Angular's core forms API.
@@ -241,6 +273,8 @@ export class ChipInputComponent extends SbbChipsMixinBase
 
   /**
    * Adds a given value to the current selected values.
+   * TODO: Prefix with _
+   * @deprecated
    */
   onSelect(option: string) {
     if (!option) {
@@ -254,7 +288,9 @@ export class ChipInputComponent extends SbbChipsMixinBase
   }
 
   /**
-   * Selects a given value if the action doesn't refer to an autocomplete option
+   * Selects a given value if the action doesn't refer to an autocomplete option.
+   * TODO: Prefix with _
+   * @deprecated
    */
   onEnter(option: string) {
     if (this.autocomplete) {
@@ -322,24 +358,6 @@ export class ChipInputComponent extends SbbChipsMixinBase
     this._onChangeCallback(this.selectionModel.selected);
     this.valueChange.emit(new SbbChipInputChange(this, this._value));
     this._changeDetectorRef.markForCheck();
-  }
-
-  ngDoCheck() {
-    if (this.ngControl) {
-      this.updateErrorState();
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    // Updating the disabled state is handled by `mixinDisabled`, but we need to additionally let
-    // the parent form field know to run change detection when the disabled state changes.
-    if (changes.disabled) {
-      this.stateChanges.next();
-    }
-  }
-
-  ngOnDestroy() {
-    this.stateChanges.complete();
   }
 
   /**
