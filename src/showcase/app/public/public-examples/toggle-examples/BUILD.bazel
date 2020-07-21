@@ -18,8 +18,8 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/angular-core/icon",
         "//src/angular-core/radio-button",
-        "//src/angular-icons/arrow",
         "//src/angular-public/datepicker",
         "//src/angular-public/field",
         "//src/angular-public/toggle",

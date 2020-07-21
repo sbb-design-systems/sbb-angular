@@ -5,7 +5,7 @@
   [disabled]="disabled"
   (click)="prevDay()"
 >
-  <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
+  <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
 </button>
 <sbb-datepicker-toggle *ngIf="toggle"></sbb-datepicker-toggle>
 <ng-content></ng-content>
@@ -16,5 +16,5 @@
   [disabled]="disabled"
   (click)="nextDay()"
 >
-  <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
+  <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
 </button>

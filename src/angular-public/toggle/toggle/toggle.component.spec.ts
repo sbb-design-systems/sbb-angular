@@ -3,9 +3,10 @@ import { Component, ContentChildren, OnInit, QueryList } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { RadioChange } from '@sbb-esta/angular-core/radio-button';
-import { IconArrowRightModule, IconArrowsRightLeftModule } from '@sbb-esta/angular-icons/arrow';
 import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { Observable, of } from 'rxjs';
@@ -27,10 +28,10 @@ import { ToggleModule } from '../toggle.module';
           [value]="option.value"
         >
           <ng-container *ngIf="i === 0">
-            <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
+            <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon></sbb-icon>
           </ng-container>
           <ng-container *ngIf="i === 1">
-            <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
+            <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
           </ng-container>
           <sbb-field mode="long" *ngIf="i === 1">
             <sbb-label for="name1">Select date</sbb-label>
@@ -84,10 +85,10 @@ class ToggleReactiveTestComponent implements OnInit {
           [value]="option.value"
         >
           <ng-container *ngIf="i === 0">
-            <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
+            <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon></sbb-icon>
           </ng-container>
           <ng-container *ngIf="i === 1">
-            <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
+            <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
           </ng-container>
           <sbb-field mode="long" *ngIf="i === 1">
             <sbb-label for="name1">Select date</sbb-label>
@@ -134,10 +135,10 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
         [value]="option.value"
       >
         <ng-container *ngIf="i === 0">
-          <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
+          <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon></sbb-icon>
         </ng-container>
         <ng-container *ngIf="i === 1">
-          <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
+          <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
         </ng-container>
         <sbb-field mode="long" *ngIf="i === 0">
           <sbb-label for="name1">Select date</sbb-label>
@@ -154,6 +155,8 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
 })
 class ToggleTemplateDrivenTestComponent {
   @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
+
+  modelValue: any;
 
   constructor() {}
 
@@ -199,8 +202,8 @@ describe('ToggleComponent case reactive using mock component', () => {
       imports: [
         ToggleModule,
         CommonModule,
-        IconArrowRightModule,
-        IconArrowsRightLeftModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         DatepickerModule,
         FieldModule,
         ReactiveFormsModule,
@@ -298,8 +301,8 @@ describe('ToggleComponent case reactive with default value using mock component'
       imports: [
         ToggleModule,
         CommonModule,
-        IconArrowRightModule,
-        IconArrowsRightLeftModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         DatepickerModule,
         FieldModule,
         ReactiveFormsModule,
@@ -344,8 +347,8 @@ describe('ToggleComponent case template driven using mock component', () => {
         ToggleModule,
         CommonModule,
 
-        IconArrowRightModule,
-        IconArrowsRightLeftModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         DatepickerModule,
         FieldModule,
         FormsModule,

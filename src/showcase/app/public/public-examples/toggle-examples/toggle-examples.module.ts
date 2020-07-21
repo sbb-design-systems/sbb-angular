@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
-import { IconArrowsRightLeftModule } from '@sbb-esta/angular-icons/arrow';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { ToggleModule } from '@sbb-esta/angular-public/toggle';
@@ -22,8 +21,7 @@ const EXAMPLE_INDEX = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IconArrowRightModule,
-    IconArrowsRightLeftModule,
+    SbbIconModule,
     DatepickerModule,
     FieldModule,
     ToggleModule,
