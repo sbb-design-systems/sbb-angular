@@ -6,6 +6,8 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { JAN } from '@sbb-esta/angular-core/testing';
 import {
   dispatchEvent,
@@ -158,6 +160,8 @@ describe('DatepickerComponent', () => {
         DatepickerModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         ...imports,
       ],
       providers,
