@@ -1,15 +1,14 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'sbb-pseudo-checkbox',
   styleUrls: ['./option.component.css'],
   templateUrl: './pseudo-checkbox.html',
+  host: {
+    class: 'sbb-pseudo-checkbox',
+    '[class.sbb-pseudo-checkbox-disabled]': 'this.disabled',
+    '[class.sbb-pseudo-checkbox-checked]': 'this.state === "checked"',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -18,15 +17,13 @@ export class PseudoCheckboxComponent {
   @Input() state: 'unchecked' | 'checked' = 'unchecked';
 
   /** Whether the checkbox is disabled. */
+  @Input() disabled = false;
 
-  @Input()
-  @HostBinding('class.sbb-pseudo-checkbox-disabled')
-  disabled = false;
-
-  @HostBinding('class.sbb-pseudo-checkbox-checked')
+  /** @deprecated */
   get checked(): boolean {
     return this.state === 'checked';
   }
 
-  @HostBinding('class.sbb-pseudo-checkbox') baseCssClass = true;
+  /** @deprecated */
+  baseCssClass = true;
 }

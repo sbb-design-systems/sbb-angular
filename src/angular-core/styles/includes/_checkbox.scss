@@ -56,14 +56,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
   }
 
   .sbb-checkbox-checked {
-    @include publicOnly() {
-      @include svgIconColor($sbbColorRed);
-    }
-
-    @include businessOnly() {
-      @include svgIconColor($sbbColorIron);
-    }
-
+    color: if($sbbBusiness, $sbbColorIron, $sbbColorRed);
     line-height: 0;
     height: 100%;
     width: 100%;
@@ -165,7 +158,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
       background-color: $sbbColorMilk;
 
       & > .sbb-checkbox-checked {
-        @include svgIconColor($checkboxRadioButtonGreyColor);
+        color: $checkboxRadioButtonGreyColor;
       }
 
       & + .sbb-checkbox-label-content {

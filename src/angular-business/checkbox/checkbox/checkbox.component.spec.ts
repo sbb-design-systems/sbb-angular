@@ -4,7 +4,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
-import { IconTickModule } from '@sbb-esta/angular-icons/status';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { CheckboxComponent } from './checkbox.component';
 
@@ -31,7 +32,7 @@ describe('CheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, IconTickModule],
+      imports: [CommonModule, SbbIconModule, SbbIconTestingModule],
       declarations: [CheckboxComponent],
     }).compileComponents();
   }));
@@ -57,7 +58,7 @@ describe('CheckboxComponent using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, IconTickModule],
+      imports: [CommonModule, FormsModule, SbbIconModule, SbbIconTestingModule],
       declarations: [CheckboxComponent, ModelCheckboxTestComponent],
     }).compileComponents();
   }));
