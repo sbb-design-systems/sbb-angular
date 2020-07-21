@@ -4,7 +4,6 @@ import {
   ChangeDetectorRef,
   Component,
   forwardRef,
-  HostBinding,
   NgZone,
   ViewEncapsulation,
 } from '@angular/core';
@@ -29,11 +28,16 @@ import { take } from 'rxjs/operators';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-toggle',
+  },
 })
 export class ToggleComponent extends RadioGroupDirective
   implements ControlValueAccessor, AfterContentInit {
-  /** @docs-private */
-  @HostBinding('class.sbb-toggle')
+  /**
+   * @docs-private
+   * @deprecated internal use
+   */
   toggleClass = true;
 
   constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
