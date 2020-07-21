@@ -47,6 +47,7 @@ ng_test_library(
     ),
     deps = [
         ":select",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
         "//src/angular-public/field",
         "//src/angular-public/option",
