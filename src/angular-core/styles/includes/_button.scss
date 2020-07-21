@@ -155,7 +155,9 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
     margin-top: pxToEm(-12.5, $buttonSizeFontDefault);
     transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
     backface-visibility: hidden;
-    @include svgIconColor($buttonDefaultColor);
+    @include svgIconColor(
+      $buttonDefaultColor
+    ); // TODO(icon-migration): remove svgIconColor because icons take color from button
     pointer-events: none;
   }
 
@@ -206,6 +208,7 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
       border: none;
       color: $buttonDefaultColor;
 
+      // TODO(icon-migration): remove definition because icons take color from button
       .sbb-svgsprite-icon {
         @include svgIconColor($buttonDefaultColor);
       }
@@ -258,10 +261,12 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
   @extend %secondaryButton;
   @extend %arrowbuttons;
 
+  // TODO(icon-migration): remove definition because icons take color from button
   .sbb-svgsprite-icon {
     @include svgIconColor($buttonSecondaryColor);
   }
 
+  // TODO(icon-migration): remove definition because icons take color from button
   &:hover,
   &:focus {
     .sbb-svgsprite-icon {
@@ -299,6 +304,7 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
       background-color: transparent;
       border-color: $buttonGhostBorderColorHover;
 
+      // TODO(icon-migration): remove definition because icons take color from button
       .sbb-svgsprite-icon {
         @include svgIconColor($buttonGhostColorHover);
       }
@@ -320,10 +326,12 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
   @extend %ghostButtonPositive;
   @extend %arrowbuttons;
 
+  // TODO(icon-migration): remove definition because icons take color from button
   .sbb-svgsprite-icon {
     @include svgIconColor($buttonGhostColorHover);
   }
 
+  // TODO(icon-migration): remove definition because icons take color from button
   &:hover,
   &:focus {
     .sbb-svgsprite-icon {
@@ -367,6 +375,7 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
 
   padding-right: toEm(30 / $fontSize);
 
+  // TODO(icon-migration): remove definition because icons take color from button
   .sbb-svgsprite-icon {
     @include svgIconColor($buttonFramelessColor);
   }
@@ -376,6 +385,7 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
     padding-left: toEm(30 / $fontSize);
     padding-right: 0;
 
+    // TODO(icon-migration): remove definition because icons take color from button
     .sbb-svgsprite-icon {
       @include svgIconColor($buttonFramelessColorHover);
     }

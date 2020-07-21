@@ -16,9 +16,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-icons/arrow",
-        "//src/angular-icons/basic",
-        "//src/angular-icons/navigation",
+        "//src/angular-core/icon",
         "//src/angular-public/button",
         "//src/angular-public/checkbox",
         "//src/angular-public/field",

@@ -7,14 +7,16 @@
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
 
-  @include mq($from: desktop4k) {
-    font-size: pxToRem($sizeFontDefault4k);
-    line-height: pxToEm(35px);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToEm(35px);
+    }
 
-  @include mq($from: desktop5k) {
-    font-size: pxToRem($sizeFontDefault5k);
-    line-height: pxToEm(45px);
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToEm(45px);
+    }
   }
 
   &:hover,

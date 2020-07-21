@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
-import { IconDownloadModule } from '@sbb-esta/angular-icons/basic';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import {
   IconFacebookModule,
   IconInstagramModule,
@@ -18,8 +17,7 @@ import { SocialLinkComponent } from './social-link/social-link.component';
 @NgModule({
   imports: [
     CommonModule,
-    IconArrowRightModule,
-    IconDownloadModule,
+    SbbIconModule,
     IconFacebookModule,
     IconInstagramModule,
     IconPinterestModule,
