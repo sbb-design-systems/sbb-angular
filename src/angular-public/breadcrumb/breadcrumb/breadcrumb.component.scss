@@ -2,18 +2,16 @@
 
 $breadcrumbHeight: 48;
 $breadcrumbLabelHeight: 24;
-$breadcrumbArrowWidth: 16;
-$breadcrumbArrowHeight: 16;
+$breadcrumbArrowSize: 24;
 $breadcrumbArrowLineHeight: 20;
-$breadcrumbArrowMarginsDT: 16;
-@include businessOnly() {
-  $breadcrumbArrowMarginsDT: 4;
-}
+$breadcrumbArrowMarginsDT: if($sbbBusiness, 4, 12);
 
 $breadcrumbStepButtonFontSizeDT: 13;
 $breadcrumbStepButtonLineHeightDT: 20;
 
-$breadcrumbDropdownTriggerIconMarginLeft: 10.5;
+$breadcrumbDropdownTriggerIconSize: 24;
+$breadcrumbDropdownTriggerIconMarginLeft: 6.5;
+$breadcrumbDropdownTriggerIconMarginRight: 20 - $breadcrumbDropdownTriggerIconSize;
 
 $breadcrumbTriggerBorderActive: solid 2px $sbbColorGranite;
 $breadcrumbTriggerBorder: solid 2px white;
@@ -82,65 +80,35 @@ $breadcrumbTriggerBorder: solid 2px white;
     }
 
     .sbb-breadcrumb-trigger-icon {
-      @include svgIconColor($sbbColorGranite);
-      width: toPx(16);
-      height: toPx(16);
+      width: toPx($breadcrumbDropdownTriggerIconSize);
+      height: toPx($breadcrumbDropdownTriggerIconSize);
       line-height: toPx($breadcrumbArrowLineHeight);
       margin: 0;
+      margin-right: toPx($breadcrumbDropdownTriggerIconMarginRight);
       margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft);
-      border-style: solid;
-      border-width: 1px;
-      border-radius: 50%;
       display: none;
-      position: relative;
       transition: transform 0.225s cubic-bezier(0.4, 0, 0.2, 1);
 
       @include publicOnly() {
         @include mq($from: desktop4k) {
-          border-width: toPx(1 * $scalingFactor4k);
-          height: toPx(16 * $scalingFactor4k);
-          width: toPx(16 * $scalingFactor4k);
+          height: toPx($breadcrumbDropdownTriggerIconSize * $scalingFactor4k);
+          width: toPx($breadcrumbDropdownTriggerIconSize * $scalingFactor4k);
           margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k);
+          margin-right: toPx($breadcrumbDropdownTriggerIconMarginRight * $scalingFactor4k);
         }
         @include mq($from: desktop5k) {
-          border-width: toPx(1 * $scalingFactor5k);
-          height: toPx(16 * $scalingFactor5k);
-          width: toPx(16 * $scalingFactor5k);
+          height: toPx($breadcrumbDropdownTriggerIconSize * $scalingFactor5k);
+          width: toPx($breadcrumbDropdownTriggerIconSize * $scalingFactor5k);
           margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k);
+          margin-right: toPx($breadcrumbDropdownTriggerIconMarginRight * $scalingFactor5k);
         }
       }
 
       &.sbb-breadcrumb-trigger-icon-visible {
         display: block;
-        > .sbb-icon-component {
-          @include absoluteCenterXY;
-          padding: 0;
-          width: toPx($breadcrumbArrowWidth);
-          height: toPx($breadcrumbArrowHeight);
-
-          @include publicOnly() {
-            @include mq($from: desktop4k) {
-              width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
-              height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
-            }
-            @include mq($from: desktop5k) {
-              width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
-              height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
-            }
-          }
-        }
       }
       &.sbb-breadcrumb-trigger-icon-active {
         transform: rotate(-180deg);
-      }
-    }
-
-    &:hover,
-    &:focus,
-    &:active,
-    &.sbb-breadcrumb-trigger-open {
-      .sbb-breadcrumb-trigger-icon {
-        @include svgIconColor($sbbColorRed125);
       }
     }
 
@@ -152,7 +120,7 @@ $breadcrumbTriggerBorder: solid 2px white;
         border-left: $breadcrumbTriggerBorderActive;
         position: absolute;
         background-color: $sbbColorWhite;
-        height: 100%;
+        height: calc(100% + 1px); // 1px is needed to fit borders without any gap to overly panel
         min-width: 132px;
         transform: translateX(-30px);
         width: calc(100% + 60px);
@@ -176,34 +144,44 @@ $breadcrumbTriggerBorder: solid 2px white;
   }
 
   .sbb-breadcrumb-arrow {
-    @include svgIconColor($sbbColorGranite);
-    width: toPx($breadcrumbArrowWidth);
-    height: toPx($breadcrumbArrowHeight);
+    @if $sbbBusiness {
+      color: $sbbColorGranite;
+    } @else {
+      color: $sbbColorPlatinum;
+    }
+
     line-height: toPx($breadcrumbArrowLineHeight);
 
     margin-right: toPx($breadcrumbArrowMarginsDT);
+    width: toPx($breadcrumbArrowSize);
+    height: toPx($breadcrumbArrowSize);
+
     @include publicOnly() {
       @include mq($from: desktop4k) {
         margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
-        width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
-        height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
+        width: toPx($breadcrumbArrowSize * $scalingFactor4k);
+        height: toPx($breadcrumbArrowSize * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
         margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
-        width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
-        height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+        width: toPx($breadcrumbArrowSize * $scalingFactor5k);
+        height: toPx($breadcrumbArrowSize * $scalingFactor5k);
       }
     }
   }
   a,
   button {
     outline: 0;
-    @include svgIconColor($sbbColorGranite);
+    @include svgIconColor(
+      $sbbColorGranite
+    ); // TODO(icon-migration): remove definition because new icons inherit colors
     color: $sbbColorGranite;
     &:hover,
     &:focus {
-      @include svgIconColor($sbbColorRed125);
+      @include svgIconColor(
+        $sbbColorRed125
+      ); // TODO(icon-migration): remove definition because new icons inherit colors
       color: $sbbColorRed125;
     }
   }
@@ -246,6 +224,7 @@ $breadcrumbTriggerBorder: solid 2px white;
       }
     }
 
+    // TODO(icon-migration): remove definition because new icons inherit colors (also color: can be removed)
     > .sbb-icon-component {
       &:hover,
       &:focus {
@@ -281,6 +260,7 @@ $breadcrumbTriggerBorder: solid 2px white;
       font-family: $fontSbbRoman;
 
       &.sbb-active {
+        // TODO(icon-migration): remove definition because new icons inherit colors
         @include svgIconColor($sbbColorRed125);
         color: $sbbColorRed125;
       }

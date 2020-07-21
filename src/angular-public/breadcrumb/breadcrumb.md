@@ -12,7 +12,7 @@ On any page where the user should be able to quickly navigate to a sister or par
 <sbb-breadcrumbs>
   <sbb-breadcrumb>
     <a routerLink="/" routerLinkActive="sbb-selected">
-      <sbb-icon-house></sbb-icon-house>
+      <sbb-icon svgIcon="kom:house-small"></sbb-icon>
     </a>
   </sbb-breadcrumb>
   <sbb-breadcrumb>
@@ -30,7 +30,7 @@ On any page where the user should be able to quickly navigate to a sister or par
 <sbb-breadcrumbs>
   <sbb-breadcrumb>
     <a routerLink="/" routerLinkActive="sbb-selected">
-      <sbb-icon-house></sbb-icon-house>
+      <sbb-icon svgIcon="kom:house-small"></sbb-icon>
     </a>
   </sbb-breadcrumb>
 
