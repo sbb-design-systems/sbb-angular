@@ -15,7 +15,6 @@ import {
   Component,
   ComponentRef,
   EventEmitter,
-  HostBinding,
   Inject,
   InjectionToken,
   Input,
@@ -65,6 +64,11 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   providers: [{ provide: SBB_DATEPICKER, useExisting: DatepickerComponent }],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-datepicker sbb-icon-fit',
+    '[class.sbb-datepicker-arrows-enabled]': 'this.arrows',
+    '[class.sbb-datepicker-toggle-enabled]': 'this.toggle',
+  },
 })
 export class DatepickerComponent<D> implements OnDestroy {
   /** An input indicating the type of the custom header component for the calendar, if set. */
@@ -145,14 +149,16 @@ export class DatepickerComponent<D> implements OnDestroy {
     this.connected = value;
   }
 
-  @HostBinding('class.sbb-datepicker') cssClass = true;
+  /**
+   * @deprecated internal detail
+   */
+  cssClass = true;
 
   /**
    * Whether arrows are enabled, which allow navigation to the next/previous day.
    * They also support min and max date limits.
    * Defaults to false.
    */
-  @HostBinding('class.sbb-datepicker-arrows-enabled')
   @Input()
   set arrows(value: any) {
     this._arrows = coerceBooleanProperty(value);
@@ -165,7 +171,6 @@ export class DatepickerComponent<D> implements OnDestroy {
   /**
    * Whether the datepicker toggle is enabled. Defaults to true.
    */
-  @HostBinding('class.sbb-datepicker-toggle-enabled')
   @Input()
   set toggle(value: any) {
     this._toggle = coerceBooleanProperty(value);

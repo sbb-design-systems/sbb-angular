@@ -9,7 +9,6 @@ import {
   ContentChild,
   ElementRef,
   forwardRef,
-  HostBinding,
   Inject,
   Input,
   Optional,
@@ -36,18 +35,28 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-toggle-option',
+    '[class.sbb-toggle-option-selected]': 'this.checked',
+    '[class.sbb-toggle-option-has-icon]': 'this.icon',
+  },
 })
 export class ToggleOptionComponent extends RadioButton implements AfterViewInit {
-  /** @docs-private */
-  @HostBinding('class.sbb-toggle-option') toggleOptionClass = true;
+  /**
+   * @docs-private
+   * @deprecated internal use
+   * */
+  toggleOptionClass = true;
 
   /** Label of a sbb-toggle-option. */
   @Input() label: string;
   /** Information text in a sbb-toggle-option. */
   @Input() infoText?: string;
 
-  /** @docs-private */
-  @HostBinding('class.sbb-toggle-option-selected')
+  /**
+   * @docs-private
+   * @deprecated internal use -> use property checked
+   *  */
   get _isChecked() {
     return this.checked;
   }
@@ -84,7 +93,6 @@ export class ToggleOptionComponent extends RadioButton implements AfterViewInit 
   /**
    * Refers to the icon optionally contained in a toggle option.
    */
-  @HostBinding('class.sbb-toggle-option-has-icon')
   @Input()
   set icon(icon: TemplateRef<any> | null) {
     this._icon = icon;

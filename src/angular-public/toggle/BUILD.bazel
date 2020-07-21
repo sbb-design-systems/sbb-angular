@@ -55,9 +55,10 @@ ng_test_library(
     ),
     deps = [
         ":toggle",
+        "//src/angular-core/icon",
         "//src/angular-core/icon-directive",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/radio-button",
-        "//src/angular-icons/arrow",
         "//src/angular-public/datepicker",
         "//src/angular-public/field",
         "@npm//@angular/common",
