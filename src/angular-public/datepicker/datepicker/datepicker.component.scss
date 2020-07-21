@@ -11,10 +11,6 @@
   .sbb-datepicker-arrow {
     display: block;
 
-    .sbb-icon-component {
-      @include svgIconColor($sbbColorGranite);
-    }
-
     button {
       width: 100%;
       height: 100%;
@@ -26,6 +22,16 @@
 
     @include absoluteCenterY();
     @extend %pickerIconsSize;
+
+    button {
+      outline: 0;
+      color: $sbbColorGranite;
+      &:hover,
+      &:focus,
+      &:active {
+        color: $sbbColorRed125;
+      }
+    }
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -55,6 +61,13 @@
   .sbb-datepicker-arrow {
     @extend %pickerIconsSize;
     @include absoluteCenterY();
+    outline: 0;
+    color: $sbbColorGranite;
+    &:hover,
+    &:focus,
+    &:active {
+      color: $sbbColorRed125;
+    }
 
     &.sbb-datepicker-arrow-left {
       left: toPx($withArrowsLeftArrowOffset);

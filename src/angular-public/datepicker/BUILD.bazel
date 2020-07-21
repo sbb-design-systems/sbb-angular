@@ -24,8 +24,7 @@ ng_module(
     deps = [
         "//src/angular-core/common-behaviors",
         "//src/angular-core/datetime",
-        "//src/angular-icons/arrow",
-        "//src/angular-icons/basic",
+        "//src/angular-core/icon",
         "//src/angular-public/input",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
@@ -65,7 +64,9 @@ ng_test_library(
     ),
     deps = [
         ":datepicker",
+        "//src/angular-core",
         "//src/angular-core/datetime",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
         "@npm//@angular/cdk",
         "@npm//@angular/forms",

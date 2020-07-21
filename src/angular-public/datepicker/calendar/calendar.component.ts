@@ -7,7 +7,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  HostBinding,
   Inject,
   Input,
   OnChanges,
@@ -147,10 +146,16 @@ export class CalendarHeaderComponent<D> {
   exportAs: 'sbbCalendar',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-calendar',
+  },
 })
 export class CalendarComponent<D>
   implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {
-  @HostBinding('class.sbb-calendar') cssClass = true;
+  /**
+   * @deprecated internal detail
+   */
+  cssClass = true;
 
   /** An input indicating the type of the header component, if set. */
   @Input() headerComponent: ComponentType<any>;

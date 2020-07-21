@@ -21,6 +21,10 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
   templateUrl: './datepicker-toggle.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-datepicker-toggle',
+    '[class.sbb-datepicker-toggle-active]': 'this.datepickerToggleActive',
+  },
 })
 export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, AfterContentInit {
   private _stateChanges = Subscription.EMPTY;
@@ -47,13 +51,14 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
     this.tabIndex = parsedTabIndex || parsedTabIndex === 0 ? parsedTabIndex : null;
   }
 
-  @HostBinding('class.sbb-datepicker-toggle')
+  /**
+   * @deprecated internal detail
+   */
   sbbDatepickerToggleCssClass = true;
 
   @HostBinding('attr.tabindex')
   tabindex = null;
 
-  @HostBinding('class.sbb-datepicker-toggle-active')
   get datepickerToggleActive() {
     return this._datepicker && this._datepicker.opened;
   }

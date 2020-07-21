@@ -32,13 +32,27 @@ export class CalendarCell {
   exportAs: 'sbbCalendarBody',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-calendar-body',
+    '[attr.aria-readonly]': 'true',
+    'attr.role': 'grid',
+  },
 })
 export class CalendarBodyComponent {
-  @HostBinding('attr.role') role = 'grid';
+  /**
+   * @deprecated internal detail
+   */
+  role = 'grid';
 
-  @HostBinding('attr.aria-readonly') ariaReadonly = true;
+  /**
+   * @deprecated internal detail
+   */
+  ariaReadonly = true;
 
-  @HostBinding('class.sbb-calendar-body') cssClass = true;
+  /**
+   * @deprecated internal detail
+   */
+  cssClass = true;
 
   /** The label for the table. (e.g. "Jan 2017"). */
   @Input() label: string;

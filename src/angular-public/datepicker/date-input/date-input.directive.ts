@@ -5,7 +5,6 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  HostBinding,
   HostListener,
   Inject,
   Input,
@@ -73,28 +72,34 @@ export const SBB_DATE_VALIDATORS: any = {
     SBB_DATE_VALIDATORS,
     { provide: SBB_INPUT_VALUE_ACCESSOR, useExisting: DateInputDirective },
   ],
+  host: {
+    class: 'sbb-date-input',
+    '[attr.aria-haspopup]': 'true',
+    '[attr.aria-owns]': 'this.ariaOwns',
+    '[attr.min]': 'this.minAttr',
+    '[attr.max]': 'this.maxAttr',
+    '[disabled]': 'this.isDisabled',
+  },
 })
 export class DateInputDirective<D> implements ControlValueAccessor, Validator, OnInit, OnDestroy {
-  @HostBinding('class.sbb-date-input') cssClass = true;
+  /** @deprecated internal detail */
+  cssClass = true;
 
-  @HostBinding('attr.aria-haspopup') ariaHasPopup = true;
+  /** @deprecated internal detail */
+  ariaHasPopup = true;
 
-  @HostBinding('attr.aria-owns')
   get ariaOwns() {
     return (this._datepicker && this._datepicker.opened && this._datepicker.id) || null;
   }
 
-  @HostBinding('attr.min')
   get minAttr() {
     return this.min ? this.dateAdapter.toIso8601(this.min) : null;
   }
 
-  @HostBinding('attr.max')
   get maxAttr() {
     return this.max ? this.dateAdapter.toIso8601(this.max) : null;
   }
 
-  @HostBinding('disabled')
   get isDisabled() {
     return this.disabled;
   }
