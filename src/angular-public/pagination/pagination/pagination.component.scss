@@ -11,6 +11,7 @@ sbb-pagination {
       line-height: 0;
       text-align: center;
       outline: 0;
+      padding-left: 0;
       width: if(
         $sbbBusiness,
         toPx($paginationLiWidthHeightBusiness),
@@ -39,14 +40,11 @@ sbb-pagination {
       .sbb-pagination-item-ellipsis {
         cursor: default;
         display: block;
-        margin-top: 65%;
+        margin-top: 54%;
 
-        @include businessOnly() {
-          color: $sbbColorGrey;
-        }
-
+        &,
         &:hover {
-          color: $sbbColorGrey;
+          color: $paginationBaseColor;
         }
       }
 
@@ -68,42 +66,35 @@ sbb-pagination {
         line-height: 1;
         outline: 0;
 
-        @include businessOnly() {
-          color: $sbbColorGrey;
-        }
+        color: $paginationBaseColor;
 
         &.sbb-pagination-item-selected {
-          border-color: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
+          border-color: $paginationBaseColor;
           cursor: default;
 
           &:hover,
           &:focus {
-            color: $sbbColorGrey;
+            color: $paginationBaseColor;
           }
         }
 
         &:hover,
         &:focus {
-          @if $sbbBusiness {
-            @include svgIconColor($sbbColorRed125);
-            color: $sbbColorRed125;
-          } @else {
-            @include svgIconColor($sbbColorRed);
-            color: $sbbColorRed;
-          }
+          color: $paginationActiveHoverColor;
         }
 
         &.sbb-pagination-item-boundary {
+          color: $paginationItemBoundaryColor;
+          &:hover {
+            color: $paginationActiveHoverColor;
+          }
+
           width: toPx($paginationLiWidthHeight);
           height: if(
             $sbbBusiness,
             toPx($paginationLiWidthHeightBusiness),
             toPx($paginationLiWidthHeight)
           );
-
-          @include businessOnly() {
-            @include svgIconColor($sbbColorGrey);
-          }
 
           @include publicOnly() {
             @include mq($from: desktop4k) {
@@ -114,14 +105,6 @@ sbb-pagination {
             @include mq($from: desktop5k) {
               width: toPx($paginationLiWidthHeight5K);
               height: toPx($paginationLiWidthHeight5K);
-            }
-          }
-
-          &:hover {
-            @if $sbbBusiness {
-              @include svgIconColor($sbbColorRed125);
-            } @else {
-              @include svgIconColor($sbbColorRed);
             }
           }
 
@@ -147,13 +130,12 @@ sbb-pagination {
         }
 
         &.sbb-pagination-item-disabled {
-          @include svgIconColor($sbbColorSilver);
-          color: $sbbColorSilver;
+          color: $paginationDisabledColor;
           cursor: default;
           pointer-events: none;
 
           &:hover {
-            color: $sbbColorGrey;
+            color: $paginationBaseColor;
             cursor: default;
           }
         }

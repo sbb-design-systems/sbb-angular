@@ -4,7 +4,6 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  HostBinding,
   Inject,
   InjectionToken,
   Input,
@@ -79,11 +78,16 @@ const sbbPaginatorBase: CanDisableCtor &
   inputs: ['disabled'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    role: 'navigation',
+  },
 })
 export class SbbPaginatorComponent extends sbbPaginatorBase
   implements OnInit, CanDisable, HasInitialized {
-  /** @docs-private */
-  @HostBinding('attr.role')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   role = 'navigation';
 
   private _initialized: boolean;

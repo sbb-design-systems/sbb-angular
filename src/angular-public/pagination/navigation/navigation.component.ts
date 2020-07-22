@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  HostBinding,
   Input,
   OnChanges,
   Output,
@@ -18,10 +17,15 @@ export type NavigationPageChangeEvent = 'next' | 'previous';
   styleUrls: ['./navigation.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'navigation',
+  },
 })
 export class NavigationComponent implements OnChanges {
-  /** @docs-private */
-  @HostBinding('attr.role')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   role = 'navigation';
 
   /** The next page descriptor. */
