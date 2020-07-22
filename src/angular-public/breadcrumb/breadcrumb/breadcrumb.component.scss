@@ -224,6 +224,7 @@ $breadcrumbTriggerBorder: solid 2px white;
       }
     }
 
+    // display: inline-flex solves a sizing issue on IE11 and Legacy Edge
     .sbb-icon {
       display: inline-flex;
     }
