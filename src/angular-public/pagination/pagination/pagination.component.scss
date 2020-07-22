@@ -11,6 +11,7 @@ sbb-pagination {
       line-height: 0;
       text-align: center;
       outline: 0;
+      padding-left: 0;
       width: if(
         $sbbBusiness,
         toPx($paginationLiWidthHeightBusiness),
@@ -39,7 +40,7 @@ sbb-pagination {
       .sbb-pagination-item-ellipsis {
         cursor: default;
         display: block;
-        margin-top: if($sbbBusiness, 77%, 65%);
+        margin-top: if($sbbBusiness, 54%, 65%);
 
         &,
         &:hover {
