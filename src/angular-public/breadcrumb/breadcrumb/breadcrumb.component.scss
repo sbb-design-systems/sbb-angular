@@ -224,6 +224,10 @@ $breadcrumbTriggerBorder: solid 2px white;
       }
     }
 
+    .sbb-icon {
+      display: inline-flex;
+    }
+
     // TODO(icon-migration): remove definition because new icons inherit colors (also color: can be removed)
     > .sbb-icon-component {
       &:hover,
