@@ -1,8 +1,6 @@
 @import '../../../angular-core/styles/common';
 
 .sbb-file-selector {
-  display: inline-block;
-
   .sbb-file-selector-button {
     @include buttons;
 
