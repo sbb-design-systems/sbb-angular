@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   OnInit,
   Output,
@@ -39,10 +38,15 @@ export class PageChangeEvent {
   styleUrls: ['./pagination.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    'attr.role': 'navigation',
+  },
 })
 export class PaginationComponent implements OnInit {
-  /** @docs-private */
-  @HostBinding('attr.role')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   role = 'navigation';
 
   /** Amount of pages of the pagination. */
