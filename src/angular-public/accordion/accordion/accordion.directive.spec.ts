@@ -161,14 +161,14 @@ describe('AccordionDirective', () => {
 
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-no-toggle')).toBeFalsy(
+    expect(panel.nativeElement.querySelector('.sbb-expansion-panel-header-hide-toggle')).toBeFalsy(
       'Expected the expansion indicator to be present.'
     );
 
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-no-toggle')).toBeTruthy(
+    expect(panel.nativeElement.querySelector('.sbb-expansion-panel-header-hide-toggle')).toBeTruthy(
       'Expected the expansion indicator to be removed.'
     );
   });

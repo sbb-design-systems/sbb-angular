@@ -12,7 +12,6 @@ import {
   ContentChild,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Inject,
   Input,
   OnChanges,
@@ -27,7 +26,7 @@ import {
 } from '@angular/core';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
-import { filter, startWith, take } from 'rxjs/operators';
+import { distinctUntilChanged, filter, startWith, take } from 'rxjs/operators';
 
 import { sbbExpansionAnimations } from '../accordion/accordion-animations';
 import { SBB_ACCORDION } from '../accordion/accordion-token';
@@ -54,6 +53,7 @@ let uniqueId = 0;
   styleUrls: ['./expansion-panel.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  inputs: ['disabled', 'expanded'],
   animations: [sbbExpansionAnimations.bodyExpansion],
   // Provide SbbAccordion as undefined to prevent nested expansion panels from registering
   // to the same accordion.
@@ -63,38 +63,16 @@ let uniqueId = 0;
       useValue: undefined,
     },
   ],
+  host: {
+    class: 'sbb-expansion-panel',
+    '[class.sbb-expanded]': 'expanded',
+  },
 })
 export class ExpansionPanelComponent extends CdkAccordionItem
   implements AfterContentInit, OnChanges, OnDestroy {
-  /**
-   * Class property to disable a specific panel.
-   */
-  @Input() disabled = false;
-  /**
-   * Class property to expand a specific panel.
-   */
-  @Input() expanded = false;
-  /**
-   * An event generated when a panel is opened.
-   */
-  @Output() opened: EventEmitter<void>;
-  /**
-   * An event generated when a panel is closed.
-   */
-  @Output() closed: EventEmitter<void>;
-  /**
-   * An event generated when change the status of the expansion panel.
-   */
-  @Output() expandedChange: EventEmitter<boolean>;
-  /**
-   * Class property that refers to the attribute class of the panel.
-   */
-  @HostBinding('class.sbb-expansion-panel')
+  /** @deprecated internal detail */
   sbbExpansionPanelClass = true;
-  /**
-   * Class property that refers to the status of expansion of the panel.
-   */
-  @HostBinding('class.sbb-expanded')
+  /** @deprecated internal detail */
   get expandedPanelClass() {
     return this.expanded;
   }
@@ -109,7 +87,10 @@ export class ExpansionPanelComponent extends CdkAccordionItem
   }
   private _hideToggle = false;
 
-  private _document: Document;
+  /** An event emitted after the body's expansion animation happens. */
+  @Output() afterExpand = new EventEmitter<void>();
+  /** An event emitted after the body's collapse animation happens. */
+  @Output() afterCollapse = new EventEmitter<void>();
 
   /** Stream that emits for changes in `@Input` properties. */
   readonly _inputChanges = new Subject<SimpleChanges>();
@@ -117,18 +98,39 @@ export class ExpansionPanelComponent extends CdkAccordionItem
   /** Optionally defined accordion the expansion panel belongs to. */
   accordion: AccordionDirective;
 
-  /** Content that will be rendered lazily. */
+  /**
+   * Content that will be rendered lazily.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   @ContentChild(ExpansionPanelContentDirective)
   lazyContent: ExpansionPanelContentDirective;
 
-  /** Element containing the panel's user-provided content. */
+  /**
+   * Element containing the panel's user-provided content.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   @ViewChild('body', { static: true }) body: ElementRef<HTMLElement>;
 
-  /** Portal holding the user's content. */
+  /**
+   * Portal holding the user's content.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   portal: TemplatePortal;
 
-  /** ID for the associated header element. Used for a11y labelling. */
+  /**
+   * ID for the associated header element. Used for a11y labelling.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   headerId = `sbb-expansion-panel-header-${uniqueId++}`;
+
+  /** Stream of body animation done events. */
+  _bodyAnimationDone = new Subject<AnimationEvent>();
+
+  private _document: Document;
 
   constructor(
     private _viewContainerRef: ViewContainerRef,
@@ -140,9 +142,31 @@ export class ExpansionPanelComponent extends CdkAccordionItem
     super(accordion, changeDetectorRef, uniqueSelectionDispatcher);
     this.accordion = accordion;
     this._document = document;
+
+    // We need a Subject with distinctUntilChanged, because the `done` event
+    // fires twice on some browsers. See https://github.com/angular/angular/issues/24084
+    this._bodyAnimationDone
+      .pipe(
+        distinctUntilChanged((x, y) => {
+          return x.fromState === y.fromState && x.toState === y.toState;
+        })
+      )
+      .subscribe((event) => {
+        if (event.fromState !== 'void') {
+          if (event.toState === 'expanded') {
+            this.afterExpand.emit();
+          } else if (event.toState === 'collapsed') {
+            this.afterCollapse.emit();
+          }
+        }
+      });
   }
 
-  /** Gets the expanded state string. */
+  /**
+   * Gets the expanded state string.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   getExpandedState(): ExpansionPanelState {
     return this.expanded ? 'expanded' : 'collapsed';
   }
@@ -152,7 +176,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
       // Render the content as soon as the panel becomes open.
       this.opened
         .pipe(
-          startWith(true),
+          startWith(null!),
           filter(() => this.expanded && !this.portal),
           take(1)
         )
@@ -168,26 +192,18 @@ export class ExpansionPanelComponent extends CdkAccordionItem
 
   ngOnDestroy() {
     super.ngOnDestroy();
+    this._bodyAnimationDone.complete();
     this._inputChanges.complete();
   }
 
-  bodyAnimation(event: AnimationEvent) {
-    const classList = event.element.classList;
-    const cssClass = 'sbb-expanded';
-    const { phaseName, toState } = event;
+  /** @deprecated No longer used */
+  bodyAnimation() {}
 
-    // Toggle the body's `overflow: hidden` class when closing starts or when expansion ends in
-    // order to prevent the cases where switching too early would cause the animation to jump.
-    // Note that we do it directly on the DOM element to avoid the slight delay that comes
-    // with doing it via change detection.
-    if (phaseName === 'done' && toState === 'expanded') {
-      classList.add(cssClass);
-    } else if (phaseName === 'start' && toState === 'collapsed') {
-      classList.remove(cssClass);
-    }
-  }
-
-  /** Checks whether the expansion panel's content contains the currently-focused element. */
+  /**
+   * Checks whether the expansion panel's content contains the currently-focused element.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   containsFocus(): boolean {
     if (this.body && this._document) {
       const focusedElement = this._document.activeElement;
@@ -200,5 +216,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
 
   // tslint:disable: member-ordering
   static ngAcceptInputType_hideToggle: BooleanInput;
+  static ngAcceptInputType_expanded: BooleanInput;
+  static ngAcceptInputType_disabled: BooleanInput;
   // tslint:enable: member-ordering
 }
