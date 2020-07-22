@@ -151,8 +151,9 @@ $breadcrumbTriggerBorder: solid 2px white;
         border-right: $breadcrumbTriggerBorderActive;
         border-left: $breadcrumbTriggerBorderActive;
         position: absolute;
+        top: 0;
         background-color: $sbbColorWhite;
-        height: 100%;
+        height: calc(100% + 1px); // 1px is needed to fit borders without any gap to overly panel
         min-width: 132px;
         transform: translateX(-30px);
         width: calc(100% + 60px);
