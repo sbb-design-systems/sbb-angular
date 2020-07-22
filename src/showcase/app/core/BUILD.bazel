@@ -13,7 +13,7 @@ ng_module(
         "core-routing.module.ts",
         "core/core.component.ts",
         "icon-overview/cdn-icon.service.ts",
-        "icon-overview/cdn-icon-list/cdn-icon-detail/cdn-icon-detail.component.ts",
+        "icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.ts",
         "icon-overview/cdn-icon-list/cdn-icon-list.component.ts",
         "icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.ts",
         "icon-overview/icon-overview.component.ts",
@@ -23,9 +23,9 @@ ng_module(
         ":icon-overview/icon-overview.component.css",
         ":icon-overview/cdn-icon-list/cdn-icon-list.component.css",
         ":icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.css",
-        ":icon-overview/cdn-icon-list/cdn-icon-detail/cdn-icon-detail.component.css",
+        ":icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.css",
         "core/core.component.html",
-        "icon-overview/cdn-icon-list/cdn-icon-detail/cdn-icon-detail.component.html",
+        "icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.html",
         "icon-overview/cdn-icon-list/cdn-icon-list.component.html",
         "icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.html",
         "icon-overview/icon-overview.component.html",
@@ -80,6 +80,6 @@ sass_binary(
 )
 
 sass_binary(
-    name = "icon_overview_cdn_icon_list_cdn_icon_detail_cdn_icon_detail_component_scss",
-    src = "icon-overview/cdn-icon-list/cdn-icon-detail/cdn-icon-detail.component.scss",
+    name = "icon_overview_cdn_icon_list_cdn_icon_dialog_cdn_icon_dialog_component_scss",
+    src = "icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.scss",
 )
