@@ -42,6 +42,8 @@ ng_test_library(
     ),
     deps = [
         ":file-selector",
+        "//src/angular-core/icon",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
