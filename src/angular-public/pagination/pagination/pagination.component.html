@@ -1,4 +1,4 @@
-<ul class="sbb-pagination">
+<ul class="sbb-pagination sbb-icon-fit">
   <li class="sbb-pagination-item">
     <button
       type="button"
@@ -9,7 +9,7 @@
       [class.sbb-pagination-item-disabled]="!(hasPreviousPage | async)"
       (click)="_pageClick(pageIndex - 1)"
     >
-      <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
+      <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
     </button>
   </li>
 
@@ -40,7 +40,7 @@
       [class.sbb-pagination-item-disabled]="!(hasNextPage | async)"
       (click)="_pageClick(pageIndex + 1)"
     >
-      <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
+      <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
     </button>
   </li>
 </ul>
