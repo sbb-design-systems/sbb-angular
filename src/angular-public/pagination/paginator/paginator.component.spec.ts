@@ -2,6 +2,8 @@ import { Component, Provider, Type, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 
 import { PaginationModule, SbbPaginatorComponent } from '../../pagination';
@@ -60,7 +62,7 @@ class SbbPaginatorWithStringValuesTestComponent {
 describe('SbbPaginatorComponent', () => {
   function createComponent<T>(type: Type<T>, providers: Provider[] = []): ComponentFixture<T> {
     TestBed.configureTestingModule({
-      imports: [PaginationModule, NoopAnimationsModule],
+      imports: [PaginationModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
       declarations: [type],
       providers: [...providers],
     }).compileComponents();

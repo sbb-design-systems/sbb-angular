@@ -1,4 +1,4 @@
-<ul class="sbb-navigation">
+<ul class="sbb-navigation sbb-icon-fit">
   <li class="sbb-navigation-item sbb-navigation-item-left" *ngIf="previousPage">
     <button
       type="button"
@@ -9,7 +9,7 @@
     >
       <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
         <span class="sbb-navigation-item-boundary-arrow">
-          <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
+          <sbb-icon svgIcon="kom:chevron-small-left-circle-small"></sbb-icon>
         </span>
         <span class="sbb-navigation-item-boundary-text">{{ previousPage }}</span>
       </span>
@@ -26,7 +26,7 @@
       <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
         <span class="sbb-navigation-item-boundary-text">{{ nextPage }}</span>
         <span class="sbb-navigation-item-boundary-arrow">
-          <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
+          <sbb-icon svgIcon="kom:chevron-small-right-circle-small"></sbb-icon>
         </span>
       </span>
     </button>

@@ -34,7 +34,7 @@ export class CalendarCell {
   host: {
     class: 'sbb-calendar-body',
     '[attr.aria-readonly]': 'true',
-    'attr.role': 'grid',
+    role: 'grid',
   },
 })
 export class CalendarBodyComponent {
