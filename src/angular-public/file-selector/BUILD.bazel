@@ -18,8 +18,7 @@ ng_module(
     assets = [":file-selector/file-selector.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/file-selector",
     deps = [
-        "//src/angular-icons/basic",
-        "//src/angular-icons/document",
+        "//src/angular-core/icon",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
