@@ -18,7 +18,7 @@ export type NavigationPageChangeEvent = 'next' | 'previous';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'attr.role': 'navigation',
+    role: 'navigation',
   },
 })
 export class NavigationComponent implements OnChanges {

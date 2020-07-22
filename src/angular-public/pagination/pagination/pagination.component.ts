@@ -39,7 +39,7 @@ export class PageChangeEvent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'attr.role': 'navigation',
+    role: 'navigation',
   },
 })
 export class PaginationComponent implements OnInit {

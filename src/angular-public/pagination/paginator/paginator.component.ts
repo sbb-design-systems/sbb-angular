@@ -79,7 +79,7 @@ const sbbPaginatorBase: CanDisableCtor &
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'attr.role': 'navigation',
+    role: 'navigation',
   },
 })
 export class SbbPaginatorComponent extends sbbPaginatorBase
