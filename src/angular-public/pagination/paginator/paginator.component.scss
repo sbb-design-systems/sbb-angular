@@ -40,7 +40,7 @@ sbb-paginator {
       .sbb-paginator-item-ellipsis {
         cursor: default;
         display: block;
-        margin-top: if($sbbBusiness, 54%, 65%);
+        margin-top: 54%;
 
         &,
         &:hover {
