@@ -26,10 +26,12 @@
     button {
       outline: 0;
       color: $sbbColorGranite;
-      &:hover,
-      &:focus,
-      &:active {
-        color: $sbbColorRed125;
+      &:not(:disabled) {
+        &:hover,
+        &:focus,
+        &:active {
+          color: $sbbColorRed125;
+        }
       }
     }
 
@@ -63,10 +65,12 @@
     @include absoluteCenterY();
     outline: 0;
     color: $sbbColorGranite;
-    &:hover,
-    &:focus,
-    &:active {
-      color: $sbbColorRed125;
+    &:not(:disabled) {
+      &:hover,
+      &:focus,
+      &:active {
+        color: $sbbColorRed125;
+      }
     }
 
     &.sbb-datepicker-arrow-left {
