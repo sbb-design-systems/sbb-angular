@@ -91,7 +91,7 @@ sbb-select.sbb-select {
         }
       }
 
-      .sbb-select-arrow-wrapper-rotate {
+      &.sbb-select-arrow-wrapper-rotate {
         transform-origin: toPx($selectArrowWidthHeight / 2) toPx($selectArrowWidthHeight / 4);
 
         @include publicOnly() {

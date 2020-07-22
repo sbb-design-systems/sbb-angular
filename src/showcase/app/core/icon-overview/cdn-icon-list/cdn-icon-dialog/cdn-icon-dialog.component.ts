@@ -4,9 +4,9 @@ import { DIALOG_DATA } from '@sbb-esta/angular-business/dialog';
 import { CdnIcon } from '../../cdn-icon.service';
 
 @Component({
-  selector: 'sbb-cdn-icon-detail',
-  templateUrl: './cdn-icon-detail.component.html',
-  styleUrls: ['./cdn-icon-detail.component.scss'],
+  selector: 'sbb-cdn-icon-dialog',
+  templateUrl: './cdn-icon-dialog.component.html',
+  styleUrls: ['./cdn-icon-dialog.component.scss'],
 })
 export class CdnIconDialogComponent {
   constructor(@Inject(DIALOG_DATA) public data: { cdnIcon: CdnIcon }) {}
