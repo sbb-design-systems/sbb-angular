@@ -191,7 +191,7 @@ export class LightboxContentComponent {
     class: 'sbb-lightbox-footer',
     '[class.sbb-lightbox-footer-align-start]': 'this.alignment === "left"',
     '[class.sbb-lightbox-footer-align-center]': 'this.alignment === "center"',
-    '[class.sbb-lightbox-footer-align-end]': 'this.alignment === "end"',
+    '[class.sbb-lightbox-footer-align-end]': 'this.alignment === "right"',
   },
 })
 export class LightboxFooterComponent implements OnInit {

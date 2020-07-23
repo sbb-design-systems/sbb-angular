@@ -26,7 +26,7 @@ import { Dialog } from '../dialog/dialog.service';
     class: 'sbb-dialog-footer',
     '[class.sbb-dialog-footer-align-start]': 'this.alignment === "left"',
     '[class.sbb-dialog-footer-align-center]': 'this.alignment === "center"',
-    '[class.sbb-dialog-footer-align-end]': 'this.alignment === "end"',
+    '[class.sbb-dialog-footer-align-end]': 'this.alignment === "right"',
   },
 })
 export class DialogFooterComponent implements OnInit {
