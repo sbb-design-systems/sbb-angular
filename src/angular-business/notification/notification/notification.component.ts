@@ -203,11 +203,10 @@ export class NotificationComponent {
       case 'success':
         return this.checkIcon;
       case 'error':
+      case 'warn':
         return this.errorIcon;
       case 'info':
         return this.infoIcon;
-      case 'warn':
-        return this.errorIcon;
       default:
         return null;
     }
