@@ -6,7 +6,6 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  HostBinding,
   Inject,
   Input,
   Optional,
@@ -35,12 +34,16 @@ let nextId = 0;
       multi: true,
     },
   ],
+  host: {
+    class: 'sbb-file-selector sbb-icon-fit',
+    '[attr.id]': 'this.id',
+  },
 })
 export class FileSelectorComponent implements ControlValueAccessor, FileSelectorOptions {
   private _uniqueId = `sbb-file-selector-${++nextId}`;
 
   /** Unique id of the element. */
-  @Input() @HostBinding('attr.id') id = this._uniqueId;
+  @Input() id = this._uniqueId;
 
   /** Id for the inner input field. */
   get inputId() {
