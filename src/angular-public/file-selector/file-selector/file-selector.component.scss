@@ -1,6 +1,8 @@
 @import '../../../angular-core/styles/common';
 
 .sbb-file-selector {
+  display: block;
+
   .sbb-file-selector-button {
     @include buttons;
 
