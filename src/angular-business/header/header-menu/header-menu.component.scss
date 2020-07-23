@@ -36,20 +36,12 @@ button.sbb-header-menu-back,
 
 button.sbb-header-menu-back {
   display: flex;
+  padding-top: 15px;
   padding-left: 8px;
   cursor: pointer;
 
   @include mq($from: tabletPortrait) {
     display: none;
-  }
-
-  > sbb-icon-chevron-small-left {
-    width: 24px;
-    height: 24px;
-
-    ::ng-deep path {
-      stroke: currentColor;
-    }
   }
 
   &:hover,

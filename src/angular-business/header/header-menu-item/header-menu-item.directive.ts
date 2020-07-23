@@ -5,7 +5,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Inject,
   Input,
@@ -24,12 +23,14 @@ const _HeaderMenuItemBase: CanDisableCtor & typeof HeaderMenuItemBase = mixinDis
 
 @Directive({
   selector: '[sbbHeaderMenuItem]',
+  host: {
+    role: 'this.role',
+  },
 })
 export class HeaderMenuItemDirective extends _HeaderMenuItemBase
   implements FocusableOption, OnDestroy {
   /** ARIA role for the menu item. */
-  @Input() @HostBinding('attr.role') role: 'menuitem' | 'menuitemradio' | 'menuitemcheckbox' =
-    'menuitem';
+  @Input() role: 'menuitem' | 'menuitemradio' | 'menuitemcheckbox' = 'menuitem';
 
   private _document: Document;
 
