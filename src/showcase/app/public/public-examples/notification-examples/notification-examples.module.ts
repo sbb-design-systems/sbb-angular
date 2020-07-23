@@ -7,12 +7,20 @@ import { NotificationModule } from '@sbb-esta/angular-public/notification';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { NotificationExampleComponent } from './notification-example/notification-example.component';
+import { CustomIconNotificationExampleComponent } from './custom-icon-notification-example/custom-icon-notification-example.component';
+import { JumpmarkNotificationExampleComponent } from './jumpmark-notification-example/jumpmark-notification-example.component';
+import { SimpleNotificationExampleComponent } from './simple-notification-example/simple-notification-example.component';
 
-const EXAMPLES = [NotificationExampleComponent];
+const EXAMPLES = [
+  CustomIconNotificationExampleComponent,
+  JumpmarkNotificationExampleComponent,
+  SimpleNotificationExampleComponent,
+];
 
 const EXAMPLE_INDEX = {
-  'notification-example': NotificationExampleComponent,
+  'simple-notification-example': SimpleNotificationExampleComponent,
+  'custom-icon-notification-example': CustomIconNotificationExampleComponent,
+  'jumpmark-notification-example': JumpmarkNotificationExampleComponent,
 };
 
 @NgModule({
