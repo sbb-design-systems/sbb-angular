@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
   Input,
   OnInit,
   Optional,
@@ -23,29 +22,28 @@ import { Dialog } from '../dialog/dialog.service';
   encapsulation: ViewEncapsulation.None,
   template: ` <ng-content select="button"></ng-content> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-dialog-footer',
+    '[class.sbb-dialog-footer-align-start]': 'this.alignment === "left"',
+    '[class.sbb-dialog-footer-align-center]': 'this.alignment === "center"',
+    '[class.sbb-dialog-footer-align-end]': 'this.alignment === "end"',
+  },
 })
 export class DialogFooterComponent implements OnInit {
-  /** Class attribute for the footer.  */
-  @HostBinding('class.sbb-dialog-footer')
-  dialogFooterClass = true;
-
   /** Types of alignment. */
   @Input() alignment: 'left' | 'center' | 'right' = 'right';
 
-  /** Alignment to left position.  */
-  @HostBinding('class.sbb-dialog-footer-align-start')
+  /** @deprecated internal detail */
+  dialogFooterClass = true;
+  /** @deprecated internal detail */
   get alignmentStartClass() {
     return this.alignment === 'left';
   }
-
-  /** Alignment to center position.  */
-  @HostBinding('class.sbb-dialog-footer-align-center')
+  /** @deprecated internal detail */
   get alignmentCenterClass() {
     return this.alignment === 'center';
   }
-
-  /** Alignment to right position.  */
-  @HostBinding('class.sbb-dialog-footer-align-end')
+  /** @deprecated internal detail */
   get alignmentEndClass() {
     return this.alignment === 'right';
   }
@@ -75,4 +73,8 @@ export class DialogFooterComponent implements OnInit {
       });
     }
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_alignment: 'left' | 'center' | 'right' | string | null | undefined;
+  // tslint:enable: member-ordering
 }

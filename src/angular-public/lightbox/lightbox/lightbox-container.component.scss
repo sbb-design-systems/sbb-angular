@@ -122,7 +122,7 @@ $lightbox-footer-padding: 24;
       }
     }
 
-    &-align-start {
+    &.sbb-lightbox-footer-align-start {
       justify-content: flex-start;
 
       button {
@@ -132,7 +132,7 @@ $lightbox-footer-padding: 24;
       }
     }
 
-    &-align-end {
+    &.sbb-lightbox-footer-align-end {
       justify-content: flex-end;
 
       button {
@@ -142,15 +142,16 @@ $lightbox-footer-padding: 24;
       }
     }
 
-    &-align-center {
+    &.sbb-lightbox-footer-align-center {
       justify-content: space-around;
     }
   }
 
   .sbb-lightbox-close-btn {
     @include buttonResetFrameless();
-    @include svgIconColor($lighbox-close-icon-color);
 
+    color: $lighbox-close-icon-color;
+    cursor: pointer;
     margin-left: auto;
     position: relative;
     width: pxToEm($lighbox-close-button-size);
@@ -178,8 +179,7 @@ $lightbox-footer-padding: 24;
 
     &:hover,
     &:focus {
-      @include svgIconColor($lighbox-close-button-color-hover);
-      cursor: pointer;
+      color: $lighbox-close-button-color-hover;
 
       &::before {
         border-color: $lighbox-close-button-color-hover;

@@ -23,23 +23,25 @@ let lightboxElementUid = 0;
 @Directive({
   selector: `button[sbbLightboxClose]`,
   exportAs: 'sbbLightboxClose',
+  host: {
+    '[attr.aria-label]': 'ariaLabel || null',
+    '[attr.type]': 'type',
+  },
 })
 export class LightboxCloseDirective implements OnInit {
   /** Screenreader label for the button. */
-  @HostBinding('attr.aria-label')
-  ariaLabel = 'Close lightbox';
+  @Input('aria-label') ariaLabel: string = 'Close lightbox';
 
-  /**  Prevents accidental form submits. **/
-  @HostBinding('attr.type')
+  /** @deprecated internal detail */
   btnType = 'button';
 
+  /** Default to "button" to prevents accidental form submits. */
+  @Input() type: 'submit' | 'button' | 'reset' = 'button';
+
   /** lightbox close input. Renamed to be more meaningful **/
-  // tslint:disable-next-line:no-input-rename
-  @Input('sbbLightboxClose')
-  lightboxResult: any;
+  @Input('sbbLightboxClose') lightboxResult: any;
 
   constructor(
-    /** Reference of lightbox. */
     @Optional() public lightboxRef: LightboxRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
     private _lightbox: Lightbox
@@ -70,7 +72,7 @@ export class LightboxCloseDirective implements OnInit {
   template: `
     <ng-content></ng-content>
     <button type="button" sbbLightboxClose *ngIf="!isCloseDisabled" class="sbb-lightbox-close-btn">
-      <sbb-icon-cross></sbb-icon-cross>
+      <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
     </button>
     <button
       *ngIf="isCloseDisabled"
@@ -78,17 +80,19 @@ export class LightboxCloseDirective implements OnInit {
       (click)="emitManualCloseAction()"
       class="sbb-lightbox-close-btn"
     >
-      <sbb-icon-cross></sbb-icon-cross>
+      <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
     </button>
   `,
   exportAs: 'sbbLightboxHeader',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-lightbox-header',
+  },
 })
 export class LightboxHeaderComponent implements OnInit {
   /** Disables lightbox header when lightbox is closed.  */
   isCloseDisabled: boolean;
-  /** Class attribute on lightbox header. */
-  @HostBinding('class.sbb-lightbox-header')
+  /** @deprecated internal detail */
   lightboxHeaderClass = true;
 
   constructor(
@@ -125,14 +129,15 @@ export class LightboxHeaderComponent implements OnInit {
 
 @Directive({
   selector: `[sbbLightboxTitle]`,
+  host: {
+    class: 'mat-lightbox-title',
+    '[id]': 'id',
+  },
 })
 export class LightboxTitleDirective implements OnInit {
   /** Identifier of lightbox title. */
-  @Input()
-  @HostBinding('attr.id')
-  id = `sbb-lightbox-title-${lightboxElementUid++}`;
-  /** Class attribute for lightbox title. */
-  @HostBinding('class.sbb-lightbox-title')
+  @Input() id = `sbb-lightbox-title-${lightboxElementUid++}`;
+  /** @deprecated internal detail */
   lightboxTitleClass = true;
 
   constructor(
@@ -165,11 +170,12 @@ export class LightboxTitleDirective implements OnInit {
   selector: `sbb-lightbox-content, [sbbLightboxContent]`,
   template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-lightbox-content sbb-scrollbar',
+  },
 })
 export class LightboxContentComponent {
-  /** Class attribute for lightbox content */
-  @HostBinding('class.sbb-lightbox-content')
-  @HostBinding('class.sbb-scrollbar')
+  /** @deprecated internal detail */
   lightboxContentClass = true;
 }
 
@@ -181,25 +187,27 @@ export class LightboxContentComponent {
   selector: `sbb-lightbox-footer, [sbbLightboxFooter]`,
   template: '<ng-content select="button"></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-lightbox-footer',
+    '[class.sbb-lightbox-footer-align-start]': 'this.alignment === "left"',
+    '[class.sbb-lightbox-footer-align-center]': 'this.alignment === "center"',
+    '[class.sbb-lightbox-footer-align-end]': 'this.alignment === "end"',
+  },
 })
 export class LightboxFooterComponent implements OnInit {
-  /** Class attribute for the footer.  */
-  @HostBinding('class.sbb-lightbox-footer')
-  lightboxFooterClass = true;
   /** Types of alignment. */
   @Input() alignment: 'left' | 'center' | 'right' = 'left';
-  /** Alignment to left position.  */
-  @HostBinding('class.sbb-lightbox-footer-align-start')
+  /** @deprecated internal detail */
+  lightboxFooterClass = true;
+  /** @deprecated internal detail */
   get alignmentStartClass() {
     return !this.alignmentCenterClass && !this.alignmentEndClass;
   }
-  /** Alignment to center position.  */
-  @HostBinding('class.sbb-lightbox-footer-align-center')
+  /** @deprecated internal detail */
   get alignmentCenterClass() {
     return this.alignment === 'center';
   }
-  /** Alignment to right position.  */
-  @HostBinding('class.sbb-lightbox-footer-align-end')
+  /** @deprecated internal detail */
   get alignmentEndClass() {
     return this.alignment === 'right';
   }
