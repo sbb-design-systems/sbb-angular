@@ -23,7 +23,7 @@ ng_module(
     module_name = "@sbb-esta/angular-public/accordion",
     deps = [
         "//src/angular-core/common-behaviors",
-        "//src/angular-icons/navigation",
+        "//src/angular-core/icon",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
@@ -62,6 +62,7 @@ ng_test_library(
     ),
     deps = [
         ":accordion",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
         "@npm//@angular/cdk",
         "@npm//@angular/platform-browser",

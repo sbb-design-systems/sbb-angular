@@ -7,7 +7,6 @@ import {
   Component,
   ElementRef,
   Host,
-  HostBinding,
   HostListener,
   Inject,
   OnDestroy,
@@ -17,6 +16,7 @@ import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
+import { sbbExpansionAnimations } from '../accordion/accordion-animations';
 import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.component';
 
 /**
@@ -28,35 +28,55 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
   selector: 'sbb-expansion-panel-header',
   styleUrls: ['./expansion-panel-header.component.css'],
   templateUrl: './expansion-panel-header.component.html',
+  animations: [sbbExpansionAnimations.indicatorRotate],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-expansion-panel-header',
+    role: 'button',
+    '[attr.id]': 'panel.headerId',
+    '[attr.tabindex]': 'disabled ? -1 : 0',
+    '[attr.aria-controls]': '_getPanelId()',
+    '[attr.aria-expanded]': '_isExpanded()',
+    '[attr.aria-disabled]': 'panel.disabled',
+    '[class.sbb-expansion-panel-header-hide-toggle]': '!this.showToggle()',
+    '[class.sbb-expanded]': '_isExpanded()',
+    '[class.sbb-expansion-panel-header-disabled]': 'panel.disabled',
+  },
 })
 export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption {
-  /**
-   * Class property that refers to the attribute class of the header panel.
-   */
-  @HostBinding('class.sbb-expansion-panel-header')
+  /** @deprecated internal detail */
   panelHeaderClass = true;
-  /**
-   * Class property that refers to the role of the header panel.
-   */
-  @HostBinding('attr.role')
+  /** @deprecated internal detail */
   panelHeaderRole = 'button';
-  /**
-   * Class property that refers to the identifier of the header panel.
-   */
-  @HostBinding('attr.id')
+  /** @deprecated internal detail */
   panelHeaderAttrId: string = this.panel.headerId;
-
-  @HostBinding('attr.tabindex')
+  /** @deprecated internal detail */
   get tabIndex() {
     return this.disabled ? '-1' : '0';
   }
-  /**
-   * Class property that gets the status disabled of the panel.
-   */
-  @HostBinding('attr.aria-disabled')
+  /** @deprecated internal detail */
   get ariaDisabled() {
+    return this.panel.disabled;
+  }
+  /** @deprecated internal detail */
+  get getPanelId(): string {
+    return this.panel.id;
+  }
+  /** @deprecated internal detail */
+  get hasNoToggle(): boolean {
+    return !this.showToggle();
+  }
+  /** @deprecated internal detail */
+  get isExpanded(): boolean {
+    return this.panel.expanded;
+  }
+
+  /**
+   * Whether the associated panel is disabled. Implemented as a part of `FocusableOption`.
+   * @docs-private
+   */
+  get disabled() {
     return this.panel.disabled;
   }
 
@@ -102,50 +122,38 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
   }
 
   /**
-   * Whether the associated panel is disabled. Implemented as a part of `FocusableOption`.
-   * @docs-private
+   * Toggles the expanded state of the panel.
+   * @deprecated internal detail
+   * TODO: Prefix with _
    */
-  get disabled() {
-    return this.panel.disabled;
-  }
-
-  /** Toggles the expanded state of the panel. */
   @HostListener('click')
   toggle(): void {
     this.panel.toggle();
   }
 
-  /** Gets whether the panel is expanded. */
-  @HostBinding('attr.aria-expanded')
-  @HostBinding('class.sbb-expanded')
-  get isExpanded(): boolean {
-    return this.panel.expanded;
-  }
-
-  /** Gets the expanded state string of the panel. */
+  /**
+   * Gets the expanded state string of the panel.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   getExpandedState(): string {
     return this.panel.getExpandedState();
   }
 
-  /** Gets the panel id. */
-  @HostBinding('attr.aria-controls')
-  get getPanelId(): string {
-    return this.panel.id;
-  }
   /**
-   * Class property that identifies a header panel without toggle.
+   * Gets whether the expand indicator should be shown.
+   * @deprecated internal detail
+   * TODO: Prefix with _
    */
-  @HostBinding('class.sbb-no-toggle')
-  get hasNoToggle(): boolean {
-    return !this.showToggle();
-  }
-
-  /** Gets whether the expand indicator should be shown. */
   showToggle(): boolean {
     return !this.panel.hideToggle && !this.panel.disabled;
   }
 
-  /** Handle keydown event calling to toggle() if appropriate. */
+  /**
+   * Handle keydown event calling to toggle() if appropriate.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   @HostListener('keydown', ['$event'])
   keydown(event: TypeRef<KeyboardEvent>) {
     switch (event.keyCode) {
@@ -178,6 +186,16 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
   ngOnDestroy() {
     this._parentChangeSubscription.unsubscribe();
     this._focusMonitor.stopMonitoring(this._element.nativeElement);
+  }
+
+  /** Gets whether the panel is expanded. */
+  _isExpanded(): boolean {
+    return this.panel.expanded;
+  }
+
+  /** Gets the panel id. */
+  _getPanelId(): string {
+    return this.panel.id;
   }
 
   private _isFocused() {

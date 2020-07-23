@@ -20,8 +20,10 @@ $mqResponsive: true;
  * stakeholders, designers, developers, and testers.
  */
 $mqBreakpoints: (
+  mobile: $sizeBreakpointMobilePortrait,
   mobilePortrait: $sizeBreakpointMobilePortrait,
   mobileLandscape: $sizeBreakpointMobileLandscape,
+  tablet: $sizeBreakpointTabletPortrait,
   tabletPortrait: $sizeBreakpointTabletPortrait,
   tabletLandscape: $sizeBreakpointTabletLandscape,
   desktop: $sizeBreakpointDesktop,
