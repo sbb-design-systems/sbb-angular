@@ -18,9 +18,8 @@ It is also possible to send a notification message with a custom icon
 (using \*sbbIcon directive) as seen below
 
 ```html
-<h4>Notification with custom icon</h4>
-<sbb-notification message="Suchen" type="error">
-  <sbb-icon-clock *sbbIcon></sbb-icon-clock>
+<sbb-notification message="Search" type="error">
+  <sbb-icon svgIcon="kom:clock-small" *sbbIcon></sbb-icon>
 </sbb-notification>
 ```
 
@@ -39,8 +38,7 @@ export interface JumpMark {
 ```
 
 ```html
-<h4>Error notification with jump marks and custom icon</h4>
 <sbb-notification message="Please fix the form errors" type="error" [jumpMarks]="jumpMarks">
-  <sbb-icon-clock *sbbIcon></sbb-icon-clock>
+  <sbb-icon svgIcon="kom:cloud-sunshine-small" *sbbIcon></sbb-icon>
 </sbb-notification>
 ```
