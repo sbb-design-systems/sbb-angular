@@ -73,7 +73,7 @@
         [formControl]="myControlStatic"
         [sbbAutocomplete]="auto3"
       >
-        <sbb-icon-circle-information *sbbIcon></sbb-icon-circle-information>
+        <sbb-icon svgIcon="kom:circle-information-small" *sbbIcon></sbb-icon>
       </sbb-search>
       <sbb-autocomplete #auto3="sbbAutocomplete">
         <sbb-option *ngFor="let option of options$ | async" [value]="option">

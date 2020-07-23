@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IconCircleInformationModule } from '@sbb-esta/angular-icons/basic';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
 import { LoadingModule } from '@sbb-esta/angular-public/loading';
 import { SearchModule } from '@sbb-esta/angular-public/search';
@@ -21,7 +21,7 @@ const EXAMPLE_INDEX = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IconCircleInformationModule,
+    SbbIconModule,
     AutocompleteModule,
     LoadingModule,
     SearchModule,
