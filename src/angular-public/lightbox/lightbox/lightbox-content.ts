@@ -130,7 +130,7 @@ export class LightboxHeaderComponent implements OnInit {
 @Directive({
   selector: `[sbbLightboxTitle]`,
   host: {
-    class: 'mat-lightbox-title',
+    class: 'sbb-lightbox-title',
     '[id]': 'id',
   },
 })
