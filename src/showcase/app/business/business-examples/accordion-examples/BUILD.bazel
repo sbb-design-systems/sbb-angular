@@ -27,7 +27,7 @@ ng_module(
         "//src/angular-business/checkbox",
         "//src/angular-business/field",
         "//src/angular-business/radio-button",
-        "//src/angular-icons/arrow",
+        "//src/angular-core/icon",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
