@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./simple-notification-example.component.css'],
 })
 export class SimpleNotificationExampleComponent {
-  type: 'success' | 'info' | 'error' | 'warn' = 'success';
-  types = ['success', 'info', 'error', 'warn'];
+  type: 'success' | 'info' | 'error' = 'success';
+  types = ['success', 'info', 'error'];
 }
