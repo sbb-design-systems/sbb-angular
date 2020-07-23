@@ -1,12 +1,8 @@
-/**
- * Header of a dialog element. Stays fixed to the top of the dialog when scrolling.
- */
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostBinding,
   OnInit,
   Optional,
 } from '@angular/core';
@@ -15,23 +11,28 @@ import { DialogHelperService } from '../dialog/dialog-helper.service';
 import { DialogRef } from '../dialog/dialog-ref';
 import { Dialog } from '../dialog/dialog.service';
 
+/**
+ * Header of a dialog element. Stays fixed to the top of the dialog when scrolling.
+ */
 @Component({
   selector: 'sbb-dialog-header, [sbbDialogHeader]',
   styleUrls: ['dialog-header.component.css'],
   template: `
     <ng-content></ng-content>
     <button type="button" sbbDialogClose *ngIf="!isCloseDisabled" class="sbb-dialog-close-btn">
-      <sbb-icon-cross></sbb-icon-cross>
+      <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
     </button>
   `,
   exportAs: 'sbbDialogHeader',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-dialog-header',
+  },
 })
 export class DialogHeaderComponent implements OnInit {
   /** Disables dialog header when dialog is closed.  */
   isCloseDisabled: boolean;
-  /** Class attribute on dialog header. */
-  @HostBinding('class.sbb-dialog-header')
+  /** @deprecated internal detail */
   dialogHeaderClass = true;
 
   constructor(
