@@ -23,7 +23,6 @@ import {
   Output,
   QueryList,
   ViewChild,
-  ViewContainerRef,
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
@@ -61,35 +60,33 @@ export type SbbHeaderMenuToggleResult = 'open' | 'close';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: SBB_HEADER, useExisting: HeaderComponent }],
+  host: {
+    class: 'sbb-header',
+  },
 })
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
-  /** @docs-private */
-  @HostBinding('class.sbb-header') cssClass = true;
-
   /**
-   * Main title shown in the header.
+   * @docs-private
+   * @deprecated internal detail
    */
-  @Input()
-  label: String;
+  cssClass = true;
 
-  /**
-   * Subtitle shown below the main title, if present.
-   */
-  @Input()
-  subtitle?: String;
+  /** Main title shown in the header. */
+  @Input() label: string;
+
+  /** Subtitle shown below the main title, if present. */
+  @Input() subtitle?: string;
 
   /**
    * String representing the kind of environment the application is running in.
    * Will be shown in a ribbon, top-left corner of the header.
    */
-  @Input()
-  environment?: String;
+  @Input() environment?: string;
 
   /**
    * Background color for the ribbon, if present.
    */
-  @Input()
-  environmentColor?: String;
+  @Input() environmentColor?: string;
 
   /**
    * Whether the header menu is open.

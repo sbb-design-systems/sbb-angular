@@ -10,18 +10,14 @@
     padding-right: 24px;
     background-color: $sbbColorWhite;
 
-    > sbb-icon-chevron-small-down {
+    > .sbb-header-menu-trigger-indicator.sbb-icon {
       display: inline-block;
       position: absolute;
-      top: 50%;
-      right: 0;
       width: 24px;
       height: 24px;
+      top: 50%;
+      right: 0;
       transform: translateY(-50%) rotate(-90deg);
-
-      ::ng-deep svg path {
-        stroke: currentColor;
-      }
     }
   }
 
@@ -35,7 +31,7 @@
       padding-right: 32px;
       max-width: 100%;
 
-      > sbb-icon-chevron-small-down {
+      > .sbb-header-menu-trigger-indicator.sbb-icon {
         right: 8px;
         transform: translateY(-50%) rotate(0);
         transition: transform 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
@@ -54,7 +50,7 @@
         max-width: 150%;
         z-index: 1000;
 
-        > sbb-icon-chevron-small-down {
+        > .sbb-header-menu-trigger-indicator.sbb-icon {
           transform: translateY(-50%) rotate(180deg);
         }
       }

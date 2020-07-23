@@ -51,19 +51,15 @@ $sbbHeaderHeight: 54px;
   position: relative;
   outline: none;
 
-  > sbb-icon-hamburger-menu,
-  > sbb-icon-cross {
+  > .sbb-icon {
     display: inline-block;
     width: 24px;
     height: 24px;
   }
 
   &:focus {
-    > sbb-icon-hamburger-menu,
-    > sbb-icon-cross {
-      ::ng-deep path {
-        stroke: $sbbColorRed125;
-      }
+    > .sbb-icon {
+      color: $sbbColorRed125;
     }
   }
 }
