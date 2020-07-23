@@ -4,7 +4,7 @@ import { ProcessflowStepBase } from '@sbb-esta/angular-core/base/processflow';
 // TODO: Find solution for template and style
 @Component({
   selector: 'sbb-processflow-step',
-  templateUrl: './processflow-step.component.html',
+  template: '<ng-content *ngIf="active && !disabled"></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProcessflowStepComponent extends ProcessflowStepBase {
