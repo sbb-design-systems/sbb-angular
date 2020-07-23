@@ -18,9 +18,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-icons/community",
-        "//src/angular-icons/timetable",
-        "//src/angular-icons/weather",
+        "//src/angular-core/icon",
         "//src/angular-public/field",
         "//src/angular-public/notification",
         "//src/showcase/app/shared",

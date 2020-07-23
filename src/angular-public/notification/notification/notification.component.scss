@@ -1,44 +1,47 @@
 @import '../../../angular-core/styles/common';
 
-$notificationBaseHeight: 68;
-$notificationBaseWidth: 100%;
-$notificationIconWidth: 36;
-$notificationIconHeight: 36;
-$notificationSuccessBackgroundColor: $sbbColorGrey;
-$notificationErrorBackgroundColor: $sbbColorRed;
-$notificationLinksHeight: 92;
-$notificationBorderRadius: 2;
-$notificationDefaultFontSize: $sizeFontDefault;
-$notificationIconMarginLeft: 16;
-$notificationMessageMarginLeft: 16;
+$notificationMessageMarginTopBottomLeft: 16;
 $notificationMessageMarginRight: 24;
 
 .sbb-notification {
   display: flex;
   align-items: center;
-  height: toPx($notificationBaseHeight);
-  width: $notificationBaseWidth;
-  border-radius: toPx($notificationBorderRadius);
   color: $sbbColorWhite;
+  width: 100%;
+  min-height: pxToEm(68);
+  border-radius: pxToEm(2);
+  line-height: pxToEm(26);
+  padding: pxToEm($notificationMessageMarginTopBottomLeft) pxToEm($notificationMessageMarginRight)
+    pxToEm($notificationMessageMarginTopBottomLeft) pxToEm($notificationMessageMarginTopBottomLeft);
 
-  &-error {
-    background-color: $notificationErrorBackgroundColor;
+  @include mq($from: desktop4k) {
+    font-size: pxToRem($sizeFontDefault4k);
+  }
+  @include mq($from: desktop5k) {
+    font-size: pxToRem($sizeFontDefault5k);
   }
 
-  &-success,
-  &-info {
-    background-color: $notificationSuccessBackgroundColor;
+  &.sbb-notification-error {
+    background-color: $sbbColorRed;
   }
 
-  &-has-jump-marks {
-    height: toPx($notificationLinksHeight);
+  &.sbb-notification-success,
+  &.sbb-notification-info {
+    background-color: $sbbColorGrey;
+  }
+
+  &.sbb-notification-has-jump-marks {
+    &,
+    a {
+      line-height: pxToEm(23);
+    }
+    min-height: pxToEm(92);
   }
 
   .sbb-notification-content {
-    font-size: toPx($notificationDefaultFontSize);
-    margin-left: toPx($notificationMessageMarginLeft);
-    margin-right: toPx($notificationMessageMarginRight);
-    &-title {
+    margin-left: pxToEm($notificationMessageMarginTopBottomLeft);
+
+    .sbb-notification-content-title {
       font-family: $fontSbbBold;
     }
   }
@@ -51,10 +54,11 @@ $notificationMessageMarginRight: 24;
   }
 
   .sbb-notification-icon-wrapper {
-    @include svgIconColor($sbbColorWhite);
-    width: toPx($notificationIconWidth);
-    height: toPx($notificationIconHeight);
-    margin-left: toPx($notificationIconMarginLeft);
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    width: pxToEm(36);
+    height: pxToEm(36);
 
     * {
       max-width: 100%;
