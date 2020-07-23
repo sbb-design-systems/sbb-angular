@@ -14,11 +14,12 @@ $notificationMessageMarginRight: 24;
   padding: pxToEm($notificationMessageMarginTopBottomLeft) pxToEm($notificationMessageMarginRight)
     pxToEm($notificationMessageMarginTopBottomLeft) pxToEm($notificationMessageMarginTopBottomLeft);
 
+  font-size: toPx($sizeFontDefault);
   @include mq($from: desktop4k) {
-    font-size: pxToRem($sizeFontDefault4k);
+    font-size: toPx($sizeFontDefault4k);
   }
   @include mq($from: desktop5k) {
-    font-size: pxToRem($sizeFontDefault5k);
+    font-size: toPx($sizeFontDefault5k);
   }
 
   &.sbb-notification-error {

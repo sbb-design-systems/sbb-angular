@@ -94,7 +94,9 @@ describe('NotificationComponent', () => {
     });
 
     it('should change height with jump marks', () => {
-      const componentStyles = window.getComputedStyle(testFixture.debugElement.nativeElement);
+      const componentStyles = window.getComputedStyle(
+        testFixture.debugElement.query(By.css('.sbb-notification')).nativeElement
+      );
       expect(componentStyles.height).toBe('68px');
 
       testComponent.jumpMarks = [
