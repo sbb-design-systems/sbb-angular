@@ -18,25 +18,22 @@ import { Dialog } from './dialog.service';
 @Directive({
   selector: `button[sbbDialogClose]`,
   exportAs: 'sbbDialogClose',
+  host: {
+    '[attr.aria-label]': 'ariaLabel || null',
+    '[attr.type]': 'type',
+  },
 })
 export class DialogCloseDirective implements OnInit {
   /** Screenreader label for the button. */
-  @HostBinding('attr.aria-label')
-  @Input('aria-label')
-  ariaLabel = 'Close dialog';
+  @Input('aria-label') ariaLabel: string = 'Close dialog';
 
   /** Default to "button" to prevents accidental form submits. */
-  @HostBinding('attr.type')
-  @Input()
-  type: 'submit' | 'button' | 'reset' = 'button';
+  @Input() type: 'submit' | 'button' | 'reset' = 'button';
 
   /** dialog close input **/
-  // tslint:disable-next-line:no-input-rename
-  @Input('sbbDialogClose')
-  dialogResult: any;
+  @Input('sbbDialogClose') dialogResult: any;
 
   constructor(
-    /** Reference of dialog. */
     @Optional() public dialogRef: DialogRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
     private _dialog: Dialog,

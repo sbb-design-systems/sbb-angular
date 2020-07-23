@@ -47,56 +47,59 @@ export function throwLightboxContentAlreadyAttachedError() {
   // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
   changeDetection: ChangeDetectionStrategy.Default,
   animations: [LIGHTBOX_ANIMATIONS.slideLightbox],
+  host: {
+    class: 'sbb-lightbox-container',
+    tabindex: '-1',
+    'aria-modal': 'true',
+    '[attr.id]': 'id',
+    '[attr.role]': 'config.role',
+    '[attr.aria-labelledby]': 'config.ariaLabel ? null : ariaLabelledBy',
+    '[attr.aria-label]': 'config.ariaLabel',
+    '[attr.aria-describedby]': 'config.ariaDescribedBy || null',
+    '[class.sbb-lightbox-with-header]': 'this.hasHeader',
+    '[class.sbb-lightbox-with-footer]': 'this.hasFooter',
+    '[@slideLightbox]': 'state',
+  },
 })
 export class LightboxContainerComponent extends BasePortalOutlet {
   /** The portal outlet inside of this container into which the lightbox content will be loaded. */
   @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet: CdkPortalOutlet;
 
-  @HostBinding('class.sbb-lightbox-container')
+  /** @deprecated internal detail */
   containerClass = true;
-
-  @HostBinding('attr.tabindex')
+  /** @deprecated internal detail */
   tabIndex = '-1';
-
-  @HostBinding('attr.aria-modal')
+  /** @deprecated internal detail */
   arialModal = 'true';
-
-  @HostBinding('attr.id')
+  /** @deprecated internal detail */
   get lightboxContainerID() {
     return this.id;
   }
-
-  @HostBinding('attr.role')
+  /** @deprecated internal detail */
   get role() {
     return this.config.role;
   }
-
-  @HostBinding('attr.aria-labelledby')
+  /** @deprecated internal detail */
   get ariaLabelledbyAttr() {
     return this.config.ariaLabel ? null : this.ariaLabelledBy;
   }
-
-  @HostBinding('attr.aria-label')
+  /** @deprecated internal detail */
   get ariaLabel() {
     return this.config.ariaLabel;
   }
-
-  @HostBinding('attr.aria-describedby')
+  /** @deprecated internal detail */
   get describeDby() {
     return this.config.ariaDescribedBy || null;
   }
-
-  @HostBinding('@slideLightbox')
+  /** @deprecated internal detail */
   get slideLightboxAnimation() {
     return this.state;
   }
-
-  @HostBinding('class.sbb-lightbox-with-header')
+  /** @deprecated internal detail */
   get hasHeaderClass() {
     return this.hasHeader;
   }
-
-  @HostBinding('class.sbb-lightbox-with-footer')
+  /** @deprecated internal detail */
   get hasFooterClass() {
     return this.hasFooter;
   }
@@ -107,20 +110,46 @@ export class LightboxContainerComponent extends BasePortalOutlet {
   /** Element that was focused before the lightbox was opened. Save this to restore upon close. */
   private _elementFocusedBeforeLightboxWasOpened: HTMLElement | null = null;
 
-  /** State of the lightbox animation. */
+  /**
+   * State of the lightbox animation.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   state: 'void' | 'enter' | 'exit' = 'enter';
 
-  /** Emits when an animation state changes. */
+  /**
+   * Emits when an animation state changes.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   animationStateChanged = new EventEmitter<AnimationEvent>();
 
-  /** ID of the element that should be considered as the lightbox's label. */
+  /**
+   * ID of the element that should be considered as the lightbox's label.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   ariaLabelledBy: string | null = null;
 
-  /** ID for the container DOM element. */
+  /**
+   * ID for the container DOM element.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   id: string;
 
+  /**
+   * Whether the lightbox has a header.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   hasHeader: boolean | null = null;
 
+  /**
+   * Whether the lightbox has a footer.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   hasFooter: boolean | null = null;
 
   constructor(
@@ -203,7 +232,11 @@ export class LightboxContainerComponent extends BasePortalOutlet {
     }
   }
 
-  /** Callback, invoked whenever an animation on the host completes. */
+  /**
+   * Callback, invoked whenever an animation on the host completes.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   @HostListener('@slideLightbox.done', ['$event'])
   onAnimationDone(event: AnimationEvent) {
     if (event.toState === 'enter') {
@@ -215,13 +248,21 @@ export class LightboxContainerComponent extends BasePortalOutlet {
     this.animationStateChanged.emit(event);
   }
 
-  /** Callback, invoked when an animation on the host starts. */
+  /**
+   * Callback, invoked when an animation on the host starts.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   @HostListener('@slideLightbox.start', ['$event'])
   onAnimationStart(event: AnimationEvent) {
     this.animationStateChanged.emit(event);
   }
 
-  /** Starts the dialog exit animation. */
+  /**
+   * Starts the dialog exit animation.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   startExitAnimation(): void {
     this.state = 'exit';
 

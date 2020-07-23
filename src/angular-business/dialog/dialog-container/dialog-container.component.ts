@@ -15,7 +15,6 @@ import {
   ElementRef,
   EmbeddedViewRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Inject,
   Optional,
@@ -47,56 +46,59 @@ export function throwDialogContentAlreadyAttachedError() {
   // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
   changeDetection: ChangeDetectionStrategy.Default,
   animations: [DIALOG_ANIMATIONS.slideDialog],
+  host: {
+    class: 'sbb-dialog-container',
+    tabindex: '-1',
+    'aria-modal': 'true',
+    '[attr.id]': 'id',
+    '[attr.role]': 'config.role',
+    '[attr.aria-labelledby]': 'config.ariaLabel ? null : ariaLabelledBy',
+    '[attr.aria-label]': 'config.ariaLabel',
+    '[attr.aria-describedby]': 'config.ariaDescribedBy || null',
+    '[class.sbb-dialog-with-header]': 'this.hasHeader',
+    '[class.sbb-dialog-with-footer]': 'this.hasFooter',
+    '[@slideDialog]': 'state',
+  },
 })
 export class DialogContainerComponent extends BasePortalOutlet {
   /** The portal outlet inside of this container into which the dialog content will be loaded. */
   @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet: CdkPortalOutlet;
 
-  @HostBinding('class.sbb-dialog-container')
+  /** @deprecated internal detail */
   containerClass = true;
-
-  @HostBinding('attr.tabindex')
+  /** @deprecated internal detail */
   tabIndex = '-1';
-
-  @HostBinding('attr.aria-modal')
+  /** @deprecated internal detail */
   arialModal = 'true';
-
-  @HostBinding('attr.id')
+  /** @deprecated internal detail */
   get dialogContainerID() {
     return this.id;
   }
-
-  @HostBinding('attr.role')
+  /** @deprecated internal detail */
   get role() {
     return this.config.role;
   }
-
-  @HostBinding('attr.aria-labelledby')
+  /** @deprecated internal detail */
   get ariaLabelledbyAttr() {
     return this.config.ariaLabel ? null : this.ariaLabelledBy;
   }
-
-  @HostBinding('attr.aria-label')
+  /** @deprecated internal detail */
   get ariaLabel() {
     return this.config.ariaLabel;
   }
-
-  @HostBinding('attr.aria-describedby')
+  /** @deprecated internal detail */
   get describeDby() {
     return this.config.ariaDescribedBy || null;
   }
-
-  @HostBinding('@slideDialog')
+  /** @deprecated internal detail */
   get slideDialogAnimation() {
     return this.state;
   }
-
-  @HostBinding('class.sbb-dialog-with-header')
+  /** @deprecated internal detail */
   get hasHeaderClass() {
     return this.hasHeader;
   }
-
-  @HostBinding('class.sbb-dialog-with-footer')
+  /** @deprecated internal detail */
   get hasFooterClass() {
     return this.hasFooter;
   }
@@ -107,20 +109,46 @@ export class DialogContainerComponent extends BasePortalOutlet {
   /** Element that was focused before the dialog was opened. Save this to restore upon close. */
   private _elementFocusedBeforeDialogWasOpened: HTMLElement | null = null;
 
-  /** State of the dialog animation. */
+  /**
+   * State of the dialog animation.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   state: 'void' | 'enter' | 'exit' = 'enter';
 
-  /** Emits when an animation state changes. */
+  /**
+   * Emits when an animation state changes.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   animationStateChanged = new EventEmitter<AnimationEvent>();
 
-  /** ID of the element that should be considered as the dialog's label. */
+  /**
+   * ID of the element that should be considered as the dialog's label.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   ariaLabelledBy: string | null = null;
 
-  /** ID for the container DOM element. */
+  /**
+   * ID for the container DOM element.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   id: string;
 
+  /**
+   * Whether the dialog has a header.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   hasHeader: boolean | null = null;
 
+  /**
+   * Whether the dialog has a footer.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   hasFooter: boolean | null = null;
 
   constructor(
@@ -205,7 +233,11 @@ export class DialogContainerComponent extends BasePortalOutlet {
     }
   }
 
-  /** Moves focus back into the dialog if it was moved out. */
+  /**
+   * Moves focus back into the dialog if it was moved out.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   recaptureFocus() {
     if (!this._containsFocus()) {
       const focusContainer = !this.config.autoFocus || !this._focusTrap.focusInitialElement();
@@ -245,7 +277,11 @@ export class DialogContainerComponent extends BasePortalOutlet {
     return element === activeElement || element.contains(activeElement);
   }
 
-  /** Callback, invoked whenever an animation on the host completes. */
+  /**
+   * Callback, invoked whenever an animation on the host completes.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   @HostListener('@slideDialog.done', ['$event'])
   onAnimationDone(event: AnimationEvent) {
     if (event.toState === 'enter') {
@@ -257,13 +293,21 @@ export class DialogContainerComponent extends BasePortalOutlet {
     this.animationStateChanged.emit(event);
   }
 
-  /** Callback, invoked when an animation on the host starts. */
+  /**
+   * Callback, invoked when an animation on the host starts.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   @HostListener('@slideDialog.start', ['$event'])
   onAnimationStart(event: AnimationEvent) {
     this.animationStateChanged.emit(event);
   }
 
-  /** Starts the dialog exit animation. */
+  /**
+   * Starts the dialog exit animation.
+   * @deprecated internal detail
+   * TODO: Prefix with _
+   */
   startExitAnimation(): void {
     this.state = 'exit';
 
