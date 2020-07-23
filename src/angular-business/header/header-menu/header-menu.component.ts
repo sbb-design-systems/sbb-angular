@@ -12,7 +12,6 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Input,
   OnDestroy,
@@ -42,12 +41,20 @@ let nextId = 0;
       transition('closed <=> open-menu', animate('0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)')),
     ]),
   ],
+  host: {
+    class: 'sbb-header-menu',
+    '[id]': 'this.id',
+    '[@open]': 'this._animationState',
+  },
 })
 export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
-  /** @docs-private */
-  @HostBinding('class.sbb-header-menu') _class = true;
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
+  _class = true;
   /** Unique ID to be used by menu trigger's "aria-owns" property. */
-  @HostBinding() id = `sbb-header-menu-${nextId++}`;
+  id = `sbb-header-menu-${nextId++}`;
 
   /** Event emitted when the menu is closed. */
   @Output() readonly closed: EventEmitter<void | 'click' | 'keydown' | 'tab'> = new EventEmitter<
@@ -76,7 +83,6 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
       } else {
         this._animationState = 'open-menu';
       }
-      // this._changeDetectorRef.markForCheck();
     }
   }
   private _open = false;
@@ -118,7 +124,6 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
   /** @docs-private */
   _panel: CdkPortal | null = null;
   /** @docs-private */
-  @HostBinding('@open')
   _animationState: 'closed' | 'open-panel' | 'open-menu' = 'closed';
 
   /** Subscription to tab events on the menu panel */
