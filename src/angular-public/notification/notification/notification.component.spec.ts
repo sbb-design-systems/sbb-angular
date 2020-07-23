@@ -15,7 +15,7 @@ import { NotificationComponent } from './notification.component';
     '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks"></sbb-notification>',
 })
 export class NotificationMockComponent {
-  message = 'Suchen';
+  message = 'Search';
   type: 'success' | 'error' | 'info' = 'success';
   jumpMarks: any[] = [];
 }

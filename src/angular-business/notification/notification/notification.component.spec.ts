@@ -16,7 +16,7 @@ import { NotificationComponent } from './notification.component';
     '<sbb-notification [type]="type" [jumpMarks]="jumpMarks" (dismissed)="dismissed($event)" [readonly]="readonly">{{message}}</sbb-notification>',
 })
 export class NotificationMockComponent {
-  message = 'Suchen';
+  message = 'Search';
   type: 'success' | 'error' | 'info' | 'warn' = 'success';
   title: string;
   readonly = true;

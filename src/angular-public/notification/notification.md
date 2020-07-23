@@ -1,8 +1,7 @@
 You can use the notification component to send a simple message:
 
 ```html
-<h4 id="default">Default success notification</h4>
-<sbb-notification message="Suchen" type="success"></sbb-notification>
+<sbb-notification message="Success" type="success"></sbb-notification>
 ```
 
 There are three types of notifications:
@@ -17,7 +16,7 @@ It is also possible to send a notification message with a custom icon
 (using \*sbbIcon directive) as seen below
 
 ```html
-<sbb-notification message="Search" type="error">
+<sbb-notification message="New timezone saved successfully" type="error">
   <sbb-icon svgIcon="kom:clock-small" *sbbIcon></sbb-icon>
 </sbb-notification>
 ```

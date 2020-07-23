@@ -151,11 +151,15 @@ export class NotificationComponent {
   @Input()
   type: 'success' | 'info' | 'error' | 'warn' = 'success';
 
-  /** Type of notification. */
+  /** Position of toast. */
   @Input()
   toastPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-  /** Type of notification. */
+  /**
+   * Whether the notification is closable or not
+   * Readonly true: notifications can't be closed
+   * Readonly false: notifications can be closed
+   */
   @Input()
   set readonly(value: boolean) {
     this._readonly = coerceBooleanProperty(value);
@@ -220,6 +224,9 @@ export class NotificationComponent {
   /** List of in page links displayed on the bottom of the notification */
   @Input() jumpMarks?: JumpMark[];
 
+  /**
+   * Observable which emits when the notification was closed
+   */
   @Output()
   dismissed: EventEmitter<boolean> = new EventEmitter();
 
@@ -241,6 +248,9 @@ export class NotificationComponent {
     }
   }
 
+  /**
+   * Close notification
+   */
   dismiss() {
     this.ariaHidden = 'true';
     this.dismissed.emit(false);
