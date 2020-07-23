@@ -27,8 +27,7 @@ ng_module(
     deps = [
         "//src/angular-business/field",
         "//src/angular-business/notification",
-        "//src/angular-icons/community",
-        "//src/angular-icons/timetable",
+        "//src/angular-core/icon",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",

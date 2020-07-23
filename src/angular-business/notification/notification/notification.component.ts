@@ -5,7 +5,6 @@ import {
   Component,
   ContentChild,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   TemplateRef,
@@ -14,6 +13,9 @@ import {
 } from '@angular/core';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 
+/**
+ * @deprecated use strings directly
+ */
 export enum NotificationType {
   SUCCESS = 'success',
   ERROR = 'error',
@@ -21,6 +23,9 @@ export enum NotificationType {
   WARN = 'warn',
 }
 
+/**
+ * @deprecated use strings directly
+ */
 export enum NotificationToastPosition {
   TOPLEFT = 'top-left',
   TOPRIGHT = 'top-right',
@@ -42,70 +47,109 @@ export interface JumpMark {
   styleUrls: ['./notification.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-notification sbb-icon-fit',
+    '[class.sbb-notification-success]': `this.type === 'success'`,
+    '[class.sbb-notification-info]': `this.type === 'info'`,
+    '[class.sbb-notification-error]': `this.type === 'error'`,
+    '[class.sbb-notification-warn]': `this.type === 'warn'`,
+    '[class.sbb-notification-has-jump-marks]': 'this.jumpMarks && this.jumpMarks.length',
+    '[class.sbb-notification-toast-top-left]': `this.toastPosition === 'top-left'`,
+    '[class.sbb-notification-toast-top-right]': `this.toastPosition === 'top-right'`,
+    '[class.sbb-notification-toast-bottom-left]': `this.toastPosition === 'bottom-left'`,
+    '[class.sbb-notification-toast-bottom-right]': `this.toastPosition === 'bottom-right'`,
+    '[attr.aria-hidden]': 'this.ariaHidden',
+    '[hidden]': 'this.hidden',
+  },
 })
 export class NotificationComponent {
-  /** @docs-private */
-  @HostBinding('class.sbb-notification')
+  /**
+   *  @docs-private
+   *  @deprecated internal detail
+   */
   baseCssClass = true;
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-success')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get typeSuccess(): boolean {
     return this.type === NotificationType.SUCCESS;
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-info')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get typeInfo(): boolean {
     return this.type === NotificationType.INFO;
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-error')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get typeError(): boolean {
     return this.type === NotificationType.ERROR;
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-warn')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get typeWarn(): boolean {
     return this.type === NotificationType.WARN;
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-toast-top-left')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
+  get hasJumpMarks() {
+    return this.jumpMarks && this.jumpMarks.length;
+  }
+
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get positionTopLeft(): boolean {
     return this.toastPosition === NotificationToastPosition.TOPLEFT;
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-toast-top-right')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get positionTopRight(): boolean {
     return this.toastPosition === NotificationToastPosition.TOPRIGHT;
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-toast-bottom-left')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get positionBottomLeft(): boolean {
     return this.toastPosition === NotificationToastPosition.BOTTOMLEFT;
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-toast-bottom-right')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get positionBottomRight(): boolean {
     return this.toastPosition === NotificationToastPosition.BOTTOMRIGHT;
   }
 
-  @HostBinding('attr.aria-hidden') ariaHidden: 'false' | 'true';
+  ariaHidden: 'false' | 'true';
 
-  @HostBinding('hidden')
   get hidden() {
     return this.ariaHidden === 'true';
   }
 
   /** Type of notification. */
   @Input()
-  type: 'success' | 'info' | 'error' | 'warn' = NotificationType.SUCCESS;
+  type: 'success' | 'info' | 'error' | 'warn' = 'success';
 
   /** Type of notification. */
   @Input()
@@ -136,28 +180,30 @@ export class NotificationComponent {
   @ViewChild('info', { read: TemplateRef, static: true })
   infoIcon: TemplateRef<any>;
 
-  /** The icon to be used into the notification left side.
-   *  By default uses three icons for SUCCESS, ERROR or INFO notification type,
-   *  but the user can use his own icon using the NotificationIconDirective.
+  /**
+   * The icon to be used into the notification left side.
+   * By default uses three icons for SUCCESS, ERROR or INFO notification type,
+   * but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
   set icon(notificationIcon: TemplateRef<any> | null) {
     this._icon = notificationIcon;
   }
-  get icon(): TemplateRef<any> | null {
+  get icon() {
     if (this._contentIcon) {
       return this._contentIcon;
     } else if (this._icon) {
       return this._icon;
     }
     switch (this.type) {
-      case NotificationType.SUCCESS:
+      case 'success':
         return this.checkIcon;
-      case NotificationType.ERROR:
-      case NotificationType.WARN:
+      case 'error':
         return this.errorIcon;
-      case NotificationType.INFO:
+      case 'info':
         return this.infoIcon;
+      case 'warn':
+        return this.errorIcon;
       default:
         return null;
     }
@@ -176,12 +222,6 @@ export class NotificationComponent {
 
   @Output()
   dismissed: EventEmitter<boolean> = new EventEmitter();
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-has-jump-marks')
-  get hasJumpMarks() {
-    return this.jumpMarks && this.jumpMarks.length;
-  }
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 
