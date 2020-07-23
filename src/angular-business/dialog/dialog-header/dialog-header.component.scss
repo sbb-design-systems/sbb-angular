@@ -28,8 +28,9 @@ $dialog-close-icon-color: $sbbColorGrey;
 
   .sbb-dialog-close-btn {
     @include buttonResetFrameless();
-    @include svgIconColor($dialog-close-icon-color);
 
+    color: $dialog-close-icon-color;
+    cursor: pointer;
     margin-left: auto;
     position: relative;
     width: pxToEm($dialog-close-button-size);
@@ -55,8 +56,7 @@ $dialog-close-icon-color: $sbbColorGrey;
 
     &:hover,
     &:focus {
-      @include svgIconColor($dialog-close-button-color-hover);
-      cursor: pointer;
+      color: $dialog-close-button-color-hover;
 
       &::before {
         border-color: $dialog-close-button-color-hover;

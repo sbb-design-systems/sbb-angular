@@ -25,6 +25,7 @@ import {
   tick,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { Subject } from 'rxjs';
 
@@ -182,7 +183,7 @@ describe('SbbDialog', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DialogModule, DialogTestModule],
+      imports: [DialogModule, DialogTestModule, SbbIconTestingModule],
       providers: [
         { provide: Location, useClass: SpyLocation },
         {
@@ -1283,7 +1284,7 @@ describe('Dialog with a parent Dialog', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DialogModule, DialogTestModule],
+      imports: [DialogModule, DialogTestModule, SbbIconTestingModule],
       declarations: [ComponentThatProvidesDialogComponent],
       providers: [
         {
