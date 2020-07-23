@@ -32,6 +32,8 @@ $notificationMessageMarginRight: 24;
   }
 
   &.sbb-notification-has-jump-marks {
+    padding: pxToEm(23) pxToEm($notificationMessageMarginRight) pxToEm(23)
+      pxToEm($notificationMessageMarginTopBottomLeft);
     &,
     a {
       line-height: pxToEm(23);
