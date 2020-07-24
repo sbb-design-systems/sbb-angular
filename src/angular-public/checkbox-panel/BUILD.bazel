@@ -43,6 +43,7 @@ ng_test_library(
     ),
     deps = [
         ":checkbox-panel",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
         "@npm//@angular/common",
         "@npm//@angular/forms",

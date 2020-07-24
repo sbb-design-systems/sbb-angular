@@ -163,9 +163,6 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
   /** Subscription to the current in-progress SVG icon request. */
   private _currentIconFetch = Subscription.EMPTY;
 
-  /** @docs-private */
-  private _namespaceClass: string | null = null;
-
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _iconRegistry: SbbIconRegistry,
@@ -279,15 +276,6 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
 
   private _setSvgElement(svg: SVGElement, namespace: string) {
     this._clearSvgElement();
-
-    // Add css class for current namespace. We want to do this, in order to apply
-    // specific css rules for fpl and kom, because these two namespaces have
-    // different structures in regard to stroke and fill.
-    if (this._namespaceClass) {
-      this._elementRef.nativeElement.classList.remove(this._namespaceClass);
-    }
-    this._namespaceClass = `sbb-icon-namespace-${namespace}`;
-    this._elementRef.nativeElement.classList.add(this._namespaceClass);
 
     // Workaround for IE11 and Edge ignoring `style` tags inside dynamically-created SVGs.
     // See: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10898469/
