@@ -1,7 +1,7 @@
 <button
   (click)="onClick($event)"
   #triggerButton
-  class="sbb-tooltip-trigger"
+  class="sbb-tooltip-trigger sbb-icon-fit"
   [class.sbb-tooltip-trigger-active]="overlayAttached"
   [attr.aria-describedby]="contentId"
   tabindex="0"
@@ -15,10 +15,10 @@
   </div>
   <div class="sbb-tooltip-shadow"></div>
   <button type="button" class="sbb-tooltip-icon" (click)="onClick($event)">
-    <sbb-icon-cross></sbb-icon-cross>
+    <sbb-icon svgIcon="kom:cross-small" class="sbb-icon-fit"></sbb-icon>
   </button>
 </ng-template>
 
 <ng-template #defaultIcon>
-  <sbb-icon-question-mark></sbb-icon-question-mark>
+  <sbb-icon svgIcon="kom:circle-question-mark-small"></sbb-icon>
 </ng-template>

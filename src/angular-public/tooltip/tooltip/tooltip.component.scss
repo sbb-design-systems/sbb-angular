@@ -26,15 +26,12 @@ $tooltipBeforeArrowWidth: 13;
 
 @mixin tooltipIcon {
   @include buttonResetFrameless();
+  /* TODO: Remove with future release */
   @include svgIconColor($sbbColorGrey);
+  color: $sbbColorGrey;
   width: toPx($tooltipIconsSize);
   height: toPx($tooltipIconsSize);
   cursor: pointer;
-  display: block;
-  border-color: $sbbColorGrey;
-  border-width: pxToEm($tooltipIconsBorderWidth);
-  border-style: solid;
-  border-radius: 50%;
   background-color: $sbbColorWhite;
   text-decoration: none;
   outline: 0;
@@ -43,7 +40,9 @@ $tooltipBeforeArrowWidth: 13;
   &-active,
   &:hover,
   &:focus {
+    /* TODO: Remove with future release */
     @include svgIconColor($sbbColorRed);
+    color: $sbbColorRed;
     border-color: $sbbColorRed;
   }
 
@@ -69,6 +68,7 @@ sbb-tooltip {
   .sbb-tooltip-trigger {
     @include tooltipIcon();
     margin: auto;
+    // TODO: Remove display block for v11
     display: block;
   }
 }
@@ -232,6 +232,10 @@ sbb-tooltip {
 
   .sbb-tooltip-icon {
     @include tooltipIcon();
+    border-color: $sbbColorGrey;
+    border-width: pxToEm($tooltipIconsBorderWidth);
+    border-style: solid;
+    border-radius: 50%;
     float: right;
     position: absolute;
     top: toPx($tooltipContentPadding);

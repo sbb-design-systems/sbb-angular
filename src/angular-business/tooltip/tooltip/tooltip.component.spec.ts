@@ -5,8 +5,8 @@ import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base/tooltip';
-import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
-import { IconQuestionMarkModule } from '@sbb-esta/angular-icons/status';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { TooltipModule } from '../tooltip.module';
 
@@ -42,7 +42,7 @@ describe('TooltipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconQuestionMarkModule, IconCrossModule, CommonModule, PortalModule, OverlayModule],
+      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipComponent],
     }).compileComponents();
