@@ -99,7 +99,7 @@ const ANIMATION_DURATION = 300;
   host: {
     class: 'sbb-search sbb-icon-fit',
     '[attr.id]': 'this.id',
-    '[attr.role]': 'this.role',
+    '[attr.role]': "this.autocompleteDisabled ? null : 'combobox'",
     '[attr.autocomplete]': 'this.autocompleteAttribute',
     '[attr.aria-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen.toString()',
     '[attr.aria-owns]':
@@ -199,12 +199,15 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
   private _hideSearch = true;
 
+  /**
+   * @docs-private
+   * @deprecated internal use
+   */
   get role() {
     return this._autocompleteDisabled ? null : 'combobox';
   }
 
   /** The autocomplete panel to be attached to this trigger. */
-  // tslint:disable-next-line:no-input-rename
   @Input('sbbAutocomplete')
   get autocomplete(): AutocompleteComponent {
     return this._autocomplete;
@@ -243,7 +246,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * Reference relative to which to position the autocomplete panel.
    * Defaults to the autocomplete trigger element.
    */
-  // tslint:disable-next-line:no-input-rename
   @Input('sbbAutocompleteConnectedTo')
   connectedTo: AutocompleteOriginDirective;
 
@@ -251,7 +253,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * `autocomplete` attribute to be set on the input element.
    * @docs-private
    */
-  // tslint:disable-next-line:no-input-rename
   @Input('autocomplete')
   autocompleteAttribute = 'off';
 
