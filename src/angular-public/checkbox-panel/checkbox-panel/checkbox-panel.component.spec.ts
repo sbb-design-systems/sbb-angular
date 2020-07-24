@@ -3,6 +3,7 @@ import { Component, QueryList, ViewChildren } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
 
 import { CheckboxPanelModule } from '../checkbox-panel.module';
@@ -33,7 +34,7 @@ describe('CheckboxPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, CheckboxPanelModule],
+      imports: [CommonModule, FormsModule, CheckboxPanelModule, SbbIconTestingModule],
       declarations: [ModelOptionSelectionMultipleTestComponent],
     }).compileComponents();
   }));
@@ -59,7 +60,7 @@ describe('CheckboxPanelComponent using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, CheckboxPanelModule],
+      imports: [CommonModule, FormsModule, CheckboxPanelModule, SbbIconTestingModule],
       declarations: [ModelOptionSelectionMultipleTestComponent],
     }).compileComponents();
   }));
