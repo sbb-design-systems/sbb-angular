@@ -48,7 +48,7 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
       }
 
       .sbb-ghettobox-icon {
-        /* @deprecated: remove when old icons are removed */
+        /* TODO(icon-migration): remove when old icons are removed */
         @include svgIconColor($ghettobox-color);
         position: relative;
         width: $ghettobox-icon-size;
@@ -57,7 +57,7 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
         border-radius: $ghettobox-icon-radius;
         line-height: 1;
 
-        /* @deprecated: remove when old icons are removed */
+        /* TODO(icon-migration): remove when old icons are removed */
         .sbb-icon-component {
           @include absoluteCenterXY();
           display: block;
@@ -67,7 +67,7 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
       }
 
       .sbb-ghettobox-content {
-        /* @deprecated: remove when old icons are removed */
+        /* TODO(icon-migration): remove when old icons are removed */
         @include svgIconColor($ghettobox-color);
         flex: 0 1 auto;
         padding: 0 $ghettobox-icon-size 0 pxToEm(12);
