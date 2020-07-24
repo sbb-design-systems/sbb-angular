@@ -18,8 +18,6 @@ ng_module(
     ],
     assets = [
         ":search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.css",
-        ":search-simple-header-mode-example/search-simple-header-mode-example.component.css",
-        ":search-simple-reactive-forms-example/search-simple-reactive-forms-example.component.css",
         "search-autocomplete-example/search-autocomplete-example.component.html",
         "search-custom-icon-autocomplete-static-options-example/search-custom-icon-autocomplete-static-options-example.component.html",
         "search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.html",
@@ -52,14 +50,4 @@ filegroup(
 sass_binary(
     name = "search_historic_railway_pictures_example_search_historic_railway_pictures_example_component_scss",
     src = "search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.scss",
-)
-
-sass_binary(
-    name = "search_simple_header_mode_example_search_simple_header_mode_example_component_scss",
-    src = "search-simple-header-mode-example/search-simple-header-mode-example.component.scss",
-)
-
-sass_binary(
-    name = "search_simple_reactive_forms_example_search_simple_reactive_forms_example_component_scss",
-    src = "search-simple-reactive-forms-example/search-simple-reactive-forms-example.component.scss",
 )
