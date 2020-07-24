@@ -5,8 +5,8 @@ import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base/tooltip';
-import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
-import { IconQuestionMarkModule } from '@sbb-esta/angular-icons/status';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 
@@ -65,7 +65,7 @@ describe('TooltipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconQuestionMarkModule, IconCrossModule, CommonModule, PortalModule, OverlayModule],
+      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipComponent],
     }).compileComponents();
@@ -92,7 +92,7 @@ describe('TooltipComponent using mock component for single tooltip', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TooltipModule, FieldModule, ButtonModule],
+      imports: [TooltipModule, FieldModule, ButtonModule, SbbIconTestingModule],
       declarations: [TooltipTestComponent],
     }).compileComponents();
   }));
@@ -113,7 +113,7 @@ describe('TooltipComponent using mock component for single tooltip', () => {
     singleFixtureTest.detectChanges();
 
     expect(buttonQuestionMark.attributes['class'].value).toBe(
-      'sbb-tooltip-trigger sbb-tooltip-trigger-active'
+      'sbb-tooltip-trigger sbb-icon-fit sbb-tooltip-trigger-active'
     );
 
     const tooltipElement = singleFixtureTest.debugElement.query(By.css('.sbb-tooltip'));
@@ -131,7 +131,7 @@ describe('TooltipComponent using mock component for single tooltip', () => {
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
 
-    expect(buttonQuestionMark.attributes['class'].value).toBe('sbb-tooltip-trigger');
+    expect(buttonQuestionMark.attributes['class'].value).toBe('sbb-tooltip-trigger sbb-icon-fit');
 
     const tooltipElement = singleFixtureTest.debugElement.query(By.css('.sbb-tooltip'));
 
@@ -164,7 +164,7 @@ describe('TooltipComponent using mock component for single tooltip', () => {
 
     singleComponentTest.t1.close();
 
-    expect(buttonQuestionMark.attributes['class'].value).toBe('sbb-tooltip-trigger');
+    expect(buttonQuestionMark.attributes['class'].value).toBe('sbb-tooltip-trigger sbb-icon-fit');
     expect(singleComponentTest.t1.overlayAttached).toBe(false);
   });
 });
@@ -175,7 +175,7 @@ describe('TooltipComponent using mock component for double tooltip', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TooltipModule, FieldModule],
+      imports: [TooltipModule, FieldModule, SbbIconTestingModule],
       declarations: [DoubleTooltipTestComponent],
     }).compileComponents();
   }));

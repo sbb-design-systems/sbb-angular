@@ -24,6 +24,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
   dispatchFakeEvent,
   dispatchKeyboardEvent,
@@ -51,7 +52,7 @@ describe('Tooltip', () => {
     platform = { IOS: false, isBrowser: true, ANDROID: false };
 
     TestBed.configureTestingModule({
-      imports: [TooltipModule, OverlayModule, NoopAnimationsModule],
+      imports: [TooltipModule, OverlayModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [
         BasicTooltipDemoComponent,
         ScrollableTooltipDemoComponent,
