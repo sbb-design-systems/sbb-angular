@@ -69,7 +69,7 @@ describe('Tooltip using hover configuration with default delay', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, PortalModule, OverlayModule, TooltipModule],
+      imports: [CommonModule, PortalModule, OverlayModule, TooltipModule, SbbIconTestingModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipHoverTrueTestComponent],
     }).compileComponents();
@@ -110,7 +110,7 @@ describe('Tooltip using hover configuration and delay settings for open and clos
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, PortalModule, OverlayModule, TooltipModule],
+      imports: [CommonModule, PortalModule, OverlayModule, TooltipModule, SbbIconTestingModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipHoverTrueAndDelaySettingsTestComponent],
     }).compileComponents();
