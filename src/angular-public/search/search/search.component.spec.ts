@@ -16,7 +16,7 @@ import { SearchModule } from '../search.module';
 
 @Component({
   selector: 'sbb-simple-search-component',
-  template: ` <sbb-search (search)="search()" placeholder="Suchen"> </sbb-search> `,
+  template: ` <sbb-search (search)="search()" placeholder="Search"> </sbb-search> `,
 })
 export class SimpleSearchComponent {
   searchCounter = 0;
@@ -30,7 +30,7 @@ export class SimpleSearchComponent {
 @Component({
   selector: 'sbb-simple-search-autocomplete-component',
   template: `
-    <sbb-search (search)="search($event)" placeholder="Suchen" [sbbAutocomplete]="auto1">
+    <sbb-search (search)="search($event)" placeholder="Search" [sbbAutocomplete]="auto1">
     </sbb-search>
     <sbb-autocomplete #auto1="sbbAutocomplete">
       <sbb-option *ngFor="let option of filteredOptions" [value]="option">
@@ -64,7 +64,7 @@ export class SimpleSearchAutocompleteComponent {
 
 @Component({
   selector: 'sbb-simple-search-header-component',
-  template: ` <sbb-search mode="header" (search)="search()" placeholder="Suchen"> </sbb-search> `,
+  template: ` <sbb-search mode="header" (search)="search()" placeholder="Search"> </sbb-search> `,
 })
 export class SimpleSearchHeaderComponent {
   searchCounter = 0;
@@ -81,7 +81,7 @@ export class SimpleSearchHeaderComponent {
     <sbb-search
       mode="header"
       (search)="search($event)"
-      placeholder="Suchen"
+      placeholder="Search"
       [sbbAutocomplete]="auto1"
     >
     </sbb-search>
@@ -138,7 +138,7 @@ describe('SearchComponent', () => {
     });
 
     it('should show a placeholder', () => {
-      expect(component.searchComponent.placeholder).toBe('Suchen');
+      expect(component.searchComponent.placeholder).toBe('Search');
     });
 
     describe('when pressing the ENTER key', () => {
