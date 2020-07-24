@@ -134,7 +134,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   /**
    * Identifier of search content.
-   * TODO: check if needed
+   * @docs-private
+   * @deprecated internal detail
    */
   get contentId() {
     return `${this.id}-content`;
