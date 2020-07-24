@@ -11,13 +11,23 @@
     height: 100%;
   }
 
-  &:not(.sbb-icon-namespace-fpl) {
+  svg:not(.color-immutable) {
     [fill]:not([fill='none']) {
       fill: currentColor;
     }
 
     [stroke]:not([stroke='none']) {
       stroke: currentColor;
+    }
+
+    // TODO: Maybe improve this solution in CDN Image
+    & >,
+    :not([stroke]):not([fill]) {
+      path:not([stroke]):not([fill]),
+      polygon:not([stroke]):not([fill]),
+      polyline:not([stroke]):not([fill]) {
+        fill: currentColor;
+      }
     }
   }
 
