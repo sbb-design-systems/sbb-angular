@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
-import { IconChevronSmallDownModule } from '@sbb-esta/angular-icons/arrow';
-import { IconUserModule } from '@sbb-esta/angular-icons/user';
 import { DropdownComponent, DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { UsermenuModule } from '../usermenu.module';
@@ -197,7 +197,7 @@ describe('UserMenuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [UserMenuComponent],
-      imports: [CommonModule, DropdownModule, IconChevronSmallDownModule, IconUserModule],
+      imports: [CommonModule, DropdownModule, SbbIconModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -228,8 +228,8 @@ describe('Usermenu test case: user with custom image using mock component', () =
         UsermenuModule,
         CommonModule,
         DropdownModule,
-        IconChevronSmallDownModule,
-        IconUserModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         RouterTestingModule,
       ],
       declarations: [UsermenuTestComponent],
@@ -387,8 +387,8 @@ describe('Usermenu test case: usermenu without user image but with initial lette
         UsermenuModule,
         CommonModule,
         DropdownModule,
-        IconChevronSmallDownModule,
-        IconUserModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         RouterTestingModule,
       ],
       declarations: [UsermenuTest2Component],
@@ -513,8 +513,8 @@ describe('Usermenu test case: usermenu only with userName using mock component',
         UsermenuModule,
         CommonModule,
         DropdownModule,
-        IconChevronSmallDownModule,
-        IconUserModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         RouterTestingModule,
       ],
       declarations: [UsermenuTest3Component],
