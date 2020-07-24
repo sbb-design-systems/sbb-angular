@@ -25,7 +25,7 @@ ng_module(
         "//src/angular-business/button",
         "//src/angular-business/field",
         "//src/angular-business/tooltip",
-        "//src/angular-icons/navigation",
+        "//src/angular-core/icon",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
