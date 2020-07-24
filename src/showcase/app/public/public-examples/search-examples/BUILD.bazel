@@ -9,12 +9,22 @@ package(default_visibility = ["//visibility:public"])
 ng_module(
     name = "search-examples",
     srcs = [
-        "search-example/search-example.component.ts",
+        "search-autocomplete-example/search-autocomplete-example.component.ts",
+        "search-custom-icon-autocomplete-static-options-example/search-custom-icon-autocomplete-static-options-example.component.ts",
         "search-examples.module.ts",
+        "search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.ts",
+        "search-simple-header-mode-example/search-simple-header-mode-example.component.ts",
+        "search-simple-reactive-forms-example/search-simple-reactive-forms-example.component.ts",
     ],
     assets = [
-        ":search-example/search-example.component.css",
-        "search-example/search-example.component.html",
+        ":search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.css",
+        ":search-simple-header-mode-example/search-simple-header-mode-example.component.css",
+        ":search-simple-reactive-forms-example/search-simple-reactive-forms-example.component.css",
+        "search-autocomplete-example/search-autocomplete-example.component.html",
+        "search-custom-icon-autocomplete-static-options-example/search-custom-icon-autocomplete-static-options-example.component.html",
+        "search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.html",
+        "search-simple-header-mode-example/search-simple-header-mode-example.component.html",
+        "search-simple-reactive-forms-example/search-simple-reactive-forms-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -40,6 +50,16 @@ filegroup(
 )
 
 sass_binary(
-    name = "search_example_search_example_component_scss",
-    src = "search-example/search-example.component.scss",
+    name = "search_historic_railway_pictures_example_search_historic_railway_pictures_example_component_scss",
+    src = "search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.scss",
+)
+
+sass_binary(
+    name = "search_simple_header_mode_example_search_simple_header_mode_example_component_scss",
+    src = "search-simple-header-mode-example/search-simple-header-mode-example.component.scss",
+)
+
+sass_binary(
+    name = "search_simple_reactive_forms_example_search_simple_reactive_forms_example_component_scss",
+    src = "search-simple-reactive-forms-example/search-simple-reactive-forms-example.component.scss",
 )

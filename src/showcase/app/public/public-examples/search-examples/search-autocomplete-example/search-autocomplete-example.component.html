@@ -1,0 +1,7 @@
+<sbb-search placeholder="Search" [formControl]="searchControl" [sbbAutocomplete]="auto">
+</sbb-search>
+<sbb-autocomplete #auto="sbbAutocomplete">
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+    {{ option }}
+  </sbb-option>
+</sbb-autocomplete>

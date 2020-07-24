@@ -8,12 +8,26 @@ import { SearchModule } from '@sbb-esta/angular-public/search';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { SearchExampleComponent } from './search-example/search-example.component';
+import { SearchAutocompleteExample } from './search-autocomplete-example/search-autocomplete-example.component';
+import { SearchCustomIconAutocompleteStaticOptionsExample } from './search-custom-icon-autocomplete-static-options-example/search-custom-icon-autocomplete-static-options-example.component';
+import { SearchHistoricRailwayPicturesExample } from './search-historic-railway-pictures-example/search-historic-railway-pictures-example.component';
+import { SearchSimpleHeaderModeExample } from './search-simple-header-mode-example/search-simple-header-mode-example.component';
+import { SearchSimpleReactiveFormsExample } from './search-simple-reactive-forms-example/search-simple-reactive-forms-example.component';
 
-const EXAMPLES = [SearchExampleComponent];
+const EXAMPLES = [
+  SearchSimpleReactiveFormsExample,
+  SearchSimpleHeaderModeExample,
+  SearchAutocompleteExample,
+  SearchCustomIconAutocompleteStaticOptionsExample,
+  SearchHistoricRailwayPicturesExample,
+];
 
 const EXAMPLE_INDEX = {
-  'search-example': SearchExampleComponent,
+  'search-simple-reactive-forms-example': SearchSimpleReactiveFormsExample,
+  'search-simple-header-mode-example': SearchSimpleHeaderModeExample,
+  'search-autocomplete-example': SearchAutocompleteExample,
+  'search-custom-icon-autocomplete-static-options-example': SearchCustomIconAutocompleteStaticOptionsExample,
+  'search-historic-railway-pictures-example': SearchHistoricRailwayPicturesExample,
 };
 
 @NgModule({
