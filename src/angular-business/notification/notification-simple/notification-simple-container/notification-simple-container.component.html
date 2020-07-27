@@ -1,11 +1,14 @@
-<span class="sbb-notification-icon-wrapper">
+<span class="sbb-notification-container-icon-wrapper">
   <ng-container *ngTemplateOutlet="icon"></ng-container>
 </span>
 <div class="sbb-notification-content">
   <ng-template cdkPortalOutlet></ng-template>
 </div>
 
-<button (click)="exit()" class="sbb-notification-icon-wrapper sbb-notification-icon-close-wrapper">
+<button
+  (click)="exit()"
+  class="sbb-notification-container-icon-wrapper sbb-notification-container-icon-close-wrapper"
+>
   <sbb-icon-cross></sbb-icon-cross>
 </button>
 
