@@ -28,7 +28,7 @@ import { NOTIFICATION_ANIMATIONS } from './notification-animations';
 @Component({
   selector: 'sbb-notification-container',
   templateUrl: './notification-simple-container.component.html',
-  styleUrls: ['./notification-simple-container.component.scss'],
+  styleUrls: ['../../notification/notification.component.scss'],
   // In Ivy embedded views will be change detected from their declaration place, rather than
   // where they were stamped out. This means that we can't have the notification container be OnPush,
   // because it might cause notifications that were opened from a template not to be out of date.
@@ -37,11 +37,11 @@ import { NOTIFICATION_ANIMATIONS } from './notification-animations';
   encapsulation: ViewEncapsulation.None,
   animations: [NOTIFICATION_ANIMATIONS.notificationState],
   host: {
-    class: 'sbb-notification-container',
-    '[class.sbb-notification-container-success]': 'config.type === "success"',
-    '[class.sbb-notification-container-info]': 'config.type === "info"',
-    '[class.sbb-notification-container-warn]': 'config.type === "warn"',
-    '[class.sbb-notification-container-error]': 'config.type === "error"',
+    class: 'sbb-notification',
+    '[class.sbb-notification-success]': 'config.type === "success"',
+    '[class.sbb-notification-info]': 'config.type === "info"',
+    '[class.sbb-notification-warn]': 'config.type === "warn"',
+    '[class.sbb-notification-error]': 'config.type === "error"',
     '[attr.role]': '_role',
     '[attr.aria-hidden]': 'ariaHidden',
     '[attr.aria-label]': 'null',
