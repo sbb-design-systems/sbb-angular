@@ -18,7 +18,7 @@ import { NotificationSimpleRef } from './notification-simple-ref';
 import { NOTIFICATION_CONFIG } from './notification-simple.service';
 
 @Component({
-  selector: 'sbb-notification',
+  selector: 'sbb-notification-simple',
   templateUrl: './notification-simple.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

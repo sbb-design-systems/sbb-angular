@@ -15,7 +15,6 @@ import { FileSelectorExamplesModule } from './file-selector-examples/file-select
 import { LinksExamplesModule } from './links-examples/links-examples.module';
 import { LoadingExamplesModule } from './loading-examples/loading-examples.module';
 import { NotificationExamplesModule } from './notification-examples/notification-examples.module';
-import { NotificationSimpleExamplesModule } from './notification-simple-examples/notification-simple-examples.module';
 import { PaginationExamplesModule } from './pagination-examples/pagination-examples.module';
 import { ProcessflowExamplesModule } from './processflow-examples/processflow-examples.module';
 import { RadioButtonExamplesModule } from './radio-button-examples/radio-button-examples.module';
@@ -45,7 +44,6 @@ const EXAMPLES = [
   LinksExamplesModule,
   LoadingExamplesModule,
   NotificationExamplesModule,
-  NotificationSimpleExamplesModule,
   PaginationExamplesModule,
   ProcessflowExamplesModule,
   RadioButtonExamplesModule,

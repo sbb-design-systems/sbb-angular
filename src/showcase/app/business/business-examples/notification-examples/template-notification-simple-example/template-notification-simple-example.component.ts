@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Notification } from '@sbb-esta/angular-business/notification-simple';
+import { Notification } from '@sbb-esta/angular-business/notification';
 
 @Component({
   selector: 'sbb-template-notification-simple-example',
