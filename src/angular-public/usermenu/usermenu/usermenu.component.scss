@@ -5,13 +5,13 @@ $borderActive: if($sbbBusiness, solid 1px $sbbColorGranite, solid 2px $sbbColorG
 
 $border4K: solid 3px $sbbColorGraphite;
 $border5K: solid 4px $sbbColorGraphite;
-$borderActive4K: solid toPx(3 * $scalingFactor4k) $sbbColorGrey;
-$borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
+$borderActive4K: solid toPx(3) $sbbColorGrey;
+$borderActive5K: solid toPx(4) $sbbColorGrey;
 
 .sbb-usermenu {
   cursor: pointer;
 
-  &-logged-in {
+  .sbb-usermenu-logged-in {
     position: relative;
     align-items: center;
     display: flex;
@@ -23,13 +23,15 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        width: toPx(432 * $scalingFactor4k);
-        height: toPx(72 * $scalingFactor4k);
+        width: toPx(432);
+        height: toPx(72);
+        border: 3px solid transparent;
       }
 
       @include mq($from: desktop5k) {
-        width: toPx(576 * $scalingFactor5k);
-        height: toPx(96 * $scalingFactor5k);
+        width: toPx(576);
+        height: toPx(96);
+        border: 4px solid transparent;
       }
     }
 
@@ -37,14 +39,13 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
       display: none;
     }
 
-    &-active {
-      padding-left: 16px;
+    &.sbb-usermenu-logged-in-active {
       border: $borderActive;
+      outline: 0;
 
       @include businessOnly() {
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
-        border-bottom: 1px solid $sbbColorCloud;
       }
 
       @include publicOnly() {
@@ -56,28 +57,39 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
           border: $borderActive5K;
         }
       }
+
+      .sbb-usermenu-logged-in-collapsed {
+        padding-left: toPx(18);
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            padding-left: toPx(24);
+          }
+          @include mq($from: desktop5k) {
+            padding-left: toPx(32);
+          }
+        }
+      }
     }
 
-    &-collapsed {
+    .sbb-usermenu-logged-in-collapsed {
       display: flex;
       align-items: center;
-      margin-left: 3px;
-      margin-top: 3px;
       width: 100%;
-
+      transition: 0.1s ease-in-out padding;
+      padding-left: 4px;
+      @include mq($from: tablet) {
+        padding-left: toPx(18);
+      }
       @include publicOnly() {
         @include mq($from: desktop4k) {
-          margin-left: toPx(3 * $scalingFactor4k);
-          margin-top: toPx(3 * $scalingFactor4k);
+          padding-left: toPx(24);
         }
-
         @include mq($from: desktop5k) {
-          margin-left: toPx(3 * $scalingFactor5k);
-          margin-top: toPx(3 * $scalingFactor5k);
+          padding-left: toPx(32);
         }
       }
 
-      &-user-icon {
+      .sbb-usermenu-logged-in-collapsed-user-icon {
         flex: 0 0 32px;
         width: 118px;
 
@@ -91,15 +103,11 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
           }
         }
 
-        .sbb-usermenu-logged-in-collapsed-icon {
-          position: relative;
-        }
-
         .sbb-usermenu-logged-in-collapsed-initial-letters {
           border-radius: 50%;
           background-color: $sbbColorCloud;
           font-family: $fontFamilyBase;
-          font-size: pxToRem(13);
+          font-size: pxToRem(15);
           color: $sbbColorMetal;
           font-weight: 700;
           width: 32px;
@@ -109,13 +117,13 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
           @include publicOnly() {
             @include mq($from: desktop4k) {
-              font-size: toPx(14 * $scalingFactor4k);
+              font-size: pxToRem(23);
               width: toPx(32 * $scalingFactor4k);
               height: toPx(32 * $scalingFactor4k);
             }
 
             @include mq($from: desktop5k) {
-              font-size: toPx(14 * $scalingFactor5k);
+              font-size: pxToRem(30);
               width: toPx(32 * $scalingFactor5k);
               height: toPx(32 * $scalingFactor5k);
             }
@@ -127,16 +135,17 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
         }
       }
 
-      &-dropdown-expanded {
+      &.sbb-usermenu-logged-in-collapsed-dropdown-expanded {
         width: 100%;
       }
 
-      &-arrow {
-        @include svgIconColor($sbbColorMetal);
+      .sbb-usermenu-logged-in-collapsed-arrow {
+        color: $sbbColorMetal;
         width: toPx(24);
         height: toPx(24);
         position: relative;
         pointer-events: none;
+        flex-shrink: 0;
 
         @include mq($from: mobilePortrait, $to: tabletPortrait) {
           display: none;
@@ -146,32 +155,29 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
           @include mq($from: desktop4k) {
             width: toPx(24 * $scalingFactor4k);
             height: toPx(24 * $scalingFactor4k);
-            z-index: -1;
-            margin-left: toPx(-40 * $scalingFactor4k);
-            margin-bottom: toPx(3.335 * $scalingFactor4k);
           }
 
           @include mq($from: desktop5k) {
             width: toPx(24 * $scalingFactor5k);
             height: toPx(24 * $scalingFactor5k);
-            z-index: -1;
-            margin-left: toPx(-35 * $scalingFactor5k);
-            margin-bottom: toPx(2.5 * $scalingFactor5k);
           }
         }
       }
 
       .sbb-usermenu-logged-in-expanded-info-user {
         padding-left: 4px;
-        max-width: calc(100% - 68px);
+        max-width: calc(100% - 58px);
+        overflow: hidden;
 
         @include publicOnly() {
           @include mq($from: desktop4k) {
             padding-left: toPx(4 * $scalingFactor4k);
+            max-width: calc(100% - #{58px * $scalingFactor4k});
           }
 
           @include mq($from: desktop5k) {
             padding-left: toPx(4 * $scalingFactor5k);
+            max-width: calc(100% - #{58px * $scalingFactor5k});
           }
         }
 
@@ -188,34 +194,28 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
         .sbb-usermenu-logged-in-expanded-username {
           font-size: pxToRem(13);
-          margin-top: -3px;
 
           @include publicOnly() {
             @include mq($from: desktop4k) {
-              font-size: toPx(13.5 * $scalingFactor4k);
-              margin-top: toPx(-3 * $scalingFactor4k);
+              font-size: pxToRem(13 * $scalingFactor4k);
             }
 
             @include mq($from: desktop5k) {
-              font-size: toPx(13 * $scalingFactor5k);
-              margin-top: toPx(-3 * $scalingFactor5k);
+              font-size: pxToRem(13 * $scalingFactor5k);
             }
           }
         }
 
         .sbb-usermenu-logged-in-expanded-displayName {
           font-size: pxToRem(15);
-          margin-top: -5px;
 
           @include publicOnly() {
             @include mq($from: desktop4k) {
-              font-size: toPx(15.35 * $scalingFactor4k);
-              margin-top: toPx(-5 * $scalingFactor4k);
+              font-size: pxToRem(23);
             }
 
             @include mq($from: desktop5k) {
-              font-size: toPx(15 * $scalingFactor5k);
-              margin-top: toPx(-5 * $scalingFactor5k);
+              font-size: pxToRem(30);
             }
           }
 
@@ -231,7 +231,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
         flex-basis: 24px;
 
         .sbb-usermenu-logged-in-expanded-arrow {
-          @include svgIconColor($sbbColorMetal);
+          color: $sbbColorMetal;
           width: toPx(24);
           height: toPx(24);
           transform: rotate(180deg);
@@ -253,7 +253,6 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   }
 
   .sbb-usermenu-logged-off {
-    @include svgIconColor($sbbColorMetal);
     display: flex;
     align-items: center;
     position: relative;
@@ -263,32 +262,27 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        height: toPx(72 * $scalingFactor4k);
-        width: toPx(103 * $scalingFactor4k);
+        height: toPx(72);
+        width: toPx(103);
       }
 
       @include mq($from: desktop5k) {
-        height: toPx(96 * $scalingFactor5k);
-        width: toPx(134 * $scalingFactor5k);
+        height: toPx(96);
+        width: toPx(134);
       }
     }
 
     &:hover {
-      sbb-icon-user {
-        @include svgIconColor($sbbColorRed125);
-      }
-
       .sbb-usermenu-logged-off-button {
         color: $sbbColorRed125;
       }
     }
 
-    &-button {
+    .sbb-usermenu-logged-off-button {
       @include buttonResetFrameless;
       position: relative;
       width: 100%;
       height: 100%;
-      margin-top: 2px;
       color: inherit;
       cursor: pointer;
       display: flex;
@@ -296,60 +290,55 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
       @include publicOnly() {
         @include mq($from: desktop4k) {
-          margin-left: toPx(13.5 * $scalingFactor4k);
-          margin-top: toPx(8 * $scalingFactor4k);
-          max-width: toPx(53 * $scalingFactor4k);
-          max-height: toPx(26 * $scalingFactor4k);
           font-size: toPx(14 * $scalingFactor4k);
         }
 
         @include mq($from: desktop5k) {
-          margin-left: toPx(13.5 * $scalingFactor5k);
-          margin-top: toPx(6.5 * $scalingFactor5k);
-          max-width: toPx(70 * $scalingFactor5k);
-          max-height: toPx(35 * $scalingFactor5k);
           font-size: toPx(14 * $scalingFactor5k);
         }
       }
 
-      sbb-icon-user {
+      .sbb-icon {
         width: 24px;
         height: 24px;
-        margin-left: pxToRem(2);
         margin-right: 0.9rem;
-        color: inherit;
+        flex-shrink: 0;
+        flex-grow: 0;
 
         @include publicOnly() {
           @include mq($from: desktop4k) {
-            height: toPx(36 * $scalingFactor4k);
-            width: toPx(36 * $scalingFactor4k);
-            margin-left: toPx(2 * $scalingFactor4k);
+            height: toPx(36);
+            width: toPx(36);
           }
 
           @include mq($from: desktop5k) {
-            height: toPx(48 * $scalingFactor5k);
-            width: toPx(48 * $scalingFactor5k);
-            margin-left: toPx(2 * $scalingFactor5k);
+            height: toPx(48);
+            width: toPx(48);
           }
         }
       }
     }
   }
 
-  img {
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
+  .sbb-usermenu-logged-in-collapsed-icon {
+    img {
+      border-radius: 50%;
+    }
+    &,
+    img {
+      width: 32px;
+      height: 32px;
 
-    @include publicOnly() {
-      @include mq($from: desktop4k) {
-        width: toPx(32 * $scalingFactor4k);
-        height: toPx(32 * $scalingFactor4k);
-      }
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          width: toPx(32 * $scalingFactor4k);
+          height: toPx(32 * $scalingFactor4k);
+        }
 
-      @include mq($from: desktop5k) {
-        width: toPx(32 * $scalingFactor5k);
-        height: toPx(32 * $scalingFactor5k);
+        @include mq($from: desktop5k) {
+          width: toPx(32 * $scalingFactor5k);
+          height: toPx(32 * $scalingFactor5k);
+        }
       }
     }
   }
