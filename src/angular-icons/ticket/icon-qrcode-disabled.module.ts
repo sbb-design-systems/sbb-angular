@@ -51,6 +51,9 @@ export class IconQrcodeDisabledComponent extends IconBase {
   }
 }
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconQrcodeDisabledComponent],

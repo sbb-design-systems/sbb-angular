@@ -46,6 +46,9 @@ export class SvgIconTicketDaySmall {}
 })
 export class IconTicketDaySmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTicketDaySmall, IconTicketDaySmall],
   exports: [SvgIconTicketDaySmall, IconTicketDaySmall],

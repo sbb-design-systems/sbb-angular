@@ -45,6 +45,9 @@ export class SvgIconFaceKingSmall {}
 })
 export class IconFaceKingSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFaceKingSmall, IconFaceKingSmall],
   exports: [SvgIconFaceKingSmall, IconFaceKingSmall],

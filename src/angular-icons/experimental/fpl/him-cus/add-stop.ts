@@ -47,6 +47,9 @@ export class SvgIconAddStop {}
 })
 export class IconAddStop {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconAddStop, IconAddStop],
   exports: [SvgIconAddStop, IconAddStop],

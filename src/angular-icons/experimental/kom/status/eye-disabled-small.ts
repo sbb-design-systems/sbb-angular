@@ -45,6 +45,9 @@ export class SvgIconEyeDisabledSmall {}
 })
 export class IconEyeDisabledSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconEyeDisabledSmall, IconEyeDisabledSmall],
   exports: [SvgIconEyeDisabledSmall, IconEyeDisabledSmall],

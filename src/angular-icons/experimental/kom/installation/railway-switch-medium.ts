@@ -45,6 +45,9 @@ export class SvgIconRailwaySwitchMedium {}
 })
 export class IconRailwaySwitchMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconRailwaySwitchMedium, IconRailwaySwitchMedium],
   exports: [SvgIconRailwaySwitchMedium, IconRailwaySwitchMedium],

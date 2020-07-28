@@ -45,6 +45,9 @@ export class SvgIconPaperClipMedium {}
 })
 export class IconPaperClipMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPaperClipMedium, IconPaperClipMedium],
   exports: [SvgIconPaperClipMedium, IconPaperClipMedium],

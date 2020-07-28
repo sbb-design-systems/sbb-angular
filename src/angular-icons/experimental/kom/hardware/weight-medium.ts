@@ -50,6 +50,9 @@ export class SvgIconWeightMedium {}
 })
 export class IconWeightMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWeightMedium, IconWeightMedium],
   exports: [SvgIconWeightMedium, IconWeightMedium],

@@ -45,6 +45,9 @@ export class SvgIconLocationPinPulseSurroundingAreaMedium {}
 })
 export class IconLocationPinPulseSurroundingAreaMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [
     SvgIconLocationPinPulseSurroundingAreaMedium,

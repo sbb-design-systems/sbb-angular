@@ -24,6 +24,9 @@ export const ICON_MODULE_LIST = [<% for (let icon of icons) { %>
   Icon<%= classify(icon.normalizedName) %>Module,<% } %>
 ];
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: ICON_MODULE_LIST,
   exports: ICON_MODULE_LIST

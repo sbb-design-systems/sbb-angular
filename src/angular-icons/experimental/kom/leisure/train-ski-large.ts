@@ -45,6 +45,9 @@ export class SvgIconTrainSkiLarge {}
 })
 export class IconTrainSkiLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTrainSkiLarge, IconTrainSkiLarge],
   exports: [SvgIconTrainSkiLarge, IconTrainSkiLarge],

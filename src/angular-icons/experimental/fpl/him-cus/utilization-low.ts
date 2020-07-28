@@ -50,6 +50,9 @@ export class SvgIconUtilizationLow {}
 })
 export class IconUtilizationLow {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconUtilizationLow, IconUtilizationLow],
   exports: [SvgIconUtilizationLow, IconUtilizationLow],

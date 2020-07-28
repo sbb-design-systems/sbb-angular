@@ -45,6 +45,9 @@ export class SvgIconStationSurroundingAreaSmall {}
 })
 export class IconStationSurroundingAreaSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconStationSurroundingAreaSmall, IconStationSurroundingAreaSmall],
   exports: [SvgIconStationSurroundingAreaSmall, IconStationSurroundingAreaSmall],

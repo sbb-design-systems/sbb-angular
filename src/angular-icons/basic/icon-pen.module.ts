@@ -47,6 +47,9 @@ export class IconPenComponent extends IconBase {
   }
 }
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconPenComponent],

@@ -9561,6 +9561,9 @@ export const ICON_MODULE_LIST = [
   IconXingModule,
 ];
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: ICON_MODULE_LIST,
   exports: ICON_MODULE_LIST,

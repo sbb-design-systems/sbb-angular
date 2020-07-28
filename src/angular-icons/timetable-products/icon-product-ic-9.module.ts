@@ -34,6 +34,9 @@ export class IconProductIc9Component extends IconBase {
   }
 }
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconProductIc9Component],

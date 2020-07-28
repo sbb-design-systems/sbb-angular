@@ -45,6 +45,9 @@ export class SvgIconCombinedMobilitySmall {}
 })
 export class IconCombinedMobilitySmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCombinedMobilitySmall, IconCombinedMobilitySmall],
   exports: [SvgIconCombinedMobilitySmall, IconCombinedMobilitySmall],

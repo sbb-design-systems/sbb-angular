@@ -45,6 +45,9 @@ export class SvgIconChartColumnTrendMedium {}
 })
 export class IconChartColumnTrendMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChartColumnTrendMedium, IconChartColumnTrendMedium],
   exports: [SvgIconChartColumnTrendMedium, IconChartColumnTrendMedium],

@@ -45,6 +45,9 @@ export class SvgIconHandshakeMedium {}
 })
 export class IconHandshakeMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHandshakeMedium, IconHandshakeMedium],
   exports: [SvgIconHandshakeMedium, IconHandshakeMedium],

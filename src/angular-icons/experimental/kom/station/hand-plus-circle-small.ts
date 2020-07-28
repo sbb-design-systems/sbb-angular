@@ -45,6 +45,9 @@ export class SvgIconHandPlusCircleSmall {}
 })
 export class IconHandPlusCircleSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHandPlusCircleSmall, IconHandPlusCircleSmall],
   exports: [SvgIconHandPlusCircleSmall, IconHandPlusCircleSmall],

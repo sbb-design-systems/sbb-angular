@@ -45,6 +45,9 @@ export class SvgIconBottleAppleMedium {}
 })
 export class IconBottleAppleMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconBottleAppleMedium, IconBottleAppleMedium],
   exports: [SvgIconBottleAppleMedium, IconBottleAppleMedium],

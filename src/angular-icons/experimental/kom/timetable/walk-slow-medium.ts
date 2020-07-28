@@ -50,6 +50,9 @@ export class SvgIconWalkSlowMedium {}
 })
 export class IconWalkSlowMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWalkSlowMedium, IconWalkSlowMedium],
   exports: [SvgIconWalkSlowMedium, IconWalkSlowMedium],

@@ -45,6 +45,9 @@ export class SvgIconChevronSmallRightCircleMedium {}
 })
 export class IconChevronSmallRightCircleMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChevronSmallRightCircleMedium, IconChevronSmallRightCircleMedium],
   exports: [SvgIconChevronSmallRightCircleMedium, IconChevronSmallRightCircleMedium],

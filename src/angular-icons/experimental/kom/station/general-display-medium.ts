@@ -45,6 +45,9 @@ export class SvgIconGeneralDisplayMedium {}
 })
 export class IconGeneralDisplayMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconGeneralDisplayMedium, IconGeneralDisplayMedium],
   exports: [SvgIconGeneralDisplayMedium, IconGeneralDisplayMedium],

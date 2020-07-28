@@ -46,6 +46,9 @@ export class SvgIconTicketStarMedium {}
 })
 export class IconTicketStarMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTicketStarMedium, IconTicketStarMedium],
   exports: [SvgIconTicketStarMedium, IconTicketStarMedium],

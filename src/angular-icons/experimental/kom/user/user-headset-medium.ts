@@ -45,6 +45,9 @@ export class SvgIconUserHeadsetMedium {}
 })
 export class IconUserHeadsetMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconUserHeadsetMedium, IconUserHeadsetMedium],
   exports: [SvgIconUserHeadsetMedium, IconUserHeadsetMedium],

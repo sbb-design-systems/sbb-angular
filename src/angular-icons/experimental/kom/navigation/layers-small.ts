@@ -45,6 +45,9 @@ export class SvgIconLayersSmall {}
 })
 export class IconLayersSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLayersSmall, IconLayersSmall],
   exports: [SvgIconLayersSmall, IconLayersSmall],

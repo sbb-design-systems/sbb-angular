@@ -45,6 +45,9 @@ export class SvgIconFlashlightOnSmall {}
 })
 export class IconFlashlightOnSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFlashlightOnSmall, IconFlashlightOnSmall],
   exports: [SvgIconFlashlightOnSmall, IconFlashlightOnSmall],

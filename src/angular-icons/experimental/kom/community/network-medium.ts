@@ -45,6 +45,9 @@ export class SvgIconNetworkMedium {}
 })
 export class IconNetworkMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconNetworkMedium, IconNetworkMedium],
   exports: [SvgIconNetworkMedium, IconNetworkMedium],

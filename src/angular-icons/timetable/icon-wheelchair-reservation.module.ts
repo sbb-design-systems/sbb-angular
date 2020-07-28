@@ -47,6 +47,9 @@ export class IconWheelchairReservationComponent extends IconBase {
   }
 }
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconWheelchairReservationComponent],

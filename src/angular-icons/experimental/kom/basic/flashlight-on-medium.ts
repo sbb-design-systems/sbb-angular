@@ -45,6 +45,9 @@ export class SvgIconFlashlightOnMedium {}
 })
 export class IconFlashlightOnMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFlashlightOnMedium, IconFlashlightOnMedium],
   exports: [SvgIconFlashlightOnMedium, IconFlashlightOnMedium],

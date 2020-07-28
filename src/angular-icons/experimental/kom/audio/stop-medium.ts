@@ -39,6 +39,9 @@ export class SvgIconStopMedium {}
 })
 export class IconStopMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconStopMedium, IconStopMedium],
   exports: [SvgIconStopMedium, IconStopMedium],

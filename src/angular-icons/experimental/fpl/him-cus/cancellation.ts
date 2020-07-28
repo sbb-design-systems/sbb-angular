@@ -51,6 +51,9 @@ export class SvgIconCancellation {}
 })
 export class IconCancellation {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCancellation, IconCancellation],
   exports: [SvgIconCancellation, IconCancellation],

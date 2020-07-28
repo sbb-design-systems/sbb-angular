@@ -45,6 +45,9 @@ export class SvgIconDownloadLargeDataSmall {}
 })
 export class IconDownloadLargeDataSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconDownloadLargeDataSmall, IconDownloadLargeDataSmall],
   exports: [SvgIconDownloadLargeDataSmall, IconDownloadLargeDataSmall],

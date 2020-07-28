@@ -45,6 +45,9 @@ export class SvgIconHandWithServiceBellMedium {}
 })
 export class IconHandWithServiceBellMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHandWithServiceBellMedium, IconHandWithServiceBellMedium],
   exports: [SvgIconHandWithServiceBellMedium, IconHandWithServiceBellMedium],

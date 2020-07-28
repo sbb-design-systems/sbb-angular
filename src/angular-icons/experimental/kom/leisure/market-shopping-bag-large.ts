@@ -45,6 +45,9 @@ export class SvgIconMarketShoppingBagLarge {}
 })
 export class IconMarketShoppingBagLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMarketShoppingBagLarge, IconMarketShoppingBagLarge],
   exports: [SvgIconMarketShoppingBagLarge, IconMarketShoppingBagLarge],

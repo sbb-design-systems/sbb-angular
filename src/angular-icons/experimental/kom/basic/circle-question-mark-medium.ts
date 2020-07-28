@@ -50,6 +50,9 @@ export class SvgIconCircleQuestionMarkMedium {}
 })
 export class IconCircleQuestionMarkMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCircleQuestionMarkMedium, IconCircleQuestionMarkMedium],
   exports: [SvgIconCircleQuestionMarkMedium, IconCircleQuestionMarkMedium],

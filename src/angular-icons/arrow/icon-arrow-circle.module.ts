@@ -5,9 +5,6 @@ import { IconBase } from '@sbb-esta/angular-icons/core';
 /**
  * @Deprecated use @sbb-esta/angular-core/icon module
  */
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @Component({
   selector: 'sbb-icon-arrow-circle',
   // tslint:disable:max-line-length

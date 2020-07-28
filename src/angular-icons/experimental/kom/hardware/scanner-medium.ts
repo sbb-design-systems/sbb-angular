@@ -45,6 +45,9 @@ export class SvgIconScannerMedium {}
 })
 export class IconScannerMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconScannerMedium, IconScannerMedium],
   exports: [SvgIconScannerMedium, IconScannerMedium],

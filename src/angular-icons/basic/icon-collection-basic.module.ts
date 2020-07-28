@@ -154,6 +154,9 @@ const modules = [
   IconWifiModule,
 ];
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: modules,
   exports: modules,

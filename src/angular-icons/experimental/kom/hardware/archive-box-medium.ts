@@ -45,6 +45,9 @@ export class SvgIconArchiveBoxMedium {}
 })
 export class IconArchiveBoxMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconArchiveBoxMedium, IconArchiveBoxMedium],
   exports: [SvgIconArchiveBoxMedium, IconArchiveBoxMedium],

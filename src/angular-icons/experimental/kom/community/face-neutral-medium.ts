@@ -45,6 +45,9 @@ export class SvgIconFaceNeutralMedium {}
 })
 export class IconFaceNeutralMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFaceNeutralMedium, IconFaceNeutralMedium],
   exports: [SvgIconFaceNeutralMedium, IconFaceNeutralMedium],

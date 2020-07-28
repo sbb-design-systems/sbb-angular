@@ -45,6 +45,9 @@ export class SvgIconMountainSunLarge {}
 })
 export class IconMountainSunLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMountainSunLarge, IconMountainSunLarge],
   exports: [SvgIconMountainSunLarge, IconMountainSunLarge],

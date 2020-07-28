@@ -39,6 +39,9 @@ export class IconSuitcaseComponent extends IconBase {
   }
 }
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconSuitcaseComponent],

@@ -51,6 +51,9 @@ export class SvgIconReroute {}
 })
 export class IconReroute {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconReroute, IconReroute],
   exports: [SvgIconReroute, IconReroute],

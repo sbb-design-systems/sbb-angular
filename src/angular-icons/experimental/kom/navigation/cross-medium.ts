@@ -41,6 +41,9 @@ export class SvgIconCrossMedium {}
 })
 export class IconCrossMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCrossMedium, IconCrossMedium],
   exports: [SvgIconCrossMedium, IconCrossMedium],

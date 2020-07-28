@@ -39,6 +39,9 @@ export class SvgIconHamburgerMenuMedium {}
 })
 export class IconHamburgerMenuMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHamburgerMenuMedium, IconHamburgerMenuMedium],
   exports: [SvgIconHamburgerMenuMedium, IconHamburgerMenuMedium],

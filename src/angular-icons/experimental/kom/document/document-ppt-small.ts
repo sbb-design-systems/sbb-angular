@@ -47,6 +47,9 @@ export class SvgIconDocumentPptSmall {}
 })
 export class IconDocumentPptSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconDocumentPptSmall, IconDocumentPptSmall],
   exports: [SvgIconDocumentPptSmall, IconDocumentPptSmall],

@@ -45,6 +45,9 @@ export class SvgIconWheelchairInaccessibleSmall {}
 })
 export class IconWheelchairInaccessibleSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWheelchairInaccessibleSmall, IconWheelchairInaccessibleSmall],
   exports: [SvgIconWheelchairInaccessibleSmall, IconWheelchairInaccessibleSmall],

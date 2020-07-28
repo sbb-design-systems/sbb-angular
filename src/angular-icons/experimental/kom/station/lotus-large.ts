@@ -45,6 +45,9 @@ export class SvgIconLotusLarge {}
 })
 export class IconLotusLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLotusLarge, IconLotusLarge],
   exports: [SvgIconLotusLarge, IconLotusLarge],

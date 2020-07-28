@@ -32,6 +32,9 @@ export class IconPinterestComponent extends IconBase {
 /**
  * @Deprecated use @sbb-esta/angular-core/icon module
  */
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconPinterestComponent],

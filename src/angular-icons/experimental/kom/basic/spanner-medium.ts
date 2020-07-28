@@ -45,6 +45,9 @@ export class SvgIconSpannerMedium {}
 })
 export class IconSpannerMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSpannerMedium, IconSpannerMedium],
   exports: [SvgIconSpannerMedium, IconSpannerMedium],

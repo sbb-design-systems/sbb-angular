@@ -45,6 +45,9 @@ export class SvgIconWarningLightMedium {}
 })
 export class IconWarningLightMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWarningLightMedium, IconWarningLightMedium],
   exports: [SvgIconWarningLightMedium, IconWarningLightMedium],

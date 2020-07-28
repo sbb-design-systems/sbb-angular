@@ -45,6 +45,9 @@ export class SvgIconEyeMedium {}
 })
 export class IconEyeMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconEyeMedium, IconEyeMedium],
   exports: [SvgIconEyeMedium, IconEyeMedium],

@@ -45,6 +45,9 @@ export class SvgIconFaceWorkerMedium {}
 })
 export class IconFaceWorkerMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFaceWorkerMedium, IconFaceWorkerMedium],
   exports: [SvgIconFaceWorkerMedium, IconFaceWorkerMedium],

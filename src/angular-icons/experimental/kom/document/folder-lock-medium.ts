@@ -45,6 +45,9 @@ export class SvgIconFolderLockMedium {}
 })
 export class IconFolderLockMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFolderLockMedium, IconFolderLockMedium],
   exports: [SvgIconFolderLockMedium, IconFolderLockMedium],

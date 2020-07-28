@@ -45,6 +45,9 @@ export class SvgIconSuitcaseDisabledMedium {}
 })
 export class IconSuitcaseDisabledMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSuitcaseDisabledMedium, IconSuitcaseDisabledMedium],
   exports: [SvgIconSuitcaseDisabledMedium, IconSuitcaseDisabledMedium],

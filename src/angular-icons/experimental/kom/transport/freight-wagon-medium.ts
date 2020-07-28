@@ -45,6 +45,9 @@ export class SvgIconFreightWagonMedium {}
 })
 export class IconFreightWagonMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFreightWagonMedium, IconFreightWagonMedium],
   exports: [SvgIconFreightWagonMedium, IconFreightWagonMedium],

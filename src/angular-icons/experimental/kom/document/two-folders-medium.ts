@@ -45,6 +45,9 @@ export class SvgIconTwoFoldersMedium {}
 })
 export class IconTwoFoldersMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTwoFoldersMedium, IconTwoFoldersMedium],
   exports: [SvgIconTwoFoldersMedium, IconTwoFoldersMedium],

@@ -45,6 +45,9 @@ export class SvgIconPrinterMedium {}
 })
 export class IconPrinterMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPrinterMedium, IconPrinterMedium],
   exports: [SvgIconPrinterMedium, IconPrinterMedium],

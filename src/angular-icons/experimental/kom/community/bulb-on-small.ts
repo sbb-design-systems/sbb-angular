@@ -45,6 +45,9 @@ export class SvgIconBulbOnSmall {}
 })
 export class IconBulbOnSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconBulbOnSmall, IconBulbOnSmall],
   exports: [SvgIconBulbOnSmall, IconBulbOnSmall],

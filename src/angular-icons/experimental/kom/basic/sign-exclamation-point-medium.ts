@@ -45,6 +45,9 @@ export class SvgIconSignExclamationPointMedium {}
 })
 export class IconSignExclamationPointMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSignExclamationPointMedium, IconSignExclamationPointMedium],
   exports: [SvgIconSignExclamationPointMedium, IconSignExclamationPointMedium],
