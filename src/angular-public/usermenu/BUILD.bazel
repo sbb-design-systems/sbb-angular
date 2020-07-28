@@ -18,8 +18,7 @@ ng_module(
     assets = [":usermenu/usermenu.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/usermenu",
     deps = [
-        "//src/angular-icons/arrow",
-        "//src/angular-icons/user",
+        "//src/angular-core/icon",
         "//src/angular-public/dropdown",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -42,10 +41,10 @@ ng_test_library(
     ),
     deps = [
         ":usermenu",
+        "//src/angular-core/icon",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/models",
         "//src/angular-core/testing",
-        "//src/angular-icons/arrow",
-        "//src/angular-icons/user",
         "//src/angular-public/dropdown",
         "@npm//@angular/common",
         "@npm//@angular/platform-browser",
