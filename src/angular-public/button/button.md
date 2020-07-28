@@ -22,7 +22,7 @@ The button supports an optional icon, which is animated on hover.
 
 ```html
 <button sbbButton>
-  <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
+  <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon></sbb-icon>
   Action
 </button>
 ```
