@@ -3,7 +3,7 @@
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @Component({
   selector: 'svg[sbbIconTelephoneReceiverMedium]',
@@ -39,7 +39,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 export class SvgIconTelephoneReceiverMedium {}
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @Component({
   selector: 'sbb-icon-telephone-receiver-medium',
@@ -52,7 +52,7 @@ export class SvgIconTelephoneReceiverMedium {}
 export class IconTelephoneReceiverMedium {}
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @NgModule({
   declarations: [SvgIconTelephoneReceiverMedium, IconTelephoneReceiverMedium],

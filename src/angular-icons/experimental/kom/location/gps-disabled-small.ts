@@ -3,7 +3,7 @@
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @Component({
   selector: 'svg[sbbIconGpsDisabledSmall]',
@@ -39,7 +39,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 export class SvgIconGpsDisabledSmall {}
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @Component({
   selector: 'sbb-icon-gps-disabled-small',
@@ -52,7 +52,7 @@ export class SvgIconGpsDisabledSmall {}
 export class IconGpsDisabledSmall {}
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @NgModule({
   declarations: [SvgIconGpsDisabledSmall, IconGpsDisabledSmall],

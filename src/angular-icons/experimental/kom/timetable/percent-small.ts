@@ -3,7 +3,7 @@
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @Component({
   selector: 'svg[sbbIconPercentSmall]',
@@ -39,7 +39,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 export class SvgIconPercentSmall {}
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @Component({
   selector: 'sbb-icon-percent-small',
@@ -52,7 +52,7 @@ export class SvgIconPercentSmall {}
 export class IconPercentSmall {}
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @NgModule({
   declarations: [SvgIconPercentSmall, IconPercentSmall],

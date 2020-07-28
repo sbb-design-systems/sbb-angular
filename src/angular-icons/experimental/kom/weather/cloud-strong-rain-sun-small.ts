@@ -3,7 +3,7 @@
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @Component({
   selector: 'svg[sbbIconCloudStrongRainSunSmall]',
@@ -39,7 +39,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 export class SvgIconCloudStrongRainSunSmall {}
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @Component({
   selector: 'sbb-icon-cloud-strong-rain-sun-small',
@@ -52,7 +52,7 @@ export class SvgIconCloudStrongRainSunSmall {}
 export class IconCloudStrongRainSunSmall {}
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @NgModule({
   declarations: [SvgIconCloudStrongRainSunSmall, IconCloudStrongRainSunSmall],

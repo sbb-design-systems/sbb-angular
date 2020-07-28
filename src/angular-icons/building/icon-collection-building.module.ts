@@ -6,7 +6,7 @@ import { IconCityModule } from './icon-city.module';
 const modules = [IconBuildingTreeModule, IconCityModule];
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @NgModule({
   imports: modules,

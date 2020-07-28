@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { IconBase } from '<%= iconBaseImport() %>';
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @Component({
   selector: 'sbb-icon-<%= dasherize(name) %>',

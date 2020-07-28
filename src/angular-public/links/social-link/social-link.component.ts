@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 /**
- * @Deprecated use your own social icons
+ * @deprecated use your own social icons
  */
 @Component({
   // tslint:disable-next-line:component-selector

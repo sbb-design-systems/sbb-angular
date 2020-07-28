@@ -25,7 +25,7 @@ export const ICON_MODULE_LIST = [<% for (let icon of icons) { %>
 ];
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @NgModule({
   imports: ICON_MODULE_LIST,

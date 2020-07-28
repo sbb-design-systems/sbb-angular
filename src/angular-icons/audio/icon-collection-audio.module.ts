@@ -21,7 +21,7 @@ const modules = [
 ];
 
 /**
- * @Deprecated use @sbb-esta/angular-core/icon module
+ * @deprecated use @sbb-esta/angular-core/icon module
  */
 @NgModule({
   imports: modules,
