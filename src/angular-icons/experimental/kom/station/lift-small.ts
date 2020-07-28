@@ -45,9 +45,6 @@ export class SvgIconLiftSmall {}
 })
 export class IconLiftSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconLiftSmall, IconLiftSmall],
   exports: [SvgIconLiftSmall, IconLiftSmall],

@@ -45,9 +45,6 @@ export class SvgIconBicycleLarge {}
 })
 export class IconBicycleLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconBicycleLarge, IconBicycleLarge],
   exports: [SvgIconBicycleLarge, IconBicycleLarge],

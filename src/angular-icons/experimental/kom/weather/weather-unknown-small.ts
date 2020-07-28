@@ -50,9 +50,6 @@ export class SvgIconWeatherUnknownSmall {}
 })
 export class IconWeatherUnknownSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWeatherUnknownSmall, IconWeatherUnknownSmall],
   exports: [SvgIconWeatherUnknownSmall, IconWeatherUnknownSmall],

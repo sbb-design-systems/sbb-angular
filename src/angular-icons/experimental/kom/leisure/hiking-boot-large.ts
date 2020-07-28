@@ -45,9 +45,6 @@ export class SvgIconHikingBootLarge {}
 })
 export class IconHikingBootLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHikingBootLarge, IconHikingBootLarge],
   exports: [SvgIconHikingBootLarge, IconHikingBootLarge],

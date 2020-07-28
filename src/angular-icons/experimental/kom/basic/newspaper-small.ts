@@ -45,9 +45,6 @@ export class SvgIconNewspaperSmall {}
 })
 export class IconNewspaperSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconNewspaperSmall, IconNewspaperSmall],
   exports: [SvgIconNewspaperSmall, IconNewspaperSmall],

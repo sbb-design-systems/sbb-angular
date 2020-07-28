@@ -45,9 +45,6 @@ export class SvgIconFilterXSmall {}
 })
 export class IconFilterXSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconFilterXSmall, IconFilterXSmall],
   exports: [SvgIconFilterXSmall, IconFilterXSmall],

@@ -44,9 +44,6 @@ export class SvgIconDocumentZipSmall {}
 })
 export class IconDocumentZipSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDocumentZipSmall, IconDocumentZipSmall],
   exports: [SvgIconDocumentZipSmall, IconDocumentZipSmall],

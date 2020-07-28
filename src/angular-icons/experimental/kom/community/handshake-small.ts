@@ -45,9 +45,6 @@ export class SvgIconHandshakeSmall {}
 })
 export class IconHandshakeSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHandshakeSmall, IconHandshakeSmall],
   exports: [SvgIconHandshakeSmall, IconHandshakeSmall],

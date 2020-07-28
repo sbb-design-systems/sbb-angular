@@ -45,9 +45,6 @@ export class SvgIconWineCheeseSmall {}
 })
 export class IconWineCheeseSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWineCheeseSmall, IconWineCheeseSmall],
   exports: [SvgIconWineCheeseSmall, IconWineCheeseSmall],

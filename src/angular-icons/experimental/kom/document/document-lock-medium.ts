@@ -45,9 +45,6 @@ export class SvgIconDocumentLockMedium {}
 })
 export class IconDocumentLockMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDocumentLockMedium, IconDocumentLockMedium],
   exports: [SvgIconDocumentLockMedium, IconDocumentLockMedium],

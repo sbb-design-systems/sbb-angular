@@ -45,9 +45,6 @@ export class SvgIconRocketLarge {}
 })
 export class IconRocketLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconRocketLarge, IconRocketLarge],
   exports: [SvgIconRocketLarge, IconRocketLarge],

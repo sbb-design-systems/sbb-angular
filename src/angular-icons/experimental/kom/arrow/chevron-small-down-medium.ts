@@ -39,9 +39,6 @@ export class SvgIconChevronSmallDownMedium {}
 })
 export class IconChevronSmallDownMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconChevronSmallDownMedium, IconChevronSmallDownMedium],
   exports: [SvgIconChevronSmallDownMedium, IconChevronSmallDownMedium],

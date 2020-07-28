@@ -45,9 +45,6 @@ export class SvgIconWifiMedium {}
 })
 export class IconWifiMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWifiMedium, IconWifiMedium],
   exports: [SvgIconWifiMedium, IconWifiMedium],

@@ -39,9 +39,6 @@ export class SvgIconDeskMedium {}
 })
 export class IconDeskMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDeskMedium, IconDeskMedium],
   exports: [SvgIconDeskMedium, IconDeskMedium],

@@ -44,9 +44,6 @@ export class SvgIconQrcodeMedium {}
 })
 export class IconQrcodeMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconQrcodeMedium, IconQrcodeMedium],
   exports: [SvgIconQrcodeMedium, IconQrcodeMedium],

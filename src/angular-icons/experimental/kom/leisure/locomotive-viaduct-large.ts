@@ -45,9 +45,6 @@ export class SvgIconLocomotiveViaductLarge {}
 })
 export class IconLocomotiveViaductLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconLocomotiveViaductLarge, IconLocomotiveViaductLarge],
   exports: [SvgIconLocomotiveViaductLarge, IconLocomotiveViaductLarge],

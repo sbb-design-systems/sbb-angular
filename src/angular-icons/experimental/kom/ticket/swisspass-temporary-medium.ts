@@ -49,9 +49,6 @@ export class SvgIconSwisspassTemporaryMedium {}
 })
 export class IconSwisspassTemporaryMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconSwisspassTemporaryMedium, IconSwisspassTemporaryMedium],
   exports: [SvgIconSwisspassTemporaryMedium, IconSwisspassTemporaryMedium],

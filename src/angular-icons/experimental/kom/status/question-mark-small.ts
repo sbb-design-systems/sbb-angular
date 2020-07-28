@@ -44,9 +44,6 @@ export class SvgIconQuestionMarkSmall {}
 })
 export class IconQuestionMarkSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconQuestionMarkSmall, IconQuestionMarkSmall],
   exports: [SvgIconQuestionMarkSmall, IconQuestionMarkSmall],

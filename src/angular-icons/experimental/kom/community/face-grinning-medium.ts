@@ -45,9 +45,6 @@ export class SvgIconFaceGrinningMedium {}
 })
 export class IconFaceGrinningMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconFaceGrinningMedium, IconFaceGrinningMedium],
   exports: [SvgIconFaceGrinningMedium, IconFaceGrinningMedium],

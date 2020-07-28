@@ -47,9 +47,6 @@ export class SvgIconHimDisruption {}
 })
 export class IconHimDisruption {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHimDisruption, IconHimDisruption],
   exports: [SvgIconHimDisruption, IconHimDisruption],

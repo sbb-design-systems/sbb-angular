@@ -45,9 +45,6 @@ export class SvgIconSpeakerSmall {}
 })
 export class IconSpeakerSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconSpeakerSmall, IconSpeakerSmall],
   exports: [SvgIconSpeakerSmall, IconSpeakerSmall],

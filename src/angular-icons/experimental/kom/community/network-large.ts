@@ -45,9 +45,6 @@ export class SvgIconNetworkLarge {}
 })
 export class IconNetworkLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconNetworkLarge, IconNetworkLarge],
   exports: [SvgIconNetworkLarge, IconNetworkLarge],

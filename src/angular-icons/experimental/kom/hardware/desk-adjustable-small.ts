@@ -45,9 +45,6 @@ export class SvgIconDeskAdjustableSmall {}
 })
 export class IconDeskAdjustableSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDeskAdjustableSmall, IconDeskAdjustableSmall],
   exports: [SvgIconDeskAdjustableSmall, IconDeskAdjustableSmall],

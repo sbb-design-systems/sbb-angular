@@ -50,9 +50,6 @@ export class SvgIconSwitzerlandRouteMedium {}
 })
 export class IconSwitzerlandRouteMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconSwitzerlandRouteMedium, IconSwitzerlandRouteMedium],
   exports: [SvgIconSwitzerlandRouteMedium, IconSwitzerlandRouteMedium],

@@ -45,9 +45,6 @@ export class SvgIconDocumentVideoMedium {}
 })
 export class IconDocumentVideoMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDocumentVideoMedium, IconDocumentVideoMedium],
   exports: [SvgIconDocumentVideoMedium, IconDocumentVideoMedium],

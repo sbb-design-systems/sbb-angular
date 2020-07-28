@@ -43,9 +43,6 @@ export class SvgIconPinterest {}
 })
 export class IconPinterest {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconPinterest, IconPinterest],
   exports: [SvgIconPinterest, IconPinterest],

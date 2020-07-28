@@ -45,9 +45,6 @@ export class SvgIconEscalatorSmall {}
 })
 export class IconEscalatorSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconEscalatorSmall, IconEscalatorSmall],
   exports: [SvgIconEscalatorSmall, IconEscalatorSmall],

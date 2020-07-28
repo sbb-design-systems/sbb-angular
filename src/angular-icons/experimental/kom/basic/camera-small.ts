@@ -45,9 +45,6 @@ export class SvgIconCameraSmall {}
 })
 export class IconCameraSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconCameraSmall, IconCameraSmall],
   exports: [SvgIconCameraSmall, IconCameraSmall],

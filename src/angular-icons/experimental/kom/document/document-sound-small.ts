@@ -45,9 +45,6 @@ export class SvgIconDocumentSoundSmall {}
 })
 export class IconDocumentSoundSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDocumentSoundSmall, IconDocumentSoundSmall],
   exports: [SvgIconDocumentSoundSmall, IconDocumentSoundSmall],

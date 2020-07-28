@@ -50,9 +50,6 @@ export class SvgIconQuestionAnswerMedium {}
 })
 export class IconQuestionAnswerMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconQuestionAnswerMedium, IconQuestionAnswerMedium],
   exports: [SvgIconQuestionAnswerMedium, IconQuestionAnswerMedium],

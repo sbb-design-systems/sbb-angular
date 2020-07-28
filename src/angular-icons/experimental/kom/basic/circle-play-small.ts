@@ -45,9 +45,6 @@ export class SvgIconCirclePlaySmall {}
 })
 export class IconCirclePlaySmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconCirclePlaySmall, IconCirclePlaySmall],
   exports: [SvgIconCirclePlaySmall, IconCirclePlaySmall],

@@ -45,9 +45,6 @@ export class SvgIconDownloadSmallDataMedium {}
 })
 export class IconDownloadSmallDataMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDownloadSmallDataMedium, IconDownloadSmallDataMedium],
   exports: [SvgIconDownloadSmallDataMedium, IconDownloadSmallDataMedium],

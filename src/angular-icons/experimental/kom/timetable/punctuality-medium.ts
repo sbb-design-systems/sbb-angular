@@ -46,9 +46,6 @@ export class SvgIconPunctualityMedium {}
 })
 export class IconPunctualityMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconPunctualityMedium, IconPunctualityMedium],
   exports: [SvgIconPunctualityMedium, IconPunctualityMedium],

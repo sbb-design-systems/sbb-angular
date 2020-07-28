@@ -45,9 +45,6 @@ export class SvgIconFerrisWheelLarge {}
 })
 export class IconFerrisWheelLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconFerrisWheelLarge, IconFerrisWheelLarge],
   exports: [SvgIconFerrisWheelLarge, IconFerrisWheelLarge],

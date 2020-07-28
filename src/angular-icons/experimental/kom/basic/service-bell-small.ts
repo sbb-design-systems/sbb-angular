@@ -45,9 +45,6 @@ export class SvgIconServiceBellSmall {}
 })
 export class IconServiceBellSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconServiceBellSmall, IconServiceBellSmall],
   exports: [SvgIconServiceBellSmall, IconServiceBellSmall],

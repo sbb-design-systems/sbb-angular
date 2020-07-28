@@ -45,9 +45,6 @@ export class SvgIconTickClipboardMedium {}
 })
 export class IconTickClipboardMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTickClipboardMedium, IconTickClipboardMedium],
   exports: [SvgIconTickClipboardMedium, IconTickClipboardMedium],

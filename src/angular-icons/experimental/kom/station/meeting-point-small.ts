@@ -45,9 +45,6 @@ export class SvgIconMeetingPointSmall {}
 })
 export class IconMeetingPointSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconMeetingPointSmall, IconMeetingPointSmall],
   exports: [SvgIconMeetingPointSmall, IconMeetingPointSmall],

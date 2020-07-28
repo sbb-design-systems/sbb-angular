@@ -50,9 +50,6 @@ export class SvgIconWeightSmall {}
 })
 export class IconWeightSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWeightSmall, IconWeightSmall],
   exports: [SvgIconWeightSmall, IconWeightSmall],

@@ -39,9 +39,6 @@ export class SvgIconFacebook {}
 })
 export class IconFacebook {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconFacebook, IconFacebook],
   exports: [SvgIconFacebook, IconFacebook],

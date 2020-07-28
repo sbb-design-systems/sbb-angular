@@ -45,9 +45,6 @@ export class SvgIconArrowsLeftRightDownUpSmall {}
 })
 export class IconArrowsLeftRightDownUpSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconArrowsLeftRightDownUpSmall, IconArrowsLeftRightDownUpSmall],
   exports: [SvgIconArrowsLeftRightDownUpSmall, IconArrowsLeftRightDownUpSmall],

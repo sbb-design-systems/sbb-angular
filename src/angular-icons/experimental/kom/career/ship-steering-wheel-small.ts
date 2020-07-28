@@ -45,9 +45,6 @@ export class SvgIconShipSteeringWheelSmall {}
 })
 export class IconShipSteeringWheelSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconShipSteeringWheelSmall, IconShipSteeringWheelSmall],
   exports: [SvgIconShipSteeringWheelSmall, IconShipSteeringWheelSmall],

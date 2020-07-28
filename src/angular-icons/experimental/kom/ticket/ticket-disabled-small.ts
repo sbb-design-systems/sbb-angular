@@ -46,9 +46,6 @@ export class SvgIconTicketDisabledSmall {}
 })
 export class IconTicketDisabledSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTicketDisabledSmall, IconTicketDisabledSmall],
   exports: [SvgIconTicketDisabledSmall, IconTicketDisabledSmall],

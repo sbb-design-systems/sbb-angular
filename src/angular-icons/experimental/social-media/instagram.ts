@@ -43,9 +43,6 @@ export class SvgIconInstagram {}
 })
 export class IconInstagram {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconInstagram, IconInstagram],
   exports: [SvgIconInstagram, IconInstagram],

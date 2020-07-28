@@ -47,9 +47,6 @@ export class SvgIconHimReplacementbus {}
 })
 export class IconHimReplacementbus {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHimReplacementbus, IconHimReplacementbus],
   exports: [SvgIconHimReplacementbus, IconHimReplacementbus],

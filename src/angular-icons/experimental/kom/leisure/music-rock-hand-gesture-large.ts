@@ -45,9 +45,6 @@ export class SvgIconMusicRockHandGestureLarge {}
 })
 export class IconMusicRockHandGestureLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconMusicRockHandGestureLarge, IconMusicRockHandGestureLarge],
   exports: [SvgIconMusicRockHandGestureLarge, IconMusicRockHandGestureLarge],

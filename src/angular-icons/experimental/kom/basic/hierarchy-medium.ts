@@ -45,9 +45,6 @@ export class SvgIconHierarchyMedium {}
 })
 export class IconHierarchyMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHierarchyMedium, IconHierarchyMedium],
   exports: [SvgIconHierarchyMedium, IconHierarchyMedium],

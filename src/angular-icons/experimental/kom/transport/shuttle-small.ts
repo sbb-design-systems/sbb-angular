@@ -45,9 +45,6 @@ export class SvgIconShuttleSmall {}
 })
 export class IconShuttleSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconShuttleSmall, IconShuttleSmall],
   exports: [SvgIconShuttleSmall, IconShuttleSmall],

@@ -45,9 +45,6 @@ export class SvgIconCurriculumVitaeLarge {}
 })
 export class IconCurriculumVitaeLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconCurriculumVitaeLarge, IconCurriculumVitaeLarge],
   exports: [SvgIconCurriculumVitaeLarge, IconCurriculumVitaeLarge],

@@ -45,9 +45,6 @@ export class SvgIconTranslateMedium {}
 })
 export class IconTranslateMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTranslateMedium, IconTranslateMedium],
   exports: [SvgIconTranslateMedium, IconTranslateMedium],

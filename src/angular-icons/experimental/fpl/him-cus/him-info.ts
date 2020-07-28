@@ -47,9 +47,6 @@ export class SvgIconHimInfo {}
 })
 export class IconHimInfo {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHimInfo, IconHimInfo],
   exports: [SvgIconHimInfo, IconHimInfo],

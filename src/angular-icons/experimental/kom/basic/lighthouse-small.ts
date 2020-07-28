@@ -45,9 +45,6 @@ export class SvgIconLighthouseSmall {}
 })
 export class IconLighthouseSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconLighthouseSmall, IconLighthouseSmall],
   exports: [SvgIconLighthouseSmall, IconLighthouseSmall],

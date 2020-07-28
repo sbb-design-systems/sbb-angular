@@ -45,9 +45,6 @@ export class SvgIconEscalatorMedium {}
 })
 export class IconEscalatorMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconEscalatorMedium, IconEscalatorMedium],
   exports: [SvgIconEscalatorMedium, IconEscalatorMedium],

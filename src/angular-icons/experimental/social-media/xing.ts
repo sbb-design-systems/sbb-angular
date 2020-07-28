@@ -43,9 +43,6 @@ export class SvgIconXing {}
 })
 export class IconXing {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconXing, IconXing],
   exports: [SvgIconXing, IconXing],

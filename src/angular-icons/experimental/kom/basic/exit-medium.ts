@@ -45,9 +45,6 @@ export class SvgIconExitMedium {}
 })
 export class IconExitMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconExitMedium, IconExitMedium],
   exports: [SvgIconExitMedium, IconExitMedium],

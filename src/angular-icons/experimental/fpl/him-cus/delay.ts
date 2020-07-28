@@ -47,9 +47,6 @@ export class SvgIconDelay {}
 })
 export class IconDelay {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDelay, IconDelay],
   exports: [SvgIconDelay, IconDelay],

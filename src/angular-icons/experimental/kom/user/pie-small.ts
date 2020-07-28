@@ -45,9 +45,6 @@ export class SvgIconPieSmall {}
 })
 export class IconPieSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconPieSmall, IconPieSmall],
   exports: [SvgIconPieSmall, IconPieSmall],

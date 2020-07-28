@@ -44,9 +44,6 @@ export class SvgIconRouteCircleEndMedium {}
 })
 export class IconRouteCircleEndMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconRouteCircleEndMedium, IconRouteCircleEndMedium],
   exports: [SvgIconRouteCircleEndMedium, IconRouteCircleEndMedium],

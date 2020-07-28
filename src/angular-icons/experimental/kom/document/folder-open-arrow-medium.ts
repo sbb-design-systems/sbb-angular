@@ -45,9 +45,6 @@ export class SvgIconFolderOpenArrowMedium {}
 })
 export class IconFolderOpenArrowMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconFolderOpenArrowMedium, IconFolderOpenArrowMedium],
   exports: [SvgIconFolderOpenArrowMedium, IconFolderOpenArrowMedium],

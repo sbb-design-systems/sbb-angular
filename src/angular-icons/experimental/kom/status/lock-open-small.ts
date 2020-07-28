@@ -45,9 +45,6 @@ export class SvgIconLockOpenSmall {}
 })
 export class IconLockOpenSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconLockOpenSmall, IconLockOpenSmall],
   exports: [SvgIconLockOpenSmall, IconLockOpenSmall],

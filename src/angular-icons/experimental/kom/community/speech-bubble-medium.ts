@@ -45,9 +45,6 @@ export class SvgIconSpeechBubbleMedium {}
 })
 export class IconSpeechBubbleMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconSpeechBubbleMedium, IconSpeechBubbleMedium],
   exports: [SvgIconSpeechBubbleMedium, IconSpeechBubbleMedium],

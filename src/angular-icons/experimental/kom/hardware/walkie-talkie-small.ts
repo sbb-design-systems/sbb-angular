@@ -45,9 +45,6 @@ export class SvgIconWalkieTalkieSmall {}
 })
 export class IconWalkieTalkieSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWalkieTalkieSmall, IconWalkieTalkieSmall],
   exports: [SvgIconWalkieTalkieSmall, IconWalkieTalkieSmall],

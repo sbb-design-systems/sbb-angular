@@ -45,9 +45,6 @@ export class SvgIconPetrolStationMedium {}
 })
 export class IconPetrolStationMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconPetrolStationMedium, IconPetrolStationMedium],
   exports: [SvgIconPetrolStationMedium, IconPetrolStationMedium],

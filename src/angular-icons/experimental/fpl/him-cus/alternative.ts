@@ -50,9 +50,6 @@ export class SvgIconAlternative {}
 })
 export class IconAlternative {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconAlternative, IconAlternative],
   exports: [SvgIconAlternative, IconAlternative],

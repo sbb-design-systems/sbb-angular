@@ -47,9 +47,6 @@ export class SvgIconMissedConnection {}
 })
 export class IconMissedConnection {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconMissedConnection, IconMissedConnection],
   exports: [SvgIconMissedConnection, IconMissedConnection],

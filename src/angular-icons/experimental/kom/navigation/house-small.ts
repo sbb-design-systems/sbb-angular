@@ -41,9 +41,6 @@ export class SvgIconHouseSmall {}
 })
 export class IconHouseSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHouseSmall, IconHouseSmall],
   exports: [SvgIconHouseSmall, IconHouseSmall],

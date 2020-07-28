@@ -45,9 +45,6 @@ export class SvgIconSeatWindowMedium {}
 })
 export class IconSeatWindowMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconSeatWindowMedium, IconSeatWindowMedium],
   exports: [SvgIconSeatWindowMedium, IconSeatWindowMedium],

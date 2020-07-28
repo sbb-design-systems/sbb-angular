@@ -39,9 +39,6 @@ export class SvgIconChevronRightMedium {}
 })
 export class IconChevronRightMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconChevronRightMedium, IconChevronRightMedium],
   exports: [SvgIconChevronRightMedium, IconChevronRightMedium],

@@ -45,9 +45,6 @@ export class SvgIconPowerPlugMedium {}
 })
 export class IconPowerPlugMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconPowerPlugMedium, IconPowerPlugMedium],
   exports: [SvgIconPowerPlugMedium, IconPowerPlugMedium],

@@ -44,9 +44,6 @@ export class SvgIconIncreaseSizeMedium {}
 })
 export class IconIncreaseSizeMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconIncreaseSizeMedium, IconIncreaseSizeMedium],
   exports: [SvgIconIncreaseSizeMedium, IconIncreaseSizeMedium],

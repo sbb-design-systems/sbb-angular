@@ -45,9 +45,6 @@ export class SvgIconUserHatMedium {}
 })
 export class IconUserHatMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconUserHatMedium, IconUserHatMedium],
   exports: [SvgIconUserHatMedium, IconUserHatMedium],

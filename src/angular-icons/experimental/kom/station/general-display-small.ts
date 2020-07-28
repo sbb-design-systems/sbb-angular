@@ -45,9 +45,6 @@ export class SvgIconGeneralDisplaySmall {}
 })
 export class IconGeneralDisplaySmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconGeneralDisplaySmall, IconGeneralDisplaySmall],
   exports: [SvgIconGeneralDisplaySmall, IconGeneralDisplaySmall],

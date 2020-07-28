@@ -45,9 +45,6 @@ export class SvgIconSignXMedium {}
 })
 export class IconSignXMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconSignXMedium, IconSignXMedium],
   exports: [SvgIconSignXMedium, IconSignXMedium],

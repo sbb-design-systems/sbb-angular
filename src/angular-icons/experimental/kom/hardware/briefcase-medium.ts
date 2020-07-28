@@ -45,9 +45,6 @@ export class SvgIconBriefcaseMedium {}
 })
 export class IconBriefcaseMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconBriefcaseMedium, IconBriefcaseMedium],
   exports: [SvgIconBriefcaseMedium, IconBriefcaseMedium],

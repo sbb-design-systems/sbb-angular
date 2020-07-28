@@ -45,9 +45,6 @@ export class SvgIconCarParkingMedium {}
 })
 export class IconCarParkingMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconCarParkingMedium, IconCarParkingMedium],
   exports: [SvgIconCarParkingMedium, IconCarParkingMedium],

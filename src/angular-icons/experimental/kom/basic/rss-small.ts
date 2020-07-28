@@ -45,9 +45,6 @@ export class SvgIconRssSmall {}
 })
 export class IconRssSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconRssSmall, IconRssSmall],
   exports: [SvgIconRssSmall, IconRssSmall],

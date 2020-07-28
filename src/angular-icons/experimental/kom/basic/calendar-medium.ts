@@ -45,9 +45,6 @@ export class SvgIconCalendarMedium {}
 })
 export class IconCalendarMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconCalendarMedium, IconCalendarMedium],
   exports: [SvgIconCalendarMedium, IconCalendarMedium],

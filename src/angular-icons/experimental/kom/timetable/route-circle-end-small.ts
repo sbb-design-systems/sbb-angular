@@ -44,9 +44,6 @@ export class SvgIconRouteCircleEndSmall {}
 })
 export class IconRouteCircleEndSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconRouteCircleEndSmall, IconRouteCircleEndSmall],
   exports: [SvgIconRouteCircleEndSmall, IconRouteCircleEndSmall],

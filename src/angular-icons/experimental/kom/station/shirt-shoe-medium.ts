@@ -45,9 +45,6 @@ export class SvgIconShirtShoeMedium {}
 })
 export class IconShirtShoeMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconShirtShoeMedium, IconShirtShoeMedium],
   exports: [SvgIconShirtShoeMedium, IconShirtShoeMedium],

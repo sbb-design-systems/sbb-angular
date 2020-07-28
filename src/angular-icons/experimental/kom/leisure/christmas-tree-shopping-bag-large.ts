@@ -45,9 +45,6 @@ export class SvgIconChristmasTreeShoppingBagLarge {}
 })
 export class IconChristmasTreeShoppingBagLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconChristmasTreeShoppingBagLarge, IconChristmasTreeShoppingBagLarge],
   exports: [SvgIconChristmasTreeShoppingBagLarge, IconChristmasTreeShoppingBagLarge],

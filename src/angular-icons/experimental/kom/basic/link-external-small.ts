@@ -41,9 +41,6 @@ export class SvgIconLinkExternalSmall {}
 })
 export class IconLinkExternalSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconLinkExternalSmall, IconLinkExternalSmall],
   exports: [SvgIconLinkExternalSmall, IconLinkExternalSmall],

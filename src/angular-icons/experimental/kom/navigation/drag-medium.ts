@@ -39,9 +39,6 @@ export class SvgIconDragMedium {}
 })
 export class IconDragMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDragMedium, IconDragMedium],
   exports: [SvgIconDragMedium, IconDragMedium],

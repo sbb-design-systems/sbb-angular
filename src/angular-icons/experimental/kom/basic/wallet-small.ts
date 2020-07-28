@@ -45,9 +45,6 @@ export class SvgIconWalletSmall {}
 })
 export class IconWalletSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWalletSmall, IconWalletSmall],
   exports: [SvgIconWalletSmall, IconWalletSmall],

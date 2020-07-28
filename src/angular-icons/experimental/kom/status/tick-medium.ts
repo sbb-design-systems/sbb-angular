@@ -39,9 +39,6 @@ export class SvgIconTickMedium {}
 })
 export class IconTickMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTickMedium, IconTickMedium],
   exports: [SvgIconTickMedium, IconTickMedium],

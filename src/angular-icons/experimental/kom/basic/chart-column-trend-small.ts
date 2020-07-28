@@ -45,9 +45,6 @@ export class SvgIconChartColumnTrendSmall {}
 })
 export class IconChartColumnTrendSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconChartColumnTrendSmall, IconChartColumnTrendSmall],
   exports: [SvgIconChartColumnTrendSmall, IconChartColumnTrendSmall],

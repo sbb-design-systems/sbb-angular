@@ -47,9 +47,6 @@ export class SvgIconQrcodeDisabledSmall {}
 })
 export class IconQrcodeDisabledSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconQrcodeDisabledSmall, IconQrcodeDisabledSmall],
   exports: [SvgIconQrcodeDisabledSmall, IconQrcodeDisabledSmall],

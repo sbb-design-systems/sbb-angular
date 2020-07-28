@@ -45,9 +45,6 @@ export class SvgIconHourglassSmall {}
 })
 export class IconHourglassSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHourglassSmall, IconHourglassSmall],
   exports: [SvgIconHourglassSmall, IconHourglassSmall],

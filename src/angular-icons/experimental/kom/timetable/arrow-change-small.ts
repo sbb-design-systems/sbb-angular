@@ -45,9 +45,6 @@ export class SvgIconArrowChangeSmall {}
 })
 export class IconArrowChangeSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconArrowChangeSmall, IconArrowChangeSmall],
   exports: [SvgIconArrowChangeSmall, IconArrowChangeSmall],

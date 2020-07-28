@@ -43,9 +43,6 @@ export class SvgIconYoutube {}
 })
 export class IconYoutube {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconYoutube, IconYoutube],
   exports: [SvgIconYoutube, IconYoutube],

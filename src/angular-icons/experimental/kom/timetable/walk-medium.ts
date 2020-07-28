@@ -45,9 +45,6 @@ export class SvgIconWalkMedium {}
 })
 export class IconWalkMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWalkMedium, IconWalkMedium],
   exports: [SvgIconWalkMedium, IconWalkMedium],

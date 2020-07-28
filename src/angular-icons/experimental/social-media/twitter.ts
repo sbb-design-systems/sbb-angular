@@ -43,9 +43,6 @@ export class SvgIconTwitter {}
 })
 export class IconTwitter {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTwitter, IconTwitter],
   exports: [SvgIconTwitter, IconTwitter],

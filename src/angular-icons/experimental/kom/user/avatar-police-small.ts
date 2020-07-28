@@ -45,9 +45,6 @@ export class SvgIconAvatarPoliceSmall {}
 })
 export class IconAvatarPoliceSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconAvatarPoliceSmall, IconAvatarPoliceSmall],
   exports: [SvgIconAvatarPoliceSmall, IconAvatarPoliceSmall],

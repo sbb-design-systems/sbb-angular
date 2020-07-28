@@ -45,9 +45,6 @@ export class SvgIconBackpackMedium {}
 })
 export class IconBackpackMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconBackpackMedium, IconBackpackMedium],
   exports: [SvgIconBackpackMedium, IconBackpackMedium],

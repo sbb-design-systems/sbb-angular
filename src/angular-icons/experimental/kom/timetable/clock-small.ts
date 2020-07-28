@@ -45,9 +45,6 @@ export class SvgIconClockSmall {}
 })
 export class IconClockSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconClockSmall, IconClockSmall],
   exports: [SvgIconClockSmall, IconClockSmall],

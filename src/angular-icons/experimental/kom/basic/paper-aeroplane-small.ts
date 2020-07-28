@@ -45,9 +45,6 @@ export class SvgIconPaperAeroplaneSmall {}
 })
 export class IconPaperAeroplaneSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconPaperAeroplaneSmall, IconPaperAeroplaneSmall],
   exports: [SvgIconPaperAeroplaneSmall, IconPaperAeroplaneSmall],

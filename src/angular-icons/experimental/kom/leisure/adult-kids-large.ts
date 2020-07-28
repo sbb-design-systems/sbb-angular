@@ -45,9 +45,6 @@ export class SvgIconAdultKidsLarge {}
 })
 export class IconAdultKidsLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconAdultKidsLarge, IconAdultKidsLarge],
   exports: [SvgIconAdultKidsLarge, IconAdultKidsLarge],

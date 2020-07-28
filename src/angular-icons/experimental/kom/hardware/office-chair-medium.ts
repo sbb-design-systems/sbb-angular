@@ -45,9 +45,6 @@ export class SvgIconOfficeChairMedium {}
 })
 export class IconOfficeChairMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconOfficeChairMedium, IconOfficeChairMedium],
   exports: [SvgIconOfficeChairMedium, IconOfficeChairMedium],

@@ -45,9 +45,6 @@ export class SvgIconBrowserSmall {}
 })
 export class IconBrowserSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconBrowserSmall, IconBrowserSmall],
   exports: [SvgIconBrowserSmall, IconBrowserSmall],

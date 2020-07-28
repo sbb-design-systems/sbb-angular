@@ -45,9 +45,6 @@ export class SvgIconLinkExternalMedium {}
 })
 export class IconLinkExternalMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconLinkExternalMedium, IconLinkExternalMedium],
   exports: [SvgIconLinkExternalMedium, IconLinkExternalMedium],

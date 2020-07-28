@@ -45,9 +45,6 @@ export class SvgIconHeartSmall {}
 })
 export class IconHeartSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHeartSmall, IconHeartSmall],
   exports: [SvgIconHeartSmall, IconHeartSmall],

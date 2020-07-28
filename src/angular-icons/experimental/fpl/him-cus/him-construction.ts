@@ -47,9 +47,6 @@ export class SvgIconHimConstruction {}
 })
 export class IconHimConstruction {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconHimConstruction, IconHimConstruction],
   exports: [SvgIconHimConstruction, IconHimConstruction],

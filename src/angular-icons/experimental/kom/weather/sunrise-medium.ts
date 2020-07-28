@@ -45,9 +45,6 @@ export class SvgIconSunriseMedium {}
 })
 export class IconSunriseMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconSunriseMedium, IconSunriseMedium],
   exports: [SvgIconSunriseMedium, IconSunriseMedium],

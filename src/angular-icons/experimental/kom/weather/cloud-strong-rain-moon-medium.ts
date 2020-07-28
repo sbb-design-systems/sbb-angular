@@ -45,9 +45,6 @@ export class SvgIconCloudStrongRainMoonMedium {}
 })
 export class IconCloudStrongRainMoonMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconCloudStrongRainMoonMedium, IconCloudStrongRainMoonMedium],
   exports: [SvgIconCloudStrongRainMoonMedium, IconCloudStrongRainMoonMedium],

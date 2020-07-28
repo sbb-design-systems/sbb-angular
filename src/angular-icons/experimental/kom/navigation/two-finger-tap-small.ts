@@ -45,9 +45,6 @@ export class SvgIconTwoFingerTapSmall {}
 })
 export class IconTwoFingerTapSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTwoFingerTapSmall, IconTwoFingerTapSmall],
   exports: [SvgIconTwoFingerTapSmall, IconTwoFingerTapSmall],

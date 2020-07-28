@@ -45,9 +45,6 @@ export class SvgIconTwoFingerTapMedium {}
 })
 export class IconTwoFingerTapMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTwoFingerTapMedium, IconTwoFingerTapMedium],
   exports: [SvgIconTwoFingerTapMedium, IconTwoFingerTapMedium],

@@ -45,9 +45,6 @@ export class SvgIconThumbDownSmall {}
 })
 export class IconThumbDownSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconThumbDownSmall, IconThumbDownSmall],
   exports: [SvgIconThumbDownSmall, IconThumbDownSmall],

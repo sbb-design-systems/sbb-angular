@@ -39,9 +39,6 @@ export class SvgIconTickSmall {}
 })
 export class IconTickSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTickSmall, IconTickSmall],
   exports: [SvgIconTickSmall, IconTickSmall],

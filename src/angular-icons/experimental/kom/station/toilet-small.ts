@@ -45,9 +45,6 @@ export class SvgIconToiletSmall {}
 })
 export class IconToiletSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconToiletSmall, IconToiletSmall],
   exports: [SvgIconToiletSmall, IconToiletSmall],

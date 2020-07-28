@@ -45,9 +45,6 @@ export class SvgIconRewindMedium {}
 })
 export class IconRewindMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconRewindMedium, IconRewindMedium],
   exports: [SvgIconRewindMedium, IconRewindMedium],

@@ -45,9 +45,6 @@ export class SvgIconWifiSmall {}
 })
 export class IconWifiSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWifiSmall, IconWifiSmall],
   exports: [SvgIconWifiSmall, IconWifiSmall],

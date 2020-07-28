@@ -45,9 +45,6 @@ export class SvgIconLucerneChapelBridgeLarge {}
 })
 export class IconLucerneChapelBridgeLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconLucerneChapelBridgeLarge, IconLucerneChapelBridgeLarge],
   exports: [SvgIconLucerneChapelBridgeLarge, IconLucerneChapelBridgeLarge],

@@ -45,9 +45,6 @@ export class SvgIconBinocularsMedium {}
 })
 export class IconBinocularsMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconBinocularsMedium, IconBinocularsMedium],
   exports: [SvgIconBinocularsMedium, IconBinocularsMedium],

@@ -45,9 +45,6 @@ export class SvgIconWalletMedium {}
 })
 export class IconWalletMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWalletMedium, IconWalletMedium],
   exports: [SvgIconWalletMedium, IconWalletMedium],

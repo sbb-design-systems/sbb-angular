@@ -51,9 +51,6 @@ export class SvgIconPlatformChange {}
 })
 export class IconPlatformChange {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconPlatformChange, IconPlatformChange],
   exports: [SvgIconPlatformChange, IconPlatformChange],

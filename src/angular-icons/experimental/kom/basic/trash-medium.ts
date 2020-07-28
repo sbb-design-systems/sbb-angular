@@ -45,9 +45,6 @@ export class SvgIconTrashMedium {}
 })
 export class IconTrashMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTrashMedium, IconTrashMedium],
   exports: [SvgIconTrashMedium, IconTrashMedium],

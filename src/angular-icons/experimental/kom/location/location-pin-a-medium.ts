@@ -50,9 +50,6 @@ export class SvgIconLocationPinAMedium {}
 })
 export class IconLocationPinAMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconLocationPinAMedium, IconLocationPinAMedium],
   exports: [SvgIconLocationPinAMedium, IconLocationPinAMedium],

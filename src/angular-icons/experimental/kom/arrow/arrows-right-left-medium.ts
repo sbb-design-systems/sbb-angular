@@ -45,9 +45,6 @@ export class SvgIconArrowsRightLeftMedium {}
 })
 export class IconArrowsRightLeftMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconArrowsRightLeftMedium, IconArrowsRightLeftMedium],
   exports: [SvgIconArrowsRightLeftMedium, IconArrowsRightLeftMedium],

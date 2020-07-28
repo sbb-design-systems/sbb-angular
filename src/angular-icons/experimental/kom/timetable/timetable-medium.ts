@@ -45,9 +45,6 @@ export class SvgIconTimetableMedium {}
 })
 export class IconTimetableMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconTimetableMedium, IconTimetableMedium],
   exports: [SvgIconTimetableMedium, IconTimetableMedium],

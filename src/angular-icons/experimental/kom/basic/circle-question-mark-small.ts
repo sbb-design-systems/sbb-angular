@@ -50,9 +50,6 @@ export class SvgIconCircleQuestionMarkSmall {}
 })
 export class IconCircleQuestionMarkSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconCircleQuestionMarkSmall, IconCircleQuestionMarkSmall],
   exports: [SvgIconCircleQuestionMarkSmall, IconCircleQuestionMarkSmall],

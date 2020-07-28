@@ -45,9 +45,6 @@ export class SvgIconAirplaneMedium {}
 })
 export class IconAirplaneMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconAirplaneMedium, IconAirplaneMedium],
   exports: [SvgIconAirplaneMedium, IconAirplaneMedium],

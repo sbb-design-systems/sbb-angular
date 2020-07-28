@@ -45,9 +45,6 @@ export class SvgIconSoccerBallLarge {}
 })
 export class IconSoccerBallLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconSoccerBallLarge, IconSoccerBallLarge],
   exports: [SvgIconSoccerBallLarge, IconSoccerBallLarge],

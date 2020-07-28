@@ -45,9 +45,6 @@ export class SvgIconUserGroupRowSmall {}
 })
 export class IconUserGroupRowSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconUserGroupRowSmall, IconUserGroupRowSmall],
   exports: [SvgIconUserGroupRowSmall, IconUserGroupRowSmall],

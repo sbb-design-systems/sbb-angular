@@ -45,9 +45,6 @@ export class SvgIconDocumentSoundMedium {}
 })
 export class IconDocumentSoundMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconDocumentSoundMedium, IconDocumentSoundMedium],
   exports: [SvgIconDocumentSoundMedium, IconDocumentSoundMedium],

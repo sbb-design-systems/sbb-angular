@@ -45,9 +45,6 @@ export class SvgIconWaitingRoomSmall {}
 })
 export class IconWaitingRoomSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWaitingRoomSmall, IconWaitingRoomSmall],
   exports: [SvgIconWaitingRoomSmall, IconWaitingRoomSmall],

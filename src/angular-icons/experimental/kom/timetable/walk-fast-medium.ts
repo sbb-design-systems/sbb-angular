@@ -45,9 +45,6 @@ export class SvgIconWalkFastMedium {}
 })
 export class IconWalkFastMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconWalkFastMedium, IconWalkFastMedium],
   exports: [SvgIconWalkFastMedium, IconWalkFastMedium],

@@ -41,9 +41,6 @@ export class SvgIconCrossSmall {}
 })
 export class IconCrossSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconCrossSmall, IconCrossSmall],
   exports: [SvgIconCrossSmall, IconCrossSmall],

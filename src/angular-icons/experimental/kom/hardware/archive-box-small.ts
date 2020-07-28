@@ -45,9 +45,6 @@ export class SvgIconArchiveBoxSmall {}
 })
 export class IconArchiveBoxSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconArchiveBoxSmall, IconArchiveBoxSmall],
   exports: [SvgIconArchiveBoxSmall, IconArchiveBoxSmall],

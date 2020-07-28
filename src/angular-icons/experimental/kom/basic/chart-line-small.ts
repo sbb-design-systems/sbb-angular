@@ -41,9 +41,6 @@ export class SvgIconChartLineSmall {}
 })
 export class IconChartLineSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconChartLineSmall, IconChartLineSmall],
   exports: [SvgIconChartLineSmall, IconChartLineSmall],

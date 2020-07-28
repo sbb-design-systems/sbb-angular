@@ -45,9 +45,6 @@ export class SvgIconShuttleMedium {}
 })
 export class IconShuttleMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconShuttleMedium, IconShuttleMedium],
   exports: [SvgIconShuttleMedium, IconShuttleMedium],

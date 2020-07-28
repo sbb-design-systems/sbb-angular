@@ -45,9 +45,6 @@ export class SvgIconMuseumLarge {}
 })
 export class IconMuseumLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconMuseumLarge, IconMuseumLarge],
   exports: [SvgIconMuseumLarge, IconMuseumLarge],

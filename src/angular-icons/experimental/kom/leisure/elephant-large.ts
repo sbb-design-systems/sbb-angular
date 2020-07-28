@@ -45,9 +45,6 @@ export class SvgIconElephantLarge {}
 })
 export class IconElephantLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconElephantLarge, IconElephantLarge],
   exports: [SvgIconElephantLarge, IconElephantLarge],

@@ -45,9 +45,6 @@ export class SvgIconBalloonsLarge {}
 })
 export class IconBalloonsLarge {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconBalloonsLarge, IconBalloonsLarge],
   exports: [SvgIconBalloonsLarge, IconBalloonsLarge],

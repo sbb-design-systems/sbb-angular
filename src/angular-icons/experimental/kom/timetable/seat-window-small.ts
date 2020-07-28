@@ -45,9 +45,6 @@ export class SvgIconSeatWindowSmall {}
 })
 export class IconSeatWindowSmall {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconSeatWindowSmall, IconSeatWindowSmall],
   exports: [SvgIconSeatWindowSmall, IconSeatWindowSmall],

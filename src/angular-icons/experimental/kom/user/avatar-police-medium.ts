@@ -45,9 +45,6 @@ export class SvgIconAvatarPoliceMedium {}
 })
 export class IconAvatarPoliceMedium {}
 
-/**
- * @Deprecated use @sbb-esta/angular-core/icon module
- */
 @NgModule({
   declarations: [SvgIconAvatarPoliceMedium, IconAvatarPoliceMedium],
   exports: [SvgIconAvatarPoliceMedium, IconAvatarPoliceMedium],
