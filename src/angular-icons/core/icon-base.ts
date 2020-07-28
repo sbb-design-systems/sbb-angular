@@ -1,11 +1,17 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 export interface IconDimension {
   width: string;
   height: string;
   ratio: number;
 }
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @Directive()
 export abstract class IconBase {
   /**

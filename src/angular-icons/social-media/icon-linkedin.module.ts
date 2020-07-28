@@ -2,6 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { IconBase } from '@sbb-esta/angular-icons/core';
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-linkedin',
   // tslint:disable:max-line-length
@@ -26,6 +32,9 @@ export class IconLinkedinComponent extends IconBase {
   }
 }
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconLinkedinComponent],

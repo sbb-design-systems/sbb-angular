@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { IconBase } from '@sbb-esta/angular-icons/core';
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-pinterest',
   // tslint:disable:max-line-length
@@ -26,6 +29,9 @@ export class IconPinterestComponent extends IconBase {
   }
 }
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconPinterestComponent],
