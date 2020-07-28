@@ -1740,6 +1740,9 @@ import {
   IconXingModule,
 } from '@sbb-esta/angular-icons/experimental';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 export const ICON_META = [
   {
     attributeSelector: 'sbbIconSa1',
@@ -7819,6 +7822,9 @@ export const ICON_META = [
   },
 ];
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 export const ICON_CLASS_LIST: Type<any>[] = [
   SvgIconSa1,
   SvgIconSa2,
@@ -8690,6 +8696,9 @@ export const ICON_CLASS_LIST: Type<any>[] = [
   SvgIconXing,
 ];
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 export const ICON_MODULE_LIST = [
   IconSa1Module,
   IconSa2Module,
