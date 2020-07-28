@@ -6,6 +6,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
+/**
+ * @Deprecated use your own social icons
+ */
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'a[sbbSocialLink]',

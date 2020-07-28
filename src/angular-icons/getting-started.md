@@ -1,3 +1,8 @@
+# ⚠ Deprecation Notice
+
+The `@sbb-esta/angular-icons` package is deprecated and will be removed with the next major version.
+Please see [@sbb-esta/angular-core/icon](../../core/components/icon) for the alternative way to access icons.
+
 # Getting Started
 
 The `@sbb-esta/angular-icons` package contains the icons provided by

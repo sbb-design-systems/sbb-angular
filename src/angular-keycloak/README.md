@@ -3,9 +3,9 @@
 🛈 We recommend [angular-oauth2-oidc](https://www.npmjs.com/package/angular-oauth2-oidc) to be used for authentication.
 See the [documentation](https://manfredsteyer.github.io/angular-oauth2-oidc/docs/index.html) for details.
 
-# 🛈 Deprecation Notice
+# ⚠ Deprecation Notice
 
-The `@sbb-esta/angular-keycloak` package ist deprecated and will be removed with the next major version.
+The `@sbb-esta/angular-keycloak` package is deprecated and will be removed with the next major version.
 As mentioned above, we strongly recommend [angular-oauth2-oidc](https://www.npmjs.com/package/angular-oauth2-oidc).
 
 ## Getting started
