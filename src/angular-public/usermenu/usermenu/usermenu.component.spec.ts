@@ -561,7 +561,7 @@ describe('Usermenu test case: usermenu only with userName using mock component',
         By.css('.sbb-usermenu-logged-in-collapsed-initial-letters')
       );
       expect(initialLettersReference.nativeElement).toBeTruthy();
-      expect(initialLettersReference.nativeElement.textContent).toContain('WAL');
+      expect(initialLettersReference.nativeElement.textContent).toContain('WA');
     }
   );
 
