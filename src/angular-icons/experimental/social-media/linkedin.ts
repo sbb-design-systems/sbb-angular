@@ -43,6 +43,9 @@ export class SvgIconLinkedin {}
 })
 export class IconLinkedin {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLinkedin, IconLinkedin],
   exports: [SvgIconLinkedin, IconLinkedin],

@@ -45,6 +45,9 @@ export class SvgIconUtilizationNone {}
 })
 export class IconUtilizationNone {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconUtilizationNone, IconUtilizationNone],
   exports: [SvgIconUtilizationNone, IconUtilizationNone],

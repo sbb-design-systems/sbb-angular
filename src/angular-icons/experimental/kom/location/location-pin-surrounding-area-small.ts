@@ -45,6 +45,9 @@ export class SvgIconLocationPinSurroundingAreaSmall {}
 })
 export class IconLocationPinSurroundingAreaSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLocationPinSurroundingAreaSmall, IconLocationPinSurroundingAreaSmall],
   exports: [SvgIconLocationPinSurroundingAreaSmall, IconLocationPinSurroundingAreaSmall],

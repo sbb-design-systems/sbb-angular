@@ -45,6 +45,9 @@ export class SvgIconCircleInformationMedium {}
 })
 export class IconCircleInformationMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCircleInformationMedium, IconCircleInformationMedium],
   exports: [SvgIconCircleInformationMedium, IconCircleInformationMedium],

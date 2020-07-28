@@ -41,6 +41,9 @@ export class SvgIconFolderPlusSmall {}
 })
 export class IconFolderPlusSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFolderPlusSmall, IconFolderPlusSmall],
   exports: [SvgIconFolderPlusSmall, IconFolderPlusSmall],

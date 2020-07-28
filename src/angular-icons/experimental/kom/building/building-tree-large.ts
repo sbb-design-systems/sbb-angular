@@ -48,6 +48,9 @@ export class SvgIconBuildingTreeLarge {}
 })
 export class IconBuildingTreeLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconBuildingTreeLarge, IconBuildingTreeLarge],
   exports: [SvgIconBuildingTreeLarge, IconBuildingTreeLarge],

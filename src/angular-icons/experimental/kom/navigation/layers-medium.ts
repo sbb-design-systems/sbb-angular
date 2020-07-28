@@ -45,6 +45,9 @@ export class SvgIconLayersMedium {}
 })
 export class IconLayersMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLayersMedium, IconLayersMedium],
   exports: [SvgIconLayersMedium, IconLayersMedium],

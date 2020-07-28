@@ -45,6 +45,9 @@ export class SvgIconSledgeSnowshoeLarge {}
 })
 export class IconSledgeSnowshoeLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSledgeSnowshoeLarge, IconSledgeSnowshoeLarge],
   exports: [SvgIconSledgeSnowshoeLarge, IconSledgeSnowshoeLarge],

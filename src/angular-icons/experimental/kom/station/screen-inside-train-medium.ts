@@ -45,6 +45,9 @@ export class SvgIconScreenInsideTrainMedium {}
 })
 export class IconScreenInsideTrainMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconScreenInsideTrainMedium, IconScreenInsideTrainMedium],
   exports: [SvgIconScreenInsideTrainMedium, IconScreenInsideTrainMedium],

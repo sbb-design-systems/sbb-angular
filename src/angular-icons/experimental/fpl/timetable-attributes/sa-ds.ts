@@ -45,6 +45,9 @@ export class SvgIconSaDs {}
 })
 export class IconSaDs {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSaDs, IconSaDs],
   exports: [SvgIconSaDs, IconSaDs],

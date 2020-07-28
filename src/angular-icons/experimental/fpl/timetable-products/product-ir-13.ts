@@ -48,6 +48,9 @@ export class SvgIconProductIr13 {}
 })
 export class IconProductIr13 {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconProductIr13, IconProductIr13],
   exports: [SvgIconProductIr13, IconProductIr13],

@@ -50,6 +50,9 @@ export class SvgIconContextMenuSmall {}
 })
 export class IconContextMenuSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconContextMenuSmall, IconContextMenuSmall],
   exports: [SvgIconContextMenuSmall, IconContextMenuSmall],

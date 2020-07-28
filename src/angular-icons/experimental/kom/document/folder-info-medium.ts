@@ -45,6 +45,9 @@ export class SvgIconFolderInfoMedium {}
 })
 export class IconFolderInfoMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFolderInfoMedium, IconFolderInfoMedium],
   exports: [SvgIconFolderInfoMedium, IconFolderInfoMedium],

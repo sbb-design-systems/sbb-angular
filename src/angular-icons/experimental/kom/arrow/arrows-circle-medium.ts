@@ -45,6 +45,9 @@ export class SvgIconArrowsCircleMedium {}
 })
 export class IconArrowsCircleMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconArrowsCircleMedium, IconArrowsCircleMedium],
   exports: [SvgIconArrowsCircleMedium, IconArrowsCircleMedium],

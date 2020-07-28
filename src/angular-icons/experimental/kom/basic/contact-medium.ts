@@ -45,6 +45,9 @@ export class SvgIconContactMedium {}
 })
 export class IconContactMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconContactMedium, IconContactMedium],
   exports: [SvgIconContactMedium, IconContactMedium],

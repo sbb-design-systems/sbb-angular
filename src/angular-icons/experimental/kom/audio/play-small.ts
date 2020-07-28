@@ -39,6 +39,9 @@ export class SvgIconPlaySmall {}
 })
 export class IconPlaySmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPlaySmall, IconPlaySmall],
   exports: [SvgIconPlaySmall, IconPlaySmall],

@@ -45,6 +45,9 @@ export class SvgIconWheelchairReservationMedium {}
 })
 export class IconWheelchairReservationMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWheelchairReservationMedium, IconWheelchairReservationMedium],
   exports: [SvgIconWheelchairReservationMedium, IconWheelchairReservationMedium],

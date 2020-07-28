@@ -45,6 +45,9 @@ export class SvgIconMountainPlusSmall {}
 })
 export class IconMountainPlusSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMountainPlusSmall, IconMountainPlusSmall],
   exports: [SvgIconMountainPlusSmall, IconMountainPlusSmall],

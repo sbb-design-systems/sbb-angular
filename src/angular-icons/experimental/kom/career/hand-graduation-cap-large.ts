@@ -45,6 +45,9 @@ export class SvgIconHandGraduationCapLarge {}
 })
 export class IconHandGraduationCapLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHandGraduationCapLarge, IconHandGraduationCapLarge],
   exports: [SvgIconHandGraduationCapLarge, IconHandGraduationCapLarge],

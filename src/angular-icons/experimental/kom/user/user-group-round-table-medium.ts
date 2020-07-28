@@ -45,6 +45,9 @@ export class SvgIconUserGroupRoundTableMedium {}
 })
 export class IconUserGroupRoundTableMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconUserGroupRoundTableMedium, IconUserGroupRoundTableMedium],
   exports: [SvgIconUserGroupRoundTableMedium, IconUserGroupRoundTableMedium],

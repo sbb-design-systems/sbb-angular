@@ -45,6 +45,9 @@ export class SvgIconTelephoneGsmMedium {}
 })
 export class IconTelephoneGsmMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTelephoneGsmMedium, IconTelephoneGsmMedium],
   exports: [SvgIconTelephoneGsmMedium, IconTelephoneGsmMedium],

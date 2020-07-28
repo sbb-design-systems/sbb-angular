@@ -47,6 +47,9 @@ export class SvgIconKRMedium {}
 })
 export class IconKRMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconKRMedium, IconKRMedium],
   exports: [SvgIconKRMedium, IconKRMedium],

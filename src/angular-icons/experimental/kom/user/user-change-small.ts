@@ -45,6 +45,9 @@ export class SvgIconUserChangeSmall {}
 })
 export class IconUserChangeSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconUserChangeSmall, IconUserChangeSmall],
   exports: [SvgIconUserChangeSmall, IconUserChangeSmall],

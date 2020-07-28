@@ -45,6 +45,9 @@ export class SvgIconGpsMedium {}
 })
 export class IconGpsMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconGpsMedium, IconGpsMedium],
   exports: [SvgIconGpsMedium, IconGpsMedium],

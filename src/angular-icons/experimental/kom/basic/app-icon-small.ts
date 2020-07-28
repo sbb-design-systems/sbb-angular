@@ -50,6 +50,9 @@ export class SvgIconAppIconSmall {}
 })
 export class IconAppIconSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconAppIconSmall, IconAppIconSmall],
   exports: [SvgIconAppIconSmall, IconAppIconSmall],

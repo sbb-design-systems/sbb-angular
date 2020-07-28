@@ -45,6 +45,9 @@ export class SvgIconContactSmall {}
 })
 export class IconContactSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconContactSmall, IconContactSmall],
   exports: [SvgIconContactSmall, IconContactSmall],

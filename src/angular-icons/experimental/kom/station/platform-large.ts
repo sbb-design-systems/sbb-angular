@@ -45,6 +45,9 @@ export class SvgIconPlatformLarge {}
 })
 export class IconPlatformLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPlatformLarge, IconPlatformLarge],
   exports: [SvgIconPlatformLarge, IconPlatformLarge],

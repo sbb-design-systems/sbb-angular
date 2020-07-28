@@ -39,6 +39,9 @@ export class SvgIconArrowCompassSmall {}
 })
 export class IconArrowCompassSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconArrowCompassSmall, IconArrowCompassSmall],
   exports: [SvgIconArrowCompassSmall, IconArrowCompassSmall],

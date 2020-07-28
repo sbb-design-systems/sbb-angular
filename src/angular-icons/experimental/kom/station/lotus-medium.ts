@@ -45,6 +45,9 @@ export class SvgIconLotusMedium {}
 })
 export class IconLotusMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLotusMedium, IconLotusMedium],
   exports: [SvgIconLotusMedium, IconLotusMedium],

@@ -45,6 +45,9 @@ export class SvgIconChartPieSmall {}
 })
 export class IconChartPieSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChartPieSmall, IconChartPieSmall],
   exports: [SvgIconChartPieSmall, IconChartPieSmall],

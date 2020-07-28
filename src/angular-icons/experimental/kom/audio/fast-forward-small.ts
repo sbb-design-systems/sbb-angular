@@ -45,6 +45,9 @@ export class SvgIconFastForwardSmall {}
 })
 export class IconFastForwardSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFastForwardSmall, IconFastForwardSmall],
   exports: [SvgIconFastForwardSmall, IconFastForwardSmall],

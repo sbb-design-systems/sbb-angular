@@ -45,6 +45,9 @@ export class SvgIconBinocularsSmall {}
 })
 export class IconBinocularsSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconBinocularsSmall, IconBinocularsSmall],
   exports: [SvgIconBinocularsSmall, IconBinocularsSmall],

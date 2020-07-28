@@ -45,6 +45,9 @@ export class SvgIconFolderLockSmall {}
 })
 export class IconFolderLockSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFolderLockSmall, IconFolderLockSmall],
   exports: [SvgIconFolderLockSmall, IconFolderLockSmall],

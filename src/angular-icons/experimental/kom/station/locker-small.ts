@@ -45,6 +45,9 @@ export class SvgIconLockerSmall {}
 })
 export class IconLockerSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLockerSmall, IconLockerSmall],
   exports: [SvgIconLockerSmall, IconLockerSmall],

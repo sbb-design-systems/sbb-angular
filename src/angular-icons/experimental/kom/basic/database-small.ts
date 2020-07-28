@@ -45,6 +45,9 @@ export class SvgIconDatabaseSmall {}
 })
 export class IconDatabaseSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconDatabaseSmall, IconDatabaseSmall],
   exports: [SvgIconDatabaseSmall, IconDatabaseSmall],

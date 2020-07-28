@@ -45,6 +45,9 @@ export class SvgIconThumbDownMedium {}
 })
 export class IconThumbDownMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconThumbDownMedium, IconThumbDownMedium],
   exports: [SvgIconThumbDownMedium, IconThumbDownMedium],

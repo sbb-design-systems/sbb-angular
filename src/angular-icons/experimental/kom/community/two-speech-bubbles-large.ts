@@ -45,6 +45,9 @@ export class SvgIconTwoSpeechBubblesLarge {}
 })
 export class IconTwoSpeechBubblesLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTwoSpeechBubblesLarge, IconTwoSpeechBubblesLarge],
   exports: [SvgIconTwoSpeechBubblesLarge, IconTwoSpeechBubblesLarge],

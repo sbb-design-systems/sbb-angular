@@ -45,6 +45,9 @@ export class SvgIconFaceGrinningSmall {}
 })
 export class IconFaceGrinningSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFaceGrinningSmall, IconFaceGrinningSmall],
   exports: [SvgIconFaceGrinningSmall, IconFaceGrinningSmall],

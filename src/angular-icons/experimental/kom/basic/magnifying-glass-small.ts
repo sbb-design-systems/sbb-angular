@@ -45,6 +45,9 @@ export class SvgIconMagnifyingGlassSmall {}
 })
 export class IconMagnifyingGlassSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMagnifyingGlassSmall, IconMagnifyingGlassSmall],
   exports: [SvgIconMagnifyingGlassSmall, IconMagnifyingGlassSmall],

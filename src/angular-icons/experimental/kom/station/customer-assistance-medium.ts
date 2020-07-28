@@ -50,6 +50,9 @@ export class SvgIconCustomerAssistanceMedium {}
 })
 export class IconCustomerAssistanceMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCustomerAssistanceMedium, IconCustomerAssistanceMedium],
   exports: [SvgIconCustomerAssistanceMedium, IconCustomerAssistanceMedium],

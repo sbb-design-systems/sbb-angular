@@ -45,6 +45,9 @@ export class SvgIconCutlerySmall {}
 })
 export class IconCutlerySmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCutlerySmall, IconCutlerySmall],
   exports: [SvgIconCutlerySmall, IconCutlerySmall],

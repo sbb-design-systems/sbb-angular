@@ -45,6 +45,9 @@ export class SvgIconMeetingPointMedium {}
 })
 export class IconMeetingPointMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMeetingPointMedium, IconMeetingPointMedium],
   exports: [SvgIconMeetingPointMedium, IconMeetingPointMedium],

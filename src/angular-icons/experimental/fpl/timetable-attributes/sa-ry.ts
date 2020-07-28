@@ -45,6 +45,9 @@ export class SvgIconSaRy {}
 })
 export class IconSaRy {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSaRy, IconSaRy],
   exports: [SvgIconSaRy, IconSaRy],

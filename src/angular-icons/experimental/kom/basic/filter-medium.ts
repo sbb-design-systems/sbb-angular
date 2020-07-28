@@ -41,6 +41,9 @@ export class SvgIconFilterMedium {}
 })
 export class IconFilterMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFilterMedium, IconFilterMedium],
   exports: [SvgIconFilterMedium, IconFilterMedium],

@@ -45,6 +45,9 @@ export class SvgIconWarningLightSmall {}
 })
 export class IconWarningLightSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWarningLightSmall, IconWarningLightSmall],
   exports: [SvgIconWarningLightSmall, IconWarningLightSmall],

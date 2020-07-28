@@ -45,6 +45,9 @@ export class SvgIconHandPlusCircleMedium {}
 })
 export class IconHandPlusCircleMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHandPlusCircleMedium, IconHandPlusCircleMedium],
   exports: [SvgIconHandPlusCircleMedium, IconHandPlusCircleMedium],

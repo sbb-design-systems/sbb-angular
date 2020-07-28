@@ -45,6 +45,9 @@ export class SvgIconPercentTagSmall {}
 })
 export class IconPercentTagSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPercentTagSmall, IconPercentTagSmall],
   exports: [SvgIconPercentTagSmall, IconPercentTagSmall],

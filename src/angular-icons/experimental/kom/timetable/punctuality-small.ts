@@ -46,6 +46,9 @@ export class SvgIconPunctualitySmall {}
 })
 export class IconPunctualitySmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPunctualitySmall, IconPunctualitySmall],
   exports: [SvgIconPunctualitySmall, IconPunctualitySmall],

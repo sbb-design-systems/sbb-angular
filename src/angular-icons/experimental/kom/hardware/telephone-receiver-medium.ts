@@ -45,6 +45,9 @@ export class SvgIconTelephoneReceiverMedium {}
 })
 export class IconTelephoneReceiverMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTelephoneReceiverMedium, IconTelephoneReceiverMedium],
   exports: [SvgIconTelephoneReceiverMedium, IconTelephoneReceiverMedium],

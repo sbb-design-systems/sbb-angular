@@ -45,6 +45,9 @@ export class SvgIconFaceNeutralSmall {}
 })
 export class IconFaceNeutralSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFaceNeutralSmall, IconFaceNeutralSmall],
   exports: [SvgIconFaceNeutralSmall, IconFaceNeutralSmall],

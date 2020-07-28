@@ -39,6 +39,9 @@ export class SvgIconDragSmall {}
 })
 export class IconDragSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconDragSmall, IconDragSmall],
   exports: [SvgIconDragSmall, IconDragSmall],

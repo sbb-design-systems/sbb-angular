@@ -45,6 +45,9 @@ export class SvgIconCloudSnowflakeSmall {}
 })
 export class IconCloudSnowflakeSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCloudSnowflakeSmall, IconCloudSnowflakeSmall],
   exports: [SvgIconCloudSnowflakeSmall, IconCloudSnowflakeSmall],

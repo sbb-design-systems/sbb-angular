@@ -45,6 +45,9 @@ export class SvgIconChartLineMedium {}
 })
 export class IconChartLineMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChartLineMedium, IconChartLineMedium],
   exports: [SvgIconChartLineMedium, IconChartLineMedium],

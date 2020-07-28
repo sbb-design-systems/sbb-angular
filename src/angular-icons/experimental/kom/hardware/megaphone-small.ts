@@ -45,6 +45,9 @@ export class SvgIconMegaphoneSmall {}
 })
 export class IconMegaphoneSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMegaphoneSmall, IconMegaphoneSmall],
   exports: [SvgIconMegaphoneSmall, IconMegaphoneSmall],

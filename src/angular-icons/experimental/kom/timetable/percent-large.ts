@@ -45,6 +45,9 @@ export class SvgIconPercentLarge {}
 })
 export class IconPercentLarge {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPercentLarge, IconPercentLarge],
   exports: [SvgIconPercentLarge, IconPercentLarge],

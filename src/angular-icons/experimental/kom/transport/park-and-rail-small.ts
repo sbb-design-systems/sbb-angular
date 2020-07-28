@@ -47,6 +47,9 @@ export class SvgIconParkAndRailSmall {}
 })
 export class IconParkAndRailSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconParkAndRailSmall, IconParkAndRailSmall],
   exports: [SvgIconParkAndRailSmall, IconParkAndRailSmall],

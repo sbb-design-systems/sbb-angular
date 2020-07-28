@@ -45,6 +45,9 @@ export class SvgIconEnvelopeOpenSmall {}
 })
 export class IconEnvelopeOpenSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconEnvelopeOpenSmall, IconEnvelopeOpenSmall],
   exports: [SvgIconEnvelopeOpenSmall, IconEnvelopeOpenSmall],

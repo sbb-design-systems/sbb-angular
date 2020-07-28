@@ -50,6 +50,9 @@ export class SvgIconWeatherUnknownMedium {}
 })
 export class IconWeatherUnknownMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWeatherUnknownMedium, IconWeatherUnknownMedium],
   exports: [SvgIconWeatherUnknownMedium, IconWeatherUnknownMedium],

@@ -50,6 +50,9 @@ export class SvgIconMoneyExchangeSmall {}
 })
 export class IconMoneyExchangeSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMoneyExchangeSmall, IconMoneyExchangeSmall],
   exports: [SvgIconMoneyExchangeSmall, IconMoneyExchangeSmall],

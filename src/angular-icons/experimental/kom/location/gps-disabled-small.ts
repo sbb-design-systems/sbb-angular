@@ -45,6 +45,9 @@ export class SvgIconGpsDisabledSmall {}
 })
 export class IconGpsDisabledSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconGpsDisabledSmall, IconGpsDisabledSmall],
   exports: [SvgIconGpsDisabledSmall, IconGpsDisabledSmall],

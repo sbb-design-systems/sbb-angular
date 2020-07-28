@@ -45,6 +45,9 @@ export class SvgIconPercentTagMedium {}
 })
 export class IconPercentTagMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPercentTagMedium, IconPercentTagMedium],
   exports: [SvgIconPercentTagMedium, IconPercentTagMedium],

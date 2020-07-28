@@ -45,6 +45,9 @@ export class SvgIconKeyboardSmall {}
 })
 export class IconKeyboardSmall {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconKeyboardSmall, IconKeyboardSmall],
   exports: [SvgIconKeyboardSmall, IconKeyboardSmall],

@@ -41,6 +41,9 @@ export class SvgIconArrowLongRightMedium {}
 })
 export class IconArrowLongRightMedium {}
 
+/**
+ * @Deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconArrowLongRightMedium, IconArrowLongRightMedium],
   exports: [SvgIconArrowLongRightMedium, IconArrowLongRightMedium],
