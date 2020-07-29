@@ -50,7 +50,9 @@
 <div class="sbb-usermenu-logged-off" *ngIf="!userName">
   <button class="sbb-usermenu-logged-off-button" (click)="emitLogin()" type="button">
     <sbb-icon svgIcon="kom:user-small"></sbb-icon>
-    <ng-container i18n="Button label for login@@sbbUsermenuLogin">Login</ng-container>
+    <span class="sbb-usermenu-logged-off-label" i18n="Button label for login@@sbbUsermenuLogin"
+      >Login</span
+    >
   </button>
 </div>
 
