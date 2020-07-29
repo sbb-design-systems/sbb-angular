@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconArrowsUpDownSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconArrowsUpDownSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-arrows-up-down-small',
   template: ` <svg sbbIconArrowsUpDownSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconArrowsUpDownSmall {}
 })
 export class IconArrowsUpDownSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconArrowsUpDownSmall, IconArrowsUpDownSmall],
   exports: [SvgIconArrowsUpDownSmall, IconArrowsUpDownSmall],

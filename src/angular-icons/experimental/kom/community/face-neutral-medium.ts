@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconFaceNeutralMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconFaceNeutralMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-face-neutral-medium',
   template: ` <svg sbbIconFaceNeutralMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconFaceNeutralMedium {}
 })
 export class IconFaceNeutralMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFaceNeutralMedium, IconFaceNeutralMedium],
   exports: [SvgIconFaceNeutralMedium, IconFaceNeutralMedium],

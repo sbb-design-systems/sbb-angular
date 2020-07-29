@@ -15,7 +15,7 @@ It is generated, maintained, tested, linted and built with the [Angular CLI](htt
 
 The package containing core functionality shared by `@sbb-esta/angular-public` and `@sbb-esta/angular-business`.
 
-### [@sbb-esta/angular-icons](https://www.npmjs.com/package/@sbb-esta/angular-icons)
+### [@sbb-esta/angular-icons](https://www.npmjs.com/package/@sbb-esta/angular-icons) (Deprecated)
 
 The package containing SBB icons as components.
 
@@ -41,7 +41,7 @@ The package containing components to display 2D/3D maps and to provide map inter
 
 [Component List](https://angular.app.sbb.ch/latest/maps)
 
-### [@sbb-esta/angular-keycloak](https://www.npmjs.com/package/@sbb-esta/angular-keycloak)
+### [@sbb-esta/angular-keycloak](https://www.npmjs.com/package/@sbb-esta/angular-keycloak) (Deprecated)
 
 The package containing the authentication module keycloak.
 

@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconFlashlightOnMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconFlashlightOnMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-flashlight-on-medium',
   template: ` <svg sbbIconFlashlightOnMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconFlashlightOnMedium {}
 })
 export class IconFlashlightOnMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFlashlightOnMedium, IconFlashlightOnMedium],
   exports: [SvgIconFlashlightOnMedium, IconFlashlightOnMedium],

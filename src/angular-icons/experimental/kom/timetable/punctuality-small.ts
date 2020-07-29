@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconPunctualitySmall]',
   template: `
@@ -36,6 +39,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconPunctualitySmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-punctuality-small',
   template: ` <svg sbbIconPunctualitySmall></svg> `,
@@ -46,6 +52,9 @@ export class SvgIconPunctualitySmall {}
 })
 export class IconPunctualitySmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPunctualitySmall, IconPunctualitySmall],
   exports: [SvgIconPunctualitySmall, IconPunctualitySmall],

@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconHandGraduationCapLarge]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconHandGraduationCapLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-hand-graduation-cap-large',
   template: ` <svg sbbIconHandGraduationCapLarge></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconHandGraduationCapLarge {}
 })
 export class IconHandGraduationCapLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHandGraduationCapLarge, IconHandGraduationCapLarge],
   exports: [SvgIconHandGraduationCapLarge, IconHandGraduationCapLarge],

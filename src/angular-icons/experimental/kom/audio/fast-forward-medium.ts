@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconFastForwardMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconFastForwardMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-fast-forward-medium',
   template: ` <svg sbbIconFastForwardMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconFastForwardMedium {}
 })
 export class IconFastForwardMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFastForwardMedium, IconFastForwardMedium],
   exports: [SvgIconFastForwardMedium, IconFastForwardMedium],

@@ -6,6 +6,9 @@ import {<% for (let icon of icons) { %>
   Icon<%= classify(icon.normalizedName) %>Module,<% } %>
 } from '<%= packageName %>/<%= path %>';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 export const ICON_META = [<% for (let icon of icons) { %>
   {
     attributeSelector: '<%= prefix %>Icon<%= classify(icon.normalizedName) %>',
@@ -16,19 +19,26 @@ export const ICON_META = [<% for (let icon of icons) { %>
   },<% } %>
 ];
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 export const ICON_CLASS_LIST: Type<any>[] = [<% for (let icon of icons) { %>
   SvgIcon<%= classify(icon.normalizedName) %>,<% } %>
 ];
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 export const ICON_MODULE_LIST = [<% for (let icon of icons) { %>
   Icon<%= classify(icon.normalizedName) %>Module,<% } %>
 ];
 
+/**
+ * Should not be used as a consumer
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: ICON_MODULE_LIST,
   exports: ICON_MODULE_LIST
 })
-/**
- * should not be used as a consumer
- */
 export class ɵIconModule {}

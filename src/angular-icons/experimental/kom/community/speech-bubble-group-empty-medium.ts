@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconSpeechBubbleGroupEmptyMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconSpeechBubbleGroupEmptyMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-speech-bubble-group-empty-medium',
   template: ` <svg sbbIconSpeechBubbleGroupEmptyMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconSpeechBubbleGroupEmptyMedium {}
 })
 export class IconSpeechBubbleGroupEmptyMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSpeechBubbleGroupEmptyMedium, IconSpeechBubbleGroupEmptyMedium],
   exports: [SvgIconSpeechBubbleGroupEmptyMedium, IconSpeechBubbleGroupEmptyMedium],

@@ -58,21 +58,15 @@ describe('ngAdd', () => {
     );
   });
 
-  it('should add @sbb-esta/angular-core, @sbb-esta/angular-icons, @angular/cdk and @angular/animations to "package.json" file', async () => {
-    [
-      '@sbb-esta/angular-core',
-      '@sbb-esta/angular-icons',
-      '@angular/cdk',
-    ].forEach((dependencyName) =>
+  it('should add @sbb-esta/angular-core, @angular/cdk and @angular/animations to "package.json" file', async () => {
+    ['@sbb-esta/angular-core', '@angular/cdk'].forEach((dependencyName) =>
       expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBeUndefined()
     );
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
-    ['@sbb-esta/angular-core', '@sbb-esta/angular-icons'].forEach((dependencyName) =>
-      expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBe(
-        `~0.0.0-PLACEHOLDER`
-      )
+    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-core']).toBe(
+      `~0.0.0-PLACEHOLDER`
     );
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);

@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconMountainMinusMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconMountainMinusMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-mountain-minus-medium',
   template: ` <svg sbbIconMountainMinusMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconMountainMinusMedium {}
 })
 export class IconMountainMinusMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMountainMinusMedium, IconMountainMinusMedium],
   exports: [SvgIconMountainMinusMedium, IconMountainMinusMedium],

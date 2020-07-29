@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconHandshakeMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconHandshakeMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-handshake-medium',
   template: ` <svg sbbIconHandshakeMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconHandshakeMedium {}
 })
 export class IconHandshakeMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHandshakeMedium, IconHandshakeMedium],
   exports: [SvgIconHandshakeMedium, IconHandshakeMedium],

@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconFaceSmilingMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconFaceSmilingMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-face-smiling-medium',
   template: ` <svg sbbIconFaceSmilingMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconFaceSmilingMedium {}
 })
 export class IconFaceSmilingMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFaceSmilingMedium, IconFaceSmilingMedium],
   exports: [SvgIconFaceSmilingMedium, IconFaceSmilingMedium],

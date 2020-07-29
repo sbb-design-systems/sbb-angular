@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconStationSurroundingAreaSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconStationSurroundingAreaSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-station-surrounding-area-small',
   template: ` <svg sbbIconStationSurroundingAreaSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconStationSurroundingAreaSmall {}
 })
 export class IconStationSurroundingAreaSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconStationSurroundingAreaSmall, IconStationSurroundingAreaSmall],
   exports: [SvgIconStationSurroundingAreaSmall, IconStationSurroundingAreaSmall],

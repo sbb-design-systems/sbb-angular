@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconMagnifyingGlassSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconMagnifyingGlassSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-magnifying-glass-small',
   template: ` <svg sbbIconMagnifyingGlassSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconMagnifyingGlassSmall {}
 })
 export class IconMagnifyingGlassSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMagnifyingGlassSmall, IconMagnifyingGlassSmall],
   exports: [SvgIconMagnifyingGlassSmall, IconMagnifyingGlassSmall],

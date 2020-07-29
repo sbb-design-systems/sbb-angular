@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconFerrisWheelLarge]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconFerrisWheelLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-ferris-wheel-large',
   template: ` <svg sbbIconFerrisWheelLarge></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconFerrisWheelLarge {}
 })
 export class IconFerrisWheelLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFerrisWheelLarge, IconFerrisWheelLarge],
   exports: [SvgIconFerrisWheelLarge, IconFerrisWheelLarge],
