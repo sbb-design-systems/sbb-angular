@@ -1,2 +1,7 @@
-<sbb-loading mode="medium" aria-hidden="true"></sbb-loading>
-<sbb-cdn-icon-list *ngIf="cdnIcons | async as _cdnIcons" [cdnIcons]="_cdnIcons"></sbb-cdn-icon-list>
+<sbb-cdn-icon-list
+  *ngIf="cdnIcons | async as _cdnIcons; else loading"
+  [cdnIcons]="_cdnIcons"
+></sbb-cdn-icon-list>
+<ng-template #loading>
+  <sbb-loading mode="medium" aria-label="Loading icons"></sbb-loading>
+</ng-template>
