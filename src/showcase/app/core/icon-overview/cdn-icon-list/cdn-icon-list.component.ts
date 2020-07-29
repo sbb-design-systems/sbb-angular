@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SbbPaginatorComponent } from '@sbb-esta/angular-public/pagination';
 import { merge, Observable } from 'rxjs';
 import { debounceTime, map, startWith } from 'rxjs/operators';
 
@@ -10,7 +11,7 @@ import { CdnIcon, CdnIcons } from '../cdn-icon.service';
   templateUrl: './cdn-icon-list.component.html',
   styleUrls: ['./cdn-icon-list.component.scss'],
 })
-export class CdnIconListComponent {
+export class CdnIconListComponent implements AfterViewInit {
   @Input()
   set cdnIcons(newCdnIcons: CdnIcons) {
     this._cdnIcons = newCdnIcons;
@@ -30,27 +31,41 @@ export class CdnIconListComponent {
 
   namespaces: string[];
 
+  pageSize = 40;
+  @ViewChild(SbbPaginatorComponent)
+  private _paginator;
+
   constructor(formBuilder: FormBuilder) {
     this.filterForm = formBuilder.group({
       fulltext: [''],
       namespaces: [[]],
       fitIcons: [true],
     });
+  }
 
+  ngAfterViewInit(): void {
     this.filteredIcons = merge(
       this.filterForm.controls.namespaces.valueChanges,
-      this.filterForm.controls.fulltext.valueChanges.pipe(debounceTime(200), startWith(''))
+      this.filterForm.controls.fulltext.valueChanges.pipe(debounceTime(200), startWith('')),
+      this._paginator.page
     ).pipe(
       map(() => {
         const fulltext = this.filterForm.get('fulltext').value.toUpperCase();
         const namespaces: string[] = this.filterForm.get('namespaces').value;
 
-        return this._cdnIcons.icons.filter(
+        const filteredIcons = this._cdnIcons.icons.filter(
           (i) =>
             namespaces.some((namespace) => i.namespace === namespace) &&
             (i.namespace.toUpperCase().indexOf(fulltext) !== -1 ||
               i.name.toUpperCase().indexOf(fulltext) !== -1 ||
               i.tags.some((tag) => tag.toUpperCase().indexOf(fulltext) !== -1))
+        );
+
+        this._paginator.length = filteredIcons.length;
+
+        return filteredIcons.slice(
+          this._paginator.pageIndex * this.pageSize,
+          this._paginator.pageIndex * this.pageSize + this.pageSize
         );
       })
     );

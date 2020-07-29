@@ -9,6 +9,7 @@ import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { LoadingModule } from '@sbb-esta/angular-public/loading';
+import { PaginationModule } from '@sbb-esta/angular-public/pagination';
 import { SelectModule } from '@sbb-esta/angular-public/select';
 import { TabsModule } from '@sbb-esta/angular-public/tabs';
 
@@ -48,6 +49,7 @@ import { IconOverviewComponent } from './icon-overview/icon-overview.component';
     ReactiveFormsModule,
     SelectModule,
     FieldModule,
+    PaginationModule,
   ],
 })
 export class CoreModule {}

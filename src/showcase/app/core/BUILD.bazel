@@ -39,6 +39,7 @@ ng_module(
         "//src/angular-public/checkbox",
         "//src/angular-public/field",
         "//src/angular-public/loading",
+        "//src/angular-public/pagination",
         "//src/angular-public/select",
         "//src/angular-public/tabs",
         "//src/showcase/app/core/core-examples",
