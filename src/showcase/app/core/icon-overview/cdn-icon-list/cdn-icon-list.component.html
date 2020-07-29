@@ -18,4 +18,5 @@
 <div [class.sbb-icon-fit]="filterForm.get('fitIcons').value">
   <sbb-cdn-icon *ngFor="let cdnIcon of filteredIcons | async" [cdnIcon]="cdnIcon"></sbb-cdn-icon>
 </div>
+<sbb-paginator [pageSize]="pageSize"></sbb-paginator>
 <p>Icon CDN Version: {{ cdnIcons.version }}</p>
