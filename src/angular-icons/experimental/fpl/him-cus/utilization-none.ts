@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconUtilizationNone]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconUtilizationNone {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-utilization-none',
   template: ` <svg sbbIconUtilizationNone></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconUtilizationNone {}
 })
 export class IconUtilizationNone {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconUtilizationNone, IconUtilizationNone],
   exports: [SvgIconUtilizationNone, IconUtilizationNone],

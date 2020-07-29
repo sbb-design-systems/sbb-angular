@@ -1,3 +1,13 @@
+# ⚠ Deprecation Notice
+
+The `@sbb-esta/angular-icons` package is deprecated and will be removed with the next major version.
+Please see [@sbb-esta/angular-core/icon](../../core/components/icon) for the alternative way to access icons.
+
+## Migration
+
+Use `ng update @sbb-esta/angular-core --migrateOnly --from=10 --to=11` to automatically migrate your icon usage before the next major release.
+With the next major version (11) the migration runs automatically when using the `ng update @sbb-esta/angular-core` command.
+
 # Getting Started
 
 The `@sbb-esta/angular-icons` package contains the icons provided by

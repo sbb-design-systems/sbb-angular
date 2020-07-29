@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconSwisspassTemporaryMedium]',
   template: `
@@ -39,6 +42,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconSwisspassTemporaryMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-swisspass-temporary-medium',
   template: ` <svg sbbIconSwisspassTemporaryMedium></svg> `,
@@ -49,6 +55,9 @@ export class SvgIconSwisspassTemporaryMedium {}
 })
 export class IconSwisspassTemporaryMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSwisspassTemporaryMedium, IconSwisspassTemporaryMedium],
   exports: [SvgIconSwisspassTemporaryMedium, IconSwisspassTemporaryMedium],

@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconSignExclamationPointSmall]',
   template: `
@@ -31,6 +34,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconSignExclamationPointSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-sign-exclamation-point-small',
   template: ` <svg sbbIconSignExclamationPointSmall></svg> `,
@@ -41,6 +47,9 @@ export class SvgIconSignExclamationPointSmall {}
 })
 export class IconSignExclamationPointSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSignExclamationPointSmall, IconSignExclamationPointSmall],
   exports: [SvgIconSignExclamationPointSmall, IconSignExclamationPointSmall],

@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconDocumentCheckMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconDocumentCheckMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-document-check-medium',
   template: ` <svg sbbIconDocumentCheckMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconDocumentCheckMedium {}
 })
 export class IconDocumentCheckMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconDocumentCheckMedium, IconDocumentCheckMedium],
   exports: [SvgIconDocumentCheckMedium, IconDocumentCheckMedium],

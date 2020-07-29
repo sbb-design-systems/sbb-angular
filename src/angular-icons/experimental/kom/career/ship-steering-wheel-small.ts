@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconShipSteeringWheelSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconShipSteeringWheelSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-ship-steering-wheel-small',
   template: ` <svg sbbIconShipSteeringWheelSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconShipSteeringWheelSmall {}
 })
 export class IconShipSteeringWheelSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconShipSteeringWheelSmall, IconShipSteeringWheelSmall],
   exports: [SvgIconShipSteeringWheelSmall, IconShipSteeringWheelSmall],

@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconCancellation]',
   template: `
@@ -41,6 +44,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconCancellation {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-cancellation',
   template: ` <svg sbbIconCancellation></svg> `,
@@ -51,6 +57,9 @@ export class SvgIconCancellation {}
 })
 export class IconCancellation {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCancellation, IconCancellation],
   exports: [SvgIconCancellation, IconCancellation],

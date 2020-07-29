@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconChartColumnTrendMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconChartColumnTrendMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-chart-column-trend-medium',
   template: ` <svg sbbIconChartColumnTrendMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconChartColumnTrendMedium {}
 })
 export class IconChartColumnTrendMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChartColumnTrendMedium, IconChartColumnTrendMedium],
   exports: [SvgIconChartColumnTrendMedium, IconChartColumnTrendMedium],

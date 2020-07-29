@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconBinocularsMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconBinocularsMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-binoculars-medium',
   template: ` <svg sbbIconBinocularsMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconBinocularsMedium {}
 })
 export class IconBinocularsMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconBinocularsMedium, IconBinocularsMedium],
   exports: [SvgIconBinocularsMedium, IconBinocularsMedium],

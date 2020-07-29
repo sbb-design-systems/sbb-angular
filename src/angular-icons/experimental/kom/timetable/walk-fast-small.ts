@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconWalkFastSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconWalkFastSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-walk-fast-small',
   template: ` <svg sbbIconWalkFastSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconWalkFastSmall {}
 })
 export class IconWalkFastSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWalkFastSmall, IconWalkFastSmall],
   exports: [SvgIconWalkFastSmall, IconWalkFastSmall],

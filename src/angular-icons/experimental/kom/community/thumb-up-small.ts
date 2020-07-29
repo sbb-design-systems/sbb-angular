@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconThumbUpSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconThumbUpSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-thumb-up-small',
   template: ` <svg sbbIconThumbUpSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconThumbUpSmall {}
 })
 export class IconThumbUpSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconThumbUpSmall, IconThumbUpSmall],
   exports: [SvgIconThumbUpSmall, IconThumbUpSmall],

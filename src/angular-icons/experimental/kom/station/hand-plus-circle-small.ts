@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconHandPlusCircleSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconHandPlusCircleSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-hand-plus-circle-small',
   template: ` <svg sbbIconHandPlusCircleSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconHandPlusCircleSmall {}
 })
 export class IconHandPlusCircleSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHandPlusCircleSmall, IconHandPlusCircleSmall],
   exports: [SvgIconHandPlusCircleSmall, IconHandPlusCircleSmall],

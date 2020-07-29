@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconPercentTagSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconPercentTagSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-percent-tag-small',
   template: ` <svg sbbIconPercentTagSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconPercentTagSmall {}
 })
 export class IconPercentTagSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPercentTagSmall, IconPercentTagSmall],
   exports: [SvgIconPercentTagSmall, IconPercentTagSmall],

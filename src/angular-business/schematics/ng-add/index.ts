@@ -30,7 +30,6 @@ const addDependencies = (): Rule => {
       getPackageVersionFromPackageJson(tree, '@sbb-esta/angular-business') || `~0.0.0-PLACEHOLDER`;
 
     addDefaultDependency('@sbb-esta/angular-core', sbbAngularVersionRange, tree, context);
-    addDefaultDependency('@sbb-esta/angular-icons', sbbAngularVersionRange, tree, context);
     addDefaultDependency('@angular/cdk', `0.0.0-CDK`, tree, context);
     addDefaultDependency(
       '@angular/animations',

@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconTwoFingerTapSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconTwoFingerTapSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-two-finger-tap-small',
   template: ` <svg sbbIconTwoFingerTapSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconTwoFingerTapSmall {}
 })
 export class IconTwoFingerTapSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTwoFingerTapSmall, IconTwoFingerTapSmall],
   exports: [SvgIconTwoFingerTapSmall, IconTwoFingerTapSmall],

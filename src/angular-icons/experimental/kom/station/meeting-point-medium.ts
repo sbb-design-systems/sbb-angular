@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconMeetingPointMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconMeetingPointMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-meeting-point-medium',
   template: ` <svg sbbIconMeetingPointMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconMeetingPointMedium {}
 })
 export class IconMeetingPointMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMeetingPointMedium, IconMeetingPointMedium],
   exports: [SvgIconMeetingPointMedium, IconMeetingPointMedium],

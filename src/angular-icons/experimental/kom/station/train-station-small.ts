@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconTrainStationSmall]',
   template: `
@@ -36,6 +39,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconTrainStationSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-train-station-small',
   template: ` <svg sbbIconTrainStationSmall></svg> `,
@@ -46,6 +52,9 @@ export class SvgIconTrainStationSmall {}
 })
 export class IconTrainStationSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTrainStationSmall, IconTrainStationSmall],
   exports: [SvgIconTrainStationSmall, IconTrainStationSmall],

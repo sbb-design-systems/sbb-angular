@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { IconBase } from '@sbb-esta/angular-icons/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-calendar',
   // tslint:disable:max-line-length
@@ -57,6 +60,9 @@ export class IconCalendarComponent extends IconBase {
   }
 }
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconCalendarComponent],

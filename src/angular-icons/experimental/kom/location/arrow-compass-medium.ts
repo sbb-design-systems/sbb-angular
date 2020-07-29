@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconArrowCompassMedium]',
   template: ` <svg:path fill="none" stroke="#000" d="M18.75 27.75v-10.5H8.25L29.91 6.088z" /> `,
@@ -29,6 +32,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconArrowCompassMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-arrow-compass-medium',
   template: ` <svg sbbIconArrowCompassMedium></svg> `,
@@ -39,6 +45,9 @@ export class SvgIconArrowCompassMedium {}
 })
 export class IconArrowCompassMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconArrowCompassMedium, IconArrowCompassMedium],
   exports: [SvgIconArrowCompassMedium, IconArrowCompassMedium],
