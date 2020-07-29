@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconMusicRockHandGestureLarge]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconMusicRockHandGestureLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-music-rock-hand-gesture-large',
   template: ` <svg sbbIconMusicRockHandGestureLarge></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconMusicRockHandGestureLarge {}
 })
 export class IconMusicRockHandGestureLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMusicRockHandGestureLarge, IconMusicRockHandGestureLarge],
   exports: [SvgIconMusicRockHandGestureLarge, IconMusicRockHandGestureLarge],

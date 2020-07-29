@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconCupHotMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconCupHotMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-cup-hot-medium',
   template: ` <svg sbbIconCupHotMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconCupHotMedium {}
 })
 export class IconCupHotMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCupHotMedium, IconCupHotMedium],
   exports: [SvgIconCupHotMedium, IconCupHotMedium],

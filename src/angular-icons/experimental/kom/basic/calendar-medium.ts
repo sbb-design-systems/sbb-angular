@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconCalendarMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconCalendarMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-calendar-medium',
   template: ` <svg sbbIconCalendarMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconCalendarMedium {}
 })
 export class IconCalendarMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCalendarMedium, IconCalendarMedium],
   exports: [SvgIconCalendarMedium, IconCalendarMedium],

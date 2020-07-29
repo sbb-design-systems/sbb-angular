@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconWaitingRoomSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconWaitingRoomSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-waiting-room-small',
   template: ` <svg sbbIconWaitingRoomSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconWaitingRoomSmall {}
 })
 export class IconWaitingRoomSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWaitingRoomSmall, IconWaitingRoomSmall],
   exports: [SvgIconWaitingRoomSmall, IconWaitingRoomSmall],

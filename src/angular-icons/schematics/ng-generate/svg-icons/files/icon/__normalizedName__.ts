@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[<%= prefix %>Icon<%= classify(normalizedName) %>]',
   template: `<%= template %>`,
@@ -26,6 +29,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIcon<%= classify(normalizedName) %> {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-<%= dasherize(normalizedName) %>',
   template: `<svg <%= prefix %>Icon<%= classify(normalizedName) %>></svg>`,
@@ -36,6 +42,9 @@ export class SvgIcon<%= classify(normalizedName) %> {}
 })
 export class Icon<%= classify(normalizedName) %> {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIcon<%= classify(normalizedName) %>, Icon<%= classify(normalizedName) %>],
   exports: [SvgIcon<%= classify(normalizedName) %>, Icon<%= classify(normalizedName) %>],

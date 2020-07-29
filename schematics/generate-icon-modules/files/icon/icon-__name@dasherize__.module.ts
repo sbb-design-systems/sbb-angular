@@ -6,6 +6,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 import { IconBase } from '<%= iconBaseImport() %>';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-<%= dasherize(name) %>',
   // tslint:disable:max-line-length

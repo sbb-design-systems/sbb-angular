@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconLocationPinPulseSurroundingAreaSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconLocationPinPulseSurroundingAreaSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-location-pin-pulse-surrounding-area-small',
   template: ` <svg sbbIconLocationPinPulseSurroundingAreaSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconLocationPinPulseSurroundingAreaSmall {}
 })
 export class IconLocationPinPulseSurroundingAreaSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [
     SvgIconLocationPinPulseSurroundingAreaSmall,

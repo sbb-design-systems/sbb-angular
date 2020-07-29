@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconSeatWindowSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconSeatWindowSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-seat-window-small',
   template: ` <svg sbbIconSeatWindowSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconSeatWindowSmall {}
 })
 export class IconSeatWindowSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSeatWindowSmall, IconSeatWindowSmall],
   exports: [SvgIconSeatWindowSmall, IconSeatWindowSmall],

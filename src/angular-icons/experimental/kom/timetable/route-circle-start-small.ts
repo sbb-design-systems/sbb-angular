@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconRouteCircleStartSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconRouteCircleStartSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-route-circle-start-small',
   template: ` <svg sbbIconRouteCircleStartSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconRouteCircleStartSmall {}
 })
 export class IconRouteCircleStartSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconRouteCircleStartSmall, IconRouteCircleStartSmall],
   exports: [SvgIconRouteCircleStartSmall, IconRouteCircleStartSmall],

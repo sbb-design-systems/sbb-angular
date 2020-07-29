@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconBulbOnLarge]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconBulbOnLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-bulb-on-large',
   template: ` <svg sbbIconBulbOnLarge></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconBulbOnLarge {}
 })
 export class IconBulbOnLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconBulbOnLarge, IconBulbOnLarge],
   exports: [SvgIconBulbOnLarge, IconBulbOnLarge],

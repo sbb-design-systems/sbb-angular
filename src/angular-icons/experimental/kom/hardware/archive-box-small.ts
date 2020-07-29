@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconArchiveBoxSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconArchiveBoxSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-archive-box-small',
   template: ` <svg sbbIconArchiveBoxSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconArchiveBoxSmall {}
 })
 export class IconArchiveBoxSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconArchiveBoxSmall, IconArchiveBoxSmall],
   exports: [SvgIconArchiveBoxSmall, IconArchiveBoxSmall],

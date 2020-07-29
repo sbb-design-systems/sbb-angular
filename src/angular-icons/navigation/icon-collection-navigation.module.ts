@@ -26,6 +26,9 @@ const modules = [
   IconTwoFingerTapModule,
 ];
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: modules,
   exports: modules,

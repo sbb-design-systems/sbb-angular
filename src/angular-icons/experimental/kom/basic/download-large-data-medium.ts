@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconDownloadLargeDataMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconDownloadLargeDataMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-download-large-data-medium',
   template: ` <svg sbbIconDownloadLargeDataMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconDownloadLargeDataMedium {}
 })
 export class IconDownloadLargeDataMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconDownloadLargeDataMedium, IconDownloadLargeDataMedium],
   exports: [SvgIconDownloadLargeDataMedium, IconDownloadLargeDataMedium],
