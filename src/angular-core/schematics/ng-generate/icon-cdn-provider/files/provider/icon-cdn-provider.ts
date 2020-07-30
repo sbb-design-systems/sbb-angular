@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 
 /**
  * Generated from version <%= cdnIndex.version %> of the icon CDN.
- * Icons that are not needed by your app can be removed.
+ * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
  *   `
@@ -64,14 +64,8 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
  *   `
  *   `<sbb-icon svgIcon="lego"></sbb-icon>`
  *
- * You can also self-host the CDN icons, by downloading the icons from the CDN
- * or from https://github.com/sbb-design-systems/icon-library/tree/master/icons/svg
- * and adapting the url:
- *   `
- *     ['fpl', 'sa-1', '/assets/path/to/sa-1.svg'],
- *     ...
- *     )
- *   `
+ * You can also self-host the CDN icons, by downloading the icons from the Icon CDN (https://icons.app.sbb.ch)
+ * and adapting the url.
  *
  * @docs-private
  */
