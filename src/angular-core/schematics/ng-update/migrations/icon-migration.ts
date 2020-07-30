@@ -65,7 +65,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
       !ts.isStringLiteralLike(declaration.moduleSpecifier) ||
       !declaration.importClause ||
       !declaration.importClause.namedBindings ||
-      // If the import module is not @angular/material, skip the check.
+      // If the import module is not @sbb-esta/angular-icons, skip the check.
       !declaration.moduleSpecifier.text.startsWith('@sbb-esta/angular-icons')
     ) {
       return;
