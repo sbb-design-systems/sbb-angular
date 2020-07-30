@@ -147,7 +147,7 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
         pointer-events: none;
         flex-shrink: 0;
 
-        @include mq($from: mobilePortrait, $to: tabletPortrait) {
+        @include mq($to: tabletPortrait) {
           display: none;
         }
 
@@ -220,7 +220,7 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
           }
 
           &.sbb-displayName-logged-in-collapsed {
-            @include mq($from: mobilePortrait, $to: tabletPortrait) {
+            @include mq($to: tabletPortrait) {
               display: none;
             }
           }
@@ -315,6 +315,13 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
             height: toPx(48);
             width: toPx(48);
           }
+        }
+      }
+
+      .sbb-usermenu-logged-off-label {
+        display: none;
+        @include mq($from: tablet) {
+          display: inline;
         }
       }
     }
