@@ -44,8 +44,8 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.2.0 of the icon CDN.
- * Icons that are not needed by your app can be removed.
+ * Generated from version v1.3.0 of the icon CDN.
+ * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
  *   `
@@ -65,14 +65,8 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
  *   `
  *   `<sbb-icon svgIcon="lego"></sbb-icon>`
  *
- * You can also self-host the CDN icons, by downloading the icons from the CDN
- * or from https://github.com/sbb-design-systems/icon-library/tree/master/icons/svg
- * and adapting the url:
- *   `
- *     ['fpl', 'sa-1', '/assets/path/to/sa-1.svg'],
- *     ...
- *     )
- *   `
+ * You can also self-host the CDN icons, by downloading the icons from the Icon CDN (https://icons.app.sbb.ch)
+ * and adapting the url.
  *
  * @docs-private
  */
@@ -90,7 +84,39 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
    * or make sure you provide them yourself.
    *
    * Icons:
+   *  - @sbb-esta/angular-business/accordion: kom:chevron-small-down-small
+   *  - @sbb-esta/angular-business/breadcrumb: kom:chevron-small-down-circle-small, kom:chevron-small-right-small
+   *  - @sbb-esta/angular-business/checkbox: kom:tick-small
+   *  - @sbb-esta/angular-business/chip: kom:cross-small
+   *  - @sbb-esta/angular-business/contextmenu: kom:context-menu-small
+   *  - @sbb-esta/angular-business/datepicker: kom:calendar-small, kom:chevron-small-left-small, kom:chevron-small-right-small
+   *  - @sbb-esta/angular-business/file-selector: kom:document-image-small, kom:document-pdf-small, kom:document-sound-small, kom:document-standard-small, kom:document-text-small, kom:document-video-small, kom:document-zip-small, kom:trash-small, kom:upload-small
+   *  - @sbb-esta/angular-business/header: kom:chevron-small-down-small, kom:chevron-small-left-small, kom:cross-small, kom:hamburger-menu-small
+   *  - @sbb-esta/angular-business/links: kom:arrow-right-small, kom:download-small
+   *  - @sbb-esta/angular-business/notification: kom:circle-information-small, kom:cross-small, kom:sign-exclamation-point-small, kom:tick-small
+   *  - @sbb-esta/angular-business/option: kom:tick-small
+   *  - @sbb-esta/angular-business/pagination: kom:chevron-small-left-circle-small, kom:chevron-small-left-small, kom:chevron-small-right-circle-small, kom:chevron-small-right-small
+   *  - @sbb-esta/angular-business/processflow: kom:chevron-right-small
+   *  - @sbb-esta/angular-business/select: kom:chevron-small-down-small
+   *  - @sbb-esta/angular-business/status: kom:cross-small, kom:exclamation-point-small, kom:tick-small
+   *  - @sbb-esta/angular-business/tooltip: kom:circle-question-mark-small, kom:cross-small
+   *  - @sbb-esta/angular-business/usermenu: kom:chevron-small-down-small, kom:user-small
+   *  - @sbb-esta/angular-public/accordion: kom:chevron-small-down-small, kom:minus-small, kom:plus-small
+   *  - @sbb-esta/angular-public/breadcrumb: kom:chevron-small-down-circle-small, kom:chevron-small-right-small
+   *  - @sbb-esta/angular-public/checkbox-panel: kom:tick-small
+   *  - @sbb-esta/angular-public/checkbox: kom:tick-small
+   *  - @sbb-esta/angular-public/datepicker: kom:calendar-small, kom:chevron-small-left-small, kom:chevron-small-right-small
+   *  - @sbb-esta/angular-public/file-selector: kom:document-image-small, kom:document-pdf-small, kom:document-sound-small, kom:document-standard-small, kom:document-text-small, kom:document-video-small, kom:document-zip-small, kom:trash-small, kom:upload-small
    *  - @sbb-esta/angular-public/ghettobox: fpl:info, kom:arrow-long-right-small, kom:cross-small
+   *  - @sbb-esta/angular-public/links: kom:arrow-right-small, kom:download-small
+   *  - @sbb-esta/angular-public/notification: kom:circle-information-small, kom:sign-exclamation-point-small, kom:tick-small
+   *  - @sbb-esta/angular-public/option: kom:tick-small
+   *  - @sbb-esta/angular-public/pagination: kom:chevron-small-left-circle-small, kom:chevron-small-left-small, kom:chevron-small-right-circle-small, kom:chevron-small-right-small
+   *  - @sbb-esta/angular-public/processflow: kom:chevron-right-small
+   *  - @sbb-esta/angular-public/search: kom:magnifying-glass-small
+   *  - @sbb-esta/angular-public/select: kom:chevron-small-down-small
+   *  - @sbb-esta/angular-public/tooltip: kom:circle-question-mark-small, kom:cross-small
+   *  - @sbb-esta/angular-public/usermenu: kom:chevron-small-down-small, kom:user-small
    */
   const registry =
     parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);

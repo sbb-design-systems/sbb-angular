@@ -200,22 +200,10 @@ your AppModule (and remove the `SBB_ICON_REGISTRY_PROVIDER` import from `@sbb-es
 
 ### Self-Hosting
 
-You can also self-host the CDN icons, by downloading the icons from the [SBB Icon CDN](https://icons.app.sbb.ch)
-or from (https://github.com/sbb-design-systems/icon-library/tree/master/icons/svg) and adding them to your assets.
+You can also self-host the CDN icons, by downloading the icons from the [SBB Icon CDN](https://icons.app.sbb.ch) and adding them to your assets.
 Instead of using our pre-defined `SBB_ICON_REGISTRY_PROVIDER` constant, you have to create your own registry provider and provider factory.
-Run `ng generate @sbb-esta/angular-core:icon-cdn-provider` to create your own registry and adapt the urls of the icon list.
-Don't forget to include the registry in your AppModule's providers.
+Run `ng generate @sbb-esta/angular-core:icon-cdn-provider` to create your own registry and adapt the urls of the icons (e.g. change `https://icons.app.sbb.ch` to `/assets/icons`).
+For custom usage you can completely replace the content of the `SBB_ICON_REGISTRY_PROVIDER_FACTORY` function.
 
-E.g. replace
-
-```ts
-... ['fpl', 'sa-1', 'https://icons.app.sbb.ch/fpl/sa-1.svg'], ...
-```
-
-by
-
-```ts
-... ['fpl', 'sa-1', '/assets/path/to/sa-1.svg'], ...
-```
-
-\*Make sure, that the namespace of 'fpl' remains, because these icons need a special handling regarding the styling.
+Don't forget to include the registry in your AppModule's providers and make sure, that icons which are needed by sbb-angular components were not removed.
+See JSDoc of `SBB_ICON_REGISTRY_PROVIDER_FACTORY` for required icons.
