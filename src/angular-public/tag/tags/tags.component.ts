@@ -5,7 +5,6 @@ import {
   Component,
   ContentChildren,
   forwardRef,
-  HostBinding,
   Input,
   OnDestroy,
   QueryList,
@@ -29,6 +28,9 @@ import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-tags',
+  },
 })
 export class TagsComponent implements AfterContentInit, OnDestroy {
   /**
@@ -48,9 +50,12 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
 
   private _totalAmountSetAsInput = false;
 
-  /** Css class associated to sbb-tags. */
-  @HostBinding('class.sbb-tags')
+  /**
+   *  Css class associated to sbb-tags.
+   *  @deprecated internal detail
+   */
   sbbTagsClass = true;
+
   /** Refers to the tags contained. */
   @ContentChildren(forwardRef(() => TagComponent))
   tags: QueryList<TagComponent>;
@@ -60,7 +65,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
 
   /**
    * @docs-private
-   * @deprecated internal use
+   * @deprecated internal detail
    */
   _amount: Observable<number>;
 

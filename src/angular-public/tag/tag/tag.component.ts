@@ -7,7 +7,6 @@ import {
   Component,
   ElementRef,
   forwardRef,
-  HostBinding,
   Inject,
   InjectionToken,
   Input,
@@ -42,14 +41,23 @@ export interface TagChange extends SbbCheckboxChange<TagComponent> {}
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-tag',
+    '[class.sbb-tag-disabled]': 'disabled',
+    '[class.sbb-tag-active]': 'active',
+  },
 })
 export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnDestroy {
-  /** @docs-private  */
-  @HostBinding('class.sbb-tag')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   sbbTagClass = true;
 
-  /** @docs-private  */
-  @HostBinding('class.sbb-tag-disabled')
+  /**
+   *  @docs-private
+   *  @deprecated internal detail
+   */
   get sbbTagDisabledClass() {
     return this.disabled;
   }
@@ -90,7 +98,6 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
   readonly tagChecking$ = new Subject<any>();
 
   /** Refers if a tag is active. */
-  @HostBinding('class.sbb-tag-active')
   get active() {
     return this._active || (this.checked && !this.disabled);
   }
