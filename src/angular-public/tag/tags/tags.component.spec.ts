@@ -222,6 +222,44 @@ describe('TagsComponent with Model attached', () => {
     expect(component.tagItems[0].selected).toBe(false);
   });
 
+  it('should update all models when clicking all tag', async () => {
+    spyOn(component, 'change');
+
+    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const allTag = tags[0];
+    const firstTag = tags[1];
+    const secondTag = tags[2];
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(secondTag.componentInstance.checked).toBe(false);
+
+    component.tagItems[0].selected = true;
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    allTag.nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.change).toHaveBeenCalledTimes(1);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(secondTag.componentInstance.checked).toBe(false);
+    expect(component.tagItems[0].selected).toBe(false);
+    expect(component.tagItems[1].selected).toBe(false);
+
+    // should still trigger no changeEvent if clicking a second time on allTag
+    allTag.nativeElement.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(component.change).toHaveBeenCalledTimes(1);
+  });
+
   it('should the allTag be inactive with at least one tag selected and vice versa', async () => {
     const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
     const allTag = tags[0];
@@ -360,10 +398,6 @@ describe('TagsComponent with Reactive Forms and total amount set from outside', 
   it('should sbb-tag to be checked if model is true and update Model if checked/unchecked', async () => {
     const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
     const tagLabel = tag.query(By.css('label'));
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
     expect(tag.componentInstance.checked).toBe(false);
 
     component.formGroup.patchValue({ services: true });
@@ -381,6 +415,44 @@ describe('TagsComponent with Reactive Forms and total amount set from outside', 
 
     expect(tag.componentInstance.checked).toBe(false);
     expect(component.formGroup.get('services')!.value).toBe(false);
+  });
+
+  it('should update all models when clicking all tag', async () => {
+    spyOn(component, 'change');
+
+    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const allTag = tags[0];
+    const firstTag = tags[1];
+    const secondTag = tags[2];
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(secondTag.componentInstance.checked).toBe(false);
+
+    component.formGroup.patchValue({ services: true });
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    allTag.nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.change).toHaveBeenCalledTimes(1);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(secondTag.componentInstance.checked).toBe(false);
+    expect(component.formGroup.get('services')!.value).toBe(false);
+    expect(component.formGroup.get('restaurants')!.value).toBe(false);
+
+    // should still trigger no changeEvent if clicking a second time on allTag
+    allTag.nativeElement.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(component.change).toHaveBeenCalledTimes(1);
   });
 
   it('should call the change event when checking/unchecking a sbb-tag', () => {

@@ -115,7 +115,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
 
   allTagClick() {
     setTimeout(() => (this.allTag.checked = true), 0);
-    this.tags.forEach((t) => (t.checked = false));
+    this.tags.forEach((t) => t._uncheckFromAllTag());
   }
 
   // tslint:disable: member-ordering

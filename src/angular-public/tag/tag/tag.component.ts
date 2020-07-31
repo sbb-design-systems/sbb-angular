@@ -131,6 +131,17 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
     }
   }
 
+  /**
+   * @docs-private internal use only
+   */
+  _uncheckFromAllTag() {
+    const previousChecked = this.checked;
+    this.checked = false;
+    if (previousChecked) {
+      this._emitChangeEvent();
+    }
+  }
+
   ngOnDestroy() {
     this.tagChecking$.complete();
   }
