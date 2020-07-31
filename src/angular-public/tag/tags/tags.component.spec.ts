@@ -230,6 +230,11 @@ describe('TagsComponent with Model attached', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(allTag.componentInstance.active).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(firstTag.componentInstance.active).toBe(false);
+
     firstTag.query(By.css('label')).nativeElement.click();
 
     fixture.detectChanges();
@@ -237,6 +242,8 @@ describe('TagsComponent with Model attached', () => {
 
     expect(allTag.componentInstance.checked).toBe(false);
     expect(allTag.componentInstance.active).toBe(false);
+    expect(firstTag.componentInstance.checked).toBe(true);
+    expect(firstTag.componentInstance.active).toBe(true);
 
     allTag.query(By.css('label')).nativeElement.click();
 
@@ -245,6 +252,32 @@ describe('TagsComponent with Model attached', () => {
 
     expect(allTag.componentInstance.checked).toBe(true);
     expect(allTag.componentInstance.active).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(firstTag.componentInstance.active).toBe(false);
+  });
+
+  it('should prevent disabling allTag at same with all other tags', async () => {
+    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const allTag = tags[0];
+    const firstTag = tags[1];
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(allTag.componentInstance.active).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(firstTag.componentInstance.active).toBe(false);
+
+    allTag.query(By.css('label')).nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(allTag.componentInstance.active).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(firstTag.componentInstance.active).toBe(false);
   });
 
   it('should when clicking the allTag all other tags to be unchecked/false', async () => {

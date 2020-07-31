@@ -1,4 +1,4 @@
-import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -114,6 +114,11 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   allTagClick() {
+    setTimeout(() => (this.allTag.checked = true), 0);
     this.tags.forEach((t) => (t.checked = false));
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_totalAmount: NumberInput;
+  // tslint:enable: member-ordering
 }
