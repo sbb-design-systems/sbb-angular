@@ -31,6 +31,17 @@ Within the filter, an additional tag called "Alle" is always inserted. If this f
 </sbb-tags>
 ```
 
+## Total Amount in All Tag
+
+By default, the amount badge in the all-tag is calculated by summing up all amounts of every child tag component.
+If you like to set the total amount manually (e.g. if the amounts in the tag components are not exclusively) then you have to set the `totalAmount` property of `<sbb-tags>`.
+
+```html
+<sbb-tags [totalAmount]="100">
+  <sbb-tag label="Tag" [amount]="10"></sbb-tag>
+</sbb-tags>
+```
+
 ### Linktag
 
 You can use linktag to navigate at the corresponding category page.
