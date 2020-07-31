@@ -303,7 +303,7 @@ describe('TagsComponent with Model attached', () => {
     expect(firstTag.componentInstance.active).toBe(false);
   });
 
-  it('should prevent disabling allTag at same with all other tags', async () => {
+  it('should prevent uncheck the all tag at the same time when all other tags are unchecked', async () => {
     const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
     const allTag = tags[0];
     const firstTag = tags[1];
@@ -327,7 +327,7 @@ describe('TagsComponent with Model attached', () => {
     expect(firstTag.componentInstance.active).toBe(false);
   });
 
-  it('should when clicking the allTag all other tags to be unchecked/false', async () => {
+  it('should when clicking the all tag all other tags to be unchecked/false', async () => {
     const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
     const allTag = tags[0];
 
@@ -357,7 +357,7 @@ describe('TagsComponent with Model attached', () => {
   });
 });
 
-describe('TagsComponent with Reactive Forms and total amount set from outside', () => {
+describe('TagsComponent with Reactive Forms and total amount set as input', () => {
   let component: TagsTestFixtureReactiveComponent;
   let fixture: ComponentFixture<TagsTestFixtureReactiveComponent>;
 

@@ -33,7 +33,7 @@ Within the filter, an additional tag called "Alle" is always inserted. If this f
 
 ## Total Amount in All Tag
 
-By default, the amount badge in the all-tag is calculated by summing up all amounts of every child tag component.
+By default, the amount badge in the all tag is calculated by summing up all amounts of every child tag component.
 If you like to set the total amount manually (e.g. if the amounts in the tag components are not exclusively) then you have to set the `totalAmount` property of `<sbb-tags>`.
 
 ```html

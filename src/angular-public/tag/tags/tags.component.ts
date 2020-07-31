@@ -34,7 +34,7 @@ import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
 })
 export class TagsComponent implements AfterContentInit, OnDestroy {
   /**
-   * Total amount visible on the all-tag.
+   * Total amount visible on the all tag.
    * If not provided, the total amount is calculated by the sum of all amounts of all tags
    */
   @Input()
@@ -119,7 +119,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   allTagClick() {
-    setTimeout(() => (this.allTag.checked = true), 0);
+    setTimeout(() => (this.allTag.checked = true), 0); // setTimeout is the only way to force the correct state because otherwise it would be set to early and would be overwritten
     this.tags.forEach((t) => t._uncheckFromAllTag());
   }
 
