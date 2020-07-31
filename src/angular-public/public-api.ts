@@ -2,7 +2,7 @@
  * Public API Surface of angular-public
  */
 
-export * from '@sbb-esta/angular-core'; //TODO: check if still wanted
+export * from '@sbb-esta/angular-core'; // TODO: check if still wanted
 export * from '@sbb-esta/angular-public/accordion';
 export * from '@sbb-esta/angular-public/autocomplete';
 export * from '@sbb-esta/angular-public/badge';
