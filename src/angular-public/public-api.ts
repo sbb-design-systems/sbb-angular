@@ -2,7 +2,7 @@
  * Public API Surface of angular-public
  */
 
-export * from '@sbb-esta/angular-core';
+export * from '@sbb-esta/angular-core'; //TODO: check if still wanted
 export * from '@sbb-esta/angular-public/accordion';
 export * from '@sbb-esta/angular-public/autocomplete';
 export * from '@sbb-esta/angular-public/badge';
@@ -20,8 +20,8 @@ export * from '@sbb-esta/angular-public/input';
 export * from '@sbb-esta/angular-public/lightbox';
 export * from '@sbb-esta/angular-public/links';
 export * from '@sbb-esta/angular-public/loading';
-export * from '@sbb-esta/angular-public/option';
 export * from '@sbb-esta/angular-public/notification';
+export * from '@sbb-esta/angular-public/option';
 export * from '@sbb-esta/angular-public/pagination';
 export * from '@sbb-esta/angular-public/processflow';
 export * from '@sbb-esta/angular-public/radio-button';
