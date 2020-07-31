@@ -251,7 +251,7 @@ describe('TagsComponent with Model attached', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    allTag.nativeElement.click();
+    allTag.query(By.css('label')).nativeElement.click();
 
     fixture.detectChanges();
     await fixture.whenStable();
@@ -263,7 +263,7 @@ describe('TagsComponent with Model attached', () => {
     expect(component.tagItems[1].selected).toBe(false);
 
     // should still trigger no changeEvent if clicking a second time on allTag
-    allTag.nativeElement.click();
+    allTag.query(By.css('label')).nativeElement.click();
     fixture.detectChanges();
     await fixture.whenStable();
     expect(component.change).toHaveBeenCalledTimes(1);
@@ -446,7 +446,7 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
     fixture.detectChanges();
     await fixture.whenStable();
 
-    allTag.nativeElement.click();
+    allTag.query(By.css('label')).nativeElement.click();
 
     fixture.detectChanges();
     await fixture.whenStable();
@@ -458,7 +458,7 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
     expect(component.formGroup.get('restaurants')!.value).toBe(false);
 
     // should still trigger no changeEvent if clicking a second time on allTag
-    allTag.nativeElement.click();
+    allTag.query(By.css('label')).nativeElement.click();
     fixture.detectChanges();
     await fixture.whenStable();
     expect(component.change).toHaveBeenCalledTimes(1);

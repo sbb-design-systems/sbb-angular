@@ -119,7 +119,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   allTagClick() {
-    setTimeout(() => (this.allTag.checked = true), 0); // setTimeout is the only way to force the correct state because otherwise it would be set to early and would be overwritten
+    this.allTag.checked = true;
     this.tags.forEach((t) => t._uncheckFromAllTag());
   }
 
