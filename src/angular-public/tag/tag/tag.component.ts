@@ -88,9 +88,14 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
   }
   set amount(value: number) {
     this._amount = coerceNumberProperty(value);
+    this.amountChange.next(this._amount);
   }
   private _amount: number;
 
+  /**
+   * Emits the current amount when the amount changes
+   */
+  amountChange = new Subject<number>();
   /**
    * A subject on tag checking.
    * @deprecated Use the change event
@@ -144,6 +149,7 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
 
   ngOnDestroy() {
     this.tagChecking$.complete();
+    this.amountChange.complete();
   }
   // tslint:disable: member-ordering
   static ngAcceptInputType_amount: NumberInput;

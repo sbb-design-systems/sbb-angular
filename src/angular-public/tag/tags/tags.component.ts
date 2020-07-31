@@ -73,7 +73,11 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
 
   ngAfterContentInit() {
     this._tagsHandleChecking();
-    merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes)
+    merge<TagComponent[]>(
+      of(this.tags.toArray()),
+      this.tags.changes,
+      ...this.tags.map((item) => item.amountChange.pipe(map(() => this.tags.toArray())))
+    )
       .pipe(takeUntil(this._destroyed))
       .subscribe((tags) => {
         if (this._totalAmountSetAsInput) {
@@ -89,6 +93,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   ngOnDestroy() {
     this._destroyed.next();
     this._destroyed.complete();
+    this._totalAmount.complete();
   }
 
   private _tagsHandleChecking() {
