@@ -37,6 +37,10 @@ table.sbb-table {
     }
   }
 
+  /**
+   * Alias of .sbb-table-align-center
+   * @deprecated
+   */
   .sbb-col-center-align {
     text-align: center !important;
   }
