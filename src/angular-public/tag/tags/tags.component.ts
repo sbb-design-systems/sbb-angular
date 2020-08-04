@@ -35,7 +35,7 @@ import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
 export class TagsComponent implements AfterContentInit, OnDestroy {
   /**
    * Total amount visible on the all tag.
-   * If not provided, the total amount is calculated by the sum of all amounts of all tags
+   * If not provided, the total amount is calculated by the sum of all amounts of all tags.
    */
   @Input()
   set totalAmount(totalAmount: number) {
