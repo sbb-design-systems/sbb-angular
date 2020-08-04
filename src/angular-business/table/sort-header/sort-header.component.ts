@@ -31,8 +31,8 @@ import { sbbSortAnimations } from './sort-animations';
 export type ArrowViewState = SortDirection | 'hint' | 'active';
 
 /**
- * States describing the arrow's anisbbed position (anisbbing fromState to toState).
- * If the fromState is not defined, there will be no anisbbed transition to the toState.
+ * States describing the arrow's animated position (animating fromState to toState).
+ * If the fromState is not defined, there will be no animated transition to the toState.
  * @docs-private
  */
 export interface ArrowViewStateTransition {
@@ -98,7 +98,23 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
         this._updateArrowDirection();
       }
 
-      // If this header was recently active and now no longer sorted, anisbbe away the arrow.
+      // The following block is moved from _handleClick() as suggested by https://github.com/angular/components/issues/10242#issuecomment-587925784
+      // This is an open bug at angular material https://github.com/angular/components/issues/10242.
+      if (this._sort.active === this.id) {
+        // Do not show the animation if the header was already shown in the right position.
+        if (this._viewState.toState === 'hint' || this._viewState.toState === 'active') {
+          this._disableViewStateAnimation = true;
+        }
+
+        // If the arrow is now sorted, animate the arrow into place. Otherwise, animate it away into
+        // the direction it is facing.
+        const viewState: ArrowViewStateTransition = this._isSorted()
+          ? { fromState: this._arrowDirection, toState: 'active' }
+          : { fromState: 'active', toState: this._arrowDirection };
+        this._setAnimationTransitionState(viewState);
+      }
+
+      // If this header was recently active and now no longer sorted, animate away the arrow.
       if (!this._isSorted() && this._viewState && this._viewState.toState === 'active') {
         this._disableViewStateAnimation = false;
         this._setAnimationTransitionState({ fromState: 'active', toState: this._arrowDirection });
@@ -116,7 +132,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
 
   /**
    * The view transition state of the arrow (translation/ opacity) - indicates its `from` and `to`
-   * position through the animation. If anisbbions are currently disabled, the fromState is removed
+   * position through the animation. If animations are currently disabled, the fromState is removed
    * so that there is no animation displayed.
    */
   _viewState: ArrowViewStateTransition;
@@ -209,18 +225,6 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   _handleClick() {
     this._sort.sort(this);
 
-    // Do not show the animation if the header was already shown in the right position.
-    if (this._viewState.toState === 'hint' || this._viewState.toState === 'active') {
-      this._disableViewStateAnimation = true;
-    }
-
-    // If the arrow is now sorted, anisbbe the arrow into place. Otherwise, anisbbe it away into
-    // the direction it is facing.
-    const viewState: ArrowViewStateTransition = this._isSorted()
-      ? { fromState: this._arrowDirection, toState: 'active' }
-      : { fromState: 'active', toState: this._arrowDirection };
-    this._setAnimationTransitionState(viewState);
-
     this._showIndicatorHint = false;
   }
 
@@ -249,7 +253,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * active sorted direction. The reason this is updated through a function is because the direction
    * should only be changed at specific times - when deactivated but the hint is displayed and when
    * the sort is active and the direction changes. Otherwise the arrow's direction should linger
-   * in cases such as the sort becoming deactivated but we want to anisbbe the arrow away while
+   * in cases such as the sort becoming deactivated but we want to animate the arrow away while
    * preserving its direction, even though the next sort direction is actually different and should
    * only be changed once the arrow displays again (hint or activation).
    */

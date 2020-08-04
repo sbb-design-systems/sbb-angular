@@ -138,6 +138,35 @@ Sorting will apply when one of the following actions takes place:
 - Clicking (a second time) on a table column header, sorting descendingly.
 - Clicking (a third time) on a table column header, removing sorting.
 
+#### Default Sorting
+
+To achieve default sorting of a column, use `sbbSortActive` directive to define which column to sort, `sbbSortDirection` to set the direction.
+
+```html
+<table
+  sbbTable
+  sbbSort
+  [dataSource]="dataSource"
+  sbbSortActive="letter"
+  sbbSortDirection="asc"
+></table>
+```
+
+It's also possible to programmatically sort columns by calling `sort()` method of SbbSort directive and providing a SbbSortable.
+
+```ts
+export class SortableTableExampleComponent implements AfterViewInit {
+  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(['A', '1']);
+
+  @ViewChild(SbbSortDirective) sort: SbbSortDirective;
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.sort.sort({ id: 'letter', start: 'asc', disableClear: false });
+  }
+}
+```
+
 ### Pagination
 
 It's easy to split up a datasource into pages. You can use the <sbb-paginator> component to achieve pagination. To connect the paginator component to your dataSource you have to set `dataSource.paginator` to the viewReference of the SbbPaginatorComponent in your controller (see example below and on examples page).
