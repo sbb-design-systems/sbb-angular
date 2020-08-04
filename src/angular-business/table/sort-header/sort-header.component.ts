@@ -99,7 +99,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
       }
 
       // The following block is moved from _handleClick() as suggested by https://github.com/angular/components/issues/10242#issuecomment-587925784
-      // This is docsan open bug at angular material https://github.com/angular/components/issues/10242.
+      // This is an open bug at angular material https://github.com/angular/components/issues/10242.
       if (this._sort.active === this.id) {
         // Do not show the animation if the header was already shown in the right position.
         if (this._viewState.toState === 'hint' || this._viewState.toState === 'active') {
