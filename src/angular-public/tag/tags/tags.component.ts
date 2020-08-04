@@ -1,17 +1,18 @@
+import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
   forwardRef,
-  HostBinding,
+  Input,
   OnDestroy,
   QueryList,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { merge, Observable, of, Subscription } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, merge, Observable, of, Subject } from 'rxjs';
+import { map, mergeAll, mergeMap, switchMap, takeUntil } from 'rxjs/operators';
 
 import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
 
@@ -27,18 +28,34 @@ import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-tags',
+  },
 })
 export class TagsComponent implements AfterContentInit, OnDestroy {
   /**
-   * Total amount of results found.
+   * Total amount visible on the all tag.
+   * If not provided, the total amount is calculated by the sum of all amounts of all tags.
    */
-  get totalAmount(): number {
-    return this.tags.map((t) => Number(t.amount)).reduce((current, next) => current + next, 0);
+  @Input()
+  set totalAmount(totalAmount: number) {
+    this._totalAmountSetAsInput = true;
+    this._totalAmount.next(coerceNumberProperty(totalAmount));
   }
+  get totalAmount(): number {
+    return this._totalAmount.value;
+  }
+  /** @docs-private */
+  _totalAmount = new BehaviorSubject<number>(0);
 
-  /** Css class associated to sbb-tags. */
-  @HostBinding('class.sbb-tags')
+  private _totalAmountSetAsInput = false;
+
+  /**
+   *  Css class associated to sbb-tags.
+   *  @deprecated internal detail
+   */
   sbbTagsClass = true;
+
   /** Refers to the tags contained. */
   @ContentChildren(forwardRef(() => TagComponent))
   tags: QueryList<TagComponent>;
@@ -46,24 +63,53 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   @ViewChild('allTag', { static: true })
   allTag: TagComponent;
 
-  /** @docs-private */
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   _amount: Observable<number>;
 
-  private _tagsCheckingSubscription = Subscription.EMPTY;
+  private _destroyed = new Subject();
 
   ngAfterContentInit() {
-    this._tagsCheckingSubscription = this.tagsHandleChecking();
-    this._amount = merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes).pipe(
-      map((tags) => tags.reduce((current, next) => current + Number(next.amount), 0))
-    );
+    this._tagsHandleChecking();
+
+    // listen to tag changes and amount changes of all tag components
+    merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes)
+      .pipe(
+        mergeMap((tags) => [
+          of(this.tags.toArray()),
+          this.tags.changes,
+          ...tags.map((item) =>
+            item.amountChange.pipe(
+              map((number) => tags),
+              takeUntil(merge(this._destroyed, this.tags.changes))
+            )
+          ),
+        ]),
+        mergeAll(),
+        takeUntil(this._destroyed)
+      )
+      .subscribe((tags: TagComponent[]) => {
+        if (this._totalAmountSetAsInput) {
+          return;
+        }
+        const calculatedTotalAmount = tags.reduce(
+          (current, next) => current + Number(next.amount),
+          0
+        );
+        this._totalAmount.next(calculatedTotalAmount);
+      });
   }
 
   ngOnDestroy() {
-    this._tagsCheckingSubscription.unsubscribe();
+    this._destroyed.next();
+    this._destroyed.complete();
+    this._totalAmount.complete();
   }
 
-  tagsHandleChecking(): Subscription {
-    return merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes)
+  private _tagsHandleChecking() {
+    merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes)
       .pipe(
         map((tags) =>
           tags.reduce(
@@ -71,7 +117,8 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
             [] as Observable<unknown>[]
           )
         ),
-        switchMap((o) => merge(...o))
+        switchMap((o) => merge(...o)),
+        takeUntil(this._destroyed)
       )
       .subscribe(() => this.setAllTagState());
   }
@@ -84,6 +131,11 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   allTagClick() {
-    this.tags.forEach((t) => (t.checked = false));
+    this.allTag._setCheckedAndEmit(true);
+    this.tags.forEach((t) => t._setCheckedAndEmit(false));
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_totalAmount: NumberInput;
+  // tslint:enable: member-ordering
 }

@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbCheckboxChange as TagChange } from '@sbb-esta/angular-core/base/checkbox';
-import { BadgeModule } from '@sbb-esta/angular-public/badge';
+import { BadgeComponent, BadgeModule } from '@sbb-esta/angular-public/badge';
 
 import { Tag } from '../tag.model';
 import { TagComponent } from '../tag/tag.component';
@@ -41,6 +41,46 @@ class TagsTestFixtureComponent {
       selected: false,
     },
   ];
+
+  change(evt: TagChange) {}
+}
+
+@Component({
+  selector: 'sbb-tags-test-fixture-reactive',
+  template: `
+    <ng-container [formGroup]="formGroup">
+      <sbb-tags [totalAmount]="totalAmount">
+        <ng-container *ngFor="let tag of tagItems">
+          <sbb-tag
+            [formControlName]="tag.id"
+            (change)="change($event)"
+            [label]="tag.label"
+            [id]="tag.id"
+            [amount]="tag.amount"
+          ></sbb-tag>
+        </ng-container>
+      </sbb-tags>
+    </ng-container>
+  `,
+})
+class TagsTestFixtureReactiveComponent {
+  formGroup = new FormGroup({
+    services: new FormControl(false),
+    restaurants: new FormControl(false),
+  });
+  tagItems: Tag[] = [
+    {
+      id: 'services',
+      label: 'Services',
+      amount: 8,
+    },
+    {
+      id: 'restaurants',
+      label: 'Restaurants / Take Away',
+      amount: 9,
+    },
+  ];
+  totalAmount: number;
 
   change(evt: TagChange) {}
 }
@@ -136,6 +176,36 @@ describe('TagsComponent with Model attached', () => {
     });
   });
 
+  it('should calculate the total amount', () => {
+    expectTotalAmount(17, fixture);
+
+    component.tagItems.push({ amount: 3, label: 'one more', selected: false });
+    fixture.detectChanges();
+
+    expectTotalAmount(20, fixture);
+  });
+
+  it('should calculate the total amount after a child has changed its amount', () => {
+    expectTotalAmount(17, fixture);
+
+    component.tagItems[0].amount = 6;
+    fixture.detectChanges();
+
+    expectTotalAmount(15, fixture);
+  });
+
+  it('should calculate the total amount after a later added child has changed its amount', () => {
+    expectTotalAmount(17, fixture);
+
+    component.tagItems.push({ amount: 5, label: 'laterAdded' });
+    fixture.detectChanges();
+
+    component.tagItems[component.tagItems.length - 1].amount = 6;
+    fixture.detectChanges();
+
+    expectTotalAmount(23, fixture);
+  });
+
   it('should check when click the label', () => {
     const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
     const tagLabel = tag.query(By.css('label'));
@@ -173,6 +243,44 @@ describe('TagsComponent with Model attached', () => {
     expect(component.tagItems[0].selected).toBe(false);
   });
 
+  it('should update all models when clicking all tag', async () => {
+    spyOn(component, 'change');
+
+    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const allTag = tags[0];
+    const firstTag = tags[1];
+    const secondTag = tags[2];
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(secondTag.componentInstance.checked).toBe(false);
+
+    component.tagItems[0].selected = true;
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    allTag.query(By.css('label')).nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.change).toHaveBeenCalledTimes(1);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(secondTag.componentInstance.checked).toBe(false);
+    expect(component.tagItems[0].selected).toBe(false);
+    expect(component.tagItems[1].selected).toBe(false);
+
+    // should still trigger no changeEvent if clicking a second time on allTag
+    allTag.query(By.css('label')).nativeElement.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(component.change).toHaveBeenCalledTimes(1);
+  });
+
   it('should the allTag be inactive with at least one tag selected and vice versa', async () => {
     const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
     const allTag = tags[0];
@@ -181,6 +289,11 @@ describe('TagsComponent with Model attached', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(allTag.componentInstance.active).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(firstTag.componentInstance.active).toBe(false);
+
     firstTag.query(By.css('label')).nativeElement.click();
 
     fixture.detectChanges();
@@ -188,6 +301,8 @@ describe('TagsComponent with Model attached', () => {
 
     expect(allTag.componentInstance.checked).toBe(false);
     expect(allTag.componentInstance.active).toBe(false);
+    expect(firstTag.componentInstance.checked).toBe(true);
+    expect(firstTag.componentInstance.active).toBe(true);
 
     allTag.query(By.css('label')).nativeElement.click();
 
@@ -196,9 +311,35 @@ describe('TagsComponent with Model attached', () => {
 
     expect(allTag.componentInstance.checked).toBe(true);
     expect(allTag.componentInstance.active).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(firstTag.componentInstance.active).toBe(false);
   });
 
-  it('should when clicking the allTag all other tags to be unchecked/false', async () => {
+  it('should prevent uncheck the all tag at the same time when all other tags are unchecked', async () => {
+    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const allTag = tags[0];
+    const firstTag = tags[1];
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(allTag.componentInstance.active).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(firstTag.componentInstance.active).toBe(false);
+
+    allTag.query(By.css('label')).nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(allTag.componentInstance.active).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(firstTag.componentInstance.active).toBe(false);
+  });
+
+  it('should when clicking the all tag all other tags to be unchecked/false', async () => {
     const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
     const allTag = tags[0];
 
@@ -213,6 +354,126 @@ describe('TagsComponent with Model attached', () => {
       tags.findIndex((t) => t.componentInstance.checked && t.componentInstance.active) !== -1;
 
     expect(hasTruthyValues).toBeFalsy();
+  });
+
+  it('should call the change event when checking/unchecking a sbb-tag', () => {
+    const firstTag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+
+    spyOn(component, 'change');
+
+    firstTag.query(By.css('label')).nativeElement.click();
+
+    fixture.detectChanges();
+
+    expect(component.change).toHaveBeenCalled();
+  });
+});
+
+describe('TagsComponent with Reactive Forms and total amount set as input', () => {
+  let component: TagsTestFixtureReactiveComponent;
+  let fixture: ComponentFixture<TagsTestFixtureReactiveComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [CommonModule, ReactiveFormsModule, BadgeModule],
+      declarations: [TagsComponent, TagComponent, TagsTestFixtureReactiveComponent],
+    }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TagsTestFixtureReactiveComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should have three sbb-tag instantiated', () => {
+    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+
+    expect(tags.length).toBe(3);
+  });
+
+  it('should take totalAmount of input', () => {
+    component.totalAmount = 100;
+    fixture.detectChanges();
+
+    expectTotalAmount(100, fixture);
+
+    component.formGroup.addControl('onemore', new FormControl(false));
+    component.tagItems.push({ id: 'onemore', amount: 3, label: 'one more' });
+    fixture.detectChanges();
+
+    expectTotalAmount(100, fixture);
+  });
+
+  it('should check when click the label', () => {
+    const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+    const tagLabel = tag.query(By.css('label'));
+
+    tagLabel.nativeElement.click();
+
+    const tagChecked = tag.queryAll(By.css('input:checked'));
+
+    expect(tagChecked.length).toBe(1);
+  });
+
+  it('should sbb-tag to be checked if model is true and update Model if checked/unchecked', async () => {
+    const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+    const tagLabel = tag.query(By.css('label'));
+    expect(tag.componentInstance.checked).toBe(false);
+
+    component.formGroup.patchValue({ services: true });
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(tag.componentInstance.checked).toBe(true);
+    expect(component.formGroup.get('services')!.value).toBe(true);
+
+    tagLabel.nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(tag.componentInstance.checked).toBe(false);
+    expect(component.formGroup.get('services')!.value).toBe(false);
+  });
+
+  it('should update all models when clicking all tag', async () => {
+    spyOn(component, 'change');
+
+    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const allTag = tags[0];
+    const firstTag = tags[1];
+    const secondTag = tags[2];
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(secondTag.componentInstance.checked).toBe(false);
+
+    component.formGroup.patchValue({ services: true });
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    allTag.query(By.css('label')).nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.change).toHaveBeenCalledTimes(1);
+    expect(firstTag.componentInstance.checked).toBe(false);
+    expect(secondTag.componentInstance.checked).toBe(false);
+    expect(component.formGroup.get('services')!.value).toBe(false);
+    expect(component.formGroup.get('restaurants')!.value).toBe(false);
+
+    // should still trigger no changeEvent if clicking a second time on allTag
+    allTag.query(By.css('label')).nativeElement.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(component.change).toHaveBeenCalledTimes(1);
   });
 
   it('should call the change event when checking/unchecking a sbb-tag', () => {
@@ -255,3 +516,13 @@ describe('TagComponent as a Link Tag', () => {
     expect(linkTag.componentInstance.active).toBe(true);
   });
 });
+
+function expectTotalAmount(expectedTotalAmount: number, fixture: any) {
+  const tagsComponent: TagsComponent = fixture.debugElement.query(By.directive(TagsComponent))
+    .componentInstance;
+  expect(tagsComponent.totalAmount).toBe(expectedTotalAmount);
+
+  const allTag = fixture.debugElement.query(By.directive(TagComponent));
+  const sbbBadge = allTag.query(By.directive(BadgeComponent)).nativeElement;
+  expect(sbbBadge.textContent).toBe(expectedTotalAmount.toString(10));
+}
