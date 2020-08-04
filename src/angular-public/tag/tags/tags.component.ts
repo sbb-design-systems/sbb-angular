@@ -12,7 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BehaviorSubject, merge, Observable, of, Subject } from 'rxjs';
-import { map, switchMap, takeUntil } from 'rxjs/operators';
+import { map, mergeAll, mergeMap, switchMap, takeUntil } from 'rxjs/operators';
 
 import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
 
@@ -74,25 +74,32 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   ngAfterContentInit() {
     this._tagsHandleChecking();
 
+    // listen to tag changes and amount changes of all tag components
     merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes)
-      .pipe(takeUntil(this._destroyed))
-      .subscribe((tags) => {
-        this._updateAmount(tags);
-
-        merge<TagComponent[]>(...tags.map((item) => item.amountChange.pipe(map(() => tags))))
-          .pipe(takeUntil(merge(this._destroyed, this.tags.changes)))
-          .subscribe((tags2) => {
-            this._updateAmount(tags2);
-          });
+      .pipe(
+        mergeMap((tags) => [
+          of(this.tags.toArray()),
+          this.tags.changes,
+          ...tags.map((item) =>
+            item.amountChange.pipe(
+              map((number) => tags),
+              takeUntil(merge(this._destroyed, this.tags.changes))
+            )
+          ),
+        ]),
+        mergeAll(),
+        takeUntil(this._destroyed)
+      )
+      .subscribe((tags: TagComponent[]) => {
+        if (this._totalAmountSetAsInput) {
+          return;
+        }
+        const calculatedTotalAmount = tags.reduce(
+          (current, next) => current + Number(next.amount),
+          0
+        );
+        this._totalAmount.next(calculatedTotalAmount);
       });
-  }
-
-  private _updateAmount(tags: TagComponent[]) {
-    if (this._totalAmountSetAsInput) {
-      return;
-    }
-    const calculatedTotalAmount = tags.reduce((current, next) => current + Number(next.amount), 0);
-    this._totalAmount.next(calculatedTotalAmount);
   }
 
   ngOnDestroy() {
