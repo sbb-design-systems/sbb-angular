@@ -1,4 +1,11 @@
-<table sbbTable sbbSort [dataSource]="dataSource" aria-describedby="sbb-table">
+<table
+  sbbTable
+  sbbSort
+  [dataSource]="dataSource"
+  aria-describedby="sbb-table"
+  sbbSortActive="letter"
+  sbbSortDirection="asc"
+>
   <ng-container sbbColumnDef="letter">
     <th sbbHeaderCell sbbSortHeader="letter" *sbbHeaderCellDef>Letter</th>
     <td sbbCell *sbbCellDef="let element">{{ element.letter }}</td>
