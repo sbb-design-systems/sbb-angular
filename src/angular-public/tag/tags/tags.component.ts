@@ -73,23 +73,28 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
 
   ngAfterContentInit() {
     this._tagsHandleChecking();
-    merge<TagComponent[]>(
-      of(this.tags.toArray()),
-      this.tags.changes,
-      ...this.tags.map((item) => item.amountChange.pipe(map(() => this.tags.toArray())))
-    )
+
+    merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes)
       .pipe(takeUntil(this._destroyed))
       .subscribe((tags) => {
-        if (this._totalAmountSetAsInput) {
-          return;
-        }
-        const calculatedTotalAmount = tags.reduce(
-          (current, next) => current + Number(next.amount),
-          0
-        );
-        this._totalAmount.next(calculatedTotalAmount);
+        this._updateAmount(tags);
+
+        merge<TagComponent[]>(...tags.map((item) => item.amountChange.pipe(map(() => tags))))
+          .pipe(takeUntil(merge(this._destroyed, this.tags.changes)))
+          .subscribe((tags2) => {
+            this._updateAmount(tags2);
+          });
       });
   }
+
+  private _updateAmount(tags: TagComponent[]) {
+    if (this._totalAmountSetAsInput) {
+      return;
+    }
+    const calculatedTotalAmount = tags.reduce((current, next) => current + Number(next.amount), 0);
+    this._totalAmount.next(calculatedTotalAmount);
+  }
+
   ngOnDestroy() {
     this._destroyed.next();
     this._destroyed.complete();
@@ -119,8 +124,8 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   allTagClick() {
-    this.allTag.checked = true;
-    this.tags.forEach((t) => t._uncheckFromAllTag());
+    this.allTag._setCheckedAndEmit(true);
+    this.tags.forEach((t) => t._setCheckedAndEmit(false));
   }
 
   // tslint:disable: member-ordering

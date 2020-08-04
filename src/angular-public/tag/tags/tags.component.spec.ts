@@ -194,6 +194,18 @@ describe('TagsComponent with Model attached', () => {
     expectTotalAmount(15, fixture);
   });
 
+  it('should calculate the total amount after a later added child has changed its amount', () => {
+    expectTotalAmount(17, fixture);
+
+    component.tagItems.push({ amount: 5, label: 'laterAdded' });
+    fixture.detectChanges();
+
+    component.tagItems[component.tagItems.length - 1].amount = 6;
+    fixture.detectChanges();
+
+    expectTotalAmount(23, fixture);
+  });
+
   it('should check when click the label', () => {
     const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
     const tagLabel = tag.query(By.css('label'));

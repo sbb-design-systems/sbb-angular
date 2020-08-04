@@ -139,10 +139,10 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
   /**
    * @docs-private internal use only
    */
-  _uncheckFromAllTag() {
+  _setCheckedAndEmit(checked: boolean) {
     const previousChecked = this.checked;
-    this.checked = false;
-    if (previousChecked) {
+    this.checked = checked;
+    if (previousChecked !== this.checked) {
       this._emitChangeEvent();
     }
   }
