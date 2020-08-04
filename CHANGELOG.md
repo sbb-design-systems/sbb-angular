@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/10.1.0...10.1.1) (2020-08-04)
+
+
+### Bug Fixes
+
+* **business:** adapt sbb-table-align-center class to use it with sort headers ([#560](https://github.com/sbb-design-systems/sbb-angular/issues/560)) ([9825910](https://github.com/sbb-design-systems/sbb-angular/commit/982591084c3496a7f42ca5e200cdfb14db2781e6))
+* **business:** update sort arrow if programmatically sorting table ([#566](https://github.com/sbb-design-systems/sbb-angular/issues/566)) ([65e8b60](https://github.com/sbb-design-systems/sbb-angular/commit/65e8b6016963cf61059c944a4f3bcc57255188d9)), closes [#564](https://github.com/sbb-design-systems/sbb-angular/issues/564)
+* **public:** update tag state after all tag was clicked and provide total amount as input ([#565](https://github.com/sbb-design-systems/sbb-angular/issues/565)) ([6a6e6a7](https://github.com/sbb-design-systems/sbb-angular/commit/6a6e6a7eab7d5721a20405e57a621f820e43369c)), closes [#561](https://github.com/sbb-design-systems/sbb-angular/issues/561) [#562](https://github.com/sbb-design-systems/sbb-angular/issues/562)
+* correct checkbox and radio styles ([#512](https://github.com/sbb-design-systems/sbb-angular/issues/512)) ([33412ad](https://github.com/sbb-design-systems/sbb-angular/commit/33412ad2f23ac980df48327826f944cef2f8ac3b))
+* fix trigger size of breadcrumb in IE ([#535](https://github.com/sbb-design-systems/sbb-angular/issues/535)) ([4a287dc](https://github.com/sbb-design-systems/sbb-angular/commit/4a287dce471070a127195629996ac752b4b062e1))
+* responsive processflow styles and paddings ([#523](https://github.com/sbb-design-systems/sbb-angular/issues/523)) ([cf6737c](https://github.com/sbb-design-systems/sbb-angular/commit/cf6737ca40a37b3d9d8679ac2f336915daf1ec69))
+
 ## [10.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.0.0...10.1.0) (2020-07-15)
 
 
