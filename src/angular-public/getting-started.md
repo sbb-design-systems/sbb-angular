@@ -6,7 +6,7 @@ Basic steps to integrate the sbb-angular library into your own project.
 
 You need to install [Node.js](https://nodejs.org/it/) first, and assure yourself to have a working javascript dependency manager like [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/lang/en/).
 
-Also we recommend to install globally the latest Angular CLI using the following command:
+Also we recommend installing the latest Angular CLI globally using the following command:
 
 ```sh
 npm install -g @angular/cli
@@ -81,7 +81,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [BrowserAnimationsModule],
   ...
 })
-export class TrainChooChooAppModule { }
+export class TrainChooChooAppModule {}
 ```
 
 if you prefer not to have the animations, you have to configure your application with the `NoopAnimationsModule`:
@@ -94,7 +94,24 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   imports: [NoopAnimationsModule],
   ...
 })
-export class TrainChooChooAppModule { }
+export class TrainChooChooAppModule {}
+```
+
+#### Step 1.4: Configure Icons
+
+Add `SBB_ICON_REGISTRY_PROVIDER` to your providers list of the AppModule (or another appropriate NgModule).
+
+```ts
+import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
+
+@NgModule({
+  ...
+  providers: [
+    ...
+    SBB_ICON_REGISTRY_PROVIDER
+  ],
+})
+export class TrainChooChooAppModule {}
 ```
 
 ## Step 2: Import the component modules
@@ -110,7 +127,7 @@ import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
   imports: [ButtonModule, CheckboxModule],
   ...
 })
-export class TrainChooChooAppModule { }
+export class TrainChooChooAppModule {}
 ```
 
 Alternatively, you can create a separate NgModule that imports all of the components that you will use in your application. You can then include this module wherever you'd like to use the components.

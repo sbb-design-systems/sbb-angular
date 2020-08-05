@@ -50,7 +50,7 @@ import { EsriConfigModule } from '@sbb-esta/angular-maps';
   imports: [EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' })],
   ...
 })
-export class TrainChooChooAppModule { }
+export class TrainChooChooAppModule {}
 ```
 
 If you do not have specific conifgurations, you can use the standard configurations as well using:
@@ -63,7 +63,7 @@ import { EsriConfigModule } from '@sbb-esta/angular-maps';
   imports: [EsriConfigModule],
   ...
 })
-export class TrainChooChooAppModule { }
+export class TrainChooChooAppModule {}
 ```
 
 ### Step 3: Import the component modules
@@ -78,5 +78,5 @@ import { EsriWebMapModule, EsriWebSceneModule } from '@sbb-esta/angular-maps';
   imports: [EsriWebMapModule, EsriWebSceneModule],
   ...
 })
-export class TrainChooChooAppModule { }
+export class TrainChooChooAppModule {}
 ```
