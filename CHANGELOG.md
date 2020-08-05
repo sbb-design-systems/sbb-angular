@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/10.1.1...10.1.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* **business:** fix table to work with @angular/cdk@10.1.2 ([#569](https://github.com/sbb-design-systems/sbb-angular/issues/569)) ([b380da9](https://github.com/sbb-design-systems/sbb-angular/commit/b380da9a443595a8052d094ef06969dd8e140d23))
+
 ### [10.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/10.1.0...10.1.1) (2020-08-04)
 
 
