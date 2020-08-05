@@ -54,7 +54,10 @@ ng_test_library(
     ),
     deps = [
         ":table",
+        "//src/angular-business/pagination",
+        "@npm//@angular/cdk",
         "@npm//@angular/platform-browser",
+        "@npm//rxjs",
     ],
 )
 
