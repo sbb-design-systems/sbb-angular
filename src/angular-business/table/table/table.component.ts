@@ -1,4 +1,9 @@
-import { CdkTable, CDK_TABLE_TEMPLATE, DataSource } from '@angular/cdk/table';
+import {
+  CdkTable,
+  CDK_TABLE_TEMPLATE,
+  DataSource,
+  _CoalescedStyleScheduler,
+} from '@angular/cdk/table';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -19,7 +24,7 @@ import { SbbTableDataSource } from './table-data-source';
   exportAs: 'sbbTable',
   template: CDK_TABLE_TEMPLATE,
   styleUrls: ['table.component.css'],
-  providers: [{ provide: CdkTable, useExisting: TableComponent }],
+  providers: [{ provide: CdkTable, useExisting: TableComponent }, _CoalescedStyleScheduler],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
 })
@@ -35,7 +40,13 @@ export class TableComponent<T> extends CdkTable<T> implements AfterViewInit {
   dataSource: DataSource<T>;
 
   /** Overrides the sticky CSS class set by the `CdkTable`. */
-  protected _stickyCssClass = 'sbb-table-sticky';
+  // tslint:disable-next-line:naming-convention
+  protected stickyCssClass = 'sbb-table-sticky';
+
+  /**
+   * @deprecated use stickyCssClass
+   */
+  protected _stickyCssClass = this.stickyCssClass;
 
   ngAfterViewInit(): void {
     this.headerElements.changes.subscribe((value) => this._setGroupClasses(value));
