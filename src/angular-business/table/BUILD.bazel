@@ -55,6 +55,8 @@ ng_test_library(
     deps = [
         ":table",
         "//src/angular-business/pagination",
+        "//src/angular-core/icon",
+        "//src/angular-core/icon/testing",
         "@npm//@angular/cdk",
         "@npm//@angular/platform-browser",
         "@npm//rxjs",
