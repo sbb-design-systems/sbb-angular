@@ -13,5 +13,7 @@
   <code>ng update</code> will update all related packages and will automatically run update
   schematics which helps keeping up with breaking changes.
 </p>
-<pre>ng update<ng-container *ngIf="fullCommand.value"> @angular/core @angular/cli</ng-container> @angular/cdk @sbb-esta/angular-core</pre>
+<pre
+  style="user-select: all;"
+>ng update<ng-container *ngIf="fullCommand.value"> @angular/core @angular/cli</ng-container> @angular/cdk @sbb-esta/angular-core</pre>
 <sbb-checkbox [formControl]="fullCommand">Include @angular packages in update command</sbb-checkbox>
