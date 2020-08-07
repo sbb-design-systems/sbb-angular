@@ -367,6 +367,22 @@ describe('TagsComponent with Model attached', () => {
 
     expect(component.change).toHaveBeenCalled();
   });
+
+  it('should update allTag when model of a child sbb-tag is updated', async () => {
+    const allTag = fixture.debugElement.queryAll(By.directive(TagComponent))[0];
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+
+    component.tagItems[0].selected = true;
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(false);
+  });
 });
 
 describe('TagsComponent with Reactive Forms and total amount set as input', () => {
@@ -486,6 +502,22 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
     fixture.detectChanges();
 
     expect(component.change).toHaveBeenCalled();
+  });
+
+  it('should update allTag when model of a child sbb-tag is updated', async () => {
+    const allTag = fixture.debugElement.queryAll(By.directive(TagComponent))[0];
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+
+    component.formGroup.patchValue({ services: true });
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(false);
   });
 });
 

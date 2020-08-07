@@ -95,12 +95,19 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
   /**
    * Emits the current amount when the amount changes
    */
-  amountChange = new Subject<number>();
+  readonly amountChange = new Subject<number>();
+
   /**
    * A subject on tag checking.
    * @deprecated Use the change event
    */
   readonly tagChecking$ = new Subject<any>();
+
+  /**
+   * Emits when values are set from outside
+   * @docs-private
+   */
+  readonly _internalChange = new Subject<any>();
 
   /** Refers if a tag is active. */
   get active() {
@@ -134,6 +141,11 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
     if (!this._tagsContainer) {
       this.linkMode = true;
     }
+  }
+
+  writeValue(value: any) {
+    super.writeValue(value);
+    this._internalChange.next(value);
   }
 
   /**

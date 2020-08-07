@@ -113,7 +113,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
       .pipe(
         map((tags) =>
           tags.reduce(
-            (current, next) => current.concat(next.tagChecking$, next.change),
+            (current, next) => current.concat(next.tagChecking$, next.change, next._internalChange),
             [] as Observable<unknown>[]
           )
         ),
@@ -124,9 +124,9 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   setAllTagState() {
-    const checkAllTag = this.tags.map((t) => !t.disabled && t.checked).every((v) => !v);
-    if (checkAllTag !== this.allTag.checked) {
-      this.allTag.checked = checkAllTag;
+    const noTagChecked = this.tags.map((t) => !t.disabled && t.checked).every((v) => !v);
+    if (noTagChecked !== this.allTag.checked) {
+      this.allTag.checked = noTagChecked;
     }
   }
 
