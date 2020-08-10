@@ -16,7 +16,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ButtonModule, GhettoboxModule, SbbIconModule],
+  imports: [CommonModule, RouterModule, SbbIconModule, ButtonModule, GhettoboxModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('public', 'ghettobox', EXAMPLE_INDEX)],

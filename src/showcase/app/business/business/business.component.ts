@@ -40,8 +40,9 @@ export class BusinessComponent {
     status: 'Status',
   };
   popupsAndModals = {
-    dropdown: 'Dropdown',
     dialog: 'Dialog',
+    dropdown: 'Dropdown',
+    'notification-toast': 'Notification Toast',
     tooltip: 'Tooltip',
   };
 }

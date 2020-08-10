@@ -1,0 +1,11 @@
+<sbb-field mode="long" label="Notification type" class="sbbsc-block">
+  <select [(ngModel)]="type" sbbInput>
+    <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+  </select>
+</sbb-field>
+<sbb-field mode="long" label="Notification position" class="sbbsc-block">
+  <select [(ngModel)]="position" sbbInput>
+    <option *ngFor="let position of positions" [value]="position">{{ position }}</option>
+  </select>
+</sbb-field>
+<button sbbButton mode="primary" (click)="showNotification()">Show notification</button>

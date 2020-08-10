@@ -150,8 +150,8 @@ export class ${moduleName} {}
                 this.path = path;
                 this.moduleName = moduleName;
             }
-            static fromPackageModule(packageName, moduleName) {
-                return new ModuleImport(`@sbb-esta/${packageName}/${moduleName}`, `${core.strings.classify(moduleName)}Module`);
+            static fromPackageModule(packageName, moduleName, prefixed = false) {
+                return new ModuleImport(`@sbb-esta/${packageName}/${moduleName}`, `${prefixed ? 'Sbb' : ''}${core.strings.classify(moduleName)}Module`);
             }
             static detectTypeScriptImports(entry) {
                 var _a, _b;
@@ -172,10 +172,14 @@ export class ${moduleName} {}
                     .replace(/[A-Z]/g, (m, i) => `${i > 0 ? '-' : ''}${m.toLowerCase()}`)
                     .replace(/^link$/, 'links')).filter((m) => m !== 'input' && m !== 'icon')) !== null && _d !== void 0 ? _d : [];
                 const selectors = elementSelectors.concat(attributeSelectors);
-                return selectors
-                    .filter((t) => t !== 'option' && (packageRoot.subdirs.includes(core.fragment(t)) || t.startsWith('icon')))
+                const imports = selectors
+                    .filter((t) => t !== 'option' && t !== 'icon' && packageRoot.subdirs.includes(core.fragment(t)))
                     .filter((v, i, a) => a.indexOf(v) === i)
                     .map((i) => ModuleImport.fromPackageModule(packageName, i));
+                if (selectors.some((s) => s === 'icon')) {
+                    imports.push(ModuleImport.fromPackageModule('angular-core', 'icon', true));
+                }
+                return imports;
             }
         }
         [

@@ -1,0 +1,13 @@
+<span class="sbb-notification-toast-icon-wrapper">
+  <sbb-icon [svgIcon]="_svgIcon"></sbb-icon>
+</span>
+<div class="sbb-notification-toast-content">
+  <ng-template cdkPortalOutlet></ng-template>
+</div>
+
+<button
+  (click)="exit()"
+  class="sbb-notification-toast-icon-wrapper sbb-notification-toast-icon-close-wrapper"
+>
+  <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
+</button>
