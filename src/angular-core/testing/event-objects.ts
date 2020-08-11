@@ -10,41 +10,47 @@ export interface ModifierKeys {
  * Creates a browser MouseEvent with the specified options.
  * @docs-private
  */
-export function createMouseEvent(type: string, x = 0, y = 0, button = 0) {
+export function createMouseEvent(type: string, clientX = 0, clientY = 0, button = 0) {
   const event = document.createEvent('MouseEvent');
   const originalPreventDefault = event.preventDefault.bind(event);
 
+  // Note: We cannot determine the position of the mouse event based on the screen
+  // because the dimensions and position of the browser window are not available
+  // To provide reasonable `screenX` and `screenY` coordinates, we simply use the
+  // client coordinates as if the browser is opened in fullscreen.
+  const screenX = clientX;
+  const screenY = clientY;
+
   event.initMouseEvent(
     type,
-    true /* canBubble */,
-    true /* cancelable */,
-    window /* view */,
-    0 /* detail */,
-    x /* screenX */,
-    y /* screenY */,
-    x /* clientX */,
-    y /* clientY */,
-    false /* ctrlKey */,
-    false /* altKey */,
-    false /* shiftKey */,
-    false /* metaKey */,
-    button /* button */,
-    null /* relatedTarget */
+    /* canBubble */ true,
+    /* cancelable */ true,
+    /* view */ window,
+    /* detail */ 0,
+    /* screenX */ screenX,
+    /* screenY */ screenY,
+    /* clientX */ clientX,
+    /* clientY */ clientY,
+    /* ctrlKey */ false,
+    /* altKey */ false,
+    /* shiftKey */ false,
+    /* metaKey */ false,
+    /* button */ button,
+    /* relatedTarget */ null
   );
 
   // `initMouseEvent` doesn't allow us to pass the `buttons` and
   // defaults it to 0 which looks like a fake event.
-  Object.defineProperty(event, 'buttons', { get: () => 1 });
+  defineReadonlyEventProperty(event, 'buttons', 1);
 
   // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
   event.preventDefault = function () {
-    Object.defineProperty(event, 'defaultPrevented', { get: () => true, configurable: true });
+    defineReadonlyEventProperty(event, 'defaultPrevented', true);
     return originalPreventDefault();
   };
 
   return event;
 }
-
 /**
  * Creates a browser TouchEvent with the specified pointer coordinates.
  * @docs-private
@@ -60,32 +66,26 @@ export function createTouchEvent(type: string, pageX = 0, pageY = 0) {
 
   // Most of the browsers don't have a "initTouchEvent" method that can be used to define
   // the touch details.
-  Object.defineProperties(event, {
-    touches: { value: [touchDetails] },
-    targetTouches: { value: [touchDetails] },
-    changedTouches: { value: [touchDetails] },
-  });
+  defineReadonlyEventProperty(event, 'touches', [touchDetails]);
+  defineReadonlyEventProperty(event, 'targetTouches', [touchDetails]);
+  defineReadonlyEventProperty(event, 'changedTouches', [touchDetails]);
 
   return event;
 }
 
-/**
- * Dispatches a keydown event from an element.
- * @docs-private
- */
 export function createKeyboardEvent(
   type: string,
   keyCode: number = 0,
   key: string = '',
-  target?: Element,
   modifiers: ModifierKeys = {}
 ) {
-  const event = document.createEvent('KeyboardEvent') as any;
-  const originalPreventDefault = event.preventDefault;
+  const event = document.createEvent('KeyboardEvent');
+  const originalPreventDefault = event.preventDefault.bind(event);
 
   // Firefox does not support `initKeyboardEvent`, but supports `initKeyEvent`.
-  if (event.initKeyEvent) {
-    event.initKeyEvent(
+  // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/initKeyEvent.
+  if ((event as any).initKeyEvent !== undefined) {
+    (event as any).initKeyEvent(
       type,
       true,
       true,
@@ -117,7 +117,10 @@ export function createKeyboardEvent(
       modifiersList += 'Meta ';
     }
 
-    event.initKeyboardEvent(
+    // TS3.6 removed the `initKeyboardEvent` method and suggested porting to
+    // `new KeyboardEvent()` constructor. We cannot use that as we support IE11.
+    // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/initKeyboardEvent.
+    (event as any).initKeyboardEvent(
       type,
       true /* canBubble */,
       true /* cancelable */,
@@ -132,20 +135,17 @@ export function createKeyboardEvent(
 
   // Webkit Browsers don't set the keyCode when calling the init function.
   // See related bug https://bugs.webkit.org/show_bug.cgi?id=16735
-  Object.defineProperties(event, {
-    keyCode: { get: () => keyCode, configurable: true },
-    key: { get: () => key, configurable: true },
-    target: { get: () => target, configurable: true },
-    ctrlKey: { get: () => !!modifiers.control, configurable: true },
-    altKey: { get: () => !!modifiers.alt, configurable: true },
-    shiftKey: { get: () => !!modifiers.shift, configurable: true },
-    metaKey: { get: () => !!modifiers.meta, configurable: true },
-  });
+  defineReadonlyEventProperty(event, 'keyCode', keyCode);
+  defineReadonlyEventProperty(event, 'key', key);
+  defineReadonlyEventProperty(event, 'ctrlKey', !!modifiers.control);
+  defineReadonlyEventProperty(event, 'altKey', !!modifiers.alt);
+  defineReadonlyEventProperty(event, 'shiftKey', !!modifiers.shift);
+  defineReadonlyEventProperty(event, 'metaKey', !!modifiers.meta);
 
   // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
   event.preventDefault = function () {
-    Object.defineProperty(event, 'defaultPrevented', { get: () => true, configurable: true });
-    return originalPreventDefault.apply(this, arguments);
+    defineReadonlyEventProperty(event, 'defaultPrevented', true);
+    return originalPreventDefault();
   };
 
   return event;
@@ -159,4 +159,12 @@ export function createFakeEvent(type: string, canBubble = false, cancelable = tr
   const event = document.createEvent('Event');
   event.initEvent(type, canBubble, cancelable);
   return event;
+}
+
+/**
+ * Defines a readonly property on the given event object. Readonly properties on an event object
+ * are always set as configurable as that matches default readonly properties for DOM event objects.
+ */
+function defineReadonlyEventProperty(event: Event, propertyName: string, value: any) {
+  Object.defineProperty(event, propertyName, { get: () => value, configurable: true });
 }

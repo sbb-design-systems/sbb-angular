@@ -465,7 +465,7 @@ describe('Lightbox', () => {
       'sbb-lightbox-container'
     ) as HTMLElement;
     dispatchKeyboardEvent(document.body, 'keydown', A);
-    dispatchKeyboardEvent(document.body, 'keydown', A, undefined, container);
+    dispatchKeyboardEvent(container, 'keydown', A);
 
     expect(spy).toHaveBeenCalledTimes(2);
   }));

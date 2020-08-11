@@ -8,12 +8,10 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { JAN } from '@sbb-esta/angular-core/testing';
 import {
-  dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
 } from '@sbb-esta/angular-core/testing';
-import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
 import { DateInputDirective } from '../date-input/date-input.directive';
 import { DatepickerModule } from '../datepicker.module';
@@ -398,10 +396,8 @@ describe('DatepickerComponent', () => {
 
         expect(testComponent.datepicker.opened).toBe(true);
 
-        const event = createKeyboardEvent('keydown', UP_ARROW);
-        Object.defineProperty(event, 'altKey', { get: () => true });
+        dispatchKeyboardEvent(document.body, 'keydown', UP_ARROW, undefined, { alt: true });
 
-        dispatchEvent(document.body, event);
         fixture.detectChanges();
         flush();
 
@@ -411,10 +407,14 @@ describe('DatepickerComponent', () => {
       it('should open the datpeicker using ALT + DOWN_ARROW', fakeAsync(() => {
         expect(testComponent.datepicker.opened).toBe(false);
 
-        const event = createKeyboardEvent('keydown', DOWN_ARROW);
-        Object.defineProperty(event, 'altKey', { get: () => true });
+        const event = dispatchKeyboardEvent(
+          fixture.nativeElement.querySelector('input'),
+          'keydown',
+          DOWN_ARROW,
+          undefined,
+          { alt: true }
+        );
 
-        dispatchEvent(fixture.nativeElement.querySelector('input'), event);
         fixture.detectChanges();
         flush();
 

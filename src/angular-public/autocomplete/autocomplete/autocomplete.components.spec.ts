@@ -27,7 +27,6 @@ import { By } from '@angular/platform-browser';
 import {
   clearElement,
   createKeyboardEvent,
-  dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   MockNgZone,
@@ -1298,8 +1297,6 @@ describe('AutocompleteComponent', () => {
 
     it('should close the panel when pressing ALT + UP_ARROW', fakeAsync(() => {
       const trigger = fixture.componentInstance.trigger;
-      const innerUpArrowEvent = createKeyboardEvent('keydown', UP_ARROW);
-      Object.defineProperty(innerUpArrowEvent, 'altKey', { get: () => true });
 
       input.focus();
       flush();
@@ -1308,7 +1305,8 @@ describe('AutocompleteComponent', () => {
       expect(document.activeElement).toBe(input, 'Expected input to be focused.');
       expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
 
-      dispatchEvent(document.body, innerUpArrowEvent);
+      dispatchKeyboardEvent(document.body, 'keydown', UP_ARROW, undefined, { alt: true });
+
       fixture.detectChanges();
 
       expect(document.activeElement).toBe(input, 'Expected input to continue to be focused.');
