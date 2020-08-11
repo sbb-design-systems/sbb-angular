@@ -910,10 +910,7 @@ describe('SelectComponent', () => {
           expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
           expect(formControl.value).toBeFalsy('Expected no initial value.');
 
-          const event = createKeyboardEvent('keydown', DOWN_ARROW);
-          Object.defineProperty(event, 'altKey', { get: () => true });
-
-          dispatchEvent(select, event);
+          dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW, undefined, { alt: true });
 
           expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
           expect(formControl.value).toBeFalsy('Expected value not to have changed.');
@@ -925,10 +922,9 @@ describe('SelectComponent', () => {
           expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
           expect(formControl.value).toBeFalsy('Expected no initial value.');
 
-          const event = createKeyboardEvent('keydown', UP_ARROW);
-          Object.defineProperty(event, 'altKey', { get: () => true });
-
-          dispatchEvent(select, event);
+          dispatchKeyboardEvent(select, 'keydown', UP_ARROW, undefined, {
+            alt: true,
+          });
 
           expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
           expect(formControl.value).toBeFalsy('Expected value not to have changed.');
@@ -942,9 +938,9 @@ describe('SelectComponent', () => {
 
           expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
 
-          const event = createKeyboardEvent('keydown', DOWN_ARROW);
-          Object.defineProperty(event, 'altKey', { get: () => true });
-          dispatchEvent(select, event);
+          const event = dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW, undefined, {
+            alt: true,
+          });
 
           expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
           expect(event.defaultPrevented).toBe(true, 'Expected default action to be prevented.');
@@ -958,9 +954,9 @@ describe('SelectComponent', () => {
 
           expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
 
-          const event = createKeyboardEvent('keydown', UP_ARROW);
-          Object.defineProperty(event, 'altKey', { get: () => true });
-          dispatchEvent(select, event);
+          const event = dispatchKeyboardEvent(select, 'keydown', UP_ARROW, undefined, {
+            alt: true,
+          });
 
           expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
           expect(event.defaultPrevented).toBe(true, 'Expected default action to be prevented.');
@@ -1156,8 +1152,7 @@ describe('SelectComponent', () => {
           fixture.destroy();
 
           const multiFixture = TestBed.createComponent(MultiSelectComponent);
-          const event = createKeyboardEvent('keydown', DOWN_ARROW);
-          Object.defineProperty(event, 'shiftKey', { get: () => true });
+          const event = createKeyboardEvent('keydown', DOWN_ARROW, undefined, { shift: true });
 
           multiFixture.detectChanges();
           select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
@@ -1182,8 +1177,7 @@ describe('SelectComponent', () => {
           fixture.destroy();
 
           const multiFixture = TestBed.createComponent(MultiSelectComponent);
-          const event = createKeyboardEvent('keydown', UP_ARROW);
-          Object.defineProperty(event, 'shiftKey', { get: () => true });
+          const event = createKeyboardEvent('keydown', UP_ARROW, undefined, { shift: true });
 
           multiFixture.detectChanges();
           select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
@@ -3050,9 +3044,7 @@ describe('SelectComponent', () => {
       fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
       flush();
-      const event = createKeyboardEvent('keydown', A, selectElement);
-      Object.defineProperty(event, 'ctrlKey', { get: () => true });
-      dispatchEvent(selectElement, event);
+      dispatchKeyboardEvent(selectElement, 'keydown', A, undefined, { control: true });
       fixture.detectChanges();
 
       expect(options.every((option) => option.selected)).toBe(true);
@@ -3081,9 +3073,7 @@ describe('SelectComponent', () => {
       fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
       flush();
-      const event = createKeyboardEvent('keydown', A, selectElement);
-      Object.defineProperty(event, 'ctrlKey', { get: () => true });
-      dispatchEvent(selectElement, event);
+      dispatchKeyboardEvent(selectElement, 'keydown', A, undefined, { control: true });
       fixture.detectChanges();
 
       expect(testInstance.control.value).toEqual([
@@ -3108,9 +3098,7 @@ describe('SelectComponent', () => {
       fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
       flush();
-      const event = createKeyboardEvent('keydown', A, selectElement);
-      Object.defineProperty(event, 'ctrlKey', { get: () => true });
-      dispatchEvent(selectElement, event);
+      dispatchKeyboardEvent(selectElement, 'keydown', A, undefined, { control: true });
       fixture.detectChanges();
 
       expect(options.every((option) => option.selected)).toBe(true);
@@ -3148,9 +3136,7 @@ describe('SelectComponent', () => {
       fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
       flush();
-      const event = createKeyboardEvent('keydown', A, selectElement);
-      Object.defineProperty(event, 'ctrlKey', { get: () => true });
-      dispatchEvent(selectElement, event);
+      dispatchKeyboardEvent(selectElement, 'keydown', A, undefined, { control: true });
       fixture.detectChanges();
       flush();
       expect(options.some((option) => option.selected)).toBe(false);

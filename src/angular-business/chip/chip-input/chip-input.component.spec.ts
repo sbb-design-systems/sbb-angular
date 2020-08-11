@@ -14,9 +14,8 @@ import { By } from '@angular/platform-browser';
 import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
 import { FieldModule, FormErrorDirective } from '@sbb-esta/angular-business/field';
 import {
-  createKeyboardEvent,
-  dispatchEvent,
   dispatchFakeEvent,
+  dispatchKeyboardEvent,
   dispatchMouseEvent,
   typeInElement,
 } from '@sbb-esta/angular-core/testing';
@@ -179,7 +178,7 @@ describe('ChipInputComponent', () => {
 
       inputElement.focus();
       typeInElement(inputElement, 'option-2');
-      dispatchEvent(inputElement, createKeyboardEvent('keydown', ENTER, 'Enter', inputElement));
+      dispatchKeyboardEvent(inputElement, 'keydown', ENTER, 'Enter');
 
       fixture.detectChanges();
 
@@ -283,7 +282,7 @@ describe('ChipInputComponent', () => {
 
       inputElement.focus();
       typeInElement(inputElement, 'option-2');
-      dispatchEvent(inputElement, createKeyboardEvent('keydown', ENTER, 'Enter', inputElement));
+      dispatchKeyboardEvent(inputElement, 'keydown', ENTER, 'Enter');
 
       fixture.detectChanges();
       expect(component.value).toEqual(['option-1', 'option-2']);

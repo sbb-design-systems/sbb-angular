@@ -25,8 +25,6 @@ import {
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  createKeyboardEvent,
-  dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
@@ -571,9 +569,9 @@ describe('Tooltip', () => {
       tick(0);
       fixture.detectChanges();
 
-      const event = createKeyboardEvent('keydown', ESCAPE);
-      Object.defineProperty(event, 'altKey', { get: () => true });
-      dispatchEvent(buttonElement, event);
+      const event = dispatchKeyboardEvent(buttonElement, 'keydown', ESCAPE, undefined, {
+        alt: true,
+      });
       fixture.detectChanges();
       flush();
 
