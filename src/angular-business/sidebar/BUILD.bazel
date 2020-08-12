@@ -15,7 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":drawer.css"] + glob(["**/*.html"]),
+    assets = [":sidebar-original/drawer.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/sidebar",
     deps = [
         "@npm//@angular/animations",
@@ -28,8 +28,8 @@ ng_module(
 )
 
 sass_binary(
-    name = "drawer_scss",
-    src = "drawer.scss",
+    name = "sidebar_original_drawer_scss",
+    src = "sidebar-original/drawer.scss",
 )
 
 ng_test_library(

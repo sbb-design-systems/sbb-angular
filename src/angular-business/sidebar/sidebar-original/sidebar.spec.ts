@@ -4,7 +4,9 @@ import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { SbbSidebar, SbbSidebarContainer, SbbSidebarModule } from './index';
+import { SbbSidebarModule } from '../sidebar-module';
+
+import { SbbSidebar, SbbSidebarContainer } from './sidebar';
 
 describe('SbbSidebar', () => {
   beforeEach(async(() => {

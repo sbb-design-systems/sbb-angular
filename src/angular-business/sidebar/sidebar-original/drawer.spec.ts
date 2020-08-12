@@ -26,7 +26,9 @@ import {
   dispatchKeyboardEvent,
 } from '@sbb-esta/angular-core/testing';
 
-import { SbbDrawer, SbbDrawerContainer, SbbSidebarModule } from './index';
+import { SbbSidebarModule } from '../sidebar-module';
+
+import { SbbDrawer, SbbDrawerContainer } from './drawer';
 
 describe('SbbDrawer', () => {
   beforeEach(async(() => {

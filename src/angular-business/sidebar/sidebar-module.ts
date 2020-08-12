@@ -3,8 +3,8 @@ import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SbbDrawer, SbbDrawerContainer, SbbDrawerContent } from './drawer';
-import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar';
+import { SbbDrawer, SbbDrawerContainer, SbbDrawerContent } from './sidebar-original/drawer';
+import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar-original/sidebar';
 
 @NgModule({
   imports: [CommonModule, PlatformModule, CdkScrollableModule],

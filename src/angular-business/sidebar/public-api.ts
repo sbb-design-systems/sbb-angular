@@ -8,6 +8,6 @@ export {
   SbbDrawer,
   SbbDrawerContainer,
   SbbDrawerMode,
-} from './drawer';
-export * from './sidebar';
-export * from './drawer-animations';
+} from './sidebar-original/drawer';
+export * from './sidebar-original/sidebar';
+export * from './sidebar-original/drawer-animations';
