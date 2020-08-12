@@ -55,7 +55,7 @@ export function throwSbbDuplicatedDrawerError() {
 /** Result of the toggle promise that indicates the state of the drawer. */
 export type SbbDrawerToggleResult = 'open' | 'close';
 
-/** Drawer and SideNav display modes. */
+/** Drawer and SideBar display modes. */
 export type SbbDrawerMode = 'over' | 'push' | 'side';
 
 /** Configures whether drawers should use auto sizing by default. */
@@ -152,14 +152,14 @@ export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestr
   /**
    * Whether the drawer should focus the first focusable element automatically when opened.
    * Defaults to false in when `mode` is set to `side`, otherwise defaults to `true`. If explicitly
-   * enabled, focus will be moved into the sidenav in `side` mode as well.
+   * enabled, focus will be moved into the sidebar in `side` mode as well.
    */
   @Input()
   get autoFocus(): boolean {
     const value = this._autoFocus;
 
     // Note that usually we disable auto focusing in `side` mode, because we don't know how the
-    // sidenav is being used, but in some cases it still makes sense to do it. If the consumer
+    // sidebar is being used, but in some cases it still makes sense to do it. If the consumer
     // explicitly enabled `autoFocus`, we take it as them always wanting to enable it.
     return value == null ? this.mode !== 'side' : value;
   }
@@ -277,7 +277,7 @@ export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestr
   private _autoFocus: boolean | undefined;
   private _opened: boolean = false;
 
-  /** How the sidenav was opened (keypress, mouse click etc.) */
+  /** How the sidebar was opened (keypress, mouse click etc.) */
   private _openedVia: FocusOrigin | null;
 
   /** Emits whenever the drawer has started animating. */
@@ -286,7 +286,7 @@ export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestr
   /** Emits whenever the drawer is done animating. */
   _animationEnd = new Subject<AnimationEvent>();
 
-  /** Current state of the sidenav animation. */
+  /** Current state of the sidebar animation. */
   // @HostBinding is used in the class as it is expected to be extended.  Since @Component decorator
   // metadata is not inherited by child classes, instead the host binding data is defined in a way
   // that can be inherited.
@@ -334,7 +334,7 @@ export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestr
     }
 
     this._focusTrap.focusInitialElementWhenReady().then((hasMovedFocus) => {
-      // If there were no focusable elements, focus the sidenav itself so the keyboard navigation
+      // If there were no focusable elements, focus the sidebar itself so the keyboard navigation
       // still works. We need to check that `focus` is a function due to Universal.
       if (!hasMovedFocus && typeof this._elementRef.nativeElement.focus === 'function') {
         this._elementRef.nativeElement.focus();
@@ -398,7 +398,7 @@ export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestr
   /**
    * Open the drawer.
    * @param openedVia Whether the drawer was opened by a key press, mouse click or programmatically.
-   * Used for focus management after the sidenav is closed.
+   * Used for focus management after the sidebar is closed.
    */
   open(openedVia?: FocusOrigin): Promise<SbbDrawerToggleResult> {
     return this.toggle(true, openedVia);
@@ -421,7 +421,7 @@ export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestr
    * Toggle this drawer.
    * @param isOpen Whether the drawer should be open.
    * @param openedVia Whether the drawer was opened by a key press, mouse click or programmatically.
-   * Used for focus management after the sidenav is closed.
+   * Used for focus management after the sidebar is closed.
    */
   toggle(isOpen: boolean = !this.opened, openedVia?: FocusOrigin): Promise<SbbDrawerToggleResult> {
     // If the focus is currently inside the drawer content and we are closing the drawer,
@@ -544,7 +544,7 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
   }
 
   /**
-   * Whether the drawer container should have a backdrop while one of the sidenavs is open.
+   * Whether the drawer container should have a backdrop while one of the sidebars is open.
    * If explicitly set to `true`, the backdrop will be enabled for drawers in the `side`
    * mode as well.
    */
@@ -573,7 +573,7 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
     @Inject(SBB_DRAWER_DEFAULT_AUTOSIZE) defaultAutosize = false,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
   ) {
-    // Since the minimum width of the sidenav depends on the viewport width,
+    // Since the minimum width of the sidebar depends on the viewport width,
     // we need to recompute the margins if the viewport changes.
     viewportRuler
       .change()

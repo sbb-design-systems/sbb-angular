@@ -68,7 +68,7 @@ export class SbbSidebarContent extends SbbDrawerContent {
   encapsulation: ViewEncapsulation.None,
 })
 export class SbbSidebar extends SbbDrawer {
-  /** Whether the sidenav is fixed in the viewport. */
+  /** Whether the sidebar is fixed in the viewport. */
   @Input()
   get fixedInViewport(): boolean {
     return this._fixedInViewport;
@@ -78,7 +78,7 @@ export class SbbSidebar extends SbbDrawer {
   }
 
   /**
-   * The gap between the top of the sidenav and the top of the viewport when the sidenav is in fixed
+   * The gap between the top of the sidebar and the top of the viewport when the sidebar is in fixed
    * mode.
    */
   @Input()
@@ -90,7 +90,7 @@ export class SbbSidebar extends SbbDrawer {
   }
 
   /**
-   * The gap between the bottom of the sidenav and the bottom of the viewport when the sidenav is in
+   * The gap between the bottom of the sidebar and the bottom of the viewport when the sidebar is in
    * fixed mode.
    */
   @Input()

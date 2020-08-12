@@ -11,9 +11,9 @@ describe('SbbSidebar', () => {
     TestBed.configureTestingModule({
       imports: [SbbSidebarModule, NoopAnimationsModule, CommonModule],
       declarations: [
-        SidenavWithFixedPositionTestComponent,
-        IndirectDescendantSidenavTestComponent,
-        NestedSidenavContainersTestComponent,
+        SidenarWithFixedPositionTestComponent,
+        IndirectDescendantSidenarTestComponent,
+        NestedSidenarContainersTestComponent,
       ],
     });
 
@@ -21,70 +21,70 @@ describe('SbbSidebar', () => {
   }));
 
   it('should be fixed position when in fixed mode', () => {
-    const fixture = TestBed.createComponent(SidenavWithFixedPositionTestComponent);
+    const fixture = TestBed.createComponent(SidenarWithFixedPositionTestComponent);
     fixture.detectChanges();
-    const sidenavEl = fixture.debugElement.query(By.directive(SbbSidebar))!.nativeElement;
+    const sidebarEl = fixture.debugElement.query(By.directive(SbbSidebar))!.nativeElement;
 
-    expect(sidenavEl.classList).toContain('sbb-sidebar-fixed');
+    expect(sidebarEl.classList).toContain('sbb-sidebar-fixed');
 
     fixture.componentInstance.fixed = false;
     fixture.detectChanges();
 
-    expect(sidenavEl.classList).not.toContain('sbb-sidebar-fixed');
+    expect(sidebarEl.classList).not.toContain('sbb-sidebar-fixed');
   });
 
   it('should set fixed bottom and top when in fixed mode', () => {
-    const fixture = TestBed.createComponent(SidenavWithFixedPositionTestComponent);
+    const fixture = TestBed.createComponent(SidenarWithFixedPositionTestComponent);
     fixture.detectChanges();
-    const sidenavEl = fixture.debugElement.query(By.directive(SbbSidebar))!.nativeElement;
+    const sidebarEl = fixture.debugElement.query(By.directive(SbbSidebar))!.nativeElement;
 
-    expect(sidenavEl.style.top).toBe('20px');
-    expect(sidenavEl.style.bottom).toBe('30px');
+    expect(sidebarEl.style.top).toBe('20px');
+    expect(sidebarEl.style.bottom).toBe('30px');
 
     fixture.componentInstance.fixed = false;
     fixture.detectChanges();
 
-    expect(sidenavEl.style.top).toBeFalsy();
-    expect(sidenavEl.style.bottom).toBeFalsy();
+    expect(sidebarEl.style.top).toBeFalsy();
+    expect(sidebarEl.style.bottom).toBeFalsy();
   });
 
-  it('should pick up sidenavs that are not direct descendants', fakeAsync(() => {
-    const fixture = TestBed.createComponent(IndirectDescendantSidenavTestComponent);
+  it('should pick up sidebars that are not direct descendants', fakeAsync(() => {
+    const fixture = TestBed.createComponent(IndirectDescendantSidenarTestComponent);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.sidenav.opened).toBe(false);
+    expect(fixture.componentInstance.sidebar.opened).toBe(false);
 
     fixture.componentInstance.container.open();
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.sidenav.opened).toBe(true);
+    expect(fixture.componentInstance.sidebar.opened).toBe(true);
   }));
 
-  it('should not pick up sidenavs from nested containers', fakeAsync(() => {
-    const fixture = TestBed.createComponent(NestedSidenavContainersTestComponent);
+  it('should not pick up sidebars from nested containers', fakeAsync(() => {
+    const fixture = TestBed.createComponent(NestedSidenarContainersTestComponent);
     const instance = fixture.componentInstance;
     fixture.detectChanges();
 
-    expect(instance.outerSidenav.opened).toBe(false);
-    expect(instance.innerSidenav.opened).toBe(false);
+    expect(instance.outerSidenar.opened).toBe(false);
+    expect(instance.innerSidenar.opened).toBe(false);
 
     instance.outerContainer.open();
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
-    expect(instance.outerSidenav.opened).toBe(true);
-    expect(instance.innerSidenav.opened).toBe(false);
+    expect(instance.outerSidenar.opened).toBe(true);
+    expect(instance.innerSidenar.opened).toBe(false);
 
     instance.innerContainer.open();
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
-    expect(instance.outerSidenav.opened).toBe(true);
-    expect(instance.innerSidenav.opened).toBe(true);
+    expect(instance.outerSidenar.opened).toBe(true);
+    expect(instance.innerSidenar.opened).toBe(true);
   }));
 });
 
@@ -103,7 +103,7 @@ describe('SbbSidebar', () => {
     </sbb-sidebar-content>
   </sbb-sidebar-container>`,
 })
-class SidenavWithFixedPositionTestComponent {
+class SidenarWithFixedPositionTestComponent {
   fixed = true;
   fixedTop = 20;
   fixedBottom = 30;
@@ -111,34 +111,34 @@ class SidenavWithFixedPositionTestComponent {
 
 @Component({
   // Note that we need the `ng-container` with the `ngSwitch` so that
-  // there's a directive between the container and the sidenav.
+  // there's a directive between the container and the sidebar.
   template: ` <sbb-sidebar-container #container>
     <ng-container [ngSwitch]="true">
-      <sbb-sidebar #sidenav>Sidenav.</sbb-sidebar>
+      <sbb-sidebar #sidebar>Sidenar.</sbb-sidebar>
     </ng-container>
     <sbb-sidebar-content>Some content.</sbb-sidebar-content>
   </sbb-sidebar-container>`,
 })
-class IndirectDescendantSidenavTestComponent {
+class IndirectDescendantSidenarTestComponent {
   @ViewChild('container') container: SbbSidebarContainer;
-  @ViewChild('sidenav') sidenav: SbbSidebar;
+  @ViewChild('sidebar') sidebar: SbbSidebar;
 }
 
 @Component({
   template: `
     <sbb-sidebar-container #outerContainer>
-      <sbb-sidebar #outerSidenav>Sidenav</sbb-sidebar>
+      <sbb-sidebar #outerSidenar>Sidenar</sbb-sidebar>
       <sbb-sidebar-content>
         <sbb-sidebar-container #innerContainer>
-          <sbb-sidebar #innerSidenav>Sidenav</sbb-sidebar>
+          <sbb-sidebar #innerSidenar>Sidenar</sbb-sidebar>
         </sbb-sidebar-container>
       </sbb-sidebar-content>
     </sbb-sidebar-container>
   `,
 })
-class NestedSidenavContainersTestComponent {
+class NestedSidenarContainersTestComponent {
   @ViewChild('outerContainer') outerContainer: SbbSidebarContainer;
-  @ViewChild('outerSidenav') outerSidenav: SbbSidebar;
+  @ViewChild('outerSidenar') outerSidenar: SbbSidebar;
   @ViewChild('innerContainer') innerContainer: SbbSidebarContainer;
-  @ViewChild('innerSidenav') innerSidenav: SbbSidebar;
+  @ViewChild('innerSidenar') innerSidenar: SbbSidebar;
 }

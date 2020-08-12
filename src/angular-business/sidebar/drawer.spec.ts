@@ -745,7 +745,7 @@ describe('SbbDrawerContainer', () => {
     expect(contentElement.style.marginLeft).toBe('');
   }));
 
-  it('should not animate when the sidenav is open on load', fakeAsync(() => {
+  it('should not animate when the sidebar is open on load', fakeAsync(() => {
     TestBed.resetTestingModule()
       .configureTestingModule({
         imports: [SbbSidebarModule, BrowserAnimationsModule],
