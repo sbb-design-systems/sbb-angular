@@ -19,15 +19,20 @@
 
 .sbb-icon-sidebar {
   @include sbb-sidebar;
-  width: 200px;
+  transition: width $swift-ease-out-duration $swift-ease-out-timing-function;
   background-color: $sbbColorMilk;
+
+  &,
+  .sbb-icon-sidebar-links {
+    width: 200px;
+  }
 
   .sbb-icon-sidebar-item {
     display: flex;
     min-height: 48px;
     color: $sbbColorIron;
     text-decoration: none;
-    font-size: 15px;
+    font-size: toPx($sizeFontDefault);
     line-height: 23px;
     position: relative;
 
@@ -99,24 +104,47 @@
   hr {
     margin-top: 8px;
     margin-bottom: 8px;
+    padding: 0;
     border: none;
     border-top: solid 1px $sbbColorGraphite;
-    padding: 0;
   }
 
   .sbb-icon-sidebar-collapse-expand-button {
     @include buttonResetFrameless();
-    cursor: pointer;
-    outline: 0;
     position: absolute;
     bottom: 0;
-    background-color: $sbbColorMilk;
     width: 100%;
+    background-color: $sbbColorMilk;
+    cursor: pointer;
+    outline: 0;
+
+    .sbb-icon-sidebar-item-icon {
+      transition: transform $swift-ease-out-duration $swift-ease-out-timing-function;
+    }
 
     &:hover,
     &:focus {
       &:after {
         content: none;
+      }
+    }
+  }
+
+  &:not(.sbb-sidebar-expanded) {
+    width: 48px;
+
+    &,
+    .sbb-sidebar-inner-container {
+      overflow: hidden;
+    }
+
+    .sbb-icon-sidebar-item {
+      height: 48px;
+    }
+
+    .sbb-icon-sidebar-collapse-expand-button {
+      .sbb-icon-sidebar-item-icon {
+        transform: rotate(180deg);
       }
     }
   }

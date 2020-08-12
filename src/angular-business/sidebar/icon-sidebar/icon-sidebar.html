@@ -3,15 +3,27 @@
     <ng-content select="a[sbbIconSidebarItem], hr"></ng-content>
   </div>
 
-  <button class="sbb-icon-sidebar-item sbb-icon-sidebar-collapse-expand-button">
+  <button
+    class="sbb-icon-sidebar-item sbb-icon-sidebar-collapse-expand-button"
+    (click)="toggleExpanded()"
+  >
     <span class="sbb-icon-sidebar-item-icon">
       <sbb-icon-chevron-small-left-circle></sbb-icon-chevron-small-left-circle>
     </span>
     <span
+      *ngIf="expanded"
       class="sbb-icon-sidebar-item-label"
       i18n="Label to 'collapse' icon sidebar sidebar@@iconSidebarCollapse"
     >
       Collapse
+    </span>
+
+    <span
+      *ngIf="!expanded"
+      class="sbb-icon-sidebar-item-label"
+      i18n="Label to 'expand' icon sidebar sidebar@@iconSidebarExpand"
+    >
+      Expand
     </span>
   </button>
 </div>

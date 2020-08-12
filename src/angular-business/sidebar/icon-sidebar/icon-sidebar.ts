@@ -1,4 +1,4 @@
-import { BooleanInput } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
@@ -9,6 +9,7 @@ import {
   ElementRef,
   forwardRef,
   Inject,
+  Input,
   NgZone,
   QueryList,
   ViewChild,
@@ -60,11 +61,32 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {
     '[class.sbb-sidebar-push]': 'mode === "push"',
     '[class.sbb-sidebar-side]': 'mode === "side"',
     '[class.sbb-sidebar-opened]': 'opened',
+    '[class.sbb-sidebar-expanded]': 'expanded',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class SbbIconSidebar extends SbbSidebarBase {}
+export class SbbIconSidebar extends SbbSidebarBase {
+  /**
+   * Whether the sidebar is expanded.
+   */
+  @Input()
+  set expanded(value: boolean) {
+    this._expanded = coerceBooleanProperty(value);
+  }
+  get expanded(): boolean {
+    return this._expanded;
+  }
+  private _expanded = true;
+
+  toggleExpanded() {
+    this._expanded = !this._expanded;
+  }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_expanded: BooleanInput;
+  // tslint:enable: member-ordering
+}
 
 @Component({
   selector: 'sbb-icon-sidebar-container',
