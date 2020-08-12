@@ -37,7 +37,7 @@ describe('SbbDrawer', () => {
         DrawerContainerNoDrawerTestComponent,
         DrawerSetToOpenedFalseTestComponent,
         DrawerSetToOpenedTrueTestComponent,
-        DrawerDynamicPositionTestComponent,
+        TwoDrawersTestComponent,
         DrawerWithFocusableElementsTestComponent,
         DrawerOpenBindingTestComponent,
         DrawerWithoutFocusableElementsTestComponent,
@@ -464,14 +464,8 @@ describe('SbbDrawer', () => {
       );
     });
 
-    it('should throw when multiple drawers have the same position', fakeAsync(() => {
-      const fixture = TestBed.createComponent(DrawerDynamicPositionTestComponent);
-      fixture.detectChanges();
-      tick();
-
-      const testComponent: DrawerDynamicPositionTestComponent =
-        fixture.debugElement.componentInstance;
-      testComponent.drawer1Position = 'end';
+    it('should throw when multiple drawers are included', fakeAsync(() => {
+      const fixture = TestBed.createComponent(TwoDrawersTestComponent);
 
       expect(() => {
         try {
@@ -482,18 +476,6 @@ describe('SbbDrawer', () => {
         }
       }).toThrow();
     }));
-
-    it('should not throw when drawers swap positions', () => {
-      const fixture = TestBed.createComponent(DrawerDynamicPositionTestComponent);
-      fixture.detectChanges();
-
-      const testComponent: DrawerDynamicPositionTestComponent =
-        fixture.debugElement.componentInstance;
-      testComponent.drawer1Position = 'end';
-      testComponent.drawer2Position = 'start';
-
-      expect(() => fixture.detectChanges()).not.toThrow();
-    });
 
     it('should bind 2-way bind on opened property', fakeAsync(() => {
       const fixture = TestBed.createComponent(DrawerOpenBindingTestComponent);
@@ -666,7 +648,7 @@ describe('SbbDrawerContainer', () => {
     TestBed.configureTestingModule({
       imports: [SbbSidebarModule, A11yModule, PlatformModule, NoopAnimationsModule],
       declarations: [
-        DrawerContainerTwoDrawerTestComponent,
+        DrawerContainerEmptyTestComponent,
         DrawerDelayedTestComponent,
         DrawerSetToOpenedTrueTestComponent,
         DrawerContainerStateChangesTestAppTestComponent,
@@ -680,12 +662,11 @@ describe('SbbDrawerContainer', () => {
   }));
 
   it('should be able to open and close all drawers', fakeAsync(() => {
-    const fixture = TestBed.createComponent(DrawerContainerTwoDrawerTestComponent);
+    const fixture = TestBed.createComponent(DrawerContainerEmptyTestComponent);
 
     fixture.detectChanges();
 
-    const testComponent: DrawerContainerTwoDrawerTestComponent =
-      fixture.debugElement.componentInstance;
+    const testComponent: DrawerContainerEmptyTestComponent = fixture.debugElement.componentInstance;
     const drawers = fixture.debugElement.queryAll(By.directive(SbbDrawer));
 
     expect(drawers.every((drawer) => drawer.componentInstance.opened)).toBe(false);
@@ -888,7 +869,7 @@ describe('SbbDrawerContainer', () => {
   }));
 
   it('should expose a scrollable when the consumer has not specified drawer content', fakeAsync(() => {
-    const fixture = TestBed.createComponent(DrawerContainerTwoDrawerTestComponent);
+    const fixture = TestBed.createComponent(DrawerContainerEmptyTestComponent);
 
     fixture.detectChanges();
 
@@ -908,7 +889,7 @@ describe('SbbDrawerContainer', () => {
   }));
 
   it('should clean up the drawers stream on destroy', fakeAsync(() => {
-    const fixture = TestBed.createComponent(DrawerContainerTwoDrawerTestComponent);
+    const fixture = TestBed.createComponent(DrawerContainerEmptyTestComponent);
     fixture.detectChanges();
 
     const spy = jasmine.createSpy('complete spy');
@@ -927,14 +908,13 @@ describe('SbbDrawerContainer', () => {
 @Component({ template: `<sbb-drawer-container></sbb-drawer-container>` })
 class DrawerContainerNoDrawerTestComponent {}
 
-/** Test component that contains an SbbDrawerContainer and 2 SbbDrawer in the same position. */
+/** Test component that contains an SbbDrawerContainer and an empty sbb-drawer-content. */
 @Component({
   template: ` <sbb-drawer-container>
-    <sbb-drawer position="start"></sbb-drawer>
-    <sbb-drawer position="end"></sbb-drawer>
+    <sbb-drawer></sbb-drawer>
   </sbb-drawer-container>`,
 })
-class DrawerContainerTwoDrawerTestComponent {
+class DrawerContainerEmptyTestComponent {
   @ViewChild(SbbDrawerContainer) drawerContainer: SbbDrawerContainer;
 }
 
@@ -943,7 +923,6 @@ class DrawerContainerTwoDrawerTestComponent {
   template: ` <sbb-drawer-container (backdropClick)="backdropClicked()" [hasBackdrop]="hasBackdrop">
     <sbb-drawer
       #drawer="sbbDrawer"
-      position="start"
       (opened)="open()"
       (openedStart)="openStart()"
       (closed)="close()"
@@ -1032,20 +1011,17 @@ class DrawerOpenBindingTestComponent {
 
 @Component({
   template: ` <sbb-drawer-container>
-    <sbb-drawer #drawer1 [position]="drawer1Position"></sbb-drawer>
-    <sbb-drawer #drawer2 [position]="drawer2Position"></sbb-drawer>
+    <sbb-drawer #drawer1></sbb-drawer>
+    <sbb-drawer #drawer2></sbb-drawer>
   </sbb-drawer-container>`,
 })
-class DrawerDynamicPositionTestComponent {
-  drawer1Position = 'start';
-  drawer2Position = 'end';
-}
+class TwoDrawersTestComponent {}
 
 @Component({
   // Note: we use inputs here, because they're guaranteed
   // to be focusable across all platforms.
   template: ` <sbb-drawer-container>
-    <sbb-drawer position="start" [mode]="mode">
+    <sbb-drawer [mode]="mode">
       <input type="text" class="input1" />
     </sbb-drawer>
     <input type="text" class="input2" />
@@ -1057,7 +1033,7 @@ class DrawerWithFocusableElementsTestComponent {
 
 @Component({
   template: ` <sbb-drawer-container>
-    <sbb-drawer position="start" mode="over">
+    <sbb-drawer mode="over">
       <button disabled>Not focusable</button>
     </sbb-drawer>
   </sbb-drawer-container>`,

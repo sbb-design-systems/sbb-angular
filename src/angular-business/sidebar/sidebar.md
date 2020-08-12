@@ -7,15 +7,11 @@ use three components: `<sbb-sidebar-container>` which acts as a structural conta
 and sidenav, `<sbb-sidebar-content>` which represents the main content, and `<sbb-sidebar>` which
 represents the added side content.
 
-<!-- example(sidenav-overview) -->
-
 The drawer component is designed to add side content to a small section of your app. This is
 accomplished using the `<sbb-drawer-container>`, `<sbb-drawer-content>`, and `<sbb-drawer>`
 components, which are analogous to their sidenav equivalents. Rather than adding side content to the
 app as a whole, these are designed to add side content to a small section of your app. They support
 almost all of the same features, but do not support fixed positioning.
-
-<!-- example(sidenav-drawer-overview) -->
 
 ### Specifying the main and side content
 
@@ -23,35 +19,28 @@ Both the main and side content should be placed inside of the `<sbb-sidebar-cont
 that you don't want to be affected by the sidenav, such as a header or footer, can be placed outside
 of the container.
 
-The side content should be wrapped in a `<sbb-sidebar>` element. The `position` property can be used
-to specify which end of the main content to place the side content on. `position` can be either
-`start` or `end` which places the side content on the left or right respectively in left-to-right
-languages. If the `position` is not set, the default value of `start` will be assumed. A
-`<sbb-sidebar-container>` can have up to two `<sbb-sidebar>` elements total, but only one for any
-given side. The `<sbb-sidebar>` must be placed as an immediate child of the `<sbb-sidebar-container>`.
+The side content should be wrapped in a `<sbb-sidebar>` element. A
+`<sbb-sidebar-container>` can only have one `<sbb-sidebar>` element. The `<sbb-sidebar>` must be placed as an immediate child of the `<sbb-sidebar-container>`.
 
 The main content should be wrapped in a `<sbb-sidebar-content>`. If no `<sbb-sidebar-content>` is
 specified for a `<sbb-sidebar-container>`, one will be created implicitly and all of the content
 inside the `<sbb-sidebar-container>` other than the `<sbb-sidebar>` elements will be placed inside
 of it.
 
-<!-- example(sidenav-position) -->
-
 The following are examples of valid sidenav layouts:
 
 ```html
-<!-- Creates a layout with a left-positioned sidenav and explicit content. -->
+<!-- Creates a layout with an explicit content. -->
 <sbb-sidebar-container>
-  <sbb-sidebar>Start</sbb-sidebar>
+  <sbb-sidebar>Sidebar</sbb-sidebar>
   <sbb-sidebar-content>Main</sbb-sidebar-content>
 </sbb-sidebar-container>
 ```
 
 ```html
-<!-- Creates a layout with a left and right sidenav and implicit content. -->
+<!-- Creates a layout with an implicit content. -->
 <sbb-sidebar-container>
-  <sbb-sidebar>Start</sbb-sidebar>
-  <sbb-sidebar position="end">End</sbb-sidebar>
+  <sbb-sidebar>Sidebar</sbb-sidebar>
   <section>Main</section>
 </sbb-sidebar-container>
 ```
@@ -64,10 +53,10 @@ The following are examples of valid sidenav layouts:
 And these are examples of invalid sidenav layouts:
 
 ```html
-<!-- Invalid because there are two `start` position sidenavs. -->
+<!-- Invalid because there are two `<sbb-sidebar>` elements -->
 <sbb-sidebar-container>
-  <sbb-sidebar>Start</sbb-sidebar>
-  <sbb-sidebar position="start">Start 2</sbb-sidebar>
+  <sbb-sidebar>Sidebar</sbb-sidebar>
+  <sbb-sidebar>Sidebar 2</sbb-sidebar>
 </sbb-sidebar-container>
 ```
 
@@ -99,8 +88,6 @@ The property supports 2-way binding.
 `<sbb-sidebar>` also supports output properties for just open and just close events, The `(opened)`
 and `(closed)` properties respectively.
 
-<!-- example(sidenav-open-close) -->
-
 All of these properties and methods work on `<sbb-drawer>` as well.
 
 ### Changing the sidenav's behavior
@@ -115,15 +102,11 @@ The `<sbb-sidebar>` can render in one of three different ways based on the `mode
 
 If no `mode` is specified, `over` is used by default.
 
-<!-- example(sidenav-mode) -->
-
 The `over` and `push` sidenav modes show a backdrop by default, while the `side` mode does not. This
 can be customized by setting the `hasBackdrop` property on `sbb-sidebar-container`. Explicitly
 setting `hasBackdrop` to `true` or `false` will override the default backdrop visibility setting for
 all sidenavs regadless of mode. Leaving the property unset or setting it to `null` will use the
 default backdrop visibility for each mode.
-
-<!-- example(sidenav-backdrop) -->
 
 `<sbb-drawer>` also supports all of these same modes and options.
 
@@ -137,8 +120,6 @@ Custom handling for <kbd>Esc</kbd> can be done by adding a keydown listener to t
 Custom handling for backdrop clicks can be done via the `(backdropClick)` output property on
 `<sbb-sidebar-container>`.
 
-<!-- example(sidenav-disable-close) -->
-
 ### Resizing an open sidenav
 
 By default, sbb angular will only measure and resize the drawer container in a few key moments
@@ -147,8 +128,6 @@ are cases where this can be problematic. If your app requires for a drawer to ch
 while it is open, you can use the `autosize` option to tell sbb angular to continue measuring it.
 Note that you should use this option **at your own risk**, because it could cause performance
 issues.
-
-<!-- example(sidenav-autosize) -->
 
 ### Setting the sidenav's size
 
@@ -170,16 +149,12 @@ setting the `fixedInViewport` property. Additionally, top and bottom space can b
 `fixedTopGap` and `fixedBottomGap`. These properties accept a pixel value amount of space to add at
 the top or bottom.
 
-<!-- example(sidenav-fixed) -->
-
 ### Creating a responsive layout for mobile & desktop
 
 A sidenav often needs to behave differently on a mobile vs a desktop display. On a desktop, it may
 make sense to have just the content section scroll. However, on mobile you often want the body to be
 the element that scrolls; this allows the address bar to auto-hide. The sidenav can be styled with
 CSS to adjust to either type of device.
-
-<!-- example(sidenav-responsive) -->
 
 ### Reacting to scroll events inside the sidenav container
 
@@ -215,11 +190,3 @@ specific role makes sense, `role="region"` is again a good fallback.
 The sidenav has the ability to capture focus. This behavior is turned on for the `push` and `over` modes and it is off for `side` mode. You can change its default behavior by the `autoFocus` input.
 
 By default the first tabbable element will recieve focus upon open. If you want a different element to be focused, you can set the `cdkFocusInitial` attribute on it.
-
-### Troubleshooting
-
-#### Error: A drawer was already declared for 'position="..."'
-
-This error is thrown if you have more than one sidenav or drawer in a given container with the same
-`position`. The `position` property defaults to `start`, so the issue may just be that you forgot to
-mark the `end` sidenav with `position="end"`.

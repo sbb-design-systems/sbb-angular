@@ -45,11 +45,11 @@ import {
 import { sbbDrawerAnimations } from './drawer-animations';
 
 /**
- * Throws an exception when two SbbDrawer are matching the same position.
+ * Throws an exception if more than one SbbDrawer is provided.
  * @docs-private
  */
-export function throwSbbDuplicatedDrawerError(position: string) {
-  throw Error(`A drawer was already declared for 'position="${position}"'`);
+export function throwSbbDuplicatedDrawerError() {
+  throw Error(`Only one drawer at once is allowed'`);
 }
 
 /** Result of the toggle promise that indicates the state of the drawer. */
@@ -119,7 +119,6 @@ export class SbbDrawerContent extends CdkScrollable implements AfterContentInit 
     class: 'sbb-drawer',
     // must prevent the browser from aligning text based on value
     '[attr.align]': 'null',
-    '[class.sbb-drawer-end]': 'position === "end"',
     '[class.sbb-drawer-over]': 'mode === "over"',
     '[class.sbb-drawer-push]': 'mode === "push"',
     '[class.sbb-drawer-side]': 'mode === "side"',
@@ -130,20 +129,6 @@ export class SbbDrawerContent extends CdkScrollable implements AfterContentInit 
   encapsulation: ViewEncapsulation.None,
 })
 export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestroy {
-  /** The side that the drawer is attached to. */
-  @Input()
-  get position(): 'start' | 'end' {
-    return this._position;
-  }
-  set position(value: 'start' | 'end') {
-    // Make sure we have a valid value.
-    value = value === 'end' ? 'end' : 'start';
-    if (value !== this._position) {
-      this._position = value;
-      this.onPositionChanged.emit();
-    }
-  }
-
   /** Mode of the drawer; one of 'over', 'push' or 'side'. */
   @Input()
   get mode(): SbbDrawerMode {
@@ -287,7 +272,6 @@ export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestr
 
   /** Whether the drawer is initialized. Used for disabling the initial animation. */
   private _enableAnimations = false;
-  private _position: 'start' | 'end' = 'start';
   private _mode: SbbDrawerMode = 'over';
   private _disableClose: boolean = false;
   private _autoFocus: boolean | undefined;
@@ -333,10 +317,6 @@ export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestr
 
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
-
-  /** Event emitted when the drawer's position changes. */
-  // tslint:disable-next-line:no-output-on-prefix no-output-rename
-  @Output('positionChanged') onPositionChanged: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * An observable that emits when the drawer mode changes. This is used by the drawer container to
@@ -542,14 +522,9 @@ export class SbbDrawer implements AfterContentInit, AfterContentChecked, OnDestr
   ],
 })
 export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy {
-  /** The drawer child with the `start` position. */
-  get start(): SbbDrawer | null {
-    return this._start;
-  }
-
-  /** The drawer child with the `end` position. */
-  get end(): SbbDrawer | null {
-    return this._end;
+  /** The drawer child */
+  get drawer(): SbbDrawer | null {
+    return this._drawer;
   }
 
   /**
@@ -576,7 +551,7 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
   @Input()
   get hasBackdrop() {
     if (this._backdropOverride == null) {
-      return !this._start || this._start.mode !== 'side' || !this._end || this._end.mode !== 'side';
+      return !this._drawer || this._drawer.mode !== 'side';
     }
 
     return this._backdropOverride;
@@ -629,18 +604,8 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
   /** Event emitted when the drawer backdrop is clicked. */
   @Output() readonly backdropClick: EventEmitter<void> = new EventEmitter<void>();
 
-  /** The drawer at the start/end position, independent of direction. */
-  private _start: SbbDrawer | null;
-  private _end: SbbDrawer | null;
-
-  /**
-   * The drawer at the left/right. When direction changes, these will change as well.
-   * They're used as aliases for the above to set the left/right style properly.
-   * In LTR, _left == _start and _right == _end.
-   * In RTL, _left == _end and _right == _start.
-   */
-  private _left: SbbDrawer | null;
-  private _right: SbbDrawer | null;
+  /** The drawer */
+  private _drawer: SbbDrawer | null;
 
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
@@ -671,15 +636,10 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
 
       this._drawers.forEach((drawer: SbbDrawer) => {
         this._watchDrawerToggle(drawer);
-        this._watchDrawerPosition(drawer);
         this._watchDrawerMode(drawer);
       });
 
-      if (
-        !this._drawers.length ||
-        this._isDrawerOpen(this._start) ||
-        this._isDrawerOpen(this._end)
-      ) {
+      if (!this._drawers.length || this._isDrawerOpen(this._drawer)) {
         this.updateContentMargins();
       }
 
@@ -705,14 +665,14 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
     this._destroyed.complete();
   }
 
-  /** Calls `open` of both start and end drawers */
+  /** Calls `open` of the drawer */
   open(): void {
-    this._drawers.forEach((drawer) => drawer.open());
+    this._drawer?.open();
   }
 
-  /** Calls `close` of both start and end drawers */
+  /** Calls `close` of the drawer */
   close(): void {
-    this._drawers.forEach((drawer) => drawer.close());
+    this._drawer?.close();
   }
 
   /**
@@ -729,23 +689,13 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
     let left = 0;
     let right = 0;
 
-    if (this._left && this._left.opened) {
-      if (this._left.mode === 'side') {
-        left += this._left._getWidth();
-      } else if (this._left.mode === 'push') {
-        const width = this._left._getWidth();
+    if (this._drawer && this._drawer.opened) {
+      if (this._drawer.mode === 'side') {
+        left += this._drawer._getWidth();
+      } else if (this._drawer.mode === 'push') {
+        const width = this._drawer._getWidth();
         left += width;
         right -= width;
-      }
-    }
-
-    if (this._right && this._right.opened) {
-      if (this._right.mode === 'side') {
-        right += this._right._getWidth();
-      } else if (this._right.mode === 'push') {
-        const width = this._right._getWidth();
-        right += width;
-        left -= width;
       }
     }
 
@@ -802,26 +752,6 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
     }
   }
 
-  /**
-   * Subscribes to drawer onPositionChanged event in order to
-   * re-validate drawers when the position changes.
-   */
-  private _watchDrawerPosition(drawer: SbbDrawer): void {
-    if (!drawer) {
-      return;
-    }
-    // NOTE: We need to wait for the microtask queue to be empty before validating,
-    // since both drawers may be swapping positions at the same time.
-    drawer.onPositionChanged.pipe(takeUntil(this._drawers.changes)).subscribe(() => {
-      this._ngZone.onMicrotaskEmpty
-        .asObservable()
-        .pipe(take(1))
-        .subscribe(() => {
-          this._validateDrawers();
-        });
-    });
-  }
-
   /** Subscribes to changes in drawer mode so we can run change detection. */
   private _watchDrawerMode(drawer: SbbDrawer): void {
     if (drawer) {
@@ -848,35 +778,18 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
 
   /** Validate the state of the drawer children components. */
   private _validateDrawers() {
-    this._start = this._end = null;
+    this._drawer = null;
 
-    // Ensure that we have at most one start and one end drawer.
-    this._drawers.forEach((drawer) => {
-      if (drawer.position === 'end') {
-        if (this._end != null) {
-          throwSbbDuplicatedDrawerError('end');
-        }
-        this._end = drawer;
-      } else {
-        if (this._start != null) {
-          throwSbbDuplicatedDrawerError('start');
-        }
-        this._start = drawer;
-      }
-    });
-
-    this._right = this._left = null;
-
-    this._left = this._start;
-    this._right = this._end;
+    // Ensure that we have at most one drawer.
+    if (this._drawers.length > 1) {
+      throwSbbDuplicatedDrawerError();
+    }
+    this._drawer = this._drawers.first;
   }
 
   /** Whether the container is being pushed to the side by one of the drawers. */
   private _isPushed() {
-    return (
-      (this._isDrawerOpen(this._start) && this._start.mode !== 'over') ||
-      (this._isDrawerOpen(this._end) && this._end.mode !== 'over')
-    );
+    return this._isDrawerOpen(this._drawer) && this._drawer.mode !== 'over';
   }
 
   _onBackdropClicked() {
@@ -885,17 +798,14 @@ export class SbbDrawerContainer implements AfterContentInit, DoCheck, OnDestroy 
   }
 
   _closeModalDrawersViaBackdrop() {
-    // Close all open drawers where closing is not disabled and the mode is not `side`.
-    [this._start, this._end]
-      .filter((drawer) => drawer && !drawer.disableClose && this._canHaveBackdrop(drawer))
-      .forEach((drawer) => drawer!._closeViaBackdropClick());
+    // Close open drawer where closing is not disabled and the mode is not `side`.
+    if (this._drawer && !this._drawer.disableClose && this._canHaveBackdrop(this._drawer)) {
+      this._drawer!._closeViaBackdropClick();
+    }
   }
 
   _isShowingBackdrop(): boolean {
-    return (
-      (this._isDrawerOpen(this._start) && this._canHaveBackdrop(this._start)) ||
-      (this._isDrawerOpen(this._end) && this._canHaveBackdrop(this._end))
-    );
+    return this._isDrawerOpen(this._drawer) && this._canHaveBackdrop(this._drawer);
   }
 
   private _canHaveBackdrop(drawer: SbbDrawer): boolean {

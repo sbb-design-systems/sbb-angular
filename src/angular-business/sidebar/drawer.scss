@@ -128,11 +128,6 @@ $swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
   &.sbb-drawer-side {
     z-index: $sbb-drawer-side-drawer-z-index;
   }
-
-  &.sbb-drawer-end {
-    right: 0;
-    transform: translate3d(100%, 0, 0);
-  }
 }
 
 // Note that this div isn't strictly necessary on all browsers, however we need it in

@@ -56,7 +56,6 @@ export class SbbSidebarContent extends SbbDrawerContent {
     tabIndex: '-1',
     // must prevent the browser from aligning text based on value
     '[attr.align]': 'null',
-    '[class.sbb-drawer-end]': 'position === "end"',
     '[class.sbb-drawer-over]': 'mode === "over"',
     '[class.sbb-drawer-push]': 'mode === "push"',
     '[class.sbb-drawer-side]': 'mode === "side"',
