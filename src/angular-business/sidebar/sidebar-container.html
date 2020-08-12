@@ -1,0 +1,13 @@
+<div
+  class="sbb-drawer-backdrop"
+  (click)="_onBackdropClicked()"
+  *ngIf="hasBackdrop"
+  [class.sbb-drawer-shown]="_isShowingBackdrop()"
+></div>
+
+<ng-content select="sbb-sidebar"></ng-content>
+
+<ng-content select="sbb-sidebar-content"> </ng-content>
+<sbb-sidebar-content *ngIf="!_content" cdkScrollable>
+  <ng-content></ng-content>
+</sbb-sidebar-content>

@@ -1,0 +1,13 @@
+<div
+  class="sbb-drawer-backdrop"
+  (click)="_onBackdropClicked()"
+  *ngIf="hasBackdrop"
+  [class.sbb-drawer-shown]="_isShowingBackdrop()"
+></div>
+
+<ng-content select="sbb-drawer"></ng-content>
+
+<ng-content select="sbb-drawer-content"> </ng-content>
+<sbb-drawer-content *ngIf="!_content">
+  <ng-content></ng-content>
+</sbb-drawer-content>

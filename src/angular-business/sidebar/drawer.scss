@@ -1,0 +1,151 @@
+$sbb-drawer-content-z-index: 1;
+$sbb-drawer-side-drawer-z-index: 2;
+$sbb-drawer-backdrop-z-index: 3;
+$sbb-drawer-over-drawer-z-index: 4;
+$swift-ease-out-duration: 400ms !default;
+$swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
+
+@mixin sbb-fill {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+// stylelint-disable max-line-length
+// Mixin that creates a new stacking context.
+// see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+// stylelint-enable
+@mixin sbb-drawer-stacking-context($z-index: 1) {
+  position: relative;
+
+  // Use a z-index to create a new stacking context. (We can't use transform because it breaks fixed
+  // positioning inside of the transformed element).
+  z-index: $z-index;
+}
+
+.sbb-drawer-container {
+  // We need a stacking context here so that the backdrop and drawers are clipped to the
+  // SbbDrawerContainer. This creates a new z-index stack so we use low numbered z-indices.
+  // We create another stacking context in the '.sbb-drawer-content' and in each drawer so that
+  // the application content does not get messed up with our own CSS.
+  @include sbb-drawer-stacking-context();
+
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+
+  // Need this to take up space in the layout.
+  display: block;
+
+  // Hide the drawers when they're closed.
+  overflow: hidden;
+
+  // TODO(hansl): Update this with a more robust solution.
+  &[fullscreen] {
+    @include sbb-fill();
+
+    &.sbb-drawer-container-has-open {
+      overflow: hidden;
+    }
+  }
+
+  // When the consumer explicitly enabled the backdrop,
+  // we have to pull the side drawers above it.
+  &.sbb-drawer-container-explicit-backdrop .sbb-drawer-side {
+    z-index: $sbb-drawer-backdrop-z-index;
+  }
+
+  // Note that the `NoopAnimationsModule` is being handled inside of the component code.
+  &.ng-animate-disabled,
+  .ng-animate-disabled & {
+    .sbb-drawer-backdrop,
+    .sbb-drawer-content {
+      transition: none;
+    }
+  }
+}
+
+.sbb-drawer-backdrop {
+  @include sbb-fill();
+
+  display: block;
+
+  // Because of the new stacking context, the z-index stack is new and we can use our own
+  // numbers.
+  z-index: $sbb-drawer-backdrop-z-index;
+
+  // We use 'visibility: hidden | visible' because 'display: none' will not animate any
+  // transitions, while visibility will interpolate transitions properly.
+  // see https://developer.mozilla.org/en-US/docs/Web/CSS/visibility, the Interpolation
+  // section.
+  visibility: hidden;
+
+  &.sbb-drawer-shown {
+    visibility: visible;
+  }
+
+  .sbb-drawer-transition & {
+    transition: {
+      duration: $swift-ease-out-duration;
+      timing-function: $swift-ease-out-timing-function;
+      property: background-color, visibility;
+    }
+  }
+}
+
+.sbb-drawer-content {
+  @include sbb-drawer-stacking-context($sbb-drawer-content-z-index);
+
+  display: block;
+  height: 100%;
+  overflow: auto;
+
+  .sbb-drawer-transition & {
+    transition: {
+      duration: $swift-ease-out-duration;
+      timing-function: $swift-ease-out-timing-function;
+      property: transform, margin-left, margin-right;
+    }
+  }
+}
+
+.sbb-drawer {
+  $high-contrast-border: solid 1px currentColor;
+
+  @include sbb-drawer-stacking-context($sbb-drawer-over-drawer-z-index);
+
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  outline: 0;
+  box-sizing: border-box;
+  overflow-y: auto; // TODO(kara): revisit scrolling behavior for drawers
+  transform: translate3d(-100%, 0, 0);
+
+  &.sbb-drawer-side {
+    z-index: $sbb-drawer-side-drawer-z-index;
+  }
+
+  &.sbb-drawer-end {
+    right: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+// Note that this div isn't strictly necessary on all browsers, however we need it in
+// order to avoid a layout issue in Chrome. The issue is that in RTL mode the browser doesn't
+// account for the sidenav's scrollbar while positioning, which ends up pushing it partially
+// out of the screen. We work around the issue by having the scrollbar be on this inner container.
+.sbb-drawer-inner-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sbb-sidebar-fixed {
+  position: fixed;
+}

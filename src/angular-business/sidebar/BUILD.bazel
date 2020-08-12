@@ -1,0 +1,63 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "sidebar",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":drawer.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-business/sidebar",
+    deps = [
+        "@npm//@angular/animations",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/platform-browser",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "drawer_scss",
+    src = "drawer.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":sidebar",
+        "//src/angular-core/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/platform-browser",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":sidebar.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
