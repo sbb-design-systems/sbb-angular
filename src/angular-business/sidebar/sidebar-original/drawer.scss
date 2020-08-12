@@ -50,6 +50,10 @@ $swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
     }
   }
 
+  &.sbb-sidebar-after-header {
+    top: 54px; //TODO: import
+  }
+
   // When the consumer explicitly enabled the backdrop,
   // we have to pull the side drawers above it.
   &.sbb-drawer-container-explicit-backdrop .sbb-drawer-side {
