@@ -82,7 +82,7 @@ export function SBB_DRAWER_DEFAULT_AUTOSIZE_FACTORY(): boolean {
   selector: 'sbb-drawer-content',
   template: '<ng-content></ng-content>',
   host: {
-    class: 'sbb-drawer-content',
+    class: 'sbb-drawer-content sbb-scrollbar',
     '[style.margin-left.px]': '_container._contentMargins.left',
     '[style.margin-right.px]': '_container._contentMargins.right',
   },

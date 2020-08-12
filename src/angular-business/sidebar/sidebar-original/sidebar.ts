@@ -27,7 +27,7 @@ import { sbbDrawerAnimations } from './drawer-animations';
   selector: 'sbb-sidebar-content',
   template: '<ng-content></ng-content>',
   host: {
-    class: 'sbb-drawer-content sbb-sidebar-content',
+    class: 'sbb-drawer-content sbb-sidebar-content sbb-scrollbar',
     '[style.margin-left.px]': '_container._contentMargins.left',
     '[style.margin-right.px]': '_container._contentMargins.right',
   },
