@@ -8,17 +8,12 @@ import {
   SbbIconSidebarContainer,
   SbbIconSidebarContent,
 } from './icon-sidebar/icon-sidebar';
-import { SbbDrawer, SbbDrawerContainer, SbbDrawerContent } from './sidebar-original/drawer';
-import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar-original/sidebar';
+import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/sidebar';
 
 @NgModule({
   imports: [CommonModule, PlatformModule, CdkScrollableModule],
   exports: [
     CdkScrollableModule,
-
-    SbbDrawer,
-    SbbDrawerContainer,
-    SbbDrawerContent,
 
     SbbSidebar,
     SbbSidebarContainer,
@@ -29,10 +24,6 @@ import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar-or
     SbbIconSidebarContent,
   ],
   declarations: [
-    SbbDrawer,
-    SbbDrawerContainer,
-    SbbDrawerContent,
-
     SbbSidebar,
     SbbSidebarContainer,
     SbbSidebarContent,

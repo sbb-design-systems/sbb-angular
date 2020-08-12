@@ -18,6 +18,7 @@ ng_module(
     ),
     assets = [
         ":icon-sidebar/icon-sidebar.css",
+        ":sidebar/sidebar.css",
         ":sidebar-original/drawer.css",
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/sidebar",
@@ -40,6 +41,14 @@ sass_library(
 sass_binary(
     name = "icon_sidebar_icon_sidebar_scss",
     src = "icon-sidebar/icon-sidebar.scss",
+    deps = [
+        ":sidebar_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "sidebar_sidebar_scss",
+    src = "sidebar/sidebar.scss",
     deps = [
         ":sidebar_scss_lib",
     ],
