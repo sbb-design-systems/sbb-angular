@@ -43,6 +43,7 @@ sass_binary(
     src = "icon-sidebar/icon-sidebar.scss",
     deps = [
         ":sidebar_scss_lib",
+        "//src/angular-core/styles:common_scss_lib",
     ],
 )
 

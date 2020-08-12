@@ -1,3 +1,4 @@
+@import '../../../angular-core/styles/common';
 @import '../sidebar';
 
 .sbb-icon-sidebar-container {
@@ -18,4 +19,88 @@
 
 .sbb-icon-sidebar {
   @include sbb-sidebar;
+  width: 200px;
+  background-color: $sbbColorMilk;
+
+  a.sbb-icon-sidebar-item {
+    display: flex;
+    min-height: 48px;
+    color: $sbbColorIron;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 23px;
+    position: relative;
+
+    .sbb-icon-sidebar-item-icon {
+      display: inline-flex;
+      height: 48px;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 48px;
+
+      .sbb-icon-component {
+        @include svgIconColor($sbbColorIron);
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .sbb-icon-sidebar-item-label {
+      padding: 12px 12px 12px 4px;
+    }
+
+    &:hover,
+    &:focus,
+    &.sbb-icon-sidebar-item-active {
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+
+      &:after {
+        background-color: $sbbColorRed125;
+      }
+
+      .sbb-icon-sidebar-item-icon {
+        .sbb-icon-component {
+          @include svgIconColor($sbbColorRed125);
+        }
+      }
+    }
+
+    &.sbb-icon-sidebar-item-active {
+      background-color: $sbbColorWhite;
+      color: $sbbColorBlack;
+      cursor: default;
+      pointer-events: none;
+
+      &:after {
+        background-color: $sbbColorBlack;
+      }
+
+      .sbb-icon-sidebar-item-icon {
+        .sbb-icon-component {
+          @include svgIconColor($sbbColorBlack);
+        }
+      }
+    }
+  }
+
+  hr {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border: none;
+    border-top: solid 1px $sbbColorGraphite;
+    padding: 0;
+  }
 }

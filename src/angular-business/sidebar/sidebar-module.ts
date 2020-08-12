@@ -8,6 +8,7 @@ import {
   SbbIconSidebarContainer,
   SbbIconSidebarContent,
 } from './icon-sidebar/icon-sidebar';
+import { SbbIconSidebarItem } from './icon-sidebar/icon-sidebar-item';
 import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/sidebar';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/si
     SbbIconSidebar,
     SbbIconSidebarContainer,
     SbbIconSidebarContent,
+    SbbIconSidebarItem,
   ],
   declarations: [
     SbbSidebar,
@@ -31,6 +33,7 @@ import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/si
     SbbIconSidebar,
     SbbIconSidebarContainer,
     SbbIconSidebarContent,
+    SbbIconSidebarItem,
   ],
 })
 export class SbbSidebarModule {}
