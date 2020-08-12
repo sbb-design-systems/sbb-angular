@@ -1,0 +1,142 @@
+$sbb-sidebar-content-z-index: 1;
+$sbb-sidebar-side-sidebar-z-index: 2;
+$sbb-sidebar-backdrop-z-index: 3;
+$sbb-sidebar-over-sidebar-z-index: 4;
+$swift-ease-out-duration: 400ms !default;
+$swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
+
+@mixin sbb-fill {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+// stylelint-disable max-line-length
+// Mixin that creates a new stacking context.
+// see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+// stylelint-enable
+@mixin sbb-sidebar-stacking-context($z-index: 1) {
+  position: relative;
+
+  // Use a z-index to create a new stacking context. (We can't use transform because it breaks fixed
+  // positioning inside of the transformed element).
+  z-index: $z-index;
+}
+
+@mixin sbb-sidebar-container {
+  // We need a stacking context here so that the backdrop and sidebars are clipped to the
+  // SbbSidebarContainer. This creates a new z-index stack so we use low numbered z-indices.
+  // We create another stacking context in the '.sbb-sidebar-content' and in each sidebar so that
+  // the application content does not get messed up with our own CSS.
+  @include sbb-sidebar-stacking-context();
+
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+
+  // Need this to take up space in the layout.
+  display: block;
+
+  // Hide the sidebars when they're closed.
+  overflow: hidden;
+
+  // TODO(hansl): Update this with a more robust solution.
+  &[fullscreen] {
+    @include sbb-fill();
+
+    &.sbb-sidebar-container-has-open {
+      overflow: hidden;
+    }
+  }
+
+  // When the consumer explicitly enabled the backdrop,
+  // we have to pull the side sidebars above it.
+  &.sbb-sidebar-container-explicit-backdrop .sbb-sidebar-side {
+    z-index: $sbb-sidebar-backdrop-z-index;
+  }
+
+  // Note that the `NoopAnimationsModule` is being handled inside of the component code.
+  &.ng-animate-disabled,
+  .ng-animate-disabled & {
+    .sbb-sidebar-backdrop,
+    .sbb-sidebar-content {
+      transition: none;
+    }
+  }
+}
+
+@mixin sbb-sidebar-backdrop {
+  @include sbb-fill();
+
+  display: block;
+
+  // Because of the new stacking context, the z-index stack is new and we can use our own
+  // numbers.
+  z-index: $sbb-sidebar-backdrop-z-index;
+
+  // We use 'visibility: hidden | visible' because 'display: none' will not animate any
+  // transitions, while visibility will interpolate transitions properly.
+  // see https://developer.mozilla.org/en-US/docs/Web/CSS/visibility, the Interpolation
+  // section.
+  visibility: hidden;
+
+  &.sbb-sidebar-shown {
+    visibility: visible;
+  }
+
+  .sbb-sidebar-transition & {
+    transition: {
+      duration: $swift-ease-out-duration;
+      timing-function: $swift-ease-out-timing-function;
+      property: background-color, visibility;
+    }
+  }
+}
+
+@mixin sbb-sidebar-content {
+  @include sbb-sidebar-stacking-context($sbb-sidebar-content-z-index);
+
+  display: block;
+  height: 100%;
+  overflow: auto;
+
+  .sbb-sidebar-transition & {
+    transition: {
+      duration: $swift-ease-out-duration;
+      timing-function: $swift-ease-out-timing-function;
+      property: transform, margin-left, margin-right;
+    }
+  }
+}
+
+@mixin sbb-sidebar {
+  $high-contrast-border: solid 1px currentColor;
+
+  @include sbb-sidebar-stacking-context($sbb-sidebar-over-sidebar-z-index);
+
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  outline: 0;
+  box-sizing: border-box;
+  overflow-y: auto; // TODO(kara): revisit scrolling behavior for sidebars
+  transform: translate3d(-100%, 0, 0);
+
+  &.sbb-sidebar-side {
+    z-index: $sbb-sidebar-side-sidebar-z-index;
+  }
+
+  // Note that this div isn't strictly necessary on all browsers, however we need it in
+  // order to avoid a layout issue in Chrome. The issue is that in RTL mode the browser doesn't
+  // account for the sidebar's scrollbar while positioning, which ends up pushing it partially
+  // out of the screen. We work around the issue by having the scrollbar be on this inner container.
+  .sbb-sidebar-inner-container {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

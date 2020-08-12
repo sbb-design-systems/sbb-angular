@@ -1,0 +1,21 @@
+@import '../sidebar';
+
+.sbb-icon-sidebar-container {
+  @include sbb-sidebar-container;
+
+  &.sbb-icon-sidebar-after-header {
+    top: 54px; //TODO: import
+  }
+}
+
+.sbb-icon-sidebar-backdrop {
+  @include sbb-sidebar-backdrop;
+}
+
+.sbb-icon-sidebar-content {
+  @include sbb-sidebar-content;
+}
+
+.sbb-icon-sidebar {
+  @include sbb-sidebar;
+}
