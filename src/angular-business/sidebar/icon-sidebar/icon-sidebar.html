@@ -1,3 +1,17 @@
-<div class="sbb-sidebar-inner-container sbb-scrollbar">
-  <ng-content select="a[sbbIconSidebarItem], hr"></ng-content>
+<div class="sbb-sidebar-inner-container sbb-scrollbar-overlay">
+  <div class="sbb-icon-sidebar-links">
+    <ng-content select="a[sbbIconSidebarItem], hr"></ng-content>
+  </div>
+
+  <button class="sbb-icon-sidebar-item sbb-icon-sidebar-collapse-expand-button">
+    <span class="sbb-icon-sidebar-item-icon">
+      <sbb-icon-chevron-small-left-circle></sbb-icon-chevron-small-left-circle>
+    </span>
+    <span
+      class="sbb-icon-sidebar-item-label"
+      i18n="Label to 'collapse' icon sidebar sidebar@@iconSidebarCollapse"
+    >
+      Collapse
+    </span>
+  </button>
 </div>

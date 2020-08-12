@@ -22,7 +22,7 @@
   width: 200px;
   background-color: $sbbColorMilk;
 
-  a.sbb-icon-sidebar-item {
+  .sbb-icon-sidebar-item {
     display: flex;
     min-height: 48px;
     color: $sbbColorIron;
@@ -102,5 +102,22 @@
     border: none;
     border-top: solid 1px $sbbColorGraphite;
     padding: 0;
+  }
+
+  .sbb-icon-sidebar-collapse-expand-button {
+    @include buttonResetFrameless();
+    cursor: pointer;
+    outline: 0;
+    position: absolute;
+    bottom: 0;
+    background-color: $sbbColorMilk;
+    width: 100%;
+
+    &:hover,
+    &:focus {
+      &:after {
+        content: none;
+      }
+    }
   }
 }
