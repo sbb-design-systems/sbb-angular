@@ -69,7 +69,7 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {
     tabIndex: '-1',
     // must prevent the browser from aligning text based on value
     '[attr.align]': 'null',
-    '[class.sbb-sidebar-expanded]': 'expanded',
+    '[class.sbb-icon-sidebar-expanded]': 'expanded',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

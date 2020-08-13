@@ -3,13 +3,15 @@ import { Direction } from '@angular/cdk/bidi';
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { IconStationModule } from '@sbb-esta/angular-icons/station';
 
 import { SbbSidebarModule } from '../sidebar-module';
 
@@ -18,7 +20,15 @@ import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
 describe('SbbIconSidebar', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SbbSidebarModule, A11yModule, PlatformModule, NoopAnimationsModule, CommonModule],
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        PlatformModule,
+        NoopAnimationsModule,
+        CommonModule,
+        IconStationModule,
+        RouterTestingModule,
+      ],
       declarations: [
         BasicTestComponent,
         SidebarContainerNoSidebarTestComponent,
@@ -29,6 +39,7 @@ describe('SbbIconSidebar', () => {
         SidebarExpandedBindingTestComponent,
         IndirectDescendantSidebarTestComponent,
         NestedSidebarContainersTestComponent,
+        IconSidebarWithLinksTestComponent,
       ],
     });
 
@@ -36,7 +47,7 @@ describe('SbbIconSidebar', () => {
   }));
 
   describe('methods', () => {
-    it('does not throw when created without a sidebar', fakeAsync(() => {
+    it('does not throw when created without a sidebar container', fakeAsync(() => {
       expect(() => {
         const fixture = TestBed.createComponent(BasicTestComponent);
         fixture.detectChanges();
@@ -132,6 +143,83 @@ describe('SbbIconSidebar', () => {
       tick(1);
     }));
   });
+
+  describe('link usage', () => {
+    let fixture: ComponentFixture<IconSidebarWithLinksTestComponent>;
+    let sidebar: DebugElement;
+    let sidebarComponent: SbbIconSidebar;
+
+    beforeEach(async(() => {
+      fixture = TestBed.createComponent(IconSidebarWithLinksTestComponent);
+
+      fixture.detectChanges();
+
+      sidebar = fixture.debugElement.query(By.directive(SbbIconSidebar));
+      sidebarComponent = sidebar!.componentInstance;
+    }));
+
+    it('should expand sidebar by default', () => {
+      expect(sidebarComponent.expanded).toBe(true);
+    });
+
+    it('should not include any other elements than links with sbbIconSidebarItem directive and hr', () => {
+      expect(sidebar.nativeElement.textContent).not.toContain('SHOULD BE IGNORED');
+    });
+
+    it('should include links with sbbIconSidebarItem directive and hr', () => {
+      expect(sidebar.queryAll(By.css('hr')).length).toBe(1);
+      expect(sidebar.queryAll(By.css('a[sbbIconSidebarItem]')).length).toBe(3);
+    });
+
+    it('should collapse and expand', () => {
+      const collapseButton = sidebar.query(By.css('.sbb-icon-sidebar-collapse-expand-button'));
+
+      expect(sidebarComponent.expanded).toBe(true);
+      expect(sidebar.nativeElement.classList).toContain('sbb-icon-sidebar-expanded');
+      expect(
+        collapseButton.nativeElement
+          .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
+          .getAttribute('aria-hidden')
+      ).toEqual('false');
+      expect(
+        collapseButton.nativeElement
+          .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
+          .getAttribute('aria-hidden')
+      ).toEqual('true');
+
+      collapseButton.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(sidebarComponent.expanded).toBe(false);
+      expect(sidebar.nativeElement.classList).not.toContain('sbb-icon-sidebar-expanded');
+      expect(
+        collapseButton.nativeElement
+          .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
+          .getAttribute('aria-hidden')
+      ).toEqual('true');
+      expect(
+        collapseButton.nativeElement
+          .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
+          .getAttribute('aria-hidden')
+      ).toEqual('false');
+
+      collapseButton.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(sidebarComponent.expanded).toBe(true);
+      expect(sidebar.nativeElement.classList).toContain('sbb-icon-sidebar-expanded');
+      expect(
+        collapseButton.nativeElement
+          .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
+          .getAttribute('aria-hidden')
+      ).toEqual('false');
+      expect(
+        collapseButton.nativeElement
+          .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
+          .getAttribute('aria-hidden')
+      ).toEqual('true');
+    });
+  });
 });
 
 describe('SbbIconSidebarContainer', () => {
@@ -221,7 +309,7 @@ class SidebarContainerEmptyTestComponent {
   @ViewChild(SbbIconSidebarContainer) sidebarContainer: SbbIconSidebarContainer;
 }
 
-/** Test component that contains an SbbIconSidebarContainer and one SbbIconSidebar. */
+/** Test component that contains an SbbIconSidebarContainer and a SbbIconSidebar. */
 @Component({
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar
@@ -396,3 +484,32 @@ class NestedSidebarContainersTestComponent {
   @ViewChild('innerContainer') innerContainer: SbbIconSidebarContainer;
   @ViewChild('innerSidebar') innerSidebar: SbbIconSidebar;
 }
+
+@Component({
+  template: `
+    <sbb-icon-sidebar-container>
+      <sbb-icon-sidebar>
+        <a sbbIconSidebarItem [routerLink]="['/link1']" label="Link1">
+          <sbb-icon-station sbbIcon></sbb-icon-station>
+        </a>
+        <hr />
+        <a
+          sbbIconSidebarItem
+          [routerLink]="['/link2']"
+          label="Link 2"
+          routerLinkActive="sbb-icon-sidebar-item-active"
+        >
+          <sbb-icon-station sbbIcon></sbb-icon-station>
+        </a>
+        <a>SHOULD BE IGNORED</a>
+        <a sbbIconSidebarItem [routerLink]="['/link3']" label="Link3">
+          <sbb-icon-station sbbIcon></sbb-icon-station>
+        </a>
+      </sbb-icon-sidebar>
+      <sbb-icon-sidebar-content>
+        Content
+      </sbb-icon-sidebar-content>
+    </sbb-icon-sidebar-container>
+  `,
+})
+class IconSidebarWithLinksTestComponent {}

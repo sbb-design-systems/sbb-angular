@@ -41,13 +41,10 @@ $swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
   // Hide the sidebars when they're closed.
   overflow: hidden;
 
-  // TODO(hansl): Update this with a more robust solution.
-  &[fullscreen] {
-    @include sbb-fill();
+  @include sbb-fill();
 
-    &.sbb-sidebar-container-has-open {
-      overflow: hidden;
-    }
+  &.sbb-sidebar-container-has-open {
+    overflow: hidden;
   }
 
   // When the consumer explicitly enabled the backdrop,

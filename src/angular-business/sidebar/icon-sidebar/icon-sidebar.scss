@@ -51,6 +51,11 @@
         width: 24px;
         height: 24px;
       }
+
+      &:empty:after {
+        content: '?';
+        display: block;
+      }
     }
 
     .sbb-icon-sidebar-item-label {
@@ -133,7 +138,7 @@
     }
   }
 
-  &:not(.sbb-sidebar-expanded) {
+  &:not(.sbb-icon-sidebar-expanded) {
     width: 48px;
 
     &,
