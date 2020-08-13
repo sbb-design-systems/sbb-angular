@@ -1,5 +1,4 @@
 import { A11yModule } from '@angular/cdk/a11y';
-import { Direction } from '@angular/cdk/bidi';
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
@@ -35,7 +34,6 @@ describe('SbbIconSidebar', () => {
         SidebarSetToExpandedFalseTestComponent,
         SidebarSetToExpandedTrueTestComponent,
         TwoSidebarsTestComponent,
-        SidebarWithFocusableElementsTestComponent,
         SidebarExpandedBindingTestComponent,
         IndirectDescendantSidebarTestComponent,
         NestedSidebarContainersTestComponent,
@@ -53,6 +51,45 @@ describe('SbbIconSidebar', () => {
         fixture.detectChanges();
         tick();
       }).not.toThrow();
+    }));
+
+    it('should pick up sidebars that are not direct descendants', fakeAsync(() => {
+      const fixture = TestBed.createComponent(IndirectDescendantSidebarTestComponent);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.sidebar.expanded).toBe(true);
+
+      fixture.componentInstance.sidebar.expanded = false;
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.sidebar.expanded).toBe(false);
+    }));
+
+    it('should not pick up sidebars from nested containers', fakeAsync(() => {
+      const fixture = TestBed.createComponent(NestedSidebarContainersTestComponent);
+      const instance = fixture.componentInstance;
+      fixture.detectChanges();
+
+      expect(instance.outerSidebar.expanded).toBe(true);
+      expect(instance.innerSidebar.expanded).toBe(true);
+
+      instance.outerSidebar.expanded = false;
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      expect(instance.outerSidebar.expanded).toBe(false);
+      expect(instance.innerSidebar.expanded).toBe(true);
+
+      instance.innerSidebar.expanded = false;
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      expect(instance.outerSidebar.expanded).toBe(false);
+      expect(instance.innerSidebar.expanded).toBe(false);
     }));
   });
 
@@ -171,6 +208,12 @@ describe('SbbIconSidebar', () => {
       expect(sidebar.queryAll(By.css('a[sbbIconSidebarItem]')).length).toBe(3);
     });
 
+    it('should display link label properly', () => {
+      expect(
+        sidebar.queryAll(By.css('a[sbbIconSidebarItem]'))[0].nativeElement.textContent
+      ).toContain('Link1');
+    });
+
     it('should collapse and expand', () => {
       const collapseButton = sidebar.query(By.css('.sbb-icon-sidebar-collapse-expand-button'));
 
@@ -230,13 +273,33 @@ describe('SbbIconSidebarContainer', () => {
         SidebarContainerEmptyTestComponent,
         SidebarDelayedTestComponent,
         SidebarSetToExpandedTrueTestComponent,
-        SidebarContainerStateChangesTestAppTestComponent,
         BasicTestComponent,
         SidebarContainerWithContentTestComponent,
       ],
     });
 
     TestBed.compileComponents();
+  }));
+
+  it('should animate the content when a sidebar is added at a later point', fakeAsync(() => {
+    const fixture = TestBed.createComponent(SidebarDelayedTestComponent);
+
+    fixture.detectChanges();
+
+    const contentElement = fixture.debugElement.nativeElement.querySelector(
+      '.sbb-icon-sidebar-content'
+    );
+
+    expect(parseInt(contentElement.style.marginLeft, 10)).toBe(0);
+
+    fixture.componentInstance.showSidebar = true;
+    fixture.detectChanges();
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    expect(parseInt(contentElement.style.marginLeft, 10)).toBe(200);
   }));
 
   it('should not animate when the sidebar is expanded on load', fakeAsync(() => {
@@ -401,20 +464,6 @@ class SidebarExpandedBindingTestComponent {
 class TwoSidebarsTestComponent {}
 
 @Component({
-  // Note: we use inputs here, because they're guaranteed
-  // to be focusable across all platforms.
-  template: ` <sbb-icon-sidebar-container>
-    <sbb-icon-sidebar [mode]="mode">
-      <input type="text" class="input1" />
-    </sbb-icon-sidebar>
-    <input type="text" class="input2" />
-  </sbb-icon-sidebar-container>`,
-})
-class SidebarWithFocusableElementsTestComponent {
-  mode: string = 'over';
-}
-
-@Component({
   template: `
     <sbb-icon-sidebar-container>
       <sbb-icon-sidebar *ngIf="showSidebar" #sidebar>Sidebar</sbb-icon-sidebar>
@@ -424,20 +473,6 @@ class SidebarWithFocusableElementsTestComponent {
 class SidebarDelayedTestComponent {
   @ViewChild(SbbIconSidebar) sidebar: SbbIconSidebar;
   showSidebar = false;
-}
-
-@Component({
-  template: ` <sbb-icon-sidebar-container [dir]="direction">
-    <sbb-icon-sidebar *ngIf="renderSidebar" [mode]="mode" style="width:100px"></sbb-icon-sidebar>
-  </sbb-icon-sidebar-container>`,
-})
-class SidebarContainerStateChangesTestAppTestComponent {
-  @ViewChild(SbbIconSidebar) sidebar: SbbIconSidebar;
-  @ViewChild(SbbIconSidebarContainer) sidebarContainer: SbbIconSidebarContainer;
-
-  direction: Direction = 'ltr';
-  mode = 'side';
-  renderSidebar = true;
 }
 
 @Component({

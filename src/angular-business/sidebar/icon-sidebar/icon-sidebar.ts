@@ -260,10 +260,14 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
    * sparingly, because it causes a reflow.
    */
   updateContentMargins() {
-    let left = 48; // TODO: try to add it to css classes
+    let left = 0;
 
-    if (this._sidebar && this._sidebar.expanded) {
-      left = 200; // TODO: try to add it to css classes
+    if (this._sidebar) {
+      left = 48; // TODO: try to add it to css classes
+
+      if (this._sidebar.expanded) {
+        left = 200; // TODO: try to add it to css classes
+      }
     }
 
     if (left !== this._contentMargins.left) {
