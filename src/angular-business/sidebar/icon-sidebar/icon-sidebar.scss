@@ -19,6 +19,9 @@
 
 .sbb-icon-sidebar {
   @include sbb-sidebar;
+  transform: none;
+  visibility: visible;
+
   transition: width $swift-ease-out-duration $swift-ease-out-timing-function;
   background-color: $sbbColorMilk;
 
