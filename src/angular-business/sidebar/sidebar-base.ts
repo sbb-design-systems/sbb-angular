@@ -104,6 +104,8 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => this.updateContentMargins());
   }
+
+  /** All sidebars, also nested sidebars included **/
   _allSidebars: QueryList<T>;
 
   /** Sidebars that belong to this container. */
@@ -126,8 +128,8 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   ngAfterContentInit() {
     this._allSidebars.changes
       .pipe(startWith(this._allSidebars), takeUntil(this._destroyed))
-      .subscribe((sidebars: QueryList<T>) => {
-        this._sidebars.reset(sidebars.filter((sidebar) => sidebar._container === this));
+      .subscribe((allSidebars: QueryList<T>) => {
+        this._sidebars.reset(allSidebars.filter((sidebar) => sidebar._container === this));
         this._sidebars.notifyOnChanges();
       });
 
