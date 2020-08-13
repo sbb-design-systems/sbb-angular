@@ -11,7 +11,7 @@
       <sbb-icon-chevron-small-left-circle></sbb-icon-chevron-small-left-circle>
     </span>
     <span
-      *ngIf="!_showExpandedLabel"
+      [attr.aria-hidden]="!expanded"
       class="sbb-icon-sidebar-item-label"
       i18n="Label to 'collapse' icon sidebar sidebar@@iconSidebarCollapse"
     >
@@ -19,8 +19,9 @@
     </span>
 
     <span
-      *ngIf="_showExpandedLabel"
+      [attr.aria-hidden]="expanded"
       class="sbb-icon-sidebar-item-label"
+      style="display: none;"
       i18n="Label to 'expand' icon sidebar sidebar@@iconSidebarExpand"
     >
       Expand

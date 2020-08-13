@@ -875,7 +875,6 @@ describe('SbbSidebarContainer', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
 
     fixture.detectChanges();
-    console.error(fixture.componentInstance.sidebarContainer.scrollable);
 
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
       true

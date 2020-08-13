@@ -21,7 +21,7 @@ export const sbbIconSidebarAnimations: {
     //    transform to shift around in Chrome with an RTL layout (see #10023).
     // 2. 3d transforms causes text to appear blurry on IE and Edge.
     state(
-      'open, open-instant',
+      'expanded, expanded-instant',
       style({
         width: '200px',
       })
@@ -33,9 +33,9 @@ export const sbbIconSidebarAnimations: {
         width: '48px',
       })
     ),
-    transition('void => open-instant', animate('0ms')),
+    transition('void => expanded-instant', animate('0ms')),
     transition(
-      'void <=> open, open-instant => void',
+      'void <=> expanded, expanded-instant => void',
       animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')
     ),
   ]),

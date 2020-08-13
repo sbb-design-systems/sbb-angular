@@ -10,6 +10,7 @@ import {
   ContentChild,
   ContentChildren,
   ElementRef,
+  EventEmitter,
   forwardRef,
   HostBinding,
   HostListener,
@@ -17,14 +18,14 @@ import {
   Input,
   NgZone,
   Optional,
+  Output,
   QueryList,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { sbbIconSidebarAnimations } from '@sbb-esta/angular-business/sidebar/icon-sidebar/icon-sidebar-animations';
-import { Subject } from 'rxjs';
-import { distinctUntilChanged, filter, startWith, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, filter, map, startWith, take, takeUntil } from 'rxjs/operators';
 
 import {
   ISbbSidebarContentMarginChanges,
@@ -33,6 +34,8 @@ import {
   SbbSidebarContentBase,
   SBB_SIDEBAR_CONTAINER,
 } from '../sidebar-base';
+
+import { sbbIconSidebarAnimations } from './icon-sidebar-animations';
 
 @Component({
   selector: 'sbb-icon-sidebar-content',
@@ -84,8 +87,23 @@ export class SbbIconSidebar extends SbbSidebarBase {
   }
   private _expanded = true;
 
-  /** @docs-private **/
-  _showExpandedLabel = false;
+  /** Event emitted when the drawer has started opening. */
+  @Output()
+  get expandedStart(): Observable<void> {
+    return this._animationStarted.pipe(
+      filter((e) => e.fromState !== e.toState && e.toState.indexOf('open') === 0),
+      map(() => {})
+    );
+  }
+
+  /** Event emitted when the drawer has started closing. */
+  @Output()
+  get collapsedStart(): Observable<void> {
+    return this._animationStarted.pipe(
+      filter((e) => e.fromState !== e.toState && e.toState === 'void'),
+      map(() => {})
+    );
+  }
 
   /** Emits whenever the sidebar has started animating. */
   _animationStarted = new Subject<AnimationEvent>();
@@ -99,7 +117,28 @@ export class SbbIconSidebar extends SbbSidebarBase {
   // that can be inherited.
   // tslint:disable:no-host-decorator-in-concrete
   @HostBinding('@width')
-  _animationState: 'open-instant' | 'open' | 'void' = 'open-instant';
+  _animationState: 'expanded-instant' | 'expanded' | 'void' = 'expanded-instant';
+
+  /** Event emitted when the icon sidebar expanded state is changed. */
+  @Output() readonly expandedChange: EventEmitter<boolean> =
+    // Note this has to be async in order to avoid some issues with two-bindings (see #8872).
+    new EventEmitter<boolean>(/* isAsync */ true);
+
+  /** Event emitted when the sidebar has been expanded. */
+  // tslint:disable-next-line:no-output-rename
+  @Output('expanded')
+  _expandedStream = this.expandedChange.pipe(
+    filter((o: boolean) => o),
+    map(() => {})
+  );
+
+  /** Event emitted when the sidebar has been collapsed. */
+  // tslint:disable-next-line:no-output-rename
+  @Output('collapsed')
+  _collapsedStream = this.expandedChange.pipe(
+    filter((o: boolean) => !o),
+    map(() => {})
+  );
 
   // We have to use a `HostListener` here in order to support both Ivy and ViewEngine.
   // In Ivy the `host` bindings will be merged when this class is extended, whereas in
@@ -140,23 +179,27 @@ export class SbbIconSidebar extends SbbSidebarBase {
         const { fromState, toState } = event;
 
         if (
-          (toState.indexOf('open') === 0 && fromState === 'void') ||
-          (toState === 'void' && fromState.indexOf('open') === 0)
+          (toState.indexOf('expanded') === 0 && fromState === 'void') ||
+          (toState === 'void' && fromState.indexOf('expanded') === 0)
         ) {
-          this._showExpandedLabel = !this.expanded;
+          this.expandedChange.emit(this.expanded);
         }
       });
   }
 
-  toggleExpanded(expanded: boolean = !this._expanded) {
+  toggleExpanded(expanded: boolean = !this._expanded): Promise<boolean> {
     this._expanded = expanded;
 
     if (this._expanded) {
-      this._showExpandedLabel = false;
-      this._animationState = this._enableAnimations ? 'open' : 'open-instant';
+      this._animationState = this._enableAnimations ? 'expanded' : 'expanded-instant';
     } else {
       this._animationState = 'void';
     }
+    return new Promise<boolean>((resolve) => {
+      this.expandedChange
+        .pipe(take(1))
+        .subscribe((expandedAfterAnimation) => resolve(expandedAfterAnimation));
+    });
   }
 
   // tslint:disable: member-ordering
@@ -195,7 +238,7 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
 
   /**
    * Margins to be applied to the content. These are used to push / shrink the sidebar content when a
-   * sidebar is open. We use margin rather than transform even for push mode because transform breaks
+   * sidebar is expanded. We use margin rather than transform even for push mode because transform breaks
    * fixed position elements inside of the transformed element.
    */
   _contentMargins: { left: number | null } = { left: null };
@@ -250,7 +293,7 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
 
   /**
    * Subscribes to sidebar events in order to set a class on the main container element when the
-   * sidebar is open and the backdrop is visible. This ensures any overflow on the container element
+   * sidebar is expanded and the backdrop is visible. This ensures any overflow on the container element
    * is properly hidden.
    */
   private _watchExpandedToggle(sidebar: SbbIconSidebar): void {
@@ -262,7 +305,7 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
       .subscribe((event: AnimationEvent) => {
         // Set the transition class on the container so that the animations occur. This should not
         // be set initially because animations should only be triggered via a change in state.
-        if (event.toState !== 'open-instant' && this._animationMode !== 'NoopAnimations') {
+        if (event.toState !== 'expanded-instant' && this._animationMode !== 'NoopAnimations') {
           this._element.nativeElement.classList.add('sbb-sidebar-transition');
         }
 

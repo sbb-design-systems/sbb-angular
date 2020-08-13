@@ -15,18 +15,18 @@ import { SbbSidebarModule } from '../sidebar-module';
 
 import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
 
-xdescribe('SbbIconSidebar', () => {
+describe('SbbIconSidebar', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SbbSidebarModule, A11yModule, PlatformModule, NoopAnimationsModule, CommonModule],
       declarations: [
         BasicTestComponent,
         SidebarContainerNoSidebarTestComponent,
-        SidebarSetToOpenedFalseTestComponent,
-        SidebarSetToOpenedTrueTestComponent,
+        SidebarSetToExpandedFalseTestComponent,
+        SidebarSetToExpandedTrueTestComponent,
         TwoSidebarsTestComponent,
         SidebarWithFocusableElementsTestComponent,
-        SidebarOpenBindingTestComponent,
+        SidebarExpandedBindingTestComponent,
         IndirectDescendantSidebarTestComponent,
         NestedSidebarContainersTestComponent,
       ],
@@ -47,7 +47,7 @@ xdescribe('SbbIconSidebar', () => {
 
   describe('attributes', () => {
     it('should correctly parse expanded="false"', () => {
-      const fixture = TestBed.createComponent(SidebarSetToOpenedFalseTestComponent);
+      const fixture = TestBed.createComponent(SidebarSetToExpandedFalseTestComponent);
 
       fixture.detectChanges();
 
@@ -57,7 +57,7 @@ xdescribe('SbbIconSidebar', () => {
     });
 
     it('should correctly parse expanded="true"', () => {
-      const fixture = TestBed.createComponent(SidebarSetToOpenedTrueTestComponent);
+      const fixture = TestBed.createComponent(SidebarSetToExpandedTrueTestComponent);
 
       fixture.detectChanges();
 
@@ -90,14 +90,14 @@ xdescribe('SbbIconSidebar', () => {
       }).toThrow();
     }));
 
-    it('should bind 2-way bind on opened property', fakeAsync(() => {
-      const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
+    it('should bind 2-way bind on expanded property', fakeAsync(() => {
+      const fixture = TestBed.createComponent(SidebarExpandedBindingTestComponent);
       fixture.detectChanges();
 
       const sidebar: SbbIconSidebar = fixture.debugElement.query(By.directive(SbbIconSidebar))!
         .componentInstance;
 
-      // sidebar.open(); // TODO
+      sidebar.expanded = true;
       fixture.detectChanges();
       tick();
 
@@ -108,11 +108,11 @@ xdescribe('SbbIconSidebar', () => {
       TestBed.resetTestingModule()
         .configureTestingModule({
           imports: [SbbSidebarModule, BrowserAnimationsModule],
-          declarations: [SidebarOpenBindingTestComponent],
+          declarations: [SidebarExpandedBindingTestComponent],
         })
         .compileComponents();
 
-      const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
+      const fixture = TestBed.createComponent(SidebarExpandedBindingTestComponent);
       fixture.detectChanges();
 
       // Note that we need actual timeouts and the `BrowserAnimationsModule`
@@ -134,14 +134,14 @@ xdescribe('SbbIconSidebar', () => {
   });
 });
 
-xdescribe('SbbIconSidebarContainer', () => {
+describe('SbbIconSidebarContainer', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SbbSidebarModule, A11yModule, PlatformModule, NoopAnimationsModule],
       declarations: [
         SidebarContainerEmptyTestComponent,
         SidebarDelayedTestComponent,
-        SidebarSetToOpenedTrueTestComponent,
+        SidebarSetToExpandedTrueTestComponent,
         SidebarContainerStateChangesTestAppTestComponent,
         BasicTestComponent,
         SidebarContainerWithContentTestComponent,
@@ -155,11 +155,11 @@ xdescribe('SbbIconSidebarContainer', () => {
     TestBed.resetTestingModule()
       .configureTestingModule({
         imports: [SbbSidebarModule, BrowserAnimationsModule],
-        declarations: [SidebarSetToOpenedTrueTestComponent],
+        declarations: [SidebarSetToExpandedTrueTestComponent],
       })
       .compileComponents();
 
-    const fixture = TestBed.createComponent(SidebarSetToOpenedTrueTestComponent);
+    const fixture = TestBed.createComponent(SidebarSetToExpandedTrueTestComponent);
 
     fixture.detectChanges();
     tick();
@@ -175,7 +175,6 @@ xdescribe('SbbIconSidebarContainer', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
 
     fixture.detectChanges();
-    console.error(fixture.componentInstance.sidebarContainer.scrollable);
 
     expect(fixture.componentInstance.sidebarContainer.scrollable instanceof CdkScrollable).toBe(
       true
@@ -227,10 +226,10 @@ class SidebarContainerEmptyTestComponent {
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar
       #sidebar="sbbIconSidebar"
-      (opened)="open()"
-      (openedStart)="openStart()"
-      (closed)="close()"
-      (closedStart)="closeStart()"
+      (expanded)="expanded()"
+      (expandedStart)="expandedStart()"
+      (collapsed)="collapse()"
+      (collapsedStart)="collapseStart()"
     >
       <button #sidebarButton>Content</button>
     </sbb-icon-sidebar>
@@ -246,62 +245,62 @@ class SidebarContainerEmptyTestComponent {
   </sbb-icon-sidebar-container>`,
 })
 class BasicTestComponent {
-  openCount = 0;
-  openStartCount = 0;
-  closeCount = 0;
-  closeStartCount = 0;
+  expandedCount = 0;
+  expandedStartCount = 0;
+  collapseCount = 0;
+  collapseStartCount = 0;
 
   @ViewChild('sidebar') sidebar: SbbIconSidebar;
   @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;
-  @ViewChild('openButton') openButton: ElementRef<HTMLButtonElement>;
+  @ViewChild('expandedButton') expandedButton: ElementRef<HTMLButtonElement>;
   @ViewChild('svg') svg: ElementRef<SVGElement>;
-  @ViewChild('closeButton') closeButton: ElementRef<HTMLButtonElement>;
+  @ViewChild('collapseButton') collapseButton: ElementRef<HTMLButtonElement>;
 
-  open() {
-    this.openCount++;
+  expanded() {
+    this.expandedCount++;
   }
 
-  openStart() {
-    this.openStartCount++;
+  expandedStart() {
+    this.expandedStartCount++;
   }
 
-  close() {
-    this.closeCount++;
+  collapse() {
+    this.collapseCount++;
   }
 
-  closeStart() {
-    this.closeStartCount++;
+  collapseStart() {
+    this.collapseStartCount++;
   }
 }
 
 @Component({
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar #sidebar expanded="false">
-      Closed Sidebar.
+      collapsed Sidebar.
     </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
 })
-class SidebarSetToOpenedFalseTestComponent {}
+class SidebarSetToExpandedFalseTestComponent {}
 
 @Component({
   template: ` <sbb-icon-sidebar-container>
-    <sbb-icon-sidebar #sidebar expanded="true" (opened)="openCallback()">
-      Closed Sidebar.
+    <sbb-icon-sidebar #sidebar expanded="true" (expanded)="expandedCallback()">
+      Collapsed Sidebar.
     </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
 })
-class SidebarSetToOpenedTrueTestComponent {
-  openCallback = jasmine.createSpy('open callback');
+class SidebarSetToExpandedTrueTestComponent {
+  expandedCallback = jasmine.createSpy('expanded callback');
 }
 
 @Component({
   template: ` <sbb-icon-sidebar-container>
     <sbb-icon-sidebar #sidebar [(expanded)]="isExpanded">
-      Closed Sidebar.
+      Collapsed Sidebar.
     </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
 })
-class SidebarOpenBindingTestComponent {
+class SidebarExpandedBindingTestComponent {
   isExpanded = false;
 }
 
