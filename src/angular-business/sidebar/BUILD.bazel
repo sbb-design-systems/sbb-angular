@@ -23,6 +23,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/sidebar",
     deps = [
+        "//src/angular-core/breakpoints",
         "//src/angular-icons/arrow",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",

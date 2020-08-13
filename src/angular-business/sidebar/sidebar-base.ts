@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
 import { CdkScrollable, ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
 import {
@@ -11,8 +12,9 @@ import {
   OnDestroy,
   QueryList,
 } from '@angular/core';
+import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { Subject } from 'rxjs';
-import { debounceTime, startWith, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
 
 /**
  * Throws an exception if more than one SbbSidebarBase is provided.
@@ -28,15 +30,16 @@ export function throwSbbDuplicatedSidebarError() {
  */
 export const SBB_SIDEBAR_CONTAINER = new InjectionToken('SBB_SIDEBAR_CONTAINER');
 
-export interface ISbbSidebarContentMarginChanges {
+export interface ISbbSidebarContainer {
   _contentMarginChanges: Subject<any>;
+  _mobile: boolean;
 }
 
 @Directive()
 export abstract class SbbSidebarContentBase extends CdkScrollable implements AfterContentInit {
   protected constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    public _container: ISbbSidebarContentMarginChanges,
+    public _container: ISbbSidebarContainer,
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
     ngZone: NgZone
@@ -59,10 +62,10 @@ export abstract class SbbSidebarBase implements AfterContentChecked {
   /** Whether the sidebar is initialized. Used for disabling the initial animation. */
   protected _enableAnimations = false;
 
-  protected constructor(
-    protected _platform: Platform,
-    public _container: ISbbSidebarContentMarginChanges
-  ) {}
+  /** @docs-private **/
+  abstract _mobileChanged(mobile: boolean): void;
+
+  protected constructor(protected _platform: Platform, public _container: ISbbSidebarContainer) {}
 
   ngAfterContentChecked() {
     // Enable the animations after the lifecycle hooks have run, in order to avoid animating
@@ -81,7 +84,10 @@ export abstract class SbbSidebarBase implements AfterContentChecked {
  */
 @Directive()
 export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
-  implements AfterContentInit, OnDestroy, ISbbSidebarContentMarginChanges {
+  implements AfterContentInit, OnDestroy, ISbbSidebarContainer {
+  /** @docs.private **/
+  _mobile: boolean;
+
   /** The sidebar child */
   get sidebar(): T | null {
     return this._sidebar;
@@ -95,6 +101,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   protected constructor(
     protected _ngZone: NgZone,
     protected _changeDetectorRef: ChangeDetectorRef,
+    protected _breakpointObserver: BreakpointObserver,
     viewportRuler: ViewportRuler
   ) {
     // Since the minimum width of the sidebar depends on the viewport width,
@@ -142,6 +149,28 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
         )
         .subscribe(() => this.updateContentMargins());
     });
+  }
+
+  /** @docs-private **/
+  protected _watchBreakpointObserver() {
+    this._breakpointObserver
+      .observe(Breakpoints.Mobile)
+      .pipe(
+        map((r) => r.matches),
+        distinctUntilChanged(),
+        takeUntil(this._destroyed)
+      )
+      .subscribe((newMobile) => {
+        const currentMobile = this._mobile;
+        this._mobile = newMobile;
+
+        if (!this.sidebar || currentMobile === newMobile) {
+          return;
+        }
+
+        this.sidebar._mobileChanged(newMobile);
+        this._changeDetectorRef.markForCheck();
+      });
   }
 
   ngOnDestroy() {

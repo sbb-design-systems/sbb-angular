@@ -29,11 +29,16 @@ export const sbbIconSidebarAnimations: {
     state(
       'void',
       style({
-        // Avoids the shadow showing up when closed in SSR.
         width: '48px',
       })
     ),
-    transition('void => expanded-instant', animate('0ms')),
+    state(
+      'mobile',
+      style({
+        width: '100%',
+      })
+    ),
+    transition('void => expanded-instant, * <=> mobile', animate('0ms')),
     transition(
       'void <=> expanded, expanded-instant => void',
       animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')

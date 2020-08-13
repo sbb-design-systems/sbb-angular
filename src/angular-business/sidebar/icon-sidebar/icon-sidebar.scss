@@ -22,10 +22,8 @@
   transform: none;
   visibility: visible;
 
-  transition: width $swift-ease-out-duration $swift-ease-out-timing-function;
   background-color: $sbbColorMilk;
 
-  &,
   .sbb-icon-sidebar-links {
     width: 200px;
   }
@@ -155,5 +153,21 @@
         transform: rotate(180deg);
       }
     }
+  }
+}
+
+.sbb-icon-sidebar-container-mobile {
+  .sbb-icon-sidebar {
+    top: auto;
+    left: 0;
+    width: auto;
+    right: 0;
+    height: 48px;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  &.sbb-sidebar-transition .sbb-sidebar-content {
+    transition: none;
   }
 }

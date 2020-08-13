@@ -2,6 +2,7 @@ import { AnimationEvent } from '@angular/animations';
 import { FocusMonitor, FocusOrigin, FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
 import { ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
@@ -35,7 +36,7 @@ import { fromEvent, merge, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, startWith, take, takeUntil } from 'rxjs/operators';
 
 import {
-  ISbbSidebarContentMarginChanges,
+  ISbbSidebarContainer,
   SbbSidebarBase,
   SbbSidebarContainerBase,
   SbbSidebarContentBase,
@@ -471,6 +472,8 @@ export class SbbSidebar extends SbbSidebarBase
   _animationDoneListener(event: AnimationEvent) {
     this._animationEnd.next(event);
   }
+
+  _mobileChanged(mobile: boolean): void {}
 }
 
 @Component({
@@ -492,7 +495,7 @@ export class SbbSidebar extends SbbSidebarBase
   ],
 })
 export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
-  implements DoCheck, AfterContentInit, ISbbSidebarContentMarginChanges {
+  implements DoCheck, AfterContentInit, ISbbSidebarContainer {
   static ngAcceptInputType_hasBackdrop: BooleanInput;
   static ngAcceptInputType_autosize: BooleanInput;
 
@@ -562,9 +565,10 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
     @Inject(SBB_SIDEBAR_DEFAULT_AUTOSIZE) defaultAutosize = false,
+    breakPointObserver: BreakpointObserver,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
   ) {
-    super(ngZone, changeDetectorRef, viewportRuler);
+    super(ngZone, changeDetectorRef, breakPointObserver, viewportRuler);
 
     this._autosize = defaultAutosize;
   }

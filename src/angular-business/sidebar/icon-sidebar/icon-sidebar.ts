@@ -1,5 +1,6 @@
 import { AnimationEvent } from '@angular/animations';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
 import { ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
 import {
@@ -28,7 +29,7 @@ import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, startWith, take, takeUntil } from 'rxjs/operators';
 
 import {
-  ISbbSidebarContentMarginChanges,
+  ISbbSidebarContainer,
   SbbSidebarBase,
   SbbSidebarContainerBase,
   SbbSidebarContentBase,
@@ -43,6 +44,7 @@ import { sbbIconSidebarAnimations } from './icon-sidebar-animations';
   host: {
     class: 'sbb-sidebar-content sbb-icon-sidebar-content sbb-scrollbar',
     '[style.margin-left.px]': '_container._contentMargins.left',
+    '[style.margin-bottom.px]': '_container._contentMargins.bottom',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -117,7 +119,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
   // that can be inherited.
   // tslint:disable:no-host-decorator-in-concrete
   @HostBinding('@width')
-  _animationState: 'expanded-instant' | 'expanded' | 'void' = 'expanded-instant';
+  _animationState: 'expanded-instant' | 'expanded' | 'mobile' | 'void' = 'expanded-instant';
 
   /** Event emitted when the icon sidebar expanded state is changed. */
   @Output() readonly expandedChange: EventEmitter<boolean> =
@@ -163,7 +165,8 @@ export class SbbIconSidebar extends SbbSidebarBase {
   constructor(
     platform: Platform,
     @Inject(SBB_SIDEBAR_CONTAINER)
-    container: SbbIconSidebarContainer
+    container: SbbIconSidebarContainer,
+    private _changeDetectorRef: ChangeDetectorRef
   ) {
     super(platform, container);
 
@@ -204,6 +207,17 @@ export class SbbIconSidebar extends SbbSidebarBase {
 
   // tslint:disable: member-ordering
   static ngAcceptInputType_expanded: BooleanInput;
+
+  _mobileChanged(mobile: boolean): void {
+    if (mobile) {
+      this._animationState = 'mobile';
+    } else if (this.expanded) {
+      this._animationState = 'expanded-instant';
+    } else {
+      this._animationState = 'void';
+    }
+    this._changeDetectorRef.markForCheck();
+  }
   // tslint:enable: member-ordering
 }
 
@@ -214,6 +228,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
   styleUrls: ['./icon-sidebar.css'],
   host: {
     class: 'sbb-sidebar-container sbb-icon-sidebar-container',
+    '[class.sbb-icon-sidebar-container-mobile]': '_mobile',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -225,7 +240,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
   ],
 })
 export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSidebar>
-  implements AfterContentInit, ISbbSidebarContentMarginChanges {
+  implements AfterContentInit, ISbbSidebarContainer {
   @ContentChildren(SbbIconSidebar, {
     // We need to use `descendants: true`, because Ivy will no longer match
     // indirect descendants if it's left as false.
@@ -241,18 +256,19 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
    * sidebar is expanded. We use margin rather than transform even for push mode because transform breaks
    * fixed position elements inside of the transformed element.
    */
-  _contentMargins: { left: number | null } = { left: null };
+  _contentMargins: { left: number | null; bottom: number | null } = { left: null, bottom: null };
 
-  readonly _contentMarginChanges = new Subject<{ left: number | null }>();
+  readonly _contentMarginChanges = new Subject<{ left: number | null; bottom: number | null }>();
 
   constructor(
     private _element: ElementRef<HTMLElement>,
     ngZone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
+    breakpointObserver: BreakpointObserver,
     viewportRuler: ViewportRuler,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
   ) {
-    super(ngZone, changeDetectorRef, viewportRuler);
+    super(ngZone, changeDetectorRef, breakpointObserver, viewportRuler);
   }
 
   /**
@@ -261,17 +277,22 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
    */
   updateContentMargins() {
     let left = 0;
+    let bottom = 0;
 
     if (this._sidebar) {
-      left = 48; // TODO: try to add it to css classes
+      if (this._sidebar._container._mobile) {
+        bottom = 48; // TODO: try to add it to css classes
+      } else {
+        left = 48; // TODO: try to add it to css classes
 
-      if (this._sidebar.expanded) {
-        left = 200; // TODO: try to add it to css classes
+        if (this._sidebar.expanded) {
+          left = 200; // TODO: try to add it to css classes
+        }
       }
     }
 
-    if (left !== this._contentMargins.left) {
-      this._contentMargins = { left };
+    if (left !== this._contentMargins.left || bottom !== this._contentMargins.bottom) {
+      this._contentMargins = { left, bottom };
 
       // Pull back into the NgZone since in some cases we could be outside. We need to be careful
       // to do it only when something changed, otherwise we can end up hitting the zone too often.
@@ -293,6 +314,8 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
 
       this._changeDetectorRef.markForCheck();
     });
+
+    this._watchBreakpointObserver();
   }
 
   /**
@@ -309,7 +332,11 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
       .subscribe((event: AnimationEvent) => {
         // Set the transition class on the container so that the animations occur. This should not
         // be set initially because animations should only be triggered via a change in state.
-        if (event.toState !== 'expanded-instant' && this._animationMode !== 'NoopAnimations') {
+        if (
+          event.toState !== 'expanded-instant' &&
+          event.toState !== 'mobile' &&
+          this._animationMode !== 'NoopAnimations'
+        ) {
           this._element.nativeElement.classList.add('sbb-sidebar-transition');
         }
 

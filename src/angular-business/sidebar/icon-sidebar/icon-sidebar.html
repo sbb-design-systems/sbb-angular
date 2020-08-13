@@ -4,6 +4,7 @@
   </div>
 
   <button
+    *ngIf="!_container._mobile"
     class="sbb-icon-sidebar-item sbb-icon-sidebar-collapse-expand-button"
     (click)="toggleExpanded()"
   >

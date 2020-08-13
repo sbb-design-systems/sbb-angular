@@ -36,7 +36,8 @@ $swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
   -webkit-overflow-scrolling: touch;
 
   // Need this to take up space in the layout.
-  display: block;
+  display: flex;
+  flex-direction: column;
 
   // Hide the sidebars when they're closed.
   overflow: hidden;
