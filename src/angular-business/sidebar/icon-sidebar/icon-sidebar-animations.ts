@@ -23,8 +23,9 @@ export const sbbIconSidebarAnimations: {
     state(
       'expanded, expanded-instant',
       style({
-        width: '250px',
-      })
+        width: '{{expandedWidth}}',
+      }),
+      { params: { expandedWidth: '250px' } }
     ),
     state(
       'void',

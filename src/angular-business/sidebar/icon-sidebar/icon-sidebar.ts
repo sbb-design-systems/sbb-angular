@@ -38,6 +38,10 @@ import {
 
 import { sbbIconSidebarAnimations } from './icon-sidebar-animations';
 
+export type SbbIconSidebarAnimationState = 'expanded-instant' | 'expanded' | 'mobile' | 'void';
+
+export const SBB_ICON_SIDEBAR_EXPANDED_WIDTH = 250;
+
 @Component({
   selector: 'sbb-icon-sidebar-content',
   template: '<ng-content></ng-content>',
@@ -89,16 +93,16 @@ export class SbbIconSidebar extends SbbSidebarBase {
   }
   private _expanded = true;
 
-  /** Event emitted when the drawer has started opening. */
+  /** Event emitted when the sidebar has started opening. */
   @Output()
   get expandedStart(): Observable<void> {
     return this._animationStarted.pipe(
-      filter((e) => e.fromState !== e.toState && e.toState.indexOf('open') === 0),
+      filter((e) => e.fromState !== e.toState && e.toState.indexOf('expanded') === 0),
       map(() => {})
     );
   }
 
-  /** Event emitted when the drawer has started closing. */
+  /** Event emitted when the sidebar has started closing. */
   @Output()
   get collapsedStart(): Observable<void> {
     return this._animationStarted.pipe(
@@ -119,7 +123,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
   // that can be inherited.
   // tslint:disable:no-host-decorator-in-concrete
   @HostBinding('@width')
-  _animationState: 'expanded-instant' | 'expanded' | 'mobile' | 'void' = 'expanded-instant';
+  _animationState: { value: SbbIconSidebarAnimationState; params: { expandedWidth: string } };
 
   /** Event emitted when the icon sidebar expanded state is changed. */
   @Output() readonly expandedChange: EventEmitter<boolean> =
@@ -169,6 +173,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
     private _changeDetectorRef: ChangeDetectorRef
   ) {
     super(platform, container);
+    this.setAnimationState('expanded-instant');
 
     // We need a Subject with distinctUntilChanged, because the `done` event
     // fires twice on some browsers. See https://github.com/angular/angular/issues/24084
@@ -194,9 +199,9 @@ export class SbbIconSidebar extends SbbSidebarBase {
     this._expanded = expanded;
 
     if (this._expanded) {
-      this._animationState = this._enableAnimations ? 'expanded' : 'expanded-instant';
+      this.setAnimationState(this._enableAnimations ? 'expanded' : 'expanded-instant');
     } else {
-      this._animationState = 'void';
+      this.setAnimationState('void');
     }
     return new Promise<boolean>((resolve) => {
       this.expandedChange
@@ -205,19 +210,26 @@ export class SbbIconSidebar extends SbbSidebarBase {
     });
   }
 
-  // tslint:disable: member-ordering
-  static ngAcceptInputType_expanded: BooleanInput;
+  setAnimationState(state: SbbIconSidebarAnimationState) {
+    this._animationState = {
+      value: state,
+      params: { expandedWidth: SBB_ICON_SIDEBAR_EXPANDED_WIDTH + 'px' },
+    };
+  }
 
   _mobileChanged(mobile: boolean): void {
     if (mobile) {
-      this._animationState = 'mobile';
+      this.setAnimationState('mobile');
     } else if (this.expanded) {
-      this._animationState = 'expanded-instant';
+      this.setAnimationState('expanded-instant');
     } else {
-      this._animationState = 'void';
+      this.setAnimationState('void');
     }
     this._changeDetectorRef.markForCheck();
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_expanded: BooleanInput;
   // tslint:enable: member-ordering
 }
 
@@ -281,12 +293,12 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
 
     if (this._sidebar) {
       if (this._sidebar._container._mobile) {
-        bottom = 48; // TODO: try to add it to css classes
+        bottom = 48;
       } else {
-        left = 48; // TODO: try to add it to css classes
+        left = 48;
 
         if (this._sidebar.expanded) {
-          left = 250; // TODO: try to add it to css classes
+          left = SBB_ICON_SIDEBAR_EXPANDED_WIDTH;
         }
       }
     }
