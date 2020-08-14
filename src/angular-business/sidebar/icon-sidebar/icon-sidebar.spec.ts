@@ -17,7 +17,7 @@ import { SbbSidebarModule } from '../sidebar-module';
 import {
   SbbIconSidebar,
   SbbIconSidebarContainer,
-  SBB_ICON_SIDEBAR_EXPANDED_WIDTH,
+  SBB_ICON_SIDEBAR_EXPANDED_DEFAULT_WIDTH,
 } from './icon-sidebar';
 
 describe('SbbIconSidebar', () => {
@@ -303,7 +303,9 @@ describe('SbbIconSidebarContainer', () => {
     tick();
     fixture.detectChanges();
 
-    expect(parseInt(contentElement.style.marginLeft, 10)).toBe(SBB_ICON_SIDEBAR_EXPANDED_WIDTH);
+    expect(parseInt(contentElement.style.marginLeft, 10)).toBe(
+      SBB_ICON_SIDEBAR_EXPANDED_DEFAULT_WIDTH
+    );
   }));
 
   it('should not animate when the sidebar is expanded on load', fakeAsync(() => {

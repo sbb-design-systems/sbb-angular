@@ -16,6 +16,7 @@ import {
   HostBinding,
   HostListener,
   Inject,
+  InjectionToken,
   Input,
   NgZone,
   Optional,
@@ -40,7 +41,11 @@ import { sbbIconSidebarAnimations } from './icon-sidebar-animations';
 
 export type SbbIconSidebarAnimationState = 'expanded-instant' | 'expanded' | 'mobile' | 'void';
 
-export const SBB_ICON_SIDEBAR_EXPANDED_WIDTH = 250;
+export const SBB_ICON_SIDEBAR_EXPANDED_DEFAULT_WIDTH = 250;
+
+export const SBB_ICON_SIDEBAR_EXPANDED_WIDTH = new InjectionToken<number>(
+  'SBB_ICON_SIDEBAR_EXPANDED_WIDTH'
+);
 
 @Component({
   selector: 'sbb-icon-sidebar-content',
@@ -170,7 +175,9 @@ export class SbbIconSidebar extends SbbSidebarBase {
     platform: Platform,
     @Inject(SBB_SIDEBAR_CONTAINER)
     container: SbbIconSidebarContainer,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_ICON_SIDEBAR_EXPANDED_WIDTH)
+    private _expandedWidth: number
   ) {
     super(platform, container);
     this.setAnimationState('expanded-instant');
@@ -213,7 +220,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
   setAnimationState(state: SbbIconSidebarAnimationState) {
     this._animationState = {
       value: state,
-      params: { expandedWidth: SBB_ICON_SIDEBAR_EXPANDED_WIDTH + 'px' },
+      params: { expandedWidth: this._expandedWidth + 'px' },
     };
   }
 
@@ -278,6 +285,8 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
     changeDetectorRef: ChangeDetectorRef,
     breakpointObserver: BreakpointObserver,
     viewportRuler: ViewportRuler,
+    @Inject(SBB_ICON_SIDEBAR_EXPANDED_WIDTH)
+    private _sidebarExpandedWidth: number,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
   ) {
     super(ngZone, changeDetectorRef, breakpointObserver, viewportRuler);
@@ -298,7 +307,7 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
         left = 48;
 
         if (this._sidebar.expanded) {
-          left = SBB_ICON_SIDEBAR_EXPANDED_WIDTH;
+          left = this._sidebarExpandedWidth;
         }
       }
     }

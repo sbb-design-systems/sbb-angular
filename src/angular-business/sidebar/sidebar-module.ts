@@ -8,6 +8,8 @@ import {
   SbbIconSidebar,
   SbbIconSidebarContainer,
   SbbIconSidebarContent,
+  SBB_ICON_SIDEBAR_EXPANDED_DEFAULT_WIDTH,
+  SBB_ICON_SIDEBAR_EXPANDED_WIDTH,
 } from './icon-sidebar/icon-sidebar';
 import { SbbIconSidebarItem } from './icon-sidebar/icon-sidebar-item';
 import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/sidebar';
@@ -35,6 +37,12 @@ import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/si
     SbbIconSidebarContainer,
     SbbIconSidebarContent,
     SbbIconSidebarItem,
+  ],
+  providers: [
+    {
+      provide: SBB_ICON_SIDEBAR_EXPANDED_WIDTH,
+      useValue: SBB_ICON_SIDEBAR_EXPANDED_DEFAULT_WIDTH,
+    },
   ],
 })
 export class SbbSidebarModule {}
