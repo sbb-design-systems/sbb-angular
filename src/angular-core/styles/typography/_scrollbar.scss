@@ -43,6 +43,12 @@ $trackColor: $sbbColorMilk;
       @include scrollbarThickness();
     }
 
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
     &:hover::-webkit-scrollbar-thumb:hover {
       background-color: $sbbColorStorm;
     }
