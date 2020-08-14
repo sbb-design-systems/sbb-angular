@@ -25,7 +25,8 @@
   background-color: $sbbColorMilk;
 
   .sbb-icon-sidebar-item {
-    display: flex;
+    display: inline-flex;
+    width: 100%;
     align-items: center;
     height: 48px;
     color: $sbbColorIron;
@@ -181,6 +182,7 @@
     }
 
     .sbb-icon-sidebar-item {
+      display: flex;
       flex: 1 0 48px;
       justify-content: center;
 
