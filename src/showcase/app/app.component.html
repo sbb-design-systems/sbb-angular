@@ -4,27 +4,61 @@
     <a target="_blank" href="https://angular.io/">Angular {{ angularVersion }}</a>
   </sbb-app-chooser-section>
   <a routerLink="/">Introduction</a>
-  <button [sbbHeaderMenu]="packages">Packages</button>
   <a routerLink="/howtoupdate">How to update</a>
-  <sbb-header-menu #packages="sbbHeaderMenu">
-    Packages
-    <a sbbHeaderMenuItem routerLink="/public" routerLinkActive="sbb-active"
-      >@sbb-esta/angular-public</a
-    >
-    <a sbbHeaderMenuItem routerLink="/business" routerLinkActive="sbb-active"
-      >@sbb-esta/angular-business</a
-    >
-    <a sbbHeaderMenuItem routerLink="/core" routerLinkActive="sbb-active">@sbb-esta/angular-core</a>
-    <a sbbHeaderMenuItem routerLink="/icons" routerLinkActive="sbb-active"
-      >@sbb-esta/angular-icons (deprecated)</a
-    >
-    <a sbbHeaderMenuItem routerLink="/keycloak" routerLinkActive="sbb-active"
-      >@sbb-esta/angular-keycloak (deprecated)</a
-    >
-    <a sbbHeaderMenuItem routerLink="/maps" routerLinkActive="sbb-active">@sbb-esta/angular-maps</a>
-  </sbb-header-menu>
 </sbb-header>
 
-<main class="sbb-scrollbar" cdkScrollable>
-  <router-outlet></router-outlet>
-</main>
+<sbb-icon-sidebar-container class="sbb-icon-sidebar-after-header">
+  <sbb-icon-sidebar>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-public"
+      routerLink="/public"
+      routerLinkActive="sbb-icon-sidebar-item-active"
+    >
+      <sbb-icon-station sbbIcon></sbb-icon-station>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-business"
+      routerLink="/business"
+      routerLinkActive="sbb-icon-sidebar-item-active"
+    >
+      <sbb-icon-station sbbIcon></sbb-icon-station>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-core"
+      routerLink="/core"
+      routerLinkActive="sbb-icon-sidebar-item-active"
+    >
+      <sbb-icon-station sbbIcon></sbb-icon-station>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-icons"
+      routerLink="/icons"
+      routerLinkActive="sbb-icon-sidebar-item-active"
+    >
+      <sbb-icon-station sbbIcon></sbb-icon-station>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-keycloak"
+      routerLink="/keycloak"
+      routerLinkActive="sbb-icon-sidebar-item-active"
+    >
+      <sbb-icon-station sbbIcon></sbb-icon-station>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-maps"
+      routerLink="/maps"
+      routerLinkActive="sbb-icon-sidebar-item-active"
+    >
+      <sbb-icon-station sbbIcon></sbb-icon-station>
+    </a>
+  </sbb-icon-sidebar>
+  <sbb-icon-sidebar-content>
+    <router-outlet></router-outlet>
+  </sbb-icon-sidebar-content>
+</sbb-icon-sidebar-container>

@@ -6,6 +6,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
 import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
+import {
+  SbbSidebarModule,
+  SBB_ICON_SIDEBAR_EXPANDED_WIDTH,
+} from '@sbb-esta/angular-business/sidebar';
+import { IconStationModule } from '@sbb-esta/angular-icons/station';
 import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,9 +29,12 @@ import { IntroductionComponent } from './introduction/introduction.component';
     HttpClientModule,
     ReactiveFormsModule,
     CheckboxModule,
+    SbbSidebarModule,
+    IconStationModule,
   ],
   exports: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [SBB_ICON_REGISTRY_PROVIDER],
+
+  providers: [SBB_ICON_REGISTRY_PROVIDER, { provide: SBB_ICON_SIDEBAR_EXPANDED_WIDTH, useValue: 260 }],
 })
 export class AppModule {}

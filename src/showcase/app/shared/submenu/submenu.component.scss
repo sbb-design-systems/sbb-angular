@@ -1,7 +1,5 @@
 :host {
   background: #fff;
-  top: 0;
-  left: 0;
   overflow-y: auto;
   height: calc(100vh - 48px);
   width: 300px;
@@ -9,7 +7,6 @@
   border-right: solid 1px #cccccc;
   transition: all 0.3s ease;
   z-index: 998;
-  margin-top: 54px;
   padding-top: 1rem;
   padding-bottom: 10rem;
 }
