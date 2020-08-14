@@ -160,17 +160,22 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
         distinctUntilChanged(),
         takeUntil(this._destroyed)
       )
-      .subscribe((newMobile) => {
-        const currentMobile = this._mobile;
-        this._mobile = newMobile;
+      .subscribe((newMobile) => this._updateMobileState(newMobile));
+  }
 
-        if (!this.sidebar || currentMobile === newMobile) {
-          return;
-        }
+  /**
+   * @docs-private
+   */
+  _updateMobileState(newMobile: boolean) {
+    const currentMobile = this._mobile;
+    this._mobile = newMobile;
 
-        this.sidebar._mobileChanged(newMobile);
-        this._changeDetectorRef.markForCheck();
-      });
+    if (!this.sidebar || currentMobile === newMobile) {
+      return;
+    }
+
+    this.sidebar._mobileChanged(newMobile);
+    this._changeDetectorRef.markForCheck();
   }
 
   ngOnDestroy() {
