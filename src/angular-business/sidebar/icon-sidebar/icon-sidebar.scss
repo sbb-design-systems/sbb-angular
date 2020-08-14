@@ -34,6 +34,10 @@
     line-height: 23px;
     position: relative;
 
+    &:not(.sbb-icon-sidebar-item-active) {
+      outline: 0;
+    }
+
     .sbb-icon-sidebar-item-icon {
       display: inline-flex;
       height: 48px;
@@ -123,6 +127,7 @@
     background-color: $sbbColorMilk;
     cursor: pointer;
     outline: 0;
+    overflow: hidden;
 
     .sbb-icon-sidebar-item-icon {
       transition: transform $swift-ease-out-duration $swift-ease-out-timing-function;
@@ -139,7 +144,6 @@
   &:not(.sbb-icon-sidebar-expanded) {
     width: 48px;
 
-    &,
     .sbb-sidebar-inner-container {
       overflow-x: hidden;
     }
