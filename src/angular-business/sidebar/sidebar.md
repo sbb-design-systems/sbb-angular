@@ -136,7 +136,7 @@ be explicitly set via CSS:
 
 ```css
 sbb-sidebar {
-  width: 200px;
+  width: 250px;
 }
 ```
 

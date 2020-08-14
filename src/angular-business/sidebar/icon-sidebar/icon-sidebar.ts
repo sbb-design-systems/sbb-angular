@@ -286,7 +286,7 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
         left = 48; // TODO: try to add it to css classes
 
         if (this._sidebar.expanded) {
-          left = 200; // TODO: try to add it to css classes
+          left = 250; // TODO: try to add it to css classes
         }
       }
     }

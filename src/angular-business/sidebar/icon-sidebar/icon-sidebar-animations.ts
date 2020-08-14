@@ -23,7 +23,7 @@ export const sbbIconSidebarAnimations: {
     state(
       'expanded, expanded-instant',
       style({
-        width: '200px',
+        width: '250px',
       })
     ),
     state(

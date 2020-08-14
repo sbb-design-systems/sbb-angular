@@ -24,13 +24,10 @@
 
   background-color: $sbbColorMilk;
 
-  .sbb-icon-sidebar-links {
-    width: 200px;
-  }
-
   .sbb-icon-sidebar-item {
     display: flex;
-    min-height: 48px;
+    align-items: center;
+    height: 48px;
     color: $sbbColorIron;
     text-decoration: none;
     font-size: toPx($sizeFontDefault);
@@ -57,7 +54,10 @@
     }
 
     .sbb-icon-sidebar-item-label {
-      padding: 12px 12px 12px 4px;
+      padding: 0 12px 0 4px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     &:hover,
@@ -171,7 +171,6 @@
     }
 
     .sbb-icon-sidebar-links {
-      width: auto;
       display: flex;
       flex-direction: row;
       justify-content: space-between;

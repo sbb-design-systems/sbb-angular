@@ -299,7 +299,7 @@ describe('SbbIconSidebarContainer', () => {
     tick();
     fixture.detectChanges();
 
-    expect(parseInt(contentElement.style.marginLeft, 10)).toBe(200);
+    expect(parseInt(contentElement.style.marginLeft, 10)).toBe(250);
   }));
 
   it('should not animate when the sidebar is expanded on load', fakeAsync(() => {
