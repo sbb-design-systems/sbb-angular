@@ -61,6 +61,9 @@ jobs:
       with:
         node-version: 12
 
+    - run: echo $ACTIONS_CACHE_URL
+    - run: echo $ACTIONS_RUNTIME_URL
+
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -73,7 +76,6 @@ jobs:
           ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
-    - run: printenv
     - name: "Bazel: Restore remote cache"
       uses: actions/cache@v2
       with:
@@ -85,7 +87,7 @@ jobs:
       run: yarn -s build all
     - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
-    - name: "Build: Showcase"
+    - name: "Bazel: Build showcase"
       run: yarn -s build showcase
     - name: "Bazel: Clean bazel disk cache"
       run: yarn -s bazel:cache clean --maxSize 500MB
