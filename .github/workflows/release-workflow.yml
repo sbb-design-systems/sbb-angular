@@ -28,7 +28,6 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v2
-      id: yarn-cache
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
@@ -37,7 +36,7 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
-    - name: "Build: Packages"
+    - name: "Bazel: Build packages"
       run: yarn -s build packages
       
     - uses: actions/upload-artifact@v1
@@ -105,7 +104,6 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v2
-      id: yarn-cache
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
@@ -114,21 +112,27 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
-    - name: "Cache: Restore bazel disk cache"
-      run: yarn -s bazel:cache restore build
-    - name: "Build: Showcase"
+      
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-build-${{ github.sha }}
+        restore-keys: |
+          bazel-build-
+    - name: "Bazel: Build showcase"
       run: yarn -s build showcase
 
     - name: "Docker: Parse release version"
       id: docker_release_version
       run: echo ::set-output name=docker_release_version::${GITHUB_REF/refs\/tags\//}
-    - name: "Build: Docker image"
+    - name: "Docker: Build image"
       run: |
         docker build \
         -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} \
         -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:latest \
         .
-    - name: "Publish: Docker image"
+    - name: "Docker: Publish image"
       run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }}
-    - name: "Publish: Docker image as latest"
+    - name: "Docker: Publish image as latest"
       run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:latest

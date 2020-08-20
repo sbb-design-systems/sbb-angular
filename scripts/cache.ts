@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { restoreCache, saveCache } from '@actions/cache';
 import { existsSync, readdirSync, statSync, unlinkSync } from 'fs';
 import minimist from 'minimist';
 import { homedir } from 'os';
@@ -70,49 +69,14 @@ class LRUCache {
 
 if (module === require.main) {
   const options = minimist(process.argv.slice(2));
-  const [target, key] = options._;
-  const hashKey = (k: string) => `bazel-artifacts-${k}-`;
+  const [target] = options._;
   if (!target) {
     throw new Error('Target parameter required');
   }
 
   if (target === 'clean') {
     cleanBazelCache(options.path || bazelCacheDir, options.maxSize);
-  } else if (!key) {
-    throw new Error(
-      'key is required for cache restore or save! (e.g. yarn bazel:cache restore <key>)'
-    );
-  } else if (target === 'restore') {
-    restoreBazelCache(bazelCacheDir, hashKey(key)).catch((e) => console.log(e));
-  } else if (target === 'save') {
-    saveBazelCache(bazelCacheDir, hashKey(key)).catch((e) => console.log(e));
   }
-}
-
-/**
- * Restores the remote bazel disk cache.
- */
-async function restoreBazelCache(path: string, key: string) {
-  if (!process.env.GITHUB_SHA) {
-    console.log('Restoring cache can only be executed on GitHub. Skipping...');
-    return;
-  }
-
-  await restoreCache([path], `${key}${process.env.GITHUB_SHA}`, [key]);
-}
-
-/**
- * Saves the remote bazel disk cache.
- */
-async function saveBazelCache(path: string, key: string) {
-  if (!process.env.GITHUB_SHA) {
-    console.log('Saving cache can only be executed on GitHub. Skipping...');
-    return;
-  }
-
-  const cache = new LRUCache(path);
-
-  await saveCache([path], `${key}${process.env.GITHUB_SHA}`);
 }
 
 /**
