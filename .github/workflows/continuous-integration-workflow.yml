@@ -83,8 +83,10 @@ jobs:
     - name: "Build: Showcase"
       run: yarn -s build showcase
     - name: "Cache: Clean bazel disk cache"
+      if: github.event_name == 'push'
       run: yarn -s bazel:cache clean --maxSize 300MB
     - name: "Cache: Save bazel disk cache"
+      if: github.event_name == 'push'
       run: yarn -s bazel:cache save build
     - name: "Pack: Showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
@@ -107,7 +109,7 @@ jobs:
     - name: "Bazel Cache: Apply configuration"
       if: github.event_name == 'push'
       run: |
-        echo "build --config=remote-http-caching" >> ~/.bazelrc
+        echo "build --config=remote-disk-caching" >> ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
         node-version: 12
@@ -130,6 +132,8 @@ jobs:
     - name: "Build: Packages"
       run: yarn -s build packages
     - name: "Cache: Clean bazel disk cache"
+      if: github.event_name == 'push'
       run: yarn -s bazel:cache clean --maxSize 150MB
     - name: "Cache: Save bazel disk cache"
+      if: github.event_name == 'push'
       run: yarn -s bazel:cache save packages

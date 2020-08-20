@@ -28,13 +28,13 @@ if (module === require.main) {
 
   if (target === 'all') {
     buildAllTargets();
-  } else if (options._[0] === 'packages') {
+  } else if (target === 'packages') {
     /**
      * Builds the release packages with the default compile mode and
      * output directory.
      */
     buildReleasePackages(false, join(projectDir, 'dist/releases'));
-  } else if (options._[0] === 'showcase') {
+  } else if (target === 'showcase') {
     buildShowcase(join(projectDir, 'dist/releases'));
   }
 }
