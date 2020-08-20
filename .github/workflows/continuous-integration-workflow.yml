@@ -66,7 +66,6 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v2
-      id: yarn-cache
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
@@ -74,20 +73,22 @@ jobs:
           ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
-    - name: "Cache: Restore bazel disk cache"
-      run: yarn -s bazel:cache restore build
-    - name: "Build: Bazel"
+    - run: printenv
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-build-${{ github.sha }}
+        restore-keys: |
+          bazel-build-
+    - name: "Bazel: Build"
       run: yarn -s build all
-    - name: "Test: Run local tests"
+    - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
     - name: "Build: Showcase"
       run: yarn -s build showcase
-    - name: "Cache: Clean bazel disk cache"
-      if: github.event_name == 'push'
-      run: yarn -s bazel:cache clean --maxSize 300MB
-    - name: "Cache: Save bazel disk cache"
-      if: github.event_name == 'push'
-      run: yarn -s bazel:cache save build
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --maxSize 500MB
     - name: "Pack: Showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
     - name: "Deploy: Staging"
@@ -119,7 +120,6 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v2
-      id: yarn-cache
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
@@ -127,13 +127,14 @@ jobs:
           ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
-    - name: "Cache: Restore bazel disk cache"
-      run: yarn -s bazel:cache restore packages
-    - name: "Build: Packages"
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-packages-${{ github.sha }}
+        restore-keys: |
+          bazel-packages-
+    - name: "Bazel: Build packages"
       run: yarn -s build packages
-    - name: "Cache: Clean bazel disk cache"
-      if: github.event_name == 'push'
+    - name: "Bazel: Clean bazel disk cache"
       run: yarn -s bazel:cache clean --maxSize 150MB
-    - name: "Cache: Save bazel disk cache"
-      if: github.event_name == 'push'
-      run: yarn -s bazel:cache save packages

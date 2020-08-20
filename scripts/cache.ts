@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { restoreCache, saveCache } from '@actions/cache';
-import { createHash } from 'crypto';
 import { existsSync, readdirSync, statSync, unlinkSync } from 'fs';
 import minimist from 'minimist';
 import { homedir } from 'os';
@@ -60,15 +59,6 @@ class LRUCache {
     };
   }
 
-  /**
-   * Calculates a sha256 has value from all file names.
-   */
-  calculateHash() {
-    const hash = createHash('sha512');
-    this._entries.forEach((e) => hash.write(e.name));
-    return hash.digest('hex');
-  }
-
   private _deleteEntry(entry: FileEntry) {
     const index = this._entries.indexOf(entry);
     if (index >= 0) {
@@ -93,9 +83,9 @@ if (module === require.main) {
       'key is required for cache restore or save! (e.g. yarn bazel:cache restore <key>)'
     );
   } else if (target === 'restore') {
-    restoreBazelCache(bazelCacheDir, hashKey(key));
+    restoreBazelCache(bazelCacheDir, hashKey(key)).catch((e) => console.log(e));
   } else if (target === 'save') {
-    saveBazelCache(bazelCacheDir, hashKey(key));
+    saveBazelCache(bazelCacheDir, hashKey(key)).catch((e) => console.log(e));
   }
 }
 
@@ -122,11 +112,7 @@ async function saveBazelCache(path: string, key: string) {
 
   const cache = new LRUCache(path);
 
-  try {
-    await saveCache([path], `${key}${cache.calculateHash()}`);
-  } catch {
-    // Might happen if nothing changed. GitHub caches are immutable.
-  }
+  await saveCache([path], `${key}${process.env.GITHUB_SHA}`);
 }
 
 /**
