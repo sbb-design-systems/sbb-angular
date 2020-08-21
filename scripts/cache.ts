@@ -21,6 +21,21 @@ class FileEntry {
   }
 }
 
+class RemovalResult {
+  totalSize = 0;
+  removedAmount = 0;
+  get reducedSize() {
+    return this.totalSize - this._reducedSize;
+  }
+
+  private _reducedSize = 0;
+
+  addRemovable(entry: FileEntry) {
+    this.removedAmount += 1;
+    this._reducedSize += entry.size;
+  }
+}
+
 class LRUCache {
   /** Entries sorted by modified descending */
   private _entries: FileEntry[];
@@ -34,28 +49,28 @@ class LRUCache {
       : [];
   }
 
-  removeOldestExceeding(size: number) {
-    let combinedSize = 0;
-    let reducedSize = 0;
-    let removedAmount = 0;
-    this._entries
-      .filter((e) => {
-        if (combinedSize < size && combinedSize + e.size > size) {
-          reducedSize = combinedSize;
-        }
-        combinedSize += e.size;
-        const isExceeding = combinedSize > size;
-        if (isExceeding) {
-          removedAmount += 1;
-        }
-        return isExceeding;
-      })
-      .forEach((e) => this._deleteEntry(e));
-    return {
-      totalSize: combinedSize,
-      reducedSize,
-      removedAmount,
-    };
+  removeLargerThan(size: number) {
+    const result = new RemovalResult();
+    for (const entry of this._entries) {
+      result.totalSize += entry.size;
+      if (entry.size > size) {
+        result.addRemovable(entry);
+        this._deleteEntry(entry);
+      }
+    }
+    return result;
+  }
+
+  removeOldestExceedingFiles(size: number) {
+    const result = new RemovalResult();
+    for (const entry of this._entries) {
+      result.totalSize += entry.size;
+      if (result.totalSize > size) {
+        result.addRemovable(entry);
+        this._deleteEntry(entry);
+      }
+    }
+    return result;
   }
 
   private _deleteEntry(entry: FileEntry) {
@@ -75,7 +90,7 @@ if (module === require.main) {
   }
 
   if (target === 'clean') {
-    cleanBazelCache(options.path || bazelCacheDir, options.maxSize);
+    cleanBazelCache(options.path || bazelCacheDir, options as any);
   }
 }
 
@@ -84,27 +99,51 @@ if (module === require.main) {
  * @param path The path to the disk cache.
  * @param maxSize The max allowed cache size.
  */
-function cleanBazelCache(path: string, maxSize = '') {
+function cleanBazelCache(path: string, options: { maxSize?: string; individualMaxSize?: string }) {
+  const maxSize = options.maxSize || '0Bytes';
   const cache = new LRUCache(path);
-  const maxSizeInBytes = resolveMaxSize(maxSize);
-  const result = cache.removeOldestExceeding(maxSizeInBytes);
+  if (options.individualMaxSize) {
+    removeByIndividualMaxSize(cache, options.individualMaxSize);
+  }
+  removeByMaxSize(cache, options.maxSize || '0Bytes');
+}
+
+function removeByIndividualMaxSize(cache: LRUCache, maxSize: string) {
+  const maxSizeInBytes = resolveByteSize(maxSize);
+  const result = cache.removeLargerThan(maxSizeInBytes);
   if (result.removedAmount === 0) {
     console.log(
-      `Total size of ${path} ${formatBytes(
+      `No file in ${cache.path} exceeds max file size of ${maxSize}. Nothing was removed...`
+    );
+  } else {
+    console.log(
+      `Reduced size of ${cache.path} from ${formatBytes(result.totalSize)} to ${formatBytes(
+        result.reducedSize
+      )}. Removed ${result.removedAmount} files exceeding ${maxSize}...`
+    );
+  }
+}
+
+function removeByMaxSize(cache: LRUCache, maxSize: string) {
+  const maxSizeInBytes = resolveByteSize(maxSize);
+  const result = cache.removeOldestExceedingFiles(maxSizeInBytes);
+  if (result.removedAmount === 0) {
+    console.log(
+      `Total size of ${cache.path} ${formatBytes(
         result.totalSize
       )} smaller than ${maxSize}. Nothing was removed...`
     );
   } else {
     console.log(
-      `Reduced size of ${path} from ${formatBytes(result.totalSize)} to ${formatBytes(
+      `Reduced size of ${cache.path} from ${formatBytes(result.totalSize)} to ${formatBytes(
         result.reducedSize
       )}. Removed ${result.removedAmount} files...`
     );
   }
 }
 
-function resolveMaxSize(maxSize: string) {
-  const [fullMatch, m1, m2] = maxSize.match(/^(\d+)(Bytes|B|KB|MB|GB|TB)?$/i) || [];
+function resolveByteSize(size: string) {
+  const [fullMatch, m1, m2] = size.match(/^(\d+)(Bytes|B|KB|MB|GB|TB)?$/i) || [];
   if (!fullMatch) {
     throw new Error('Invalid --maxSize! Expected e.g. 200MB, 1GB');
   }
