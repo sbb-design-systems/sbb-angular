@@ -50,9 +50,9 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-    - name: Copy bazel.rc to user home
+    - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
-    - name: "Bazel Cache: Apply configuration"
+    - name: "Bazel: Write to cache on push event"
       if: github.event_name == 'push'
       run: |
         echo "build --config=remote-disk-caching" >> ~/.bazelrc
@@ -88,9 +88,10 @@ jobs:
       run: yarn -s build showcase
     - name: "Bazel: Clean bazel disk cache"
       run: yarn -s bazel:cache clean --maxSize 300MB --individualMaxSize=20MB
-    - name: "Pack: Showcase"
+
+    - name: "Deploy: Pack showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
-    - name: "Deploy: Staging"
+    - name: "Deploy: Upload to staging"
       if: github.event_name == 'pull_request'
       run: |
         curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
@@ -104,9 +105,9 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-    - name: Copy bazel.rc to user home
+    - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
-    - name: "Bazel Cache: Apply configuration"
+    - name: "Bazel: Write to cache on push event"
       if: github.event_name == 'push'
       run: |
         echo "build --config=remote-disk-caching" >> ~/.bazelrc
