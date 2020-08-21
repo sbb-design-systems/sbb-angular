@@ -28,15 +28,11 @@ jobs:
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
+      uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
@@ -54,16 +50,12 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-    - name: Copy bazel.rc to user home
+    - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
-    - name: "Bazel Cache: Apply configuration"
+    - name: "Bazel: Write to cache on push event"
       if: github.event_name == 'push'
-      env:
-        GCS_KEY: ${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}
       run: |
-        echo "$GCS_KEY" > ~/credentials.json
-        echo "build --google_credentials=$HOME/credentials.json" >> ~/.bazelrc
-        echo "build --config=remote-http-caching" >> ~/.bazelrc
+        echo "build --config=remote-disk-caching" >> ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
         node-version: 12
@@ -71,29 +63,35 @@ jobs:
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
+      uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
 
-    - name: "Build: Bazel"
-      run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
-
-    - name: "Test: Run local tests"
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-build-${{ github.sha }}
+        restore-keys: |
+          bazel-build-
+    - name: "Bazel: Build"
+      run: yarn -s build all
+    - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
+    - name: "Bazel: Build showcase"
+      run: yarn -s build showcase
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --maxSize 300MB --individualMaxSize=20MB
 
-    - name: "Build: Showcase"
-      run: yarn -s build:showcase
-    - name: "Pack: Showcase"
+    - name: "Deploy: Pack showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
-    - name: "Deploy: Staging"
+    - name: "Deploy: Upload to staging"
       if: github.event_name == 'pull_request'
       run: |
         curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
@@ -107,16 +105,12 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-    - name: Copy bazel.rc to user home
+    - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
-    - name: "Bazel Cache: Apply configuration"
+    - name: "Bazel: Write to cache on push event"
       if: github.event_name == 'push'
-      env:
-        GCS_KEY: ${{ secrets.BAZEL_CACHE_GOOGLE_CLOUD_KEY }}
       run: |
-        echo "$GCS_KEY" > ~/credentials.json
-        echo "build --google_credentials=$HOME/credentials.json" >> ~/.bazelrc
-        echo "build --config=remote-http-caching" >> ~/.bazelrc
+        echo "build --config=remote-disk-caching" >> ~/.bazelrc
     - uses: actions/setup-node@v1
       with:
         node-version: 12
@@ -124,19 +118,24 @@ jobs:
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
+      uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
-    - name: "Build: Packages"
-      run: yarn -s build
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-packages-${{ github.sha }}
+        restore-keys: |
+          bazel-packages-
+    - name: "Bazel: Build packages"
+      run: yarn -s build packages
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --maxSize 150MB

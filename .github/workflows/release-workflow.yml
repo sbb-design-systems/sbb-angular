@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-    - name: Copy bazel.rc to user home
+    - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
@@ -26,22 +26,25 @@ jobs:
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
+      uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
-    - name: "Build: Packages"
-      run: yarn -s build
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-packages-${{ github.sha }}
+        restore-keys: |
+          bazel-packages-
+    - name: "Bazel: Build packages"
+      run: yarn -s build packages
       
     - uses: actions/upload-artifact@v1
       with:
@@ -97,7 +100,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-    - name: Copy bazel.rc to user home
+    - name: "Bazel: Copy bazel.rc to user home"
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
@@ -106,33 +109,36 @@ jobs:
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn -s hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
+      uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Build: Showcase"
-      run: yarn -s build:showcase
+      
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-build-${{ github.sha }}
+        restore-keys: |
+          bazel-build-
+    - name: "Bazel: Build showcase"
+      run: yarn -s build showcase
 
     - name: "Docker: Parse release version"
       id: docker_release_version
       run: echo ::set-output name=docker_release_version::${GITHUB_REF/refs\/tags\//}
-    - name: "Build: Docker image"
+    - name: "Docker: Build image"
       run: |
         docker build \
         -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }} \
         -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:latest \
         .
-    - name: "Publish: Docker image"
+    - name: "Docker: Publish image"
       run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${{ steps.docker_release_version.outputs.docker_release_version }}
-    - name: "Publish: Docker image as latest"
+    - name: "Docker: Publish image as latest"
       run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:latest

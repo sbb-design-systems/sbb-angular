@@ -52,18 +52,18 @@ build:ivy --define=angular_ivy_enabled=True
 build --config=ivy
 
 #######################
-# Remote HTTP Caching #
+# Remote Disk Caching #
 #######################
-build --remote_http_cache=https://storage.googleapis.com/sbb-angular-bazel-cache
+build --disk_cache=~/.bazel-cache/sbb-angular
 build --remote_accept_cached=true
 build --remote_upload_local_results=false
 
 ######################################
-# Remote HTTP Caching writes support #
+# Remote Disk Caching writes support #
 # Turn on these settings with        #
-#  --config=remote-http-caching      #
+#  --config=remote-disk-caching      #
 ######################################
-build:remote-http-caching --remote_upload_local_results=true
+build:remote-disk-caching --remote_upload_local_results=true
 
 ################################
 # --config=debug               #
