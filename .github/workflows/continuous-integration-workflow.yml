@@ -87,7 +87,7 @@ jobs:
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase
     - name: "Bazel: Clean bazel disk cache"
-      run: yarn -s bazel:cache clean --maxSize 1GB
+      run: yarn -s bazel:cache clean --maxSize 1GB --individualMaxSize=20MB
     - name: "Pack: Showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
     - name: "Deploy: Staging"
