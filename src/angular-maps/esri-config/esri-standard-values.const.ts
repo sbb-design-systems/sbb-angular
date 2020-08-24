@@ -3,8 +3,6 @@ export class EsriConfigConsts {
     'geo-dev.sbb.ch',
     'geo-int.sbb.ch',
     'geo.sbb.ch',
-    'i89765.sbb.ch:5443',
-    'dfamobile.sbb.ch',
     'wms.geo.admin.ch',
   ];
 
