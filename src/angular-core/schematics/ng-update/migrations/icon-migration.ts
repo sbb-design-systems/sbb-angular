@@ -29,7 +29,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
   private _tsIconOccurences = new Map<ts.SourceFile, TsMigrationContext>();
   private _templateIconOccurences = new Map<WorkspacePath, TemplateMigrationContext>();
   private _stylesheetIconOccurences = new Map<WorkspacePath, StylesheetMigrationContext>();
-  private _stylesheetRulesRegExp = `(^|[,\\s\\(>+~])(\\.sbb-icon[^,\\s\\(>+~:\\)]*|${Object.keys(
+  private _stylesheetRulesRegExp = `(^|[,\\s\\(>+~])(\\.sbb-icon[^,\\s\\(>+~:\\)\\[]*|${Object.keys(
     ICON_MAPPINGS
   )
     .sort((a, b) => b.length - a.length)
@@ -178,8 +178,10 @@ export class IconMigration extends Migration<any, DevkitContext> {
 
   // Skip our internal angular-icons packages/showcase section.
   private _isInSbbAngularIconsModule(fileName: string) {
+    const pkgJson = this.context.tree.get('package.json');
     return (
-      basename(this.context.workspaceFsPath) === 'sbb-angular' &&
+      pkgJson &&
+      JSON.parse(pkgJson.content.toString()).name === 'sbb-angular' &&
       this.context.projectName === 'angular-showcase' &&
       [
         'angular-core/icon',
