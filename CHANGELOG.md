@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.1.3](https://github.com/sbb-design-systems/sbb-angular/compare/10.1.2...10.1.3) (2020-08-26)
+
+
+### Bug Fixes
+
+* **public:** update all-tag state when values are set from outside ([#571](https://github.com/sbb-design-systems/sbb-angular/issues/571)) ([333ac08](https://github.com/sbb-design-systems/sbb-angular/commit/333ac085e2d276deae2bbfbd9bf5ad87066b59f3))
+
 ### [10.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/10.1.1...10.1.2) (2020-08-05)
 
 
