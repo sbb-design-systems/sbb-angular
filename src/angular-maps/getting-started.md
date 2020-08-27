@@ -72,7 +72,7 @@ import { EsriConfigModule } from '@sbb-esta/angular-maps';
 export class TrainChooChooAppModule { }
 ```
 
-If you do not have specific conifgurations, you can use the standard configurations as well using:
+If you do not have specific configurations, you can use the standard configurations as well by using:
 
 ```ts
 import { EsriConfigModule } from '@sbb-esta/angular-maps';
