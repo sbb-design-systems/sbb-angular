@@ -1,5 +1,8 @@
-import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { createMigrationSchematicRule, TargetVersion } from '@angular/cdk/schematics';
+import { getWorkspace } from '@schematics/angular/utility/config';
+
+import { addIconCdnProvider } from '../ng-add';
 
 import { IconMigration } from './migrations/icon-migration';
 import { sbbAngularUpgradeData } from './upgrade-data';
@@ -12,6 +15,19 @@ export function updateToV10(): Rule {
     sbbAngularUpgradeData,
     onMigrationComplete
   );
+}
+
+/** Entry point for adding the icon cdn registry to the app module. */
+export function addIconCdnRegistry(): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    const workspace = getWorkspace(host);
+    if (workspace === null) {
+      context.logger.error('Could not find workspace configuration file.');
+      return;
+    }
+
+    return chain(Object.keys(workspace.projects).map((name) => addIconCdnProvider({ name })));
+  };
 }
 
 /** Entry point for the migration schematics with target of sbb-angular 11.0.0 */
