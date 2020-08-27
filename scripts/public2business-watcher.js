@@ -16,12 +16,11 @@ class DebounceUpdater {
   }
 
   watch() {
-    this._modules.forEach((moduleName) => {
-      this._update(moduleName);
+    this._modules.forEach((moduleName) =>
       chokidar
         .watch(join(this._sourcePath, moduleName), { ignoreInitial: true })
-        .on('all', () => this._scheduleUpdate(moduleName));
-    });
+        .on('all', () => this._scheduleUpdate(moduleName))
+    );
   }
 
   _scheduleUpdate(moduleName) {
@@ -32,7 +31,7 @@ class DebounceUpdater {
     const timer = setTimeout(() => {
       console.log(`Updating ${moduleName}`);
       this._update(moduleName);
-    }, 300);
+    }, 1000);
     this._timers.set(moduleName, timer);
   }
 
