@@ -35,7 +35,7 @@ let nextId = 0;
     },
   ],
   host: {
-    class: 'sbb-file-selector sbb-icon-fit',
+    class: 'sbb-file-selector',
     '[attr.id]': 'this.id',
   },
 })

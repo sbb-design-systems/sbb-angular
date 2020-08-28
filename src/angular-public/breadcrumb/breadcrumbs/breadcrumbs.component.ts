@@ -27,7 +27,7 @@ import {
     },
   ],
   host: {
-    class: 'sbb-breadcrumbs sbb-icon-fit',
+    class: 'sbb-breadcrumbs',
     '[class.sbb-breadcrumbs-expanded]': 'this.expanded',
   },
 })

@@ -20,12 +20,6 @@ import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 })
 export class ButtonComponent extends BaseButton {
   /**
-   * @docs-private
-   * Fit icons to host parent size
-   */
-  @HostBinding('class.sbb-icon-fit') _iconFitClass = true;
-
-  /**
    * Button modes available for different purposes.
    */
   @Input() mode: 'primary' | 'secondary' | 'ghost' | 'frameless' = 'primary';

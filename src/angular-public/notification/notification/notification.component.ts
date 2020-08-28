@@ -33,7 +33,7 @@ export interface JumpMark {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'sbb-notification sbb-icon-fit',
+    class: 'sbb-notification',
     '[class.sbb-notification-success]': `this.type === 'success'`,
     '[class.sbb-notification-info]': `this.type === 'info'`,
     '[class.sbb-notification-error]': `this.type === 'error'`,

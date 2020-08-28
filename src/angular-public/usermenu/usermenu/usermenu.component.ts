@@ -18,7 +18,7 @@ let counter = 0;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'sbb-usermenu sbb-icon-fit',
+    class: 'sbb-usermenu',
     '[attr.id]': 'this.id',
   },
 })

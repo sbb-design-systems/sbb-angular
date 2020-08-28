@@ -65,7 +65,7 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'sbb-datepicker sbb-icon-fit',
+    class: 'sbb-datepicker',
     '[class.sbb-datepicker-arrows-enabled]': 'this.arrows',
     '[class.sbb-datepicker-toggle-enabled]': 'this.toggle',
   },

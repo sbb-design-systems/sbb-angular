@@ -97,7 +97,7 @@ const ANIMATION_DURATION = 300;
     },
   ],
   host: {
-    class: 'sbb-search sbb-icon-fit',
+    class: 'sbb-search',
     '[attr.id]': 'this.id',
     '[attr.role]': "this.autocompleteDisabled ? null : 'combobox'",
     '[attr.autocomplete]': 'this.autocompleteAttribute',

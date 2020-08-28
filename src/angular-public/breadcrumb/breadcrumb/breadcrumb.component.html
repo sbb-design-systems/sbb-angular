@@ -1,5 +1,5 @@
 <ng-container *ngIf="!isFirst">
-  <div class="sbb-breadcrumb-arrow">
+  <div class="sbb-breadcrumb-arrow sbb-icon-fit">
     <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
   </div>
 </ng-container>
@@ -13,7 +13,7 @@
 >
   <span class="sbb-breadcrumb-label"><ng-content></ng-content></span>
   <div
-    class="sbb-breadcrumb-trigger-icon sbb-breadcrumb-trigger-icon-visible"
+    class="sbb-breadcrumb-trigger-icon sbb-breadcrumb-trigger-icon-visible sbb-icon-fit"
     [class.sbb-breadcrumb-trigger-icon-active]="dropdown.open"
   >
     <sbb-icon svgIcon="kom:chevron-small-down-circle-small"></sbb-icon>
@@ -21,7 +21,7 @@
 </span>
 
 <div class="sbb-breadcrumb-dots" *ngIf="isFirst">
-  <div class="sbb-breadcrumb-arrow">
+  <div class="sbb-breadcrumb-arrow sbb-icon-fit">
     <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
   </div>
   <button type="button" (click)="expand($event)">...</button>

@@ -24,7 +24,7 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'sbb-datepicker-content sbb-icon-fit',
+    class: 'sbb-datepicker-content',
   },
 })
 export class DatepickerContentComponent<D> implements AfterViewInit {

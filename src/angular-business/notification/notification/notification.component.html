@@ -1,4 +1,4 @@
-<span class="sbb-notification-icon-wrapper">
+<span class="sbb-notification-icon-wrapper sbb-icon-fit">
   <ng-container *ngTemplateOutlet="icon"></ng-container>
 </span>
 
@@ -16,7 +16,7 @@
 
 <button
   (click)="dismiss()"
-  class="sbb-notification-icon-wrapper sbb-notification-icon-close-wrapper"
+  class="sbb-notification-icon-wrapper sbb-notification-icon-close-wrapper sbb-icon-fit"
   *ngIf="!readonly"
 >
   <sbb-icon svgIcon="kom:cross-small"></sbb-icon>

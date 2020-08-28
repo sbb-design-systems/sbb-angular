@@ -3,7 +3,7 @@
     <div class="sbb-calendar-controls-months">
       <button
         type="button"
-        class="sbb-calendar-controls-left-arrow"
+        class="sbb-calendar-controls-left-arrow sbb-icon-fit"
         [disabled]="!previousMonthEnabled()"
         (click)="previousMonthClicked()"
         i18n-aria-label="
@@ -20,7 +20,7 @@
       >
       <button
         type="button"
-        class="sbb-calendar-controls-right-arrow"
+        class="sbb-calendar-controls-right-arrow sbb-icon-fit"
         [disabled]="!nextMonthEnabled()"
         (click)="nextMonthClicked()"
         i18n-aria-label="Button label to switch to the next month@@sbbDatepickerSwitchToNextMonth"
@@ -32,7 +32,7 @@
     <div class="sbb-calendar-controls-years">
       <button
         type="button"
-        class="sbb-calendar-controls-left-arrow"
+        class="sbb-calendar-controls-left-arrow sbb-icon-fit"
         [disabled]="!previousYearEnabled()"
         (click)="previousYearClicked()"
         i18n-aria-label="
@@ -46,7 +46,7 @@
       }}</span>
       <button
         type="button"
-        class="sbb-calendar-controls-right-arrow"
+        class="sbb-calendar-controls-right-arrow sbb-icon-fit"
         [disabled]="!nextYearEnabled()"
         (click)="nextYearClicked()"
         i18n-aria-label="Button label to switch to the next year@@sbbDatepickerSwitchToNextYear"
