@@ -54,3 +54,32 @@ dgeni_api_docs(
     },
     tags = ["docs-package"],
 )
+
+htmlSourceFiles = ["//src/angular-business/%s:html-source-files" % name for name in businessApiEntryPoints] + \
+                  ["//src/angular-core/%s:html-source-files" % name for name in coreApiEntryPoints] + \
+                  ["//src/angular-maps/%s:html-source-files" % name for name in mapsApiEntryPoints] + \
+                  ["//src/angular-public/%s:html-source-files" % name for name in publicApiEntryPoints]
+
+filegroup(
+    name = "used-icons-source-files",
+    srcs = htmlSourceFiles,
+)
+
+genrule(
+    name = "used-icons",
+    srcs = [":used-icons-source-files"],
+    outs = [
+        "used-icons.json",
+        "_used-icons.MF",
+    ],
+    cmd = """
+      echo "$(execpaths //src:used-icons-source-files)" > $(execpath _used-icons.MF)
+
+      # Run the bazel entry-point for generating the package info.
+      ./$(execpath //tools/icons-in-library:bazel-bin) \
+          "$(execpath _used-icons.MF)" \
+          "$(execpath used-icons.json)"
+    """,
+    output_to_bindir = True,
+    tools = ["//tools/icons-in-library:bazel-bin"],
+)

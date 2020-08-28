@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconFolderInfoSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconFolderInfoSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-folder-info-small',
   template: ` <svg sbbIconFolderInfoSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconFolderInfoSmall {}
 })
 export class IconFolderInfoSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFolderInfoSmall, IconFolderInfoSmall],
   exports: [SvgIconFolderInfoSmall, IconFolderInfoSmall],

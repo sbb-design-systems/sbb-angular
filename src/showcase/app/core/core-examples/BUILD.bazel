@@ -1,0 +1,27 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "core-examples",
+    srcs = [
+        "core-examples.module.ts",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/showcase/app/core/core-examples/icon-examples",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

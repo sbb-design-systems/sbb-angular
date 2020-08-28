@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconContextMenuMedium]',
   template: `
@@ -40,6 +43,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconContextMenuMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-context-menu-medium',
   template: ` <svg sbbIconContextMenuMedium></svg> `,
@@ -50,6 +56,9 @@ export class SvgIconContextMenuMedium {}
 })
 export class IconContextMenuMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconContextMenuMedium, IconContextMenuMedium],
   exports: [SvgIconContextMenuMedium, IconContextMenuMedium],

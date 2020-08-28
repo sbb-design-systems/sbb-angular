@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconArrowsLeftRightDownUpMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconArrowsLeftRightDownUpMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-arrows-left-right-down-up-medium',
   template: ` <svg sbbIconArrowsLeftRightDownUpMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconArrowsLeftRightDownUpMedium {}
 })
 export class IconArrowsLeftRightDownUpMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconArrowsLeftRightDownUpMedium, IconArrowsLeftRightDownUpMedium],
   exports: [SvgIconArrowsLeftRightDownUpMedium, IconArrowsLeftRightDownUpMedium],

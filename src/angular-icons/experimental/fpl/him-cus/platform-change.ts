@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconPlatformChange]',
   template: `
@@ -41,6 +44,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconPlatformChange {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-platform-change',
   template: ` <svg sbbIconPlatformChange></svg> `,
@@ -51,6 +57,9 @@ export class SvgIconPlatformChange {}
 })
 export class IconPlatformChange {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconPlatformChange, IconPlatformChange],
   exports: [SvgIconPlatformChange, IconPlatformChange],

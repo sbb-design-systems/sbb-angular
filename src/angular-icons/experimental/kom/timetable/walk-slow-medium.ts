@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconWalkSlowMedium]',
   template: `
@@ -40,6 +43,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconWalkSlowMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-walk-slow-medium',
   template: ` <svg sbbIconWalkSlowMedium></svg> `,
@@ -50,6 +56,9 @@ export class SvgIconWalkSlowMedium {}
 })
 export class IconWalkSlowMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWalkSlowMedium, IconWalkSlowMedium],
   exports: [SvgIconWalkSlowMedium, IconWalkSlowMedium],

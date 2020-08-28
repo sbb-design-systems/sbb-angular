@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconUserHeadsetMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconUserHeadsetMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-user-headset-medium',
   template: ` <svg sbbIconUserHeadsetMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconUserHeadsetMedium {}
 })
 export class IconUserHeadsetMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconUserHeadsetMedium, IconUserHeadsetMedium],
   exports: [SvgIconUserHeadsetMedium, IconUserHeadsetMedium],

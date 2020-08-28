@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconSuitcaseDisabledMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconSuitcaseDisabledMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-suitcase-disabled-medium',
   template: ` <svg sbbIconSuitcaseDisabledMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconSuitcaseDisabledMedium {}
 })
 export class IconSuitcaseDisabledMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconSuitcaseDisabledMedium, IconSuitcaseDisabledMedium],
   exports: [SvgIconSuitcaseDisabledMedium, IconSuitcaseDisabledMedium],

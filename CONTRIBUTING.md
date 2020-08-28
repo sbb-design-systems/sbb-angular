@@ -165,8 +165,8 @@ The rest of the commit message is then used for this.
 This project publishes six packages:
 
 * @sbb-esta/angular-core
-* @sbb-esta/angular-icons
-* @sbb-esta/angular-keycloak
+* @sbb-esta/angular-icons (Deprecated)
+* @sbb-esta/angular-keycloak (Deprecated)
 * @sbb-esta/angular-public
 * @sbb-esta/angular-maps
 * @sbb-esta/angular-business

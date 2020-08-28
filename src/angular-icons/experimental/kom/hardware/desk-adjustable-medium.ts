@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconDeskAdjustableMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconDeskAdjustableMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-desk-adjustable-medium',
   template: ` <svg sbbIconDeskAdjustableMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconDeskAdjustableMedium {}
 })
 export class IconDeskAdjustableMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconDeskAdjustableMedium, IconDeskAdjustableMedium],
   exports: [SvgIconDeskAdjustableMedium, IconDeskAdjustableMedium],

@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconHierarchyMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconHierarchyMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-hierarchy-medium',
   template: ` <svg sbbIconHierarchyMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconHierarchyMedium {}
 })
 export class IconHierarchyMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconHierarchyMedium, IconHierarchyMedium],
   exports: [SvgIconHierarchyMedium, IconHierarchyMedium],

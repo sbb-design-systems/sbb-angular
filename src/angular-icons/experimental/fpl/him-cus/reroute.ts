@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconReroute]',
   template: `
@@ -41,6 +44,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconReroute {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-reroute',
   template: ` <svg sbbIconReroute></svg> `,
@@ -51,6 +57,9 @@ export class SvgIconReroute {}
 })
 export class IconReroute {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconReroute, IconReroute],
   exports: [SvgIconReroute, IconReroute],

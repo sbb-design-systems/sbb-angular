@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconCombinedMobilityMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconCombinedMobilityMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-combined-mobility-medium',
   template: ` <svg sbbIconCombinedMobilityMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconCombinedMobilityMedium {}
 })
 export class IconCombinedMobilityMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCombinedMobilityMedium, IconCombinedMobilityMedium],
   exports: [SvgIconCombinedMobilityMedium, IconCombinedMobilityMedium],

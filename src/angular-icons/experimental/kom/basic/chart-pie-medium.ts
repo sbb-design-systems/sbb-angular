@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconChartPieMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconChartPieMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-chart-pie-medium',
   template: ` <svg sbbIconChartPieMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconChartPieMedium {}
 })
 export class IconChartPieMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChartPieMedium, IconChartPieMedium],
   exports: [SvgIconChartPieMedium, IconChartPieMedium],

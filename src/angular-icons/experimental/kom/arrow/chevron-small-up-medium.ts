@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconChevronSmallUpMedium]',
   template: ` <svg:path fill="none" stroke="#000" d="M23.851 20.512l-5.856-5.925-5.856 5.923" /> `,
@@ -29,6 +32,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconChevronSmallUpMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-chevron-small-up-medium',
   template: ` <svg sbbIconChevronSmallUpMedium></svg> `,
@@ -39,6 +45,9 @@ export class SvgIconChevronSmallUpMedium {}
 })
 export class IconChevronSmallUpMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChevronSmallUpMedium, IconChevronSmallUpMedium],
   exports: [SvgIconChevronSmallUpMedium, IconChevronSmallUpMedium],

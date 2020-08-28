@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconAvatarTrainStaffDisabledMedium]',
   template: `
@@ -40,6 +43,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconAvatarTrainStaffDisabledMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-avatar-train-staff-disabled-medium',
   template: ` <svg sbbIconAvatarTrainStaffDisabledMedium></svg> `,
@@ -50,6 +56,9 @@ export class SvgIconAvatarTrainStaffDisabledMedium {}
 })
 export class IconAvatarTrainStaffDisabledMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconAvatarTrainStaffDisabledMedium, IconAvatarTrainStaffDisabledMedium],
   exports: [SvgIconAvatarTrainStaffDisabledMedium, IconAvatarTrainStaffDisabledMedium],

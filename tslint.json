@@ -43,7 +43,7 @@
         "_description": "override the above format option for exported constants to allow only UPPER_CASE",
         "type": "variable",
         "modifiers": ["export", "const"],
-        "format": "UPPER_CASE"
+        "format": ["camelCase", "UPPER_CASE"]
       },
       {
         "_description": "disable for mixins and inline providers",
@@ -183,7 +183,7 @@
     "no-output-rename": true,
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
-    "component-class-suffix": true,
+    "component-class-suffix": false,
     "directive-class-suffix": false,
     "rxjs-no-unsafe-takeuntil": true,
     "rxjs-no-unsafe-catch": true

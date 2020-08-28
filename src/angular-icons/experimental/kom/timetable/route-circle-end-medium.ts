@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconRouteCircleEndMedium]',
   template: `
@@ -34,6 +37,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconRouteCircleEndMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-route-circle-end-medium',
   template: ` <svg sbbIconRouteCircleEndMedium></svg> `,
@@ -44,6 +50,9 @@ export class SvgIconRouteCircleEndMedium {}
 })
 export class IconRouteCircleEndMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconRouteCircleEndMedium, IconRouteCircleEndMedium],
   exports: [SvgIconRouteCircleEndMedium, IconRouteCircleEndMedium],

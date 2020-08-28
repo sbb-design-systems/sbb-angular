@@ -1,0 +1,27 @@
+{
+  "properties": {
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path where the provider is created.",
+      "visible": false
+    },
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "cdnIndexUrl": {
+      "type": "string",
+      "description": "The URL to the CDN index.",
+      "default": "https://icons.app.sbb.ch/index.json"
+    },
+    "cdnBaseUrl": {
+      "type": "string",
+      "description": "The base URL of the CDN.",
+      "default": "https://icons.app.sbb.ch"
+    }
+  }
+}

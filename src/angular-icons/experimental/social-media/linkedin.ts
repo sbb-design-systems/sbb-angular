@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconLinkedin]',
   template: `
@@ -33,6 +36,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconLinkedin {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-linkedin',
   template: ` <svg sbbIconLinkedin></svg> `,
@@ -43,6 +49,9 @@ export class SvgIconLinkedin {}
 })
 export class IconLinkedin {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLinkedin, IconLinkedin],
   exports: [SvgIconLinkedin, IconLinkedin],

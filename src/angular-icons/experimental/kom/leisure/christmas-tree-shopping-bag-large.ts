@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconChristmasTreeShoppingBagLarge]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconChristmasTreeShoppingBagLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-christmas-tree-shopping-bag-large',
   template: ` <svg sbbIconChristmasTreeShoppingBagLarge></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconChristmasTreeShoppingBagLarge {}
 })
 export class IconChristmasTreeShoppingBagLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChristmasTreeShoppingBagLarge, IconChristmasTreeShoppingBagLarge],
   exports: [SvgIconChristmasTreeShoppingBagLarge, IconChristmasTreeShoppingBagLarge],

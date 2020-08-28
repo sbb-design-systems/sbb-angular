@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconCustomerAssistanceSmall]',
   template: `
@@ -40,6 +43,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconCustomerAssistanceSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-customer-assistance-small',
   template: ` <svg sbbIconCustomerAssistanceSmall></svg> `,
@@ -50,6 +56,9 @@ export class SvgIconCustomerAssistanceSmall {}
 })
 export class IconCustomerAssistanceSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCustomerAssistanceSmall, IconCustomerAssistanceSmall],
   exports: [SvgIconCustomerAssistanceSmall, IconCustomerAssistanceSmall],

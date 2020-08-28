@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { IconBase } from '@sbb-esta/angular-icons/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-thumb-down',
   // tslint:disable:max-line-length
@@ -44,6 +47,9 @@ export class IconThumbDownComponent extends IconBase {
   }
 }
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: [CommonModule],
   declarations: [IconThumbDownComponent],

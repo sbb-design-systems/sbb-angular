@@ -1,0 +1,28 @@
+@import '../../../../../angular-core/styles/common';
+
+sbb-cdn-icon {
+  width: 100px;
+  min-height: 124px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.sbb-cdn-icon-filter-bar {
+  margin-bottom: 30px;
+
+  @include mq($from: desktop) {
+    display: flex;
+
+    sbb-field {
+      flex: 1 0 0;
+      margin-right: 15px;
+    }
+
+    sbb-checkbox {
+      display: block;
+      padding-top: 12px;
+    }
+  }
+}

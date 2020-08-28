@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconInstagram]',
   template: `
@@ -33,6 +36,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconInstagram {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-instagram',
   template: ` <svg sbbIconInstagram></svg> `,
@@ -43,6 +49,9 @@ export class SvgIconInstagram {}
 })
 export class IconInstagram {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconInstagram, IconInstagram],
   exports: [SvgIconInstagram, IconInstagram],

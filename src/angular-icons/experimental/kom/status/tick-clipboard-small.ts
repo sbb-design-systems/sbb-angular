@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconTickClipboardSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconTickClipboardSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-tick-clipboard-small',
   template: ` <svg sbbIconTickClipboardSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconTickClipboardSmall {}
 })
 export class IconTickClipboardSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconTickClipboardSmall, IconTickClipboardSmall],
   exports: [SvgIconTickClipboardSmall, IconTickClipboardSmall],

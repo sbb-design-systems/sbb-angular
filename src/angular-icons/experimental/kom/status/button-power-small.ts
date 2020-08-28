@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconButtonPowerSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconButtonPowerSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-button-power-small',
   template: ` <svg sbbIconButtonPowerSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconButtonPowerSmall {}
 })
 export class IconButtonPowerSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconButtonPowerSmall, IconButtonPowerSmall],
   exports: [SvgIconButtonPowerSmall, IconButtonPowerSmall],

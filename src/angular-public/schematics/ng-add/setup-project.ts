@@ -40,15 +40,7 @@ function addTypographyToStylesNodeOfAngularJson(
   const workspace = getWorkspace(tree);
   const projectName = options.name || workspace.defaultProject;
 
-  if (
-    !projectName ||
-    !workspace ||
-    !workspace.projects ||
-    !workspace.projects[projectName] ||
-    !workspace.projects[projectName].architect ||
-    !workspace.projects[projectName].architect![buildOrTest] ||
-    !workspace.projects[projectName].architect![buildOrTest]!.options
-  ) {
+  if (!projectName || !workspace?.projects?.[projectName]?.architect?.[buildOrTest]?.options) {
     context.logger.error(
       `Unable to add the typography. Please add an import to ${TYPOGRAPHY_CSS_PATH} to your project.`
     );

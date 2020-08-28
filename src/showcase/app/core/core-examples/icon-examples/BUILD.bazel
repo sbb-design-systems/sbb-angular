@@ -1,0 +1,35 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "icon-examples",
+    srcs = [
+        "icon-example/icon-example.component.ts",
+        "icon-examples.module.ts",
+        "icon-fit-example/icon-fit-example.component.ts",
+    ],
+    assets = [
+        "icon-example/icon-example.component.html",
+        "icon-fit-example/icon-fit-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-core/icon",
+        "//src/showcase/app/shared",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

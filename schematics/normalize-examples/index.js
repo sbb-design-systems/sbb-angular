@@ -175,18 +175,9 @@ export class ${moduleName} {}
                 return selectors
                     .filter((t) => t !== 'option' && (packageRoot.subdirs.includes(core.fragment(t)) || t.startsWith('icon')))
                     .filter((v, i, a) => a.indexOf(v) === i)
-                    .map((i) => i.startsWith('icon') ? iconLookup[i] : ModuleImport.fromPackageModule(packageName, i));
+                    .map((i) => ModuleImport.fromPackageModule(packageName, i));
             }
         }
-        const iconLookup = {};
-        const iconsDir = tree.getDir('src/angular-icons');
-        iconsDir.visit((path) => {
-            const fileName = core.basename(path);
-            if (fileName.endsWith('.module.ts') && fileName.startsWith('icon-')) {
-                const key = fileName.split('.')[0];
-                iconLookup[key] = new ModuleImport(`@sbb-esta/angular-icons/${core.relative(iconsDir.path, core.dirname(path))}`, `${core.strings.classify(key)}Module`);
-            }
-        });
         [
             'src/showcase/app/business/business-examples',
             'src/showcase/app/maps/maps-examples',

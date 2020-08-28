@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconChartColumnSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconChartColumnSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-chart-column-small',
   template: ` <svg sbbIconChartColumnSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconChartColumnSmall {}
 })
 export class IconChartColumnSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChartColumnSmall, IconChartColumnSmall],
   exports: [SvgIconChartColumnSmall, IconChartColumnSmall],

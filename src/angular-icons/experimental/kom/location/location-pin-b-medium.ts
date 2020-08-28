@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconLocationPinBMedium]',
   template: `
@@ -40,6 +43,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconLocationPinBMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-location-pin-b-medium',
   template: ` <svg sbbIconLocationPinBMedium></svg> `,
@@ -50,6 +56,9 @@ export class SvgIconLocationPinBMedium {}
 })
 export class IconLocationPinBMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLocationPinBMedium, IconLocationPinBMedium],
   exports: [SvgIconLocationPinBMedium, IconLocationPinBMedium],
