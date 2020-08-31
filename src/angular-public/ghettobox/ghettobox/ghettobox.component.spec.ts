@@ -5,7 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
-import { IconHimInfoModule } from '@sbb-esta/angular-icons/him-cus';
+import { IconHimDisruptionModule, IconHimInfoModule } from '@sbb-esta/angular-icons/him-cus';
 import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 
 import { GhettoboxComponent } from './ghettobox.component';
@@ -44,6 +44,7 @@ describe('GhettoboxComponent', () => {
         IconCrossModule,
         IconArrowRightModule,
         IconHimInfoModule,
+        IconHimDisruptionModule,
         IconDirectiveModule,
       ],
       declarations: [GhettoboxTestComponent, GhettoboxComponent],
