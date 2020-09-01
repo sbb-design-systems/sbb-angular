@@ -4,11 +4,11 @@
 $numberOfItems: 5;
 $time: 0.23s;
 
-// (size, width, height, gutterWidth, perspective, translationX)
-$sizes: (tiny, 0.53333em, 0.33333em, 0.2em, 6em, -1.8em), (small, 1em, 0.6em, 0.2em, 8em, -2.2em),
-  (medium, 2em, 1.2em, 0.3em, 12em, -2.2em), (big, 3em, 1.8em, 0.46666em, 16.66666em, -2.2em),
-  (fullbox, 2em, 1.2em, 0.33333em, 11.33333em, -3em),
-  (fullscreen, 2em, 1.2em, 0.33333em, 11.33333em, -3em);
+// (size, width, height, gutterWidth, perspective)
+$sizes: (tiny, 0.53333em, 0.33333em, 0.2em, 6em), (small, 1em, 0.6em, 0.2em, 8em),
+  (medium, 2em, 1.2em, 0.3em, 12em), (big, 3em, 1.8em, 0.46666em, 16.66666em),
+  (fullbox, 2em, 1.2em, 0.33333em, 11.33333em), (fullscreen, 2em, 1.2em, 0.33333em, 11.33333em),
+  (inline, 0.53333em, 0.33333em, 0.2em, 6em);
 
 $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5), (5, 0, 0.25);
 
@@ -18,6 +18,7 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
   & > div {
     margin: 0 auto;
     transform-origin: center;
+    transform: translate3d(-3em, 0, 0);
     backface-visibility: hidden;
 
     & > div {
@@ -64,7 +65,6 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
         width: ($width + $gutterWidth) * $numberOfItems - $gutterWidth;
         height: $height;
         perspective: $perspective;
-        transform: translate3d($translateX, 0, 0);
 
         & > div > div {
           animation: loading_container_#{$size} $time linear infinite;
@@ -80,6 +80,17 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
           }
         }
       }
+    }
+  }
+
+  &.sbb-loading-inline {
+    display: inline-flex;
+    height: auto;
+    padding-top: 0;
+    vertical-align: middle;
+
+    & > div {
+      transform: translate3d(-1.8em, 0, 0);
     }
   }
 
