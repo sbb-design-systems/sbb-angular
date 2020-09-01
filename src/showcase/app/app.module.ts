@@ -5,11 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
-import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
 import {
   SbbSidebarModule,
   SBB_ICON_SIDEBAR_EXPANDED_WIDTH,
 } from '@sbb-esta/angular-business/sidebar';
+import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
 import { IconGearsModule, IconGlobeModule } from '@sbb-esta/angular-icons/basic';
 import { IconBulbOnModule, IconNetworkModule } from '@sbb-esta/angular-icons/community';
 import { IconLocationPinMapModule } from '@sbb-esta/angular-icons/location';
@@ -45,6 +45,9 @@ import { IntroductionComponent } from './introduction/introduction.component';
   exports: [AppComponent],
   bootstrap: [AppComponent],
 
-  providers: [SBB_ICON_REGISTRY_PROVIDER, { provide: SBB_ICON_SIDEBAR_EXPANDED_WIDTH, useValue: 260 }],
+  providers: [
+    SBB_ICON_REGISTRY_PROVIDER,
+    { provide: SBB_ICON_SIDEBAR_EXPANDED_WIDTH, useValue: 260 },
+  ],
 })
 export class AppModule {}
