@@ -40,7 +40,8 @@ export class IconMigration extends Migration<any, DevkitContext> {
     this.logger.info(
       'This migration will attempt a best-effort conversion of the deprecated ' +
         '@sbb-esta/angular-icons icons to @sbb-esta/angular-core/icon icons. We recommend ' +
-        'controlling migration changes in order to avoid incompatibilities.'
+        'controlling migration changes in order to avoid incompatibilities. Please note ' +
+        'that this migration will take quite some time on a large code-base.'
     );
   }
 
@@ -363,7 +364,6 @@ export class IconMigration extends Migration<any, DevkitContext> {
 
   private _processTemplates() {
     this._templateIconOccurences.forEach((context, fileName) => {
-      this.logger.info(fileName as any);
       context.resources.forEach((elements, resource) => {
         for (const element of elements) {
           const { fit, size, width, height } = this._resolveIconDimensions(element);
