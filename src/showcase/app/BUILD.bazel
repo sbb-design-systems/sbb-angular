@@ -32,7 +32,13 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/header",
+        "//src/angular-business/sidebar",
         "//src/angular-core/icon",
+        "//src/angular-icons/basic",
+        "//src/angular-icons/community",
+        "//src/angular-icons/location",
+        "//src/angular-icons/station",
+        "//src/angular-icons/user",
         "//src/angular-public/checkbox",
         "//src/showcase/app/business",
         "//src/showcase/app/core",
