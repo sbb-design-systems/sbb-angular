@@ -1,15 +1,25 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'sbb-chip',
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-chip',
+    '[hidden]': 'this.ariaHidden === "true"',
+    '[class.sbb-chip-disabled]': 'this.disabled',
+    '[class.sbb-chip-active]': '!this.disabled',
+    '[attr.aria-hidden]': 'this.ariaHidden',
+  },
 })
 export class ChipComponent {
+  /** The label to display on the chip. */
   @Input()
   label: string;
 
+  /** Whether the chip is disabled. */
   @Input()
   get disabled() {
     return this._disabled;
@@ -19,24 +29,34 @@ export class ChipComponent {
   }
   private _disabled = false;
 
+  /** Emits the current chip instance on dismissal. */
   @Output()
   dismissed: EventEmitter<ChipComponent> = new EventEmitter();
 
-  @HostBinding('attr.aria-hidden') ariaHidden: null | boolean | 'true';
+  /**
+   * TODO: Refactor to _ariaHidden
+   * @deprecated Internal detail only
+   */
+  ariaHidden: null | boolean | 'true';
 
-  @HostBinding('hidden')
+  /** @deprecated Internal detail only */
   get hidden() {
     return this.ariaHidden === 'true';
   }
 
-  @HostBinding('class.sbb-chip-disabled') get isDisabled() {
+  /** @deprecated Internal detail only */
+  get isDisabled() {
     return !!this.disabled;
   }
 
-  @HostBinding('class.sbb-chip-active') get isActive() {
+  /** @deprecated Internal detail only */
+  get isActive() {
     return !this.disabled;
   }
 
+  /**
+   * Dismisses and hides this chip.
+   */
   dismiss() {
     this.ariaHidden = 'true';
     this.dismissed.emit(this);

@@ -21,7 +21,7 @@ The dropdown should follow its rule in order to work properly.
 
 ### Characteristics
 
-The contextmenu contains the `<sbb-icon-context-menu>` icon.
+The contextmenu contains the `<sbb-icon svgIcon="kom:context-menu-small"></sbb-icon>` icon.
 When hovered with the mouse the icon's color becomes red. Once clicked
 the icon the dropdown will open on the bottom left. The contextmenu will be
 opened on the top left in case there is not enough space to display the content

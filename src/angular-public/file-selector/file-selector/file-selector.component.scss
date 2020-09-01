@@ -1,6 +1,8 @@
 @import '../../../angular-core/styles/common';
 
 .sbb-file-selector {
+  display: block;
+
   .sbb-file-selector-button {
     @include buttons;
 
@@ -8,10 +10,6 @@
       @include secondaryButton;
       @include publicOnly() {
         @include arrowbuttons;
-
-        .sbb-svgsprite-icon {
-          @include svgIconColor($buttonSecondaryColor);
-        }
       }
     }
 
@@ -105,9 +103,9 @@
       margin-left: pxToEm(8);
       cursor: pointer;
       outline: 0;
+      color: $sbbColorGranite;
 
       @include publicOnly() {
-        @include svgIconColor($sbbColorGranite);
         border: pxToEm(1) solid $sbbColorStorm;
         border-radius: 50%;
       }
@@ -121,7 +119,7 @@
       &:hover,
       &:focus,
       &:active {
-        @include svgIconColor($sbbColorRed125);
+        color: $sbbColorRed125;
         border-color: $sbbColorRed125;
       }
     }

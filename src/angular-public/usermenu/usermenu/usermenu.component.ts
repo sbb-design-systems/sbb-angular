@@ -3,7 +3,6 @@ import {
   Component,
   ContentChild,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   ViewEncapsulation,
@@ -18,17 +17,23 @@ let counter = 0;
   styleUrls: ['./usermenu.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-usermenu',
+    '[attr.id]': 'this.id',
+  },
 })
 export class UserMenuComponent {
   /**
    * Css class of a sbb-usermenu.
+   * @docs-private
+   * @deprecated internal detail
    */
-  @HostBinding('class.sbb-usermenu') cssClass = true;
+  cssClass = true;
 
   /**
    * Identifier of a usermenu.
    */
-  @HostBinding() id = `sbb-usermenu-${counter++}`;
+  id = `sbb-usermenu-${counter++}`;
 
   /**
    * Name and surname of a user.
@@ -63,7 +68,7 @@ export class UserMenuComponent {
     const name = this.displayName ? this.displayName : this.userName;
     const names: string[] = name.split(' ');
     if (names.length === 1) {
-      return names[0].substring(0, 3).toLocaleUpperCase();
+      return names[0].substring(0, 2).toLocaleUpperCase();
     }
 
     return names

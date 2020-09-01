@@ -1,3 +1,7 @@
 <span class="sbb-expansion-panel-header-content">
   <ng-content></ng-content>
 </span>
+<span class="sbb-expansion-panel-header-indicator sbb-icon-fit">
+  <sbb-icon *ngIf="!_isExpanded()" svgIcon="kom:plus-small"></sbb-icon>
+  <sbb-icon *ngIf="_isExpanded()" svgIcon="kom:minus-small"></sbb-icon>
+</span>

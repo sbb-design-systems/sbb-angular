@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { NotificationModule } from '@sbb-esta/angular-business/notification';
-import { IconBulbOnModule } from '@sbb-esta/angular-icons/community';
-import { IconClockModule } from '@sbb-esta/angular-icons/timetable';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -34,8 +33,7 @@ const EXAMPLE_INDEX = {
     ReactiveFormsModule,
     FieldModule,
     NotificationModule,
-    IconBulbOnModule,
-    IconClockModule,
+    SbbIconModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

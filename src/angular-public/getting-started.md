@@ -36,16 +36,16 @@ ng add @sbb-esta/angular-public
 
 #### Step 1.1
 
-You have to install the `@sbb-esta/angular-public`, `@sbb-esta/angular-core`, `@sbb-esta/angular-icons` and `@angular/cdk` dependencies:
+You have to install the `@sbb-esta/angular-public`, `@sbb-esta/angular-core`, and `@angular/cdk` dependencies:
 
 ```sh
-npm install --save @sbb-esta/angular-public @sbb-esta/angular-core @sbb-esta/angular-icons @angular/cdk
+npm install --save @sbb-esta/angular-public @sbb-esta/angular-core @angular/cdk
 ```
 
 or, if using yarn:
 
 ```sh
-yarn add @sbb-esta/angular-public @sbb-esta/angular-core @sbb-esta/angular-icons @angular/cdk
+yarn add @sbb-esta/angular-public @sbb-esta/angular-core @angular/cdk
 ```
 
 #### Step 1.2: Include typography CSS

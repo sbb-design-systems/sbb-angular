@@ -3,12 +3,10 @@ import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
-import {
-  IconChevronSmallLeftModule,
-  IconChevronSmallRightModule,
-} from '@sbb-esta/angular-icons/arrow';
 
 import { PaginationModule } from '../pagination.module';
 
@@ -32,7 +30,7 @@ export class PaginationTestComponent {
 
   @ViewChild('pagination', { static: true }) pagination: PaginationComponent;
 
-  onPageChange() {}
+  onPageChange(event: any) {}
 }
 
 describe('PaginationComponent', () => {
@@ -41,12 +39,7 @@ describe('PaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        IconChevronSmallLeftModule,
-        IconChevronSmallRightModule,
-        CommonModule,
-        RouterTestingModule,
-      ],
+      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
       declarations: [PaginationComponent],
     }).compileComponents();
   }));

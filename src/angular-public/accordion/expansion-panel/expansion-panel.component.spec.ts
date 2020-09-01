@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
 import { AccordionModule, ExpansionPanelComponent } from '../public-api';
@@ -121,7 +122,7 @@ describe('ExpansionPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, AccordionModule],
+      imports: [NoopAnimationsModule, AccordionModule, SbbIconTestingModule],
       declarations: [
         PanelWithContentComponent,
         PanelWithContentInNgIfComponent,
@@ -135,20 +136,16 @@ describe('ExpansionPanelComponent', () => {
 
   it('should expand and collapse the panel', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
+    const headerEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-header');
     fixture.detectChanges();
 
-    const contentEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-content');
-    const headerEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-header');
-
     expect(headerEl.classList).not.toContain('sbb-expanded');
-    expect(contentEl.classList).not.toContain('sbb-expanded');
 
     fixture.componentInstance.expanded = true;
     fixture.detectChanges();
     flush();
 
     expect(headerEl.classList).toContain('sbb-expanded');
-    expect(contentEl.classList).toContain('sbb-expanded');
   }));
 
   it('should be able to render panel content lazily', fakeAsync(() => {
@@ -209,10 +206,10 @@ describe('ExpansionPanelComponent', () => {
 
   it('should set `aria-labelledby` of the content to the header id', () => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
-    fixture.detectChanges();
-
     const headerEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-header');
     const contentEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-content');
+
+    fixture.detectChanges();
 
     const headerId = headerEl.getAttribute('id');
     const contentLabel = contentEl.getAttribute('aria-labelledby');
@@ -304,16 +301,16 @@ describe('ExpansionPanelComponent', () => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('.sbb-no-toggle'))).toBeFalsy(
+    expect(fixture.debugElement.query(By.css('.sbb-expansion-panel-header-hide-toggle'))).toBeFalsy(
       'Expected indicator to be shown.'
     );
 
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('.sbb-no-toggle'))).toBeTruthy(
-      'Expected indicator to be hidden.'
-    );
+    expect(
+      fixture.debugElement.query(By.css('.sbb-expansion-panel-header-hide-toggle'))
+    ).toBeTruthy('Expected indicator to be hidden.');
   });
 
   it('should make sure accordion item runs ngOnDestroy when expansion panel is destroyed', () => {
@@ -342,28 +339,25 @@ describe('ExpansionPanelComponent', () => {
     expect(fixture.componentInstance.expanded).toBe(false);
   });
 
-  it('should not set the sbb-expanded class until the open animation is done', fakeAsync(() => {
+  it('should emit events for body expanding and collapsing animations', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
-    const contentEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-content');
-
     fixture.detectChanges();
-    expect(contentEl.classList).not.toContain(
-      'sbb-expanded',
-      'Expected class not to be there on init'
-    );
+    let afterExpand = 0;
+    let afterCollapse = 0;
+    fixture.componentInstance.panel.afterExpand.subscribe(() => afterExpand++);
+    fixture.componentInstance.panel.afterCollapse.subscribe(() => afterCollapse++);
 
     fixture.componentInstance.expanded = true;
     fixture.detectChanges();
-    expect(contentEl.classList).not.toContain(
-      'sbb-expanded',
-      'Expected class not to be added immediately after becoming expanded'
-    );
-
     flush();
-    expect(contentEl.classList).toContain(
-      'sbb-expanded',
-      'Expected class to be added after the animation has finished'
-    );
+    expect(afterExpand).toBe(1);
+    expect(afterCollapse).toBe(0);
+
+    fixture.componentInstance.expanded = false;
+    fixture.detectChanges();
+    flush();
+    expect(afterExpand).toBe(1);
+    expect(afterCollapse).toBe(1);
   }));
 
   describe('disabled state', () => {
@@ -388,12 +382,12 @@ describe('ExpansionPanelComponent', () => {
     });
 
     it('should toggle the expansion indicator', () => {
-      expect(panel.querySelector('.sbb-no-toggle')).toBeFalsy();
+      expect(panel.querySelector('.sbb-expansion-panel-header-hide-toggle')).toBeFalsy();
 
       fixture.componentInstance.disabled = true;
       fixture.detectChanges();
 
-      expect(panel.querySelector('.sbb-no-toggle')).toBeTruthy();
+      expect(panel.querySelector('.sbb-expansion-panel-header-hide-toggle')).toBeTruthy();
     });
 
     it('should not be able to toggle the panel via a user action if disabled', () => {

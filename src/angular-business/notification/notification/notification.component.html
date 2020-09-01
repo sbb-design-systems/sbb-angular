@@ -1,4 +1,4 @@
-<span class="sbb-notification-icon-wrapper">
+<span class="sbb-notification-icon-wrapper sbb-icon-fit">
   <ng-container *ngTemplateOutlet="icon"></ng-container>
 </span>
 
@@ -16,20 +16,20 @@
 
 <button
   (click)="dismiss()"
-  class="sbb-notification-icon-wrapper sbb-notification-icon-close-wrapper"
+  class="sbb-notification-icon-wrapper sbb-notification-icon-close-wrapper sbb-icon-fit"
   *ngIf="!readonly"
 >
-  <sbb-icon-cross></sbb-icon-cross>
+  <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
 </button>
 
 <ng-template #check>
-  <sbb-icon-tick></sbb-icon-tick>
+  <sbb-icon svgIcon="kom:tick-small"></sbb-icon>
 </ng-template>
 
 <ng-template #error>
-  <sbb-icon-sign-exclamation-point></sbb-icon-sign-exclamation-point>
+  <sbb-icon svgIcon="kom:sign-exclamation-point-small"></sbb-icon>
 </ng-template>
 
 <ng-template #info>
-  <sbb-icon-circle-information></sbb-icon-circle-information>
+  <sbb-icon svgIcon="kom:circle-information-small"></sbb-icon>
 </ng-template>

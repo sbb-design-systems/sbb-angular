@@ -20,7 +20,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-icons/basic",
+        "//src/angular-core/icon",
         "//src/angular-public/checkbox",
         "//src/angular-public/radio-button-panel",
         "//src/showcase/app/shared",

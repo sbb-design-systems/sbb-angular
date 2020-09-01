@@ -32,7 +32,7 @@ The radio button panels are essentially large radio buttons, with more content o
   label="SBB - Finanzen"
   subtitle="Armin Burgermeister"
 >
-  <sbb-icon-heart sbbIcon></sbb-icon-heart>
+  <sbb-icon svgIcon="kom:heart-small" class="sbb-icon-fit" sbbIcon></sbb-icon>
 </sbb-radio-button-panel>
 ```
 

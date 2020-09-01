@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
-import { IconContextMenuModule } from '@sbb-esta/angular-icons/navigation';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { ContextmenuComponent } from './contextmenu.component';
 
@@ -32,7 +33,7 @@ describe('ContextmenuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ContextmenuComponent, ContextmenuTest1Component],
-      imports: [CommonModule, DropdownModule, IconContextMenuModule],
+      imports: [CommonModule, DropdownModule, SbbIconModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -46,7 +47,7 @@ describe('ContextmenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('before click on the sbb-icon-context-menu icon the dropdown should not be visible', () => {
+  it('before click on the .sbb-icon[svgIcon="kom:context-menu"] icon the dropdown should not be visible', () => {
     const contextmenuComponent = fixture.debugElement.query(By.directive(ContextmenuComponent));
     const unexpandedButton = contextmenuComponent.queryAll(
       By.css('button.sbb-dropdown-trigger[aria-expanded="false"]')
@@ -54,7 +55,7 @@ describe('ContextmenuComponent', () => {
     expect(unexpandedButton.length).toBe(1);
   });
 
-  it('after click on the sbb-icon-context-menu icon the dropdown should be visible', () => {
+  it('after click on the .sbb-icon[svgIcon="kom:context-menu"] icon the dropdown should be visible', () => {
     const contextmenuComponent = fixture.debugElement.query(By.directive(ContextmenuComponent));
     const triggerButton = contextmenuComponent.queryAll(By.css('button.sbb-dropdown-trigger'))[0]
       .nativeElement;

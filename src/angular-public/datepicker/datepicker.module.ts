@@ -9,11 +9,7 @@ import {
   NativeDateAdapter,
   SBB_DATE_FORMATS,
 } from '@sbb-esta/angular-core/datetime';
-import {
-  IconChevronSmallLeftModule,
-  IconChevronSmallRightModule,
-} from '@sbb-esta/angular-icons/arrow';
-import { IconCalendarModule } from '@sbb-esta/angular-icons/basic';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { CalendarBodyComponent } from './calendar-body/calendar-body.component';
 import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
@@ -27,15 +23,7 @@ import {
 import { MonthViewComponent } from './month-view/month-view.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IconChevronSmallLeftModule,
-    IconChevronSmallRightModule,
-    IconCalendarModule,
-    PortalModule,
-    A11yModule,
-    OverlayModule,
-  ],
+  imports: [CommonModule, SbbIconModule, PortalModule, A11yModule, OverlayModule],
   declarations: [
     DatepickerComponent,
     DatepickerToggleComponent,

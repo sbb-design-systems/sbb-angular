@@ -1,5 +1,7 @@
 @import '../pagination';
 
+$navigationIconTextMargin: 4;
+
 sbb-navigation {
   .sbb-navigation {
     display: flex;
@@ -15,12 +17,13 @@ sbb-navigation {
       height: toPx($paginationLiWidthHeight);
       width: 50%;
       display: flex;
+      padding-left: 0;
 
-      &-right {
+      &.sbb-navigation-item-right {
         justify-content: flex-end;
       }
 
-      &-left {
+      &.sbb-navigation-item-left {
         justify-content: flex-start;
       }
 
@@ -31,30 +34,31 @@ sbb-navigation {
       > button,
       > a {
         @include buttonResetFrameless();
-        @include svgIconColor($sbbColorGrey);
         cursor: pointer;
         background-color: $sbbColorWhite;
         text-decoration: none;
-
         max-width: 100%;
         height: 100%;
-        line-height: 1;
         outline: 0;
-        color: $sbbColorGrey;
-        border-color: $sbbColorGrey;
 
+        color: $paginationBaseColor;
         &:hover,
         &:focus {
-          @if $sbbBusiness {
-            @include svgIconColor($sbbColorRed125);
-            color: $sbbColorRed125;
-          } @else {
-            @include svgIconColor($sbbColorRed);
-            color: $sbbColorRed;
+          color: $paginationActiveHoverColor;
+        }
+
+        font-size: pxToRem(13);
+        line-height: pxToEm(20);
+
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            font-size: pxToRem(20);
+            line-height: pxToEm(30);
           }
 
-          .sbb-navigation-item-boundary-arrow {
-            border-color: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
+          @include mq($from: desktop5k) {
+            font-size: pxToRem(26);
+            line-height: pxToEm(19);
           }
         }
 
@@ -63,19 +67,35 @@ sbb-navigation {
           align-items: center;
           justify-content: center;
 
-          &-left {
+          &.sbb-navigation-item-boundary-left {
             justify-content: flex-start;
 
             .sbb-navigation-item-boundary-arrow {
-              margin-right: toPx(10);
+              margin-right: toPx($navigationIconTextMargin);
+              @include publicOnly() {
+                @include mq($from: desktop4k) {
+                  margin-right: toPx($navigationIconTextMargin * $scalingFactor4k);
+                }
+                @include mq($from: desktop5k) {
+                  margin-right: toPx($navigationIconTextMargin * $scalingFactor5k);
+                }
+              }
             }
           }
 
-          &-right {
+          &.sbb-navigation-item-boundary-right {
             justify-content: flex-end;
 
             .sbb-navigation-item-boundary-arrow {
-              margin-left: toPx(10);
+              margin-left: toPx($navigationIconTextMargin);
+              @include publicOnly() {
+                @include mq($from: desktop4k) {
+                  margin-left: toPx($navigationIconTextMargin * $scalingFactor4k);
+                }
+                @include mq($from: desktop5k) {
+                  margin-left: toPx($navigationIconTextMargin * $scalingFactor5k);
+                }
+              }
             }
           }
 
@@ -85,9 +105,6 @@ sbb-navigation {
           }
 
           .sbb-navigation-item-boundary-arrow {
-            border-width: toPx(1);
-            border-style: solid;
-            border-radius: 50%;
             flex: 0 0 toPx($paginationItemIconSize);
             width: toPx($paginationItemIconSize);
             height: toPx($paginationItemIconSize);
@@ -106,13 +123,7 @@ sbb-navigation {
 
             &:hover,
             &:focus {
-              @if $sbbBusiness {
-                @include svgIconColor($sbbColorRed125);
-                border-color: $sbbColorRed125;
-              } @else {
-                @include svgIconColor($sbbColorRed);
-                border-color: $sbbColorRed;
-              }
+              color: $paginationActiveHoverColor;
             }
 
             > * {

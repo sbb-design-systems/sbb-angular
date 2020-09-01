@@ -11,8 +11,8 @@
     [class.sbb-usermenu-logged-in-collapsed-dropdown-expanded]="dropdown.open"
   >
     <ng-container *ngIf="userName && userName.length">
-      <div class="sbb-usermenu-logged-in-collapsed-user-icon">
-        <div #icon class="sbb-usermenu-logged-in-collapsed-icon">
+      <div class="sbb-usermenu-logged-in-collapsed-user-icon sbb-icon-fit">
+        <div #icon [class.sbb-usermenu-logged-in-collapsed-icon]="icon.children.length">
           <ng-content select="[sbbIcon]"></ng-content>
         </div>
         <div class="sbb-usermenu-logged-in-collapsed-initial-letters" *ngIf="!icon.children.length">
@@ -34,23 +34,25 @@
         </div>
       </div>
       <div
-        class="sbb-usermenu-logged-in-collapsed-arrow"
+        class="sbb-usermenu-logged-in-collapsed-arrow sbb-icon-fit"
         *ngIf="userName && userName.length && !dropdown.open"
       >
-        <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
+        <sbb-icon svgIcon="kom:chevron-small-down-small"></sbb-icon>
       </div>
     </ng-container>
     <div class="sbb-usermenu-logged-in-expanded-arrow-above">
-      <div class="sbb-usermenu-logged-in-expanded-arrow" *ngIf="dropdown.open">
-        <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
+      <div class="sbb-usermenu-logged-in-expanded-arrow sbb-icon-fit" *ngIf="dropdown.open">
+        <sbb-icon svgIcon="kom:chevron-small-down-small"></sbb-icon>
       </div>
     </div>
   </div>
 </div>
 <div class="sbb-usermenu-logged-off" *ngIf="!userName">
-  <button class="sbb-usermenu-logged-off-button" (click)="emitLogin()" type="button">
-    <sbb-icon-user></sbb-icon-user>
-    <ng-container i18n="Button label for login@@sbbUsermenuLogin">Login</ng-container>
+  <button class="sbb-usermenu-logged-off-button sbb-icon-fit" (click)="emitLogin()" type="button">
+    <sbb-icon svgIcon="kom:user-small"></sbb-icon>
+    <span class="sbb-usermenu-logged-off-label" i18n="Button label for login@@sbbUsermenuLogin"
+      >Login</span
+    >
   </button>
 </div>
 

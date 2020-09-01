@@ -1,31 +1,14 @@
 @import '../accordion';
 
-@mixin expansionToggleArrow($icon) {
-  content: '';
-
-  @include absoluteCenterY;
-
-  right: pxToEm($sbb-accordion-divider-left);
-  width: pxToEm($sbb-accordion-toggle-size);
-  height: pxToEm($sbb-accordion-toggle-size);
-
-  @include publicOnly() {
-    border: 1px solid $sbb-accordion-toggle-color;
-    border-radius: 50%;
-  }
-
-  background: url($icon) no-repeat;
-  background-position: center;
-  background-size: toPx($sbb-accordion-toggle-icon-size) toPx($sbb-accordion-toggle-icon-size);
-}
-
 .sbb-expansion-panel-header {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: $sbb-accordion-header-padding;
   position: relative;
-  background-color: $sbb-accordion-header-bgcolor;
+  background-color: $sbbColorMilk;
+  outline: none;
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -35,15 +18,6 @@
     @include mq($from: desktop5k) {
       font-size: toEm(1 * $scalingFactor5k);
     }
-  }
-
-  &:focus,
-  &:hover {
-    outline: none;
-  }
-
-  &.sbb-no-toggle {
-    padding: $sbb-accordion-header-padding-no-toggle;
   }
 
   &.sbb-expanded {
@@ -75,15 +49,11 @@
     background: inherit;
   }
 
-  &[aria-disabled='true'] {
+  &.sbb-expansion-panel-header-disabled {
     opacity: 0.75;
   }
 
-  &:not([aria-disabled='true']) {
-    cursor: pointer;
-  }
-
-  &-content {
+  .sbb-expansion-panel-header-content {
     display: flex;
     flex: 1;
     flex-direction: row;
@@ -93,23 +63,46 @@
     line-height: $sbb-accordion-header-content-line-height;
   }
 
-  &:not(.sbb-no-toggle) {
-    &.sbb-expanded {
-      &::before {
-        @include expansionToggleArrow($sbb-accordion-toggle-expanded);
+  .sbb-expansion-panel-header-indicator {
+    flex: 0 0 auto;
+    // Centers the svg icon inside sbb-icon
+    line-height: 0;
+    @include publicOnly() {
+      $borderWidth: 1px;
+      border: 1px solid $sbbColorStorm;
+      border-radius: 50%;
+      color: $sbbColorGranite;
+      padding: pxToRem(4px - $borderWidth);
+      height: pxToRem(24px);
+      width: pxToRem(24px);
 
-        @include businessOnly() {
-          transform-origin: toPx($sbb-accordion-toggle-icon-size / 2)
-            toPx($sbb-accordion-toggle-icon-size / 4);
-          transform: rotate(180deg);
-        }
+      @include mq($from: tablet) {
+        height: pxToRem(32px);
+        width: pxToRem(32px);
+      }
+
+      $borderWidth: 2px;
+      @include mq($from: desktop4k) {
+        border-width: $borderWidth;
+        padding: pxToRem(6px - $borderWidth);
+        height: pxToRem(48px);
+        width: pxToRem(48px);
+      }
+
+      @include mq($from: desktop5k) {
+        padding: pxToRem(8px - $borderWidth);
+        height: pxToRem(64px);
+        width: pxToRem(64px);
       }
     }
 
-    &:not(.sbb-expanded) {
-      &::before {
-        @include expansionToggleArrow($sbb-accordion-toggle);
-      }
+    @include businessOnly() {
+      height: pxToRem(24px);
+      width: pxToRem(24px);
     }
+  }
+
+  &.sbb-expansion-panel-header-hide-toggle .sbb-expansion-panel-header-indicator {
+    display: none;
   }
 }

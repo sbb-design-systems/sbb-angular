@@ -3,10 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
-import { IconHimDisruptionModule, IconHimInfoModule } from '@sbb-esta/angular-icons/him-cus';
-import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { GhettoboxComponent } from './ghettobox.component';
 
@@ -22,7 +21,7 @@ import { GhettoboxComponent } from './ghettobox.component';
       [queryParams]="{ debug: false }"
       fragment="test"
     >
-      <sbb-icon-him-disruption *sbbIcon></sbb-icon-him-disruption>
+      <sbb-icon svgIcon="fpl:disruption" *sbbIcon class="sbb-icon-fit"></sbb-icon>
       This is a simple link text with custom icon
     </sbb-ghettobox>
   `,
@@ -41,10 +40,8 @@ describe('GhettoboxComponent', () => {
       imports: [
         RouterTestingModule,
         NoopAnimationsModule,
-        IconCrossModule,
-        IconArrowRightModule,
-        IconHimInfoModule,
-        IconHimDisruptionModule,
+        SbbIconTestingModule,
+        SbbIconModule,
         IconDirectiveModule,
       ],
       declarations: [GhettoboxTestComponent, GhettoboxComponent],
@@ -75,7 +72,7 @@ describe('GhettoboxComponent', () => {
     });
 
     it('should have the info default icon', () => {
-      const ghettoboxIcon = ghettoboxDebugElement.query(By.css('sbb-icon-him-info'));
+      const ghettoboxIcon = ghettoboxDebugElement.query(By.css('sbb-icon[svgIcon="fpl:info"]'));
 
       expect(ghettoboxIcon).toBeTruthy();
     });
@@ -110,7 +107,9 @@ describe('GhettoboxComponent', () => {
     });
 
     it('should have a custom icon', async () => {
-      const ghettoboxIcon = ghettoboxDebugElement.query(By.css('sbb-icon-him-disruption'));
+      const ghettoboxIcon = ghettoboxDebugElement.query(
+        By.css('sbb-icon[svgIcon="fpl:disruption"]')
+      );
       expect(ghettoboxIcon).toBeTruthy();
     });
 

@@ -4,7 +4,6 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  HostBinding,
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
@@ -27,6 +26,10 @@ import {
       useExisting: BreadcrumbsComponent,
     },
   ],
+  host: {
+    class: 'sbb-breadcrumbs',
+    '[class.sbb-breadcrumbs-expanded]': 'this.expanded',
+  },
 })
 export class BreadcrumbsComponent implements AfterViewInit {
   /**
@@ -36,14 +39,13 @@ export class BreadcrumbsComponent implements AfterViewInit {
 
   /**
    * Css class of a sbb-breadcrumbs.
+   * @deprecated internal detail
    */
-  @HostBinding('class.sbb-breadcrumbs')
   cssClass = true;
 
   /**
    * Status expanded of a sbb-breadcrumbs.
    */
-  @HostBinding('class.sbb-breadcrumbs-expanded')
   get expanded(): boolean {
     if (this.levels.length > 2) {
       return this._expanded;

@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconTickModule } from '@sbb-esta/angular-icons/status';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { CheckboxPanelComponent } from './checkbox-panel/checkbox-panel.component';
 
 @NgModule({
-  imports: [CommonModule, IconTickModule],
+  imports: [CommonModule, SbbIconModule],
   declarations: [CheckboxPanelComponent],
   exports: [CheckboxPanelComponent],
 })

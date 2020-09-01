@@ -1,22 +1,22 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'a[sbbLink]',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.css'],
+  host: {
+    class: 'sbb-link-business sbb-icon-fit',
+    '[class.sbb-link-normal]': 'this.mode === "normal"',
+    '[class.sbb-link-stretch]': 'this.mode === "stretch"',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LinkComponent {
-  /** @docs-private */
-  @HostBinding('class.sbb-link-business') linkClass = true;
+  /** @docs-private
+   * @deprecated */
+  linkClass = true;
   /**
    * Link modes available for different purposes
    */
@@ -26,14 +26,14 @@ export class LinkComponent {
    */
   @Input() icon: 'arrow' | 'download' = 'arrow';
 
-  /** @docs-private */
-  @HostBinding('class.sbb-link-normal')
+  /** @docs-private
+   * @deprecated */
   get _normalClass() {
     return this.mode === 'normal';
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-link-stretch')
+  /** @docs-private
+   * @deprecated */
   get _stretchClass() {
     return this.mode === 'stretch';
   }

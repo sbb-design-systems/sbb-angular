@@ -19,17 +19,15 @@ $sbbContextmenuBorderRadius: 2px;
     outline: 0;
     cursor: pointer;
 
-    > sbb-icon-context-menu {
-      width: $sbbContextmenuIconSize;
+    /* Use tag and class selector to be more specific than the icon rule for width and height */
+    sbb-icon.sbb-icon {
       height: $sbbContextmenuIconSize;
+      width: $sbbContextmenuIconSize;
     }
 
     &:hover,
     &:active {
-      path {
-        fill: $sbbColorCallToAction;
-        stroke: $sbbColorCallToAction;
-      }
+      color: $sbbColorRed125;
     }
 
     &[aria-expanded='true'] {

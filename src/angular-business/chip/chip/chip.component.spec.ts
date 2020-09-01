@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { IconCrossComponent, IconCrossModule } from '@sbb-esta/angular-icons/navigation';
+import { SbbIcon, SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { ChipComponent } from './chip.component';
 
@@ -26,7 +27,7 @@ describe('ChipComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ChipComponent, ChipTestComponent],
-      imports: [CommonModule, IconCrossModule],
+      imports: [CommonModule, SbbIconModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -42,7 +43,7 @@ describe('ChipComponent', () => {
 
   it('should show a dismissable chip with default label', () => {
     const chips = fixture.debugElement.queryAll(By.directive(ChipComponent));
-    const crossIcon = fixture.debugElement.query(By.directive(IconCrossComponent));
+    const crossIcon = fixture.debugElement.query(By.directive(SbbIcon));
     const label = fixture.debugElement.query(By.css('.sbb-chip-label'));
     expect(chips.length).toBe(1);
     expect(crossIcon).toBeDefined();
@@ -56,7 +57,7 @@ describe('ChipComponent', () => {
     fixture.detectChanges();
 
     const chips = fixture.debugElement.queryAll(By.directive(ChipComponent));
-    const crossIcon = fixture.debugElement.query(By.directive(IconCrossComponent));
+    const crossIcon = fixture.debugElement.query(By.directive(SbbIcon));
     expect(crossIcon).toBeNull();
     expect(chips[0].classes['sbb-chip-disabled']).toBe(true);
     expect(chips[0].classes['sbb-chip-active']).toBeFalsy();
@@ -64,7 +65,7 @@ describe('ChipComponent', () => {
 
   it('should emit dismissed event when dismissed button is pressed', () => {
     const dismissedSpy = spyOn(component, 'dismissed');
-    const dismissButton = fixture.debugElement.query(By.css('.sbb-chip-close-btn'));
+    const dismissButton = fixture.debugElement.query(By.css('.sbb-chip-close-button'));
     dismissButton.nativeElement.click();
 
     expect(dismissedSpy).toHaveBeenCalledTimes(1);
@@ -72,7 +73,7 @@ describe('ChipComponent', () => {
   });
 
   it('should hide chip when dismissed button is pressed', () => {
-    const dismissButton = fixture.debugElement.query(By.css('.sbb-chip-close-btn'));
+    const dismissButton = fixture.debugElement.query(By.css('.sbb-chip-close-button'));
     dismissButton.nativeElement.click();
     fixture.detectChanges();
 

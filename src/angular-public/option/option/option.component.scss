@@ -54,7 +54,7 @@ sbb-option {
         background-color: $sbbColorMilk;
 
         & > .sbb-checkbox-checked {
-          @include svgIconColor($sbbColorGrey);
+          color: $sbbColorGrey;
         }
       }
     }
