@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconDragSmall]',
   template: ` <svg:path fill="none" stroke="#000" d="M20 7.5H4h16zm0 8H4h16zm0-4H4h16z" /> `,
@@ -29,6 +32,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconDragSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-drag-small',
   template: ` <svg sbbIconDragSmall></svg> `,
@@ -39,6 +45,9 @@ export class SvgIconDragSmall {}
 })
 export class IconDragSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconDragSmall, IconDragSmall],
   exports: [SvgIconDragSmall, IconDragSmall],

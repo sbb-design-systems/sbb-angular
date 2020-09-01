@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconKeyboardSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconKeyboardSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-keyboard-small',
   template: ` <svg sbbIconKeyboardSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconKeyboardSmall {}
 })
 export class IconKeyboardSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconKeyboardSmall, IconKeyboardSmall],
   exports: [SvgIconKeyboardSmall, IconKeyboardSmall],

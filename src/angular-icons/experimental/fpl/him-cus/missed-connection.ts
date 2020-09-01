@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconMissedConnection]',
   template: `
@@ -37,6 +40,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconMissedConnection {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-missed-connection',
   template: ` <svg sbbIconMissedConnection></svg> `,
@@ -47,6 +53,9 @@ export class SvgIconMissedConnection {}
 })
 export class IconMissedConnection {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconMissedConnection, IconMissedConnection],
   exports: [SvgIconMissedConnection, IconMissedConnection],

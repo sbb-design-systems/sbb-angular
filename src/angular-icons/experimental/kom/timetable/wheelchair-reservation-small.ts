@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconWheelchairReservationSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconWheelchairReservationSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-wheelchair-reservation-small',
   template: ` <svg sbbIconWheelchairReservationSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconWheelchairReservationSmall {}
 })
 export class IconWheelchairReservationSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWheelchairReservationSmall, IconWheelchairReservationSmall],
   exports: [SvgIconWheelchairReservationSmall, IconWheelchairReservationSmall],

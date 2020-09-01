@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconDocumentSoundMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconDocumentSoundMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-document-sound-medium',
   template: ` <svg sbbIconDocumentSoundMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconDocumentSoundMedium {}
 })
 export class IconDocumentSoundMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconDocumentSoundMedium, IconDocumentSoundMedium],
   exports: [SvgIconDocumentSoundMedium, IconDocumentSoundMedium],

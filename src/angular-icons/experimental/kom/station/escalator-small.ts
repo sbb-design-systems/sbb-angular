@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconEscalatorSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconEscalatorSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-escalator-small',
   template: ` <svg sbbIconEscalatorSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconEscalatorSmall {}
 })
 export class IconEscalatorSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconEscalatorSmall, IconEscalatorSmall],
   exports: [SvgIconEscalatorSmall, IconEscalatorSmall],

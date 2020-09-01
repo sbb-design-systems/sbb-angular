@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconQuestionMarkSmall]',
   template: `
@@ -34,6 +37,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconQuestionMarkSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-question-mark-small',
   template: ` <svg sbbIconQuestionMarkSmall></svg> `,
@@ -44,6 +50,9 @@ export class SvgIconQuestionMarkSmall {}
 })
 export class IconQuestionMarkSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconQuestionMarkSmall, IconQuestionMarkSmall],
   exports: [SvgIconQuestionMarkSmall, IconQuestionMarkSmall],

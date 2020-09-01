@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconLockClosedMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconLockClosedMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-lock-closed-medium',
   template: ` <svg sbbIconLockClosedMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconLockClosedMedium {}
 })
 export class IconLockClosedMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLockClosedMedium, IconLockClosedMedium],
   exports: [SvgIconLockClosedMedium, IconLockClosedMedium],

@@ -21,6 +21,14 @@
             "args": [
                 ".:public2business"
             ]
+        },
+        // Run yarn add @angular-devkit/schematics-cli before running this
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "icon-cdn-provider",
+          "program": "${workspaceFolder}/node_modules/@angular-devkit/schematics-cli/bin/schematics.js",
+          "args": [".:icon-cdn-provider", "--path=src/angular-core/icon"]
         }
     ]
 }

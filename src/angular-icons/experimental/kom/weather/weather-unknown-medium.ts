@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconWeatherUnknownMedium]',
   template: `
@@ -40,6 +43,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconWeatherUnknownMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-weather-unknown-medium',
   template: ` <svg sbbIconWeatherUnknownMedium></svg> `,
@@ -50,6 +56,9 @@ export class SvgIconWeatherUnknownMedium {}
 })
 export class IconWeatherUnknownMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWeatherUnknownMedium, IconWeatherUnknownMedium],
   exports: [SvgIconWeatherUnknownMedium, IconWeatherUnknownMedium],

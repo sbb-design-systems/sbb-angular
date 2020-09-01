@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconQrcodeDisabledSmall]',
   template: `
@@ -37,6 +40,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconQrcodeDisabledSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-qrcode-disabled-small',
   template: ` <svg sbbIconQrcodeDisabledSmall></svg> `,
@@ -47,6 +53,9 @@ export class SvgIconQrcodeDisabledSmall {}
 })
 export class IconQrcodeDisabledSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconQrcodeDisabledSmall, IconQrcodeDisabledSmall],
   exports: [SvgIconQrcodeDisabledSmall, IconQrcodeDisabledSmall],

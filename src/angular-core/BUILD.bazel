@@ -66,6 +66,7 @@ ng_package(
     ],
     entry_point = ":public-api.ts",
     entry_point_name = "angular-core",
+    nested_packages = ["//src/angular-core/schematics:npm_package"],
     tags = ["release-package"],
     deps = CORE_TARGETS + CORE_TESTING_TARGETS,
 )

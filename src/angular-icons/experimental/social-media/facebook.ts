@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconFacebook]',
   template: ` <svg:path d="M17 6V3h-5.3c-.9 0-1.7.7-1.7 1.7V9H8v3h2v9h4v-9h2V9h-2V6h3z" /> `,
@@ -29,6 +32,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconFacebook {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-facebook',
   template: ` <svg sbbIconFacebook></svg> `,
@@ -39,6 +45,9 @@ export class SvgIconFacebook {}
 })
 export class IconFacebook {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFacebook, IconFacebook],
   exports: [SvgIconFacebook, IconFacebook],

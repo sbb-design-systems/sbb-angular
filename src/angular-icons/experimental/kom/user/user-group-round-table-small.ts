@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconUserGroupRoundTableSmall]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconUserGroupRoundTableSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-user-group-round-table-small',
   template: ` <svg sbbIconUserGroupRoundTableSmall></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconUserGroupRoundTableSmall {}
 })
 export class IconUserGroupRoundTableSmall {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconUserGroupRoundTableSmall, IconUserGroupRoundTableSmall],
   exports: [SvgIconUserGroupRoundTableSmall, IconUserGroupRoundTableSmall],

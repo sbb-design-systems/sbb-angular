@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconFolderOpenArrowMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconFolderOpenArrowMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-folder-open-arrow-medium',
   template: ` <svg sbbIconFolderOpenArrowMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconFolderOpenArrowMedium {}
 })
 export class IconFolderOpenArrowMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconFolderOpenArrowMedium, IconFolderOpenArrowMedium],
   exports: [SvgIconFolderOpenArrowMedium, IconFolderOpenArrowMedium],

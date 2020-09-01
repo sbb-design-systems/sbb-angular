@@ -40,15 +40,7 @@ function addTypographyToStylesNodeOfAngularJson(
   const workspace = getWorkspace(tree);
   const projectName = options.name || workspace.defaultProject;
 
-  if (
-    !projectName ||
-    !workspace ||
-    !workspace.projects ||
-    !workspace.projects[projectName] ||
-    !workspace.projects[projectName].architect ||
-    !workspace.projects[projectName].architect![buildOrTest] ||
-    !workspace.projects[projectName].architect![buildOrTest]!.options
-  ) {
+  if (!projectName || !workspace?.projects?.[projectName]?.architect?.[buildOrTest]?.options) {
     context.logger.error(
       `Unable to add the typography. Please add an import to ${TYPOGRAPHY_CSS_PATH} to your project.`
     );
@@ -109,7 +101,7 @@ function addAnimationsModule(options: Schema) {
         project
       );
 
-      context.logger.info(`✔️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to angular.json`);
+      context.logger.info(`✔️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to ${appModulePath}`);
     } else {
       if (hasNgModuleImport(host, appModulePath, BROWSER_ANIMATIONS_MODULE_NAME)) {
         // Do not add the NoopAnimationsModule module if the project already explicitly uses
@@ -126,7 +118,7 @@ function addAnimationsModule(options: Schema) {
         '@angular/platform-browser/animations',
         project
       );
-      context.logger.info(`✔️ Added ${NOOP_ANIMATIONS_MODULE_NAME} to angular.json`);
+      context.logger.info(`✔️ Added ${NOOP_ANIMATIONS_MODULE_NAME} to ${appModulePath}`);
     }
 
     return host;

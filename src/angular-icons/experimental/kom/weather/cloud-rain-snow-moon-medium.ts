@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconCloudRainSnowMoonMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconCloudRainSnowMoonMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-cloud-rain-snow-moon-medium',
   template: ` <svg sbbIconCloudRainSnowMoonMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconCloudRainSnowMoonMedium {}
 })
 export class IconCloudRainSnowMoonMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconCloudRainSnowMoonMedium, IconCloudRainSnowMoonMedium],
   exports: [SvgIconCloudRainSnowMoonMedium, IconCloudRainSnowMoonMedium],

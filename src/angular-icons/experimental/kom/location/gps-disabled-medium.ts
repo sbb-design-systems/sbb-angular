@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconGpsDisabledMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconGpsDisabledMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-gps-disabled-medium',
   template: ` <svg sbbIconGpsDisabledMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconGpsDisabledMedium {}
 })
 export class IconGpsDisabledMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconGpsDisabledMedium, IconGpsDisabledMedium],
   exports: [SvgIconGpsDisabledMedium, IconGpsDisabledMedium],

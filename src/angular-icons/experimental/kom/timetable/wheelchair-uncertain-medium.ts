@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconWheelchairUncertainMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconWheelchairUncertainMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-wheelchair-uncertain-medium',
   template: ` <svg sbbIconWheelchairUncertainMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconWheelchairUncertainMedium {}
 })
 export class IconWheelchairUncertainMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconWheelchairUncertainMedium, IconWheelchairUncertainMedium],
   exports: [SvgIconWheelchairUncertainMedium, IconWheelchairUncertainMedium],

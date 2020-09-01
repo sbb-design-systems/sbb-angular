@@ -106,6 +106,9 @@ const modules = [
   IconProductVaeModule,
 ];
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   imports: modules,
   exports: modules,

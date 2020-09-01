@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconThumbUpMedium]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconThumbUpMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-thumb-up-medium',
   template: ` <svg sbbIconThumbUpMedium></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconThumbUpMedium {}
 })
 export class IconThumbUpMedium {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconThumbUpMedium, IconThumbUpMedium],
   exports: [SvgIconThumbUpMedium, IconThumbUpMedium],

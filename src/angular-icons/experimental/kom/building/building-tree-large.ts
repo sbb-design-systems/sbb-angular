@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconBuildingTreeLarge]',
   template: `
@@ -38,6 +41,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconBuildingTreeLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-building-tree-large',
   template: ` <svg sbbIconBuildingTreeLarge></svg> `,
@@ -48,6 +54,9 @@ export class SvgIconBuildingTreeLarge {}
 })
 export class IconBuildingTreeLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconBuildingTreeLarge, IconBuildingTreeLarge],
   exports: [SvgIconBuildingTreeLarge, IconBuildingTreeLarge],

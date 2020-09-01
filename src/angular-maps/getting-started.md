@@ -50,7 +50,7 @@ import { EsriConfigModule } from '@sbb-esta/angular-maps';
   imports: [EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' })],
   ...
 })
-export class TrainChooChooAppModule { }
+export class TrainChooChooAppModule {}
 ```
 
 The ArcGIS API for Javascript allows for cross origin requests made to associated servers to include credentials such as cookies and authorization headers. This is indicated by a list of named so called _trustedServers_ (see [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)). When using the SBB Geoportal, it's currently also required to add the same host names to the list of _originsWithCredentialsRequired_. Whenever a request is made to a server listed in _originsWithCredentialsRequired_ it is being intercepted (using _interceptors_ as [described](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)) and the [_withCredentials_ header](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials) is set. [Read more on how the ArcGIS API for Javascript handles CORS](https://developers.arcgis.com/javascript/latest/guide/cors/index.html).
@@ -82,7 +82,7 @@ import { EsriConfigModule } from '@sbb-esta/angular-maps';
   imports: [EsriConfigModule],
   ...
 })
-export class TrainChooChooAppModule { }
+export class TrainChooChooAppModule {}
 ```
 
 ### Step 3: Import the component modules
@@ -97,5 +97,5 @@ import { EsriWebMapModule, EsriWebSceneModule } from '@sbb-esta/angular-maps';
   imports: [EsriWebMapModule, EsriWebSceneModule],
   ...
 })
-export class TrainChooChooAppModule { }
+export class TrainChooChooAppModule {}
 ```

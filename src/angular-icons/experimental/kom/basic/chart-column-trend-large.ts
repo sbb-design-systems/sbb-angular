@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconChartColumnTrendLarge]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconChartColumnTrendLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-chart-column-trend-large',
   template: ` <svg sbbIconChartColumnTrendLarge></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconChartColumnTrendLarge {}
 })
 export class IconChartColumnTrendLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconChartColumnTrendLarge, IconChartColumnTrendLarge],
   exports: [SvgIconChartColumnTrendLarge, IconChartColumnTrendLarge],

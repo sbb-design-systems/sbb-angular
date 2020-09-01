@@ -2,6 +2,9 @@
 // tslint:disable
 import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'svg[sbbIconLucerneChapelBridgeLarge]',
   template: `
@@ -35,6 +38,9 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 })
 export class SvgIconLucerneChapelBridgeLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @Component({
   selector: 'sbb-icon-lucerne-chapel-bridge-large',
   template: ` <svg sbbIconLucerneChapelBridgeLarge></svg> `,
@@ -45,6 +51,9 @@ export class SvgIconLucerneChapelBridgeLarge {}
 })
 export class IconLucerneChapelBridgeLarge {}
 
+/**
+ * @deprecated use @sbb-esta/angular-core/icon module
+ */
 @NgModule({
   declarations: [SvgIconLucerneChapelBridgeLarge, IconLucerneChapelBridgeLarge],
   exports: [SvgIconLucerneChapelBridgeLarge, IconLucerneChapelBridgeLarge],
