@@ -10,7 +10,8 @@ import {
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IconStationModule } from '@sbb-esta/angular-icons/station';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { SbbSidebarModule } from '../sidebar-module';
 
@@ -29,7 +30,8 @@ describe('SbbIconSidebar', () => {
         PlatformModule,
         NoopAnimationsModule,
         CommonModule,
-        IconStationModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         RouterTestingModule,
       ],
       declarations: [
@@ -159,7 +161,7 @@ describe('SbbIconSidebar', () => {
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [SbbSidebarModule, BrowserAnimationsModule],
+          imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconModule, SbbIconTestingModule],
           declarations: [SidebarExpandedBindingTestComponent],
         })
         .compileComponents();
@@ -272,7 +274,14 @@ describe('SbbIconSidebar', () => {
 describe('SbbIconSidebarContainer', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SbbSidebarModule, A11yModule, PlatformModule, NoopAnimationsModule],
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        PlatformModule,
+        NoopAnimationsModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+      ],
       declarations: [
         SidebarContainerEmptyTestComponent,
         SidebarDelayedTestComponent,
@@ -311,7 +320,7 @@ describe('SbbIconSidebarContainer', () => {
   it('should not animate when the sidebar is expanded on load', fakeAsync(() => {
     TestBed.resetTestingModule()
       .configureTestingModule({
-        imports: [SbbSidebarModule, BrowserAnimationsModule],
+        imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconModule, SbbIconTestingModule],
         declarations: [SidebarSetToExpandedTrueTestComponent],
       })
       .compileComponents();
@@ -531,7 +540,7 @@ class NestedSidebarContainersTestComponent {
     <sbb-icon-sidebar-container>
       <sbb-icon-sidebar>
         <a sbbIconSidebarItem [routerLink]="['/link1']" label="Link1">
-          <sbb-icon-station sbbIcon></sbb-icon-station>
+          <sbb-icon svgIcon="kom:station-small"></sbb-icon>
         </a>
         <hr />
         <a
@@ -540,11 +549,11 @@ class NestedSidebarContainersTestComponent {
           label="Link 2"
           routerLinkActive="sbb-icon-sidebar-item-active"
         >
-          <sbb-icon-station sbbIcon></sbb-icon-station>
+          <sbb-icon svgIcon="kom:station-small"></sbb-icon>
         </a>
         <a>SHOULD BE IGNORED</a>
         <a sbbIconSidebarItem [routerLink]="['/link3']" label="Link3">
-          <sbb-icon-station sbbIcon></sbb-icon-station>
+          <sbb-icon svgIcon="kom:station-small"></sbb-icon>
         </a>
       </sbb-icon-sidebar>
       <sbb-icon-sidebar-content>

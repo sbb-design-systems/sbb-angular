@@ -3,12 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
-import {
-  IconLockerModule,
-  IconMoneyExchangeModule,
-  IconStationModule,
-  IconWaitingRoomModule,
-} from '@sbb-esta/angular-icons/station';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -21,16 +16,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SbbSidebarModule,
-    IconStationModule,
-    IconLockerModule,
-    IconMoneyExchangeModule,
-    IconWaitingRoomModule,
-    FormsModule,
-    CheckboxModule,
-  ],
+  imports: [CommonModule, SbbSidebarModule, SbbIconModule, FormsModule, CheckboxModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('business', 'sidebar', EXAMPLE_INDEX)],

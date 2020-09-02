@@ -24,7 +24,7 @@ ng_module(
     module_name = "@sbb-esta/angular-business/sidebar",
     deps = [
         "//src/angular-core/breakpoints",
-        "//src/angular-icons/arrow",
+        "//src/angular-core/icon",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
@@ -70,8 +70,9 @@ ng_test_library(
     ),
     deps = [
         ":sidebar",
+        "//src/angular-core/icon",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
-        "//src/angular-icons/station",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/platform-browser",

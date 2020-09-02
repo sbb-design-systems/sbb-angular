@@ -2,7 +2,7 @@ import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconChevronSmallLeftCircleModule } from '@sbb-esta/angular-icons/arrow';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import {
   SbbIconSidebar,
@@ -15,7 +15,7 @@ import { SbbIconSidebarItem } from './icon-sidebar/icon-sidebar-item';
 import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/sidebar';
 
 @NgModule({
-  imports: [CommonModule, PlatformModule, CdkScrollableModule, IconChevronSmallLeftCircleModule],
+  imports: [CommonModule, PlatformModule, CdkScrollableModule, SbbIconModule],
   exports: [
     CdkScrollableModule,
 

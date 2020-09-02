@@ -10,11 +10,7 @@ import {
   SBB_ICON_SIDEBAR_EXPANDED_WIDTH,
 } from '@sbb-esta/angular-business/sidebar';
 import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
-import { IconGearsModule, IconGlobeModule } from '@sbb-esta/angular-icons/basic';
-import { IconBulbOnModule, IconNetworkModule } from '@sbb-esta/angular-icons/community';
-import { IconLocationPinMapModule } from '@sbb-esta/angular-icons/location';
-import { IconStationModule } from '@sbb-esta/angular-icons/station';
-import { IconKeyModule } from '@sbb-esta/angular-icons/user';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,13 +30,7 @@ import { IntroductionComponent } from './introduction/introduction.component';
     ReactiveFormsModule,
     CheckboxModule,
     SbbSidebarModule,
-    IconStationModule,
-    IconGearsModule,
-    IconGlobeModule,
-    IconNetworkModule,
-    IconLocationPinMapModule,
-    IconKeyModule,
-    IconBulbOnModule,
+    SbbIconModule,
   ],
   exports: [AppComponent],
   bootstrap: [AppComponent],

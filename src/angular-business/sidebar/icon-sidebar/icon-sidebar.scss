@@ -46,8 +46,14 @@
       align-items: center;
       flex: 0 0 48px;
 
+      // TODO(icon-migration): remove block because icons take color from font color
       .sbb-icon-component {
         @include svgIconColor($sbbColorIron);
+        width: 24px;
+        height: 24px;
+      }
+
+      sbb-icon {
         width: 24px;
         height: 24px;
       }
@@ -87,6 +93,7 @@
         background-color: $sbbColorRed125;
       }
 
+      // TODO(icon-migration): remove block because icons take color from font color
       .sbb-icon-sidebar-item-icon {
         .sbb-icon-component {
           @include svgIconColor($sbbColorRed125);
@@ -104,6 +111,7 @@
         background-color: $sbbColorBlack;
       }
 
+      // TODO(icon-migration): remove block because icons take color from font color
       .sbb-icon-sidebar-item-icon {
         .sbb-icon-component {
           @include svgIconColor($sbbColorBlack);
