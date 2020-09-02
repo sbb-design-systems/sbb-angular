@@ -10,14 +10,19 @@ ng_module(
     name = "sidebar-examples",
     srcs = [
         "icon-sidebar-example/icon-sidebar-example.component.ts",
+        "sidebar-example/sidebar-example.component.ts",
         "sidebar-examples.module.ts",
     ],
     assets = [
         ":icon-sidebar-example/icon-sidebar-example.component.css",
+        ":sidebar-example/sidebar-example.component.css",
         "icon-sidebar-example/icon-sidebar-example.component.html",
+        "sidebar-example/sidebar-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/angular-business/accordion",
+        "//src/angular-business/button",
         "//src/angular-business/checkbox",
         "//src/angular-business/sidebar",
         "//src/angular-core/icon",
@@ -40,6 +45,14 @@ filegroup(
 sass_binary(
     name = "icon_sidebar_example_icon_sidebar_example_component_scss",
     src = "icon-sidebar-example/icon-sidebar-example.component.scss",
+    deps = [
+        "//src/angular-core/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "sidebar_example_sidebar_example_component_scss",
+    src = "sidebar-example/sidebar-example.component.scss",
     deps = [
         "//src/angular-core/styles:common_scss_lib",
     ],

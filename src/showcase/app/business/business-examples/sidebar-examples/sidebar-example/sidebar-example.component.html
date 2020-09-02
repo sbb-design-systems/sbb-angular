@@ -1,0 +1,28 @@
+<div class="sidebar-frame">
+  <sbb-sidebar-container>
+    <sbb-sidebar mode="side" opened>
+      <sbb-expansion-panel expanded>
+        <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
+        <a>Getting Started</a>
+        <a>Typography</a>
+      </sbb-expansion-panel>
+      <sbb-expansion-panel>
+        <sbb-expansion-panel-header>Form Components</sbb-expansion-panel-header>
+        <a>Autocomplete</a>
+        <a>Checkbox</a>
+      </sbb-expansion-panel>
+      <fieldset>
+        <legend>Fieldset Example</legend>
+        <button sbbButton mode="primary">Important Button</button>
+      </fieldset>
+    </sbb-sidebar>
+    <sbb-sidebar-content>
+      Content
+    </sbb-sidebar-content>
+  </sbb-sidebar-container>
+</div>
+
+<h4>Properties</h4>
+<div class="sbb-checkbox-group-vertical">
+  <sbb-checkbox [(ngModel)]="simulateMobile">Simulate Mobile View</sbb-checkbox>
+</div>
