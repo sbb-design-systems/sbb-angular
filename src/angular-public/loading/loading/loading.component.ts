@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styleUrls: ['./loading.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.role]': `'progressbar'`,
+    'attr.role': 'progressbar',
     '[attr.aria-busy]': 'true',
     '[class.sbb-loading-tiny]': `this.mode === 'tiny'`,
     '[class.sbb-loading-small]': `this.mode === 'small'`,
