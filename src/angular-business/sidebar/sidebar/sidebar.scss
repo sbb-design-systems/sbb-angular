@@ -1,21 +1,69 @@
 @import '../sidebar';
 
 .sbb-sidebar-container {
-  @include sbb-sidebar-container;
+  @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
 
   &.sbb-sidebar-after-header {
-    top: 54px; //TODO: import
+    top: $sbb-sidebar-after-header-top;
+  }
+
+  &.sbb-sidebar-container-has-open {
+    overflow: hidden;
+  }
+
+  // When the consumer explicitly enabled the backdrop,
+  // we have to pull the side sidebars above it.
+  &.sbb-sidebar-container-explicit-backdrop .sbb-sidebar-side {
+    z-index: $sbb-sidebar-backdrop-z-index;
   }
 }
 
 .sbb-sidebar-backdrop {
-  @include sbb-sidebar-backdrop;
+  @include sbb-fill();
+
+  display: block;
+
+  // Because of the new stacking context, the z-index stack is new and we can use our own
+  // numbers.
+  z-index: $sbb-sidebar-backdrop-z-index;
+
+  // We use 'visibility: hidden | visible' because 'display: none' will not animate any
+  // transitions, while visibility will interpolate transitions properly.
+  // see https://developer.mozilla.org/en-US/docs/Web/CSS/visibility, the Interpolation
+  // section.
+  visibility: hidden;
+
+  &.sbb-sidebar-shown {
+    visibility: visible;
+  }
+
+  .sbb-sidebar-transition & {
+    transition: {
+      duration: $swift-ease-out-duration;
+      timing-function: $swift-ease-out-timing-function;
+      property: background-color, visibility;
+    }
+  }
 }
 
 .sbb-sidebar-content {
   @include sbb-sidebar-content;
 }
 
+.sbb-sidebar-transition .sbb-sidebar-content {
+  @include sbb-sidebar-content-transition();
+}
+
 .sbb-sidebar {
   @include sbb-sidebar;
+
+  transform: translate3d(-100%, 0, 0);
+
+  .sbb-sidebar-inner-container {
+    @include sbb-sidebar-inner-container();
+  }
+
+  &.sbb-sidebar-side {
+    z-index: $sbb-sidebar-side-sidebar-z-index;
+  }
 }

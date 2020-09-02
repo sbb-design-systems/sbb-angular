@@ -334,7 +334,7 @@ describe('SbbIconSidebarContainer', () => {
       '.sbb-icon-sidebar-container'
     );
 
-    expect(container.classList).not.toContain('sbb-sidebar-transition');
+    expect(container.classList).not.toContain('sbb-icon-sidebar-transition');
   }));
 
   it('should expose a scrollable when the consumer has not specified sidebar content', fakeAsync(() => {

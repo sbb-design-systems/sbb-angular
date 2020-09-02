@@ -69,7 +69,7 @@ export function SBB_SIDEBAR_DEFAULT_AUTOSIZE_FACTORY(): boolean {
   selector: 'sbb-sidebar-content',
   template: '<ng-content></ng-content>',
   host: {
-    class: 'sbb-sidebar-content sbb-sidebar-content sbb-scrollbar',
+    class: 'sbb-sidebar-content sbb-scrollbar',
     '[style.margin-left.px]': '_container._contentMargins.left',
     '[style.margin-right.px]': '_container._contentMargins.right',
   },
@@ -482,7 +482,7 @@ export class SbbSidebar extends SbbSidebarBase
   templateUrl: './sidebar-container.html',
   styleUrls: ['./sidebar.css'],
   host: {
-    class: 'sbb-sidebar-container sbb-sidebar-container',
+    class: 'sbb-sidebar-container',
     '[class.sbb-sidebar-container-explicit-backdrop]': '_backdropOverride',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,

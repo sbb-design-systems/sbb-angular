@@ -51,7 +51,7 @@ export const SBB_ICON_SIDEBAR_EXPANDED_WIDTH = new InjectionToken<number>(
   selector: 'sbb-icon-sidebar-content',
   template: '<ng-content></ng-content>',
   host: {
-    class: 'sbb-sidebar-content sbb-icon-sidebar-content sbb-scrollbar',
+    class: 'sbb-icon-sidebar-content sbb-scrollbar',
     '[style.margin-left.px]': '_container._contentMargins.left',
     '[style.margin-bottom.px]': '_container._contentMargins.bottom',
   },
@@ -76,7 +76,7 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {
   templateUrl: './icon-sidebar.html',
   animations: [sbbIconSidebarAnimations.transformIconSidebar],
   host: {
-    class: 'sbb-sidebar sbb-icon-sidebar sbb-sidebar-side sbb-sidebar-opened',
+    class: 'sbb-icon-sidebar',
     tabIndex: '-1',
     // must prevent the browser from aligning text based on value
     '[attr.align]': 'null',
@@ -246,7 +246,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
   templateUrl: './icon-sidebar-container.html',
   styleUrls: ['./icon-sidebar.css'],
   host: {
-    class: 'sbb-sidebar-container sbb-icon-sidebar-container',
+    class: 'sbb-icon-sidebar-container',
     '[class.sbb-icon-sidebar-container-mobile]': '_mobile',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -358,11 +358,25 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
           event.toState !== 'mobile' &&
           this._animationMode !== 'NoopAnimations'
         ) {
-          this._element.nativeElement.classList.add('sbb-sidebar-transition');
+          this._element.nativeElement.classList.add('sbb-icon-sidebar-transition');
+        }
+
+        if (event.toState === 'mobile') {
+          console.log('toMobile');
+          this._element.nativeElement.classList.remove('sbb-icon-sidebar-transition');
         }
 
         this.updateContentMargins();
         this._changeDetectorRef.markForCheck();
+      });
+
+    sidebar._animationEnd
+      .pipe(
+        filter((event: AnimationEvent) => event.fromState !== event.toState),
+        takeUntil(this._sidebars.changes)
+      )
+      .subscribe(() => {
+        this._element.nativeElement.classList.remove('sbb-icon-sidebar-transition');
       });
   }
 }
