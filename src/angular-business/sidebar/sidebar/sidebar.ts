@@ -14,14 +14,12 @@ import {
   Component,
   ContentChild,
   ContentChildren,
-  DoCheck,
   ElementRef,
   EventEmitter,
   forwardRef,
   HostBinding,
   HostListener,
   Inject,
-  InjectionToken,
   Input,
   NgZone,
   OnDestroy,
@@ -50,20 +48,6 @@ export type SbbSidebarToggleResult = 'open' | 'close';
 
 /** Sidebar display modes. */
 export type SbbSidebarMode = 'over' | 'push' | 'side';
-
-/** Configures whether sidebars should use auto sizing by default. */
-export const SBB_SIDEBAR_DEFAULT_AUTOSIZE = new InjectionToken<boolean>(
-  'SBB_SIDEBAR_DEFAULT_AUTOSIZE',
-  {
-    providedIn: 'root',
-    factory: SBB_SIDEBAR_DEFAULT_AUTOSIZE_FACTORY,
-  }
-);
-
-/** @docs-private */
-export function SBB_SIDEBAR_DEFAULT_AUTOSIZE_FACTORY(): boolean {
-  return false;
-}
 
 @Component({
   selector: 'sbb-sidebar-content',
@@ -247,7 +231,7 @@ export class SbbSidebar extends SbbSidebarBase
   private _focusTrap: FocusTrap;
   private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
 
-  private _mode: SbbSidebarMode = 'side';
+  private _mode: SbbSidebarMode = 'over';
   private _disableClose: boolean = false;
   private _autoFocus: boolean | undefined;
   private _opened: boolean = false;
@@ -495,26 +479,10 @@ export class SbbSidebar extends SbbSidebarBase
   ],
 })
 export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
-  implements DoCheck, AfterContentInit, ISbbSidebarContainer {
+  implements AfterContentInit, ISbbSidebarContainer {
   /** The sidebar child */
   get sidebar(): SbbSidebar | null {
     return this._sidebar;
-  }
-
-  /**
-   * Whether to automatically resize the container whenever
-   * the size of any of its sidebars changes.
-   *
-   * **Use at your own risk!** Enabling this option can cause layout thrashing by measuring
-   * the sidebars on every change detection cycle. Can be configured globally via the
-   * `SBB_SIDEBAR_DEFAULT_AUTOSIZE` token.
-   */
-  @Input()
-  get autosize(): boolean {
-    return this._autosize;
-  }
-  set autosize(value: boolean) {
-    this._autosize = coerceBooleanProperty(value);
   }
 
   /**
@@ -539,7 +507,6 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
     ngZone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
-    @Inject(SBB_SIDEBAR_DEFAULT_AUTOSIZE) defaultAutosize = false,
     breakPointObserver: BreakpointObserver,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
   ) {
@@ -551,11 +518,8 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
       .change()
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => this.updateContentMargins());
-
-    this._autosize = defaultAutosize;
   }
 
-  static ngAcceptInputType_autosize: BooleanInput;
   static ngAcceptInputType_hasBackdrop: BooleanInput;
   /** All sidebars in the container. Includes drawers from inside nested containers. */
   @ContentChildren(SbbSidebar, {
@@ -567,7 +531,6 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
 
   @ContentChild(SbbSidebarContent) _content: SbbSidebarContent;
   @ViewChild(SbbSidebarContent) _userContent: SbbSidebarContent;
-  private _autosize: boolean;
   _backdropOverride: boolean | null;
 
   /** Event emitted when the sidebar backdrop is clicked. */
@@ -656,14 +619,6 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
     }
   }
 
-  ngDoCheck() {
-    // If users opted into autosizing, do a check every change detection cycle.
-    if (this._autosize && this._isPushed()) {
-      // Run outside the NgZone, otherwise the debouncer will throw us into an infinite loop.
-      this._ngZone.runOutsideAngular(() => this._doCheckSubject.next());
-    }
-  }
-
   /**
    * Subscribes to sidebar events in order to set a class on the main container element when the
    * sidebar is open and the backdrop is visible. This ensures any overflow on the container element
@@ -715,11 +670,6 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
     } else {
       classList.remove(className);
     }
-  }
-
-  /** Whether the container is being pushed to the side by one of the sidebars. */
-  private _isPushed() {
-    return this._isSidebarOpen(this._sidebar) && this._sidebar.mode !== 'over';
   }
 
   _onBackdropClicked() {

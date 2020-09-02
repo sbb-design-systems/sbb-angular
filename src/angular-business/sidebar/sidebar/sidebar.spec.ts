@@ -654,7 +654,7 @@ describe('SbbSidebarContainer', () => {
         SidebarDelayedTestComponent,
         SidebarSetToOpenedTrueTestComponent,
         SidebarContainerStateChangesTestAppTestComponent,
-        AutosizeSidebarTestComponent,
+        ZeroWithSidebarTestComponent,
         BasicTestComponent,
         SidebarContainerWithContentTestComponent,
       ],
@@ -766,45 +766,8 @@ describe('SbbSidebarContainer', () => {
     expect(container.classList).not.toContain('sbb-sidebar-transition');
   }));
 
-  it('should recalculate the margin if a sidebar changes size while open in autosize mode', fakeAsync(
-    inject([Platform], (platform: Platform) => {
-      const fixture = TestBed.createComponent(AutosizeSidebarTestComponent);
-
-      fixture.detectChanges();
-      fixture.componentInstance.sidebar.open();
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-
-      // IE and Edge are flaky in when they update the styles.
-      // For them we fall back to checking whether the proper method was called.
-      const isFlaky = platform.EDGE || platform.TRIDENT;
-      const contentEl = fixture.debugElement.nativeElement.querySelector('.sbb-sidebar-content');
-      const initialMargin = parseInt(contentEl.style.marginLeft, 10);
-
-      if (isFlaky) {
-        spyOn(fixture.componentInstance.sidebarContainer, 'updateContentMargins');
-      } else {
-        expect(initialMargin).toBeGreaterThan(0);
-      }
-
-      fixture.componentInstance.fillerWidth = 200;
-      fixture.detectChanges();
-      tick(10);
-      fixture.detectChanges();
-
-      if (isFlaky) {
-        expect(fixture.componentInstance.sidebarContainer.updateContentMargins).toHaveBeenCalled();
-      } else {
-        expect(parseInt(contentEl.style.marginLeft, 10)).toBeGreaterThan(initialMargin);
-      }
-
-      discardPeriodicTasks();
-    })
-  ));
-
   it('should not set a style property if it would be zero', fakeAsync(() => {
-    const fixture = TestBed.createComponent(AutosizeSidebarTestComponent);
+    const fixture = TestBed.createComponent(ZeroWithSidebarTestComponent);
     fixture.detectChanges();
 
     const content = fixture.debugElement.nativeElement.querySelector('.sbb-sidebar-content');
@@ -1073,17 +1036,15 @@ class SidebarContainerStateChangesTestAppTestComponent {
 }
 
 @Component({
-  template: ` <sbb-sidebar-container autosize style="min-height: 200px;">
+  template: ` <sbb-sidebar-container>
     <sbb-sidebar mode="push">
       Text
-      <div [style.width.px]="fillerWidth" style="height: 200px; background: red;"></div>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
 })
-class AutosizeSidebarTestComponent {
+class ZeroWithSidebarTestComponent {
   @ViewChild(SbbSidebar) sidebar: SbbSidebar;
   @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
-  fillerWidth = 0;
 }
 
 @Component({
