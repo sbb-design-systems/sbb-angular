@@ -284,12 +284,11 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
     ngZone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     breakpointObserver: BreakpointObserver,
-    viewportRuler: ViewportRuler,
     @Inject(SBB_ICON_SIDEBAR_EXPANDED_WIDTH)
     private _sidebarExpandedWidth: number,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
   ) {
-    super(ngZone, changeDetectorRef, breakpointObserver, viewportRuler);
+    super(ngZone, changeDetectorRef, breakpointObserver);
   }
 
   /**
@@ -359,11 +358,6 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
           this._animationMode !== 'NoopAnimations'
         ) {
           this._element.nativeElement.classList.add('sbb-icon-sidebar-transition');
-        }
-
-        if (event.toState === 'mobile') {
-          console.log('toMobile');
-          this._element.nativeElement.classList.remove('sbb-icon-sidebar-transition');
         }
 
         this.updateContentMargins();

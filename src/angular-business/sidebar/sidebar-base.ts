@@ -101,16 +101,8 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   protected constructor(
     protected _ngZone: NgZone,
     protected _changeDetectorRef: ChangeDetectorRef,
-    protected _breakpointObserver: BreakpointObserver,
-    viewportRuler: ViewportRuler
-  ) {
-    // Since the minimum width of the sidebar depends on the viewport width,
-    // we need to recompute the margins if the viewport changes.
-    viewportRuler
-      .change()
-      .pipe(takeUntil(this._destroyed))
-      .subscribe(() => this.updateContentMargins());
-  }
+    protected _breakpointObserver: BreakpointObserver
+  ) {}
 
   /** All sidebars, also nested sidebars included **/
   _allSidebars: QueryList<T>;

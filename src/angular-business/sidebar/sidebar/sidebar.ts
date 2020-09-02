@@ -543,7 +543,14 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
     breakPointObserver: BreakpointObserver,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
   ) {
-    super(ngZone, changeDetectorRef, breakPointObserver, viewportRuler);
+    super(ngZone, changeDetectorRef, breakPointObserver);
+
+    // Since the minimum width of the sidebar depends on the viewport width,
+    // we need to recompute the margins if the viewport changes.
+    viewportRuler
+      .change()
+      .pipe(takeUntil(this._destroyed))
+      .subscribe(() => this.updateContentMargins());
 
     this._autosize = defaultAutosize;
   }
@@ -590,6 +597,7 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
       });
 
       if (!this._sidebars.length || this._isSidebarOpen(this._sidebar)) {
+        console.log('aftercontentinit');
         this.updateContentMargins();
       }
 
@@ -640,6 +648,7 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
 
     if (left !== this._contentMargins.left || right !== this._contentMargins.right) {
       this._contentMargins = { left, right };
+      console.log(this._contentMargins);
 
       // Pull back into the NgZone since in some cases we could be outside. We need to be careful
       // to do it only when something changed, otherwise we can end up hitting the zone too often.
