@@ -118,6 +118,17 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
   &.sbb-loading-fullscreen {
     position: fixed;
   }
+
+  /** @deprecated use mode=inline **/
+  &[inline] {
+    display: inline-flex;
+    padding-left: 1em;
+    margin-right: -2em;
+    height: auto;
+    padding-top: 0;
+    vertical-align: middle;
+    --deprecated: 'Use mode=inline';
+  }
 }
 
 // Animations
