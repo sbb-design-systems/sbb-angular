@@ -119,6 +119,15 @@ export class SbbSidebar extends SbbSidebarBase
     this._modeChanged.next();
   }
 
+  /** Whether the drawer can be closed with the escape key or by clicking on the backdrop. */
+  @Input()
+  get disableClose(): boolean {
+    return this._disableClose;
+  }
+  set disableClose(value: boolean) {
+    this._disableClose = coerceBooleanProperty(value);
+  }
+
   /**
    * Whether the sidebar should focus the first focusable element automatically when opened.
    * Defaults to false in when `mode` is set to `side`, otherwise defaults to `true`. If explicitly
@@ -147,15 +156,6 @@ export class SbbSidebar extends SbbSidebarBase
   }
   set opened(value: boolean) {
     this.toggle(coerceBooleanProperty(value));
-  }
-
-  /** Whether the sidebar can be closed with the escape key or by clicking on the backdrop. */
-  @Input()
-  get disableClose(): boolean {
-    return this._disableClose;
-  }
-  set disableClose(value: boolean) {
-    this._disableClose = coerceBooleanProperty(value);
   }
 
   /** Event emitted when the sidebar has started opening. */
@@ -244,15 +244,10 @@ export class SbbSidebar extends SbbSidebarBase
   static ngAcceptInputType_disableClose: BooleanInput;
   static ngAcceptInputType_autoFocus: BooleanInput;
   static ngAcceptInputType_opened: BooleanInput;
-
-  /** Emits when the component is destroyed. */
-  private readonly _destroyed = new Subject<void>();
-
   private _focusTrap: FocusTrap;
-
   private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
 
-  private _mode: SbbSidebarMode = 'over';
+  private _mode: SbbSidebarMode = 'side';
   private _disableClose: boolean = false;
   private _autoFocus: boolean | undefined;
   private _opened: boolean = false;
@@ -295,15 +290,14 @@ export class SbbSidebar extends SbbSidebarBase
     map(() => {})
   );
 
+  /** Emits when the component is destroyed. */
+  private readonly _destroyed = new Subject<void>();
+
   /**
    * An observable that emits when the sidebar mode changes. This is used by the sidebar container to
    * to know when to when the mode changes so it can adapt the margins on the content.
    */
   readonly _modeChanged = new Subject<void>();
-
-  _getWidth(): number {
-    return this._elementRef.nativeElement ? this._elementRef.nativeElement.offsetWidth || 0 : 0;
-  }
 
   /**
    * Moves focus into the sidebar. Note that this works even if
@@ -445,6 +439,10 @@ export class SbbSidebar extends SbbSidebarBase
     });
   }
 
+  _getWidth(): number {
+    return this._elementRef.nativeElement ? this._elementRef.nativeElement.offsetWidth || 0 : 0;
+  }
+
   /** Updates the enabled state of the focus trap. */
   private _updateFocusTrapState() {
     if (this._focusTrap) {
@@ -473,7 +471,9 @@ export class SbbSidebar extends SbbSidebarBase
     this._animationEnd.next(event);
   }
 
-  _mobileChanged(mobile: boolean): void {}
+  _mobileChanged(mobile: boolean): void {
+    // TODO
+  }
 }
 
 @Component({
@@ -496,35 +496,10 @@ export class SbbSidebar extends SbbSidebarBase
 })
 export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
   implements DoCheck, AfterContentInit, ISbbSidebarContainer {
-  static ngAcceptInputType_hasBackdrop: BooleanInput;
-  static ngAcceptInputType_autosize: BooleanInput;
-
-  @ContentChildren(SbbSidebar, {
-    // We need to use `descendants: true`, because Ivy will no longer match
-    // indirect descendants if it's left as false.
-    descendants: true,
-  })
-  _allSidebars: QueryList<SbbSidebar>;
-
-  @ContentChild(SbbSidebarContent) _content: SbbSidebarContent;
-  @ViewChild(SbbSidebarContent) _userContent: SbbSidebarContent;
-
-  /**
-   * Margins to be applied to the content. These are used to push / shrink the sidebar content when a
-   * sidebar is open. We use margin rather than transform even for push mode because transform breaks
-   * fixed position elements inside of the transformed element.
-   */
-  _contentMargins: { left: number | null; right: number | null } = { left: null, right: null };
-
-  readonly _contentMarginChanges = new Subject<{ left: number | null; right: number | null }>();
-
   /** The sidebar child */
   get sidebar(): SbbSidebar | null {
     return this._sidebar;
   }
-
-  /** The sidebar */
-  protected _sidebar: SbbSidebar | null;
 
   /**
    * Whether to automatically resize the container whenever
@@ -573,11 +548,35 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
     this._autosize = defaultAutosize;
   }
 
+  static ngAcceptInputType_autosize: BooleanInput;
+  static ngAcceptInputType_hasBackdrop: BooleanInput;
+  /** All sidebars in the container. Includes drawers from inside nested containers. */
+  @ContentChildren(SbbSidebar, {
+    // We need to use `descendants: true`, because Ivy will no longer match
+    // indirect descendants if it's left as false.
+    descendants: true,
+  })
+  _allSidebars: QueryList<SbbSidebar>;
+
+  @ContentChild(SbbSidebarContent) _content: SbbSidebarContent;
+  @ViewChild(SbbSidebarContent) _userContent: SbbSidebarContent;
   private _autosize: boolean;
   _backdropOverride: boolean | null;
 
   /** Event emitted when the sidebar backdrop is clicked. */
   @Output() readonly backdropClick: EventEmitter<void> = new EventEmitter<void>();
+
+  /** The sidebar */
+  protected _sidebar: SbbSidebar | null;
+
+  /**
+   * Margins to be applied to the content. These are used to push / shrink the sidebar content when a
+   * sidebar is open. We use margin rather than transform even for push mode because transform breaks
+   * fixed position elements inside of the transformed element.
+   */
+  _contentMargins: { left: number | null; right: number | null } = { left: null, right: null };
+
+  readonly _contentMarginChanges = new Subject<{ left: number | null; right: number | null }>();
 
   ngAfterContentInit() {
     super.ngAfterContentInit();
@@ -645,6 +644,14 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
       // Pull back into the NgZone since in some cases we could be outside. We need to be careful
       // to do it only when something changed, otherwise we can end up hitting the zone too often.
       this._ngZone.run(() => this._contentMarginChanges.next(this._contentMargins));
+    }
+  }
+
+  ngDoCheck() {
+    // If users opted into autosizing, do a check every change detection cycle.
+    if (this._autosize && this._isPushed()) {
+      // Run outside the NgZone, otherwise the debouncer will throw us into an infinite loop.
+      this._ngZone.runOutsideAngular(() => this._doCheckSubject.next());
     }
   }
 
@@ -728,13 +735,5 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
 
   private _isSidebarOpen(sidebar: SbbSidebar | null): sidebar is SbbSidebar {
     return sidebar != null && sidebar.opened;
-  }
-
-  ngDoCheck() {
-    // If users opted into autosizing, do a check every change detection cycle.
-    if (this._autosize && this._isPushed()) {
-      // Run outside the NgZone, otherwise the debouncer will throw us into an infinite loop.
-      this._ngZone.runOutsideAngular(() => this._doCheckSubject.next());
-    }
   }
 }
