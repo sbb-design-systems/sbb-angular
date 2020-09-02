@@ -23,6 +23,10 @@
   z-index: $sbb-sidebar-side-sidebar-z-index;
   background-color: $sbbColorMilk;
 
+  .sbb-icon-sidebar-links {
+    margin-bottom: 48px;
+  }
+
   .sbb-icon-sidebar-item {
     display: inline-flex;
     width: 100%;
@@ -184,12 +188,22 @@
 
     .sbb-icon-sidebar-inner-container {
       overflow-y: hidden;
+
+      // TODO: find general solution
+      &.sbb-scrollbar {
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+        }
+      }
     }
 
     .sbb-icon-sidebar-links {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      margin-bottom: 0;
     }
 
     .sbb-icon-sidebar-item {
