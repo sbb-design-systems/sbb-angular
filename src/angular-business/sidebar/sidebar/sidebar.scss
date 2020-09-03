@@ -1,3 +1,4 @@
+@import '../../../angular-core/styles/common';
 @import '../sidebar';
 
 .sbb-sidebar-container {
@@ -56,8 +57,9 @@
 
 .sbb-sidebar {
   @include sbb-sidebar;
-  width: 250px;
+  width: 300px;
   transform: translate3d(-100%, 0, 0);
+  border-right: 1px solid $sbbColorCloud;
 
   .sbb-sidebar-inner-container {
     @include sbb-sidebar-inner-container();
@@ -65,5 +67,19 @@
 
   &.sbb-sidebar-side {
     z-index: $sbb-sidebar-side-sidebar-z-index;
+  }
+
+  sbb-expansion-panel,
+  fieldset {
+    border: none;
+    border-bottom: 1px solid $sbbColorCloud;
+
+    + fieldset,
+    + sbb-expansion-panel {
+      margin-top: 12px;
+    }
+    + fieldset fieldset {
+      margin-top: 0;
+    }
   }
 }
