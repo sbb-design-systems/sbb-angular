@@ -45,7 +45,6 @@ interface ModuleIcons {
 
 export function iconCdnProvider(options: IconCdnProviderOptions): Rule {
   return async (tree: Tree, context: SchematicContext): Promise<Rule> => {
-    console.log(options);
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
     const path = options.path || buildDefaultPath(project as any);

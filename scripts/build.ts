@@ -171,11 +171,7 @@ function generateIconRegistry(distPath: string) {
   );
 
   const cdnIconProviderPath = join(projectDir, 'src/angular-core/icon/icon-cdn-provider.ts');
-  const content = readFileSync(cdnIconProviderPath, 'utf8').replace(
-    `import { SbbIconRegistry } from '@sbb-esta/angular-core/icon';`,
-    `\nimport { SbbIconRegistry } from './icon-registry';`
-  );
-
+  const content = readFileSync(cdnIconProviderPath, 'utf8');
   const formattedContent = prettier.format(content, {
     parser: 'typescript',
     ...require('../package.json').prettier,
