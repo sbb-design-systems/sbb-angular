@@ -7,6 +7,7 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
@@ -122,7 +123,7 @@ describe('SearchComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [SearchModule, NoopAnimationsModule],
+        imports: [SearchModule, NoopAnimationsModule, SbbIconTestingModule],
         declarations: [SimpleSearchComponent],
       }).compileComponents();
     }));
@@ -167,7 +168,13 @@ describe('SearchComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
+        imports: [
+          SearchModule,
+          NoopAnimationsModule,
+          AutocompleteModule,
+          OverlayModule,
+          SbbIconTestingModule,
+        ],
         declarations: [SimpleSearchAutocompleteComponent],
       }).compileComponents();
     }));
@@ -280,7 +287,13 @@ describe('SearchComponent', () => {
 
       beforeEach(async(() => {
         TestBed.configureTestingModule({
-          imports: [SearchModule, BrowserAnimationsModule, AutocompleteModule, OverlayModule],
+          imports: [
+            SearchModule,
+            BrowserAnimationsModule,
+            AutocompleteModule,
+            OverlayModule,
+            SbbIconTestingModule,
+          ],
           declarations: [SimpleSearchHeaderComponent],
         }).compileComponents();
       }));
@@ -324,7 +337,13 @@ describe('SearchComponent', () => {
 
       beforeEach(async(() => {
         TestBed.configureTestingModule({
-          imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
+          imports: [
+            SearchModule,
+            NoopAnimationsModule,
+            AutocompleteModule,
+            OverlayModule,
+            SbbIconTestingModule,
+          ],
           declarations: [SimpleSearchAutocompleteHeaderComponent],
         }).compileComponents();
       }));

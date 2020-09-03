@@ -62,7 +62,7 @@ describe('PaginationComponent behaviour', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [PaginationModule, RouterTestingModule],
+      imports: [PaginationModule, SbbIconTestingModule, RouterTestingModule],
       declarations: [PaginationTestComponent],
     }).compileComponents();
   }));

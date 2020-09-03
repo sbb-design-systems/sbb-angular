@@ -62,7 +62,7 @@ describe('ProcessflowTestComponent skippable', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ProcessflowModule],
+      imports: [ProcessflowModule, SbbIconTestingModule],
       declarations: [ProcessflowTestComponent],
     }).compileComponents();
   }));

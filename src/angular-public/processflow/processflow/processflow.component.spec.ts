@@ -63,7 +63,7 @@ describe('ProcessflowComponent user interaction', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ProcessflowModule],
+      imports: [ProcessflowModule, SbbIconTestingModule],
       declarations: [ProcessflowTestComponent],
     }).compileComponents();
   }));

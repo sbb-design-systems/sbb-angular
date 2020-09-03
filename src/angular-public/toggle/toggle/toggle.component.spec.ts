@@ -203,11 +203,11 @@ describe('ToggleComponent case reactive using mock component', () => {
         ToggleModule,
         CommonModule,
         SbbIconModule,
-        SbbIconTestingModule,
         DatepickerModule,
         FieldModule,
         ReactiveFormsModule,
         IconDirectiveModule,
+        SbbIconTestingModule,
       ],
       declarations: [ToggleReactiveTestComponent],
     }).compileComponents();
@@ -302,11 +302,11 @@ describe('ToggleComponent case reactive with default value using mock component'
         ToggleModule,
         CommonModule,
         SbbIconModule,
-        SbbIconTestingModule,
         DatepickerModule,
         FieldModule,
         ReactiveFormsModule,
         IconDirectiveModule,
+        SbbIconTestingModule,
       ],
       declarations: [ToggleReactiveDefaultValueTestComponent],
     }).compileComponents();
@@ -346,12 +346,11 @@ describe('ToggleComponent case template driven using mock component', () => {
       imports: [
         ToggleModule,
         CommonModule,
-
         SbbIconModule,
-        SbbIconTestingModule,
         DatepickerModule,
         FieldModule,
         FormsModule,
+        SbbIconTestingModule,
       ],
       declarations: [ToggleTemplateDrivenTestComponent],
     }).compileComponents();
@@ -409,7 +408,7 @@ describe('ToggleComponent simple case using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ToggleModule, CommonModule],
+      imports: [ToggleModule, CommonModule, SbbIconTestingModule],
       declarations: [ToggleSimpleCaseTestComponent],
     }).compileComponents();
   }));

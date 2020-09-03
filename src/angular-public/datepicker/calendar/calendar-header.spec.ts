@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { FEB, JAN } from '@sbb-esta/angular-core/testing';
 
 import { DatepickerModule } from '../datepicker.module';
@@ -28,7 +29,7 @@ class StandardCalendarComponent {
 describe('CalendarHeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [DatepickerModule],
+      imports: [DatepickerModule, SbbIconTestingModule],
       declarations: [
         // Test components.
         StandardCalendarComponent,

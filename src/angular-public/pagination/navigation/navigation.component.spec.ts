@@ -90,7 +90,13 @@ describe('NavigationComponent behaviour', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [PaginationModule, RouterTestingModule, ButtonModule, FormsModule],
+      imports: [
+        PaginationModule,
+        SbbIconTestingModule,
+        RouterTestingModule,
+        ButtonModule,
+        FormsModule,
+      ],
       declarations: [NavigationTestComponent],
     }).compileComponents();
   }));

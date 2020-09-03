@@ -40,6 +40,7 @@ ng_test_library(
     ),
     deps = [
         ":status",
+        "//src/angular-core/icon/testing",
         "@npm//@angular/platform-browser",
     ],
 )

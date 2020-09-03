@@ -246,7 +246,7 @@ describe('FileSelectorComponent using mock component and limited behaviour ', ()
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FileSelectorModule, FormsModule],
+      imports: [FileSelectorModule, SbbIconTestingModule, FormsModule],
       declarations: [FileSelectorTest2Component],
     }).compileComponents();
   }));

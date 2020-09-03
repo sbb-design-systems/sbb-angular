@@ -3,6 +3,7 @@ import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
 import {
@@ -66,7 +67,7 @@ class AccordionWithHideToggleComponent {
 describe('AccordionDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, AccordionModule],
+      imports: [BrowserAnimationsModule, AccordionModule, SbbIconTestingModule],
       declarations: [AccordionWithHideToggleComponent, NestedPanelComponent, SetOfItemsComponent],
     }).compileComponents();
   }));
