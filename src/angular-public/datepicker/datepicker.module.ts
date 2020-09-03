@@ -9,7 +9,7 @@ import {
   NativeDateAdapter,
   SBB_DATE_FORMATS,
 } from '@sbb-esta/angular-core/datetime';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 
 import { CalendarBodyComponent } from './calendar-body/calendar-body.component';
 import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
@@ -48,6 +48,7 @@ import { MonthViewComponent } from './month-view/month-view.component';
     SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
     { provide: DateAdapter, useClass: NativeDateAdapter },
     { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS },
+    ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER,
   ],
   entryComponents: [DatepickerContentComponent, CalendarHeaderComponent],
 })

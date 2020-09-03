@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.3.0 of the icon CDN.
+ * Generated from version v1.4.0 of the icon CDN.
  * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
@@ -80,8 +80,8 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
   /*
    * @sbb-esta Required Icons
    * ========================
-   * Our libraries require the following icons. Please do not remove them
-   * or make sure you provide them yourself.
+   * Our libraries require the following icons. If not otherwise configured,
+   * the necessary icons will be loaded from the CDN.
    *
    * Icons:
    *  - @sbb-esta/angular-business/accordion: kom:chevron-small-down-small
@@ -208,6 +208,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'sa-ts',
         'sa-tt',
         'sa-tx',
+        'sa-vb',
         'sa-vc',
         'sa-vi',
         'sa-vl',

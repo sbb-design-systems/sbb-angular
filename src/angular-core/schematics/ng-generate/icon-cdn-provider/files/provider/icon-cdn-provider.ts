@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ErrorHandler, InjectionToken, Optional, SkipSelf } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SbbIconRegistry } from '@sbb-esta/angular-core/icon';
+import { SbbIconRegistry } from '<%= registryImportPath %>';
 
 /**
  * This providers registers all icons added below, which can then be used with <sbb-icon>.

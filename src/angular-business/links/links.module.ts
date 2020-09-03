@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 
 import { LinkComponent } from './link/link.component';
 
@@ -8,5 +8,6 @@ import { LinkComponent } from './link/link.component';
   imports: [CommonModule, SbbIconModule],
   declarations: [LinkComponent],
   exports: [LinkComponent],
+  providers: [ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
 export class LinksModule {}

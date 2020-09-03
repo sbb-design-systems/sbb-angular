@@ -2,7 +2,7 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 
 import { AccordionDirective } from './accordion/accordion.directive';
 import { ExpansionPanelHeaderComponent } from './expansion-panel-header/expansion-panel-header.component';
@@ -23,5 +23,6 @@ import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.compo
     ExpansionPanelHeaderComponent,
     ExpansionPanelContentDirective,
   ],
+  providers: [ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
 export class AccordionModule {}

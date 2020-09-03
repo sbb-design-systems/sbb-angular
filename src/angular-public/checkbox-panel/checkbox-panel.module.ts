@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 
 import { CheckboxPanelComponent } from './checkbox-panel/checkbox-panel.component';
 
@@ -8,5 +8,6 @@ import { CheckboxPanelComponent } from './checkbox-panel/checkbox-panel.componen
   imports: [CommonModule, SbbIconModule],
   declarations: [CheckboxPanelComponent],
   exports: [CheckboxPanelComponent],
+  providers: [ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
 export class CheckboxPanelModule {}

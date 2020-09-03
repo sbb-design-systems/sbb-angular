@@ -22,6 +22,12 @@
       "type": "string",
       "description": "The base URL of the CDN.",
       "default": "https://icons.app.sbb.ch"
+    },
+    "generateWrapperRegistry": {
+      "type": "boolean",
+      "description": "Internal option to generate wrapper icon registry.",
+      "default": false,
+      "visible": false
     }
   }
 }
