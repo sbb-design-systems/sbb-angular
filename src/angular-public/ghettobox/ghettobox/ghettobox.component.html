@@ -21,7 +21,7 @@
   <ng-template #content>
     <article class="sbb-ghettobox-wrapper" *ngIf="visible">
       <div class="sbb-ghettobox-icon-container">
-        <div class="sbb-ghettobox-icon">
+        <div class="sbb-ghettobox-icon sbb-icon-fit">
           <ng-container *ngTemplateOutlet="icon"></ng-container>
         </div>
       </div>
@@ -52,6 +52,6 @@
   </ng-template>
 
   <ng-template #defaultIcon>
-    <sbb-icon svgIcon="fpl:info" class="sbb-icon-fit"></sbb-icon>
+    <sbb-icon svgIcon="fpl:info"></sbb-icon>
   </ng-template>
 </div>

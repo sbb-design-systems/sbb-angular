@@ -37,6 +37,6 @@ The checkbox panels are essentially large checkboxes, with more content options.
   label="SBB - Finanzen"
   subtitle="Armin Burgermeister"
 >
-  <sbb-icon svgIcon="kom:heart-small" class="sbb-icon-fit" sbbIcon></sbb-icon>
+  <sbb-icon svgIcon="kom:heart-small" sbbIcon></sbb-icon>
 </sbb-checkbox-panel>
 ```

@@ -56,7 +56,7 @@ export const BREADCRUMB_LEVEL_OFFSET = 60;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'sbb-breadcrumb',
+    class: 'sbb-breadcrumb sbb-icon-fit',
   },
 })
 export class BreadcrumbComponent extends DropdownTriggerDirective implements AfterViewInit {

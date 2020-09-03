@@ -7,14 +7,10 @@
       <form [formGroup]="form" novalidate>
         <sbb-toggle aria-labelledby="group_label_2" formControlName="test">
           <sbb-toggle-option infoText="info text" label="Einfache Fahrt" value="Option_1">
-            <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon class="sbb-icon-fit"></sbb-icon>
+            <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon></sbb-icon>
           </sbb-toggle-option>
           <sbb-toggle-option label="Hin- und Rückfahrt" value="Option_2">
-            <sbb-icon
-              svgIcon="kom:arrows-right-left-small"
-              *sbbIcon
-              class="sbb-icon-fit"
-            ></sbb-icon>
+            <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
             <sbb-field mode="long">
               <sbb-label for="name1">Select date</sbb-label>
               <sbb-datepicker>
@@ -40,7 +36,7 @@
       </h4>
       <sbb-toggle aria-labelledby="group_label_1" [(ngModel)]="modelValue" name="test-toggle-2">
         <sbb-toggle-option infoText="info text" label="Einfache Fahrt" value="Option_1">
-          <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon class="sbb-icon-fit"></sbb-icon>
+          <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon></sbb-icon>
           <sbb-field mode="long">
             <sbb-label>Select date</sbb-label>
             <sbb-datepicker>
@@ -49,7 +45,7 @@
           </sbb-field>
         </sbb-toggle-option>
         <sbb-toggle-option label="Hin- und Rückfahrt" value="Option_2">
-          <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon class="sbb-icon-fit"></sbb-icon>
+          <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud

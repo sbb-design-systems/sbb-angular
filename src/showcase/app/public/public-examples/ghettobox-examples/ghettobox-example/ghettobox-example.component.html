@@ -25,7 +25,7 @@
         [queryParams]="{ debug: false }"
         fragment="test"
       >
-        <sbb-icon svgIcon="fpl:disruption" *sbbIcon class="sbb-icon-fit"></sbb-icon>
+        <sbb-icon svgIcon="fpl:disruption" *sbbIcon></sbb-icon>
         This is a simple link text with custom icon
       </sbb-ghettobox>
     </div>
@@ -48,7 +48,7 @@
             fragment="education"
             (afterDelete)="afterDeleteContainer($event)"
           >
-            <sbb-icon svgIcon="fpl:disruption" *sbbIcon class="sbb-icon-fit"></sbb-icon>
+            <sbb-icon svgIcon="fpl:disruption" *sbbIcon></sbb-icon>
             This is an initial ghettobox into a container. Die Strecke zwischen Stadelhofen und
             Zürich Hauptbahnhof ist vorübergehend wegen einer technischen Störung unterbrochen.
           </sbb-ghettobox>
@@ -108,11 +108,11 @@ Der Zugang zum Ticket Shop ist vom 20.10.2015, 22:00 Uhr, bis zum 21.10.2015, 05
   </div>
   <article>
     <ng-template #testIcon1>
-      <sbb-icon class="sbb-icon-fit" svgIcon="fpl:replacementbus"></sbb-icon>
+      <sbb-icon svgIcon="fpl:replacementbus"></sbb-icon>
     </ng-template>
 
     <ng-template #testIcon2>
-      <sbb-icon class="sbb-icon-fit" svgIcon="fpl:construction"></sbb-icon>
+      <sbb-icon svgIcon="fpl:construction"></sbb-icon>
     </ng-template>
   </article>
 </article>

@@ -15,7 +15,7 @@
   [queryParams]="{debug: false}"
   fragment="test"
 >
-  <sbb-icon svgIcon="fpl:disruption" *sbbIcon class="sbb-icon-fit"></sbb-icon>
+  <sbb-icon svgIcon="fpl:disruption" *sbbIcon></sbb-icon>
   This is a Link ghettobox with custom icon.
 </sbb-ghettobox>
 ```
@@ -33,7 +33,7 @@ afterDelete(evt: GhettoboxDeletedEvent) {
 ```html
 <sbb-ghettobox-container>
   <sbb-ghettobox [routerLink]="['.', 'test']" [queryParams]="{debug: true}" fragment="test">
-    <sbb-icon svgIcon="fpl:disruption" *sbbIcon class="sbb-icon-fit"></sbb-icon>
+    <sbb-icon svgIcon="fpl:disruption" *sbbIcon></sbb-icon>
     This is an initial ghettobox into a container.
   </sbb-ghettobox>
 </sbb-ghettobox-container>
