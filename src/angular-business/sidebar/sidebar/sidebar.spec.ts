@@ -1,7 +1,7 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { Direction } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
-import { Platform, PlatformModule } from '@angular/cdk/platform';
+import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
@@ -551,8 +551,7 @@ describe('SbbSidebar', () => {
       expect(document.activeElement).toBe(firstFocusableElement);
     }));
 
-    it('should trap focus when opened in "push" mode', fakeAsync(() => {
-      testComponent.mode = 'push';
+    it('should trap focus when opened', fakeAsync(() => {
       fixture.detectChanges();
       lastFocusableElement.focus();
 
@@ -606,7 +605,6 @@ describe('SbbSidebar', () => {
 
     it('should be able to disable auto focus', fakeAsync(() => {
       sidebar.autoFocus = false;
-      testComponent.mode = 'push';
       fixture.detectChanges();
       lastFocusableElement.focus();
 
@@ -1037,7 +1035,7 @@ class SidebarContainerStateChangesTestAppTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar mode="push">
+    <sbb-sidebar mode="side">
       Text
     </sbb-sidebar>
   </sbb-sidebar-container>`,

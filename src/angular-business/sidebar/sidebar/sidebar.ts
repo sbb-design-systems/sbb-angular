@@ -47,7 +47,7 @@ import { sbbSidebarAnimations } from './sidebar-animations';
 export type SbbSidebarToggleResult = 'open' | 'close';
 
 /** Sidebar display modes. */
-export type SbbSidebarMode = 'over' | 'push' | 'side';
+export type SbbSidebarMode = 'over' | 'side';
 
 @Component({
   selector: 'sbb-sidebar-content',
@@ -55,7 +55,6 @@ export type SbbSidebarMode = 'over' | 'push' | 'side';
   host: {
     class: 'sbb-sidebar-content sbb-scrollbar',
     '[style.margin-left.px]': '_container._contentMargins.left',
-    '[style.margin-right.px]': '_container._contentMargins.right',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -83,7 +82,6 @@ export class SbbSidebarContent extends SbbSidebarContentBase {
     // must prevent the browser from aligning text based on value
     '[attr.align]': 'null',
     '[class.sbb-sidebar-over]': 'mode === "over"',
-    '[class.sbb-sidebar-push]': 'mode === "push"',
     '[class.sbb-sidebar-side]': 'mode === "side"',
     '[class.sbb-sidebar-opened]': 'opened',
   },
@@ -92,7 +90,7 @@ export class SbbSidebarContent extends SbbSidebarContentBase {
 })
 export class SbbSidebar extends SbbSidebarBase
   implements AfterContentInit, AfterContentChecked, OnDestroy {
-  /** Mode of the sidebar; one of 'over', 'push' or 'side'. */
+  /** Mode of the sidebar; one of 'over', or 'side'. */
   @Input()
   get mode(): SbbSidebarMode {
     return this._mode;
@@ -540,13 +538,13 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
   protected _sidebar: SbbSidebar | null;
 
   /**
-   * Margins to be applied to the content. These are used to push / shrink the sidebar content when a
-   * sidebar is open. We use margin rather than transform even for push mode because transform breaks
+   * Margins to be applied to the content. These are used to shrink the sidebar content when a
+   * sidebar is open. We use margin rather than transform because transform breaks
    * fixed position elements inside of the transformed element.
    */
-  _contentMargins: { left: number | null; right: number | null } = { left: null, right: null };
+  _contentMargins: { left: number | null } = { left: null };
 
-  readonly _contentMarginChanges = new Subject<{ left: number | null; right: number | null }>();
+  readonly _contentMarginChanges = new Subject<{ left: number | null }>();
 
   ngAfterContentInit() {
     super.ngAfterContentInit();
@@ -585,33 +583,21 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
   updateContentMargins() {
     // 1. For sidebars in `over` mode, they don't affect the content.
     // 2. For sidebars in `side` mode they should shrink the content. We do this by adding to the
-    //    left margin (for left sidebar) or right margin (for right the sidebar).
-    // 3. For sidebars in `push` mode the should shift the content without resizing it. We do this by
-    //    adding to the left or right margin and simultaneously subtracting the same amount of
-    //    margin from the other side.
+    //    left margin (for left sidebar).
     let left = 0;
-    let right = 0;
 
-    if (this._sidebar && this._sidebar.opened) {
-      if (this._sidebar.mode === 'side') {
-        left += this._sidebar._getWidth();
-      } else if (this._sidebar.mode === 'push') {
-        const width = this._sidebar._getWidth();
-        left += width;
-        right -= width;
-      }
+    if (this._sidebar && this._sidebar.opened && this._sidebar.mode === 'side') {
+      left += this._sidebar._getWidth();
     }
 
-    // If either `right` or `left` is zero, don't set a style to the element. This
+    // If `left` is zero, don't set a style to the element. This
     // allows users to specify a custom size via CSS class in SSR scenarios where the
     // measured widths will always be zero. Note that we reset to `null` here, rather
     // than below, in order to ensure that the types in the `if` below are consistent.
     left = left || null!;
-    right = right || null!;
 
-    if (left !== this._contentMargins.left || right !== this._contentMargins.right) {
-      this._contentMargins = { left, right };
-      console.log(this._contentMargins);
+    if (left !== this._contentMargins.left) {
+      this._contentMargins = { left };
 
       // Pull back into the NgZone since in some cases we could be outside. We need to be careful
       // to do it only when something changed, otherwise we can end up hitting the zone too often.
