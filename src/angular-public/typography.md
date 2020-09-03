@@ -58,12 +58,13 @@ a {
 
 HTML headings, from `h1` to `h4`.
 
-You can also use the headings classes to make every tag looks like an heading. Available classes: `.text-headline1`, `.text-headline2`, `.text-headline3`, `.text-headline4`.
+You can also use the headings classes to make every tag looks like a heading. Available classes: `.text-headline1`, `.text-headline2`, `.text-headline3`, `.text-headline4`.
 
 <h1>h1. SBB heading</h1>
 <h2>h2. SBB heading</h2>
 <h3>h3. SBB heading</h3>
 <h4>h4. SBB heading</h4>
+
 ```html
 <h1>h1. SBB heading</h1>
 <h2>h2. SBB heading</h2>
