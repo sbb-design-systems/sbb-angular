@@ -334,8 +334,6 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
 
       this._changeDetectorRef.markForCheck();
     });
-
-    this._watchBreakpointObserver();
   }
 
   /**

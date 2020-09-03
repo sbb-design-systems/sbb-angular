@@ -128,10 +128,12 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
         this._sidebars.reset(allSidebars.filter((sidebar) => sidebar._container === this));
         this._sidebars.notifyOnChanges();
       });
+
+    this._watchBreakpointObserver();
   }
 
   /** @docs-private **/
-  protected _watchBreakpointObserver() {
+  private _watchBreakpointObserver() {
     this._breakpointObserver
       .observe(Breakpoints.Mobile)
       .pipe(
