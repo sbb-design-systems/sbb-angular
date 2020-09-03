@@ -69,17 +69,24 @@
     z-index: $sbb-sidebar-side-sidebar-z-index;
   }
 
-  sbb-expansion-panel,
-  fieldset {
-    border: none;
-    border-bottom: 1px solid $sbbColorCloud;
+  .sbb-sidebar-inner-container {
+    > sbb-expansion-panel,
+    > fieldset {
+      border: none;
+      border-bottom: 1px solid $sbbColorCloud;
 
-    + fieldset,
-    + sbb-expansion-panel {
-      margin-top: 12px;
+      + fieldset,
+      + sbb-expansion-panel {
+        margin-top: 12px;
+      }
+
+      + fieldset fieldset {
+        margin-top: 0;
+      }
     }
-    + fieldset fieldset {
-      margin-top: 0;
-    }
+  }
+
+  .sbb-expansion-panel-header {
+    background-color: inherit;
   }
 }
