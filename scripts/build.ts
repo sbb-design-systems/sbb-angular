@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
-import { writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import minimist from 'minimist';
-import { join } from 'path';
+import { join, relative } from 'path';
+const prettier: {
+  format: (source: string, options: { parser: string }) => string;
+} = require('prettier');
 
 const { chmod, cp, mkdir, rm, set, test } = require('shelljs');
 
@@ -22,21 +25,21 @@ const bazelCmd = process.env.BAZEL_COMMAND || `yarn -s bazel`;
 if (module === require.main) {
   const options = minimist(process.argv.slice(2));
   const target = options._[0];
-  if (!target) {
-    throw new Error('Target parameter required');
-  }
-
-  if (target === 'all') {
-    buildAllTargets();
-  } else if (target === 'packages') {
+  const tasks: { [target: string]: Function } = {
+    all: () => buildAllTargets(),
     /**
      * Builds the release packages with the default compile mode and
      * output directory.
      */
-    buildReleasePackages(false, join(projectDir, 'dist/releases'));
-  } else if (target === 'showcase') {
-    buildShowcase(join(projectDir, 'dist/releases'));
+    packages: () => buildReleasePackages(false, join(projectDir, 'dist/releases')),
+    showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
+    'icon-registry': () => generateIconRegistry(join(projectDir, 'dist/staged')),
+  };
+  if (!target || !(target in tasks)) {
+    throw new Error(`Please provide a valid build target (e.g. ${Object.keys(tasks).join(', ')})`);
   }
+
+  tasks[target]();
 }
 
 /**
@@ -97,6 +100,23 @@ function buildReleasePackages(useIvy: boolean, distPath: string) {
 }
 
 /**
+ * Gets the package names of the specified Bazel targets.
+ * e.g. //src/angular-public:npm_package -> public
+ */
+function getPackageNamesOfTargets(targets: string[]) {
+  return targets.map((targetName) => {
+    const matches = targetName.match(/\/\/src\/(.*):npm_package/);
+    if (matches === null) {
+      throw Error(
+        `Found Bazel target with "${releaseTargetTag}" tag, but could not ` +
+          `determine release output name: ${targetName}`
+      );
+    }
+    return matches[1];
+  });
+}
+
+/**
  * Builds the showcase with ivy and copies the package output into the given directory.
  */
 function buildShowcase(distPath: string) {
@@ -129,20 +149,35 @@ function buildShowcase(distPath: string) {
 }
 
 /**
- * Gets the package names of the specified Bazel targets.
- * e.g. //src/angular-public:npm_package -> public
+ * Generate the icon registry.
  */
-function getPackageNamesOfTargets(targets: string[]) {
-  return targets.map((targetName) => {
-    const matches = targetName.match(/\/\/src\/(.*):npm_package/);
-    if (matches === null) {
-      throw Error(
-        `Found Bazel target with "${releaseTargetTag}" tag, but could not ` +
-          `determine release output name: ${targetName}`
-      );
-    }
-    return matches[1];
+function generateIconRegistry(distPath: string) {
+  console.log('######################################');
+  console.log('  Generating icon registry...');
+  console.log('######################################');
+
+  const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
+
+  exec(`${bazelCmd} build src/angular-core:npm_package`);
+
+  cleanDistPath(distPath);
+  const outputPath = join(bazelBinPath, 'src/angular-core/npm_package');
+  const targetFolder = join(distPath, 'angular-core');
+  copyPackageOutput(outputPath, targetFolder);
+
+  const schematicPath = `./${relative(projectDir, targetFolder).replace(/\\/g, '/')}`;
+  exec(
+    `yarn ng generate ${schematicPath}:icon-cdn-provider --path src/angular-core/icon --generateWrapperRegistry`
+  );
+
+  const cdnIconProviderPath = join(projectDir, 'src/angular-core/icon/icon-cdn-provider.ts');
+  const content = readFileSync(cdnIconProviderPath, 'utf8');
+  const formattedContent = prettier.format(content, {
+    parser: 'typescript',
+    ...require('../package.json').prettier,
   });
+
+  writeFileSync(cdnIconProviderPath, formattedContent, 'utf8');
 }
 
 /**

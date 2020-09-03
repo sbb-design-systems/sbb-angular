@@ -19,7 +19,7 @@ ng_module(
     module_name = "@sbb-esta/angular-public/processflow",
     deps = [
         "//src/angular-core/base/processflow",
-        "//src/angular-icons/arrow",
+        "//src/angular-core/icon",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],
@@ -41,8 +41,9 @@ ng_test_library(
     ),
     deps = [
         ":processflow",
+        "//src/angular-core/icon",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
-        "//src/angular-icons/arrow",
     ],
 )
 

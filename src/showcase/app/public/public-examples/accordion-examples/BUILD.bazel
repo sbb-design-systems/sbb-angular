@@ -22,7 +22,7 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-icons/arrow",
+        "//src/angular-core/icon",
         "//src/angular-public/accordion",
         "//src/angular-public/button",
         "//src/angular-public/checkbox",

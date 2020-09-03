@@ -16,7 +16,6 @@ ng_module(
         "simple-notification-example/simple-notification-example.component.ts",
     ],
     assets = [
-        ":closable-notification-example/closable-notification-example.component.css",
         ":simple-notification-example/simple-notification-example.component.css",
         "closable-notification-example/closable-notification-example.component.html",
         "custom-icon-notification-example/custom-icon-notification-example.component.html",
@@ -27,8 +26,7 @@ ng_module(
     deps = [
         "//src/angular-business/field",
         "//src/angular-business/notification",
-        "//src/angular-icons/community",
-        "//src/angular-icons/timetable",
+        "//src/angular-core/icon",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -43,11 +41,6 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "closable_notification_example_closable_notification_example_component_scss",
-    src = "closable-notification-example/closable-notification-example.component.scss",
 )
 
 sass_binary(

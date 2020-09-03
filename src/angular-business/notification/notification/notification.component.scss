@@ -19,6 +19,11 @@ $notificationToastOffset: 20;
 $notificationToastMaxWidth: 251;
 $notificationVerticalMargin: 12;
 
+@mixin notificationToast {
+  position: absolute;
+  max-width: pxToEm($notificationToastMaxWidth);
+}
+
 .sbb-notification {
   box-sizing: border-box;
   display: flex;
@@ -32,46 +37,47 @@ $notificationVerticalMargin: 12;
   padding-top: pxToEm($notificationVerticalMargin);
   padding-bottom: pxToEm($notificationVerticalMargin);
 
-  &-error {
-    @include svgIconColor($sbbColorWhite);
+  &.sbb-notification-error {
     background-color: $notificationErrorBackgroundColor;
 
-    a {
+    &,
+    a,
+    button {
       color: $sbbColorWhite;
     }
   }
 
-  &-success {
-    @include svgIconColor($sbbColorGreen);
-    color: $sbbColorGreen;
+  &.sbb-notification-success {
     border: 1px solid $sbbColorGreen;
 
-    a {
+    &,
+    a,
+    button {
       color: $sbbColorGreen;
     }
   }
 
-  &-info {
-    @include svgIconColor($sbbColorGranite);
-    color: $sbbColorGranite;
+  &.sbb-notification-info {
     border: 1px solid $sbbColorGranite;
 
-    a {
+    &,
+    a,
+    button {
       color: $sbbColorGranite;
     }
   }
 
-  &-warn {
-    @include svgIconColor($sbbColorWhite);
-
-    a {
+  &.sbb-notification-warn {
+    &,
+    a,
+    button {
       color: $sbbColorWhite;
     }
 
     background-color: $notificationWarnBackgroundColor;
   }
 
-  &-has-jump-marks {
+  &.sbb-notification-has-jump-marks {
     min-height: toPx($notificationLinksHeight);
   }
 
@@ -80,13 +86,13 @@ $notificationVerticalMargin: 12;
     margin-right: toPx($notificationMessageMarginRight);
   }
 
-  &-jump-mark {
+  .sbb-notification-jump-mark {
     a {
       cursor: pointer;
     }
   }
 
-  &-icon-wrapper {
+  .sbb-notification-icon-wrapper {
     min-width: toPx($notificationIconWidth);
     width: toPx($notificationIconWidth);
     height: toPx($notificationIconHeight);
@@ -101,38 +107,31 @@ $notificationVerticalMargin: 12;
     }
   }
 
-  &-icon-close-wrapper {
+  .sbb-notification-icon-close-wrapper {
     cursor: pointer;
     margin-left: auto;
     margin-right: pxToEm($notificationIconMarginRight);
   }
-}
 
-@mixin notificationToast {
-  position: absolute;
-  max-width: pxToEm($notificationToastMaxWidth);
-}
-
-.sbb-notification-toast {
-  &-top-right {
+  &.sbb-notification-toast-top-right {
     @include notificationToast();
     top: pxToEm($notificationToastOffset);
     right: pxToEm($notificationToastOffset);
   }
 
-  &-bottom-left {
+  &.sbb-notification-toast-bottom-left {
     @include notificationToast();
     bottom: pxToEm($notificationToastOffset);
     left: pxToEm($notificationToastOffset);
   }
 
-  &-top-left {
+  &.sbb-notification-toast-top-left {
     @include notificationToast();
     top: pxToEm($notificationToastOffset);
     left: pxToEm($notificationToastOffset);
   }
 
-  &-bottom-right {
+  &.sbb-notification-toast-bottom-right {
     @include notificationToast();
     bottom: pxToEm($notificationToastOffset);
     right: pxToEm($notificationToastOffset);

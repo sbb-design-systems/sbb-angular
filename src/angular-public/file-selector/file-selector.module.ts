@@ -1,15 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconTrashModule, IconUploadModule } from '@sbb-esta/angular-icons/basic';
-import {
-  IconDocumentImageModule,
-  IconDocumentPdfModule,
-  IconDocumentSoundModule,
-  IconDocumentStandardModule,
-  IconDocumentTextModule,
-  IconDocumentVideoModule,
-  IconDocumentZipModule,
-} from '@sbb-esta/angular-icons/document';
+import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import {
@@ -20,18 +11,8 @@ import {
 
 @NgModule({
   declarations: [FileSelectorComponent, FileExtension, FileNameNoExtension, FileSizeFormatted],
-  imports: [
-    CommonModule,
-    IconDocumentTextModule,
-    IconDocumentImageModule,
-    IconDocumentPdfModule,
-    IconDocumentSoundModule,
-    IconDocumentVideoModule,
-    IconDocumentZipModule,
-    IconDocumentStandardModule,
-    IconTrashModule,
-    IconUploadModule,
-  ],
+  imports: [CommonModule, SbbIconModule],
   exports: [FileSelectorComponent],
+  providers: [ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
 export class FileSelectorModule {}

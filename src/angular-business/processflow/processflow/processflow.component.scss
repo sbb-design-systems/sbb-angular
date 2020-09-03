@@ -1,41 +1,6 @@
 $sbbBusiness: true;
 @import '../../../angular-core/styles/common';
 
-$processflowArrowWidth: 24;
-$processflowArrowHeight: 24;
-$processflowArrowLineHeight: 21;
-$processflowArrowMarginsMP: 12;
-$processflowArrowMarginsTP: 16;
-$processflowArrowMarginsDT: 24;
-
-$processflowArrowMargins4K: 36;
-$processflowArrowWidth4K: 36;
-$processflowArrowHeight4K: 36;
-
-$processflowArrowMargins5K: 48;
-$processflowArrowWidth5K: 48;
-$processflowArrowHeight5K: 48;
-
-$processflowStepButtonFontSizeMP: 20;
-$processflowStepButtonLineHeightMP: 20;
-$processflowStepButtonPaddingBottomMP: 11;
-
-$processflowStepButtonFontSizeTP: 21;
-$processflowStepButtonLineHeightTP: 21;
-$processflowStepButtonPaddingBottomTP: 14;
-
-$processflowStepButtonFontSizeDT: 21;
-$processflowStepButtonLineHeightDT: 21;
-$processflowStepButtonPaddingBottomDT: 22;
-
-$processflowStepButtonFontSize4K: 32;
-$processflowStepButtonLineHeight4K: 34;
-$processflowStepButtonPaddingBottom4K: 32;
-
-$processflowStepButtonFontSize5K: 42;
-$processflowStepButtonLineHeight5K: 45;
-$processflowStepButtonPaddingBottom5K: 42;
-
 .sbb-processflow {
   list-style-type: none;
   margin: 0;
@@ -65,36 +30,36 @@ $processflowStepButtonPaddingBottom5K: 42;
       margin: 0;
     }
     .sbb-processflow-step-arrow {
-      @include svgIconColor($sbbColorGrey);
-      width: toPx($processflowArrowWidth);
-      height: toPx($processflowArrowHeight);
-      line-height: toPx($processflowArrowLineHeight);
+      color: $sbbColorGrey;
+      width: toPx(21);
+      height: toPx(21);
+      line-height: 0;
       margin-bottom: auto;
-      margin-left: toPx($processflowArrowMarginsMP);
-      margin-right: toPx($processflowArrowMarginsMP);
+      margin-left: toPx(12);
+      margin-right: toPx(12);
 
       @include mq($from: tabletPortrait) {
-        margin-left: toPx($processflowArrowMarginsTP);
-        margin-right: toPx($processflowArrowMarginsTP);
+        margin-left: toPx(16);
+        margin-right: toPx(16);
       }
 
       @include mq($from: desktop) {
-        margin-left: toPx($processflowArrowMarginsDT);
-        margin-right: toPx($processflowArrowMarginsDT);
+        margin-left: toPx(24);
+        margin-right: toPx(24);
       }
 
       @include mq($from: desktop4k) {
-        margin-left: toPx($processflowArrowMargins4K);
-        margin-right: toPx($processflowArrowMargins4K);
-        width: toPx($processflowArrowWidth4K);
-        height: toPx($processflowArrowHeight4K);
+        margin-left: toPx(36);
+        margin-right: toPx(36);
+        width: toPx(36);
+        height: toPx(36);
       }
 
       @include mq($from: desktop5k) {
-        margin-left: toPx(processflowArrowMargins5K);
-        margin-right: toPx(processflowArrowMargins5K);
-        width: toPx($processflowArrowWidth5K);
-        height: toPx($processflowArrowHeight5K);
+        margin-left: toPx(48);
+        margin-right: toPx(48);
+        width: toPx(48);
+        height: toPx(48);
       }
     }
     button {
@@ -105,32 +70,32 @@ $processflowStepButtonPaddingBottom5K: 42;
       text-decoration: none;
       position: relative;
 
-      font-size: toPx($processflowStepButtonFontSizeMP);
-      line-height: toPx($processflowStepButtonLineHeightMP);
-      padding-bottom: toPx($processflowStepButtonPaddingBottomMP);
+      font-size: toPx(20);
+      line-height: toPx(20);
+      padding-bottom: toPx(11);
 
       @include mq($from: tabletPortrait) {
-        font-size: toPx($processflowStepButtonFontSizeTP);
-        line-height: toPx($processflowStepButtonLineHeightTP);
-        padding-bottom: toPx($processflowStepButtonPaddingBottomTP);
+        font-size: toPx(21);
+        line-height: toPx(21);
+        padding-bottom: toPx(14);
       }
 
       @include mq($from: desktop) {
-        font-size: toPx($processflowStepButtonFontSizeDT);
-        line-height: toPx($processflowStepButtonLineHeightDT);
-        padding-bottom: toPx($processflowStepButtonPaddingBottomDT);
+        font-size: toPx(21);
+        line-height: toPx(21);
+        padding-bottom: toPx(22);
       }
 
       @include mq($from: desktop4k) {
-        font-size: toPx($processflowStepButtonFontSize4K);
-        line-height: toPx($processflowStepButtonLineHeight4K);
-        padding-bottom: toPx($processflowStepButtonPaddingBottom4K);
+        font-size: toPx(32);
+        line-height: toPx(34);
+        padding-bottom: toPx(32);
       }
 
       @include mq($from: desktop5k) {
-        font-size: toPx($processflowStepButtonFontSize5K);
-        line-height: toPx($processflowStepButtonLineHeight5K);
-        padding-bottom: toPx($processflowStepButtonPaddingBottom5K);
+        font-size: toPx(42);
+        line-height: toPx(45);
+        padding-bottom: toPx(42);
       }
 
       &::after {

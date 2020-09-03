@@ -3,8 +3,7 @@
   class="sbb-expansion-panel-content"
   role="region"
   [@bodyExpansion]="getExpandedState()"
-  (@bodyExpansion.done)="bodyAnimation($event)"
-  (@bodyExpansion.start)="bodyAnimation($event)"
+  (@bodyExpansion.done)="_bodyAnimationDone.next($event)"
   [attr.aria-labelledby]="headerId"
   [id]="id"
   #body

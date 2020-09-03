@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { StatusModule } from './status.module';
 
@@ -39,7 +40,7 @@ describe('StatusComponent', () => {
         StatusWithMessageComponent,
         StatusWithAriaLabelComponent,
       ],
-      imports: [StatusModule],
+      imports: [StatusModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -52,7 +53,8 @@ describe('StatusComponent', () => {
     });
 
     it('should have tick icon', () => {
-      const element = fixture.debugElement.query(By.css('sbb-icon-tick')).nativeElement;
+      const element = fixture.debugElement.query(By.css('sbb-icon[svgIcon="kom:tick-small"]'))
+        .nativeElement;
       expect(element).toBeTruthy();
     });
 
@@ -81,8 +83,9 @@ describe('StatusComponent', () => {
     });
 
     it('should have exclamation point icon', () => {
-      const element = fixture.debugElement.query(By.css('sbb-icon-exclamation-point'))
-        .nativeElement;
+      const element = fixture.debugElement.query(
+        By.css('sbb-icon[svgIcon="kom:exclamation-point-small"]')
+      ).nativeElement;
       expect(element).toBeTruthy();
     });
 
@@ -111,7 +114,8 @@ describe('StatusComponent', () => {
     });
 
     it('should have cross icon', () => {
-      const element = fixture.debugElement.query(By.css('sbb-icon-cross')).nativeElement;
+      const element = fixture.debugElement.query(By.css('sbb-icon[svgIcon="kom:cross-small"]'))
+        .nativeElement;
       expect(element).toBeTruthy();
     });
 

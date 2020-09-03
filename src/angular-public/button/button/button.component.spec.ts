@@ -1,7 +1,8 @@
 import { Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { ButtonComponent } from './button.component';
 
@@ -12,7 +13,7 @@ import { ButtonComponent } from './button.component';
     <button sbbButton [icon]="icon" [mode]="mode" [disabled]="disabled" (click)="testClick()">
       Bezeichnung
     </button>
-    <ng-template #icon><sbb-icon-arrow-right></sbb-icon-arrow-right></ng-template>
+    <ng-template #icon><sbb-icon svgIcon="kom:arrow-right-small"></sbb-icon></ng-template>
   `,
 })
 export class ButtonTemplateTestComponent {
@@ -28,7 +29,7 @@ describe('ButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconArrowRightModule],
+      imports: [SbbIconModule, SbbIconTestingModule],
       declarations: [ButtonComponent, ButtonTemplateTestComponent],
     }).compileComponents();
   }));
@@ -46,7 +47,9 @@ describe('ButtonComponent', () => {
   it('should have two icons instantiated if the icon is being passed', () => {
     fixture.detectChanges();
 
-    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-right'));
+    const icons = fixture.debugElement.queryAll(
+      By.css('sbb-icon[svgIcon="kom:arrow-right-small"]')
+    );
 
     expect(icons).toBeTruthy();
     expect(icons.length).toBe(2);
@@ -65,7 +68,9 @@ describe('ButtonComponent', () => {
 
       sbbButton = fixture.debugElement.query(By.css('button.sbb-button'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-right svg'));
+      sbbButtonIcon = fixture.debugElement.query(
+        By.css('sbb-icon[svgIcon="kom:arrow-right-small"]')
+      );
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
 
@@ -78,7 +83,7 @@ describe('ButtonComponent', () => {
     });
 
     it('should the icons be white', () => {
-      expect(sbbButtonIconStyle.getPropertyValue('fill')).toBe('rgb(255, 255, 255)');
+      expect(sbbButtonIconStyle.getPropertyValue('color')).toBe('rgb(255, 255, 255)');
     });
   });
 
@@ -95,7 +100,9 @@ describe('ButtonComponent', () => {
 
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-right svg'));
+      sbbButtonIcon = fixture.debugElement.query(
+        By.css('sbb-icon[svgIcon="kom:arrow-right-small"]')
+      );
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
 
@@ -108,7 +115,7 @@ describe('ButtonComponent', () => {
     });
 
     it('should the icons be grey of rgb(68, 68, 68)/#444444', () => {
-      expect(sbbButtonIconStyle.getPropertyValue('fill')).toBe('rgb(68, 68, 68)');
+      expect(sbbButtonIconStyle.getPropertyValue('color')).toBe('rgb(68, 68, 68)');
     });
   });
 
@@ -156,7 +163,9 @@ describe('ButtonComponent', () => {
 
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-right svg'));
+      sbbButtonIcon = fixture.debugElement.query(
+        By.css('sbb-icon[svgIcon="kom:arrow-right-small"]')
+      );
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
 
@@ -169,7 +178,7 @@ describe('ButtonComponent', () => {
     });
 
     it('should the icons be grey of rgb(68, 68, 68)/#444444', () => {
-      expect(sbbButtonIconStyle.getPropertyValue('fill')).toBe('rgb(68, 68, 68)');
+      expect(sbbButtonIconStyle.getPropertyValue('color')).toBe('rgb(68, 68, 68)');
     });
 
     it('should not have a box shadow', () => {

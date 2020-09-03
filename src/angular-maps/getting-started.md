@@ -53,6 +53,7 @@ import { EsriConfigModule } from '@sbb-esta/angular-maps';
 export class TrainChooChooAppModule {}
 ```
 
+If you do not have specific configurations, you can use the standard configurations as well using:
 The ArcGIS API for Javascript allows for cross origin requests made to associated servers to include credentials such as cookies and authorization headers. This is indicated by a list of named so called _trustedServers_ (see [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)). When using the SBB Geoportal, it's currently also required to add the same host names to the list of _originsWithCredentialsRequired_. Whenever a request is made to a server listed in _originsWithCredentialsRequired_ it is being intercepted (using _interceptors_ as [described](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)) and the [_withCredentials_ header](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials) is set. [Read more on how the ArcGIS API for Javascript handles CORS](https://developers.arcgis.com/javascript/latest/guide/cors/index.html).
 
 Allowing a quick start in the SBB environment, the following hosts are preconfigured as _trustedServers_ and _originsWithCredentialsRequired_ in `@sbb-esta/angular-maps` by default: _geo-dev.sbb.ch_, _geo-int.sbb.ch_ and _geo.sbb.ch_. Additionally _wms.geo.admin.ch_ is preconfigured in _trustedServers_, too.

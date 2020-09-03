@@ -2,8 +2,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
-import { IconMagnifyingGlassModule } from '@sbb-esta/angular-icons/basic';
 import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 
@@ -16,7 +16,7 @@ import {
   declarations: [SearchComponent],
   imports: [
     CommonModule,
-    IconMagnifyingGlassModule,
+    SbbIconModule,
     IconDirectiveModule,
     PortalModule,
     OverlayModule,
@@ -24,6 +24,6 @@ import {
     ButtonModule,
   ],
   exports: [SearchComponent, PortalModule, OverlayModule, IconDirectiveModule],
-  providers: [SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER],
+  providers: [SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
 export class SearchModule {}

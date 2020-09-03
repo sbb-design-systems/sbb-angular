@@ -9,18 +9,20 @@ package(default_visibility = ["//visibility:public"])
 ng_module(
     name = "notification-examples",
     srcs = [
-        "notification-example/notification-example.component.ts",
+        "custom-icon-notification-example/custom-icon-notification-example.component.ts",
+        "jumpmark-notification-example/jumpmark-notification-example.component.ts",
         "notification-examples.module.ts",
+        "simple-notification-example/simple-notification-example.component.ts",
     ],
     assets = [
-        ":notification-example/notification-example.component.css",
-        "notification-example/notification-example.component.html",
+        ":simple-notification-example/simple-notification-example.component.css",
+        "custom-icon-notification-example/custom-icon-notification-example.component.html",
+        "jumpmark-notification-example/jumpmark-notification-example.component.html",
+        "simple-notification-example/simple-notification-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-icons/community",
-        "//src/angular-icons/timetable",
-        "//src/angular-icons/weather",
+        "//src/angular-core/icon",
         "//src/angular-public/field",
         "//src/angular-public/notification",
         "//src/showcase/app/shared",
@@ -40,6 +42,6 @@ filegroup(
 )
 
 sass_binary(
-    name = "notification_example_notification_example_component_scss",
-    src = "notification-example/notification-example.component.scss",
+    name = "simple_notification_example_simple_notification_example_component_scss",
+    src = "simple-notification-example/simple-notification-example.component.scss",
 )

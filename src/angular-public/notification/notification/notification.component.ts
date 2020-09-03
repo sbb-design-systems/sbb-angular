@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  HostBinding,
   Input,
   TemplateRef,
   ViewChild,
@@ -10,6 +9,9 @@ import {
 } from '@angular/core';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 
+/**
+ * @deprecated use strings directly
+ */
 export enum NotificationType {
   SUCCESS = 'success',
   ERROR = 'error',
@@ -30,32 +32,56 @@ export interface JumpMark {
   styleUrls: ['./notification.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-notification',
+    '[class.sbb-notification-success]': `this.type === 'success'`,
+    '[class.sbb-notification-info]': `this.type === 'info'`,
+    '[class.sbb-notification-error]': `this.type === 'error'`,
+    '[class.sbb-notification-has-jump-marks]': 'this.jumpMarks && this.jumpMarks.length',
+  },
 })
 export class NotificationComponent {
-  /** @docs-private */
-  @HostBinding('class.sbb-notification')
+  /**
+   *  @docs-private
+   *  @deprecated internal detail
+   */
   baseCssClass = true;
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-success')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get typeSuccess(): boolean {
     return this.type === NotificationType.SUCCESS;
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-info')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get typeInfo(): boolean {
     return this.type === NotificationType.INFO;
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-error')
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
   get typeError(): boolean {
     return this.type === NotificationType.ERROR;
   }
+
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
+  get hasJumpMarks() {
+    return this.jumpMarks && this.jumpMarks.length;
+  }
+
   /** Type of notification. */
   @Input()
-  type: 'success' | 'info' | 'error' = NotificationType.SUCCESS;
+  type: 'success' | 'info' | 'error' = 'success';
 
   /** @docs-private */
   @ViewChild('error', { read: TemplateRef, static: true })
@@ -69,9 +95,10 @@ export class NotificationComponent {
   @ViewChild('info', { read: TemplateRef, static: true })
   infoIcon: TemplateRef<any>;
 
-  /** The icon to be used into the notification left side.
-   *  By default uses three icons for SUCCESS, ERROR or INFO notification type,
-   *  but the user can use his own icon using the NotificationIconDirective.
+  /**
+   * The icon to be used into the notification left side.
+   * By default uses three icons for SUCCESS, ERROR or INFO notification type,
+   * but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
   set icon(notificationIcon: TemplateRef<any> | null) {
@@ -84,11 +111,11 @@ export class NotificationComponent {
       return this._icon;
     }
     switch (this.type) {
-      case NotificationType.SUCCESS:
+      case 'success':
         return this.checkIcon;
-      case NotificationType.ERROR:
+      case 'error':
         return this.errorIcon;
-      case NotificationType.INFO:
+      case 'info':
         return this.infoIcon;
       default:
         return null;
@@ -108,12 +135,6 @@ export class NotificationComponent {
 
   /** List of in page links displayed on the bottom of the notification */
   @Input() jumpMarks?: JumpMark[];
-
-  /** @docs-private */
-  @HostBinding('class.sbb-notification-has-jump-marks')
-  get hasJumpMarks() {
-    return this.jumpMarks && this.jumpMarks.length;
-  }
 
   /**
    * Used to scroll to an element identified by a jump mark

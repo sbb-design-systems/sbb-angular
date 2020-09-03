@@ -9,7 +9,6 @@ import {
   ContentChild,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Inject,
   InjectionToken,
   NgZone,
@@ -56,6 +55,9 @@ export const BREADCRUMB_LEVEL_OFFSET = 60;
   styleUrls: ['./breadcrumb.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-breadcrumb sbb-icon-fit',
+  },
 })
 export class BreadcrumbComponent extends DropdownTriggerDirective implements AfterViewInit {
   /**
@@ -70,8 +72,8 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
 
   /**
    * Css class of a sbb-breadcrumb.
+   * @deprecated internal detail
    */
-  @HostBinding('class.sbb-breadcrumb')
   cssClass = true;
 
   /**

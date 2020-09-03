@@ -35,7 +35,7 @@ $toggleOptionContentBg: $sbbColorWhite;
   .sbb-toggle-option {
     flex: 1;
 
-    &-button {
+    .sbb-toggle-option-button {
       display: flex;
       background-color: $toggleOptionButtonBg;
       color: $toggleOptionButtonColor;
@@ -45,7 +45,7 @@ $toggleOptionContentBg: $sbbColorWhite;
       border: pxToEm(1) solid transparent;
       min-height: $toggleOptionButtonMinHeight;
 
-      &-inner {
+      .sbb-toggle-option-button-inner {
         display: table;
         margin: auto;
       }
@@ -54,25 +54,27 @@ $toggleOptionContentBg: $sbbColorWhite;
         cursor: pointer;
       }
 
-      &-icon {
-        @include svgIconColor($toggleOptionButtonColor);
+      .sbb-toggle-option-button-icon {
+        @include svgIconColor(
+          $toggleOptionButtonColor
+        ); // TODO(icon-migration): remove definition because icons inherit colors
         display: inline-block;
         vertical-align: middle;
         width: pxToEm($toggleOptionIconSize);
         height: pxToEm($toggleOptionIconSize);
       }
 
-      &-label-wrapper {
+      .sbb-toggle-option-button-label-wrapper {
         @extend %tableCell;
         text-align: center;
       }
 
-      &-label {
+      .sbb-toggle-option-button-label {
         @extend %colorBlockifyInline;
         vertical-align: middle;
       }
 
-      &-info-text {
+      .sbb-toggle-option-button-info-text {
         @extend %colorBlockify;
         font-size: pxToEm($toggleOptionInfoTextFontSize);
         max-height: 3em;
@@ -82,7 +84,7 @@ $toggleOptionContentBg: $sbbColorWhite;
       }
     }
 
-    &-content {
+    .sbb-toggle-option-content {
       background-color: $toggleOptionContentBg;
       width: 200%;
       float: left;
@@ -125,11 +127,12 @@ $toggleOptionContentBg: $sbbColorWhite;
         border-color: $toggleOptionButtonBorderSelected;
         color: $toggleOptionButtonColorSelected;
 
-        &-icon {
+        // TODO(icon-migration): remove definition because icons inherit colors
+        .sbb-toggle-option-button-icon {
           @include svgIconColor($toggleOptionButtonColorSelected);
         }
 
-        &-info-text {
+        .sbb-toggle-option-button-info-text {
           opacity: 0;
           max-height: 0;
         }
@@ -145,7 +148,7 @@ $toggleOptionContentBg: $sbbColorWhite;
 
     &.sbb-toggle-option-has-icon {
       .sbb-toggle-option-button {
-        &-label {
+        .sbb-toggle-option-button-label {
           max-width: calc(100% - #{pxToEm($toggleOptionIconSize)});
           text-align: left;
           padding-left: 0.5em;

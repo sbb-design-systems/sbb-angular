@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
 
 import { FileSelectorModule } from '../file-selector.module';
@@ -99,7 +101,7 @@ describe('FileSelectorComponent using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FileSelectorModule],
+      imports: [FileSelectorModule, SbbIconModule, SbbIconTestingModule],
       declarations: [FileSelectorTestComponent],
     }).compileComponents();
   }));
@@ -188,16 +190,36 @@ describe('FileSelectorComponent using mock component', () => {
 
     const typeIconWrapper = fileComponent.queryAll(By.css('.sbb-file-selector-list-type-icon'));
 
-    expect(typeIconWrapper[0].query(By.css('sbb-icon-document-sound'))).toBeTruthy();
-    expect(typeIconWrapper[1].query(By.css('sbb-icon-document-text'))).toBeTruthy();
-    expect(typeIconWrapper[2].query(By.css('sbb-icon-document-standard'))).toBeTruthy();
-    expect(typeIconWrapper[3].query(By.css('sbb-icon-document-image'))).toBeTruthy();
-    expect(typeIconWrapper[4].query(By.css('sbb-icon-document-pdf'))).toBeTruthy();
-    expect(typeIconWrapper[5].query(By.css('sbb-icon-document-image'))).toBeTruthy();
-    expect(typeIconWrapper[6].query(By.css('sbb-icon-document-image'))).toBeTruthy();
-    expect(typeIconWrapper[7].query(By.css('sbb-icon-document-video'))).toBeTruthy();
-    expect(typeIconWrapper[8].query(By.css('sbb-icon-document-text'))).toBeTruthy();
-    expect(typeIconWrapper[9].query(By.css('sbb-icon-document-zip'))).toBeTruthy();
+    expect(
+      typeIconWrapper[0].query(By.css('sbb-icon[svgIcon="kom:document-sound-small"]'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[1].query(By.css('sbb-icon[svgIcon="kom:document-text-small"]'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[2].query(By.css('sbb-icon[svgIcon="kom:document-standard-small"]'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[3].query(By.css('sbb-icon[svgIcon="kom:document-image-small"]'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[4].query(By.css('sbb-icon[svgIcon="kom:document-pdf-small"]'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[5].query(By.css('sbb-icon[svgIcon="kom:document-image-small"]'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[6].query(By.css('sbb-icon[svgIcon="kom:document-image-small"]'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[7].query(By.css('sbb-icon[svgIcon="kom:document-video-small"]'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[8].query(By.css('sbb-icon[svgIcon="kom:document-text-small"]'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[9].query(By.css('sbb-icon[svgIcon="kom:document-zip-small"]'))
+    ).toBeTruthy();
   });
 });
 
@@ -224,7 +246,7 @@ describe('FileSelectorComponent using mock component and limited behaviour ', ()
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FileSelectorModule, FormsModule],
+      imports: [FileSelectorModule, SbbIconTestingModule, FormsModule],
       declarations: [FileSelectorTest2Component],
     }).compileComponents();
   }));

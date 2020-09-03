@@ -34,11 +34,9 @@
 }
 
 .sbb-expansion-panel-content {
-  overflow: hidden;
-
-  &.sbb-expanded {
-    overflow: visible;
-  }
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
 }
 
 .sbb-expansion-panel-body {

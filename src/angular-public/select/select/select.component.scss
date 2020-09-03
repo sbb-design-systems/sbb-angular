@@ -70,6 +70,7 @@ sbb-select.sbb-select {
     }
 
     .sbb-select-arrow-wrapper {
+      color: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
       @include absoluteCenterY();
       right: toPx($selectArrowRight);
 
@@ -77,8 +78,6 @@ sbb-select.sbb-select {
       height: toPx($selectArrowWidthHeight);
 
       @include publicOnly() {
-        @include svgIconColor($sbbColorGrey);
-
         @include mq($from: desktop4k) {
           right: toPx($selectArrowRight * $scalingFactor4k);
           width: toPx($selectArrowWidthHeight * $scalingFactor4k);
@@ -92,11 +91,7 @@ sbb-select.sbb-select {
         }
       }
 
-      @include businessOnly() {
-        @include svgIconColor($sbbColorGranite);
-      }
-
-      &-rotate {
+      &.sbb-select-arrow-wrapper-rotate {
         transform-origin: toPx($selectArrowWidthHeight / 2) toPx($selectArrowWidthHeight / 4);
 
         @include publicOnly() {

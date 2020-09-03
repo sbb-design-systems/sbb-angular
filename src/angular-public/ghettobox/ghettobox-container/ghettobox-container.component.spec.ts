@@ -4,10 +4,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
-import { IconHimInfoModule, IconHimReplacementbusModule } from '@sbb-esta/angular-icons/him-cus';
-import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 
 import { Ghettobox } from '../ghettobox/ghettobox-ref';
 import { GhettoboxComponent, GhettoboxDeletedEvent } from '../ghettobox/ghettobox.component';
@@ -26,7 +25,7 @@ import { GhettoboxContainerComponent } from './ghettobox-container.component';
     </sbb-ghettobox-container>
 
     <ng-template #testIcon1>
-      <sbb-icon-him-replacementbus></sbb-icon-him-replacementbus>
+      <sbb-icon svgIcon="fpl:replacementbus"></sbb-icon>
     </ng-template>
   `,
   entryComponents: [GhettoboxComponent],
@@ -53,10 +52,8 @@ describe('GhettoboxContainerComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        IconCrossModule,
-        IconArrowRightModule,
-        IconHimInfoModule,
-        IconHimReplacementbusModule,
+        SbbIconModule,
+        SbbIconTestingModule,
         NoopAnimationsModule,
         PortalModule,
       ],
@@ -109,7 +106,7 @@ describe('GhettoboxContainerComponent', () => {
     await fixture.whenStable();
 
     const ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
-    const icon = ghettoboxes[1].query(By.css('sbb-icon-him-replacementbus'));
+    const icon = ghettoboxes[1].query(By.css('sbb-icon[svgIcon="fpl:replacementbus"]'));
     const linkHref = ghettoboxes[1]
       .query(By.css('.sbb-ghettobox-link'))
       .nativeElement.getAttribute('href');

@@ -3,4 +3,5 @@ export interface Schema {
   project: string;
   cdnIndexUrl: string;
   cdnBaseUrl: string;
+  generateWrapperRegistry: boolean;
 }

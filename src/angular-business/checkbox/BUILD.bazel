@@ -19,7 +19,7 @@ ng_module(
     module_name = "@sbb-esta/angular-business/checkbox",
     deps = [
         "//src/angular-core/base/checkbox",
-        "//src/angular-icons/status",
+        "//src/angular-core/icon",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -43,8 +43,9 @@ ng_test_library(
     ),
     deps = [
         ":checkbox",
+        "//src/angular-core/icon",
+        "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
-        "//src/angular-icons/status",
         "@npm//@angular/common",
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",

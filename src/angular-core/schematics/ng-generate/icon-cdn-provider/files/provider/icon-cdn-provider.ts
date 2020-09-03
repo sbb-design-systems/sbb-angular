@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ErrorHandler, InjectionToken, Optional, SkipSelf } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SbbIconRegistry } from '@sbb-esta/angular-core/icon';
+import { SbbIconRegistry } from '<%= registryImportPath %>';
 
 /**
  * This providers registers all icons added below, which can then be used with <sbb-icon>.
@@ -79,8 +79,8 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
   /*
    * @sbb-esta Required Icons
    * ========================
-   * Our libraries require the following icons. Please do not remove them
-   * or make sure you provide them yourself.
+   * Our libraries require the following icons. If not otherwise configured,
+   * the necessary icons will be loaded from the CDN.
    *
    * Icons:<% for (const entry of moduleIcons) { %>
    *  - <%= entry.module %>: <%= entry.icons.join(', ') %><% } %>

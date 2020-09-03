@@ -21,7 +21,6 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  HostBinding,
   Inject,
   InjectionToken,
   Input,
@@ -97,6 +96,17 @@ const ANIMATION_DURATION = 300;
       multi: true,
     },
   ],
+  host: {
+    class: 'sbb-search',
+    '[attr.id]': 'this.id',
+    '[attr.role]': "this.autocompleteDisabled ? null : 'combobox'",
+    '[attr.autocomplete]': 'this.autocompleteAttribute',
+    '[attr.aria-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen.toString()',
+    '[attr.aria-owns]':
+      'this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id',
+    '[attr.aria-autocomplete]': "this.autocompleteDisabled ? null : 'list'",
+    '[attr.aria-activedescendant]': 'this.activeOption ? this.activeOption.id : null',
+  },
 })
 export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
   /** @docs-private */
@@ -120,11 +130,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   /**
    * Identifier of search.
    */
-  @HostBinding('attr.id')
   id = 'sbb-search-id-' + nextId++;
 
   /**
    * Identifier of search content.
+   * @docs-private
+   * @deprecated internal detail
    */
   get contentId() {
     return `${this.id}-content`;
@@ -132,8 +143,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   /**
    * Css class on search component.
+   * @docs-private
+   * @deprecated internal detail
    */
-  @HostBinding('class.sbb-search') cssClass = true;
+  cssClass = true;
 
   /**
    * Adds a placeholder to the component
@@ -186,13 +199,15 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
   private _hideSearch = true;
 
-  @HostBinding('attr.role')
+  /**
+   * @docs-private
+   * @deprecated internal use
+   */
   get role() {
     return this._autocompleteDisabled ? null : 'combobox';
   }
 
   /** The autocomplete panel to be attached to this trigger. */
-  // tslint:disable-next-line:no-input-rename
   @Input('sbbAutocomplete')
   get autocomplete(): AutocompleteComponent {
     return this._autocomplete;
@@ -231,7 +246,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * Reference relative to which to position the autocomplete panel.
    * Defaults to the autocomplete trigger element.
    */
-  // tslint:disable-next-line:no-input-rename
   @Input('sbbAutocompleteConnectedTo')
   connectedTo: AutocompleteOriginDirective;
 
@@ -239,9 +253,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * `autocomplete` attribute to be set on the input element.
    * @docs-private
    */
-  // tslint:disable-next-line:no-input-rename
   @Input('autocomplete')
-  @HostBinding('attr.autocomplete')
   autocompleteAttribute = 'off';
 
   /**
@@ -349,13 +361,19 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this.handleKeydown($event);
   }
 
-  /** @docs-private */
-  @HostBinding('attr.aria-expanded') get ariaExpanded(): string | null {
+  /**
+   *  @docs-private
+   *  @deprecated internal use
+   */
+  get ariaExpanded(): string | null {
     return this.autocompleteDisabled ? null : this.panelOpen.toString();
   }
 
-  /** @docs-private */
-  @HostBinding('attr.aria-owns') get ariaOwns(): string | null {
+  /**
+   *  @docs-private
+   *  @deprecated internal use
+   */
+  get ariaOwns(): string | null {
     return this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id;
   }
 
@@ -389,8 +407,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
 
-  /** @docs-private */
-  @HostBinding('attr.aria-autocomplete')
+  /**
+   *  @docs-private
+   *  @deprecated internal use
+   */
   get ariaAutocomplete(): string | null {
     return this._autocompleteDisabled ? null : 'list';
   }
@@ -466,8 +486,11 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     );
   }
 
-  /** @docs-private */
-  @HostBinding('attr.aria-activedescendant') get activeOptionId() {
+  /**
+   *  @docs-private
+   *  @deprecated internal use
+   */
+  get activeOptionId() {
     return this.activeOption ? this.activeOption.id : null;
   }
 

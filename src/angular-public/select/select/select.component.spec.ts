@@ -41,6 +41,7 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
   dispatchEvent,
   dispatchFakeEvent,
@@ -672,7 +673,14 @@ describe('SelectComponent', () => {
    */
   function configureSbbSelectTestingModule(declarations: any[]) {
     TestBed.configureTestingModule({
-      imports: [SelectModule, FieldModule, ReactiveFormsModule, FormsModule, NoopAnimationsModule],
+      imports: [
+        SelectModule,
+        SbbIconTestingModule,
+        FieldModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NoopAnimationsModule,
+      ],
       declarations: declarations,
       providers: [
         {

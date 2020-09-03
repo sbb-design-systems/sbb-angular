@@ -6,7 +6,7 @@ import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -36,7 +36,7 @@ const EXAMPLE_INDEX = {
     CheckboxModule,
     FieldModule,
     RadioButtonModule,
-    IconArrowRightModule,
+    SbbIconModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

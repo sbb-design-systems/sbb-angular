@@ -1,0 +1,18 @@
+<sbb-search
+  mode="header"
+  placeholder="Search"
+  [formControl]="searchControl"
+  [sbbAutocomplete]="auto"
+>
+  <sbb-icon svgIcon="kom:circle-information-small" *sbbIcon></sbb-icon>
+</sbb-search>
+<sbb-autocomplete #auto="sbbAutocomplete">
+  <sbb-option *ngFor="let option of options$ | async" [value]="option">
+    {{ option }}
+  </sbb-option>
+  <sbb-option-group label="Oft gesucht:">
+    <sbb-option *ngFor="let option of staticOptions" [value]="option">
+      {{ option }}
+    </sbb-option>
+  </sbb-option-group>
+</sbb-autocomplete>

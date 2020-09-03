@@ -3,6 +3,7 @@ import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
 import {
@@ -66,7 +67,7 @@ class AccordionWithHideToggleComponent {
 describe('AccordionDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, AccordionModule],
+      imports: [BrowserAnimationsModule, AccordionModule, SbbIconTestingModule],
       declarations: [AccordionWithHideToggleComponent, NestedPanelComponent, SetOfItemsComponent],
     }).compileComponents();
   }));
@@ -161,14 +162,14 @@ describe('AccordionDirective', () => {
 
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-no-toggle')).toBeFalsy(
+    expect(panel.nativeElement.querySelector('.sbb-expansion-panel-header-hide-toggle')).toBeFalsy(
       'Expected the expansion indicator to be present.'
     );
 
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-no-toggle')).toBeTruthy(
+    expect(panel.nativeElement.querySelector('.sbb-expansion-panel-header-hide-toggle')).toBeTruthy(
       'Expected the expansion indicator to be removed.'
     );
   });

@@ -10,6 +10,8 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginationModule, SbbPaginatorComponent } from '@sbb-esta/angular-business/pagination';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { SbbSortHeaderComponent } from './sort-header/sort-header.component';
@@ -21,7 +23,13 @@ import { TableComponent } from './table/table.component';
 describe('SbbTable', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TableModule, PaginationModule, NoopAnimationsModule],
+      imports: [
+        TableModule,
+        PaginationModule,
+        NoopAnimationsModule,
+        SbbIconModule,
+        SbbIconTestingModule,
+      ],
       declarations: [
         SbbTableTestComponent,
         SbbTableWithWhenRowTestComponent,

@@ -3,16 +3,14 @@
     <div class="sbb-calendar-controls-months">
       <button
         type="button"
-        class="sbb-calendar-controls-left-arrow"
+        class="sbb-calendar-controls-left-arrow sbb-icon-fit"
         [disabled]="!previousMonthEnabled()"
         (click)="previousMonthClicked()"
         i18n-aria-label="
           Button label to switch to the previous month@@sbbDatepickerSwitchToPreviousMonth"
         aria-label="Zum letzten Monat wechseln"
       >
-        <sbb-icon-chevron-small-left
-          class="sbb-calendar-controls-icon"
-        ></sbb-icon-chevron-small-left>
+        <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
       </button>
       <span
         class="sbb-calendar-controls-label"
@@ -22,45 +20,39 @@
       >
       <button
         type="button"
-        class="sbb-calendar-controls-right-arrow"
+        class="sbb-calendar-controls-right-arrow sbb-icon-fit"
         [disabled]="!nextMonthEnabled()"
         (click)="nextMonthClicked()"
         i18n-aria-label="Button label to switch to the next month@@sbbDatepickerSwitchToNextMonth"
         aria-label="Zum nächsten Monat wechseln"
       >
-        <sbb-icon-chevron-small-right
-          class="sbb-calendar-controls-icon"
-        ></sbb-icon-chevron-small-right>
+        <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
       </button>
     </div>
     <div class="sbb-calendar-controls-years">
       <button
         type="button"
-        class="sbb-calendar-controls-left-arrow"
+        class="sbb-calendar-controls-left-arrow sbb-icon-fit"
         [disabled]="!previousYearEnabled()"
         (click)="previousYearClicked()"
         i18n-aria-label="
           Button label to switch to the previous year@@sbbDatepickerSwitchToPreviousYear"
         aria-label="Zum letzten Jahr wechseln"
       >
-        <sbb-icon-chevron-small-left
-          class="sbb-calendar-controls-icon"
-        ></sbb-icon-chevron-small-left>
+        <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
       </button>
       <span class="sbb-calendar-controls-label" [attr.aria-label]="yearText" cdkAriaLive="polite">{{
         yearText
       }}</span>
       <button
         type="button"
-        class="sbb-calendar-controls-right-arrow"
+        class="sbb-calendar-controls-right-arrow sbb-icon-fit"
         [disabled]="!nextYearEnabled()"
         (click)="nextYearClicked()"
         i18n-aria-label="Button label to switch to the next year@@sbbDatepickerSwitchToNextYear"
         aria-label="Zum nächsten Jahr wechseln"
       >
-        <sbb-icon-chevron-small-right
-          class="sbb-calendar-controls-icon"
-        ></sbb-icon-chevron-small-right>
+        <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
       </button>
     </div>
   </div>

@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { FieldModule } from '@sbb-esta/angular-business/field';
-import { IconPenModule } from '@sbb-esta/angular-icons/basic';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -24,7 +24,7 @@ const EXAMPLE_INDEX = {
     ButtonModule,
     CheckboxModule,
     FieldModule,
-    IconPenModule,
+    SbbIconModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

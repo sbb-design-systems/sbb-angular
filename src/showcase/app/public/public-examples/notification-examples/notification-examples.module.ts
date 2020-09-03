@@ -1,20 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IconBulbOnModule } from '@sbb-esta/angular-icons/community';
-import { IconClockModule } from '@sbb-esta/angular-icons/timetable';
-import { IconCloudSunshineModule } from '@sbb-esta/angular-icons/weather';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { NotificationModule } from '@sbb-esta/angular-public/notification';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { NotificationExampleComponent } from './notification-example/notification-example.component';
+import { CustomIconNotificationExampleComponent } from './custom-icon-notification-example/custom-icon-notification-example.component';
+import { JumpmarkNotificationExampleComponent } from './jumpmark-notification-example/jumpmark-notification-example.component';
+import { SimpleNotificationExampleComponent } from './simple-notification-example/simple-notification-example.component';
 
-const EXAMPLES = [NotificationExampleComponent];
+const EXAMPLES = [
+  CustomIconNotificationExampleComponent,
+  JumpmarkNotificationExampleComponent,
+  SimpleNotificationExampleComponent,
+];
 
 const EXAMPLE_INDEX = {
-  'notification-example': NotificationExampleComponent,
+  'simple-notification-example': SimpleNotificationExampleComponent,
+  'custom-icon-notification-example': CustomIconNotificationExampleComponent,
+  'jumpmark-notification-example': JumpmarkNotificationExampleComponent,
 };
 
 @NgModule({
@@ -22,9 +28,7 @@ const EXAMPLE_INDEX = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IconBulbOnModule,
-    IconClockModule,
-    IconCloudSunshineModule,
+    SbbIconModule,
     FieldModule,
     NotificationModule,
   ],

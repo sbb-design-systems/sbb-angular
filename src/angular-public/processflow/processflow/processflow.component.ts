@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   QueryList,
@@ -21,8 +20,4 @@ export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepCompone
   /** @docs-private */
   @ContentChildren(ProcessflowStepComponent)
   steps: QueryList<ProcessflowStepComponent>;
-
-  constructor(changeDetectorRef: ChangeDetectorRef) {
-    super(changeDetectorRef);
-  }
 }

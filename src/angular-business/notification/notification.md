@@ -1,8 +1,7 @@
 You can use the notification component to send a simple message:
 
 ```html
-<h4 id="default">Default success notification</h4>
-<sbb-notification message="Suchen" type="success"></sbb-notification>
+<sbb-notification type="success">Success</sbb-notification>
 ```
 
 There are four types of notifications:
@@ -18,9 +17,8 @@ It is also possible to send a notification message with a custom icon
 (using \*sbbIcon directive) as seen below
 
 ```html
-<h4>Notification with custom icon</h4>
-<sbb-notification message="Suchen" type="error">
-  <sbb-icon-clock *sbbIcon></sbb-icon-clock>
+<sbb-notification type="error">
+  <sbb-icon svgIcon="kom:clock-small" *sbbIcon></sbb-icon> New timezone saved successfully
 </sbb-notification>
 ```
 
@@ -39,8 +37,18 @@ export interface JumpMark {
 ```
 
 ```html
-<h4>Error notification with jump marks and custom icon</h4>
-<sbb-notification message="Please fix the form errors" type="error" [jumpMarks]="jumpMarks">
-  <sbb-icon-clock *sbbIcon></sbb-icon-clock>
+<sbb-notification type="error" [jumpMarks]="jumpMarks">
+  <sbb-icon svgIcon="kom:cloud-sunshine-small" *sbbIcon></sbb-icon>
+  Please fix the form errors
+</sbb-notification>
+```
+
+### Readonly notifications
+
+By setting the readonly property, the notification is not closable by user.
+
+```html
+<sbb-notification readonly>
+  I can't be closed by user
 </sbb-notification>
 ```

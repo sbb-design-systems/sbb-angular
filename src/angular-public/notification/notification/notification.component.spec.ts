@@ -3,14 +3,11 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import {
-  IconCircleInformationModule,
-  IconSignExclamationPointModule,
-} from '@sbb-esta/angular-icons/basic';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import createSpy = jasmine.createSpy;
-import { IconTickModule } from '@sbb-esta/angular-icons/status';
 
-import { NotificationComponent, NotificationType } from './notification.component';
+import { NotificationComponent } from './notification.component';
 
 @Component({
   selector: 'sbb-notification-mock',
@@ -18,8 +15,8 @@ import { NotificationComponent, NotificationType } from './notification.componen
     '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks"></sbb-notification>',
 })
 export class NotificationMockComponent {
-  message = 'Suchen';
-  type = NotificationType.SUCCESS;
+  message = 'Search';
+  type: 'success' | 'error' | 'info' = 'success';
   jumpMarks: any[] = [];
 }
 
@@ -30,12 +27,7 @@ describe('NotificationComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [
-          IconTickModule,
-          IconSignExclamationPointModule,
-          IconCircleInformationModule,
-          CommonModule,
-        ],
+        imports: [SbbIconModule, SbbIconTestingModule, CommonModule],
         declarations: [NotificationComponent],
       }).compileComponents();
     }));
@@ -57,13 +49,7 @@ describe('NotificationComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [
-          CommonModule,
-          FormsModule,
-          IconTickModule,
-          IconSignExclamationPointModule,
-          IconCircleInformationModule,
-        ],
+        imports: [CommonModule, FormsModule, SbbIconModule, SbbIconTestingModule],
         declarations: [NotificationComponent, NotificationMockComponent],
       }).compileComponents();
     }));
@@ -75,7 +61,7 @@ describe('NotificationComponent', () => {
     });
 
     it('should have red background when type is ERROR', () => {
-      testComponent.type = NotificationType.ERROR;
+      testComponent.type = 'error';
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-error'));
       expect(notifications.length).toBeGreaterThan(0);
@@ -86,7 +72,7 @@ describe('NotificationComponent', () => {
     });
 
     it('should have grey background when type is SUCCESS', () => {
-      testComponent.type = NotificationType.SUCCESS;
+      testComponent.type = 'success';
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-success'));
       expect(notifications.length).toBeGreaterThan(0);
@@ -97,7 +83,7 @@ describe('NotificationComponent', () => {
     });
 
     it('should have grey background when type is INFO', () => {
-      testComponent.type = NotificationType.INFO;
+      testComponent.type = 'info';
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-info'));
       expect(notifications.length).toBeGreaterThan(0);
@@ -108,7 +94,9 @@ describe('NotificationComponent', () => {
     });
 
     it('should change height with jump marks', () => {
-      const componentStyles = window.getComputedStyle(testFixture.debugElement.nativeElement);
+      const componentStyles = window.getComputedStyle(
+        testFixture.debugElement.query(By.css('.sbb-notification')).nativeElement
+      );
       expect(componentStyles.height).toBe('68px');
 
       testComponent.jumpMarks = [

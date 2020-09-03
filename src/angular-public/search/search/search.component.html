@@ -18,6 +18,7 @@
     #button
     (click)="emitSearch()"
     (blur)="onBlur($event)"
+    class="sbb-icon-fit"
     [class.sbb-search-box-button-active]="isSearchBoxFocused()"
   >
     <ng-container *ngTemplateOutlet="icon ? icon : defaultIcon"></ng-container>
@@ -30,12 +31,12 @@
   class="sbb-search-icon-wrapper"
   (click)="revealSearchbox()"
 >
-  <span class="sbb-svgsprite-icon">
+  <span class="sbb-svgsprite-icon sbb-icon-fit">
     <ng-container *ngTemplateOutlet="icon ? icon : defaultIcon"></ng-container>
   </span>
   <span class="sbb-search-icon-wrapper-label">{{ placeholder }}</span>
 </button>
 
 <ng-template #defaultIcon>
-  <sbb-icon-magnifying-glass></sbb-icon-magnifying-glass>
+  <sbb-icon svgIcon="kom:magnifying-glass-small"></sbb-icon>
 </ng-template>

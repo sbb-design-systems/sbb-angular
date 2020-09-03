@@ -26,10 +26,10 @@ the label.
 ```html
 <sbb-toggle>
   <sbb-toggle-option label="Option 1" value="dog">
-    <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
+    <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon></sbb-icon>
   </sbb-toggle-option>
   <sbb-toggle-option label="Option 2" value="cat">
-    <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
+    <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
   </sbb-toggle-option>
 </sbb-toggle>
 ```

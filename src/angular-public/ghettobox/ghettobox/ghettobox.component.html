@@ -21,7 +21,7 @@
   <ng-template #content>
     <article class="sbb-ghettobox-wrapper" *ngIf="visible">
       <div class="sbb-ghettobox-icon-container">
-        <div class="sbb-ghettobox-icon">
+        <div class="sbb-ghettobox-icon sbb-icon-fit">
           <ng-container *ngTemplateOutlet="icon"></ng-container>
         </div>
       </div>
@@ -32,12 +32,15 @@
         <ng-container *ngIf="!ghettobox">
           <ng-content></ng-content>
         </ng-container>
-        <sbb-icon-arrow-right *ngIf="routerLink" class="sbb-ghettobox-content-link-icon">
-        </sbb-icon-arrow-right>
+        <sbb-icon
+          svgIcon="kom:arrow-long-right-small"
+          *ngIf="routerLink"
+          class="sbb-ghettobox-content-link-icon sbb-icon-fit"
+        ></sbb-icon>
       </div>
       <div class="sbb-ghettobox-close">
         <button type="button" (click)="delete($event)" class="sbb-ghettobox-close-button">
-          <sbb-icon-cross></sbb-icon-cross>
+          <sbb-icon svgIcon="kom:cross-small" class="sbb-icon-fit"></sbb-icon>
           <span
             i18n="Hidden button label to close the ghettobox@@sbbGhettoboxCloseGhettobox"
             class="cdk-visually-hidden"
@@ -49,6 +52,6 @@
   </ng-template>
 
   <ng-template #defaultIcon>
-    <sbb-icon-him-info></sbb-icon-him-info>
+    <sbb-icon svgIcon="fpl:info"></sbb-icon>
   </ng-template>
 </div>

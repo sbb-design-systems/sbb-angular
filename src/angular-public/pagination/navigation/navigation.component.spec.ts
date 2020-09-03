@@ -4,10 +4,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  IconChevronSmallLeftModule,
-  IconChevronSmallRightModule,
-} from '@sbb-esta/angular-icons/arrow';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 
 import { PaginationModule } from '../pagination.module';
@@ -70,12 +68,7 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        IconChevronSmallLeftModule,
-        IconChevronSmallRightModule,
-        CommonModule,
-        RouterTestingModule,
-      ],
+      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
       declarations: [NavigationComponent],
     }).compileComponents();
   }));
@@ -97,7 +90,13 @@ describe('NavigationComponent behaviour', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [PaginationModule, RouterTestingModule, ButtonModule, FormsModule],
+      imports: [
+        PaginationModule,
+        SbbIconTestingModule,
+        RouterTestingModule,
+        ButtonModule,
+        FormsModule,
+      ],
       declarations: [NavigationTestComponent],
     }).compileComponents();
   }));

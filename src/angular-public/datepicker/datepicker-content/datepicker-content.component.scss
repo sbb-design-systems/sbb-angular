@@ -169,6 +169,18 @@
 
         .sbb-calendar-controls-left-arrow,
         .sbb-calendar-controls-right-arrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          outline: 0;
+
+          color: $sbbColorGranite;
+          &:hover,
+          &:focus,
+          &:active {
+            color: $sbbColorRed125;
+          }
+
           width: pxToEm($defaultPickerIconSize);
           height: $datePickerCalendarHeaderHeight;
           vertical-align: middle;
@@ -183,17 +195,10 @@
             opacity: 0;
             cursor: default;
           }
-
-          svg {
-            @extend %pickerIconsSize;
-          }
         }
 
-        .sbb-calendar-controls-icon {
-          display: flex;
-          justify-content: center;
-
-          @include svgIconColor($sbbColorGranite);
+        .sbb-icon {
+          @extend %pickerIconsSize;
         }
 
         .sbb-calendar-controls-left-arrow {

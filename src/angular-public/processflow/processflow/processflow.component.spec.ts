@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
-import { IconChevronRightModule } from '@sbb-esta/angular-icons/arrow';
 
 import { ProcessflowModule } from '../processflow.module';
 
@@ -40,7 +41,7 @@ describe('ProcessflowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconChevronRightModule],
+      imports: [SbbIconModule, SbbIconTestingModule],
       declarations: [ProcessflowComponent],
     }).compileComponents();
   }));
@@ -62,7 +63,7 @@ describe('ProcessflowComponent user interaction', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ProcessflowModule],
+      imports: [ProcessflowModule, SbbIconTestingModule],
       declarations: [ProcessflowTestComponent],
     }).compileComponents();
   }));
