@@ -895,7 +895,9 @@ class SidebarContainerEmptyTestComponent {
       (closed)="close()"
       (closedStart)="closeStart()"
     >
-      <button #sidebarButton>Content</button>
+      <fieldset>
+        <button #sidebarButton>Content</button>
+      </fieldset>
     </sbb-sidebar>
     <button (click)="sidebar.open()" class="open" #openButton></button>
     <button (click)="sidebar.close()" class="close" #closeButton></button>
@@ -948,7 +950,9 @@ class BasicTestComponent {
 @Component({
   template: ` <sbb-sidebar-container>
     <sbb-sidebar #sidebar mode="side" opened="false">
-      Closed Sidebar.
+      <fieldset>
+        Closed Sidebar.
+      </fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
 })
@@ -957,7 +961,9 @@ class SidebarSetToOpenedFalseTestComponent {}
 @Component({
   template: ` <sbb-sidebar-container>
     <sbb-sidebar #sidebar mode="side" opened="true" (opened)="openCallback()">
-      Closed Sidebar.
+      <fieldset>
+        Closed Sidebar.
+      </fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
 })
@@ -968,7 +974,9 @@ class SidebarSetToOpenedTrueTestComponent {
 @Component({
   template: ` <sbb-sidebar-container>
     <sbb-sidebar #sidebar mode="side" [(opened)]="isOpen">
-      Closed Sidebar.
+      <fieldset>
+        Closed Sidebar.
+      </fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
 })
@@ -989,7 +997,9 @@ class TwoSidebarsTestComponent {}
   // to be focusable across all platforms.
   template: ` <sbb-sidebar-container>
     <sbb-sidebar [mode]="mode">
-      <input type="text" class="input1" />
+      <fieldset>
+        <input type="text" class="input1" />
+      </fieldset>
     </sbb-sidebar>
     <input type="text" class="input2" />
   </sbb-sidebar-container>`,
@@ -1001,7 +1011,7 @@ class SidebarWithFocusableElementsTestComponent {
 @Component({
   template: ` <sbb-sidebar-container>
     <sbb-sidebar mode="over">
-      <button disabled>Not focusable</button>
+      <fieldset><button disabled>Not focusable</button></fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
 })
@@ -1010,7 +1020,9 @@ class SidebarWithoutFocusableElementsTestComponent {}
 @Component({
   template: `
     <sbb-sidebar-container>
-      <sbb-sidebar *ngIf="showSidebar" #sidebar mode="side">Sidebar</sbb-sidebar>
+      <sbb-sidebar *ngIf="showSidebar" #sidebar mode="side"
+        ><fieldset>Sidebar</fieldset></sbb-sidebar
+      >
     </sbb-sidebar-container>
   `,
 })
@@ -1036,7 +1048,7 @@ class SidebarContainerStateChangesTestAppTestComponent {
 @Component({
   template: ` <sbb-sidebar-container>
     <sbb-sidebar mode="side">
-      Text
+      <fieldset>Sidebar</fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
 })
@@ -1048,7 +1060,7 @@ class ZeroWithSidebarTestComponent {
 @Component({
   template: `
     <sbb-sidebar-container>
-      <sbb-sidebar>Sidebar</sbb-sidebar>
+      <sbb-sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
       <sbb-sidebar-content>Content</sbb-sidebar-content>
     </sbb-sidebar-container>
   `,
@@ -1062,7 +1074,7 @@ class SidebarContainerWithContentTestComponent {
   // there's a directive between the container and the sidebar.
   template: ` <sbb-sidebar-container #container>
     <ng-container [ngSwitch]="true">
-      <sbb-sidebar #sidebar>Sidebar</sbb-sidebar>
+      <sbb-sidebar #sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
     </ng-container>
   </sbb-sidebar-container>`,
 })
@@ -1074,7 +1086,7 @@ class IndirectDescendantSidebarTestComponent {
 @Component({
   template: `
     <sbb-sidebar-container #outerContainer>
-      <sbb-sidebar #outerSidebar>Sidebar</sbb-sidebar>
+      <sbb-sidebar #outerSidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
       <sbb-sidebar-content>
         <sbb-sidebar-container #innerContainer>
           <sbb-sidebar #innerSidebar>Sidebar</sbb-sidebar>
