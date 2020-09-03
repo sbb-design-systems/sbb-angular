@@ -558,7 +558,6 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
       });
 
       if (!this._sidebars.length || this._isSidebarOpen(this._sidebar)) {
-        console.log('aftercontentinit');
         this.updateContentMargins();
       }
 
