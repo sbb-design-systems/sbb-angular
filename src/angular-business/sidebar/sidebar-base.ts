@@ -119,9 +119,6 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   /** Emits when the component is destroyed. */
   protected readonly _destroyed = new Subject<void>();
 
-  /** Emits on every ngDoCheck. Used for debouncing reflows. */
-  protected readonly _doCheckSubject = new Subject<void>();
-
   abstract readonly _contentMarginChanges: Subject<any>;
 
   ngAfterContentInit() {
@@ -131,16 +128,6 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
         this._sidebars.reset(allSidebars.filter((sidebar) => sidebar._container === this));
         this._sidebars.notifyOnChanges();
       });
-
-    // Avoid hitting the NgZone through the debounce timeout.
-    this._ngZone.runOutsideAngular(() => {
-      this._doCheckSubject
-        .pipe(
-          debounceTime(10), // Arbitrary debounce time, less than a frame at 60fps
-          takeUntil(this._destroyed)
-        )
-        .subscribe(() => this.updateContentMargins());
-    });
   }
 
   /** @docs-private **/
@@ -172,7 +159,6 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
 
   ngOnDestroy() {
     this._contentMarginChanges.complete();
-    this._doCheckSubject.complete();
     this._sidebars.destroy();
     this._destroyed.next();
     this._destroyed.complete();
