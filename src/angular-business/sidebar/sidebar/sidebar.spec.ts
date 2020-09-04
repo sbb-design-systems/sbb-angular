@@ -19,6 +19,7 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
   createKeyboardEvent,
   dispatchEvent,
@@ -32,7 +33,14 @@ import { SbbSidebar, SbbSidebarContainer } from './sidebar';
 describe('SbbSidebar', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SbbSidebarModule, A11yModule, PlatformModule, NoopAnimationsModule, CommonModule],
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        PlatformModule,
+        NoopAnimationsModule,
+        CommonModule,
+        SbbIconTestingModule,
+      ],
       declarations: [
         BasicTestComponent,
         SidebarContainerNoSidebarTestComponent,
@@ -495,7 +503,7 @@ describe('SbbSidebar', () => {
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [SbbSidebarModule, BrowserAnimationsModule],
+          imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconTestingModule],
           declarations: [SidebarOpenBindingTestComponent],
         })
         .compileComponents();
@@ -645,7 +653,13 @@ describe('SbbSidebar', () => {
 describe('SbbSidebarContainer', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SbbSidebarModule, A11yModule, PlatformModule, NoopAnimationsModule],
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        PlatformModule,
+        NoopAnimationsModule,
+        SbbIconTestingModule,
+      ],
       declarations: [
         SidebarContainerEmptyTestComponent,
         SidebarDelayedTestComponent,
@@ -748,7 +762,7 @@ describe('SbbSidebarContainer', () => {
   it('should not animate when the sidebar is open on load', fakeAsync(() => {
     TestBed.resetTestingModule()
       .configureTestingModule({
-        imports: [SbbSidebarModule, BrowserAnimationsModule],
+        imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconTestingModule],
         declarations: [SidebarSetToOpenedTrueTestComponent],
       })
       .compileComponents();
