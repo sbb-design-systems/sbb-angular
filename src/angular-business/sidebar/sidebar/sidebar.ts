@@ -454,7 +454,15 @@ export class SbbSidebar extends SbbSidebarBase
   }
 
   _mobileChanged(mobile: boolean): void {
-    // TODO
+    Promise.resolve().then(() => {
+      if (mobile) {
+        this.close();
+        this.mode = 'over';
+      } else {
+        this.mode = 'side';
+        this.open();
+      }
+    });
   }
 }
 
@@ -466,6 +474,7 @@ export class SbbSidebar extends SbbSidebarBase
   host: {
     class: 'sbb-sidebar-container',
     '[class.sbb-sidebar-container-explicit-backdrop]': '_backdropOverride',
+    '[class.sbb-sidebar-container-mobile]': '_mobile',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -682,5 +691,9 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
 
   private _isSidebarOpen(sidebar: SbbSidebar | null): sidebar is SbbSidebar {
     return sidebar != null && sidebar.opened;
+  }
+
+  toggleSidebar() {
+    this._sidebar?.toggle();
   }
 }

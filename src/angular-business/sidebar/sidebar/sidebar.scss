@@ -1,6 +1,8 @@
 @import '../../../angular-core/styles/common';
 @import '../sidebar';
 
+$sbbSidebarMobileMenuBarHeight: 48px;
+
 .sbb-sidebar-container {
   @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
 
@@ -16,6 +18,24 @@
   // we have to pull the side sidebars above it.
   &.sbb-sidebar-container-explicit-backdrop .sbb-sidebar-side {
     z-index: $sbb-sidebar-backdrop-z-index;
+  }
+
+  &.sbb-sidebar-container-mobile {
+    padding-top: $sbbSidebarMobileMenuBarHeight;
+
+    .sbb-sidebar-mobile-menu-bar,
+    .sbb-sidebar-mobile-menu-bar-close-wrapper {
+      display: flex;
+    }
+
+    sbb-sidebar {
+      box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.15);
+      border-right: 1px solid $sbbColorGranite;
+
+      .sbb-sidebar-inner-container {
+        padding-top: $sbbSidebarMobileMenuBarHeight;
+      }
+    }
   }
 }
 
@@ -60,6 +80,7 @@
   width: 300px;
   transform: translate3d(-100%, 0, 0);
   border-right: 1px solid $sbbColorCloud;
+  background-color: $sbbColorWhite;
 
   .sbb-sidebar-inner-container {
     @include sbb-sidebar-inner-container();
@@ -164,5 +185,44 @@
         background-color: $sbbColorBlack;
       }
     }
+
+    &:not(.sbb-sidebar-link-active) {
+      outline: 0;
+    }
   }
+}
+
+.sbb-sidebar-mobile-menu-bar,
+.sbb-sidebar-mobile-menu-bar-close-wrapper {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.sbb-sidebar-mobile-menu-bar {
+  border-bottom: 1px solid $sbbColorCloud;
+}
+
+.sbb-sidebar-mobile-menu-bar-trigger,
+.sbb-sidebar-mobile-menu-bar-close {
+  @include buttonResetFrameless();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  width: 54px;
+  height: $sbbSidebarMobileMenuBarHeight;
+  cursor: pointer;
+  outline: none;
+
+  &:focus {
+    color: $sbbColorRed125;
+  }
+}
+
+.sbb-sidebar-mobile-menu-bar-close-wrapper {
+  background-color: $sbbColorWhite;
+  z-index: 1;
 }
