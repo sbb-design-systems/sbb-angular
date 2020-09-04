@@ -13,7 +13,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { SbbSidebarModule } from '../sidebar-module';
+import { SbbSidebarModule } from '../sidebar.module';
 
 import {
   SbbIconSidebar,

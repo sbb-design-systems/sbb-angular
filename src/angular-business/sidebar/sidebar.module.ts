@@ -2,7 +2,7 @@ import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 
 import {
   SbbIconSidebar,
@@ -46,6 +46,7 @@ import { SbbSidebarLink } from './sidebar/sidebar-link';
       provide: SBB_ICON_SIDEBAR_EXPANDED_WIDTH,
       useValue: SBB_ICON_SIDEBAR_EXPANDED_DEFAULT_WIDTH,
     },
+    ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER,
   ],
 })
 export class SbbSidebarModule {}

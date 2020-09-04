@@ -11,7 +11,6 @@ import {
   discardPeriodicTasks,
   fakeAsync,
   flush,
-  inject,
   TestBed,
   tick,
 } from '@angular/core/testing';
@@ -26,7 +25,7 @@ import {
   dispatchKeyboardEvent,
 } from '@sbb-esta/angular-core/testing';
 
-import { SbbSidebarModule } from '../sidebar-module';
+import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbSidebar, SbbSidebarContainer } from './sidebar';
 
