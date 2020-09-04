@@ -189,7 +189,6 @@
     .sbb-icon-sidebar-inner-container {
       overflow-y: hidden;
 
-      // TODO: find general solution
       &.sbb-scrollbar {
         scrollbar-width: none;
         &::-webkit-scrollbar {
