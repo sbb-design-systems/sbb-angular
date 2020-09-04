@@ -88,5 +88,21 @@
 
   .sbb-expansion-panel-header {
     background-color: inherit;
+
+    /**
+     animate line below legend when collapsing.
+     styles are copied from .sbb-expansion-panel-header
+    */
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 0;
+      width: calc(100% - 32px);
+      bottom: 0;
+      left: 16px;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom $swift-ease-out-duration $swift-ease-out-timing-function;
+    }
   }
 }
