@@ -63,14 +63,14 @@ describe('SbbIconSidebar', () => {
       const fixture = TestBed.createComponent(IndirectDescendantSidebarTestComponent);
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.sidebar.expanded).toBe(true);
+      expect(fixture.componentInstance.sidebar.expanded).toBe(false);
 
-      fixture.componentInstance.sidebar.expanded = false;
+      fixture.componentInstance.sidebar.expanded = true;
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.sidebar.expanded).toBe(false);
+      expect(fixture.componentInstance.sidebar.expanded).toBe(true);
     }));
 
     it('should not pick up sidebars from nested containers', fakeAsync(() => {
@@ -78,24 +78,24 @@ describe('SbbIconSidebar', () => {
       const instance = fixture.componentInstance;
       fixture.detectChanges();
 
-      expect(instance.outerSidebar.expanded).toBe(true);
-      expect(instance.innerSidebar.expanded).toBe(true);
-
-      instance.outerSidebar.expanded = false;
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-
-      expect(instance.outerSidebar.expanded).toBe(false);
-      expect(instance.innerSidebar.expanded).toBe(true);
-
-      instance.innerSidebar.expanded = false;
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-
       expect(instance.outerSidebar.expanded).toBe(false);
       expect(instance.innerSidebar.expanded).toBe(false);
+
+      instance.outerSidebar.expanded = true;
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      expect(instance.outerSidebar.expanded).toBe(true);
+      expect(instance.innerSidebar.expanded).toBe(false);
+
+      instance.innerSidebar.expanded = true;
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      expect(instance.outerSidebar.expanded).toBe(true);
+      expect(instance.innerSidebar.expanded).toBe(true);
     }));
   });
 
@@ -151,11 +151,11 @@ describe('SbbIconSidebar', () => {
       const sidebar: SbbIconSidebar = fixture.debugElement.query(By.directive(SbbIconSidebar))!
         .componentInstance;
 
-      sidebar.expanded = true;
+      sidebar.expanded = false;
       fixture.detectChanges();
       tick();
 
-      expect(fixture.componentInstance.isExpanded).toBe(true);
+      expect(fixture.componentInstance.isExpanded).toBe(false);
     }));
 
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
@@ -201,8 +201,8 @@ describe('SbbIconSidebar', () => {
       sidebarComponent = sidebar!.componentInstance;
     }));
 
-    it('should expand sidebar by default', () => {
-      expect(sidebarComponent.expanded).toBe(true);
+    it('should collapse icon sidebar by default', () => {
+      expect(sidebarComponent.expanded).toBe(false);
     });
 
     it('should not include any other elements than links with sbbIconSidebarItem directive and hr', () => {
@@ -222,22 +222,6 @@ describe('SbbIconSidebar', () => {
 
     it('should collapse and expand', () => {
       const collapseButton = sidebar.query(By.css('.sbb-icon-sidebar-collapse-expand-button'));
-
-      expect(sidebarComponent.expanded).toBe(true);
-      expect(sidebar.nativeElement.classList).toContain('sbb-icon-sidebar-expanded');
-      expect(
-        collapseButton.nativeElement
-          .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
-          .getAttribute('aria-hidden')
-      ).toEqual('false');
-      expect(
-        collapseButton.nativeElement
-          .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
-          .getAttribute('aria-hidden')
-      ).toEqual('true');
-
-      collapseButton.nativeElement.click();
-      fixture.detectChanges();
 
       expect(sidebarComponent.expanded).toBe(false);
       expect(sidebar.nativeElement.classList).not.toContain('sbb-icon-sidebar-expanded');
@@ -267,6 +251,22 @@ describe('SbbIconSidebar', () => {
           .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
           .getAttribute('aria-hidden')
       ).toEqual('true');
+
+      collapseButton.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(sidebarComponent.expanded).toBe(false);
+      expect(sidebar.nativeElement.classList).not.toContain('sbb-icon-sidebar-expanded');
+      expect(
+        collapseButton.nativeElement
+          .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
+          .getAttribute('aria-hidden')
+      ).toEqual('true');
+      expect(
+        collapseButton.nativeElement
+          .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
+          .getAttribute('aria-hidden')
+      ).toEqual('false');
     });
   });
 });
@@ -481,7 +481,7 @@ class TwoSidebarsTestComponent {}
 @Component({
   template: `
     <sbb-icon-sidebar-container>
-      <sbb-icon-sidebar *ngIf="showSidebar" #sidebar>Sidebar</sbb-icon-sidebar>
+      <sbb-icon-sidebar *ngIf="showSidebar" #sidebar expanded>Sidebar</sbb-icon-sidebar>
     </sbb-icon-sidebar-container>
   `,
 })
