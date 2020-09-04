@@ -5,3 +5,4 @@ export * from './icon-sidebar/icon-sidebar-animations';
 export * from './icon-sidebar/icon-sidebar-item';
 export * from './sidebar/sidebar';
 export * from './sidebar/sidebar-animations';
+export * from './sidebar/sidebar-link';

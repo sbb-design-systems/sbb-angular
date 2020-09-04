@@ -105,4 +105,64 @@
       transition: border-bottom $swift-ease-out-duration $swift-ease-out-timing-function;
     }
   }
+
+  .sbb-sidebar-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    padding: 5px 16px 7px 15px;
+    width: calc(100% + 16px);
+    color: $sbbColorIron;
+    text-decoration: none;
+    line-height: 20px;
+
+    .sbb-sidebar-link-label {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      flex: 1 1;
+    }
+
+    .sbb-sidebar-link-arrow {
+      display: inline-flex;
+      height: 24px;
+      width: 24px;
+    }
+
+    &:hover,
+    &:focus,
+    &.sbb-sidebar-link-active {
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+      background-color: $sbbColorMilk;
+
+      &:after {
+        background-color: $sbbColorRed125;
+      }
+    }
+
+    &.sbb-sidebar-link-active {
+      background-color: $sbbColorCloud;
+      color: $sbbColorBlack;
+      cursor: default;
+      pointer-events: none;
+
+      &:after {
+        background-color: $sbbColorBlack;
+      }
+    }
+  }
 }

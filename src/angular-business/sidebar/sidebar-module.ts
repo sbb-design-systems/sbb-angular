@@ -13,25 +13,28 @@ import {
 } from './icon-sidebar/icon-sidebar';
 import { SbbIconSidebarItem } from './icon-sidebar/icon-sidebar-item';
 import { SbbSidebar, SbbSidebarContainer, SbbSidebarContent } from './sidebar/sidebar';
+import { SbbSidebarLink } from './sidebar/sidebar-link';
 
 @NgModule({
   imports: [CommonModule, PlatformModule, CdkScrollableModule, SbbIconModule],
-  exports: [
-    CdkScrollableModule,
-
+  declarations: [
     SbbSidebar,
     SbbSidebarContainer,
     SbbSidebarContent,
+    SbbSidebarLink,
 
     SbbIconSidebar,
     SbbIconSidebarContainer,
     SbbIconSidebarContent,
     SbbIconSidebarItem,
   ],
-  declarations: [
+  exports: [
+    CdkScrollableModule,
+
     SbbSidebar,
     SbbSidebarContainer,
     SbbSidebarContent,
+    SbbSidebarLink,
 
     SbbIconSidebar,
     SbbIconSidebarContainer,
