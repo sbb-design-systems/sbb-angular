@@ -39,8 +39,8 @@ export const sbbExpansionAnimations: {
 } = {
   /** Animation that rotates the indicator arrow. */
   indicatorRotate: trigger('indicatorRotate', [
-    state('collapsed, void', style({ transform: 'rotate(0deg)' })),
-    state('expanded', style({ transform: 'rotate(-180deg)' })),
+    state('collapsed, void', style({ transform: 'rotate(90deg)' })),
+    state('expanded', style({ transform: 'rotate(-90deg)' })),
     transition(
       'expanded <=> collapsed, void => collapsed',
       animate(EXPANSION_PANEL_ANIMATION_TIMING)
