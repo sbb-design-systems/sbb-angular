@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { SbbIconSidebarContainer } from '@sbb-esta/angular-business/sidebar';
+import { SbbSidebarContainer } from '@sbb-esta/angular-business/sidebar';
 
 @Component({
   selector: 'sbb-sidebar-example',
@@ -7,14 +7,14 @@ import { SbbIconSidebarContainer } from '@sbb-esta/angular-business/sidebar';
   styleUrls: ['./sidebar-example.component.css'],
 })
 export class SidebarExampleComponent {
-  @ViewChild(SbbIconSidebarContainer) sbbIconSidebarContainer;
+  @ViewChild(SbbSidebarContainer) sbbSidebarContainer;
 
   get simulateMobile(): boolean {
     return this._simulateMobile;
   }
 
   set simulateMobile(value: boolean) {
-    this.sbbIconSidebarContainer._updateMobileState(value);
+    this.sbbSidebarContainer._updateMobileState(value);
     this._simulateMobile = value;
   }
 
