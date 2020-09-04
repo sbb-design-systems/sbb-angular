@@ -2,7 +2,7 @@ import { AnimationEvent } from '@angular/animations';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
-import { ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
+import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -176,8 +176,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
     @Inject(SBB_SIDEBAR_CONTAINER)
     container: SbbIconSidebarContainer,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_ICON_SIDEBAR_EXPANDED_WIDTH)
-    private _expandedWidth: number
+    @Inject(SBB_ICON_SIDEBAR_EXPANDED_WIDTH) private _expandedWidth: number
   ) {
     super(platform, container);
     this.setAnimationState('expanded-instant');
@@ -284,8 +283,7 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
     ngZone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     breakpointObserver: BreakpointObserver,
-    @Inject(SBB_ICON_SIDEBAR_EXPANDED_WIDTH)
-    private _sidebarExpandedWidth: number,
+    @Inject(SBB_ICON_SIDEBAR_EXPANDED_WIDTH) private _sidebarExpandedWidth: number,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private _animationMode?: string
   ) {
     super(ngZone, changeDetectorRef, breakpointObserver);
@@ -334,6 +332,9 @@ export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSide
 
       this._changeDetectorRef.markForCheck();
     });
+
+    // Has to be called at last (needs sidebar to be set)
+    this._watchBreakpointObserver();
   }
 
   /**

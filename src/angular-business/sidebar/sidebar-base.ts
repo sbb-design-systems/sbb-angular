@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
-import { CdkScrollable, ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
+import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
 
 /**
  * Throws an exception if more than one SbbSidebarBase is provided.
@@ -128,12 +128,10 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
         this._sidebars.reset(allSidebars.filter((sidebar) => sidebar._container === this));
         this._sidebars.notifyOnChanges();
       });
-
-    this._watchBreakpointObserver();
   }
 
   /** @docs-private **/
-  private _watchBreakpointObserver() {
+  protected _watchBreakpointObserver() {
     this._breakpointObserver
       .observe(Breakpoints.Mobile)
       .pipe(

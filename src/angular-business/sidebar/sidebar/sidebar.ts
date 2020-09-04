@@ -563,6 +563,9 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
 
       this._changeDetectorRef.markForCheck();
     });
+
+    // Has to be called at last (needs sidebar to be set)
+    this._watchBreakpointObserver();
   }
 
   /** Calls `open` of the sidebar */
