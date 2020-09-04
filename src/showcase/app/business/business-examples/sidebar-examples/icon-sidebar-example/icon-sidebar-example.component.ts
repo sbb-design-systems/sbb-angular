@@ -8,7 +8,7 @@ import { SbbIconSidebarContainer } from '@sbb-esta/angular-business/sidebar';
 })
 export class IconSidebarExampleComponent {
   @ViewChild(SbbIconSidebarContainer) sbbIconSidebarContainer;
-  expanded = true;
+  expanded = false;
 
   get simulateMobile(): boolean {
     return this._simulateMobile;

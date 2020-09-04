@@ -96,7 +96,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
   get expanded(): boolean {
     return this._expanded;
   }
-  private _expanded = true;
+  private _expanded = false;
 
   /** Event emitted when the sidebar has started opening. */
   @Output()
