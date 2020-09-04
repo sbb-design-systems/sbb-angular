@@ -47,12 +47,12 @@
 
     @include mq($from: desktop4k) {
       width: toPx($timeInputWidth * $scalingFactor4k);
-      height: toPx($timeInputWidth * $scalingFactor4k);
+      height: toPx($timeInputHeight * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
       width: toPx($timeInputWidth * $scalingFactor5k);
-      height: toPx($timeInputWidth * $scalingFactor5k);
+      height: toPx($timeInputHeight * $scalingFactor5k);
     }
   }
 
