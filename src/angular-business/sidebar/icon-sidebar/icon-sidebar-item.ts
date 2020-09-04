@@ -8,7 +8,6 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'sbb-icon-sidebar-item sbb-icon-fit',
-    '[title]': 'label',
   },
 })
 export class SbbIconSidebarItem {
