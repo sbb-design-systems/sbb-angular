@@ -8,17 +8,14 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "component-viewer",
-    srcs = [
-        "component-viewer.module.ts",
-        "component-viewer/component-viewer.component.ts",
-        "example-viewer/example-viewer.component.ts",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     assets = [
         ":component-viewer/component-viewer.component.css",
         ":example-viewer/example-viewer.component.css",
-        "component-viewer/component-viewer.component.html",
-        "example-viewer/example-viewer.component.html",
-    ],
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/tabs",

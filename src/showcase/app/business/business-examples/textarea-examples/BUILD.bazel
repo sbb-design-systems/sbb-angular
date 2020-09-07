@@ -8,19 +8,14 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "textarea-examples",
-    srcs = [
-        "textarea-examples.module.ts",
-        "textarea-forms-example/textarea-forms-example.component.ts",
-        "textarea-native-example/textarea-native-example.component.ts",
-        "textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component.ts",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     assets = [
         ":textarea-forms-example/textarea-forms-example.component.css",
         ":textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component.css",
-        "textarea-forms-example/textarea-forms-example.component.html",
-        "textarea-native-example/textarea-native-example.component.html",
-        "textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component.html",
-    ],
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/checkbox",

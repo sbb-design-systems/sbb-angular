@@ -8,20 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "notification-examples",
-    srcs = [
-        "closable-notification-example/closable-notification-example.component.ts",
-        "custom-icon-notification-example/custom-icon-notification-example.component.ts",
-        "jumpmark-notification-example/jumpmark-notification-example.component.ts",
-        "notification-examples.module.ts",
-        "simple-notification-example/simple-notification-example.component.ts",
-    ],
-    assets = [
-        ":simple-notification-example/simple-notification-example.component.css",
-        "closable-notification-example/closable-notification-example.component.html",
-        "custom-icon-notification-example/custom-icon-notification-example.component.html",
-        "jumpmark-notification-example/jumpmark-notification-example.component.html",
-        "simple-notification-example/simple-notification-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":simple-notification-example/simple-notification-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/field",

@@ -7,13 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "usermenu-examples",
-    srcs = [
-        "usermenu-example/usermenu-example.component.ts",
-        "usermenu-examples.module.ts",
-    ],
-    assets = [
-        "usermenu-example/usermenu-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/dropdown",

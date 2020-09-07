@@ -7,9 +7,10 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "business-examples",
-    srcs = [
-        "business-examples.module.ts",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/showcase/app/business/business-examples/accordion-examples",

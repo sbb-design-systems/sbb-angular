@@ -7,9 +7,10 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "maps-examples",
-    srcs = [
-        "maps-examples.module.ts",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/showcase/app/maps/maps-examples/esri-basemap-gallery-examples",

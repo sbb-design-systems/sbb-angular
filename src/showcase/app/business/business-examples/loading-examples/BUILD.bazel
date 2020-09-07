@@ -8,20 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "loading-examples",
-    srcs = [
-        "fullbox-loading-example/fullbox-loading-example.component.ts",
-        "fullscreen-loading-example/fullscreen-loading-example.component.ts",
-        "inline-loading-example/inline-loading-example.component.ts",
-        "loading-examples.module.ts",
-        "simple-loading-example/simple-loading-example.component.ts",
-    ],
-    assets = [
-        ":simple-loading-example/simple-loading-example.component.css",
-        "fullbox-loading-example/fullbox-loading-example.component.html",
-        "fullscreen-loading-example/fullscreen-loading-example.component.html",
-        "inline-loading-example/inline-loading-example.component.html",
-        "simple-loading-example/simple-loading-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":simple-loading-example/simple-loading-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/button",

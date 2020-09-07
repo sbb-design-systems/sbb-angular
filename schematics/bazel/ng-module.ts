@@ -36,6 +36,7 @@ export class NgModule {
   hasSassLibrary: boolean;
   sassBinaries: SassBinary[];
   stylesheets: string[];
+  hasHtml: boolean;
   customTsConfig = '';
 
   protected _templateUrl = './files/ngModule';
@@ -62,6 +63,7 @@ export class NgModule {
     this.hasSassLibrary = !!this._scssLibaryFiles.length;
     this.sassBinaries = this._findSassBinaries();
     this.stylesheets = this.sassBinaries.map((s) => s.path.replace('.scss', '.css'));
+    this.hasHtml = !!this._htmlFiles.length;
   }
 
   ngModules(): NgModule[] {

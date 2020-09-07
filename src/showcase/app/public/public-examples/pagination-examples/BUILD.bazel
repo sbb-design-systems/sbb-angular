@@ -7,15 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "pagination-examples",
-    srcs = [
-        "navigation-example/navigation-example.component.ts",
-        "pagination-examples.module.ts",
-        "paginator-example/paginator-example.component.ts",
-    ],
-    assets = [
-        "navigation-example/navigation-example.component.html",
-        "paginator-example/paginator-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/button",

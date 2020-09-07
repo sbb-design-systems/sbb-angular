@@ -7,17 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "dialog-examples",
-    srcs = [
-        "component-data-dialog-example/component-data-dialog-example.component.ts",
-        "dialog-examples.module.ts",
-        "shared-data-dialog-example/shared-data-dialog-example.component.ts",
-        "template-dialog-example/template-dialog-example.component.ts",
-    ],
-    assets = [
-        "component-data-dialog-example/component-data-dialog-example.component.html",
-        "shared-data-dialog-example/shared-data-dialog-example.component.html",
-        "template-dialog-example/template-dialog-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/button",

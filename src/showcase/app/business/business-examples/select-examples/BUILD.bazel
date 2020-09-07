@@ -7,23 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "select-examples",
-    srcs = [
-        "select-examples.module.ts",
-        "select-forms-example/select-forms-example.component.ts",
-        "select-multi-selection-example/select-multi-selection-example.component.ts",
-        "select-native-example/select-native-example.component.ts",
-        "select-option-groups-example/select-option-groups-example.component.ts",
-        "select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component.ts",
-        "select-reactive-forms-example/select-reactive-forms-example.component.ts",
-    ],
-    assets = [
-        "select-forms-example/select-forms-example.component.html",
-        "select-multi-selection-example/select-multi-selection-example.component.html",
-        "select-native-example/select-native-example.component.html",
-        "select-option-groups-example/select-option-groups-example.component.html",
-        "select-option-groups-multi-selection-example/select-option-groups-multi-selection-example.component.html",
-        "select-reactive-forms-example/select-reactive-forms-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/checkbox",

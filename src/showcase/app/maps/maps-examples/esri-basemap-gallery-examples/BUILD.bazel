@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "esri-basemap-gallery-examples",
-    srcs = [
-        "esri-basemap-gallery-example/esri-basemap-gallery-example.component.ts",
-        "esri-basemap-gallery-examples.module.ts",
-    ],
-    assets = [
-        ":esri-basemap-gallery-example/esri-basemap-gallery-example.component.css",
-        "esri-basemap-gallery-example/esri-basemap-gallery-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":esri-basemap-gallery-example/esri-basemap-gallery-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-maps/esri-basemap-gallery",

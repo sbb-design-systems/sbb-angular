@@ -8,15 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "maps",
-    srcs = [
-        "maps.module.ts",
-        "maps-routing.module.ts",
-        "maps/maps.component.ts",
-    ],
-    assets = [
-        ":maps/maps.component.css",
-        "maps/maps.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":maps/maps.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-maps",

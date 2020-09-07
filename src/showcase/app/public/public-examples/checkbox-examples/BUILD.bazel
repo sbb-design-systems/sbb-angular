@@ -7,17 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "checkbox-examples",
-    srcs = [
-        "checkbox-example/checkbox-example.component.ts",
-        "checkbox-examples.module.ts",
-        "checkbox-group-horizontal-example/checkbox-group-horizontal-example.component.ts",
-        "checkbox-group-reactive-forms-vertical-example/checkbox-group-reactive-forms-vertical-example.component.ts",
-    ],
-    assets = [
-        "checkbox-example/checkbox-example.component.html",
-        "checkbox-group-horizontal-example/checkbox-group-horizontal-example.component.html",
-        "checkbox-group-reactive-forms-vertical-example/checkbox-group-reactive-forms-vertical-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/checkbox",

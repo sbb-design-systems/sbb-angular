@@ -8,15 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "public",
-    srcs = [
-        "public.module.ts",
-        "public-routing.module.ts",
-        "public/public.component.ts",
-    ],
-    assets = [
-        ":public/public.component.css",
-        "public/public.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":public/public.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/tabs",

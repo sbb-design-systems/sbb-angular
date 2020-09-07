@@ -7,17 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "checkbox-panel-examples",
-    srcs = [
-        "checkbox-panel-examples.module.ts",
-        "checkbox-panel-group-example/checkbox-panel-group-example.component.ts",
-        "checkbox-panel-icon-example/checkbox-panel-icon-example.component.ts",
-        "checkbox-panel-img-example/checkbox-panel-img-example.component.ts",
-    ],
-    assets = [
-        "checkbox-panel-group-example/checkbox-panel-group-example.component.html",
-        "checkbox-panel-icon-example/checkbox-panel-icon-example.component.html",
-        "checkbox-panel-img-example/checkbox-panel-img-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",

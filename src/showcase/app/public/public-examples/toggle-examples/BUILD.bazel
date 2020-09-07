@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "toggle-examples",
-    srcs = [
-        "toggle-example/toggle-example.component.ts",
-        "toggle-examples.module.ts",
-    ],
-    assets = [
-        ":toggle-example/toggle-example.component.css",
-        "toggle-example/toggle-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":toggle-example/toggle-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",

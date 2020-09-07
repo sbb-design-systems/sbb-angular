@@ -8,15 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "icons",
-    srcs = [
-        "icons.module.ts",
-        "icons-routing.module.ts",
-        "icons/icons.component.ts",
-    ],
-    assets = [
-        ":icons/icons.component.css",
-        "icons/icons.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":icons/icons.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/showcase/app/icons/experimental-icons",

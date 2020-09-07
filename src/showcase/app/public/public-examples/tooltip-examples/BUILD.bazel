@@ -7,17 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "tooltip-examples",
-    srcs = [
-        "tooltip-custom-content-example/tooltip-custom-content-example.component.ts",
-        "tooltip-custom-icon-example/tooltip-custom-icon-example.component.ts",
-        "tooltip-examples.module.ts",
-        "tooltip-simple-example/tooltip-simple-example.component.ts",
-    ],
-    assets = [
-        "tooltip-custom-content-example/tooltip-custom-content-example.component.html",
-        "tooltip-custom-icon-example/tooltip-custom-icon-example.component.html",
-        "tooltip-simple-example/tooltip-simple-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",

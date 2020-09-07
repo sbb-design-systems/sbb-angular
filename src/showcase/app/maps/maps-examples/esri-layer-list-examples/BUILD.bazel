@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "esri-layer-list-examples",
-    srcs = [
-        "esri-layer-list-example/esri-layer-list-example.component.ts",
-        "esri-layer-list-examples.module.ts",
-    ],
-    assets = [
-        ":esri-layer-list-example/esri-layer-list-example.component.css",
-        "esri-layer-list-example/esri-layer-list-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":esri-layer-list-example/esri-layer-list-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-maps/esri-layer-list",

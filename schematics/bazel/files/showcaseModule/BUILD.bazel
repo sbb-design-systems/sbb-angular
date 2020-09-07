@@ -23,14 +23,15 @@ genrule(
 
 ng_module(
     name = "<%= name %>",
-    srcs = [<% for (let src of tsFiles) { %>
-        "<%= src %>",<% } %><% if (name === 'app') { %>
-        ":versions.ts",<% } %>
-    ],<% if (stylesheets.length || htmlFiles.length) { %>
+    srcs = <% if (name === 'app') { %>[":versions.ts"] + <% } %>glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),<% if (stylesheets.length === 1) { %>
+    assets = [":<%= stylesheets[0] %>"] + glob(["**/*.html"]),<% } %><% if (stylesheets.length > 1) { %>
     assets = [<% for (let stylesheet of stylesheets) { %>
-        ":<%= stylesheet %>",<% } %><% for (let file of htmlFiles) { %>
-        "<%= file %>",<% } %>
-    ],<% } %><% if (customTsConfig) { %>
+        ":<%= stylesheet %>",<% } %>
+    ] + glob(["**/*.html"]),<% } %><% if (stylesheets.length === 0 && hasHtml) { %>
+    assets = glob(["**/*.html"]),<% } %><% if (customTsConfig) { %>
     tsconfig = "<%= customTsConfig %>",<% } %>
     deps = [<% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>

@@ -7,19 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "chip-examples",
-    srcs = [
-        "autocomplete-chip-input-example/autocomplete-chip-input-example.component.ts",
-        "chip-examples.module.ts",
-        "disabled-chip-input-example/disabled-chip-input-example.component.ts",
-        "forms-chip-input-example/forms-chip-input-example.component.ts",
-        "reactive-forms-chip-input-example/reactive-forms-chip-input-example.component.ts",
-    ],
-    assets = [
-        "autocomplete-chip-input-example/autocomplete-chip-input-example.component.html",
-        "disabled-chip-input-example/disabled-chip-input-example.component.html",
-        "forms-chip-input-example/forms-chip-input-example.component.html",
-        "reactive-forms-chip-input-example/reactive-forms-chip-input-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/autocomplete",

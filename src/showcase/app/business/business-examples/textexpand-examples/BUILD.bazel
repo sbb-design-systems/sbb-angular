@@ -7,13 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "textexpand-examples",
-    srcs = [
-        "textexpand-example/textexpand-example.component.ts",
-        "textexpand-examples.module.ts",
-    ],
-    assets = [
-        "textexpand-example/textexpand-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/textexpand",

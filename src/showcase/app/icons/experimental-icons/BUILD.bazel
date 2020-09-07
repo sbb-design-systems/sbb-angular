@@ -8,15 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "experimental-icons",
-    srcs = [
-        "experimental-icon-search/experimental-icon-search.component.ts",
-        "experimental-icons.module.ts",
-        "experimental-icons-routing.module.ts",
-    ],
-    assets = [
-        ":experimental-icon-search/experimental-icon-search.component.css",
-        "experimental-icon-search/experimental-icon-search.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":experimental-icon-search/experimental-icon-search.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/tooltip",

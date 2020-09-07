@@ -7,13 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "field-examples",
-    srcs = [
-        "field-example/field-example.component.ts",
-        "field-examples.module.ts",
-    ],
-    assets = [
-        "field-example/field-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/button",
