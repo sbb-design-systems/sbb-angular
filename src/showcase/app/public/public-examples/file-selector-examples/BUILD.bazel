@@ -7,17 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "file-selector-examples",
-    srcs = [
-        "file-selector-examples.module.ts",
-        "multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component.ts",
-        "multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component.ts",
-        "simple-file-selector-example/simple-file-selector-example.component.ts",
-    ],
-    assets = [
-        "multiple-mode-default-file-selector-example/multiple-mode-default-file-selector-example.component.html",
-        "multiple-mode-persistent-file-selector-example/multiple-mode-persistent-file-selector-example.component.html",
-        "simple-file-selector-example/simple-file-selector-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/checkbox",

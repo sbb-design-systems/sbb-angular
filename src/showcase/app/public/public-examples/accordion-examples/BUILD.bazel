@@ -8,18 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "accordion-examples",
-    srcs = [
-        "accordion-examples.module.ts",
-        "basic-accordion-example/basic-accordion-example.component.ts",
-        "simple-panel-example/simple-panel-example.component.ts",
-        "wizard-accordion-example/wizard-accordion-example.component.ts",
-    ],
-    assets = [
-        ":basic-accordion-example/basic-accordion-example.component.css",
-        "basic-accordion-example/basic-accordion-example.component.html",
-        "simple-panel-example/simple-panel-example.component.html",
-        "wizard-accordion-example/wizard-accordion-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":basic-accordion-example/basic-accordion-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",

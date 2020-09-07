@@ -7,15 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "icon-examples",
-    srcs = [
-        "icon-example/icon-example.component.ts",
-        "icon-examples.module.ts",
-        "icon-fit-example/icon-fit-example.component.ts",
-    ],
-    assets = [
-        "icon-example/icon-example.component.html",
-        "icon-fit-example/icon-fit-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",

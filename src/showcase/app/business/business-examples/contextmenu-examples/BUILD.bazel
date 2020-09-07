@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "contextmenu-examples",
-    srcs = [
-        "contextmenu-examples.module.ts",
-        "simple-contextmenu-example/simple-contextmenu-example.component.ts",
-    ],
-    assets = [
-        ":simple-contextmenu-example/simple-contextmenu-example.component.css",
-        "simple-contextmenu-example/simple-contextmenu-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":simple-contextmenu-example/simple-contextmenu-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/contextmenu",

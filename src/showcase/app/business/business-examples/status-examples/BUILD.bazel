@@ -7,15 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "status-examples",
-    srcs = [
-        "status-example/status-example.component.ts",
-        "status-examples.module.ts",
-        "status-with-message-example/status-with-message-example.component.ts",
-    ],
-    assets = [
-        "status-example/status-example.component.html",
-        "status-with-message-example/status-with-message-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/status",

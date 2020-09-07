@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "table-examples",
-    srcs = [
-        "table-example/table-example.component.ts",
-        "table-examples.module.ts",
-    ],
-    assets = [
-        ":table-example/table-example.component.css",
-        "table-example/table-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":table-example/table-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/button",

@@ -8,15 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "keycloak",
-    srcs = [
-        "keycloak.module.ts",
-        "keycloak-routing.module.ts",
-        "keycloak/keycloak.component.ts",
-    ],
-    assets = [
-        ":keycloak/keycloak.component.css",
-        "keycloak/keycloak.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":keycloak/keycloak.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/showcase/app/shared",

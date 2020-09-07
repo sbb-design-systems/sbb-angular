@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "esri-web-map-examples",
-    srcs = [
-        "esri-web-map-example/esri-web-map-example.component.ts",
-        "esri-web-map-examples.module.ts",
-    ],
-    assets = [
-        ":esri-web-map-example/esri-web-map-example.component.css",
-        "esri-web-map-example/esri-web-map-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":esri-web-map-example/esri-web-map-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-maps/esri-web-map",

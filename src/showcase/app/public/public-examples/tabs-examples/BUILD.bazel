@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "tabs-examples",
-    srcs = [
-        "tabs-example/tabs-example.component.ts",
-        "tabs-examples.module.ts",
-    ],
-    assets = [
-        ":tabs-example/tabs-example.component.css",
-        "tabs-example/tabs-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":tabs-example/tabs-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/checkbox",

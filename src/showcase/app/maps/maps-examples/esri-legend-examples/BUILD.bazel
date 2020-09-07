@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "esri-legend-examples",
-    srcs = [
-        "esri-legend-example/esri-legend-example.component.ts",
-        "esri-legend-examples.module.ts",
-    ],
-    assets = [
-        ":esri-legend-example/esri-legend-example.component.css",
-        "esri-legend-example/esri-legend-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":esri-legend-example/esri-legend-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-maps/esri-legend",

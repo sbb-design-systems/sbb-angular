@@ -8,19 +8,14 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "icon-components",
-    srcs = [
-        "icon-components.module.ts",
-        "icon-components-routing.module.ts",
-        "icon-list.ts",
-        "icon-search/icon-search.component.ts",
-        "icon-viewer/icon-viewer.component.ts",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     assets = [
         ":icon-search/icon-search.component.css",
         ":icon-viewer/icon-viewer.component.css",
-        "icon-search/icon-search.component.html",
-        "icon-viewer/icon-viewer.component.html",
-    ],
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-icons",

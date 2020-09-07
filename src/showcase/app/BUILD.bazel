@@ -21,21 +21,14 @@ genrule(
 
 ng_module(
     name = "app",
-    srcs = [
-        "app.component.ts",
-        "app.module.ts",
-        "app-routing.module.ts",
-        "howtoupdate/how-to-update.component.ts",
-        "introduction/introduction.component.ts",
-        ":versions.ts",
-    ],
+    srcs = [":versions.ts"] + glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     assets = [
         ":app.component.css",
         ":introduction/introduction.component.css",
-        "app.component.html",
-        "howtoupdate/how-to-update.component.html",
-        "introduction/introduction.component.html",
-    ],
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/header",

@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "captcha-examples",
-    srcs = [
-        "captcha-example/captcha-example.component.ts",
-        "captcha-examples.module.ts",
-    ],
-    assets = [
-        ":captcha-example/captcha-example.component.css",
-        "captcha-example/captcha-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":captcha-example/captcha-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/button",

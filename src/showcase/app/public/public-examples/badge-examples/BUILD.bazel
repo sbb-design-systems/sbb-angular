@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "badge-examples",
-    srcs = [
-        "badge-example/badge-example.component.ts",
-        "badge-examples.module.ts",
-    ],
-    assets = [
-        ":badge-example/badge-example.component.css",
-        "badge-example/badge-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":badge-example/badge-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/badge",

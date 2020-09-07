@@ -8,22 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "search-examples",
-    srcs = [
-        "search-autocomplete-example/search-autocomplete-example.component.ts",
-        "search-custom-icon-autocomplete-static-options-example/search-custom-icon-autocomplete-static-options-example.component.ts",
-        "search-examples.module.ts",
-        "search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.ts",
-        "search-simple-header-mode-example/search-simple-header-mode-example.component.ts",
-        "search-simple-reactive-forms-example/search-simple-reactive-forms-example.component.ts",
-    ],
-    assets = [
-        ":search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.css",
-        "search-autocomplete-example/search-autocomplete-example.component.html",
-        "search-custom-icon-autocomplete-static-options-example/search-custom-icon-autocomplete-static-options-example.component.html",
-        "search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.html",
-        "search-simple-header-mode-example/search-simple-header-mode-example.component.html",
-        "search-simple-reactive-forms-example/search-simple-reactive-forms-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":search-historic-railway-pictures-example/search-historic-railway-pictures-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",

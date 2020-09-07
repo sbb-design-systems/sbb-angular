@@ -7,13 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "ghettobox-examples",
-    srcs = [
-        "ghettobox-example/ghettobox-example.component.ts",
-        "ghettobox-examples.module.ts",
-    ],
-    assets = [
-        "ghettobox-example/ghettobox-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",

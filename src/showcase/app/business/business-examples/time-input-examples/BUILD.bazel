@@ -7,15 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "time-input-examples",
-    srcs = [
-        "time-input-example/time-input-example.component.ts",
-        "time-input-examples.module.ts",
-        "time-input-form-example/time-input-form-example.component.ts",
-    ],
-    assets = [
-        "time-input-example/time-input-example.component.html",
-        "time-input-form-example/time-input-form-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/checkbox",

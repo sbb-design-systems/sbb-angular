@@ -7,13 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "button-examples",
-    srcs = [
-        "button-example/button-example.component.ts",
-        "button-examples.module.ts",
-    ],
-    assets = [
-        "button-example/button-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",

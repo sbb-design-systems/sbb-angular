@@ -8,21 +8,15 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "business",
-    srcs = [
-        "business.module.ts",
-        "business-component-viewer/business-component-viewer.component.ts",
-        "business-example-viewer/business-example-viewer.component.ts",
-        "business-routing.module.ts",
-        "business/business.component.ts",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     assets = [
         ":business/business.component.css",
         ":business-component-viewer/business-component-viewer.component.css",
         ":business-example-viewer/business-example-viewer.component.css",
-        "business-component-viewer/business-component-viewer.component.html",
-        "business-example-viewer/business-example-viewer.component.html",
-        "business/business.component.html",
-    ],
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/tabs",

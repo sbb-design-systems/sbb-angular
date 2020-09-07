@@ -8,14 +8,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "dropdown-examples",
-    srcs = [
-        "dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.ts",
-        "dropdown-examples.module.ts",
-    ],
-    assets = [
-        ":dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.css",
-        "dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":dropdown-custom-trigger-example/dropdown-custom-trigger-example.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",

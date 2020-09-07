@@ -8,28 +8,17 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "core",
-    srcs = [
-        "core.module.ts",
-        "core-routing.module.ts",
-        "core/core.component.ts",
-        "icon-overview/cdn-icon.service.ts",
-        "icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.ts",
-        "icon-overview/cdn-icon-list/cdn-icon-list.component.ts",
-        "icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.ts",
-        "icon-overview/icon-overview.component.ts",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     assets = [
         ":core/core.component.css",
         ":icon-overview/icon-overview.component.css",
         ":icon-overview/cdn-icon-list/cdn-icon-list.component.css",
         ":icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.css",
         ":icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.css",
-        "core/core.component.html",
-        "icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.html",
-        "icon-overview/cdn-icon-list/cdn-icon-list.component.html",
-        "icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.html",
-        "icon-overview/icon-overview.component.html",
-    ],
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/button",
