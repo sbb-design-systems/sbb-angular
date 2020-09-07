@@ -148,8 +148,8 @@ export class NotificationToastContainerComponent extends BasePortalOutlet implem
       this._changeDetectorRef.detectChanges();
     }
   }
-  /** Begin animation of the notification toast exiting from view. */
 
+  /** Begin animation of the notification toast exiting from view. */
   exit(): Observable<void> {
     // Note: this one transitions to `hidden`, rather than `void`, in order to handle the case
     // where multiple notification toasts are opened in quick succession (e.g. two consecutive calls to
