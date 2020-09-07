@@ -20,9 +20,7 @@ import {
   TestBed,
   tick,
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbIcon } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import {
@@ -31,8 +29,8 @@ import {
   SbbNotificationToast,
   SbbNotificationToastConfig,
   SbbNotificationToastRef,
-  SBB_NOTIFICATION_DEFAULT_OPTIONS,
   SBB_NOTIFICATION_TOAST_DATA,
+  SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS,
   SimpleNotificationComponent,
 } from './index';
 
@@ -134,7 +132,6 @@ describe('SbbNotificationToast', () => {
   let viewContainerFixture: ComponentFixture<ComponentWithChildViewContainer>;
 
   const simpleMessage = 'Burritos are here!';
-  const simpleActionLabel = 'pickup';
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
@@ -536,7 +533,7 @@ describe('SbbNotificationToast', () => {
     viewContainerFixture.destroy();
 
     TestBed.resetTestingModule()
-      .overrideProvider(SBB_NOTIFICATION_DEFAULT_OPTIONS, {
+      .overrideProvider(SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS, {
         deps: [],
         useFactory: () => ({ panelClass: 'custom-class' }),
       })
