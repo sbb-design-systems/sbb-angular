@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.4.0 of the icon CDN.
+ * Generated from version v1.5.0 of the icon CDN.
  * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
@@ -306,19 +306,26 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
     {
       namespace: 'kom',
       icons: [
+        'binoculars-large',
+        'bluetooth-disabled-large',
+        'bluetooth-large',
         'calendar-large',
         'calendar-one-day-large',
         'certificate-ribbon-large',
         'chart-column-trend-large',
         'circle-information-large',
         'coins-large',
+        'envelope-large',
+        'envelope-open-large',
         'magnifying-glass-minus-large',
         'magnifying-glass-plus-large',
+        'paper-aeroplane-large',
         'paper-clip-large',
         'piggy-bank-large',
         'rocket-large',
         'shopping-cart-large',
         'target-large',
+        'circle-cross-large',
         'bulb-on-large',
         'handshake-large',
         'network-large',
@@ -334,6 +341,8 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'lotus-large',
         'platform-large',
         'station-large',
+        'gps-disabled-large',
+        'gps-large',
         'location-pin-surrounding-area-power-plug-large',
         'laptop-smartphone-large',
         'smartphone-large',
