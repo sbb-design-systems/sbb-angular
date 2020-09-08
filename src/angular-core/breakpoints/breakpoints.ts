@@ -7,7 +7,7 @@ export const Breakpoints = {
   DesktopLargePlus: '(min-width: 1441px) and (max-width: 2560.99px)',
   Desktop4k: '(min-width: 2561px) and (max-width: 3840.99px)',
   Desktop5k: '(min-width: 3841px)',
-  /** @deprecated Use combination of DesktopDevice or Desktop, DesktopLarge, DesktopLargePlus, Desktop4k and Desktop5k instead */
+  /** @deprecated Use DesktopDevice or combination of Desktop, DesktopLarge, DesktopLargePlus, Desktop4k and Desktop5k instead */
   DesktopAndAbove: '(min-width: 1025px)',
 
   MobileDevice:
