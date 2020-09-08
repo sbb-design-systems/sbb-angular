@@ -56,8 +56,6 @@ describe('SbbSidebar', () => {
       ],
       declarations: [
         BasicTestComponent,
-        SidebarContainerNoSidebarTestComponent,
-        SidebarSetToOpenedFalseTestComponent,
         SidebarSetToOpenedTrueTestComponent,
         TwoSidebarsTestComponent,
         SidebarWithFocusableElementsTestComponent,
@@ -266,15 +264,6 @@ describe('SbbSidebar', () => {
       expect(event.defaultPrevented).toBe(false);
     }));
 
-    it('should fire the open event when open on init', fakeAsync(() => {
-      const fixture = TestBed.createComponent(SidebarSetToOpenedTrueTestComponent);
-
-      fixture.detectChanges();
-      tick();
-
-      expect(fixture.componentInstance.openCallback).toHaveBeenCalledTimes(1);
-    }));
-
     it('should restore focus on close if backdrop has been clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
@@ -388,14 +377,9 @@ describe('SbbSidebar', () => {
       const fixture = TestBed.createComponent(IndirectDescendantSidebarTestComponent);
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.sidebar.opened).toBe(false);
-
-      fixture.componentInstance.container.open();
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-
       expect(fixture.componentInstance.sidebar.opened).toBe(true);
+      activateMobile(fixture);
+      expect(fixture.componentInstance.sidebar.opened).toBe(false);
     }));
 
     it('should not pick up sidebars from nested containers', fakeAsync(() => {
@@ -426,26 +410,6 @@ describe('SbbSidebar', () => {
   });
 
   describe('attributes', () => {
-    it('should correctly parse opened="false"', () => {
-      const fixture = TestBed.createComponent(SidebarSetToOpenedFalseTestComponent);
-
-      fixture.detectChanges();
-
-      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
-
-      expect((sidebar as SbbSidebar).opened).toBe(false);
-    });
-
-    it('should correctly parse opened="true"', () => {
-      const fixture = TestBed.createComponent(SidebarSetToOpenedTrueTestComponent);
-
-      fixture.detectChanges();
-
-      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
-
-      expect((sidebar as SbbSidebar).opened).toBe(true);
-    });
-
     it('should remove align attr from DOM', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
@@ -470,20 +434,6 @@ describe('SbbSidebar', () => {
       }).toThrow();
     }));
 
-    it('should bind 2-way bind on opened property', fakeAsync(() => {
-      const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
-      fixture.detectChanges();
-
-      const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))!
-        .componentInstance;
-
-      sidebar.open();
-      fixture.detectChanges();
-      tick();
-
-      expect(fixture.componentInstance.isOpen).toBe(true);
-    }));
-
     it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
@@ -498,11 +448,13 @@ describe('SbbSidebar', () => {
       // Note that we need actual timeouts and the `BrowserAnimationsModule`
       // in order to test it correctly.
       setTimeout(() => {
-        fixture.componentInstance.isOpen = !fixture.componentInstance.isOpen;
+        const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))
+          .componentInstance;
+        sidebar.toggle();
         expect(() => fixture.detectChanges()).not.toThrow();
 
         setTimeout(() => {
-          fixture.componentInstance.isOpen = !fixture.componentInstance.isOpen;
+          sidebar.toggle();
           expect(() => fixture.detectChanges()).not.toThrow();
         }, 1);
 
@@ -640,24 +592,26 @@ describe('SbbSidebarContainer', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
 
     fixture.detectChanges();
+    activateMobile(fixture);
 
     const testComponent: SidebarContainerEmptyTestComponent =
       fixture.debugElement.componentInstance;
-    const sidebars = fixture.debugElement.queryAll(By.directive(SbbSidebar));
+    const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))
+      .componentInstance;
 
-    expect(sidebars.every((sidebar) => sidebar.componentInstance.opened)).toBe(false);
+    expect(sidebar.opened).toBe(false);
 
     testComponent.sidebarContainer.open();
     fixture.detectChanges();
     tick();
 
-    expect(sidebars.every((sidebar) => sidebar.componentInstance.opened)).toBe(true);
+    expect(sidebar.opened).toBe(true);
 
     testComponent.sidebarContainer.close();
     fixture.detectChanges();
     flush();
 
-    expect(sidebars.every((sidebar) => sidebar.componentInstance.opened)).toBe(false);
+    expect(sidebar.opened).toBe(false);
   }));
 
   it('should animate the content when a sidebar is added at a later point', fakeAsync(() => {
@@ -743,25 +697,11 @@ describe('SbbSidebarContainer', () => {
   it('should not set a style property if it would be zero', fakeAsync(() => {
     const fixture = TestBed.createComponent(ZeroWithSidebarTestComponent);
     fixture.detectChanges();
+    activateMobile(fixture);
+    fixture.detectChanges();
 
     const content = fixture.debugElement.nativeElement.querySelector('.sbb-sidebar-content');
     expect(content.style.marginLeft).toBe('', 'Margin should be omitted when sidebar is closed');
-
-    // Open the sidebar and resolve the open animation.
-    fixture.componentInstance.sidebar.open();
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-
-    expect(content.style.marginLeft).not.toBe('', 'Margin should be present when sidebar is open');
-
-    // Close the sidebar and resolve the close animation.
-    fixture.componentInstance.sidebar.close();
-    fixture.detectChanges();
-    flush();
-    fixture.detectChanges();
-
-    expect(content.style.marginLeft).toBe('', 'Margin should be removed after sidebar close.');
 
     discardPeriodicTasks();
   }));
@@ -812,10 +752,6 @@ describe('SbbSidebarContainer', () => {
     subscription.unsubscribe();
   }));
 });
-
-/** Test component that contains an SbbSidebarContainer but no SbbSidebar. */
-@Component({ template: `<sbb-sidebar-container></sbb-sidebar-container>` })
-class SidebarContainerNoSidebarTestComponent {}
 
 /** Test component that contains an SbbSidebarContainer and an empty sbb-sidebar-content. */
 @Component({
@@ -890,18 +826,7 @@ class BasicTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar #sidebar opened="false">
-      <fieldset>
-        Closed Sidebar.
-      </fieldset>
-    </sbb-sidebar>
-  </sbb-sidebar-container>`,
-})
-class SidebarSetToOpenedFalseTestComponent {}
-
-@Component({
-  template: ` <sbb-sidebar-container>
-    <sbb-sidebar #sidebar opened="true" (opened)="openCallback()">
+    <sbb-sidebar #sidebar (opened)="openCallback()">
       <fieldset>
         Closed Sidebar.
       </fieldset>
@@ -914,16 +839,14 @@ class SidebarSetToOpenedTrueTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar #sidebar [(opened)]="isOpen">
+    <sbb-sidebar #sidebar>
       <fieldset>
         Closed Sidebar.
       </fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
 })
-class SidebarOpenBindingTestComponent {
-  isOpen = false;
-}
+class SidebarOpenBindingTestComponent {}
 
 @Component({
   template: ` <sbb-sidebar-container>

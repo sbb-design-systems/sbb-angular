@@ -36,7 +36,6 @@ describe('SbbIconSidebar', () => {
       ],
       declarations: [
         BasicTestComponent,
-        SidebarContainerNoSidebarTestComponent,
         SidebarSetToExpandedFalseTestComponent,
         SidebarSetToExpandedTrueTestComponent,
         TwoSidebarsTestComponent,
@@ -372,10 +371,6 @@ describe('SbbIconSidebarContainer', () => {
     subscription.unsubscribe();
   }));
 });
-
-/** Test component that contains an SbbIconSidebarContainer but no SbbIconSidebar. */
-@Component({ template: `<sbb-icon-sidebar-container></sbb-icon-sidebar-container>` })
-class SidebarContainerNoSidebarTestComponent {}
 
 /** Test component that contains an SbbIconSidebarContainer and an empty sbb-icon-sidebar-content. */
 @Component({

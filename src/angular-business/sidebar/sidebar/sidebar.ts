@@ -1,6 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
 import { FocusMonitor, FocusOrigin, FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
@@ -20,7 +19,6 @@ import {
   HostBinding,
   HostListener,
   Inject,
-  Input,
   NgZone,
   OnDestroy,
   Optional,
@@ -103,12 +101,8 @@ export class SbbSidebar extends SbbSidebarBase
    * Whether the sidebar is opened. We overload this because we trigger an event when it
    * starts or end.
    */
-  @Input()
   get opened(): boolean {
     return this._opened;
-  }
-  set opened(value: boolean) {
-    this.toggle(coerceBooleanProperty(value));
   }
 
   /** Event emitted when the sidebar has started opening. */
@@ -194,12 +188,11 @@ export class SbbSidebar extends SbbSidebarBase
       });
   }
 
-  static ngAcceptInputType_opened: BooleanInput;
   private _focusTrap: FocusTrap;
   private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
 
   private _mode: SbbSidebarMode = 'side';
-  private _opened: boolean = false;
+  private _opened: boolean = true;
 
   /** How the sidebar was opened (keypress, mouse click etc.) */
   private _openedVia: FocusOrigin | null;
@@ -422,6 +415,8 @@ export class SbbSidebar extends SbbSidebarBase
 
   _mobileChanged(mobile: boolean): void {
     Promise.resolve().then(() => {
+      const wasAnimationsEnabled = this._enableAnimations;
+      this._enableAnimations = false;
       if (mobile) {
         this.close();
         this.mode = 'over';
@@ -429,6 +424,7 @@ export class SbbSidebar extends SbbSidebarBase
         this.mode = 'side';
         this.open();
       }
+      this._enableAnimations = wasAnimationsEnabled;
     });
   }
 }
