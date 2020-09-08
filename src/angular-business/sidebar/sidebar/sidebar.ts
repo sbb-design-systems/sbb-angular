@@ -91,7 +91,6 @@ export class SbbSidebarContent extends SbbSidebarContentBase {
 export class SbbSidebar extends SbbSidebarBase
   implements AfterContentInit, AfterContentChecked, OnDestroy {
   /** Mode of the sidebar; one of 'over', or 'side'. */
-  @Input()
   get mode(): SbbSidebarMode {
     return this._mode;
   }

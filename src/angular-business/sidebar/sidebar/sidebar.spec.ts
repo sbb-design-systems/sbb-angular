@@ -647,12 +647,8 @@ describe('SbbSidebar', () => {
     }));
 
     it('should update the focus trap enable state if the mode changes while open', fakeAsync(() => {
-      testComponent.mode = 'side';
+      activateDesktop(fixture);
       fixture.detectChanges();
-
-      sidebar.open();
-      fixture.detectChanges();
-      tick();
 
       const anchors = Array.from<HTMLElement>(
         fixture.nativeElement.querySelectorAll('.cdk-focus-trap-anchor')
@@ -663,7 +659,8 @@ describe('SbbSidebar', () => {
         'Expected focus trap anchors to be disabled in side mode.'
       );
 
-      testComponent.mode = 'over';
+      activateMobile(fixture);
+      sidebar.open();
       fixture.detectChanges();
 
       expect(anchors.every((anchor) => anchor.getAttribute('tabindex') === '0')).toBe(
@@ -777,8 +774,9 @@ describe('SbbSidebarContainer', () => {
 
     expect(initialMargin).toBeGreaterThan(0);
 
-    fixture.componentInstance.mode = 'over';
+    activateMobile(fixture);
     fixture.detectChanges();
+    flush();
 
     expect(contentElement.style.marginLeft).toBe('');
   }));
@@ -987,7 +985,7 @@ class BasicTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar #sidebar mode="side" opened="false">
+    <sbb-sidebar #sidebar opened="false">
       <fieldset>
         Closed Sidebar.
       </fieldset>
@@ -998,7 +996,7 @@ class SidebarSetToOpenedFalseTestComponent {}
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar #sidebar mode="side" opened="true" (opened)="openCallback()">
+    <sbb-sidebar #sidebar opened="true" (opened)="openCallback()">
       <fieldset>
         Closed Sidebar.
       </fieldset>
@@ -1011,7 +1009,7 @@ class SidebarSetToOpenedTrueTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar #sidebar mode="side" [(opened)]="isOpen">
+    <sbb-sidebar #sidebar [(opened)]="isOpen">
       <fieldset>
         Closed Sidebar.
       </fieldset>
@@ -1034,7 +1032,7 @@ class TwoSidebarsTestComponent {}
   // Note: we use inputs here, because they're guaranteed
   // to be focusable across all platforms.
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar [mode]="mode">
+    <sbb-sidebar>
       <fieldset>
         <input type="text" class="input1" />
       </fieldset>
@@ -1042,9 +1040,7 @@ class TwoSidebarsTestComponent {}
     <input type="text" class="input2" />
   </sbb-sidebar-container>`,
 })
-class SidebarWithFocusableElementsTestComponent {
-  mode: string = 'over';
-}
+class SidebarWithFocusableElementsTestComponent {}
 
 @Component({
   template: ` <sbb-sidebar-container>
@@ -1058,9 +1054,7 @@ class SidebarWithoutFocusableElementsTestComponent {}
 @Component({
   template: `
     <sbb-sidebar-container>
-      <sbb-sidebar *ngIf="showSidebar" #sidebar mode="side"
-        ><fieldset>Sidebar</fieldset></sbb-sidebar
-      >
+      <sbb-sidebar *ngIf="showSidebar" #sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
     </sbb-sidebar-container>
   `,
 })
@@ -1071,7 +1065,7 @@ class SidebarDelayedTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container [dir]="direction">
-    <sbb-sidebar *ngIf="renderSidebar" [mode]="mode" style="width:100px"></sbb-sidebar>
+    <sbb-sidebar *ngIf="renderSidebar" style="width:100px"></sbb-sidebar>
   </sbb-sidebar-container>`,
 })
 class SidebarContainerStateChangesTestAppTestComponent {
@@ -1079,13 +1073,12 @@ class SidebarContainerStateChangesTestAppTestComponent {
   @ViewChild(SbbSidebarContainer) sidebarContainer: SbbSidebarContainer;
 
   direction: Direction = 'ltr';
-  mode = 'side';
   renderSidebar = true;
 }
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar mode="side">
+    <sbb-sidebar>
       <fieldset>Sidebar</fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
