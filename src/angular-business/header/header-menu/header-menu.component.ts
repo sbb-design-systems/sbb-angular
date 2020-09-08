@@ -78,7 +78,7 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
       this._open = value;
       if (!value) {
         this._animationState = 'closed';
-      } else if (this._breakpointObserver.isMatched(Breakpoints.DesktopAndAbove)) {
+      } else if (this._breakpointObserver.isMatched(Breakpoints.DesktopDevice)) {
         this._animationState = 'open-panel';
       } else {
         this._animationState = 'open-menu';
@@ -228,7 +228,7 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
       default:
         if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
           manager.setFocusOrigin('keyboard');
-        } else if (this._breakpointObserver.isMatched(Breakpoints.DesktopAndAbove)) {
+        } else if (this._breakpointObserver.isMatched(Breakpoints.DesktopDevice)) {
           manager.onKeydown(event);
         }
     }

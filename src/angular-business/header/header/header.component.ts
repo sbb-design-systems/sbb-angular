@@ -241,7 +241,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this._focusTrap = this._focusTrapFactory.create(this._menuElement.nativeElement);
     this._updateFocusTrapState();
     this._breakpointObserver
-      .observe(Breakpoints.DesktopAndAbove)
+      .observe(Breakpoints.DesktopDevice)
       .pipe(
         map((r) => r.matches),
         distinctUntilChanged(),

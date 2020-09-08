@@ -145,7 +145,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
       this._handleTouchStart,
       passiveEventListenerOptions
     );
-    this._isDesktop = this._breakpointObserver.observe(Breakpoints.DesktopAndAbove).pipe(
+    this._isDesktop = this._breakpointObserver.observe(Breakpoints.DesktopDevice).pipe(
       map((m) => m.matches),
       distinctUntilChanged(),
       takeUntil(this._destroyed)
@@ -187,7 +187,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
     }
 
     this._checkMenu();
-    if (!this._breakpointObserver.isMatched(Breakpoints.DesktopAndAbove)) {
+    if (!this._breakpointObserver.isMatched(Breakpoints.DesktopDevice)) {
       this.menu._panelPortalOutlet.attachTemplatePortal(this.menu._panelPortal);
     } else {
       const overlayRef = this._createOverlay();
@@ -360,7 +360,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
   private _menuClosingActions() {
     const backdrop = this._overlayRef ? this._overlayRef.backdropClick() : NEVER;
     const detachments = this._overlayRef ? this._overlayRef.detachments() : NEVER;
-    const dimensionChange = this._breakpointObserver.observe(Breakpoints.DesktopAndAbove).pipe(
+    const dimensionChange = this._breakpointObserver.observe(Breakpoints.DesktopDevice).pipe(
       map((m) => m.matches),
       filter((m) => !m)
     );
