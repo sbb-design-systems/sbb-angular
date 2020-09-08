@@ -228,7 +228,15 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
       default:
         if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
           manager.setFocusOrigin('keyboard');
-        } else if (this._breakpointObserver.isMatched(Breakpoints.DesktopDevice)) {
+        } else if (
+          this._breakpointObserver.isMatched([
+            Breakpoints.Desktop,
+            Breakpoints.DesktopLarge,
+            Breakpoints.DesktopLargePlus,
+            Breakpoints.Desktop4k,
+            Breakpoints.Desktop5k,
+          ])
+        ) {
           manager.onKeydown(event);
         }
     }
