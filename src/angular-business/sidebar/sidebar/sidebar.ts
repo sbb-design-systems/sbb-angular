@@ -472,7 +472,6 @@ export class SbbSidebar extends SbbSidebarBase
   styleUrls: ['./sidebar.css'],
   host: {
     class: 'sbb-sidebar-container',
-    '[class.sbb-sidebar-container-explicit-backdrop]': '_backdropOverride',
     '[class.sbb-sidebar-container-mobile]': '_mobile',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -493,19 +492,9 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
 
   /**
    * Whether the sidebar container should have a backdrop while one of the sidebars is open.
-   * If explicitly set to `true`, the backdrop will be enabled for sidebars in the `side`
-   * mode as well.
    */
-  @Input()
   get hasBackdrop() {
-    if (this._backdropOverride == null) {
-      return !this.sidebar || this.sidebar.mode !== 'side';
-    }
-
-    return this._backdropOverride;
-  }
-  set hasBackdrop(value: any) {
-    this._backdropOverride = value == null ? null : coerceBooleanProperty(value);
+    return !this.sidebar || this.sidebar.mode !== 'side';
   }
 
   constructor(
@@ -537,7 +526,6 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
 
   @ContentChild(SbbSidebarContent) _content: SbbSidebarContent;
   @ViewChild(SbbSidebarContent) _userContent: SbbSidebarContent;
-  _backdropOverride: boolean | null;
 
   /** Event emitted when the sidebar backdrop is clicked. */
   @Output() readonly backdropClick: EventEmitter<void> = new EventEmitter<void>();
@@ -637,11 +625,9 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
         this._changeDetectorRef.markForCheck();
       });
 
-    if (sidebar.mode !== 'side') {
-      sidebar.openedChange
-        .pipe(takeUntil(this._sidebars.changes))
-        .subscribe(() => this._setContainerClass(sidebar.opened));
-    }
+    sidebar.openedChange
+      .pipe(takeUntil(this._sidebars.changes))
+      .subscribe(() => this._setContainerClass(sidebar.opened));
   }
 
   /** Subscribes to changes in sidebar mode so we can run change detection. */
@@ -661,7 +647,7 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
     const classList = this._element.nativeElement.classList;
     const className = 'sbb-sidebar-container-has-open';
 
-    if (isAdd) {
+    if (isAdd && this.sidebar?.mode !== 'side') {
       classList.add(className);
     } else {
       classList.remove(className);
@@ -685,7 +671,7 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
   }
 
   private _canHaveBackdrop(sidebar: SbbSidebar): boolean {
-    return sidebar.mode !== 'side' || !!this._backdropOverride;
+    return sidebar.mode !== 'side';
   }
 
   private _isSidebarOpen(sidebar: SbbSidebar | null): sidebar is SbbSidebar {

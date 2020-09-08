@@ -31,11 +31,11 @@ import { SbbSidebarModule } from '../sidebar.module';
 import { SbbSidebar, SbbSidebarContainer } from './sidebar';
 
 const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
-  fixture.debugElement.queryAll(By.directive(SbbSidebar))!.forEach((debugElement) => {
-    const sidebar: SbbSidebar = debugElement.componentInstance;
-    sidebar._mobileChanged(mobile);
+  fixture.debugElement.queryAll(By.css('sbb-sidebar-container'))!.forEach((debugElement) => {
+    const sidebarContainer: SbbSidebarContainer = debugElement.componentInstance;
+    sidebarContainer._updateMobileState(mobile);
   });
-
+  fixture.detectChanges();
   flush();
 };
 
@@ -74,8 +74,8 @@ describe('SbbSidebar', () => {
   describe('methods', () => {
     it('should be able to open', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
-      activateMobile(fixture);
       fixture.detectChanges();
+      activateMobile(fixture);
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const container = fixture.debugElement.query(By.css('sbb-sidebar-container'))!.nativeElement;
@@ -98,8 +98,8 @@ describe('SbbSidebar', () => {
 
     it('should be able to close', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
-      activateMobile(fixture);
       fixture.detectChanges();
+      activateMobile(fixture);
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const container = fixture.debugElement.query(By.css('sbb-sidebar-container'))!.nativeElement;
@@ -186,8 +186,8 @@ describe('SbbSidebar', () => {
 
     it('should emit the backdropClick event when the backdrop is clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
-      activateMobile(fixture);
       fixture.detectChanges();
+      activateMobile(fixture);
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const openButtonElement = fixture.debugElement.query(By.css('.open'))!.nativeElement;
@@ -295,6 +295,7 @@ describe('SbbSidebar', () => {
 
     it('should not close by clicking on the backdrop when disableClose is set', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.detectChanges();
       activateMobile(fixture);
 
       const testComponent = fixture.debugElement.componentInstance;
@@ -557,6 +558,7 @@ describe('SbbSidebar', () => {
     let sidebar: SbbSidebar;
     let firstFocusableElement: HTMLElement;
     let lastFocusableElement: HTMLElement;
+    let mobileOpenSidebarButton: HTMLElement;
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(SidebarWithFocusableElementsTestComponent);
@@ -566,6 +568,9 @@ describe('SbbSidebar', () => {
       sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       firstFocusableElement = fixture.debugElement.query(By.css('.input1'))!.nativeElement;
       lastFocusableElement = fixture.debugElement.query(By.css('.input2'))!.nativeElement;
+      mobileOpenSidebarButton = fixture.debugElement.query(
+        By.css('.sbb-sidebar-mobile-menu-bar-close')
+      )!.nativeElement;
       lastFocusableElement.focus();
     }));
 
@@ -577,7 +582,7 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
       tick();
 
-      expect(document.activeElement).toBe(firstFocusableElement);
+      expect(document.activeElement).toBe(mobileOpenSidebarButton);
     }));
 
     it('should trap focus when opened', fakeAsync(() => {
@@ -588,7 +593,7 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
       tick();
 
-      expect(document.activeElement).toBe(firstFocusableElement);
+      expect(document.activeElement).toBe(mobileOpenSidebarButton);
     }));
 
     it('should not auto-focus by default when opened in "side" mode', fakeAsync(() => {
@@ -825,47 +830,15 @@ describe('SbbSidebarContainer', () => {
     discardPeriodicTasks();
   }));
 
-  it('should be able to toggle whether the container has a backdrop', fakeAsync(() => {
+  it('should have a backdrop', fakeAsync(() => {
     const fixture = TestBed.createComponent(BasicTestComponent);
-    activateMobile(fixture);
     fixture.detectChanges();
+    activateMobile(fixture);
+    fixture.debugElement.query(By.directive(SbbSidebar)).componentInstance.open();
+    fixture.detectChanges();
+    flush();
 
     expect(fixture.nativeElement.querySelector('.sbb-sidebar-backdrop')).toBeTruthy();
-
-    fixture.componentInstance.hasBackdrop = false;
-    fixture.detectChanges();
-
-    expect(fixture.nativeElement.querySelector('.sbb-sidebar-backdrop')).toBeFalsy();
-  }));
-
-  it('should be able to explicitly enable the backdrop in `side` mode', fakeAsync(() => {
-    const fixture = TestBed.createComponent(BasicTestComponent);
-    const root = fixture.nativeElement;
-    fixture.detectChanges();
-
-    fixture.componentInstance.sidebar.mode = 'side';
-    fixture.detectChanges();
-    fixture.componentInstance.sidebar.open();
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-
-    let backdrop = root.querySelector('.sbb-sidebar-backdrop.sbb-sidebar-shown');
-
-    expect(backdrop).toBeFalsy();
-
-    fixture.componentInstance.hasBackdrop = true;
-    fixture.detectChanges();
-    backdrop = root.querySelector('.sbb-sidebar-backdrop.sbb-sidebar-shown');
-
-    expect(backdrop).toBeTruthy();
-    expect(fixture.componentInstance.sidebar.opened).toBe(true);
-
-    backdrop.click();
-    fixture.detectChanges();
-    tick();
-
-    expect(fixture.componentInstance.sidebar.opened).toBe(false);
   }));
 
   it('should expose a scrollable when the consumer has not specified sidebar content', fakeAsync(() => {
@@ -920,10 +893,7 @@ class SidebarContainerEmptyTestComponent {
 
 /** Test component that contains an SbbSidebarContainer and one SbbSidebar. */
 @Component({
-  template: ` <sbb-sidebar-container
-    (backdropClick)="backdropClicked()"
-    [hasBackdrop]="hasBackdrop"
-  >
+  template: ` <sbb-sidebar-container (backdropClick)="backdropClicked()">
     <sbb-sidebar
       #sidebar="sbbSidebar"
       (opened)="open()"
@@ -954,7 +924,6 @@ class BasicTestComponent {
   closeCount = 0;
   closeStartCount = 0;
   backdropClickedCount = 0;
-  hasBackdrop: boolean | null = null;
 
   @ViewChild('sidebar') sidebar: SbbSidebar;
   @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;

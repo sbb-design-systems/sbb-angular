@@ -14,12 +14,6 @@ $sbbSidebarMobileMenuBarHeight: 48px;
     overflow: hidden;
   }
 
-  // When the consumer explicitly enabled the backdrop,
-  // we have to pull the side sidebars above it.
-  &.sbb-sidebar-container-explicit-backdrop .sbb-sidebar-side {
-    z-index: $sbb-sidebar-backdrop-z-index;
-  }
-
   &.sbb-sidebar-container-mobile {
     padding-top: $sbbSidebarMobileMenuBarHeight;
 
