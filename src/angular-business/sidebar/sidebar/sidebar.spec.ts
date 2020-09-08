@@ -30,6 +30,19 @@ import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbSidebar, SbbSidebarContainer } from './sidebar';
 
+const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
+  fixture.debugElement.queryAll(By.directive(SbbSidebar))!.forEach((debugElement) => {
+    const sidebar: SbbSidebar = debugElement.componentInstance;
+    sidebar._mobileChanged(mobile);
+  });
+
+  flush();
+};
+
+const activateDesktop = (fixture: ComponentFixture<any>) => {
+  activateMobile(fixture, false);
+};
+
 describe('SbbSidebar', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -298,6 +311,7 @@ describe('SbbSidebar', () => {
     it('should restore focus on close if backdrop has been clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
+      activateMobile(fixture);
 
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       const openButton = fixture.componentInstance.openButton.nativeElement;
@@ -330,6 +344,7 @@ describe('SbbSidebar', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
 
       fixture.detectChanges();
+      activateMobile(fixture);
 
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       const openButton = fixture.componentInstance.openButton.nativeElement;
@@ -354,6 +369,7 @@ describe('SbbSidebar', () => {
     it('should restore focus to an SVG element', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
+      activateMobile(fixture);
 
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       const svg = fixture.componentInstance.svg.nativeElement;
@@ -419,6 +435,7 @@ describe('SbbSidebar', () => {
       const fixture = TestBed.createComponent(NestedSidebarContainersTestComponent);
       const instance = fixture.componentInstance;
       fixture.detectChanges();
+      activateMobile(fixture);
 
       expect(instance.outerSidebar.opened).toBe(false);
       expect(instance.innerSidebar.opened).toBe(false);
@@ -536,18 +553,18 @@ describe('SbbSidebar', () => {
     let firstFocusableElement: HTMLElement;
     let lastFocusableElement: HTMLElement;
 
-    beforeEach(() => {
+    beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(SidebarWithFocusableElementsTestComponent);
       fixture.detectChanges();
+      activateMobile(fixture);
       testComponent = fixture.debugElement.componentInstance;
       sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       firstFocusableElement = fixture.debugElement.query(By.css('.input1'))!.nativeElement;
       lastFocusableElement = fixture.debugElement.query(By.css('.input2'))!.nativeElement;
       lastFocusableElement.focus();
-    });
+    }));
 
     it('should trap focus when opened in "over" mode', fakeAsync(() => {
-      testComponent.mode = 'over';
       fixture.detectChanges();
       lastFocusableElement.focus();
 
@@ -570,7 +587,7 @@ describe('SbbSidebar', () => {
     }));
 
     it('should not auto-focus by default when opened in "side" mode', fakeAsync(() => {
-      testComponent.mode = 'side';
+      activateDesktop(fixture);
       fixture.detectChanges();
       lastFocusableElement.focus();
 
@@ -583,7 +600,7 @@ describe('SbbSidebar', () => {
 
     it('should auto-focus when opened in "side" mode when enabled explicitly', fakeAsync(() => {
       sidebar.autoFocus = true;
-      testComponent.mode = 'side';
+      activateDesktop(fixture);
       fixture.detectChanges();
       lastFocusableElement.focus();
 
@@ -600,7 +617,9 @@ describe('SbbSidebar', () => {
       const nonFocusableFixture = TestBed.createComponent(
         SidebarWithoutFocusableElementsTestComponent
       );
+      activateMobile(fixture);
       const sidebarEl = nonFocusableFixture.debugElement.query(By.directive(SbbSidebar))!;
+      sidebarEl.nativeElement.focus();
       nonFocusableFixture.detectChanges();
 
       sidebarEl.componentInstance.open();
@@ -1023,7 +1042,7 @@ class SidebarWithFocusableElementsTestComponent {
 
 @Component({
   template: ` <sbb-sidebar-container>
-    <sbb-sidebar mode="over">
+    <sbb-sidebar>
       <fieldset><button disabled>Not focusable</button></fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
