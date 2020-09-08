@@ -569,19 +569,6 @@ describe('SbbSidebar', () => {
       expect(document.activeElement).toBe(lastFocusableElement);
     }));
 
-    it('should auto-focus when opened in "side" mode when enabled explicitly', fakeAsync(() => {
-      sidebar.autoFocus = true;
-      activateDesktop(fixture);
-      fixture.detectChanges();
-      lastFocusableElement.focus();
-
-      sidebar.open();
-      fixture.detectChanges();
-      tick();
-
-      expect(document.activeElement).toBe(firstFocusableElement);
-    }));
-
     it('should focus the sidebar if there are no focusable elements', fakeAsync(() => {
       fixture.destroy();
 
@@ -598,18 +585,6 @@ describe('SbbSidebar', () => {
       tick();
 
       expect(document.activeElement).toBe(sidebarEl.nativeElement);
-    }));
-
-    it('should be able to disable auto focus', fakeAsync(() => {
-      sidebar.autoFocus = false;
-      fixture.detectChanges();
-      lastFocusableElement.focus();
-
-      sidebar.open();
-      fixture.detectChanges();
-      tick();
-
-      expect(document.activeElement).not.toBe(firstFocusableElement);
     }));
 
     it('should update the focus trap enable state if the mode changes while open', fakeAsync(() => {

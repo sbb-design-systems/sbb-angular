@@ -99,25 +99,6 @@ export class SbbSidebar extends SbbSidebarBase
     this._updateFocusTrapState();
     this._modeChanged.next();
   }
-
-  /**
-   * Whether the sidebar should focus the first focusable element automatically when opened.
-   * Defaults to false in when `mode` is set to `side`, otherwise defaults to `true`. If explicitly
-   * enabled, focus will be moved into the sidebar in `side` mode as well.
-   */
-  @Input()
-  get autoFocus(): boolean {
-    const value = this._autoFocus;
-
-    // Note that usually we disable auto focusing in `side` mode, because we don't know how the
-    // sidebar is being used, but in some cases it still makes sense to do it. If the consumer
-    // explicitly enabled `autoFocus`, we take it as them always wanting to enable it.
-    return value == null ? this.mode !== 'side' : value;
-  }
-  set autoFocus(value: boolean) {
-    this._autoFocus = coerceBooleanProperty(value);
-  }
-
   /**
    * Whether the sidebar is opened. We overload this because we trigger an event when it
    * starts or end.
@@ -213,13 +194,11 @@ export class SbbSidebar extends SbbSidebarBase
       });
   }
 
-  static ngAcceptInputType_autoFocus: BooleanInput;
   static ngAcceptInputType_opened: BooleanInput;
   private _focusTrap: FocusTrap;
   private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
 
   private _mode: SbbSidebarMode = 'side';
-  private _autoFocus: boolean | undefined;
   private _opened: boolean = false;
 
   /** How the sidebar was opened (keypress, mouse click etc.) */
@@ -274,7 +253,7 @@ export class SbbSidebar extends SbbSidebarBase
    * the focus trap is disabled in `side` mode.
    */
   private _takeFocus() {
-    if (!this.autoFocus || !this._focusTrap) {
+    if (this.mode === 'side' || !this._focusTrap) {
       return;
     }
 
@@ -292,7 +271,7 @@ export class SbbSidebar extends SbbSidebarBase
    * If no element was focused at that time, the focus will be restored to the sidebar.
    */
   private _restoreFocus() {
-    if (!this.autoFocus) {
+    if (this.mode === 'side') {
       return;
     }
 
@@ -504,7 +483,6 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
       .subscribe(() => this.updateContentMargins());
   }
 
-  static ngAcceptInputType_hasBackdrop: BooleanInput;
   /** All sidebars in the container. Includes drawers from inside nested containers. */
   @ContentChildren(SbbSidebar, {
     // We need to use `descendants: true`, because Ivy will no longer match
