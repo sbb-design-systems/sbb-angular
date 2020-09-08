@@ -19,7 +19,7 @@ export class NotificationToastComponentExampleComponent {
   styles: [
     `
       .example-style {
-        color: darkred;
+        font-style: italic;
       }
     `,
   ],

@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { ComponentType, Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector, TemplatePortal } from '@angular/cdk/portal';
 import {
@@ -15,6 +15,7 @@ import {
   TemplateRef,
   Type,
 } from '@angular/core';
+import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { takeUntil } from 'rxjs/operators';
 
 import {
@@ -63,7 +64,7 @@ export class SbbNotificationToast implements OnDestroy {
   > = NotificationToastContainerComponent;
 
   /** The CSS class to applie for handset mode. */
-  protected _handsetCssClass = 'mat-snack-bar-handset';
+  protected _handsetCssClass = 'sbb-notification-toast-handset';
 
   /** Reference to the currently opened snackbar at *any* level. */
   get _openedNotificationRef(): SbbNotificationToastRef<any> | null {
@@ -218,7 +219,7 @@ export class SbbNotificationToast implements OnDestroy {
     // appropriate. This class is applied to the overlay element because the overlay must expand to
     // fill the width of the screen for full width notifications.
     this._breakpointObserver
-      .observe(Breakpoints.HandsetPortrait)
+      .observe(Breakpoints.MobileDevicePortrait)
       .pipe(takeUntil(overlayRef.detachments()))
       .subscribe((state) => {
         const classList = overlayRef.overlayElement.classList;

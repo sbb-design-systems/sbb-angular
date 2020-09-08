@@ -6,13 +6,13 @@ $sbbBusiness: true;
   display: flex;
   align-items: center;
   min-height: pxToRem(51);
-  border-radius: toPx(2);
+  border-radius: pxToRem(2);
   color: $sbbColorWhite;
   background-color: $sbbColorWhite;
-  font-size: toPx($sizeFontDefault);
+  font-size: pxToRem($sizeFontDefault);
   padding-top: pxToRem(12);
   padding-bottom: pxToRem(12);
-  margin: 20px;
+  margin: pxToRem(20);
 
   &.sbb-notification-toast-error {
     background-color: $sbbColorRed;
@@ -55,15 +55,15 @@ $sbbBusiness: true;
   }
 
   .sbb-notification-toast-content {
-    margin-left: toPx(8);
-    margin-right: toPx(24);
+    margin-left: pxToRem(8);
+    margin-right: pxToRem(24);
   }
 
   .sbb-notification-toast-icon-wrapper {
-    min-width: toPx(24);
-    width: toPx(24);
-    height: toPx(24);
-    margin-left: toPx(16);
+    min-width: pxToRem(24);
+    width: pxToRem(24);
+    height: pxToRem(24);
+    margin-left: pxToRem(16);
     border: none;
     background: none;
     padding: 0;

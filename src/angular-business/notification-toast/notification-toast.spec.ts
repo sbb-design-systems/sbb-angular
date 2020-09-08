@@ -274,9 +274,6 @@ describe('SbbNotificationToast', () => {
       simpleMessage,
       `Expected the notification toast message to be '${simpleMessage}'`
     );
-    expect(overlayContainerElement.querySelector('button.mat-button')).toBeNull(
-      'Expected the query selection for action label to be null'
-    );
   });
 
   it('should dismiss the notification toast and remove itself from the view', fakeAsync(() => {
