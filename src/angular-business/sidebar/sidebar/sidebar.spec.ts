@@ -275,45 +275,6 @@ describe('SbbSidebar', () => {
       expect(fixture.componentInstance.openCallback).toHaveBeenCalledTimes(1);
     }));
 
-    it('should not close by pressing escape when disableClose is set', fakeAsync(() => {
-      const fixture = TestBed.createComponent(BasicTestComponent);
-      const testComponent = fixture.debugElement.componentInstance;
-      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
-
-      sidebar.componentInstance.disableClose = true;
-      sidebar.componentInstance.open();
-      fixture.detectChanges();
-      tick();
-
-      dispatchKeyboardEvent(sidebar.nativeElement, 'keydown', ESCAPE);
-      fixture.detectChanges();
-      tick();
-
-      expect(testComponent.closeCount).toBe(0);
-      expect(testComponent.closeStartCount).toBe(0);
-    }));
-
-    it('should not close by clicking on the backdrop when disableClose is set', fakeAsync(() => {
-      const fixture = TestBed.createComponent(BasicTestComponent);
-      fixture.detectChanges();
-      activateMobile(fixture);
-
-      const testComponent = fixture.debugElement.componentInstance;
-      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
-
-      sidebar.disableClose = true;
-      sidebar.open();
-      fixture.detectChanges();
-      tick();
-
-      fixture.debugElement.query(By.css('.sbb-sidebar-backdrop'))!.nativeElement.click();
-      fixture.detectChanges();
-      tick();
-
-      expect(testComponent.closeCount).toBe(0);
-      expect(testComponent.closeStartCount).toBe(0);
-    }));
-
     it('should restore focus on close if backdrop has been clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();

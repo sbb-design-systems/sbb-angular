@@ -100,15 +100,6 @@ export class SbbSidebar extends SbbSidebarBase
     this._modeChanged.next();
   }
 
-  /** Whether the drawer can be closed with the escape key or by clicking on the backdrop. */
-  @Input()
-  get disableClose(): boolean {
-    return this._disableClose;
-  }
-  set disableClose(value: boolean) {
-    this._disableClose = coerceBooleanProperty(value);
-  }
-
   /**
    * Whether the sidebar should focus the first focusable element automatically when opened.
    * Defaults to false in when `mode` is set to `side`, otherwise defaults to `true`. If explicitly
@@ -189,7 +180,7 @@ export class SbbSidebar extends SbbSidebarBase
       (fromEvent(this._elementRef.nativeElement, 'keydown') as Observable<KeyboardEvent>)
         .pipe(
           filter((event) => {
-            return event.keyCode === ESCAPE && !this.disableClose && !hasModifierKey(event);
+            return event.keyCode === ESCAPE && !hasModifierKey(event);
           }),
           takeUntil(this._destroyed)
         )
@@ -222,14 +213,12 @@ export class SbbSidebar extends SbbSidebarBase
       });
   }
 
-  static ngAcceptInputType_disableClose: BooleanInput;
   static ngAcceptInputType_autoFocus: BooleanInput;
   static ngAcceptInputType_opened: BooleanInput;
   private _focusTrap: FocusTrap;
   private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
 
   private _mode: SbbSidebarMode = 'side';
-  private _disableClose: boolean = false;
   private _autoFocus: boolean | undefined;
   private _opened: boolean = false;
 
@@ -661,7 +650,7 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
 
   _closeModalSidebarsViaBackdrop() {
     // Close open sidebar where closing is not disabled and the mode is not `side`.
-    if (this._sidebar && !this._sidebar.disableClose && this._canHaveBackdrop(this._sidebar)) {
+    if (this._sidebar && this._canHaveBackdrop(this._sidebar)) {
       this._sidebar!._closeViaBackdropClick();
     }
   }
