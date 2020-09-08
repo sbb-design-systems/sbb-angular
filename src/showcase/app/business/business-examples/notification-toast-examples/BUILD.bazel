@@ -7,19 +7,11 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "notification-toast-examples",
-    srcs = [
-        "notification-toast-component-example/notification-toast-component-example.component.ts",
-        "notification-toast-duration-example/notification-toast-duration-example.component.ts",
-        "notification-toast-examples.module.ts",
-        "notification-toast-template-example/notification-toast-template-example.component.ts",
-        "simple-notification-toast-example/simple-notification-toast-example.component.ts",
-    ],
-    assets = [
-        "notification-toast-component-example/notification-toast-component-example.component.html",
-        "notification-toast-duration-example/notification-toast-duration-example.component.html",
-        "notification-toast-template-example/notification-toast-template-example.component.html",
-        "simple-notification-toast-example/simple-notification-toast-example.component.html",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/button",

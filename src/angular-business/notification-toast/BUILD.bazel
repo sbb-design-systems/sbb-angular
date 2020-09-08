@@ -45,8 +45,6 @@ ng_test_library(
     ),
     deps = [
         ":notification-toast",
-        "//src/angular-core/icon",
-        "//src/angular-core/icon-directive",
         "//src/angular-core/icon/testing",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
