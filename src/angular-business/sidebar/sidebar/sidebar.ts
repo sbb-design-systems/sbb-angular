@@ -229,7 +229,7 @@ export class SbbSidebar extends SbbSidebarBase
   private _focusTrap: FocusTrap;
   private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
 
-  private _mode: SbbSidebarMode = 'over';
+  private _mode: SbbSidebarMode = 'side';
   private _disableClose: boolean = false;
   private _autoFocus: boolean | undefined;
   private _opened: boolean = false;

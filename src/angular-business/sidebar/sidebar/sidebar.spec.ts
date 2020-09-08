@@ -74,6 +74,7 @@ describe('SbbSidebar', () => {
   describe('methods', () => {
     it('should be able to open', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      activateMobile(fixture);
       fixture.detectChanges();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
@@ -97,6 +98,7 @@ describe('SbbSidebar', () => {
 
     it('should be able to close', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      activateMobile(fixture);
       fixture.detectChanges();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
@@ -184,6 +186,7 @@ describe('SbbSidebar', () => {
 
     it('should emit the backdropClick event when the backdrop is clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      activateMobile(fixture);
       fixture.detectChanges();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
@@ -292,6 +295,8 @@ describe('SbbSidebar', () => {
 
     it('should not close by clicking on the backdrop when disableClose is set', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      activateMobile(fixture);
+
       const testComponent = fixture.debugElement.componentInstance;
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
 
@@ -824,6 +829,7 @@ describe('SbbSidebarContainer', () => {
 
   it('should be able to toggle whether the container has a backdrop', fakeAsync(() => {
     const fixture = TestBed.createComponent(BasicTestComponent);
+    activateMobile(fixture);
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('.sbb-sidebar-backdrop')).toBeTruthy();
