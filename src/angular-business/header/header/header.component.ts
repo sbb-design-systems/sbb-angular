@@ -25,11 +25,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { AppChooserSectionComponent } from '../app-chooser-section/app-chooser-section.component';
+import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
 
 import { SBB_HEADER } from './header-token';
 
@@ -241,13 +241,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this._focusTrap = this._focusTrapFactory.create(this._menuElement.nativeElement);
     this._updateFocusTrapState();
     this._breakpointObserver
-      .observe([
-        Breakpoints.Desktop,
-        Breakpoints.DesktopLarge,
-        Breakpoints.DesktopLargePlus,
-        Breakpoints.Desktop4k,
-        Breakpoints.Desktop5k,
-      ])
+      .observe(SBB_HEADER_BREAKPOINT)
       .pipe(
         map((r) => r.matches),
         distinctUntilChanged(),

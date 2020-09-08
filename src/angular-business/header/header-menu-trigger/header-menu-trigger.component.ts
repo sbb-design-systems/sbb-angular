@@ -24,11 +24,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { merge, NEVER, Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 
+import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
 import { HeaderMenuComponent } from '../header-menu/header-menu.component';
 
 /** Injection token that determines the scroll handling while the menu is open. */
@@ -145,19 +145,11 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
       this._handleTouchStart,
       passiveEventListenerOptions
     );
-    this._isDesktop = this._breakpointObserver
-      .observe([
-        Breakpoints.Desktop,
-        Breakpoints.DesktopLarge,
-        Breakpoints.DesktopLargePlus,
-        Breakpoints.Desktop4k,
-        Breakpoints.Desktop5k,
-      ])
-      .pipe(
-        map((m) => m.matches),
-        distinctUntilChanged(),
-        takeUntil(this._destroyed)
-      );
+    this._isDesktop = this._breakpointObserver.observe(SBB_HEADER_BREAKPOINT).pipe(
+      map((m) => m.matches),
+      distinctUntilChanged(),
+      takeUntil(this._destroyed)
+    );
     this._scrollStrategy = scrollStrategy;
   }
 
@@ -195,7 +187,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
     }
 
     this._checkMenu();
-    if (!this._breakpointObserver.isMatched(Breakpoints.DesktopDevice)) {
+    if (!this._breakpointObserver.isMatched(SBB_HEADER_BREAKPOINT)) {
       this.menu._panelPortalOutlet.attachTemplatePortal(this.menu._panelPortal);
     } else {
       const overlayRef = this._createOverlay();
@@ -368,7 +360,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
   private _menuClosingActions() {
     const backdrop = this._overlayRef ? this._overlayRef.backdropClick() : NEVER;
     const detachments = this._overlayRef ? this._overlayRef.detachments() : NEVER;
-    const dimensionChange = this._breakpointObserver.observe(Breakpoints.DesktopDevice).pipe(
+    const dimensionChange = this._breakpointObserver.observe(SBB_HEADER_BREAKPOINT).pipe(
       map((m) => m.matches),
       filter((m) => !m)
     );
