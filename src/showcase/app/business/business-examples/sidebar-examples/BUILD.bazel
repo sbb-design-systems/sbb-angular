@@ -8,17 +8,14 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "sidebar-examples",
-    srcs = [
-        "icon-sidebar-example/icon-sidebar-example.component.ts",
-        "sidebar-example/sidebar-example.component.ts",
-        "sidebar-examples.module.ts",
-    ],
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     assets = [
         ":icon-sidebar-example/icon-sidebar-example.component.css",
         ":sidebar-example/sidebar-example.component.css",
-        "icon-sidebar-example/icon-sidebar-example.component.html",
-        "sidebar-example/sidebar-example.component.html",
-    ],
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/accordion",
