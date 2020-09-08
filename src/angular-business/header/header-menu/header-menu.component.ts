@@ -19,11 +19,11 @@ import {
   QueryList,
   ViewChild,
 } from '@angular/core';
-import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith, takeUntil } from 'rxjs/operators';
 
+import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
 import { HeaderMenuItemDirective } from '../header-menu-item/header-menu-item.directive';
 
 let nextId = 0;
@@ -78,7 +78,7 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
       this._open = value;
       if (!value) {
         this._animationState = 'closed';
-      } else if (this._breakpointObserver.isMatched(Breakpoints.DesktopAndAbove)) {
+      } else if (this._breakpointObserver.isMatched(SBB_HEADER_BREAKPOINT)) {
         this._animationState = 'open-panel';
       } else {
         this._animationState = 'open-menu';
@@ -228,7 +228,7 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
       default:
         if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
           manager.setFocusOrigin('keyboard');
-        } else if (this._breakpointObserver.isMatched(Breakpoints.DesktopAndAbove)) {
+        } else if (this._breakpointObserver.isMatched(SBB_HEADER_BREAKPOINT)) {
           manager.onKeydown(event);
         }
     }
