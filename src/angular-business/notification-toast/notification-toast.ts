@@ -30,7 +30,7 @@ import {
   TextOnlyNotificationToast,
 } from './simple-notification.component';
 
-/** Injection token that can be used to specify default snack bar. */
+/** Injection token that can be used to specify default notification toast. */
 export const SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS = new InjectionToken<
   SbbNotificationToastConfig
 >('notification-default-options', {
@@ -49,24 +49,26 @@ export function SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS_FACTORY(): SbbNotificatio
 @Injectable({ providedIn: NotificationToastModule })
 export class SbbNotificationToast implements OnDestroy {
   /**
-   * Reference to the current snack bar in the view *at this level* (in the Angular injector tree).
-   * If there is a parent snack-bar service, all operations should delegate to that parent
-   * via `_openedSnackBarRef`.
+   * Reference to the current notification toast in the view *at this level* (in the Angular injector tree).
+   * If there is a parent notification toast service, all operations should delegate to that parent
+   * via `_openednotification toastRef`.
    */
   private _notificationRefAtThisLevel: SbbNotificationToastRef<any> | null = null;
 
-  /** The component that should be rendered as the snack bar's simple component. */
-  protected _simpleSnackBarComponent: Type<TextOnlyNotificationToast> = SimpleNotificationComponent;
+  /** The component that should be rendered as the notification toast's simple component. */
+  protected _simpleNotificationToastComponent: Type<
+    TextOnlyNotificationToast
+  > = SimpleNotificationComponent;
 
   /** The container component that attaches the provided template or component. */
-  protected _snackBarContainerComponent: Type<
+  protected _notificationToastContainerComponent: Type<
     NotificationToastContainerComponent
   > = NotificationToastContainerComponent;
 
-  /** The CSS class to applie for handset mode. */
-  protected _handsetCssClass = 'sbb-notification-toast-handset';
+  /** The CSS class to applie for mobile mode. */
+  protected _mobileDeviceCssClass = 'sbb-notification-toast-mobile';
 
-  /** Reference to the currently opened snackbar at *any* level. */
+  /** Reference to the currently opened notification toast at *any* level. */
   get _openedNotificationRef(): SbbNotificationToastRef<any> | null {
     const parent = this._parentNotification;
     return parent ? parent._openedNotificationRef : this._notificationRefAtThisLevel;
@@ -91,11 +93,11 @@ export class SbbNotificationToast implements OnDestroy {
   ) {}
 
   /**
-   * Creates and dispatches a snack bar with a custom component for the content, removing any
-   * currently opened snack bars.
+   * Creates and dispatches a notification toast with a custom component for the content, removing any
+   * currently opened notification toasts.
    *
    * @param component Component to be instantiated.
-   * @param config Extra configuration for the snack bar.
+   * @param config Extra configuration for the notification toast.
    */
   openFromComponent<T>(
     component: ComponentType<T>,
@@ -105,11 +107,11 @@ export class SbbNotificationToast implements OnDestroy {
   }
 
   /**
-   * Creates and dispatches a snack bar with a custom template for the content, removing any
-   * currently opened snack bars.
+   * Creates and dispatches a notification toast with a custom template for the content, removing any
+   * currently opened notification toasts.
    *
    * @param template Template to be instantiated.
-   * @param config Extra configuration for the snack bar.
+   * @param config Extra configuration for the notification toast.
    */
   openFromTemplate(
     template: TemplateRef<any>,
@@ -119,10 +121,10 @@ export class SbbNotificationToast implements OnDestroy {
   }
 
   /**
-   * Opens a snackbar with a message and an optional action.
-   * @param message The message to show in the snackbar.
-   * @param action The label for the snackbar action.
-   * @param config Additional configuration options for the snackbar.
+   * Opens a notification toast with a message and an optional action.
+   * @param message The message to show in the notification toast.
+   * @param action The label for the notification toast action.
+   * @param config Additional configuration options for the notification toast.
    */
   open(
     message: string,
@@ -134,17 +136,17 @@ export class SbbNotificationToast implements OnDestroy {
     // override the data to pass in our own message and action.
     mergedConfig.data = { message };
 
-    // Since the snack bar has `role="alert"`, we don't
+    // Since the notification toast has `role="alert"`, we don't
     // want to announce the same message twice.
     if (mergedConfig.announcementMessage === message) {
       mergedConfig.announcementMessage = undefined;
     }
 
-    return this.openFromComponent(this._simpleSnackBarComponent, mergedConfig);
+    return this.openFromComponent(this._simpleNotificationToastComponent, mergedConfig);
   }
 
   /**
-   * Dismisses the currently-visible snack bar.
+   * Dismisses the currently-visible notification toast.
    */
   dismiss(): void {
     if (this._openedNotificationRef) {
@@ -160,7 +162,7 @@ export class SbbNotificationToast implements OnDestroy {
   }
 
   /**
-   * Attaches the snack bar container component to the overlay.
+   * Attaches the notification toast container component to the overlay.
    */
   private _attachNotificationToastContainer(
     overlayRef: OverlayRef,
@@ -173,7 +175,7 @@ export class SbbNotificationToast implements OnDestroy {
     );
 
     const containerPortal = new ComponentPortal(
-      this._snackBarContainerComponent,
+      this._notificationToastContainerComponent,
       config.viewContainerRef,
       injector
     );
@@ -185,7 +187,7 @@ export class SbbNotificationToast implements OnDestroy {
   }
 
   /**
-   * Places a new component or a template as the content of the snack bar container.
+   * Places a new component or a template as the content of the notification toast container.
    */
   private _attach<T>(
     content: ComponentType<T> | TemplateRef<T>,
@@ -215,7 +217,7 @@ export class SbbNotificationToast implements OnDestroy {
       notificationRef.instance = contentRef.instance;
     }
 
-    // Subscribe to the breakpoint observer and attach the notification-handset class as
+    // Subscribe to the breakpoint observer and attach the notification-mobile class as
     // appropriate. This class is applied to the overlay element because the overlay must expand to
     // fill the width of the screen for full width notifications.
     this._breakpointObserver
@@ -224,8 +226,8 @@ export class SbbNotificationToast implements OnDestroy {
       .subscribe((state) => {
         const classList = overlayRef.overlayElement.classList;
         state.matches
-          ? classList.add(this._handsetCssClass)
-          : classList.remove(this._handsetCssClass);
+          ? classList.add(this._mobileDeviceCssClass)
+          : classList.remove(this._mobileDeviceCssClass);
       });
 
     this._animateNotification(notificationRef, config);
@@ -233,14 +235,14 @@ export class SbbNotificationToast implements OnDestroy {
     return this._openedNotificationRef;
   }
 
-  /** Animates the old snack bar out and the new one in. */
+  /** Animates the old notification toast out and the new one in. */
   private _animateNotification(
     notificationRef: SbbNotificationToastRef<any>,
     config: SbbNotificationToastConfig
   ) {
-    // When the snackbar is dismissed, clear the reference to it.
+    // When the notification toast is dismissed, clear the reference to it.
     notificationRef.afterDismissed().subscribe(() => {
-      // Clear the snackbar ref if it hasn't already been replaced by a newer snackbar.
+      // Clear the notification toast ref if it hasn't already been replaced by a newer notification toast.
       if (this._openedNotificationRef === notificationRef) {
         this._openedNotificationRef = null;
       }
@@ -251,18 +253,18 @@ export class SbbNotificationToast implements OnDestroy {
     });
 
     if (this._openedNotificationRef) {
-      // If a snack bar is already in view, dismiss it and enter the
-      // new snack bar after exit animation is complete.
+      // If a notification toast is already in view, dismiss it and enter the
+      // new notification toast after exit animation is complete.
       this._openedNotificationRef.afterDismissed().subscribe(() => {
         notificationRef.containerInstance.enter();
       });
       this._openedNotificationRef.dismiss();
     } else {
-      // If no snack bar is in view, enter the new snack bar.
+      // If no notification toast is in view, enter the new notification toast.
       notificationRef.containerInstance.enter();
     }
 
-    // If a dismiss timeout is provided, set up dismiss based on after the snackbar is opened.
+    // If a dismiss timeout is provided, set up dismiss based on after the notification toast is opened.
     if (config.duration && config.duration > 0) {
       notificationRef
         .afterOpened()
@@ -276,7 +278,7 @@ export class SbbNotificationToast implements OnDestroy {
 
   /**
    * Creates a new overlay and places it in the correct location.
-   * @param config The user-specified snack bar config.
+   * @param config The user-specified notification toast config.
    */
   private _createOverlay(config: SbbNotificationToastConfig): OverlayRef {
     const overlayConfig = new OverlayConfig();
@@ -299,9 +301,9 @@ export class SbbNotificationToast implements OnDestroy {
   }
 
   /**
-   * Creates an injector to be used inside of a snack bar component.
-   * @param config Config that was used to create the snack bar.
-   * @param snackBarRef Reference to the snack bar.
+   * Creates an injector to be used inside of a notification toast component.
+   * @param config Config that was used to create the notification toast.
+   * @param notification toastRef Reference to the notification toast.
    */
   private _createInjector<T>(
     config: SbbNotificationToastConfig,

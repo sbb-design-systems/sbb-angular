@@ -75,3 +75,14 @@ $sbbBusiness: true;
     margin-right: pxToRem(22);
   }
 }
+
+.sbb-notification-toast-mobile {
+  width: 100%;
+
+  .sbb-notification-toast {
+    margin: pxToRem(8);
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}

@@ -4,7 +4,7 @@ import { SBB_NOTIFICATION_TOAST_DATA } from './notification-toast-config';
 import { SbbNotificationToastRef } from './notification-toast-ref';
 
 /**
- * Interface for a simple snack bar component that has a message and a single action.
+ * Interface for a simple notification toast component that has a message and a single action.
  */
 export interface TextOnlyNotificationToast {
   data: { message: string };
@@ -12,8 +12,8 @@ export interface TextOnlyNotificationToast {
 }
 
 /**
- * A component used to open as the default snack bar, matching digital.sbb.ch spec.
- * This should only be used internally by the snack bar service.
+ * A component used to open as the default notification toast, matching digital.sbb.ch spec.
+ * This should only be used internally by the notification toast service.
  */
 @Component({
   selector: 'sbb-simple-notification',
@@ -22,7 +22,7 @@ export interface TextOnlyNotificationToast {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SimpleNotificationComponent implements TextOnlyNotificationToast {
-  /** Data that was injected into the snack bar. */
+  /** Data that was injected into the notification toast. */
   data: { message: string };
 
   constructor(

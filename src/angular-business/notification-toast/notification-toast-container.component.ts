@@ -156,8 +156,8 @@ export class NotificationToastContainerComponent extends BasePortalOutlet implem
     // `SbbNotificationToast.open`).
     this._animationState = 'hidden';
 
-    // Mark this element with an 'exit' attribute to indicate that the snackbar has
-    // been dismissed and will soon be removed from the DOM. This is used by the snackbar
+    // Mark this element with an 'exit' attribute to indicate that the notification toast has
+    // been dismissed and will soon be removed from the DOM. This is used by the notification toast
     // test harness.
     this._elementRef.nativeElement.setAttribute('sbb-exit', '');
 
