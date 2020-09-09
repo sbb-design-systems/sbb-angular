@@ -122,7 +122,8 @@ export class IconMigration extends Migration<any, DevkitContext> {
         }
 
         if (
-          (node.nodeName === 'svg' && node.attrs.some((a: any) => a.name in SVG_ICON_MAPPINGS)) ||
+          (node.nodeName === 'svg' &&
+            node.attrs.some((a: any) => a.name.toLowerCase() in SVG_ICON_MAPPINGS)) ||
           node.nodeName in ICON_MAPPINGS
         ) {
           elements.push(node);
@@ -425,11 +426,13 @@ export class IconMigration extends Migration<any, DevkitContext> {
       return [];
     }
 
-    const attrs = element.attrs.filter((a) =>
-      ['size', 'width', '[width]', 'height', '[height]', 'svgclass', '[svgclass]'].every(
-        (n) => a.name !== n
+    const attrs = element.attrs
+      .filter((a) =>
+        ['size', 'width', '[width]', 'height', '[height]', 'svgclass', '[svgclass]'].every(
+          (n) => a.name.toLowerCase() !== n
+        )
       )
-    );
+      .filter((a) => !(a.name.toLowerCase() in SVG_ICON_MAPPINGS));
     const svgClass =
       element.attrs.find((a) => a.name === 'svgclass')?.value ??
       element.attrs.find((a) => a.name === '[svgclass]')?.value.match(/^'([^']+)'$/)?.[1];
@@ -467,7 +470,9 @@ export class IconMigration extends Migration<any, DevkitContext> {
 
   private _resolveIconName(element: DefaultTreeElement, size: string) {
     if (element.nodeName === 'svg') {
-      const selector = element.attrs.find((a) => a.name.startsWith('sbbicon'))?.name;
+      const selector = element.attrs
+        .find((a) => a.name.toLowerCase().startsWith('sbbicon'))
+        ?.name.toLowerCase();
       return selector ? SVG_ICON_MAPPINGS[selector]?.[0] : undefined;
     } else {
       const variants: string[] = ICON_MAPPINGS[element.nodeName];
