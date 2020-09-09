@@ -67,11 +67,13 @@ sbb-how-to-update {
     background-color: #efefef;
     padding: 1rem 3rem;
     margin: 1rem -3rem;
+    white-space: pre-wrap;
   }
 }
 
 sbb-component-viewer sbb-example-viewer pre {
   margin: 1rem -24px;
+  white-space: pre-wrap;
 }
 
 sbb-business-component-viewer {
@@ -79,10 +81,12 @@ sbb-business-component-viewer {
     background-color: #efefef;
     padding: 1rem 16px;
     margin: 1rem -16px;
+    white-space: pre-wrap;
   }
 
   sbb-business-example-viewer pre {
     margin: 1rem -16px;
+    white-space: pre-wrap;
   }
 }
 
