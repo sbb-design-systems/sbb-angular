@@ -498,17 +498,6 @@ describe('SbbSidebar', () => {
       expect(document.activeElement).toBe(mobileOpenSidebarButton);
     }));
 
-    it('should trap focus when opened', fakeAsync(() => {
-      fixture.detectChanges();
-      lastFocusableElement.focus();
-
-      sidebar.open();
-      fixture.detectChanges();
-      tick();
-
-      expect(document.activeElement).toBe(mobileOpenSidebarButton);
-    }));
-
     it('should not auto-focus by default when opened in "side" mode', fakeAsync(() => {
       activateDesktop(fixture);
       fixture.detectChanges();
