@@ -5,11 +5,10 @@ import { TabsModule } from '@sbb-esta/angular-public/tabs';
 
 import { ApiViewerComponent } from './api-viewer/api-viewer.component';
 import { MarkdownViewerComponent } from './markdown-viewer/markdown-viewer.component';
-import { SubmenuComponent } from './submenu/submenu.component';
 
 @NgModule({
-  declarations: [SubmenuComponent, MarkdownViewerComponent, ApiViewerComponent],
+  declarations: [MarkdownViewerComponent, ApiViewerComponent],
   imports: [CommonModule, PortalModule, TabsModule],
-  exports: [SubmenuComponent, MarkdownViewerComponent, ApiViewerComponent],
+  exports: [MarkdownViewerComponent, ApiViewerComponent],
 })
 export class SharedModule {}

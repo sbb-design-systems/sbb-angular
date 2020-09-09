@@ -15,7 +15,6 @@ ng_module(
     assets = [
         ":api-viewer/api-viewer.component.css",
         ":markdown-viewer/markdown-viewer.component.css",
-        ":submenu/submenu.component.css",
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
@@ -38,9 +37,4 @@ sass_binary(
 sass_binary(
     name = "markdown_viewer_markdown_viewer_component_scss",
     src = "markdown-viewer/markdown-viewer.component.scss",
-)
-
-sass_binary(
-    name = "submenu_submenu_component_scss",
-    src = "submenu/submenu.component.scss",
 )

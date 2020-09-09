@@ -21,8 +21,10 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/angular-business/accordion",
         "//src/angular-business/button",
         "//src/angular-business/dialog",
+        "//src/angular-business/sidebar",
         "//src/angular-business/tooltip",
         "//src/angular-core/icon",
         "//src/angular-public/checkbox",

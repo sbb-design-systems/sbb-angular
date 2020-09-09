@@ -2,15 +2,19 @@
 
 :host {
   display: block;
-  padding: 24px;
   margin-bottom: 1rem;
   position: relative;
+
+  &:first-child > div {
+    margin-top: 0;
+  }
 
   > div {
     border-bottom: 1px solid $sbbColorSilver;
     display: flex;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     margin-bottom: 1rem;
+    margin-top: 3rem;
 
     > h3 {
       flex-grow: 1;

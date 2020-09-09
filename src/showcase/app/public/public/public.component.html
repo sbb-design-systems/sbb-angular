@@ -1,60 +1,62 @@
-<sbb-submenu>
-  <ul>
-    <li>
-      Introduction
-
-      <ul>
-        <li>
-          <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            >Getting started</a
-          >
-        </li>
-        <li>
-          <a routerLink="./introduction/typography" routerLinkActive="active">Typography</a>
-        </li>
-      </ul>
-    </li>
-
-    <li class="no-link">
-      Form Components
-
-      <ul>
-        <li *ngFor="let c of formComponents | keyvalue">
-          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
-        </li>
-      </ul>
-    </li>
-
-    <li class="no-link">
-      Layout Components
-
-      <ul>
-        <li *ngFor="let c of layoutComponents | keyvalue">
-          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
-        </li>
-      </ul>
-    </li>
-
-    <li class="no-link">
-      Button & Indicators Components
-
-      <ul>
-        <li *ngFor="let c of buttonAndIndicatorComponents | keyvalue">
-          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
-        </li>
-      </ul>
-    </li>
-
-    <li class="no-link">
-      Popups & Modals Components
-
-      <ul>
-        <li *ngFor="let c of popupsAndModals | keyvalue">
-          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</sbb-submenu>
-
-<router-outlet></router-outlet>
+<sbb-sidebar-container>
+  <sbb-sidebar role="navigation">
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        routerLink="./introduction/getting-started"
+        routerLinkActive="sbb-sidebar-link-active"
+        >Getting started</a
+      >
+      <a
+        sbbSidebarLink
+        routerLink="./introduction/typography"
+        routerLinkActive="sbb-sidebar-link-active"
+        >Typography</a
+      >
+    </sbb-expansion-panel>
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Form Components</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        *ngFor="let c of formComponents | keyvalue"
+        [routerLink]="['./components/', c.key]"
+        routerLinkActive="sbb-sidebar-link-active"
+        >{{ c.value }}</a
+      >
+    </sbb-expansion-panel>
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Layout Components</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        *ngFor="let c of layoutComponents | keyvalue"
+        [routerLink]="['./components/', c.key]"
+        routerLinkActive="sbb-sidebar-link-active"
+        >{{ c.value }}</a
+      >
+    </sbb-expansion-panel>
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Button & Indicators Components</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        *ngFor="let c of buttonAndIndicatorComponents | keyvalue"
+        [routerLink]="['./components/', c.key]"
+        routerLinkActive="sbb-sidebar-link-active"
+        >{{ c.value }}</a
+      >
+    </sbb-expansion-panel>
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Popups & Modals Components</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        *ngFor="let c of popupsAndModals | keyvalue"
+        [routerLink]="['./components/', c.key]"
+        routerLinkActive="sbb-sidebar-link-active"
+        >{{ c.value }}</a
+      >
+    </sbb-expansion-panel>
+  </sbb-sidebar>
+  <sbb-sidebar-content>
+    <router-outlet></router-outlet>
+  </sbb-sidebar-content>
+</sbb-sidebar-container>

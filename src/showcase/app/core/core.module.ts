@@ -2,8 +2,10 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AccordionModule } from '@sbb-esta/angular-business/accordion';
 import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { DialogModule } from '@sbb-esta/angular-business/dialog';
+import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
@@ -50,6 +52,8 @@ import { IconOverviewComponent } from './icon-overview/icon-overview.component';
     SelectModule,
     FieldModule,
     PaginationModule,
+    SbbSidebarModule,
+    AccordionModule,
   ],
 })
 export class CoreModule {}
