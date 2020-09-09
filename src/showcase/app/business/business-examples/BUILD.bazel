@@ -28,6 +28,7 @@ ng_module(
         "//src/showcase/app/business/business-examples/links-examples",
         "//src/showcase/app/business/business-examples/loading-examples",
         "//src/showcase/app/business/business-examples/notification-examples",
+        "//src/showcase/app/business/business-examples/notification-toast-examples",
         "//src/showcase/app/business/business-examples/pagination-examples",
         "//src/showcase/app/business/business-examples/processflow-examples",
         "//src/showcase/app/business/business-examples/radio-button-examples",

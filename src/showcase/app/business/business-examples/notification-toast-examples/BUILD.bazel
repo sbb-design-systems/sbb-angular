@@ -1,0 +1,34 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "notification-toast-examples",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/button",
+        "//src/angular-business/field",
+        "//src/angular-business/notification-toast",
+        "//src/showcase/app/shared",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

@@ -166,10 +166,10 @@ export class ${moduleName} {}
     class ModuleImport {
       constructor(readonly path: string, readonly moduleName: string) {}
 
-      static fromPackageModule(packageName: string, moduleName: string) {
+      static fromPackageModule(packageName: string, moduleName: string, prefixed = false) {
         return new ModuleImport(
           `@sbb-esta/${packageName}/${moduleName}`,
-          `${strings.classify(moduleName)}Module`
+          `${prefixed ? 'Sbb' : ''}${strings.classify(moduleName)}Module`
         );
       }
 
@@ -208,13 +208,16 @@ export class ${moduleName} {}
             .filter((m) => m !== 'input' && m !== 'icon') ?? [];
         const selectors = elementSelectors.concat(attributeSelectors);
 
-        return selectors
+        const imports = selectors
           .filter(
-            (t) =>
-              t !== 'option' && (packageRoot.subdirs.includes(fragment(t)) || t.startsWith('icon'))
+            (t) => t !== 'option' && t !== 'icon' && packageRoot.subdirs.includes(fragment(t))
           )
           .filter((v, i, a) => a.indexOf(v) === i)
           .map((i) => ModuleImport.fromPackageModule(packageName, i));
+        if (selectors.some((s) => s === 'icon')) {
+          imports.push(ModuleImport.fromPackageModule('angular-core', 'icon', true));
+        }
+        return imports;
       }
     }
 

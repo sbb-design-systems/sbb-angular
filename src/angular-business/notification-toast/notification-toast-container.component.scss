@@ -1,0 +1,88 @@
+$sbbBusiness: true;
+@import '../../angular-core/styles/common';
+
+.sbb-notification-toast {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: pxToRem(51);
+  border-radius: pxToRem(2);
+  color: $sbbColorWhite;
+  background-color: $sbbColorWhite;
+  font-size: pxToRem($sizeFontDefault);
+  padding-top: pxToRem(12);
+  padding-bottom: pxToRem(12);
+  margin: pxToRem(20);
+
+  &.sbb-notification-toast-error {
+    background-color: $sbbColorRed;
+
+    &,
+    a,
+    button {
+      color: $sbbColorWhite;
+    }
+  }
+
+  &.sbb-notification-toast-success {
+    border: 1px solid $sbbColorGreen;
+
+    &,
+    a,
+    button {
+      color: $sbbColorGreen;
+    }
+  }
+
+  &.sbb-notification-toast-info {
+    border: 1px solid $sbbColorGranite;
+
+    &,
+    a,
+    button {
+      color: $sbbColorGranite;
+    }
+  }
+
+  &.sbb-notification-toast-warn {
+    background-color: $sbbColorOrange;
+
+    &,
+    a,
+    button {
+      color: $sbbColorWhite;
+    }
+  }
+
+  .sbb-notification-toast-content {
+    margin-left: pxToRem(8);
+    margin-right: pxToRem(24);
+  }
+
+  .sbb-notification-toast-icon-wrapper {
+    min-width: pxToRem(24);
+    width: pxToRem(24);
+    height: pxToRem(24);
+    margin-left: pxToRem(16);
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  .sbb-notification-toast-icon-close-wrapper {
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: pxToRem(22);
+  }
+}
+
+.sbb-notification-toast-mobile {
+  width: 100%;
+
+  .sbb-notification-toast {
+    margin: pxToRem(8);
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}
