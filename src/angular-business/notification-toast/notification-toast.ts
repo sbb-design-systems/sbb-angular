@@ -282,8 +282,6 @@ export class SbbNotificationToast implements OnDestroy {
    */
   private _createOverlay(config: SbbNotificationToastConfig): OverlayRef {
     const overlayConfig = new OverlayConfig();
-    overlayConfig.direction = 'ltr';
-
     const positionStrategy = this._overlay.position().global();
 
     // Set horizontal position.
