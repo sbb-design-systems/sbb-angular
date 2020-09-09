@@ -29,6 +29,7 @@ ng_module(
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/platform-browser",
+        "@npm//@angular/router",
         "@npm//rxjs",
     ],
 )
