@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.2.0-next.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.1.3...10.2.0-next.0) (2020-09-09)
+
+
+### Features
+
+* **business:** toast notification ([#572](https://github.com/sbb-design-systems/sbb-angular/issues/572)) ([2740a19](https://github.com/sbb-design-systems/sbb-angular/commit/2740a19e48c0c7604221fe1a5822b98e59bb8081))
+* **core:** define device orientation breakpoints ([#592](https://github.com/sbb-design-systems/sbb-angular/issues/592)) ([2309aed](https://github.com/sbb-design-systems/sbb-angular/commit/2309aed51a8b00870a8473226d735c48b829eee2))
+* add inline mode to sbb-loading ([#557](https://github.com/sbb-design-systems/sbb-angular/issues/557)) ([49c20a3](https://github.com/sbb-design-systems/sbb-angular/commit/49c20a340540e2a6069640a293b5c69c29452a40))
+* migrate all modules from legacy icons to sbb-icon ([#585](https://github.com/sbb-design-systems/sbb-angular/issues/585)) ([c3d7430](https://github.com/sbb-design-systems/sbb-angular/commit/c3d743091cb132c27f7deb920ef3543822874442))
+* **core:** implement generic icon module ([#584](https://github.com/sbb-design-systems/sbb-angular/issues/584)) ([d117862](https://github.com/sbb-design-systems/sbb-angular/commit/d117862f2cfd6aaa702a0e9a6b3cb17f4fdc0e90))
+
+
+### Bug Fixes
+
+* **timeinput:** fix height for 4k and 5k screens/breakpoints ([#588](https://github.com/sbb-design-systems/sbb-angular/issues/588)) ([ac42b41](https://github.com/sbb-design-systems/sbb-angular/commit/ac42b413c7475fae19a2f9eeee536c4ed0ca0c8b)), closes [#587](https://github.com/sbb-design-systems/sbb-angular/issues/587)
+* expansion-panel collapse should hide content ([#586](https://github.com/sbb-design-systems/sbb-angular/issues/586)) ([42cec9c](https://github.com/sbb-design-systems/sbb-angular/commit/42cec9ce73364cdea40b9bf941b42699b156d901))
+* **business:** remove 4k/5k stylings for links ([#581](https://github.com/sbb-design-systems/sbb-angular/issues/581)) ([7f0c96c](https://github.com/sbb-design-systems/sbb-angular/commit/7f0c96c22724326a8c9b4c5a3ed02786ad879b71))
+
 ### [10.1.3](https://github.com/sbb-design-systems/sbb-angular/compare/10.1.2...10.1.3) (2020-08-26)
 
 
