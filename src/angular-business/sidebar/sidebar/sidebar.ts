@@ -28,8 +28,17 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { fromEvent, merge, Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, filter, map, startWith, take, takeUntil } from 'rxjs/operators';
+import { NavigationStart, Router } from '@angular/router';
+import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  mapTo,
+  startWith,
+  take,
+  takeUntil,
+} from 'rxjs/operators';
 
 import {
   ISbbSidebarContainer,
@@ -130,7 +139,8 @@ export class SbbSidebar extends SbbSidebarBase
     platform: Platform,
     private _ngZone: NgZone,
     @Optional() @Inject(DOCUMENT) private _doc: any,
-    @Inject(SBB_SIDEBAR_CONTAINER) public _container: SbbSidebarContainer
+    @Inject(SBB_SIDEBAR_CONTAINER) public _container: SbbSidebarContainer,
+    @Optional() private _router: Router
   ) {
     super(platform, _container);
 
@@ -149,19 +159,31 @@ export class SbbSidebar extends SbbSidebarBase
     /**
      * Listen to `keydown` events outside the zone so that change detection is not run every
      * time a key is pressed. Instead we re-enter the zone only if the `ESC` key is pressed
-     * and we don't have close disabled.
      */
     this._ngZone.runOutsideAngular(() => {
-      (fromEvent(this._elementRef.nativeElement, 'keydown') as Observable<KeyboardEvent>)
-        .pipe(
+      merge(
+        (fromEvent(this._elementRef.nativeElement, 'keydown') as Observable<KeyboardEvent>).pipe(
           filter((event) => {
             return event.keyCode === ESCAPE && !hasModifierKey(event);
-          }),
-          takeUntil(this._destroyed)
-        )
-        .subscribe((event) =>
+          })
+        ),
+        this._router
+          ? this._router.events.pipe(
+              filter((e) => e instanceof NavigationStart),
+              mapTo(null)
+            )
+          : NEVER
+      )
+        .pipe(takeUntil(this._destroyed))
+        .subscribe((event: KeyboardEvent | null) =>
           this._ngZone.run(() => {
+            if (this.mode === 'side') {
+              return;
+            }
             this.close();
+            if (!event) {
+              return;
+            }
             event.stopPropagation();
             event.preventDefault();
           })

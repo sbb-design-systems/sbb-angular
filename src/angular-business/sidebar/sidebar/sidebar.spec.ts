@@ -126,6 +126,8 @@ describe('SbbSidebar', () => {
     it('should resolve the open method promise with the new state of the sidebar', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
+      activateMobile(fixture);
+
       const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))!
         .componentInstance;
 
@@ -138,6 +140,8 @@ describe('SbbSidebar', () => {
     it('should resolve the close method promise with the new state of the sidebar', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
+      activateMobile(fixture);
+
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
       const sidebarInstance: SbbSidebar = sidebar.componentInstance;
 
@@ -155,6 +159,7 @@ describe('SbbSidebar', () => {
     it('should be able to close while the open animation is running', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
+      activateMobile(fixture);
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       fixture.debugElement.query(By.css('.open'))!.nativeElement.click();
@@ -213,10 +218,10 @@ describe('SbbSidebar', () => {
       expect(testComponent.backdropClickedCount).toBe(1);
     }));
 
-    it('should close when pressing escape', fakeAsync(() => {
+    it('should close when pressing escape in over mode', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
-
       fixture.detectChanges();
+      activateMobile(fixture);
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
@@ -239,10 +244,25 @@ describe('SbbSidebar', () => {
       expect(event.defaultPrevented).toBe(true);
     }));
 
+    it('should not close when pressing escape in side mode', fakeAsync(() => {
+      const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.detectChanges();
+
+      const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
+      const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
+
+      dispatchKeyboardEvent(sidebar.nativeElement, 'keydown', ESCAPE);
+      fixture.detectChanges();
+      flush();
+
+      expect(testComponent.closeCount).toBe(0, 'Expected one close event.');
+      expect(testComponent.closeStartCount).toBe(0, 'Expected one close start event.');
+    }));
+
     it('should not close when pressing escape with a modifier', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
-
       fixture.detectChanges();
+      activateMobile(fixture);
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
@@ -349,9 +369,11 @@ describe('SbbSidebar', () => {
 
     it('should not restore focus on close if focus is outside sidebar', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
+      fixture.detectChanges();
+      activateMobile(fixture);
+
       const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))!
         .componentInstance;
-      fixture.detectChanges();
 
       const openButton = fixture.componentInstance.openButton.nativeElement;
       const closeButton = fixture.componentInstance.closeButton.nativeElement;
@@ -444,6 +466,7 @@ describe('SbbSidebar', () => {
 
       const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
       fixture.detectChanges();
+      activateMobile(fixture);
 
       // Note that we need actual timeouts and the `BrowserAnimationsModule`
       // in order to test it correctly.
@@ -646,11 +669,6 @@ describe('SbbSidebarContainer', () => {
 
   it('should recalculate the margin if the sidebar mode is changed', fakeAsync(() => {
     const fixture = TestBed.createComponent(SidebarContainerStateChangesTestAppTestComponent);
-
-    fixture.detectChanges();
-    fixture.componentInstance.sidebar.open();
-    fixture.detectChanges();
-    tick();
     fixture.detectChanges();
 
     const contentElement = fixture.debugElement.nativeElement.querySelector('.sbb-sidebar-content');
@@ -699,7 +717,9 @@ describe('SbbSidebarContainer', () => {
     const fixture = TestBed.createComponent(BasicTestComponent);
     fixture.detectChanges();
     activateMobile(fixture);
+
     fixture.debugElement.query(By.directive(SbbSidebar)).componentInstance.open();
+
     fixture.detectChanges();
     flush();
 
