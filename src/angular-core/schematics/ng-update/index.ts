@@ -1,5 +1,10 @@
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { createMigrationSchematicRule, TargetVersion } from '@angular/cdk/schematics';
+import {
+  createMigrationSchematicRule,
+  getProjectFromWorkspace,
+  getProjectTargetOptions,
+  TargetVersion,
+} from '@angular/cdk/schematics';
 import { getWorkspace } from '@schematics/angular/utility/config';
 
 import { addIconCdnProvider } from '../ng-add';
@@ -26,7 +31,20 @@ export function addIconCdnRegistry(): Rule {
       return;
     }
 
-    return chain(Object.keys(workspace.projects).map((name) => addIconCdnProvider({ name })));
+    // Ensure only application projects and projects with a build target
+    // are targeted for the migration.
+    const projects = Object.keys(workspace.projects).filter((p) => {
+      const project = getProjectFromWorkspace(workspace, p);
+      try {
+        return (
+          project.projectType === 'application' && !!getProjectTargetOptions(project, 'build').main
+        );
+      } catch {
+        return false;
+      }
+    });
+
+    return chain(projects.map((name) => addIconCdnProvider({ name })));
   };
 }
 
