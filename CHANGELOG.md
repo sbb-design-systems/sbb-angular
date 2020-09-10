@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.2.0-next.0...10.2.0) (2020-09-10)
+
+
+### Bug Fixes
+
+* **core:** apply the icon registry migration only to application projects ([#595](https://github.com/sbb-design-systems/sbb-angular/issues/595)) ([e744ed1](https://github.com/sbb-design-systems/sbb-angular/commit/e744ed163d517b4a8c48f803585e286cf0a198c6))
+* **core:** normalize attribute comparison in icon migration ([#596](https://github.com/sbb-design-systems/sbb-angular/issues/596)) ([a935eb6](https://github.com/sbb-design-systems/sbb-angular/commit/a935eb6569dfed0d9c73998b185d23bae3ad845a))
+
 ## [10.2.0-next.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.1.3...10.2.0-next.0) (2020-09-09)
 
 
