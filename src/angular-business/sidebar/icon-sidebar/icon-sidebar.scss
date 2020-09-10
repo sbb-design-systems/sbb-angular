@@ -1,8 +1,15 @@
 @import '../../../angular-core/styles/common';
 @import '../sidebar';
 
+$sbb-icon-sidebar-expanded-width: 250px;
+$sbb-icon-sidebar-collapsed-width: 48px;
+
 .sbb-icon-sidebar-container {
-  @include sbb-sidebar-container('.sbb-icon-sidebar-content');
+  @include sbb-sidebar-container('.sbb-icon-sidebar');
+
+  // Need this to take up space in the layout.
+  display: flex;
+  flex-direction: row;
 
   &.sbb-icon-sidebar-after-header {
     top: $sbb-sidebar-after-header-top;
@@ -11,17 +18,28 @@
 
 .sbb-icon-sidebar-content {
   @include sbb-sidebar-content;
-}
-
-.sbb-icon-sidebar-transition .sbb-icon-sidebar-content {
-  @include sbb-sidebar-content-transition();
+  flex: 1 1;
 }
 
 .sbb-icon-sidebar {
   @include sbb-sidebar;
-  visibility: visible;
-  z-index: $sbb-sidebar-side-sidebar-z-index;
+  position: relative;
   background-color: $sbbColorMilk;
+  transition: width $swift-ease-out-duration $swift-ease-out-timing-function;
+
+  &.sbb-icon-sidebar-expanded {
+    width: $sbb-icon-sidebar-expanded-width;
+  }
+
+  &.sbb-icon-sidebar-collapsed {
+    width: $sbb-icon-sidebar-collapsed-width;
+
+    .sbb-icon-sidebar-collapse-expand-button {
+      .sbb-icon-sidebar-item-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
 
   .sbb-icon-sidebar-links {
     margin-bottom: 48px;
@@ -47,7 +65,7 @@
       height: 48px;
       justify-content: center;
       align-items: center;
-      flex: 0 0 48px;
+      flex: 0 0 $sbb-icon-sidebar-collapsed-width;
 
       // TODO(icon-migration): remove block because icons take color from font color
       .sbb-icon-component {
@@ -153,30 +171,14 @@
     }
   }
 
-  &:not(.sbb-icon-sidebar-expanded) {
-    width: 48px;
-
-    .sbb-icon-sidebar-inner-container {
-      overflow-x: hidden;
-    }
-
-    .sbb-icon-sidebar-item {
-      height: 48px;
-    }
-
-    .sbb-icon-sidebar-collapse-expand-button {
-      .sbb-icon-sidebar-item-icon {
-        transform: rotate(180deg);
-      }
-    }
-  }
-
   .sbb-icon-sidebar-inner-container {
     @include sbb-sidebar-inner-container();
   }
 }
 
 .sbb-icon-sidebar-container-mobile {
+  flex-direction: column-reverse;
+
   .sbb-icon-sidebar {
     top: auto;
     left: 0;
@@ -188,6 +190,7 @@
 
     .sbb-icon-sidebar-inner-container {
       overflow-y: hidden;
+      overflow-x: auto;
 
       &.sbb-scrollbar {
         scrollbar-width: none;
@@ -207,7 +210,7 @@
 
     .sbb-icon-sidebar-item {
       display: flex;
-      flex: 1 0 48px;
+      flex: 1 0 $sbb-icon-sidebar-collapsed-width;
       justify-content: center;
 
       .sbb-icon-sidebar-item-label {
@@ -232,9 +235,5 @@
       border-top: none;
       border-left: solid 1px $sbbColorGraphite;
     }
-  }
-
-  &.sbb-icon-sidebar-transition .sbb-icon-sidebar-content {
-    transition: none;
   }
 }

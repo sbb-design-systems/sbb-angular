@@ -15,11 +15,7 @@ import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { SbbSidebarModule } from '../sidebar.module';
 
-import {
-  SbbIconSidebar,
-  SbbIconSidebarContainer,
-  SBB_ICON_SIDEBAR_EXPANDED_DEFAULT_WIDTH,
-} from './icon-sidebar';
+import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
 
 describe('SbbIconSidebar', () => {
   beforeEach(async(() => {
@@ -50,7 +46,7 @@ describe('SbbIconSidebar', () => {
   }));
 
   describe('methods', () => {
-    it('does not throw when created without a sidebar container', fakeAsync(() => {
+    it('does not throw when created without a sidebar content', fakeAsync(() => {
       expect(() => {
         const fixture = TestBed.createComponent(BasicTestComponent);
         fixture.detectChanges();
@@ -219,11 +215,14 @@ describe('SbbIconSidebar', () => {
       ).toContain('Link1');
     });
 
-    it('should collapse and expand', () => {
+    it('should collapse and expand', fakeAsync(() => {
       const collapseButton = sidebar.query(By.css('.sbb-icon-sidebar-collapse-expand-button'));
 
       expect(sidebarComponent.expanded).toBe(false);
+      expect(fixture.componentInstance.expandedCount).toBe(0);
+      expect(fixture.componentInstance.collapsedCount).toBe(0);
       expect(sidebar.nativeElement.classList).not.toContain('sbb-icon-sidebar-expanded');
+      expect(sidebar.nativeElement.classList).toContain('sbb-icon-sidebar-collapsed');
       expect(
         collapseButton.nativeElement
           .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
@@ -237,9 +236,13 @@ describe('SbbIconSidebar', () => {
 
       collapseButton.nativeElement.click();
       fixture.detectChanges();
+      tick();
 
       expect(sidebarComponent.expanded).toBe(true);
+      expect(fixture.componentInstance.expandedCount).toBe(1);
+      expect(fixture.componentInstance.collapsedCount).toBe(0);
       expect(sidebar.nativeElement.classList).toContain('sbb-icon-sidebar-expanded');
+      expect(sidebar.nativeElement.classList).not.toContain('sbb-icon-sidebar-collapsed');
       expect(
         collapseButton.nativeElement
           .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
@@ -253,9 +256,13 @@ describe('SbbIconSidebar', () => {
 
       collapseButton.nativeElement.click();
       fixture.detectChanges();
+      tick();
 
       expect(sidebarComponent.expanded).toBe(false);
+      expect(fixture.componentInstance.expandedCount).toBe(1);
+      expect(fixture.componentInstance.collapsedCount).toBe(1);
       expect(sidebar.nativeElement.classList).not.toContain('sbb-icon-sidebar-expanded');
+      expect(sidebar.nativeElement.classList).toContain('sbb-icon-sidebar-collapsed');
       expect(
         collapseButton.nativeElement
           .querySelectorAll('.sbb-icon-sidebar-item-label')[0]
@@ -266,7 +273,7 @@ describe('SbbIconSidebar', () => {
           .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
           .getAttribute('aria-hidden')
       ).toEqual('false');
-    });
+    }));
   });
 });
 
@@ -291,49 +298,6 @@ describe('SbbIconSidebarContainer', () => {
     });
 
     TestBed.compileComponents();
-  }));
-
-  it('should animate the content when a sidebar is added at a later point', fakeAsync(() => {
-    const fixture = TestBed.createComponent(SidebarDelayedTestComponent);
-
-    fixture.detectChanges();
-
-    const contentElement = fixture.debugElement.nativeElement.querySelector(
-      '.sbb-icon-sidebar-content'
-    );
-
-    expect(parseInt(contentElement.style.marginLeft, 10)).toBe(0);
-
-    fixture.componentInstance.showSidebar = true;
-    fixture.detectChanges();
-
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-
-    expect(parseInt(contentElement.style.marginLeft, 10)).toBe(
-      SBB_ICON_SIDEBAR_EXPANDED_DEFAULT_WIDTH
-    );
-  }));
-
-  it('should not animate when the sidebar is expanded on load', fakeAsync(() => {
-    TestBed.resetTestingModule()
-      .configureTestingModule({
-        imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconModule, SbbIconTestingModule],
-        declarations: [SidebarSetToExpandedTrueTestComponent],
-      })
-      .compileComponents();
-
-    const fixture = TestBed.createComponent(SidebarSetToExpandedTrueTestComponent);
-
-    fixture.detectChanges();
-    tick();
-
-    const container = fixture.debugElement.nativeElement.querySelector(
-      '.sbb-icon-sidebar-container'
-    );
-
-    expect(container.classList).not.toContain('sbb-icon-sidebar-transition');
   }));
 
   it('should expose a scrollable when the consumer has not specified sidebar content', fakeAsync(() => {
@@ -385,53 +349,16 @@ class SidebarContainerEmptyTestComponent {
 /** Test component that contains an SbbIconSidebarContainer and a SbbIconSidebar. */
 @Component({
   template: ` <sbb-icon-sidebar-container>
-    <sbb-icon-sidebar
-      #sidebar="sbbIconSidebar"
-      (expanded)="expanded()"
-      (expandedStart)="expandedStart()"
-      (collapsed)="collapse()"
-      (collapsedStart)="collapseStart()"
-    >
+    <sbb-icon-sidebar #sidebar="sbbIconSidebar">
       <button #sidebarButton>Content</button>
     </sbb-icon-sidebar>
-    <svg
-      viewBox="0 0 100 100"
-      xmlns="http://www.w3.org/2000/svg"
-      tabindex="0"
-      focusable="true"
-      #svg
-    >
-      <circle cx="50" cy="50" r="50" />
-    </svg>
   </sbb-icon-sidebar-container>`,
 })
 class BasicTestComponent {
-  expandedCount = 0;
-  expandedStartCount = 0;
-  collapseCount = 0;
-  collapseStartCount = 0;
-
   @ViewChild('sidebar') sidebar: SbbIconSidebar;
   @ViewChild('sidebarButton') sidebarButton: ElementRef<HTMLButtonElement>;
   @ViewChild('expandedButton') expandedButton: ElementRef<HTMLButtonElement>;
-  @ViewChild('svg') svg: ElementRef<SVGElement>;
   @ViewChild('collapseButton') collapseButton: ElementRef<HTMLButtonElement>;
-
-  expanded() {
-    this.expandedCount++;
-  }
-
-  expandedStart() {
-    this.expandedStartCount++;
-  }
-
-  collapse() {
-    this.collapseCount++;
-  }
-
-  collapseStart() {
-    this.collapseStartCount++;
-  }
 }
 
 @Component({
@@ -533,7 +460,7 @@ class NestedSidebarContainersTestComponent {
 @Component({
   template: `
     <sbb-icon-sidebar-container>
-      <sbb-icon-sidebar>
+      <sbb-icon-sidebar (expandedChange)="expandedChange($event)">
         <a sbbIconSidebarItem [routerLink]="['/link1']" label="Link1">
           <sbb-icon svgIcon="kom:station-small"></sbb-icon>
         </a>
@@ -557,4 +484,14 @@ class NestedSidebarContainersTestComponent {
     </sbb-icon-sidebar-container>
   `,
 })
-class IconSidebarWithLinksTestComponent {}
+class IconSidebarWithLinksTestComponent {
+  expandedCount = 0;
+  collapsedCount = 0;
+  expandedChange(expanded: boolean) {
+    if (expanded) {
+      this.expandedCount++;
+    } else {
+      this.collapsedCount++;
+    }
+  }
+}

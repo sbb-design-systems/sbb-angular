@@ -1,10 +1,17 @@
 @import '../../../angular-core/styles/common';
 @import '../sidebar';
 
-$sbbSidebarMobileMenuBarHeight: 48px;
+$sbb-sidebar-mobile-menu-bar-height: 48px;
 
 .sbb-sidebar-container {
   @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
+
+  // Need this to take up space in the layout.
+  display: flex;
+  flex-direction: column;
+
+  // Hide the sidebars when they're closed.
+  overflow: hidden;
 
   &.sbb-sidebar-after-header {
     top: $sbb-sidebar-after-header-top;
@@ -15,7 +22,7 @@ $sbbSidebarMobileMenuBarHeight: 48px;
   }
 
   &.sbb-sidebar-container-mobile {
-    padding-top: $sbbSidebarMobileMenuBarHeight;
+    padding-top: $sbb-sidebar-mobile-menu-bar-height;
 
     .sbb-sidebar-mobile-menu-bar,
     .sbb-sidebar-mobile-menu-bar-close-wrapper {
@@ -27,14 +34,14 @@ $sbbSidebarMobileMenuBarHeight: 48px;
       border-right: 1px solid $sbbColorGranite;
 
       .sbb-sidebar-inner-container {
-        padding-top: $sbbSidebarMobileMenuBarHeight;
+        padding-top: $sbb-sidebar-mobile-menu-bar-height;
       }
     }
   }
 }
 
 .sbb-sidebar-backdrop {
-  @include sbb-fill();
+  @include sbb-sidebar-fill();
 
   display: block;
 
@@ -63,14 +70,24 @@ $sbbSidebarMobileMenuBarHeight: 48px;
 
 .sbb-sidebar-content {
   @include sbb-sidebar-content;
+  z-index: $sbb-sidebar-content-z-index;
+  height: 100%;
 }
 
 .sbb-sidebar-transition .sbb-sidebar-content {
-  @include sbb-sidebar-content-transition();
+  transition: {
+    duration: $swift-ease-out-duration;
+    timing-function: $swift-ease-out-timing-function;
+    property: transform, margin-left, margin-right;
+  }
 }
 
 .sbb-sidebar {
   @include sbb-sidebar;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
   width: 300px;
   transform: translate3d(-100%, 0, 0);
   border-right: 1px solid $sbbColorCloud;
@@ -211,7 +228,7 @@ $sbbSidebarMobileMenuBarHeight: 48px;
   justify-content: center;
   line-height: 0;
   width: 54px;
-  height: $sbbSidebarMobileMenuBarHeight;
+  height: $sbb-sidebar-mobile-menu-bar-height;
   cursor: pointer;
   outline: none;
 

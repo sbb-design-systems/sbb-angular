@@ -1,8 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Platform } from '@angular/cdk/platform';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
-  AfterContentChecked,
   AfterContentInit,
   ChangeDetectorRef,
   Directive,
@@ -31,26 +29,17 @@ export function throwSbbDuplicatedSidebarError() {
 export const SBB_SIDEBAR_CONTAINER = new InjectionToken('SBB_SIDEBAR_CONTAINER');
 
 export interface ISbbSidebarContainer {
-  _contentMarginChanges: Subject<any>;
   _mobile: boolean;
 }
 
 @Directive()
-export abstract class SbbSidebarContentBase extends CdkScrollable implements AfterContentInit {
+export abstract class SbbSidebarContentBase extends CdkScrollable {
   protected constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    public _container: ISbbSidebarContainer,
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
     ngZone: NgZone
   ) {
     super(elementRef, scrollDispatcher, ngZone);
-  }
-
-  ngAfterContentInit() {
-    this._container._contentMarginChanges.subscribe(() => {
-      this._changeDetectorRef.markForCheck();
-    });
   }
 }
 
@@ -58,24 +47,11 @@ export abstract class SbbSidebarContentBase extends CdkScrollable implements Aft
  * This component corresponds to a sidebar.
  */
 @Directive()
-export abstract class SbbSidebarBase implements AfterContentChecked {
-  /** Whether the sidebar is initialized. Used for disabling the initial animation. */
-  protected _enableAnimations = false;
-
+export abstract class SbbSidebarBase {
   /** @docs-private **/
   abstract _mobileChanged(mobile: boolean): void;
 
-  protected constructor(protected _platform: Platform, public _container: ISbbSidebarContainer) {}
-
-  ngAfterContentChecked() {
-    // Enable the animations after the lifecycle hooks have run, in order to avoid animating
-    // sidebars that are open by default. When we're on the server, we shouldn't enable the
-    // animations, because we don't want the sidebar to animate the first time the user sees
-    // the page.
-    if (this._platform.isBrowser) {
-      this._enableAnimations = true;
-    }
-  }
+  protected constructor(public _container: ISbbSidebarContainer) {}
 }
 
 /**
@@ -119,8 +95,6 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   /** Emits when the component is destroyed. */
   protected readonly _destroyed = new Subject<void>();
 
-  abstract readonly _contentMarginChanges: Subject<any>;
-
   ngAfterContentInit() {
     this._allSidebars.changes
       .pipe(startWith(this._allSidebars), takeUntil(this._destroyed))
@@ -158,7 +132,6 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   }
 
   ngOnDestroy() {
-    this._contentMarginChanges.complete();
     this._sidebars.destroy();
     this._destroyed.next();
     this._destroyed.complete();
@@ -174,6 +147,4 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
     }
     this._sidebar = this._sidebars.first;
   }
-
-  abstract updateContentMargins(): void;
 }

@@ -66,15 +66,21 @@ export type SbbSidebarMode = 'over' | 'side';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class SbbSidebarContent extends SbbSidebarContentBase {
+export class SbbSidebarContent extends SbbSidebarContentBase implements AfterContentInit {
   constructor(
-    changeDetectorRef: ChangeDetectorRef,
+    private _changeDetectorRef: ChangeDetectorRef,
     @Inject(forwardRef(() => SbbSidebarContainer)) public _container: SbbSidebarContainer,
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
     ngZone: NgZone
   ) {
-    super(changeDetectorRef, _container, elementRef, scrollDispatcher, ngZone);
+    super(elementRef, scrollDispatcher, ngZone);
+  }
+
+  ngAfterContentInit() {
+    this._container._contentMarginChanges.subscribe(() => {
+      this._changeDetectorRef.markForCheck();
+    });
   }
 }
 
@@ -97,6 +103,9 @@ export class SbbSidebarContent extends SbbSidebarContentBase {
 })
 export class SbbSidebar extends SbbSidebarBase
   implements AfterContentInit, AfterContentChecked, OnDestroy {
+  /** Whether the sidebar is initialized. Used for disabling the initial animation. */
+  private _enableAnimations = false;
+
   /** Mode of the sidebar; one of 'over', or 'side'. */
   get mode(): SbbSidebarMode {
     return this._mode;
@@ -136,13 +145,13 @@ export class SbbSidebar extends SbbSidebarBase
     private _elementRef: ElementRef<HTMLElement>,
     private _focusTrapFactory: FocusTrapFactory,
     private _focusMonitor: FocusMonitor,
-    platform: Platform,
+    private _platform: Platform,
     private _ngZone: NgZone,
     @Optional() @Inject(DOCUMENT) private _doc: any,
     @Inject(SBB_SIDEBAR_CONTAINER) public _container: SbbSidebarContainer,
     @Optional() private _router: Router
   ) {
-    super(platform, _container);
+    super(_container);
 
     this.openedChange.subscribe((opened: boolean) => {
       if (opened) {
@@ -470,7 +479,7 @@ export class SbbSidebar extends SbbSidebarBase
   ],
 })
 export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
-  implements AfterContentInit, ISbbSidebarContainer {
+  implements AfterContentInit, ISbbSidebarContainer, OnDestroy {
   /** The sidebar child */
   get sidebar(): SbbSidebar | null {
     return this._sidebar;
@@ -501,7 +510,7 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
       .subscribe(() => this.updateContentMargins());
   }
 
-  /** All sidebars in the container. Includes drawers from inside nested containers. */
+  /** All sidebars in the container. Includes sidebars from inside nested containers. */
   @ContentChildren(SbbSidebar, {
     // We need to use `descendants: true`, because Ivy will no longer match
     // indirect descendants if it's left as false.
@@ -665,5 +674,10 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
 
   toggleSidebar() {
     this._sidebar?.toggle();
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this._contentMarginChanges.complete();
   }
 }

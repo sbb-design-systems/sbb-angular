@@ -7,7 +7,7 @@ $swift-ease-out-duration: 400ms !default;
 $swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
 $sbb-sidebar-after-header-top: 54px;
 
-@mixin sbb-fill {
+@mixin sbb-sidebar-fill {
   top: 0;
   left: 0;
   right: 0;
@@ -22,17 +22,9 @@ $sbb-sidebar-after-header-top: 54px;
   // the application content does not get messed up with our own CSS.
   z-index: $sbb-sidebar-container-z-index;
 
-  box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
 
-  // Need this to take up space in the layout.
-  display: flex;
-  flex-direction: column;
-
-  // Hide the sidebars when they're closed.
-  overflow: hidden;
-
-  @include sbb-fill();
+  @include sbb-sidebar-fill();
 
   // Note that the `NoopAnimationsModule` is being handled inside of the component code.
   &.ng-animate-disabled,
@@ -46,27 +38,12 @@ $sbb-sidebar-after-header-top: 54px;
 @mixin sbb-sidebar-content {
   display: block;
   position: relative;
-  z-index: $sbb-sidebar-content-z-index;
-  height: 100%;
   overflow: auto;
-}
-
-@mixin sbb-sidebar-content-transition {
-  transition: {
-    duration: $swift-ease-out-duration;
-    timing-function: $swift-ease-out-timing-function;
-    property: transform, margin-left, margin-right;
-  }
 }
 
 @mixin sbb-sidebar {
   display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 3;
   outline: 0;
-  box-sizing: border-box;
   overflow-y: auto; // TODO(kara): revisit scrolling behavior for sidebars
 }
 
