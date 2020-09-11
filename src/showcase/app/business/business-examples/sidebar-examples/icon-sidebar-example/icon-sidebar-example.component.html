@@ -1,6 +1,6 @@
 <div class="sidebar-frame">
   <sbb-icon-sidebar-container>
-    <sbb-icon-sidebar [(expanded)]="expanded" role="navigation">
+    <sbb-icon-sidebar [(expanded)]="expanded">
       <a sbbIconSidebarItem label="Station" href="">
         <sbb-icon svgIcon="kom:station-small"></sbb-icon>
       </a>
@@ -23,6 +23,6 @@
 
 <h4>Properties</h4>
 <div class="sbb-checkbox-group-vertical">
-  <sbb-checkbox [(ngModel)]="expanded" [disabled]="simulateMobile"> Expand Icon Menu</sbb-checkbox>
+  <sbb-checkbox [(ngModel)]="expanded" [disabled]="simulateMobile">Expand Icon Menu</sbb-checkbox>
   <sbb-checkbox [(ngModel)]="simulateMobile">Simulate Mobile View</sbb-checkbox>
 </div>

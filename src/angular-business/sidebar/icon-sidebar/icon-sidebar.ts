@@ -56,6 +56,7 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {
     tabIndex: '-1',
     // must prevent the browser from aligning text based on value
     '[attr.align]': 'null',
+    'attr.role': 'navigation',
     '[class.sbb-icon-sidebar-expanded]': 'expanded && !_container._mobile',
     '[class.sbb-icon-sidebar-collapsed]': '!expanded && !_container._mobile',
   },
