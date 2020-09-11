@@ -8,7 +8,7 @@
 </sbb-header>
 
 <sbb-icon-sidebar-container class="sbb-icon-sidebar-after-header">
-  <sbb-icon-sidebar [expanded]="expanded">
+  <sbb-icon-sidebar [expanded]="expanded" role="navigation">
     <a
       sbbIconSidebarItem
       label="@sbb-esta/angular-public"
@@ -66,7 +66,7 @@
       <sbb-icon svgIcon="kom:location-pin-map-small"></sbb-icon>
     </a>
   </sbb-icon-sidebar>
-  <sbb-icon-sidebar-content>
+  <sbb-icon-sidebar-content role="main">
     <router-outlet></router-outlet>
   </sbb-icon-sidebar-content>
 </sbb-icon-sidebar-container>
