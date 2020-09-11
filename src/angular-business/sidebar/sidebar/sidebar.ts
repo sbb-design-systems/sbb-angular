@@ -1,5 +1,10 @@
 import { AnimationEvent } from '@angular/animations';
-import { FocusMonitor, FocusOrigin, FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
+import {
+  ConfigurableFocusTrapFactory,
+  FocusMonitor,
+  FocusOrigin,
+  FocusTrap,
+} from '@angular/cdk/a11y';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Platform } from '@angular/cdk/platform';
@@ -41,10 +46,10 @@ import {
 } from 'rxjs/operators';
 
 import {
-  ISbbSidebarContainer,
   SbbSidebarBase,
   SbbSidebarContainerBase,
   SbbSidebarContentBase,
+  SbbSidebarMobileCapableContainer,
   SBB_SIDEBAR_CONTAINER,
 } from '../sidebar-base';
 
@@ -115,6 +120,7 @@ export class SbbSidebar extends SbbSidebarBase
     this._updateFocusTrapState();
     this._modeChanged.next();
   }
+
   /**
    * Whether the sidebar is opened. We overload this because we trigger an event when it
    * starts or end.
@@ -143,7 +149,7 @@ export class SbbSidebar extends SbbSidebarBase
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private _focusTrapFactory: FocusTrapFactory,
+    private _focusTrapFactory: ConfigurableFocusTrapFactory,
     private _focusMonitor: FocusMonitor,
     private _platform: Platform,
     private _ngZone: NgZone,
@@ -167,7 +173,8 @@ export class SbbSidebar extends SbbSidebarBase
 
     /**
      * Listen to `keydown` events outside the zone so that change detection is not run every
-     * time a key is pressed. Instead we re-enter the zone only if the `ESC` key is pressed
+     * time a key is pressed. Instead we re-enter the zone only if the `ESC` key is pressed.
+     * Additionally listen to router navigation start events to close the sidebar.
      */
     this._ngZone.runOutsideAngular(() => {
       merge(
@@ -238,7 +245,6 @@ export class SbbSidebar extends SbbSidebarBase
   // @HostBinding is used in the class as it is expected to be extended.  Since @Component decorator
   // metadata is not inherited by child classes, instead the host binding data is defined in a way
   // that can be inherited.
-  // tslint:disable:no-host-decorator-in-concrete
   @HostBinding('@transform')
   _animationState: 'open-instant' | 'open' | 'void' = 'void';
 
@@ -447,6 +453,8 @@ export class SbbSidebar extends SbbSidebarBase
   _mobileChanged(mobile: boolean): void {
     Promise.resolve().then(() => {
       const wasAnimationsEnabled = this._enableAnimations;
+
+      // temporary disabled animations when changing mode
       this._enableAnimations = false;
       if (mobile) {
         this.close();
@@ -479,7 +487,7 @@ export class SbbSidebar extends SbbSidebarBase
   ],
 })
 export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
-  implements AfterContentInit, ISbbSidebarContainer, OnDestroy {
+  implements AfterContentInit, SbbSidebarMobileCapableContainer, OnDestroy {
   /** The sidebar child */
   get sidebar(): SbbSidebar | null {
     return this._sidebar;

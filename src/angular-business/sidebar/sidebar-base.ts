@@ -28,7 +28,10 @@ export function throwSbbDuplicatedSidebarError() {
  */
 export const SBB_SIDEBAR_CONTAINER = new InjectionToken('SBB_SIDEBAR_CONTAINER');
 
-export interface ISbbSidebarContainer {
+/**
+ * @docs-private
+ */
+export interface SbbSidebarMobileCapableContainer {
   _mobile: boolean;
 }
 
@@ -48,10 +51,9 @@ export abstract class SbbSidebarContentBase extends CdkScrollable {
  */
 @Directive()
 export abstract class SbbSidebarBase {
-  /** @docs-private **/
   abstract _mobileChanged(mobile: boolean): void;
 
-  protected constructor(public _container: ISbbSidebarContainer) {}
+  protected constructor(public _container: SbbSidebarMobileCapableContainer) {}
 }
 
 /**
@@ -60,8 +62,7 @@ export abstract class SbbSidebarBase {
  */
 @Directive()
 export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
-  implements AfterContentInit, OnDestroy, ISbbSidebarContainer {
-  /** @docs.private **/
+  implements AfterContentInit, OnDestroy, SbbSidebarMobileCapableContainer {
   _mobile: boolean;
 
   /** The sidebar child */
@@ -104,7 +105,6 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
       });
   }
 
-  /** @docs-private **/
   protected _watchBreakpointObserver() {
     this._breakpointObserver
       .observe(Breakpoints.Mobile)
@@ -116,9 +116,6 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
       .subscribe((newMobile) => this._updateMobileState(newMobile));
   }
 
-  /**
-   * @docs-private
-   */
   _updateMobileState(newMobile: boolean) {
     const currentMobile = this._mobile;
     this._mobile = newMobile;

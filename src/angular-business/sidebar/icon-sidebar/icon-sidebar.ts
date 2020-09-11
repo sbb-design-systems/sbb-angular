@@ -21,10 +21,10 @@ import {
 import { startWith } from 'rxjs/operators';
 
 import {
-  ISbbSidebarContainer,
   SbbSidebarBase,
   SbbSidebarContainerBase,
   SbbSidebarContentBase,
+  SbbSidebarMobileCapableContainer,
   SBB_SIDEBAR_CONTAINER,
 } from '../sidebar-base';
 
@@ -93,7 +93,6 @@ export class SbbIconSidebar extends SbbSidebarBase {
     this.expandedChange.emit(this.expanded);
   }
 
-  /** @docs-private **/
   _mobileChanged(mobile: boolean): void {
     this._elementRef.nativeElement.querySelector(
       '.sbb-icon-sidebar-inner-container'
@@ -126,7 +125,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
   ],
 })
 export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSidebar>
-  implements AfterContentInit, ISbbSidebarContainer {
+  implements AfterContentInit, SbbSidebarMobileCapableContainer {
   /** All sidebars in the container. Includes sidebars from inside nested containers. */
   @ContentChildren(SbbIconSidebar, {
     // We need to use `descendants: true`, because Ivy will no longer match
