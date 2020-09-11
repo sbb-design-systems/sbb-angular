@@ -1,8 +1,8 @@
 @import '../../../angular-core/styles/common';
 @import '../sidebar';
 
-$sbb-icon-sidebar-expanded-width: 250px;
-$sbb-icon-sidebar-collapsed-width: 48px;
+$sbb-icon-sidebar-expanded-width: pxToRem(250px);
+$sbb-icon-sidebar-collapsed-width: pxToRem(48px);
 
 .sbb-icon-sidebar-container {
   @include sbb-sidebar-container('.sbb-icon-sidebar');
@@ -41,18 +41,18 @@ $sbb-icon-sidebar-collapsed-width: 48px;
   }
 
   .sbb-icon-sidebar-links {
-    margin-bottom: 48px;
+    margin-bottom: pxToRem(48px);
   }
 
   .sbb-icon-sidebar-item {
     display: inline-flex;
     width: 100%;
     align-items: center;
-    height: 48px;
+    height: pxToRem(48px);
     color: $sbbColorIron;
     text-decoration: none;
-    font-size: toPx($sizeFontDefault);
-    line-height: 23px;
+    font-size: pxToRem($sizeFontDefault);
+    line-height: pxToRem(23px);
     position: relative;
 
     &:not(.sbb-icon-sidebar-item-active) {
@@ -61,7 +61,7 @@ $sbb-icon-sidebar-collapsed-width: 48px;
 
     .sbb-icon-sidebar-item-icon {
       display: inline-flex;
-      height: 48px;
+      height: pxToRem(48px);
       justify-content: center;
       align-items: center;
       flex: 0 0 $sbb-icon-sidebar-collapsed-width;
@@ -69,13 +69,13 @@ $sbb-icon-sidebar-collapsed-width: 48px;
       // TODO(icon-migration): remove block because icons take color from font color
       .sbb-icon-component {
         @include svgIconColor($sbbColorIron);
-        width: 24px;
-        height: 24px;
+        width: pxToRem(24px);
+        height: pxToRem(24px);
       }
 
-      sbb-icon {
-        width: 24px;
-        height: 24px;
+      .sbb-icon {
+        width: pxToRem(24px);
+        height: pxToRem(24px);
       }
 
       &:empty:after {
@@ -85,7 +85,7 @@ $sbb-icon-sidebar-collapsed-width: 48px;
     }
 
     .sbb-icon-sidebar-item-label {
-      padding: 0 12px 0 4px;
+      padding: 0 pxToRem(12px) 0 pxToRem(4px);
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -98,7 +98,7 @@ $sbb-icon-sidebar-collapsed-width: 48px;
         content: '';
         display: block;
         position: absolute;
-        width: 2px;
+        width: pxToRem(2px);
         height: 100%;
         left: 0;
         top: 0;
@@ -141,11 +141,11 @@ $sbb-icon-sidebar-collapsed-width: 48px;
   }
 
   hr {
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: pxToRem(8px);
+    margin-bottom: pxToRem(8px);
     padding: 0;
     border: none;
-    border-top: solid 1px $sbbColorGraphite;
+    border-top: solid pxToRem(1px) $sbbColorGraphite;
   }
 
   .sbb-icon-sidebar-collapse-expand-button {
@@ -160,6 +160,10 @@ $sbb-icon-sidebar-collapsed-width: 48px;
 
     .sbb-icon-sidebar-item-icon {
       transition: transform $swift-ease-out-duration $swift-ease-out-timing-function;
+      .sbb-icon {
+        width: pxToRem(24px);
+        height: pxToRem(24px);
+      }
     }
 
     &:hover,
@@ -180,7 +184,7 @@ $sbb-icon-sidebar-collapsed-width: 48px;
 
   .sbb-icon-sidebar {
     width: auto;
-    height: 48px;
+    height: pxToRem(48px);
     top: auto;
     left: 0;
     right: 0;
@@ -221,7 +225,7 @@ $sbb-icon-sidebar-collapsed-width: 48px;
       &.sbb-icon-sidebar-item-active {
         &:after {
           width: 100%;
-          height: 2px;
+          height: pxToRem(2px);
           top: auto;
           bottom: 0;
         }
@@ -229,10 +233,10 @@ $sbb-icon-sidebar-collapsed-width: 48px;
     }
 
     hr {
-      margin: 0 8px;
-      flex: 0 0 1px;
+      margin: 0 pxToRem(8px);
+      flex: 0 0 pxToRem(1px);
       border-top: none;
-      border-left: solid 1px $sbbColorGraphite;
+      border-left: solid pxToRem(1px) $sbbColorGraphite;
     }
   }
 }

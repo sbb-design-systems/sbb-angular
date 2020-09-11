@@ -1,11 +1,9 @@
 :host {
   display: block;
-  overflow: hidden;
-  padding-top: 54px;
 }
 
 .sbb-icon-sidebar.sbb-icon-sidebar-expanded {
-  width: 260px;
+  width: pxToRem(260px);
 }
 
 .sbb-icon-sidebar .sbb-icon-sidebar-item.sbb-deprecated-link {
