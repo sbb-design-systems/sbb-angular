@@ -200,7 +200,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48px);
     display: flex;
   }
 
-  .sbb-sidebar {
+  .sbb-sidebar .sbb-sidebar-inner-container {
     padding-top: $sbb-sidebar-mobile-menu-bar-height;
   }
 

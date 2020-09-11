@@ -746,6 +746,16 @@ describe('SbbSidebarContainer', () => {
     );
   }));
 
+  it('should mark the sidebar content as scrollable', () => {
+    const fixture = TestBed.createComponent(BasicTestComponent);
+    fixture.detectChanges();
+
+    const content = fixture.debugElement.query(By.css('.sbb-sidebar-inner-container'));
+    const scrollable = content.injector.get(CdkScrollable);
+    expect(scrollable).toBeTruthy();
+    expect(scrollable.getElementRef().nativeElement).toBe(content.nativeElement);
+  });
+
   it('should clean up the sidebars stream on destroy', fakeAsync(() => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
     fixture.detectChanges();
