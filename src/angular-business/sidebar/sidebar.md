@@ -1,6 +1,182 @@
-Sbb angular provides two sets of components designed to add collapsible side content (often
+Sbb angular provides two sets of components designed to add side content (often
 navigation, though it can be any content) alongside some primary content. These are the sidebar and
-drawer components.
+icon sidebar components.
+
+### Utilisation of sidebars
+
+It is intended that in addition to the `<sbb-header>`, the two sidebars are only used once on each view,
+so that a maximum of three navigation hierarchy levels occur.
+For example: `<sbb-header>` > `<sbb-icon-sidebar>` > `<sbb-sidebar>` (as it is in showcase).
+All sidebar components can be technically nested in any form, or they can be used individually.
+
+## Icon Sidebar
+
+The icon sidebar components are designed to add a primary navigation to a fullscreen app using specific icons and a label.
+To set up an icon sidebar we use three components: `<sbb-icon-sidebar-container>` which acts as a structural container for our content
+and icon sidebar, `<sbb-icon-sidebar-content>` which represents the main content, and `<sbb-icon-sidebar>` which
+represents the added side content.
+
+### Specifying the main and side content
+
+Both the main and side content should be placed inside of the `<sbb-icon-sidebar-container>`, content
+that you don't want to be affected by the sidebar, such as a header or footer, can be placed outside
+of the container.
+
+The side content should be wrapped in a `<sbb-icon-sidebar>` element. A
+`<sbb-icon-sidebar-container>` can only have one `<sbb-icon-sidebar>` element.
+The `<sbb-icon-sidebar>` must be placed as an immediate child of the `<sbb-icon-sidebar-container>`.
+
+The main content should be wrapped in a `<sbb-icon-sidebar-content>`. If no `<sbb-icon-sidebar-content>` is
+specified for a `<sbb-icon-sidebar-container>`, one will be created implicitly and all of the content
+inside the `<sbb-icon-sidebar-container>` other than the `<sbb-icon-sidebar>` elements will be placed inside
+of it.
+
+The following are examples of valid icon sidebar layouts:
+
+```html
+<!-- Creates a layout with an explicit content. -->
+<sbb-icon-sidebar-container>
+  <sbb-icon-sidebar>
+    <a sbbIconSidebarItem label="Station"><sbb-icon svgIcon="kom:station-small"></sbb-icon></a>
+  </sbb-icon-sidebar>
+  <sbb-icon-sidebar-content>Main</sbb-icon-sidebar-content>
+</sbb-icon-sidebar-container>
+```
+
+```html
+<!-- Creates a layout with an implicit content. -->
+<sbb-icon-sidebar-container>
+  <sbb-icon-sidebar>
+    <a sbbIconSidebarItem label="Station"><sbb-icon svgIcon="kom:station-small"></sbb-icon></a>
+  </sbb-icon-sidebar>
+  <section>Main</section>
+</sbb-icon-sidebar-container>
+```
+
+```html
+<!-- Creates an empty sidebar container with no sidebars and implicit empty content. -->
+<sbb-icon-sidebar-container></sbb-icon-sidebar-container>
+```
+
+And these are examples of invalid icon sidebar layouts:
+
+```html
+<!-- Invalid because there are two `<sbb-icon-sidebar>` elements -->
+<sbb-icon-sidebar-container>
+  <sbb-icon-sidebar>Sidebar</sbb-icon-sidebar>
+  <sbb-icon-sidebar>Sidebar 2</sbb-icon-sidebar>
+</sbb-icon-sidebar-container>
+```
+
+```html
+<!-- Invalid because there are multiple `<sbb-icon-sidebar-content>` elements. -->
+<sbb-icon-sidebar-container>
+  <sbb-icon-sidebar-content>Main</sbb-icon-sidebar-content>
+  <sbb-icon-sidebar-content>Main 2</sbb-icon-sidebar-content>
+</sbb-icon-sidebar-container>
+```
+
+```html
+<!-- Invalid because the `<sbb-icon-sidebar>` is outside of the `<sbb-icon-sidebar-container>`. -->
+<sbb-icon-sidebar-container></sbb-icon-sidebar-container>
+<sbb-icon-sidebar></sbb-icon-sidebar>
+```
+
+### Sidebar Links
+
+Inside a `<sbb-icon-sidebar>` it's possible to place links containing the attribute selector `sbbIconSidebarItem`
+and `<hr>` elements to separate links from each other. Any different element than the two mentioned are ignored.
+Using links you have to set the label attribute for the description because any content other than the icon within a `<a sbbIconSidebarItem></a>` is ignored.
+
+To display the active state correctly, use the css class `sbb-icon-sidebar-item-active`.
+For example if using with a routerLink, write `routerLinkActive="sbb-icon-sidebar-item-active"`.
+
+#### Example with angular router
+
+```html
+<sbb-icon-sidebar-container>
+  <sbb-icon-sidebar>
+    <a
+      sbbIconSidebarItem
+      label="Station"
+      routerLink="./link"
+      routerLinkActive="sbb-icon-sidebar-item-active"
+    >
+      <sbb-icon svgIcon="kom:station-small"></sbb-icon>
+    </a>
+    <hr />
+    <a
+      sbbIconSidebarItem
+      label="Other Station"
+      routerLink="./link2"
+      routerLinkActive="sbb-icon-sidebar-item-active"
+    >
+      <sbb-icon svgIcon="kom:station-small"></sbb-icon>
+    </a>
+  </sbb-icon-sidebar>
+  <sbb-sidebar-content role="main">
+    <router-outlet></router-outlet>
+  </sbb-sidebar-content>
+</sbb-icon-sidebar-container>
+```
+
+### Expanding and collapsing an icon sidebar
+
+An `<sbb-icon-sidebar>` can be expanded or collapsed using the `toggleExpanded(expanded: boolean)` method.
+
+The expanded state can also be set via a property binding in the template using the `expanded` property.
+The property supports 2-way binding.
+
+In the mobile view, the icon sidebar is always collapsed.
+
+### Setting the icon sidebar's expanded size
+
+The `<sbb-icon-sidebar>` will, by default, have an expanded width of 250px. The width can
+be explicitly set via CSS:
+
+```css
+.sbb-icon-sidebar.sbb-icon-sidebar-expanded {
+  width: 300px;
+}
+```
+
+### Using with sbb header
+
+If you like to use the icon sidebar after the `<sbb-header>`, please
+apply the css class `sbb-icon-sidebar-after-header` to the `<sbb-icon-sidebar-container>`.
+
+```html
+<sbb-header>...</sbb-header>
+<sbb-icon-sidebar-container class="sbb-icon-sidebar-after-header">
+  ...
+</sbb-icon-sidebar-container>
+```
+
+### Reacting to scroll events inside the sidebar container
+
+To react to scrolling inside the `<sbb-icon-sidebar-container>`, you can get a hold of the underlying
+`CdkScrollable` instance through the `sbbSidebarContainer`.
+
+```ts
+class YourComponent implements AfterViewInit {
+  @ViewChild(sbbIconSidebarContainer) sidebarContainer: sbbIconSidebarContainer;
+
+  ngAfterViewInit() {
+    this.sidebarContainer.scrollable.elementScrolled().subscribe(() => /* react to scrolling */);
+  }
+}
+```
+
+### Accessibility
+
+The `<sbb-sidebar-content>` should be given a role based on what it contains. If it
+represents the primary content of the page, it may make sense to mark it `role="main"`. If no more
+specific role makes sense, `role="region"` is again a good fallback.
+
+If there is not enough space for link labels, they are becoming clipped and complemented with ellipsis.
+To provide full length label to the user, use either the `title`-attribute or the sbb tooltip.
+
+## Sidebar
 
 The sidebar components are designed to add side content to a fullscreen app. To set up a sidebar we
 use three components: `<sbb-sidebar-container>` which acts as a structural container for our content
