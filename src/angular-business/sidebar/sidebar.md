@@ -183,12 +183,6 @@ use three components: `<sbb-sidebar-container>` which acts as a structural conta
 and sidebar, `<sbb-sidebar-content>` which represents the main content, and `<sbb-sidebar>` which
 represents the added side content.
 
-The drawer component is designed to add side content to a small section of your app. This is
-accomplished using the `<sbb-drawer-container>`, `<sbb-drawer-content>`, and `<sbb-drawer>`
-components, which are analogous to their sidebar equivalents. Rather than adding side content to the
-app as a whole, these are designed to add side content to a small section of your app. They support
-almost all of the same features, but do not support fixed positioning.
-
 ### Specifying the main and side content
 
 Both the main and side content should be placed inside of the `<sbb-sidebar-container>`, content
@@ -208,7 +202,7 @@ The following are examples of valid sidebar layouts:
 ```html
 <!-- Creates a layout with an explicit content. -->
 <sbb-sidebar-container>
-  <sbb-sidebar>Sidebar</sbb-sidebar>
+  <sbb-sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
   <sbb-sidebar-content>Main</sbb-sidebar-content>
 </sbb-sidebar-container>
 ```
@@ -216,7 +210,7 @@ The following are examples of valid sidebar layouts:
 ```html
 <!-- Creates a layout with an implicit content. -->
 <sbb-sidebar-container>
-  <sbb-sidebar>Sidebar</sbb-sidebar>
+  <sbb-sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
   <section>Main</section>
 </sbb-sidebar-container>
 ```
@@ -231,8 +225,8 @@ And these are examples of invalid sidebar layouts:
 ```html
 <!-- Invalid because there are two `<sbb-sidebar>` elements -->
 <sbb-sidebar-container>
-  <sbb-sidebar>Sidebar</sbb-sidebar>
-  <sbb-sidebar>Sidebar 2</sbb-sidebar>
+  <sbb-sidebar><fieldset>Sidebar</fieldset></sbb-sidebar>
+  <sbb-sidebar><fieldset>Sidebar2</fieldset></sbb-sidebar>
 </sbb-sidebar-container>
 ```
 
@@ -250,7 +244,40 @@ And these are examples of invalid sidebar layouts:
 <sbb-sidebar></sbb-sidebar>
 ```
 
-These same rules all apply to the drawer components as well.
+### Sidebar Navigation Content
+
+Inside a `<sbb-sidebar>` it's possible to place `<sbb-expansion-panel>` and `<fieldset>` elements in which you can place every content you like.
+Any different direct descendant of `<sbb-sidebar>` than the two mentioned elements are being ignored.
+
+Primarly it is intended to place links with the attribute selector `sbbSidebarLink` inside of `<sbb-expansion-panel>` and `<fieldset>` to achieve a navigation.
+
+To display the active state correctly, use the css class `sbb-sidebar-link-active`.
+For example if using with a routerLink, write `routerLinkActive="sbb-sidebar-link-active"`.
+
+#### Example with angular router
+
+```html
+<sbb-sidebar-container>
+  <sbb-sidebar role="navigation">
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
+      <a sbbSidebarLink routerLink="/getting-started" routerLinkActive="sbb-sidebar-link-active"
+        >Getting Started</a
+      >
+      <a sbbSidebarLink routerLink="/typography" routerLinkActive="sbb-sidebar-link-active"
+        >Typography</a
+      >
+    </sbb-expansion-panel>
+    <fieldset>
+      <legend>Fieldset Example</legend>
+      <button sbbButton mode="primary">Random Content</button>
+    </fieldset>
+  </sbb-sidebar>
+  <sbb-sidebar-content role="main">
+    <router-outlet></router-outlet>
+  </sbb-sidebar-content>
+</sbb-sidebar-container>
+```
 
 ### Opening and closing a sidebar
 
@@ -264,73 +291,32 @@ The property supports 2-way binding.
 `<sbb-sidebar>` also supports output properties for just open and just close events, The `(opened)`
 and `(closed)` properties respectively.
 
-All of these properties and methods work on `<sbb-drawer>` as well.
-
-### Changing the sidebar's behavior
-
-The `<sbb-sidebar>` can render in one of three different ways based on the `mode` property.
-
-| Mode   | Description                                                                                                           |
-| ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `over` | Sidenar floats over the primary content, which is covered by a backdrop                                               |
-| `push` | Sidenar pushes the primary content out of its way, also covering it with a backdrop                                   |
-| `side` | Sidenar appears side-by-side with the main content, shrinking the main content's width to make space for the sidebar. |
-
-If no `mode` is specified, `over` is used by default.
-
-The `over` and `push` sidebar modes show a backdrop by default, while the `side` mode does not. This
-can be customized by setting the `hasBackdrop` property on `sbb-sidebar-container`. Explicitly
-setting `hasBackdrop` to `true` or `false` will override the default backdrop visibility setting for
-all sidebars regadless of mode. Leaving the property unset or setting it to `null` will use the
-default backdrop visibility for each mode.
-
-`<sbb-drawer>` also supports all of these same modes and options.
-
-### Disabling automatic close
-
-Clicking on the backdrop or pressing the <kbd>Esc</kbd> key will normally close an open sidebar.
-However, this automatic closing behavior can be disabled by setting the `disableClose` property on
-the `<sbb-sidebar>` or `<sbb-drawer>` that you want to disable the behavior for.
-
-Custom handling for <kbd>Esc</kbd> can be done by adding a keydown listener to the `<sbb-sidebar>`.
-Custom handling for backdrop clicks can be done via the `(backdropClick)` output property on
-`<sbb-sidebar-container>`.
-
-### Resizing an open sidebar
-
-By default, sbb angular will only measure and resize the drawer container in a few key moments
-(on open, on window resize, on mode change) in order to avoid layout thrashing, however there
-are cases where this can be problematic. If your app requires for a drawer to change its width
-while it is open, you can use the `autosize` option to tell sbb angular to continue measuring it.
-Note that you should use this option **at your own risk**, because it could cause performance
-issues.
-
 ### Setting the sidebar's size
 
-The `<sbb-sidebar>` and `<sbb-drawer>` will, by default, fit the size of its content. The width can
+The `<sbb-sidebar>` will, by default, have an expanded width of 300px. The width can
 be explicitly set via CSS:
 
 ```css
-sbb-sidebar {
+.sbb-sidebar {
   width: 250px;
 }
 ```
 
+If you like fit the size of its content, just set css `width` to `auto`.
+
 Try to avoid percent based width as `resize` events are not (yet) supported.
 
-### Fixed position sidebars
+### Using with sbb header
 
-For `<sbb-sidebar>` only (not `<sbb-drawer>`) fixed positioning is supported. It can be enabled by
-setting the `fixedInViewport` property. Additionally, top and bottom space can be set via the
-`fixedTopGap` and `fixedBottomGap`. These properties accept a pixel value amount of space to add at
-the top or bottom.
+If you like to use the sidebar after the `<sbb-header>`, please
+apply the css class `sbb-sidebar-after-header` to the `<sbb-sidebar-container>`.
 
-### Creating a responsive layout for mobile & desktop
-
-A sidebar often needs to behave differently on a mobile vs a desktop display. On a desktop, it may
-make sense to have just the content section scroll. However, on mobile you often want the body to be
-the element that scrolls; this allows the address bar to auto-hide. The sidebar can be styled with
-CSS to adjust to either type of device.
+```html
+<sbb-header>...</sbb-header>
+<sbb-sidebar-container class="sbb-sidebar-after-header">
+  ...
+</sbb-sidebar-container>
+```
 
 ### Reacting to scroll events inside the sidebar container
 
@@ -349,7 +335,7 @@ class YourComponent implements AfterViewInit {
 
 ### Accessibility
 
-The `<sbb-sidebar>` an `<sbb-sidebar-content>` should each be given an appropriate `role` attribute
+The `<sbb-sidebar>` and `<sbb-sidebar-content>` should each be given an appropriate `role` attribute
 depending on the context in which they are used.
 
 For example, a `<sbb-sidebar>` that contains links
@@ -363,6 +349,6 @@ specific role makes sense, `role="region"` is again a good fallback.
 
 #### Focus management
 
-The sidebar has the ability to capture focus. This behavior is turned on for the `push` and `over` modes and it is off for `side` mode. You can change its default behavior by the `autoFocus` input.
+The sidebar has the ability to capture focus. This behavior is turned on for mobile devices and it is off for desktop devices.
 
 By default the first tabbable element will recieve focus upon open. If you want a different element to be focused, you can set the `cdkFocusInitial` attribute on it.
