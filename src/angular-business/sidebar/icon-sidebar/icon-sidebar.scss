@@ -38,6 +38,11 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48px);
         transform: rotate(180deg);
       }
     }
+
+    // Clip expand / collapse button text instead of ellipsis because of weird animation
+    .sbb-icon-sidebar-collapse-expand-button.sbb-icon-sidebar-item .sbb-icon-sidebar-item-label {
+      text-overflow: clip;
+    }
   }
 
   .sbb-icon-sidebar-links {
