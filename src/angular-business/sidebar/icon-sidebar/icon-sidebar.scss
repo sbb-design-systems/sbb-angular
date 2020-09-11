@@ -7,7 +7,6 @@ $sbb-icon-sidebar-collapsed-width: 48px;
 .sbb-icon-sidebar-container {
   @include sbb-sidebar-container('.sbb-icon-sidebar');
 
-  // Need this to take up space in the layout.
   display: flex;
   flex-direction: row;
 
@@ -180,11 +179,11 @@ $sbb-icon-sidebar-collapsed-width: 48px;
   flex-direction: column-reverse;
 
   .sbb-icon-sidebar {
+    width: auto;
+    height: 48px;
     top: auto;
     left: 0;
-    width: auto;
     right: 0;
-    height: 48px;
     overflow-y: hidden;
     overflow-x: auto;
 
