@@ -3,19 +3,33 @@ import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SbbSidebarContainer } from '@sbb-esta/angular-business/sidebar';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
+
+const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
+  fixture.debugElement.queryAll(By.css('sbb-icon-sidebar-container'))!.forEach((debugElement) => {
+    const sidebarContainer: SbbSidebarContainer = debugElement.componentInstance;
+    sidebarContainer._updateMobileState(mobile);
+  });
+  fixture.detectChanges();
+  flush();
+};
+
+const activateDesktop = (fixture: ComponentFixture<any>) => {
+  activateMobile(fixture, false);
+};
 
 describe('SbbIconSidebar', () => {
   beforeEach(async(() => {
@@ -273,6 +287,26 @@ describe('SbbIconSidebar', () => {
           .querySelectorAll('.sbb-icon-sidebar-item-label')[1]
           .getAttribute('aria-hidden')
       ).toEqual('false');
+    }));
+
+    it('should scroll to left when changing from mobile to desktop view to show all icons correctly aligned', fakeAsync(() => {
+      activateMobile(fixture);
+
+      const sbbIcon = fixture.debugElement.query(By.css('sbb-icon'));
+      const scrollContainer = fixture.nativeElement.querySelector(
+        '.sbb-icon-sidebar-inner-container'
+      );
+
+      sbbIcon.nativeElement.style.width = '10000px';
+      scrollContainer.scrollLeft = 200;
+
+      fixture.detectChanges();
+
+      expect(scrollContainer.scrollLeft).toBeGreaterThan(0);
+
+      activateDesktop(fixture);
+
+      expect(scrollContainer.scrollLeft).toBe(0);
     }));
   });
 });

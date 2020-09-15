@@ -4,7 +4,7 @@ import { ESCAPE } from '@angular/cdk/keycodes';
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import {
   async,
   ComponentFixture,
@@ -19,6 +19,8 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AccordionModule } from '@sbb-esta/angular-business/accordion';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
   createKeyboardEvent,
@@ -494,7 +496,7 @@ describe('SbbSidebar', () => {
     let sidebar: SbbSidebar;
     let firstFocusableElement: HTMLElement;
     let lastFocusableElement: HTMLElement;
-    let mobileOpenSidebarButton: HTMLElement;
+    let mobileCloseSidebarButton: HTMLElement;
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(SidebarWithFocusableElementsTestComponent);
@@ -504,7 +506,7 @@ describe('SbbSidebar', () => {
       sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       firstFocusableElement = fixture.debugElement.query(By.css('.input1'))!.nativeElement;
       lastFocusableElement = fixture.debugElement.query(By.css('.input2'))!.nativeElement;
-      mobileOpenSidebarButton = fixture.debugElement.query(
+      mobileCloseSidebarButton = fixture.debugElement.query(
         By.css('.sbb-sidebar-mobile-menu-bar-close')
       )!.nativeElement;
       lastFocusableElement.focus();
@@ -518,7 +520,7 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
       tick();
 
-      expect(document.activeElement).toBe(mobileOpenSidebarButton);
+      expect(document.activeElement).toBe(mobileCloseSidebarButton);
     }));
 
     it('should not auto-focus by default when opened in "side" mode', fakeAsync(() => {
@@ -772,6 +774,78 @@ describe('SbbSidebarContainer', () => {
   }));
 });
 
+describe('SbbSidebar Usage', () => {
+  let fixture: ComponentFixture<SbbSidebarTestComponent>;
+  let sidebar: DebugElement;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SbbSidebarModule,
+        A11yModule,
+        PlatformModule,
+        NoopAnimationsModule,
+        AccordionModule,
+        RouterTestingModule.withRoutes([
+          { path: 'link', pathMatch: 'full', component: SbbSidebarTestComponent },
+        ]),
+        SbbIconTestingModule,
+      ],
+      declarations: [SbbSidebarTestComponent],
+    });
+
+    TestBed.compileComponents();
+
+    fixture = TestBed.createComponent(SbbSidebarTestComponent);
+    sidebar = fixture.debugElement.query(By.directive(SbbSidebar));
+
+    fixture.detectChanges();
+  }));
+
+  it('should not include any other elements than expansion panels and fieldsets', () => {
+    expect(sidebar.nativeElement.textContent).not.toContain('SHOULD BE IGNORED');
+  });
+
+  it('should close sidebar on navigation start', fakeAsync(() => {
+    activateMobile(fixture);
+
+    sidebar.componentInstance.open();
+    fixture.detectChanges();
+    flush();
+
+    expect(sidebar.componentInstance.opened).toBe(true);
+
+    const link = fixture.debugElement.query(By.css('a[sbbSidebarLink]'));
+    link.nativeElement.click();
+
+    fixture.detectChanges();
+    flush();
+
+    expect(sidebar.componentInstance.opened).toBe(false);
+  }));
+
+  it('should open and close sidebar with hamburger menu button', fakeAsync(() => {
+    activateMobile(fixture);
+
+    expect(sidebar.componentInstance.opened).toBe(false);
+
+    const mobileOpenSidebarButton = fixture.debugElement.query(
+      By.css('.sbb-sidebar-mobile-menu-bar-trigger')
+    )!.nativeElement;
+
+    mobileOpenSidebarButton.click();
+
+    expect(sidebar.componentInstance.opened).toBe(true);
+
+    const mobileCloseSidebarButton = fixture.debugElement.query(
+      By.css('.sbb-sidebar-mobile-menu-bar-close')
+    )!.nativeElement;
+
+    mobileCloseSidebarButton.click();
+
+    expect(sidebar.componentInstance.opened).toBe(false);
+  }));
+});
+
 /** Test component that contains an SbbSidebarContainer and an empty sbb-sidebar-content. */
 @Component({
   template: ` <sbb-sidebar-container>
@@ -979,3 +1053,23 @@ class NestedSidebarContainersTestComponent {
   @ViewChild('innerContainer') innerContainer: SbbSidebarContainer;
   @ViewChild('innerSidebar') innerSidebar: SbbSidebar;
 }
+
+@Component({
+  template: `<sbb-sidebar-container>
+    <sbb-sidebar role="navigation">
+      <sbb-expansion-panel expanded>
+        <sbb-expansion-panel-header>Title</sbb-expansion-panel-header>
+        <a sbbSidebarLink routerLink="./link">Link</a>
+      </sbb-expansion-panel>
+      <fieldset>
+        <legend>Fieldset Example</legend>
+        <button sbbButton mode="primary">Random Content</button>
+      </fieldset>
+      <a>SHOULD BE IGNORED</a>
+    </sbb-sidebar>
+    <sbb-sidebar-content role="main">
+      Content
+    </sbb-sidebar-content>
+  </sbb-sidebar-container>`,
+})
+class SbbSidebarTestComponent {}
