@@ -46,13 +46,13 @@ const PROVIDE_FAKE_MEDIA_MATCHER = {
 
 let mediaMatcher: FakeMediaMatcher;
 
-const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
+const activateMobile = (mobile = true) => {
   mediaMatcher.setMatchesQuery(Breakpoints.Mobile, mobile);
   tick();
 };
 
-const activateDesktop = (fixture: ComponentFixture<any>) => {
-  activateMobile(fixture, false);
+const activateDesktop = () => {
+  activateMobile(false);
 };
 
 const registerClearMediaMatcher = () => {
@@ -94,7 +94,7 @@ describe('SbbSidebar', () => {
     it('should be able to open', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const container = fixture.debugElement.query(By.css('sbb-sidebar-container'))!.nativeElement;
@@ -118,7 +118,7 @@ describe('SbbSidebar', () => {
     it('should be able to close', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const container = fixture.debugElement.query(By.css('sbb-sidebar-container'))!.nativeElement;
@@ -147,7 +147,7 @@ describe('SbbSidebar', () => {
     it('should resolve the open method promise with the new state of the sidebar', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))!
         .componentInstance;
@@ -161,7 +161,7 @@ describe('SbbSidebar', () => {
     it('should resolve the close method promise with the new state of the sidebar', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
       const sidebarInstance: SbbSidebar = sidebar.componentInstance;
@@ -180,7 +180,7 @@ describe('SbbSidebar', () => {
     it('should be able to close while the open animation is running', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       fixture.debugElement.query(By.css('.open'))!.nativeElement.click();
@@ -211,7 +211,7 @@ describe('SbbSidebar', () => {
     it('should emit the backdropClick event when the backdrop is clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const openButtonElement = fixture.debugElement.query(By.css('.open'))!.nativeElement;
@@ -242,7 +242,7 @@ describe('SbbSidebar', () => {
     it('should close when pressing escape in over mode', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
@@ -283,7 +283,7 @@ describe('SbbSidebar', () => {
     it('should not close when pressing escape with a modifier', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const testComponent: BasicTestComponent = fixture.debugElement.componentInstance;
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!;
@@ -308,7 +308,7 @@ describe('SbbSidebar', () => {
     it('should restore focus on close if backdrop has been clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       const openButton = fixture.componentInstance.openButton.nativeElement;
@@ -341,7 +341,7 @@ describe('SbbSidebar', () => {
       const fixture = TestBed.createComponent(BasicTestComponent);
 
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       const openButton = fixture.componentInstance.openButton.nativeElement;
@@ -366,7 +366,7 @@ describe('SbbSidebar', () => {
     it('should restore focus to an SVG element', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       const svg = fixture.componentInstance.svg.nativeElement;
@@ -391,7 +391,7 @@ describe('SbbSidebar', () => {
     it('should not restore focus on close if focus is outside sidebar', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))!
         .componentInstance;
@@ -421,7 +421,7 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
 
       expect(fixture.componentInstance.sidebar.opened).toBe(true);
-      activateMobile(fixture);
+      activateMobile();
       expect(fixture.componentInstance.sidebar.opened).toBe(false);
     }));
 
@@ -429,7 +429,7 @@ describe('SbbSidebar', () => {
       const fixture = TestBed.createComponent(NestedSidebarContainersTestComponent);
       const instance = fixture.componentInstance;
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
 
       expect(instance.outerSidebar.opened).toBe(false);
       expect(instance.innerSidebar.opened).toBe(false);
@@ -489,7 +489,7 @@ describe('SbbSidebar', () => {
       it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
         const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
         fixture.detectChanges();
-        activateMobile(fixture);
+        activateMobile();
 
         // Note that we need actual timeouts and the `BrowserAnimationsModule`
         // in order to test it correctly.
@@ -524,7 +524,7 @@ describe('SbbSidebar', () => {
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(SidebarWithFocusableElementsTestComponent);
       fixture.detectChanges();
-      activateMobile(fixture);
+      activateMobile();
       testComponent = fixture.debugElement.componentInstance;
       sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
       firstFocusableElement = fixture.debugElement.query(By.css('.input1'))!.nativeElement;
@@ -547,7 +547,7 @@ describe('SbbSidebar', () => {
     }));
 
     it('should not auto-focus by default when opened in "side" mode', fakeAsync(() => {
-      activateDesktop(fixture);
+      activateDesktop();
       fixture.detectChanges();
       lastFocusableElement.focus();
 
@@ -565,7 +565,7 @@ describe('SbbSidebar', () => {
         SidebarWithoutFocusableElementsTestComponent
       );
       nonFocusableFixture.detectChanges();
-      activateMobile(nonFocusableFixture);
+      activateMobile();
 
       const sidebarEl = nonFocusableFixture.debugElement.query(By.directive(SbbSidebar))!;
       sidebarEl.nativeElement.focus();
@@ -582,7 +582,7 @@ describe('SbbSidebar', () => {
     }));
 
     it('should update the focus trap enable state if the mode changes while open', fakeAsync(() => {
-      activateDesktop(fixture);
+      activateDesktop();
       fixture.detectChanges();
 
       const anchors = Array.from<HTMLElement>(
@@ -594,7 +594,7 @@ describe('SbbSidebar', () => {
         'Expected focus trap anchors to be disabled in side mode.'
       );
 
-      activateMobile(fixture);
+      activateMobile();
       sidebar.open();
       fixture.detectChanges();
 
@@ -638,7 +638,7 @@ describe('SbbSidebarContainer', () => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
 
     fixture.detectChanges();
-    activateMobile(fixture);
+    activateMobile();
 
     const testComponent: SidebarContainerEmptyTestComponent =
       fixture.debugElement.componentInstance;
@@ -710,7 +710,7 @@ describe('SbbSidebarContainer', () => {
 
     expect(initialMargin).toBeGreaterThan(0);
 
-    activateMobile(fixture);
+    activateMobile();
     fixture.detectChanges();
     flush();
 
@@ -739,7 +739,7 @@ describe('SbbSidebarContainer', () => {
   it('should not set a style property if it would be zero', fakeAsync(() => {
     const fixture = TestBed.createComponent(ZeroWithSidebarTestComponent);
     fixture.detectChanges();
-    activateMobile(fixture);
+    activateMobile();
     fixture.detectChanges();
 
     const content = fixture.debugElement.nativeElement.querySelector('.sbb-sidebar-content');
@@ -751,7 +751,7 @@ describe('SbbSidebarContainer', () => {
   it('should have a backdrop', fakeAsync(() => {
     const fixture = TestBed.createComponent(BasicTestComponent);
     fixture.detectChanges();
-    activateMobile(fixture);
+    activateMobile();
 
     fixture.debugElement.query(By.directive(SbbSidebar)).componentInstance.open();
 
@@ -842,7 +842,7 @@ describe('SbbSidebar Usage', () => {
   });
 
   it('should close sidebar on navigation start', fakeAsync(() => {
-    activateMobile(fixture);
+    activateMobile();
 
     sidebar.componentInstance.open();
     fixture.detectChanges();
@@ -860,7 +860,7 @@ describe('SbbSidebar Usage', () => {
   }));
 
   it('should open and close sidebar with hamburger menu button', fakeAsync(() => {
-    activateMobile(fixture);
+    activateMobile();
 
     expect(sidebar.componentInstance.opened).toBe(false);
 

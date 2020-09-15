@@ -31,13 +31,13 @@ const PROVIDE_FAKE_MEDIA_MATCHER = {
 
 let mediaMatcher: FakeMediaMatcher;
 
-const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
+const activateMobile = (mobile = true) => {
   mediaMatcher.setMatchesQuery(Breakpoints.Mobile, mobile);
   tick();
 };
 
-const activateDesktop = (fixture: ComponentFixture<any>) => {
-  activateMobile(fixture, false);
+const activateDesktop = () => {
+  activateMobile(false);
 };
 
 const registerClearMediaMatcher = () => {
@@ -308,7 +308,7 @@ describe('SbbIconSidebar', () => {
     }));
 
     it('should scroll to left when changing from mobile to desktop view to show all icons correctly aligned', fakeAsync(() => {
-      activateMobile(fixture);
+      activateMobile();
 
       const sbbIcon = fixture.debugElement.query(By.css('sbb-icon'));
       const scrollContainer = fixture.nativeElement.querySelector(
@@ -322,7 +322,7 @@ describe('SbbIconSidebar', () => {
 
       expect(scrollContainer.scrollLeft).toBeGreaterThan(0);
 
-      activateDesktop(fixture);
+      activateDesktop();
 
       expect(scrollContainer.scrollLeft).toBe(0);
     }));
