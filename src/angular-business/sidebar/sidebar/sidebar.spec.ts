@@ -1,6 +1,7 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { Direction } from '@angular/cdk/bidi';
 import { ESCAPE } from '@angular/cdk/keycodes';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,7 @@ import {
   discardPeriodicTasks,
   fakeAsync,
   flush,
+  inject,
   TestBed,
   tick,
 } from '@angular/core/testing';
@@ -21,28 +23,39 @@ import {
 } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AccordionModule } from '@sbb-esta/angular-business/accordion';
+import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
   createKeyboardEvent,
   dispatchEvent,
   dispatchKeyboardEvent,
+  FakeMediaMatcher,
 } from '@sbb-esta/angular-core/testing';
 
 import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbSidebar, SbbSidebarContainer } from './sidebar';
 
+let mediaMatcher: FakeMediaMatcher;
+
 const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
-  fixture.debugElement.queryAll(By.css('sbb-sidebar-container'))!.forEach((debugElement) => {
-    const sidebarContainer: SbbSidebarContainer = debugElement.componentInstance;
-    sidebarContainer._updateMobileState(mobile);
-  });
-  fixture.detectChanges();
-  flush();
+  mediaMatcher.setMatchesQuery(Breakpoints.Mobile, mobile);
+  tick();
 };
 
 const activateDesktop = (fixture: ComponentFixture<any>) => {
   activateMobile(fixture, false);
+};
+
+const setupMediaMatcher = () => {
+  beforeEach(inject([MediaMatcher], (fakeMediaMatcher: FakeMediaMatcher) => {
+    mediaMatcher = fakeMediaMatcher;
+    mediaMatcher.defaultMatches = false; // enforce desktop view
+  }));
+
+  afterEach(() => {
+    mediaMatcher.clear();
+  });
 };
 
 describe('SbbSidebar', () => {
@@ -66,10 +79,13 @@ describe('SbbSidebar', () => {
         IndirectDescendantSidebarTestComponent,
         NestedSidebarContainersTestComponent,
       ],
+      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
     });
 
     TestBed.compileComponents();
   }));
+
+  setupMediaMatcher();
 
   describe('methods', () => {
     it('should be able to open', fakeAsync(() => {
@@ -458,36 +474,40 @@ describe('SbbSidebar', () => {
       }).toThrow();
     }));
 
-    it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
+    describe('binding', () => {
       TestBed.resetTestingModule()
         .configureTestingModule({
           imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconTestingModule],
           declarations: [SidebarOpenBindingTestComponent],
+          providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
         })
         .compileComponents();
 
-      const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
-      fixture.detectChanges();
-      activateMobile(fixture);
+      it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
+        const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
+        fixture.detectChanges();
+        activateMobile(fixture);
 
-      // Note that we need actual timeouts and the `BrowserAnimationsModule`
-      // in order to test it correctly.
-      setTimeout(() => {
-        const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))
-          .componentInstance;
-        sidebar.toggle();
-        expect(() => fixture.detectChanges()).not.toThrow();
-
+        // Note that we need actual timeouts and the `BrowserAnimationsModule`
+        // in order to test it correctly.
         setTimeout(() => {
+          const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))
+            .componentInstance;
           sidebar.toggle();
           expect(() => fixture.detectChanges()).not.toThrow();
+
+          setTimeout(() => {
+            sidebar.toggle();
+            expect(() => fixture.detectChanges()).not.toThrow();
+          }, 1);
+
+          tick(1);
         }, 1);
 
         tick(1);
-      }, 1);
-
-      tick(1);
-    }));
+        flush();
+      }));
+    });
   });
 
   describe('focus trapping behavior', () => {
@@ -535,13 +555,15 @@ describe('SbbSidebar', () => {
       expect(document.activeElement).toBe(lastFocusableElement);
     }));
 
-    it('should focus the sidebar if there are no focusable elements', fakeAsync(() => {
+    it('should focus the close button if there are no focusable elements', fakeAsync(() => {
       fixture.destroy();
 
       const nonFocusableFixture = TestBed.createComponent(
         SidebarWithoutFocusableElementsTestComponent
       );
-      activateMobile(fixture);
+      nonFocusableFixture.detectChanges();
+      activateMobile(nonFocusableFixture);
+
       const sidebarEl = nonFocusableFixture.debugElement.query(By.directive(SbbSidebar))!;
       sidebarEl.nativeElement.focus();
       nonFocusableFixture.detectChanges();
@@ -550,7 +572,10 @@ describe('SbbSidebar', () => {
       nonFocusableFixture.detectChanges();
       tick();
 
-      expect(document.activeElement).toBe(sidebarEl.nativeElement);
+      expect(document.activeElement).toBe(
+        nonFocusableFixture.debugElement.query(By.css('.sbb-sidebar-mobile-menu-bar-close'))!
+          .nativeElement
+      );
     }));
 
     it('should update the focus trap enable state if the mode changes while open', fakeAsync(() => {
@@ -597,10 +622,13 @@ describe('SbbSidebarContainer', () => {
         BasicTestComponent,
         SidebarContainerWithContentTestComponent,
       ],
+      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
     });
 
     TestBed.compileComponents();
   }));
+
+  setupMediaMatcher();
 
   it('should be able to open and close all sidebars', fakeAsync(() => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
@@ -690,8 +718,14 @@ describe('SbbSidebarContainer', () => {
       .configureTestingModule({
         imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconTestingModule],
         declarations: [SidebarSetToOpenedTrueTestComponent],
+        providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
       })
       .compileComponents();
+
+    inject([MediaMatcher], (fakeMediaMatcher: FakeMediaMatcher) => {
+      mediaMatcher = fakeMediaMatcher;
+      mediaMatcher.defaultMatches = false;
+    });
 
     const fixture = TestBed.createComponent(SidebarSetToOpenedTrueTestComponent);
 
@@ -791,6 +825,7 @@ describe('SbbSidebar Usage', () => {
         SbbIconTestingModule,
       ],
       declarations: [SbbSidebarTestComponent],
+      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
     });
 
     TestBed.compileComponents();
@@ -800,6 +835,8 @@ describe('SbbSidebar Usage', () => {
 
     fixture.detectChanges();
   }));
+
+  setupMediaMatcher();
 
   it('should not include any other elements than expansion panels and fieldsets', () => {
     expect(sidebar.nativeElement.textContent).not.toContain('SHOULD BE IGNORED');

@@ -31,6 +31,17 @@ const activateDesktop = (fixture: ComponentFixture<any>) => {
   activateMobile(fixture, false);
 };
 
+const setupMediaMatcher = () => {
+  beforeEach(inject([MediaMatcher], (fakeMediaMatcher: FakeMediaMatcher) => {
+    mediaMatcher = fakeMediaMatcher;
+    mediaMatcher.defaultMatches = false; // enforce desktop view
+  }));
+
+  afterEach(() => {
+    mediaMatcher.clear();
+  });
+};
+
 describe('SbbIconSidebar', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -60,14 +71,7 @@ describe('SbbIconSidebar', () => {
     TestBed.compileComponents();
   }));
 
-  beforeEach(inject([MediaMatcher], (mm: FakeMediaMatcher) => {
-    mediaMatcher = mm;
-    mediaMatcher.defaultMatches = false;
-  }));
-
-  afterEach(() => {
-    mediaMatcher.clear();
-  });
+  setupMediaMatcher();
 
   describe('methods', () => {
     it('does not throw when created without a sidebar content', fakeAsync(() => {
@@ -339,10 +343,13 @@ describe('SbbIconSidebarContainer', () => {
         BasicTestComponent,
         SidebarContainerWithContentTestComponent,
       ],
+      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
     });
 
     TestBed.compileComponents();
   }));
+
+  setupMediaMatcher();
 
   it('should expose a scrollable when the consumer has not specified sidebar content', fakeAsync(() => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
