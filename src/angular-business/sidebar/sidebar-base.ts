@@ -116,7 +116,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
       .subscribe((newMobile) => this._updateMobileState(newMobile));
   }
 
-  _updateMobileState(newMobile: boolean) {
+  private _updateMobileState(newMobile: boolean) {
     const currentMobile = this._mobile;
     this._mobile = newMobile;
 

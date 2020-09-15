@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from '@sbb-esta/angular-business/accordion';
 import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
@@ -25,6 +25,7 @@ const EXAMPLE_INDEX = {
     SbbSidebarModule,
     SbbIconModule,
     FormsModule,
+    ReactiveFormsModule,
     CheckboxModule,
     ButtonModule,
     AccordionModule,
