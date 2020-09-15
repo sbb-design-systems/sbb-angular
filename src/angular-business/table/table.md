@@ -169,7 +169,7 @@ export class SortableTableExampleComponent implements AfterViewInit {
 
 ### Pagination
 
-It's easy to split up a datasource into pages. You can use the <sbb-paginator> component to achieve pagination. To connect the paginator component to your dataSource you have to set `dataSource.paginator` to the viewReference of the SbbPaginatorComponent in your controller (see example below and on examples page).
+It's easy to split up a datasource into pages. You can use the <sbb-paginator> component from the Pagination module to achieve pagination. To connect the paginator component to your dataSource you have to set `dataSource.paginator` to the viewReference of the SbbPaginatorComponent in your controller (see example below and on examples page).
 
 #### Html
 
