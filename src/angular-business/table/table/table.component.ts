@@ -1,8 +1,10 @@
+import { _DisposeViewRepeaterStrategy, _VIEW_REPEATER_STRATEGY } from '@angular/cdk/collections';
 import {
   CdkTable,
+  CDK_TABLE,
   CDK_TABLE_TEMPLATE,
-  DataSource,
   _CoalescedStyleScheduler,
+  _COALESCED_STYLE_SCHEDULER,
 } from '@angular/cdk/table';
 import {
   AfterViewInit,
@@ -24,7 +26,18 @@ import { SbbTableDataSource } from './table-data-source';
   exportAs: 'sbbTable',
   template: CDK_TABLE_TEMPLATE,
   styleUrls: ['table.component.css'],
-  providers: [{ provide: CdkTable, useExisting: TableComponent }, _CoalescedStyleScheduler],
+  providers: [
+    // TODO(michaeljamesparsons) Abstract the view repeater strategy to a directive API so this code
+    //  is only included in the build if used.
+    { provide: _VIEW_REPEATER_STRATEGY, useClass: _DisposeViewRepeaterStrategy },
+    { provide: CdkTable, useExisting: TableComponent },
+    { provide: CDK_TABLE, useExisting: TableComponent },
+    { provide: _COALESCED_STYLE_SCHEDULER, useClass: _CoalescedStyleScheduler },
+  ],
+  // The "OnPush" status for the `SbbTable` component is effectively a noop, so we are removing it.
+  // The view for `SbbTable` consists entirely of templates declared in other views. As they are
+  // declared elsewhere, they are checked when their declaration points are checked.
+  // tslint:disable-next-line:validate-decorators
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
 })
@@ -36,8 +49,6 @@ export class TableComponent<T> extends CdkTable<T> implements AfterViewInit {
 
   @ContentChildren(CellDirective, { descendants: true, read: ElementRef })
   rowElements: QueryList<ElementRef>;
-
-  dataSource: DataSource<T>;
 
   /** Overrides the sticky CSS class set by the `CdkTable`. */
   // tslint:disable-next-line:naming-convention
