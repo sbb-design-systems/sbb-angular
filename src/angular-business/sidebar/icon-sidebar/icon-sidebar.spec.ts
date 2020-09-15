@@ -10,7 +10,6 @@ import {
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SbbSidebarContainer } from '@sbb-esta/angular-business/sidebar';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
@@ -20,7 +19,7 @@ import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
 
 const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
   fixture.debugElement.queryAll(By.css('sbb-icon-sidebar-container'))!.forEach((debugElement) => {
-    const sidebarContainer: SbbSidebarContainer = debugElement.componentInstance;
+    const sidebarContainer: SbbIconSidebarContainer = debugElement.componentInstance;
     sidebarContainer._updateMobileState(mobile);
   });
   fixture.detectChanges();
