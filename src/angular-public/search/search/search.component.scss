@@ -63,6 +63,9 @@ $searchInputWidthMobile: 273;
     }
     > button {
       @include buttonResetFrameless;
+      @include svgIconColor(
+        $sbbColorWhite
+      ); // TODO(icon-migration): remove definition because new icons inherit colors
       color: $sbbColorWhite;
       background-color: $sbbColorRed;
       border-radius: 0 2px 2px 0;
@@ -81,7 +84,9 @@ $searchInputWidthMobile: 273;
       }
 
       position: relative;
-      > .sbb-icon {
+      > .sbb-icon,
+      .sbb-icon-component {
+        // TODO(icon-migration): remove .sbb-icon-component because new icons inherit colors
         @include absoluteCenterXY;
         width: toPx($searchIconWidthHeight);
         height: toPx($searchIconWidthHeight);
@@ -107,7 +112,9 @@ $searchInputWidthMobile: 273;
         @include mq($from: desktop5k) {
           border-width: toPx(2 * $scalingFactor5k);
         }
-        > .sbb-icon {
+        > .sbb-icon,
+        .sbb-icon-component {
+          // TODO(icon-migration): remove .sbb-icon-component because new icons inherit colors
           left: calc(50% + 1px);
         }
       }
@@ -116,6 +123,9 @@ $searchInputWidthMobile: 273;
 
   .sbb-search-icon-wrapper {
     @include buttonResetFrameless;
+    @include svgIconColor(
+      $sbbColorGrey
+    ); // TODO(icon-migration): remove definition because new icons inherit colors
     cursor: pointer;
     color: $sbbColorGrey;
     @include mq($from: desktop4k) {
