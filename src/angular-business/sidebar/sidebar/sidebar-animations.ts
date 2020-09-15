@@ -36,9 +36,6 @@ export const sbbSidebarAnimations: {
       })
     ),
     transition('void => open-instant', animate('0ms')),
-    transition(
-      'void <=> open, open-instant => void',
-      animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')
-    ),
+    transition('void <=> open, open-instant => void', animate('300ms ease-in-out')),
   ]),
 };
