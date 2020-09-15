@@ -20,6 +20,8 @@ import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
 
+let mediaMatcher: FakeMediaMatcher;
+
 const PROVIDE_FAKE_MEDIA_MATCHER = {
   provide: MediaMatcher,
   useFactory: () => {
@@ -27,17 +29,6 @@ const PROVIDE_FAKE_MEDIA_MATCHER = {
     mediaMatcher.defaultMatches = false; // enforce desktop view
     return mediaMatcher;
   },
-};
-
-let mediaMatcher: FakeMediaMatcher;
-
-const activateMobile = (mobile = true) => {
-  mediaMatcher.setMatchesQuery(Breakpoints.Mobile, mobile);
-  tick();
-};
-
-const activateDesktop = () => {
-  activateMobile(false);
 };
 
 const registerClearMediaMatcher = () => {
@@ -308,7 +299,8 @@ describe('SbbIconSidebar', () => {
     }));
 
     it('should scroll to left when changing from mobile to desktop view to show all icons correctly aligned', fakeAsync(() => {
-      activateMobile();
+      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
+      tick();
 
       const sbbIcon = fixture.debugElement.query(By.css('sbb-icon'));
       const scrollContainer = fixture.nativeElement.querySelector(
@@ -322,7 +314,8 @@ describe('SbbIconSidebar', () => {
 
       expect(scrollContainer.scrollLeft).toBeGreaterThan(0);
 
-      activateDesktop();
+      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, false);
+      tick();
 
       expect(scrollContainer.scrollLeft).toBe(0);
     }));
