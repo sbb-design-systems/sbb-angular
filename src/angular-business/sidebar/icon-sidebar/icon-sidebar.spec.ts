@@ -4,7 +4,7 @@ import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
@@ -20,6 +20,15 @@ import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
 
+const PROVIDE_FAKE_MEDIA_MATCHER = {
+  provide: MediaMatcher,
+  useFactory: () => {
+    mediaMatcher = new FakeMediaMatcher();
+    mediaMatcher.defaultMatches = false; // enforce desktop view
+    return mediaMatcher;
+  },
+};
+
 let mediaMatcher: FakeMediaMatcher;
 
 const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
@@ -31,12 +40,7 @@ const activateDesktop = (fixture: ComponentFixture<any>) => {
   activateMobile(fixture, false);
 };
 
-const setupMediaMatcher = () => {
-  beforeEach(inject([MediaMatcher], (fakeMediaMatcher: FakeMediaMatcher) => {
-    mediaMatcher = fakeMediaMatcher;
-    mediaMatcher.defaultMatches = false; // enforce desktop view
-  }));
-
+const registerClearMediaMatcher = () => {
   afterEach(() => {
     mediaMatcher.clear();
   });
@@ -65,13 +69,13 @@ describe('SbbIconSidebar', () => {
         NestedSidebarContainersTestComponent,
         IconSidebarWithLinksTestComponent,
       ],
-      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
     TestBed.compileComponents();
   }));
 
-  setupMediaMatcher();
+  registerClearMediaMatcher();
 
   describe('methods', () => {
     it('does not throw when created without a sidebar content', fakeAsync(() => {
@@ -343,13 +347,13 @@ describe('SbbIconSidebarContainer', () => {
         BasicTestComponent,
         SidebarContainerWithContentTestComponent,
       ],
-      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
     TestBed.compileComponents();
   }));
 
-  setupMediaMatcher();
+  registerClearMediaMatcher();
 
   it('should expose a scrollable when the consumer has not specified sidebar content', fakeAsync(() => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);

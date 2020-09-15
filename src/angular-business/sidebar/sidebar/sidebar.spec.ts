@@ -12,7 +12,6 @@ import {
   discardPeriodicTasks,
   fakeAsync,
   flush,
-  inject,
   TestBed,
   tick,
 } from '@angular/core/testing';
@@ -36,6 +35,15 @@ import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbSidebar, SbbSidebarContainer } from './sidebar';
 
+const PROVIDE_FAKE_MEDIA_MATCHER = {
+  provide: MediaMatcher,
+  useFactory: () => {
+    mediaMatcher = new FakeMediaMatcher();
+    mediaMatcher.defaultMatches = false; // enforce desktop view
+    return mediaMatcher;
+  },
+};
+
 let mediaMatcher: FakeMediaMatcher;
 
 const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
@@ -47,12 +55,7 @@ const activateDesktop = (fixture: ComponentFixture<any>) => {
   activateMobile(fixture, false);
 };
 
-const setupMediaMatcher = () => {
-  beforeEach(inject([MediaMatcher], (fakeMediaMatcher: FakeMediaMatcher) => {
-    mediaMatcher = fakeMediaMatcher;
-    mediaMatcher.defaultMatches = false; // enforce desktop view
-  }));
-
+const registerClearMediaMatcher = () => {
   afterEach(() => {
     mediaMatcher.clear();
   });
@@ -79,13 +82,13 @@ describe('SbbSidebar', () => {
         IndirectDescendantSidebarTestComponent,
         NestedSidebarContainersTestComponent,
       ],
-      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
     TestBed.compileComponents();
   }));
 
-  setupMediaMatcher();
+  registerClearMediaMatcher();
 
   describe('methods', () => {
     it('should be able to open', fakeAsync(() => {
@@ -479,7 +482,7 @@ describe('SbbSidebar', () => {
         .configureTestingModule({
           imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconTestingModule],
           declarations: [SidebarOpenBindingTestComponent],
-          providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
+          providers: [PROVIDE_FAKE_MEDIA_MATCHER],
         })
         .compileComponents();
 
@@ -611,6 +614,7 @@ describe('SbbSidebarContainer', () => {
         A11yModule,
         PlatformModule,
         NoopAnimationsModule,
+        CommonModule,
         SbbIconTestingModule,
       ],
       declarations: [
@@ -622,13 +626,13 @@ describe('SbbSidebarContainer', () => {
         BasicTestComponent,
         SidebarContainerWithContentTestComponent,
       ],
-      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
     TestBed.compileComponents();
   }));
 
-  setupMediaMatcher();
+  registerClearMediaMatcher();
 
   it('should be able to open and close all sidebars', fakeAsync(() => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);
@@ -718,14 +722,9 @@ describe('SbbSidebarContainer', () => {
       .configureTestingModule({
         imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconTestingModule],
         declarations: [SidebarSetToOpenedTrueTestComponent],
-        providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
+        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
       })
       .compileComponents();
-
-    inject([MediaMatcher], (fakeMediaMatcher: FakeMediaMatcher) => {
-      mediaMatcher = fakeMediaMatcher;
-      mediaMatcher.defaultMatches = false;
-    });
 
     const fixture = TestBed.createComponent(SidebarSetToOpenedTrueTestComponent);
 
@@ -825,7 +824,7 @@ describe('SbbSidebar Usage', () => {
         SbbIconTestingModule,
       ],
       declarations: [SbbSidebarTestComponent],
-      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
+      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
     TestBed.compileComponents();
@@ -836,7 +835,7 @@ describe('SbbSidebar Usage', () => {
     fixture.detectChanges();
   }));
 
-  setupMediaMatcher();
+  registerClearMediaMatcher();
 
   it('should not include any other elements than expansion panels and fieldsets', () => {
     expect(sidebar.nativeElement.textContent).not.toContain('SHOULD BE IGNORED');
