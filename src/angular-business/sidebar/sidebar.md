@@ -14,7 +14,7 @@ All sidebar components can be technically nested in any form, or they can be use
 The icon sidebar components are designed to add a primary navigation to a fullscreen app using specific icons and a label.
 To set up an icon sidebar we use three components: `<sbb-icon-sidebar-container>` which acts as a structural container for our content
 and icon sidebar, `<sbb-icon-sidebar-content>` which represents the main content, and `<sbb-icon-sidebar>` which
-represents the added side content.
+represents the added sidebar with its links.
 
 ### Specifying the main and side content
 
@@ -86,7 +86,7 @@ And these are examples of invalid icon sidebar layouts:
 
 Inside a `<sbb-icon-sidebar>` it's possible to place links containing the attribute selector `sbbIconSidebarItem`
 and `<hr>` elements to separate links from each other. Any different element than the two mentioned are ignored.
-Using links you have to set the label attribute for the description because any content other than the icon within a `<a sbbIconSidebarItem></a>` is ignored.
+Using links you have to set the label attribute for the description because any content other than the icon within a `<a sbbIconSidebarItem></a>`-element is ignored.
 
 To display the active state correctly, use the css class `sbb-icon-sidebar-item-active`.
 For example if using with a routerLink, write `routerLinkActive="sbb-icon-sidebar-item-active"`.
