@@ -67,6 +67,7 @@ ng_test_library(
     deps = [
         ":sidebar",
         "//src/angular-business/accordion",
+        "//src/angular-core/breakpoints",
         "//src/angular-core/icon",
         "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
