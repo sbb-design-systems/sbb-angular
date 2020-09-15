@@ -1,15 +1,17 @@
 import { A11yModule } from '@angular/cdk/a11y';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { Component, DebugElement, ElementRef, Injectable, ViewChild } from '@angular/core';
+import { async, ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
@@ -17,13 +19,11 @@ import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
 
+let mediaMatcher: FakeMediaMatcher;
+
 const activateMobile = (fixture: ComponentFixture<any>, mobile = true) => {
-  fixture.debugElement.queryAll(By.css('sbb-icon-sidebar-container'))!.forEach((debugElement) => {
-    const sidebarContainer: SbbIconSidebarContainer = debugElement.componentInstance;
-    sidebarContainer._updateMobileState(mobile);
-  });
-  fixture.detectChanges();
-  flush();
+  mediaMatcher.setMatchesQuery(Breakpoints.Mobile, mobile);
+  tick();
 };
 
 const activateDesktop = (fixture: ComponentFixture<any>) => {
@@ -53,10 +53,19 @@ describe('SbbIconSidebar', () => {
         NestedSidebarContainersTestComponent,
         IconSidebarWithLinksTestComponent,
       ],
+      providers: [{ provide: MediaMatcher, useClass: FakeMediaMatcher }],
     });
 
     TestBed.compileComponents();
   }));
+
+  beforeEach(inject([MediaMatcher], (mm: FakeMediaMatcher) => {
+    mediaMatcher = mm;
+  }));
+
+  afterEach(() => {
+    mediaMatcher.clear();
+  });
 
   describe('methods', () => {
     it('does not throw when created without a sidebar content', fakeAsync(() => {
@@ -535,6 +544,69 @@ class IconSidebarWithLinksTestComponent {
       this.expandedCount++;
     } else {
       this.collapsedCount++;
+    }
+  }
+}
+
+export class FakeMediaQueryList {
+  /** The callback for change events. */
+  private _listeners: ((mql: MediaQueryListEvent) => void)[] = [];
+
+  constructor(public matches: boolean, public media: string) {}
+
+  /** Toggles the matches state and "emits" a change event. */
+  setMatches(matches: boolean) {
+    this.matches = matches;
+
+    /** Simulate an asynchronous task. */
+    setTimeout(() => {
+      this._listeners.forEach((listener) => listener(this as any));
+    });
+  }
+
+  /** Registers a callback method for change events. */
+  addListener(callback: (mql: MediaQueryListEvent) => void) {
+    this._listeners.push(callback);
+  }
+
+  /** Removes a callback method from the change events. */
+  removeListener(callback: (mql: MediaQueryListEvent) => void) {
+    const index = this._listeners.indexOf(callback);
+
+    if (index > -1) {
+      this._listeners.splice(index, 1);
+    }
+  }
+}
+
+@Injectable()
+export class FakeMediaMatcher {
+  /** A map of match media queries. */
+  private _queries = new Map<string, FakeMediaQueryList>();
+
+  /** The number of distinct queries created in the media matcher during a test. */
+  get queryCount(): number {
+    return this._queries.size;
+  }
+
+  /** Fakes the match media response to be controlled in tests. */
+  matchMedia(query: string): FakeMediaQueryList {
+    const mql = new FakeMediaQueryList(false, query);
+    this._queries.set(query, mql);
+    return mql;
+  }
+
+  /** Clears all queries from the map of queries. */
+  clear() {
+    this._queries.clear();
+  }
+
+  /** Toggles the matching state of the provided query. */
+  setMatchesQuery(query: string, matches: boolean) {
+    if (this._queries.has(query)) {
+      this._queries.get(query)!.setMatches(matches);
+    } else {
+      throw Error('This query is not being observed.');
     }
   }
 }
