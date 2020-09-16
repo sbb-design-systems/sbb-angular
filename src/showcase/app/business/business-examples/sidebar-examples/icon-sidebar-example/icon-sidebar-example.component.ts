@@ -1,10 +1,10 @@
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SbbIconSidebarContainer } from '@sbb-esta/angular-business/sidebar';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { FakeMediaMatcher } from '@sbb-esta/angular-core/testing';
-import { startWith } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-icon-sidebar-example',
@@ -16,16 +16,21 @@ import { startWith } from 'rxjs/operators';
     BreakpointObserver,
   ], // The providers are only for demo purposes, don't use it in your code
 })
-export class IconSidebarExampleComponent implements AfterViewInit {
-  @ViewChild(SbbIconSidebarContainer) sbbIconSidebarContainer;
+export class IconSidebarExampleComponent implements AfterViewInit, OnDestroy {
   expanded = false;
   simulateMobile = new FormControl(false);
+  private _destroyed = new Subject();
 
   constructor(private _mediaMatcher: FakeMediaMatcher) {}
 
   ngAfterViewInit(): void {
     this.simulateMobile.valueChanges
-      .pipe(startWith(this.simulateMobile.value))
-      .subscribe((value) => this._mediaMatcher.setMatchesQuery(Breakpoints.Mobile, value));
+      .pipe(startWith(this.simulateMobile.value), takeUntil(this._destroyed))
+      .subscribe((matches) => this._mediaMatcher.setMatchesQuery(Breakpoints.Mobile, matches));
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }
