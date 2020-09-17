@@ -147,6 +147,58 @@ export class SbbSidebar extends SbbSidebarBase
     );
   }
 
+  private _focusTrap: FocusTrap;
+  private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
+
+  private _mode: SbbSidebarMode = 'side';
+  private _opened: boolean = true;
+
+  /** How the sidebar was opened (keypress, mouse click etc.) */
+  private _openedVia: FocusOrigin | null;
+
+  /** Emits whenever the sidebar has started animating. */
+  _animationStarted = new Subject<AnimationEvent>();
+
+  /** Emits whenever the sidebar is done animating. */
+  _animationEnd = new Subject<AnimationEvent>();
+
+  /** Current state of the sidebar animation. */
+  // @HostBinding is used in the class as it is expected to be extended.  Since @Component decorator
+  // metadata is not inherited by child classes, instead the host binding data is defined in a way
+  // that can be inherited.
+  @HostBinding('@transform')
+  _animationState: 'open-instant' | 'open' | 'void' = 'void';
+
+  /** Event emitted when the sidebar open state is changed. */
+  @Output() readonly openedChange: EventEmitter<boolean> =
+    // Note this has to be async in order to avoid some issues with two-bindings (see #8872).
+    new EventEmitter<boolean>(/* isAsync */ true);
+
+  /** Event emitted when the sidebar has been opened. */
+  // tslint:disable-next-line:no-output-rename
+  @Output('opened')
+  _openedStream = this.openedChange.pipe(
+    filter((o) => o),
+    map(() => {})
+  );
+
+  /** Event emitted when the sidebar has been closed. */
+  // tslint:disable-next-line:no-output-rename
+  @Output('closed')
+  _closedStream = this.openedChange.pipe(
+    filter((o) => !o),
+    map(() => {})
+  );
+
+  /** Emits when the component is destroyed. */
+  private readonly _destroyed = new Subject<void>();
+
+  /**
+   * An observable that emits when the sidebar mode changes. This is used by the sidebar container to
+   * to know when to when the mode changes so it can adapt the margins on the content.
+   */
+  readonly _modeChanged = new Subject<void>();
+
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _focusTrapFactory: ConfigurableFocusTrapFactory,
@@ -225,58 +277,6 @@ export class SbbSidebar extends SbbSidebarBase
         }
       });
   }
-
-  private _focusTrap: FocusTrap;
-  private _elementFocusedBeforeSidebarWasOpened: HTMLElement | null = null;
-
-  private _mode: SbbSidebarMode = 'side';
-  private _opened: boolean = true;
-
-  /** How the sidebar was opened (keypress, mouse click etc.) */
-  private _openedVia: FocusOrigin | null;
-
-  /** Emits whenever the sidebar has started animating. */
-  _animationStarted = new Subject<AnimationEvent>();
-
-  /** Emits whenever the sidebar is done animating. */
-  _animationEnd = new Subject<AnimationEvent>();
-
-  /** Current state of the sidebar animation. */
-  // @HostBinding is used in the class as it is expected to be extended.  Since @Component decorator
-  // metadata is not inherited by child classes, instead the host binding data is defined in a way
-  // that can be inherited.
-  @HostBinding('@transform')
-  _animationState: 'open-instant' | 'open' | 'void' = 'void';
-
-  /** Event emitted when the sidebar open state is changed. */
-  @Output() readonly openedChange: EventEmitter<boolean> =
-    // Note this has to be async in order to avoid some issues with two-bindings (see #8872).
-    new EventEmitter<boolean>(/* isAsync */ true);
-
-  /** Event emitted when the sidebar has been opened. */
-  // tslint:disable-next-line:no-output-rename
-  @Output('opened')
-  _openedStream = this.openedChange.pipe(
-    filter((o) => o),
-    map(() => {})
-  );
-
-  /** Event emitted when the sidebar has been closed. */
-  // tslint:disable-next-line:no-output-rename
-  @Output('closed')
-  _closedStream = this.openedChange.pipe(
-    filter((o) => !o),
-    map(() => {})
-  );
-
-  /** Emits when the component is destroyed. */
-  private readonly _destroyed = new Subject<void>();
-
-  /**
-   * An observable that emits when the sidebar mode changes. This is used by the sidebar container to
-   * to know when to when the mode changes so it can adapt the margins on the content.
-   */
-  readonly _modeChanged = new Subject<void>();
 
   /**
    * Moves focus into the sidebar. Note that this works even if
