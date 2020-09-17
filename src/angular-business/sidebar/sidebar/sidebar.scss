@@ -153,7 +153,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48px);
 
     &:hover,
     &:focus,
-    &.sbb-sidebar-link-active {
+    &.sbb-active {
       &:after {
         content: '';
         display: block;
@@ -175,7 +175,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48px);
       }
     }
 
-    &.sbb-sidebar-link-active {
+    &.sbb-active {
       background-color: $sbbColorCloud;
       color: $sbbColorBlack;
       cursor: default;
@@ -186,7 +186,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48px);
       }
     }
 
-    &:not(.sbb-sidebar-link-active) {
+    &:not(.sbb-active) {
       outline: 0;
     }
   }

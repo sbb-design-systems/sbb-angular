@@ -241,8 +241,8 @@ Any different direct descendant of `<sbb-sidebar>` than the two mentioned elemen
 
 Primarly it is intended to place links with the attribute selector `sbbSidebarLink` inside of `<sbb-expansion-panel>` and `<fieldset>` to achieve a navigation.
 
-To display the active state correctly, use the css class `sbb-sidebar-link-active`.
-For example if using with a routerLink, write `routerLinkActive="sbb-sidebar-link-active"`.
+To display the active state correctly, use the css class `sbb-active`.
+For example if using with a routerLink, write `routerLinkActive="sbb-active"`.
 
 #### Example with angular router
 
@@ -251,12 +251,10 @@ For example if using with a routerLink, write `routerLinkActive="sbb-sidebar-lin
   <sbb-sidebar role="navigation">
     <sbb-expansion-panel expanded>
       <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
-      <a sbbSidebarLink routerLink="/getting-started" routerLinkActive="sbb-sidebar-link-active"
+      <a sbbSidebarLink routerLink="/getting-started" routerLinkActive="sbb-active"
         >Getting Started</a
       >
-      <a sbbSidebarLink routerLink="/typography" routerLinkActive="sbb-sidebar-link-active"
-        >Typography</a
-      >
+      <a sbbSidebarLink routerLink="/typography" routerLinkActive="sbb-active">Typography</a>
     </sbb-expansion-panel>
     <fieldset>
       <legend>Fieldset Example</legend>

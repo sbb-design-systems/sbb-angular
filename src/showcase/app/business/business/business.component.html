@@ -2,16 +2,10 @@
   <sbb-sidebar role="navigation">
     <sbb-expansion-panel expanded>
       <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
-      <a
-        sbbSidebarLink
-        routerLink="./introduction/getting-started"
-        routerLinkActive="sbb-sidebar-link-active"
+      <a sbbSidebarLink routerLink="./introduction/getting-started" routerLinkActive="sbb-active"
         >Getting started</a
       >
-      <a
-        sbbSidebarLink
-        routerLink="./introduction/typography"
-        routerLinkActive="sbb-sidebar-link-active"
+      <a sbbSidebarLink routerLink="./introduction/typography" routerLinkActive="sbb-active"
         >Typography</a
       >
     </sbb-expansion-panel>
@@ -21,7 +15,7 @@
         sbbSidebarLink
         *ngFor="let c of formComponents | keyvalue"
         [routerLink]="['./components/', c.key]"
-        routerLinkActive="sbb-sidebar-link-active"
+        routerLinkActive="sbb-active"
         >{{ c.value }}</a
       >
     </sbb-expansion-panel>
@@ -31,7 +25,7 @@
         sbbSidebarLink
         *ngFor="let c of navigationComponents | keyvalue"
         [routerLink]="['./components/', c.key]"
-        routerLinkActive="sbb-sidebar-link-active"
+        routerLinkActive="sbb-active"
         >{{ c.value }}</a
       >
     </sbb-expansion-panel>
@@ -41,7 +35,7 @@
         sbbSidebarLink
         *ngFor="let c of layoutComponents | keyvalue"
         [routerLink]="['./components/', c.key]"
-        routerLinkActive="sbb-sidebar-link-active"
+        routerLinkActive="sbb-active"
         >{{ c.value }}</a
       >
     </sbb-expansion-panel>
@@ -51,7 +45,7 @@
         sbbSidebarLink
         *ngFor="let c of buttonAndIndicatorComponents | keyvalue"
         [routerLink]="['./components/', c.key]"
-        routerLinkActive="sbb-sidebar-link-active"
+        routerLinkActive="sbb-active"
         >{{ c.value }}</a
       >
     </sbb-expansion-panel>
@@ -61,7 +55,7 @@
         sbbSidebarLink
         *ngFor="let c of popupsAndModals | keyvalue"
         [routerLink]="['./components/', c.key]"
-        routerLinkActive="sbb-sidebar-link-active"
+        routerLinkActive="sbb-active"
         >{{ c.value }}</a
       >
     </sbb-expansion-panel>
