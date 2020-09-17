@@ -13,13 +13,14 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48px);
   // Hide the sidebars when they're closed.
   overflow: hidden;
 
-  &.sbb-sidebar-after-header {
-    top: $sbb-sidebar-after-header-top;
-  }
-
   &.sbb-sidebar-container-has-open {
     overflow: hidden;
   }
+}
+
+.sbb-sidebar-container.sbb-sidebar-after-header,
+sbb-header + .sbb-sidebar-container {
+  top: $sbb-sidebar-after-header-top;
 }
 
 .sbb-sidebar-backdrop {

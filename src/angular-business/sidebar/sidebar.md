@@ -130,13 +130,16 @@ be explicitly set via CSS:
 }
 ```
 
-### Using with sbb header
+### Using with sbb-header
 
-If you like to use the icon sidebar after the `<sbb-header>`, please
+If you place the `<sbb-icon-sidebar-container>` directly after the `<sbb-header>`, correct styles will automatically be applied.
+
+Whenever you add content between `<sbb-header>` and `<sbb-icon-sidebar-container>` elements, please
 apply the css class `sbb-icon-sidebar-after-header` to the `<sbb-icon-sidebar-container>`.
 
 ```html
 <sbb-header>...</sbb-header>
+<p>Random Content</p>
 <sbb-icon-sidebar-container class="sbb-icon-sidebar-after-header">
   ...
 </sbb-icon-sidebar-container>
@@ -294,13 +297,16 @@ If you like fit the size of its content, just set css `width` to `auto`.
 
 Try to avoid percent based width as `resize` events are not (yet) supported.
 
-### Using with sbb header
+### Using with sbb-header
 
-If you like to use the sidebar after the `<sbb-header>`, please
+If you place the `<sbb-sidebar-container>` directly after the `<sbb-header>`, correct styles will automatically be applied.
+
+Whenever you add content between `<sbb-header>` and `<sbb-sidebar-container>` elements, please
 apply the css class `sbb-sidebar-after-header` to the `<sbb-sidebar-container>`.
 
 ```html
 <sbb-header>...</sbb-header>
+<p>Random Content</p>
 <sbb-sidebar-container class="sbb-sidebar-after-header">
   ...
 </sbb-sidebar-container>

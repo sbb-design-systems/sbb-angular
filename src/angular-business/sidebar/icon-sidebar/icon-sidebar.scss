@@ -9,10 +9,11 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48px);
 
   display: flex;
   flex-direction: row;
+}
 
-  &.sbb-icon-sidebar-after-header {
-    top: $sbb-sidebar-after-header-top;
-  }
+.sbb-icon-sidebar-container.sbb-icon-sidebar-after-header,
+sbb-header + .sbb-icon-sidebar-container {
+  top: $sbb-sidebar-after-header-top;
 }
 
 .sbb-icon-sidebar-content {
