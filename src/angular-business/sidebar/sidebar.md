@@ -1,4 +1,4 @@
-Sbb angular provides two sets of components designed to add side content (often
+We provide two sets of components designed to add side content (often
 navigation, though it can be any content) alongside some primary content. These are the sidebar and
 icon sidebar components.
 
