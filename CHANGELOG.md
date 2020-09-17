@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.2.1](https://github.com/sbb-design-systems/sbb-angular/compare/10.2.0...10.2.1) (2020-09-17)
+
+
+### Bug Fixes
+
+* **business:** adapt CDK changes for sbb-table ([#599](https://github.com/sbb-design-systems/sbb-angular/issues/599)) ([1f06eb1](https://github.com/sbb-design-systems/sbb-angular/commit/1f06eb18475e07d8a245cbdb279160b2a6d42d02)), closes [angular/components#20425](https://github.com/angular/components/issues/20425)
+* **public:** backwards compatibility to deprecated angular-icons ([#598](https://github.com/sbb-design-systems/sbb-angular/issues/598)) ([6b3b6c0](https://github.com/sbb-design-systems/sbb-angular/commit/6b3b6c03789d8fd7d368802d7016fbe453b6b6ad))
+
 ## [10.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.2.0-next.0...10.2.0) (2020-09-10)
 
 
