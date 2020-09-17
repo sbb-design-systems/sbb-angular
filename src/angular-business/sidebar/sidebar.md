@@ -88,29 +88,19 @@ Inside a `<sbb-icon-sidebar>` it's possible to place links containing the attrib
 and `<hr>` elements to separate links from each other. Any different element than the two mentioned are ignored.
 Using links you have to set the label attribute for the description because any content other than the icon within a `<a sbbIconSidebarItem></a>`-element is ignored.
 
-To display the active state correctly, use the css class `sbb-icon-sidebar-item-active`.
-For example if using with a routerLink, write `routerLinkActive="sbb-icon-sidebar-item-active"`.
+To display the active state correctly, use the css class `sbb-active`.
+For example if using with a routerLink, write `routerLinkActive="sbb-active"`.
 
 #### Example with angular router
 
 ```html
 <sbb-icon-sidebar-container>
   <sbb-icon-sidebar>
-    <a
-      sbbIconSidebarItem
-      label="Station"
-      routerLink="./link"
-      routerLinkActive="sbb-icon-sidebar-item-active"
-    >
+    <a sbbIconSidebarItem label="Station" routerLink="./link" routerLinkActive="sbb-active">
       <sbb-icon svgIcon="kom:station-small"></sbb-icon>
     </a>
     <hr />
-    <a
-      sbbIconSidebarItem
-      label="Other Station"
-      routerLink="./link2"
-      routerLinkActive="sbb-icon-sidebar-item-active"
-    >
+    <a sbbIconSidebarItem label="Other Station" routerLink="./link2" routerLinkActive="sbb-active">
       <sbb-icon svgIcon="kom:station-small"></sbb-icon>
     </a>
   </sbb-icon-sidebar>

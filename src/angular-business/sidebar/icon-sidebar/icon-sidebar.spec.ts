@@ -527,7 +527,7 @@ class NestedSidebarContainersTestComponent {
           sbbIconSidebarItem
           [routerLink]="['/link2']"
           label="Link 2"
-          routerLinkActive="sbb-icon-sidebar-item-active"
+          routerLinkActive="sbb-active"
         >
           <sbb-icon svgIcon="kom:station-small"></sbb-icon>
         </a>

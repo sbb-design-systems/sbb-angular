@@ -60,7 +60,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48px);
     line-height: pxToRem(23px);
     position: relative;
 
-    &:not(.sbb-icon-sidebar-item-active) {
+    &:not(.sbb-active) {
       outline: 0;
     }
 
@@ -98,7 +98,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48px);
 
     &:hover,
     &:focus,
-    &.sbb-icon-sidebar-item-active {
+    &.sbb-active {
       &:after {
         content: '';
         display: block;
@@ -126,7 +126,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48px);
       }
     }
 
-    &.sbb-icon-sidebar-item-active {
+    &.sbb-active {
       background-color: $sbbColorWhite;
       color: $sbbColorBlack;
       cursor: default;
@@ -227,7 +227,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48px);
 
       &:hover,
       &:focus,
-      &.sbb-icon-sidebar-item-active {
+      &.sbb-active {
         &:after {
           width: 100%;
           height: pxToRem(2px);
