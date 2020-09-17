@@ -134,16 +134,16 @@ be explicitly set via CSS:
 
 If you place the `<sbb-icon-sidebar-container>` directly after the `<sbb-header>`, correct styles will automatically be applied.
 
-Whenever you add content between `<sbb-header>` and `<sbb-icon-sidebar-container>` elements, please
-apply the css class `sbb-icon-sidebar-after-header` to the `<sbb-icon-sidebar-container>`.
-
 ```html
 <sbb-header>...</sbb-header>
-<p>Random Content</p>
-<sbb-icon-sidebar-container class="sbb-icon-sidebar-after-header">
+<sbb-icon-sidebar-container>
   ...
 </sbb-icon-sidebar-container>
 ```
+
+Whenever you add content between `<sbb-header>` and `<sbb-icon-sidebar-container>` elements or wrap
+either in a component/element, add the css class `sbb-icon-sidebar-after-header` to the `<sbb-icon-sidebar-container>`
+(e.g. `<sbb-icon-sidebar-container class="sbb-icon-sidebar-after-header">`).
 
 ### Reacting to scroll events inside the sidebar container
 
@@ -301,16 +301,16 @@ Try to avoid percent based width as `resize` events are not (yet) supported.
 
 If you place the `<sbb-sidebar-container>` directly after the `<sbb-header>`, correct styles will automatically be applied.
 
-Whenever you add content between `<sbb-header>` and `<sbb-sidebar-container>` elements, please
-apply the css class `sbb-sidebar-after-header` to the `<sbb-sidebar-container>`.
-
 ```html
 <sbb-header>...</sbb-header>
-<p>Random Content</p>
-<sbb-sidebar-container class="sbb-sidebar-after-header">
+<sbb-sidebar-container>
   ...
 </sbb-sidebar-container>
 ```
+
+Whenever you add content between `<sbb-header>` and `<sbb-sidebar-container>` elements or wrap
+either in a component/element, add the css class `sbb-sidebar-after-header` to the `<sbb-sidebar-container>`
+(e.g. `<sbb-sidebar-container class="sbb-sidebar-after-header">`).
 
 ### Reacting to scroll events inside the sidebar container
 
