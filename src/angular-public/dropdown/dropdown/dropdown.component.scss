@@ -26,17 +26,10 @@
     @include buttonResetFrameless;
     @include optionBase;
     width: 100%;
-    color: $sbbColorGrey;
-
-    &:not(:disabled):hover,
-    &:not(:disabled):focus,
-    &.sbb-selected {
-      color: $sbbColorRed125;
-    }
   }
 
   hr {
-    margin: 8px 0;
+    margin: 4px 0;
     padding: 0;
     border: none;
     border-top: solid 1px $sbbColorCloud;
