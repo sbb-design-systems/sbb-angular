@@ -59,7 +59,7 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
       }
 
       .sbb-usermenu-logged-in-collapsed {
-        padding-left: toPx(18);
+        padding-left: if($sbbBusiness, 4px, 18px);
         @include publicOnly() {
           @include mq($from: desktop4k) {
             padding-left: toPx(24);
@@ -78,7 +78,7 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
       transition: 0.1s ease-in-out padding;
       padding-left: 4px;
       @include mq($from: tablet) {
-        padding-left: toPx(18);
+        padding-left: if($sbbBusiness, 4px, 18px);
       }
       @include publicOnly() {
         @include mq($from: desktop4k) {
