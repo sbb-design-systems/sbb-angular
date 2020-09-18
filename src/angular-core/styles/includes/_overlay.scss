@@ -2,48 +2,33 @@
 $autocompleteTransition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1),
   opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 $autocompleteBg: $sbbColorWhite;
-$autocompleteBorderWidth: 2px;
-$autocompleteBorder: $autocompleteBorderWidth solid $sbbColorGrey;
-$autocompleteColor: $sbbColorGrey;
-$autocompleteShadowWidth: 8px;
+$autocompleteBorderWidth: if($sbbBusiness, 1px, 2px);
+$autocompleteBorder: if(
+  $sbbBusiness,
+  $autocompleteBorderWidth solid $sbbColorGranite,
+  $autocompleteBorderWidth solid $sbbColorGrey
+);
+$autocompleteColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
+$autocompleteShadowWidth: if($sbbBusiness, 4px, 8px);
 $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
 $autocompleteInputActiveBorderWidth: 1px;
-$optionGroupItemPaddingLeft: 24px;
+$optionGroupItemPaddingLeft: if($sbbBusiness, 16px, 24px);
 $optionPaddingLeft: 14px;
 
-$autocompletePaddingTop: 14px;
-$autocompletePaddingX: 16px;
-$autocompletePaddingBottom: 18px;
+$autocompletePaddingTop: if($sbbBusiness, 8px, 14px);
+$autocompletePaddingX: if($sbbBusiness, 8px, 16px);
+$autocompletePaddingBottom: if($sbbBusiness, 4px, 18px);
 
-$dropdownPaddingBottom: 10px;
-$autocompleteOptionHoverColor: $sbbColorRed;
+$dropdownPaddingBottom: if($sbbBusiness, 4px, 10px);
+$autocompleteOptionHoverColor: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
 $autocompleteOptionActiveColor: $sbbColorBlack;
 $autocompleteHighlightTextBold: $fontSbbBold;
 $autocompleteHoverColor: $sbbColorBlack;
-$optionMultipleCheckboxPaddingLeft: 16;
-$optionMultipleNoCheckboxPaddingLeft: 14;
+$optionMultipleCheckboxPaddingLeft: if($sbbBusiness, 8px, 16px);
+$optionMultipleNoCheckboxPaddingLeft: if($sbbBusiness, 8px, 14px);
 
 $optionSelectedBarWidth: 1;
-$optionMarginTop: 10px;
-
-@if $sbbBusiness {
-  $autocompleteBorderWidth: 1px;
-  $autocompleteBorder: $autocompleteBorderWidth solid $sbbColorGranite;
-  $autocompleteShadowWidth: 4px;
-  $autocompleteColor: $sbbColorGranite;
-  $optionGroupItemPaddingLeft: 16px;
-
-  $autocompletePaddingTop: 8px;
-  $autocompletePaddingX: 8px;
-  $autocompletePaddingBottom: 4px;
-
-  $autocompleteOptionHoverColor: $sbbColorRed125;
-  $autocompleteOptionActiveColor: $sbbColorBlack;
-  $dropdownPaddingBottom: 4px;
-  $optionMultipleCheckboxPaddingLeft: 8;
-  $optionMultipleNoCheckboxPaddingLeft: 8;
-  $optionMarginTop: 4px;
-}
+$optionMarginTop: if($sbbBusiness, 4px, 10px);
 
 $autocompleteBorderTopReverse: $autocompleteBorder;
 
