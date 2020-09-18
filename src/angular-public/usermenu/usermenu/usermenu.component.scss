@@ -1,7 +1,8 @@
 @import '../../../angular-core/styles/common';
 
 $border: solid 1px $sbbColorGraphite;
-$borderActive: if($sbbBusiness, solid 1px $sbbColorGranite, solid 2px $sbbColorGrey);
+$borderActive: if($sbbBusiness, solid 1px $sbbColorIron, solid 2px $sbbColorGrey);
+$textColor: if($sbbBusiness, $sbbColorIron, $sbbColorMetal);
 
 $border4K: solid 3px $sbbColorGraphite;
 $border5K: solid 4px $sbbColorGraphite;
@@ -108,7 +109,7 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
           background-color: $sbbColorCloud;
           font-family: $fontFamilyBase;
           font-size: pxToRem(15);
-          color: $sbbColorMetal;
+          color: $textColor;
           font-weight: 700;
           width: 32px;
           height: 32px;
@@ -140,7 +141,7 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
       }
 
       .sbb-usermenu-logged-in-collapsed-arrow {
-        color: $sbbColorMetal;
+        color: $textColor;
         width: toPx(24);
         height: toPx(24);
         position: relative;
@@ -188,7 +189,7 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
         .sbb-usermenu-logged-in-expanded-username,
         .sbb-usermenu-logged-in-expanded-displayName {
           font-family: $fontSbbRoman;
-          color: $sbbColorMetal;
+          color: $textColor;
           @include ellipsis();
         }
 
@@ -231,7 +232,7 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
         flex-basis: 24px;
 
         .sbb-usermenu-logged-in-expanded-arrow {
-          color: $sbbColorMetal;
+          color: $textColor;
           width: toPx(24);
           height: toPx(24);
           transform: rotate(180deg);
@@ -258,7 +259,7 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
     position: relative;
     height: 48px;
     width: 156px;
-    color: $sbbColorMetal;
+    color: $textColor;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
