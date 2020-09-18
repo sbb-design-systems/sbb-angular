@@ -24,7 +24,7 @@ const _HeaderMenuItemBase: CanDisableCtor & typeof HeaderMenuItemBase = mixinDis
 @Directive({
   selector: '[sbbHeaderMenuItem]',
   host: {
-    role: 'this.role',
+    '[attr.role]': 'this.role',
   },
 })
 export class HeaderMenuItemDirective extends _HeaderMenuItemBase
