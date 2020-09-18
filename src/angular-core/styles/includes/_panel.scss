@@ -137,99 +137,23 @@ $sbbPanelItemSelectedBarTop: 3;
   }
 }
 
-@mixin panelItemLeftBar($color) {
-  @include businessOnly() {
-    &::after {
-      content: '';
-      position: absolute;
-      height: toPx($sbbPanelItemSelectedBarHeight);
-      width: toPx($sbbPanelItemSelectedBarWidth);
-
-      left: 0;
-      top: toPx($sbbPanelItemSelectedBarTop);
-
-      background-color: $color;
-    }
-  }
-}
-
 @mixin panelItems() {
   @include buttonResetFrameless;
-  @include ellipsis;
+  @include optionBase;
 
-  position: relative;
-  display: block;
-  text-decoration: none;
-  font-size: toPx($sizeFontDefault);
-  padding: toPx(4) $sbbPanelPaddingX;
-  text-align: left;
-  max-width: 100%;
-  cursor: pointer;
-  outline: 0;
-
-  &:first-of-type {
-    padding-top: $sbbPanelPaddingTop;
-  }
-  &:last-of-type {
-    padding-bottom: $sbbPanelPaddingBottom;
-  }
-
-  @include businessOnly() {
-    line-height: pxToRem(20);
-  }
-
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      font-size: toPx($sizeFontDefault * $scalingFactor4k);
-      padding: toPx(4 * $scalingFactor4k) toPx($sbbPanelPaddingX * $scalingFactor4k);
-
-      &:first-of-type {
-        padding-top: toPx($sbbPanelPaddingTop * $scalingFactor4k);
-      }
-
-      &:last-of-type {
-        padding-bottom: toPx($sbbPanelPaddingBottom * $scalingFactor4k);
-      }
-    }
-    @include mq($from: desktop5k) {
-      font-size: toPx($sizeFontDefault * $scalingFactor5k);
-      padding: toPx(4 * $scalingFactor5k) toPx($sbbPanelPaddingX * $scalingFactor5k);
-      &:first-of-type {
-        padding-top: toPx($sbbPanelPaddingTop * $scalingFactor5k);
-      }
-      &:last-of-type {
-        padding-bottom: toPx($sbbPanelPaddingBottom * $scalingFactor5k);
-      }
-    }
-  }
-
-  &.sbb-selected {
-    color: $sbbColorBlack;
-  }
-
-  &.sbb-active,
-  &:hover,
-  &:focus,
-  &:active {
-    color: $sbbPanelItemActiveColor;
-
-    &:not(.sbb-option-multiple) {
-      @include panelItemLeftBar($sbbPanelItemActiveColor);
-    }
-  }
-
-  &:first-of-type:hover,
-  &:first-of-type,
-  &:first-of-type.sbb-active {
-    &::after {
-      top: toPx($sbbPanelFirstSelectedBarTop);
-    }
+  &.sbb-active {
+    @include optionSelected;
   }
 
   &:disabled,
   &[disabled] {
-    cursor: default;
     opacity: 0.5;
+  }
+
+  &:disabled,
+  &[disabled],
+  &[aria-disabled='true'] {
     user-select: none;
+    cursor: default;
   }
 }

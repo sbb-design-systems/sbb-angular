@@ -100,8 +100,7 @@ button.sbb-header-menu-back {
   @include panelBase();
   @include panelBelow();
 
-  > a,
-  > button {
+  .sbb-header-menu-item {
     @include panelItems();
     line-height: 20px;
     font-size: 15px;
