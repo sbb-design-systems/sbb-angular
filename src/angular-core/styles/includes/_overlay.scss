@@ -14,19 +14,17 @@ $optionPaddingLeft: 14px;
 $autocompletePaddingTop: 14px;
 $autocompletePaddingX: 16px;
 $autocompletePaddingBottom: 18px;
-$optionSelectedBarTop: 3;
-$optionSelectedBarTopFirst: 6;
 
-$dropdownPaddingBottom: 14px;
+$dropdownPaddingBottom: 10px;
 $autocompleteOptionHoverColor: $sbbColorRed;
-$autocompleteOptionActiveColor: $sbbColorRed;
+$autocompleteOptionActiveColor: $sbbColorBlack;
 $autocompleteHighlightTextBold: $fontSbbBold;
 $autocompleteHoverColor: $sbbColorBlack;
 $optionMultipleCheckboxPaddingLeft: 16;
 $optionMultipleNoCheckboxPaddingLeft: 14;
 
-$optionSelectedBarHeight: 22;
 $optionSelectedBarWidth: 1;
+$optionMarginTop: 10px;
 
 @if $sbbBusiness {
   $autocompleteBorderWidth: 1px;
@@ -37,17 +35,17 @@ $optionSelectedBarWidth: 1;
 
   $autocompletePaddingTop: 8px;
   $autocompletePaddingX: 8px;
-  $autocompletePaddingBottom: 8px;
+  $autocompletePaddingBottom: 4px;
 
   $autocompleteOptionHoverColor: $sbbColorRed125;
-  $autocompleteOptionActiveColor: $sbbColorRed125;
-  $dropdownPaddingBottom: 8px;
+  $autocompleteOptionActiveColor: $sbbColorBlack;
+  $dropdownPaddingBottom: 4px;
   $optionMultipleCheckboxPaddingLeft: 8;
   $optionMultipleNoCheckboxPaddingLeft: 8;
+  $optionMarginTop: 4px;
 }
 
 $autocompleteBorderTopReverse: $autocompleteBorder;
-$autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocompletePaddingBottom;
 
 @mixin autocompleteBase() {
   position: relative;
@@ -206,15 +204,12 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
 
     &:first-of-type {
       @include publicOnly() {
+        margin-top: 0;
         padding-top: 0;
       }
 
       @include businessOnly() {
-        padding-top: $autocompletePaddingTop;
-
-        &::after {
-          top: toPx($optionSelectedBarTopFirst);
-        }
+        padding-top: $optionMarginTop;
       }
     }
   }
@@ -266,18 +261,14 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
 }
 
 @mixin optionBorderLeft($color) {
-  @include businessOnly() {
-    &::after {
-      content: '';
-      position: absolute;
-      height: toPx($optionSelectedBarHeight);
-      width: toPx($optionSelectedBarWidth);
-
-      left: 0;
-      top: toPx($optionSelectedBarTop);
-
-      background-color: $color;
-    }
+  &::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: toPx($optionSelectedBarWidth);
+    left: 0;
+    top: 0;
+    background-color: $color;
   }
 }
 
@@ -303,10 +294,10 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
   }
 
   &:first-of-type {
-    padding-top: $autocompletePaddingTop;
+    margin-top: $optionMarginTop;
   }
   &:last-of-type {
-    padding-bottom: $dropdownPaddingBottom;
+    margin-bottom: $dropdownPaddingBottom;
   }
 
   @include businessOnly() {
@@ -319,21 +310,21 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
       padding: toPx(4 * $scalingFactor4k) toPx($autocompletePaddingX * $scalingFactor4k);
 
       &:first-of-type {
-        padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
+        margin-top: toPx($optionMarginTop * $scalingFactor4k);
       }
 
       &:last-of-type {
-        padding-bottom: toPx($dropdownPaddingBottom * $scalingFactor4k);
+        margin-bottom: toPx($dropdownPaddingBottom * $scalingFactor4k);
       }
     }
     @include mq($from: desktop5k) {
       font-size: toPx($sizeFontDefault * $scalingFactor5k);
       padding: toPx(4 * $scalingFactor5k) toPx($autocompletePaddingX * $scalingFactor5k);
       &:first-of-type {
-        padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
+        margin-top: toPx($optionMarginTop * $scalingFactor5k);
       }
       &:last-of-type {
-        padding-bottom: toPx($dropdownPaddingBottom * $scalingFactor5k);
+        margin-bottom: toPx($dropdownPaddingBottom * $scalingFactor5k);
       }
     }
   }
@@ -343,34 +334,24 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
   }
 
   &.sbb-selected {
-    color: $sbbColorBlack;
-  }
-
-  &.sbb-active {
     color: $autocompleteOptionActiveColor;
 
-    &:not(.sbb-option-multiple) {
+    @include businessOnly() {
+      background-color: $sbbColorCloud;
       @include optionBorderLeft($autocompleteOptionActiveColor);
     }
   }
 
-  &:not(:disabled):hover,
-  &:not(:disabled):focus,
-  &:not(:disabled):hover strong,
-  &:not(:disabled):focus strong {
+  &:not(:disabled):not(.sbb-option-disabled):hover,
+  &:not(:disabled):not(.sbb-option-disabled):focus,
+  &:not(:disabled):not(.sbb-option-disabled):hover strong,
+  &:not(:disabled):not(.sbb-option-disabled):focus strong,
+  &.sbb-active {
     color: $autocompleteOptionHoverColor;
 
-    &,
-    &:not(.sbb-option-multiple) {
+    @include businessOnly() {
+      background-color: $sbbColorMilk;
       @include optionBorderLeft($autocompleteOptionHoverColor);
-    }
-  }
-
-  &:not(:disabled):first-of-type:hover,
-  &:not(:disabled):first-of-type,
-  &:first-of-type.sbb-active {
-    &::after {
-      top: toPx($optionSelectedBarTopFirst);
     }
   }
 
@@ -379,5 +360,19 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .sbb-icon:not(.sbb-checkbox-checked),
+  .sbb-icon-component:not(.sbb-checkbox-checked) {
+    // TODO(icon-migration): remove '.sbb-icon-component' because new icons inherit colors (also color: can be removed)
+    line-height: 0;
+    margin: pxToRem(-9) pxToRem(2) pxToRem(-9) pxToRem(-5);
+    transform: translateY(pxToRem(7));
+  }
+
+  > .sbb-icon:first-child:not(.sbb-checkbox-checked),
+  > .sbb-icon-component:first-child:not(.sbb-checkbox-checked) {
+    // TODO(icon-migration): remove '.sbb-icon-component' because new icons inherit colors (also color: can be removed)
+    float: left;
   }
 }
