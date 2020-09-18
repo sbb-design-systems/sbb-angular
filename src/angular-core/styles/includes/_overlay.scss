@@ -1,4 +1,3 @@
-// TODO: Check what is autocomplete specific, dropdown specific and select specific and refactor accordingly
 $autocompleteTransition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1),
   opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 $autocompleteBg: $sbbColorWhite;
@@ -8,29 +7,23 @@ $autocompleteBorder: if(
   $autocompleteBorderWidth solid $sbbColorGranite,
   $autocompleteBorderWidth solid $sbbColorGrey
 );
+$autocompleteBorderRadius: 2px;
+$autocompleteBorderTopReverse: $autocompleteBorder;
 $autocompleteColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 $autocompleteShadowWidth: if($sbbBusiness, 4px, 8px);
 $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
 $autocompleteInputActiveBorderWidth: 1px;
-$optionGroupItemPaddingLeft: if($sbbBusiness, 16px, 24px);
-$optionPaddingLeft: 14px;
-
-$autocompletePaddingTop: if($sbbBusiness, 8px, 14px);
-$autocompletePaddingX: if($sbbBusiness, 8px, 16px);
+$autocompleteAndOptionPaddingX: if($sbbBusiness, 8px, 16px);
 $autocompletePaddingBottom: if($sbbBusiness, 4px, 18px);
+$autocompletePaddingX: if($sbbBusiness, 8px, 16px);
 
-$dropdownPaddingBottom: if($sbbBusiness, 4px, 10px);
-$autocompleteOptionHoverColor: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
-$autocompleteOptionActiveColor: $sbbColorBlack;
-$autocompleteHighlightTextBold: $fontSbbBold;
-$autocompleteHoverColor: $sbbColorBlack;
 $optionMultipleCheckboxPaddingLeft: if($sbbBusiness, 8px, 16px);
 $optionMultipleNoCheckboxPaddingLeft: if($sbbBusiness, 8px, 14px);
-
-$optionSelectedBarWidth: 1;
-$optionMarginTop: if($sbbBusiness, 4px, 10px);
-
-$autocompleteBorderTopReverse: $autocompleteBorder;
+$optionMarginY: if($sbbBusiness, 4px, 10px);
+$optionGroupItemPaddingLeft: if($sbbBusiness, 16px, 24px);
+$optionGroupLabelPaddingY: if($sbbBusiness, 8px, 14px);
+$optionHoverColor: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
+$optionSelectedColor: $sbbColorBlack;
 
 @mixin autocompleteBase() {
   position: relative;
@@ -52,13 +45,11 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
-      border-width: toPx(2 * $scalingFactor4k);
-      box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
+      border-width: toPx($autocompleteBorderWidth * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      border-width: toPx(2 * $scalingFactor5k);
-      box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
+      border-width: toPx($autocompleteBorderWidth * $scalingFactor5k);
     }
   }
 
@@ -103,29 +94,29 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
 
 @mixin autocompleteDirectionalRules($mode: default) {
   @if $mode == default {
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: $autocompleteBorderRadius;
+    border-bottom-right-radius: $autocompleteBorderRadius;
     border-top: none;
     @include autocompleteCombinedBoxShadows();
     @include autocompleteOffsetCorrection();
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        border-bottom-left-radius: toPx(2 * $scalingFactor4k);
-        border-bottom-right-radius: toPx(2 * $scalingFactor4k);
+        border-bottom-left-radius: toPx($autocompleteBorderRadius * $scalingFactor4k);
+        border-bottom-right-radius: toPx($autocompleteBorderRadius * $scalingFactor4k);
         @include autocompleteCombinedBoxShadows($scalingFactor: $scalingFactor4k);
         @include autocompleteOffsetCorrection($scalingFactor: $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        border-bottom-left-radius: toPx(2 * $scalingFactor5k);
-        border-bottom-right-radius: toPx(2 * $scalingFactor5k);
+        border-bottom-left-radius: toPx($autocompleteBorderRadius * $scalingFactor5k);
+        border-bottom-right-radius: toPx($autocompleteBorderRadius * $scalingFactor5k);
         @include autocompleteCombinedBoxShadows($scalingFactor: $scalingFactor5k);
         @include autocompleteOffsetCorrection($scalingFactor: $scalingFactor5k);
       }
     }
   } @else if $mode == reverse {
-    border-radius: 2px 2px 0 0;
+    border-radius: $autocompleteBorderRadius $autocompleteBorderRadius 0 0;
     border-top: $autocompleteBorderTopReverse;
     border-bottom: none;
     @include autocompleteCombinedBoxShadows($mode: reverse);
@@ -133,17 +124,17 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        border-top-left-radius: toPx(2 * $scalingFactor4k);
-        border-top-right-radius: toPx(2 * $scalingFactor4k);
-        border-top-width: toPx(2 * $scalingFactor4k);
+        border-top-left-radius: toPx($autocompleteBorderRadius * $scalingFactor4k);
+        border-top-right-radius: toPx($autocompleteBorderRadius * $scalingFactor4k);
+        border-top-width: toPx($autocompleteBorderRadius * $scalingFactor4k);
         @include autocompleteCombinedBoxShadows($mode: reverse, $scalingFactor: $scalingFactor4k);
         @include autocompleteOffsetCorrection($mode: reverse, $scalingFactor: $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        border-top-left-radius: toPx(2 * $scalingFactor5k);
-        border-top-right-radius: toPx(2 * $scalingFactor5k);
-        border-top-width: toPx(2 * $scalingFactor5k);
+        border-top-left-radius: toPx($autocompleteBorderRadius * $scalingFactor5k);
+        border-top-right-radius: toPx($autocompleteBorderRadius * $scalingFactor5k);
+        border-top-width: toPx($autocompleteBorderRadius * $scalingFactor5k);
         @include autocompleteCombinedBoxShadows($mode: reverse, $scalingFactor: $scalingFactor5k);
         @include autocompleteOffsetCorrection($mode: reverse, $scalingFactor: $scalingFactor5k);
       }
@@ -160,12 +151,12 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
 }
 
 @mixin autocompleteInputActiveDefault() {
-  border-radius: 2px 2px 0 0;
+  border-radius: $autocompleteBorderRadius $autocompleteBorderRadius 0 0;
   border-color: $sbbColorGrey;
 }
 
 @mixin autocompleteInputActiveReverse() {
-  border-radius: 0 0 2px 2px;
+  border-radius: 0 0 $autocompleteBorderRadius $autocompleteBorderRadius;
   border-color: $sbbColorGrey;
 }
 
@@ -174,52 +165,36 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
   display: block;
   color: $sbbColorMetal;
 
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      border-top-width: toPx(1 * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      border-top-width: toPx(1 * $scalingFactor5k);
-    }
-  }
-
   sbb-option {
     padding-left: $optionGroupItemPaddingLeft;
 
     &:first-of-type {
-      @include publicOnly() {
+      @if $sbbBusiness {
+        padding-top: $optionMarginY;
+      } @else {
         margin-top: 0;
         padding-top: 0;
-      }
-
-      @include businessOnly() {
-        padding-top: $optionMarginTop;
       }
     }
   }
   .sbb-optgroup-label {
-    padding-left: $autocompletePaddingX;
-    padding-right: $autocompletePaddingX;
-    padding-top: $autocompletePaddingTop;
+    padding-left: $autocompleteAndOptionPaddingX;
+    padding-right: $autocompleteAndOptionPaddingX;
+    padding-top: $optionGroupLabelPaddingY;
 
-    @include businessOnly() {
+    @if $sbbBusiness {
       padding-bottom: 0;
-    }
-
-    @include publicOnly() {
-      padding-bottom: $autocompletePaddingTop;
+    } @else {
+      padding-bottom: $optionGroupLabelPaddingY;
 
       @include mq($from: desktop4k) {
-        font-size: toPx(10 * $scalingFactor4k);
-        padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
-        padding-bottom: toPx($autocompletePaddingTop * $scalingFactor4k);
+        padding-top: toPx($optionGroupLabelPaddingY * $scalingFactor4k);
+        padding-bottom: toPx($optionGroupLabelPaddingY * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        font-size: toPx(10 * $scalingFactor5k);
-        padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
-        padding-bottom: toPx($autocompletePaddingTop * $scalingFactor5k);
+        padding-top: toPx($optionGroupLabelPaddingY * $scalingFactor5k);
+        padding-bottom: toPx($optionGroupLabelPaddingY * $scalingFactor5k);
       }
     }
 
@@ -250,7 +225,7 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
     content: '';
     position: absolute;
     height: 100%;
-    width: toPx($optionSelectedBarWidth);
+    width: 1px;
     left: 0;
     top: 0;
     background-color: $color;
@@ -263,7 +238,7 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
   position: relative;
   display: block;
   text-decoration: none;
-  padding: toPx(4) $autocompletePaddingX;
+  padding: toPx(4) $autocompleteAndOptionPaddingX;
   text-align: left;
   max-width: 100%;
   cursor: pointer;
@@ -279,10 +254,10 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
   }
 
   &:first-of-type {
-    margin-top: $optionMarginTop;
+    margin-top: $optionMarginY;
   }
   &:last-of-type {
-    margin-bottom: $dropdownPaddingBottom;
+    margin-bottom: $optionMarginY;
   }
 
   @include businessOnly() {
@@ -292,38 +267,38 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
   @include publicOnly() {
     @include mq($from: desktop4k) {
       font-size: toPx($sizeFontDefault * $scalingFactor4k);
-      padding: toPx(4 * $scalingFactor4k) toPx($autocompletePaddingX * $scalingFactor4k);
+      padding: toPx(4 * $scalingFactor4k) toPx($autocompleteAndOptionPaddingX * $scalingFactor4k);
 
       &:first-of-type {
-        margin-top: toPx($optionMarginTop * $scalingFactor4k);
+        margin-top: toPx($optionMarginY * $scalingFactor4k);
       }
 
       &:last-of-type {
-        margin-bottom: toPx($dropdownPaddingBottom * $scalingFactor4k);
+        margin-bottom: toPx($optionMarginY * $scalingFactor4k);
       }
     }
     @include mq($from: desktop5k) {
       font-size: toPx($sizeFontDefault * $scalingFactor5k);
-      padding: toPx(4 * $scalingFactor5k) toPx($autocompletePaddingX * $scalingFactor5k);
+      padding: toPx(4 * $scalingFactor5k) toPx($autocompleteAndOptionPaddingX * $scalingFactor5k);
       &:first-of-type {
-        margin-top: toPx($optionMarginTop * $scalingFactor5k);
+        margin-top: toPx($optionMarginY * $scalingFactor5k);
       }
       &:last-of-type {
-        margin-bottom: toPx($dropdownPaddingBottom * $scalingFactor5k);
+        margin-bottom: toPx($optionMarginY * $scalingFactor5k);
       }
     }
   }
 
   &:not(.sbb-active) strong {
-    color: $autocompleteHoverColor;
+    color: $sbbColorBlack;
   }
 
   &.sbb-selected {
-    color: $autocompleteOptionActiveColor;
+    color: $optionSelectedColor;
 
     @include businessOnly() {
       background-color: $sbbColorCloud;
-      @include optionBorderLeft($autocompleteOptionActiveColor);
+      @include optionBorderLeft($optionSelectedColor);
     }
   }
 
@@ -332,11 +307,11 @@ $autocompleteBorderTopReverse: $autocompleteBorder;
   &:not(:disabled):not(.sbb-option-disabled):hover strong,
   &:not(:disabled):not(.sbb-option-disabled):focus strong,
   &.sbb-active {
-    color: $autocompleteOptionHoverColor;
+    color: $optionHoverColor;
 
     @include businessOnly() {
       background-color: $sbbColorMilk;
-      @include optionBorderLeft($autocompleteOptionHoverColor);
+      @include optionBorderLeft($optionHoverColor);
     }
   }
 
