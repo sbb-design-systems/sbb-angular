@@ -4,12 +4,11 @@ $autocompleteBg: $sbbColorWhite;
 $autocompleteBorderWidth: if($sbbBusiness, 1px, 2px);
 $autocompleteBorder: if(
   $sbbBusiness,
-  $autocompleteBorderWidth solid $sbbColorGranite,
+  $autocompleteBorderWidth solid $sbbColorIron,
   $autocompleteBorderWidth solid $sbbColorGrey
 );
 $autocompleteBorderRadius: 2px;
 $autocompleteBorderTopReverse: $autocompleteBorder;
-$autocompleteColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 $autocompleteShadowWidth: if($sbbBusiness, 4px, 8px);
 $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
 $autocompleteInputActiveBorderWidth: 1px;
@@ -22,6 +21,7 @@ $optionMultipleNoCheckboxPaddingLeft: if($sbbBusiness, 8px, 14px);
 $optionMarginY: if($sbbBusiness, 4px, 10px);
 $optionGroupItemPaddingLeft: if($sbbBusiness, 16px, 24px);
 $optionGroupLabelPaddingY: if($sbbBusiness, 8px, 14px);
+$optionAndAutocompleteColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
 $optionHoverColor: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
 $optionSelectedColor: $sbbColorBlack;
 
@@ -33,7 +33,7 @@ $optionSelectedColor: $sbbColorBlack;
   background-color: $autocompleteBg;
   border: $autocompleteBorder;
   transition: $autocompleteTransition;
-  color: $autocompleteColor;
+  color: $optionAndAutocompleteColor;
 
   &.sbb-autocomplete-visible {
     visibility: visible;
@@ -152,12 +152,12 @@ $optionSelectedColor: $sbbColorBlack;
 
 @mixin autocompleteInputActiveDefault() {
   border-radius: $autocompleteBorderRadius $autocompleteBorderRadius 0 0;
-  border-color: $sbbColorGrey;
+  border-color: $optionAndAutocompleteColor;
 }
 
 @mixin autocompleteInputActiveReverse() {
   border-radius: 0 0 $autocompleteBorderRadius $autocompleteBorderRadius;
-  border-color: $sbbColorGrey;
+  border-color: $optionAndAutocompleteColor;
 }
 
 @mixin optionGroupBase {
@@ -232,6 +232,18 @@ $optionSelectedColor: $sbbColorBlack;
   }
 }
 
+@mixin optionSelected() {
+  color: $optionSelectedColor;
+  @include svgIconColor(
+    $optionSelectedColor
+  ); // TODO(icon-migration): remove definition because new icons inherit colors
+
+  @include businessOnly() {
+    background-color: $sbbColorCloud;
+    @include optionBorderLeft($optionSelectedColor);
+  }
+}
+
 @mixin optionBase($selectMode: false) {
   @include ellipsis;
 
@@ -243,14 +255,13 @@ $optionSelectedColor: $sbbColorBlack;
   max-width: 100%;
   cursor: pointer;
   outline: 0;
+  color: $optionAndAutocompleteColor;
+  @include svgIconColor(
+    $optionAndAutocompleteColor
+  ); // TODO(icon-migration): remove definition because new icons inherit colors
 
   @if $selectMode == true {
     cursor: default;
-    color: $sbbColorGrey;
-
-    @include businessOnly() {
-      color: $sbbColorGranite;
-    }
   }
 
   &:first-of-type {
@@ -294,12 +305,7 @@ $optionSelectedColor: $sbbColorBlack;
   }
 
   &.sbb-selected {
-    color: $optionSelectedColor;
-
-    @include businessOnly() {
-      background-color: $sbbColorCloud;
-      @include optionBorderLeft($optionSelectedColor);
-    }
+    @include optionSelected();
   }
 
   &:not(:disabled):not(.sbb-option-disabled):hover,
@@ -308,6 +314,9 @@ $optionSelectedColor: $sbbColorBlack;
   &:not(:disabled):not(.sbb-option-disabled):focus strong,
   &.sbb-active {
     color: $optionHoverColor;
+    @include svgIconColor(
+      $optionHoverColor
+    ); // TODO(icon-migration): remove definition because new icons inherit colors
 
     @include businessOnly() {
       background-color: $sbbColorMilk;
