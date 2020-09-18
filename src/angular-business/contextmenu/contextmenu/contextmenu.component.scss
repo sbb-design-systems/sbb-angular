@@ -33,7 +33,7 @@ $sbbContextmenuBorderRadius: 2px;
     &[aria-expanded='true'] {
       background-color: $sbbColorWhite;
       border-radius: $sbbContextmenuBorderRadius $sbbContextmenuBorderRadius 0 0;
-      border: 1px solid $sbbColorGranite;
+      border: 1px solid $sbbColorIron;
 
       &.sbb-dropdown-trigger-above {
         border-radius: 0 0 $sbbContextmenuBorderRadius $sbbContextmenuBorderRadius;
@@ -44,7 +44,7 @@ $sbbContextmenuBorderRadius: 2px;
 
 .sbb-dropdown-panel.sbb-contextmenu-dropdown,
 .sbb-dropdown-panel.sbb-contextmenu-dropdown.sbb-dropdown-panel-above {
-  border: 1px solid $sbbColorGranite;
+  border: 1px solid $sbbColorIron;
   border-radius: $sbbContextmenuBorderRadius;
   margin: 0;
   overflow: inherit;
