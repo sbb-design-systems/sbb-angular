@@ -19,7 +19,6 @@ import {
   ElementRef,
   forwardRef,
   Host,
-  HostBinding,
   HostListener,
   Inject,
   InjectionToken,
@@ -99,6 +98,17 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
       multi: true,
     },
   ],
+  host: {
+    '[attr.role]': `this._autocompleteDisabled ? null : 'combobox'`,
+    '[attr.autocomplete]': 'this.autocompleteAttribute',
+    '[attr.aria-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen.toString()',
+    '[attr.aria-owns]':
+      'this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id',
+    '[attr.aria-autocomplete]': `this._autocompleteDisabled ? null : 'list'`,
+    '[attr.aria-activedescendant]': 'this.activeOption ? this.activeOption.id : null',
+    '[class.sbb-autocomplete-input-panel-open]':
+      'this.autocompleteDisabled ? null : this.panelOpen',
+  },
 })
 export class AutocompleteTriggerDirective
   implements ControlValueAccessor, AfterViewInit, OnDestroy {
@@ -140,7 +150,11 @@ export class AutocompleteTriggerDirective
 
   private _inputValue = new BehaviorSubject('');
 
-  @HostBinding('attr.role') get role() {
+  /**
+   * @Deprecated Internal detail
+   * @docs-private
+   */
+  get role() {
     return this._autocompleteDisabled ? null : 'combobox';
   }
 
@@ -192,7 +206,6 @@ export class AutocompleteTriggerDirective
    */
   // tslint:disable-next-line:no-input-rename
   @Input('autocomplete')
-  @HostBinding('attr.autocomplete')
   autocompleteAttribute = 'off';
 
   /** Stream of autocomplete option selections. */
@@ -211,11 +224,19 @@ export class AutocompleteTriggerDirective
     );
   });
 
-  @HostBinding('attr.aria-expanded') get ariaExpanded(): string | null {
+  /**
+   * @Deprecated Internal detail
+   * @docs-private
+   */
+  get ariaExpanded(): string | null {
     return this.autocompleteDisabled ? null : this.panelOpen.toString();
   }
 
-  @HostBinding('attr.aria-owns') get ariaOwns(): string | null {
+  /**
+   * @Deprecated Internal detail
+   * @docs-private
+   */
+  get ariaOwns(): string | null {
     return this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id;
   }
 
@@ -250,12 +271,18 @@ export class AutocompleteTriggerDirective
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
 
-  @HostBinding('attr.aria-autocomplete')
+  /**
+   * @Deprecated Internal detail
+   * @docs-private
+   */
   get ariaAutocomplete(): string | null {
     return this._autocompleteDisabled ? null : 'list';
   }
 
-  @HostBinding('attr.aria-activedescendant')
+  /**
+   * @Deprecated Internal detail
+   * @docs-private
+   */
   get activeOptionId() {
     return this.activeOption ? this.activeOption.id : null;
   }
