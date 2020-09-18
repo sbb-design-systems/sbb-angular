@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 interface ExampleOption {
   label: string;
@@ -10,21 +12,22 @@ interface ExampleOption {
   selector: 'sbb-autocomplete-display-with-example',
   templateUrl: './autocomplete-display-with-example.component.html',
 })
-export class AutocompleteDisplayWithExampleComponent implements OnInit {
+export class AutocompleteDisplayWithExampleComponent {
   myControl = new FormControl('');
 
-  filteredOptions = options.slice(0);
+  filteredOptions: Observable<ExampleOption[]> = this.myControl.valueChanges.pipe(
+    startWith(''),
+    map((newValue) =>
+      options.filter(
+        (option) =>
+          option.label
+            .toLocaleUpperCase()
+            .indexOf((newValue.label ?? newValue).toLocaleUpperCase()) > -1
+      )
+    )
+  );
 
   formatOption = (value: ExampleOption) => value.label;
-
-  ngOnInit() {
-    this.myControl.valueChanges.subscribe((newValue) => {
-      this.filteredOptions = options.filter(
-        (option) =>
-          option.label.toLocaleUpperCase().indexOf(newValue.label.toLocaleUpperCase()) > -1
-      );
-    });
-  }
 }
 
 const options: ExampleOption[] = [
