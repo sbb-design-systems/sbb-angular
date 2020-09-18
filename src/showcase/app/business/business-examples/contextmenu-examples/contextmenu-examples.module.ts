@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ContextmenuModule } from '@sbb-esta/angular-business/contextmenu';
 import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -14,7 +15,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, ContextmenuModule, DropdownModule],
+  imports: [CommonModule, ContextmenuModule, DropdownModule, SbbIconModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('business', 'contextmenu', EXAMPLE_INDEX)],

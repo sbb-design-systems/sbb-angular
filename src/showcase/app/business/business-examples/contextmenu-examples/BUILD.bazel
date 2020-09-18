@@ -17,6 +17,7 @@ ng_module(
     deps = [
         "//src/angular-business/contextmenu",
         "//src/angular-business/dropdown",
+        "//src/angular-core/icon",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
