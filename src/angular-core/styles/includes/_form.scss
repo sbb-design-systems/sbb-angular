@@ -1,5 +1,7 @@
 // Form Styles
 // ----------------------------------------------------------------------------------------------------
+$inputFieldColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
+$labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 
 @mixin disabledelement {
   opacity: 0.5;
@@ -38,7 +40,7 @@
   background: $sbbColorWhite;
   border: 2px solid $sbbColorGraphite;
   border-radius: 2px;
-  color: $sbbColorGrey;
+  color: $inputFieldColor;
   line-height: 1.5;
   font-size: pxToRem($sizeFontDefault);
   -webkit-appearance: none;
@@ -48,16 +50,11 @@
   }
 
   &:focus {
-    border-color: $sbbColorGrey;
+    border-color: $inputFieldColor;
   }
 
   @include businessOnly() {
     border-width: 1px;
-    color: $sbbColorGranite;
-
-    &:focus {
-      border-color: $sbbColorGranite;
-    }
   }
 
   @include publicOnly() {
@@ -101,13 +98,9 @@
   background-color: transparent;
   font-family: $fontSbbRoman;
   font-size: pxToRem(13);
-  color: $sbbColorGrey;
+  color: $labelColor;
   line-height: pxToRem(16);
   display: block;
-
-  @include businessOnly() {
-    color: $sbbColorGranite;
-  }
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -121,12 +114,8 @@
 }
 
 @mixin formlabel {
-  color: $sbbColorGrey;
+  color: $labelColor;
   font-size: pxToEm(13);
-
-  @include businessOnly() {
-    color: $sbbColorGranite;
-  }
 }
 
 @mixin inputField() {
@@ -141,11 +130,7 @@
   }
 
   &:focus {
-    border-color: $sbbColorGrey;
-
-    @include businessOnly() {
-      border-color: $sbbColorGranite;
-    }
+    border-color: $inputFieldColor;
   }
 }
 

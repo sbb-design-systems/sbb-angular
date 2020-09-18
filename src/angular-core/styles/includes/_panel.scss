@@ -12,10 +12,10 @@ $sbbPanelItemSelectedBarWidth: 1;
 $sbbPanelItemSelectedBarTop: 3;
 
 @if $sbbBusiness {
-  $sbbPanelBorder: 1px solid $sbbColorGranite;
+  $sbbPanelBorder: 1px solid $sbbColorIron;
   $sbbPanelShadow: 0 4px 0 rgba(0, 0, 0, 0.15);
   $sbbPanelShadowReverse: 0 -4px 0 rgba(0, 0, 0, 0.15);
-  $sbbPanelColor: $sbbColorGranite;
+  $sbbPanelColor: $sbbColorIron;
   $sbbPanelPaddingX: 8px;
   $sbbPanelPaddingTop: 8px;
   $sbbPanelPaddingBottom: 8px;
@@ -85,7 +85,7 @@ $sbbPanelItemSelectedBarTop: 3;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
   border-top: none;
-  box-shadow: sbbPanelShadow;
+  box-shadow: $sbbPanelShadow;
   margin-top: -2px;
 
   @include publicOnly() {
