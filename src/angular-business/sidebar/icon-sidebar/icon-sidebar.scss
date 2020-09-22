@@ -1,0 +1,248 @@
+@import '../../../angular-core/styles/common';
+@import '../sidebar';
+
+$sbb-icon-sidebar-expanded-width: pxToRem(250px);
+$sbb-icon-sidebar-collapsed-width: pxToRem(48px);
+
+.sbb-icon-sidebar-container {
+  @include sbb-sidebar-container('.sbb-icon-sidebar');
+
+  display: flex;
+  flex-direction: row;
+}
+
+.sbb-icon-sidebar-container.sbb-icon-sidebar-after-header,
+sbb-header + .sbb-icon-sidebar-container {
+  top: $sbb-sidebar-after-header-top;
+}
+
+.sbb-icon-sidebar-content {
+  @include sbb-sidebar-content;
+  flex: 1 1;
+}
+
+.sbb-icon-sidebar {
+  @include sbb-sidebar;
+  position: relative;
+  background-color: $sbbColorMilk;
+  transition: width $swift-ease-out-duration $swift-ease-out-timing-function;
+
+  &.sbb-icon-sidebar-expanded {
+    width: $sbb-icon-sidebar-expanded-width;
+  }
+
+  &.sbb-icon-sidebar-collapsed {
+    width: $sbb-icon-sidebar-collapsed-width;
+
+    .sbb-icon-sidebar-collapse-expand-button {
+      .sbb-icon-sidebar-item-icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    // Clip expand / collapse button text instead of ellipsis because of weird animation
+    .sbb-icon-sidebar-collapse-expand-button.sbb-icon-sidebar-item .sbb-icon-sidebar-item-label {
+      text-overflow: clip;
+    }
+  }
+
+  .sbb-icon-sidebar-links {
+    margin-bottom: pxToRem(48px);
+  }
+
+  .sbb-icon-sidebar-item {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    height: pxToRem(48px);
+    color: $sbbColorIron;
+    text-decoration: none;
+    font-size: pxToRem($sizeFontDefault);
+    line-height: pxToRem(23px);
+    position: relative;
+
+    &:not(.sbb-active) {
+      outline: 0;
+    }
+
+    .sbb-icon-sidebar-item-icon {
+      display: inline-flex;
+      height: pxToRem(48px);
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 $sbb-icon-sidebar-collapsed-width;
+
+      // TODO(icon-migration): remove block because icons take color from font color
+      .sbb-icon-component {
+        @include svgIconColor($sbbColorIron);
+        width: pxToRem(24px);
+        height: pxToRem(24px);
+      }
+
+      .sbb-icon {
+        width: pxToRem(24px);
+        height: pxToRem(24px);
+      }
+
+      &:empty:after {
+        content: '?';
+        display: block;
+      }
+    }
+
+    .sbb-icon-sidebar-item-label {
+      padding: 0 pxToRem(12px) 0 pxToRem(4px);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &:hover,
+    &:focus,
+    &.sbb-active {
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: pxToRem(2px);
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+
+      &:after {
+        background-color: $sbbColorRed125;
+      }
+
+      // TODO(icon-migration): remove block because icons take color from font color
+      .sbb-icon-sidebar-item-icon {
+        .sbb-icon-component {
+          @include svgIconColor($sbbColorRed125);
+        }
+      }
+    }
+
+    &.sbb-active {
+      background-color: $sbbColorWhite;
+      color: $sbbColorBlack;
+      cursor: default;
+      pointer-events: none;
+
+      &:after {
+        background-color: $sbbColorBlack;
+      }
+
+      // TODO(icon-migration): remove block because icons take color from font color
+      .sbb-icon-sidebar-item-icon {
+        .sbb-icon-component {
+          @include svgIconColor($sbbColorBlack);
+        }
+      }
+    }
+  }
+
+  hr {
+    margin-top: pxToRem(8px);
+    margin-bottom: pxToRem(8px);
+    padding: 0;
+    border: none;
+    border-top: solid pxToRem(1px) $sbbColorGraphite;
+  }
+
+  .sbb-icon-sidebar-collapse-expand-button {
+    @include buttonResetFrameless();
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: $sbbColorMilk;
+    cursor: pointer;
+    outline: 0;
+    overflow: hidden;
+
+    .sbb-icon-sidebar-item-icon {
+      transition: transform $swift-ease-out-duration $swift-ease-out-timing-function;
+      .sbb-icon {
+        width: pxToRem(24px);
+        height: pxToRem(24px);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      &:after {
+        content: none;
+      }
+    }
+  }
+
+  .sbb-icon-sidebar-inner-container {
+    @include sbb-sidebar-inner-container();
+  }
+}
+
+.sbb-icon-sidebar-container-mobile {
+  flex-direction: column-reverse;
+
+  .sbb-icon-sidebar {
+    width: auto;
+    height: pxToRem(48px);
+    top: auto;
+    left: 0;
+    right: 0;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    .sbb-icon-sidebar-inner-container {
+      overflow-y: hidden;
+      overflow-x: auto;
+
+      &.sbb-scrollbar {
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+        }
+      }
+    }
+
+    .sbb-icon-sidebar-links {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 0;
+    }
+
+    .sbb-icon-sidebar-item {
+      display: flex;
+      flex: 1 0 $sbb-icon-sidebar-collapsed-width;
+      justify-content: center;
+
+      .sbb-icon-sidebar-item-label {
+        @include sbbVisuallyHidden();
+      }
+
+      &:hover,
+      &:focus,
+      &.sbb-active {
+        &:after {
+          width: 100%;
+          height: pxToRem(2px);
+          top: auto;
+          bottom: 0;
+        }
+      }
+    }
+
+    hr {
+      margin: 0 pxToRem(8px);
+      flex: 0 0 pxToRem(1px);
+      border-top: none;
+      border-left: solid pxToRem(1px) $sbbColorGraphite;
+    }
+  }
+}

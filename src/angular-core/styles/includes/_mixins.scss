@@ -345,20 +345,26 @@
 
 @mixin fieldset {
   margin: 0;
-  padding: pxToEm(36) pxToEm(24);
-  border: 1px solid $sbbColorSilver;
   min-width: 0;
 
-  @include mq($from: tabletPortrait) {
-    padding: pxToEm(48) pxToEm(24);
-  }
+  @if $sbbBusiness {
+    border: 1px solid $sbbColorGraphite;
+    padding: pxToEm(16) pxToEm(14) pxToEm(16) pxToEm(16);
+  } @else {
+    border: 1px solid $sbbColorSilver;
+    padding: pxToEm(36) pxToEm(24);
 
-  @include mq($from: desktop4k) {
-    font-size: pxToEm($sizeFontBase * $scalingFactor4k);
-  }
+    @include mq($from: tabletPortrait) {
+      padding: pxToEm(48) pxToEm(24);
+    }
 
-  @include mq($from: desktop5k) {
-    font-size: pxToEm($sizeFontBase * $scalingFactor5k);
+    @include mq($from: desktop4k) {
+      font-size: pxToEm($sizeFontBase * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToEm($sizeFontBase * $scalingFactor5k);
+    }
   }
 
   > legend {
@@ -366,25 +372,31 @@
     width: 100%;
     max-width: 100%;
     padding: 0;
-    margin: 0 0 24px;
     font-family: $fontSbbLight;
     font-weight: 400;
-    font-size: 24px;
     line-height: 1.2;
     float: left;
 
-    @include mq($from: desktop) {
-      font-size: 32px;
-    }
+    @if $sbbBusiness {
+      font-size: 21px;
+      margin: 0 0 8px;
+    } @else {
+      font-size: 24px;
+      margin: 0 0 24px;
 
-    @include mq($from: desktop4k) {
-      font-size: 48px;
-      margin: 0 0 36px;
-    }
+      @include mq($from: desktop) {
+        font-size: 32px;
+      }
 
-    @include mq($from: desktop5k) {
-      font-size: 64px;
-      margin: 0 0 48px;
+      @include mq($from: desktop4k) {
+        font-size: 48px;
+        margin: 0 0 36px;
+      }
+
+      @include mq($from: desktop5k) {
+        font-size: 64px;
+        margin: 0 0 48px;
+      }
     }
   }
 
@@ -395,23 +407,31 @@
     padding-left: 0;
     padding-right: 0;
 
+    @if $sbbBusiness {
+      border-color: $sbbColorCloud;
+    }
+
     &:last-of-type {
       border-bottom: none;
     }
 
     > legend {
-      font-size: 20px;
+      @if $sbbBusiness {
+        font-size: 16px;
+      } @else {
+        font-size: 20px;
 
-      @include mq($from: desktop) {
-        font-size: 22px;
-      }
+        @include mq($from: desktop) {
+          font-size: 22px;
+        }
 
-      @include mq($from: desktop4k) {
-        font-size: 32px;
-      }
+        @include mq($from: desktop4k) {
+          font-size: 32px;
+        }
 
-      @include mq($from: desktop5k) {
-        font-size: 42px;
+        @include mq($from: desktop5k) {
+          font-size: 42px;
+        }
       }
     }
   }
@@ -452,4 +472,27 @@
       }
     }
   }
+}
+
+/**
+ * Display content for screen reader only.
+ * Copied from angular/components .cdk-visually-hidden, in order
+ * to apply it to a class conditionally.
+ */
+@mixin sbbVisuallyHidden() {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  // Avoid browsers rendering the focus ring in some cases.
+  outline: 0;
+
+  // Avoid some cases where the browser will still render the native controls (see #9049).
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }

@@ -10,11 +10,13 @@ $trackColor: $sbbColorMilk;
     background-color: $trackColor;
   }
 }
+
 @mixin sbbScrollbar() {
   .sbb-scrollbar {
     @include scrollbarColor(transparent, transparent);
 
-    &:hover {
+    &:hover,
+    &.sbb-scrollbar-opaque {
       @include scrollbarColor($thumbColor, $trackColor);
     }
 

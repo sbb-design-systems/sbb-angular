@@ -21,6 +21,7 @@ export class BusinessComponent {
   };
   navigationComponents = {
     header: 'Header',
+    sidebar: 'Sidebar',
   };
   layoutComponents = {
     accordion: 'Accordion',

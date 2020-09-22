@@ -1,65 +1,51 @@
-<sbb-submenu>
-  <ul>
-    <li>
-      Introduction
-
-      <ul>
-        <li>
-          <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            >Getting started</a
-          >
-        </li>
-        <li>
-          <a routerLink="./introduction/overview-and-usage" routerLinkActive="active"
-            >Overview and usage</a
-          >
-        </li>
-        <li>
-          <a routerLink="./introduction/mapping-basics" routerLinkActive="active">Mapping basics</a>
-        </li>
-      </ul>
-    </li>
-
-    <li class="no-link">
-      Maps
-
-      <ul>
-        <li *ngFor="let c of maps | keyvalue">
-          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
-        </li>
-      </ul>
-    </li>
-
-    <li class="no-link">
-      Map Utilities
-
-      <ul>
-        <li *ngFor="let c of mapUtilities | keyvalue">
-          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
-        </li>
-      </ul>
-    </li>
-
-    <li class="no-link">
-      Advanced Usage
-
-      <ul>
-        <li>
-          <a routerLink="./advanced/loading-arcgis-types" routerLinkActive="active"
-            >Loading ArcGIS types</a
-          >
-        </li>
-        <li>
-          <a routerLink="./advanced/layer-filtering" routerLinkActive="active">Layer filtering</a>
-        </li>
-        <li>
-          <a routerLink="./advanced/accessing-map-data" routerLinkActive="active"
-            >Accessing map data</a
-          >
-        </li>
-      </ul>
-    </li>
-  </ul>
-</sbb-submenu>
-
-<router-outlet></router-outlet>
+<sbb-sidebar-container>
+  <sbb-sidebar role="navigation">
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
+      <a sbbSidebarLink routerLink="./introduction/getting-started" routerLinkActive="sbb-active"
+        >Getting started</a
+      >
+      <a sbbSidebarLink routerLink="./introduction/overview-and-usage" routerLinkActive="sbb-active"
+        >Overview and usage</a
+      >
+      <a sbbSidebarLink routerLink="./introduction/mapping-basics" routerLinkActive="sbb-active"
+        >Mapping basics</a
+      >
+    </sbb-expansion-panel>
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Maps</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        *ngFor="let c of maps | keyvalue"
+        [routerLink]="['./components/', c.key]"
+        routerLinkActive="sbb-active"
+        >{{ c.value }}</a
+      >
+    </sbb-expansion-panel>
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Map Utilities</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        *ngFor="let c of mapUtilities | keyvalue"
+        [routerLink]="['./components/', c.key]"
+        routerLinkActive="sbb-active"
+        >{{ c.value }}</a
+      >
+    </sbb-expansion-panel>
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Advanced Usage</sbb-expansion-panel-header>
+      <a sbbSidebarLink routerLink="./advanced/loading-arcgis-types" routerLinkActive="sbb-active"
+        >Loading ArcGIS types</a
+      >
+      <a sbbSidebarLink routerLink="./advanced/layer-filtering" routerLinkActive="sbb-active"
+        >Layer filtering</a
+      >
+      <a sbbSidebarLink routerLink="./advanced/accessing-map-data" routerLinkActive="sbb-active"
+        >Accessing map data</a
+      >
+    </sbb-expansion-panel>
+  </sbb-sidebar>
+  <sbb-sidebar-content role="main">
+    <router-outlet></router-outlet>
+  </sbb-sidebar-content>
+</sbb-sidebar-container>

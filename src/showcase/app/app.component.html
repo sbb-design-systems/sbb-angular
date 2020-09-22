@@ -4,27 +4,69 @@
     <a target="_blank" href="https://angular.io/">Angular {{ angularVersion }}</a>
   </sbb-app-chooser-section>
   <a routerLink="/">Introduction</a>
-  <button [sbbHeaderMenu]="packages">Packages</button>
   <a routerLink="/howtoupdate">How to update</a>
-  <sbb-header-menu #packages="sbbHeaderMenu">
-    Packages
-    <a sbbHeaderMenuItem routerLink="/public" routerLinkActive="sbb-active"
-      >@sbb-esta/angular-public</a
-    >
-    <a sbbHeaderMenuItem routerLink="/business" routerLinkActive="sbb-active"
-      >@sbb-esta/angular-business</a
-    >
-    <a sbbHeaderMenuItem routerLink="/core" routerLinkActive="sbb-active">@sbb-esta/angular-core</a>
-    <a sbbHeaderMenuItem routerLink="/icons" routerLinkActive="sbb-active"
-      >@sbb-esta/angular-icons (deprecated)</a
-    >
-    <a sbbHeaderMenuItem routerLink="/keycloak" routerLinkActive="sbb-active"
-      >@sbb-esta/angular-keycloak (deprecated)</a
-    >
-    <a sbbHeaderMenuItem routerLink="/maps" routerLinkActive="sbb-active">@sbb-esta/angular-maps</a>
-  </sbb-header-menu>
 </sbb-header>
 
-<main class="sbb-scrollbar" cdkScrollable>
-  <router-outlet></router-outlet>
-</main>
+<sbb-icon-sidebar-container>
+  <sbb-icon-sidebar [expanded]="expanded">
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-public"
+      title="@sbb-esta/angular-public"
+      routerLink="/public"
+      routerLinkActive="sbb-active"
+    >
+      <sbb-icon svgIcon="kom:globe-small"></sbb-icon>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-business"
+      title="@sbb-esta/angular-business"
+      routerLink="/business"
+      routerLinkActive="sbb-active"
+    >
+      <sbb-icon svgIcon="kom:chart-column-trend-small"></sbb-icon>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-core"
+      title="@sbb-esta/angular-core"
+      routerLink="/core"
+      routerLinkActive="sbb-active"
+    >
+      <sbb-icon svgIcon="kom:gears-small"></sbb-icon>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-icons"
+      title="@sbb-esta/angular-icons"
+      routerLink="/icons"
+      routerLinkActive="sbb-active"
+      class="sbb-deprecated-link"
+    >
+      <sbb-icon svgIcon="kom:document-image-small"></sbb-icon>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-keycloak"
+      title="@sbb-esta/angular-keycloak"
+      routerLink="/keycloak"
+      routerLinkActive="sbb-active"
+      class="sbb-deprecated-link"
+    >
+      <sbb-icon svgIcon="kom:key-small"></sbb-icon>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-maps"
+      title="@sbb-esta/angular-maps"
+      routerLink="/maps"
+      routerLinkActive="sbb-active"
+    >
+      <sbb-icon svgIcon="kom:location-pin-map-small"></sbb-icon>
+    </a>
+  </sbb-icon-sidebar>
+  <sbb-icon-sidebar-content role="main">
+    <router-outlet></router-outlet>
+  </sbb-icon-sidebar-content>
+</sbb-icon-sidebar-container>

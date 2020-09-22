@@ -20,6 +20,7 @@ import { PaginationExamplesModule } from './pagination-examples/pagination-examp
 import { ProcessflowExamplesModule } from './processflow-examples/processflow-examples.module';
 import { RadioButtonExamplesModule } from './radio-button-examples/radio-button-examples.module';
 import { SelectExamplesModule } from './select-examples/select-examples.module';
+import { SidebarExamplesModule } from './sidebar-examples/sidebar-examples.module';
 import { StatusExamplesModule } from './status-examples/status-examples.module';
 import { TableExamplesModule } from './table-examples/table-examples.module';
 import { TabsExamplesModule } from './tabs-examples/tabs-examples.module';
@@ -50,6 +51,7 @@ const EXAMPLES = [
   ProcessflowExamplesModule,
   RadioButtonExamplesModule,
   SelectExamplesModule,
+  SidebarExamplesModule,
   StatusExamplesModule,
   TableExamplesModule,
   TabsExamplesModule,

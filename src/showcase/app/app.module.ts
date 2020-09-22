@@ -5,7 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
+import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,9 +26,12 @@ import { IntroductionComponent } from './introduction/introduction.component';
     HttpClientModule,
     ReactiveFormsModule,
     CheckboxModule,
+    SbbSidebarModule,
+    SbbIconModule,
   ],
   exports: [AppComponent],
   bootstrap: [AppComponent],
+
   providers: [SBB_ICON_REGISTRY_PROVIDER],
 })
 export class AppModule {}

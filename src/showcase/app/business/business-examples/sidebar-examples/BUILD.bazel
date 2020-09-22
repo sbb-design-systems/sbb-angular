@@ -1,0 +1,60 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "sidebar-examples",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":icon-sidebar-example/icon-sidebar-example.component.css",
+        ":sidebar-example/sidebar-example.component.css",
+    ] + glob(["**/*.html"]),
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/accordion",
+        "//src/angular-business/button",
+        "//src/angular-business/checkbox",
+        "//src/angular-business/sidebar",
+        "//src/angular-core/breakpoints",
+        "//src/angular-core/icon",
+        "//src/angular-core/testing",
+        "//src/showcase/app/shared",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "icon_sidebar_example_icon_sidebar_example_component_scss",
+    src = "icon-sidebar-example/icon-sidebar-example.component.scss",
+    deps = [
+        "//src/angular-core/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "sidebar_example_sidebar_example_component_scss",
+    src = "sidebar-example/sidebar-example.component.scss",
+    deps = [
+        "//src/angular-core/styles:common_scss_lib",
+    ],
+)

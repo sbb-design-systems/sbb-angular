@@ -98,6 +98,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
    *  - @sbb-esta/angular-business/pagination: kom:chevron-small-left-circle-small, kom:chevron-small-left-small, kom:chevron-small-right-circle-small, kom:chevron-small-right-small
    *  - @sbb-esta/angular-business/processflow: kom:chevron-right-small
    *  - @sbb-esta/angular-business/select: kom:chevron-small-down-small
+   *  - @sbb-esta/angular-business/sidebar: kom:arrow-right-small, kom:chevron-small-left-circle-small, kom:hamburger-menu-small
    *  - @sbb-esta/angular-business/status: kom:cross-small, kom:exclamation-point-small, kom:tick-small
    *  - @sbb-esta/angular-business/tooltip: kom:circle-question-mark-small, kom:cross-small
    *  - @sbb-esta/angular-business/usermenu: kom:chevron-small-down-small, kom:user-small

@@ -1,37 +1,30 @@
-<sbb-submenu>
-  <ul>
-    <li>
-      Introduction
+<sbb-sidebar-container>
+  <sbb-sidebar role="navigation">
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Introduction</sbb-expansion-panel-header>
+      <a sbbSidebarLink routerLink="./introduction/getting-started" routerLinkActive="sbb-active"
+        >Getting started</a
+      >
+    </sbb-expansion-panel>
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Modules</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        *ngFor="let c of modules | keyvalue"
+        [routerLink]="['./components/', c.key]"
+        routerLinkActive="sbb-active"
+        >{{ c.value }}</a
+      >
+    </sbb-expansion-panel>
 
-      <ul>
-        <li>
-          <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            >Getting started</a
-          >
-        </li>
-      </ul>
-    </li>
-
-    <li class="no-link">
-      Modules
-
-      <ul>
-        <li *ngFor="let c of modules | keyvalue">
-          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
-        </li>
-      </ul>
-    </li>
-
-    <li class="no-link">
-      Icons
-
-      <ul>
-        <li>
-          <a [routerLink]="['./icon-overview']" routerLinkActive="active">Overview</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</sbb-submenu>
-
-<router-outlet></router-outlet>
+    <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Icons</sbb-expansion-panel-header>
+      <a sbbSidebarLink [routerLink]="['./icon-overview']" routerLinkActive="sbb-active"
+        >Overview</a
+      >
+    </sbb-expansion-panel>
+  </sbb-sidebar>
+  <sbb-sidebar-content role="main">
+    <router-outlet></router-outlet>
+  </sbb-sidebar-content>
+</sbb-sidebar-container>

@@ -1,9 +1,5 @@
 :host {
   display: block;
   overflow-y: hidden;
-  padding: 3rem;
-}
-
-:host-context(sbb-public, sbb-business, sbb-core, sbb-icons, sbb-maps) {
-  margin-left: 300px;
+  padding: 3rem 1.5rem;
 }

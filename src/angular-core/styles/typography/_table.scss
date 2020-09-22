@@ -134,19 +134,6 @@ $tableCaptionColor: $sbbColorGrey;
             }
           }
         }
-        &:first-child {
-          &::after {
-            opacity: 0;
-            transition: all 0.2s ease-in;
-            content: '';
-            position: absolute;
-            width: pxToEm(8);
-            height: 100%;
-            top: 0;
-            right: 0;
-            transform: translateX(100%);
-          }
-        }
       }
     }
   }

@@ -60,6 +60,7 @@ ALL_EXAMPLES = [
     "//src/showcase/app/business/business-examples/processflow-examples",
     "//src/showcase/app/business/business-examples/radio-button-examples",
     "//src/showcase/app/business/business-examples/select-examples",
+    "//src/showcase/app/business/business-examples/sidebar-examples",
     "//src/showcase/app/business/business-examples/status-examples",
     "//src/showcase/app/business/business-examples/table-examples",
     "//src/showcase/app/business/business-examples/tabs-examples",

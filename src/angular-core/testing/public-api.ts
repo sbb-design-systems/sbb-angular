@@ -5,3 +5,4 @@ export * from './element-focus';
 export * from './month-constants';
 export * from './mock-ng-zone';
 export * from './wrapped-error-message';
+export * from './breakpoint-observer';

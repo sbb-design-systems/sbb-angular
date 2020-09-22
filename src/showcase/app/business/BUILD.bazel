@@ -19,6 +19,8 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/angular-business/accordion",
+        "//src/angular-business/sidebar",
         "//src/angular-business/tabs",
         "//src/showcase/app/business/business-examples",
         "//src/showcase/app/shared",

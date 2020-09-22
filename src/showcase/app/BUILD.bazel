@@ -32,6 +32,8 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/header",
+        "//src/angular-business/sidebar",
+        "//src/angular-core/breakpoints",
         "//src/angular-core/icon",
         "//src/angular-public/checkbox",
         "//src/showcase/app/business",
@@ -47,12 +49,16 @@ ng_module(
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
+        "@npm//rxjs",
     ],
 )
 
 sass_binary(
     name = "app_component_scss",
     src = "app.component.scss",
+    deps = [
+        "//src/angular-core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
