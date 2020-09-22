@@ -14,7 +14,7 @@ const chalk = require('chalk');
  * Version of the post install patch. Needs to be incremented when
  * existing patches or edits have been modified.
  */
-const PATCH_VERSION = 6;
+const PATCH_VERSION = 9;
 
 /** Path to the project directory. */
 const projectDir = path.join(__dirname, '../..');
@@ -39,7 +39,12 @@ async function main() {
   registry = await readAndValidatePatchMarker();
 
   // Apply all patches synchronously.
-  applyPatches();
+  try {
+    applyPatches();
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
 
   // Write the patch marker file so that we don't accidentally re-apply patches
   // in subsequent Yarn installations.
@@ -140,20 +145,8 @@ function applyPatches() {
   // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1208.
   applyPatch(path.join(__dirname, './manifest_externs_hermeticity.patch'));
 
-  try {
-    // Temporary patch pre-req for https://github.com/angular/angular/pull/36333.
-    // Can be removed once @angular/bazel is updated here to include this patch.
-    // try/catch needed for this the material CI tests to work in angular/repo
-    applyPatch(path.join(__dirname, './@angular_bazel_ng_module.patch'));
-  } catch {}
-
-  try {
-    // Temporary patch pre-req for https://github.com/angular/angular/pull/36971.
-    // Can be removed once @angular/bazel is updated here to include this patch.
-    // try/catch needed for this as the framework repo has this patch already applied,
-    // and re-applying again causes an error.
-    applyPatch(path.join(__dirname, './@angular_bazel_ivy_flat_module.patch'));
-  } catch {}
+  // Patches the changes from: https://github.com/bazelbuild/rules_typescript/pull/504.
+  applyPatch(path.join(__dirname, './@bazel_typescript_tsc_wrapped_worker_cache_fix.patch'));
 
   // Workaround for https://github.com/angular/angular/issues/33452:
   searchAndReplace(
@@ -291,12 +284,20 @@ async function readAndValidatePatchMarker() {
     console.error(chalk.red('cleaned up.'));
   }
 
-  const { cleanupModules } = await inquirer.prompt({
-    name: 'cleanupModules',
-    type: 'confirm',
-    message: 'Clean up node modules automatically?',
-    default: false,
-  });
+  let cleanupModules = true;
+
+  // Do not prompt if there is no TTY. Inquirer does not skip in non-tty environments.
+  // TODO: Remove once inquirer has been updated to v8.x where TTY is respected.
+  if (process.stdin.isTTY) {
+    cleanupModules = (
+      await inquirer.prompt({
+        name: 'result',
+        type: 'confirm',
+        message: 'Clean up node modules automatically?',
+        default: false,
+      })
+    ).result;
+  }
 
   if (cleanupModules) {
     // This re-runs Yarn with `--check-files` mode. The postinstall will rerun afterwards,

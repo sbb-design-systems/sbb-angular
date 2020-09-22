@@ -1,6 +1,6 @@
 --- node_modules/@angular/localize/src/tools/src/source_file_utils.d.ts
 +++ node_modules/@angular/localize/src/tools/src/source_file_utils.d.ts
-@@ -16,14 +17,14 @@
+@@ -9,14 +9,14 @@
   * @param expression The expression to check.
   * @param localizeName The configured name of `$localize`.
   */
@@ -17,3 +17,12 @@
  /**
   * Is the given `identifier` declared globally.
   * @param identifier The identifier to check.
+@@ -97,7 +97,7 @@
+  * Are all the given `nodes` expressions?
+  * @param nodes The nodes to test.
+  */
+-export declare function isArrayOfExpressions(paths: NodePath<t.Node>[]): paths is NodePath<t.Expression>[];
++export declare function isArrayOfExpressions(paths: NodePath<any>[]): paths is NodePath<t.Expression>[];
+ /** Options that affect how the `makeEsXXXTranslatePlugin()` functions work. */
+ export interface TranslatePluginOptions {
+     missingTranslation?: DiagnosticHandlingStrategy;

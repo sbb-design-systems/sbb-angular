@@ -145,7 +145,7 @@ def ng_test_library(deps = [], tsconfig = None, **kwargs):
     ] + deps
 
     ts_library(
-        testonly = 1,
+        testonly = True,
         deps = local_deps,
         **kwargs
     )
@@ -158,7 +158,7 @@ def ng_e2e_test_library(deps = [], tsconfig = None, **kwargs):
     ] + deps
 
     ts_library(
-        testonly = 1,
+        testonly = True,
         deps = local_deps,
         **kwargs
     )
@@ -210,7 +210,7 @@ def protractor_web_test_suite(flaky = True, **kwargs):
         **kwargs
     )
 
-def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], **kwargs):
+def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], tags = [], **kwargs):
     # Workaround for https://github.com/bazelbuild/rules_typescript/issues/301
     # Since some of our tests depend on CSS files which are not part of the `ng_module` rule,
     # we need to somehow load static CSS files within Karma (e.g. overlay prebuilt). Those styles
@@ -245,6 +245,12 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], **kwargs):
         deps = [
             "//test:angular_test_init",
         ] + deps,
+        browsers = [
+            # Note: when changing the browser names here, also update the "yarn test"
+            # script to reflect the new browser names.
+            "@io_bazel_rules_webtesting//browsers:chromium-local",
+            #"@io_bazel_rules_webtesting//browsers:firefox-local",
+        ],
         bootstrap = [
             # do not sort
             # This matches the ZoneJS bundles used in default CLI projects. See:
@@ -259,5 +265,6 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], **kwargs):
             "@npm//:node_modules/zone.js/dist/zone-testing.js",
             "@npm//:node_modules/reflect-metadata/Reflect.js",
         ] + bootstrap,
+        tags = ["native"] + tags,
         **kwargs
     )

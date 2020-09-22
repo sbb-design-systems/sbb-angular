@@ -45,18 +45,13 @@ export class FooterCellDefDirective extends CdkFooterCellDef {}
  */
 @Directive({
   selector: '[sbbColumnDef]',
-  inputs: ['sticky'],
+  inputs: ['sticky', 'name: sbbColumnDef'],
   providers: [
     { provide: CdkColumnDef, useExisting: ColumnDefDirective },
     { provide: 'SORT_HEADER_COLUMN_DEF', useExisting: ColumnDefDirective },
   ],
 })
-export class ColumnDefDirective extends CdkColumnDef {
-  static ngAcceptInputTypeSticky: boolean | string | null | undefined = undefined;
-  static ngAcceptInputTypeStickyEnd: boolean | string | null | undefined = undefined;
-  /** Unique name for this column. */
-  @Input('sbbColumnDef') name: string;
-}
+export class ColumnDefDirective extends CdkColumnDef {}
 
 /** Header cell template container that adds the right classes and role. */
 @Directive({
