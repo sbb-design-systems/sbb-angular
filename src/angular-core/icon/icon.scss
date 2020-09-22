@@ -1,6 +1,7 @@
 .sbb-icon {
   background-repeat: no-repeat;
   display: inline-block;
+  line-height: 0;
 
   // If any ancestor has .sbb-icon-fit as a class, this rule will be applied.
   .sbb-icon-fit &,
