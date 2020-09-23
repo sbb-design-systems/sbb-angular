@@ -62,7 +62,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 * Create your patch, **including appropriate test cases**.
 * Follow our [Coding Rules](#rules).
 * Test your changes with our supported browsers and screen readers.
-* Run tests via `ng test @sbb-esta/angular-{library` and ensure that all tests pass.
+* Run tests via `yarn test all` and ensure that all tests pass.
 * Commit your changes using a descriptive commit message that follows our
   [commit message conventions](#commit). Adherence to these conventions
   is necessary because release notes are automatically generated from these messages.
@@ -81,32 +81,13 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 * In GitHub, send a pull request to `sbb-angular:master`.
 The PR title and message should as well conform to the [commit message conventions](#commit).
 
-Note: Our builds often run out of memory. To ensure the build can run, set the NODE_OPTIONS environment variable
-to `--max_old_space_size=7168` either locally or globally.
-(e.g. in PowerShell, the default VS Code terminal: `$env:NODE_OPTIONS="--max_old_space_size=7168"`, in Shell: `export NODE_OPTIONS=--max_old_space_size=7168`)
-
-
 ## <a name="rules"></a> Coding Rules
-This project uses [prettier](https://prettier.io/) and [tslint](https://palantir.github.io/tslint/) rules to enforce code style.
-The max line length is 100 characters.
+To ensure consistency throughout the source code, keep these rules in mind as you are working:
 
-A short introduction to the rules is as follows (Run `npm run lint` to check validity):
-
-```
-const NUMBER_VALUE = 3;
-let stringValue = 'value';
-function nameOfTheFunction() { ... }
-
-class SpecialClass {
-  somePublicValue = true;
-  protected _protectedValue = 'some value';
-  private _privateValue = 5;
-
-  aPublicMethod() { ... }
-  protected _protectedMethod() { ... }
-  private _privateMethod() { ... }
-}
-```
+* All features or bug fixes **must be tested** by one or more specs (unit-tests).
+* All public API methods **must be documented**.
+* We use [prettier](https://prettier.io/) and [tslint](https://palantir.github.io/tslint/) rules to enforce code style.
+* Also see [CODING_STANDARDS](./CODING_STANDARDS.md)
 
 ## <a name="commit"></a> Commit Message Guidelines
 
@@ -175,10 +156,11 @@ This project publishes six packages:
 This project uses [SASS](https://sass-lang.com/) for styling the components.
 
 To differentiate between public and business styles in code that is used in both the
-mixins `publicOnly()` and `businessOnly()` can be used.
+mixins `publicOnly()` and `businessOnly()` or the variable `$sbbBusiness` can be used.
 
 ```sass
 padding: 1rem 2rem;
+color: if($sbbBusiness, $sbbColorIcon, $sbbColorGray);
 
 @include publicOnly() {
   margin-bottom: 3rem;
@@ -188,7 +170,7 @@ padding: 1rem 2rem;
 }
 ```
 
-For business components in `projects/sbb-esta/angular-business`, it is required to put `$sbbBusiness: true;` at the top of .scss files.
+For business components in `src/angular-business`, it is required to put `$sbbBusiness: true;` at the top of .scss files.
 
 ## Language
 
