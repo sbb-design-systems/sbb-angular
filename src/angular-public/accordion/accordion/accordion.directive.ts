@@ -29,11 +29,6 @@ import { SBB_ACCORDION } from './accordion-token';
 export class AccordionDirective extends CdkAccordion implements AfterContentInit {
   private _keyManager: FocusKeyManager<ExpansionPanelHeaderComponent>;
   /**
-   * Whether the accordion should allow multiple expanded accordion items.
-   */
-  @Input() multi = true;
-
-  /**
    * Class property that refers to the headers of the panels of the accordion.
    */
   @ContentChildren(ExpansionPanelHeaderComponent, { descendants: true })

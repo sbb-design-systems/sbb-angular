@@ -29,11 +29,12 @@ export class RadioChange {
   ) {}
 }
 
-class RadioButtonBase {
+/** @docs-private */
+abstract class RadioButtonBase {
   // Since the disabled property is manually defined for the MatRadioButton and isn't set up in
   // the mixin base class. To be able to use the tabindex mixin, a disabled property must be
   // defined to properly work.
-  disabled: boolean;
+  abstract disabled: boolean;
 }
 
 // tslint:disable-next-line: naming-convention

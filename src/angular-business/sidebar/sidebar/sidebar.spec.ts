@@ -837,11 +837,11 @@ describe('SbbSidebar Usage', () => {
         NoopAnimationsModule,
         AccordionModule,
         RouterTestingModule.withRoutes([
-          { path: 'link', pathMatch: 'full', component: SbbSidebarTestComponent },
+          { path: 'link', pathMatch: 'full', component: SimpleRouteComponent },
         ]),
         SbbIconTestingModule,
       ],
-      declarations: [SbbSidebarTestComponent],
+      declarations: [SbbSidebarTestComponent, SimpleRouteComponent],
       providers: [PROVIDE_FAKE_MEDIA_MATCHER],
     });
 
@@ -1125,7 +1125,13 @@ class NestedSidebarContainersTestComponent {
     </sbb-sidebar>
     <sbb-sidebar-content role="main">
       Content
+      <router-outlet></router-outlet>
     </sbb-sidebar-content>
   </sbb-sidebar-container>`,
 })
 class SbbSidebarTestComponent {}
+
+@Component({
+  template: '',
+})
+class SimpleRouteComponent {}
