@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.2.1...10.3.0) (2020-09-23)
+
+
+### Features
+
+* add typescript 4 support ([#608](https://github.com/sbb-design-systems/sbb-angular/issues/608)) ([e984bf5](https://github.com/sbb-design-systems/sbb-angular/commit/e984bf53b25990f2c95080c3e2d6af711e83655e))
+* **business:** implement sidebar and icon sidebar ([#600](https://github.com/sbb-design-systems/sbb-angular/issues/600)) ([79aeb53](https://github.com/sbb-design-systems/sbb-angular/commit/79aeb53396d999b86f2b570827181f51fc65134f))
+
+
+### Bug Fixes
+
+* **core:** fix sbb-icon using more space than icon ([#606](https://github.com/sbb-design-systems/sbb-angular/issues/606)) ([90e0240](https://github.com/sbb-design-systems/sbb-angular/commit/90e024059fcccdc0b33723d34a9fbfaca033ec9d))
+* **showcase:** fix autocomplete display with examples ([#603](https://github.com/sbb-design-systems/sbb-angular/issues/603)) ([9cc2029](https://github.com/sbb-design-systems/sbb-angular/commit/9cc20293665baf8bcbbdfa2589cf30ab5e2f0146))
+
 ### [10.2.1](https://github.com/sbb-design-systems/sbb-angular/compare/10.2.0...10.2.1) (2020-09-17)
 
 
