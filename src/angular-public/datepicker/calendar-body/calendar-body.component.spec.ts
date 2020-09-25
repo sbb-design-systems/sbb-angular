@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
-  DateAdapter,
-  DATE_PIPE_DATE_FORMATS,
-  NativeDateAdapter,
+  SbbDateAdapter,
+  SbbNativeDateAdapter,
   SBB_DATE_FORMATS,
+  SBB_DATE_PIPE_DATE_FORMATS,
 } from '@sbb-esta/angular-core/datetime';
 
-import { CalendarBodyComponent, CalendarCell } from './calendar-body.component';
+import { SbbCalendarBody, SbbCalendarCell } from './calendar-body.component';
 
 @Component({
   template: `
@@ -64,22 +64,22 @@ class CalendarBodyWithDisabledCellsComponent {
 }
 
 function createCell(value: number) {
-  return new CalendarCell(value, `${value}`, `${value}`, true);
+  return new SbbCalendarCell(value, `${value}`, `${value}`, true);
 }
 
 describe('SbbCalendarBody', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CalendarBodyComponent,
+        SbbCalendarBody,
 
         // Test components.
         StandardCalendarBodyComponent,
         CalendarBodyWithDisabledCellsComponent,
       ],
       providers: [
-        { provide: DateAdapter, useClass: NativeDateAdapter },
-        { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS },
+        { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
+        { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
       ],
     }).compileComponents();
   }));
@@ -102,9 +102,7 @@ describe('SbbCalendarBody', () => {
       fixture = TestBed.createComponent(StandardCalendarBodyComponent);
       fixture.detectChanges();
 
-      const calendarBodyDebugElement = fixture.debugElement.query(
-        By.directive(CalendarBodyComponent)
-      );
+      const calendarBodyDebugElement = fixture.debugElement.query(By.directive(SbbCalendarBody));
       calendarBodyNativeElement = calendarBodyDebugElement.nativeElement;
       testComponent = fixture.componentInstance;
 
@@ -192,9 +190,7 @@ describe('SbbCalendarBody', () => {
       fixture = TestBed.createComponent(CalendarBodyWithDisabledCellsComponent);
       fixture.detectChanges();
 
-      const calendarBodyDebugElement = fixture.debugElement.query(
-        By.directive(CalendarBodyComponent)
-      );
+      const calendarBodyDebugElement = fixture.debugElement.query(By.directive(SbbCalendarBody));
       calendarBodyNativeElement = calendarBodyDebugElement.nativeElement;
       testComponent = fixture.componentInstance;
       cellEls = Array.from(calendarBodyNativeElement.querySelectorAll('.sbb-calendar-body-cell'));

@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { merge, Subscription } from 'rxjs';
 
-import { SortDirection } from '../sort/sort-direction';
+import { SbbSortDirection } from '../sort/sort-direction';
 import { getSortHeaderNotContainedWithinSortError } from '../sort/sort-error-functions';
 import { SbbSortable, SbbSortDirective } from '../sort/sort.component';
 
@@ -28,16 +28,16 @@ import { sbbSortAnimations } from './sort-animations';
  *
  * @docs-private
  */
-export type ArrowViewState = SortDirection | 'hint' | 'active';
+export type SbbArrowViewState = SbbSortDirection | 'hint' | 'active';
 
 /**
  * States describing the arrow's animated position (animating fromState to toState).
  * If the fromState is not defined, there will be no animated transition to the toState.
  * @docs-private
  */
-export interface ArrowViewStateTransition {
-  fromState?: ArrowViewState;
-  toState: ArrowViewState;
+export interface SbbArrowViewStateTransition {
+  fromState?: SbbArrowViewState;
+  toState: SbbArrowViewState;
 }
 
 /** Column definition associated with a `SbbSortHeader`. */
@@ -108,7 +108,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
 
         // If the arrow is now sorted, animate the arrow into place. Otherwise, animate it away into
         // the direction it is facing.
-        const viewState: ArrowViewStateTransition = this._isSorted()
+        const viewState: SbbArrowViewStateTransition = this._isSorted()
           ? { fromState: this._arrowDirection, toState: 'active' }
           : { fromState: 'active', toState: this._arrowDirection };
         this._setAnimationTransitionState(viewState);
@@ -135,10 +135,10 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * position through the animation. If animations are currently disabled, the fromState is removed
    * so that there is no animation displayed.
    */
-  _viewState: ArrowViewStateTransition;
+  _viewState: SbbArrowViewStateTransition;
 
   /** The direction the arrow should be facing according to the current state. */
-  _arrowDirection: SortDirection = '';
+  _arrowDirection: SbbSortDirection = '';
 
   /**
    * Whether the view state animation should show the transition between the `from` and `to` states.
@@ -210,7 +210,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * `disableViewStateAnimation` flag is set to true, the `fromState` will be ignored so that
    * no animation appears.
    */
-  _setAnimationTransitionState(viewState: ArrowViewStateTransition) {
+  _setAnimationTransitionState(viewState: SbbArrowViewStateTransition) {
     this._viewState = viewState;
 
     // If the animation for arrow position state (opacity/translation) should be disabled,

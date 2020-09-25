@@ -14,7 +14,7 @@ import { Observable, Subject } from 'rxjs';
 import { sbbTooltipAnimations } from './tooltip-animations';
 
 /** Possible visibility states of a tooltip. */
-export type TooltipVisibility = 'initial' | 'visible' | 'hidden';
+export type SbbTooltipVisibility = 'initial' | 'visible' | 'hidden';
 
 /**
  * Internal component that wraps the tooltip's content.
@@ -28,7 +28,7 @@ export type TooltipVisibility = 'initial' | 'visible' | 'hidden';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sbbTooltipAnimations.tooltipState],
 })
-export class TooltipContainerComponent implements OnDestroy {
+export class SbbTooltipContainer implements OnDestroy {
   /**
    * @docs-private
    */
@@ -60,7 +60,7 @@ export class TooltipContainerComponent implements OnDestroy {
   _hideTimeoutId: any;
 
   /** Property watched by the animation framework to show or hide the tooltip */
-  _visibility: TooltipVisibility = 'initial';
+  _visibility: SbbTooltipVisibility = 'initial';
 
   /** Whether interactions on the page should close the tooltip */
   private _closeOnInteraction: boolean = false;
@@ -133,7 +133,7 @@ export class TooltipContainerComponent implements OnDestroy {
   }
 
   _animationDone(event: AnimationEvent): void {
-    const toState = event.toState as TooltipVisibility;
+    const toState = event.toState as SbbTooltipVisibility;
 
     if (toState === 'hidden' && !this.isVisible()) {
       this._onHide.next();

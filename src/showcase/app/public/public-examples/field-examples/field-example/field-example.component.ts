@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CheckboxChange } from '@sbb-esta/angular-public/checkbox';
+import { SbbCheckboxChange } from '@sbb-esta/angular-public/checkbox';
 
 @Component({
   selector: 'sbb-field-example',
@@ -24,7 +24,7 @@ export class FieldExampleComponent implements OnInit {
     });
   }
 
-  toggleDisabled(sbbCheckboxChange: CheckboxChange) {
+  toggleDisabled(sbbCheckboxChange: SbbCheckboxChange) {
     Object.keys(this.form.controls)
       .map((n) => this.form.get(n)!)
       .forEach((c) => (sbbCheckboxChange.checked ? c.disable() : c.enable()));

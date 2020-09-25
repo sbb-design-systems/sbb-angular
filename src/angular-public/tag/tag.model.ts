@@ -1,3 +1,4 @@
+/** @deprecated No longer used */
 export interface Tag {
   /** Identifier of a tag. */
   id?: string;

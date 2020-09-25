@@ -17,7 +17,7 @@ import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { sbbExpansionAnimations } from '../accordion/accordion-animations';
-import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.component';
+import { SbbExpansionPanel } from '../expansion-panel/expansion-panel.component';
 
 /**
  * `<sbb-expansion-panel-header>`
@@ -44,7 +44,7 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
     '[class.sbb-expansion-panel-header-disabled]': 'panel.disabled',
   },
 })
-export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption {
+export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
   /** @deprecated internal detail */
   panelHeaderClass = true;
   /** @deprecated internal detail */
@@ -88,7 +88,7 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
     /**
      * Class property that refers to the ExpansionPanelComponent.
      */
-    @Host() public panel: ExpansionPanelComponent,
+    @Host() public panel: SbbExpansionPanel,
     private _element: ElementRef,
     private _focusMonitor: FocusMonitor,
     private _changeDetectorRef: ChangeDetectorRef,

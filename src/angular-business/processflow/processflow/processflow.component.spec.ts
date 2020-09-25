@@ -4,23 +4,23 @@ import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 
-import { ProcessflowModule } from '../processflow.module';
+import { SbbProcessflowModule } from '../processflow.module';
 
-import { ProcessflowComponent } from './processflow.component';
+import { SbbProcessflow } from './processflow.component';
 
 describe('ProcessflowComponent', () => {
-  let component: ProcessflowComponent;
-  let fixture: ComponentFixture<ProcessflowComponent>;
+  let component: SbbProcessflow;
+  let fixture: ComponentFixture<SbbProcessflow>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconModule, SbbIconTestingModule],
-      declarations: [ProcessflowComponent],
+      declarations: [SbbProcessflow],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProcessflowComponent);
+    fixture = TestBed.createComponent(SbbProcessflow);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -53,7 +53,7 @@ describe('ProcessflowComponent', () => {
   `,
 })
 export class ProcessflowTestComponent {
-  @ViewChild('processflow', { static: true }) processflow: ProcessflowComponent;
+  @ViewChild('processflow', { static: true }) processflow: SbbProcessflow;
 }
 
 describe('ProcessflowTestComponent skippable', () => {
@@ -62,7 +62,7 @@ describe('ProcessflowTestComponent skippable', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ProcessflowModule, SbbIconTestingModule],
+      imports: [SbbProcessflowModule, SbbIconTestingModule],
       declarations: [ProcessflowTestComponent],
     }).compileComponents();
   }));

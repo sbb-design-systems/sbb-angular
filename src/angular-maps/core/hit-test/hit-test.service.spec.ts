@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EsriTypesService } from '../esri-types/esri-types.service';
+import { SbbEsriTypesService } from '../esri-types/esri-types.service';
 
-import { HitTestService } from './hit-test.service';
+import { SbbHitTestService } from './hit-test.service';
 
 describe('HitTestService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [HitTestService, EsriTypesService],
+      providers: [SbbHitTestService, SbbEsriTypesService],
     })
   );
 
   it('should be created', () => {
-    const service: HitTestService = TestBed.inject(HitTestService);
+    const service: SbbHitTestService = TestBed.inject(SbbHitTestService);
     expect(service).toBeTruthy();
   });
 });

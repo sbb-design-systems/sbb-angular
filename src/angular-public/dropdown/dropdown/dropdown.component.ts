@@ -17,10 +17,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import {
-  DropdownItemDirective,
-  SBB_DROPDOWN_ITEM_PARENT_COMPONENT,
-} from '../dropdown-item.directive';
+import { SbbDropdownItem, SBB_DROPDOWN_ITEM_PARENT_COMPONENT } from '../dropdown-item.directive';
 
 /**
  * Dropdown IDs need to be unique across components, so this counter exists outside of
@@ -29,17 +26,17 @@ import {
 let nextId = 0;
 
 /** Event object that is emitted when an dropdown option is selected. */
-export class DropdownSelectedEvent {
+export class SbbDropdownSelectedEvent {
   constructor(
     /** Reference to the dropdown panel that emitted the event. */
-    public source: DropdownComponent,
+    public source: SbbDropdown,
     /** Option that was selected. */
-    public item: DropdownItemDirective
+    public item: SbbDropdownItem
   ) {}
 }
 
 /** Default `sbb-dropdown` options that can be overridden. */
-export interface DropdownDefaultOptions {
+export interface SbbDropdownDefaultOptions {
   /** Whether the first option should be highlighted when an dropdown panel is opened. */
   autoActiveFirstOption?: boolean;
 }
@@ -54,18 +51,18 @@ export interface DropdownDefaultOptions {
   providers: [
     {
       provide: SBB_DROPDOWN_ITEM_PARENT_COMPONENT,
-      useExisting: DropdownComponent,
+      useExisting: SbbDropdown,
     },
   ],
 })
-export class DropdownComponent implements AfterContentInit {
+export class SbbDropdown implements AfterContentInit {
   /**
    * Reference to the dropdown items.
    */
-  @ContentChildren(DropdownItemDirective) options: QueryList<DropdownItemDirective>;
+  @ContentChildren(SbbDropdownItem) options: QueryList<SbbDropdownItem>;
 
   /** Manages active item in option list based on key events. */
-  keyManager: ActiveDescendantKeyManager<DropdownItemDirective>;
+  keyManager: ActiveDescendantKeyManager<SbbDropdownItem>;
 
   /** Whether the dropdown panel should be visible, depending on option length. */
   showPanel = false;
@@ -107,8 +104,8 @@ export class DropdownComponent implements AfterContentInit {
   @Input() panelWidth: string | number;
 
   /** Event that is emitted whenever an option from the list is selected. */
-  @Output() readonly optionSelected: EventEmitter<DropdownSelectedEvent> = new EventEmitter<
-    DropdownSelectedEvent
+  @Output() readonly optionSelected: EventEmitter<SbbDropdownSelectedEvent> = new EventEmitter<
+    SbbDropdownSelectedEvent
   >();
 
   /** Event that is emitted when the dropdown panel is opened. */
@@ -168,8 +165,8 @@ export class DropdownComponent implements AfterContentInit {
   }
 
   /** Emits the `select` event. */
-  emitSelectEvent(option: DropdownItemDirective): void {
-    const event = new DropdownSelectedEvent(this, option);
+  emitSelectEvent(option: SbbDropdownItem): void {
+    const event = new SbbDropdownSelectedEvent(this, option);
     this.optionSelected.emit(event);
   }
 

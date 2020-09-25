@@ -8,7 +8,7 @@ import { Directive, ElementRef } from '@angular/core';
   selector: '[sbbDropdownOrigin]',
   exportAs: 'sbbDropdownOrigin',
 })
-export class DropdownOriginDirective {
+export class SbbDropdownOrigin {
   constructor(
     /** Reference to the element on which the directive is applied. */
     public elementRef: ElementRef<HTMLElement>

@@ -24,7 +24,7 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith, takeUntil } from 'rxjs/operators';
 
 import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
-import { HeaderMenuItemDirective } from '../header-menu-item/header-menu-item.directive';
+import { SbbHeaderMenuItem } from '../header-menu-item/header-menu-item.directive';
 
 let nextId = 0;
 
@@ -47,7 +47,7 @@ let nextId = 0;
     '[@open]': 'this._animationState',
   },
 })
-export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
+export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   /**
    * @docs-private
    * @deprecated internal detail
@@ -62,7 +62,7 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
   >();
 
   /** Reference to the menu items. */
-  @ContentChildren(HeaderMenuItemDirective) _items: QueryList<HeaderMenuItemDirective>;
+  @ContentChildren(SbbHeaderMenuItem) _items: QueryList<SbbHeaderMenuItem>;
 
   /** @docs-private */
   @ViewChild(CdkPortal) _panelPortal: CdkPortal;
@@ -118,7 +118,7 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
   /** Whether the autocomplete panel should be visible, depending on option length. */
   showPanel = false;
   /** Manages active item in item list based on key events. */
-  _keyManager: FocusKeyManager<HeaderMenuItemDirective>;
+  _keyManager: FocusKeyManager<SbbHeaderMenuItem>;
   /** Class list for the panel. */
   _classList: { [key: string]: boolean } = {};
   /** @docs-private */
@@ -137,7 +137,7 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
   ) {}
 
   ngAfterContentInit() {
-    (this._items.changes as Observable<HeaderMenuItemDirective[]>)
+    (this._items.changes as Observable<SbbHeaderMenuItem[]>)
       .pipe(
         startWith(this._items.toArray()),
         map((i) => !!i.length),

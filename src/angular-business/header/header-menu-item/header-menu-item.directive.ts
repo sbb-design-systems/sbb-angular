@@ -27,8 +27,7 @@ const _HeaderMenuItemBase: CanDisableCtor & typeof HeaderMenuItemBase = mixinDis
     role: 'this.role',
   },
 })
-export class HeaderMenuItemDirective extends _HeaderMenuItemBase
-  implements FocusableOption, OnDestroy {
+export class SbbHeaderMenuItem extends _HeaderMenuItemBase implements FocusableOption, OnDestroy {
   /** ARIA role for the menu item. */
   @Input() role: 'menuitem' | 'menuitemradio' | 'menuitemcheckbox' = 'menuitem';
 

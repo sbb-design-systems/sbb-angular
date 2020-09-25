@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ButtonModule } from '@sbb-esta/angular-public/button';
-import { ProcessflowModule } from '@sbb-esta/angular-public/processflow';
+import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbProcessflowModule } from '@sbb-esta/angular-public/processflow';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -14,7 +14,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, ButtonModule, ProcessflowModule],
+  imports: [CommonModule, SbbButtonModule, SbbProcessflowModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('public', 'processflow', EXAMPLE_INDEX)],

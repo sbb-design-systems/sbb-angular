@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
-import { UsermenuModule } from '@sbb-esta/angular-business/usermenu';
+import { SbbDropdownModule } from '@sbb-esta/angular-business/dropdown';
+import { SbbUsermenuModule } from '@sbb-esta/angular-business/usermenu';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -15,7 +15,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, RouterModule, DropdownModule, UsermenuModule],
+  imports: [CommonModule, RouterModule, SbbDropdownModule, SbbUsermenuModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('business', 'usermenu', EXAMPLE_INDEX)],

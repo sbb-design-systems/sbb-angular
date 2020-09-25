@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from '@sbb-esta/angular-public/button';
-import { CaptchaModule } from '@sbb-esta/angular-public/captcha';
+import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbCaptchaModule } from '@sbb-esta/angular-public/captcha';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -15,7 +15,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, CaptchaModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SbbButtonModule, SbbCaptchaModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('public', 'captcha', EXAMPLE_INDEX)],

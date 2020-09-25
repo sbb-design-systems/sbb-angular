@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { CheckboxChange } from '@sbb-esta/angular-public/checkbox';
-import { FileSelectorTypesService, FileTypeCategory } from '@sbb-esta/angular-public/file-selector';
+import { SbbCheckboxChange } from '@sbb-esta/angular-public/checkbox';
+import {
+  FileTypeCategory,
+  SbbFileSelectorTypesService,
+} from '@sbb-esta/angular-public/file-selector';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -18,7 +21,7 @@ export class MultipleModeDefaultFileSelectorExampleComponent implements OnInit, 
 
   accept: string;
 
-  constructor(private _fileTypeService: FileSelectorTypesService) {
+  constructor(private _fileTypeService: SbbFileSelectorTypesService) {
     this.accept = this._fileTypeService.getAcceptString([
       FileTypeCategory.IMAGE,
       FileTypeCategory.ZIP,
@@ -48,7 +51,7 @@ export class MultipleModeDefaultFileSelectorExampleComponent implements OnInit, 
     }
   }
 
-  setDisabled(sbbCheckboxChange: CheckboxChange) {
+  setDisabled(sbbCheckboxChange: SbbCheckboxChange) {
     sbbCheckboxChange.checked ? this.fileControl.disable() : this.fileControl.enable();
   }
 }

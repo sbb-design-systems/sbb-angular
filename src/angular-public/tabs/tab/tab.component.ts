@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { TabContent } from './tab-content';
+import { SbbTabContent } from './tab-content';
 
 let counter = 0;
 
@@ -26,7 +26,7 @@ let counter = 0;
   templateUrl: './tab.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TabComponent implements OnInit, OnChanges, OnDestroy {
+export class SbbTab implements OnInit, OnChanges, OnDestroy {
   /**
    * Tab identifier
    */
@@ -101,7 +101,9 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Template provided in the tab content, which is lazily rendered
    */
-  @ContentChild(TabContent, { read: TemplateRef, static: true }) _lazyTabContent: TemplateRef<any>;
+  @ContentChild(SbbTabContent, { read: TemplateRef, static: true }) _lazyTabContent: TemplateRef<
+    any
+  >;
 
   /**
    * Portal holding the user's lazy tab content

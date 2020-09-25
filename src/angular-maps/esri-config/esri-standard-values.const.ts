@@ -1,4 +1,4 @@
-export class EsriConfigConsts {
+export class SbbEsriConfigConsts {
   public static trustedServers = [
     'geo-dev.sbb.ch',
     'geo-int.sbb.ch',

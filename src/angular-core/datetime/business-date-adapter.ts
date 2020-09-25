@@ -1,10 +1,10 @@
 import { Inject, Injectable, LOCALE_ID, Optional } from '@angular/core';
 
 import { SBB_DATEPICKER_2DIGIT_YEAR_PIVOT } from './datepicker-token';
-import { NativeDateAdapter } from './native-date-adapter';
+import { SbbNativeDateAdapter } from './native-date-adapter';
 
 @Injectable()
-export class BusinessDateAdapter extends NativeDateAdapter {
+export class SbbBusinessDateAdapter extends SbbNativeDateAdapter {
   constructor(
     @Inject(LOCALE_ID) protected _locale: string,
     @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number

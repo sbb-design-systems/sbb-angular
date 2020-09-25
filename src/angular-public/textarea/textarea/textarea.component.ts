@@ -28,8 +28,8 @@ import {
   CanUpdateErrorStateCtor,
   mixinErrorState,
 } from '@sbb-esta/angular-core/common-behaviors';
-import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
-import { FormFieldControl } from '@sbb-esta/angular-core/forms';
+import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
+import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
 import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { auditTime, take, takeUntil } from 'rxjs/operators';
 
@@ -40,7 +40,7 @@ let nextId = 0;
 export class SbbTextareaBase {
   constructor(
     public _elementRef: ElementRef,
-    public _defaultErrorStateMatcher: ErrorStateMatcher,
+    public _defaultErrorStateMatcher: SbbErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
     public ngControl: NgControl
@@ -54,12 +54,12 @@ export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
   selector: 'sbb-textarea',
   templateUrl: './textarea.component.html',
   styleUrls: ['./textarea.component.css'],
-  providers: [{ provide: FormFieldControl, useExisting: TextareaComponent }],
+  providers: [{ provide: SbbFormFieldControl, useExisting: SbbTextarea }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextareaComponent extends SbbTextareaMixinBase
+export class SbbTextarea extends SbbTextareaMixinBase
   implements
-    FormFieldControl<string>,
+    SbbFormFieldControl<string>,
     CanUpdateErrorState,
     ControlValueAccessor,
     DoCheck,
@@ -204,7 +204,7 @@ export class TextareaComponent extends SbbTextareaMixinBase
     private _ngZone: NgZone,
     private _focusMonitor: FocusMonitor,
     elementRef: ElementRef,
-    defaultErrorStateMatcher: ErrorStateMatcher,
+    defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective
   ) {

@@ -9,9 +9,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base/checkbox';
+import {
+  SbbCheckboxBase,
+  SbbCheckboxChange as BaseCheckboxChange,
+} from '@sbb-esta/angular-core/base/checkbox';
 
-export interface CheckboxChange extends SbbCheckboxChange<CheckboxComponent> {}
+export interface SbbCheckboxChange extends BaseCheckboxChange<SbbCheckbox> {}
 
 @Component({
   selector: 'sbb-checkbox',
@@ -20,14 +23,14 @@ export interface CheckboxChange extends SbbCheckboxChange<CheckboxComponent> {}
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CheckboxComponent),
+      useExisting: forwardRef(() => SbbCheckbox),
       multi: true,
     },
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CheckboxComponent extends CheckboxBase<CheckboxChange> {
+export class SbbCheckbox extends SbbCheckboxBase<SbbCheckboxChange> {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     focusMonitor: FocusMonitor,

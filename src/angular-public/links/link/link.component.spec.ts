@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { LinksModule } from '../links.module';
+import { SbbLinksModule } from '../links.module';
 
 @Component({
   selector: 'sbb-test-link',
@@ -21,7 +21,7 @@ describe('LinkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestLinkComponent],
-      imports: [LinksModule, SbbIconTestingModule],
+      imports: [SbbLinksModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 

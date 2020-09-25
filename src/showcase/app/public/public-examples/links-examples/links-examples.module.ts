@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FieldModule } from '@sbb-esta/angular-public/field';
-import { LinksModule } from '@sbb-esta/angular-public/links';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbLinksModule } from '@sbb-esta/angular-public/links';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -17,7 +17,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FieldModule, LinksModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SbbFieldModule, SbbLinksModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('public', 'links', EXAMPLE_INDEX)],

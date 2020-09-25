@@ -14,7 +14,7 @@ import {
 import { BehaviorSubject, merge, Observable, of, Subject } from 'rxjs';
 import { map, mergeAll, mergeMap, switchMap, takeUntil } from 'rxjs/operators';
 
-import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
+import { SbbTag, SBB_TAGS_CONTAINER } from '../tag/tag.component';
 
 @Component({
   selector: 'sbb-tags',
@@ -22,8 +22,8 @@ import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
   styleUrls: ['./tags.component.css'],
   providers: [
     {
-      provide: TAGS_CONTAINER,
-      useExisting: TagsComponent,
+      provide: SBB_TAGS_CONTAINER,
+      useExisting: SbbTags,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,7 +32,7 @@ import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
     class: 'sbb-tags',
   },
 })
-export class TagsComponent implements AfterContentInit, OnDestroy {
+export class SbbTags implements AfterContentInit, OnDestroy {
   /**
    * Total amount visible on the all tag.
    * If not provided, the total amount is calculated by the sum of all amounts of all tags.
@@ -57,11 +57,11 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   sbbTagsClass = true;
 
   /** Refers to the tags contained. */
-  @ContentChildren(forwardRef(() => TagComponent))
-  tags: QueryList<TagComponent>;
+  @ContentChildren(forwardRef(() => SbbTag))
+  tags: QueryList<SbbTag>;
   /** Refers to the tag always displayed in the filter. */
   @ViewChild('allTag', { static: true })
-  allTag: TagComponent;
+  allTag: SbbTag;
 
   /**
    * @docs-private
@@ -75,7 +75,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
     this._tagsHandleChecking();
 
     // listen to tag changes and amount changes of all tag components
-    merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes)
+    merge<SbbTag[]>(of(this.tags.toArray()), this.tags.changes)
       .pipe(
         mergeMap((tags) => [
           of(this.tags.toArray()),
@@ -90,7 +90,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
         mergeAll(),
         takeUntil(this._destroyed)
       )
-      .subscribe((tags: TagComponent[]) => {
+      .subscribe((tags: SbbTag[]) => {
         if (this._totalAmountSetAsInput) {
           return;
         }
@@ -109,7 +109,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   private _tagsHandleChecking() {
-    merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes)
+    merge<SbbTag[]>(of(this.tags.toArray()), this.tags.changes)
       .pipe(
         map((tags) =>
           tags.reduce(

@@ -29,7 +29,7 @@ const stickySupported =
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TableComponent implements OnChanges, OnDestroy {
+export class SbbTable implements OnChanges, OnDestroy {
   /** Table identifier. */
   @Input() tableId: string;
   /** The labelledBy of the table component.*/

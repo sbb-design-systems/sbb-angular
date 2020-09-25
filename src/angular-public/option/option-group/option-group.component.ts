@@ -8,7 +8,7 @@ let uniqueOptgroupIdCounter = 0;
   templateUrl: './option-group.component.html',
   styleUrls: ['./option-group.component.css'],
 })
-export class OptionGroupComponent {
+export class SbbOptionGroup {
   @HostBinding('class.sbb-optgroup')
   optGroupClass = true;
 

@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { InputDirective } from './input/input.directive';
+import { SbbInput } from './input/input.directive';
 
 @NgModule({
-  declarations: [InputDirective],
+  declarations: [SbbInput],
   imports: [CommonModule],
-  exports: [InputDirective],
+  exports: [SbbInput],
 })
-export class InputModule {}
+export class SbbInputModule {}

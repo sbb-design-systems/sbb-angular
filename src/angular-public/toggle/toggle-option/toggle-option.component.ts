@@ -17,8 +17,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
-import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
+import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { SbbRadioButton, SbbRadioGroup } from '@sbb-esta/angular-core/radio-button';
 
 @Component({
   selector: 'sbb-toggle-option',
@@ -28,10 +28,10 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ToggleOptionComponent),
+      useExisting: forwardRef(() => SbbToggleOption),
       multi: true,
     },
-    { provide: RadioButton, useExisting: ToggleOptionComponent },
+    { provide: SbbRadioButton, useExisting: SbbToggleOption },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -41,7 +41,7 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
     '[class.sbb-toggle-option-has-icon]': 'this.icon',
   },
 })
-export class ToggleOptionComponent extends RadioButton implements AfterViewInit {
+export class SbbToggleOption extends SbbRadioButton implements AfterViewInit {
   /**
    * @docs-private
    * @deprecated internal use
@@ -106,7 +106,7 @@ export class ToggleOptionComponent extends RadioButton implements AfterViewInit 
    * icon placed in template
    * @docs-private
    */
-  @ContentChild(IconDirective, { read: TemplateRef })
+  @ContentChild(SbbIconDirective, { read: TemplateRef })
   _contentIcon?: TemplateRef<any>;
 
   /**
@@ -123,7 +123,7 @@ export class ToggleOptionComponent extends RadioButton implements AfterViewInit 
   private _document: Document;
 
   constructor(
-    @Optional() radioGroup: RadioGroupDirective,
+    @Optional() radioGroup: SbbRadioGroup,
     changeDetector: ChangeDetectorRef,
     elementRef: ElementRef,
     focusMonitor: FocusMonitor,

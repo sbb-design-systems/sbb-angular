@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, HostListener, Inject, Input } from 
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
 import { SBB_HEADER } from '../header/header-token';
-import type { HeaderComponent } from '../header/header.component';
+import type { SbbHeader } from '../header/header.component';
 
 @Component({
   selector: 'sbb-app-chooser-section',
@@ -10,10 +10,10 @@ import type { HeaderComponent } from '../header/header.component';
   styleUrls: ['./app-chooser-section.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppChooserSectionComponent {
+export class SbbAppChooserSection {
   @Input() label: string;
 
-  constructor(@Inject(SBB_HEADER) private _header: TypeRef<HeaderComponent>) {}
+  constructor(@Inject(SBB_HEADER) private _header: TypeRef<SbbHeader>) {}
 
   /** Close the header menu when any a or button child element is clicked. */
   @HostListener('click', ['$event'])

@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { EsriLayerListComponent } from './esri-layer-list/esri-layer-list.component';
+import { SbbEsriLayerList } from './esri-layer-list/esri-layer-list.component';
 
 @NgModule({
-  declarations: [EsriLayerListComponent],
+  declarations: [SbbEsriLayerList],
   imports: [CommonModule],
-  exports: [EsriLayerListComponent],
+  exports: [SbbEsriLayerList],
 })
-export class EsriLayerListModule {}
+export class SbbEsriLayerListModule {}

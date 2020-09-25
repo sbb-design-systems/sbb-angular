@@ -34,20 +34,20 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 import {
-  AutocompleteComponent,
-  AutocompleteOriginDirective,
-  AUTOCOMPLETE_OPTION_HEIGHT,
-  AUTOCOMPLETE_PANEL_HEIGHT,
   getSbbAutocompleteMissingPanelError,
+  SbbAutocomplete,
+  SbbAutocompleteOrigin,
+  SBB_AUTOCOMPLETE_OPTION_HEIGHT,
+  SBB_AUTOCOMPLETE_PANEL_HEIGHT,
   SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
 } from '@sbb-esta/angular-public/autocomplete';
 import {
-  countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  OptionComponent,
-  SBBOptionSelectionChange,
+  sbbCountGroupLabelsBeforeOption,
+  SbbOption,
+  SbbOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
 import {
   BehaviorSubject,
@@ -92,7 +92,7 @@ const ANIMATION_DURATION = 300;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SearchComponent),
+      useExisting: forwardRef(() => SbbSearch),
       multi: true,
     },
   ],
@@ -108,7 +108,7 @@ const ANIMATION_DURATION = 300;
     '[attr.aria-activedescendant]': 'this.activeOption ? this.activeOption.id : null',
   },
 })
-export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
+export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit {
   /** @docs-private */
   @ViewChild('input', { static: true }) input: ElementRef<HTMLInputElement>;
   /** @docs-private */
@@ -119,7 +119,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   @ViewChild('trigger', { static: true }) trigger: ElementRef<HTMLElement>;
 
   /** @docs-private */
-  @ContentChild(IconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
+  @ContentChild(SbbIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
   /**
    * Sets the search in default mode or in header mode,
@@ -209,10 +209,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   /** The autocomplete panel to be attached to this trigger. */
   @Input('sbbAutocomplete')
-  get autocomplete(): AutocompleteComponent {
+  get autocomplete(): SbbAutocomplete {
     return this._autocomplete;
   }
-  set autocomplete(autocomplete: AutocompleteComponent) {
+  set autocomplete(autocomplete: SbbAutocomplete) {
     this._autocomplete = autocomplete;
     this._autocompleteDisabled = false;
 
@@ -227,7 +227,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
         switchMap(() =>
           combineLatest([
             this._inputValue,
-            (autocomplete.options.changes as Observable<OptionComponent[]>).pipe(
+            (autocomplete.options.changes as Observable<SbbOption[]>).pipe(
               startWith(autocomplete.options.toArray())
             ),
           ])
@@ -240,14 +240,14 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
         );
       });
   }
-  private _autocomplete: AutocompleteComponent;
+  private _autocomplete: SbbAutocomplete;
 
   /**
    * Reference relative to which to position the autocomplete panel.
    * Defaults to the autocomplete trigger element.
    */
   @Input('sbbAutocompleteConnectedTo')
-  connectedTo: AutocompleteOriginDirective;
+  connectedTo: SbbAutocompleteOrigin;
 
   /**
    * `autocomplete` attribute to be set on the input element.
@@ -283,9 +283,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
 
   /** Stream of autocomplete option selections. */
-  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
+  readonly optionSelections: Observable<SbbOptionSelectionChange> = defer(() => {
     if (this.autocomplete && this.autocomplete.options) {
-      return merge<SBBOptionSelectionChange>(
+      return merge<SbbOptionSelectionChange>(
         ...this.autocomplete.options.map((option) => option.onSelectionChange)
       );
     }
@@ -471,7 +471,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * A stream of actions that should close the autocomplete panel, including
    * when an option is selected, on blur, and when TAB is pressed.
    */
-  get panelClosingActions(): Observable<SBBOptionSelectionChange | null> {
+  get panelClosingActions(): Observable<SbbOptionSelectionChange | null> {
     return merge(
       this.optionSelections,
       this.autocomplete.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
@@ -482,7 +482,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
         : of()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map((event) => (event instanceof SBBOptionSelectionChange ? event : null))
+      map((event) => (event instanceof SbbOptionSelectionChange ? event : null))
     );
   }
 
@@ -495,7 +495,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
 
   /** The currently active option, coerced to SbbOption type. */
-  get activeOption(): OptionComponent | null {
+  get activeOption(): SbbOption | null {
     if (this.autocomplete && this.autocomplete.keyManager) {
       return this.autocomplete.keyManager.activeItem;
     }
@@ -586,7 +586,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    */
   scrollToOption(): void {
     const index = this.autocomplete.keyManager.activeItemIndex || 0;
-    const labelCount = countGroupLabelsBeforeOption(
+    const labelCount = sbbCountGroupLabelsBeforeOption(
       index,
       this.autocomplete.options,
       this.autocomplete.optionGroups
@@ -594,9 +594,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
     const newScrollPosition = getOptionScrollPosition(
       index + labelCount,
-      AUTOCOMPLETE_OPTION_HEIGHT,
+      SBB_AUTOCOMPLETE_OPTION_HEIGHT,
       this.autocomplete.getScrollTop(),
-      AUTOCOMPLETE_PANEL_HEIGHT
+      SBB_AUTOCOMPLETE_PANEL_HEIGHT
     );
 
     this.autocomplete.setScrollTop(newScrollPosition);
@@ -718,7 +718,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * control to that value. It will also mark the control as dirty if this interaction
    * stemmed from the user.
    */
-  private _setValueAndClose(event: SBBOptionSelectionChange | null): void {
+  private _setValueAndClose(event: SbbOptionSelectionChange | null): void {
     if (event && event.source) {
       this._clearPreviousSelectedOption(event.source);
       this._setTriggerValue(event.source.value);
@@ -733,7 +733,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   /**
    * Clear any previous selected option and emit a selection change event for this option
    */
-  private _clearPreviousSelectedOption(skip: OptionComponent) {
+  private _clearPreviousSelectedOption(skip: SbbOption) {
     this.autocomplete.options.forEach((option) => {
       // tslint:disable-next-line:triple-equals
       if (option != skip && option.selected) {

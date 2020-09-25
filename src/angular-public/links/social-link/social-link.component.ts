@@ -17,7 +17,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class SocialLinkComponent {
+export class SbbSocialLink {
   /** @docs-private */
   @HostBinding('class.sbb-social-link') socialLinkClass = true;
   /**

@@ -10,10 +10,10 @@ import {
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
-import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
+import { SbbAutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
 
-import { SearchComponent } from '../public-api';
-import { SearchModule } from '../search.module';
+import { SbbSearch } from '../public-api';
+import { SbbSearchModule } from '../search.module';
 
 @Component({
   selector: 'sbb-simple-search-component',
@@ -21,7 +21,7 @@ import { SearchModule } from '../search.module';
 })
 export class SimpleSearchComponent {
   searchCounter = 0;
-  @ViewChild(SearchComponent, { static: true }) searchComponent: SearchComponent;
+  @ViewChild(SbbSearch, { static: true }) searchComponent: SbbSearch;
 
   search() {
     this.searchCounter++;
@@ -42,7 +42,7 @@ export class SimpleSearchComponent {
 })
 export class SimpleSearchAutocompleteComponent {
   lastSearch = '';
-  @ViewChild(SearchComponent, { static: true }) searchComponent: SearchComponent;
+  @ViewChild(SbbSearch, { static: true }) searchComponent: SbbSearch;
 
   options: string[] = [
     'Eins',
@@ -69,7 +69,7 @@ export class SimpleSearchAutocompleteComponent {
 })
 export class SimpleSearchHeaderComponent {
   searchCounter = 0;
-  @ViewChild(SearchComponent, { static: true }) searchComponent: SearchComponent;
+  @ViewChild(SbbSearch, { static: true }) searchComponent: SbbSearch;
 
   search() {
     this.searchCounter++;
@@ -95,7 +95,7 @@ export class SimpleSearchHeaderComponent {
 })
 export class SimpleSearchAutocompleteHeaderComponent {
   lastSearch = '';
-  @ViewChild(SearchComponent, { static: true }) searchComponent: SearchComponent;
+  @ViewChild(SbbSearch, { static: true }) searchComponent: SbbSearch;
 
   options: string[] = [
     'Eins',
@@ -123,7 +123,7 @@ describe('SearchComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [SearchModule, NoopAnimationsModule, SbbIconTestingModule],
+        imports: [SbbSearchModule, NoopAnimationsModule, SbbIconTestingModule],
         declarations: [SimpleSearchComponent],
       }).compileComponents();
     }));
@@ -169,9 +169,9 @@ describe('SearchComponent', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          SearchModule,
+          SbbSearchModule,
           NoopAnimationsModule,
-          AutocompleteModule,
+          SbbAutocompleteModule,
           OverlayModule,
           SbbIconTestingModule,
         ],
@@ -288,9 +288,9 @@ describe('SearchComponent', () => {
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           imports: [
-            SearchModule,
+            SbbSearchModule,
             BrowserAnimationsModule,
-            AutocompleteModule,
+            SbbAutocompleteModule,
             OverlayModule,
             SbbIconTestingModule,
           ],
@@ -338,9 +338,9 @@ describe('SearchComponent', () => {
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           imports: [
-            SearchModule,
+            SbbSearchModule,
             NoopAnimationsModule,
-            AutocompleteModule,
+            SbbAutocompleteModule,
             OverlayModule,
             SbbIconTestingModule,
           ],

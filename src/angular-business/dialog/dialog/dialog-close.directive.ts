@@ -8,9 +8,9 @@ import {
   Optional,
 } from '@angular/core';
 
-import { DialogHelperService } from './dialog-helper.service';
-import { DialogRef } from './dialog-ref';
-import { Dialog } from './dialog.service';
+import { SbbDialogHelperService } from './dialog-helper.service';
+import { SbbDialogRef } from './dialog-ref';
+import { SbbDialog } from './dialog.service';
 
 /**
  * Button that will close the current dialog.
@@ -23,7 +23,7 @@ import { Dialog } from './dialog.service';
     '[attr.type]': 'type',
   },
 })
-export class DialogCloseDirective implements OnInit {
+export class SbbDialogClose implements OnInit {
   /** Screenreader label for the button. */
   @Input('aria-label') ariaLabel: string = 'Close dialog';
 
@@ -34,10 +34,10 @@ export class DialogCloseDirective implements OnInit {
   @Input('sbbDialogClose') dialogResult: any;
 
   constructor(
-    @Optional() public dialogRef: DialogRef<any>,
+    @Optional() public dialogRef: SbbDialogRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
-    private _dialog: Dialog,
-    private _dialogHelperService: DialogHelperService
+    private _dialog: SbbDialog,
+    private _dialogHelperService: SbbDialogHelperService
   ) {}
 
   ngOnInit() {

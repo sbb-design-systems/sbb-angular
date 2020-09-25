@@ -1,5 +1,5 @@
 /** Adapts type `D` to be usable as a date by cdk-based components that work with dates. */
-export abstract class DateAdapter<D> {
+export abstract class SbbDateAdapter<D> {
   /** The locale to use for all dates. */
   protected _locale: any;
 

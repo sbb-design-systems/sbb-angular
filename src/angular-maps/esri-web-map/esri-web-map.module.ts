@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { EsriWebMapComponent } from './esri-web-map/esri-web-map.component';
+import { SbbEsriWebMap } from './esri-web-map/esri-web-map.component';
 
 @NgModule({
-  declarations: [EsriWebMapComponent],
+  declarations: [SbbEsriWebMap],
   providers: [],
   imports: [CommonModule],
-  exports: [EsriWebMapComponent],
+  exports: [SbbEsriWebMap],
 })
-export class EsriWebMapModule {}
+export class SbbEsriWebMapModule {}

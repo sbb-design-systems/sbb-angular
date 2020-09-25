@@ -4,35 +4,35 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
-import { LightboxContainerComponent } from './lightbox/lightbox-container.component';
+import { SbbLightboxContainer } from './lightbox/lightbox-container.component';
 import {
-  LightboxCloseDirective,
-  LightboxContentComponent,
-  LightboxFooterComponent,
-  LightboxHeaderComponent,
-  LightboxTitleDirective,
+  SbbLightboxClose,
+  SbbLightboxContent,
+  SbbLightboxFooter,
+  SbbLightboxHeader,
+  SbbLightboxTitle,
 } from './lightbox/lightbox-content';
-import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox.service';
+import { SbbLightbox, SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox.service';
 
 @NgModule({
   imports: [CommonModule, SbbIconModule, OverlayModule, PortalModule],
   exports: [
-    LightboxContainerComponent,
-    LightboxCloseDirective,
-    LightboxHeaderComponent,
-    LightboxContentComponent,
-    LightboxFooterComponent,
-    LightboxTitleDirective,
+    SbbLightboxContainer,
+    SbbLightboxClose,
+    SbbLightboxHeader,
+    SbbLightboxContent,
+    SbbLightboxFooter,
+    SbbLightboxTitle,
   ],
   declarations: [
-    LightboxContainerComponent,
-    LightboxCloseDirective,
-    LightboxHeaderComponent,
-    LightboxFooterComponent,
-    LightboxContentComponent,
-    LightboxTitleDirective,
+    SbbLightboxContainer,
+    SbbLightboxClose,
+    SbbLightboxHeader,
+    SbbLightboxFooter,
+    SbbLightboxContent,
+    SbbLightboxTitle,
   ],
-  providers: [Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER],
-  entryComponents: [LightboxContainerComponent],
+  providers: [SbbLightbox, SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER],
+  entryComponents: [SbbLightboxContainer],
 })
-export class LightboxModule {}
+export class SbbLightboxModule {}

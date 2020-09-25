@@ -59,7 +59,7 @@ export function getSbbIconFailedToSanitizeLiteralError(literal: SafeHtml): Error
 }
 
 /** Options that can be used to configure how an icon or the icons in an icon set are presented. */
-export interface IconOptions {
+export interface SbbIconOptions {
   /** View box to set on the icon. */
   viewBox?: string;
 
@@ -75,7 +75,7 @@ class SvgIconConfig {
   url: SafeResourceUrl | null;
   svgElement: SVGElement | null;
 
-  constructor(data: SafeResourceUrl | SVGElement, public options?: IconOptions) {
+  constructor(data: SafeResourceUrl | SVGElement, public options?: SbbIconOptions) {
     // Note that we can't use `instanceof SVGElement` here,
     // because it'll break during server-side rendering.
     if (!!(data as any).nodeName) {
@@ -136,7 +136,7 @@ export class SbbIconRegistry implements OnDestroy {
    * Registers an icon by URL in the default namespace.
    * @param iconName Name under which the icon should be registered.
    */
-  addSvgIcon(iconName: string, url: SafeResourceUrl, options?: IconOptions): this {
+  addSvgIcon(iconName: string, url: SafeResourceUrl, options?: SbbIconOptions): this {
     return this.addSvgIconInNamespace('', iconName, url, options);
   }
 
@@ -145,7 +145,7 @@ export class SbbIconRegistry implements OnDestroy {
    * @param iconName Name under which the icon should be registered.
    * @param literal SVG source of the icon.
    */
-  addSvgIconLiteral(iconName: string, literal: SafeHtml, options?: IconOptions): this {
+  addSvgIconLiteral(iconName: string, literal: SafeHtml, options?: SbbIconOptions): this {
     return this.addSvgIconLiteralInNamespace('', iconName, literal, options);
   }
 
@@ -158,7 +158,7 @@ export class SbbIconRegistry implements OnDestroy {
     namespace: string,
     iconName: string,
     url: SafeResourceUrl,
-    options?: IconOptions
+    options?: SbbIconOptions
   ): this {
     return this._addSvgIconConfig(namespace, iconName, new SvgIconConfig(url, options));
   }
@@ -173,7 +173,7 @@ export class SbbIconRegistry implements OnDestroy {
     namespace: string,
     iconName: string,
     literal: SafeHtml,
-    options?: IconOptions
+    options?: SbbIconOptions
   ): this {
     const sanitizedLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
 
@@ -188,7 +188,7 @@ export class SbbIconRegistry implements OnDestroy {
   /**
    * Registers an icon set by URL in the default namespace.
    */
-  addSvgIconSet(url: SafeResourceUrl, options?: IconOptions): this {
+  addSvgIconSet(url: SafeResourceUrl, options?: SbbIconOptions): this {
     return this.addSvgIconSetInNamespace('', url, options);
   }
 
@@ -196,7 +196,7 @@ export class SbbIconRegistry implements OnDestroy {
    * Registers an icon set using an HTML string in the default namespace.
    * @param literal SVG source of the icon set.
    */
-  addSvgIconSetLiteral(literal: SafeHtml, options?: IconOptions): this {
+  addSvgIconSetLiteral(literal: SafeHtml, options?: SbbIconOptions): this {
     return this.addSvgIconSetLiteralInNamespace('', literal, options);
   }
 
@@ -204,7 +204,11 @@ export class SbbIconRegistry implements OnDestroy {
    * Registers an icon set by URL in the specified namespace.
    * @param namespace Namespace in which to register the icon set.
    */
-  addSvgIconSetInNamespace(namespace: string, url: SafeResourceUrl, options?: IconOptions): this {
+  addSvgIconSetInNamespace(
+    namespace: string,
+    url: SafeResourceUrl,
+    options?: SbbIconOptions
+  ): this {
     return this._addSvgIconSetConfig(namespace, new SvgIconConfig(url, options));
   }
 
@@ -216,7 +220,7 @@ export class SbbIconRegistry implements OnDestroy {
   addSvgIconSetLiteralInNamespace(
     namespace: string,
     literal: SafeHtml,
-    options?: IconOptions
+    options?: SbbIconOptions
   ): this {
     const sanitizedLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
 
@@ -462,7 +466,10 @@ export class SbbIconRegistry implements OnDestroy {
   /**
    * Creates a DOM element from the given SVG string, and adds default attributes.
    */
-  private _createSvgElementForSingleIcon(responseText: string, options?: IconOptions): SVGElement {
+  private _createSvgElementForSingleIcon(
+    responseText: string,
+    options?: SbbIconOptions
+  ): SVGElement {
     const svg = this._svgElementFromString(responseText);
     this._setSvgAttributes(svg, options);
     return svg;
@@ -476,7 +483,7 @@ export class SbbIconRegistry implements OnDestroy {
   private _extractSvgIconFromSet(
     iconSet: SVGElement,
     iconName: string,
-    options?: IconOptions
+    options?: SbbIconOptions
   ): SVGElement | null {
     // Use the `id="iconName"` syntax in order to escape special
     // characters in the ID (versus using the #iconName syntax).
@@ -559,7 +566,7 @@ export class SbbIconRegistry implements OnDestroy {
   /**
    * Sets the default attributes for an SVG element to be used as an icon.
    */
-  private _setSvgAttributes(svg: SVGElement, options?: IconOptions): SVGElement {
+  private _setSvgAttributes(svg: SVGElement, options?: SbbIconOptions): SVGElement {
     svg.setAttribute('fit', '');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.setAttribute('focusable', 'false'); // Disable IE11 default behavior to make SVGs focusable.

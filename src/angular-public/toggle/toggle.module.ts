@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
+import { SbbIconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
 
-import { ToggleOptionComponent } from './toggle-option/toggle-option.component';
-import { ToggleComponent } from './toggle/toggle.component';
+import { SbbToggleOption } from './toggle-option/toggle-option.component';
+import { SbbToggle } from './toggle/toggle.component';
 
 @NgModule({
-  declarations: [ToggleComponent, ToggleOptionComponent],
-  imports: [CommonModule, IconDirectiveModule, ɵRadioButtonModule],
-  exports: [ToggleComponent, ToggleOptionComponent, IconDirectiveModule, ɵRadioButtonModule],
+  declarations: [SbbToggle, SbbToggleOption],
+  imports: [CommonModule, SbbIconDirectiveModule, ɵRadioButtonModule],
+  exports: [SbbToggle, SbbToggleOption, SbbIconDirectiveModule, ɵRadioButtonModule],
 })
-export class ToggleModule {}
+export class SbbToggleModule {}

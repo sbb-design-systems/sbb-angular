@@ -3,18 +3,18 @@
 
 import { Injectable } from '@angular/core';
 
-import { EsriTypesService } from '../esri-types/esri-types.service';
+import { SbbEsriTypesService } from '../esri-types/esri-types.service';
 
-import { MarkerSymbolFactory } from './marker-symbol-factory/marker-symbol.factory';
+import { SbbMarkerSymbolFactory } from './marker-symbol-factory/marker-symbol.factory';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GraphicService {
-  private _markerSymbolFactory: MarkerSymbolFactory;
+export class SbbGraphicService {
+  private _markerSymbolFactory: SbbMarkerSymbolFactory;
 
-  constructor(private _esri: EsriTypesService) {
-    this._markerSymbolFactory = new MarkerSymbolFactory(this._esri);
+  constructor(private _esri: SbbEsriTypesService) {
+    this._markerSymbolFactory = new SbbMarkerSymbolFactory(this._esri);
   }
 
   /**

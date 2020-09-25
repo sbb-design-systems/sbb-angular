@@ -20,8 +20,8 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { CaptchaLoaderService } from './captcha-loader.service';
-import { RecaptchaSettings, RECAPTCHA_SETTINGS } from './captcha-settings';
+import { SbbCaptchaLoaderService } from './captcha-loader.service';
+import { SbbRecaptchaSettings, SBB_RECAPTCHA_SETTINGS } from './captcha-settings';
 
 let nextId = 0;
 
@@ -33,12 +33,12 @@ let nextId = 0;
     {
       multi: true,
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CaptchaComponent),
+      useExisting: forwardRef(() => SbbCaptcha),
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
+export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccessor {
   /**
    * Identifier of sbb-captcha.
    */
@@ -115,9 +115,9 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueA
 
   constructor(
     private _elementRef: ElementRef,
-    private _loader: CaptchaLoaderService,
+    private _loader: SbbCaptchaLoaderService,
     private _zone: NgZone,
-    @Optional() @Inject(RECAPTCHA_SETTINGS) settings?: RecaptchaSettings
+    @Optional() @Inject(SBB_RECAPTCHA_SETTINGS) settings?: SbbRecaptchaSettings
   ) {
     if (settings) {
       this.siteKey = settings.siteKey;

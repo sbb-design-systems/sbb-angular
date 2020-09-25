@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 
-import { RadioGroupDirective } from './radio-group.directive';
+import { SbbRadioGroup } from './radio-group.directive';
 
 @NgModule({
-  declarations: [RadioGroupDirective],
-  exports: [RadioGroupDirective],
+  declarations: [SbbRadioGroup],
+  exports: [SbbRadioGroup],
 })
-export class RadioButtonModule {}
+export class SbbRadioButtonModule {}

@@ -32,9 +32,9 @@ import {
   patchElementFocus,
 } from '@sbb-esta/angular-core/testing';
 
-import { TooltipModule } from '../tooltip.module';
+import { SbbTooltipModule } from '../tooltip.module';
 
-import { SBB_TOOLTIP_DEFAULT_OPTIONS, Tooltip, TOOLTIP_PANEL_CLASS } from './tooltip';
+import { SbbTooltip, SBB_TOOLTIP_DEFAULT_OPTIONS, SBB_TOOLTIP_PANEL_CLASS } from './tooltip';
 
 // tslint:disable: no-non-null-assertion
 
@@ -52,7 +52,7 @@ describe('Tooltip', () => {
     platform = { IOS: false, isBrowser: true, ANDROID: false };
 
     TestBed.configureTestingModule({
-      imports: [TooltipModule, OverlayModule, NoopAnimationsModule, SbbIconTestingModule],
+      imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule, SbbIconTestingModule],
       declarations: [
         BasicTooltipDemoComponent,
         ScrollableTooltipDemoComponent,
@@ -93,14 +93,14 @@ describe('Tooltip', () => {
     let fixture: ComponentFixture<BasicTooltipDemoComponent>;
     let buttonDebugElement: DebugElement;
     let buttonElement: HTMLButtonElement;
-    let tooltipDirective: Tooltip;
+    let tooltipDirective: SbbTooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(BasicTooltipDemoComponent);
       fixture.detectChanges();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
       buttonElement = <HTMLButtonElement>buttonDebugElement.nativeElement;
-      tooltipDirective = buttonDebugElement.injector.get<Tooltip>(Tooltip);
+      tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
     });
 
     it('should show and hide the tooltip', fakeAsync(() => {
@@ -176,7 +176,7 @@ describe('Tooltip', () => {
     it('should be able to override the default show and hide delays', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [TooltipModule, OverlayModule, NoopAnimationsModule],
+          imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule],
           declarations: [BasicTooltipDemoComponent],
           providers: [
             {
@@ -191,7 +191,7 @@ describe('Tooltip', () => {
       fixture.detectChanges();
       tooltipDirective = fixture.debugElement
         .query(By.css('button'))!
-        .injector.get<Tooltip>(Tooltip);
+        .injector.get<SbbTooltip>(SbbTooltip);
 
       tooltipDirective.show();
       fixture.detectChanges();
@@ -219,7 +219,7 @@ describe('Tooltip', () => {
 
       expect(!!overlayRef).toBeTruthy();
       expect(overlayRef!.overlayElement.classList).toContain(
-        TOOLTIP_PANEL_CLASS,
+        SBB_TOOLTIP_PANEL_CLASS,
         'Expected the overlay panel element to have the tooltip panel class set.'
       );
     }));
@@ -655,13 +655,13 @@ describe('Tooltip', () => {
   describe('scrollable usage', () => {
     let fixture: ComponentFixture<ScrollableTooltipDemoComponent>;
     let buttonDebugElement: DebugElement;
-    let tooltipDirective: Tooltip;
+    let tooltipDirective: SbbTooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(ScrollableTooltipDemoComponent);
       fixture.detectChanges();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
-      tooltipDirective = buttonDebugElement.injector.get<Tooltip>(Tooltip);
+      tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
     });
 
     it('should hide tooltip if clipped after changing positions', fakeAsync(() => {
@@ -703,14 +703,14 @@ describe('Tooltip', () => {
     let fixture: ComponentFixture<OnPushTooltipDemoComponent>;
     let buttonDebugElement: DebugElement;
     let buttonElement: HTMLButtonElement;
-    let tooltipDirective: Tooltip;
+    let tooltipDirective: SbbTooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(OnPushTooltipDemoComponent);
       fixture.detectChanges();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
       buttonElement = <HTMLButtonElement>buttonDebugElement.nativeElement;
-      tooltipDirective = buttonDebugElement.injector.get<Tooltip>(Tooltip);
+      tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
     });
 
     it('should show and hide the tooltip', fakeAsync(() => {
@@ -918,7 +918,7 @@ class BasicTooltipDemoComponent {
   message: any = initialTooltipMessage;
   showButton: boolean = true;
   showTooltipClass = false;
-  @ViewChild(Tooltip) tooltip: Tooltip;
+  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
 }
 
@@ -1008,12 +1008,12 @@ class TooltipOnDraggableElementComponent {
 })
 class TooltipDemoWithoutPositionBindingComponent {
   message: any = initialTooltipMessage;
-  @ViewChild(Tooltip) tooltip: Tooltip;
+  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
 }
 
 /** Asserts whether a tooltip directive has a tooltip instance. */
-function assertTooltipInstance(tooltip: Tooltip, shouldExist: boolean): void {
+function assertTooltipInstance(tooltip: SbbTooltip, shouldExist: boolean): void {
   // Note that we have to cast this to a boolean, because Jasmine will go into an infinite loop
   // if it tries to stringify the `_tooltipInstance` when an assertion fails. The infinite loop
   // happens due to the `_tooltipInstance` having a circular structure.

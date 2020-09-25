@@ -6,9 +6,9 @@ import { SbbNotificationToastRef } from './notification-toast-ref';
 /**
  * Interface for a simple notification toast component that has a message and a single action.
  */
-export interface TextOnlyNotificationToast {
+export interface SbbTextOnlyNotificationToast {
   data: { message: string };
-  notificationToastRef: SbbNotificationToastRef<TextOnlyNotificationToast>;
+  notificationToastRef: SbbNotificationToastRef<SbbTextOnlyNotificationToast>;
 }
 
 /**
@@ -21,12 +21,12 @@ export interface TextOnlyNotificationToast {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SimpleNotificationComponent implements TextOnlyNotificationToast {
+export class SbbSimpleNotification implements SbbTextOnlyNotificationToast {
   /** Data that was injected into the notification toast. */
   data: { message: string };
 
   constructor(
-    public notificationToastRef: SbbNotificationToastRef<SimpleNotificationComponent>,
+    public notificationToastRef: SbbNotificationToastRef<SbbSimpleNotification>,
     @Inject(SBB_NOTIFICATION_TOAST_DATA) data: any
   ) {
     this.data = data;

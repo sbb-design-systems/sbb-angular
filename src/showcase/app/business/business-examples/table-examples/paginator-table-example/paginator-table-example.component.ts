@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PageEvent, SbbPaginatorComponent } from '@sbb-esta/angular-business/pagination';
+import { SbbPageEvent, SbbPaginatorComponent } from '@sbb-esta/angular-business/pagination';
 import { SbbTableDataSource } from '@sbb-esta/angular-business/table';
 
 interface VehicleExampleItem {
@@ -25,7 +25,7 @@ export class PaginatorTableExampleComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
 
-    this.paginator.page.subscribe((pageEvent: PageEvent) => console.log(pageEvent));
+    this.paginator.page.subscribe((pageEvent: SbbPageEvent) => console.log(pageEvent));
   }
 
   rowCount(rowCount: number) {

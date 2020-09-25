@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
-import { FieldModule } from '@sbb-esta/angular-public/field';
-import { ToggleModule } from '@sbb-esta/angular-public/toggle';
+import { SbbDatepickerModule } from '@sbb-esta/angular-public/datepicker';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbToggleModule } from '@sbb-esta/angular-public/toggle';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -22,9 +22,9 @@ const EXAMPLE_INDEX = {
     FormsModule,
     ReactiveFormsModule,
     SbbIconModule,
-    DatepickerModule,
-    FieldModule,
-    ToggleModule,
+    SbbDatepickerModule,
+    SbbFieldModule,
+    SbbToggleModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

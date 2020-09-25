@@ -10,9 +10,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  SbbTooltipBase,
+  SbbTooltipRegistryService,
   SBB_TOOLTIP_SCROLL_STRATEGY,
-  TooltipBase,
-  TooltipRegistryService,
 } from '@sbb-esta/angular-core/base/tooltip';
 
 @Component({
@@ -22,10 +22,10 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipComponent extends TooltipBase {
+export class SbbTooltipComponent extends SbbTooltipBase {
   constructor(
     overlay: Overlay,
-    tooltipRegistry: TooltipRegistryService,
+    tooltipRegistry: SbbTooltipRegistryService,
     @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() @Inject(DOCUMENT) document: any,
     zone: NgZone,

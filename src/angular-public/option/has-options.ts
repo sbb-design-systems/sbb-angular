@@ -1,13 +1,13 @@
 import { QueryList } from '@angular/core';
 
-import { OptionGroupComponent } from './option-group/option-group.component';
-import { OptionComponent } from './option/option.component';
+import { SbbOptionGroup } from './option-group/option-group.component';
+import { SbbOption } from './option/option.component';
 
 /** @docs-private */
-export interface HasOptions {
+export interface SbbHasOptions {
   /** Whether the component is disabled. */
-  options: QueryList<OptionComponent>;
-  optionGroups: QueryList<OptionGroupComponent>;
+  options: QueryList<SbbOption>;
+  optionGroups: QueryList<SbbOptionGroup>;
 }
 
 /** Mixin to augment a directive with a `disabled` property. */
@@ -19,7 +19,7 @@ const mediaQueriesBreakpoints = [
   { min: 3841, em: 2 },
 ];
 
-export class MediaQueryResizableComponent {
+export class SbbMediaQueryResizable {
   get ems(): number {
     return this._getEmByWindowWidth();
   }

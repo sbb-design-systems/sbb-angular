@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ButtonModule } from '@sbb-esta/angular-public/button';
-import { FieldModule } from '@sbb-esta/angular-public/field';
-import { TagModule } from '@sbb-esta/angular-public/tag';
+import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbTagModule } from '@sbb-esta/angular-public/tag';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -22,9 +22,9 @@ const EXAMPLE_INDEX = {
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    ButtonModule,
-    FieldModule,
-    TagModule,
+    SbbButtonModule,
+    SbbFieldModule,
+    SbbTagModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

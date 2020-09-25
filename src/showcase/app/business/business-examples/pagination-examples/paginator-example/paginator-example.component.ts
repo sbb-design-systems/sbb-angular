@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PageEvent } from '@sbb-esta/angular-business/pagination';
+import { SbbPageEvent } from '@sbb-esta/angular-business/pagination';
 
 @Component({
   selector: 'sbb-paginator-example',
@@ -10,7 +10,7 @@ export class PaginatorExampleComponent {
   pageIndex = 5;
   disabled = false;
 
-  pageChange(event: PageEvent) {
+  pageChange(event: SbbPageEvent) {
     Promise.resolve().then(() => (this.pageIndex = event.pageIndex));
     console.log(event);
   }

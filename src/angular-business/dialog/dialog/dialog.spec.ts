@@ -29,7 +29,7 @@ import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { Subject } from 'rxjs';
 
-import { Dialog, DialogModule, DialogRef, DIALOG_DATA } from '../index';
+import { SbbDialog, SbbDialogModule, SbbDialogRef, SBB_DIALOG_DATA } from '../index';
 
 // tslint:disable-next-line:directive-selector
 @Directive({ selector: 'sbb-dir-with-view-container' })
@@ -65,11 +65,11 @@ class ComponentWithChildViewContainerComponent {
 })
 class ComponentWithTemplateRefComponent {
   localValue: string;
-  dialogRef: DialogRef<any>;
+  dialogRef: SbbDialogRef<any>;
 
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 
-  setDialogRef(dialogRef: DialogRef<any>): string {
+  setDialogRef(dialogRef: SbbDialogRef<any>): string {
     this.dialogRef = dialogRef;
     return '';
   }
@@ -79,7 +79,7 @@ class ComponentWithTemplateRefComponent {
 @Component({ template: '<p>Pizza</p> <input> <button>Close</button>' })
 class PizzaMsgComponent {
   constructor(
-    public dialogRef: DialogRef<PizzaMsgComponent>,
+    public dialogRef: SbbDialogRef<PizzaMsgComponent>,
     public dialogInjector: Injector,
     public directionality: Directionality
   ) {}
@@ -127,16 +127,16 @@ class ComponentWithContentElementTemplateRefComponent {
 
 @Component({
   template: '',
-  providers: [Dialog],
+  providers: [SbbDialog],
 })
 class ComponentThatProvidesDialogComponent {
-  constructor(public dialog: Dialog) {}
+  constructor(public dialog: SbbDialog) {}
 }
 
 /** Simple component for testing ComponentPortal. */
 @Component({ template: '' })
 class DialogWithInjectedDataComponent {
-  constructor(@Inject(DIALOG_DATA) public data: any) {}
+  constructor(@Inject(SBB_DIALOG_DATA) public data: any) {}
 }
 
 @Component({ template: '<p>Pasta</p>' })
@@ -157,7 +157,7 @@ const TEST_DIRECTIVES = [
 ];
 
 @NgModule({
-  imports: [DialogModule, NoopAnimationsModule],
+  imports: [SbbDialogModule, NoopAnimationsModule],
   exports: TEST_DIRECTIVES,
   declarations: TEST_DIRECTIVES,
   entryComponents: [
@@ -172,7 +172,7 @@ const TEST_DIRECTIVES = [
 class DialogTestModule {}
 
 describe('SbbDialog', () => {
-  let dialog: Dialog;
+  let dialog: SbbDialog;
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
   const scrolledSubject = new Subject();
@@ -183,7 +183,7 @@ describe('SbbDialog', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DialogModule, DialogTestModule, SbbIconTestingModule],
+      imports: [SbbDialogModule, DialogTestModule, SbbIconTestingModule],
       providers: [
         { provide: Location, useClass: SpyLocation },
         {
@@ -199,8 +199,8 @@ describe('SbbDialog', () => {
   }));
 
   beforeEach(inject(
-    [Dialog, Location, OverlayContainer],
-    (d: Dialog, l: Location, oc: OverlayContainer) => {
+    [SbbDialog, Location, OverlayContainer],
+    (d: SbbDialog, l: Location, oc: OverlayContainer) => {
       dialog = d;
       mockLocation = l as SpyLocation;
       overlayContainer = oc;
@@ -1204,7 +1204,7 @@ describe('SbbDialog', () => {
   });
 
   describe('dialog content elements', () => {
-    let dialogRef: DialogRef<any>;
+    let dialogRef: SbbDialogRef<any>;
 
     describe('inside component dialog', () => {
       beforeEach(fakeAsync(() => {
@@ -1277,14 +1277,14 @@ describe('SbbDialog', () => {
 });
 
 describe('Dialog with a parent Dialog', () => {
-  let parentDialog: Dialog;
-  let childDialog: Dialog;
+  let parentDialog: SbbDialog;
+  let childDialog: SbbDialog;
   let overlayContainerElement: HTMLElement;
   let fixture: ComponentFixture<ComponentThatProvidesDialogComponent>;
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DialogModule, DialogTestModule, SbbIconTestingModule],
+      imports: [SbbDialogModule, DialogTestModule, SbbIconTestingModule],
       declarations: [ComponentThatProvidesDialogComponent],
       providers: [
         {
@@ -1301,7 +1301,7 @@ describe('Dialog with a parent Dialog', () => {
     TestBed.compileComponents();
   }));
 
-  beforeEach(inject([Dialog], (d: Dialog) => {
+  beforeEach(inject([SbbDialog], (d: SbbDialog) => {
     parentDialog = d;
 
     fixture = TestBed.createComponent(ComponentThatProvidesDialogComponent);

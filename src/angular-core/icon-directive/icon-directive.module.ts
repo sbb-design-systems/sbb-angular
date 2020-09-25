@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 
-import { IconDirective } from './icon.directive';
+import { SbbIconDirective } from './icon.directive';
 
 @NgModule({
-  declarations: [IconDirective],
-  exports: [IconDirective],
+  declarations: [SbbIconDirective],
+  exports: [SbbIconDirective],
 })
-export class IconDirectiveModule {}
+export class SbbIconDirectiveModule {}

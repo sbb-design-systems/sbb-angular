@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from '@sbb-esta/angular-business/button';
-import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
-import { FieldModule } from '@sbb-esta/angular-business/field';
+import { SbbButtonModule } from '@sbb-esta/angular-business/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular-business/checkbox';
+import { SbbFieldModule } from '@sbb-esta/angular-business/field';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
@@ -21,9 +21,9 @@ const EXAMPLE_INDEX = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ButtonModule,
-    CheckboxModule,
-    FieldModule,
+    SbbButtonModule,
+    SbbCheckboxModule,
+    SbbFieldModule,
     SbbIconModule,
   ],
   declarations: EXAMPLES,

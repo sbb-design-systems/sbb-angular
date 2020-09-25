@@ -28,7 +28,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, take, takeUntil } from 'rxjs/operators';
 
-import { AppChooserSectionComponent } from '../app-chooser-section/app-chooser-section.component';
+import { SbbAppChooserSection } from '../app-chooser-section/app-chooser-section.component';
 import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
 
 import { SBB_HEADER } from './header-token';
@@ -59,12 +59,12 @@ export type SbbHeaderMenuToggleResult = 'open' | 'close';
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: SBB_HEADER, useExisting: HeaderComponent }],
+  providers: [{ provide: SBB_HEADER, useExisting: SbbHeader }],
   host: {
     class: 'sbb-header',
   },
 })
-export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SbbHeader implements OnInit, AfterViewInit, OnDestroy {
   /**
    * @docs-private
    * @deprecated internal detail
@@ -159,9 +159,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   /** @docs-private */
   @ViewChild('sideMenuOutlet', { static: true }) _sideMenuOutlet: CdkPortalOutlet;
   /** @docs-private */
-  @ContentChildren(AppChooserSectionComponent) _appChooserSections: QueryList<
-    AppChooserSectionComponent
-  >;
+  @ContentChildren(SbbAppChooserSection) _appChooserSections: QueryList<SbbAppChooserSection>;
 
   /** How the sidenav was opened (keypress, mouse click etc.) */
   private _openedVia: FocusOrigin | null;

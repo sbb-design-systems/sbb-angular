@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-import type { HeaderComponent } from './header.component';
+import type { SbbHeader } from './header.component';
 
-export const SBB_HEADER = new InjectionToken<HeaderComponent>('SBB_HEADER');
+export const SBB_HEADER = new InjectionToken<SbbHeader>('SBB_HEADER');

@@ -9,7 +9,6 @@ import {
   WorkspacePath,
 } from '@angular/cdk/schematics';
 import type { Attribute, DefaultTreeDocument, DefaultTreeElement } from 'parse5';
-import { basename } from 'path';
 import * as ts from 'typescript';
 
 const parse: typeof import('parse5') = parse5;
@@ -23,8 +22,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
     '/* TODO(icon-migration): Check if still working as intended */';
   readonly sbbIconCssReplacement = `.sbb-icon ${this.sbbIconMigrationWarning}`;
   printer = ts.createPrinter();
-  // TODO: Adapt for TargetVersion.V11
-  enabled: boolean = this.targetVersion === ('version 11' as TargetVersion);
+  enabled: boolean = this.targetVersion === TargetVersion.V11;
 
   private _tsIconOccurences = new Map<ts.SourceFile, TsMigrationContext>();
   private _templateIconOccurences = new Map<WorkspacePath, TemplateMigrationContext>();

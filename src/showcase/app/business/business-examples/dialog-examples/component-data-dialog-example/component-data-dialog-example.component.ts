@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Dialog } from '@sbb-esta/angular-business/dialog';
+import { SbbDialog } from '@sbb-esta/angular-business/dialog';
 
 @Component({
   selector: 'sbb-component-data-dialog-example',
   templateUrl: './component-data-dialog-example.component.html',
 })
 export class ComponentDataDialogExampleComponent {
-  constructor(public dialog: Dialog) {}
+  constructor(public dialog: SbbDialog) {}
 
   openDialog() {
     const dialogRef = this.dialog.openDialog(ComponentDataDialogComponent, {

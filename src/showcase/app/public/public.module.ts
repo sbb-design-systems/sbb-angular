@@ -1,9 +1,9 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AccordionModule } from '@sbb-esta/angular-business/accordion';
+import { SbbAccordionModule } from '@sbb-esta/angular-business/accordion';
 import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
-import { TabsModule } from '@sbb-esta/angular-public/tabs';
+import { SbbTabsModule } from '@sbb-esta/angular-public/tabs';
 
 import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';
 import { SharedModule } from '../shared/shared.module';
@@ -20,10 +20,10 @@ import { PublicComponent } from './public/public.component';
     PublicExamplesModule,
     SharedModule,
     ComponentViewerModule,
-    TabsModule,
+    SbbTabsModule,
     PublicRoutingModule,
     SbbSidebarModule,
-    AccordionModule,
+    SbbAccordionModule,
   ],
 })
 export class PublicModule {}

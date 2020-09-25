@@ -15,10 +15,10 @@ import {
   dispatchMouseEvent,
 } from '@sbb-esta/angular-core/testing';
 
-import { DateInputDirective } from '../date-input/date-input.directive';
-import { DatepickerModule } from '../datepicker.module';
+import { SbbDateInput } from '../date-input/date-input.directive';
+import { SbbDatepickerModule } from '../datepicker.module';
 
-import { DatepickerComponent } from './datepicker.component';
+import { SbbDatepicker } from './datepicker.component';
 
 // tslint:disable:i18n
 @Component({
@@ -33,8 +33,8 @@ class StandardDatepickerComponent {
   touch = false;
   disabled = false;
   date: Date | null = new Date(2020, JAN, 1);
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
-  @ViewChild(DateInputDirective, { static: true }) datepickerInput: DateInputDirective<Date>;
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
 }
 
 @Component({
@@ -51,7 +51,7 @@ class MultiInputDatepickerComponent {}
   template: ` <sbb-datepicker #d></sbb-datepicker> `,
 })
 class NoInputDatepickerComponent {
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
 }
 
 @Component({
@@ -64,7 +64,7 @@ class NoInputDatepickerComponent {
 class DatepickerWithStartAtComponent {
   date = new Date(2020, JAN, 1);
   startDate = new Date(2010, JAN, 1);
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
 }
 
 @Component({
@@ -76,8 +76,8 @@ class DatepickerWithStartAtComponent {
 })
 class DatepickerWithNgModelComponent {
   selected: Date | null = null;
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
-  @ViewChild(DateInputDirective, { static: true }) datepickerInput: DateInputDirective<Date>;
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
 }
 
 @Component({
@@ -89,8 +89,8 @@ class DatepickerWithNgModelComponent {
 })
 class DatepickerWithFormControlComponent {
   formControl = new FormControl();
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
-  @ViewChild(DateInputDirective, { static: true }) datepickerInput: DateInputDirective<Date>;
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput, { static: true }) datepickerInput: SbbDateInput<Date>;
 }
 
 @Component({
@@ -101,8 +101,8 @@ class DatepickerWithFormControlComponent {
   `,
 })
 class DatepickerWithToggleComponent {
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
-  @ViewChild(DateInputDirective, { static: true }) input: DateInputDirective<Date>;
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
+  @ViewChild(SbbDateInput, { static: true }) input: SbbDateInput<Date>;
 }
 
 @Component({
@@ -113,7 +113,7 @@ class DatepickerWithToggleComponent {
   `,
 })
 class DatepickerWithMinAndMaxValidationComponent {
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
   date: Date | null;
   minDate = new Date(2010, JAN, 1);
   maxDate = new Date(2020, JAN, 1);
@@ -130,7 +130,7 @@ class DatepickerWithEventsComponent {
   selected: Date | null = null;
   openedSpy = jasmine.createSpy('opened spy');
   closedSpy = jasmine.createSpy('closed spy');
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
+  @ViewChild('d', { static: true }) datepicker: SbbDatepicker<Date>;
 }
 
 @Component({
@@ -141,7 +141,7 @@ class DatepickerWithEventsComponent {
   `,
 })
 class DatepickerOpeningOnFocusComponent {
-  @ViewChild(DatepickerComponent, { static: true }) datepicker: DatepickerComponent<Date>;
+  @ViewChild(SbbDatepicker, { static: true }) datepicker: SbbDatepicker<Date>;
 }
 
 describe('DatepickerComponent', () => {
@@ -155,7 +155,7 @@ describe('DatepickerComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        DatepickerModule,
+        SbbDatepickerModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
         SbbIconModule,

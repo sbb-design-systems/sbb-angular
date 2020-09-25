@@ -19,19 +19,21 @@ import {
 import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
-import { DialogContainerComponent } from '../dialog-container/dialog-container.component';
+import { SbbDialogContainer } from '../dialog-container/dialog-container.component';
 
-import { DialogConfig } from './dialog-config';
-import { DialogRef } from './dialog-ref';
+import { SbbDialogConfig } from './dialog-config';
+import { SbbDialogRef } from './dialog-ref';
 
 /** Injection token that can be used to access the data that was passed in to a dialog. */
-export const DIALOG_DATA = new InjectionToken<any>('DialogData');
+export const SBB_DIALOG_DATA = new InjectionToken<any>('DialogData');
 
 /** Injection token that can be used to specify default dialog options. */
-export const DIALOG_DEFAULT_OPTIONS = new InjectionToken<DialogConfig>('DialogDefaultOptions');
+export const SBB_DIALOG_DEFAULT_OPTIONS = new InjectionToken<SbbDialogConfig>(
+  'DialogDefaultOptions'
+);
 
 /** Injection token that determines the scroll handling while the dialog is open. */
-export const DIALOG_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
+export const SBB_DIALOG_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'DialogScrollStrategy'
 );
 
@@ -43,8 +45,8 @@ export function SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY(
 }
 
 /** @docs-private */
-export const DIALOG_SCROLL_STRATEGY_PROVIDER = {
-  provide: DIALOG_SCROLL_STRATEGY,
+export const SBB_DIALOG_SCROLL_STRATEGY_PROVIDER = {
+  provide: SBB_DIALOG_SCROLL_STRATEGY,
   deps: [Overlay],
   useFactory: SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
@@ -53,18 +55,18 @@ export const DIALOG_SCROLL_STRATEGY_PROVIDER = {
  * Service to open SBB Design modal dialogs.
  */
 @Injectable()
-export class Dialog implements OnDestroy {
-  private _openDialogsAtThisLevel: DialogRef<any>[] = [];
+export class SbbDialog implements OnDestroy {
+  private _openDialogsAtThisLevel: SbbDialogRef<any>[] = [];
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
-  private readonly _afterOpenedAtThisLevel = new Subject<DialogRef<any>>();
+  private readonly _afterOpenedAtThisLevel = new Subject<SbbDialogRef<any>>();
 
   /** Keeps track of the currently-open dialogs. */
-  get openDialogs(): DialogRef<any>[] {
+  get openDialogs(): SbbDialogRef<any>[] {
     return this._parentDialog ? this._parentDialog.openDialogs : this._openDialogsAtThisLevel;
   }
 
   /** Stream that emits when a dialog has been opened. */
-  get afterOpen(): Subject<DialogRef<any>> {
+  get afterOpen(): Subject<SbbDialogRef<any>> {
     return this._parentDialog ? this._parentDialog.afterOpen : this._afterOpenedAtThisLevel;
   }
 
@@ -87,9 +89,9 @@ export class Dialog implements OnDestroy {
     private _overlay: Overlay,
     private _injector: Injector,
     @Optional() private _location: Location,
-    @Optional() @Inject(DIALOG_DEFAULT_OPTIONS) private _defaultOptions: DialogConfig,
-    @Inject(DIALOG_SCROLL_STRATEGY) private _scrollStrategy: any,
-    @Optional() @SkipSelf() private _parentDialog: Dialog
+    @Optional() @Inject(SBB_DIALOG_DEFAULT_OPTIONS) private _defaultOptions: SbbDialogConfig,
+    @Inject(SBB_DIALOG_SCROLL_STRATEGY) private _scrollStrategy: any,
+    @Optional() @SkipSelf() private _parentDialog: SbbDialog
   ) {}
 
   /**
@@ -102,8 +104,8 @@ export class Dialog implements OnDestroy {
    */
   open<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    config?: DialogConfig<D>
-  ): DialogRef<T, R> {
+    config?: SbbDialogConfig<D>
+  ): SbbDialogRef<T, R> {
     return this.openDialog(componentOrTemplateRef, config);
   }
 
@@ -116,9 +118,9 @@ export class Dialog implements OnDestroy {
    */
   openDialog<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    config?: DialogConfig<D>
-  ): DialogRef<T, R> {
-    config = { ...(this._defaultOptions || new DialogConfig()), ...config };
+    config?: SbbDialogConfig<D>
+  ): SbbDialogRef<T, R> {
+    config = { ...(this._defaultOptions || new SbbDialogConfig()), ...config };
     if (config!.id && this.getDialogById(config!.id)) {
       throw Error(`dialog with id "${config!.id}" exists already. The dialog id must be unique.`);
     }
@@ -151,7 +153,7 @@ export class Dialog implements OnDestroy {
    * @param id ID to use when looking up the dialog.
    * @returns Dialog reference associated to the input id.
    */
-  getDialogById(id: string): DialogRef<any> | undefined {
+  getDialogById(id: string): SbbDialogRef<any> | undefined {
     return this.openDialogs.find((dialog) => dialog.id === id);
   }
 
@@ -168,7 +170,7 @@ export class Dialog implements OnDestroy {
    * @param config The dialog configuration.
    * @returns A promise resolving to the OverlayRef for the created overlay.
    */
-  private _createOverlay(config: DialogConfig): OverlayRef {
+  private _createOverlay(config: SbbDialogConfig): OverlayRef {
     const overlayConfig = this._getOverlayConfig(config);
     return this._overlay.create(overlayConfig);
   }
@@ -178,7 +180,7 @@ export class Dialog implements OnDestroy {
    * @param dialogConfig The dialog configuration.
    * @returns The overlay configuration.
    */
-  private _getOverlayConfig(dialogConfig: DialogConfig): OverlayConfig {
+  private _getOverlayConfig(dialogConfig: SbbDialogConfig): OverlayConfig {
     return new OverlayConfig({
       positionStrategy: this._overlay.position().global(),
       scrollStrategy: dialogConfig.scrollStrategy || this._scrollStrategy(),
@@ -200,21 +202,18 @@ export class Dialog implements OnDestroy {
    * @param config The dialog configuration.
    * @returns A promise resolving to a ComponentRef for the attached container.
    */
-  private _attachDialogContainer(
-    overlay: OverlayRef,
-    config: DialogConfig
-  ): DialogContainerComponent {
+  private _attachDialogContainer(overlay: OverlayRef, config: SbbDialogConfig): SbbDialogContainer {
     const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
     const injector = new PortalInjector(
       userInjector || this._injector,
-      new WeakMap([[DialogConfig, config]])
+      new WeakMap([[SbbDialogConfig, config]])
     );
     const containerPortal = new ComponentPortal(
-      DialogContainerComponent,
+      SbbDialogContainer,
       config.viewContainerRef,
       injector
     );
-    const containerRef = overlay.attach<DialogContainerComponent>(containerPortal);
+    const containerRef = overlay.attach<SbbDialogContainer>(containerPortal);
 
     return containerRef.instance;
   }
@@ -230,13 +229,18 @@ export class Dialog implements OnDestroy {
    */
   private _attachDialogContent<T, R>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    dialogContainer: DialogContainerComponent,
+    dialogContainer: SbbDialogContainer,
     overlayRef: OverlayRef,
-    config: DialogConfig
-  ): DialogRef<T, R> {
+    config: SbbDialogConfig
+  ): SbbDialogRef<T, R> {
     // Create a reference to the dialog we're creating in order to give the user a handle
     // to modify and close it.
-    const dialogRef = new DialogRef<T, R>(dialogContainer, config.id, overlayRef, this._location);
+    const dialogRef = new SbbDialogRef<T, R>(
+      dialogContainer,
+      config.id,
+      overlayRef,
+      this._location
+    );
 
     if (componentOrTemplateRef instanceof TemplateRef) {
       dialogContainer.attachTemplatePortal(
@@ -267,9 +271,9 @@ export class Dialog implements OnDestroy {
    * @returns The custom injector that can be used inside the dialog.
    */
   private _createInjector<T>(
-    config: DialogConfig,
-    dialogRef: DialogRef<T>,
-    dialogContainer: DialogContainerComponent
+    config: SbbDialogConfig,
+    dialogRef: SbbDialogRef<T>,
+    dialogContainer: SbbDialogContainer
   ): PortalInjector {
     const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
 
@@ -278,9 +282,9 @@ export class Dialog implements OnDestroy {
     // purposes. To allow the hierarchy that is expected, the DialogContainer is explicitly
     // added to the injection tokens.
     const injectionTokens = new WeakMap<any, any>([
-      [DialogContainerComponent, dialogContainer],
-      [DIALOG_DATA, config.data],
-      [DialogRef, dialogRef],
+      [SbbDialogContainer, dialogContainer],
+      [SBB_DIALOG_DATA, config.data],
+      [SbbDialogRef, dialogRef],
     ]);
 
     return new PortalInjector(userInjector || this._injector, injectionTokens);
@@ -290,7 +294,7 @@ export class Dialog implements OnDestroy {
    * Removes a dialog from the array of open dialogs.
    * @param dialogRef dialog to be removed.
    */
-  private _removeOpenDialog(dialogRef: DialogRef<any>) {
+  private _removeOpenDialog(dialogRef: SbbDialogRef<any>) {
     const index = this.openDialogs.indexOf(dialogRef);
 
     if (index > -1) {
@@ -304,7 +308,7 @@ export class Dialog implements OnDestroy {
   }
 
   /** Closes all of the dialogs in an array. */
-  private _closeDialogs(dialogs: DialogRef<any>[]) {
+  private _closeDialogs(dialogs: SbbDialogRef<any>[]) {
     let i = dialogs.length;
 
     while (i--) {

@@ -31,7 +31,7 @@ const range = (length: number, offset = 0) => Array.from({ length }, (_, k) => k
  * Change event object that is emitted when the user selects a
  * different page size or navigates to another page.
  */
-export class PageEvent {
+export class SbbPageEvent {
   /**
    *
    * @param pageIndex current page index
@@ -128,7 +128,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
   private _pageSize: number = DEFAULT_PAGE_SIZE;
 
   /** Event emitted when the paginator changes the page size or page index. */
-  @Output() readonly page: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+  @Output() readonly page: EventEmitter<SbbPageEvent> = new EventEmitter<SbbPageEvent>();
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
@@ -245,7 +245,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     ) {
       return;
     }
-    this.page.emit(new PageEvent(this.pageIndex, previousPageIndex, this.pageSize, this.length));
+    this.page.emit(new SbbPageEvent(this.pageIndex, previousPageIndex, this.pageSize, this.length));
   }
 
   /**

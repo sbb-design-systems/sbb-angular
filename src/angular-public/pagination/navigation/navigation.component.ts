@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-export type NavigationPageChangeEvent = 'next' | 'previous';
+export type SbbNavigationPageChangeEvent = 'next' | 'previous';
 
 @Component({
   selector: 'sbb-navigation',
@@ -21,7 +21,7 @@ export type NavigationPageChangeEvent = 'next' | 'previous';
     role: 'navigation',
   },
 })
-export class NavigationComponent implements OnChanges {
+export class SbbNavigation implements OnChanges {
   /**
    * @docs-private
    * @deprecated internal detail
@@ -40,8 +40,8 @@ export class NavigationComponent implements OnChanges {
    * This event can be used by parent components to handle events on page change.
    */
   @Output()
-  pageChange: EventEmitter<NavigationPageChangeEvent> = new EventEmitter<
-    NavigationPageChangeEvent
+  pageChange: EventEmitter<SbbNavigationPageChangeEvent> = new EventEmitter<
+    SbbNavigationPageChangeEvent
   >();
 
   ngOnChanges(changes: SimpleChanges) {

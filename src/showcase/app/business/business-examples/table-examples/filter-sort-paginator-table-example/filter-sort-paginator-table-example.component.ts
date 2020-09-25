@@ -3,9 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { SbbPaginatorComponent } from '@sbb-esta/angular-business/pagination';
 import {
   SbbSortDirective,
+  SbbTable,
   SbbTableDataSource,
-  TableComponent,
-  TableFilter,
+  SbbTableFilter,
 } from '@sbb-esta/angular-business/table';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
@@ -18,7 +18,7 @@ interface VehicleExampleItem {
   description: string;
 }
 
-interface VehicleFilter extends TableFilter {
+interface VehicleFilter extends SbbTableFilter {
   category?: string[];
   name?: string;
   description?: string;
@@ -32,7 +32,7 @@ interface VehicleFilter extends TableFilter {
 export class FilterSortPaginatorTableExampleComponent implements AfterViewInit, OnDestroy {
   @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
   @ViewChild(SbbSortDirective) sort: SbbSortDirective;
-  @ViewChild(TableComponent) table: TableComponent<VehicleExampleItem>;
+  @ViewChild(SbbTable) table: SbbTable<VehicleExampleItem>;
 
   displayedColumns: string[] = ['position', 'name', 'power', 'description', 'category'];
 

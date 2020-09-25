@@ -10,7 +10,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
+import {
+  SbbRadioButton as SbbRadioButtonBase,
+  SbbRadioGroup,
+} from '@sbb-esta/angular-core/radio-button';
 
 @Component({
   selector: 'sbb-radio-button',
@@ -21,16 +24,16 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RadioButtonComponent),
+      useExisting: forwardRef(() => SbbRadioButton),
       multi: true,
     },
-    { provide: RadioButton, useExisting: RadioButtonComponent },
+    { provide: SbbRadioButtonBase, useExisting: SbbRadioButton },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RadioButtonComponent extends RadioButton {
+export class SbbRadioButton extends SbbRadioButtonBase {
   constructor(
-    @Optional() radioGroup: RadioGroupDirective,
+    @Optional() radioGroup: SbbRadioGroup,
     changeDetector: ChangeDetectorRef,
     elementRef: ElementRef,
     focusMonitor: FocusMonitor,

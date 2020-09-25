@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TabsComponent } from '@sbb-esta/angular-public/tabs';
+import { SbbTabs } from '@sbb-esta/angular-public/tabs';
 
 export interface Person {
   id?: number;
@@ -13,7 +13,7 @@ export interface Person {
   templateUrl: './tabs-example.component.html',
 })
 export class TabsExampleComponent implements OnInit {
-  @ViewChild('tabs', { static: true }) tabsComponent: TabsComponent;
+  @ViewChild('tabs', { static: true }) tabsComponent: SbbTabs;
 
   disabled = false;
   removed = false;

@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   styleUrls: ['./textexpand-collapsed.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextexpandCollapsedComponent {
+export class SbbTextexpandCollapsed {
   /**
    * Describes if textexpand-collapsed is hidden or not. Initially it isn't hidden.
    */

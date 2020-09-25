@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
-import { ChipModule } from '@sbb-esta/angular-business/chip';
-import { FieldModule } from '@sbb-esta/angular-business/field';
+import { SbbAutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
+import { SbbChipModule } from '@sbb-esta/angular-business/chip';
+import { SbbFieldModule } from '@sbb-esta/angular-business/field';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -31,9 +31,9 @@ const EXAMPLE_INDEX = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AutocompleteModule,
-    ChipModule,
-    FieldModule,
+    SbbAutocompleteModule,
+    SbbChipModule,
+    SbbFieldModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

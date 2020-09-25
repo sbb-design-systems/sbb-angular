@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { EsriBasemapGalleryComponent } from './esri-basemap-gallery/esri-basemap-gallery.component';
+import { SbbEsriBasemapGallery } from './esri-basemap-gallery/esri-basemap-gallery.component';
 
 @NgModule({
-  declarations: [EsriBasemapGalleryComponent],
+  declarations: [SbbEsriBasemapGallery],
   imports: [CommonModule],
-  exports: [EsriBasemapGalleryComponent],
+  exports: [SbbEsriBasemapGallery],
 })
-export class EsriBasemapGalleryModule {}
+export class SbbEsriBasemapGalleryModule {}

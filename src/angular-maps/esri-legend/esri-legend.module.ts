@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { EsriLegendComponent } from './esri-legend/esri-legend.component';
+import { SbbEsriLegend } from './esri-legend/esri-legend.component';
 
 @NgModule({
-  declarations: [EsriLegendComponent],
+  declarations: [SbbEsriLegend],
   imports: [CommonModule],
-  exports: [EsriLegendComponent],
+  exports: [SbbEsriLegend],
 })
-export class EsriLegendModule {}
+export class SbbEsriLegendModule {}

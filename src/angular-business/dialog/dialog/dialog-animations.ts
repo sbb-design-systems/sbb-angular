@@ -8,7 +8,7 @@ import {
 } from '@angular/animations';
 
 /** Animations used by Dialog. */
-export const DIALOG_ANIMATIONS: {
+export const SBB_DIALOG_ANIMATIONS: {
   readonly slideDialog: AnimationTriggerMetadata;
 } = {
   /** Animation that slides the Dialog in and out of view and fades the opacity. */

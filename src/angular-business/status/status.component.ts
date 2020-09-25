@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
     '[attr.aria-describedby]': 'null',
   },
 })
-export class StatusComponent {
+export class SbbStatus {
   /** The optional icon type, which can be valid, warning or invalid. */
   @Input() type: 'valid' | 'warning' | 'invalid';
   /** Set the status message shown on the right side. */

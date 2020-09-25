@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
-import { LightboxContainerComponent } from './lightbox-container.component';
+import { SbbLightboxContainer } from './lightbox-container.component';
 
 // Counter for unique lightbox ids.
 let uniqueId = 0;
@@ -12,7 +12,7 @@ let uniqueId = 0;
 /**
  * Reference to a lightbox opened via the Lightbox service.
  */
-export class LightboxRef<T, R = any> {
+export class SbbLightboxRef<T, R = any> {
   /** The instance of component opened into the lightbox. */
   componentInstance: T | null;
 
@@ -38,7 +38,7 @@ export class LightboxRef<T, R = any> {
 
   constructor(
     /** The instance of the container component. */
-    public containerInstance: LightboxContainerComponent,
+    public containerInstance: SbbLightboxContainer,
     /** Identifier of lightbox. */
     readonly id: string = `sbb-lightbox-${uniqueId++}`,
     private _overlayRef: OverlayRef,

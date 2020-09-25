@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
+import { SbbGhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
 
-import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
+import { SbbGhettoboxConfig, SbbGhettoboxRef } from './ghettobox-ref';
 
 /**
  * Service in charge to add/delete ghettoboxes from/to the container
@@ -11,7 +11,7 @@ import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
 @Injectable({
   providedIn: 'root',
 })
-export class GhettoboxService {
+export class SbbGhettoboxService {
   /**
    * Observable you can subscribe to know if sbb-ghettobox-container has been loaded
    */
@@ -20,17 +20,17 @@ export class GhettoboxService {
   /**
    * Get the List of attached ghettoboxes within a container
    */
-  get attachedGhettoboxes(): GhettoboxRef[] {
+  get attachedGhettoboxes(): SbbGhettoboxRef[] {
     return this._ghettoboxContainerService.attachedGhettoboxes;
   }
 
-  constructor(private _ghettoboxContainerService: GhettoboxContainerService) {}
+  constructor(private _ghettoboxContainerService: SbbGhettoboxContainerService) {}
 
   /**
    * Add a new ghettobox
    * @param ghettobox Ghettobox object passed by the consumer
    */
-  add(ghettobox: Ghettobox): GhettoboxRef {
+  add(ghettobox: SbbGhettoboxConfig): SbbGhettoboxRef {
     this._ghettoboxContainerService.checkIfContainerIsPresent();
     const ghettoboxRef = this._ghettoboxContainerService.createGhettobox(ghettobox);
     this._ghettoboxContainerService.pushGettoboxRefIntoAttachedCollection(ghettoboxRef);

@@ -9,23 +9,23 @@ import {
   tick,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { PaginationModule, SbbPaginatorComponent } from '@sbb-esta/angular-business/pagination';
+import { SbbPaginationModule, SbbPaginatorComponent } from '@sbb-esta/angular-business/pagination';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { SbbSortHeaderComponent } from './sort-header/sort-header.component';
 import { SbbSortDirective } from './sort/sort.component';
-import { TableModule } from './table.module';
+import { SbbTableModule } from './table.module';
 import { SbbTableDataSource } from './table/table-data-source';
-import { TableComponent } from './table/table.component';
+import { SbbTable } from './table/table.component';
 
 describe('SbbTable', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        TableModule,
-        PaginationModule,
+        SbbTableModule,
+        SbbPaginationModule,
         NoopAnimationsModule,
         SbbIconModule,
         SbbIconTestingModule,
@@ -602,7 +602,7 @@ class SbbTableTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TableComponent, { static: true }) table: TableComponent<TestData>;
+  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
   isFourthRow = (i: number, _rowData: TestData) => i === 3;
 }
 
@@ -633,7 +633,7 @@ class NativeHtmlTableTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TableComponent, { static: true }) table: TableComponent<TestData>;
+  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
 }
 
 @Component({
@@ -701,7 +701,7 @@ class StickyTableTestComponent {
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a'];
 
-  @ViewChild(TableComponent, { static: true }) table: TableComponent<TestData>;
+  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
 }
 
 @Component({
@@ -728,7 +728,7 @@ class SbbTableWithWhenRowTestComponent {
   multiTemplateDataRows = false;
   dataSource: FakeDataSource | null = new FakeDataSource();
 
-  @ViewChild(TableComponent) table: TableComponent<TestData>;
+  @ViewChild(SbbTable) table: SbbTable<TestData>;
   isFourthRow = (i: number, _rowData: TestData) => i === 3;
 }
 
@@ -766,7 +766,7 @@ class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
   dataSource = new SbbTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TableComponent, { static: true }) table: TableComponent<TestData>;
+  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
   @ViewChild(SbbPaginatorComponent, { static: true }) paginator: SbbPaginatorComponent;
   @ViewChild(SbbSortDirective, { static: true }) sort: SbbSortDirective;
   @ViewChild(SbbSortHeaderComponent) sortHeader: SbbSortHeaderComponent;
@@ -818,7 +818,7 @@ class SbbTableWithSortTestComponent implements OnInit {
   dataSource = new SbbTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TableComponent, { static: true }) table: TableComponent<TestData>;
+  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
   @ViewChild(SbbSortDirective, { static: true }) sort: SbbSortDirective;
 
   constructor() {
@@ -869,7 +869,7 @@ class SbbTableWithPaginatorTestComponent implements OnInit {
   dataSource = new SbbTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(TableComponent, { static: true }) table: TableComponent<TestData>;
+  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
   @ViewChild(SbbPaginatorComponent, { static: true }) paginator: SbbPaginatorComponent;
 
   constructor() {

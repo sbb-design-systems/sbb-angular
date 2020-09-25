@@ -1,5 +1,5 @@
 import { FormControl, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
+import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { Subject } from 'rxjs';
 
 import { Constructor } from './constructor';
@@ -8,7 +8,7 @@ import { Constructor } from './constructor';
 export interface CanUpdateErrorState {
   readonly stateChanges: Subject<void>;
   errorState: boolean;
-  errorStateMatcher: ErrorStateMatcher;
+  errorStateMatcher: SbbErrorStateMatcher;
   updateErrorState(): void;
 }
 
@@ -19,7 +19,7 @@ export type CanUpdateErrorStateCtor = Constructor<CanUpdateErrorState>;
 export interface HasErrorState {
   _parentFormGroup: FormGroupDirective;
   _parentForm: NgForm;
-  _defaultErrorStateMatcher: ErrorStateMatcher;
+  _defaultErrorStateMatcher: SbbErrorStateMatcher;
   ngControl: NgControl;
 }
 
@@ -40,7 +40,7 @@ export function mixinErrorState<T extends Constructor<HasErrorState>>(
      */
     readonly stateChanges = new Subject<void>();
 
-    errorStateMatcher: ErrorStateMatcher;
+    errorStateMatcher: SbbErrorStateMatcher;
 
     updateErrorState() {
       const oldState = this.errorState;

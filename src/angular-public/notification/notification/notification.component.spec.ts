@@ -7,7 +7,7 @@ import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import createSpy = jasmine.createSpy;
 
-import { NotificationComponent } from './notification.component';
+import { SbbNotification } from './notification.component';
 
 @Component({
   selector: 'sbb-notification-mock',
@@ -22,18 +22,18 @@ export class NotificationMockComponent {
 
 describe('NotificationComponent', () => {
   describe('core', () => {
-    let component: NotificationComponent;
-    let fixture: ComponentFixture<NotificationComponent>;
+    let component: SbbNotification;
+    let fixture: ComponentFixture<SbbNotification>;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [SbbIconModule, SbbIconTestingModule, CommonModule],
-        declarations: [NotificationComponent],
+        declarations: [SbbNotification],
       }).compileComponents();
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(NotificationComponent);
+      fixture = TestBed.createComponent(SbbNotification);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
@@ -50,7 +50,7 @@ describe('NotificationComponent', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [CommonModule, FormsModule, SbbIconModule, SbbIconTestingModule],
-        declarations: [NotificationComponent, NotificationMockComponent],
+        declarations: [SbbNotification, NotificationMockComponent],
       }).compileComponents();
     }));
 

@@ -17,8 +17,8 @@ import {
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { CanUpdateErrorStateCtor, mixinErrorState } from '@sbb-esta/angular-core/common-behaviors';
-import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
-import { FormFieldControl } from '@sbb-esta/angular-core/forms';
+import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
+import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
 
 import { SBB_INPUT_VALUE_ACCESSOR } from '../input-value-accessor';
 
@@ -36,26 +36,26 @@ const SBB_INPUT_INVALID_TYPES = [
 ];
 
 /** @docs-private */
-export class InputBase {
+export class SbbInputBase {
   constructor(
-    public _defaultErrorStateMatcher: ErrorStateMatcher,
+    public _defaultErrorStateMatcher: SbbErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
     /** @docs-private */
     public ngControl: NgControl
   ) {}
 }
-export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof InputBase = mixinErrorState(
-  InputBase
+export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbInputBase = mixinErrorState(
+  SbbInputBase
 );
 
 @Directive({
   selector: 'input[sbbInput], select[sbbInput], textarea[sbbInput]',
   exportAs: 'sbbInput',
-  providers: [{ provide: FormFieldControl, useExisting: InputDirective }],
+  providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
 })
-export class InputDirective extends SbbNativeInputBase
-  implements FormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
+export class SbbInput extends SbbNativeInputBase
+  implements SbbFormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
   /** The aria-describedby attribute on the input for improved a11y. */
@@ -158,7 +158,7 @@ export class InputDirective extends SbbNativeInputBase
   private _type = 'text';
 
   /** An object used to control when error messages are shown. */
-  @Input() errorStateMatcher: ErrorStateMatcher;
+  @Input() errorStateMatcher: SbbErrorStateMatcher;
 
   /**
    * Implemented as part of FormFieldControl.
@@ -220,7 +220,7 @@ export class InputDirective extends SbbNativeInputBase
     private _autofillMonitor: AutofillMonitor,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
-    defaultErrorStateMatcher: ErrorStateMatcher,
+    defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional()
     @Self()
     @Inject(SBB_INPUT_VALUE_ACCESSOR)

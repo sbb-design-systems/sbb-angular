@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
-import { FieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
 
-import { TimeInputDirective } from './time-input.directive';
+import { SbbTimeInput } from './time-input.directive';
 
 @Component({
   template: ` <input sbbTimeInput [placeholder]="placeholder" /> `,
@@ -30,7 +30,7 @@ describe('TimeInputDirective', () => {
   describe('without sbbInput', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [TimeInputTestComponent, TimeInputDirective],
+        declarations: [TimeInputTestComponent, SbbTimeInput],
       }).compileComponents();
     }));
 
@@ -47,8 +47,8 @@ describe('TimeInputDirective', () => {
   describe('with sbbInput', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [TimeInputWithSbbInputTestComponent, TimeInputDirective],
-        imports: [FieldModule],
+        declarations: [TimeInputWithSbbInputTestComponent, SbbTimeInput],
+        imports: [SbbFieldModule],
       }).compileComponents();
     }));
 

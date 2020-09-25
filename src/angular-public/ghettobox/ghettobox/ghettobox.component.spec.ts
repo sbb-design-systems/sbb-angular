@@ -4,10 +4,10 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
+import { SbbIconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { GhettoboxComponent } from './ghettobox.component';
+import { SbbGhettobox } from './ghettobox.component';
 
 // tslint:disable:i18n
 @Component({
@@ -25,7 +25,7 @@ import { GhettoboxComponent } from './ghettobox.component';
       This is a simple link text with custom icon
     </sbb-ghettobox>
   `,
-  entryComponents: [GhettoboxComponent],
+  entryComponents: [SbbGhettobox],
 })
 export class GhettoboxTestComponent {
   afterDelete() {}
@@ -42,9 +42,9 @@ describe('GhettoboxComponent', () => {
         NoopAnimationsModule,
         SbbIconTestingModule,
         SbbIconModule,
-        IconDirectiveModule,
+        SbbIconDirectiveModule,
       ],
-      declarations: [GhettoboxTestComponent, GhettoboxComponent],
+      declarations: [GhettoboxTestComponent, SbbGhettobox],
     }).compileComponents();
   }));
 

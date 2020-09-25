@@ -8,9 +8,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { DialogHelperService } from '../dialog/dialog-helper.service';
-import { DialogRef } from '../dialog/dialog-ref';
-import { Dialog } from '../dialog/dialog.service';
+import { SbbDialogHelperService } from '../dialog/dialog-helper.service';
+import { SbbDialogRef } from '../dialog/dialog-ref';
+import { SbbDialog } from '../dialog/dialog.service';
 
 /**
  * Container for the bottom action buttons in a dialog.
@@ -29,7 +29,7 @@ import { Dialog } from '../dialog/dialog.service';
     '[class.sbb-dialog-footer-align-end]': 'this.alignment === "right"',
   },
 })
-export class DialogFooterComponent implements OnInit {
+export class SbbDialogFooter implements OnInit {
   /** Types of alignment. */
   @Input() alignment: 'left' | 'center' | 'right' = 'right';
 
@@ -49,10 +49,10 @@ export class DialogFooterComponent implements OnInit {
   }
 
   constructor(
-    @Optional() private _dialogRef: DialogRef<any>,
+    @Optional() private _dialogRef: SbbDialogRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
-    private _dialog: Dialog,
-    private _dialogHelperService: DialogHelperService
+    private _dialog: SbbDialog,
+    private _dialogHelperService: SbbDialogHelperService
   ) {}
 
   ngOnInit() {

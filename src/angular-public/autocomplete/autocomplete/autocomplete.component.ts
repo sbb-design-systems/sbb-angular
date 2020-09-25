@@ -17,9 +17,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  HasOptions,
-  OptionComponent,
-  OptionGroupComponent,
+  SbbHasOptions,
+  SbbOption,
+  SbbOptionGroup,
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular-public/option';
 
@@ -33,9 +33,9 @@ let nextId = 0;
 export class SbbAutocompleteSelectedEvent {
   constructor(
     /** Reference to the autocomplete panel that emitted the event. */
-    public source: AutocompleteComponent,
+    public source: SbbAutocomplete,
     /** Option that was selected. */
-    public option: OptionComponent
+    public option: SbbOption
   ) {}
 }
 
@@ -55,13 +55,13 @@ export interface SbbAutocompleteDefaultOptions {
   providers: [
     {
       provide: SBB_OPTION_PARENT_COMPONENT,
-      useExisting: AutocompleteComponent,
+      useExisting: SbbAutocomplete,
     },
   ],
 })
-export class AutocompleteComponent implements AfterContentInit, HasOptions {
+export class SbbAutocomplete implements AfterContentInit, SbbHasOptions {
   /** Manages active item in option list based on key events. */
-  keyManager: ActiveDescendantKeyManager<OptionComponent>;
+  keyManager: ActiveDescendantKeyManager<SbbOption>;
 
   /** Whether the autocomplete panel should be visible, depending on option length. */
   showPanel = false;
@@ -89,10 +89,10 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   @ViewChild('panel') panel: ElementRef;
 
   /** All of the defined select options. */
-  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
+  @ContentChildren(SbbOption, { descendants: true }) options: QueryList<SbbOption>;
 
   /** All of the defined groups of options. */
-  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
+  @ContentChildren(SbbOptionGroup) optionGroups: QueryList<SbbOptionGroup>;
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
@@ -164,7 +164,7 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   ) {}
 
   ngAfterContentInit() {
-    this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options).withWrap();
+    this.keyManager = new ActiveDescendantKeyManager<SbbOption>(this.options).withWrap();
     // Set the initial visibility state.
     this.setVisibility();
   }
@@ -192,7 +192,7 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   }
 
   /** Emits the `select` event. */
-  emitSelectEvent(option: OptionComponent): void {
+  emitSelectEvent(option: SbbOption): void {
     const event = new SbbAutocompleteSelectedEvent(this, option);
     this.optionSelected.emit(event);
   }

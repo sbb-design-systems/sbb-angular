@@ -24,13 +24,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
-import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
+import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 
-import { CalendarBodyComponent, CalendarCell } from '../calendar-body/calendar-body.component';
-import { DateRange } from '../date-range';
+import { SbbCalendarBody, SbbCalendarCell } from '../calendar-body/calendar-body.component';
+import { SbbDateRange } from '../date-range';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { SBB_DATEPICKER } from '../datepicker-token';
-import type { DatepickerComponent } from '../datepicker/datepicker.component';
+import type { SbbDatepicker } from '../datepicker/datepicker.component';
 
 const DAYS_PER_WEEK = 7;
 
@@ -41,7 +41,7 @@ const DAYS_PER_WEEK = 7;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MonthViewComponent<D> implements AfterContentInit {
+export class SbbMonthView<D> implements AfterContentInit {
   /**
    * The date to display in this month view (everything other than the month and year is ignored).
    */
@@ -105,13 +105,13 @@ export class MonthViewComponent<D> implements AfterContentInit {
   @Output() readonly activeDateChange: EventEmitter<D> = new EventEmitter<D>();
 
   /** The body of calendar table */
-  @ViewChild(CalendarBodyComponent, { static: true }) sbbCalendarBody: CalendarBodyComponent;
+  @ViewChild(SbbCalendarBody, { static: true }) sbbCalendarBody: SbbCalendarBody;
 
   /** The label for this month (e.g. "January 2017"). */
   monthLabel: string;
 
   /** Grid of calendar cells representing the dates of the month. */
-  weeks: CalendarCell[][];
+  weeks: SbbCalendarCell[][];
 
   /** The number of blank cells in the first row before the 1st of the month. */
   firstWeekOffset: number;
@@ -128,14 +128,14 @@ export class MonthViewComponent<D> implements AfterContentInit {
   /** The names of the weekdays. */
   weekdays: { long: string; narrow: string }[];
 
-  dateRange: DateRange<D> | null = null;
+  dateRange: SbbDateRange<D> | null = null;
 
   constructor(
-    @Optional() public dateAdapter: DateAdapter<D>,
+    @Optional() public dateAdapter: SbbDateAdapter<D>,
     @Inject(LOCALE_ID) public locale: string,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
-    @Optional() @Inject(SBB_DATEPICKER) datepicker: TypeRef<DatepickerComponent<D>>
+    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
+    @Optional() @Inject(SBB_DATEPICKER) datepicker: TypeRef<SbbDatepicker<D>>
   ) {
     if (!this.dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -149,7 +149,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
       datepicker.datepickerInput.value &&
       datepicker.connected.datepickerInput.value
     ) {
-      this.dateRange = new DateRange(
+      this.dateRange = new SbbDateRange(
         datepicker.datepickerInput.value,
         datepicker.connected.datepickerInput.value
       );
@@ -159,7 +159,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
       datepicker.datepickerInput.value &&
       datepicker.main.datepickerInput.value
     ) {
-      this.dateRange = new DateRange(
+      this.dateRange = new SbbDateRange(
         datepicker.main.datepickerInput.value,
         datepicker.datepickerInput.value
       );
@@ -304,7 +304,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
       const ariaLabel = this.dateAdapter.format(date, this._dateFormats.dateA11yLabel);
       const rangeBackground = this._shouldApplyRangeBackground(date);
       this.weeks[this.weeks.length - 1].push(
-        new CalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground)
+        new SbbCalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground)
       );
     }
   }

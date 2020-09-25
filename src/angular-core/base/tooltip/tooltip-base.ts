@@ -22,11 +22,11 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 import { fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
 import { filter, map, switchMap, take } from 'rxjs/operators';
 
-import { TooltipRegistryService } from './tooltip-registry.service';
+import { SbbTooltipRegistryService } from './tooltip-registry.service';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_TOOLTIP_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -45,7 +45,7 @@ export const SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   useFactory: SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY,
 };
 
-export class SbbTooltipChangeEvent<TTooltip extends TooltipBase = TooltipBase> {
+export class SbbTooltipChangeEvent<TTooltip extends SbbTooltipBase = SbbTooltipBase> {
   constructor(
     /** Instance of tooltip component. */
     public instance: TTooltip,
@@ -57,7 +57,7 @@ export class SbbTooltipChangeEvent<TTooltip extends TooltipBase = TooltipBase> {
 let tooltipCounter = 1;
 
 @Directive()
-export abstract class TooltipBase implements OnDestroy {
+export abstract class SbbTooltipBase implements OnDestroy {
   /**
    * The icon to be used as click target.
    * By default uses question-mark, but the user can use his own icon using the IconDirective.
@@ -75,7 +75,7 @@ export abstract class TooltipBase implements OnDestroy {
    * icon placed in template
    * @docs-private
    */
-  @ContentChild(IconDirective, { read: TemplateRef })
+  @ContentChild(SbbIconDirective, { read: TemplateRef })
   _contentIcon: TemplateRef<any>;
 
   /** Checks if a tooltip panel exists */
@@ -163,7 +163,7 @@ export abstract class TooltipBase implements OnDestroy {
 
   constructor(
     protected _overlay: Overlay,
-    protected _tooltipRegistry: TooltipRegistryService,
+    protected _tooltipRegistry: SbbTooltipRegistryService,
     protected _document: any,
     protected _zone: NgZone,
     protected _changeDetectorRef: ChangeDetectorRef,

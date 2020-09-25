@@ -2,7 +2,7 @@
 /// <reference types="arcgis-js-api" />
 
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
-import { EsriTypesService } from '@sbb-esta/angular-maps/core';
+import { SbbEsriTypesService } from '@sbb-esta/angular-maps/core';
 
 @Component({
   selector: 'sbb-esri-legend',
@@ -10,7 +10,7 @@ import { EsriTypesService } from '@sbb-esta/angular-maps/core';
   styleUrls: ['./esri-legend.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EsriLegendComponent implements OnInit {
+export class SbbEsriLegend implements OnInit {
   /** References the map or scene to load the legend for.*/
   @Input() mapView: __esri.MapView | __esri.SceneView;
 
@@ -23,7 +23,7 @@ export class EsriLegendComponent implements OnInit {
   /** References the ESRI legend object */
   public legend: __esri.Legend;
 
-  constructor(private _esri: EsriTypesService, private _hostReference: ElementRef) {}
+  constructor(private _esri: SbbEsriTypesService, private _hostReference: ElementRef) {}
 
   /** Loads & instantiates the legend. */
   async ngOnInit() {

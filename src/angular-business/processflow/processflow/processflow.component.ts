@@ -11,9 +11,9 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import { ProcessflowBase, ProcessflowStep } from '@sbb-esta/angular-core/base/processflow';
+import { SbbProcessflowBase } from '@sbb-esta/angular-core/base/processflow';
 
-import { ProcessflowStepComponent } from '../processflow-step/processflow-step.component';
+import { SbbProcessflowStep } from '../processflow-step/processflow-step.component';
 
 // TODO: Find solution for template and style
 @Component({
@@ -23,14 +23,11 @@ import { ProcessflowStepComponent } from '../processflow-step/processflow-step.c
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepComponent>
+export class SbbProcessflow extends SbbProcessflowBase<SbbProcessflowStep>
   implements AfterContentInit {
-  /** Event emitted to the change of step in the process flow. */
-  @Output()
-  stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<ProcessflowStep>();
   /** @docs-private */
-  @ContentChildren(ProcessflowStepComponent)
-  steps: QueryList<ProcessflowStepComponent>;
+  @ContentChildren(SbbProcessflowStep)
+  steps: QueryList<SbbProcessflowStep>;
 
   private _skippable = false;
   /** Refers to the skippable status of a step in a process flow.  */

@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderModule } from '@sbb-esta/angular-business/header';
+import { SbbHeaderModule } from '@sbb-esta/angular-business/header';
 import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
+import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,10 +22,10 @@ import { IntroductionComponent } from './introduction/introduction.component';
     BrowserModule,
     BrowserAnimationsModule,
     ScrollingModule,
-    HeaderModule,
+    SbbHeaderModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CheckboxModule,
+    SbbCheckboxModule,
     SbbSidebarModule,
     SbbIconModule,
   ],

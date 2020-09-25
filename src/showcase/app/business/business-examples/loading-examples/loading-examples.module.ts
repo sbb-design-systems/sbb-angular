@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ButtonModule } from '@sbb-esta/angular-business/button';
-import { LoadingModule } from '@sbb-esta/angular-business/loading';
+import { SbbButtonModule } from '@sbb-esta/angular-business/button';
+import { SbbLoadingModule } from '@sbb-esta/angular-business/loading';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -25,7 +25,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, ButtonModule, LoadingModule],
+  imports: [CommonModule, SbbButtonModule, SbbLoadingModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('business', 'loading', EXAMPLE_INDEX)],

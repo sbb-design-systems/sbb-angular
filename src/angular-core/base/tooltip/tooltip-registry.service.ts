@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class TooltipRegistryService {
+export class SbbTooltipRegistryService {
   private _tooltipActivationSubject = new Subject<void>();
   readonly tooltipActivation: Observable<void> = this._tooltipActivationSubject.asObservable();
 

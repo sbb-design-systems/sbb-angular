@@ -6,7 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
-import { AccordionModule, ExpansionPanelComponent } from '../public-api';
+import { SbbAccordionModule, SbbExpansionPanel } from '../public-api';
 
 // tslint:disable:i18n
 @Component({
@@ -30,8 +30,8 @@ class PanelWithContentComponent {
   disabled = false;
   openCallback = jasmine.createSpy('openCallback');
   closeCallback = jasmine.createSpy('closeCallback');
-  @ViewChild(ExpansionPanelComponent, { static: true })
-  panel: ExpansionPanelComponent;
+  @ViewChild(SbbExpansionPanel, { static: true })
+  panel: SbbExpansionPanel;
 }
 
 @Component({
@@ -45,8 +45,8 @@ class PanelWithContentComponent {
 })
 class PanelWithContentInNgIfComponent {
   expansionShown = true;
-  @ViewChild(ExpansionPanelComponent)
-  panel: ExpansionPanelComponent;
+  @ViewChild(SbbExpansionPanel)
+  panel: SbbExpansionPanel;
 }
 
 @Component({
@@ -122,7 +122,7 @@ describe('ExpansionPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, AccordionModule, SbbIconTestingModule],
+      imports: [NoopAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
       declarations: [
         PanelWithContentComponent,
         PanelWithContentInNgIfComponent,

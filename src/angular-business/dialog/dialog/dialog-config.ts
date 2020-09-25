@@ -2,10 +2,10 @@ import { ScrollStrategy } from '@angular/cdk/overlay';
 import { ViewContainerRef } from '@angular/core';
 
 /** Valid ARIA roles for a Dialog element. */
-export type DialogRole = 'dialog' | 'alertdialog';
+export type SbbDialogRole = 'dialog' | 'alertdialog';
 
 /** Possible overrides for a dialog's position. */
-export interface DialogPosition {
+export interface SbbDialogPosition {
   /** Override for the Dialog's top position. */
   top?: string;
 
@@ -22,7 +22,7 @@ export interface DialogPosition {
 /**
  * Configuration for opening a modal dialog with the Dialog service.
  */
-export class DialogConfig<D = any> {
+export class SbbDialogConfig<D = any> {
   /**
    * Where the attached component should live in Angular's *logical* component tree.
    * This affects what is available for injection and the change detection order for the
@@ -35,7 +35,7 @@ export class DialogConfig<D = any> {
   id?: string;
 
   /** The ARIA role of the Dialog element. */
-  role?: DialogRole = 'dialog';
+  role?: SbbDialogRole = 'dialog';
 
   /** Custom class for the overlay pane. */
   panelClass?: string | string[] = '';
@@ -62,7 +62,7 @@ export class DialogConfig<D = any> {
   maxHeight?: number | string = '96vh';
 
   /** Position overrides. */
-  position?: DialogPosition;
+  position?: SbbDialogPosition;
 
   /** Data being injected into the child component. */
   data?: D | null = null;

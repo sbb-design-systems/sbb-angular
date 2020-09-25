@@ -1,7 +1,7 @@
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import { Inject, Injectable, LOCALE_ID, Optional } from '@angular/core';
 
-import { DateAdapter } from './date-adapter';
+import { SbbDateAdapter } from './date-adapter';
 import { SBB_DATEPICKER_2DIGIT_YEAR_PIVOT } from './datepicker-token';
 
 /**
@@ -21,7 +21,7 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 }
 
 @Injectable()
-export class NativeDateAdapter extends DateAdapter<Date> {
+export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
   private _datePipe: DatePipe;
   private _yearPivot: number;
   private _titleCasePipe = new TitleCasePipe();

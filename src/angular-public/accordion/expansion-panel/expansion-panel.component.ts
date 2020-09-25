@@ -30,12 +30,12 @@ import { distinctUntilChanged, filter, startWith, take } from 'rxjs/operators';
 
 import { sbbExpansionAnimations } from '../accordion/accordion-animations';
 import { SBB_ACCORDION } from '../accordion/accordion-token';
-import type { AccordionDirective } from '../accordion/accordion.directive';
+import type { SbbAccordion } from '../accordion/accordion.directive';
 
-import { ExpansionPanelContentDirective } from './expansion-panel-content';
+import { SbbExpansionPanelContent } from './expansion-panel-content';
 
 /** SbbExpansionPanel's states. */
-export type ExpansionPanelState = 'expanded' | 'collapsed';
+export type SbbExpansionPanelState = 'expanded' | 'collapsed';
 
 /** Counter for generating unique element ids. */
 let uniqueId = 0;
@@ -68,7 +68,7 @@ let uniqueId = 0;
     '[class.sbb-expanded]': 'expanded',
   },
 })
-export class ExpansionPanelComponent extends CdkAccordionItem
+export class SbbExpansionPanel extends CdkAccordionItem
   implements AfterContentInit, OnChanges, OnDestroy {
   /** @deprecated internal detail */
   sbbExpansionPanelClass = true;
@@ -96,15 +96,15 @@ export class ExpansionPanelComponent extends CdkAccordionItem
   readonly _inputChanges = new Subject<SimpleChanges>();
 
   /** Optionally defined accordion the expansion panel belongs to. */
-  accordion: AccordionDirective;
+  accordion: SbbAccordion;
 
   /**
    * Content that will be rendered lazily.
    * @deprecated internal detail
    * TODO: Prefix with _
    */
-  @ContentChild(ExpansionPanelContentDirective)
-  lazyContent: ExpansionPanelContentDirective;
+  @ContentChild(SbbExpansionPanelContent)
+  lazyContent: SbbExpansionPanelContent;
 
   /**
    * Element containing the panel's user-provided content.
@@ -134,7 +134,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
 
   constructor(
     private _viewContainerRef: ViewContainerRef,
-    @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: TypeRef<AccordionDirective>,
+    @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: TypeRef<SbbAccordion>,
     changeDetectorRef: ChangeDetectorRef,
     uniqueSelectionDispatcher: UniqueSelectionDispatcher,
     @Inject(DOCUMENT) document?: any
@@ -167,7 +167,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
    * @deprecated internal detail
    * TODO: Prefix with _
    */
-  getExpandedState(): ExpansionPanelState {
+  getExpandedState(): SbbExpansionPanelState {
     return this.expanded ? 'expanded' : 'collapsed';
   }
 

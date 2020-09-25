@@ -11,8 +11,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
-import { FieldModule, FormErrorDirective } from '@sbb-esta/angular-business/field';
+import { SbbAutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
+import { SbbFieldModule, SbbFormError } from '@sbb-esta/angular-business/field';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
@@ -22,9 +22,9 @@ import {
   typeInElement,
 } from '@sbb-esta/angular-core/testing';
 
-import { ChipComponent } from '../chip/chip.component';
+import { SbbChip } from '../chip/chip.component';
 
-import { ChipInputComponent } from './chip-input.component';
+import { SbbChipInput } from './chip-input.component';
 
 @Component({
   selector: 'sbb-test-reactive-chip-input',
@@ -75,8 +75,8 @@ class ChipInputFormsTestComponent {
   @ViewChild('input')
   inputModel: NgModel;
 
-  @ViewChild(ChipInputComponent)
-  chipInput: ChipInputComponent;
+  @ViewChild(SbbChipInput)
+  chipInput: SbbChipInput;
 
   disabled = false;
 }
@@ -89,14 +89,14 @@ describe('ChipInputComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [ChipInputComponent, ChipComponent, ChipInputReactiveFormsTestComponent],
+        declarations: [SbbChipInput, SbbChip, ChipInputReactiveFormsTestComponent],
         imports: [
           CommonModule,
-          AutocompleteModule,
+          SbbAutocompleteModule,
           SbbIconModule,
           SbbIconTestingModule,
           ReactiveFormsModule,
-          FieldModule,
+          SbbFieldModule,
         ],
       }).compileComponents();
     }));
@@ -115,7 +115,7 @@ describe('ChipInputComponent', () => {
 
     it('should contain one option chip through preselection', (done) => {
       fixture.whenStable().then(() => {
-        const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+        const chipComponents = fixture.debugElement.queryAll(By.directive(SbbChip));
         expect(chipComponents.length).toBe(1);
         done();
       });
@@ -125,7 +125,7 @@ describe('ChipInputComponent', () => {
       component.formGroup.get('chip')!.setValue(['option-1', 'option-2']);
       fixture.detectChanges();
 
-      const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+      const chipComponents = fixture.debugElement.queryAll(By.directive(SbbChip));
       expect(chipComponents.length).toBe(2);
     });
 
@@ -133,7 +133,7 @@ describe('ChipInputComponent', () => {
       component.formGroup.get('chip')!.setValue([]);
       fixture.detectChanges();
 
-      const errorText = fixture.debugElement.query(By.directive(FormErrorDirective));
+      const errorText = fixture.debugElement.query(By.directive(SbbFormError));
       expect(component.formGroup.get('chip')!.invalid).toBe(true);
       expect(errorText).toBeFalsy();
     });
@@ -145,17 +145,17 @@ describe('ChipInputComponent', () => {
       inputElement.focus();
 
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeFalsy();
+      expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeFalsy();
       dispatchFakeEvent(inputElement, 'blur');
 
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeTruthy();
+      expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeTruthy();
     });
 
     it('should disable chip input and chips', () => {
       component.formGroup.get('chip')!.disable();
-      const chipInputComponent = fixture.debugElement.query(By.directive(ChipInputComponent));
-      const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+      const chipInputComponent = fixture.debugElement.query(By.directive(SbbChipInput));
+      const chipComponents = fixture.debugElement.queryAll(By.directive(SbbChip));
       fixture.detectChanges();
 
       chipComponents.forEach((chipComponent) =>
@@ -195,14 +195,14 @@ describe('ChipInputComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [ChipInputComponent, ChipComponent, ChipInputFormsTestComponent],
+        declarations: [SbbChipInput, SbbChip, ChipInputFormsTestComponent],
         imports: [
           CommonModule,
-          AutocompleteModule,
+          SbbAutocompleteModule,
           SbbIconModule,
           SbbIconTestingModule,
           FormsModule,
-          FieldModule,
+          SbbFieldModule,
         ],
       }).compileComponents();
     }));
@@ -226,7 +226,7 @@ describe('ChipInputComponent', () => {
       flush();
       fixture.detectChanges();
 
-      const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+      const chipComponents = fixture.debugElement.queryAll(By.directive(SbbChip));
       expect(chipComponents.length).toBe(1);
     }));
 
@@ -236,12 +236,12 @@ describe('ChipInputComponent', () => {
       flush();
       fixture.detectChanges();
 
-      const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+      const chipComponents = fixture.debugElement.queryAll(By.directive(SbbChip));
       expect(chipComponents.length).toBe(2);
     }));
 
     it('should hide form error if invalid but untouched', () => {
-      const errorText = fixture.debugElement.query(By.directive(FormErrorDirective));
+      const errorText = fixture.debugElement.query(By.directive(SbbFormError));
       expect(component.inputModel.invalid).toBe(true);
       expect(errorText).toBeFalsy();
     });
@@ -250,17 +250,17 @@ describe('ChipInputComponent', () => {
       inputElement.focus();
 
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeFalsy();
+      expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeFalsy();
       dispatchFakeEvent(inputElement, 'blur');
 
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeTruthy();
+      expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeTruthy();
     });
 
     it('should disable chip input and chips', () => {
       component.disabled = true;
-      const chipInputComponent = fixture.debugElement.query(By.directive(ChipInputComponent));
-      const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+      const chipInputComponent = fixture.debugElement.query(By.directive(SbbChipInput));
+      const chipComponents = fixture.debugElement.queryAll(By.directive(SbbChip));
       fixture.detectChanges();
 
       chipComponents.forEach((chipComponent) =>

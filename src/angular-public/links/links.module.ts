@@ -11,8 +11,8 @@ import {
   IconYoutubeModule,
 } from '@sbb-esta/angular-icons/social-media';
 
-import { LinkComponent } from './link/link.component';
-import { SocialLinkComponent } from './social-link/social-link.component';
+import { SbbLink } from './link/link.component';
+import { SbbSocialLink } from './social-link/social-link.component';
 
 @NgModule({
   imports: [
@@ -26,8 +26,8 @@ import { SocialLinkComponent } from './social-link/social-link.component';
     IconXingModule,
     IconLinkedinModule,
   ],
-  declarations: [LinkComponent, SocialLinkComponent],
-  exports: [LinkComponent, SocialLinkComponent],
+  declarations: [SbbLink, SbbSocialLink],
+  exports: [SbbLink, SbbSocialLink],
   providers: [ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
-export class LinksModule {}
+export class SbbLinksModule {}

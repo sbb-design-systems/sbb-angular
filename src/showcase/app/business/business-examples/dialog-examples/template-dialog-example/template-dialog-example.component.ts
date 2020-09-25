@@ -1,5 +1,5 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { Dialog } from '@sbb-esta/angular-business/dialog';
+import { SbbDialog } from '@sbb-esta/angular-business/dialog';
 
 @Component({
   selector: 'sbb-template-dialog-example',
@@ -8,7 +8,7 @@ import { Dialog } from '@sbb-esta/angular-business/dialog';
 export class TemplateDialogExampleComponent {
   @ViewChild('sampleDialogTemplate', { static: true }) sampleDialogTemplate: TemplateRef<any>;
 
-  constructor(public dialog: Dialog) {}
+  constructor(public dialog: SbbDialog) {}
 
   openDialog() {
     const dialogRef = this.dialog.openDialog(this.sampleDialogTemplate);

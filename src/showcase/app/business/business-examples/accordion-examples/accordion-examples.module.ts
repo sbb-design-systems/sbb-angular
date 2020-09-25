@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule } from '@sbb-esta/angular-business/accordion';
-import { ButtonModule } from '@sbb-esta/angular-business/button';
-import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
-import { FieldModule } from '@sbb-esta/angular-business/field';
-import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
+import { SbbAccordionModule } from '@sbb-esta/angular-business/accordion';
+import { SbbButtonModule } from '@sbb-esta/angular-business/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular-business/checkbox';
+import { SbbFieldModule } from '@sbb-esta/angular-business/field';
+import { SbbRadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
@@ -31,11 +31,11 @@ const EXAMPLE_INDEX = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AccordionModule,
-    ButtonModule,
-    CheckboxModule,
-    FieldModule,
-    RadioButtonModule,
+    SbbAccordionModule,
+    SbbButtonModule,
+    SbbCheckboxModule,
+    SbbFieldModule,
+    SbbRadioButtonModule,
     SbbIconModule,
   ],
   declarations: EXAMPLES,

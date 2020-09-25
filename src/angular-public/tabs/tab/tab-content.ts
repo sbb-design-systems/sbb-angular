@@ -7,4 +7,4 @@ import { Directive } from '@angular/core';
 @Directive({
   selector: 'ng-template[sbbTabContent]',
 })
-export class TabContent {}
+export class SbbTabContent {}

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { StatusModule } from '@sbb-esta/angular-business/status';
+import { SbbStatusModule } from '@sbb-esta/angular-business/status';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -15,7 +15,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, StatusModule],
+  imports: [CommonModule, SbbStatusModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('business', 'status', EXAMPLE_INDEX)],

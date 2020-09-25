@@ -9,11 +9,11 @@ import {
   dispatchMouseEvent,
   typeInElement,
 } from '@sbb-esta/angular-core/testing';
-import { FieldModule, FormErrorDirective } from '@sbb-esta/angular-public/field';
+import { SbbFieldModule, SbbFormError } from '@sbb-esta/angular-public/field';
 
-import { TextareaModule } from '../textarea.module';
+import { SbbTextareaModule } from '../textarea.module';
 
-import { TextareaComponent } from './textarea.component';
+import { SbbTextarea } from './textarea.component';
 
 @Component({
   selector: 'sbb-textarea-test',
@@ -57,17 +57,17 @@ class TextareaSbbFieldTestComponent {
 }
 
 describe('TextareaComponent', () => {
-  let component: TextareaComponent;
-  let fixture: ComponentFixture<TextareaComponent>;
+  let component: SbbTextarea;
+  let fixture: ComponentFixture<SbbTextarea>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextareaModule],
+      imports: [SbbTextareaModule],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextareaComponent);
+    fixture = TestBed.createComponent(SbbTextarea);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -84,7 +84,7 @@ describe('TextareaComponent behaviour', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextareaModule, FormsModule],
+      imports: [SbbTextareaModule, FormsModule],
       declarations: [TextareaTestComponent],
     }).compileComponents();
   }));
@@ -92,7 +92,7 @@ describe('TextareaComponent behaviour', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaTestComponent);
     component = fixture.componentInstance;
-    innerComponent = fixture.debugElement.query(By.directive(TextareaComponent));
+    innerComponent = fixture.debugElement.query(By.directive(SbbTextarea));
     fixture.detectChanges();
   });
 
@@ -189,17 +189,17 @@ describe('TextareaComponent behaviour', () => {
 });
 
 describe('TextareaComponent digits counter', () => {
-  let component: TextareaComponent;
-  let fixture: ComponentFixture<TextareaComponent>;
+  let component: SbbTextarea;
+  let fixture: ComponentFixture<SbbTextarea>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextareaModule],
+      imports: [SbbTextareaModule],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextareaComponent);
+    fixture = TestBed.createComponent(SbbTextarea);
     component = fixture.componentInstance;
     component.maxlength = 20;
     component.value = 'SBB';
@@ -234,7 +234,7 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextareaModule, ReactiveFormsModule, FormsModule, FieldModule],
+      imports: [SbbTextareaModule, ReactiveFormsModule, FormsModule, SbbFieldModule],
       declarations: [TextareaSbbFieldTestComponent],
     }).compileComponents();
   }));
@@ -242,7 +242,7 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaSbbFieldTestComponent);
     component = fixture.componentInstance;
-    sbbTextareaComponent = fixture.debugElement.query(By.directive(TextareaComponent));
+    sbbTextareaComponent = fixture.debugElement.query(By.directive(SbbTextarea));
     textarea = fixture.debugElement.query(By.css('textarea')).nativeElement;
     fixture.detectChanges();
   });
@@ -262,12 +262,12 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
     textarea.focus();
 
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeFalsy();
+    expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeFalsy();
 
     dispatchFakeEvent(textarea, 'blur');
 
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeTruthy();
+    expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeTruthy();
   });
 
   it('should be disabled', () => {

@@ -17,11 +17,11 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
+import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 import { Subject } from 'rxjs';
 
 import { createMissingDateImplError } from '../datepicker-errors';
-import { MonthViewComponent } from '../month-view/month-view.component';
+import { SbbMonthView } from '../month-view/month-view.component';
 
 @Component({
   selector: 'sbb-calendar-header',
@@ -29,13 +29,13 @@ import { MonthViewComponent } from '../month-view/month-view.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalendarHeaderComponent<D> {
-  public calendar: CalendarComponent<D>;
+export class SbbCalendarHeader<D> {
+  public calendar: SbbCalendar<D>;
 
   constructor(
-    @Optional() private _dateAdapter: DateAdapter<D>,
+    @Optional() private _dateAdapter: SbbDateAdapter<D>,
     // tslint:disable-next-line:no-use-before-declare
-    @Inject(forwardRef(() => CalendarComponent))
+    @Inject(forwardRef(() => SbbCalendar))
     calendar: any,
     changeDetectorRef: ChangeDetectorRef
   ) {
@@ -150,8 +150,7 @@ export class CalendarHeaderComponent<D> {
     class: 'sbb-calendar',
   },
 })
-export class CalendarComponent<D>
-  implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {
+export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {
   /**
    * @deprecated internal detail
    */
@@ -220,7 +219,7 @@ export class CalendarComponent<D>
   @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<void>();
 
   /** Reference to the current month view component. */
-  @ViewChild(MonthViewComponent, { static: true }) monthView: MonthViewComponent<D>;
+  @ViewChild(SbbMonthView, { static: true }) monthView: SbbMonthView<D>;
 
   /**
    * The current active date. This determines which time period is shown and which date is
@@ -241,8 +240,8 @@ export class CalendarComponent<D>
   stateChanges = new Subject<void>();
 
   constructor(
-    @Optional() private _dateAdapter: DateAdapter<D>,
-    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
+    @Optional() private _dateAdapter: SbbDateAdapter<D>,
+    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
     private _changeDetectorRef: ChangeDetectorRef
   ) {
     if (!this._dateAdapter) {
@@ -255,9 +254,7 @@ export class CalendarComponent<D>
   }
 
   ngAfterContentInit() {
-    this.calendarHeaderPortal = new ComponentPortal(
-      this.headerComponent || CalendarHeaderComponent
-    );
+    this.calendarHeaderPortal = new ComponentPortal(this.headerComponent || SbbCalendarHeader);
     this.activeDate = this.startAt || this._dateAdapter.today();
   }
 

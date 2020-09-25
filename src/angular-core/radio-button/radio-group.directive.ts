@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { RadioButton, RadioChange } from './radio-button';
+import { SbbRadioButton, SbbRadioChange } from './radio-button';
 
 let nextUniqueId = 0;
 
@@ -24,12 +24,12 @@ let nextUniqueId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RadioGroupDirective),
+      useExisting: forwardRef(() => SbbRadioGroup),
       multi: true,
     },
   ],
 })
-export class RadioGroupDirective implements AfterContentInit, ControlValueAccessor {
+export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
   /**
    * Role of sbb-toggle.
    */
@@ -73,7 +73,7 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
   get selected() {
     return this._selected;
   }
-  set selected(selected: RadioButton | null) {
+  set selected(selected: SbbRadioButton | null) {
     this._selected = selected;
     this.value = selected ? selected.value : null;
     this._checkSelectedRadioButton();
@@ -104,11 +104,11 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
    * Change events are only emitted when the value changes due to user interaction with
    * a radio button (the same behavior as `<input type-"radio">`).
    */
-  @Output() readonly change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
+  @Output() readonly change: EventEmitter<SbbRadioChange> = new EventEmitter<SbbRadioChange>();
 
   /** Child radio buttons. */
-  @ContentChildren(forwardRef(() => RadioButton), { descendants: true })
-  _radios: QueryList<RadioButton>;
+  @ContentChildren(forwardRef(() => SbbRadioButton), { descendants: true })
+  _radios: QueryList<SbbRadioButton>;
 
   /** Selected value for the radio group. */
   private _value: any = null;
@@ -117,7 +117,7 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
   private _name = `sbb-radio-group-${nextUniqueId++}`;
 
   /** The currently selected radio button. Should match value. */
-  private _selected: RadioButton | null = null;
+  private _selected: SbbRadioButton | null = null;
 
   /** Whether the `value` has been set to its initial value. */
   private _isInitialized = false;
@@ -173,7 +173,7 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
   _emitChangeEvent(): void {
     if (this._isInitialized) {
       // tslint:disable-next-line: no-non-null-assertion
-      this.change.emit(new RadioChange(this._selected!, this._value));
+      this.change.emit(new SbbRadioChange(this._selected!, this._value));
     }
   }
 

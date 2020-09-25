@@ -24,14 +24,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import {
-  NotificationToastContainerComponent,
-  NotificationToastModule,
   SbbNotificationToast,
   SbbNotificationToastConfig,
+  SbbNotificationToastContainer,
+  SbbNotificationToastModule,
   SbbNotificationToastRef,
+  SbbSimpleNotification,
   SBB_NOTIFICATION_TOAST_DATA,
   SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS,
-  SimpleNotificationComponent,
 } from './index';
 
 describe('SbbNotificationToast icons', () => {
@@ -42,7 +42,7 @@ describe('SbbNotificationToast icons', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        NotificationToastModule,
+        SbbNotificationToastModule,
         NotificationToastTestModule,
         NoopAnimationsModule,
         SbbIconTestingModule,
@@ -136,7 +136,7 @@ describe('SbbNotificationToast', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NotificationToastModule,
+        SbbNotificationToastModule,
         NotificationToastTestModule,
         NoopAnimationsModule,
         SbbIconTestingModule,
@@ -258,7 +258,7 @@ describe('SbbNotificationToast', () => {
 
     viewContainerFixture.detectChanges();
 
-    expect(notificationToastRef.instance instanceof SimpleNotificationComponent).toBe(
+    expect(notificationToastRef.instance instanceof SbbSimpleNotification).toBe(
       true,
       'Expected the notification toast content component to be SimpleNotificationComponent'
     );
@@ -371,7 +371,7 @@ describe('SbbNotificationToast', () => {
     const notificationToastRef = notificationToast.open(simpleMessage, config);
 
     viewContainerFixture.detectChanges();
-    const container = notificationToastRef.containerInstance as NotificationToastContainerComponent;
+    const container = notificationToastRef.containerInstance as SbbNotificationToastContainer;
     expect(container._animationState).toBe(
       'visible',
       `Expected the animation state would be 'visible'.`
@@ -391,7 +391,7 @@ describe('SbbNotificationToast', () => {
     notificationToastRef.dismiss();
 
     viewContainerFixture.detectChanges();
-    const container = notificationToastRef.containerInstance as NotificationToastContainerComponent;
+    const container = notificationToastRef.containerInstance as SbbNotificationToastContainer;
     expect(container._animationState).toBe(
       'hidden',
       `Expected the animation state would be 'hidden'.`
@@ -405,7 +405,7 @@ describe('SbbNotificationToast', () => {
     const dismissCompleteSpy = jasmine.createSpy('dismiss complete spy');
 
     viewContainerFixture.detectChanges();
-    const container1 = notificationToastRef.containerInstance as NotificationToastContainerComponent;
+    const container1 = notificationToastRef.containerInstance as SbbNotificationToastContainer;
     expect(container1._animationState).toBe(
       'visible',
       `Expected the animation state would be 'visible'.`
@@ -419,7 +419,7 @@ describe('SbbNotificationToast', () => {
     flush();
 
     expect(dismissCompleteSpy).toHaveBeenCalled();
-    const container2 = notificationToastRef2.containerInstance as NotificationToastContainerComponent;
+    const container2 = notificationToastRef2.containerInstance as SbbNotificationToastContainer;
     expect(container1._animationState).toBe(
       'hidden',
       `Expected the animation state would be 'hidden'.`
@@ -446,7 +446,7 @@ describe('SbbNotificationToast', () => {
 
     // Wait for the notification toast open animation to finish.
     flush();
-    const container = notificationToastRef.containerInstance as NotificationToastContainerComponent;
+    const container = notificationToastRef.containerInstance as SbbNotificationToastContainer;
     expect(container._animationState).toBe(
       'visible',
       `Expected the animation state would be 'visible'.`
@@ -535,7 +535,7 @@ describe('SbbNotificationToast', () => {
         useFactory: () => ({ panelClass: 'custom-class' }),
       })
       .configureTestingModule({
-        imports: [NotificationToastModule, NoopAnimationsModule, SbbIconTestingModule],
+        imports: [SbbNotificationToastModule, NoopAnimationsModule, SbbIconTestingModule],
       })
       .compileComponents();
 
@@ -672,7 +672,7 @@ describe('SbbNotificationToast with parent SbbNotificationToast', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NotificationToastModule,
+        SbbNotificationToastModule,
         NotificationToastTestModule,
         NoopAnimationsModule,
         SbbIconTestingModule,
@@ -766,7 +766,7 @@ describe('SbbNotificationToast Positioning', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NotificationToastModule,
+        SbbNotificationToastModule,
         NotificationToastTestModule,
         NoopAnimationsModule,
         SbbIconTestingModule,
@@ -936,7 +936,7 @@ const TEST_DIRECTIVES = [
   ComponentWithTemplateRef,
 ];
 @NgModule({
-  imports: [CommonModule, NotificationToastModule],
+  imports: [CommonModule, SbbNotificationToastModule],
   exports: TEST_DIRECTIVES,
   declarations: TEST_DIRECTIVES,
   entryComponents: [ComponentWithChildViewContainer, BurritosNotification],

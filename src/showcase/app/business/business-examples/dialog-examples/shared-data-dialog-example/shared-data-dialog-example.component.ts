@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Dialog, DialogRef, DIALOG_DATA } from '@sbb-esta/angular-business/dialog';
+import { SbbDialog, SbbDialogRef, SBB_DIALOG_DATA } from '@sbb-esta/angular-business/dialog';
 
 export interface DialogData {
   animal: string;
@@ -14,7 +14,7 @@ export class SharedDataDialogExampleComponent {
   animal: string;
   name: string;
 
-  constructor(public dialog: Dialog) {}
+  constructor(public dialog: SbbDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.openDialog(SharedDataDialogComponent, {
@@ -52,8 +52,8 @@ export class SharedDataDialogExampleComponent {
 })
 export class SharedDataDialogComponent {
   constructor(
-    public dialogRef: DialogRef<SharedDataDialogComponent>,
-    @Inject(DIALOG_DATA) public data: DialogData
+    public dialogRef: SbbDialogRef<SharedDataDialogComponent>,
+    @Inject(SBB_DIALOG_DATA) public data: DialogData
   ) {}
 
   noThanks(): void {

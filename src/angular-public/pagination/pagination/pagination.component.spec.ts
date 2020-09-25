@@ -8,9 +8,9 @@ import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
 
-import { PaginationModule } from '../pagination.module';
+import { SbbPaginationModule } from '../pagination.module';
 
-import { PaginationComponent } from './pagination.component';
+import { SbbPagination } from './pagination.component';
 
 // tslint:disable:i18n
 @Component({
@@ -28,24 +28,24 @@ export class PaginationTestComponent {
   length = 5;
   pageIndex = 0;
 
-  @ViewChild('pagination', { static: true }) pagination: PaginationComponent;
+  @ViewChild('pagination', { static: true }) pagination: SbbPagination;
 
   onPageChange(event: any) {}
 }
 
 describe('PaginationComponent', () => {
-  let component: PaginationComponent;
-  let fixture: ComponentFixture<PaginationComponent>;
+  let component: SbbPagination;
+  let fixture: ComponentFixture<SbbPagination>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
-      declarations: [PaginationComponent],
+      declarations: [SbbPagination],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaginationComponent);
+    fixture = TestBed.createComponent(SbbPagination);
     component = fixture.componentInstance;
     component.length = 5;
     fixture.detectChanges();
@@ -62,7 +62,7 @@ describe('PaginationComponent behaviour', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [PaginationModule, SbbIconTestingModule, RouterTestingModule],
+      imports: [SbbPaginationModule, SbbIconTestingModule, RouterTestingModule],
       declarations: [PaginationTestComponent],
     }).compileComponents();
   }));

@@ -16,8 +16,12 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { FileSelectorOptions, FileTypeCategory, FILE_SELECTOR_OPTIONS } from './file-selector-base';
-import { FileSelectorTypesService } from './file-selector-types.service';
+import {
+  FileTypeCategory,
+  SbbFileSelectorOptions,
+  SBB_FILE_SELECTOR_OPTIONS,
+} from './file-selector-base';
+import { SbbFileSelectorTypesService } from './file-selector-types.service';
 
 let nextId = 0;
 
@@ -30,7 +34,7 @@ let nextId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FileSelectorComponent),
+      useExisting: forwardRef(() => SbbFileSelector),
       multi: true,
     },
   ],
@@ -39,7 +43,7 @@ let nextId = 0;
     '[attr.id]': 'this.id',
   },
 })
-export class FileSelectorComponent implements ControlValueAccessor, FileSelectorOptions {
+export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOptions {
   private _uniqueId = `sbb-file-selector-${++nextId}`;
 
   /** Unique id of the element. */
@@ -95,10 +99,10 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   onTouched = () => {};
 
   constructor(
-    private _fileTypeService: FileSelectorTypesService,
+    private _fileTypeService: SbbFileSelectorTypesService,
     private _renderer: Renderer2,
     private _changeDetector: ChangeDetectorRef,
-    @Optional() @Inject(FILE_SELECTOR_OPTIONS) options: FileSelectorOptions
+    @Optional() @Inject(SBB_FILE_SELECTOR_OPTIONS) options: SbbFileSelectorOptions
   ) {
     if (options) {
       this.accept = options.accept;

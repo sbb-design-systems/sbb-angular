@@ -3,3 +3,7 @@ export * from './icon-module';
 export * from './icon';
 export * from './icon-registry';
 export * from './icon-cdn-provider';
+/** @deprecated Remove with v12 */
+export { SBB_FAKE_SVGS as FAKE_SVGS } from './fake-svgs';
+/** @deprecated Remove with v12 */
+export { SbbIconOptions as IconOptions } from './icon-registry';

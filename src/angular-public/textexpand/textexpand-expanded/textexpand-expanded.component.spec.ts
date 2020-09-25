@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextexpandExpandedComponent } from './textexpand-expanded.component';
+import { SbbTextexpandExpanded } from './textexpand-expanded.component';
 
 describe('TextexpandExpandedComponent', () => {
-  let component: TextexpandExpandedComponent;
-  let fixture: ComponentFixture<TextexpandExpandedComponent>;
+  let component: SbbTextexpandExpanded;
+  let fixture: ComponentFixture<SbbTextexpandExpanded>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextexpandExpandedComponent],
+      declarations: [SbbTextexpandExpanded],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextexpandExpandedComponent);
+    fixture = TestBed.createComponent(SbbTextexpandExpanded);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -23,7 +23,7 @@ import {
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
 
-import { OptionGroupComponent } from '../option-group/option-group.component';
+import { SbbOptionGroup } from '../option-group/option-group.component';
 
 /**
  * Option IDs need to be unique across components, so this counter exists outside of
@@ -32,10 +32,10 @@ import { OptionGroupComponent } from '../option-group/option-group.component';
 let uniqueIdCounter = 0;
 
 /** Event object emitted by AutocompleteOptionComponent when selected or deselected. */
-export class SBBOptionSelectionChange {
+export class SbbOptionSelectionChange {
   constructor(
     /** Reference to the option that emitted the event. */
-    public source: OptionComponent,
+    public source: SbbOption,
     /** Whether the change in the option's value was a result of a user action. */
     public isUserInput = false
   ) {}
@@ -64,7 +64,7 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentCom
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
+export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
   mostRecentViewValue = '';
 
   @HostBinding('class.sbb-selected')
@@ -117,7 +117,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
   // tslint:disable-next-line:no-output-on-prefix
   @Output()
-  readonly onSelectionChange = new EventEmitter<SBBOptionSelectionChange>();
+  readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange>();
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
@@ -133,7 +133,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     @Optional()
     @Inject(SBB_OPTION_PARENT_COMPONENT)
     private _parent: SbbOptionParentComponent,
-    @Optional() readonly group: OptionGroupComponent
+    @Optional() readonly group: SbbOptionGroup
   ) {}
 
   @HostListener('keydown', ['$event'])
@@ -249,7 +249,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   }
 
   private _emitSelectionChangeEvent(isUserInput = false): void {
-    this.onSelectionChange.emit(new SBBOptionSelectionChange(this, isUserInput));
+    this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
   }
 
   private _findAllTextNodesWithMatch(
@@ -349,10 +349,10 @@ export function getOptionScrollPosition(
  * @param optionGroups Flat list of all of the option groups.
  * @docs-private
  */
-export function countGroupLabelsBeforeOption(
+export function sbbCountGroupLabelsBeforeOption(
   optionIndex: number,
-  options: QueryList<OptionComponent>,
-  optionGroups: QueryList<OptionGroupComponent>
+  options: QueryList<SbbOption>,
+  optionGroups: QueryList<SbbOptionGroup>
 ): number {
   if (optionGroups.length) {
     const optionsArray = options.toArray();

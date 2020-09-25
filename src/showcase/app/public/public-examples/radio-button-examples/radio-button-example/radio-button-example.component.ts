@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RadioChange } from '@sbb-esta/angular-public/radio-button';
+import { SbbRadioChange } from '@sbb-esta/angular-public/radio-button';
 
 @Component({
   selector: 'sbb-radio-button-example',
@@ -9,7 +9,7 @@ export class RadioButtonExampleComponent {
   disabled: boolean;
   value: string;
 
-  change(radioChange: RadioChange) {
+  change(radioChange: SbbRadioChange) {
     this.value = radioChange.value;
     console.log(radioChange);
   }

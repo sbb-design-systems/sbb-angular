@@ -5,7 +5,7 @@ let nextId = 0;
 @Directive({
   selector: 'sbb-form-error, [sbbFormError]',
 })
-export class FormErrorDirective {
+export class SbbFormError {
   @HostBinding()
   @Input()
   id = `sbb-form-error-${nextId++}`;

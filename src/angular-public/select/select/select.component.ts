@@ -55,15 +55,15 @@ import {
   mixinErrorState,
   TypeRef,
 } from '@sbb-esta/angular-core/common-behaviors';
-import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
-import { FormFieldControl } from '@sbb-esta/angular-core/forms';
+import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
+import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
 import {
-  countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  HasOptions,
-  OptionComponent,
-  OptionGroupComponent,
-  SBBOptionSelectionChange,
+  sbbCountGroupLabelsBeforeOption,
+  SbbHasOptions,
+  SbbOption,
+  SbbOptionGroup,
+  SbbOptionSelectionChange,
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular-public/option';
 import { defer, merge, Observable, Subject } from 'rxjs';
@@ -78,15 +78,15 @@ let nextUniqueId = 0;
  */
 
 /** The max height of the select's overlay panel */
-export const SELECT_PANEL_MAX_HEIGHT = 480;
+export const SBB_SELECT_PANEL_MAX_HEIGHT = 480;
 
-export const SELECT_BASE_TRIGGER_HEIGHT = 48;
+export const SBB_SELECT_BASE_TRIGGER_HEIGHT = 48;
 
 /** The panel's padding on the x-axis */
-export const SELECT_PANEL_PADDING_X = 0;
+export const SBB_SELECT_PANEL_PADDING_X = 0;
 
 /** The height of the select items in `em` units. */
-export const SELECT_ITEM_HEIGHT_EM = 3;
+export const SBB_SELECT_ITEM_HEIGHT_EM = 3;
 
 /**
  * Distance between the panel edge and the option text in
@@ -96,13 +96,13 @@ export const SELECT_ITEM_HEIGHT_EM = 3;
  * The padding is multiplied by 1.5 because the checkbox's margin is half the padding.
  * The checkbox width is 20px.
  */
-export const SELECT_MULTIPLE_PANEL_PADDING_X = SELECT_PANEL_PADDING_X * 1.5 + 0;
+export const SBB_SELECT_MULTIPLE_PANEL_PADDING_X = SBB_SELECT_PANEL_PADDING_X * 1.5 + 0;
 
 /**
  * The select panel will only "fit" inside the viewport if it is positioned at
  * this value or more away from the viewport boundary.
  */
-export const SELECT_PANEL_VIEWPORT_PADDING = 8;
+export const SBB_SELECT_PANEL_VIEWPORT_PADDING = 8;
 
 /** Injection token that determines the scroll handling while a select is open. */
 export const SBB_SELECT_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -127,7 +127,7 @@ export const SBB_SELECT_SCROLL_STRATEGY_PROVIDER = {
 export class SbbSelectChange {
   constructor(
     /** Reference to the select that emitted the change event. */
-    public source: SelectComponent,
+    public source: SbbSelect,
     /** Current value of the select that emitted the event. */
     public value: any
   ) {}
@@ -138,7 +138,7 @@ export class SbbSelectChange {
 export class SbbSelectBase {
   constructor(
     public _elementRef: ElementRef,
-    public _defaultErrorStateMatcher: ErrorStateMatcher,
+    public _defaultErrorStateMatcher: SbbErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
     public ngControl: NgControl
@@ -157,13 +157,13 @@ export const SbbSelectMixinBase: CanUpdateErrorStateCtor & typeof SbbSelectBase 
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    { provide: FormFieldControl, useExisting: SelectComponent },
-    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent },
+    { provide: SbbFormFieldControl, useExisting: SbbSelect },
+    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SbbSelect },
   ],
 })
-export class SelectComponent extends SbbSelectMixinBase
+export class SbbSelect extends SbbSelectMixinBase
   implements
-    FormFieldControl<any>,
+    SbbFormFieldControl<any>,
     AfterContentInit,
     OnChanges,
     OnDestroy,
@@ -171,12 +171,12 @@ export class SelectComponent extends SbbSelectMixinBase
     DoCheck,
     ControlValueAccessor,
     CanUpdateErrorState,
-    HasOptions {
+    SbbHasOptions {
   /** All of the defined select options. */
-  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
+  @ContentChildren(SbbOption, { descendants: true }) options: QueryList<SbbOption>;
 
   /** All of the defined groups of options. */
-  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
+  @ContentChildren(SbbOptionGroup) optionGroups: QueryList<SbbOptionGroup>;
   /**
    * Role of select field
    */
@@ -221,10 +221,10 @@ export class SelectComponent extends SbbSelectMixinBase
   triggerFontSize = 0;
 
   /** Deals with the selection logic. */
-  selectionModel: SelectionModel<OptionComponent>;
+  selectionModel: SelectionModel<SbbOption>;
 
   /** Manages keyboard events for options in the panel. */
-  keyManager: ActiveDescendantKeyManager<OptionComponent>;
+  keyManager: ActiveDescendantKeyManager<SbbOption>;
 
   private _focused = false;
 
@@ -306,7 +306,7 @@ export class SelectComponent extends SbbSelectMixinBase
   private _id: string;
 
   /** Combined stream of all of the child options' change events. */
-  readonly optionSelectionChanges: Observable<SBBOptionSelectionChange> = defer(() => {
+  readonly optionSelectionChanges: Observable<SbbOptionSelectionChange> = defer(() => {
     if (this.options) {
       return merge(...this.options.map((option) => option.onSelectionChange));
     }
@@ -315,7 +315,7 @@ export class SelectComponent extends SbbSelectMixinBase
       take(1),
       switchMap(() => this.optionSelectionChanges)
     );
-  }) as Observable<SBBOptionSelectionChange>;
+  }) as Observable<SbbOptionSelectionChange>;
 
   /** Event emitted when the select panel has been toggled. */
   @Output() readonly openedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -530,7 +530,7 @@ export class SelectComponent extends SbbSelectMixinBase
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
     @Inject(SBB_SELECT_SCROLL_STRATEGY) private _scrollStrategyFactory: any,
-    defaultErrorStateMatcher: ErrorStateMatcher,
+    defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     @Attribute('tabindex') tabIndex: string,
@@ -552,7 +552,7 @@ export class SelectComponent extends SbbSelectMixinBase
   }
 
   ngOnInit() {
-    this.selectionModel = new SelectionModel<OptionComponent>(this.multiple);
+    this.selectionModel = new SelectionModel<SbbOption>(this.multiple);
     this.stateChanges.next();
 
     if (this.panelOpen) {
@@ -719,7 +719,7 @@ export class SelectComponent extends SbbSelectMixinBase
   }
 
   /** The currently selected option. */
-  get selected(): OptionComponent | OptionComponent[] {
+  get selected(): SbbOption | SbbOption[] {
     return this.multiple ? this.selectionModel.selected : this.selectionModel.selected[0];
   }
 
@@ -920,8 +920,8 @@ export class SelectComponent extends SbbSelectMixinBase
    * Finds and selects and option based on its value.
    * @returns Option that has the corresponding value.
    */
-  private _selectValue(value: any): OptionComponent | undefined {
-    const correspondingOption = this.options.find((option: OptionComponent) => {
+  private _selectValue(value: any): SbbOption | undefined {
+    const correspondingOption = this.options.find((option: SbbOption) => {
       try {
         // Treat null as a special reset value.
         return option.value != null && this._compareWith(option.value, value);
@@ -943,7 +943,7 @@ export class SelectComponent extends SbbSelectMixinBase
 
   /** Sets up a key manager to listen to keyboard events on the overlay panel. */
   private _initKeyManager() {
-    this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options)
+    this.keyManager = new ActiveDescendantKeyManager<SbbOption>(this.options)
       .withTypeAhead()
       .withVerticalOrientation()
       .withAllowedModifierKeys(['shiftKey']);
@@ -992,7 +992,7 @@ export class SelectComponent extends SbbSelectMixinBase
   }
 
   /** Invoked when an option is clicked. */
-  private _onSelect(option: OptionComponent, isUserInput: boolean): void {
+  private _onSelect(option: SbbOption, isUserInput: boolean): void {
     const wasSelected = this.selectionModel.isSelected(option);
 
     if (option.value == null && !this._multiple) {
@@ -1040,9 +1040,9 @@ export class SelectComponent extends SbbSelectMixinBase
     let valueToEmit: any = null;
 
     if (this.multiple) {
-      valueToEmit = (this.selected as OptionComponent[]).map((option) => option.value);
+      valueToEmit = (this.selected as SbbOption[]).map((option) => option.value);
     } else {
-      valueToEmit = this.selected ? (this.selected as OptionComponent).value : fallbackValue;
+      valueToEmit = this.selected ? (this.selected as SbbOption).value : fallbackValue;
     }
 
     this._value = valueToEmit;
@@ -1074,7 +1074,7 @@ export class SelectComponent extends SbbSelectMixinBase
   /** Scrolls the active option into view. */
   private _scrollActiveOptionIntoView(): void {
     const activeOptionIndex = this.keyManager.activeItemIndex || 0;
-    const labelCount = countGroupLabelsBeforeOption(
+    const labelCount = sbbCountGroupLabelsBeforeOption(
       activeOptionIndex,
       this.options,
       this.optionGroups
@@ -1084,13 +1084,13 @@ export class SelectComponent extends SbbSelectMixinBase
       activeOptionIndex + labelCount,
       this._getItemHeight(),
       this.panel.nativeElement.scrollTop,
-      SELECT_PANEL_MAX_HEIGHT
+      SBB_SELECT_PANEL_MAX_HEIGHT
     );
   }
 
   /** Calculates the height of the select's options. */
   private _getItemHeight(): number {
-    return this.triggerFontSize * SELECT_ITEM_HEIGHT_EM;
+    return this.triggerFontSize * SBB_SELECT_ITEM_HEIGHT_EM;
   }
 
   // tslint:disable: member-ordering

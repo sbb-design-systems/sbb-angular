@@ -11,7 +11,7 @@ import {
   Self,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { InputDirective } from '@sbb-esta/angular-public/input';
+import { SbbInput } from '@sbb-esta/angular-public/input';
 
 const REGEX_PATTERN = /[0-9]{3,4}/;
 const REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/;
@@ -21,7 +21,7 @@ const PLACEHOLDER_DEFAULT = 'HH:MM';
 @Directive({
   selector: 'input[sbbTimeInput]',
 })
-export class TimeInputDirective {
+export class SbbTimeInput {
   /**
    * placeholder (defaults to HH:MM)
    */
@@ -46,7 +46,7 @@ export class TimeInputDirective {
     private _renderer: Renderer2,
     @Self() @Optional() private _control: NgControl,
     @Inject(DOCUMENT) document: any,
-    @Optional() private _input: InputDirective
+    @Optional() private _input: SbbInput
   ) {
     this._document = document;
     this.placeholder = PLACEHOLDER_DEFAULT;

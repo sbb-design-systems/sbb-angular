@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { EsriWebSceneComponent } from './esri-web-scene/esri-web-scene.component';
+import { SbbEsriWebScene } from './esri-web-scene/esri-web-scene.component';
 
 @NgModule({
-  declarations: [EsriWebSceneComponent],
+  declarations: [SbbEsriWebScene],
   imports: [CommonModule],
-  exports: [EsriWebSceneComponent],
+  exports: [SbbEsriWebScene],
 })
-export class EsriWebSceneModule {}
+export class SbbEsriWebSceneModule {}

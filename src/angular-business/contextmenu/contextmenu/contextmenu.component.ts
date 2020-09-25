@@ -7,7 +7,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { DropdownComponent, DropdownTriggerDirective } from '@sbb-esta/angular-business/dropdown';
+import { SbbDropdown, SbbDropdownTrigger } from '@sbb-esta/angular-business/dropdown';
 
 @Component({
   selector: 'sbb-contextmenu',
@@ -19,16 +19,16 @@ import { DropdownComponent, DropdownTriggerDirective } from '@sbb-esta/angular-b
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContextmenuComponent implements AfterContentInit {
+export class SbbContextmenu implements AfterContentInit {
   /**
    * @docs-private
    * @deprecated
    */
   sbbClass = true;
   /** @docs-private */
-  @ContentChild(DropdownComponent, { static: true }) _dropdown: DropdownComponent;
+  @ContentChild(SbbDropdown, { static: true }) _dropdown: SbbDropdown;
   /** @docs-private */
-  @ViewChild(DropdownTriggerDirective, { static: true }) _dropdownTrigger: DropdownTriggerDirective;
+  @ViewChild(SbbDropdownTrigger, { static: true }) _dropdownTrigger: SbbDropdownTrigger;
 
   ngAfterContentInit(): void {
     this._dropdown.classList = 'sbb-contextmenu-dropdown';

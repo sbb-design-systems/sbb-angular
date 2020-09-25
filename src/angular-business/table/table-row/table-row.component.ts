@@ -21,10 +21,10 @@ import {
 
 @Directive({
   selector: '[sbbHeaderRowDef]',
-  providers: [{ provide: CdkHeaderRowDef, useExisting: HeaderRowDefDirective }],
+  providers: [{ provide: CdkHeaderRowDef, useExisting: SbbHeaderRowDef }],
   inputs: ['columns: sbbHeaderRowDef', 'sticky: sbbHeaderRowDefSticky'],
 })
-export class HeaderRowDefDirective extends CdkHeaderRowDef {
+export class SbbHeaderRowDef extends CdkHeaderRowDef {
   static ngAcceptInputTypeSticky: boolean | string | null | undefined = undefined;
 }
 
@@ -34,10 +34,10 @@ export class HeaderRowDefDirective extends CdkHeaderRowDef {
  */
 @Directive({
   selector: '[sbbFooterRowDef]',
-  providers: [{ provide: CdkFooterRowDef, useExisting: FooterRowDefDirective }],
+  providers: [{ provide: CdkFooterRowDef, useExisting: SbbFooterRowDef }],
   inputs: ['columns: sbbFooterRowDef', 'sticky: sbbFooterRowDefSticky'],
 })
-export class FooterRowDefDirective extends CdkFooterRowDef {
+export class SbbFooterRowDef extends CdkFooterRowDef {
   static ngAcceptInputTypeSticky: boolean | string | null | undefined = undefined;
 }
 
@@ -48,10 +48,10 @@ export class FooterRowDefDirective extends CdkFooterRowDef {
  */
 @Directive({
   selector: '[sbbRowDef]',
-  providers: [{ provide: CdkRowDef, useExisting: RowDefDirective }],
+  providers: [{ provide: CdkRowDef, useExisting: SbbRowDef }],
   inputs: ['columns: sbbRowDefColumns', 'when: sbbRowDefWhen'],
 })
-export class RowDefDirective<T> extends CdkRowDef<T> {}
+export class SbbRowDef<T> extends CdkRowDef<T> {}
 
 /** Footer template container that contains the cell outlet. Adds the right class and role. */
 @Component({
@@ -62,9 +62,9 @@ export class RowDefDirective<T> extends CdkRowDef<T> {}
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbHeaderRow',
-  providers: [{ provide: CdkHeaderRow, useExisting: HeaderRowComponent }],
+  providers: [{ provide: CdkHeaderRow, useExisting: SbbHeaderRow }],
 })
-export class HeaderRowComponent extends CdkHeaderRow {
+export class SbbHeaderRow extends CdkHeaderRow {
   @HostBinding('class.sbb-header-row') sbbHeaderRow = true;
   @HostBinding('attr.role') row = 'row';
 }
@@ -78,9 +78,9 @@ export class HeaderRowComponent extends CdkHeaderRow {
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbFooterRow',
-  providers: [{ provide: CdkFooterRow, useExisting: FooterRowComponent }],
+  providers: [{ provide: CdkFooterRow, useExisting: SbbFooterRow }],
 })
-export class FooterRowComponent extends CdkFooterRow {
+export class SbbFooterRow extends CdkFooterRow {
   @HostBinding('class.sbb-footer-row') sbbFooterRow = true;
   @HostBinding('attr.role') row = 'row';
 }
@@ -94,9 +94,9 @@ export class FooterRowComponent extends CdkFooterRow {
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbRow',
-  providers: [{ provide: CdkRow, useExisting: RowComponent }],
+  providers: [{ provide: CdkRow, useExisting: SbbRow }],
 })
-export class RowComponent extends CdkRow {
+export class SbbRow extends CdkRow {
   @HostBinding('class.sbb-row') sbbRow = true;
   @HostBinding('attr.role') row = 'row';
 }

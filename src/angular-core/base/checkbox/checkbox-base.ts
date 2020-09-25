@@ -16,7 +16,7 @@ import { ControlValueAccessor } from '@angular/forms';
 let nextId = 0;
 
 /** Change event object emitted by sbb angular checkboxes. */
-export class SbbCheckboxChange<TCheckbox extends CheckboxBase = CheckboxBase> {
+export class SbbCheckboxChange<TCheckbox extends SbbCheckboxBase = SbbCheckboxBase> {
   constructor(
     /** The source checkbox of the event. */
     public source: TCheckbox,
@@ -26,7 +26,7 @@ export class SbbCheckboxChange<TCheckbox extends CheckboxBase = CheckboxBase> {
 }
 
 @Directive()
-export abstract class CheckboxBase<TChange extends SbbCheckboxChange = SbbCheckboxChange<any>>
+export abstract class SbbCheckboxBase<TChange extends SbbCheckboxChange = SbbCheckboxChange<any>>
   implements ControlValueAccessor {
   private _uniqueId: string;
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */

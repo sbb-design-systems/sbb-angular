@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EsriWebSceneComponent } from './esri-web-scene.component';
+import { SbbEsriWebScene } from './esri-web-scene.component';
 
 describe('EsriWebSceneComponent', () => {
-  let component: EsriWebSceneComponent;
-  let fixture: ComponentFixture<EsriWebSceneComponent>;
+  let component: SbbEsriWebScene;
+  let fixture: ComponentFixture<SbbEsriWebScene>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EsriWebSceneComponent],
+      declarations: [SbbEsriWebScene],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EsriWebSceneComponent);
+    fixture = TestBed.createComponent(SbbEsriWebScene);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

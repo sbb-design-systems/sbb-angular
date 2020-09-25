@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { CheckboxComponent } from './checkbox.component';
+import { SbbCheckbox } from './checkbox.component';
 
 // tslint:disable:i18n
 @Component({
@@ -22,18 +22,18 @@ class ModelCheckboxTestComponent {
 }
 
 describe('CheckboxComponent', () => {
-  let component: CheckboxComponent;
-  let fixture: ComponentFixture<CheckboxComponent>;
+  let component: SbbCheckbox;
+  let fixture: ComponentFixture<SbbCheckbox>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [CheckboxComponent],
+      declarations: [SbbCheckbox],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckboxComponent);
+    fixture = TestBed.createComponent(SbbCheckbox);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -54,7 +54,7 @@ describe('CheckboxComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [CheckboxComponent, ModelCheckboxTestComponent],
+      declarations: [SbbCheckbox, ModelCheckboxTestComponent],
     }).compileComponents();
   }));
 
@@ -73,7 +73,7 @@ describe('CheckboxComponent using mock component', () => {
     expect(modelComponent).toBeTruthy();
 
     const checkboxComponents = modelComponentFixture.debugElement.queryAll(
-      By.directive(CheckboxComponent)
+      By.directive(SbbCheckbox)
     );
     expect(checkboxComponents).toBeTruthy();
     expect(checkboxComponents.length).toBe(2);
@@ -85,9 +85,7 @@ describe('CheckboxComponent using mock component', () => {
 
     checkboxLabel.nativeElement.click();
 
-    const checkboxComponent = modelComponentFixture.debugElement.query(
-      By.directive(CheckboxComponent)
-    );
+    const checkboxComponent = modelComponentFixture.debugElement.query(By.directive(SbbCheckbox));
     expect(checkboxComponent).toBeTruthy();
 
     const checkboxChecked = checkboxComponent.queryAll(By.css('input:checked'));
@@ -104,7 +102,7 @@ describe('CheckboxComponent using mock component', () => {
 
     await modelComponentFixture.whenStable();
 
-    const components = modelComponentFixture.debugElement.queryAll(By.directive(CheckboxComponent));
+    const components = modelComponentFixture.debugElement.queryAll(By.directive(SbbCheckbox));
     expect(components[0].componentInstance._checked).toBe(true);
     expect(modelComponent.checkValue1).toBe(true);
 

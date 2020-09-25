@@ -4,12 +4,12 @@
 import { TestBed } from '@angular/core/testing';
 import esriLoader from 'esri-loader';
 
-import { EsriConfiguration } from './esri-configuration';
-import { EsriLoaderService } from './esri-loader.service';
-import { EsriConfigConsts } from './esri-standard-values.const';
+import { SbbEsriConfiguration } from './esri-configuration';
+import { SbbEsriLoaderService } from './esri-loader.service';
+import { SbbEsriConfigConsts } from './esri-standard-values.const';
 
 describe('EsriLoaderService', () => {
-  const esriCustomConf: EsriConfiguration = {
+  const esriCustomConf: SbbEsriConfiguration = {
     cssUrl: 'myCssUrl',
     arcgisJsUrl: 'arcgisJsURL',
     trustedServers: ['t1', 't2'],
@@ -25,7 +25,7 @@ describe('EsriLoaderService', () => {
     };
   }
 
-  let loaderService: EsriLoaderService;
+  let loaderService: SbbEsriLoaderService;
 
   function createEsriLoaderSpy(esriConfigMock: EsriConfigMock) {
     const spy = spyOn(esriLoader, 'loadModules');
@@ -35,9 +35,9 @@ describe('EsriLoaderService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EsriLoaderService],
+      providers: [SbbEsriLoaderService],
     });
-    loaderService = TestBed.inject(EsriLoaderService);
+    loaderService = TestBed.inject(SbbEsriLoaderService);
   });
 
   it('should be created', () => {
@@ -51,10 +51,10 @@ describe('EsriLoaderService', () => {
     let webMap: __esri.WebMapConstructor;
     [webMap] = await loaderService.load<__esri.WebMapConstructor>(['esri/WebMap']);
 
-    expect(esriConfigMock.portalUrl).toEqual(EsriConfigConsts.arcgisPortalUrl);
-    expect(esriConfigMock.request.trustedServers).toEqual(EsriConfigConsts.trustedServers);
+    expect(esriConfigMock.portalUrl).toEqual(SbbEsriConfigConsts.arcgisPortalUrl);
+    expect(esriConfigMock.request.trustedServers).toEqual(SbbEsriConfigConsts.trustedServers);
     expect(esriConfigMock.request.interceptors!.length).toBeGreaterThan(0);
-    expect(esriLoader.loadCss).toHaveBeenCalledWith(EsriConfigConsts.cssUrl);
+    expect(esriLoader.loadCss).toHaveBeenCalledWith(SbbEsriConfigConsts.cssUrl);
     expect(webMap).toBeDefined();
   });
 
@@ -62,7 +62,7 @@ describe('EsriLoaderService', () => {
     // tslint:disable-next-line: no-string-literal
     loaderService['_config'] = esriCustomConf;
 
-    loaderService = TestBed.inject(EsriLoaderService);
+    loaderService = TestBed.inject(SbbEsriLoaderService);
 
     const esriConfigMock = new EsriConfigMock();
     createEsriLoaderSpy(esriConfigMock);
@@ -72,7 +72,7 @@ describe('EsriLoaderService', () => {
 
     expect(esriConfigMock.portalUrl).toEqual(esriCustomConf.portalUrl!);
     expect(esriConfigMock.request.trustedServers).toEqual(
-      EsriConfigConsts.trustedServers.concat(esriCustomConf.trustedServers!)
+      SbbEsriConfigConsts.trustedServers.concat(esriCustomConf.trustedServers!)
     );
     expect(esriConfigMock.request.interceptors!.length).toBeGreaterThan(0);
     expect(esriLoader.loadCss).toHaveBeenCalledWith(esriCustomConf.cssUrl);

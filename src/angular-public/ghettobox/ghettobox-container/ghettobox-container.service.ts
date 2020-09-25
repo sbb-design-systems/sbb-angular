@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { Ghettobox, GhettoboxRef } from '../ghettobox/ghettobox-ref';
+import { SbbGhettoboxConfig, SbbGhettoboxRef } from '../ghettobox/ghettobox-ref';
 
-import { GhettoboxContainerComponent } from './ghettobox-container.component';
+import { SbbGhettoboxContainer } from './ghettobox-container.component';
 
 /**
  * Internal service that operate on ghettobox container.
@@ -12,14 +12,14 @@ import { GhettoboxContainerComponent } from './ghettobox-container.component';
 @Injectable({
   providedIn: 'root',
 })
-export class GhettoboxContainerService {
+export class SbbGhettoboxContainerService {
   /**
    * Observable you can subscribe to know if sbb-ghettobox-container has been loaded
    */
   readonly containerReady = new Subject<void>();
 
-  private _containerInstance: GhettoboxContainerComponent | null;
-  private _attachedGhettoboxes: GhettoboxRef[] = [];
+  private _containerInstance: SbbGhettoboxContainer | null;
+  private _attachedGhettoboxes: SbbGhettoboxRef[] = [];
 
   /**
    * Check whether a container is present
@@ -31,21 +31,21 @@ export class GhettoboxContainerService {
   /**
    * Get the List of attached ghettoboxes within a container
    */
-  get attachedGhettoboxes(): GhettoboxRef[] {
+  get attachedGhettoboxes(): SbbGhettoboxRef[] {
     return this._attachedGhettoboxes;
   }
 
   /**
    * Used by the container to pass a reference of its self to the GhettoboxService
    */
-  loadContainer(ghettoboxContainer: GhettoboxContainerComponent) {
+  loadContainer(ghettoboxContainer: SbbGhettoboxContainer) {
     this._containerInstance = ghettoboxContainer;
   }
 
   /**
    * Used by the container to pass a reference of its self to the GhettoboxService
    */
-  loadInitialGhettoboxes(initialGhettoboxes: GhettoboxRef[]) {
+  loadInitialGhettoboxes(initialGhettoboxes: SbbGhettoboxRef[]) {
     this._attachedGhettoboxes.push(...initialGhettoboxes);
     this.containerReady.next();
   }
@@ -60,7 +60,7 @@ export class GhettoboxContainerService {
   /**
    * Creates a new ComponentPortal of GhettoboxComponent and attach it to the cdkPortalOutlet
    */
-  createGhettobox(ghettobox: Ghettobox): GhettoboxRef {
+  createGhettobox(ghettobox: SbbGhettoboxConfig): SbbGhettoboxRef {
     this.checkIfContainerIsPresent();
     return this._containerInstance!.createGhettobox(ghettobox);
   }
@@ -91,7 +91,7 @@ export class GhettoboxContainerService {
   }
 
   /** @docs-private */
-  pushGettoboxRefIntoAttachedCollection(ghettoboxRef: GhettoboxRef) {
+  pushGettoboxRefIntoAttachedCollection(ghettoboxRef: SbbGhettoboxRef) {
     this._attachedGhettoboxes.push(ghettoboxRef);
   }
 
@@ -113,12 +113,12 @@ export class GhettoboxContainerService {
   }
 
   /** @docs-private */
-  private _getGhettoboxById(ghettoboxId: string): GhettoboxRef | undefined {
+  private _getGhettoboxById(ghettoboxId: string): SbbGhettoboxRef | undefined {
     return this._attachedGhettoboxes.find((g) => g.id === ghettoboxId);
   }
 
   /** @docs-private */
-  private _delete(ghettoboxToDelete: GhettoboxRef) {
+  private _delete(ghettoboxToDelete: SbbGhettoboxRef) {
     if (ghettoboxToDelete) {
       ghettoboxToDelete.delete();
     }

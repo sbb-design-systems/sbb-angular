@@ -6,8 +6,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { CalendarComponent } from '../calendar/calendar.component';
-import { DatepickerComponent } from '../datepicker/datepicker.component';
+import { SbbCalendar } from '../calendar/calendar.component';
+import { SbbDatepicker } from '../datepicker/datepicker.component';
 
 /**
  * Component used as the content for the datepicker dialog and popup. We use this instead of using
@@ -27,17 +27,17 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
     class: 'sbb-datepicker-content',
   },
 })
-export class DatepickerContentComponent<D> implements AfterViewInit {
+export class SbbDatepickerContent<D> implements AfterViewInit {
   /**
    * @deprecated internal detail
    */
   cssClass = true;
 
   /** Reference to the internal calendar component. */
-  @ViewChild(CalendarComponent, { static: true }) calendar: CalendarComponent<D>;
+  @ViewChild(SbbCalendar, { static: true }) calendar: SbbCalendar<D>;
 
   /** Reference to the datepicker that created the overlay. */
-  datepicker: DatepickerComponent<D>;
+  datepicker: SbbDatepicker<D>;
 
   /** Whether the datepicker is above or below the input. */
   isAbove: boolean;

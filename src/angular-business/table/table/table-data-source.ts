@@ -21,7 +21,7 @@ const MAX_SAFE_INTEGER = 9007199254740991;
  * TableFilter can be extended to define columns (keys) to filter for in a DataSource.
  * The '_' property is used for a global filter. If an array is used, entries will be combined with the or-operator.
  */
-export interface TableFilter {
+export interface SbbTableFilter {
   /**
    * Global filter: filtering all entries
    */
@@ -40,7 +40,7 @@ export interface TableFilter {
  */
 export class SbbTableDataSource<
   T,
-  TFilter extends TableFilter | string = string
+  TFilter extends SbbTableFilter | string = string
 > extends DataSource<T> {
   /** Stream that emits when a new data array is set on the data source. */
   private readonly _data: BehaviorSubject<T[]>;
@@ -233,7 +233,7 @@ export class SbbTableDataSource<
     }
 
     const { _: globalFilter, ...propertyFilters } = this._normalizeTableFilter(
-      filter as TableFilter
+      filter as SbbTableFilter
     );
 
     return (
@@ -386,7 +386,7 @@ export class SbbTableDataSource<
   /**
    * Converts a TableFilter object to a key value object of strings.
    */
-  _normalizeTableFilter(tableFilter: TableFilter): { [key: string]: string[] } {
+  _normalizeTableFilter(tableFilter: SbbTableFilter): { [key: string]: string[] } {
     const normalizedTableFilter: { [key: string]: string[] } = { _: [] };
     Object.keys(tableFilter).forEach((key) => {
       if (typeof tableFilter[key] === 'undefined' || `${tableFilter[key]}`.trim() === '') {

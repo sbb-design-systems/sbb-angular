@@ -17,16 +17,16 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base/checkbox';
+import { SbbCheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base/checkbox';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 /**
  * Injection token used to provide the parent component to TagComponent.
  */
-export const TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
+export const SBB_TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
 
-export interface TagChange extends SbbCheckboxChange<TagComponent> {}
+export interface SbbTagChange extends SbbCheckboxChange<SbbTag> {}
 
 @Component({
   selector: 'sbb-tag',
@@ -35,7 +35,7 @@ export interface TagChange extends SbbCheckboxChange<TagComponent> {}
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TagComponent),
+      useExisting: forwardRef(() => SbbTag),
       multi: true,
     },
   ],
@@ -47,7 +47,7 @@ export interface TagChange extends SbbCheckboxChange<TagComponent> {}
     '[class.sbb-tag-active]': 'active',
   },
 })
-export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnDestroy {
+export class SbbTag extends SbbCheckboxBase<SbbTagChange> implements OnInit, OnDestroy {
   /**
    * @docs-private
    * @deprecated internal detail
@@ -120,7 +120,7 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
   private _active = false;
 
   constructor(
-    @Optional() @Inject(TAGS_CONTAINER) private _tagsContainer: any,
+    @Optional() @Inject(SBB_TAGS_CONTAINER) private _tagsContainer: any,
     private _zone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     focusMonitor: FocusMonitor,
@@ -129,7 +129,7 @@ export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnD
   ) {
     super(changeDetectorRef, focusMonitor, elementRef, tabIndex, 'tag');
 
-    this.change.subscribe((e: TagChange) => {
+    this.change.subscribe((e: SbbTagChange) => {
       this.tagChecking$.next(e.checked);
     });
     this._zone.onStable

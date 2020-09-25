@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-import { SearchModule } from '@sbb-esta/angular-public/search';
+import { SbbSearchModule } from '@sbb-esta/angular-public/search';
 
 import { IconComponentsRoutingModule } from './icon-components-routing.module';
 import { IconSearchComponent } from './icon-search/icon-search.component';
@@ -15,7 +15,7 @@ import { IconViewerComponent } from './icon-viewer/icon-viewer.component';
     CommonModule,
     ReactiveFormsModule,
     PortalModule,
-    SearchModule,
+    SbbSearchModule,
     IconCollectionModule,
     IconComponentsRoutingModule,
   ],

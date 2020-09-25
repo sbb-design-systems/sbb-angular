@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { FileSelectorTypesService } from './file-selector-types.service';
+import { SbbFileSelectorTypesService } from './file-selector-types.service';
 
 /**
  * Returns the file extension of the file name in input.
@@ -8,8 +8,8 @@ import { FileSelectorTypesService } from './file-selector-types.service';
  * @returns File extension of the file name in input.
  */
 @Pipe({ name: 'fileNameNoExtension' })
-export class FileNameNoExtension implements PipeTransform {
-  constructor(private _fileTypeService: FileSelectorTypesService) {}
+export class SbbFileNameNoExtension implements PipeTransform {
+  constructor(private _fileTypeService: SbbFileSelectorTypesService) {}
 
   transform(file: File): string {
     return this._fileTypeService.getFileNameNoExtension(file.name);
@@ -22,8 +22,8 @@ export class FileNameNoExtension implements PipeTransform {
  * @returns File extension of the file in input.
  */
 @Pipe({ name: 'fileExtension' })
-export class FileExtension implements PipeTransform {
-  constructor(private _fileTypeService: FileSelectorTypesService) {}
+export class SbbFileExtension implements PipeTransform {
+  constructor(private _fileTypeService: SbbFileSelectorTypesService) {}
 
   transform(file: File): string {
     return this._fileTypeService.getFileExtensionFromFileName(file.name);
@@ -36,8 +36,8 @@ export class FileExtension implements PipeTransform {
  * @returns File size formatted of the file in input.
  */
 @Pipe({ name: 'fileSizeFormatted' })
-export class FileSizeFormatted implements PipeTransform {
-  constructor(private _fileTypeService: FileSelectorTypesService) {}
+export class SbbFileSizeFormatted implements PipeTransform {
+  constructor(private _fileTypeService: SbbFileSelectorTypesService) {}
 
   transform(file: File): string {
     return this._fileTypeService.formatFileSize(file.size);

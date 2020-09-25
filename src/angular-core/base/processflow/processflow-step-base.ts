@@ -1,7 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ChangeDetectorRef, Directive, Input } from '@angular/core';
 
-export class ProcessflowStep {
+export class SbbProcessflowStepDescriptor {
   /** Title of a step in a process flow. */
   title: string;
   /** Refers to the active status of a step in a process flow. */
@@ -11,9 +11,9 @@ export class ProcessflowStep {
 }
 
 @Directive()
-export abstract class ProcessflowStepBase {
+export abstract class SbbProcessflowStepBase {
   /** Refers to the processFlowStep istance. */
-  descriptor: ProcessflowStep = new ProcessflowStep();
+  descriptor: SbbProcessflowStepDescriptor = new SbbProcessflowStepDescriptor();
   /** Title of a step in a process flow. */
   @Input()
   set title(value: string) {

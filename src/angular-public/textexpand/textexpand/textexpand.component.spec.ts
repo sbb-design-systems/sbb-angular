@@ -2,11 +2,11 @@ import { Component, ContentChild, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { TextexpandCollapsedComponent } from '../textexpand-collapsed/textexpand-collapsed.component';
-import { TextexpandExpandedComponent } from '../textexpand-expanded/textexpand-expanded.component';
-import { TextexpandModule } from '../textexpand.module';
+import { SbbTextexpandCollapsed } from '../textexpand-collapsed/textexpand-collapsed.component';
+import { SbbTextexpandExpanded } from '../textexpand-expanded/textexpand-expanded.component';
+import { SbbTextexpandModule } from '../textexpand.module';
 
-import { TextexpandComponent } from './textexpand.component';
+import { SbbTextexpand } from './textexpand.component';
 
 // tslint:disable:i18n
 @Component({
@@ -19,45 +19,41 @@ import { TextexpandComponent } from './textexpand.component';
   `,
 })
 class TextexpandTestComponent {
-  @ViewChild('textexpand', { static: true }) textexpand: TextexpandComponent;
+  @ViewChild('textexpand', { static: true }) textexpand: SbbTextexpand;
 
-  @ContentChild(TextexpandCollapsedComponent, { static: true })
-  collapsedComponent: TextexpandCollapsedComponent;
+  @ContentChild(SbbTextexpandCollapsed, { static: true })
+  collapsedComponent: SbbTextexpandCollapsed;
 
-  @ContentChild(TextexpandExpandedComponent, { static: true })
-  expandedComponent: TextexpandExpandedComponent;
+  @ContentChild(SbbTextexpandExpanded, { static: true })
+  expandedComponent: SbbTextexpandExpanded;
 }
 
 describe('TextexpandComponent', () => {
-  let componentTextexpand: TextexpandComponent;
-  let fixtureTextexpand: ComponentFixture<TextexpandComponent>;
+  let componentTextexpand: SbbTextexpand;
+  let fixtureTextexpand: ComponentFixture<SbbTextexpand>;
 
-  let componentCollapsed: TextexpandCollapsedComponent;
-  let fixtureCollapsed: ComponentFixture<TextexpandCollapsedComponent>;
+  let componentCollapsed: SbbTextexpandCollapsed;
+  let fixtureCollapsed: ComponentFixture<SbbTextexpandCollapsed>;
 
-  let componentExpanded: TextexpandExpandedComponent;
-  let fixtureExpanded: ComponentFixture<TextexpandExpandedComponent>;
+  let componentExpanded: SbbTextexpandExpanded;
+  let fixtureExpanded: ComponentFixture<SbbTextexpandExpanded>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TextexpandComponent,
-        TextexpandCollapsedComponent,
-        TextexpandExpandedComponent,
-      ],
+      declarations: [SbbTextexpand, SbbTextexpandCollapsed, SbbTextexpandExpanded],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixtureCollapsed = TestBed.createComponent(TextexpandCollapsedComponent);
+    fixtureCollapsed = TestBed.createComponent(SbbTextexpandCollapsed);
     componentCollapsed = fixtureCollapsed.componentInstance;
     fixtureCollapsed.detectChanges();
 
-    fixtureExpanded = TestBed.createComponent(TextexpandExpandedComponent);
+    fixtureExpanded = TestBed.createComponent(SbbTextexpandExpanded);
     componentExpanded = fixtureExpanded.componentInstance;
     fixtureExpanded.detectChanges();
 
-    fixtureTextexpand = TestBed.createComponent(TextexpandComponent);
+    fixtureTextexpand = TestBed.createComponent(SbbTextexpand);
     componentTextexpand = fixtureTextexpand.componentInstance;
     componentTextexpand.collapsedComponent = componentCollapsed;
     componentTextexpand.expandedComponent = componentExpanded;
@@ -99,7 +95,7 @@ describe('TextexpandComponent using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextexpandModule],
+      imports: [SbbTextexpandModule],
       declarations: [TextexpandTestComponent],
     }).compileComponents();
   }));

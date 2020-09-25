@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { InputModule } from '@sbb-esta/angular-public/input';
+import { SbbInputModule } from '@sbb-esta/angular-public/input';
 
-import { FieldComponent } from './field/field.component';
-import { FormErrorDirective } from './form-error/form-error.directive';
-import { LabelComponent } from './label/label.component';
+import { SbbField } from './field/field.component';
+import { SbbFormError } from './form-error/form-error.directive';
+import { SbbLabel } from './label/label.component';
 
 @NgModule({
-  imports: [CommonModule, InputModule],
-  declarations: [FieldComponent, FormErrorDirective, LabelComponent],
-  exports: [FieldComponent, FormErrorDirective, LabelComponent, InputModule],
+  imports: [CommonModule, SbbInputModule],
+  declarations: [SbbField, SbbFormError, SbbLabel],
+  exports: [SbbField, SbbFormError, SbbLabel, SbbInputModule],
 })
-export class FieldModule {}
+export class SbbFieldModule {}

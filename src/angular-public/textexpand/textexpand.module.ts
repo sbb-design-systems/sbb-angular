@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { TextexpandCollapsedComponent } from './textexpand-collapsed/textexpand-collapsed.component';
-import { TextexpandExpandedComponent } from './textexpand-expanded/textexpand-expanded.component';
-import { TextexpandComponent } from './textexpand/textexpand.component';
+import { SbbTextexpandCollapsed } from './textexpand-collapsed/textexpand-collapsed.component';
+import { SbbTextexpandExpanded } from './textexpand-expanded/textexpand-expanded.component';
+import { SbbTextexpand } from './textexpand/textexpand.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [TextexpandComponent, TextexpandCollapsedComponent, TextexpandExpandedComponent],
-  exports: [TextexpandComponent, TextexpandCollapsedComponent, TextexpandExpandedComponent],
+  declarations: [SbbTextexpand, SbbTextexpandCollapsed, SbbTextexpandExpanded],
+  exports: [SbbTextexpand, SbbTextexpandCollapsed, SbbTextexpandExpanded],
 })
-export class TextexpandModule {}
+export class SbbTextexpandModule {}

@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { EsriTypesService } from '@sbb-esta/angular-maps/core';
+import { SbbEsriTypesService } from '@sbb-esta/angular-maps/core';
 
-import { EsriLayerListComponent } from './esri-layer-list.component';
+import { SbbEsriLayerList } from './esri-layer-list.component';
 
 describe('EsriLayerListComponent', () => {
-  let component: EsriLayerListComponent;
-  let fixture: ComponentFixture<EsriLayerListComponent>;
+  let component: SbbEsriLayerList;
+  let fixture: ComponentFixture<SbbEsriLayerList>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EsriLayerListComponent],
-      providers: [EsriTypesService],
+      declarations: [SbbEsriLayerList],
+      providers: [SbbEsriTypesService],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EsriLayerListComponent);
+    fixture = TestBed.createComponent(SbbEsriLayerList);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

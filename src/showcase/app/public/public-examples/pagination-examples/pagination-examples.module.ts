@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from '@sbb-esta/angular-public/button';
-import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
-import { FieldModule } from '@sbb-esta/angular-public/field';
-import { PaginationModule } from '@sbb-esta/angular-public/pagination';
+import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbPaginationModule } from '@sbb-esta/angular-public/pagination';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -23,10 +23,10 @@ const EXAMPLE_INDEX = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ButtonModule,
-    CheckboxModule,
-    FieldModule,
-    PaginationModule,
+    SbbButtonModule,
+    SbbCheckboxModule,
+    SbbFieldModule,
+    SbbPaginationModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

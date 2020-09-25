@@ -8,7 +8,7 @@ import {
 } from '@angular/animations';
 
 /** Animations used by Lightbox. */
-export const LIGHTBOX_ANIMATIONS: {
+export const SBB_LIGHTBOX_ANIMATIONS: {
   readonly slideLightbox: AnimationTriggerMetadata;
 } = {
   /** Animation that slides the Lightbox in and out of view and fades the opacity. */

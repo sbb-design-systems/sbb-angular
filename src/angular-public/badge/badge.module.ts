@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { BadgeComponent } from './badge/badge.component';
+import { SbbBadge } from './badge/badge.component';
 
 @NgModule({
-  declarations: [BadgeComponent],
+  declarations: [SbbBadge],
   imports: [CommonModule],
-  exports: [BadgeComponent],
+  exports: [SbbBadge],
 })
-export class BadgeModule {}
+export class SbbBadgeModule {}

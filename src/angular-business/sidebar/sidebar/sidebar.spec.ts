@@ -21,7 +21,7 @@ import {
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AccordionModule } from '@sbb-esta/angular-business/accordion';
+import { SbbAccordionModule } from '@sbb-esta/angular-business/accordion';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
@@ -835,7 +835,7 @@ describe('SbbSidebar Usage', () => {
         A11yModule,
         PlatformModule,
         NoopAnimationsModule,
-        AccordionModule,
+        SbbAccordionModule,
         RouterTestingModule.withRoutes([
           { path: 'link', pathMatch: 'full', component: SimpleRouteComponent },
         ]),

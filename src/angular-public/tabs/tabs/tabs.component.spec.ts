@@ -4,12 +4,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
-import { BadgeModule } from '@sbb-esta/angular-public/badge';
+import { SbbBadgeModule } from '@sbb-esta/angular-public/badge';
 
-import { TabContent } from '../tab/tab-content';
-import { TabComponent } from '../tab/tab.component';
+import { SbbTabContent } from '../tab/tab-content';
+import { SbbTab } from '../tab/tab.component';
 
-import { TabsComponent } from './tabs.component';
+import { SbbTabs } from './tabs.component';
 
 // tslint:disable:i18n
 @Component({
@@ -41,7 +41,7 @@ import { TabsComponent } from './tabs.component';
   `,
 })
 class TabsTestComponent {
-  @ViewChild('tabs') tabsComponent: TabsComponent;
+  @ViewChild('tabs') tabsComponent: SbbTabs;
   isVisible = true;
   numberOfTimesSubComponentHasBeenInitialized = 0;
   disableChange() {}
@@ -69,14 +69,8 @@ describe('TabsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TabsTestComponent,
-        TabContentTestComponent,
-        TabsComponent,
-        TabComponent,
-        TabContent,
-      ],
-      imports: [BadgeModule, PortalModule],
+      declarations: [TabsTestComponent, TabContentTestComponent, SbbTabs, SbbTab, SbbTabContent],
+      imports: [SbbBadgeModule, PortalModule],
     }).compileComponents();
   }));
 
@@ -84,7 +78,7 @@ describe('TabsComponent', () => {
     fixture = TestBed.createComponent(TabsTestComponent);
     fixture.detectChanges();
     component = fixture.componentInstance;
-    tabs = fixture.debugElement.queryAll(By.directive(TabComponent));
+    tabs = fixture.debugElement.queryAll(By.directive(SbbTab));
   });
 
   it('should create an instance', () => {
