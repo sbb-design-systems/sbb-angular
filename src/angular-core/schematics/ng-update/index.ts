@@ -12,7 +12,6 @@ import { addIconCdnProvider } from '../ng-add';
 
 import { ClassNamesMigration } from './migrations/class-names';
 import { IconMigration } from './migrations/icon-migration';
-import { PrefixMigration } from './migrations/prefix-migration';
 import { sbbAngularUpgradeData } from './upgrade-data';
 
 /** Entry point for the migration schematics with target of sbb-angular 10.0.0 */
@@ -56,8 +55,7 @@ export function updateToV11(): Rule {
   // patchClassNamesMigration();
   return createMigrationSchematicRule(
     TargetVersion.V11,
-    // [IconMigration],
-    [PrefixMigration],
+    [IconMigration],
     sbbAngularUpgradeData,
     onMigrationComplete
   );
