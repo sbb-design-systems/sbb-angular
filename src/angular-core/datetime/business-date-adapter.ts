@@ -21,9 +21,6 @@ export class BusinessDateAdapter extends NativeDateAdapter {
     if (!match) {
       return null;
     }
-    const year = +match[4];
-    return this._normalizeYear(
-      this._createDateWithOverflow(year < 100 ? 2000 + year : year, +match[3] - 1, +match[2])
-    );
+    return this._normalizeYear(this._createDateWithOverflow(+match[4], +match[3] - 1, +match[2]));
   }
 }
