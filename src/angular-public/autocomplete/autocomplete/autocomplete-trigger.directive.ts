@@ -99,15 +99,14 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     },
   ],
   host: {
-    '[attr.role]': `this._autocompleteDisabled ? null : 'combobox'`,
+    '[attr.role]': `this.autocompleteDisabled ? null : 'combobox'`,
     '[attr.autocomplete]': 'this.autocompleteAttribute',
     '[attr.aria-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen.toString()',
     '[attr.aria-owns]':
       'this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id',
-    '[attr.aria-autocomplete]': `this._autocompleteDisabled ? null : 'list'`,
+    '[attr.aria-autocomplete]': `this.autocompleteDisabled ? null : 'list'`,
     '[attr.aria-activedescendant]': 'this.activeOption ? this.activeOption.id : null',
-    '[class.sbb-autocomplete-input-panel-open]':
-      'this.autocompleteDisabled ? null : this.panelOpen',
+    '[class.sbb-autocomplete-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen',
   },
 })
 export class AutocompleteTriggerDirective

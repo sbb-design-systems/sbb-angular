@@ -6,12 +6,14 @@ import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
 
+import { ContextmenuWithIconsExampleComponent } from './contextmenu-with-icons-example/contextmenu-with-icons-example.component';
 import { SimpleContextmenuExampleComponent } from './simple-contextmenu-example/simple-contextmenu-example.component';
 
-const EXAMPLES = [SimpleContextmenuExampleComponent];
+const EXAMPLES = [ContextmenuWithIconsExampleComponent, SimpleContextmenuExampleComponent];
 
 const EXAMPLE_INDEX = {
   'simple-contextmenu-example': SimpleContextmenuExampleComponent,
+  'contextmenu-with-icons-example': ContextmenuWithIconsExampleComponent,
 };
 
 @NgModule({

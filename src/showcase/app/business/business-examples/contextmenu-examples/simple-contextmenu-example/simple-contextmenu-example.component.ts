@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './simple-contextmenu-example.component.html',
   styleUrls: ['./simple-contextmenu-example.component.css'],
 })
-export class SimpleContextmenuExampleComponent {}
+export class SimpleContextmenuExampleComponent {
+  lastAction = '-';
+
+  assignLastAction(event: Event) {
+    this.lastAction = (event.target as HTMLElement).textContent.trim();
+  }
+}

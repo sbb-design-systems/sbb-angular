@@ -1,11 +1,13 @@
-<sbb-contextmenu>
-  <sbb-dropdown>
-    <button sbbDropdownItem><sbb-icon svgIcon="kom:face-worker-small"></sbb-icon>Copy</button>
-    <button sbbDropdownItem>
-      <sbb-icon svgIcon="kom:trash-small"></sbb-icon> Delete
-      <sbb-icon svgIcon="kom:trash-small"></sbb-icon>
-    </button>
-    <hr />
-    <button sbbDropdownItem><sbb-icon svgIcon="kom:cross-small"></sbb-icon> Cancel</button>
-  </sbb-dropdown>
-</sbb-contextmenu>
+<div>
+  <sbb-contextmenu>
+    <sbb-dropdown>
+      <button sbbDropdownItem (click)="assignLastAction($event)">Profile</button>
+      <button sbbDropdownItem (click)="assignLastAction($event)">Projects</button>
+      <hr />
+      <button sbbDropdownItem (click)="assignLastAction($event)">Logout</button>
+    </sbb-dropdown>
+  </sbb-contextmenu>
+</div>
+
+<h4>Last Action</h4>
+<pre>{{ lastAction | json }}</pre>
