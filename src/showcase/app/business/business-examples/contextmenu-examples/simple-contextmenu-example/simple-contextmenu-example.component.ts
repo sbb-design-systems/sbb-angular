@@ -6,13 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./simple-contextmenu-example.component.css'],
 })
 export class SimpleContextmenuExampleComponent {
-  action1() {
-    console.log('action1');
-  }
-  action2() {
-    console.log('action2');
-  }
-  action3() {
-    console.log('action3');
+  lastAction = '-';
+
+  assignLastAction(event: Event) {
+    this.lastAction = (event.target as HTMLElement).textContent.trim();
   }
 }

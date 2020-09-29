@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  HostBinding,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';

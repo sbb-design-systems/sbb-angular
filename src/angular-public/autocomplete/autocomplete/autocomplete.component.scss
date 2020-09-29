@@ -10,12 +10,15 @@
   }
 }
 
-input[aria-expanded='true'] {
-  &:not(.sbb-autocomplete-input-above) {
-    @include autocompleteInputActive();
-  }
+.sbb-autocomplete-expanded {
+  &,
+  &:focus {
+    &:not(.sbb-autocomplete-input-above) {
+      @include autocompleteInputActive();
+    }
 
-  &.sbb-autocomplete-input-above {
-    @include autocompleteInputActive($mode: reverse);
+    &.sbb-autocomplete-input-above {
+      @include autocompleteInputActive($mode: reverse);
+    }
   }
 }

@@ -104,8 +104,8 @@ export class LightboxShowcaseExample3Component {
     </p>
   </sbb-lightbox-content>
   <sbb-lightbox-footer alignment="right">
-    <button sbbButton mode="ghost" sbbLightboxClose>Abbrechen</button>
-    <button sbbButton [sbbLightboxClose]="true" cdkFocusInitial>Übernehmen</button>
+    <button sbbButton mode="ghost" sbbLightboxClose>Cancel</button>
+    <button sbbButton [sbbLightboxClose]="true" cdkFocusInitial>Accept</button>
   </sbb-lightbox-footer>
 </ng-template>
 ```

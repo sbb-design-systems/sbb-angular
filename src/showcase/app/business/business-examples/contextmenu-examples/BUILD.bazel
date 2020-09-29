@@ -12,11 +12,15 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":simple-contextmenu-example/simple-contextmenu-example.component.css"] + glob(["**/*.html"]),
+    assets = [
+        ":contextmenu-with-icons-example/contextmenu-with-icons-example.component.css",
+        ":simple-contextmenu-example/simple-contextmenu-example.component.css",
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/contextmenu",
         "//src/angular-business/dropdown",
+        "//src/angular-core/icon",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -30,6 +34,11 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
+)
+
+sass_binary(
+    name = "contextmenu_with_icons_example_contextmenu_with_icons_example_component_scss",
+    src = "contextmenu-with-icons-example/contextmenu-with-icons-example.component.scss",
 )
 
 sass_binary(
