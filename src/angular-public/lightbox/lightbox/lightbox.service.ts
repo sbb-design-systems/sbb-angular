@@ -19,20 +19,20 @@ import {
 import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
-import { LightboxConfig } from './lightbox-config';
-import { LightboxContainerComponent } from './lightbox-container.component';
-import { LightboxRef } from './lightbox-ref';
+import { SbbLightboxConfig } from './lightbox-config';
+import { SbbLightboxContainer } from './lightbox-container.component';
+import { SbbLightboxRef } from './lightbox-ref';
 
 /** Injection token that can be used to access the data that was passed in to a lightbox. */
-export const LIGHTBOX_DATA = new InjectionToken<any>('LightboxData');
+export const SBB_LIGHTBOX_DATA = new InjectionToken<any>('LightboxData');
 
 /** Injection token that can be used to specify default lightbox options. */
-export const LIGHTBOX_DEFAULT_OPTIONS = new InjectionToken<LightboxConfig>(
+export const SBB_LIGHTBOX_DEFAULT_OPTIONS = new InjectionToken<SbbLightboxConfig>(
   'LightboxDefaultOptions'
 );
 
 /** Injection token that determines the scroll handling while the dialog is open. */
-export const LIGHTBOX_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
+export const SBB_LIGHTBOX_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'LightboxScrollStrategy'
 );
 
@@ -44,8 +44,8 @@ export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(
 }
 
 /** @docs-private */
-export const LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
-  provide: LIGHTBOX_SCROLL_STRATEGY,
+export const SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
+  provide: SBB_LIGHTBOX_SCROLL_STRATEGY,
   deps: [Overlay],
   useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
@@ -54,20 +54,20 @@ export const LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
  * Service to open SBB Design modal lightboxes.
  */
 @Injectable()
-export class Lightbox implements OnDestroy {
-  private _openLightboxesAtThisLevel: LightboxRef<any>[] = [];
+export class SbbLightbox implements OnDestroy {
+  private _openLightboxesAtThisLevel: SbbLightboxRef<any>[] = [];
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
-  private readonly _afterOpenedAtThisLevel = new Subject<LightboxRef<any>>();
+  private readonly _afterOpenedAtThisLevel = new Subject<SbbLightboxRef<any>>();
 
   /** Keeps track of the currently-open lightboxes. */
-  get openLightboxes(): LightboxRef<any>[] {
+  get openLightboxes(): SbbLightboxRef<any>[] {
     return this._parentLightbox
       ? this._parentLightbox.openLightboxes
       : this._openLightboxesAtThisLevel;
   }
 
   /** Stream that emits when a lightbox has been opened. */
-  get afterOpen(): Subject<LightboxRef<any>> {
+  get afterOpen(): Subject<SbbLightboxRef<any>> {
     return this._parentLightbox ? this._parentLightbox.afterOpen : this._afterOpenedAtThisLevel;
   }
 
@@ -90,9 +90,9 @@ export class Lightbox implements OnDestroy {
     private _overlay: Overlay,
     private _injector: Injector,
     @Optional() private _location: Location,
-    @Optional() @Inject(LIGHTBOX_DEFAULT_OPTIONS) private _defaultOptions: LightboxConfig,
-    @Inject(LIGHTBOX_SCROLL_STRATEGY) private _scrollStrategy: any,
-    @Optional() @SkipSelf() private _parentLightbox: Lightbox
+    @Optional() @Inject(SBB_LIGHTBOX_DEFAULT_OPTIONS) private _defaultOptions: SbbLightboxConfig,
+    @Inject(SBB_LIGHTBOX_SCROLL_STRATEGY) private _scrollStrategy: any,
+    @Optional() @SkipSelf() private _parentLightbox: SbbLightbox
   ) {}
 
   /**
@@ -105,8 +105,8 @@ export class Lightbox implements OnDestroy {
    */
   open<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    config?: LightboxConfig<D>
-  ): LightboxRef<T, R> {
+    config?: SbbLightboxConfig<D>
+  ): SbbLightboxRef<T, R> {
     return this.openLightbox(componentOrTemplateRef, config);
   }
 
@@ -119,9 +119,9 @@ export class Lightbox implements OnDestroy {
    */
   openLightbox<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    config?: LightboxConfig<D>
-  ): LightboxRef<T, R> {
-    config = { ...(this._defaultOptions || new LightboxConfig()), ...config };
+    config?: SbbLightboxConfig<D>
+  ): SbbLightboxRef<T, R> {
+    config = { ...(this._defaultOptions || new SbbLightboxConfig()), ...config };
     if (config!.id && this.getLightboxById(config!.id)) {
       throw Error(
         `lightbox with id "${config!.id}" exists already. The lightbox id must be unique.`
@@ -156,7 +156,7 @@ export class Lightbox implements OnDestroy {
    * @param id ID to use when looking up the lightbox.
    * @returns Lightbox reference associated to the input id.
    */
-  getLightboxById(id: string): LightboxRef<any> | undefined {
+  getLightboxById(id: string): SbbLightboxRef<any> | undefined {
     return this.openLightboxes.find((lightbox) => lightbox.id === id);
   }
 
@@ -173,7 +173,7 @@ export class Lightbox implements OnDestroy {
    * @param config The lightbox configuration.
    * @returns A promise resolving to the OverlayRef for the created overlay.
    */
-  private _createOverlay(config: LightboxConfig): OverlayRef {
+  private _createOverlay(config: SbbLightboxConfig): OverlayRef {
     const overlayConfig = this._getOverlayConfig(config);
     return this._overlay.create(overlayConfig);
   }
@@ -183,7 +183,7 @@ export class Lightbox implements OnDestroy {
    * @param lightboxConfig The lightbox configuration.
    * @returns The overlay configuration.
    */
-  private _getOverlayConfig(lightboxConfig: LightboxConfig): OverlayConfig {
+  private _getOverlayConfig(lightboxConfig: SbbLightboxConfig): OverlayConfig {
     return new OverlayConfig({
       positionStrategy: this._overlay.position().global(),
       scrollStrategy: lightboxConfig.scrollStrategy || this._scrollStrategy(),
@@ -201,19 +201,19 @@ export class Lightbox implements OnDestroy {
    */
   private _attachLightboxContainer(
     overlay: OverlayRef,
-    config: LightboxConfig
-  ): LightboxContainerComponent {
+    config: SbbLightboxConfig
+  ): SbbLightboxContainer {
     const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
     const injector = new PortalInjector(
       userInjector || this._injector,
-      new WeakMap([[LightboxConfig, config]])
+      new WeakMap([[SbbLightboxConfig, config]])
     );
     const containerPortal = new ComponentPortal(
-      LightboxContainerComponent,
+      SbbLightboxContainer,
       config.viewContainerRef,
       injector
     );
-    const containerRef = overlay.attach<LightboxContainerComponent>(containerPortal);
+    const containerRef = overlay.attach<SbbLightboxContainer>(containerPortal);
 
     return containerRef.instance;
   }
@@ -229,13 +229,13 @@ export class Lightbox implements OnDestroy {
    */
   private _attachLightboxContent<T, R>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    lightboxContainer: LightboxContainerComponent,
+    lightboxContainer: SbbLightboxContainer,
     overlayRef: OverlayRef,
-    config: LightboxConfig
-  ): LightboxRef<T, R> {
+    config: SbbLightboxConfig
+  ): SbbLightboxRef<T, R> {
     // Create a reference to the lightbox we're creating in order to give the user a handle
     // to modify and close it.
-    const lightboxRef = new LightboxRef<T, R>(
+    const lightboxRef = new SbbLightboxRef<T, R>(
       lightboxContainer,
       config.id,
       overlayRef,
@@ -269,9 +269,9 @@ export class Lightbox implements OnDestroy {
    * @returns The custom injector that can be used inside the lightbox.
    */
   private _createInjector<T>(
-    config: LightboxConfig,
-    lightboxRef: LightboxRef<T>,
-    lightboxContainer: LightboxContainerComponent
+    config: SbbLightboxConfig,
+    lightboxRef: SbbLightboxRef<T>,
+    lightboxContainer: SbbLightboxContainer
   ): PortalInjector {
     const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
 
@@ -280,9 +280,9 @@ export class Lightbox implements OnDestroy {
     // purposes. To allow the hierarchy that is expected, the LightboxContainer is explicitly
     // added to the injection tokens.
     const injectionTokens = new WeakMap<any, any>([
-      [LightboxContainerComponent, lightboxContainer],
-      [LIGHTBOX_DATA, config.data],
-      [LightboxRef, lightboxRef],
+      [SbbLightboxContainer, lightboxContainer],
+      [SBB_LIGHTBOX_DATA, config.data],
+      [SbbLightboxRef, lightboxRef],
     ]);
 
     return new PortalInjector(userInjector || this._injector, injectionTokens);
@@ -292,7 +292,7 @@ export class Lightbox implements OnDestroy {
    * Removes a lightbox from the array of open lightboxes.
    * @param lightboxRef lightbox to be removed.
    */
-  private _removeOpenLightbox(lightboxRef: LightboxRef<any>) {
+  private _removeOpenLightbox(lightboxRef: SbbLightboxRef<any>) {
     const index = this.openLightboxes.indexOf(lightboxRef);
 
     if (index > -1) {
@@ -306,7 +306,7 @@ export class Lightbox implements OnDestroy {
   }
 
   /** Closes all of the dialogs in an array. */
-  private _closeDialogs(dialogs: LightboxRef<any>[]) {
+  private _closeDialogs(dialogs: SbbLightboxRef<any>[]) {
     let i = dialogs.length;
 
     while (i--) {

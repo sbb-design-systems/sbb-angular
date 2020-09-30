@@ -17,7 +17,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { CellDirective, HeaderCellDirective } from '../table-cell/table-cell.component';
+import { SbbCell, SbbHeaderCell } from '../table-cell/table-cell.component';
 
 import { SbbTableDataSource } from './table-data-source';
 
@@ -30,8 +30,8 @@ import { SbbTableDataSource } from './table-data-source';
     // TODO(michaeljamesparsons) Abstract the view repeater strategy to a directive API so this code
     //  is only included in the build if used.
     { provide: _VIEW_REPEATER_STRATEGY, useClass: _DisposeViewRepeaterStrategy },
-    { provide: CdkTable, useExisting: TableComponent },
-    { provide: CDK_TABLE, useExisting: TableComponent },
+    { provide: CdkTable, useExisting: SbbTable },
+    { provide: CDK_TABLE, useExisting: SbbTable },
     { provide: _COALESCED_STYLE_SCHEDULER, useClass: _CoalescedStyleScheduler },
   ],
   // The "OnPush" status for the `SbbTable` component is effectively a noop, so we are removing it.
@@ -41,13 +41,13 @@ import { SbbTableDataSource } from './table-data-source';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class TableComponent<T> extends CdkTable<T> implements AfterViewInit {
+export class SbbTable<T> extends CdkTable<T> implements AfterViewInit {
   @HostBinding('class.sbb-table') sbbTable = true;
 
-  @ContentChildren(HeaderCellDirective, { descendants: true, read: ElementRef })
+  @ContentChildren(SbbHeaderCell, { descendants: true, read: ElementRef })
   headerElements: QueryList<ElementRef>;
 
-  @ContentChildren(CellDirective, { descendants: true, read: ElementRef })
+  @ContentChildren(SbbCell, { descendants: true, read: ElementRef })
   rowElements: QueryList<ElementRef>;
 
   /** Overrides the sticky CSS class set by the `CdkTable`. */

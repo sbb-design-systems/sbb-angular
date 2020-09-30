@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { SbbIcon, SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { ChipComponent } from './chip.component';
+import { SbbChip } from './chip.component';
 
 @Component({
   selector: 'sbb-test-chip',
@@ -26,7 +26,7 @@ describe('ChipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ChipComponent, ChipTestComponent],
+      declarations: [SbbChip, ChipTestComponent],
       imports: [CommonModule, SbbIconModule, SbbIconTestingModule],
     }).compileComponents();
   }));
@@ -42,7 +42,7 @@ describe('ChipComponent', () => {
   });
 
   it('should show a dismissable chip with default label', () => {
-    const chips = fixture.debugElement.queryAll(By.directive(ChipComponent));
+    const chips = fixture.debugElement.queryAll(By.directive(SbbChip));
     const crossIcon = fixture.debugElement.query(By.directive(SbbIcon));
     const label = fixture.debugElement.query(By.css('.sbb-chip-label'));
     expect(chips.length).toBe(1);
@@ -56,7 +56,7 @@ describe('ChipComponent', () => {
     component.disabled = true;
     fixture.detectChanges();
 
-    const chips = fixture.debugElement.queryAll(By.directive(ChipComponent));
+    const chips = fixture.debugElement.queryAll(By.directive(SbbChip));
     const crossIcon = fixture.debugElement.query(By.directive(SbbIcon));
     expect(crossIcon).toBeNull();
     expect(chips[0].classes['sbb-chip-disabled']).toBe(true);
@@ -69,7 +69,7 @@ describe('ChipComponent', () => {
     dismissButton.nativeElement.click();
 
     expect(dismissedSpy).toHaveBeenCalledTimes(1);
-    expect(dismissedSpy).toHaveBeenCalledWith(jasmine.any(ChipComponent));
+    expect(dismissedSpy).toHaveBeenCalledWith(jasmine.any(SbbChip));
   });
 
   it('should hide chip when dismissed button is pressed', () => {
@@ -77,7 +77,7 @@ describe('ChipComponent', () => {
     dismissButton.nativeElement.click();
     fixture.detectChanges();
 
-    const chips = fixture.debugElement.queryAll(By.directive(ChipComponent));
+    const chips = fixture.debugElement.queryAll(By.directive(SbbChip));
     chips.forEach((chip) => expect(chip.attributes['aria-hidden']).toBe('true'));
     chips.forEach((chip) => expect(chip.properties['hidden']).toBe(true));
   });

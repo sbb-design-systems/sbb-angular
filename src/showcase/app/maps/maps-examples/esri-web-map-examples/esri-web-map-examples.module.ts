@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { EsriWebMapModule } from '@sbb-esta/angular-maps/esri-web-map';
+import { SbbEsriWebMapModule } from '@sbb-esta/angular-maps/esri-web-map';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -13,7 +13,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, EsriWebMapModule],
+  imports: [CommonModule, SbbEsriWebMapModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('maps', 'esri-web-map', EXAMPLE_INDEX)],

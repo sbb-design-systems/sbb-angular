@@ -22,12 +22,12 @@ import {
   SbbNotificationToastConfig,
   SBB_NOTIFICATION_TOAST_DATA,
 } from './notification-toast-config';
-import { NotificationToastContainerComponent } from './notification-toast-container.component';
+import { SbbNotificationToastContainer } from './notification-toast-container.component';
 import { SbbNotificationToastRef } from './notification-toast-ref';
-import { NotificationToastModule } from './notification-toast.module';
+import { SbbNotificationToastModule } from './notification-toast.module';
 import {
-  SimpleNotificationComponent,
-  TextOnlyNotificationToast,
+  SbbSimpleNotification,
+  SbbTextOnlyNotificationToast,
 } from './simple-notification.component';
 
 /** Injection token that can be used to specify default notification toast. */
@@ -46,7 +46,7 @@ export function SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS_FACTORY(): SbbNotificatio
 /**
  * Service to dispatch notification toast messages.
  */
-@Injectable({ providedIn: NotificationToastModule })
+@Injectable({ providedIn: SbbNotificationToastModule })
 export class SbbNotificationToast implements OnDestroy {
   /**
    * Reference to the current notification toast in the view *at this level* (in the Angular injector tree).
@@ -57,13 +57,13 @@ export class SbbNotificationToast implements OnDestroy {
 
   /** The component that should be rendered as the notification toast's simple component. */
   protected _simpleNotificationToastComponent: Type<
-    TextOnlyNotificationToast
-  > = SimpleNotificationComponent;
+    SbbTextOnlyNotificationToast
+  > = SbbSimpleNotification;
 
   /** The container component that attaches the provided template or component. */
   protected _notificationToastContainerComponent: Type<
-    NotificationToastContainerComponent
-  > = NotificationToastContainerComponent;
+    SbbNotificationToastContainer
+  > = SbbNotificationToastContainer;
 
   /** The CSS class to applie for mobile mode. */
   protected _mobileDeviceCssClass = 'sbb-notification-toast-mobile';
@@ -129,7 +129,7 @@ export class SbbNotificationToast implements OnDestroy {
   open(
     message: string,
     config?: SbbNotificationToastConfig
-  ): SbbNotificationToastRef<TextOnlyNotificationToast> {
+  ): SbbNotificationToastRef<SbbTextOnlyNotificationToast> {
     const mergedConfig = { ...this._defaultConfig, ...config };
 
     // Since the user doesn't have access to the component, we can
@@ -167,7 +167,7 @@ export class SbbNotificationToast implements OnDestroy {
   private _attachNotificationToastContainer(
     overlayRef: OverlayRef,
     config: SbbNotificationToastConfig
-  ): NotificationToastContainerComponent {
+  ): SbbNotificationToastContainer {
     const userInjector = config?.viewContainerRef?.injector;
     const injector = new PortalInjector(
       userInjector || this._injector,
@@ -179,7 +179,7 @@ export class SbbNotificationToast implements OnDestroy {
       config.viewContainerRef,
       injector
     );
-    const containerRef: ComponentRef<NotificationToastContainerComponent> = overlayRef.attach(
+    const containerRef: ComponentRef<SbbNotificationToastContainer> = overlayRef.attach(
       containerPortal
     );
     containerRef.instance.config = config;

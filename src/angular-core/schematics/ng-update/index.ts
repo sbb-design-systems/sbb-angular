@@ -1,5 +1,6 @@
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import {
+  cdkMigrations,
   createMigrationSchematicRule,
   getProjectFromWorkspace,
   getProjectTargetOptions,
@@ -9,6 +10,7 @@ import { getWorkspace } from '@schematics/angular/utility/config';
 
 import { addIconCdnProvider } from '../ng-add';
 
+import { ClassNamesMigration } from './migrations/class-names';
 import { IconMigration } from './migrations/icon-migration';
 import { sbbAngularUpgradeData } from './upgrade-data';
 
@@ -50,13 +52,20 @@ export function addIconCdnRegistry(): Rule {
 
 /** Entry point for the migration schematics with target of sbb-angular 11.0.0 */
 export function updateToV11(): Rule {
+  // patchClassNamesMigration();
   return createMigrationSchematicRule(
-    // TODO: Adapt for TargetVersion.V11
-    'version 11' as TargetVersion,
+    TargetVersion.V11,
     [IconMigration],
     sbbAngularUpgradeData,
     onMigrationComplete
   );
+}
+
+function patchClassNamesMigration() {
+  const indexOfClassNamesMigration = cdkMigrations.findIndex(
+    (m) => m.name === 'ClassNamesMigration'
+  );
+  cdkMigrations[indexOfClassNamesMigration] = ClassNamesMigration;
 }
 
 /** Function that will be called when the migration completed. */

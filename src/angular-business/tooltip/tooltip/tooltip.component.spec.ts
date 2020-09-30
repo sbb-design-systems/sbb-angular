@@ -8,9 +8,9 @@ import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { TooltipModule } from '../tooltip.module';
+import { SbbTooltipModule } from '../tooltip.module';
 
-import { TooltipComponent } from './tooltip.component';
+import { SbbTooltipComponent } from './tooltip.component';
 
 @Component({
   selector: 'sbb-true-hover-configuration-tooltip-test',
@@ -21,7 +21,7 @@ import { TooltipComponent } from './tooltip.component';
   `,
 })
 class TooltipHoverTrueTestComponent {
-  @ViewChild('t1', { static: true }) t1: TooltipComponent;
+  @ViewChild('t1', { static: true }) t1: SbbTooltipComponent;
 }
 
 @Component({
@@ -33,23 +33,23 @@ class TooltipHoverTrueTestComponent {
   `,
 })
 class TooltipHoverTrueAndDelaySettingsTestComponent {
-  @ViewChild('t1', { static: true }) t1: TooltipComponent;
+  @ViewChild('t1', { static: true }) t1: SbbTooltipComponent;
 }
 
 describe('TooltipComponent', () => {
-  let component: TooltipComponent;
-  let fixture: ComponentFixture<TooltipComponent>;
+  let component: SbbTooltipComponent;
+  let fixture: ComponentFixture<SbbTooltipComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconModule, SbbIconTestingModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
-      declarations: [TooltipComponent],
+      declarations: [SbbTooltipComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TooltipComponent);
+    fixture = TestBed.createComponent(SbbTooltipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -69,7 +69,7 @@ describe('Tooltip using hover configuration with default delay', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, PortalModule, OverlayModule, TooltipModule, SbbIconTestingModule],
+      imports: [CommonModule, PortalModule, OverlayModule, SbbTooltipModule, SbbIconTestingModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipHoverTrueTestComponent],
     }).compileComponents();
@@ -110,7 +110,7 @@ describe('Tooltip using hover configuration and delay settings for open and clos
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, PortalModule, OverlayModule, TooltipModule, SbbIconTestingModule],
+      imports: [CommonModule, PortalModule, OverlayModule, SbbTooltipModule, SbbIconTestingModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipHoverTrueAndDelaySettingsTestComponent],
     }).compileComponents();

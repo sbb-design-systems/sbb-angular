@@ -4,9 +4,9 @@ import { By } from '@angular/platform-browser';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { FEB, JAN } from '@sbb-esta/angular-core/testing';
 
-import { DatepickerModule } from '../datepicker.module';
+import { SbbDatepickerModule } from '../datepicker.module';
 
-import { CalendarComponent } from './calendar.component';
+import { SbbCalendar } from './calendar.component';
 
 @Component({
   template: `
@@ -29,7 +29,7 @@ class StandardCalendarComponent {
 describe('CalendarHeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [DatepickerModule, SbbIconTestingModule],
+      imports: [SbbDatepickerModule, SbbIconTestingModule],
       declarations: [
         // Test components.
         StandardCalendarComponent,
@@ -43,13 +43,13 @@ describe('CalendarHeaderComponent', () => {
     let calendarElement: HTMLElement;
     let prevButton: HTMLElement;
     let nextButton: HTMLElement;
-    let calendarInstance: CalendarComponent<Date>;
+    let calendarInstance: SbbCalendar<Date>;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(StandardCalendarComponent);
       fixture.detectChanges();
 
-      const calendarDebugElement = fixture.debugElement.query(By.directive(CalendarComponent));
+      const calendarDebugElement = fixture.debugElement.query(By.directive(SbbCalendar));
       calendarElement = calendarDebugElement.nativeElement;
       prevButton = calendarElement.querySelector(
         '.sbb-calendar-controls-left-arrow'

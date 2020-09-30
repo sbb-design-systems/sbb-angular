@@ -4,9 +4,9 @@ import { Location } from '@angular/common';
 import { Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
-import { DialogContainerComponent } from '../dialog-container/dialog-container.component';
+import { SbbDialogContainer } from '../dialog-container/dialog-container.component';
 
-import { DialogPosition } from './dialog-config';
+import { SbbDialogPosition } from './dialog-config';
 
 // Counter for unique dialog ids.
 let uniqueId = 0;
@@ -14,7 +14,7 @@ let uniqueId = 0;
 /**
  * Reference to a dialog opened via the Dialog service.
  */
-export class DialogRef<T, R = any> {
+export class SbbDialogRef<T, R = any> {
   /** The instance of component opened into the dialog. */
   componentInstance: T | null;
 
@@ -43,7 +43,7 @@ export class DialogRef<T, R = any> {
 
   constructor(
     /** The instance of the container component. */
-    public containerInstance: DialogContainerComponent,
+    public containerInstance: SbbDialogContainer,
     /** Identifier of dialog. */
     readonly id: string = `sbb-dialog-${uniqueId++}`,
     private _overlayRef: OverlayRef,
@@ -132,7 +132,7 @@ export class DialogRef<T, R = any> {
    * Updates the dialog's position.
    * @param position New dialog position.
    */
-  updatePosition(position?: DialogPosition): this {
+  updatePosition(position?: SbbDialogPosition): this {
     const strategy = this._getPositionStrategy();
 
     if (position && (position.left || position.right)) {

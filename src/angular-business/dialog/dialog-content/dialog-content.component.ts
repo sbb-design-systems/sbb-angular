@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     class: 'sbb-dialog-content sbb-scrollbar',
   },
 })
-export class DialogContentComponent {
+export class SbbDialogContent {
   /** @deprecated internal detail */
   dialogContentClass = true;
 }

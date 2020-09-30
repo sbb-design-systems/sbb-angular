@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   styleUrls: ['./textexpand-expanded.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextexpandExpandedComponent {
+export class SbbTextexpandExpanded {
   /**
    * Describes if textexpand-expanded is hidden or not. Initially it is hidden.
    */

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { StatusModule } from './status.module';
+import { SbbStatusModule } from './status.module';
 
 @Component({
   template: '<sbb-status type="valid"></sbb-status>',
@@ -40,7 +40,7 @@ describe('StatusComponent', () => {
         StatusWithMessageComponent,
         StatusWithAriaLabelComponent,
       ],
-      imports: [StatusModule, SbbIconTestingModule],
+      imports: [SbbStatusModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 

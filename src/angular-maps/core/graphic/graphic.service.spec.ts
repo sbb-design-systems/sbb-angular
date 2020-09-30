@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EsriTypesService } from '../esri-types/esri-types.service';
+import { SbbEsriTypesService } from '../esri-types/esri-types.service';
 
-import { GraphicService } from './graphic.service';
+import { SbbGraphicService } from './graphic.service';
 
 describe('GraphicService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [GraphicService, EsriTypesService],
+      providers: [SbbGraphicService, SbbEsriTypesService],
     })
   );
 
   it('should be created', () => {
-    const service: GraphicService = TestBed.inject(GraphicService);
+    const service: SbbGraphicService = TestBed.inject(SbbGraphicService);
     expect(service).toBeTruthy();
   });
 });

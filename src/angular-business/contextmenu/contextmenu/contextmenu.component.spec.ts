@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
+import { SbbDropdownModule } from '@sbb-esta/angular-business/dropdown';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { ContextmenuComponent } from './contextmenu.component';
+import { SbbContextmenu } from './contextmenu.component';
 
 @Component({
   selector: 'sbb-test-contextmenu',
@@ -32,8 +32,8 @@ describe('ContextmenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ContextmenuComponent, ContextmenuTest1Component],
-      imports: [CommonModule, DropdownModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [SbbContextmenu, ContextmenuTest1Component],
+      imports: [CommonModule, SbbDropdownModule, SbbIconModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
@@ -48,7 +48,7 @@ describe('ContextmenuComponent', () => {
   });
 
   it('before click on the .sbb-icon[svgIcon="kom:context-menu"] icon the dropdown should not be visible', () => {
-    const contextmenuComponent = fixture.debugElement.query(By.directive(ContextmenuComponent));
+    const contextmenuComponent = fixture.debugElement.query(By.directive(SbbContextmenu));
     const unexpandedButton = contextmenuComponent.queryAll(
       By.css('button.sbb-dropdown-trigger[aria-expanded="false"]')
     );
@@ -56,7 +56,7 @@ describe('ContextmenuComponent', () => {
   });
 
   it('after click on the .sbb-icon[svgIcon="kom:context-menu"] icon the dropdown should be visible', () => {
-    const contextmenuComponent = fixture.debugElement.query(By.directive(ContextmenuComponent));
+    const contextmenuComponent = fixture.debugElement.query(By.directive(SbbContextmenu));
     const triggerButton = contextmenuComponent.queryAll(By.css('button.sbb-dropdown-trigger'))[0]
       .nativeElement;
     triggerButton.click();

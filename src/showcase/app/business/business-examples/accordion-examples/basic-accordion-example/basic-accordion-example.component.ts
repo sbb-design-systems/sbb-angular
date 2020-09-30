@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { AccordionDirective } from '@sbb-esta/angular-business/accordion';
+import { SbbAccordion } from '@sbb-esta/angular-business/accordion';
 
 @Component({
   selector: 'sbb-basic-accordion-example',
@@ -8,7 +8,7 @@ import { AccordionDirective } from '@sbb-esta/angular-business/accordion';
   styleUrls: ['./basic-accordion-example.component.css'],
 })
 export class BasicAccordionExampleComponent {
-  @ViewChild(AccordionDirective, { static: true }) firstAccordion: AccordionDirective;
+  @ViewChild(SbbAccordion, { static: true }) firstAccordion: SbbAccordion;
 
   disabled = new FormControl(false);
   panelMode = new FormControl('panel 1');

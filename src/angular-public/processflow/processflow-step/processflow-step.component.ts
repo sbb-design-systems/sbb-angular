@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ProcessflowStepBase } from '@sbb-esta/angular-core/base/processflow';
+import { SbbProcessflowStepBase } from '@sbb-esta/angular-core/base/processflow';
 
 @Component({
   selector: 'sbb-processflow-step',
   template: '<ng-content *ngIf="active && !disabled"></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProcessflowStepComponent extends ProcessflowStepBase {}
+export class SbbProcessflowStep extends SbbProcessflowStepBase {}

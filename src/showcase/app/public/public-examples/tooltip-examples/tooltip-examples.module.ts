@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { ButtonModule } from '@sbb-esta/angular-public/button';
-import { FieldModule } from '@sbb-esta/angular-public/field';
-import { LinksModule } from '@sbb-esta/angular-public/links';
-import { TooltipModule } from '@sbb-esta/angular-public/tooltip';
+import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbLinksModule } from '@sbb-esta/angular-public/links';
+import { SbbTooltipModule } from '@sbb-esta/angular-public/tooltip';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -31,10 +31,10 @@ const EXAMPLE_INDEX = {
     FormsModule,
     ReactiveFormsModule,
     SbbIconModule,
-    ButtonModule,
-    FieldModule,
-    LinksModule,
-    TooltipModule,
+    SbbButtonModule,
+    SbbFieldModule,
+    SbbLinksModule,
+    SbbTooltipModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

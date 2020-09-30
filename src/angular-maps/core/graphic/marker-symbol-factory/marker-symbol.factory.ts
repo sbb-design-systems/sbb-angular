@@ -1,11 +1,11 @@
-import { EsriTypesService } from '../../esri-types/esri-types.service';
+import { SbbEsriTypesService } from '../../esri-types/esri-types.service';
 
-import { MarkerSymbolSettings } from './marker-symbol.settings';
+import { SbbMarkerSymbolSettings } from './marker-symbol.settings';
 
-export class MarkerSymbolFactory {
-  constructor(private _esri: EsriTypesService) {}
+export class SbbMarkerSymbolFactory {
+  constructor(private _esri: SbbEsriTypesService) {}
 
   createCircleSymbol() {
-    return new this._esri.SimpleMarkerSymbol(MarkerSymbolSettings.simpleSymbol);
+    return new this._esri.SimpleMarkerSymbol(SbbMarkerSymbolSettings.simpleSymbol);
   }
 }

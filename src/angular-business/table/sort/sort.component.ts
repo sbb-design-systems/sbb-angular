@@ -16,7 +16,7 @@ import {
 } from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
 
-import { SortDirection } from './sort-direction';
+import { SbbSortDirection } from './sort-direction';
 import {
   getSortDuplicateSortableIdError,
   getSortHeaderMissingIdError,
@@ -36,12 +36,12 @@ export interface SbbSortable {
 }
 
 /** The current sort state. */
-export interface Sort {
+export interface SbbSort {
   /** The id of the column being sorted. */
   active: string;
 
   /** The sort direction. */
-  direction: SortDirection;
+  direction: SbbSortDirection;
 }
 
 // Boilerplate for applying mixins to Sort.
@@ -61,11 +61,11 @@ export class SbbSortDirective extends SbbSortDirectiveMixinBase
   implements OnInit, OnChanges, OnDestroy, HasInitialized {
   /** The sort direction of the currently active SbbSortable. */
   @Input('sbbSortDirection')
-  get direction(): SortDirection {
+  get direction(): SbbSortDirection {
     return this._direction;
   }
 
-  set direction(direction: SortDirection) {
+  set direction(direction: SbbSortDirection) {
     if (isDevMode() && direction && direction !== 'asc' && direction !== 'desc') {
       throw getSortInvalidDirectionError(direction);
     }
@@ -98,11 +98,11 @@ export class SbbSortDirective extends SbbSortDirectiveMixinBase
    * May be overriden by the SbbSortable's sort start.
    */
   @Input('sbbSortStart') start: 'asc' | 'desc' = 'asc';
-  private _direction: SortDirection = '';
+  private _direction: SbbSortDirection = '';
   private _disableClear: boolean;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
-  @Output() readonly sbbSortChange: EventEmitter<Sort> = new EventEmitter<Sort>();
+  @Output() readonly sbbSortChange: EventEmitter<SbbSort> = new EventEmitter<SbbSort>();
   readonly sortChange = this.sbbSortChange;
 
   /**
@@ -141,7 +141,7 @@ export class SbbSortDirective extends SbbSortDirectiveMixinBase
   }
 
   /** Returns the next sort direction of the active sortable, checking for potential overrides. */
-  getNextSortDirection(sortable: SbbSortable): SortDirection {
+  getNextSortDirection(sortable: SbbSortable): SbbSortDirection {
     if (!sortable) {
       return '';
     }
@@ -176,8 +176,8 @@ export class SbbSortDirective extends SbbSortDirectiveMixinBase
 }
 
 /** Returns the sort direction cycle to use given the provided parameters of order and clear. */
-function getSortDirectionCycle(start: 'asc' | 'desc', disableClear: boolean): SortDirection[] {
-  const sortOrder: SortDirection[] = ['asc', 'desc'];
+function getSortDirectionCycle(start: 'asc' | 'desc', disableClear: boolean): SbbSortDirection[] {
+  const sortOrder: SbbSortDirection[] = ['asc', 'desc'];
   if (start === 'desc') {
     sortOrder.reverse();
   }

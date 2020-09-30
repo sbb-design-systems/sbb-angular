@@ -28,9 +28,9 @@ import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { Subject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { Lightbox, LightboxModule, LightboxRef, LIGHTBOX_DATA } from '../public-api';
+import { SbbLightbox, SbbLightboxModule, SbbLightboxRef, SBB_LIGHTBOX_DATA } from '../public-api';
 
-import { LightboxContainerComponent } from './lightbox-container.component';
+import { SbbLightboxContainer } from './lightbox-container.component';
 
 // tslint:disable:i18n
 @Directive({ selector: '[sbbDirWithViewContainer]' })
@@ -69,11 +69,11 @@ class ComponentWithChildViewContainerComponent {
 })
 class ComponentWithTemplateRefComponent {
   localValue: string;
-  lightboxRef: LightboxRef<any>;
+  lightboxRef: SbbLightboxRef<any>;
 
   @ViewChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
 
-  setLightboxRef(lightboxRef: LightboxRef<any>): string {
+  setLightboxRef(lightboxRef: SbbLightboxRef<any>): string {
     this.lightboxRef = lightboxRef;
     return '';
   }
@@ -83,7 +83,7 @@ class ComponentWithTemplateRefComponent {
 @Component({ template: '<p>Pizza</p> <input> <button>Close</button>' })
 class PizzaMsgComponent {
   constructor(
-    public lightboxRef: LightboxRef<PizzaMsgComponent>,
+    public lightboxRef: SbbLightboxRef<PizzaMsgComponent>,
     public lightboxInjector: Injector
   ) {}
 }
@@ -138,16 +138,16 @@ class ComponentWithContentElementTemplateRefComponent {
 
 @Component({
   template: '',
-  providers: [Lightbox],
+  providers: [SbbLightbox],
 })
 class ComponentThatProvidesLightboxComponent {
-  constructor(public lightbox: Lightbox) {}
+  constructor(public lightbox: SbbLightbox) {}
 }
 
 /** Simple component for testing ComponentPortal. */
 @Component({ template: '' })
 class LightboxWithInjectedDataComponent {
-  constructor(@Inject(LIGHTBOX_DATA) public data: any) {}
+  constructor(@Inject(SBB_LIGHTBOX_DATA) public data: any) {}
 }
 
 @Component({ template: '<p>Pasta</p>' })
@@ -168,7 +168,7 @@ const TEST_DIRECTIVES = [
 ];
 
 @NgModule({
-  imports: [LightboxModule, NoopAnimationsModule],
+  imports: [SbbLightboxModule, NoopAnimationsModule],
   exports: TEST_DIRECTIVES,
   declarations: TEST_DIRECTIVES,
   entryComponents: [
@@ -183,7 +183,7 @@ const TEST_DIRECTIVES = [
 class LightboxTestModule {}
 
 describe('Lightbox', () => {
-  let lightbox: Lightbox;
+  let lightbox: SbbLightbox;
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
   const scrolledSubject = new Subject();
@@ -194,7 +194,7 @@ describe('Lightbox', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [LightboxModule, LightboxTestModule],
+      imports: [SbbLightboxModule, LightboxTestModule],
       providers: [
         { provide: Location, useClass: SpyLocation },
         {
@@ -212,8 +212,8 @@ describe('Lightbox', () => {
   }));
 
   beforeEach(inject(
-    [Lightbox, Location, OverlayContainer],
-    (l: Lightbox, loc: Location, oc: OverlayContainer) => {
+    [SbbLightbox, Location, OverlayContainer],
+    (l: SbbLightbox, loc: Location, oc: OverlayContainer) => {
       lightbox = l;
       mockLocation = loc as SpyLocation;
       overlayContainer = oc;
@@ -471,7 +471,7 @@ describe('Lightbox', () => {
   }));
 
   it('should notify the observers if a lightbox has been opened', (done) => {
-    let lightboxRef: LightboxRef<any>;
+    let lightboxRef: SbbLightboxRef<any>;
 
     lightbox.afterOpen.pipe(delay(0)).subscribe((ref) => {
       expect(lightboxRef).toBe(ref);
@@ -532,8 +532,8 @@ describe('Lightbox', () => {
     const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
-    const lightboxContainer: LightboxContainerComponent = viewContainerFixture.debugElement.query(
-      By.directive(LightboxContainerComponent)
+    const lightboxContainer: SbbLightboxContainer = viewContainerFixture.debugElement.query(
+      By.directive(SbbLightboxContainer)
     ).componentInstance;
 
     expect(lightboxContainer.state).toBe('enter');
@@ -800,7 +800,7 @@ describe('Lightbox', () => {
   });
 
   describe('lightbox content elements', () => {
-    let lightboxRef: LightboxRef<any>;
+    let lightboxRef: SbbLightboxRef<any>;
 
     describe('inside component lightbox', () => {
       beforeEach(fakeAsync(() => {
@@ -902,14 +902,14 @@ describe('Lightbox', () => {
 });
 
 describe('Lightbox with a parent Lightbox', () => {
-  let parentLightbox: Lightbox;
-  let childLightbox: Lightbox;
+  let parentLightbox: SbbLightbox;
+  let childLightbox: SbbLightbox;
   let overlayContainerElement: HTMLElement;
   let fixture: ComponentFixture<ComponentThatProvidesLightboxComponent>;
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [LightboxModule, LightboxTestModule],
+      imports: [SbbLightboxModule, LightboxTestModule],
       declarations: [ComponentThatProvidesLightboxComponent],
       providers: [
         {
@@ -926,7 +926,7 @@ describe('Lightbox with a parent Lightbox', () => {
     TestBed.compileComponents();
   }));
 
-  beforeEach(inject([Lightbox], (d: Lightbox) => {
+  beforeEach(inject([SbbLightbox], (d: SbbLightbox) => {
     parentLightbox = d;
 
     fixture = TestBed.createComponent(ComponentThatProvidesLightboxComponent);

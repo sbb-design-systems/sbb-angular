@@ -7,9 +7,9 @@ import {
   Optional,
 } from '@angular/core';
 
-import { DialogHelperService } from '../dialog/dialog-helper.service';
-import { DialogRef } from '../dialog/dialog-ref';
-import { Dialog } from '../dialog/dialog.service';
+import { SbbDialogHelperService } from '../dialog/dialog-helper.service';
+import { SbbDialogRef } from '../dialog/dialog-ref';
+import { SbbDialog } from '../dialog/dialog.service';
 
 /**
  * Header of a dialog element. Stays fixed to the top of the dialog when scrolling.
@@ -29,18 +29,18 @@ import { Dialog } from '../dialog/dialog.service';
     class: 'sbb-dialog-header',
   },
 })
-export class DialogHeaderComponent implements OnInit {
+export class SbbDialogHeader implements OnInit {
   /** Disables dialog header when dialog is closed.  */
   isCloseDisabled: boolean;
   /** @deprecated internal detail */
   dialogHeaderClass = true;
 
   constructor(
-    @Optional() private _dialogRef: DialogRef<any>,
+    @Optional() private _dialogRef: SbbDialogRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
-    private _dialog: Dialog,
+    private _dialog: SbbDialog,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _dialogHelperService: DialogHelperService
+    private _dialogHelperService: SbbDialogHelperService
   ) {}
 
   ngOnInit() {

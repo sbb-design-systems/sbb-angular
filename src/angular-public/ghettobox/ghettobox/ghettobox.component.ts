@@ -15,20 +15,20 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
-import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
+import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { SbbLinkGeneratorResult } from '@sbb-esta/angular-core/models';
 
-import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
+import { SbbGhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
 
-import { GHETTOBOX_ANIMATIONS } from './ghettobox-animations';
-import { Ghettobox } from './ghettobox-ref';
+import { SBB_GHETTOBOX_ANIMATIONS } from './ghettobox-animations';
+import { SbbGhettoboxConfig } from './ghettobox-ref';
 
 /** Ghettobox states used for the animation */
-export type GhettoboxState = 'added' | 'deleted';
+export type SbbGhettoboxState = 'added' | 'deleted';
 
 /** Ghettobox deleted custom event  */
-export interface GhettoboxDeletedEvent {
-  ghettoboxState: GhettoboxState;
+export interface SbbGhettoboxDeletedEvent {
+  ghettoboxState: SbbGhettoboxState;
   ghettoboxId: string;
 }
 
@@ -40,9 +40,9 @@ let counter = 0;
   styleUrls: ['./ghettobox.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  animations: [GHETTOBOX_ANIMATIONS.addDelete],
+  animations: [SBB_GHETTOBOX_ANIMATIONS.addDelete],
 })
-export class GhettoboxComponent {
+export class SbbGhettobox {
   visible = true;
 
   /**
@@ -63,7 +63,7 @@ export class GhettoboxComponent {
   /**
    * Retrive the routerLink from the proper source
    */
-  get link(): RouterLink | LinkGeneratorResult {
+  get link(): RouterLink | SbbLinkGeneratorResult {
     return this._routerLinkDirective || (this.ghettobox ? this.ghettobox.link : undefined);
   }
 
@@ -72,11 +72,11 @@ export class GhettoboxComponent {
   /**
    * Get/Set ghettobox state
    */
-  private _ghettoboxState: GhettoboxState = 'added';
+  private _ghettoboxState: SbbGhettoboxState = 'added';
   get ghettoboxState() {
     return this._ghettoboxState;
   }
-  set ghettoboxState(value: GhettoboxState) {
+  set ghettoboxState(value: SbbGhettoboxState) {
     this._ghettoboxState = value;
     this._changeDetector.markForCheck();
   }
@@ -84,7 +84,7 @@ export class GhettoboxComponent {
   /**
    * Emit a GhettoboxDeletedEvent after every ghettobox deletion
    */
-  @Output() afterDelete = new EventEmitter<GhettoboxDeletedEvent>();
+  @Output() afterDelete = new EventEmitter<SbbGhettoboxDeletedEvent>();
 
   @HostBinding('hidden')
   get hidden() {
@@ -121,17 +121,17 @@ export class GhettoboxComponent {
    * icon placed in template
    * @docs-private
    */
-  @ContentChild(IconDirective, { read: TemplateRef })
+  @ContentChild(SbbIconDirective, { read: TemplateRef })
   _contentIcon: TemplateRef<any>;
 
   /**
    * ghettobox object which construct the ghettobox when it's being created by the GhettoboxService
    */
-  private _ghettobox: Ghettobox;
+  private _ghettobox: SbbGhettoboxConfig;
   get ghettobox() {
     return this._ghettobox;
   }
-  set ghettobox(value: Ghettobox) {
+  set ghettobox(value: SbbGhettoboxConfig) {
     this._ghettobox = value;
 
     if (this._ghettobox.icon) {
@@ -142,7 +142,7 @@ export class GhettoboxComponent {
 
   constructor(
     private _changeDetector: ChangeDetectorRef,
-    private _ghettoboxContainerService: GhettoboxContainerService,
+    private _ghettoboxContainerService: SbbGhettoboxContainerService,
     @Optional() @Self() private _routerLinkDirective: RouterLink
   ) {}
 

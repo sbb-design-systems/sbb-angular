@@ -1,9 +1,9 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AccordionModule } from '@sbb-esta/angular-business/accordion';
+import { SbbAccordionModule } from '@sbb-esta/angular-business/accordion';
 import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
-import { TabsModule } from '@sbb-esta/angular-business/tabs';
+import { SbbTabsModule } from '@sbb-esta/angular-business/tabs';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -24,10 +24,10 @@ import { BusinessComponent } from './business/business.component';
     PortalModule,
     BusinessExamplesModule,
     SharedModule,
-    TabsModule,
+    SbbTabsModule,
     BusinessRoutingModule,
     SbbSidebarModule,
-    AccordionModule,
+    SbbAccordionModule,
   ],
 })
 export class BusinessModule {}

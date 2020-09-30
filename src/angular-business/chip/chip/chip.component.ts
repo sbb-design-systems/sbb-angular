@@ -14,7 +14,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     '[attr.aria-hidden]': 'this.ariaHidden',
   },
 })
-export class ChipComponent {
+export class SbbChip {
   /** The label to display on the chip. */
   @Input()
   label: string;
@@ -31,7 +31,7 @@ export class ChipComponent {
 
   /** Emits the current chip instance on dismissal. */
   @Output()
-  dismissed: EventEmitter<ChipComponent> = new EventEmitter();
+  dismissed: EventEmitter<SbbChip> = new EventEmitter();
 
   /**
    * TODO: Refactor to _ariaHidden

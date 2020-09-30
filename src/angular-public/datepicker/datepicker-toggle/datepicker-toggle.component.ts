@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { merge, of, Subscription } from 'rxjs';
 
-import { DatepickerComponent } from '../datepicker/datepicker.component';
+import { SbbDatepicker } from '../datepicker/datepicker.component';
 
 @Component({
   selector: 'sbb-datepicker-toggle',
@@ -26,7 +26,7 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
     '[attr.tabindex]': 'null',
   },
 })
-export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, AfterContentInit {
+export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterContentInit {
   private _stateChanges = Subscription.EMPTY;
 
   /** Tabindex for the toggle. */
@@ -44,7 +44,7 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    private _datepicker: DatepickerComponent<D>,
+    private _datepicker: SbbDatepicker<D>,
     @Attribute('tabindex') defaultTabIndex: string
   ) {
     const parsedTabIndex = Number(defaultTabIndex);

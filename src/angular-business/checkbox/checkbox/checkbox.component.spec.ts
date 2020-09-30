@@ -7,7 +7,7 @@ import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 
-import { CheckboxComponent } from './checkbox.component';
+import { SbbCheckbox } from './checkbox.component';
 
 // tslint:disable:i18n
 @Component({
@@ -23,22 +23,22 @@ class ModelCheckboxTestComponent {
   indeterminate = false;
 
   @ViewChild('check1')
-  checkboxComponent: CheckboxComponent;
+  checkboxComponent: SbbCheckbox;
 }
 
 describe('CheckboxComponent', () => {
-  let component: CheckboxComponent;
-  let fixture: ComponentFixture<CheckboxComponent>;
+  let component: SbbCheckbox;
+  let fixture: ComponentFixture<SbbCheckbox>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [CheckboxComponent],
+      declarations: [SbbCheckbox],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckboxComponent);
+    fixture = TestBed.createComponent(SbbCheckbox);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -59,7 +59,7 @@ describe('CheckboxComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [CheckboxComponent, ModelCheckboxTestComponent],
+      declarations: [SbbCheckbox, ModelCheckboxTestComponent],
     }).compileComponents();
   }));
 

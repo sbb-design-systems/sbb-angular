@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { RadioChange } from '@sbb-esta/angular-core/radio-button';
+import { SbbRadioChange } from '@sbb-esta/angular-core/radio-button';
 
 @Component({
   selector: 'sbb-toggle-example',
@@ -24,7 +24,7 @@ export class ToggleExampleComponent implements OnInit {
     });
   }
 
-  change(toggleValues: RadioChange) {
+  change(toggleValues: SbbRadioChange) {
     this.toggleValues = toggleValues.value;
   }
 }

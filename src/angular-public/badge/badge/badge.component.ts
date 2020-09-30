@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   styleUrls: ['./badge.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BadgeComponent {
+export class SbbBadge {
   /**
    * The badge has two status, but, basically its common usage is in active state (see {@link TabsComponent}).
    * Anyway this property can change its status, and so it will change the styling.

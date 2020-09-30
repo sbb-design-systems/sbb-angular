@@ -15,10 +15,10 @@ import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 let counter = 0;
 
 /** Event object emitted by AutocompleteOptionComponent when selected or deselected. */
-export class DropdownSelectionChange {
+export class SbbDropdownSelectionChange {
   constructor(
     /** Reference to the option that emitted the event. */
-    public source: DropdownItemDirective
+    public source: SbbDropdownItem
   ) {}
 }
 
@@ -27,14 +27,14 @@ export class DropdownSelectionChange {
  * Contains properties that the options can inherit.
  * @docs-private
  */
-export interface DropdownParentComponent {
+export interface SbbDropdownParent {
   multiple?: boolean;
 }
 
 /**
  * Injection token used to provide the parent component to options.
  */
-export const SBB_DROPDOWN_ITEM_PARENT_COMPONENT = new InjectionToken<DropdownParentComponent>(
+export const SBB_DROPDOWN_ITEM_PARENT_COMPONENT = new InjectionToken<SbbDropdownParent>(
   'SBB_DROPDOWN_ITEM_PARENT_COMPONENT'
 );
 
@@ -66,7 +66,7 @@ export function getDropdownItemScrollPosition(
 }
 
 @Directive({ selector: '[sbbDropdownItem]' })
-export class DropdownItemDirective implements Highlightable {
+export class SbbDropdownItem implements Highlightable {
   /**
    * Identifier of a dropdown item.
    */
@@ -87,7 +87,7 @@ export class DropdownItemDirective implements Highlightable {
    * Event generated to click on a specific dropdown item.
    */
   @Output()
-  readonly selectionChange = new EventEmitter<DropdownSelectionChange>();
+  readonly selectionChange = new EventEmitter<SbbDropdownSelectionChange>();
 
   /**
    * Css class associated to a dropdown item when it is active.
@@ -135,7 +135,7 @@ export class DropdownItemDirective implements Highlightable {
   }
 
   private _emitSelectionChangeEvent(): void {
-    this.selectionChange.emit(new DropdownSelectionChange(this));
+    this.selectionChange.emit(new SbbDropdownSelectionChange(this));
   }
 
   select(): void {

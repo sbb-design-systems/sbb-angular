@@ -1,4 +1,4 @@
-export interface EsriConfiguration {
+export interface SbbEsriConfiguration {
   cssUrl?: string;
   arcgisJsUrl?: string;
   trustedServers?: string[];

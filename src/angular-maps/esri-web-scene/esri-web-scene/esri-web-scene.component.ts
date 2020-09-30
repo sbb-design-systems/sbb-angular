@@ -10,9 +10,13 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { EsriTypesService, GraphicService, HitTestService } from '@sbb-esta/angular-maps/core';
+import {
+  SbbEsriTypesService,
+  SbbGraphicService,
+  SbbHitTestService,
+} from '@sbb-esta/angular-maps/core';
 
-import { SBBEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
+import { SbbEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
 
 @Component({
   selector: 'sbb-esri-web-scene',
@@ -20,8 +24,8 @@ import { SBBEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
   styleUrls: ['./esri-web-scene.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EsriWebSceneComponent implements OnInit {
-  private _camera: SBBEsri3DCamera;
+export class SbbEsriWebScene implements OnInit {
+  private _camera: SbbEsri3DCamera;
 
   /** The reference to the esri.SceneView*/
   sceneView: __esri.SceneView;
@@ -39,7 +43,7 @@ export class EsriWebSceneComponent implements OnInit {
   @Input() sceneViewProperties: __esri.SceneViewProperties;
 
   /** Update the active SceneView extent */
-  @Input() set sceneCamera(newCamera: SBBEsri3DCamera) {
+  @Input() set sceneCamera(newCamera: SbbEsri3DCamera) {
     this._camera = newCamera;
     this._setSceneViewCamera(newCamera);
   }
@@ -66,10 +70,10 @@ export class EsriWebSceneComponent implements OnInit {
   @Output() mapReady: EventEmitter<__esri.SceneView> = new EventEmitter();
 
   constructor(
-    private _esri: EsriTypesService,
+    private _esri: SbbEsriTypesService,
     private _elementRef: ElementRef,
-    private _geometryUtilsService: GraphicService,
-    private _hitTestService: HitTestService
+    private _geometryUtilsService: SbbGraphicService,
+    private _hitTestService: SbbHitTestService
   ) {}
 
   async ngOnInit() {
@@ -103,7 +107,7 @@ export class EsriWebSceneComponent implements OnInit {
   }
 
   /** Updates the extent of the sceneview. */
-  private _setSceneViewCamera(newCamera: SBBEsri3DCamera) {
+  private _setSceneViewCamera(newCamera: SbbEsri3DCamera) {
     if (this.sceneView && newCamera) {
       const cam = this._createNewCamera(newCamera);
       this.sceneView.goTo(cam);
@@ -124,7 +128,7 @@ export class EsriWebSceneComponent implements OnInit {
     this.cameraChanged.emit(camera);
   }
 
-  private _createNewCamera(newCam: SBBEsri3DCamera): __esri.Camera {
+  private _createNewCamera(newCam: SbbEsri3DCamera): __esri.Camera {
     return new this._esri.Camera({
       position: newCam.position,
       tilt: newCam.tilt,

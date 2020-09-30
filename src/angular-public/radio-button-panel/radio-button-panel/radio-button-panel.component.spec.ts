@@ -5,9 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
 
-import { RadioButtonPanelModule } from '../radio-button-panel.module';
+import { SbbRadioButtonPanelModule } from '../radio-button-panel.module';
 
-import { RadioButtonPanelComponent } from './radio-button-panel.component';
+import { SbbRadioButtonPanel } from './radio-button-panel.component';
 
 // tslint:disable:i18n
 @Component({
@@ -25,22 +25,22 @@ import { RadioButtonPanelComponent } from './radio-button-panel.component';
 })
 class ModelOptionSelectionTestComponent {
   testValue = '2';
-  @ViewChildren(RadioButtonPanelComponent) optionSelections: QueryList<RadioButtonPanelComponent>;
+  @ViewChildren(SbbRadioButtonPanel) optionSelections: QueryList<SbbRadioButtonPanel>;
 }
 
 describe('RadioButtonPanelComponent', () => {
-  let component: RadioButtonPanelComponent;
-  let fixture: ComponentFixture<RadioButtonPanelComponent>;
+  let component: SbbRadioButtonPanel;
+  let fixture: ComponentFixture<SbbRadioButtonPanel>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, RadioButtonPanelModule],
+      imports: [CommonModule, FormsModule, SbbRadioButtonPanelModule],
       declarations: [ModelOptionSelectionTestComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RadioButtonPanelComponent);
+    fixture = TestBed.createComponent(SbbRadioButtonPanel);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -60,7 +60,7 @@ describe('RadioButtonPanelComponent using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, RadioButtonPanelModule, ɵRadioButtonModule],
+      imports: [FormsModule, SbbRadioButtonPanelModule, ɵRadioButtonModule],
       declarations: [ModelOptionSelectionTestComponent],
     }).compileComponents();
   }));
@@ -80,7 +80,7 @@ describe('RadioButtonPanelComponent using mock component', () => {
     expect(modelComponent).toBeTruthy();
 
     const optionSelectionComponents = modelComponentFixture.debugElement.queryAll(
-      By.directive(RadioButtonPanelComponent)
+      By.directive(SbbRadioButtonPanel)
     );
     expect(optionSelectionComponents).toBeTruthy();
     expect(optionSelectionComponents.length).toBe(2);

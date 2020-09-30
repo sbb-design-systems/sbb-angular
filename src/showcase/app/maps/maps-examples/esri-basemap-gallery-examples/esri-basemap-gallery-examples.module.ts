@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { EsriBasemapGalleryModule } from '@sbb-esta/angular-maps/esri-basemap-gallery';
-import { EsriWebSceneModule } from '@sbb-esta/angular-maps/esri-web-scene';
+import { SbbEsriBasemapGalleryModule } from '@sbb-esta/angular-maps/esri-basemap-gallery';
+import { SbbEsriWebSceneModule } from '@sbb-esta/angular-maps/esri-web-scene';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -14,7 +14,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, EsriBasemapGalleryModule, EsriWebSceneModule],
+  imports: [CommonModule, SbbEsriBasemapGalleryModule, SbbEsriWebSceneModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('maps', 'esri-basemap-gallery', EXAMPLE_INDEX)],

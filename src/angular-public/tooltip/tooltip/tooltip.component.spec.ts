@@ -7,12 +7,12 @@ import { By } from '@angular/platform-browser';
 import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base/tooltip';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
-import { ButtonModule } from '@sbb-esta/angular-public/button';
-import { FieldModule } from '@sbb-esta/angular-public/field';
+import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
 
-import { TooltipModule } from '../tooltip.module';
+import { SbbTooltipModule } from '../tooltip.module';
 
-import { TooltipComponent } from './tooltip.component';
+import { SbbTooltipComponent } from './tooltip.component';
 
 // tslint:disable:i18n
 @Component({
@@ -29,7 +29,7 @@ import { TooltipComponent } from './tooltip.component';
   `,
 })
 class TooltipTestComponent {
-  @ViewChild('t1', { static: true }) t1: TooltipComponent;
+  @ViewChild('t1', { static: true }) t1: SbbTooltipComponent;
   onClose() {}
   onOpen() {}
 }
@@ -52,27 +52,27 @@ class TooltipTestComponent {
   `,
 })
 class DoubleTooltipTestComponent {
-  @ViewChild('t1', { static: true }) t1: TooltipComponent;
-  @ViewChild('t2', { static: true }) t2: TooltipComponent;
+  @ViewChild('t1', { static: true }) t1: SbbTooltipComponent;
+  @ViewChild('t2', { static: true }) t2: SbbTooltipComponent;
 
   onClose() {}
   onOpen() {}
 }
 
 describe('TooltipComponent', () => {
-  let component: TooltipComponent;
-  let fixture: ComponentFixture<TooltipComponent>;
+  let component: SbbTooltipComponent;
+  let fixture: ComponentFixture<SbbTooltipComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconModule, SbbIconTestingModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
-      declarations: [TooltipComponent],
+      declarations: [SbbTooltipComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TooltipComponent);
+    fixture = TestBed.createComponent(SbbTooltipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -92,7 +92,7 @@ describe('TooltipComponent using mock component for single tooltip', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TooltipModule, FieldModule, ButtonModule, SbbIconTestingModule],
+      imports: [SbbTooltipModule, SbbFieldModule, SbbButtonModule, SbbIconTestingModule],
       declarations: [TooltipTestComponent],
     }).compileComponents();
   }));
@@ -175,7 +175,7 @@ describe('TooltipComponent using mock component for double tooltip', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TooltipModule, FieldModule, SbbIconTestingModule],
+      imports: [SbbTooltipModule, SbbFieldModule, SbbIconTestingModule],
       declarations: [DoubleTooltipTestComponent],
     }).compileComponents();
   }));

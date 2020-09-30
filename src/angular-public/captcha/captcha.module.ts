@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { CaptchaLoaderService } from './captcha/captcha-loader.service';
-import { CaptchaComponent } from './captcha/captcha.component';
-import { WindowRef } from './captcha/windowref.service';
+import { SbbCaptchaLoaderService } from './captcha/captcha-loader.service';
+import { SbbCaptcha } from './captcha/captcha.component';
+import { SbbWindowRef } from './captcha/windowref.service';
 
 @NgModule({
-  declarations: [CaptchaComponent],
+  declarations: [SbbCaptcha],
   imports: [CommonModule],
-  exports: [CaptchaComponent],
-  providers: [CaptchaLoaderService, WindowRef],
+  exports: [SbbCaptcha],
+  providers: [SbbCaptchaLoaderService, SbbWindowRef],
 })
-export class CaptchaModule {}
+export class SbbCaptchaModule {}

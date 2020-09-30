@@ -2,18 +2,18 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule } from '@sbb-esta/angular-business/accordion';
-import { ButtonModule } from '@sbb-esta/angular-business/button';
-import { DialogModule } from '@sbb-esta/angular-business/dialog';
+import { SbbAccordionModule } from '@sbb-esta/angular-business/accordion';
+import { SbbButtonModule } from '@sbb-esta/angular-business/button';
+import { SbbDialogModule } from '@sbb-esta/angular-business/dialog';
 import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
-import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
+import { SbbTooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
-import { FieldModule } from '@sbb-esta/angular-public/field';
-import { LoadingModule } from '@sbb-esta/angular-public/loading';
-import { PaginationModule } from '@sbb-esta/angular-public/pagination';
-import { SelectModule } from '@sbb-esta/angular-public/select';
-import { TabsModule } from '@sbb-esta/angular-public/tabs';
+import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbLoadingModule } from '@sbb-esta/angular-public/loading';
+import { SbbPaginationModule } from '@sbb-esta/angular-public/pagination';
+import { SbbSelectModule } from '@sbb-esta/angular-public/select';
+import { SbbTabsModule } from '@sbb-esta/angular-public/tabs';
 
 import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';
 import { SharedModule } from '../shared/shared.module';
@@ -39,21 +39,21 @@ import { IconOverviewComponent } from './icon-overview/icon-overview.component';
     PortalModule,
     SharedModule,
     ComponentViewerModule,
-    TabsModule,
+    SbbTabsModule,
     CoreRoutingModule,
     CoreExamplesModule,
     SbbIconModule,
-    TooltipModule,
-    LoadingModule,
-    DialogModule,
-    ButtonModule,
-    CheckboxModule,
+    SbbTooltipModule,
+    SbbLoadingModule,
+    SbbDialogModule,
+    SbbButtonModule,
+    SbbCheckboxModule,
     ReactiveFormsModule,
-    SelectModule,
-    FieldModule,
-    PaginationModule,
+    SbbSelectModule,
+    SbbFieldModule,
+    SbbPaginationModule,
     SbbSidebarModule,
-    AccordionModule,
+    SbbAccordionModule,
   ],
 })
 export class CoreModule {}

@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
-import { LoadingModule } from '@sbb-esta/angular-public/loading';
-import { SearchModule } from '@sbb-esta/angular-public/search';
+import { SbbAutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
+import { SbbLoadingModule } from '@sbb-esta/angular-public/loading';
+import { SbbSearchModule } from '@sbb-esta/angular-public/search';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -36,9 +36,9 @@ const EXAMPLE_INDEX = {
     FormsModule,
     ReactiveFormsModule,
     SbbIconModule,
-    AutocompleteModule,
-    LoadingModule,
-    SearchModule,
+    SbbAutocompleteModule,
+    SbbLoadingModule,
+    SbbSearchModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

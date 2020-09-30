@@ -6,11 +6,11 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
-import { ButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbButtonModule } from '@sbb-esta/angular-public/button';
 
-import { PaginationModule } from '../pagination.module';
+import { SbbPaginationModule } from '../pagination.module';
 
-import { NavigationComponent, NavigationPageChangeEvent } from './navigation.component';
+import { SbbNavigation, SbbNavigationPageChangeEvent } from './navigation.component';
 
 @Component({
   selector: 'sbb-navigation-test',
@@ -28,7 +28,7 @@ import { NavigationComponent, NavigationPageChangeEvent } from './navigation.com
   `,
 })
 export class NavigationTestComponent {
-  @ViewChild('navigation', { static: true }) navigation: NavigationComponent;
+  @ViewChild('navigation', { static: true }) navigation: SbbNavigation;
 
   newPage = { title: 'paginaTest' };
 
@@ -46,7 +46,7 @@ export class NavigationTestComponent {
     return this.hasNext ? this.hasNext.title : null;
   }
 
-  onPageChangeNavigation($event: NavigationPageChangeEvent) {
+  onPageChangeNavigation($event: SbbNavigationPageChangeEvent) {
     if ($event === 'next') {
       this.hasPrevious = this.hasNext;
       this.hasNext = this.pages[this.hasNext.index + 1];
@@ -63,18 +63,18 @@ export class NavigationTestComponent {
 }
 
 describe('NavigationComponent', () => {
-  let component: NavigationComponent;
-  let fixture: ComponentFixture<NavigationComponent>;
+  let component: SbbNavigation;
+  let fixture: ComponentFixture<SbbNavigation>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
-      declarations: [NavigationComponent],
+      declarations: [SbbNavigation],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavigationComponent);
+    fixture = TestBed.createComponent(SbbNavigation);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -91,10 +91,10 @@ describe('NavigationComponent behaviour', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        PaginationModule,
+        SbbPaginationModule,
         SbbIconTestingModule,
         RouterTestingModule,
-        ButtonModule,
+        SbbButtonModule,
         FormsModule,
       ],
       declarations: [NavigationTestComponent],

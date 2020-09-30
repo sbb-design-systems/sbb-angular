@@ -3,9 +3,11 @@
 
 import { InjectionToken } from '@angular/core';
 
-export const RECAPTCHA_SETTINGS = new InjectionToken<RecaptchaSettings>('recaptcha-settings');
+export const SBB_RECAPTCHA_SETTINGS = new InjectionToken<SbbRecaptchaSettings>(
+  'recaptcha-settings'
+);
 
-export interface RecaptchaSettings {
+export interface SbbRecaptchaSettings {
   /**
    * SiteKey of the user.
    * It is optional.
@@ -33,6 +35,6 @@ export interface RecaptchaSettings {
   badge?: ReCaptchaV2.Badge;
 }
 
-export const RECAPTCHA_DEFAULT_BASE_URL = 'https://www.google.com/recaptcha/api.js';
+export const SBB_RECAPTCHA_DEFAULT_BASE_URL = 'https://www.google.com/recaptcha/api.js';
 
-export const RECAPTCHA_CALLBACK_NAME = 'ng2recaptchaloaded';
+export const SBB_RECAPTCHA_CALLBACK_NAME = 'ng2recaptchaloaded';

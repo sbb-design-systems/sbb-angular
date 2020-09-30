@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
-import { FieldModule } from '@sbb-esta/angular-business/field';
+import { SbbAutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
+import { SbbFieldModule } from '@sbb-esta/angular-business/field';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -32,7 +32,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, AutocompleteModule, FieldModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SbbAutocompleteModule, SbbFieldModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('business', 'autocomplete', EXAMPLE_INDEX)],

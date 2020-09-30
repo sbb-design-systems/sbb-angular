@@ -24,12 +24,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
-import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
+import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular-public/input';
 import { Subscription } from 'rxjs';
 
 import { createMissingDateImplError } from '../datepicker-errors';
-import { DatepickerComponent } from '../datepicker/datepicker.component';
+import { SbbDatepicker } from '../datepicker/datepicker.component';
 
 /**
  * An event used for date input and change events. We don't always have access to a native
@@ -42,7 +42,7 @@ export class SbbDateInputEvent<D> {
 
   constructor(
     /** Reference to the date input component that emitted the event. */
-    public target: DateInputDirective<D>,
+    public target: SbbDateInput<D>,
     /** Reference to the native input element associated with the date input. */
     public targetElement: HTMLElement
   ) {
@@ -53,14 +53,14 @@ export class SbbDateInputEvent<D> {
 export const SBB_DATE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   // tslint:disable-next-line:no-use-before-declare
-  useExisting: forwardRef(() => DateInputDirective),
+  useExisting: forwardRef(() => SbbDateInput),
   multi: true,
 };
 
 export const SBB_DATE_VALIDATORS: any = {
   provide: NG_VALIDATORS,
   // tslint:disable-next-line:no-use-before-declare
-  useExisting: forwardRef(() => DateInputDirective),
+  useExisting: forwardRef(() => SbbDateInput),
   multi: true,
 };
 
@@ -70,7 +70,7 @@ export const SBB_DATE_VALIDATORS: any = {
   providers: [
     SBB_DATE_VALUE_ACCESSOR,
     SBB_DATE_VALIDATORS,
-    { provide: SBB_INPUT_VALUE_ACCESSOR, useExisting: DateInputDirective },
+    { provide: SBB_INPUT_VALUE_ACCESSOR, useExisting: SbbDateInput },
   ],
   host: {
     class: 'sbb-date-input',
@@ -81,7 +81,7 @@ export const SBB_DATE_VALIDATORS: any = {
     '[disabled]': 'this.isDisabled',
   },
 })
-export class DateInputDirective<D> implements ControlValueAccessor, Validator, OnInit, OnDestroy {
+export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   /** @deprecated internal detail */
   cssClass = true;
 
@@ -259,9 +259,9 @@ export class DateInputDirective<D> implements ControlValueAccessor, Validator, O
 
   constructor(
     private _elementRef: ElementRef<HTMLInputElement>,
-    @Optional() public dateAdapter: DateAdapter<D>,
-    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
-    @Optional() private _datepicker: DatepickerComponent<D>
+    @Optional() public dateAdapter: SbbDateAdapter<D>,
+    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
+    @Optional() private _datepicker: SbbDatepicker<D>
   ) {
     if (!this.dateAdapter) {
       throw createMissingDateImplError('DateAdapter');

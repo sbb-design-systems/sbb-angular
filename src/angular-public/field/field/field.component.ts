@@ -12,13 +12,13 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormFieldControl } from '@sbb-esta/angular-core/forms';
+import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
-import { FormErrorDirective } from '../form-error/form-error.directive';
-import { FORM_FIELD } from '../form-field-token';
-import { LabelComponent } from '../label/label.component';
+import { SbbFormError } from '../form-error/form-error.directive';
+import { SBB_FORM_FIELD } from '../form-field-token';
+import { SbbLabel } from '../label/label.component';
 
 @Component({
   selector: 'sbb-field',
@@ -26,9 +26,9 @@ import { LabelComponent } from '../label/label.component';
   styleUrls: ['./field.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [{ provide: FORM_FIELD, useExisting: FieldComponent }],
+  providers: [{ provide: SBB_FORM_FIELD, useExisting: SbbField }],
 })
-export class FieldComponent implements AfterContentInit, OnDestroy {
+export class SbbField implements AfterContentInit, OnDestroy {
   /** @docs-private */
   @HostBinding('class.sbb-input-field')
   _fieldClass = true;
@@ -41,9 +41,9 @@ export class FieldComponent implements AfterContentInit, OnDestroy {
    */
   @Input() mode: 'default' | 'short' | 'medium' | 'long' = 'default';
 
-  @ContentChild(FormFieldControl) _control: FormFieldControl<any>;
-  @ContentChild(LabelComponent, { static: true }) contentLabel: LabelComponent;
-  @ContentChildren(FormErrorDirective) formErrors: QueryList<FormErrorDirective>;
+  @ContentChild(SbbFormFieldControl) _control: SbbFormFieldControl<any>;
+  @ContentChild(SbbLabel, { static: true }) contentLabel: SbbLabel;
+  @ContentChildren(SbbFormError) formErrors: QueryList<SbbFormError>;
 
   /** @docs-private */
   @HostBinding('class.sbb-input-field-default')

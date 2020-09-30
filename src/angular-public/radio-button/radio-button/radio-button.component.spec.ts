@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
 
-import { RadioButtonComponent } from './radio-button.component';
+import { SbbRadioButton } from './radio-button.component';
 
 // tslint:disable:i18n
 @Component({
@@ -26,18 +26,18 @@ class ModelRadioButtonTestComponent {
 }
 
 describe('RadioButtonComponent', () => {
-  let component: RadioButtonComponent;
-  let fixture: ComponentFixture<RadioButtonComponent>;
+  let component: SbbRadioButton;
+  let fixture: ComponentFixture<SbbRadioButton>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule],
-      declarations: [RadioButtonComponent],
+      declarations: [SbbRadioButton],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RadioButtonComponent);
+    fixture = TestBed.createComponent(SbbRadioButton);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
@@ -59,7 +59,7 @@ describe('RadioButtonComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, ɵRadioButtonModule],
-      declarations: [RadioButtonComponent, ModelRadioButtonTestComponent],
+      declarations: [SbbRadioButton, ModelRadioButtonTestComponent],
     }).compileComponents();
   }));
 
@@ -78,7 +78,7 @@ describe('RadioButtonComponent using mock component', () => {
     expect(modelComponent).toBeTruthy();
 
     const radiobuttonComponents = modelComponentFixture.debugElement.queryAll(
-      By.directive(RadioButtonComponent)
+      By.directive(SbbRadioButton)
     );
     expect(radiobuttonComponents).toBeTruthy();
     expect(radiobuttonComponents.length).toBe(2);
@@ -91,7 +91,7 @@ describe('RadioButtonComponent using mock component', () => {
     radiobuttonLabel.nativeElement.click();
 
     const radioButtonComponent = modelComponentFixture.debugElement.query(
-      By.directive(RadioButtonComponent)
+      By.directive(SbbRadioButton)
     );
     expect(radioButtonComponent).toBeTruthy();
 
@@ -101,9 +101,7 @@ describe('RadioButtonComponent using mock component', () => {
   });
 
   it('should be mutual exclusive', () => {
-    const radioButtons = modelComponentFixture.debugElement.queryAll(
-      By.directive(RadioButtonComponent)
-    );
+    const radioButtons = modelComponentFixture.debugElement.queryAll(By.directive(SbbRadioButton));
     radioButtons[0].query(By.css('input[type="radio"]')).nativeElement.click();
 
     let radioButtonChecked = modelComponentFixture.debugElement.queryAll(By.css('input:checked'));
@@ -128,7 +126,7 @@ describe('RadioButtonComponent using mock component', () => {
     await modelComponentFixture.whenStable();
 
     const [firstComponent, secondComponent] = modelComponentFixture.debugElement.queryAll(
-      By.directive(RadioButtonComponent)
+      By.directive(SbbRadioButton)
     );
     expect(firstComponent.componentInstance._checked).toBe(true);
 

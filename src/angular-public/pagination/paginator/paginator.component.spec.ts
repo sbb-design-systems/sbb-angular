@@ -6,7 +6,7 @@ import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 
-import { PaginationModule, SbbPaginatorComponent } from '../../pagination';
+import { SbbPaginationModule, SbbPaginatorComponent } from '../../pagination';
 
 import { SbbPaginatorDefaultOptions, SBB_PAGINATOR_DEFAULT_OPTIONS } from './paginator.component';
 
@@ -62,7 +62,7 @@ class SbbPaginatorWithStringValuesTestComponent {
 describe('SbbPaginatorComponent', () => {
   function createComponent<T>(type: Type<T>, providers: Provider[] = []): ComponentFixture<T> {
     TestBed.configureTestingModule({
-      imports: [PaginationModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
+      imports: [SbbPaginationModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
       declarations: [type],
       providers: [...providers],
     }).compileComponents();

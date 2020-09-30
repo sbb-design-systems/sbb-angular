@@ -1,8 +1,8 @@
 import { InjectionToken } from '@angular/core';
 
-export interface DateFormats {
+export interface SbbDateFormats {
   dateInput: any;
   dateA11yLabel: any;
 }
 
-export const SBB_DATE_FORMATS = new InjectionToken<DateFormats>('sbb-date-formats');
+export const SBB_DATE_FORMATS = new InjectionToken<SbbDateFormats>('sbb-date-formats');

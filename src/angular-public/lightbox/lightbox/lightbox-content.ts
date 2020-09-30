@@ -11,8 +11,8 @@ import {
   Optional,
 } from '@angular/core';
 
-import { LightboxRef } from './lightbox-ref';
-import { Lightbox } from './lightbox.service';
+import { SbbLightboxRef } from './lightbox-ref';
+import { SbbLightbox } from './lightbox.service';
 
 /** Counter used to generate unique IDs for lightbox elements. */
 let lightboxElementUid = 0;
@@ -28,7 +28,7 @@ let lightboxElementUid = 0;
     '[attr.type]': 'type',
   },
 })
-export class LightboxCloseDirective implements OnInit {
+export class SbbLightboxClose implements OnInit {
   /** Screenreader label for the button. */
   @Input('aria-label') ariaLabel: string = 'Close lightbox';
 
@@ -42,9 +42,9 @@ export class LightboxCloseDirective implements OnInit {
   @Input('sbbLightboxClose') lightboxResult: any;
 
   constructor(
-    @Optional() public lightboxRef: LightboxRef<any>,
+    @Optional() public lightboxRef: SbbLightboxRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
-    private _lightbox: Lightbox
+    private _lightbox: SbbLightbox
   ) {}
 
   ngOnInit() {
@@ -89,16 +89,16 @@ export class LightboxCloseDirective implements OnInit {
     class: 'sbb-lightbox-header',
   },
 })
-export class LightboxHeaderComponent implements OnInit {
+export class SbbLightboxHeader implements OnInit {
   /** Disables lightbox header when lightbox is closed.  */
   isCloseDisabled: boolean;
   /** @deprecated internal detail */
   lightboxHeaderClass = true;
 
   constructor(
-    @Optional() private _lightboxRef: LightboxRef<any>,
+    @Optional() private _lightboxRef: SbbLightboxRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
-    private _lightbox: Lightbox,
+    private _lightbox: SbbLightbox,
     private _changeDetectorRef: ChangeDetectorRef
   ) {}
 
@@ -134,16 +134,16 @@ export class LightboxHeaderComponent implements OnInit {
     '[id]': 'id',
   },
 })
-export class LightboxTitleDirective implements OnInit {
+export class SbbLightboxTitle implements OnInit {
   /** Identifier of lightbox title. */
   @Input() id = `sbb-lightbox-title-${lightboxElementUid++}`;
   /** @deprecated internal detail */
   lightboxTitleClass = true;
 
   constructor(
-    @Optional() private _lightboxRef: LightboxRef<any>,
+    @Optional() private _lightboxRef: SbbLightboxRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
-    private _lightbox: Lightbox
+    private _lightbox: SbbLightbox
   ) {}
 
   ngOnInit() {
@@ -174,7 +174,7 @@ export class LightboxTitleDirective implements OnInit {
     class: 'sbb-lightbox-content sbb-scrollbar',
   },
 })
-export class LightboxContentComponent {
+export class SbbLightboxContent {
   /** @deprecated internal detail */
   lightboxContentClass = true;
 }
@@ -194,7 +194,7 @@ export class LightboxContentComponent {
     '[class.sbb-lightbox-footer-align-end]': 'this.alignment === "right"',
   },
 })
-export class LightboxFooterComponent implements OnInit {
+export class SbbLightboxFooter implements OnInit {
   /** Types of alignment. */
   @Input() alignment: 'left' | 'center' | 'right' = 'left';
   /** @deprecated internal detail */
@@ -213,9 +213,9 @@ export class LightboxFooterComponent implements OnInit {
   }
 
   constructor(
-    @Optional() private _lightboxRef: LightboxRef<any>,
+    @Optional() private _lightboxRef: SbbLightboxRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
-    private _lightbox: Lightbox
+    private _lightbox: SbbLightbox
   ) {}
 
   ngOnInit() {
@@ -244,7 +244,10 @@ export class LightboxFooterComponent implements OnInit {
  * @param element Element relative to which to look for a lightbox.
  * @param openLightboxes References to the currently-open lightboxes.
  */
-function getClosestLightbox(element: ElementRef<HTMLElement>, openLightboxes: LightboxRef<any>[]) {
+function getClosestLightbox(
+  element: ElementRef<HTMLElement>,
+  openLightboxes: SbbLightboxRef<any>[]
+) {
   let parent: HTMLElement | null = element.nativeElement.parentElement;
 
   while (parent && !parent.classList.contains('sbb-lightbox-container')) {

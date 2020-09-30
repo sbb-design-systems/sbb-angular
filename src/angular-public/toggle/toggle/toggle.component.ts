@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
+import { SbbRadioGroup } from '@sbb-esta/angular-core/radio-button';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -18,12 +18,12 @@ import { take } from 'rxjs/operators';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ToggleComponent),
+      useExisting: forwardRef(() => SbbToggle),
       multi: true,
     },
     {
-      provide: RadioGroupDirective,
-      useExisting: ToggleComponent,
+      provide: SbbRadioGroup,
+      useExisting: SbbToggle,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,8 +32,7 @@ import { take } from 'rxjs/operators';
     class: 'sbb-toggle',
   },
 })
-export class ToggleComponent extends RadioGroupDirective
-  implements ControlValueAccessor, AfterContentInit {
+export class SbbToggle extends SbbRadioGroup implements ControlValueAccessor, AfterContentInit {
   /**
    * @docs-private
    * @deprecated internal use

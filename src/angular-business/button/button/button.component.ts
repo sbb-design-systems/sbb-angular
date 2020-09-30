@@ -7,8 +7,8 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { BaseButton } from '@sbb-esta/angular-core/base/button';
-import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { SbbBaseButton } from '@sbb-esta/angular-core/base/button';
+import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,7 +18,7 @@ import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ButtonComponent extends BaseButton {
+export class SbbButton extends SbbBaseButton {
   /**
    * Button modes available for different purposes.
    */
@@ -43,7 +43,7 @@ export class ButtonComponent extends BaseButton {
   }
 
   /** @docs-private */
-  @ContentChild(IconDirective, { read: TemplateRef })
+  @ContentChild(SbbIconDirective, { read: TemplateRef })
   _contentIcon: TemplateRef<any>;
 
   /** @docs-private */

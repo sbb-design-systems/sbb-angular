@@ -5,9 +5,9 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import { ProcessflowBase } from '@sbb-esta/angular-core/base/processflow';
+import { SbbProcessflowBase } from '@sbb-esta/angular-core/base/processflow';
 
-import { ProcessflowStepComponent } from '../processflow-step/processflow-step.component';
+import { SbbProcessflowStep } from '../processflow-step/processflow-step.component';
 
 @Component({
   selector: 'sbb-processflow',
@@ -16,8 +16,8 @@ import { ProcessflowStepComponent } from '../processflow-step/processflow-step.c
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepComponent> {
+export class SbbProcessflow extends SbbProcessflowBase<SbbProcessflowStep> {
   /** @docs-private */
-  @ContentChildren(ProcessflowStepComponent)
-  steps: QueryList<ProcessflowStepComponent>;
+  @ContentChildren(SbbProcessflowStep)
+  steps: QueryList<SbbProcessflowStep>;
 }

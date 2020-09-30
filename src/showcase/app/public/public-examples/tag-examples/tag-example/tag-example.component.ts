@@ -1,7 +1,18 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Tag, TagChange } from '@sbb-esta/angular-public/tag';
+import { SbbTagChange } from '@sbb-esta/angular-public/tag';
 import { Subscription } from 'rxjs';
+
+export interface Tag {
+  /** Identifier of a tag. */
+  id?: string;
+  /** Label of a tag. */
+  label: string;
+  /** Amount of results of a tag. */
+  amount: number;
+  /** Refers if a tag is selected. */
+  selected?: boolean;
+}
 
 const tagItems: Tag[] = [
   {
@@ -167,7 +178,7 @@ export class TagExampleComponent implements OnInit, OnDestroy {
     }
   }
 
-  change(evt: TagChange) {
+  change(evt: SbbTagChange) {
     console.log(evt);
   }
 }

@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { ButtonModule } from '@sbb-esta/angular-public/button';
-import { GhettoboxModule } from '@sbb-esta/angular-public/ghettobox';
+import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbGhettoboxModule } from '@sbb-esta/angular-public/ghettobox';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -16,7 +16,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, RouterModule, SbbIconModule, ButtonModule, GhettoboxModule],
+  imports: [CommonModule, RouterModule, SbbIconModule, SbbButtonModule, SbbGhettoboxModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('public', 'ghettobox', EXAMPLE_INDEX)],

@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
-import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
+import { SbbIconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 
-import { NotificationComponent } from './notification/notification.component';
+import { SbbNotification } from './notification/notification.component';
 
 @NgModule({
-  imports: [CommonModule, SbbIconModule, IconDirectiveModule],
-  declarations: [NotificationComponent],
-  exports: [NotificationComponent, IconDirectiveModule],
+  imports: [CommonModule, SbbIconModule, SbbIconDirectiveModule],
+  declarations: [SbbNotification],
+  exports: [SbbNotification, SbbIconDirectiveModule],
   providers: [ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
-export class NotificationModule {}
+export class SbbNotificationModule {}

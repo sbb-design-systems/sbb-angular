@@ -3,7 +3,7 @@
  * The ID attribute is used to load the icons, the name attribute is only used for testing.
  * @docs-private
  */
-export const FAKE_SVGS = {
+export const SBB_FAKE_SVGS = {
   cat: '<svg><path id="meow" name="meow"></path></svg>',
   dog: '<svg><path id="woof" name="woof"></path></svg>',
   dogWithSpaces: '<svg><path id="woof says the dog" name="woof"></path></svg>',

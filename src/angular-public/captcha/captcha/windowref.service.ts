@@ -7,7 +7,7 @@ function _window(): any {
 }
 
 @Injectable()
-export class WindowRef {
+export class SbbWindowRef {
   /**
    * The global native browser window object.
    */

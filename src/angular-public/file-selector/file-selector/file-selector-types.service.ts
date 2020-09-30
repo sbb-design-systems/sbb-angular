@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { FileTypeCategory, FILE_TYPES } from './file-selector-base';
+import { FileTypeCategory, SBB_FILE_TYPES } from './file-selector-base';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FileSelectorTypesService {
+export class SbbFileSelectorTypesService {
   /**
    * Returns the file type category/ies with mime Type in input.
    * @param mimeType Mime type of a file.
@@ -77,22 +77,25 @@ export class FileSelectorTypesService {
     switch (t) {
       case FileTypeCategory.DOC:
         acceptString +=
-          FILE_TYPES.MS_WORD_DOC.concat(FILE_TYPES.MS_EXCEL, FILE_TYPES.MS_POWERPOINT).join() + ',';
+          SBB_FILE_TYPES.MS_WORD_DOC.concat(
+            SBB_FILE_TYPES.MS_EXCEL,
+            SBB_FILE_TYPES.MS_POWERPOINT
+          ).join() + ',';
         break;
       case FileTypeCategory.IMAGE:
-        acceptString += FILE_TYPES.IMAGE.join() + ',';
+        acceptString += SBB_FILE_TYPES.IMAGE.join() + ',';
         break;
       case FileTypeCategory.PDF:
-        acceptString += FILE_TYPES.PDF.join() + ',';
+        acceptString += SBB_FILE_TYPES.PDF.join() + ',';
         break;
       case FileTypeCategory.VIDEO:
-        acceptString += FILE_TYPES.VIDEO.join() + ',';
+        acceptString += SBB_FILE_TYPES.VIDEO.join() + ',';
         break;
       case FileTypeCategory.AUDIO:
-        acceptString += FILE_TYPES.AUDIO.join() + ',';
+        acceptString += SBB_FILE_TYPES.AUDIO.join() + ',';
         break;
       case FileTypeCategory.ZIP:
-        acceptString += FILE_TYPES.ZIP.join() + ',';
+        acceptString += SBB_FILE_TYPES.ZIP.join() + ',';
         break;
     }
 
@@ -101,7 +104,7 @@ export class FileSelectorTypesService {
 
   private _findMimeType(typeNames: string[], mimeType: string): boolean {
     return typeNames.some((type: string) => {
-      return FILE_TYPES[type].indexOf(mimeType) !== -1;
+      return SBB_FILE_TYPES[type].indexOf(mimeType) !== -1;
     });
   }
 

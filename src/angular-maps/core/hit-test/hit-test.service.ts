@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class HitTestService {
+export class SbbHitTestService {
   /**
    * Calls the ESRI hitTest method for a location on a given map-/scene-view.
    */

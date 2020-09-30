@@ -11,7 +11,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
+import { SbbRadioButton, SbbRadioGroup } from '@sbb-esta/angular-core/radio-button';
 
 @Component({
   selector: 'sbb-radio-button-panel',
@@ -21,15 +21,15 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RadioButtonPanelComponent),
+      useExisting: forwardRef(() => SbbRadioButtonPanel),
       multi: true,
     },
-    { provide: RadioButton, useExisting: RadioButtonPanelComponent },
+    { provide: SbbRadioButton, useExisting: SbbRadioButtonPanel },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class RadioButtonPanelComponent extends RadioButton {
+export class SbbRadioButtonPanel extends SbbRadioButton {
   /** Label of a radio button panel. */
   @Input()
   label: string;
@@ -38,7 +38,7 @@ export class RadioButtonPanelComponent extends RadioButton {
   subtitle?: string;
 
   constructor(
-    @Optional() radioGroup: RadioGroupDirective,
+    @Optional() radioGroup: SbbRadioGroup,
     changeDetector: ChangeDetectorRef,
     elementRef: ElementRef,
     focusMonitor: FocusMonitor,

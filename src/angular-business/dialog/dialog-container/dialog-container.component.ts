@@ -22,8 +22,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { DIALOG_ANIMATIONS } from '../dialog/dialog-animations';
-import { DialogConfig } from '../dialog/dialog-config';
+import { SBB_DIALOG_ANIMATIONS } from '../dialog/dialog-animations';
+import { SbbDialogConfig } from '../dialog/dialog-config';
 
 /**
  * Throws an exception for the case when a ComponentPortal is
@@ -45,7 +45,7 @@ export function throwDialogContentAlreadyAttachedError() {
   encapsulation: ViewEncapsulation.None,
   // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
   changeDetection: ChangeDetectionStrategy.Default,
-  animations: [DIALOG_ANIMATIONS.slideDialog],
+  animations: [SBB_DIALOG_ANIMATIONS.slideDialog],
   host: {
     class: 'sbb-dialog-container',
     tabindex: '-1',
@@ -60,7 +60,7 @@ export function throwDialogContentAlreadyAttachedError() {
     '[@slideDialog]': 'state',
   },
 })
-export class DialogContainerComponent extends BasePortalOutlet {
+export class SbbDialogContainer extends BasePortalOutlet {
   /** The portal outlet inside of this container into which the dialog content will be loaded. */
   @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet: CdkPortalOutlet;
 
@@ -157,7 +157,7 @@ export class DialogContainerComponent extends BasePortalOutlet {
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(DOCUMENT) private _document: any,
     /** The dialog configuration. */
-    public config: DialogConfig
+    public config: SbbDialogConfig
   ) {
     super();
   }

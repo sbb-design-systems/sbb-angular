@@ -1,7 +1,7 @@
 import { NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-export abstract class FormFieldControl<TValue> {
+export abstract class SbbFormFieldControl<TValue> {
   /** The value of the control. */
   value: TValue | null;
   /**

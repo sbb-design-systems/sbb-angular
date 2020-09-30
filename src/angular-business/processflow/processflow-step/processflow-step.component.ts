@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { ProcessflowStepBase } from '@sbb-esta/angular-core/base/processflow';
+import { SbbProcessflowStepBase } from '@sbb-esta/angular-core/base/processflow';
 
 // TODO: Find solution for template and style
 @Component({
@@ -7,7 +7,7 @@ import { ProcessflowStepBase } from '@sbb-esta/angular-core/base/processflow';
   template: '<ng-content *ngIf="active && !disabled"></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProcessflowStepComponent extends ProcessflowStepBase {
+export class SbbProcessflowStep extends SbbProcessflowStepBase {
   constructor(changeDetectorRef: ChangeDetectorRef) {
     super(changeDetectorRef);
   }

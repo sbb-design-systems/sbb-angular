@@ -8,7 +8,7 @@ import { async, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { wrappedErrorMessage } from '@sbb-esta/angular-core/testing';
 
-import { FAKE_SVGS } from './fake-svgs';
+import { SBB_FAKE_SVGS } from './fake-svgs';
 import { getSbbIconNoHttpProviderError, SbbIconRegistry } from './icon-registry';
 import { SbbIconModule, SBB_ICON_LOCATION } from './index';
 
@@ -181,14 +181,14 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'fido';
       fixture.detectChanges();
-      http.expectOne('dog.svg').flush(FAKE_SVGS.dog);
+      http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
       verifyPathChildElement(svgElement, 'woof');
 
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'fluffy';
       fixture.detectChanges();
-      http.expectOne('cat.svg').flush(FAKE_SVGS.cat);
+      http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
       verifyPathChildElement(svgElement, 'meow');
 
@@ -204,7 +204,7 @@ describe('SbbIconComponent', () => {
       fixture.detectChanges();
       testRequest = http.expectOne('auth-cat.svg');
       expect(testRequest.request.withCredentials).toBeTrue();
-      testRequest.flush(FAKE_SVGS.cat);
+      testRequest.flush(SBB_FAKE_SVGS.cat);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
       verifyPathChildElement(svgElement, 'meow');
 
@@ -227,14 +227,14 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'fido';
       fixture.detectChanges();
-      http.expectOne('dog.svg').flush(FAKE_SVGS.dog);
+      http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 43 43');
 
       // Change the icon, and the SVG element should be replaced.
       testComponent.iconName = 'fluffy';
       fixture.detectChanges();
-      http.expectOne('cat.svg').flush(FAKE_SVGS.cat);
+      http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
       svgElement = verifyAndGetSingleSvgChild(iconElement);
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 27 27');
     }));
@@ -291,7 +291,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'farm:DNE';
       fixture.detectChanges();
-      http.expectOne('farm-set-1.svg').flush(FAKE_SVGS.farmSet1);
+      http.expectOne('farm-set-1.svg').flush(SBB_FAKE_SVGS.farmSet1);
       fixture.detectChanges();
 
       // The HTTP request succeeded but the icon was not found so we logged.
@@ -313,7 +313,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'farm:pig';
       fixture.detectChanges();
-      http.expectOne('farm-set-1.svg').flush(FAKE_SVGS.farmSet1);
+      http.expectOne('farm-set-1.svg').flush(SBB_FAKE_SVGS.farmSet1);
 
       expect(sbbIconElement.childNodes.length).toBe(1);
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
@@ -346,7 +346,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'farm:pig with spaces';
       fixture.detectChanges();
-      http.expectOne('farm-set-4.svg').flush(FAKE_SVGS.farmSet4);
+      http.expectOne('farm-set-4.svg').flush(SBB_FAKE_SVGS.farmSet4);
 
       expect(sbbIconElement.childNodes.length).toBe(1);
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
@@ -370,7 +370,7 @@ describe('SbbIconComponent', () => {
       iconRegistry.getNamedSvgIcon('pig', 'farm').subscribe(() => {});
       iconRegistry.getNamedSvgIcon('cow', 'farm').subscribe(() => {});
 
-      http.expectOne('farm-set-1.svg').flush(FAKE_SVGS.farmSet1);
+      http.expectOne('farm-set-1.svg').flush(SBB_FAKE_SVGS.farmSet1);
 
       // _svgElementFromString is called once for each icon to create an empty SVG element
       // and once to parse the full icon set.
@@ -389,8 +389,8 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'farm:pig';
       fixture.detectChanges();
-      http.expectOne('farm-set-1.svg').flush(FAKE_SVGS.farmSet1);
-      http.expectOne('farm-set-2.svg').flush(FAKE_SVGS.farmSet2);
+      http.expectOne('farm-set-1.svg').flush(SBB_FAKE_SVGS.farmSet1);
+      http.expectOne('farm-set-2.svg').flush(SBB_FAKE_SVGS.farmSet2);
 
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       expect(svgElement.childNodes.length).toBe(1);
@@ -423,7 +423,7 @@ describe('SbbIconComponent', () => {
 
       fixture.componentInstance.iconName = 'farm:pig';
       fixture.detectChanges();
-      http.expectOne('farm-set-1.svg').flush(FAKE_SVGS.farmSet1);
+      http.expectOne('farm-set-1.svg').flush(SBB_FAKE_SVGS.farmSet1);
 
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       const svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
@@ -440,7 +440,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'farm:duck';
       fixture.detectChanges();
-      http.expectOne('farm-set-3.svg').flush(FAKE_SVGS.farmSet3);
+      http.expectOne('farm-set-3.svg').flush(SBB_FAKE_SVGS.farmSet3);
 
       const svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       const firstChild = svgElement.childNodes[0];
@@ -460,7 +460,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'farm:duck';
       fixture.detectChanges();
-      http.expectOne('farm-set-5.svg').flush(FAKE_SVGS.farmSet5);
+      http.expectOne('farm-set-5.svg').flush(SBB_FAKE_SVGS.farmSet5);
 
       const svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 13 37');
@@ -478,7 +478,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
-      http.expectOne('arrow-set.svg').flush(FAKE_SVGS.arrows);
+      http.expectOne('arrow-set.svg').flush(SBB_FAKE_SVGS.arrows);
 
       // arrow-set.svg stores its icons as nested <svg> elements, so they should be used
       // directly and not wrapped in an outer <svg> tag like the <g> elements in other sets.
@@ -496,7 +496,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
-      http.expectOne('arrow-set.svg').flush(FAKE_SVGS.arrows);
+      http.expectOne('arrow-set.svg').flush(SBB_FAKE_SVGS.arrows);
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
       verifyPathChildElement(svgElement, 'left');
       // Modify the SVG element by setting a viewBox attribute.
@@ -522,7 +522,7 @@ describe('SbbIconComponent', () => {
       const fixture = TestBed.createComponent(IconWithBindingAndNgIfComponent);
 
       fixture.detectChanges();
-      http.expectOne('cat.svg').flush(FAKE_SVGS.cat);
+      http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
 
       expect(() => {
         fixture.componentInstance.showIcon = false;
@@ -543,7 +543,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
-      http.expectOne('arrow-set.svg').flush(FAKE_SVGS.arrows);
+      http.expectOne('arrow-set.svg').flush(SBB_FAKE_SVGS.arrows);
       svgElement = verifyAndGetSingleSvgChild(sbbIconElement);
 
       expect(svgElement.getAttribute('viewBox')).toBe('0 0 43 43');
@@ -559,7 +559,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'left-arrow';
       fixture.detectChanges();
-      http.expectOne('arrow-set.svg').flush(FAKE_SVGS.arrows);
+      http.expectOne('arrow-set.svg').flush(SBB_FAKE_SVGS.arrows);
 
       expect(icon.querySelector('svg')).toBeTruthy();
 
@@ -578,7 +578,7 @@ describe('SbbIconComponent', () => {
 
       testComponent.iconName = 'fido';
       fixture.detectChanges();
-      http.expectOne('dog.svg').flush(FAKE_SVGS.dog);
+      http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
 
       const userDiv = iconElement.querySelector('div');
 
@@ -590,7 +590,7 @@ describe('SbbIconComponent', () => {
 
     it('should cancel in-progress fetches if the icon changes', fakeAsync(() => {
       // Register an icon that will resolve immediately.
-      iconRegistry.addSvgIconLiteral('fluffy', trustHtml(FAKE_SVGS.cat));
+      iconRegistry.addSvgIconLiteral('fluffy', trustHtml(SBB_FAKE_SVGS.cat));
 
       // Register a different icon that takes some time to resolve.
       iconRegistry.addSvgIcon('fido', trustUrl('dog.svg'));
@@ -627,8 +627,8 @@ describe('SbbIconComponent', () => {
 
   describe('Icons from HTML string', () => {
     it('should register icon HTML strings by name', fakeAsync(() => {
-      iconRegistry.addSvgIconLiteral('fluffy', trustHtml(FAKE_SVGS.cat));
-      iconRegistry.addSvgIconLiteral('fido', trustHtml(FAKE_SVGS.dog));
+      iconRegistry.addSvgIconLiteral('fluffy', trustHtml(SBB_FAKE_SVGS.cat));
+      iconRegistry.addSvgIconLiteral('fido', trustHtml(SBB_FAKE_SVGS.dog));
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       let svgElement: SVGElement;
@@ -654,8 +654,12 @@ describe('SbbIconComponent', () => {
     }));
 
     it('should be able to configure the icon viewBox', fakeAsync(() => {
-      iconRegistry.addSvgIconLiteral('fluffy', trustHtml(FAKE_SVGS.cat), { viewBox: '0 0 43 43' });
-      iconRegistry.addSvgIconLiteral('fido', trustHtml(FAKE_SVGS.dog), { viewBox: '0 0 27 27' });
+      iconRegistry.addSvgIconLiteral('fluffy', trustHtml(SBB_FAKE_SVGS.cat), {
+        viewBox: '0 0 43 43',
+      });
+      iconRegistry.addSvgIconLiteral('fido', trustHtml(SBB_FAKE_SVGS.dog), {
+        viewBox: '0 0 27 27',
+      });
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       let svgElement: SVGElement;
@@ -684,7 +688,7 @@ describe('SbbIconComponent', () => {
     });
 
     it('should extract an icon from SVG icon set', () => {
-      iconRegistry.addSvgIconSetLiteralInNamespace('farm', trustHtml(FAKE_SVGS.farmSet1));
+      iconRegistry.addSvgIconSetLiteralInNamespace('farm', trustHtml(SBB_FAKE_SVGS.farmSet1));
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
@@ -718,8 +722,8 @@ describe('SbbIconComponent', () => {
     });
 
     it('should allow multiple icon sets in a namespace', () => {
-      iconRegistry.addSvgIconSetLiteralInNamespace('farm', trustHtml(FAKE_SVGS.farmSet1));
-      iconRegistry.addSvgIconSetLiteralInNamespace('farm', trustHtml(FAKE_SVGS.farmSet2));
+      iconRegistry.addSvgIconSetLiteralInNamespace('farm', trustHtml(SBB_FAKE_SVGS.farmSet1));
+      iconRegistry.addSvgIconSetLiteralInNamespace('farm', trustHtml(SBB_FAKE_SVGS.farmSet2));
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
@@ -757,7 +761,7 @@ describe('SbbIconComponent', () => {
     });
 
     it('should return unmodified copies of icons from icon sets', () => {
-      iconRegistry.addSvgIconSetLiteral(trustHtml(FAKE_SVGS.arrows));
+      iconRegistry.addSvgIconSetLiteral(trustHtml(SBB_FAKE_SVGS.arrows));
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;
@@ -787,7 +791,7 @@ describe('SbbIconComponent', () => {
     });
 
     it('should be able to configure the viewBox for the icon set', () => {
-      iconRegistry.addSvgIconSetLiteral(trustHtml(FAKE_SVGS.arrows), { viewBox: '0 0 43 43' });
+      iconRegistry.addSvgIconSetLiteral(trustHtml(SBB_FAKE_SVGS.arrows), { viewBox: '0 0 43 43' });
 
       const fixture = TestBed.createComponent(IconFromSvgNameComponent);
       const testComponent = fixture.componentInstance;

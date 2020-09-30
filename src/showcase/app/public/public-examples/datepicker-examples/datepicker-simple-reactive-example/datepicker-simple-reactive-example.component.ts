@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DateAdapter } from '@sbb-esta/angular-core/datetime';
+import { SbbDateAdapter } from '@sbb-esta/angular-core/datetime';
 import { SbbDateInputEvent } from '@sbb-esta/angular-public/datepicker';
 
 @Component({
@@ -17,7 +17,7 @@ export class DatepickerSimpleReactiveExampleComponent {
   arrows = false;
   disabled = false;
 
-  constructor(dateAdapter: DateAdapter<Date>) {
+  constructor(dateAdapter: SbbDateAdapter<Date>) {
     this.minDate = dateAdapter.addCalendarMonths(dateAdapter.today(), -6);
     this.maxDate = dateAdapter.addCalendarMonths(dateAdapter.today(), 6);
   }

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { DIALOG_DATA } from '@sbb-esta/angular-business/dialog';
+import { SBB_DIALOG_DATA } from '@sbb-esta/angular-business/dialog';
 
 import { CdnIcon } from '../../cdn-icon.service';
 
@@ -9,7 +9,7 @@ import { CdnIcon } from '../../cdn-icon.service';
   styleUrls: ['./cdn-icon-dialog.component.scss'],
 })
 export class CdnIconDialogComponent {
-  constructor(@Inject(DIALOG_DATA) public data: { cdnIcon: CdnIcon }) {}
+  constructor(@Inject(SBB_DIALOG_DATA) public data: { cdnIcon: CdnIcon }) {}
 
   get cdnIcon(): CdnIcon {
     return this.data.cdnIcon;

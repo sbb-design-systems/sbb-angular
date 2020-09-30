@@ -1,16 +1,16 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { ESRI_CONFIG_TOKEN } from './esri-config.token';
-import { EsriConfiguration } from './esri-configuration';
+import { SBB_ESRI_CONFIG_TOKEN } from './esri-config.token';
+import { SbbEsriConfiguration } from './esri-configuration';
 
 @NgModule({})
-export class EsriConfigModule {
-  static forRoot(config: EsriConfiguration): ModuleWithProviders<EsriConfigModule> {
+export class SbbEsriConfigModule {
+  static forRoot(config: SbbEsriConfiguration): ModuleWithProviders<SbbEsriConfigModule> {
     return {
-      ngModule: EsriConfigModule,
+      ngModule: SbbEsriConfigModule,
       providers: [
         {
-          provide: ESRI_CONFIG_TOKEN,
+          provide: SBB_ESRI_CONFIG_TOKEN,
           useValue: config,
         },
       ],

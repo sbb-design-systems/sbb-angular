@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PseudoCheckboxComponent {
+export class SbbPseudoCheckbox {
   /** Display state of the checkbox. */
   @Input() state: 'unchecked' | 'checked' = 'unchecked';
 

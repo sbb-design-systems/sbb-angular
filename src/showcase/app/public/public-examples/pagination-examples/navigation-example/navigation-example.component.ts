@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationPageChangeEvent } from '@sbb-esta/angular-public/pagination';
+import { SbbNavigationPageChangeEvent } from '@sbb-esta/angular-public/pagination';
 
 @Component({
   selector: 'sbb-navigation-example',
@@ -25,7 +25,7 @@ export class NavigationExampleComponent {
 
   newPage = { title: '' };
 
-  pageChange(event: NavigationPageChangeEvent) {
+  pageChange(event: SbbNavigationPageChangeEvent) {
     if (event === 'next') {
       this.hasPrevious = this.hasNext;
       this.hasNext = this.pages[this.hasNext.index + 1];

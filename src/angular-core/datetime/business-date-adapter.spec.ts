@@ -1,9 +1,9 @@
-import { BusinessDateAdapter } from './business-date-adapter';
+import { SbbBusinessDateAdapter } from './business-date-adapter';
 
 describe('BusinessDateAdapter', () => {
-  let businessDateAdapter: BusinessDateAdapter;
+  let businessDateAdapter: SbbBusinessDateAdapter;
   beforeEach(() => {
-    businessDateAdapter = new BusinessDateAdapter('de-ch', 50);
+    businessDateAdapter = new SbbBusinessDateAdapter('de-ch', 50);
   });
 
   it('should parse date', () => {

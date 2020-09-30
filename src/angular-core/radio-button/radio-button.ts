@@ -17,13 +17,13 @@ import {
 } from '@angular/core';
 import { HasTabIndexCtor, mixinTabIndex, TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
-import type { RadioGroupDirective } from './radio-group.directive';
+import type { SbbRadioGroup } from './radio-group.directive';
 
 /** Change event object emitted by RadioButtonComponent. */
-export class RadioChange {
+export class SbbRadioChange {
   constructor(
     /** The RadioButtonComponent that emits the change event. */
-    public source: RadioButton,
+    public source: SbbRadioButton,
     /** The value of the RadioButtonComponent. */
     public value: any
   ) {}
@@ -45,7 +45,7 @@ const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTab
 let nextId = 0;
 
 @Directive()
-export abstract class RadioButton extends _RadioButtonMixinBase
+export abstract class SbbRadioButton extends _RadioButtonMixinBase
   implements OnInit, AfterViewInit, OnDestroy {
   private _uniqueId = `sbb-radio-button-${++nextId}`;
 
@@ -151,7 +151,7 @@ export abstract class RadioButton extends _RadioButtonMixinBase
    * Change events are only emitted when the value changes due to user interaction with
    * the radio button (the same behavior as `<input type-"radio">`).
    */
-  @Output() readonly change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
+  @Output() readonly change: EventEmitter<SbbRadioChange> = new EventEmitter<SbbRadioChange>();
 
   /** The native `<input type=radio>` element */
   @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
@@ -165,7 +165,7 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   private _removeUniqueSelectionListener: () => void = () => {};
 
   constructor(
-    readonly radioGroup: TypeRef<RadioGroupDirective>,
+    readonly radioGroup: TypeRef<SbbRadioGroup>,
     protected readonly _changeDetector: ChangeDetectorRef,
     private _elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,
@@ -266,7 +266,7 @@ export abstract class RadioButton extends _RadioButtonMixinBase
 
   /** Dispatch change event with current value. */
   private _emitChangeEvent(): void {
-    this.change.emit(new RadioChange(this, this.value));
+    this.change.emit(new SbbRadioChange(this, this.value));
   }
 
   // tslint:disable: member-ordering

@@ -23,8 +23,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { LIGHTBOX_ANIMATIONS } from './lightbox-animations';
-import { LightboxConfig } from './lightbox-config';
+import { SBB_LIGHTBOX_ANIMATIONS } from './lightbox-animations';
+import { SbbLightboxConfig } from './lightbox-config';
 
 /**
  * Throws an exception for the case when a ComponentPortal is
@@ -46,7 +46,7 @@ export function throwLightboxContentAlreadyAttachedError() {
   encapsulation: ViewEncapsulation.None,
   // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
   changeDetection: ChangeDetectionStrategy.Default,
-  animations: [LIGHTBOX_ANIMATIONS.slideLightbox],
+  animations: [SBB_LIGHTBOX_ANIMATIONS.slideLightbox],
   host: {
     class: 'sbb-lightbox-container',
     tabindex: '-1',
@@ -61,7 +61,7 @@ export function throwLightboxContentAlreadyAttachedError() {
     '[@slideLightbox]': 'state',
   },
 })
-export class LightboxContainerComponent extends BasePortalOutlet {
+export class SbbLightboxContainer extends BasePortalOutlet {
   /** The portal outlet inside of this container into which the lightbox content will be loaded. */
   @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet: CdkPortalOutlet;
 
@@ -158,7 +158,7 @@ export class LightboxContainerComponent extends BasePortalOutlet {
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(DOCUMENT) private _document: any,
     /** The dialog configuration. */
-    public config: LightboxConfig
+    public config: SbbLightboxConfig
   ) {
     super();
   }

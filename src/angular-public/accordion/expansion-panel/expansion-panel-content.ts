@@ -7,6 +7,6 @@ import { Directive, TemplateRef } from '@angular/core';
 @Directive({
   selector: 'ng-template[sbbExpansionPanelContent]',
 })
-export class ExpansionPanelContentDirective {
+export class SbbExpansionPanelContent {
   constructor(public _template: TemplateRef<any>) {}
 }

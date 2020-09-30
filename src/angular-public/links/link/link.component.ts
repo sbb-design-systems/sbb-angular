@@ -14,7 +14,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LinkComponent {
+export class SbbLink {
   /** @docs-private
    * @deprecated */
   linkClass = true;

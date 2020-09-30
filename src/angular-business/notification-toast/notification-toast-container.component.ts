@@ -47,7 +47,7 @@ import { SbbNotificationToastConfig } from './notification-toast-config';
     '(@state.done)': 'onAnimationEnd($event)',
   },
 })
-export class NotificationToastContainerComponent extends BasePortalOutlet implements OnDestroy {
+export class SbbNotificationToastContainer extends BasePortalOutlet implements OnDestroy {
   private _destroyed = false;
 
   /** The portal outlet inside of this container into which the notification toast content will be loaded. */

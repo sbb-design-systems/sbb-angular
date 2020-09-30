@@ -6,11 +6,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
+import { SbbLinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import {
-  GhettoboxDeletedEvent,
-  GhettoboxRef,
-  GhettoboxService,
+  SbbGhettoboxDeletedEvent,
+  SbbGhettoboxRef,
+  SbbGhettoboxService,
 } from '@sbb-esta/angular-public/ghettobox';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -30,7 +30,7 @@ export class GhettoboxExampleComponent implements OnDestroy {
   @ViewChild('testIcon1', { read: TemplateRef, static: true }) testIcon1: TemplateRef<any>;
   @ViewChild('testIcon2', { read: TemplateRef, static: true }) testIcon2: TemplateRef<any>;
 
-  constructor(private _ghettoboxService: GhettoboxService, private _route: ActivatedRoute) {
+  constructor(private _ghettoboxService: SbbGhettoboxService, private _route: ActivatedRoute) {
     this._ghettoboxInitLoadSubscription = this._ghettoboxService.containerReady.subscribe(() => {
       const ghetto = this._ghettoboxService.add({
         message: 'This ghettobox is loaded at page load',
@@ -44,7 +44,7 @@ export class GhettoboxExampleComponent implements OnDestroy {
     this._ghettoboxInitLoadSubscription.unsubscribe();
   }
 
-  linkGenerator = (randomParam: number): LinkGeneratorResult => {
+  linkGenerator = (randomParam: number): SbbLinkGeneratorResult => {
     return {
       routerLink: ['.'],
       queryParams: { test: randomParam },
@@ -62,8 +62,8 @@ export class GhettoboxExampleComponent implements OnDestroy {
     this._subscribeToAfterDeleteResponse(ghetto);
   }
 
-  private _subscribeToAfterDeleteResponse(ghetto: GhettoboxRef) {
-    ghetto.afterDelete.pipe(take(1)).subscribe((evt: GhettoboxDeletedEvent) => {
+  private _subscribeToAfterDeleteResponse(ghetto: SbbGhettoboxRef) {
+    ghetto.afterDelete.pipe(take(1)).subscribe((evt: SbbGhettoboxDeletedEvent) => {
       this.afterDeleteContainer(evt);
     });
   }
@@ -77,7 +77,7 @@ export class GhettoboxExampleComponent implements OnDestroy {
   }
 
   deleteByRef() {
-    const ghettoboxRef: GhettoboxRef = this._ghettoboxService.attachedGhettoboxes[0];
+    const ghettoboxRef: SbbGhettoboxRef = this._ghettoboxService.attachedGhettoboxes[0];
     ghettoboxRef.delete();
   }
 
@@ -85,15 +85,15 @@ export class GhettoboxExampleComponent implements OnDestroy {
     this._ghettoboxService.clearAll();
   }
 
-  afterDelete1(evt: GhettoboxDeletedEvent) {
+  afterDelete1(evt: SbbGhettoboxDeletedEvent) {
     this.afterDeleteResponse1 = evt;
   }
 
-  afterDelete2(evt: GhettoboxDeletedEvent) {
+  afterDelete2(evt: SbbGhettoboxDeletedEvent) {
     this.afterDeleteResponse2 = evt;
   }
 
-  afterDeleteContainer(evt: GhettoboxDeletedEvent) {
+  afterDeleteContainer(evt: SbbGhettoboxDeletedEvent) {
     this.afterDeleteResponseContainer = evt;
   }
 

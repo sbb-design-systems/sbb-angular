@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
-import { FileSelectorModule } from '@sbb-esta/angular-public/file-selector';
+import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
+import { SbbFileSelectorModule } from '@sbb-esta/angular-public/file-selector';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -23,7 +23,13 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, CheckboxModule, FileSelectorModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SbbCheckboxModule,
+    SbbFileSelectorModule,
+  ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('public', 'file-selector', EXAMPLE_INDEX)],

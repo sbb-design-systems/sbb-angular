@@ -4,15 +4,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
+import { SbbIconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
-import { RadioChange } from '@sbb-esta/angular-core/radio-button';
-import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
-import { FieldModule } from '@sbb-esta/angular-public/field';
+import { SbbRadioChange } from '@sbb-esta/angular-core/radio-button';
+import { SbbDatepickerModule } from '@sbb-esta/angular-public/datepicker';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
 import { Observable, of } from 'rxjs';
 
-import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
-import { ToggleModule } from '../toggle.module';
+import { SbbToggleOption } from '../toggle-option/toggle-option.component';
+import { SbbToggleModule } from '../toggle.module';
 
 // tslint:disable:i18n
 @Component({
@@ -46,7 +46,7 @@ import { ToggleModule } from '../toggle.module';
 })
 class ToggleReactiveTestComponent implements OnInit {
   modelReactive = 'Option_2';
-  @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
+  @ContentChildren('options') options: QueryList<SbbToggleOption>;
 
   constructor() {}
 
@@ -103,7 +103,7 @@ class ToggleReactiveTestComponent implements OnInit {
 })
 class ToggleReactiveDefaultValueTestComponent implements OnInit {
   modelReactive = 'Option_2';
-  @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
+  @ContentChildren('options') options: QueryList<SbbToggleOption>;
 
   form = new FormGroup({
     test: new FormControl('Option_2'),
@@ -154,7 +154,7 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
   `,
 })
 class ToggleTemplateDrivenTestComponent {
-  @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
+  @ContentChildren('options') options: QueryList<SbbToggleOption>;
 
   modelValue: any;
 
@@ -188,9 +188,9 @@ class ToggleTemplateDrivenTestComponent {
   `,
 })
 class ToggleSimpleCaseTestComponent {
-  @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
+  @ContentChildren('options') options: QueryList<SbbToggleOption>;
 
-  change(evt: RadioChange) {}
+  change(evt: SbbRadioChange) {}
 }
 
 describe('ToggleComponent case reactive using mock component', () => {
@@ -200,13 +200,13 @@ describe('ToggleComponent case reactive using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        ToggleModule,
+        SbbToggleModule,
         CommonModule,
         SbbIconModule,
-        DatepickerModule,
-        FieldModule,
+        SbbDatepickerModule,
+        SbbFieldModule,
         ReactiveFormsModule,
-        IconDirectiveModule,
+        SbbIconDirectiveModule,
         SbbIconTestingModule,
       ],
       declarations: [ToggleReactiveTestComponent],
@@ -299,13 +299,13 @@ describe('ToggleComponent case reactive with default value using mock component'
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        ToggleModule,
+        SbbToggleModule,
         CommonModule,
         SbbIconModule,
-        DatepickerModule,
-        FieldModule,
+        SbbDatepickerModule,
+        SbbFieldModule,
         ReactiveFormsModule,
-        IconDirectiveModule,
+        SbbIconDirectiveModule,
         SbbIconTestingModule,
       ],
       declarations: [ToggleReactiveDefaultValueTestComponent],
@@ -344,11 +344,11 @@ describe('ToggleComponent case template driven using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        ToggleModule,
+        SbbToggleModule,
         CommonModule,
         SbbIconModule,
-        DatepickerModule,
-        FieldModule,
+        SbbDatepickerModule,
+        SbbFieldModule,
         FormsModule,
         SbbIconTestingModule,
       ],
@@ -408,7 +408,7 @@ describe('ToggleComponent simple case using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ToggleModule, CommonModule, SbbIconTestingModule],
+      imports: [SbbToggleModule, CommonModule, SbbIconTestingModule],
       declarations: [ToggleSimpleCaseTestComponent],
     }).compileComponents();
   }));

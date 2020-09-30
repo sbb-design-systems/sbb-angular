@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { LinksModule } from '../links.module';
+import { SbbLinksModule } from '../links.module';
 
 @Component({
   selector: 'sbb-test-social-link',
@@ -19,7 +19,7 @@ describe('SocialLinkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestSocialLinkComponent],
-      imports: [LinksModule],
+      imports: [SbbLinksModule],
     }).compileComponents();
   }));
 

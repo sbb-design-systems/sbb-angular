@@ -29,7 +29,7 @@ import { merge, NEVER, Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 
 import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
-import { HeaderMenuComponent } from '../header-menu/header-menu.component';
+import { SbbHeaderMenu } from '../header-menu/header-menu.component';
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_HEADER_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -59,7 +59,7 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
   // changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'sbbHeaderMenu',
 })
-export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
+export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
   /** @docs-private */
   @HostBinding('class.sbb-header-menu-trigger') _class = true;
   /**
@@ -81,7 +81,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
   get menu() {
     return this._menu;
   }
-  set menu(menu: HeaderMenuComponent) {
+  set menu(menu: SbbHeaderMenu) {
     if (menu === this._menu) {
       return;
     }
@@ -95,7 +95,7 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
       });
     }
   }
-  private _menu: HeaderMenuComponent;
+  private _menu: SbbHeaderMenu;
 
   /**
    * Whether focus should be restored when the menu is closed.

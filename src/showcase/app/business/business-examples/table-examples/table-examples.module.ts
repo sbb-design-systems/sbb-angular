@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
-import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
-import { FieldModule } from '@sbb-esta/angular-business/field';
-import { PaginationModule } from '@sbb-esta/angular-business/pagination';
-import { SelectModule } from '@sbb-esta/angular-business/select';
-import { TableModule } from '@sbb-esta/angular-business/table';
+import { SbbAutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
+import { SbbCheckboxModule } from '@sbb-esta/angular-business/checkbox';
+import { SbbFieldModule } from '@sbb-esta/angular-business/field';
+import { SbbPaginationModule } from '@sbb-esta/angular-business/pagination';
+import { SbbSelectModule } from '@sbb-esta/angular-business/select';
+import { SbbTableModule } from '@sbb-esta/angular-business/table';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -43,12 +43,12 @@ const EXAMPLE_INDEX = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AutocompleteModule,
-    CheckboxModule,
-    FieldModule,
-    PaginationModule,
-    SelectModule,
-    TableModule,
+    SbbAutocompleteModule,
+    SbbCheckboxModule,
+    SbbFieldModule,
+    SbbPaginationModule,
+    SbbSelectModule,
+    SbbTableModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

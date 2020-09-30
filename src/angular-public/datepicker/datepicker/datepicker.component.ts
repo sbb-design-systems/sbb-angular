@@ -26,12 +26,12 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { DateAdapter } from '@sbb-esta/angular-core/datetime';
+import { SbbDateAdapter } from '@sbb-esta/angular-core/datetime';
 import { merge, Subject, Subscription } from 'rxjs';
 import { bufferCount, filter, mapTo, take, tap } from 'rxjs/operators';
 
-import { DateInputDirective } from '../date-input/date-input.directive';
-import { DatepickerContentComponent } from '../datepicker-content/datepicker-content.component';
+import { SbbDateInput } from '../date-input/date-input.directive';
+import { SbbDatepickerContent } from '../datepicker-content/datepicker-content.component';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { SBB_DATEPICKER } from '../datepicker-token';
 
@@ -61,7 +61,7 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.css'],
   exportAs: 'sbbDatepicker',
-  providers: [{ provide: SBB_DATEPICKER, useExisting: DatepickerComponent }],
+  providers: [{ provide: SBB_DATEPICKER, useExisting: SbbDatepicker }],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -70,7 +70,7 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     '[class.sbb-datepicker-toggle-enabled]': 'this.toggle',
   },
 })
-export class DatepickerComponent<D> implements OnDestroy {
+export class SbbDatepicker<D> implements OnDestroy {
   /** An input indicating the type of the custom header component for the calendar, if set. */
   @Input() calendarHeaderComponent: ComponentType<any>;
 
@@ -110,7 +110,7 @@ export class DatepickerComponent<D> implements OnDestroy {
    * Second datepicker to be used in 2 datepickers use case
    */
   @Input()
-  set connected(value: DatepickerComponent<D> | null) {
+  set connected(value: SbbDatepicker<D> | null) {
     if (value !== this._connected && this._connected) {
       this._connected.main = null;
     }
@@ -119,17 +119,17 @@ export class DatepickerComponent<D> implements OnDestroy {
     }
     this._connected = value;
   }
-  get connected(): DatepickerComponent<D> | null {
+  get connected(): SbbDatepicker<D> | null {
     return this._connected;
   }
-  private _connected: DatepickerComponent<D> | null;
+  private _connected: SbbDatepicker<D> | null;
 
-  main: DatepickerComponent<D> | null;
+  main: SbbDatepicker<D> | null;
 
   /**
    * @deprecated use main property instead
    */
-  get master(): DatepickerComponent<D> | null {
+  get master(): SbbDatepicker<D> | null {
     return this.main;
   }
 
@@ -145,7 +145,7 @@ export class DatepickerComponent<D> implements OnDestroy {
    * @deprecated
    */
   @Input()
-  set slave(value: DatepickerComponent<D> | null) {
+  set slave(value: SbbDatepicker<D> | null) {
     this.connected = value;
   }
 
@@ -247,10 +247,10 @@ export class DatepickerComponent<D> implements OnDestroy {
   popupRef: OverlayRef;
 
   /** A portal containing the calendar for this datepicker. */
-  private _calendarPortal: ComponentPortal<DatepickerContentComponent<D>>;
+  private _calendarPortal: ComponentPortal<SbbDatepickerContent<D>>;
 
   /** Reference to the component instantiated in popup mode. */
-  private _popupComponentRef: ComponentRef<DatepickerContentComponent<D>> | null;
+  private _popupComponentRef: ComponentRef<SbbDatepickerContent<D>> | null;
 
   /** The element that was focused before the datepicker was opened. */
   private _focusedElementBeforeOpen: HTMLElement | null = null;
@@ -265,7 +265,7 @@ export class DatepickerComponent<D> implements OnDestroy {
   private _posStrategySubsription = Subscription.EMPTY;
 
   /** The input element this datepicker is associated with. */
-  datepickerInput: DateInputDirective<D>;
+  datepickerInput: SbbDateInput<D>;
 
   /** Emits when the datepicker is disabled. */
   readonly disabledChange = new Subject<boolean>();
@@ -279,7 +279,7 @@ export class DatepickerComponent<D> implements OnDestroy {
     private _viewContainerRef: ViewContainerRef,
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy: any,
-    @Optional() private _dateAdapter: DateAdapter<D>,
+    @Optional() private _dateAdapter: SbbDateAdapter<D>,
     @Optional() @Inject(DOCUMENT) private _document: any,
     @Inject(LOCALE_ID) public locale: string
   ) {
@@ -330,7 +330,7 @@ export class DatepickerComponent<D> implements OnDestroy {
    * Register an input with this datepicker.
    * @param input The datepicker input to register with this datepicker.
    */
-  registerInput(input: DateInputDirective<D>): void {
+  registerInput(input: SbbDateInput<D>): void {
     if (this.datepickerInput) {
       throw Error('A SbbDatepicker can only be associated with a single input.');
     }
@@ -446,8 +446,8 @@ export class DatepickerComponent<D> implements OnDestroy {
   /** Open the calendar as a popup. */
   private _openAsPopup(): void {
     if (!this._calendarPortal) {
-      this._calendarPortal = new ComponentPortal<DatepickerContentComponent<D>>(
-        DatepickerContentComponent,
+      this._calendarPortal = new ComponentPortal<SbbDatepickerContent<D>>(
+        SbbDatepickerContent,
         this._viewContainerRef
       );
     }

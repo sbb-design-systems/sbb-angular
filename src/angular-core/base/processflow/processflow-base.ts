@@ -8,17 +8,19 @@ import {
   QueryList,
 } from '@angular/core';
 
-import { ProcessflowStep, ProcessflowStepBase } from './processflow-step-base';
+import { SbbProcessflowStepBase, SbbProcessflowStepDescriptor } from './processflow-step-base';
 
 @Directive()
-export abstract class ProcessflowBase<TProcessflowStepComponent extends ProcessflowStepBase>
+export abstract class SbbProcessflowBase<TProcessflowStepComponent extends SbbProcessflowStepBase>
   implements AfterContentInit {
   /** @docs-private */
   @HostBinding('class.sbb-processflow')
   cssClass = true;
   /** Event emitted to the change of step in the process flow. */
   @Output()
-  stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<ProcessflowStep>();
+  stepChange: EventEmitter<SbbProcessflowStepDescriptor> = new EventEmitter<
+    SbbProcessflowStepDescriptor
+  >();
   /** @docs-private */
   abstract steps: QueryList<TProcessflowStepComponent>;
 

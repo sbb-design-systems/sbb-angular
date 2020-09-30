@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { LoadingComponent } from './loading/loading.component';
+import { SbbLoading } from './loading/loading.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [LoadingComponent],
-  exports: [LoadingComponent],
+  declarations: [SbbLoading],
+  exports: [SbbLoading],
 })
-export class LoadingModule {}
+export class SbbLoadingModule {}

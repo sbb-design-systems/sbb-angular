@@ -11,7 +11,7 @@ let nextId = 0;
   templateUrl: './autocomplete-hint.component.html',
   styleUrls: ['./autocomplete-hint.component.css'],
 })
-export class AutocompleteHintComponent {
+export class SbbAutocompleteHint {
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
   @HostBinding('attr.id')
   id = `sbb-autocomplete-hint-${nextId++}`;

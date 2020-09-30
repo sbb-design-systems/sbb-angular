@@ -18,10 +18,10 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { Ghettobox, GhettoboxRef } from '../ghettobox/ghettobox-ref';
-import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
+import { SbbGhettoboxConfig, SbbGhettoboxRef } from '../ghettobox/ghettobox-ref';
+import { SbbGhettobox } from '../ghettobox/ghettobox.component';
 
-import { GhettoboxContainerService } from './ghettobox-container.service';
+import { SbbGhettoboxContainerService } from './ghettobox-container.service';
 
 let counter = 0;
 
@@ -35,8 +35,7 @@ let counter = 0;
   templateUrl: './ghettobox-container.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GhettoboxContainerComponent extends BasePortalOutlet
-  implements AfterContentInit, OnDestroy {
+export class SbbGhettoboxContainer extends BasePortalOutlet implements AfterContentInit, OnDestroy {
   @Input()
   @HostBinding()
   id = `sbb-ghettobox-container-${counter++}`;
@@ -59,9 +58,9 @@ export class GhettoboxContainerComponent extends BasePortalOutlet
   /**
    * Initial entries projected from the consumer
    */
-  @ContentChildren(GhettoboxComponent) initialGhettoboxes: QueryList<GhettoboxComponent>;
+  @ContentChildren(SbbGhettobox) initialGhettoboxes: QueryList<SbbGhettobox>;
 
-  constructor(private _ghettoboxContainerService: GhettoboxContainerService) {
+  constructor(private _ghettoboxContainerService: SbbGhettoboxContainerService) {
     super();
     if (!this._ghettoboxContainerService.hasContainerLoaded) {
       // Load container reference into GhettoboxService
@@ -74,7 +73,7 @@ export class GhettoboxContainerComponent extends BasePortalOutlet
   ngAfterContentInit() {
     // Load inital entries into the attached ghettobox collection kept in the GhettoboxService
     this._ghettoboxContainerService.loadInitialGhettoboxes(
-      this.initialGhettoboxes.toArray().map((g) => new GhettoboxRef(g))
+      this.initialGhettoboxes.toArray().map((g) => new SbbGhettoboxRef(g))
     );
   }
 
@@ -102,11 +101,11 @@ export class GhettoboxContainerComponent extends BasePortalOutlet
   /**
    * Creates a new ComponentPortal of GhettoboxComponent and attach it to the cdkPortalOutlet
    */
-  createGhettobox(ghettobox: Ghettobox): GhettoboxRef {
-    const ghettoboxComponentPortal = new ComponentPortal(GhettoboxComponent);
+  createGhettobox(ghettobox: SbbGhettoboxConfig): SbbGhettoboxRef {
+    const ghettoboxComponentPortal = new ComponentPortal(SbbGhettobox);
     const ghettoboxComponentRef = this.attachComponentPortal(ghettoboxComponentPortal);
     ghettoboxComponentRef.instance.ghettobox = ghettobox;
 
-    return new GhettoboxRef(ghettoboxComponentRef);
+    return new SbbGhettoboxRef(ghettoboxComponentRef);
   }
 }

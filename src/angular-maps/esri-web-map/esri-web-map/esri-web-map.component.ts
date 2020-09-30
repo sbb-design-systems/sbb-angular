@@ -10,9 +10,13 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { EsriTypesService, GraphicService, HitTestService } from '@sbb-esta/angular-maps/core';
+import {
+  SbbEsriTypesService,
+  SbbGraphicService,
+  SbbHitTestService,
+} from '@sbb-esta/angular-maps/core';
 
-import { SBBEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
+import { SbbEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
 
 @Component({
   selector: 'sbb-esri-web-map',
@@ -20,8 +24,8 @@ import { SBBEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
   styleUrls: ['./esri-web-map.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EsriWebMapComponent implements OnInit {
-  private _extent: SBBEsriExtent2D;
+export class SbbEsriWebMap implements OnInit {
+  private _extent: SbbEsriExtent2D;
   /** The reference to the esri.MapView */
   mapView: __esri.MapView;
 
@@ -34,7 +38,7 @@ export class EsriWebMapComponent implements OnInit {
   /** Updates coordinates (xmin, xmax, ymin & ymax) for the mapExtent.
    * If empty, portal default map extent will be used.
    * You need to add a wkid as well. (switzerland default is 2056). */
-  @Input() set mapExtent(newExtent: SBBEsriExtent2D) {
+  @Input() set mapExtent(newExtent: SbbEsriExtent2D) {
     this._extent = newExtent;
     this._setMapExtent(newExtent);
   }
@@ -60,10 +64,10 @@ export class EsriWebMapComponent implements OnInit {
   @Output() mapReady: EventEmitter<__esri.MapView> = new EventEmitter();
 
   constructor(
-    private _esri: EsriTypesService,
+    private _esri: SbbEsriTypesService,
     private _elementRef: ElementRef,
-    private _geometryUtilsService: GraphicService,
-    private _hitTestService: HitTestService
+    private _geometryUtilsService: SbbGraphicService,
+    private _hitTestService: SbbHitTestService
   ) {}
 
   async ngOnInit() {
@@ -88,7 +92,7 @@ export class EsriWebMapComponent implements OnInit {
     });
   }
 
-  private _setMapExtent(newExtent: SBBEsriExtent2D) {
+  private _setMapExtent(newExtent: SbbEsriExtent2D) {
     if (this.mapView && newExtent) {
       this.mapView.extent = new this._esri.Extent({
         xmin: newExtent.xmin,

@@ -2,15 +2,15 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
-import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
+import { SbbDropdownModule } from '@sbb-esta/angular-public/dropdown';
 
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { SbbBreadcrumb } from './breadcrumb/breadcrumb.component';
+import { SbbBreadcrumbs } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
-  declarations: [BreadcrumbsComponent, BreadcrumbComponent],
-  imports: [CommonModule, DropdownModule, LayoutModule, SbbIconModule],
-  exports: [BreadcrumbsComponent, BreadcrumbComponent],
+  declarations: [SbbBreadcrumbs, SbbBreadcrumb],
+  imports: [CommonModule, SbbDropdownModule, LayoutModule, SbbIconModule],
+  exports: [SbbBreadcrumbs, SbbBreadcrumb],
   providers: [ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
-export class BreadcrumbModule {}
+export class SbbBreadcrumbModule {}

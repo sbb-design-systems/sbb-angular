@@ -13,17 +13,17 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
-  DateAdapter,
-  DATE_PIPE_DATE_FORMATS,
-  NativeDateAdapter,
+  SbbDateAdapter,
+  SbbNativeDateAdapter,
   SBB_DATE_FORMATS,
+  SBB_DATE_PIPE_DATE_FORMATS,
 } from '@sbb-esta/angular-core/datetime';
 import { DEC, FEB, JAN, MAR, NOV } from '@sbb-esta/angular-core/testing';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
-import { CalendarBodyComponent } from '../calendar-body/calendar-body.component';
+import { SbbCalendarBody } from '../calendar-body/calendar-body.component';
 
-import { MonthViewComponent } from './month-view.component';
+import { SbbMonthView } from './month-view.component';
 
 @Component({
   template: ` <sbb-month-view [(activeDate)]="date" [(selected)]="selected"></sbb-month-view> `,
@@ -49,16 +49,16 @@ describe('MonthViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CalendarBodyComponent,
-        MonthViewComponent,
+        SbbCalendarBody,
+        SbbMonthView,
 
         // Test components.
         StandardMonthViewComponent,
         MonthViewWithDateFilterComponent,
       ],
       providers: [
-        { provide: DateAdapter, useClass: NativeDateAdapter },
-        { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS },
+        { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
+        { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
       ],
     }).compileComponents();
   }));
@@ -72,7 +72,7 @@ describe('MonthViewComponent', () => {
       fixture = TestBed.createComponent(StandardMonthViewComponent);
       fixture.detectChanges();
 
-      const monthViewDebugElement = fixture.debugElement.query(By.directive(MonthViewComponent));
+      const monthViewDebugElement = fixture.debugElement.query(By.directive(SbbMonthView));
       monthViewNativeElement = monthViewDebugElement.nativeElement;
       testComponent = fixture.componentInstance;
     });
@@ -255,7 +255,7 @@ describe('MonthViewComponent', () => {
       fixture = TestBed.createComponent(MonthViewWithDateFilterComponent);
       fixture.detectChanges();
 
-      const monthViewDebugElement = fixture.debugElement.query(By.directive(MonthViewComponent));
+      const monthViewDebugElement = fixture.debugElement.query(By.directive(SbbMonthView));
       monthViewNativeElement = monthViewDebugElement.nativeElement;
     });
 

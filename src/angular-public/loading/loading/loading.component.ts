@@ -17,7 +17,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     '[class.sbb-loading-inline]': `this.mode === 'inline'`,
   },
 })
-export class LoadingComponent {
+export class SbbLoading {
   /**
    * The aria-busy of loading component.
    * @deprecated internal use

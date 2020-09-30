@@ -9,10 +9,7 @@ import {
 } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import {
-  BreadcrumbComponent,
-  SBB_BREADCRUMB_PARENT_COMPONENT,
-} from '../breadcrumb/breadcrumb.component';
+import { SbbBreadcrumb, SBB_BREADCRUMB_PARENT_COMPONENT } from '../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'sbb-breadcrumbs',
@@ -23,7 +20,7 @@ import {
   providers: [
     {
       provide: SBB_BREADCRUMB_PARENT_COMPONENT,
-      useExisting: BreadcrumbsComponent,
+      useExisting: SbbBreadcrumbs,
     },
   ],
   host: {
@@ -31,11 +28,11 @@ import {
     '[class.sbb-breadcrumbs-expanded]': 'this.expanded',
   },
 })
-export class BreadcrumbsComponent implements AfterViewInit {
+export class SbbBreadcrumbs implements AfterViewInit {
   /**
    * Refers to BreadcrumbComponents instance.
    */
-  @ContentChildren(BreadcrumbComponent) levels: QueryList<BreadcrumbComponent>;
+  @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;
 
   /**
    * Css class of a sbb-breadcrumbs.

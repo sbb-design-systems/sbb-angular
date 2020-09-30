@@ -51,12 +51,12 @@ import {
 import { delay, filter, map, switchMap, take, tap } from 'rxjs/operators';
 
 import {
-  DropdownItemDirective,
-  DropdownSelectionChange,
   getDropdownItemScrollPosition,
+  SbbDropdownItem,
+  SbbDropdownSelectionChange,
 } from './dropdown-item.directive';
-import { DropdownOriginDirective } from './dropdown-origin.directive';
-import { DropdownComponent } from './dropdown/dropdown.component';
+import { SbbDropdownOrigin } from './dropdown-origin.directive';
+import { SbbDropdown } from './dropdown/dropdown.component';
 
 /**
  * Creates an error to be thrown when attempting to use an dropdown trigger without a panel.
@@ -71,7 +71,7 @@ export function getSbbDropdownMissingPanelError(): Error {
 }
 
 /** Injection token that determines the scroll handling while the dropdown panel is open. */
-export const DROPDOWN_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
+export const SBB_DROPDOWN_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'sbb-dropdown-scroll-strategy'
 );
 
@@ -81,13 +81,13 @@ export function SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => Sc
 }
 
 /** The height of each dropdown option. */
-export const DROPDOWN_OPTION_HEIGHT = 40;
+export const SBB_DROPDOWN_OPTION_HEIGHT = 40;
 
 /** The total height of the dropdown panel. */
-export const DROPDOWN_PANEL_HEIGHT = 404;
+export const SBB_DROPDOWN_PANEL_HEIGHT = 404;
 
-export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
-  provide: DROPDOWN_SCROLL_STRATEGY,
+export const SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
+  provide: SBB_DROPDOWN_SCROLL_STRATEGY,
   deps: [Overlay],
   useFactory: SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY,
 };
@@ -142,12 +142,12 @@ const panelPositionMappings: { [key: string]: ConnectedPosition[] } = {
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DropdownTriggerDirective),
+      useExisting: forwardRef(() => SbbDropdownTrigger),
       multi: true,
     },
   ],
 })
-export class DropdownTriggerDirective implements OnDestroy {
+export class SbbDropdownTrigger implements OnDestroy {
   /** Role on a dropdown trigger. */
   @HostBinding('attr.role') get role() {
     return this.dropdownDisabled ? null : 'combobox';
@@ -185,7 +185,7 @@ export class DropdownTriggerDirective implements OnDestroy {
    * A stream of actions that should close the dropdown panel, including
    * when an option is selected, on blur, and when TAB is pressed.
    */
-  get panelClosingActions(): Observable<DropdownSelectionChange | null> {
+  get panelClosingActions(): Observable<SbbDropdownSelectionChange | null> {
     return merge(
       this.optionSelections,
       this.dropdown.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
@@ -196,7 +196,7 @@ export class DropdownTriggerDirective implements OnDestroy {
         : observableOf()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map((event) => (event instanceof DropdownSelectionChange ? event : null))
+      map((event) => (event instanceof SbbDropdownSelectionChange ? event : null))
     );
   }
 
@@ -207,7 +207,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   }
 
   /** The currently active option, coerced to SbbOption type. */
-  get activeOption(): DropdownItemDirective | null {
+  get activeOption(): SbbDropdownItem | null {
     return this.dropdown && this.dropdown.keyManager ? this.dropdown.keyManager.activeItem : null;
   }
   @HostBinding('class.sbb-dropdown-trigger')
@@ -215,14 +215,14 @@ export class DropdownTriggerDirective implements OnDestroy {
 
   /** The dropdown panel to be attached to this trigger. */
   // tslint:disable-next-line:no-input-rename
-  @Input('sbbDropdown') dropdown: DropdownComponent;
+  @Input('sbbDropdown') dropdown: SbbDropdown;
 
   /**
    * Reference relative to which to position the dropdown panel.
    * Defaults to the dropdown trigger element.
    */
   // tslint:disable-next-line:no-input-rename
-  @Input('sbbDropdownConnectedTo') connectedTo: DropdownOriginDirective;
+  @Input('sbbDropdownConnectedTo') connectedTo: SbbDropdownOrigin;
 
   @Input()
   panelClass = '';
@@ -233,7 +233,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   horizontalOrientation: 'left' | 'right' | 'prefer-right' | 'prefer-left' = 'right';
 
   /** Stream of dropdown option selections. */
-  readonly optionSelections: Observable<DropdownSelectionChange> = defer(() => {
+  readonly optionSelections: Observable<SbbDropdownSelectionChange> = defer(() => {
     if (this.dropdown && this.dropdown.options) {
       return merge(...this.dropdown.options.map((option) => option.selectionChange));
     }
@@ -244,7 +244,7 @@ export class DropdownTriggerDirective implements OnDestroy {
       take(1),
       switchMap(() => this.optionSelections)
     );
-  }) as Observable<DropdownSelectionChange>;
+  }) as Observable<SbbDropdownSelectionChange>;
 
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
@@ -271,7 +271,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     protected _viewContainerRef: ViewContainerRef,
     protected _zone: NgZone,
     protected _changeDetectorRef: ChangeDetectorRef,
-    @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy: any,
+    @Inject(SBB_DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy: any,
     @Optional() @Inject(DOCUMENT) protected _document: any,
     protected _viewportRuler?: ViewportRuler
   ) {}
@@ -406,9 +406,9 @@ export class DropdownTriggerDirective implements OnDestroy {
 
     const newScrollPosition = getDropdownItemScrollPosition(
       index + labelCount,
-      DROPDOWN_OPTION_HEIGHT,
+      SBB_DROPDOWN_OPTION_HEIGHT,
       this.dropdown.getScrollTop(),
-      DROPDOWN_PANEL_HEIGHT
+      SBB_DROPDOWN_PANEL_HEIGHT
     );
 
     this.dropdown.setScrollTop(newScrollPosition);
@@ -479,7 +479,7 @@ export class DropdownTriggerDirective implements OnDestroy {
    * control to that value. It will also mark the control as dirty if this interaction
    * stemmed from the user.
    */
-  private _setValueAndClose(event: DropdownSelectionChange | null): void {
+  private _setValueAndClose(event: SbbDropdownSelectionChange | null): void {
     if (event && event.source) {
       this._clearPreviousSelectedOption(event.source);
       this._elementRef.nativeElement.focus();
@@ -492,7 +492,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   /**
    * Clear any previous selected option and emit a selection change event for this option
    */
-  private _clearPreviousSelectedOption(skip: DropdownItemDirective) {
+  private _clearPreviousSelectedOption(skip: SbbDropdownItem) {
     this.dropdown.options.forEach((item) => {
       // tslint:disable-next-line:triple-equals
       if (item != skip && item.selected) {

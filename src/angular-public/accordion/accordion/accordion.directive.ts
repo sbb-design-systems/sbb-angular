@@ -11,7 +11,7 @@ import {
   QueryList,
 } from '@angular/core';
 
-import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansion-panel-header.component';
+import { SbbExpansionPanelHeader } from '../expansion-panel-header/expansion-panel-header.component';
 
 import { SBB_ACCORDION } from './accordion-token';
 
@@ -22,17 +22,17 @@ import { SBB_ACCORDION } from './accordion-token';
   providers: [
     {
       provide: SBB_ACCORDION,
-      useExisting: AccordionDirective,
+      useExisting: SbbAccordion,
     },
   ],
 })
-export class AccordionDirective extends CdkAccordion implements AfterContentInit {
-  private _keyManager: FocusKeyManager<ExpansionPanelHeaderComponent>;
+export class SbbAccordion extends CdkAccordion implements AfterContentInit {
+  private _keyManager: FocusKeyManager<SbbExpansionPanelHeader>;
   /**
    * Class property that refers to the headers of the panels of the accordion.
    */
-  @ContentChildren(ExpansionPanelHeaderComponent, { descendants: true })
-  headers: QueryList<ExpansionPanelHeaderComponent>;
+  @ContentChildren(SbbExpansionPanelHeader, { descendants: true })
+  headers: QueryList<SbbExpansionPanelHeader>;
 
   /** Whether the expansion indicator should be hidden. */
   @Input()
@@ -72,7 +72,7 @@ export class AccordionDirective extends CdkAccordion implements AfterContentInit
   /**
    * Handles a event coming on a header of a panel associated at a specific item.
    */
-  handleHeaderFocus(header: ExpansionPanelHeaderComponent) {
+  handleHeaderFocus(header: SbbExpansionPanelHeader) {
     this._keyManager.updateActiveItem(header);
   }
 

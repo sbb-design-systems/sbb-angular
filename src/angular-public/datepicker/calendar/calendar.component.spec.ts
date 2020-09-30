@@ -15,7 +15,7 @@ import {
   NOV,
 } from '@sbb-esta/angular-core/testing';
 
-import { CalendarComponent, DatepickerModule } from '../public-api';
+import { SbbCalendar, SbbDatepickerModule } from '../public-api';
 
 @Component({
   template: `
@@ -91,7 +91,7 @@ describe('CalendarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [DatepickerModule, SbbIconModule, SbbIconTestingModule],
+      imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
       declarations: [
         // Test components.
         StandardCalendarComponent,
@@ -107,13 +107,13 @@ describe('CalendarComponent', () => {
     let fixture: ComponentFixture<StandardCalendarComponent>;
     let testComponent: StandardCalendarComponent;
     let calendarElement: HTMLElement;
-    let calendarInstance: CalendarComponent<Date>;
+    let calendarInstance: SbbCalendar<Date>;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(StandardCalendarComponent);
       fixture.detectChanges();
 
-      const calendarDebugElement = fixture.debugElement.query(By.directive(CalendarComponent));
+      const calendarDebugElement = fixture.debugElement.query(By.directive(SbbCalendar));
       calendarElement = calendarDebugElement.nativeElement;
 
       calendarInstance = calendarDebugElement.componentInstance;
@@ -184,12 +184,12 @@ describe('CalendarComponent', () => {
     let fixture: ComponentFixture<CalendarWithMinMaxComponent>;
     let testComponent: CalendarWithMinMaxComponent;
     let calendarElement: HTMLElement;
-    let calendarInstance: CalendarComponent<Date>;
+    let calendarInstance: SbbCalendar<Date>;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(CalendarWithMinMaxComponent);
 
-      const calendarDebugElement = fixture.debugElement.query(By.directive(CalendarComponent));
+      const calendarDebugElement = fixture.debugElement.query(By.directive(SbbCalendar));
       calendarElement = calendarDebugElement.nativeElement;
       calendarInstance = calendarDebugElement.componentInstance;
       testComponent = fixture.componentInstance;
@@ -281,9 +281,7 @@ describe('CalendarComponent', () => {
       const dynamicFixture = TestBed.createComponent(CalendarWithSelectableMinDateComponent);
       dynamicFixture.detectChanges();
 
-      const calendarDebugElement = dynamicFixture.debugElement.query(
-        By.directive(CalendarComponent)
-      );
+      const calendarDebugElement = dynamicFixture.debugElement.query(By.directive(SbbCalendar));
       const disabledClass = 'sbb-calendar-body-disabled';
       calendarElement = calendarDebugElement.nativeElement;
       calendarInstance = calendarDebugElement.componentInstance;
@@ -320,13 +318,13 @@ describe('CalendarComponent', () => {
     let fixture: ComponentFixture<CalendarWithDateFilterComponent>;
     let testComponent: CalendarWithDateFilterComponent;
     let calendarElement: HTMLElement;
-    let calendarInstance: CalendarComponent<Date>;
+    let calendarInstance: SbbCalendar<Date>;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(CalendarWithDateFilterComponent);
       fixture.detectChanges();
 
-      const calendarDebugElement = fixture.debugElement.query(By.directive(CalendarComponent));
+      const calendarDebugElement = fixture.debugElement.query(By.directive(SbbCalendar));
       calendarElement = calendarDebugElement.nativeElement;
       calendarInstance = calendarDebugElement.componentInstance;
       testComponent = fixture.componentInstance;

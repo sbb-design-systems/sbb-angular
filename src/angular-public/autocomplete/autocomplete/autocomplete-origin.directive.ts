@@ -8,7 +8,7 @@ import { Directive, ElementRef } from '@angular/core';
   selector: '[sbbAutocompleteOrigin]',
   exportAs: 'sbbAutocompleteOrigin',
 })
-export class AutocompleteOriginDirective {
+export class SbbAutocompleteOrigin {
   constructor(
     /** Reference to the element on which the directive is applied. */
     public elementRef: ElementRef<HTMLElement>

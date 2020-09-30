@@ -6,9 +6,9 @@ import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
 
-import { FileSelectorModule } from '../file-selector.module';
+import { SbbFileSelectorModule } from '../file-selector.module';
 
-import { FileSelectorComponent } from './file-selector.component';
+import { SbbFileSelector } from './file-selector.component';
 
 const testFileList: Partial<File>[] = [
   {
@@ -101,7 +101,7 @@ describe('FileSelectorComponent using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FileSelectorModule, SbbIconModule, SbbIconTestingModule],
+      imports: [SbbFileSelectorModule, SbbIconModule, SbbIconTestingModule],
       declarations: [FileSelectorTestComponent],
     }).compileComponents();
   }));
@@ -117,7 +117,7 @@ describe('FileSelectorComponent using mock component', () => {
   });
 
   it('should call fileChanged event when change event is triggered on input file', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(By.directive(SbbFileSelector));
     const fileInput = fileComponent.query(By.css('input[type="file"]'));
 
     spyOn(component, 'fileChanged');
@@ -128,7 +128,7 @@ describe('FileSelectorComponent using mock component', () => {
   });
 
   it('should create a File List after calling the applyChanges method', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(By.directive(SbbFileSelector));
 
     fileComponent.componentInstance.applyChanges(testFileList);
     fixture.detectChanges();
@@ -139,7 +139,7 @@ describe('FileSelectorComponent using mock component', () => {
   });
 
   it('should add files to File List when the multipleMode is set to "persistent"', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(By.directive(SbbFileSelector));
 
     const firstList = testFileList.slice(0, 2);
     const secondList = testFileList.slice(5, 7);
@@ -162,7 +162,7 @@ describe('FileSelectorComponent using mock component', () => {
   });
 
   it('should remove one item when clicking the remove button', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(By.directive(SbbFileSelector));
 
     fileComponent.componentInstance.applyChanges(testFileList);
 
@@ -182,7 +182,7 @@ describe('FileSelectorComponent using mock component', () => {
   });
 
   it('should put proper file type icon', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(By.directive(SbbFileSelector));
 
     fileComponent.componentInstance.applyChanges(testFileList);
 
@@ -246,7 +246,7 @@ describe('FileSelectorComponent using mock component and limited behaviour ', ()
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FileSelectorModule, SbbIconTestingModule, FormsModule],
+      imports: [SbbFileSelectorModule, SbbIconTestingModule, FormsModule],
       declarations: [FileSelectorTest2Component],
     }).compileComponents();
   }));
@@ -264,7 +264,7 @@ describe('FileSelectorComponent using mock component and limited behaviour ', ()
   it('should call onFileChanged event and have length of li elements equals to 0', () => {
     const oneElement = testFileList.slice(0, 1);
     const fileComponent = fixtureFileSelectorTest2.debugElement.query(
-      By.directive(FileSelectorComponent)
+      By.directive(SbbFileSelector)
     );
     const cd: ChangeDetectorRef = fileComponent.componentInstance._changeDetector;
     spyOn(cd, 'detectChanges');

@@ -7,10 +7,10 @@ import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
 import {
-  AccordionDirective,
-  AccordionModule,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderComponent,
+  SbbAccordion,
+  SbbAccordionModule,
+  SbbExpansionPanel,
+  SbbExpansionPanelHeader,
 } from '../public-api';
 
 // tslint:disable:i18n
@@ -25,9 +25,9 @@ import {
   `,
 })
 class SetOfItemsComponent {
-  @ViewChild(AccordionDirective, { static: true }) accordion: AccordionDirective;
-  @ViewChildren(ExpansionPanelComponent) panels: QueryList<ExpansionPanelComponent>;
-  @ViewChildren(ExpansionPanelHeaderComponent) headers: QueryList<ExpansionPanelHeaderComponent>;
+  @ViewChild(SbbAccordion, { static: true }) accordion: SbbAccordion;
+  @ViewChildren(SbbExpansionPanel) panels: QueryList<SbbExpansionPanel>;
+  @ViewChildren(SbbExpansionPanelHeader) headers: QueryList<SbbExpansionPanelHeader>;
 
   multi = true;
 }
@@ -46,8 +46,8 @@ class SetOfItemsComponent {
   `,
 })
 class NestedPanelComponent {
-  @ViewChild('outerPanel', { static: true }) outerPanel: ExpansionPanelComponent;
-  @ViewChild('innerPanel', { static: true }) innerPanel: ExpansionPanelComponent;
+  @ViewChild('outerPanel', { static: true }) outerPanel: SbbExpansionPanel;
+  @ViewChild('innerPanel', { static: true }) innerPanel: SbbExpansionPanel;
 }
 
 @Component({
@@ -67,7 +67,7 @@ class AccordionWithHideToggleComponent {
 describe('AccordionDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, AccordionModule, SbbIconTestingModule],
+      imports: [BrowserAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
       declarations: [AccordionWithHideToggleComponent, NestedPanelComponent, SetOfItemsComponent],
     }).compileComponents();
   }));
@@ -158,7 +158,7 @@ describe('AccordionDirective', () => {
 
   it('should update the expansion panel if hideToggle changed', () => {
     const fixture = TestBed.createComponent(AccordionWithHideToggleComponent);
-    const panel = fixture.debugElement.query(By.directive(ExpansionPanelComponent));
+    const panel = fixture.debugElement.query(By.directive(SbbExpansionPanel));
 
     fixture.detectChanges();
 

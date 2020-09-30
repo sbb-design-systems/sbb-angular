@@ -4,52 +4,52 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
-  DateAdapter,
-  DATE_PIPE_DATE_FORMATS,
-  NativeDateAdapter,
+  SbbDateAdapter,
+  SbbNativeDateAdapter,
   SBB_DATE_FORMATS,
+  SBB_DATE_PIPE_DATE_FORMATS,
 } from '@sbb-esta/angular-core/datetime';
 import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 
-import { CalendarBodyComponent } from './calendar-body/calendar-body.component';
-import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
-import { DateInputDirective } from './date-input/date-input.directive';
-import { DatepickerContentComponent } from './datepicker-content/datepicker-content.component';
-import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
+import { SbbCalendarBody } from './calendar-body/calendar-body.component';
+import { SbbCalendar, SbbCalendarHeader } from './calendar/calendar.component';
+import { SbbDateInput } from './date-input/date-input.directive';
+import { SbbDatepickerContent } from './datepicker-content/datepicker-content.component';
+import { SbbDatepickerToggle } from './datepicker-toggle/datepicker-toggle.component';
 import {
-  DatepickerComponent,
+  SbbDatepicker,
   SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
 } from './datepicker/datepicker.component';
-import { MonthViewComponent } from './month-view/month-view.component';
+import { SbbMonthView } from './month-view/month-view.component';
 
 @NgModule({
   imports: [CommonModule, SbbIconModule, PortalModule, A11yModule, OverlayModule],
   declarations: [
-    DatepickerComponent,
-    DatepickerToggleComponent,
-    DatepickerContentComponent,
-    CalendarComponent,
-    CalendarHeaderComponent,
-    MonthViewComponent,
-    CalendarBodyComponent,
-    DateInputDirective,
+    SbbDatepicker,
+    SbbDatepickerToggle,
+    SbbDatepickerContent,
+    SbbCalendar,
+    SbbCalendarHeader,
+    SbbMonthView,
+    SbbCalendarBody,
+    SbbDateInput,
   ],
   exports: [
-    DatepickerComponent,
-    DatepickerToggleComponent,
-    DatepickerContentComponent,
-    CalendarComponent,
-    CalendarHeaderComponent,
-    MonthViewComponent,
-    CalendarBodyComponent,
-    DateInputDirective,
+    SbbDatepicker,
+    SbbDatepickerToggle,
+    SbbDatepickerContent,
+    SbbCalendar,
+    SbbCalendarHeader,
+    SbbMonthView,
+    SbbCalendarBody,
+    SbbDateInput,
   ],
   providers: [
     SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
-    { provide: DateAdapter, useClass: NativeDateAdapter },
-    { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS },
+    { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
+    { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
     ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER,
   ],
-  entryComponents: [DatepickerContentComponent, CalendarHeaderComponent],
+  entryComponents: [SbbDatepickerContent, SbbCalendarHeader],
 })
-export class DatepickerModule {}
+export class SbbDatepickerModule {}

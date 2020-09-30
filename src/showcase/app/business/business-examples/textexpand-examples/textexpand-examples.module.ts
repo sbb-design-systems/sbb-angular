@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TextexpandModule } from '@sbb-esta/angular-business/textexpand';
+import { SbbTextexpandModule } from '@sbb-esta/angular-business/textexpand';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -13,7 +13,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, TextexpandModule],
+  imports: [CommonModule, SbbTextexpandModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('business', 'textexpand', EXAMPLE_INDEX)],

@@ -11,7 +11,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 
 /**
  * @deprecated use strings directly
@@ -33,12 +33,12 @@ export enum NotificationToastPosition {
   BOTTOMRIGHT = 'bottom-right',
 }
 
-export interface JumpMark {
+export interface SbbJumpMark {
   /** Title of an element in jump marks. */
   title: string;
   /** Identifier of an element in jump marks. */
   elementId?: string;
-  callback?: (event$: any, jumpMark: JumpMark) => void;
+  callback?: (event$: any, jumpMark: SbbJumpMark) => void;
 }
 
 @Component({
@@ -62,7 +62,7 @@ export interface JumpMark {
     '[hidden]': 'this.hidden',
   },
 })
-export class NotificationComponent {
+export class SbbNotification {
   /**
    *  @docs-private
    *  @deprecated internal detail
@@ -217,11 +217,11 @@ export class NotificationComponent {
    * icon placed in template
    * @docs-private
    */
-  @ContentChild(IconDirective, { read: TemplateRef })
+  @ContentChild(SbbIconDirective, { read: TemplateRef })
   _contentIcon: TemplateRef<any>;
 
   /** List of in page links displayed on the bottom of the notification */
-  @Input() jumpMarks?: JumpMark[];
+  @Input() jumpMarks?: SbbJumpMark[];
 
   /**
    * Observable which emits when the notification was closed
@@ -237,7 +237,7 @@ export class NotificationComponent {
    * @param $event click event
    * @param jumpMark jump mark after the notification message
    */
-  scrollTo($event: any, jumpMark: JumpMark) {
+  scrollTo($event: any, jumpMark: SbbJumpMark) {
     $event.preventDefault();
     if (jumpMark.elementId) {
       document.querySelector(jumpMark.elementId)?.scrollIntoView({ behavior: 'smooth' });

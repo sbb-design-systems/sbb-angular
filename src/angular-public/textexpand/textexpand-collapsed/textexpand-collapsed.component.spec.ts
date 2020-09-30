@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextexpandCollapsedComponent } from './textexpand-collapsed.component';
+import { SbbTextexpandCollapsed } from './textexpand-collapsed.component';
 
 describe('TextexpandCollapsedComponent', () => {
-  let component: TextexpandCollapsedComponent;
-  let fixture: ComponentFixture<TextexpandCollapsedComponent>;
+  let component: SbbTextexpandCollapsed;
+  let fixture: ComponentFixture<SbbTextexpandCollapsed>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextexpandCollapsedComponent],
+      declarations: [SbbTextexpandCollapsed],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextexpandCollapsedComponent);
+    fixture = TestBed.createComponent(SbbTextexpandCollapsed);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

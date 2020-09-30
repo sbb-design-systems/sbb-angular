@@ -1,10 +1,10 @@
 import { InjectionToken } from '@angular/core';
 
-export const FILE_SELECTOR_OPTIONS = new InjectionToken<FileSelectorOptions>(
+export const SBB_FILE_SELECTOR_OPTIONS = new InjectionToken<SbbFileSelectorOptions>(
   'FILE_SELECTOR_OPTIONS'
 );
 
-export interface FileSelectorOptions {
+export interface SbbFileSelectorOptions {
   /**
    * Categories of file types accepted by sbb-file-selector component.
    * It is optional.
@@ -38,7 +38,7 @@ export enum FileTypeCategory {
   ZIP,
 }
 
-export const FILE_TYPES: { [key: string]: string[] } = {
+export const SBB_FILE_TYPES: { [key: string]: string[] } = {
   TEXT: ['text/*'],
 
   IMAGE: ['image/*'],

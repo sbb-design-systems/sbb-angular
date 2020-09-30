@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { TabsComponent } from '@sbb-esta/angular-public/tabs';
+import { SbbTabs } from '@sbb-esta/angular-public/tabs';
 
 import { ComponentViewerBase } from '../../component-viewer-base';
 
@@ -9,5 +9,5 @@ import { ComponentViewerBase } from '../../component-viewer-base';
   styleUrls: ['./component-viewer.component.css'],
 })
 export class ComponentViewerComponent extends ComponentViewerBase {
-  @ViewChild(TabsComponent, { static: true }) tabs: TabsComponent;
+  @ViewChild(SbbTabs, { static: true }) tabs: SbbTabs;
 }

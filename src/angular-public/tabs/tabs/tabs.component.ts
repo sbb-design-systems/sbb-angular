@@ -17,7 +17,7 @@ import {
 import { merge, Observable, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-import { TabComponent } from '../tab/tab.component';
+import { SbbTab } from '../tab/tab.component';
 
 let counter = 0;
 
@@ -27,7 +27,7 @@ let counter = 0;
   styleUrls: ['./tabs.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TabsComponent implements AfterContentInit, OnDestroy {
+export class SbbTabs implements AfterContentInit, OnDestroy {
   /** @docs-private */
   @HostBinding('class.sbb-tabs') _tabsClass = true;
   /** Class property that tracks tab number of the list */
@@ -35,9 +35,9 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   /** Index of tab list */
   tabListIndex = 0;
   /** Class property that tracks changes in the tabs contained in the list */
-  @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
+  @ContentChildren(SbbTab) tabs: QueryList<SbbTab>;
   /** Class property that tracks changes in the content tab in the list of tab */
-  tabs$: Observable<TabComponent[]>;
+  tabs$: Observable<SbbTab[]>;
   /** Class property that tracks changes in the label tab in the list of tab */
   @ViewChildren('label') labels: QueryList<ElementRef>;
   /** Emits the newly selected  */
@@ -75,7 +75,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
    * Method that verifies the initial tabs state
    */
   initTabs() {
-    this.tabs$ = merge<TabComponent[]>(of(this.tabs.toArray()), this.tabs.changes);
+    this.tabs$ = merge<SbbTab[]>(of(this.tabs.toArray()), this.tabs.changes);
 
     const activeTabs = this.tabs.filter((tab) => tab.active);
 
@@ -106,7 +106,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   /**
    * Method that selects the tab that matches with the tab in input
    */
-  selectTab(tab: TabComponent, firstSelection = false) {
+  selectTab(tab: SbbTab, firstSelection = false) {
     // TODO: Check if there is a better solution for this timing issue
     Promise.resolve().then(() => {
       this.tabs.forEach((t, index) => {

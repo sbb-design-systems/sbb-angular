@@ -4,34 +4,34 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 
-import { AppChooserSectionComponent } from './app-chooser-section/app-chooser-section.component';
-import { HeaderMenuItemDirective } from './header-menu-item/header-menu-item.directive';
+import { SbbAppChooserSection } from './app-chooser-section/app-chooser-section.component';
+import { SbbHeaderMenuItem } from './header-menu-item/header-menu-item.directive';
 import {
-  HeaderMenuTriggerComponent,
+  SbbHeaderMenuTrigger,
   SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER,
 } from './header-menu-trigger/header-menu-trigger.component';
-import { HeaderMenuComponent } from './header-menu/header-menu.component';
-import { HeaderComponent } from './header/header.component';
+import { SbbHeaderMenu } from './header-menu/header-menu.component';
+import { SbbHeader } from './header/header.component';
 
 @NgModule({
   imports: [CommonModule, OverlayModule, PortalModule, SbbIconModule],
   declarations: [
-    HeaderComponent,
-    AppChooserSectionComponent,
-    HeaderMenuComponent,
-    HeaderMenuTriggerComponent,
-    HeaderMenuItemDirective,
+    SbbHeader,
+    SbbAppChooserSection,
+    SbbHeaderMenu,
+    SbbHeaderMenuTrigger,
+    SbbHeaderMenuItem,
   ],
   exports: [
-    HeaderComponent,
-    AppChooserSectionComponent,
-    HeaderMenuComponent,
-    HeaderMenuTriggerComponent,
-    HeaderMenuItemDirective,
+    SbbHeader,
+    SbbAppChooserSection,
+    SbbHeaderMenu,
+    SbbHeaderMenuTrigger,
+    SbbHeaderMenuItem,
   ],
   providers: [
     SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER,
     ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER,
   ],
 })
-export class HeaderModule {}
+export class SbbHeaderModule {}

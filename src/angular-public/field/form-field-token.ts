@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-import type { FieldComponent } from './field/field.component';
+import type { SbbField } from './field/field.component';
 
-export const FORM_FIELD = new InjectionToken<FieldComponent>('SBB_FORM_FIELD');
+export const SBB_FORM_FIELD = new InjectionToken<SbbField>('SBB_FORM_FIELD');

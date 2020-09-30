@@ -11,12 +11,12 @@ import {
   dispatchEvent,
   dispatchMouseEvent,
 } from '@sbb-esta/angular-core/testing';
-import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
+import { SbbDropdownModule } from '@sbb-esta/angular-public/dropdown';
 
-import { BreadcrumbModule } from '../breadcrumb.module';
-import { BreadcrumbComponent, BREADCRUMB_LEVEL_OFFSET } from '../breadcrumb/breadcrumb.component';
+import { SbbBreadcrumbModule } from '../breadcrumb.module';
+import { SbbBreadcrumb, SBB_BREADCRUMB_LEVEL_OFFSET } from '../breadcrumb/breadcrumb.component';
 
-import { BreadcrumbsComponent } from './breadcrumbs.component';
+import { SbbBreadcrumbs } from './breadcrumbs.component';
 
 // tslint:disable:i18n
 @Component({
@@ -128,18 +128,18 @@ export class BreadcrumbsTest2Component {}
 export class BreadcrumbsTest3Component {}
 
 describe('BreadcrumbsComponent', () => {
-  let component: BreadcrumbsComponent;
-  let fixture: ComponentFixture<BreadcrumbsComponent>;
+  let component: SbbBreadcrumbs;
+  let fixture: ComponentFixture<SbbBreadcrumbs>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BreadcrumbsComponent],
-      imports: [CommonModule, DropdownModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [SbbBreadcrumbs],
+      imports: [CommonModule, SbbDropdownModule, SbbIconModule, SbbIconTestingModule],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BreadcrumbsComponent);
+    fixture = TestBed.createComponent(SbbBreadcrumbs);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -159,7 +159,7 @@ describe('Breadcrumb behaviour Test', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BreadcrumbModule,
+        SbbBreadcrumbModule,
         RouterTestingModule,
         CommonModule,
         SbbIconModule,
@@ -188,7 +188,7 @@ describe('Breadcrumb behaviour Test', () => {
 
       await fixtureTest.whenStable();
       const breadcrumbLevelHomeComponent = fixtureTest.debugElement.queryAll(
-        By.directive(BreadcrumbComponent)
+        By.directive(SbbBreadcrumb)
       )[0];
 
       const linkHome = breadcrumbLevelHomeComponent.query(
@@ -216,9 +216,7 @@ describe('Breadcrumb behaviour Test', () => {
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
-      const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(
-        By.directive(BreadcrumbComponent)
-      )[1];
+      const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
 
       const link1 = breadcrumbLevel1.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a'))
         .nativeElement;
@@ -242,9 +240,7 @@ describe('Breadcrumb behaviour Test', () => {
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
-      const breadcrumbLevel2 = fixtureTest.debugElement.queryAll(
-        By.directive(BreadcrumbComponent)
-      )[2];
+      const breadcrumbLevel2 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[2];
 
       const link2 = breadcrumbLevel2.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a'))
         .nativeElement;
@@ -268,12 +264,12 @@ describe('Breadcrumb behaviour Test 2', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BreadcrumbModule,
+        SbbBreadcrumbModule,
         RouterTestingModule,
         CommonModule,
         SbbIconModule,
         SbbIconTestingModule,
-        DropdownModule,
+        SbbDropdownModule,
       ],
       declarations: [BreadcrumbsTest2Component],
     }).compileComponents();
@@ -290,9 +286,7 @@ describe('Breadcrumb behaviour Test 2', () => {
       fixtureTest.detectChanges();
       await fixtureTest.whenStable();
 
-      const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(
-        By.directive(BreadcrumbComponent)
-      )[1];
+      const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
 
       const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'));
 
@@ -305,7 +299,9 @@ describe('Breadcrumb behaviour Test 2', () => {
         By.css('.sbb-dropdown-panel.sbb-dropdown-visible')
       )[0].nativeElement;
 
-      expect(dropdownPanel.getBoundingClientRect().width).toBeGreaterThan(BREADCRUMB_LEVEL_OFFSET);
+      expect(dropdownPanel.getBoundingClientRect().width).toBeGreaterThan(
+        SBB_BREADCRUMB_LEVEL_OFFSET
+      );
     });
   }));
 
@@ -321,7 +317,7 @@ describe('Breadcrumb behaviour Test 2', () => {
 
       await fixtureTest.whenStable();
       const breadcrumbLevelHomeComponent = fixtureTest.debugElement.queryAll(
-        By.directive(BreadcrumbComponent)
+        By.directive(SbbBreadcrumb)
       )[0];
 
       const linkHome = breadcrumbLevelHomeComponent.query(
@@ -349,9 +345,7 @@ describe('Breadcrumb behaviour Test 2', () => {
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
-      const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(
-        By.directive(BreadcrumbComponent)
-      )[1];
+      const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
 
       const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'))
         .nativeElement as HTMLButtonElement;
@@ -392,9 +386,7 @@ describe('Breadcrumb behaviour Test 2', () => {
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
-      const breadcrumbLevel2 = fixtureTest.debugElement.queryAll(
-        By.directive(BreadcrumbComponent)
-      )[2];
+      const breadcrumbLevel2 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[2];
 
       const dropdownTrigger = breadcrumbLevel2.query(By.css('.sbb-breadcrumb-trigger'))
         .nativeElement;
@@ -436,12 +428,12 @@ describe('Breadcrumb behaviour Test 3', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BreadcrumbModule,
+        SbbBreadcrumbModule,
         RouterTestingModule,
         CommonModule,
         SbbIconModule,
         SbbIconTestingModule,
-        DropdownModule,
+        SbbDropdownModule,
       ],
       declarations: [BreadcrumbsTest3Component],
     }).compileComponents();
@@ -465,7 +457,7 @@ describe('Breadcrumb behaviour Test 3', () => {
 
       await fixtureTest.whenStable();
       const breadcrumbLevelHomeComponent = fixtureTest.debugElement.queryAll(
-        By.directive(BreadcrumbComponent)
+        By.directive(SbbBreadcrumb)
       )[0];
 
       const linkHome = breadcrumbLevelHomeComponent.query(
@@ -493,9 +485,7 @@ describe('Breadcrumb behaviour Test 3', () => {
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
-      const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(
-        By.directive(BreadcrumbComponent)
-      )[1];
+      const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
 
       const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'))
         .nativeElement;

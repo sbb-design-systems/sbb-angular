@@ -20,8 +20,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
-  AutocompleteComponent,
-  AutocompleteOriginDirective,
+  SbbAutocomplete,
+  SbbAutocompleteOrigin,
   SbbAutocompleteSelectedEvent,
 } from '@sbb-esta/angular-business/autocomplete';
 import {
@@ -29,8 +29,8 @@ import {
   CanUpdateErrorStateCtor,
   mixinErrorState,
 } from '@sbb-esta/angular-core/common-behaviors';
-import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
-import { FormFieldControl } from '@sbb-esta/angular-core/forms';
+import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
+import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
 import { Subject } from 'rxjs';
 
 let nextId = 0;
@@ -39,7 +39,7 @@ let nextId = 0;
 export class SbbChipInputChange {
   constructor(
     /** Reference to the chip-input that emitted the change event. */
-    public source: ChipInputComponent,
+    public source: SbbChipInput,
     /** Current value of the chip-input that emitted the event. */
     public value: string[]
   ) {}
@@ -50,7 +50,7 @@ export class SbbChipInputChange {
 export class SbbChipsBase {
   constructor(
     public _elementRef: ElementRef,
-    public _defaultErrorStateMatcher: ErrorStateMatcher,
+    public _defaultErrorStateMatcher: SbbErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
     public ngControl: NgControl
@@ -71,11 +71,11 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
     '[class.sbb-chip-input-active]': '!this.disabled && this.focused',
     '[attr.aria-describedby]': 'this._ariaDescribedby',
   },
-  providers: [{ provide: FormFieldControl, useExisting: ChipInputComponent }],
+  providers: [{ provide: SbbFormFieldControl, useExisting: SbbChipInput }],
 })
-export class ChipInputComponent extends SbbChipsMixinBase
+export class SbbChipInput extends SbbChipsMixinBase
   implements
-    FormFieldControl<any>,
+    SbbFormFieldControl<any>,
     OnInit,
     DoCheck,
     OnDestroy,
@@ -84,7 +84,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
     ControlValueAccessor {
   /** Optional autocomplete Component */
   @Input('sbbAutocomplete')
-  autocomplete: AutocompleteComponent;
+  autocomplete: SbbAutocomplete;
 
   /** Disables the chip input */
   @Input()
@@ -187,7 +187,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
    * TODO: Prefix with _
    * @deprecated
    */
-  origin = new AutocompleteOriginDirective(this._elementRef);
+  origin = new SbbAutocompleteOrigin(this._elementRef);
 
   /** The aria-describedby attribute on the chip-input for improved a11y. */
   _ariaDescribedby: string;
@@ -202,7 +202,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
     @Self() @Optional() public ngControl: NgControl,
     private _changeDetectorRef: ChangeDetectorRef,
     elementRef: ElementRef,
-    defaultErrorStateMatcher: ErrorStateMatcher,
+    defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective
   ) {

@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
-import type { FieldComponent } from '../field/field.component';
-import { FORM_FIELD } from '../form-field-token';
+import type { SbbField } from '../field/field.component';
+import { SBB_FORM_FIELD } from '../form-field-token';
 
 @Component({
   selector: 'sbb-label',
@@ -17,7 +17,7 @@ import { FORM_FIELD } from '../form-field-token';
   styleUrls: ['./label.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LabelComponent {
+export class SbbLabel {
   /**
    * Label of a input text
    */
@@ -30,7 +30,7 @@ export class LabelComponent {
   }
   private _for: string | null = null;
 
-  constructor(@Inject(FORM_FIELD) @Optional() private _formField: TypeRef<FieldComponent>) {}
+  constructor(@Inject(SBB_FORM_FIELD) @Optional() private _formField: TypeRef<SbbField>) {}
 
   private _inputId() {
     return this._hasFormFieldControl() ? this._formField._control.id : null;

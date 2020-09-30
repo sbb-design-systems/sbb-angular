@@ -4,19 +4,19 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import esriLoader from 'esri-loader';
 
-import { ESRI_CONFIG_TOKEN } from './esri-config.token';
-import { EsriConfiguration } from './esri-configuration';
-import { EsriConfigConsts } from './esri-standard-values.const';
+import { SBB_ESRI_CONFIG_TOKEN } from './esri-config.token';
+import { SbbEsriConfiguration } from './esri-configuration';
+import { SbbEsriConfigConsts } from './esri-standard-values.const';
 
 @Injectable({
   providedIn: 'root',
 })
-export class EsriLoaderService {
+export class SbbEsriLoaderService {
   private _configuration: Promise<void>;
 
   constructor(
     /** Inject an optional configuration to configure arcgis-js-api settings. */
-    @Optional() @Inject(ESRI_CONFIG_TOKEN) private _config: EsriConfiguration
+    @Optional() @Inject(SBB_ESRI_CONFIG_TOKEN) private _config: SbbEsriConfiguration
   ) {}
 
   /**
@@ -48,7 +48,7 @@ export class EsriLoaderService {
     const url =
       this._config && this._config.arcgisJsUrl
         ? this._config.arcgisJsUrl
-        : EsriConfigConsts.arcgisJsUrl;
+        : SbbEsriConfigConsts.arcgisJsUrl;
 
     if (!this._configuration) {
       this._configuration = this._configure(url);
@@ -61,13 +61,13 @@ export class EsriLoaderService {
   /** @docs-private */
   private async _configure(url: string) {
     const cssUrl =
-      this._config && this._config.cssUrl ? this._config.cssUrl : EsriConfigConsts.cssUrl;
+      this._config && this._config.cssUrl ? this._config.cssUrl : SbbEsriConfigConsts.cssUrl;
     esriLoader.loadCss(cssUrl);
 
     const configModule = await esriLoader.loadModules(['esri/config'], { url });
     const esriConfig = configModule[0] as __esri.config;
 
-    esriConfig.portalUrl = EsriConfigConsts.arcgisPortalUrl;
+    esriConfig.portalUrl = SbbEsriConfigConsts.arcgisPortalUrl;
     if (this._config && this._config.portalUrl) {
       esriConfig.portalUrl = this._config.portalUrl;
     }
@@ -75,10 +75,10 @@ export class EsriLoaderService {
     const trustedServers =
       this._config && this._config.trustedServers ? this._config.trustedServers : [];
     esriConfig.request.trustedServers!.push(
-      ...EsriConfigConsts.trustedServers.concat(trustedServers)
+      ...SbbEsriConfigConsts.trustedServers.concat(trustedServers)
     );
 
-    const originsWithCredentials = EsriConfigConsts.originsWithCredentialsReuqired;
+    const originsWithCredentials = SbbEsriConfigConsts.originsWithCredentialsReuqired;
     const originsWithCredentialsRequired =
       this._config && this._config.originsWithCredentialsRequired
         ? originsWithCredentials.concat(this._config.originsWithCredentialsRequired)

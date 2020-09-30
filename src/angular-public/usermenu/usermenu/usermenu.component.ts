@@ -7,7 +7,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { DropdownComponent } from '@sbb-esta/angular-public/dropdown';
+import { SbbDropdown } from '@sbb-esta/angular-public/dropdown';
 
 let counter = 0;
 
@@ -22,7 +22,7 @@ let counter = 0;
     '[attr.id]': 'this.id',
   },
 })
-export class UserMenuComponent {
+export class SbbUserMenu {
   /**
    * Css class of a sbb-usermenu.
    * @docs-private
@@ -54,7 +54,7 @@ export class UserMenuComponent {
   /**
    * Reference to a dropdown istance.
    */
-  @ContentChild(DropdownComponent) dropdown: DropdownComponent;
+  @ContentChild(SbbDropdown) dropdown: SbbDropdown;
 
   emitLogin() {
     this.loginRequest.emit();

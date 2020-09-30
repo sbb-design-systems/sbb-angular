@@ -32,23 +32,23 @@ import {
   MockNgZone,
   typeInElement,
 } from '@sbb-esta/angular-core/testing';
-import { FieldComponent, FieldModule } from '@sbb-esta/angular-public/field';
+import { SbbField, SbbFieldModule } from '@sbb-esta/angular-public/field';
 import {
-  OptionComponent,
-  OptionModule,
-  SBBOptionSelectionChange,
+  SbbOption,
+  SbbOptionModule,
+  SbbOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { AutocompleteModule } from '../autocomplete.module';
+import { SbbAutocompleteModule } from '../autocomplete.module';
 
 import {
-  AutocompleteTriggerDirective,
   getSbbAutocompleteMissingPanelError,
+  SbbAutocompleteTrigger,
   SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
 } from './autocomplete-trigger.directive';
-import { AutocompleteComponent, SbbAutocompleteSelectedEvent } from './autocomplete.component';
+import { SbbAutocomplete, SbbAutocompleteSelectedEvent } from './autocomplete.component';
 
 @Component({
   template: `
@@ -81,12 +81,12 @@ class SimpleAutocompleteComponent implements OnDestroy {
   openedSpy = jasmine.createSpy('autocomplete opened spy');
   closedSpy = jasmine.createSpy('autocomplete closed spy');
 
-  @ViewChild(AutocompleteTriggerDirective, { static: true })
-  trigger: AutocompleteTriggerDirective;
-  @ViewChild(AutocompleteComponent, { static: true })
-  panel: AutocompleteComponent;
-  @ViewChild(FieldComponent, { static: true }) formField: FieldComponent;
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ViewChild(SbbAutocompleteTrigger, { static: true })
+  trigger: SbbAutocompleteTrigger;
+  @ViewChild(SbbAutocomplete, { static: true })
+  panel: SbbAutocomplete;
+  @ViewChild(SbbField, { static: true }) formField: SbbField;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 
   numbers = [
     { code: '1', name: 'Eins' },
@@ -138,9 +138,9 @@ class NgIfAutocompleteComponent {
   isVisible = true;
   options = ['One', 'Two', 'Three'];
 
-  @ViewChild(AutocompleteTriggerDirective)
-  trigger: AutocompleteTriggerDirective;
-  @ViewChildren(OptionComponent) matOptions: QueryList<OptionComponent>;
+  @ViewChild(SbbAutocompleteTrigger)
+  trigger: SbbAutocompleteTrigger;
+  @ViewChildren(SbbOption) matOptions: QueryList<SbbOption>;
 
   constructor() {
     this.filteredOptions = this.optionCtrl.valueChanges.pipe(
@@ -247,8 +247,8 @@ class AutocompleteWithNumbersComponent {
   `,
 })
 class AutocompleteWithOnPushDelayComponent implements OnInit {
-  @ViewChild(AutocompleteTriggerDirective, { static: true })
-  trigger: AutocompleteTriggerDirective;
+  @ViewChild(SbbAutocompleteTrigger, { static: true })
+  trigger: SbbAutocompleteTrigger;
   options: string[];
 
   ngOnInit() {
@@ -274,9 +274,9 @@ class AutocompleteWithNativeInputComponent {
   filteredOptions: Observable<any>;
   options = ['En', 'To', 'Tre', 'Fire', 'Fem'];
 
-  @ViewChild(AutocompleteTriggerDirective, { static: true })
-  trigger: AutocompleteTriggerDirective;
-  @ViewChildren(OptionComponent) matOptions: QueryList<OptionComponent>;
+  @ViewChild(SbbAutocompleteTrigger, { static: true })
+  trigger: SbbAutocompleteTrigger;
+  @ViewChildren(SbbOption) matOptions: QueryList<SbbOption>;
 
   constructor() {
     this.filteredOptions = this.optionCtrl.valueChanges.pipe(
@@ -294,8 +294,8 @@ class AutocompleteWithNativeInputComponent {
   template: ` <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="control" /> `,
 })
 class AutocompleteWithoutPanelComponent {
-  @ViewChild(AutocompleteTriggerDirective, { static: true })
-  trigger: AutocompleteTriggerDirective;
+  @ViewChild(SbbAutocompleteTrigger, { static: true })
+  trigger: SbbAutocompleteTrigger;
   control = new FormControl();
 }
 
@@ -317,10 +317,10 @@ class AutocompleteWithSelectEventComponent {
   numbers = ['Eins', 'Zwei', 'Drei'];
   optionSelected = jasmine.createSpy('optionSelected callback');
 
-  @ViewChild(AutocompleteTriggerDirective, { static: true })
-  trigger: AutocompleteTriggerDirective;
-  @ViewChild(AutocompleteComponent, { static: true })
-  autocomplete: AutocompleteComponent;
+  @ViewChild(SbbAutocompleteTrigger, { static: true })
+  trigger: SbbAutocompleteTrigger;
+  @ViewChild(SbbAutocomplete, { static: true })
+  autocomplete: SbbAutocomplete;
 }
 
 @Component({
@@ -375,8 +375,8 @@ class InputWithoutAutocompleteAndDisabledComponent {}
     </sbb-autocomplete>`,
 })
 class AutocompleteLocaleNormalizerComponent {
-  @ViewChild(AutocompleteTriggerDirective, { static: true })
-  trigger: AutocompleteTriggerDirective;
+  @ViewChild(SbbAutocompleteTrigger, { static: true })
+  trigger: SbbAutocompleteTrigger;
 
   value: string;
 
@@ -401,7 +401,13 @@ describe('AutocompleteComponent', () => {
   // Creates a test component fixture.
   function createComponent<T>(component: Type<T>, providers: Provider[] = []) {
     TestBed.configureTestingModule({
-      imports: [AutocompleteModule, FieldModule, FormsModule, ReactiveFormsModule, OptionModule],
+      imports: [
+        SbbAutocompleteModule,
+        SbbFieldModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SbbOptionModule,
+      ],
       declarations: [component],
       providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }, ...providers],
     });
@@ -1636,7 +1642,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      expect(spy).toHaveBeenCalledWith(jasmine.any(SBBOptionSelectionChange));
+      expect(spy).toHaveBeenCalledWith(jasmine.any(SbbOptionSelectionChange));
       // tslint:disable-next-line:no-non-null-assertion
       subscription!.unsubscribe();
     }));
@@ -1645,7 +1651,7 @@ describe('AutocompleteComponent', () => {
   describe('panel closing', () => {
     let fixture: ComponentFixture<SimpleAutocompleteComponent>;
     let input: HTMLInputElement;
-    let trigger: AutocompleteTriggerDirective;
+    let trigger: SbbAutocompleteTrigger;
     let closingActionSpy: jasmine.Spy;
     let closingActionsSub: Subscription;
 
@@ -1705,7 +1711,7 @@ describe('AutocompleteComponent', () => {
 
       expect(closingActionSpy).not.toHaveBeenCalled();
       option.click();
-      expect(closingActionSpy).toHaveBeenCalledWith(jasmine.any(SBBOptionSelectionChange));
+      expect(closingActionSpy).toHaveBeenCalledWith(jasmine.any(SbbOptionSelectionChange));
     });
 
     it('should close the panel when pressing escape', () => {

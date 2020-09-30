@@ -4,17 +4,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
+import { SbbLinkGeneratorResult } from '@sbb-esta/angular-core/models';
 
-import { DropdownModule } from '../dropdown.module';
+import { SbbDropdownModule } from '../dropdown.module';
 import {
-  DropdownItemDirective,
-  DropdownOriginDirective,
-  DropdownTriggerDirective,
-  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER,
+  SbbDropdownItem,
+  SbbDropdownOrigin,
+  SbbDropdownTrigger,
+  SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER,
 } from '../public-api';
 
-import { DropdownComponent } from './dropdown.component';
+import { SbbDropdown } from './dropdown.component';
 
 // tslint:disable:i18n
 @Component({
@@ -42,11 +42,11 @@ import { DropdownComponent } from './dropdown.component';
   `,
 })
 export class DropdownTestComponent {
-  @ViewChildren(DropdownTriggerDirective)
-  triggers: QueryList<DropdownTriggerDirective>;
+  @ViewChildren(SbbDropdownTrigger)
+  triggers: QueryList<SbbDropdownTrigger>;
 
-  @ViewChild(DropdownComponent, { static: true })
-  dropdown: DropdownComponent;
+  @ViewChild(SbbDropdown, { static: true })
+  dropdown: SbbDropdown;
 
   links: Array<any> = [
     { page: 1, text: 'Test 1' },
@@ -54,7 +54,7 @@ export class DropdownTestComponent {
     { page: 3, text: 'Test 3' },
   ];
 
-  linkGenerator(page: string): LinkGeneratorResult {
+  linkGenerator(page: string): SbbLinkGeneratorResult {
     return {
       queryParams: { page: page },
       routerLink: ['.'],
@@ -74,24 +74,19 @@ export class DropdownTestComponent {
 }
 
 describe('DropdownComponent', () => {
-  let component: DropdownComponent;
-  let fixture: ComponentFixture<DropdownComponent>;
+  let component: SbbDropdown;
+  let fixture: ComponentFixture<SbbDropdown>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DropdownComponent,
-        DropdownItemDirective,
-        DropdownOriginDirective,
-        DropdownTriggerDirective,
-      ],
+      declarations: [SbbDropdown, SbbDropdownItem, SbbDropdownOrigin, SbbDropdownTrigger],
       imports: [CommonModule],
-      providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER],
+      providers: [SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DropdownComponent);
+    fixture = TestBed.createComponent(SbbDropdown);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -110,7 +105,7 @@ describe('DropdownComponent test', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DropdownTestComponent],
-      imports: [DropdownModule, RouterTestingModule],
+      imports: [SbbDropdownModule, RouterTestingModule],
     }).compileComponents();
   }));
 

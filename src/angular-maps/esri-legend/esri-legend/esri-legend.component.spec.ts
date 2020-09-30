@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { EsriTypesService } from '@sbb-esta/angular-maps/core';
+import { SbbEsriTypesService } from '@sbb-esta/angular-maps/core';
 
-import { EsriLegendComponent } from './esri-legend.component';
+import { SbbEsriLegend } from './esri-legend.component';
 
 describe('EsriLegendComponent', () => {
-  let component: EsriLegendComponent;
-  let fixture: ComponentFixture<EsriLegendComponent>;
+  let component: SbbEsriLegend;
+  let fixture: ComponentFixture<SbbEsriLegend>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EsriLegendComponent],
-      providers: [EsriTypesService],
+      declarations: [SbbEsriLegend],
+      providers: [SbbEsriTypesService],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EsriLegendComponent);
+    fixture = TestBed.createComponent(SbbEsriLegend);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

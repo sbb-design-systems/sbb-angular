@@ -14,7 +14,7 @@ import { take } from 'rxjs/operators';
  * An internal class that represents the data corresponding to a single calendar cell.
  * @docs-private
  */
-export class CalendarCell {
+export class SbbCalendarCell {
   constructor(
     public value: number,
     public displayValue: string,
@@ -37,7 +37,7 @@ export class CalendarCell {
     role: 'grid',
   },
 })
-export class CalendarBodyComponent {
+export class SbbCalendarBody {
   /**
    * @deprecated internal detail
    */
@@ -57,7 +57,7 @@ export class CalendarBodyComponent {
   @Input() label: string;
 
   /** The cells to display in the table. */
-  @Input() rows: CalendarCell[][];
+  @Input() rows: SbbCalendarCell[][];
 
   /** The value in the table that corresponds to today. */
   @Input() todayValue: number;
@@ -88,7 +88,7 @@ export class CalendarBodyComponent {
 
   constructor(private _elementRef: ElementRef<HTMLElement>, private _ngZone: NgZone) {}
 
-  cellClicked(cell: CalendarCell): void {
+  cellClicked(cell: SbbCalendarCell): void {
     if (!this.allowDisabledSelection && !cell.enabled) {
       return;
     }

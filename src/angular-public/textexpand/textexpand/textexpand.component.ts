@@ -9,8 +9,8 @@ import {
   Output,
 } from '@angular/core';
 
-import { TextexpandCollapsedComponent } from '../textexpand-collapsed/textexpand-collapsed.component';
-import { TextexpandExpandedComponent } from '../textexpand-expanded/textexpand-expanded.component';
+import { SbbTextexpandCollapsed } from '../textexpand-collapsed/textexpand-collapsed.component';
+import { SbbTextexpandExpanded } from '../textexpand-expanded/textexpand-expanded.component';
 
 let counter = 0;
 
@@ -20,7 +20,7 @@ let counter = 0;
   styleUrls: ['./textexpand.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextexpandComponent implements AfterContentInit {
+export class SbbTextexpand implements AfterContentInit {
   /**
    * Describes if text content is expanded or not. Initially is collapsed.
    */
@@ -56,14 +56,14 @@ export class TextexpandComponent implements AfterContentInit {
   /**
    * Refers to the textexpand-collapsed component istance.
    */
-  @ContentChild(TextexpandCollapsedComponent, { static: true })
-  collapsedComponent: TextexpandCollapsedComponent;
+  @ContentChild(SbbTextexpandCollapsed, { static: true })
+  collapsedComponent: SbbTextexpandCollapsed;
 
   /**
    * Refers to the textexpand-expanded component istance.
    */
-  @ContentChild(TextexpandExpandedComponent, { static: true })
-  expandedComponent: TextexpandExpandedComponent;
+  @ContentChild(SbbTextexpandExpanded, { static: true })
+  expandedComponent: SbbTextexpandExpanded;
 
   toggleExpanded() {
     this.isExpanded = !this.isExpanded;

@@ -17,9 +17,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  SbbTooltipBase,
+  SbbTooltipRegistryService,
   SBB_TOOLTIP_SCROLL_STRATEGY,
-  TooltipBase,
-  TooltipRegistryService,
 } from '@sbb-esta/angular-core/base/tooltip';
 
 // TODO: Find solution for template and style
@@ -30,7 +30,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
+export class SbbTooltipComponent extends SbbTooltipBase implements OnInit, OnDestroy {
   /**
    * The trigger event, on which the tooltip opens.
    */
@@ -101,7 +101,7 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
     private _platform: Platform,
     private _elementRef: ElementRef,
     overlay: Overlay,
-    tooltipRegistry: TooltipRegistryService,
+    tooltipRegistry: SbbTooltipRegistryService,
     @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() @Inject(DOCUMENT) document: any,
     zone: NgZone,

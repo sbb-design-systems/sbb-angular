@@ -2,12 +2,12 @@
 /// <reference types="arcgis-js-api" />
 
 import { Injectable } from '@angular/core';
-import { EsriLoaderService } from '@sbb-esta/angular-maps/esri-config';
+import { SbbEsriLoaderService } from '@sbb-esta/angular-maps/esri-config';
 
 @Injectable({
   providedIn: 'root',
 })
-export class EsriTypesService {
+export class SbbEsriTypesService {
   private _point: __esri.PointConstructor;
   private _graphic: __esri.GraphicConstructor;
   private _simpleMarkeSymbol: __esri.SimpleMarkerSymbolConstructor;
@@ -81,7 +81,7 @@ export class EsriTypesService {
     return this._extent;
   }
 
-  constructor(private _loader: EsriLoaderService) {}
+  constructor(private _loader: SbbEsriLoaderService) {}
 
   async load(): Promise<any> {
     if (!this._graphic) {

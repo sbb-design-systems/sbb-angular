@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { ButtonComponent } from './button.component';
+import { SbbButton } from './button.component';
 
 // tslint:disable:i18n
 @Component({
@@ -45,7 +45,7 @@ describe('ButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SbbIconModule, SbbIconTestingModule],
-      declarations: [ButtonComponent, ButtonTestComponent, IconButtonTestComponent],
+      declarations: [SbbButton, ButtonTestComponent, IconButtonTestComponent],
     }).compileComponents();
   }));
 

@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { Lightbox, LightboxRef, LIGHTBOX_DATA } from '@sbb-esta/angular-public/lightbox';
+import { SbbLightbox, SbbLightboxRef, SBB_LIGHTBOX_DATA } from '@sbb-esta/angular-public/lightbox';
 
 export interface LightboxData {
   animal: string;
@@ -24,8 +24,8 @@ export interface LightboxData {
 })
 export class LightboxExampleExampleContentComponent {
   constructor(
-    public lightboxRef: LightboxRef<LightboxExampleExampleContentComponent>,
-    @Inject(LIGHTBOX_DATA) public data: LightboxData
+    public lightboxRef: SbbLightboxRef<LightboxExampleExampleContentComponent>,
+    @Inject(SBB_LIGHTBOX_DATA) public data: LightboxData
   ) {}
 
   noThanks(): void {
@@ -55,7 +55,7 @@ export class LightboxExampleExampleComponent {
   animal: string;
   name: string;
 
-  constructor(public lightbox: Lightbox) {}
+  constructor(public lightbox: SbbLightbox) {}
 
   openLightbox(): void {
     const lightboxRef = this.lightbox.openLightbox(LightboxExampleExampleContentComponent, {
@@ -94,7 +94,7 @@ export class LightboxExampleExample2ContentComponent {
   `,
 })
 export class LightboxExampleExample2Component {
-  constructor(public lightbox: Lightbox) {}
+  constructor(public lightbox: SbbLightbox) {}
 
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(LightboxExampleExample2ContentComponent);
@@ -114,7 +114,7 @@ export class LightboxExampleExample2Component {
 })
 export class LightboxExampleExample3Component {
   @ViewChild('sampleLightboxTemplate', { static: true }) sampleLightboxTemplate: TemplateRef<any>;
-  constructor(public lightbox: Lightbox) {}
+  constructor(public lightbox: SbbLightbox) {}
 
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(this.sampleLightboxTemplate);
@@ -138,7 +138,7 @@ export class LightboxExampleExample4ContentComponent implements OnInit {
   confirmPanel = false;
 
   constructor(
-    private _lightBoxRef: LightboxRef<LightboxExampleExample4ContentComponent>,
+    private _lightBoxRef: SbbLightboxRef<LightboxExampleExample4ContentComponent>,
     private _changeDetectorRef: ChangeDetectorRef
   ) {}
 
@@ -161,7 +161,7 @@ export class LightboxExampleExample4ContentComponent implements OnInit {
   `,
 })
 export class LightboxExampleExample4Component {
-  constructor(public lightbox: Lightbox) {}
+  constructor(public lightbox: SbbLightbox) {}
 
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(LightboxExampleExample4ContentComponent, {
@@ -196,8 +196,8 @@ export class LightboxExampleExample4Component {
 })
 export class LightboxExampleExample6ContentComponent {
   constructor(
-    private _lightBoxRef: LightboxRef<LightboxExampleExample5ContentComponent>,
-    public lightbox: Lightbox
+    private _lightBoxRef: SbbLightboxRef<LightboxExampleExample5ContentComponent>,
+    public lightbox: SbbLightbox
   ) {}
 
   closeThisLightbox() {
@@ -223,8 +223,8 @@ export class LightboxExampleExample6ContentComponent {
 })
 export class LightboxExampleExample5ContentComponent implements OnInit {
   constructor(
-    private _lightBoxRef: LightboxRef<LightboxExampleExample5ContentComponent>,
-    public lightbox: Lightbox
+    private _lightBoxRef: SbbLightboxRef<LightboxExampleExample5ContentComponent>,
+    public lightbox: SbbLightbox
   ) {}
 
   ngOnInit() {
@@ -248,7 +248,7 @@ export class LightboxExampleExample5ContentComponent implements OnInit {
   `,
 })
 export class LightboxExampleExample5Component {
-  constructor(public lightbox: Lightbox) {}
+  constructor(public lightbox: SbbLightbox) {}
 
   openDialog() {
     const lightboxRef = this.lightbox.openLightbox(LightboxExampleExample5ContentComponent, {

@@ -22,16 +22,16 @@ import { SBB_TOOLTIP_SCROLL_STRATEGY } from '@sbb-esta/angular-core/base/tooltip
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
-import { TooltipContainerComponent } from './tooltip-container.component';
+import { SbbTooltipContainer } from './tooltip-container.component';
 
 /**
  * Options for how the tooltip trigger should handle touch gestures.
  * See `Tooltip._touchGestures` for more information.
  */
-export type TooltipTouchGestures = 'auto' | 'on' | 'off';
+export type SbbTooltipTouchGestures = 'auto' | 'on' | 'off';
 
 /** CSS class that will be attached to the overlay panel. */
-export const TOOLTIP_PANEL_CLASS = 'sbb-tooltip-panel';
+export const SBB_TOOLTIP_PANEL_CLASS = 'sbb-tooltip-panel';
 
 /** Options used to bind passive event listeners. */
 const passiveListenerOptions = normalizePassiveListenerOptions({ passive: true });
@@ -76,7 +76,7 @@ export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions 
   selector: '[sbbTooltip]',
   exportAs: 'sbbTooltip',
 })
-export class Tooltip implements OnDestroy, OnInit {
+export class SbbTooltip implements OnDestroy, OnInit {
   /** Disables the display of the tooltip. */
   @Input('sbbTooltipDisabled')
   get disabled(): boolean {
@@ -165,9 +165,9 @@ export class Tooltip implements OnDestroy, OnInit {
   }
 
   _overlayRef: OverlayRef | null;
-  _tooltipInstance: TooltipContainerComponent | null;
+  _tooltipInstance: SbbTooltipContainer | null;
 
-  private _portal: ComponentPortal<TooltipContainerComponent>;
+  private _portal: ComponentPortal<SbbTooltipContainer>;
   private _disabled: boolean = false;
   private _tooltipClass: string | string[] | Set<string> | { [key: string]: any };
   private readonly _scrollStrategy: () => ScrollStrategy;
@@ -192,7 +192,7 @@ export class Tooltip implements OnDestroy, OnInit {
    * - `off` - Disables touch gestures. Note that this will prevent the tooltip from
    *   showing on touch devices.
    */
-  private readonly _touchGestures: TooltipTouchGestures = 'auto';
+  private readonly _touchGestures: SbbTooltipTouchGestures = 'auto';
   private _message = '';
 
   /** Manually-bound passive event listeners. */
@@ -254,8 +254,7 @@ export class Tooltip implements OnDestroy, OnInit {
     const overlayRef = this._createOverlay();
 
     this._detach();
-    this._portal =
-      this._portal || new ComponentPortal(TooltipContainerComponent, this._viewContainerRef);
+    this._portal = this._portal || new ComponentPortal(SbbTooltipContainer, this._viewContainerRef);
     this._tooltipInstance = overlayRef.attach(this._portal).instance;
     this._tooltipInstance
       .afterHidden()
@@ -375,7 +374,7 @@ export class Tooltip implements OnDestroy, OnInit {
     this._overlayRef = this._overlay.create({
       direction: this._dir,
       positionStrategy: strategy,
-      panelClass: TOOLTIP_PANEL_CLASS,
+      panelClass: SBB_TOOLTIP_PANEL_CLASS,
       scrollStrategy: this._scrollStrategy(),
     });
 

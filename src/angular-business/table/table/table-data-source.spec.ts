@@ -3,9 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SbbSortDirective } from '../sort/sort.component';
-import { TableModule } from '../table.module';
+import { SbbTableModule } from '../table.module';
 
-import { SbbTableDataSource, TableFilter } from './table-data-source';
+import { SbbTableDataSource, SbbTableFilter } from './table-data-source';
 
 @Component({
   template: ` <div sbbSort sbbSortDirection="asc"></div> `,
@@ -19,7 +19,7 @@ describe('SbbTableDataSource', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TableModule, NoopAnimationsModule],
+      imports: [SbbTableModule, NoopAnimationsModule],
       declarations: [SbbSortTestComponent],
     }).compileComponents();
   }));
@@ -103,7 +103,7 @@ describe('SbbTableDataSource', () => {
     });
 
     it('should filter by tableFilter', () => {
-      interface TestFilter extends TableFilter {
+      interface TestFilter extends SbbTableFilter {
         colNumber?: number;
         colString?: string;
         colNull?: string;
@@ -146,7 +146,7 @@ describe('SbbTableDataSource', () => {
     });
 
     it('should filter by tableFilter with number entry 0', () => {
-      interface TestFilter extends TableFilter {
+      interface TestFilter extends SbbTableFilter {
         colNumber?: number;
       }
       const dataTableSource = new SbbTableDataSource<TestRow, TestFilter>();
@@ -171,7 +171,7 @@ describe('SbbTableDataSource', () => {
     });
 
     it('should filter by tableFilter with arrays', () => {
-      interface TestFilter extends TableFilter {
+      interface TestFilter extends SbbTableFilter {
         colNumber?: number[];
         colString?: string[];
         colNull?: string[];

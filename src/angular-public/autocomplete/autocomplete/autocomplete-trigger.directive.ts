@@ -30,13 +30,13 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
-import { FORM_FIELD } from '@sbb-esta/angular-public/field';
-import type { FieldComponent } from '@sbb-esta/angular-public/field';
+import { SBB_FORM_FIELD } from '@sbb-esta/angular-public/field';
+import type { SbbField } from '@sbb-esta/angular-public/field';
 import {
-  countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  OptionComponent,
-  SBBOptionSelectionChange,
+  sbbCountGroupLabelsBeforeOption,
+  SbbOption,
+  SbbOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
 import {
   BehaviorSubject,
@@ -51,8 +51,8 @@ import {
 } from 'rxjs';
 import { delay, filter, map, startWith, switchMap, take, tap } from 'rxjs/operators';
 
-import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
-import { AutocompleteComponent } from './autocomplete.component';
+import { SbbAutocompleteOrigin } from './autocomplete-origin.directive';
+import { SbbAutocomplete } from './autocomplete.component';
 
 /**
  * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.
@@ -77,10 +77,10 @@ export function SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () =
 }
 
 /** The height of each autocomplete option. */
-export const AUTOCOMPLETE_OPTION_HEIGHT = 40;
+export const SBB_AUTOCOMPLETE_OPTION_HEIGHT = 40;
 
 /** The total height of the autocomplete panel. */
-export const AUTOCOMPLETE_PANEL_HEIGHT = 404;
+export const SBB_AUTOCOMPLETE_PANEL_HEIGHT = 404;
 
 export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
@@ -94,7 +94,7 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => AutocompleteTriggerDirective),
+      useExisting: forwardRef(() => SbbAutocompleteTrigger),
       multi: true,
     },
   ],
@@ -109,8 +109,7 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     '[class.sbb-autocomplete-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen',
   },
 })
-export class AutocompleteTriggerDirective
-  implements ControlValueAccessor, AfterViewInit, OnDestroy {
+export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewInit, OnDestroy {
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
   private _document: Document;
@@ -160,10 +159,10 @@ export class AutocompleteTriggerDirective
   /** The autocomplete panel to be attached to this trigger. */
   // tslint:disable-next-line:no-input-rename
   @Input('sbbAutocomplete')
-  get autocomplete(): AutocompleteComponent {
+  get autocomplete(): SbbAutocomplete {
     return this._autocomplete;
   }
-  set autocomplete(autocomplete: AutocompleteComponent) {
+  set autocomplete(autocomplete: SbbAutocomplete) {
     this._autocomplete = autocomplete;
 
     this._highlightSubscription.unsubscribe();
@@ -177,7 +176,7 @@ export class AutocompleteTriggerDirective
         switchMap(() =>
           combineLatest([
             this._inputValue,
-            (autocomplete.options.changes as Observable<OptionComponent[]>).pipe(
+            (autocomplete.options.changes as Observable<SbbOption[]>).pipe(
               startWith(autocomplete.options.toArray())
             ),
           ])
@@ -190,14 +189,14 @@ export class AutocompleteTriggerDirective
         );
       });
   }
-  private _autocomplete: AutocompleteComponent;
+  private _autocomplete: SbbAutocomplete;
 
   /**
    * Reference relative to which to position the autocomplete panel.
    * Defaults to the autocomplete trigger element.
    */
   // tslint:disable-next-line:no-input-rename
-  @Input('sbbAutocompleteConnectedTo') connectedTo: AutocompleteOriginDirective;
+  @Input('sbbAutocompleteConnectedTo') connectedTo: SbbAutocompleteOrigin;
 
   /**
    * `autocomplete` attribute to be set on the input element.
@@ -208,9 +207,9 @@ export class AutocompleteTriggerDirective
   autocompleteAttribute = 'off';
 
   /** Stream of autocomplete option selections. */
-  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
+  readonly optionSelections: Observable<SbbOptionSelectionChange> = defer(() => {
     if (this.autocomplete && this.autocomplete.options) {
-      return merge<SBBOptionSelectionChange>(
+      return merge<SbbOptionSelectionChange>(
         ...this.autocomplete.options.map((option) => option.onSelectionChange)
       );
     }
@@ -295,7 +294,7 @@ export class AutocompleteTriggerDirective
     @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy: any,
     private _viewportRuler: ViewportRuler,
     @Optional() @Inject(DOCUMENT) document: any,
-    @Optional() @Inject(FORM_FIELD) @Host() private _formField: TypeRef<FieldComponent>
+    @Optional() @Inject(SBB_FORM_FIELD) @Host() private _formField: TypeRef<SbbField>
   ) {
     this._document = document;
   }
@@ -370,7 +369,7 @@ export class AutocompleteTriggerDirective
    * A stream of actions that should close the autocomplete panel, including
    * when an option is selected, on blur, and when TAB is pressed.
    */
-  get panelClosingActions(): Observable<SBBOptionSelectionChange | null> {
+  get panelClosingActions(): Observable<SbbOptionSelectionChange | null> {
     return merge(
       this.optionSelections,
       this.autocomplete.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
@@ -381,12 +380,12 @@ export class AutocompleteTriggerDirective
         : observableOf()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map((event) => (event instanceof SBBOptionSelectionChange ? event : null))
+      map((event) => (event instanceof SbbOptionSelectionChange ? event : null))
     );
   }
 
   /** The currently active option, coerced to SbbOption type. */
-  get activeOption(): OptionComponent | null {
+  get activeOption(): SbbOption | null {
     if (this.autocomplete && this.autocomplete.keyManager) {
       return this.autocomplete.keyManager.activeItem;
     }
@@ -520,7 +519,7 @@ export class AutocompleteTriggerDirective
    */
   scrollToOption(): void {
     const index = this.autocomplete.keyManager.activeItemIndex || 0;
-    const labelCount = countGroupLabelsBeforeOption(
+    const labelCount = sbbCountGroupLabelsBeforeOption(
       index,
       this.autocomplete.options,
       this.autocomplete.optionGroups
@@ -534,9 +533,9 @@ export class AutocompleteTriggerDirective
     } else {
       const newScrollPosition = getOptionScrollPosition(
         index + labelCount,
-        AUTOCOMPLETE_OPTION_HEIGHT,
+        SBB_AUTOCOMPLETE_OPTION_HEIGHT,
         this.autocomplete.getScrollTop(),
-        AUTOCOMPLETE_PANEL_HEIGHT
+        SBB_AUTOCOMPLETE_PANEL_HEIGHT
       );
 
       this.autocomplete.setScrollTop(newScrollPosition);
@@ -625,7 +624,7 @@ export class AutocompleteTriggerDirective
    * control to that value. It will also mark the control as dirty if this interaction
    * stemmed from the user.
    */
-  private _setValueAndClose(event: SBBOptionSelectionChange | null): void {
+  private _setValueAndClose(event: SbbOptionSelectionChange | null): void {
     if (event && event.source) {
       this._clearPreviousSelectedOption(event.source);
       this._setTriggerValue(event.source.value);
@@ -640,7 +639,7 @@ export class AutocompleteTriggerDirective
   /**
    * Clear any previous selected option and emit a selection change event for this option
    */
-  private _clearPreviousSelectedOption(skip: OptionComponent) {
+  private _clearPreviousSelectedOption(skip: SbbOption) {
     this.autocomplete.options.forEach((option) => {
       // tslint:disable-next-line:triple-equals
       if (option != skip && option.selected) {

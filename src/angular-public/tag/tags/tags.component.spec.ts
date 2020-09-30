@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { SbbCheckboxChange as TagChange } from '@sbb-esta/angular-core/base/checkbox';
-import { BadgeComponent, BadgeModule } from '@sbb-esta/angular-public/badge';
+import { SbbCheckboxChange as SbbTagChange } from '@sbb-esta/angular-core/base/checkbox';
+import { SbbBadge, SbbBadgeModule } from '@sbb-esta/angular-public/badge';
 
 import { Tag } from '../tag.model';
-import { TagComponent } from '../tag/tag.component';
+import { SbbTag } from '../tag/tag.component';
 
-import { TagsComponent } from './tags.component';
+import { SbbTags } from './tags.component';
 
 @Component({
   selector: 'sbb-tags-test-fixture',
@@ -42,7 +42,7 @@ class TagsTestFixtureComponent {
     },
   ];
 
-  change(evt: TagChange) {}
+  change(evt: SbbTagChange) {}
 }
 
 @Component({
@@ -82,7 +82,7 @@ class TagsTestFixtureReactiveComponent {
   ];
   totalAmount: number;
 
-  change(evt: TagChange) {}
+  change(evt: SbbTagChange) {}
 }
 
 @Component({
@@ -96,18 +96,18 @@ class TagsTestFixtureReactiveComponent {
 class TagLinkTestFixtureComponent {}
 
 describe('TagsComponent', () => {
-  let component: TagsComponent;
-  let fixture: ComponentFixture<TagsComponent>;
+  let component: SbbTags;
+  let fixture: ComponentFixture<SbbTags>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BadgeModule],
-      declarations: [TagsComponent, TagComponent],
+      imports: [SbbBadgeModule],
+      declarations: [SbbTags, SbbTag],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TagsComponent);
+    fixture = TestBed.createComponent(SbbTags);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -127,8 +127,8 @@ describe('TagsComponent with Model attached', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, BadgeModule],
-      declarations: [TagsComponent, TagComponent, TagsTestFixtureComponent],
+      imports: [CommonModule, FormsModule, SbbBadgeModule],
+      declarations: [SbbTags, SbbTag, TagsTestFixtureComponent],
     }).compileComponents();
   }));
 
@@ -139,27 +139,27 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should have three sbb-tag instantiated', () => {
-    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
 
     expect(tags.length).toBe(3);
   });
 
   it('should the second sbb-tag input have the ID set by the Model', () => {
-    const secondTag: TagComponent = fixture.debugElement.queryAll(By.directive(TagComponent))[1]
+    const secondTag: SbbTag = fixture.debugElement.queryAll(By.directive(SbbTag))[1]
       .componentInstance;
 
     expect(secondTag.id).toBe('tag-1');
   });
 
   it('should the third sbb-tag input have an auto generated ID', () => {
-    const thirdTag: TagComponent = fixture.debugElement.queryAll(By.directive(TagComponent))[2]
+    const thirdTag: SbbTag = fixture.debugElement.queryAll(By.directive(SbbTag))[2]
       .componentInstance;
 
     expect(thirdTag.inputId).toMatch(/sbb-tag-\d+-input/);
   });
 
   it('should have all its sbb-tag children with linkMode set to false', () => {
-    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
 
     const foundLinkModes = tags.findIndex((tag) => tag.componentInstance.linkMode === true) !== -1;
 
@@ -167,7 +167,7 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should set an amount', () => {
-    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
 
     tags.forEach((tag) => {
       const tagAmount = tag.componentInstance.amount;
@@ -207,7 +207,7 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should check when click the label', () => {
-    const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+    const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
     const tagLabel = tag.query(By.css('label'));
 
     tagLabel.nativeElement.click();
@@ -218,7 +218,7 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should sbb-tag to be checked if model is true and update Model if checked/unchecked', async () => {
-    const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+    const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
     const tagLabel = tag.query(By.css('label'));
 
     fixture.detectChanges();
@@ -246,7 +246,7 @@ describe('TagsComponent with Model attached', () => {
   it('should update all models when clicking all tag', async () => {
     spyOn(component, 'change');
 
-    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
     const allTag = tags[0];
     const firstTag = tags[1];
     const secondTag = tags[2];
@@ -282,7 +282,7 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should the allTag be inactive with at least one tag selected and vice versa', async () => {
-    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
     const allTag = tags[0];
     const firstTag = tags[1];
 
@@ -316,7 +316,7 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should prevent uncheck the all tag at the same time when all other tags are unchecked', async () => {
-    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
     const allTag = tags[0];
     const firstTag = tags[1];
 
@@ -340,7 +340,7 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should when clicking the all tag all other tags to be unchecked/false', async () => {
-    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
     const allTag = tags[0];
 
     allTag.query(By.css('label')).nativeElement.click();
@@ -357,7 +357,7 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should call the change event when checking/unchecking a sbb-tag', () => {
-    const firstTag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+    const firstTag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
 
     spyOn(component, 'change');
 
@@ -369,7 +369,7 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should update allTag when model of a child sbb-tag is updated', async () => {
-    const allTag = fixture.debugElement.queryAll(By.directive(TagComponent))[0];
+    const allTag = fixture.debugElement.queryAll(By.directive(SbbTag))[0];
 
     fixture.detectChanges();
     await fixture.whenStable();
@@ -391,8 +391,8 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, ReactiveFormsModule, BadgeModule],
-      declarations: [TagsComponent, TagComponent, TagsTestFixtureReactiveComponent],
+      imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule],
+      declarations: [SbbTags, SbbTag, TagsTestFixtureReactiveComponent],
     }).compileComponents();
   }));
 
@@ -403,7 +403,7 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
   });
 
   it('should have three sbb-tag instantiated', () => {
-    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
 
     expect(tags.length).toBe(3);
   });
@@ -422,7 +422,7 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
   });
 
   it('should check when click the label', () => {
-    const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+    const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
     const tagLabel = tag.query(By.css('label'));
 
     tagLabel.nativeElement.click();
@@ -433,7 +433,7 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
   });
 
   it('should sbb-tag to be checked if model is true and update Model if checked/unchecked', async () => {
-    const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+    const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
     const tagLabel = tag.query(By.css('label'));
     expect(tag.componentInstance.checked).toBe(false);
 
@@ -457,7 +457,7 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
   it('should update all models when clicking all tag', async () => {
     spyOn(component, 'change');
 
-    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
     const allTag = tags[0];
     const firstTag = tags[1];
     const secondTag = tags[2];
@@ -493,7 +493,7 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
   });
 
   it('should call the change event when checking/unchecking a sbb-tag', () => {
-    const firstTag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+    const firstTag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
 
     spyOn(component, 'change');
 
@@ -505,7 +505,7 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
   });
 
   it('should update allTag when model of a child sbb-tag is updated', async () => {
-    const allTag = fixture.debugElement.queryAll(By.directive(TagComponent))[0];
+    const allTag = fixture.debugElement.queryAll(By.directive(SbbTag))[0];
 
     fixture.detectChanges();
     await fixture.whenStable();
@@ -526,8 +526,8 @@ describe('TagComponent as a Link Tag', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BadgeModule],
-      declarations: [TagComponent, TagLinkTestFixtureComponent],
+      imports: [SbbBadgeModule],
+      declarations: [SbbTag, TagLinkTestFixtureComponent],
     }).compileComponents();
   }));
 
@@ -537,24 +537,24 @@ describe('TagComponent as a Link Tag', () => {
   });
 
   it('should have linkMode set to true', () => {
-    const linkTag = fixture.debugElement.query(By.directive(TagComponent));
+    const linkTag = fixture.debugElement.query(By.directive(SbbTag));
 
     expect(linkTag.componentInstance.linkMode).toBe(true);
   });
 
   it('should be active', () => {
-    const linkTag = fixture.debugElement.query(By.directive(TagComponent));
+    const linkTag = fixture.debugElement.query(By.directive(SbbTag));
 
     expect(linkTag.componentInstance.active).toBe(true);
   });
 });
 
 function expectTotalAmount(expectedTotalAmount: number, fixture: any) {
-  const tagsComponent: TagsComponent = fixture.debugElement.query(By.directive(TagsComponent))
+  const tagsComponent: SbbTags = fixture.debugElement.query(By.directive(SbbTags))
     .componentInstance;
   expect(tagsComponent.totalAmount).toBe(expectedTotalAmount);
 
-  const allTag = fixture.debugElement.query(By.directive(TagComponent));
-  const sbbBadge = allTag.query(By.directive(BadgeComponent)).nativeElement;
+  const allTag = fixture.debugElement.query(By.directive(SbbTag));
+  const sbbBadge = allTag.query(By.directive(SbbBadge)).nativeElement;
   expect(sbbBadge.textContent).toBe(expectedTotalAmount.toString(10));
 }

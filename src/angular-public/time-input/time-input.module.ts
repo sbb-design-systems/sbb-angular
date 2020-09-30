@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 
-import { TimeInputDirective } from './time-input/time-input.directive';
+import { SbbTimeInput } from './time-input/time-input.directive';
 
 @NgModule({
-  declarations: [TimeInputDirective],
-  exports: [TimeInputDirective],
+  declarations: [SbbTimeInput],
+  exports: [SbbTimeInput],
 })
-export class TimeInputModule {}
+export class SbbTimeInputModule {}

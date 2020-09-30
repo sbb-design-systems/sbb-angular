@@ -49,13 +49,13 @@ import {
   dispatchMouseEvent,
 } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
-import { FieldModule } from '@sbb-esta/angular-public/field';
-import { OptionComponent, SBBOptionSelectionChange } from '@sbb-esta/angular-public/option';
+import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbOption, SbbOptionSelectionChange } from '@sbb-esta/angular-public/option';
 import { Subject } from 'rxjs';
 
-import { SelectModule } from '../select.module';
+import { SbbSelectModule } from '../select.module';
 
-import { SelectComponent } from './select.component';
+import { SbbSelect } from './select.component';
 
 // tslint:disable:i18n
 @Component({
@@ -100,8 +100,8 @@ class BasicSelectComponent {
   ariaLabelledby: string;
   panelClass = ['custom-one', 'custom-two'];
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 }
 
 @Component({
@@ -124,8 +124,8 @@ class NgModelSelectComponent {
   ];
   isDisabled: boolean;
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 }
 
 @Component({
@@ -170,7 +170,7 @@ class NgIfSelectComponent {
   ];
   control = new FormControl('pizza-1');
 
-  @ViewChild(SelectComponent) select: SelectComponent;
+  @ViewChild(SbbSelect) select: SbbSelect;
 }
 
 @Component({
@@ -214,8 +214,8 @@ class SelectInitWithoutOptionsComponent {
   foods: any[];
   control = new FormControl('pizza-1');
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 
   addOptions() {
     this.foods = [
@@ -238,7 +238,7 @@ class SelectInitWithoutOptionsComponent {
   ],
 })
 class CustomSelectAccessorComponent implements ControlValueAccessor {
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
 
   writeValue: (value?: any) => void = () => {};
   registerOnChange: (changeFn?: (value: any) => void) => void = () => {};
@@ -314,8 +314,8 @@ class MultiSelectComponent {
   ];
   control = new FormControl();
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 }
 
 @Component({
@@ -378,7 +378,7 @@ class FalsyValueSelectComponent {
     { value: 1, viewValue: 'Pizza' },
   ];
   control = new FormControl();
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 }
 
 @Component({
@@ -437,8 +437,8 @@ class SelectWithGroupsComponent {
     },
   ];
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 }
 
 @Component({
@@ -494,7 +494,7 @@ class InvalidSelectInFormComponent {
 })
 class SelectInsideFormGroupComponent {
   @ViewChild(FormGroupDirective, { static: true }) formGroupDirective: FormGroupDirective;
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
   formControl = new FormControl('', Validators.required);
   formGroup = new FormGroup({
     food: this.formControl,
@@ -520,7 +520,7 @@ class BasicSelectWithoutFormsComponent {
     { value: 'sandwich-2', viewValue: 'Sandwich' },
   ];
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
 }
 
 @Component({
@@ -541,7 +541,7 @@ class BasicSelectWithoutFormsPreselectedComponent {
     { value: 'pizza-1', viewValue: 'Pizza' },
   ];
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
 }
 
 @Component({
@@ -563,7 +563,7 @@ class BasicSelectWithoutFormsMultipleComponent {
     { value: 'sandwich-2', viewValue: 'Sandwich' },
   ];
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
 }
 
 @Component({
@@ -592,8 +592,8 @@ class NgModelCompareWithSelectComponent {
   };
   comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 
   useCompareByValue() {
     this.comparator = this.compareByValue;
@@ -640,8 +640,8 @@ class SingleSelectWithPreselectedArrayValuesComponent {
 
   selectedFoods = this.foods[1].value;
 
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+  @ViewChild(SbbSelect, { static: true }) select: SbbSelect;
+  @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 }
 
 @Component({
@@ -674,9 +674,9 @@ describe('SelectComponent', () => {
   function configureSbbSelectTestingModule(declarations: any[]) {
     TestBed.configureTestingModule({
       imports: [
-        SelectModule,
+        SbbSelectModule,
         SbbIconTestingModule,
-        FieldModule,
+        SbbFieldModule,
         ReactiveFormsModule,
         FormsModule,
         NoopAnimationsModule,
@@ -1802,7 +1802,7 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        expect(spy).toHaveBeenCalledWith(jasmine.any(SBBOptionSelectionChange));
+        expect(spy).toHaveBeenCalledWith(jasmine.any(SbbOptionSelectionChange));
 
         subscription.unsubscribe();
       }));
@@ -2374,7 +2374,7 @@ describe('SelectComponent', () => {
       const fixture = TestBed.createComponent(SelectWithPlainTabindexComponent);
       fixture.detectChanges();
 
-      const debugElement = fixture.debugElement.query(By.directive(SelectComponent));
+      const debugElement = fixture.debugElement.query(By.directive(SbbSelect));
       const select = debugElement.componentInstance;
 
       const spy = jasmine.createSpy('stateChanges complete');
@@ -2453,7 +2453,7 @@ describe('SelectComponent', () => {
 
     describe('comparing by value', () => {
       it('should have a selection', fakeAsync(() => {
-        const selectedOption = instance.select.selected as OptionComponent;
+        const selectedOption = instance.select.selected as SbbOption;
         expect(selectedOption.value.value).toEqual('pizza-1');
       }));
 
@@ -2462,7 +2462,7 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        const selectedOption = instance.select.selected as OptionComponent;
+        const selectedOption = instance.select.selected as SbbOption;
         expect(instance.selectedFood.value).toEqual('tacos-2');
         expect(selectedOption.value.value).toEqual('tacos-2');
       }));
@@ -3156,7 +3156,7 @@ describe('SelectComponent', () => {
     beforeEach(async(() => configureSbbSelectTestingModule([BasicSelectComponent])));
 
     let fixture: ComponentFixture<BasicSelectComponent>;
-    let selectComponent: SelectComponent;
+    let selectComponent: SbbSelect;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(BasicSelectComponent);
