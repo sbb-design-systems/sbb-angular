@@ -1,7 +1,13 @@
-<sbb-contextmenu>
-  <sbb-dropdown>
-    <button sbbDropdownItem type="button" (click)="action1()">Action 1</button>
-    <button sbbDropdownItem type="button" (click)="action2()">Action 2</button>
-    <button sbbDropdownItem type="button" (click)="action3()">Action 3</button>
-  </sbb-dropdown>
-</sbb-contextmenu>
+<div>
+  <sbb-contextmenu>
+    <sbb-dropdown>
+      <button sbbDropdownItem (click)="assignLastAction($event)">Profile</button>
+      <button sbbDropdownItem (click)="assignLastAction($event)">Projects</button>
+      <hr />
+      <button sbbDropdownItem (click)="assignLastAction($event)">Logout</button>
+    </sbb-dropdown>
+  </sbb-contextmenu>
+</div>
+
+<h4>Last Action</h4>
+<pre>{{ lastAction | json }}</pre>

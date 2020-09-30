@@ -12,10 +12,10 @@ $dialog-close-icon-color: $sbbColorGrey;
   align-items: center;
   height: pxToEm($dialog-header-height);
   padding: pxToEm($dialog-header-y-padding) pxToEm($dialog-x-padding-mobile);
-  border-top: 1px solid $sbbColorGranite;
-  border-left: 1px solid $sbbColorGranite;
-  border-right: 1px solid $sbbColorGranite;
-  border-bottom: 1px solid $dialog-border-color;
+  border-top: 1px solid $sbbColorIron;
+  border-left: 1px solid $sbbColorIron;
+  border-right: 1px solid $sbbColorIron;
+  box-shadow: autocompleteInputActiveBorder(1, 1);
   overflow: hidden;
 
   @include mq($from: tabletPortrait) {

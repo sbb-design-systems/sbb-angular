@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.3.1](https://github.com/sbb-design-systems/sbb-angular/compare/10.3.0...10.3.1) (2020-09-30)
+
+
+### Bug Fixes
+
+* support contextmenu icons ([#607](https://github.com/sbb-design-systems/sbb-angular/issues/607)) ([dcb4af6](https://github.com/sbb-design-systems/sbb-angular/commit/dcb4af6a543ed5fda387181f87755e73d9f13d1e))
+* **core:** use year pivot for business date adapter to determine century of 2-digit year ([#615](https://github.com/sbb-design-systems/sbb-angular/issues/615)) ([ed0351a](https://github.com/sbb-design-systems/sbb-angular/commit/ed0351af5eced6b7d3b9289d495181e15dc64735)), closes [#613](https://github.com/sbb-design-systems/sbb-angular/issues/613)
+
 ## [10.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.2.1...10.3.0) (2020-09-23)
 
 

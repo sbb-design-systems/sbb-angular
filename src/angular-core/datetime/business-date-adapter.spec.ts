@@ -18,6 +18,7 @@ describe('BusinessDateAdapter', () => {
       { input: 'Sa,01012020', expectedYear: 2020, expectedMonth: 1, expectedDay: 1 },
       { input: '01012020', expectedYear: 2020, expectedMonth: 1, expectedDay: 1 },
       { input: '010100', expectedYear: 2000, expectedMonth: 1, expectedDay: 1 },
+      { input: '010199', expectedYear: 1999, expectedMonth: 1, expectedDay: 1 },
       { input: '01011802', expectedYear: 1802, expectedMonth: 1, expectedDay: 1 },
     ];
 

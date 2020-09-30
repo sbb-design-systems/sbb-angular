@@ -24,7 +24,8 @@ const _HeaderMenuItemBase: CanDisableCtor & typeof HeaderMenuItemBase = mixinDis
 @Directive({
   selector: '[sbbHeaderMenuItem]',
   host: {
-    role: 'this.role',
+    '[attr.role]': 'this.role',
+    class: 'sbb-header-menu-item',
   },
 })
 export class SbbHeaderMenuItem extends _HeaderMenuItemBase implements FocusableOption, OnDestroy {

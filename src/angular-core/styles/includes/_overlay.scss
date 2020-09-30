@@ -1,53 +1,29 @@
-// TODO: Check what is autocomplete specific, dropdown specific and select specific and refactor accordingly
 $autocompleteTransition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1),
   opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 $autocompleteBg: $sbbColorWhite;
-$autocompleteBorderWidth: 2px;
-$autocompleteBorder: $autocompleteBorderWidth solid $sbbColorGrey;
-$autocompleteColor: $sbbColorGrey;
-$autocompleteShadowWidth: 8px;
+$autocompleteBorderWidth: if($sbbBusiness, 1px, 2px);
+$autocompleteBorder: if(
+  $sbbBusiness,
+  $autocompleteBorderWidth solid $sbbColorIron,
+  $autocompleteBorderWidth solid $sbbColorGrey
+);
+$autocompleteBorderRadius: 2px;
+$autocompleteBorderTopReverse: $autocompleteBorder;
+$autocompleteShadowWidth: if($sbbBusiness, 4px, 8px);
 $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
 $autocompleteInputActiveBorderWidth: 1px;
-$optionGroupItemPaddingLeft: 24px;
-$optionPaddingLeft: 14px;
+$autocompleteAndOptionPaddingX: if($sbbBusiness, 8px, 16px);
+$autocompletePaddingBottom: if($sbbBusiness, 4px, 18px);
+$autocompletePaddingX: if($sbbBusiness, 8px, 16px);
 
-$autocompletePaddingTop: 14px;
-$autocompletePaddingX: 16px;
-$autocompletePaddingBottom: 18px;
-$optionSelectedBarTop: 3;
-$optionSelectedBarTopFirst: 6;
-
-$dropdownPaddingBottom: 14px;
-$autocompleteOptionHoverColor: $sbbColorRed;
-$autocompleteOptionActiveColor: $sbbColorRed;
-$autocompleteHighlightTextBold: $fontSbbBold;
-$autocompleteHoverColor: $sbbColorBlack;
-$optionMultipleCheckboxPaddingLeft: 16;
-$optionMultipleNoCheckboxPaddingLeft: 14;
-
-$optionSelectedBarHeight: 22;
-$optionSelectedBarWidth: 1;
-
-@if $sbbBusiness {
-  $autocompleteBorderWidth: 1px;
-  $autocompleteBorder: $autocompleteBorderWidth solid $sbbColorGranite;
-  $autocompleteShadowWidth: 4px;
-  $autocompleteColor: $sbbColorGranite;
-  $optionGroupItemPaddingLeft: 16px;
-
-  $autocompletePaddingTop: 8px;
-  $autocompletePaddingX: 8px;
-  $autocompletePaddingBottom: 8px;
-
-  $autocompleteOptionHoverColor: $sbbColorRed125;
-  $autocompleteOptionActiveColor: $sbbColorRed125;
-  $dropdownPaddingBottom: 8px;
-  $optionMultipleCheckboxPaddingLeft: 8;
-  $optionMultipleNoCheckboxPaddingLeft: 8;
-}
-
-$autocompleteBorderTopReverse: $autocompleteBorder;
-$autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocompletePaddingBottom;
+$optionMultipleCheckboxPaddingLeft: if($sbbBusiness, 8px, 16px);
+$optionMultipleNoCheckboxPaddingLeft: if($sbbBusiness, 8px, 14px);
+$optionMarginY: if($sbbBusiness, 4px, 10px);
+$optionGroupItemPaddingLeft: if($sbbBusiness, 16px, 24px);
+$optionGroupLabelPaddingY: if($sbbBusiness, 8px, 14px);
+$optionAndAutocompleteColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
+$optionHoverColor: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
+$optionSelectedColor: $sbbColorBlack;
 
 @mixin autocompleteBase() {
   position: relative;
@@ -57,7 +33,7 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
   background-color: $autocompleteBg;
   border: $autocompleteBorder;
   transition: $autocompleteTransition;
-  color: $autocompleteColor;
+  color: $optionAndAutocompleteColor;
 
   &.sbb-autocomplete-visible {
     visibility: visible;
@@ -69,13 +45,11 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
-      border-width: toPx(2 * $scalingFactor4k);
-      box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
+      border-width: toPx($autocompleteBorderWidth * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      border-width: toPx(2 * $scalingFactor5k);
-      box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
+      border-width: toPx($autocompleteBorderWidth * $scalingFactor5k);
     }
   }
 
@@ -120,29 +94,29 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
 
 @mixin autocompleteDirectionalRules($mode: default) {
   @if $mode == default {
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: $autocompleteBorderRadius;
+    border-bottom-right-radius: $autocompleteBorderRadius;
     border-top: none;
     @include autocompleteCombinedBoxShadows();
     @include autocompleteOffsetCorrection();
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        border-bottom-left-radius: toPx(2 * $scalingFactor4k);
-        border-bottom-right-radius: toPx(2 * $scalingFactor4k);
+        border-bottom-left-radius: toPx($autocompleteBorderRadius * $scalingFactor4k);
+        border-bottom-right-radius: toPx($autocompleteBorderRadius * $scalingFactor4k);
         @include autocompleteCombinedBoxShadows($scalingFactor: $scalingFactor4k);
         @include autocompleteOffsetCorrection($scalingFactor: $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        border-bottom-left-radius: toPx(2 * $scalingFactor5k);
-        border-bottom-right-radius: toPx(2 * $scalingFactor5k);
+        border-bottom-left-radius: toPx($autocompleteBorderRadius * $scalingFactor5k);
+        border-bottom-right-radius: toPx($autocompleteBorderRadius * $scalingFactor5k);
         @include autocompleteCombinedBoxShadows($scalingFactor: $scalingFactor5k);
         @include autocompleteOffsetCorrection($scalingFactor: $scalingFactor5k);
       }
     }
   } @else if $mode == reverse {
-    border-radius: 2px 2px 0 0;
+    border-radius: $autocompleteBorderRadius $autocompleteBorderRadius 0 0;
     border-top: $autocompleteBorderTopReverse;
     border-bottom: none;
     @include autocompleteCombinedBoxShadows($mode: reverse);
@@ -150,17 +124,17 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        border-top-left-radius: toPx(2 * $scalingFactor4k);
-        border-top-right-radius: toPx(2 * $scalingFactor4k);
-        border-top-width: toPx(2 * $scalingFactor4k);
+        border-top-left-radius: toPx($autocompleteBorderRadius * $scalingFactor4k);
+        border-top-right-radius: toPx($autocompleteBorderRadius * $scalingFactor4k);
+        border-top-width: toPx($autocompleteBorderRadius * $scalingFactor4k);
         @include autocompleteCombinedBoxShadows($mode: reverse, $scalingFactor: $scalingFactor4k);
         @include autocompleteOffsetCorrection($mode: reverse, $scalingFactor: $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        border-top-left-radius: toPx(2 * $scalingFactor5k);
-        border-top-right-radius: toPx(2 * $scalingFactor5k);
-        border-top-width: toPx(2 * $scalingFactor5k);
+        border-top-left-radius: toPx($autocompleteBorderRadius * $scalingFactor5k);
+        border-top-right-radius: toPx($autocompleteBorderRadius * $scalingFactor5k);
+        border-top-width: toPx($autocompleteBorderRadius * $scalingFactor5k);
         @include autocompleteCombinedBoxShadows($mode: reverse, $scalingFactor: $scalingFactor5k);
         @include autocompleteOffsetCorrection($mode: reverse, $scalingFactor: $scalingFactor5k);
       }
@@ -177,13 +151,13 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
 }
 
 @mixin autocompleteInputActiveDefault() {
-  border-radius: 2px 2px 0 0;
-  border-color: $sbbColorGrey;
+  border-radius: $autocompleteBorderRadius $autocompleteBorderRadius 0 0;
+  border-color: $optionAndAutocompleteColor;
 }
 
 @mixin autocompleteInputActiveReverse() {
-  border-radius: 0 0 2px 2px;
-  border-color: $sbbColorGrey;
+  border-radius: 0 0 $autocompleteBorderRadius $autocompleteBorderRadius;
+  border-color: $optionAndAutocompleteColor;
 }
 
 @mixin optionGroupBase {
@@ -191,55 +165,36 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
   display: block;
   color: $sbbColorMetal;
 
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      border-top-width: toPx(1 * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      border-top-width: toPx(1 * $scalingFactor5k);
-    }
-  }
-
   sbb-option {
     padding-left: $optionGroupItemPaddingLeft;
 
     &:first-of-type {
-      @include publicOnly() {
+      @if $sbbBusiness {
+        padding-top: $optionMarginY;
+      } @else {
+        margin-top: 0;
         padding-top: 0;
-      }
-
-      @include businessOnly() {
-        padding-top: $autocompletePaddingTop;
-
-        &::after {
-          top: toPx($optionSelectedBarTopFirst);
-        }
       }
     }
   }
   .sbb-optgroup-label {
-    padding-left: $autocompletePaddingX;
-    padding-right: $autocompletePaddingX;
-    padding-top: $autocompletePaddingTop;
+    padding-left: $autocompleteAndOptionPaddingX;
+    padding-right: $autocompleteAndOptionPaddingX;
+    padding-top: $optionGroupLabelPaddingY;
 
-    @include businessOnly() {
+    @if $sbbBusiness {
       padding-bottom: 0;
-    }
-
-    @include publicOnly() {
-      padding-bottom: $autocompletePaddingTop;
+    } @else {
+      padding-bottom: $optionGroupLabelPaddingY;
 
       @include mq($from: desktop4k) {
-        font-size: toPx(10 * $scalingFactor4k);
-        padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
-        padding-bottom: toPx($autocompletePaddingTop * $scalingFactor4k);
+        padding-top: toPx($optionGroupLabelPaddingY * $scalingFactor4k);
+        padding-bottom: toPx($optionGroupLabelPaddingY * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        font-size: toPx(10 * $scalingFactor5k);
-        padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
-        padding-bottom: toPx($autocompletePaddingTop * $scalingFactor5k);
+        padding-top: toPx($optionGroupLabelPaddingY * $scalingFactor5k);
+        padding-bottom: toPx($optionGroupLabelPaddingY * $scalingFactor5k);
       }
     }
 
@@ -266,18 +221,26 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
 }
 
 @mixin optionBorderLeft($color) {
+  &::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    left: 0;
+    top: 0;
+    background-color: $color;
+  }
+}
+
+@mixin optionSelected() {
+  color: $optionSelectedColor;
+  @include svgIconColor(
+    $optionSelectedColor
+  ); // TODO(icon-migration): remove definition because new icons inherit colors
+
   @include businessOnly() {
-    &::after {
-      content: '';
-      position: absolute;
-      height: toPx($optionSelectedBarHeight);
-      width: toPx($optionSelectedBarWidth);
-
-      left: 0;
-      top: toPx($optionSelectedBarTop);
-
-      background-color: $color;
-    }
+    background-color: $sbbColorCloud;
+    @include optionBorderLeft($optionSelectedColor);
   }
 }
 
@@ -287,26 +250,25 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
   position: relative;
   display: block;
   text-decoration: none;
-  padding: toPx(4) $autocompletePaddingX;
+  padding: toPx(4) $autocompleteAndOptionPaddingX;
   text-align: left;
   max-width: 100%;
   cursor: pointer;
   outline: 0;
+  color: $optionAndAutocompleteColor;
+  @include svgIconColor(
+    $optionAndAutocompleteColor
+  ); // TODO(icon-migration): remove definition because new icons inherit colors
 
   @if $selectMode == true {
     cursor: default;
-    color: $sbbColorGrey;
-
-    @include businessOnly() {
-      color: $sbbColorGranite;
-    }
   }
 
   &:first-of-type {
-    padding-top: $autocompletePaddingTop;
+    margin-top: $optionMarginY;
   }
   &:last-of-type {
-    padding-bottom: $dropdownPaddingBottom;
+    margin-bottom: $optionMarginY;
   }
 
   @include businessOnly() {
@@ -316,61 +278,49 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
   @include publicOnly() {
     @include mq($from: desktop4k) {
       font-size: toPx($sizeFontDefault * $scalingFactor4k);
-      padding: toPx(4 * $scalingFactor4k) toPx($autocompletePaddingX * $scalingFactor4k);
+      padding: toPx(4 * $scalingFactor4k) toPx($autocompleteAndOptionPaddingX * $scalingFactor4k);
 
       &:first-of-type {
-        padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
+        margin-top: toPx($optionMarginY * $scalingFactor4k);
       }
 
       &:last-of-type {
-        padding-bottom: toPx($dropdownPaddingBottom * $scalingFactor4k);
+        margin-bottom: toPx($optionMarginY * $scalingFactor4k);
       }
     }
     @include mq($from: desktop5k) {
       font-size: toPx($sizeFontDefault * $scalingFactor5k);
-      padding: toPx(4 * $scalingFactor5k) toPx($autocompletePaddingX * $scalingFactor5k);
+      padding: toPx(4 * $scalingFactor5k) toPx($autocompleteAndOptionPaddingX * $scalingFactor5k);
       &:first-of-type {
-        padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
+        margin-top: toPx($optionMarginY * $scalingFactor5k);
       }
       &:last-of-type {
-        padding-bottom: toPx($dropdownPaddingBottom * $scalingFactor5k);
+        margin-bottom: toPx($optionMarginY * $scalingFactor5k);
       }
     }
   }
 
   &:not(.sbb-active) strong {
-    color: $autocompleteHoverColor;
-  }
-
-  &.sbb-selected {
     color: $sbbColorBlack;
   }
 
+  &.sbb-selected {
+    @include optionSelected();
+  }
+
+  &:not(:disabled):not(.sbb-option-disabled):hover,
+  &:not(:disabled):not(.sbb-option-disabled):focus,
+  &:not(:disabled):not(.sbb-option-disabled):hover strong,
+  &:not(:disabled):not(.sbb-option-disabled):focus strong,
   &.sbb-active {
-    color: $autocompleteOptionActiveColor;
+    color: $optionHoverColor;
+    @include svgIconColor(
+      $optionHoverColor
+    ); // TODO(icon-migration): remove definition because new icons inherit colors
 
-    &:not(.sbb-option-multiple) {
-      @include optionBorderLeft($autocompleteOptionActiveColor);
-    }
-  }
-
-  &:not(:disabled):hover,
-  &:not(:disabled):focus,
-  &:not(:disabled):hover strong,
-  &:not(:disabled):focus strong {
-    color: $autocompleteOptionHoverColor;
-
-    &,
-    &:not(.sbb-option-multiple) {
-      @include optionBorderLeft($autocompleteOptionHoverColor);
-    }
-  }
-
-  &:not(:disabled):first-of-type:hover,
-  &:not(:disabled):first-of-type,
-  &:first-of-type.sbb-active {
-    &::after {
-      top: toPx($optionSelectedBarTopFirst);
+    @include businessOnly() {
+      background-color: $sbbColorMilk;
+      @include optionBorderLeft($optionHoverColor);
     }
   }
 
@@ -379,5 +329,19 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .sbb-icon:not(.sbb-checkbox-checked),
+  .sbb-icon-component:not(.sbb-checkbox-checked) {
+    // TODO(icon-migration): remove '.sbb-icon-component' because new icons inherit colors (also color: can be removed)
+    line-height: 0;
+    margin: pxToRem(-9) pxToRem(2) pxToRem(-9) pxToRem(-5);
+    transform: translateY(pxToRem(7));
+  }
+
+  > .sbb-icon:first-child:not(.sbb-checkbox-checked),
+  > .sbb-icon-component:first-child:not(.sbb-checkbox-checked) {
+    // TODO(icon-migration): remove '.sbb-icon-component' because new icons inherit colors (also color: can be removed)
+    float: left;
   }
 }

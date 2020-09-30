@@ -3,7 +3,7 @@
     <input sbbInput formControlName="_" />
   </sbb-field>
 
-  <table sbbTable aria-describedby="sbb-table" sbbSort>
+  <table sbbTable sbbSort>
     <ng-container *ngFor="let column of displayedColumns" [sbbColumnDef]="column">
       <th sbbHeaderCell [sbbSortHeader]="column" *sbbHeaderCellDef style="width: 20%;">
         {{ column }}

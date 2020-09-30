@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.5.0 of the icon CDN.
+ * Generated from version v1.7.0 of the icon CDN.
  * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
@@ -84,7 +84,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
    * the necessary icons will be loaded from the CDN.
    *
    * Icons:
-   *  - @sbb-esta/angular-business/accordion: kom:chevron-small-down-small
+   *  - @sbb-esta/angular-business/accordion: kom:chevron-right-small
    *  - @sbb-esta/angular-business/breadcrumb: kom:chevron-small-down-circle-small, kom:chevron-small-right-small
    *  - @sbb-esta/angular-business/checkbox: kom:tick-small
    *  - @sbb-esta/angular-business/chip: kom:cross-small
@@ -93,16 +93,17 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
    *  - @sbb-esta/angular-business/file-selector: kom:document-image-small, kom:document-pdf-small, kom:document-sound-small, kom:document-standard-small, kom:document-text-small, kom:document-video-small, kom:document-zip-small, kom:trash-small, kom:upload-small
    *  - @sbb-esta/angular-business/header: kom:chevron-small-down-small, kom:chevron-small-left-small, kom:cross-small, kom:hamburger-menu-small
    *  - @sbb-esta/angular-business/links: kom:arrow-right-small, kom:download-small
+   *  - @sbb-esta/angular-business/notification-toast: kom:cross-small
    *  - @sbb-esta/angular-business/notification: kom:circle-information-small, kom:cross-small, kom:sign-exclamation-point-small, kom:tick-small
    *  - @sbb-esta/angular-business/option: kom:tick-small
    *  - @sbb-esta/angular-business/pagination: kom:chevron-small-left-circle-small, kom:chevron-small-left-small, kom:chevron-small-right-circle-small, kom:chevron-small-right-small
    *  - @sbb-esta/angular-business/processflow: kom:chevron-right-small
    *  - @sbb-esta/angular-business/select: kom:chevron-small-down-small
-   *  - @sbb-esta/angular-business/sidebar: kom:arrow-right-small, kom:chevron-small-left-circle-small, kom:hamburger-menu-small
+   *  - @sbb-esta/angular-business/sidebar: kom:arrow-right-small, kom:chevron-small-left-circle-small, kom:cross-small, kom:hamburger-menu-small
    *  - @sbb-esta/angular-business/status: kom:cross-small, kom:exclamation-point-small, kom:tick-small
    *  - @sbb-esta/angular-business/tooltip: kom:circle-question-mark-small, kom:cross-small
    *  - @sbb-esta/angular-business/usermenu: kom:chevron-small-down-small, kom:user-small
-   *  - @sbb-esta/angular-public/accordion: kom:chevron-small-down-small, kom:minus-small, kom:plus-small
+   *  - @sbb-esta/angular-public/accordion: kom:chevron-right-small, kom:minus-small, kom:plus-small
    *  - @sbb-esta/angular-public/breadcrumb: kom:chevron-small-down-circle-small, kom:chevron-small-right-small
    *  - @sbb-esta/angular-public/checkbox-panel: kom:tick-small
    *  - @sbb-esta/angular-public/checkbox: kom:tick-small
@@ -148,6 +149,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'sa-ep',
         'sa-fa',
         'sa-fl',
+        'sa-fs',
         'sa-fw',
         'sa-fz',
         'sa-gk',
@@ -184,6 +186,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'sa-re',
         'sa-rq',
         'sa-rr',
+        'sa-rs',
         'sa-rt',
         'sa-ry',
         'sa-rz',
@@ -209,11 +212,13 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'sa-ts',
         'sa-tt',
         'sa-tx',
+        'sa-uk',
         'sa-vb',
         'sa-vc',
         'sa-vi',
         'sa-vl',
         'sa-vn',
+        'sa-vo',
         'sa-vp',
         'sa-vr',
         'sa-vt',
@@ -475,6 +480,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'wifi-disabled-medium',
         'wifi-medium',
         'arrow-circle-medium',
+        'arrow-down-medium',
         'arrow-long-left-medium',
         'arrow-long-right-medium',
         'arrow-right-medium',
@@ -739,6 +745,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'container-medium',
         'driverless-bus-profile-medium',
         'freight-wagon-medium',
+        'gear-changing-medium',
         'home-power-plug-medium',
         'k-r-medium',
         'microscooter-profile-medium',
@@ -856,6 +863,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'wifi-disabled-small',
         'wifi-small',
         'arrow-circle-small',
+        'arrow-down-small',
         'arrow-long-left-small',
         'arrow-long-right-small',
         'arrow-right-small',
@@ -1120,6 +1128,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'container-small',
         'driverless-bus-profile-small',
         'freight-wagon-small',
+        'gear-changing-small',
         'home-power-plug-small',
         'k-r-small',
         'microscooter-profile-power-plug-small',

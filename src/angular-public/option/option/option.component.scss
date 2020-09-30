@@ -21,7 +21,6 @@ sbb-option {
   }
 
   &.sbb-option-multiple {
-    display: flex;
     padding-left: toPx($optionMultipleCheckboxPaddingLeft);
 
     @include publicOnly() {
@@ -36,6 +35,41 @@ sbb-option {
 
     sbb-pseudo-checkbox {
       @include checkboxContainer;
+      display: inline-block;
+      margin-bottom: -4.5px;
+      margin-right: 4px;
+      overflow: hidden;
+
+      .sbb-checkbox-checked > svg {
+        @include businessOnly {
+          transform: translateY(toPx(-2));
+        }
+
+        @include publicOnly() {
+          transform: translateY(toPx(-3));
+
+          @include mq($from: desktop4k) {
+            transform: translateY(toPx(-3 * $scalingFactor4k));
+          }
+
+          @include mq($from: desktop5k) {
+            transform: translateY(toPx(-3 * $scalingFactor5k));
+          }
+        }
+      }
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          margin-right: toPx(4 * $scalingFactor4k);
+          margin-bottom: toPx(-4.5 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          margin-right: toPx(4 * $scalingFactor5k);
+          margin-bottom: toPx(-4.5 * $scalingFactor5k);
+        }
+      }
+
       @include businessOnly() {
         margin-top: 0;
       }
@@ -46,7 +80,7 @@ sbb-option {
 
       &.sbb-pseudo-checkbox-checked {
         & > .sbb-checkbox-checked {
-          display: block;
+          display: inline-block;
         }
       }
       &.sbb-pseudo-checkbox-disabled {
@@ -65,26 +99,6 @@ sbb-option[disabled],
 .sbb-option-disabled {
   cursor: default;
   opacity: 0.5;
-}
-
-sbb-option[disabled]:not(.sbb-active),
-.sbb-option-disabled:not(.sbb-active) {
-  .sbb-select-content & {
-    &:hover,
-    &:focus,
-    &:hover strong,
-    &:focus strong {
-      color: $sbbColorGrey;
-      @include businessOnly() {
-        color: $sbbColorGranite;
-      }
-
-      &,
-      &:not(.sbb-option-multiple)::after {
-        content: none;
-      }
-    }
-  }
 }
 
 sbb-option[aria-disabled='true'] {
