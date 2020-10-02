@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'a[sbbLink]',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.css'],

@@ -1,0 +1,115 @@
+@import '../../angular-core/styles/common';
+
+.sbb-link {
+  display: inline-block;
+  hyphens: auto;
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem(26);
+  padding-right: pxToRem(70);
+  position: relative;
+  text-decoration: none;
+  transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation,
+    color $linkiconAnimation;
+  word-break: break-word;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem($sizeFontDefault4k);
+    line-height: pxToRem(39);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem($sizeFontDefault5k);
+    line-height: pxToRem(52);
+  }
+
+  &:not(.sbb-link-stretch) {
+    &:hover,
+    &:focus {
+      padding-left: pxToRem(30);
+      padding-right: pxToRem(40);
+    }
+  }
+}
+
+.sbb-link-form {
+  color: $sbbColorGrey;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorCallToActionHover;
+  }
+}
+
+.sbb-link-stretch {
+  display: block;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorCallToActionHover;
+  }
+}
+
+.sbb-icon.sbb-link-icon {
+  color: $sbbColorCallToAction;
+  position: absolute;
+  width: pxToRem(24);
+  height: pxToRem(24);
+  margin-left: pxToRem(8);
+  backface-visibility: hidden;
+  pointer-events: none;
+  opacity: 1;
+  top: 50%;
+  transform: translate(0, -50%);
+  transition: opacity $linkiconAnimation, transform $linkiconAnimation;
+
+  @include mq($from: desktop4k) {
+    width: pxToRem(24 * $scalingFactor4k);
+    height: pxToRem(24 * $scalingFactor4k);
+    margin-left: pxToRem(8 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: pxToRem(24 * $scalingFactor5k);
+    height: pxToRem(24 * $scalingFactor5k);
+    top: 25%;
+    transform: translate(0, -25%);
+    margin-left: pxToRem(8 * $scalingFactor5k);
+  }
+}
+
+.sbb-icon.sbb-link-icon-left {
+  margin-left: pxToRem(-30);
+  opacity: 0;
+  transform: translate(pxToRem(-26), -50%);
+
+  @include mq($from: desktop5k) {
+    transform: translate(pxToRem(-26), -25%);
+  }
+
+  .sbb-link:hover &,
+  .sbb-link:focus & {
+    opacity: 1;
+    margin-right: pxToRem(8);
+    transform: translate(0, -50%);
+
+    @include mq($from: desktop5k) {
+      transform: translate(0, -25%);
+    }
+  }
+}
+
+.sbb-icon.sbb-link-icon-right {
+  .sbb-link:not(.sbb-link-stretch):hover &,
+  .sbb-link:not(.sbb-link-stretch):focus & {
+    opacity: 0;
+    transform: translateX(pxToRem(26), -50%);
+
+    @include mq($from: desktop5k) {
+      transform: translateX(pxToRem(26), -50%);
+    }
+  }
+
+  .sbb-link.sbb-link-stretch & {
+    right: 0;
+  }
+}
