@@ -153,6 +153,18 @@
     "dgeni-packages/typescript": "4.0.2",
     "**/graceful-fs": "4.2.2"
   },
+  "standard-version": {
+    "types": [
+      {"type": "feat", "section": "Features"},
+      {"type": "fix", "section": "Bug Fixes"},
+      {"type": "chore", "hidden": true},
+      {"type": "docs", "section": "Documentation"},
+      {"type": "style", "section": "Bug Fixes"},
+      {"type": "refactor", "hidden": true},
+      {"type": "perf", "hidden": true},
+      {"type": "test", "hidden": true}
+    ]
+  },
   "prettier": {
     "singleQuote": true,
     "endOfLine": "lf",
