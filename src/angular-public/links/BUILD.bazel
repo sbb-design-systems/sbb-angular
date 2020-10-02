@@ -15,14 +15,10 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [
-        ":link/link.component.css",
-        ":social-link/social-link.component.css",
-    ] + glob(["**/*.html"]),
+    assets = [":link/link.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/links",
     deps = [
         "//src/angular-core/icon",
-        "//src/angular-icons/social-media",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],
@@ -31,14 +27,6 @@ ng_module(
 sass_binary(
     name = "link_link_component_scss",
     src = "link/link.component.scss",
-    deps = [
-        "//src/angular-core/styles:common_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "social_link_social_link_component_scss",
-    src = "social-link/social-link.component.scss",
     deps = [
         "//src/angular-core/styles:common_scss_lib",
     ],

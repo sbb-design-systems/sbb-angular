@@ -7,13 +7,11 @@ import { SbbLinksModule } from '@sbb-esta/angular-public/links';
 import { provideExamples } from '../../../shared/example-provider';
 
 import { IconLinkExampleComponent } from './icon-link-example/icon-link-example.component';
-import { SocialLinkExampleComponent } from './social-link-example/social-link-example.component';
 
-const EXAMPLES = [IconLinkExampleComponent, SocialLinkExampleComponent];
+const EXAMPLES = [IconLinkExampleComponent];
 
 const EXAMPLE_INDEX = {
   'icon-link-example': IconLinkExampleComponent,
-  'social-link-example': SocialLinkExampleComponent,
 };
 
 @NgModule({
