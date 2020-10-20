@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.7.0 of the icon CDN.
+ * Generated from version v1.9.0 of the icon CDN.
  * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
@@ -169,6 +169,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'sa-le',
         'sa-me',
         'sa-mi',
+        'sa-mo',
         'sa-mp',
         'sa-nf',
         'sa-nj',
@@ -545,6 +546,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'two-speech-bubbles-medium',
         'avatar-police-medium',
         'circle-triangle-square-medium',
+        'id-card-employee-medium',
         'key-medium',
         'pie-medium',
         'two-users-medium',
@@ -928,6 +930,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'two-speech-bubbles-small',
         'avatar-police-small',
         'circle-triangle-square-small',
+        'id-card-employee-small',
         'key-small',
         'pie-small',
         'two-users-small',
