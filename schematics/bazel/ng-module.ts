@@ -12,15 +12,8 @@ import {
   Tree,
   url,
 } from '@angular-devkit/schematics';
+import * as angularSchematicsTypescript from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 import { findNodes } from '@schematics/angular/utility/ast-utils';
-import {
-  CallExpression,
-  createSourceFile,
-  ExportDeclaration,
-  ImportDeclaration,
-  ScriptTarget,
-  SyntaxKind,
-} from 'typescript';
 
 import { formatBazelFile } from './format-bazel-file';
 import { SassBinary } from './sass-binary';
@@ -172,24 +165,31 @@ export class NgModule {
   }
 
   private _findImportsAndReexports(fileEntry: FileEntry) {
-    const file = createSourceFile(
+    const file = angularSchematicsTypescript.createSourceFile(
       basename(fileEntry.path),
       fileEntry.content.toString(),
-      ScriptTarget.ESNext,
+      angularSchematicsTypescript.ScriptTarget.ESNext,
       true
     );
     return [
-      ...findNodes(file, SyntaxKind.ImportDeclaration, undefined, true),
-      ...findNodes(file, SyntaxKind.ExportDeclaration, undefined, true),
+      ...findNodes(file, angularSchematicsTypescript.SyntaxKind.ImportDeclaration, undefined, true),
+      ...findNodes(file, angularSchematicsTypescript.SyntaxKind.ExportDeclaration, undefined, true),
     ]
       .map(
-        (n: ImportDeclaration | ExportDeclaration) =>
-          n.moduleSpecifier?.getText().replace(/['"]/g, '') ?? ''
+        (
+          n:
+            | angularSchematicsTypescript.ImportDeclaration
+            | angularSchematicsTypescript.ExportDeclaration
+        ) => n.moduleSpecifier?.getText().replace(/['"]/g, '') ?? ''
       )
       .concat(
-        findNodes(file, SyntaxKind.ImportKeyword, undefined, true)
+        findNodes(file, angularSchematicsTypescript.SyntaxKind.ImportKeyword, undefined, true)
           .filter((n) => n.getFullText().match(/ import/))
-          .map((n) => (n.parent as CallExpression).arguments[0].getText().replace(/['"]/g, ''))
+          .map((n) =>
+            (n.parent as angularSchematicsTypescript.CallExpression).arguments[0]
+              .getText()
+              .replace(/['"]/g, '')
+          )
       )
       .map((i) => this._resolveTsImport(i, fileEntry))
       .filter((i) => !!i);

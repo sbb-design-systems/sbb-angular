@@ -1,4 +1,3 @@
-import { strings } from '@angular-devkit/core';
 import { WorkspaceProject } from '@angular-devkit/core/src/experimental/workspace';
 import {
   apply,
