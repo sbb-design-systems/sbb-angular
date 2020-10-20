@@ -33,7 +33,7 @@ if (module === require.main) {
      */
     packages: () => buildReleasePackages(false, join(projectDir, 'dist/releases')),
     showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
-    'icon-registry': () => generateIconRegistry(join(projectDir, 'dist/staged')),
+    'icon-registry': () => generateIconRegistry(),
   };
   if (!target || !(target in tasks)) {
     throw new Error(`Please provide a valid build target (e.g. ${Object.keys(tasks).join(', ')})`);
@@ -151,10 +151,12 @@ function buildShowcase(distPath: string) {
 /**
  * Generate the icon registry.
  */
-function generateIconRegistry(distPath: string) {
+function generateIconRegistry() {
   console.log('######################################');
   console.log('  Generating icon registry...');
   console.log('######################################');
+
+  const distPath = join(projectDir, 'node_modules/@sbb-esta');
 
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
 
@@ -165,9 +167,8 @@ function generateIconRegistry(distPath: string) {
   const targetFolder = join(distPath, 'angular-core');
   copyPackageOutput(outputPath, targetFolder);
 
-  const schematicPath = `./${relative(projectDir, targetFolder).replace(/\\/g, '/')}`;
   exec(
-    `yarn ng generate ${schematicPath}:icon-cdn-provider --path src/angular-core/icon --generateWrapperRegistry`
+    `yarn ng generate @sbb-esta/angular-core:icon-cdn-provider --path src/angular-core/icon --generateWrapperRegistry`
   );
 
   const cdnIconProviderPath = join(projectDir, 'src/angular-core/icon/icon-cdn-provider.ts');
@@ -178,6 +179,8 @@ function generateIconRegistry(distPath: string) {
   });
 
   writeFileSync(cdnIconProviderPath, formattedContent, 'utf8');
+
+  cleanDistPath(distPath);
 }
 
 /**
