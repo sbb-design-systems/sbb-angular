@@ -5,8 +5,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var schematics = require('@angular-devkit/schematics');
 var tasks = require('@angular-devkit/schematics/tasks');
 var core = require('@angular-devkit/core');
+var angularSchematicsTypescript = require('@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript');
 var astUtils = require('@schematics/angular/utility/ast-utils');
-var typescript = require('typescript');
 var child_process = require('child_process');
 var crypto = require('crypto');
 var fs = require('fs');
@@ -163,15 +163,17 @@ class NgModule {
             .sort();
     }
     _findImportsAndReexports(fileEntry) {
-        const file = typescript.createSourceFile(core.basename(fileEntry.path), fileEntry.content.toString(), typescript.ScriptTarget.ESNext, true);
+        const file = angularSchematicsTypescript.createSourceFile(core.basename(fileEntry.path), fileEntry.content.toString(), angularSchematicsTypescript.ScriptTarget.ESNext, true);
         return [
-            ...astUtils.findNodes(file, typescript.SyntaxKind.ImportDeclaration, undefined, true),
-            ...astUtils.findNodes(file, typescript.SyntaxKind.ExportDeclaration, undefined, true),
+            ...astUtils.findNodes(file, angularSchematicsTypescript.SyntaxKind.ImportDeclaration, undefined, true),
+            ...astUtils.findNodes(file, angularSchematicsTypescript.SyntaxKind.ExportDeclaration, undefined, true),
         ]
             .map((n) => { var _a, _b; return (_b = (_a = n.moduleSpecifier) === null || _a === void 0 ? void 0 : _a.getText().replace(/['"]/g, '')) !== null && _b !== void 0 ? _b : ''; })
-            .concat(astUtils.findNodes(file, typescript.SyntaxKind.ImportKeyword, undefined, true)
+            .concat(astUtils.findNodes(file, angularSchematicsTypescript.SyntaxKind.ImportKeyword, undefined, true)
             .filter((n) => n.getFullText().match(/ import/))
-            .map((n) => n.parent.arguments[0].getText().replace(/['"]/g, '')))
+            .map((n) => n.parent.arguments[0]
+            .getText()
+            .replace(/['"]/g, '')))
             .map((i) => this._resolveTsImport(i, fileEntry))
             .filter((i) => !!i);
     }
