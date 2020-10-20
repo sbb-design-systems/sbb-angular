@@ -349,7 +349,7 @@
 
   @if $sbbBusiness {
     border: 1px solid $sbbColorGraphite;
-    padding: pxToEm(16) pxToEm(14) pxToEm(16) pxToEm(16);
+    padding: pxToEm(16);
   } @else {
     border: 1px solid $sbbColorSilver;
     padding: pxToEm(36) pxToEm(24);
