@@ -25,7 +25,7 @@ let counter = 0;
   templateUrl: './tab.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'attr.role': 'tabpanel',
+    role: 'tabpanel',
     '[attr.id]': 'id',
     '[attr.attr.aria-labelledby]': 'labelId',
     '[attr.aria-hidden]': "active ? 'false' : 'true'",
