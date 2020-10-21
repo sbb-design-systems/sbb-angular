@@ -64,14 +64,14 @@ $optionSelectedColor: $sbbColorBlack;
     $sign: -1;
   }
   box-shadow: autocompleteBoxShadow($sign, $scalingFactor),
-    autocompleteInputActiveBorder(-$sign, $scalingFactor);
+    horizontalBorderBoxShadow(-$sign, $scalingFactor);
 }
 
 @function autocompleteBoxShadow($sign, $scalingFactor) {
   @return 0 toPx($sign * $autocompleteShadowWidth * $scalingFactor) 0 rgba(0, 0, 0, 0.15);
 }
 
-@function autocompleteInputActiveBorder($sign, $scalingFactor) {
+@function horizontalBorderBoxShadow($sign, $scalingFactor) {
   @return 0
     toPx($sign * ($autocompleteBorderWidth + $autocompleteInputActiveBorderWidth) * $scalingFactor)
     0 toPx(-$autocompleteBorderWidth * $scalingFactor) $autocompleteInputActiveBorderBottomColor;
