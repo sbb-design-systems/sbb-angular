@@ -6,7 +6,6 @@ import {
   Component,
   ContentChild,
   EventEmitter,
-  HostBinding,
   Input,
   OnChanges,
   OnDestroy,
@@ -25,39 +24,43 @@ let counter = 0;
   selector: 'sbb-tab',
   templateUrl: './tab.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'attr.role': 'tabpanel',
+    '[attr.id]': 'this.id',
+    '[attr.attr.aria-labelledby]': 'labelId',
+    '[attr.aria-hidden]': "this.active ? 'false' : 'true'",
+  },
 })
 export class TabComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Tab identifier
    */
-  @HostBinding('attr.id')
   @Input()
   id: string;
 
   /**
    * Label identifier of a tab
    */
-  @HostBinding('attr.aria-labelledby')
   @Input()
   labelId: string;
 
   /**
    * Initial index tab
+   * @deprecated internal detail
    */
-  @HostBinding('attr.tabindex')
   @Input()
   tabindex = -1;
 
   /**
    * Role of tab
+   * @deprecated internal detail
    */
-  @HostBinding('attr.role')
   role = 'tabpanel';
 
   /**
    * Class property that identifies an aria hidden of a tab
+   * @deprecated internal detail
    */
-  @HostBinding('attr.aria-hidden')
   get ariaHidden(): string {
     return this.active ? 'false' : 'true';
   }
