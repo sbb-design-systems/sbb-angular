@@ -68,6 +68,7 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     class: 'sbb-datepicker',
     '[class.sbb-datepicker-arrows-enabled]': 'this.arrows',
     '[class.sbb-datepicker-toggle-enabled]': 'this.toggle',
+    '[class.sbb-datepicker-disabled]': 'this.disabled',
   },
 })
 export class DatepickerComponent<D> implements OnDestroy {
