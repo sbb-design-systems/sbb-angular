@@ -26,9 +26,9 @@ let counter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'attr.role': 'tabpanel',
-    '[attr.id]': 'this.id',
+    '[attr.id]': 'id',
     '[attr.attr.aria-labelledby]': 'labelId',
-    '[attr.aria-hidden]': "this.active ? 'false' : 'true'",
+    '[attr.aria-hidden]': "active ? 'false' : 'true'",
   },
 })
 export class TabComponent implements OnInit, OnChanges, OnDestroy {
