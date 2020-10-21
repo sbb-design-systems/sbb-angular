@@ -119,18 +119,6 @@ $datePickerDisabledCellLeft: 18;
 $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
       $datePickerToggleArrowHeight);
 
-@mixin defaultDatePickerTheme() {
-  button {
-    @include buttonResetFrameless();
-
-    &:hover:enabled,
-    &:focus:enabled {
-      @include svgIconColor($pickerIconsHoverColor);
-      cursor: pointer;
-    }
-  }
-}
-
 @mixin pickerIconsSize(
   $pickerIconWidth: $defaultPickerIconSize,
   $pickerIconHeight: $defaultPickerIconSize

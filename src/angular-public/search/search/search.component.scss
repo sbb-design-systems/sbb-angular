@@ -146,7 +146,9 @@ $searchInputWidthMobile: 273;
     }
     &:hover,
     &:focus {
-      @include svgIconColor($sbbColorRed125);
+      @include svgIconColor(
+        $sbbColorRed125
+      ); // TODO(icon-migration): remove definition because new icons inherit colors
       color: $sbbColorRed125;
     }
     .sbb-svgsprite-icon {

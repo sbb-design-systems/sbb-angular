@@ -87,7 +87,9 @@
     @include datePickerToggleArrow();
   }
 
-  @include defaultDatePickerTheme();
+  button {
+    @include buttonResetFrameless();
+  }
 
   .sbb-datepicker-content {
     position: relative;
