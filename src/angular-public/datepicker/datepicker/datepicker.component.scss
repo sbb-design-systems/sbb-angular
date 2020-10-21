@@ -6,9 +6,7 @@
   min-width: pxToEm($datePickerMinWidth);
   color: $inputFieldColor;
 
-  button {
-    @include buttonResetFrameless();
-  }
+  @include datePickerButton;
 
   .sbb-datepicker-toggle,
   .sbb-datepicker-arrow {
