@@ -6,33 +6,34 @@ $tooltipIconsBorderWidth: 1;
 $tooltipMaxWidth: 460;
 $tooltipIconsSize: 24;
 $tooltipContentPadding: 24;
+$tooltipColor: $sbbColorGrey;
+$tooltipBorderColor: $sbbColorGrey;
+$tooltipActiveColor: $sbbColorRed;
 $tooltipBoxShadowColor: rgba(102, 102, 102, 0.15);
 $tooltipShadowSize: 8;
 $tooltipContentArrowSize: 20;
 $tooltipShadowBorderWidth: 14;
 $tooltipArrowRightPosition: calc(100% - #{pxToEm(15.5)});
 $tooltipArrowLeftPosition: pxToEm(15.5);
-$tooltipAfterArrowWidth: 10;
-$tooltipBeforeArrowWidth: 13;
 
 @if $sbbBusiness {
   $tooltipContentPadding: 8;
   $tooltipBorderWidth: 1;
   $tooltipShadowSize: 4;
   $tooltipShadowBorderWidth: 14;
-  $tooltipAfterArrowWidth: 11;
-  $tooltipBeforeArrowWidth: 13;
+  $tooltipColor: $sbbColorBlack;
+  $tooltipBorderColor: $sbbColorIron;
+  $tooltipActiveColor: $sbbColorRed125;
 }
 
 @mixin tooltipIcon {
   @include buttonResetFrameless();
   /* TODO: Remove with future release */
-  @include svgIconColor($sbbColorGrey);
-  color: $sbbColorGrey;
+  @include svgIconColor($tooltipColor);
+  color: $tooltipColor;
   width: toPx($tooltipIconsSize);
   height: toPx($tooltipIconsSize);
   cursor: pointer;
-  background-color: $sbbColorWhite;
   text-decoration: none;
   outline: 0;
   line-height: 1;
@@ -41,9 +42,9 @@ $tooltipBeforeArrowWidth: 13;
   &:hover,
   &:focus {
     /* TODO: Remove with future release */
-    @include svgIconColor($sbbColorRed);
-    color: $sbbColorRed;
-    border-color: $sbbColorRed;
+    @include svgIconColor($tooltipActiveColor);
+    color: $tooltipActiveColor;
+    border-color: $tooltipActiveColor;
   }
 
   @include publicOnly() {
@@ -119,7 +120,6 @@ sbb-tooltip {
   &::after {
     top: 100%;
     left: 50%;
-    border: solid transparent;
     content: ' ';
     height: pxToEm($tooltipContentArrowSize);
     width: pxToEm($tooltipContentArrowSize);
@@ -127,10 +127,9 @@ sbb-tooltip {
     pointer-events: none;
     transform: rotate(45deg) translate(pxToEm(-14));
     background-color: $sbbColorWhite;
-    border-color: $sbbColorGrey;
-    border-width: pxToEm($tooltipBorderWidth);
-    border-top-color: $sbbColorWhite;
-    border-left-color: $sbbColorWhite;
+    border: pxToEm($tooltipBorderWidth) solid transparent;
+    border-right-color: $tooltipBorderColor;
+    border-bottom-color: $tooltipBorderColor;
   }
   &.sbb-tooltip-content-left::after {
     left: $tooltipArrowRightPosition;
@@ -143,50 +142,41 @@ sbb-tooltip {
 .sbb-tooltip-content-below {
   box-shadow: 0 pxToEm($tooltipShadowSize) 0 0 $tooltipBoxShadowColor;
   margin-top: pxToEm($tooltipShadowBorderWidth - $tooltipBorderWidth);
-  &::after,
-  &::before {
+
+  &::after {
     bottom: 100%;
     left: 50%;
-    border: solid transparent;
     content: ' ';
-    height: 0;
-    width: 0;
+    height: pxToEm($tooltipContentArrowSize);
+    width: pxToEm($tooltipContentArrowSize);
     position: absolute;
     pointer-events: none;
+    transform: rotate(-135deg) translateY(pxToEm(-14));
+    background-color: $sbbColorWhite;
+    border: pxToEm($tooltipBorderWidth) solid transparent;
+    border-right-color: $tooltipBorderColor;
+    border-bottom-color: $tooltipBorderColor;
   }
-  &::after {
-    border-color: transparent;
-    border-bottom-color: $sbbColorWhite;
-    border-width: pxToEm($tooltipAfterArrowWidth);
-    margin-left: pxToEm(-$tooltipAfterArrowWidth);
-  }
-  &::before {
-    border-color: transparent;
-    border-bottom-color: $sbbColorGrey;
-    border-width: pxToEm($tooltipBeforeArrowWidth);
-    margin-left: pxToEm(-$tooltipBeforeArrowWidth);
-  }
+
   &.sbb-tooltip-content-left {
-    &::after,
-    &::before {
+    &::after {
       left: $tooltipArrowRightPosition;
     }
   }
   &.sbb-tooltip-content-right {
-    &::after,
-    &::before {
+    &::after {
       left: $tooltipArrowLeftPosition;
     }
   }
 }
 
 .sbb-tooltip-content {
-  color: $sbbColorGrey;
+  color: $tooltipColor;
   letter-spacing: 0;
   font-size: $sizeFontBase;
   border-radius: toPx($tooltipBorderRadius);
   text-align: left;
-  border: toPx($tooltipBorderWidth) solid $sbbColorGrey;
+  border: toPx($tooltipBorderWidth) solid $tooltipBorderColor;
   max-width: toPx($tooltipMaxWidth);
   display: block;
   background: $sbbColorWhite;
@@ -201,7 +191,7 @@ sbb-tooltip {
   @include publicOnly() {
     @include mq($from: desktop4k) {
       font-size: $sizeFontBase * $scalingFactor4k;
-      border: toPx($tooltipBorderWidth * $scalingFactor4k) solid $sbbColorGrey;
+      border: toPx($tooltipBorderWidth * $scalingFactor4k) solid $tooltipBorderColor;
       max-width: toPx($tooltipMaxWidth * $scalingFactor4k);
       .sbb-tooltip-content-body {
         padding-top: toPx($tooltipContentPadding * $scalingFactor4k);
@@ -216,7 +206,7 @@ sbb-tooltip {
 
     @include mq($from: desktop5k) {
       font-size: $sizeFontBase * $scalingFactor5k;
-      border: toPx($tooltipBorderWidth * $scalingFactor5k) solid $sbbColorGrey;
+      border: toPx($tooltipBorderWidth * $scalingFactor5k) solid $tooltipBorderColor;
       max-width: toPx($tooltipMaxWidth * $scalingFactor5k);
       .sbb-tooltip-content-body {
         padding-top: toPx($tooltipContentPadding * $scalingFactor5k);
@@ -232,7 +222,7 @@ sbb-tooltip {
 
   .sbb-tooltip-icon {
     @include tooltipIcon();
-    border-color: $sbbColorGrey;
+    border-color: $tooltipBorderColor;
     border-width: pxToEm($tooltipIconsBorderWidth);
     border-style: solid;
     border-radius: 50%;
