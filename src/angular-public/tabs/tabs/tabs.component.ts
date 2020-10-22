@@ -8,7 +8,6 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  HostBinding,
   OnDestroy,
   Output,
   QueryList,
@@ -26,10 +25,17 @@ let counter = 0;
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-tabs',
+  },
 })
 export class SbbTabs implements AfterContentInit, OnDestroy {
-  /** @docs-private */
-  @HostBinding('class.sbb-tabs') _tabsClass = true;
+  /**
+   * @docs-private
+   * @deprecated internal detail
+   */
+  _tabsClass = true;
+
   /** Class property that tracks tab number of the list */
   nameOfTabList = `sbb-tabs-${counter++}`;
   /** Index of tab list */
@@ -114,12 +120,10 @@ export class SbbTabs implements AfterContentInit, OnDestroy {
           this.tabListIndex = index;
         }
         t.active = false;
-        t.tabindex = -1;
         t.tabMarkForCheck();
       });
 
       tab.active = true;
-      tab.tabindex = 0;
       tab.tabMarkForCheck();
       this._changeDetector.markForCheck();
       if (!firstSelection) {
