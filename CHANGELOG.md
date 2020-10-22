@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.3.2](https://github.com/sbb-design-systems/sbb-angular/compare/10.3.1...10.3.2) (2020-10-22)
+
+
+### Bug Fixes
+
+* set min-height on input to support text center aligning in IE ([#628](https://github.com/sbb-design-systems/sbb-angular/issues/628)) ([6fc87bc](https://github.com/sbb-design-systems/sbb-angular/commit/6fc87bc9674629c03f132b6053b2c733b631118e))
+* **business:** correct datepicker colors ([#625](https://github.com/sbb-design-systems/sbb-angular/issues/625)) ([14bcba7](https://github.com/sbb-design-systems/sbb-angular/commit/14bcba79a345bfae5d6a6620073ebd66407c1116))
+* **business:** correct tooltip colors ([#626](https://github.com/sbb-design-systems/sbb-angular/issues/626)) ([7a0a92e](https://github.com/sbb-design-systems/sbb-angular/commit/7a0a92e09ab892f3a73ac653541a990b9f29dbc5)), closes [#604](https://github.com/sbb-design-systems/sbb-angular/issues/604)
+* remove outline from tab content ([#627](https://github.com/sbb-design-systems/sbb-angular/issues/627)) ([f8251d1](https://github.com/sbb-design-systems/sbb-angular/commit/f8251d18743a7a0e0696ebaf85e315d03cbafcb3)), closes [#610](https://github.com/sbb-design-systems/sbb-angular/issues/610)
+* **business:** fix right padding of fieldset ([#622](https://github.com/sbb-design-systems/sbb-angular/issues/622)) ([cdb9e41](https://github.com/sbb-design-systems/sbb-angular/commit/cdb9e41e9ea9480fd514b7ec95fddf9bcd532c14))
+
 ### [10.3.1](https://github.com/sbb-design-systems/sbb-angular/compare/10.3.0...10.3.1) (2020-09-30)
 
 
