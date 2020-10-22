@@ -83,6 +83,8 @@ $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
     background-color: $sbbColorMilk;
     border-color: $sbbColorAluminum;
     color: $inputFieldDisabledColor;
+    -webkit-text-fill-color: $inputFieldDisabledColor;
+    opacity: 1;
   }
 }
 
