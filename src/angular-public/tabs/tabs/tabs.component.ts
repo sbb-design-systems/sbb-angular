@@ -32,7 +32,7 @@ let counter = 0;
 export class TabsComponent implements AfterContentInit, OnDestroy {
   /**
    * @docs-private
-   *  @deprecated internal detail
+   * @deprecated internal detail
    */
   _tabsClass = true;
 
