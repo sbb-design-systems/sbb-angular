@@ -4,8 +4,9 @@
   display: inline-block;
   width: 100%;
   min-width: pxToEm($datePickerMinWidth);
+  color: $inputFieldColor;
 
-  @include defaultDatePickerTheme();
+  @include datePickerButton;
 
   .sbb-datepicker-toggle,
   .sbb-datepicker-arrow {
@@ -25,7 +26,7 @@
 
     button {
       outline: 0;
-      color: $sbbColorGranite;
+      color: inherit;
       &:not(:disabled) {
         &:hover,
         &:focus,
@@ -64,7 +65,7 @@
     @extend %pickerIconsSize;
     @include absoluteCenterY();
     outline: 0;
-    color: $sbbColorGranite;
+    color: inherit;
     &:not(:disabled) {
       &:hover,
       &:focus,
@@ -162,5 +163,9 @@
         );
       }
     }
+  }
+
+  &.sbb-datepicker-disabled {
+    color: $inputFieldDisabledColor;
   }
 }

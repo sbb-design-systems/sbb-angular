@@ -87,7 +87,7 @@
     @include datePickerToggleArrow();
   }
 
-  @include defaultDatePickerTheme();
+  @include datePickerButton();
 
   .sbb-datepicker-content {
     position: relative;
@@ -118,7 +118,7 @@
       }
 
       .sbb-calendar-header {
-        border-bottom: 1px solid $sbbColorPlatinum;
+        border-bottom: 1px solid $datepickerCalendarLineColor;
 
         @include publicOnly() {
           @include mq($from: desktop4k) {
@@ -153,7 +153,7 @@
             height: 100%;
             top: 0;
             right: 0;
-            border-right: 1px solid $sbbColorPlatinum;
+            border-right: 1px solid $datepickerCalendarLineColor;
 
             @include publicOnly() {
               @include mq($from: desktop4k) {
@@ -174,11 +174,11 @@
           justify-content: center;
           outline: 0;
 
-          color: $sbbColorGranite;
+          color: $datePickerCalendarHeaderColor;
           &:hover,
           &:focus,
           &:active {
-            color: $sbbColorRed125;
+            color: $datePickerCalendarTableActiveColor;
           }
 
           width: pxToEm($defaultPickerIconSize);
@@ -239,11 +239,11 @@
             width: calc(100% + #{pxToEm(2 * 11)});
             left: pxToEm(-11);
             @include mq($from: tabletPortrait) {
-              width: calc(100% + #{pxToEm(2 * 18)});
-              left: pxToEm(-18);
+              width: calc(100% + #{pxToEm(2 * $datePickerCalendarTableContentPaddingWidth)});
+              left: pxToEm(-$datePickerCalendarTableContentPaddingWidth);
             }
 
-            border-bottom: 1px solid $sbbColorPlatinum;
+            border-bottom: 1px solid $datepickerCalendarLineColor;
 
             @include publicOnly() {
               @include mq($from: desktop4k) {
@@ -266,6 +266,7 @@
             font-size: $datePickerCalendarHeaderFontSize;
             text-transform: uppercase;
             padding: pxToEm(7, 13);
+            color: $datePickerCalendarHeaderColor;
           }
         }
       }
