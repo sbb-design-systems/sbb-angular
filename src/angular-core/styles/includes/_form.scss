@@ -45,6 +45,7 @@ $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
   line-height: 1.5;
   font-size: pxToRem($sizeFontDefault);
   -webkit-appearance: none;
+  min-height: if($sbbBusiness, 36px, 48px);
 
   &::-ms-clear {
     display: none;
