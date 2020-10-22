@@ -1,6 +1,7 @@
 // Form Styles
 // ----------------------------------------------------------------------------------------------------
 $inputFieldColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
+$inputFieldDisabledColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 
 @mixin disabledelement {
@@ -81,6 +82,9 @@ $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
   &:disabled {
     background-color: $sbbColorMilk;
     border-color: $sbbColorAluminum;
+    color: $inputFieldDisabledColor;
+    -webkit-text-fill-color: $inputFieldDisabledColor;
+    opacity: 1;
   }
 }
 
