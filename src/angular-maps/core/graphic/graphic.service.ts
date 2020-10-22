@@ -17,9 +17,7 @@ export class SbbGraphicService {
     this._markerSymbolFactory = new SbbMarkerSymbolFactory(this._esri);
   }
 
-  /**
-   * Adds a new point graphic at given loation to the map/scene.
-   */
+  /** Adds a new point graphic at given loation to the map/scene. */
   addNewGraphicToMap(point: __esri.Point, mapView: __esri.MapView | __esri.SceneView) {
     const markerGraphic = this._createPointGraphic(point);
     mapView.graphics.removeAll();

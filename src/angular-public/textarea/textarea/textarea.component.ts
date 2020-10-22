@@ -21,6 +21,7 @@ import {
   Optional,
   Self,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
@@ -56,6 +57,16 @@ export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
   styleUrls: ['./textarea.component.css'],
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbTextarea }],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-textarea',
+    /** Needs to be -1 so the `focus` event still fires. */
+    tabindex: '-1',
+    '[attr.id]': 'id',
+    '[attr.aria-describedby]': '_ariaDescribedby || null',
+    '[class.sbb-disabled]': 'disabled',
+    '[class.sbb-focused]': 'focused',
+  },
 })
 export class SbbTextarea extends SbbTextareaMixinBase
   implements
@@ -68,7 +79,6 @@ export class SbbTextarea extends SbbTextareaMixinBase
   private _uniqueId = `sbb-textarea-${++nextId}`;
   /** Unique id of the element. */
   @Input()
-  @HostBinding('attr.id')
   get id(): string {
     return this._id;
   }
@@ -101,14 +111,13 @@ export class SbbTextarea extends SbbTextareaMixinBase
   }
 
   /** Class property that disables the textarea status. */
-  @HostBinding('class.disabled')
   @Input()
   get disabled(): boolean {
     return this._disabled;
   }
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
-    this._changeDetector.markForCheck();
+    this._changeDetectorRef.markForCheck();
     this.stateChanges.next();
   }
   private _disabled = false;
@@ -131,7 +140,7 @@ export class SbbTextarea extends SbbTextareaMixinBase
   }
   set maxlength(value: number) {
     this._maxlength = coerceNumberProperty(value);
-    this.updateDigitsCounter(this.value);
+    this._updateDigitsCounter(this.value);
     this.stateChanges.next();
   }
   private _maxlength: number;
@@ -160,28 +169,19 @@ export class SbbTextarea extends SbbTextareaMixinBase
 
   /** Whether the textarea is focused. */
   get focused(): boolean {
-    return this.focusedClass;
+    return this._focused;
   }
+  private _focused: boolean = false;
+
   /** Whether the textarea has a value. */
   get empty(): boolean {
     return !this.value || this.value === '';
   }
 
-  /**
-   * Determines the aria-describedby to be set on the host.
-   */
-  @HostBinding('attr.aria-describedby')
-  get getAriaDescribedBy(): string | null {
-    return this._ariaDescribedby || null;
-  }
-  /** The aria-describedby attribute on the select for improved a11y. */
-  private _ariaDescribedby: string;
-
-  /**
-   * Needs to be -1 so the `focus` event still fires.
-   * @docs-private
-   */
-  @HostBinding('attr.tabindex') _tabIndexAttr = -1;
+  /** Determines the aria-describedby to be set on the host. */
+  _ariaDescribedby: string;
+  /** Class property that represents an observer on the number of digits in a textarea. */
+  _counter: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
 
   /** Placeholder value for the textarea. */
   @Input() placeholder = '';
@@ -189,18 +189,15 @@ export class SbbTextarea extends SbbTextareaMixinBase
   @ViewChild('textarea', { static: true }) _textarea: ElementRef<HTMLTextAreaElement>;
   /** Class property that automatically resize a textarea to fit its content. */
   @ViewChild('autosize', { static: true }) autosize: CdkTextareaAutosize;
-  /** Class property that represents the focused class status. */
-  @HostBinding('class.focused') focusedClass: boolean;
-  /** Class property that represents an observer on the number of digits in a textarea. */
-  counterObserver$: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
-  /** Class property that represents a change caused by a new digit in a textarea. */
-  propagateChange: any = () => {};
-  /** The registered callback function called when a blur event occurs on the input element. */
-  onTouched = () => {};
+
+  /** `View -> model callback called when value changes` */
+  _onChange: (value: any) => void = () => {};
+  /** `View -> model callback called when autocomplete has been touched` */
+  _onTouched = () => {};
 
   constructor(
     @Self() @Optional() public ngControl: NgControl,
-    private _changeDetector: ChangeDetectorRef,
+    private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
     private _focusMonitor: FocusMonitor,
     elementRef: ElementRef,
@@ -245,31 +242,18 @@ export class SbbTextarea extends SbbTextareaMixinBase
     }
   }
 
-  /**
-   * Trigger the resize of the textarea to fit the content
-   */
+  /** Trigger the resize of the textarea to fit the content */
   triggerResize() {
     this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent());
   }
 
   /**
-   * forward focus if user clicks anywhere on sbb-textarea
-   * @docs-private
-   */
-  @HostListener('click', ['$event.target'])
-  _focusTextarea(target: ElementRef) {
-    if (target === this._elementRef.nativeElement) {
-      this._forwardFocusToTextarea();
-    }
-  }
-
-  /**
    * Forward focus if a user clicks on an associated label.
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  onContainerClick(event: Event) {
-    this._forwardFocusToTextarea();
+  onContainerClick(_event: Event) {
+    this.focus();
   }
 
   /**
@@ -279,75 +263,85 @@ export class SbbTextarea extends SbbTextareaMixinBase
    * @docs-private
    */
   @HostListener('focus')
-  _forwardFocusToTextarea() {
-    this._textarea.nativeElement.focus();
+  focus(options?: FocusOptions) {
+    this._textarea.nativeElement.focus(options);
+  }
+
+  /** Adds the focused CSS class to this element */
+  _onFocus() {
+    if (!this.disabled) {
+      this._focused = true;
+      this.stateChanges.next();
+    }
   }
 
   /**
-   * Adds the focused CSS class to this element
+   * forward focus if user clicks anywhere on sbb-textarea
+   * @docs-private
    */
-  onFocus() {
-    this.focusedClass = true;
-    this.stateChanges.next();
+  @HostListener('click', ['$event.target'])
+  _focusTextarea(target: ElementRef) {
+    if (target === this._elementRef.nativeElement) {
+      this.focus();
+    }
   }
-  /**
-   * Removes the focused CSS class from this element
-   */
-  onBlur() {
-    this.focusedClass = false;
-    this.onTouched();
+
+  /** Removes the focused CSS class from this element */
+  _onBlur() {
+    this._focused = false;
+
+    if (!this.disabled) {
+      this._onTouched();
+      this._changeDetectorRef.markForCheck();
+      this.stateChanges.next();
+    }
+  }
+
+  /** Method that listens change in the textarea content */
+  _onInput(event: any) {
+    this._onChange(event.target.value);
+    this._updateDigitsCounter(event.target.value);
+    this.autosize.reset();
     this.stateChanges.next();
   }
 
   writeValue(newValue: any) {
     this.value = newValue == null ? '' : newValue;
-    this.updateDigitsCounter(this.value);
+    this._updateDigitsCounter(this.value);
   }
 
   registerOnChange(fn: (_: any) => void) {
-    this.propagateChange = fn;
+    this._onChange = fn;
   }
 
   registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  /**
-   * Method that listens change in the textarea content
-   */
-  onChange(event: any) {
-    this.propagateChange(event.target.value);
-    this.updateDigitsCounter(event.target.value);
-    this.autosize.reset();
-    this.stateChanges.next();
+    this._onTouched = fn;
   }
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
   }
-  /**
-   * Method that updates the max number of digits available in the textarea content
-   */
-  updateDigitsCounter(newValue: string) {
-    if (!!this.maxlength) {
-      this.counterObserver$.next(this.maxlength - newValue.length);
-    }
-  }
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
   setDescribedByIds(ids: string[]): void {
     this._ariaDescribedby = ids.join(' ');
   }
 
-  /**
-   * @docs-private
-   */
+  /** @docs-private */
   ngOnDestroy() {
     this.stateChanges.complete();
     this._destroyed.next();
     this._destroyed.complete();
+  }
+
+  /** Method that updates the max number of digits available in the textarea content */
+  private _updateDigitsCounter(newValue: string) {
+    if (!!this.maxlength) {
+      this._counter.next(this.maxlength - newValue.length);
+    }
   }
 
   // tslint:disable: member-ordering

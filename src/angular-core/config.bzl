@@ -1,7 +1,6 @@
 entryPoints = [
     # do not sort
     "base",
-    "base/button",
     "base/checkbox",
     "base/processflow",
     "base/tooltip",

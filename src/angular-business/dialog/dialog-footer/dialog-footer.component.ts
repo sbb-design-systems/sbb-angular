@@ -33,21 +33,6 @@ export class SbbDialogFooter implements OnInit {
   /** Types of alignment. */
   @Input() alignment: 'left' | 'center' | 'right' = 'right';
 
-  /** @deprecated internal detail */
-  dialogFooterClass = true;
-  /** @deprecated internal detail */
-  get alignmentStartClass() {
-    return this.alignment === 'left';
-  }
-  /** @deprecated internal detail */
-  get alignmentCenterClass() {
-    return this.alignment === 'center';
-  }
-  /** @deprecated internal detail */
-  get alignmentEndClass() {
-    return this.alignment === 'right';
-  }
-
   constructor(
     @Optional() private _dialogRef: SbbDialogRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
@@ -68,7 +53,7 @@ export class SbbDialogFooter implements OnInit {
         const container = this._dialogRef.containerInstance;
 
         if (container) {
-          container.hasFooter = true;
+          container._hasFooter = true;
         }
       });
     }

@@ -7,9 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class SbbHitTestService {
-  /**
-   * Calls the ESRI hitTest method for a location on a given map-/scene-view.
-   */
+  /** Calls the ESRI hitTest method for a location on a given map-/scene-view. */
   async esriHitTest(
     mapView: __esri.MapView | __esri.SceneView,
     mapClickEvent: __esri.MapViewClickEvent | __esri.SceneViewClickEvent

@@ -93,10 +93,10 @@ export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOpt
   fileTypeCategory = FileTypeCategory;
 
   /** Property that listens changes on file selector. */
-  onChange = (_: File[]) => {};
+  _onChange = (_: File[]) => {};
 
   /** Property that catches the interaction with user. */
-  onTouched = () => {};
+  _onTouched = () => {};
 
   constructor(
     private _fileTypeService: SbbFileSelectorTypesService,
@@ -118,11 +118,11 @@ export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOpt
   }
 
   registerOnChange(fn: any) {
-    this.onChange = fn;
+    this._onChange = fn;
   }
 
   registerOnTouched(fn: any) {
-    this.onTouched = fn;
+    this._onTouched = fn;
   }
 
   /**
@@ -152,7 +152,7 @@ export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOpt
   applyChanges(files: File[], action: 'add' | 'remove' = 'add'): void {
     const filesToAdd = action === 'add' ? this._getFileListByMode(files) : files;
     this._renderer.setProperty(this.fileInput.nativeElement, 'value', null);
-    this.onChange(filesToAdd);
+    this._onChange(filesToAdd);
     this.writeValue(filesToAdd);
     this.fileChanged.emit(filesToAdd);
   }

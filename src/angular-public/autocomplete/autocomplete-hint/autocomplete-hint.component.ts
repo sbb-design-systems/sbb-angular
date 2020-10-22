@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * Autocomplete-hint IDs need to be unique across components, so this counter exists outside of
@@ -10,9 +10,11 @@ let nextId = 0;
   selector: 'sbb-autocomplete-hint',
   templateUrl: './autocomplete-hint.component.html',
   styleUrls: ['./autocomplete-hint.component.css'],
+  host: {
+    '[attr.id]': 'id',
+  },
 })
 export class SbbAutocompleteHint {
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
-  @HostBinding('attr.id')
   id = `sbb-autocomplete-hint-${nextId++}`;
 }

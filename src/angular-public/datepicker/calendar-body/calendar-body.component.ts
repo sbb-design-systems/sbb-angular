@@ -38,21 +38,6 @@ export class SbbCalendarCell {
   },
 })
 export class SbbCalendarBody {
-  /**
-   * @deprecated internal detail
-   */
-  role = 'grid';
-
-  /**
-   * @deprecated internal detail
-   */
-  ariaReadonly = true;
-
-  /**
-   * @deprecated internal detail
-   */
-  cssClass = true;
-
   /** The label for the table. (e.g. "Jan 2017"). */
   @Input() label: string;
 

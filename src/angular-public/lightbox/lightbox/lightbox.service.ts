@@ -50,9 +50,7 @@ export const SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
   useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
-/**
- * Service to open SBB Design modal lightboxes.
- */
+/** Service to open SBB Design modal lightboxes. */
 @Injectable()
 export class SbbLightbox implements OnDestroy {
   private _openLightboxesAtThisLevel: SbbLightboxRef<any>[] = [];
@@ -101,23 +99,8 @@ export class SbbLightbox implements OnDestroy {
    *     or a TemplateRef to instantiate as the lightbox content.
    * @param config Extra configuration options.
    * @returns Reference to the newly-opened lightbox.
-   * @deprecated use openLightbox instead
    */
   open<T, D = any, R = any>(
-    componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    config?: SbbLightboxConfig<D>
-  ): SbbLightboxRef<T, R> {
-    return this.openLightbox(componentOrTemplateRef, config);
-  }
-
-  /**
-   * Opens a modal lightbox containing the given component.
-   * @param componentOrTemplateRef Type of the component to load into the lightbox,
-   *     or a TemplateRef to instantiate as the lightbox content.
-   * @param config Extra configuration options.
-   * @returns Reference to the newly-opened lightbox.
-   */
-  openLightbox<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
     config?: SbbLightboxConfig<D>
   ): SbbLightboxRef<T, R> {
@@ -144,9 +127,7 @@ export class SbbLightbox implements OnDestroy {
     return lightboxRef;
   }
 
-  /**
-   * Closes all of the currently-open lightboxes.
-   */
+  /** Closes all of the currently-open lightboxes. */
   closeAll(): void {
     this._closeDialogs(this.openLightboxes);
   }

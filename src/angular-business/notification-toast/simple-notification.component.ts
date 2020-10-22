@@ -3,9 +3,7 @@ import { ChangeDetectionStrategy, Component, Inject, ViewEncapsulation } from '@
 import { SBB_NOTIFICATION_TOAST_DATA } from './notification-toast-config';
 import { SbbNotificationToastRef } from './notification-toast-ref';
 
-/**
- * Interface for a simple notification toast component that has a message and a single action.
- */
+/** Interface for a simple notification toast component that has a message and a single action. */
 export interface SbbTextOnlyNotificationToast {
   data: { message: string };
   notificationToastRef: SbbNotificationToastRef<SbbTextOnlyNotificationToast>;

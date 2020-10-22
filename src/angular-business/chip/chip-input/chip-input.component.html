@@ -13,10 +13,10 @@
   [value]="inputModel"
   [disabled]="disabled"
   [sbbAutocomplete]="autocomplete"
-  [sbbAutocompleteConnectedTo]="origin"
+  [sbbAutocompleteConnectedTo]="_origin"
   (focus)="_onFocus()"
   (blur)="_onBlur()"
-  (keydown.enter)="onEnter($any($event.target)?.value)"
+  (keydown.enter)="_onEnter($any($event.target)?.value)"
   class="sbb-chip-input-textfield"
 />
 <ng-template #noAutocomplete>
@@ -28,7 +28,7 @@
     [disabled]="disabled"
     (focus)="_onFocus()"
     (blur)="_onBlur()"
-    (keydown.enter)="onEnter($any($event.target)?.value)"
+    (keydown.enter)="_onEnter($any($event.target)?.value)"
     class="sbb-chip-input-textfield"
   />
 </ng-template>

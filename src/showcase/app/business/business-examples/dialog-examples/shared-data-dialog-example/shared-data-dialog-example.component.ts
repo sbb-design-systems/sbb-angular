@@ -17,7 +17,7 @@ export class SharedDataDialogExampleComponent {
   constructor(public dialog: SbbDialog) {}
 
   openDialog(): void {
-    const dialogRef = this.dialog.openDialog(SharedDataDialogComponent, {
+    const dialogRef = this.dialog.open(SharedDataDialogComponent, {
       data: { name: this.name, animal: this.animal },
     });
 

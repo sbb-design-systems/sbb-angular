@@ -1,11 +1,17 @@
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ActiveDescendantKeyManager, LiveAnnouncer } from '@angular/cdk/a11y';
+import {
+  BooleanInput,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  NumberInput,
+} from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   A,
   DOWN_ARROW,
   END,
   ENTER,
+  hasModifierKey,
   HOME,
   LEFT_ARROW,
   RIGHT_ARROW,
@@ -50,24 +56,40 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
+  CanDisable,
+  CanDisableCtor,
   CanUpdateErrorState,
   CanUpdateErrorStateCtor,
+  HasTabIndex,
+  HasTabIndexCtor,
+  mixinDisabled,
   mixinErrorState,
+  mixinTabIndex,
   TypeRef,
 } from '@sbb-esta/angular-core/common-behaviors';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
+import { SbbField, SBB_FORM_FIELD } from '@sbb-esta/angular-public/field';
 import {
+  countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  sbbCountGroupLabelsBeforeOption,
-  SbbHasOptions,
   SbbOption,
   SbbOptionGroup,
   SbbOptionSelectionChange,
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular-public/option';
 import { defer, merge, Observable, Subject } from 'rxjs';
-import { filter, map, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  startWith,
+  switchMap,
+  take,
+  takeUntil,
+} from 'rxjs/operators';
+
+import { sbbSelectAnimations } from '../select-animations';
 
 let nextUniqueId = 0;
 
@@ -123,6 +145,21 @@ export const SBB_SELECT_SCROLL_STRATEGY_PROVIDER = {
   useFactory: SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
+/** Object that can be used to configure the default options for the select module. */
+export interface SbbSelectConfig {
+  /** Whether option centering should be disabled. */
+  disableOptionCentering?: boolean;
+
+  /** Time to wait in milliseconds after the last keystroke before moving focus to an item. */
+  typeaheadDebounceInterval?: number;
+
+  /** Class or list of classes to be applied to the menu's overlay panel. */
+  overlayPanelClass?: string | string[];
+}
+
+/** Injection token that can be used to provide the default options the select module. */
+export const SBB_SELECT_CONFIG = new InjectionToken<SbbSelectConfig>('SBB_SELECT_CONFIG');
+
 /** Change event object that is emitted when the select value has changed. */
 export class SbbSelectChange {
   constructor(
@@ -145,17 +182,44 @@ export class SbbSelectBase {
   ) {}
 }
 
-export const SbbSelectMixinBase: CanUpdateErrorStateCtor & typeof SbbSelectBase = mixinErrorState(
-  SbbSelectBase
-);
+export const SbbSelectMixinBase: CanDisableCtor &
+  HasTabIndexCtor &
+  CanUpdateErrorStateCtor &
+  typeof SbbSelectBase = mixinTabIndex(mixinDisabled(mixinErrorState(SbbSelectBase)));
 
 @Component({
   selector: 'sbb-select',
   exportAs: 'sbbSelect',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css'],
+  inputs: ['disabled', 'tabIndex'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'combobox',
+    'aria-autocomplete': 'none',
+    // TODO(crisbeto): the value for aria-haspopup should be `listbox`, but currently it's difficult
+    // to sync into Google, because of an outdated automated a11y check which flags it as an invalid
+    // value. At some point we should try to switch it back to being `listbox`.
+    'aria-haspopup': 'true',
+    class: 'sbb-select',
+    '[attr.id]': 'id',
+    '[attr.tabindex]': 'tabIndex',
+    '[attr.aria-controls]': 'panelOpen ? id + "-panel" : null',
+    '[attr.aria-expanded]': 'panelOpen',
+    '[attr.aria-label]': 'ariaLabel || null',
+    '[attr.aria-required]': 'required.toString()',
+    '[attr.aria-disabled]': 'disabled.toString()',
+    '[attr.aria-invalid]': 'errorState',
+    '[attr.aria-describedby]': '_ariaDescribedby || null',
+    '[attr.aria-activedescendant]': '_getAriaActiveDescendant()',
+    '[class.sbb-select-disabled]': 'disabled',
+    '[class.sbb-select-invalid]': 'errorState',
+    '[class.sbb-select-required]': 'required',
+    '[class.sbb-select-empty]': 'empty',
+    '[class.sbb-select-multiple]': 'multiple',
+  },
+  animations: [sbbSelectAnimations.transformPanel],
   providers: [
     { provide: SbbFormFieldControl, useExisting: SbbSelect },
     { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SbbSelect },
@@ -170,28 +234,17 @@ export class SbbSelect extends SbbSelectMixinBase
     OnInit,
     DoCheck,
     ControlValueAccessor,
-    CanUpdateErrorState,
-    SbbHasOptions {
+    CanDisable,
+    HasTabIndex,
+    CanUpdateErrorState {
   /** All of the defined select options. */
   @ContentChildren(SbbOption, { descendants: true }) options: QueryList<SbbOption>;
 
   /** All of the defined groups of options. */
   @ContentChildren(SbbOptionGroup) optionGroups: QueryList<SbbOptionGroup>;
-  /**
-   * Role of select field
-   */
-  @HostBinding('attr.role') role = 'listbox';
 
-  @HostBinding('attr.tabindex')
-  @Input()
-  get tabIndex(): number {
-    return this.disabled ? -1 : this._tabIndex;
-  }
-  set tabIndex(value: number) {
-    // If the specified tabIndex value is null or undefined, fall back to the default value.
-    this._tabIndex = value != null ? value : 0;
-  }
-  private _tabIndex = 0;
+  /** The scroll position of the overlay panel, calculated to center the selected option. */
+  private _scrollTop = 0;
 
   /** Whether or not the overlay panel is open. */
   private _panelOpen = false;
@@ -199,86 +252,75 @@ export class SbbSelect extends SbbSelectMixinBase
   /** Whether filling out the select is required in the form. */
   private _required = false;
 
-  /** The placeholder displayed in the trigger of the select. */
-  private _placeholder: string;
-
-  /** Whether the component is in multiple selection mode. */
-  private _multiple = false;
-
   /** Unique id for this input. */
   private _uid = `sbb-select-${nextUniqueId++}`;
+
+  /** Current `ariar-labelledby` value for the select trigger. */
+  private _triggerAriaLabelledBy: string | null = null;
 
   /** Emits whenever the component is destroyed. */
   private readonly _destroy = new Subject<void>();
 
   /** The last measured value for the trigger's client bounding rect. */
-  triggerRect: ClientRect;
+  _triggerRect: ClientRect;
 
   /** The aria-describedby attribute on the select for improved a11y. */
-  private _ariaDescribedby: string;
+  _ariaDescribedby: string;
 
   /** The cached font-size of the trigger element. */
-  triggerFontSize = 0;
+  _triggerFontSize = 0;
 
   /** Deals with the selection logic. */
-  selectionModel: SelectionModel<SbbOption>;
+  _selectionModel: SelectionModel<SbbOption>;
 
   /** Manages keyboard events for options in the panel. */
-  keyManager: ActiveDescendantKeyManager<SbbOption>;
+  _keyManager: ActiveDescendantKeyManager<SbbOption>;
 
+  /** ID for the DOM node containing the select's value. */
+  _valueId = `sbb-select-value-${nextUniqueId++}`;
+
+  /** Emits when the panel element is finished transforming in. */
+  _panelDoneAnimatingStream = new Subject<string>();
+
+  /** Whether the select is focused. */
+  get focused(): boolean {
+    return this._focused || this._panelOpen;
+  }
   private _focused = false;
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
 
-  /**
-   * Css class of select component.
-   */
-  @HostBinding('class.sbb-select') cssClass = true;
-
   /** Panel containing the select options. */
   @ViewChild('panel') panel: ElementRef<HTMLElement>;
 
   /** Overlay pane containing the options. */
-  @ViewChild(CdkConnectedOverlay, { static: true }) overlayDir: CdkConnectedOverlay;
+  @ViewChild(CdkConnectedOverlay) overlayDir: CdkConnectedOverlay;
 
   /** Classes to be passed to the select panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[] | Set<string> | { [key: string]: any };
-  /**
-   * Disables a select field
-   */
-  @Input()
-  get disabled() {
-    return this._disabled;
-  }
-  set disabled(value: any) {
-    this._disabled = coerceBooleanProperty(value);
-    this._changeDetectorRef.markForCheck();
-  }
-  private _disabled = false;
 
   /** Aria label of the select. If not specified, the placeholder will be used as label. */
   @Input('aria-label') ariaLabel: string = '';
 
-  @HostBinding('attr.aria-label')
-  get _ariaLabel(): string | null {
-    // If an ariaLabelledby value has been set by the consumer, the select should not overwrite the
-    // `aria-labelledby` value by setting the ariaLabel to the placeholder.
-    return this.ariaLabelledby ? null : this.ariaLabel || this.placeholder;
-  }
-
   /** Input that can be used to specify the `aria-labelledby` attribute. */
   @Input('aria-labelledby') ariaLabelledby: string;
 
-  /** Returns the aria-labelledby of the select component. */
-  @HostBinding('attr.aria-labelledby')
-  get _ariaLabelledby(): string | null {
-    if (this.ariaLabelledby) {
-      return this.ariaLabelledby;
-    }
-
-    return null;
+  /** Time to wait in milliseconds after the last keystroke before moving focus to an item. */
+  @Input()
+  get typeaheadDebounceInterval(): number {
+    return this._typeaheadDebounceInterval;
   }
+  set typeaheadDebounceInterval(value: number) {
+    this._typeaheadDebounceInterval = coerceNumberProperty(value);
+  }
+  private _typeaheadDebounceInterval = this._defaultOptions?.typeaheadDebounceInterval ?? 0;
+
+  /**
+   * Function used to sort the values in a select in multiple mode.
+   * Follows the same logic as `Array.prototype.sort`.
+   */
+  @Input() sortComparator: (a: SbbOption, b: SbbOption, options: SbbOption[]) => number;
 
   /** Value of the select control. */
   @Input()
@@ -287,7 +329,10 @@ export class SbbSelect extends SbbSelectMixinBase
   }
   set value(newValue: any) {
     if (newValue !== this._value) {
-      this.writeValue(newValue);
+      if (this.options) {
+        this._setSelectionByValue(newValue);
+      }
+
       this._value = newValue;
     }
   }
@@ -295,7 +340,6 @@ export class SbbSelect extends SbbSelectMixinBase
 
   /** Unique id of the element. */
   @Input()
-  @HostBinding('attr.id')
   get id(): string {
     return this._id;
   }
@@ -307,11 +351,16 @@ export class SbbSelect extends SbbSelectMixinBase
 
   /** Combined stream of all of the child options' change events. */
   readonly optionSelectionChanges: Observable<SbbOptionSelectionChange> = defer(() => {
-    if (this.options) {
-      return merge(...this.options.map((option) => option.onSelectionChange));
+    const options = this.options;
+
+    if (options) {
+      return options.changes.pipe(
+        startWith(options),
+        switchMap(() => merge(...options.map((option) => option.onSelectionChange)))
+      );
     }
 
-    return this._ngZone.onStable.asObservable().pipe(
+    return this._ngZone.onStable.pipe(
       take(1),
       switchMap(() => this.optionSelectionChanges)
     );
@@ -321,13 +370,13 @@ export class SbbSelect extends SbbSelectMixinBase
   @Output() readonly openedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /** Event emitted when the select has been opened. */
-  @Output() readonly opened: Observable<void> = this.openedChange.pipe(
+  @Output('opened') readonly _openedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => o),
     map(() => {})
   );
 
   /** Event emitted when the select has been closed. */
-  @Output() readonly closed: Observable<void> = this.openedChange.pipe(
+  @Output('closed') readonly _closedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => !o),
     map(() => {})
   );
@@ -344,21 +393,23 @@ export class SbbSelect extends SbbSelectMixinBase
    */
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  /** The IDs of child options to be passed to the aria-owns attribute. */
-  optionIds = '';
-
   /** The value of the select panel's transform-origin property. */
-  transformOrigin = 'top';
+  _transformOrigin = 'top';
+
+  /** Factory function used to create a scroll strategy for this select. */
+  private _scrollStrategyFactory: () => ScrollStrategy;
 
   /** Strategy that will be used to handle scrolling while the select panel is open. */
-  scrollStrategy = this._scrollStrategyFactory();
+  _scrollStrategy: ScrollStrategy;
+
+  _overlayPanelClass: string | string[] = this._defaultOptions?.overlayPanelClass || '';
 
   /**
    * The y-offset of the overlay panel in relation to the trigger's top start corner.
    * This must be adjusted to align the selected option text over the trigger text.
    * when the panel opens. Will change based on the y-position of the selected option.
    */
-  offsetY = 0;
+  _offsetY = 0;
 
   /**
    * This position config ensures that the top "start" corner of the overlay
@@ -366,7 +417,7 @@ export class SbbSelect extends SbbSelectMixinBase
    * the trigger completely). If the panel cannot fit below the trigger, it
    * will fall back to a position above the trigger.
    */
-  positions: ConnectedPosition[] = [
+  _positions: ConnectedPosition[] = [
     {
       originX: 'start',
       originY: 'bottom',
@@ -381,27 +432,6 @@ export class SbbSelect extends SbbSelectMixinBase
     },
   ];
 
-  /** Flag used to rotate the icon on the select trigger  */
-  rotateIcon = false;
-
-  /** Whether the component is disabling centering of the active option over the trigger. */
-  private _disableOptionCentering = true;
-
-  /** Comparison function to specify which option is displayed. Defaults to object equality. */
-  private _compareWith = (o1: any, o2: any) => o1 === o2;
-
-  /** `View -> model callback called when value changes` */
-  onChange: (value: any) => void = () => {};
-
-  /** `View -> model callback called when select has been touched` */
-  onTouched = () => {};
-
-  /** Whether the select is focused. */
-  @HostBinding('class.sbb-select-focused')
-  get focused(): boolean {
-    return this._focused || this._panelOpen;
-  }
-
   /** Placeholder to be shown if no value has been selected. */
   @Input()
   get placeholder(): string {
@@ -411,9 +441,9 @@ export class SbbSelect extends SbbSelectMixinBase
     this._placeholder = value;
     this.stateChanges.next();
   }
+  private _placeholder: string;
 
   /** Whether the component is required. */
-  @HostBinding('class.sbb-select-required')
   @Input()
   get required(): boolean {
     return this._required;
@@ -424,18 +454,18 @@ export class SbbSelect extends SbbSelectMixinBase
   }
 
   /** Whether the user should be allowed to select multiple options. */
-  @HostBinding('attr.aria-multiselectable')
   @Input()
   get multiple(): boolean {
     return this._multiple;
   }
   set multiple(value: boolean) {
-    if (this.selectionModel) {
+    if (this._selectionModel) {
       throw Error('Cannot change `multiple` mode of select after initialization.');
     }
 
     this._multiple = coerceBooleanProperty(value);
   }
+  private _multiple = false;
 
   /** Whether to center the active option over the trigger. */
   @Input()
@@ -445,6 +475,7 @@ export class SbbSelect extends SbbSelectMixinBase
   set disableOptionCentering(value: boolean) {
     this._disableOptionCentering = coerceBooleanProperty(value);
   }
+  private _disableOptionCentering = this._defaultOptions?.disableOptionCentering ?? true;
 
   /**
    * A function to compare the option values with the selected values. The first argument
@@ -460,83 +491,35 @@ export class SbbSelect extends SbbSelectMixinBase
       throw Error('`compareWith` must be a function.');
     }
     this._compareWith = fn;
-    if (this.selectionModel) {
+    if (this._selectionModel) {
       // A different comparator means the selection could change.
       this._initializeSelection();
     }
   }
-  /**
-   * Determines if the attribute aria-required is required
-   */
-  @HostBinding('attr.aria-required')
-  get isAriaRequired() {
-    return this.required.toString();
-  }
-  /**
-   * Determines if the attribute aria-disabled is disabled
-   */
-  @HostBinding('attr.aria-disabled')
-  get isAriaDisabled() {
-    return this.disabled.toString();
-  }
-  /**
-   * Controls if a select is disabled
-   */
-  @HostBinding('class.sbb-select-disabled')
-  get isDisabled(): boolean {
-    return this.disabled;
-  }
+  private _compareWith = (o1: any, o2: any) => o1 === o2;
 
-  /**
-   * Controls if a select value is invalid
-   */
-  @HostBinding('attr.aria-invalid')
-  @HostBinding('class.sbb-select-invalid')
-  get isInvalid() {
-    return this.errorState;
-  }
-  /**
-   * Determines the aria-owns to be set on the host.
-   */
-  @HostBinding('attr.aria-owns')
-  get getAriaOwns() {
-    return this.panelOpen ? this.optionIds : null;
-  }
+  /** `View -> model callback called when value changes` */
+  _onChange: (value: any) => void = () => {};
 
-  /**
-   * Determines the aria-describedby to be set on the host.
-   */
-  @HostBinding('attr.aria-describedby')
-  get getAriaDescribedBy(): string | null {
-    return this._ariaDescribedby || null;
-  }
-
-  /** Determines the `aria-activedescendant` to be set on the host. */
-  @HostBinding('attr.aria-activedescendant')
-  get getAriaActiveDescendant(): string | null {
-    return this.panelOpen && this.keyManager && this.keyManager.activeItem
-      ? this.keyManager.activeItem.id
-      : null;
-  }
-
-  /** Attribute that refers to the expansion of the dropdown panel. */
-  @HostBinding('attr.aria-expanded') get ariaExpanded(): string | null {
-    return this.disabled ? null : this.panelOpen.toString();
-  }
+  /** `View -> model callback called when select has been touched` */
+  _onTouched = () => {};
 
   constructor(
-    @Self() @Optional() public ngControl: NgControl,
-    public _elementRef: ElementRef,
+    private _viewportRuler: ViewportRuler,
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
-    @Inject(SBB_SELECT_SCROLL_STRATEGY) private _scrollStrategyFactory: any,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
+    elementRef: ElementRef,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
+    @Optional() @Inject(SBB_FORM_FIELD) private _parentFormField: SbbField,
+    @Self() @Optional() public ngControl: NgControl,
     @Attribute('tabindex') tabIndex: string,
-    private _viewportRuler: ViewportRuler
+    @Inject(SBB_SELECT_SCROLL_STRATEGY) scrollStrategyFactory: any,
+    private _liveAnnouncer: LiveAnnouncer,
+    @Optional() @Inject(SBB_SELECT_CONFIG) private _defaultOptions?: SbbSelectConfig
   ) {
-    super(_elementRef, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
+    super(elementRef, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
 
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of
@@ -544,32 +527,31 @@ export class SbbSelect extends SbbSelectMixinBase
       this.ngControl.valueAccessor = this;
     }
 
-    // tslint:disable-next-line:radix
-    this.tabIndex = parseInt(tabIndex) || 0;
+    this._scrollStrategyFactory = scrollStrategyFactory;
+    this._scrollStrategy = this._scrollStrategyFactory();
+    this.tabIndex = parseInt(tabIndex, 10) || 0;
 
     // Force setter to be called in case id was not specified.
     this.id = this.id;
   }
 
   ngOnInit() {
-    this.selectionModel = new SelectionModel<SbbOption>(this.multiple);
+    this._selectionModel = new SelectionModel<SbbOption>(this.multiple);
     this.stateChanges.next();
 
-    if (this.panelOpen) {
-      this.openedChange.emit(true);
-    } else {
-      this.openedChange.emit(false);
-
-      this.overlayDir.offsetX = 0;
-      this._changeDetectorRef.markForCheck();
-    }
+    // We need `distinctUntilChanged` here, because some browsers will
+    // fire the animation end event twice for the same animation. See:
+    // https://github.com/angular/angular/issues/24084
+    this._panelDoneAnimatingStream
+      .pipe(distinctUntilChanged(), takeUntil(this._destroy))
+      .subscribe(() => this._panelDoneAnimating(this.panelOpen));
 
     this._viewportRuler
       .change()
       .pipe(takeUntil(this._destroy))
       .subscribe(() => {
         if (this._panelOpen) {
-          this.triggerRect = this._elementRef.nativeElement.getBoundingClientRect();
+          this._triggerRect = this._elementRef.nativeElement.getBoundingClientRect();
           this._changeDetectorRef.markForCheck();
         }
       });
@@ -578,8 +560,7 @@ export class SbbSelect extends SbbSelectMixinBase
   ngAfterContentInit() {
     this._initKeyManager();
 
-    // tslint:disable-next-line:no-non-null-assertion
-    this.selectionModel.changed!.pipe(takeUntil(this._destroy)).subscribe((event) => {
+    this._selectionModel.changed.pipe(takeUntil(this._destroy)).subscribe((event) => {
       event.added.forEach((option) => option.select());
       event.removed.forEach((option) => option.deselect());
     });
@@ -591,6 +572,21 @@ export class SbbSelect extends SbbSelectMixinBase
   }
 
   ngDoCheck() {
+    const newAriaLabelledby = this._getTriggerAriaLabelledby();
+
+    // We have to manage setting the `aria-labelledby` ourselves, because part of its value
+    // is computed as a result of a content query which can cause this binding to trigger a
+    // "changed after checked" error.
+    if (newAriaLabelledby !== this._triggerAriaLabelledBy) {
+      const element: HTMLElement = this._elementRef.nativeElement;
+      this._triggerAriaLabelledBy = newAriaLabelledby;
+      if (newAriaLabelledby) {
+        element.setAttribute('aria-labelledby', newAriaLabelledby);
+      } else {
+        element.removeAttribute('aria-labelledby');
+      }
+    }
+
     if (this.ngControl) {
       this.updateErrorState();
     }
@@ -602,6 +598,10 @@ export class SbbSelect extends SbbSelectMixinBase
     if (changes.disabled) {
       this.stateChanges.next();
     }
+
+    if (changes['typeaheadDebounceInterval'] && this._keyManager) {
+      this._keyManager.withTypeAhead(this._typeaheadDebounceInterval);
+    }
   }
 
   ngOnDestroy() {
@@ -612,58 +612,44 @@ export class SbbSelect extends SbbSelectMixinBase
 
   /** Toggles the overlay panel open or closed. */
   toggle(): void {
-    this.panelOpen ? this.close() : this.openSelect();
+    this.panelOpen ? this.close() : this.open();
   }
 
-  /**
-   * Opens the overlay panel
-   * @deprecated use openSelect() instead
-   */
+  /** Opens the overlay panel */
   open(): void {
-    this.openSelect();
-  }
+    if (this._canOpen()) {
+      this._panelOpen = true;
+      this._keyManager.withHorizontalOrientation(null);
+      this._highlightCorrectOption();
+      this._changeDetectorRef.markForCheck();
 
-  /** Opens the overlay panel. */
-  openSelect(): void {
-    if (this.disabled || !this.options || !this.options.length || this._panelOpen) {
-      return;
-    }
+      this._triggerRect = this._elementRef.nativeElement.getBoundingClientRect();
+      // Note: The computed font-size will be a string pixel value (e.g. "16px").
+      // `parseInt` ignores the trailing 'px' and converts this to a number.
+      this._triggerFontSize = parseInt(
+        getComputedStyle(this._elementRef.nativeElement).fontSize || '0',
+        10
+      );
 
-    this.triggerRect = this._elementRef.nativeElement.getBoundingClientRect();
-    // Note: The computed font-size will be a string pixel value (e.g. "16px").
-    // `parseInt` ignores the trailing 'px' and converts this to a number.
-    // tslint:disable-next-line:radix
-    this.triggerFontSize = parseInt(
-      getComputedStyle(this._elementRef.nativeElement).fontSize || '0'
-    );
-    this.rotateIcon = true;
-    this._panelOpen = true;
-    this.keyManager.withHorizontalOrientation(null);
-    this._highlightCorrectOption();
-    this._changeDetectorRef.markForCheck();
-
-    // Set the font size on the panel element once it exists.
-    this._ngZone.onStable
-      .asObservable()
-      .pipe(take(1))
-      .subscribe(() => {
+      // Set the font size on the panel element once it exists.
+      this._ngZone.onStable.pipe(take(1)).subscribe(() => {
         if (
-          this.triggerFontSize &&
+          this._triggerFontSize &&
           this.overlayDir.overlayRef &&
           this.overlayDir.overlayRef.overlayElement
         ) {
-          this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this.triggerFontSize}px`;
+          this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this._triggerFontSize}px`;
         }
       });
+    }
   }
 
   /** Closes the overlay panel and focuses the host element. */
   close(): void {
     if (this._panelOpen) {
       this._panelOpen = false;
-      this.rotateIcon = false;
       this._changeDetectorRef.markForCheck();
-      this.onTouched();
+      this._onTouched();
     }
   }
 
@@ -674,9 +660,7 @@ export class SbbSelect extends SbbSelectMixinBase
    * @param value New value to be written to the model.
    */
   writeValue(value: any): void {
-    if (this.options) {
-      this._setSelectionByValue(value);
-    }
+    this.value = value;
   }
 
   /**
@@ -687,7 +671,7 @@ export class SbbSelect extends SbbSelectMixinBase
    * @param fn Callback to be triggered when the value changes.
    */
   registerOnChange(fn: (value: any) => void): void {
-    this.onChange = fn;
+    this._onChange = fn;
   }
 
   /**
@@ -698,7 +682,7 @@ export class SbbSelect extends SbbSelectMixinBase
    * @param fn Callback to be triggered when the component has been touched.
    */
   registerOnTouched(fn: () => {}): void {
-    this.onTouched = fn;
+    this._onTouched = fn;
   }
 
   /**
@@ -720,7 +704,7 @@ export class SbbSelect extends SbbSelectMixinBase
 
   /** The currently selected option. */
   get selected(): SbbOption | SbbOption[] {
-    return this.multiple ? this.selectionModel.selected : this.selectionModel.selected[0];
+    return this.multiple ? this._selectionModel.selected : this._selectionModel.selected[0];
   }
 
   /** The value displayed in the trigger. */
@@ -730,17 +714,17 @@ export class SbbSelect extends SbbSelectMixinBase
     }
 
     if (this._multiple) {
-      const selectedOptions = this.selectionModel.selected.map((option) => option.viewValue);
+      const selectedOptions = this._selectionModel.selected.map((option) => option.viewValue);
 
       return selectedOptions.join(', ');
     }
 
-    return this.selectionModel.selected[0].viewValue;
+    return this._selectionModel.selected[0].viewValue;
   }
 
   /** Handles all keydown events on the select. */
   @HostListener('keydown', ['$event'])
-  handleKeydown(event: TypeRef<KeyboardEvent>): void {
+  _handleKeydown(event: TypeRef<KeyboardEvent>): void {
     if (!this.disabled) {
       this.panelOpen ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
     }
@@ -755,33 +739,51 @@ export class SbbSelect extends SbbSelectMixinBase
       keyCode === LEFT_ARROW ||
       keyCode === RIGHT_ARROW;
     const isOpenKey = keyCode === ENTER || keyCode === SPACE;
+    const manager = this._keyManager;
 
     // Open the select on ALT + arrow key to match the native <select>
-    if (isOpenKey || ((this.multiple || event.altKey) && isArrowKey)) {
+    if (
+      (!manager.isTyping() && isOpenKey && !hasModifierKey(event)) ||
+      ((this.multiple || event.altKey) && isArrowKey)
+    ) {
       event.preventDefault(); // prevents the page from scrolling down when pressing space
-      this.openSelect();
+      this.open();
     } else if (!this.multiple) {
-      this.keyManager.onKeydown(event);
+      const previouslySelectedOption = this.selected;
+      manager.onKeydown(event);
+      const selectedOption = this.selected;
+
+      // Since the value has changed, we need to announce it ourselves.
+      if (selectedOption && previouslySelectedOption !== selectedOption) {
+        // We set a duration on the live announcement, because we want the live element to be
+        // cleared after a while so that users can't navigate to it using the arrow keys.
+        this._liveAnnouncer.announce((selectedOption as SbbOption).viewValue, 10000);
+      }
     }
   }
 
   /** Handles keyboard events when the selected is open. */
   private _handleOpenKeydown(event: KeyboardEvent): void {
+    const manager = this._keyManager;
     const keyCode = event.keyCode;
     const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
-    const manager = this.keyManager;
+    const isTyping = manager.isTyping();
 
-    if (keyCode === HOME || keyCode === END) {
-      event.preventDefault();
-      keyCode === HOME ? manager.setFirstItemActive() : manager.setLastItemActive();
-    } else if (isArrowKey && event.altKey) {
+    if (isArrowKey && event.altKey) {
       // Close the select on ALT + arrow key to match the native <select>
       event.preventDefault();
       this.close();
-    } else if ((keyCode === ENTER || keyCode === SPACE) && manager.activeItem) {
+      // Don't do anything in this case if the user is typing,
+      // because the typing sequence can include the space key.
+    } else if (
+      !isTyping &&
+      (keyCode === ENTER || keyCode === SPACE) &&
+      manager.activeItem &&
+      !hasModifierKey(event)
+    ) {
       event.preventDefault();
-      manager.activeItem.selectViaInteraction();
-    } else if (this._multiple && keyCode === A && event.ctrlKey) {
+      manager.activeItem._selectViaInteraction();
+    } else if (!isTyping && this._multiple && keyCode === A && event.ctrlKey) {
       event.preventDefault();
       const hasDeselectedOptions = this.options.some((opt) => !opt.disabled && !opt.selected);
 
@@ -802,13 +804,13 @@ export class SbbSelect extends SbbSelectMixinBase
         manager.activeItem &&
         manager.activeItemIndex !== previouslyFocusedIndex
       ) {
-        manager.activeItem.selectViaInteraction();
+        manager.activeItem._selectViaInteraction();
       }
     }
   }
 
   @HostListener('focus')
-  onFocus() {
+  _onFocus() {
     if (!this.disabled) {
       this._focused = true;
       this.stateChanges.next();
@@ -820,20 +822,18 @@ export class SbbSelect extends SbbSelectMixinBase
    * "blur" to the panel when it opens, causing a false positive.
    */
   @HostListener('blur')
-  onBlur() {
+  _onBlur() {
     this._focused = false;
 
     if (!this.disabled && !this.panelOpen) {
-      this.onTouched();
+      this._onTouched();
       this._changeDetectorRef.markForCheck();
       this.stateChanges.next();
     }
   }
 
-  /**
-   * Callback that is invoked when the overlay panel has been attached.
-   */
-  onAttached(): void {
+  /** Callback that is invoked when the overlay panel has been attached. */
+  _onAttached(): void {
     this.overlayDir.positionChange.pipe(take(1)).subscribe((positions) => {
       if (positions.connectionPair.originY === 'top') {
         this.panel.nativeElement.classList.add('sbb-select-panel-above');
@@ -843,37 +843,13 @@ export class SbbSelect extends SbbSelectMixinBase
         this._elementRef.nativeElement.classList.remove('sbb-select-input-above');
       }
       this._changeDetectorRef.detectChanges();
-
-      this._scrollActiveOptionIntoView();
+      this._positioningSettled();
     });
   }
 
   /** Whether the select has a value. */
   get empty(): boolean {
-    return !this.selectionModel || this.selectionModel.isEmpty();
-  }
-
-  /**
-   * Implemented as part of FormFieldControl.
-   * @docs-private
-   */
-  setDescribedByIds(ids: string[]) {
-    this._ariaDescribedby = ids.join(' ');
-  }
-
-  /**
-   * Forward focus if a user clicks on an associated label.
-   * Implemented as part of FormFieldControl.
-   * @docs-private
-   */
-  onContainerClick(event: Event) {
-    this.focus();
-    this.openSelect();
-  }
-
-  /** Focuses the select element. */
-  focus(): void {
-    this._elementRef.nativeElement.focus();
+    return !this._selectionModel || this._selectionModel.isEmpty();
   }
 
   private _initializeSelection(): void {
@@ -890,26 +866,27 @@ export class SbbSelect extends SbbSelectMixinBase
    * found with the designated value, the select trigger is cleared.
    */
   private _setSelectionByValue(value: any | any[]): void {
+    this._selectionModel.selected.forEach((option) => option.setInactiveStyles());
+    this._selectionModel.clear();
+
     if (this.multiple && value) {
       if (!Array.isArray(value)) {
         throw Error('Value must be an array in multiple-selection mode.');
       }
 
-      this.selectionModel.clear();
       value.forEach((currentValue: any) => this._selectValue(currentValue));
       this._sortValues();
     } else {
-      this.selectionModel.clear();
       const correspondingOption = this._selectValue(value);
 
       // Shift focus to the active item. Note that we shouldn't do this in multiple
       // mode, because we don't know what option the user interacted with last.
       if (correspondingOption) {
-        this.keyManager.setActiveItem(correspondingOption);
+        this._keyManager.setActiveItem(correspondingOption);
       } else if (!this.panelOpen) {
         // Otherwise reset the highlighted option. Note that we only want to do this while
         // closed, because doing it while open can shift the user's focus unnecessarily.
-        this.keyManager.setActiveItem(-1);
+        this._keyManager.setActiveItem(-1);
       }
     }
 
@@ -935,7 +912,7 @@ export class SbbSelect extends SbbSelectMixinBase
     });
 
     if (correspondingOption) {
-      this.selectionModel.select(correspondingOption);
+      this._selectionModel.select(correspondingOption);
     }
 
     return correspondingOption;
@@ -943,25 +920,33 @@ export class SbbSelect extends SbbSelectMixinBase
 
   /** Sets up a key manager to listen to keyboard events on the overlay panel. */
   private _initKeyManager() {
-    this.keyManager = new ActiveDescendantKeyManager<SbbOption>(this.options)
-      .withTypeAhead()
+    this._keyManager = new ActiveDescendantKeyManager<SbbOption>(this.options)
+      .withTypeAhead(this._typeaheadDebounceInterval)
       .withVerticalOrientation()
+      .withHorizontalOrientation('ltr')
+      .withHomeAndEnd()
       .withAllowedModifierKeys(['shiftKey']);
 
-    this.keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
-      // Restore focus to the trigger before closing. Ensures that the focus
-      // position won't be lost if the user got focus into the overlay.
+    this._keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
       if (this.panelOpen) {
+        // Select the active item when tabbing away. This is consistent with how the native
+        // select behaves. Note that we only want to do this in single selection mode.
+        if (!this.multiple && this._keyManager.activeItem) {
+          this._keyManager.activeItem._selectViaInteraction();
+        }
+
+        // Restore focus to the trigger before closing. Ensures that the focus
+        // position won't be lost if the user got focus into the overlay.
         this.focus();
         this.close();
       }
     });
 
-    this.keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
+    this._keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
       if (this._panelOpen && this.panel) {
-        this._scrollActiveOptionIntoView();
-      } else if (!this._panelOpen && !this.multiple && this.keyManager.activeItem) {
-        this.keyManager.activeItem.selectViaInteraction();
+        this._scrollOptionIntoView(this._keyManager.activeItemIndex || 0);
+      } else if (!this._panelOpen && !this.multiple && this._keyManager.activeItem) {
+        this._keyManager.activeItem._selectViaInteraction();
       }
     });
   }
@@ -981,29 +966,34 @@ export class SbbSelect extends SbbSelectMixinBase
 
     // Listen to changes in the internal state of the options and react accordingly.
     // Handles cases like the labels of the selected options changing.
-    merge(...this.options.map((option) => option.stateChanges))
+    merge(...this.options.map((option) => option._stateChanges))
       .pipe(takeUntil(changedOrDestroyed))
       .subscribe(() => {
         this._changeDetectorRef.markForCheck();
         this.stateChanges.next();
       });
-
-    this._setOptionIds();
   }
 
   /** Invoked when an option is clicked. */
   private _onSelect(option: SbbOption, isUserInput: boolean): void {
-    const wasSelected = this.selectionModel.isSelected(option);
+    const wasSelected = this._selectionModel.isSelected(option);
 
     if (option.value == null && !this._multiple) {
       option.deselect();
-      this.selectionModel.clear();
-      this._propagateChanges(option.value);
+      this._selectionModel.clear();
+
+      if (this.value != null) {
+        this._propagateChanges(option.value);
+      }
     } else {
-      option.selected ? this.selectionModel.select(option) : this.selectionModel.deselect(option);
+      if (wasSelected !== option.selected) {
+        option.selected
+          ? this._selectionModel.select(option)
+          : this._selectionModel.deselect(option);
+      }
 
       if (isUserInput) {
-        this.keyManager.setActiveItem(option);
+        this._keyManager.setActiveItem(option);
       }
 
       if (this.multiple) {
@@ -1019,7 +1009,7 @@ export class SbbSelect extends SbbSelectMixinBase
       }
     }
 
-    if (wasSelected !== this.selectionModel.isSelected(option)) {
+    if (wasSelected !== this._selectionModel.isSelected(option)) {
       this._propagateChanges();
     }
 
@@ -1030,7 +1020,12 @@ export class SbbSelect extends SbbSelectMixinBase
   private _sortValues() {
     if (this.multiple) {
       const options = this.options.toArray();
-      this.selectionModel.sort((a, b) => options.indexOf(a) - options.indexOf(b));
+
+      this._selectionModel.sort((a, b) => {
+        return this.sortComparator
+          ? this.sortComparator(a, b, options)
+          : options.indexOf(a) - options.indexOf(b);
+      });
       this.stateChanges.next();
     }
   }
@@ -1047,14 +1042,9 @@ export class SbbSelect extends SbbSelectMixinBase
 
     this._value = valueToEmit;
     this.valueChange.emit(valueToEmit);
-    this.onChange(valueToEmit);
+    this._onChange(valueToEmit);
     this.selectionChange.emit(new SbbSelectChange(this, valueToEmit));
     this._changeDetectorRef.markForCheck();
-  }
-
-  /** Records option IDs to pass to the aria-owns property. */
-  private _setOptionIds() {
-    this.optionIds = this.options.map((option) => option.id).join(' ');
   }
 
   /**
@@ -1062,41 +1052,147 @@ export class SbbSelect extends SbbSelectMixinBase
    * the first item instead.
    */
   private _highlightCorrectOption(): void {
-    if (this.keyManager) {
+    if (this._keyManager) {
       if (this.empty) {
-        this.keyManager.setFirstItemActive();
+        this._keyManager.setFirstItemActive();
       } else {
-        this.keyManager.setActiveItem(this.selectionModel.selected[0]);
+        this._keyManager.setActiveItem(this._selectionModel.selected[0]);
       }
     }
   }
 
+  /** Whether the panel is allowed to open. */
+  private _canOpen(): boolean {
+    return !this._panelOpen && !this.disabled && this.options?.length > 0;
+  }
+
+  /** Focuses the select element. */
+  focus(): void {
+    this._elementRef.nativeElement.focus();
+  }
+
+  /** Gets the aria-labelledby for the select panel. */
+  _getPanelAriaLabelledby(): string | null {
+    if (this.ariaLabel) {
+      return null;
+    }
+
+    const labelId = this._getLabelId();
+    return this.ariaLabelledby ? labelId + ' ' + this.ariaLabelledby : labelId;
+  }
+
+  /** Determines the `aria-activedescendant` to be set on the host. */
+  _getAriaActiveDescendant(): string | null {
+    if (this.panelOpen && this._keyManager && this._keyManager.activeItem) {
+      return this._keyManager.activeItem.id;
+    }
+
+    return null;
+  }
+
+  /** Gets the ID of the element that is labelling the select. */
+  private _getLabelId(): string {
+    return this._parentFormField?.getLabelId() || '';
+  }
+
+  /** Gets the aria-labelledby of the select component trigger. */
+  private _getTriggerAriaLabelledby(): string | null {
+    if (this.ariaLabel) {
+      return null;
+    }
+
+    let value = this._getLabelId() + ' ' + this._valueId;
+
+    if (this.ariaLabelledby) {
+      value += ' ' + this.ariaLabelledby;
+    }
+
+    return value;
+  }
+
+  /**
+   * Implemented as part of SbbFormFieldControl.
+   * @docs-private
+   */
+  setDescribedByIds(ids: string[]) {
+    this._ariaDescribedby = ids.join(' ');
+  }
+
+  /**
+   * Forward focus if a user clicks on an associated label.
+   * Implemented as part of SbbFormFieldControl.
+   * @docs-private
+   */
+  onContainerClick(event: Event) {
+    this.focus();
+    this.open();
+  }
+
+  /**
+   * Calculates the scroll position of the select's overlay panel.
+   *
+   * Attempts to center the selected option in the panel. If the option is
+   * too high or too low in the panel to be scrolled to the center, it clamps the
+   * scroll position to the min or max scroll positions respectively.
+   */
+  _calculateOverlayScroll(selectedIndex: number, scrollBuffer: number, maxScroll: number): number {
+    const itemHeight = this._getItemHeight();
+    const optionOffsetFromScrollTop = itemHeight * selectedIndex;
+    const halfOptionHeight = itemHeight / 2;
+
+    // Starts at the optionOffsetFromScrollTop, which scrolls the option to the top of the
+    // scroll container, then subtracts the scroll buffer to scroll the option down to
+    // the center of the overlay panel. Half the option height must be re-added to the
+    // scrollTop so the option is centered based on its middle, not its top edge.
+    const optimalScrollPosition = optionOffsetFromScrollTop - scrollBuffer + halfOptionHeight;
+    return Math.min(Math.max(0, optimalScrollPosition), maxScroll);
+  }
+
   /** Scrolls the active option into view. */
-  private _scrollActiveOptionIntoView(): void {
-    const activeOptionIndex = this.keyManager.activeItemIndex || 0;
-    const labelCount = sbbCountGroupLabelsBeforeOption(
-      activeOptionIndex,
-      this.options,
-      this.optionGroups
-    );
+  private _scrollOptionIntoView(index: number): void {
+    const labelCount = countGroupLabelsBeforeOption(index, this.options, this.optionGroups);
+    const itemHeight = this._getItemHeight();
 
     this.panel.nativeElement.scrollTop = getOptionScrollPosition(
-      activeOptionIndex + labelCount,
-      this._getItemHeight(),
+      (index + labelCount) * itemHeight,
+      itemHeight,
       this.panel.nativeElement.scrollTop,
       SBB_SELECT_PANEL_MAX_HEIGHT
     );
   }
 
+  private _positioningSettled() {
+    this.panel.nativeElement.scrollTop = this._scrollTop;
+  }
+
+  private _panelDoneAnimating(isOpen: boolean) {
+    if (this.panelOpen) {
+      this._scrollTop = 0;
+    } else {
+      this.overlayDir.offsetX = 0;
+      this._changeDetectorRef.markForCheck();
+    }
+
+    this.openedChange.emit(isOpen);
+  }
+
   /** Calculates the height of the select's options. */
   private _getItemHeight(): number {
-    return this.triggerFontSize * SBB_SELECT_ITEM_HEIGHT_EM;
+    return this._triggerFontSize * SBB_SELECT_ITEM_HEIGHT_EM;
+  }
+
+  /** Calculates the amount of items in the select. This includes options and group labels. */
+  private _getItemCount(): number {
+    return this.options.length + this.optionGroups.length;
   }
 
   // tslint:disable: member-ordering
-  static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_multiple: BooleanInput;
   static ngAcceptInputType_required: BooleanInput;
+  static ngAcceptInputType_multiple: BooleanInput;
   static ngAcceptInputType_disableOptionCentering: BooleanInput;
+  static ngAcceptInputType_typeaheadDebounceInterval: NumberInput;
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_disableRipple: BooleanInput;
+  static ngAcceptInputType_tabIndex: NumberInput;
   // tslint:enable: member-ordering
 }

@@ -9,7 +9,7 @@
     [attr.multiple]="multiple"
     [disabled]="disabled"
     (change)="fileChange($event)"
-    (blur)="onTouched()"
+    (blur)="_onTouched()"
   />
   <span class="sbb-file-selector-button" [class.sbb-file-selector-disabled]="disabled">
     <span i18n="Button label to select files for upload@@sbbFileSelectorUploadFile"

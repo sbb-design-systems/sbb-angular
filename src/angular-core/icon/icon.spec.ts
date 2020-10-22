@@ -17,9 +17,7 @@ function sortedClassNames(element: Element): string[] {
   return element.className.split(' ').sort();
 }
 
-/**
- * Verifies that an element contains a single `<svg>` child element, and returns that child.
- */
+/** Verifies that an element contains a single `<svg>` child element, and returns that child. */
 function verifyAndGetSingleSvgChild(element: SVGElement): SVGElement {
   expect(element.id).toBeFalsy();
   expect(element.childNodes.length).toBe(1);
@@ -41,7 +39,7 @@ function verifyPathChildElement(element: Element, attributeValue: string): void 
   expect(pathElement.getAttribute('name')).toBe(attributeValue);
 }
 
-describe('SbbIconComponent', () => {
+describe('SbbSbbIcon', () => {
   let fakePath: string;
   let errorHandler: jasmine.SpyObj<ErrorHandler>;
 
@@ -1010,7 +1008,7 @@ describe('SbbIconComponent', () => {
   }
 });
 
-describe('SbbIconComponent without HttpClientModule', () => {
+describe('SbbSbbIcon without HttpClientModule', () => {
   let iconRegistry: SbbIconRegistry;
   let sanitizer: DomSanitizer;
 

@@ -2,12 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  HostBinding,
   Input,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { SbbBaseButton } from '@sbb-esta/angular-core/base/button';
 import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 
 @Component({
@@ -17,11 +15,18 @@ import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
   styleUrls: ['./button.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-button',
+    '[class.sbb-button-primary]': 'this.mode === "primary"',
+    '[class.sbb-button-secondary]': 'this.mode === "secondary"',
+    '[class.sbb-button-ghost]': 'this.mode === "ghost"',
+    '[class.sbb-button-alternative]': 'this.mode === "alternative"',
+    '[class.sbb-button-icon]': 'this.mode === "icon"',
+    '[class.sbb-button-has-icon]': '!!this.icon',
+  },
 })
-export class SbbButton extends SbbBaseButton {
-  /**
-   * Button modes available for different purposes.
-   */
+export class SbbButton {
+  /** Button modes available for different purposes. */
   @Input() mode: 'primary' | 'secondary' | 'ghost' | 'alternative' | 'icon' = 'primary';
 
   /**
@@ -38,25 +43,8 @@ export class SbbButton extends SbbBaseButton {
   private _icon: TemplateRef<any>;
 
   /** @docs-private */
-  @HostBinding('class.sbb-button-has-icon') get buttonHasIconClass() {
-    return !!this.icon;
-  }
-
-  /** @docs-private */
   @ContentChild(SbbIconDirective, { read: TemplateRef })
   _contentIcon: TemplateRef<any>;
-
-  /** @docs-private */
-  @HostBinding('class.sbb-button-alternative')
-  get _alternativeClass() {
-    return this.mode === 'alternative';
-  }
-
-  /** @docs-private */
-  @HostBinding('class.sbb-button-icon')
-  get _iconClass() {
-    return this.mode === 'icon';
-  }
 
   // tslint:disable: member-ordering
   static ngAcceptInputType_mode:

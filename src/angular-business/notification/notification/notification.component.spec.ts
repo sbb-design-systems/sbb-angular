@@ -25,7 +25,7 @@ export class NotificationMockComponent {
   dismissed(_event: any) {}
 }
 
-describe('NotificationComponent', () => {
+describe('SbbNotification', () => {
   describe('core', () => {
     let component: SbbNotification;
     let fixture: ComponentFixture<SbbNotification>;

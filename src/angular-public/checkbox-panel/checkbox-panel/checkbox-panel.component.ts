@@ -29,14 +29,10 @@ export interface SbbCheckboxPanelChange extends SbbCheckboxChange<SbbCheckboxPan
   encapsulation: ViewEncapsulation.None,
 })
 export class SbbCheckboxPanel extends SbbCheckboxBase<SbbCheckboxPanelChange> {
-  /**
-   * Label of a multiple checkbox panel.
-   */
+  /** Label of a multiple checkbox panel. */
   @Input()
   label: string;
-  /**
-   * Subtitle of a multiple checkbox panel.
-   */
+  /** Subtitle of a multiple checkbox panel. */
   @Input()
   subtitle?: string;
 

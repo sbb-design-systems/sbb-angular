@@ -11,20 +11,13 @@ import { SbbDialogPosition } from './dialog-config';
 // Counter for unique dialog ids.
 let uniqueId = 0;
 
-/**
- * Reference to a dialog opened via the Dialog service.
- */
+/** Reference to a dialog opened via the Dialog service. */
 export class SbbDialogRef<T, R = any> {
   /** The instance of component opened into the dialog. */
   componentInstance: T | null;
 
   /** Whether the user is allowed to close the dialog. */
   disableClose: boolean | undefined = this.containerInstance.config.disableClose;
-
-  /** Observable to close manually a dialog.
-   * @deprecated not in use anymore. Will be removed in next major version.
-   */
-  manualCloseAction = new Subject<void>();
 
   /** Subject for notifying the user that the dialog has finished opening. */
   private readonly _afterOpen = new Subject<void>();
@@ -50,10 +43,10 @@ export class SbbDialogRef<T, R = any> {
     location?: Location
   ) {
     // Pass the id along to the container.
-    containerInstance.id = id;
+    containerInstance._id = id;
 
     // Emit when opening animation completes
-    containerInstance.animationStateChanged
+    containerInstance._animationStateChanged
       .pipe(
         filter((event) => event.phaseName === 'done' && event.toState === 'enter'),
         take(1)
@@ -64,7 +57,7 @@ export class SbbDialogRef<T, R = any> {
       });
 
     // Dispose overlay when closing animation is complete
-    containerInstance.animationStateChanged
+    containerInstance._animationStateChanged
       .pipe(
         filter((event) => event.phaseName === 'done' && event.toState === 'exit'),
         take(1)
@@ -88,7 +81,7 @@ export class SbbDialogRef<T, R = any> {
 
     _overlayRef.backdropClick().subscribe(() => {
       if (this.disableClose) {
-        this.containerInstance.recaptureFocus();
+        this.containerInstance._recaptureFocus();
       } else {
         this.close();
       }
@@ -114,7 +107,7 @@ export class SbbDialogRef<T, R = any> {
     this._result = dialogResult;
 
     // Transition the backdrop in parallel to the dialog.
-    this.containerInstance.animationStateChanged
+    this.containerInstance._animationStateChanged
       .pipe(
         filter((event) => event.phaseName === 'start'),
         take(1)
@@ -125,7 +118,7 @@ export class SbbDialogRef<T, R = any> {
         this._overlayRef.detachBackdrop();
       });
 
-    this.containerInstance.startExitAnimation();
+    this.containerInstance._startExitAnimation();
   }
 
   /**
@@ -152,37 +145,27 @@ export class SbbDialogRef<T, R = any> {
     return this;
   }
 
-  /**
-   * Gets an observable that is notified when the dialog is finished opening.
-   */
+  /** Gets an observable that is notified when the dialog is finished opening. */
   afterOpen(): Observable<void> {
     return this._afterOpen.asObservable();
   }
 
-  /**
-   * Gets an observable that is notified when the dialog is finished closing.
-   */
+  /** Gets an observable that is notified when the dialog is finished closing. */
   afterClosed(): Observable<R | undefined> {
     return this._afterClosed.asObservable();
   }
 
-  /**
-   * Gets an observable that is notified when the dialog has started closing.
-   */
+  /** Gets an observable that is notified when the dialog has started closing. */
   beforeClose(): Observable<R | undefined> {
     return this._beforeClose.asObservable();
   }
 
-  /**
-   * Gets an observable that emits when the overlay's backdrop has been clicked.
-   */
+  /** Gets an observable that emits when the overlay's backdrop has been clicked. */
   backdropClick(): Observable<MouseEvent> {
     return this._overlayRef.backdropClick();
   }
 
-  /**
-   * Gets an observable that emits when keydown events are targeted on the overlay.
-   */
+  /** Gets an observable that emits when keydown events are targeted on the overlay. */
   keydownEvents(): Observable<KeyboardEvent> {
     return this._overlayRef.keydownEvents();
   }

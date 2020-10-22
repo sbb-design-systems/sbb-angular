@@ -62,7 +62,7 @@ class TabContentTestComponent implements OnInit {
   }
 }
 
-describe('TabsComponent', () => {
+describe('SbbTabs', () => {
   let component: TabsTestComponent;
   let fixture: ComponentFixture<TabsTestComponent>;
   let tabs: DebugElement[];

@@ -35,7 +35,7 @@ export class ProcessflowTestComponent {
   @ViewChild('processflow', { static: true }) processflow: SbbProcessflow;
 }
 
-describe('ProcessflowComponent', () => {
+describe('SbbProcessflow', () => {
   let component: SbbProcessflow;
   let fixture: ComponentFixture<SbbProcessflow>;
 
@@ -57,7 +57,7 @@ describe('ProcessflowComponent', () => {
   });
 });
 
-describe('ProcessflowComponent user interaction', () => {
+describe('SbbProcessflow user interaction', () => {
   let component: ProcessflowTestComponent;
   let fixture: ComponentFixture<ProcessflowTestComponent>;
 

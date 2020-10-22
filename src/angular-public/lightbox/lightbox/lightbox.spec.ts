@@ -233,7 +233,7 @@ describe('Lightbox', () => {
   });
 
   it('should open a lightbox with a component', () => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -257,7 +257,7 @@ describe('Lightbox', () => {
 
     const data = { value: 'Knees' };
 
-    const lightboxRef = lightbox.openLightbox(templateRefFixture.componentInstance.templateRef, {
+    const lightboxRef = lightbox.open(templateRefFixture.componentInstance.templateRef, {
       data,
     });
 
@@ -277,7 +277,7 @@ describe('Lightbox', () => {
   });
 
   it('should emit when lightbox opening animation is complete', fakeAsync(() => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
     const spy = jasmine.createSpy('afterOpen spy');
@@ -294,7 +294,7 @@ describe('Lightbox', () => {
   }));
 
   it('should use injector from viewContainerRef for lightboxInjector', () => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -311,7 +311,7 @@ describe('Lightbox', () => {
   });
 
   it('should open a lightbox with a component and no ViewContainerRef', () => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent);
+    const lightboxRef = lightbox.open(PizzaMsgComponent);
 
     viewContainerFixture.detectChanges();
 
@@ -327,7 +327,7 @@ describe('Lightbox', () => {
   });
 
   it('should apply the configured role to the lightbox element', () => {
-    lightbox.openLightbox(PizzaMsgComponent, { role: 'alertdialog' });
+    lightbox.open(PizzaMsgComponent, { role: 'alertdialog' });
 
     viewContainerFixture.detectChanges();
 
@@ -338,7 +338,7 @@ describe('Lightbox', () => {
   });
 
   it('should apply the specified `aria-describedby`', () => {
-    lightbox.openLightbox(PizzaMsgComponent, {
+    lightbox.open(PizzaMsgComponent, {
       ariaDescribedBy: 'description-element',
     });
 
@@ -351,7 +351,7 @@ describe('Lightbox', () => {
   });
 
   it('should close a lightbox and get back a result', fakeAsync(() => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
     const afterCloseCallback = jasmine.createSpy('afterClose callback');
@@ -367,7 +367,7 @@ describe('Lightbox', () => {
 
   it('should dispatch the beforeClose and afterClose events when the overlay is detached externally', fakeAsync(
     inject([Overlay], (overlay: Overlay) => {
-      const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+      const lightboxRef = lightbox.open(PizzaMsgComponent, {
         viewContainerRef: testViewContainerRef,
         scrollStrategy: overlay.scrollStrategies.close(),
       });
@@ -387,7 +387,7 @@ describe('Lightbox', () => {
   ));
 
   it('should close a lightbox and get back a result before it is closed', fakeAsync(() => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -411,7 +411,7 @@ describe('Lightbox', () => {
   }));
 
   it('should close a lightbox via the escape key', fakeAsync(() => {
-    lightbox.openLightbox(PizzaMsgComponent, {
+    lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -427,7 +427,7 @@ describe('Lightbox', () => {
 
     onPushFixture.detectChanges();
 
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: onPushFixture.componentInstance.viewContainerRef,
     });
 
@@ -452,7 +452,7 @@ describe('Lightbox', () => {
   }));
 
   it('should emit the keyboardEvent stream when key events target the overlay', fakeAsync(() => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -478,16 +478,16 @@ describe('Lightbox', () => {
       done();
     });
 
-    lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+    lightboxRef = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
   });
 
   it('should notify the observers if all open lightboxes have finished closing', fakeAsync(() => {
-    const ref1 = lightbox.openLightbox(PizzaMsgComponent, {
+    const ref1 = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
-    const ref2 = lightbox.openLightbox(ContentElementLightboxComponent, {
+    const ref2 = lightbox.open(ContentElementLightboxComponent, {
       viewContainerRef: testViewContainerRef,
     });
     const spy = jasmine.createSpy('afterAllClosed spy');
@@ -515,9 +515,9 @@ describe('Lightbox', () => {
   });
 
   it('should close all of the lightboxes', fakeAsync(() => {
-    lightbox.openLightbox(PizzaMsgComponent);
-    lightbox.openLightbox(PizzaMsgComponent);
-    lightbox.openLightbox(PizzaMsgComponent);
+    lightbox.open(PizzaMsgComponent);
+    lightbox.open(PizzaMsgComponent);
+    lightbox.open(PizzaMsgComponent);
 
     expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(3);
 
@@ -529,23 +529,23 @@ describe('Lightbox', () => {
   }));
 
   it('should set the proper animation states', () => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
       viewContainerRef: testViewContainerRef,
     });
     const lightboxContainer: SbbLightboxContainer = viewContainerFixture.debugElement.query(
       By.directive(SbbLightboxContainer)
     ).componentInstance;
 
-    expect(lightboxContainer.state).toBe('enter');
+    expect(lightboxContainer._state).toBe('enter');
 
     lightboxRef.close();
 
-    expect(lightboxContainer.state).toBe('exit');
+    expect(lightboxContainer._state).toBe('exit');
   });
 
   it('should close all lightboxes when the user goes forwards/backwards in history', fakeAsync(() => {
-    lightbox.openLightbox(PizzaMsgComponent);
-    lightbox.openLightbox(PizzaMsgComponent);
+    lightbox.open(PizzaMsgComponent);
+    lightbox.open(PizzaMsgComponent);
 
     expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(2);
 
@@ -557,8 +557,8 @@ describe('Lightbox', () => {
   }));
 
   it('should close all open lightboxes when the location hash changes', fakeAsync(() => {
-    lightbox.openLightbox(PizzaMsgComponent);
-    lightbox.openLightbox(PizzaMsgComponent);
+    lightbox.open(PizzaMsgComponent);
+    lightbox.open(PizzaMsgComponent);
 
     expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(2);
 
@@ -570,8 +570,8 @@ describe('Lightbox', () => {
   }));
 
   it('should allow the consumer to disable closing a lightbox on navigation', fakeAsync(() => {
-    lightbox.openLightbox(PizzaMsgComponent);
-    lightbox.openLightbox(PizzaMsgComponent, { closeOnNavigation: false });
+    lightbox.open(PizzaMsgComponent);
+    lightbox.open(PizzaMsgComponent, { closeOnNavigation: false });
 
     expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(2);
 
@@ -583,7 +583,7 @@ describe('Lightbox', () => {
   }));
 
   it('should have the componentInstance available in the afterClosed callback', fakeAsync(() => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent);
+    const lightboxRef = lightbox.open(PizzaMsgComponent);
     const spy = jasmine.createSpy('afterClosed spy');
 
     flushMicrotasks();
@@ -616,8 +616,7 @@ describe('Lightbox', () => {
         },
       };
 
-      const instance = lightbox.openLightbox(LightboxWithInjectedDataComponent, config)
-        .componentInstance!;
+      const instance = lightbox.open(LightboxWithInjectedDataComponent, config).componentInstance!;
 
       expect(instance.data.stringParam).toBe(config.data.stringParam);
       expect(instance.data.dateParam).toBe(config.data.dateParam);
@@ -625,14 +624,14 @@ describe('Lightbox', () => {
 
     it('should default to null if no data is passed', () => {
       expect(() => {
-        const lightboxRef = lightbox.openLightbox(LightboxWithInjectedDataComponent);
+        const lightboxRef = lightbox.open(LightboxWithInjectedDataComponent);
         expect(lightboxRef.componentInstance!.data).toBeNull();
       }).not.toThrow();
     });
   });
 
   it('should not keep a reference to the component after the lightbox is closed', fakeAsync(() => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent);
+    const lightboxRef = lightbox.open(PizzaMsgComponent);
 
     expect(lightboxRef.componentInstance).toBeTruthy();
 
@@ -644,8 +643,8 @@ describe('Lightbox', () => {
   }));
 
   it('should assign a unique id to each lightbox', () => {
-    const one = lightbox.openLightbox(PizzaMsgComponent);
-    const two = lightbox.openLightbox(PizzaMsgComponent);
+    const one = lightbox.open(PizzaMsgComponent);
+    const two = lightbox.open(PizzaMsgComponent);
 
     expect(one.id).toBeTruthy();
     expect(two.id).toBeTruthy();
@@ -653,25 +652,23 @@ describe('Lightbox', () => {
   });
 
   it('should allow for the id to be overwritten', () => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, { id: 'pizza' });
+    const lightboxRef = lightbox.open(PizzaMsgComponent, { id: 'pizza' });
     expect(lightboxRef.id).toBe('pizza');
   });
 
   it('should throw an error when trying to open a lightbox with the same id as another lightbox', () => {
-    lightbox.openLightbox(PizzaMsgComponent, { id: 'pizza' });
-    expect(() => lightbox.openLightbox(PizzaMsgComponent, { id: 'pizza' })).toThrowError(
-      /must be unique/g
-    );
+    lightbox.open(PizzaMsgComponent, { id: 'pizza' });
+    expect(() => lightbox.open(PizzaMsgComponent, { id: 'pizza' })).toThrowError(/must be unique/g);
   });
 
   it('should be able to find a lightbox by id', () => {
-    const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, { id: 'pizza' });
+    const lightboxRef = lightbox.open(PizzaMsgComponent, { id: 'pizza' });
     expect(lightbox.getLightboxById('pizza')).toBe(lightboxRef);
   });
 
   describe('panelClass option', () => {
     it('should have custom panel class', () => {
-      lightbox.openLightbox(PizzaMsgComponent, {
+      lightbox.open(PizzaMsgComponent, {
         panelClass: 'custom-panel-class',
         viewContainerRef: testViewContainerRef,
       });
@@ -688,7 +685,7 @@ describe('Lightbox', () => {
     afterEach(() => document.body.removeChild(overlayContainerElement));
 
     it('should focus the first tabbable element of the lightbox on open', fakeAsync(() => {
-      lightbox.openLightbox(PizzaMsgComponent, {
+      lightbox.open(PizzaMsgComponent, {
         viewContainerRef: testViewContainerRef,
       });
 
@@ -702,7 +699,7 @@ describe('Lightbox', () => {
     }));
 
     it('should allow disabling focus of the first tabbable element', fakeAsync(() => {
-      lightbox.openLightbox(PizzaMsgComponent, {
+      lightbox.open(PizzaMsgComponent, {
         viewContainerRef: testViewContainerRef,
         autoFocus: false,
       });
@@ -720,7 +717,7 @@ describe('Lightbox', () => {
       document.body.appendChild(button);
       button.focus();
 
-      const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+      const lightboxRef = lightbox.open(PizzaMsgComponent, {
         viewContainerRef: testViewContainerRef,
       });
 
@@ -763,7 +760,7 @@ describe('Lightbox', () => {
       document.body.appendChild(input);
       button.focus();
 
-      const lightboxRef = lightbox.openLightbox(PizzaMsgComponent, {
+      const lightboxRef = lightbox.open(PizzaMsgComponent, {
         viewContainerRef: testViewContainerRef,
       });
 
@@ -787,7 +784,7 @@ describe('Lightbox', () => {
     }));
 
     it('should move focus to the container if there are no focusable elements in the lightbox', fakeAsync(() => {
-      lightbox.openLightbox(LightboxWithoutFocusableElementsComponent);
+      lightbox.open(LightboxWithoutFocusableElementsComponent);
 
       viewContainerFixture.detectChanges();
       flushMicrotasks();
@@ -804,7 +801,7 @@ describe('Lightbox', () => {
 
     describe('inside component lightbox', () => {
       beforeEach(fakeAsync(() => {
-        lightboxRef = lightbox.openLightbox(ContentElementLightboxComponent, {
+        lightboxRef = lightbox.open(ContentElementLightboxComponent, {
           viewContainerRef: testViewContainerRef,
         });
         viewContainerFixture.detectChanges();
@@ -819,7 +816,7 @@ describe('Lightbox', () => {
         const fixture = TestBed.createComponent(ComponentWithContentElementTemplateRefComponent);
         fixture.detectChanges();
 
-        lightboxRef = lightbox.openLightbox(fixture.componentInstance.templateRef, {
+        lightboxRef = lightbox.open(fixture.componentInstance.templateRef, {
           viewContainerRef: testViewContainerRef,
         });
 
@@ -876,7 +873,7 @@ describe('Lightbox', () => {
 
   describe('aria-label', () => {
     it('should be able to set a custom aria-label', () => {
-      lightbox.openLightbox(PizzaMsgComponent, {
+      lightbox.open(PizzaMsgComponent, {
         ariaLabel: 'Hello there',
         viewContainerRef: testViewContainerRef,
       });
@@ -887,7 +884,7 @@ describe('Lightbox', () => {
     });
 
     it('should not set the aria-labelledby automatically if it has an aria-label', fakeAsync(() => {
-      lightbox.openLightbox(ContentElementLightboxComponent, {
+      lightbox.open(ContentElementLightboxComponent, {
         ariaLabel: 'Hello there',
         viewContainerRef: testViewContainerRef,
       });
@@ -939,7 +936,7 @@ describe('Lightbox with a parent Lightbox', () => {
   });
 
   it('should close lightboxes opened by a parent when calling closeAll on a child Lightbox', fakeAsync(() => {
-    parentLightbox.openLightbox(PizzaMsgComponent);
+    parentLightbox.open(PizzaMsgComponent);
     fixture.detectChanges();
     flush();
 
@@ -959,7 +956,7 @@ describe('Lightbox with a parent Lightbox', () => {
   }));
 
   it('should close lightboxes opened by a child when calling closeAll on a parent Lightbox', fakeAsync(() => {
-    childLightbox.openLightbox(PizzaMsgComponent);
+    childLightbox.open(PizzaMsgComponent);
     fixture.detectChanges();
 
     expect(overlayContainerElement.textContent).toContain(
@@ -978,7 +975,7 @@ describe('Lightbox with a parent Lightbox', () => {
   }));
 
   it('should close the top lightbox via the escape key', fakeAsync(() => {
-    childLightbox.openLightbox(PizzaMsgComponent);
+    childLightbox.open(PizzaMsgComponent);
 
     dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
     fixture.detectChanges();

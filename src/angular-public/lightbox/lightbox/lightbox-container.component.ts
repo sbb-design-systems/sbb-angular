@@ -51,58 +51,19 @@ export function throwLightboxContentAlreadyAttachedError() {
     class: 'sbb-lightbox-container',
     tabindex: '-1',
     'aria-modal': 'true',
-    '[attr.id]': 'id',
+    '[attr.id]': '_id',
     '[attr.role]': 'config.role',
-    '[attr.aria-labelledby]': 'config.ariaLabel ? null : ariaLabelledBy',
+    '[attr.aria-labelledby]': 'config.ariaLabel ? null : _ariaLabelledBy',
     '[attr.aria-label]': 'config.ariaLabel',
     '[attr.aria-describedby]': 'config.ariaDescribedBy || null',
-    '[class.sbb-lightbox-with-header]': 'this.hasHeader',
-    '[class.sbb-lightbox-with-footer]': 'this.hasFooter',
-    '[@slideLightbox]': 'state',
+    '[class.sbb-lightbox-with-header]': '_hasHeader',
+    '[class.sbb-lightbox-with-footer]': '_hasFooter',
+    '[@slideLightbox]': '_state',
   },
 })
 export class SbbLightboxContainer extends BasePortalOutlet {
   /** The portal outlet inside of this container into which the lightbox content will be loaded. */
   @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet: CdkPortalOutlet;
-
-  /** @deprecated internal detail */
-  containerClass = true;
-  /** @deprecated internal detail */
-  tabIndex = '-1';
-  /** @deprecated internal detail */
-  arialModal = 'true';
-  /** @deprecated internal detail */
-  get lightboxContainerID() {
-    return this.id;
-  }
-  /** @deprecated internal detail */
-  get role() {
-    return this.config.role;
-  }
-  /** @deprecated internal detail */
-  get ariaLabelledbyAttr() {
-    return this.config.ariaLabel ? null : this.ariaLabelledBy;
-  }
-  /** @deprecated internal detail */
-  get ariaLabel() {
-    return this.config.ariaLabel;
-  }
-  /** @deprecated internal detail */
-  get describeDby() {
-    return this.config.ariaDescribedBy || null;
-  }
-  /** @deprecated internal detail */
-  get slideLightboxAnimation() {
-    return this.state;
-  }
-  /** @deprecated internal detail */
-  get hasHeaderClass() {
-    return this.hasHeader;
-  }
-  /** @deprecated internal detail */
-  get hasFooterClass() {
-    return this.hasFooter;
-  }
 
   /** The class that traps and manages focus within the lightbox. */
   private _focusTrap: FocusTrap;
@@ -110,47 +71,23 @@ export class SbbLightboxContainer extends BasePortalOutlet {
   /** Element that was focused before the lightbox was opened. Save this to restore upon close. */
   private _elementFocusedBeforeLightboxWasOpened: HTMLElement | null = null;
 
-  /**
-   * State of the lightbox animation.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  state: 'void' | 'enter' | 'exit' = 'enter';
+  /** State of the lightbox animation. */
+  _state: 'void' | 'enter' | 'exit' = 'enter';
 
-  /**
-   * Emits when an animation state changes.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  animationStateChanged = new EventEmitter<AnimationEvent>();
+  /** Emits when an animation state changes. */
+  _animationStateChanged = new EventEmitter<AnimationEvent>();
 
-  /**
-   * ID of the element that should be considered as the lightbox's label.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  ariaLabelledBy: string | null = null;
+  /** ID of the element that should be considered as the lightbox's label. */
+  _ariaLabelledBy: string | null = null;
 
-  /**
-   * ID for the container DOM element.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  id: string;
+  /** ID for the container DOM element. */
+  _id: string;
 
-  /**
-   * Whether the lightbox has a header.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  hasHeader: boolean | null = null;
+  /** Whether the lightbox has a header. */
+  _hasHeader: boolean | null = null;
 
-  /**
-   * Whether the lightbox has a footer.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  hasFooter: boolean | null = null;
+  /** Whether the lightbox has a footer. */
+  _hasFooter: boolean | null = null;
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
@@ -232,39 +169,27 @@ export class SbbLightboxContainer extends BasePortalOutlet {
     }
   }
 
-  /**
-   * Callback, invoked whenever an animation on the host completes.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
+  /** Callback, invoked whenever an animation on the host completes. */
   @HostListener('@slideLightbox.done', ['$event'])
-  onAnimationDone(event: AnimationEvent) {
+  _onAnimationDone(event: AnimationEvent) {
     if (event.toState === 'enter') {
       this._trapFocus();
     } else if (event.toState === 'exit') {
       this._restoreFocus();
     }
 
-    this.animationStateChanged.emit(event);
+    this._animationStateChanged.emit(event);
   }
 
-  /**
-   * Callback, invoked when an animation on the host starts.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
+  /** Callback, invoked when an animation on the host starts. */
   @HostListener('@slideLightbox.start', ['$event'])
-  onAnimationStart(event: AnimationEvent) {
-    this.animationStateChanged.emit(event);
+  _onAnimationStart(event: AnimationEvent) {
+    this._animationStateChanged.emit(event);
   }
 
-  /**
-   * Starts the dialog exit animation.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  startExitAnimation(): void {
-    this.state = 'exit';
+  /** Starts the dialog exit animation. */
+  _startExitAnimation(): void {
+    this._state = 'exit';
 
     // Mark the container for check so it can react if the
     // view container is using OnPush change detection.

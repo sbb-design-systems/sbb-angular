@@ -62,15 +62,10 @@ export type SbbHeaderMenuToggleResult = 'open' | 'close';
   providers: [{ provide: SBB_HEADER, useExisting: SbbHeader }],
   host: {
     class: 'sbb-header',
+    '[class.sbb-header-opened]': 'this.opened',
   },
 })
 export class SbbHeader implements OnInit, AfterViewInit, OnDestroy {
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  cssClass = true;
-
   /** Main title shown in the header. */
   @Input() label: string;
 
@@ -83,15 +78,10 @@ export class SbbHeader implements OnInit, AfterViewInit, OnDestroy {
    */
   @Input() environment?: string;
 
-  /**
-   * Background color for the ribbon, if present.
-   */
+  /** Background color for the ribbon, if present. */
   @Input() environmentColor?: string;
 
-  /**
-   * Whether the header menu is open.
-   */
-  @HostBinding('attr.opened')
+  /** Whether the header menu is open. */
   get opened(): boolean {
     return this._opened;
   }

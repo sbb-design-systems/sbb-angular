@@ -1,20 +1,13 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { Directive } from '@angular/core';
 
-@Component({
+@Directive({
   selector: 'sbb-textexpand-collapsed',
-  templateUrl: './textexpand-collapsed.component.html',
-  styleUrls: ['./textexpand-collapsed.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-textexpand-collapsed',
+    '[attr.hidden]': '_hidden',
+  },
 })
 export class SbbTextexpandCollapsed {
-  /**
-   * Describes if textexpand-collapsed is hidden or not. Initially it isn't hidden.
-   */
-  @HostBinding('hidden')
-  isHidden = false;
-
-  /**
-   * Css class of the textexpand-collapsed component.
-   */
-  @HostBinding('class.sbb-textexpand-collapsed') cssClass = true;
+  /** Describes if textexpand-collapsed is hidden or not. Initially it isn't hidden. */
+  _hidden = false;
 }

@@ -6,7 +6,6 @@ import {
   Directive,
   EventEmitter,
   forwardRef,
-  HostBinding,
   Input,
   Output,
   QueryList,
@@ -28,13 +27,12 @@ let nextUniqueId = 0;
       multi: true,
     },
   ],
+  host: {
+    class: 'sbb-radio-group',
+    role: 'radiogroup',
+  },
 })
 export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
-  /**
-   * Role of sbb-toggle.
-   */
-  @HostBinding('attr.role') role = 'radiogroup';
-
   /** Name of the radio button group. All radio buttons inside this group will use this name. */
   @Input()
   get name(): string {
@@ -183,9 +181,7 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
     }
   }
 
-  /**
-   * Sets the model value. Implemented as part of ControlValueAccessor.
-   */
+  /** Sets the model value. Implemented as part of ControlValueAccessor. */
   writeValue(value: any) {
     this.value = value;
     this._changeDetector.markForCheck();

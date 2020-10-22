@@ -8,9 +8,7 @@ function _window(): any {
 
 @Injectable()
 export class SbbWindowRef {
-  /**
-   * The global native browser window object.
-   */
+  /** The global native browser window object. */
   get nativeWindow(): any {
     return _window();
   }

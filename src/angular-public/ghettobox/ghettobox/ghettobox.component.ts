@@ -41,13 +41,21 @@ let counter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   animations: [SBB_GHETTOBOX_ANIMATIONS.addDelete],
+  host: {
+    class: 'sbb-ghettobox-outer-wrapper',
+    tabindex: '-1',
+    '[attr.id]': 'id',
+    '[attr.hidden]': '!this.visible',
+    '[attr.aria-hidden]': '!this.visible ? true : null',
+    '[attr.role]': 'this.visible ? "alert" : null',
+  },
 })
 export class SbbGhettobox {
+  @Input() id = `sbb-ghettobox-${counter++}`;
+
   visible = true;
 
-  /**
-   * RouterLink as input directive or routerlink from ghettobox object when added by the Service
-   */
+  /** RouterLink as input directive or routerlink from ghettobox object when added by the Service */
   @Input()
   set routerLink(value: any[] | string) {
     this._routerLink = value;
@@ -60,18 +68,12 @@ export class SbbGhettobox {
   }
   private _routerLink: any[] | string = '';
 
-  /**
-   * Retrive the routerLink from the proper source
-   */
+  /** Retrive the routerLink from the proper source */
   get link(): RouterLink | SbbLinkGeneratorResult {
     return this._routerLinkDirective || (this.ghettobox ? this.ghettobox.link : undefined);
   }
 
-  @HostBinding('attr.tabindex') tabIndex = '-1';
-
-  /**
-   * Get/Set ghettobox state
-   */
+  /** Get/Set ghettobox state */
   private _ghettoboxState: SbbGhettoboxState = 'added';
   get ghettoboxState() {
     return this._ghettoboxState;
@@ -81,34 +83,13 @@ export class SbbGhettobox {
     this._changeDetector.markForCheck();
   }
 
-  /**
-   * Emit a GhettoboxDeletedEvent after every ghettobox deletion
-   */
+  /** Emit a GhettoboxDeletedEvent after every ghettobox deletion */
   @Output() afterDelete = new EventEmitter<SbbGhettoboxDeletedEvent>();
 
-  @HostBinding('hidden')
-  get hidden() {
-    return !this.visible;
-  }
-
-  @Input()
-  @HostBinding()
-  id = `sbb-ghettobox-${counter++}`;
-
-  @HostBinding('class.sbb-ghettobox-outer-wrapper') ghettoboxClass = true;
-
-  @HostBinding('attr.role') role: string | null = 'alert';
-
-  @HostBinding('attr.aria-hidden') ariaHidden: 'false' | 'true';
-
-  /**
-   * Ghettobox Default icon as a TemplateRef if any are not specified
-   */
+  /** Ghettobox Default icon as a TemplateRef if any are not specified */
   @ViewChild('defaultIcon', { static: true }) defaultIcon: TemplateRef<any>;
 
-  /**
-   * Ghettobox Icon
-   */
+  /** Ghettobox Icon */
   set icon(value: TemplateRef<any>) {
     this._icon = value;
   }
@@ -121,13 +102,9 @@ export class SbbGhettobox {
    * icon placed in template
    * @docs-private
    */
-  @ContentChild(SbbIconDirective, { read: TemplateRef })
-  _contentIcon: TemplateRef<any>;
+  @ContentChild(SbbIconDirective, { read: TemplateRef }) _contentIcon: TemplateRef<any>;
 
-  /**
-   * ghettobox object which construct the ghettobox when it's being created by the GhettoboxService
-   */
-  private _ghettobox: SbbGhettoboxConfig;
+  /** ghettobox object which construct the ghettobox when it's being created by the GhettoboxService */
   get ghettobox() {
     return this._ghettobox;
   }
@@ -139,6 +116,7 @@ export class SbbGhettobox {
     }
     this._changeDetector.markForCheck();
   }
+  private _ghettobox: SbbGhettoboxConfig;
 
   constructor(
     private _changeDetector: ChangeDetectorRef,
@@ -180,8 +158,6 @@ export class SbbGhettobox {
   /** @docs-private */
   private _deletedPhase() {
     this.visible = false;
-    this.role = null;
-    this.ariaHidden = 'true';
     this._changeDetector.markForCheck();
     this.afterDelete.emit({
       ghettoboxState: this.ghettoboxState,

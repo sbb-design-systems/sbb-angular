@@ -19,9 +19,7 @@ export interface SbbDialogPosition {
   right?: string;
 }
 
-/**
- * Configuration for opening a modal dialog with the Dialog service.
- */
+/** Configuration for opening a modal dialog with the Dialog service. */
 export class SbbDialogConfig<D = any> {
   /**
    * Where the attached component should live in Angular's *logical* component tree.

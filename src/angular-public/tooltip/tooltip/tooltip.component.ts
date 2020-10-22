@@ -21,6 +21,11 @@ import {
   styleUrls: ['./tooltip.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-tooltip',
+    '[attr.id]': 'this.id',
+    '[attr.aria-expanded]': 'this.overlayAttached',
+  },
 })
 export class SbbTooltipComponent extends SbbTooltipBase {
   constructor(

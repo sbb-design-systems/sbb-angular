@@ -8,7 +8,6 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   QueryList,
@@ -17,7 +16,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  SbbHasOptions,
   SbbOption,
   SbbOptionGroup,
   SBB_OPTION_PARENT_COMPONENT,
@@ -58,29 +56,22 @@ export interface SbbAutocompleteDefaultOptions {
       useExisting: SbbAutocomplete,
     },
   ],
+  host: {
+    class: 'sbb-autocomplete',
+  },
 })
-export class SbbAutocomplete implements AfterContentInit, SbbHasOptions {
+export class SbbAutocomplete implements AfterContentInit {
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<SbbOption>;
 
   /** Whether the autocomplete panel should be visible, depending on option length. */
   showPanel = false;
 
-  /**
-   * Whether the autocomplete panel is open.
-   * @deprecated Use property open instead.
-   */
-  get isOpen(): boolean {
-    return this.open;
-  }
-
   /** Whether the autocomplete panel is open. */
-  get open(): boolean {
+  get isOpen(): boolean {
     return this._isOpen && this.showPanel;
   }
   _isOpen = false;
-
-  @HostBinding('class.sbb-autocomplete') sbbAutocomplete = false;
 
   /** @docs-private */
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
@@ -106,9 +97,7 @@ export class SbbAutocomplete implements AfterContentInit, SbbHasOptions {
    */
   @Input() localeNormalizer: ((value: string) => string) | null = null;
 
-  /**
-   * Whether the first option should be highlighted when the autocomplete panel is opened.
-   */
+  /** Whether the first option should be highlighted when the autocomplete panel is opened. */
   @Input()
   get autoActiveFirstOption(): boolean {
     return this._autoActiveFirstOption;

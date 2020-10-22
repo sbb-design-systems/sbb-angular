@@ -59,7 +59,7 @@ class SbbPaginatorWithStringValuesTestComponent {
   @ViewChild(SbbPaginatorComponent) paginator: SbbPaginatorComponent;
 }
 
-describe('SbbPaginatorComponent', () => {
+describe('SbbSbbPaginator', () => {
   function createComponent<T>(type: Type<T>, providers: Provider[] = []): ComponentFixture<T> {
     TestBed.configureTestingModule({
       imports: [SbbPaginationModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],

@@ -1,6 +1,6 @@
 @import '../textarea';
 
-:host {
+.sbb-textarea {
   @include sbbTextarea($sbbColorGraphite);
 
   textarea {
@@ -11,11 +11,11 @@
     overflow: hidden;
   }
 
-  &.focused {
+  &.sbb-focused {
     border-color: $sbbColorGrey;
   }
 
-  &.disabled {
+  &.sbb-disabled {
     background-color: $sbbColorMilk;
     border-color: $sbbColorAluminum;
     opacity: 1;

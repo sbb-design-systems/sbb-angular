@@ -3,7 +3,7 @@ import { SbbEsriTypesService } from '@sbb-esta/angular-maps/core';
 
 import { SbbEsriLayerList } from './esri-layer-list.component';
 
-describe('EsriLayerListComponent', () => {
+describe('SbbEsriLayerList', () => {
   let component: SbbEsriLayerList;
   let fixture: ComponentFixture<SbbEsriLayerList>;
 

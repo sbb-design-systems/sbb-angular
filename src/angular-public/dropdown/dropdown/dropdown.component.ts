@@ -54,11 +54,12 @@ export interface SbbDropdownDefaultOptions {
       useExisting: SbbDropdown,
     },
   ],
+  host: {
+    class: 'sbb-dropdown',
+  },
 })
 export class SbbDropdown implements AfterContentInit {
-  /**
-   * Reference to the dropdown items.
-   */
+  /** Reference to the dropdown items. */
   @ContentChildren(SbbDropdownItem) options: QueryList<SbbDropdownItem>;
 
   /** Manages active item in option list based on key events. */
@@ -76,18 +77,13 @@ export class SbbDropdown implements AfterContentInit {
   }
   private _open = false;
 
-  /** Css class of sbb-dropdown. */
-  @HostBinding('class.sbb-dropdown') sbbDropdown = true;
-
   /** @docs-private */
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
   /** Element for the panel containing the dropdown options. */
   @ViewChild('panel') panel: ElementRef;
 
-  /**
-   * Whether the first option should be highlighted when the dropdown panel is opened.
-   */
+  /** Whether the first option should be highlighted when the dropdown panel is opened. */
   @Input()
   get autoActiveFirstOption(): boolean {
     return this._autoActiveFirstOption;

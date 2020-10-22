@@ -9,9 +9,7 @@ import {
 } from '@angular/core';
 import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 
-/**
- * @deprecated use strings directly
- */
+/** @deprecated use strings directly */
 export enum NotificationType {
   SUCCESS = 'success',
   ERROR = 'error',
@@ -41,44 +39,6 @@ export interface SbbJumpMark {
   },
 })
 export class SbbNotification {
-  /**
-   *  @docs-private
-   *  @deprecated internal detail
-   */
-  baseCssClass = true;
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get typeSuccess(): boolean {
-    return this.type === NotificationType.SUCCESS;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get typeInfo(): boolean {
-    return this.type === NotificationType.INFO;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get typeError(): boolean {
-    return this.type === NotificationType.ERROR;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get hasJumpMarks() {
-    return this.jumpMarks && this.jumpMarks.length;
-  }
-
   /** Type of notification. */
   @Input()
   type: 'success' | 'info' | 'error' = 'success';

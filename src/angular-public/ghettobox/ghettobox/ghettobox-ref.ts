@@ -5,9 +5,7 @@ import { filter, take } from 'rxjs/operators';
 
 import { SbbGhettobox, SbbGhettoboxDeletedEvent } from './ghettobox.component';
 
-/**
- * Describe a Ghettobox object accepted from the GhettoboxService's add method
- */
+/** Describe a Ghettobox object accepted from the GhettoboxService's add method */
 export interface SbbGhettoboxConfig {
   message: string;
   icon?: TemplateRef<any>;

@@ -43,9 +43,7 @@ export function SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS_FACTORY(): SbbNotificatio
   return new SbbNotificationToastConfig();
 }
 
-/**
- * Service to dispatch notification toast messages.
- */
+/** Service to dispatch notification toast messages. */
 @Injectable({ providedIn: SbbNotificationToastModule })
 export class SbbNotificationToast implements OnDestroy {
   /**
@@ -145,9 +143,7 @@ export class SbbNotificationToast implements OnDestroy {
     return this.openFromComponent(this._simpleNotificationToastComponent, mergedConfig);
   }
 
-  /**
-   * Dismisses the currently-visible notification toast.
-   */
+  /** Dismisses the currently-visible notification toast. */
   dismiss(): void {
     if (this._openedNotificationRef) {
       this._openedNotificationRef.dismiss();
@@ -161,9 +157,7 @@ export class SbbNotificationToast implements OnDestroy {
     }
   }
 
-  /**
-   * Attaches the notification toast container component to the overlay.
-   */
+  /** Attaches the notification toast container component to the overlay. */
   private _attachNotificationToastContainer(
     overlayRef: OverlayRef,
     config: SbbNotificationToastConfig
@@ -186,9 +180,7 @@ export class SbbNotificationToast implements OnDestroy {
     return containerRef.instance;
   }
 
-  /**
-   * Places a new component or a template as the content of the notification toast container.
-   */
+  /** Places a new component or a template as the content of the notification toast container. */
   private _attach<T>(
     content: ComponentType<T> | TemplateRef<T>,
     userConfig?: SbbNotificationToastConfig

@@ -127,7 +127,7 @@ export class BreadcrumbsTest2Component {}
 })
 export class BreadcrumbsTest3Component {}
 
-describe('BreadcrumbsComponent', () => {
+describe('SbbBreadcrumbs', () => {
   let component: SbbBreadcrumbs;
   let fixture: ComponentFixture<SbbBreadcrumbs>;
 

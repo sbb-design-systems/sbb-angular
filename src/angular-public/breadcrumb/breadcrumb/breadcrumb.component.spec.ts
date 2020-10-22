@@ -6,7 +6,7 @@ import { SbbDropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { SbbBreadcrumb } from './breadcrumb.component';
 
-describe('BreadcrumbComponent', () => {
+describe('SbbBreadcrumb', () => {
   let component: SbbBreadcrumb;
   let fixture: ComponentFixture<SbbBreadcrumb>;
 

@@ -36,7 +36,7 @@ class TooltipHoverTrueAndDelaySettingsTestComponent {
   @ViewChild('t1', { static: true }) t1: SbbTooltipComponent;
 }
 
-describe('TooltipComponent', () => {
+describe('SbbTooltip', () => {
   let component: SbbTooltipComponent;
   let fixture: ComponentFixture<SbbTooltipComponent>;
 
@@ -56,10 +56,6 @@ describe('TooltipComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('exist sbb-tooltip', () => {
-    expect(component.cssClass).toEqual(true);
   });
 });
 

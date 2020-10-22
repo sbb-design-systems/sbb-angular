@@ -44,8 +44,8 @@ import {
   SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
 } from '@sbb-esta/angular-public/autocomplete';
 import {
+  countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  sbbCountGroupLabelsBeforeOption,
   SbbOption,
   SbbOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
@@ -127,30 +127,10 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
    */
   @Input() mode: 'header' | 'default' = 'default';
 
-  /**
-   * Identifier of search.
-   */
-  id = 'sbb-search-id-' + nextId++;
+  /** Identifier of search. */
+  @Input() id = `sbb-search-id-${nextId++}`;
 
-  /**
-   * Identifier of search content.
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get contentId() {
-    return `${this.id}-content`;
-  }
-
-  /**
-   * Css class on search component.
-   * @docs-private
-   * @deprecated internal detail
-   */
-  cssClass = true;
-
-  /**
-   * Adds a placeholder to the component
-   */
+  /** Adds a placeholder to the component */
   @Input() placeholder = '';
 
   private _overlayRef: OverlayRef | null;
@@ -188,9 +168,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
 
   private _inputValue = new BehaviorSubject('');
 
-  /**
-   * Used to switch from trigger to search box when in 'header' mode
-   */
+  /** Used to switch from trigger to search box when in 'header' mode */
   get hideSearch(): boolean {
     if (!this._isHeaderMode()) {
       return false;
@@ -198,14 +176,6 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     return this._hideSearch;
   }
   private _hideSearch = true;
-
-  /**
-   * @docs-private
-   * @deprecated internal use
-   */
-  get role() {
-    return this._autocompleteDisabled ? null : 'combobox';
-  }
 
   /** The autocomplete panel to be attached to this trigger. */
   @Input('sbbAutocomplete')
@@ -306,9 +276,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     }
   }
 
-  /**
-   * Checks if the search box is focused or not, depending on this, proper style is applied to the component
-   */
+  /** Checks if the search box is focused or not, depending on this, proper style is applied to the component */
   isSearchBoxFocused(): boolean {
     return (
       this.input.nativeElement === this._document.activeElement ||
@@ -331,7 +299,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
   }
 
   onBlur($event: any) {
-    this.onTouched();
+    this._onTouched();
     const relatedTarget = $event.relatedTarget;
     const target = $event.target;
 
@@ -351,32 +319,6 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     }
   }
 
-  /** @docs-private */
-  onInput($event: KeyboardEvent) {
-    this.handleInput($event);
-  }
-
-  /** @docs-private */
-  onKeydown($event: KeyboardEvent) {
-    this.handleKeydown($event);
-  }
-
-  /**
-   *  @docs-private
-   *  @deprecated internal use
-   */
-  get ariaExpanded(): string | null {
-    return this.autocompleteDisabled ? null : this.panelOpen.toString();
-  }
-
-  /**
-   *  @docs-private
-   *  @deprecated internal use
-   */
-  get ariaOwns(): string | null {
-    return this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id;
-  }
-
   /**
    * Event handler for when the window is blurred. Needs to be an
    * arrow function in order to preserve the context.
@@ -390,10 +332,10 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
   };
 
   /** `View -> model callback called when value changes` */
-  onChange: (value: any) => void = () => {};
+  _onChange: (value: any) => void = () => {};
 
   /** `View -> model callback called when autocomplete has been touched` */
-  onTouched = () => {};
+  _onTouched = () => {};
 
   /**
    * Whether the autocomplete is disabled. When disabled, the element will
@@ -405,14 +347,6 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
   }
   set autocompleteDisabled(value: boolean) {
     this._autocompleteDisabled = coerceBooleanProperty(value);
-  }
-
-  /**
-   *  @docs-private
-   *  @deprecated internal use
-   */
-  get ariaAutocomplete(): string | null {
-    return this._autocompleteDisabled ? null : 'list';
   }
 
   ngOnDestroy() {
@@ -486,14 +420,6 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     );
   }
 
-  /**
-   *  @docs-private
-   *  @deprecated internal use
-   */
-  get activeOptionId() {
-    return this.activeOption ? this.activeOption.id : null;
-  }
-
   /** The currently active option, coerced to SbbOption type. */
   get activeOption(): SbbOption | null {
     if (this.autocomplete && this.autocomplete.keyManager) {
@@ -534,12 +460,12 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
 
   // Implemented as part of ControlValueAccessor.
   registerOnChange(fn: (value: any) => {}): void {
-    this.onChange = fn;
+    this._onChange = fn;
   }
 
   // Implemented as part of ControlValueAccessor.
   registerOnTouched(fn: () => {}) {
-    this.onTouched = fn;
+    this._onTouched = fn;
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -559,7 +485,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     }
 
     if (this.activeOption && keyCode === ENTER && this.panelOpen) {
-      this.activeOption.selectViaInteraction();
+      this.activeOption._selectViaInteraction();
       this._resetActiveItem();
       event.preventDefault();
     } else if (this.autocomplete) {
@@ -581,12 +507,10 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     }
   }
 
-  /**
-   * Scrolls to the option when using arrow keys to navigate the autocomplete panel
-   */
+  /** Scrolls to the option when using arrow keys to navigate the autocomplete panel */
   scrollToOption(): void {
     const index = this.autocomplete.keyManager.activeItemIndex || 0;
-    const labelCount = sbbCountGroupLabelsBeforeOption(
+    const labelCount = countGroupLabelsBeforeOption(
       index,
       this.autocomplete.options,
       this.autocomplete.optionGroups
@@ -624,7 +548,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     // See: https://connect.microsoft.com/IE/feedback/details/885747/
     if (this._previousValue !== value && document.activeElement === event.target) {
       this._previousValue = value;
-      this.onChange(value);
+      this._onChange(value);
       this._inputValue.next(target.value);
 
       if (this._canOpen()) {
@@ -722,7 +646,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     if (event && event.source) {
       this._clearPreviousSelectedOption(event.source);
       this._setTriggerValue(event.source.value);
-      this.onChange(event.source.value);
+      this._onChange(event.source.value);
       this.input.nativeElement.focus();
       this.autocomplete.emitSelectEvent(event.source);
     }
@@ -730,9 +654,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     this.closePanel();
   }
 
-  /**
-   * Clear any previous selected option and emit a selection change event for this option
-   */
+  /** Clear any previous selected option and emit a selection change event for this option */
   private _clearPreviousSelectedOption(skip: SbbOption) {
     this.autocomplete.options.forEach((option) => {
       // tslint:disable-next-line:triple-equals
@@ -897,9 +819,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     return !element.readOnly && !element.disabled && !this.autocompleteDisabled;
   }
 
-  /**
-   * Reveals the search box when using the 'header' mode.
-   */
+  /** Reveals the search box when using the 'header' mode. */
   revealSearchbox() {
     this._hideSearch = false;
     if (this.autocomplete) {

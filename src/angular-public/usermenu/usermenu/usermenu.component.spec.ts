@@ -187,7 +187,7 @@ class UsermenuTest3Component {
   }
 }
 
-describe('UserMenuComponent', () => {
+describe('SbbUserMenu', () => {
   let userMenuComponent: SbbUserMenu;
   let fixtureUserMenu: ComponentFixture<SbbUserMenu>;
 

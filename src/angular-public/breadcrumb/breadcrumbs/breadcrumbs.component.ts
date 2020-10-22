@@ -29,20 +29,10 @@ import { SbbBreadcrumb, SBB_BREADCRUMB_PARENT_COMPONENT } from '../breadcrumb/br
   },
 })
 export class SbbBreadcrumbs implements AfterViewInit {
-  /**
-   * Refers to BreadcrumbComponents instance.
-   */
+  /** Refers to BreadcrumbComponents instance. */
   @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;
 
-  /**
-   * Css class of a sbb-breadcrumbs.
-   * @deprecated internal detail
-   */
-  cssClass = true;
-
-  /**
-   * Status expanded of a sbb-breadcrumbs.
-   */
+  /** Status expanded of a sbb-breadcrumbs. */
   get expanded(): boolean {
     if (this.levels.length > 2) {
       return this._expanded;

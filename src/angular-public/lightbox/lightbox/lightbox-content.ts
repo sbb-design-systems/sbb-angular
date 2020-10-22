@@ -17,9 +17,7 @@ import { SbbLightbox } from './lightbox.service';
 /** Counter used to generate unique IDs for lightbox elements. */
 let lightboxElementUid = 0;
 
-/**
- * Button that will close the current lightbox.
- */
+/** Button that will close the current lightbox. */
 @Directive({
   selector: `button[sbbLightboxClose]`,
   exportAs: 'sbbLightboxClose',
@@ -31,9 +29,6 @@ let lightboxElementUid = 0;
 export class SbbLightboxClose implements OnInit {
   /** Screenreader label for the button. */
   @Input('aria-label') ariaLabel: string = 'Close lightbox';
-
-  /** @deprecated internal detail */
-  btnType = 'button';
 
   /** Default to "button" to prevents accidental form submits. */
   @Input() type: 'submit' | 'button' | 'reset' = 'button';
@@ -59,14 +54,12 @@ export class SbbLightboxClose implements OnInit {
   }
 
   @HostListener('click')
-  onCloseClick() {
+  _onCloseClick() {
     this.lightboxRef.close(this.lightboxResult);
   }
 }
 
-/**
- * Header of a lightbox element. Stays fixed to the top of the lightbox when scrolling.
- */
+/** Header of a lightbox element. Stays fixed to the top of the lightbox when scrolling. */
 @Component({
   selector: 'sbb-lightbox-header, [sbbLightboxHeader]',
   template: `
@@ -92,8 +85,6 @@ export class SbbLightboxClose implements OnInit {
 export class SbbLightboxHeader implements OnInit {
   /** Disables lightbox header when lightbox is closed.  */
   isCloseDisabled: boolean;
-  /** @deprecated internal detail */
-  lightboxHeaderClass = true;
 
   constructor(
     @Optional() private _lightboxRef: SbbLightboxRef<any>,
@@ -112,7 +103,7 @@ export class SbbLightboxHeader implements OnInit {
         const container = this._lightboxRef.containerInstance;
 
         if (container) {
-          container.hasHeader = true;
+          container._hasHeader = true;
           this.isCloseDisabled = !!container.config.disableClose;
           this._changeDetectorRef.markForCheck();
         }
@@ -137,8 +128,6 @@ export class SbbLightboxHeader implements OnInit {
 export class SbbLightboxTitle implements OnInit {
   /** Identifier of lightbox title. */
   @Input() id = `sbb-lightbox-title-${lightboxElementUid++}`;
-  /** @deprecated internal detail */
-  lightboxTitleClass = true;
 
   constructor(
     @Optional() private _lightboxRef: SbbLightboxRef<any>,
@@ -155,17 +144,15 @@ export class SbbLightboxTitle implements OnInit {
       Promise.resolve().then(() => {
         const container = this._lightboxRef.containerInstance;
 
-        if (container && !container.ariaLabelledBy) {
-          container.ariaLabelledBy = this.id;
+        if (container && !container._ariaLabelledBy) {
+          container._ariaLabelledBy = this.id;
         }
       });
     }
   }
 }
 
-/**
- * Scrollable content container of a lightbox.
- */
+/** Scrollable content container of a lightbox. */
 @Component({
   selector: `sbb-lightbox-content, [sbbLightboxContent]`,
   template: '<ng-content></ng-content>',
@@ -174,10 +161,7 @@ export class SbbLightboxTitle implements OnInit {
     class: 'sbb-lightbox-content sbb-scrollbar',
   },
 })
-export class SbbLightboxContent {
-  /** @deprecated internal detail */
-  lightboxContentClass = true;
-}
+export class SbbLightboxContent {}
 
 /**
  * Container for the bottom action buttons in a lightbox.
@@ -197,20 +181,6 @@ export class SbbLightboxContent {
 export class SbbLightboxFooter implements OnInit {
   /** Types of alignment. */
   @Input() alignment: 'left' | 'center' | 'right' = 'left';
-  /** @deprecated internal detail */
-  lightboxFooterClass = true;
-  /** @deprecated internal detail */
-  get alignmentStartClass() {
-    return !this.alignmentCenterClass && !this.alignmentEndClass;
-  }
-  /** @deprecated internal detail */
-  get alignmentCenterClass() {
-    return this.alignment === 'center';
-  }
-  /** @deprecated internal detail */
-  get alignmentEndClass() {
-    return this.alignment === 'right';
-  }
 
   constructor(
     @Optional() private _lightboxRef: SbbLightboxRef<any>,
@@ -228,7 +198,7 @@ export class SbbLightboxFooter implements OnInit {
         const container = this._lightboxRef.containerInstance;
 
         if (container) {
-          container.hasFooter = true;
+          container._hasFooter = true;
         }
       });
     }

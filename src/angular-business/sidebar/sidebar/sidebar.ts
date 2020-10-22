@@ -493,9 +493,7 @@ export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
     return this._sidebar;
   }
 
-  /**
-   * Whether the sidebar container should have a backdrop while one of the sidebars is open.
-   */
+  /** Whether the sidebar container should have a backdrop while one of the sidebars is open. */
   get hasBackdrop() {
     return !this.sidebar || this.sidebar.mode !== 'side';
   }

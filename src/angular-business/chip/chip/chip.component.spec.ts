@@ -20,7 +20,7 @@ class ChipTestComponent {
   dismissed(_event: any) {}
 }
 
-describe('ChipComponent', () => {
+describe('SbbChip', () => {
   let component: ChipTestComponent;
   let fixture: ComponentFixture<ChipTestComponent>;
 

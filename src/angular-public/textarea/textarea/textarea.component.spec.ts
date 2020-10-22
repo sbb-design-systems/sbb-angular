@@ -56,7 +56,7 @@ class TextareaSbbFieldTestComponent {
   });
 }
 
-describe('TextareaComponent', () => {
+describe('SbbTextarea', () => {
   let component: SbbTextarea;
   let fixture: ComponentFixture<SbbTextarea>;
 
@@ -77,7 +77,7 @@ describe('TextareaComponent', () => {
   });
 });
 
-describe('TextareaComponent behaviour', () => {
+describe('SbbTextarea behaviour', () => {
   let component: TextareaTestComponent;
   let fixture: ComponentFixture<TextareaTestComponent>;
   let innerComponent: DebugElement;
@@ -119,9 +119,10 @@ describe('TextareaComponent behaviour', () => {
     component.disabled = true;
     fixture.detectChanges();
     expect(innerComponent.attributes['ng-reflect-disabled']).toBeTruthy();
-    expect(fixture.debugElement.nativeElement.querySelector('.disabled')).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('.sbb-disabled')).toBeTruthy();
     expect(
-      getComputedStyle(fixture.debugElement.nativeElement.querySelector('.disabled')).borderTopColor
+      getComputedStyle(fixture.debugElement.nativeElement.querySelector('.sbb-disabled'))
+        .borderTopColor
     ).toBe('rgb(210, 210, 210)');
   });
 
@@ -188,7 +189,7 @@ describe('TextareaComponent behaviour', () => {
   });
 });
 
-describe('TextareaComponent digits counter', () => {
+describe('SbbTextarea digits counter', () => {
   let component: SbbTextarea;
   let fixture: ComponentFixture<SbbTextarea>;
 
@@ -226,7 +227,7 @@ describe('TextareaComponent digits counter', () => {
   });
 });
 
-describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
+describe('SbbTextarea reactive forms in sbb-field behaviour', () => {
   let component: TextareaSbbFieldTestComponent;
   let fixture: ComponentFixture<TextareaSbbFieldTestComponent>;
   let sbbTextareaComponent: DebugElement;
@@ -271,14 +272,15 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
   });
 
   it('should be disabled', () => {
-    expect(fixture.debugElement.nativeElement.querySelector('.disabled')).toBeFalsy();
+    expect(fixture.debugElement.nativeElement.querySelector('.sbb-disabled')).toBeFalsy();
 
     component.form.get('textarea')!.disable();
 
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('.disabled')).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('.sbb-disabled')).toBeTruthy();
     expect(
-      getComputedStyle(fixture.debugElement.nativeElement.querySelector('.disabled')).borderTopColor
+      getComputedStyle(fixture.debugElement.nativeElement.querySelector('.sbb-disabled'))
+        .borderTopColor
     ).toBe('rgb(210, 210, 210)');
   });
 

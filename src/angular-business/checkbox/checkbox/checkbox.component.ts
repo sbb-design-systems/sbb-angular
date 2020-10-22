@@ -7,7 +7,6 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  HostBinding,
   Input,
   Output,
   ViewEncapsulation,
@@ -33,6 +32,12 @@ export interface SbbCheckboxChange extends BaseCheckboxChange<SbbCheckbox> {}
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-checkbox',
+    '[id]': 'id',
+    '[attr.tabindex]': 'null',
+    '[class.sbb-checkbox-indeterminate]': 'this.indeterminate',
+  },
 })
 export class SbbCheckbox extends SbbCheckboxBase<SbbCheckboxChange> {
   /** @docs-private */
@@ -52,11 +57,8 @@ export class SbbCheckbox extends SbbCheckboxBase<SbbCheckboxChange> {
     super(changeDetectorRef, focusMonitor, elementRef, tabIndex);
   }
 
-  /**
-   * The indeterminate state of the checkbox
-   */
+  /** The indeterminate state of the checkbox */
   @Input()
-  @HostBinding('class.sbb-checkbox-indeterminate')
   get indeterminate(): any {
     return this._indeterminate;
   }

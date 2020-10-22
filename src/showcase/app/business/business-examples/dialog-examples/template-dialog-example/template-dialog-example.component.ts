@@ -11,7 +11,7 @@ export class TemplateDialogExampleComponent {
   constructor(public dialog: SbbDialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.openDialog(this.sampleDialogTemplate);
+    const dialogRef = this.dialog.open(this.sampleDialogTemplate);
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);

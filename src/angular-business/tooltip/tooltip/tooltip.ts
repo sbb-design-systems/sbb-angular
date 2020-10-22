@@ -204,17 +204,13 @@ export class SbbTooltip implements OnDestroy, OnInit {
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
 
-  /**
-   * Setup styling-specific things
-   */
+  /** Setup styling-specific things */
   ngOnInit() {
     // This needs to happen in `ngOnInit` so the initial values for all inputs have been set.
     this._setupPointerEvents();
   }
 
-  /**
-   * Dispose the tooltip when destroyed.
-   */
+  /** Dispose the tooltip when destroyed. */
   ngOnDestroy() {
     const nativeElement = this._elementRef.nativeElement;
 

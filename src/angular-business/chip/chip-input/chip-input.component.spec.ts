@@ -81,7 +81,7 @@ class ChipInputFormsTestComponent {
   disabled = false;
 }
 
-describe('ChipInputComponent', () => {
+describe('SbbChipInput', () => {
   describe('reactive forms', () => {
     let component: ChipInputReactiveFormsTestComponent;
     let fixture: ComponentFixture<ChipInputReactiveFormsTestComponent>;

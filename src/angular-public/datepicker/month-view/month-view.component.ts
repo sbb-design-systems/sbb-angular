@@ -42,9 +42,7 @@ const DAYS_PER_WEEK = 7;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbMonthView<D> implements AfterContentInit {
-  /**
-   * The date to display in this month view (everything other than the month and year is ignored).
-   */
+  /** The date to display in this month view (everything other than the month and year is ignored). */
   @Input()
   get activeDate(): D {
     return this._activeDate;

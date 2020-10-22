@@ -95,7 +95,7 @@ class TagsTestFixtureReactiveComponent {
 })
 class TagLinkTestFixtureComponent {}
 
-describe('TagsComponent', () => {
+describe('SbbTags', () => {
   let component: SbbTags;
   let fixture: ComponentFixture<SbbTags>;
 
@@ -121,7 +121,7 @@ describe('TagsComponent', () => {
   });
 });
 
-describe('TagsComponent with Model attached', () => {
+describe('SbbTags with Model attached', () => {
   let component: TagsTestFixtureComponent;
   let fixture: ComponentFixture<TagsTestFixtureComponent>;
 
@@ -385,7 +385,7 @@ describe('TagsComponent with Model attached', () => {
   });
 });
 
-describe('TagsComponent with Reactive Forms and total amount set as input', () => {
+describe('SbbTags with Reactive Forms and total amount set as input', () => {
   let component: TagsTestFixtureReactiveComponent;
   let fixture: ComponentFixture<TagsTestFixtureReactiveComponent>;
 
@@ -521,7 +521,7 @@ describe('TagsComponent with Reactive Forms and total amount set as input', () =
   });
 });
 
-describe('TagComponent as a Link Tag', () => {
+describe('SbbTag as a Link Tag', () => {
   let fixture: ComponentFixture<TagLinkTestFixtureComponent>;
 
   beforeEach(async(() => {

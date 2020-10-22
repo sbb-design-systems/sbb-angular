@@ -22,7 +22,7 @@ import { SbbDatepicker } from '../datepicker/datepicker.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'sbb-datepicker-toggle',
-    '[class.sbb-datepicker-toggle-active]': 'this.datepickerToggleActive',
+    '[class.sbb-datepicker-toggle-active]': 'this._datepicker && this._datepicker.opened',
     '[attr.tabindex]': 'null',
   },
 })
@@ -44,25 +44,11 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    private _datepicker: SbbDatepicker<D>,
+    public _datepicker: SbbDatepicker<D>,
     @Attribute('tabindex') defaultTabIndex: string
   ) {
     const parsedTabIndex = Number(defaultTabIndex);
     this.tabIndex = parsedTabIndex || parsedTabIndex === 0 ? parsedTabIndex : null;
-  }
-
-  /**
-   * @deprecated internal detail
-   */
-  sbbDatepickerToggleCssClass = true;
-
-  /**
-   * @deprecated internal use
-   */
-  tabindex = null;
-
-  get datepickerToggleActive() {
-    return this._datepicker && this._datepicker.opened;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -79,16 +65,9 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
     this._watchStateChanges();
   }
 
-  /**
-   * @deprecated use openDatepicker() instead
-   */
   open(event: Event): void {
-    this.openDatepicker(event);
-  }
-
-  openDatepicker(event: Event): void {
     if (this._datepicker && !this.disabled) {
-      this._datepicker.openDatepicker();
+      this._datepicker.open();
       event.stopPropagation();
     }
   }

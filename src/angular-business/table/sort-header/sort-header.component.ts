@@ -60,6 +60,10 @@ interface SbbSortHeaderColumnDef {
   exportAs: 'sbbSortHeader',
   templateUrl: 'sort-header.component.html',
   styleUrls: ['sort-header.component.css'],
+  host: {
+    class: 'sbb-sort-header',
+    '[attr.aria-sort]': '_getAriaSortAttribute()',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled'],
@@ -140,9 +144,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   /** The direction the arrow should be facing according to the current state. */
   _arrowDirection: SbbSortDirection = '';
 
-  /**
-   * Whether the view state animation should show the transition between the `from` and `to` states.
-   */
+  /** Whether the view state animation should show the transition between the `from` and `to` states. */
   _disableViewStateAnimation = false;
 
   /**
@@ -158,8 +160,6 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   /** Overrides the sort start value of the containing SbbSort for this SbbSortable. */
   @Input() start: 'asc' | 'desc';
   private _disableClear: boolean;
-
-  @HostBinding('attr.aria-sort') sort = this._getAriaSortAttribute();
 
   @HostListener('mouseenter') _onMouseEnter() {
     this._setIndicatorHintVisible(true);

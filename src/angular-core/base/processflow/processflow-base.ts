@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Directive,
   EventEmitter,
-  HostBinding,
   Output,
   QueryList,
 } from '@angular/core';
@@ -13,9 +12,6 @@ import { SbbProcessflowStepBase, SbbProcessflowStepDescriptor } from './processf
 @Directive()
 export abstract class SbbProcessflowBase<TProcessflowStepComponent extends SbbProcessflowStepBase>
   implements AfterContentInit {
-  /** @docs-private */
-  @HostBinding('class.sbb-processflow')
-  cssClass = true;
   /** Event emitted to the change of step in the process flow. */
   @Output()
   stepChange: EventEmitter<SbbProcessflowStepDescriptor> = new EventEmitter<

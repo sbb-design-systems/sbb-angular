@@ -21,9 +21,7 @@ export interface SbbFileSelectorOptions {
    * It is optional.
    */
   multiple?: boolean;
-  /**
-   * Set if the component should add files on top of the already selected ones or keep default input file behaviour
-   */
+  /** Set if the component should add files on top of the already selected ones or keep default input file behaviour */
   multipleMode?: 'default' | 'persistent';
 }
 

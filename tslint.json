@@ -180,7 +180,7 @@
     "no-outputs-metadata-property": true,
     "no-host-metadata-property": false,
     "no-input-rename": false,
-    "no-output-rename": true,
+    "no-output-rename": false,
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": false,

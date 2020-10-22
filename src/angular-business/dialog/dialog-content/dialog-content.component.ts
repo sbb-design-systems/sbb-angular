@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-/**
- * Scrollable content container of a dialog.
- */
+/** Scrollable content container of a dialog. */
 @Component({
   selector: `sbb-dialog-content, [sbbDialogContent]`,
   styleUrls: ['./dialog-content.component.css'],
@@ -13,7 +11,4 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     class: 'sbb-dialog-content sbb-scrollbar',
   },
 })
-export class SbbDialogContent {
-  /** @deprecated internal detail */
-  dialogContentClass = true;
-}
+export class SbbDialogContent {}

@@ -22,12 +22,6 @@ export type SbbNavigationPageChangeEvent = 'next' | 'previous';
   },
 })
 export class SbbNavigation implements OnChanges {
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  role = 'navigation';
-
   /** The next page descriptor. */
   @Input()
   nextPage: string | null = null;
@@ -36,9 +30,7 @@ export class SbbNavigation implements OnChanges {
   @Input()
   previousPage: string | null = null;
 
-  /**
-   * This event can be used by parent components to handle events on page change.
-   */
+  /** This event can be used by parent components to handle events on page change. */
   @Output()
   pageChange: EventEmitter<SbbNavigationPageChangeEvent> = new EventEmitter<
     SbbNavigationPageChangeEvent

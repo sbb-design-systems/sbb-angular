@@ -20,13 +20,17 @@ const PLACEHOLDER_DEFAULT = 'HH:MM';
 
 @Directive({
   selector: 'input[sbbTimeInput]',
+  host: {
+    class: 'sbb-time-input',
+    type: 'text',
+    pattern: '[0-9]*',
+    inputmode: 'numeric',
+    '[attr.placeholder]': 'placeholder',
+  },
 })
 export class SbbTimeInput {
-  /**
-   * placeholder (defaults to HH:MM)
-   */
+  /** The placeholder value display in the input field (defaults to HH:MM) */
   @Input()
-  @HostBinding('attr.placeholder')
   get placeholder(): string {
     return this._placeholder;
   }
@@ -52,28 +56,9 @@ export class SbbTimeInput {
     this.placeholder = PLACEHOLDER_DEFAULT;
   }
 
-  /**
-   * Value type allowed
-   */
-  @HostBinding('attr.type') type = 'text';
-  /**
-   * Allowed pattern for time input value
-   */
-  @HostBinding('attr.pattern') pattern = '[0-9]*';
-  /**
-   * Input mode for time input
-   */
-  @HostBinding('attr.inputmode') inputmode = 'numeric';
-  /**
-   * Class property that refers to time input
-   */
-  @HostBinding('class.sbb-time-input') ssbTimeInput = true;
-
-  /**
-   * Method that sets the input value in 'hours:mins' format on blur event
-   */
+  /** Method that sets the input value in 'hours:mins' format on blur event */
   @HostListener('blur', ['$event.target.value'])
-  onBlur(value: any) {
+  _onBlur(value: any) {
     const regGroups = this._inputValidate(value);
     if (!regGroups || regGroups.length <= 2) {
       return;

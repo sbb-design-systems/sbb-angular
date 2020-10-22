@@ -28,9 +28,7 @@ export function throwSbbDuplicatedSidebarError() {
  */
 export const SBB_SIDEBAR_CONTAINER = new InjectionToken('SBB_SIDEBAR_CONTAINER');
 
-/**
- * @docs-private
- */
+/** @docs-private */
 export interface SbbSidebarMobileCapableContainer {
   _mobile: boolean;
 }
@@ -46,9 +44,7 @@ export abstract class SbbSidebarContentBase extends CdkScrollable {
   }
 }
 
-/**
- * This component corresponds to a sidebar.
- */
+/** This component corresponds to a sidebar. */
 @Directive()
 export abstract class SbbSidebarBase {
   abstract _mobileChanged(mobile: boolean): void;

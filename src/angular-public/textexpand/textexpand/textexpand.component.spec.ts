@@ -28,68 +28,7 @@ class TextexpandTestComponent {
   expandedComponent: SbbTextexpandExpanded;
 }
 
-describe('TextexpandComponent', () => {
-  let componentTextexpand: SbbTextexpand;
-  let fixtureTextexpand: ComponentFixture<SbbTextexpand>;
-
-  let componentCollapsed: SbbTextexpandCollapsed;
-  let fixtureCollapsed: ComponentFixture<SbbTextexpandCollapsed>;
-
-  let componentExpanded: SbbTextexpandExpanded;
-  let fixtureExpanded: ComponentFixture<SbbTextexpandExpanded>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SbbTextexpand, SbbTextexpandCollapsed, SbbTextexpandExpanded],
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixtureCollapsed = TestBed.createComponent(SbbTextexpandCollapsed);
-    componentCollapsed = fixtureCollapsed.componentInstance;
-    fixtureCollapsed.detectChanges();
-
-    fixtureExpanded = TestBed.createComponent(SbbTextexpandExpanded);
-    componentExpanded = fixtureExpanded.componentInstance;
-    fixtureExpanded.detectChanges();
-
-    fixtureTextexpand = TestBed.createComponent(SbbTextexpand);
-    componentTextexpand = fixtureTextexpand.componentInstance;
-    componentTextexpand.collapsedComponent = componentCollapsed;
-    componentTextexpand.expandedComponent = componentExpanded;
-    fixtureTextexpand.detectChanges();
-  });
-
-  it('textexpand should create', () => {
-    expect(componentTextexpand).toBeTruthy();
-  });
-
-  it('textexpand-collapsed should create', () => {
-    expect(componentCollapsed).toBeTruthy();
-  });
-
-  it('textexpand-expanded should create', () => {
-    expect(componentExpanded).toBeTruthy();
-  });
-
-  it('should have a generated id if not provided', () => {
-    expect(componentTextexpand.id).toContain('sbb-textexpand-');
-  });
-
-  it('textexpand class must exist', () => {
-    expect(componentTextexpand.cssClass).toBe(true);
-  });
-
-  it('textexpand-collapsed class must exist', () => {
-    expect(componentCollapsed.cssClass).toBe(true);
-  });
-
-  it('textexpand-expanded class must exist', () => {
-    expect(componentExpanded.cssClass).toBe(true);
-  });
-});
-
-describe('TextexpandComponent using mock component', () => {
+describe('SbbTextexpand', () => {
   let componentTest: TextexpandTestComponent;
   let fixtureTest: ComponentFixture<TextexpandTestComponent>;
 
@@ -112,8 +51,8 @@ describe('TextexpandComponent using mock component', () => {
 
   it('text collapsed and textexpand-expanded component is hidden', async () => {
     expect(componentTest.textexpand.isExpanded).toBe(false);
-    expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
-    expect(componentTest.textexpand.expandedComponent.isHidden).toBe(true);
+    expect(componentTest.textexpand.collapsedComponent._hidden).toBe(false);
+    expect(componentTest.textexpand.expandedComponent._hidden).toBe(true);
   });
 
   it('text expanded and textexpand-collapsed is hidden ', async () => {
@@ -123,8 +62,8 @@ describe('TextexpandComponent using mock component', () => {
     fixtureTest.detectChanges();
 
     expect(componentTest.textexpand.isExpanded).toBe(true);
-    expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(true);
-    expect(componentTest.textexpand.expandedComponent.isHidden).toBe(false);
+    expect(componentTest.textexpand.collapsedComponent._hidden).toBe(true);
+    expect(componentTest.textexpand.expandedComponent._hidden).toBe(false);
   });
 
   it('aria-expanded button property is true to a click on the button', async () => {
@@ -139,7 +78,7 @@ describe('TextexpandComponent using mock component', () => {
 
   it('verify text content collapsed', async () => {
     expect(componentTest.textexpand.isExpanded).toBe(false);
-    expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
+    expect(componentTest.textexpand.collapsedComponent._hidden).toBe(false);
 
     const textContent = fixtureTest.nativeElement;
     expect(textContent.textContent).toContain('Hello Davide!');
@@ -152,7 +91,7 @@ describe('TextexpandComponent using mock component', () => {
     fixtureTest.detectChanges();
 
     expect(componentTest.textexpand.isExpanded).toBe(true);
-    expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(true);
+    expect(componentTest.textexpand.collapsedComponent._hidden).toBe(true);
 
     const textContent = fixtureTest.nativeElement;
     expect(textContent.textContent).toContain('Hello Marco!');

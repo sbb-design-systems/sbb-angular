@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
-let counter = 0;
+let nextId = 0;
 
 /** Event object emitted by AutocompleteOptionComponent when selected or deselected. */
 export class SbbDropdownSelectionChange {
@@ -31,9 +31,7 @@ export interface SbbDropdownParent {
   multiple?: boolean;
 }
 
-/**
- * Injection token used to provide the parent component to options.
- */
+/** Injection token used to provide the parent component to options. */
 export const SBB_DROPDOWN_ITEM_PARENT_COMPONENT = new InjectionToken<SbbDropdownParent>(
   'SBB_DROPDOWN_ITEM_PARENT_COMPONENT'
 );
@@ -65,35 +63,30 @@ export function getDropdownItemScrollPosition(
   return currentScrollPosition;
 }
 
-@Directive({ selector: '[sbbDropdownItem]' })
+@Directive({
+  selector: '[sbbDropdownItem]',
+  host: {
+    '[attr.id]': 'id',
+    '[class.sbb-selected]': 'this.selected',
+    '[class.sbb-active]': 'this.active',
+  },
+})
 export class SbbDropdownItem implements Highlightable {
-  /**
-   * Identifier of a dropdown item.
-   */
-  id = 'sbb-dropdown-item-' + counter++;
+  /** Identifier of a dropdown item. */
+  id = 'sbb-dropdown-item-' + nextId++;
 
-  /**
-   * Disable a specific dropdown item.
-   */
+  /** Disable a specific dropdown item. */
   disabled? = false;
 
-  /**
-   * Css class on a dropdown item selected.
-   */
-  @HostBinding('class.sbb-selected')
+  /** Css class on a dropdown item selected. */
   selected = false;
 
-  /**
-   * Event generated to click on a specific dropdown item.
-   */
+  /** Css class associated to a dropdown item when it is active. */
+  active = false;
+
+  /** Event generated to click on a specific dropdown item. */
   @Output()
   readonly selectionChange = new EventEmitter<SbbDropdownSelectionChange>();
-
-  /**
-   * Css class associated to a dropdown item when it is active.
-   */
-  @HostBinding('class.sbb-active')
-  active = false;
 
   constructor(private _elementRef: ElementRef, private _changeDetectorRef: ChangeDetectorRef) {}
 
@@ -116,7 +109,7 @@ export class SbbDropdownItem implements Highlightable {
   }
 
   @HostListener('keydown', ['$event'])
-  handleKeydown(event: TypeRef<KeyboardEvent>): void {
+  _handleKeydown(event: TypeRef<KeyboardEvent>): void {
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
       this.selectViaInteraction();
 
@@ -126,7 +119,7 @@ export class SbbDropdownItem implements Highlightable {
   }
 
   @HostListener('click')
-  onClick(): void {
+  _onClick(): void {
     this._emitSelectionChangeEvent();
   }
 

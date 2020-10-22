@@ -28,7 +28,7 @@ class ModelOptionSelectionMultipleTestComponent {
   @ViewChildren(SbbCheckboxPanel) optionSelections: QueryList<SbbCheckboxPanel>;
 }
 
-describe('CheckboxPanelComponent', () => {
+describe('SbbCheckboxPanel', () => {
   let component: SbbCheckboxPanel;
   let fixture: ComponentFixture<SbbCheckboxPanel>;
 
@@ -54,7 +54,7 @@ describe('CheckboxPanelComponent', () => {
   });
 });
 
-describe('CheckboxPanelComponent using mock component', () => {
+describe('SbbCheckboxPanel using mock component', () => {
   let modelComponent: ModelOptionSelectionMultipleTestComponent;
   let modelComponentFixture: ComponentFixture<ModelOptionSelectionMultipleTestComponent>;
 

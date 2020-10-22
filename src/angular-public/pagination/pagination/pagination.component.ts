@@ -17,9 +17,7 @@ const range = (length: number, offset = 0) => Array.from({ length }, (_, k) => k
 
 const MAX_PAGE_SIZE = 3;
 
-/**
- * @deprecated use PageEvent of SbbPaginatorComponent
- */
+/** @deprecated use PageEvent of SbbPaginatorComponent */
 export class SbbPageChangeEvent {
   constructor(
     /** Index of page. */
@@ -29,9 +27,7 @@ export class SbbPageChangeEvent {
   ) {}
 }
 
-/**
- * @deprecated Use SbbPaginatorComponent
- */
+/** @deprecated Use SbbPaginatorComponent */
 @Component({
   selector: 'sbb-pagination',
   templateUrl: './pagination.component.html',

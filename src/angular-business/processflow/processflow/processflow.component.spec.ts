@@ -8,7 +8,7 @@ import { SbbProcessflowModule } from '../processflow.module';
 
 import { SbbProcessflow } from './processflow.component';
 
-describe('ProcessflowComponent', () => {
+describe('SbbProcessflow', () => {
   let component: SbbProcessflow;
   let fixture: ComponentFixture<SbbProcessflow>;
 
@@ -56,7 +56,7 @@ export class ProcessflowTestComponent {
   @ViewChild('processflow', { static: true }) processflow: SbbProcessflow;
 }
 
-describe('ProcessflowTestComponent skippable', () => {
+describe('SbbProcessflowTest skippable', () => {
   let component: ProcessflowTestComponent;
   let fixture: ComponentFixture<ProcessflowTestComponent>;
 

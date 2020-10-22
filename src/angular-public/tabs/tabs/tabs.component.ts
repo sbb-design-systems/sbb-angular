@@ -18,7 +18,7 @@ import { map, switchMap } from 'rxjs/operators';
 
 import { SbbTab } from '../tab/tab.component';
 
-let counter = 0;
+let nextId = 0;
 
 @Component({
   selector: 'sbb-tabs',
@@ -30,14 +30,8 @@ let counter = 0;
   },
 })
 export class SbbTabs implements AfterContentInit, OnDestroy {
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  _tabsClass = true;
-
   /** Class property that tracks tab number of the list */
-  nameOfTabList = `sbb-tabs-${counter++}`;
+  nameOfTabList = `sbb-tabs-${nextId++}`;
   /** Index of tab list */
   tabListIndex = 0;
   /** Class property that tracks changes in the tabs contained in the list */
@@ -48,21 +42,15 @@ export class SbbTabs implements AfterContentInit, OnDestroy {
   @ViewChildren('label') labels: QueryList<ElementRef>;
   /** Emits the newly selected  */
   @Output() selectedIndexChange = new EventEmitter<number>();
-  /**
-   * Class property that records an event on tabs
-   */
+  /** Class property that records an event on tabs */
   private _tabsSubscription = Subscription.EMPTY;
-  /**
-   * Option keys available to move between tabs
-   */
+  /** Option keys available to move between tabs */
   private _allowedKeyCodes = [LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB];
 
   constructor(
-    /** * Class property that manages different events */
+    /** Class property that manages different events */
     public componentFactoryResolver: ComponentFactoryResolver,
-    /**
-     * Class property that refers to the component object
-     */
+    /** Class property that refers to the component object */
     public elementRef: ElementRef,
     private _changeDetector: ChangeDetectorRef
   ) {}
@@ -77,9 +65,8 @@ export class SbbTabs implements AfterContentInit, OnDestroy {
       )
       .subscribe(() => this._changeDetector.markForCheck());
   }
-  /**
-   * Method that verifies the initial tabs state
-   */
+
+  /** Method that verifies the initial tabs state */
   initTabs() {
     this.tabs$ = merge<SbbTab[]>(of(this.tabs.toArray()), this.tabs.changes);
 
@@ -89,29 +76,25 @@ export class SbbTabs implements AfterContentInit, OnDestroy {
       this.selectTab(this.tabs.first, true);
     }
   }
-  /**
-   * Method that destroys an event subscribed on tabs
-   */
+
+  /** Method that destroys an event subscribed on tabs */
   ngOnDestroy() {
     this._tabsSubscription.unsubscribe();
   }
-  /**
-   * Method that recovers the first tab selected
-   */
+
+  /** Method that recovers the first tab selected */
   openFirstTab() {
     this.tabListIndex = 0;
     this.selectTab(this.tabs.first);
   }
-  /**
-   * Method that recovers the tab selected by index
-   */
+
+  /** Method that recovers the tab selected by index */
   openTabByIndex(tabIndex: number) {
     const tabToSelect = this.tabs.toArray()[tabIndex];
     this.selectTab(tabToSelect);
   }
-  /**
-   * Method that selects the tab that matches with the tab in input
-   */
+
+  /** Method that selects the tab that matches with the tab in input */
   selectTab(tab: SbbTab, firstSelection = false) {
     // TODO: Check if there is a better solution for this timing issue
     Promise.resolve().then(() => {
@@ -131,9 +114,8 @@ export class SbbTabs implements AfterContentInit, OnDestroy {
       }
     });
   }
-  /**
-   * Method that responds only to arrows and tab event
-   */
+
+  /** Method that responds only to arrows and tab event */
   onKeyUp(event: any) {
     // respond only to arrows and tab
     if (this._allowedKeyCodes.indexOf(event.keyCode) !== -1) {

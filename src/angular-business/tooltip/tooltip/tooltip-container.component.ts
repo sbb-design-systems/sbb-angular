@@ -4,7 +4,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  HostBinding,
   HostListener,
   OnDestroy,
   ViewEncapsulation,
@@ -27,23 +26,14 @@ export type SbbTooltipVisibility = 'initial' | 'visible' | 'hidden';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sbbTooltipAnimations.tooltipState],
+  host: {
+    // Forces the element to have a layout in IE and Edge. This fixes issues where the element
+    // won't be rendered if the animations are disabled or there is no web animations polyfill.
+    '[style.zoom]': '_visibility === "visible" ? 1 : null',
+    'aria-hidden': 'true',
+  },
 })
 export class SbbTooltipContainer implements OnDestroy {
-  /**
-   * @docs-private
-   */
-  @HostBinding('attr.aria-hidden') ariaHidden = true;
-
-  /**
-   * Forces the element to have a layout in IE and Edge. This fixes issues where the element
-   * won't be rendered if the animations are disabled or there is no web animations polyfill.
-   * @docs-private
-   */
-  @HostBinding('style.zoom')
-  get styleZoom(): number | null {
-    return this._visibility === 'visible' ? 1 : null;
-  }
-
   /** Current connectionPositionPair of overlayRef */
   _connectionPositionPair: ConnectionPositionPair;
 
@@ -144,9 +134,7 @@ export class SbbTooltipContainer implements OnDestroy {
     }
   }
 
-  /**
-   * Interactions on the HTML body should close the tooltip immediately
-   */
+  /** Interactions on the HTML body should close the tooltip immediately */
   @HostListener('body:click')
   _handleBodyInteraction(): void {
     if (this._closeOnInteraction) {

@@ -6,9 +6,9 @@
   [placeholder]="placeholder"
   [attr.maxlength]="maxlength !== 0 ? maxlength : null"
   [attr.minlength]="minlength"
-  (focus)="onFocus()"
-  (blur)="onBlur()"
-  (input)="onChange($event)"
+  (focus)="_onFocus()"
+  (blur)="_onBlur()"
+  (input)="_onInput($event)"
   cdkTextareaAutosize
   #autosize="cdkTextareaAutosize"
 ></textarea>
@@ -17,5 +17,5 @@
   *ngIf="maxlength && !disabled"
   class="sbb-textarea-remaining-chars"
 >
-  Noch {{ counterObserver$ | async }} Zeichen
+  Noch {{ _counter | async }} Zeichen
 </div>

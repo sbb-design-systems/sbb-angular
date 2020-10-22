@@ -58,20 +58,14 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
   styleUrls: ['./header-menu-trigger.component.css'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'sbbHeaderMenu',
+  host: {
+    class: 'sbb-header-menu-trigger',
+    type: 'button',
+    'aria-haspopup': 'menu',
+    '[attr.aria-expanded]': 'this.menuOpen || null',
+  },
 })
 export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
-  /** @docs-private */
-  @HostBinding('class.sbb-header-menu-trigger') _class = true;
-  /**
-   * Ensure the button is of type button, so we don't trigger forms.
-   * @docs-private
-   */
-  @HostBinding('attr.type') _type = 'button';
-  @HostBinding('attr.aria-haspopup') _ariaHaspopup = true;
-  @HostBinding('attr.aria-expanded') get _ariaExpanded() {
-    return this.menuOpen || null;
-  }
-
   // Tracking input type is necessary so it's possible to only auto-focus
   // the first item of the list when the menu is opened via the keyboard
   _openedBy: 'mouse' | 'touch' | null = null;

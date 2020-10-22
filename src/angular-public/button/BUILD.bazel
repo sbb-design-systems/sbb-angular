@@ -18,7 +18,6 @@ ng_module(
     assets = [":button/button.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/button",
     deps = [
-        "//src/angular-core/base/button",
         "//src/angular-core/icon-directive",
         "@npm//@angular/common",
         "@npm//@angular/core",

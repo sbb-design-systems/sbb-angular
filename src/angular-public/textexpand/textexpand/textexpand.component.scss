@@ -1,6 +1,6 @@
 @import '../../../angular-core/styles/common';
 
-:host.sbb-textexpand {
+.sbb-textexpand {
   @if $sbbBusiness {
     color: $sbbColorBlack;
     font-size: pxToRem($sizeFontDefault);

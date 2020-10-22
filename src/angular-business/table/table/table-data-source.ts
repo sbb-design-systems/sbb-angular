@@ -22,9 +22,7 @@ const MAX_SAFE_INTEGER = 9007199254740991;
  * The '_' property is used for a global filter. If an array is used, entries will be combined with the or-operator.
  */
 export interface SbbTableFilter {
-  /**
-   * Global filter: filtering all entries
-   */
+  /** Global filter: filtering all entries */
   _?: string | number | string[] | number[];
 
   [key: string]: string | number | string[] | number[] | undefined;
@@ -383,9 +381,7 @@ export class SbbTableDataSource<
    */
   disconnect() {}
 
-  /**
-   * Converts a TableFilter object to a key value object of strings.
-   */
+  /** Converts a TableFilter object to a key value object of strings. */
   _normalizeTableFilter(tableFilter: SbbTableFilter): { [key: string]: string[] } {
     const normalizedTableFilter: { [key: string]: string[] } = { _: [] };
     Object.keys(tableFilter).forEach((key) => {
@@ -406,9 +402,7 @@ export class SbbTableDataSource<
     return normalizedTableFilter;
   }
 
-  /**
-   * Filters properties against tableData and returns true if matching data was found.
-   */
+  /** Filters properties against tableData and returns true if matching data was found. */
   _filterProperties(
     propertyFilters: { [key: string]: string[] },
     tableData: { [p: string]: any }
@@ -423,9 +417,7 @@ export class SbbTableDataSource<
     );
   }
 
-  /**
-   * Filters a list of strings against tableData and returns true if matching data was found.
-   */
+  /** Filters a list of strings against tableData and returns true if matching data was found. */
   _filterGlobally(filters: string[], tableData: { [key: string]: any }): boolean {
     return (
       filters.length === 0 ||
@@ -435,16 +427,12 @@ export class SbbTableDataSource<
     );
   }
 
-  /**
-   * Checks if search string is in data (case insensitive).
-   */
+  /** Checks if search string is in data (case insensitive). */
   _matchesStringCaseInsensitive(data: string, search: string): boolean {
     return data.toUpperCase().indexOf(search.toUpperCase()) !== -1;
   }
 
-  /**
-   * Reduces an object to a string.
-   */
+  /** Reduces an object to a string. */
   _reduceObjectToString(data: Object): string {
     return Object.keys(data).reduce((currentTerm: string, key: string) => {
       // Use an obscure Unicode character to delimit the words in the concatenated string.

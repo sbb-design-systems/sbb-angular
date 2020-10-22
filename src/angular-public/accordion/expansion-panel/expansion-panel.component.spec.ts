@@ -108,7 +108,7 @@ class PanelWithTwoWayBindingComponent {
   expanded = false;
 }
 
-describe('ExpansionPanelComponent', () => {
+describe('SbbExpansionPanel', () => {
   let originalTimeout: number;
 
   beforeEach(function () {

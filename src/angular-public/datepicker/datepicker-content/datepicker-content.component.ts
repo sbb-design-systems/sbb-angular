@@ -28,11 +28,6 @@ import { SbbDatepicker } from '../datepicker/datepicker.component';
   },
 })
 export class SbbDatepickerContent<D> implements AfterViewInit {
-  /**
-   * @deprecated internal detail
-   */
-  cssClass = true;
-
   /** Reference to the internal calendar component. */
   @ViewChild(SbbCalendar, { static: true }) calendar: SbbCalendar<D>;
 

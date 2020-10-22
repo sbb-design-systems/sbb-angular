@@ -25,7 +25,7 @@ class ModelRadioButtonTestComponent {
   testValue = '2';
 }
 
-describe('RadioButtonComponent', () => {
+describe('SbbRadioButton', () => {
   let component: SbbRadioButton;
   let fixture: ComponentFixture<SbbRadioButton>;
 
@@ -52,7 +52,7 @@ describe('RadioButtonComponent', () => {
   });
 });
 
-describe('RadioButtonComponent using mock component', () => {
+describe('SbbRadioButton using mock component', () => {
   let modelComponent: ModelRadioButtonTestComponent;
   let modelComponentFixture: ComponentFixture<ModelRadioButtonTestComponent>;
 

@@ -4,9 +4,7 @@ import { ViewContainerRef } from '@angular/core';
 /** Valid ARIA roles for a Lightbox element. */
 export type SbbLightboxRole = 'dialog' | 'alertdialog';
 
-/**
- * Configuration for opening a modal lightbox with the Lightbox service.
- */
+/** Configuration for opening a modal lightbox with the Lightbox service. */
 export class SbbLightboxConfig<D = any> {
   /**
    * Where the attached component should live in Angular's *logical* component tree.

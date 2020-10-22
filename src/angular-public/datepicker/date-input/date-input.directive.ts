@@ -75,33 +75,20 @@ export const SBB_DATE_VALIDATORS: any = {
   host: {
     class: 'sbb-date-input',
     '[attr.aria-haspopup]': 'true',
-    '[attr.aria-owns]': 'this.ariaOwns',
+    '[attr.aria-owns]':
+      '(this._datepicker && this._datepicker.opened && this._datepicker.id) || null',
     '[attr.min]': 'this.minAttr',
     '[attr.max]': 'this.maxAttr',
-    '[disabled]': 'this.isDisabled',
+    '[disabled]': 'this.disabled',
   },
 })
 export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit, OnDestroy {
-  /** @deprecated internal detail */
-  cssClass = true;
-
-  /** @deprecated internal detail */
-  ariaHasPopup = true;
-
-  get ariaOwns() {
-    return (this._datepicker && this._datepicker.opened && this._datepicker.id) || null;
-  }
-
-  get minAttr() {
+  get _minAttr() {
     return this.min ? this.dateAdapter.toIso8601(this.min) : null;
   }
 
-  get maxAttr() {
+  get _maxAttr() {
     return this.max ? this.dateAdapter.toIso8601(this.max) : null;
-  }
-
-  get isDisabled() {
-    return this.disabled;
   }
 
   /** Function that can be used to filter out dates within the datepicker. */
@@ -261,7 +248,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     private _elementRef: ElementRef<HTMLInputElement>,
     @Optional() public dateAdapter: SbbDateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
-    @Optional() private _datepicker: SbbDatepicker<D>
+    @Optional() public _datepicker: SbbDatepicker<D>
   ) {
     if (!this.dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -333,15 +320,15 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   }
 
   @HostListener('keydown', ['$event'])
-  onKeydown(event: TypeRef<KeyboardEvent>) {
+  _onKeydown(event: TypeRef<KeyboardEvent>) {
     if (this._datepicker && event.altKey && event.keyCode === DOWN_ARROW) {
-      this._datepicker.openDatepicker();
+      this._datepicker.open();
       event.preventDefault();
     }
   }
 
   @HostListener('input', ['$event.target.value'])
-  onInput(value: string) {
+  _onInput(value: string) {
     let date = this.dateAdapter.parse(value);
     this._lastValueValid = !date || this.dateAdapter.isValid(date);
     date = this._getValidDateOrNull(date);
@@ -357,13 +344,13 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   }
 
   @HostListener('change')
-  onChange() {
+  _onChange() {
     this.dateChange.emit(new SbbDateInputEvent(this, this._elementRef.nativeElement));
   }
 
   /** Handles blur events on the input. */
   @HostListener('blur')
-  onBlur() {
+  _onBlur() {
     // Reformat the input only if we have a valid value.
     if (this.value) {
       this._formatValue(this.value);

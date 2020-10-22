@@ -7,7 +7,6 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   OnChanges,
   OnDestroy,
@@ -68,7 +67,10 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'sbb-chip-input',
+    '[id]': 'id',
     '[class.sbb-chip-input-active]': '!this.disabled && this.focused',
+    '[class.sbb-chip-input-disabled]': 'this.disabled',
+    '[class.sbb-chip-input-required]': 'this.required',
     '[attr.aria-describedby]': 'this._ariaDescribedby',
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbChipInput }],
@@ -88,7 +90,6 @@ export class SbbChipInput extends SbbChipsMixinBase
 
   /** Disables the chip input */
   @Input()
-  @HostBinding('class.sbb-chip-input-disabled')
   get disabled() {
     return this._disabled;
   }
@@ -100,7 +101,6 @@ export class SbbChipInput extends SbbChipsMixinBase
 
   /** Unique id of the element. */
   @Input()
-  @HostBinding('attr.id')
   get id(): string {
     return this._id;
   }
@@ -116,7 +116,6 @@ export class SbbChipInput extends SbbChipsMixinBase
   }
 
   /** Whether filling out the chip-input is required in the form. */
-  @HostBinding('class.sbb-chip-input-required')
   @Input()
   get required(): boolean {
     return this._required;
@@ -127,20 +126,8 @@ export class SbbChipInput extends SbbChipsMixinBase
   }
   private _required = false;
 
-  /**
-   * @docs-private
-   * @deprecated
-   */
-  get _isActive() {
-    return !this.disabled && this._focused;
-  }
-
-  /**
-   * TODO: Prefix with _
-   * @deprecated
-   */
-  @ViewChild('chipInputTextfield', { static: false })
-  inputElement: ElementRef;
+  /** Reference to the input element. */
+  @ViewChild('chipInputTextfield', { static: false }) _inputElement: ElementRef;
 
   /** Value of the chip input control. */
   get value(): any {
@@ -165,15 +152,9 @@ export class SbbChipInput extends SbbChipsMixinBase
    */
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  /**
-   * Whether the select is focused.
-   * @deprecated Setting focused will be removed in the next major release
-   */
+  /** Whether the select is focused. */
   get focused(): boolean {
     return this._focused;
-  }
-  set focused(focused: boolean) {
-    this._focused = focused;
   }
   private _focused = false;
 
@@ -183,11 +164,8 @@ export class SbbChipInput extends SbbChipsMixinBase
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
 
-  /**
-   * TODO: Prefix with _
-   * @deprecated
-   */
-  origin = new SbbAutocompleteOrigin(this._elementRef);
+  /** The element reference for the autocomplete origin. */
+  readonly _origin = new SbbAutocompleteOrigin(this._elementRef);
 
   /** The aria-describedby attribute on the chip-input for improved a11y. */
   _ariaDescribedby: string;
@@ -222,7 +200,7 @@ export class SbbChipInput extends SbbChipsMixinBase
   ngOnInit(): void {
     if (this.autocomplete) {
       this.autocomplete.optionSelected.subscribe((event: SbbAutocompleteSelectedEvent) =>
-        this.onSelect(event.option.value)
+        this._onSelect(event.option.value)
       );
     }
   }
@@ -271,12 +249,8 @@ export class SbbChipInput extends SbbChipsMixinBase
     this.stateChanges.next();
   }
 
-  /**
-   * Adds a given value to the current selected values.
-   * TODO: Prefix with _
-   * @deprecated
-   */
-  onSelect(option: string) {
+  /** Adds a given value to the current selected values. */
+  _onSelect(option: string) {
     if (!option) {
       return;
     } else if (!this.selectionModel.isSelected(option)) {
@@ -284,27 +258,21 @@ export class SbbChipInput extends SbbChipsMixinBase
       this._onTouchedCallback();
       this._propagateChanges();
     }
-    this.inputElement.nativeElement.value = '';
+    this._inputElement.nativeElement.value = '';
   }
 
-  /**
-   * Selects a given value if the action doesn't refer to an autocomplete option.
-   * TODO: Prefix with _
-   * @deprecated
-   */
-  onEnter(option: string) {
+  /** Selects a given value if the action doesn't refer to an autocomplete option. */
+  _onEnter(option: string) {
     if (this.autocomplete) {
       if (!this.autocomplete.options.some((opt) => opt.active)) {
-        this.onSelect(option);
+        this._onSelect(option);
       }
     } else {
-      this.onSelect(option);
+      this._onSelect(option);
     }
   }
 
-  /**
-   * Removes a given value from the current selected values.
-   */
+  /** Removes a given value from the current selected values. */
   deselectOption(option: string) {
     if (this.selectionModel.isSelected(option)) {
       this.selectionModel.deselect(option);
@@ -336,7 +304,7 @@ export class SbbChipInput extends SbbChipsMixinBase
   }
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
   setDescribedByIds(ids: string[]): void {
@@ -345,11 +313,11 @@ export class SbbChipInput extends SbbChipsMixinBase
 
   /**
    * Forward focus if a user clicks on an associated label.
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
   onContainerClick(event: Event): void {
-    this.inputElement.nativeElement.focus();
+    this._inputElement.nativeElement.focus();
   }
 
   /** Emits change event to set the model value. */
@@ -360,9 +328,7 @@ export class SbbChipInput extends SbbChipsMixinBase
     this._changeDetectorRef.markForCheck();
   }
 
-  /**
-   * @docs-private
-   */
+  /** @docs-private */
   _onBlur() {
     this._focused = false;
 
@@ -373,9 +339,7 @@ export class SbbChipInput extends SbbChipsMixinBase
     }
   }
 
-  /**
-   * @docs-private
-   */
+  /** @docs-private */
   _onFocus() {
     if (!this.disabled) {
       this._focused = true;

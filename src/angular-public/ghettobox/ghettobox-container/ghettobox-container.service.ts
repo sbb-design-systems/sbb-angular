@@ -13,61 +13,45 @@ import { SbbGhettoboxContainer } from './ghettobox-container.component';
   providedIn: 'root',
 })
 export class SbbGhettoboxContainerService {
-  /**
-   * Observable you can subscribe to know if sbb-ghettobox-container has been loaded
-   */
+  /** Observable you can subscribe to know if sbb-ghettobox-container has been loaded */
   readonly containerReady = new Subject<void>();
 
   private _containerInstance: SbbGhettoboxContainer | null;
   private _attachedGhettoboxes: SbbGhettoboxRef[] = [];
 
-  /**
-   * Check whether a container is present
-   */
+  /** Check whether a container is present */
   get hasContainerLoaded(): boolean {
     return !!this._containerInstance;
   }
 
-  /**
-   * Get the List of attached ghettoboxes within a container
-   */
+  /** Get the List of attached ghettoboxes within a container */
   get attachedGhettoboxes(): SbbGhettoboxRef[] {
     return this._attachedGhettoboxes;
   }
 
-  /**
-   * Used by the container to pass a reference of its self to the GhettoboxService
-   */
+  /** Used by the container to pass a reference of its self to the GhettoboxService */
   loadContainer(ghettoboxContainer: SbbGhettoboxContainer) {
     this._containerInstance = ghettoboxContainer;
   }
 
-  /**
-   * Used by the container to pass a reference of its self to the GhettoboxService
-   */
+  /** Used by the container to pass a reference of its self to the GhettoboxService */
   loadInitialGhettoboxes(initialGhettoboxes: SbbGhettoboxRef[]) {
     this._attachedGhettoboxes.push(...initialGhettoboxes);
     this.containerReady.next();
   }
 
-  /**
-   * Used by the container to clear its reference in GhettoboxService on container destroy
-   */
+  /** Used by the container to clear its reference in GhettoboxService on container destroy */
   clearContainer() {
     this._containerInstance = null;
   }
 
-  /**
-   * Creates a new ComponentPortal of GhettoboxComponent and attach it to the cdkPortalOutlet
-   */
+  /** Creates a new ComponentPortal of GhettoboxComponent and attach it to the cdkPortalOutlet */
   createGhettobox(ghettobox: SbbGhettoboxConfig): SbbGhettoboxRef {
     this.checkIfContainerIsPresent();
     return this._containerInstance!.createGhettobox(ghettobox);
   }
 
-  /**
-   * Deletes a Ghettobox by ID
-   */
+  /** Deletes a Ghettobox by ID */
   deleteById(ghettoboxId: string) {
     const ghettobox = this._getGhettoboxById(ghettoboxId);
     if (ghettobox) {
@@ -75,16 +59,12 @@ export class SbbGhettoboxContainerService {
     }
   }
 
-  /**
-   * Deletes a Ghettobox by INDEX
-   */
+  /** Deletes a Ghettobox by INDEX */
   deleteByIndex(index: number) {
     this._delete(this._attachedGhettoboxes[index]);
   }
 
-  /**
-   * Clear all ghettoboxes
-   */
+  /** Clear all ghettoboxes */
   clearAll() {
     const attachedGettoboxCopy = this._attachedGhettoboxes.slice();
     attachedGettoboxCopy.forEach((g) => g.delete());

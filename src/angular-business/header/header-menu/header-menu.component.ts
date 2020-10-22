@@ -48,11 +48,6 @@ let nextId = 0;
   },
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  _class = true;
   /** Unique ID to be used by menu trigger's "aria-owns" property. */
   id = `sbb-header-menu-${nextId++}`;
 

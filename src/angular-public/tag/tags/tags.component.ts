@@ -50,24 +50,12 @@ export class SbbTags implements AfterContentInit, OnDestroy {
 
   private _totalAmountSetAsInput = false;
 
-  /**
-   *  Css class associated to sbb-tags.
-   *  @deprecated internal detail
-   */
-  sbbTagsClass = true;
-
   /** Refers to the tags contained. */
   @ContentChildren(forwardRef(() => SbbTag))
   tags: QueryList<SbbTag>;
   /** Refers to the tag always displayed in the filter. */
   @ViewChild('allTag', { static: true })
   allTag: SbbTag;
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  _amount: Observable<number>;
 
   private _destroyed = new Subject();
 

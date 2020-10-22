@@ -33,8 +33,8 @@ import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { SBB_FORM_FIELD } from '@sbb-esta/angular-public/field';
 import type { SbbField } from '@sbb-esta/angular-public/field';
 import {
+  countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  sbbCountGroupLabelsBeforeOption,
   SbbOption,
   SbbOptionSelectionChange,
 } from '@sbb-esta/angular-public/option';
@@ -99,13 +99,14 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     },
   ],
   host: {
-    '[attr.role]': `this.autocompleteDisabled ? null : 'combobox'`,
-    '[attr.autocomplete]': 'this.autocompleteAttribute',
-    '[attr.aria-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen.toString()',
-    '[attr.aria-owns]':
-      'this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id',
-    '[attr.aria-autocomplete]': `this.autocompleteDisabled ? null : 'list'`,
-    '[attr.aria-activedescendant]': 'this.activeOption ? this.activeOption.id : null',
+    class: 'sbb-autocomplete-trigger',
+    '[attr.autocomplete]': 'autocompleteAttribute',
+    '[attr.role]': 'autocompleteDisabled ? null : "combobox"',
+    '[attr.aria-autocomplete]': 'autocompleteDisabled ? null : "list"',
+    '[attr.aria-activedescendant]': '(panelOpen && activeOption) ? activeOption.id : null',
+    '[attr.aria-expanded]': 'autocompleteDisabled ? null : panelOpen.toString()',
+    '[attr.aria-owns]': '(autocompleteDisabled || !panelOpen) ? null : autocomplete?.id',
+    '[attr.aria-haspopup]': '!autocompleteDisabled',
     '[class.sbb-autocomplete-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen',
   },
 })
@@ -148,16 +149,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
 
   private _inputValue = new BehaviorSubject('');
 
-  /**
-   * @Deprecated Internal detail
-   * @docs-private
-   */
-  get role() {
-    return this._autocompleteDisabled ? null : 'combobox';
-  }
-
   /** The autocomplete panel to be attached to this trigger. */
-  // tslint:disable-next-line:no-input-rename
   @Input('sbbAutocomplete')
   get autocomplete(): SbbAutocomplete {
     return this._autocomplete;
@@ -202,9 +194,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
    * `autocomplete` attribute to be set on the input element.
    * @docs-private
    */
-  // tslint:disable-next-line:no-input-rename
-  @Input('autocomplete')
-  autocompleteAttribute = 'off';
+  @Input('autocomplete') autocompleteAttribute = 'off';
 
   /** Stream of autocomplete option selections. */
   readonly optionSelections: Observable<SbbOptionSelectionChange> = defer(() => {
@@ -223,22 +213,6 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
   });
 
   /**
-   * @Deprecated Internal detail
-   * @docs-private
-   */
-  get ariaExpanded(): string | null {
-    return this.autocompleteDisabled ? null : this.panelOpen.toString();
-  }
-
-  /**
-   * @Deprecated Internal detail
-   * @docs-private
-   */
-  get ariaOwns(): string | null {
-    return this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id;
-  }
-
-  /**
    * Event handler for when the window is blurred. Needs to be an
    * arrow function in order to preserve the context.
    */
@@ -251,11 +225,11 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
   };
 
   /** `View -> model callback called when value changes` */
-  onChange: (value: any) => void = () => {};
+  _onChange: (value: any) => void = () => {};
 
   /** `View -> model callback called when autocomplete has been touched` */
   @HostListener('blur')
-  onTouched = () => {};
+  _onTouched = () => {};
 
   /**
    * Whether the autocomplete is disabled. When disabled, the element will
@@ -267,22 +241,6 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
   }
   set autocompleteDisabled(value: boolean) {
     this._autocompleteDisabled = coerceBooleanProperty(value);
-  }
-
-  /**
-   * @Deprecated Internal detail
-   * @docs-private
-   */
-  get ariaAutocomplete(): string | null {
-    return this._autocompleteDisabled ? null : 'list';
-  }
-
-  /**
-   * @Deprecated Internal detail
-   * @docs-private
-   */
-  get activeOptionId() {
-    return this.activeOption ? this.activeOption.id : null;
   }
 
   constructor(
@@ -425,12 +383,12 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
 
   // Implemented as part of ControlValueAccessor.
   registerOnChange(fn: (value: any) => {}): void {
-    this.onChange = fn;
+    this._onChange = fn;
   }
 
   // Implemented as part of ControlValueAccessor.
   registerOnTouched(fn: () => {}) {
-    this.onTouched = fn;
+    this._onTouched = fn;
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -440,7 +398,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
 
   /** @docs-private */
   @HostListener('keydown', ['$event'])
-  handleKeydown(event: TypeRef<KeyboardEvent>): void {
+  _handleKeydown(event: TypeRef<KeyboardEvent>): void {
     const keyCode = event.keyCode;
 
     // Prevent the default action on all escape key presses. This is here primarily to bring IE
@@ -452,7 +410,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
     }
 
     if (this.activeOption && keyCode === ENTER && this.panelOpen) {
-      this.activeOption.selectViaInteraction();
+      this.activeOption._selectViaInteraction();
       this._resetActiveItem();
       event.preventDefault();
     } else if (this.autocomplete) {
@@ -473,7 +431,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
 
   /** @docs-private */
   @HostListener('input', ['$event'])
-  handleInput(event: TypeRef<KeyboardEvent>): void {
+  _handleInput(event: TypeRef<KeyboardEvent>): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
 
@@ -489,7 +447,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
     // See: https://connect.microsoft.com/IE/feedback/details/885747/
     if (this._previousValue !== value) {
       this._previousValue = value;
-      this.onChange(value);
+      this._onChange(value);
       this._inputValue.next(target.value);
 
       if (this._canOpen() && document.activeElement === event.target) {
@@ -498,8 +456,10 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
     }
   }
 
+  // Note: we use `focusin`, as opposed to `focus`, in order to open the panel
+  // a little earlier. This avoids issues where IE delays the focusing of the input.
   @HostListener('focusin')
-  handleFocus(): void {
+  _handleFocus(): void {
     if (!this._canOpenOnNextFocus) {
       this._canOpenOnNextFocus = true;
     } else if (this._canOpen()) {
@@ -519,7 +479,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
    */
   scrollToOption(): void {
     const index = this.autocomplete.keyManager.activeItemIndex || 0;
-    const labelCount = sbbCountGroupLabelsBeforeOption(
+    const labelCount = countGroupLabelsBeforeOption(
       index,
       this.autocomplete.options,
       this.autocomplete.optionGroups
@@ -628,7 +588,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
     if (event && event.source) {
       this._clearPreviousSelectedOption(event.source);
       this._setTriggerValue(event.source.value);
-      this.onChange(event.source.value);
+      this._onChange(event.source.value);
       this._elementRef.nativeElement.focus();
       this.autocomplete.emitSelectEvent(event.source);
     }
@@ -636,9 +596,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
     this.closePanel();
   }
 
-  /**
-   * Clear any previous selected option and emit a selection change event for this option
-   */
+  /** Clear any previous selected option and emit a selection change event for this option */
   private _clearPreviousSelectedOption(skip: SbbOption) {
     this.autocomplete.options.forEach((option) => {
       // tslint:disable-next-line:triple-equals

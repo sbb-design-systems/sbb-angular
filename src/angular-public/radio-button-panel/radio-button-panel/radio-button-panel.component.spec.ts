@@ -28,7 +28,7 @@ class ModelOptionSelectionTestComponent {
   @ViewChildren(SbbRadioButtonPanel) optionSelections: QueryList<SbbRadioButtonPanel>;
 }
 
-describe('RadioButtonPanelComponent', () => {
+describe('SbbRadioButtonPanel', () => {
   let component: SbbRadioButtonPanel;
   let fixture: ComponentFixture<SbbRadioButtonPanel>;
 
@@ -54,7 +54,7 @@ describe('RadioButtonPanelComponent', () => {
   });
 });
 
-describe('RadioButtonPanelComponent using mock component', () => {
+describe('SbbRadioButtonPanel using mock component', () => {
   let modelComponent: ModelOptionSelectionTestComponent;
   let modelComponentFixture: ComponentFixture<ModelOptionSelectionTestComponent>;
 

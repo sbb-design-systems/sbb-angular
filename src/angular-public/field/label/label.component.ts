@@ -18,9 +18,7 @@ import { SBB_FORM_FIELD } from '../form-field-token';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbLabel {
-  /**
-   * Label of a input text
-   */
+  /** Label of a input text */
   @Input()
   get for(): string | null {
     return this._for || this._inputId();

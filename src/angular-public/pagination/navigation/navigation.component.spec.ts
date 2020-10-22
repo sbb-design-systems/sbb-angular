@@ -62,7 +62,7 @@ export class NavigationTestComponent {
   }
 }
 
-describe('NavigationComponent', () => {
+describe('SbbNavigation', () => {
   let component: SbbNavigation;
   let fixture: ComponentFixture<SbbNavigation>;
 
@@ -84,7 +84,7 @@ describe('NavigationComponent', () => {
   });
 });
 
-describe('NavigationComponent behaviour', () => {
+describe('SbbNavigation behaviour', () => {
   let component: NavigationTestComponent;
   let fixture: ComponentFixture<NavigationTestComponent>;
 

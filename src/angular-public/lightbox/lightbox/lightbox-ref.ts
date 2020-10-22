@@ -9,9 +9,7 @@ import { SbbLightboxContainer } from './lightbox-container.component';
 // Counter for unique lightbox ids.
 let uniqueId = 0;
 
-/**
- * Reference to a lightbox opened via the Lightbox service.
- */
+/** Reference to a lightbox opened via the Lightbox service. */
 export class SbbLightboxRef<T, R = any> {
   /** The instance of component opened into the lightbox. */
   componentInstance: T | null;
@@ -45,10 +43,10 @@ export class SbbLightboxRef<T, R = any> {
     location?: Location
   ) {
     // Pass the id along to the container.
-    containerInstance.id = id;
+    containerInstance._id = id;
 
     // Emit when opening animation completes
-    containerInstance.animationStateChanged
+    containerInstance._animationStateChanged
       .pipe(
         filter((event) => event.phaseName === 'done' && event.toState === 'enter'),
         take(1)
@@ -59,7 +57,7 @@ export class SbbLightboxRef<T, R = any> {
       });
 
     // Dispose overlay when closing animation is complete
-    containerInstance.animationStateChanged
+    containerInstance._animationStateChanged
       .pipe(
         filter((event) => event.phaseName === 'done' && event.toState === 'exit'),
         take(1)
@@ -106,7 +104,7 @@ export class SbbLightboxRef<T, R = any> {
     this._result = lightboxResult;
 
     // Transition the backdrop in parallel to the lightbox.
-    this.containerInstance.animationStateChanged
+    this.containerInstance._animationStateChanged
       .pipe(
         filter((event) => event.phaseName === 'start'),
         take(1)
@@ -117,33 +115,25 @@ export class SbbLightboxRef<T, R = any> {
         this._overlayRef.detachBackdrop();
       });
 
-    this.containerInstance.startExitAnimation();
+    this.containerInstance._startExitAnimation();
   }
 
-  /**
-   * Gets an observable that is notified when the lightbox is finished opening.
-   */
+  /** Gets an observable that is notified when the lightbox is finished opening. */
   afterOpen(): Observable<void> {
     return this._afterOpen.asObservable();
   }
 
-  /**
-   * Gets an observable that is notified when the lightbox is finished closing.
-   */
+  /** Gets an observable that is notified when the lightbox is finished closing. */
   afterClosed(): Observable<R | undefined> {
     return this._afterClosed.asObservable();
   }
 
-  /**
-   * Gets an observable that is notified when the lightbox has started closing.
-   */
+  /** Gets an observable that is notified when the lightbox has started closing. */
   beforeClose(): Observable<R | undefined> {
     return this._beforeClose.asObservable();
   }
 
-  /**
-   * Gets an observable that emits when keydown events are targeted on the overlay.
-   */
+  /** Gets an observable that emits when keydown events are targeted on the overlay. */
   keydownEvents(): Observable<KeyboardEvent> {
     return this._overlayRef.keydownEvents();
   }

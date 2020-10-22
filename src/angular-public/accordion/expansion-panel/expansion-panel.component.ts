@@ -70,13 +70,6 @@ let uniqueId = 0;
 })
 export class SbbExpansionPanel extends CdkAccordionItem
   implements AfterContentInit, OnChanges, OnDestroy {
-  /** @deprecated internal detail */
-  sbbExpansionPanelClass = true;
-  /** @deprecated internal detail */
-  get expandedPanelClass() {
-    return this.expanded;
-  }
-
   /** Whether the toggle indicator should be hidden. */
   @Input()
   get hideToggle(): boolean {
@@ -98,34 +91,17 @@ export class SbbExpansionPanel extends CdkAccordionItem
   /** Optionally defined accordion the expansion panel belongs to. */
   accordion: SbbAccordion;
 
-  /**
-   * Content that will be rendered lazily.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  @ContentChild(SbbExpansionPanelContent)
-  lazyContent: SbbExpansionPanelContent;
+  /** Content that will be rendered lazily. */
+  @ContentChild(SbbExpansionPanelContent) _lazyContent: SbbExpansionPanelContent;
 
-  /**
-   * Element containing the panel's user-provided content.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  @ViewChild('body', { static: true }) body: ElementRef<HTMLElement>;
+  /** Element containing the panel's user-provided content. */
+  @ViewChild('body') _body: ElementRef<HTMLElement>;
 
-  /**
-   * Portal holding the user's content.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  portal: TemplatePortal;
+  /** Portal holding the user's content. */
+  _portal: TemplatePortal;
 
-  /**
-   * ID for the associated header element. Used for a11y labelling.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  headerId = `sbb-expansion-panel-header-${uniqueId++}`;
+  /** ID for the associated header element. Used for a11y labelling. */
+  _headerId = `sbb-expansion-panel-header-${uniqueId++}`;
 
   /** Stream of body animation done events. */
   _bodyAnimationDone = new Subject<AnimationEvent>();
@@ -162,26 +138,37 @@ export class SbbExpansionPanel extends CdkAccordionItem
       });
   }
 
-  /**
-   * Gets the expanded state string.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  getExpandedState(): SbbExpansionPanelState {
+  /** Gets the expanded state string. */
+  _getExpandedState(): SbbExpansionPanelState {
     return this.expanded ? 'expanded' : 'collapsed';
   }
 
+  /** Toggles the expanded state of the expansion panel. */
+  toggle(): void {
+    this.expanded = !this.expanded;
+  }
+
+  /** Sets the expanded state of the expansion panel to false. */
+  close(): void {
+    this.expanded = false;
+  }
+
+  /** Sets the expanded state of the expansion panel to true. */
+  open(): void {
+    this.expanded = true;
+  }
+
   ngAfterContentInit() {
-    if (this.lazyContent) {
+    if (this._lazyContent) {
       // Render the content as soon as the panel becomes open.
       this.opened
         .pipe(
           startWith(null!),
-          filter(() => this.expanded && !this.portal),
+          filter(() => this.expanded && !this._portal),
           take(1)
         )
         .subscribe(() => {
-          this.portal = new TemplatePortal(this.lazyContent._template, this._viewContainerRef);
+          this._portal = new TemplatePortal(this._lazyContent._template, this._viewContainerRef);
         });
     }
   }
@@ -196,18 +183,11 @@ export class SbbExpansionPanel extends CdkAccordionItem
     this._inputChanges.complete();
   }
 
-  /** @deprecated No longer used */
-  bodyAnimation() {}
-
-  /**
-   * Checks whether the expansion panel's content contains the currently-focused element.
-   * @deprecated internal detail
-   * TODO: Prefix with _
-   */
-  containsFocus(): boolean {
-    if (this.body && this._document) {
+  /** Checks whether the expansion panel's content contains the currently-focused element. */
+  _containsFocus(): boolean {
+    if (this._body && this._document) {
       const focusedElement = this._document.activeElement;
-      const bodyElement = this.body.nativeElement;
+      const bodyElement = this._body.nativeElement;
       return focusedElement === bodyElement || bodyElement.contains(focusedElement);
     }
 

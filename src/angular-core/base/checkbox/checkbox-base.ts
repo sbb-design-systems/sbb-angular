@@ -6,7 +6,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   ViewChild,
@@ -30,7 +29,7 @@ export abstract class SbbCheckboxBase<TChange extends SbbCheckboxChange = SbbChe
   implements ControlValueAccessor {
   private _uniqueId: string;
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
-  @Input() @HostBinding() id: string;
+  @Input() id: string;
   /** Id for the inner input field. */
   get inputId() {
     return `${this.id || this._uniqueId}-input`;
@@ -68,9 +67,7 @@ export abstract class SbbCheckboxBase<TChange extends SbbCheckboxChange = SbbChe
     }
   }
   private _checked = false;
-  /**
-   * Whether the checkbox is disabled.
-   */
+  /** Whether the checkbox is disabled. */
   @Input()
   get disabled() {
     return this._disabled;
@@ -84,10 +81,6 @@ export abstract class SbbCheckboxBase<TChange extends SbbCheckboxChange = SbbChe
     }
   }
   private _disabled = false;
-  /** @docs-private */
-  @HostBinding('class.sbb-checkbox') checkboxClass = true;
-  /** @docs-private */
-  @HostBinding('attr.tabindex') _tabIndex = null;
   /** Event emitted when the checkbox's `checked` value changes. */
   @Output() readonly change = new EventEmitter<TChange>();
   /** @docs-private */
@@ -122,30 +115,22 @@ export abstract class SbbCheckboxBase<TChange extends SbbCheckboxChange = SbbChe
     });
   }
 
-  /**
-   * Sets the value in input in the checkbox field
-   */
+  /** Sets the value in input in the checkbox field */
   writeValue(value: any): void {
     this.checked = !!value;
   }
 
-  /**
-   * Method that records the change on a checkbox field
-   */
+  /** Method that records the change on a checkbox field */
   registerOnChange(fn: (_: any) => {}): void {
     this._onChange = fn;
   }
 
-  /**
-   * Method that records the touch on a checkbox field
-   */
+  /** Method that records the touch on a checkbox field */
   registerOnTouched(fn: () => {}): void {
     this._onTouched = fn;
   }
 
-  /**
-   * Method that sets disabled a checkbox
-   */
+  /** Method that sets disabled a checkbox */
   setDisabledState(disabled: boolean): void {
     this.disabled = disabled;
   }

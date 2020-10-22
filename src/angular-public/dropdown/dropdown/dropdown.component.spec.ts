@@ -73,7 +73,7 @@ export class DropdownTestComponent {
   }
 }
 
-describe('DropdownComponent', () => {
+describe('SbbDropdown', () => {
   let component: SbbDropdown;
   let fixture: ComponentFixture<SbbDropdown>;
 
@@ -96,7 +96,7 @@ describe('DropdownComponent', () => {
   });
 });
 
-describe('DropdownComponent test', () => {
+describe('SbbDropdown test', () => {
   let component: DropdownTestComponent;
   let fixture: ComponentFixture<DropdownTestComponent>;
   let location: Location = null!;

@@ -14,7 +14,7 @@ class TestLinkComponent {
   icon: 'arrow' | 'download' = 'arrow';
 }
 
-describe('LinkComponent', () => {
+describe('SbbLink', () => {
   let component: TestLinkComponent;
   let fixture: ComponentFixture<TestLinkComponent>;
 

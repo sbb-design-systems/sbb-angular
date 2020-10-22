@@ -2,14 +2,7 @@ import { FocusKeyManager } from '@angular/cdk/a11y';
 import { CdkAccordion } from '@angular/cdk/accordion';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { END, HOME } from '@angular/cdk/keycodes';
-import {
-  AfterContentInit,
-  ContentChildren,
-  Directive,
-  HostBinding,
-  Input,
-  QueryList,
-} from '@angular/core';
+import { AfterContentInit, ContentChildren, Directive, Input, QueryList } from '@angular/core';
 
 import { SbbExpansionPanelHeader } from '../expansion-panel-header/expansion-panel-header.component';
 
@@ -25,12 +18,13 @@ import { SBB_ACCORDION } from './accordion-token';
       useExisting: SbbAccordion,
     },
   ],
+  host: {
+    class: 'sbb-accordion',
+  },
 })
 export class SbbAccordion extends CdkAccordion implements AfterContentInit {
   private _keyManager: FocusKeyManager<SbbExpansionPanelHeader>;
-  /**
-   * Class property that refers to the headers of the panels of the accordion.
-   */
+  /** Class property that refers to the headers of the panels of the accordion. */
   @ContentChildren(SbbExpansionPanelHeader, { descendants: true })
   headers: QueryList<SbbExpansionPanelHeader>;
 
@@ -43,11 +37,6 @@ export class SbbAccordion extends CdkAccordion implements AfterContentInit {
     this._hideToggle = coerceBooleanProperty(show);
   }
   private _hideToggle = false;
-
-  /**
-   * Class property that refers to the attribute class of the accordion.
-   */
-  @HostBinding('class.sbb-accordion') sbbAccordionClass = true;
 
   ngAfterContentInit() {
     this._keyManager = new FocusKeyManager(this.headers).withWrap();
@@ -69,9 +58,7 @@ export class SbbAccordion extends CdkAccordion implements AfterContentInit {
       this._keyManager.onKeydown(event);
     }
   }
-  /**
-   * Handles a event coming on a header of a panel associated at a specific item.
-   */
+  /** Handles a event coming on a header of a panel associated at a specific item. */
   handleHeaderFocus(header: SbbExpansionPanelHeader) {
     this._keyManager.updateActiveItem(header);
   }
