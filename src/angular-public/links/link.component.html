@@ -1,0 +1,27 @@
+<ng-container *ngIf="_initialIconVisible" [ngSwitch]="icon">
+  <sbb-icon
+    *ngSwitchCase="'arrow'"
+    svgIcon="kom:arrow-right-small"
+    class="sbb-link-icon sbb-link-icon-left"
+  ></sbb-icon>
+  <sbb-icon
+    *ngSwitchCase="'download'"
+    svgIcon="kom:download-small"
+    class="sbb-link-icon sbb-link-icon-left"
+  ></sbb-icon>
+</ng-container>
+
+<ng-content></ng-content>
+
+<ng-container [ngSwitch]="icon">
+  <sbb-icon
+    *ngSwitchCase="'arrow'"
+    svgIcon="kom:arrow-right-small"
+    class="sbb-link-icon sbb-link-icon-right"
+  ></sbb-icon>
+  <sbb-icon
+    *ngSwitchCase="'download'"
+    svgIcon="kom:download-small"
+    class="sbb-link-icon sbb-link-icon-right"
+  ></sbb-icon>
+</ng-container>

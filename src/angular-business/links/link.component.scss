@@ -1,0 +1,29 @@
+@import '../../angular-core/styles/common';
+
+.sbb-link-business {
+  display: inline-block;
+  hyphens: auto;
+  padding-right: pxToRem(70);
+  position: relative;
+  text-decoration: none;
+  word-break: break-word;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorCallToActionHover;
+  }
+}
+
+.sbb-link-business-icon.sbb-icon {
+  position: absolute;
+  width: toPx(24);
+  height: toPx(24);
+  margin-left: toPx(8);
+  pointer-events: none;
+  top: 50%;
+  transform: translate(0px, -50%);
+
+  .sbb-link & {
+    right: 0;
+  }
+}
