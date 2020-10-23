@@ -173,8 +173,10 @@ export class SbbChipInput extends SbbChipsMixinBase
   /** Unique id for this input. */
   private _uniqueId = `sbb-chip-input-${nextId++}`;
 
-  private _onTouchedCallback: () => void = () => {};
-  private _onChangeCallback: (_: any) => void = () => {};
+  /** `View -> model callback called when value changes` */
+  private _onTouched: () => void = () => {};
+  /** `View -> model callback called when chip input has been touched` */
+  private _onChange: (_: any) => void = () => {};
 
   constructor(
     @Self() @Optional() public ngControl: NgControl,
@@ -255,7 +257,7 @@ export class SbbChipInput extends SbbChipsMixinBase
       return;
     } else if (!this.selectionModel.isSelected(option)) {
       this.selectionModel.select(option);
-      this._onTouchedCallback();
+      this._onTouched();
       this._propagateChanges();
     }
     this._inputElement.nativeElement.value = '';
@@ -276,7 +278,7 @@ export class SbbChipInput extends SbbChipsMixinBase
   deselectOption(option: string) {
     if (this.selectionModel.isSelected(option)) {
       this.selectionModel.deselect(option);
-      this._onTouchedCallback();
+      this._onTouched();
       this._propagateChanges();
     }
   }
@@ -289,7 +291,7 @@ export class SbbChipInput extends SbbChipsMixinBase
    * @param fn Callback to be triggered when the value changes.
    */
   registerOnChange(fn: any): void {
-    this._onChangeCallback = fn;
+    this._onChange = fn;
   }
 
   /**
@@ -300,7 +302,7 @@ export class SbbChipInput extends SbbChipsMixinBase
    * @param fn Callback to be triggered when the component has been touched.
    */
   registerOnTouched(fn: any): void {
-    this._onTouchedCallback = fn;
+    this._onTouched = fn;
   }
 
   /**
@@ -323,7 +325,7 @@ export class SbbChipInput extends SbbChipsMixinBase
   /** Emits change event to set the model value. */
   private _propagateChanges(): void {
     this._value = this.selectionModel.selected;
-    this._onChangeCallback(this.selectionModel.selected);
+    this._onChange(this.selectionModel.selected);
     this.valueChange.emit(new SbbChipInputChange(this, this._value));
     this._changeDetectorRef.markForCheck();
   }
@@ -333,7 +335,7 @@ export class SbbChipInput extends SbbChipsMixinBase
     this._focused = false;
 
     if (!this.disabled) {
-      this._onTouchedCallback();
+      this._onTouched();
       this._changeDetectorRef.markForCheck();
       this.stateChanges.next();
     }

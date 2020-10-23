@@ -126,17 +126,11 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
   /** Whether the radio group is required. */
   private _required = false;
 
-  /**
-   * The method to be called in order to update ngModel
-   * @docs-private
-   */
+  /** `View -> model callback called when value changes` */
   _controlValueAccessorChangeFn: (value: any) => void = () => {};
 
-  /**
-   * onTouch function registered via registerOnTouch (ControlValueAccessor).
-   * @docs-private
-   */
-  onTouched: () => any = () => {};
+  /** `View -> model callback called when radio group has been touched` */
+  _onTouched: () => any = () => {};
 
   constructor(private _changeDetector: ChangeDetectorRef) {}
 
@@ -162,8 +156,8 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
    * radio buttons upon their blur.
    */
   _touch() {
-    if (this.onTouched) {
-      this.onTouched();
+    if (this._onTouched) {
+      this._onTouched();
     }
   }
 
@@ -202,7 +196,7 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
    * @param fn Callback to be registered.
    */
   registerOnTouched(fn: any) {
-    this.onTouched = fn;
+    this._onTouched = fn;
   }
 
   /**

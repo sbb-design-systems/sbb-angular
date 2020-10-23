@@ -198,8 +198,10 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   /** Whether the last value set on the input was valid. */
   private _lastValueValid = false;
 
-  onTouched = () => {};
+  /** `View -> model callback called when date input has been touched` */
+  _onTouched = () => {};
 
+  /** `View -> model callback called when value changes` */
   private _cvaOnChange: (value: any) => void = () => {};
 
   private _validatorOnChange = () => {};
@@ -269,7 +271,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     this._datepickerSubscription = this._datepicker.selectedChanged.subscribe((selected: D) => {
       this.value = selected;
       this._cvaOnChange(selected);
-      this.onTouched();
+      this._onTouched();
       this.dateInput.emit(new SbbDateInputEvent(this, this._elementRef.nativeElement));
       this.dateChange.emit(new SbbDateInputEvent(this, this._elementRef.nativeElement));
     });
@@ -311,7 +313,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
 
   // Implemented as part of ControlValueAccessor.
   registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
+    this._onTouched = fn;
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -356,7 +358,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
       this._formatValue(this.value);
     }
 
-    this.onTouched();
+    this._onTouched();
     this.inputBlurred.emit();
   }
 
