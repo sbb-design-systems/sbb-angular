@@ -1,12 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnInit,
-  Optional,
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnInit, Optional } from '@angular/core';
 
 import { SbbDialogHelperService } from './dialog-helper.service';
 import { SbbDialogRef } from './dialog-ref';

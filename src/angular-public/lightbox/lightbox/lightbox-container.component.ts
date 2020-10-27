@@ -15,7 +15,6 @@ import {
   ElementRef,
   EmbeddedViewRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Inject,
   Optional,

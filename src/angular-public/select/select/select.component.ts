@@ -36,7 +36,6 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Inject,
   InjectionToken,

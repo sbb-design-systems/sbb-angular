@@ -4,7 +4,6 @@ import {
   Component,
   Directive,
   ElementRef,
-  HostBinding,
   HostListener,
   Input,
   OnInit,

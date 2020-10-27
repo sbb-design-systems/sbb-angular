@@ -13,7 +13,6 @@ import {
   Component,
   DoCheck,
   ElementRef,
-  HostBinding,
   HostListener,
   Input,
   NgZone,

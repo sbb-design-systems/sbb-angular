@@ -8,7 +8,6 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  HostBinding,
   HostListener,
   Inject,
   Input,

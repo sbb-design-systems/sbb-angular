@@ -13,7 +13,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Inject,
   InjectionToken,

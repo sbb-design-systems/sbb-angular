@@ -13,7 +13,6 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Inject,
   Input,
   NgZone,
