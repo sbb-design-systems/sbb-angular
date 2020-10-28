@@ -50,8 +50,8 @@ export class SbbMonthView<D> implements AfterContentInit {
   set activeDate(value: D) {
     const oldActiveDate = this._activeDate;
     const validDate =
-      this._getValidDateOrNull(this.dateAdapter.deserialize(value)) || this.dateAdapter.today();
-    this._activeDate = this.dateAdapter.clampDate(validDate, this.minDate, this.maxDate);
+      this._getValidDateOrNull(this._dateAdapter.deserialize(value)) || this._dateAdapter.today();
+    this._activeDate = this._dateAdapter.clampDate(validDate, this.minDate, this.maxDate);
     if (!this._hasSameMonthAndYear(oldActiveDate, this._activeDate)) {
       this.init();
     }
@@ -64,7 +64,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     return this._selected;
   }
   set selected(value: D | null) {
-    this._selected = this._getValidDateOrNull(this.dateAdapter.deserialize(value));
+    this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
     this.selectedDate = this._getDateInCurrentMonth(this._selected);
   }
   private _selected: D | null;
@@ -75,7 +75,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     return this._minDate;
   }
   set minDate(value: D | null) {
-    this._minDate = this._getValidDateOrNull(this.dateAdapter.deserialize(value));
+    this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
   private _minDate: D | null;
 
@@ -85,7 +85,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     return this._maxDate;
   }
   set maxDate(value: D | null) {
-    this._maxDate = this._getValidDateOrNull(this.dateAdapter.deserialize(value));
+    this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
   private _maxDate: D | null;
 
@@ -129,13 +129,13 @@ export class SbbMonthView<D> implements AfterContentInit {
   dateRange: SbbDateRange<D> | null = null;
 
   constructor(
-    @Optional() public dateAdapter: SbbDateAdapter<D>,
+    @Optional() public _dateAdapter: SbbDateAdapter<D>,
     @Inject(LOCALE_ID) public locale: string,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
     @Optional() @Inject(SBB_DATEPICKER) datepicker: TypeRef<SbbDatepicker<D>>
   ) {
-    if (!this.dateAdapter) {
+    if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }
     if (!this._dateFormats) {
@@ -163,9 +163,9 @@ export class SbbMonthView<D> implements AfterContentInit {
       );
     }
 
-    const firstDayOfWeek = this.dateAdapter.getFirstDayOfWeek();
-    const narrowWeekdays = this.dateAdapter.getDayOfWeekNames('narrow');
-    const longWeekdays = this.dateAdapter.getDayOfWeekNames('long');
+    const firstDayOfWeek = this._dateAdapter.getFirstDayOfWeek();
+    const narrowWeekdays = this._dateAdapter.getDayOfWeekNames('narrow');
+    const longWeekdays = this._dateAdapter.getDayOfWeekNames('long');
 
     // Rotate the labels for days of the week based on the configured first day of the week.
     const weekdays = longWeekdays.map((long, i) => {
@@ -173,7 +173,7 @@ export class SbbMonthView<D> implements AfterContentInit {
     });
     this.weekdays = weekdays.slice(firstDayOfWeek).concat(weekdays.slice(0, firstDayOfWeek));
 
-    this._activeDate = this.dateAdapter.today();
+    this._activeDate = this._dateAdapter.today();
   }
 
   ngAfterContentInit() {
@@ -183,9 +183,9 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** Handles when a new date is selected. */
   dateSelected(date: number) {
     if (this.selectedDate !== date) {
-      const selectedYear = this.dateAdapter.getYear(this.activeDate);
-      const selectedMonth = this.dateAdapter.getMonth(this.activeDate);
-      const selectedDate = this.dateAdapter.createDate(selectedYear, selectedMonth, date);
+      const selectedYear = this._dateAdapter.getYear(this.activeDate);
+      const selectedMonth = this._dateAdapter.getMonth(this.activeDate);
+      const selectedDate = this._dateAdapter.createDate(selectedYear, selectedMonth, date);
 
       this.selectedChange.emit(selectedDate);
     }
@@ -199,43 +199,43 @@ export class SbbMonthView<D> implements AfterContentInit {
 
     switch (event.keyCode) {
       case LEFT_ARROW:
-        this.activeDate = this.dateAdapter.addCalendarDays(this._activeDate, -1);
+        this.activeDate = this._dateAdapter.addCalendarDays(this._activeDate, -1);
         break;
       case RIGHT_ARROW:
-        this.activeDate = this.dateAdapter.addCalendarDays(this._activeDate, 1);
+        this.activeDate = this._dateAdapter.addCalendarDays(this._activeDate, 1);
         break;
       case UP_ARROW:
-        this.activeDate = this.dateAdapter.addCalendarDays(this._activeDate, -7);
+        this.activeDate = this._dateAdapter.addCalendarDays(this._activeDate, -7);
         break;
       case DOWN_ARROW:
-        this.activeDate = this.dateAdapter.addCalendarDays(this._activeDate, 7);
+        this.activeDate = this._dateAdapter.addCalendarDays(this._activeDate, 7);
         break;
       case HOME:
-        this.activeDate = this.dateAdapter.addCalendarDays(
+        this.activeDate = this._dateAdapter.addCalendarDays(
           this._activeDate,
-          1 - this.dateAdapter.getDate(this._activeDate)
+          1 - this._dateAdapter.getDate(this._activeDate)
         );
         break;
       case END:
-        this.activeDate = this.dateAdapter.addCalendarDays(
+        this.activeDate = this._dateAdapter.addCalendarDays(
           this._activeDate,
-          this.dateAdapter.getNumDaysInMonth(this._activeDate) -
-            this.dateAdapter.getDate(this._activeDate)
+          this._dateAdapter.getNumDaysInMonth(this._activeDate) -
+            this._dateAdapter.getDate(this._activeDate)
         );
         break;
       case PAGE_UP:
         this.activeDate = event.altKey
-          ? this.dateAdapter.addCalendarYears(this._activeDate, -1)
-          : this.dateAdapter.addCalendarMonths(this._activeDate, -1);
+          ? this._dateAdapter.addCalendarYears(this._activeDate, -1)
+          : this._dateAdapter.addCalendarMonths(this._activeDate, -1);
         break;
       case PAGE_DOWN:
         this.activeDate = event.altKey
-          ? this.dateAdapter.addCalendarYears(this._activeDate, 1)
-          : this.dateAdapter.addCalendarMonths(this._activeDate, 1);
+          ? this._dateAdapter.addCalendarYears(this._activeDate, 1)
+          : this._dateAdapter.addCalendarMonths(this._activeDate, 1);
         break;
       case ENTER:
         if (!this.dateFilter || this.dateFilter(this._activeDate)) {
-          this.dateSelected(this.dateAdapter.getDate(this._activeDate));
+          this.dateSelected(this._dateAdapter.getDate(this._activeDate));
           this.userSelection.emit();
           // Prevent unexpected default actions such as form submission.
           event.preventDefault();
@@ -246,7 +246,7 @@ export class SbbMonthView<D> implements AfterContentInit {
         return;
     }
 
-    if (this.dateAdapter.compareDate(oldActiveDate, this.activeDate)) {
+    if (this._dateAdapter.compareDate(oldActiveDate, this.activeDate)) {
       this.activeDateChange.emit(this.activeDate);
     }
 
@@ -258,20 +258,20 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** Initializes this month view. */
   init() {
     this.selectedDate = this._getDateInCurrentMonth(this.selected);
-    this.todayDate = this._getDateInCurrentMonth(this.dateAdapter.today());
-    this.monthLabel = this.dateAdapter
+    this.todayDate = this._getDateInCurrentMonth(this._dateAdapter.today());
+    this.monthLabel = this._dateAdapter
       .getMonthNames('short')
-      [this.dateAdapter.getMonth(this.activeDate)].toLocaleUpperCase();
+      [this._dateAdapter.getMonth(this.activeDate)].toLocaleUpperCase();
 
-    const firstOfMonth = this.dateAdapter.createDate(
-      this.dateAdapter.getYear(this.activeDate),
-      this.dateAdapter.getMonth(this.activeDate),
+    const firstOfMonth = this._dateAdapter.createDate(
+      this._dateAdapter.getYear(this.activeDate),
+      this._dateAdapter.getMonth(this.activeDate),
       1
     );
     this.firstWeekOffset =
       (DAYS_PER_WEEK +
-        this.dateAdapter.getDayOfWeek(firstOfMonth) -
-        this.dateAdapter.getFirstDayOfWeek()) %
+        this._dateAdapter.getDayOfWeek(firstOfMonth) -
+        this._dateAdapter.getFirstDayOfWeek()) %
       DAYS_PER_WEEK;
 
     this._createWeekCells();
@@ -285,21 +285,21 @@ export class SbbMonthView<D> implements AfterContentInit {
 
   /** Creates MatCalendarCells for the dates in this month. */
   private _createWeekCells() {
-    const daysInMonth = this.dateAdapter.getNumDaysInMonth(this.activeDate);
-    const dateNames = this.dateAdapter.getDateNames();
+    const daysInMonth = this._dateAdapter.getNumDaysInMonth(this.activeDate);
+    const dateNames = this._dateAdapter.getDateNames();
     this.weeks = [[]];
     for (let i = 0, cell = this.firstWeekOffset; i < daysInMonth; i++, cell++) {
       if (cell === DAYS_PER_WEEK) {
         this.weeks.push([]);
         cell = 0;
       }
-      const date = this.dateAdapter.createDate(
-        this.dateAdapter.getYear(this.activeDate),
-        this.dateAdapter.getMonth(this.activeDate),
+      const date = this._dateAdapter.createDate(
+        this._dateAdapter.getYear(this.activeDate),
+        this._dateAdapter.getMonth(this.activeDate),
         i + 1
       );
       const enabled = this._shouldEnableDate(date);
-      const ariaLabel = this.dateAdapter.format(date, this._dateFormats.dateA11yLabel);
+      const ariaLabel = this._dateAdapter.format(date, this._dateFormats.dateA11yLabel);
       const rangeBackground = this._shouldApplyRangeBackground(date);
       this.weeks[this.weeks.length - 1].push(
         new SbbCalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground)
@@ -312,11 +312,11 @@ export class SbbMonthView<D> implements AfterContentInit {
       this.dateRange &&
       this.dateRange.start &&
       this.dateRange.end &&
-      !this.dateAdapter.sameDate(this.dateRange.start, this.dateRange.end)
+      !this._dateAdapter.sameDate(this.dateRange.start, this.dateRange.end)
     ) {
       if (
-        this.dateAdapter.compareDate(date, this.dateRange.start) > 0 &&
-        this.dateAdapter.compareDate(date, this.dateRange.end) < 0
+        this._dateAdapter.compareDate(date, this.dateRange.start) > 0 &&
+        this._dateAdapter.compareDate(date, this.dateRange.end) < 0
       ) {
         return 'range';
       }
@@ -326,9 +326,9 @@ export class SbbMonthView<D> implements AfterContentInit {
   }
 
   private _isRangeLimit(date: D) {
-    if (this.dateAdapter.compareDate(date, this.dateRange!.start) === 0) {
+    if (this._dateAdapter.compareDate(date, this.dateRange!.start) === 0) {
       return 'begin';
-    } else if (this.dateAdapter.compareDate(date, this.dateRange!.end) === 0) {
+    } else if (this._dateAdapter.compareDate(date, this.dateRange!.end) === 0) {
       return 'end';
     } else {
       return null;
@@ -340,8 +340,8 @@ export class SbbMonthView<D> implements AfterContentInit {
     return (
       !!date &&
       (!this.dateFilter || this.dateFilter(date)) &&
-      (!this.minDate || this.dateAdapter.compareDate(date, this.minDate) >= 0) &&
-      (!this.maxDate || this.dateAdapter.compareDate(date, this.maxDate) <= 0)
+      (!this.minDate || this._dateAdapter.compareDate(date, this.minDate) >= 0) &&
+      (!this.maxDate || this._dateAdapter.compareDate(date, this.maxDate) <= 0)
     );
   }
 
@@ -351,7 +351,7 @@ export class SbbMonthView<D> implements AfterContentInit {
    */
   private _getDateInCurrentMonth(date: D | null): number | null {
     return date && this._hasSameMonthAndYear(date, this.activeDate)
-      ? this.dateAdapter.getDate(date)
+      ? this._dateAdapter.getDate(date)
       : null;
   }
 
@@ -360,8 +360,8 @@ export class SbbMonthView<D> implements AfterContentInit {
     return !!(
       d1 &&
       d2 &&
-      this.dateAdapter.getMonth(d1) === this.dateAdapter.getMonth(d2) &&
-      this.dateAdapter.getYear(d1) === this.dateAdapter.getYear(d2)
+      this._dateAdapter.getMonth(d1) === this._dateAdapter.getMonth(d2) &&
+      this._dateAdapter.getYear(d1) === this._dateAdapter.getYear(d2)
     );
   }
 
@@ -370,6 +370,6 @@ export class SbbMonthView<D> implements AfterContentInit {
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
   private _getValidDateOrNull(obj: any): D | null {
-    return this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj) ? obj : null;
+    return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
 }

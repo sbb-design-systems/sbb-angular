@@ -7,6 +7,7 @@ import {
   EventEmitter,
   HostListener,
   InjectionToken,
+  Input,
   Output,
 } from '@angular/core';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
@@ -72,15 +73,15 @@ export function getDropdownItemScrollPosition(
 })
 export class SbbDropdownItem implements Highlightable {
   /** Identifier of a dropdown item. */
-  id = 'sbb-dropdown-item-' + nextId++;
+  @Input() id = `sbb-dropdown-item-${nextId++}`;
 
-  /** Disable a specific dropdown item. */
+  /** Whether this dropdown item is disabled. */
   disabled? = false;
 
-  /** Css class on a dropdown item selected. */
+  /** Whether this dropdown item is selected. */
   selected = false;
 
-  /** Css class associated to a dropdown item when it is active. */
+  /** Whether this dropdown item is active. */
   active = false;
 
   /** Event generated to click on a specific dropdown item. */

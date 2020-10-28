@@ -36,7 +36,7 @@ export function mixinErrorState<T extends Constructor<HasErrorState>>(
 
     /**
      * Stream that emits whenever the state of the input changes such that the wrapping
-     * `MatFormField` needs to run change detection.
+     * `SbbField` needs to run change detection.
      */
     readonly stateChanges = new Subject<void>();
 

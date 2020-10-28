@@ -44,7 +44,7 @@ let counter = 0;
     class: 'sbb-ghettobox-outer-wrapper',
     tabindex: '-1',
     '[attr.id]': 'id',
-    '[attr.hidden]': '!this.visible',
+    '[attr.hidden]': '!this.visible ? true : null',
     '[attr.aria-hidden]': '!this.visible ? true : null',
     '[attr.role]': 'this.visible ? "alert" : null',
   },

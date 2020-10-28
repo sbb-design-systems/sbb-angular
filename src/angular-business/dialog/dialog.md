@@ -26,11 +26,11 @@ The dialog can be used to seek confirmation as see below
 
 ### Sharing data with the Dialog component
 
-A dialog is opened by calling the `openDialog` method and if you want to share data with your dialog,
+A dialog is opened by calling the `open` method and if you want to share data with your dialog,
 you can use the `data` option to pass information to the dialog component.
 
 ```ts
-const dialogRef = this.dialog.openDialog(DialogShowcaseExampleContentComponent, {
+const dialogRef = this.dialog.open(DialogShowcaseExampleContentComponent, {
   data: { name: this.name, animal: this.animal },
 });
 ```
@@ -66,7 +66,7 @@ dialogRef.afterClosed().subscribe((result) => {
 
 ### Dialog with content loaded from Template
 
-You can use `Dialog` to load content from a TemplateRef by calling `openDialog` method and
+You can use `Dialog` to load content from a TemplateRef by calling `open` method and
 passing it the template reference:
 
 ```ts
@@ -79,7 +79,7 @@ export class DialogShowcaseExample3Component {
   constructor(public dialog: Dialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.openDialog(this.sampleDialogTemplate);
+    const dialogRef = this.dialog.open(this.sampleDialogTemplate);
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);

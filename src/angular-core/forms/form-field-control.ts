@@ -6,7 +6,7 @@ export abstract class SbbFormFieldControl<TValue> {
   /** The value of the control. */
   value: TValue | null;
   /**
-   * Stream that emits whenever the state of the control changes such that the parent `MatFormField`
+   * Stream that emits whenever the state of the control changes such that the parent `SbbField`
    * needs to run change detection.
    */
   readonly stateChanges: Observable<void>;

@@ -4,7 +4,7 @@ import { Directive } from '@angular/core';
   selector: 'sbb-textexpand-expanded',
   host: {
     class: 'sbb-textexpand-expanded',
-    '[attr.hidden]': '_hidden',
+    '[attr.hidden]': '_hidden ? true : null',
   },
 })
 export class SbbTextexpandExpanded {

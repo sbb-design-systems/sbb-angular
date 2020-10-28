@@ -27,11 +27,6 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
         },
         {
           replace: 'open',
-          replaceWith: 'open',
-          whitelist: { classes: ['SbbTooltipBase', 'SbbTooltip', 'SbbTooltipComponent'] },
-        },
-        {
-          replace: 'open',
           replaceWith: 'isOpen',
           whitelist: { classes: ['SbbAutocomplete'] },
         },
@@ -44,6 +39,11 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
           replace: 'slave',
           replaceWith: 'connected',
           whitelist: { classes: ['SbbDatepicker'] },
+        },
+        {
+          replace: 'isDisabled',
+          replaceWith: 'disabled',
+          whitelist: { classes: ['SbbDateInput'] },
         },
       ],
     },

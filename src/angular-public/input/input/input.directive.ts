@@ -88,7 +88,7 @@ export class SbbInput extends SbbNativeInputBase
   focused: boolean = false;
 
   /**
-   * Implemented as part of MatFormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
   controlType: string = 'sbb-input';

@@ -4,7 +4,7 @@ import { Directive } from '@angular/core';
   selector: 'sbb-textexpand-collapsed',
   host: {
     class: 'sbb-textexpand-collapsed',
-    '[attr.hidden]': '_hidden',
+    '[attr.hidden]': '_hidden ? true : null',
   },
 })
 export class SbbTextexpandCollapsed {

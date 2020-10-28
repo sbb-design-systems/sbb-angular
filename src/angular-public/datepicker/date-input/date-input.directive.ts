@@ -74,23 +74,14 @@ export const SBB_DATE_VALIDATORS: any = {
   ],
   host: {
     class: 'sbb-date-input',
-    '[attr.aria-haspopup]': 'true',
-    '[attr.aria-owns]':
-      '(this._datepicker && this._datepicker.opened && this._datepicker.id) || null',
-    '[attr.min]': 'this.minAttr',
-    '[attr.max]': 'this.maxAttr',
+    '[attr.aria-haspopup]': '_datepicker ? "dialog" : null',
+    '[attr.aria-owns]': '(this._datepicker?.opened && this._datepicker.id) || null',
+    '[attr.min]': 'min ? _dateAdapter.toIso8601(min) : null',
+    '[attr.max]': 'max ? _dateAdapter.toIso8601(max) : null',
     '[disabled]': 'this.disabled',
   },
 })
 export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit, OnDestroy {
-  get _minAttr() {
-    return this.min ? this.dateAdapter.toIso8601(this.min) : null;
-  }
-
-  get _maxAttr() {
-    return this.max ? this.dateAdapter.toIso8601(this.max) : null;
-  }
-
   /** Function that can be used to filter out dates within the datepicker. */
   @Input()
   set dateFilter(value: (date: D | null) => boolean) {
@@ -108,14 +99,14 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     return this._value;
   }
   set value(value: D | null) {
-    value = this.dateAdapter.deserialize(value);
-    this._lastValueValid = !value || this.dateAdapter.isValid(value);
+    value = this._dateAdapter.deserialize(value);
+    this._lastValueValid = !value || this._dateAdapter.isValid(value);
     value = this._getValidDateOrNull(value);
     const oldDate = this.value;
     this._value = value;
     this._formatValue(value);
 
-    if (!this.dateAdapter.sameDate(oldDate, value)) {
+    if (!this._dateAdapter.sameDate(oldDate, value)) {
       this.valueChange.emit(value);
     }
   }
@@ -135,7 +126,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     );
   }
   set min(value: D | null) {
-    this._min = this._getValidDateOrNull(this.dateAdapter.deserialize(value));
+    this._min = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
     this._validatorOnChange();
   }
   private _min: D | null;
@@ -146,7 +137,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     return this._max;
   }
   set max(value: D | null) {
-    this._max = this._getValidDateOrNull(this.dateAdapter.deserialize(value));
+    this._max = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
     this._validatorOnChange();
   }
   private _max: D | null;
@@ -215,23 +206,23 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
 
   /** The form control validator for the min date. */
   private _minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const controlValue = this._getValidDateOrNull(this.dateAdapter.deserialize(control.value));
-    return !this.min || !controlValue || this.dateAdapter.compareDate(this.min, controlValue) <= 0
+    const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
+    return !this.min || !controlValue || this._dateAdapter.compareDate(this.min, controlValue) <= 0
       ? null
       : { sbbDateMin: { min: this.min, actual: controlValue } };
   };
 
   /** The form control validator for the max date. */
   private _maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const controlValue = this._getValidDateOrNull(this.dateAdapter.deserialize(control.value));
-    return !this.max || !controlValue || this.dateAdapter.compareDate(this.max, controlValue) >= 0
+    const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
+    return !this.max || !controlValue || this._dateAdapter.compareDate(this.max, controlValue) >= 0
       ? null
       : { sbbDateMax: { max: this.max, actual: controlValue } };
   };
 
   /** The form control validator for the date filter. */
   private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const controlValue = this._getValidDateOrNull(this.dateAdapter.deserialize(control.value));
+    const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
     return !this._dateFilter || !controlValue || this._dateFilter(controlValue)
       ? null
       : { sbbDateFilter: true };
@@ -248,11 +239,11 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
 
   constructor(
     private _elementRef: ElementRef<HTMLInputElement>,
-    @Optional() public dateAdapter: SbbDateAdapter<D>,
+    @Optional() public _dateAdapter: SbbDateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
     @Optional() public _datepicker: SbbDatepicker<D>
   ) {
-    if (!this.dateAdapter) {
+    if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }
     if (!this._dateFormats) {
@@ -331,11 +322,11 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
 
   @HostListener('input', ['$event.target.value'])
   _onInput(value: string) {
-    let date = this.dateAdapter.parse(value);
-    this._lastValueValid = !date || this.dateAdapter.isValid(date);
+    let date = this._dateAdapter.parse(value);
+    this._lastValueValid = !date || this._dateAdapter.isValid(date);
     date = this._getValidDateOrNull(date);
 
-    if (!this.dateAdapter.sameDate(date, this._value)) {
+    if (!this._dateAdapter.sameDate(date, this._value)) {
       this._value = date;
       this._cvaOnChange(date);
       this.valueChange.emit(date);
@@ -365,7 +356,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   /** Formats a value and sets it on the input element. */
   private _formatValue(value: D | null) {
     this._elementRef.nativeElement.value = value
-      ? this.dateAdapter.format(value, this._dateFormats.dateInput)
+      ? this._dateAdapter.format(value, this._dateFormats.dateInput)
       : '';
   }
 
@@ -374,7 +365,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
   private _getValidDateOrNull(obj: any): D | null {
-    return this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj) ? obj : null;
+    return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
 
   // tslint:disable: member-ordering

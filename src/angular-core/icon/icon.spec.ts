@@ -39,7 +39,7 @@ function verifyPathChildElement(element: Element, attributeValue: string): void 
   expect(pathElement.getAttribute('name')).toBe(attributeValue);
 }
 
-describe('SbbSbbIcon', () => {
+describe('SbbIcon', () => {
   let fakePath: string;
   let errorHandler: jasmine.SpyObj<ErrorHandler>;
 
@@ -1008,7 +1008,7 @@ describe('SbbSbbIcon', () => {
   }
 });
 
-describe('SbbSbbIcon without HttpClientModule', () => {
+describe('SbbIcon without HttpClientModule', () => {
   let iconRegistry: SbbIconRegistry;
   let sanitizer: DomSanitizer;
 
