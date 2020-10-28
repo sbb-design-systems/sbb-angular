@@ -16,7 +16,7 @@
     [todayValue]="todayDate!"
     [selectedValue]="selectedDate!"
     [labelMinRequiredCells]="3"
-    [activeCell]="dateAdapter.getDate(activeDate) - 1"
+    [activeCell]="_dateAdapter.getDate(activeDate) - 1"
     (selectedValueChange)="dateSelected($event)"
     (keydown)="handleCalendarBodyKeydown($event)"
   ></tbody>
