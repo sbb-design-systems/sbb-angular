@@ -44,10 +44,6 @@ export class SbbTab implements OnChanges, OnDestroy {
   }
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
-
-    if (!!value) {
-      this.disableChange.emit(this.id);
-    }
   }
   private _disabled: boolean;
 
@@ -57,10 +53,6 @@ export class SbbTab implements OnChanges, OnDestroy {
   @Input() active: boolean = false;
   /** Class property that identifies the data-set for tabs content */
   @Input() badgePill?: number;
-  /** Event generated if a tab is disabled */
-  @Output() disableChange: EventEmitter = new EventEmitter();
-  /** Event generated if a tab is removed */
-  @Output() removeChange: EventEmitter = new EventEmitter();
   /** Template provided in the tab content, which is lazily rendered */
   @ContentChild(SbbTabContent, { read: TemplateRef, static: true }) _lazyTabContent: TemplateRef<
     any
@@ -95,7 +87,6 @@ export class SbbTab implements OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.removeChange.emit(this.id);
     this._stateChanges.complete();
   }
 
