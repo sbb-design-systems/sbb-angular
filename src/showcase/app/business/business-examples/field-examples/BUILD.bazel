@@ -19,6 +19,8 @@ ng_module(
         "//src/angular-business/datepicker",
         "//src/angular-business/field",
         "//src/angular-business/select",
+        "//src/angular-business/time-input",
+        "//src/angular-business/tooltip",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
