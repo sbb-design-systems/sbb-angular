@@ -2,9 +2,8 @@
 
 $tooltipBorderRadius: 2;
 $tooltipBorderWidth: if($sbbBusiness, 1, 2);
-$tooltipIconsBorderWidth: 1;
 $tooltipMaxWidth: 460;
-$tooltipIconsSize: 24;
+$tooltipIconSize: 24;
 $tooltipContentPadding: if($sbbBusiness, 8, 24);
 $tooltipColor: if($sbbBusiness, $sbbColorBlack, $sbbColorGrey);
 $tooltipBorderColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
@@ -16,49 +15,19 @@ $tooltipShadowBorderWidth: 14;
 $tooltipArrowRightPosition: calc(100% - #{pxToEm(15.5)});
 $tooltipArrowLeftPosition: pxToEm(15.5);
 
-@mixin tooltipIcon {
-  @include buttonResetFrameless();
+@mixin tooltipIconActive {
   /* TODO: Remove with future release */
-  @include svgIconColor($tooltipColor);
-  color: $tooltipColor;
-  width: toPx($tooltipIconsSize);
-  height: toPx($tooltipIconsSize);
-  cursor: pointer;
-  text-decoration: none;
-  outline: 0;
-  line-height: 1;
-
-  &-active,
-  &:hover,
-  &:focus {
-    /* TODO: Remove with future release */
-    @include svgIconColor($tooltipActiveColor);
-    color: $tooltipActiveColor;
-    border-color: $tooltipActiveColor;
-  }
-
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      width: toPx($tooltipIconsSize * $scalingFactor4k);
-      height: toPx($tooltipIconsSize * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      width: toPx($tooltipIconsSize * $scalingFactor5k);
-      height: toPx($tooltipIconsSize * $scalingFactor5k);
-    }
-  }
-
-  > * {
-    max-width: 100%;
-    max-height: 100%;
-  }
+  @include svgIconColor($tooltipActiveColor);
+  color: $tooltipActiveColor;
+  border-color: $tooltipActiveColor;
 }
 
 .sbb-tooltip-trigger {
-  @include tooltipIcon();
-  margin: auto;
   display: inline-block;
+}
+
+.sbb-tooltip-trigger-active {
+  @include tooltipIconActive;
 }
 
 .sbb-tooltip-content-above {
@@ -183,10 +152,44 @@ $tooltipArrowLeftPosition: pxToEm(15.5);
   }
 }
 
+.sbb-tooltip-icon {
+  @include buttonResetFrameless();
+  /* TODO: Remove with future release */
+  @include svgIconColor($tooltipColor);
+  color: $tooltipColor;
+  width: toPx($tooltipIconSize);
+  height: toPx($tooltipIconSize);
+  cursor: pointer;
+  text-decoration: none;
+  outline: 0;
+  line-height: 1;
+
+  &:hover,
+  &:focus {
+    @include tooltipIconActive();
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx($tooltipIconSize * $scalingFactor4k);
+      height: toPx($tooltipIconSize * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx($tooltipIconSize * $scalingFactor5k);
+      height: toPx($tooltipIconSize * $scalingFactor5k);
+    }
+  }
+
+  > * {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
 .sbb-tooltip-close-icon {
-  @include tooltipIcon();
   border-color: $tooltipBorderColor;
-  border-width: pxToEm($tooltipIconsBorderWidth);
+  border-width: pxToEm(1);
   border-style: solid;
   border-radius: 50%;
   float: right;
@@ -201,13 +204,17 @@ $tooltipArrowLeftPosition: pxToEm(15.5);
       border-color: transparent;
     }
   }
+
+  .sbb-tooltip-trigger-hover & {
+    display: none;
+  }
 }
 
 .sbb-tooltip-content-body {
   padding-top: toPx($tooltipContentPadding);
   padding-left: toPx($tooltipContentPadding);
   padding-bottom: toPx($tooltipContentPadding);
-  padding-right: toPx($tooltipContentPadding + $tooltipIconsSize + $tooltipContentPadding);
+  padding-right: toPx($tooltipContentPadding + $tooltipIconSize + $tooltipContentPadding);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -215,7 +222,7 @@ $tooltipArrowLeftPosition: pxToEm(15.5);
       padding-left: toPx($tooltipContentPadding * $scalingFactor4k);
       padding-bottom: toPx($tooltipContentPadding * $scalingFactor4k);
       padding-right: toPx(
-        $tooltipContentPadding * $scalingFactor4k + $tooltipIconsSize + $tooltipContentPadding *
+        $tooltipContentPadding * $scalingFactor4k + $tooltipIconSize + $tooltipContentPadding *
           $scalingFactor4k
       );
     }
@@ -225,19 +232,13 @@ $tooltipArrowLeftPosition: pxToEm(15.5);
       padding-left: toPx($tooltipContentPadding * $scalingFactor5k);
       padding-bottom: toPx($tooltipContentPadding * $scalingFactor5k);
       padding-right: toPx(
-        $tooltipContentPadding * $scalingFactor5k + $tooltipIconsSize + $tooltipContentPadding *
+        $tooltipContentPadding * $scalingFactor5k + $tooltipIconSize + $tooltipContentPadding *
           $scalingFactor5k
       );
     }
   }
-}
 
-.sbb-tooltip-trigger-hover {
-  .sbb-tooltip-close-icon {
-    display: none;
-  }
-
-  .sbb-tooltip-content-body {
+  .sbb-tooltip-trigger-hover & {
     padding-right: toPx($tooltipContentPadding);
   }
 }
