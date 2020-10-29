@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SbbEsriWebMap } from './esri-web-map.component';
 
-describe('EsriWebMapComponent', () => {
+describe('SbbEsriWebMap', () => {
   let component: SbbEsriWebMap;
   let fixture: ComponentFixture<SbbEsriWebMap>;
 

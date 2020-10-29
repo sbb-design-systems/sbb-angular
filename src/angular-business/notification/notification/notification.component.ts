@@ -15,6 +15,7 @@ import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 
 /**
  * @deprecated use strings directly
+ * TODO: Add migration
  */
 export enum NotificationType {
   SUCCESS = 'success',
@@ -25,6 +26,7 @@ export enum NotificationType {
 
 /**
  * @deprecated use strings directly
+ * TODO: Add migration
  */
 export enum NotificationToastPosition {
   TOPLEFT = 'top-left',
@@ -63,84 +65,6 @@ export interface SbbJumpMark {
   },
 })
 export class SbbNotification {
-  /**
-   *  @docs-private
-   *  @deprecated internal detail
-   */
-  baseCssClass = true;
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get typeSuccess(): boolean {
-    return this.type === NotificationType.SUCCESS;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get typeInfo(): boolean {
-    return this.type === NotificationType.INFO;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get typeError(): boolean {
-    return this.type === NotificationType.ERROR;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get typeWarn(): boolean {
-    return this.type === NotificationType.WARN;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get hasJumpMarks() {
-    return this.jumpMarks && this.jumpMarks.length;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get positionTopLeft(): boolean {
-    return this.toastPosition === NotificationToastPosition.TOPLEFT;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get positionTopRight(): boolean {
-    return this.toastPosition === NotificationToastPosition.TOPRIGHT;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get positionBottomLeft(): boolean {
-    return this.toastPosition === NotificationToastPosition.BOTTOMLEFT;
-  }
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  get positionBottomRight(): boolean {
-    return this.toastPosition === NotificationToastPosition.BOTTOMRIGHT;
-  }
-
   ariaHidden: 'false' | 'true';
 
   get hidden() {
@@ -161,15 +85,13 @@ export class SbbNotification {
    * Readonly false: notifications can be closed
    */
   @Input()
+  get readonly() {
+    return this._readonly;
+  }
   set readonly(value: boolean) {
     this._readonly = coerceBooleanProperty(value);
     this._changeDetectorRef.markForCheck();
   }
-
-  get readonly() {
-    return this._readonly;
-  }
-
   private _readonly = false;
 
   /** @docs-private */
@@ -190,9 +112,6 @@ export class SbbNotification {
    * but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
-  set icon(notificationIcon: TemplateRef<any> | null) {
-    this._icon = notificationIcon;
-  }
   get icon() {
     if (this._contentIcon) {
       return this._contentIcon;
@@ -211,6 +130,9 @@ export class SbbNotification {
         return null;
     }
   }
+  set icon(notificationIcon: TemplateRef<any> | null) {
+    this._icon = notificationIcon;
+  }
   private _icon: TemplateRef<any> | null;
 
   /**
@@ -223,9 +145,7 @@ export class SbbNotification {
   /** List of in page links displayed on the bottom of the notification */
   @Input() jumpMarks?: SbbJumpMark[];
 
-  /**
-   * Observable which emits when the notification was closed
-   */
+  /** Observable which emits when the notification was closed */
   @Output()
   dismissed: EventEmitter<boolean> = new EventEmitter();
 
@@ -247,9 +167,7 @@ export class SbbNotification {
     }
   }
 
-  /**
-   * Close notification
-   */
+  /** Close notification */
   dismiss() {
     this.ariaHidden = 'true';
     this.dismissed.emit(false);

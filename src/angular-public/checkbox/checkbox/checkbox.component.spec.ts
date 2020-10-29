@@ -21,7 +21,7 @@ class ModelCheckboxTestComponent {
   checkValue2 = false;
 }
 
-describe('CheckboxComponent', () => {
+describe('SbbCheckbox', () => {
   let component: SbbCheckbox;
   let fixture: ComponentFixture<SbbCheckbox>;
 
@@ -47,7 +47,7 @@ describe('CheckboxComponent', () => {
   });
 });
 
-describe('CheckboxComponent using mock component', () => {
+describe('SbbCheckbox using mock component', () => {
   let modelComponent: ModelCheckboxTestComponent;
   let modelComponentFixture: ComponentFixture<ModelCheckboxTestComponent>;
 

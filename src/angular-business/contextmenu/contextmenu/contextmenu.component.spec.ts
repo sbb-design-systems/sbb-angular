@@ -26,7 +26,7 @@ class ContextmenuTest1Component {
   action3() {}
 }
 
-describe('ContextmenuComponent', () => {
+describe('SbbContextmenu', () => {
   let component: ContextmenuTest1Component;
   let fixture: ComponentFixture<ContextmenuTest1Component>;
 

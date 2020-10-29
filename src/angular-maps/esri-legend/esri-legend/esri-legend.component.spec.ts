@@ -3,7 +3,7 @@ import { SbbEsriTypesService } from '@sbb-esta/angular-maps/core';
 
 import { SbbEsriLegend } from './esri-legend.component';
 
-describe('EsriLegendComponent', () => {
+describe('SbbEsriLegend', () => {
   let component: SbbEsriLegend;
   let fixture: ComponentFixture<SbbEsriLegend>;
 

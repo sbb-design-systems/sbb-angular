@@ -8,7 +8,6 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   QueryList,
@@ -54,18 +53,19 @@ export interface SbbDropdownDefaultOptions {
       useExisting: SbbDropdown,
     },
   ],
+  host: {
+    class: 'sbb-dropdown',
+  },
 })
 export class SbbDropdown implements AfterContentInit {
-  /**
-   * Reference to the dropdown items.
-   */
+  /** Reference to the dropdown items. */
   @ContentChildren(SbbDropdownItem) options: QueryList<SbbDropdownItem>;
 
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<SbbDropdownItem>;
 
   /** Whether the dropdown panel should be visible, depending on option length. */
-  showPanel = false;
+  showPanel: boolean = false;
 
   /** Whether the dropdown panel is open. */
   get open(): boolean {
@@ -76,18 +76,13 @@ export class SbbDropdown implements AfterContentInit {
   }
   private _open = false;
 
-  /** Css class of sbb-dropdown. */
-  @HostBinding('class.sbb-dropdown') sbbDropdown = true;
-
   /** @docs-private */
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
   /** Element for the panel containing the dropdown options. */
   @ViewChild('panel') panel: ElementRef;
 
-  /**
-   * Whether the first option should be highlighted when the dropdown panel is opened.
-   */
+  /** Whether the first option should be highlighted when the dropdown panel is opened. */
   @Input()
   get autoActiveFirstOption(): boolean {
     return this._autoActiveFirstOption;
@@ -128,7 +123,7 @@ export class SbbDropdown implements AfterContentInit {
   _classList: { [key: string]: boolean } = {};
 
   /** Unique ID to be used by dropdown trigger's "aria-owns" property. */
-  id = `sbb-dropdown-${nextId++}`;
+  id: string = `sbb-dropdown-${nextId++}`;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

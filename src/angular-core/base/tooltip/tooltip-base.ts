@@ -13,7 +13,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
   InjectionToken,
   Input,
   NgZone,
@@ -79,7 +78,6 @@ export abstract class SbbTooltipBase implements OnDestroy {
   _contentIcon: TemplateRef<any>;
 
   /** Checks if a tooltip panel exists */
-  @HostBinding('attr.aria-expanded')
   get overlayAttached() {
     return this.tooltipRef && this.tooltipRef.hasAttached();
   }
@@ -102,16 +100,10 @@ export abstract class SbbTooltipBase implements OnDestroy {
     );
   }
 
-  /**
-   * Identifier of tooltip.
-   */
-  @HostBinding('attr.id') tooltipId = `sbb-tooltip-id-${tooltipCounter++}`;
-  /**
-   * Identifier of tooltip content.
-   */
-  contentId = `sbb-tooltip-content-id-${tooltipCounter++}`;
-  /** @docs-private */
-  @HostBinding('class.sbb-tooltip') cssClass = true;
+  /** Identifier of tooltip. */
+  id: string = `sbb-tooltip-id-${tooltipCounter++}`;
+  /** Identifier of tooltip content. */
+  contentId: string = `sbb-tooltip-content-id-${tooltipCounter++}`;
 
   /**
    * Overlay containg the tooltip text and the close button.
@@ -125,11 +117,9 @@ export abstract class SbbTooltipBase implements OnDestroy {
   /** @docs-private */
   @ViewChild('defaultIcon', { read: TemplateRef, static: true }) defaultIcon: TemplateRef<any>;
 
-  /**
-   * Sets whether the overlay can be pushed on-screen if it does not fit otherwise.
-   */
+  /** Sets whether the overlay can be pushed on-screen if it does not fit otherwise. */
   @Input()
-  overlayWithPush = false;
+  overlayWithPush: boolean = false;
 
   /**
    * Sets whether the overlay's position should be locked in after it is
@@ -138,28 +128,22 @@ export abstract class SbbTooltipBase implements OnDestroy {
    * when the position is re-applied (e.g. when the user scrolls away).
    */
   @Input()
-  overlayWithLockedPosition = true;
+  overlayWithLockedPosition: boolean = true;
 
-  /**
-   * Sets a minimum distance the overlay may be positioned to the edge of the viewport.
-   */
+  /** Sets a minimum distance the overlay may be positioned to the edge of the viewport. */
   @Input()
-  overlayViewportMargin = 8;
+  overlayViewportMargin: number = 8;
 
-  /**
-   * Open event to a click on tooltip element.
-   */
+  /** Open event to a click on tooltip element. */
   @Output() readonly opened = new EventEmitter<SbbTooltipChangeEvent>();
-  /**
-   * Close event to a click on tooltip element.
-   */
+  /** Close event to a click on tooltip element. */
   @Output() readonly closed = new EventEmitter<SbbTooltipChangeEvent>();
 
   private readonly _closeKeyEventStream = new Subject<void>();
   private readonly _scrollStrategy: () => ScrollStrategy;
   private _closingActionsSubscription: Subscription;
 
-  protected _panelClass = ['sbb-tooltip-content'];
+  protected _panelClass: string[] = ['sbb-tooltip-content'];
 
   constructor(
     protected _overlay: Overlay,
@@ -185,24 +169,15 @@ export abstract class SbbTooltipBase implements OnDestroy {
     if (this.overlayAttached) {
       this.close(true);
     } else {
-      this.openTooltip(true);
+      this.open(true);
     }
   }
 
   /**
    * Opens the tooltip
    * @param isUserInput states if the tooltip has been opened by a click
-   * @deprecated use openTooltip() instead
    */
   open(isUserInput = false) {
-    return this.openTooltip(isUserInput);
-  }
-
-  /**
-   * Opens the tooltip
-   * @param isUserInput states if the tooltip has been opened by a click
-   */
-  openTooltip(isUserInput = false) {
     if (!this.overlayAttached) {
       this._tooltipRegistry.activate();
       this._createPopup();

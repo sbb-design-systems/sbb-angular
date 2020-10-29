@@ -33,7 +33,7 @@ export class FakeMediaQueryList {
 
 @Injectable()
 export class FakeMediaMatcher {
-  defaultMatches = true;
+  defaultMatches: boolean = true;
 
   /** A map of match media queries. */
   private _queries = new Map<string, FakeMediaQueryList>();

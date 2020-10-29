@@ -46,15 +46,9 @@ export class SbbTags implements AfterContentInit, OnDestroy {
     return this._totalAmount.value;
   }
   /** @docs-private */
-  _totalAmount = new BehaviorSubject<number>(0);
+  _totalAmount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   private _totalAmountSetAsInput = false;
-
-  /**
-   *  Css class associated to sbb-tags.
-   *  @deprecated internal detail
-   */
-  sbbTagsClass = true;
 
   /** Refers to the tags contained. */
   @ContentChildren(forwardRef(() => SbbTag))
@@ -62,12 +56,6 @@ export class SbbTags implements AfterContentInit, OnDestroy {
   /** Refers to the tag always displayed in the filter. */
   @ViewChild('allTag', { static: true })
   allTag: SbbTag;
-
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  _amount: Observable<number>;
 
   private _destroyed = new Subject();
 

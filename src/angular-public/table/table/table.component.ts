@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostBinding,
   Input,
   NgZone,
   OnChanges,
@@ -28,6 +27,10 @@ const stickySupported =
   styleUrls: ['./table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    '[class.sbb-table-is-scrolling]': '_scrolling',
+    '[class.sbb-table-is-pinned]': 'pinMode === "on"',
+  },
 })
 export class SbbTable implements OnChanges, OnDestroy {
   /** Table identifier. */
@@ -59,11 +62,7 @@ export class SbbTable implements OnChanges, OnDestroy {
   private _tableClass: string;
 
   /** @docs-private */
-  @HostBinding('class.sbb-table-is-scrolling') _scrolling = false;
-  /** @docs-private */
-  @HostBinding('class.sbb-table-is-pinned') get _pinned() {
-    return this.pinMode === 'on';
-  }
+  _scrolling: boolean = false;
 
   /**
    * Reference to the scroll container of the table.

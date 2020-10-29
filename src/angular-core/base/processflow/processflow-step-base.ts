@@ -5,9 +5,9 @@ export class SbbProcessflowStepDescriptor {
   /** Title of a step in a process flow. */
   title: string;
   /** Refers to the active status of a step in a process flow. */
-  active = false;
+  active: boolean = false;
   /** Refers to the disable status of a step in a process flow.  */
-  disabled = true;
+  disabled: boolean = true;
 }
 
 @Directive()

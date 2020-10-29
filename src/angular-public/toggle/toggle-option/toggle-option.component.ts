@@ -42,24 +42,10 @@ import { SbbRadioButton, SbbRadioGroup } from '@sbb-esta/angular-core/radio-butt
   },
 })
 export class SbbToggleOption extends SbbRadioButton implements AfterViewInit {
-  /**
-   * @docs-private
-   * @deprecated internal use
-   * */
-  toggleOptionClass = true;
-
   /** Label of a sbb-toggle-option. */
   @Input() label: string;
   /** Information text in a sbb-toggle-option. */
   @Input() infoText?: string;
-
-  /**
-   * @docs-private
-   * @deprecated internal use -> use property checked
-   *  */
-  get _isChecked() {
-    return this.checked;
-  }
 
   /** Identifier of sbb-toggle label. */
   get labelId() {
@@ -71,28 +57,20 @@ export class SbbToggleOption extends SbbRadioButton implements AfterViewInit {
     return `${this.inputId}-content`;
   }
 
-  /**
-   * Aria expanded value is true when a toggle button is selected.
-   */
+  /** Aria expanded value is true when a toggle button is selected. */
   get ariaExpandedValue(): boolean | undefined {
     return this.toggleOptionHasContent ? this.checked : undefined;
   }
 
-  /**
-   * Aria controls associated to toggle option content.
-   */
+  /** Aria controls associated to toggle option content. */
   get ariaControls(): string | undefined {
     return this.toggleOptionHasContent ? this.contentId : undefined;
   }
 
-  /**
-   * Verifies the presence of text in a toggle option.
-   */
-  toggleOptionHasContent = true;
+  /** Verifies the presence of text in a toggle option. */
+  toggleOptionHasContent: boolean = true;
 
-  /**
-   * Refers to the icon optionally contained in a toggle option.
-   */
+  /** Refers to the icon optionally contained in a toggle option. */
   @Input()
   set icon(icon: TemplateRef<any> | null) {
     this._icon = icon;
@@ -109,15 +87,11 @@ export class SbbToggleOption extends SbbRadioButton implements AfterViewInit {
   @ContentChild(SbbIconDirective, { read: TemplateRef })
   _contentIcon?: TemplateRef<any>;
 
-  /**
-   * Refers to the content of a toggle option.
-   */
+  /** Refers to the content of a toggle option. */
   @ViewChild('toggleOptionContentContainer')
   contentContainer: ElementRef<Element>;
 
-  /**
-   * Filter on a toggle option content.
-   */
+  /** Filter on a toggle option content. */
   filteredContentNodes: ChildNode[] = [];
 
   private _document: Document;

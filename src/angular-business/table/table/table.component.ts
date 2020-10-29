@@ -12,7 +12,6 @@ import {
   Component,
   ContentChildren,
   ElementRef,
-  HostBinding,
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
@@ -26,6 +25,9 @@ import { SbbTableDataSource } from './table-data-source';
   exportAs: 'sbbTable',
   template: CDK_TABLE_TEMPLATE,
   styleUrls: ['table.component.css'],
+  host: {
+    class: 'sbb-table',
+  },
   providers: [
     // TODO(michaeljamesparsons) Abstract the view repeater strategy to a directive API so this code
     //  is only included in the build if used.
@@ -42,8 +44,6 @@ import { SbbTableDataSource } from './table-data-source';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SbbTable<T> extends CdkTable<T> implements AfterViewInit {
-  @HostBinding('class.sbb-table') sbbTable = true;
-
   @ContentChildren(SbbHeaderCell, { descendants: true, read: ElementRef })
   headerElements: QueryList<ElementRef>;
 
@@ -52,12 +52,7 @@ export class SbbTable<T> extends CdkTable<T> implements AfterViewInit {
 
   /** Overrides the sticky CSS class set by the `CdkTable`. */
   // tslint:disable-next-line:naming-convention
-  protected stickyCssClass = 'sbb-table-sticky';
-
-  /**
-   * @deprecated use stickyCssClass
-   */
-  protected _stickyCssClass = this.stickyCssClass;
+  protected stickyCssClass: string = 'sbb-table-sticky';
 
   ngAfterViewInit(): void {
     this.headerElements.changes.subscribe((value) => this._setGroupClasses(value));

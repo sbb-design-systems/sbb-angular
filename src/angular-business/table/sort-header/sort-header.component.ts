@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  HostBinding,
   HostListener,
   Inject,
   Input,
@@ -60,6 +59,10 @@ interface SbbSortHeaderColumnDef {
   exportAs: 'sbbSortHeader',
   templateUrl: 'sort-header.component.html',
   styleUrls: ['sort-header.component.css'],
+  host: {
+    class: 'sbb-sort-header',
+    '[attr.aria-sort]': '_getAriaSortAttribute()',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled'],
@@ -128,7 +131,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * Flag set to true when the indicator should be displayed while the sort is not active. Used to
    * provide an affordance that the header is sortable by showing on focus and hover.
    */
-  _showIndicatorHint = false;
+  _showIndicatorHint: boolean = false;
 
   /**
    * The view transition state of the arrow (translation/ opacity) - indicates its `from` and `to`
@@ -140,10 +143,8 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   /** The direction the arrow should be facing according to the current state. */
   _arrowDirection: SbbSortDirection = '';
 
-  /**
-   * Whether the view state animation should show the transition between the `from` and `to` states.
-   */
-  _disableViewStateAnimation = false;
+  /** Whether the view state animation should show the transition between the `from` and `to` states. */
+  _disableViewStateAnimation: boolean = false;
 
   /**
    * ID of this sort header. If used within the context of a CdkColumnDef, this will default to
@@ -158,8 +159,6 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   /** Overrides the sort start value of the containing SbbSort for this SbbSortable. */
   @Input() start: 'asc' | 'desc';
   private _disableClear: boolean;
-
-  @HostBinding('attr.aria-sort') sort = this._getAriaSortAttribute();
 
   @HostListener('mouseenter') _onMouseEnter() {
     this._setIndicatorHintVisible(true);

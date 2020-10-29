@@ -151,11 +151,6 @@ export class SbbCalendarHeader<D> {
   },
 })
 export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {
-  /**
-   * @deprecated internal detail
-   */
-  cssClass = true;
-
   /** An input indicating the type of the header component, if set. */
   @Input() headerComponent: ComponentType<any>;
 
@@ -234,10 +229,8 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   }
   private _clampedActiveDate: D;
 
-  /**
-   * Emits whenever there is a state change that the header may need to respond to.
-   */
-  stateChanges = new Subject<void>();
+  /** Emits whenever there is a state change that the header may need to respond to. */
+  stateChanges: Subject<void> = new Subject<void>();
 
   constructor(
     @Optional() private _dateAdapter: SbbDateAdapter<D>,

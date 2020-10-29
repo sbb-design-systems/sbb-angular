@@ -27,7 +27,6 @@ import {
   Directive,
   ElementRef,
   forwardRef,
-  HostBinding,
   HostListener,
   Inject,
   InjectionToken,
@@ -146,13 +145,15 @@ const panelPositionMappings: { [key: string]: ConnectedPosition[] } = {
       multi: true,
     },
   ],
+  host: {
+    class: 'sbb-dropdown-trigger',
+    '[attr.role]': 'this.dropdownDisabled ? null : "combobox"',
+    '[attr.aria-activedescendant]': 'this.activeOption ? this.activeOption.id : null',
+    '[attr.aria-expanded]': 'this.dropdownDisabled ? null : this.panelOpen.toString()',
+    '[attr.aria-owns]': 'this.dropdownDisabled || !this.panelOpen ? null : this.dropdown.id',
+  },
 })
 export class SbbDropdownTrigger implements OnDestroy {
-  /** Role on a dropdown trigger. */
-  @HostBinding('attr.role') get role() {
-    return this.dropdownDisabled ? null : 'combobox';
-  }
-
   /**
    * Whether the dropdown is disabled. When disabled, the element will
    * act as a regular input and the user won't be able to open the panel.
@@ -161,24 +162,14 @@ export class SbbDropdownTrigger implements OnDestroy {
   get dropdownDisabled(): boolean {
     return this._dropdownDisabled;
   }
-
   set dropdownDisabled(value: boolean) {
     this._dropdownDisabled = coerceBooleanProperty(value);
   }
+  private _dropdownDisabled = false;
 
   /** Whether or not the dropdown panel is open. */
   get panelOpen(): boolean {
     return this._overlayAttached && this.dropdown.showPanel;
-  }
-
-  /** Attribute that refers to the expansion of the dropdown panel. */
-  @HostBinding('attr.aria-expanded') get ariaExpanded(): string | null {
-    return this.dropdownDisabled ? null : this.panelOpen.toString();
-  }
-
-  /** Attribute whose value is associated to dropdown id. */
-  @HostBinding('attr.aria-owns') get ariaOwns(): string | null {
-    return this.dropdownDisabled || !this.panelOpen ? null : this.dropdown.id;
   }
 
   /**
@@ -200,18 +191,10 @@ export class SbbDropdownTrigger implements OnDestroy {
     );
   }
 
-  /** The currently active option identifier. */
-  @HostBinding('attr.aria-activedescendant')
-  get activeOptionId(): string | null {
-    return this.activeOption ? this.activeOption.id : null;
-  }
-
   /** The currently active option, coerced to SbbOption type. */
   get activeOption(): SbbDropdownItem | null {
     return this.dropdown && this.dropdown.keyManager ? this.dropdown.keyManager.activeItem : null;
   }
-  @HostBinding('class.sbb-dropdown-trigger')
-  cssClass = true;
 
   /** The dropdown panel to be attached to this trigger. */
   // tslint:disable-next-line:no-input-rename
@@ -224,12 +207,9 @@ export class SbbDropdownTrigger implements OnDestroy {
   // tslint:disable-next-line:no-input-rename
   @Input('sbbDropdownConnectedTo') connectedTo: SbbDropdownOrigin;
 
-  @Input()
-  panelClass = '';
+  @Input() panelClass: string = '';
 
-  /**
-   * Whether the dropdown should be opened on the left or the right side of the origin.
-   */
+  /** Whether the dropdown should be opened on the left or the right side of the origin. */
   horizontalOrientation: 'left' | 'right' | 'prefer-right' | 'prefer-left' = 'right';
 
   /** Stream of dropdown option selections. */
@@ -249,7 +229,6 @@ export class SbbDropdownTrigger implements OnDestroy {
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
   private _componentDestroyed = false;
-  private _dropdownDisabled = false;
 
   /** Strategy that is used to position the panel. */
   protected _positionStrategy: FlexibleConnectedPositionStrategy;
@@ -285,19 +264,15 @@ export class SbbDropdownTrigger implements OnDestroy {
   }
 
   @HostListener('blur')
-  onBlur() {
+  _onBlur() {
     if (!!this.connectedTo) {
       this.closePanel();
     }
   }
 
-  @HostListener('keydown', ['$event'])
-  onKeydown($event: TypeRef<KeyboardEvent>) {
-    this.handleKeydown($event);
-  }
-
   /** Handles all keydown events on the select. */
-  handleKeydown(event: KeyboardEvent): void {
+  @HostListener('keydown', ['$event'])
+  _handleKeydown(event: TypeRef<KeyboardEvent>): void {
     if (!this.dropdownDisabled) {
       this.panelOpen ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
     }
@@ -415,7 +390,7 @@ export class SbbDropdownTrigger implements OnDestroy {
   }
 
   @HostListener('click', ['$event'])
-  handleClick(event: any): void {
+  _handleClick(event: any): void {
     if (event instanceof MouseEvent) {
       if (!this.panelOpen) {
         if (this._canOpen()) {
@@ -489,9 +464,7 @@ export class SbbDropdownTrigger implements OnDestroy {
     this.closePanel();
   }
 
-  /**
-   * Clear any previous selected option and emit a selection change event for this option
-   */
+  /** Clear any previous selected option and emit a selection change event for this option */
   private _clearPreviousSelectedOption(skip: SbbDropdownItem) {
     this.dropdown.options.forEach((item) => {
       // tslint:disable-next-line:triple-equals

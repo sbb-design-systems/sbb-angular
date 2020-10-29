@@ -30,7 +30,7 @@ class StatusWithMessageComponent {
 })
 class StatusWithAriaLabelComponent {}
 
-describe('StatusComponent', () => {
+describe('SbbStatus', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [

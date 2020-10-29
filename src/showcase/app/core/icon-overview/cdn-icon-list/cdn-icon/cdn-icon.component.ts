@@ -19,7 +19,7 @@ export class CdnIconComponent {
   constructor(private _dialog: SbbDialog) {}
 
   openDialog() {
-    this._dialog.openDialog(CdnIconDialogComponent, {
+    this._dialog.open(CdnIconDialogComponent, {
       data: { cdnIcon: this.cdnIcon },
       minWidth: 420,
     });

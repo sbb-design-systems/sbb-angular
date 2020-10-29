@@ -15,6 +15,9 @@ import { SbbProcessflowStep } from '../processflow-step/processflow-step.compone
   styleUrls: ['./processflow.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-processflow',
+  },
 })
 export class SbbProcessflow extends SbbProcessflowBase<SbbProcessflowStep> {
   /** @docs-private */

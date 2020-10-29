@@ -6,7 +6,6 @@ import {
   Directive,
   EventEmitter,
   forwardRef,
-  HostBinding,
   Input,
   Output,
   QueryList,
@@ -28,13 +27,12 @@ let nextUniqueId = 0;
       multi: true,
     },
   ],
+  host: {
+    class: 'sbb-radio-group',
+    role: 'radiogroup',
+  },
 })
 export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
-  /**
-   * Role of sbb-toggle.
-   */
-  @HostBinding('attr.role') role = 'radiogroup';
-
   /** Name of the radio button group. All radio buttons inside this group will use this name. */
   @Input()
   get name(): string {
@@ -128,17 +126,11 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
   /** Whether the radio group is required. */
   private _required = false;
 
-  /**
-   * The method to be called in order to update ngModel
-   * @docs-private
-   */
+  /** `View -> model callback called when value changes` */
   _controlValueAccessorChangeFn: (value: any) => void = () => {};
 
-  /**
-   * onTouch function registered via registerOnTouch (ControlValueAccessor).
-   * @docs-private
-   */
-  onTouched: () => any = () => {};
+  /** `View -> model callback called when radio group has been touched` */
+  _onTouched: () => any = () => {};
 
   constructor(private _changeDetector: ChangeDetectorRef) {}
 
@@ -164,8 +156,8 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
    * radio buttons upon their blur.
    */
   _touch() {
-    if (this.onTouched) {
-      this.onTouched();
+    if (this._onTouched) {
+      this._onTouched();
     }
   }
 
@@ -183,9 +175,7 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
     }
   }
 
-  /**
-   * Sets the model value. Implemented as part of ControlValueAccessor.
-   */
+  /** Sets the model value. Implemented as part of ControlValueAccessor. */
   writeValue(value: any) {
     this.value = value;
     this._changeDetector.markForCheck();
@@ -206,7 +196,7 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
    * @param fn Callback to be registered.
    */
   registerOnTouched(fn: any) {
-    this.onTouched = fn;
+    this._onTouched = fn;
   }
 
   /**

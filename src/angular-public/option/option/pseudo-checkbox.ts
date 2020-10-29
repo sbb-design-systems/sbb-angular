@@ -17,13 +17,5 @@ export class SbbPseudoCheckbox {
   @Input() state: 'unchecked' | 'checked' = 'unchecked';
 
   /** Whether the checkbox is disabled. */
-  @Input() disabled = false;
-
-  /** @deprecated */
-  get checked(): boolean {
-    return this.state === 'checked';
-  }
-
-  /** @deprecated */
-  baseCssClass = true;
+  @Input() disabled: boolean = false;
 }

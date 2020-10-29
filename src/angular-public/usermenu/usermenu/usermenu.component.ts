@@ -23,17 +23,8 @@ let counter = 0;
   },
 })
 export class SbbUserMenu {
-  /**
-   * Css class of a sbb-usermenu.
-   * @docs-private
-   * @deprecated internal detail
-   */
-  cssClass = true;
-
-  /**
-   * Identifier of a usermenu.
-   */
-  id = `sbb-usermenu-${counter++}`;
+  /** Identifier of a usermenu. */
+  id: string = `sbb-usermenu-${counter++}`;
 
   /**
    * Name and surname of a user.
@@ -41,19 +32,13 @@ export class SbbUserMenu {
    */
   @Input() displayName?: string;
 
-  /**
-   * Username of a user.
-   */
+  /** Username of a user. */
   @Input() userName: string;
 
-  /**
-   * Event emitted on log in of a user.
-   */
-  @Output() loginRequest = new EventEmitter<void>();
+  /** Event emitted on log in of a user. */
+  @Output() loginRequest: EventEmitter<void> = new EventEmitter<void>();
 
-  /**
-   * Reference to a dropdown istance.
-   */
+  /** Reference to a dropdown istance. */
   @ContentChild(SbbDropdown) dropdown: SbbDropdown;
 
   emitLogin() {

@@ -17,9 +17,7 @@ const range = (length: number, offset = 0) => Array.from({ length }, (_, k) => k
 
 const MAX_PAGE_SIZE = 3;
 
-/**
- * @deprecated use PageEvent of SbbPaginatorComponent
- */
+/** @deprecated use PageEvent of SbbPaginatorComponent */
 export class SbbPageChangeEvent {
   constructor(
     /** Index of page. */
@@ -29,9 +27,7 @@ export class SbbPageChangeEvent {
   ) {}
 }
 
-/**
- * @deprecated Use SbbPaginatorComponent
- */
+/** @deprecated Use SbbPaginatorComponent */
 @Component({
   selector: 'sbb-pagination',
   templateUrl: './pagination.component.html',
@@ -47,7 +43,7 @@ export class SbbPagination implements OnInit {
    * @docs-private
    * @deprecated internal detail
    */
-  role = 'navigation';
+  role: string = 'navigation';
 
   /** Amount of pages of the pagination. */
   @Input()
@@ -72,7 +68,7 @@ export class SbbPagination implements OnInit {
 
   /** This event can be used by parent components to handle events on page change. */
   @Output()
-  pageChange = new EventEmitter<SbbPageChangeEvent>();
+  pageChange: EventEmitter<SbbPageChangeEvent> = new EventEmitter<SbbPageChangeEvent>();
 
   /** Reference to list of page buttons of the sbb-pagination.  */
   @ViewChildren('pageButton') _buttons: QueryList<ElementRef>;

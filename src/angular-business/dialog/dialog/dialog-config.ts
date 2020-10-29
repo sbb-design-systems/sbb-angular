@@ -19,9 +19,7 @@ export interface SbbDialogPosition {
   right?: string;
 }
 
-/**
- * Configuration for opening a modal dialog with the Dialog service.
- */
+/** Configuration for opening a modal dialog with the Dialog service. */
 export class SbbDialogConfig<D = any> {
   /**
    * Where the attached component should live in Angular's *logical* component tree.
@@ -41,7 +39,7 @@ export class SbbDialogConfig<D = any> {
   panelClass?: string | string[] = '';
 
   /** Whether the user can use escape or clicking on the backdrop to close the modal. */
-  disableClose? = false;
+  disableClose?: boolean = false;
 
   /** Width of the dialog. */
   width?: string = '';
@@ -74,11 +72,11 @@ export class SbbDialogConfig<D = any> {
   ariaLabel?: string | null = null;
 
   /** Whether the Dialog should focus the first focusable element on open. */
-  autoFocus? = true;
+  autoFocus?: boolean = true;
 
   /** Scroll strategy to be used for the dialog. */
   scrollStrategy?: ScrollStrategy;
 
   /** Whether the Dialog should close when the user goes backwards/forwards in history. */
-  closeOnNavigation? = true;
+  closeOnNavigation?: boolean = true;
 }

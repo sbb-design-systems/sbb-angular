@@ -84,12 +84,6 @@ const sbbPaginatorBase: CanDisableCtor &
 })
 export class SbbPaginatorComponent extends sbbPaginatorBase
   implements OnInit, CanDisable, HasInitialized {
-  /**
-   * @docs-private
-   * @deprecated internal detail
-   */
-  role = 'navigation';
-
   private _initialized: boolean;
   private _previousPageSize: number;
 
@@ -153,9 +147,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     this._markInitialized();
   }
 
-  /**
-   * @docs-private
-   */
+  /** @docs-private */
   _pageRange(): Array<number | null> {
     const m = this.numberOfPages();
     const c = this.pageIndex;
@@ -264,9 +256,7 @@ export class SbbPaginatorComponent extends sbbPaginatorBase
     return this.disabled || !this.hasPreviousPage();
   }
 
-  /**
-   * ensures that pageIndex is in range of pages
-   */
+  /** ensures that pageIndex is in range of pages */
   private _correctDownPageIndexIfNecessary(value: number): number {
     return Math.max(Math.min(Math.max(value, 0), this.numberOfPages() - 1), 0);
   }

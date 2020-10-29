@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SbbEsriWebScene } from './esri-web-scene.component';
 
-describe('EsriWebSceneComponent', () => {
+describe('SbbEsriWebScene', () => {
   let component: SbbEsriWebScene;
   let fixture: ComponentFixture<SbbEsriWebScene>;
 

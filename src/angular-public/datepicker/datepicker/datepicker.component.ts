@@ -107,9 +107,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[];
 
-  /**
-   * Second datepicker to be used in 2 datepickers use case
-   */
+  /** Second datepicker to be used in 2 datepickers use case */
   @Input()
   set connected(value: SbbDatepicker<D> | null) {
     if (value !== this._connected && this._connected) {
@@ -128,34 +126,6 @@ export class SbbDatepicker<D> implements OnDestroy {
   main: SbbDatepicker<D> | null;
 
   /**
-   * @deprecated use main property instead
-   */
-  get master(): SbbDatepicker<D> | null {
-    return this.main;
-  }
-
-  /**
-   * @deprecated use connected property instead
-   */
-  get slave() {
-    return this.connected;
-  }
-
-  /**
-   * Second datepicker to be used in 2 datepickers use case
-   * @deprecated
-   */
-  @Input()
-  set slave(value: SbbDatepicker<D> | null) {
-    this.connected = value;
-  }
-
-  /**
-   * @deprecated internal detail
-   */
-  cssClass = true;
-
-  /**
    * Whether arrows are enabled, which allow navigation to the next/previous day.
    * They also support min and max date limits.
    * Defaults to false.
@@ -169,9 +139,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   }
   private _arrows = false;
 
-  /**
-   * Whether the datepicker toggle is enabled. Defaults to true.
-   */
+  /** Whether the datepicker toggle is enabled. Defaults to true. */
   @Input()
   set toggle(value: any) {
     this._toggle = coerceBooleanProperty(value);
@@ -195,12 +163,12 @@ export class SbbDatepicker<D> implements OnDestroy {
     return this._opened;
   }
   set opened(value: boolean) {
-    value ? this.openDatepicker() : this.close();
+    value ? this.open() : this.close();
   }
   private _opened = false;
 
   /** The id for the datepicker calendar. */
-  id = `sbb-datepicker-${datepickerUid++}`;
+  id: string = `sbb-datepicker-${datepickerUid++}`;
 
   /** The currently selected date. */
   get selected(): D | null {
@@ -371,19 +339,11 @@ export class SbbDatepicker<D> implements OnDestroy {
           }
         })
       )
-      .subscribe(() => this.connected!.openDatepicker());
-  }
-
-  /**
-   * Open the calendar.
-   * @deprecated use openDatepicker() instead
-   * */
-  open(): void {
-    this.openDatepicker();
+      .subscribe(() => this.connected!.open());
   }
 
   /** Open the calendar. */
-  openDatepicker(): void {
+  open(): void {
     if (this._opened || this.disabled) {
       return;
     }

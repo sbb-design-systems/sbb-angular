@@ -11,9 +11,7 @@ import { SbbDialogHelperService } from '../dialog/dialog-helper.service';
 import { SbbDialogRef } from '../dialog/dialog-ref';
 import { SbbDialog } from '../dialog/dialog.service';
 
-/**
- * Header of a dialog element. Stays fixed to the top of the dialog when scrolling.
- */
+/** Header of a dialog element. Stays fixed to the top of the dialog when scrolling. */
 @Component({
   selector: 'sbb-dialog-header, [sbbDialogHeader]',
   styleUrls: ['dialog-header.component.css'],
@@ -32,8 +30,6 @@ import { SbbDialog } from '../dialog/dialog.service';
 export class SbbDialogHeader implements OnInit {
   /** Disables dialog header when dialog is closed.  */
   isCloseDisabled: boolean;
-  /** @deprecated internal detail */
-  dialogHeaderClass = true;
 
   constructor(
     @Optional() private _dialogRef: SbbDialogRef<any>,
@@ -56,16 +52,11 @@ export class SbbDialogHeader implements OnInit {
         const container = this._dialogRef.containerInstance;
 
         if (container) {
-          container.hasHeader = true;
+          container._hasHeader = true;
           this.isCloseDisabled = !!container.config.disableClose;
           this._changeDetectorRef.markForCheck();
         }
       });
     }
   }
-
-  /**
-   * @deprecated Not available for dialogs.
-   */
-  emitManualCloseAction() {}
 }

@@ -1,6 +1,6 @@
-import { Highlightable } from '@angular/cdk/a11y';
+import { FocusOrigin, Highlightable } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { ENTER, SPACE } from '@angular/cdk/keycodes';
+import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewChecked,
@@ -9,7 +9,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Inject,
   InjectionToken,
@@ -23,7 +22,7 @@ import {
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
 
-import { SbbOptionGroup } from '../option-group/option-group.component';
+import { SbbOptionGroup, SBB_OPTGROUP } from '../option-group/option-group.component';
 
 /**
  * Option IDs need to be unique across components, so this counter exists outside of
@@ -31,7 +30,7 @@ import { SbbOptionGroup } from '../option-group/option-group.component';
  */
 let uniqueIdCounter = 0;
 
-/** Event object emitted by AutocompleteOptionComponent when selected or deselected. */
+/** Event object emitted by SbbOption when selected or deselected. */
 export class SbbOptionSelectionChange {
   constructor(
     /** Reference to the option that emitted the event. */
@@ -50,9 +49,7 @@ export interface SbbOptionParentComponent {
   multiple?: boolean;
 }
 
-/**
- * Injection token used to provide the parent component to options.
- */
+/** Injection token used to provide the parent component to options. */
 export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentComponent>(
   'SBB_OPTION_PARENT_COMPONENT'
 );
@@ -63,33 +60,42 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentCom
   templateUrl: 'option.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-option-text',
+    role: 'option',
+    '[attr.tabindex]': '_getTabIndex()',
+    '[class.sbb-selected]': 'selected',
+    '[class.sbb-option-multiple]': 'multiple',
+    '[class.sbb-active]': 'active',
+    '[id]': 'id',
+    '[attr.aria-selected]': '_getAriaSelected()',
+    '[attr.aria-disabled]': 'disabled.toString()',
+    '[class.sbb-option-disabled]': 'disabled',
+  },
 })
 export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
-  mostRecentViewValue = '';
+  private _selected = false;
+  private _active = false;
+  private _mostRecentViewValue = '';
 
-  @HostBinding('class.sbb-selected')
-  selected = false;
-
-  @HostBinding('class.sbb-option-multiple')
+  /** Whether the wrapping component is in multiple selection mode. */
   get multiple() {
     return this._parent && this._parent.multiple;
   }
 
-  @HostBinding('attr.role')
-  role = 'option';
-
-  @HostBinding('attr.aria-selected')
-  get ariaSelected() {
-    return this.selected || (this.multiple ? false : null);
+  /** Whether or not the option is currently selected. */
+  get selected(): boolean {
+    return this._selected;
   }
 
-  @HostBinding('attr.aria-disabled')
-  get ariaDisabled() {
-    return this.disabled.toString();
-  }
+  /** The form value of the option. */
+  @Input() value: any;
 
+  /** The unique ID of the option. */
+  @Input() id: string = `sbb-option-${uniqueIdCounter++}`;
+
+  /** Whether the option is disabled. */
   @Input()
-  @HostBinding('class.sbb-option-disabled')
   get disabled() {
     return (this.group && this.group.disabled) || this._disabled;
   }
@@ -99,110 +105,145 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
   }
   private _disabled = false;
 
-  @HostBinding('attr.tabIndex')
-  get tabIndex(): string {
-    return this.disabled ? '-1' : '0';
-  }
-
-  @HostBinding('class.sbb-active')
-  active = false;
-
-  @HostBinding('class.sbb-option-text') baseClass = true;
-
-  @Input() value: any;
-
-  @Input()
-  @HostBinding('attr.id')
-  id = `sbb-option-${uniqueIdCounter++}`;
-
+  /** Event emitted when the option is selected or deselected. */
   // tslint:disable-next-line:no-output-on-prefix
-  @Output()
-  readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange>();
+  @Output() readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange>();
 
   /** Emits when the state of the option changes and any parents have to be notified. */
-  readonly stateChanges = new Subject<void>();
+  readonly _stateChanges = new Subject<void>();
+
+  /**
+   * Whether or not the option is currently active and ready to be selected.
+   * An active option displays styles as if it is focused, but the
+   * focus is actually retained somewhere else. This comes in handy
+   * for components like autocomplete where focus must remain on the input.
+   */
+  get active(): boolean {
+    return this._active;
+  }
+
+  /**
+   * The displayed value of the option. It is necessary to show the selected option in the
+   * select's trigger.
+   */
+  get viewValue(): string {
+    return (this._getHostElement().textContent || '').trim();
+  }
 
   private _originalInnerHtml?: string;
   private _highlightValue?: string;
   private _highlighted = false;
 
   constructor(
-    private _elementRef: ElementRef<HTMLElement>,
+    private _element: ElementRef<HTMLElement>,
     @Inject(DOCUMENT) private _document: any,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional()
     @Inject(SBB_OPTION_PARENT_COMPONENT)
     private _parent: SbbOptionParentComponent,
-    @Optional() readonly group: SbbOptionGroup
+    @Optional() @Inject(SBB_OPTGROUP) readonly group: SbbOptionGroup
   ) {}
 
+  /** Selects the option. */
+  select(): void {
+    if (!this.selected) {
+      this._selected = true;
+      this._changeDetectorRef.markForCheck();
+      this._emitSelectionChangeEvent();
+    }
+  }
+
+  /** Deselects the option. */
+  deselect(): void {
+    if (this._selected) {
+      this._selected = false;
+      this._changeDetectorRef.markForCheck();
+      this._emitSelectionChangeEvent();
+    }
+  }
+
+  /** Sets focus onto this option. */
+  focus(_origin?: FocusOrigin, options?: FocusOptions): void {
+    // Note that we aren't using `_origin`, but we need to keep it because some internal consumers
+    // use `MatOption` in a `FocusKeyManager` and we need it to match `FocusableOption`.
+    const element = this._getHostElement();
+
+    if (typeof element.focus === 'function') {
+      element.focus(options);
+    }
+  }
+
+  /**
+   * This method sets display styles on the option to make it appear
+   * active. This is used by the ActiveDescendantKeyManager so key
+   * events will display the proper options as active on arrow key events.
+   */
+  setActiveStyles(): void {
+    if (!this.active) {
+      this._active = true;
+      this._changeDetectorRef.markForCheck();
+    }
+  }
+
+  /**
+   * This method removes display styles on the option that made it appear
+   * active. This is used by the ActiveDescendantKeyManager so key
+   * events will display the proper options as active on arrow key events.
+   */
+  setInactiveStyles(): void {
+    if (this.active) {
+      this._active = false;
+      this._changeDetectorRef.markForCheck();
+    }
+  }
+
+  /** Gets the label to be used when determining whether the option should be focused. */
+  getLabel(): string {
+    return this.viewValue;
+  }
+
+  /** Ensures the option is selected when activated from the keyboard. */
   @HostListener('keydown', ['$event'])
-  handleKeydown(event: TypeRef<KeyboardEvent>): void {
-    if (event.keyCode === ENTER || event.keyCode === SPACE) {
-      this.selectViaInteraction();
+  _handleKeydown(event: TypeRef<KeyboardEvent>): void {
+    if ((event.keyCode === ENTER || event.keyCode === SPACE) && !hasModifierKey(event)) {
+      this._selectViaInteraction();
 
       // Prevent the page from scrolling down and form submits.
       event.preventDefault();
     }
   }
 
+  /**
+   * `Selects the option while indicating the selection came from the user. Used to
+   * determine if the select's view -> model callback should be invoked.`
+   */
   @HostListener('click')
-  selectViaInteraction(): void {
+  _selectViaInteraction(): void {
     if (!this.disabled) {
-      this.selected = this.multiple ? !this.selected : true;
+      this._selected = this.multiple ? !this.selected : true;
       this._changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent(true);
     }
   }
 
-  get viewValue(): string {
-    return (this.getHostElement().textContent || '').trim();
+  /**
+   * Gets the `aria-selected` value for the option. We explicitly omit the `aria-selected`
+   * attribute from single-selection, unselected options. Including the `aria-selected="false"`
+   * attributes adds a significant amount of noise to screen-reader users without providing useful
+   * information.
+   */
+  _getAriaSelected(): boolean | null {
+    return this.selected || (this.multiple ? false : null);
   }
 
-  select(): void {
-    if (!this.selected) {
-      this.selected = true;
-      this._changeDetectorRef.markForCheck();
-      this._emitSelectionChangeEvent();
-    }
+  /** Returns the correct tabindex for the option depending on disabled state. */
+  _getTabIndex(): string {
+    return this.disabled ? '-1' : '0';
   }
 
-  deselect(): void {
-    if (this.selected) {
-      this.selected = false;
-      this._changeDetectorRef.markForCheck();
-      this._emitSelectionChangeEvent();
-    }
-  }
-
-  focus(): void {
-    const element = this.getHostElement();
-
-    if (typeof element.focus === 'function') {
-      element.focus();
-    }
-  }
-
-  setActiveStyles(): void {
-    if (!this.active) {
-      this.active = true;
-      this._changeDetectorRef.markForCheck();
-    }
-  }
-
-  setInactiveStyles(): void {
-    if (this.active) {
-      this.active = false;
-      this._changeDetectorRef.markForCheck();
-    }
-  }
-
-  getLabel(): string {
-    return this.viewValue;
-  }
-
-  getHostElement(): HTMLElement {
-    return this._elementRef.nativeElement;
+  /** Gets the host DOM element. */
+  _getHostElement(): HTMLElement {
+    return this._element.nativeElement;
   }
 
   ngAfterViewChecked() {
@@ -211,27 +252,36 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
     // we have to check for changes in the DOM ourselves and dispatch an event. These checks are
     // relatively cheap, however we still limit them only to selected options in order to avoid
     // hitting the DOM too often.
-    if (this.selected) {
+    if (this._selected) {
       const viewValue = this.viewValue;
-      if (viewValue !== this.mostRecentViewValue) {
-        this.mostRecentViewValue = viewValue;
-        this.stateChanges.next();
+
+      if (viewValue !== this._mostRecentViewValue) {
+        this._mostRecentViewValue = viewValue;
+        this._stateChanges.next();
       }
     }
   }
 
   ngOnDestroy() {
-    this.stateChanges.complete();
+    this._stateChanges.complete();
   }
 
-  /** @docs-private */
+  /** Emits the selection change event. */
+  private _emitSelectionChangeEvent(isUserInput = false): void {
+    this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
+  }
+
+  /**
+   * Highlights a text part of the option by wrapping it with a strong element.
+   * @docs-private
+   */
   _highlight(value: string, localeNormalizer?: ((value: string) => string) | null) {
     if (this._originalInnerHtml === undefined) {
-      this._originalInnerHtml = this._elementRef.nativeElement.innerHTML;
+      this._originalInnerHtml = this._element.nativeElement.innerHTML;
     } else if (value === this._highlightValue) {
       return;
     } else if (this._highlighted) {
-      this._elementRef.nativeElement.innerHTML = this._originalInnerHtml;
+      this._element.nativeElement.innerHTML = this._originalInnerHtml;
       this._highlighted = false;
     }
 
@@ -248,14 +298,10 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
     }
   }
 
-  private _emitSelectionChangeEvent(isUserInput = false): void {
-    this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
-  }
-
   private _findAllTextNodesWithMatch(
     matcher: RegExp,
     localeNormalizer: (value: string) => string,
-    node: Node = this._elementRef.nativeElement
+    node: Node = this._element.nativeElement
   ): ChildNode[] {
     const nodes: ChildNode[] = [];
     const childNodes = node.childNodes;
@@ -349,7 +395,7 @@ export function getOptionScrollPosition(
  * @param optionGroups Flat list of all of the option groups.
  * @docs-private
  */
-export function sbbCountGroupLabelsBeforeOption(
+export function countGroupLabelsBeforeOption(
   optionIndex: number,
   options: QueryList<SbbOption>,
   optionGroups: QueryList<SbbOptionGroup>

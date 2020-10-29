@@ -28,9 +28,7 @@ export function throwSbbDuplicatedSidebarError() {
  */
 export const SBB_SIDEBAR_CONTAINER = new InjectionToken('SBB_SIDEBAR_CONTAINER');
 
-/**
- * @docs-private
- */
+/** @docs-private */
 export interface SbbSidebarMobileCapableContainer {
   _mobile: boolean;
 }
@@ -46,9 +44,7 @@ export abstract class SbbSidebarContentBase extends CdkScrollable {
   }
 }
 
-/**
- * This component corresponds to a sidebar.
- */
+/** This component corresponds to a sidebar. */
 @Directive()
 export abstract class SbbSidebarBase {
   abstract _mobileChanged(mobile: boolean): void;
@@ -85,7 +81,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   _allSidebars: QueryList<T>;
 
   /** Sidebars that belong to this container. */
-  _sidebars = new QueryList<T>();
+  _sidebars: QueryList<T> = new QueryList<T>();
 
   _content: SbbSidebarContentBase;
   _userContent: SbbSidebarContentBase;
@@ -94,7 +90,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   protected _sidebar: T | null;
 
   /** Emits when the component is destroyed. */
-  protected readonly _destroyed = new Subject<void>();
+  protected readonly _destroyed: Subject<void> = new Subject<void>();
 
   ngAfterContentInit() {
     this._allSidebars.changes

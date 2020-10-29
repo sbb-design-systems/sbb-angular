@@ -15,11 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [
-        ":textexpand/textexpand.component.css",
-        ":textexpand-collapsed/textexpand-collapsed.component.css",
-        ":textexpand-expanded/textexpand-expanded.component.css",
-    ] + glob(["**/*.html"]),
+    assets = [":textexpand/textexpand.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/textexpand",
     deps = [
         "@npm//@angular/common",
@@ -33,16 +29,6 @@ sass_binary(
     deps = [
         "//src/angular-core/styles:common_scss_lib",
     ],
-)
-
-sass_binary(
-    name = "textexpand_collapsed_textexpand_collapsed_component_scss",
-    src = "textexpand-collapsed/textexpand-collapsed.component.scss",
-)
-
-sass_binary(
-    name = "textexpand_expanded_textexpand_expanded_component_scss",
-    src = "textexpand-expanded/textexpand-expanded.component.scss",
 )
 
 ng_test_library(

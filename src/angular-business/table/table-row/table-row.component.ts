@@ -63,11 +63,12 @@ export class SbbRowDef<T> extends CdkRowDef<T> {}
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbHeaderRow',
   providers: [{ provide: CdkHeaderRow, useExisting: SbbHeaderRow }],
+  host: {
+    class: 'sbb-header-row',
+    role: 'row',
+  },
 })
-export class SbbHeaderRow extends CdkHeaderRow {
-  @HostBinding('class.sbb-header-row') sbbHeaderRow = true;
-  @HostBinding('attr.role') row = 'row';
-}
+export class SbbHeaderRow extends CdkHeaderRow {}
 
 /** Footer template container that contains the cell outlet. Adds the right class and role. */
 @Component({
@@ -79,11 +80,12 @@ export class SbbHeaderRow extends CdkHeaderRow {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbFooterRow',
   providers: [{ provide: CdkFooterRow, useExisting: SbbFooterRow }],
+  host: {
+    class: 'sbb-footer-row',
+    role: 'row',
+  },
 })
-export class SbbFooterRow extends CdkFooterRow {
-  @HostBinding('class.sbb-footer-row') sbbFooterRow = true;
-  @HostBinding('attr.role') row = 'row';
-}
+export class SbbFooterRow extends CdkFooterRow {}
 
 /** Data row template container that contains the cell outlet. Adds the right class and role. */
 @Component({
@@ -95,8 +97,9 @@ export class SbbFooterRow extends CdkFooterRow {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbRow',
   providers: [{ provide: CdkRow, useExisting: SbbRow }],
+  host: {
+    class: 'sbb-row',
+    role: 'row',
+  },
 })
-export class SbbRow extends CdkRow {
-  @HostBinding('class.sbb-row') sbbRow = true;
-  @HostBinding('attr.role') row = 'row';
-}
+export class SbbRow extends CdkRow {}

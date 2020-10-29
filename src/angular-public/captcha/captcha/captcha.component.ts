@@ -8,7 +8,6 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  HostBinding,
   HostListener,
   Inject,
   Input,
@@ -37,14 +36,13 @@ let nextId = 0;
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.id]': 'id',
+  },
 })
 export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccessor {
-  /**
-   * Identifier of sbb-captcha.
-   */
-  @Input()
-  @HostBinding('attr.id')
-  id = `sbbcaptcha-${nextId++}`;
+  /** Identifier of sbb-captcha. */
+  @Input() id: string = `sbbcaptcha-${nextId++}`;
 
   /**
    * SiteKey of the user.
@@ -82,11 +80,8 @@ export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccesso
    */
   @Input() badge?: ReCaptchaV2.Badge;
 
-  /**
-   * Event generated on captcha checkbox.
-   * TODO: Change to void.
-   */
-  @Output() resolved = new EventEmitter<string>();
+  /** Event generated on captcha checkbox. */
+  @Output() resolved: EventEmitter<string> = new EventEmitter<string>();
 
   /** @internal */
   private _subscription: Subscription;
@@ -104,7 +99,7 @@ export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccesso
   private _onTouched: () => void;
 
   @HostListener('resolved', ['$event'])
-  onResolve($event: string) {
+  _onResolve($event: string) {
     if (this._onChange) {
       this._onChange($event);
     }

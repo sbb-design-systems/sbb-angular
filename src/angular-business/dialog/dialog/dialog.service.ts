@@ -51,9 +51,7 @@ export const SBB_DIALOG_SCROLL_STRATEGY_PROVIDER = {
   useFactory: SBB_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
-/**
- * Service to open SBB Design modal dialogs.
- */
+/** Service to open SBB Design modal dialogs. */
 @Injectable()
 export class SbbDialog implements OnDestroy {
   private _openDialogsAtThisLevel: SbbDialogRef<any>[] = [];
@@ -100,23 +98,8 @@ export class SbbDialog implements OnDestroy {
    *     or a TemplateRef to instantiate as the dialog content.
    * @param config Extra configuration options.
    * @returns Reference to the newly-opened dialog.
-   * @deprecated use openDialog() instead
    */
   open<T, D = any, R = any>(
-    componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    config?: SbbDialogConfig<D>
-  ): SbbDialogRef<T, R> {
-    return this.openDialog(componentOrTemplateRef, config);
-  }
-
-  /**
-   * Opens a modal dialog containing the given component.
-   * @param componentOrTemplateRef Type of the component to load into the dialog,
-   *     or a TemplateRef to instantiate as the dialog content.
-   * @param config Extra configuration options.
-   * @returns Reference to the newly-opened dialog.
-   */
-  openDialog<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
     config?: SbbDialogConfig<D>
   ): SbbDialogRef<T, R> {
@@ -141,9 +124,7 @@ export class SbbDialog implements OnDestroy {
     return dialogRef;
   }
 
-  /**
-   * Closes all of the currently-open dialogs.
-   */
+  /** Closes all of the currently-open dialogs. */
   closeAll(): void {
     this._closeDialogs(this.openDialogs);
   }

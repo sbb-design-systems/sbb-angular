@@ -26,7 +26,7 @@ class StandardCalendarComponent {
   startDate = new Date(2017, JAN, 31);
 }
 
-describe('CalendarHeaderComponent', () => {
+describe('SbbCalendarHeader', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SbbDatepickerModule, SbbIconTestingModule],

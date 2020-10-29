@@ -9,7 +9,7 @@
     [attr.multiple]="multiple"
     [disabled]="disabled"
     (change)="fileChange($event)"
-    (blur)="onTouched()"
+    (blur)="_onTouched()"
   />
   <span class="sbb-file-selector-button" [class.sbb-file-selector-disabled]="disabled">
     <span i18n="Button label to select files for upload@@sbbFileSelectorUploadFile"
@@ -28,21 +28,21 @@
       class="sbb-file-selector-list-type-icon"
       [ngSwitch]="getFileTypeCat(file)"
     >
-      <sbb-icon svgIcon="kom:document-text-small" *ngSwitchCase="fileTypeCategory.DOC"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-text-small" *ngSwitchCase="_fileTypeCategory.DOC"></sbb-icon>
       <sbb-icon
         svgIcon="kom:document-image-small"
-        *ngSwitchCase="fileTypeCategory.IMAGE"
+        *ngSwitchCase="_fileTypeCategory.IMAGE"
       ></sbb-icon>
-      <sbb-icon svgIcon="kom:document-pdf-small" *ngSwitchCase="fileTypeCategory.PDF"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-pdf-small" *ngSwitchCase="_fileTypeCategory.PDF"></sbb-icon>
       <sbb-icon
         svgIcon="kom:document-sound-small"
-        *ngSwitchCase="fileTypeCategory.AUDIO"
+        *ngSwitchCase="_fileTypeCategory.AUDIO"
       ></sbb-icon>
       <sbb-icon
         svgIcon="kom:document-video-small"
-        *ngSwitchCase="fileTypeCategory.VIDEO"
+        *ngSwitchCase="_fileTypeCategory.VIDEO"
       ></sbb-icon>
-      <sbb-icon svgIcon="kom:document-zip-small" *ngSwitchCase="fileTypeCategory.ZIP"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-zip-small" *ngSwitchCase="_fileTypeCategory.ZIP"></sbb-icon>
       <sbb-icon svgIcon="kom:document-standard-small" *ngSwitchDefault></sbb-icon>
     </div>
     <span class="sbb-file-selector-list-desc"

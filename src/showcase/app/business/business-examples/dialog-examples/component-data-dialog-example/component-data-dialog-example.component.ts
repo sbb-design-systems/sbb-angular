@@ -9,7 +9,7 @@ export class ComponentDataDialogExampleComponent {
   constructor(public dialog: SbbDialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.openDialog(ComponentDataDialogComponent, {
+    const dialogRef = this.dialog.open(ComponentDataDialogComponent, {
       width: '40rem',
       height: '40rem',
       position: { top: '10px' },

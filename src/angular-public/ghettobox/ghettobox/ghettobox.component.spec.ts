@@ -31,7 +31,7 @@ export class GhettoboxTestComponent {
   afterDelete() {}
 }
 
-describe('GhettoboxComponent', () => {
+describe('SbbGhettobox', () => {
   let component: GhettoboxTestComponent;
   let fixture: ComponentFixture<GhettoboxTestComponent>;
 

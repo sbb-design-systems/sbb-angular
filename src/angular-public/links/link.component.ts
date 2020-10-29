@@ -14,39 +14,14 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbLink {
-  /** @docs-private
-   * @deprecated */
-  linkClass = true;
-  /**
-   * Link modes available for different purposes
-   */
+  /** Link modes available for different purposes */
   @Input() mode: 'normal' | 'stretch' | 'form' = 'normal';
-  /**
-   * Icon types available for different purposes
-   */
+  /** Icon types available for different purposes */
   @Input() icon: 'arrow' | 'download' = 'arrow';
 
   /** @docs-private */
   get _initialIconVisible() {
     return this.mode !== 'stretch';
-  }
-
-  /** @docs-private
-   * @deprecated */
-  get _normalClass() {
-    return this.mode === 'normal';
-  }
-
-  /** @docs-private
-   * @deprecated */
-  get _stretchClass() {
-    return this.mode === 'stretch';
-  }
-
-  /** @docs-private
-   * @deprecated */
-  get _formClass() {
-    return this.mode === 'form';
   }
 
   // tslint:disable: member-ordering

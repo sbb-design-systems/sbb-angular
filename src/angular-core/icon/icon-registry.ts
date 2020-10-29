@@ -97,9 +97,7 @@ class SvgIconConfig {
 export class SbbIconRegistry implements OnDestroy {
   private _document: Document;
 
-  /**
-   * URLs and cached SVG elements for individual icons. Keys are of the format "[namespace]:[icon]".
-   */
+  /** URLs and cached SVG elements for individual icons. Keys are of the format "[namespace]:[icon]". */
   private _svgIconConfigs = new Map<string, SvgIconConfig>();
 
   /**
@@ -185,9 +183,7 @@ export class SbbIconRegistry implements OnDestroy {
     return this._addSvgIconConfig(namespace, iconName, new SvgIconConfig(svgElement, options));
   }
 
-  /**
-   * Registers an icon set by URL in the default namespace.
-   */
+  /** Registers an icon set by URL in the default namespace. */
   addSvgIconSet(url: SafeResourceUrl, options?: SbbIconOptions): this {
     return this.addSvgIconSetInNamespace('', url, options);
   }
@@ -334,9 +330,7 @@ export class SbbIconRegistry implements OnDestroy {
     this._cachedIconsByUrl.clear();
   }
 
-  /**
-   * Returns the cached icon for a SvgIconConfig if available, or fetches it from its URL if not.
-   */
+  /** Returns the cached icon for a SvgIconConfig if available, or fetches it from its URL if not. */
   private _getSvgFromConfig(config: SvgIconConfig): Observable<SVGElement> {
     if (config.svgElement) {
       // We already have the SVG element for this icon, return a copy.
@@ -463,9 +457,7 @@ export class SbbIconRegistry implements OnDestroy {
     );
   }
 
-  /**
-   * Creates a DOM element from the given SVG string, and adds default attributes.
-   */
+  /** Creates a DOM element from the given SVG string, and adds default attributes. */
   private _createSvgElementForSingleIcon(
     responseText: string,
     options?: SbbIconOptions
@@ -523,9 +515,7 @@ export class SbbIconRegistry implements OnDestroy {
     return this._setSvgAttributes(svg, options);
   }
 
-  /**
-   * Creates a DOM element from the given SVG string.
-   */
+  /** Creates a DOM element from the given SVG string. */
   private _svgElementFromString(str: string): SVGElement {
     const div = this._document.createElement('DIV');
     div.innerHTML = str;
@@ -538,9 +528,7 @@ export class SbbIconRegistry implements OnDestroy {
     return svg;
   }
 
-  /**
-   * Converts an element into an SVG node by cloning all of its children.
-   */
+  /** Converts an element into an SVG node by cloning all of its children. */
   private _toSvgElement(element: Element): SVGElement {
     const svg = this._svgElementFromString('<svg></svg>');
     const attributes = element.attributes;
@@ -563,9 +551,7 @@ export class SbbIconRegistry implements OnDestroy {
     return svg;
   }
 
-  /**
-   * Sets the default attributes for an SVG element to be used as an icon.
-   */
+  /** Sets the default attributes for an SVG element to be used as an icon. */
   private _setSvgAttributes(svg: SVGElement, options?: SbbIconOptions): SVGElement {
     svg.setAttribute('fit', '');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');

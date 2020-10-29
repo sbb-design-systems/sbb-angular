@@ -4,9 +4,7 @@ import { ViewContainerRef } from '@angular/core';
 /** Valid ARIA roles for a Lightbox element. */
 export type SbbLightboxRole = 'dialog' | 'alertdialog';
 
-/**
- * Configuration for opening a modal lightbox with the Lightbox service.
- */
+/** Configuration for opening a modal lightbox with the Lightbox service. */
 export class SbbLightboxConfig<D = any> {
   /**
    * Where the attached component should live in Angular's *logical* component tree.
@@ -26,13 +24,13 @@ export class SbbLightboxConfig<D = any> {
   panelClass?: string | string[] = '';
 
   /** Whether the user can use escape or clicking on the backdrop to close the modal. */
-  disableClose? = false;
+  disableClose?: boolean = false;
 
   /** Width of the Lightbox. */
-  width? = '100vw';
+  width?: string = '100vw';
 
   /** Height of the Lightbox. */
-  height? = '100vh';
+  height?: string = '100vh';
 
   /** Data being injected into the child component. */
   data?: D | null = null;
@@ -44,11 +42,11 @@ export class SbbLightboxConfig<D = any> {
   ariaLabel?: string | null = null;
 
   /** Whether the Lightbox should focus the first focusable element on open. */
-  autoFocus? = true;
+  autoFocus?: boolean = true;
 
   /** Scroll strategy to be used for the dialog. */
   scrollStrategy?: ScrollStrategy;
 
   /** Whether the Lightbox should close when the user goes backwards/forwards in history. */
-  closeOnNavigation? = true;
+  closeOnNavigation?: boolean = true;
 }

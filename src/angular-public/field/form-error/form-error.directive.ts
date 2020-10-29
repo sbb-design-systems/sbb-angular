@@ -1,14 +1,15 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 
 let nextId = 0;
 
 @Directive({
   selector: 'sbb-form-error, [sbbFormError]',
+  host: {
+    class: 'sbb-form-error',
+    role: 'alert',
+    '[attr.id]': 'id',
+  },
 })
 export class SbbFormError {
-  @HostBinding()
-  @Input()
-  id = `sbb-form-error-${nextId++}`;
-  @HostBinding('class.sbb-form-error') formErrorClass = true;
-  @HostBinding('attr.role') role = 'alert';
+  @Input() id: string = `sbb-form-error-${nextId++}`;
 }

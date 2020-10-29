@@ -9,7 +9,6 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   Output,
   TemplateRef,
   ViewContainerRef,
@@ -18,7 +17,7 @@ import { Subject } from 'rxjs';
 
 import { SbbTabContent } from './tab-content';
 
-let counter = 0;
+let nextId = 0;
 
 @Component({
   selector: 'sbb-tab',
@@ -31,79 +30,30 @@ let counter = 0;
     '[attr.aria-hidden]': "active ? 'false' : 'true'",
   },
 })
-export class SbbTab implements OnInit, OnChanges, OnDestroy {
-  /**
-   * Tab identifier
-   */
+export class SbbTab implements OnChanges, OnDestroy {
+  /** Tab identifier */
+  @Input() id: string = `content${nextId++}-tab`;
+
+  /** Label identifier of a tab */
+  @Input() labelId: string = `content${nextId++}`;
+
+  /** Disables this tab */
   @Input()
-  id: string;
-
-  /**
-   * Label identifier of a tab
-   */
-  @Input()
-  labelId: string;
-
-  /**
-   * Initial index tab
-   * @deprecated internal detail
-   */
-  @Input()
-  tabindex = -1;
-
-  /**
-   * Role of tab
-   * @deprecated internal detail
-   */
-  role = 'tabpanel';
-
-  /**
-   * Class property that identifies an aria hidden of a tab
-   * @deprecated internal detail
-   */
-  get ariaHidden(): string {
-    return this.active ? 'false' : 'true';
-  }
-
-  private _disabled: boolean;
-  /**
-   * Disables this tab
-   */
-  @Input()
-  set disabled(value: boolean) {
-    this._disabled = coerceBooleanProperty(value);
-
-    if (!!value) {
-      this.disableChange.emit(this.id);
-    }
-  }
-
   get disabled() {
     return this._disabled;
   }
-  /**
-   * Label of a specific tab
-   */
+  set disabled(value: boolean) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+  private _disabled: boolean;
+
+  /** Label of a specific tab */
   @Input() label: string;
-  /**
-   * Class property that specifics tab status
-   */
-  @Input() active = false;
-  /**
-   * Class property that identifies the data-set for tabs content
-   */
+  /** Class property that specifics tab status */
+  @Input() active: boolean = false;
+  /** Class property that identifies the data-set for tabs content */
   @Input() badgePill?: number;
-  /**
-   * Event generated if a tab is disabled
-   */
-  @Output() disableChange = new EventEmitter();
-  /**
-   * Event generated if a tab is removed
-   */
-  @Output() removeChange = new EventEmitter();
-  /**
-   * Template provided in the tab content, which is lazily rendered
-   */
+  /** Template provided in the tab content, which is lazily rendered */
   @ContentChild(SbbTabContent, { read: TemplateRef, static: true }) _lazyTabContent: TemplateRef<
     any
   >;
@@ -122,15 +72,6 @@ export class SbbTab implements OnInit, OnChanges, OnDestroy {
     private _viewContainerRef: ViewContainerRef
   ) {}
 
-  ngOnInit() {
-    if (!this.id) {
-      this.id = `content${counter++}-tab`;
-    }
-    if (!this.labelId) {
-      this.labelId = `content${counter++}`;
-    }
-  }
-
   ngOnChanges(): void {
     this._stateChanges.next();
   }
@@ -146,7 +87,6 @@ export class SbbTab implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.removeChange.emit(this.id);
     this._stateChanges.complete();
   }
 

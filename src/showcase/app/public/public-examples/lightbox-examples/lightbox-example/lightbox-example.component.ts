@@ -15,9 +15,7 @@ export interface LightboxData {
   name: string;
 }
 
-/**
- * Lighbox sharing data
- */
+/** Lighbox sharing data */
 @Component({
   selector: 'sbb-lightbox-example-content-1',
   templateUrl: 'lightbox-example-content-1.component.html',
@@ -41,7 +39,7 @@ export class LightboxExampleExampleContentComponent {
         <input type="text" [(ngModel)]="name" placeholder="What's your name?" />
       </li>
       <li>
-        <button sbbButton mode="secondary" (click)="openLightbox()">
+        <button sbbButton mode="secondary" (click)="open()">
           Pick one
         </button>
       </li>
@@ -57,8 +55,8 @@ export class LightboxExampleExampleComponent {
 
   constructor(public lightbox: SbbLightbox) {}
 
-  openLightbox(): void {
-    const lightboxRef = this.lightbox.openLightbox(LightboxExampleExampleContentComponent, {
+  open(): void {
+    const lightboxRef = this.lightbox.open(LightboxExampleExampleContentComponent, {
       data: { name: this.name, animal: this.animal },
     });
 
@@ -69,9 +67,7 @@ export class LightboxExampleExampleComponent {
   }
 }
 
-/**
- * Lighbox with content loaded from component, footer button bar
- */
+/** Lighbox with content loaded from component, footer button bar */
 @Component({
   selector: 'sbb-lightbox-example-content-2',
   templateUrl: 'lightbox-example-content-2.component.html',
@@ -80,9 +76,7 @@ export class LightboxExampleExample2ContentComponent {
   alignment = 'center';
 }
 
-/**
- * @title Dialog with header, scrollable content and actions
- */
+/** @title Dialog with header, scrollable content and actions */
 @Component({
   selector: 'sbb-lightbox-example-example-2',
   template: `
@@ -97,7 +91,7 @@ export class LightboxExampleExample2Component {
   constructor(public lightbox: SbbLightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.openLightbox(LightboxExampleExample2ContentComponent);
+    const lightboxRef = this.lightbox.open(LightboxExampleExample2ContentComponent);
 
     lightboxRef.afterClosed().subscribe((result) => {
       console.log(`Lightbox result: ${result}`);
@@ -105,9 +99,7 @@ export class LightboxExampleExample2Component {
   }
 }
 
-/**
- * Lighbox with content loaded from Template
- */
+/** Lighbox with content loaded from Template */
 @Component({
   selector: 'sbb-lightbox-example-example-3',
   templateUrl: 'lightbox-example-content-3.component.html',
@@ -117,7 +109,7 @@ export class LightboxExampleExample3Component {
   constructor(public lightbox: SbbLightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.openLightbox(this.sampleLightboxTemplate);
+    const lightboxRef = this.lightbox.open(this.sampleLightboxTemplate);
 
     lightboxRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -164,7 +156,7 @@ export class LightboxExampleExample4Component {
   constructor(public lightbox: SbbLightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.openLightbox(LightboxExampleExample4ContentComponent, {
+    const lightboxRef = this.lightbox.open(LightboxExampleExample4ContentComponent, {
       disableClose: true,
     });
 
@@ -229,14 +221,12 @@ export class LightboxExampleExample5ContentComponent implements OnInit {
 
   ngOnInit() {
     this._lightBoxRef.manualCloseAction.subscribe(() => {
-      this.lightbox.openLightbox(LightboxExampleExample6ContentComponent);
+      this.lightbox.open(LightboxExampleExample6ContentComponent);
     });
   }
 }
 
-/**
- * @title Dialog with header, scrollable content and actions
- */
+/** @title Dialog with header, scrollable content and actions */
 @Component({
   selector: 'sbb-lightbox-example-example-5',
   template: `
@@ -251,7 +241,7 @@ export class LightboxExampleExample5Component {
   constructor(public lightbox: SbbLightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.openLightbox(LightboxExampleExample5ContentComponent, {
+    const lightboxRef = this.lightbox.open(LightboxExampleExample5ContentComponent, {
       disableClose: true,
     });
 

@@ -40,9 +40,7 @@ export interface SbbBreadcrumbParent {
   levels: QueryList<SbbBreadcrumb>;
 }
 
-/**
- * Injection token used to provide the parent component to options.
- */
+/** Injection token used to provide the parent component to options. */
 export const SBB_BREADCRUMB_PARENT_COMPONENT = new InjectionToken<SbbBreadcrumbParent>(
   'SBB_BREADCRUMB_PARENT_COMPONENT'
 );
@@ -60,32 +58,18 @@ export const SBB_BREADCRUMB_LEVEL_OFFSET = 60;
   },
 })
 export class SbbBreadcrumb extends SbbDropdownTrigger implements AfterViewInit {
-  /**
-   * Refers to a dropdown instance.
-   */
+  /** Refers to a dropdown instance. */
   @ContentChild(SbbDropdown) dropdown: SbbDropdown;
 
-  /**
-   * Trigger on the open of the dropdown contained in breadcrumb.
-   */
+  /** Trigger on the open of the dropdown contained in breadcrumb. */
   @ViewChild('breadcrumbTrigger') breadcrumbTrigger: ElementRef;
 
-  /**
-   * Css class of a sbb-breadcrumb.
-   * @deprecated internal detail
-   */
-  cssClass = true;
-
-  /**
-   * Css class on a breadcrumb panel.
-   */
-  panelClass = 'sbb-breadcrumb-panel';
+  /** Css class on a breadcrumb panel. */
+  panelClass: string = 'sbb-breadcrumb-panel';
 
   private _scalingFactor: number = 1;
 
-  /**
-   * Checks if the current breadcrumb is the first child of his parent (breadcrumbs)
-   */
+  /** Checks if the current breadcrumb is the first child of his parent (breadcrumbs) */
   get isFirst(): boolean {
     if (this._parent && this._parent.levels.first) {
       return this === this._parent.levels.first;
@@ -93,9 +77,7 @@ export class SbbBreadcrumb extends SbbDropdownTrigger implements AfterViewInit {
     return false;
   }
 
-  /**
-   * Event emitted at the expansion of the dropdown.
-   */
+  /** Event emitted at the expansion of the dropdown. */
   @Output() expandEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
@@ -146,9 +128,9 @@ export class SbbBreadcrumb extends SbbDropdownTrigger implements AfterViewInit {
   }
 
   /** Handles all keydown events on the select. */
-  handleKeydown(event: KeyboardEvent): void {
+  _handleKeydown(event: KeyboardEvent): void {
     if (this.dropdown) {
-      super.handleKeydown(event);
+      super._handleKeydown(event);
     }
   }
 

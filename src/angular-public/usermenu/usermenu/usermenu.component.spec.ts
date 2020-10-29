@@ -48,7 +48,7 @@ import { SbbUserMenu } from './usermenu.component';
   `,
 })
 class UsermenuTestComponent {
-  userName1 = 'john_64';
+  userName1: string = 'john_64';
 
   user1 = {
     userName: '',
@@ -106,7 +106,7 @@ class UsermenuTestComponent {
   `,
 })
 class UsermenuTest2Component {
-  userName2 = 'max_98';
+  userName2: string = 'max_98';
 
   user2 = {
     userName: '',
@@ -158,7 +158,7 @@ class UsermenuTest2Component {
   `,
 })
 class UsermenuTest3Component {
-  userName3 = 'walter_14';
+  userName3: string = 'walter_14';
 
   user3 = {
     userName: '',
@@ -187,7 +187,7 @@ class UsermenuTest3Component {
   }
 }
 
-describe('UserMenuComponent', () => {
+describe('SbbUserMenu', () => {
   let userMenuComponent: SbbUserMenu;
   let fixtureUserMenu: ComponentFixture<SbbUserMenu>;
 

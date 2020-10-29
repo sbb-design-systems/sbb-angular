@@ -1,20 +1,10 @@
-import {
-  Directive,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnInit,
-  Optional,
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnInit, Optional } from '@angular/core';
 
 import { SbbDialogHelperService } from './dialog-helper.service';
 import { SbbDialogRef } from './dialog-ref';
 import { SbbDialog } from './dialog.service';
 
-/**
- * Button that will close the current dialog.
- */
+/** Button that will close the current dialog. */
 @Directive({
   selector: `button[sbbDialogClose]`,
   exportAs: 'sbbDialogClose',
@@ -55,7 +45,7 @@ export class SbbDialogClose implements OnInit {
   }
 
   @HostListener('click')
-  onCloseClick() {
+  _onCloseClick() {
     this.dialogRef.close(this.dialogResult);
   }
 }

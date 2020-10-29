@@ -95,7 +95,7 @@ class FileSelectorTestComponent {
   }
 }
 
-describe('FileSelectorComponent using mock component', () => {
+describe('SbbFileSelector using mock component', () => {
   let component: FileSelectorTestComponent;
   let fixture: ComponentFixture<FileSelectorTestComponent>;
 
@@ -240,7 +240,7 @@ class FileSelectorTest2Component {
   }
 }
 
-describe('FileSelectorComponent using mock component and limited behaviour ', () => {
+describe('SbbFileSelector using mock component and limited behaviour ', () => {
   let fileSelectorTest2Component: FileSelectorTest2Component;
   let fixtureFileSelectorTest2: ComponentFixture<FileSelectorTest2Component>;
 

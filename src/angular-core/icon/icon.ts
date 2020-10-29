@@ -23,7 +23,7 @@ import { take } from 'rxjs/operators';
 import { SbbIconRegistry } from './icon-registry';
 
 /**
- * Injection token used to provide the current location to `SbbIconComponent`.
+ * Injection token used to provide the current location to `SbbIcon`.
  * Used to handle server-side rendering and to stub out during unit tests.
  * @docs-private
  */
@@ -33,7 +33,7 @@ export const SBB_ICON_LOCATION = new InjectionToken<SbbIconLocation>('sbb-icon-l
 });
 
 /**
- * Stubbed out location for `SbbIconComponent`.
+ * Stubbed out location for `SbbIcon`.
  * @docs-private
  */
 export interface SbbIconLocation {

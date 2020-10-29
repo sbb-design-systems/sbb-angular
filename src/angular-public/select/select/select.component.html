@@ -1,12 +1,27 @@
-<div class="sbb-select-trigger" aria-hidden="true" (click)="toggle()" #trigger>
-  <div class="sbb-select-value" [ngSwitch]="empty">
+<!--
+ Note that the select trigger element specifies `aria-owns` pointing to the listbox overlay.
+ While aria-owns is not required for the ARIA 1.2 `role="combobox"` interaction pattern,
+ it fixes an issue with VoiceOver when the select appears inside of an `aria-model="true"`
+ element (e.g. a dialog). Without this `aria-owns`, the `aria-modal` on a dialog prevents
+ VoiceOver from "seeing" the select's listbox overlay for aria-activedescendant.
+ Using `aria-owns` re-parents the select overlay so that it works again.
+ See https://github.com/angular/components/issues/20694
+-->
+<div
+  [attr.aria-owns]="panelOpen ? id + '-panel' : null"
+  class="sbb-select-trigger"
+  aria-hidden="true"
+  (click)="toggle()"
+  #trigger
+>
+  <div class="sbb-select-value" [ngSwitch]="empty" [attr.id]="_valueId">
     <span class="sbb-select-placeholder" *ngSwitchCase="true">{{ placeholder || '\u00A0' }}</span>
     <span class="sbb-select-value-text" *ngSwitchCase="false">
       <span>{{ triggerValue || '\u00A0' }}</span>
     </span>
   </div>
 
-  <div class="sbb-select-arrow-wrapper" [class.sbb-select-arrow-wrapper-rotate]="rotateIcon">
+  <div class="sbb-select-arrow-wrapper">
     <sbb-icon svgIcon="kom:chevron-small-down-small" class="sbb-icon-fit"></sbb-icon>
   </div>
 </div>
@@ -19,23 +34,32 @@
   cdkConnectedOverlayHasBackdrop
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
   cdkConnectedOverlayPanelClass="sbb-overlay-panel"
-  [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
+  [cdkConnectedOverlayScrollStrategy]="_scrollStrategy"
   [cdkConnectedOverlayOrigin]="{ elementRef: _elementRef }"
   [cdkConnectedOverlayOpen]="panelOpen"
-  [cdkConnectedOverlayPositions]="positions"
-  [cdkConnectedOverlayWidth]="triggerRect?.width!"
-  [cdkConnectedOverlayOffsetY]="offsetY"
+  [cdkConnectedOverlayPositions]="_positions"
+  [cdkConnectedOverlayWidth]="_triggerRect?.width!"
+  [cdkConnectedOverlayOffsetX]="0"
+  [cdkConnectedOverlayOffsetY]="_offsetY"
   (backdropClick)="close()"
-  (attach)="onAttached()"
+  (attach)="_onAttached()"
   (detach)="close()"
 >
   <div
     #panel
+    role="listbox"
+    tabindex="-1"
     class="sbb-select-panel sbb-select-content sbb-scrollbar"
+    [attr.id]="id + '-panel'"
+    [attr.aria-multiselectable]="multiple"
+    [attr.aria-label]="ariaLabel || null"
+    [attr.aria-labelledby]="_getPanelAriaLabelledby()"
     [ngClass]="panelClass"
-    [style.transformOrigin]="transformOrigin"
-    [style.font-size.px]="triggerFontSize"
-    (keydown)="handleKeydown($event)"
+    [@transformPanel]="multiple ? 'showing-multiple' : 'showing'"
+    (@transformPanel.done)="_panelDoneAnimatingStream.next($event.toState)"
+    [style.transformOrigin]="_transformOrigin"
+    [style.font-size.px]="_triggerFontSize"
+    (keydown)="_handleKeydown($event)"
   >
     <ng-content></ng-content>
   </div>

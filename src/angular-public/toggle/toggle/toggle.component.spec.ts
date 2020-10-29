@@ -45,7 +45,7 @@ import { SbbToggleModule } from '../toggle.module';
   `,
 })
 class ToggleReactiveTestComponent implements OnInit {
-  modelReactive = 'Option_2';
+  modelReactive: string = 'Option_2';
   @ContentChildren('options') options: QueryList<SbbToggleOption>;
 
   constructor() {}
@@ -102,7 +102,7 @@ class ToggleReactiveTestComponent implements OnInit {
   `,
 })
 class ToggleReactiveDefaultValueTestComponent implements OnInit {
-  modelReactive = 'Option_2';
+  modelReactive: string = 'Option_2';
   @ContentChildren('options') options: QueryList<SbbToggleOption>;
 
   form = new FormGroup({
@@ -193,7 +193,7 @@ class ToggleSimpleCaseTestComponent {
   change(evt: SbbRadioChange) {}
 }
 
-describe('ToggleComponent case reactive using mock component', () => {
+describe('SbbToggle case reactive using mock component', () => {
   let componentTest: ToggleReactiveTestComponent;
   let fixtureTest: ComponentFixture<ToggleReactiveTestComponent>;
 
@@ -292,7 +292,7 @@ describe('ToggleComponent case reactive using mock component', () => {
   });
 });
 
-describe('ToggleComponent case reactive with default value using mock component', () => {
+describe('SbbToggle case reactive with default value using mock component', () => {
   let componentTest: ToggleReactiveDefaultValueTestComponent;
   let fixtureTest: ComponentFixture<ToggleReactiveDefaultValueTestComponent>;
 
@@ -337,7 +337,7 @@ describe('ToggleComponent case reactive with default value using mock component'
   });
 });
 
-describe('ToggleComponent case template driven using mock component', () => {
+describe('SbbToggle case template driven using mock component', () => {
   let componentTest: ToggleTemplateDrivenTestComponent;
   let fixtureTest: ComponentFixture<ToggleTemplateDrivenTestComponent>;
 
@@ -402,7 +402,7 @@ describe('ToggleComponent case template driven using mock component', () => {
   });
 });
 
-describe('ToggleComponent simple case using mock component', () => {
+describe('SbbToggle simple case using mock component', () => {
   let componentTest: ToggleSimpleCaseTestComponent;
   let fixtureTest: ComponentFixture<ToggleSimpleCaseTestComponent>;
 

@@ -23,12 +23,7 @@ import { SbbTabs } from './tabs.component';
         <h4>Content 2</h4>
         <p>Here comes the content for tab 2 ...</p>
       </sbb-tab>
-      <sbb-tab
-        label="TAB 2"
-        *ngIf="isVisible"
-        (disableChange)="disableChange($event)"
-        (removeChange)="removeChange($event)"
-      >
+      <sbb-tab label="TAB 2" *ngIf="isVisible">
         <h4>Content 3</h4>
         <p>Here comes the content for tab 3 ...</p>
       </sbb-tab>
@@ -42,10 +37,8 @@ import { SbbTabs } from './tabs.component';
 })
 class TabsTestComponent {
   @ViewChild('tabs') tabsComponent: SbbTabs;
-  isVisible = true;
+  isVisible: boolean = true;
   numberOfTimesSubComponentHasBeenInitialized = 0;
-  disableChange() {}
-  removeChange() {}
   onContentInitalized() {
     this.numberOfTimesSubComponentHasBeenInitialized++;
   }
@@ -62,7 +55,7 @@ class TabContentTestComponent implements OnInit {
   }
 }
 
-describe('TabsComponent', () => {
+describe('SbbTabs', () => {
   let component: TabsTestComponent;
   let fixture: ComponentFixture<TabsTestComponent>;
   let tabs: DebugElement[];
@@ -111,31 +104,12 @@ describe('TabsComponent', () => {
     expect(lastTabEl.nativeElement.textContent.trim()).toBe('');
   });
 
-  it('should when setting a disabled tab emit an event', () => {
-    spyOn(component, 'disableChange');
-    const lastTabEl = tabs[2];
-    const lastTabComp = lastTabEl.componentInstance;
-    lastTabComp.disabled = true;
-    fixture.detectChanges();
-
-    expect(component.disableChange).toHaveBeenCalled();
-  });
-
   it('should when a tab is removed the number of tabs labels to be equal to 2', () => {
     component.isVisible = false;
     fixture.detectChanges();
 
     const tabsLabels = fixture.debugElement.queryAll(By.css('.sbb-tabs-tablist-item-button'));
     expect(tabsLabels.length).toBe(3);
-  });
-
-  it('should when removing a tab emit an event', () => {
-    spyOn(component, 'removeChange');
-
-    component.isVisible = false;
-    fixture.detectChanges();
-
-    expect(component.removeChange).toHaveBeenCalled();
   });
 
   it('should not render lazy tab content', () => {

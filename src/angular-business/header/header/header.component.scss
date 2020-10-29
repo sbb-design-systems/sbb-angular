@@ -149,7 +149,7 @@ nav {
   display: none;
 }
 
-:host[opened='true'] .sbb-header-side-menu-backdrop {
+:host(.sbb-header-opened) .sbb-header-side-menu-backdrop {
   display: block;
   top: 0;
   left: 0;

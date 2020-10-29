@@ -38,7 +38,7 @@ export class IconButtonTestComponent {
   testClick() {}
 }
 
-describe('ButtonComponent', () => {
+describe('SbbButton', () => {
   let component: ButtonTestComponent;
   let fixture: ComponentFixture<ButtonTestComponent>;
 

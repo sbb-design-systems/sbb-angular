@@ -6,7 +6,6 @@ import {
   ContentChild,
   ContentChildren,
   ElementRef,
-  HostBinding,
   Input,
   OnDestroy,
   QueryList,
@@ -27,44 +26,23 @@ import { SbbLabel } from '../label/label.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [{ provide: SBB_FORM_FIELD, useExisting: SbbField }],
+  host: {
+    class: 'sbb-input-field',
+    '[class.sbb-input-field-default]': 'this.mode === "default"',
+    '[class.sbb-input-field-short]': 'this.mode === "short"',
+    '[class.sbb-input-field-medium]': 'this.mode === "medium"',
+    '[class.sbb-input-field-long]': 'this.mode === "long"',
+  },
 })
 export class SbbField implements AfterContentInit, OnDestroy {
-  /** @docs-private */
-  @HostBinding('class.sbb-input-field')
-  _fieldClass = true;
-  /**
-   * The label text for the input.
-   */
+  /** The label text for the input. */
   @Input() label?: string;
-  /**
-   * mode set the length of the input field
-   */
+  /** Mode set the length of the input field. */
   @Input() mode: 'default' | 'short' | 'medium' | 'long' = 'default';
 
   @ContentChild(SbbFormFieldControl) _control: SbbFormFieldControl<any>;
   @ContentChild(SbbLabel, { static: true }) contentLabel: SbbLabel;
   @ContentChildren(SbbFormError) formErrors: QueryList<SbbFormError>;
-
-  /** @docs-private */
-  @HostBinding('class.sbb-input-field-default')
-  get _defaultClass() {
-    return this.mode === 'default';
-  }
-  /** @docs-private */
-  @HostBinding('class.sbb-input-field-short')
-  get _shortClass() {
-    return this.mode === 'short';
-  }
-  /** @docs-private */
-  @HostBinding('class.sbb-input-field-medium')
-  get _mediumClass() {
-    return this.mode === 'medium';
-  }
-  /** @docs-private */
-  @HostBinding('class.sbb-input-field-long')
-  get _longClass() {
-    return this.mode === 'long';
-  }
 
   private _destroyed = new Subject<void>();
 
@@ -72,6 +50,14 @@ export class SbbField implements AfterContentInit, OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     public _elementRef: ElementRef<HTMLElement>
   ) {}
+
+  /**
+   * Gets the id of the label element. If no label is present, returns `null`.
+   * // TODO: Fix with sbb-field refactor.
+   */
+  getLabelId(): string | null {
+    return null;
+  }
 
   ngAfterContentInit() {
     if (this._control) {

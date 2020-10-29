@@ -1,74 +1,52 @@
-// tslint:disable-next-line:max-line-length
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
   EventEmitter,
-  HostBinding,
+  Input,
   Output,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { SbbTextexpandCollapsed } from '../textexpand-collapsed/textexpand-collapsed.component';
 import { SbbTextexpandExpanded } from '../textexpand-expanded/textexpand-expanded.component';
 
-let counter = 0;
+let nextId = 0;
 
 @Component({
   selector: 'sbb-textexpand',
   templateUrl: './textexpand.component.html',
   styleUrls: ['./textexpand.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-textexpand',
+    role: 'region',
+    '[attr.id]': 'id',
+    'aria-live': 'polite',
+  },
 })
 export class SbbTextexpand implements AfterContentInit {
-  /**
-   * Describes if text content is expanded or not. Initially is collapsed.
-   */
-  isExpanded = false;
+  /** Describes if text content is expanded or not. Initially is collapsed. */
+  isExpanded: boolean = false;
 
-  /**
-   * Identifier of the textexpand component.
-   */
-  @HostBinding('attr.id') id = `sbb-textexpand-${counter++}`;
+  /** Identifier of the textexpand component. */
+  @Input() id: string = `sbb-textexpand-${nextId++}`;
 
-  /**
-   * Css class of the textexpand component.
-   */
-  @HostBinding('class.sbb-textexpand') cssClass = true;
+  /** Event activated at the expansion of the text. */
+  @Output() expandEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  /**
-   * Is an ARIA landmark role. It provide a way to identify a specific zone of the page.
-   * Screen readers use landmark roles to provide keyboard navigation to important sections of a page.
-   */
-  @HostBinding('attr.role') role = 'region';
+  /** Refers to the textexpand-collapsed component instance. */
+  @ContentChild(SbbTextexpandCollapsed) collapsedComponent: SbbTextexpandCollapsed;
 
-  /**
-   * Is used to set the priority with which screen reader should treat updates to live regions.
-   * With "polite" value the screen reader will speak changes whenever the user is idle.
-   */
-  @HostBinding('attr.aria-live') ariaLive = 'polite';
-
-  /**
-   * Event activated at the expansion of the text.
-   */
-  @Output() expandEvent = new EventEmitter<boolean>();
-
-  /**
-   * Refers to the textexpand-collapsed component istance.
-   */
-  @ContentChild(SbbTextexpandCollapsed, { static: true })
-  collapsedComponent: SbbTextexpandCollapsed;
-
-  /**
-   * Refers to the textexpand-expanded component istance.
-   */
-  @ContentChild(SbbTextexpandExpanded, { static: true })
-  expandedComponent: SbbTextexpandExpanded;
+  /** Refers to the textexpand-expanded component instance. */
+  @ContentChild(SbbTextexpandExpanded) expandedComponent: SbbTextexpandExpanded;
 
   toggleExpanded() {
     this.isExpanded = !this.isExpanded;
-    this.collapsedComponent.isHidden = !this.collapsedComponent.isHidden;
-    this.expandedComponent.isHidden = !this.expandedComponent.isHidden;
+    this.collapsedComponent._hidden = !this.collapsedComponent._hidden;
+    this.expandedComponent._hidden = !this.expandedComponent._hidden;
     this.expandEvent.emit(this.isExpanded);
   }
 

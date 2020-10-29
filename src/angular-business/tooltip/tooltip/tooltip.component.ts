@@ -29,31 +29,17 @@ import {
   styleUrls: ['./tooltip.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-tooltip',
+    '[attr.id]': 'this.id',
+    '[attr.aria-expanded]': 'this.overlayAttached',
+  },
 })
 export class SbbTooltipComponent extends SbbTooltipBase implements OnInit, OnDestroy {
-  /**
-   * The trigger event, on which the tooltip opens.
-   */
+  /** The trigger event, on which the tooltip opens. */
   @Input() trigger: 'click' | 'hover' = 'click';
 
-  /**
-   * Customizations for delay open
-   * @deprecated Use hoverShowDelay
-   */
-  @Input()
-  get hoverOpenDelay(): number {
-    return this.hoverShowDelay;
-  }
-  set hoverOpenDelay(value: number) {
-    if (isDevMode()) {
-      console.warn('use hoverShowDelay instead of hoverOpenDelay in sbb-tooltip component');
-    }
-    this.hoverShowDelay = value;
-  }
-
-  /**
-   * Customizations for show delay
-   */
+  /** Customizations for show delay */
   @Input()
   get hoverShowDelay(): number {
     return this._hoverShowDelay;
@@ -63,24 +49,7 @@ export class SbbTooltipComponent extends SbbTooltipBase implements OnInit, OnDes
   }
   private _hoverShowDelay: number;
 
-  /**
-   * Customizations for delay close
-   * @deprecated Use hoverHideDelay
-   */
-  @Input()
-  get hoverCloseDelay(): number {
-    return this.hoverHideDelay;
-  }
-  set hoverCloseDelay(value: number) {
-    if (isDevMode()) {
-      console.warn('use hoverHideDelay instead of hoverCloseDelay in sbb-tooltip component');
-    }
-    this.hoverHideDelay = value;
-  }
-
-  /**
-   * Customizations for hide delay
-   */
+  /** Customizations for hide delay */
   @Input()
   get hoverHideDelay(): number {
     return this._hoverHideDelay;
@@ -90,9 +59,7 @@ export class SbbTooltipComponent extends SbbTooltipBase implements OnInit, OnDes
   }
   private _hoverHideDelay: number;
 
-  /**
-   * References for timeout used for delay open/close
-   */
+  /** References for timeout used for delay open/close */
   private _referenceActiveTimeout: number;
   /** @docs-private */
   private _manualListeners = new Map<string, EventListenerOrEventListenerObject>();
@@ -144,7 +111,7 @@ export class SbbTooltipComponent extends SbbTooltipBase implements OnInit, OnDes
   onMouseEnter() {
     this._clearTimoutOnChangeMouseEvent();
     this._referenceActiveTimeout = window.setTimeout(() => {
-      this.openTooltip(true);
+      this.open(true);
       this._changeDetectorRef.markForCheck();
     }, this.hoverShowDelay);
   }

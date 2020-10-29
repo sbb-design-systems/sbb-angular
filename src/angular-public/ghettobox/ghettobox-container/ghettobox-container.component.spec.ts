@@ -43,7 +43,7 @@ const linkGenerator = (): SbbLinkGeneratorResult => {
   };
 };
 
-describe('GhettoboxContainerComponent', () => {
+describe('SbbGhettoboxContainer', () => {
   let component: GhettoboxContainerTestComponent;
   let fixture: ComponentFixture<GhettoboxContainerTestComponent>;
   let ghettoboxService: SbbGhettoboxService;

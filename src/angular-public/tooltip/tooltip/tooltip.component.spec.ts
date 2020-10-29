@@ -59,7 +59,7 @@ class DoubleTooltipTestComponent {
   onOpen() {}
 }
 
-describe('TooltipComponent', () => {
+describe('SbbTooltip', () => {
   let component: SbbTooltipComponent;
   let fixture: ComponentFixture<SbbTooltipComponent>;
 
@@ -80,13 +80,9 @@ describe('TooltipComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('exist sbb-tooltip', () => {
-    expect(component.cssClass).toEqual(true);
-  });
 });
 
-describe('TooltipComponent using mock component for single tooltip', () => {
+describe('SbbTooltip using mock component for single tooltip', () => {
   let singleComponentTest: TooltipTestComponent;
   let singleFixtureTest: ComponentFixture<TooltipTestComponent>;
 
@@ -169,7 +165,7 @@ describe('TooltipComponent using mock component for single tooltip', () => {
   });
 });
 
-describe('TooltipComponent using mock component for double tooltip', () => {
+describe('SbbTooltip using mock component for double tooltip', () => {
   let doubleComponentTest: DoubleTooltipTestComponent;
   let doubleFixtureTest: ComponentFixture<DoubleTooltipTestComponent>;
 

@@ -2,8 +2,8 @@
 /// <reference types="arcgis-js-api" />
 
 export class SbbMarkerColors {
-  public static lilaColor = [178, 102, 234];
-  public static transparentLilaColor = [178, 102, 234, 0.4];
+  public static lilaColor: number[] = [178, 102, 234];
+  public static transparentLilaColor: number[] = [178, 102, 234, 0.4];
 }
 
 export class SbbMarkerSizes {

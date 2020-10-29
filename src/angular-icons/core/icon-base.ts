@@ -72,12 +72,12 @@ export abstract class IconBase {
   /**
    * The given CSS class or classes will be applied to the SVG element.
    */
-  @Input() svgClass = '';
+  @Input() svgClass: string = '';
   @HostBinding('style.display') get display() {
     return this._isFixed() || this._inputHeight || this._inputWidth ? 'inline-block' : undefined;
   }
   /** @docs-private */
-  @HostBinding('class.sbb-icon-component') sbbIconComponent = true;
+  @HostBinding('class.sbb-icon-component') sbbIconComponent: boolean = true;
   private _inputWidth: string | undefined;
   private _inputHeight: string | undefined;
 

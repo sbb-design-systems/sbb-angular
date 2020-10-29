@@ -85,7 +85,7 @@ export class SbbSortDirective extends SbbSortDirectiveMixinBase
   }
 
   /** Collection of all registered sortables that this directive manages. */
-  sortables = new Map<string, SbbSortable>();
+  sortables: Map<string, SbbSortable> = new Map<string, SbbSortable>();
 
   /** Used to notify any child components listening to state changes. */
   readonly _stateChanges = new Subject<void>();

@@ -19,9 +19,7 @@ export class SbbEsriLoaderService {
     @Optional() @Inject(SBB_ESRI_CONFIG_TOKEN) private _config: SbbEsriConfiguration
   ) {}
 
-  /**
-   * Loads up to twelve specified ESRI-modules and returns it's constructors.
-   */
+  /** Loads up to twelve specified ESRI-modules and returns it's constructors. */
   load<T>(esriModules: string[]): Promise<[T]>;
   load<T1, T2>(esriModules: string[]): Promise<[T1, T2]>;
   load<T1, T2, T3>(esriModules: string[]): Promise<[T1, T2, T3]>;

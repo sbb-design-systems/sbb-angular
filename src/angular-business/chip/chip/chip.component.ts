@@ -8,10 +8,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'sbb-chip',
-    '[hidden]': 'this.ariaHidden === "true"',
+    '[hidden]': 'this._ariaHidden === "true"',
     '[class.sbb-chip-disabled]': 'this.disabled',
     '[class.sbb-chip-active]': '!this.disabled',
-    '[attr.aria-hidden]': 'this.ariaHidden',
+    '[attr.aria-hidden]': 'this._ariaHidden',
   },
 })
 export class SbbChip {
@@ -33,32 +33,11 @@ export class SbbChip {
   @Output()
   dismissed: EventEmitter<SbbChip> = new EventEmitter();
 
-  /**
-   * TODO: Refactor to _ariaHidden
-   * @deprecated Internal detail only
-   */
-  ariaHidden: null | boolean | 'true';
+  _ariaHidden: null | 'true' = null;
 
-  /** @deprecated Internal detail only */
-  get hidden() {
-    return this.ariaHidden === 'true';
-  }
-
-  /** @deprecated Internal detail only */
-  get isDisabled() {
-    return !!this.disabled;
-  }
-
-  /** @deprecated Internal detail only */
-  get isActive() {
-    return !this.disabled;
-  }
-
-  /**
-   * Dismisses and hides this chip.
-   */
+  /** Dismisses and hides this chip. */
   dismiss() {
-    this.ariaHidden = 'true';
+    this._ariaHidden = 'true';
     this.dismissed.emit(this);
   }
 

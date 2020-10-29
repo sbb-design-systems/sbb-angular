@@ -19,11 +19,6 @@ import { SbbDropdown, SbbDropdownTrigger } from '@sbb-esta/angular-business/drop
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbContextmenu implements AfterContentInit {
-  /**
-   * @docs-private
-   * @deprecated
-   */
-  sbbClass = true;
   /** @docs-private */
   @ContentChild(SbbDropdown, { static: true }) _dropdown: SbbDropdown;
   /** @docs-private */

@@ -33,12 +33,6 @@ import { take } from 'rxjs/operators';
   },
 })
 export class SbbToggle extends SbbRadioGroup implements ControlValueAccessor, AfterContentInit {
-  /**
-   * @docs-private
-   * @deprecated internal use
-   */
-  toggleClass = true;
-
   constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
     super(changeDetectorRef);
   }

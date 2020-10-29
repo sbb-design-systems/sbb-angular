@@ -33,7 +33,7 @@ export class PaginationTestComponent {
   onPageChange(event: any) {}
 }
 
-describe('PaginationComponent', () => {
+describe('SbbPagination', () => {
   let component: SbbPagination;
   let fixture: ComponentFixture<SbbPagination>;
 
@@ -56,7 +56,7 @@ describe('PaginationComponent', () => {
   });
 });
 
-describe('PaginationComponent behaviour', () => {
+describe('SbbPagination behaviour', () => {
   let component: PaginationTestComponent;
   let fixture: ComponentFixture<PaginationTestComponent>;
 

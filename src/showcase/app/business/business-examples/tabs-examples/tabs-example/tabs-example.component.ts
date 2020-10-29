@@ -56,14 +56,6 @@ export class TabsExampleComponent implements OnInit {
     }
   }
 
-  removeChange(removedTabId: string) {
-    this.openPrevTabByTabIdOrDefault(removedTabId);
-  }
-
-  disableChange(disabledTabId: string) {
-    this.openPrevTabByTabIdOrDefault(disabledTabId);
-  }
-
   openPrevTabByTabIdOrDefault(tabId: string) {
     const tabsArray = this.tabsComponent.tabs.toArray();
     const activeTab = tabsArray.findIndex((currTab) => currTab.active);

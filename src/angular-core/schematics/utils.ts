@@ -54,9 +54,7 @@ export function addDefaultDependency(
   return host;
 }
 
-/**
- * Whether the Angular module in the given path has the specified provider.
- */
+/** Whether the Angular module in the given path has the specified provider. */
 export function hasNgModuleProvider(tree: Tree, modulePath: string, providerName: string): boolean {
   const moduleFileContent = tree.read(modulePath);
 

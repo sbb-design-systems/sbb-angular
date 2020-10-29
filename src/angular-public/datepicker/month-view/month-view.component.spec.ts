@@ -45,7 +45,7 @@ class MonthViewWithDateFilterComponent {
   }
 }
 
-describe('MonthViewComponent', () => {
+describe('SbbMonthView', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [

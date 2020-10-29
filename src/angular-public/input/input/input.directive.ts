@@ -5,7 +5,6 @@ import {
   Directive,
   DoCheck,
   ElementRef,
-  HostBinding,
   HostListener,
   Inject,
   Input,
@@ -52,40 +51,58 @@ export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbInputBase =
 @Directive({
   selector: 'input[sbbInput], select[sbbInput], textarea[sbbInput]',
   exportAs: 'sbbInput',
+  host: {
+    class: 'sbb-input-element',
+    // Native input properties that are overwritten by Angular inputs need to be synced with
+    // the native input element. Otherwise property bindings for those don't work.
+    '[attr.id]': 'id',
+    '[disabled]': 'disabled',
+    '[required]': 'required',
+    '[attr.readonly]': 'readonly && !_isNativeSelect || null',
+    '[attr.aria-invalid]': 'errorState',
+    '[attr.aria-required]': 'required.toString()',
+  },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
 })
 export class SbbInput extends SbbNativeInputBase
   implements SbbFormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
+
   /** The aria-describedby attribute on the input for improved a11y. */
-  @HostBinding('attr.aria-describedby')
   ariaDescribedby: string;
 
   /** Whether the component is a native html select. */
-  isNativeSelect = false;
+  readonly _isNativeSelect: boolean;
+
+  /** Whether the component is a textarea. */
+  readonly _isTextarea: boolean;
 
   /** Whether the component is in an error state. */
-  @HostBinding('attr.aria-invalid')
-  errorState = false;
+  errorState: boolean = false;
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  focused = false;
+  focused: boolean = false;
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  autofilled = false;
+  controlType: string = 'sbb-input';
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @HostBinding()
+  autofilled: boolean = false;
+
+  /**
+   * Implemented as part of SbbFormFieldControl.
+   * @docs-private
+   */
   @Input()
   get disabled(): boolean {
     if (this.ngControl && this.ngControl.disabled !== null) {
@@ -106,26 +123,21 @@ export class SbbInput extends SbbNativeInputBase
   private _disabled = false;
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @HostBinding('attr.id')
-  @Input()
-  id = `sbb-native-input-${nextId++}`;
+  @Input() id: string = `sbb-native-input-${nextId++}`;
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @HostBinding('attr.placeholder')
-  @Input()
-  placeholder: string;
+  @Input() placeholder: string;
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @HostBinding()
   @Input()
   get required(): boolean {
     return this._required;
@@ -134,10 +146,6 @@ export class SbbInput extends SbbNativeInputBase
     this._required = coerceBooleanProperty(value);
   }
   private _required = false;
-
-  @HostBinding('attr.aria-required') get requiredAsString() {
-    return this.required.toString();
-  }
 
   /** Input type of the element. */
   @Input()
@@ -151,7 +159,7 @@ export class SbbInput extends SbbNativeInputBase
     // When using Angular inputs, developers are no longer able to set the properties on the native
     // input element. To ensure that bindings for `type` work, we need to sync the setter
     // with the native property. Textarea elements don't support the type property or attribute.
-    if (!this._isTextarea() && getSupportedInputTypes().has(this._type)) {
+    if (!this._isTextarea && getSupportedInputTypes().has(this._type)) {
       (this._elementRef.nativeElement as HTMLInputElement).type = this._type;
     }
   }
@@ -161,7 +169,13 @@ export class SbbInput extends SbbNativeInputBase
   @Input() errorStateMatcher: SbbErrorStateMatcher;
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
+   * @docs-private
+   */
+  @Input('aria-describedby') userAriaDescribedBy: string;
+
+  /**
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
   @Input()
@@ -185,13 +199,8 @@ export class SbbInput extends SbbNativeInputBase
   }
   private _readonly = false;
 
-  @HostBinding('attr.readonly')
-  get readonlyAttribute() {
-    return (this.readonly && !this.isNativeSelect) || undefined;
-  }
-
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
   get empty(): boolean {
@@ -213,27 +222,36 @@ export class SbbInput extends SbbNativeInputBase
   ].filter((t) => getSupportedInputTypes().has(t));
 
   constructor(
-    /** @docs-private */
-    @Optional() @Self() public ngControl: NgControl,
     private _elementRef: ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     private _platform: Platform,
-    private _autofillMonitor: AutofillMonitor,
+    /** @docs-private */
+    @Optional() @Self() public ngControl: NgControl,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional()
     @Self()
     @Inject(SBB_INPUT_VALUE_ACCESSOR)
-    inputValueAccessor: any
+    inputValueAccessor: any,
+    private _autofillMonitor: AutofillMonitor
   ) {
     super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
     const element = this._elementRef.nativeElement;
+    const nodeName = element.nodeName.toLowerCase();
 
     // If no input value accessor was explicitly specified, use the element as the input value
     // accessor.
     this._inputValueAccessor = inputValueAccessor || element;
     this._previousNativeValue = this.value;
-    this.isNativeSelect = element.nodeName.toLowerCase() === 'select';
+
+    this._isNativeSelect = nodeName === 'select';
+    this._isTextarea = nodeName === 'textarea';
+
+    if (this._isNativeSelect) {
+      this.controlType = (element as HTMLSelectElement).multiple
+        ? 'sbb-native-select-multiple'
+        : 'sbb-native-select';
+    }
   }
 
   ngOnInit() {
@@ -251,6 +269,7 @@ export class SbbInput extends SbbNativeInputBase
 
   ngOnDestroy() {
     this.stateChanges.complete();
+
     if (this._platform.isBrowser) {
       this._autofillMonitor.stopMonitoring(this._elementRef.nativeElement);
     }
@@ -271,13 +290,13 @@ export class SbbInput extends SbbNativeInputBase
   }
 
   /** Focuses the input. */
-  focus(): void {
-    this._elementRef.nativeElement.focus();
+  focus(options?: FocusOptions): void {
+    this._elementRef.nativeElement.focus(options);
   }
 
-  @HostListener('blur', ['false'])
   @HostListener('focus', ['true'])
-  onFocusChanged(isFocused: boolean) {
+  @HostListener('blur', ['false'])
+  _focusChanged(isFocused: boolean) {
     if (isFocused !== this.focused && (!this.readonly || !isFocused)) {
       this.focused = isFocused;
       this.stateChanges.next();
@@ -285,16 +304,21 @@ export class SbbInput extends SbbNativeInputBase
   }
 
   /**
-   * Implemented as part of FormFieldControl.
+   * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
   setDescribedByIds(ids: string[]) {
-    this.ariaDescribedby = ids.join(' ');
+    if (ids.length) {
+      this._elementRef.nativeElement.setAttribute('aria-describedby', ids.join(' '));
+    } else {
+      this._elementRef.nativeElement.removeAttribute('aria-describedby');
+    }
   }
 
   /** Does some manual dirty checking on the native input `value` property. */
   private _dirtyCheckNativeValue() {
     const newValue = this._elementRef.nativeElement.value;
+
     if (this._previousNativeValue !== newValue) {
       this._previousNativeValue = newValue;
       this.stateChanges.next();
@@ -320,14 +344,25 @@ export class SbbInput extends SbbNativeInputBase
     return validity && validity.badInput;
   }
 
-  /** Determines if the component host is a textarea. */
-  private _isTextarea() {
-    return this._elementRef.nativeElement.nodeName.toLowerCase() === 'textarea';
+  /**
+   * Implemented as part of SbbFormFieldControl.
+   * @docs-private
+   */
+  onContainerClick() {
+    // Do not re-focus the input element if the element is already focused. Otherwise it can happen
+    // that someone clicks on a time input and the cursor resets to the "hours" field while the
+    // "minutes" field was actually clicked. See: https://github.com/angular/components/issues/12849
+    if (!this.focused) {
+      this.focus();
+    }
   }
 
   // tslint:disable: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;
   static ngAcceptInputType_required: BooleanInput;
   static ngAcceptInputType_readonly: BooleanInput;
+  // Accept `any` to avoid conflicts with other directives on `<input>` that may
+  // accept different types.
+  static ngAcceptInputType_value: any;
   // tslint:enable: member-ordering
 }

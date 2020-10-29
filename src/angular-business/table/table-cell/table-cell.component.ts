@@ -11,7 +11,7 @@ import {
   CdkHeaderCell,
   CdkHeaderCellDef,
 } from '@angular/cdk/table';
-import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[sbbCellDef]',
@@ -56,12 +56,12 @@ export class SbbColumnDef extends CdkColumnDef {}
 /** Header cell template container that adds the right classes and role. */
 @Directive({
   selector: 'sbbHeaderCell, th[sbbHeaderCell]',
+  host: {
+    class: 'sbb-header-cell',
+    role: 'gridcell',
+  },
 })
 export class SbbHeaderCell extends CdkHeaderCell {
-  @HostBinding('class.sbb-header-cell') sbbHeaderCell = true;
-
-  @HostBinding('attr.role') gridCell = 'gridcell';
-
   constructor(columnDef: CdkColumnDef, elementRef: ElementRef<HTMLElement>) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`sbb-column-${columnDef.cssClassFriendlyName}`);
@@ -71,11 +71,12 @@ export class SbbHeaderCell extends CdkHeaderCell {
 /** Footer cell template container that adds the right classes and role. */
 @Directive({
   selector: 'sbbFooterCell, td[sbbFooterCell]',
+  host: {
+    class: 'sbb-footer-cell',
+    role: 'gridcell',
+  },
 })
 export class SbbFooterCell extends CdkFooterCell {
-  @HostBinding('class.sbb-footer-cell') sbbFooterCell = true;
-  @HostBinding('attr.role') gridCell = 'gridcell';
-
   constructor(columnDef: CdkColumnDef, elementRef: ElementRef) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`sbb-column-${columnDef.cssClassFriendlyName}`);
@@ -85,11 +86,12 @@ export class SbbFooterCell extends CdkFooterCell {
 /** Cell template container that adds the right classes and role. */
 @Directive({
   selector: 'sbbCell, td[sbbCell]',
+  host: {
+    class: 'sbb-cell',
+    role: 'gridcell',
+  },
 })
 export class SbbCell extends CdkCell {
-  @HostBinding('class.sbb-cell') sbbCell = true;
-  @HostBinding('attr.role') gridCell = 'gridcell';
-
   constructor(columnDef: CdkColumnDef, elementRef: ElementRef<HTMLElement>) {
     super(columnDef, elementRef);
     elementRef.nativeElement.classList.add(`sbb-column-${columnDef.cssClassFriendlyName}`);

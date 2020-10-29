@@ -61,23 +61,23 @@ export abstract class SbbRadioButton extends _RadioButtonMixinBase
   /** Used to set the 'aria-label' attribute on the underlying input element. */
   @Input('aria-label') ariaLabel: string;
   /** @docs-private */
-  @HostBinding('attr.aria-label') _ariaLabelAttr = null;
+  @HostBinding('attr.aria-label') _ariaLabelAttr: null = null;
   /** The 'aria-labelledby' attribute takes precedence as the element's text alternative. */
   @Input('aria-labelledby') ariaLabelledby: string;
   /** @docs-private */
-  @HostBinding('attr.aria-labelledby') _arialabelledbyAttr = null;
+  @HostBinding('attr.aria-labelledby') _arialabelledbyAttr: null = null;
   /** The 'aria-describedby' attribute is read after the element's label and field type. */
   @Input('aria-describedby') ariaDescribedby: string;
   /** @docs-private */
-  @HostBinding('attr.aria-describedby') _ariadescribedbyAttr = null;
+  @HostBinding('attr.aria-describedby') _ariadescribedbyAttr: null = null;
   /** @docs-private */
-  @HostBinding('class.sbb-radio-button') _cssClass = true;
+  @HostBinding('class.sbb-radio-button') _cssClass: boolean = true;
 
   /**
    * Needs to be -1 so the `focus` event still fires.
    * @docs-private
    */
-  @HostBinding('attr.tabindex') _tabIndexAttr = -1;
+  @HostBinding('attr.tabindex') _tabIndexAttr: number = -1;
 
   /** Whether this radio button is checked. */
   @Input()

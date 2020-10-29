@@ -29,6 +29,11 @@ export interface SbbCheckboxChange extends BaseCheckboxChange<SbbCheckbox> {}
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-checkbox',
+    '[id]': 'id',
+    '[attr.tabindex]': 'null',
+  },
 })
 export class SbbCheckbox extends SbbCheckboxBase<SbbCheckboxChange> {
   constructor(
