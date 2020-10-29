@@ -108,9 +108,8 @@ describe('SbbTooltip using mock component for single tooltip', () => {
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
 
-    expect(buttonQuestionMark.attributes['class'].value).toBe(
-      'sbb-tooltip-trigger sbb-icon-fit sbb-tooltip-trigger-active'
-    );
+    expect(buttonQuestionMark.classList.contains('sbb-tooltip-trigger')).toBeTrue();
+    expect(buttonQuestionMark.classList.contains('sbb-tooltip-trigger-active')).toBeTrue();
 
     const tooltipElement = singleFixtureTest.debugElement.query(By.css('.sbb-tooltip'));
 
@@ -127,7 +126,8 @@ describe('SbbTooltip using mock component for single tooltip', () => {
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
 
-    expect(buttonQuestionMark.attributes['class'].value).toBe('sbb-tooltip-trigger sbb-icon-fit');
+    expect(buttonQuestionMark.classList.contains('sbb-tooltip-trigger')).toBeTrue();
+    expect(buttonQuestionMark.classList.contains('sbb-tooltip-trigger-active')).toBeFalse();
 
     const tooltipElement = singleFixtureTest.debugElement.query(By.css('.sbb-tooltip'));
 
@@ -160,7 +160,9 @@ describe('SbbTooltip using mock component for single tooltip', () => {
 
     singleComponentTest.t1.close();
 
-    expect(buttonQuestionMark.attributes['class'].value).toBe('sbb-tooltip-trigger sbb-icon-fit');
+    expect(buttonQuestionMark.classList.contains('sbb-tooltip-trigger')).toBeTrue();
+    expect(buttonQuestionMark.classList.contains('sbb-tooltip-trigger-active')).toBeFalse();
+
     expect(singleComponentTest.t1.overlayAttached).toBe(false);
   });
 });

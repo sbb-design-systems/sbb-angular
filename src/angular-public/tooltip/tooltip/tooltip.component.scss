@@ -1,77 +1,33 @@
 @import '../../../angular-core/styles/common';
 
 $tooltipBorderRadius: 2;
-$tooltipBorderWidth: 2;
-$tooltipIconsBorderWidth: 1;
+$tooltipBorderWidth: if($sbbBusiness, 1, 2);
 $tooltipMaxWidth: 460;
-$tooltipIconsSize: 24;
-$tooltipContentPadding: 24;
-$tooltipColor: $sbbColorGrey;
-$tooltipBorderColor: $sbbColorGrey;
-$tooltipActiveColor: $sbbColorRed;
+$tooltipIconSize: 24;
+$tooltipContentPadding: if($sbbBusiness, 8, 24);
+$tooltipColor: if($sbbBusiness, $sbbColorBlack, $sbbColorGrey);
+$tooltipBorderColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
+$tooltipActiveColor: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
 $tooltipBoxShadowColor: rgba(102, 102, 102, 0.15);
-$tooltipShadowSize: 8;
+$tooltipShadowSize: if($sbbBusiness, 4, 8);
 $tooltipContentArrowSize: 20;
 $tooltipShadowBorderWidth: 14;
 $tooltipArrowRightPosition: calc(100% - #{pxToEm(15.5)});
 $tooltipArrowLeftPosition: pxToEm(15.5);
 
-@if $sbbBusiness {
-  $tooltipContentPadding: 8;
-  $tooltipBorderWidth: 1;
-  $tooltipShadowSize: 4;
-  $tooltipShadowBorderWidth: 14;
-  $tooltipColor: $sbbColorBlack;
-  $tooltipBorderColor: $sbbColorIron;
-  $tooltipActiveColor: $sbbColorRed125;
-}
-
-@mixin tooltipIcon {
-  @include buttonResetFrameless();
+@mixin tooltipIconActive {
   /* TODO: Remove with future release */
-  @include svgIconColor($tooltipColor);
-  color: $tooltipColor;
-  width: toPx($tooltipIconsSize);
-  height: toPx($tooltipIconsSize);
-  cursor: pointer;
-  text-decoration: none;
-  outline: 0;
-  line-height: 1;
-
-  &-active,
-  &:hover,
-  &:focus {
-    /* TODO: Remove with future release */
-    @include svgIconColor($tooltipActiveColor);
-    color: $tooltipActiveColor;
-    border-color: $tooltipActiveColor;
-  }
-
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      width: toPx($tooltipIconsSize * $scalingFactor4k);
-      height: toPx($tooltipIconsSize * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      width: toPx($tooltipIconsSize * $scalingFactor5k);
-      height: toPx($tooltipIconsSize * $scalingFactor5k);
-    }
-  }
-
-  > * {
-    max-width: 100%;
-    max-height: 100%;
-  }
+  @include svgIconColor($tooltipActiveColor);
+  color: $tooltipActiveColor;
+  border-color: $tooltipActiveColor;
 }
 
-sbb-tooltip {
-  .sbb-tooltip-trigger {
-    @include tooltipIcon();
-    margin: auto;
-    // TODO: Remove display block for v11
-    display: block;
-  }
+.sbb-tooltip-trigger {
+  display: inline-block;
+}
+
+.sbb-tooltip-trigger-active {
+  @include tooltipIconActive;
 }
 
 .sbb-tooltip-content-above {
@@ -181,72 +137,115 @@ sbb-tooltip {
   display: block;
   background: $sbbColorWhite;
 
-  .sbb-tooltip-content-body {
-    padding-top: toPx($tooltipContentPadding);
-    padding-left: toPx($tooltipContentPadding);
-    padding-bottom: toPx($tooltipContentPadding);
-    padding-right: toPx($tooltipContentPadding + $tooltipIconsSize + $tooltipContentPadding);
-  }
-
   @include publicOnly() {
     @include mq($from: desktop4k) {
       font-size: $sizeFontBase * $scalingFactor4k;
       border: toPx($tooltipBorderWidth * $scalingFactor4k) solid $tooltipBorderColor;
       max-width: toPx($tooltipMaxWidth * $scalingFactor4k);
-      .sbb-tooltip-content-body {
-        padding-top: toPx($tooltipContentPadding * $scalingFactor4k);
-        padding-left: toPx($tooltipContentPadding * $scalingFactor4k);
-        padding-bottom: toPx($tooltipContentPadding * $scalingFactor4k);
-        padding-right: toPx(
-          $tooltipContentPadding * $scalingFactor4k + $tooltipIconsSize + $tooltipContentPadding *
-            $scalingFactor4k
-        );
-      }
     }
 
     @include mq($from: desktop5k) {
       font-size: $sizeFontBase * $scalingFactor5k;
       border: toPx($tooltipBorderWidth * $scalingFactor5k) solid $tooltipBorderColor;
       max-width: toPx($tooltipMaxWidth * $scalingFactor5k);
-      .sbb-tooltip-content-body {
-        padding-top: toPx($tooltipContentPadding * $scalingFactor5k);
-        padding-left: toPx($tooltipContentPadding * $scalingFactor5k);
-        padding-bottom: toPx($tooltipContentPadding * $scalingFactor5k);
-        padding-right: toPx(
-          $tooltipContentPadding * $scalingFactor5k + $tooltipIconsSize + $tooltipContentPadding *
-            $scalingFactor5k
-        );
-      }
+    }
+  }
+}
+
+.sbb-tooltip-icon {
+  @include buttonResetFrameless();
+  /* TODO: Remove with future release */
+  @include svgIconColor($tooltipColor);
+  color: $tooltipColor;
+  width: toPx($tooltipIconSize);
+  height: toPx($tooltipIconSize);
+  cursor: pointer;
+  text-decoration: none;
+  outline: 0;
+  line-height: 1;
+
+  &:hover,
+  &:focus {
+    @include tooltipIconActive();
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx($tooltipIconSize * $scalingFactor4k);
+      height: toPx($tooltipIconSize * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx($tooltipIconSize * $scalingFactor5k);
+      height: toPx($tooltipIconSize * $scalingFactor5k);
     }
   }
 
-  .sbb-tooltip-icon {
-    @include tooltipIcon();
-    border-color: $tooltipBorderColor;
-    border-width: pxToEm($tooltipIconsBorderWidth);
-    border-style: solid;
-    border-radius: 50%;
-    float: right;
-    position: absolute;
-    top: toPx($tooltipContentPadding);
-    right: toPx($tooltipContentPadding);
+  > * {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
 
-    @include businessOnly() {
-      &,
-      &:hover,
-      &:focus {
-        border-color: transparent;
-      }
+.sbb-tooltip-close-icon {
+  border-color: $tooltipBorderColor;
+  border-width: pxToEm(1);
+  border-style: solid;
+  border-radius: 50%;
+  float: right;
+  position: absolute;
+  top: toPx($tooltipContentPadding);
+  right: toPx($tooltipContentPadding);
+
+  @include businessOnly() {
+    &,
+    &:hover,
+    &:focus {
+      border-color: transparent;
     }
   }
 
-  &.sbb-tooltip-trigger-hover {
-    .sbb-tooltip-icon {
-      display: none;
+  .sbb-tooltip-trigger-hover & {
+    display: none;
+  }
+}
+
+.sbb-tooltip-content-body {
+  padding-top: toPx($tooltipContentPadding);
+  padding-left: toPx($tooltipContentPadding);
+  padding-bottom: toPx($tooltipContentPadding);
+  padding-right: toPx($tooltipContentPadding + $tooltipIconSize + $tooltipContentPadding);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      padding-top: toPx($tooltipContentPadding * $scalingFactor4k);
+      padding-left: toPx($tooltipContentPadding * $scalingFactor4k);
+      padding-bottom: toPx($tooltipContentPadding * $scalingFactor4k);
+      padding-right: toPx(
+        $tooltipContentPadding * $scalingFactor4k + $tooltipIconSize + $tooltipContentPadding *
+          $scalingFactor4k
+      );
     }
 
-    .sbb-tooltip-content-body {
-      padding-right: toPx($tooltipContentPadding);
+    @include mq($from: desktop5k) {
+      padding-top: toPx($tooltipContentPadding * $scalingFactor5k);
+      padding-left: toPx($tooltipContentPadding * $scalingFactor5k);
+      padding-bottom: toPx($tooltipContentPadding * $scalingFactor5k);
+      padding-right: toPx(
+        $tooltipContentPadding * $scalingFactor5k + $tooltipIconSize + $tooltipContentPadding *
+          $scalingFactor5k
+      );
     }
   }
+
+  .sbb-tooltip-trigger-hover & {
+    padding-right: toPx($tooltipContentPadding);
+  }
+}
+
+.sbb-tooltip-panel {
+  // The overlay reference updates the pointer-events style property directly on the HTMLElement
+  // depending on the state of the overlay. For tooltips the overlay panel should never enable
+  // pointer events. To overwrite the inline CSS from the overlay reference `!important` is needed.
+  pointer-events: none !important;
 }
