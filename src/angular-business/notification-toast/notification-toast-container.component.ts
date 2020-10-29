@@ -60,7 +60,7 @@ export class SbbNotificationToastContainer extends BasePortalOutlet implements O
   readonly _onEnter: Subject<void> = new Subject();
 
   /** The state of the notification toast animations. */
-  _animationState = 'void';
+  _animationState: string = 'void';
 
   /** ARIA role for the notification toast container. */
   _role: 'alert' | 'status' | null;

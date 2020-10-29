@@ -1,6 +1,10 @@
 {
   "extends": ["tslint-plugin-prettier", "tslint-config-prettier", "rxjs-tslint-rules"],
-  "rulesDirectory": ["node_modules/codelyzer", "node_modules/tslint-consistent-codestyle/rules"],
+  "rulesDirectory": [
+    "./tools/tslint-rules/",
+    "node_modules/codelyzer",
+    "node_modules/tslint-consistent-codestyle/rules"
+  ],
   "linterOptions": {
     "exclude": ["tools/dgeni/**/*.ts"]
   },
@@ -134,6 +138,9 @@
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
+    // Disable this flag because of SHA tslint#48b0c597f9257712c7d1f04b55ed0aa60e333f6a
+    // TSLint now shows warnings if types for properties are inferred. This rule needs to be
+    // disabled because all properties need to have explicit types set to work for Dgeni.
     "no-inferrable-types": [true, "ignore-params", "ignore-properties"],
     "no-misused-new": true,
     "no-redundant-jsdoc": true,
@@ -157,7 +164,7 @@
     "radix": true,
     "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [
-      false,
+      true,
       {
         "call-signature": "nospace",
         "index-signature": "nospace",
@@ -186,6 +193,10 @@
     "component-class-suffix": false,
     "directive-class-suffix": false,
     "rxjs-no-unsafe-takeuntil": true,
-    "rxjs-no-unsafe-catch": true
+    "rxjs-no-unsafe-catch": true,
+
+    // Custom Rules
+    "ts-loader": true,
+    "require-property-typedef": true
   }
 }

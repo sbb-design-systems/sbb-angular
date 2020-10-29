@@ -11,5 +11,5 @@ let nextId = 0;
   },
 })
 export class SbbFormError {
-  @Input() id = `sbb-form-error-${nextId++}`;
+  @Input() id: string = `sbb-form-error-${nextId++}`;
 }

@@ -207,7 +207,7 @@ export class SbbDropdownTrigger implements OnDestroy {
   // tslint:disable-next-line:no-input-rename
   @Input('sbbDropdownConnectedTo') connectedTo: SbbDropdownOrigin;
 
-  @Input() panelClass = '';
+  @Input() panelClass: string = '';
 
   /** Whether the dropdown should be opened on the left or the right side of the origin. */
   horizontalOrientation: 'left' | 'right' | 'prefer-right' | 'prefer-left' = 'right';

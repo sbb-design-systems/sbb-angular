@@ -42,7 +42,7 @@ let nextId = 0;
 })
 export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccessor {
   /** Identifier of sbb-captcha. */
-  @Input() id = `sbbcaptcha-${nextId++}`;
+  @Input() id: string = `sbbcaptcha-${nextId++}`;
 
   /**
    * SiteKey of the user.
@@ -81,7 +81,7 @@ export class SbbCaptcha implements AfterViewInit, OnDestroy, ControlValueAccesso
   @Input() badge?: ReCaptchaV2.Badge;
 
   /** Event generated on captcha checkbox. */
-  @Output() resolved = new EventEmitter<string>();
+  @Output() resolved: EventEmitter<string> = new EventEmitter<string>();
 
   /** @internal */
   private _subscription: Subscription;

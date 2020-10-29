@@ -73,16 +73,16 @@ export function getDropdownItemScrollPosition(
 })
 export class SbbDropdownItem implements Highlightable {
   /** Identifier of a dropdown item. */
-  @Input() id = `sbb-dropdown-item-${nextId++}`;
+  @Input() id: string = `sbb-dropdown-item-${nextId++}`;
 
   /** Whether this dropdown item is disabled. */
-  disabled? = false;
+  disabled?: boolean = false;
 
   /** Whether this dropdown item is selected. */
-  selected = false;
+  selected: boolean = false;
 
   /** Whether this dropdown item is active. */
-  active = false;
+  active: boolean = false;
 
   /** Event generated to click on a specific dropdown item. */
   @Output()

@@ -45,7 +45,7 @@ import { SbbToggleModule } from '../toggle.module';
   `,
 })
 class ToggleReactiveTestComponent implements OnInit {
-  modelReactive = 'Option_2';
+  modelReactive: string = 'Option_2';
   @ContentChildren('options') options: QueryList<SbbToggleOption>;
 
   constructor() {}
@@ -102,7 +102,7 @@ class ToggleReactiveTestComponent implements OnInit {
   `,
 })
 class ToggleReactiveDefaultValueTestComponent implements OnInit {
-  modelReactive = 'Option_2';
+  modelReactive: string = 'Option_2';
   @ContentChildren('options') options: QueryList<SbbToggleOption>;
 
   form = new FormGroup({

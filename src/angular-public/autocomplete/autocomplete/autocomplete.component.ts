@@ -65,13 +65,13 @@ export class SbbAutocomplete implements AfterContentInit {
   keyManager: ActiveDescendantKeyManager<SbbOption>;
 
   /** Whether the autocomplete panel should be visible, depending on option length. */
-  showPanel = false;
+  showPanel: boolean = false;
 
   /** Whether the autocomplete panel is open. */
   get isOpen(): boolean {
     return this._isOpen && this.showPanel;
   }
-  _isOpen = false;
+  _isOpen: boolean = false;
 
   /** @docs-private */
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
@@ -145,7 +145,7 @@ export class SbbAutocomplete implements AfterContentInit {
   _classList: { [key: string]: boolean } = {};
 
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
-  id = `sbb-autocomplete-${nextId++}`;
+  id: string = `sbb-autocomplete-${nextId++}`;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

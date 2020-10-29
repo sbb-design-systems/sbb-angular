@@ -168,7 +168,7 @@ export class SbbDatepicker<D> implements OnDestroy {
   private _opened = false;
 
   /** The id for the datepicker calendar. */
-  id = `sbb-datepicker-${datepickerUid++}`;
+  id: string = `sbb-datepicker-${datepickerUid++}`;
 
   /** The currently selected date. */
   get selected(): D | null {

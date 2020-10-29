@@ -21,7 +21,7 @@ export function mixinTabIndex<T extends AbstractConstructor<CanDisable>>(
   // but given we `extend` it from another class, we can assume a constructor being accessible.
   abstract class Mixin extends ((base as unknown) as Constructor<CanDisable>) {
     private _tabIndex: number = defaultTabIndex;
-    defaultTabIndex = defaultTabIndex;
+    defaultTabIndex: number = defaultTabIndex;
 
     get tabIndex(): number {
       return this.disabled ? -1 : this._tabIndex;

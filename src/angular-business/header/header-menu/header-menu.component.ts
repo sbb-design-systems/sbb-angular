@@ -49,7 +49,7 @@ let nextId = 0;
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   /** Unique ID to be used by menu trigger's "aria-owns" property. */
-  id = `sbb-header-menu-${nextId++}`;
+  id: string = `sbb-header-menu-${nextId++}`;
 
   /** Event emitted when the menu is closed. */
   @Output() readonly closed: EventEmitter<void | 'click' | 'keydown' | 'tab'> = new EventEmitter<
@@ -111,7 +111,7 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
   private _previousPanelClass: string;
 
   /** Whether the autocomplete panel should be visible, depending on option length. */
-  showPanel = false;
+  showPanel: boolean = false;
   /** Manages active item in item list based on key events. */
   _keyManager: FocusKeyManager<SbbHeaderMenuItem>;
   /** Class list for the panel. */

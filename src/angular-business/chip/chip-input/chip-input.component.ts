@@ -158,7 +158,7 @@ export class SbbChipInput extends SbbChipsMixinBase
   }
   private _focused = false;
 
-  inputModel = '';
+  inputModel: string = '';
   selectionModel: SelectionModel<string>;
 
   /** Emits when the state of the option changes and any parents have to be notified. */

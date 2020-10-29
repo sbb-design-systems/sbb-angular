@@ -183,7 +183,7 @@ export class SbbTextarea extends SbbTextareaMixinBase
   _counter: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
 
   /** Placeholder value for the textarea. */
-  @Input() placeholder = '';
+  @Input() placeholder: string = '';
   /** @docs-private */
   @ViewChild('textarea', { static: true }) _textarea: ElementRef<HTMLTextAreaElement>;
   /** Class property that automatically resize a textarea to fit its content. */
@@ -192,7 +192,7 @@ export class SbbTextarea extends SbbTextareaMixinBase
   /** `View -> model callback called when value changes` */
   _onChange: (value: any) => void = () => {};
   /** `View -> model callback called when autocomplete has been touched` */
-  _onTouched = () => {};
+  _onTouched: () => void = () => {};
 
   constructor(
     @Self() @Optional() public ngControl: NgControl,

@@ -50,9 +50,9 @@ let counter = 0;
   },
 })
 export class SbbGhettobox {
-  @Input() id = `sbb-ghettobox-${counter++}`;
+  @Input() id: string = `sbb-ghettobox-${counter++}`;
 
-  visible = true;
+  visible: boolean = true;
 
   /** RouterLink as input directive or routerlink from ghettobox object when added by the Service */
   @Input()
@@ -83,7 +83,9 @@ export class SbbGhettobox {
   }
 
   /** Emit a GhettoboxDeletedEvent after every ghettobox deletion */
-  @Output() afterDelete = new EventEmitter<SbbGhettoboxDeletedEvent>();
+  @Output() afterDelete: EventEmitter<SbbGhettoboxDeletedEvent> = new EventEmitter<
+    SbbGhettoboxDeletedEvent
+  >();
 
   /** Ghettobox Default icon as a TemplateRef if any are not specified */
   @ViewChild('defaultIcon', { static: true }) defaultIcon: TemplateRef<any>;

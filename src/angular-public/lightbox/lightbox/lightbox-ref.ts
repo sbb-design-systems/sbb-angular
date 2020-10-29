@@ -17,7 +17,7 @@ export class SbbLightboxRef<T, R = any> {
   /** Whether the user is allowed to close the dialog. */
   disableClose: boolean | undefined = this.containerInstance.config.disableClose;
   /** Observable to close manually a lightbox. */
-  manualCloseAction = new Subject<void>();
+  manualCloseAction: Subject<void> = new Subject<void>();
 
   /** Subject for notifying the user that the lightbox has finished opening. */
   private readonly _afterOpen = new Subject<void>();

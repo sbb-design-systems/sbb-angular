@@ -725,7 +725,7 @@ class StickyTableTestComponent {
   `,
 })
 class SbbTableWithWhenRowTestComponent {
-  multiTemplateDataRows = false;
+  multiTemplateDataRows: boolean = false;
   dataSource: FakeDataSource | null = new FakeDataSource();
 
   @ViewChild(SbbTable) table: SbbTable<TestData>;

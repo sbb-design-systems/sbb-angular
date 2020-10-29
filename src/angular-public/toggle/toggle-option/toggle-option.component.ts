@@ -68,7 +68,7 @@ export class SbbToggleOption extends SbbRadioButton implements AfterViewInit {
   }
 
   /** Verifies the presence of text in a toggle option. */
-  toggleOptionHasContent = true;
+  toggleOptionHasContent: boolean = true;
 
   /** Refers to the icon optionally contained in a toggle option. */
   @Input()

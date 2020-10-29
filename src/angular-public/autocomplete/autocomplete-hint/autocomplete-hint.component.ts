@@ -16,5 +16,5 @@ let nextId = 0;
 })
 export class SbbAutocompleteHint {
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
-  id = `sbb-autocomplete-hint-${nextId++}`;
+  id: string = `sbb-autocomplete-hint-${nextId++}`;
 }

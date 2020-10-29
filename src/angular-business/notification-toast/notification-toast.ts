@@ -64,7 +64,7 @@ export class SbbNotificationToast implements OnDestroy {
   > = SbbNotificationToastContainer;
 
   /** The CSS class to applie for mobile mode. */
-  protected _mobileDeviceCssClass = 'sbb-notification-toast-mobile';
+  protected _mobileDeviceCssClass: string = 'sbb-notification-toast-mobile';
 
   /** Reference to the currently opened notification toast at *any* level. */
   get _openedNotificationRef(): SbbNotificationToastRef<any> | null {

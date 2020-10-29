@@ -97,7 +97,7 @@ export class SbbInput extends SbbNativeInputBase
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  autofilled = false;
+  autofilled: boolean = false;
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -126,7 +126,7 @@ export class SbbInput extends SbbNativeInputBase
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
-  @Input() id = `sbb-native-input-${nextId++}`;
+  @Input() id: string = `sbb-native-input-${nextId++}`;
 
   /**
    * Implemented as part of SbbFormFieldControl.

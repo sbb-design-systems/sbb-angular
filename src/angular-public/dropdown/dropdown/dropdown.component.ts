@@ -65,7 +65,7 @@ export class SbbDropdown implements AfterContentInit {
   keyManager: ActiveDescendantKeyManager<SbbDropdownItem>;
 
   /** Whether the dropdown panel should be visible, depending on option length. */
-  showPanel = false;
+  showPanel: boolean = false;
 
   /** Whether the dropdown panel is open. */
   get open(): boolean {
@@ -123,7 +123,7 @@ export class SbbDropdown implements AfterContentInit {
   _classList: { [key: string]: boolean } = {};
 
   /** Unique ID to be used by dropdown trigger's "aria-owns" property. */
-  id = `sbb-dropdown-${nextId++}`;
+  id: string = `sbb-dropdown-${nextId++}`;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

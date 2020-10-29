@@ -59,7 +59,7 @@ export class SbbTableDataSource<
    * Subscription to the changes that should trigger an update to the table's rendered rows, such
    * as filtering, sorting, pagination, or base data changes.
    */
-  _renderChangesSubscription = Subscription.EMPTY;
+  _renderChangesSubscription: Subscription = Subscription.EMPTY;
 
   /**
    * The filtered set of data that has been matched by the filter string, or all the data if there

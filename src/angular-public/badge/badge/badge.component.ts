@@ -16,7 +16,7 @@ export class SbbBadge {
    * The badge has two status, but, basically its common usage is in active state (see {@link TabsComponent}).
    * Anyway this property can change its status, and so it will change the styling.
    */
-  @Input() active = true;
+  @Input() active: boolean = true;
 
   @Input('aria-label') ariaLabel: string | null = null;
 }

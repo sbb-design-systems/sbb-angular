@@ -81,9 +81,9 @@ export class SbbExpansionPanel extends CdkAccordionItem
   private _hideToggle = false;
 
   /** An event emitted after the body's expansion animation happens. */
-  @Output() afterExpand = new EventEmitter<void>();
+  @Output() afterExpand: EventEmitter<void> = new EventEmitter<void>();
   /** An event emitted after the body's collapse animation happens. */
-  @Output() afterCollapse = new EventEmitter<void>();
+  @Output() afterCollapse: EventEmitter<void> = new EventEmitter<void>();
 
   /** Stream that emits for changes in `@Input` properties. */
   readonly _inputChanges = new Subject<SimpleChanges>();
@@ -101,10 +101,10 @@ export class SbbExpansionPanel extends CdkAccordionItem
   _portal: TemplatePortal;
 
   /** ID for the associated header element. Used for a11y labelling. */
-  _headerId = `sbb-expansion-panel-header-${uniqueId++}`;
+  _headerId: string = `sbb-expansion-panel-header-${uniqueId++}`;
 
   /** Stream of body animation done events. */
-  _bodyAnimationDone = new Subject<AnimationEvent>();
+  _bodyAnimationDone: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
   private _document: Document;
 

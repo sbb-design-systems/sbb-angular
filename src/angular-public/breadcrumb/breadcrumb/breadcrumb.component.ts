@@ -65,7 +65,7 @@ export class SbbBreadcrumb extends SbbDropdownTrigger implements AfterViewInit {
   @ViewChild('breadcrumbTrigger') breadcrumbTrigger: ElementRef;
 
   /** Css class on a breadcrumb panel. */
-  panelClass = 'sbb-breadcrumb-panel';
+  panelClass: string = 'sbb-breadcrumb-panel';
 
   private _scalingFactor: number = 1;
 

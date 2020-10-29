@@ -267,7 +267,7 @@ export class SbbSelect extends SbbSelectMixinBase
   _ariaDescribedby: string;
 
   /** The cached font-size of the trigger element. */
-  _triggerFontSize = 0;
+  _triggerFontSize: number = 0;
 
   /** Deals with the selection logic. */
   _selectionModel: SelectionModel<SbbOption>;
@@ -276,10 +276,10 @@ export class SbbSelect extends SbbSelectMixinBase
   _keyManager: ActiveDescendantKeyManager<SbbOption>;
 
   /** ID for the DOM node containing the select's value. */
-  _valueId = `sbb-select-value-${nextUniqueId++}`;
+  _valueId: string = `sbb-select-value-${nextUniqueId++}`;
 
   /** Emits when the panel element is finished transforming in. */
-  _panelDoneAnimatingStream = new Subject<string>();
+  _panelDoneAnimatingStream: Subject<string> = new Subject<string>();
 
   /** Whether the select is focused. */
   get focused(): boolean {
@@ -393,7 +393,7 @@ export class SbbSelect extends SbbSelectMixinBase
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   /** The value of the select panel's transform-origin property. */
-  _transformOrigin = 'top';
+  _transformOrigin: string = 'top';
 
   /** Factory function used to create a scroll strategy for this select. */
   private _scrollStrategyFactory: () => ScrollStrategy;
@@ -408,7 +408,7 @@ export class SbbSelect extends SbbSelectMixinBase
    * This must be adjusted to align the selected option text over the trigger text.
    * when the panel opens. Will change based on the y-position of the selected option.
    */
-  _offsetY = 0;
+  _offsetY: number = 0;
 
   /**
    * This position config ensures that the top "start" corner of the overlay
@@ -501,7 +501,7 @@ export class SbbSelect extends SbbSelectMixinBase
   _onChange: (value: any) => void = () => {};
 
   /** `View -> model callback called when select has been touched` */
-  _onTouched = () => {};
+  _onTouched: () => void = () => {};
 
   constructor(
     private _viewportRuler: ViewportRuler,

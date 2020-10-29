@@ -179,10 +179,10 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   @Output() readonly inputBlurred: EventEmitter<void> = new EventEmitter<void>();
 
   /** Emits when the value changes (either due to user input or programmatic change). */
-  valueChange = new EventEmitter<D | null>();
+  valueChange: EventEmitter<D | null> = new EventEmitter<D | null>();
 
   /** Emits when the disabled state has changed */
-  disabledChange = new EventEmitter<boolean>();
+  disabledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private _datepickerSubscription = Subscription.EMPTY;
 
@@ -190,7 +190,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   private _lastValueValid = false;
 
   /** `View -> model callback called when date input has been touched` */
-  _onTouched = () => {};
+  _onTouched: () => void = () => {};
 
   /** `View -> model callback called when value changes` */
   private _cvaOnChange: (value: any) => void = () => {};

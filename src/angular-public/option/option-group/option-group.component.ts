@@ -48,7 +48,7 @@ export class SbbOptionGroup extends _SbbOptgroupMixinBase implements CanDisable 
   @Input() label: string;
 
   /** Unique id for the underlying label. */
-  _labelId = `sbb-optgroup-label-${uniqueOptgroupIdCounter++}`;
+  _labelId: string = `sbb-optgroup-label-${uniqueOptgroupIdCounter++}`;
 
   // tslint:disable-next-line: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;

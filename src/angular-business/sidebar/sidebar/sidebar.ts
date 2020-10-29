@@ -157,10 +157,10 @@ export class SbbSidebar extends SbbSidebarBase
   private _openedVia: FocusOrigin | null;
 
   /** Emits whenever the sidebar has started animating. */
-  _animationStarted = new Subject<AnimationEvent>();
+  _animationStarted: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
   /** Emits whenever the sidebar is done animating. */
-  _animationEnd = new Subject<AnimationEvent>();
+  _animationEnd: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
   /** Current state of the sidebar animation. */
   // @HostBinding is used in the class as it is expected to be extended.  Since @Component decorator
@@ -177,7 +177,7 @@ export class SbbSidebar extends SbbSidebarBase
   /** Event emitted when the sidebar has been opened. */
   // tslint:disable-next-line:no-output-rename
   @Output('opened')
-  _openedStream = this.openedChange.pipe(
+  _openedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => o),
     map(() => {})
   );
@@ -185,7 +185,7 @@ export class SbbSidebar extends SbbSidebarBase
   /** Event emitted when the sidebar has been closed. */
   // tslint:disable-next-line:no-output-rename
   @Output('closed')
-  _closedStream = this.openedChange.pipe(
+  _closedStream: Observable<void> = this.openedChange.pipe(
     filter((o) => !o),
     map(() => {})
   );

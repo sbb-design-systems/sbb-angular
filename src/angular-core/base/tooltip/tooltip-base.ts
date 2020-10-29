@@ -101,9 +101,9 @@ export abstract class SbbTooltipBase implements OnDestroy {
   }
 
   /** Identifier of tooltip. */
-  id = `sbb-tooltip-id-${tooltipCounter++}`;
+  id: string = `sbb-tooltip-id-${tooltipCounter++}`;
   /** Identifier of tooltip content. */
-  contentId = `sbb-tooltip-content-id-${tooltipCounter++}`;
+  contentId: string = `sbb-tooltip-content-id-${tooltipCounter++}`;
 
   /**
    * Overlay containg the tooltip text and the close button.
@@ -119,7 +119,7 @@ export abstract class SbbTooltipBase implements OnDestroy {
 
   /** Sets whether the overlay can be pushed on-screen if it does not fit otherwise. */
   @Input()
-  overlayWithPush = false;
+  overlayWithPush: boolean = false;
 
   /**
    * Sets whether the overlay's position should be locked in after it is
@@ -128,11 +128,11 @@ export abstract class SbbTooltipBase implements OnDestroy {
    * when the position is re-applied (e.g. when the user scrolls away).
    */
   @Input()
-  overlayWithLockedPosition = true;
+  overlayWithLockedPosition: boolean = true;
 
   /** Sets a minimum distance the overlay may be positioned to the edge of the viewport. */
   @Input()
-  overlayViewportMargin = 8;
+  overlayViewportMargin: number = 8;
 
   /** Open event to a click on tooltip element. */
   @Output() readonly opened = new EventEmitter<SbbTooltipChangeEvent>();
@@ -143,7 +143,7 @@ export abstract class SbbTooltipBase implements OnDestroy {
   private readonly _scrollStrategy: () => ScrollStrategy;
   private _closingActionsSubscription: Subscription;
 
-  protected _panelClass = ['sbb-tooltip-content'];
+  protected _panelClass: string | string[] = ['sbb-tooltip-content'];
 
   constructor(
     protected _overlay: Overlay,

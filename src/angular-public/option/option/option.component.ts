@@ -92,7 +92,7 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
   @Input() value: any;
 
   /** The unique ID of the option. */
-  @Input() id = `sbb-option-${uniqueIdCounter++}`;
+  @Input() id: string = `sbb-option-${uniqueIdCounter++}`;
 
   /** Whether the option is disabled. */
   @Input()

@@ -42,7 +42,7 @@ import { SbbTabs } from './tabs.component';
 })
 class TabsTestComponent {
   @ViewChild('tabs') tabsComponent: SbbTabs;
-  isVisible = true;
+  isVisible: boolean = true;
   numberOfTimesSubComponentHasBeenInitialized = 0;
   disableChange() {}
   removeChange() {}

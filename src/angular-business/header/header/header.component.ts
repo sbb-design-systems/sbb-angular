@@ -90,10 +90,10 @@ export class SbbHeader implements OnInit, AfterViewInit, OnDestroy {
   private _opened = false;
 
   /** Emits whenever the header menu has started animating. */
-  _animationStarted = new Subject<AnimationEvent>();
+  _animationStarted: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
   /** Emits whenever the header menu is done animating. */
-  _animationEnd = new Subject<AnimationEvent>();
+  _animationEnd: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
   /** Current state of the menu animation. */
   _animationState: 'open' | 'void' = 'void';

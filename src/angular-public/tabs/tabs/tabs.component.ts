@@ -31,9 +31,9 @@ let nextId = 0;
 })
 export class SbbTabs implements AfterContentInit, OnDestroy {
   /** Class property that tracks tab number of the list */
-  nameOfTabList = `sbb-tabs-${nextId++}`;
+  nameOfTabList: string = `sbb-tabs-${nextId++}`;
   /** Index of tab list */
-  tabListIndex = 0;
+  tabListIndex: number = 0;
   /** Class property that tracks changes in the tabs contained in the list */
   @ContentChildren(SbbTab) tabs: QueryList<SbbTab>;
   /** Class property that tracks changes in the content tab in the list of tab */
@@ -41,7 +41,7 @@ export class SbbTabs implements AfterContentInit, OnDestroy {
   /** Class property that tracks changes in the label tab in the list of tab */
   @ViewChildren('label') labels: QueryList<ElementRef>;
   /** Emits the newly selected  */
-  @Output() selectedIndexChange = new EventEmitter<number>();
+  @Output() selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();
   /** Class property that records an event on tabs */
   private _tabsSubscription = Subscription.EMPTY;
   /** Option keys available to move between tabs */

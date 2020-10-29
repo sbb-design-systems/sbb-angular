@@ -43,7 +43,7 @@ export class SbbPagination implements OnInit {
    * @docs-private
    * @deprecated internal detail
    */
-  role = 'navigation';
+  role: string = 'navigation';
 
   /** Amount of pages of the pagination. */
   @Input()
@@ -68,7 +68,7 @@ export class SbbPagination implements OnInit {
 
   /** This event can be used by parent components to handle events on page change. */
   @Output()
-  pageChange = new EventEmitter<SbbPageChangeEvent>();
+  pageChange: EventEmitter<SbbPageChangeEvent> = new EventEmitter<SbbPageChangeEvent>();
 
   /** Reference to list of page buttons of the sbb-pagination.  */
   @ViewChildren('pageButton') _buttons: QueryList<ElementRef>;

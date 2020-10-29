@@ -131,7 +131,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * Flag set to true when the indicator should be displayed while the sort is not active. Used to
    * provide an affordance that the header is sortable by showing on focus and hover.
    */
-  _showIndicatorHint = false;
+  _showIndicatorHint: boolean = false;
 
   /**
    * The view transition state of the arrow (translation/ opacity) - indicates its `from` and `to`
@@ -144,7 +144,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   _arrowDirection: SbbSortDirection = '';
 
   /** Whether the view state animation should show the transition between the `from` and `to` states. */
-  _disableViewStateAnimation = false;
+  _disableViewStateAnimation: boolean = false;
 
   /**
    * ID of this sort header. If used within the context of a CdkColumnDef, this will default to

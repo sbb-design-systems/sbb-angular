@@ -24,7 +24,7 @@ let counter = 0;
 })
 export class SbbUserMenu {
   /** Identifier of a usermenu. */
-  id = `sbb-usermenu-${counter++}`;
+  id: string = `sbb-usermenu-${counter++}`;
 
   /**
    * Name and surname of a user.
@@ -36,7 +36,7 @@ export class SbbUserMenu {
   @Input() userName: string;
 
   /** Event emitted on log in of a user. */
-  @Output() loginRequest = new EventEmitter<void>();
+  @Output() loginRequest: EventEmitter<void> = new EventEmitter<void>();
 
   /** Reference to a dropdown istance. */
   @ContentChild(SbbDropdown) dropdown: SbbDropdown;

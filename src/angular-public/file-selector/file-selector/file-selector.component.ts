@@ -47,7 +47,7 @@ export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOpt
   private _uniqueId = `sbb-file-selector-${++nextId}`;
 
   /** Unique id of the element. */
-  @Input() id = this._uniqueId;
+  @Input() id: string = this._uniqueId;
 
   /** Id for the inner input field. */
   get inputId() {
@@ -83,20 +83,18 @@ export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOpt
   private _disabled = false;
 
   /** Event emitted to a change on file selector component (for example the uploading of files). */
-  @Output() fileChanged = new EventEmitter<File[]>();
+  @Output() fileChanged: EventEmitter<File[]> = new EventEmitter<File[]>();
   /** @docs-private */
   @ViewChild('fileInput', { static: true }) fileInput: ElementRef<HTMLInputElement>;
 
   /** List of files uploaded. */
   filesList: File[];
-  /** File type category available. */
-  fileTypeCategory = FileTypeCategory;
 
   /** Property that listens changes on file selector. */
-  _onChange = (_: File[]) => {};
+  _onChange: (_: any) => void = (_) => {};
 
   /** Property that catches the interaction with user. */
-  _onTouched = () => {};
+  _onTouched: () => void = () => {};
 
   constructor(
     private _fileTypeService: SbbFileSelectorTypesService,

@@ -230,7 +230,7 @@ export class SbbCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   private _clampedActiveDate: D;
 
   /** Emits whenever there is a state change that the header may need to respond to. */
-  stateChanges = new Subject<void>();
+  stateChanges: Subject<void> = new Subject<void>();
 
   constructor(
     @Optional() private _dateAdapter: SbbDateAdapter<D>,

@@ -17,5 +17,5 @@ export class SbbPseudoCheckbox {
   @Input() state: 'unchecked' | 'checked' = 'unchecked';
 
   /** Whether the checkbox is disabled. */
-  @Input() disabled = false;
+  @Input() disabled: boolean = false;
 }

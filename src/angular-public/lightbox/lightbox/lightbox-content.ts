@@ -126,7 +126,7 @@ export class SbbLightboxHeader implements OnInit {
 })
 export class SbbLightboxTitle implements OnInit {
   /** Identifier of lightbox title. */
-  @Input() id = `sbb-lightbox-title-${lightboxElementUid++}`;
+  @Input() id: string = `sbb-lightbox-title-${lightboxElementUid++}`;
 
   constructor(
     @Optional() private _lightboxRef: SbbLightboxRef<any>,

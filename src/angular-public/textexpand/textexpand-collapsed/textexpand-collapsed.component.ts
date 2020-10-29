@@ -9,5 +9,5 @@ import { Directive } from '@angular/core';
 })
 export class SbbTextexpandCollapsed {
   /** Describes if textexpand-collapsed is hidden or not. Initially it isn't hidden. */
-  _hidden = false;
+  _hidden: boolean = false;
 }

@@ -46,7 +46,7 @@ export class SbbTags implements AfterContentInit, OnDestroy {
     return this._totalAmount.value;
   }
   /** @docs-private */
-  _totalAmount = new BehaviorSubject<number>(0);
+  _totalAmount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   private _totalAmountSetAsInput = false;
 

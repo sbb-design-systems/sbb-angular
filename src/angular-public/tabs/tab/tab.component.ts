@@ -54,13 +54,13 @@ export class SbbTab implements OnChanges, OnDestroy {
   /** Label of a specific tab */
   @Input() label: string;
   /** Class property that specifics tab status */
-  @Input() active = false;
+  @Input() active: boolean = false;
   /** Class property that identifies the data-set for tabs content */
   @Input() badgePill?: number;
   /** Event generated if a tab is disabled */
-  @Output() disableChange = new EventEmitter();
+  @Output() disableChange: EventEmitter = new EventEmitter();
   /** Event generated if a tab is removed */
-  @Output() removeChange = new EventEmitter();
+  @Output() removeChange: EventEmitter = new EventEmitter();
   /** Template provided in the tab content, which is lazily rendered */
   @ContentChild(SbbTabContent, { read: TemplateRef, static: true }) _lazyTabContent: TemplateRef<
     any

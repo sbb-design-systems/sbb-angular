@@ -194,7 +194,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
    * `autocomplete` attribute to be set on the input element.
    * @docs-private
    */
-  @Input('autocomplete') autocompleteAttribute = 'off';
+  @Input('autocomplete') autocompleteAttribute: string = 'off';
 
   /** Stream of autocomplete option selections. */
   readonly optionSelections: Observable<SbbOptionSelectionChange> = defer(() => {
@@ -229,7 +229,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
 
   /** `View -> model callback called when autocomplete has been touched` */
   @HostListener('blur')
-  _onTouched = () => {};
+  _onTouched: () => void = () => {};
 
   /**
    * Whether the autocomplete is disabled. When disabled, the element will

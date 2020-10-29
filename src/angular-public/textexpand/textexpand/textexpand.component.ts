@@ -29,13 +29,13 @@ let nextId = 0;
 })
 export class SbbTextexpand implements AfterContentInit {
   /** Describes if text content is expanded or not. Initially is collapsed. */
-  isExpanded = false;
+  isExpanded: boolean = false;
 
   /** Identifier of the textexpand component. */
-  @Input() id = `sbb-textexpand-${nextId++}`;
+  @Input() id: string = `sbb-textexpand-${nextId++}`;
 
   /** Event activated at the expansion of the text. */
-  @Output() expandEvent = new EventEmitter<boolean>();
+  @Output() expandEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /** Refers to the textexpand-collapsed component instance. */
   @ContentChild(SbbTextexpandCollapsed) collapsedComponent: SbbTextexpandCollapsed;

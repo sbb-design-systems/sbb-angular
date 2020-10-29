@@ -74,7 +74,7 @@ export class SbbLightboxContainer extends BasePortalOutlet {
   _state: 'void' | 'enter' | 'exit' = 'enter';
 
   /** Emits when an animation state changes. */
-  _animationStateChanged = new EventEmitter<AnimationEvent>();
+  _animationStateChanged: EventEmitter<AnimationEvent> = new EventEmitter<AnimationEvent>();
 
   /** ID of the element that should be considered as the lightbox's label. */
   _ariaLabelledBy: string | null = null;

@@ -9,5 +9,5 @@ import { Directive } from '@angular/core';
 })
 export class SbbTextexpandExpanded {
   /** Describes if textexpand-expanded is hidden or not. Initially it is hidden. */
-  _hidden = true;
+  _hidden: boolean = true;
 }

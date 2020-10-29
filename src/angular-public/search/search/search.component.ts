@@ -128,10 +128,10 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
   @Input() mode: 'header' | 'default' = 'default';
 
   /** Identifier of search. */
-  @Input() id = `sbb-search-id-${nextId++}`;
+  @Input() id: string = `sbb-search-id-${nextId++}`;
 
   /** Adds a placeholder to the component */
-  @Input() placeholder = '';
+  @Input() placeholder: string = '';
 
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
@@ -224,7 +224,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
    * @docs-private
    */
   @Input('autocomplete')
-  autocompleteAttribute = 'off';
+  autocompleteAttribute: string = 'off';
 
   /**
    * Event emitted when:
@@ -335,7 +335,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
   _onChange: (value: any) => void = () => {};
 
   /** `View -> model callback called when autocomplete has been touched` */
-  _onTouched = () => {};
+  _onTouched: () => void = () => {};
 
   /**
    * Whether the autocomplete is disabled. When disabled, the element will

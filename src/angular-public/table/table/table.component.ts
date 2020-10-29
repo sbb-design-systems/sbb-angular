@@ -62,7 +62,7 @@ export class SbbTable implements OnChanges, OnDestroy {
   private _tableClass: string;
 
   /** @docs-private */
-  _scrolling = false;
+  _scrolling: boolean = false;
 
   /**
    * Reference to the scroll container of the table.
