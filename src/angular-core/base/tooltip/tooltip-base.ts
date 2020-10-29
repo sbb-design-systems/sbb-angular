@@ -143,7 +143,7 @@ export abstract class SbbTooltipBase implements OnDestroy {
   private readonly _scrollStrategy: () => ScrollStrategy;
   private _closingActionsSubscription: Subscription;
 
-  protected _panelClass: string | string[] = ['sbb-tooltip-content'];
+  protected _panelClass: string[] = ['sbb-tooltip-content'];
 
   constructor(
     protected _overlay: Overlay,
