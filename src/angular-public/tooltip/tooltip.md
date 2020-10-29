@@ -10,7 +10,7 @@ The tooltip consists of a question icon and the overlay.
 
 The overlay has got the following characteristics:
 
-- It will open when the user click on the question icon.
+- It will open when the user clicks on the question icon.
 - It also includes a close.
 - it has got two states: visible or hidden.
 

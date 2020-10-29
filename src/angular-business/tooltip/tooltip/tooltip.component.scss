@@ -3,30 +3,20 @@ $sbbBusiness: true;
 @import '../../../angular-core/styles/common';
 
 $tooltipBorderRadius: 2;
-$tooltipBorderWidth: 2;
+$tooltipBorderWidth: if($sbbBusiness, 1, 2);
 $tooltipIconsBorderWidth: 1;
 $tooltipMaxWidth: 460;
 $tooltipIconsSize: 24;
-$tooltipContentPadding: 24;
-$tooltipColor: $sbbColorGrey;
-$tooltipBorderColor: $sbbColorGrey;
-$tooltipActiveColor: $sbbColorRed;
+$tooltipContentPadding: if($sbbBusiness, 8, 24);
+$tooltipColor: if($sbbBusiness, $sbbColorBlack, $sbbColorGrey);
+$tooltipBorderColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
+$tooltipActiveColor: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
 $tooltipBoxShadowColor: rgba(102, 102, 102, 0.15);
-$tooltipShadowSize: 8;
+$tooltipShadowSize: if($sbbBusiness, 4, 8);
 $tooltipContentArrowSize: 20;
 $tooltipShadowBorderWidth: 14;
 $tooltipArrowRightPosition: calc(100% - #{pxToEm(15.5)});
 $tooltipArrowLeftPosition: pxToEm(15.5);
-
-@if $sbbBusiness {
-  $tooltipContentPadding: 8;
-  $tooltipBorderWidth: 1;
-  $tooltipShadowSize: 4;
-  $tooltipShadowBorderWidth: 14;
-  $tooltipColor: $sbbColorBlack;
-  $tooltipBorderColor: $sbbColorIron;
-  $tooltipActiveColor: $sbbColorRed125;
-}
 
 @mixin tooltipIcon {
   @include buttonResetFrameless();
@@ -67,12 +57,10 @@ $tooltipArrowLeftPosition: pxToEm(15.5);
   }
 }
 
-sbb-tooltip {
-  .sbb-tooltip-trigger {
-    @include tooltipIcon();
-    margin: auto;
-    display: inline-block;
-  }
+.sbb-tooltip-trigger {
+  @include tooltipIcon();
+  margin: auto;
+  display: inline-block;
 }
 
 .sbb-tooltip-content-above {
@@ -182,73 +170,77 @@ sbb-tooltip {
   display: block;
   background: $sbbColorWhite;
 
-  .sbb-tooltip-content-body {
-    padding-top: toPx($tooltipContentPadding);
-    padding-left: toPx($tooltipContentPadding);
-    padding-bottom: toPx($tooltipContentPadding);
-    padding-right: toPx($tooltipContentPadding + $tooltipIconsSize + $tooltipContentPadding);
-  }
-
   @include publicOnly() {
     @include mq($from: desktop4k) {
       font-size: $sizeFontBase * $scalingFactor4k;
       border: toPx($tooltipBorderWidth * $scalingFactor4k) solid $tooltipBorderColor;
       max-width: toPx($tooltipMaxWidth * $scalingFactor4k);
-      .sbb-tooltip-content-body {
-        padding-top: toPx($tooltipContentPadding * $scalingFactor4k);
-        padding-left: toPx($tooltipContentPadding * $scalingFactor4k);
-        padding-bottom: toPx($tooltipContentPadding * $scalingFactor4k);
-        padding-right: toPx(
-          $tooltipContentPadding * $scalingFactor4k + $tooltipIconsSize + $tooltipContentPadding *
-            $scalingFactor4k
-        );
-      }
     }
 
     @include mq($from: desktop5k) {
       font-size: $sizeFontBase * $scalingFactor5k;
       border: toPx($tooltipBorderWidth * $scalingFactor5k) solid $tooltipBorderColor;
       max-width: toPx($tooltipMaxWidth * $scalingFactor5k);
-      .sbb-tooltip-content-body {
-        padding-top: toPx($tooltipContentPadding * $scalingFactor5k);
-        padding-left: toPx($tooltipContentPadding * $scalingFactor5k);
-        padding-bottom: toPx($tooltipContentPadding * $scalingFactor5k);
-        padding-right: toPx(
-          $tooltipContentPadding * $scalingFactor5k + $tooltipIconsSize + $tooltipContentPadding *
-            $scalingFactor5k
-        );
-      }
     }
   }
+}
 
-  .sbb-tooltip-icon {
-    @include tooltipIcon();
-    border-color: $tooltipBorderColor;
-    border-width: pxToEm($tooltipIconsBorderWidth);
-    border-style: solid;
-    border-radius: 50%;
-    float: right;
-    position: absolute;
-    top: toPx($tooltipContentPadding);
-    right: toPx($tooltipContentPadding);
+.sbb-tooltip-close-icon {
+  @include tooltipIcon();
+  border-color: $tooltipBorderColor;
+  border-width: pxToEm($tooltipIconsBorderWidth);
+  border-style: solid;
+  border-radius: 50%;
+  float: right;
+  position: absolute;
+  top: toPx($tooltipContentPadding);
+  right: toPx($tooltipContentPadding);
 
-    @include businessOnly() {
-      &,
-      &:hover,
-      &:focus {
-        border-color: transparent;
-      }
+  @include businessOnly() {
+    &,
+    &:hover,
+    &:focus {
+      border-color: transparent;
     }
   }
+}
 
-  &.sbb-tooltip-trigger-hover {
-    .sbb-tooltip-icon {
-      display: none;
+.sbb-tooltip-content-body {
+  padding-top: toPx($tooltipContentPadding);
+  padding-left: toPx($tooltipContentPadding);
+  padding-bottom: toPx($tooltipContentPadding);
+  padding-right: toPx($tooltipContentPadding + $tooltipIconsSize + $tooltipContentPadding);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      padding-top: toPx($tooltipContentPadding * $scalingFactor4k);
+      padding-left: toPx($tooltipContentPadding * $scalingFactor4k);
+      padding-bottom: toPx($tooltipContentPadding * $scalingFactor4k);
+      padding-right: toPx(
+        $tooltipContentPadding * $scalingFactor4k + $tooltipIconsSize + $tooltipContentPadding *
+          $scalingFactor4k
+      );
     }
 
-    .sbb-tooltip-content-body {
-      padding-right: toPx($tooltipContentPadding);
+    @include mq($from: desktop5k) {
+      padding-top: toPx($tooltipContentPadding * $scalingFactor5k);
+      padding-left: toPx($tooltipContentPadding * $scalingFactor5k);
+      padding-bottom: toPx($tooltipContentPadding * $scalingFactor5k);
+      padding-right: toPx(
+        $tooltipContentPadding * $scalingFactor5k + $tooltipIconsSize + $tooltipContentPadding *
+          $scalingFactor5k
+      );
     }
+  }
+}
+
+.sbb-tooltip-trigger-hover {
+  .sbb-tooltip-close-icon {
+    display: none;
+  }
+
+  .sbb-tooltip-content-body {
+    padding-right: toPx($tooltipContentPadding);
   }
 }
 
