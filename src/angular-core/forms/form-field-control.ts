@@ -25,9 +25,9 @@ export abstract class SbbFormFieldControl<TValue> {
   /** Whether the control is in an error state. */
   readonly errorState: boolean;
   /**
-   * An optional name for the control type that can be used to distinguish `mat-form-field` elements
+   * An optional name for the control type that can be used to distinguish `sbb-form-field` elements
    * based on their control type. The form field will add a class,
-   * `mat-form-field-type-{{controlType}}` to its root element.
+   * `sbb-form-field-type-{{controlType}}` to its root element.
    */
   readonly controlType?: string;
   /**

@@ -90,6 +90,12 @@ export class SbbFileSelector implements ControlValueAccessor, SbbFileSelectorOpt
   /** List of files uploaded. */
   filesList: File[];
 
+  /**
+   * Available file type categories.
+   * @docs-private
+   */
+  _fileTypeCategory: typeof FileTypeCategory = FileTypeCategory;
+
   /** Property that listens changes on file selector. */
   _onChange: (_: any) => void = (_) => {};
 
