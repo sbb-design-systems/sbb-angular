@@ -20,7 +20,6 @@ $optionMultipleCheckboxPaddingLeft: if($sbbBusiness, 8px, 16px);
 $optionMultipleNoCheckboxPaddingLeft: if($sbbBusiness, 8px, 14px);
 $optionMarginY: if($sbbBusiness, 4px, 10px);
 $optionGroupItemPaddingLeft: if($sbbBusiness, 16px, 24px);
-$optionGroupLabelPaddingY: if($sbbBusiness, 8px, 14px);
 $optionAndAutocompleteColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
 $optionHoverColor: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
 $optionSelectedColor: $sbbColorBlack;
@@ -180,21 +179,22 @@ $optionSelectedColor: $sbbColorBlack;
   .sbb-optgroup-label {
     padding-left: $autocompleteAndOptionPaddingX;
     padding-right: $autocompleteAndOptionPaddingX;
-    padding-top: $optionGroupLabelPaddingY;
 
     @if $sbbBusiness {
+      padding-top: 8px;
       padding-bottom: 0;
     } @else {
-      padding-bottom: $optionGroupLabelPaddingY;
+      padding-top: 14px;
+      padding-bottom: 14px;
 
       @include mq($from: desktop4k) {
-        padding-top: toPx($optionGroupLabelPaddingY * $scalingFactor4k);
-        padding-bottom: toPx($optionGroupLabelPaddingY * $scalingFactor4k);
+        padding-top: toPx(17px);
+        padding-bottom: toPx(17px);
       }
 
       @include mq($from: desktop5k) {
-        padding-top: toPx($optionGroupLabelPaddingY * $scalingFactor5k);
-        padding-bottom: toPx($optionGroupLabelPaddingY * $scalingFactor5k);
+        padding-top: toPx(20px);
+        padding-bottom: toPx(20px);
       }
     }
 
