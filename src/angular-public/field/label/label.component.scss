@@ -19,7 +19,7 @@
 
   @include label;
 
-  .sbb-tooltip-trigger.sbb-tooltip-icon {
+  .sbb-tooltip-icon {
     &:not(:hover):not(:focus) {
       color: inherit;
     }
