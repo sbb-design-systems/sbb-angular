@@ -1,7 +1,10 @@
 @import '../../../angular-core/styles/common';
 
-:host {
-  @include publicOnly() {
+.sbb-label {
+  @if ($sbbBusiness) {
+    margin-bottom: pxToEm(3, 13);
+    padding-left: 0;
+  } @else {
     margin-bottom: pxToEm(5, 13);
     padding-left: pxToEm(10, 13);
 
@@ -14,10 +17,16 @@
     }
   }
 
-  @include businessOnly() {
-    margin-bottom: pxToEm(3, 13);
-    padding-left: 0;
-  }
-
   @include label;
+
+  .sbb-tooltip-trigger.sbb-tooltip-icon {
+    &:not(:hover):not(:focus) {
+      color: inherit;
+    }
+
+    width: 16px;
+    height: 16px;
+    margin-top: -4px;
+    transform: translateY(3px);
+  }
 }

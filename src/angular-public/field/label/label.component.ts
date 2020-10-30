@@ -5,6 +5,7 @@ import {
   Inject,
   Input,
   Optional,
+  ViewEncapsulation,
 } from '@angular/core';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 
@@ -15,7 +16,11 @@ import { SBB_FORM_FIELD } from '../form-field-token';
   selector: 'sbb-label',
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.css'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-label',
+  },
 })
 export class SbbLabel {
   /** Label of a input text */
