@@ -1,4 +1,4 @@
-`<sbb-field>` works with `<input sbbInput>`, `<textarea sbbInput>`, `<select sbbInput>`, `<sbb-select>`, `<input sbbInput sbbDateInput>` and `<input sbbInput sbbTimeInput>`.
+`<sbb-field>` works with `<input sbbInput>`, `<textarea sbbInput>`, `<sbb-textarea>`, `<select sbbInput>`, `<sbb-select>`, `<input sbbInput sbbDateInput>` and `<input sbbInput sbbTimeInput>`.
 
 ```html
 <h4>Example Form Field</h4>

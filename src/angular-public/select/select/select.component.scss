@@ -22,8 +22,19 @@ sbb-select.sbb-select {
   outline: 0;
   display: block;
   @include inputfields;
-  padding: 0;
   cursor: pointer;
+
+  // overwrite input padding because it's applied in .sbb-select-trigger
+  padding: 0;
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      padding: 0;
+    }
+
+    @include mq($from: desktop5k) {
+      padding: 0;
+    }
+  }
 
   &.sbb-select-focused {
     border-color: $sbbColorGrey;

@@ -1,0 +1,21 @@
+<sbb-field label="Name (required)" [mode]="inputMode">
+  <input
+    type="text"
+    sbbInput
+    [formControl]="name"
+    autocomplete="off"
+    placeholder="Name"
+    spellcheck="false"
+  />
+  <sbb-form-error *ngIf="name.errors?.required">Name is required!</sbb-form-error>
+</sbb-field>
+
+<h4>Properties</h4>
+<sbb-field label="Modes" class="sbbsc-block">
+  <select [(ngModel)]="inputMode" sbbInput>
+    <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+  </select>
+</sbb-field>
+<sbb-checkbox (change)="toggleDisabled($event)">
+  Disabled
+</sbb-checkbox>

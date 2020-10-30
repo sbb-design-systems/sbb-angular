@@ -103,17 +103,19 @@ $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
   background-color: transparent;
   font-family: $fontSbbRoman;
   font-size: pxToRem(13);
-  color: $labelColor;
   line-height: pxToRem(16);
+  color: $labelColor;
   display: block;
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
       font-size: pxToRem(13 * $scalingFactor4k);
+      line-height: pxToRem(16 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
       font-size: pxToRem(13 * $scalingFactor5k);
+      line-height: pxToRem(16 * $scalingFactor5k);
     }
   }
 }

@@ -9,10 +9,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import {
   A,
   DOWN_ARROW,
-  END,
   ENTER,
   hasModifierKey,
-  HOME,
   LEFT_ARROW,
   RIGHT_ARROW,
   SPACE,

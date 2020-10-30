@@ -19,6 +19,8 @@ ng_module(
         "//src/angular-public/datepicker",
         "//src/angular-public/field",
         "//src/angular-public/select",
+        "//src/angular-public/time-input",
+        "//src/angular-public/tooltip",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
