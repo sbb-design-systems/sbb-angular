@@ -12,3 +12,4 @@ export {
   SBB_SELECT_PANEL_VIEWPORT_PADDING as SELECT_PANEL_VIEWPORT_PADDING,
   SbbSelect as SelectComponent,
 } from './select/select.component';
+export * from './select-animations';
