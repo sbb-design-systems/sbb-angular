@@ -1,6 +1,6 @@
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { Component, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
@@ -60,11 +60,13 @@ describe('SbbTextarea', () => {
   let component: SbbTextarea;
   let fixture: ComponentFixture<SbbTextarea>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTextareaModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTextareaModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbTextarea);
@@ -82,12 +84,14 @@ describe('SbbTextarea behaviour', () => {
   let fixture: ComponentFixture<TextareaTestComponent>;
   let innerComponent: DebugElement;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTextareaModule, FormsModule],
-      declarations: [TextareaTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTextareaModule, FormsModule],
+        declarations: [TextareaTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaTestComponent);
@@ -193,11 +197,13 @@ describe('SbbTextarea digits counter', () => {
   let component: SbbTextarea;
   let fixture: ComponentFixture<SbbTextarea>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTextareaModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTextareaModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbTextarea);
@@ -233,12 +239,14 @@ describe('SbbTextarea reactive forms in sbb-field behaviour', () => {
   let sbbTextareaComponent: DebugElement;
   let textarea: HTMLTextAreaElement;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTextareaModule, ReactiveFormsModule, FormsModule, SbbFieldModule],
-      declarations: [TextareaSbbFieldTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTextareaModule, ReactiveFormsModule, FormsModule, SbbFieldModule],
+        declarations: [TextareaSbbFieldTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaSbbFieldTestComponent);

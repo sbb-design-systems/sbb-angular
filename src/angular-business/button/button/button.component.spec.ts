@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
@@ -10,9 +10,7 @@ import { SbbButton } from './button.component';
 @Component({
   selector: 'sbb-button-test',
   template: `
-    <button sbbButton [mode]="mode" [disabled]="disabled" (click)="testClick()">
-      Bezeichnung
-    </button>
+    <button sbbButton [mode]="mode" [disabled]="disabled" (click)="testClick()">Bezeichnung</button>
   `,
 })
 export class ButtonTestComponent {
@@ -42,12 +40,14 @@ describe('SbbButton', () => {
   let component: ButtonTestComponent;
   let fixture: ComponentFixture<ButtonTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule],
-      declarations: [SbbButton, ButtonTestComponent, IconButtonTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbIconModule, SbbIconTestingModule],
+        declarations: [SbbButton, ButtonTestComponent, IconButtonTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;

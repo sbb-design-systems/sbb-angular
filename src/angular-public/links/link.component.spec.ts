@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
@@ -18,12 +18,14 @@ describe('SbbLink', () => {
   let component: TestLinkComponent;
   let fixture: ComponentFixture<TestLinkComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestLinkComponent],
-      imports: [SbbLinksModule, SbbIconTestingModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TestLinkComponent],
+        imports: [SbbLinksModule, SbbIconTestingModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestLinkComponent);

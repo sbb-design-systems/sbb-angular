@@ -1,12 +1,12 @@
 import { DataSource } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {
-  async,
   ComponentFixture,
   fakeAsync,
   flushMicrotasks,
   TestBed,
   tick,
+  waitForAsync,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbPaginationModule, SbbPaginatorComponent } from '@sbb-esta/angular-business/pagination';
@@ -21,28 +21,30 @@ import { SbbTableDataSource } from './table/table-data-source';
 import { SbbTable } from './table/table.component';
 
 describe('SbbTable', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbTableModule,
-        SbbPaginationModule,
-        NoopAnimationsModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [
-        SbbTableTestComponent,
-        SbbTableWithWhenRowTestComponent,
-        ArrayDataSourceSbbTableTestComponent,
-        NativeHtmlTableTestComponent,
-        SbbTableWithSortTestComponent,
-        SbbTableWithPaginatorTestComponent,
-        StickyTableTestComponent,
-        TableWithNgContainerRowTestComponent,
-        NestedHtmlTableTestComponent,
-      ],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbTableModule,
+          SbbPaginationModule,
+          NoopAnimationsModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [
+          SbbTableTestComponent,
+          SbbTableWithWhenRowTestComponent,
+          ArrayDataSourceSbbTableTestComponent,
+          NativeHtmlTableTestComponent,
+          SbbTableWithSortTestComponent,
+          SbbTableWithPaginatorTestComponent,
+          StickyTableTestComponent,
+          TableWithNgContainerRowTestComponent,
+          NestedHtmlTableTestComponent,
+        ],
+      }).compileComponents();
+    })
+  );
 
   describe('with basic data source', () => {
     it('should be able to create a table with the right content and without when row', () => {

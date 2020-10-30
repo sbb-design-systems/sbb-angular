@@ -1,5 +1,5 @@
 import { Component, ContentChild, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { SbbTextexpandCollapsed } from '../textexpand-collapsed/textexpand-collapsed.component';
@@ -32,12 +32,14 @@ describe('SbbTextexpand', () => {
   let componentTest: TextexpandTestComponent;
   let fixtureTest: ComponentFixture<TextexpandTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTextexpandModule],
-      declarations: [TextexpandTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTextexpandModule],
+        declarations: [TextexpandTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(TextexpandTestComponent);

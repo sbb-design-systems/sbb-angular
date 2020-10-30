@@ -7,7 +7,7 @@ import {
   parseSourceFile,
 } from '@angular/cdk/schematics';
 import { InsertChange } from '@schematics/angular/utility/change';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 
 import { hasNgModuleProvider } from '../utils';
 
@@ -24,9 +24,9 @@ export function ngAdd(options: Schema): Rule {
 
 /** Adds the icon cdn registry to the AppModule providers. */
 export function addIconCdnProvider(options: Schema): Rule {
-  return (host: Tree, context: SchematicContext) => {
-    const workspace = getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, options.name);
+  return async (host: Tree, context: SchematicContext) => {
+    const workspace = await getWorkspace(host);
+    const project = getProjectFromWorkspace(workspace, options.project);
     const appModulePath = getAppModulePath(host, getProjectMainFile(project));
     if (hasNgModuleProvider(host, appModulePath, ICON_CDN_REGISTRY_NAME)) {
       context.logger.info(`${ICON_CDN_REGISTRY_NAME} already imported. Skipping...`);
@@ -49,7 +49,5 @@ export function addIconCdnProvider(options: Schema): Rule {
     host.commitUpdate(recorder);
 
     context.logger.info(`✔️ Added ${ICON_CDN_REGISTRY_NAME} to ${appModulePath}`);
-
-    return host;
   };
 }

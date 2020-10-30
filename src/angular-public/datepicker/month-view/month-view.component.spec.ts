@@ -10,7 +10,7 @@ import {
   UP_ARROW,
 } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   SbbDateAdapter,
@@ -46,22 +46,24 @@ class MonthViewWithDateFilterComponent {
 }
 
 describe('SbbMonthView', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        SbbCalendarBody,
-        SbbMonthView,
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          SbbCalendarBody,
+          SbbMonthView,
 
-        // Test components.
-        StandardMonthViewComponent,
-        MonthViewWithDateFilterComponent,
-      ],
-      providers: [
-        { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
-        { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
-      ],
-    }).compileComponents();
-  }));
+          // Test components.
+          StandardMonthViewComponent,
+          MonthViewWithDateFilterComponent,
+        ],
+        providers: [
+          { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
+          { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
+        ],
+      }).compileComponents();
+    })
+  );
 
   describe('standard month view', () => {
     let fixture: ComponentFixture<StandardMonthViewComponent>;

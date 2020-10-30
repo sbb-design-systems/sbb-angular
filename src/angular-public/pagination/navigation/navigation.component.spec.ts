@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -22,9 +22,7 @@ import { SbbNavigation, SbbNavigationPageChangeEvent } from './navigation.compon
       [previousPage]="previousPage"
     ></sbb-navigation>
     <input type="text" name="newPage" [(ngModel)]="newPage.title" />
-    <button id="new-page-button" sbbButton (click)="addPage()">
-      Add new page
-    </button>
+    <button id="new-page-button" sbbButton (click)="addPage()">Add new page</button>
   `,
 })
 export class NavigationTestComponent {
@@ -66,12 +64,14 @@ describe('SbbNavigation', () => {
   let component: SbbNavigation;
   let fixture: ComponentFixture<SbbNavigation>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
-      declarations: [SbbNavigation],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
+        declarations: [SbbNavigation],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbNavigation);
@@ -88,18 +88,20 @@ describe('SbbNavigation behaviour', () => {
   let component: NavigationTestComponent;
   let fixture: ComponentFixture<NavigationTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbPaginationModule,
-        SbbIconTestingModule,
-        RouterTestingModule,
-        SbbButtonModule,
-        FormsModule,
-      ],
-      declarations: [NavigationTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbPaginationModule,
+          SbbIconTestingModule,
+          RouterTestingModule,
+          SbbButtonModule,
+          FormsModule,
+        ],
+        declarations: [NavigationTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationTestComponent);

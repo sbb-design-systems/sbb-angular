@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbCheckboxChange as SbbTagChange } from '@sbb-esta/angular-core/base/checkbox';
@@ -99,12 +99,14 @@ describe('SbbTags', () => {
   let component: SbbTags;
   let fixture: ComponentFixture<SbbTags>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbBadgeModule],
-      declarations: [SbbTags, SbbTag],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbBadgeModule],
+        declarations: [SbbTags, SbbTag],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbTags);
@@ -125,12 +127,14 @@ describe('SbbTags with Model attached', () => {
   let component: TagsTestFixtureComponent;
   let fixture: ComponentFixture<TagsTestFixtureComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, SbbBadgeModule],
-      declarations: [SbbTags, SbbTag, TagsTestFixtureComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule, FormsModule, SbbBadgeModule],
+        declarations: [SbbTags, SbbTag, TagsTestFixtureComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagsTestFixtureComponent);
@@ -389,12 +393,14 @@ describe('SbbTags with Reactive Forms and total amount set as input', () => {
   let component: TagsTestFixtureReactiveComponent;
   let fixture: ComponentFixture<TagsTestFixtureReactiveComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule],
-      declarations: [SbbTags, SbbTag, TagsTestFixtureReactiveComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule],
+        declarations: [SbbTags, SbbTag, TagsTestFixtureReactiveComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagsTestFixtureReactiveComponent);
@@ -524,12 +530,14 @@ describe('SbbTags with Reactive Forms and total amount set as input', () => {
 describe('SbbTag as a Link Tag', () => {
   let fixture: ComponentFixture<TagLinkTestFixtureComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbBadgeModule],
-      declarations: [SbbTag, TagLinkTestFixtureComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbBadgeModule],
+        declarations: [SbbTag, TagLinkTestFixtureComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagLinkTestFixtureComponent);

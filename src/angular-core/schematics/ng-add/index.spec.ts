@@ -5,7 +5,7 @@ import {
   getProjectMainFile,
 } from '@angular/cdk/schematics';
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
 import { hasNgModuleProvider, readStringFile } from '../utils';
@@ -47,7 +47,7 @@ describe('ngAdd', () => {
   });
 
   it('should add ICON_CDN_REGISTRY_NAME to AppModule providers', async () => {
-    const workspace = getWorkspace(tree);
+    const workspace = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, appOptions.name);
     const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
     expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeFalse();
@@ -61,11 +61,11 @@ describe('ngAdd', () => {
   });
 
   it('should add ICON_CDN_REGISTRY_NAME to AppModule providers', async () => {
-    const workspace = getWorkspace(tree);
+    const workspace = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, appOptions.name);
     const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
 
-    await runner.callRule(addIconCdnProvider(appOptions), tree).toPromise();
+    await runner.callRule(addIconCdnProvider({ project: appOptions.name }), tree).toPromise();
     expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeTrue();
     const expected = readStringFile(tree, '/projects/dummy/src/app/app.module.ts');
 

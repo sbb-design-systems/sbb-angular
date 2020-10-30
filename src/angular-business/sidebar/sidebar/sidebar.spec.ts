@@ -7,13 +7,13 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import {
-  async,
   ComponentFixture,
   discardPeriodicTasks,
   fakeAsync,
   flush,
   TestBed,
   tick,
+  waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -53,31 +53,33 @@ const registerClearMediaMatcher = () => {
 };
 
 describe('SbbSidebar', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        PlatformModule,
-        NoopAnimationsModule,
-        CommonModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [
-        BasicTestComponent,
-        SidebarSetToOpenedTrueTestComponent,
-        TwoSidebarsTestComponent,
-        SidebarWithFocusableElementsTestComponent,
-        SidebarOpenBindingTestComponent,
-        SidebarWithoutFocusableElementsTestComponent,
-        IndirectDescendantSidebarTestComponent,
-        NestedSidebarContainersTestComponent,
-      ],
-      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-    });
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbSidebarModule,
+          A11yModule,
+          PlatformModule,
+          NoopAnimationsModule,
+          CommonModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [
+          BasicTestComponent,
+          SidebarSetToOpenedTrueTestComponent,
+          TwoSidebarsTestComponent,
+          SidebarWithFocusableElementsTestComponent,
+          SidebarOpenBindingTestComponent,
+          SidebarWithoutFocusableElementsTestComponent,
+          IndirectDescendantSidebarTestComponent,
+          NestedSidebarContainersTestComponent,
+        ],
+        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+      });
 
-    TestBed.compileComponents();
-  }));
+      TestBed.compileComponents();
+    })
+  );
 
   registerClearMediaMatcher();
 
@@ -621,30 +623,32 @@ describe('SbbSidebar', () => {
 });
 
 describe('SbbSidebarContainer', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        PlatformModule,
-        NoopAnimationsModule,
-        CommonModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [
-        SidebarContainerEmptyTestComponent,
-        SidebarDelayedTestComponent,
-        SidebarSetToOpenedTrueTestComponent,
-        SidebarContainerStateChangesTestAppTestComponent,
-        ZeroWithSidebarTestComponent,
-        BasicTestComponent,
-        SidebarContainerWithContentTestComponent,
-      ],
-      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-    });
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbSidebarModule,
+          A11yModule,
+          PlatformModule,
+          NoopAnimationsModule,
+          CommonModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [
+          SidebarContainerEmptyTestComponent,
+          SidebarDelayedTestComponent,
+          SidebarSetToOpenedTrueTestComponent,
+          SidebarContainerStateChangesTestAppTestComponent,
+          ZeroWithSidebarTestComponent,
+          BasicTestComponent,
+          SidebarContainerWithContentTestComponent,
+        ],
+        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+      });
 
-    TestBed.compileComponents();
-  }));
+      TestBed.compileComponents();
+    })
+  );
 
   registerClearMediaMatcher();
 
@@ -828,30 +832,32 @@ describe('SbbSidebarContainer', () => {
 describe('SbbSidebar Usage', () => {
   let fixture: ComponentFixture<SbbSidebarTestComponent>;
   let sidebar: DebugElement;
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        PlatformModule,
-        NoopAnimationsModule,
-        SbbAccordionModule,
-        RouterTestingModule.withRoutes([
-          { path: 'link', pathMatch: 'full', component: SimpleRouteComponent },
-        ]),
-        SbbIconTestingModule,
-      ],
-      declarations: [SbbSidebarTestComponent, SimpleRouteComponent],
-      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-    });
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbSidebarModule,
+          A11yModule,
+          PlatformModule,
+          NoopAnimationsModule,
+          SbbAccordionModule,
+          RouterTestingModule.withRoutes([
+            { path: 'link', pathMatch: 'full', component: SimpleRouteComponent },
+          ]),
+          SbbIconTestingModule,
+        ],
+        declarations: [SbbSidebarTestComponent, SimpleRouteComponent],
+        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+      });
 
-    TestBed.compileComponents();
+      TestBed.compileComponents();
 
-    fixture = TestBed.createComponent(SbbSidebarTestComponent);
-    sidebar = fixture.debugElement.query(By.directive(SbbSidebar));
+      fixture = TestBed.createComponent(SbbSidebarTestComponent);
+      sidebar = fixture.debugElement.query(By.directive(SbbSidebar));
 
-    fixture.detectChanges();
-  }));
+      fixture.detectChanges();
+    })
+  );
 
   registerClearMediaMatcher();
 
@@ -976,9 +982,7 @@ class BasicTestComponent {
 @Component({
   template: ` <sbb-sidebar-container>
     <sbb-sidebar #sidebar (opened)="openCallback()">
-      <fieldset>
-        Closed Sidebar.
-      </fieldset>
+      <fieldset>Closed Sidebar.</fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
 })
@@ -989,9 +993,7 @@ class SidebarSetToOpenedTrueTestComponent {
 @Component({
   template: ` <sbb-sidebar-container>
     <sbb-sidebar #sidebar>
-      <fieldset>
-        Closed Sidebar.
-      </fieldset>
+      <fieldset>Closed Sidebar.</fieldset>
     </sbb-sidebar>
   </sbb-sidebar-container>`,
 })

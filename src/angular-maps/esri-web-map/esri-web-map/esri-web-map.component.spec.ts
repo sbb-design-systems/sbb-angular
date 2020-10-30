@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SbbEsriWebMap } from './esri-web-map.component';
 
@@ -6,11 +6,13 @@ describe('SbbEsriWebMap', () => {
   let component: SbbEsriWebMap;
   let fixture: ComponentFixture<SbbEsriWebMap>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SbbEsriWebMap],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SbbEsriWebMap],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbEsriWebMap);

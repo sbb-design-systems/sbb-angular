@@ -4,7 +4,7 @@ import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
@@ -38,33 +38,35 @@ const registerClearMediaMatcher = () => {
 };
 
 describe('SbbIconSidebar', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        PlatformModule,
-        NoopAnimationsModule,
-        CommonModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-        RouterTestingModule,
-      ],
-      declarations: [
-        BasicTestComponent,
-        SidebarSetToExpandedFalseTestComponent,
-        SidebarSetToExpandedTrueTestComponent,
-        TwoSidebarsTestComponent,
-        SidebarExpandedBindingTestComponent,
-        IndirectDescendantSidebarTestComponent,
-        NestedSidebarContainersTestComponent,
-        IconSidebarWithLinksTestComponent,
-      ],
-      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-    });
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbSidebarModule,
+          A11yModule,
+          PlatformModule,
+          NoopAnimationsModule,
+          CommonModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          RouterTestingModule,
+        ],
+        declarations: [
+          BasicTestComponent,
+          SidebarSetToExpandedFalseTestComponent,
+          SidebarSetToExpandedTrueTestComponent,
+          TwoSidebarsTestComponent,
+          SidebarExpandedBindingTestComponent,
+          IndirectDescendantSidebarTestComponent,
+          NestedSidebarContainersTestComponent,
+          IconSidebarWithLinksTestComponent,
+        ],
+        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+      });
 
-    TestBed.compileComponents();
-  }));
+      TestBed.compileComponents();
+    })
+  );
 
   registerClearMediaMatcher();
 
@@ -210,14 +212,16 @@ describe('SbbIconSidebar', () => {
     let sidebar: DebugElement;
     let sidebarComponent: SbbIconSidebar;
 
-    beforeEach(async(() => {
-      fixture = TestBed.createComponent(IconSidebarWithLinksTestComponent);
+    beforeEach(
+      waitForAsync(() => {
+        fixture = TestBed.createComponent(IconSidebarWithLinksTestComponent);
 
-      fixture.detectChanges();
+        fixture.detectChanges();
 
-      sidebar = fixture.debugElement.query(By.directive(SbbIconSidebar));
-      sidebarComponent = sidebar!.componentInstance;
-    }));
+        sidebar = fixture.debugElement.query(By.directive(SbbIconSidebar));
+        sidebarComponent = sidebar!.componentInstance;
+      })
+    );
 
     it('should collapse icon sidebar by default', () => {
       expect(sidebarComponent.expanded).toBe(false);
@@ -323,28 +327,30 @@ describe('SbbIconSidebar', () => {
 });
 
 describe('SbbIconSidebarContainer', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbSidebarModule,
-        A11yModule,
-        PlatformModule,
-        NoopAnimationsModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [
-        SidebarContainerEmptyTestComponent,
-        SidebarDelayedTestComponent,
-        SidebarSetToExpandedTrueTestComponent,
-        BasicTestComponent,
-        SidebarContainerWithContentTestComponent,
-      ],
-      providers: [PROVIDE_FAKE_MEDIA_MATCHER],
-    });
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbSidebarModule,
+          A11yModule,
+          PlatformModule,
+          NoopAnimationsModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [
+          SidebarContainerEmptyTestComponent,
+          SidebarDelayedTestComponent,
+          SidebarSetToExpandedTrueTestComponent,
+          BasicTestComponent,
+          SidebarContainerWithContentTestComponent,
+        ],
+        providers: [PROVIDE_FAKE_MEDIA_MATCHER],
+      });
 
-    TestBed.compileComponents();
-  }));
+      TestBed.compileComponents();
+    })
+  );
 
   registerClearMediaMatcher();
 
@@ -421,9 +427,7 @@ class BasicTestComponent {
 
 @Component({
   template: ` <sbb-icon-sidebar-container>
-    <sbb-icon-sidebar #sidebar expanded="false">
-      collapsed Sidebar.
-    </sbb-icon-sidebar>
+    <sbb-icon-sidebar #sidebar expanded="false"> collapsed Sidebar. </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
 })
 class SidebarSetToExpandedFalseTestComponent {}
@@ -441,9 +445,7 @@ class SidebarSetToExpandedTrueTestComponent {
 
 @Component({
   template: ` <sbb-icon-sidebar-container>
-    <sbb-icon-sidebar #sidebar [(expanded)]="isExpanded">
-      Collapsed Sidebar.
-    </sbb-icon-sidebar>
+    <sbb-icon-sidebar #sidebar [(expanded)]="isExpanded"> Collapsed Sidebar. </sbb-icon-sidebar>
   </sbb-icon-sidebar-container>`,
 })
 class SidebarExpandedBindingTestComponent {
@@ -536,9 +538,7 @@ class NestedSidebarContainersTestComponent {
           <sbb-icon svgIcon="kom:station-small"></sbb-icon>
         </a>
       </sbb-icon-sidebar>
-      <sbb-icon-sidebar-content>
-        Content
-      </sbb-icon-sidebar-content>
+      <sbb-icon-sidebar-content> Content </sbb-icon-sidebar-content>
     </sbb-icon-sidebar-container>
   `,
 })

@@ -5,8 +5,8 @@ export interface SbbAngularCssSelectorData {
   replace: string;
   /** The new CSS selector. */
   replaceWith: string;
-  /** Whitelist where this replacement is made. If omitted it is made in all files. */
-  whitelist?: {
+  /** limitedTo where this replacement is made. If omitted it is made in all files. */
+  limitedTo?: {
     /** Replace this name in stylesheet files. */
     stylesheet?: boolean;
     /** Replace this name in HTML files. */

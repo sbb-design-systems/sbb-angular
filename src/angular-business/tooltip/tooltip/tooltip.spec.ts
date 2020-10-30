@@ -13,7 +13,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  async,
   ComponentFixture,
   fakeAsync,
   flush,
@@ -21,6 +20,7 @@ import {
   inject,
   TestBed,
   tick,
+  waitForAsync,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,40 +47,42 @@ describe('Tooltip', () => {
   let platform: { IOS: boolean; isBrowser: boolean; ANDROID: boolean };
   let focusMonitor: FocusMonitor;
 
-  beforeEach(async(() => {
-    // Set the default Platform override that can be updated before component creation.
-    platform = { IOS: false, isBrowser: true, ANDROID: false };
+  beforeEach(
+    waitForAsync(() => {
+      // Set the default Platform override that can be updated before component creation.
+      platform = { IOS: false, isBrowser: true, ANDROID: false };
 
-    TestBed.configureTestingModule({
-      imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule, SbbIconTestingModule],
-      declarations: [
-        BasicTooltipDemoComponent,
-        ScrollableTooltipDemoComponent,
-        OnPushTooltipDemoComponent,
-        DynamicTooltipsDemoComponent,
-        TooltipOnTextFieldsComponent,
-        TooltipOnDraggableElementComponent,
-        DataBoundAriaLabelTooltipComponent,
-      ],
-      providers: [
-        { provide: Platform, useFactory: () => platform },
-        {
-          provide: Directionality,
-          useFactory: () => {
-            return (dir = { value: 'ltr' });
+      TestBed.configureTestingModule({
+        imports: [SbbTooltipModule, OverlayModule, NoopAnimationsModule, SbbIconTestingModule],
+        declarations: [
+          BasicTooltipDemoComponent,
+          ScrollableTooltipDemoComponent,
+          OnPushTooltipDemoComponent,
+          DynamicTooltipsDemoComponent,
+          TooltipOnTextFieldsComponent,
+          TooltipOnDraggableElementComponent,
+          DataBoundAriaLabelTooltipComponent,
+        ],
+        providers: [
+          { provide: Platform, useFactory: () => platform },
+          {
+            provide: Directionality,
+            useFactory: () => {
+              return (dir = { value: 'ltr' });
+            },
           },
-        },
-      ],
-    });
+        ],
+      });
 
-    TestBed.compileComponents();
+      TestBed.compileComponents();
 
-    inject([OverlayContainer, FocusMonitor], (oc: OverlayContainer, fm: FocusMonitor) => {
-      overlayContainer = oc;
-      overlayContainerElement = oc.getContainerElement();
-      focusMonitor = fm;
-    })();
-  }));
+      inject([OverlayContainer, FocusMonitor], (oc: OverlayContainer, fm: FocusMonitor) => {
+        overlayContainer = oc;
+        overlayContainerElement = oc.getContainerElement();
+        focusMonitor = fm;
+      })();
+    })
+  );
 
   afterEach(inject([OverlayContainer], (currentOverlayContainer: OverlayContainer) => {
     // Since we're resetting the testing module in some of the tests,
@@ -267,22 +269,25 @@ describe('Tooltip', () => {
       expect(tooltipDirective._isTooltipVisible()).toBe(false);
     }));
 
-    it('should not show if hide is called before delay finishes', async(() => {
-      assertTooltipInstance(tooltipDirective, false);
+    it(
+      'should not show if hide is called before delay finishes',
+      waitForAsync(() => {
+        assertTooltipInstance(tooltipDirective, false);
 
-      const tooltipDelay = 1000;
+        const tooltipDelay = 1000;
 
-      tooltipDirective.show(tooltipDelay);
-      expect(tooltipDirective._isTooltipVisible()).toBe(false);
-
-      fixture.detectChanges();
-      expect(overlayContainerElement.textContent).toContain('');
-      tooltipDirective.hide();
-
-      fixture.whenStable().then(() => {
+        tooltipDirective.show(tooltipDelay);
         expect(tooltipDirective._isTooltipVisible()).toBe(false);
-      });
-    }));
+
+        fixture.detectChanges();
+        expect(overlayContainerElement.textContent).toContain('');
+        tooltipDirective.hide();
+
+        fixture.whenStable().then(() => {
+          expect(tooltipDirective._isTooltipVisible()).toBe(false);
+        });
+      })
+    );
 
     it('should not show tooltip if message is not present or empty', () => {
       assertTooltipInstance(tooltipDirective, false);
@@ -930,9 +935,7 @@ class BasicTooltipDemoComponent {
       style="padding: 100px; margin: 300px;
                                height: 200px; width: 200px; overflow: auto;"
     >
-      <button *ngIf="showButton" style="margin-bottom: 600px" [sbbTooltip]="message">
-        Button
-      </button>
+      <button *ngIf="showButton" style="margin-bottom: 600px" [sbbTooltip]="message">Button</button>
     </div>
   `,
 })
@@ -955,11 +958,7 @@ class ScrollableTooltipDemoComponent {
 
 @Component({
   selector: 'sbb-app',
-  template: `
-    <button [sbbTooltip]="message">
-      Button
-    </button>
-  `,
+  template: ` <button [sbbTooltip]="message">Button</button> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class OnPushTooltipDemoComponent {

@@ -2,7 +2,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base/tooltip';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
@@ -63,13 +63,15 @@ describe('SbbTooltip', () => {
   let component: SbbTooltipComponent;
   let fixture: ComponentFixture<SbbTooltipComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, PortalModule, OverlayModule],
-      providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
-      declarations: [SbbTooltipComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbIconModule, SbbIconTestingModule, CommonModule, PortalModule, OverlayModule],
+        providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
+        declarations: [SbbTooltipComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbTooltipComponent);
@@ -86,12 +88,14 @@ describe('SbbTooltip using mock component for single tooltip', () => {
   let singleComponentTest: TooltipTestComponent;
   let singleFixtureTest: ComponentFixture<TooltipTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTooltipModule, SbbFieldModule, SbbButtonModule, SbbIconTestingModule],
-      declarations: [TooltipTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTooltipModule, SbbFieldModule, SbbButtonModule, SbbIconTestingModule],
+        declarations: [TooltipTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     singleFixtureTest = TestBed.createComponent(TooltipTestComponent);
@@ -171,12 +175,14 @@ describe('SbbTooltip using mock component for double tooltip', () => {
   let doubleComponentTest: DoubleTooltipTestComponent;
   let doubleFixtureTest: ComponentFixture<DoubleTooltipTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTooltipModule, SbbFieldModule, SbbIconTestingModule],
-      declarations: [DoubleTooltipTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTooltipModule, SbbFieldModule, SbbIconTestingModule],
+        declarations: [DoubleTooltipTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     doubleFixtureTest = TestBed.createComponent(DoubleTooltipTestComponent);

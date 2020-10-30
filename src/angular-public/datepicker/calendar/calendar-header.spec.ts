@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { FEB, JAN } from '@sbb-esta/angular-core/testing';
@@ -27,15 +27,17 @@ class StandardCalendarComponent {
 }
 
 describe('SbbCalendarHeader', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbDatepickerModule, SbbIconTestingModule],
-      declarations: [
-        // Test components.
-        StandardCalendarComponent,
-      ],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbDatepickerModule, SbbIconTestingModule],
+        declarations: [
+          // Test components.
+          StandardCalendarComponent,
+        ],
+      }).compileComponents();
+    })
+  );
 
   describe('standard calendar', () => {
     let fixture: ComponentFixture<StandardCalendarComponent>;

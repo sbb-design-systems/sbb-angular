@@ -1,6 +1,6 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { Component, DebugElement, TemplateRef, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -19,9 +19,7 @@ import { SbbGhettoboxContainer } from './ghettobox-container.component';
   selector: 'sbb-ghettobox-container-test',
   template: `
     <sbb-ghettobox-container>
-      <sbb-ghettobox>
-        This is an initial ghettobox into a container.
-      </sbb-ghettobox>
+      <sbb-ghettobox> This is an initial ghettobox into a container. </sbb-ghettobox>
     </sbb-ghettobox-container>
 
     <ng-template #testIcon1>
@@ -48,18 +46,20 @@ describe('SbbGhettoboxContainer', () => {
   let fixture: ComponentFixture<GhettoboxContainerTestComponent>;
   let ghettoboxService: SbbGhettoboxService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-        NoopAnimationsModule,
-        PortalModule,
-      ],
-      declarations: [SbbGhettoboxContainer, GhettoboxContainerTestComponent, SbbGhettobox],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          RouterTestingModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          NoopAnimationsModule,
+          PortalModule,
+        ],
+        declarations: [SbbGhettoboxContainer, GhettoboxContainerTestComponent, SbbGhettobox],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 200000;

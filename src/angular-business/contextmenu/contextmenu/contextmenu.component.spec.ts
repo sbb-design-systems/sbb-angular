@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SbbDropdownModule } from '@sbb-esta/angular-business/dropdown';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
@@ -30,12 +30,14 @@ describe('SbbContextmenu', () => {
   let component: ContextmenuTest1Component;
   let fixture: ComponentFixture<ContextmenuTest1Component>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SbbContextmenu, ContextmenuTest1Component],
-      imports: [CommonModule, SbbDropdownModule, SbbIconModule, SbbIconTestingModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SbbContextmenu, ContextmenuTest1Component],
+        imports: [CommonModule, SbbDropdownModule, SbbIconModule, SbbIconTestingModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContextmenuTest1Component);

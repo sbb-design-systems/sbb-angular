@@ -2,11 +2,11 @@ import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics'
 import {
   cdkMigrations,
   createMigrationSchematicRule,
-  getProjectFromWorkspace,
-  getProjectTargetOptions,
+  getProjectMainFile,
   TargetVersion,
 } from '@angular/cdk/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
+import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
 import { addIconCdnProvider } from '../ng-add';
 
@@ -26,33 +26,27 @@ export function updateToV10(): Rule {
 
 /** Entry point for adding the icon cdn registry to the app module. */
 export function addIconCdnRegistry(): Rule {
-  return (host: Tree, context: SchematicContext) => {
-    const workspace = getWorkspace(host);
-    if (workspace === null) {
-      context.logger.error('Could not find workspace configuration file.');
-      return;
-    }
-
-    // Ensure only application projects and projects with a build target
-    // are targeted for the migration.
-    const projects = Object.keys(workspace.projects).filter((p) => {
-      const project = getProjectFromWorkspace(workspace, p);
+  return async (host: Tree) => {
+    const workspace = await getWorkspace(host);
+    const projects = Array.from(workspace.projects.keys()).filter((p) => {
+      const project = workspace.projects.get(p)!;
       try {
         return (
-          project.projectType === 'application' && !!getProjectTargetOptions(project, 'build').main
+          project.extensions.projectType === ProjectType.Application &&
+          !!getProjectMainFile(project)
         );
       } catch {
         return false;
       }
     });
 
-    return chain(projects.map((name) => addIconCdnProvider({ name })));
+    return chain(projects.map((project) => addIconCdnProvider({ project })));
   };
 }
 
 /** Entry point for the migration schematics with target of sbb-angular 11.0.0 */
 export function updateToV11(): Rule {
-  // patchClassNamesMigration();
+  patchClassNamesMigration();
   return createMigrationSchematicRule(
     TargetVersion.V11,
     [IconMigration],

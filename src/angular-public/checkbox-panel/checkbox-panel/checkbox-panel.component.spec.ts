@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
@@ -32,12 +32,14 @@ describe('SbbCheckboxPanel', () => {
   let component: SbbCheckboxPanel;
   let fixture: ComponentFixture<SbbCheckboxPanel>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, SbbCheckboxPanelModule, SbbIconTestingModule],
-      declarations: [ModelOptionSelectionMultipleTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule, FormsModule, SbbCheckboxPanelModule, SbbIconTestingModule],
+        declarations: [ModelOptionSelectionMultipleTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbCheckboxPanel);
@@ -58,12 +60,14 @@ describe('SbbCheckboxPanel using mock component', () => {
   let modelComponent: ModelOptionSelectionMultipleTestComponent;
   let modelComponentFixture: ComponentFixture<ModelOptionSelectionMultipleTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, SbbCheckboxPanelModule, SbbIconTestingModule],
-      declarations: [ModelOptionSelectionMultipleTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule, FormsModule, SbbCheckboxPanelModule, SbbIconTestingModule],
+        declarations: [ModelOptionSelectionMultipleTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(ModelOptionSelectionMultipleTestComponent);

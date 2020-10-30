@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { SbbFieldModule } from '@sbb-esta/angular-public/field';
@@ -28,11 +28,13 @@ describe('TimeInputDirective', () => {
   let input: HTMLInputElement;
 
   describe('without sbbInput', () => {
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [TimeInputTestComponent, SbbTimeInput],
-      }).compileComponents();
-    }));
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          declarations: [TimeInputTestComponent, SbbTimeInput],
+        }).compileComponents();
+      })
+    );
 
     beforeEach(() => {
       fixture = TestBed.createComponent(TimeInputTestComponent);
@@ -45,12 +47,14 @@ describe('TimeInputDirective', () => {
   });
 
   describe('with sbbInput', () => {
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [TimeInputWithSbbInputTestComponent, SbbTimeInput],
-        imports: [SbbFieldModule],
-      }).compileComponents();
-    }));
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          declarations: [TimeInputWithSbbInputTestComponent, SbbTimeInput],
+          imports: [SbbFieldModule],
+        }).compileComponents();
+      })
+    );
 
     beforeEach(() => {
       fixture = TestBed.createComponent(TimeInputWithSbbInputTestComponent);

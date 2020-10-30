@@ -4,7 +4,7 @@
   "title": "@sbb-esta/angular-public ng-add schematic",
   "type": "object",
   "properties": {
-    "name": {
+    "project": {
       "type": "string",
       "description": "The name of the project.",
       "$default": {

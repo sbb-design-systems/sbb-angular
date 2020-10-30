@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
@@ -12,12 +12,8 @@ import { SbbRadioButton } from './radio-button.component';
   selector: 'sbb-model-radio-button-test',
   template: `
     <sbb-radio-group name="test-radio" [(ngModel)]="testValue">
-      <sbb-radio-button value="1">
-        Test radio button 1
-      </sbb-radio-button>
-      <sbb-radio-button value="2">
-        Test radio button 2
-      </sbb-radio-button>
+      <sbb-radio-button value="1"> Test radio button 1 </sbb-radio-button>
+      <sbb-radio-button value="2"> Test radio button 2 </sbb-radio-button>
     </sbb-radio-group>
   `,
 })
@@ -29,12 +25,14 @@ describe('SbbRadioButton', () => {
   let component: SbbRadioButton;
   let fixture: ComponentFixture<SbbRadioButton>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CommonModule],
-      declarations: [SbbRadioButton],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule],
+        declarations: [SbbRadioButton],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbRadioButton);
@@ -56,12 +54,14 @@ describe('SbbRadioButton using mock component', () => {
   let modelComponent: ModelRadioButtonTestComponent;
   let modelComponentFixture: ComponentFixture<ModelRadioButtonTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, ɵRadioButtonModule],
-      declarations: [SbbRadioButton, ModelRadioButtonTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule, FormsModule, ɵRadioButtonModule],
+        declarations: [SbbRadioButton, ModelRadioButtonTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(ModelRadioButtonTestComponent);

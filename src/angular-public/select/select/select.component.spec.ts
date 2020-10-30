@@ -23,13 +23,13 @@ import {
   ViewChildren,
 } from '@angular/core';
 import {
-  async,
   ComponentFixture,
   fakeAsync,
   flush,
   inject,
   TestBed,
   tick,
+  waitForAsync,
 } from '@angular/core/testing';
 import {
   ControlValueAccessor,
@@ -714,16 +714,18 @@ describe('SbbSelect', () => {
   });
 
   describe('core', () => {
-    beforeEach(async(() => {
-      configureSbbSelectTestingModule([
-        BasicSelect,
-        MultiSelect,
-        SelectWithGroups,
-        SelectWithGroupsAndNgContainer,
-        SelectWithFormFieldLabel,
-        SelectWithChangeEvent,
-      ]);
-    }));
+    beforeEach(
+      waitForAsync(() => {
+        configureSbbSelectTestingModule([
+          BasicSelect,
+          MultiSelect,
+          SelectWithGroups,
+          SelectWithGroupsAndNgContainer,
+          SelectWithFormFieldLabel,
+          SelectWithChangeEvent,
+        ]);
+      })
+    );
 
     describe('accessibility', () => {
       describe('for select', () => {
@@ -2584,7 +2586,7 @@ describe('SbbSelect', () => {
   });
 
   describe('when initialized without options', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectInitWithoutOptions])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectInitWithoutOptions])));
 
     it('should select the proper option when option list is initialized later', fakeAsync(() => {
       const fixture = TestBed.createComponent(SelectInitWithoutOptions);
@@ -2606,7 +2608,7 @@ describe('SbbSelect', () => {
   });
 
   describe('with a selectionChange event handler', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectWithChangeEvent])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectWithChangeEvent])));
 
     let fixture: ComponentFixture<SelectWithChangeEvent>;
     let trigger: HTMLElement;
@@ -2649,7 +2651,7 @@ describe('SbbSelect', () => {
   });
 
   describe('with ngModel', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([NgModelSelect])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([NgModelSelect])));
 
     it('should disable itself when control is disabled using the property', () => {
       const fixture = TestBed.createComponent(NgModelSelect);
@@ -2702,40 +2704,43 @@ describe('SbbSelect', () => {
   });
 
   describe('with ngIf', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([NgIfSelect])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([NgIfSelect])));
 
-    it('should handle nesting in an ngIf', async(() => {
-      const fixture = TestBed.createComponent(NgIfSelect);
-      fixture.detectChanges();
+    it(
+      'should handle nesting in an ngIf',
+      waitForAsync(() => {
+        const fixture = TestBed.createComponent(NgIfSelect);
+        fixture.detectChanges();
 
-      fixture.componentInstance.isShowing = true;
-      fixture.detectChanges();
+        fixture.componentInstance.isShowing = true;
+        fixture.detectChanges();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-      trigger.style.width = '300px';
+        const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        trigger.style.width = '300px';
 
-      trigger.click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        const value = fixture.debugElement.query(By.css('.sbb-select-value'));
-        expect(value.nativeElement.textContent).toContain(
-          'Pizza',
-          `Expected trigger to be populated by the control's initial value.`
-        );
+        trigger.click();
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          const value = fixture.debugElement.query(By.css('.sbb-select-value'));
+          expect(value.nativeElement.textContent).toContain(
+            'Pizza',
+            `Expected trigger to be populated by the control's initial value.`
+          );
 
-        const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-        expect(pane.style.width).toEqual('362px');
+          const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
+          expect(pane.style.width).toEqual('362px');
 
-        expect(fixture.componentInstance.select.panelOpen).toBe(true);
-        expect(overlayContainerElement.textContent).toContain('Steak');
-        expect(overlayContainerElement.textContent).toContain('Pizza');
-        expect(overlayContainerElement.textContent).toContain('Tacos');
-      });
-    }));
+          expect(fixture.componentInstance.select.panelOpen).toBe(true);
+          expect(overlayContainerElement.textContent).toContain('Steak');
+          expect(overlayContainerElement.textContent).toContain('Pizza');
+          expect(overlayContainerElement.textContent).toContain('Tacos');
+        });
+      })
+    );
   });
 
   describe('with multiple sbb-select elements in one view', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([ManySelects])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([ManySelects])));
 
     let fixture: ComponentFixture<ManySelects>;
     let triggers: DebugElement[];
@@ -2783,7 +2788,7 @@ describe('SbbSelect', () => {
   });
 
   describe('with tabindex', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectWithPlainTabindex])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectWithPlainTabindex])));
 
     it('should be able to set the tabindex via the native attribute', fakeAsync(() => {
       const fixture = TestBed.createComponent(SelectWithPlainTabindex);
@@ -2795,7 +2800,7 @@ describe('SbbSelect', () => {
   });
 
   describe('change events', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectWithPlainTabindex])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectWithPlainTabindex])));
 
     it('should complete the stateChanges stream on destroy', () => {
       const fixture = TestBed.createComponent(SelectWithPlainTabindex);
@@ -2814,7 +2819,7 @@ describe('SbbSelect', () => {
   });
 
   describe('when initially hidden', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([BasicSelectInitiallyHidden])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([BasicSelectInitiallyHidden])));
 
     it('should set the width of the overlay if the element was hidden initially', () => {
       const fixture = TestBed.createComponent(BasicSelectInitiallyHidden);
@@ -2834,7 +2839,7 @@ describe('SbbSelect', () => {
   });
 
   describe('with no placeholder', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([BasicSelectNoPlaceholder])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([BasicSelectNoPlaceholder])));
 
     it('should set the width of the overlay if there is no placeholder', () => {
       const fixture = TestBed.createComponent(BasicSelectNoPlaceholder);
@@ -2852,7 +2857,7 @@ describe('SbbSelect', () => {
   });
 
   describe('when invalid inside a form', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([InvalidSelectInForm])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([InvalidSelectInForm])));
 
     it('should not throw SelectionModel errors in addition to ngModel errors', fakeAsync(() => {
       const fixture = TestBed.createComponent(InvalidSelectInForm);
@@ -2866,7 +2871,7 @@ describe('SbbSelect', () => {
   });
 
   describe('with ngModel using compareWith', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([NgModelCompareWithSelect])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([NgModelCompareWithSelect])));
 
     let fixture: ComponentFixture<NgModelCompareWithSelect>;
     let instance: NgModelCompareWithSelect;
@@ -2897,7 +2902,7 @@ describe('SbbSelect', () => {
   });
 
   describe(`when the select's value is accessed on initialization`, () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectEarlyAccessSibling])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectEarlyAccessSibling])));
 
     it('should not throw when trying to access the selected value on init', fakeAsync(() => {
       expect(() => {
@@ -2907,7 +2912,7 @@ describe('SbbSelect', () => {
   });
 
   describe('inside of a form group', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectInsideFormGroup])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([SelectInsideFormGroup])));
 
     let fixture: ComponentFixture<SelectInsideFormGroup>;
     let testComponent: SelectInsideFormGroup;
@@ -3008,8 +3013,9 @@ describe('SbbSelect', () => {
   });
 
   describe('with preselected array values', () => {
-    beforeEach(async(() =>
-      configureSbbSelectTestingModule([SingleSelectWithPreselectedArrayValues])));
+    beforeEach(
+      waitForAsync(() => configureSbbSelectTestingModule([SingleSelectWithPreselectedArrayValues]))
+    );
 
     it('should be able to preselect an array value in single-selection mode', fakeAsync(() => {
       const fixture = TestBed.createComponent(SingleSelectWithPreselectedArrayValues);
@@ -3025,7 +3031,7 @@ describe('SbbSelect', () => {
   });
 
   describe('with a falsy value', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([FalsyValueSelect])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([FalsyValueSelect])));
 
     it('should be able to programmatically select a falsy option', () => {
       const fixture = TestBed.createComponent(FalsyValueSelect);
@@ -3047,8 +3053,11 @@ describe('SbbSelect', () => {
   });
 
   describe('with OnPush', () => {
-    beforeEach(async(() =>
-      configureSbbSelectTestingModule([BasicSelectOnPush, BasicSelectOnPushPreselected])));
+    beforeEach(
+      waitForAsync(() =>
+        configureSbbSelectTestingModule([BasicSelectOnPush, BasicSelectOnPushPreselected])
+      )
+    );
 
     it('should set the trigger text based on the value when initialized', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectOnPushPreselected);
@@ -3085,12 +3094,15 @@ describe('SbbSelect', () => {
   });
 
   describe('without Angular forms', () => {
-    beforeEach(async(() =>
-      configureSbbSelectTestingModule([
-        BasicSelectWithoutForms,
-        BasicSelectWithoutFormsPreselected,
-        BasicSelectWithoutFormsMultiple,
-      ])));
+    beforeEach(
+      waitForAsync(() =>
+        configureSbbSelectTestingModule([
+          BasicSelectWithoutForms,
+          BasicSelectWithoutFormsPreselected,
+          BasicSelectWithoutFormsMultiple,
+        ])
+      )
+    );
 
     it('should set the value when options are clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectWithoutForms);
@@ -3261,7 +3273,7 @@ describe('SbbSelect', () => {
   });
 
   describe('with multiple selection', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([MultiSelect])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([MultiSelect])));
 
     let fixture: ComponentFixture<MultiSelect>;
     let testInstance: MultiSelect;
@@ -3577,7 +3589,7 @@ describe('SbbSelect', () => {
   });
 
   describe('sbb-field integration', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([BasicSelect])));
+    beforeEach(waitForAsync(() => configureSbbSelectTestingModule([BasicSelect])));
 
     let fixture: ComponentFixture<BasicSelect>;
     let selectComponent: SbbSelect;

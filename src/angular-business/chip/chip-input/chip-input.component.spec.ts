@@ -1,7 +1,7 @@
 import { ENTER } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import {
   FormBuilder,
   FormGroup,
@@ -87,19 +87,21 @@ describe('SbbChipInput', () => {
     let fixture: ComponentFixture<ChipInputReactiveFormsTestComponent>;
     let inputElement: HTMLInputElement;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbChipInput, SbbChip, ChipInputReactiveFormsTestComponent],
-        imports: [
-          CommonModule,
-          SbbAutocompleteModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          ReactiveFormsModule,
-          SbbFieldModule,
-        ],
-      }).compileComponents();
-    }));
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          declarations: [SbbChipInput, SbbChip, ChipInputReactiveFormsTestComponent],
+          imports: [
+            CommonModule,
+            SbbAutocompleteModule,
+            SbbIconModule,
+            SbbIconTestingModule,
+            ReactiveFormsModule,
+            SbbFieldModule,
+          ],
+        }).compileComponents();
+      })
+    );
 
     beforeEach(() => {
       fixture = TestBed.createComponent(ChipInputReactiveFormsTestComponent);
@@ -193,19 +195,21 @@ describe('SbbChipInput', () => {
     let fixture: ComponentFixture<ChipInputFormsTestComponent>;
     let inputElement: HTMLInputElement;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbChipInput, SbbChip, ChipInputFormsTestComponent],
-        imports: [
-          CommonModule,
-          SbbAutocompleteModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          FormsModule,
-          SbbFieldModule,
-        ],
-      }).compileComponents();
-    }));
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          declarations: [SbbChipInput, SbbChip, ChipInputFormsTestComponent],
+          imports: [
+            CommonModule,
+            SbbAutocompleteModule,
+            SbbIconModule,
+            SbbIconTestingModule,
+            FormsModule,
+            SbbFieldModule,
+          ],
+        }).compileComponents();
+      })
+    );
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(ChipInputFormsTestComponent);
