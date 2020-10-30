@@ -1,5 +1,5 @@
 import { join, Path, relative, strings } from '@angular-devkit/core';
-import { WorkspaceProject } from '@angular-devkit/core/src/experimental/workspace';
+import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import {
   apply,
   chain,
@@ -23,7 +23,7 @@ export class LibraryIconModuleGenerator extends ApplicationIconModuleGenerator {
   constructor(
     rootCollection: IconModuleCollection,
     tree: Tree,
-    project: WorkspaceProject,
+    project: ProjectDefinition,
     targetDir: string
   ) {
     super(rootCollection, tree, project, targetDir);

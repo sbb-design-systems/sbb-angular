@@ -6,7 +6,7 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import { getProjectFromWorkspace } from '@angular/cdk/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 
 import { ApplicationIconModuleGenerator } from './application-icon-module-generator';
 import { IconModuleCollection } from './icon-module-collection';
@@ -23,7 +23,7 @@ export function svgIcons(options: Schema): Rule {
       );
     }
 
-    const workspace = getWorkspace(tree);
+    const workspace = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
     const iconModules = await new IconModuleFactory(tree, registryFileEntry).createIconModules();
     const duplicates = iconModules
@@ -36,7 +36,7 @@ export function svgIcons(options: Schema): Rule {
     }
 
     const rootCollection = new IconModuleCollection().addAll(iconModules);
-    if (project.projectType === 'library') {
+    if (project.extensions.projectType === 'library') {
       context.logger.info(
         `Detected project type library for project ${options.project}. Building icons as secondary entrypoints.`
       );
