@@ -2,31 +2,46 @@
 
 .sbb-label {
   @if ($sbbBusiness) {
-    margin-bottom: pxToEm(3, 13);
+    margin-bottom: pxToRem(3);
     padding-left: 0;
   } @else {
-    margin-bottom: pxToEm(5, 13);
-    padding-left: pxToEm(10, 13);
+    margin-bottom: pxToRem(5);
+    padding-left: pxToRem(10);
 
     @include mq($from: desktop4k) {
-      margin-bottom: pxToEm(5 * $scalingFactor4k, 13);
+      margin-bottom: pxToRem(5 * $scalingFactor4k);
+      padding-left: pxToRem(10 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      margin-bottom: pxToEm(5 * $scalingFactor5k, 13);
+      margin-bottom: pxToRem(5 * $scalingFactor5k);
+      padding-left: pxToRem(10 * $scalingFactor5k);
     }
   }
 
   @include label;
 
   .sbb-tooltip-icon {
+    $tooltipIconSize: 16px;
+
     &:not(:hover):not(:focus) {
       color: inherit;
     }
 
-    width: 16px;
-    height: 16px;
-    margin-top: -4px;
-    transform: translateY(3px);
+    width: $tooltipIconSize;
+    height: $tooltipIconSize;
+    vertical-align: bottom;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        width: toPx($tooltipIconSize * $scalingFactor4k);
+        height: toPx($tooltipIconSize * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        width: toPx($tooltipIconSize * $scalingFactor5k);
+        height: toPx($tooltipIconSize * $scalingFactor5k);
+      }
+    }
   }
 }
