@@ -68,7 +68,8 @@ let uniqueId = 0;
     '[class.sbb-expanded]': 'expanded',
   },
 })
-export class SbbExpansionPanel extends CdkAccordionItem
+export class SbbExpansionPanel
+  extends CdkAccordionItem
   implements AfterContentInit, OnChanges, OnDestroy {
   /** Whether the toggle indicator should be hidden. */
   @Input()

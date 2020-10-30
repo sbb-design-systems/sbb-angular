@@ -2,9 +2,7 @@ At first, you can define a simple panel (without accordion) as see below
 
 ```html
 <sbb-expansion-panel>
-  <sbb-expansion-panel-header>
-    A single orphan (no accordion) panel
-  </sbb-expansion-panel-header>
+  <sbb-expansion-panel-header> A single orphan (no accordion) panel </sbb-expansion-panel-header>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
   nisi ut aliquip ex ea commodo consequat.
@@ -16,9 +14,7 @@ or define a simple accordion (made up of more panels) where each expansion panel
 ```html
 <sbb-accordion>
   <sbb-expansion-panel>
-    <sbb-expansion-panel-header>
-      Some generic content accordion panel
-    </sbb-expansion-panel-header>
+    <sbb-expansion-panel-header> Some generic content accordion panel </sbb-expansion-panel-header>
     Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin blandit, justo eget
     pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
   </sbb-expansion-panel>
@@ -64,9 +60,7 @@ Expansion panels can be disabled using the disabled attribute. A disabled expans
 
 ```html
 <sbb-expansion-panel [disabled]="disabled">
-  <sbb-expansion-panel-header>
-    I can disable this panel
-  </sbb-expansion-panel-header>
+  <sbb-expansion-panel-header> I can disable this panel </sbb-expansion-panel-header>
   <p>
     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
@@ -83,9 +77,7 @@ state to be set independently of each other. When multi="false" only one panel c
 ```html
 <sbb-accordion [multi]="false">
   <sbb-expansion-panel>
-    <sbb-expansion-panel-header>
-      Header 1
-    </sbb-expansion-panel-header>
+    <sbb-expansion-panel-header> Header 1 </sbb-expansion-panel-header>
     Content 1
   </sbb-expansion-panel>
   <sbb-expansion-panel
@@ -100,9 +92,7 @@ state to be set independently of each other. When multi="false" only one panel c
     Content 2
   </sbb-expansion-panel>
   <sbb-expansion-panel>
-    <sbb-expansion-panel-header>
-      Header 3
-    </sbb-expansion-panel-header>
+    <sbb-expansion-panel-header> Header 3 </sbb-expansion-panel-header>
     Content 3
   </sbb-expansion-panel>
 </sbb-accordion>
@@ -115,9 +105,7 @@ To instead defer initialization until the panel is open, the content should be p
 
 ```html
 <sbb-expansion-panel>
-  <sbb-expansion-panel-header>
-    Panel with lazy loaded content
-  </sbb-expansion-panel-header>
+  <sbb-expansion-panel-header> Panel with lazy loaded content </sbb-expansion-panel-header>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
     labore et dolore
@@ -156,18 +144,14 @@ You can navigate between panels of the accordion with "Next" and "Previous" butt
     </div>
   </sbb-expansion-panel>
   <sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
-    <sbb-expansion-panel-header>
-      Step 1
-    </sbb-expansion-panel-header>
+    <sbb-expansion-panel-header> Step 1 </sbb-expansion-panel-header>
     <div class="sbbsc-block">
       <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
       <button sbbButton mode="primary" (click)="nextStep()">Next</button>
     </div>
   </sbb-expansion-panel>
   <sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
-    <sbb-expansion-panel-header>
-      Step 2
-    </sbb-expansion-panel-header>
+    <sbb-expansion-panel-header> Step 2 </sbb-expansion-panel-header>
     <div class="sbbsc-block">
       <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
       <button sbbButton mode="primary" (click)="nextStep()">End</button>

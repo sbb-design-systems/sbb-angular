@@ -1,13 +1,9 @@
 <div class="sbbsc-block">
-  <button sbbButton mode="secondary" (click)="openDialog()">
-    Open Lightbox From Template
-  </button>
+  <button sbbButton mode="secondary" (click)="openDialog()">Open Lightbox From Template</button>
 </div>
 
 <ng-template #sampleLightboxTemplate>
-  <sbb-lightbox-header>
-    Sample text
-  </sbb-lightbox-header>
+  <sbb-lightbox-header> Sample text </sbb-lightbox-header>
   <sbb-lightbox-content>
     <h2 sbbLightboxTitle>Install Angular</h2>
     <h3>Develop across all platforms</h3>
@@ -96,8 +92,6 @@
   </sbb-lightbox-content>
   <sbb-lightbox-footer alignment="right">
     <button sbbButton mode="ghost" sbbLightboxClose>Cancel</button>
-    <button sbbButton [sbbLightboxClose]="true" cdkFocusInitial>
-      Accept
-    </button>
+    <button sbbButton [sbbLightboxClose]="true" cdkFocusInitial>Accept</button>
   </sbb-lightbox-footer>
 </ng-template>

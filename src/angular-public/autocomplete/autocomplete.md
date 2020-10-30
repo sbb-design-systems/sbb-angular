@@ -27,9 +27,7 @@ _my-comp.html_
 
 ```html
 <sbb-autocomplete>
-  <sbb-option *ngFor="let option of options" [value]="option">
-    {{ option }}
-  </sbb-option>
+  <sbb-option *ngFor="let option of options" [value]="option"> {{ option }} </sbb-option>
 </sbb-autocomplete>
 ```
 
@@ -125,9 +123,7 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 ```html
 <sbb-autocomplete #auto="sbbAutocomplete">
   <sbb-option-group *ngFor="let group of filteredGroups | async" [label]="group.name">
-    <sbb-option *ngFor="let option of group.options" [value]="option">
-      {{option.name}}
-    </sbb-option>
+    <sbb-option *ngFor="let option of group.options" [value]="option"> {{option.name}} </sbb-option>
   </sbb-option-group>
 </sbb-autocomplete>
 ```
@@ -143,9 +139,7 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
     {{ option.name }}
   </sbb-option>
-  <sbb-autocomplete-hint>
-    {{ remainingOptionsCount }} further results found
-  </sbb-autocomplete-hint>
+  <sbb-autocomplete-hint> {{ remainingOptionsCount }} further results found </sbb-autocomplete-hint>
 </sbb-autocomplete>
 ```
 

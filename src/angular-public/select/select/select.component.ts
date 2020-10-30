@@ -222,7 +222,8 @@ export const SbbSelectMixinBase: CanDisableCtor &
     { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SbbSelect },
   ],
 })
-export class SbbSelect extends SbbSelectMixinBase
+export class SbbSelect
+  extends SbbSelectMixinBase
   implements
     SbbFormFieldControl<any>,
     AfterContentInit,

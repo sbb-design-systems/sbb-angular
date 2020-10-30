@@ -59,21 +59,17 @@
       <h4 class="sbbsc-block">Add Ghettobox</h4>
       <div class="sbbsc-block">
         <div class="sbbsc-block">
-          <textarea #ghettoMessage style="width: 100%; height: 120px;">
+          <textarea #ghettoMessage style="width: 100%; height: 120px">
 Der Zugang zum Ticket Shop ist vom 20.10.2015, 22:00 Uhr, bis zum 21.10.2015, 05:00 Uhr wegen Wartungsarbeiten unterbrochen.</textarea
           >
         </div>
-        <button sbbButton (click)="addGhettobox(ghettoMessage.value)">
-          Add ghettobox
-        </button>
+        <button sbbButton (click)="addGhettobox(ghettoMessage.value)">Add ghettobox</button>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <h4 class="sbbsc-block">Delete Ghettobox</h4>
       <div class="sbbsc-block">
-        <input #ghettoId type="text" placeholder="ID to delete" style="margin-right: 0.5rem;" />
-        <button sbbButton (click)="deleteById(ghettoId.value)">
-          Delete ghettoxbox by ID
-        </button>
+        <input #ghettoId type="text" placeholder="ID to delete" style="margin-right: 0.5rem" />
+        <button sbbButton (click)="deleteById(ghettoId.value)">Delete ghettoxbox by ID</button>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
@@ -81,7 +77,7 @@ Der Zugang zum Ticket Shop ist vom 20.10.2015, 22:00 Uhr, bis zum 21.10.2015, 05
           #ghettoIndex
           type="number"
           placeholder="Index to delete"
-          style="margin-right: 0.5rem;"
+          style="margin-right: 0.5rem"
         />
         <button sbbButton (click)="deleteByIndex(ghettoIndex.value)">
           Delete ghettobox by Index
@@ -89,9 +85,7 @@ Der Zugang zum Ticket Shop ist vom 20.10.2015, 22:00 Uhr, bis zum 21.10.2015, 05
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
-        <button sbbButton (click)="deleteByRef()">
-          Delete first ghettobox from GhettoboxRef
-        </button>
+        <button sbbButton (click)="deleteByRef()">Delete first ghettobox from GhettoboxRef</button>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
@@ -100,9 +94,7 @@ Der Zugang zum Ticket Shop ist vom 20.10.2015, 22:00 Uhr, bis zum 21.10.2015, 05
       <div role="presentation" class="sbbsc-separator"></div>
       <h4 class="sbbsc-block">Ghettobox Ids</h4>
       <pre>{{ printAttachedGhettoboxesIDS() | json }}</pre>
-      <h4 class="sbbsc-block">
-        Last afterDelete response
-      </h4>
+      <h4 class="sbbsc-block">Last afterDelete response</h4>
       <pre class="sbbsc-block">{{ afterDeleteResponseContainer | json }}</pre>
     </div>
   </div>

@@ -1,15 +1,9 @@
-<p>
-  Dialog with content loaded from a TemplateRef.
-</p>
-<button sbbButton mode="secondary" (click)="openDialog()">
-  Open Dialog From Template
-</button>
+<p>Dialog with content loaded from a TemplateRef.</p>
+<button sbbButton mode="secondary" (click)="openDialog()">Open Dialog From Template</button>
 
 <ng-template #sampleDialogTemplate>
   <div>
-    <div sbbDialogHeader>
-      Lorem Ipsum
-    </div>
+    <div sbbDialogHeader>Lorem Ipsum</div>
     <div sbbDialogContent>
       <div>
         <p>
@@ -23,12 +17,8 @@
       </div>
     </div>
     <div sbbDialogFooter>
-      <button sbbButton [sbbDialogClose]="true">
-        Accept
-      </button>
-      <button sbbButton mode="secondary" sbbDialogClose>
-        Cancel
-      </button>
+      <button sbbButton [sbbDialogClose]="true">Accept</button>
+      <button sbbButton mode="secondary" sbbDialogClose>Cancel</button>
     </div>
   </div>
 </ng-template>

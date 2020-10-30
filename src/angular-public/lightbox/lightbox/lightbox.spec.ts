@@ -94,9 +94,7 @@ class PizzaMsgComponent {
     <sbb-lightbox-content>Lorem ipsum dolor sit amet.</sbb-lightbox-content>
     <sbb-lightbox-footer>
       <button sbbLightboxClose>Close</button>
-      <button class="close-with-true" [sbbLightboxClose]="true">
-        Close and return true
-      </button>
+      <button class="close-with-true" [sbbLightboxClose]="true">Close and return true</button>
       <button
         class="close-with-aria-label"
         aria-label="Best close button ever"
@@ -117,9 +115,7 @@ class ContentElementLightboxComponent {}
       <sbb-lightbox-content>Lorem ipsum dolor sit amet.</sbb-lightbox-content>
       <sbb-lightbox-footer>
         <button sbbLightboxClose>Close</button>
-        <button class="close-with-true" [sbbLightboxClose]="true">
-          Close and return true
-        </button>
+        <button class="close-with-true" [sbbLightboxClose]="true">Close and return true</button>
         <button
           class="close-with-aria-label"
           aria-label="Best close button ever"

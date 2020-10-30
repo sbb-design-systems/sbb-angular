@@ -45,7 +45,8 @@ const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTab
 let nextId = 0;
 
 @Directive()
-export abstract class SbbRadioButton extends _RadioButtonMixinBase
+export abstract class SbbRadioButton
+  extends _RadioButtonMixinBase
   implements OnInit, AfterViewInit, OnDestroy {
   private _uniqueId = `sbb-radio-button-${++nextId}`;
 

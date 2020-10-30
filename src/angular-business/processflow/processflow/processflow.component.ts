@@ -26,7 +26,8 @@ import { SbbProcessflowStep } from '../processflow-step/processflow-step.compone
     class: 'sbb-processflow',
   },
 })
-export class SbbProcessflow extends SbbProcessflowBase<SbbProcessflowStep>
+export class SbbProcessflow
+  extends SbbProcessflowBase<SbbProcessflowStep>
   implements AfterContentInit {
   /** @docs-private */
   @ContentChildren(SbbProcessflowStep)

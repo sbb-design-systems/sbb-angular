@@ -82,7 +82,8 @@ const sbbPaginatorBase: CanDisableCtor &
     role: 'navigation',
   },
 })
-export class SbbPaginatorComponent extends sbbPaginatorBase
+export class SbbPaginatorComponent
+  extends sbbPaginatorBase
   implements OnInit, CanDisable, HasInitialized {
   private _initialized: boolean;
   private _previousPageSize: number;

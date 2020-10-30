@@ -85,9 +85,7 @@ export class LightboxShowcaseExample3Component {
 
 ```html
 <ng-template #sampleLightboxTemplate>
-  <sbb-lightbox-header>
-    Sample text
-  </sbb-lightbox-header>
+  <sbb-lightbox-header> Sample text </sbb-lightbox-header>
   <sbb-lightbox-content>
     <h2 sbbLightboxTitle>Install Angular</h2>
     <h3>Develop across all platforms</h3>

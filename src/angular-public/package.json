@@ -16,8 +16,7 @@
     "@angular/core": "0.0.0-NG",
     "@angular/forms": "0.0.0-NG",
     "@angular/router": "0.0.0-NG",
-    "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER",
-    "@sbb-esta/angular-icons": "0.0.0-PLACEHOLDER"
+    "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER"
   },
   "dependencies": {
     "@types/grecaptcha": "^2.0.36"

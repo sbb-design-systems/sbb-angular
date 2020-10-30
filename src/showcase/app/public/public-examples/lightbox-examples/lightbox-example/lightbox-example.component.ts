@@ -39,9 +39,7 @@ export class LightboxExampleExampleContentComponent {
         <input type="text" [(ngModel)]="name" placeholder="What's your name?" />
       </li>
       <li>
-        <button sbbButton mode="secondary" (click)="open()">
-          Pick one
-        </button>
+        <button sbbButton mode="secondary" (click)="open()">Pick one</button>
       </li>
       <li *ngIf="animal">
         You chose: <i>{{ animal }}</i>
@@ -179,9 +177,7 @@ export class LightboxExampleExample4Component {
         Sind Sie sicher, dass Sie dieses Fenster schliessen möchten? Ihre Eingaben werden dadurch
         verworfen.
       </h3>
-      <button sbbButton mode="ghost" (click)="closeThisLightbox()">
-        Eingaben überprüfen
-      </button>
+      <button sbbButton mode="ghost" (click)="closeThisLightbox()">Eingaben überprüfen</button>
       <button sbbButton (click)="closeAllLightbox()">Fenster schliessen</button>
     </div>
   `,
