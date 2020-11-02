@@ -1,14 +1,13 @@
 <div
   class="sbb-usermenu-logged-in"
-  [sbbDropdown]="dropdown"
   tabindex="0"
   [class.sbb-usermenu-hidden]="!userName"
-  [class.sbb-usermenu-logged-in-active]="dropdown.open"
-  [sbbDropdownDisabled]="!userName"
+  [class.sbb-usermenu-logged-in-active]="panelOpen"
+  (click)="open()"
 >
   <div
     class="sbb-usermenu-logged-in-collapsed"
-    [class.sbb-usermenu-logged-in-collapsed-dropdown-expanded]="dropdown.open"
+    [class.sbb-usermenu-logged-in-collapsed-dropdown-expanded]="panelOpen"
   >
     <ng-container *ngIf="userName && userName.length">
       <div class="sbb-usermenu-logged-in-collapsed-user-icon sbb-icon-fit">
@@ -21,27 +20,27 @@
       </div>
       <div
         class="sbb-usermenu-logged-in-expanded-info-user"
-        [class.sbb-usermenu-logged-in-expanded-info-user-dropdown-open]="dropdown.open"
+        [class.sbb-usermenu-logged-in-expanded-info-user-dropdown-open]="panelOpen"
       >
         <div
           class="sbb-usermenu-logged-in-expanded-displayName"
-          [class.sbb-displayName-logged-in-collapsed]="!dropdown.open"
+          [class.sbb-displayName-logged-in-collapsed]="!panelOpen"
         >
           {{ displayName || userName }}
         </div>
-        <div class="sbb-usermenu-logged-in-expanded-username" *ngIf="dropdown.open && displayName">
+        <div class="sbb-usermenu-logged-in-expanded-username" *ngIf="panelOpen && displayName">
           {{ userName }}
         </div>
       </div>
       <div
         class="sbb-usermenu-logged-in-collapsed-arrow sbb-icon-fit"
-        *ngIf="userName && userName.length && !dropdown.open"
+        *ngIf="userName && userName.length && !panelOpen"
       >
         <sbb-icon svgIcon="kom:chevron-small-down-small"></sbb-icon>
       </div>
     </ng-container>
     <div class="sbb-usermenu-logged-in-expanded-arrow-above">
-      <div class="sbb-usermenu-logged-in-expanded-arrow sbb-icon-fit" *ngIf="dropdown.open">
+      <div class="sbb-usermenu-logged-in-expanded-arrow sbb-icon-fit" *ngIf="panelOpen">
         <sbb-icon svgIcon="kom:chevron-small-down-small"></sbb-icon>
       </div>
     </div>
@@ -56,4 +55,35 @@
   </button>
 </div>
 
-<ng-content select="sbb-dropdown"></ng-content>
+<ng-template
+  cdk-connected-overlay
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayFlexibleDimensions
+  [cdkConnectedOverlayMinHeight]="_triggerRect?.height!"
+  [cdkConnectedOverlayWidth]="_overlayWidth"
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  cdkConnectedOverlayPanelClass="sbb-overlay-panel"
+  [cdkConnectedOverlayScrollStrategy]="_scrollStrategy"
+  [cdkConnectedOverlayOrigin]="{ elementRef: _elementRef }"
+  [cdkConnectedOverlayOpen]="panelOpen"
+  [cdkConnectedOverlayPositions]="_positions"
+  [cdkConnectedOverlayOffsetX]="0"
+  (backdropClick)="close()"
+  (detach)="close()"
+>
+  <div
+    #panel
+    tabindex="-1"
+    class="sbb-usermenu-panel sbb-scrollbar"
+    [attr.id]="id + '-panel'"
+    [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"
+  >
+    <div class="sbb-usermenu-inner-panel">
+      <ng-content select="a[sbb-usermenu-item],button[sbb-usermenu-item],hr"></ng-content>
+    </div>
+
+    <!---     (keydown)="_handleKeydown($event)"
+ --->
+  </div>
+</ng-template>

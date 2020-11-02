@@ -1,22 +1,30 @@
 @import '../../../angular-core/styles/common';
+$borderWidth: 1px;
+$borderWidth4k: 3px;
+$borderWidth5k: 4px;
 
-$border: solid 1px $sbbColorGraphite;
+$border: solid $borderWidth $sbbColorGraphite;
 $borderActive: if($sbbBusiness, solid 1px $sbbColorIron, solid 2px $sbbColorGrey);
 $textColor: if($sbbBusiness, $sbbColorIron, $sbbColorMetal);
 
-$border4K: solid 3px $sbbColorGraphite;
-$border5K: solid 4px $sbbColorGraphite;
-$borderActive4K: solid toPx(3) $sbbColorGrey;
-$borderActive5K: solid toPx(4) $sbbColorGrey;
+$border4k: solid $borderWidth4k $sbbColorGraphite;
+$border5k: solid $borderWidth5k $sbbColorGraphite;
+$borderActive4k: solid toPx($borderWidth4k) $sbbColorGrey;
+$borderActive5k: solid toPx($borderWidth5k) $sbbColorGrey;
+
+$panelWidth: 288px;
+$panelWidth4k: toPx($panelWidth * $scalingFactor4k);
+$panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 
 .sbb-usermenu {
   cursor: pointer;
+  display: inline-block;
 
   .sbb-usermenu-logged-in {
     position: relative;
     align-items: center;
     display: flex;
-    width: 288px;
+    width: $panelWidth;
     height: 48px;
     line-height: 1.533;
     border: if($sbbBusiness, 1px solid transparent, 2px solid transparent);
@@ -24,13 +32,13 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        width: toPx(432);
+        width: $panelWidth4k;
         height: toPx(72);
         border: 3px solid transparent;
       }
 
       @include mq($from: desktop5k) {
-        width: toPx(576);
+        width: $panelWidth5k;
         height: toPx(96);
         border: 4px solid transparent;
       }
@@ -51,11 +59,11 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
 
       @include publicOnly() {
         @include mq($from: desktop4k) {
-          border: $borderActive4K;
+          border: $borderActive4k;
         }
 
         @include mq($from: desktop5k) {
-          border: $borderActive5K;
+          border: $borderActive5k;
         }
       }
 
@@ -350,4 +358,44 @@ $borderActive5K: solid toPx(4) $sbbColorGrey;
       }
     }
   }
+}
+
+.sbb-usermenu-panel {
+  @include autocompleteBase();
+  position: absolute;
+  right: 0;
+  overflow: hidden;
+}
+
+.sbb-usermenu-inner-panel {
+  width: $panelWidth;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: $panelWidth4k;
+    }
+
+    @include mq($from: desktop5k) {
+      width: $panelWidth5k;
+    }
+  }
+}
+
+.sbb-usermenu-item {
+  @include buttonResetFrameless;
+  @include optionBase;
+  width: 100%;
+
+  &[disabled] {
+    cursor: default;
+    opacity: 0.5;
+    user-select: none;
+  }
+}
+
+hr {
+  margin: 4px 0;
+  padding: 0;
+  border: none;
+  border-top: solid 1px $sbbColorCloud;
 }
