@@ -4,7 +4,7 @@ import {
   TestRequest,
 } from '@angular/common/http/testing';
 import { Component, ErrorHandler } from '@angular/core';
-import { async, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
+import { fakeAsync, inject, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { wrappedErrorMessage } from '@sbb-esta/angular-core/testing';
 
@@ -43,38 +43,40 @@ describe('SbbIcon', () => {
   let fakePath: string;
   let errorHandler: jasmine.SpyObj<ErrorHandler>;
 
-  beforeEach(async(() => {
-    // The $ prefix tells Karma not to try to process the
-    // request so that we don't get warnings in our logs.
-    fakePath = '/$fake-path';
-    errorHandler = jasmine.createSpyObj('errorHandler', ['handleError']);
+  beforeEach(
+    waitForAsync(() => {
+      // The $ prefix tells Karma not to try to process the
+      // request so that we don't get warnings in our logs.
+      fakePath = '/$fake-path';
+      errorHandler = jasmine.createSpyObj('errorHandler', ['handleError']);
 
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, SbbIconModule],
-      declarations: [
-        IconWithLigatureComponent,
-        IconWithCustomFontCssComponent,
-        IconFromSvgNameComponent,
-        IconWithAriaHiddenFalseComponent,
-        IconWithBindingAndNgIfComponent,
-        InlineIconComponent,
-        SvgIconWithUserContentComponent,
-        IconWithLigatureAndSvgBindingComponent,
-      ],
-      providers: [
-        {
-          provide: SBB_ICON_LOCATION,
-          useValue: { getPathname: () => fakePath },
-        },
-        {
-          provide: ErrorHandler,
-          useValue: errorHandler,
-        },
-      ],
-    });
+      TestBed.configureTestingModule({
+        imports: [HttpClientTestingModule, SbbIconModule],
+        declarations: [
+          IconWithLigatureComponent,
+          IconWithCustomFontCssComponent,
+          IconFromSvgNameComponent,
+          IconWithAriaHiddenFalseComponent,
+          IconWithBindingAndNgIfComponent,
+          InlineIconComponent,
+          SvgIconWithUserContentComponent,
+          IconWithLigatureAndSvgBindingComponent,
+        ],
+        providers: [
+          {
+            provide: SBB_ICON_LOCATION,
+            useValue: { getPathname: () => fakePath },
+          },
+          {
+            provide: ErrorHandler,
+            useValue: errorHandler,
+          },
+        ],
+      });
 
-    TestBed.compileComponents();
-  }));
+      TestBed.compileComponents();
+    })
+  );
 
   let iconRegistry: SbbIconRegistry;
   let http: HttpTestingController;
@@ -1012,14 +1014,16 @@ describe('SbbIcon without HttpClientModule', () => {
   let iconRegistry: SbbIconRegistry;
   let sanitizer: DomSanitizer;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbIconModule],
-      declarations: [IconFromSvgNameComponent],
-    });
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbIconModule],
+        declarations: [IconFromSvgNameComponent],
+      });
 
-    TestBed.compileComponents();
-  }));
+      TestBed.compileComponents();
+    })
+  );
 
   beforeEach(inject([SbbIconRegistry, DomSanitizer], (mir: SbbIconRegistry, ds: DomSanitizer) => {
     iconRegistry = mir;

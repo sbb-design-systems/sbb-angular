@@ -123,7 +123,8 @@ export class SbbIconSidebar extends SbbSidebarBase {
     },
   ],
 })
-export class SbbIconSidebarContainer extends SbbSidebarContainerBase<SbbIconSidebar>
+export class SbbIconSidebarContainer
+  extends SbbSidebarContainerBase<SbbIconSidebar>
   implements AfterContentInit, SbbSidebarMobileCapableContainer {
   /** All sidebars in the container. Includes sidebars from inside nested containers. */
   @ContentChildren(SbbIconSidebar, {

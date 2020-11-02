@@ -1,6 +1,13 @@
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
@@ -120,19 +127,21 @@ describe('SbbExpansionPanel', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
-      declarations: [
-        PanelWithContentComponent,
-        PanelWithContentInNgIfComponent,
-        PanelWithCustomMarginComponent,
-        LazyPanelWithContentComponent,
-        LazyPanelOpenOnLoadComponent,
-        PanelWithTwoWayBindingComponent,
-      ],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [NoopAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
+        declarations: [
+          PanelWithContentComponent,
+          PanelWithContentInNgIfComponent,
+          PanelWithCustomMarginComponent,
+          LazyPanelWithContentComponent,
+          LazyPanelOpenOnLoadComponent,
+          PanelWithTwoWayBindingComponent,
+        ],
+      }).compileComponents();
+    })
+  );
 
   it('should expand and collapse the panel', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);

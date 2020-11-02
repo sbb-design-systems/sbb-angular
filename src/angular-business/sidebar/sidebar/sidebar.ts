@@ -106,7 +106,8 @@ export class SbbSidebarContent extends SbbSidebarContentBase implements AfterCon
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class SbbSidebar extends SbbSidebarBase
+export class SbbSidebar
+  extends SbbSidebarBase
   implements AfterContentInit, AfterContentChecked, OnDestroy {
   /** Whether the sidebar is initialized. Used for disabling the initial animation. */
   private _enableAnimations = false;
@@ -486,7 +487,8 @@ export class SbbSidebar extends SbbSidebarBase
     },
   ],
 })
-export class SbbSidebarContainer extends SbbSidebarContainerBase<SbbSidebar>
+export class SbbSidebarContainer
+  extends SbbSidebarContainerBase<SbbSidebar>
   implements AfterContentInit, SbbSidebarMobileCapableContainer, OnDestroy {
   /** The sidebar child */
   get sidebar(): SbbSidebar | null {

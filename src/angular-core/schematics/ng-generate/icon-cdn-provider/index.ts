@@ -1,4 +1,4 @@
-import { WorkspaceProject } from '@angular-devkit/core/src/experimental/workspace';
+import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import {
   apply,
   chain,
@@ -18,8 +18,8 @@ import {
   parseSourceFile,
 } from '@angular/cdk/schematics';
 import { InsertChange } from '@schematics/angular/utility/change';
-import { getWorkspace } from '@schematics/angular/utility/config';
 import { applyLintFix } from '@schematics/angular/utility/lint-fix';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
 import { hasNgModuleProvider } from '../../utils';
@@ -44,7 +44,7 @@ interface ModuleIcons {
 
 export function iconCdnProvider(options: IconCdnProviderOptions): Rule {
   return async (tree: Tree, context: SchematicContext): Promise<Rule> => {
-    const workspace = getWorkspace(tree);
+    const workspace = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
     const path = options.path || buildDefaultPath(project as any);
     const cdnIndex = await downloadIndex()
@@ -95,13 +95,13 @@ export function iconCdnProvider(options: IconCdnProviderOptions): Rule {
      * Build a default project path for generating.
      * @param workspaceProject The project to build the path for.
      */
-    function buildDefaultPath(workspaceProject: WorkspaceProject): string {
+    function buildDefaultPath(workspaceProject: ProjectDefinition): string {
       const root = workspaceProject.sourceRoot
         ? `/${workspaceProject.sourceRoot}/`
         : `/${workspaceProject.root}/src/`;
 
       const projectDirName =
-        workspaceProject.projectType === ProjectType.Application ? 'app' : 'lib';
+        workspaceProject.extensions.projectType === ProjectType.Application ? 'app' : 'lib';
 
       return `${root}${projectDirName}`;
     }

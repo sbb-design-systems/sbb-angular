@@ -48,7 +48,5 @@ export interface JumpMark {
 By setting the readonly property, the notification is not closable by user.
 
 ```html
-<sbb-notification readonly>
-  I can't be closed by user
-</sbb-notification>
+<sbb-notification readonly> I can't be closed by user </sbb-notification>
 ```

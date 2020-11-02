@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChildren, OnInit, QueryList } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
@@ -146,9 +146,7 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
             <input sbbDateInput type="text" />
           </sbb-datepicker>
         </sbb-field>
-        <p *ngIf="i === 1">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
+        <p *ngIf="i === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </sbb-toggle-option>
     </sbb-toggle>
   `,
@@ -197,21 +195,23 @@ describe('SbbToggle case reactive using mock component', () => {
   let componentTest: ToggleReactiveTestComponent;
   let fixtureTest: ComponentFixture<ToggleReactiveTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbToggleModule,
-        CommonModule,
-        SbbIconModule,
-        SbbDatepickerModule,
-        SbbFieldModule,
-        ReactiveFormsModule,
-        SbbIconDirectiveModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [ToggleReactiveTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbToggleModule,
+          CommonModule,
+          SbbIconModule,
+          SbbDatepickerModule,
+          SbbFieldModule,
+          ReactiveFormsModule,
+          SbbIconDirectiveModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [ToggleReactiveTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleReactiveTestComponent);
@@ -296,21 +296,23 @@ describe('SbbToggle case reactive with default value using mock component', () =
   let componentTest: ToggleReactiveDefaultValueTestComponent;
   let fixtureTest: ComponentFixture<ToggleReactiveDefaultValueTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbToggleModule,
-        CommonModule,
-        SbbIconModule,
-        SbbDatepickerModule,
-        SbbFieldModule,
-        ReactiveFormsModule,
-        SbbIconDirectiveModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [ToggleReactiveDefaultValueTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbToggleModule,
+          CommonModule,
+          SbbIconModule,
+          SbbDatepickerModule,
+          SbbFieldModule,
+          ReactiveFormsModule,
+          SbbIconDirectiveModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [ToggleReactiveDefaultValueTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleReactiveDefaultValueTestComponent);
@@ -341,20 +343,22 @@ describe('SbbToggle case template driven using mock component', () => {
   let componentTest: ToggleTemplateDrivenTestComponent;
   let fixtureTest: ComponentFixture<ToggleTemplateDrivenTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbToggleModule,
-        CommonModule,
-        SbbIconModule,
-        SbbDatepickerModule,
-        SbbFieldModule,
-        FormsModule,
-        SbbIconTestingModule,
-      ],
-      declarations: [ToggleTemplateDrivenTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbToggleModule,
+          CommonModule,
+          SbbIconModule,
+          SbbDatepickerModule,
+          SbbFieldModule,
+          FormsModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [ToggleTemplateDrivenTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleTemplateDrivenTestComponent);
@@ -362,9 +366,12 @@ describe('SbbToggle case template driven using mock component', () => {
     fixtureTest.detectChanges();
   });
 
-  it('component test is created', async(async () => {
-    expect(componentTest).toBeTruthy();
-  }));
+  it(
+    'component test is created',
+    waitForAsync(async () => {
+      expect(componentTest).toBeTruthy();
+    })
+  );
 
   it('it verifies if the first toggle option is selected ', () => {
     fixtureTest.detectChanges();
@@ -406,12 +413,14 @@ describe('SbbToggle simple case using mock component', () => {
   let componentTest: ToggleSimpleCaseTestComponent;
   let fixtureTest: ComponentFixture<ToggleSimpleCaseTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbToggleModule, CommonModule, SbbIconTestingModule],
-      declarations: [ToggleSimpleCaseTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbToggleModule, CommonModule, SbbIconTestingModule],
+        declarations: [ToggleSimpleCaseTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleSimpleCaseTestComponent);
@@ -419,9 +428,12 @@ describe('SbbToggle simple case using mock component', () => {
     fixtureTest.detectChanges();
   });
 
-  it('component test is created', async(async () => {
-    expect(componentTest).toBeTruthy();
-  }));
+  it(
+    'component test is created',
+    waitForAsync(async () => {
+      expect(componentTest).toBeTruthy();
+    })
+  );
 
   it('it verifies the text content in the first toggle button selected', () => {
     const toggleOptionsComponentReference = fixtureTest.debugElement.queryAll(

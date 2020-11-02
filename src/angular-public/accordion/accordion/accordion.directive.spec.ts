@@ -1,6 +1,6 @@
 import { DOWN_ARROW, END, HOME, UP_ARROW } from '@angular/cdk/keycodes';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
@@ -65,12 +65,14 @@ class AccordionWithHideToggleComponent {
 }
 
 describe('AccordionDirective', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
-      declarations: [AccordionWithHideToggleComponent, NestedPanelComponent, SetOfItemsComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [BrowserAnimationsModule, SbbAccordionModule, SbbIconTestingModule],
+        declarations: [AccordionWithHideToggleComponent, NestedPanelComponent, SetOfItemsComponent],
+      }).compileComponents();
+    })
+  );
 
   it('should allow multiple items to be expanded simultaneously', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);

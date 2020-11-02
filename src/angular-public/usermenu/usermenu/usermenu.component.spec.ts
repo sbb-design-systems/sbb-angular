@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
@@ -40,9 +40,7 @@ import { SbbUserMenu } from './usermenu.component';
           >{{ link.text }}
         </a>
         <hr />
-        <button sbbDropdownItem type="button" (click)="logout(user1)">
-          Logout
-        </button>
+        <button sbbDropdownItem type="button" (click)="logout(user1)">Logout</button>
       </sbb-dropdown>
     </sbb-usermenu>
   `,
@@ -80,9 +78,7 @@ class UsermenuTestComponent {
 @Component({
   selector: 'sbb-usermenu-test2',
   template: `
-    <h4 class="sbbsc-block">
-      Example without user image but with displayName and userName
-    </h4>
+    <h4 class="sbbsc-block">Example without user image but with displayName and userName</h4>
     <sbb-usermenu
       [userName]="user2.userName"
       [displayName]="user2.displayName"
@@ -98,9 +94,7 @@ class UsermenuTestComponent {
           >{{ link.text }}
         </a>
         <hr />
-        <button sbbDropdownItem type="button" (click)="logout(user2)">
-          Logout
-        </button>
+        <button sbbDropdownItem type="button" (click)="logout(user2)">Logout</button>
       </sbb-dropdown>
     </sbb-usermenu>
   `,
@@ -150,9 +144,7 @@ class UsermenuTest2Component {
           >{{ link.text }}
         </a>
         <hr />
-        <button sbbDropdownItem type="button" (click)="logout(user3)">
-          Logout
-        </button>
+        <button sbbDropdownItem type="button" (click)="logout(user3)">Logout</button>
       </sbb-dropdown>
     </sbb-usermenu>
   `,
@@ -194,12 +186,14 @@ describe('SbbUserMenu', () => {
   let dropdownComponent: SbbDropdown;
   let fixtureDropdown: ComponentFixture<SbbDropdown>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SbbUserMenu],
-      imports: [CommonModule, SbbDropdownModule, SbbIconModule, SbbIconTestingModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SbbUserMenu],
+        imports: [CommonModule, SbbDropdownModule, SbbIconModule, SbbIconTestingModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixtureDropdown = TestBed.createComponent(SbbDropdown);
@@ -222,19 +216,21 @@ describe('Usermenu test case: user with custom image using mock component', () =
   let componentTest: UsermenuTestComponent;
   let fixtureTest: ComponentFixture<UsermenuTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbUsermenuModule,
-        CommonModule,
-        SbbDropdownModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-        RouterTestingModule,
-      ],
-      declarations: [UsermenuTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbUsermenuModule,
+          CommonModule,
+          SbbDropdownModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          RouterTestingModule,
+        ],
+        declarations: [UsermenuTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuTestComponent);
@@ -381,19 +377,21 @@ describe('Usermenu test case: usermenu without user image but with initial lette
   let componentTest: UsermenuTest2Component;
   let fixtureTest: ComponentFixture<UsermenuTest2Component>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbUsermenuModule,
-        CommonModule,
-        SbbDropdownModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-        RouterTestingModule,
-      ],
-      declarations: [UsermenuTest2Component],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbUsermenuModule,
+          CommonModule,
+          SbbDropdownModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          RouterTestingModule,
+        ],
+        declarations: [UsermenuTest2Component],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuTest2Component);
@@ -507,19 +505,21 @@ describe('Usermenu test case: usermenu only with userName using mock component',
   let componentTest: UsermenuTest3Component;
   let fixtureTest: ComponentFixture<UsermenuTest3Component>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbUsermenuModule,
-        CommonModule,
-        SbbDropdownModule,
-        SbbIconModule,
-        SbbIconTestingModule,
-        RouterTestingModule,
-      ],
-      declarations: [UsermenuTest3Component],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbUsermenuModule,
+          CommonModule,
+          SbbDropdownModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          RouterTestingModule,
+        ],
+        declarations: [UsermenuTest3Component],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuTest3Component);

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
@@ -14,19 +14,13 @@ import { SbbProcessflow } from './processflow.component';
   template: `
     <sbb-processflow #processflow>
       <sbb-processflow-step title="Step 1">
-        <div>
-          Step content 1
-        </div>
+        <div>Step content 1</div>
       </sbb-processflow-step>
       <sbb-processflow-step title="Step 2">
-        <div>
-          Step content 2
-        </div>
+        <div>Step content 2</div>
       </sbb-processflow-step>
       <sbb-processflow-step title="Step 3">
-        <div>
-          Step content 3
-        </div>
+        <div>Step content 3</div>
       </sbb-processflow-step>
     </sbb-processflow>
   `,
@@ -39,12 +33,14 @@ describe('SbbProcessflow', () => {
   let component: SbbProcessflow;
   let fixture: ComponentFixture<SbbProcessflow>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule],
-      declarations: [SbbProcessflow],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbIconModule, SbbIconTestingModule],
+        declarations: [SbbProcessflow],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbProcessflow);
@@ -61,12 +57,14 @@ describe('SbbProcessflow user interaction', () => {
   let component: ProcessflowTestComponent;
   let fixture: ComponentFixture<ProcessflowTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbProcessflowModule, SbbIconTestingModule],
-      declarations: [ProcessflowTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbProcessflowModule, SbbIconTestingModule],
+        declarations: [ProcessflowTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProcessflowTestComponent);

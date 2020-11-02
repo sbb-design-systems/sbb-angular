@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SbbLoading } from './loading.component';
 
@@ -6,11 +6,13 @@ describe('SbbLoading', () => {
   let component: SbbLoading;
   let fixture: ComponentFixture<SbbLoading>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SbbLoading],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SbbLoading],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbLoading);

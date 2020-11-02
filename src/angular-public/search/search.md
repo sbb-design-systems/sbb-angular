@@ -27,9 +27,7 @@ You can use `<sbb-search>` along with `<sbb-autocomplete>` as below:
   [sbbAutocomplete]="auto"
 ></sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of filteredOptions" [value]="option">
-    {{ option }}
-  </sbb-option>
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option"> {{ option }} </sbb-option>
 </sbb-autocomplete>
 ```
 
@@ -43,13 +41,9 @@ and use option groups:
   [sbbAutocomplete]="auto"
 ></sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of options$ | async" [value]="option">
-    {{ option }}
-  </sbb-option>
+  <sbb-option *ngFor="let option of options$ | async" [value]="option"> {{ option }} </sbb-option>
   <sbb-option-group label="Oft gesucht:">
-    <sbb-option *ngFor="let option of staticOptions" [value]="option">
-      {{ option }}
-    </sbb-option>
+    <sbb-option *ngFor="let option of staticOptions" [value]="option"> {{ option }} </sbb-option>
   </sbb-option-group>
 </sbb-autocomplete>
 ```

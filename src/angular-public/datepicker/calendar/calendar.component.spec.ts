@@ -1,6 +1,6 @@
 import { ENTER } from '@angular/cdk/keycodes';
 import { Component, NgZone } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
@@ -89,19 +89,21 @@ class CalendarWithSelectableMinDateComponent {
 describe('SbbCalendar', () => {
   let zone: MockNgZone;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [
-        // Test components.
-        StandardCalendarComponent,
-        CalendarWithMinMaxComponent,
-        CalendarWithDateFilterComponent,
-        CalendarWithSelectableMinDateComponent,
-      ],
-      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbDatepickerModule, SbbIconModule, SbbIconTestingModule],
+        declarations: [
+          // Test components.
+          StandardCalendarComponent,
+          CalendarWithMinMaxComponent,
+          CalendarWithDateFilterComponent,
+          CalendarWithSelectableMinDateComponent,
+        ],
+        providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }],
+      }).compileComponents();
+    })
+  );
 
   describe('standard calendar', () => {
     let fixture: ComponentFixture<StandardCalendarComponent>;

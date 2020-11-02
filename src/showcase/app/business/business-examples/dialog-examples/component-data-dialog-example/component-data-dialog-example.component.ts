@@ -22,9 +22,7 @@ export class ComponentDataDialogExampleComponent {
 @Component({
   selector: 'sbb-component-data-dialog',
   template: `
-    <div sbbDialogHeader>
-      Install Angular
-    </div>
+    <div sbbDialogHeader>Install Angular</div>
     <div sbbDialogContent>
       <div>
         <p>
@@ -115,12 +113,8 @@ export class ComponentDataDialogExampleComponent {
       </div>
     </div>
     <div sbbDialogFooter>
-      <button sbbButton [sbbDialogClose]="true">
-        Accept
-      </button>
-      <button sbbButton mode="secondary" sbbDialogClose>
-        Cancel
-      </button>
+      <button sbbButton [sbbDialogClose]="true">Accept</button>
+      <button sbbButton mode="secondary" sbbDialogClose>Cancel</button>
     </div>
   `,
 })

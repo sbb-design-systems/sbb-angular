@@ -1,6 +1,6 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { Component, DebugElement, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
@@ -60,12 +60,14 @@ describe('SbbTabs', () => {
   let fixture: ComponentFixture<TabsTestComponent>;
   let tabs: DebugElement[];
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TabsTestComponent, TabContentTestComponent, SbbTabs, SbbTab, SbbTabContent],
-      imports: [SbbBadgeModule, PortalModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TabsTestComponent, TabContentTestComponent, SbbTabs, SbbTab, SbbTabContent],
+        imports: [SbbBadgeModule, PortalModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TabsTestComponent);

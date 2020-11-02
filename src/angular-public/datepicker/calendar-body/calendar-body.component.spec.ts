@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   SbbDateAdapter,
@@ -68,21 +68,23 @@ function createCell(value: number) {
 }
 
 describe('SbbCalendarBody', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        SbbCalendarBody,
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          SbbCalendarBody,
 
-        // Test components.
-        StandardCalendarBodyComponent,
-        CalendarBodyWithDisabledCellsComponent,
-      ],
-      providers: [
-        { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
-        { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
-      ],
-    }).compileComponents();
-  }));
+          // Test components.
+          StandardCalendarBodyComponent,
+          CalendarBodyWithDisabledCellsComponent,
+        ],
+        providers: [
+          { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
+          { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
+        ],
+      }).compileComponents();
+    })
+  );
 
   describe('standard calendar body', () => {
     let fixture: ComponentFixture<StandardCalendarBodyComponent>;

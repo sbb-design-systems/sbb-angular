@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
@@ -37,12 +37,14 @@ describe('SbbPagination', () => {
   let component: SbbPagination;
   let fixture: ComponentFixture<SbbPagination>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
-      declarations: [SbbPagination],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbIconModule, SbbIconTestingModule, CommonModule, RouterTestingModule],
+        declarations: [SbbPagination],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbPagination);
@@ -60,12 +62,14 @@ describe('SbbPagination behaviour', () => {
   let component: PaginationTestComponent;
   let fixture: ComponentFixture<PaginationTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbPaginationModule, SbbIconTestingModule, RouterTestingModule],
-      declarations: [PaginationTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbPaginationModule, SbbIconTestingModule, RouterTestingModule],
+        declarations: [PaginationTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationTestComponent);

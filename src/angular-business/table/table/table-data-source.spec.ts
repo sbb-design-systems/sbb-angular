@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SbbSortDirective } from '../sort/sort.component';
@@ -17,12 +17,14 @@ class SbbSortTestComponent {
 describe('SbbTableDataSource', () => {
   const dataSource = new SbbTableDataSource();
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbTableModule, NoopAnimationsModule],
-      declarations: [SbbSortTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbTableModule, NoopAnimationsModule],
+        declarations: [SbbSortTestComponent],
+      }).compileComponents();
+    })
+  );
 
   describe('sort', () => {
     let fixture: ComponentFixture<SbbSortTestComponent>;

@@ -27,15 +27,9 @@
   </tbody>
   <ng-container sbbTableCaption>
     <ol>
-      <li id="legend_item_1" tabindex="-1">
-        Eisenbahnverkehrsunternehmen
-      </li>
-      <li id="legend_item_2" tabindex="-1">
-        Eisenbahninfrastrukturbetreiberin
-      </li>
-      <li id="legend_item_3" tabindex="-1">
-        Integriertes Bahnunternehmen/Holding
-      </li>
+      <li id="legend_item_1" tabindex="-1">Eisenbahnverkehrsunternehmen</li>
+      <li id="legend_item_2" tabindex="-1">Eisenbahninfrastrukturbetreiberin</li>
+      <li id="legend_item_3" tabindex="-1">Integriertes Bahnunternehmen/Holding</li>
     </ol>
     <p id="caption">Quelle: UIC-Statistik 2012.</p>
   </ng-container>
@@ -45,10 +39,8 @@
 
 <h4 class="sbbsc-block">Properties</h4>
 <button sbbButton mode="ghost" (click)="removeRow()">Remove a row</button>
-<button sbbButton mode="ghost" (click)="resetRows()" style="margin-left: 0.5rem;">
-  Reset rows
-</button>
-<sbb-field mode="default" class="sbbsc-block" style="margin-left: 0.5rem;">
+<button sbbButton mode="ghost" (click)="resetRows()" style="margin-left: 0.5rem">Reset rows</button>
+<sbb-field mode="default" class="sbbsc-block" style="margin-left: 0.5rem">
   <sbb-label for="filter">Set a filter</sbb-label>
   <input type="text" placeholder="Filter table" id="filter" (keyup)="filterTable($event)" />
 </sbb-field>

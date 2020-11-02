@@ -67,7 +67,8 @@ export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
     '[class.sbb-focused]': 'focused',
   },
 })
-export class SbbTextarea extends SbbTextareaMixinBase
+export class SbbTextarea
+  extends SbbTextareaMixinBase
   implements
     SbbFormFieldControl<string>,
     CanUpdateErrorState,

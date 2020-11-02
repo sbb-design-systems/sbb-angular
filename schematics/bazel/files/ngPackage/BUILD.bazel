@@ -1,4 +1,4 @@
-<% if (customTsConfig) { %>load("@npm_bazel_typescript//:index.bzl", "ts_config")
+<% if (customTsConfig) { %>load("@npm//@bazel/typescript:index.bzl", "ts_config")
 <% } %><% if (hasStyleBundle) { %>load("@npm//scss-bundle:index.bzl", "scss_bundle")
 <% } %>load(
     "//src/<%= name %>:config.bzl",

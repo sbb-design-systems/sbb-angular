@@ -75,7 +75,8 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbChipInput }],
 })
-export class SbbChipInput extends SbbChipsMixinBase
+export class SbbChipInput
+  extends SbbChipsMixinBase
   implements
     SbbFormFieldControl<any>,
     OnInit,

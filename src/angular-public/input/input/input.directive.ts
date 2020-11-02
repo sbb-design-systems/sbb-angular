@@ -64,7 +64,8 @@ export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbInputBase =
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
 })
-export class SbbInput extends SbbNativeInputBase
+export class SbbInput
+  extends SbbNativeInputBase
   implements SbbFormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };

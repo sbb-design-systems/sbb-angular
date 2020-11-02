@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -35,18 +35,20 @@ describe('SbbGhettobox', () => {
   let component: GhettoboxTestComponent;
   let fixture: ComponentFixture<GhettoboxTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-        SbbIconModule,
-        SbbIconDirectiveModule,
-      ],
-      declarations: [GhettoboxTestComponent, SbbGhettobox],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          RouterTestingModule,
+          NoopAnimationsModule,
+          SbbIconTestingModule,
+          SbbIconModule,
+          SbbIconDirectiveModule,
+        ],
+        declarations: [GhettoboxTestComponent, SbbGhettobox],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;

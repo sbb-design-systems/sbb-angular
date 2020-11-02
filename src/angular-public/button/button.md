@@ -1,9 +1,7 @@
 You can use the button component as seen below
 
 ```html
-<button sbbButton>
-  Action
-</button>
+<button sbbButton>Action</button>
 ```
 
 ### Mode
@@ -11,9 +9,7 @@ You can use the button component as seen below
 The button supports four modes: primary (default), secondary, ghost and frameless as shown in the example.
 
 ```html
-<button sbbButton mode="secondary">
-  Action
-</button>
+<button sbbButton mode="secondary">Action</button>
 ```
 
 ### Icons

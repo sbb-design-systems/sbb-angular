@@ -12,13 +12,13 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import {
-  async,
   ComponentFixture,
   fakeAsync,
   flush,
   inject,
   TestBed,
   tick,
+  waitForAsync,
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
@@ -39,27 +39,29 @@ describe('SbbNotificationToast icons', () => {
   let testComponent: NotificationMockComponent;
   let overlayContainerElement: HTMLElement;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SbbNotificationToastModule,
-        NotificationToastTestModule,
-        NoopAnimationsModule,
-        SbbIconTestingModule,
-      ],
-      providers: [
-        SbbNotificationToast,
-        { provide: SBB_NOTIFICATION_TOAST_DATA, useValue: SbbNotificationToastConfig },
-        {
-          provide: OverlayContainer,
-          useFactory: () => {
-            overlayContainerElement = document.createElement('div');
-            return { getContainerElement: () => overlayContainerElement };
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbNotificationToastModule,
+          NotificationToastTestModule,
+          NoopAnimationsModule,
+          SbbIconTestingModule,
+        ],
+        providers: [
+          SbbNotificationToast,
+          { provide: SBB_NOTIFICATION_TOAST_DATA, useValue: SbbNotificationToastConfig },
+          {
+            provide: OverlayContainer,
+            useFactory: () => {
+              overlayContainerElement = document.createElement('div');
+              return { getContainerElement: () => overlayContainerElement };
+            },
           },
-        },
-      ],
-    }).compileComponents();
-  }));
+        ],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     testFixture = TestBed.createComponent(NotificationMockComponent);

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
@@ -30,12 +30,14 @@ describe('SbbNotification', () => {
     let component: SbbNotification;
     let fixture: ComponentFixture<SbbNotification>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [CommonModule, SbbIconModule, SbbIconTestingModule],
-        declarations: [SbbNotification],
-      }).compileComponents();
-    }));
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [CommonModule, SbbIconModule, SbbIconTestingModule],
+          declarations: [SbbNotification],
+        }).compileComponents();
+      })
+    );
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SbbNotification);
@@ -52,12 +54,14 @@ describe('SbbNotification', () => {
     let testFixture: ComponentFixture<NotificationMockComponent>;
     let testComponent: NotificationMockComponent;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, SbbIconModule, SbbIconTestingModule],
-        declarations: [SbbNotification, NotificationMockComponent],
-      }).compileComponents();
-    }));
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [CommonModule, FormsModule, SbbIconModule, SbbIconTestingModule],
+          declarations: [SbbNotification, NotificationMockComponent],
+        }).compileComponents();
+      })
+    );
 
     beforeEach(() => {
       testFixture = TestBed.createComponent(NotificationMockComponent);

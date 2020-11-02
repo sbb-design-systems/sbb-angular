@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
@@ -27,12 +27,14 @@ describe('SbbButton', () => {
   let component: ButtonTemplateTestComponent;
   let fixture: ComponentFixture<ButtonTemplateTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SbbIconModule, SbbIconTestingModule],
-      declarations: [SbbButton, ButtonTemplateTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbIconModule, SbbIconTestingModule],
+        declarations: [SbbButton, ButtonTemplateTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;

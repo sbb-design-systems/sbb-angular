@@ -9,9 +9,7 @@ You can use table component to display rows of data as see below
   </thead>
   <tbody>
     <tr *ngFor="let row of rows">
-      <th [attr.scope]="row.scope" [attr.aria-describedby]="row.describedby">
-        {{ row.text1 }}
-      </th>
+      <th [attr.scope]="row.scope" [attr.aria-describedby]="row.describedby">{{ row.text1 }}</th>
       <td>{{ row.text2 }}</td>
       <td>{{ row.text3 }}</td>
       <td>{{ row.text4 }}</td>

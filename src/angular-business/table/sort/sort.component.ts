@@ -57,7 +57,8 @@ export const SbbSortDirectiveMixinBase: HasInitializedCtor &
   exportAs: 'sbbSort',
   inputs: ['disabled: sbbSortDisabled'],
 })
-export class SbbSortDirective extends SbbSortDirectiveMixinBase
+export class SbbSortDirective
+  extends SbbSortDirectiveMixinBase
   implements OnInit, OnChanges, OnDestroy, HasInitialized {
   /** The sort direction of the currently active SbbSortable. */
   @Input('sbbSortDirection')

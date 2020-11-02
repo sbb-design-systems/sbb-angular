@@ -396,56 +396,42 @@ If you have a custom caption or legend, don't forget to use proper aria-describe
 
   <tbody>
     <tr>
-      <th scope="row">
-        Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht. *1
-      </th>
+      <th scope="row">Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht. *1</th>
       <td>6 907</td>
-      <td>
-        Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht.
-      </td>
+      <td>Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht.</td>
       <td>Langer Text um zu sehen wie genau die Zelle umbricht</td>
       <td>24 882</td>
     </tr>
     <tr>
-      <th scope="row">
-        SZDC (CZ) *2
-      </th>
+      <th scope="row">SZDC (CZ) *2</th>
       <td>-</td>
       <td>-</td>
       <td>161</td>
       <td>17 380</td>
     </tr>
     <tr>
-      <th scope="row">
-        DB AG (DE) *3
-      </th>
+      <th scope="row">DB AG (DE) *3</th>
       <td>80 805</td>
       <td>78 542</td>
       <td>1 037</td>
       <td>286 237</td>
     </tr>
     <tr>
-      <th scope="row">
-        FS (IT) *3
-      </th>
+      <th scope="row">FS (IT) *3</th>
       <td>37 489</td>
       <td>22 081</td>
       <td>316</td>
       <td>72 341</td>
     </tr>
     <tr>
-      <th scope="row">
-        JR (JP) *3
-      </th>
+      <th scope="row">JR (JP) *3</th>
       <td>244 591</td>
       <td>20 255</td>
       <td>693</td>
       <td>127 989</td>
     </tr>
     <tr>
-      <th scope="row">
-        NS (NL) *1
-      </th>
+      <th scope="row">NS (NL) *1</th>
       <td>16 604</td>
       <td>-</td>
       <td>-</td>

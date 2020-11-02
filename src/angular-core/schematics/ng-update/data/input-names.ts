@@ -8,7 +8,7 @@ export const inputNames: VersionChanges<InputNameUpgradeData> = {
         {
           replace: 'slave',
           replaceWith: 'connected',
-          whitelist: { elements: ['sbb-datepicker'] },
+          limitedTo: { elements: ['sbb-datepicker'] },
         },
       ],
     },

@@ -2,9 +2,7 @@ The dialog can be used to seek confirmation as see below
 
 ```html
 <div sbbDialog>
-  <div sbbDialogHeader>
-    Hi {{ data.name }}
-  </div>
+  <div sbbDialogHeader>Hi {{ data.name }}</div>
   <div sbbDialogContent>
     <div>
       What's your favorite animal?
@@ -14,12 +12,8 @@ The dialog can be used to seek confirmation as see below
     </div>
   </div>
   <div sbbDialogFooter>
-    <button sbbButton [sbbDialogClose]="data.animal">
-      Ok
-    </button>
-    <button sbbButton mode="secondary" (click)="noThanks()">
-      No Thanks
-    </button>
+    <button sbbButton [sbbDialogClose]="data.animal">Ok</button>
+    <button sbbButton mode="secondary" (click)="noThanks()">No Thanks</button>
   </div>
 </div>
 ```
@@ -91,21 +85,15 @@ export class DialogShowcaseExample3Component {
 ```html
 <ng-template #sampleDialogTemplate>
   <div sbbDialog>
-    <div sbbDialogHeader>
-      Terms and conditions
-    </div>
+    <div sbbDialogHeader>Terms and conditions</div>
     <div sbbDialogContent>
       <div>
         <p>Lorem ipsum dolor sit amet...</p>
       </div>
     </div>
     <div sbbDialogFooter>
-      <button sbbButton [sbbDialogClose]="true">
-        Accept
-      </button>
-      <button sbbButton mode="secondary" sbbDialogClose>
-        Cancel
-      </button>
+      <button sbbButton [sbbDialogClose]="true">Accept</button>
+      <button sbbButton mode="secondary" sbbDialogClose>Cancel</button>
     </div>
   </div>
 </ng-template>

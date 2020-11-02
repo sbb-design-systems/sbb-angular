@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
@@ -30,12 +30,14 @@ describe('SbbCheckbox', () => {
   let component: SbbCheckbox;
   let fixture: ComponentFixture<SbbCheckbox>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [SbbCheckbox],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule, SbbIconModule, SbbIconTestingModule],
+        declarations: [SbbCheckbox],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SbbCheckbox);
@@ -56,12 +58,14 @@ describe('SbbCheckbox using mock component', () => {
   let modelComponent: ModelCheckboxTestComponent;
   let modelComponentFixture: ComponentFixture<ModelCheckboxTestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [SbbCheckbox, ModelCheckboxTestComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule, FormsModule, SbbIconModule, SbbIconTestingModule],
+        declarations: [SbbCheckbox, ModelCheckboxTestComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(ModelCheckboxTestComponent);
