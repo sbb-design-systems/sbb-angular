@@ -76,21 +76,19 @@ export class SbbEsriWebScene implements OnInit {
     private _hitTestService: SbbHitTestService
   ) {}
 
-  async ngOnInit() {
-    await this._esri.load();
-    this.webScene = new this._esri.WebScene({
-      portalItem: {
-        id: this.portalItemId,
-      },
-    });
-    this.sceneView = new this._esri.SceneView(this._mergeSceneViewProperties());
+  ngOnInit() {
+    this._esri.load().then(() => {
+      this.webScene = new this._esri.WebScene({
+        portalItem: {
+          id: this.portalItemId,
+        },
+      });
+      this.sceneView = new this._esri.SceneView(this._mergeSceneViewProperties());
 
-    this._setSceneViewCamera(this._camera);
-    this._registerEvents();
+      this._setSceneViewCamera(this._camera);
+      this._registerEvents();
 
-    // TODO(WyssTobi): Does adding the await have a side-effect?
-    await this.sceneView.when(() => {
-      this.mapReady.emit(this.sceneView);
+      this.sceneView.when(() => this.mapReady.emit(this.sceneView));
     });
   }
 
@@ -119,9 +117,12 @@ export class SbbEsriWebScene implements OnInit {
     this.sceneView.watch('camera', (camera) => this._handleCameraChange(camera));
   }
 
-  private async _handleMouseClick(e: __esri.SceneViewClickEvent) {
-    const hitTestGraphics = await this._hitTestService.esriHitTest(this.sceneView, e);
-    this.mapClick.emit({ clickedPoint: e.mapPoint, clickedGraphics: hitTestGraphics });
+  private _handleMouseClick(e: __esri.SceneViewClickEvent) {
+    this._hitTestService
+      .esriHitTest(this.sceneView, e)
+      .then((hitTestGraphics) =>
+        this.mapClick.emit({ clickedPoint: e.mapPoint, clickedGraphics: hitTestGraphics })
+      );
   }
 
   private _handleCameraChange(camera: __esri.Camera) {

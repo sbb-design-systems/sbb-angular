@@ -20,12 +20,12 @@ export class SbbEsriBasemapGallery implements OnInit {
   constructor(private _esri: SbbEsriTypesService, private _hostReference: ElementRef) {}
 
   /** Loads & instantiates the basemap gallery. */
-  async ngOnInit() {
-    await this._esri.load();
-
-    this.basemapGallery = new this._esri.BasemapGallery({
-      view: this.mapView,
-      container: this._hostReference.nativeElement,
+  ngOnInit() {
+    this._esri.load().then(() => {
+      this.basemapGallery = new this._esri.BasemapGallery({
+        view: this.mapView,
+        container: this._hostReference.nativeElement,
+      });
     });
   }
 }
