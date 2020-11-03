@@ -83,48 +83,65 @@ export class SbbEsriTypesService {
 
   constructor(private _loader: SbbEsriLoaderService) {}
 
-  async load(): Promise<any> {
-    if (!this._graphic) {
-      [
-        this._point,
-        this._graphic,
-        this._simpleMarkeSymbol,
-        this._basemapGallery,
-        this._webScene,
-        this._sceneView,
-        this._camera,
-        this._layerList,
-        this._legend,
-        this._webMap,
-        this._mapView,
-        this._extent,
-      ] = await this._loader.load<
-        __esri.PointConstructor,
-        __esri.GraphicConstructor,
-        __esri.SimpleMarkerSymbolConstructor,
-        __esri.BasemapGalleryConstructor,
-        __esri.WebSceneConstructor,
-        __esri.SceneViewConstructor,
-        __esri.CameraConstructor,
-        __esri.LayerListConstructor,
-        __esri.LegendConstructor,
-        __esri.WebMapConstructor,
-        __esri.MapViewConstructor,
-        __esri.ExtentConstructor
-      >([
-        'esri/geometry/Point',
-        'esri/Graphic',
-        'esri/symbols/SimpleMarkerSymbol',
-        'esri/widgets/BasemapGallery',
-        'esri/WebScene',
-        'esri/views/SceneView',
-        'esri/Camera',
-        'esri/widgets/LayerList',
-        'esri/widgets/Legend',
-        'esri/WebMap',
-        'esri/views/MapView',
-        'esri/geometry/Extent',
-      ]);
-    }
+  load(): Promise<any> {
+    return this._graphic
+      ? Promise.resolve()
+      : this._loader
+          .load<
+            __esri.PointConstructor,
+            __esri.GraphicConstructor,
+            __esri.SimpleMarkerSymbolConstructor,
+            __esri.BasemapGalleryConstructor,
+            __esri.WebSceneConstructor,
+            __esri.SceneViewConstructor,
+            __esri.CameraConstructor,
+            __esri.LayerListConstructor,
+            __esri.LegendConstructor,
+            __esri.WebMapConstructor,
+            __esri.MapViewConstructor,
+            __esri.ExtentConstructor
+          >([
+            'esri/geometry/Point',
+            'esri/Graphic',
+            'esri/symbols/SimpleMarkerSymbol',
+            'esri/widgets/BasemapGallery',
+            'esri/WebScene',
+            'esri/views/SceneView',
+            'esri/Camera',
+            'esri/widgets/LayerList',
+            'esri/widgets/Legend',
+            'esri/WebMap',
+            'esri/views/MapView',
+            'esri/geometry/Extent',
+          ])
+          .then(
+            ([
+              point,
+              graphic,
+              simpleMarkeSymbol,
+              basemapGallery,
+              webScene,
+              sceneView,
+              camera,
+              layerList,
+              legend,
+              webMap,
+              mapView,
+              extent,
+            ]) => {
+              this._point = point;
+              this._graphic = graphic;
+              this._simpleMarkeSymbol = simpleMarkeSymbol;
+              this._basemapGallery = basemapGallery;
+              this._webScene = webScene;
+              this._sceneView = sceneView;
+              this._camera = camera;
+              this._layerList = layerList;
+              this._legend = legend;
+              this._webMap = webMap;
+              this._mapView = mapView;
+              this._extent = extent;
+            }
+          );
   }
 }

@@ -70,25 +70,23 @@ export class SbbEsriWebMap implements OnInit {
     private _hitTestService: SbbHitTestService
   ) {}
 
-  async ngOnInit() {
-    await this._esri.load();
-    this.webMap = new this._esri.WebMap({
-      portalItem: {
-        id: this.portalItemId,
-      },
-    });
+  ngOnInit() {
+    this._esri.load().then(() => {
+      this.webMap = new this._esri.WebMap({
+        portalItem: {
+          id: this.portalItemId,
+        },
+      });
 
-    this.mapView = new this._esri.MapView({
-      map: this.webMap,
-      container: this._elementRef.nativeElement,
-    });
+      this.mapView = new this._esri.MapView({
+        map: this.webMap,
+        container: this._elementRef.nativeElement,
+      });
 
-    this._setMapExtent(this._extent);
-    this._registerEvents();
+      this._setMapExtent(this._extent);
+      this._registerEvents();
 
-    // TODO(WyssTobi): Does adding the await have a side-effect?
-    await this.mapView.when(() => {
-      this.mapReady.emit(this.mapView);
+      this.mapView.when(() => this.mapReady.emit(this.mapView));
     });
   }
 
@@ -109,9 +107,12 @@ export class SbbEsriWebMap implements OnInit {
     this.mapView.watch('extent', (extent) => this._emitExtentChange(extent));
   }
 
-  private async _emitMouseClick(e: __esri.MapViewClickEvent) {
-    const hitTestGraphics = await this._hitTestService.esriHitTest(this.mapView, e);
-    this.mapClick.emit({ clickedPoint: e.mapPoint, clickedGraphics: hitTestGraphics });
+  private _emitMouseClick(e: __esri.MapViewClickEvent) {
+    this._hitTestService
+      .esriHitTest(this.mapView, e)
+      .then((hitTestGraphics) =>
+        this.mapClick.emit({ clickedPoint: e.mapPoint, clickedGraphics: hitTestGraphics })
+      );
   }
 
   private _emitExtentChange(extent: __esri.Extent) {
