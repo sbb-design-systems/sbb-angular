@@ -3,18 +3,16 @@
   expand the user menu.
 </p>
 
-<sbb-usermenu [userName]="user.userName" (loginRequest)="login()">
-  <sbb-dropdown>
-    <a
-      *ngFor="let link of links"
-      sbbDropdownItem
-      [routerLink]="linkGenerator(link.page).routerLink"
-      [queryParams]="linkGenerator(link.page).queryParams"
-      routerLinkActive="sbb-selected"
-    >
-      {{ link.text }}
-    </a>
-    <hr />
-    <button sbbDropdownItem type="button" (click)="logout(user)">Logout</button>
-  </sbb-dropdown>
+<sbb-usermenu [userName]="user.userName" [displayName]="user.displayName" (loginRequest)="login()">
+  <a sbb-usermenu-item [queryParams]="{ page: 0 }" routerLink="." routerLinkActive="sbb-selected">
+    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon> Account
+    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon>
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    <sbb-icon svgIcon="kom:tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
+  </a>
+  <hr />
+  <button sbb-usermenu-item type="button" (click)="logout(user)">
+    <sbb-icon svgIcon="kom:exit-small" class="sbb-icon-fit"></sbb-icon> Logout
+  </button>
 </sbb-usermenu>

@@ -4,24 +4,48 @@
 </p>
 
 <sbb-usermenu [userName]="user.userName" [displayName]="user.displayName" (loginRequest)="login()">
-  <a
-    *ngFor="let link of links"
-    sbb-usermenu-item
-    [routerLink]="linkGenerator(link.page).routerLink"
-    [queryParams]="linkGenerator(link.page).queryParams"
-    routerLinkActive="sbb-selected"
-  >
-    {{ link.text }}
+  <a sbb-usermenu-item [queryParams]="{ page: 0 }" routerLink="." routerLinkActive="sbb-selected">
+    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon> Account
+    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon>
+    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon>
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    <sbb-icon svgIcon="kom:tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
   </a>
   <hr />
+  <button sbb-usermenu-item type="button" (click)="logout(user)">
+    <sbb-icon svgIcon="kom:exit-small" class="sbb-icon-fit"></sbb-icon> Logout
+  </button>
+</sbb-usermenu>
+
+<sbb-usermenu [userName]="user.userName" [displayName]="user.displayName" (loginRequest)="login()">
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <button sbb-usermenu-item disabled>
+    Test disabled
+  </button>
   <button sbb-usermenu-item type="button" (click)="logout(user)">
     Logout
   </button>
 </sbb-usermenu>
 
-<sbb-usermenu [userName]="user.userName" [displayName]="user.displayName" (loginRequest)="login()">
+<sbb-usermenu [userName]="user.userName" (loginRequest)="login()">
   <button sbb-usermenu-item disabled>
     Test disabled
+  </button>
+  <button sbb-usermenu-item type="button" (click)="logout(user)">
+    Logout
+  </button>
+</sbb-usermenu>
+
+<sbb-usermenu [userName]="user.userName" (loginRequest)="login()">
+  <sbb-icon svgIcon="kom:cross-small" *sbbIcon></sbb-icon>
+  <button sbb-usermenu-item>
+    Test
   </button>
   <button sbb-usermenu-item type="button" (click)="logout(user)">
     Logout

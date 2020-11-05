@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SbbDropdownModule } from '@sbb-esta/angular-business/dropdown';
 import { SbbUsermenuModule } from '@sbb-esta/angular-business/usermenu';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
 
@@ -15,7 +16,7 @@ const EXAMPLE_INDEX = {
 };
 
 @NgModule({
-  imports: [CommonModule, RouterModule, SbbDropdownModule, SbbUsermenuModule],
+  imports: [CommonModule, RouterModule, SbbDropdownModule, SbbUsermenuModule, SbbIconModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
   providers: [provideExamples('business', 'usermenu', EXAMPLE_INDEX)],

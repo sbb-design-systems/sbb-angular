@@ -12,15 +12,9 @@ export class UsermenuExampleComponent {
     displayName: 'Walter Scotti',
   };
 
-  links: Array<any> = [
-    { page: 1, text: 'Benutzerkonto' },
-    { page: 2, text: 'Eintrag 2' },
-    { page: 3, text: 'Eintrag 3' },
-  ];
-
-  linkGenerator(page: string) {
+  linkGenerator() {
     return {
-      queryParams: { page: page },
+      queryParams: { page: 0 },
       routerLink: ['.'],
     };
   }
