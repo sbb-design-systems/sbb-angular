@@ -60,7 +60,7 @@
     tabindex="-1"
     class="sbb-usermenu-panel"
     [attr.id]="id + '-panel'"
-    [style.width]="_triggerRect?.width + 'px'"
+    [style.minWidth]="_triggerRect?.width + 'px'"
     [style.minHeight]="_triggerRect?.height + 'px'"
     [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"
   >

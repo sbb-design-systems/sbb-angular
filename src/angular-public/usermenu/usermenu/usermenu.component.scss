@@ -36,19 +36,19 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   outline: 0;
   font-size: 1rem;
   width: 100%;
-  padding: toPx($borderWidth) toPx($borderWidth) 0 toPx($borderWidth);
+  padding: 0 pxToRem($borderWidth);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
       height: pxToRem($triggerHeight * $scalingFactor4k);
       font-size: 1.5rem;
-      padding: toPx($borderWidth4k) toPx($borderWidth4k) 0 toPx($borderWidth4k);
+      padding: 0 pxToRem($borderWidth4k);
     }
 
     @include mq($from: desktop5k) {
       height: pxToRem($triggerHeight * $scalingFactor5k);
       font-size: 2rem;
-      padding: toPx($borderWidth5k) toPx($borderWidth5k) 0 toPx($borderWidth5k);
+      padding: 0 pxToRem($borderWidth5k);
     }
   }
 
@@ -87,16 +87,19 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
     flex-grow: 0;
     flex-shrink: 0;
     padding: 0;
+    margin-top: pxToRem(-$borderWidth / 2);
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
         height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor4k);
         box-shadow: 0 pxToRem($scalingFactor4k) 0 0 $sbbColorCloud; // horizontal line
+        margin-top: pxToRem(-$borderWidth4k / 2);
       }
 
       @include mq($from: desktop5k) {
         height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor5k);
         box-shadow: 0 pxToRem($scalingFactor5k) 0 0 $sbbColorCloud; // horizontal line
+        margin-top: pxToRem(-$borderWidth5k / 2);
       }
     }
   }
