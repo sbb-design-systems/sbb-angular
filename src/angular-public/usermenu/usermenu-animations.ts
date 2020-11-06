@@ -26,7 +26,7 @@ export const sbbUsermenuAnimations: {
       style({
         minWidth: 0,
         maxWidth: AUTO_STYLE,
-        height: '48px', // TODO: 4k 5k
+        height: 0,
         opacity: 0,
       })
     ),
