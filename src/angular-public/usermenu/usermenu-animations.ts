@@ -24,7 +24,8 @@ export const sbbUsermenuAnimations: {
     state(
       'void',
       style({
-        width: '48px', // TODO: start with trigger width
+        minWidth: 0,
+        maxWidth: AUTO_STYLE,
         height: '48px', // TODO: 4k 5k
         opacity: 0,
       })
@@ -32,7 +33,8 @@ export const sbbUsermenuAnimations: {
     state(
       'showing',
       style({
-        width: '{{width}}',
+        minWidth: '{{width}}',
+        maxWidth: '{{width}}',
         height: AUTO_STYLE,
         opacity: 1,
         maxHeight: '100%',

@@ -36,16 +36,19 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   outline: 0;
   font-size: 1rem;
   width: 100%;
+  padding: toPx($borderWidth) toPx($borderWidth) 0 toPx($borderWidth);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
       height: pxToRem($triggerHeight * $scalingFactor4k);
       font-size: 1.5rem;
+      padding: toPx($borderWidth4k) toPx($borderWidth4k) 0 toPx($borderWidth4k);
     }
 
     @include mq($from: desktop5k) {
       height: pxToRem($triggerHeight * $scalingFactor5k);
       font-size: 2rem;
+      padding: toPx($borderWidth5k) toPx($borderWidth5k) 0 toPx($borderWidth5k);
     }
   }
 
@@ -83,6 +86,7 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
     box-shadow: 0 pxToRem(1) 0 0 $sbbColorCloud; // horizontal line
     flex-grow: 0;
     flex-shrink: 0;
+    padding: 0;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -266,20 +270,6 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 
     @include mq($from: desktop5k) {
       margin-right: pxToRem(8 * $scalingFactor5k);
-    }
-  }
-
-  .sbb-usermenu-panel & {
-    margin-right: pxToRem(8 - $borderWidth);
-
-    @include publicOnly() {
-      @include mq($from: desktop4k) {
-        margin-right: pxToRem(8 - $borderWidth4k);
-      }
-
-      @include mq($from: desktop5k) {
-        margin-right: pxToRem(8 - $borderWidth5k);
-      }
     }
   }
 }

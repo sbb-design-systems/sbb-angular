@@ -60,6 +60,7 @@
     tabindex="-1"
     class="sbb-usermenu-panel"
     [attr.id]="id + '-panel'"
+    [style.width]="_triggerRect?.width + 'px'"
     [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"
   >
     <ng-container *ngTemplateOutlet="usermenuTrigger"></ng-container>
