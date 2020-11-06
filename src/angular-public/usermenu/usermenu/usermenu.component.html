@@ -58,12 +58,12 @@
   <div
     #panel
     tabindex="-1"
-    class="sbb-usermenu-panel sbb-scrollbar"
+    class="sbb-usermenu-panel"
     [attr.id]="id + '-panel'"
     [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"
   >
     <ng-container *ngTemplateOutlet="usermenuTrigger"></ng-container>
-    <div class="sbb-usermenu-inner-panel">
+    <div class="sbb-usermenu-inner-panel sbb-scrollbar">
       <ng-content select="a[sbb-usermenu-item],button[sbb-usermenu-item],hr"></ng-content>
     </div>
 

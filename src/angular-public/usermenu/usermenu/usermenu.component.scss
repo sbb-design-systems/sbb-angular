@@ -79,9 +79,10 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   }
 
   .sbb-usermenu-panel & {
-    width: calc(100% + #{$borderWidth});
     height: pxToRem($triggerHeight - $borderWidth);
     box-shadow: 0 pxToRem(1) 0 0 $sbbColorCloud; // horizontal line
+    flex-grow: 0;
+    flex-shrink: 0;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -267,6 +268,20 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
       margin-right: pxToRem(8 * $scalingFactor5k);
     }
   }
+
+  .sbb-usermenu-panel & {
+    margin-right: pxToRem(8 - $borderWidth);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        margin-right: pxToRem(8 - $borderWidth4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-right: pxToRem(8 - $borderWidth5k);
+      }
+    }
+  }
 }
 
 .sbb-usermenu-panel {
@@ -274,9 +289,11 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   box-shadow: autocompleteBoxShadow(1, 1);
   position: absolute;
   right: 0;
-  overflow: hidden;
+  overflow-y: hidden;
   max-width: 100%;
   border-radius: $autocompleteBorderRadius;
+  display: flex;
+  flex-direction: column;
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -298,15 +315,20 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 }
 
 .sbb-usermenu-inner-panel {
-  width: $panelWidth;
+  width: toPx($panelWidth - 2 * $borderWidth);
+  overflow-y: auto;
+
+  .sbb-usermenu-panel.ng-animating & {
+    overflow-y: hidden;
+  }
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
-      width: $panelWidth4k;
+      width: toPx($panelWidth4k - 2 * $borderWidth4k);
     }
 
     @include mq($from: desktop5k) {
-      width: $panelWidth5k;
+      width: toPx($panelWidth5k - 2 * $borderWidth5k);
     }
   }
 }

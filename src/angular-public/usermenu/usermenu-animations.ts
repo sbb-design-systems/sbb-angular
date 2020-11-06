@@ -35,6 +35,7 @@ export const sbbUsermenuAnimations: {
         width: '{{width}}',
         height: AUTO_STYLE,
         opacity: 1,
+        maxHeight: '100%',
       }),
       { params: { width: '288px' } }
     ),
