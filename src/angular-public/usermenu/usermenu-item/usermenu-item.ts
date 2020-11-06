@@ -1,11 +1,7 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { Directive } from '@angular/core';
 
-@Component({
-  // tslint:disable-next-line:component-selector
+@Directive({
   selector: 'a[sbb-usermenu-item], button[sbb-usermenu-item]',
-  templateUrl: './usermenu-item.html',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'sbb-usermenu-item',
   },
