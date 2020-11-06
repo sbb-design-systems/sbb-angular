@@ -1,6 +1,5 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import {
-  CdkConnectedOverlay,
   ConnectedPosition,
   Overlay,
   RepositionScrollStrategy,
@@ -11,6 +10,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ContentChild,
   ElementRef,
   EventEmitter,
   Inject,
@@ -19,12 +19,14 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { Breakpoints } from '@sbb-esta/angular-core';
+import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
+import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, map, takeUntil, tap } from 'rxjs/operators';
+import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
 import { sbbUsermenuAnimations } from '../usermenu-animations';
 
@@ -66,6 +68,7 @@ const OVERLAY_WIDTH_5K = 576;
     'aria-haspopup': 'true',
     '[attr.aria-owns]': 'panelOpen ? id + "-panel" : null',
     '[attr.aria-expanded]': 'panelOpen',
+    '[class.sbb-usermenu-opened]': 'panelOpen',
   },
   animations: [sbbUsermenuAnimations.transformPanel],
 })
@@ -100,6 +103,15 @@ export class SbbUserMenu implements OnInit, OnDestroy {
     },
   ];
 
+  /** The last measured value for the trigger's client bounding rect. */
+  _triggerRect: ClientRect;
+
+  /** desired width of the overlay */
+  _overlayWidth: number = OVERLAY_WIDTH;
+
+  /** Emits whenever the component is destroyed. */
+  private readonly _destroy = new Subject<void>();
+
   /**
    * Name and surname of a user.
    * It is optional.
@@ -115,9 +127,9 @@ export class SbbUserMenu implements OnInit, OnDestroy {
   /** Panel containing the usermenu options. */
   @ViewChild('panel') panel: ElementRef<HTMLElement>;
 
-  /** Overlay pane containing the options. */
-  @ViewChild(CdkConnectedOverlay) overlayDir: CdkConnectedOverlay;
-  _overlayWidth: number = OVERLAY_WIDTH;
+  /** Reference to user provided icon */
+  @ContentChild(SbbIconDirective, { read: TemplateRef })
+  _icon?: TemplateRef<any>;
 
   /** Whether or not the overlay panel is open. */
   get panelOpen(): boolean {
@@ -125,11 +137,10 @@ export class SbbUserMenu implements OnInit, OnDestroy {
   }
   private _panelOpen = false;
 
-  /** The last measured value for the trigger's client bounding rect. */
-  _triggerRect: ClientRect;
-
-  /** Emits whenever the component is destroyed. */
-  private readonly _destroy = new Subject<void>();
+  /** Whether the user is logged in or not. */
+  get _loggedIn(): boolean {
+    return !!this.userName;
+  }
 
   constructor(
     private _viewportRuler: ViewportRuler,
@@ -213,5 +224,13 @@ export class SbbUserMenu implements OnInit, OnDestroy {
       this._panelOpen = false;
       this._changeDetectorRef.markForCheck();
     }
+  }
+
+  toggle(): void {
+    if (this._panelOpen) {
+      this.close();
+      return;
+    }
+    this.open();
   }
 }

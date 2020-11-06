@@ -24,7 +24,7 @@ export const sbbUsermenuAnimations: {
     state(
       'void',
       style({
-        width: 0,
+        width: '48px', // TODO: start with trigger width
         height: '48px', // TODO: 4k 5k
         opacity: 0,
       })
@@ -38,7 +38,6 @@ export const sbbUsermenuAnimations: {
       }),
       { params: { width: '288px' } }
     ),
-    transition('void => *', animate('300ms cubic-bezier(.785,.135,.15,.86)')),
-    transition('* => void', animate('300ms cubic-bezier(.785,.135,.15,.86)')),
+    transition('void <=> *', animate('300ms cubic-bezier(.785,.135,.15,.86)')),
   ]),
 };

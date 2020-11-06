@@ -1,59 +1,43 @@
-<div
-  class="sbb-usermenu-logged-in"
-  tabindex="0"
-  [class.sbb-usermenu-hidden]="!userName"
-  [class.sbb-usermenu-logged-in-active]="panelOpen"
-  (click)="open()"
+<button
+  *ngIf="!_loggedIn"
+  class="sbb-usermenu-trigger sbb-usermenu-logged-off-button"
+  (click)="emitLogin()"
+  type="button"
 >
-  <div
-    class="sbb-usermenu-logged-in-collapsed"
-    [class.sbb-usermenu-logged-in-collapsed-dropdown-expanded]="panelOpen"
+  <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-logged-off-icon"></sbb-icon>
+  <span class="sbb-usermenu-logged-off-label" i18n="Button label for login@@sbbUsermenuLogin"
+    >Login</span
   >
-    <ng-container *ngIf="userName && userName.length">
-      <div class="sbb-usermenu-logged-in-collapsed-user-icon sbb-icon-fit">
-        <div #icon [class.sbb-usermenu-logged-in-collapsed-icon]="icon.children.length">
-          <ng-content select="[sbbIcon]"></ng-content>
-        </div>
-        <div class="sbb-usermenu-logged-in-collapsed-initial-letters" *ngIf="!icon.children.length">
-          <div>{{ getInitialLetters() }}</div>
-        </div>
-      </div>
-      <div
-        class="sbb-usermenu-logged-in-expanded-info-user"
-        [class.sbb-usermenu-logged-in-expanded-info-user-dropdown-open]="panelOpen"
-      >
-        <div
-          class="sbb-usermenu-logged-in-expanded-displayName"
-          [class.sbb-displayName-logged-in-collapsed]="!panelOpen"
-        >
-          {{ displayName || userName }}
-        </div>
-        <div class="sbb-usermenu-logged-in-expanded-username" *ngIf="panelOpen && displayName">
-          {{ userName }}
-        </div>
-      </div>
-      <div
-        class="sbb-usermenu-logged-in-collapsed-arrow sbb-icon-fit"
-        *ngIf="userName && userName.length && !panelOpen"
-      >
-        <sbb-icon svgIcon="kom:chevron-small-down-small"></sbb-icon>
-      </div>
-    </ng-container>
-    <div class="sbb-usermenu-logged-in-expanded-arrow-above">
-      <div class="sbb-usermenu-logged-in-expanded-arrow sbb-icon-fit" *ngIf="panelOpen">
-        <sbb-icon svgIcon="kom:chevron-small-down-small"></sbb-icon>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="sbb-usermenu-logged-off" *ngIf="!userName">
-  <button class="sbb-usermenu-logged-off-button sbb-icon-fit" (click)="emitLogin()" type="button">
-    <sbb-icon svgIcon="kom:user-small"></sbb-icon>
-    <span class="sbb-usermenu-logged-off-label" i18n="Button label for login@@sbbUsermenuLogin"
-      >Login</span
-    >
+</button>
+
+<ng-container *ngIf="_loggedIn">
+  <ng-container *ngTemplateOutlet="usermenuTrigger"></ng-container>
+</ng-container>
+
+<ng-template #usermenuTrigger>
+  <button class="sbb-usermenu-trigger sbb-usermenu-trigger-open" (click)="toggle()">
+    <span class="sbb-usermenu-identification">
+      <ng-container *ngIf="_icon">
+        <ng-container *ngTemplateOutlet="_icon"></ng-container>
+      </ng-container>
+      <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-standard-icon"></sbb-icon>
+      <span *ngIf="!_icon" class="sbb-usermenu-initial-letters" aria-hidden="true">
+        {{ getInitialLetters() }}
+      </span>
+    </span>
+
+    <span class="sbb-usermenu-user-info">
+      <span class="sbb-usermenu-user-info-display-name">
+        {{ displayName || userName }}
+      </span>
+      <span class="sbb-usermenu-user-info-name" *ngIf="displayName">
+        {{ userName }}
+      </span>
+    </span>
+
+    <sbb-icon svgIcon="kom:chevron-small-down-small" class="sbb-usermenu-arrow"></sbb-icon>
   </button>
-</div>
+</ng-template>
 
 <ng-template
   cdk-connected-overlay
@@ -68,7 +52,6 @@
   [cdkConnectedOverlayOrigin]="{ elementRef: _elementRef }"
   [cdkConnectedOverlayOpen]="panelOpen"
   [cdkConnectedOverlayPositions]="_positions"
-  [cdkConnectedOverlayOffsetX]="0"
   (backdropClick)="close()"
   (detach)="close()"
 >
@@ -79,11 +62,12 @@
     [attr.id]="id + '-panel'"
     [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"
   >
+    <ng-container *ngTemplateOutlet="usermenuTrigger"></ng-container>
     <div class="sbb-usermenu-inner-panel">
       <ng-content select="a[sbb-usermenu-item],button[sbb-usermenu-item],hr"></ng-content>
     </div>
 
-    <!---     (keydown)="_handleKeydown($event)"
+    <!---     (keydown)="_handleKeydown($event)" TODO
  --->
   </div>
 </ng-template>

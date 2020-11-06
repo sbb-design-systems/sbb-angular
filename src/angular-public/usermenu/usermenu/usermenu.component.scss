@@ -1,370 +1,300 @@
 @import '../../../angular-core/styles/common';
-$borderWidth: 1px;
+$textColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
+
+$triggerHeight: 48px;
+
+$borderWidth: if($sbbBusiness, 1px, 2px);
 $borderWidth4k: 3px;
 $borderWidth5k: 4px;
-
-$border: solid $borderWidth $sbbColorGraphite;
-$borderActive: if($sbbBusiness, solid 1px $sbbColorIron, solid 2px $sbbColorGrey);
-$textColor: if($sbbBusiness, $sbbColorIron, $sbbColorMetal);
-
-$border4k: solid $borderWidth4k $sbbColorGraphite;
-$border5k: solid $borderWidth5k $sbbColorGraphite;
-$borderActive4k: solid toPx($borderWidth4k) $sbbColorGrey;
-$borderActive5k: solid toPx($borderWidth5k) $sbbColorGrey;
 
 $panelWidth: 288px;
 $panelWidth4k: toPx($panelWidth * $scalingFactor4k);
 $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 
 .sbb-usermenu {
-  cursor: pointer;
   display: inline-block;
+  max-width: $panelWidth;
 
-  .sbb-usermenu-logged-in {
-    position: relative;
-    align-items: center;
-    display: flex;
-    width: $panelWidth;
-    height: 48px;
-    line-height: 1.533;
-    border: if($sbbBusiness, 1px solid transparent, 2px solid transparent);
-    background-color: $sbbColorWhite;
-
-    @include publicOnly() {
-      @include mq($from: desktop4k) {
-        width: $panelWidth4k;
-        height: toPx(72);
-        border: 3px solid transparent;
-      }
-
-      @include mq($from: desktop5k) {
-        width: $panelWidth5k;
-        height: toPx(96);
-        border: 4px solid transparent;
-      }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      max-width: $panelWidth4k;
     }
 
-    &.sbb-usermenu-hidden {
-      display: none;
+    @include mq($from: desktop5k) {
+      max-width: $panelWidth5k;
+    }
+  }
+}
+
+.sbb-usermenu-trigger {
+  @include buttonResetFrameless;
+  display: flex;
+  align-items: center;
+  height: pxToRem($triggerHeight);
+  color: $textColor;
+  cursor: pointer;
+  outline: 0;
+  font-size: 1rem;
+  width: 100%;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      height: pxToRem($triggerHeight * $scalingFactor4k);
+      font-size: 1.5rem;
     }
 
-    &.sbb-usermenu-logged-in-active {
-      border: $borderActive;
-      outline: 0;
-
-      @include businessOnly() {
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-      }
-
-      @include publicOnly() {
-        @include mq($from: desktop4k) {
-          border: $borderActive4k;
-        }
-
-        @include mq($from: desktop5k) {
-          border: $borderActive5k;
-        }
-      }
-
-      .sbb-usermenu-logged-in-collapsed {
-        padding-left: if($sbbBusiness, 4px, 18px);
-        @include publicOnly() {
-          @include mq($from: desktop4k) {
-            padding-left: toPx(24);
-          }
-          @include mq($from: desktop5k) {
-            padding-left: toPx(32);
-          }
-        }
-      }
-    }
-
-    .sbb-usermenu-logged-in-collapsed {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      transition: 0.1s ease-in-out padding;
-      padding-left: 4px;
-      @include mq($from: tablet) {
-        padding-left: if($sbbBusiness, 4px, 18px);
-      }
-      @include publicOnly() {
-        @include mq($from: desktop4k) {
-          padding-left: toPx(24);
-        }
-        @include mq($from: desktop5k) {
-          padding-left: toPx(32);
-        }
-      }
-
-      .sbb-usermenu-logged-in-collapsed-user-icon {
-        flex: 0 0 32px;
-        width: 118px;
-
-        @include publicOnly() {
-          @include mq($from: desktop4k) {
-            flex-basis: toPx(32 * $scalingFactor4k);
-          }
-
-          @include mq($from: desktop5k) {
-            flex-basis: toPx(32 * $scalingFactor5k);
-          }
-        }
-
-        .sbb-usermenu-logged-in-collapsed-initial-letters {
-          border-radius: 50%;
-          background-color: $sbbColorCloud;
-          font-family: $fontFamilyBase;
-          font-size: pxToRem(15);
-          color: $textColor;
-          font-weight: 700;
-          width: 32px;
-          height: 32px;
-          text-align: center;
-          position: relative;
-
-          @include publicOnly() {
-            @include mq($from: desktop4k) {
-              font-size: pxToRem(23);
-              width: toPx(32 * $scalingFactor4k);
-              height: toPx(32 * $scalingFactor4k);
-            }
-
-            @include mq($from: desktop5k) {
-              font-size: pxToRem(30);
-              width: toPx(32 * $scalingFactor5k);
-              height: toPx(32 * $scalingFactor5k);
-            }
-          }
-
-          > div {
-            @include absoluteCenterXY;
-          }
-        }
-      }
-
-      &.sbb-usermenu-logged-in-collapsed-dropdown-expanded {
-        width: 100%;
-      }
-
-      .sbb-usermenu-logged-in-collapsed-arrow {
-        color: $textColor;
-        width: toPx(24);
-        height: toPx(24);
-        position: relative;
-        pointer-events: none;
-        flex-shrink: 0;
-
-        @include mq($to: tabletPortrait) {
-          display: none;
-        }
-
-        @include publicOnly() {
-          @include mq($from: desktop4k) {
-            width: toPx(24 * $scalingFactor4k);
-            height: toPx(24 * $scalingFactor4k);
-          }
-
-          @include mq($from: desktop5k) {
-            width: toPx(24 * $scalingFactor5k);
-            height: toPx(24 * $scalingFactor5k);
-          }
-        }
-      }
-
-      .sbb-usermenu-logged-in-expanded-info-user {
-        padding-left: 4px;
-        max-width: calc(100% - 58px);
-        overflow: hidden;
-
-        @include publicOnly() {
-          @include mq($from: desktop4k) {
-            padding-left: toPx(4 * $scalingFactor4k);
-            max-width: calc(100% - #{58px * $scalingFactor4k});
-          }
-
-          @include mq($from: desktop5k) {
-            padding-left: toPx(4 * $scalingFactor5k);
-            max-width: calc(100% - #{58px * $scalingFactor5k});
-          }
-        }
-
-        &.sbb-usermenu-logged-in-expanded-info-user-dropdown-open {
-          flex-grow: 1;
-        }
-
-        .sbb-usermenu-logged-in-expanded-username,
-        .sbb-usermenu-logged-in-expanded-displayName {
-          font-family: $fontSbbRoman;
-          color: $textColor;
-          @include ellipsis();
-        }
-
-        .sbb-usermenu-logged-in-expanded-username {
-          font-size: pxToRem(13);
-
-          @include publicOnly() {
-            @include mq($from: desktop4k) {
-              font-size: pxToRem(13 * $scalingFactor4k);
-            }
-
-            @include mq($from: desktop5k) {
-              font-size: pxToRem(13 * $scalingFactor5k);
-            }
-          }
-        }
-
-        .sbb-usermenu-logged-in-expanded-displayName {
-          font-size: pxToRem(15);
-
-          @include publicOnly() {
-            @include mq($from: desktop4k) {
-              font-size: pxToRem(23);
-            }
-
-            @include mq($from: desktop5k) {
-              font-size: pxToRem(30);
-            }
-          }
-
-          &.sbb-displayName-logged-in-collapsed {
-            @include mq($to: tabletPortrait) {
-              display: none;
-            }
-          }
-        }
-      }
-
-      .sbb-usermenu-logged-in-expanded-arrow-above {
-        flex-basis: 24px;
-
-        .sbb-usermenu-logged-in-expanded-arrow {
-          color: $textColor;
-          width: toPx(24);
-          height: toPx(24);
-          transform: rotate(180deg);
-
-          @include publicOnly() {
-            @include mq($from: desktop4k) {
-              width: toPx(24 * $scalingFactor4k);
-              height: toPx(24 * $scalingFactor4k);
-            }
-
-            @include mq($from: desktop5k) {
-              width: toPx(24 * $scalingFactor5k);
-              height: toPx(24 * $scalingFactor5k);
-            }
-          }
-        }
-      }
+    @include mq($from: desktop5k) {
+      height: pxToRem($triggerHeight * $scalingFactor5k);
+      font-size: 2rem;
     }
   }
 
-  .sbb-usermenu-logged-off {
-    display: flex;
-    align-items: center;
-    position: relative;
-    height: 48px;
-    width: 156px;
-    color: $textColor;
+  &:hover,
+  &:focus {
+    color: $sbbColorRed125;
+  }
 
-    @include publicOnly() {
-      @include mq($from: desktop4k) {
-        height: toPx(72);
-        width: toPx(103);
-      }
+  .sbb-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    flex-grow: 0;
 
-      @include mq($from: desktop5k) {
-        height: toPx(96);
-        width: toPx(134);
-      }
-    }
-
-    &:hover {
-      .sbb-usermenu-logged-off-button {
-        color: $sbbColorRed125;
-      }
-    }
-
-    .sbb-usermenu-logged-off-button {
-      @include buttonResetFrameless;
-      position: relative;
+    svg {
       width: 100%;
       height: 100%;
-      color: inherit;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
+    }
 
-      @include publicOnly() {
-        @include mq($from: desktop4k) {
-          font-size: toPx(14 * $scalingFactor4k);
-        }
-
-        @include mq($from: desktop5k) {
-          font-size: toPx(14 * $scalingFactor5k);
-        }
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        height: toPx(24 * $scalingFactor4k);
+        width: toPx(24 * $scalingFactor4k);
       }
 
-      .sbb-icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 0.9rem;
-        flex-shrink: 0;
-        flex-grow: 0;
-
-        @include publicOnly() {
-          @include mq($from: desktop4k) {
-            height: toPx(36);
-            width: toPx(36);
-          }
-
-          @include mq($from: desktop5k) {
-            height: toPx(48);
-            width: toPx(48);
-          }
-        }
-      }
-
-      .sbb-usermenu-logged-off-label {
-        display: none;
-        @include mq($from: tablet) {
-          display: inline;
-        }
+      @include mq($from: desktop5k) {
+        height: toPx(24 * $scalingFactor5k);
+        width: toPx(24 * $scalingFactor5k);
       }
     }
   }
 
-  .sbb-usermenu-logged-in-collapsed-icon {
-    img {
-      border-radius: 50%;
-    }
-    &,
-    img {
-      width: 32px;
-      height: 32px;
+  .sbb-usermenu-panel & {
+    width: calc(100% + #{$borderWidth});
+    height: pxToRem($triggerHeight - $borderWidth);
+    box-shadow: 0 pxToRem(1) 0 0 $sbbColorCloud; // horizontal line
 
-      @include publicOnly() {
-        @include mq($from: desktop4k) {
-          width: toPx(32 * $scalingFactor4k);
-          height: toPx(32 * $scalingFactor4k);
-        }
-
-        @include mq($from: desktop5k) {
-          width: toPx(32 * $scalingFactor5k);
-          height: toPx(32 * $scalingFactor5k);
-        }
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor4k);
+        box-shadow: 0 pxToRem($scalingFactor4k) 0 0 $sbbColorCloud; // horizontal line
       }
+
+      @include mq($from: desktop5k) {
+        height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor5k);
+        box-shadow: 0 pxToRem($scalingFactor5k) 0 0 $sbbColorCloud; // horizontal line
+      }
+    }
+  }
+}
+
+.sbb-usermenu-logged-off-icon {
+  margin-right: pxToRem(4);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      margin-right: pxToRem(4 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-right: pxToRem(4 * $scalingFactor5k);
+    }
+  }
+}
+
+.sbb-usermenu-logged-off-label {
+  display: none;
+  @include mq($from: tablet) {
+    display: inline;
+  }
+}
+
+.sbb-usermenu-trigger-open {
+  @if ($sbbBusiness) {
+    .sbb-icon:not(.sbb-usermenu-standard-icon) {
+      display: none;
+    }
+  }
+}
+
+.sbb-usermenu-identification {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding-left: pxToRem(12);
+  padding-right: pxToRem(8);
+  color: $textColor;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      padding-left: pxToRem(12 * $scalingFactor4k);
+      padding-right: pxToRem(8 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      padding-left: pxToRem(12 * $scalingFactor5k);
+      padding-right: pxToRem(8 * $scalingFactor5k);
+    }
+  }
+
+  img {
+    border-radius: 50%;
+    border: $borderWidth solid $sbbColorCloud;
+    width: 32px;
+    height: 32px;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border: $borderWidth4k solid $sbbColorCloud;
+        width: toPx(32 * $scalingFactor4k);
+        height: toPx(32 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border: $borderWidth5k solid $sbbColorCloud;
+        width: toPx(32 * $scalingFactor5k);
+        height: toPx(32 * $scalingFactor5k);
+      }
+    }
+  }
+}
+
+.sbb-usermenu-standard-icon.sbb-icon {
+  @if not($sbbBusiness) {
+    display: none;
+  }
+}
+
+.sbb-usermenu-initial-letters {
+  @if ($sbbBusiness) {
+    display: none;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: $sbbColorCloud;
+  font-family: $fontFamilyBase;
+  font-size: pxToRem(15);
+  font-weight: 700;
+  color: $sbbColorMetal;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(23);
+      width: toPx(32 * $scalingFactor4k);
+      height: toPx(32 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(30);
+      width: toPx(32 * $scalingFactor5k);
+      height: toPx(32 * $scalingFactor5k);
+    }
+  }
+}
+
+.sbb-usermenu-user-info {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  color: $textColor;
+}
+
+.sbb-usermenu-user-info-display-name,
+.sbb-usermenu-user-info-name {
+  text-align: left;
+  @include ellipsis();
+}
+
+.sbb-usermenu-user-info-name {
+  display: none;
+  .sbb-usermenu-panel & {
+    display: inline-block;
+  }
+
+  color: if($sbbBusiness, $sbbColorIron, $sbbColorMetal);
+  font-size: pxToRem(13);
+  line-height: pxToRem(14);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(13 * $scalingFactor4k);
+      line-height: pxToRem(14 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(13 * $scalingFactor5k);
+      line-height: pxToRem(14 * $scalingFactor5k);
+    }
+  }
+}
+
+.sbb-usermenu-arrow {
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin-right: pxToRem(8);
+  transition: transform 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+  .sbb-usermenu-opened &,
+  .sbb-overlay-panel & {
+    transform: rotate(-180deg);
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      margin-right: pxToRem(8 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-right: pxToRem(8 * $scalingFactor5k);
     }
   }
 }
 
 .sbb-usermenu-panel {
   @include autocompleteBase();
+  box-shadow: autocompleteBoxShadow(1, 1);
   position: absolute;
   right: 0;
   overflow: hidden;
+  max-width: 100%;
+  border-radius: $autocompleteBorderRadius;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      box-shadow: autocompleteBoxShadow(1, $scalingFactor4k);
+      border-radius: $autocompleteBorderRadius * $scalingFactor4k;
+    }
+    @include mq($from: desktop5k) {
+      box-shadow: autocompleteBoxShadow(1, $scalingFactor5k);
+      border-radius: $autocompleteBorderRadius * $scalingFactor5k;
+    }
+  }
+
+  hr {
+    margin: pxToRem(4) 0;
+    padding: 0;
+    border: none;
+    border-top: solid 1px $sbbColorCloud;
+  }
 }
 
 .sbb-usermenu-inner-panel {
@@ -391,11 +321,4 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
     opacity: 0.5;
     user-select: none;
   }
-}
-
-hr {
-  margin: 4px 0;
-  padding: 0;
-  border: none;
-  border-top: solid 1px $sbbColorCloud;
 }
