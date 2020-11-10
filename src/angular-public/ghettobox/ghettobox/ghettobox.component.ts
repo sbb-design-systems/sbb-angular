@@ -67,7 +67,7 @@ export class SbbGhettobox {
   }
   private _routerLink: any[] | string = '';
 
-  /** Retrive the routerLink from the proper source */
+  /** Retrieve the routerLink from the proper source */
   get link(): RouterLink | SbbLinkGeneratorResult {
     return this._routerLinkDirective || (this.ghettobox ? this.ghettobox.link : undefined);
   }
