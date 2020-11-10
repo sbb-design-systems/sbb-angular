@@ -73,14 +73,8 @@ const OVERLAY_WIDTH_5K = 576;
   animations: [sbbUsermenuAnimations.transformPanel],
 })
 export class SbbUserMenu implements OnInit, OnDestroy {
-  /** Identifier of a usermenu. */
+  /** Identifier of the usermenu. */
   id: string = `sbb-usermenu-${counter++}`;
-
-  /** Factory function used to create a scroll strategy for this usermenu. */
-  private _scrollStrategyFactory: () => ScrollStrategy;
-
-  /** Strategy that will be used to handle scrolling while the usermenu panel is open. */
-  _scrollStrategy: ScrollStrategy;
 
   /**
    * This position config ensures that the top "start" corner of the overlay
@@ -106,16 +100,10 @@ export class SbbUserMenu implements OnInit, OnDestroy {
   /** The last measured value for the trigger's client bounding rect. */
   _triggerRect: ClientRect;
 
-  /** desired width of the overlay */
+  /** Desired width of the overlay */
   _overlayWidth: number = OVERLAY_WIDTH;
 
-  /** Emits whenever the component is destroyed. */
-  private readonly _destroy = new Subject<void>();
-
-  /**
-   * Name and surname of a user.
-   * It is optional.
-   */
+  /** Optional name and surname of an user. */
   @Input() displayName?: string;
 
   /** Username of a user. */
@@ -141,6 +129,30 @@ export class SbbUserMenu implements OnInit, OnDestroy {
   get _loggedIn(): boolean {
     return !!this.userName;
   }
+
+  /** Initial letters of user's displayName (or userName if no displayName is provided). */
+  get _initialLetters(): string {
+    const name = this.displayName ? this.displayName : this.userName;
+    const names: string[] = name.split(' ');
+    if (names.length === 1) {
+      return names[0].substring(0, 2).toLocaleUpperCase();
+    }
+
+    return names
+      .reduce((current, next) => {
+        return current[0] + next[0];
+      })
+      .toLocaleUpperCase();
+  }
+
+  /** Strategy that will be used to handle scrolling while the usermenu panel is open. */
+  _scrollStrategy: ScrollStrategy;
+
+  /** Factory function used to create a scroll strategy for this usermenu. */
+  private _scrollStrategyFactory: () => ScrollStrategy;
+
+  /** Emits whenever the component is destroyed. */
+  private readonly _destroy = new Subject<void>();
 
   constructor(
     private _viewportRuler: ViewportRuler,
@@ -187,26 +199,8 @@ export class SbbUserMenu implements OnInit, OnDestroy {
     this._destroy.complete();
   }
 
-  emitLogin() {
+  _emitLogin() {
     this.loginRequest.emit();
-  }
-
-  /**
-   * Get the initial letters of user's displayName.
-   * @return Initial letters of user's displayName.
-   */
-  getInitialLetters(): string {
-    const name = this.displayName ? this.displayName : this.userName;
-    const names: string[] = name.split(' ');
-    if (names.length === 1) {
-      return names[0].substring(0, 2).toLocaleUpperCase();
-    }
-
-    return names
-      .reduce((current, next) => {
-        return current[0] + next[0];
-      })
-      .toLocaleUpperCase();
   }
 
   /** Opens the overlay panel */

@@ -1,7 +1,7 @@
 <button
   *ngIf="!_loggedIn"
   class="sbb-usermenu-trigger sbb-usermenu-logged-off-button"
-  (click)="emitLogin()"
+  (click)="_emitLogin()"
   type="button"
 >
   <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-logged-off-icon"></sbb-icon>
@@ -22,7 +22,7 @@
       </ng-container>
       <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-standard-icon"></sbb-icon>
       <span *ngIf="!_icon" class="sbb-usermenu-initial-letters" aria-hidden="true">
-        {{ getInitialLetters() }}
+        {{ _initialLetters }}
       </span>
     </span>
 
