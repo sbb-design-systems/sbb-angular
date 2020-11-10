@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
@@ -131,7 +131,13 @@ describe('SbbUserMenu', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [SbbUserMenu],
-        imports: [CommonModule, SbbIconModule, SbbIconTestingModule, OverlayModule],
+        imports: [
+          CommonModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          OverlayModule,
+          NoopAnimationsModule,
+        ],
         providers: [SBB_USERMENU_SCROLL_STRATEGY_PROVIDER],
       }).compileComponents();
     })
@@ -144,6 +150,40 @@ describe('SbbUserMenu', () => {
 
   it('should create', () => {
     expect(userMenuComponent).toBeTruthy();
+  });
+
+  it('should open and close panel', () => {
+    // login
+    userMenuComponent.userName = 'userName';
+    fixtureUserMenu.detectChanges();
+    expect(userMenuComponent.panelOpen).toBeFalse();
+
+    userMenuComponent.open();
+    fixtureUserMenu.detectChanges();
+
+    expect(userMenuComponent.panelOpen).toBeTrue();
+
+    userMenuComponent.close();
+    fixtureUserMenu.detectChanges();
+
+    expect(userMenuComponent.panelOpen).toBeFalse();
+  });
+
+  it('should open and close panel using toggle method', () => {
+    // login
+    userMenuComponent.userName = 'userName';
+    fixtureUserMenu.detectChanges();
+    expect(userMenuComponent.panelOpen).toBeFalse();
+
+    userMenuComponent.toggle();
+    fixtureUserMenu.detectChanges();
+
+    expect(userMenuComponent.panelOpen).toBeTrue();
+
+    userMenuComponent.toggle();
+    fixtureUserMenu.detectChanges();
+
+    expect(userMenuComponent.panelOpen).toBeFalse();
   });
 });
 
@@ -159,7 +199,7 @@ describe('Test Component with custom image', () => {
           CommonModule,
           SbbIconModule,
           SbbIconTestingModule,
-          BrowserAnimationsModule,
+          NoopAnimationsModule,
         ],
         declarations: [UsermenuTestComponentWithCustomImage],
       }).compileComponents();
@@ -278,7 +318,7 @@ describe('Test Component with only userName', () => {
           CommonModule,
           SbbIconModule,
           SbbIconTestingModule,
-          BrowserAnimationsModule,
+          NoopAnimationsModule,
         ],
         declarations: [UsermenuTestComponentWithOnlyUsername],
       }).compileComponents();
