@@ -1,3 +1,4 @@
+import { AnimationEvent } from '@angular/animations';
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { DOWN_ARROW, ENTER, ESCAPE, hasModifierKey, SPACE, UP_ARROW } from '@angular/cdk/keycodes';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
@@ -73,9 +74,6 @@ const OVERLAY_WIDTH_5K = 576;
     class: 'sbb-usermenu',
     role: 'menu',
     '[attr.id]': 'id',
-    'aria-haspopup': 'true',
-    '[attr.aria-owns]': 'panelOpen ? id + "-panel" : null',
-    '[attr.aria-expanded]': 'panelOpen',
     '[class.sbb-usermenu-opened]': 'panelOpen',
   },
   animations: [sbbUsermenuAnimations.transformPanel],
@@ -248,7 +246,6 @@ export class SbbUserMenu implements OnInit, OnDestroy, AfterContentInit {
       this._triggerRect = this._elementRef.nativeElement.getBoundingClientRect();
       this._resetActiveItem();
       this._changeDetectorRef.markForCheck();
-      Promise.resolve().then(() => this.focus());
     }
   }
 
@@ -282,11 +279,17 @@ export class SbbUserMenu implements OnInit, OnDestroy, AfterContentInit {
 
   /** Closes the overlay panel and focuses the host element */
   _closeAndFocus(): void {
-    if (!this._panelOpen) {
-      return;
+    if (this._panelOpen) {
+      this.close();
+      this.focus();
     }
-    this.close();
-    this.focus();
+  }
+
+  /** Set focus to close button upon opening the panel */
+  _handlePanelOpen(event: AnimationEvent) {
+    if (event.toState === 'showing') {
+      this.focus();
+    }
   }
 
   /**

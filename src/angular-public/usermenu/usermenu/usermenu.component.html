@@ -16,17 +16,24 @@
   *ngIf="_loggedIn"
   class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
   (click)="open()"
+  i18n-aria-label="Aria label to open user menu@@sbbUsermenuOpenPanel"
+  attr.aria-label="Logged in as {{
+    displayName || userName
+  }}. Click or press enter to open user menu."
+  aria-haspopup="true"
+  [attr.aria-controls]="panelOpen ? id + '-panel' : null"
+  [attr.aria-expanded]="panelOpen"
 >
   <ng-container *ngTemplateOutlet="usermenuTriggerContent"></ng-container>
 </button>
 
 <ng-template #usermenuTriggerContent>
-  <span class="sbb-usermenu-identification">
+  <span class="sbb-usermenu-identification" aria-hidden="true">
     <ng-container *ngIf="_icon">
       <ng-container *ngTemplateOutlet="_icon"></ng-container>
     </ng-container>
     <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-standard-icon"></sbb-icon>
-    <span *ngIf="!_icon" class="sbb-usermenu-initial-letters" aria-hidden="true">
+    <span *ngIf="!_icon" class="sbb-usermenu-initial-letters">
       {{ _initialLetters }}
     </span>
   </span>
@@ -61,17 +68,24 @@
 >
   <div
     tabindex="-1"
+    role="menu"
     class="sbb-usermenu-panel"
     [attr.id]="id + '-panel'"
     [style.minWidth]="_triggerRect?.width + 'px'"
     [style.minHeight]="_triggerRect?.height + 'px'"
     [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"
+    (@transformPanel.start)="_handlePanelOpen($event)"
     (keydown)="_handleKeydown($event)"
+    (click)="close()"
   >
     <button
       #triggerCloseButton
       class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
       (click)="_closeAndFocus()"
+      i18n-aria-label="Aria label to close user menu@@sbbUsermenuClosePanel"
+      attr.aria-label="Logged in as {{
+        displayName || userName
+      }}. Click or press enter to close user menu."
     >
       <ng-container *ngTemplateOutlet="usermenuTriggerContent"></ng-container>
     </button>
