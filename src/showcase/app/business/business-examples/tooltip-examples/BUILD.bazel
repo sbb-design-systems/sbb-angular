@@ -15,7 +15,7 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/button",
-        "//src/angular-business/field",
+        "//src/angular-business/form-field",
         "//src/angular-business/tooltip",
         "//src/angular-core/icon",
         "//src/showcase/app/shared",

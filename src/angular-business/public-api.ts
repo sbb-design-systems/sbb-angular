@@ -12,7 +12,7 @@ export * from '@sbb-esta/angular-business/contextmenu';
 export * from '@sbb-esta/angular-business/datepicker';
 export * from '@sbb-esta/angular-business/dialog';
 export * from '@sbb-esta/angular-business/dropdown';
-export * from '@sbb-esta/angular-business/field';
+export * from '@sbb-esta/angular-business/form-field';
 export * from '@sbb-esta/angular-business/file-selector';
 export * from '@sbb-esta/angular-business/header';
 export * from '@sbb-esta/angular-business/input';

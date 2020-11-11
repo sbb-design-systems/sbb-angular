@@ -51,7 +51,7 @@ import {
   dispatchMouseEvent,
 } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbOption, SbbOptionSelectionChange } from '@sbb-esta/angular-public/option';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -65,7 +65,7 @@ import { SbbSelect } from './select.component';
   selector: 'sbb-basic-select',
   template: `
     <div [style.height.px]="heightAbove"></div>
-    <sbb-field label="Label">
+    <sbb-form-field label="Label">
       <sbb-select
         placeholder="Food"
         [formControl]="control"
@@ -80,7 +80,7 @@ import { SbbSelect } from './select.component';
           {{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
     <div [style.height.px]="heightBelow"></div>
   `,
 })
@@ -112,13 +112,13 @@ class BasicSelect {
 @Component({
   selector: 'sbb-ng-model-select',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Food" ngModel [disabled]="isDisabled">
         <sbb-option *ngFor="let food of foods" [value]="food.value"
           >{{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class NgModelSelect {
@@ -136,18 +136,18 @@ class NgModelSelect {
 @Component({
   selector: 'sbb-many-selects',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="First">
         <sbb-option value="one">one</sbb-option>
         <sbb-option value="two">two</sbb-option>
       </sbb-select>
-    </sbb-field>
-    <sbb-field>
+    </sbb-form-field>
+    <sbb-form-field>
       <sbb-select placeholder="Second">
         <sbb-option value="three">three</sbb-option>
         <sbb-option value="four">four</sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class ManySelects {}
@@ -156,13 +156,13 @@ class ManySelects {}
   selector: 'sbb-ng-if-select',
   template: `
     <div *ngIf="isShowing">
-      <sbb-field>
+      <sbb-form-field>
         <sbb-select placeholder="Food I want to eat right now" [formControl]="control">
           <sbb-option *ngFor="let food of foods" [value]="food.value">
             {{ food.viewValue }}
           </sbb-option>
         </sbb-select>
-      </sbb-field>
+      </sbb-form-field>
     </div>
   `,
 })
@@ -181,11 +181,11 @@ class NgIfSelect {
 @Component({
   selector: 'sbb-select-with-change-event',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select (selectionChange)="changeListener($event)">
         <sbb-option *ngFor="let food of foods" [value]="food">{{ food }}</sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class SelectWithChangeEvent {
@@ -206,13 +206,13 @@ class SelectWithChangeEvent {
 @Component({
   selector: 'sbb-select-init-without-options',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Food I want to eat right now" [formControl]="control">
         <sbb-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class SelectInitWithoutOptions {
@@ -233,7 +233,7 @@ class SelectInitWithoutOptions {
 
 @Component({
   selector: 'sbb-custom-select-accessor',
-  template: ` <sbb-field><sbb-select></sbb-select></sbb-field> `,
+  template: ` <sbb-form-field><sbb-select></sbb-select></sbb-form-field> `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -254,13 +254,13 @@ class CustomSelectAccessor implements ControlValueAccessor {
   selector: 'sbb-basic-select-on-push',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Food" [formControl]="control">
         <sbb-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class BasicSelectOnPush {
@@ -276,13 +276,13 @@ class BasicSelectOnPush {
   selector: 'sbb-basic-select-on-push-preselected',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Food" [formControl]="control">
         <sbb-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class BasicSelectOnPushPreselected {
@@ -297,13 +297,13 @@ class BasicSelectOnPushPreselected {
 @Component({
   selector: 'sbb-multi-select',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select multiple placeholder="Food" [formControl]="control">
         <sbb-option *ngFor="let food of foods" [value]="food.value"
           >{{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class MultiSelect {
@@ -325,16 +325,16 @@ class MultiSelect {
 
 @Component({
   selector: 'sbb-select-with-plain-tabindex',
-  template: ` <sbb-field><sbb-select tabindex="5"></sbb-select></sbb-field> `,
+  template: ` <sbb-form-field><sbb-select tabindex="5"></sbb-select></sbb-form-field> `,
 })
 class SelectWithPlainTabindex {}
 
 @Component({
   selector: 'sbb-select-early-sibling-access',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select #select="sbbSelect"></sbb-select>
-    </sbb-field>
+    </sbb-form-field>
     <div *ngIf="select.selected"></div>
   `,
 })
@@ -343,11 +343,11 @@ class SelectEarlyAccessSibling {}
 @Component({
   selector: 'sbb-basic-select-initially-hidden',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select [style.display]="isVisible ? 'block' : 'none'">
         <sbb-option value="value">There are no other options</sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class BasicSelectInitiallyHidden {
@@ -357,24 +357,24 @@ class BasicSelectInitiallyHidden {
 @Component({
   selector: 'sbb-basic-select-no-placeholder',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select>
         <sbb-option value="value">There are no other options</sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class BasicSelectNoPlaceholder {}
 
 @Component({
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select [formControl]="control">
         <sbb-option *ngFor="let food of foods" [value]="food.value"
           >{{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class FalsyValueSelect {
@@ -389,7 +389,7 @@ class FalsyValueSelect {
 @Component({
   selector: 'sbb-select-with-groups',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
         <sbb-option-group
           *ngFor="let group of pokemonTypes"
@@ -402,7 +402,7 @@ class FalsyValueSelect {
         </sbb-option-group>
         <sbb-option value="mime-11">Mr. Mime</sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class SelectWithGroups {
@@ -449,7 +449,7 @@ class SelectWithGroups {
 @Component({
   selector: 'sbb-select-with-groups',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
         <sbb-option-group *ngFor="let group of pokemonTypes" [label]="group.name">
           <ng-container *ngFor="let pokemon of group.pokemon">
@@ -457,7 +457,7 @@ class SelectWithGroups {
           </ng-container>
         </sbb-option-group>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class SelectWithGroupsAndNgContainer {
@@ -473,9 +473,9 @@ class SelectWithGroupsAndNgContainer {
 @Component({
   template: `
     <form>
-      <sbb-field>
+      <sbb-form-field>
         <sbb-select [(ngModel)]="value"></sbb-select>
-      </sbb-field>
+      </sbb-form-field>
     </form>
   `,
 })
@@ -486,14 +486,14 @@ class InvalidSelectInForm {
 @Component({
   template: `
     <form [formGroup]="formGroup">
-      <sbb-field>
+      <sbb-form-field>
         <sbb-select placeholder="Food" formControlName="food">
           <sbb-option value="steak-0">Steak</sbb-option>
           <sbb-option value="pizza-1">Pizza</sbb-option>
         </sbb-select>
 
-        <sbb-form-error>This field is required</sbb-form-error>
-      </sbb-field>
+        <sbb-error>This field is required</sbb-error>
+      </sbb-form-field>
     </form>
   `,
 })
@@ -508,13 +508,13 @@ class SelectInsideFormGroup {
 
 @Component({
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFood">
         <sbb-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class BasicSelectWithoutForms {
@@ -530,13 +530,13 @@ class BasicSelectWithoutForms {
 
 @Component({
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFood">
         <sbb-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class BasicSelectWithoutFormsPreselected {
@@ -551,13 +551,13 @@ class BasicSelectWithoutFormsPreselected {
 
 @Component({
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Food" [(value)]="selectedFoods" multiple>
         <sbb-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class BasicSelectWithoutFormsMultiple {
@@ -574,7 +574,7 @@ class BasicSelectWithoutFormsMultiple {
 @Component({
   selector: 'sbb-ng-model-compare-with',
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select
         [ngModel]="selectedFood"
         (ngModelChange)="setFoodByCopy($event)"
@@ -582,7 +582,7 @@ class BasicSelectWithoutFormsMultiple {
       >
         <sbb-option *ngFor="let food of foods" [value]="food">{{ food.viewValue }}</sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class NgModelCompareWithSelect {
@@ -627,13 +627,13 @@ class NgModelCompareWithSelect {
 
 @Component({
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-select placeholder="Food" [(ngModel)]="selectedFoods">
         <sbb-option *ngFor="let food of foods" [value]="food.value"
           >{{ food.viewValue }}
         </sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class SingleSelectWithPreselectedArrayValues {
@@ -651,13 +651,13 @@ class SingleSelectWithPreselectedArrayValues {
 
 @Component({
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <sbb-label>Select a thing</sbb-label>
 
       <sbb-select [placeholder]="placeholder">
         <sbb-option value="thing">A thing</sbb-option>
       </sbb-select>
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class SelectWithFormFieldLabel {
@@ -684,7 +684,7 @@ describe('SbbSelect', () => {
       imports: [
         SbbSelectModule,
         SbbIconTestingModule,
-        SbbFieldModule,
+        SbbFormFieldModule,
         ReactiveFormsModule,
         FormsModule,
         NoopAnimationsModule,
@@ -2715,8 +2715,9 @@ describe('SbbSelect', () => {
         fixture.componentInstance.isShowing = true;
         fixture.detectChanges();
 
+        const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
+        select.style.width = '300px';
         const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-        trigger.style.width = '300px';
 
         trigger.click();
         fixture.detectChanges();
@@ -2728,7 +2729,7 @@ describe('SbbSelect', () => {
           );
 
           const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-          expect(pane.style.width).toEqual('362px');
+          expect(pane.style.width).toEqual('304px');
 
           expect(fixture.componentInstance.select.panelOpen).toBe(true);
           expect(overlayContainerElement.textContent).toContain('Steak');
@@ -2825,8 +2826,9 @@ describe('SbbSelect', () => {
       const fixture = TestBed.createComponent(BasicSelectInitiallyHidden);
       fixture.detectChanges();
 
+      const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
+      select.style.width = '200px';
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-      trigger.style.width = '200px';
       fixture.componentInstance.isVisible = true;
       fixture.detectChanges();
 
@@ -2834,7 +2836,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
 
       const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-      expect(pane.style.width).toBe('262px');
+      expect(pane.style.width).toBe('204px');
     });
   });
 
@@ -3588,7 +3590,7 @@ describe('SbbSelect', () => {
     }));
   });
 
-  describe('sbb-field integration', () => {
+  describe('sbb-form-field integration', () => {
     beforeEach(waitForAsync(() => configureSbbSelectTestingModule([BasicSelect])));
 
     let fixture: ComponentFixture<BasicSelect>;
@@ -3600,7 +3602,7 @@ describe('SbbSelect', () => {
       selectComponent = fixture.componentInstance.select;
     });
 
-    it('should forward focus and open panel when clicking sbb-field label', () => {
+    it('should forward focus and open panel when clicking sbb-form-field label', () => {
       const label = fixture.debugElement.query(By.css('label'));
 
       spyOn(selectComponent, 'focus');

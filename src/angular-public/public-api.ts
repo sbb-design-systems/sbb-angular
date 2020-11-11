@@ -13,7 +13,7 @@ export * from '@sbb-esta/angular-public/checkbox';
 export * from '@sbb-esta/angular-public/checkbox-panel';
 export * from '@sbb-esta/angular-public/datepicker';
 export * from '@sbb-esta/angular-public/dropdown';
-export * from '@sbb-esta/angular-public/field';
+export * from '@sbb-esta/angular-public/form-field';
 export * from '@sbb-esta/angular-public/file-selector';
 export * from '@sbb-esta/angular-public/ghettobox';
 export * from '@sbb-esta/angular-public/input';

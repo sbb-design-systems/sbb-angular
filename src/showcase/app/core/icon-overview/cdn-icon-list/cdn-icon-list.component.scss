@@ -13,7 +13,7 @@ sbb-cdn-icon {
   @include mq($from: desktop) {
     display: flex;
 
-    sbb-field {
+    sbb-form-field {
       flex: 1 0 0;
       margin-right: 15px;
     }

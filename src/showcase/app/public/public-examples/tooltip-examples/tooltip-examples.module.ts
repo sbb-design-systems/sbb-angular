@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbButtonModule } from '@sbb-esta/angular-public/button';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbLinksModule } from '@sbb-esta/angular-public/links';
 import { SbbTooltipModule } from '@sbb-esta/angular-public/tooltip';
 
@@ -32,7 +32,7 @@ const EXAMPLE_INDEX = {
     ReactiveFormsModule,
     SbbIconModule,
     SbbButtonModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbLinksModule,
     SbbTooltipModule,
   ],

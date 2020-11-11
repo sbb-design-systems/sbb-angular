@@ -46,6 +46,7 @@ const MODULES = [
     'datepicker',
     'dropdown',
     'field',
+    'form-field',
     'file-selector',
     'input',
     'loading',

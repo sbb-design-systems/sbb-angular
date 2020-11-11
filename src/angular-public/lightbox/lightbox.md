@@ -6,9 +6,9 @@ The lightbox can be used to open modal dialogs as see below
   <div class="sbbsc-lightbox-example-1-content">
     <h1 sbbLightboxTitle>Hi {{data.name}}</h1>
     <p>What's your favorite animal?</p>
-    <sbb-field mode="long">
+    <sbb-form-field mode="long">
       <input type="text" [(ngModel)]="data.animal" cdkFocusInitial />
-    </sbb-field>
+    </sbb-form-field>
     <div class="sbbsc-block">
       <button sbbButton mode="ghost" (click)="noThanks()" style="margin-right: 1em;">
         No Thanks

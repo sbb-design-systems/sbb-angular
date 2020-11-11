@@ -12,7 +12,7 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbAutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
-import { SbbFieldModule, SbbFormError } from '@sbb-esta/angular-business/field';
+import { SbbError, SbbFormFieldModule } from '@sbb-esta/angular-business/form-field';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import {
@@ -30,15 +30,15 @@ import { SbbChipInput } from './chip-input.component';
   selector: 'sbb-test-reactive-chip-input',
   template: `
     <form [formGroup]="formGroup">
-      <sbb-field label="Label" mode="long">
+      <sbb-form-field label="Label" class="sbb-form-field-long">
         <sbb-chip-input formControlName="chip" [sbbAutocomplete]="auto"></sbb-chip-input>
         <sbb-autocomplete #auto="sbbAutocomplete">
           <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
         </sbb-autocomplete>
-        <sbb-form-error *ngIf="formGroup.get('chip')?.errors?.required">
+        <sbb-error *ngIf="formGroup.get('chip')?.errors?.required">
           This field is required.
-        </sbb-form-error>
-      </sbb-field>
+        </sbb-error>
+      </sbb-form-field>
     </form>
   `,
 })
@@ -56,17 +56,17 @@ class ChipInputReactiveFormsTestComponent {
 @Component({
   selector: 'sbb-test-forms-chip-input',
   template: `
-    <sbb-field label="Label">
+    <sbb-form-field label="Label">
       <sbb-chip-input
         [(ngModel)]="value"
         [required]="true"
         [disabled]="disabled"
         #input="ngModel"
       ></sbb-chip-input>
-      <sbb-form-error *ngIf="input.invalid && (input.dirty || input.touched)"
-        >This field is required.</sbb-form-error
+      <sbb-error *ngIf="input.invalid && (input.dirty || input.touched)"
+        >This field is required.</sbb-error
       >
-    </sbb-field>
+    </sbb-form-field>
   `,
 })
 class ChipInputFormsTestComponent {
@@ -97,7 +97,7 @@ describe('SbbChipInput', () => {
             SbbIconModule,
             SbbIconTestingModule,
             ReactiveFormsModule,
-            SbbFieldModule,
+            SbbFormFieldModule,
           ],
         }).compileComponents();
       })
@@ -135,7 +135,7 @@ describe('SbbChipInput', () => {
       component.formGroup.get('chip')!.setValue([]);
       fixture.detectChanges();
 
-      const errorText = fixture.debugElement.query(By.directive(SbbFormError));
+      const errorText = fixture.debugElement.query(By.directive(SbbError));
       expect(component.formGroup.get('chip')!.invalid).toBe(true);
       expect(errorText).toBeFalsy();
     });
@@ -147,11 +147,11 @@ describe('SbbChipInput', () => {
       inputElement.focus();
 
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeFalsy();
+      expect(fixture.debugElement.query(By.directive(SbbError))).toBeFalsy();
       dispatchFakeEvent(inputElement, 'blur');
 
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeTruthy();
+      expect(fixture.debugElement.query(By.directive(SbbError))).toBeTruthy();
     });
 
     it('should disable chip input and chips', () => {
@@ -166,7 +166,7 @@ describe('SbbChipInput', () => {
       expect(chipInputComponent.classes['sbb-chip-input-disabled']).toBe(true);
     });
 
-    it('should forward focus when clicking sbb-field label', () => {
+    it('should forward focus when clicking sbb-form-field label', () => {
       const label = fixture.debugElement.query(By.css('label'));
       spyOn(inputElement, 'focus');
 
@@ -205,7 +205,7 @@ describe('SbbChipInput', () => {
             SbbIconModule,
             SbbIconTestingModule,
             FormsModule,
-            SbbFieldModule,
+            SbbFormFieldModule,
           ],
         }).compileComponents();
       })
@@ -245,7 +245,7 @@ describe('SbbChipInput', () => {
     }));
 
     it('should hide form error if invalid but untouched', () => {
-      const errorText = fixture.debugElement.query(By.directive(SbbFormError));
+      const errorText = fixture.debugElement.query(By.directive(SbbError));
       expect(component.inputModel.invalid).toBe(true);
       expect(errorText).toBeFalsy();
     });
@@ -254,11 +254,11 @@ describe('SbbChipInput', () => {
       inputElement.focus();
 
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeFalsy();
+      expect(fixture.debugElement.query(By.directive(SbbError))).toBeFalsy();
       dispatchFakeEvent(inputElement, 'blur');
 
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeTruthy();
+      expect(fixture.debugElement.query(By.directive(SbbError))).toBeTruthy();
     });
 
     it('should disable chip input and chips', () => {
@@ -273,7 +273,7 @@ describe('SbbChipInput', () => {
       expect(chipInputComponent.classes['sbb-chip-input-disabled']).toBe(true);
     });
 
-    it('should forward focus when clicking sbb-field label', () => {
+    it('should forward focus when clicking sbb-form-field label', () => {
       const label = fixture.debugElement.query(By.css('label'));
       spyOn(inputElement, 'focus');
 

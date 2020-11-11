@@ -1,7 +1,7 @@
 <form [formGroup]="form" novalidate>
-  <sbb-field label="Time Input">
+  <sbb-form-field label="Time Input">
     <input formControlName="time" sbbTimeInput sbbInput />
-  </sbb-field>
+  </sbb-form-field>
 
   <h4>Properties</h4>
   <pre>{{ form.get('time')?.value | json }}</pre>

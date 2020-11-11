@@ -14,9 +14,9 @@ directive from `ReactiveFormsModule` to track the value of the input.
 _my-comp.html_
 
 ```html
-<sbb-field>
+<sbb-form-field>
   <input type="text" [formControl]="myControl" />
-</sbb-field>
+</sbb-form-field>
 ```
 
 Next, create the autocomplete panel and the options displayed inside it. Each option should be
@@ -38,9 +38,9 @@ to the input's `sbbAutocomplete` property.
 _my-comp.html_
 
 ```html
-<sbb-field>
+<sbb-form-field>
   <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto" />
-</sbb-field>
+</sbb-form-field>
 
 <sbb-autocomplete #auto="sbbAutocomplete">
   <sbb-option *ngFor="let option of options" [value]="option">{{option}}</sbb-option>

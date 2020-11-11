@@ -16,7 +16,7 @@ ng_module(
     deps = [
         "//src/angular-business/button",
         "//src/angular-business/checkbox",
-        "//src/angular-business/field",
+        "//src/angular-business/form-field",
         "//src/angular-core/icon",
         "//src/showcase/app/shared",
         "@npm//@angular/common",

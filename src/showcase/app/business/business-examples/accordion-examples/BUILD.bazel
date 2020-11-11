@@ -18,7 +18,7 @@ ng_module(
         "//src/angular-business/accordion",
         "//src/angular-business/button",
         "//src/angular-business/checkbox",
-        "//src/angular-business/field",
+        "//src/angular-business/form-field",
         "//src/angular-business/radio-button",
         "//src/angular-core/icon",
         "//src/showcase/app/shared",

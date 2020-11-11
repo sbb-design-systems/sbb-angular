@@ -59,6 +59,7 @@ class NgModule {
         this.moduleName = `@sbb-esta/${packageName}/${moduleName}`;
         this.hasMarkdown = this._dir.subfiles.includes(core.fragment(`${core.basename(this.path)}.md`));
         this.dependencies = this._findDependencies();
+        this.hasNgDevMode = this._tsFiles.some((f) => f.content.toString().includes('ngDevMode'));
         this.hasTests = !!this._specFiles.length;
         this.testDependencies = this.hasTests ? this._findTestDependencies() : [];
         this.hasSassLibrary = !!this._scssLibaryFiles.length;

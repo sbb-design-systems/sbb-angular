@@ -1,0 +1,38 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "form-field-examples",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/button",
+        "//src/angular-business/checkbox",
+        "//src/angular-business/datepicker",
+        "//src/angular-business/form-field",
+        "//src/angular-business/select",
+        "//src/angular-business/time-input",
+        "//src/angular-business/tooltip",
+        "//src/showcase/app/shared",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

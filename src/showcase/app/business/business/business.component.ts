@@ -11,7 +11,7 @@ export class BusinessComponent {
     checkbox: 'Checkbox',
     chip: 'Chip Input',
     datepicker: 'Datepicker',
-    field: 'Field',
+    'form-field': 'Form Field',
     'file-selector': 'File Selector',
     'radio-button': 'Radiobutton',
     select: 'Select',

@@ -166,6 +166,9 @@ export abstract class SbbTooltipBase implements OnDestroy {
 
   onClick(event: Event) {
     event.stopPropagation();
+    // Used to prevent IE11 from forwarding to the input,
+    // if sbb-tooltip is placed inside sbb-label.
+    event.preventDefault();
     if (this.overlayAttached) {
       this.close(true);
     } else {

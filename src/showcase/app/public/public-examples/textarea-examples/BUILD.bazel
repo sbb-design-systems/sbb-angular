@@ -19,7 +19,7 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-public/checkbox",
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "//src/angular-public/textarea",
         "//src/showcase/app/shared",
         "@npm//@angular/common",

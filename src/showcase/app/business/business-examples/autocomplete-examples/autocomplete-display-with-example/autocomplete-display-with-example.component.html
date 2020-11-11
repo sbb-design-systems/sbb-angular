@@ -1,6 +1,6 @@
-<sbb-field>
+<sbb-form-field>
   <input sbbInput type="text" [formControl]="myControl" [sbbAutocomplete]="auto" />
-</sbb-field>
+</sbb-form-field>
 <sbb-autocomplete [displayWith]="formatOption" #auto="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
     {{ option.label }}

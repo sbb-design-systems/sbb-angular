@@ -10,8 +10,8 @@ import { CheckboxExamplesModule } from './checkbox-examples/checkbox-examples.mo
 import { CheckboxPanelExamplesModule } from './checkbox-panel-examples/checkbox-panel-examples.module';
 import { DatepickerExamplesModule } from './datepicker-examples/datepicker-examples.module';
 import { DropdownExamplesModule } from './dropdown-examples/dropdown-examples.module';
-import { FieldExamplesModule } from './field-examples/field-examples.module';
 import { FileSelectorExamplesModule } from './file-selector-examples/file-selector-examples.module';
+import { FormFieldExamplesModule } from './form-field-examples/form-field-examples.module';
 import { GhettoboxExamplesModule } from './ghettobox-examples/ghettobox-examples.module';
 import { LightboxExamplesModule } from './lightbox-examples/lightbox-examples.module';
 import { LinksExamplesModule } from './links-examples/links-examples.module';
@@ -44,7 +44,7 @@ const EXAMPLES = [
   CheckboxPanelExamplesModule,
   DatepickerExamplesModule,
   DropdownExamplesModule,
-  FieldExamplesModule,
+  FormFieldExamplesModule,
   FileSelectorExamplesModule,
   GhettoboxExamplesModule,
   LightboxExamplesModule,

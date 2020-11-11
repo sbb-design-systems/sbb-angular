@@ -32,7 +32,7 @@ import {
   MockNgZone,
   typeInElement,
 } from '@sbb-esta/angular-core/testing';
-import { SbbField, SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormField, SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import {
   SbbOption,
   SbbOptionModule,
@@ -85,7 +85,7 @@ class SimpleAutocompleteComponent implements OnDestroy {
   trigger: SbbAutocompleteTrigger;
   @ViewChild(SbbAutocomplete, { static: true })
   panel: SbbAutocomplete;
-  @ViewChild(SbbField, { static: true }) formField: SbbField;
+  @ViewChild(SbbFormField, { static: true }) formField: SbbFormField;
   @ViewChildren(SbbOption) options: QueryList<SbbOption>;
 
   numbers = [
@@ -121,9 +121,9 @@ class SimpleAutocompleteComponent implements OnDestroy {
 
 @Component({
   template: `
-    <sbb-field *ngIf="isVisible">
-      <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl" />
-    </sbb-field>
+    <sbb-form-field *ngIf="isVisible">
+      <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl" sbbInput />
+    </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -156,13 +156,14 @@ class NgIfAutocompleteComponent {
 
 @Component({
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <input
         placeholder="Number"
         [sbbAutocomplete]="auto"
         (input)="_handleInput($event.target?.value)"
+        sbbInput
       />
-    </sbb-field>
+    </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
@@ -186,14 +187,15 @@ class AutocompleteWithoutFormsComponent {
 
 @Component({
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <input
         placeholder="Number"
         [sbbAutocomplete]="auto"
         [(ngModel)]="selectedNumber"
         (ngModelChange)="_handleInput($event)"
+        sbbInput
       />
-    </sbb-field>
+    </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
@@ -218,9 +220,9 @@ class AutocompleteWithNgModelComponent {
 
 @Component({
   template: `
-    <sbb-field>
-      <input placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber" />
-    </sbb-field>
+    <sbb-form-field>
+      <input placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber" sbbInput />
+    </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let number of numbers" [value]="number">
@@ -237,9 +239,9 @@ class AutocompleteWithNumbersComponent {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <sbb-field>
-      <input type="text" [sbbAutocomplete]="auto" />
-    </sbb-field>
+    <sbb-form-field>
+      <input type="text" [sbbAutocomplete]="auto" sbbInput />
+    </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
@@ -301,9 +303,9 @@ class AutocompleteWithoutPanelComponent {
 
 @Component({
   template: `
-    <sbb-field>
-      <input placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber" />
-    </sbb-field>
+    <sbb-form-field>
+      <input placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber" sbbInput />
+    </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="optionSelected($event)">
       <sbb-option *ngFor="let num of numbers" [value]="num">
@@ -335,9 +337,9 @@ class PlainAutocompleteInputWithFormControlComponent {
 
 @Component({
   template: `
-    <sbb-field>
+    <sbb-form-field>
       <input type="number" [sbbAutocomplete]="auto" [(ngModel)]="selectedValue" sbbInput />
-    </sbb-field>
+    </sbb-form-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let value of values" [value]="value">{{ value }}</sbb-option>
@@ -365,9 +367,9 @@ class AutocompleteWithNativeAutocompleteAttributeComponent {
 class InputWithoutAutocompleteAndDisabledComponent {}
 
 @Component({
-  template: ` <sbb-field>
+  template: ` <sbb-form-field>
       <input type="text" sbbInput [(ngModel)]="value" [sbbAutocomplete]="auto" />
-    </sbb-field>
+    </sbb-form-field>
     <sbb-autocomplete #auto="sbbAutocomplete" [localeNormalizer]="normalizer">
       <sbb-option *ngFor="let option of options" [value]="option">
         {{ option }}
@@ -403,7 +405,7 @@ describe('SbbAutocomplete', () => {
     TestBed.configureTestingModule({
       imports: [
         SbbAutocompleteModule,
-        SbbFieldModule,
+        SbbFormFieldModule,
         FormsModule,
         ReactiveFormsModule,
         SbbOptionModule,

@@ -17,7 +17,7 @@ ng_module(
     deps = [
         "//src/angular-business/autocomplete",
         "//src/angular-business/checkbox",
-        "//src/angular-business/field",
+        "//src/angular-business/form-field",
         "//src/angular-business/pagination",
         "//src/angular-business/select",
         "//src/angular-business/table",

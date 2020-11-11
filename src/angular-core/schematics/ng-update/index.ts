@@ -11,6 +11,7 @@ import { ProjectType } from '@schematics/angular/utility/workspace-models';
 import { addIconCdnProvider } from '../ng-add';
 
 import { ClassNamesMigration } from './migrations/class-names';
+import { FormFieldMigration } from './migrations/form-field-migration';
 import { IconMigration } from './migrations/icon-migration';
 import { sbbAngularUpgradeData } from './upgrade-data';
 
@@ -49,7 +50,7 @@ export function updateToV11(): Rule {
   patchClassNamesMigration();
   return createMigrationSchematicRule(
     TargetVersion.V11,
-    [IconMigration],
+    [IconMigration, FormFieldMigration],
     sbbAngularUpgradeData,
     onMigrationComplete
   );

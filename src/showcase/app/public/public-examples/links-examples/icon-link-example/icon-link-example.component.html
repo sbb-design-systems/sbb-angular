@@ -1,13 +1,13 @@
 <a sbbLink [mode]="linkMode" [icon]="linkIcon" href="#">Description</a>
 <h4 class="sbbsc-block">Properties</h4>
-<sbb-field label="Mode" mode="medium" class="sbbsc-block">
+<sbb-form-field label="Mode" mode="medium" class="sbbsc-block">
   <select [(ngModel)]="linkMode" sbbInput>
     <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
   </select>
-</sbb-field>
+</sbb-form-field>
 <br />
-<sbb-field label="Icon" mode="medium">
+<sbb-form-field label="Icon" mode="medium">
   <select [(ngModel)]="linkIcon" sbbInput>
     <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
   </select>
-</sbb-field>
+</sbb-form-field>

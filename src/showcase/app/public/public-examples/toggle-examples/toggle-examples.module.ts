@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbDatepickerModule } from '@sbb-esta/angular-public/datepicker';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbToggleModule } from '@sbb-esta/angular-public/toggle';
 
 import { provideExamples } from '../../../shared/example-provider';
@@ -23,7 +23,7 @@ const EXAMPLE_INDEX = {
     ReactiveFormsModule,
     SbbIconModule,
     SbbDatepickerModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbToggleModule,
   ],
   declarations: EXAMPLES,

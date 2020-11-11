@@ -14,7 +14,7 @@ ng_module(
     assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "//src/angular-public/links",
         "//src/showcase/app/shared",
         "@npm//@angular/common",

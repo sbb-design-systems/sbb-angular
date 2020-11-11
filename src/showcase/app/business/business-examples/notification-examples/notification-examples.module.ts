@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SbbFieldModule } from '@sbb-esta/angular-business/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-business/form-field';
 import { SbbNotificationModule } from '@sbb-esta/angular-business/notification';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
@@ -31,7 +31,7 @@ const EXAMPLE_INDEX = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbNotificationModule,
     SbbIconModule,
   ],

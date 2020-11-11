@@ -28,7 +28,7 @@ ng_module(
         "//src/angular-business/tooltip",
         "//src/angular-core/icon",
         "//src/angular-public/checkbox",
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "//src/angular-public/loading",
         "//src/angular-public/pagination",
         "//src/angular-public/select",

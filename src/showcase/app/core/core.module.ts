@@ -9,7 +9,7 @@ import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { SbbTooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbLoadingModule } from '@sbb-esta/angular-public/loading';
 import { SbbPaginationModule } from '@sbb-esta/angular-public/pagination';
 import { SbbSelectModule } from '@sbb-esta/angular-public/select';
@@ -50,7 +50,7 @@ import { IconOverviewComponent } from './icon-overview/icon-overview.component';
     SbbCheckboxModule,
     ReactiveFormsModule,
     SbbSelectModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbPaginationModule,
     SbbSidebarModule,
     SbbAccordionModule,

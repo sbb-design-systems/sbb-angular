@@ -32,7 +32,7 @@ ng_test_library(
     deps = [
         ":time-input",
         "//src/angular-core/testing",
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "@npm//@angular/platform-browser",
     ],
 )

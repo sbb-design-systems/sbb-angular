@@ -11,11 +11,11 @@
 <sbb-paginator [pageSize]="pageSize" #paginator></sbb-paginator>
 
 <h4>Properties</h4>
-<sbb-field label="Page Size" mode="short">
+<sbb-form-field label="Page Size" mode="short">
   <input sbbInput type="number" [(ngModel)]="pageSize" [min]="1" />
-</sbb-field>
+</sbb-form-field>
 <br />
-<sbb-field label="Count of rows" mode="short">
+<sbb-form-field label="Count of rows" mode="short">
   <input
     sbbInput
     type="number"
@@ -24,4 +24,4 @@
     [min]="0"
     [max]="20"
   />
-</sbb-field>
+</sbb-form-field>

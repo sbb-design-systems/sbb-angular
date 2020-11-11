@@ -24,6 +24,7 @@ export class NgModule {
   moduleName: string;
   hasMarkdown: boolean;
   dependencies: string[];
+  hasNgDevMode: boolean;
   hasTests: boolean;
   testDependencies: string[];
   hasSassLibrary: boolean;
@@ -51,6 +52,7 @@ export class NgModule {
     this.moduleName = `@sbb-esta/${packageName}/${moduleName}`;
     this.hasMarkdown = this._dir.subfiles.includes(fragment(`${basename(this.path)}.md`));
     this.dependencies = this._findDependencies();
+    this.hasNgDevMode = this._tsFiles.some((f) => f.content.toString().includes('ngDevMode'));
     this.hasTests = !!this._specFiles.length;
     this.testDependencies = this.hasTests ? this._findTestDependencies() : [];
     this.hasSassLibrary = !!this._scssLibaryFiles.length;

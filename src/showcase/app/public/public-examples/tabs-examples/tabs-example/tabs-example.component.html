@@ -45,7 +45,7 @@
   * Navigate with &#8592; and &#8593; for left, &#8594; and &#8595; for right
 </small>
 <h4 class="sbbsc-block">Properties</h4>
-<sbb-field label="Set data-set for tabs content / tab pill">
+<sbb-form-field label="Set data-set for tabs content / tab pill">
   <select
     [(ngModel)]="dataSet"
     (ngModelChange)="onChangeOfDataSet($event)"
@@ -54,7 +54,7 @@
   >
     <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
   </select>
-</sbb-field>
+</sbb-form-field>
 <div class="sbb-checkbox-group-vertical">
   <sbb-checkbox value="disabled" [(ngModel)]="disabled">Set a tab disabled</sbb-checkbox>
   <sbb-checkbox value="disabled" [(ngModel)]="removed">Remove a tab</sbb-checkbox>

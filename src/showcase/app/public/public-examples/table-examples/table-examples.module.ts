@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular-public/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbRadioButtonModule } from '@sbb-esta/angular-public/radio-button';
 import { SbbTableModule } from '@sbb-esta/angular-public/table';
 
@@ -24,7 +24,7 @@ const EXAMPLE_INDEX = {
     ReactiveFormsModule,
     SbbButtonModule,
     SbbCheckboxModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbRadioButtonModule,
     SbbTableModule,
   ],

@@ -8,7 +8,6 @@ import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { SbbButtonModule } from '@sbb-esta/angular-public/button';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
 
 import { SbbTooltipModule } from '../tooltip.module';
 
@@ -20,11 +19,7 @@ import { SbbTooltipComponent } from './tooltip.component';
   template: `
     <sbb-tooltip #t1 (opened)="onOpen($event)" (closed)="onClose($event)">
       <p>Dies ist ein Tooltip mit einer Schaltfläche im Inneren.</p>
-      <sbb-field mode="long">
-        <button mode="secondary" sbbButton (click)="t1.close(true)">
-          Diesen Tooltip schließen
-        </button>
-      </sbb-field>
+      <button mode="secondary" sbbButton (click)="t1.close(true)">Diesen Tooltip schließen</button>
     </sbb-tooltip>
   `,
 })
@@ -39,11 +34,7 @@ class TooltipTestComponent {
   template: `
     <sbb-tooltip #t1 (opened)="onOpen($event)" (closed)="onClose($event)">
       <p>Dies ist ein Tooltip mit einer Schaltfläche im Inneren.</p>
-      <sbb-field mode="long">
-        <button mode="secondary" sbbButton (click)="t1.close(true)">
-          Diesen Tooltip schließen
-        </button>
-      </sbb-field>
+      <button mode="secondary" sbbButton (click)="t1.close(true)">Diesen Tooltip schließen</button>
     </sbb-tooltip>
     <sbb-tooltip #t2 (opened)="onOpen($event)" (closed)="onClose($event)">
       <p>Dies ist ein weiterer Tooltip mit einem Link!</p>
@@ -91,7 +82,7 @@ describe('SbbTooltip using mock component for single tooltip', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTooltipModule, SbbFieldModule, SbbButtonModule, SbbIconTestingModule],
+        imports: [SbbTooltipModule, SbbButtonModule, SbbIconTestingModule],
         declarations: [TooltipTestComponent],
       }).compileComponents();
     })
@@ -178,7 +169,7 @@ describe('SbbTooltip using mock component for double tooltip', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTooltipModule, SbbFieldModule, SbbIconTestingModule],
+        imports: [SbbTooltipModule, SbbIconTestingModule],
         declarations: [DoubleTooltipTestComponent],
       }).compileComponents();
     })

@@ -9,7 +9,7 @@ import {
   dispatchMouseEvent,
   typeInElement,
 } from '@sbb-esta/angular-core/testing';
-import { SbbFieldModule, SbbFormError } from '@sbb-esta/angular-public/field';
+import { SbbError, SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 
 import { SbbTextareaModule } from '../textarea.module';
 
@@ -41,12 +41,12 @@ class TextareaTestComponent {
   selector: 'sbb-textarea-sbb-field',
   template: `
     <form [formGroup]="form">
-      <sbb-field label="Textarea">
+      <sbb-form-field label="Textarea">
         <sbb-textarea formControlName="textarea" [maxlength]="200" [minlength]="20"></sbb-textarea>
-        <sbb-form-error *ngIf="form.get('textarea').errors?.minlength"
-          >A length of 20 chars is required!</sbb-form-error
+        <sbb-error *ngIf="form.get('textarea').errors?.minlength"
+          >A length of 20 chars is required!</sbb-error
         >
-      </sbb-field>
+      </sbb-form-field>
     </form>
   `,
 })
@@ -233,7 +233,7 @@ describe('SbbTextarea digits counter', () => {
   });
 });
 
-describe('SbbTextarea reactive forms in sbb-field behaviour', () => {
+describe('SbbTextarea reactive forms in sbb-form-field behaviour', () => {
   let component: TextareaSbbFieldTestComponent;
   let fixture: ComponentFixture<TextareaSbbFieldTestComponent>;
   let sbbTextareaComponent: DebugElement;
@@ -242,7 +242,7 @@ describe('SbbTextarea reactive forms in sbb-field behaviour', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbTextareaModule, ReactiveFormsModule, FormsModule, SbbFieldModule],
+        imports: [SbbTextareaModule, ReactiveFormsModule, FormsModule, SbbFormFieldModule],
         declarations: [TextareaSbbFieldTestComponent],
       }).compileComponents();
     })
@@ -256,7 +256,7 @@ describe('SbbTextarea reactive forms in sbb-field behaviour', () => {
     fixture.detectChanges();
   });
 
-  it('should forward focus when clicking sbb-field label', () => {
+  it('should forward focus when clicking sbb-form-field label', () => {
     const label = fixture.debugElement.query(By.css('label'));
     spyOn(textarea, 'focus');
 
@@ -271,12 +271,12 @@ describe('SbbTextarea reactive forms in sbb-field behaviour', () => {
     textarea.focus();
 
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeFalsy();
+    expect(fixture.debugElement.query(By.directive(SbbError))).toBeFalsy();
 
     dispatchFakeEvent(textarea, 'blur');
 
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.directive(SbbFormError))).toBeTruthy();
+    expect(fixture.debugElement.query(By.directive(SbbError))).toBeTruthy();
   });
 
   it('should be disabled', () => {

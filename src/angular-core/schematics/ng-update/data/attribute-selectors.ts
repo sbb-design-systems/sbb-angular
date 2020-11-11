@@ -1,3 +1,14 @@
-import { AttributeSelectorUpgradeData, VersionChanges } from '@angular/cdk/schematics';
+import {
+  AttributeSelectorUpgradeData,
+  TargetVersion,
+  VersionChanges,
+} from '@angular/cdk/schematics';
 
-export const attributeSelectors: VersionChanges<AttributeSelectorUpgradeData> = {};
+export const attributeSelectors: VersionChanges<AttributeSelectorUpgradeData> = {
+  [TargetVersion.V11]: [
+    {
+      pr: '',
+      changes: [{ replace: 'sbbFormError', replaceWith: 'sbbError' }],
+    },
+  ],
+};

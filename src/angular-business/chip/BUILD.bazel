@@ -59,7 +59,7 @@ ng_test_library(
     deps = [
         ":chip",
         "//src/angular-business/autocomplete",
-        "//src/angular-business/field",
+        "//src/angular-business/form-field",
         "//src/angular-core/icon",
         "//src/angular-core/icon/testing",
         "//src/angular-core/testing",

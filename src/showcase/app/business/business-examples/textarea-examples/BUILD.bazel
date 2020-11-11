@@ -19,7 +19,7 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/checkbox",
-        "//src/angular-business/field",
+        "//src/angular-business/form-field",
         "//src/angular-business/textarea",
         "//src/showcase/app/shared",
         "@npm//@angular/common",

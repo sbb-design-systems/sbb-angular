@@ -7,22 +7,22 @@ user.
 You can use select component with sbb style using `<sbb-select>` and `<sbb-option>` as seen below
 
 ```html
-<sbb-field mode="long">
+<sbb-form-field mode="long">
   <sbb-label>Lieblingsessen</sbb-label>
   <sbb-select placeholder="Lieblingsessen" [formControl]="basicExampleFormControl">
     <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
   </sbb-select>
-</sbb-field>
+</sbb-form-field>
 ```
 
 You can also use the native `<select>` which is styled with the SBB style guide.
 
 ```html
-<sbb-field label="Lieblingsessen">
+<sbb-form-field label="Lieblingsessen">
   <select [formControl]="nativeExampleFormControl" sbbInput>
     <option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</option>
   </select>
-</sbb-field>
+</sbb-form-field>
 ```
 
 ### Multiple Selection
@@ -33,7 +33,7 @@ multiple values at once.
 
 ```html
 <h4>Multiple Example</h4>
-<sbb-field mode="long">
+<sbb-form-field mode="long">
   <sbb-label>Viele Lieblingsgerichte</sbb-label>
   <sbb-select
     placeholder="Beliebteste Lebensmittel"
@@ -42,7 +42,7 @@ multiple values at once.
   >
     <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
   </sbb-select>
-</sbb-field>
+</sbb-form-field>
 ```
 
 ### Creating groups of options
@@ -52,7 +52,7 @@ The name of the group can be set using the label property of `<sbb-option-group>
 
 ```html
 <h4>With option groups</h4>
-<sbb-field mode="long">
+<sbb-form-field mode="long">
   <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
   <sbb-select
     placeholder="Lebensmittel aus der ganzen Welt"
@@ -64,7 +64,7 @@ The name of the group can be set using the label property of `<sbb-option-group>
       >
     </sbb-option-group>
   </sbb-select>
-</sbb-field>
+</sbb-form-field>
 ```
 
 The `<sbb-option-group>` can be configured to allow multiple values in each group options to
@@ -74,7 +74,7 @@ of `<sbb-option-group>`.
 
 ```html
 <h4>Multiple with option groups</h4>
-<sbb-field mode="long">
+<sbb-form-field mode="long">
   <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
   <sbb-select
     placeholder="Lebensmittel aus der ganzen Welt"
@@ -88,7 +88,7 @@ of `<sbb-option-group>`.
       >
     </sbb-option-group>
   </sbb-select>
-</sbb-field>
+</sbb-form-field>
 ```
 
 ### Disabling the select, individual options or a group of options
@@ -103,12 +103,12 @@ toggleDisabled($event: any, control: FormControl) {
 ```
 
 ```html
-<sbb-field mode="long">
+<sbb-form-field mode="long">
   <sbb-label>Lieblingsessen</sbb-label>
   <sbb-select placeholder="Lieblingsessen" [formControl]="basicExampleFormControl">
     <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
   </sbb-select>
-</sbb-field>
+</sbb-form-field>
 <sbb-checkbox (change)="toggleDisabled($event,basicExampleFormControl)">disabled</sbb-checkbox>
 ```
 
@@ -126,7 +126,7 @@ toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 
 ```
 
 ```html
-<sbb-field mode="long">
+<sbb-form-field mode="long">
   <sbb-label>Viele Lieblingsgerichte</sbb-label>
   <sbb-select
     placeholder="Beliebteste Lebensmittel"
@@ -136,7 +136,7 @@ toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 
   >
     <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
   </sbb-select>
-</sbb-field>
+</sbb-form-field>
 <sbb-checkbox (change)="toggleDisabledOptions($event, multiSelect, 'options')"
   >disabled option</sbb-checkbox
 >
@@ -147,7 +147,7 @@ toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 
    same 'toggleDisabledOptions' method in the second point):
 
 ```html
-<sbb-field mode="long">
+<sbb-form-field mode="long">
   <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
   <sbb-select
     placeholder="Lebensmittel aus der ganzen Welt"
@@ -162,7 +162,7 @@ toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 
       >
     </sbb-option-group>
   </sbb-select>
-</sbb-field>
+</sbb-form-field>
 <sbb-checkbox (change)="toggleDisabledOptions($event, multiWithOptionGroup, 'optionGroups')"
   >disabled option group</sbb-checkbox
 >

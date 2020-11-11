@@ -17,7 +17,7 @@ ng_module(
         "//src/angular-core/icon",
         "//src/angular-public/button",
         "//src/angular-public/checkbox",
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
