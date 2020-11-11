@@ -113,7 +113,7 @@ const performLoginAndReturnUsermenuComponent = (fixtureTest: ComponentFixture<an
   const usermenuComponent = fixtureTest.debugElement.query(By.directive(SbbUserMenu));
   const usermenuComponentInstance = usermenuComponent.componentInstance;
   spyOn(usermenuComponentInstance.loginRequest, 'emit').and.callThrough();
-  const buttonLogin = usermenuComponent.query(By.css('.sbb-usermenu-logged-off-button'))
+  const buttonLogin = usermenuComponent.query(By.css('.sbb-usermenu-trigger-logged-out'))
     .nativeElement;
   buttonLogin.click();
   fixtureTest.detectChanges();
@@ -259,14 +259,14 @@ describe('Test Component with custom image', () => {
 
   it('should display login button after performing logout', () => {
     const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
-    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-open'))).toBeTruthy();
-    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-off-button'))).toBeFalsy();
+    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-in'))).toBeTruthy();
+    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-out'))).toBeFalsy();
 
     fixtureTest.componentInstance.logout();
     fixtureTest.detectChanges();
 
-    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-open'))).toBeFalsy();
-    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-off-button'))).toBeTruthy();
+    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-in'))).toBeFalsy();
+    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-out'))).toBeTruthy();
   });
 });
 

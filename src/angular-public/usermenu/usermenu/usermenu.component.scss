@@ -105,7 +105,7 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   }
 }
 
-.sbb-usermenu-logged-off-icon {
+.sbb-usermenu-logged-out-icon {
   margin-right: pxToRem(4);
 
   @include publicOnly() {
@@ -119,14 +119,14 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   }
 }
 
-.sbb-usermenu-logged-off-label {
+.sbb-usermenu-logged-out-label {
   display: none;
   @include mq($from: tablet) {
     display: inline;
   }
 }
 
-.sbb-usermenu-trigger-open {
+.sbb-usermenu-trigger-logged-in {
   @if ($sbbBusiness) {
     .sbb-icon:not(.sbb-usermenu-standard-icon) {
       display: none;

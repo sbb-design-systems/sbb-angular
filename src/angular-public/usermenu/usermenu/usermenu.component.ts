@@ -1,3 +1,5 @@
+import { FocusKeyManager } from '@angular/cdk/a11y';
+import { DOWN_ARROW, ENTER, ESCAPE, hasModifierKey, SPACE, UP_ARROW } from '@angular/cdk/keycodes';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import {
   ConnectedPosition,
@@ -7,28 +9,34 @@ import {
   ViewportRuler,
 } from '@angular/cdk/overlay';
 import {
+  AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChild,
+  ContentChildren,
   ElementRef,
   EventEmitter,
+  HostListener,
   Inject,
   InjectionToken,
   Input,
   OnDestroy,
   OnInit,
   Output,
+  QueryList,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
+import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
 import { sbbUsermenuAnimations } from '../usermenu-animations';
+import { SbbUsermenuItem } from '../usermenu-item/usermenu-item';
 
 /** Injection token that determines the scroll handling while a usermenu is open. */
 export const SBB_USERMENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -72,7 +80,7 @@ const OVERLAY_WIDTH_5K = 576;
   },
   animations: [sbbUsermenuAnimations.transformPanel],
 })
-export class SbbUserMenu implements OnInit, OnDestroy {
+export class SbbUserMenu implements OnInit, OnDestroy, AfterContentInit {
   /** Identifier of the usermenu. */
   id: string = `sbb-usermenu-${counter++}`;
 
@@ -112,12 +120,18 @@ export class SbbUserMenu implements OnInit, OnDestroy {
   /** Event emitted on log in of a user. */
   @Output() loginRequest: EventEmitter<void> = new EventEmitter<void>();
 
-  /** Panel containing the usermenu options. */
-  @ViewChild('panel') panel: ElementRef<HTMLElement>;
+  @ViewChild('loginButton') private _loginButton: ElementRef<HTMLElement>;
+  @ViewChild('triggerOpenButton') private _triggerOpenButton!: ElementRef<HTMLElement>;
+  @ViewChild('triggerCloseButton') private _triggerCloseButton: ElementRef<HTMLElement>;
 
   /** Reference to user provided icon */
   @ContentChild(SbbIconDirective, { read: TemplateRef })
   _icon?: TemplateRef<any>;
+
+  /** All of the defined usermenu items. */
+  @ContentChildren(SbbUsermenuItem, { descendants: true }) private _usermenuItems: QueryList<
+    SbbUsermenuItem
+  >;
 
   /** Whether or not the overlay panel is open. */
   get panelOpen(): boolean {
@@ -149,10 +163,13 @@ export class SbbUserMenu implements OnInit, OnDestroy {
   _scrollStrategy: ScrollStrategy;
 
   /** Factory function used to create a scroll strategy for this usermenu. */
-  private _scrollStrategyFactory: () => ScrollStrategy;
+  private readonly _scrollStrategyFactory: () => ScrollStrategy;
 
   /** Emits whenever the component is destroyed. */
   private readonly _destroy = new Subject<void>();
+
+  /** Manages keyboard events for options in the panel. */
+  private _keyManager: FocusKeyManager<SbbUsermenuItem>;
 
   constructor(
     private _viewportRuler: ViewportRuler,
@@ -194,6 +211,27 @@ export class SbbUserMenu implements OnInit, OnDestroy {
       .subscribe((width) => (this._overlayWidth = width));
   }
 
+  ngAfterContentInit() {
+    this._initKeyManager();
+  }
+
+  /** Sets up a key manager to listen to keyboard events on the overlay panel. */
+  private _initKeyManager() {
+    this._keyManager = new FocusKeyManager<SbbUsermenuItem>(this._usermenuItems)
+      .withWrap()
+      .withTypeAhead()
+      .withHomeAndEnd();
+
+    this._keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
+      if (this.panelOpen) {
+        // Restore focus to the trigger before closing. Ensures that the focus
+        // position won't be lost if the user got focus into the overlay.
+        this.close();
+        this.focus();
+      }
+    });
+  }
+
   ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
@@ -205,14 +243,16 @@ export class SbbUserMenu implements OnInit, OnDestroy {
 
   /** Opens the overlay panel */
   open(): void {
-    if (!this._panelOpen) {
+    if (!this._panelOpen && this._loggedIn) {
       this._panelOpen = true;
       this._triggerRect = this._elementRef.nativeElement.getBoundingClientRect();
+      this._resetActiveItem();
       this._changeDetectorRef.markForCheck();
+      Promise.resolve().then(() => this.focus());
     }
   }
 
-  /** Closes the overlay panel and focuses the host element. */
+  /** Closes the overlay panel */
   close(): void {
     if (this._panelOpen) {
       this._panelOpen = false;
@@ -220,11 +260,71 @@ export class SbbUserMenu implements OnInit, OnDestroy {
     }
   }
 
+  /** Toggles the overlay panel visibility */
   toggle(): void {
     if (this._panelOpen) {
       this.close();
       return;
     }
     this.open();
+  }
+
+  /** Forwards focus to the currently matching element. */
+  focus(): void {
+    if (!this._loggedIn) {
+      this._loginButton.nativeElement.focus();
+    } else if (this.panelOpen) {
+      this._triggerCloseButton.nativeElement.focus();
+    } else {
+      this._triggerOpenButton.nativeElement.focus();
+    }
+  }
+
+  /** Closes the overlay panel and focuses the host element */
+  _closeAndFocus(): void {
+    if (!this._panelOpen) {
+      return;
+    }
+    this.close();
+    this.focus();
+  }
+
+  /**
+   * Resets the active item in the menu. This is used when the menu is opened, allowing
+   * the user to start from the first option when pressing the down arrow.
+   */
+  private _resetActiveItem() {
+    this._keyManager.setActiveItem(-1);
+  }
+
+  /** Handles all keydown events on the select. */
+  @HostListener('keydown', ['$event'])
+  _handleKeydown(event: TypeRef<KeyboardEvent>): void {
+    this.panelOpen ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
+  }
+
+  /** Handles keyboard events while the panel is closed. */
+  private _handleClosedKeydown(event: KeyboardEvent): void {
+    const keyCode = event.keyCode;
+    const isOpenKey = keyCode === ENTER || keyCode === SPACE;
+    if (!this._keyManager.isTyping() && isOpenKey && !hasModifierKey(event) && this._loggedIn) {
+      event.preventDefault(); // prevents the page from scrolling down when pressing space
+      this.open();
+    }
+  }
+
+  /** Handles keyboard events when the panel is open. */
+  private _handleOpenKeydown(event: KeyboardEvent): void {
+    const keyCode = event.keyCode;
+    if (keyCode === ESCAPE && !hasModifierKey(event)) {
+      event.preventDefault();
+      this.close();
+      this.focus();
+    } else {
+      if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
+        this._keyManager.setFocusOrigin('keyboard');
+      }
+      this._keyManager.onKeydown(event);
+    }
   }
 }

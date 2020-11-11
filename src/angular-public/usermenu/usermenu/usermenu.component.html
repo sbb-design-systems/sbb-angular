@@ -1,42 +1,46 @@
 <button
+  #loginButton
   *ngIf="!_loggedIn"
-  class="sbb-usermenu-trigger sbb-usermenu-logged-off-button"
+  class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-out"
   (click)="_emitLogin()"
   type="button"
 >
-  <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-logged-off-icon"></sbb-icon>
-  <span class="sbb-usermenu-logged-off-label" i18n="Button label for login@@sbbUsermenuLogin"
+  <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-logged-out-icon"></sbb-icon>
+  <span class="sbb-usermenu-logged-out-label" i18n="Button label for login@@sbbUsermenuLogin"
     >Login</span
   >
 </button>
 
-<ng-container *ngIf="_loggedIn">
-  <ng-container *ngTemplateOutlet="usermenuTrigger"></ng-container>
-</ng-container>
+<button
+  #triggerOpenButton
+  *ngIf="_loggedIn"
+  class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
+  (click)="open()"
+>
+  <ng-container *ngTemplateOutlet="usermenuTriggerContent"></ng-container>
+</button>
 
-<ng-template #usermenuTrigger>
-  <button class="sbb-usermenu-trigger sbb-usermenu-trigger-open" (click)="toggle()">
-    <span class="sbb-usermenu-identification">
-      <ng-container *ngIf="_icon">
-        <ng-container *ngTemplateOutlet="_icon"></ng-container>
-      </ng-container>
-      <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-standard-icon"></sbb-icon>
-      <span *ngIf="!_icon" class="sbb-usermenu-initial-letters" aria-hidden="true">
-        {{ _initialLetters }}
-      </span>
+<ng-template #usermenuTriggerContent>
+  <span class="sbb-usermenu-identification">
+    <ng-container *ngIf="_icon">
+      <ng-container *ngTemplateOutlet="_icon"></ng-container>
+    </ng-container>
+    <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-standard-icon"></sbb-icon>
+    <span *ngIf="!_icon" class="sbb-usermenu-initial-letters" aria-hidden="true">
+      {{ _initialLetters }}
     </span>
+  </span>
 
-    <span class="sbb-usermenu-user-info">
-      <span class="sbb-usermenu-user-info-display-name">
-        {{ displayName || userName }}
-      </span>
-      <span class="sbb-usermenu-user-info-name" *ngIf="displayName">
-        {{ userName }}
-      </span>
+  <span class="sbb-usermenu-user-info">
+    <span class="sbb-usermenu-user-info-display-name">
+      {{ displayName || userName }}
     </span>
+    <span class="sbb-usermenu-user-info-name" *ngIf="displayName">
+      {{ userName }}
+    </span>
+  </span>
 
-    <sbb-icon svgIcon="kom:chevron-small-down-small" class="sbb-usermenu-arrow"></sbb-icon>
-  </button>
+  <sbb-icon svgIcon="kom:chevron-small-down-small" class="sbb-usermenu-arrow"></sbb-icon>
 </ng-template>
 
 <ng-template
@@ -52,24 +56,28 @@
   [cdkConnectedOverlayOrigin]="{ elementRef: _elementRef }"
   [cdkConnectedOverlayOpen]="panelOpen"
   [cdkConnectedOverlayPositions]="_positions"
-  (backdropClick)="close()"
-  (detach)="close()"
+  (backdropClick)="_closeAndFocus()"
+  (detach)="_closeAndFocus()"
 >
   <div
-    #panel
     tabindex="-1"
     class="sbb-usermenu-panel"
     [attr.id]="id + '-panel'"
     [style.minWidth]="_triggerRect?.width + 'px'"
     [style.minHeight]="_triggerRect?.height + 'px'"
     [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"
+    (keydown)="_handleKeydown($event)"
   >
-    <ng-container *ngTemplateOutlet="usermenuTrigger"></ng-container>
+    <button
+      #triggerCloseButton
+      class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
+      (click)="_closeAndFocus()"
+    >
+      <ng-container *ngTemplateOutlet="usermenuTriggerContent"></ng-container>
+    </button>
+
     <div class="sbb-usermenu-inner-panel sbb-scrollbar">
       <ng-content select="a[sbb-usermenu-item],button[sbb-usermenu-item],hr"></ng-content>
     </div>
-
-    <!---     (keydown)="_handleKeydown($event)" TODO
- --->
   </div>
 </ng-template>

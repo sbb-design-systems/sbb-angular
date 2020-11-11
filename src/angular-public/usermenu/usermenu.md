@@ -1,4 +1,4 @@
-The usermenu is intended to log on / off and offers the logged-in user a menu
+The usermenu is intended to log on / out and offers the logged-in user a menu
 with comprehensive functionalities.
 
 ### When should the module be used?
