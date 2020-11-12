@@ -9,7 +9,7 @@ export class UsermenuExampleComponent {
 
   user = {
     userName: '',
-    displayName: 'Walter Scotti',
+    displayName: 'Walter Scotti ist ein mega langer Name hihihih',
   };
 
   linkGenerator() {

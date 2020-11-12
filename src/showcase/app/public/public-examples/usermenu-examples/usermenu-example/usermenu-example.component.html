@@ -6,8 +6,6 @@
 <sbb-usermenu [userName]="user.userName" [displayName]="user.displayName" (loginRequest)="login()">
   <a sbb-usermenu-item [queryParams]="{ page: 0 }" routerLink="." routerLinkActive="sbb-selected">
     <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon> Account
-    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon>
-    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon>
   </a>
   <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
     <sbb-icon svgIcon="kom:tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
@@ -16,6 +14,7 @@
   <button sbb-usermenu-item type="button" (click)="logout(user)">
     <sbb-icon svgIcon="kom:exit-small" class="sbb-icon-fit"></sbb-icon> Logout
   </button>
+  <sbb-icon svgIcon="kom:user-small" *sbbIcon></sbb-icon>
 </sbb-usermenu>
 
 <sbb-usermenu [userName]="user.userName" [displayName]="user.displayName" (loginRequest)="login()">
@@ -25,29 +24,74 @@
   <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
     Orders
   </a>
-  <button sbb-usermenu-item disabled>
-    Test disabled
-  </button>
-  <button sbb-usermenu-item type="button" (click)="logout(user)">
-    Logout
-  </button>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+    Orders
+  </a>
+  <button sbb-usermenu-item disabled>Test disabled</button>
+  <button sbb-usermenu-item type="button" (click)="logout(user)">Logout</button>
 </sbb-usermenu>
 
 <sbb-usermenu [userName]="user.userName" (loginRequest)="login()">
-  <button sbb-usermenu-item disabled>
-    Test disabled
-  </button>
-  <button sbb-usermenu-item type="button" (click)="logout(user)">
-    Logout
-  </button>
+  <button sbb-usermenu-item disabled>Test disabled</button>
+  <button sbb-usermenu-item type="button" (click)="logout(user)">Logout</button>
 </sbb-usermenu>
 
 <sbb-usermenu [userName]="user.userName" (loginRequest)="login()">
   <sbb-icon svgIcon="kom:cross-small" *sbbIcon></sbb-icon>
-  <button sbb-usermenu-item>
-    Test
-  </button>
-  <button sbb-usermenu-item type="button" (click)="logout(user)">
-    Logout
-  </button>
+  <button sbb-usermenu-item>Test</button>
+  <button sbb-usermenu-item type="button" (click)="logout(user)">Logout</button>
+</sbb-usermenu>
+
+<sbb-usermenu [userName]="user.userName" (loginRequest)="login()">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/ABB-Logo.svg" *sbbIcon />
+  <button sbb-usermenu-item>Test</button>
+  <button sbb-usermenu-item type="button" (click)="logout(user)">Logout</button>
 </sbb-usermenu>
