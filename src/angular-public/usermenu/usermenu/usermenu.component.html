@@ -14,7 +14,7 @@
 <button
   #triggerOpenButton
   *ngIf="_loggedIn"
-  class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
+  class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in sbb-usermenu-trigger-open"
   (click)="open()"
   i18n-aria-label="Aria label to open user menu@@sbbUsermenuOpenPanel"
   attr.aria-label="Logged in as {{
@@ -80,7 +80,7 @@
   >
     <button
       #triggerCloseButton
-      class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
+      class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in sbb-usermenu-trigger-close"
       (click)="_closeAndFocus()"
       i18n-aria-label="Aria label to close user menu@@sbbUsermenuClosePanel"
       attr.aria-label="Logged in as {{

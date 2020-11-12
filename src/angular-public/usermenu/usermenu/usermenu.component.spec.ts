@@ -152,11 +152,14 @@ describe('SbbUserMenu', () => {
     expect(userMenuComponent).toBeTruthy();
   });
 
-  it('should open and close panel', () => {
-    // login
+  function login() {
     userMenuComponent.userName = 'userName';
     fixtureUserMenu.detectChanges();
     expect(userMenuComponent.panelOpen).toBeFalse();
+  }
+
+  it('should open and close panel', () => {
+    login();
 
     userMenuComponent.open();
     fixtureUserMenu.detectChanges();
@@ -170,10 +173,7 @@ describe('SbbUserMenu', () => {
   });
 
   it('should open and close panel using toggle method', () => {
-    // login
-    userMenuComponent.userName = 'userName';
-    fixtureUserMenu.detectChanges();
-    expect(userMenuComponent.panelOpen).toBeFalse();
+    login();
 
     userMenuComponent.toggle();
     fixtureUserMenu.detectChanges();
@@ -184,6 +184,38 @@ describe('SbbUserMenu', () => {
     fixtureUserMenu.detectChanges();
 
     expect(userMenuComponent.panelOpen).toBeFalse();
+  });
+
+  it('should set appropriate aria attributes', () => {
+    login();
+
+    const triggerOpenButton = fixtureUserMenu.debugElement.query(
+      By.css('.sbb-usermenu-trigger-open')
+    );
+
+    expect(triggerOpenButton.attributes['aria-label']).toBe(
+      'Logged in as userName. Click or press enter to open user menu.'
+    );
+    expect(triggerOpenButton.attributes['aria-haspopup']).toBe('true');
+    expect(triggerOpenButton.attributes['aria-controls']).toBeUndefined();
+
+    userMenuComponent.toggle();
+    fixtureUserMenu.detectChanges();
+
+    const triggerCloseButton = fixtureUserMenu.debugElement.query(
+      By.css('.sbb-usermenu-trigger-close')
+    );
+    const usermenuPanel = fixtureUserMenu.debugElement.query(By.css('.sbb-usermenu-panel'));
+    const identificationSection = fixtureUserMenu.debugElement.query(
+      By.css('.sbb-usermenu-identification')
+    );
+
+    expect(triggerOpenButton.attributes['aria-expanded']).toBe('true');
+    expect(triggerOpenButton.attributes['aria-controls']).toBe(usermenuPanel.attributes['id']);
+    expect(triggerCloseButton.attributes['aria-label']).toBe(
+      'Logged in as userName. Click or press enter to close user menu.'
+    );
+    expect(identificationSection.attributes['aria-hidden']).toBe('true');
   });
 });
 
@@ -221,25 +253,24 @@ describe('Test Component with custom image', () => {
 
     const iconReference = fixtureTest.debugElement.query(By.css('.image'));
     expect(iconReference.nativeElement).toBeTruthy();
-    expect(usermenuComponent.attributes['aria-expanded']).toBe('false');
+    expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
   });
 
   it('should display data (displayName and username) if menu expanded', () => {
     const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
 
-    const displayNameUser = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
+    const displayName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
       .nativeElement;
-    expect(usermenuComponent.attributes['aria-expanded']).toBe('false');
-    expect(displayNameUser.textContent).toContain('John Scott');
+    expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
+    expect(displayName.textContent).toContain('John Scott');
 
     const arrow = usermenuComponent.query(By.css('.sbb-usermenu-arrow')).nativeElement;
     arrow.click();
     fixtureTest.detectChanges();
 
-    expect(usermenuComponent.attributes['aria-expanded']).toBe('true');
-    const userNameUser = usermenuComponent.query(By.css('.sbb-usermenu-user-info-name'))
-      .nativeElement;
-    expect(userNameUser.textContent).toContain('john_64');
+    expect(usermenuComponent.nativeElement.classList).toContain('sbb-usermenu-opened');
+    const userName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-name')).nativeElement;
+    expect(userName.textContent).toContain('john_64');
   });
 
   it('should transform arrow on panel open', () => {
@@ -334,17 +365,17 @@ describe('Test Component with only userName', () => {
   it('should display only username', () => {
     const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
 
-    const displayNameUser = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
+    const displayName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
       .nativeElement;
-    expect(usermenuComponent.attributes['aria-expanded']).toBe('false');
-    expect(displayNameUser.textContent).toContain('walter_14');
+    expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
+    expect(displayName.textContent).toContain('walter_14');
 
     const arrow = usermenuComponent.query(By.css('.sbb-usermenu-arrow')).nativeElement;
     arrow.click();
     fixtureTest.detectChanges();
 
-    expect(usermenuComponent.attributes['aria-expanded']).toBe('true');
-    expect(displayNameUser.textContent).toContain('walter_14');
+    expect(usermenuComponent.nativeElement.classList).toContain('sbb-usermenu-opened');
+    expect(displayName.textContent).toContain('walter_14');
     expect(usermenuComponent.query(By.css('.sbb-usermenu-user-info-name'))).toBeNull();
   });
 });
