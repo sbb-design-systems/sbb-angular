@@ -308,7 +308,7 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 }
 
 .sbb-usermenu-inner-panel {
-  width: toPx($panelWidth - 2 * $borderWidth);
+  min-width: toPx($panelWidth - 2 * $borderWidth);
   overflow-y: auto;
 
   .sbb-usermenu-panel.ng-animating & {
@@ -317,11 +317,11 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
-      width: toPx($panelWidth4k - 2 * $borderWidth4k);
+      min-width: toPx($panelWidth4k - 2 * $borderWidth4k);
     }
 
     @include mq($from: desktop5k) {
-      width: toPx($panelWidth5k - 2 * $borderWidth5k);
+      min-width: toPx($panelWidth5k - 2 * $borderWidth5k);
     }
   }
 }
