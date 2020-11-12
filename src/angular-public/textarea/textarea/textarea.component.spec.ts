@@ -38,7 +38,7 @@ class TextareaTestComponent {
 }
 
 @Component({
-  selector: 'sbb-textarea-sbb-field',
+  selector: 'sbb-textarea-sbb-form-field',
   template: `
     <form [formGroup]="form">
       <sbb-form-field label="Textarea">

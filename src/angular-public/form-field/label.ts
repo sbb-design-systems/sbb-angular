@@ -9,7 +9,7 @@ import { Directive, Input } from '@angular/core';
 export class SbbLabel {
   /**
    * Label of a input text
-   * @deprecated Handled internally in sbb-field.
+   * @deprecated Handled internally in sbb-form-field.
    * @breaking-change 12.0.0
    */
   @Input()
@@ -19,7 +19,7 @@ export class SbbLabel {
   set for(value: string | null) {
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
       console.warn(
-        'sbb-label[for] is deprecated! This functionality is handled internally in the sbb-field.'
+        'sbb-label[for] is deprecated! This functionality is handled internally in the sbb-form-field.'
       );
     }
     this._for = value;

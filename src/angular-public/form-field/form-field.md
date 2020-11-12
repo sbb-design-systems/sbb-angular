@@ -44,13 +44,13 @@ multiple errors is up to the user.
 #### Display error messages outside sbb-form-field
 
 `<sbb-form-field>` reserves space below the input field for a potential error message.
-To remove this reserved space, apply the css class `sbb-input-field-errorless` to the `<sbb-form-field>` tag.
+To remove this reserved space, apply the css class `sbb-form-field-errorless` to the `<sbb-form-field>` tag.
 Place the `<sbb-error>` below the `<sbb-form-field>` and conditionally add the aria-describedby attribute.
 Please note that this will lead to the content below the `<sbb-error>` to be pushed downward when
 the error is being displayed and upward when it is being hidden.
 
 ```html
-<sbb-form-field label="Name" class="sbb-input-field-errorless">
+<sbb-form-field label="Name" class="sbb-form-field-errorless">
   <input
     type="text"
     sbbInput
