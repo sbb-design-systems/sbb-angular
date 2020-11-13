@@ -16,7 +16,7 @@ ng_module(
     deps = [
         "//src/angular-public/button",
         "//src/angular-public/checkbox",
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "//src/angular-public/pagination",
         "//src/showcase/app/shared",
         "@npm//@angular/common",

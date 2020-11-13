@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
 import { SbbCheckboxModule } from '@sbb-esta/angular-business/checkbox';
-import { SbbFieldModule } from '@sbb-esta/angular-business/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-business/form-field';
 import { SbbPaginationModule } from '@sbb-esta/angular-business/pagination';
 import { SbbSelectModule } from '@sbb-esta/angular-business/select';
 import { SbbTableModule } from '@sbb-esta/angular-business/table';
@@ -45,7 +45,7 @@ const EXAMPLE_INDEX = {
     ReactiveFormsModule,
     SbbAutocompleteModule,
     SbbCheckboxModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbPaginationModule,
     SbbSelectModule,
     SbbTableModule,

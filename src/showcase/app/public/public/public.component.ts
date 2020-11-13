@@ -12,7 +12,7 @@ export class PublicComponent {
     checkbox: 'Checkbox',
     'checkbox-panel': 'Checkbox Panel',
     datepicker: 'Datepicker',
-    field: 'Field',
+    'form-field': 'Form Field',
     'file-selector': 'File Selector',
     'radio-button': 'Radiobutton',
     'radio-button-panel': 'Radiobutton Panel',

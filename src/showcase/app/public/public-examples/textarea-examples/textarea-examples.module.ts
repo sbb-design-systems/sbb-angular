@@ -2,23 +2,23 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbTextareaModule } from '@sbb-esta/angular-public/textarea';
 
 import { provideExamples } from '../../../shared/example-provider';
 
 import { TextareaFormsExampleComponent } from './textarea-forms-example/textarea-forms-example.component';
 import { TextareaNativeExampleComponent } from './textarea-native-example/textarea-native-example.component';
-import { TextareaReactiveFormsWithSbbFieldExampleComponent } from './textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component';
+import { TextareaReactiveFormsWithSbbFormFieldExampleComponent } from './textarea-reactive-forms-with-sbb-form-field-example/textarea-reactive-forms-with-sbb-form-field-example.component';
 
 const EXAMPLES = [
   TextareaFormsExampleComponent,
   TextareaNativeExampleComponent,
-  TextareaReactiveFormsWithSbbFieldExampleComponent,
+  TextareaReactiveFormsWithSbbFormFieldExampleComponent,
 ];
 
 const EXAMPLE_INDEX = {
-  'textarea-reactive-forms-with-sbb-field-example': TextareaReactiveFormsWithSbbFieldExampleComponent,
+  'textarea-reactive-forms-with-sbb-form-field-example': TextareaReactiveFormsWithSbbFormFieldExampleComponent,
   'textarea-forms-example': TextareaFormsExampleComponent,
   'textarea-native-example': TextareaNativeExampleComponent,
 };
@@ -29,7 +29,7 @@ const EXAMPLE_INDEX = {
     FormsModule,
     ReactiveFormsModule,
     SbbCheckboxModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbTextareaModule,
   ],
   declarations: EXAMPLES,

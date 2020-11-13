@@ -31,7 +31,7 @@ The date input supports min and max dates. The datepicker emits events for openi
 The initial focus for the datepicker is the current date value.
 
 ```html
-<sbb-field mode="long">
+<sbb-form-field>
   <sbb-label>Datum</sbb-label>
   <sbb-datepicker (closed)="closedEvent()" (opened)="openedEvent()">
     <input
@@ -44,7 +44,7 @@ The initial focus for the datepicker is the current date value.
       (dateInput)="dateInputEvent($event)"
     />
   </sbb-datepicker>
-</sbb-field>
+</sbb-form-field>
 ```
 
 ### Connected Datepickers
@@ -56,17 +56,17 @@ manual min has been set.
 
 ```html
 <form [formGroup]="twoDatepickersForm">
-  <sbb-field mode="medium">
+  <sbb-form-field>
     <sbb-label for="Datum">Datumsbereich innerhalb eines Monats</sbb-label>
     <sbb-datepicker [connected]="second" arrows>
       <input sbbDateInput sbbInput formControlName="firstDatepicker" />
     </sbb-datepicker>
-  </sbb-field>
-  <sbb-field mode="medium">
+  </sbb-form-field>
+  <sbb-form-field>
     <sbb-datepicker #second arrows>
       <input sbbDateInput sbbInput formControlName="secondDatepicker" />
     </sbb-datepicker>
-  </sbb-field>
+  </sbb-form-field>
 </form>
 ```
 
@@ -77,12 +77,12 @@ of each month as seen below.
 
 ```html
 <h4>Date filter</h4>
-<sbb-field>
+<sbb-form-field>
   <sbb-label for="Datum">Datum</sbb-label>
   <sbb-datepicker arrows>
     <input sbbDateInput sbbInput [formControl]="dateWithFilter" [dateFilter]="filterDates" />
   </sbb-datepicker>
-</sbb-field>
+</sbb-form-field>
 ```
 
 ```ts
@@ -96,10 +96,10 @@ filterDates = (date: Date): boolean => {
 The sbbDateInput can be used without a datepicker.
 
 ```html
-<sbb-field>
+<sbb-form-field>
   <sbb-label for="Datum">Datum</sbb-label>
   <input sbbDateInput sbbInput [formControl]="standaloneDate" />
-</sbb-field>
+</sbb-form-field>
 ```
 
 ### Year Pivot

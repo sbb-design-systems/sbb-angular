@@ -53,7 +53,7 @@ ng_test_library(
     deps = [
         ":textarea",
         "//src/angular-core/testing",
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "@npm//@angular/cdk",
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",

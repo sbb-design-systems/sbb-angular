@@ -14,12 +14,12 @@ ng_module(
     ),
     assets = [
         ":textarea-forms-example/textarea-forms-example.component.css",
-        ":textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component.css",
+        ":textarea-reactive-forms-with-sbb-form-field-example/textarea-reactive-forms-with-sbb-form-field-example.component.css",
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/checkbox",
-        "//src/angular-business/field",
+        "//src/angular-business/form-field",
         "//src/angular-business/textarea",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
@@ -44,5 +44,5 @@ sass_binary(
 
 sass_binary(
     name = "textarea_reactive_forms_with_sbb_field_example_textarea_reactive_forms_with_sbb_field_example_component_scss",
-    src = "textarea-reactive-forms-with-sbb-field-example/textarea-reactive-forms-with-sbb-field-example.component.scss",
+    src = "textarea-reactive-forms-with-sbb-form-field-example/textarea-reactive-forms-with-sbb-form-field-example.component.scss",
 )

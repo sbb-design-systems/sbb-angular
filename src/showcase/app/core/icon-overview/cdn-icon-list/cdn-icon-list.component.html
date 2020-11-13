@@ -1,19 +1,19 @@
 <form [formGroup]="filterForm" class="sbb-cdn-icon-filter-bar">
-  <sbb-field mode="long" label="Fulltext Filter">
+  <sbb-form-field label="Fulltext Filter" class="sbb-form-field-long">
     <input sbbInput formControlName="fulltext" />
-  </sbb-field>
+  </sbb-form-field>
 
-  <sbb-field mode="long" label="Namespaces">
+  <sbb-form-field label="Namespaces" class="sbb-form-field-long">
     <sbb-select placeholder="Namespaces" formControlName="namespaces" multiple>
       <sbb-option *ngFor="let namespace of namespaces" [value]="namespace">
         {{ namespace }}
       </sbb-option>
     </sbb-select>
-  </sbb-field>
+  </sbb-form-field>
 
-  <sbb-field mode="long" label="Icon Size">
+  <div>
     <sbb-checkbox formControlName="fitIcons">Fit icon size to parent element</sbb-checkbox>
-  </sbb-field>
+  </div>
 </form>
 <div [class.sbb-icon-fit]="filterForm.get('fitIcons').value">
   <sbb-cdn-icon *ngFor="let cdnIcon of filteredIcons | async" [cdnIcon]="cdnIcon"></sbb-cdn-icon>

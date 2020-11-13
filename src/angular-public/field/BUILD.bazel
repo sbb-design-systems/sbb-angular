@@ -1,8 +1,6 @@
 load(
     "//tools:defaults.bzl",
-    "markdown_to_html",
     "ng_module",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -13,40 +11,10 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [
-        ":field/field.component.css",
-        ":label/label.component.css",
-    ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/field",
     deps = [
-        "//src/angular-core/common-behaviors",
-        "//src/angular-core/forms",
-        "//src/angular-public/input",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//rxjs",
+        "//src/angular-public/form-field",
     ],
-)
-
-sass_binary(
-    name = "field_field_component_scss",
-    src = "field/field.component.scss",
-    deps = [
-        "//src/angular-core/styles:common_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "label_label_component_scss",
-    src = "label/label.component.scss",
-    deps = [
-        "//src/angular-core/styles:common_scss_lib",
-    ],
-)
-
-markdown_to_html(
-    name = "overview",
-    srcs = [":field.md"],
 )
 
 filegroup(

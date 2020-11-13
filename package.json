@@ -8,6 +8,7 @@
   },
   "scripts": {
     "postinstall": "node tools/postinstall/apply-patches.js && ngcc && yarn -s build:public2business",
+    "p2b": "ng g .:public2business",
     "build": "ts-node-script ./scripts/build.ts",
     "build:public2business": "ng g .:public2business",
     "build:schematics": "rollup --config schematics/rollup.config.js",
@@ -31,6 +32,7 @@
     "format:prettier": "prettier --write **/*.{js,ts,css,scss,json,md,html}",
     "format:bazel": "yarn -s bazel:buildifier --lint=fix --mode=fix",
     "format": "yarn -s format:prettier && yarn -s format:bazel",
+    "migrate": "node ./scripts/run-migration.js",
     "release": "standard-version --tag-prefix=\"\"",
     "forceinstall-husky": "node node_modules/husky/lib/installer/bin install"
   },

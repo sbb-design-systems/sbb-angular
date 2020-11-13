@@ -3,7 +3,7 @@
     "lib": ["es2017"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "../../../dist/packages/angular-public/schematics",
+    "outDir": "../../../dist/packages/angular-core/schematics",
     "noEmitOnError": false,
     "strictNullChecks": true,
     "noImplicitReturns": true,
@@ -17,7 +17,7 @@
     "types": ["jasmine", "node"],
     "baseUrl": "."
   },
-  "exclude": ["**/*.spec.ts"],
+  "exclude": ["**/files/**/*", "**/*.spec.ts", "ng-update/test-cases/**/*", "testing/**/*.ts"],
   "bazelOptions": {
     "suppressTsconfigOverrideWarnings": true
   }

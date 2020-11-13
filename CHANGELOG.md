@@ -173,7 +173,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* respect sbb-field integration in autocomplete ([#417](https://github.com/sbb-design-systems/sbb-angular/issues/417)) ([d24272f](https://github.com/sbb-design-systems/sbb-angular/commit/d24272f6bd946fcdef15760bb0d5fbff6a53b099))
+* respect sbb-form-field integration in autocomplete ([#417](https://github.com/sbb-design-systems/sbb-angular/issues/417)) ([d24272f](https://github.com/sbb-design-systems/sbb-angular/commit/d24272f6bd946fcdef15760bb0d5fbff6a53b099))
 * send pageEvent on paginator also when pageSize changes ([#416](https://github.com/sbb-design-systems/sbb-angular/issues/416)) ([58212e4](https://github.com/sbb-design-systems/sbb-angular/commit/58212e4fde1d934bff5b53d997cc03aec3236ced))
 * **business:** fix borders of contextmenu ([#403](https://github.com/sbb-design-systems/sbb-angular/issues/403)) ([b22780f](https://github.com/sbb-design-systems/sbb-angular/commit/b22780f9b9eaa89dcce2d1522f6663beb12b6c2f)), closes [#398](https://github.com/sbb-design-systems/sbb-angular/issues/398)
 * **core:** re-add individual styles .scss files ([#414](https://github.com/sbb-design-systems/sbb-angular/issues/414)) ([fa50fe1](https://github.com/sbb-design-systems/sbb-angular/commit/fa50fe1171032b4befb74fa54c1109d272ed5ddc)), closes [#406](https://github.com/sbb-design-systems/sbb-angular/issues/406)
@@ -281,9 +281,9 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * **business:** mark chip input as invalid only when touched ([#347](https://github.com/sbb-design-systems/sbb-angular/issues/347)) ([815f277](https://github.com/sbb-design-systems/sbb-angular/commit/815f277f80be77f6d1d1b688f82efd8a9f77e91b))
-* connect select component to sbb-field ([#340](https://github.com/sbb-design-systems/sbb-angular/issues/340)) ([745598c](https://github.com/sbb-design-systems/sbb-angular/commit/745598c2c71535a3c39b9eb0aa046eb0d2b0b273))
+* connect select component to sbb-form-field ([#340](https://github.com/sbb-design-systems/sbb-angular/issues/340)) ([745598c](https://github.com/sbb-design-systems/sbb-angular/commit/745598c2c71535a3c39b9eb0aa046eb0d2b0b273))
 * correct focus of textarea and resizing behaviour ([#344](https://github.com/sbb-design-systems/sbb-angular/issues/344)) ([cfcdd39](https://github.com/sbb-design-systems/sbb-angular/commit/cfcdd3921f9bf99a6264fa362d1ec7e497749564)), closes [#194](https://github.com/sbb-design-systems/sbb-angular/issues/194)
-* enable label click for select and chip in sbb-field ([#346](https://github.com/sbb-design-systems/sbb-angular/issues/346)) ([92b4b2d](https://github.com/sbb-design-systems/sbb-angular/commit/92b4b2d14d31feb2a4b3842869704c03ffb4061a))
+* enable label click for select and chip in sbb-form-field ([#346](https://github.com/sbb-design-systems/sbb-angular/issues/346)) ([92b4b2d](https://github.com/sbb-design-systems/sbb-angular/commit/92b4b2d14d31feb2a4b3842869704c03ffb4061a))
 * fix too small width of usermenu in IE11 ([#345](https://github.com/sbb-design-systems/sbb-angular/issues/345)) ([ee3e4db](https://github.com/sbb-design-systems/sbb-angular/commit/ee3e4db9e2dded813ad9890038538463118fcfa4)), closes [#341](https://github.com/sbb-design-systems/sbb-angular/issues/341)
 * **icons:** center sbb logo in app icon ([#338](https://github.com/sbb-design-systems/sbb-angular/issues/338)) ([4a3f5c2](https://github.com/sbb-design-systems/sbb-angular/commit/4a3f5c2576ea3073719a703a3666fd4652812211)), closes [#119](https://github.com/sbb-design-systems/sbb-angular/issues/119)
 * **icons:** fix utilization medium fixed size ([#337](https://github.com/sbb-design-systems/sbb-angular/issues/337)) ([49efc7b](https://github.com/sbb-design-systems/sbb-angular/commit/49efc7ba48c35bef033b29645d04a2f02abf9789)), closes [#254](https://github.com/sbb-design-systems/sbb-angular/issues/254)

@@ -1,7 +1,0 @@
-<sbb-label *ngIf="label && !contentLabel">{{ label }}</sbb-label>
-<ng-content select="sbb-label"></ng-content>
-<ng-content></ng-content>
-<ng-content
-  *ngIf="!_control || _control.errorState"
-  select="sbb-form-error,[sbbFormError]"
-></ng-content>

@@ -1,6 +1,8 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -21,6 +23,28 @@ ng_module(
         "@npm//@angular/core",
         "@npm//@angular/forms",
     ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":input",
+        "//src/angular-core/error",
+        "//src/angular-core/testing",
+        "//src/angular-public/form-field",
+        "@npm//@angular/cdk",
+        "@npm//@angular/forms",
+        "@npm//@angular/platform-browser",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
 )
 
 filegroup(

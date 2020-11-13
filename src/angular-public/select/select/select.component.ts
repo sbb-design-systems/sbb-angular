@@ -66,7 +66,7 @@ import {
 } from '@sbb-esta/angular-core/common-behaviors';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
-import { SbbField, SBB_FORM_FIELD } from '@sbb-esta/angular-public/field';
+import { SbbFormField, SBB_FORM_FIELD } from '@sbb-esta/angular-public/form-field';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
@@ -510,7 +510,7 @@ export class SbbSelect
     elementRef: ElementRef,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
-    @Optional() @Inject(SBB_FORM_FIELD) private _parentFormField: SbbField,
+    @Optional() @Inject(SBB_FORM_FIELD) private _parentFormField: SbbFormField,
     @Self() @Optional() public ngControl: NgControl,
     @Attribute('tabindex') tabIndex: string,
     @Inject(SBB_SELECT_SCROLL_STRATEGY) scrollStrategyFactory: any,

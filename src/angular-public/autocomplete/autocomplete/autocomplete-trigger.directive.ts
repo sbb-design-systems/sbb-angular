@@ -30,8 +30,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
-import { SBB_FORM_FIELD } from '@sbb-esta/angular-public/field';
-import type { SbbField } from '@sbb-esta/angular-public/field';
+import { SBB_FORM_FIELD } from '@sbb-esta/angular-public/form-field';
+import type { SbbFormField } from '@sbb-esta/angular-public/form-field';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
@@ -252,7 +252,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
     @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy: any,
     private _viewportRuler: ViewportRuler,
     @Optional() @Inject(DOCUMENT) document: any,
-    @Optional() @Inject(SBB_FORM_FIELD) @Host() private _formField: TypeRef<SbbField>
+    @Optional() @Inject(SBB_FORM_FIELD) @Host() private _formField: TypeRef<SbbFormField>
   ) {
     this._document = document;
   }

@@ -16,7 +16,7 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "//src/angular-public/notification",
         "//src/showcase/app/shared",
         "@npm//@angular/common",

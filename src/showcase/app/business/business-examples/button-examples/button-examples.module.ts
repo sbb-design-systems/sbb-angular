@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular-business/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular-business/checkbox';
-import { SbbFieldModule } from '@sbb-esta/angular-business/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-business/form-field';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { provideExamples } from '../../../shared/example-provider';
@@ -23,7 +23,7 @@ const EXAMPLE_INDEX = {
     ReactiveFormsModule,
     SbbButtonModule,
     SbbCheckboxModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbIconModule,
   ],
   declarations: EXAMPLES,

@@ -8,7 +8,7 @@ import { SbbIconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { SbbRadioChange } from '@sbb-esta/angular-core/radio-button';
 import { SbbDatepickerModule } from '@sbb-esta/angular-public/datepicker';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { Observable, of } from 'rxjs';
 
 import { SbbToggleOption } from '../toggle-option/toggle-option.component';
@@ -33,12 +33,12 @@ import { SbbToggleModule } from '../toggle.module';
           <ng-container *ngIf="i === 1">
             <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
           </ng-container>
-          <sbb-field mode="long" *ngIf="i === 1">
-            <sbb-label for="name1">Select date</sbb-label>
+          <sbb-form-field class="sbb-form-field-long" *ngIf="i === 1">
+            <sbb-label>Select date</sbb-label>
             <sbb-datepicker>
-              <input sbbDateInput type="text" />
+              <input sbbDateInput sbbInput type="text" />
             </sbb-datepicker>
-          </sbb-field>
+          </sbb-form-field>
         </sbb-toggle-option>
       </sbb-toggle>
     </form>
@@ -90,12 +90,12 @@ class ToggleReactiveTestComponent implements OnInit {
           <ng-container *ngIf="i === 1">
             <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
           </ng-container>
-          <sbb-field mode="long" *ngIf="i === 1">
-            <sbb-label for="name1">Select date</sbb-label>
+          <sbb-form-field class="sbb-form-field-long" *ngIf="i === 1">
+            <sbb-label>Select date</sbb-label>
             <sbb-datepicker>
-              <input sbbDateInput type="text" />
+              <input sbbDateInput sbbInput type="text" />
             </sbb-datepicker>
-          </sbb-field>
+          </sbb-form-field>
         </sbb-toggle-option>
       </sbb-toggle>
     </form>
@@ -140,12 +140,12 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
         <ng-container *ngIf="i === 1">
           <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
         </ng-container>
-        <sbb-field mode="long" *ngIf="i === 0">
-          <sbb-label for="name1">Select date</sbb-label>
+        <sbb-form-field class="sbb-form-field-long" *ngIf="i === 0">
+          <sbb-label>Select date</sbb-label>
           <sbb-datepicker>
-            <input sbbDateInput type="text" />
+            <input sbbDateInput sbbInput type="text" />
           </sbb-datepicker>
-        </sbb-field>
+        </sbb-form-field>
         <p *ngIf="i === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </sbb-toggle-option>
     </sbb-toggle>
@@ -203,7 +203,7 @@ describe('SbbToggle case reactive using mock component', () => {
           CommonModule,
           SbbIconModule,
           SbbDatepickerModule,
-          SbbFieldModule,
+          SbbFormFieldModule,
           ReactiveFormsModule,
           SbbIconDirectiveModule,
           SbbIconTestingModule,
@@ -304,7 +304,7 @@ describe('SbbToggle case reactive with default value using mock component', () =
           CommonModule,
           SbbIconModule,
           SbbDatepickerModule,
-          SbbFieldModule,
+          SbbFormFieldModule,
           ReactiveFormsModule,
           SbbIconDirectiveModule,
           SbbIconTestingModule,
@@ -351,7 +351,7 @@ describe('SbbToggle case template driven using mock component', () => {
           CommonModule,
           SbbIconModule,
           SbbDatepickerModule,
-          SbbFieldModule,
+          SbbFormFieldModule,
           FormsModule,
           SbbIconTestingModule,
         ],

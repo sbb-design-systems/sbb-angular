@@ -12,12 +12,20 @@ export const sbbAngularModuleSpecifiers = [
 
 /** Whether the specified node is part of an Angular Material or CDK import declaration. */
 export function isSbbAngularImportDeclaration(node: ts.Node) {
-  return isSbbAngularDeclaration(getImportDeclaration(node));
+  return isSbbAngularDeclaration(getSafeImportDeclaration(node));
 }
 
 /** Whether the specified node is part of an Angular Material or CDK import declaration. */
 export function isSbbAngularExportDeclaration(node: ts.Node) {
-  return isSbbAngularDeclaration(getImportDeclaration(node));
+  return isSbbAngularDeclaration(getSafeImportDeclaration(node));
+}
+
+function getSafeImportDeclaration(node: ts.Node) {
+  try {
+    return getImportDeclaration(node);
+  } catch {
+    return {} as ts.ImportDeclaration;
+  }
 }
 
 /** Whether the declaration is part of Angular Material. */

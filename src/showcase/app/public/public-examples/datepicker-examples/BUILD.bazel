@@ -17,7 +17,7 @@ ng_module(
         "//src/angular-core/datetime",
         "//src/angular-public/checkbox",
         "//src/angular-public/datepicker",
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",

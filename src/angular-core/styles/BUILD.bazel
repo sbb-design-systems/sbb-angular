@@ -7,15 +7,17 @@ package(default_visibility = ["//visibility:public"])
 
 sass_library(
     name = "common_scss_lib",
-    srcs = ["_common.scss"] + glob(["includes/_*.scss"]),
+    srcs = [
+        "@npm//:node_modules/@angular/cdk/_a11y.scss",
+        "@npm//:node_modules/@angular/cdk/_overlay.scss",
+        "_common.scss",
+    ] + glob(["includes/_*.scss"]),
 )
 
 sass_library(
     name = "core_scss_lib",
     srcs = [
         "_main.scss",
-        "@npm//:node_modules/@angular/cdk/_a11y.scss",
-        "@npm//:node_modules/@angular/cdk/_overlay.scss",
     ] + glob(["typography/_*.scss"]),
     deps = [":common_scss_lib"],
 )

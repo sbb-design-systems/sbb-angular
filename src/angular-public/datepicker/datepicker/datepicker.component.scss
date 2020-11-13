@@ -3,7 +3,7 @@
 .sbb-datepicker {
   display: inline-block;
   width: 100%;
-  min-width: pxToEm($datePickerMinWidth);
+  min-width: pxToRem($datePickerMinWidth);
   color: $inputFieldColor;
 
   @include datePickerButton;
@@ -106,23 +106,23 @@
   position: relative;
 
   .sbb-date-input {
-    min-width: pxToEm($datePickerMinWidth);
+    min-width: pxToRem($datePickerMinWidth);
     width: 100%;
   }
 
   &.sbb-datepicker-toggle-enabled > .sbb-date-input,
   &.sbb-datepicker-arrows-enabled > .sbb-date-input {
-    padding-left: pxToEm($dateInputOneIconPadding - $dateInputBorderWidth);
+    padding-left: pxToRem($dateInputOneIconPadding - $dateInputBorderWidth);
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        padding-left: pxToEm(
+        padding-left: pxToRem(
           $dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k
         );
       }
 
       @include mq($from: desktop5k) {
-        padding-left: pxToEm(
+        padding-left: pxToRem(
           $dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k
         );
       }
@@ -130,17 +130,17 @@
   }
 
   &.sbb-datepicker-arrows-enabled > .sbb-date-input {
-    padding-right: pxToEm($dateInputOneIconPadding - $dateInputBorderWidth);
+    padding-right: pxToRem($dateInputOneIconPadding - $dateInputBorderWidth);
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        padding-right: pxToEm(
+        padding-right: pxToRem(
           $dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k
         );
       }
 
       @include mq($from: desktop5k) {
-        padding-right: pxToEm(
+        padding-right: pxToRem(
           $dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k
         );
       }
@@ -148,17 +148,17 @@
   }
 
   &.sbb-datepicker-arrows-enabled.sbb-datepicker-toggle-enabled > .sbb-date-input {
-    padding-left: pxToEm($dateInputTwoIconPadding - $dateInputBorderWidth);
+    padding-left: pxToRem($dateInputTwoIconPadding - $dateInputBorderWidth);
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
-        padding-left: pxToEm(
+        padding-left: pxToRem(
           $dateInputTwoIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k
         );
       }
 
       @include mq($from: desktop5k) {
-        padding-left: pxToEm(
+        padding-left: pxToRem(
           $dateInputTwoIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k
         );
       }

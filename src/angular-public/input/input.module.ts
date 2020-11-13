@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SbbInput } from './input/input.directive';
+import { SbbInput } from './input';
 
 @NgModule({
   declarations: [SbbInput],

@@ -47,7 +47,6 @@ ng_test_library(
         "//src/angular-core/icon",
         "//src/angular-core/icon/testing",
         "//src/angular-public/button",
-        "//src/angular-public/field",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/platform-browser",

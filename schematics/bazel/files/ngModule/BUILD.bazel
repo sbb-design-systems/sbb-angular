@@ -22,7 +22,8 @@ ng_module(
     ] + glob(["**/*.html"]),<% } %>
     module_name = "<%= moduleName %>",<% if (customTsConfig) { %>
     tsconfig = "<%= customTsConfig %>",<% } %>
-    deps = [<% for (let dependency of dependencies) { %>
+    deps = [<% if (hasNgDevMode) { %>
+        "//src:dev_mode_types",<% } %><% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>
     ],
 )<% if (hasSassLibrary) { %>

@@ -17,7 +17,7 @@ ng_module(
     deps = [
         "//src/angular-core/icon",
         "//src/angular-public/button",
-        "//src/angular-public/field",
+        "//src/angular-public/form-field",
         "//src/angular-public/lightbox",
         "//src/angular-public/radio-button",
         "//src/showcase/app/shared",

@@ -1,0 +1,25 @@
+load("//tools:defaults.bzl", "ts_library")
+
+package(default_visibility = ["//visibility:public"])
+
+ts_library(
+    name = "testing",
+    srcs = glob(["**/*.ts"]),
+    # Schematics do not need to run in browsers and can use `commonjs`
+    # as format instead the default `umd` format.
+    devmode_module = "commonjs",
+    module_name = "@sbb-esta/angular-core/schematics/testing",
+    prodmode_module = "commonjs",
+    tsconfig = "tsconfig.json",
+    deps = [
+        "@npm//@angular-devkit/core",
+        "@npm//@angular-devkit/schematics",
+        "@npm//@schematics/angular",
+        "@npm//@types/fs-extra",
+        "@npm//@types/glob",
+        "@npm//@types/jasmine",
+        "@npm//@types/node",
+        "@npm//fs-extra",
+        "@npm//rxjs",
+    ],
+)

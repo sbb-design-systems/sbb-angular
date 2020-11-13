@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 
 import { SbbTimeInput } from './time-input.directive';
 
@@ -15,7 +15,9 @@ class TimeInputTestComponent {
 
 @Component({
   template: `
-    <sbb-field label="test"><input sbbTimeInput sbbInput [placeholder]="placeholder" /></sbb-field>
+    <sbb-form-field label="test"
+      ><input sbbTimeInput sbbInput [placeholder]="placeholder"
+    /></sbb-form-field>
   `,
 })
 class TimeInputWithSbbInputTestComponent {
@@ -51,7 +53,7 @@ describe('TimeInputDirective', () => {
       waitForAsync(() => {
         TestBed.configureTestingModule({
           declarations: [TimeInputWithSbbInputTestComponent, SbbTimeInput],
-          imports: [SbbFieldModule],
+          imports: [SbbFormFieldModule],
         }).compileComponents();
       })
     );

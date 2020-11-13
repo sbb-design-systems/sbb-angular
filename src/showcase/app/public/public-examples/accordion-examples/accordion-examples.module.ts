@@ -5,7 +5,7 @@ import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbAccordionModule } from '@sbb-esta/angular-public/accordion';
 import { SbbButtonModule } from '@sbb-esta/angular-public/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbRadioButtonModule } from '@sbb-esta/angular-public/radio-button';
 
 import { provideExamples } from '../../../shared/example-provider';
@@ -35,7 +35,7 @@ const EXAMPLE_INDEX = {
     SbbAccordionModule,
     SbbButtonModule,
     SbbCheckboxModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbRadioButtonModule,
   ],
   declarations: EXAMPLES,

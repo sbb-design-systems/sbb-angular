@@ -6,10 +6,10 @@
   [disabled]="disabled"
 ></sbb-paginator>
 <h4 class="sbbsc-block">Properties</h4>
-<sbb-field mode="long" label="Length" class="sbbsc-block">
+<sbb-form-field label="Length" class="sbbsc-block">
   <input sbbInput type="number" [(ngModel)]="length" [min]="0" />
-</sbb-field>
-<sbb-field mode="long" label="Page index" class="sbbsc-block">
+</sbb-form-field>
+<sbb-form-field label="Page index" class="sbbsc-block">
   <input sbbInput type="number" [(ngModel)]="pageIndex" [min]="0" />
-</sbb-field>
+</sbb-form-field>
 <sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>

@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup">
-  <sbb-field label="Datepicker" mode="long">
+  <sbb-form-field label="Datepicker">
     <sbb-datepicker
       [arrows]="arrows"
       [toggle]="toggle"
@@ -17,7 +17,7 @@
         (dateInput)="dateInputEvent($event)"
       />
     </sbb-datepicker>
-  </sbb-field>
+  </sbb-form-field>
 </form>
 <h4 class="sbbsc-block">Properties</h4>
 <p class="sbb-checkbox-group-vertical sbbsc-block">
@@ -26,18 +26,18 @@
   <sbb-checkbox [(ngModel)]="disabled" (change)="onDisabled()">Disabled</sbb-checkbox>
 </p>
 
-<sbb-field mode="medium" class="sbbsc-block" style="display: block">
+<sbb-form-field class="sbbsc-block" style="display: block">
   <sbb-label for="minDate">Min Date</sbb-label>
   <sbb-datepicker arrows>
     <input type="text" sbbDateInput sbbInput [(ngModel)]="minDate" />
   </sbb-datepicker>
-</sbb-field>
-<sbb-field mode="medium">
+</sbb-form-field>
+<sbb-form-field>
   <sbb-label for="maxDate">Max Date</sbb-label>
   <sbb-datepicker arrows>
     <input type="text" sbbDateInput sbbInput [(ngModel)]="maxDate" />
   </sbb-datepicker>
-</sbb-field>
+</sbb-form-field>
 
 <pre>model: {{ formGroup.get('date').value | date: 'mediumDate' }}</pre>
 <pre>form control validity: {{ formGroup.get('date').valid }}</pre>

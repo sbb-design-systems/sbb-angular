@@ -41,7 +41,8 @@
     "node_modules/",
     "schematics/*/files/**/*",
     "src/angular-icons/schematics/*/files/**/*",
-    "src/angular-core/schematics/**/files/**/*"
+    "src/angular-core/schematics/**/files/**/*",
+    "src/angular-core/schematics/ng-update/test-cases/**/*"
   ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true

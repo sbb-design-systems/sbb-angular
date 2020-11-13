@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { SbbFieldModule } from '@sbb-esta/angular-public/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbNotificationModule } from '@sbb-esta/angular-public/notification';
 
 import { provideExamples } from '../../../shared/example-provider';
@@ -29,7 +29,7 @@ const EXAMPLE_INDEX = {
     FormsModule,
     ReactiveFormsModule,
     SbbIconModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbNotificationModule,
   ],
   declarations: EXAMPLES,

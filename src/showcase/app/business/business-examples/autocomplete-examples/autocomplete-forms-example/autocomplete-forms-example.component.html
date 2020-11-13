@@ -1,4 +1,4 @@
-<sbb-field>
+<sbb-form-field>
   <input
     type="text"
     sbbInput
@@ -6,7 +6,7 @@
     (ngModelChange)="valueChanged($event)"
     [sbbAutocomplete]="auto"
   />
-</sbb-field>
+</sbb-form-field>
 <sbb-autocomplete #auto="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
     {{ option }}

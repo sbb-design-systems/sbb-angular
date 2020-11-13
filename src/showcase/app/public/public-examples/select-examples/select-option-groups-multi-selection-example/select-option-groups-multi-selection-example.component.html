@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <sbb-field mode="long">
+  <sbb-form-field>
     <sbb-label>International food</sbb-label>
     <sbb-select placeholder="International food" formControlName="value" multiple>
       <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
@@ -8,7 +8,7 @@
         </sbb-option>
       </sbb-option-group>
     </sbb-select>
-  </sbb-field>
+  </sbb-form-field>
   <h4>Properties</h4>
   <pre>{{ form.get('value')?.value | json }}</pre>
   <sbb-checkbox

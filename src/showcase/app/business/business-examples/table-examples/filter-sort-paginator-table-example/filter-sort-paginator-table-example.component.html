@@ -1,7 +1,7 @@
 <ng-container [formGroup]="vehicleFilterForm">
-  <sbb-field label="Global Filter" class="sbbsc-block" mode="long">
+  <sbb-form-field label="Global Filter" class="sbbsc-block">
     <input sbbInput formControlName="_" />
-  </sbb-field>
+  </sbb-form-field>
 
   <table sbbTable sbbSort>
     <ng-container *ngFor="let column of displayedColumns" [sbbColumnDef]="column">

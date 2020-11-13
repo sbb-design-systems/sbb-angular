@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAccordionModule } from '@sbb-esta/angular-business/accordion';
 import { SbbButtonModule } from '@sbb-esta/angular-business/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular-business/checkbox';
-import { SbbFieldModule } from '@sbb-esta/angular-business/field';
+import { SbbFormFieldModule } from '@sbb-esta/angular-business/form-field';
 import { SbbRadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
@@ -34,7 +34,7 @@ const EXAMPLE_INDEX = {
     SbbAccordionModule,
     SbbButtonModule,
     SbbCheckboxModule,
-    SbbFieldModule,
+    SbbFormFieldModule,
     SbbRadioButtonModule,
     SbbIconModule,
   ],

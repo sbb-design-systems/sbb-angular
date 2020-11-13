@@ -26,14 +26,11 @@ export class CdnIconListComponent implements AfterViewInit {
   private _cdnIcons: CdnIcons;
 
   filterForm: FormGroup;
-
   filteredIcons: Observable<CdnIcon[]>;
-
   namespaces: string[];
+  pageSize = 50;
 
-  pageSize = 40;
-  @ViewChild(SbbPaginatorComponent)
-  private _paginator;
+  @ViewChild(SbbPaginatorComponent) private _paginator: SbbPaginatorComponent;
 
   constructor(formBuilder: FormBuilder) {
     this.filterForm = formBuilder.group({

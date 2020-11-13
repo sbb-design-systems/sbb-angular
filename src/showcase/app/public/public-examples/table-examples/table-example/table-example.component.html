@@ -40,26 +40,26 @@
 <h4 class="sbbsc-block">Properties</h4>
 <button sbbButton mode="ghost" (click)="removeRow()">Remove a row</button>
 <button sbbButton mode="ghost" (click)="resetRows()" style="margin-left: 0.5rem">Reset rows</button>
-<sbb-field mode="default" class="sbbsc-block" style="margin-left: 0.5rem">
+<sbb-form-field class="sbbsc-block" style="margin-left: 0.5rem">
   <sbb-label for="filter">Set a filter</sbb-label>
   <input type="text" placeholder="Filter table" id="filter" (keyup)="filterTable($event)" />
-</sbb-field>
+</sbb-form-field>
 
 <h4 class="sbbsc-block">Pin Mode</h4>
-<sbb-field label="Pin Mode" mode="default" class="sbbsc-block">
+<sbb-form-field label="Pin Mode" class="sbbsc-block">
   <sbb-checkbox [(ngModel)]="isFirstColumnPinned"
     >Pin the first column (Not supported in IE11)</sbb-checkbox
   >
-</sbb-field>
+</sbb-form-field>
 
 <h4 class="sbbsc-block">Text Alignment *</h4>
-<sbb-field label="Text Alignment" mode="default" class="sbbsc-block">
+<sbb-form-field label="Text Alignment" class="sbbsc-block">
   <sbb-radio-group [(ngModel)]="currentAlignment" class="sbb-radio-group-horizontal">
     <sbb-radio-button *ngFor="let alignment of alignments" [value]="alignment">{{
       alignment
     }}</sbb-radio-button>
   </sbb-radio-group>
-</sbb-field>
+</sbb-form-field>
 <p>
   <em>
     * The property <strong><code>tableAlignment</code></strong> set the text alignment for the

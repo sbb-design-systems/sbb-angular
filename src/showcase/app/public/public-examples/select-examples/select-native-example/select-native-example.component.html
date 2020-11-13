@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <sbb-field mode="long" label="Favorite meal">
+  <sbb-form-field label="Favorite meal">
     <select placeholder="Favorite meal" formControlName="value" sbbInput>
       <option
         *ngFor="let food of ['Beefsteak', 'Pizza', 'Pasta']; first as isFirst"
@@ -9,7 +9,7 @@
         {{ food }}
       </option>
     </select>
-  </sbb-field>
+  </sbb-form-field>
   <h4>Properties</h4>
   <pre>{{ form.get('value')?.value | json }}</pre>
   <div class="sbbsc-block">

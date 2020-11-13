@@ -32,7 +32,6 @@ ng_module(
 sass_binary(
     name = "typography",
     src = "typography.scss",
-    include_paths = ["external/npm/node_modules"],
     deps = ["//src/angular-core/styles:core_scss_lib"],
 )
 

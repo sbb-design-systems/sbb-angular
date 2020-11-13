@@ -10,8 +10,8 @@ import { ContextmenuExamplesModule } from './contextmenu-examples/contextmenu-ex
 import { DatepickerExamplesModule } from './datepicker-examples/datepicker-examples.module';
 import { DialogExamplesModule } from './dialog-examples/dialog-examples.module';
 import { DropdownExamplesModule } from './dropdown-examples/dropdown-examples.module';
-import { FieldExamplesModule } from './field-examples/field-examples.module';
 import { FileSelectorExamplesModule } from './file-selector-examples/file-selector-examples.module';
+import { FormFieldExamplesModule } from './form-field-examples/form-field-examples.module';
 import { LinksExamplesModule } from './links-examples/links-examples.module';
 import { LoadingExamplesModule } from './loading-examples/loading-examples.module';
 import { NotificationExamplesModule } from './notification-examples/notification-examples.module';
@@ -41,7 +41,7 @@ const EXAMPLES = [
   DatepickerExamplesModule,
   DialogExamplesModule,
   DropdownExamplesModule,
-  FieldExamplesModule,
+  FormFieldExamplesModule,
   FileSelectorExamplesModule,
   LinksExamplesModule,
   LoadingExamplesModule,

@@ -35,9 +35,9 @@ export class SharedDataDialogExampleComponent {
     <div sbbDialogContent>
       <div>
         What's your favorite animal?
-        <sbb-field label="Animal" mode="long">
+        <sbb-form-field label="Animal">
           <input type="text" sbbInput [(ngModel)]="data.animal" cdkFocusInitial />
-        </sbb-field>
+        </sbb-form-field>
       </div>
     </div>
     <div sbbDialogFooter>

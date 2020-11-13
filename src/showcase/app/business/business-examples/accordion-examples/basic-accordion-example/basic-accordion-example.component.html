@@ -215,7 +215,7 @@
 
 <div class="flex-col">
   <h4 class="sbbsc-block">Properties</h4>
-  <sbb-field label="Multi panel" class="sbbsc-block">
+  <sbb-form-field label="Multi panel" class="sbbsc-block">
     <sbb-checkbox value="multi" class="inline-block" [(ngModel)]="multi">
       Open the panels of the accordion together
     </sbb-checkbox>
@@ -226,25 +226,25 @@
         </div>
       </sbb-radio-group>
     </ng-container>
-  </sbb-field>
+  </sbb-form-field>
 
-  <sbb-field label="Disabled accordion panel" class="sbbsc-block">
+  <sbb-form-field label="Disabled accordion panel" class="sbbsc-block">
     <sbb-checkbox value="disabled" [formControl]="disabled" class="inline-block">
       Disabled
     </sbb-checkbox>
-  </sbb-field>
+  </sbb-form-field>
 
-  <sbb-field label="Panel toggles" class="sbbsc-block">
+  <sbb-form-field label="Panel toggles" class="sbbsc-block">
     <sbb-checkbox value="hideToggle" [formControl]="hideToggle" class="inline-block">
       Hide Toggle
     </sbb-checkbox>
-  </sbb-field>
+  </sbb-form-field>
 
-  <sbb-field label="Programmatically open panel" class="sbbsc-block">
+  <sbb-form-field label="Programmatically open panel" class="sbbsc-block">
     <select [formControl]="panelMode" id="panelMode" sbbInput>
       <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
     </select>
-  </sbb-field>
+  </sbb-form-field>
   <div class="flex-col">
     <small>*You can choose "Open all/Close all" if multi panel checkbox is selected </small>
     <small

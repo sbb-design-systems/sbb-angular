@@ -16,7 +16,7 @@ ng_module(
     deps = [
         "//src/angular-business/checkbox",
         "//src/angular-business/datepicker",
-        "//src/angular-business/field",
+        "//src/angular-business/form-field",
         "//src/angular-core/datetime",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
