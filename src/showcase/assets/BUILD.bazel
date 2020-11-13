@@ -1,3 +1,5 @@
+load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS")
+load("//src/angular-public:config.bzl", "PUBLIC_ENTRYPOINTS")
 load("//tools/package-docs-content:index.bzl", "package_docs_content")
 
 package(default_visibility = ["//visibility:public"])
@@ -10,7 +12,15 @@ filegroup(
         "**/*.jpg",
         "**/*.ico",
         "**/*.html",
-    ]) + [":docs-content"],
+        "**/*.json",
+        "**/*.ts",
+        "**/*.css",
+        "**/*.ts",
+    ]) + [
+        ":docs-content",
+        ":stackblitz/src/app/sbb-public.module.ts",
+        ":stackblitz/src/app/sbb-business.module.ts",
+    ],
     data = [":docs-content"],
 )
 
@@ -37,4 +47,32 @@ package_docs_content(
         "//src:api-docs": "",
     },
     tags = ["docs-package"],
+)
+
+genrule(
+    name = "sbb_module_public",
+    outs = ["stackblitz/src/app/sbb-public.module.ts"],
+    cmd = """
+      # Run the bazel entry-point for generating the sbb modules
+      # for the examples on StackBlitz info.
+      ./$(execpath //tools/stackblitz-module-template:bazel-bin) \
+          "$(execpath stackblitz/src/app/sbb-public.module.ts)" \
+          %s
+    """ % " ".join(PUBLIC_ENTRYPOINTS),
+    output_to_bindir = True,
+    tools = ["//tools/stackblitz-module-template:bazel-bin"],
+)
+
+genrule(
+    name = "sbb_module_business",
+    outs = ["stackblitz/src/app/sbb-business.module.ts"],
+    cmd = """
+      # Run the bazel entry-point for generating the sbb modules
+      # for the examples on StackBlitz info.
+      ./$(execpath //tools/stackblitz-module-template:bazel-bin) \
+          "$(execpath stackblitz/src/app/sbb-business.module.ts)" \
+          %s
+    """ % " ".join(BUSINESS_ENTRYPOINTS),
+    output_to_bindir = True,
+    tools = ["//tools/stackblitz-module-template:bazel-bin"],
 )

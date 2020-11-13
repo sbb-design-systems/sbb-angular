@@ -13,6 +13,18 @@
       ></path>
     </svg>
   </button>
+
+  <button
+    type="button"
+    class="stackblitz-button"
+    (click)="openStackblitz()"
+    [disabled]="isStackblitzDisabled"
+    [attr.aria-label]="
+      isStackblitzDisabled ? 'Building StackBlitz example...' : 'Edit this example in StackBlitz'
+    "
+  >
+    <sbb-icon svgIcon="kom:link-external-small"></sbb-icon>
+  </button>
 </div>
 
 <sbb-tabs [hidden]="!showSource" class="sbbsc-tabs">

@@ -32,6 +32,13 @@ export class LoaderBuilder {
     );
   }
 
+  fromSourceExamples(example: string, type: 'html' | 'ts' | 'scss') {
+    return this.from(
+      (library, id) =>
+        `assets/docs-content/examples-source/app/${library}/${library}-examples/${id}-examples/${example}/${example}.component.${type}`
+    );
+  }
+
   observe(): Observable<string> {
     return combineLatest([this._route.params, this._route.data]).pipe(
       map(([p, d]) => ({ ...p, ...d })),

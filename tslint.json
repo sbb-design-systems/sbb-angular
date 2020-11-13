@@ -6,7 +6,7 @@
     "node_modules/tslint-consistent-codestyle/rules"
   ],
   "linterOptions": {
-    "exclude": ["tools/dgeni/**/*.ts"]
+    "exclude": ["tools/dgeni/**/*.ts", "src/showcase/assets/stackblitz/**/*.ts"]
   },
   "rules": {
     "arrow-return-shorthand": true,

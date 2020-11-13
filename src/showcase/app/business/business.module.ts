@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { SbbAccordionModule } from '@sbb-esta/angular-business/accordion';
 import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { SbbTabsModule } from '@sbb-esta/angular-business/tabs';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
+import { StackblitzWriterService } from '../shared/component-viewer/stackblitz-writer/stackblitz-writer.service';
 import { SharedModule } from '../shared/shared.module';
 
 import { BusinessComponentViewerComponent } from './business-component-viewer/business-component-viewer.component';
@@ -19,6 +21,7 @@ import { BusinessComponent } from './business/business.component';
     BusinessComponentViewerComponent,
     BusinessExampleViewerComponent,
   ],
+  providers: [StackblitzWriterService],
   imports: [
     CommonModule,
     PortalModule,
@@ -28,6 +31,7 @@ import { BusinessComponent } from './business/business.component';
     BusinessRoutingModule,
     SbbSidebarModule,
     SbbAccordionModule,
+    SbbIconModule,
   ],
 })
 export class BusinessModule {}
