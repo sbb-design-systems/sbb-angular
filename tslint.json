@@ -6,7 +6,11 @@
     "node_modules/tslint-consistent-codestyle/rules"
   ],
   "linterOptions": {
-    "exclude": ["tools/dgeni/**/*.ts", "src/angular-core/schematics/ng-update/test-cases/**/*", "src/showcase/assets/stackblitz/**/*.ts"]
+    "exclude": [
+      "tools/dgeni/**/*.ts",
+      "src/angular-core/schematics/ng-update/test-cases/**/*",
+      "src/showcase/assets/stackblitz/**/*.ts"
+    ]
   },
   "rules": {
     "arrow-return-shorthand": true,
