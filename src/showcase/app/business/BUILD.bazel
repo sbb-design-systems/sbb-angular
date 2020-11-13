@@ -22,6 +22,7 @@ ng_module(
         "//src/angular-business/accordion",
         "//src/angular-business/sidebar",
         "//src/angular-business/tabs",
+        "//src/angular-core/icon",
         "//src/showcase/app/business/business-examples",
         "//src/showcase/app/shared",
         "//src/showcase/app/shared/component-viewer",

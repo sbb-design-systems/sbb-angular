@@ -1,6 +1,6 @@
 <div>
   <h3>{{ label }}</h3>
-  <button type="button" (click)="showSource = !showSource">
+  <button type="button" (click)="showSource = !showSource" aria-label="View source">
     <svg
       focusable="false"
       preserveAspectRatio="xMidYMid meet"
@@ -12,6 +12,18 @@
         d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
       ></path>
     </svg>
+  </button>
+
+  <button
+    type="button"
+    class="stackblitz-button"
+    (click)="openStackblitz()"
+    [disabled]="isStackblitzDisabled"
+    [attr.aria-label]="
+      isStackblitzDisabled ? 'Building StackBlitz example...' : 'Edit this example in StackBlitz'
+    "
+  >
+    <sbb-icon svgIcon="kom:link-external-small"></sbb-icon>
   </button>
 </div>
 

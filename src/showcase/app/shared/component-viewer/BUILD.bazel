@@ -18,6 +18,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/angular-core/icon",
         "//src/angular-public/tabs",
         "//src/showcase/app/shared",
         "@npm//@angular/cdk",
