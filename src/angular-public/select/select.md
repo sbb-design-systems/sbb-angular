@@ -7,7 +7,7 @@ user.
 You can use select component with sbb style using `<sbb-select>` and `<sbb-option>` as seen below
 
 ```html
-<sbb-form-field mode="long">
+<sbb-form-field>
   <sbb-label>Lieblingsessen</sbb-label>
   <sbb-select placeholder="Lieblingsessen" [formControl]="basicExampleFormControl">
     <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
@@ -33,7 +33,7 @@ multiple values at once.
 
 ```html
 <h4>Multiple Example</h4>
-<sbb-form-field mode="long">
+<sbb-form-field>
   <sbb-label>Viele Lieblingsgerichte</sbb-label>
   <sbb-select
     placeholder="Beliebteste Lebensmittel"
@@ -52,7 +52,7 @@ The name of the group can be set using the label property of `<sbb-option-group>
 
 ```html
 <h4>With option groups</h4>
-<sbb-form-field mode="long">
+<sbb-form-field>
   <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
   <sbb-select
     placeholder="Lebensmittel aus der ganzen Welt"
@@ -74,7 +74,7 @@ of `<sbb-option-group>`.
 
 ```html
 <h4>Multiple with option groups</h4>
-<sbb-form-field mode="long">
+<sbb-form-field>
   <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
   <sbb-select
     placeholder="Lebensmittel aus der ganzen Welt"
@@ -103,7 +103,7 @@ toggleDisabled($event: any, control: FormControl) {
 ```
 
 ```html
-<sbb-form-field mode="long">
+<sbb-form-field>
   <sbb-label>Lieblingsessen</sbb-label>
   <sbb-select placeholder="Lieblingsessen" [formControl]="basicExampleFormControl">
     <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
@@ -126,7 +126,7 @@ toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 
 ```
 
 ```html
-<sbb-form-field mode="long">
+<sbb-form-field>
   <sbb-label>Viele Lieblingsgerichte</sbb-label>
   <sbb-select
     placeholder="Beliebteste Lebensmittel"
@@ -147,7 +147,7 @@ toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 
    same 'toggleDisabledOptions' method in the second point):
 
 ```html
-<sbb-form-field mode="long">
+<sbb-form-field>
   <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
   <sbb-select
     placeholder="Lebensmittel aus der ganzen Welt"

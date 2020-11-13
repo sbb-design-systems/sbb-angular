@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <sbb-form-field mode="long">
+  <sbb-form-field>
     <sbb-label>International food</sbb-label>
     <sbb-select placeholder="International food" formControlName="value" multiple>
       <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">

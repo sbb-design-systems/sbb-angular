@@ -6,7 +6,7 @@ The dialog can be used to seek confirmation as see below
   <div sbbDialogContent>
     <div>
       What's your favorite animal?
-      <sbb-form-field label="Animal" mode="long">
+      <sbb-form-field label="Animal">
         <input type="text" [(ngModel)]="data.animal" cdkFocusInitial />
       </sbb-form-field>
     </div>

@@ -32,7 +32,7 @@ ngOnInit(): void {
 ```
 
 ```html
-<sbb-form-field label="Label" mode="long">
+<sbb-form-field label="Label">
   <sbb-chip-input formControlName="chip"></sbb-chip-input>
   <sbb-error *ngIf="formGroup.get('chip').errors?.required"> This field is required. </sbb-error>
 </sbb-form-field>

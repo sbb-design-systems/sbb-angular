@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup">
-  <sbb-form-field label="Datepicker" mode="long">
+  <sbb-form-field label="Datepicker">
     <sbb-datepicker
       [arrows]="arrows"
       [toggle]="toggle"
@@ -26,13 +26,13 @@
   <sbb-checkbox [(ngModel)]="disabled" (change)="onDisabled()">Disabled</sbb-checkbox>
 </p>
 
-<sbb-form-field mode="medium" class="sbbsc-block" style="display: block">
+<sbb-form-field class="sbbsc-block" style="display: block">
   <sbb-label for="minDate">Min Date</sbb-label>
   <sbb-datepicker arrows>
     <input type="text" sbbDateInput sbbInput [(ngModel)]="minDate" />
   </sbb-datepicker>
 </sbb-form-field>
-<sbb-form-field mode="medium">
+<sbb-form-field>
   <sbb-label for="maxDate">Max Date</sbb-label>
   <sbb-datepicker arrows>
     <input type="text" sbbDateInput sbbInput [(ngModel)]="maxDate" />

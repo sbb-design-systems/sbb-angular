@@ -13,14 +13,14 @@ sbb-cdn-icon {
   @include mq($from: desktop) {
     display: flex;
 
-    sbb-form-field {
+    sbb-form-field,
+    div {
       flex: 1 0 0;
       margin-right: 15px;
     }
 
-    sbb-checkbox {
-      display: block;
-      padding-top: 12px;
+    div {
+      align-self: center;
     }
   }
 }

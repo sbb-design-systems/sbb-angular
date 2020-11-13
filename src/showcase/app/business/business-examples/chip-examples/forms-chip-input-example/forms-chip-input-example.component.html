@@ -1,4 +1,4 @@
-<sbb-form-field label="Label" mode="long">
+<sbb-form-field label="Label">
   <sbb-chip-input [(ngModel)]="value" [required]="true" #input="ngModel"></sbb-chip-input>
   <sbb-error *ngIf="input.invalid && (input.dirty || input.touched)"
     >This field is required.</sbb-error

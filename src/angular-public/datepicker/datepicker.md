@@ -31,7 +31,7 @@ The date input supports min and max dates. The datepicker emits events for openi
 The initial focus for the datepicker is the current date value.
 
 ```html
-<sbb-form-field mode="long">
+<sbb-form-field>
   <sbb-label>Datum</sbb-label>
   <sbb-datepicker (closed)="closedEvent()" (opened)="openedEvent()">
     <input
@@ -56,13 +56,13 @@ manual min has been set.
 
 ```html
 <form [formGroup]="twoDatepickersForm">
-  <sbb-form-field mode="medium">
+  <sbb-form-field>
     <sbb-label for="Datum">Datumsbereich innerhalb eines Monats</sbb-label>
     <sbb-datepicker [connected]="second" arrows>
       <input sbbDateInput sbbInput formControlName="firstDatepicker" />
     </sbb-datepicker>
   </sbb-form-field>
-  <sbb-form-field mode="medium">
+  <sbb-form-field>
     <sbb-datepicker #second arrows>
       <input sbbDateInput sbbInput formControlName="secondDatepicker" />
     </sbb-datepicker>

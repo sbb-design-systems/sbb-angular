@@ -1,7 +1,7 @@
 <sbb-notification [type]="type" readonly>{{ type }}</sbb-notification>
 
 <h4 class="sbbsc-block">Properties</h4>
-<sbb-form-field mode="long" label="Notification type">
+<sbb-form-field label="Notification type">
   <select [(ngModel)]="type" sbbInput>
     <option *ngFor="let type of types" [value]="type">{{ type }}</option>
   </select>

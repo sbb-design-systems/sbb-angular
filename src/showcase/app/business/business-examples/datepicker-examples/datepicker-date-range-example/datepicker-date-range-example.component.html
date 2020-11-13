@@ -1,10 +1,10 @@
 <form [formGroup]="twoDatepickersForm">
-  <sbb-form-field label="Datepicker" mode="medium" class="sbbsc-block" style="display: block">
+  <sbb-form-field label="Datepicker" class="sbbsc-block" style="display: block">
     <sbb-datepicker [connected]="datepickerTheSecond" arrows>
       <input type="text" sbbDateInput sbbInput formControlName="firstDatepicker" />
     </sbb-datepicker>
   </sbb-form-field>
-  <sbb-form-field label="Datepicker" mode="medium">
+  <sbb-form-field label="Datepicker">
     <sbb-datepicker #datepickerTheSecond arrows>
       <input type="text" sbbDateInput sbbInput formControlName="secondDatepicker" />
     </sbb-datepicker>

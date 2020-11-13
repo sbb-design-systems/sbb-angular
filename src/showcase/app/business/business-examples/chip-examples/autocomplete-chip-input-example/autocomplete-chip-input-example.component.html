@@ -1,5 +1,5 @@
 <ng-container [formGroup]="formGroup">
-  <sbb-form-field label="Label" mode="long">
+  <sbb-form-field label="Label">
     <sbb-chip-input formControlName="chip" [sbbAutocomplete]="auto"></sbb-chip-input>
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
