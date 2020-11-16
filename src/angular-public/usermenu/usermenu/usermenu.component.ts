@@ -139,7 +139,7 @@ export class SbbUserMenu implements OnInit, OnDestroy, AfterContentInit {
 
   /** Whether the user is logged in or not. */
   get _loggedIn(): boolean {
-    return !!this.userName;
+    return !!this.userName || !!this.displayName;
   }
 
   /** Initial letters of user's displayName (or userName if no displayName is provided). */

@@ -16,11 +16,7 @@ import { SbbUserMenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu.c
 @Component({
   selector: 'sbb-usermenu-test',
   template: `
-    <sbb-usermenu
-      [userName]="user.userName"
-      [displayName]="user.displayName"
-      (loginRequest)="login()"
-    >
+    <sbb-usermenu [userName]="userName" [displayName]="displayName" (loginRequest)="login()">
       <img
         class="image"
         *sbbIcon
@@ -34,78 +30,76 @@ import { SbbUserMenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu.c
   `,
 })
 class UsermenuTestComponentWithCustomImage {
-  userName: string = 'john_64';
-
-  user = {
-    userName: '',
-    displayName: 'John Scott',
-  };
+  userName: string;
+  displayName: string;
 
   login() {
-    this.user.userName = this.userName;
+    this.userName = 'john_64';
+    this.displayName = 'John Scott';
   }
 
   logout() {
-    this.user.userName = '';
+    this.userName = '';
+    this.displayName = '';
   }
 }
 
 @Component({
   selector: 'sbb-usermenu-test',
   template: `
-    <sbb-usermenu
-      [userName]="user.userName"
-      [displayName]="user.displayName"
-      (loginRequest)="login()"
-    >
+    <sbb-usermenu [userName]="userName" [displayName]="displayName" (loginRequest)="login()">
       <a sbb-usermenu-item [routerLink]="'.'" routerLinkActive="sbb-selected">Menu Item 1</a>
       <a sbb-usermenu-item [routerLink]="'.'" routerLinkActive="sbb-selected">Menu Item 2</a>
       <hr />
-      <button sbb-usermenu-item type="button" (click)="logout()">Logout</button>
+      <button sbb-usermenu-item type="button">Logout</button>
     </sbb-usermenu>
   `,
 })
-class UsermenuTestComponentWithDisplayName {
-  userName: string = 'max_98';
-
-  user = {
-    userName: '',
-    displayName: 'Max Muster',
-  };
+class UsermenuTestComponentWithDisplayNameAndUserName {
+  userName: string;
+  displayName: string;
 
   login() {
-    this.user.userName = this.userName;
-  }
-
-  logout() {
-    this.user.userName = '';
+    this.userName = 'max_98';
+    this.displayName = 'Max Muster';
   }
 }
 
 @Component({
   selector: 'sbb-usermenu-test',
   template: `
-    <sbb-usermenu [userName]="user.userName" (loginRequest)="login()">
+    <sbb-usermenu [displayName]="displayName" (loginRequest)="login()">
       <a sbb-usermenu-item href="">Menu Item 1</a>
       <a sbb-usermenu-item href="">Menu Item 2</a>
       <hr />
-      <button sbb-usermenu-item type="button" (click)="logout()">Logout</button>
+      <button sbb-usermenu-item type="button">Logout</button>
+    </sbb-usermenu>
+  `,
+})
+class UsermenuTestComponentWithOnlyDisplayName {
+  displayName: string;
+
+  login() {
+    this.displayName = 'Max Muster';
+  }
+}
+
+@Component({
+  selector: 'sbb-usermenu-test',
+  template: `
+    <sbb-usermenu [userName]="userName" (loginRequest)="login()">
+      <a sbb-usermenu-item href="">Menu Item 1</a>
+      <a sbb-usermenu-item href="">Menu Item 2</a>
+      <hr />
+      <button sbb-usermenu-item type="button">Logout</button>
     </sbb-usermenu>
   `,
 })
 class UsermenuTestComponentWithOnlyUsername {
-  userName: string = 'walter_14';
-
-  user = {
-    userName: '',
-  };
+  userName: string;
 
   login() {
-    this.user.userName = this.userName;
-  }
-
-  logout() {
-    this.user.userName = '';
+    this.userName = 'walter_14';
   }
 }
 
@@ -302,8 +296,8 @@ describe('Test Component with custom image', () => {
 });
 
 describe('Test Component with userName and displayName without image', () => {
-  let componentTest: UsermenuTestComponentWithDisplayName;
-  let fixtureTest: ComponentFixture<UsermenuTestComponentWithDisplayName>;
+  let componentTest: UsermenuTestComponentWithDisplayNameAndUserName;
+  let fixtureTest: ComponentFixture<UsermenuTestComponentWithDisplayNameAndUserName>;
 
   beforeEach(
     waitForAsync(() => {
@@ -315,13 +309,13 @@ describe('Test Component with userName and displayName without image', () => {
           SbbIconTestingModule,
           RouterTestingModule,
         ],
-        declarations: [UsermenuTestComponentWithDisplayName],
+        declarations: [UsermenuTestComponentWithDisplayNameAndUserName],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithDisplayName);
+    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithDisplayNameAndUserName);
     componentTest = fixtureTest.componentInstance;
     fixtureTest.detectChanges();
   });
@@ -376,6 +370,49 @@ describe('Test Component with only userName', () => {
 
     expect(usermenuComponent.nativeElement.classList).toContain('sbb-usermenu-opened');
     expect(displayName.textContent).toContain('walter_14');
+    expect(usermenuComponent.query(By.css('.sbb-usermenu-user-info-name'))).toBeNull();
+  });
+});
+
+describe('Test Component with only displayName', () => {
+  let componentTest: UsermenuTestComponentWithOnlyDisplayName;
+  let fixtureTest: ComponentFixture<UsermenuTestComponentWithOnlyDisplayName>;
+
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbUsermenuModule,
+          CommonModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          NoopAnimationsModule,
+        ],
+        declarations: [UsermenuTestComponentWithOnlyDisplayName],
+      }).compileComponents();
+    })
+  );
+
+  beforeEach(() => {
+    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithOnlyDisplayName);
+    componentTest = fixtureTest.componentInstance;
+    fixtureTest.detectChanges();
+  });
+
+  it('should display only displayName', () => {
+    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
+
+    const displayName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
+      .nativeElement;
+    expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
+    expect(displayName.textContent).toContain('Max Muster');
+
+    const arrow = usermenuComponent.query(By.css('.sbb-usermenu-arrow')).nativeElement;
+    arrow.click();
+    fixtureTest.detectChanges();
+
+    expect(usermenuComponent.nativeElement.classList).toContain('sbb-usermenu-opened');
+    expect(displayName.textContent).toContain('Max Muster');
     expect(usermenuComponent.query(By.css('.sbb-usermenu-user-info-name'))).toBeNull();
   });
 });

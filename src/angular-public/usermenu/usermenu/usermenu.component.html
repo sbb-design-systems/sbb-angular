@@ -42,7 +42,7 @@
     <span class="sbb-usermenu-user-info-display-name">
       {{ displayName || userName }}
     </span>
-    <span class="sbb-usermenu-user-info-name" *ngIf="displayName">
+    <span class="sbb-usermenu-user-info-name" *ngIf="displayName && userName">
       {{ userName }}
     </span>
   </span>
