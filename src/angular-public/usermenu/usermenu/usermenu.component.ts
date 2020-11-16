@@ -129,10 +129,10 @@ export class SbbUserMenu implements OnInit, OnDestroy, AfterContentInit {
     return this._triggerRect.width + this._overlayMinWidthPadding;
   }
 
-  /** Optional name and surname of an user. */
+  /** Optional display name. */
   @Input() displayName?: string;
 
-  /** Username of a user. */
+  /** User Name. */
   @Input() userName: string;
 
   /** Event emitted on log in of a user. */
