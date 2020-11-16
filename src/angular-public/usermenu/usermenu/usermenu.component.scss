@@ -126,14 +126,6 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   }
 }
 
-.sbb-usermenu-trigger-logged-in {
-  @if ($sbbBusiness) {
-    .sbb-icon:not(.sbb-usermenu-standard-icon) {
-      display: none;
-    }
-  }
-}
-
 .sbb-usermenu-identification {
   display: flex;
   flex-grow: 0;
@@ -173,12 +165,6 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
         height: toPx(32 * $scalingFactor5k);
       }
     }
-  }
-}
-
-.sbb-usermenu-standard-icon.sbb-icon {
-  @if not($sbbBusiness) {
-    display: none;
   }
 }
 

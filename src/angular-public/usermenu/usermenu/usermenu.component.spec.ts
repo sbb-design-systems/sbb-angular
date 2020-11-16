@@ -211,6 +211,91 @@ describe('SbbUserMenu', () => {
     );
     expect(identificationSection.attributes['aria-hidden']).toBe('true');
   });
+
+  it('should display data (displayName and username) if menu expanded', () => {
+    // login
+    userMenuComponent.userName = 'john_64';
+    userMenuComponent.displayName = 'John Scott';
+    fixtureUserMenu.detectChanges();
+    expect(userMenuComponent.panelOpen).toBeFalse();
+
+    const displayName = fixtureUserMenu.debugElement.query(
+      By.css('.sbb-usermenu-user-info-display-name')
+    ).nativeElement;
+    const userName = fixtureUserMenu.debugElement.query(By.css('.sbb-usermenu-user-info-name'))
+      .nativeElement;
+
+    // assertions in collapsed state
+    expect(fixtureUserMenu.debugElement.nativeElement.classList).not.toContain(
+      'sbb-usermenu-opened'
+    );
+    expect(displayName.textContent).toContain('John Scott');
+    expect(userName.textContent).toContain('john_64');
+    expect(getComputedStyle(userName).getPropertyValue('display')).toBe('none');
+
+    // open menu
+    userMenuComponent.toggle();
+    fixtureUserMenu.detectChanges();
+
+    const userNameOpenedState = fixtureUserMenu.debugElement.query(
+      By.css('.sbb-usermenu-panel .sbb-usermenu-user-info-name')
+    ).nativeElement;
+    const displayNameOpenedState = fixtureUserMenu.debugElement.query(
+      By.css('.sbb-usermenu-panel .sbb-usermenu-user-info-display-name')
+    ).nativeElement;
+
+    // assertions in opened state
+    expect(fixtureUserMenu.debugElement.nativeElement.classList).toContain('sbb-usermenu-opened');
+    expect(displayNameOpenedState.textContent).toContain('John Scott');
+    expect(userNameOpenedState.textContent).toContain('john_64');
+    expect(getComputedStyle(userNameOpenedState).getPropertyValue('display')).not.toBe('none');
+  });
+
+  it('should open menu on arrow click', () => {
+    login();
+
+    const arrow = fixtureUserMenu.debugElement.query(By.css('.sbb-usermenu-arrow')).nativeElement;
+    expect(userMenuComponent.panelOpen).toBeFalse();
+    expect(getComputedStyle(arrow).transform).toEqual('none');
+
+    arrow.click();
+    fixtureUserMenu.detectChanges();
+
+    expect(userMenuComponent.panelOpen).toBeTrue();
+    expect(getComputedStyle(arrow).transform).not.toEqual('none');
+  });
+
+  it('should display ellipsis if usernName or displayName is too long', () => {
+    // login
+    userMenuComponent.userName = 'very long username that is really very long';
+    userMenuComponent.displayName = 'very long displayName that is really very long';
+    fixtureUserMenu.detectChanges();
+    expect(userMenuComponent.panelOpen).toBeFalse();
+
+    // open menu
+    userMenuComponent.open();
+    fixtureUserMenu.detectChanges();
+    expect(userMenuComponent.panelOpen).toBeTrue();
+    // apply fake width to sbb-usermenu-panel, because in test the size is not the same as the trigger
+    fixtureUserMenu.debugElement.query(By.css('.sbb-usermenu-panel')).nativeElement.style.width =
+      '288px';
+
+    const displayName = fixtureUserMenu.debugElement.query(
+      By.css('.sbb-usermenu-panel .sbb-usermenu-user-info-display-name')
+    ).nativeElement;
+    const userName = fixtureUserMenu.debugElement.query(
+      By.css('.sbb-usermenu-panel .sbb-usermenu-user-info-name')
+    ).nativeElement;
+
+    // assert text-overflow is active with ellipsis style
+    expect(getComputedStyle(displayName).getPropertyValue('text-overflow')).toBe('ellipsis');
+    expect(displayName.offsetWidth).toBeLessThan(
+      displayName.scrollWidth,
+      'text-overflow is not active'
+    );
+    expect(getComputedStyle(userName).getPropertyValue('text-overflow')).toBe('ellipsis');
+    expect(userName.offsetWidth).toBeLessThan(userName.scrollWidth, 'text-overflow is not active');
+  });
 });
 
 describe('Test Component with custom image', () => {
@@ -248,38 +333,6 @@ describe('Test Component with custom image', () => {
     const iconReference = fixtureTest.debugElement.query(By.css('.image'));
     expect(iconReference.nativeElement).toBeTruthy();
     expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
-  });
-
-  it('should display data (displayName and username) if menu expanded', () => {
-    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
-
-    const displayName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
-      .nativeElement;
-    expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
-    expect(displayName.textContent).toContain('John Scott');
-
-    const arrow = usermenuComponent.query(By.css('.sbb-usermenu-arrow')).nativeElement;
-    arrow.click();
-    fixtureTest.detectChanges();
-
-    expect(usermenuComponent.nativeElement.classList).toContain('sbb-usermenu-opened');
-    const userName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-name')).nativeElement;
-    expect(userName.textContent).toContain('john_64');
-  });
-
-  it('should transform arrow on panel open', () => {
-    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
-    const usermenuComponentInstance: SbbUserMenu = usermenuComponent.componentInstance;
-    const arrow = usermenuComponent.query(By.css('.sbb-usermenu-arrow'));
-
-    expect(usermenuComponentInstance.panelOpen).toBe(false);
-    expect(getComputedStyle(arrow.nativeElement).transform).toEqual('none');
-
-    usermenuComponentInstance.open();
-    fixtureTest.detectChanges();
-
-    expect(usermenuComponentInstance.panelOpen).toBe(true);
-    expect(getComputedStyle(arrow.nativeElement).transform).not.toEqual('none');
   });
 
   it('should display login button after performing logout', () => {
@@ -364,8 +417,7 @@ describe('Test Component with only userName', () => {
     expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
     expect(displayName.textContent).toContain('walter_14');
 
-    const arrow = usermenuComponent.query(By.css('.sbb-usermenu-arrow')).nativeElement;
-    arrow.click();
+    usermenuComponent.componentInstance.open();
     fixtureTest.detectChanges();
 
     expect(usermenuComponent.nativeElement.classList).toContain('sbb-usermenu-opened');
@@ -407,8 +459,7 @@ describe('Test Component with only displayName', () => {
     expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
     expect(displayName.textContent).toContain('Max Muster');
 
-    const arrow = usermenuComponent.query(By.css('.sbb-usermenu-arrow')).nativeElement;
-    arrow.click();
+    usermenuComponent.componentInstance.open();
     fixtureTest.detectChanges();
 
     expect(usermenuComponent.nativeElement.classList).toContain('sbb-usermenu-opened');
