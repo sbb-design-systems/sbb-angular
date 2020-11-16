@@ -60,9 +60,20 @@ export const SBB_USERMENU_SCROLL_STRATEGY_PROVIDER = {
 
 let counter = 0;
 
-const OVERLAY_WIDTH = 288;
-const OVERLAY_WIDTH_4K = 432;
-const OVERLAY_WIDTH_5K = 576;
+const OVERLAY_MEDIA_SIZE_CONFIG = {
+  '4K': {
+    width: 432,
+    padding: 12,
+  },
+  '5K': {
+    width: 576,
+    padding: 16,
+  },
+  default: {
+    width: 288,
+    padding: 8,
+  },
+};
 
 @Component({
   selector: 'sbb-usermenu',
@@ -75,6 +86,7 @@ const OVERLAY_WIDTH_5K = 576;
     role: 'menu',
     '[attr.id]': 'id',
     '[class.sbb-usermenu-opened]': 'panelOpen',
+    '[class.sbb-usermenu-user-info-has-display-name]': '!!displayName',
   },
   animations: [sbbUsermenuAnimations.transformPanel],
 })
@@ -107,7 +119,15 @@ export class SbbUserMenu implements OnInit, OnDestroy, AfterContentInit {
   _triggerRect: ClientRect;
 
   /** Desired width of the overlay */
-  _overlayWidth: number = OVERLAY_WIDTH;
+  _overlayWidth: number = OVERLAY_MEDIA_SIZE_CONFIG.default.width;
+
+  /** padding of overlay */
+  _overlayMinWidthPadding: number = OVERLAY_MEDIA_SIZE_CONFIG.default.padding;
+
+  /** Min width of overlay when starting animation */
+  get overlayMinWidth(): number {
+    return this._triggerRect.width + this._overlayMinWidthPadding;
+  }
 
   /** Optional name and surname of an user. */
   @Input() displayName?: string;
@@ -196,17 +216,28 @@ export class SbbUserMenu implements OnInit, OnDestroy, AfterContentInit {
       .pipe(
         map((r: BreakpointState) => {
           if (r.breakpoints[Breakpoints.Desktop4k]) {
-            return OVERLAY_WIDTH_4K;
+            return '4K';
           }
           if (r.breakpoints[Breakpoints.Desktop5k]) {
-            return OVERLAY_WIDTH_5K;
+            return '5K';
           }
-          return OVERLAY_WIDTH;
+          return null;
         }),
         distinctUntilChanged(),
         takeUntil(this._destroy)
       )
-      .subscribe((width) => (this._overlayWidth = width));
+      .subscribe((resolution: '4K' | '5K' | null) => {
+        if (resolution === '4K') {
+          this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG['4K'].width;
+          this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG['4K'].padding;
+        } else if (resolution === '5K') {
+          this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG['5K'].width;
+          this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG['5K'].padding;
+        } else {
+          this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG.default.width;
+          this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG.default.padding;
+        }
+      });
   }
 
   ngAfterContentInit() {

@@ -130,19 +130,19 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   display: flex;
   flex-grow: 0;
   flex-shrink: 0;
-  padding-left: pxToRem(12);
-  padding-right: pxToRem(8);
   color: $textColor;
 
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      padding-left: pxToRem(12 * $scalingFactor4k);
-      padding-right: pxToRem(8 * $scalingFactor4k);
-    }
+  .sbb-usermenu-panel & {
+    padding-left: pxToRem(12);
 
-    @include mq($from: desktop5k) {
-      padding-left: pxToRem(12 * $scalingFactor5k);
-      padding-right: pxToRem(8 * $scalingFactor5k);
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        padding-left: pxToRem(12 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        padding-left: pxToRem(12 * $scalingFactor5k);
+      }
     }
   }
 
@@ -204,22 +204,50 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 }
 
 .sbb-usermenu-user-info {
-  display: flex;
+  display: none;
   flex-grow: 1;
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
   color: $textColor;
+  padding-left: pxToRem(8);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      padding-left: pxToRem(8 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      padding-left: pxToRem(8 * $scalingFactor5k);
+    }
+  }
+
+  .sbb-usermenu-user-info-has-display-name &,
+  .sbb-usermenu-panel & {
+    display: flex;
+  }
 }
 
 .sbb-usermenu-user-info-display-name,
 .sbb-usermenu-user-info-name {
+  display: none;
   text-align: left;
   @include ellipsis();
 }
 
+.sbb-usermenu-user-info-display-name {
+  .sbb-usermenu-user-info-has-display-name & {
+    @include mq($from: tablet) {
+      display: inline-block;
+    }
+  }
+
+  .sbb-usermenu-panel & {
+    display: inline-block;
+  }
+}
+
 .sbb-usermenu-user-info-name {
-  display: none;
   .sbb-usermenu-panel & {
     display: inline-block;
   }
@@ -241,11 +269,20 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   }
 }
 
-.sbb-usermenu-arrow {
+.sbb-usermenu-arrow.sbb-icon {
+  display: none;
   flex-shrink: 0;
   flex-grow: 0;
   margin-right: pxToRem(8);
   transition: transform 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+  @include mq($from: tablet) {
+    display: inline-block;
+  }
+
+  .sbb-overlay-panel & {
+    display: inline-block;
+  }
 
   .sbb-usermenu-opened &,
   .sbb-overlay-panel & {
