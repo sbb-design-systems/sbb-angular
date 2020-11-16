@@ -1,0 +1,5 @@
+<sbb-usermenu [userName]="userName" (loginRequest)="login()">
+  <sbb-icon svgIcon="kom:user-small" *sbbIcon></sbb-icon>
+  <button sbb-usermenu-item>Action Button</button>
+  <button sbb-usermenu-item (click)="logout()">Logout</button>
+</sbb-usermenu>
