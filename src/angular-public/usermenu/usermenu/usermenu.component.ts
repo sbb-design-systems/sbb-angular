@@ -39,6 +39,8 @@ import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { sbbUsermenuAnimations } from '../usermenu-animations';
 import { SbbUsermenuItem } from '../usermenu-item/usermenu-item';
 
+const isBusiness = false;
+
 /** Injection token that determines the scroll handling while a usermenu is open. */
 export const SBB_USERMENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
   'sbb-usermenu-scroll-strategy'
@@ -71,11 +73,9 @@ const OVERLAY_MEDIA_SIZE_CONFIG = {
   },
   default: {
     width: 288,
-    padding: 8,
+    padding: isBusiness ? 5 : 8,
   },
 };
-
-const isBusiness = false;
 
 @Component({
   selector: 'sbb-usermenu',
@@ -229,10 +229,10 @@ export class SbbUserMenu implements OnInit, OnDestroy, AfterContentInit {
         takeUntil(this._destroy)
       )
       .subscribe((resolution: '4K' | '5K' | null) => {
-        if (resolution === '4K') {
+        if (resolution === '4K' && !isBusiness) {
           this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG['4K'].width;
           this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG['4K'].padding;
-        } else if (resolution === '5K') {
+        } else if (resolution === '5K' && !isBusiness) {
           this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG['5K'].width;
           this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG['5K'].padding;
         } else {

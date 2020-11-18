@@ -57,6 +57,7 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
     color: $sbbColorRed125;
   }
 
+  // applies to custom icons and arrow icon
   .sbb-icon {
     width: 24px;
     height: 24px;
@@ -102,6 +103,20 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
         margin-top: pxToRem(-$borderWidth5k / 2);
       }
     }
+
+    .sbb-icon:not(.sbb-usermenu-arrow) {
+      margin: 0 pxToRem(3);
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          margin: 0 pxToRem(3 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          margin: 0 pxToRem(3 * $scalingFactor5k);
+        }
+      }
+    }
   }
 }
 
@@ -133,7 +148,7 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   color: $textColor;
 
   .sbb-usermenu-panel & {
-    padding-left: pxToRem(12);
+    padding-left: pxToRem(if($sbbBusiness, 5, 12));
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -169,10 +184,6 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 }
 
 .sbb-usermenu-initial-letters {
-  @if ($sbbBusiness) {
-    display: none;
-  }
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,24 +192,24 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   border-radius: 50%;
   background-color: $sbbColorCloud;
   font-family: $fontFamilyBase;
-  font-size: pxToRem(15);
+  font-size: pxToRem(13);
   font-weight: 700;
   color: $sbbColorMetal;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   text-align: center;
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
-      font-size: pxToRem(23);
-      width: toPx(32 * $scalingFactor4k);
-      height: toPx(32 * $scalingFactor4k);
+      font-size: pxToRem(13 * $scalingFactor4k);
+      width: toPx(30 * $scalingFactor4k);
+      height: toPx(30 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      font-size: pxToRem(30);
-      width: toPx(32 * $scalingFactor5k);
-      height: toPx(32 * $scalingFactor5k);
+      font-size: pxToRem(13 * $scalingFactor5k);
+      width: toPx(30 * $scalingFactor5k);
+      height: toPx(30 * $scalingFactor5k);
     }
   }
 }
@@ -210,7 +221,7 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   justify-content: flex-start;
   overflow: hidden;
   color: $textColor;
-  padding-left: pxToRem(8);
+  padding-left: pxToRem(if($sbbBusiness, 5, 8));
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
