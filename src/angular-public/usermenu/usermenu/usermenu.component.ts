@@ -75,6 +75,8 @@ const OVERLAY_MEDIA_SIZE_CONFIG = {
   },
 };
 
+const isBusiness = false;
+
 @Component({
   selector: 'sbb-usermenu',
   templateUrl: './usermenu.component.html',
