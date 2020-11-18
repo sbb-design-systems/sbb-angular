@@ -36,8 +36,8 @@ import { SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
-import { sbbUsermenuAnimations } from '../usermenu-animations';
-import { SbbUsermenuItem } from '../usermenu-item/usermenu-item';
+import { sbbUsermenuAnimations } from './usermenu-animations';
+import { SbbUsermenuItem } from './usermenu-item';
 
 const isBusiness = false;
 
@@ -79,8 +79,8 @@ const OVERLAY_MEDIA_SIZE_CONFIG = {
 
 @Component({
   selector: 'sbb-usermenu',
-  templateUrl: './usermenu.component.html',
-  styleUrls: ['./usermenu.component.css'],
+  templateUrl: './usermenu.html',
+  styleUrls: ['./usermenu.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

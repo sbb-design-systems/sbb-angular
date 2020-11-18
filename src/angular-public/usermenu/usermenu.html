@@ -32,15 +32,11 @@
     <ng-container *ngIf="_icon">
       <ng-container *ngTemplateOutlet="_icon"></ng-container>
     </ng-container>
-    <span *ngIf="!_icon" class="sbb-usermenu-initial-letters">
-      {{ _initialLetters }}
-    </span>
+    <span *ngIf="!_icon" class="sbb-usermenu-initial-letters"> {{ _initialLetters }} </span>
   </span>
 
   <span class="sbb-usermenu-user-info">
-    <span class="sbb-usermenu-user-info-display-name">
-      {{ displayName || userName }}
-    </span>
+    <span class="sbb-usermenu-user-info-display-name"> {{ displayName || userName }} </span>
     <span class="sbb-usermenu-user-info-name" *ngIf="displayName && userName">
       {{ userName }}
     </span>

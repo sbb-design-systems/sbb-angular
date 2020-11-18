@@ -15,7 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":usermenu/usermenu.component.css"] + glob(["**/*.html"]),
+    assets = [":usermenu.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/usermenu",
     deps = [
         "//src/angular-core/breakpoints",
@@ -31,8 +31,8 @@ ng_module(
 )
 
 sass_binary(
-    name = "usermenu_usermenu_component_scss",
-    src = "usermenu/usermenu.component.scss",
+    name = "usermenu_scss",
+    src = "usermenu.scss",
     deps = [
         "//src/angular-core/styles:common_scss_lib",
     ],

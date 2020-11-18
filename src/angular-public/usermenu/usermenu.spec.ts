@@ -8,9 +8,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { SbbUsermenuModule } from '../usermenu.module';
-
-import { SbbUserMenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu.component';
+import { SbbUserMenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu';
+import { SbbUsermenuModule } from './usermenu.module';
 
 // tslint:disable:i18n
 @Component({

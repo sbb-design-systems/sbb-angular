@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
 import { SbbIconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 
-import { SbbUsermenuItem } from './usermenu-item/usermenu-item';
-import { SbbUserMenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu/usermenu.component';
+import { SbbUserMenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu';
+import { SbbUsermenuItem } from './usermenu-item';
 
 @NgModule({
   declarations: [SbbUserMenu, SbbUsermenuItem],
