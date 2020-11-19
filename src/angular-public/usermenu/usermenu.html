@@ -77,7 +77,7 @@
     class="sbb-usermenu-panel"
     [attr.id]="id + '-panel'"
     [class.sbb-usermenu-opened]="panelOpen"
-    [style.minWidth]="overlayMinWidth + 'px'"
+    [style.minWidth]="_overlayMinWidth + 'px'"
     [style.minHeight]="_triggerRect?.height + 'px'"
     [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"
     (@transformPanel.start)="_handlePanelOpen($event)"

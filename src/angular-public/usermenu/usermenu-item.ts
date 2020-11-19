@@ -19,7 +19,7 @@ export class SbbUsermenuItem implements FocusableOption {
     }
   }
 
-  /** Gets the label to be used when determining whether the option should be focused. */
+  /** Gets the label to be used when determining whether the usermenu item should be focused. */
   getLabel(): string {
     const clone = this._elementRef.nativeElement.cloneNode(true) as HTMLElement;
     const icons = clone.querySelectorAll('.sbb-icon');

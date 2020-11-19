@@ -127,15 +127,21 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
   _overlayMinWidthPadding: number = OVERLAY_MEDIA_SIZE_CONFIG.default.padding;
 
   /** Min width of overlay when starting animation */
-  get overlayMinWidth(): number {
+  get _overlayMinWidth(): number {
     return this._triggerRect.width + this._overlayMinWidthPadding;
   }
 
-  /** Optional display name. */
-  @Input() displayName?: string;
-
-  /** User Name. */
+  /**
+   * The user name is only displayed if the menu is open.
+   * If userName or displayName is set, logged in state is active.
+   */
   @Input() userName: string;
+
+  /**
+   * The display name is shown on collapsed trigger and opened state of menu (except on mobile devices).
+   * If userName or displayName is set, logged in state is active.
+   */
+  @Input() displayName: string;
 
   /** Event emitted on log in of a user. */
   @Output() loginRequest: EventEmitter<void> = new EventEmitter<void>();
@@ -194,7 +200,7 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
   /** Emits whenever the component is destroyed. */
   private readonly _destroy = new Subject<void>();
 
-  /** Manages keyboard events for options in the panel. */
+  /** Manages keyboard events for usermenu items in the panel. */
   private _keyManager: FocusKeyManager<SbbUsermenuItem>;
 
   constructor(
@@ -306,7 +312,7 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
     this.open();
   }
 
-  /** Forwards focus to the currently matching element. */
+  /** Forwards focus to the currently matching usermenu button */
   focus(): void {
     if (!this._loggedIn) {
       this._loginButton.nativeElement.focus();
@@ -334,13 +340,13 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
 
   /**
    * Resets the active item in the menu. This is used when the menu is opened, allowing
-   * the user to start from the first option when pressing the down arrow.
+   * the user to start from the first usermenu item when pressing the down arrow.
    */
   private _resetActiveItem() {
     this._keyManager.setActiveItem(-1);
   }
 
-  /** Handles all keydown events on the select. */
+  /** Handles all keydown events on the usermenu. */
   @HostListener('keydown', ['$event'])
   _handleKeydown(event: TypeRef<KeyboardEvent>): void {
     this.panelOpen ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
