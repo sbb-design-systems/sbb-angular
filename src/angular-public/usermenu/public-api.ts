@@ -5,6 +5,6 @@ export * from './usermenu';
 /** @deprecated Remove with v12 */
 export { SbbUsermenuModule as UsermenuModule } from './usermenu.module';
 /** @deprecated Remove with v12 */
-export { SbbUserMenu as UserMenuComponent } from './usermenu';
+export { SbbUsermenu as UserMenuComponent } from './usermenu';
 export * from './usermenu-animations';
 export * from './usermenu-item';

@@ -92,7 +92,7 @@ const OVERLAY_MEDIA_SIZE_CONFIG = {
   },
   animations: [sbbUsermenuAnimations.transformPanel],
 })
-export class SbbUserMenu implements OnInit, OnDestroy, AfterContentInit {
+export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
   /** Identifier of the usermenu. */
   id: string = `sbb-usermenu-${counter++}`;
 

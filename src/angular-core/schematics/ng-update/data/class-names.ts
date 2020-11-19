@@ -309,7 +309,7 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
         { replace: 'TooltipRegistryService', replaceWith: 'SbbTooltipRegistryService' },
         { replace: 'TooltipTouchGestures', replaceWith: 'SbbTooltipTouchGestures' },
         { replace: 'TooltipVisibility', replaceWith: 'SbbTooltipVisibility' },
-        { replace: 'UserMenuComponent', replaceWith: 'SbbUserMenu' },
+        { replace: 'UserMenuComponent', replaceWith: 'SbbUsermenu' },
         { replace: 'UsermenuModule', replaceWith: 'SbbUsermenuModule' },
         { replace: 'WindowRef', replaceWith: 'SbbWindowRef' },
       ],

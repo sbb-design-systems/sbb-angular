@@ -8,7 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
-import { SbbUserMenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu';
+import { SbbUsermenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu';
 import { SbbUsermenuModule } from './usermenu.module';
 
 // tslint:disable:i18n
@@ -103,7 +103,7 @@ class UsermenuTestComponentWithOnlyUsername {
 }
 
 const performLoginAndReturnUsermenuComponent = (fixtureTest: ComponentFixture<any>) => {
-  const usermenuComponent = fixtureTest.debugElement.query(By.directive(SbbUserMenu));
+  const usermenuComponent = fixtureTest.debugElement.query(By.directive(SbbUsermenu));
   const usermenuComponentInstance = usermenuComponent.componentInstance;
   spyOn(usermenuComponentInstance.loginRequest, 'emit').and.callThrough();
   const buttonLogin = usermenuComponent.query(By.css('.sbb-usermenu-trigger-logged-out'))
@@ -116,14 +116,14 @@ const performLoginAndReturnUsermenuComponent = (fixtureTest: ComponentFixture<an
   return usermenuComponent;
 };
 
-describe('SbbUserMenu', () => {
-  let userMenuComponent: SbbUserMenu;
-  let fixtureUserMenu: ComponentFixture<SbbUserMenu>;
+describe('SbbUsermenu', () => {
+  let usermenuComponent: SbbUsermenu;
+  let fixtureUsermenu: ComponentFixture<SbbUsermenu>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [SbbUserMenu],
+        declarations: [SbbUsermenu],
         imports: [
           CommonModule,
           SbbIconModule,
@@ -137,52 +137,52 @@ describe('SbbUserMenu', () => {
   );
 
   beforeEach(() => {
-    fixtureUserMenu = TestBed.createComponent(SbbUserMenu);
-    userMenuComponent = fixtureUserMenu.componentInstance;
+    fixtureUsermenu = TestBed.createComponent(SbbUsermenu);
+    usermenuComponent = fixtureUsermenu.componentInstance;
   });
 
   it('should create', () => {
-    expect(userMenuComponent).toBeTruthy();
+    expect(usermenuComponent).toBeTruthy();
   });
 
   function login() {
-    userMenuComponent.userName = 'userName';
-    fixtureUserMenu.detectChanges();
-    expect(userMenuComponent.panelOpen).toBeFalse();
+    usermenuComponent.userName = 'userName';
+    fixtureUsermenu.detectChanges();
+    expect(usermenuComponent.panelOpen).toBeFalse();
   }
 
   it('should open and close panel', () => {
     login();
 
-    userMenuComponent.open();
-    fixtureUserMenu.detectChanges();
+    usermenuComponent.open();
+    fixtureUsermenu.detectChanges();
 
-    expect(userMenuComponent.panelOpen).toBeTrue();
+    expect(usermenuComponent.panelOpen).toBeTrue();
 
-    userMenuComponent.close();
-    fixtureUserMenu.detectChanges();
+    usermenuComponent.close();
+    fixtureUsermenu.detectChanges();
 
-    expect(userMenuComponent.panelOpen).toBeFalse();
+    expect(usermenuComponent.panelOpen).toBeFalse();
   });
 
   it('should open and close panel using toggle method', () => {
     login();
 
-    userMenuComponent.toggle();
-    fixtureUserMenu.detectChanges();
+    usermenuComponent.toggle();
+    fixtureUsermenu.detectChanges();
 
-    expect(userMenuComponent.panelOpen).toBeTrue();
+    expect(usermenuComponent.panelOpen).toBeTrue();
 
-    userMenuComponent.toggle();
-    fixtureUserMenu.detectChanges();
+    usermenuComponent.toggle();
+    fixtureUsermenu.detectChanges();
 
-    expect(userMenuComponent.panelOpen).toBeFalse();
+    expect(usermenuComponent.panelOpen).toBeFalse();
   });
 
   it('should set appropriate aria attributes', () => {
     login();
 
-    const triggerOpenButton = fixtureUserMenu.debugElement.query(
+    const triggerOpenButton = fixtureUsermenu.debugElement.query(
       By.css('.sbb-usermenu-trigger-open')
     );
 
@@ -192,14 +192,14 @@ describe('SbbUserMenu', () => {
     expect(triggerOpenButton.attributes['aria-haspopup']).toBe('true');
     expect(triggerOpenButton.attributes['aria-controls']).toBeUndefined();
 
-    userMenuComponent.toggle();
-    fixtureUserMenu.detectChanges();
+    usermenuComponent.toggle();
+    fixtureUsermenu.detectChanges();
 
-    const triggerCloseButton = fixtureUserMenu.debugElement.query(
+    const triggerCloseButton = fixtureUsermenu.debugElement.query(
       By.css('.sbb-usermenu-trigger-close')
     );
-    const usermenuPanel = fixtureUserMenu.debugElement.query(By.css('.sbb-usermenu-panel'));
-    const identificationSection = fixtureUserMenu.debugElement.query(
+    const usermenuPanel = fixtureUsermenu.debugElement.query(By.css('.sbb-usermenu-panel'));
+    const identificationSection = fixtureUsermenu.debugElement.query(
       By.css('.sbb-usermenu-identification')
     );
 
@@ -213,19 +213,19 @@ describe('SbbUserMenu', () => {
 
   it('should display data (displayName and username) if menu expanded', () => {
     // login
-    userMenuComponent.userName = 'john_64';
-    userMenuComponent.displayName = 'John Scott';
-    fixtureUserMenu.detectChanges();
-    expect(userMenuComponent.panelOpen).toBeFalse();
+    usermenuComponent.userName = 'john_64';
+    usermenuComponent.displayName = 'John Scott';
+    fixtureUsermenu.detectChanges();
+    expect(usermenuComponent.panelOpen).toBeFalse();
 
-    const displayName = fixtureUserMenu.debugElement.query(
+    const displayName = fixtureUsermenu.debugElement.query(
       By.css('.sbb-usermenu-user-info-display-name')
     ).nativeElement;
-    const userName = fixtureUserMenu.debugElement.query(By.css('.sbb-usermenu-user-info-name'))
+    const userName = fixtureUsermenu.debugElement.query(By.css('.sbb-usermenu-user-info-name'))
       .nativeElement;
 
     // assertions in collapsed state
-    expect(fixtureUserMenu.debugElement.nativeElement.classList).not.toContain(
+    expect(fixtureUsermenu.debugElement.nativeElement.classList).not.toContain(
       'sbb-usermenu-opened'
     );
     expect(displayName.textContent).toContain('John Scott');
@@ -233,18 +233,18 @@ describe('SbbUserMenu', () => {
     expect(getComputedStyle(userName).getPropertyValue('display')).toBe('none');
 
     // open menu
-    userMenuComponent.toggle();
-    fixtureUserMenu.detectChanges();
+    usermenuComponent.toggle();
+    fixtureUsermenu.detectChanges();
 
-    const userNameOpenedState = fixtureUserMenu.debugElement.query(
+    const userNameOpenedState = fixtureUsermenu.debugElement.query(
       By.css('.sbb-usermenu-panel .sbb-usermenu-user-info-name')
     ).nativeElement;
-    const displayNameOpenedState = fixtureUserMenu.debugElement.query(
+    const displayNameOpenedState = fixtureUsermenu.debugElement.query(
       By.css('.sbb-usermenu-panel .sbb-usermenu-user-info-display-name')
     ).nativeElement;
 
     // assertions in opened state
-    expect(fixtureUserMenu.debugElement.nativeElement.classList).toContain('sbb-usermenu-opened');
+    expect(fixtureUsermenu.debugElement.nativeElement.classList).toContain('sbb-usermenu-opened');
     expect(displayNameOpenedState.textContent).toContain('John Scott');
     expect(userNameOpenedState.textContent).toContain('john_64');
     expect(getComputedStyle(userNameOpenedState).getPropertyValue('display')).not.toBe('none');
@@ -253,36 +253,36 @@ describe('SbbUserMenu', () => {
   it('should open menu on arrow click', () => {
     login();
 
-    const arrow = fixtureUserMenu.debugElement.query(By.css('.sbb-usermenu-arrow')).nativeElement;
-    expect(userMenuComponent.panelOpen).toBeFalse();
+    const arrow = fixtureUsermenu.debugElement.query(By.css('.sbb-usermenu-arrow')).nativeElement;
+    expect(usermenuComponent.panelOpen).toBeFalse();
     expect(getComputedStyle(arrow).transform).toEqual('none');
 
     arrow.click();
-    fixtureUserMenu.detectChanges();
+    fixtureUsermenu.detectChanges();
 
-    expect(userMenuComponent.panelOpen).toBeTrue();
+    expect(usermenuComponent.panelOpen).toBeTrue();
     expect(getComputedStyle(arrow).transform).not.toEqual('none');
   });
 
   it('should display ellipsis if usernName or displayName is too long', () => {
     // login
-    userMenuComponent.userName = 'very long username that is really very long';
-    userMenuComponent.displayName = 'very long displayName that is really very long';
-    fixtureUserMenu.detectChanges();
-    expect(userMenuComponent.panelOpen).toBeFalse();
+    usermenuComponent.userName = 'very long username that is really very long';
+    usermenuComponent.displayName = 'very long displayName that is really very long';
+    fixtureUsermenu.detectChanges();
+    expect(usermenuComponent.panelOpen).toBeFalse();
 
     // open menu
-    userMenuComponent.open();
-    fixtureUserMenu.detectChanges();
-    expect(userMenuComponent.panelOpen).toBeTrue();
+    usermenuComponent.open();
+    fixtureUsermenu.detectChanges();
+    expect(usermenuComponent.panelOpen).toBeTrue();
     // apply fake width to sbb-usermenu-panel, because in test the size is not the same as the trigger
-    fixtureUserMenu.debugElement.query(By.css('.sbb-usermenu-panel')).nativeElement.style.width =
+    fixtureUsermenu.debugElement.query(By.css('.sbb-usermenu-panel')).nativeElement.style.width =
       '288px';
 
-    const displayName = fixtureUserMenu.debugElement.query(
+    const displayName = fixtureUsermenu.debugElement.query(
       By.css('.sbb-usermenu-panel .sbb-usermenu-user-info-display-name')
     ).nativeElement;
-    const userName = fixtureUserMenu.debugElement.query(
+    const userName = fixtureUsermenu.debugElement.query(
       By.css('.sbb-usermenu-panel .sbb-usermenu-user-info-name')
     ).nativeElement;
 
