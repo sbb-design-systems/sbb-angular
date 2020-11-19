@@ -73,7 +73,7 @@ const OVERLAY_MEDIA_SIZE_CONFIG = {
   },
   default: {
     width: 288,
-    padding: isBusiness ? 7 : 12,
+    padding: isBusiness ? 8 : 12,
   },
 };
 

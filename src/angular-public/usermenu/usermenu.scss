@@ -11,7 +11,7 @@ $panelWidth: 288px;
 $panelWidth4k: toPx($panelWidth * $scalingFactor4k);
 $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 
-$imageBaseSize: if($sbbBusiness, 26, 30);
+$imageBaseSize: if($sbbBusiness, 24, 30);
 
 @mixin imageSize() {
   width: toPx($imageBaseSize);
@@ -168,7 +168,7 @@ $imageBaseSize: if($sbbBusiness, 26, 30);
   color: $textColor;
 
   .sbb-usermenu-panel & {
-    padding-left: pxToRem(if($sbbBusiness, 7, 12));
+    padding-left: pxToRem(if($sbbBusiness, 8, 12));
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -211,7 +211,7 @@ $imageBaseSize: if($sbbBusiness, 26, 30);
   font-family: $fontFamilyBase;
   font-weight: 700;
   text-align: center;
-  font-size: pxToRem(if($sbbBusiness, 11, 13));
+  font-size: pxToRem(if($sbbBusiness, 10, 13));
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -231,7 +231,7 @@ $imageBaseSize: if($sbbBusiness, 26, 30);
   justify-content: flex-start;
   overflow: hidden;
   color: $textColor;
-  padding-left: pxToRem(if($sbbBusiness, 7, 8));
+  padding-left: pxToRem(8);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -295,6 +295,9 @@ $imageBaseSize: if($sbbBusiness, 26, 30);
   flex-shrink: 0;
   flex-grow: 0;
   margin-right: pxToRem(8);
+  @if $sbbBusiness {
+    margin-left: pxToRem(8);
+  }
   transition: transform 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
   @include mq($from: tablet) {
