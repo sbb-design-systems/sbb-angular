@@ -11,6 +11,25 @@ $panelWidth: 288px;
 $panelWidth4k: toPx($panelWidth * $scalingFactor4k);
 $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
 
+$imageBaseSize: if($sbbBusiness, 26, 30);
+
+@mixin imageSize() {
+  width: toPx($imageBaseSize);
+  height: toPx($imageBaseSize);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx($imageBaseSize * $scalingFactor4k);
+      height: toPx($imageBaseSize * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx($imageBaseSize * $scalingFactor5k);
+      height: toPx($imageBaseSize * $scalingFactor5k);
+    }
+  }
+}
+
 .sbb-usermenu {
   display: inline-block;
   max-width: $panelWidth;
@@ -105,15 +124,16 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
     }
 
     .sbb-icon:not(.sbb-usermenu-arrow) {
-      margin: 0 pxToRem(3);
+      $padding: ($imageBaseSize - 24) / 2;
+      margin: 0 pxToRem($padding);
 
       @include publicOnly() {
         @include mq($from: desktop4k) {
-          margin: 0 pxToRem(3 * $scalingFactor4k);
+          margin: 0 pxToRem($padding * $scalingFactor4k);
         }
 
         @include mq($from: desktop5k) {
-          margin: 0 pxToRem(3 * $scalingFactor5k);
+          margin: 0 pxToRem($padding * $scalingFactor5k);
         }
       }
     }
@@ -148,7 +168,7 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   color: $textColor;
 
   .sbb-usermenu-panel & {
-    padding-left: pxToRem(if($sbbBusiness, 5, 12));
+    padding-left: pxToRem(if($sbbBusiness, 7, 12));
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -164,20 +184,15 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   img {
     border-radius: 50%;
     border: $borderWidth solid $sbbColorCloud;
-    width: 32px;
-    height: 32px;
+    @include imageSize();
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
         border: $borderWidth4k solid $sbbColorCloud;
-        width: toPx(32 * $scalingFactor4k);
-        height: toPx(32 * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
         border: $borderWidth5k solid $sbbColorCloud;
-        width: toPx(32 * $scalingFactor5k);
-        height: toPx(32 * $scalingFactor5k);
       }
     }
   }
@@ -189,27 +204,22 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   justify-content: center;
   flex-grow: 0;
   flex-shrink: 0;
+  @include imageSize();
   border-radius: 50%;
   background-color: $sbbColorCloud;
-  font-family: $fontFamilyBase;
-  font-size: pxToRem(13);
-  font-weight: 700;
   color: $sbbColorMetal;
-  width: 30px;
-  height: 30px;
+  font-family: $fontFamilyBase;
+  font-weight: 700;
   text-align: center;
+  font-size: pxToRem(if($sbbBusiness, 11, 13));
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
       font-size: pxToRem(13 * $scalingFactor4k);
-      width: toPx(30 * $scalingFactor4k);
-      height: toPx(30 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
       font-size: pxToRem(13 * $scalingFactor5k);
-      width: toPx(30 * $scalingFactor5k);
-      height: toPx(30 * $scalingFactor5k);
     }
   }
 }
@@ -221,7 +231,7 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   justify-content: flex-start;
   overflow: hidden;
   color: $textColor;
-  padding-left: pxToRem(if($sbbBusiness, 5, 8));
+  padding-left: pxToRem(if($sbbBusiness, 7, 8));
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
