@@ -295,7 +295,6 @@ $imageBaseSize: if($sbbBusiness, 26, 30);
   flex-shrink: 0;
   flex-grow: 0;
   margin-right: pxToRem(8);
-  transform: rotate(if($sbbBusiness, 90deg, 0deg));
   transition: transform 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
   @include mq($from: tablet) {
@@ -305,6 +304,9 @@ $imageBaseSize: if($sbbBusiness, 26, 30);
     display: inline-block;
   }
 
+  @if $sbbBusiness {
+    transform: rotate(90deg);
+  }
   .sbb-usermenu-opened & {
     transform: rotate(if($sbbBusiness, -90deg, -180deg));
   }
