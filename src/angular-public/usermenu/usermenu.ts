@@ -148,13 +148,13 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
   @ContentChild(SbbIconDirective, { read: TemplateRef })
   _icon?: TemplateRef<any>;
 
+  /** Panel containing usermenu items. */
+  @ViewChild('panel') private _panel: ElementRef<HTMLElement>;
+
   /** All of the defined usermenu items. */
   @ContentChildren(SbbUsermenuItem, { descendants: true }) private _usermenuItems: QueryList<
     SbbUsermenuItem
   >;
-
-  /** Panel containing usermenu items. */
-  @ViewChild('panel') _panel: ElementRef<HTMLElement>;
 
   /** Whether or not the overlay panel is open. */
   get panelOpen(): boolean {

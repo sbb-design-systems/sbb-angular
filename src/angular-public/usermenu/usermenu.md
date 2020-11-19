@@ -31,7 +31,7 @@ if it isn't provided, the username is displayed.
   [displayName]="user1.displayName"
   (loginRequest)="login()"
 >
-  <img class="image" sbbIcon src="assets/images/user-avatar.png" />
+  <img class="image" sbbIcon src="assets/images/user-avatar.png" alt="Avater Description" />
   <sbb-dropdown>
     <a
       *ngFor="let link of links"

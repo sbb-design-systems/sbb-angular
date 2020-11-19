@@ -1,14 +1,17 @@
-import { OverlayModule } from '@angular/cdk/overlay';
+import { DOWN_ARROW, ENTER, ESCAPE, SPACE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
+import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
+import { dispatchKeyboardEvent, dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 
 import { SbbUsermenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu';
+import { SbbUsermenuItem } from './usermenu-item';
 import { SbbUsermenuModule } from './usermenu.module';
 
 // tslint:disable:i18n
@@ -16,41 +19,10 @@ import { SbbUsermenuModule } from './usermenu.module';
   selector: 'sbb-usermenu-test',
   template: `
     <sbb-usermenu [userName]="userName" [displayName]="displayName" (loginRequest)="login()">
-      <img
-        class="image"
-        *sbbIcon
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAAAAADFHGIkAAAAHXRFWHRqaXJhLXN5c3RlbS1pbWFnZS10eXBlAGF2YXRhcuQCGmEAAAHHSURBVHjaXcnpb9owGAZw//9f6aQcW0UcBx9xYFKLQC1ldBvqmMqmjUpQIIQQznKEq9U4QuakmzTt51e23+cBHyRFVhRZVuWzROKNrCpKtEkFoEpyRDmTWDbL5YQSr5IKtHeRc+lqFgp+ST6P9rcaQMmkpkG1FIbB8Ricwi8KFEkSAQPqug6Rf9qdwvC0D16IpkMdGgAjwzC0y8MumD7UxsGv43UyhQyEAU3hFIb5/cFjUMPNw6GoEYxTFDBMMNELL8Gd2hmh3HZ/CykhmAGTUGrkl5vnSX3nwMJ2sy4iRokJOKUM3e6Wq/X+EWW8rb+70xmlHFiMMfJ+uvH95bXhPS/W/iU2GbPiwiQZd7VYVm78+Wp4QUT+p2BcLy5nszSczNefdc7iIm1GOGksnqqVyaLFeBykXwtupSrz8Xwxnpawxf8WnDOC0bfpcDAYPn1ChIgkLii2cuVab9AXBu7Pco5jKooMzVbbg9Gw3/M8r+f1R6N++/6CpoFl2aOe23Vj3W403rjF04BdeR1H6Mai13E6Xt4ErOzatt0R7GjEEdyPFJj3Tqv9n5bz1QTWj/bjP5rN6G5/N0H1ofkaNeoNod6I/q1a5TdkFrmNh+TkvgAAAABJRU5ErkJggrbdEexoxBHcjxSY906r/Z+W89UE1o/24z+azehufzdB9aH5GjXqDaHeiP6tWuU3ZBa5jUIVzVsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTMtMDMtMjFUMTc6MDA6NDgrMTE6MDBIBpwWAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDEzLTAzLTEyVDA5OjM0OjAzKzExOjAwMqS6YQAAAABJRU5ErkJggg=="
-      />
-      <a sbb-usermenu-item href="">Menu Item 1</a>
-      <a sbb-usermenu-item href="">Menu Item 2</a>
-      <hr />
-      <button sbb-usermenu-item type="button" (click)="logout()">Logout</button>
-    </sbb-usermenu>
-  `,
-})
-class UsermenuTestComponentWithCustomImage {
-  userName: string;
-  displayName: string;
-
-  login() {
-    this.userName = 'john_64';
-    this.displayName = 'John Scott';
-  }
-
-  logout() {
-    this.userName = '';
-    this.displayName = '';
-  }
-}
-
-@Component({
-  selector: 'sbb-usermenu-test',
-  template: `
-    <sbb-usermenu [userName]="userName" [displayName]="displayName" (loginRequest)="login()">
       <a sbb-usermenu-item [routerLink]="'.'" routerLinkActive="sbb-selected">Menu Item 1</a>
       <a sbb-usermenu-item [routerLink]="'.'" routerLinkActive="sbb-selected">Menu Item 2</a>
       <hr />
-      <button sbb-usermenu-item type="button">Logout</button>
+      <button sbb-usermenu-item type="button" (click)="logout()">Logout</button>
     </sbb-usermenu>
   `,
 })
@@ -61,6 +33,11 @@ class UsermenuTestComponentWithDisplayNameAndUserName {
   login() {
     this.userName = 'max_98';
     this.displayName = 'Max Muster';
+  }
+
+  logout() {
+    this.userName = '';
+    this.displayName = '';
   }
 }
 
@@ -102,6 +79,33 @@ class UsermenuTestComponentWithOnlyUsername {
   }
 }
 
+@Component({
+  selector: 'sbb-usermenu-test',
+  template: `
+    <sbb-usermenu [userName]="userName" [displayName]="displayName" (loginRequest)="login()">
+      <img
+        alt="test logo"
+        class="image"
+        *sbbIcon
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAAAAADFHGIkAAAAHXRFWHRqaXJhLXN5c3RlbS1pbWFnZS10eXBlAGF2YXRhcuQCGmEAAAHHSURBVHjaXcnpb9owGAZw//9f6aQcW0UcBx9xYFKLQC1ldBvqmMqmjUpQIIQQznKEq9U4QuakmzTt51e23+cBHyRFVhRZVuWzROKNrCpKtEkFoEpyRDmTWDbL5YQSr5IKtHeRc+lqFgp+ST6P9rcaQMmkpkG1FIbB8Ricwi8KFEkSAQPqug6Rf9qdwvC0D16IpkMdGgAjwzC0y8MumD7UxsGv43UyhQyEAU3hFIb5/cFjUMPNw6GoEYxTFDBMMNELL8Gd2hmh3HZ/CykhmAGTUGrkl5vnSX3nwMJ2sy4iRokJOKUM3e6Wq/X+EWW8rb+70xmlHFiMMfJ+uvH95bXhPS/W/iU2GbPiwiQZd7VYVm78+Wp4QUT+p2BcLy5nszSczNefdc7iIm1GOGksnqqVyaLFeBykXwtupSrz8Xwxnpawxf8WnDOC0bfpcDAYPn1ChIgkLii2cuVab9AXBu7Pco5jKooMzVbbg9Gw3/M8r+f1R6N++/6CpoFl2aOe23Vj3W403rjF04BdeR1H6Mai13E6Xt4ErOzatt0R7GjEEdyPFJj3Tqv9n5bz1QTWj/bjP5rN6G5/N0H1ofkaNeoNod6I/q1a5TdkFrmNh+TkvgAAAABJRU5ErkJggrbdEexoxBHcjxSY906r/Z+W89UE1o/24z+azehufzdB9aH5GjXqDaHeiP6tWuU3ZBa5jUIVzVsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTMtMDMtMjFUMTc6MDA6NDgrMTE6MDBIBpwWAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDEzLTAzLTEyVDA5OjM0OjAzKzExOjAwMqS6YQAAAABJRU5ErkJggg=="
+      />
+      <a sbb-usermenu-item href="">Menu Item 1</a>
+      <a sbb-usermenu-item href="">Menu Item 2</a>
+      <hr />
+      <button sbb-usermenu-item type="button">Logout</button>
+    </sbb-usermenu>
+  `,
+})
+class UsermenuTestComponentWithCustomImage {
+  userName: string;
+  displayName: string;
+
+  login() {
+    this.userName = 'john_64';
+    this.displayName = 'John Scott';
+  }
+}
+
 const performLoginAndReturnUsermenuComponent = (fixtureTest: ComponentFixture<any>) => {
   const usermenuComponent = fixtureTest.debugElement.query(By.directive(SbbUsermenu));
   const usermenuComponentInstance = usermenuComponent.componentInstance;
@@ -119,6 +123,8 @@ const performLoginAndReturnUsermenuComponent = (fixtureTest: ComponentFixture<an
 describe('SbbUsermenu', () => {
   let usermenuComponent: SbbUsermenu;
   let fixtureUsermenu: ComponentFixture<SbbUsermenu>;
+  let overlayContainerElement: HTMLElement;
+  let overlayContainer: OverlayContainer;
 
   beforeEach(
     waitForAsync(() => {
@@ -140,6 +146,11 @@ describe('SbbUsermenu', () => {
     fixtureUsermenu = TestBed.createComponent(SbbUsermenu);
     usermenuComponent = fixtureUsermenu.componentInstance;
   });
+
+  beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
+    overlayContainer = oc;
+    overlayContainerElement = oc.getContainerElement();
+  }));
 
   it('should create', () => {
     expect(usermenuComponent).toBeTruthy();
@@ -295,55 +306,84 @@ describe('SbbUsermenu', () => {
     expect(getComputedStyle(userName).getPropertyValue('text-overflow')).toBe('ellipsis');
     expect(userName.offsetWidth).toBeLessThan(userName.scrollWidth, 'text-overflow is not active');
   });
-});
 
-describe('Test Component with custom image', () => {
-  let componentTest: UsermenuTestComponentWithCustomImage;
-  let fixtureTest: ComponentFixture<UsermenuTestComponentWithCustomImage>;
+  it('should open and close menu by keyboard space event', async () => {
+    login();
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbUsermenuModule,
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          NoopAnimationsModule,
-        ],
-        declarations: [UsermenuTestComponentWithCustomImage],
-      }).compileComponents();
-    })
-  );
+    const trigger = fixtureUsermenu.debugElement.query(By.css('.sbb-usermenu-trigger'))!
+      .nativeElement;
+    trigger.focus();
 
-  beforeEach(() => {
-    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithCustomImage);
-    componentTest = fixtureTest.componentInstance;
-    fixtureTest.detectChanges();
+    // open menu
+    dispatchKeyboardEvent(document.activeElement as HTMLElement, 'keydown', SPACE);
+    fixtureUsermenu.detectChanges();
+    await fixtureUsermenu.whenStable();
+    expect(usermenuComponent.panelOpen).toBeTrue();
+
+    // close menu
+    dispatchKeyboardEvent(document.activeElement as HTMLElement, 'keydown', SPACE);
+    dispatchMouseEvent(document.activeElement as HTMLElement, 'click'); // click is necessary to simulate real conditions in browser where a space event fires a click event
+    fixtureUsermenu.detectChanges();
+    expect(usermenuComponent.panelOpen).toBeFalse();
   });
 
-  it('should perform login', () => {
-    performLoginAndReturnUsermenuComponent(fixtureTest);
+  it('should open and close menu by keyboard enter event', async () => {
+    login();
+
+    const trigger = fixtureUsermenu.debugElement.query(By.css('.sbb-usermenu-trigger'))!
+      .nativeElement;
+    trigger.focus();
+
+    // open menu
+    dispatchKeyboardEvent(document.activeElement as HTMLElement, 'keydown', ENTER);
+    fixtureUsermenu.detectChanges();
+    await fixtureUsermenu.whenStable();
+    expect(usermenuComponent.panelOpen).toBeTrue();
+
+    // close menu
+    dispatchKeyboardEvent(document.activeElement as HTMLElement, 'keydown', ENTER);
+    dispatchMouseEvent(document.activeElement as HTMLElement, 'click'); // click is necessary to simulate real conditions in browser where a space event fires a click event
+    fixtureUsermenu.detectChanges();
+    expect(usermenuComponent.panelOpen).toBeFalse();
   });
 
-  it('should display image', () => {
-    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
+  it('should close menu by escape keypress on panel', () => {
+    login();
 
-    const iconReference = fixtureTest.debugElement.query(By.css('.image'));
-    expect(iconReference.nativeElement).toBeTruthy();
-    expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
+    fixtureUsermenu.componentInstance.open();
+    expect(usermenuComponent.panelOpen).toBeTrue();
+    fixtureUsermenu.detectChanges();
+
+    dispatchKeyboardEvent(overlayContainerElement, 'keydown', ESCAPE);
+    fixtureUsermenu.detectChanges();
+
+    expect(usermenuComponent.panelOpen).toBeFalse();
   });
 
-  it('should display login button after performing logout', () => {
-    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
-    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-in'))).toBeTruthy();
-    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-out'))).toBeFalsy();
+  it('should close menu by escape keypress on usermenu', () => {
+    login();
 
-    fixtureTest.componentInstance.logout();
-    fixtureTest.detectChanges();
+    fixtureUsermenu.componentInstance.open();
+    expect(usermenuComponent.panelOpen).toBeTrue();
+    fixtureUsermenu.detectChanges();
 
-    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-in'))).toBeFalsy();
-    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-out'))).toBeTruthy();
+    dispatchKeyboardEvent(fixtureUsermenu.nativeElement, 'keydown', ESCAPE);
+    fixtureUsermenu.detectChanges();
+
+    expect(usermenuComponent.panelOpen).toBeFalse();
+  });
+
+  it('should close menu by pressing TAB key', () => {
+    login();
+
+    fixtureUsermenu.componentInstance.open();
+    expect(usermenuComponent.panelOpen).toBeTrue();
+    fixtureUsermenu.detectChanges();
+
+    dispatchKeyboardEvent(fixtureUsermenu.nativeElement, 'keydown', TAB);
+    fixtureUsermenu.detectChanges();
+
+    expect(usermenuComponent.panelOpen).toBeFalse();
   });
 });
 
@@ -360,6 +400,7 @@ describe('Test Component with userName and displayName without image', () => {
           SbbIconModule,
           SbbIconTestingModule,
           RouterTestingModule,
+          NoopAnimationsModule,
         ],
         declarations: [UsermenuTestComponentWithDisplayNameAndUserName],
       }).compileComponents();
@@ -380,6 +421,123 @@ describe('Test Component with userName and displayName without image', () => {
     );
     expect(initialLettersReference.nativeElement).toBeTruthy();
     expect(initialLettersReference.nativeElement.textContent).toContain('MM');
+  });
+
+  it('should display login button after performing logout', () => {
+    performLoginAndReturnUsermenuComponent(fixtureTest);
+    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-in'))).toBeTruthy();
+    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-out'))).toBeFalsy();
+
+    fixtureTest.componentInstance.logout();
+    fixtureTest.detectChanges();
+
+    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-in'))).toBeFalsy();
+    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-out'))).toBeTruthy();
+  });
+
+  it('should select usermenu items by arrow keys', () => {
+    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
+
+    // open menu
+    usermenuComponent.componentInstance.open();
+    fixtureTest.detectChanges();
+    expect(usermenuComponent.componentInstance.panelOpen).toBeTrue();
+
+    const usermenuItems = fixtureTest.debugElement.queryAll(By.directive(SbbUsermenuItem));
+
+    // select first item by arrow down
+    dispatchKeyboardEvent(usermenuComponent.nativeElement, 'keydown', DOWN_ARROW);
+    expect(document.activeElement).toBe(usermenuItems[0].nativeElement);
+
+    // select second item by arrow down
+    dispatchKeyboardEvent(usermenuComponent.nativeElement, 'keydown', DOWN_ARROW);
+    expect(document.activeElement).toBe(usermenuItems[1].nativeElement);
+
+    // select third item by arrow down
+    dispatchKeyboardEvent(usermenuComponent.nativeElement, 'keydown', DOWN_ARROW);
+    expect(document.activeElement).toBe(usermenuItems[2].nativeElement);
+
+    // select first item by arrow down because there are only three elements
+    dispatchKeyboardEvent(usermenuComponent.nativeElement, 'keydown', DOWN_ARROW);
+    expect(document.activeElement).toBe(usermenuItems[0].nativeElement);
+
+    // select third item by arrow up
+    dispatchKeyboardEvent(usermenuComponent.nativeElement, 'keydown', UP_ARROW);
+    expect(document.activeElement).toBe(usermenuItems[2].nativeElement);
+  });
+
+  it('should close menu when navigating away by link', () => {
+    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
+
+    // open menu
+    usermenuComponent.componentInstance.open();
+    fixtureTest.detectChanges();
+    expect(usermenuComponent.componentInstance.panelOpen).toBeTrue();
+
+    // navigate away
+    const usermenuItems = fixtureTest.debugElement.queryAll(By.directive(SbbUsermenuItem));
+    usermenuItems[0].nativeElement.click();
+    fixtureTest.detectChanges();
+
+    expect(usermenuComponent.componentInstance.panelOpen).toBeFalse();
+  });
+
+  it('should close menu when navigating away by button', () => {
+    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
+
+    // open menu
+    usermenuComponent.componentInstance.open();
+    fixtureTest.detectChanges();
+    expect(usermenuComponent.componentInstance.panelOpen).toBeTrue();
+
+    // navigate away
+    const usermenuItems = fixtureTest.debugElement.queryAll(By.directive(SbbUsermenuItem));
+    usermenuItems[2].nativeElement.click();
+    fixtureTest.detectChanges();
+
+    expect(usermenuComponent.componentInstance.panelOpen).toBeFalse();
+  });
+});
+
+describe('Test Component with only displayName', () => {
+  let componentTest: UsermenuTestComponentWithOnlyDisplayName;
+  let fixtureTest: ComponentFixture<UsermenuTestComponentWithOnlyDisplayName>;
+
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbUsermenuModule,
+          CommonModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+          NoopAnimationsModule,
+        ],
+        declarations: [UsermenuTestComponentWithOnlyDisplayName],
+      }).compileComponents();
+    })
+  );
+
+  beforeEach(() => {
+    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithOnlyDisplayName);
+    componentTest = fixtureTest.componentInstance;
+    fixtureTest.detectChanges();
+  });
+
+  it('should display only displayName', () => {
+    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
+
+    const displayName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
+      .nativeElement;
+    expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
+    expect(displayName.textContent).toContain('Max Muster');
+
+    usermenuComponent.componentInstance.open();
+    fixtureTest.detectChanges();
+
+    expect(usermenuComponent.nativeElement.classList).toContain('sbb-usermenu-opened');
+    expect(displayName.textContent).toContain('Max Muster');
+    expect(usermenuComponent.query(By.css('.sbb-usermenu-user-info-name'))).toBeNull();
   });
 });
 
@@ -425,9 +583,9 @@ describe('Test Component with only userName', () => {
   });
 });
 
-describe('Test Component with only displayName', () => {
-  let componentTest: UsermenuTestComponentWithOnlyDisplayName;
-  let fixtureTest: ComponentFixture<UsermenuTestComponentWithOnlyDisplayName>;
+describe('Test Component with custom image', () => {
+  let componentTest: UsermenuTestComponentWithCustomImage;
+  let fixtureTest: ComponentFixture<UsermenuTestComponentWithCustomImage>;
 
   beforeEach(
     waitForAsync(() => {
@@ -439,30 +597,26 @@ describe('Test Component with only displayName', () => {
           SbbIconTestingModule,
           NoopAnimationsModule,
         ],
-        declarations: [UsermenuTestComponentWithOnlyDisplayName],
+        declarations: [UsermenuTestComponentWithCustomImage],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithOnlyDisplayName);
+    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithCustomImage);
     componentTest = fixtureTest.componentInstance;
     fixtureTest.detectChanges();
   });
 
-  it('should display only displayName', () => {
+  it('should perform login', () => {
+    performLoginAndReturnUsermenuComponent(fixtureTest);
+  });
+
+  it('should display image', () => {
     const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
 
-    const displayName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
-      .nativeElement;
+    const iconReference = fixtureTest.debugElement.query(By.css('.image'));
+    expect(iconReference.nativeElement).toBeTruthy();
     expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
-    expect(displayName.textContent).toContain('Max Muster');
-
-    usermenuComponent.componentInstance.open();
-    fixtureTest.detectChanges();
-
-    expect(usermenuComponent.nativeElement.classList).toContain('sbb-usermenu-opened');
-    expect(displayName.textContent).toContain('Max Muster');
-    expect(usermenuComponent.query(By.css('.sbb-usermenu-user-info-name'))).toBeNull();
   });
 });
