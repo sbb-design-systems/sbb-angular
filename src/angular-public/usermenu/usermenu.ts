@@ -65,15 +65,15 @@ let counter = 0;
 const OVERLAY_MEDIA_SIZE_CONFIG = {
   '4K': {
     width: 432,
-    padding: 12,
+    padding: 18,
   },
   '5K': {
     width: 576,
-    padding: 16,
+    padding: 24,
   },
   default: {
     width: 288,
-    padding: isBusiness ? 5 : 8,
+    padding: isBusiness ? 5 : 12,
   },
 };
 
