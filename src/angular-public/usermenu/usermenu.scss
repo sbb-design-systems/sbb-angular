@@ -285,19 +285,18 @@ $panelWidth5k: toPx($panelWidth * $scalingFactor5k);
   flex-shrink: 0;
   flex-grow: 0;
   margin-right: pxToRem(8);
+  transform: rotate(if($sbbBusiness, 90deg, 0deg));
   transition: transform 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
   @include mq($from: tablet) {
     display: inline-block;
   }
-
   .sbb-overlay-panel & {
     display: inline-block;
   }
 
-  .sbb-usermenu-opened &,
-  .sbb-overlay-panel & {
-    transform: rotate(-180deg);
+  .sbb-usermenu-opened & {
+    transform: rotate(if($sbbBusiness, -90deg, -180deg));
   }
 
   @include publicOnly() {

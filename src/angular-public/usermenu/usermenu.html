@@ -42,7 +42,16 @@
     </span>
   </span>
 
-  <sbb-icon svgIcon="kom:chevron-small-down-small" class="sbb-usermenu-arrow"></sbb-icon>
+  <sbb-icon
+    *ngIf="!_isBusiness"
+    svgIcon="kom:chevron-small-down-small"
+    class="sbb-usermenu-arrow"
+  ></sbb-icon>
+  <sbb-icon
+    *ngIf="_isBusiness"
+    svgIcon="kom:chevron-right-small"
+    class="sbb-usermenu-arrow"
+  ></sbb-icon>
 </ng-template>
 
 <ng-template
@@ -62,10 +71,12 @@
   (detach)="_closeAndFocus()"
 >
   <div
+    #panel
     tabindex="-1"
     role="menu"
     class="sbb-usermenu-panel"
     [attr.id]="id + '-panel'"
+    [class.sbb-usermenu-opened]="panelOpen"
     [style.minWidth]="overlayMinWidth + 'px'"
     [style.minHeight]="_triggerRect?.height + 'px'"
     [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"

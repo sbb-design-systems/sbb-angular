@@ -153,6 +153,9 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
     SbbUsermenuItem
   >;
 
+  /** Panel containing usermenu items. */
+  @ViewChild('panel') _panel: ElementRef<HTMLElement>;
+
   /** Whether or not the overlay panel is open. */
   get panelOpen(): boolean {
     return this._panelOpen;
@@ -178,6 +181,9 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
       })
       .toLocaleUpperCase();
   }
+
+  /** Whether the current component is used in business package or not */
+  _isBusiness: boolean = isBusiness;
 
   /** Strategy that will be used to handle scrolling while the usermenu panel is open. */
   _scrollStrategy: ScrollStrategy;
@@ -285,6 +291,7 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
   /** Closes the overlay panel */
   close(): void {
     if (this._panelOpen) {
+      this._panel.nativeElement.classList.remove('sbb-usermenu-opened');
       this._panelOpen = false;
       this._changeDetectorRef.markForCheck();
     }
