@@ -1,92 +1,74 @@
-The usermenu is intended to log on / out and offers the logged-in user a menu
-with comprehensive functionalities.
+The usermenu is intended to log in / out a user and offers the logged-in user a menu
+with comprehensive functionalities. The Usermenu should be placed in a site header, e.g. the `<sbb-header>`.
 
-### When should the module be used?
+### Log in
 
-Whenever the user should be able to log in to an application.
-
-### Characteristics and states
-
-The module has the following states:
-
-- Logged in (when you click on the login button) : in collapsed and expanded status.
-
-In the collapsed status, you can see your icon (an image you can provide) or if you doesn't
-provide it, you can see the initial letters of your name and surname. Clicking on the arrow
-down you can go to the expanded status.
-
-In the expanded status, you can always see your icon / initial letters, the displayName or,
-if it isn't provided, the username is displayed.
-
-- Logged out
-
-### Example
-
-- Logged in with an image provided from user:
+To set the usermenu as logged in, react to `(loginRequest)` output event of `<sbb-usermenu>`
+and set either `userName` or `displayName` properties of `<sbb-usermenu>`.
 
 ```html
-<h4 class="sbbsc-block">Basic Example with custom user image and with userName and displayName</h4>
-<sbb-usermenu
-  [userName]="user1.userName"
-  [displayName]="user1.displayName"
-  (loginRequest)="login()"
->
-  <img class="image" sbbIcon src="assets/images/user-avatar.png" alt="Avater Description" />
-  <sbb-dropdown>
-    <a
-      *ngFor="let link of links"
-      sbbDropdownItem
-      [routerLink]="linkGenerator(link.page).routerLink"
-      [queryParams]="linkGenerator(link.page).queryParams"
-      routerLinkActive="sbb-selected"
-      >{{ link.text }}
-    </a>
-    <hr />
-    <button sbbDropdownItem type="button" (click)="logout(user1)">Logout</button>
-  </sbb-dropdown>
+<sbb-usermenu [userName]="userName" (loginRequest)="login()"> ... </sbb-usermenu>
+```
+
+```ts
+class YourComponent {
+  userName: string;
+  login() {
+    this.userName = 'Walter Scotti';
+  }
+}
+```
+
+### Log out
+
+To log out a user, just invalidate `userName` and `displayName` properties of `sbb-usermenu`.
+
+### `displayName` vs `userName`
+
+If the menu is collapsed, only the `displayName` is shown, except on mobile devices where no name at all is being displayed.
+If the menu is expanded, `displayName` and `userName` are shown. If both `displayName` and `userName` are provided,
+the `userName` has a smaller font size.
+
+### Custom icon or custom image
+
+By default, the initial letters of a user are displayed next to the user name.
+As an alternative, you can either provide a custom icon or image by applying the `*sbbIcon` directive.
+
+#### Custom icon
+
+```html
+<sbb-usermenu [userName]="userName">
+  <sbb-icon svgIcon="kom:avatar-train-staff-small" *sbbIcon></sbb-icon>
+  ...
 </sbb-usermenu>
 ```
 
-- Logged in without user image but with displayName and userName:
+#### Custom image
 
 ```html
-<h4 class="sbbsc-block">Example without user image but with displayName and userName</h4>
-<sbb-usermenu
-  [userName]="user2.userName"
-  [displayName]="user2.displayName"
-  (loginRequest)="login2()"
->
-  <sbb-dropdown>
-    <a
-      *ngFor="let link of links"
-      sbbDropdownItem
-      [routerLink]="linkGenerator(link.page).routerLink"
-      [queryParams]="linkGenerator(link.page).queryParams"
-      routerLinkActive="sbb-selected"
-      >{{ link.text }}
-    </a>
-    <hr />
-    <button sbbDropdownItem type="button" (click)="logout(user2)">Logout</button>
-  </sbb-dropdown>
+<sbb-usermenu [userName]="userName">
+  <img src="assets/sbb-logo.png" alt="SBB Logo" *sbbIcon />
+  ...
 </sbb-usermenu>
 ```
 
-- Logged in only with username:
+### Menu content
+
+The expanded usermenu respects `<a sbb-usermenu-item>`, `<button sbb-usermenu-item>` and `<hr />` tags.
+The last button in the menu should be the logout button.
+`<sbb-icon>` icons can optionally be used in menu items.
 
 ```html
-<h4 class="sbbsc-block">Example only with userName</h4>
-<sbb-usermenu [userName]="user3.userName" (loginRequest)="login3()">
-  <sbb-dropdown>
-    <a
-      *ngFor="let link of links"
-      sbbDropdownItem
-      [routerLink]="linkGenerator(link.page).routerLink"
-      [queryParams]="linkGenerator(link.page).queryParams"
-      routerLinkActive="sbb-selected"
-      >{{ link.text }}
-    </a>
-    <hr />
-    <button sbbDropdownItem type="button" (click)="logout(user3)">Logout</button>
-  </sbb-dropdown>
+<sbb-usermenu [userName]="userName" [displayName]="displayName" (loginRequest)="login()">
+  <a sbb-usermenu-item routerLink="." routerLinkActive="sbb-selected">
+    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon> Account
+  </a>
+  <a sbb-usermenu-item routerLink="." routerLinkActive="sbb-selected">
+    <sbb-icon svgIcon="kom:tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
+  </a>
+  <hr />
+  <button sbb-usermenu-item (click)="logout()">
+    <sbb-icon svgIcon="kom:exit-small" class="sbb-icon-fit"></sbb-icon> Logout
+  </button>
 </sbb-usermenu>
 ```

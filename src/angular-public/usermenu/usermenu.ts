@@ -133,13 +133,13 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
 
   /**
    * The user name is only displayed if the menu is open.
-   * If userName or displayName is set, logged in state is active.
+   * If userName is set, logged in state is active.
    */
   @Input() userName: string;
 
   /**
-   * The display name is shown on collapsed trigger and opened state of menu (except on mobile devices).
-   * If userName or displayName is set, logged in state is active.
+   * The display name is shown on collapsed trigger and on opened state of the menu (except on mobile devices).
+   * If displayName is set, logged in state is active.
    */
   @Input() displayName: string;
 
@@ -230,21 +230,21 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
       .pipe(
         map((r: BreakpointState) => {
           if (r.breakpoints[Breakpoints.Desktop4k]) {
-            return '4K';
+            return Breakpoints.Desktop4k;
           }
           if (r.breakpoints[Breakpoints.Desktop5k]) {
-            return '5K';
+            return Breakpoints.Desktop5k;
           }
           return null;
         }),
         distinctUntilChanged(),
         takeUntil(this._destroy)
       )
-      .subscribe((resolution: '4K' | '5K' | null) => {
-        if (resolution === '4K' && !isBusiness) {
+      .subscribe((breakpoint: string | null) => {
+        if (breakpoint === Breakpoints.Desktop4k && !isBusiness) {
           this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG['4K'].width;
           this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG['4K'].padding;
-        } else if (resolution === '5K' && !isBusiness) {
+        } else if (breakpoint === Breakpoints.Desktop5k && !isBusiness) {
           this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG['5K'].width;
           this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG['5K'].padding;
         } else {
@@ -297,7 +297,7 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
   /** Closes the overlay panel */
   close(): void {
     if (this._panelOpen) {
-      this._panel.nativeElement.classList.remove('sbb-usermenu-opened');
+      this._panel.nativeElement.classList.remove('sbb-usermenu-opened'); // remove class immediately to achieve animation of arrow
       this._panelOpen = false;
       this._changeDetectorRef.markForCheck();
     }
