@@ -208,12 +208,14 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
   border-radius: 50%;
   background-color: $sbbColorCloud;
   color: $sbbColorMetal;
-  font-family: $fontFamilyBase;
+  font-family: $fontSbbBold;
   font-weight: 700;
   text-align: center;
   font-size: pxToRem(if($sbbBusiness, 10, 13));
 
   @include publicOnly() {
+    line-height: 1;
+
     @include mq($from: desktop4k) {
       font-size: pxToRem(13 * $scalingFactor4k);
     }
