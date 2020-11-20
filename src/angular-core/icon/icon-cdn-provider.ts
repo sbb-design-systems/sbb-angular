@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.9.0 of the icon CDN.
+ * Generated from version v1.11.0 of the icon CDN.
  * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
@@ -130,6 +130,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'sa-1',
         'sa-2',
         'sa-aa',
+        'sa-abteilkinderwagen',
         'sa-af',
         'sa-at',
         'sa-aw',
@@ -332,6 +333,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'rocket-large',
         'shopping-cart-large',
         'target-large',
+        'warning-light-large',
         'circle-cross-large',
         'bulb-on-large',
         'handshake-large',
@@ -467,6 +469,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'shopping-cart-medium',
         'sign-exclamation-point-medium',
         'sign-x-medium',
+        'smartphone-shaking-medium',
         'spanner-medium',
         'star-medium',
         'switzerland-medium',
@@ -851,6 +854,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'shopping-cart-small',
         'sign-exclamation-point-small',
         'sign-x-small',
+        'smartphone-shaking-small',
         'spanner-small',
         'star-small',
         'switzerland-small',
