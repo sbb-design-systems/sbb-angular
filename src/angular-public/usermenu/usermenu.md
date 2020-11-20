@@ -26,8 +26,8 @@ To log out a user, just invalidate `userName` and `displayName` properties of `s
 ### `displayName` vs `userName`
 
 If the menu is collapsed, only the `displayName` is shown, except on mobile devices where no name at all is being displayed.
-If the menu is expanded, `displayName` and `userName` are shown. If both `displayName` and `userName` are provided,
-the `userName` has a smaller font size.
+If the menu is expanded, `displayName` and `userName` are shown.
+If both `displayName` and `userName` are provided, the `userName` has a smaller font size.
 
 ### Custom icon or custom image
 
