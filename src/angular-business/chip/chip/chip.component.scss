@@ -1,3 +1,4 @@
+$sbbBusiness: true;
 @import '../../../angular-core/styles/common';
 
 $chip-close-button-size: 24;
@@ -8,50 +9,45 @@ $chip-border-radius: 15;
 $chip-height: 30;
 $chip-min-width: 75;
 
-:host {
+.sbb-chip {
   color: $sbbColorIron;
-  height: pxToEm($chip-height);
+  height: pxToRem($chip-height);
   max-width: 100%;
-  min-width: pxToEm($chip-min-width);
+  min-width: pxToRem($chip-min-width);
   display: inline-flex;
-  border-radius: pxToEm($chip-border-radius);
+  border-radius: pxToRem($chip-border-radius);
   background-color: $sbbColorCloud;
-  padding: pxToEm($chip-vertical-padding) pxToEm($chip-right-padding) pxToEm($chip-vertical-padding)
-    pxToEm($chip-left-padding);
+  padding: pxToRem($chip-vertical-padding) pxToRem($chip-right-padding)
+    pxToRem($chip-vertical-padding) pxToRem($chip-left-padding);
+}
 
-  .sbb-chip-label {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+.sbb-chip-disabled {
+  opacity: 0.4;
+  min-width: pxToRem(45);
+  padding: pxToRem($chip-vertical-padding) pxToRem($chip-left-padding)
+    pxToRem($chip-vertical-padding) pxToRem($chip-left-padding);
+}
 
-  .sbb-chip-close-button {
-    @include buttonResetFrameless();
-
+.sbb-chip-active {
+  &:hover,
+  &:focus {
+    background-color: $sbbColorAluminum;
     cursor: pointer;
-    margin-left: 8px;
-    min-width: pxToEm($chip-close-button-size);
-    min-height: pxToEm($chip-close-button-size);
   }
+}
 
-  &.sbb-chip-disabled {
-    opacity: 0.4;
-    min-width: pxToEm(45);
-    padding: pxToEm($chip-vertical-padding) pxToEm($chip-left-padding)
-      pxToEm($chip-vertical-padding) pxToEm($chip-left-padding);
-  }
+.sbb-chip-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-  &.sbb-chip-active {
-    &:hover,
-    &:focus {
-      background-color: $sbbColorAluminum;
-      cursor: pointer;
-    }
+.sbb-chip-close-button {
+  @include buttonResetFrameless();
 
-    &:active {
-      background-color: $sbbColorAluminum;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    }
-  }
+  cursor: pointer;
+  margin-left: pxToRem(8);
+  min-width: pxToRem($chip-close-button-size);
+  min-height: pxToRem($chip-close-button-size);
 }
