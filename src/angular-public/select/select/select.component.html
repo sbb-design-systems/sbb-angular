@@ -20,8 +20,12 @@
     </span>
   </div>
 
-  <div class="sbb-select-arrow-wrapper">
+  <div class="sbb-select-arrow-wrapper" [class.sbb-select-arrow-wrapper-rotate]="panelOpen">
     <sbb-icon svgIcon="kom:chevron-small-down-small" class="sbb-icon-fit"></sbb-icon>
+    <sbb-icon
+      svgIcon="kom:chevron-right-small"
+      class="sbb-icon-fit sbb-select-arrow-icon-business"
+    ></sbb-icon>
   </div>
 </div>
 

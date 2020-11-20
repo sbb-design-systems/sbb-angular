@@ -215,6 +215,7 @@ export const SbbSelectMixinBase: CanDisableCtor &
     '[class.sbb-select-required]': 'required',
     '[class.sbb-select-empty]': 'empty',
     '[class.sbb-select-multiple]': 'multiple',
+    '[class.sbb-select-focused]': 'focused',
   },
   animations: [sbbSelectAnimations.transformPanel],
   providers: [
