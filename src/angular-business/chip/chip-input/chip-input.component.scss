@@ -1,42 +1,48 @@
+$sbbBusiness: true;
 @import '../../../angular-core/styles/common';
 
 $sbb-chip-input-field-height: 37;
 $sbb-chip-border-radius: 2;
 
-:host(.sbb-chip-input-active) {
-  border-color: $sbbColorGranite;
+.sbb-chip-input {
+  @include inputfields;
+
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  background: transparent;
+
+  .sbb-chip {
+    max-width: 100%;
+    margin: 0.25rem;
+  }
+
+  input.sbb-chip-input-textfield {
+    border: none;
+  }
 }
 
-:host(.sbb-chip-input-disabled) {
+.sbb-chip-input-textfield {
+  width: 0;
+  flex: 1 1 auto;
+}
+
+.sbb-chip-input-disabled {
   border-color: $sbbColorCloud;
   background-color: $sbbColorMilk;
 }
 
-:host(.ng-touched.ng-invalid) {
-  color: $sbbColorRed125;
-  border-color: $sbbColorRed125;
-  background-color: $sbbColorMilk;
+.sbb-chip-input-active {
+  border-color: $sbbColorGranite;
 }
 
-:host {
-  width: 100%;
-  border: 1px solid $sbbColorGraphite;
-  border-radius: pxToRem($sbb-chip-border-radius);
-  min-height: pxToRem($sbb-chip-input-field-height);
-  display: flex;
-  flex-wrap: wrap;
-
-  .sbb-chip-input-textfield {
-    width: 0;
-    flex: 1 1 auto;
+.sbb-chip-input-autocomplete-expanded {
+  &:not(.sbb-autocomplete-input-above) {
+    @include autocompleteInputActive();
   }
 
-  .sbb-chip {
-    max-width: 100%;
-    margin: 0.25em;
-  }
-
-  input {
-    border: none;
+  &.sbb-autocomplete-input-above {
+    @include autocompleteInputActive($mode: reverse);
   }
 }

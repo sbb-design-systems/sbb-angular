@@ -16,6 +16,7 @@ import {
   Self,
   SimpleChanges,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
@@ -31,6 +32,7 @@ import {
 import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 let nextId = 0;
 
@@ -65,6 +67,7 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
   templateUrl: './chip-input.component.html',
   styleUrls: ['./chip-input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   host: {
     class: 'sbb-chip-input',
     '[id]': 'id',
@@ -174,6 +177,8 @@ export class SbbChipInput
   /** Unique id for this input. */
   private _uniqueId = `sbb-chip-input-${nextId++}`;
 
+  private _destroyed = new Subject<void>();
+
   /** `View -> model callback called when value changes` */
   private _onTouched: () => void = () => {};
   /** `View -> model callback called when chip input has been touched` */
@@ -202,9 +207,16 @@ export class SbbChipInput
 
   ngOnInit(): void {
     if (this.autocomplete) {
-      this.autocomplete.optionSelected.subscribe((event: SbbAutocompleteSelectedEvent) =>
-        this._onSelect(event.option.value)
-      );
+      this.autocomplete.optionSelected
+        .pipe(takeUntil(this._destroyed))
+        .subscribe((event: SbbAutocompleteSelectedEvent) => this._onSelect(event.option.value));
+
+      this.autocomplete.opened.pipe(takeUntil(this._destroyed)).subscribe(() => {
+        this._elementRef.nativeElement.classList.add('sbb-chip-input-autocomplete-expanded');
+      });
+      this.autocomplete.closed.pipe(takeUntil(this._destroyed)).subscribe(() => {
+        this._elementRef.nativeElement.classList.remove('sbb-chip-input-autocomplete-expanded');
+      });
     }
   }
 
@@ -224,6 +236,8 @@ export class SbbChipInput
 
   ngOnDestroy() {
     this.stateChanges.complete();
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
   /**

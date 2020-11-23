@@ -1,5 +1,5 @@
 <ng-container [formGroup]="formGroup">
-  <sbb-form-field label="Label">
+  <sbb-form-field label="Label" class="sbb-form-field-long">
     <sbb-chip-input formControlName="chipDisabled"></sbb-chip-input>
     <sbb-error *ngIf="formGroup.get('chipDisabled')?.errors?.required"
       >This field is required.</sbb-error
