@@ -32,6 +32,8 @@ if (module === require.main) {
      * output directory.
      */
     packages: () => buildReleasePackages(false, join(projectDir, 'dist/releases')),
+    i18n: () =>
+      buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular-core/i18n')),
     showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
     'icon-registry': () => generateIconRegistry(),
   };
@@ -114,6 +116,18 @@ function getPackageNamesOfTargets(targets: string[]) {
     }
     return matches[1];
   });
+}
+
+function buildI18n(distPath: string, i18nDistPath: string) {
+  buildReleasePackages(true, distPath);
+  for (const format of ['xlf', 'xlf2']) {
+    const relativeDistPath = relative(projectDir, distPath);
+    const outPath = join(i18nDistPath, format, 'messages.xlf');
+    exec(
+      `"node_modules/.bin/localize-extract" -l en-CH -s "${relativeDistPath}/**/fesm2015/*.js" -f ${format} -o "${outPath}"`
+    );
+    console.log(`Updated ${relative(projectDir, outPath)}`);
+  }
 }
 
 /**

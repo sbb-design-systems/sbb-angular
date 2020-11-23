@@ -18,7 +18,6 @@ import { SbbBreadcrumb, SBB_BREADCRUMB_LEVEL_OFFSET } from '../breadcrumb/breadc
 
 import { SbbBreadcrumbs } from './breadcrumbs.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-breadcrumbs-test',
   template: `

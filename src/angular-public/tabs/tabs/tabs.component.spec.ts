@@ -11,7 +11,6 @@ import { SbbTab } from '../tab/tab.component';
 
 import { SbbTabs } from './tabs.component';
 
-// tslint:disable:i18n
 @Component({
   template: `
     <sbb-tabs #tabs>

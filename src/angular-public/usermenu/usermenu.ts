@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { AnimationEvent } from '@angular/animations';
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { DOWN_ARROW, ENTER, ESCAPE, hasModifierKey, SPACE, UP_ARROW } from '@angular/cdk/keycodes';
@@ -186,6 +189,28 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
         return current[0] + next[0];
       })
       .toLocaleUpperCase();
+  }
+
+  /** @docs-private */
+  get _ariaLabelOpenPanel() {
+    return typeof $localize === 'function'
+      ? $localize`:Aria label to open user menu@@sbbUsermenuOpenPanel:Logged in as ${
+          this.displayName || this.userName
+        }. Click or press enter to open user menu.`
+      : `Logged in as ${
+          this.displayName || this.userName
+        }. Click or press enter to open user menu.`;
+  }
+
+  /** @docs-private */
+  get _ariaLabelClosePanel() {
+    return typeof $localize === 'function'
+      ? $localize`:Aria label to close user menu@@sbbUsermenuClosePanel:Logged in as ${
+          this.displayName || this.userName
+        }. Click or press enter to close user menu.`
+      : `Logged in as ${
+          this.displayName || this.userName
+        }. Click or press enter to close user menu.`;
   }
 
   /** Whether the current component is used in business package or not */

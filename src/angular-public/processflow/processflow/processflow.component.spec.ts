@@ -8,7 +8,6 @@ import { SbbProcessflowModule } from '../processflow.module';
 
 import { SbbProcessflow } from './processflow.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-processflow-test',
   template: `

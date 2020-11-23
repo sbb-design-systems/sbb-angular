@@ -16,7 +16,6 @@ import {
 
 import { SbbDropdown } from './dropdown.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-dropdown-test',
   template: `

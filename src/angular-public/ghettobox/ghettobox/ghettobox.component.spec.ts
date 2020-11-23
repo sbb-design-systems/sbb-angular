@@ -9,7 +9,6 @@ import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { SbbGhettobox } from './ghettobox.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-ghettobox-test',
   template: `

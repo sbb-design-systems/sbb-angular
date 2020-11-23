@@ -56,6 +56,7 @@ markdown_to_html(
     srcs = [
         ":README.md",
         ":getting-started.md",
+        ":i18n.md",
         ":typography.md",
     ],
 )

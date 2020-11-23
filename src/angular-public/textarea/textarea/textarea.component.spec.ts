@@ -222,7 +222,7 @@ describe('SbbTextarea digits counter', () => {
     component.writeValue(component.value + ' ');
     fixture.detectChanges();
     const counterDiv = fixture.debugElement.query(By.css('div'));
-    expect(counterDiv.nativeElement.textContent.trim()).toBe('Noch 16 Zeichen');
+    expect(counterDiv.nativeElement.textContent.trim()).toBe('16 characters remaining');
   });
 
   it('should disappear', () => {

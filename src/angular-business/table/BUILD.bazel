@@ -26,6 +26,7 @@ ng_module(
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/localize",
         "@npm//rxjs",
     ],
 )

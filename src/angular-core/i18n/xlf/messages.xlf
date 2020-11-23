@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-CH" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="sbbDatepickerSwitchToPreviousMonth" datatype="html">
+        <source>Change to the previous month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/datepicker/calendar/calendar-header.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/datepicker/calendar/calendar-header.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">Button label to switch to the previous month</note>
+      </trans-unit>
+      <trans-unit id="sbbDatepickerSwitchToNextMonth" datatype="html">
+        <source>Change to the next month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/datepicker/calendar/calendar-header.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/datepicker/calendar/calendar-header.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">Button label to switch to the next month</note>
+      </trans-unit>
+      <trans-unit id="sbbDatepickerSwitchToPreviousYear" datatype="html">
+        <source>Change to the previous year</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/datepicker/calendar/calendar-header.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/datepicker/calendar/calendar-header.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">Button label to switch to the previous year</note>
+      </trans-unit>
+      <trans-unit id="sbbDatepickerSwitchToNextYear" datatype="html">
+        <source>Change to the next year</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/datepicker/calendar/calendar-header.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/datepicker/calendar/calendar-header.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <note priority="1" from="description">Button label to switch to the next year</note>
+      </trans-unit>
+      <trans-unit id="sbbDatepickerOpenCalendar" datatype="html">
+        <source>Show calendar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/datepicker/datepicker-toggle/datepicker-toggle.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/datepicker/datepicker-toggle/datepicker-toggle.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Open calendar</note>
+      </trans-unit>
+      <trans-unit id="sbbFileSelectorUploadFile" datatype="html">
+        <source>Upload file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/file-selector/file-selector/file-selector.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/file-selector/file-selector/file-selector.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description">Button label to select files for upload</note>
+      </trans-unit>
+      <trans-unit id="sbbFileSelectorRemoveFile" datatype="html">
+        <source>Remove file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/file-selector/file-selector/file-selector.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/file-selector/file-selector/file-selector.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <note priority="1" from="description">Hidden button label to remove a file from the selection list</note>
+      </trans-unit>
+      <trans-unit id="sbbHeaderMenuBack" datatype="html">
+        <source>Back</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/header/header-menu/header-menu.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Go back to the app chooser navigation</note>
+      </trans-unit>
+      <trans-unit id="sbbNavigationPreviousPage" datatype="html">
+        <source>Previous Page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/pagination/navigation/navigation.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/pagination/navigation/navigation.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Button label to navigate to the previous page</note>
+      </trans-unit>
+      <trans-unit id="sbbNavigationNextPage" datatype="html">
+        <source>Next Page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/pagination/navigation/navigation.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/pagination/navigation/navigation.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">Button label to navigate to the next page</note>
+      </trans-unit>
+      <trans-unit id="sbbPaginationPreviousPage" datatype="html">
+        <source>Previous Page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/pagination/pagination/pagination.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/pagination/paginator/paginator.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/pagination/pagination/pagination.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/pagination/paginator/paginator.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Button label to navigate to the previous page</note>
+      </trans-unit>
+      <trans-unit id="sbbPaginationNextPage" datatype="html">
+        <source>Next Page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/pagination/pagination/pagination.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/pagination/paginator/paginator.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/pagination/pagination/pagination.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/pagination/paginator/paginator.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <note priority="1" from="description">Button label to navigate to the next page</note>
+      </trans-unit>
+      <trans-unit id="sbbSidebarCollapse" datatype="html">
+        <source>Collapse</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <note priority="1" from="description">Label to &apos;collapse&apos; icon sidebar</note>
+      </trans-unit>
+      <trans-unit id="sbbSidebarExpand" datatype="html">
+        <source>Expand</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">Label to &apos;expand&apos; icon sidebar</note>
+      </trans-unit>
+      <trans-unit id="sbbTableChangeSorting" datatype="html">
+        <source>Change sorting for <x id="PH" equiv-text="this.id"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/table/sort-header/sort-header.component.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+        <note priority="1" from="description">Button label to change the sorting of column</note>
+      </trans-unit>
+      <trans-unit id="sbbTabsBadgePillAmountOfEntries" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="aria-label=&quot;{{ tab."/> entries</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/tabs/tabs/tabs.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/tabs/tabs/tabs.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">Aria label for amount of entries displayed in badge pill</note>
+      </trans-unit>
+      <trans-unit id="sbbTextareaCounterText" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="  {{ _counter | async "/> characters remaining
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/textarea/textarea/textarea.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/textarea/textarea/textarea.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+        <note priority="1" from="description">Counter text for textarea</note>
+      </trans-unit>
+      <trans-unit id="sbbTextexpandShowLess" datatype="html">
+        <source>Show less</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/textexpand/textexpand/textexpand.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/textexpand/textexpand/textexpand.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">Button label for showing less</note>
+      </trans-unit>
+      <trans-unit id="sbbTextexpandShowMore" datatype="html">
+        <source>Show more</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/textexpand/textexpand/textexpand.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/textexpand/textexpand/textexpand.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">Button label for showing more</note>
+      </trans-unit>
+      <trans-unit id="sbbUsermenuLogin" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/usermenu/usermenu.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/usermenu/usermenu.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">Button label for login</note>
+      </trans-unit>
+      <trans-unit id="sbbGhettoboxCloseGhettobox" datatype="html">
+        <source>Close message</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/ghettobox/ghettobox/ghettobox.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <note priority="1" from="description">Hidden button label to close the ghettobox</note>
+      </trans-unit>
+      <trans-unit id="sbbTagBadgePillAmountOfResults" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="aria-label=&quot;"/> results available</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/tag/tag/tag.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/tag/tag/tag.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <note priority="1" from="description">Aria label for amount of results displayed in badge pill</note>
+      </trans-unit>
+      <trans-unit id="sbbTagsAll" datatype="html">
+        <source>All</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/tag/tags/tags.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Label for the &apos;All&apos; tag</note>
+      </trans-unit>
+      <trans-unit id="sbbUsermenuOpenPanel" datatype="html">
+        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
+    "/>. Click or press enter to open user menu.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/usermenu/usermenu.ts</context>
+          <context context-type="linenumber">196,198</context>
+        </context-group>
+        <note priority="1" from="description">Aria label to open user menu</note>
+      </trans-unit>
+      <trans-unit id="sbbUsermenuClosePanel" datatype="html">
+        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
+    "/>. Click or press enter to close user menu.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/usermenu/usermenu.ts</context>
+          <context context-type="linenumber">203,205</context>
+        </context-group>
+        <note priority="1" from="description">Aria label to close user menu</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -60,7 +60,6 @@ import { SbbSelectModule } from '../select.module';
 
 import { SbbSelect } from './select.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-basic-select',
   template: `

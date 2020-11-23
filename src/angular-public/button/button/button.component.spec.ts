@@ -6,7 +6,6 @@ import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { SbbButton } from './button.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-button-test',
   template: `

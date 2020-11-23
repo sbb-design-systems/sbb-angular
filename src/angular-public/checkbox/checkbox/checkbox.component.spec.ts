@@ -8,7 +8,6 @@ import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 
 import { SbbCheckbox } from './checkbox.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-model-checkbox-test',
   template: `
