@@ -43,6 +43,6 @@ sass_binary(
 )
 
 sass_binary(
-    name = "textarea_reactive_forms_with_sbb_field_example_textarea_reactive_forms_with_sbb_field_example_component_scss",
+    name = "textarea_reactive_forms_with_sbb_form_field_example_textarea_reactive_forms_with_sbb_form_field_example_component_scss",
     src = "textarea-reactive-forms-with-sbb-form-field-example/textarea-reactive-forms-with-sbb-form-field-example.component.scss",
 )
