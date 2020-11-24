@@ -1,5 +1,5 @@
 The usermenu is intended to log in / out a user and offers the logged-in user a menu
-with comprehensive functionalities. The Usermenu should be placed in a site header, e.g. the `<sbb-header>`.
+with comprehensive functionalities. The usermenu should be placed in a site header, e.g. the `<sbb-header>`.
 
 ### Log in
 
