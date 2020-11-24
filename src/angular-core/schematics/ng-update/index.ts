@@ -13,6 +13,7 @@ import { addIconCdnProvider } from '../ng-add';
 import { ClassNamesMigration } from './migrations/class-names';
 import { FormFieldMigration } from './migrations/form-field-migration';
 import { IconMigration } from './migrations/icon-migration';
+import { UsermenuMigration } from './migrations/usermenu-migration';
 import { sbbAngularUpgradeData } from './upgrade-data';
 
 /** Entry point for the migration schematics with target of sbb-angular 10.0.0 */
@@ -50,7 +51,7 @@ export function updateToV11(): Rule {
   patchClassNamesMigration();
   return createMigrationSchematicRule(
     TargetVersion.V11,
-    [IconMigration, FormFieldMigration],
+    [IconMigration, FormFieldMigration, UsermenuMigration],
     sbbAngularUpgradeData,
     onMigrationComplete
   );

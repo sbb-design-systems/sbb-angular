@@ -14,7 +14,7 @@ ng_module(
     assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-public/dropdown",
+        "//src/angular-core/icon",
         "//src/angular-public/usermenu",
         "//src/showcase/app/shared",
         "@npm//@angular/common",

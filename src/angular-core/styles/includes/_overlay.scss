@@ -271,26 +271,26 @@ $optionSelectedColor: $sbbColorBlack;
     margin-bottom: $optionMarginY;
   }
 
-  @include businessOnly() {
-    line-height: pxToRem(20);
-  }
+  line-height: if($sbbBusiness, pxToRem(20), pxToRem(23));
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
       font-size: toPx($sizeFontDefault * $scalingFactor4k);
+      line-height: pxToRem(23 * $scalingFactor4k);
       padding: toPx(4 * $scalingFactor4k) toPx($autocompleteAndOptionPaddingX * $scalingFactor4k);
 
       &:first-of-type {
         margin-top: toPx($optionMarginY * $scalingFactor4k);
       }
-
       &:last-of-type {
         margin-bottom: toPx($optionMarginY * $scalingFactor4k);
       }
     }
     @include mq($from: desktop5k) {
       font-size: toPx($sizeFontDefault * $scalingFactor5k);
+      line-height: pxToRem(23 * $scalingFactor5k);
       padding: toPx(4 * $scalingFactor5k) toPx($autocompleteAndOptionPaddingX * $scalingFactor5k);
+
       &:first-of-type {
         margin-top: toPx($optionMarginY * $scalingFactor5k);
       }
@@ -335,13 +335,47 @@ $optionSelectedColor: $sbbColorBlack;
   .sbb-icon-component:not(.sbb-checkbox-checked) {
     // TODO(icon-migration): remove '.sbb-icon-component' because new icons inherit colors (also color: can be removed)
     line-height: 0;
-    margin: pxToRem(-9) pxToRem(2) pxToRem(-9) pxToRem(-5);
+    margin: if($sbbBusiness, pxToRem(-9) 0 pxToRem(-9) 0, pxToRem(-7) 0 pxToRem(-7) 0);
     transform: translateY(pxToRem(7));
+    width: 24px;
+    height: 24px;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        margin-top: pxToRem(-12);
+        margin-bottom: pxToRem(-12);
+        transform: translateY(pxToRem(7 * $scalingFactor4k));
+        width: 36px;
+        height: 36px;
+      }
+
+      @include mq($from: desktop5k) {
+        margin-top: pxToRem(-15);
+        margin-bottom: pxToRem(-15);
+        transform: translateY(pxToRem(7 * $scalingFactor5k));
+        width: 48px;
+        height: 48px;
+      }
+    }
   }
 
   > .sbb-icon:first-child:not(.sbb-checkbox-checked),
   > .sbb-icon-component:first-child:not(.sbb-checkbox-checked) {
     // TODO(icon-migration): remove '.sbb-icon-component' because new icons inherit colors (also color: can be removed)
-    float: left;
+    float: left; // used to ignore users whitespace and to ensure margin is correct
+    margin-right: pxToRem(if($sbbBusiness, 8, 11));
+    margin-left: pxToRem(if($sbbBusiness, 0, -1));
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        margin-right: pxToRem(11 * $scalingFactor4k);
+        margin-left: pxToRem(-1 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-right: pxToRem(11 * $scalingFactor5k);
+        margin-left: pxToRem(-1 * $scalingFactor5k);
+      }
+    }
   }
 }
