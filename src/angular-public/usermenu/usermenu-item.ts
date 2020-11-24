@@ -12,7 +12,7 @@ export class SbbUsermenuItem implements FocusableOption {
   constructor(private _focusMonitor: FocusMonitor, private _elementRef: ElementRef<HTMLElement>) {}
 
   focus(origin?: FocusOrigin, options?: FocusOptions): void {
-    if (this._focusMonitor && origin) {
+    if (origin) {
       this._focusMonitor.focusVia(this._elementRef.nativeElement, origin, options);
     } else {
       this._elementRef.nativeElement.focus(options);

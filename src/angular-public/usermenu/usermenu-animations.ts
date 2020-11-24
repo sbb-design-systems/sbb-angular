@@ -24,8 +24,13 @@ export const sbbUsermenuAnimations: {
     state(
       'void',
       style({
-        width: '48px', // Basically this value is set by minWidth to guarantee the same width as the trigger has. If 0 would be set, the animation doesn't look perfectly smooth. Setting minWidth to our minimal expected width of the desktop view (48px) results in an improved animation behaviour. In 4k and 5k the positive effect minimize because the minWidth is larger than this start width. Setting this value by parameter is not possible because of the void state.
-        height: '48px', // Basically this value is set by minHeight to guarantee the same height as the trigger has. If 0 would be set, the animation doesn't look perfectly smooth. Setting minHeight to our minimal expected height of the desktop view (48px) results in an improved animation behaviour. In 4k and 5k the positive effect minimize because the minHeight is larger than this start height. Setting this value by parameter is not possible because of the void state.
+        // Basically width and height ar set by minWidth and minHeight to guarantee the same width as the trigger has.
+        // If 0 would be set, the animation doesn't look perfectly smooth.
+        // Setting minWidth and min Height to our minimal expected width / height of the desktop view (48px) results in an improved animation behaviour.
+        // In 4k and 5k the positive effect minimize because the minWidth / minHeight is larger than this start width / height.
+        // Setting width and height by parameter is not possible because of the void state.
+        width: '48px',
+        height: '48px',
         opacity: 0,
       })
     ),

@@ -51,43 +51,38 @@ export class UsermenuMigration extends Migration<null> {
     const recorder = this.fileSystem.edit(template.filePath);
 
     if (sbbIconElements.length) {
-      this.logger.info('replace sbbIcon with *sbbIcon');
+      this.logger.info('Replace sbbIcon with *sbbIcon inside sbb-usermenu');
       for (const element of sbbIconElements) {
         const sbbIconLocation = element.sourceCodeLocation!.attrs['sbbicon'];
         if (!sbbIconLocation || !this._isDirectDescendant(element, sbbUsermenuElements)) {
           break;
         }
 
-        // add *before sbbIcon -> *sbbIcon
+        // add * before sbbIcon -> *sbbIcon
         recorder.insertLeft(template.start + sbbIconLocation.startOffset, '*');
       }
     }
 
     if (sbbDropdownElements.length) {
-      this.logger.info('remove sbb-dropdown tag');
-      this.logger.info('replace sbbDropdownItem by sbb-usermenu-item directive');
+      this.logger.info('Convert sbb-dropdown inside sbb-usermenu to sbb-usermenu items');
 
       for (const sbbDropdownElement of sbbDropdownElements) {
         const sbbDropdownLocationStart = sbbDropdownElement.sourceCodeLocation?.startTag;
         const sbbDropdownLocationEnd = sbbDropdownElement.sourceCodeLocation?.endTag;
-        if (
-          !sbbDropdownLocationStart ||
-          !sbbDropdownLocationEnd ||
-          !this._isDirectDescendant(sbbDropdownElement, sbbUsermenuElements)
-        ) {
+        if (!this._isDirectDescendant(sbbDropdownElement, sbbUsermenuElements)) {
           break;
         }
 
         // remove sbb-dropdown start tag
         recorder.remove(
-          template.start + sbbDropdownLocationStart.startOffset,
-          sbbDropdownLocationStart.endOffset - sbbDropdownLocationStart.startOffset
+          template.start + sbbDropdownLocationStart!.startOffset,
+          sbbDropdownLocationStart!.endOffset - sbbDropdownLocationStart!.startOffset
         );
 
         // remove sbb-dropdown end tag
         recorder.remove(
-          template.start + sbbDropdownLocationEnd.startOffset,
-          sbbDropdownLocationEnd.endOffset - sbbDropdownLocationEnd.startOffset
+          template.start + sbbDropdownLocationEnd!.startOffset,
+          sbbDropdownLocationEnd!.endOffset - sbbDropdownLocationEnd!.startOffset
         );
 
         for (const sbbDropdownItemElement of sbbDropdownItemElements) {
