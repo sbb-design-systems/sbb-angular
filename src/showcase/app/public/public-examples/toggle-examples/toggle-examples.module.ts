@@ -8,12 +8,20 @@ import { SbbToggleModule } from '@sbb-esta/angular-public/toggle';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { ToggleExampleComponent } from './toggle-example/toggle-example.component';
+import { ToggleReactiveExampleComponent } from './toggle-reactive-example/toggle-reactive-example.component';
+import { ToggleTemplateDrivenExampleComponent } from './toggle-template-driven-example/toggle-template-driven-example.component';
+import { ToggleWithoutFormExampleComponent } from './toggle-without-form-example/toggle-without-form-example.component';
 
-const EXAMPLES = [ToggleExampleComponent];
+const EXAMPLES = [
+  ToggleReactiveExampleComponent,
+  ToggleTemplateDrivenExampleComponent,
+  ToggleWithoutFormExampleComponent,
+];
 
 const EXAMPLE_INDEX = {
-  'toggle-example': ToggleExampleComponent,
+  'toggle-reactive-example': ToggleReactiveExampleComponent,
+  'toggle-template-driven-example': ToggleTemplateDrivenExampleComponent,
+  'toggle-without-form-example': ToggleWithoutFormExampleComponent,
 };
 
 @NgModule({
