@@ -7,12 +7,24 @@ import { SbbUsermenuModule } from '@sbb-esta/angular-public/usermenu';
     <sbb-usermenu userName="UserName">
       <img src="test.jpg" sbbIcon />
       <img src="test.jpg" *sbbIcon />
-      <sbb-dropdown tag="dummy">
+      <ng-container>
+        <img src="test.jpg" sbbIcon />
+        <img src="test.jpg" *sbbIcon />
+      </ng-container>
+      <sbb-dropdown tag="dummy"><hr/>
         <a sbbDropdownItem routerLinkActive="sbb-selected"> Link <img src="test.jpg" sbbIcon /></a>
         <a sbbDropdownItem routerLinkActive="sbb-selected"> Link 2 </a>
         <hr />
         <button sbbDropdownItem type="button">Logout</button>
-      </sbb-dropdown>
+      </sbb-dropdown><hr/>
+      <ng-container>
+        <sbb-dropdown tag="dummy"><hr/>
+          <a sbbDropdownItem routerLinkActive="sbb-selected"> Link <img src="test.jpg" sbbIcon /></a>
+          <a sbbDropdownItem routerLinkActive="sbb-selected"> Link 2 </a>
+          <hr />
+          <button sbbDropdownItem type="button">Logout</button>
+        </sbb-dropdown><hr/>
+      </ng-container>
     </sbb-usermenu>
     <sbb-icon sbbIcon></sbb-icon>
     <sbb-dropdown>

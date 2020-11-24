@@ -5,9 +5,9 @@ const parse: typeof import('parse5') = parse5;
 
 /**
  * Migration for the sbb-usermenu:
- * - replaces sbbIcon with *sbbIcon
- * - removes <sbb-dropdown> tag
- * - replaces sbbDropdownItem with sbb-usermenu-item directive
+ * - Replaces sbbIcon with *sbbIcon
+ * - Removes <sbb-dropdown> tag
+ * - Replaces sbbDropdownItem with sbb-usermenu-item directive
  */
 export class UsermenuMigration extends Migration<null> {
   enabled = this.targetVersion === TargetVersion.V11;
@@ -27,22 +27,19 @@ export class UsermenuMigration extends Migration<null> {
           visitNodes(node.childNodes);
         }
 
-        if (this._isDirectDescendantOf('sbb-usermenu', node) && this._hasSbbIconDirective(node)) {
+        if (!this._isInUsermenu(node)) {
+          return;
+        }
+
+        if (!this._isInSbbDropdown(node) && this._hasSbbIconDirective(node)) {
           sbbIconElements.push(node);
         }
 
-        if (
-          this._isDirectDescendantOf('sbb-usermenu', node) &&
-          node.nodeName.toLowerCase() === 'sbb-dropdown'
-        ) {
+        if (this._isSbbDropdown(node)) {
           sbbDropdownElements.push(node);
         }
 
-        if (
-          this._isDirectDescendantOf('sbb-usermenu', node.parentNode as DefaultTreeElement) &&
-          this._isDirectDescendantOf('sbb-dropdown', node) &&
-          this._hasSbbDropdownItemDirective(node)
-        ) {
+        if (this._hasSbbDropdownItemDirective(node)) {
           sbbDropdownItemElements.push(node);
         }
       });
@@ -115,6 +112,14 @@ export class UsermenuMigration extends Migration<null> {
     }
   }
 
+  private _isUsermenu(node: DefaultTreeElement) {
+    return node.nodeName.toLocaleLowerCase() === 'sbb-usermenu';
+  }
+
+  private _isSbbDropdown(node: DefaultTreeElement) {
+    return node.nodeName.toLowerCase() === 'sbb-dropdown';
+  }
+
   private _hasSbbIconDirective(node: DefaultTreeElement) {
     return node.attrs && node.attrs.some((a) => a.name.toLowerCase() === 'sbbicon');
   }
@@ -123,12 +128,25 @@ export class UsermenuMigration extends Migration<null> {
     return node.attrs && node.attrs.some((a) => a.name.toLowerCase() === 'sbbdropdownitem');
   }
 
-  private _isDirectDescendantOf(tagName: string, node: DefaultTreeElement) {
-    const parent = node.parentNode as DefaultTreeElement;
-
-    if (!parent) {
-      return false;
+  private _isInSbbDropdown(node: DefaultTreeElement) {
+    let parent = node.parentNode as DefaultTreeElement;
+    while (parent) {
+      if (this._isSbbDropdown(parent)) {
+        return true;
+      }
+      parent = parent.parentNode as DefaultTreeElement;
     }
-    return parent.nodeName.toLocaleLowerCase() === tagName;
+    return false;
+  }
+
+  private _isInUsermenu(node: DefaultTreeElement) {
+    let parent = node.parentNode as DefaultTreeElement;
+    while (parent) {
+      if (this._isUsermenu(parent)) {
+        return true;
+      }
+      parent = parent.parentNode as DefaultTreeElement;
+    }
+    return false;
   }
 }
