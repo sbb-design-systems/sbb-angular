@@ -3,8 +3,8 @@ with comprehensive functionalities. The usermenu should be placed in a site head
 
 ### Log in
 
-To set the usermenu as logged in, react to `(loginRequest)` output event of `<sbb-usermenu>`
-and set either `userName` or `displayName` properties of `<sbb-usermenu>`.
+To assign logged in state set either `userName` or `displayName` inputs of `<sbb-usermenu>`.
+In the logged out state the user can click on the usermenu to request to log in. This will emit a `(loginRequest)` event.
 
 ```html
 <sbb-usermenu [userName]="userName" (loginRequest)="login()"> ... </sbb-usermenu>
@@ -21,7 +21,7 @@ class YourComponent {
 
 ### Log out
 
-To log out a user, just invalidate `userName` and `displayName` properties of `sbb-usermenu`.
+To log out a user, assign falsy values to the `userName` and `displayName` inputs of `sbb-usermenu`.
 
 ### `displayName` vs `userName`
 
