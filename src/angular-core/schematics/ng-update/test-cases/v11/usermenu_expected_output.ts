@@ -7,12 +7,12 @@ import { SbbUsermenuModule } from '@sbb-esta/angular-public/usermenu';
     <sbb-usermenu userName="UserName">
       <img src="test.jpg" *sbbIcon />
       <img src="test.jpg" *sbbIcon />
-      x
+      
         <a sbb-usermenu-item routerLinkActive="sbb-selected"> Link <img src="test.jpg" sbbIcon /></a>
         <a sbb-usermenu-item routerLinkActive="sbb-selected"> Link 2 </a>
         <hr />
         <button sbb-usermenu-item type="button">Logout</button>
-      x
+      
     </sbb-usermenu>
     <sbb-icon sbbIcon></sbb-icon>
     <sbb-dropdown>
