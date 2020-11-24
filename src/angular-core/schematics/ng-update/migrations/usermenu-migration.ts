@@ -17,7 +17,6 @@ export class UsermenuMigration extends Migration<null> {
     const document = parse.parseFragment(template.content, {
       sourceCodeLocationInfo: true,
     }) as DefaultTreeDocument;
-    const sbbUsermenuElements: DefaultTreeElement[] = [];
     const sbbIconElements: DefaultTreeElement[] = [];
     const sbbDropdownElements: DefaultTreeElement[] = [];
     const sbbDropdownItemElements: DefaultTreeElement[] = [];
@@ -28,19 +27,22 @@ export class UsermenuMigration extends Migration<null> {
           visitNodes(node.childNodes);
         }
 
-        if (node.nodeName.toLowerCase() === 'sbb-usermenu') {
-          sbbUsermenuElements.push(node);
-        }
-
-        if (this._hasSbbIconDirective(node)) {
+        if (this._isDirectDescendantOf('sbb-usermenu', node) && this._hasSbbIconDirective(node)) {
           sbbIconElements.push(node);
         }
 
-        if (node.nodeName.toLowerCase() === 'sbb-dropdown') {
+        if (
+          this._isDirectDescendantOf('sbb-usermenu', node) &&
+          node.nodeName.toLowerCase() === 'sbb-dropdown'
+        ) {
           sbbDropdownElements.push(node);
         }
 
-        if (this._hasSbbDropdownItemDirective(node)) {
+        if (
+          this._isDirectDescendantOf('sbb-usermenu', node.parentNode as DefaultTreeElement) &&
+          this._isDirectDescendantOf('sbb-dropdown', node) &&
+          this._hasSbbDropdownItemDirective(node)
+        ) {
           sbbDropdownItemElements.push(node);
         }
       });
@@ -52,9 +54,10 @@ export class UsermenuMigration extends Migration<null> {
 
     if (sbbIconElements.length) {
       this.logger.info('Replace sbbIcon with *sbbIcon inside sbb-usermenu');
+
       for (const element of sbbIconElements) {
         const sbbIconLocation = element.sourceCodeLocation!.attrs['sbbicon'];
-        if (!sbbIconLocation || !this._isDirectDescendant(element, sbbUsermenuElements)) {
+        if (!sbbIconLocation) {
           break;
         }
 
@@ -64,14 +67,11 @@ export class UsermenuMigration extends Migration<null> {
     }
 
     if (sbbDropdownElements.length) {
-      this.logger.info('Convert sbb-dropdown inside sbb-usermenu to sbb-usermenu items');
+      this.logger.info('Remove sbb-dropdown inside sbb-usermenu');
 
       for (const sbbDropdownElement of sbbDropdownElements) {
         const sbbDropdownLocationStart = sbbDropdownElement.sourceCodeLocation?.startTag;
         const sbbDropdownLocationEnd = sbbDropdownElement.sourceCodeLocation?.endTag;
-        if (!this._isDirectDescendant(sbbDropdownElement, sbbUsermenuElements)) {
-          break;
-        }
 
         // remove sbb-dropdown start tag
         recorder.remove(
@@ -84,30 +84,33 @@ export class UsermenuMigration extends Migration<null> {
           template.start + sbbDropdownLocationEnd!.startOffset,
           sbbDropdownLocationEnd!.endOffset - sbbDropdownLocationEnd!.startOffset
         );
+      }
+    }
 
-        for (const sbbDropdownItemElement of sbbDropdownItemElements) {
-          const sbbDropdownItemLocation = sbbDropdownItemElement.sourceCodeLocation!.attrs[
-            'sbbdropdownitem'
-          ];
-          if (
-            !sbbDropdownItemLocation ||
-            !this._isDirectDescendant(sbbDropdownItemElement, [sbbDropdownElement])
-          ) {
-            break;
-          }
+    if (sbbDropdownItemElements.length) {
+      this.logger.info(
+        'Convert sbbDropdownItem to sbb-usermenu-item directive inside sbb-usermenu'
+      );
 
-          // remove sbbDropdownItem attribute
-          recorder.remove(
-            template.start + sbbDropdownItemLocation.startOffset,
-            sbbDropdownItemLocation.endOffset - sbbDropdownItemLocation.startOffset
-          );
-
-          // add sbb-usermenu-item attribute
-          recorder.insertRight(
-            template.start + sbbDropdownItemLocation.startOffset,
-            'sbb-usermenu-item'
-          );
+      for (const sbbDropdownItemElement of sbbDropdownItemElements) {
+        const sbbDropdownItemLocation = sbbDropdownItemElement.sourceCodeLocation!.attrs[
+          'sbbdropdownitem'
+        ];
+        if (!sbbDropdownItemLocation) {
+          break;
         }
+
+        // remove sbbDropdownItem attribute
+        recorder.remove(
+          template.start + sbbDropdownItemLocation.startOffset,
+          sbbDropdownItemLocation.endOffset - sbbDropdownItemLocation.startOffset
+        );
+
+        // add sbb-usermenu-item attribute
+        recorder.insertRight(
+          template.start + sbbDropdownItemLocation.startOffset,
+          'sbb-usermenu-item'
+        );
       }
     }
   }
@@ -120,9 +123,12 @@ export class UsermenuMigration extends Migration<null> {
     return node.attrs && node.attrs.some((a) => a.name.toLowerCase() === 'sbbdropdownitem');
   }
 
-  private _isDirectDescendant(node: DefaultTreeElement, elements: DefaultTreeElement[]) {
-    return (elements || []).some((element) => {
-      return element.childNodes && element.childNodes.length && element.childNodes.includes(node);
-    });
+  private _isDirectDescendantOf(tagName: string, node: DefaultTreeElement) {
+    const parent = node.parentNode as DefaultTreeElement;
+
+    if (!parent) {
+      return false;
+    }
+    return parent.nodeName.toLocaleLowerCase() === tagName;
   }
 }
