@@ -1,1 +1,5 @@
-<ng-content select="sbb-toggle-option, ng-container"></ng-content>
+<div class="sbb-toggle-label">
+  <ng-content select="sbb-toggle-option, ng-container"></ng-content>
+</div>
+
+<ng-container *ngTemplateOutlet="selected?._contentTemplateRef || null"></ng-container>

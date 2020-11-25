@@ -15,8 +15,8 @@
       [attr.aria-label]="ariaLabel"
       [attr.aria-labelledby]="ariaLabelledby"
       [attr.aria-describedby]="ariaDescribedby"
-      [attr.aria-controls]="ariaControls"
-      [attr.aria-expanded]="ariaExpandedValue"
+      [attr.aria-controls]="this.checked ? this._contentId : null"
+      [attr.aria-expanded]="this.checked"
       (change)="_onInputChange($event)"
       (click)="_onInputClick($event)"
     />
@@ -33,13 +33,8 @@
   </div>
 </label>
 
-<section
-  #toggleOptionContentContainer
-  *ngIf="toggleOptionHasContent"
-  [attr.tabindex]="checked ? 0 : -1"
-  [attr.aria-hidden]="!checked"
-  [attr.id]="contentId"
-  class="sbb-toggle-option-content"
->
-  <ng-content></ng-content>
-</section>
+<ng-template #contentTemplateRef>
+  <section [attr.id]="_contentId" class="sbb-toggle-option-content">
+    <ng-content></ng-content>
+  </section>
+</ng-template>

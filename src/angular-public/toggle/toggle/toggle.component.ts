@@ -11,6 +11,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SbbRadioGroup } from '@sbb-esta/angular-core/radio-button';
 import { take } from 'rxjs/operators';
 
+import { SbbToggleOption } from '../toggle-option/toggle-option.component';
+
 @Component({
   selector: 'sbb-toggle',
   templateUrl: './toggle.component.html',
@@ -32,7 +34,9 @@ import { take } from 'rxjs/operators';
     class: 'sbb-toggle',
   },
 })
-export class SbbToggle extends SbbRadioGroup implements ControlValueAccessor, AfterContentInit {
+export class SbbToggle
+  extends SbbRadioGroup<SbbToggleOption>
+  implements ControlValueAccessor, AfterContentInit {
   constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
     super(changeDetectorRef);
   }
@@ -47,6 +51,8 @@ export class SbbToggle extends SbbRadioGroup implements ControlValueAccessor, Af
         }
       })
     );
+
+    this.change.subscribe(() => this._changeDetector.markForCheck());
   }
 
   private _checkNumOfOptions(): void {
