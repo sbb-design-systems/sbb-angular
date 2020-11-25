@@ -32,7 +32,8 @@ let nextUniqueId = 0;
     role: 'radiogroup',
   },
 })
-export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
+export class SbbRadioGroup<TRadio extends SbbRadioButton = SbbRadioButton>
+  implements AfterContentInit, ControlValueAccessor {
   /** Name of the radio button group. All radio buttons inside this group will use this name. */
   @Input()
   get name(): string {
@@ -68,10 +69,10 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
    * will be updated to match the new selected button.
    */
   @Input()
-  get selected() {
+  get selected(): TRadio | null {
     return this._selected;
   }
-  set selected(selected: SbbRadioButton | null) {
+  set selected(selected: TRadio | null) {
     this._selected = selected;
     this.value = selected ? selected.value : null;
     this._checkSelectedRadioButton();
@@ -106,7 +107,7 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
 
   /** Child radio buttons. */
   @ContentChildren(forwardRef(() => SbbRadioButton), { descendants: true })
-  _radios: QueryList<SbbRadioButton>;
+  _radios: QueryList<TRadio>;
 
   /** Selected value for the radio group. */
   private _value: any = null;
@@ -115,7 +116,7 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
   private _name = `sbb-radio-group-${nextUniqueId++}`;
 
   /** The currently selected radio button. Should match value. */
-  private _selected: SbbRadioButton | null = null;
+  private _selected: TRadio | null = null;
 
   /** Whether the `value` has been set to its initial value. */
   private _isInitialized = false;
@@ -132,7 +133,7 @@ export class SbbRadioGroup implements AfterContentInit, ControlValueAccessor {
   /** `View -> model callback called when radio group has been touched` */
   _onTouched: () => any = () => {};
 
-  constructor(private _changeDetector: ChangeDetectorRef) {}
+  constructor(protected _changeDetector: ChangeDetectorRef) {}
 
   _checkSelectedRadioButton() {
     if (this._selected && !this._selected.checked) {
