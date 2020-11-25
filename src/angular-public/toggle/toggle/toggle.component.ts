@@ -47,7 +47,7 @@ export class SbbToggle
       this._zone.run(() => {
         this._checkNumOfOptions();
         if (this._radios.toArray().every((r) => this.value !== r.value)) {
-          this.value = this._radios.first.value;
+          this._radios.first._onInputChange();
         }
       })
     );

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ContentChildren, OnInit, QueryList } from '@angular/core';
+import { Component, ContentChildren, QueryList } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -21,7 +21,6 @@ import { SbbToggleModule } from '../toggle.module';
     <form [formGroup]="form" novalidate>
       <sbb-toggle aria-labelledby="group_label_2" formControlName="test">
         <sbb-toggle-option
-          #options
           *ngFor="let option of toggleOptions | async; let i = index"
           [infoText]="i === 0 ? 'info text' : undefined"
           [label]="option.label"
@@ -44,16 +43,7 @@ import { SbbToggleModule } from '../toggle.module';
     </form>
   `,
 })
-class ToggleReactiveTestComponent implements OnInit {
-  modelReactive: string = 'Option_2';
-  @ContentChildren('options') options: QueryList<SbbToggleOption>;
-
-  constructor() {}
-
-  form = new FormGroup({
-    test: new FormControl(),
-  });
-
+class ToggleReactiveTestComponent {
   toggleOptions: Observable<any> = of([
     {
       label: 'Einfache Fahrt',
@@ -65,11 +55,9 @@ class ToggleReactiveTestComponent implements OnInit {
     },
   ]);
 
-  ngOnInit() {
-    this.form.get('test')!.valueChanges.subscribe((val) => {
-      this.modelReactive = val;
-    });
-  }
+  form = new FormGroup({
+    test: new FormControl(),
+  });
 }
 
 @Component({
@@ -78,7 +66,6 @@ class ToggleReactiveTestComponent implements OnInit {
     <form [formGroup]="form" novalidate>
       <sbb-toggle aria-labelledby="group_label_2" formControlName="test">
         <sbb-toggle-option
-          #options
           *ngFor="let option of toggleOptions | async; let i = index"
           [infoText]="i === 0 ? 'info text' : undefined"
           [label]="option.label"
@@ -101,10 +88,7 @@ class ToggleReactiveTestComponent implements OnInit {
     </form>
   `,
 })
-class ToggleReactiveDefaultValueTestComponent implements OnInit {
-  modelReactive: string = 'Option_2';
-  @ContentChildren('options') options: QueryList<SbbToggleOption>;
-
+class ToggleReactiveDefaultValueTestComponent {
   form = new FormGroup({
     test: new FormControl('Option_2'),
   });
@@ -119,10 +103,6 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
       value: 'Option_2',
     },
   ]);
-
-  ngOnInit() {
-    this.form.get('test')!.valueChanges.subscribe((val) => (this.modelReactive = val));
-  }
 }
 
 @Component({
@@ -152,11 +132,7 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
   `,
 })
 class ToggleTemplateDrivenTestComponent {
-  @ContentChildren('options') options: QueryList<SbbToggleOption>;
-
   modelValue: any;
-
-  constructor() {}
 
   toggleOptions: Observable<any> = of([
     {
@@ -223,7 +199,8 @@ describe('SbbToggle case reactive using mock component', () => {
     expect(componentTest).toBeTruthy();
   });
 
-  it('it verifies that first toggle button is checked', () => {
+  it('it verifies that first toggle button is checked when there is no default value set', async () => {
+    await fixtureTest.whenStable();
     fixtureTest.detectChanges();
 
     const toggleOptionReferenceValue = fixtureTest.debugElement.queryAll(
@@ -236,9 +213,11 @@ describe('SbbToggle case reactive using mock component', () => {
     expect(toggleOption1ValueElement.value).toBe('Option_1');
   });
 
-  it('it verifies that first toggle button has class sbb-toggle-option-selected', () => {
-    const toggleOptionsReference = fixtureTest.debugElement.queryAll(By.css('.sbb-toggle-option'));
+  it('it verifies that first toggle button has class sbb-toggle-option-selected', async () => {
+    await fixtureTest.whenStable();
     fixtureTest.detectChanges();
+
+    const toggleOptionsReference = fixtureTest.debugElement.queryAll(By.directive(SbbToggleOption));
     const toggleOption1Element = toggleOptionsReference[0].nativeElement;
 
     expect(toggleOption1Element.attributes['class'].value).toContain('sbb-toggle-option-selected');
@@ -332,7 +311,6 @@ describe('SbbToggle case reactive with default value using mock component', () =
     );
 
     const toggleOption2ValueElement = toggleOptionReferenceValue[1].nativeElement;
-    console.log(toggleOption2ValueElement);
 
     expect(toggleOption2ValueElement.attributes.getNamedItem('aria-checked').value).toBe('true');
     expect(toggleOption2ValueElement.value).toBe('Option_2');

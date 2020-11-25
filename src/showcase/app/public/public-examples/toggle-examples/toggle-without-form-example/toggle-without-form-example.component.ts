@@ -7,7 +7,7 @@ import { SbbRadioChange } from '@sbb-esta/angular-core/radio-button';
   encapsulation: ViewEncapsulation.None,
 })
 export class ToggleWithoutFormExampleComponent {
-  toggleValues: any;
+  toggleValues: any = null;
 
   change(radioChange: SbbRadioChange) {
     this.toggleValues = radioChange.value;

@@ -247,11 +247,11 @@ export abstract class SbbRadioButton
    * Clicking on a label element, will trigger a change event on the associated input.
    * @docs-private
    */
-  _onInputChange(event: Event) {
+  _onInputChange(event?: Event) {
     // We always have to stop propagation on the change event.
     // Otherwise the change event, from the input element, will bubble up and
     // emit its event object to the `change` output.
-    event.stopPropagation();
+    event?.stopPropagation();
 
     const groupValueChanged = this.radioGroup && this.value !== this.radioGroup.value;
     this.checked = true;
