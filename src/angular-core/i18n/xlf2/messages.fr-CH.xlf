@@ -119,7 +119,7 @@
     <unit id="sbbUsermenuLogin">
       <segment state="translated">
         <source>Login</source>
-        <target>Connexion</target>
+        <target>Se connecter</target>
       </segment>
     </unit>
     <unit id="sbbGhettoboxCloseGhettobox">
