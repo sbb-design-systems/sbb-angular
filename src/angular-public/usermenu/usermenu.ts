@@ -191,7 +191,6 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
       .toLocaleUpperCase();
   }
 
-  /** @docs-private */
   get _ariaLabelOpenPanel() {
     return typeof $localize === 'function'
       ? $localize`:Aria label to open user menu@@sbbUsermenuOpenPanel:Logged in as ${
@@ -202,7 +201,6 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
         }. Click or press enter to open user menu.`;
   }
 
-  /** @docs-private */
   get _ariaLabelClosePanel() {
     return typeof $localize === 'function'
       ? $localize`:Aria label to close user menu@@sbbUsermenuClosePanel:Logged in as ${

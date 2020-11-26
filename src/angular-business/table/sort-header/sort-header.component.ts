@@ -88,7 +88,6 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
     this._disableClear = coerceBooleanProperty(v);
   }
 
-  /** @docs-private */
   get _ariaLabelChangeSorting() {
     return typeof $localize === 'function'
       ? $localize`:Button label to change the sorting of column@@sbbTableChangeSorting:Change sorting for ${this.id}`
