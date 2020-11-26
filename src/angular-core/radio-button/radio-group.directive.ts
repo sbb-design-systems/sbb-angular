@@ -151,6 +151,7 @@ export class SbbRadioGroup<TRadio extends SbbRadioButton = SbbRadioButton>
     // NgModel occurs *after* the OnInit of the RadioGroup.
     this._isInitialized = true;
 
+    // TODO: Check if there is a solution for https://github.com/angular/components/issues/21148 and eventually remove following code
     this._updateSelectedRadioFromValue();
     this._checkSelectedRadioButton();
     Promise.resolve().then(() => {
