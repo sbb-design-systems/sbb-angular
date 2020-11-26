@@ -5,11 +5,15 @@ import {
   Component,
   forwardRef,
   NgZone,
+  OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SbbRadioGroup } from '@sbb-esta/angular-core/radio-button';
-import { take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
+
+import { SbbToggleOption } from '../toggle-option/toggle-option.component';
 
 @Component({
   selector: 'sbb-toggle',
@@ -30,9 +34,15 @@ import { take } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'sbb-toggle',
+    '[class.sbb-toggle-first-option-selected]': '_radios.first.checked',
+    '[class.sbb-toggle-last-option-selected]': '_radios.last.checked',
   },
 })
-export class SbbToggle extends SbbRadioGroup implements ControlValueAccessor, AfterContentInit {
+export class SbbToggle
+  extends SbbRadioGroup<SbbToggleOption>
+  implements ControlValueAccessor, AfterContentInit, OnDestroy {
+  private _destroyed = new Subject<void>();
+
   constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
     super(changeDetectorRef);
   }
@@ -43,10 +53,14 @@ export class SbbToggle extends SbbRadioGroup implements ControlValueAccessor, Af
       this._zone.run(() => {
         this._checkNumOfOptions();
         if (this._radios.toArray().every((r) => this.value !== r.value)) {
-          this.value = this._radios.first.value;
+          this._radios.first._onInputChange();
         }
       })
     );
+
+    this.change
+      .pipe(takeUntil(this._destroyed))
+      .subscribe(() => this._changeDetector.markForCheck());
   }
 
   private _checkNumOfOptions(): void {
@@ -56,5 +70,10 @@ export class SbbToggle extends SbbRadioGroup implements ControlValueAccessor, Af
           `Currently there are ${this._radios.length} options.`
       );
     }
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }

@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -12,7 +11,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":toggle-example/toggle-example.component.css"] + glob(["**/*.html"]),
+    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-core/icon",
@@ -34,9 +33,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "toggle_example_toggle_example_component_scss",
-    src = "toggle-example/toggle-example.component.scss",
 )
