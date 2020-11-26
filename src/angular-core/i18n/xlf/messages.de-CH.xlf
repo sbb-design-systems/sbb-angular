@@ -81,7 +81,7 @@
       </trans-unit>
       <trans-unit id="sbbUsermenuLogin" datatype="html">
         <source>Login</source>
-        <target state="signed-off">Login</target>
+        <target state="signed-off">Anmelden</target>
       </trans-unit>
       <trans-unit id="sbbGhettoboxCloseGhettobox" datatype="html">
         <source>Close message</source>
