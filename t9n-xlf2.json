@@ -1,0 +1,7 @@
+{
+  "$schema": "https://raw.githubusercontent.com/kyubisation/angular-t9n/master/t9n.schema.json",
+  "translationFile": "src/angular-core/i18n/xlf2/messages.xlf",
+  "targetTranslationPath": "",
+  "includeContextInTarget": false,
+  "port": 4400
+}

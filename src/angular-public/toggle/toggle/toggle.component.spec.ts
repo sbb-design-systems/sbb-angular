@@ -14,7 +14,6 @@ import { Observable, of } from 'rxjs';
 import { SbbToggleOption } from '../toggle-option/toggle-option.component';
 import { SbbToggleModule } from '../toggle.module';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-toggle-test-reactive',
   template: `

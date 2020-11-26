@@ -32,7 +32,6 @@ import { SbbLightbox, SbbLightboxModule, SbbLightboxRef, SBB_LIGHTBOX_DATA } fro
 
 import { SbbLightboxContainer } from './lightbox-container.component';
 
-// tslint:disable:i18n
 @Directive({ selector: '[sbbDirWithViewContainer]' })
 class DirectiveWithViewContainerDirective {
   constructor(public viewContainerRef: ViewContainerRef) {}

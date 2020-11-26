@@ -13,7 +13,6 @@ import {
   SbbExpansionPanelHeader,
 } from '../public-api';
 
-// tslint:disable:i18n
 @Component({
   template: `
     <sbb-accordion [multi]="multi">

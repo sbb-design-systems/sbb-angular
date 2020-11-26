@@ -8,7 +8,6 @@ import { SbbTextexpandModule } from '../textexpand.module';
 
 import { SbbTextexpand } from './textexpand.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-textexpand-test',
   template: `
@@ -103,7 +102,7 @@ describe('SbbTextexpand', () => {
     const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button'))
       .nativeElement;
 
-    expect(buttonClicked.textContent).toContain('Mehr anzeigen');
+    expect(buttonClicked.textContent).toContain('Show more');
   });
 
   it('verify button label when text is expanded', async () => {
@@ -112,6 +111,6 @@ describe('SbbTextexpand', () => {
     buttonClicked.click();
     fixtureTest.detectChanges();
 
-    expect(buttonClicked.textContent).toContain('Weniger anzeigen');
+    expect(buttonClicked.textContent).toContain('Show less');
   });
 });

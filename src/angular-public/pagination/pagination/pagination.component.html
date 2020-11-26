@@ -2,8 +2,8 @@
   <li class="sbb-pagination-item">
     <button
       type="button"
-      i18n-aria-label="@@paginationPreviousPage"
-      aria-label="Vorherige Seite"
+      i18n-aria-label="Button label to navigate to the previous page@@sbbPaginationPreviousPage"
+      aria-label="Previous Page"
       class="sbb-pagination-item-boundary"
       [disabled]="!(hasPreviousPage | async)"
       [class.sbb-pagination-item-disabled]="!(hasPreviousPage | async)"
@@ -33,8 +33,8 @@
   <li class="sbb-pagination-item">
     <button
       type="button"
-      i18n-aria-label="@@paginationNextPage"
-      aria-label="Nächste Seite"
+      i18n-aria-label="Button label to navigate to the next page@@sbbPaginationNextPage"
+      aria-label="Next Page"
       class="sbb-pagination-item-boundary"
       [disabled]="!(hasNextPage | async)"
       [class.sbb-pagination-item-disabled]="!(hasNextPage | async)"

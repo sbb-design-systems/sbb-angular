@@ -15,7 +15,6 @@ import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
 import { SbbAccordionModule, SbbExpansionPanel } from '../public-api';
 
-// tslint:disable:i18n
 @Component({
   template: `
     <sbb-expansion-panel

@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
@@ -85,6 +88,12 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
     this._disableClear = coerceBooleanProperty(v);
   }
 
+  get _ariaLabelChangeSorting() {
+    return typeof $localize === 'function'
+      ? $localize`:Button label to change the sorting of column@@sbbTableChangeSorting:Change sorting for ${this.id}`
+      : `Change sorting for ${this.id}`;
+  }
+
   private _rerenderSubscription: Subscription;
 
   constructor(
@@ -150,7 +159,6 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * ID of this sort header. If used within the context of a CdkColumnDef, this will default to
    * the column's name.
    */
-  // tslint:disable-next-line:no-input-rename
   @Input('sbbSortHeader') id: string;
 
   /** Sets the position of the arrow that displays when sorted. */

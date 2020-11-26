@@ -16,10 +16,7 @@
   *ngIf="_loggedIn"
   class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in sbb-usermenu-trigger-open"
   (click)="open()"
-  i18n-aria-label="Aria label to open user menu@@sbbUsermenuOpenPanel"
-  attr.aria-label="Logged in as {{
-    displayName || userName
-  }}. Click or press enter to open user menu."
+  [attr.aria-label]="_ariaLabelOpenPanel"
   aria-haspopup="true"
   [attr.aria-controls]="panelOpen ? id + '-panel' : null"
   [attr.aria-expanded]="panelOpen"
@@ -87,10 +84,7 @@
       #triggerCloseButton
       class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in sbb-usermenu-trigger-close"
       (click)="_closeAndFocus()"
-      i18n-aria-label="Aria label to close user menu@@sbbUsermenuClosePanel"
-      attr.aria-label="Logged in as {{
-        displayName || userName
-      }}. Click or press enter to close user menu."
+      [attr.aria-label]="_ariaLabelClosePanel"
     >
       <ng-container *ngTemplateOutlet="usermenuTriggerContent"></ng-container>
     </button>

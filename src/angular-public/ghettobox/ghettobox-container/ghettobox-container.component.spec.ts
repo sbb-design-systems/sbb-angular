@@ -14,7 +14,6 @@ import { SbbGhettoboxService } from '../ghettobox/ghettobox.service';
 
 import { SbbGhettoboxContainer } from './ghettobox-container.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-ghettobox-container-test',
   template: `

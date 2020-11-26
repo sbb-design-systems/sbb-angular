@@ -9,7 +9,6 @@ import { SbbRadioButtonPanelModule } from '../radio-button-panel.module';
 
 import { SbbRadioButtonPanel } from './radio-button-panel.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-model-radio-button-panel-test',
   template: `

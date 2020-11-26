@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-CH" datatype="plaintext" original="ng2.template" target-language="it-CH">
+    <body>
+      <trans-unit id="sbbDatepickerSwitchToPreviousMonth" datatype="html">
+        <source>Change to the previous month</source>
+        <target state="signed-off">Passare al mese precedente</target>
+      </trans-unit>
+      <trans-unit id="sbbDatepickerSwitchToNextMonth" datatype="html">
+        <source>Change to the next month</source>
+        <target state="signed-off">Passare al mese successivo</target>
+      </trans-unit>
+      <trans-unit id="sbbDatepickerSwitchToPreviousYear" datatype="html">
+        <source>Change to the previous year</source>
+        <target state="signed-off">Passare all’anno precedente</target>
+      </trans-unit>
+      <trans-unit id="sbbDatepickerSwitchToNextYear" datatype="html">
+        <source>Change to the next year</source>
+        <target state="signed-off">Passare all’anno successivo</target>
+      </trans-unit>
+      <trans-unit id="sbbDatepickerOpenCalendar" datatype="html">
+        <source>Show calendar</source>
+        <target state="signed-off">Visualizzare calendario</target>
+      </trans-unit>
+      <trans-unit id="sbbFileSelectorUploadFile" datatype="html">
+        <source>Upload file</source>
+        <target state="translated">Caricare un file</target>
+      </trans-unit>
+      <trans-unit id="sbbFileSelectorRemoveFile" datatype="html">
+        <source>Remove file</source>
+        <target state="translated">Rimuovi il file</target>
+      </trans-unit>
+      <trans-unit id="sbbHeaderMenuBack" datatype="html">
+        <source>Back</source>
+        <target state="signed-off">Indietro</target>
+      </trans-unit>
+      <trans-unit id="sbbNavigationPreviousPage" datatype="html">
+        <source>Previous Page</source>
+        <target state="translated">Pagina precedente</target>
+      </trans-unit>
+      <trans-unit id="sbbNavigationNextPage" datatype="html">
+        <source>Next Page</source>
+        <target state="translated">Pagina successiva</target>
+      </trans-unit>
+      <trans-unit id="sbbPaginationPreviousPage" datatype="html">
+        <source>Previous Page</source>
+        <target state="translated">Pagina precedente</target>
+      </trans-unit>
+      <trans-unit id="sbbPaginationNextPage" datatype="html">
+        <source>Next Page</source>
+        <target state="translated">Pagina successiva</target>
+      </trans-unit>
+      <trans-unit id="sbbSidebarCollapse" datatype="html">
+        <source>Collapse</source>
+        <target state="translated">Comprimi</target>
+      </trans-unit>
+      <trans-unit id="sbbSidebarExpand" datatype="html">
+        <source>Expand</source>
+        <target state="translated">Espandi</target>
+      </trans-unit>
+      <trans-unit id="8389639288060911431" datatype="html">
+        <source>Change sorting for <x id="PH" equiv-text="this.id"/></source>
+        <target state="translated">Cambia l'ordinamento per <x id="PH" equiv-text="this.id"/></target>
+      </trans-unit>
+      <trans-unit id="sbbTabsBadgePillAmountOfEntries" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="aria-label=&quot;{{ tab."/> entries</source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="aria-label=&quot;{{ tab."/> voci</target>
+      </trans-unit>
+      <trans-unit id="sbbTextareaCounterText" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="  {{ _counter | async "/> characters remaining
+</source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text=" {{ _counter | async "/> caratteri rimanenti</target>
+      </trans-unit>
+      <trans-unit id="sbbTextexpandShowLess" datatype="html">
+        <source>Show less</source>
+        <target state="signed-off">Visualizzare di meno</target>
+      </trans-unit>
+      <trans-unit id="sbbTextexpandShowMore" datatype="html">
+        <source>Show more</source>
+        <target state="signed-off">Visualizzare di più</target>
+      </trans-unit>
+      <trans-unit id="sbbUsermenuLogin" datatype="html">
+        <source>Login</source>
+        <target state="signed-off">Accedi</target>
+      </trans-unit>
+      <trans-unit id="sbbGhettoboxCloseGhettobox" datatype="html">
+        <source>Close message</source>
+        <target state="translated">Chiudere il messaggio</target>
+      </trans-unit>
+      <trans-unit id="sbbTagBadgePillAmountOfResults" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="aria-label=&quot;"/> results available</source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="aria-label=&quot;"/> risultati disponibili</target>
+      </trans-unit>
+      <trans-unit id="sbbTagsAll" datatype="html">
+        <source>All</source>
+        <target state="translated">Tutte</target>
+      </trans-unit>
+      <trans-unit id="sbbUsermenuOpenPanel" datatype="html">
+        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
+    "/>. Click or press enter to open user menu.</source>
+        <target state="translated">Accesso eseguito come <x id="PH" equiv-text="this.displayName || this.userName
+"/>. Fare clic o premere Invio per aprire il menu utente.</target>
+      </trans-unit>
+      <trans-unit id="sbbUsermenuClosePanel" datatype="html">
+        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
+    "/>. Click or press enter to close user menu.</source>
+        <target state="translated">Accesso eseguito come <x id="PH" equiv-text="this.displayName || this.userName
+"/>. Fare clic o premere Invio per chiudere il menu utente.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -10,7 +10,6 @@ import { SbbCheckboxPanelModule } from '../checkbox-panel.module';
 
 import { SbbCheckboxPanel } from './checkbox-panel.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-model-sbb-checkbox-panel-test',
   template: `

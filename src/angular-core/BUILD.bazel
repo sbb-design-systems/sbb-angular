@@ -63,7 +63,7 @@ ng_package(
     data = [
         ":styles_bundle",
         "//src/angular-core/styles:legacy_scss",
-    ],
+    ] + glob(["i18n/**/*.xlf"]),
     entry_point = ":public-api.ts",
     entry_point_name = "angular-core",
     nested_packages = ["//src/angular-core/schematics:npm_package"],

@@ -7,7 +7,6 @@ import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
 
 import { SbbRadioButton } from './radio-button.component';
 
-// tslint:disable:i18n
 @Component({
   selector: 'sbb-model-radio-button-test',
   template: `

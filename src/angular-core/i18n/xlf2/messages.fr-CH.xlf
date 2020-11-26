@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en-CH" trgLang="fr-CH">
+  <file original="ng.template" id="ngi18n">
+    <unit id="sbbDatepickerSwitchToPreviousMonth">
+      <segment state="reviewed">
+        <source>Change to the previous month</source>
+        <target>Passer au mois précédent</target>
+      </segment>
+    </unit>
+    <unit id="sbbDatepickerSwitchToNextMonth">
+      <segment state="reviewed">
+        <source>Change to the next month</source>
+        <target>Passer au mois suivant</target>
+      </segment>
+    </unit>
+    <unit id="sbbDatepickerSwitchToPreviousYear">
+      <segment state="reviewed">
+        <source>Change to the previous year</source>
+        <target>Passer à l'année précédente</target>
+      </segment>
+    </unit>
+    <unit id="sbbDatepickerSwitchToNextYear">
+      <segment state="reviewed">
+        <source>Change to the next year</source>
+        <target>Passer à l'année suivante</target>
+      </segment>
+    </unit>
+    <unit id="sbbDatepickerOpenCalendar">
+      <segment state="reviewed">
+        <source>Show calendar</source>
+        <target>Afficher le calendrier</target>
+      </segment>
+    </unit>
+    <unit id="sbbFileSelectorUploadFile">
+      <segment state="translated">
+        <source>Upload file</source>
+        <target>Télécharger le fichier</target>
+      </segment>
+    </unit>
+    <unit id="sbbFileSelectorRemoveFile">
+      <segment state="translated">
+        <source>Remove file</source>
+        <target>Effacer le fichier</target>
+      </segment>
+    </unit>
+    <unit id="sbbHeaderMenuBack">
+      <segment state="reviewed">
+        <source>Back</source>
+        <target>Retour</target>
+      </segment>
+    </unit>
+    <unit id="sbbNavigationPreviousPage">
+      <segment state="translated">
+        <source>Previous Page</source>
+        <target>Page précédente</target>
+      </segment>
+    </unit>
+    <unit id="sbbNavigationNextPage">
+      <segment state="translated">
+        <source>Next Page</source>
+        <target>Page suivante</target>
+      </segment>
+    </unit>
+    <unit id="sbbPaginationPreviousPage">
+      <segment state="translated">
+        <source>Previous Page</source>
+        <target>Page précédente</target>
+      </segment>
+    </unit>
+    <unit id="sbbPaginationNextPage">
+      <segment state="translated">
+        <source>Next Page</source>
+        <target>Page suivante</target>
+      </segment>
+    </unit>
+    <unit id="sbbSidebarCollapse">
+      <segment state="translated">
+        <source>Collapse</source>
+        <target>Développer</target>
+      </segment>
+    </unit>
+    <unit id="sbbSidebarExpand">
+      <segment state="translated">
+        <source>Expand</source>
+        <target>Réduire</target>
+      </segment>
+    </unit>
+    <unit id="8389639288060911431">
+      <segment state="translated">
+        <source>Change sorting for <ph id="0" equiv="PH" disp="this.id"/></source>
+        <target>Modifier le tri pour <ph id="0" equiv="PH" disp="this.id"/></target>
+      </segment>
+    </unit>
+    <unit id="sbbTabsBadgePillAmountOfEntries">
+      <segment state="translated">
+        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;{{ tab."/> entries</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;{{ tab."/> entrées</target>
+      </segment>
+    </unit>
+    <unit id="sbbTextareaCounterText">
+      <segment state="translated">
+        <source> <ph id="0" equiv="INTERPOLATION" disp="  {{ _counter | async "/> characters remaining
+</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp=" {{ _counter | async "/> caractères restants</target>
+      </segment>
+    </unit>
+    <unit id="sbbTextexpandShowLess">
+      <segment state="translated">
+        <source>Show less</source>
+        <target>Afficher moins</target>
+      </segment>
+    </unit>
+    <unit id="sbbTextexpandShowMore">
+      <segment state="translated">
+        <source>Show more</source>
+        <target>Afficher plus</target>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuLogin">
+      <segment state="translated">
+        <source>Login</source>
+        <target>Se connecter</target>
+      </segment>
+    </unit>
+    <unit id="sbbGhettoboxCloseGhettobox">
+      <segment state="translated">
+        <source>Close message</source>
+        <target>Fermer message</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagBadgePillAmountOfResults">
+      <segment state="translated">
+        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> results available</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> resultats disponbiles</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagsAll">
+      <segment state="translated">
+        <source>All</source>
+        <target>Tous</target>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuOpenPanel">
+      <segment state="translated">
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
+    "/>. Click or press enter to open user menu.</source>
+        <target>Connecté en tant que <ph id="0" equiv="PH" disp="this.displayName || this.userName
+"/>. Cliquez ou appuyez sur Entrée pour ouvrir le menu utilisateur.</target>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuClosePanel">
+      <segment state="translated">
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
+    "/>. Click or press enter to close user menu.</source>
+        <target>Connecté en tant que <ph id="0" equiv="PH" disp="this.displayName || this.userName
+"/>. Cliquez ou appuyez sur Entrée pour fermer le menu utilisateur.</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

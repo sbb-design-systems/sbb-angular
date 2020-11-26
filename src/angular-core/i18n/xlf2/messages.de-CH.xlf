@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en-CH" trgLang="de-CH">
+  <file original="ng.template" id="ngi18n">
+    <unit id="sbbDatepickerSwitchToPreviousMonth">
+      <segment state="reviewed">
+        <source>Change to the previous month</source>
+        <target>Zum letzten Monat wechseln</target>
+      </segment>
+    </unit>
+    <unit id="sbbDatepickerSwitchToNextMonth">
+      <segment state="reviewed">
+        <source>Change to the next month</source>
+        <target>Zum nächsten Monat wechseln</target>
+      </segment>
+    </unit>
+    <unit id="sbbDatepickerSwitchToPreviousYear">
+      <segment state="reviewed">
+        <source>Change to the previous year</source>
+        <target>Zum letzten Jahr wechseln</target>
+      </segment>
+    </unit>
+    <unit id="sbbDatepickerSwitchToNextYear">
+      <segment state="reviewed">
+        <source>Change to the next year</source>
+        <target>Zum nächsten Jahr wechseln</target>
+      </segment>
+    </unit>
+    <unit id="sbbDatepickerOpenCalendar">
+      <segment state="reviewed">
+        <source>Show calendar</source>
+        <target>Kalender anzeigen</target>
+      </segment>
+    </unit>
+    <unit id="sbbFileSelectorUploadFile">
+      <segment state="reviewed">
+        <source>Upload file</source>
+        <target>Datei hochladen</target>
+      </segment>
+    </unit>
+    <unit id="sbbFileSelectorRemoveFile">
+      <segment state="reviewed">
+        <source>Remove file</source>
+        <target>Datei entfernen</target>
+      </segment>
+    </unit>
+    <unit id="sbbHeaderMenuBack">
+      <segment state="reviewed">
+        <source>Back</source>
+        <target>Zurück</target>
+      </segment>
+    </unit>
+    <unit id="sbbNavigationPreviousPage">
+      <segment state="reviewed">
+        <source>Previous Page</source>
+        <target>Vorherige Seite</target>
+      </segment>
+    </unit>
+    <unit id="sbbNavigationNextPage">
+      <segment state="reviewed">
+        <source>Next Page</source>
+        <target>Nächste Seite</target>
+      </segment>
+    </unit>
+    <unit id="sbbPaginationPreviousPage">
+      <segment state="reviewed">
+        <source>Previous Page</source>
+        <target>Vorherige Seite</target>
+      </segment>
+    </unit>
+    <unit id="sbbPaginationNextPage">
+      <segment state="reviewed">
+        <source>Next Page</source>
+        <target>Nächste Seite</target>
+      </segment>
+    </unit>
+    <unit id="sbbSidebarCollapse">
+      <segment state="translated">
+        <source>Collapse</source>
+        <target>Zusammenklappen</target>
+      </segment>
+    </unit>
+    <unit id="sbbSidebarExpand">
+      <segment state="translated">
+        <source>Expand</source>
+        <target>Erweitern</target>
+      </segment>
+    </unit>
+    <unit id="8389639288060911431">
+      <segment state="translated">
+        <source>Change sorting for <ph id="0" equiv="PH" disp="this.id"/></source>
+        <target>Sortierung für <ph id="0" equiv="PH" disp="this.id"/> ändern</target>
+      </segment>
+    </unit>
+    <unit id="sbbTabsBadgePillAmountOfEntries">
+      <segment state="reviewed">
+        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;{{ tab."/> entries</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;{{ tab."/> Einträge</target>
+      </segment>
+    </unit>
+    <unit id="sbbTextareaCounterText">
+      <segment state="reviewed">
+        <source> <ph id="0" equiv="INTERPOLATION" disp="  {{ _counter | async "/> characters remaining
+</source>
+        <target>Noch <ph id="0" equiv="INTERPOLATION" disp=" {{ _counter | async "/> Zeichen</target>
+      </segment>
+    </unit>
+    <unit id="sbbTextexpandShowLess">
+      <segment state="reviewed">
+        <source>Show less</source>
+        <target>Weniger anzeigen</target>
+      </segment>
+    </unit>
+    <unit id="sbbTextexpandShowMore">
+      <segment state="reviewed">
+        <source>Show more</source>
+        <target>Mehr anzeigen</target>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuLogin">
+      <segment state="reviewed">
+        <source>Login</source>
+        <target>Anmelden</target>
+      </segment>
+    </unit>
+    <unit id="sbbGhettoboxCloseGhettobox">
+      <segment state="reviewed">
+        <source>Close message</source>
+        <target>Hinweismeldung schliessen</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagBadgePillAmountOfResults">
+      <segment state="reviewed">
+        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> results available</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> Resultate verfügbar</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagsAll">
+      <segment state="reviewed">
+        <source>All</source>
+        <target>Alle</target>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuOpenPanel">
+      <segment state="translated">
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
+    "/>. Click or press enter to open user menu.</source>
+        <target>Angemeldet als <ph id="0" equiv="PH" disp="this.displayName || this.userName
+"/>. Klicken oder Enter drücken, um das Benutzermenü zu öffnen.</target>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuClosePanel">
+      <segment state="translated">
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
+    "/>. Click or press enter to close user menu.</source>
+        <target>Angemeldet als <ph id="0" equiv="PH" disp="this.displayName || this.userName
+"/>. Klicken oder Enter drücken, um das Benutzermenü zu schliessen.</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
