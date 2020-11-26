@@ -60,7 +60,7 @@
       </trans-unit>
       <trans-unit id="8389639288060911431" datatype="html">
         <source>Change sorting for <x id="PH" equiv-text="this.id"/></source>
-        <target state="translated">Ändere die Sortierung für <x id="PH" equiv-text="this.id"/></target>
+        <target state="translated">Sortierung für <x id="PH" equiv-text="this.id"/> ändern</target>
       </trans-unit>
       <trans-unit id="sbbTabsBadgePillAmountOfEntries" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="aria-label=&quot;{{ tab."/> entries</source>
