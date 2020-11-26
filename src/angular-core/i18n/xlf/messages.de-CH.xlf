@@ -56,7 +56,7 @@
       </trans-unit>
       <trans-unit id="sbbSidebarExpand" datatype="html">
         <source>Expand</source>
-        <target state="translated">Expandieren</target>
+        <target state="translated">Erweitern</target>
       </trans-unit>
       <trans-unit id="8389639288060911431" datatype="html">
         <source>Change sorting for <x id="PH" equiv-text="this.id"/></source>
