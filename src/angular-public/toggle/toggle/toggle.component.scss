@@ -32,10 +32,6 @@ $toggleOptionContentBg: $sbbColorWhite;
   align-items: stretch;
 }
 
-.sbb-toggle-option-content {
-  display: flex;
-}
-
 .sbb-toggle-option {
   flex: 1;
 }
@@ -47,7 +43,7 @@ $toggleOptionContentBg: $sbbColorWhite;
   height: 100%;
   background-color: $toggleOptionButtonBg;
   color: $toggleOptionButtonColor;
-  border-radius: pxToEm(2);
+  border-radius: pxToEm($toggleOptionRadius);
   padding: pxToEm(8) pxToEm(15) pxToEm(9);
   line-height: 1.5;
   border: pxToEm(1) solid transparent;
@@ -115,6 +111,7 @@ $toggleOptionContentBg: $sbbColorWhite;
 }
 
 .sbb-toggle-option-content {
+  display: flex;
   background-color: $toggleOptionContentBg;
   padding: pxToEm($toggleOptionContentPadding);
   max-height: pxToEm(600);
@@ -123,9 +120,8 @@ $toggleOptionContentBg: $sbbColorWhite;
   transition: $toggleOptionContentTransition;
   margin-top: pxToEm(-2);
   position: relative;
-  z-index: 2;
   border: pxToEm(1) solid $sbbColorBlack;
-  border-radius: pxToEm(2);
+  border-radius: pxToEm($toggleOptionRadius);
 
   &:empty {
     max-height: 0;
