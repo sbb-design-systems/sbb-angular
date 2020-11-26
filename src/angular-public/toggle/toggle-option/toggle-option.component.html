@@ -1,36 +1,33 @@
 <label [attr.for]="inputId" class="sbb-toggle-option-button">
-  <div class="sbb-toggle-option-button-inner">
-    <input
-      #input
-      type="radio"
-      class="cdk-visually-hidden"
-      [id]="inputId"
-      [checked]="checked"
-      [attr.aria-checked]="checked"
-      [disabled]="disabled"
-      [tabIndex]="tabIndex"
-      [attr.name]="name"
-      [attr.value]="value"
-      [required]="required"
-      [attr.aria-label]="ariaLabel"
-      [attr.aria-labelledby]="ariaLabelledby"
-      [attr.aria-describedby]="ariaDescribedby"
-      [attr.aria-controls]="this.checked ? this._contentId : null"
-      [attr.aria-expanded]="this.checked"
-      (change)="_onInputChange($event)"
-      (click)="_onInputClick($event)"
-    />
-    <span class="sbb-toggle-option-button-label-wrapper">
-      <span *ngIf="icon" role="presentation" class="sbb-toggle-option-button-icon sbb-icon-fit">
-        <ng-container *ngTemplateOutlet="icon"></ng-container>
-      </span>
-      <span class="sbb-toggle-option-button-label">{{ label }}</span>
-      <span *ngIf="infoText" class="sbb-toggle-option-button-info-text">
-        <span class="cdk-visually-hidden">&nbsp;</span>
-        {{ infoText }}
-      </span>
+  <input
+    type="radio"
+    class="cdk-visually-hidden"
+    [id]="inputId"
+    [checked]="checked"
+    [attr.aria-checked]="checked"
+    [disabled]="disabled"
+    [tabIndex]="tabIndex"
+    [attr.name]="name"
+    [attr.value]="value"
+    [required]="required"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-labelledby]="ariaLabelledby"
+    [attr.aria-describedby]="ariaDescribedby"
+    [attr.aria-controls]="this.checked ? this._contentId : null"
+    [attr.aria-expanded]="this.checked"
+    (change)="_onInputChange($event)"
+    (click)="_onInputClick($event)"
+  />
+  <span class="sbb-toggle-option-button-label-wrapper">
+    <span *ngIf="icon" role="presentation" class="sbb-toggle-option-button-icon sbb-icon-fit">
+      <ng-container *ngTemplateOutlet="icon"></ng-container>
     </span>
-  </div>
+    <span class="sbb-toggle-option-button-label">{{ label }}</span>
+    <span *ngIf="infoText" class="sbb-toggle-option-button-info-text">
+      <span class="cdk-visually-hidden">&nbsp;</span>
+      {{ infoText }}
+    </span>
+  </span>
 </label>
 
 <ng-template #contentTemplateRef>

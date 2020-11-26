@@ -20,7 +20,6 @@ import { SbbRadioButton, SbbRadioGroup } from '@sbb-esta/angular-core/radio-butt
 @Component({
   selector: 'sbb-toggle-option',
   templateUrl: './toggle-option.component.html',
-  styleUrls: ['./toggle-option.component.css'],
   inputs: ['tabIndex'],
   providers: [
     {

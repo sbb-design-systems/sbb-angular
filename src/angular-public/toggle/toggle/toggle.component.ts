@@ -32,6 +32,8 @@ import { SbbToggleOption } from '../toggle-option/toggle-option.component';
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'sbb-toggle',
+    '[class.sbb-toggle-first-option-selected]': '_radios.first.checked',
+    '[class.sbb-toggle-last-option-selected]': '_radios.last.checked',
   },
 })
 export class SbbToggle
