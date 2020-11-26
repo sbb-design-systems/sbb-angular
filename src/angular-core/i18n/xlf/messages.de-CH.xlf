@@ -105,7 +105,7 @@
         <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
     "/>. Click or press enter to close user menu.</source>
         <target state="translated">Angemeldet als <x id="PH" equiv-text="this.displayName || this.userName
-"/>. Klicke oder drück Enter, um das Usermenü zu schliessen.</target>
+"/>. Klicken oder Enter drücken, um das Benutzermenü zu schliessen.</target>
       </trans-unit>
     </body>
   </file>
