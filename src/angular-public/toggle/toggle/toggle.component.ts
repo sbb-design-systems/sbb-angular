@@ -5,11 +5,13 @@ import {
   Component,
   forwardRef,
   NgZone,
+  OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SbbRadioGroup } from '@sbb-esta/angular-core/radio-button';
-import { take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 
 import { SbbToggleOption } from '../toggle-option/toggle-option.component';
 
@@ -38,7 +40,9 @@ import { SbbToggleOption } from '../toggle-option/toggle-option.component';
 })
 export class SbbToggle
   extends SbbRadioGroup<SbbToggleOption>
-  implements ControlValueAccessor, AfterContentInit {
+  implements ControlValueAccessor, AfterContentInit, OnDestroy {
+  private _destroyed = new Subject<void>();
+
   constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
     super(changeDetectorRef);
   }
@@ -54,7 +58,9 @@ export class SbbToggle
       })
     );
 
-    this.change.subscribe(() => this._changeDetector.markForCheck());
+    this.change
+      .pipe(takeUntil(this._destroyed))
+      .subscribe(() => this._changeDetector.markForCheck());
   }
 
   private _checkNumOfOptions(): void {
@@ -64,5 +70,10 @@ export class SbbToggle
           `Currently there are ${this._radios.length} options.`
       );
     }
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }
