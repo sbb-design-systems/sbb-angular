@@ -2,6 +2,79 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.0.0-next.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.3.1...11.0.0-next.0) (2020-11-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Upgrade to Angular v11
+* We are removing internal properties and prefixing them
+with _, if removing is not possible. These were never intended to be used by
+consumers, however if you depended on these for some reason, reach out to us.
+* The usermenu module has been refactored. The `<sbb-usermenu>` now
+considers both `displayName` and `userName` to set logged in state (you have to set at minimum 
+one of both). 
+The `userName` is not shown anymore in collapsed state of menu (according to digital.sbb.ch). Use 
+`displayName` to show a name in collapsed state.
+The usermenu doesn't depend on `<sbb-dropdown>` anymore, just use `<a sbb-usermenu-item>`, 
+`<button sbb-usermenu-item>` and `<hr />` tags.
+Providing a custom icon or image now needs to set the structural `*sbbIcon` directive instead of 
+using only `sbbIcon`.
+* The field module has been majorly refactored. The `sbb-field`
+has been renamed to `sbb-form-field` and now requires a compatible form control
+(`<input sbbInput ...>`, `<select sbbInput ...>`, `<textarea sbbInput>`, `<sbb-select>`).
+The `sbb-form-field` [mode] input has been deprecated and replaced with appropriate
+css classes (`.sbb-form-field-short`, `.sbb-form-field-medium` and `.sbb-form-field-long`).
+The `sbb-form-error` has been renamed to `sbb-error`.
+The `sbb-label` [for] input has been deprecated, as it is no longer in use, as that
+functionality is handled internally inside `sbb-form-field`.
+The `sbb-form-field` now has a default width, which is consistent for all supported
+form controls.
+* The tooltip changes the css display property of the tooltip trigger
+from block to inline-block.
+If you still like to use the block variant, use the following css definition: 
+`.sbb-tooltip-trigger { display: block; }`.
+* The link component removes the margin around the public variant of sbbLink.
+If you want to retain the margin, it is `margin: 1em 0 2em;`.
+* We are removing the social link, since the icon CDN does not
+contain the social icons and the social link had no usage.
+* In order to fulfill new requirements of the `sbb-toggle`, the component internal DOM structure and css class usage has been changed. Please check your code if you have overwritten certain css styles.
+
+### Features
+
+* improve form-field functionality ([#635](https://github.com/sbb-design-systems/sbb-angular/issues/635)) ([da7a80b](https://github.com/sbb-design-systems/sbb-angular/commit/da7a80b9541b1fe88f0ca1ceb8db6a04a3df0e76)), closes [#160](https://github.com/sbb-design-systems/sbb-angular/issues/160) [#489](https://github.com/sbb-design-systems/sbb-angular/issues/489)
+* provide translations for german, french and italian ([#649](https://github.com/sbb-design-systems/sbb-angular/issues/649)) ([855ca33](https://github.com/sbb-design-systems/sbb-angular/commit/855ca3332b197a6cc3d02ca40e21015c3444aebe)), closes [#114](https://github.com/sbb-design-systems/sbb-angular/issues/114)
+* **showcase:** add StackBlitz button to examples ([#593](https://github.com/sbb-design-systems/sbb-angular/issues/593)) ([6dfc1cd](https://github.com/sbb-design-systems/sbb-angular/commit/6dfc1cd4319868173a35aa851f9d29559e9d0ec1)), closes [#362](https://github.com/sbb-design-systems/sbb-angular/issues/362) [#400](https://github.com/sbb-design-systems/sbb-angular/issues/400)
+
+
+### Bug Fixes
+
+* **public:** adjust toggle label height for different content sizes ([#651](https://github.com/sbb-design-systems/sbb-angular/issues/651)) ([313008a](https://github.com/sbb-design-systems/sbb-angular/commit/313008a046c87af58f713527a4c830a9a6f59154)), closes [#171](https://github.com/sbb-design-systems/sbb-angular/issues/171)
+* allow tooltip usage inside sbb-label ([#632](https://github.com/sbb-design-systems/sbb-angular/issues/632)) ([0e24d2b](https://github.com/sbb-design-systems/sbb-angular/commit/0e24d2b5ce0c962c167165489d410843759447e7))
+* change tooltip trigger css display from block to inline-block ([#630](https://github.com/sbb-design-systems/sbb-angular/issues/630)) ([7402291](https://github.com/sbb-design-systems/sbb-angular/commit/7402291313af70347d88e409a43d535781bb0d22))
+* export select animations in public api ([#633](https://github.com/sbb-design-systems/sbb-angular/issues/633)) ([6757fa7](https://github.com/sbb-design-systems/sbb-angular/commit/6757fa7c696e56d85e6b84245b167db3ae4d565c))
+* fix panel opened style and arrow rotation of select ([#644](https://github.com/sbb-design-systems/sbb-angular/issues/644)) ([6bbe15e](https://github.com/sbb-design-systems/sbb-angular/commit/6bbe15e55622fb234d20b515062c84347f23029a))
+* refactor usermenu and introduce business styles ([#640](https://github.com/sbb-design-systems/sbb-angular/issues/640)) ([5ee34fb](https://github.com/sbb-design-systems/sbb-angular/commit/5ee34fb503359551af45c28a5118a4b9e2fe8b96)), closes [#479](https://github.com/sbb-design-systems/sbb-angular/issues/479)
+* remove outline from tab content ([#627](https://github.com/sbb-design-systems/sbb-angular/issues/627)) ([a335bce](https://github.com/sbb-design-systems/sbb-angular/commit/a335bce71566a09c97e819cdeb2c83febfc501c3)), closes [#610](https://github.com/sbb-design-systems/sbb-angular/issues/610)
+* update link styles to adhere to design specification ([#618](https://github.com/sbb-design-systems/sbb-angular/issues/618)) ([dc0c754](https://github.com/sbb-design-systems/sbb-angular/commit/dc0c754bd807900c132ebcf785bb165eedca7bef))
+* use correct textarea padding ([#650](https://github.com/sbb-design-systems/sbb-angular/issues/650)) ([fce9414](https://github.com/sbb-design-systems/sbb-angular/commit/fce94143cd798ab8206120c919183a2ac97a5aa9))
+* **business:** autocomplete borders of chip input ([#646](https://github.com/sbb-design-systems/sbb-angular/issues/646)) ([090ff94](https://github.com/sbb-design-systems/sbb-angular/commit/090ff9435a327fad1972284fbe260c3cdca84246))
+* **business:** correct datepicker colors ([#625](https://github.com/sbb-design-systems/sbb-angular/issues/625)) ([1f414ce](https://github.com/sbb-design-systems/sbb-angular/commit/1f414ce021f28c096f42a27e312e8a59f40f4204))
+* **business:** correct tooltip colors ([#626](https://github.com/sbb-design-systems/sbb-angular/issues/626)) ([f65629a](https://github.com/sbb-design-systems/sbb-angular/commit/f65629a10bfead8bb88ed1c61e2d5ba3cc5870e7)), closes [#604](https://github.com/sbb-design-systems/sbb-angular/issues/604)
+* **business:** fix right padding of fieldset ([#622](https://github.com/sbb-design-systems/sbb-angular/issues/622)) ([e37689f](https://github.com/sbb-design-systems/sbb-angular/commit/e37689fa29ea511d5200445b5edde093e3d965cd))
+* **showcase:** fix styling of icon-overview in firefox ([#637](https://github.com/sbb-design-systems/sbb-angular/issues/637)) ([2377f21](https://github.com/sbb-design-systems/sbb-angular/commit/2377f212ee5bcda286edda2e9760605480edea3d))
+* remove obsolete aria-hidden from select ([#631](https://github.com/sbb-design-systems/sbb-angular/issues/631)) ([e228e88](https://github.com/sbb-design-systems/sbb-angular/commit/e228e882b7d9033324dd89f18f886c08e550a58e))
+* set min-height on input to support text center aligning in IE ([#628](https://github.com/sbb-design-systems/sbb-angular/issues/628)) ([6c520e5](https://github.com/sbb-design-systems/sbb-angular/commit/6c520e52d2368215f7026efffa461d64e5231634))
+
+
+* remove deprecations ([#629](https://github.com/sbb-design-systems/sbb-angular/issues/629)) ([04a60ab](https://github.com/sbb-design-systems/sbb-angular/commit/04a60abaf13032ec8aa741681e009f8834513758)), closes [#488](https://github.com/sbb-design-systems/sbb-angular/issues/488)
+* remove social link ([#617](https://github.com/sbb-design-systems/sbb-angular/issues/617)) ([abb0331](https://github.com/sbb-design-systems/sbb-angular/commit/abb0331227f207a979e50a2405fd10148eec4e9e))
+
+
+### build
+
+* update to Angular v11 rc1 ([#634](https://github.com/sbb-design-systems/sbb-angular/issues/634)) ([512c799](https://github.com/sbb-design-systems/sbb-angular/commit/512c799d9a20510d4b2db8b541b7cbbfd46d5d27))
+
 ### [10.3.1](https://github.com/sbb-design-systems/sbb-angular/compare/10.3.0...10.3.1) (2020-09-30)
 
 
