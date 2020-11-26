@@ -65,7 +65,7 @@ export class SbbToggleOption extends SbbRadioButton {
   @ContentChild(SbbIconDirective, { read: TemplateRef })
   _contentIcon?: TemplateRef<any>;
 
-  @ViewChild('contentTemplateRef') _contentTemplateRef: TemplateRef<HTMLElement>;
+  @ViewChild('content') _content: TemplateRef<HTMLElement>;
 
   constructor(
     @Optional() radioGroup: SbbRadioGroup,
