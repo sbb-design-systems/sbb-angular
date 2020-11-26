@@ -119,7 +119,7 @@
     <unit id="sbbUsermenuLogin">
       <segment state="reviewed">
         <source>Login</source>
-        <target>Login</target>
+        <target>Anmelden</target>
       </segment>
     </unit>
     <unit id="sbbGhettoboxCloseGhettobox">
