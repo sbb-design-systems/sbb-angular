@@ -153,7 +153,7 @@
         <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
     "/>. Click or press enter to close user menu.</source>
         <target>Angemeldet als <ph id="0" equiv="PH" disp="this.displayName || this.userName
-"/>. Klicke oder drück Enter, um das Usermenü zu schliessen.</target>
+"/>. Klicken oder Enter drücken, um das Benutzermenü zu schliessen.</target>
       </segment>
     </unit>
   </file>
