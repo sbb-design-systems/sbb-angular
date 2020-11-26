@@ -145,7 +145,7 @@
         <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
     "/>. Click or press enter to open user menu.</source>
         <target>Angemeldet als <ph id="0" equiv="PH" disp="this.displayName || this.userName
-"/>. Klicke oder drück Enter, um das Usermenü zu öffnen.</target>
+"/>. Klicken oder Enter drücken, um das Benutzermenü zu öffnen.</target>
       </segment>
     </unit>
     <unit id="sbbUsermenuClosePanel">
