@@ -88,7 +88,7 @@
     <unit id="8389639288060911431">
       <segment state="translated">
         <source>Change sorting for <ph id="0" equiv="PH" disp="this.id"/></source>
-        <target>Ändere die Sortierung für  <ph id="0" equiv="PH" disp="this.id"/></target>
+        <target>Sortierung für <ph id="0" equiv="PH" disp="this.id"/> ändern</target>
       </segment>
     </unit>
     <unit id="sbbTabsBadgePillAmountOfEntries">
