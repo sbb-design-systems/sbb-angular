@@ -203,14 +203,13 @@ describe('SbbToggle case reactive using mock component', () => {
     await fixtureTest.whenStable();
     fixtureTest.detectChanges();
 
-    const toggleOptionReferenceValue = fixtureTest.debugElement.queryAll(
-      By.css('.sbb-toggle-option-button-inner > input')
-    );
+    const toggleOptionReferenceValue = fixtureTest.debugElement.queryAll(By.css('input'));
 
     const toggleOption1ValueElement = toggleOptionReferenceValue[0].nativeElement;
 
     expect(toggleOption1ValueElement.attributes.getNamedItem('aria-checked').value).toBe('true');
     expect(toggleOption1ValueElement.value).toBe('Option_1');
+    expect(fixtureTest.componentInstance.form.get('test')?.value).toBe('Option_1');
   });
 
   it('it verifies that first toggle button has class sbb-toggle-option-selected', async () => {
@@ -255,7 +254,7 @@ describe('SbbToggle case reactive using mock component', () => {
     );
 
     const toggleOptionsContentReference = fixtureTest.debugElement.queryAll(
-      By.css('.sbb-toggle-option > label > div > span > .sbb-toggle-option-button-info-text ')
+      By.css('.sbb-toggle-option-button-info-text ')
     );
 
     fixtureTest.detectChanges();
@@ -306,9 +305,7 @@ describe('SbbToggle case reactive with default value using mock component', () =
   it('it verifies that second toggle button is checked', () => {
     fixtureTest.detectChanges();
 
-    const toggleOptionReferenceValue = fixtureTest.debugElement.queryAll(
-      By.css('.sbb-toggle-option-button-inner > input')
-    );
+    const toggleOptionReferenceValue = fixtureTest.debugElement.queryAll(By.css('input'));
 
     const toggleOption2ValueElement = toggleOptionReferenceValue[1].nativeElement;
 
@@ -354,9 +351,7 @@ describe('SbbToggle case template driven using mock component', () => {
   it('it verifies if the first toggle option is selected ', () => {
     fixtureTest.detectChanges();
 
-    const toggleOption1ReferenceValue = fixtureTest.debugElement.queryAll(
-      By.css('.sbb-toggle-option-button-inner > input')
-    );
+    const toggleOption1ReferenceValue = fixtureTest.debugElement.queryAll(By.css('input'));
 
     const toggleOption1ValueElement = toggleOption1ReferenceValue[0].nativeElement;
 
@@ -364,9 +359,7 @@ describe('SbbToggle case template driven using mock component', () => {
   });
 
   it('it verifies the click on the second toggle option selected ', () => {
-    const toggleOptionsReference = fixtureTest.debugElement.queryAll(
-      By.css('.sbb-toggle-option-button-inner > input')
-    );
+    const toggleOptionsReference = fixtureTest.debugElement.queryAll(By.css('input'));
 
     const toggleOption2 = toggleOptionsReference[1];
     toggleOption2.nativeElement.click();
@@ -423,9 +416,7 @@ describe('SbbToggle simple case using mock component', () => {
   });
 
   it('it verifies the click on the second toggle button is selected', () => {
-    const toggleOptionsReference = fixtureTest.debugElement.queryAll(
-      By.css('.sbb-toggle-option-button-inner > input')
-    );
+    const toggleOptionsReference = fixtureTest.debugElement.queryAll(By.css('input'));
 
     const toggleOption2 = toggleOptionsReference[1];
     toggleOption2.nativeElement.click();
