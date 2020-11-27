@@ -11,6 +11,9 @@ const parse: typeof import('parse5') = parse5;
  */
 export class UsermenuMigration extends Migration<null> {
   enabled = this.targetVersion === TargetVersion.V11;
+  migrateSbbIcon = false;
+  migrateDropdown = false;
+  migrateDropdownItems = false;
 
   /** Method that will be called for each Angular template in the program. */
   visitTemplate(template: ResolvedResource): void {
@@ -50,8 +53,7 @@ export class UsermenuMigration extends Migration<null> {
     const recorder = this.fileSystem.edit(template.filePath);
 
     if (sbbIconElements.length) {
-      this.logger.info('Replace sbbIcon with *sbbIcon inside sbb-usermenu');
-
+      this.migrateSbbIcon = true;
       for (const element of sbbIconElements) {
         const sbbIconLocation = element.sourceCodeLocation!.attrs['sbbicon'];
         if (!sbbIconLocation) {
@@ -64,8 +66,7 @@ export class UsermenuMigration extends Migration<null> {
     }
 
     if (sbbDropdownElements.length) {
-      this.logger.info('Remove sbb-dropdown inside sbb-usermenu');
-
+      this.migrateDropdown = false;
       for (const sbbDropdownElement of sbbDropdownElements) {
         const sbbDropdownLocationStart = sbbDropdownElement.sourceCodeLocation?.startTag;
         const sbbDropdownLocationEnd = sbbDropdownElement.sourceCodeLocation?.endTag;
@@ -85,10 +86,7 @@ export class UsermenuMigration extends Migration<null> {
     }
 
     if (sbbDropdownItemElements.length) {
-      this.logger.info(
-        'Convert sbbDropdownItem to sbb-usermenu-item directive inside sbb-usermenu'
-      );
-
+      this.migrateDropdownItems = true;
       for (const sbbDropdownItemElement of sbbDropdownItemElements) {
         const sbbDropdownItemLocation = sbbDropdownItemElement.sourceCodeLocation!.attrs[
           'sbbdropdownitem'
@@ -109,6 +107,20 @@ export class UsermenuMigration extends Migration<null> {
           'sbb-usermenu-item'
         );
       }
+    }
+  }
+
+  postAnalysis() {
+    if (this.migrateSbbIcon) {
+      this.logger.info('Replace sbbIcon with *sbbIcon inside sbb-usermenu');
+    }
+    if (this.migrateDropdown) {
+      this.logger.info('Remove sbb-dropdown inside sbb-usermenu');
+    }
+    if (this.migrateDropdownItems) {
+      this.logger.info(
+        'Convert sbbDropdownItem to sbb-usermenu-item directive inside sbb-usermenu'
+      );
     }
   }
 
