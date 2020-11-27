@@ -299,6 +299,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
     display: flex;
     transition: border-color 0.15s ease-in-out;
     user-select: none;
+    position: relative;
 
     &-checked {
       background-color: $sbbColorWhite;
