@@ -71,8 +71,6 @@ export abstract class SbbRadioButton
   @Input('aria-describedby') ariaDescribedby: string;
   /** @docs-private */
   @HostBinding('attr.aria-describedby') _ariadescribedbyAttr: null = null;
-  /** @docs-private */
-  @HostBinding('class.sbb-radio-button') _cssClass: boolean = true;
 
   /**
    * Needs to be -1 so the `focus` event still fires.

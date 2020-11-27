@@ -30,6 +30,9 @@ import {
     { provide: SbbRadioButtonBase, useExisting: SbbRadioButton },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-radio-button',
+  },
 })
 export class SbbRadioButton extends SbbRadioButtonBase {
   constructor(

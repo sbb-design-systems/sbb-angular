@@ -53,6 +53,9 @@ import { SbbRadioButton, SbbRadioChange, SbbRadioGroup, ɵRadioButtonModule } fr
   `,
   inputs: ['tabIndex'],
   providers: [{ provide: SbbRadioButton, useExisting: RadioButtonComponent }],
+  host: {
+    class: 'sbb-radio-button',
+  },
 })
 class RadioButtonComponent extends SbbRadioButton {
   constructor(

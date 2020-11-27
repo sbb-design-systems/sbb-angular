@@ -28,6 +28,9 @@ import { SbbRadioButton, SbbRadioGroup } from '@sbb-esta/angular-core/radio-butt
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'sbb-radio-button-panel',
+  },
 })
 export class SbbRadioButtonPanel extends SbbRadioButton {
   /** Label of a radio button panel. */
