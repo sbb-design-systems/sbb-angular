@@ -17,28 +17,6 @@ export class BasicAccordionExampleComponent {
   panels = ['panel 1', 'panel 2', 'panel 3', 'panel 4', 'panel 5'];
   multi = false;
 
-  radioOptions = [
-    {
-      name: 'Open all',
-      value: 'openAll',
-    },
-    {
-      name: 'Close all',
-      value: 'closeAll',
-    },
-  ];
-
-  toggleRadio(event) {
-    switch (event.value) {
-      case 'openAll':
-        this.firstAccordion.openAll();
-        break;
-      case 'closeAll':
-        this.firstAccordion.closeAll();
-        break;
-    }
-  }
-
   log(...args: any[]) {
     console.log(args);
   }

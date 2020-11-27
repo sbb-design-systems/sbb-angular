@@ -1,21 +1,19 @@
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.m-0 {
+.accordion-example-custom-html-panel {
   margin: 0;
 }
 
-.ml-1 {
-  margin-left: 1rem;
+.accordion-example-open-state {
+  margin: 0 0 0 1rem;
 }
 
-.panel-button {
+.accordion-example-panel-button {
   flex: 1 0 auto;
   text-align: right;
 }
 
-.inline-block {
-  display: inline-block;
+.accordion-example-open-close-buttons {
+  margin: 4px 0 8px 28px;
+  button {
+    margin-right: 8px;
+  }
 }
