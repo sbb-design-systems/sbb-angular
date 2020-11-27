@@ -1,8 +1,8 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest, Observable, zip } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, Observable, Subject, zip } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../html-loader.service';
 import {
@@ -15,7 +15,7 @@ import {
   templateUrl: './example-viewer.component.html',
   styleUrls: ['./example-viewer.component.css'],
 })
-export class ExampleViewerComponent implements OnInit {
+export class ExampleViewerComponent implements OnInit, OnDestroy {
   @Input() example: ComponentPortal<any>;
   @Input() name: string;
   html: Observable<string>;
@@ -26,6 +26,8 @@ export class ExampleViewerComponent implements OnInit {
 
   isStackblitzDisabled = true;
   stackBlitzForm: HTMLFormElement;
+
+  private _destroyed = new Subject<void>();
 
   get label() {
     return this.name
@@ -70,9 +72,11 @@ export class ExampleViewerComponent implements OnInit {
         .observe()
         .pipe(map((content) => ({ name: `${this.name}.${type}`, content })))
     );
-    zip(...exampleContents).subscribe((results) =>
-      this._createStackblitzForm(results.filter((result) => !!result.content))
-    );
+    zip(...exampleContents)
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((results) =>
+        this._createStackblitzForm(results.filter((result) => !!result.content))
+      );
   }
 
   private _createStackblitzForm(files: { name: string; content: string }[]) {
@@ -100,5 +104,10 @@ export class ExampleViewerComponent implements OnInit {
     document.body.appendChild(this.stackBlitzForm);
     this.stackBlitzForm.submit();
     document.body.removeChild(this.stackBlitzForm);
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }
