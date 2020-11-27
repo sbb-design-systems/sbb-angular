@@ -43,7 +43,7 @@ export class CdnIconListComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.filteredIcons = merge(
       this.filterForm.controls.namespaces.valueChanges,
-      this.filterForm.controls.fulltext.valueChanges.pipe(debounceTime(200), startWith('')),
+      this.filterForm.controls.fulltext.valueChanges.pipe(startWith(''), debounceTime(200)),
       this._paginator.page
     ).pipe(
       map(() => {
