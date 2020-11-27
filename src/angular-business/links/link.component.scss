@@ -3,7 +3,7 @@
 .sbb-link-business {
   display: inline-block;
   hyphens: auto;
-  padding-right: pxToRem(70);
+  padding-right: pxToRem(32);
   position: relative;
   text-decoration: none;
   word-break: break-word;
@@ -20,10 +20,11 @@
   height: toPx(24);
   margin-left: toPx(8);
   pointer-events: none;
+  right: 0;
   top: 50%;
   transform: translate(0px, -50%);
+}
 
-  .sbb-link & {
-    right: 0;
-  }
+.sbb-link-business-stretch {
+  display: block;
 }

@@ -6,8 +6,8 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   styleUrls: ['./link.component.css'],
   host: {
     class: 'sbb-link-business sbb-icon-fit',
-    '[class.sbb-link-normal]': 'this.mode === "normal"',
-    '[class.sbb-link-stretch]': 'this.mode === "stretch"',
+    '[class.sbb-link-business-normal]': 'this.mode === "normal"',
+    '[class.sbb-link-business-stretch]': 'this.mode === "stretch"',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
