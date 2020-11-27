@@ -3,7 +3,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'sbb-table-example',
   templateUrl: './table-example.component.html',
-  styleUrls: ['./table-example.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
 export class TableExampleComponent {

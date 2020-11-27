@@ -6,7 +6,7 @@ import { CdnIcon } from '../../cdn-icon.service';
 @Component({
   selector: 'sbb-cdn-icon-dialog',
   templateUrl: './cdn-icon-dialog.component.html',
-  styleUrls: ['./cdn-icon-dialog.component.scss'],
+  styleUrls: ['./cdn-icon-dialog.component.css'],
 })
 export class CdnIconDialogComponent {
   constructor(@Inject(SBB_DIALOG_DATA) public data: { cdnIcon: CdnIcon }) {}
