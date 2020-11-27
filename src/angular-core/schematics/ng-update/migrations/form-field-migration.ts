@@ -26,6 +26,10 @@ export class FormFieldMigration extends Migration<null> {
     long: 'sbb-form-field-long',
   };
   modeVariants = Object.keys(this.modeReplacements);
+  migrateFormFieldMode = false;
+  migrateSbbInput = false;
+  migrateSbbField = false;
+  migrateLabelFor = false;
 
   visitNode(declaration: ts.Node): void {
     // Only look at import declarations.
@@ -92,16 +96,14 @@ export class FormFieldMigration extends Migration<null> {
 
     const recorder = this.fileSystem.edit(template.filePath);
     if (formFieldWithModesElements.length) {
-      this.logger.info('Attempting to replace deprecated sbb-form-field[mode]');
+      this.migrateFormFieldMode = true;
       for (const element of formFieldWithModesElements) {
         this._replaceMode(element, recorder, template.start);
       }
     }
 
     if (missingInputElements.length) {
-      this.logger.info(
-        'Attempting to add required sbbInput to native input, select and textarea elements inside sbb-form-field'
-      );
+      this.migrateSbbInput = true;
       for (const element of missingInputElements) {
         const start =
           template.start + element.sourceCodeLocation!.startOffset + element.nodeName.length + 1;
@@ -110,7 +112,7 @@ export class FormFieldMigration extends Migration<null> {
     }
 
     if (fieldElements.length) {
-      this.logger.info('Changing sbb-field to sbb-form-field');
+      this.migrateSbbField = true;
       for (const element of fieldElements) {
         const startTagStart = template.start + element.sourceCodeLocation!.startTag.startOffset + 4;
         recorder.insertRight(startTagStart, '-form');
@@ -120,7 +122,7 @@ export class FormFieldMigration extends Migration<null> {
     }
 
     if (sbbLabelWithForElements.length) {
-      this.logger.info('Removing for attributes for sbb-label, as this is handled internally now');
+      this.migrateLabelFor = true;
       for (const element of sbbLabelWithForElements) {
         const forLocation =
           element.sourceCodeLocation!.attrs['for'] || element.sourceCodeLocation!.attrs['[for]'];
@@ -129,6 +131,23 @@ export class FormFieldMigration extends Migration<null> {
           forLocation.endOffset - forLocation.startOffset + 1
         );
       }
+    }
+  }
+
+  postAnalysis() {
+    if (this.migrateFormFieldMode) {
+      this.logger.info('Attempting to replace deprecated sbb-form-field[mode]');
+    }
+    if (this.migrateSbbInput) {
+      this.logger.info(
+        'Attempting to add required sbbInput to native input, select and textarea elements inside sbb-form-field'
+      );
+    }
+    if (this.migrateSbbField) {
+      this.logger.info('Changing sbb-field to sbb-form-field');
+    }
+    if (this.migrateLabelFor) {
+      this.logger.info('Removing for attributes for sbb-label, as this is handled internally now');
     }
   }
 
