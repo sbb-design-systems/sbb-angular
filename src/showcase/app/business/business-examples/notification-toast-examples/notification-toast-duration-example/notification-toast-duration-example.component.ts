@@ -4,6 +4,7 @@ import { SbbNotificationToast } from '@sbb-esta/angular-business/notification-to
 @Component({
   selector: 'sbb-notification-toast-duration-example',
   templateUrl: './notification-toast-duration-example.component.html',
+  styleUrls: ['./notification-toast-duration-example.component.css'],
 })
 export class NotificationToastDurationExampleComponent {
   duration = 3000;

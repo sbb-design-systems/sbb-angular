@@ -1,6 +1,7 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
+    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -11,7 +12,10 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = glob(["**/*.html"]),
+    assets = [
+        ":navigation-example/navigation-example.component.css",
+        ":paginator-example/paginator-example.component.css",
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/angular-business/button",
@@ -32,4 +36,14 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
+)
+
+sass_binary(
+    name = "navigation_example_navigation_example_component_scss",
+    src = "navigation-example/navigation-example.component.scss",
+)
+
+sass_binary(
+    name = "paginator_example_paginator_example_component_scss",
+    src = "paginator-example/paginator-example.component.scss",
 )

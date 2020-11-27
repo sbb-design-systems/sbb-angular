@@ -3,24 +3,23 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'sbb-table-example',
   templateUrl: './table-example.component.html',
-  styleUrls: ['./table-example.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
 export class TableExampleComponent {
   headers = [
-    'Unternehmen und Land *1',
-    'Personenkilometer (Mio. Pkm)',
-    'Nettotonnenkilometer (Mio. Ntkm)',
-    'Trassenkilometer (Mio. Trkm)',
-    'Personal (FTE)',
+    'Company and country *1',
+    'Passenger-kilometers (Mio. Pkm)',
+    'Tonne-kilometers (Mio. Ntkm)',
+    'Route-kilometers (Mio. Trkm)',
+    'Staff (FTE)',
   ];
 
   private _rows = [
     {
-      text1: 'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht. *1',
+      text1: 'Long text in a link to see how it wraps in the cell. *1',
       text2: '6 907',
-      text3: 'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht.',
-      text4: 'Langer Text um zu sehen wie genau die Zelle umbricht',
+      text3: 'Long text in a link to see how it wraps in the cell.',
+      text4: 'Long text in a link to see how exactly the cell wraps',
       text5: '24 882',
       scope: 'row',
       describedby: 'legend_item_1',

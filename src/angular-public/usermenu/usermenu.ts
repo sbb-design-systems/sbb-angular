@@ -178,7 +178,7 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
 
   /** Initial letters of user's displayName (or userName if no displayName is provided). */
   get _initialLetters(): string {
-    const name = this.displayName ? this.displayName : this.userName;
+    const name = this.displayName ? this.displayName : this.userName || '';
     const names: string[] = name.split(' ');
     if (names.length === 1) {
       return names[0].substring(0, 2).toLocaleUpperCase();

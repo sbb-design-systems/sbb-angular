@@ -223,26 +223,26 @@ You can also use the headings classes to make every tag looks like a heading. Av
 
 ### Mixed Lists
 
-1.1. Die Person mit einer Behinderung besitzt eine Begleiterkarteund einen gültigen Fahrausweis. Als Fahrausweis gilt (dann reist die Begleitperson gratis):
+1.1. Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.:
 
 - Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
 - Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-  1.2. Die Begleitperson besitzt einen gültigen Fahrausweis. Als Fahrausweis gilt (dann reist die Person mit einer Behinderung und einer Begleiterkarte gratis):
+  1.2. Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.:
 - Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
 - Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
 
-- Die Person mit einer Behinderung besitzt eine Begleiterkarteund einen gültigen Fahrausweis. Als Fahrausweis gilt (dann reist die Begleitperson gratis):
+- Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.:
   1. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
   2. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-- Die Begleitperson besitzt einen gültigen Fahrausweis. Als Fahrausweis gilt (dann reist die Person mit einer Behinderung und einer Begleiterkarte gratis):
+- Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.:
   1. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
   2. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
 
 ```html
 <ol>
   <li>
-    Die Person mit einer Behinderung besitzt eine Begleiterkarteund einen gültigen Fahrausweis. Als
-    Fahrausweis gilt (dann reist die Begleitperson gratis):
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
     <ul>
       <li>
         Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
@@ -255,8 +255,8 @@ You can also use the headings classes to make every tag looks like a heading. Av
     </ul>
   </li>
   <li>
-    Die Begleitperson besitzt einen gültigen Fahrausweis. Als Fahrausweis gilt (dann reist die
-    Person mit einer Behinderung und einer Begleiterkarte gratis):
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
     <ul>
       <li>
         Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
@@ -271,8 +271,8 @@ You can also use the headings classes to make every tag looks like a heading. Av
 </ol>
 <ul>
   <li>
-    Die Person mit einer Behinderung besitzt eine Begleiterkarteund einen gültigen Fahrausweis. Als
-    Fahrausweis gilt (dann reist die Begleitperson gratis):
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
     <ol>
       <li>
         Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
@@ -285,8 +285,8 @@ You can also use the headings classes to make every tag looks like a heading. Av
     </ol>
   </li>
   <li>
-    Die Begleitperson besitzt einen gültigen Fahrausweis. Als Fahrausweis gilt (dann reist die
-    Person mit einer Behinderung und einer Begleiterkarte gratis):
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
     <ol>
       <li>
         Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
@@ -314,24 +314,24 @@ If you have a custom caption or legend, don't forget to use proper aria-describe
 <table class="sbb-table">
   <thead>
     <tr>
-      <th scope="col">Unternehmen und Land *1</th>
-      <th scope="col">Personenkilometer (Mio. Pkm)</th>
-      <th scope="col">Nettotonnenkilometer (Mio. Ntkm)</th>
-      <th scope="col">Trassenkilometer (Mio. Trkm)</th>
-      <th scope="col">Personal (FTE)</th>
+      <th scope="col">Company and country *1</th>
+      <th scope="col">Passenger-kilometers (Mio. Pkm)</th>
+      <th scope="col">Tonne-kilometers (Mio. Ntkm)</th>
+      <th scope="col">Route-kilometers (Mio. Trkm)</th>
+      <th scope="col">Staff (FTE)</th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
       <th scope="row">
-        Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht. *1
+        Long text in a link to see how it wraps in the cell. *1
       </th>
       <td>6 907</td>
       <td>
-        Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht.
+        Long text in a link to see how it wraps in the cell.
       </td>
-      <td>Langer Text um zu sehen wie genau die Zelle umbricht</td>
+      <td>Long text in a link to see how exactly the cell wraps</td>
       <td>24 882</td>
     </tr>
     <tr>
@@ -386,20 +386,20 @@ If you have a custom caption or legend, don't forget to use proper aria-describe
 <table class="sbb-table">
   <thead>
     <tr>
-      <th scope="col">Unternehmen und Land *1</th>
-      <th scope="col">Personenkilometer (Mio. Pkm)</th>
-      <th scope="col">Nettotonnenkilometer (Mio. Ntkm)</th>
-      <th scope="col">Trassenkilometer (Mio. Trkm)</th>
-      <th scope="col">Personal (FTE)</th>
+      <th scope="col">Company and country *1</th>
+      <th scope="col">Passenger-kilometers (Mio. Pkm)</th>
+      <th scope="col">Tonne-kilometers (Mio. Ntkm)</th>
+      <th scope="col">Route-kilometers (Mio. Trkm)</th>
+      <th scope="col">Staff (FTE)</th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <th scope="row">Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht. *1</th>
+      <th scope="row">Long text in a link to see how it wraps in the cell. *1</th>
       <td>6 907</td>
-      <td>Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht.</td>
-      <td>Langer Text um zu sehen wie genau die Zelle umbricht</td>
+      <td>Long text in a link to see how it wraps in the cell.</td>
+      <td>Long text in a link to see how exactly the cell wraps</td>
       <td>24 882</td>
     </tr>
     <tr>
@@ -445,34 +445,34 @@ If you have a custom caption or legend, don't forget to use proper aria-describe
 
 <form>
   <fieldset>
-    <legend>Reise Section 1</legend>
+    <legend>Journey Section 1</legend>
     Some content in here...
     <fieldset>
-      <legend>Reise Section 1.1</legend>
+      <legend>Journey Section 1.1</legend>
       Some content in here...
     </fieldset>
     <fieldset>
-      <legend>Reise Section 1.2</legend>
+      <legend>Journey Section 1.2</legend>
       Some content in here...
     </fieldset>
     <fieldset>
-      <legend>Reise Section 1.3</legend>
+      <legend>Journey Section 1.3</legend>
       Some content in here...
     </fieldset>
   </fieldset>
   <fieldset>
-    <legend>Reise Section 2</legend>
+    <legend>Journey Section 2</legend>
     Some content in here...
     <fieldset>
-      <legend>Reise Section 2.1</legend>
+      <legend>Journey Section 2.1</legend>
       Some content in here...
     </fieldset>
     <fieldset>
-      <legend>Reise Section 2.2</legend>
+      <legend>Journey Section 2.2</legend>
       Some content in here...
     </fieldset>
     <fieldset>
-      <legend>Reise Section 2.3</legend>
+      <legend>Journey Section 2.3</legend>
       Some content in here...
     </fieldset>
   </fieldset>
@@ -481,34 +481,34 @@ If you have a custom caption or legend, don't forget to use proper aria-describe
 ```html
 <form>
   <fieldset>
-    <legend>Reise Section 1</legend>
+    <legend>Journey Section 1</legend>
     Some content in here...
     <fieldset>
-      <legend>Reise Section 1.1</legend>
+      <legend>Journey Section 1.1</legend>
       Some content in here...
     </fieldset>
     <fieldset>
-      <legend>Reise Section 1.2</legend>
+      <legend>Journey Section 1.2</legend>
       Some content in here...
     </fieldset>
     <fieldset>
-      <legend>Reise Section 1.3</legend>
+      <legend>Journey Section 1.3</legend>
       Some content in here...
     </fieldset>
   </fieldset>
   <fieldset>
-    <legend>Reise Section 2</legend>
+    <legend>Journey Section 2</legend>
     Some content in here...
     <fieldset>
-      <legend>Reise Section 2.1</legend>
+      <legend>Journey Section 2.1</legend>
       Some content in here...
     </fieldset>
     <fieldset>
-      <legend>Reise Section 2.2</legend>
+      <legend>Journey Section 2.2</legend>
       Some content in here...
     </fieldset>
     <fieldset>
-      <legend>Reise Section 2.3</legend>
+      <legend>Journey Section 2.3</legend>
       Some content in here...
     </fieldset>
   </fieldset>

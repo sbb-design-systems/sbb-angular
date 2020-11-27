@@ -7,7 +7,7 @@ import { CdnIconDialogComponent } from '../cdn-icon-dialog/cdn-icon-dialog.compo
 @Component({
   selector: 'sbb-cdn-icon',
   templateUrl: './cdn-icon.component.html',
-  styleUrls: ['./cdn-icon.component.scss'],
+  styleUrls: ['./cdn-icon.component.css'],
 })
 export class CdnIconComponent {
   @Input() cdnIcon: CdnIcon;

@@ -15,138 +15,66 @@
   >
     <sbb-expansion-panel-header>
       Panel with table
-      <p class="m-0 ml-1">Currently I am {{ panelOpenState ? 'open' : 'closed' }}</p>
+      <p class="accordion-example-open-state">
+        Currently I am {{ panelOpenState ? 'open' : 'closed' }}
+      </p>
     </sbb-expansion-panel-header>
-    <div class="docs-api">
-      <h2>Table Title h2</h2>
-      <table class="docs-api-properties-table">
-        <tbody>
-          <tr class="docs-api-properties-header-row">
-            <th class="docs-api-properties-th">Name</th>
-            <th class="docs-api-properties-th">Description</th>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <div class="docs-api-input-marker">@Input()</div>
-              <p class="docs-api-property-name">
-                <code>active: false</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Class property that specifics tab status</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <div class="docs-api-input-marker">@Input()</div>
-              <p class="docs-api-property-name">
-                <code>badgePill: number</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Class property that identifies the data-set for tabs content</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <div class="docs-api-input-marker">@Input()</div>
-              <p class="docs-api-property-name">
-                <code>disabled: boolean</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Sets a specifics tab disabled</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <div class="docs-api-input-marker">@Input()</div>
-              <p class="docs-api-property-name">
-                <code>id: string</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Tab identifier</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <div class="docs-api-input-marker">@Input()</div>
-              <p class="docs-api-property-name">
-                <code>label: string</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Label of a specific tab</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <div class="docs-api-input-marker">@Input()</div>
-              <p class="docs-api-property-name">
-                <code>labelId: string</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Label identifier of a tab</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <div class="docs-api-input-marker">@Input()</div>
-              <p class="docs-api-property-name">
-                <code>tabindex: -1</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Initial index tab</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <div class="docs-api-output-marker">@Output()</div>
-              <p class="docs-api-property-name">
-                <code>disableChange: EventEmitter</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Event generated if a tab is disabled</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <div class="docs-api-output-marker">@Output()</div>
-              <p class="docs-api-property-name">
-                <code>removeChange: EventEmitter</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Event generated if a tab is removed</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <p class="docs-api-property-name">
-                <code>ariaHidden: string</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Class property that identifies an aria hidden of a tab</p>
-            </td>
-          </tr>
-          <tr class="docs-api-properties-row">
-            <td class="docs-api-properties-name-cell">
-              <p class="docs-api-property-name">
-                <code>role: 'tabpanel'</code>
-              </p>
-            </td>
-            <td class="docs-api-property-description">
-              <p>Role of tab</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="sbb-table">
+      <thead>
+        <tr>
+          <th scope="col">Company and country *1</th>
+          <th scope="col">Passenger-kilometers (Mio. Pkm)</th>
+          <th scope="col">Tonne-kilometers (Mio. Ntkm)</th>
+          <th scope="col">Route-kilometers (Mio. Trkm)</th>
+          <th scope="col">Staff (FTE)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">Long text in a link to see how it wraps in the cell. *1</th>
+          <td>6 907</td>
+          <td>Long text in a link to see how it wraps in the cell.</td>
+          <td>Long text in a link to see how exactly the cell wraps</td>
+          <td>24 882</td>
+        </tr>
+        <tr>
+          <th scope="row">SZDC (CZ) *2</th>
+          <td>-</td>
+          <td>-</td>
+          <td>161</td>
+          <td>17 380</td>
+        </tr>
+        <tr>
+          <th scope="row">DB AG (DE) *3</th>
+          <td>80 805</td>
+          <td>78 542</td>
+          <td>1 037</td>
+          <td>286 237</td>
+        </tr>
+        <tr>
+          <th scope="row">FS (IT) *3</th>
+          <td>37 489</td>
+          <td>22 081</td>
+          <td>316</td>
+          <td>72 341</td>
+        </tr>
+        <tr>
+          <th scope="row">JR (JP) *3</th>
+          <td>244 591</td>
+          <td>20 255</td>
+          <td>693</td>
+          <td>127 989</td>
+        </tr>
+        <tr>
+          <th scope="row">NS (NL) *1</th>
+          <td>16 604</td>
+          <td>-</td>
+          <td>-</td>
+          <td>7 959</td>
+        </tr>
+      </tbody>
+    </table>
   </sbb-expansion-panel>
   <sbb-expansion-panel
     [expanded]="panelMode.value === 'panel 3'"
@@ -195,8 +123,8 @@
     [expanded]="panelMode.value === 'panel 5'"
   >
     <sbb-expansion-panel-header>
-      <h2 class="m-0">Panel with custom html</h2>
-      <div class="panel-button">
+      <h2 class="accordion-example-custom-html-panel">Panel with custom html</h2>
+      <div class="accordion-example-panel-button">
         <button
           sbbButton
           (click)="logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')"
@@ -213,43 +141,26 @@
   </sbb-expansion-panel>
 </sbb-accordion>
 
-<div class="flex-col">
-  <h4 class="sbbsc-block">Properties</h4>
-  <sbb-form-field label="Multi panel" class="sbbsc-block">
-    <sbb-checkbox value="multi" class="inline-block" [(ngModel)]="multi">
-      Open the panels of the accordion together
-    </sbb-checkbox>
-    <ng-container *ngIf="multi">
-      <sbb-radio-group (change)="toggleRadio($event)" class="sbbsc-block">
-        <div *ngFor="let option of radioOptions">
-          <sbb-radio-button [value]="option.value">{{ option.name }}</sbb-radio-button>
-        </div>
-      </sbb-radio-group>
-    </ng-container>
-  </sbb-form-field>
+<h4 class="sbbsc-block">Properties</h4>
 
-  <sbb-form-field label="Disabled accordion panel" class="sbbsc-block">
-    <sbb-checkbox value="disabled" [formControl]="disabled" class="inline-block">
-      Disabled
-    </sbb-checkbox>
-  </sbb-form-field>
+<div class="sbb-checkbox-group-vertical sbbsc-block">
+  <sbb-checkbox value="multi" [(ngModel)]="multi">
+    Open and close all panels of the accordion together
+  </sbb-checkbox>
 
-  <sbb-form-field label="Panel toggles" class="sbbsc-block">
-    <sbb-checkbox value="hideToggle" [formControl]="hideToggle" class="inline-block">
-      Hide Toggle
-    </sbb-checkbox>
-  </sbb-form-field>
-
-  <sbb-form-field label="Programmatically open panel" class="sbbsc-block">
-    <select [formControl]="panelMode" id="panelMode" sbbInput>
-      <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
-    </select>
-  </sbb-form-field>
-  <div class="flex-col">
-    <small>*You can choose "Open all/Close all" if multi panel checkbox is selected </small>
-    <small
-      >*You can choose one panel into select field to expand if the multi panel checkbox isn't
-      selected</small
-    >
+  <div *ngIf="multi" class="accordion-example-open-close-buttons">
+    <button sbbButton (click)="firstAccordion.openAll()" mode="secondary">Open all</button>
+    <button sbbButton (click)="firstAccordion.closeAll()" mode="secondary">Close all</button>
   </div>
+
+  <sbb-checkbox value="disabled" [formControl]="disabled">
+    Disable corresponding accordion panel
+  </sbb-checkbox>
+  <sbb-checkbox value="hideToggle" [formControl]="hideToggle"> Hide toggle icon</sbb-checkbox>
 </div>
+
+<sbb-form-field label="Programmatically open panel">
+  <select [formControl]="panelMode" id="panelMode" sbbInput>
+    <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
+  </select>
+</sbb-form-field>

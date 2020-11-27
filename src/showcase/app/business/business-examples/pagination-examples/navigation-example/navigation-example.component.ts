@@ -4,10 +4,9 @@ import { SbbNavigationPageChangeEvent } from '@sbb-esta/angular-business/paginat
 @Component({
   selector: 'sbb-navigation-example',
   templateUrl: './navigation-example.component.html',
+  styleUrls: ['./navigation-example.component.css'],
 })
 export class NavigationExampleComponent {
-  constructor() {}
-
   pages = ['Introduction', 'Chapter 1', 'Chapter 2', 'Chapter 3'].map((page, index) => {
     return { title: page, index: index };
   });
