@@ -4,6 +4,7 @@ import { SbbNotificationToast } from '@sbb-esta/angular-business/notification-to
 @Component({
   selector: 'sbb-simple-notification-toast-example',
   templateUrl: './simple-notification-toast-example.component.html',
+  styleUrls: ['./simple-notification-toast-example.component.css'],
 })
 export class SimpleNotificationToastExampleComponent {
   type: 'success' | 'info' | 'error' | 'warn' = 'success';
