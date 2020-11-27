@@ -80,6 +80,10 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
   }
 
   private _createStackblitzForm(files: { name: string; content: string }[]) {
+    if (!files.length) {
+      console.error('Stackblitz example contents could not be loaded');
+      return;
+    }
     const example = new ExampleData({
       componentName: this.componentName,
       selectorName: `${this.name}`,
