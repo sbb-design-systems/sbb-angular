@@ -1,3 +1,4 @@
+import { basename, dirname, NormalizedRoot, Path } from '@angular-devkit/core';
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import {
   cdkMigrations,
@@ -5,6 +6,7 @@ import {
   getProjectMainFile,
   TargetVersion,
 } from '@angular/cdk/schematics';
+import { DevkitFileSystem } from '@angular/cdk/schematics/ng-update/devkit-file-system';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
@@ -49,6 +51,7 @@ export function addIconCdnRegistry(): Rule {
 /** Entry point for the migration schematics with target of sbb-angular 11.0.0 */
 export function updateToV11(): Rule {
   patchClassNamesMigration();
+  patchDevkitFileSystem();
   return createMigrationSchematicRule(
     TargetVersion.V11,
     [IconMigration, FormFieldMigration, UsermenuMigration],
@@ -62,6 +65,30 @@ function patchClassNamesMigration() {
     (m) => m.name === 'ClassNamesMigration'
   );
   cdkMigrations[indexOfClassNamesMigration] = ClassNamesMigration;
+}
+
+function patchDevkitFileSystem() {
+  const proto: DevkitFileSystem & { _isExistingDirectory?(): boolean } = DevkitFileSystem.prototype;
+  if (proto._isExistingDirectory) {
+    return;
+  }
+
+  proto.exists = function (fileOrDirPath: Path) {
+    if (this._tree.exists(fileOrDirPath)) {
+      return true;
+    } else if (fileOrDirPath === NormalizedRoot) {
+      return true;
+    }
+
+    const parent = dirname(fileOrDirPath);
+    const dirName = basename(fileOrDirPath);
+    if (this._tree.exists(parent)) {
+      return false;
+    }
+
+    const dir = this._tree.getDir(parent);
+    return dir.subdirs.indexOf(dirName) !== -1;
+  };
 }
 
 /** Function that will be called when the migration completed. */
