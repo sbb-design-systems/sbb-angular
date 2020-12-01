@@ -61,6 +61,10 @@ export class SbbToggle
     this.change
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => this._changeDetector.markForCheck());
+
+    Promise.resolve().then(() => {
+      this._changeDetector.markForCheck();
+    });
   }
 
   private _checkNumOfOptions(): void {

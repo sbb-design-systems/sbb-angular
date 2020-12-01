@@ -165,6 +165,23 @@ class ToggleSimpleCaseTestComponent {
 
   change(evt: SbbRadioChange) {}
 }
+@Component({
+  selector: 'sbb-toggle-only-second-with-content',
+  template: `
+    <sbb-toggle aria-label="Choose journey" [formControl]="journey">
+      <sbb-toggle-option infoText="info text" label="Single Journey" value="SingleJourney">
+        <sbb-icon svgIcon="kom:arrow-right-small" *sbbIcon></sbb-icon>
+      </sbb-toggle-option>
+      <sbb-toggle-option label="Single and return journey" value="ReturnJourney">
+        <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
+        <p class="content">Content</p>
+      </sbb-toggle-option>
+    </sbb-toggle>
+  `,
+})
+class ToggleOnlySecondWithContentTestComponent {
+  journey = new FormControl('ReturnJourney');
+}
 
 describe('SbbToggle case reactive using mock component', () => {
   let componentTest: ToggleReactiveTestComponent;
@@ -429,6 +446,58 @@ describe('SbbToggle simple case using mock component', () => {
     const toggleOptionsComponent2 = toggleOptionsComponent[1].nativeElement;
 
     expect(toggleOptionsComponent2.attributes['class'].value).toContain(
+      'sbb-toggle-option-selected'
+    );
+  });
+});
+
+describe('SbbToggle case with only toggle content for second toggle', () => {
+  let componentTest: ToggleOnlySecondWithContentTestComponent;
+  let fixtureTest: ComponentFixture<ToggleOnlySecondWithContentTestComponent>;
+
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          SbbToggleModule,
+          CommonModule,
+          ReactiveFormsModule,
+          SbbIconModule,
+          SbbIconDirectiveModule,
+          SbbIconTestingModule,
+        ],
+        declarations: [ToggleOnlySecondWithContentTestComponent],
+      }).compileComponents();
+    })
+  );
+
+  beforeEach(() => {
+    fixtureTest = TestBed.createComponent(ToggleOnlySecondWithContentTestComponent);
+    componentTest = fixtureTest.componentInstance;
+    fixtureTest.detectChanges();
+  });
+
+  it('it verifies that second toggle is selected and showing content', async () => {
+    await fixtureTest.whenStable();
+    fixtureTest.detectChanges();
+    const secondToggleOption = fixtureTest.debugElement.queryAll(By.directive(SbbToggleOption))[1];
+
+    expect(fixtureTest.debugElement.query(By.css('.content'))).toBeTruthy();
+    expect(secondToggleOption.nativeElement.attributes['class'].value).toContain(
+      'sbb-toggle-option-selected'
+    );
+  });
+
+  it('it verifies that no content is shown when switching to first toggle', async () => {
+    await fixtureTest.whenStable();
+    fixtureTest.detectChanges();
+    const firstToggleOption = fixtureTest.debugElement.queryAll(By.directive(SbbToggleOption))[0];
+
+    firstToggleOption.query(By.css('.sbb-toggle-option-button')).nativeElement.click();
+    fixtureTest.detectChanges();
+
+    expect(fixtureTest.debugElement.query(By.css('.content'))).toBeFalsy();
+    expect(firstToggleOption.nativeElement.attributes['class'].value).toContain(
       'sbb-toggle-option-selected'
     );
   });
