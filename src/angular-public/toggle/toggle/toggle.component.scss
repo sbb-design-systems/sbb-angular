@@ -4,6 +4,8 @@ $toggleOptionIconSize: 24;
 $toggleOptionButtonBg: $sbbColorMilk;
 $toggleOptionButtonColor: $sbbColorGrey;
 $toggleOptionRadius: 2;
+$toggleOptionBorderSize: 1;
+$toggleOptionBorderSize4kAndAbove: 2;
 $toggleOptionButtonPadding: pxToEm(8) pxToEm(23) pxToEm(9);
 $toggleOptionInfoTextFontSize: 13;
 $toggleOptionButtonBgSelected: $sbbColorWhite;
@@ -46,11 +48,15 @@ $toggleOptionContentBg: $sbbColorWhite;
   border-radius: pxToEm($toggleOptionRadius);
   padding: pxToEm(8) pxToEm(15) pxToEm(9);
   line-height: 1.5;
-  border: pxToEm(1) solid transparent;
+  border: pxToRem($toggleOptionBorderSize) solid transparent;
   min-height: $toggleOptionButtonMinHeight;
 
   @include mq($from: desktop) {
     padding: $toggleOptionButtonPadding;
+  }
+
+  @include mq($from: desktop4k) {
+    border-width: pxToRem($toggleOptionBorderSize4kAndAbove);
   }
 
   &:hover {
@@ -120,8 +126,12 @@ $toggleOptionContentBg: $sbbColorWhite;
   transition: $toggleOptionContentTransition;
   margin-top: pxToEm(-2);
   position: relative;
-  border: pxToEm(1) solid $sbbColorBlack;
+  border: pxToRem($toggleOptionBorderSize) solid $sbbColorBlack;
   border-radius: pxToEm($toggleOptionRadius);
+
+  @include mq($from: desktop4k) {
+    border-width: pxToRem($toggleOptionBorderSize4kAndAbove);
+  }
 
   &:empty {
     max-height: 0;
@@ -134,9 +144,15 @@ $toggleOptionContentBg: $sbbColorWhite;
     content: '';
     position: absolute;
     height: 0;
-    top: pxToEm(-1);
-    width: calc(50% - #{pxToEm(1)});
-    border-bottom: pxToEm(1) solid $sbbColorSilver;
+    top: pxToRem(-$toggleOptionBorderSize);
+    width: calc(50% - #{pxToRem($toggleOptionBorderSize)});
+    border-bottom: pxToRem(1) solid $sbbColorSilver;
+
+    @include mq($from: desktop4k) {
+      top: pxToRem(-$toggleOptionBorderSize4kAndAbove);
+      width: calc(50% - #{pxToRem($toggleOptionBorderSize4kAndAbove)});
+      border-bottom-width: pxToRem($toggleOptionBorderSize4kAndAbove);
+    }
   }
 
   .sbb-toggle-first-option-selected & {
