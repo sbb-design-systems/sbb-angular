@@ -1,6 +1,6 @@
 @import '../../../angular-core/styles/common';
 
-:host.sbb-badge {
+.sbb-badge {
   @include baseBadgePill();
   background-color: $sbbColorMetal;
   margin-left: pxToEm(8);
