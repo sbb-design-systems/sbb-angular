@@ -8,7 +8,7 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "component-viewer",
-    srcs = glob(
+    srcs = [":stackblitz-writer/versions.ts"] + glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
@@ -27,6 +27,13 @@ ng_module(
         "@npm//@angular/router",
         "@npm//rxjs",
     ],
+)
+
+genrule(
+    name = "used-icons",
+    srcs = ["//src/showcase/app:versions.ts"],
+    outs = ["stackblitz-writer/versions.ts"],
+    cmd = "cp $< $@",
 )
 
 sass_binary(
