@@ -87,6 +87,9 @@ $optionSelectedColor: $sbbColorBlack;
   @if $offset-top < 0 {
     $offset-top: $offset-top - 0.05; // better rendering e.g. in 4k mode
   }
+  @if $offset-top > 0 {
+    $offset-top: ceil($offset-top);
+  }
   position: relative;
   top: toPx($offset-top);
 }
