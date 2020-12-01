@@ -411,6 +411,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
       this.autocomplete.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
       this._closeKeyEventStream,
       this._getOutsideClickStream(),
+      this.search,
       this._overlayRef
         ? this._overlayRef.detachments().pipe(filter(() => this._overlayAttached))
         : of()

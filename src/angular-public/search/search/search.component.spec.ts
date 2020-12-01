@@ -1,6 +1,6 @@
 import { DOWN_ARROW, ENTER, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { Component, ViewChild } from '@angular/core';
+import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -280,6 +280,41 @@ describe('SbbSearch', () => {
         fixture.componentInstance.searchComponent.handleKeydown(enterEvent);
         fixture.detectChanges();
         expect(input.nativeElement.value).toBe('Eins');
+      });
+    });
+
+    describe('when starting to search', () => {
+      function openAutocompletePanel(input: DebugElement) {
+        dispatchFakeEvent(input.nativeElement, 'focusin');
+        fixture.detectChanges();
+        expect(component.searchComponent.autocomplete.isOpen).toBe(true);
+      }
+
+      it('should close autocomplete panel when pressing search button', () => {
+        // open panel
+        const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
+        openAutocompletePanel(input);
+
+        // press search button
+        const searchButton = fixture.debugElement.query(By.css('.sbb-search-box > button'));
+        searchButton.nativeElement.click();
+        fixture.detectChanges();
+
+        // expect panel to be closed
+        expect(component.searchComponent.autocomplete.isOpen).toBe(false);
+      });
+
+      it('should close autocomplete panel by keyboard', () => {
+        // open panel
+        const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
+        openAutocompletePanel(input);
+
+        // hit enter on input field
+        dispatchKeyboardEvent(input.nativeElement, 'keydown', ENTER, 'Enter');
+        fixture.detectChanges();
+
+        // expect panel to be closed
+        expect(component.searchComponent.autocomplete.isOpen).toBe(false);
       });
     });
   });
