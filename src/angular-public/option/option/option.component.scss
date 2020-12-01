@@ -41,19 +41,12 @@ sbb-option {
       overflow: hidden;
 
       .sbb-checkbox-checked > svg {
-        @include businessOnly {
+        @if $sbbBusiness {
           transform: translateY(toPx(-2));
-        }
-
-        @include publicOnly() {
-          transform: translateY(toPx(-3));
-
-          @include mq($from: desktop4k) {
-            transform: translateY(toPx(-3 * $scalingFactor4k));
-          }
-
+        } @else {
+          transform: translateY(toPx(-2));
           @include mq($from: desktop5k) {
-            transform: translateY(toPx(-3 * $scalingFactor5k));
+            transform: translateY(toPx(-4));
           }
         }
       }
