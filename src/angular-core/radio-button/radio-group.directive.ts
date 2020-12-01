@@ -150,10 +150,6 @@ export class SbbRadioGroup<TRadio extends SbbRadioButton = SbbRadioButton>
     // possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
     // NgModel occurs *after* the OnInit of the RadioGroup.
     this._isInitialized = true;
-
-    Promise.resolve().then(() => {
-      this._changeDetector.markForCheck();
-    });
   }
 
   /**
