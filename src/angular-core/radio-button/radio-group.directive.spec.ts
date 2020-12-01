@@ -155,10 +155,12 @@ class DisableableRadioButtonComponent {
   template: `
     <sbb-radio-group [formControl]="formControl">
       <sbb-radio-button value="1">One</sbb-radio-button>
+      <sbb-radio-button value="2">Two</sbb-radio-button>
     </sbb-radio-group>
   `,
 })
 class RadioGroupWithFormControlComponent {
+  @ViewChild(SbbRadioGroup) group: SbbRadioGroup;
   formControl = new FormControl();
 }
 
@@ -627,32 +629,29 @@ describe('RadioButton', () => {
   });
 
   describe('group with FormControl', () => {
-    let fixture: ComponentFixture<RadioGroupWithFormControlComponent>;
-    let groupDebugElement: DebugElement;
-    let groupInstance: SbbRadioGroup;
-    let testComponent: RadioGroupWithFormControlComponent;
-
-    beforeEach(() => {
-      fixture = TestBed.createComponent(RadioGroupWithFormControlComponent);
+    it('should toggle the disabled state', () => {
+      const fixture = TestBed.createComponent(RadioGroupWithFormControlComponent);
       fixture.detectChanges();
 
-      testComponent = fixture.debugElement.componentInstance;
-      groupDebugElement = fixture.debugElement.query(By.directive(SbbRadioGroup))!;
-      groupInstance = groupDebugElement.injector.get<SbbRadioGroup>(SbbRadioGroup);
+      expect(fixture.componentInstance.group.disabled).toBeFalsy();
+
+      fixture.componentInstance.formControl.disable();
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.group.disabled).toBeTruthy();
+
+      fixture.componentInstance.formControl.enable();
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.group.disabled).toBeFalsy();
     });
 
-    it('should toggle the disabled state', () => {
-      expect(groupInstance.disabled).toBeFalsy();
-
-      testComponent.formControl.disable();
+    it('should have a selected button when one matches the initial value', () => {
+      const fixture = TestBed.createComponent(RadioGroupWithFormControlComponent);
+      fixture.componentInstance.formControl.setValue('2');
       fixture.detectChanges();
 
-      expect(groupInstance.disabled).toBeTruthy();
-
-      testComponent.formControl.enable();
-      fixture.detectChanges();
-
-      expect(groupInstance.disabled).toBeFalsy();
+      expect(fixture.componentInstance.group.selected?.value).toBe('2');
     });
   });
 
