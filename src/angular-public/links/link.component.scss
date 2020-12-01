@@ -15,11 +15,13 @@
   @include mq($from: desktop4k) {
     font-size: pxToRem($sizeFontDefault4k);
     line-height: pxToRem(39);
+    padding-right: pxToRem(70 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
     font-size: pxToRem($sizeFontDefault5k);
     line-height: pxToRem(52);
+    padding-right: pxToRem(70 * $scalingFactor5k);
   }
 
   &:not(.sbb-link-stretch) {
@@ -27,6 +29,16 @@
     &:focus {
       padding-left: pxToRem(30);
       padding-right: pxToRem(40);
+
+      @include mq($from: desktop4k) {
+        padding-left: pxToRem(30 * $scalingFactor4k);
+        padding-right: pxToRem(40 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        padding-left: pxToRem(30 * $scalingFactor5k);
+        padding-right: pxToRem(40 * $scalingFactor5k);
+      }
     }
   }
 
@@ -71,9 +83,9 @@
   @include mq($from: desktop5k) {
     width: pxToRem(24 * $scalingFactor5k);
     height: pxToRem(24 * $scalingFactor5k);
+    margin-left: pxToRem(8 * $scalingFactor5k);
     top: 25%;
     transform: translate(0, -25%);
-    margin-left: pxToRem(8 * $scalingFactor5k);
   }
 
   .sbb-link:hover &,
@@ -87,8 +99,14 @@
   opacity: 0;
   transform: translate(pxToRem(-26), -50%);
 
+  @include mq($from: desktop4k) {
+    margin-left: pxToRem(-30 * $scalingFactor4k);
+    transform: translate(pxToRem(-26 * $scalingFactor4k), -50%);
+  }
+
   @include mq($from: desktop5k) {
-    transform: translate(pxToRem(-26), -25%);
+    margin-left: pxToRem(-30 * $scalingFactor5k);
+    transform: translate(pxToRem(-26 * $scalingFactor5k), -25%);
   }
 
   .sbb-link:hover &,
@@ -97,7 +115,12 @@
     margin-right: pxToRem(8);
     transform: translate(0, -50%);
 
+    @include mq($from: desktop4k) {
+      margin-right: pxToRem(8 * $scalingFactor4k);
+    }
+
     @include mq($from: desktop5k) {
+      margin-right: pxToRem(8 * $scalingFactor5k);
       transform: translate(0, -25%);
     }
   }
@@ -107,10 +130,14 @@
   .sbb-link:not(.sbb-link-stretch):hover &,
   .sbb-link:not(.sbb-link-stretch):focus & {
     opacity: 0;
-    transform: translateX(pxToRem(26), -50%);
+    transform: translate(pxToRem(26), -50%);
+
+    @include mq($from: desktop4k) {
+      transform: translate(pxToRem(26 * $scalingFactor4k), -50%);
+    }
 
     @include mq($from: desktop5k) {
-      transform: translateX(pxToRem(26), -50%);
+      transform: translate(pxToRem(26 * $scalingFactor5k), -25%);
     }
   }
 
