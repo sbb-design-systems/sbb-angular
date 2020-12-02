@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.0.0-next.1](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.0-next.0...11.0.0-next.1) (2020-12-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **business:** css class `.sbb-link-normal` was renamed to `.sbb-link-business-normal`.
+css class `.sbb-link-stretch` was renamed to `.sbb-link-business-stretch`.
+
+### Bug Fixes
+
+* **business:** fix badge 4k styles ([#663](https://github.com/sbb-design-systems/sbb-angular/issues/663)) ([ed54b5b](https://github.com/sbb-design-systems/sbb-angular/commit/ed54b5b57e6f77ab9453695c3db64d6585929823))
+* **business:** fix link stretch mode and adapt css classes ([#655](https://github.com/sbb-design-systems/sbb-angular/issues/655)) ([9f3cc79](https://github.com/sbb-design-systems/sbb-angular/commit/9f3cc7987ca499253d8ba42f5241d011a8ec5324))
+* **core:** aggregate migration logs ([#653](https://github.com/sbb-design-systems/sbb-angular/issues/653)) ([59a19f2](https://github.com/sbb-design-systems/sbb-angular/commit/59a19f239b9ef5f4d03bc972c14e47cffb399107))
+* **public:** close autocomplete panel when starting a search ([#664](https://github.com/sbb-design-systems/sbb-angular/issues/664)) ([70e04cd](https://github.com/sbb-design-systems/sbb-angular/commit/70e04cdc0ff4396b25ad7cb4999dc283a4fd003d)), closes [#645](https://github.com/sbb-design-systems/sbb-angular/issues/645)
+* **public:** fix 4k and 5k styles of link ([#662](https://github.com/sbb-design-systems/sbb-angular/issues/662)) ([72d525b](https://github.com/sbb-design-systems/sbb-angular/commit/72d525b9fff3b755ee7dc7fe72f8a8d539f783bf))
+* **public:** fix 4k styles of toggle ([#660](https://github.com/sbb-design-systems/sbb-angular/issues/660)) ([83d8242](https://github.com/sbb-design-systems/sbb-angular/commit/83d8242dd87dbefc54f017cd9db7648d103aa895))
+* **showcase:** fix various minor showcases issues ([#654](https://github.com/sbb-design-systems/sbb-angular/issues/654)) ([a806e46](https://github.com/sbb-design-systems/sbb-angular/commit/a806e46714406e0915c036cb36799b4ae3fb831a))
+* **showcase:** use specific version for StackBlitz dependencies ([#665](https://github.com/sbb-design-systems/sbb-angular/issues/665)) ([6106f58](https://github.com/sbb-design-systems/sbb-angular/commit/6106f5869817c7c642be81f0c8a49140197fe049))
+* correct style offset of select tick in 4k and 5k resolution ([#657](https://github.com/sbb-design-systems/sbb-angular/issues/657)) ([e6187ce](https://github.com/sbb-design-systems/sbb-angular/commit/e6187ceb97984e9e3a4eed7f0810cb26ce26facb))
+* fix style offset of panel divider line in 4k resolution (select, autocomplete) ([#658](https://github.com/sbb-design-systems/sbb-angular/issues/658)) ([cc091fa](https://github.com/sbb-design-systems/sbb-angular/commit/cc091fa9f9b1f9c11e98f288b0be3a591427a385))
+* patch migration file resolver if necessary ([#659](https://github.com/sbb-design-systems/sbb-angular/issues/659)) ([0aa1c0a](https://github.com/sbb-design-systems/sbb-angular/commit/0aa1c0a697a5a15b75633e79a4b398aebb6f4ba5))
+* set sbb-radio-button in inherited classes instead of base class ([#656](https://github.com/sbb-design-systems/sbb-angular/issues/656)) ([b249114](https://github.com/sbb-design-systems/sbb-angular/commit/b24911454ea272436552fa771c5759b37353e75e))
+
 ## [11.0.0-next.0](https://github.com/sbb-design-systems/sbb-angular/compare/10.3.1...11.0.0-next.0) (2020-11-26)
 
 
