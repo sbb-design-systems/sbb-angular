@@ -35,12 +35,14 @@ export class IconMigration extends Migration<any, DevkitContext> {
 
   /** Method can be used to perform global analysis of the program. */
   init(): void {
-    this.logger.info(
-      'This migration will attempt a best-effort conversion of the deprecated ' +
-        '@sbb-esta/angular-icons icons to @sbb-esta/angular-core/icon icons. We recommend ' +
-        'controlling migration changes in order to avoid incompatibilities. Please note ' +
-        'that this migration will take quite some time on a large code-base.'
-    );
+    this.logger.info('Icon Migration');
+    this.logger.info('');
+    this.logger.info('  This migration will attempt a best-effort conversion of the deprecated');
+    this.logger.info('  @sbb-esta/angular-icons icons to @sbb-esta/angular-core/icon icons.');
+    this.logger.info('  We recommend controlling migration changes in order to');
+    this.logger.info('  avoid incompatibilities. Please note that this migration');
+    this.logger.info('  will take quite some time on a large code-base.');
+    this.logger.info('');
   }
 
   /**

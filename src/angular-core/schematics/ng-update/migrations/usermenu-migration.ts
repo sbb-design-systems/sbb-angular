@@ -111,17 +111,25 @@ export class UsermenuMigration extends Migration<null> {
   }
 
   postAnalysis() {
+    if (!this.migrateSbbIcon && !this.migrateDropdown && !this.migrateDropdownItems) {
+      return;
+    }
+
+    this.logger.info('Usermenu Migration');
+    this.logger.info('');
     if (this.migrateSbbIcon) {
-      this.logger.info('Replace sbbIcon with *sbbIcon inside sbb-usermenu');
+      this.logger.info('  - Replaced sbbIcon with *sbbIcon inside sbb-usermenu');
     }
     if (this.migrateDropdown) {
-      this.logger.info('Remove sbb-dropdown inside sbb-usermenu');
+      this.logger.info('  - Removed sbb-dropdown inside sbb-usermenu');
     }
     if (this.migrateDropdownItems) {
       this.logger.info(
-        'Convert sbbDropdownItem to sbb-usermenu-item directive inside sbb-usermenu'
+        '  - Converted sbbDropdownItem to sbb-usermenu-item directive inside sbb-usermenu'
       );
     }
+
+    this.logger.info('');
   }
 
   private _isUsermenu(node: DefaultTreeElement) {
