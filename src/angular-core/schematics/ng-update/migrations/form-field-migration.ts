@@ -88,7 +88,10 @@ export class FormFieldMigration extends Migration<null> {
         }
 
         if (this._isFormField(node) && !this._hasCompatibleFormControl(node.childNodes)) {
-          this.missingFormControl.push(`${template.filePath}:${node.sourceCodeLocation!.startCol}`);
+          const pos = template.getCharacterAndLineOfPosition(node.sourceCodeLocation!.startOffset);
+          this.missingFormControl.push(
+            `${template.filePath} (Line ${pos.line + 1}, Col ${pos.character + 1})`
+          );
         }
 
         if (this._isFormField(node) && this._hasModeInput(node)) {
@@ -148,32 +151,50 @@ export class FormFieldMigration extends Migration<null> {
   }
 
   postAnalysis() {
+    const anyMigration =
+      this.migrateFormFieldMode ||
+      this.migrateSbbInput ||
+      this.migrateSbbField ||
+      this.migrateLabelFor;
+    if (!anyMigration && !this.missingFormControl.length) {
+      return;
+    }
+
+    this.logger.info('FormField Migration');
+    this.logger.info('');
+
+    if (this.migrateSbbField) {
+      this.logger.info('  - Changed sbb-field to sbb-form-field');
+    }
     if (this.migrateFormFieldMode) {
-      this.logger.info('Attempting to replace deprecated sbb-form-field[mode]');
+      this.logger.info('  - Replaced sbb-form-field[mode] where statically analyzable');
     }
     if (this.migrateSbbInput) {
       this.logger.info(
-        'Attempting to add required sbbInput to native input, select and textarea elements inside sbb-form-field'
+        '  - Added required sbbInput attribute to native input, select and textarea elements inside sbb-form-field'
       );
-    }
-    if (this.migrateSbbField) {
-      this.logger.info('Changing sbb-field to sbb-form-field');
     }
     if (this.migrateLabelFor) {
-      this.logger.info('Removing for attributes for sbb-label, as this is handled internally now');
+      this.logger.info(
+        '  - Removed for attributes on sbb-label, as this is handled internally now'
+      );
+    }
+    if (anyMigration) {
+      this.logger.info('');
     }
     if (this.missingFormControl.length) {
-      this.logger.warn(
-        'sbb-form-field now requires a compatible form control ' +
-          '(See https://angular.app.sbb.ch/public/components/form-field). ' +
-          'The following instances do not have a compatible form control ' +
-          '(either remove the surrounding sbb-form-field or add a compatible form control):'
-      );
-      this.missingFormControl.forEach((m) => this.logger.warn(` - ${m}`));
-      this.logger.warn(
-        '\nPlease open an issue at https://github.com/sbb-design-systems/sbb-angular/issues/new/choose,' +
-          ' if you require an additional form control from @sbb-esta to be made compatible.'
-      );
+      this.logger.warn('  sbb-form-field now requires a compatible form control');
+      this.logger.warn('  (See https://angular.app.sbb.ch/public/components/form-field).');
+      this.logger.warn('  The following instances do not have a compatible form control');
+      this.logger.warn('  (either remove the surrounding sbb-form-field or');
+      this.logger.warn('  add a compatible form control):');
+      this.missingFormControl.forEach((m) => this.logger.warn(`   - ${m}`));
+      this.logger.info('');
+      this.logger.warn('  Please open an issue at');
+      this.logger.warn('  https://github.com/sbb-design-systems/sbb-angular/issues/new/choose');
+      this.logger.warn('  if you require an additional form control from @sbb-esta');
+      this.logger.warn('  to be made compatible.');
+      this.logger.info('');
     }
   }
 
