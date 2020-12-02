@@ -12,10 +12,7 @@ filegroup(
         "**/*.jpg",
         "**/*.ico",
         "**/*.html",
-        "**/*.json",
-        "**/*.ts",
-        "**/*.css",
-        "**/*.ts",
+        "stackblitz/**/*",
     ]) + [
         ":docs-content",
         ":stackblitz/src/app/sbb-public.module.ts",
@@ -58,7 +55,7 @@ genrule(
       ./$(execpath //tools/stackblitz-module-template:bazel-bin) \
           "$(execpath stackblitz/src/app/sbb-public.module.ts)" \
           %s
-    """ % " ".join(PUBLIC_ENTRYPOINTS),
+    """ % " ".join([ep for ep in PUBLIC_ENTRYPOINTS if ep != "field"]),
     output_to_bindir = True,
     tools = ["//tools/stackblitz-module-template:bazel-bin"],
 )
@@ -72,7 +69,7 @@ genrule(
       ./$(execpath //tools/stackblitz-module-template:bazel-bin) \
           "$(execpath stackblitz/src/app/sbb-business.module.ts)" \
           %s
-    """ % " ".join(BUSINESS_ENTRYPOINTS),
+    """ % " ".join([ep for ep in BUSINESS_ENTRYPOINTS if ep != "field"]),
     output_to_bindir = True,
     tools = ["//tools/stackblitz-module-template:bazel-bin"],
 )

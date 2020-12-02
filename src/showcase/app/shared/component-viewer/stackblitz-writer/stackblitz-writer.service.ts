@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+// @ts-ignore versions.ts is generated automatically by bazel
+import { libraryVersion } from './versions';
+
 export class ExampleData {
   indexFilename: string;
   description: string;
@@ -36,11 +39,19 @@ const TEMPLATE_PATH = 'assets/stackblitz/';
  * Filenames of the generic project template files.
  */
 const TEMPLATE_FILES = [
+  '.editorconfig',
+  '.gitignore',
   'angular.json',
+  '.browserslistrc',
+  'package.json',
   'tsconfig.json',
-  'src/main.ts',
+  'tsconfig.app.json',
+  'tsconfig.spec.json',
+  'tslint.json',
+  'src/index.html',
+  'src/styles.scss',
   'src/polyfills.ts',
-  'src/styles.css',
+  'src/main.ts',
   'src/app/app.module.ts',
 ];
 
@@ -49,28 +60,24 @@ const TEMPLATE_FILES = [
  */
 const TAGS: string[] = ['sbb', 'angular', 'example'];
 
-/**
- * Dependencies for the Stackblitz project
- * '*': latest version
- */
+const angularVersion = '^11.0.0';
 const dependencies = {
-  '@angular/animations': '*',
-  '@angular/cdk': '*',
-  '@angular/common': '*',
-  '@angular/compiler': '*',
-  '@angular/core': '*',
-  '@angular/forms': '*',
-  '@angular/platform-browser': '*',
-  '@angular/platform-browser-dynamic': '*',
-  '@angular/router': '*',
-  '@sbb-esta/angular-core': '*',
-  '@sbb-esta/angular-icons': '*',
-  '@sbb-esta/angular-public': '*',
-  '@sbb-esta/angular-business': '*',
-  'core-js': '2.6.9',
-  rxjs: '>=6.5.5 <7.0.0',
-  tslib: '*',
-  'zone.js': '~0.10.3',
+  '@angular/animations': angularVersion,
+  '@angular/cdk': angularVersion,
+  '@angular/common': angularVersion,
+  '@angular/compiler': angularVersion,
+  '@angular/core': angularVersion,
+  '@angular/forms': angularVersion,
+  '@angular/platform-browser': angularVersion,
+  '@angular/platform-browser-dynamic': angularVersion,
+  '@angular/router': angularVersion,
+  '@sbb-esta/angular-core': libraryVersion,
+  '@sbb-esta/angular-icons': libraryVersion,
+  '@sbb-esta/angular-public': libraryVersion,
+  '@sbb-esta/angular-business': libraryVersion,
+  rxjs: '^6.6.3',
+  tslib: '^2.0.3',
+  'zone.js': '^0.11.2',
 };
 
 /**
@@ -112,15 +119,6 @@ export class StackblitzWriterService {
       ? 'src/app/sbb-business.module.ts'
       : 'src/app/sbb-public.module.ts';
 
-    this._addFileToForm(
-      form,
-      data,
-      `<sbb-${data.selectorName}>loading</sbb-${data.selectorName}>`,
-      'src/index.html',
-      '',
-      false
-    );
-
     return Promise.all(
       TEMPLATE_FILES.map((file) =>
         this._readFile(file, TEMPLATE_PATH)
@@ -135,6 +133,17 @@ export class StackblitzWriterService {
                   /\{moduleName\}/g,
                   data.business ? 'sbb-business.module' : 'sbb-public.module'
                 );
+            } else if (file.includes('src/index.html')) {
+              response = response
+                .replace(/my-app/g, `sbb-${data.selectorName}`)
+                .replace('{{version}}', libraryVersion);
+            } else if (file.includes('angular.json')) {
+              response = response.replace(
+                '"src/styles.scss"',
+                `"src/styles.scss", "node_modules/@sbb-esta/angular-${
+                  data.business ? 'business' : 'public'
+                }/typography.css"`
+              );
             }
             this._addFileToForm(form, data, response, file, TEMPLATE_PATH, false);
           })
