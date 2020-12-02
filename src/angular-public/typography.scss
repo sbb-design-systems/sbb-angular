@@ -1,4 +1,6 @@
 @import '../angular-core/styles/main';
+@import 'external/npm/node_modules/@angular/cdk/a11y';
+@import 'external/npm/node_modules/@angular/cdk/overlay';
 
 @include sbbFonts();
 @include reset();
