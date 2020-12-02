@@ -10,6 +10,7 @@ $sbbBusiness: true;
   .sbb-processflow-header-wrapper {
     overflow-x: hidden;
   }
+
   .sbb-processflow-header {
     display: flex;
     align-items: center;
@@ -18,47 +19,61 @@ $sbbBusiness: true;
     margin: 0 0 2em 0;
     padding: 0;
   }
+
   .sbb-processflow-step {
     display: flex;
     flex: 0 0 auto;
+
     &::before {
       content: '';
       padding: 0;
       margin: 0;
     }
+
     .sbb-processflow-step-arrow {
       color: $sbbColorGrey;
-      width: toPx(21);
-      height: toPx(21);
       line-height: 0;
       margin-bottom: auto;
-      margin-left: toPx(12);
-      margin-right: toPx(12);
 
-      @include mq($from: tabletPortrait) {
-        margin-left: toPx(16);
-        margin-right: toPx(16);
+      @include businessOnly() {
+        width: toPx(12);
+        height: toPx(12);
+        margin-left: toPx(22);
+        margin-right: toPx(22);
       }
 
-      @include mq($from: desktop) {
-        margin-left: toPx(24);
-        margin-right: toPx(24);
-      }
+      @include publicOnly() {
+        width: toPx(21);
+        height: toPx(21);
+        margin-left: toPx(12);
+        margin-right: toPx(12);
 
-      @include mq($from: desktop4k) {
-        margin-left: toPx(36);
-        margin-right: toPx(36);
-        width: toPx(36);
-        height: toPx(36);
-      }
+        @include mq($from: tabletPortrait) {
+          margin-left: toPx(16);
+          margin-right: toPx(16);
+        }
 
-      @include mq($from: desktop5k) {
-        margin-left: toPx(48);
-        margin-right: toPx(48);
-        width: toPx(48);
-        height: toPx(48);
+        @include mq($from: desktop) {
+          margin-left: toPx(24);
+          margin-right: toPx(24);
+        }
+
+        @include mq($from: desktop4k) {
+          margin-left: toPx(36);
+          margin-right: toPx(36);
+          width: toPx(36);
+          height: toPx(36);
+        }
+
+        @include mq($from: desktop5k) {
+          margin-left: toPx(48);
+          margin-right: toPx(48);
+          width: toPx(48);
+          height: toPx(48);
+        }
       }
     }
+
     button {
       @include buttonResetFrameless();
       display: block;
@@ -67,32 +82,40 @@ $sbbBusiness: true;
       text-decoration: none;
       position: relative;
 
-      font-size: toPx(20);
-      line-height: toPx(20);
-      padding-bottom: toPx(11);
-
-      @include mq($from: tabletPortrait) {
-        font-size: toPx(21);
-        line-height: toPx(21);
-        padding-bottom: toPx(14);
+      @include businessOnly() {
+        font-size: toPx(16);
+        line-height: toPx(16);
+        padding-bottom: toPx(5);
       }
 
-      @include mq($from: desktop) {
-        font-size: toPx(21);
-        line-height: toPx(21);
-        padding-bottom: toPx(22);
-      }
+      @include publicOnly() {
+        font-size: toPx(20);
+        line-height: toPx(20);
+        padding-bottom: toPx(11);
 
-      @include mq($from: desktop4k) {
-        font-size: toPx(32);
-        line-height: toPx(34);
-        padding-bottom: toPx(32);
-      }
+        @include mq($from: tabletPortrait) {
+          font-size: toPx(21);
+          line-height: toPx(21);
+          padding-bottom: toPx(14);
+        }
 
-      @include mq($from: desktop5k) {
-        font-size: toPx(42);
-        line-height: toPx(45);
-        padding-bottom: toPx(42);
+        @include mq($from: desktop) {
+          font-size: toPx(21);
+          line-height: toPx(21);
+          padding-bottom: toPx(22);
+        }
+
+        @include mq($from: desktop4k) {
+          font-size: toPx(32);
+          line-height: toPx(34);
+          padding-bottom: toPx(32);
+        }
+
+        @include mq($from: desktop5k) {
+          font-size: toPx(42);
+          line-height: toPx(45);
+          padding-bottom: toPx(42);
+        }
       }
 
       &::after {
