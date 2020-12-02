@@ -140,7 +140,7 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
         { replace: 'FooterRowDefDirective', replaceWith: 'SbbFooterRowDef' },
         { replace: 'FORM_FIELD', replaceWith: 'SBB_FORM_FIELD' },
         { replace: 'FormErrorDirective', replaceWith: 'SbbError' },
-        { replace: 'SbbFormFieldControl', replaceWith: 'SbbFormFieldControl' },
+        { replace: 'FormFieldControl', replaceWith: 'SbbFormFieldControl' },
         { replace: 'Ghettobox', replaceWith: 'SbbGhettoboxConfig' },
         { replace: 'GHETTOBOX_ANIMATIONS', replaceWith: 'SBB_GHETTOBOX_ANIMATIONS' },
         {
