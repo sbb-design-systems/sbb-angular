@@ -1,11 +1,43 @@
-@import '../textarea';
+@import '../../../angular-core/styles/common';
 
 .sbb-textarea {
-  @include sbbTextarea($sbbColorGraphite);
+  @include inputfields;
+  @include disabledinputfields;
+
+  display: inline-block;
+  letter-spacing: 0;
+  border: 2px solid $sbbColorGraphite;
+  border-radius: 2px;
+  outline: 0;
+  opacity: 1;
+  font-size: pxToRem(15);
+  width: 100%;
+
+  @include publicOnly() {
+    line-height: 23px;
+
+    @include mq($from: desktop4k) {
+      border-width: 3px;
+      border-radius: 3px;
+      font-size: pxToRem(23);
+    }
+    @include mq($from: desktop5k) {
+      border-radius: 4px;
+      border-width: 4px;
+      font-size: pxToRem(30);
+    }
+  }
+
+  @include businessOnly() {
+    line-height: 20px;
+    border-width: 1px;
+  }
+
+  font-family: $fontSbbRoman;
 
   textarea {
     border: none;
-    padding: 2px; // TODO (Breaking Change): Remove padding here and remove padding of sbbTextarea to make use of generic textarea padding. Breaking Change: If a consumer has defined a min-height on sbbTextarea the height will be smaller because of changed paddings and effects on min-height: inherit.
+    padding: 0;
     min-height: inherit;
     resize: none;
     overflow: hidden;
@@ -22,7 +54,7 @@
   }
 
   &.ng-dirty.ng-invalid {
-    @include sbbTextarea($sbbColorCallToAction);
+    border-color: $sbbColorCallToAction;
 
     textarea {
       color: $sbbColorCallToAction;
