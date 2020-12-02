@@ -1,6 +1,6 @@
 import { Migration, parse5, ResolvedResource, TargetVersion } from '@angular/cdk/schematics';
 import { UpdateRecorder } from '@angular/cdk/schematics/update-tool/update-recorder';
-import type { DefaultTreeDocument, DefaultTreeElement, Location } from 'parse5';
+import type { DefaultTreeDocument, DefaultTreeElement, DefaultTreeNode, Location } from 'parse5';
 import * as ts from 'typescript';
 
 const parse: typeof import('parse5') = parse5;
@@ -20,12 +20,21 @@ const LEGACY_FIELD_ENTRY_POINTS = [
  */
 export class FormFieldMigration extends Migration<null> {
   enabled = this.targetVersion === TargetVersion.V11;
-  modeReplacements = {
+  readonly modeReplacements = {
     short: 'sbb-form-field-short',
     medium: 'sbb-form-field-medium',
     long: 'sbb-form-field-long',
   };
-  modeVariants = Object.keys(this.modeReplacements);
+  readonly modeVariants = Object.keys(this.modeReplacements);
+  readonly compatibleFormControls = [
+    'input',
+    'select',
+    'textarea',
+    'sbb-textarea',
+    'sbb-select',
+    'sbb-chip-input',
+  ];
+  readonly missingFormControl: string[] = [];
   migrateFormFieldMode = false;
   migrateSbbInput = false;
   migrateSbbField = false;
@@ -76,6 +85,10 @@ export class FormFieldMigration extends Migration<null> {
 
         if (node.nodeName.toLowerCase() === 'sbb-field') {
           fieldElements.push(node);
+        }
+
+        if (this._isFormField(node) && !this._hasCompatibleFormControl(node.childNodes)) {
+          this.missingFormControl.push(`${template.filePath}:${node.sourceCodeLocation!.startCol}`);
         }
 
         if (this._isFormField(node) && this._hasModeInput(node)) {
@@ -149,6 +162,19 @@ export class FormFieldMigration extends Migration<null> {
     if (this.migrateLabelFor) {
       this.logger.info('Removing for attributes for sbb-label, as this is handled internally now');
     }
+    if (this.missingFormControl.length) {
+      this.logger.warn(
+        'sbb-form-field now requires a compatible form control ' +
+          '(See https://angular.app.sbb.ch/public/components/form-field). ' +
+          'The following instances do not have a compatible form control ' +
+          '(either remove the surrounding sbb-form-field or add a compatible form control):'
+      );
+      this.missingFormControl.forEach((m) => this.logger.warn(` - ${m}`));
+      this.logger.warn(
+        '\nPlease open an issue at https://github.com/sbb-design-systems/sbb-angular/issues/new/choose,' +
+          ' if you require an additional form control from @sbb-esta to be made compatible.'
+      );
+    }
   }
 
   private _isInFormField(node: DefaultTreeElement) {
@@ -166,6 +192,17 @@ export class FormFieldMigration extends Migration<null> {
 
   private _isFormField(node: DefaultTreeElement) {
     return ['sbb-field', 'sbb-form-field'].includes(node.nodeName.toLowerCase());
+  }
+
+  private _hasCompatibleFormControl(nodes: DefaultTreeNode[]) {
+    return (
+      !!nodes &&
+      nodes.some(
+        (n) =>
+          this.compatibleFormControls.includes(n.nodeName.toLowerCase()) ||
+          this._hasCompatibleFormControl((n as DefaultTreeElement).childNodes)
+      )
+    );
   }
 
   private _hasInputDirective(node: DefaultTreeElement) {
