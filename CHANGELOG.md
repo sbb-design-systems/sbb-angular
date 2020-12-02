@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.0.0-next.2](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.0-next.1...11.0.0-next.2) (2020-12-02)
+
+
+### Bug Fixes
+
+* add warning in migration for form-field control requirement ([#673](https://github.com/sbb-design-systems/sbb-angular/issues/673)) ([a82dbce](https://github.com/sbb-design-systems/sbb-angular/commit/a82dbcee0cfcb4c9062fcd51563ff879bc811c1e))
+* correctly reference cdk mixin ([#675](https://github.com/sbb-design-systems/sbb-angular/issues/675)) ([be9c9c5](https://github.com/sbb-design-systems/sbb-angular/commit/be9c9c5f995bd964ed15901e064334344bbba983))
+* correctly rename FormFieldControl to SbbFormFieldControl ([#672](https://github.com/sbb-design-systems/sbb-angular/issues/672)) ([6025af3](https://github.com/sbb-design-systems/sbb-angular/commit/6025af355bb3dc3a5402e674f928a210016f7fd5))
+* sbb-textarea css bleeding and padding ([#674](https://github.com/sbb-design-systems/sbb-angular/issues/674)) ([3bb8b10](https://github.com/sbb-design-systems/sbb-angular/commit/3bb8b10086b2cb98984a42c9a7c6e1e557644bf9)), closes [#667](https://github.com/sbb-design-systems/sbb-angular/issues/667)
+
 ## [11.0.0-next.1](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.0-next.0...11.0.0-next.1) (2020-12-02)
 
 
