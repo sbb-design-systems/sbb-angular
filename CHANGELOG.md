@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.0-next.2...11.0.0) (2020-12-03)
+
+
+### Features
+
+* **business:** business styles for processflow ([#676](https://github.com/sbb-design-systems/sbb-angular/issues/676)) ([061b7c2](https://github.com/sbb-design-systems/sbb-angular/commit/061b7c222c44a41b307e19d2238c43536f2edad4)), closes [#669](https://github.com/sbb-design-systems/sbb-angular/issues/669)
+
+
+### Bug Fixes
+
+* **showcase:** fix resolving of example files with uppercase letters ([#679](https://github.com/sbb-design-systems/sbb-angular/issues/679)) ([2e9727c](https://github.com/sbb-design-systems/sbb-angular/commit/2e9727c573961bfc5b765621f07c509515b03157))
+
+
+### Documentation
+
+* add guide to implement custom form field controls ([#678](https://github.com/sbb-design-systems/sbb-angular/issues/678)) ([92d1dcd](https://github.com/sbb-design-systems/sbb-angular/commit/92d1dcdad42706992359fa07193878ebebd1c02a))
+
 ## [11.0.0-next.2](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.0-next.1...11.0.0-next.2) (2020-12-02)
 
 
