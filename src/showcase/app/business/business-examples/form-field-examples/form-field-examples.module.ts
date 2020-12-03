@@ -31,9 +31,9 @@ const EXAMPLES = [
 
 const EXAMPLE_INDEX = {
   'form-field-text-input-attribute-label-example': FormFieldTextInputAttributeLabelExampleComponent,
-  'form-field-text-input-SBB-label-example': FormFieldTextInputSbbLabelExampleComponent,
+  'form-field-text-input-sbb-label-example': FormFieldTextInputSbbLabelExampleComponent,
   'form-field-select-example': FormFieldSelectExampleComponent,
-  'form-field-SBB-select-example': FormFieldSbbSelectExampleComponent,
+  'form-field-sbb-select-example': FormFieldSbbSelectExampleComponent,
   'form-field-datepicker-example': FormFieldDatepickerExampleComponent,
   'form-field-time-input-example': FormFieldTimeInputExampleComponent,
   'form-field-textarea-tooltip-example': FormFieldTextareaTooltipExample,
