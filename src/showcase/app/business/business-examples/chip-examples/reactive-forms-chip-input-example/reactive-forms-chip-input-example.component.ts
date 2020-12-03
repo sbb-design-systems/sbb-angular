@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'sbb-reactive-forms-chip-example',
+  selector: 'sbb-reactive-forms-chip-input-example',
   templateUrl: './reactive-forms-chip-input-example.component.html',
 })
 export class ReactiveFormsChipInputExampleComponent {
