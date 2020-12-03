@@ -6,146 +6,181 @@ $sbbBusiness: true;
   margin: 0;
   padding: 0;
   display: block;
+}
 
-  .sbb-processflow-header-wrapper {
-    overflow-x: hidden;
-  }
-  .sbb-processflow-header {
-    display: flex;
-    align-items: center;
-    list-style-type: none;
-    overflow-x: auto;
-    margin: 0 0 2em 0;
+.sbb-processflow-header-wrapper {
+  overflow-x: hidden;
+}
+
+.sbb-processflow-header {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  overflow-x: auto;
+  margin: 0 0 if($sbbBusiness, 1rem, 2rem) 0;
+  padding: 0;
+}
+
+.sbb-processflow-step {
+  display: flex;
+  flex: 0 0 auto;
+  margin-top: 0;
+
+  &::before {
+    content: '';
     padding: 0;
+    margin: 0;
   }
-  .sbb-processflow-step {
-    display: flex;
-    flex: 0 0 auto;
-    &::before {
-      content: '';
-      padding: 0;
-      margin: 0;
+}
+
+.sbb-processflow-step-arrow {
+  color: $sbbColorGrey;
+  line-height: 0;
+  margin-bottom: auto;
+
+  @include businessOnly() {
+    margin-top: pxToRem(1);
+    width: pxToRem(12);
+    height: pxToRem(12);
+    margin-left: pxToRem(22);
+    margin-right: pxToRem(22);
+  }
+
+  @include publicOnly() {
+    width: pxToRem(21);
+    height: pxToRem(21);
+    margin-left: pxToRem(12);
+    margin-right: pxToRem(12);
+
+    @include mq($from: tabletPortrait) {
+      margin-left: pxToRem(16);
+      margin-right: pxToRem(16);
     }
-    .sbb-processflow-step-arrow {
-      color: $sbbColorGrey;
-      width: toPx(21);
-      height: toPx(21);
-      line-height: 0;
-      margin-bottom: auto;
-      margin-left: toPx(12);
-      margin-right: toPx(12);
 
-      @include mq($from: tabletPortrait) {
-        margin-left: toPx(16);
-        margin-right: toPx(16);
-      }
+    @include mq($from: desktop) {
+      margin-left: pxToRem(24);
+      margin-right: pxToRem(24);
+    }
 
-      @include mq($from: desktop) {
-        margin-left: toPx(24);
-        margin-right: toPx(24);
-      }
+    @include mq($from: desktop4k) {
+      margin-left: pxToRem(36);
+      margin-right: pxToRem(36);
+      width: pxToRem(36);
+      height: pxToRem(36);
+    }
 
+    @include mq($from: desktop5k) {
+      margin-left: pxToRem(48);
+      margin-right: pxToRem(48);
+      width: pxToRem(48);
+      height: pxToRem(48);
+    }
+  }
+}
+
+.sbb-processflow-step-arrow-active {
+  color: $sbbColorBlack;
+}
+
+.sbb-processflow-step-button {
+  @include buttonResetFrameless();
+  display: block;
+  white-space: nowrap;
+  font-family: $fontSbbLight;
+  text-decoration: none;
+  position: relative;
+
+  @include businessOnly() {
+    font-size: pxToRem(16);
+    line-height: pxToRem(16);
+    padding-bottom: pxToRem(5);
+  }
+
+  @include publicOnly() {
+    font-size: pxToRem(20);
+    line-height: pxToRem(20);
+    padding-bottom: pxToRem(11);
+
+    @include mq($from: tabletPortrait) {
+      font-size: pxToRem(21);
+      line-height: pxToRem(21);
+      padding-bottom: pxToRem(14);
+    }
+
+    @include mq($from: desktop) {
+      font-size: pxToRem(21);
+      line-height: pxToRem(21);
+      padding-bottom: pxToRem(22);
+    }
+
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(32);
+      line-height: pxToRem(34);
+      padding-bottom: pxToRem(32);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(42);
+      line-height: pxToRem(45);
+      padding-bottom: pxToRem(42);
+    }
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    left: 50%;
+    height: pxToRem(1);
+    border-bottom: pxToRem(1) solid currentColor;
+    transition: width 0.3s, left 0.3s;
+
+    @include publicOnly() {
       @include mq($from: desktop4k) {
-        margin-left: toPx(36);
-        margin-right: toPx(36);
-        width: toPx(36);
-        height: toPx(36);
-      }
-
-      @include mq($from: desktop5k) {
-        margin-left: toPx(48);
-        margin-right: toPx(48);
-        width: toPx(48);
-        height: toPx(48);
+        border-bottom-width: pxToRem(2);
       }
     }
-    button {
-      @include buttonResetFrameless();
-      display: block;
-      white-space: nowrap;
-      font-family: $fontSbbLight;
-      text-decoration: none;
-      position: relative;
+  }
 
-      font-size: toPx(20);
-      line-height: toPx(20);
-      padding-bottom: toPx(11);
+  &.sbb-active::after,
+  &:not(.sbb-active):focus::after,
+  &:not(.sbb-active):hover::after {
+    left: 0;
+    width: 100%;
+  }
 
-      @include mq($from: tabletPortrait) {
-        font-size: toPx(21);
-        line-height: toPx(21);
-        padding-bottom: toPx(14);
-      }
+  &:not(.sbb-active):focus,
+  &:not(.sbb-active):hover {
+    color: $sbbColorRed125;
 
-      @include mq($from: desktop) {
-        font-size: toPx(21);
-        line-height: toPx(21);
-        padding-bottom: toPx(22);
-      }
+    &::after {
+      border-bottom-color: $sbbColorRed125;
+    }
+  }
 
-      @include mq($from: desktop4k) {
-        font-size: toPx(32);
-        line-height: toPx(34);
-        padding-bottom: toPx(32);
-      }
+  &[disabled] {
+    color: $sbbColorStorm;
 
-      @include mq($from: desktop5k) {
-        font-size: toPx(42);
-        line-height: toPx(45);
-        padding-bottom: toPx(42);
-      }
+    &:hover,
+    &:focus {
+      color: $sbbColorStorm;
+      cursor: default;
 
       &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        bottom: 0;
         width: 0;
-        left: 50%;
-        height: 1px;
-        border-bottom: 1px solid currentColor;
-        transition: width 0.3s, left 0.3s;
       }
+    }
+  }
 
-      &.sbb-active::after,
-      &:not(.sbb-active):focus::after,
-      &:not(.sbb-active):hover::after {
-        left: 0;
-        width: 100%;
-      }
+  &.sbb-active:hover,
+  &.sbb-active:focus {
+    color: currentColor;
+    cursor: default;
 
-      &:not(.sbb-active):focus,
-      &:not(.sbb-active):hover {
-        color: $sbbColorRed125;
-
-        &::after {
-          border-bottom-color: $sbbColorRed125;
-        }
-      }
-
-      &[disabled] {
-        color: $sbbColorStorm;
-
-        &:hover,
-        &:focus {
-          color: $sbbColorStorm;
-          cursor: default;
-
-          &::after {
-            width: 0;
-          }
-        }
-      }
-
-      &.sbb-active:hover,
-      &.sbb-active:focus {
-        color: currentColor;
-        cursor: default;
-
-        &::after {
-          border-bottom-color: currentColor;
-        }
-      }
+    &::after {
+      border-bottom-color: currentColor;
     }
   }
 }

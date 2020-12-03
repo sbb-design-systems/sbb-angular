@@ -3,6 +3,7 @@
     <li *ngFor="let step of steps; let i = index; let isLast = last" class="sbb-processflow-step">
       <button
         type="button"
+        class="sbb-processflow-step-button"
         [class.sbb-active]="step.active"
         [class.sbb-disabled]="step.disabled"
         [disabled]="step.disabled"
@@ -11,7 +12,10 @@
         {{ step.title }}
       </button>
       <ng-container *ngIf="!isLast">
-        <div class="sbb-processflow-step-arrow">
+        <div
+          class="sbb-processflow-step-arrow"
+          [class.sbb-processflow-step-arrow-active]="!step.disabled && !step.active"
+        >
           <sbb-icon svgIcon="kom:chevron-right-small" class="sbb-icon-fit"></sbb-icon>
         </div>
       </ng-container>
