@@ -23,6 +23,11 @@ const routes: Routes = [
         data: { library: 'business' },
       },
       {
+        path: 'guides/:id',
+        component: MarkdownViewerComponent,
+        data: { library: 'business' },
+      },
+      {
         path: 'components/:id',
         component: BusinessComponentViewerComponent,
         data: { library: 'business' },

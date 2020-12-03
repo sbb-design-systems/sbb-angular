@@ -92,9 +92,13 @@ if the messages are contained in one sbb-error element.
 Any errors added to the form field are automatically added to the form field control's
 `aria-describedby` set.
 
+### Custom SbbFormFieldControl
+
+To implement your own form field controls, please see our guide [creating a custom form field control](/public/guides/creating-a-custom-form-field-control).
+
 ### Troubleshooting
 
-#### Error: sbb-form-field must contain a MatFormFieldControl
+#### Error: sbb-form-field must contain a SbbFormFieldControl
 
 This error occurs when you have not added a form field control to your form field. If your form
 field contains a native `<input>` or `<textarea>` element, make sure you've added the `sbbInput`
