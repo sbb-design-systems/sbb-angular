@@ -195,6 +195,11 @@ export class FormFieldMigration extends Migration<null> {
       this.logger.warn('  if you require an additional form control from @sbb-esta');
       this.logger.warn('  to be made compatible.');
       this.logger.info('');
+      this.logger.info('  To implement your own form field controls, please see our guide at');
+      this.logger.info(
+        '  https://angular.app.sbb.ch/public/guides/creating-a-custom-form-field-control'
+      );
+      this.logger.info('');
     }
   }
 
