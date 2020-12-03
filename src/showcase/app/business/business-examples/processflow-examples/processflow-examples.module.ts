@@ -5,12 +5,14 @@ import { SbbProcessflowModule } from '@sbb-esta/angular-business/processflow';
 
 import { provideExamples } from '../../../shared/example-provider';
 
+import { ProcessflowExampleComponent } from './processflow-example/processflow-example.component';
 import { SkippableProcessflowExampleComponent } from './skippable-processflow-example/skippable-processflow-example.component';
 
-const EXAMPLES = [SkippableProcessflowExampleComponent];
+const EXAMPLES = [SkippableProcessflowExampleComponent, ProcessflowExampleComponent];
 
 const EXAMPLE_INDEX = {
   'skippable-processflow-example': SkippableProcessflowExampleComponent,
+  'processflow-example': ProcessflowExampleComponent,
 };
 
 @NgModule({
