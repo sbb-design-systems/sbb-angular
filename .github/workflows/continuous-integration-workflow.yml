@@ -91,10 +91,16 @@ jobs:
 
     - name: "Deploy: Pack showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
-    - name: "Deploy: Upload to staging"
+    - name: "Deploy: Upload PR to staging"
       if: github.event_name == 'pull_request'
       run: |
         curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
+        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
+        -F "tarball=@sbb-esta-angular-showcase.tgz"
+    - name: "Deploy: Upload master to staging"
+      if: github.ref == 'refs/heads/master'
+      run: |
+        curl --url https://angular-staging.app.sbb.ch/master \
         -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
         -F "tarball=@sbb-esta-angular-showcase.tgz"
 
