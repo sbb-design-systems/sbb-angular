@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.0...11.0.1) (2020-12-04)
+
+
+### Bug Fixes
+
+* **showcase:** fix StackBlitz setup ([#680](https://github.com/sbb-design-systems/sbb-angular/issues/680)) ([efee77b](https://github.com/sbb-design-systems/sbb-angular/commit/efee77bf17791a370cb037f8c6cb9ee23bdf4f19))
+
 ## [11.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.0-next.2...11.0.0) (2020-12-03)
 
 
