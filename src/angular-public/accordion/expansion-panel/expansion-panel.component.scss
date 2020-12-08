@@ -4,7 +4,6 @@
   box-sizing: content-box;
   display: block;
   margin: 0;
-  overflow: hidden;
   transition: margin 225ms $sbb-accordion-timing-function;
   border: 1px solid transparent;
 
@@ -38,6 +37,9 @@
   display: flex;
   flex-direction: column;
   overflow: visible;
+  &.ng-animating {
+    overflow: hidden;
+  }
 }
 
 .sbb-expansion-panel-body {
