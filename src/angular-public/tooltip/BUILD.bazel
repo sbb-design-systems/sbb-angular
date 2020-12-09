@@ -46,6 +46,7 @@ ng_test_library(
         "//src/angular-core/base/tooltip",
         "//src/angular-core/icon",
         "//src/angular-core/icon/testing",
+        "//src/angular-core/testing",
         "//src/angular-public/button",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

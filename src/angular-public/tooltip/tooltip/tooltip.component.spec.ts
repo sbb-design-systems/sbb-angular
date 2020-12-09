@@ -1,12 +1,13 @@
-import { OverlayModule } from '@angular/cdk/overlay';
+import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base/tooltip';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
+import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { SbbButtonModule } from '@sbb-esta/angular-public/button';
 
 import { SbbTooltipModule } from '../tooltip.module';
@@ -16,9 +17,9 @@ import { SbbTooltipComponent } from './tooltip.component';
 @Component({
   selector: 'sbb-tooltip-test',
   template: `
-    <sbb-tooltip #t1 (opened)="onOpen($event)" (closed)="onClose($event)">
-      <p>Dies ist ein Tooltip mit einer Schaltfläche im Inneren.</p>
-      <button mode="secondary" sbbButton (click)="t1.close(true)">Diesen Tooltip schließen</button>
+    <sbb-tooltip #t1 (opened)="onOpen()" (closed)="onClose()">
+      <p>This is a tooltip with a button inside.</p>
+      <button mode="secondary" sbbButton (click)="t1.close(true)">Close tooltip</button>
     </sbb-tooltip>
   `,
 })
@@ -31,13 +32,13 @@ class TooltipTestComponent {
 @Component({
   selector: 'sbb-double-tooltip-test',
   template: `
-    <sbb-tooltip #t1 (opened)="onOpen($event)" (closed)="onClose($event)">
-      <p>Dies ist ein Tooltip mit einer Schaltfläche im Inneren.</p>
-      <button mode="secondary" sbbButton (click)="t1.close(true)">Diesen Tooltip schließen</button>
+    <sbb-tooltip #t1 (opened)="onOpen()" (closed)="onClose()">
+      <p>This is a tooltip with a button inside.</p>
+      <button mode="secondary" sbbButton (click)="t1.close(true)">Close tooltip</button>
     </sbb-tooltip>
-    <sbb-tooltip #t2 (opened)="onOpen($event)" (closed)="onClose($event)">
-      <p>Dies ist ein weiterer Tooltip mit einem Link!</p>
-      <a href="#" sbbLink>Bezeichnung</a>
+    <sbb-tooltip #t2 (opened)="onOpen()" (closed)="onClose()">
+      <p>This is another tooltip with a link!</p>
+      <a href="#" sbbLink>I am a link</a>
     </sbb-tooltip>
   `,
 })
@@ -77,6 +78,8 @@ describe('SbbTooltip', () => {
 describe('SbbTooltip using mock component for single tooltip', () => {
   let singleComponentTest: TooltipTestComponent;
   let singleFixtureTest: ComponentFixture<TooltipTestComponent>;
+  let overlayContainer: OverlayContainer;
+  let overlayContainerElement: HTMLElement;
 
   beforeEach(
     waitForAsync(() => {
@@ -84,6 +87,11 @@ describe('SbbTooltip using mock component for single tooltip', () => {
         imports: [SbbTooltipModule, SbbButtonModule, SbbIconTestingModule],
         declarations: [TooltipTestComponent],
       }).compileComponents();
+
+      inject([OverlayContainer], (oc: OverlayContainer) => {
+        overlayContainer = oc;
+        overlayContainerElement = oc.getContainerElement();
+      })();
     })
   );
 
@@ -93,11 +101,11 @@ describe('SbbTooltip using mock component for single tooltip', () => {
     singleFixtureTest.detectChanges();
   });
 
-  it('component test is created', async () => {
+  it('should create component test', async () => {
     expect(singleComponentTest).toBeTruthy();
   });
 
-  it('open tooltip by question mark', () => {
+  it('should open tooltip by question mark', () => {
     const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
@@ -111,7 +119,7 @@ describe('SbbTooltip using mock component for single tooltip', () => {
     expect(singleComponentTest.t1.overlayAttached).toBe(true);
   });
 
-  it('close tooltip by question mark', () => {
+  it('should close tooltip by question mark', () => {
     const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
@@ -129,7 +137,7 @@ describe('SbbTooltip using mock component for single tooltip', () => {
     expect(singleComponentTest.t1.overlayAttached).toBe(false);
   });
 
-  it('close tooltip by internal button', () => {
+  it('should close tooltip by internal button', () => {
     const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
@@ -147,17 +155,63 @@ describe('SbbTooltip using mock component for single tooltip', () => {
     expect(singleComponentTest.t1.overlayAttached).toBe(false);
   });
 
-  it('close tooltip clicking outside it', () => {
+  it('should close tooltip programmatically', () => {
     const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
+    expect(singleComponentTest.t1.overlayAttached).toBe(true);
 
     singleComponentTest.t1.close();
 
     expect(buttonQuestionMark.classList.contains('sbb-tooltip-trigger')).toBeTrue();
     expect(buttonQuestionMark.classList.contains('sbb-tooltip-trigger-active')).toBeFalse();
+    expect(singleComponentTest.t1.overlayAttached).toBe(false);
+  });
+
+  it('should close tooltip clicking outside it', () => {
+    const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
+    buttonQuestionMark.click();
+    singleFixtureTest.detectChanges();
+    expect(singleComponentTest.t1.overlayAttached).toBe(true);
+
+    dispatchEvent(document.body, createMouseEvent('mousedown'));
 
     expect(singleComponentTest.t1.overlayAttached).toBe(false);
+  });
+
+  it('should not close tooltip on mouse events inside overlay', () => {
+    const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
+    buttonQuestionMark.click();
+    singleFixtureTest.detectChanges();
+    expect(singleComponentTest.t1.overlayAttached).toBe(true);
+
+    dispatchEvent(
+      overlayContainer.getContainerElement().querySelector('.sbb-tooltip-content-body') as Node,
+      createMouseEvent('click')
+    );
+
+    dispatchEvent(
+      overlayContainer.getContainerElement().querySelector('.sbb-tooltip-content-body') as Node,
+      createMouseEvent('mousedown')
+    );
+
+    expect(singleComponentTest.t1.overlayAttached).toBe(true);
+  });
+
+  it('should not close tooltip when releasing mouse outside overlay', () => {
+    const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
+    buttonQuestionMark.click();
+    singleFixtureTest.detectChanges();
+    expect(singleComponentTest.t1.overlayAttached).toBe(true);
+
+    dispatchEvent(
+      overlayContainer.getContainerElement().querySelector('.sbb-tooltip-content-body') as Node,
+      createMouseEvent('mousedown')
+    );
+
+    dispatchEvent(document.body, createMouseEvent('mouseup'));
+
+    expect(singleComponentTest.t1.overlayAttached).toBe(true);
   });
 });
 
@@ -180,7 +234,7 @@ describe('SbbTooltip using mock component for double tooltip', () => {
     doubleFixtureTest.detectChanges();
   });
 
-  it('close a tooltip opened clicking on another tooltip', () => {
+  it('should close a tooltip opened clicking on another tooltip', () => {
     const buttonQuestionMarkT1 = doubleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMarkT1.click();
     doubleFixtureTest.detectChanges();
