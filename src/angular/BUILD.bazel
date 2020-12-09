@@ -1,0 +1,84 @@
+load("@npm//scss-bundle:index.bzl", "scss_bundle")
+load(
+    "//src/angular:config.bzl",
+    "ANGULAR_ENTRYPOINTS",
+    "ANGULAR_MARKDOWN_TARGETS",
+    "ANGULAR_TARGETS",
+    "ANGULAR_TESTING_TARGETS",
+)
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_package",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+# Root "@sbb-esta/angular" entry-point.
+ng_module(
+    name = "angular",
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    module_name = "@sbb-esta/angular",
+    deps = ["//src/angular/%s" % p for p in ANGULAR_ENTRYPOINTS],
+)
+
+sass_binary(
+    name = "typography",
+    src = "typography.scss",
+    deps = ["//src/angular-core/styles:core_scss_lib"],
+)
+
+scss_bundle(
+    name = "styles_bundle",
+    outs = ["_styles.scss"],
+    args = [
+        "--entryFile=$(location :_style_bundle.scss)",
+        "--outFile=$(location :_styles.scss)",
+    ],
+    data = [
+        ":_style_bundle.scss",
+        # Config file is required by "scss-bundle" and will be automatically
+        # loaded by the CLI. It expects the config to be in the execroot.
+        "//:scss-bundle.config.json",
+        "//src/angular-core/styles:core_scss_lib",
+    ],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [
+        ":README.md",
+        ":creating-a-custom-form-field-control.md",
+        ":getting-started.md",
+        ":i18n.md",
+        ":typography.md",
+    ],
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"] + ["//src/angular/%s:overview" % name for name in ANGULAR_MARKDOWN_TARGETS],
+)
+
+# Creates the @sbb-esta/angular package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+        ":styles_bundle",
+        ":typography",
+    ],
+    entry_point = ":public-api.ts",
+    entry_point_name = "angular",
+    nested_packages = ["//src/angular/schematics:npm_package"],
+    readme_md = "README.md",
+    tags = ["release-package"],
+    deps = ANGULAR_TARGETS + ANGULAR_TESTING_TARGETS,
+)
