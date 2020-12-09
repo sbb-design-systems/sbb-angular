@@ -84,9 +84,7 @@ ng_web_test_suite(
 
 markdown_to_html(
     name = "overview",
-    srcs = [<% for (let markdownFile of markdownFiles) { %>
-        ":<%= markdownFile %>",<% } %>
-    ],
+    srcs = glob(["*.md"]),
 )
 
 filegroup(

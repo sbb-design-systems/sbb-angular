@@ -29,10 +29,7 @@ ng_module(
 
 markdown_to_html(
     name = "overview",
-    srcs = [
-        ":getting-started.md",
-        ":schematics.md",
-    ],
+    srcs = glob(["*.md"]),
 )
 
 filegroup(

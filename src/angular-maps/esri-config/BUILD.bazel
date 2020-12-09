@@ -30,6 +30,7 @@ ng_test_library(
     ),
     deps = [
         ":esri-config",
+        "@npm//@types/arcgis-js-api",
         "@npm//esri-loader",
     ],
 )

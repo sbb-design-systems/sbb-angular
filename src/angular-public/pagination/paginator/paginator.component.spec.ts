@@ -6,9 +6,13 @@ import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 
-import { SbbPaginationModule, SbbPaginatorComponent } from '../../pagination';
+import { SbbPaginationModule } from '../pagination.module';
 
-import { SbbPaginatorDefaultOptions, SBB_PAGINATOR_DEFAULT_OPTIONS } from './paginator.component';
+import {
+  SbbPaginatorComponent,
+  SbbPaginatorDefaultOptions,
+  SBB_PAGINATOR_DEFAULT_OPTIONS,
+} from './paginator.component';
 
 @Component({
   template: `
