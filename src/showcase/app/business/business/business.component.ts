@@ -16,7 +16,6 @@ export class BusinessComponent {
     'radio-button': 'Radiobutton',
     select: 'Select',
     textarea: 'Textarea',
-    textexpand: 'Textexpand',
     'time-input': 'Time Input',
   };
   navigationComponents = {
@@ -30,6 +29,7 @@ export class BusinessComponent {
     notification: 'Notification',
     processflow: 'Processflow',
     tabs: 'Tabs',
+    textexpand: 'Textexpand',
     usermenu: 'Usermenu',
     table: 'Table',
   };
