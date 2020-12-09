@@ -9,7 +9,6 @@ import {
   ElementRef,
   Inject,
   Input,
-  isDevMode,
   NgZone,
   OnDestroy,
   OnInit,

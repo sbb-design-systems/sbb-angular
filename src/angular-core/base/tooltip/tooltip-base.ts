@@ -270,7 +270,7 @@ export abstract class SbbTooltipBase implements OnDestroy {
     }
 
     return merge(
-      fromEvent<MouseEvent>(this._document, 'click'),
+      fromEvent<MouseEvent>(this._document, 'mousedown'),
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
       filter((event) => {
