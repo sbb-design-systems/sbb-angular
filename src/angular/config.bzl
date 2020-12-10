@@ -1,5 +1,6 @@
 entryPoints = [
     # do not sort
+    "loading",
 ]
 
 # List of all non-testing entry-points of the Angular package.
@@ -24,4 +25,5 @@ ANGULAR_TARGETS = ["//src/angular"] + \
 ANGULAR_TESTING_TARGETS = ["//src/angular/%s" % ep for ep in ANGULAR_TESTING_ENTRYPOINTS]
 
 ANGULAR_MARKDOWN_TARGETS = [
+    "loading",
 ]
