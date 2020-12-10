@@ -101,7 +101,7 @@ export class EntryPointGrouper implements Processor {
 
       const packageName = moduleInfo.packageName;
       const packageDisplayName = packageName
-        .split('angular-')[1]
+        .replace('angular-', '')
         .replace(/^\w/, (m) => m.toUpperCase());
 
       const moduleImportPath = `@sbb-esta/${packageName}/${moduleInfo.entryPointName}`;
