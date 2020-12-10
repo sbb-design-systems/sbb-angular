@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.0.2](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.1...11.0.2) (2020-12-10)
+
+
+### Bug Fixes
+
+* allow sticky elements in expansion panel content ([#682](https://github.com/sbb-design-systems/sbb-angular/issues/682)) ([5b007bd](https://github.com/sbb-design-systems/sbb-angular/commit/5b007bdd4b8bf39c7049c42f07510bec506b300b)), closes [#620](https://github.com/sbb-design-systems/sbb-angular/issues/620)
+* prevent closing tooltip on outside mouseup ([#683](https://github.com/sbb-design-systems/sbb-angular/issues/683)) ([884b800](https://github.com/sbb-design-systems/sbb-angular/commit/884b8005c3daa08c329b2acb61c9c7b5ee58e19a)), closes [#579](https://github.com/sbb-design-systems/sbb-angular/issues/579)
+
+
+### Documentation
+
+* **showcase:** fix spelling and order of component categories ([#685](https://github.com/sbb-design-systems/sbb-angular/issues/685)) ([6316ec8](https://github.com/sbb-design-systems/sbb-angular/commit/6316ec8bd077e2d23f1ed9192f852940f2f149b0))
+
 ### [11.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.0...11.0.1) (2020-12-04)
 
 
