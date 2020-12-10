@@ -19,6 +19,7 @@ ng_module(
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@types/arcgis-js-api",
     ],
 )
 

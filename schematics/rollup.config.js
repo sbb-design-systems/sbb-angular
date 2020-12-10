@@ -22,6 +22,7 @@ export default readdirSync(__dirname, { withFileTypes: true })
       '@angular-devkit/schematics/tasks',
       '@angular-devkit/core',
       '@angular-devkit/core/src/utils/strings',
+      '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript',
       '@schematics/angular/utility/ast-utils',
       '@schematics/angular/utility/config',
       '@schematics/angular/utility/workspace-models',

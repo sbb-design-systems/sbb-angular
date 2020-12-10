@@ -27,14 +27,7 @@ ng_module(
 
 markdown_to_html(
     name = "overview",
-    srcs = [
-        ":accessing-map-data.md",
-        ":getting-started.md",
-        ":layer-filtering.md",
-        ":loading-arcgis-types.md",
-        ":mapping-basics.md",
-        ":overview-and-usage.md",
-    ],
+    srcs = glob(["*.md"]),
 )
 
 filegroup(

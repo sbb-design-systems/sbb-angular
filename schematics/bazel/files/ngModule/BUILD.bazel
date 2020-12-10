@@ -12,7 +12,7 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "<%= name %>",
-    srcs = glob(
+    srcs =<% if (genFiles.length) { %> [<% for (let file of genFiles) { %>":<%= file %>", <% } %>] +<% } %> glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),<% if (stylesheets.length === 1) { %>
@@ -22,11 +22,10 @@ ng_module(
     ] + glob(["**/*.html"]),<% } %>
     module_name = "<%= moduleName %>",<% if (customTsConfig) { %>
     tsconfig = "<%= customTsConfig %>",<% } %>
-    deps = [<% if (hasNgDevMode) { %>
-        "//src:dev_mode_types",<% } %><% for (let dependency of dependencies) { %>
+    deps = [<% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>
     ],
-)<% if (hasSassLibrary) { %>
+)<% if (genRules.length) { %><% } %><% for (let rule of genRules) { %><%= rule %><% } %><% if (hasSassLibrary) { %>
 
 sass_library(
     name = "<%= name %>_scss_lib",

@@ -44,9 +44,7 @@ scss_bundle(
 
 markdown_to_html(
     name = "overview",
-    srcs = [
-        ":getting-started.md",
-    ],
+    srcs = glob(["*.md"]),
 )
 
 filegroup(
