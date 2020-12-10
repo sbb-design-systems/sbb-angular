@@ -19,7 +19,7 @@ ts_library(
         exclude = [
             "**/*.spec.ts",
             "ng-generate/*/files/**/*.ts",
-            "ng-update/test-cases/**/*.ts",
+            "ng-add/test-cases/**/*.ts",
             "testing/**/*.ts",
         ],
     ),
@@ -94,7 +94,7 @@ filegroup(
     name = "schematics_test_cases",
     testonly = True,
     srcs = glob([
-        "ng-update/test-cases/**/*_input.ts",
-        "ng-update/test-cases/**/*_expected_output.ts",
+        "ng-add/test-cases/**/*_input.ts",
+        "ng-add/test-cases/**/*_expected_output.ts",
     ]),
 )
