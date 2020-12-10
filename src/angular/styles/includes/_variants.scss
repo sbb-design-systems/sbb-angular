@@ -1,0 +1,33 @@
+$sbbBusiness: false !default;
+$sbbSafe: false !default;
+$sbbVariant: 'site' !default;
+
+@mixin publicOnly() {
+  @if $sbbBusiness == false {
+    @content;
+  }
+}
+@mixin businessOnly() {
+  @if $sbbBusiness {
+    @content;
+  }
+}
+@mixin variantSite() {
+  @if $sbbVariant == 'site' {
+    @content;
+  }
+}
+@mixin variantApp() {
+  @if $sbbVariant == 'app' {
+    @content;
+  }
+}
+@mixin safe() {
+  @if $sbbSafe {
+    &.sbb-#{$sbbVariant} {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
