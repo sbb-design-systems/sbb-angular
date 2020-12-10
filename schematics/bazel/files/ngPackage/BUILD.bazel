@@ -46,7 +46,7 @@ ts_config(
 sass_binary(
     name = "typography",
     src = "typography.scss",
-    deps = ["//src/angular-core/styles:core_scss_lib"],
+    deps = ["//src/angular<% if (name !== 'angular') { %>-core<% } %>/styles:core_scss_lib"],
 )<% } %><% if (hasStyleBundle) { %>
 
 scss_bundle(
@@ -61,7 +61,7 @@ scss_bundle(
         # Config file is required by "scss-bundle" and will be automatically
         # loaded by the CLI. It expects the config to be in the execroot.
         "//:scss-bundle.config.json",
-        "//src/angular-core/styles:core_scss_lib",
+        "//src/angular<% if (name !== 'angular') { %>-core<% } %>/styles:core_scss_lib",
     ],
 )<% } %><% if (hasTests) { %>
 

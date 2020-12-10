@@ -3,6 +3,7 @@ load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS", "BUSINESS_TEST
 load("//src/angular-core:config.bzl", "CORE_ENTRYPOINTS", "CORE_TESTING_ENTRYPOINTS")
 load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")
 load("//src/angular-public:config.bzl", "PUBLIC_ENTRYPOINTS", "PUBLIC_TESTING_ENTRYPOINTS")
+load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
 load("//tools:defaults.bzl", "ts_library")
 load("//tools/dgeni:index.bzl", "dgeni_api_docs")
 
@@ -28,11 +29,14 @@ mapsApiEntryPoints = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
 
 publicApiEntryPoints = PUBLIC_ENTRYPOINTS + PUBLIC_TESTING_ENTRYPOINTS
 
+angularApiEntryPoints = ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS
+
 # List that contains all source files that need to be processed by Dgeni.
 apiSourceFiles = ["//src/angular-business/%s:source-files" % name for name in businessApiEntryPoints] + \
                  ["//src/angular-core/%s:source-files" % name for name in coreApiEntryPoints] + \
                  ["//src/angular-maps/%s:source-files" % name for name in mapsApiEntryPoints] + \
-                 ["//src/angular-public/%s:source-files" % name for name in publicApiEntryPoints]
+                 ["//src/angular-public/%s:source-files" % name for name in publicApiEntryPoints] + \
+                 ["//src/angular/%s:source-files" % name for name in angularApiEntryPoints]
 
 dgeni_api_docs(
     name = "api-docs",
@@ -52,6 +56,7 @@ dgeni_api_docs(
         "angular-core": coreApiEntryPoints,
         "angular-maps": mapsApiEntryPoints,
         "angular-public": publicApiEntryPoints,
+        "angular": angularApiEntryPoints,
     },
     tags = ["docs-package"],
 )
@@ -64,7 +69,8 @@ ts_library(
 htmlSourceFiles = ["//src/angular-business/%s:html-source-files" % name for name in businessApiEntryPoints] + \
                   ["//src/angular-core/%s:html-source-files" % name for name in coreApiEntryPoints] + \
                   ["//src/angular-maps/%s:html-source-files" % name for name in mapsApiEntryPoints] + \
-                  ["//src/angular-public/%s:html-source-files" % name for name in publicApiEntryPoints]
+                  ["//src/angular-public/%s:html-source-files" % name for name in publicApiEntryPoints] + \
+                  ["//src/angular/%s:html-source-files" % name for name in angularApiEntryPoints]
 
 filegroup(
     name = "used-icons-source-files",

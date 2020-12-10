@@ -7,8 +7,8 @@ package(default_visibility = ["//visibility:public"])
 filegroup(
     name = "schematics_assets",
     srcs = glob([
+        "ng-generate/*/files/**/*",
         "**/*.json",
-        # Schematics template files should be declared here, if available
     ]),
 )
 
@@ -18,7 +18,9 @@ ts_library(
         ["**/*.ts"],
         exclude = [
             "**/*.spec.ts",
-            # Schematics template files should be declared here, if available
+            "ng-generate/*/files/**/*.ts",
+            "ng-update/test-cases/**/*.ts",
+            "testing/**/*.ts",
         ],
     ),
     module_name = "@sbb-esta/angular/schematics",
@@ -35,12 +37,24 @@ ts_library(
     ],
 )
 
+genrule(
+    name = "used-icons",
+    srcs = ["//src:used-icons.json"],
+    outs = ["ng-generate/icon-cdn-provider/used-icons.json"],
+    cmd = "cp $< $@",
+)
+
 # This package is intended to be combined into the main @sbb-esta/angular package as a dep.
 pkg_npm(
     name = "npm_package",
-    srcs = [":schematics_assets"],
+    srcs = [
+        ":schematics_assets",
+    ],
     substitutions = VERSION_PLACEHOLDER_REPLACEMENTS,
-    deps = [":schematics"],
+    deps = [
+        ":schematics",
+        ":used-icons",
+    ],
 )
 
 ### Testing rules
@@ -57,6 +71,7 @@ ts_library(
     tsconfig = ":tsconfig.json",
     deps = [
         ":schematics",
+        "//src/angular/schematics/testing",
         "@npm//@angular-devkit/core",
         "@npm//@angular-devkit/schematics",
         "@npm//@angular/cdk",
@@ -71,5 +86,15 @@ jasmine_node_test(
     srcs = [":unit_test_sources"],
     data = [
         ":schematics_assets",
+        ":schematics_test_cases",
     ],
+)
+
+filegroup(
+    name = "schematics_test_cases",
+    testonly = True,
+    srcs = glob([
+        "ng-update/test-cases/**/*_input.ts",
+        "ng-update/test-cases/**/*_expected_output.ts",
+    ]),
 )
