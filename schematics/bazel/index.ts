@@ -69,7 +69,7 @@ export function bazel(options: { filter?: string }): Rule {
                 )
             );
             const bazelGenruleResolver = new BazelGenruleResolver();
-            return packageDir.path.endsWith('showcase')
+            return isShowcase
               ? new ShowcasePackage(packageDir, tree, {
                   ...context,
                   organization,
