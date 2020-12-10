@@ -3,7 +3,7 @@
   "schematics": {
     "ng-add": {
       "description": "Add @sbb-esta/angular to project",
-      "factory": "./ng-add/index",
+      "factory": "./ng-add/index#ngAdd",
       "schema": "./ng-add/schema.json",
       "aliases": ["install"]
     },
@@ -12,6 +12,11 @@
       "private": true,
       "factory": "./ng-add/setup-project",
       "schema": "./ng-add/schema.json"
+    },
+    "icon-cdn-provider": {
+      "description": "Create the CDN icon provider, which registers all available icons from the CDN",
+      "factory": "./ng-generate/icon-cdn-provider/index#iconCdnProvider",
+      "schema": "./ng-generate/icon-cdn-provider/schema.json"
     }
   }
 }

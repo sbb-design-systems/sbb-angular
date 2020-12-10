@@ -17,7 +17,7 @@
     "types": ["jasmine", "node"],
     "baseUrl": "."
   },
-  "exclude": ["**/*.spec.ts"],
+  "exclude": ["**/files/**/*", "**/*.spec.ts", "**/test-cases/**/*", "testing/**/*.ts"],
   "bazelOptions": {
     "suppressTsconfigOverrideWarnings": true
   }

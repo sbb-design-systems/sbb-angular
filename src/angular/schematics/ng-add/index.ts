@@ -17,14 +17,7 @@ import { Schema } from './schema';
 const fallbackSbbAngularVersionRange = `~0.0.0-PLACEHOLDER`;
 const fallbackCdkVersionRange = `~0.0.0-CDK`;
 
-/**
- * Schematic factory entry-point for the `ng-add` schematic. The ng-add schematic will be
- * automatically executed if developers run `ng add @angular/material`.
- *
- * Since the Angular Material schematics depend on the schematic utility functions from the CDK,
- * we need to install the CDK before loading the schematic files that import from the CDK.
- */
-export default function (options: Schema): Rule {
+export function ngAdd(options: Schema): Rule {
   return (host: Tree, context: SchematicContext) => {
     if (getPackageJsonDependency(host, '@sbb-esta/angular')) {
       context.logger.info(
@@ -56,20 +49,10 @@ export default function (options: Schema): Rule {
 
     addPackageToPackageJson(host, '@angular/forms', angularDependencyVersion);
     addPackageToPackageJson(host, '@angular/animations', angularDependencyVersion);
-    addPackageToPackageJson(
-      host,
-      '@sbb-esta/angular-core',
-      sbbAngularVersionRange || fallbackSbbAngularVersionRange
-    );
 
     // Since the Angular SBB schematics depend on the schematic utility functions from the
     // CDK, we need to install the CDK before loading the schematic files that import from the CDK.
     const installTaskId = context.addTask(new NodePackageInstallTask());
-    const setupTaskId = context.addTask(new RunSchematicTask('ng-add-setup-project', options), [
-      installTaskId,
-    ]);
-    context.addTask(new RunSchematicTask('@sbb-esta/angular-core', 'ng-add', options), [
-      setupTaskId,
-    ]);
+    context.addTask(new RunSchematicTask('ng-add-setup-project', options), [installTaskId]);
   };
 }

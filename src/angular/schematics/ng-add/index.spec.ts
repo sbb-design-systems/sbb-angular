@@ -1,12 +1,22 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
+import {
+  getAppModulePath,
+  getProjectFromWorkspace,
+  getProjectMainFile,
+} from '@angular/cdk/schematics';
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
+
+import { hasNgModuleProvider } from '../utils';
 
 import { addPackageToPackageJson } from './package-config';
 import { Schema } from './schema';
 import {
+  addIconCdnProvider,
   BROWSER_ANIMATIONS_MODULE_NAME,
+  ICON_CDN_REGISTRY_NAME,
   NOOP_ANIMATIONS_MODULE_NAME,
   TYPOGRAPHY_CSS_PATH,
 } from './setup-project';
@@ -61,12 +71,10 @@ describe('ngAdd', () => {
       .toPromise();
   });
 
-  it('should cancel installation if business package is already installed', async () => {
-    addPackageToPackageJson(tree, '@sbb-esta/angular-business', '0.0.0');
+  it('should cancel installation if angular package is already installed', async () => {
+    addPackageToPackageJson(tree, '@sbb-esta/angular', '0.0.0');
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-business']).toBe(
-      '0.0.0'
-    );
+    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular']).toBe('0.0.0');
 
     expect(runner.tasks.some((task) => task.name === 'run-schematic')).toBe(
       false,
@@ -74,16 +82,12 @@ describe('ngAdd', () => {
     );
   });
 
-  it('should add @sbb-esta/angular-core, @angular/cdk and @angular/animations to "package.json" file', async () => {
-    ['@sbb-esta/angular-core', '@angular/cdk'].forEach((dependencyName) =>
+  it('should add @angular/cdk and @angular/animations to "package.json" file', async () => {
+    ['@angular/cdk'].forEach((dependencyName) =>
       expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBeUndefined()
     );
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
-
-    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-core']).toBe(
-      `~0.0.0-PLACEHOLDER`
-    );
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`~0.0.0-CDK`);
 
@@ -98,18 +102,14 @@ describe('ngAdd', () => {
     );
   });
 
-  it('should do nothing if @sbb-esta/angular-core is in "package.json" file already', async () => {
-    addPackageToPackageJson(tree, '@sbb-esta/angular-core', '0.0.0');
+  it('should do nothing if @angular/cdk is in "package.json" file already', async () => {
+    addPackageToPackageJson(tree, '@angular/cdk', '0.0.0');
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-core']).toBe(
-      '0.0.0'
-    );
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('0.0.0');
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-core']).toBe(
-      '0.0.0'
-    );
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('0.0.0');
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
@@ -171,6 +171,37 @@ describe('ngAdd', () => {
 
     expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
       NOOP_ANIMATIONS_MODULE_NAME
+    );
+  });
+
+  it('should add ICON_CDN_REGISTRY_NAME to AppModule providers', async () => {
+    const workspace = await getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace, appOptions.name);
+    const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
+    expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeFalse();
+
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
+      ICON_CDN_REGISTRY_NAME
+    );
+    expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeTrue();
+  });
+
+  it('should add ICON_CDN_REGISTRY_NAME to AppModule providers', async () => {
+    const workspace = await getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace, appOptions.name);
+    const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
+
+    await runner
+      .callRule(addIconCdnProvider({ animations: true, project: appOptions.name }), tree)
+      .toPromise();
+    expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeTrue();
+    const expected = readStringFile(tree, '/projects/dummy/src/app/app.module.ts');
+
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toEqual(
+      readStringFile(tree, '/projects/dummy/src/app/app.module.ts')
     );
   });
 });

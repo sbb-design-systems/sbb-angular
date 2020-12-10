@@ -10,17 +10,27 @@ import {
 } from '@angular-devkit/schematics';
 import {
   addModuleImportToRootModule,
+  addSymbolToNgModuleMetadata,
   defaultTargetBuilders,
   getAppModulePath,
   getProjectFromWorkspace,
   getProjectMainFile,
   getProjectTargetOptions,
   hasNgModuleImport,
+  parseSourceFile,
 } from '@angular/cdk/schematics';
+import { InsertChange } from '@schematics/angular/utility/change';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
+import { hasNgModuleProvider } from '../utils';
+
 import { Schema } from './schema';
+
+/** Name of the icon cdn registry that enables the sbb-icon. */
+export const ICON_CDN_REGISTRY_NAME = 'SBB_ICON_REGISTRY_PROVIDER';
+
+// TODO: implement new typography workflow (ask user, provide different files)
 
 export const TYPOGRAPHY_CSS_PATH = 'node_modules/@sbb-esta/angular/typography.css';
 export const BUSINESS_TYPOGRAPHY_CSS_PATH = 'node_modules/@sbb-esta/angular/typography.css';
@@ -41,6 +51,7 @@ export default function (options: Schema): Rule {
       return chain([
         addAnimationsModule(options),
         addTypographyToAngularJson(options, context.logger),
+        addIconCdnProvider(options),
       ]);
     }
     context.logger.warn(
@@ -146,6 +157,36 @@ function addTypographyToStylesNodeOfAngularJson(
       styles.unshift(TYPOGRAPHY_CSS_PATH);
     }
   });
+}
+
+/** Adds the icon cdn registry to the AppModule providers. */
+export function addIconCdnProvider(options: Schema): Rule {
+  return async (host: Tree, context: SchematicContext) => {
+    const workspace = await getWorkspace(host);
+    const project = getProjectFromWorkspace(workspace, options.project);
+    const appModulePath = getAppModulePath(host, getProjectMainFile(project));
+    if (hasNgModuleProvider(host, appModulePath, ICON_CDN_REGISTRY_NAME)) {
+      context.logger.info(`${ICON_CDN_REGISTRY_NAME} already imported. Skipping...`);
+      return;
+    }
+
+    const moduleSource = parseSourceFile(host, appModulePath);
+    const changes = addSymbolToNgModuleMetadata(
+      moduleSource,
+      appModulePath,
+      'providers',
+      ICON_CDN_REGISTRY_NAME,
+      '@sbb-esta/angular/icon'
+    );
+
+    const recorder = host.beginUpdate(appModulePath);
+    changes
+      .filter((c): c is InsertChange => c instanceof InsertChange)
+      .forEach((change) => recorder.insertLeft(change.pos, change.toAdd));
+    host.commitUpdate(recorder);
+
+    context.logger.info(`✔️ Added ${ICON_CDN_REGISTRY_NAME} to ${appModulePath}`);
+  };
 }
 
 /**
