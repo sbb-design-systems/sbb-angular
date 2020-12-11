@@ -42,10 +42,7 @@ class LRUCache {
 
   constructor(readonly path: string) {
     this._entries = existsSync(this.path)
-      ? readdirSync(this.path, { withFileTypes: true })
-          .filter((d) => d.isFile())
-          .map((d) => new FileEntry(join(this.path, d.name)))
-          .sort((a, b) => b.modified.valueOf() - a.modified.valueOf())
+      ? this._walkDirectory(this.path).sort((a, b) => b.modified.valueOf() - a.modified.valueOf())
       : [];
   }
 
@@ -71,6 +68,18 @@ class LRUCache {
       }
     }
     return result;
+  }
+
+  private _walkDirectory(path: string): FileEntry[] {
+    return readdirSync(path, { withFileTypes: true })
+      .filter((d) => d.isFile() || d.isDirectory())
+      .reduce(
+        (files, d) =>
+          d.isFile()
+            ? files.concat(new FileEntry(join(path, d.name)))
+            : files.concat(this._walkDirectory(join(path, d.name))),
+        [] as FileEntry[]
+      );
   }
 
   private _deleteEntry(entry: FileEntry) {
