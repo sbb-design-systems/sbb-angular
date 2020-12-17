@@ -85,7 +85,7 @@
         <target>Erweitern</target>
       </segment>
     </unit>
-    <unit id="8389639288060911431">
+    <unit id="sbbTableChangeSorting">
       <segment state="translated">
         <source>Change sorting for <ph id="0" equiv="PH" disp="this.id"/></source>
         <target>Sortierung für <ph id="0" equiv="PH" disp="this.id"/> ändern</target>
@@ -116,30 +116,6 @@
         <target>Mehr anzeigen</target>
       </segment>
     </unit>
-    <unit id="sbbUsermenuLogin">
-      <segment state="reviewed">
-        <source>Login</source>
-        <target>Anmelden</target>
-      </segment>
-    </unit>
-    <unit id="sbbGhettoboxCloseGhettobox">
-      <segment state="reviewed">
-        <source>Close message</source>
-        <target>Hinweismeldung schliessen</target>
-      </segment>
-    </unit>
-    <unit id="sbbTagBadgePillAmountOfResults">
-      <segment state="reviewed">
-        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> results available</source>
-        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> Resultate verfügbar</target>
-      </segment>
-    </unit>
-    <unit id="sbbTagsAll">
-      <segment state="reviewed">
-        <source>All</source>
-        <target>Alle</target>
-      </segment>
-    </unit>
     <unit id="sbbUsermenuOpenPanel">
       <segment state="translated">
         <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
@@ -154,6 +130,36 @@
     "/>. Click or press enter to close user menu.</source>
         <target>Angemeldet als <ph id="0" equiv="PH" disp="this.displayName || this.userName
 "/>. Klicken oder Enter drücken, um das Benutzermenü zu schliessen.</target>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuLogin">
+      <segment state="reviewed">
+        <source>Login</source>
+        <target>Anmelden</target>
+      </segment>
+    </unit>
+    <unit id="sbbGhettoboxCloseGhettobox">
+      <segment state="reviewed">
+        <source>Close message</source>
+        <target>Hinweismeldung schliessen</target>
+      </segment>
+    </unit>
+    <unit id="sbbSearchStartSearch">
+      <segment state="translated">
+        <source>Start search</source>
+        <target>Starte Suche</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagBadgePillAmountOfResults">
+      <segment state="reviewed">
+        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> results available</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> Resultate verfügbar</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagsAll">
+      <segment state="reviewed">
+        <source>All</source>
+        <target>Alle</target>
       </segment>
     </unit>
   </file>

@@ -58,7 +58,7 @@
         <source>Expand</source>
         <target state="translated">Erweitern</target>
       </trans-unit>
-      <trans-unit id="8389639288060911431" datatype="html">
+      <trans-unit id="sbbTableChangeSorting" datatype="html">
         <source>Change sorting for <x id="PH" equiv-text="this.id"/></source>
         <target state="translated">Sortierung für <x id="PH" equiv-text="this.id"/> ändern</target>
       </trans-unit>
@@ -79,22 +79,6 @@
         <source>Show more</source>
         <target state="signed-off">Mehr anzeigen</target>
       </trans-unit>
-      <trans-unit id="sbbUsermenuLogin" datatype="html">
-        <source>Login</source>
-        <target state="signed-off">Anmelden</target>
-      </trans-unit>
-      <trans-unit id="sbbGhettoboxCloseGhettobox" datatype="html">
-        <source>Close message</source>
-        <target state="signed-off">Hinweismeldung schliessen</target>
-      </trans-unit>
-      <trans-unit id="sbbTagBadgePillAmountOfResults" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="aria-label=&quot;"/> results available</source>
-        <target state="signed-off"><x id="INTERPOLATION" equiv-text="aria-label=&quot;"/> Resultate verfügbar</target>
-      </trans-unit>
-      <trans-unit id="sbbTagsAll" datatype="html">
-        <source>All</source>
-        <target state="signed-off">Alle</target>
-      </trans-unit>
       <trans-unit id="sbbUsermenuOpenPanel" datatype="html">
         <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
     "/>. Click or press enter to open user menu.</source>
@@ -106,6 +90,26 @@
     "/>. Click or press enter to close user menu.</source>
         <target state="translated">Angemeldet als <x id="PH" equiv-text="this.displayName || this.userName
 "/>. Klicken oder Enter drücken, um das Benutzermenü zu schliessen.</target>
+      </trans-unit>
+      <trans-unit id="sbbUsermenuLogin" datatype="html">
+        <source>Login</source>
+        <target state="signed-off">Anmelden</target>
+      </trans-unit>
+      <trans-unit id="sbbGhettoboxCloseGhettobox" datatype="html">
+        <source>Close message</source>
+        <target state="signed-off">Hinweismeldung schliessen</target>
+      </trans-unit>
+      <trans-unit id="sbbSearchStartSearch" datatype="html">
+        <source>Start search</source>
+        <target state="translated">Starte Suche</target>
+      </trans-unit>
+      <trans-unit id="sbbTagBadgePillAmountOfResults" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="aria-label=&quot;"/> results available</source>
+        <target state="signed-off"><x id="INTERPOLATION" equiv-text="aria-label=&quot;"/> Resultate verfügbar</target>
+      </trans-unit>
+      <trans-unit id="sbbTagsAll" datatype="html">
+        <source>All</source>
+        <target state="signed-off">Alle</target>
       </trans-unit>
     </body>
   </file>
