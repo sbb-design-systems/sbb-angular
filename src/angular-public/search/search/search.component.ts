@@ -269,7 +269,6 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
         this.emitSearch();
       });
     }
-    this._isInsideShadowRoot = !!_getShadowRoot(this._elementRef.nativeElement);
   }
 
   /** Checks if the search box is focused or not, depending on this, proper style is applied to the component */
@@ -669,6 +668,13 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     }
     if (!this._overlayRef) {
       this._portal = new TemplatePortal(this.autocomplete.template, this._viewContainerRef);
+
+      // We want to resolve this once, as late as possible so that we can be
+      // sure that the element has been moved into its final place in the DOM.
+      if (this._isInsideShadowRoot == null) {
+        this._isInsideShadowRoot = !!_getShadowRoot(this._elementRef.nativeElement);
+      }
+
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       if (this._positionStrategy) {
