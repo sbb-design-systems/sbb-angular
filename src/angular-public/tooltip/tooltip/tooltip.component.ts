@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   Inject,
   NgZone,
   Optional,
@@ -34,8 +35,9 @@ export class SbbTooltipComponent extends SbbTooltipBase {
     @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() @Inject(DOCUMENT) document: any,
     zone: NgZone,
-    changeDetectorRef: ChangeDetectorRef
+    changeDetectorRef: ChangeDetectorRef,
+    elementRef: ElementRef
   ) {
-    super(overlay, tooltipRegistry, document, zone, changeDetectorRef, scrollStrategy);
+    super(overlay, tooltipRegistry, document, zone, changeDetectorRef, elementRef, scrollStrategy);
   }
 }

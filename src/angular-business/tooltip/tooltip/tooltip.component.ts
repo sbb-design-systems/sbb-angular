@@ -65,7 +65,7 @@ export class SbbTooltipComponent extends SbbTooltipBase implements OnInit, OnDes
 
   constructor(
     private _platform: Platform,
-    private _elementRef: ElementRef,
+    protected _elementRef: ElementRef,
     overlay: Overlay,
     tooltipRegistry: SbbTooltipRegistryService,
     @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
@@ -73,7 +73,7 @@ export class SbbTooltipComponent extends SbbTooltipBase implements OnInit, OnDes
     zone: NgZone,
     changeDetectorRef: ChangeDetectorRef
   ) {
-    super(overlay, tooltipRegistry, document, zone, changeDetectorRef, scrollStrategy);
+    super(overlay, tooltipRegistry, document, zone, changeDetectorRef, _elementRef, scrollStrategy);
   }
 
   ngOnInit() {
