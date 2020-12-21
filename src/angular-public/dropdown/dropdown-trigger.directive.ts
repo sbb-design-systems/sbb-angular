@@ -19,6 +19,7 @@ import {
   PositionStrategy,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
+import { _getShadowRoot } from '@angular/cdk/platform';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
@@ -244,6 +245,9 @@ export class SbbDropdownTrigger implements OnDestroy {
   private readonly _closeKeyEventStream = new Subject<void>();
   private _overlayAttached = false;
 
+  /** Whether the element is inside of a ShadowRoot component. */
+  private _isInsideShadowRoot: boolean;
+
   constructor(
     protected _elementRef: ElementRef<HTMLInputElement>,
     protected _overlay: Overlay,
@@ -362,7 +366,11 @@ export class SbbDropdownTrigger implements OnDestroy {
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
       filter((event) => {
-        const clickTarget = event.target as HTMLElement;
+        // If we're in the Shadow DOM, the event target will be the shadow root, so we have to
+        // fall back to check the first element in the path of the click event.
+        const clickTarget = (this._isInsideShadowRoot && event.composedPath
+          ? event.composedPath()[0]
+          : event.target) as HTMLElement;
 
         return (
           this._overlayAttached &&
@@ -478,6 +486,13 @@ export class SbbDropdownTrigger implements OnDestroy {
     if (!this.dropdown) {
       throw getSbbDropdownMissingPanelError();
     }
+
+    // We want to resolve this once, as late as possible so that we can be
+    // sure that the element has been moved into its final place in the DOM.
+    if (this._isInsideShadowRoot == null) {
+      this._isInsideShadowRoot = !!_getShadowRoot(this._elementRef.nativeElement);
+    }
+
     if (!this._overlayRef) {
       this._portal = new TemplatePortal(this.dropdown.template, this._viewContainerRef);
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
