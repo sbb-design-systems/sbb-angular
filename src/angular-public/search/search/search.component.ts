@@ -9,6 +9,7 @@ import {
   PositionStrategy,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
+import { _getShadowRoot } from '@angular/cdk/platform';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
@@ -205,6 +206,9 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
   }
   private _autocomplete: SbbAutocomplete;
 
+  /** Whether the element is inside of a ShadowRoot component. */
+  private _isInsideShadowRoot: boolean;
+
   /**
    * Reference relative to which to position the autocomplete panel.
    * Defaults to the autocomplete trigger element.
@@ -265,6 +269,7 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
         this.emitSearch();
       });
     }
+    this._isInsideShadowRoot = !!_getShadowRoot(this._elementRef.nativeElement);
   }
 
   /** Checks if the search box is focused or not, depending on this, proper style is applied to the component */
@@ -432,7 +437,11 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
       filter((event) => {
-        const clickTarget = event.target as HTMLElement;
+        // If we're in the Shadow DOM, the event target will be the shadow root, so we have to
+        // fall back to check the first element in the path of the click event.
+        const clickTarget = (this._isInsideShadowRoot && event.composedPath
+          ? event.composedPath()[0]
+          : event.target) as HTMLElement;
 
         return (
           this._overlayAttached &&
