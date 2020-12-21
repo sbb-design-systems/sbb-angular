@@ -68,7 +68,8 @@ function patchClassNamesMigration() {
 }
 
 function patchDevkitFileSystem() {
-  const proto: DevkitFileSystem & { _isExistingDirectory?(): boolean } = DevkitFileSystem.prototype;
+  const proto = DevkitFileSystem.prototype as any;
+
   if (proto._isExistingDirectory) {
     return;
   }
