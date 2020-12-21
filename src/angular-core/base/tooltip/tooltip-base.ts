@@ -6,6 +6,7 @@ import {
   PositionStrategy,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
+import { _getShadowRoot } from '@angular/cdk/platform';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectorRef,
@@ -145,12 +146,16 @@ export abstract class SbbTooltipBase implements OnDestroy {
 
   protected _panelClass: string[] = ['sbb-tooltip-content'];
 
+  /** Whether the element is inside of a ShadowRoot component. */
+  private _isInsideShadowRoot: boolean;
+
   constructor(
     protected _overlay: Overlay,
     protected _tooltipRegistry: SbbTooltipRegistryService,
     protected _document: any,
     protected _zone: NgZone,
     protected _changeDetectorRef: ChangeDetectorRef,
+    protected _elementRef: ElementRef,
     scrollStrategy: any
   ) {
     this._scrollStrategy = scrollStrategy;
@@ -274,7 +279,11 @@ export abstract class SbbTooltipBase implements OnDestroy {
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
       filter((event) => {
-        const clickTarget = event.target as HTMLElement;
+        // If we're in the Shadow DOM, the event target will be the shadow root, so we have to
+        // fall back to check the first element in the path of the click event.
+        const clickTarget = (this._isInsideShadowRoot && event.composedPath
+          ? event.composedPath()[0]
+          : event.target) as HTMLElement;
 
         return (
           this.overlayAttached &&
@@ -320,6 +329,12 @@ export abstract class SbbTooltipBase implements OnDestroy {
       scrollStrategy: this._scrollStrategy(),
       panelClass: this._panelClass,
     });
+
+    // We want to resolve this once, as late as possible so that we can be
+    // sure that the element has been moved into its final place in the DOM.
+    if (this._isInsideShadowRoot == null) {
+      this._isInsideShadowRoot = !!_getShadowRoot(this._elementRef.nativeElement);
+    }
 
     this.tooltipRef = this._overlay.create(overlayConfig);
     this.tooltipRef.overlayElement.setAttribute('role', 'tooltip');
