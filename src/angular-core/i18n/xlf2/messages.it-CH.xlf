@@ -85,7 +85,7 @@
         <target>Espandi</target>
       </segment>
     </unit>
-    <unit id="8389639288060911431">
+    <unit id="sbbTableChangeSorting">
       <segment state="translated">
         <source>Change sorting for <ph id="0" equiv="PH" disp="this.id"/></source>
         <target>Cambia l'ordinamento per <ph id="0" equiv="PH" disp="this.id"/></target>
@@ -116,30 +116,6 @@
         <target>Visualizzare di più</target>
       </segment>
     </unit>
-    <unit id="sbbUsermenuLogin">
-      <segment state="translated">
-        <source>Login</source>
-        <target>Accedi</target>
-      </segment>
-    </unit>
-    <unit id="sbbGhettoboxCloseGhettobox">
-      <segment state="translated">
-        <source>Close message</source>
-        <target>Chiudere il messaggio</target>
-      </segment>
-    </unit>
-    <unit id="sbbTagBadgePillAmountOfResults">
-      <segment state="translated">
-        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> results available</source>
-        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> risultati disponibili</target>
-      </segment>
-    </unit>
-    <unit id="sbbTagsAll">
-      <segment state="translated">
-        <source>All</source>
-        <target>Tutte</target>
-      </segment>
-    </unit>
     <unit id="sbbUsermenuOpenPanel">
       <segment state="translated">
         <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
@@ -154,6 +130,36 @@
     "/>. Click or press enter to close user menu.</source>
         <target>Accesso eseguito come <ph id="0" equiv="PH" disp="this.displayName || this.userName
 "/>. Fare clic o premere Invio per chiudere il menu utente.</target>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuLogin">
+      <segment state="translated">
+        <source>Login</source>
+        <target>Accedi</target>
+      </segment>
+    </unit>
+    <unit id="sbbGhettoboxCloseGhettobox">
+      <segment state="translated">
+        <source>Close message</source>
+        <target>Chiudere il messaggio</target>
+      </segment>
+    </unit>
+    <unit id="sbbSearchStartSearch">
+      <segment state="translated">
+        <source>Start search</source>
+        <target>Avviare la ricerca</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagBadgePillAmountOfResults">
+      <segment state="translated">
+        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> results available</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> risultati disponibili</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagsAll">
+      <segment state="translated">
+        <source>All</source>
+        <target>Tutte</target>
       </segment>
     </unit>
   </file>

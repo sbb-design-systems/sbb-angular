@@ -187,7 +187,6 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
    * Reference relative to which to position the autocomplete panel.
    * Defaults to the autocomplete trigger element.
    */
-  // tslint:disable-next-line:no-input-rename
   @Input('sbbAutocompleteConnectedTo') connectedTo: SbbAutocompleteOrigin;
 
   /**

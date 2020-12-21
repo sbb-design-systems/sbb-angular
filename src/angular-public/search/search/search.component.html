@@ -12,6 +12,13 @@
     (keydown)="handleKeydown($event)"
     (blur)="onBlur($event)"
     [attr.placeholder]="placeholder"
+    [attr.autocomplete]="autocompleteAttribute"
+    [attr.role]="autocompleteDisabled ? null : 'combobox'"
+    [attr.aria-autocomplete]="autocompleteDisabled ? null : 'list'"
+    [attr.aria-activedescendant]="activeOption ? this.activeOption.id : null"
+    [attr.aria-expanded]="autocompleteDisabled ? null : panelOpen.toString()"
+    [attr.aria-owns]="autocompleteDisabled || !panelOpen ? null : autocomplete.id"
+    [attr.aria-haspopup]="!autocompleteDisabled"
   />
   <button
     type="button"
@@ -20,6 +27,8 @@
     (blur)="onBlur($event)"
     class="sbb-icon-fit"
     [class.sbb-search-box-button-active]="isSearchBoxFocused()"
+    i18n-aria-label="Start search@@sbbSearchStartSearch"
+    aria-label="Start search"
   >
     <ng-container *ngTemplateOutlet="icon ? icon : defaultIcon"></ng-container>
   </button>

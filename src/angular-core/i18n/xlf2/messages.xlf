@@ -158,17 +158,17 @@
         <note category="description">Aria label for amount of entries displayed in badge pill</note>
       </notes>
       <segment>
-        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;{{ tab."/> entries</source>
+        <source><ph id="0" equiv="INTERPOLATION" disp="{{ tab.badgePill }}"/> entries</source>
       </segment>
     </unit>
     <unit id="sbbTextareaCounterText">
       <notes>
-        <note category="location">../../../../../../src/angular-business/textarea/textarea/textarea.component.html:19,20</note>
-        <note category="location">../../../../../../src/angular-public/textarea/textarea/textarea.component.html:19,20</note>
+        <note category="location">../../../../../../src/angular-business/textarea/textarea/textarea.component.html:19,21</note>
+        <note category="location">../../../../../../src/angular-public/textarea/textarea/textarea.component.html:19,21</note>
         <note category="description">Counter text for textarea</note>
       </notes>
       <segment>
-        <source> <ph id="0" equiv="INTERPOLATION" disp="  {{ _counter | async "/> characters remaining
+        <source> <ph id="0" equiv="INTERPOLATION" disp="{{ _counter | async }}"/> characters remaining
 </source>
       </segment>
     </unit>
@@ -192,6 +192,28 @@
         <source>Show more</source>
       </segment>
     </unit>
+    <unit id="sbbUsermenuOpenPanel">
+      <notes>
+        <note category="location">../../../../../../src/angular-business/usermenu/usermenu.ts:198,200</note>
+        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:196,198</note>
+        <note category="description">Aria label to open user menu</note>
+      </notes>
+      <segment>
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
+        "/>. Click or press enter to open user menu.</source>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuClosePanel">
+      <notes>
+        <note category="location">../../../../../../src/angular-business/usermenu/usermenu.ts:208,210</note>
+        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:206,208</note>
+        <note category="description">Aria label to close user menu</note>
+      </notes>
+      <segment>
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
+        "/>. Click or press enter to close user menu.</source>
+      </segment>
+    </unit>
     <unit id="sbbUsermenuLogin">
       <notes>
         <note category="location">../../../../../../src/angular-business/usermenu/usermenu.html:10</note>
@@ -211,6 +233,15 @@
         <source>Close message</source>
       </segment>
     </unit>
+    <unit id="sbbSearchStartSearch">
+      <notes>
+        <note category="location">../../../../../../src/angular-public/search/search/search.component.html:31</note>
+        <note category="description">Start search</note>
+      </notes>
+      <segment>
+        <source>Start search</source>
+      </segment>
+    </unit>
     <unit id="sbbTagBadgePillAmountOfResults">
       <notes>
         <note category="location">../../../../../../src/angular-public/tag/tag/tag.component.html:8</note>
@@ -218,7 +249,7 @@
         <note category="description">Aria label for amount of results displayed in badge pill</note>
       </notes>
       <segment>
-        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> results available</source>
+        <source><ph id="0" equiv="INTERPOLATION" disp="{{ amount }}"/> results available</source>
       </segment>
     </unit>
     <unit id="sbbTagsAll">
@@ -228,26 +259,6 @@
       </notes>
       <segment>
         <source>All</source>
-      </segment>
-    </unit>
-    <unit id="sbbUsermenuOpenPanel">
-      <notes>
-        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:196,198</note>
-        <note category="description">Aria label to open user menu</note>
-      </notes>
-      <segment>
-        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-    "/>. Click or press enter to open user menu.</source>
-      </segment>
-    </unit>
-    <unit id="sbbUsermenuClosePanel">
-      <notes>
-        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:203,205</note>
-        <note category="description">Aria label to close user menu</note>
-      </notes>
-      <segment>
-        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-    "/>. Click or press enter to close user menu.</source>
       </segment>
     </unit>
   </file>

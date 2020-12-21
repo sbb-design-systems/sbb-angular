@@ -9,6 +9,7 @@ import {
   PositionStrategy,
   ScrollStrategy,
 } from '@angular/cdk/overlay';
+import { _getShadowRoot } from '@angular/cdk/platform';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
@@ -99,13 +100,6 @@ const ANIMATION_DURATION = 300;
   host: {
     class: 'sbb-search',
     '[attr.id]': 'this.id',
-    '[attr.role]': "this.autocompleteDisabled ? null : 'combobox'",
-    '[attr.autocomplete]': 'this.autocompleteAttribute',
-    '[attr.aria-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen.toString()',
-    '[attr.aria-owns]':
-      'this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id',
-    '[attr.aria-autocomplete]': "this.autocompleteDisabled ? null : 'list'",
-    '[attr.aria-activedescendant]': 'this.activeOption ? this.activeOption.id : null',
   },
 })
 export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit {
@@ -212,19 +206,20 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
   }
   private _autocomplete: SbbAutocomplete;
 
+  /** Whether the element is inside of a ShadowRoot component. */
+  private _isInsideShadowRoot: boolean;
+
   /**
    * Reference relative to which to position the autocomplete panel.
    * Defaults to the autocomplete trigger element.
    */
-  @Input('sbbAutocompleteConnectedTo')
-  connectedTo: SbbAutocompleteOrigin;
+  @Input('sbbAutocompleteConnectedTo') connectedTo: SbbAutocompleteOrigin;
 
   /**
    * `autocomplete` attribute to be set on the input element.
    * @docs-private
    */
-  @Input('autocomplete')
-  autocompleteAttribute: string = 'off';
+  @Input('autocomplete') autocompleteAttribute: string = 'off';
 
   /**
    * Event emitted when:
@@ -441,7 +436,11 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
       fromEvent<TouchEvent>(this._document, 'touchend')
     ).pipe(
       filter((event) => {
-        const clickTarget = event.target as HTMLElement;
+        // If we're in the Shadow DOM, the event target will be the shadow root, so we have to
+        // fall back to check the first element in the path of the click event.
+        const clickTarget = (this._isInsideShadowRoot && event.composedPath
+          ? event.composedPath()[0]
+          : event.target) as HTMLElement;
 
         return (
           this._overlayAttached &&
@@ -547,15 +546,13 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     // filter out all of the extra events, we save the value on focus and between
     // `input` events, and we check whether it changed.
     // See: https://connect.microsoft.com/IE/feedback/details/885747/
-    if (this._previousValue !== value && document.activeElement === event.target) {
+    if (this._previousValue !== value) {
       this._previousValue = value;
       this._onChange(value);
       this._inputValue.next(target.value);
 
-      if (this._canOpen()) {
+      if (this._canOpen() && document.activeElement === event.target) {
         this.openPanel();
-      } else {
-        this.closePanel();
       }
     }
   }
@@ -671,6 +668,13 @@ export class SbbSearch implements ControlValueAccessor, OnDestroy, AfterViewInit
     }
     if (!this._overlayRef) {
       this._portal = new TemplatePortal(this.autocomplete.template, this._viewContainerRef);
+
+      // We want to resolve this once, as late as possible so that we can be
+      // sure that the element has been moved into its final place in the DOM.
+      if (this._isInsideShadowRoot == null) {
+        this._isInsideShadowRoot = !!_getShadowRoot(this._elementRef.nativeElement);
+      }
+
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       if (this._positionStrategy) {
