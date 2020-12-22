@@ -191,7 +191,7 @@ export function defineJasmineTestCases(
 
   beforeAll(async () => {
     const { appTree: _tree, runFixers } = await createTestCaseSetup(
-      `${versionName}`,
+      versionName,
       collectionFile,
       inputFiles
     );

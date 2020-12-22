@@ -208,11 +208,11 @@ function validateDefaultTargetBuilder(
   // used. In case the builder has been changed for the "build" target, we throw an error and
   // exit because setting up a theme is a primary goal of `ng-add`. Otherwise if just the "test"
   // builder has been changed, we warn because a theme is not mandatory for running tests
-  // with Material. See: https://github.com/angular/components/issues/14176
+  // with SBB Angular. See: https://github.com/angular/components/issues/14176
   if (!isDefaultBuilder && targetName === 'build') {
     throw new SchematicsException(
       `Your project is not using the default builders for ` +
-        `"${targetName}". The Angular Material schematics cannot add a theme to the workspace ` +
+        `"${targetName}". The SBB Angular schematics cannot add a theme to the workspace ` +
         `configuration if the builder has been changed.`
     );
   } else if (!isDefaultBuilder) {

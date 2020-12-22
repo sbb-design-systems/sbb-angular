@@ -53,6 +53,9 @@ export function ngAdd(options: Schema): Rule {
     // Since the Angular SBB schematics depend on the schematic utility functions from the
     // CDK, we need to install the CDK before loading the schematic files that import from the CDK.
     const installTaskId = context.addTask(new NodePackageInstallTask());
-    context.addTask(new RunSchematicTask('ng-add-setup-project', options), [installTaskId]);
+    const setupProjectId = context.addTask(new RunSchematicTask('ng-add-setup-project', options), [
+      installTaskId,
+    ]);
+    context.addTask(new RunSchematicTask('ng-add-migrate', options), [setupProjectId]);
   };
 }

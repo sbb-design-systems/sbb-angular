@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbLoadingModule } from '@sbb-esta/angular-public';
+import { SbbLoadingModule, SbbAccordionModule } from '@sbb-esta/angular-public';
 import { SbbLoadingModule as SbbBusinessLoadingModule } from '@sbb-esta/angular-business/loading';
+import { SbbLoadingModule as SbbBusinessLoadingModuleSecond } from '@sbb-esta/angular-business';
 
 @Component({
   selector: 'sbb-loading-test',
@@ -13,9 +14,3 @@ export class SbbLoadingTestComponent {}
   imports: [SbbLoadingModule],
 })
 export class LoadingPublicTestModule {}
-
-@NgModule({
-  declarations: [],
-  imports: [SbbBusinessLoadingModule],
-})
-export class LoadingBusinessTestModule {}

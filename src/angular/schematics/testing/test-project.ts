@@ -33,7 +33,7 @@ export async function createTestProject(
     .runExternalSchematicAsync(
       '@schematics/angular',
       projectType,
-      { name: 'material', ...appOptions },
+      { name: 'sbb-angular', ...appOptions },
       workspaceTree
     )
     .toPromise();

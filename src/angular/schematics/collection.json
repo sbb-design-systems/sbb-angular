@@ -13,6 +13,12 @@
       "factory": "./ng-add/setup-project",
       "schema": "./ng-add/schema.json"
     },
+    "ng-add-migrate": {
+      "description": "Migrates from @sbb-esta/angular-business and @sbb-esta/angular-public to @sbb-esta/angular",
+      "private": true,
+      "factory": "./ng-add/merge-migration#mergePublicAndBusiness",
+      "schema": "./ng-add/schema.json"
+    },
     "icon-cdn-provider": {
       "description": "Create the CDN icon provider, which registers all available icons from the CDN",
       "factory": "./ng-generate/icon-cdn-provider/index#iconCdnProvider",

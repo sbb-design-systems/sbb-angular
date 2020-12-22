@@ -2,14 +2,19 @@ import { getImportDeclaration } from '@angular/cdk/schematics';
 import * as ts from 'typescript';
 
 /** Name of the sbb-angular module specifiers. */
-export const sbbAngularModuleSpecifiers = ['@sbb-esta/angular-angular', '@sbb-esta/angular-maps'];
+export const sbbAngularModuleSpecifiers = [
+  '@sbb-esta/angular',
+  '@sbb-esta/angular-business',
+  '@sbb-esta/angular-public',
+  '@sbb-esta/angular-maps',
+];
 
-/** Whether the specified node is part of an Angular Material or CDK import declaration. */
+/** Whether the specified node is part of an SBB Angular or CDK import declaration. */
 export function isSbbAngularImportDeclaration(node: ts.Node) {
   return isSbbAngularDeclaration(getSafeImportDeclaration(node));
 }
 
-/** Whether the specified node is part of an Angular Material or CDK import declaration. */
+/** Whether the specified node is part of an SBB Angular or CDK import declaration. */
 export function isSbbAngularExportDeclaration(node: ts.Node) {
   return isSbbAngularDeclaration(getSafeImportDeclaration(node));
 }
@@ -22,7 +27,7 @@ function getSafeImportDeclaration(node: ts.Node) {
   }
 }
 
-/** Whether the declaration is part of Angular Material. */
+/** Whether the declaration is part of SBB Angular. */
 function isSbbAngularDeclaration(declaration: ts.ImportDeclaration | ts.ExportDeclaration) {
   if (!declaration.moduleSpecifier) {
     return false;
