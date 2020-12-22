@@ -14,7 +14,6 @@ import { hasNgModuleProvider } from '../utils';
 import { addPackageToPackageJson } from './package-config';
 import { Schema } from './schema';
 import {
-  addIconCdnProvider,
   BROWSER_ANIMATIONS_MODULE_NAME,
   ICON_CDN_REGISTRY_NAME,
   NOOP_ANIMATIONS_MODULE_NAME,
@@ -180,28 +179,11 @@ describe('ngAdd', () => {
     const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
     expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeFalse();
 
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
 
     expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
       ICON_CDN_REGISTRY_NAME
     );
     expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeTrue();
-  });
-
-  it('should add ICON_CDN_REGISTRY_NAME to AppModule providers', async () => {
-    const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, appOptions.name);
-    const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
-
-    await runner
-      .callRule(addIconCdnProvider({ animations: true, project: appOptions.name }), tree)
-      .toPromise();
-    expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeTrue();
-    const expected = readStringFile(tree, '/projects/dummy/src/app/app.module.ts');
-
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
-    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toEqual(
-      readStringFile(tree, '/projects/dummy/src/app/app.module.ts')
-    );
   });
 });

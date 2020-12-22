@@ -5,7 +5,7 @@ import {
 } from '@angular/cdk/schematics';
 
 export const attributeSelectors: VersionChanges<AttributeSelectorUpgradeData> = {
-  [TargetVersion.V11]: [
+  ['merge' as TargetVersion]: [
     {
       pr: '',
       changes: [],

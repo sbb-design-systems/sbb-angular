@@ -44,7 +44,7 @@ export function ngAdd(options: Schema): Rule {
     }
 
     if (cdkVersionTag === null) {
-      addPackageToPackageJson(host, '@angular/cdk', cdkVersionTag || fallbackCdkVersionRange);
+      addPackageToPackageJson(host, '@angular/cdk', fallbackCdkVersionRange);
     }
 
     addPackageToPackageJson(host, '@angular/forms', angularDependencyVersion);
