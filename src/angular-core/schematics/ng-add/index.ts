@@ -23,7 +23,7 @@ export function ngAdd(options: Schema): Rule {
 }
 
 /** Adds the icon cdn registry to the AppModule providers. */
-function addIconCdnProvider(options: Schema): Rule {
+export function addIconCdnProvider(options: Schema): Rule {
   return async (host: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
