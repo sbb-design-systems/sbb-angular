@@ -22,6 +22,8 @@
     "types": ["@angular/localize/init", "arcgis-js-api", "grecaptcha", "jasmine"],
     "baseUrl": ".",
     "paths": {
+      "@sbb-esta/angular": ["src/angular"],
+      "@sbb-esta/angular/*": ["src/angular/*"],
       "@sbb-esta/angular-public": ["src/angular-public"],
       "@sbb-esta/angular-public/*": ["src/angular-public/*"],
       "@sbb-esta/angular-business": ["src/angular-business"],
@@ -40,6 +42,8 @@
   "exclude": [
     "node_modules/",
     "schematics/*/files/**/*",
+    "src/angular/schematics/**/files/**/*",
+    "src/angular/schematics/ng-update/test-cases/**/*",
     "src/angular-icons/schematics/*/files/**/*",
     "src/angular-core/schematics/**/files/**/*",
     "src/angular-core/schematics/ng-update/test-cases/**/*"
