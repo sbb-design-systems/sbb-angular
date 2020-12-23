@@ -1,5 +1,6 @@
 entryPoints = [
     # do not sort
+    "core/datetime",
     "core/error",
     "core/oauth",
     "core/testing",
@@ -30,6 +31,7 @@ ANGULAR_TARGETS = ["//src/angular"] + \
 ANGULAR_TESTING_TARGETS = ["//src/angular/%s" % ep for ep in ANGULAR_TESTING_ENTRYPOINTS]
 
 ANGULAR_MARKDOWN_TARGETS = [
+    "core/datetime",
     "core/oauth",
     "icon",
     "loading",
