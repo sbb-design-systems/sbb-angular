@@ -56,6 +56,17 @@ export function ngAdd(options: Schema): Rule {
     const setupProjectId = context.addTask(new RunSchematicTask('ng-add-setup-project', options), [
       installTaskId,
     ]);
-    context.addTask(new RunSchematicTask('ng-add-migrate', options), [setupProjectId]);
+
+    // If there are existing imports to @sbb-esta/angular-public, @sbb-esta/angular-business, @sbb-esta/angular-core or @sbb-esta/angular-maps run migration
+    if (
+      [
+        '@sbb-esta/angular-business',
+        '@sbb-esta/angular-public',
+        '@sbb-esta/angular-maps',
+        '@sbb-esta/angular-core',
+      ].some((packageName) => !!getPackageVersionFromPackageJson(host, packageName))
+    ) {
+      context.addTask(new RunSchematicTask('ng-add-migrate', options), [setupProjectId]);
+    }
   };
 }

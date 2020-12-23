@@ -3,9 +3,9 @@ import * as ts from 'typescript';
 
 /** Name of the sbb-angular module specifiers. */
 export const sbbAngularModuleSpecifiers = [
-  '@sbb-esta/angular',
   '@sbb-esta/angular-business',
   '@sbb-esta/angular-public',
+  '@sbb-esta/angular-core',
   '@sbb-esta/angular-maps',
 ];
 

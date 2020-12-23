@@ -4,7 +4,7 @@ import * as ts from 'typescript';
 import { sbbAngularModuleSpecifiers } from '../typescript/module-specifiers';
 
 const ONLY_SUBPACKAGE_FAILURE_STR =
-  `Importing from "@sbb-esta/business" or "@sbb-esta/public" is deprecated. ` +
+  `Importing from "@sbb-esta/angular-business", "@sbb-esta/angular-public", "@sbb-esta/angular-core" and "@sbb-esta/angular-maps" is deprecated. ` +
   `Instead import from the entry-point the symbol belongs to.`;
 
 const NO_IMPORT_NAMED_SYMBOLS_FAILURE_STR =
@@ -43,7 +43,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
     const importLocation = declaration.moduleSpecifier.text;
     // If the import module is not in an SBB angular module specifier, skip the check.
     if (
-      !sbbAngularModuleSpecifiers.every(
+      sbbAngularModuleSpecifiers.every(
         (moduleSpecifier) => !importLocation.startsWith(moduleSpecifier)
       )
     ) {

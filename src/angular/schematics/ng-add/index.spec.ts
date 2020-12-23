@@ -9,6 +9,7 @@ import { Schema as ApplicationOptions, Style } from '@schematics/angular/applica
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
+import { COLLECTION_PATH } from '../index.spec';
 import { hasNgModuleProvider } from '../utils';
 
 import { addPackageToPackageJson } from './package-config';
@@ -19,10 +20,6 @@ import {
   NOOP_ANIMATIONS_MODULE_NAME,
   TYPOGRAPHY_CSS_PATH,
 } from './setup-project';
-
-/** Path to the schematic collection that includes the migrations. */
-// tslint:disable-next-line: naming-convention
-export const collection = require.resolve('../collection.json');
 
 const workspaceOptions: WorkspaceOptions = {
   name: 'workspace',
@@ -61,7 +58,7 @@ describe('ngAdd', () => {
   }
 
   beforeEach(async () => {
-    runner = new SchematicTestRunner('collection', collection);
+    runner = new SchematicTestRunner('collection', COLLECTION_PATH);
     tree = await runner
       .runExternalSchematicAsync('@schematics/angular', 'workspace', workspaceOptions)
       .toPromise();
@@ -75,10 +72,9 @@ describe('ngAdd', () => {
 
     expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular']).toBe('0.0.0');
 
-    expect(runner.tasks.some((task) => task.name === 'run-schematic')).toBe(
-      false,
-      'Expected the setup-project schematic not to be scheduled.'
-    );
+    expect(
+      runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project')
+    ).toBe(false, 'Expected the setup-project schematic not to be scheduled.');
   });
 
   it('should add @angular/cdk and @angular/animations to "package.json" file', async () => {
@@ -95,10 +91,9 @@ describe('ngAdd', () => {
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
     expect(runner.tasks.some((task) => task.name === 'node-package')).toBe(true);
-    expect(runner.tasks.some((task) => task.name === 'run-schematic')).toBe(
-      true,
-      'Expected the setup-project schematic to be scheduled.'
-    );
+    expect(
+      runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project')
+    ).toBe(true, 'Expected the setup-project schematic to be scheduled.');
   });
 
   it('should do nothing if @angular/cdk is in "package.json" file already', async () => {
@@ -113,10 +108,9 @@ describe('ngAdd', () => {
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
     expect(runner.tasks.some((task) => task.name === 'node-package')).toBe(true);
-    expect(runner.tasks.some((task) => task.name === 'run-schematic')).toBe(
-      true,
-      'Expected the setup-project schematic to be scheduled.'
-    );
+    expect(
+      runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project')
+    ).toBe(true, 'Expected the setup-project schematic to be scheduled.');
   });
 
   it('should not abort when running ng add two times', async () => {
@@ -185,5 +179,29 @@ describe('ngAdd', () => {
       ICON_CDN_REGISTRY_NAME
     );
     expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeTrue();
+  });
+
+  it('should execute migration from public, business and core', async () => {
+    addPackageToPackageJson(tree, '@sbb-esta/angular-business', '0.0.0');
+
+    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-business']).toBe(
+      '0.0.0'
+    );
+
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+
+    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate')).toBe(
+      true,
+      'Expected the ng-add-migrate schematic to be scheduled.'
+    );
+  });
+
+  it('should not execute migration from public, business and core', async () => {
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+
+    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate')).toBe(
+      false,
+      'Expected the ng-add-migrate schematic not to be scheduled.'
+    );
   });
 });

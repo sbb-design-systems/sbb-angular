@@ -3,5 +3,7 @@
   "SbbLoading": "loading",
   "SbbAccordionModule": "accordion",
   "SbbAccordion": "accordion",
-  "SbbEsriConfigModule": "esri-config"
+  "SbbEsriConfigModule": "esri-config",
+  "SbbIconModule": "core/icon",
+  "IconKRModule": "icon dummy entry for testing"
 }
