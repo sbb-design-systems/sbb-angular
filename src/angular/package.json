@@ -31,7 +31,7 @@
       "@sbb-esta/angular-maps",
       "@sbb-esta/angular-public"
     ],
-    "packageGroupName": "@sbb-esta/angular-core"
+    "packageGroupName": "@sbb-esta/angular"
   },
   "sideEffects": false,
   "publishConfig": {

@@ -45,7 +45,7 @@ npm install --save @sbb-esta/angular @angular/cdk
 or, if using yarn:
 
 ```sh
-yarn add @sbb-esta/angular-public @sbb-esta/angular-core @angular/cdk
+yarn add @sbb-esta/angular @angular/cdk
 ```
 
 #### Step 1.2: Include typography CSS

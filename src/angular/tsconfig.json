@@ -5,8 +5,7 @@
     "rootDir": "..",
     "baseUrl": ".",
     "paths": {
-      "@sbb-esta/angular": ["./*"],
-      "@sbb-esta/angular/": ["./"],
+      "@sbb-esta/angular/*": ["./*"],
       "@sbb-esta/angular-business": ["../angular-business"],
       "@sbb-esta/angular-business/*": ["../angular-business/*"],
       "@sbb-esta/angular-core": ["../angular-core"],

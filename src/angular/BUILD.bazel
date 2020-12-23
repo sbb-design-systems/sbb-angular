@@ -24,11 +24,7 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     module_name = "@sbb-esta/angular",
-    deps = ["//src/angular/%s" % p for p in ANGULAR_ENTRYPOINTS] + [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/platform-browser",
-    ],
+    deps = ["//src/angular/%s" % p for p in ANGULAR_ENTRYPOINTS],
 )
 
 sass_binary(
