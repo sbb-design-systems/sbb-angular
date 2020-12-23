@@ -61,6 +61,8 @@
   "SBB_SSO_IDP_MICROSOFT": "core/oauth",
   "SBB_SSO_IDP_GITHUB": "core/oauth",
   "SBB_SSO_IDP_HINT_AZURE_AD": "core/oauth",
+  "SbbErrorStateMatcher": "core/error",
+  "SbbShowOnDirtyErrorStateMatcher": "core/error",
   "SbbAccordionModule": "accordion",
   "SbbAccordion": "accordion",
   "SbbEsriConfigModule": "esri-config",

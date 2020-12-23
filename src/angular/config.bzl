@@ -1,5 +1,6 @@
 entryPoints = [
     # do not sort
+    "core/error",
     "core/oauth",
     "core/testing",
     "icon",

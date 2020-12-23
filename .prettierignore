@@ -6,7 +6,9 @@ angular.json
 .vscode/*
 src/*/schematics/*/*/files
 src/*/schematics/ng-update/test-cases
+src/*/schematics/ng-add/test-cases
 src/angular-core/icon/icon-cdn-provider.ts
+src/angular/icon/icon-cdn-provider.ts
 schematics/*/index.js
 schematics/*/files
 coverage
