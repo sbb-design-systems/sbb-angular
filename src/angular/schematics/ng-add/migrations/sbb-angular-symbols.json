@@ -90,6 +90,8 @@
   "Breakpoints": "core/breakpoints",
   "SCALING_FACTOR_4K": "core/breakpoints",
   "SCALING_FACTOR_5K": "core/breakpoints",
+  "SbbIconDirective": "core/icon-directive",
+  "SbbIconDirectiveModule": "core/icon-directive",
   "SbbAccordionModule": "accordion",
   "SbbAccordion": "accordion",
   "SbbEsriConfigModule": "esri-config",

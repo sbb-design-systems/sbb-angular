@@ -11,4 +11,9 @@ import {
   SbbBusinessDateAdapter,
 } from '@sbb-esta/angular-core/datetime';
 import { TypeRef, mixinDisabled, mixinErrorState } from '@sbb-esta/angular-core/common-behaviors';
-import { Breakpoints, SCALING_FACTOR_4K, SCALING_FACTOR_5K } from '@sbb-esta/angular-core/breakpoints';
+import {
+  Breakpoints,
+  SCALING_FACTOR_4K,
+  SCALING_FACTOR_5K,
+} from '@sbb-esta/angular-core/breakpoints';
+import { SbbIconDirectiveModule, SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
