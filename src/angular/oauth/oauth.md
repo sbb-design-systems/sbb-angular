@@ -13,7 +13,7 @@ This module provides the function `resourceAccess`, which can be used to read
 the client roles from an SBB SSO access token.
 
 ```ts
-import { resourceAccess } from '@sbb-esta/angular/core/oauth';
+import { resourceAccess } from '@sbb-esta/angular/oauth';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
