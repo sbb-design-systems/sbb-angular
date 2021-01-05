@@ -1,6 +1,7 @@
 import { FormControl, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { SbbErrorStateMatcher } from '@sbb-esta/angular/core/error';
 import { Subject } from 'rxjs';
+
+import { SbbErrorStateMatcher } from '../error/error-options';
 
 import { Constructor } from './constructor';
 
