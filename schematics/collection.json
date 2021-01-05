@@ -12,6 +12,10 @@
     "public2business": {
       "description": "Copy public components to business",
       "factory": "./public2business/index#public2business"
+    },
+    "mergeSymbols": {
+      "description": "Create map for symbols of all packages to migrate to @sbb-esta/angular package",
+      "factory": "./merge-symbols/index#mergeSymbols"
     }
   }
 }
