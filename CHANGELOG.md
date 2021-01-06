@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.0.3](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.2...11.0.3) (2021-01-06)
+
+
+### Bug Fixes
+
+* **public:** fix autocomplete accessibility and shadow DOM usage of sbb-search ([#692](https://github.com/sbb-design-systems/sbb-angular/issues/692)) ([6e86a98](https://github.com/sbb-design-systems/sbb-angular/commit/6e86a9811c7d66fe65d7a6c2fc17dbaa5f9576db))
+* **showcase:** remove obsolete code in sbb-expansion-panel example ([#696](https://github.com/sbb-design-systems/sbb-angular/issues/696)) ([855b416](https://github.com/sbb-design-systems/sbb-angular/commit/855b416faeb916968ff4acfcc3a17d343181a543))
+* allow shadow DOM usage of sbb-dropdown ([#690](https://github.com/sbb-design-systems/sbb-angular/issues/690)) ([9c5c93c](https://github.com/sbb-design-systems/sbb-angular/commit/9c5c93cb5a5c90323bd2104d9da578988c84a454))
+* allow shadow DOM usage of sbb-tooltip ([#694](https://github.com/sbb-design-systems/sbb-angular/issues/694)) ([d5129f5](https://github.com/sbb-design-systems/sbb-angular/commit/d5129f5107d4f2b56194bb437e925a11b052bc44))
+
 ### [11.0.2](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.1...11.0.2) (2020-12-10)
 
 
