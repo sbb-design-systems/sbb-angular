@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.11.0 of the icon CDN.
+ * Generated from version v1.12.0 of the icon CDN.
  * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
@@ -98,11 +98,11 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
    *  - @sbb-esta/angular-business/option: kom:tick-small
    *  - @sbb-esta/angular-business/pagination: kom:chevron-small-left-circle-small, kom:chevron-small-left-small, kom:chevron-small-right-circle-small, kom:chevron-small-right-small
    *  - @sbb-esta/angular-business/processflow: kom:chevron-right-small
-   *  - @sbb-esta/angular-business/select: kom:chevron-small-down-small
+   *  - @sbb-esta/angular-business/select: kom:chevron-right-small, kom:chevron-small-down-small
    *  - @sbb-esta/angular-business/sidebar: kom:arrow-right-small, kom:chevron-small-left-circle-small, kom:cross-small, kom:hamburger-menu-small
    *  - @sbb-esta/angular-business/status: kom:cross-small, kom:exclamation-point-small, kom:tick-small
    *  - @sbb-esta/angular-business/tooltip: kom:circle-question-mark-small, kom:cross-small
-   *  - @sbb-esta/angular-business/usermenu: kom:chevron-small-down-small, kom:user-small
+   *  - @sbb-esta/angular-business/usermenu: kom:chevron-right-small, kom:chevron-small-down-small, kom:user-small
    *  - @sbb-esta/angular-public/accordion: kom:chevron-right-small, kom:minus-small, kom:plus-small
    *  - @sbb-esta/angular-public/breadcrumb: kom:chevron-small-down-circle-small, kom:chevron-small-right-small
    *  - @sbb-esta/angular-public/checkbox-panel: kom:tick-small
@@ -116,9 +116,9 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
    *  - @sbb-esta/angular-public/pagination: kom:chevron-small-left-circle-small, kom:chevron-small-left-small, kom:chevron-small-right-circle-small, kom:chevron-small-right-small
    *  - @sbb-esta/angular-public/processflow: kom:chevron-right-small
    *  - @sbb-esta/angular-public/search: kom:magnifying-glass-small
-   *  - @sbb-esta/angular-public/select: kom:chevron-small-down-small
+   *  - @sbb-esta/angular-public/select: kom:chevron-right-small, kom:chevron-small-down-small
    *  - @sbb-esta/angular-public/tooltip: kom:circle-question-mark-small, kom:cross-small
-   *  - @sbb-esta/angular-public/usermenu: kom:chevron-small-down-small, kom:user-small
+   *  - @sbb-esta/angular-public/usermenu: kom:chevron-right-small, kom:chevron-small-down-small, kom:user-small
    */
   const registry =
     parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);
@@ -396,6 +396,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'app-icon-medium',
         'apple-bag-medium',
         'backpack-medium',
+        'banknotes-dollar-medium',
         'battery-level-empty-medium',
         'battery-level-high-medium',
         'battery-level-low-medium',
@@ -419,6 +420,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'circle-information-small-medium',
         'circle-play-medium',
         'circle-question-mark-medium',
+        'coin-dollar-medium',
         'coins-medium',
         'contact-medium',
         'controls-medium',
@@ -444,6 +446,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'gears-medium',
         'gift-medium',
         'globe-medium',
+        'gun-medium',
         'hand-fingers-snap-medium',
         'hand-heart-medium',
         'hand-with-service-bell-medium',
@@ -457,6 +460,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'magnifying-glass-minus-medium',
         'magnifying-glass-plus-medium',
         'mug-hot-medium',
+        'narcotic-medium',
         'newspaper-medium',
         'paper-aeroplane-medium',
         'paper-clip-medium',
@@ -748,6 +752,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'charging-station-medium',
         'combined-mobility-medium',
         'container-medium',
+        'double-deck-wagon-medium',
         'driverless-bus-profile-medium',
         'freight-wagon-medium',
         'gear-changing-medium',
@@ -767,6 +772,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'train-medium',
         'train-profile-medium',
         'tram-medium',
+        'wagon-medium',
         'walk-large-medium',
         'mountain-sun-medium',
         'skis-ski-poles-medium',
@@ -781,6 +787,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'app-icon-small',
         'apple-bag-small',
         'backpack-small',
+        'banknotes-dollar-small',
         'battery-level-empty-small',
         'battery-level-high-small',
         'battery-level-low-small',
@@ -804,6 +811,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'circle-information-small',
         'circle-play-small',
         'circle-question-mark-small',
+        'coin-dollar-small',
         'coins-small',
         'contact-small',
         'controls-small',
@@ -829,6 +837,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'gears-small',
         'gift-small',
         'globe-small',
+        'gun-small',
         'hand-fingers-snap-small',
         'hand-heart-small',
         'hand-with-service-bell-small',
@@ -842,6 +851,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'magnifying-glass-plus-small',
         'magnifying-glass-small',
         'mug-hot-small',
+        'narcotic-small',
         'newspaper-small',
         'paper-aeroplane-small',
         'paper-clip-small',
@@ -1133,6 +1143,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'charging-station-small',
         'combined-mobility-small',
         'container-small',
+        'double-deck-wagon-small',
         'driverless-bus-profile-small',
         'freight-wagon-small',
         'gear-changing-small',
@@ -1152,6 +1163,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'train-profile-small',
         'train-small',
         'tram-small',
+        'wagon-small',
         'walk-large-small',
         'mountain-sun-small',
         'skis-ski-poles-small',
