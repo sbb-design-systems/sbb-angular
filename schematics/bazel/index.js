@@ -468,7 +468,7 @@ function bazel(options) {
                 .filter((d) => !options.filter || d === options.filter)
                 .map((d) => srcDir.dir(d))
                 .map((packageDir) => {
-                const isShowcase = packageDir.path.endsWith('showcase');
+                const isShowcase = packageDir.path.includes('showcase');
                 const isAngular = packageDir.path.endsWith('angular');
                 const organization = '@sbb-esta';
                 const srcRoot = 'src';
