@@ -32,6 +32,10 @@ export class SbbLoading extends _SbbLoadingMixinBase implements HasVariant {
   @Input() mode: 'tiny' | 'small' | 'medium' | 'big' | 'fullscreen' | 'fullbox' | 'inline' =
     'medium';
 
+  constructor(elementRef: ElementRef) {
+    super(elementRef);
+  }
+
   // tslint:disable: member-ordering
   static ngAcceptInputType_mode:
     | 'tiny'
