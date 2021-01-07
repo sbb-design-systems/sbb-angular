@@ -9,18 +9,14 @@ const IGNORED_FOLDERS = [
 
 export function mergeSymbols(): Rule {
   return (tree: Tree) => {
-    const symbols: { [key: string]: string } = {};
+    let symbols: { [key: string]: string } = {};
 
     extractExportsForModule('src/angular/');
     extractExportsForModule('src/angular-maps/');
-
-    // TODO: sort by module path and then by key
-    const sortedSymbols = Object.keys(symbols)
-      .sort()
-      .reduce((r: { [key: string]: string }, k) => ((r[k] = symbols[k]), r), {});
+    sortSymbols();
 
     // TODO: write to filesystem
-    console.log(JSON.stringify(sortedSymbols, null, 4));
+    console.log(JSON.stringify(symbols, null, 4));
 
     function extractExportsForModule(rootPath: string) {
       tree.getDir(rootPath).visit((filePath, moduleDirEntry) => {
@@ -113,6 +109,13 @@ export function mergeSymbols(): Rule {
         );
       }
       symbols[name] = modulePath;
+    }
+
+    function sortSymbols() {
+      symbols = Object.entries(symbols)
+        .sort(([a], [b]) => a.localeCompare(b)) // sort by key
+        .sort(([, a], [, b]) => a.localeCompare(b)) // sort by value
+        .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
     }
   };
 }
