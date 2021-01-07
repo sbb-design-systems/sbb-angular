@@ -14,7 +14,6 @@
   "SbbIconLocation": "icon",
   "SBB_ICON_LOCATION_FACTORY": "icon",
   "SbbIcon": "icon",
-  "ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER": "icon",
   "SbbIconTestingModule": "icon/testing",
   "FakeSbbIconRegistry": "icon/testing",
   "FakeMediaQueryList": "core/testing",
@@ -92,8 +91,5 @@
   "SCALING_FACTOR_5K": "core",
   "SbbIconDirective": "core",
   "SbbIconDirectiveModule": "core",
-  "SbbAccordionModule": "accordion",
-  "SbbAccordion": "accordion",
-  "SbbEsriConfigModule": "esri-config",
-  "IconKRModule": "icon dummy entry for testing"
+  "SbbEsriConfigModule": "esri-config"
 }

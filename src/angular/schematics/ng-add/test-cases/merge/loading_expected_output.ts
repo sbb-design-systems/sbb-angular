@@ -1,5 +1,4 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 import { SbbLoadingModule, SbbLoading } from '@sbb-esta/angular/loading';
 import { SbbLoadingModule as SbbBusinessLoadingModule } from '@sbb-esta/angular/loading';
 import { SbbLoadingModule as SbbBusinessLoadingModuleSecond } from '@sbb-esta/angular/loading';
