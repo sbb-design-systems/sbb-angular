@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input } from '@angular/core';
+import { HasVariant, HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
+
+// Boilerplate for applying mixins to SbbLoading.
+/** @docs-private */
+class SbbLoadingBase {
+  constructor(public _elementRef: ElementRef) {}
+}
+
+// tslint:disable-next-line: naming-convention
+const _SbbLoadingMixinBase: HasVariantCtor & typeof SbbLoadingBase = mixinVariant(SbbLoadingBase);
 
 @Component({
   selector: 'sbb-loading',
@@ -17,7 +27,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     '[class.sbb-loading-inline]': `this.mode === 'inline'`,
   },
 })
-export class SbbLoading {
+export class SbbLoading extends _SbbLoadingMixinBase implements HasVariant {
   /** Types of mode for loading indicator. */
   @Input() mode: 'tiny' | 'small' | 'medium' | 'big' | 'fullscreen' | 'fullbox' | 'inline' =
     'medium';

@@ -5,6 +5,7 @@ export * from './common-behaviors/error-state';
 export * from './common-behaviors/initialized';
 export * from './common-behaviors/tabindex';
 export * from './common-behaviors/type-ref';
+export * from './common-behaviors/variant';
 export * from './datetime/business-date-adapter';
 export * from './datetime/business-date-adapter-provider';
 export * from './datetime/date-adapter';
