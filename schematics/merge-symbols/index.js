@@ -17,8 +17,7 @@ function mergeSymbols() {
         extractExportsForModule('src/angular/');
         extractExportsForModule('src/angular-maps/');
         sortSymbols();
-        // TODO: write to filesystem
-        console.log(JSON.stringify(symbols, null, 4));
+        tree.overwrite('/src/angular/schematics/ng-add/migrations/sbb-angular-symbols.json', JSON.stringify(symbols, null, 2));
         function extractExportsForModule(rootPath) {
             tree.getDir(rootPath).visit((filePath, moduleDirEntry) => {
                 if (!(moduleDirEntry && filePath.endsWith('.ts') && !filePath.endsWith('.spec.ts')) ||
