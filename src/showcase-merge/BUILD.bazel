@@ -40,7 +40,6 @@ ng_ts_library(
 )
 
 ALL_EXAMPLES = [
-
 ]
 
 filegroup(
