@@ -8,8 +8,10 @@
   "linterOptions": {
     "exclude": [
       "tools/dgeni/**/*.ts",
+      "src/angular/schematics/ng-add/test-cases/**/*",
       "src/angular-core/schematics/ng-update/test-cases/**/*",
-      "src/showcase/assets/stackblitz/**/*.ts"
+      "src/showcase/assets/stackblitz/**/*.ts",
+      "src/showcase-merge/assets/stackblitz/**/*.ts"
     ]
   },
   "rules": {

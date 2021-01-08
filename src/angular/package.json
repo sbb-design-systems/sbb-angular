@@ -1,0 +1,40 @@
+{
+  "name": "@sbb-esta/angular",
+  "version": "0.0.0-PLACEHOLDER",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbb-design-systems/sbb-angular.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sbb-design-systems/sbb-angular/issues"
+  },
+  "homepage": "https://angular.app.sbb.ch/latest",
+  "peerDependencies": {
+    "@angular/cdk": "0.0.0-CDK",
+    "@angular/common": "0.0.0-NG",
+    "@angular/core": "0.0.0-NG",
+    "@angular/forms": "0.0.0-NG",
+    "@angular/router": "0.0.0-NG"
+  },
+  "dependencies": {
+    "@types/grecaptcha": "^2.0.36"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "packageGroup": [
+      "@sbb-esta/angular",
+      "@sbb-esta/angular-business",
+      "@sbb-esta/angular-core",
+      "@sbb-esta/angular-icons",
+      "@sbb-esta/angular-keycloak",
+      "@sbb-esta/angular-maps",
+      "@sbb-esta/angular-public"
+    ],
+    "packageGroupName": "@sbb-esta/angular"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -18,7 +18,7 @@ export class NgPackage extends NgModule {
 
   constructor(dir: DirEntry, tree: Tree, context: BazelSchematicContext) {
     super(dir, tree, context);
-    this.shortName = this.name.replace('angular-', '');
+    this.shortName = this.name.replace('angular-', '').replace('components-', '');
     const ngModules = this.ngModules().slice(1);
     this.entryPoints = ngModules.map((m) => this._resolvePath(m));
     this.hasReadme = dir.subfiles.includes(fragment('README.md'));

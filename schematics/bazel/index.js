@@ -187,7 +187,7 @@ class NgPackage extends NgModule {
     constructor(dir, tree, context) {
         super(dir, tree, context);
         this._templateUrl = './files/ngPackage';
-        this.shortName = this.name.replace('angular-', '');
+        this.shortName = this.name.replace('angular-', '').replace('components-', '');
         const ngModules = this.ngModules().slice(1);
         this.entryPoints = ngModules.map((m) => this._resolvePath(m));
         this.hasReadme = dir.subfiles.includes(core.fragment('README.md'));
@@ -468,7 +468,9 @@ function bazel(options) {
                 .filter((d) => !options.filter || d === options.filter)
                 .map((d) => srcDir.dir(d))
                 .map((packageDir) => {
-                const isShowcase = packageDir.path.endsWith('showcase');
+                const isShowcase = packageDir.path.includes('showcase');
+                const isAngular = packageDir.path.endsWith('angular') ||
+                    packageDir.path.endsWith('components-examples');
                 const organization = '@sbb-esta';
                 const srcRoot = 'src';
                 const moduleDetector = isShowcase
@@ -491,17 +493,8 @@ function bazel(options) {
                     .set('/angular-core/styles/common', '//src/angular-core/styles:common_scss_lib')
                     .set('external/npm/node_modules/@angular/cdk/a11y', '//src/angular-core/styles:common_scss_lib'));
                 const bazelGenruleResolver = new BazelGenruleResolver();
-                return packageDir.path.endsWith('showcase')
-                    ? new ShowcasePackage(packageDir, tree, {
-                        ...context,
-                        organization,
-                        srcRoot,
-                        moduleDetector,
-                        typeScriptDependencyResolver,
-                        sassDependencyResolver,
-                        bazelGenruleResolver,
-                    })
-                    : new NgPackage(packageDir, tree, {
+                if (isShowcase) {
+                    return new ShowcasePackage(packageDir, tree, {
                         ...context,
                         organization,
                         srcRoot,
@@ -510,6 +503,31 @@ function bazel(options) {
                         sassDependencyResolver,
                         bazelGenruleResolver,
                     });
+                }
+                else if (isAngular) {
+                    return new NgPackage(packageDir, tree, {
+                        ...context,
+                        organization,
+                        srcRoot,
+                        moduleDetector,
+                        typeScriptDependencyResolver,
+                        sassDependencyResolver: new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, new Map()
+                            .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
+                            .set('external/npm/node_modules/@angular/cdk/a11y', '//src/angular/styles:common_scss_lib')),
+                        bazelGenruleResolver,
+                    });
+                }
+                else {
+                    return new NgPackage(packageDir, tree, {
+                        ...context,
+                        organization,
+                        srcRoot,
+                        moduleDetector,
+                        typeScriptDependencyResolver,
+                        sassDependencyResolver,
+                        bazelGenruleResolver,
+                    });
+                }
             })
                 .reduce((current, next) => current.concat(next.render()), []));
         }

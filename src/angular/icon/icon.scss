@@ -1,0 +1,41 @@
+.sbb-icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  line-height: 0;
+
+  // If any ancestor has .sbb-icon-fit as a class, this rule will be applied.
+  .sbb-icon-fit &,
+  .sbb-icon-fit & svg,
+  &.sbb-icon-fit,
+  &.sbb-icon-fit svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  svg:not(.color-immutable) {
+    [fill]:not([fill='none']) {
+      fill: currentColor;
+    }
+
+    [stroke]:not([stroke='none']) {
+      stroke: currentColor;
+    }
+
+    // TODO: Maybe improve this solution in CDN Image
+    & >,
+    :not([stroke]):not([fill]) {
+      path:not([stroke]):not([fill]),
+      polygon:not([stroke]):not([fill]),
+      polyline:not([stroke]):not([fill]) {
+        fill: currentColor;
+      }
+    }
+  }
+
+  &.sbb-icon-inline {
+    font-size: inherit;
+    height: inherit;
+    line-height: inherit;
+    width: inherit;
+  }
+}

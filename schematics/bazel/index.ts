@@ -33,7 +33,10 @@ export function bazel(options: { filter?: string }): Rule {
           .filter((d) => !options.filter || d === options.filter)
           .map((d) => srcDir.dir(d))
           .map((packageDir) => {
-            const isShowcase = packageDir.path.endsWith('showcase');
+            const isShowcase = packageDir.path.includes('showcase');
+            const isAngular =
+              packageDir.path.endsWith('angular') ||
+              packageDir.path.endsWith('components-examples');
             const organization = '@sbb-esta';
             const srcRoot = 'src';
             const moduleDetector = isShowcase
@@ -69,25 +72,47 @@ export function bazel(options: { filter?: string }): Rule {
                 )
             );
             const bazelGenruleResolver = new BazelGenruleResolver();
-            return isShowcase
-              ? new ShowcasePackage(packageDir, tree, {
-                  ...context,
-                  organization,
-                  srcRoot,
+            if (isShowcase) {
+              return new ShowcasePackage(packageDir, tree, {
+                ...context,
+                organization,
+                srcRoot,
+                moduleDetector,
+                typeScriptDependencyResolver,
+                sassDependencyResolver,
+                bazelGenruleResolver,
+              });
+            } else if (isAngular) {
+              return new NgPackage(packageDir, tree, {
+                ...context,
+                organization,
+                srcRoot,
+                moduleDetector,
+                typeScriptDependencyResolver,
+                sassDependencyResolver: new FlexibleSassDependencyResolver(
                   moduleDetector,
-                  typeScriptDependencyResolver,
-                  sassDependencyResolver,
-                  bazelGenruleResolver,
-                })
-              : new NgPackage(packageDir, tree, {
-                  ...context,
-                  organization,
-                  srcRoot,
-                  moduleDetector,
-                  typeScriptDependencyResolver,
-                  sassDependencyResolver,
-                  bazelGenruleResolver,
-                });
+                  npmDependencyResolver,
+                  context.logger,
+                  new Map<string, string>()
+                    .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
+                    .set(
+                      'external/npm/node_modules/@angular/cdk/a11y',
+                      '//src/angular/styles:common_scss_lib'
+                    )
+                ),
+                bazelGenruleResolver,
+              });
+            } else {
+              return new NgPackage(packageDir, tree, {
+                ...context,
+                organization,
+                srcRoot,
+                moduleDetector,
+                typeScriptDependencyResolver,
+                sassDependencyResolver,
+                bazelGenruleResolver,
+              });
+            }
           })
           .reduce((current, next) => current.concat(next.render()), [] as Rule[])
       );

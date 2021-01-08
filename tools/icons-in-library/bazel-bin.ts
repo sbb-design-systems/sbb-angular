@@ -8,7 +8,7 @@ if (require.main === module) {
     .map((filePath) => filePath.trim())
     .filter((s) => s.endsWith('.html'))
     .forEach((file) => {
-      const moduleName = `@sbb-esta/${file.match(/src\/(angular-\w+\/[\w-]+)/)![1]}`;
+      const moduleName = `@sbb-esta/${file.match(/src\/([\w-]+\/[\w-]+)/)![1]}`;
       const content = readFileSync(file, 'utf8');
       const detectedIcons = findIcons(content);
       if (!detectedIcons.length) {

@@ -10,7 +10,7 @@ import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema
 
 import { hasNgModuleProvider, readStringFile } from '../utils';
 
-import { addIconCdnProvider, ICON_CDN_REGISTRY_NAME } from './index';
+import { ICON_CDN_REGISTRY_NAME } from './index';
 
 /** Path to the schematic collection that includes the migrations. */
 // tslint:disable-next-line: naming-convention
@@ -58,20 +58,5 @@ describe('ngAdd', () => {
       ICON_CDN_REGISTRY_NAME
     );
     expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeTrue();
-  });
-
-  it('should add ICON_CDN_REGISTRY_NAME to AppModule providers', async () => {
-    const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, appOptions.name);
-    const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
-
-    await runner.callRule(addIconCdnProvider({ project: appOptions.name }), tree).toPromise();
-    expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeTrue();
-    const expected = readStringFile(tree, '/projects/dummy/src/app/app.module.ts');
-
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
-    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toEqual(
-      readStringFile(tree, '/projects/dummy/src/app/app.module.ts')
-    );
   });
 });

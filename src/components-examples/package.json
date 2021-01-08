@@ -1,0 +1,24 @@
+{
+  "name": "@sbb-esta/examples",
+  "version": "0.0.0-PLACEHOLDER",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbb-design-systems/sbb-angular.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sbb-design-systems/sbb-angular/issues"
+  },
+  "homepage": "https://angular.app.sbb.ch",
+  "peerDependencies": {
+    "@angular/cdk": "0.0.0-CDK",
+    "@angular/common": "0.0.0-NG",
+    "@angular/core": "0.0.0-NG",
+    "@angular/forms": "0.0.0-NG",
+    "@angular/router": "0.0.0-NG",
+    "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER"
+  },
+  "dependencies": {
+    "@types/grecaptcha": "^2.0.36"
+  }
+}

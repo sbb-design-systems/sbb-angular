@@ -1,0 +1,28 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "angular",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/angular-business/accordion",
+        "//src/angular-business/sidebar",
+        "//src/angular-public/tabs",
+        "//src/components-examples",
+        "//src/showcase-merge/app/shared",
+        "//src/showcase-merge/app/shared/component-viewer",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
