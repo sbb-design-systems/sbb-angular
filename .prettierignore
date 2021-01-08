@@ -21,3 +21,4 @@ CONTRIBUTING.md
 *.bzl
 WORKSPACE
 src/showcase/assets/stackblitz/*
+src/showcase-merge/assets/stackblitz/*

@@ -1,0 +1,13 @@
+@import '../../angular-core/styles/common';
+
+:host {
+  display: block;
+}
+
+.sbb-icon-sidebar.sbb-icon-sidebar-expanded {
+  width: pxToRem(260px);
+}
+
+.sbb-icon-sidebar .sbb-icon-sidebar-item.sbb-deprecated-link {
+  text-decoration: line-through;
+}

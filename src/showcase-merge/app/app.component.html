@@ -1,0 +1,34 @@
+<sbb-header label="SBB Angular" [subtitle]="'Version ' + showcaseVersion">
+  <sbb-app-chooser-section label="Links">
+    <a target="_blank" href="https://github.com/sbb-design-systems/sbb-angular">GitHub</a>
+    <a target="_blank" href="https://angular.io/">Angular {{ angularVersion }}</a>
+  </sbb-app-chooser-section>
+  <a routerLink="/">Introduction</a>
+  <a routerLink="/howtoupdate">How to update</a>
+</sbb-header>
+
+<sbb-icon-sidebar-container>
+  <sbb-icon-sidebar [expanded]="expanded">
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular"
+      title="@sbb-esta/angular"
+      routerLink="/angular"
+      routerLinkActive="sbb-active"
+    >
+      <sbb-icon svgIcon="kom:globe-small"></sbb-icon>
+    </a>
+    <a
+      sbbIconSidebarItem
+      label="@sbb-esta/angular-maps"
+      title="@sbb-esta/angular-maps"
+      routerLink="/maps"
+      routerLinkActive="sbb-active"
+    >
+      <sbb-icon svgIcon="kom:location-pin-map-small"></sbb-icon>
+    </a>
+  </sbb-icon-sidebar>
+  <sbb-icon-sidebar-content role="main">
+    <router-outlet></router-outlet>
+  </sbb-icon-sidebar-content>
+</sbb-icon-sidebar-container>

@@ -1,0 +1,203 @@
+@import '@angular/cdk/a11y';
+@import '@angular/cdk/overlay';
+@import '../angular-core/styles/main';
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+@include sbbFonts();
+@include reset();
+@include sbbLink();
+@include cdk-a11y();
+@include cdk-overlay();
+@include sbbOverlay();
+@include sbbScrollbar();
+
+sbb-public,
+sbb-maps,
+sbb-core,
+sbb-icons,
+.cdk-overlay-container {
+  @import '../angular-public/style_bundle';
+  sbb-markdown-viewer,
+  sbb-component-viewer,
+  sbb-api-viewer,
+  sbb-icon-search,
+  sbb-icon-viewer,
+  sbb-experimental-icon-search,
+  sbb-icon-overview,
+  sbb-lightbox-container {
+    @include sbbHeadings();
+    @include sbbParagraph();
+    @include lists;
+    @include sbbInputFields();
+    @include sbbTextarea();
+    @include sbbSelect();
+    @include sbbFieldset();
+    @include sbbTimeInputField();
+    @include sbbTable();
+  }
+}
+
+sbb-business,
+.cdk-overlay-container {
+  @import '../angular-business/style_bundle';
+  sbb-markdown-viewer,
+  sbb-business-component-viewer,
+  sbb-dialog-container {
+    @include sbbHeadings();
+    @include sbbParagraph();
+    @include lists;
+    @include sbbInputFields();
+    @include sbbTextarea();
+    @include sbbSelect();
+    @include sbbFieldset();
+    @include sbbTimeInputField();
+    @include sbbTable();
+  }
+}
+
+sbb-markdown-viewer,
+sbb-component-viewer,
+sbb-how-to-update {
+  pre {
+    background-color: #efefef;
+    padding: 1rem 1.5rem;
+    margin: 1rem -1.5rem;
+    white-space: pre-wrap;
+  }
+}
+
+sbb-component-viewer sbb-example-viewer pre {
+  margin: 1rem -24px;
+  white-space: pre-wrap;
+}
+
+sbb-business-component-viewer {
+  pre {
+    background-color: #efefef;
+    padding: 1rem 16px;
+    margin: 1rem -16px;
+    white-space: pre-wrap;
+  }
+
+  sbb-business-example-viewer pre {
+    margin: 1rem -16px;
+    white-space: pre-wrap;
+  }
+}
+
+sbb-api-viewer,
+sbb-markdown-viewer {
+  > .docs-markdown > h1:first-child {
+    margin-top: 0;
+  }
+}
+
+code {
+  background-color: #efefef;
+  padding: 3px;
+}
+
+pre code {
+  padding: 0;
+}
+
+.content h4 {
+  margin-bottom: 0.5rem;
+}
+
+.docs-api {
+  .docs-api-h3 {
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .docs-api-h4 code {
+    font-size: 150%;
+  }
+
+  .docs-api-deprecated-marker {
+    font-style: italic;
+
+    &:before {
+      content: '\26A0';
+    }
+  }
+
+  .docs-api-class-deprecated-marker,
+  .docs-api-interface-deprecated-marker,
+  .docs-api-constant-deprecated-marker,
+  .docs-api-type-alias-deprecated-marker {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #efefef;
+
+    &:before {
+      content: '\26A0';
+    }
+  }
+
+  .docs-api-class-selector-name {
+    background-color: #efefef;
+    padding: 3px;
+  }
+
+  .docs-api-module-import code {
+    font-size: large;
+    padding: 5px;
+  }
+
+  table {
+    width: 100%;
+
+    &.docs-api-method-table th {
+      text-align: left;
+    }
+  }
+
+  .docs-api-properties-name-cell {
+    .docs-api-input-marker,
+    .docs-api-output-marker {
+      font-size: 80%;
+    }
+
+    .docs-api-property-name {
+      margin-top: 0;
+
+      code {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.sbbsc-block {
+  margin-bottom: 0.5rem;
+}
+
+sbb-introduction,
+sbb-how-to-update {
+  display: block;
+  padding: 0 1.5rem;
+
+  h1 {
+    color: #eb0000;
+    font-size: 24px;
+    font-weight: 200;
+    line-height: 27px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    max-width: 700px;
+  }
+
+  a {
+    line-height: pxToEm(23px);
+    font-size: pxToRem($sizeFontDefault);
+  }
+}

@@ -1,0 +1,8 @@
+:host {
+  display: block;
+  padding: 3rem;
+}
+
+:host-context(sbb-public, sbb-business, sbb-core, sbb-icons) {
+  margin-left: 300px;
+}

@@ -24,6 +24,7 @@
     "bazel:cache": "ts-node-script ./scripts/cache.ts",
     "start": "npm-run-all build:public2business --parallel start:devserver watch:public2business",
     "start:devserver": "ibazel run //src/showcase:devserver",
+    "start:devserver:dev-app": "ibazel run //src/showcase-merge:devserver",
     "start:prod": "npm-run-all build:public2business --parallel start:prodserver watch:public2business",
     "start:prodserver": "ibazel run //src/showcase:prodserver",
     "test": "node ./scripts/run-component-tests.js",
