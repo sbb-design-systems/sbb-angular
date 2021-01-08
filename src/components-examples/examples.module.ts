@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-
-import { LoadingExamplesModule } from './loading/loading-examples.module';
+import { LoadingExamplesModule } from '@sbb-esta/components-examples/angular/loading';
 
 const EXAMPLES = [LoadingExamplesModule];
 

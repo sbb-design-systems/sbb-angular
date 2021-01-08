@@ -34,7 +34,9 @@ export function bazel(options: { filter?: string }): Rule {
           .map((d) => srcDir.dir(d))
           .map((packageDir) => {
             const isShowcase = packageDir.path.includes('showcase');
-            const isAngular = packageDir.path.endsWith('angular');
+            const isAngular =
+              packageDir.path.endsWith('angular') ||
+              packageDir.path.endsWith('components-examples');
             const organization = '@sbb-esta';
             const srcRoot = 'src';
             const moduleDetector = isShowcase

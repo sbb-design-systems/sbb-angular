@@ -187,7 +187,7 @@ class NgPackage extends NgModule {
     constructor(dir, tree, context) {
         super(dir, tree, context);
         this._templateUrl = './files/ngPackage';
-        this.shortName = this.name.replace('angular-', '');
+        this.shortName = this.name.replace('angular-', '').replace('components-', '');
         const ngModules = this.ngModules().slice(1);
         this.entryPoints = ngModules.map((m) => this._resolvePath(m));
         this.hasReadme = dir.subfiles.includes(core.fragment('README.md'));
@@ -469,7 +469,8 @@ function bazel(options) {
                 .map((d) => srcDir.dir(d))
                 .map((packageDir) => {
                 const isShowcase = packageDir.path.includes('showcase');
-                const isAngular = packageDir.path.endsWith('angular');
+                const isAngular = packageDir.path.endsWith('angular') ||
+                    packageDir.path.endsWith('components-examples');
                 const organization = '@sbb-esta';
                 const srcRoot = 'src';
                 const moduleDetector = isShowcase

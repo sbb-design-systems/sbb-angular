@@ -1,5 +1,5 @@
 load(
-    "//src/examples:config.bzl",
+    "//src/components-examples:config.bzl",
     "EXAMPLES_ENTRYPOINTS",
     "EXAMPLES_MARKDOWN_TARGETS",
     "EXAMPLES_TARGETS",
@@ -14,18 +14,15 @@ load(
 
 package(default_visibility = ["//visibility:public"])
 
-# Root "@sbb-esta/examples" entry-point.
+# Root "@sbb-esta/components-examples" entry-point.
 ng_module(
-    name = "examples",
+    name = "components-examples",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/examples",
-    deps = ["//src/examples/%s" % p for p in EXAMPLES_ENTRYPOINTS] + [
-        "//src/angular-public/button",
-        "//src/angular/loading",
-        "@npm//@angular/common",
+    module_name = "@sbb-esta/components-examples",
+    deps = ["//src/components-examples/%s" % p for p in EXAMPLES_ENTRYPOINTS] + [
         "@npm//@angular/core",
     ],
 )
@@ -37,10 +34,10 @@ markdown_to_html(
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/examples/%s:overview" % name for name in EXAMPLES_MARKDOWN_TARGETS],
+    srcs = [":overview"] + ["//src/components-examples/%s:overview" % name for name in EXAMPLES_MARKDOWN_TARGETS],
 )
 
-# Creates the @sbb-esta/examples package published to npm.
+# Creates the @sbb-esta/components-examples package published to npm.
 ng_package(
     name = "npm_package",
     srcs = [
@@ -49,7 +46,7 @@ ng_package(
     data = [
     ],
     entry_point = ":public-api.ts",
-    entry_point_name = "examples",
+    entry_point_name = "components-examples",
     tags = ["release-package"],
     deps = EXAMPLES_TARGETS + EXAMPLES_TESTING_TARGETS,
 )
