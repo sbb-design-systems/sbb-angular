@@ -17,6 +17,8 @@ interface ExampleMetadata {
   id: string;
   /** Title of the example. */
   title: string;
+  /** Number to define order of examples. */
+  order: number;
   /** Additional components for this example. */
   additionalComponents: string[];
   /** Files for this example. */
@@ -115,6 +117,7 @@ function analyzeExamples(sourceFiles: string[], baseDir: string): AnalyzedExampl
         selector: primaryComponent.selector,
         componentName: primaryComponent.componentName,
         title: primaryComponent.title.trim(),
+        order: primaryComponent.order,
         additionalComponents: [],
         files: [],
         module: null,
@@ -187,6 +190,12 @@ function analyzeExamples(sourceFiles: string[], baseDir: string): AnalyzedExampl
     }
 
     example.module = parentModule;
+  });
+
+  exampleMetadata.sort((a, b) => {
+    const packageComparison = a.module.packagePath.localeCompare(b.module.packagePath);
+    const orderComparison = a.order - b.order;
+    return packageComparison === 0 ? orderComparison : packageComparison;
   });
 
   return { exampleMetadata };

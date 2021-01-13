@@ -4,6 +4,7 @@ interface ParsedMetadata {
   isPrimary: boolean;
   componentName: string;
   title: string;
+  order: number;
   selector: string;
   templateUrl: string;
   styleUrls: string[];
@@ -34,6 +35,9 @@ export function parseExampleFile(fileName: string, content: string): ParsedMetad
               if (tagName === 'title') {
                 meta.title = tagValue;
                 meta.isPrimary = true;
+              }
+              if (tagName === 'order') {
+                meta.order = parseInt(tagValue, 10);
               }
             }
           }

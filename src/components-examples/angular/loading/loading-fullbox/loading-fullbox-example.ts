@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 /**
  * @title Fullbox loading
+ * @order 20
  */
 @Component({
   selector: 'sbb-loading-fullbox-example',

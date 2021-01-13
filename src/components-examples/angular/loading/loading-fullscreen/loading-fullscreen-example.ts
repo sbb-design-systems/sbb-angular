@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 /**
  * @title Fullscreen loading
+ * @order 30
  */
 @Component({
   selector: 'sbb-loading-fullscreen-example',
