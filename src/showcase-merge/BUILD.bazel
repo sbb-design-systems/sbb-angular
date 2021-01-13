@@ -39,14 +39,6 @@ ng_ts_library(
     ],
 )
 
-ALL_EXAMPLES = [
-]
-
-filegroup(
-    name = "example-source-files",
-    srcs = ["%s:source-files" % pkg for pkg in ALL_EXAMPLES],
-)
-
 highlight_files(
     name = "highlighted-source-files",
     srcs = [":example-source-files"],

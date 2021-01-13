@@ -18,7 +18,6 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
-        "//src/angular-public/tabs",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

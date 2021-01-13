@@ -10,6 +10,7 @@ import { RunSchematicTask } from '@angular-devkit/schematics/tasks';
 import { BazelGenruleResolver } from './bazel-genrule-resolver';
 import { AppBazelModuleDetector, LibraryBazelModuleDetector } from './bazel-module-detector';
 import { NgPackage } from './ng-package';
+import { NgPackageExamples } from './ng-package-examples';
 import { NpmDependencyResolver } from './npm-dependency-resolver';
 import { FlexibleSassDependencyResolver } from './sass-dependency-resolver';
 import { ShowcasePackage } from './showcase-package';
@@ -17,6 +18,8 @@ import {
   RelativeModuleTypeScriptDependencyResolver,
   StrictModuleTypeScriptDependencyResolver,
 } from './typescript-dependency-resolver';
+
+declare const v8debug: any;
 
 export function bazel(options: { filter?: string }): Rule {
   return (tree: Tree, context: SchematicContext) => {
@@ -34,9 +37,8 @@ export function bazel(options: { filter?: string }): Rule {
           .map((d) => srcDir.dir(d))
           .map((packageDir) => {
             const isShowcase = packageDir.path.includes('showcase');
-            const isAngular =
-              packageDir.path.endsWith('angular') ||
-              packageDir.path.endsWith('components-examples');
+            const isAngular = packageDir.path.endsWith('angular');
+            const isComponentsExamples = packageDir.path.endsWith('components-examples');
             const organization = '@sbb-esta';
             const srcRoot = 'src';
             const moduleDetector = isShowcase
@@ -102,6 +104,26 @@ export function bazel(options: { filter?: string }): Rule {
                 ),
                 bazelGenruleResolver,
               });
+            } else if (isComponentsExamples) {
+              return new NgPackageExamples(packageDir, tree, {
+                ...context,
+                organization,
+                srcRoot,
+                moduleDetector,
+                typeScriptDependencyResolver,
+                sassDependencyResolver: new FlexibleSassDependencyResolver(
+                  moduleDetector,
+                  npmDependencyResolver,
+                  context.logger,
+                  new Map<string, string>()
+                    .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
+                    .set(
+                      'external/npm/node_modules/@angular/cdk/a11y',
+                      '//src/angular/styles:common_scss_lib'
+                    )
+                ),
+                bazelGenruleResolver,
+              });
             } else {
               return new NgPackage(packageDir, tree, {
                 ...context,
@@ -120,10 +142,13 @@ export function bazel(options: { filter?: string }): Rule {
 
     function isRunViaBuildBazelYarnCommand() {
       return (
-        process.env.npm_config_user_agent &&
-        process.env.npm_config_user_agent.startsWith('yarn') &&
-        process.env.npm_lifecycle_event &&
-        process.env.npm_lifecycle_event === 'generate:bazel'
+        typeof v8debug === 'object' ||
+        /--debug|--inspect/.test(process.execArgv.join(' ')) ||
+        process.env.debugmode ||
+        (process.env.npm_config_user_agent &&
+          process.env.npm_config_user_agent.startsWith('yarn') &&
+          process.env.npm_lifecycle_event &&
+          process.env.npm_lifecycle_event === 'generate:bazel')
       );
     }
   };

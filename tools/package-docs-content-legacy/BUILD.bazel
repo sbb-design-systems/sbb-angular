@@ -4,10 +4,9 @@ load("//tools:defaults.bzl", "ts_library")
 package(default_visibility = ["//visibility:public"])
 
 nodejs_binary(
-    name = "package-docs-content",
+    name = "package-docs-content-legacy",
     data = [
         ":sources",
-        "@npm//fs-extra",
     ],
     entry_point = ":package-docs-content.ts",
 )
@@ -16,8 +15,5 @@ ts_library(
     name = "sources",
     srcs = glob(["**/*.ts"]),
     tsconfig = ":tsconfig.json",
-    deps = [
-        "@npm//@types/fs-extra",
-        "@npm//@types/node",
-    ],
+    deps = ["@npm//@types/node"],
 )

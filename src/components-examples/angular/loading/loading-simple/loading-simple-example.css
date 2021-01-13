@@ -3,9 +3,8 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-
-  > li h4 {
-    padding-bottom: 1em;
-    border-bottom: 1px solid #dcdcdc;
-  }
+}
+.sbbsc-loaders-list > li h4 {
+  padding-bottom: 1em;
+  border-bottom: 1px solid #dcdcdc;
 }

@@ -17,7 +17,6 @@ ng_module(
         "//src/angular-business/accordion",
         "//src/angular-business/sidebar",
         "//src/angular-public/tabs",
-        "//src/components-examples",
         "//src/showcase-merge/app/shared",
         "//src/showcase-merge/app/shared/component-viewer",
         "@npm//@angular/cdk",

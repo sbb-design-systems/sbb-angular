@@ -1,6 +1,6 @@
 load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS")
 load("//src/angular-public:config.bzl", "PUBLIC_ENTRYPOINTS")
-load("//tools/package-docs-content:index.bzl", "package_docs_content")
+load("//tools/package-docs-content-legacy:index.bzl", "package_docs_content_legacy")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -21,7 +21,7 @@ filegroup(
     data = [":docs-content"],
 )
 
-package_docs_content(
+package_docs_content_legacy(
     name = "docs-content",
     srcs = {
         # Package the overviews into the docs content

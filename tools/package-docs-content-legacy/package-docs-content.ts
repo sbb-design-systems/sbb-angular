@@ -1,12 +1,11 @@
 /**
- * Script that will be dispatched by the "package_docs_content" rule and is responsible for
+ * Script that will be dispatched by the "package_docs_content_legacy" rule and is responsible for
  * copying input files to a new location. The new location will be computed within the Bazel
  * rule implementation so that we don't need to compute the output paths with their sections
  * multiple times.
  */
 
-import { copySync, ensureDirSync, readFileSync, statSync, writeFileSync } from 'fs-extra';
-import { dirname } from 'path';
+import { readFileSync, writeFileSync } from 'fs';
 
 /**
  * Determines the command line arguments for the current Bazel action. Since this action can
@@ -32,16 +31,8 @@ if (require.main === module) {
   getBazelActionArguments().forEach((argument) => {
     // Each argument that has been passed consists of an input file path and the expected
     // output path. e.g. {path_to_input_file},{expected_output_path}
-    const [execFilePath, expectedOutput] = argument.split(',', 2);
+    const [inputFilePath, outputPath] = argument.split(',', 2);
 
-    // Ensure the directory exists. Bazel does not create the tree
-    // artifact by default.
-    ensureDirSync(dirname(expectedOutput));
-
-    if (statSync(execFilePath).isDirectory()) {
-      copySync(execFilePath, expectedOutput);
-    } else {
-      writeFileSync(expectedOutput, readFileSync(execFilePath, 'utf8'));
-    }
+    writeFileSync(outputPath, readFileSync(inputFilePath, 'utf8'));
   });
 }

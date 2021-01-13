@@ -95,7 +95,12 @@ export abstract class TypeScriptDependencyResolverBase implements TypeScriptDepe
 
   private _findDynamicImports(sourceFile: schematicsTs.SourceFile) {
     return findNodes(sourceFile, schematicsTs.SyntaxKind.ImportKeyword, undefined, true)
-      .filter((n) => n.getFullText().match(/ import/))
+      .filter(
+        (n) =>
+          n.getFullText().match(/ import/) &&
+          schematicsTs.isCallExpression(n.parent) &&
+          schematicsTs.isStringLiteral(n.parent.arguments[0])
+      )
       .map((n) =>
         (n.parent as schematicsTs.CallExpression).arguments[0].getText().replace(/['"]/g, '')
       );

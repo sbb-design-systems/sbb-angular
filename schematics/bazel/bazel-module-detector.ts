@@ -23,7 +23,7 @@ export abstract class BazelModuleDetectorBase implements BazelModuleDetector {
 
 export class LibraryBazelModuleDetector extends BazelModuleDetectorBase {
   isModuleDirectory(dir: DirEntry): boolean {
-    return dir.subfiles.includes(fragment('public-api.ts'));
+    return dir.subfiles.includes(fragment('BUILD.bazel'));
   }
 }
 

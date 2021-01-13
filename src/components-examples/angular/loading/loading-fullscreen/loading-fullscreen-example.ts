@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 
+/**
+ * @title Fullscreen loading
+ */
 @Component({
-  selector: 'sbb-fullbox-loading-example',
-  templateUrl: './fullbox-loading-example.component.html',
+  selector: 'sbb-loading-fullscreen-example',
+  templateUrl: './loading-fullscreen-example.html',
 })
-export class FullboxLoadingExampleComponent {
+export class LoadingFullscreenExample {
   showSpinner: boolean;
 
   activateSpinner() {

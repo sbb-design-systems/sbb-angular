@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { SbbAccordionModule } from '@sbb-esta/angular-business/accordion';
 import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { SbbTabsModule } from '@sbb-esta/angular-public/tabs';
-import { ExamplesModule } from '@sbb-esta/components-examples';
 
 import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';
 import { SharedModule } from '../shared/shared.module';
@@ -17,7 +16,6 @@ import { AngularComponent } from './angular/angular.component';
   imports: [
     CommonModule,
     PortalModule,
-    ExamplesModule,
     SharedModule,
     ComponentViewerModule,
     SbbTabsModule,
