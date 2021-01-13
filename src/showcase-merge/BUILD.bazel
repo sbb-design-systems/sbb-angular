@@ -39,12 +39,6 @@ ng_ts_library(
     ],
 )
 
-highlight_files(
-    name = "highlighted-source-files",
-    srcs = [":example-source-files"],
-    tags = ["docs-package"],
-)
-
 _ASSETS = [
     ":styles.css",
     "@npm//:node_modules/highlight.js/styles/github.css",
