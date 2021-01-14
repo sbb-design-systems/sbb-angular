@@ -24,6 +24,7 @@ export function parseExampleFile(fileName: string, content: string): ParsedMetad
     if (node.kind === ts.SyntaxKind.ClassDeclaration) {
       const meta: any = {
         componentName: node.name.text,
+        order: Infinity,
       };
 
       if (node.jsDoc && node.jsDoc.length) {
