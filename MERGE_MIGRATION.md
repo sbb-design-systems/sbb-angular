@@ -17,6 +17,8 @@ See also our [migration issue](https://github.com/sbb-design-systems/sbb-angular
 6. Migrate examples from showcase to src/components-examples.
 7. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
 
+Don't forget to run `yarn generate:bazel` after each step.
+
 ## Start Showcase Merge
 `yarn start:devserver:dev-app`
 
