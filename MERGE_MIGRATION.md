@@ -12,9 +12,15 @@ See also our [migration issue](https://github.com/sbb-design-systems/sbb-angular
 1. Copy module from `src/angular-business` or `src/angular-public` to `src/angular`. If both a business and a public variant exist, use the more tolerant variant.
 2. Where a template or visual difference is necessary, extend the component/directive class with the variant mixin (`mixinVariant`). See [Variant Mixin](#mixinVariant).
 3. Refactor scss code according to [CODING_STANDARDS](./CODING_STANDARDS.md). Also see [SCSS Rules](#scssRules).
-4. Check documentation (\*.md) for any required changes.
-5. Migrate examples from showcase to src/components-examples.
-6. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
+4. Update symbols for automatic merge migration by applying following command: `yarn generate:merge-symbols`.
+5. Check documentation (\*.md) for any required changes.
+6. Migrate examples from showcase to src/components-examples.
+7. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
+
+Don't forget to run `yarn generate:bazel` after each step.
+
+## Start Showcase Merge
+`yarn start:devserver:dev-app`
 
 ## <a name="mixinVariant"></a> Variant Mixin
 
