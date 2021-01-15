@@ -1,5 +1,5 @@
 <div>
-  <h3>{{ label }}</h3>
+  <h3>{{ this.exampleData.description }}</h3>
   <button type="button" (click)="showSource = !showSource" aria-label="View source">
     <svg
       focusable="false"
@@ -38,4 +38,5 @@
     <pre><code [innerHtml]="scssHtml"></code></pre>
   </sbb-tab>
 </sbb-tabs>
-<ng-template [cdkPortalOutlet]="example"></ng-template>
+
+<sbb-example-outlet [exampleData]="exampleData"></sbb-example-outlet>

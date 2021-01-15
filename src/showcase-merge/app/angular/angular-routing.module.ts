@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: AngularComponent,
-    data: { library: 'public' },
+    data: { library: 'angular' },
     children: [
       {
         path: '',
@@ -20,22 +20,22 @@ const routes: Routes = [
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'public' },
+        data: { library: 'angular' },
       },
       {
         path: 'guides/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'public' },
+        data: { library: 'angular' },
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'public' },
+        data: { library: 'angular' },
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'public' },
+        data: { library: 'angular' },
       },
     ],
   },

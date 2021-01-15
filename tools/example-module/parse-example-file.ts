@@ -5,6 +5,7 @@ interface ParsedMetadata {
   componentName: string;
   title: string;
   order: number;
+  variant: string;
   selector: string;
   templateUrl: string;
   styleUrls: string[];
@@ -39,6 +40,9 @@ export function parseExampleFile(fileName: string, content: string): ParsedMetad
               }
               if (tagName === 'order') {
                 meta.order = parseInt(tagValue, 10);
+              }
+              if (tagName === 'variant') {
+                meta.variant = tagValue;
               }
             }
           }

@@ -21,6 +21,8 @@ export interface LiveExample {
   additionalComponents: string[];
   /** NgModule that declares this example. */
   module: NgModuleInfo;
+  /** Valid only for a specific variant. */
+  variant: string;
 }
 
 export interface NgModuleInfo {

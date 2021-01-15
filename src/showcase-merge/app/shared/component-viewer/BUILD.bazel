@@ -20,6 +20,7 @@ ng_module(
     deps = [
         "//src/angular-core/icon",
         "//src/angular-public/tabs",
+        "//src/components-examples",
         "//src/showcase-merge/app/shared",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

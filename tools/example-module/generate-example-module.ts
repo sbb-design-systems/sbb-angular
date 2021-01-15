@@ -19,6 +19,8 @@ interface ExampleMetadata {
   title: string;
   /** Number to define order of examples. */
   order: number;
+  /** Valid only for a specific variant. **/
+  variant: string;
   /** Additional components for this example. */
   additionalComponents: string[];
   /** Files for this example. */
@@ -58,6 +60,7 @@ function inlineExampleModuleTemplate(parsedData: AnalyzedExamples): string {
         name: data.module.name,
         importSpecifier: data.module.packagePath,
       },
+      variant: data.variant || '',
     };
 
     return result;
@@ -118,6 +121,7 @@ function analyzeExamples(sourceFiles: string[], baseDir: string): AnalyzedExampl
         componentName: primaryComponent.componentName,
         title: primaryComponent.title.trim(),
         order: primaryComponent.order,
+        variant: primaryComponent.variant,
         additionalComponents: [],
         files: [],
         module: null,

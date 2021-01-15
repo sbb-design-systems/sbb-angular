@@ -1,12 +1,20 @@
-import { ComponentPortal } from '@angular/cdk/portal';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Injector,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewContainerRef,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest, Observable, Subject, zip } from 'rxjs';
+import { ExampleData } from '@sbb-esta/components-examples';
+import { Observable, Subject, zip } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../html-loader.service';
 import {
-  ExampleData,
+  ExampleData as StackblitzExampleData,
   StackblitzWriterService,
 } from '../stackblitz-writer/stackblitz-writer.service';
 
@@ -16,33 +24,16 @@ import {
   styleUrls: ['./example-viewer.component.css'],
 })
 export class ExampleViewerComponent implements OnInit, OnDestroy {
-  @Input() example: ComponentPortal<any>;
-  @Input() name: string;
+  @Input() exampleData: ExampleData;
   html: Observable<string>;
   ts: Observable<string>;
   scss: Observable<string>;
   showSource = false;
-  title: Observable<string>;
 
   isStackblitzDisabled = true;
   stackBlitzForm: HTMLFormElement;
 
   private _destroyed = new Subject<void>();
-
-  get label() {
-    return this.name
-      .replace(/-/g, ' ')
-      .replace(/(^[a-z]| [a-z])/g, (m) => m.toUpperCase())
-      .replace(' Showcase', '');
-  }
-
-  get componentName() {
-    return this.name
-      .replace(/(^[a-z]|-[a-z])/g, (m) => m.toUpperCase())
-      .replace(/-/g, '')
-      .concat('Component');
-  }
-
   constructor(
     private _htmlLoader: HtmlLoader,
     private _route: ActivatedRoute,
@@ -50,27 +41,27 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.title = combineLatest([this._route.params, this._route.data]).pipe(
-      map(([p, d]) => ({ ...p, ...d })),
-      map(({ id }) =>
-        (id as string)
-          .replace(/^([a-z])/, (m) => m.toUpperCase())
-          .replace(/-([a-z])/g, (m) => ` ${m.toUpperCase()}`)
-      )
-    );
+    this.html = this._htmlLoader
+      .with(this._route)
+      .fromExamples(this.exampleData.selectorName, 'html')
+      .observe();
 
-    this.html = this._htmlLoader.with(this._route).fromExamples(this.name, 'html').observe();
+    this.ts = this._htmlLoader
+      .with(this._route)
+      .fromExamples(this.exampleData.selectorName, 'ts')
+      .observe();
 
-    this.ts = this._htmlLoader.with(this._route).fromExamples(this.name, 'ts').observe();
-
-    this.scss = this._htmlLoader.with(this._route).fromExamples(this.name, 'scss').observe();
+    this.scss = this._htmlLoader
+      .with(this._route)
+      .fromExamples(this.exampleData.selectorName, 'scss')
+      .observe();
 
     const exampleContents = ['ts', 'html', 'scss'].map((type: 'ts' | 'html' | 'scss') =>
       this._htmlLoader
         .with(this._route)
-        .fromSourceExamples(this.name, type)
+        .fromSourceExamples(this.exampleData.selectorName, type)
         .observe()
-        .pipe(map((content) => ({ name: `${this.name}.${type}`, content })))
+        .pipe(map((content) => ({ name: `${this.exampleData.selectorName}.${type}`, content })))
     );
     zip(...exampleContents)
       .pipe(takeUntil(this._destroyed))
@@ -84,10 +75,10 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
       console.error('Stackblitz example contents could not be loaded');
       return;
     }
-    const example = new ExampleData({
-      componentName: this.componentName,
-      selectorName: `${this.name}`,
-      description: this.label,
+    const example = new StackblitzExampleData({
+      componentName: this.exampleData.componentNames[0].concat('Component'),
+      selectorName: this.exampleData.selectorName,
+      description: this.exampleData.description,
       indexFilename: files[0].name,
       exampleFiles: files,
       business: this._route.snapshot.data.library === 'business',
@@ -113,5 +104,20 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._destroyed.next();
     this._destroyed.complete();
+  }
+}
+
+@Component({
+  selector: 'sbb-example-outlet',
+  template: '',
+  encapsulation: ViewEncapsulation.ShadowDom,
+})
+export class ExampleOutletComponent implements OnInit {
+  @Input() exampleData: ExampleData;
+
+  constructor(private _viewContainerRef: ViewContainerRef, private _injector: Injector) {}
+
+  async ngOnInit() {
+    this._viewContainerRef.createComponent(await this.exampleData.componentFactory(this._injector));
   }
 }
