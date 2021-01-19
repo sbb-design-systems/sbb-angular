@@ -20,9 +20,9 @@ ng_module(
     deps = [
         "//src/angular-business/header",
         "//src/angular-business/sidebar",
-        "//src/angular-core/breakpoints",
-        "//src/angular-core/icon",
         "//src/angular-public/checkbox",
+        "//src/angular/core",
+        "//src/angular/icon",
         "//src/showcase-merge/app/angular",
         "//src/showcase-merge/app/shared",
         "@npm//@angular/cdk",

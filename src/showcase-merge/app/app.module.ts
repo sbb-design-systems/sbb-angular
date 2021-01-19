@@ -6,9 +6,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbHeaderModule } from '@sbb-esta/angular-business/header';
 import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
-import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
+import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular/icon';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
