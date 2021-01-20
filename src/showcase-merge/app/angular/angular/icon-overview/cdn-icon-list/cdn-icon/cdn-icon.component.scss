@@ -1,0 +1,16 @@
+@import '../../../../../../../angular-core/styles/common';
+
+.sbb-svg-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+}
+
+.sbb-svg-icon-path {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  @include ellipsis();
+}

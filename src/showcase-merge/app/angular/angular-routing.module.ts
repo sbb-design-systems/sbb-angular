@@ -5,6 +5,7 @@ import { ComponentViewerComponent } from '../shared/component-viewer/component-v
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
 import { AngularComponent } from './angular/angular.component';
+import { IconOverviewComponent } from './angular/icon-overview/icon-overview.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
         path: '',
         redirectTo: 'introduction/getting-started',
         pathMatch: 'full',
+      },
+      {
+        path: 'icon-overview',
+        component: IconOverviewComponent,
       },
       {
         path: 'introduction/:id',

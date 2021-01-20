@@ -1,6 +1,7 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
+    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -11,17 +12,59 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = glob(["**/*.html"]),
+    assets = [
+        ":angular/icon-overview/icon-overview.component.css",
+        ":angular/icon-overview/cdn-icon-list/cdn-icon-list.component.css",
+        ":angular/icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.css",
+        ":angular/icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.css",
+    ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
+        "//src/angular-business",
         "//src/angular-business/accordion",
+        "//src/angular-business/dialog",
         "//src/angular-business/sidebar",
+        "//src/angular-public/button",
+        "//src/angular-public/checkbox",
+        "//src/angular-public/form-field",
+        "//src/angular-public/pagination",
+        "//src/angular-public/select",
         "//src/angular-public/tabs",
+        "//src/angular/icon",
+        "//src/angular/loading",
         "//src/showcase-merge/app/shared",
         "//src/showcase-merge/app/shared/component-viewer",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/forms",
         "@npm//@angular/router",
+        "@npm//rxjs",
     ],
+)
+
+sass_binary(
+    name = "angular_icon_overview_icon_overview_component_scss",
+    src = "angular/icon-overview/icon-overview.component.scss",
+)
+
+sass_binary(
+    name = "angular_icon_overview_cdn_icon_list_cdn_icon_list_component_scss",
+    src = "angular/icon-overview/cdn-icon-list/cdn-icon-list.component.scss",
+    deps = [
+        "//src/angular-core/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "angular_icon_overview_cdn_icon_list_cdn_icon_cdn_icon_component_scss",
+    src = "angular/icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.scss",
+    deps = [
+        "//src/angular-core/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "angular_icon_overview_cdn_icon_list_cdn_icon_dialog_cdn_icon_dialog_component_scss",
+    src = "angular/icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.scss",
 )
