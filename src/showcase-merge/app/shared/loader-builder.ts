@@ -22,20 +22,20 @@ export class LoaderBuilder {
   }
 
   fromApiDocumentation() {
-    return this.from((library, id) => `assets/docs-content/api-docs/angular-${library}-${id}.html`);
+    return this.from((library, id) => `assets/docs-content/api-docs/${library}-${id}.html`);
   }
 
-  fromExamples(example: string, type: 'html' | 'ts' | 'scss') {
+  fromExamples(example: string, type: 'html' | 'ts' | 'css') {
     return this.from(
       (library, id) =>
-        `assets/docs-content/examples-highlighted/app/${library}/${library}-examples/${id}-examples/${example}/${example}.component-${type}.html`
+        `assets/docs-content/examples-highlighted/${library}/${id}/${example}/${example}-example-${type}.html`
     );
   }
 
-  fromSourceExamples(example: string, type: 'html' | 'ts' | 'scss') {
+  fromSourceExamples(example: string, type: 'html' | 'ts' | 'css') {
     return this.from(
       (library, id) =>
-        `assets/docs-content/examples-source/app/${library}/${library}-examples/${id}-examples/${example}/${example}.component.${type}`
+        `assets/docs-content/examples-source/${library}/${id}/${example}/${example}-example.${type}`
     );
   }
 

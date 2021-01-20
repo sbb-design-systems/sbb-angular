@@ -27,7 +27,7 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
   @Input() exampleData: ExampleData;
   html: Observable<string>;
   ts: Observable<string>;
-  scss: Observable<string>;
+  css: Observable<string>;
   showSource = false;
 
   isStackblitzDisabled = true;
@@ -41,25 +41,16 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.html = this._htmlLoader
-      .with(this._route)
-      .fromExamples(this.exampleData.selectorName, 'html')
-      .observe();
+    const exampleName = this.exampleData.selectorName.replace('sbb-', '').replace('-example', '');
 
-    this.ts = this._htmlLoader
-      .with(this._route)
-      .fromExamples(this.exampleData.selectorName, 'ts')
-      .observe();
+    this.html = this._htmlLoader.with(this._route).fromExamples(exampleName, 'html').observe();
+    this.ts = this._htmlLoader.with(this._route).fromExamples(exampleName, 'ts').observe();
+    this.css = this._htmlLoader.with(this._route).fromExamples(exampleName, 'css').observe();
 
-    this.scss = this._htmlLoader
-      .with(this._route)
-      .fromExamples(this.exampleData.selectorName, 'scss')
-      .observe();
-
-    const exampleContents = ['ts', 'html', 'scss'].map((type: 'ts' | 'html' | 'scss') =>
+    const exampleContents = ['ts', 'html', 'css'].map((type: 'ts' | 'html' | 'css') =>
       this._htmlLoader
         .with(this._route)
-        .fromSourceExamples(this.exampleData.selectorName, type)
+        .fromSourceExamples(exampleName, type)
         .observe()
         .pipe(map((content) => ({ name: `${this.exampleData.selectorName}.${type}`, content })))
     );
