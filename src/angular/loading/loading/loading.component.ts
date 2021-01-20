@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { HasVariant, HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
 
 // Boilerplate for applying mixins to SbbLoading.
@@ -15,7 +21,9 @@ const _SbbLoadingMixinBase: HasVariantCtor & typeof SbbLoadingBase = mixinVarian
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   host: {
+    class: 'sbb-loading',
     role: 'progressbar',
     '[attr.aria-busy]': 'true',
     '[class.sbb-loading-tiny]': `this.mode === 'tiny'`,

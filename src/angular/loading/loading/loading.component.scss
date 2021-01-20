@@ -12,7 +12,7 @@ $sizes: (tiny, 0.53333em, 0.33333em, 0.2em, 6em), (small, 1em, 0.6em, 0.2em, 8em
 
 $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5), (5, 0, 0.25);
 
-:host {
+.sbb-loading {
   display: flex;
 
   & > div {
@@ -55,80 +55,69 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
       }
     }
   }
+}
 
-  @each $size, $width, $height, $gutterWidth, $perspective in $sizes {
-    &.sbb-loading-#{$size} {
-      height: $height * 5;
-      padding-top: $height * 2;
+@each $size, $width, $height, $gutterWidth, $perspective in $sizes {
+  .sbb-loading-#{$size} {
+    height: $height * 5;
+    padding-top: $height * 2;
 
-      & > div {
-        width: ($width + $gutterWidth) * $numberOfItems - $gutterWidth;
-        height: $height;
-        perspective: $perspective;
+    & > div {
+      width: ($width + $gutterWidth) * $numberOfItems - $gutterWidth;
+      height: $height;
+      perspective: $perspective;
 
-        & > div > div {
-          animation: loading_container_#{$size} $time linear infinite;
+      & > div > div {
+        animation: loading_container_#{$size} $time linear infinite;
 
-          & > div {
-            width: $width;
-            height: $height;
-            margin-right: $gutterWidth;
+        & > div {
+          width: $width;
+          height: $height;
+          margin-right: $gutterWidth;
 
-            @if $size == 'tiny' {
-              transform: translate3d(-$gutterWidth / 2, 0, 0);
-            }
+          @if $size == 'tiny' {
+            transform: translate3d(-$gutterWidth / 2, 0, 0);
           }
         }
       }
     }
   }
+}
 
-  &.sbb-loading-inline {
-    display: inline-flex;
-    height: auto;
-    padding-top: 0;
-    vertical-align: middle;
+.sbb-loading-inline {
+  display: inline-flex;
+  height: auto;
+  padding-top: 0;
+  vertical-align: middle;
 
-    & > div {
-      transform: translate3d(-1.8em, 0, 0);
-    }
+  & > div {
+    transform: translate3d(-1.8em, 0, 0);
   }
+}
 
-  &.sbb-loading-fullbox,
-  &.sbb-loading-fullscreen {
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.6);
-    z-index: 1000;
+.sbb-loading-fullbox,
+.sbb-loading-fullscreen {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 1000;
 
-    > div {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  &.sbb-loading-fullbox {
+  & > div {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
+}
 
-  &.sbb-loading-fullscreen {
-    position: fixed;
-  }
+.sbb-loading-fullbox {
+  position: absolute;
+}
 
-  /** @deprecated use mode=inline **/
-  &[inline] {
-    display: inline-flex;
-    padding-left: 1em;
-    margin-right: -2em;
-    height: auto;
-    padding-top: 0;
-    vertical-align: middle;
-    --deprecated: 'Use mode=inline';
-  }
+.sbb-loading-fullscreen {
+  position: fixed;
 }
 
 // Animations
