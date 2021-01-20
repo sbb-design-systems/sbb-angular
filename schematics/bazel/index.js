@@ -327,6 +327,16 @@ class ShowcaseModule extends NgModule {
     }
 }
 
+class ShowcaseMergeModule extends ShowcaseModule {
+    constructor() {
+        super(...arguments);
+        this.customTsConfig = '//src/showcase-merge:tsconfig.json';
+    }
+    _createSubModule(dir) {
+        return new ShowcaseMergeModule(dir, this._tree, this._context);
+    }
+}
+
 class ShowcasePackage {
     constructor(_dir, _tree, context) {
         this._dir = _dir;
@@ -353,6 +363,13 @@ class ShowcasePackage {
             .toString()
             .replace(/ALL_EXAMPLES = \[[^\]]+\]/m, `ALL_EXAMPLES = [\n${exampleModules}\n]`));
         return this._appModule.render();
+    }
+}
+
+class ShowcaseMergePackage extends ShowcasePackage {
+    constructor(dir, tree, context) {
+        super(dir, tree, context);
+        this._appModule = new ShowcaseMergeModule(this._appDir, tree, context);
     }
 }
 
@@ -484,12 +501,13 @@ function bazel(options) {
                 .filter((d) => !options.filter || d === options.filter)
                 .map((d) => srcDir.dir(d))
                 .map((packageDir) => {
-                const isShowcase = packageDir.path.includes('showcase');
+                const isShowcase = packageDir.path.endsWith('showcase');
+                const isMergeShowcase = packageDir.path.endsWith('showcase-merge');
                 const isAngular = packageDir.path.endsWith('angular');
                 const isComponentsExamples = packageDir.path.endsWith('components-examples');
                 const organization = '@sbb-esta';
                 const srcRoot = 'src';
-                const moduleDetector = isShowcase
+                const moduleDetector = isShowcase || isMergeShowcase
                     ? new AppBazelModuleDetector(tree)
                     : new LibraryBazelModuleDetector(tree);
                 const npmDependencyResolver = new NpmDependencyResolver(tree.read('package.json').toString());
@@ -502,14 +520,25 @@ function bazel(options) {
                     npmDependencyResolver,
                     dependencyByOccurence,
                 };
-                const typeScriptDependencyResolver = isShowcase
+                const typeScriptDependencyResolver = isShowcase || isMergeShowcase
                     ? new RelativeModuleTypeScriptDependencyResolver(tsConfig)
                     : new StrictModuleTypeScriptDependencyResolver(tsConfig);
                 const sassDependencyResolver = new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, new Map()
                     .set('/angular-core/styles/common', '//src/angular-core/styles:common_scss_lib')
                     .set('external/npm/node_modules/@angular/cdk/a11y', '//src/angular-core/styles:common_scss_lib'));
                 const bazelGenruleResolver = new BazelGenruleResolver();
-                if (isShowcase) {
+                if (isMergeShowcase) {
+                    return new ShowcaseMergePackage(packageDir, tree, {
+                        ...context,
+                        organization,
+                        srcRoot,
+                        moduleDetector,
+                        typeScriptDependencyResolver,
+                        sassDependencyResolver,
+                        bazelGenruleResolver,
+                    });
+                }
+                else if (isShowcase) {
                     return new ShowcasePackage(packageDir, tree, {
                         ...context,
                         organization,

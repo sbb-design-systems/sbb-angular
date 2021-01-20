@@ -12,7 +12,7 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = glob(["**/*.html"]),
-    tsconfig = "//src/showcase:tsconfig.json",
+    tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
         "//src/angular-business/accordion",
         "//src/angular-business/sidebar",

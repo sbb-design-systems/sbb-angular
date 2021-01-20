@@ -13,6 +13,7 @@ import { NgPackage } from './ng-package';
 import { NgPackageExamples } from './ng-package-examples';
 import { NpmDependencyResolver } from './npm-dependency-resolver';
 import { FlexibleSassDependencyResolver } from './sass-dependency-resolver';
+import { ShowcaseMergePackage } from './showcase-merge-package';
 import { ShowcasePackage } from './showcase-package';
 import {
   RelativeModuleTypeScriptDependencyResolver,
@@ -36,14 +37,16 @@ export function bazel(options: { filter?: string }): Rule {
           .filter((d) => !options.filter || d === options.filter)
           .map((d) => srcDir.dir(d))
           .map((packageDir) => {
-            const isShowcase = packageDir.path.includes('showcase');
+            const isShowcase = packageDir.path.endsWith('showcase');
+            const isMergeShowcase = packageDir.path.endsWith('showcase-merge');
             const isAngular = packageDir.path.endsWith('angular');
             const isComponentsExamples = packageDir.path.endsWith('components-examples');
             const organization = '@sbb-esta';
             const srcRoot = 'src';
-            const moduleDetector = isShowcase
-              ? new AppBazelModuleDetector(tree)
-              : new LibraryBazelModuleDetector(tree);
+            const moduleDetector =
+              isShowcase || isMergeShowcase
+                ? new AppBazelModuleDetector(tree)
+                : new LibraryBazelModuleDetector(tree);
             const npmDependencyResolver = new NpmDependencyResolver(
               tree.read('package.json')!.toString()
             );
@@ -59,9 +62,10 @@ export function bazel(options: { filter?: string }): Rule {
               npmDependencyResolver,
               dependencyByOccurence,
             };
-            const typeScriptDependencyResolver = isShowcase
-              ? new RelativeModuleTypeScriptDependencyResolver(tsConfig)
-              : new StrictModuleTypeScriptDependencyResolver(tsConfig);
+            const typeScriptDependencyResolver =
+              isShowcase || isMergeShowcase
+                ? new RelativeModuleTypeScriptDependencyResolver(tsConfig)
+                : new StrictModuleTypeScriptDependencyResolver(tsConfig);
             const sassDependencyResolver = new FlexibleSassDependencyResolver(
               moduleDetector,
               npmDependencyResolver,
@@ -74,7 +78,17 @@ export function bazel(options: { filter?: string }): Rule {
                 )
             );
             const bazelGenruleResolver = new BazelGenruleResolver();
-            if (isShowcase) {
+            if (isMergeShowcase) {
+              return new ShowcaseMergePackage(packageDir, tree, {
+                ...context,
+                organization,
+                srcRoot,
+                moduleDetector,
+                typeScriptDependencyResolver,
+                sassDependencyResolver,
+                bazelGenruleResolver,
+              });
+            } else if (isShowcase) {
               return new ShowcasePackage(packageDir, tree, {
                 ...context,
                 organization,

@@ -16,7 +16,7 @@ ng_module(
         ":app.component.css",
         ":introduction/introduction.component.css",
     ] + glob(["**/*.html"]),
-    tsconfig = "//src/showcase:tsconfig.json",
+    tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
         "//src/angular-business/header",
         "//src/angular-business/sidebar",
