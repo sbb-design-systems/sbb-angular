@@ -7,6 +7,10 @@ import { distinctUntilChanged, filter, map, skip, take, takeUntil } from 'rxjs/o
 
 import { HtmlLoader } from '../../html-loader.service';
 
+function mapEmptyArrayToNull(array: any[]) {
+  return array.length === 0 ? null : array;
+}
+
 @Component({
   selector: 'sbb-component-viewer',
   templateUrl: './component-viewer.component.html',
@@ -16,18 +20,20 @@ export class ComponentViewerComponent implements OnInit, AfterViewInit, OnDestro
   @ViewChild(SbbTabs, { static: true }) tabs: SbbTabs;
   overview: Observable<string>;
   api: Observable<string>;
-  standardExamples: Observable<ExampleData[]>;
-  leanExamples: Observable<ExampleData[]>;
+  standardExamples: Observable<ExampleData[] | null>;
+  leanExamples: Observable<ExampleData[] | null>;
   private _destroyed = new Subject<void>();
 
   constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
 
   ngOnInit() {
     this.standardExamples = combineLatest([this._route.params, this._route.data]).pipe(
-      map(([{ id }, { library }]) => ExampleData.findByVariant(library, id, 'standard'))
+      map(([{ id }, { library }]) => ExampleData.findByVariant(library, id, 'standard')),
+      map(mapEmptyArrayToNull)
     );
     this.leanExamples = combineLatest([this._route.params, this._route.data]).pipe(
-      map(([{ id }, { library }]) => ExampleData.findByVariant(library, id, 'lean'))
+      map(([{ id }, { library }]) => ExampleData.findByVariant(library, id, 'lean')),
+      map(mapEmptyArrayToNull)
     );
     this.overview = this._htmlLoader.with(this._route).fromModuleDocumentation().observe();
     this.api = this._htmlLoader.with(this._route).fromApiDocumentation().observe();
