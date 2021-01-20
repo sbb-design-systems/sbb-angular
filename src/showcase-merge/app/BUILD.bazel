@@ -24,6 +24,7 @@ ng_module(
         "//src/angular/core",
         "//src/angular/icon",
         "//src/showcase-merge/app/angular",
+        "//src/showcase-merge/app/maps",
         "//src/showcase-merge/app/shared",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

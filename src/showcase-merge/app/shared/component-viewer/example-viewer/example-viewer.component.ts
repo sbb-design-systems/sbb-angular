@@ -1,12 +1,4 @@
-import {
-  Component,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewContainerRef,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, Injector, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ExampleData } from '@sbb-esta/components-examples';
 import { Observable, Subject, zip } from 'rxjs';
@@ -101,7 +93,6 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
 @Component({
   selector: 'sbb-example-outlet',
   template: '',
-  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ExampleOutletComponent implements OnInit {
   @Input() exampleData: ExampleData;
