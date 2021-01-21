@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
- * @title Icon fit
+ * @title Icon Fit
  * @order 20
  */
 @Component({

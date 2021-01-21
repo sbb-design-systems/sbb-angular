@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
- * @title Simple loading
+ * @title Simple Loading
  * @order 10
  */
 @Component({

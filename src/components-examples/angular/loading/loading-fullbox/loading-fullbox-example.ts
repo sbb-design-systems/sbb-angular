@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
- * @title Fullbox loading
+ * @title Fullbox Loading
  * @order 20
  */
 @Component({

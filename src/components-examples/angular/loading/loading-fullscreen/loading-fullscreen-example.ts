@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
- * @title Fullscreen loading
+ * @title Fullscreen Loading
  * @order 30
  */
 @Component({
