@@ -1,0 +1,4 @@
+<sbb-captcha [(ngModel)]="captcha" [siteKey]="testSiteKey" required></sbb-captcha>
+
+<h4>Captcha response</h4>
+<pre>{{ this.captcha | json }}</pre>

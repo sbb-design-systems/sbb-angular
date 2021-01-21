@@ -16,11 +16,13 @@ See also our [migration issue](https://github.com/sbb-design-systems/sbb-angular
 5. Check documentation (\*.md) for any required changes.
 6. Migrate examples from showcase to src/components-examples.
 7. Check for usages of the component in src/showcase-merge, src/components-examples and src/angular and change them to the migrated one
-8. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
+8. Add a test in src/angular/schematics/ng-add/test-cases/merge and run them by `yarn test src/angular/schematics`
+9. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
 
 Don't forget to run `yarn generate:bazel` after each step.
 
 ## Start Showcase Merge
+
 `yarn start:devserver:dev-app`
 
 ## <a name="mixinVariant"></a> Variant Mixin

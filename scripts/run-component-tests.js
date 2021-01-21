@@ -32,9 +32,14 @@ const packagesDir = path.join(projectDir, 'src/');
 // List of packages where the specified component could be defined in. The script uses the
 // first package that contains the component (if no package is specified explicitly).
 // e.g. "button" will become "public/button", and "contextmenu" becomes "business/contextmenu".
-const orderedGuessPackages = ['public', 'business', 'maps', 'core', 'keycloak'].map(
-  (p) => `angular-${p}`
-);
+const orderedGuessPackages = [
+  'angular',
+  'angular-public',
+  'angular-business',
+  'angular-maps',
+  'angular-core',
+  'angular-keycloak',
+].map((p) => `${p}`);
 
 /** Map of common typos in target names. The key is the typo, the value is the correct form. */
 const commonTypos = new Map([]);
@@ -103,7 +108,12 @@ if (!components.length) {
 const bazelAction = local ? 'run' : 'test';
 const testLabels = components
   .map((t) => correctTypos(t))
-  .map((t) => `${getBazelPackageOfComponentName(t)}:${testTargetName}`);
+  .map(
+    (t) =>
+      `${getBazelPackageOfComponentName(t)}:${
+        t.endsWith('schematics') ? 'unit_tests' : testTargetName
+      }`
+  );
 
 // Runs Bazel for the determined test labels.
 shelljs.exec(`${bazelBinary} ${bazelAction} ${testLabels.join(' ')}`);

@@ -1,0 +1,38 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "captcha",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    module_name = "@sbb-esta/angular/captcha",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@types/grecaptcha",
+        "@npm//rxjs",
+    ],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":captcha.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
+
+filegroup(
+    name = "html-source-files",
+    srcs = glob(["**/*.html"]),
+)
