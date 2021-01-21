@@ -43,9 +43,10 @@ export class LoaderBuilder {
     return combineLatest([this._route.params, this._route.data]).pipe(
       map(([p, d]) => ({ ...p, ...d })),
       switchMap(({ id, library }) =>
-        this._http.get(this._urlBuilder(library, id), { responseType: 'text' })
-      ),
-      catchError(() => of(''))
+        this._http
+          .get(this._urlBuilder(library, id), { responseType: 'text' })
+          .pipe(catchError(() => of('')))
+      )
     );
   }
 }
