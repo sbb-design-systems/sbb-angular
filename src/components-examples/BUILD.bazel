@@ -1,4 +1,5 @@
 load("//tools:defaults.bzl", "ng_module", "ng_package")
+load("//tools/highlight-files:index.bzl", "highlight_files")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -20,6 +21,16 @@ ng_module(
     srcs = glob(["*.ts"]) + [":example-module.ts"],
     module_name = "@sbb-esta/components-examples",
     deps = ALL_EXAMPLES,
+)
+
+filegroup(
+    name = "example-source-files",
+    srcs = ["%s:source-files" % pkg for pkg in ALL_EXAMPLES],
+)
+
+highlight_files(
+    name = "examples-highlighted",
+    srcs = [":example-source-files"],
 )
 
 ng_package(

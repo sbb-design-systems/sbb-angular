@@ -17,6 +17,16 @@ ng_module(
     deps = ALL_EXAMPLES,
 )
 
+filegroup(
+    name = "example-source-files",
+    srcs = ["%s:source-files" % pkg for pkg in ALL_EXAMPLES],
+)
+
+highlight_files(
+    name = "examples-highlighted",
+    srcs = [":example-source-files"],
+)
+
 ng_package(
     name = "npm_package",
     srcs = ["package.json"],
