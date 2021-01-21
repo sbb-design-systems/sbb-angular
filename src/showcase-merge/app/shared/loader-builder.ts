@@ -22,20 +22,20 @@ export class LoaderBuilder {
   }
 
   fromApiDocumentation() {
-    return this.from((library, id) => `assets/docs-content/api-docs/angular-${library}-${id}.html`);
+    return this.from((library, id) => `assets/docs-content/api-docs/${library}-${id}.html`);
   }
 
-  fromExamples(example: string, type: 'html' | 'ts' | 'scss') {
+  fromExamples(example: string, type: 'html' | 'ts' | 'css') {
     return this.from(
       (library, id) =>
-        `assets/docs-content/examples-highlighted/app/${library}/${library}-examples/${id}-examples/${example}/${example}.component-${type}.html`
+        `assets/docs-content/examples-highlighted/${library}/${id}/${example}/${example}-example-${type}.html`
     );
   }
 
-  fromSourceExamples(example: string, type: 'html' | 'ts' | 'scss') {
+  fromSourceExamples(example: string, type: 'html' | 'ts' | 'css') {
     return this.from(
       (library, id) =>
-        `assets/docs-content/examples-source/app/${library}/${library}-examples/${id}-examples/${example}/${example}.component.${type}`
+        `assets/docs-content/examples-source/${library}/${id}/${example}/${example}-example.${type}`
     );
   }
 
@@ -43,9 +43,10 @@ export class LoaderBuilder {
     return combineLatest([this._route.params, this._route.data]).pipe(
       map(([p, d]) => ({ ...p, ...d })),
       switchMap(({ id, library }) =>
-        this._http.get(this._urlBuilder(library, id), { responseType: 'text' })
-      ),
-      catchError(() => of(''))
+        this._http
+          .get(this._urlBuilder(library, id), { responseType: 'text' })
+          .pipe(catchError(() => of('')))
+      )
     );
   }
 }

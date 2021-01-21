@@ -16,10 +16,11 @@ ng_module(
         ":component-viewer/component-viewer.component.css",
         ":example-viewer/example-viewer.component.css",
     ] + glob(["**/*.html"]),
-    tsconfig = "//src/showcase:tsconfig.json",
+    tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
-        "//src/angular-core/icon",
         "//src/angular-public/tabs",
+        "//src/angular/icon",
+        "//src/components-examples",
         "//src/showcase-merge/app/shared",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
@@ -30,8 +31,8 @@ ng_module(
 )
 
 genrule(
-    name = "used-icons",
-    srcs = ["//src/showcase/app:versions.ts"],
+    name = "stackblitz-versions",
+    srcs = ["//src/showcase-merge/app:versions.ts"],
     outs = ["stackblitz-writer/versions.ts"],
     cmd = "cp $< $@",
 )

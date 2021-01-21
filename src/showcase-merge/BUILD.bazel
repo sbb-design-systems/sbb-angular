@@ -7,7 +7,6 @@ load("@npm//@bazel/typescript:index.bzl", "ts_devserver")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("//tools:defaults.bzl", "ng_ts_library")
-load("//tools/highlight-files:index.bzl", "highlight_files")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -37,20 +36,6 @@ ng_ts_library(
         "@npm//@angular/platform-browser",
         "@npm//core-js",
     ],
-)
-
-ALL_EXAMPLES = [
-]
-
-filegroup(
-    name = "example-source-files",
-    srcs = ["%s:source-files" % pkg for pkg in ALL_EXAMPLES],
-)
-
-highlight_files(
-    name = "highlighted-source-files",
-    srcs = [":example-source-files"],
-    tags = ["docs-package"],
 )
 
 _ASSETS = [

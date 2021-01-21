@@ -1,0 +1,57 @@
+load("//tools:defaults.bzl", "ng_module", "ng_package")
+load("//tools/highlight-files:index.bzl", "highlight_files")
+
+package(default_visibility = ["//visibility:public"])
+
+ALL_EXAMPLES = [
+    # TODO(devversion): try to have for each entry-point a bazel package so that
+    # we can automate this using the "package.bzl" variables. Currently generated
+    # with "bazel query 'kind("ng_module", //src/components-examples/...:*)' --output="label"<% for (let module of exampleModules) { %>
+    "/<%= module.path %>",<% } %>
+]
+
+ng_module(
+    name = "components-examples",
+    srcs = glob(["*.ts"]) + [":example-module.ts"],
+    module_name = "@sbb-esta/components-examples",
+    deps = ALL_EXAMPLES,
+)
+
+filegroup(
+    name = "example-source-files",
+    srcs = ["%s:source-files" % pkg for pkg in ALL_EXAMPLES],
+)
+
+highlight_files(
+    name = "examples-highlighted",
+    srcs = [":example-source-files"],
+)
+
+ng_package(
+    name = "npm_package",
+    srcs = ["package.json"],
+    entry_point = ":public-api.ts",
+    deps = [":components-examples"] + ALL_EXAMPLES,
+)
+
+genrule(
+    name = "example-module",
+    srcs = [":example-source-files"],
+    outs = [
+        "example-module.ts",
+        "_example_module.MF",
+    ],
+    cmd = """
+      # Create source file manifest
+      echo "$(execpaths //src/components-examples:example-source-files)" \
+          > $(execpath _example_module.MF)
+
+      # Run the bazel entry-point for generating the example module.
+      ./$(execpath //tools/example-module:bazel-bin) \
+          "$(execpath _example_module.MF)" \
+          "$(execpath example-module.ts)" \
+          "$$PWD/src/components-examples"
+    """,
+    output_to_bindir = True,
+    tools = ["//tools/example-module:bazel-bin"],
+)

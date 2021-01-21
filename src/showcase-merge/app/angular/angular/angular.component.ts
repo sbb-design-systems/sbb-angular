@@ -37,6 +37,7 @@ export class AngularComponent {
   buttonAndIndicatorComponents = {
     badge: 'Badge',
     button: 'Button',
+    icon: 'Icon',
     links: 'Links',
     loading: 'Loading',
   };

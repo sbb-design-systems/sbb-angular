@@ -5,12 +5,13 @@ import { ComponentViewerComponent } from '../shared/component-viewer/component-v
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
 import { AngularComponent } from './angular/angular.component';
+import { IconOverviewComponent } from './angular/icon-overview/icon-overview.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AngularComponent,
-    data: { library: 'public' },
+    data: { library: 'angular' },
     children: [
       {
         path: '',
@@ -18,24 +19,28 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'icon-overview',
+        component: IconOverviewComponent,
+      },
+      {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'public' },
+        data: { library: 'angular' },
       },
       {
         path: 'guides/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'public' },
+        data: { library: 'angular' },
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'public' },
+        data: { library: 'angular' },
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'public' },
+        data: { library: 'angular' },
       },
     ],
   },

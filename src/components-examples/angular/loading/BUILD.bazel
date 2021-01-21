@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -12,7 +11,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":loading-simple/simple-loading-example.component.css"] + glob(["**/*.html"]),
+    assets = glob(["**/*.html"]),
     module_name = "@sbb-esta/components-examples/angular/loading",
     deps = [
         "//src/angular-public/button",
@@ -22,17 +21,11 @@ ng_module(
     ],
 )
 
-sass_binary(
-    name = "loading_simple_simple_loading_example_component_scss",
-    src = "loading-simple/simple-loading-example.component.scss",
-)
-
 filegroup(
     name = "source-files",
-    srcs = glob(["**/*.ts"]),
-)
-
-filegroup(
-    name = "html-source-files",
-    srcs = glob(["**/*.html"]),
+    srcs = glob([
+        "**/*.html",
+        "**/*.css",
+        "**/*.ts",
+    ]),
 )

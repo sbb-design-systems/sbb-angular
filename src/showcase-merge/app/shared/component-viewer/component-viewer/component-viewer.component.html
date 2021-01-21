@@ -5,12 +5,11 @@
   <sbb-tab label="API">
     <div [innerHtml]="api | async"></div>
   </sbb-tab>
-  <sbb-tab *ngIf="example | async as examplePortals" label="Examples">
+  <sbb-tab *ngIf="examples | async as exampleDatas" label="Examples">
     <ng-template sbbTabContent>
       <sbb-example-viewer
-        *ngFor="let entry of examplePortals"
-        [name]="entry.name"
-        [example]="entry.portal"
+        *ngFor="let exampleData of exampleDatas"
+        [exampleData]="exampleData"
       ></sbb-example-viewer>
     </ng-template>
   </sbb-tab>

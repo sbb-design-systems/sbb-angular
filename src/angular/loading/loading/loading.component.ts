@@ -1,21 +1,13 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input } from '@angular/core';
-import { HasVariant, HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
-
-// Boilerplate for applying mixins to SbbLoading.
-/** @docs-private */
-class SbbLoadingBase {
-  constructor(public _elementRef: ElementRef) {}
-}
-
-// tslint:disable-next-line: naming-convention
-const _SbbLoadingMixinBase: HasVariantCtor & typeof SbbLoadingBase = mixinVariant(SbbLoadingBase);
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'sbb-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   host: {
+    class: 'sbb-loading',
     role: 'progressbar',
     '[attr.aria-busy]': 'true',
     '[class.sbb-loading-tiny]': `this.mode === 'tiny'`,
@@ -27,14 +19,10 @@ const _SbbLoadingMixinBase: HasVariantCtor & typeof SbbLoadingBase = mixinVarian
     '[class.sbb-loading-inline]': `this.mode === 'inline'`,
   },
 })
-export class SbbLoading extends _SbbLoadingMixinBase implements HasVariant {
+export class SbbLoading {
   /** Types of mode for loading indicator. */
   @Input() mode: 'tiny' | 'small' | 'medium' | 'big' | 'fullscreen' | 'fullbox' | 'inline' =
     'medium';
-
-  constructor(elementRef: ElementRef) {
-    super(elementRef);
-  }
 
   // tslint:disable: member-ordering
   static ngAcceptInputType_mode:

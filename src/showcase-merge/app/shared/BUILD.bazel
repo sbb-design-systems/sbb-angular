@@ -16,9 +16,8 @@ ng_module(
         ":api-viewer/api-viewer.component.css",
         ":markdown-viewer/markdown-viewer.component.css",
     ] + glob(["**/*.html"]),
-    tsconfig = "//src/showcase:tsconfig.json",
+    tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
-        "//src/angular-public/tabs",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

@@ -5,10 +5,10 @@ import { BazelSchematicContext } from './bazel-schematic-context';
 import { ShowcaseModule } from './showcase-module';
 
 export class ShowcasePackage {
-  private _appModule: ShowcaseModule;
-  private _appDir: DirEntry;
+  protected _appModule: ShowcaseModule;
+  protected _appDir: DirEntry;
 
-  constructor(private _dir: DirEntry, private _tree: Tree, context: BazelSchematicContext) {
+  constructor(protected _dir: DirEntry, protected _tree: Tree, context: BazelSchematicContext) {
     this._appDir = this._dir.dir(fragment('app'));
     this._appModule = new ShowcaseModule(this._appDir, this._tree, context);
   }

@@ -1,0 +1,14 @@
+.map-container {
+  display: inline-block;
+}
+.web-map {
+  width: 700px;
+  height: 500px;
+}
+
+.legend {
+  display: inline-block;
+  width: 300px;
+  height: 500px;
+  overflow-y: scroll;
+}

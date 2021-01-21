@@ -19,7 +19,8 @@ ng_module(
     assets = [":<%= stylesheets[0] %>"] + glob(["**/*.html"]),<% } %><% if (stylesheets.length > 1) { %>
     assets = [<% for (let stylesheet of stylesheets) { %>
         ":<%= stylesheet %>",<% } %>
-    ] + glob(["**/*.html"]),<% } %>
+    ] + glob(["**/*.html"]),<% } %><% if (path.includes('/components-examples/')) { %>
+    assets = glob(["**/*.html"]),<% } %>
     module_name = "<%= moduleName %>",<% if (customTsConfig) { %>
     tsconfig = "<%= customTsConfig %>",<% } %>
     deps = [<% for (let dependency of dependencies) { %>
@@ -65,10 +66,14 @@ markdown_to_html(
 
 filegroup(
     name = "source-files",
-    srcs = glob(["**/*.ts"]),
-)
+    srcs = <% if (!path.includes('/components-examples/')) { %>glob(["**/*.ts"]),<% } else { %>glob([
+        "**/*.html",
+        "**/*.css",
+        "**/*.ts",
+    ]),<% } %>
+)<% if (!path.includes('/components-examples/')) { %>
 
 filegroup(
     name = "html-source-files",
     srcs = glob(["**/*.html"]),
-)
+)<% } %>

@@ -1,0 +1,31 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "esri-basemap-gallery",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
+    module_name = "@sbb-esta/components-examples/angular-maps/esri-basemap-gallery",
+    deps = [
+        "//src/angular-maps/esri-basemap-gallery",
+        "//src/angular-maps/esri-web-scene",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.css",
+        "**/*.ts",
+    ]),
+)

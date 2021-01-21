@@ -3,7 +3,7 @@ icon fonts and SVG icons, but not bitmap-based formats (png, jpg, etc.).
 
 ### Available Sbb Icons
 
-See [Icon Overview](/core/icon-overview)
+See [Icon Overview](/angular/icon-overview)
 
 ### Usage
 

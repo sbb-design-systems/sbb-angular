@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AfterContentInit, Component, OnDestroy } from '@angular/core';
-import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
+import { Breakpoints } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 

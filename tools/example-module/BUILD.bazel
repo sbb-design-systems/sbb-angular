@@ -1,0 +1,24 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("//tools:defaults.bzl", "ts_library")
+
+package(default_visibility = ["//visibility:public"])
+
+ts_library(
+    name = "example-module-lib",
+    srcs = glob(["**/*.ts"]),
+    tsconfig = ":tsconfig.json",
+    deps = [
+        "@npm//@types/node",
+        "@npm//typescript",
+    ],
+)
+
+nodejs_binary(
+    name = "bazel-bin",
+    data = [
+        ":example-module.template",
+        ":example-module-lib",
+        "@npm//typescript",
+    ],
+    entry_point = ":bazel-bin.ts",
+)
