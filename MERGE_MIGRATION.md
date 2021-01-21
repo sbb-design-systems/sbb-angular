@@ -15,7 +15,8 @@ See also our [migration issue](https://github.com/sbb-design-systems/sbb-angular
 4. Update symbols for automatic merge migration by applying following command: `yarn generate:merge-symbols`.
 5. Check documentation (\*.md) for any required changes.
 6. Migrate examples from showcase to src/components-examples.
-7. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
+7. Check for usages of the component in src/showcase-merge, src/components-examples in src/angular and change them to the migrated one
+8. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
 
 Don't forget to run `yarn generate:bazel` after each step.
 
