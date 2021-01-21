@@ -76,7 +76,9 @@ if (local && (components.length > 1 || all)) {
 }
 
 const bazelBinary = `yarn -s ${watch ? 'ibazel' : 'bazel'}`;
-const testTargetName = `unit_tests`;
+const testTargetName = `unit_tests_${
+  local ? 'local' : firefox ? 'firefox-local' : 'chromium-local'
+}`;
 
 // If `all` has been specified as component, we run tests for all components
 // in the repository. The `--firefox` flag can be still specified.
@@ -106,7 +108,12 @@ if (!components.length) {
 const bazelAction = local ? 'run' : 'test';
 const testLabels = components
   .map((t) => correctTypos(t))
-  .map((t) => `${getBazelPackageOfComponentName(t)}:${testTargetName}`);
+  .map(
+    (t) =>
+      `${getBazelPackageOfComponentName(t)}:${
+        t.endsWith('schematics') ? 'unit_tests' : testTargetName
+      }`
+  );
 
 // Runs Bazel for the determined test labels.
 shelljs.exec(`${bazelBinary} ${bazelAction} ${testLabels.join(' ')}`);
