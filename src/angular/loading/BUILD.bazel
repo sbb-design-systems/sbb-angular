@@ -18,7 +18,6 @@ ng_module(
     assets = [":loading/loading.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/loading",
     deps = [
-        "//src/angular/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],
