@@ -1,6 +1,5 @@
 load("//tools:defaults.bzl", "ng_module", "ng_package")
 load("//tools/highlight-files:index.bzl", "highlight_files")
-load("//tools/package-docs-content:index.bzl", "package_docs_content")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -18,39 +17,10 @@ ng_module(
     deps = ALL_EXAMPLES,
 )
 
-filegroup(
-    name = "example-source-files",
-    srcs = ["%s:source-files" % pkg for pkg in ALL_EXAMPLES],
-)
-
-highlight_files(
-    name = "examples-highlighted",
-    srcs = [":example-source-files"],
-)
-
-package_docs_content(
-    name = "docs-content",
-    srcs = {
-        # In order to be able to run examples in StackBlitz, we also want to package the
-        # plain source files into the docs-content.
-        ":example-source-files": "examples-source",
-
-        # For the live-examples in our docs, we want to package the highlighted files
-        # into the docs content. These will be used to show the source code for examples.
-        # Note: `examples-highlighted` is a tree artifact that we want to store as is
-        # in the docs-content. Hence there is no target section name.
-        ":examples-highlighted": "",
-    },
-)
-
 ng_package(
     name = "npm_package",
     srcs = ["package.json"],
     entry_point = ":public-api.ts",
-    # this is a workaround to store a tree artifact in the ng_package.
-    # ng_package does not properly handle tree artifacts currently so we escalate to nested_packages
-    nested_packages = [":docs-content"],
-    tags = ["docs-package"],
     deps = [":components-examples"] + ALL_EXAMPLES,
 )
 

@@ -5,15 +5,7 @@
   <sbb-tab label="API">
     <div [innerHtml]="api | async"></div>
   </sbb-tab>
-  <sbb-tab *ngIf="standardExamples | async as exampleDatas" label="Standard Examples">
-    <ng-template sbbTabContent>
-      <sbb-example-viewer
-        *ngFor="let exampleData of exampleDatas"
-        [exampleData]="exampleData"
-      ></sbb-example-viewer>
-    </ng-template>
-  </sbb-tab>
-  <sbb-tab *ngIf="leanExamples | async as exampleDatas" label="Lean Examples">
+  <sbb-tab *ngIf="examples | async as exampleDatas" label="Examples">
     <ng-template sbbTabContent>
       <sbb-example-viewer
         *ngFor="let exampleData of exampleDatas"
