@@ -35,7 +35,7 @@ $sbbHeaderHeight: 54px;
   line-height: 12px;
   letter-spacing: 0px;
   font-size: 10px;
-  color: $sbbColorSilver;
+  color: $sbbColorWhite;
   transform: rotate(-45deg);
 }
 
@@ -75,7 +75,7 @@ $sbbHeaderHeight: 54px;
   flex-grow: 0;
   flex-direction: column;
   width: 200px;
-  margin-left: 15px;
+  margin-left: 45px;
   font-family: $fontSbbLight;
 
   > span {
