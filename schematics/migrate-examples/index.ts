@@ -12,12 +12,12 @@ const prettier: {
 } = require('prettier');
 
 export function migrateExamples(options: { module: string }): Rule {
-  return (tree: Tree, _context: SchematicContext) => {
+  return (tree: Tree, context: SchematicContext) => {
     if (!options.module) {
       throw new SchematicsException('--module [module] is required!');
     } else if (options.module.match(/-examples$/)) {
       options.module = options.module.replace(/-examples$/, '');
-      _context.logger.warn(`Normalized ${options.module}-examples to ${options.module}`);
+      context.logger.warn(`Normalized ${options.module}-examples to ${options.module}`);
     }
 
     const publicExamplesDir = tree.getDir(
@@ -27,13 +27,13 @@ export function migrateExamples(options: { module: string }): Rule {
       `src/showcase/app/business/business-examples/${options.module}-examples`
     );
     if (!publicExamplesDir.subfiles.length && !businessExamplesDir.subfiles.length) {
-      _context.logger.warn(`No examples found for ${options.module}`);
+      context.logger.warn(`No examples found for ${options.module}`);
       return;
     }
 
     const targetDir = tree.getDir(`src/components-examples/angular/${options.module}`);
     if (targetDir.subfiles.length) {
-      _context.logger.warn(`${options.module} is already migrated`);
+      context.logger.warn(`${options.module} is already migrated`);
       return;
     }
 
@@ -50,7 +50,7 @@ export function migrateExamples(options: { module: string }): Rule {
         }
       });
     });
-    _context.addTask(new RunSchematicTask('bazel', { filter: 'components-examples' }));
+    context.addTask(new RunSchematicTask('bazel', { filter: 'components-examples' }));
 
     function migrateModuleDeclaration(entry: FileEntry) {
       let content = entry!.content
@@ -74,7 +74,7 @@ export function migrateExamples(options: { module: string }): Rule {
       });
       const indexPath = join(targetDir.path, 'index.ts');
       if (tree.exists(indexPath)) {
-        _context.logger.warn(
+        context.logger.warn(
           `${basename(indexPath)} already exists (probably from public). Manual merge of ${basename(
             entry.path
           )} required.`
@@ -91,7 +91,7 @@ export function migrateExamples(options: { module: string }): Rule {
         .replace('.scss', '.css');
       const targetPath = join(targetDir.path, adaptedPath);
       if (entry.path.endsWith('.scss')) {
-        _context.logger.warn(
+        context.logger.warn(
           `Changed ${entry.path} to ${targetPath}, since examples don't support scss`
         );
       }
@@ -119,7 +119,7 @@ export function migrateExamples(options: { module: string }): Rule {
         });
       }
       if (tree.exists(targetPath)) {
-        _context.logger.warn(
+        context.logger.warn(
           `${targetPath} already exists (probably from public). Manual check of ${entry.path} recommended.`
         );
       } else {
