@@ -1,11 +1,9 @@
-@import './includes/variants';
-@import './includes/colors';
+@import 'external/npm/node_modules/@angular/cdk/a11y';
+@import 'external/npm/node_modules/@angular/cdk/overlay';
 @import './includes/variables';
 @import './includes/functions';
 @import './includes/mediaqueries';
 @import './includes/mixins';
-@import './includes/button';
-@import './includes/form';
-@import './includes/checkbox';
-@import './includes/overlay';
-@import './includes/panel';
+// @import './includes/button';
+// @import './includes/overlay';
+// @import './includes/panel';

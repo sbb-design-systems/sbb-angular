@@ -15,12 +15,7 @@ sass_library(
 )
 
 sass_library(
-    name = "core_scss_lib",
-    srcs = ["_main.scss"] + glob(["typography/_*.scss"]),
+    name = "typography_lib",
+    srcs = ["_typography.scss"],
     deps = [":common_scss_lib"],
-)
-
-filegroup(
-    name = "legacy_scss",
-    srcs = glob(["common/*.scss"]),
 )

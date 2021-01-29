@@ -30,7 +30,7 @@ ng_module(
 sass_binary(
     name = "typography",
     src = "typography.scss",
-    deps = ["//src/angular/styles:core_scss_lib"],
+    deps = ["//src/angular/styles:typography_lib"],
 )
 
 scss_bundle(
@@ -45,7 +45,7 @@ scss_bundle(
         # Config file is required by "scss-bundle" and will be automatically
         # loaded by the CLI. It expects the config to be in the execroot.
         "//:scss-bundle.config.json",
-        "//src/angular/styles:core_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 

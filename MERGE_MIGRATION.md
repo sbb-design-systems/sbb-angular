@@ -9,17 +9,17 @@ See also our [migration issue](https://github.com/sbb-design-systems/sbb-angular
 
 ## Steps
 
+Don't forget to run `yarn generate:bazel` after each step.
+
 1. Copy module from `src/angular-business` or `src/angular-public` to `src/angular`. If both a business and a public variant exist, use the more tolerant variant.
 2. Where a template or visual difference is necessary, extend the component/directive class with the variant mixin (`mixinVariant`). See [Variant Mixin](#mixinVariant).
 3. Refactor scss code according to [CODING_STANDARDS](./CODING_STANDARDS.md). Also see [SCSS Rules](#scssRules).
 4. Update symbols for automatic merge migration by applying following command: `yarn generate:merge-symbols`.
 5. Check documentation (\*.md) for any required changes.
-6. Migrate examples from showcase to src/components-examples.
+6. Migrate examples from showcase to src/components-examples, by running the following command: `yarn migrate:example --module name-of-module`.
 7. Check for usages of the component in src/showcase-merge, src/components-examples and src/angular and change them to the migrated one
 8. Add a test in src/angular/schematics/ng-add/test-cases/merge and run them by `yarn test src/angular/schematics`
 9. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
-
-Don't forget to run `yarn generate:bazel` after each step.
 
 ## Start Showcase Merge
 
@@ -65,6 +65,70 @@ export class SbbExample extends _SbbExampleMixinBase {
 - Use `encapsulation: ViewEncapsulation.None`
 - Add CSS classes where necessary
 - See [Form Field SCSS](https://github.com/sbb-design-systems/sbb-angular/blob/master/src/angular-public/form-field/form-field.scss) for reference
+- Replace `@include publicOnly() {` with `@include sbbStandard {` and `@include businessOnly() {` with `@include sbbLean {`
+- Replace `if ($sbbBusiness) {` and `if($sbbBusiness, ..., ...)` with `@include sbbStandard {` or `@include sbbLean {`
+  e.g.
+
+  ```scss
+  if ($sbbBusiness) {
+    width: pxToRem(230); /* business/lean */
+  }
+  else {
+    width: pxToRem(320); /* public/standard */
+  }
+
+  // replace with
+
+  width: pxToRem(320); /* public/standard */
+
+  @include sbbLean {
+    width: pxToRem(230); /* business/lean */
+  }
+  ```
+
+  or
+
+  ```scss
+  width: if($sbbBusiness, pxToRem(230) /* business/lean */, pxToRem(320) /* public/standard */);
+
+  // replace with
+
+  width: pxToRem(320); /* public/standard */
+
+  @include sbbLean {
+    width: pxToRem(230); /* business/lean */
+  }
+  ```
+
+- Note that mediaqueries for 4k and 5k (`@include mq($from: desktop4k) { ... }` or `@include mq($from: desktop5k) { ... }`)
+  should always be contained in an `@include sbbStandard {`
+  e.g.
+
+  ```scss
+  @include mq($from: desktop4k) {
+    margin-bottom: pxToRem(5 * $scalingFactor4k);
+    padding-left: pxToRem(10 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    margin-bottom: pxToRem(5 * $scalingFactor5k);
+    padding-left: pxToRem(10 * $scalingFactor5k);
+  }
+
+  // replace with
+
+  @include sbbStandard {
+    @include mq($from: desktop4k) {
+      margin-bottom: pxToRem(5 * $scalingFactor4k);
+      padding-left: pxToRem(10 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-bottom: pxToRem(5 * $scalingFactor5k);
+      padding-left: pxToRem(10 * $scalingFactor5k);
+    }
+  }
+  ```
 
 ### Prefer flat rules
 

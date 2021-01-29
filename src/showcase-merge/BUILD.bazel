@@ -16,7 +16,7 @@ sass_binary(
     src = "styles.scss",
     include_paths = ["external/npm/node_modules"],
     sourcemap = False,
-    deps = ["//src/angular-core/styles:core_scss_lib"],
+    deps = ["//src/angular/styles:typography_lib"],
 )
 
 ng_ts_library(

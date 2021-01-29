@@ -56,7 +56,10 @@ ng_test_library(
 
 ng_web_test_suite(
     name = "unit_tests",
-    deps = [":unit_test_sources"],
+    deps = [":unit_test_sources"],<% if (path.includes('/angular/')) { %>
+    static_css = [
+            "//src/angular:typography",
+        ]<% } %>
 )<% } %><% if (hasMarkdown) { %>
 
 markdown_to_html(
