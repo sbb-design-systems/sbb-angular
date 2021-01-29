@@ -1,0 +1,60 @@
+<div [attr.id]="_valueId" [ngSwitch]="empty" class="sbb-select-value">
+  <span *ngSwitchCase="true" class="sbb-select-placeholder">{{ placeholder || '\u00A0' }}</span>
+  <span *ngSwitchCase="false" class="sbb-select-value-text">
+    <span>{{ triggerValue || '\u00A0' }}</span>
+  </span>
+</div>
+
+<ng-container [ngSwitch]="variant | async">
+  <sbb-icon
+    *ngSwitchCase="'standard'"
+    class="sbb-icon-fit sbb-select-arrow-icon"
+    svgIcon="kom:chevron-small-down-small"
+  ></sbb-icon>
+  <sbb-icon
+    *ngSwitchCase="'lean'"
+    class="sbb-icon-fit sbb-select-arrow-icon sbb-select-arrow-icon-lean"
+    svgIcon="kom:chevron-right-small"
+  ></sbb-icon>
+</ng-container>
+
+<ng-template
+  (attach)="_onAttached()"
+  (backdropClick)="close()"
+  (detach)="close()"
+  [cdkConnectedOverlayMinHeight]="30"
+  [cdkConnectedOverlayOffsetX]="0"
+  [cdkConnectedOverlayOffsetY]="_offsetY"
+  [cdkConnectedOverlayOpen]="panelOpen"
+  [cdkConnectedOverlayOrigin]="{ elementRef: _elementRef }"
+  [cdkConnectedOverlayPositions]="_positions"
+  [cdkConnectedOverlayScrollStrategy]="_scrollStrategy"
+  [cdkConnectedOverlayWidth]="_triggerRect?.width!"
+  cdk-connected-overlay
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  cdkConnectedOverlayFlexibleDimensions
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayPanelClass="sbb-overlay-panel"
+>
+  <div
+    #panel
+    (@transformPanel.done)="_panelDoneAnimatingStream.next($event.toState)"
+    (keydown)="_handleKeydown($event)"
+    [@transformPanel]="multiple ? 'showing-multiple' : 'showing'"
+    [attr.aria-label]="ariaLabel || null"
+    [attr.aria-labelledby]="_getPanelAriaLabelledby()"
+    [attr.aria-multiselectable]="multiple"
+    [attr.id]="id + '-panel'"
+    [ngClass]="panelClass"
+    [style.font-size.px]="_triggerFontSize"
+    [style.transformOrigin]="_transformOrigin"
+    [class.sbb-lean]="(variant | async) === 'lean'"
+    [class.sbb-standard]="(variant | async) === 'standard'"
+    class="sbb-panel sbb-panel-padded sbb-scrollbar"
+    role="listbox"
+    tabindex="-1"
+  >
+    <ng-content></ng-content>
+  </div>
+</ng-template>

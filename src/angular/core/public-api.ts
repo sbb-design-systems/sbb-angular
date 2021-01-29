@@ -16,3 +16,7 @@ export * from './datetime/native-date-adapter';
 export * from './error/error-options';
 export * from './icon-directive/icon-directive.module';
 export * from './icon-directive/icon.directive';
+export * from './option/option.module';
+export * from './option/option/option.component';
+export * from './option/option-group/option-group.component';
+export * from './option/option/pseudo-checkbox';
