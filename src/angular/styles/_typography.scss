@@ -1,0 +1,1288 @@
+@import './common';
+
+// ----------------------------------------------------------------------------------------------------
+// Custom Webfonts
+// ----------------------------------------------------------------------------------------------------
+
+@font-face {
+  font-family: 'SBBWeb Bold';
+  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Bold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SBBWeb Light';
+  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SBBWeb Roman';
+  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Roman.woff') format('woff');
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'SBBWeb Thin';
+  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Thin.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SBBWeb Ultralight';
+  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-UltraLight.woff') format('woff');
+  font-display: swap;
+}
+
+// ----------------------------------------------------------------------------------------------------
+// CSS Variables
+// ----------------------------------------------------------------------------------------------------
+
+/* prettier-ignore */
+html:not(.sbb-lean) *, html body .sbb-standard {
+  -ie-sbbVariant:standard;
+  --sbbVariant:standard;
+}
+
+/* prettier-ignore */
+html.sbb-lean *, html body .sbb-lean {
+  -ie-sbbVariant:lean;
+  --sbbVariant:lean;
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Reset HTML
+// ----------------------------------------------------------------------------------------------------
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+html {
+  background: $sbbColorBg;
+  color: $sbbColorText;
+  font-family: $fontSbbRoman;
+  font-size: $sizeFontBase / 16px * 100%;
+  line-height: $sizeLineHeightBase;
+
+  @include fontSmoothing;
+
+  b,
+  strong,
+  optgroup[label='*'] {
+    font-family: $fontSbbBold;
+    font-weight: normal;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+// This prevents an unwanted focus outline from appearing around elements that
+// might still respond to pointer events.
+//
+// Credit: https://github.com/suitcss/base
+[tabindex='-1']:focus {
+  outline: 0 !important;
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0; // Remove the margin in Firefox and Safari
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+table {
+  th,
+  td {
+    color: $sbbColorBlack;
+    font-size: pxToRem($sizeFontDefault);
+    line-height: 1.5;
+    margin: 0.75em 0 0; // paragraph as default
+  }
+  th {
+    font-family: $fontSbbBold;
+    font-weight: 400;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}
+
+// ----------------------------------------------------------------------------------------------------
+// CDK Styles
+// ----------------------------------------------------------------------------------------------------
+
+@include cdk-a11y;
+@include cdk-overlay();
+
+// SBB CDK Overlay Patch
+.cdk-overlay-pane.sbb-overlay-panel {
+  max-height: none;
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Headings
+// ----------------------------------------------------------------------------------------------------
+
+h1,
+.sbb-headline1 {
+  font-family: $fontSbbThin;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 2em 0 0;
+
+  @include sbbStandard {
+    $fontSizes: (
+      base: pxToRem(28),
+      tablet: pxToRem(30),
+      desktop: pxToRem(40),
+      desktop4k: pxToRem(60),
+      desktop5k: pxToRem(80),
+    );
+    @include mqSequence($fontSizes) using ($value) {
+      font-size: $value;
+    }
+  }
+  @include sbbLean {
+    font-family: $fontSbbLight;
+    font-weight: normal;
+    margin: 1em 0 0;
+
+    $sizes: (
+      base: (
+        pxToRem(21),
+        1.19,
+      ),
+      desktop: (
+        pxToRem(28),
+        1.214,
+      ),
+      desktop4k: (
+        pxToRem(42),
+        1.19,
+      ),
+      desktop5k: (
+        pxToRem(56),
+        1.196,
+      ),
+    );
+    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
+      font-size: $fontSize;
+      line-height: $lineHeight;
+    }
+  }
+}
+
+h2,
+.sbb-headline2 {
+  font-family: $fontSbbLight;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 1em 0 0;
+
+  @include sbbStandard {
+    $fontSizes: (
+      base: pxToRem(24),
+      desktop: pxToRem(32),
+      desktop4k: pxToRem(48),
+      desktop5k: pxToRem(64),
+    );
+    @include mqSequence($fontSizes) using ($value) {
+      font-size: $value;
+    }
+  }
+  @include sbbLean {
+    font-size: pxToRem(18);
+    line-height: 1.056;
+
+    $sizes: (
+      desktop: (
+        pxToRem(21),
+        1.19,
+      ),
+      desktop4k: (
+        pxToRem(32),
+        1.188,
+      ),
+      desktop5k: (
+        pxToRem(42),
+        1.19,
+      ),
+    );
+    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
+      font-size: $fontSize;
+      line-height: $lineHeight;
+    }
+  }
+}
+
+h3,
+.sbb-headline3 {
+  font-family: $fontSbbLight;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 2em 0 0;
+
+  @include sbbStandard {
+    $fontSizes: (
+      base: pxToRem(20),
+      tablet: pxToRem(21),
+      desktop4k: pxToRem(32),
+      desktop5k: pxToRem(42),
+    );
+    @include mqSequence($fontSizes) using ($value) {
+      font-size: $value;
+    }
+  }
+  @include sbbLean {
+    $sizes: (
+      base: (
+        pxToRem(16),
+        1.063,
+      ),
+      desktop: (
+        pxToRem(18),
+        1.222,
+      ),
+      desktop4k: (
+        pxToRem(27),
+        1.185,
+      ),
+      desktop5k: (
+        pxToRem(36),
+        1.194,
+      ),
+    );
+    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
+      font-size: $fontSize;
+      line-height: $lineHeight;
+    }
+  }
+}
+
+h4,
+.sbb-headline4 {
+  font-family: $fontSbbBold;
+  font-weight: normal;
+  line-height: 1.5;
+  margin: 2em 0 0;
+
+  @include sbbStandard {
+    $fontSizes: (
+      base: pxToRem(15),
+      desktop4k: pxToRem(23),
+      desktop5k: pxToRem(30),
+    );
+    @include mqSequence($fontSizes) using ($value) {
+      font-size: $value;
+    }
+  }
+  @include sbbLean {
+    $sizes: (
+      base: (
+        pxToRem(15),
+        0.933,
+      ),
+      desktop: (
+        pxToRem(16),
+        1.188,
+      ),
+      desktop4k: (
+        pxToRem(24),
+        1.208,
+      ),
+      desktop5k: (
+        pxToRem(32),
+        1.188,
+      ),
+    );
+    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
+      font-size: $fontSize;
+      line-height: $lineHeight;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Text
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-text-lead {
+  font-family: $fontSbbLight;
+  font-weight: normal;
+  color: $sbbColorText;
+  line-height: 1.3;
+  margin: 2em 0 0;
+
+  $fontSizes: (
+    base: pxToRem(20),
+    tablet: pxToRem(21),
+    desktop4k: pxToRem(32),
+    desktop5k: pxToRem(40),
+  );
+  @include mqSequence($fontSizes) using ($value) {
+    font-size: $value;
+  }
+  @include mq($from: desktop, $to: desktop) {
+    line-height: 1.524;
+  }
+}
+
+p,
+.sbb-copy {
+  font-size: pxToRem(15);
+  margin: 1em 0 0; // paragraph as default
+  @include sbbStandard {
+    line-height: 1.733;
+  }
+  @include sbbLean {
+    line-height: 1.533;
+  }
+
+  $fontSizes: (
+    desktop4k: pxToRem(23),
+    desktop5k: pxToRem(30),
+  );
+  @include mqSequence($fontSizes) using ($value) {
+    font-size: $value;
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Link
+// ----------------------------------------------------------------------------------------------------
+
+a,
+.sbb-link {
+  color: $sbbColorText;
+  text-decoration: underline;
+  text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
+  @include sbbStandard {
+    line-height: 1.733;
+  }
+  @include sbbLean {
+    line-height: 1.533;
+  }
+
+  &:hover,
+  &:focus {
+    color: $sbbColorRed125;
+
+    @media screen and (-ms-high-contrast: active) {
+      color: windowText;
+
+      &::before,
+      &::after {
+        border-color: windowText;
+      }
+    }
+  }
+
+  // TODO: 4k, 5k
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Lists
+// ----------------------------------------------------------------------------------------------------
+
+ul,
+.sbb-unordered-list,
+ol,
+.sbb-ordered-list {
+  font-size: pxToRem($sizeFontDefault);
+  margin-left: pxToRem(8);
+  margin-top: pxToRem(17);
+  margin-bottom: pxToRem(30);
+
+  @include mq($from: desktop) {
+    margin-top: pxToRem(25);
+  }
+
+  li {
+    margin-top: pxToRem(8);
+  }
+}
+
+ul,
+.sbb-unordered-list {
+  list-style-type: disc;
+  padding-left: pxToRem(16);
+}
+
+ul li,
+.sbb-unordered-list li {
+  padding-left: pxToRem(16 - 6);
+}
+
+ol,
+.sbb-ordered-list {
+  list-style-type: none;
+  counter-reset: item;
+  padding-left: 0;
+
+  > li {
+    display: table;
+    padding-left: 0;
+  }
+
+  > li::before {
+    content: counters(item, '.') '.';
+    counter-increment: item;
+
+    display: table-cell;
+    padding-right: pxToRem(13);
+  }
+}
+
+ol ol,
+.sbb-ordered-list ol,
+ol ul,
+.sbb-ordered-list ul,
+ul ul,
+.sbb-unordered-list ul,
+ul ol,
+.sbb-unordered-list ol {
+  margin: pxToRem(6) 0 0 pxToRem(8);
+}
+
+// if ol is nested inside ul, we need just 1 hierarchy level for the counter
+ul li ol > li::before,
+.sbb-unordered-list li ol > li::before {
+  content: counter(item) '.';
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Form Elements
+// ----------------------------------------------------------------------------------------------------
+
+// TODO: Is this used anywhere?
+@mixin disabledelement {
+  opacity: 0.5;
+}
+
+.sbb-input-element {
+  @include ellipsis;
+  @include placeholder($sbbColorStorm);
+
+  outline: none;
+  background: $sbbColorWhite;
+  border: pxToRem(2) solid $sbbColorGraphite;
+  border-radius: pxToRem(2);
+  color: $sbbColorGrey;
+  line-height: 1.5;
+  font-size: pxToRem($sizeFontDefault);
+  -webkit-appearance: none;
+  padding: pxToRem(10) pxToRem(14) pxToRem(12);
+  min-height: pxToRem(48);
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  &:focus,
+  .sbb-focused {
+    border-color: $sbbColorGrey;
+  }
+
+  &:disabled,
+  &[disabled],
+  &.sbb-disabled {
+    background-color: $sbbColorMilk;
+    border-color: $sbbColorAluminum;
+    color: $sbbColorGrey;
+    -webkit-text-fill-color: $sbbColorGrey;
+    opacity: 1;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &[readonly],
+  &.readonly {
+    background: $sbbColorMilk;
+    border-color: $sbbColorAluminum;
+  }
+
+  &.ng-touched.ng-invalid:not([aria-expanded='true']) {
+    color: $sbbColorError;
+    border-color: $sbbColorError;
+  }
+
+  @include sbbStandard {
+    @include mq($from: desktop4k) {
+      padding: pxToRem(10 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k)
+        pxToRem(12 * $scalingFactor4k);
+      border-width: pxToRem(2 * $scalingFactor4k);
+      border-radius: pxToRem(2 * $scalingFactor4k);
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(10 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k)
+        pxToRem(12 * $scalingFactor5k);
+      border-width: pxToRem(2 * $scalingFactor5k);
+      border-radius: pxToRem(2 * $scalingFactor5k);
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+  @include sbbLean {
+    color: $sbbColorIron;
+    border-width: pxToRem(1);
+    padding: pxToRem(6) pxToRem(8) pxToRem(7);
+    min-height: pxToRem(36);
+
+    &:focus,
+    .sbb-focused {
+      border-color: $sbbColorIron;
+    }
+
+    &:disabled,
+    &[disabled],
+    &.sbb-disabled {
+      color: $sbbColorGranite;
+      -webkit-text-fill-color: $sbbColorGranite;
+    }
+  }
+}
+
+input[placeholder],
+.sbb-input-element[placeholder] {
+  text-overflow: ellipsis;
+}
+
+input[type='number'],
+input[type='time'],
+input[type='datetime'],
+input[type='datetime-local'] {
+  -moz-appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button,
+  &::-webkit-clear-button {
+    appearance: none;
+    margin: 0;
+    width: 0;
+    padding: 0;
+    background: transparent;
+  }
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  background-color: transparent;
+  display: inline-flex;
+  box-sizing: border-box;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  // The `outline: none` from `.sbb-input-element` works on all browsers, however Firefox also
+  // adds a special `focus-inner` which we have to disable explicitly. See:
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Firefox
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  // Custom select expand icon
+  $sbbSelectExpandIconSize: 24;
+  $sbbSelectExpandIconRight: 12;
+  align-items: center;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJfeDMwX18xXyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQ7ZmlsbDogJTIzNjY2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZD0iTTcuNywxMC43TDguNCwxMGwzLjYsMy42bDMuNi0zLjZsMC43LDAuN0wxMiwxNUw3LjcsMTAuN3oiLz48L3N2Zz4=')
+    no-repeat;
+  padding-right: pxToRem(44);
+  background-position: center right pxToRem($sbbSelectExpandIconRight);
+  background-size: pxToRem($sbbSelectExpandIconSize) pxToRem($sbbSelectExpandIconSize);
+
+  @include sbbStandard {
+    @include mq($from: desktop4k) {
+      background-position: center right pxToRem($sbbSelectExpandIconRight * $scalingFactor4k);
+      background-size: pxToRem($sbbSelectExpandIconSize * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      background-position: center right pxToRem($sbbSelectExpandIconRight * $scalingFactor5k);
+      background-size: pxToRem($sbbSelectExpandIconSize * $scalingFactor5k);
+    }
+  }
+  @include sbbLean {
+    padding-right: pxToRem(38);
+    background-position: center right pxToRem(6);
+    background-size: pxToRem($sbbSelectExpandIconSize) pxToRem($sbbSelectExpandIconSize);
+  }
+}
+
+textarea {
+  white-space: pre-wrap;
+  overflow: auto;
+
+  &:disabled {
+    opacity: 1;
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Fieldset
+// ----------------------------------------------------------------------------------------------------
+
+fieldset,
+.sbb-fieldset {
+  margin: 0;
+  min-width: 0;
+  border: 1px solid $sbbColorSilver;
+  padding: pxToRem(36) pxToRem(24);
+
+  > legend {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    font-family: $fontSbbLight;
+    font-weight: 400;
+    line-height: 1.2;
+    font-size: 24px;
+    margin: 0 0 24px;
+    float: left;
+  }
+
+  fieldset {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    > legend {
+      font-size: 20px;
+    }
+  }
+
+  @include sbbStandard {
+    > legend {
+      @include mq($from: desktop) {
+        font-size: 32px;
+      }
+      @include mq($from: desktop4k) {
+        font-size: 48px;
+        margin: 0 0 36px;
+      }
+      @include mq($from: desktop5k) {
+        font-size: 64px;
+        margin: 0 0 48px;
+      }
+    }
+
+    fieldset {
+      > legend {
+        $fontSizes: (
+          desktop: pxToRem(22),
+          desktop4k: pxToRem(32),
+          desktop5k: pxToRem(42),
+        );
+        @include mqSequence($fontSizes) using ($value) {
+          font-size: $value;
+        }
+      }
+    }
+
+    @include mq($from: tabletPortrait) {
+      padding: pxToRem(48) pxToRem(24);
+    }
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontBase * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontBase * $scalingFactor5k);
+    }
+  }
+  @include sbbLean {
+    border: 1px solid $sbbColorGraphite;
+    padding: pxToRem(16);
+
+    > legend {
+      font-size: pxToRem(21);
+      margin: 0 0 pxToRem(8);
+    }
+
+    fieldset {
+      border-color: $sbbColorCloud;
+
+      > legend {
+        font-size: pxToRem(16);
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// SBB Checkbox & Radio Button
+// ----------------------------------------------------------------------------------------------------
+
+// This is the class that should be applied to the label wrapper of
+// custom checkboxes or radio buttons.
+.sbb-selection-item-label {
+  display: flex;
+  position: relative; // assure absolute positioned native input is close to the label!
+  align-items: flex-start;
+
+  @include sbbStandard {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+}
+
+@mixin sbbSelectionDimension($factor) {
+  width: toPx(20 * $factor);
+  min-width: toPx(20 * $factor);
+  height: toPx(20 * $factor);
+  min-height: toPx(20 * $factor);
+  border: toPx(2 * $factor) solid $sbbColorGraphite;
+  margin-right: toPx(8 * $factor);
+  margin-top: toPx(2.5 * $factor);
+}
+
+.sbb-selection-container {
+  background-color: $sbbColorWhite;
+  @include sbbSelectionDimension(1);
+
+  @include sbbStandard {
+    @include mq($from: desktop4k) {
+      @include sbbSelectionDimension($scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      @include sbbSelectionDimension($scalingFactor5k);
+    }
+  }
+  @include sbbLean {
+    border-width: 1px;
+    margin-top: toPx(1);
+  }
+}
+
+.sbb-selection-container-checked {
+  color: $sbbColorRed;
+  line-height: 0;
+  height: 100%;
+  width: 100%;
+  transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+  @include sbbLean {
+    color: $sbbColorIron;
+  }
+}
+
+.sbb-selection-content {
+  user-select: auto;
+  color: $sbbColorGrey;
+  transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+  @include sbbLean {
+    color: $sbbColorGranite;
+    line-height: 1.4em;
+  }
+}
+
+.sbb-selection-input:focus + .sbb-selection-container {
+  border-color: $sbbColorGrey;
+
+  @include sbbLean {
+    border-color: $sbbColorIron;
+  }
+}
+
+.sbb-checkbox-input {
+  & + .sbb-selection-container {
+    border-radius: toPx(2);
+
+    & > .sbb-selection-container-checked {
+      display: none;
+      border-radius: toPx(2);
+      transform: scale(1.3);
+
+      & > svg {
+        display: inline-block;
+        line-height: 0;
+        width: 100%;
+        height: 100%;
+        transform: translateY(toPx(-1.5));
+
+        @include sbbStandard {
+          @include mq($from: desktop4k) {
+            transform: translateY(toPx(-1.5 * $scalingFactor4k));
+          }
+          @include mq($from: desktop5k) {
+            transform: translateY(toPx(-1.5 * $scalingFactor5k));
+          }
+        }
+
+        & > polyline {
+          stroke: currentColor;
+        }
+      }
+    }
+  }
+}
+
+.sbb-radio-input {
+  & + .sbb-selection-container {
+    border-radius: 50%;
+
+    /*
+    Check if needed
+    @include sbbLean {
+      margin-top: 0;
+    }
+    */
+
+    & > .sbb-selection-container-checked {
+      display: none;
+      border-radius: 50%;
+      transform: scale(0.65);
+      background-color: $sbbColorRed;
+
+      @include sbbLean {
+        background-color: $sbbColorIron;
+      }
+    }
+  }
+}
+
+.sbb-selection-checked .sbb-selection-container {
+  & > .sbb-selection-container-checked {
+    display: block;
+  }
+
+  & + .sbb-selection-content {
+    color: $sbbColorBlack;
+
+    @include sbbLean {
+      color: $sbbColorIron;
+    }
+  }
+}
+
+.sbb-selection-indeterminate .sbb-selection-container {
+  &::before {
+    content: '';
+    position: relative;
+    height: 1px;
+    width: 10px;
+    left: calc(50% - 5px);
+    top: calc(50% - 0.5px);
+    border: 1px solid $sbbColorRed;
+    display: block;
+  }
+
+  @include sbbLean {
+    &::before {
+      border: 1px solid $sbbColorGranite;
+    }
+  }
+
+  & > .sbb-selection-container-checked {
+    display: none;
+  }
+
+  & + .sbb-selection-content {
+    color: $sbbColorBlack;
+
+    @include sbbLean {
+      color: $sbbColorIron;
+    }
+  }
+}
+
+.sbb-selection-disabled {
+  pointer-events: none;
+
+  .sbb-selection-container {
+    border-color: $sbbColorAluminum;
+    background-color: $sbbColorMilk;
+
+    & > .sbb-selection-container-checked {
+      background-color: $sbbColorGrey;
+
+      @include sbbLean {
+        color: $sbbColorGranite;
+      }
+    }
+
+    & + .sbb-selection-content {
+      color: $sbbColorGrey;
+
+      @include sbbLean {
+        color: $sbbColorStorm;
+      }
+    }
+  }
+}
+
+.sbb-selection-group-vertical {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .sbb-selection-item + .sbb-selection-item {
+    margin-top: toPx(16);
+
+    @include sbbStandard {
+      @include mq($from: desktop4k) {
+        margin-top: toPx(16 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        margin-top: toPx(16 * $scalingFactor5k);
+      }
+    }
+    @include sbbLean {
+      margin-top: toPx(3);
+    }
+  }
+}
+
+.sbb-selection-group-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+
+  .sbb-selection-item {
+    margin-right: toPx(32);
+
+    @include sbbStandard {
+      @include mq($from: desktop4k) {
+        margin-right: toPx(32 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        margin-right: toPx(32 * $scalingFactor5k);
+      }
+    }
+    @include sbbLean {
+      margin-right: toPx(15);
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// SBB Label
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-label {
+  letter-spacing: 0;
+  outline: 0;
+  resize: none;
+  background-color: transparent;
+  font-family: $fontSbbRoman;
+  font-size: pxToRem(13);
+  line-height: pxToRem(16);
+  color: $sbbColorGrey;
+  display: block;
+
+  @include sbbStandard {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(13 * $scalingFactor4k);
+      line-height: pxToRem(16 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(13 * $scalingFactor5k);
+      line-height: pxToRem(16 * $scalingFactor5k);
+    }
+  }
+  @include sbbLean {
+    color: $sbbColorGranite;
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// SBB Table
+// ----------------------------------------------------------------------------------------------------
+
+$tableBg: $sbbColorWhite;
+$tableTheadBgColor: $sbbColorCloud;
+$tableTbodyStripesBgColor: $sbbColorMilk;
+$tableTheadPadding: pxToEm(16);
+$tableTbodyPadding: pxToEm(16);
+$tableTheadCellPaddingMobile: pxToEm(29) pxToEm(12) pxToEm(30) pxToEm(12);
+$tableTheadCellPadding: pxToEm(29) pxToEm(16) pxToEm(30) pxToEm(16);
+$tableTbodyCellPaddingMobile: pxToEm(18) pxToEm(12) pxToEm(19) pxToEm(12);
+$tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
+$tableTrowHeightBusiness: pxToEm(36);
+$tableCaptionColor: $sbbColorGrey;
+
+.sbb-table {
+  border-spacing: 0;
+  background-color: $tableBg;
+  width: 100%;
+
+  @include sbbStandard {
+    padding-bottom: $tableTbodyPadding;
+
+    thead {
+      background-color: $tableTheadBgColor;
+
+      > tr {
+        th,
+        td {
+          padding: $tableTheadCellPaddingMobile;
+
+          @include mq($from: tabletPortrait) {
+            padding: $tableTheadCellPadding;
+
+            &:first-child {
+              border-left: $tableTheadPadding solid $tableTheadBgColor;
+            }
+
+            &:last-child {
+              border-right: $tableTheadPadding solid $tableTheadBgColor;
+            }
+          }
+        }
+      }
+    }
+
+    tbody {
+      > tr {
+        &:nth-child(even) {
+          background-color: $tableTbodyStripesBgColor;
+        }
+
+        th,
+        td {
+          padding: $tableTbodyCellPaddingMobile;
+
+          @include mq($from: tabletPortrait) {
+            padding: $tableTbodyCellPadding;
+
+            &:first-child {
+              border-left: $tableTheadPadding solid $tableBg;
+            }
+
+            &:last-child {
+              border-right: $tableTheadPadding solid $tableBg;
+            }
+          }
+        }
+      }
+    }
+
+    @include mq($from: desktop4k) {
+      font-size: toRem(1 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: toRem(1 * $scalingFactor5k);
+    }
+  }
+  @include sbbLean {
+    border-collapse: collapse;
+
+    thead {
+      text-align: left;
+      background-color: $sbbColorMilk;
+      border-bottom: 1px solid $sbbColorAluminum;
+
+      [dir='rtl'] & {
+        text-align: right;
+      }
+    }
+
+    tbody {
+      > tr {
+        background-color: $sbbColorWhite;
+        border-bottom: 1px solid $sbbColorAluminum;
+
+        &:hover {
+          background-color: $sbbColorCloud;
+        }
+      }
+    }
+
+    thead,
+    tbody,
+    tfoot {
+      > tr {
+        th,
+        td {
+          height: $tableTrowHeightBusiness;
+          padding: 0 $tableTbodyPadding;
+          border-right: 1px solid $sbbColorAluminum;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &:first-child {
+            padding-left: $tableTbodyPadding;
+            border-left: none;
+
+            [dir='rtl'] & {
+              padding-left: 0;
+              padding-right: $tableTbodyPadding;
+            }
+          }
+
+          &:last-child {
+            padding-right: $tableTbodyPadding;
+            border-right: none;
+
+            [dir='rtl'] & {
+              padding-right: 0;
+              padding-left: $tableTbodyPadding;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  caption {
+    font-size: pxToRem(13);
+    color: $tableCaptionColor;
+  }
+}
+
+.sbb-table-align-center {
+  text-align: center;
+}
+
+.sbb-table-align-left {
+  text-align: left;
+
+  /* th in IE11 won't inherit text-align: we apply it through selector */
+  thead,
+  tbody {
+    > tr {
+      th {
+        text-align: left;
+      }
+    }
+  }
+}
+
+.sbb-table-align-right {
+  text-align: right;
+
+  /* th in IE11 won't inherit text-align: we apply it through selector */
+  thead,
+  tbody {
+    > tr {
+      th {
+        text-align: right;
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// SBB time-input
+// ----------------------------------------------------------------------------------------------------
+
+input.sbb-time-input {
+  $timeInputWidth: 84;
+  $timeInputHeight: 48;
+
+  width: pxToRem($timeInputWidth);
+  height: pxToRem($timeInputHeight);
+  text-align: center;
+
+  @include sbbStandard {
+    @include mq($from: desktop4k) {
+      width: pxToRem($timeInputWidth * $scalingFactor4k);
+      height: pxToRem($timeInputHeight * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      width: pxToRem($timeInputWidth * $scalingFactor5k);
+      height: pxToRem($timeInputHeight * $scalingFactor5k);
+    }
+  }
+
+  @include sbbLean {
+    width: 70px;
+    height: 36px;
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// SBB scrollbar
+// ----------------------------------------------------------------------------------------------------
+
+$thumbColor: $sbbColorPlatinum;
+$trackColor: $sbbColorMilk;
+
+@mixin scrollbarColor($thumbColor, $trackColor) {
+  scrollbar-color: $thumbColor $trackColor;
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumbColor;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $trackColor;
+  }
+}
+
+.sbb-scrollbar {
+  @include scrollbarColor(transparent, transparent);
+
+  &:hover,
+  &.sbb-scrollbar-opaque {
+    @include scrollbarColor($thumbColor, $trackColor);
+  }
+
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  &:hover::-webkit-scrollbar-thumb:hover {
+    background-color: $sbbColorStorm;
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Utility
+// ----------------------------------------------------------------------------------------------------
+
+.clearfix {
+  @include clearfix;
+}

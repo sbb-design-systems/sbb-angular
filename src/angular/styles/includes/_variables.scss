@@ -32,10 +32,6 @@ $sizeBreakpointDesktopMaxWidth: 1921px; // maxWidthDesktop + (2 x 8.5%)
 $sizeBreakpointDesktop4k: 2561px;
 $sizeBreakpointDesktop5k: 3841px;
 
-$sizeWidthContent: 960px;
-$maxWidthContentDesktop: 1594px;
-$maxWidthContentDesktop5k: 2656px;
-
 /**
  * Offsets
  */
@@ -77,24 +73,6 @@ $sizeFontDefault5k: $sizeFontDefault * $scalingFactor5k;
 $fontSizeHeaderDefault: 14;
 $fontSizeHeaderDesktop4k: $fontSizeHeaderDefault * $scalingFactor4k;
 $fontSizeHeaderDesktop5k: $fontSizeHeaderDefault * $scalingFactor5k;
-
-$sizeFontH1Mobile: 28;
-$sizeFontH1Tablet: 30;
-$sizeFontH1Default: 40;
-$sizeFontH1Default4k: $sizeFontH1Default * $scalingFactor4k;
-$sizeFontH1Default5k: $sizeFontH1Default * $scalingFactor5k;
-
-$sizeFontH2Default: 32;
-$sizeFontH2Default4k: $sizeFontH2Default * $scalingFactor4k;
-$sizeFontH2Default5k: $sizeFontH2Default * $scalingFactor5k;
-
-$sizeFontH3Default: 21;
-$sizeFontH3Default4k: $sizeFontH3Default * $scalingFactor4k;
-$sizeFontH3Default5k: $sizeFontH3Default * $scalingFactor5k;
-
-$sizeFontH4Default: $sizeFontDefault;
-$sizeFontH4Default4k: $sizeFontH4Default * $scalingFactor4k;
-$sizeFontH4Default5k: $sizeFontH4Default * $scalingFactor5k;
 
 $fontSizeFooterBottomContainerDefault: 12;
 $fontSizeFooterDefault: $fontSizeHeaderDefault;
@@ -148,3 +126,48 @@ $cellCtaSmall: 72;
 $cellCtaSmallMedium: 96;
 $cellCTAMedium: 160;
 $cellCTALarge: 332;
+
+/**
+ * Colors
+ * https://digital.sbb.ch/en/farben
+ */
+// Core Colors
+$sbbColorRed: #eb0000;
+$sbbColorRed125: #c60018;
+$sbbColorRed150: #a20013;
+$sbbColorWhite: #ffffff;
+$sbbColorMilk: #f6f6f6;
+$sbbColorCloud: #e5e5e5;
+$sbbColorSilver: #dcdcdc;
+$sbbColorAluminum: #d2d2d2;
+$sbbColorPlatinum: #cdcdcd;
+$sbbColorCement: #bdbdbd;
+$sbbColorGraphite: #b7b7b7;
+$sbbColorStorm: #a8a8a8;
+$sbbColorMetal: #767676;
+$sbbColorGranite: #686868;
+$sbbColorAnthracite: #5a5a5a;
+$sbbColorIron: #444444;
+$sbbColorBlack: #000000;
+$sbbColorBlue: #2d327d;
+
+// Extended Colors
+$sbbColorSky: #0079c7;
+$sbbColorNight: #143a85;
+$sbbColorViolet: #6f2282;
+$sbbColorAutumn: #e84e10;
+$sbbColorOrange: #f27e00;
+$sbbColorPeach: #fcbb00;
+$sbbColorLemon: #ffde15;
+$sbbColorGreen: #00973b;
+
+// Non-Standard Colors
+$sbbColorGrey: #666666;
+$sbbColorGreyMedium: #979797;
+
+// Context Colors
+$sbbColorBg: $sbbColorWhite;
+$sbbColorCallToAction: $sbbColorRed;
+$sbbColorCallToActionHover: $sbbColorRed125;
+$sbbColorError: $sbbColorRed;
+$sbbColorText: $sbbColorBlack;

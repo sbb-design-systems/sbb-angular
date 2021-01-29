@@ -13,10 +13,6 @@
   @return toRem(toPx($px) / toPx($sizeFontBase));
 }
 
-@function pxToPc($px, $ref: $sizeWidthContent) {
-  @return (toPx($px) / toPx($ref) * 100%);
-}
-
 @function toEm($val) {
   @return ($val + 0em);
 }

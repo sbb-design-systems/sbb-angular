@@ -149,6 +149,7 @@ textarea.sbb-input-element {
 }
 
 // Remove the native select down arrow and replace it with sbb arrow
+// TODO: Check if this should be removed after merge migration
 select.sbb-input-element {
   -moz-appearance: none;
   -webkit-appearance: none;

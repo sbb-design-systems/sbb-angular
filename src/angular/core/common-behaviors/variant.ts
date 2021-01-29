@@ -1,10 +1,14 @@
 import { ElementRef } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
-import { Constructor } from './constructor';
+import { AbstractConstructor, Constructor } from './constructor';
+
+export const ɵtriggerVariantCheck = new Subject<void>();
 
 /** @docs-private */
 export interface HasVariant {
-  readonly variant: Variants;
+  readonly variant: Observable<SbbVariant>;
 }
 
 /** @docs-private */
@@ -16,31 +20,66 @@ export interface HasElementRef {
 }
 
 /** Possible variant values. */
-export type Variants = 'website' | 'webapp' | undefined;
+export type SbbVariant = 'standard' | 'lean' | undefined;
 
-function detectVariant(element: Element): Variants {
-  if (element.classList.contains('sbb-webapp')) {
-    return 'webapp';
+const manualVariantAssignment = new WeakMap<Element, SbbVariant>();
+
+function detectVariant(element: Element): SbbVariant {
+  if (element.classList.contains('sbb-lean')) {
+    return 'lean';
   }
 
   if (typeof getComputedStyle !== 'function') {
-    return 'website';
+    return 'standard';
   }
 
   const styles = getComputedStyle(element);
   const variant =
-    styles.getPropertyValue('--sbbMode') || ((styles as any)['-ie-sbbMode'] as string);
-  return variant === 'webapp' ? 'webapp' : 'website';
+    styles.getPropertyValue('--sbbVariant') || ((styles as any)['-ie-sbbVariant'] as string);
+  return variant === 'lean' ? 'lean' : 'standard';
+}
+
+function manageVariant(element: Element): SbbVariant {
+  let manualVariant: SbbVariant;
+  if (!manualVariantAssignment.has(element)) {
+    if (element.classList.contains('sbb-standard')) {
+      manualVariant = 'standard';
+    } else if (element.classList.contains('sbb-lean')) {
+      manualVariant = 'lean';
+    }
+    manualVariantAssignment.set(element, manualVariant);
+  } else {
+    manualVariant = manualVariantAssignment.get(element);
+  }
+
+  if (manualVariant) {
+    return manualVariant;
+  }
+
+  element.classList.remove('sbb-standard', 'sbb-lean');
+  const variant = detectVariant(element);
+  element.classList.add(`sbb-${variant}`);
+
+  return variant;
 }
 
 /** Mixin to augment a directive with a variant property. */
-export function mixinVariant<T extends Constructor<HasElementRef>>(base: T): HasVariantCtor & T {
-  return class extends base {
-    readonly variant: Variants;
+export function mixinVariant<T extends AbstractConstructor<HasElementRef>>(
+  base: T
+): HasVariantCtor & T {
+  class Mixin extends ((base as unknown) as Constructor<HasElementRef>) {
+    readonly variant: Observable<SbbVariant> = ɵtriggerVariantCheck.pipe(
+      startWith(null),
+      map(() => manageVariant(this._elementRef.nativeElement))
+    );
 
     constructor(...args: any[]) {
       super(...args);
-      this.variant = detectVariant(this._elementRef.nativeElement);
     }
-  };
+  }
+
+  // Since we don't directly extend from `base` with it's original types, and we instruct
+  // TypeScript that `T` actually is instantiatable through `new`, the types don't overlap.
+  // This is a limitation in TS as abstract classes cannot be typed properly dynamically.
+  return (Mixin as unknown) as T & Constructor<HasVariant>;
 }

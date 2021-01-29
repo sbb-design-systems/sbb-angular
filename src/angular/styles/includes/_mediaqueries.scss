@@ -85,7 +85,6 @@ $mqShowBreakpoints: (
  *     }
  * }
  */
-
 @mixin mq($from: false, $to: false, $and: false, $height: false) {
   // Initialize variables
   $minSize: 0;
@@ -153,37 +152,44 @@ $mqShowBreakpoints: (
 }
 
 /**
- * Add a breakpoint
- * Usage: $mqBreakpoints: mqAddBreakpoint(tvscreen, 1920px);
+ * Allows short form for mediaqueries sequences
+ *
+ * e.g. instead of:
+ *
+ *   font-size: toRem(28);
+ * 
+ *   @include mq($from: tabletPortrait) {
+ *     font-size: toRem(30);
+ *   }
+ * 
+ *   @include mq($from: desktop) {
+ *     font-size: toRem(40);
+ *   }
+ * 
+ *   @include mq($from: desktop4k) {
+ *     font-size: toRem(60);
+ *   }
+ * 
+ *   @include mq($from: desktop5k) {
+ *     font-size: toRem(80);
+ *   }
+ *
+ * write:
+ *
+ *   $fontSizes: (tabletPortrait: toRem(30), desktop: toRem(40), desktop4k: toRem(60), desktop5k: toRem(80));
+ *   @include mqSequence($fontSizes) using ($value) {
+ *     font-size: $value;
+ *   }
+ *
  */
-@function mqAddBreakpoint($name, $breakpoint) {
-  $newBreakpoint: (
-    $name: $breakpoint,
-  );
-  @return map-merge($mqBreakpoints, $newBreakpoint);
-}
-
-/**
- * Create JSON string of map of breakpoints
- */
-@function mqGetBreakpointsJSON($breakpoints: $mqBreakpoints) {
-  $JSON: '';
-
-  @each $name in map-keys($breakpoints) {
-    $value: map-get($breakpoints, $name);
-
-    $JSON: $JSON + '\\"#{$name}\\"\\:\\"#{$value}\\"\\,';
+@mixin mqSequence($map) {
+  @each $from, $value in $map {
+    @if $from == base {
+      @content ($value...);
+    } @else {
+      @include mq($from: $from) {
+        @content ($value...);
+      }
+    }
   }
-
-  // Remove last "\,"
-  $JSON: str-slice($JSON, 1, str-length($JSON) - 2);
-
-  @return \{#{$JSON}\};
-}
-
-/**
- * Create JSON string of single breakpoint
- */
-@function mqGetBreakpointJSON($name, $value) {
-  @return \{\"name\"\:\"#{$name}\"\,\"value\"\:\"#{$value}\"\};
 }

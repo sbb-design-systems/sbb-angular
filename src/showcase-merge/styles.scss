@@ -1,63 +1,9 @@
-@import '@angular/cdk/a11y';
-@import '@angular/cdk/overlay';
-@import '../angular-core/styles/main';
+@import '../angular/styles/typography';
 
 html,
 body {
   height: 100%;
   overflow-x: hidden;
-}
-
-@include sbbFonts();
-@include reset();
-@include sbbLink();
-@include cdk-a11y();
-@include cdk-overlay();
-@include sbbOverlay();
-@include sbbScrollbar();
-
-sbb-public,
-sbb-maps,
-sbb-core,
-sbb-icons,
-.cdk-overlay-container {
-  @import '../angular-public/style_bundle';
-  sbb-markdown-viewer,
-  sbb-component-viewer,
-  sbb-api-viewer,
-  sbb-icon-search,
-  sbb-icon-viewer,
-  sbb-experimental-icon-search,
-  sbb-icon-overview,
-  sbb-lightbox-container {
-    @include sbbHeadings();
-    @include sbbParagraph();
-    @include lists;
-    @include sbbInputFields();
-    @include sbbTextarea();
-    @include sbbSelect();
-    @include sbbFieldset();
-    @include sbbTimeInputField();
-    @include sbbTable();
-  }
-}
-
-sbb-business,
-.cdk-overlay-container {
-  @import '../angular-business/style_bundle';
-  sbb-markdown-viewer,
-  sbb-business-component-viewer,
-  sbb-dialog-container {
-    @include sbbHeadings();
-    @include sbbParagraph();
-    @include lists;
-    @include sbbInputFields();
-    @include sbbTextarea();
-    @include sbbSelect();
-    @include sbbFieldset();
-    @include sbbTimeInputField();
-    @include sbbTable();
-  }
 }
 
 sbb-markdown-viewer,
@@ -74,20 +20,6 @@ sbb-how-to-update {
 sbb-component-viewer sbb-example-viewer pre {
   margin: 1rem -24px;
   white-space: pre-wrap;
-}
-
-sbb-business-component-viewer {
-  pre {
-    background-color: #efefef;
-    padding: 1rem 16px;
-    margin: 1rem -16px;
-    white-space: pre-wrap;
-  }
-
-  sbb-business-example-viewer pre {
-    margin: 1rem -16px;
-    white-space: pre-wrap;
-  }
 }
 
 sbb-api-viewer,
@@ -173,10 +105,6 @@ pre code {
       }
     }
   }
-}
-
-.sbbsc-block {
-  margin-bottom: 0.5rem;
 }
 
 sbb-introduction,

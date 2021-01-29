@@ -36,6 +36,7 @@
     "format:bazel": "yarn -s bazel:buildifier --lint=fix --mode=fix",
     "format": "yarn -s format:prettier && yarn -s format:bazel",
     "migrate": "node ./scripts/run-migration.js",
+    "migrate:example": "ng g .:migrateExamples",
     "release": "standard-version --tag-prefix=\"\"",
     "forceinstall-husky": "node node_modules/husky/lib/installer/bin install",
     "t9n:xlf": "ng-t9n t9n-xlf.json",

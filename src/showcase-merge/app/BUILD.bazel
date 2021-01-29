@@ -53,7 +53,7 @@ sass_binary(
     name = "app_component_scss",
     src = "app.component.scss",
     deps = [
-        "//src/angular-core/styles:common_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 

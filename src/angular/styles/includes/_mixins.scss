@@ -89,205 +89,6 @@
 
 // Typo Styles
 // ----------------------------------------------------------------------------------------------------
-@mixin headline1 {
-  font-family: $fontSbbThin;
-  font-weight: normal;
-  font-size: pxToRem($sizeFontH1Mobile);
-  line-height: 1.4;
-  margin: 2em 0 0;
-
-  @include mq($from: tabletPortrait) {
-    line-height: 1.2;
-    font-size: pxToRem($sizeFontH1Tablet);
-  }
-
-  @include mq($from: desktop) {
-    font-size: pxToRem($sizeFontH1Default);
-  }
-
-  @include mq($from: desktop4k) {
-    font-size: pxToRem($sizeFontH1Default4k); /* Factor 1.5 of Desktop */
-  }
-
-  @include mq($from: desktop5k) {
-    font-size: pxToRem($sizeFontH1Default5k); /* Factor 2 of Desktop */
-  }
-}
-
-@mixin headline2 {
-  font-family: $fontSbbLight;
-  font-weight: normal;
-  font-size: pxToRem(24px);
-  line-height: 1.2;
-  margin: innerComponentSpacing(24) 0 0;
-
-  @include mq($from: tabletPortrait) {
-    font-size: pxToRem(26px);
-  }
-
-  @include mq($from: desktop) {
-    font-size: pxToRem($sizeFontH2Default);
-  }
-
-  @include mq($from: desktop4k) {
-    font-size: pxToRem($sizeFontH2Default4k); /* Factor 1.5 of Desktop */
-    font-family: $fontSbbThin;
-  }
-
-  @include mq($from: desktop5k) {
-    font-size: pxToRem($sizeFontH2Default5k); /* Factor 2 of Desktop */
-    font-family: $fontSbbThin;
-  }
-}
-
-@mixin headline3 {
-  font-family: $fontSbbLight;
-  font-weight: normal;
-  font-size: pxToRem(20px);
-  line-height: 1.4;
-  margin: 2em 0 0;
-
-  @include mq($from: tabletPortrait) {
-    font-size: pxToRem($sizeFontH3Default);
-  }
-
-  @include mq($from: desktop) {
-    font-size: pxToEm($sizeFontH3Default);
-  }
-
-  @include mq($from: desktop4k) {
-    font-family: $fontSbbThin;
-  }
-}
-
-@mixin headline4 {
-  font-family: $fontSbbBold;
-  font-weight: normal;
-  font-size: pxToRem($sizeFontH4Default);
-  line-height: 1.5;
-  margin: 2em 0 0;
-
-  @include mq($from: tabletPortrait) {
-    font-size: pxToRem($sizeFontH4Default);
-  }
-
-  @include mq($from: desktop) {
-    font-size: pxToEm($sizeFontH4Default);
-  }
-
-  @include mq($from: desktop4k) {
-    font-family: $fontSbbRoman;
-  }
-}
-
-@mixin lead {
-  font-family: $fontSbbLight;
-  font-weight: normal;
-  color: $sbbColorText;
-  font-size: pxToRem(20px);
-  line-height: 1.3;
-  margin: 2em 0 0;
-
-  @include mq($from: tabletPortrait) {
-    font-size: pxToRem(21px);
-  }
-
-  @include mq($from: desktop) {
-    font-size: pxToEm(21px);
-  }
-}
-
-@mixin copy {
-  font-size: pxToRem($sizeFontDefault);
-  line-height: 1.7;
-  margin: 1em 0 0; // paragraph as default
-
-  @include mq($from: tabletPortrait) {
-    font-size: pxToRem($sizeFontDefault);
-  }
-
-  @include mq($from: desktop) {
-    font-size: pxToRem($sizeFontDefault);
-  }
-
-  @include mq($from: desktop4k) {
-    font-size: pxToRem($sizeFontDefault4k);
-  }
-
-  @include mq($from: desktop5k) {
-    font-size: pxToRem($sizeFontDefault5k);
-  }
-}
-
-@mixin inlinelinks {
-  a {
-    color: $sbbColorText;
-    text-decoration: underline;
-
-    &:hover,
-    &:focus {
-      color: $sbbColorCallToActionHover;
-    }
-  }
-}
-
-@mixin lists {
-  ul,
-  ol {
-    font-size: pxToEm($sizeFontDefault);
-    margin-left: pxToEm(8);
-    margin-top: pxToEm(17);
-    margin-bottom: pxToEm(30);
-
-    @include mq($from: desktop) {
-      margin-top: pxToEm(25);
-    }
-
-    li {
-      margin-top: pxToEm(8);
-    }
-  }
-
-  ul {
-    list-style-type: disc;
-    padding-left: pxToEm(16);
-  }
-
-  ul li {
-    padding-left: pxToEm(16 - 6);
-  }
-
-  ol {
-    list-style-type: none;
-    counter-reset: item;
-    padding-left: 0;
-
-    > li {
-      display: table;
-      padding-left: 0;
-    }
-
-    > li:before {
-      content: counters(item, '.') '.';
-      counter-increment: item;
-
-      display: table-cell;
-      padding-right: pxToEm(13, $sizeFontDefault);
-    }
-  }
-
-  ol ol,
-  ol ul,
-  ul ul,
-  ul ol {
-    margin: pxToEm(6) 0 0 pxToEm(8);
-  }
-
-  // if ol is nested inside ul, we need just 1 hierarchy level for the counter
-  ul li ol > li:before {
-    content: counter(item) '.';
-  }
-}
 
 @mixin breakOutOfCenterAndGoFullBleed() {
   // https://cloudfour.com/thinks/breaking-out-with-viewport-units-and-calc/
@@ -335,106 +136,12 @@
   transform: translateY(-50%);
 }
 
+@mixin absoluteSize() {
+}
+
 @mixin setFullBleed($offset) {
   margin-left: -$offset;
   margin-right: -$offset;
-}
-
-// Section (Fieldset)
-// ----------------------------------------------------------------------------------------------------
-
-@mixin fieldset {
-  margin: 0;
-  min-width: 0;
-
-  @if $sbbBusiness {
-    border: 1px solid $sbbColorGraphite;
-    padding: pxToEm(16);
-  } @else {
-    border: 1px solid $sbbColorSilver;
-    padding: pxToEm(36) pxToEm(24);
-
-    @include mq($from: tabletPortrait) {
-      padding: pxToEm(48) pxToEm(24);
-    }
-
-    @include mq($from: desktop4k) {
-      font-size: pxToEm($sizeFontBase * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToEm($sizeFontBase * $scalingFactor5k);
-    }
-  }
-
-  > legend {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    padding: 0;
-    font-family: $fontSbbLight;
-    font-weight: 400;
-    line-height: 1.2;
-    float: left;
-
-    @if $sbbBusiness {
-      font-size: 21px;
-      margin: 0 0 8px;
-    } @else {
-      font-size: 24px;
-      margin: 0 0 24px;
-
-      @include mq($from: desktop) {
-        font-size: 32px;
-      }
-
-      @include mq($from: desktop4k) {
-        font-size: 48px;
-        margin: 0 0 36px;
-      }
-
-      @include mq($from: desktop5k) {
-        font-size: 64px;
-        margin: 0 0 48px;
-      }
-    }
-  }
-
-  fieldset {
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    padding-left: 0;
-    padding-right: 0;
-
-    @if $sbbBusiness {
-      border-color: $sbbColorCloud;
-    }
-
-    &:last-of-type {
-      border-bottom: none;
-    }
-
-    > legend {
-      @if $sbbBusiness {
-        font-size: 16px;
-      } @else {
-        font-size: 20px;
-
-        @include mq($from: desktop) {
-          font-size: 22px;
-        }
-
-        @include mq($from: desktop4k) {
-          font-size: 32px;
-        }
-
-        @include mq($from: desktop5k) {
-          font-size: 42px;
-        }
-      }
-    }
-  }
 }
 
 @mixin baseBadgePill() {
@@ -460,22 +167,6 @@
   }
 }
 
-@mixin svgIconColor($color) {
-  svg.sbb-svg-icon {
-    fill: $color;
-
-    & > path {
-      &[fill='none'] {
-        stroke: $color;
-      }
-
-      &:not([fill]) {
-        fill: $color;
-      }
-    }
-  }
-}
-
 /**
  * Display content for screen reader only.
  * Copied from angular/components .cdk-visually-hidden, in order
@@ -497,4 +188,38 @@
   // Avoid some cases where the browser will still render the native controls (see #9049).
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+// TODO: create classes
+@mixin buttonReset() {
+  background: none;
+  max-width: none;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin buttonResetFrameless() {
+  @include buttonReset();
+  border: none;
+}
+
+/**
+ * Applies standard selectors to parent
+ */
+@mixin sbbStandard {
+  html:not(.sbb-lean) &:not(.sbb-lean),
+  &.sbb-standard {
+    @content;
+  }
+}
+
+/**
+ * Applies lean selectors to parent
+ */
+@mixin sbbLean {
+  html.sbb-lean &:not(.sbb-standard),
+  &.sbb-lean {
+    @content;
+  }
 }

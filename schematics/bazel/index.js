@@ -489,9 +489,6 @@ class RelativeModuleTypeScriptDependencyResolver extends TypeScriptDependencyRes
 
 function bazel(options) {
     return (tree, context) => {
-        if (!isRunViaBuildBazelYarnCommand()) {
-            throw new schematics.SchematicsException(`Please run this schematic via 'yarn generate:bazel'`);
-        }
         const srcDir = tree.getDir('src');
         if (!options.filter) {
             srcDir.subdirs.forEach((d) => context.addTask(new tasks.RunSchematicTask('bazel', { filter: d })));
@@ -524,8 +521,9 @@ function bazel(options) {
                     ? new RelativeModuleTypeScriptDependencyResolver(tsConfig)
                     : new StrictModuleTypeScriptDependencyResolver(tsConfig);
                 const sassDependencyResolver = new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, new Map()
+                    .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
                     .set('/angular-core/styles/common', '//src/angular-core/styles:common_scss_lib')
-                    .set('external/npm/node_modules/@angular/cdk/a11y', '//src/angular-core/styles:common_scss_lib'));
+                    .set('external/npm/node_modules/@angular/cdk/a11y', '//src/angular/styles:common_scss_lib'));
                 const bazelGenruleResolver = new BazelGenruleResolver();
                 if (isMergeShowcase) {
                     return new ShowcaseMergePackage(packageDir, tree, {
@@ -556,9 +554,7 @@ function bazel(options) {
                         srcRoot,
                         moduleDetector,
                         typeScriptDependencyResolver,
-                        sassDependencyResolver: new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, new Map()
-                            .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
-                            .set('external/npm/node_modules/@angular/cdk/a11y', '//src/angular/styles:common_scss_lib')),
+                        sassDependencyResolver,
                         bazelGenruleResolver,
                     });
                 }
@@ -569,9 +565,7 @@ function bazel(options) {
                         srcRoot,
                         moduleDetector,
                         typeScriptDependencyResolver,
-                        sassDependencyResolver: new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, new Map()
-                            .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
-                            .set('external/npm/node_modules/@angular/cdk/a11y', '//src/angular/styles:common_scss_lib')),
+                        sassDependencyResolver,
                         bazelGenruleResolver,
                     });
                 }
@@ -588,15 +582,6 @@ function bazel(options) {
                 }
             })
                 .reduce((current, next) => current.concat(next.render()), []));
-        }
-        function isRunViaBuildBazelYarnCommand() {
-            return (typeof v8debug === 'object' ||
-                /--debug|--inspect/.test(process.execArgv.join(' ')) ||
-                process.env.debugmode ||
-                (process.env.npm_config_user_agent &&
-                    process.env.npm_config_user_agent.startsWith('yarn') &&
-                    process.env.npm_lifecycle_event &&
-                    process.env.npm_lifecycle_event === 'generate:bazel'));
         }
     };
 }

@@ -1,10 +1,4 @@
-import {
-  chain,
-  Rule,
-  SchematicContext,
-  SchematicsException,
-  Tree,
-} from '@angular-devkit/schematics';
+import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { RunSchematicTask } from '@angular-devkit/schematics/tasks';
 
 import { BazelGenruleResolver } from './bazel-genrule-resolver';
@@ -24,10 +18,6 @@ declare const v8debug: any;
 
 export function bazel(options: { filter?: string }): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    if (!isRunViaBuildBazelYarnCommand()) {
-      throw new SchematicsException(`Please run this schematic via 'yarn generate:bazel'`);
-    }
-
     const srcDir = tree.getDir('src');
     if (!options.filter) {
       srcDir.subdirs.forEach((d) => context.addTask(new RunSchematicTask('bazel', { filter: d })));
@@ -71,10 +61,11 @@ export function bazel(options: { filter?: string }): Rule {
               npmDependencyResolver,
               context.logger,
               new Map<string, string>()
+                .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
                 .set('/angular-core/styles/common', '//src/angular-core/styles:common_scss_lib')
                 .set(
                   'external/npm/node_modules/@angular/cdk/a11y',
-                  '//src/angular-core/styles:common_scss_lib'
+                  '//src/angular/styles:common_scss_lib'
                 )
             );
             const bazelGenruleResolver = new BazelGenruleResolver();
@@ -105,17 +96,7 @@ export function bazel(options: { filter?: string }): Rule {
                 srcRoot,
                 moduleDetector,
                 typeScriptDependencyResolver,
-                sassDependencyResolver: new FlexibleSassDependencyResolver(
-                  moduleDetector,
-                  npmDependencyResolver,
-                  context.logger,
-                  new Map<string, string>()
-                    .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
-                    .set(
-                      'external/npm/node_modules/@angular/cdk/a11y',
-                      '//src/angular/styles:common_scss_lib'
-                    )
-                ),
+                sassDependencyResolver,
                 bazelGenruleResolver,
               });
             } else if (isComponentsExamples) {
@@ -125,17 +106,7 @@ export function bazel(options: { filter?: string }): Rule {
                 srcRoot,
                 moduleDetector,
                 typeScriptDependencyResolver,
-                sassDependencyResolver: new FlexibleSassDependencyResolver(
-                  moduleDetector,
-                  npmDependencyResolver,
-                  context.logger,
-                  new Map<string, string>()
-                    .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
-                    .set(
-                      'external/npm/node_modules/@angular/cdk/a11y',
-                      '//src/angular/styles:common_scss_lib'
-                    )
-                ),
+                sassDependencyResolver,
                 bazelGenruleResolver,
               });
             } else {
@@ -151,18 +122,6 @@ export function bazel(options: { filter?: string }): Rule {
             }
           })
           .reduce((current, next) => current.concat(next.render()), [] as Rule[])
-      );
-    }
-
-    function isRunViaBuildBazelYarnCommand() {
-      return (
-        typeof v8debug === 'object' ||
-        /--debug|--inspect/.test(process.execArgv.join(' ')) ||
-        process.env.debugmode ||
-        (process.env.npm_config_user_agent &&
-          process.env.npm_config_user_agent.startsWith('yarn') &&
-          process.env.npm_lifecycle_event &&
-          process.env.npm_lifecycle_event === 'generate:bazel')
       );
     }
   };

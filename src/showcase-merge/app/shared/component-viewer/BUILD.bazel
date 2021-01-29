@@ -46,6 +46,6 @@ sass_binary(
     name = "example_viewer_example_viewer_component_scss",
     src = "example-viewer/example-viewer.component.scss",
     deps = [
-        "//src/angular-core/styles:common_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
