@@ -64,6 +64,70 @@ export class SbbExample extends _SbbExampleMixinBase {
 - Use `encapsulation: ViewEncapsulation.None`
 - Add CSS classes where necessary
 - See [Form Field SCSS](https://github.com/sbb-design-systems/sbb-angular/blob/master/src/angular-public/form-field/form-field.scss) for reference
+- Replace `@include publicOnly() {` with `@include sbbStandard {` and `@include businessOnly() {` with `@include sbbLean {`
+- Replace `if ($sbbBusiness) {` and `if($sbbBusiness, ..., ...)` with `@include sbbStandard {` or `@include sbbLean {`
+  e.g.
+
+  ```scss
+  if ($sbbBusiness) {
+    width: pxToRem(230); /* business/lean */
+  }
+  else {
+    width: pxToRem(320); /* public/standard */
+  }
+
+  // replace with
+
+  width: pxToRem(320); /* public/standard */
+
+  @include sbbLean {
+    width: pxToRem(230); /* business/lean */
+  }
+  ```
+
+  or
+
+  ```scss
+  width: if($sbbBusiness, pxToRem(230) /* business/lean */, pxToRem(320) /* public/standard */);
+
+  // replace with
+
+  width: pxToRem(320); /* public/standard */
+
+  @include sbbLean {
+    width: pxToRem(230); /* business/lean */
+  }
+  ```
+
+- Note that mediaqueries for 4k and 5k (`@include mq($from: desktop4k) { ... }` or `@include mq($from: desktop5k) { ... }`)
+  should always be contained in an `@include sbbStandard {`
+  e.g.
+
+  ```scss
+  @include mq($from: desktop4k) {
+    margin-bottom: pxToRem(5 * $scalingFactor4k);
+    padding-left: pxToRem(10 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    margin-bottom: pxToRem(5 * $scalingFactor5k);
+    padding-left: pxToRem(10 * $scalingFactor5k);
+  }
+
+  // replace with
+
+  @include sbbStandard {
+    @include mq($from: desktop4k) {
+      margin-bottom: pxToRem(5 * $scalingFactor4k);
+      padding-left: pxToRem(10 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-bottom: pxToRem(5 * $scalingFactor5k);
+      padding-left: pxToRem(10 * $scalingFactor5k);
+    }
+  }
+  ```
 
 ### Prefer flat rules
 
