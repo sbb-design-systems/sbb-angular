@@ -1,0 +1,7 @@
+<sbb-checkbox value="single-checkbox" [disabled]="disabled" (change)="incrementChangeCounter()">
+  Test label
+</sbb-checkbox>
+
+<h4>Properties</h4>
+<sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>
+<p>Change Counter: {{ changeCounter }}</p>

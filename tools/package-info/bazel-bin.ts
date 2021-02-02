@@ -1,7 +1,6 @@
 import { writeFileSync } from 'fs';
 
 if (require.main === module) {
-  console.error(process.argv.slice(2));
   const [outputFile] = process.argv.slice(2);
   const packageJson = require('../../package.json');
   writeFileSync(

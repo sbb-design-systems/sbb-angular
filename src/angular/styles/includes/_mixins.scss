@@ -204,19 +204,33 @@
 /**
  * Applies standard selectors to parent
  */
-@mixin sbbStandard {
-  html:not(.sbb-lean) &:not(.sbb-lean),
-  &.sbb-standard {
-    @content;
+@mixin sbbStandard($pivotSelector: null) {
+  @if ($pivotSelector == null) {
+    html:not(.sbb-lean) &:not(.sbb-lean),
+    &.sbb-standard {
+      @content;
+    }
+  } @else {
+    html:not(.sbb-lean) #{$pivotSelector}:not(.sbb-lean) &,
+    #{$pivotSelector}.sbb-standard & {
+      @content;
+    }
   }
 }
 
 /**
  * Applies lean selectors to parent
  */
-@mixin sbbLean {
-  html.sbb-lean &:not(.sbb-standard),
-  &.sbb-lean {
-    @content;
+@mixin sbbLean($pivotSelector: null) {
+  @if ($pivotSelector == null) {
+    html.sbb-lean &:not(.sbb-standard),
+    &.sbb-lean {
+      @content;
+    }
+  } @else {
+    html.sbb-lean #{$pivotSelector}:not(.sbb-standard) &,
+    #{$pivotSelector}.sbb-lean & {
+      @content;
+    }
   }
 }

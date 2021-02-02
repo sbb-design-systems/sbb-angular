@@ -17,6 +17,7 @@ Don't forget to run `yarn generate:bazel` after each step.
 4. Update symbols for automatic merge migration by applying following command: `yarn generate:merge-symbols`.
 5. Check documentation (\*.md) for any required changes.
 6. Migrate examples from showcase to src/components-examples, by running the following command: `yarn migrate:example --module name-of-module`.
+   Remove any CSS classes in the html template that are not part of the component or typography (e.g. remove `sbbsc-` CSS classes)
 7. Check for usages of the component in src/showcase-merge, src/components-examples and src/angular and change them to the migrated one
 8. Add a test in src/angular/schematics/ng-add/test-cases/merge and run them by `yarn test src/angular/schematics`
 9. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
@@ -57,6 +58,20 @@ const _SbbExampleMixinBase: HasVariantCtor & typeof SbbExampleBase = mixinVarian
 })
 export class SbbExample extends _SbbExampleMixinBase {
   ...
+
+  // If this component/directive has its own ngOnInit, it must call super.ngOnInit()
+  // e.g.
+  ngOnInit() {
+    super.ngOnInit();
+    ...
+  }
+
+  // If this component/directive has its own ngOnDestroy, it must call super.ngOnDestroy()
+  // e.g.
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    ...
+  }
 }
 ```
 
@@ -65,43 +80,89 @@ export class SbbExample extends _SbbExampleMixinBase {
 - Use `encapsulation: ViewEncapsulation.None`
 - Add CSS classes where necessary
 - See [Form Field SCSS](https://github.com/sbb-design-systems/sbb-angular/blob/master/src/angular-public/form-field/form-field.scss) for reference
-- Replace `@include publicOnly() {` with `@include sbbStandard {` and `@include businessOnly() {` with `@include sbbLean {`
-- Replace `if ($sbbBusiness) {` and `if($sbbBusiness, ..., ...)` with `@include sbbStandard {` or `@include sbbLean {`
+- Replace `@include publicOnly() {` with `&.sbb-standard` on the host selector or `.sbb-example.sbb-standard & {` on nested element selectors,
+  `@include businessOnly() {` with `&.sbb-lean` on the host selector or `.sbb-example.sbb-lean & {` on nested element selectors
+  and `if ($sbbBusiness) {` or `if($sbbBusiness, ..., ...)` similar to the previous two,
+  where `.sbb-example` corresponds to the host element selector.
+
   e.g.
 
   ```scss
-  if ($sbbBusiness) {
-    width: pxToRem(230); /* business/lean */
+  // Host element selector
+  .sbb-example {
+    @if ($sbbBusiness) {
+      width: pxToRem(230); /* business/lean */
+    } @else {
+      width: pxToRem(320); /* public/standard */
+    }
   }
-  else {
-    width: pxToRem(320); /* public/standard */
+
+  // Nested element selector
+  .sbb-example-section {
+    @include publicOnly() {
+      padding-top: pxToRem(30);
+
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem(40);
+      }
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem(50);
+      }
+    }
+    @include businessOnly() {
+      padding-top: pxToRem(10);
+    }
   }
 
   // replace with
 
-  width: pxToRem(320); /* public/standard */
+  // Host element selector
+  .sbb-example {
+    width: pxToRem(320); /* public/standard */
 
-  @include sbbLean {
-    width: pxToRem(230); /* business/lean */
+    &.sbb-lean {
+      width: pxToRem(230); /* business/lean */
+    }
+  }
+
+  // Nested element selector
+  .sbb-example-section {
+    .sbb-example.sbb-standard {
+      padding-top: pxToRem(30);
+
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem(40);
+      }
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem(50);
+      }
+    }
+    .sbb-example.sbb-lean {
+      padding-top: pxToRem(10);
+    }
   }
   ```
 
   or
 
   ```scss
-  width: if($sbbBusiness, pxToRem(230) /* business/lean */, pxToRem(320) /* public/standard */);
+  .sbb-example {
+    width: if($sbbBusiness, pxToRem(230) /* business/lean */, pxToRem(320) /* public/standard */);
+  }
 
   // replace with
 
-  width: pxToRem(320); /* public/standard */
+  .sbb-example {
+    width: pxToRem(320); /* public/standard */
 
-  @include sbbLean {
-    width: pxToRem(230); /* business/lean */
+    &.sbb-lean {
+      width: pxToRem(230); /* business/lean */
+    }
   }
   ```
 
 - Note that mediaqueries for 4k and 5k (`@include mq($from: desktop4k) { ... }` or `@include mq($from: desktop5k) { ... }`)
-  should always be contained in an `@include sbbStandard {`
+  should always be contained in `&.sbb-standard {` or `.sbb-example.sbb-standard & {`
   e.g.
 
   ```scss
@@ -117,7 +178,7 @@ export class SbbExample extends _SbbExampleMixinBase {
 
   // replace with
 
-  @include sbbStandard {
+  &.sbb-standard {
     @include mq($from: desktop4k) {
       margin-bottom: pxToRem(5 * $scalingFactor4k);
       padding-left: pxToRem(10 * $scalingFactor4k);
@@ -170,12 +231,12 @@ export class SbbExample extends _SbbExampleMixinBase {
 .sbb-example-button-icon {
   // Generic rules
 
-  .sbb-example.sbb-website & {
-    // Website specific rules
+  .sbb-example.sbb-standard & {
+    // Standard specific rules
   }
 
-  .sbb-example.sbb-webapp & {
-    // Webapp specific rules
+  .sbb-example.sbb-lean & {
+    // Lean specific rules
   }
 }
 ```

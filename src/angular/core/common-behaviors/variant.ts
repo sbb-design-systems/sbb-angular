@@ -1,13 +1,13 @@
-import { ElementRef } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Directive, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { map, shareReplay, startWith } from 'rxjs/operators';
 
 import { AbstractConstructor, Constructor } from './constructor';
 
 export const ɵtriggerVariantCheck = new Subject<void>();
 
 /** @docs-private */
-export interface HasVariant {
+export interface HasVariant extends OnInit, OnDestroy {
   readonly variant: Observable<SbbVariant>;
 }
 
@@ -67,14 +67,28 @@ function manageVariant(element: Element): SbbVariant {
 export function mixinVariant<T extends AbstractConstructor<HasElementRef>>(
   base: T
 ): HasVariantCtor & T {
-  class Mixin extends ((base as unknown) as Constructor<HasElementRef>) {
+  @Directive()
+  class Mixin
+    extends ((base as unknown) as Constructor<HasElementRef>)
+    implements OnInit, OnDestroy {
     readonly variant: Observable<SbbVariant> = ɵtriggerVariantCheck.pipe(
       startWith(null),
-      map(() => manageVariant(this._elementRef.nativeElement))
+      map(() => manageVariant(this._elementRef.nativeElement)),
+      shareReplay()
     );
+
+    private _variantSubscription: Subscription;
 
     constructor(...args: any[]) {
       super(...args);
+    }
+
+    ngOnInit(): void {
+      this._variantSubscription = this.variant.subscribe();
+    }
+
+    ngOnDestroy(): void {
+      this._variantSubscription.unsubscribe();
     }
   }
 
