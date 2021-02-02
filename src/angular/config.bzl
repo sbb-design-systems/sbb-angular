@@ -4,6 +4,7 @@ entryPoints = [
     "checkbox",
     "core",
     "core/testing",
+    "form-field",
     "icon",
     "icon/testing",
     "loading",
@@ -35,6 +36,7 @@ ANGULAR_TESTING_TARGETS = ["//src/angular/%s" % ep for ep in ANGULAR_TESTING_ENT
 ANGULAR_MARKDOWN_TARGETS = [
     "captcha",
     "checkbox",
+    "form-field",
     "icon",
     "loading",
     "oauth",

@@ -1,0 +1,16 @@
+<sbb-form-field>
+  <sbb-label>Name</sbb-label>
+  <input
+    type="text"
+    sbbInput
+    [formControl]="name"
+    autocomplete="off"
+    placeholder="Name"
+    spellcheck="false"
+  />
+  <sbb-error *ngIf="name.errors?.required">Name is required!</sbb-error>
+</sbb-form-field>
+<p>*Name must be at least 3 characters long</p>
+
+<h4>Properties</h4>
+<sbb-checkbox (change)="toggleDisabled($event)"> Disabled </sbb-checkbox>

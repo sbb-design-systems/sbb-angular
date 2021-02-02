@@ -1,0 +1,50 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "form-field",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":form-field.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular/form-field",
+    deps = [
+        "//src:dev_mode_types",
+        "//src/angular-public/input",
+        "//src/angular/core",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "form_field_scss",
+    src = "form-field.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":form-field.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
+
+filegroup(
+    name = "html-source-files",
+    srcs = glob(["**/*.html"]),
+)

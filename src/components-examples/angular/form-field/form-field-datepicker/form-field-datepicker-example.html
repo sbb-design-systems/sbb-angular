@@ -1,0 +1,6 @@
+<sbb-form-field label="Date">
+  <sbb-datepicker arrows>
+    <input sbbInput sbbDateInput [formControl]="date" />
+  </sbb-datepicker>
+  <sbb-error *ngIf="date.touched && date.errors?.required"> Date is required! </sbb-error>
+</sbb-form-field>

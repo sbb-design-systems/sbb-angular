@@ -1,0 +1,245 @@
+@import '../../angular/styles/common';
+
+.sbb-form-field {
+  display: inline-block;
+  position: relative;
+  width: pxToRem(320);
+
+  &.sbb-lean {
+    width: pxToRem(230);
+  }
+
+  &.sbb-standard {
+    @include mq($from: desktop4k) {
+      width: pxToRem(400);
+    }
+  }
+}
+
+// Variant for .sbb-form-field
+.sbb-form-field-short {
+  width: 33.333%;
+
+  @include mq($from: mobileLandscape) {
+    width: 25%;
+  }
+
+  @include mq($from: desktop) {
+    width: 16.66666%;
+  }
+}
+
+// Variant for .sbb-form-field
+.sbb-form-field-medium {
+  width: 100%;
+
+  @include mq($from: tabletPortrait) {
+    width: 50%;
+  }
+}
+
+// Variant for .sbb-form-field
+.sbb-form-field-long {
+  width: 100%;
+}
+
+.sbb-form-field-wrapper {
+  padding-bottom: pxToEm(21, 14);
+
+  .sbb-form-field.sbb-lean & {
+    padding-bottom: pxToEm(16, 13);
+  }
+
+  .sbb-form-field-errorless & {
+    padding-bottom: 0;
+  }
+}
+
+.sbb-form-field-label-wrapper {
+  margin-bottom: pxToRem(5);
+  padding-left: pxToRem(10);
+
+  .sbb-form-field.sbb-standard & {
+    @include mq($from: desktop4k) {
+      margin-bottom: pxToRem(5 * $scalingFactor4k);
+      padding-left: pxToRem(10 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-bottom: pxToRem(5 * $scalingFactor5k);
+      padding-left: pxToRem(10 * $scalingFactor5k);
+    }
+  }
+
+  .sbb-form-field.sbb-lean & {
+    margin-bottom: pxToRem(3);
+    padding-left: 0;
+  }
+}
+
+// The element of the input
+// TODO: Check if this should be removed after merge migration
+.sbb-input-element {
+  width: 100%;
+
+  // Prevent textareas from being resized outside the form field.
+  max-width: 100%;
+
+  // Undo the red box-shadow glow added by Firefox on invalid inputs.
+  // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
+  &:-moz-ui-invalid {
+    box-shadow: none;
+  }
+
+  // Remove IE's default clear and reveal icons.
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+  }
+
+  // Clear Safari's decorations for search fields.
+  &,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+
+  // Also clear Safari's autofill icons. Note that this can't be in the
+  // same selector as the IE ones, otherwise Safari will ignore it.
+  &::-webkit-contacts-auto-fill-button,
+  &::-webkit-caps-lock-indicator,
+  &::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+  }
+
+  &[type='date'],
+  &[type='datetime'],
+  &[type='datetime-local'],
+  &[type='month'],
+  &[type='week'],
+  &[type='time'] {
+    // Due to the native input masking these inputs can be slightly taller than
+    // the plain text inputs. We normalize it by resetting the line height.
+    line-height: 1;
+
+    // Fixes an issue on iOS where the following input types will collapse to 1px,
+    // if they're empty, because we've overridden their background color.
+    // See: https://stackoverflow.com/questions/18381594/input-type-date-appearance-in-safari-on-ios
+    &::after {
+      content: ' ';
+      white-space: pre;
+      width: 1px;
+    }
+  }
+
+  // Reduce the size of the native buttons in a date/time input,
+  // because they can increase the height of the input (see #13317).
+  &::-webkit-inner-spin-button,
+  &::-webkit-calendar-picker-indicator,
+  &::-webkit-clear-button {
+    font-size: 0.75em;
+  }
+}
+
+// Prevents IE from always adding a scrollbar by default.
+// TODO: Check if this should be removed after merge migration
+textarea.sbb-input-element {
+  // Only allow resizing along the Y axis.
+  resize: vertical;
+  overflow: auto;
+
+  &.cdk-textarea-autosize {
+    resize: none;
+  }
+}
+
+// Remove the native select down arrow and replace it with sbb arrow
+// TODO: Check if this should be removed after merge migration
+select.sbb-input-element {
+  // As a part of its user agent styling, IE11 has a blue box inside each focused
+  // `select` element which we have to reset. Note that this needs to be in its own
+  // selector, because having it together with another one will cause other browsers
+  // to ignore it.
+  &::-ms-value {
+    // We need to reset the `color` as well, because IE sets it to white.
+    color: inherit;
+    background: none;
+
+    // IE and Edge in high contrast mode reset the color for a focused select to the same color
+    // as the background, however this causes it blend in because we've reset the `background`
+    // above. We have to add a more specific selector in order to ensure that it gets the
+    // `color` from our theme instead.
+    @include cdk-high-contrast(active, off) {
+      .sbb-focused & {
+        color: inherit;
+      }
+    }
+  }
+}
+
+.sbb-form-field-error-wrapper {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+}
+
+// Scale down icons in the label and error to be the same size as the text.
+.sbb-form-field-error-wrapper,
+.sbb-form-field-label-wrapper {
+  .sbb-icon {
+    width: 1em;
+    height: 1em;
+    font-size: inherit;
+    vertical-align: baseline;
+  }
+
+  // Make sbb-tooltip align nicely inside sbb-label.
+  .sbb-tooltip {
+    position: relative;
+    margin-left: 0.66667em;
+  }
+  .sbb-tooltip-icon {
+    vertical-align: bottom;
+
+    &:not(:hover):not(:focus) {
+      color: inherit;
+    }
+
+    &,
+    .sbb-icon {
+      width: 1.25em;
+      height: 1.25em;
+    }
+  }
+}
+
+.sbb-error {
+  display: block;
+  letter-spacing: 0;
+  outline: none;
+  resize: none;
+  opacity: 1;
+  font-family: $fontSbbRoman;
+  color: $sbbColorError;
+
+  font-size: pxToRem(14);
+  line-height: pxToEm(21, 14);
+
+  .sbb-form-field.sbb-standard & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(14 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(14 * $scalingFactor5k);
+    }
+  }
+
+  .sbb-form-field.sbb-lean & {
+    font-size: pxToRem(13);
+    line-height: pxToEm(16, 13);
+  }
+}
