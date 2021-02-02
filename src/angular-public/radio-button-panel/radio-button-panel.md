@@ -53,9 +53,9 @@ and `ReactiveFormsModule`.
 
 ```html
 <sbb-radio-group [(ngModel)]="radioValue">
-  <sbb-radio-button-panel value="bananas">Bananas</sbb-radio-button-panel>
-  <sbb-radio-button-panel value="apple">Apple</sbb-radio-button-panel>
-  <sbb-radio-button-panel value="orange">Orange</sbb-radio-button-panel>
+  <sbb-radio-button-panel value="bananas" label="Bananas"></sbb-radio-button-panel>
+  <sbb-radio-button-panel value="apple" label="Apple"></sbb-radio-button-panel>
+  <sbb-radio-button-panel value="orange" label="Orange"></sbb-radio-button-panel>
 </sbb-radio-group>
 ```
 
@@ -63,9 +63,9 @@ and `ReactiveFormsModule`.
 
 ```html
 <sbb-radio-group formControlName="radioValue">
-  <sbb-radio-button-panel value="bananas">Bananas</sbb-radio-button-panel>
-  <sbb-radio-button-panel value="apple">Apple</sbb-radio-button-panel>
-  <sbb-radio-button-panel value="orange">Orange</sbb-radio-button-panel>
+  <sbb-radio-button-panel value="bananas" label="Bananas"></sbb-radio-button-panel>
+  <sbb-radio-button-panel value="apple" label="Apple"></sbb-radio-button-panel>
+  <sbb-radio-button-panel value="orange" label="Orange"></sbb-radio-button-panel>
 </sbb-radio-group>
 ```
 
