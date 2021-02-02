@@ -71,10 +71,7 @@ export class SbbBreadcrumb extends SbbDropdownTrigger implements AfterViewInit {
 
   /** Checks if the current breadcrumb is the first child of his parent (breadcrumbs) */
   get isFirst(): boolean {
-    if (this._parent && this._parent.levels.first) {
-      return this === this._parent.levels.first;
-    }
-    return false;
+    return this._parent && this._parent.levels?.first === this;
   }
 
   /** Event emitted at the expansion of the dropdown. */
