@@ -65,6 +65,7 @@ export class SbbCheckboxChange {
 class SbbCheckboxBase {
   constructor(public _elementRef: ElementRef) {}
 }
+// tslint:disable-next-line: naming-convention
 const _SbbCheckboxMixinBase: HasTabIndexCtor &
   CanDisableCtor &
   HasVariantCtor &
@@ -80,7 +81,6 @@ const _SbbCheckboxMixinBase: HasTabIndexCtor &
 @Component({
   selector: 'sbb-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.css'],
   exportAs: 'sbbCheckbox',
   host: {
     class: 'sbb-checkbox sbb-selection-item',
