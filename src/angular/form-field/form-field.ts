@@ -186,15 +186,4 @@ export class SbbFormField
       throw getSbbFormFieldMissingControlError();
     }
   }
-
-  // tslint:disable: member-ordering
-  static ngAcceptInputType_mode:
-    | 'default'
-    | 'short'
-    | 'medium'
-    | 'long'
-    | string
-    | null
-    | undefined;
-  // tslint:enable: member-ordering
 }

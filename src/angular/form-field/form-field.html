@@ -24,10 +24,6 @@
     <ng-content></ng-content>
   </div>
   <div class="sbb-form-field-error-wrapper">
-    <!-- @breaking-change 12.0.0 remove sbb-form-error,[sbbFormError]. -->
-    <ng-content
-      *ngIf="_hasErrors()"
-      select="sbb-error,[sbbError],sbb-form-error,[sbbFormError]"
-    ></ng-content>
+    <ng-content *ngIf="_hasErrors()" select="sbb-error,[sbbError]"></ng-content>
   </div>
 </div>
