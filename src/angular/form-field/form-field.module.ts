@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbInputModule } from '@sbb-esta/angular/input';
 
 import { SbbError } from './error';
 import { SbbFormField } from './form-field';
+import { SbbInputModule } from './input.module';
 import { SbbLabel } from './label';
 
 @NgModule({

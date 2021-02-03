@@ -7,7 +7,6 @@ entryPoints = [
     "form-field",
     "icon",
     "icon/testing",
-    "input",
     "loading",
     "oauth",
     "radio-button",

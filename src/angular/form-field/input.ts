@@ -20,8 +20,8 @@ import {
   mixinErrorState,
   SbbErrorStateMatcher,
 } from '@sbb-esta/angular/core';
-import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
 
+import { SbbFormFieldControl } from './form-field-control';
 import { SBB_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
 
 let nextId = 0;

@@ -21,10 +21,8 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbErrorStateMatcher, SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
 import { dispatchFakeEvent, wrappedErrorMessage } from '@sbb-esta/angular/core/testing';
-import {
-  getSbbFormFieldMissingControlError,
-  SbbFormFieldModule,
-} from '@sbb-esta/angular/form-field';
+import { getSbbFormFieldMissingControlError } from './form-field-errors';
+import { SbbFormFieldModule } from './form-field.module';
 
 import { SbbInput } from './input';
 import { SBB_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
