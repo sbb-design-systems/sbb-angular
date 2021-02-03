@@ -84,25 +84,8 @@ jobs:
       run: yarn -s build all
     - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
-    - name: "Bazel: Build showcase"
-      run: yarn -s build showcase
     - name: "Bazel: Clean bazel disk cache"
       run: yarn -s bazel:cache clean --maxSize 300MB --individualMaxSize=20MB
-
-    - name: "Deploy: Pack showcase"
-      run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
-    - name: "Deploy: Upload PR to staging"
-      if: github.event_name == 'pull_request'
-      run: |
-        curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
-        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
-        -F "tarball=@sbb-esta-angular-showcase.tgz"
-    - name: "Deploy: Upload master to staging"
-      if: github.ref == 'refs/heads/master'
-      run: |
-        curl --url https://angular-staging.app.sbb.ch/master \
-        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
-        -F "tarball=@sbb-esta-angular-showcase.tgz"
 
   packages:
     runs-on: ubuntu-latest
@@ -145,3 +128,121 @@ jobs:
       run: yarn -s build packages
     - name: "Bazel: Clean bazel disk cache"
       run: yarn -s bazel:cache clean --maxSize 150MB
+
+  showcase:
+    runs-on: ubuntu-latest
+    env:
+      PR_NUMBER: ${{ github.event.number }}
+    steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: "Bazel: Copy bazel.rc to user home"
+      run: cp ./.github/.bazelrc ~/
+    - name: "Bazel: Write to cache on push event"
+      if: github.event_name == 'push'
+      run: |
+        echo "build --config=remote-disk-caching" >> ~/.bazelrc
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Restore dependencies from cache"
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
+
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-showcase-${{ github.sha }}
+        restore-keys: |
+          bazel-showcase-
+    - name: "Bazel: Build showcase"
+      run: yarn -s build showcase
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --maxSize 300MB --individualMaxSize=20MB
+
+    - name: "Deploy: Pack showcase"
+      run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
+    - name: "Deploy: Upload PR to staging"
+      if: github.event_name == 'pull_request'
+      run: |
+        curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
+        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
+        -F "tarball=@sbb-esta-angular-showcase.tgz"
+    - name: "Deploy: Upload master to staging"
+      if: github.ref == 'refs/heads/master'
+      run: |
+        curl --url https://angular-staging.app.sbb.ch/master \
+        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
+        -F "tarball=@sbb-esta-angular-showcase.tgz"
+
+  showcase-merge:
+    runs-on: ubuntu-latest
+    env:
+      PR_NUMBER: ${{ github.event.number }}
+    steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: "Bazel: Copy bazel.rc to user home"
+      run: cp ./.github/.bazelrc ~/
+    - name: "Bazel: Write to cache on push event"
+      if: github.event_name == 'push'
+      run: |
+        echo "build --config=remote-disk-caching" >> ~/.bazelrc
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Restore dependencies from cache"
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
+
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-showcase-merge-${{ github.sha }}
+        restore-keys: |
+          bazel-showcase-merge-
+    - name: "Bazel: Build showcase"
+      run: yarn -s build showcase-merge
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --maxSize 300MB --individualMaxSize=20MB
+
+    - name: "Deploy: Pack showcase"
+      run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
+    - name: "Deploy: Upload PR to staging"
+      if: github.event_name == 'pull_request'
+      run: |
+        curl --url https://angular-staging.app.sbb.ch/${PR_NUMBER}-merge \
+        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
+        -F "tarball=@sbb-esta-angular-showcase.tgz"
+    - name: "Deploy: Upload master to staging"
+      if: github.ref == 'refs/heads/master'
+      run: |
+        curl --url https://angular-staging.app.sbb.ch/master-merge \
+        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
+        -F "tarball=@sbb-esta-angular-showcase.tgz"
