@@ -961,7 +961,8 @@ fieldset,
   }
 }
 
-.sbb-selection-group-vertical {
+.sbb-checkbox-group-vertical,
+.sbb-radio-group-vertical {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -984,7 +985,8 @@ fieldset,
   }
 }
 
-.sbb-selection-group-horizontal {
+.sbb-checkbox-group-horizontal,
+.sbb-radio-group-horizontal {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
