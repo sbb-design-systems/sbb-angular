@@ -32,6 +32,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
+  HasTabIndex,
   HasTabIndexCtor,
   HasVariant,
   HasVariantCtor,
@@ -80,6 +81,7 @@ export const SBB_RADIO_GROUP = new InjectionToken<_SbbRadioGroupBase<_SbbRadioBu
 export const SBB_RADIO_BUTTON = new InjectionToken<_SbbRadioButtonBase>('SbbRadioButton');
 
 @Directive()
+// tslint:disable-next-line: naming-convention class-name
 export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
   implements AfterContentInit, ControlValueAccessor {
   /** Name of the radio button group. All radio buttons inside this group will use this name. */
@@ -316,6 +318,7 @@ abstract class RadioButtonBase {
   constructor(public _elementRef: ElementRef) {}
 }
 
+// tslint:disable-next-line: naming-convention
 const _RadioButtonMixinBase: HasTabIndexCtor &
   HasVariantCtor &
   typeof RadioButtonBase = mixinTabIndex(mixinVariant(RadioButtonBase));
@@ -323,9 +326,10 @@ const _RadioButtonMixinBase: HasTabIndexCtor &
 let nextId = 0;
 
 @Directive()
+// tslint:disable-next-line: naming-convention class-name
 export class _SbbRadioButtonBase
   extends _RadioButtonMixinBase
-  implements OnInit, AfterViewInit, OnDestroy, HasVariant {
+  implements OnInit, AfterViewInit, OnDestroy, HasTabIndex, HasVariant {
   private _uniqueId = `sbb-radio-button-${++nextId}`;
 
   /** The id of this component. */
@@ -592,6 +596,7 @@ export class _SbbRadioButtonBase
     '(focus)': '_inputElement.nativeElement.focus()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: SBB_RADIO_BUTTON, useExisting: SbbRadioButton }],
 })
 export class SbbRadioButton extends _SbbRadioButtonBase {
   constructor(

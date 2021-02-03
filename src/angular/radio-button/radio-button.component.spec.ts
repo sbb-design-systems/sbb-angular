@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
 
 import { SbbRadioButton, SbbRadioChange, SbbRadioGroup } from './radio-button.component';
+import { SbbRadioButtonModule } from './radio-button.module';
 
 @Component({
   template: `
@@ -20,7 +21,7 @@ import { SbbRadioButton, SbbRadioChange, SbbRadioGroup } from './radio-button.co
     </sbb-radio-group>
   `,
 })
-class RadiosInsideRadioGroupComponent {
+class RadiosInsideRadioGroup {
   isFirstDisabled = false;
   isGroupDisabled = false;
   isGroupRequired = false;
@@ -51,7 +52,7 @@ class RadiosInsideRadioGroupComponent {
     <sbb-radio-button id="nameless" value="no-name">No name</sbb-radio-button>
   `,
 })
-class StandaloneRadioButtonsComponent {
+class StandaloneRadioButtons {
   ariaLabel = 'Banana';
   ariaLabelledby = 'xyz';
   ariaDescribedby = 'abc';
@@ -66,7 +67,7 @@ class StandaloneRadioButtonsComponent {
     </sbb-radio-group>
   `,
 })
-class RadioGroupWithNgModelComponent {
+class RadioGroupWithNgModel {
   modelValue: string;
   groupName = 'radio-group';
   options = [
@@ -96,7 +97,7 @@ class DisableableSbbRadioButton {
     </sbb-radio-group>
   `,
 })
-class RadioGroupWithFormControlComponent {
+class RadioGroupWithFormControl {
   @ViewChild(SbbRadioGroup) group: SbbRadioGroup;
   formControl = new FormControl();
 }
@@ -117,7 +118,7 @@ class FocusableSbbRadioButton {
     </sbb-radio-group>
   `,
 })
-class InterleavedRadioGroupComponent {
+class InterleavedRadioGroup {
   modelValue = 'strawberry';
   options = [
     { label: 'Vanilla', value: 'vanilla' },
@@ -127,16 +128,15 @@ class InterleavedRadioGroupComponent {
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'transcluding-wrapper',
   template: ` <div><ng-content></ng-content></div> `,
 })
-class TranscludingWrapperComponent {}
+class TranscludingWrapper {}
 
 @Component({
-  template: ` <sbb-radio-button tabindex="0"></sbb-radio-button> `,
+  template: ` <sbb-radio-button tabindex="5"></sbb-radio-button> `,
 })
-class RadioButtonWithPredefinedTabindexComponent {}
+class RadioButtonWithPredefinedTabindex {}
 
 @Component({
   template: `
@@ -147,25 +147,24 @@ class RadioButtonWithPredefinedTabindexComponent {}
     ></sbb-radio-button>
   `,
 })
-class RadioButtonWithPredefinedAriaAttributesComponent {}
+class RadioButtonWithPredefinedAriaAttributes {}
 
 describe('RadioButton', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, ReactiveFormsModule],
+        imports: [FormsModule, ReactiveFormsModule, SbbRadioButtonModule],
         declarations: [
-          SbbRadioButton,
           DisableableSbbRadioButton,
           FocusableSbbRadioButton,
-          RadiosInsideRadioGroupComponent,
-          RadioGroupWithNgModelComponent,
-          RadioGroupWithFormControlComponent,
-          StandaloneRadioButtonsComponent,
-          InterleavedRadioGroupComponent,
-          TranscludingWrapperComponent,
-          RadioButtonWithPredefinedTabindexComponent,
-          RadioButtonWithPredefinedAriaAttributesComponent,
+          RadiosInsideRadioGroup,
+          RadioGroupWithNgModel,
+          RadioGroupWithFormControl,
+          StandaloneRadioButtons,
+          InterleavedRadioGroup,
+          TranscludingWrapper,
+          RadioButtonWithPredefinedTabindex,
+          RadioButtonWithPredefinedAriaAttributes,
         ],
       });
 
@@ -174,18 +173,18 @@ describe('RadioButton', () => {
   );
 
   describe('inside of a group', () => {
-    let fixture: ComponentFixture<RadiosInsideRadioGroupComponent>;
+    let fixture: ComponentFixture<RadiosInsideRadioGroup>;
     let groupDebugElement: DebugElement;
     let radioDebugElements: DebugElement[];
     let radioLabelElements: HTMLLabelElement[];
     let radioInputElements: HTMLInputElement[];
     let groupInstance: SbbRadioGroup;
     let radioInstances: SbbRadioButton[];
-    let testComponent: RadiosInsideRadioGroupComponent;
+    let testComponent: RadiosInsideRadioGroup;
 
     beforeEach(
       waitForAsync(() => {
-        fixture = TestBed.createComponent(RadiosInsideRadioGroupComponent);
+        fixture = TestBed.createComponent(RadiosInsideRadioGroup);
         fixture.detectChanges();
 
         testComponent = fixture.debugElement.componentInstance;
@@ -426,18 +425,18 @@ describe('RadioButton', () => {
   });
 
   describe('group with ngModel', () => {
-    let fixture: ComponentFixture<RadioGroupWithNgModelComponent>;
+    let fixture: ComponentFixture<RadioGroupWithNgModel>;
     let groupDebugElement: DebugElement;
     let radioDebugElements: DebugElement[];
     let innerRadios: DebugElement[];
     let radioLabelElements: HTMLLabelElement[];
     let groupInstance: SbbRadioGroup;
     let radioInstances: SbbRadioButton[];
-    let testComponent: RadioGroupWithNgModelComponent;
+    let testComponent: RadioGroupWithNgModel;
     let groupNgModel: NgModel;
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(RadioGroupWithNgModelComponent);
+      fixture = TestBed.createComponent(RadioGroupWithNgModel);
       fixture.detectChanges();
 
       testComponent = fixture.debugElement.componentInstance;
@@ -565,7 +564,7 @@ describe('RadioButton', () => {
 
   describe('group with FormControl', () => {
     it('should toggle the disabled state', () => {
-      const fixture = TestBed.createComponent(RadioGroupWithFormControlComponent);
+      const fixture = TestBed.createComponent(RadioGroupWithFormControl);
       fixture.detectChanges();
 
       expect(fixture.componentInstance.group.disabled).toBeFalsy();
@@ -582,7 +581,7 @@ describe('RadioButton', () => {
     });
 
     it('should have a selected button when one matches the initial value', () => {
-      const fixture = TestBed.createComponent(RadioGroupWithFormControlComponent);
+      const fixture = TestBed.createComponent(RadioGroupWithFormControl);
       fixture.componentInstance.formControl.setValue('2');
       fixture.detectChanges();
 
@@ -623,16 +622,16 @@ describe('RadioButton', () => {
   });
 
   describe('as standalone', () => {
-    let fixture: ComponentFixture<StandaloneRadioButtonsComponent>;
+    let fixture: ComponentFixture<StandaloneRadioButtons>;
     let radioDebugElements: DebugElement[];
     let seasonRadioInstances: SbbRadioButton[];
     let weatherRadioInstances: SbbRadioButton[];
     let fruitRadioInstances: SbbRadioButton[];
     let fruitRadioNativeInputs: HTMLElement[];
-    let testComponent: StandaloneRadioButtonsComponent;
+    let testComponent: StandaloneRadioButtons;
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(StandaloneRadioButtonsComponent);
+      fixture = TestBed.createComponent(StandaloneRadioButtons);
       fixture.detectChanges();
 
       testComponent = fixture.debugElement.componentInstance;
@@ -804,19 +803,17 @@ describe('RadioButton', () => {
     });
 
     it('should remove the tabindex from the host element', () => {
-      const predefinedFixture = TestBed.createComponent(RadioButtonWithPredefinedTabindexComponent);
+      const predefinedFixture = TestBed.createComponent(RadioButtonWithPredefinedTabindex);
       predefinedFixture.detectChanges();
 
       const radioButtonEl = predefinedFixture.debugElement.query(By.css('.sbb-radio-button'))!
         .nativeElement;
 
-      expect(radioButtonEl.getAttribute('tabindex')).toBe('-1');
+      expect(radioButtonEl.hasAttribute('tabindex')).toBe(false);
     });
 
     it('should remove the aria attributes from the host element', () => {
-      const predefinedFixture = TestBed.createComponent(
-        RadioButtonWithPredefinedAriaAttributesComponent
-      );
+      const predefinedFixture = TestBed.createComponent(RadioButtonWithPredefinedAriaAttributes);
       predefinedFixture.detectChanges();
 
       const radioButtonEl = predefinedFixture.debugElement.query(By.css('.sbb-radio-button'))!
@@ -829,7 +826,7 @@ describe('RadioButton', () => {
   });
 
   describe('group interspersed with other tags', () => {
-    let fixture: ComponentFixture<InterleavedRadioGroupComponent>;
+    let fixture: ComponentFixture<InterleavedRadioGroup>;
     let groupDebugElement: DebugElement;
     let groupInstance: SbbRadioGroup;
     let radioDebugElements: DebugElement[];
@@ -837,7 +834,7 @@ describe('RadioButton', () => {
 
     beforeEach(
       waitForAsync(() => {
-        fixture = TestBed.createComponent(InterleavedRadioGroupComponent);
+        fixture = TestBed.createComponent(InterleavedRadioGroup);
         fixture.detectChanges();
 
         groupDebugElement = fixture.debugElement.query(By.directive(SbbRadioGroup))!;

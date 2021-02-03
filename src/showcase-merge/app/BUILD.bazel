@@ -20,7 +20,7 @@ ng_module(
     deps = [
         "//src/angular-business/header",
         "//src/angular-business/sidebar",
-        "//src/angular-public/checkbox",
+        "//src/angular/checkbox",
         "//src/angular/core",
         "//src/angular/icon",
         "//src/angular/radio-button",
