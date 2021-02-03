@@ -11,6 +11,7 @@ sass_library(
         "_common.scss",
         "@npm//:node_modules/@angular/cdk/_a11y.scss",
         "@npm//:node_modules/@angular/cdk/_overlay.scss",
+        "@npm//:node_modules/@angular/cdk/_text-field.scss",
     ] + glob(["includes/_*.scss"]),
 )
 
