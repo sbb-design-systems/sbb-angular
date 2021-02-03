@@ -9,13 +9,13 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "checkbox",
+    name = "radio-button",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     assets = glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/checkbox",
+    module_name = "@sbb-esta/angular/radio-button",
     deps = [
         "//src/angular/core",
         "@npm//@angular/cdk",
@@ -31,8 +31,8 @@ ng_test_library(
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
-        ":checkbox",
-        "//src/angular/core/testing",
+        ":radio-button",
+        "//src/angular-core/testing",
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
     ],
@@ -48,7 +48,7 @@ ng_web_test_suite(
 
 markdown_to_html(
     name = "overview",
-    srcs = [":checkbox.md"],
+    srcs = [":radio-button.md"],
 )
 
 filegroup(

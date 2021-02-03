@@ -1,4 +1,4 @@
-<div class="sbb-selection-group-vertical" [formGroup]="form">
+<div class="sbb-checkbox-group-vertical" [formGroup]="form">
   <sbb-checkbox
     *ngFor="let formControl of form.controls | keyvalue"
     [formControlName]="formControl.key"

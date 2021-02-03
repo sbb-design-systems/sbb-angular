@@ -6,11 +6,11 @@ import { SbbDialogModule, SbbTooltipModule } from '@sbb-esta/angular-business';
 import { SbbAccordionModule } from '@sbb-esta/angular-business/accordion';
 import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { SbbButtonModule } from '@sbb-esta/angular-public/button';
-import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
 import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbPaginationModule } from '@sbb-esta/angular-public/pagination';
 import { SbbSelectModule } from '@sbb-esta/angular-public/select';
 import { SbbTabsModule } from '@sbb-esta/angular-public/tabs';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbLoadingModule } from '@sbb-esta/angular/loading';
 

@@ -11,6 +11,7 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/checkbox",
     "//src/components-examples/angular/icon",
     "//src/components-examples/angular/loading",
+    "//src/components-examples/angular/radio-button",
     "//src/components-examples/angular-maps/esri-basemap-gallery",
     "//src/components-examples/angular-maps/esri-layer-list",
     "//src/components-examples/angular-maps/esri-legend",
