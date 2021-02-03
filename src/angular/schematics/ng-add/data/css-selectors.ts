@@ -5,8 +5,11 @@ export interface SbbAngularCssSelectorData {
   replace: string;
   /** The new CSS selector. */
   replaceWith: string;
-  /** limitedTo where this replacement is made. If omitted it is made in all files. */
-  limitedTo?: {
+  /**
+   * Controls which file types in which this replacement is made. If omitted, it is made in all
+   * files.
+   */
+  replaceIn?: {
     /** Replace this name in stylesheet files. */
     stylesheet?: boolean;
     /** Replace this name in HTML files. */
@@ -17,22 +20,27 @@ export interface SbbAngularCssSelectorData {
 }
 
 export const cssSelectors: VersionChanges<SbbAngularCssSelectorData> = {
-  ['version 13' as TargetVersion]: [
+  ['merge' as TargetVersion]: [
     {
-      replace: '.sbb-checkbox-group-vertical',
-      replaceWith: '.sbb-selection-group-vertical',
-    },
-    {
-      replace: '.sbb-radio-group-vertical',
-      replaceWith: '.sbb-selection-group-vertical',
-    },
-    {
-      replace: '.sbb-checkbox-group-horizontal',
-      replaceWith: '.sbb-selection-group-horizontal',
-    },
-    {
-      replace: '.sbb-radio-group-horizontal',
-      replaceWith: '.sbb-selection-group-horizontal',
+      pr: '',
+      changes: [
+        {
+          replace: 'sbb-checkbox-group-vertical',
+          replaceWith: 'sbb-selection-group-vertical',
+        },
+        {
+          replace: 'sbb-radio-group-vertical',
+          replaceWith: 'sbb-selection-group-vertical',
+        },
+        {
+          replace: 'sbb-checkbox-group-horizontal',
+          replaceWith: 'sbb-selection-group-horizontal',
+        },
+        {
+          replace: 'sbb-radio-group-horizontal',
+          replaceWith: 'sbb-selection-group-horizontal',
+        },
+      ],
     },
   ],
 };

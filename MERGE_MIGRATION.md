@@ -18,6 +18,7 @@ Don't forget to run `yarn generate:bazel` after each step.
 5. Check documentation (\*.md) for any required changes.
 6. Migrate examples from showcase to src/components-examples, by running the following command: `yarn migrate:example --module name-of-module`.
    Remove any CSS classes in the html template that are not part of the component or typography (e.g. remove `sbbsc-` CSS classes)
+   and replace them with alternatives (e.g. <p> tag oder css definition in example itself)
 7. Check for usages of the component in src/showcase-merge, src/components-examples and src/angular and change them to the migrated one
 8. Add a test in src/angular/schematics/ng-add/test-cases/merge and run them by `yarn test src/angular/schematics`
 9. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
@@ -127,9 +128,9 @@ export class SbbExample extends _SbbExampleMixinBase {
 
   // Nested element selector
   .sbb-example-section {
-    .sbb-example.sbb-standard {
-      padding-top: pxToRem(30);
+    padding-top: pxToRem(30);
 
+    .sbb-example.sbb-standard {
       @include mq($from: desktop4k) {
         padding-top: pxToRem(40);
       }
