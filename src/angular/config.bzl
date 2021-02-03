@@ -1,6 +1,7 @@
 entryPoints = [
     # do not sort
     "captcha",
+    "checkbox",
     "core",
     "core/testing",
     "icon",
@@ -32,6 +33,7 @@ ANGULAR_TESTING_TARGETS = ["//src/angular/%s" % ep for ep in ANGULAR_TESTING_ENT
 
 ANGULAR_MARKDOWN_TARGETS = [
     "captcha",
+    "checkbox",
     "icon",
     "loading",
     "oauth",

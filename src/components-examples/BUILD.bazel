@@ -8,6 +8,7 @@ ALL_EXAMPLES = [
     # we can automate this using the "package.bzl" variables. Currently generated
     # with "bazel query 'kind("ng_module", //src/components-examples/...:*)' --output="label"
     "//src/components-examples/angular/captcha",
+    "//src/components-examples/angular/checkbox",
     "//src/components-examples/angular/icon",
     "//src/components-examples/angular/loading",
     "//src/components-examples/angular-maps/esri-basemap-gallery",

@@ -28,12 +28,7 @@
     "interface-over-type-literal": true,
     "label-position": true,
     "member-access": false,
-    "member-ordering": [
-      true,
-      {
-        "order": ["static-field", "instance-field", "static-method", "instance-method"]
-      }
-    ],
+    "member-ordering": false,
     "naming-convention": [
       true,
       {

@@ -761,7 +761,7 @@ fieldset,
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
 
-  @include sbbStandard {
+  .sbb-selection-item.sbb-standard & {
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);
     }
@@ -785,7 +785,7 @@ fieldset,
   background-color: $sbbColorWhite;
   @include sbbSelectionDimension(1);
 
-  @include sbbStandard {
+  .sbb-selection-item.sbb-standard & {
     @include mq($from: desktop4k) {
       @include sbbSelectionDimension($scalingFactor4k);
     }
@@ -793,7 +793,7 @@ fieldset,
       @include sbbSelectionDimension($scalingFactor5k);
     }
   }
-  @include sbbLean {
+  .sbb-selection-item.sbb-lean & {
     border-width: 1px;
     margin-top: toPx(1);
   }
@@ -806,7 +806,7 @@ fieldset,
   width: 100%;
   transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-  @include sbbLean {
+  .sbb-selection-item.sbb-lean & {
     color: $sbbColorIron;
   }
 }
@@ -816,7 +816,7 @@ fieldset,
   color: $sbbColorGrey;
   transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-  @include sbbLean {
+  .sbb-selection-item.sbb-lean & {
     color: $sbbColorGranite;
     line-height: 1.4em;
   }
@@ -825,7 +825,7 @@ fieldset,
 .sbb-selection-input:focus + .sbb-selection-container {
   border-color: $sbbColorGrey;
 
-  @include sbbLean {
+  .sbb-selection-item.sbb-lean & {
     border-color: $sbbColorIron;
   }
 }
@@ -846,7 +846,7 @@ fieldset,
         height: 100%;
         transform: translateY(toPx(-1.5));
 
-        @include sbbStandard {
+        .sbb-selection-item.sbb-standard & {
           @include mq($from: desktop4k) {
             transform: translateY(toPx(-1.5 * $scalingFactor4k));
           }
@@ -880,54 +880,62 @@ fieldset,
       transform: scale(0.65);
       background-color: $sbbColorRed;
 
-      @include sbbLean {
+      .sbb-selection-item.sbb-lean & {
         background-color: $sbbColorIron;
       }
     }
   }
 }
 
-.sbb-selection-checked .sbb-selection-container {
-  & > .sbb-selection-container-checked {
-    display: block;
+.sbb-selection-checked {
+  .sbb-selection-container {
+    & > .sbb-selection-container-checked {
+      display: block;
+    }
+
+    & + .sbb-selection-content {
+      color: $sbbColorBlack;
+    }
   }
 
-  & + .sbb-selection-content {
-    color: $sbbColorBlack;
-
-    @include sbbLean {
+  &.sbb-lean {
+    .sbb-selection-container + .sbb-selection-content {
       color: $sbbColorIron;
     }
   }
 }
 
-.sbb-selection-indeterminate .sbb-selection-container {
-  &::before {
-    content: '';
-    position: relative;
-    height: 1px;
-    width: 10px;
-    left: calc(50% - 5px);
-    top: calc(50% - 0.5px);
-    border: 1px solid $sbbColorRed;
-    display: block;
-  }
-
-  @include sbbLean {
+.sbb-selection-indeterminate {
+  .sbb-selection-container {
     &::before {
-      border: 1px solid $sbbColorGranite;
+      content: '';
+      position: relative;
+      height: 1px;
+      width: 10px;
+      left: calc(50% - 5px);
+      top: calc(50% - 0.5px);
+      border: 1px solid $sbbColorRed;
+      display: block;
+    }
+
+    & > .sbb-selection-container-checked {
+      display: none;
+    }
+
+    & + .sbb-selection-content {
+      color: $sbbColorBlack;
     }
   }
 
-  & > .sbb-selection-container-checked {
-    display: none;
-  }
+  &.sbb-lean {
+    .sbb-selection-container {
+      &::before {
+        border: 1px solid $sbbColorGranite;
+      }
 
-  & + .sbb-selection-content {
-    color: $sbbColorBlack;
-
-    @include sbbLean {
-      color: $sbbColorIron;
+      & + .sbb-selection-content {
+        color: $sbbColorIron;
+      }
     }
   }
 }
@@ -940,17 +948,21 @@ fieldset,
     background-color: $sbbColorMilk;
 
     & > .sbb-selection-container-checked {
-      background-color: $sbbColorGrey;
-
-      @include sbbLean {
-        color: $sbbColorGranite;
-      }
+      color: $sbbColorGrey;
     }
 
     & + .sbb-selection-content {
       color: $sbbColorGrey;
+    }
+  }
 
-      @include sbbLean {
+  &.sbb-lean {
+    .sbb-selection-container {
+      & > .sbb-selection-container-checked {
+        color: $sbbColorGranite;
+      }
+
+      & + .sbb-selection-content {
         color: $sbbColorStorm;
       }
     }
@@ -966,7 +978,7 @@ fieldset,
   .sbb-selection-item + .sbb-selection-item {
     margin-top: toPx(16);
 
-    @include sbbStandard {
+    &.sbb-standard {
       @include mq($from: desktop4k) {
         margin-top: toPx(16 * $scalingFactor4k);
       }
@@ -974,7 +986,7 @@ fieldset,
         margin-top: toPx(16 * $scalingFactor5k);
       }
     }
-    @include sbbLean {
+    &.sbb-lean {
       margin-top: toPx(3);
     }
   }
@@ -989,7 +1001,7 @@ fieldset,
   .sbb-selection-item {
     margin-right: toPx(32);
 
-    @include sbbStandard {
+    &.sbb-standard {
       @include mq($from: desktop4k) {
         margin-right: toPx(32 * $scalingFactor4k);
       }
@@ -997,7 +1009,7 @@ fieldset,
         margin-right: toPx(32 * $scalingFactor5k);
       }
     }
-    @include sbbLean {
+    &.sbb-lean {
       margin-right: toPx(15);
     }
 
