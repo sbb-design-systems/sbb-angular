@@ -23,6 +23,7 @@ ng_module(
         "//src/angular-public/checkbox",
         "//src/angular/core",
         "//src/angular/icon",
+        "//src/angular/radio-button",
         "//src/showcase-merge/app/angular",
         "//src/showcase-merge/app/maps",
         "//src/showcase-merge/app/shared",

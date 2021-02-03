@@ -484,11 +484,6 @@ ul li ol > li::before,
 // Form Elements
 // ----------------------------------------------------------------------------------------------------
 
-// TODO: Is this used anywhere?
-@mixin disabledelement {
-  opacity: 0.5;
-}
-
 .sbb-input-element {
   @include ellipsis;
   @include placeholder($sbbColorStorm);
@@ -867,12 +862,9 @@ fieldset,
   & + .sbb-selection-container {
     border-radius: 50%;
 
-    /*
-    Check if needed
-    @include sbbLean {
+    .sbb-selection-item.sbb-lean & {
       margin-top: 0;
     }
-    */
 
     & > .sbb-selection-container-checked {
       display: none;

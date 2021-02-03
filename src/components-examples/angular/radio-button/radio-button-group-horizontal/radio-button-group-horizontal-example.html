@@ -1,0 +1,7 @@
+<sbb-radio-group [(ngModel)]="modelValue" class="sbb-selection-group-horizontal">
+  <sbb-radio-button *ngFor="let option of radioOptions" [value]="option.value">
+    {{ option.name }}
+  </sbb-radio-button>
+</sbb-radio-group>
+<h4>Model</h4>
+<pre>{{ modelValue }}</pre>
