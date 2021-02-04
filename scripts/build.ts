@@ -35,7 +35,7 @@ if (module === require.main) {
     i18n: () =>
       buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular-core/i18n')),
     showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
-    'showcase-merge': () => buildShowcase(join(projectDir, 'dist/releases')),
+    'showcase-merge': () => buildShowcaseMerge(join(projectDir, 'dist/releases')),
     'icon-registry': () => {
       generateIconRegistry('angular-core');
       generateIconRegistry('angular');
@@ -190,7 +190,7 @@ function buildShowcaseMerge(distPath: string) {
   writeFileSync(
     join(targetFolder, 'package.json'),
     JSON.stringify({
-      name: '@sbb-esta/angular-showcase',
+      name: '@sbb-esta/angular-showcase-merge',
       version,
       publishConfig: { access: 'public' },
     }),
