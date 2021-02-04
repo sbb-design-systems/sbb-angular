@@ -63,6 +63,7 @@
   "SbbMarkerSymbolFactory": "core",
   "SbbMarkerSymbolSettings": "core",
   "SbbNativeDateAdapter": "core",
+  "SbbOptgroup": "core",
   "SbbOption": "core",
   "SbbOptionBase": "core",
   "SbbOptionGroup": "core",

@@ -70,8 +70,8 @@ import {
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
+  SbbOptgroup,
   SbbOption,
-  SbbOptionGroup,
   SbbOptionSelectionChange,
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular/core';
@@ -251,7 +251,7 @@ export class SbbSelect
   /** All of the defined select options. */
   @ContentChildren(SbbOption, { descendants: true }) options: QueryList<SbbOption>;
   /** All of the defined groups of options. */
-  @ContentChildren(SbbOptionGroup) optionGroups: QueryList<SbbOptionGroup>;
+  @ContentChildren(SbbOptgroup) optionGroups: QueryList<SbbOptgroup>;
   /** The last measured value for the trigger's client bounding rect. */
   _triggerRect: ClientRect;
   /** The aria-describedby attribute on the select for improved a11y. */

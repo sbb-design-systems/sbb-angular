@@ -390,7 +390,7 @@ class FalsyValueSelect {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
-        <sbb-option-group
+        <sbb-optgroup
           *ngFor="let group of pokemonTypes"
           [label]="group.name"
           [disabled]="group.disabled"
@@ -398,7 +398,7 @@ class FalsyValueSelect {
           <sbb-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
             {{ pokemon.viewValue }}
           </sbb-option>
-        </sbb-option-group>
+        </sbb-optgroup>
         <sbb-option value="mime-11">Mr. Mime</sbb-option>
       </sbb-select>
     </sbb-form-field>
@@ -450,11 +450,11 @@ class SelectWithGroups {
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
-        <sbb-option-group *ngFor="let group of pokemonTypes" [label]="group.name">
+        <sbb-optgroup *ngFor="let group of pokemonTypes" [label]="group.name">
           <ng-container *ngFor="let pokemon of group.pokemon">
             <sbb-option [value]="pokemon.value">{{ pokemon.viewValue }}</sbb-option>
           </ng-container>
-        </sbb-option-group>
+        </sbb-optgroup>
       </sbb-select>
     </sbb-form-field>
   `,
@@ -1791,7 +1791,7 @@ describe('SbbSelect', () => {
           select = fixture.debugElement.query(By.css('.sbb-select'))!.nativeElement;
           select.click();
           fixture.detectChanges();
-          groups = overlayContainerElement.querySelectorAll('sbb-option-group') as NodeListOf<
+          groups = overlayContainerElement.querySelectorAll('sbb-optgroup') as NodeListOf<
             HTMLElement
           >;
         }));
@@ -2249,7 +2249,7 @@ describe('SbbSelect', () => {
         groupFixture.debugElement.query(By.css('.sbb-select')).nativeElement.click();
         groupFixture.detectChanges();
 
-        const disabledGroup = overlayContainerElement.querySelectorAll('sbb-option-group')[1];
+        const disabledGroup = overlayContainerElement.querySelectorAll('sbb-optgroup')[1];
         const options = disabledGroup.querySelectorAll('sbb-option');
 
         (options[0] as HTMLElement).click();

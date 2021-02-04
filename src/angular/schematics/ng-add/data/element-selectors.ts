@@ -4,7 +4,12 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
   ['merge' as TargetVersion]: [
     {
       pr: '',
-      changes: [],
+      changes: [
+        {
+          replace: 'sbb-option-group',
+          replaceWith: 'sbb-optgroup',
+        },
+      ],
     },
   ],
 };

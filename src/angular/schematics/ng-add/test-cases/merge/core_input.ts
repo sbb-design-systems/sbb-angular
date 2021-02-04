@@ -18,3 +18,17 @@ import {
   SCALING_FACTOR_5K,
 } from '@sbb-esta/angular-core/breakpoints';
 import { SbbIconDirectiveModule, SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { SbbOptionGroup, SbbOptionModule } from '@sbb-esta/angular-public/option';
+import { Component, NgModule } from '@angular/core';
+
+@Component({
+  selector: 'sbb-optgroup-test',
+  template: `<sbb-option-group></sbb-option-group>`,
+})
+export class SbbOptgroupTestComponent {}
+
+@NgModule({
+  declarations: [SbbOptgroupTestComponent],
+  imports: [SbbOptionModule],
+})
+export class SbbOptgroupTestModule {}

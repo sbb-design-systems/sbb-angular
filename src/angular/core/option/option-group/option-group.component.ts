@@ -9,7 +9,7 @@ import {
 
 import { CanDisable, CanDisableCtor, mixinDisabled } from '../../common-behaviors/disabled';
 
-// Boilerplate for applying mixins to SbbOptionGroup.
+// Boilerplate for applying mixins to SbbOptgroup.
 /** @docs-private */
 class SbbOptgroupBase {}
 // tslint:disable-next-line: naming-convention
@@ -21,31 +21,31 @@ const _SbbOptgroupMixinBase: CanDisableCtor & typeof SbbOptgroupBase = mixinDisa
 let uniqueOptgroupIdCounter = 0;
 
 /**
- * Injection token that can be used to reference instances of `SbbOptionGroup`. It serves as
- * alternative token to the actual `SbbOptionGroup` class which could cause unnecessary
+ * Injection token that can be used to reference instances of `SbbOptgroup`. It serves as
+ * alternative token to the actual `SbbOptgroup` class which could cause unnecessary
  * retention of the class and its component metadata.
  */
-export const SBB_OPTGROUP = new InjectionToken<SbbOptionGroup>('SbbOptionGroup');
+export const SBB_OPTGROUP = new InjectionToken<SbbOptgroup>('SbbOptgroup');
 
 @Component({
-  selector: 'sbb-option-group',
+  selector: 'sbb-optgroup',
   exportAs: 'sbbOptgroup',
   templateUrl: './option-group.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled'],
   host: {
-    class: 'sbb-optgroup',
+    class: 'sbb-optgroup sbb-menu-group',
     role: 'group',
     '[class.sbb-optgroup-disabled]': 'disabled',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[attr.aria-labelledby]': '_labelId',
   },
-  providers: [{ provide: SBB_OPTGROUP, useExisting: SbbOptionGroup }],
+  providers: [{ provide: SBB_OPTGROUP, useExisting: SbbOptgroup }],
 })
-export class SbbOptionGroup extends _SbbOptgroupMixinBase implements CanDisable {
-  // tslint:disable-next-line: member-ordering
+export class SbbOptgroup extends _SbbOptgroupMixinBase implements CanDisable {
   static ngAcceptInputType_disabled: BooleanInput;
+
   /** Label for the option group. */
   @Input() label: string;
   /** Unique id for the underlying label. */

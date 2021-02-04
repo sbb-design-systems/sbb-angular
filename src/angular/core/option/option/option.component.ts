@@ -22,8 +22,7 @@ import {
 import { Subject } from 'rxjs';
 
 import { TypeRef } from '../../common-behaviors/type-ref';
-import { HasVariantCtor, mixinVariant } from '../../common-behaviors/variant';
-import { SbbOptionGroup, SBB_OPTGROUP } from '../option-group/option-group.component';
+import { SbbOptgroup, SBB_OPTGROUP } from '../option-group/option-group.component';
 
 /**
  * Option IDs need to be unique across components, so this counter exists outside of
@@ -55,16 +54,6 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentCom
   'SBB_OPTION_PARENT_COMPONENT'
 );
 
-// Boilerplate for applying mixins to Option.
-/** @docs-private */
-export class SbbOptionBase {
-  constructor(public _elementRef: ElementRef) {}
-}
-
-export const SbbOptionMixinBase: HasVariantCtor & typeof SbbOptionBase = mixinVariant(
-  SbbOptionBase
-);
-
 @Component({
   selector: 'sbb-option',
   styleUrls: ['option.component.css'],
@@ -84,7 +73,7 @@ export const SbbOptionMixinBase: HasVariantCtor & typeof SbbOptionBase = mixinVa
     '[class.sbb-disabled]': 'disabled',
   },
 })
-export class SbbOption extends SbbOptionBase implements AfterViewChecked, OnDestroy, Highlightable {
+export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
   // tslint:disable: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;
   /** The form value of the option. */
@@ -108,10 +97,8 @@ export class SbbOption extends SbbOptionBase implements AfterViewChecked, OnDest
     @Optional()
     @Inject(SBB_OPTION_PARENT_COMPONENT)
     private _parent: SbbOptionParentComponent,
-    @Optional() @Inject(SBB_OPTGROUP) readonly group: SbbOptionGroup
-  ) {
-    super(_element);
-  }
+    @Optional() @Inject(SBB_OPTGROUP) readonly group: SbbOptgroup
+  ) {}
 
   private _selected = false;
 
@@ -409,7 +396,7 @@ export function getOptionScrollPosition(
 export function countGroupLabelsBeforeOption(
   optionIndex: number,
   options: QueryList<SbbOption>,
-  optionGroups: QueryList<SbbOptionGroup>
+  optionGroups: QueryList<SbbOptgroup>
 ): number {
   if (optionGroups.length) {
     const optionsArray = options.toArray();

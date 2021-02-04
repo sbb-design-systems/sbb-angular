@@ -47,8 +47,8 @@ multiple values at once.
 
 ### Creating groups of options
 
-The `<sbb-option-group>` element can be used to group common options under a subheading.
-The name of the group can be set using the label property of `<sbb-option-group>`.
+The `<sbb-optgroup>` element can be used to group common options under a subheading.
+The name of the group can be set using the label property of `<sbb-optgroup>`.
 
 ```html
 <h4>With option groups</h4>
@@ -58,19 +58,19 @@ The name of the group can be set using the label property of `<sbb-option-group>
     placeholder="Lebensmittel aus der ganzen Welt"
     [formControl]="withOptionGroupsExampleFormControl"
   >
-    <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
+    <sbb-optgroup *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
       <sbb-option *ngFor="let food of foodNation.food" [value]="food.value"
         >{{food.viewValue}}</sbb-option
       >
-    </sbb-option-group>
+    </sbb-optgroup>
   </sbb-select>
 </sbb-form-field>
 ```
 
-The `<sbb-option-group>` can be configured to allow multiple values in each group options to
+The `<sbb-optgroup>` can be configured to allow multiple values in each group options to
 choose multiple selection by setting the `multiple` property. This will allow the user to
 select multiple values at once. The name of each group can be set using the label property
-of `<sbb-option-group>`.
+of `<sbb-optgroup>`.
 
 ```html
 <h4>Multiple with option groups</h4>
@@ -82,11 +82,11 @@ of `<sbb-option-group>`.
     [formControl]="multipleWithOptionGroupsExampleFormControl"
   >
     <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
-    <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
+    <sbb-optgroup *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
       <sbb-option *ngFor="let food of foodNation.food" [value]="food.value"
         >{{food.viewValue}}</sbb-option
       >
-    </sbb-option-group>
+    </sbb-optgroup>
   </sbb-select>
 </sbb-form-field>
 ```
@@ -156,11 +156,11 @@ toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 
     #multiWithOptionGroup
   >
     <sbb-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</sbb-option>
-    <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
+    <sbb-optgroup *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
       <sbb-option *ngFor="let food of foodNation.food" [value]="food.value"
         >{{food.viewValue}}</sbb-option
       >
-    </sbb-option-group>
+    </sbb-optgroup>
   </sbb-select>
 </sbb-form-field>
 <sbb-checkbox (change)="toggleDisabledOptions($event, multiWithOptionGroup, 'optionGroups')"

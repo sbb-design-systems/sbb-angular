@@ -13,7 +13,7 @@ const IGNORED_FOLDERS = [
 ];
 function mergeSymbols() {
     return (tree) => {
-        let symbols = {};
+        let symbols = { SbbOptionGroup: 'core' };
         extractExportsForModule('src/angular/');
         extractExportsForModule('src/angular-maps/');
         sortSymbols();
