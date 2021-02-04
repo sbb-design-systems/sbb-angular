@@ -70,11 +70,11 @@ function migrateExamples(options) {
                 content.slice(0, exportDeclarationInserPosition) +
                     exportDeclaration +
                     content.slice(exportDeclarationInserPosition);
-            const indexPath = core.join(targetDir.path, 'index.ts');
             content = prettier.format(lintFix(content), {
                 parser: 'typescript',
                 ...require('../../package.json').prettier,
             });
+            const indexPath = core.join(targetDir.path, 'index.ts');
             if (tree.exists(indexPath)) {
                 context.logger.warn(`${core.basename(indexPath)} already exists (probably from public). Manual merge of ${core.basename(entry.path)} required.`);
             }

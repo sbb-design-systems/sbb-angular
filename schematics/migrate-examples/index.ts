@@ -93,12 +93,11 @@ export function migrateExamples(options: { module: string }): Rule {
         exportDeclaration +
         content.slice(exportDeclarationInserPosition);
 
-      const indexPath = join(targetDir.path, 'index.ts');
-
       content = prettier.format(lintFix(content), {
         parser: 'typescript',
         ...require('../../package.json').prettier,
       });
+      const indexPath = join(targetDir.path, 'index.ts');
       if (tree.exists(indexPath)) {
         context.logger.warn(
           `${basename(indexPath)} already exists (probably from public). Manual merge of ${basename(
