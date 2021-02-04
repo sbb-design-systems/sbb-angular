@@ -5,26 +5,39 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var core = require('@angular-devkit/core');
 var schematics = require('@angular-devkit/schematics');
 var tasks = require('@angular-devkit/schematics/tasks');
+var fs = require('fs');
+var tslint = require('tslint');
 
 const prettier = require('prettier');
+function lintFix(content) {
+    const linter = new tslint.Linter({
+        fix: true,
+    });
+    const configuration = tslint.Configuration.findConfiguration('tslint.json').results;
+    const tempFileName = '.tempfile';
+    linter.lint(tempFileName, content, configuration);
+    content = fs.readFileSync(tempFileName, 'utf8');
+    fs.unlinkSync(tempFileName);
+    return content;
+}
 function migrateExamples(options) {
-    return (tree, _context) => {
+    return (tree, context) => {
         if (!options.module) {
             throw new schematics.SchematicsException('--module [module] is required!');
         }
         else if (options.module.match(/-examples$/)) {
             options.module = options.module.replace(/-examples$/, '');
-            _context.logger.warn(`Normalized ${options.module}-examples to ${options.module}`);
+            context.logger.warn(`Normalized ${options.module}-examples to ${options.module}`);
         }
         const publicExamplesDir = tree.getDir(`src/showcase/app/public/public-examples/${options.module}-examples`);
         const businessExamplesDir = tree.getDir(`src/showcase/app/business/business-examples/${options.module}-examples`);
         if (!publicExamplesDir.subfiles.length && !businessExamplesDir.subfiles.length) {
-            _context.logger.warn(`No examples found for ${options.module}`);
+            context.logger.warn(`No examples found for ${options.module}`);
             return;
         }
         const targetDir = tree.getDir(`src/components-examples/angular/${options.module}`);
         if (targetDir.subfiles.length) {
-            _context.logger.warn(`${options.module} is already migrated`);
+            context.logger.warn(`${options.module} is already migrated`);
             return;
         }
         let order = 0;
@@ -40,7 +53,7 @@ function migrateExamples(options) {
                 }
             });
         });
-        _context.addTask(new tasks.RunSchematicTask('bazel', { filter: 'components-examples' }));
+        context.addTask(new tasks.RunSchematicTask('bazel', { filter: 'components-examples' }));
         function migrateModuleDeclaration(entry) {
             let content = entry.content
                 .toString()
@@ -51,13 +64,19 @@ function migrateExamples(options) {
                 .replace(/.component'/g, `'`)
                 .replace(/ExampleComponent/g, 'Example')
                 .replace(new RegExp(`angular-(business|public)\\/${options.module}`, 'g'), `angular/${options.module}`);
-            content = prettier.format(content, {
+            const exportDeclaration = `export {${content.match(/const EXAMPLES = \[(.*)\];\n/s)[1]}};\n\n`;
+            const exportDeclarationInserPosition = content.indexOf('const EXAMPLES');
+            content =
+                content.slice(0, exportDeclarationInserPosition) +
+                    exportDeclaration +
+                    content.slice(exportDeclarationInserPosition);
+            const indexPath = core.join(targetDir.path, 'index.ts');
+            content = prettier.format(lintFix(content), {
                 parser: 'typescript',
                 ...require('../../package.json').prettier,
             });
-            const indexPath = core.join(targetDir.path, 'index.ts');
             if (tree.exists(indexPath)) {
-                _context.logger.warn(`${indexPath} already exists (probably from public). Manual merge of ${entry.path} required.`);
+                context.logger.warn(`${core.basename(indexPath)} already exists (probably from public). Manual merge of ${core.basename(entry.path)} required.`);
             }
             else {
                 tree.create(core.join(targetDir.path, 'index.ts'), content);
@@ -70,7 +89,7 @@ function migrateExamples(options) {
                 .replace('.scss', '.css');
             const targetPath = core.join(targetDir.path, adaptedPath);
             if (entry.path.endsWith('.scss')) {
-                _context.logger.warn(`Changed ${entry.path} to ${targetPath}, since examples don't support scss`);
+                context.logger.warn(`Changed ${entry.path} to ${targetPath}, since examples don't support scss`);
             }
             let content = entry.content
                 .toString()
@@ -89,7 +108,7 @@ function migrateExamples(options) {
                 });
             }
             if (tree.exists(targetPath)) {
-                _context.logger.warn(`${targetPath} already exists (probably from public). Manual check of ${entry.path} recommended.`);
+                context.logger.warn(`${targetPath} already exists (probably from public). Manual check of ${entry.path} recommended.`);
             }
             else {
                 tree.create(targetPath, content);
