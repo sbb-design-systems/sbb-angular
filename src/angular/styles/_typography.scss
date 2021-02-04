@@ -490,7 +490,7 @@ ul li ol > li::before,
   @include placeholder($sbbColorStorm);
 
   outline: none;
-  background: $sbbColorWhite;
+  background-color: $sbbColorWhite;
   border: pxToRem(2) solid $sbbColorGraphite;
   border-radius: pxToRem(2);
   color: $sbbColorGrey;
@@ -1433,7 +1433,7 @@ $tableCaptionColor: $sbbColorGrey;
 // SBB time-input
 // ----------------------------------------------------------------------------------------------------
 
-input.sbb-time-input {
+input.sbb-input-element.sbb-time-input {
   $timeInputWidth: 84;
   $timeInputHeight: 48;
 
