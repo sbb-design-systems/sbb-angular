@@ -43,7 +43,6 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbOption, SbbOptionSelectionChange } from '@sbb-esta/angular/core';
 import {
   createKeyboardEvent,
@@ -52,6 +51,7 @@ import {
   dispatchKeyboardEvent,
   dispatchMouseEvent,
 } from '@sbb-esta/angular/core/testing';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';

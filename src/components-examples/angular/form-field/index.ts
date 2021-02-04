@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular-public/button';
 import { SbbDatepickerModule } from '@sbb-esta/angular-public/datepicker';
-import { SbbSelectModule } from '@sbb-esta/angular-public/select';
 import { SbbTimeInputModule } from '@sbb-esta/angular-public/time-input';
 import { SbbTooltipModule } from '@sbb-esta/angular-public/tooltip';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbSelectModule } from '@sbb-esta/angular/select';
 
 import { FormFieldDatepickerExample } from './form-field-datepicker/form-field-datepicker-example';
 import { FormFieldSbbSelectExample } from './form-field-sbb-select/form-field-sbb-select-example';

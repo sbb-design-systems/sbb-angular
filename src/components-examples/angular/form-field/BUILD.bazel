@@ -16,11 +16,11 @@ ng_module(
     deps = [
         "//src/angular-public/button",
         "//src/angular-public/datepicker",
-        "//src/angular-public/select",
         "//src/angular-public/time-input",
         "//src/angular-public/tooltip",
         "//src/angular/checkbox",
         "//src/angular/form-field",
+        "//src/angular/select",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

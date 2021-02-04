@@ -14,8 +14,8 @@ ng_module(
     assets = glob(["**/*.html"]),
     module_name = "@sbb-esta/components-examples/angular/select",
     deps = [
-        "//src/angular-public/checkbox",
-        "//src/angular-public/form-field",
+        "//src/angular/checkbox",
+        "//src/angular/form-field",
         "//src/angular/select",
         "@npm//@angular/common",
         "@npm//@angular/core",

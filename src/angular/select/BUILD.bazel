@@ -18,9 +18,8 @@ ng_module(
     assets = [":select/select.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/select",
     deps = [
-        "//src/angular-core/forms",
-        "//src/angular-public/form-field",
         "//src/angular/core",
+        "//src/angular/form-field",
         "//src/angular/icon",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
@@ -47,9 +46,9 @@ ng_test_library(
     ),
     deps = [
         ":select",
-        "//src/angular-public/form-field",
         "//src/angular/core",
         "//src/angular/core/testing",
+        "//src/angular/form-field",
         "//src/angular/icon/testing",
         "@npm//@angular/cdk",
         "@npm//@angular/forms",

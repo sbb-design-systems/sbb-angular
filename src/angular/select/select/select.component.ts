@@ -52,8 +52,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
-import { SbbFormField, SBB_FORM_FIELD } from '@sbb-esta/angular-public/form-field';
 import {
   CanDisable,
   CanDisableCtor,
@@ -77,6 +75,7 @@ import {
   SbbOptionSelectionChange,
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular/core';
+import { SbbFormField, SbbFormFieldControl, SBB_FORM_FIELD } from '@sbb-esta/angular/form-field';
 import { defer, merge, Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,
