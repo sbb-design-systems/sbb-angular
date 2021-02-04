@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { SbbCheckboxChange } from '@sbb-esta/angular-public/checkbox';
+import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
 
 /**
  * @title Form Field Text Input Sbb Label

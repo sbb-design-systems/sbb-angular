@@ -15,11 +15,11 @@ ng_module(
     module_name = "@sbb-esta/components-examples/angular/form-field",
     deps = [
         "//src/angular-public/button",
-        "//src/angular-public/checkbox",
         "//src/angular-public/datepicker",
         "//src/angular-public/select",
         "//src/angular-public/time-input",
         "//src/angular-public/tooltip",
+        "//src/angular/checkbox",
         "//src/angular/form-field",
         "@npm//@angular/common",
         "@npm//@angular/core",
