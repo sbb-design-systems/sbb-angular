@@ -82,6 +82,13 @@ jobs:
       run: yarn -s build all
     - name: "Bazel: Clean bazel disk cache"
       run: yarn -s bazel:cache clean --maxSize 300MB --individualMaxSize=20MB
+    - name: "Bazel: Compress artifacts"
+      run: tar --zstd -cf bazel-cache.tar.zst ~/.bazel-cache/sbb-angular
+    - name: "Bazel: Upload cache artifacts"
+      uses: actions/upload-artifact@v2
+      with:
+        name: bazel-cache-artifact
+        path: bazel-cache.tar.zst
 
   packages:
     runs-on: ubuntu-latest
@@ -164,6 +171,12 @@ jobs:
         restore-keys: |
           bazel-test-
           bazel-build-
+    - name: "Bazel: Download cache artifacts"
+      uses: actions/download-artifact@v2
+      with:
+        name: bazel-cache-artifact
+    - name: "Bazel: Unpack artifacts"
+      run: tar -axf bazel-cache.tar.zst -C ~/.bazel-cache/sbb-angular
     - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
     - name: "Bazel: Clean bazel disk cache"
@@ -210,6 +223,12 @@ jobs:
         restore-keys: |
           bazel-showcase-
           bazel-build-
+    - name: "Bazel: Download cache artifacts"
+      uses: actions/download-artifact@v2
+      with:
+        name: bazel-cache-artifact
+    - name: "Bazel: Unpack artifacts"
+      run: tar -axf bazel-cache.tar.zst -C ~/.bazel-cache/sbb-angular
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase
     - name: "Bazel: Clean bazel disk cache"
@@ -271,6 +290,12 @@ jobs:
         restore-keys: |
           bazel-showcasemerge-
           bazel-build-
+    - name: "Bazel: Download cache artifacts"
+      uses: actions/download-artifact@v2
+      with:
+        name: bazel-cache-artifact
+    - name: "Bazel: Unpack artifacts"
+      run: tar -axf bazel-cache.tar.zst -C ~/.bazel-cache/sbb-angular
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase-merge
     - name: "Bazel: Clean bazel disk cache"
