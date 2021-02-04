@@ -1,0 +1,37 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "form-field",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
+    module_name = "@sbb-esta/components-examples/angular/form-field",
+    deps = [
+        "//src/angular-public/button",
+        "//src/angular-public/datepicker",
+        "//src/angular-public/select",
+        "//src/angular-public/time-input",
+        "//src/angular-public/tooltip",
+        "//src/angular/checkbox",
+        "//src/angular/form-field",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.css",
+        "**/*.ts",
+    ]),
+)

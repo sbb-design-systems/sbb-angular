@@ -1,0 +1,163 @@
+@import '../../angular/styles/common';
+
+.sbb-form-field {
+  display: inline-block;
+  position: relative;
+  width: pxToRem(320);
+
+  &.sbb-lean {
+    width: pxToRem(230);
+  }
+
+  &.sbb-standard {
+    @include mq($from: desktop4k) {
+      width: pxToRem(400);
+    }
+  }
+}
+
+// Variant for .sbb-form-field
+.sbb-form-field-short {
+  width: 33.333%;
+
+  @include mq($from: mobileLandscape) {
+    width: 25%;
+  }
+
+  @include mq($from: desktop) {
+    width: 16.66666%;
+  }
+}
+
+// Variant for .sbb-form-field
+.sbb-form-field-medium {
+  width: 100%;
+
+  @include mq($from: tabletPortrait) {
+    width: 50%;
+  }
+}
+
+// Variant for .sbb-form-field
+.sbb-form-field-long {
+  width: 100%;
+}
+
+.sbb-form-field-wrapper {
+  padding-bottom: pxToEm(21, 14);
+
+  .sbb-form-field.sbb-lean & {
+    padding-bottom: pxToEm(16, 13);
+  }
+
+  .sbb-form-field-errorless & {
+    padding-bottom: 0;
+  }
+}
+
+.sbb-form-field-label-wrapper {
+  margin-bottom: pxToRem(5);
+  padding-left: pxToRem(10);
+
+  .sbb-form-field.sbb-standard & {
+    @include mq($from: desktop4k) {
+      margin-bottom: pxToRem(5 * $scalingFactor4k);
+      padding-left: pxToRem(10 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-bottom: pxToRem(5 * $scalingFactor5k);
+      padding-left: pxToRem(10 * $scalingFactor5k);
+    }
+  }
+
+  .sbb-form-field.sbb-lean & {
+    margin-bottom: pxToRem(3);
+    padding-left: 0;
+  }
+}
+
+// The element of the input
+// Also see Form Elements section in _typography.scss
+.sbb-form-field .sbb-input-element {
+  width: 100%;
+
+  // Prevent textareas from being resized outside the form field.
+  max-width: 100%;
+}
+
+// Prevents IE from always adding a scrollbar by default.
+.sbb-form-field textarea.sbb-input-element {
+  // Only allow resizing along the Y axis.
+  resize: vertical;
+  overflow: auto;
+
+  &.cdk-textarea-autosize {
+    resize: none;
+  }
+}
+
+.sbb-form-field-error-wrapper {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+}
+
+// Scale down icons in the label and error to be the same size as the text.
+.sbb-form-field-error-wrapper,
+.sbb-form-field-label-wrapper {
+  .sbb-icon {
+    width: 1em;
+    height: 1em;
+    font-size: inherit;
+    vertical-align: baseline;
+  }
+
+  // Make sbb-tooltip align nicely inside sbb-label.
+  .sbb-tooltip {
+    position: relative;
+    margin-left: 0.66667em;
+  }
+  .sbb-tooltip-icon {
+    vertical-align: bottom;
+
+    &:not(:hover):not(:focus) {
+      color: inherit;
+    }
+
+    &,
+    .sbb-icon {
+      width: 1.25em;
+      height: 1.25em;
+    }
+  }
+}
+
+.sbb-error {
+  display: block;
+  letter-spacing: 0;
+  outline: none;
+  resize: none;
+  opacity: 1;
+  font-family: $fontSbbRoman;
+  color: $sbbColorError;
+
+  font-size: pxToRem(14);
+  line-height: pxToEm(21, 14);
+
+  .sbb-form-field.sbb-standard & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(14 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(14 * $scalingFactor5k);
+    }
+  }
+
+  .sbb-form-field.sbb-lean & {
+    font-size: pxToRem(13);
+    line-height: pxToEm(16, 13);
+  }
+}

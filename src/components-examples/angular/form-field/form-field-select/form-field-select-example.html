@@ -1,0 +1,9 @@
+<sbb-form-field label="Number">
+  <select sbbInput [formControl]="select">
+    <option></option>
+    <option>One</option>
+    <option>Two</option>
+    <option>Three</option>
+  </select>
+  <sbb-error *ngIf="select.errors?.required">Number is required!</sbb-error>
+</sbb-form-field>

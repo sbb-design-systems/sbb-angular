@@ -92,7 +92,7 @@ export class MyTelInput implements SbbFormFieldControl<MyTel> {
 This sets up our component so it can work with `<sbb-form-field>`, but now we need to implement the
 various methods and properties declared by the interface we just implemented. To learn more about
 the `SbbFormFieldControl` interface, see the
-[form field API documentation](./components/form-field).
+[form field API documentation](./angular/components/form-field).
 
 ### Implementing the methods and properties of SbbFormFieldControl
 
