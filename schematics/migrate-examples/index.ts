@@ -7,9 +7,24 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import { RunSchematicTask } from '@angular-devkit/schematics/tasks';
+import { readFileSync, unlinkSync } from 'fs';
+import { Configuration, Linter } from 'tslint';
+
 const prettier: {
   format: (source: string, options: { parser: string }) => string;
 } = require('prettier');
+
+function lintFix(content: string): string {
+  const linter = new Linter({
+    fix: true,
+  });
+  const configuration = Configuration.findConfiguration('tslint.json').results;
+  const tempFileName = '.tempfile';
+  linter.lint(tempFileName, content, configuration);
+  content = readFileSync(tempFileName, 'utf8');
+  unlinkSync(tempFileName);
+  return content;
+}
 
 export function migrateExamples(options: { module: string }): Rule {
   return (tree: Tree, context: SchematicContext) => {
@@ -68,7 +83,17 @@ export function migrateExamples(options: { module: string }): Rule {
           new RegExp(`angular-(business|public)\\/${options.module}`, 'g'),
           `angular/${options.module}`
         );
-      content = prettier.format(content, {
+
+      const exportDeclaration = `export {${
+        content.match(/const EXAMPLES = \[(.*)\];\n/s)![1]
+      }};\n\n`;
+      const exportDeclarationInserPosition = content.indexOf('const EXAMPLES');
+      content =
+        content.slice(0, exportDeclarationInserPosition) +
+        exportDeclaration +
+        content.slice(exportDeclarationInserPosition);
+
+      content = prettier.format(lintFix(content), {
         parser: 'typescript',
         ...require('../../package.json').prettier,
       });
