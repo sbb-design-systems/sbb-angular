@@ -43,8 +43,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    env:
-      PR_NUMBER: ${{ github.event.number }}
     steps:
     - name: Shallow checkout
       uses: actions/checkout@v2
@@ -82,8 +80,6 @@ jobs:
           bazel-build-
     - name: "Bazel: Build"
       run: yarn -s build all
-    - name: "Bazel: Run local tests"
-      run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
     - name: "Bazel: Clean bazel disk cache"
       run: yarn -s bazel:cache clean --maxSize 300MB --individualMaxSize=20MB
 
@@ -129,7 +125,51 @@ jobs:
     - name: "Bazel: Clean bazel disk cache"
       run: yarn -s bazel:cache clean --maxSize 150MB
 
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: "Bazel: Copy bazel.rc to user home"
+      run: cp ./.github/.bazelrc ~/
+    - name: "Bazel: Write to cache on push event"
+      if: github.event_name == 'push'
+      run: |
+        echo "build --config=remote-disk-caching" >> ~/.bazelrc
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Restore dependencies from cache"
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
+
+    - name: "Bazel: Restore remote cache"
+      uses: actions/cache@v2
+      with:
+        path: ~/.bazel-cache/sbb-angular
+        key: bazel-build-${{ github.sha }}
+        restore-keys: |
+          bazel-build-
+    - name: "Bazel: Run local tests"
+      run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --maxSize 300MB --individualMaxSize=20MB
+
   showcase:
+    needs: build
     runs-on: ubuntu-latest
     env:
       PR_NUMBER: ${{ github.event.number }}
@@ -168,6 +208,7 @@ jobs:
         key: bazel-showcase-${{ github.sha }}
         restore-keys: |
           bazel-showcase-
+          bazel-build-
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase
     - name: "Bazel: Clean bazel disk cache"
@@ -189,6 +230,7 @@ jobs:
         -F "tarball=@sbb-esta-angular-showcase.tgz"
 
   showcase-merge:
+    needs: build
     runs-on: ubuntu-latest
     env:
       PR_NUMBER: ${{ github.event.number }}
@@ -227,6 +269,7 @@ jobs:
         key: bazel-showcase-merge-${{ github.sha }}
         restore-keys: |
           bazel-showcase-merge-
+          bazel-build-
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase-merge
     - name: "Bazel: Clean bazel disk cache"
