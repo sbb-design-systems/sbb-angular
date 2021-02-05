@@ -187,14 +187,6 @@ h1,
         pxToRem(28),
         1.214,
       ),
-      desktop4k: (
-        pxToRem(42),
-        1.19,
-      ),
-      desktop5k: (
-        pxToRem(56),
-        1.196,
-      ),
     );
     @include mqSequence($sizes) using ($fontSize, $lineHeight) {
       font-size: $fontSize;
@@ -225,23 +217,9 @@ h2,
     font-size: pxToRem(18);
     line-height: 1.056;
 
-    $sizes: (
-      desktop: (
-        pxToRem(21),
-        1.19,
-      ),
-      desktop4k: (
-        pxToRem(32),
-        1.188,
-      ),
-      desktop5k: (
-        pxToRem(42),
-        1.19,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
-      font-size: $fontSize;
-      line-height: $lineHeight;
+    @include mq($from: desktop) {
+      font-size: pxToRem(21);
+      line-height: 1.19;
     }
   }
 }
@@ -265,27 +243,12 @@ h3,
     }
   }
   @include sbbLean {
-    $sizes: (
-      base: (
-        pxToRem(16),
-        1.063,
-      ),
-      desktop: (
-        pxToRem(18),
-        1.222,
-      ),
-      desktop4k: (
-        pxToRem(27),
-        1.185,
-      ),
-      desktop5k: (
-        pxToRem(36),
-        1.194,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
-      font-size: $fontSize;
-      line-height: $lineHeight;
+    font-size: pxToRem(16);
+    line-height: 1.063;
+
+    @include mq($from: desktop) {
+      font-size: pxToRem(18);
+      line-height: 1.222;
     }
   }
 }
@@ -308,27 +271,12 @@ h4,
     }
   }
   @include sbbLean {
-    $sizes: (
-      base: (
-        pxToRem(15),
-        0.933,
-      ),
-      desktop: (
-        pxToRem(16),
-        1.188,
-      ),
-      desktop4k: (
-        pxToRem(24),
-        1.208,
-      ),
-      desktop5k: (
-        pxToRem(32),
-        1.188,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
-      font-size: $fontSize;
-      line-height: $lineHeight;
+    font-size: pxToRem(15);
+    line-height: 0.933;
+
+    @include mq($from: desktop) {
+      font-size: pxToRem(16);
+      line-height: 1.188;
     }
   }
 }
@@ -353,7 +301,7 @@ h4,
   @include mqSequence($fontSizes) using ($value) {
     font-size: $value;
   }
-  @include mq($from: desktop, $to: desktop) {
+  @include mq($from: desktop, $to: desktop4k) {
     line-height: 1.524;
   }
 }
@@ -364,17 +312,17 @@ p,
   margin: 1em 0 0; // paragraph as default
   @include sbbStandard {
     line-height: 1.733;
+
+    $fontSizes: (
+      desktop4k: pxToRem(23),
+      desktop5k: pxToRem(30),
+    );
+    @include mqSequence($fontSizes) using ($value) {
+      font-size: $value;
+    }
   }
   @include sbbLean {
     line-height: 1.533;
-  }
-
-  $fontSizes: (
-    desktop4k: pxToRem(23),
-    desktop5k: pxToRem(30),
-  );
-  @include mqSequence($fontSizes) using ($value) {
-    font-size: $value;
   }
 }
 
@@ -1792,10 +1740,8 @@ $menuItemPaddingTopBottom: 4;
 
   &:first-child > .sbb-label:first-child {
     padding-top: pxToRem(14);
-  }
 
-  .sbb-panel.sbb-standard > & {
-    &:first-child > .sbb-label:first-child {
+    .sbb-panel.sbb-standard > & {
       @include mq($from: desktop4k) {
         padding-top: pxToRem(14 * $scalingFactor4k);
       }
@@ -1803,16 +1749,12 @@ $menuItemPaddingTopBottom: 4;
         padding-top: pxToRem(14 * $scalingFactor5k);
       }
     }
-  }
 
-  .sbb-panel-padded > & {
-    &:first-child > .sbb-label:first-child {
+    .sbb-panel-padded > & {
       padding-top: pxToRem(4);
     }
-  }
 
-  .sbb-panel-padded.sbb-standard > & {
-    &:first-child > .sbb-label:first-child {
+    .sbb-panel-padded.sbb-standard > & {
       @include mq($from: desktop4k) {
         padding-top: pxToRem(4 * $scalingFactor4k);
       }

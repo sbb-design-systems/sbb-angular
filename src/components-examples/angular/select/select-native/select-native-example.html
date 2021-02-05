@@ -12,14 +12,12 @@
   </sbb-form-field>
   <h4>Properties</h4>
   <pre>{{ form.get('value')?.value | json }}</pre>
-  <p>
+  <div class="sbb-checkbox-group-vertical">
     <sbb-checkbox
       (change)="$event.checked ? form.get('value')?.disable() : form.get('value')?.enable()"
     >
       Disabled
     </sbb-checkbox>
-  </p>
-  <p>
     <sbb-checkbox formControlName="optionDisabled">First option disabled</sbb-checkbox>
-  </p>
+  </div>
 </form>

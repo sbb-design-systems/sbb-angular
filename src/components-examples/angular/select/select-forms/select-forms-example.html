@@ -12,9 +12,7 @@
 </sbb-form-field>
 <h4>Properties</h4>
 <pre>{{ value | json }}</pre>
-<p>
+<div class="sbb-checkbox-group-vertical">
   <sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>
-</p>
-<p>
   <sbb-checkbox [(ngModel)]="optionDisabled">First option disabled</sbb-checkbox>
-</p>
+</div>
