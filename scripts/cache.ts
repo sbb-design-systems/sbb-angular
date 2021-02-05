@@ -133,7 +133,7 @@ function removeByIndividualMaxSize(cache: LRUCache, maxSize: string) {
         result.reducedSize
       )}. Removed ${result.removedAmount} files exceeding ${maxSize}...`
     );
-    result.entries.forEach((e) => `  - ${e.path}`);
+    result.entries.forEach((e) => console.log(`  - ${e.path}`));
   }
 }
 
