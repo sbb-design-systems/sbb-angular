@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SbbTabs } from '@sbb-esta/angular-public/tabs';
 import { ExampleData } from '@sbb-esta/components-examples';
 import { combineLatest, Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, filter, map, skip, take, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, map, skip, take, takeUntil } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../html-loader.service';
 
@@ -36,8 +36,16 @@ export class ComponentViewerComponent implements OnInit, AfterViewInit, OnDestro
     this._route.params
       .pipe(
         take(1),
-        filter((p) => p.section),
-        map((p) => (p.section === 'api' ? 1 : 2))
+        map((p) => {
+          switch (p.section) {
+            case 'api':
+              return 1;
+            case 'examples':
+              return 2;
+            default:
+              return 0;
+          }
+        })
       )
       .subscribe((s) => this.tabs.openTabByIndex(s));
     this._route.params

@@ -3,11 +3,13 @@ import { AfterContentInit, Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Breakpoints, ɵtriggerVariantCheck } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
 
 import { ROUTER_ANIMATION } from './shared/animations';
 // @ts-ignore versions.ts is generated automatically by bazel
 import { angularVersion, libraryVersion } from './versions';
+
+const variantLocalstorageKey = 'sbbAngularVariant';
 
 @Component({
   selector: 'sbb-root',
@@ -19,22 +21,24 @@ export class AppComponent implements AfterContentInit, OnDestroy {
   angularVersion = angularVersion;
   showcaseVersion = libraryVersion;
   expanded: boolean = true;
-  sbbVariant: FormControl = new FormControl('standard');
+  sbbVariant: FormControl = new FormControl(
+    localStorage.getItem(variantLocalstorageKey) || 'standard'
+  );
   private _destroyed = new Subject();
 
   constructor(private _breakpointObserver: BreakpointObserver) {
-    // Trigger variant check after css classes have been rendered.
-    // Variant check depends on css classes of this component.
-    this.sbbVariant.valueChanges.subscribe((value) => {
-      if (value === 'standard') {
-        document.documentElement.classList.remove('sbb-lean');
-      } else {
-        document.documentElement.classList.add(`sbb-${value}`);
-      }
-      ɵtriggerVariantCheck.next();
-    });
+    this.sbbVariant.valueChanges
+      .pipe(startWith(this.sbbVariant.value), takeUntil(this._destroyed))
+      .subscribe((value) => {
+        if (value === 'standard') {
+          document.documentElement.classList.remove('sbb-lean');
+        } else {
+          document.documentElement.classList.add(`sbb-lean`);
+        }
+        ɵtriggerVariantCheck.next();
+        localStorage.setItem(variantLocalstorageKey, value);
+      });
   }
-
   ngAfterContentInit(): void {
     this._breakpointObserver
       .observe([Breakpoints.Mobile, Breakpoints.Tablet, Breakpoints.Desktop])
