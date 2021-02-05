@@ -367,11 +367,11 @@ jobs:
     - name: "Bazel: Unpack artifacts"
       run: |
         cd ~/.bazel-cache/
-        tar -I zstd -xf bazel-cache-test.tar.zst
+        tar -I zstd -xfv bazel-cache-test.tar.zst
         rm -f bazel-cache-test.tar.zst
-        tar -I zstd -xf bazel-cache-showcase.tar.zst
+        tar -I zstd -xfv bazel-cache-showcase.tar.zst
         rm -f bazel-cache-showcase.tar.zst
-        tar -I zstd -xf bazel-cache-showcase-merge.tar.zst
+        tar -I zstd -xfv bazel-cache-showcase-merge.tar.zst
         rm -f bazel-cache-showcase-merge.tar.zst
     - name: "Bazel: Clean bazel disk cache"
       run: yarn -s bazel:cache clean --maxSize 500MB --individualMaxSize=20MB

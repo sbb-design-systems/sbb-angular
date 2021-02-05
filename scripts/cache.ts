@@ -24,6 +24,7 @@ class FileEntry {
 class RemovalResult {
   totalSize = 0;
   removedAmount = 0;
+  entries: FileEntry[] = [];
   get reducedSize() {
     return this.totalSize - this._reducedSize;
   }
@@ -33,6 +34,7 @@ class RemovalResult {
   addRemovable(entry: FileEntry) {
     this.removedAmount += 1;
     this._reducedSize += entry.size;
+    this.entries.push(entry);
   }
 }
 
@@ -131,6 +133,7 @@ function removeByIndividualMaxSize(cache: LRUCache, maxSize: string) {
         result.reducedSize
       )}. Removed ${result.removedAmount} files exceeding ${maxSize}...`
     );
+    result.entries.forEach((e) => `  - ${e.path}`);
   }
 }
 
