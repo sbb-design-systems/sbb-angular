@@ -109,12 +109,13 @@ if (module === require.main) {
  * @param maxSize The max allowed cache size.
  */
 function cleanBazelCache(path: string, options: { maxSize?: string; individualMaxSize?: string }) {
-  const maxSize = options.maxSize || '0Bytes';
   const cache = new LRUCache(path);
   if (options.individualMaxSize) {
     removeByIndividualMaxSize(cache, options.individualMaxSize);
   }
-  removeByMaxSize(cache, maxSize);
+  if (options.maxSize) {
+    removeByMaxSize(cache, options.maxSize);
+  }
 }
 
 function removeByIndividualMaxSize(cache: LRUCache, maxSize: string) {

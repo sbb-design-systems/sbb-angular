@@ -76,6 +76,8 @@ jobs:
           bazel-merged-
     - name: "Bazel: Build"
       run: yarn -s build all
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --individualMaxSize=50MB
     - name: "Bazel: Compress artifacts"
       run: |
         cd ~/.bazel-cache
@@ -85,7 +87,7 @@ jobs:
       with:
         name: bazel-cache-artifact
         path: ~/.bazel-cache/bazel-cache.tar.zst
-    - name: "Bazel: Remove artifacts archive"
+    - name: "Bazel: Clear cache directory"
       run: rm -rf ~/.bazel-cache
 
   packages:
@@ -165,6 +167,8 @@ jobs:
         rm -f bazel-cache.tar.zst
     - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --individualMaxSize=50MB
     - name: "Bazel: Compress artifacts"
       run: |
         cd ~/.bazel-cache
@@ -216,6 +220,8 @@ jobs:
         rm -f bazel-cache.tar.zst
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --individualMaxSize=50MB
     - name: "Bazel: Compress artifacts"
       run: |
         cd ~/.bazel-cache
@@ -282,6 +288,8 @@ jobs:
         rm -f bazel-cache.tar.zst
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase-merge
+    - name: "Bazel: Clean bazel disk cache"
+      run: yarn -s bazel:cache clean --individualMaxSize=50MB
     - name: "Bazel: Compress artifacts"
       run: |
         cd ~/.bazel-cache
@@ -315,6 +323,9 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
