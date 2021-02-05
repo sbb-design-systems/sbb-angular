@@ -311,6 +311,24 @@ jobs:
     needs: [test, showcase, showcase-merge]
     runs-on: ubuntu-latest
     steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Restore dependencies from cache"
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive --ignore-scripts
+
     - name: "Bazel: Create cache directory"
       run: mkdir -p ~/.bazel-cache/
     - name: "Bazel: Restore remote cache"

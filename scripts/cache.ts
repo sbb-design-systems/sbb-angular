@@ -114,7 +114,7 @@ function cleanBazelCache(path: string, options: { maxSize?: string; individualMa
   if (options.individualMaxSize) {
     removeByIndividualMaxSize(cache, options.individualMaxSize);
   }
-  removeByMaxSize(cache, options.maxSize || '0Bytes');
+  removeByMaxSize(cache, maxSize);
 }
 
 function removeByIndividualMaxSize(cache: LRUCache, maxSize: string) {
