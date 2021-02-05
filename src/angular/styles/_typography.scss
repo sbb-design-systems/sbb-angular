@@ -1562,11 +1562,6 @@ $panelBorderRadius: 2;
     }
   }
 
-  /*
-  sbb-option-group {
-    @include optionGroupBase;
-  }*/
-
   &.sbb-panel-above {
     border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
     border-top-width: pxToRem($panelBorderWidthStandard);
@@ -1661,7 +1656,7 @@ $menuItemPaddingTopBottom: 4;
   color: $sbbColorGrey;
   line-height: pxToRem(23);
 
-  &.sbb-standard {
+  .sbb-panel.sbb-standard & {
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault * $scalingFactor4k);
       line-height: pxToRem(23 * $scalingFactor4k);
@@ -1676,7 +1671,7 @@ $menuItemPaddingTopBottom: 4;
     }
   }
 
-  &.sbb-lean {
+  .sbb-panel.sbb-lean & {
     padding-left: pxToRem(8);
     padding-right: pxToRem(8);
     line-height: pxToRem(20);
@@ -1689,7 +1684,10 @@ $menuItemPaddingTopBottom: 4;
 
   &.sbb-selected {
     color: $sbbColorBlack;
-    &.sbb-lean {
+    .sbb-panel.sbb-lean & {
+      // Copied color from '&.sbb-selected' to be specific enough.
+      // Otherwise color of '.sbb-panel.sbb-lean &' would be applied.
+      color: $sbbColorBlack;
       background-color: $sbbColorCloud;
       @include borderLeftAsAfter($sbbColorBlack);
     }
@@ -1709,7 +1707,7 @@ $menuItemPaddingTopBottom: 4;
   &:not(:disabled):not([disabled]):not(.sbb-disabled):focus strong,
   &.sbb-active {
     color: $sbbColorRed;
-    @include sbbLean() {
+    .sbb-panel.sbb-lean & {
       color: $sbbColorRed125;
       background-color: $sbbColorMilk;
       @include borderLeftAsAfter($sbbColorRed125);
@@ -1724,7 +1722,7 @@ $menuItemPaddingTopBottom: 4;
     width: pxToRem(24);
     height: pxToRem(24);
 
-    .sbb-menu-item.sbb-standard & {
+    .sbb-panel.sbb-standard & {
       @include mq($from: desktop4k) {
         margin-top: pxToRem(-12);
         margin-bottom: pxToRem(-12);
@@ -1742,7 +1740,7 @@ $menuItemPaddingTopBottom: 4;
       }
     }
 
-    .sbb-menu-item.sbb-lean & {
+    .sbb-panel.sbb-lean & {
       margin: pxToRem(-9) 0 pxToRem(-9) 0;
     }
   }
@@ -1752,7 +1750,7 @@ $menuItemPaddingTopBottom: 4;
     margin-right: pxToRem(11);
     margin-left: pxToRem(-1);
 
-    .sbb-menu-item.sbb-standard & {
+    .sbb-panel.sbb-standard & {
       @include mq($from: desktop4k) {
         margin-right: pxToRem(11 * $scalingFactor4k);
         margin-left: pxToRem(-1 * $scalingFactor4k);
@@ -1764,9 +1762,85 @@ $menuItemPaddingTopBottom: 4;
       }
     }
 
-    .sbb-menu-item.sbb-lean & {
+    .sbb-panel.sbb-lean & {
       margin-right: pxToRem(8);
       margin-left: pxToRem(0);
+    }
+  }
+}
+
+.sbb-menu-group {
+  display: block;
+
+  .sbb-menu-item {
+    padding-left: pxToRem(22);
+
+    .sbb-panel.sbb-standard & {
+      @include mq($from: desktop4k) {
+        padding-left: pxToRem(22 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        padding-left: pxToRem(22 * $scalingFactor5k);
+      }
+    }
+
+    .sbb-panel.sbb-lean & {
+      padding-left: pxToRem(16);
+    }
+  }
+
+  &:first-child > .sbb-label:first-child {
+    padding-top: pxToRem(14);
+  }
+
+  .sbb-panel.sbb-standard > & {
+    &:first-child > .sbb-label:first-child {
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem(14 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem(14 * $scalingFactor5k);
+      }
+    }
+  }
+
+  .sbb-panel-padded > & {
+    &:first-child > .sbb-label:first-child {
+      padding-top: pxToRem(4);
+    }
+  }
+
+  .sbb-panel-padded.sbb-standard > & {
+    &:first-child > .sbb-label:first-child {
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem(4 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem(4 * $scalingFactor5k);
+      }
+    }
+  }
+
+  .sbb-label {
+    color: $sbbColorMetal;
+    padding: pxToRem(24) pxToRem(14) pxToRem(10) pxToRem(14);
+
+    .sbb-panel.sbb-standard & {
+      @include mq($from: desktop4k) {
+        padding: pxToRem(24 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k)
+          pxToRem(10 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        padding: pxToRem(24 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k)
+          pxToRem(10 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k);
+      }
+    }
+
+    .sbb-panel.sbb-lean & {
+      color: $sbbColorGranite;
+      padding: pxToRem(12) pxToRem(8) pxToRem(4) pxToRem(8);
     }
   }
 }

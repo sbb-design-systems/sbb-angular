@@ -52,7 +52,7 @@ $optionSelectedColor: $sbbColorBlack;
     }
   }
 
-  sbb-option-group {
+  sbb-optgroup {
     @include optionGroupBase;
   }
 }
@@ -206,9 +206,9 @@ $optionSelectedColor: $sbbColorBlack;
 }
 
 @mixin optionGroupDivider() {
-  sbb-option-group + sbb-option-group,
-  sbb-option + sbb-option-group,
-  sbb-option-group + sbb-option {
+  sbb-optgroup + sbb-optgroup,
+  sbb-option + sbb-optgroup,
+  sbb-optgroup + sbb-option {
     border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
 
     @include publicOnly() {
