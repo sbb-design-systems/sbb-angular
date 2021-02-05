@@ -1785,4 +1785,20 @@ $menuItemPaddingTopBottom: 4;
       padding: pxToRem(12) pxToRem(8) pxToRem(4) pxToRem(8);
     }
   }
+
+  & + &,
+  .sbb-menu-item + &,
+  & + .sbb-menu-item {
+    border-top: pxToRem(1) solid $sbbColorCloud;
+
+    &.sbb-panel.sbb-standard {
+      @include mq($from: desktop4k) {
+        border-top-width: pxToRem(1 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border-top-width: pxToRem(1 * $scalingFactor5k);
+      }
+    }
+  }
 }
