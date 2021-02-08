@@ -8,6 +8,7 @@ export class BazelModuleFileRegistry {
   readonly specFiles: FileEntry[] = [];
   readonly scssFiles: FileEntry[] = [];
   readonly scssLibaryFiles: FileEntry[] = [];
+  readonly cssFiles: FileEntry[] = [];
 
   add(file: PathFragment, dir: DirEntry) {
     if (file.endsWith('.spec.ts')) {
@@ -22,6 +23,8 @@ export class BazelModuleFileRegistry {
       this.scssLibaryFiles.push(dir.file(file)!);
     } else if (file.endsWith('.scss')) {
       this.scssFiles.push(dir.file(file)!);
+    } else if (file.endsWith('.css')) {
+      this.cssFiles.push(dir.file(file)!);
     }
   }
 }

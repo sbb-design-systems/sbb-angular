@@ -15,9 +15,13 @@ ng_module(
     srcs =<% if (genFiles.length) { %> [<% for (let file of genFiles) { %>":<%= file %>", <% } %>] +<% } %> glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
-    ),<% if (stylesheets.length === 0 && hasHtml) { %>
-    assets = glob(["**/*.html"]),<% } %><% if (stylesheets.length === 1) { %>
-    assets = [":<%= stylesheets[0] %>"] + glob(["**/*.html"]),<% } %><% if (stylesheets.length > 1) { %>
+    ),<% if (stylesheets.length === 0 && hasHtml && hasCss) { %>
+    assets = glob([
+        "**/*.html",
+        "**/*.css",
+    ]),<% } else if (stylesheets.length === 0 && hasHtml) { %>
+    assets = glob(["**/*.html"]),<% } else if (stylesheets.length === 1) { %>
+    assets = [":<%= stylesheets[0] %>"] + glob(["**/*.html"]),<% } else if (stylesheets.length > 1) { %>
     assets = [<% for (let stylesheet of stylesheets) { %>
         ":<%= stylesheet %>",<% } %>
     ] + glob(["**/*.html"]),<% } %>

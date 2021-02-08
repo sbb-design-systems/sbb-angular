@@ -61,6 +61,7 @@ class BazelModuleFileRegistry {
         this.specFiles = [];
         this.scssFiles = [];
         this.scssLibaryFiles = [];
+        this.cssFiles = [];
     }
     add(file, dir) {
         if (file.endsWith('.spec.ts')) {
@@ -80,6 +81,9 @@ class BazelModuleFileRegistry {
         }
         else if (file.endsWith('.scss')) {
             this.scssFiles.push(dir.file(file));
+        }
+        else if (file.endsWith('.css')) {
+            this.cssFiles.push(dir.file(file));
         }
     }
 }
@@ -134,6 +138,7 @@ class NgModule {
         this.sassBinaries = this._context.sassDependencyResolver.resolveDependencies(this._fileRegistry.scssFiles);
         this.stylesheets = this.sassBinaries.map((s) => s.path.replace('.scss', '.css'));
         this.hasHtml = !!this._fileRegistry.htmlFiles.length;
+        this.hasCss = !!this._fileRegistry.cssFiles.length;
     }
     ngModules() {
         return this._modules.reduce((current, next) => current.concat(next.ngModules()), [

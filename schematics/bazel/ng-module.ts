@@ -30,6 +30,7 @@ export class NgModule {
   sassBinaries: SassBinary[];
   stylesheets: string[];
   hasHtml: boolean;
+  hasCss: boolean;
   customTsConfig = '';
 
   protected readonly _fileRegistry = new BazelModuleFileRegistry();
@@ -65,6 +66,7 @@ export class NgModule {
     );
     this.stylesheets = this.sassBinaries.map((s) => s.path.replace('.scss', '.css'));
     this.hasHtml = !!this._fileRegistry.htmlFiles.length;
+    this.hasCss = !!this._fileRegistry.cssFiles.length;
   }
 
   ngModules(): NgModule[] {
