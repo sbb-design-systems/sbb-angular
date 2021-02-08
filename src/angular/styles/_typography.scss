@@ -557,7 +557,7 @@ ul li ol > li::before,
   }
 
   &:focus,
-  .sbb-focused {
+  &.sbb-focused {
     border-color: $sbbColorGrey;
   }
 
@@ -607,7 +607,7 @@ ul li ol > li::before,
     min-height: pxToRem(36);
 
     &:focus,
-    .sbb-focused {
+    &.sbb-focused {
       border-color: $sbbColorIron;
     }
 
