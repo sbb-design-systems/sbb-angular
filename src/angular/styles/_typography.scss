@@ -812,7 +812,8 @@ fieldset,
   background-color: $sbbColorWhite;
   @include sbbSelectionDimension(1);
 
-  .sbb-selection-item.sbb-standard & {
+  .sbb-selection-item.sbb-standard &,
+  .sbb-panel.sbb-standard & {
     @include mq($from: desktop4k) {
       @include sbbSelectionDimension($scalingFactor4k);
     }
@@ -1615,7 +1616,7 @@ $panelBorderRadius: 2;
 // ----------------------------------------------------------------------------------------------------
 
 $menuItemPaddingLeftRightStandard: 14;
-$menuItemPaddingTopBottom: 4;
+$menuItemPaddingTopBottom: 3.75;
 
 .sbb-menu-item {
   @include ellipsis;

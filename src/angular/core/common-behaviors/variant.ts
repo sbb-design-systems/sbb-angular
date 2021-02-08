@@ -56,7 +56,8 @@ function manageVariant(element: Element): SbbVariant {
     return manualVariant;
   }
 
-  element.classList.remove('sbb-standard', 'sbb-lean');
+  element.classList.remove('sbb-standard');
+  element.classList.remove('sbb-lean');
   const variant = detectVariant(element);
   element.classList.add(`sbb-${variant}`);
 
