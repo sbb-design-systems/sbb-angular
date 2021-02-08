@@ -14,6 +14,12 @@
     resize: none;
     overflow: hidden;
     background-color: transparent;
+
+    // Undo the red box-shadow glow added by Firefox on invalid inputs.
+    // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
+    &:-moz-ui-invalid {
+      box-shadow: none;
+    }
   }
 
   &.ng-touched.ng-invalid textarea {
