@@ -206,5 +206,9 @@
   "getFileContent": "schematics/testing",
   "readFileContent": "schematics/testing",
   "resolveBazelPath": "schematics/testing",
-  "runPostScheduledTasks": "schematics/testing"
+  "runPostScheduledTasks": "schematics/testing",
+  "SbbTextarea": "textarea",
+  "SbbTextareaBase": "textarea",
+  "SbbTextareaMixinBase": "textarea",
+  "SbbTextareaModule": "textarea"
 }
