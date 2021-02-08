@@ -574,7 +574,7 @@ ul li ol > li::before,
   }
 
   &[readonly],
-  &.readonly {
+  &.sbb-readonly {
     background: $sbbColorMilk;
     border-color: $sbbColorAluminum;
   }
