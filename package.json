@@ -8,7 +8,6 @@
   },
   "scripts": {
     "postinstall": "node tools/postinstall/apply-patches.js && ngcc && yarn -s build:public2business",
-    "p2b": "ng g .:public2business",
     "build": "ts-node-script ./scripts/build.ts",
     "build:public2business": "ng g .:public2business",
     "build:schematics": "rollup --config schematics/rollup.config.js",
@@ -40,7 +39,13 @@
     "release": "standard-version --tag-prefix=\"\"",
     "forceinstall-husky": "node node_modules/husky/lib/installer/bin install",
     "t9n:xlf": "ng-t9n t9n-xlf.json",
-    "t9n:xlf2": "ng-t9n t9n-xlf2.json"
+    "t9n:xlf2": "ng-t9n t9n-xlf2.json",
+    "_shortcuts": "Below are shortcuts for common commands",
+    "baz": "yarn -s generate:bazel",
+    "dev": "yarn -s start:devserver:dev-app",
+    "icn": "yarn -s generate:icon-registry",
+    "p2b": "yarn -s build:public2business",
+    "sym": "yarn -s generate:merge-symbols"
   },
   "repository": {
     "type": "git",

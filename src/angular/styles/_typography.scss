@@ -808,6 +808,7 @@ fieldset,
 }
 
 .sbb-selection-container {
+  display: inline-block;
   background-color: $sbbColorWhite;
   @include sbbSelectionDimension(1);
 
@@ -819,7 +820,8 @@ fieldset,
       @include sbbSelectionDimension($scalingFactor5k);
     }
   }
-  .sbb-selection-item.sbb-lean & {
+  .sbb-selection-item.sbb-lean &,
+  .sbb-panel.sbb-lean & {
     border-width: 1px;
     margin-top: toPx(1);
   }
@@ -832,7 +834,8 @@ fieldset,
   width: 100%;
   transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-  .sbb-selection-item.sbb-lean & {
+  .sbb-selection-item.sbb-lean &,
+  .sbb-panel.sbb-lean & {
     color: $sbbColorIron;
   }
 }
@@ -856,34 +859,42 @@ fieldset,
   }
 }
 
-.sbb-checkbox-input {
-  & + .sbb-selection-container {
+// Applies focus highlight for pseudo-checkbox
+.sbb-menu-item.sbb-active .sbb-pseudo-checkbox .sbb-selection-container {
+  border-color: $sbbColorGrey;
+
+  .sbb-panel.sbb-lean & {
+    border-color: $sbbColorIron;
+  }
+}
+
+.sbb-checkbox-input + .sbb-selection-container,
+.sbb-pseudo-checkbox > .sbb-selection-container {
+  border-radius: toPx(2);
+
+  & > .sbb-selection-container-checked {
+    display: none;
     border-radius: toPx(2);
+    transform: scale(1.3);
 
-    & > .sbb-selection-container-checked {
-      display: none;
-      border-radius: toPx(2);
-      transform: scale(1.3);
+    & > svg {
+      display: inline-block;
+      line-height: 0;
+      width: 100%;
+      height: 100%;
+      transform: translateY(toPx(-1.5));
 
-      & > svg {
-        display: inline-block;
-        line-height: 0;
-        width: 100%;
-        height: 100%;
-        transform: translateY(toPx(-1.5));
-
-        .sbb-selection-item.sbb-standard & {
-          @include mq($from: desktop4k) {
-            transform: translateY(toPx(-1.5 * $scalingFactor4k));
-          }
-          @include mq($from: desktop5k) {
-            transform: translateY(toPx(-1.5 * $scalingFactor5k));
-          }
+      .sbb-selection-item.sbb-standard & {
+        @include mq($from: desktop4k) {
+          transform: translateY(toPx(-1.5 * $scalingFactor4k));
         }
-
-        & > polyline {
-          stroke: currentColor;
+        @include mq($from: desktop5k) {
+          transform: translateY(toPx(-1.5 * $scalingFactor5k));
         }
+      }
+
+      & > polyline {
+        stroke: currentColor;
       }
     }
   }
@@ -963,6 +974,13 @@ fieldset,
   }
 }
 
+// Applies indeterminate styles for pseudo-checkbox
+.sbb-panel.sbb-lean
+  .sbb-pseudo-checkbox.sbb-selection-indeterminate
+  .sbb-selection-container::before {
+  border: 1px solid $sbbColorGranite;
+}
+
 .sbb-selection-disabled {
   pointer-events: none;
 
@@ -990,6 +1008,11 @@ fieldset,
       }
     }
   }
+}
+
+// Applies disabled styles for pseudo-checkbox
+.sbb-panel.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-container-checked {
+  color: $sbbColorGranite;
 }
 
 .sbb-checkbox-group-vertical,
