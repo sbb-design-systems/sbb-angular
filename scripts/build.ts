@@ -35,6 +35,7 @@ if (module === require.main) {
     i18n: () =>
       buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular-core/i18n')),
     showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
+    'showcase-merge': () => buildShowcaseMerge(join(projectDir, 'dist/releases')),
     'icon-registry': () => {
       generateIconRegistry('angular-core');
       generateIconRegistry('angular');
@@ -158,6 +159,38 @@ function buildShowcase(distPath: string) {
     join(targetFolder, 'package.json'),
     JSON.stringify({
       name: '@sbb-esta/angular-showcase',
+      version,
+      publishConfig: { access: 'public' },
+    }),
+    'utf8'
+  );
+}
+
+/**
+ * Builds the showcase with ivy and copies the package output into the given directory.
+ */
+function buildShowcaseMerge(distPath: string) {
+  console.log('######################################');
+  console.log('  Building showcase merge...');
+  console.log('######################################');
+
+  const pkgName = 'showcase-merge';
+
+  exec(`${bazelCmd} build src/${pkgName}:prodapp`);
+
+  cleanDistPath(distPath);
+  const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
+  const outputPath = join(bazelBinPath, 'src', pkgName, 'prodapp');
+  const targetFolder = join(distPath, pkgName);
+  copyPackageOutput(outputPath, targetFolder);
+
+  // TODO: Remove once dockerized
+  // Create package.json
+  const { version } = require('../package.json');
+  writeFileSync(
+    join(targetFolder, 'package.json'),
+    JSON.stringify({
+      name: '@sbb-esta/angular-showcase-merge',
       version,
       publishConfig: { access: 'public' },
     }),

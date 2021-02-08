@@ -24,6 +24,7 @@ class FileEntry {
 class RemovalResult {
   totalSize = 0;
   removedAmount = 0;
+  entries: FileEntry[] = [];
   get reducedSize() {
     return this.totalSize - this._reducedSize;
   }
@@ -33,6 +34,7 @@ class RemovalResult {
   addRemovable(entry: FileEntry) {
     this.removedAmount += 1;
     this._reducedSize += entry.size;
+    this.entries.push(entry);
   }
 }
 
@@ -109,12 +111,13 @@ if (module === require.main) {
  * @param maxSize The max allowed cache size.
  */
 function cleanBazelCache(path: string, options: { maxSize?: string; individualMaxSize?: string }) {
-  const maxSize = options.maxSize || '0Bytes';
   const cache = new LRUCache(path);
   if (options.individualMaxSize) {
     removeByIndividualMaxSize(cache, options.individualMaxSize);
   }
-  removeByMaxSize(cache, options.maxSize || '0Bytes');
+  if (options.maxSize) {
+    removeByMaxSize(cache, options.maxSize);
+  }
 }
 
 function removeByIndividualMaxSize(cache: LRUCache, maxSize: string) {
@@ -130,6 +133,7 @@ function removeByIndividualMaxSize(cache: LRUCache, maxSize: string) {
         result.reducedSize
       )}. Removed ${result.removedAmount} files exceeding ${maxSize}...`
     );
+    result.entries.forEach((e) => console.log(`  - ${e.path}`));
   }
 }
 
