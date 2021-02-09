@@ -3,6 +3,7 @@
 .sbb-textarea {
   @include inputfields;
   @include disabledinputfields;
+  @include readonlyinputfields;
 
   display: inline-block;
   letter-spacing: 0;
@@ -41,6 +42,7 @@
     min-height: inherit;
     resize: none;
     overflow: hidden;
+    background-color: transparent;
   }
 
   &.sbb-focused {

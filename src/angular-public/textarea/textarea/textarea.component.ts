@@ -65,6 +65,7 @@ export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
     '[attr.aria-describedby]': '_ariaDescribedby || null',
     '[class.sbb-disabled]': 'disabled',
     '[class.sbb-focused]': 'focused',
+    '[class.sbb-readonly]': 'readonly',
   },
 })
 export class SbbTextarea

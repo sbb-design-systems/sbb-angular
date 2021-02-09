@@ -91,7 +91,7 @@ $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 
 @mixin readonlyinputfields {
   &[readonly],
-  &:read-only {
+  &.sbb-readonly {
     @include readonlyelement;
   }
 }
