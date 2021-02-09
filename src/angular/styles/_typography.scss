@@ -807,13 +807,13 @@ fieldset,
 }
 
 @mixin sbbSelectionDimension($factor) {
-  width: toPx(20 * $factor);
-  min-width: toPx(20 * $factor);
-  height: toPx(20 * $factor);
-  min-height: toPx(20 * $factor);
-  border: toPx(2 * $factor) solid $sbbColorGraphite;
-  margin-right: toPx(8 * $factor);
-  margin-top: toPx(2.5 * $factor);
+  width: pxToRem(20 * $factor);
+  min-width: pxToRem(20 * $factor);
+  height: pxToRem(20 * $factor);
+  min-height: pxToRem(20 * $factor);
+  border: pxToRem(2 * $factor) solid $sbbColorGraphite;
+  margin-right: pxToRem(8 * $factor);
+  margin-top: pxToRem(2.5 * $factor);
 }
 
 .sbb-selection-container {
@@ -833,7 +833,7 @@ fieldset,
   .sbb-selection-item.sbb-lean &,
   .sbb-panel.sbb-lean & {
     border-width: pxToRem(1);
-    margin-top: toPx(1);
+    margin-top: pxToRem(1);
   }
 }
 
@@ -880,11 +880,11 @@ fieldset,
 
 .sbb-checkbox-input + .sbb-selection-container,
 .sbb-pseudo-checkbox > .sbb-selection-container {
-  border-radius: toPx(2);
+  border-radius: pxToRem(2);
 
   & > .sbb-selection-container-checked {
     display: none;
-    border-radius: toPx(2);
+    border-radius: pxToRem(2);
     transform: scale(1.3);
 
     & > svg {
@@ -892,14 +892,14 @@ fieldset,
       line-height: 0;
       width: 100%;
       height: 100%;
-      transform: translateY(toPx(-1.5));
+      transform: translateY(pxToRem(-1.5));
 
       .sbb-selection-item.sbb-standard & {
         @include mq($from: desktop4k) {
-          transform: translateY(toPx(-1.5 * $scalingFactor4k));
+          transform: translateY(pxToRem(-1.5 * $scalingFactor4k));
         }
         @include mq($from: desktop5k) {
-          transform: translateY(toPx(-1.5 * $scalingFactor5k));
+          transform: translateY(pxToRem(-1.5 * $scalingFactor5k));
         }
       }
 
@@ -1033,18 +1033,18 @@ fieldset,
   align-items: flex-start;
 
   .sbb-selection-item + .sbb-selection-item {
-    margin-top: toPx(16);
+    margin-top: pxToRem(16);
 
     &.sbb-standard {
       @include mq($from: desktop4k) {
-        margin-top: toPx(16 * $scalingFactor4k);
+        margin-top: pxToRem(16 * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        margin-top: toPx(16 * $scalingFactor5k);
+        margin-top: pxToRem(16 * $scalingFactor5k);
       }
     }
     &.sbb-lean {
-      margin-top: toPx(3);
+      margin-top: pxToRem(3);
     }
   }
 }
@@ -1057,18 +1057,18 @@ fieldset,
   align-items: flex-start;
 
   .sbb-selection-item {
-    margin-right: toPx(32);
+    margin-right: pxToRem(32);
 
     &.sbb-standard {
       @include mq($from: desktop4k) {
-        margin-right: toPx(32 * $scalingFactor4k);
+        margin-right: pxToRem(32 * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        margin-right: toPx(32 * $scalingFactor5k);
+        margin-right: pxToRem(32 * $scalingFactor5k);
       }
     }
     &.sbb-lean {
-      margin-right: toPx(15);
+      margin-right: pxToRem(15);
     }
 
     &:last-of-type {
@@ -1092,12 +1092,12 @@ $checkboxRadioButtonPanelSubtitleFontSize: 13;
 
 .sbb-selection-base {
   .sbb-checkbox-radio-button-panel {
-    border: toPx($checkboxRadioButtonPanelBorderSize) solid $sbbColorMilk;
+    border: pxToRem($checkboxRadioButtonPanelBorderSize) solid $sbbColorMilk;
     background-color: $sbbColorMilk;
-    font-size: toPx($sizeFontDefault);
+    font-size: pxToRem($sizeFontDefault);
     width: 100%;
-    min-height: toPx($checkboxRadioButtonPanelHeight);
-    border-radius: toPx($checkboxRadioButtonPanelBorderRadius);
+    min-height: pxToRem($checkboxRadioButtonPanelHeight);
+    border-radius: pxToRem($checkboxRadioButtonPanelBorderRadius);
     display: flex;
     transition: border-color 0.15s ease-in-out;
     user-select: none;
@@ -1105,44 +1105,44 @@ $checkboxRadioButtonPanelSubtitleFontSize: 13;
 
     &-checked {
       background-color: $sbbColorWhite;
-      border: solid toPx($checkboxRadioButtonPanelBorderSize) $sbbColorBlack;
+      border: solid pxToRem($checkboxRadioButtonPanelBorderSize) $sbbColorBlack;
       color: $sbbColorBlack;
     }
 
     @include mq($from: desktop4k) {
-      font-size: toPx($sizeFontDefault * $scalingFactor4k);
-      height: toPx($checkboxRadioButtonPanelHeight * $scalingFactor4k);
-      border: toPx($checkboxRadioButtonPanelBorderSize * $scalingFactor4k) solid $sbbColorMilk;
-      border-radius: toPx($checkboxRadioButtonPanelBorderRadius * $scalingFactor4k);
+      font-size: pxToRem($sizeFontDefault * $scalingFactor4k);
+      height: pxToRem($checkboxRadioButtonPanelHeight * $scalingFactor4k);
+      border: pxToRem($checkboxRadioButtonPanelBorderSize * $scalingFactor4k) solid $sbbColorMilk;
+      border-radius: pxToRem($checkboxRadioButtonPanelBorderRadius * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      font-size: toPx($sizeFontDefault * $scalingFactor5k);
-      height: toPx($checkboxRadioButtonPanelHeight * $scalingFactor5k);
-      border: toPx($checkboxRadioButtonPanelBorderSize * $scalingFactor5k) solid $sbbColorMilk;
-      border-radius: toPx($checkboxRadioButtonPanelBorderRadius * $scalingFactor5k);
+      font-size: pxToRem($sizeFontDefault * $scalingFactor5k);
+      height: pxToRem($checkboxRadioButtonPanelHeight * $scalingFactor5k);
+      border: pxToRem($checkboxRadioButtonPanelBorderSize * $scalingFactor5k) solid $sbbColorMilk;
+      border-radius: pxToRem($checkboxRadioButtonPanelBorderRadius * $scalingFactor5k);
     }
 
     &-has-subtitle {
-      min-height: toPx($checkboxRadioButtonPanelHeightWithSubtitle);
+      min-height: pxToRem($checkboxRadioButtonPanelHeightWithSubtitle);
       @include mq($from: desktop4k) {
-        min-height: toPx($checkboxRadioButtonPanelHeightWithSubtitle * $scalingFactor4k);
+        min-height: pxToRem($checkboxRadioButtonPanelHeightWithSubtitle * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        min-height: toPx($checkboxRadioButtonPanelHeightWithSubtitle * $scalingFactor5k);
+        min-height: pxToRem($checkboxRadioButtonPanelHeightWithSubtitle * $scalingFactor5k);
       }
     }
 
     &-disabled {
       color: $sbbColorGrey;
       background-color: $sbbColorWhite;
-      border: toPx($checkboxRadioButtonPanelBorderSize) solid $sbbColorMilk;
+      border: pxToRem($checkboxRadioButtonPanelBorderSize) solid $sbbColorMilk;
       @include mq($from: desktop4k) {
-        border: toPx($checkboxRadioButtonPanelBorderSize * $scalingFactor4k) solid $sbbColorMilk;
+        border: pxToRem($checkboxRadioButtonPanelBorderSize * $scalingFactor4k) solid $sbbColorMilk;
       }
       @include mq($from: desktop5k) {
-        border: toPx($checkboxRadioButtonPanelBorderSize * $scalingFactor5k) solid $sbbColorMilk;
+        border: pxToRem($checkboxRadioButtonPanelBorderSize * $scalingFactor5k) solid $sbbColorMilk;
       }
     }
 
@@ -1156,26 +1156,26 @@ $checkboxRadioButtonPanelSubtitleFontSize: 13;
 
     .sbb-checkbox-radio-button-panel-header,
     .sbb-checkbox-radio-button-panel-multiple-header {
-      padding: toPx($checkboxRadioButtonPanelPadding);
+      padding: pxToRem($checkboxRadioButtonPanelPadding);
 
       @include mq($from: desktop4k) {
-        padding: toPx($checkboxRadioButtonPanelPadding * $scalingFactor4k);
+        padding: pxToRem($checkboxRadioButtonPanelPadding * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        padding: toPx($checkboxRadioButtonPanelPadding * $scalingFactor5k);
+        padding: pxToRem($checkboxRadioButtonPanelPadding * $scalingFactor5k);
       }
     }
 
     .sbb-checkbox-radio-button-panel-header-subtitle {
       color: $sbbColorGrey;
-      font-size: toPx($checkboxRadioButtonPanelSubtitleFontSize);
+      font-size: pxToRem($checkboxRadioButtonPanelSubtitleFontSize);
 
       @include mq($from: desktop4k) {
-        font-size: toPx($checkboxRadioButtonPanelSubtitleFontSize * $scalingFactor4k);
+        font-size: pxToRem($checkboxRadioButtonPanelSubtitleFontSize * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        font-size: toPx($checkboxRadioButtonPanelSubtitleFontSize * $scalingFactor5k);
+        font-size: pxToRem($checkboxRadioButtonPanelSubtitleFontSize * $scalingFactor5k);
       }
     }
   }
@@ -1184,21 +1184,21 @@ $checkboxRadioButtonPanelSubtitleFontSize: 13;
 $checkboxRadioButtonPanelImageWidth: 64;
 $checkboxRadioButtonPanelImageHeight: 40;
 .sbb-checkbox-radio-button-panel-image:not(:empty) {
-  width: toPx($checkboxRadioButtonPanelImageWidth);
-  height: toPx($checkboxRadioButtonPanelImageHeight);
+  width: pxToRem($checkboxRadioButtonPanelImageWidth);
+  height: pxToRem($checkboxRadioButtonPanelImageHeight);
   margin-left: auto;
   align-self: center;
-  padding-right: toPx($checkboxRadioButtonPanelPadding);
+  padding-right: pxToRem($checkboxRadioButtonPanelPadding);
 
   @include mq($from: desktop4k) {
-    width: toPx($checkboxRadioButtonPanelImageWidth * $scalingFactor4k);
-    height: toPx($checkboxRadioButtonPanelImageHeight * $scalingFactor4k);
-    padding-right: toPx($checkboxRadioButtonPanelPadding * $scalingFactor4k);
+    width: pxToRem($checkboxRadioButtonPanelImageWidth * $scalingFactor4k);
+    height: pxToRem($checkboxRadioButtonPanelImageHeight * $scalingFactor4k);
+    padding-right: pxToRem($checkboxRadioButtonPanelPadding * $scalingFactor4k);
   }
   @include mq($from: desktop5k) {
-    width: toPx($checkboxRadioButtonPanelImageWidth * $scalingFactor5k);
-    height: toPx($checkboxRadioButtonPanelImageHeight * $scalingFactor5k);
-    padding-right: toPx($checkboxRadioButtonPanelPadding * $scalingFactor5k);
+    width: pxToRem($checkboxRadioButtonPanelImageWidth * $scalingFactor5k);
+    height: pxToRem($checkboxRadioButtonPanelImageHeight * $scalingFactor5k);
+    padding-right: pxToRem($checkboxRadioButtonPanelPadding * $scalingFactor5k);
   }
   * {
     max-width: 100%;
