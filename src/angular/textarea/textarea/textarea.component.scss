@@ -32,9 +32,6 @@
   float: right;
   background: transparent;
   color: $sbbColorBlack;
-  .sbb-textarea.sbb-lean & {
-    color: $sbbColorMetal;
-  }
   letter-spacing: 0;
   line-height: pxToRem(13);
   font-size: pxToRem(13);
@@ -50,5 +47,9 @@
       font-size: pxToRem(26);
       line-height: pxToRem(13);
     }
+  }
+
+  .sbb-textarea.sbb-lean & {
+    color: $sbbColorMetal;
   }
 }
