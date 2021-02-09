@@ -103,9 +103,12 @@ describe('SbbTextarea behaviour', () => {
   it('should be required', () => {
     component.required = true;
     const textarea = innerComponent.query(By.css('textarea'));
-    clearElement(textarea.nativeElement);
+    textarea.nativeElement.focus();
+    textarea.nativeElement.blur();
     fixture.detectChanges();
-    expect(innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']).toBeTruthy();
+    expect(
+      innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-touched']
+    ).toBeTruthy();
     expect(
       getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid'))
         .borderTopColor
@@ -135,7 +138,9 @@ describe('SbbTextarea behaviour', () => {
     const textarea = innerComponent.query(
       (e) => e.nativeElement.nodeName.toLowerCase() === 'textarea'
     );
+    textarea.nativeElement.focus();
     typeInElement(textarea.nativeElement, 'SBB');
+    textarea.nativeElement.blur();
     fixture.detectChanges();
     expect(innerComponent.attributes['minlength']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).toBeTruthy();
