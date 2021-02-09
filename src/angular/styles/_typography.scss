@@ -687,7 +687,7 @@ fieldset,
 .sbb-fieldset {
   margin: 0;
   min-width: 0;
-  border: 1px solid $sbbColorSilver;
+  border: pxToRem(1) solid $sbbColorSilver;
   padding: pxToRem(36) pxToRem(24);
 
   > legend {
@@ -698,8 +698,8 @@ fieldset,
     font-family: $fontSbbLight;
     font-weight: 400;
     line-height: 1.2;
-    font-size: 24px;
-    margin: 0 0 24px;
+    font-size: pxToRem(24);
+    margin: 0 0 pxToRem(24);
     float: left;
   }
 
@@ -715,22 +715,22 @@ fieldset,
     }
 
     > legend {
-      font-size: 20px;
+      font-size: pxToRem(20);
     }
   }
 
   @include sbbStandard {
     > legend {
       @include mq($from: desktop) {
-        font-size: 32px;
+        font-size: pxToRem(32);
       }
       @include mq($from: desktop4k) {
-        font-size: 48px;
-        margin: 0 0 36px;
+        font-size: pxToRem(48);
+        margin: 0 0 pxToRem(36);
       }
       @include mq($from: desktop5k) {
-        font-size: 64px;
-        margin: 0 0 48px;
+        font-size: pxToRem(64);
+        margin: 0 0 pxToRem(48);
       }
     }
 
@@ -758,7 +758,7 @@ fieldset,
     }
   }
   @include sbbLean {
-    border: 1px solid $sbbColorGraphite;
+    border: pxToRem(1) solid $sbbColorGraphite;
     padding: pxToRem(16);
 
     > legend {
@@ -823,7 +823,7 @@ fieldset,
   }
   .sbb-selection-item.sbb-lean &,
   .sbb-panel.sbb-lean & {
-    border-width: 1px;
+    border-width: pxToRem(1);
     margin-top: toPx(1);
   }
 }
@@ -945,11 +945,11 @@ fieldset,
     &::before {
       content: '';
       position: relative;
-      height: 1px;
-      width: 10px;
-      left: calc(50% - 5px);
-      top: calc(50% - 0.5px);
-      border: 1px solid $sbbColorRed;
+      height: pxToRem(1);
+      width: pxToRem(10);
+      left: calc(50% - #{pxToRem(5)});
+      top: calc(50% - #{pxToRem(0.5)});
+      border: pxToRem(1) solid $sbbColorRed;
       display: block;
     }
 
@@ -965,7 +965,7 @@ fieldset,
   &.sbb-lean {
     .sbb-selection-container {
       &::before {
-        border: 1px solid $sbbColorGranite;
+        border: pxToRem(1) solid $sbbColorGranite;
       }
 
       & + .sbb-selection-content {
@@ -979,7 +979,7 @@ fieldset,
 .sbb-panel.sbb-lean
   .sbb-pseudo-checkbox.sbb-selection-indeterminate
   .sbb-selection-container::before {
-  border: 1px solid $sbbColorGranite;
+  border: pxToRem(1) solid $sbbColorGranite;
 }
 
 .sbb-selection-disabled {
@@ -1313,7 +1313,7 @@ $tableCaptionColor: $sbbColorGrey;
     thead {
       text-align: left;
       background-color: $sbbColorMilk;
-      border-bottom: 1px solid $sbbColorAluminum;
+      border-bottom: pxToRem(1) solid $sbbColorAluminum;
 
       [dir='rtl'] & {
         text-align: right;
@@ -1323,7 +1323,7 @@ $tableCaptionColor: $sbbColorGrey;
     tbody {
       > tr {
         background-color: $sbbColorWhite;
-        border-bottom: 1px solid $sbbColorAluminum;
+        border-bottom: pxToRem(1) solid $sbbColorAluminum;
 
         &:hover {
           background-color: $sbbColorCloud;
@@ -1339,7 +1339,7 @@ $tableCaptionColor: $sbbColorGrey;
         td {
           height: $tableTrowHeightBusiness;
           padding: 0 $tableTbodyPadding;
-          border-right: 1px solid $sbbColorAluminum;
+          border-right: pxToRem(1) solid $sbbColorAluminum;
           overflow: hidden;
           text-overflow: ellipsis;
 
@@ -1429,8 +1429,8 @@ input.sbb-input-element.sbb-time-input {
   }
 
   @include sbbLean {
-    width: 70px;
-    height: 36px;
+    width: pxToRem(70);
+    height: pxToRem(36);
   }
 }
 
