@@ -83,7 +83,7 @@ html {
   color: $sbbColorText;
   font-family: $fontSbbRoman;
   font-size: $sizeFontBase / 16px * 100%;
-  line-height: $sizeLineHeightBase;
+  line-height: pxToRem($sizeLineHeightDefault);
 
   @include fontSmoothing;
 
@@ -92,6 +92,19 @@ html {
   optgroup[label='*'] {
     font-family: $fontSbbBold;
     font-weight: normal;
+  }
+
+  &:not(.sbb-lean) {
+    @include mq($from: desktop4k) {
+      line-height: pxToRem($sizeLineHeightDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      line-height: pxToRem($sizeLineHeightDefault5k);
+    }
+  }
+
+  &.sbb-lean {
+    line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 }
 
@@ -177,20 +190,12 @@ h1,
     font-family: $fontSbbLight;
     font-weight: normal;
     margin: 1em 0 0;
+    font-size: pxToRem(21);
+    line-height: pxToRem(25);
 
-    $sizes: (
-      base: (
-        pxToRem(21),
-        1.19,
-      ),
-      desktop: (
-        pxToRem(28),
-        1.214,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
-      font-size: $fontSize;
-      line-height: $lineHeight;
+    @include mq($from: desktop) {
+      font-size: pxToRem(28);
+      line-height: pxToRem(34);
     }
   }
 }
@@ -215,11 +220,11 @@ h2,
   }
   @include sbbLean {
     font-size: pxToRem(18);
-    line-height: 1.056;
+    line-height: pxToRem(19);
 
     @include mq($from: desktop) {
       font-size: pxToRem(21);
-      line-height: 1.19;
+      line-height: pxToRem(25);
     }
   }
 }
@@ -244,11 +249,11 @@ h3,
   }
   @include sbbLean {
     font-size: pxToRem(16);
-    line-height: 1.063;
+    line-height: pxToRem(17);
 
     @include mq($from: desktop) {
       font-size: pxToRem(18);
-      line-height: 1.222;
+      line-height: pxToRem(22);
     }
   }
 }
@@ -259,24 +264,23 @@ h4,
   font-weight: normal;
   line-height: 1.5;
   margin: 2em 0 0;
+  font-size: pxToRem($sizeFontDefault);
 
   @include sbbStandard {
     $fontSizes: (
-      base: pxToRem(15),
-      desktop4k: pxToRem(23),
-      desktop5k: pxToRem(30),
+      desktop4k: pxToRem($sizeFontDefault4k),
+      desktop5k: pxToRem($sizeFontDefault5k),
     );
     @include mqSequence($fontSizes) using ($value) {
       font-size: $value;
     }
   }
   @include sbbLean {
-    font-size: pxToRem(15);
-    line-height: 0.933;
+    line-height: pxToRem(14);
 
     @include mq($from: desktop) {
       font-size: pxToRem(16);
-      line-height: 1.188;
+      line-height: pxToRem(19);
     }
   }
 }
@@ -302,27 +306,30 @@ h4,
     font-size: $value;
   }
   @include mq($from: desktop, $to: desktop4k) {
-    line-height: 1.524;
+    line-height: pxToRem(32);
   }
 }
 
 p,
 .sbb-copy {
-  font-size: pxToRem(15);
+  font-size: pxToRem($sizeFontDefault);
   margin: 1em 0 0; // paragraph as default
-  @include sbbStandard {
-    line-height: 1.733;
+  line-height: 1.733;
 
+  @include sbbStandard {
     $fontSizes: (
-      desktop4k: pxToRem(23),
-      desktop5k: pxToRem(30),
+      desktop4k: pxToRem($sizeFontDefault4k),
+      desktop5k: pxToRem($sizeFontDefault5k),
     );
     @include mqSequence($fontSizes) using ($value) {
       font-size: $value;
     }
+    @include mq($from: desktop4k, $to: desktop5k) {
+      line-height: pxToRem($sizeLineHeightDefault4k);
+    }
   }
   @include sbbLean {
-    line-height: 1.533;
+    line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 }
 
@@ -339,7 +346,7 @@ a:not(.sbb-menu-item),
     line-height: 1.733;
   }
   @include sbbLean {
-    line-height: 1.533;
+    line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 
   &:hover,
@@ -442,7 +449,7 @@ ul li ol > li::before,
   border: pxToRem(2) solid $sbbColorGraphite;
   border-radius: pxToRem(2);
   color: $sbbColorGrey;
-  line-height: 1.5;
+  line-height: pxToRem(23);
   font-size: pxToRem($sizeFontDefault);
   padding: pxToRem(10) pxToRem(14) pxToRem(12);
   min-height: pxToRem(48);
@@ -539,6 +546,7 @@ ul li ol > li::before,
       border-width: pxToRem(2 * $scalingFactor4k);
       border-radius: pxToRem(2 * $scalingFactor4k);
       font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem(35);
     }
     @include mq($from: desktop5k) {
       padding: pxToRem(10 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k)
@@ -546,6 +554,7 @@ ul li ol > li::before,
       border-width: pxToRem(2 * $scalingFactor5k);
       border-radius: pxToRem(2 * $scalingFactor5k);
       font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem(45);
     }
   }
   @include sbbLean {
@@ -1215,12 +1224,12 @@ $checkboxRadioButtonPanelImageHeight: 40;
 
   @include sbbStandard {
     @include mq($from: desktop4k) {
-      font-size: pxToRem(13 * $scalingFactor4k);
-      line-height: pxToRem(16 * $scalingFactor4k);
+      font-size: pxToRem(20);
+      line-height: pxToRem(24);
     }
     @include mq($from: desktop5k) {
-      font-size: pxToRem(13 * $scalingFactor5k);
-      line-height: pxToRem(16 * $scalingFactor5k);
+      font-size: pxToRem(26);
+      line-height: pxToRem(32);
     }
   }
   @include sbbLean {
@@ -1616,7 +1625,7 @@ $panelBorderRadius: 2;
 // ----------------------------------------------------------------------------------------------------
 
 $menuItemPaddingLeftRightStandard: 14;
-$menuItemPaddingTopBottom: 3.75;
+$menuItemPaddingTopBottom: 4;
 
 .sbb-menu-item {
   @include ellipsis;
@@ -1634,14 +1643,14 @@ $menuItemPaddingTopBottom: 3.75;
 
   .sbb-panel.sbb-standard & {
     @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault * $scalingFactor4k);
-      line-height: pxToRem(23 * $scalingFactor4k);
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem(35);
       padding: pxToRem($menuItemPaddingTopBottom * $scalingFactor4k)
         pxToRem($menuItemPaddingLeftRightStandard * $scalingFactor4k);
     }
     @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault * $scalingFactor5k);
-      line-height: pxToRem(23 * $scalingFactor5k);
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem(45);
       padding: pxToRem($menuItemPaddingTopBottom * $scalingFactor5k)
         pxToRem($menuItemPaddingLeftRightStandard * $scalingFactor5k);
     }

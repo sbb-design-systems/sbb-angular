@@ -67,8 +67,12 @@ $interComponentSpacingSmall: 40;
  * Typo
  */
 $sizeFontDefault: 15;
-$sizeFontDefault4k: $sizeFontDefault * $scalingFactor4k;
-$sizeFontDefault5k: $sizeFontDefault * $scalingFactor5k;
+$sizeFontDefault4k: 23;
+$sizeFontDefault5k: 30;
+$sizeLineHeightDefault: 26;
+$sizeLineHeightDefaultLean: 23;
+$sizeLineHeightDefault4k: 39;
+$sizeLineHeightDefault5k: 52;
 
 $fontSizeHeaderDefault: 14;
 $fontSizeHeaderDesktop4k: $fontSizeHeaderDefault * $scalingFactor4k;

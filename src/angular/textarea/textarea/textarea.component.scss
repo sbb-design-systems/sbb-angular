@@ -33,19 +33,17 @@
   background: transparent;
   color: $sbbColorBlack;
   letter-spacing: 0;
-  line-height: pxToRem(13);
   font-size: pxToRem(13);
+  line-height: 1;
   font-family: $fontSbbRoman;
 
   .sbb-textarea.sbb-standard & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(20);
-      line-height: pxToRem(13);
     }
 
     @include mq($from: desktop5k) {
       font-size: pxToRem(26);
-      line-height: pxToRem(13);
     }
   }
 
