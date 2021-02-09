@@ -26,10 +26,12 @@ import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@an
 import {
   CanUpdateErrorState,
   CanUpdateErrorStateCtor,
+  HasVariantCtor,
   mixinErrorState,
-} from '@sbb-esta/angular-core/common-behaviors';
-import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
-import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
+  mixinVariant,
+  SbbErrorStateMatcher,
+} from '@sbb-esta/angular/core';
+import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
 import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { auditTime, take, takeUntil } from 'rxjs/operators';
 
@@ -48,7 +50,8 @@ export class SbbTextareaBase {
 }
 
 export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
-  typeof SbbTextareaBase = mixinErrorState(SbbTextareaBase);
+  HasVariantCtor &
+  typeof SbbTextareaBase = mixinErrorState(mixinVariant(SbbTextareaBase));
 
 @Component({
   selector: 'sbb-textarea',
@@ -58,7 +61,7 @@ export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'sbb-textarea',
+    class: 'sbb-textarea sbb-input-element',
     /** Needs to be -1 so the `focus` event still fires. */
     tabindex: '-1',
     '[attr.id]': 'id',
@@ -333,6 +336,7 @@ export class SbbTextarea
 
   /** @docs-private */
   ngOnDestroy() {
+    super.ngOnDestroy();
     this.stateChanges.complete();
     this._destroyed.next();
     this._destroyed.complete();

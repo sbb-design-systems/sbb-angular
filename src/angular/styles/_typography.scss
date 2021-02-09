@@ -557,7 +557,7 @@ ul li ol > li::before,
   }
 
   &:focus,
-  .sbb-focused {
+  &.sbb-focused {
     border-color: $sbbColorGrey;
   }
 
@@ -574,7 +574,7 @@ ul li ol > li::before,
   }
 
   &[readonly],
-  &.readonly {
+  &.sbb-readonly {
     background: $sbbColorMilk;
     border-color: $sbbColorAluminum;
   }
@@ -607,8 +607,14 @@ ul li ol > li::before,
     min-height: pxToRem(36);
 
     &:focus,
-    .sbb-focused {
+    &.sbb-focused {
       border-color: $sbbColorIron;
+    }
+
+    // Copied color from '&.ng-touched.ng-invalid:not([aria-expanded='true'])' to be specific enough.
+    // Otherwise color of lean focus style would be applied.
+    &.ng-touched.ng-invalid:not([aria-expanded='true']) {
+      border-color: $sbbColorError;
     }
 
     &:disabled,

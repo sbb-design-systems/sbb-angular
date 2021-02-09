@@ -10,6 +10,7 @@ entryPoints = [
     "loading",
     "oauth",
     "radio-button",
+    "textarea",
 ]
 
 # List of all non-testing entry-points of the Angular package.
@@ -41,4 +42,5 @@ ANGULAR_MARKDOWN_TARGETS = [
     "loading",
     "oauth",
     "radio-button",
+    "textarea",
 ]

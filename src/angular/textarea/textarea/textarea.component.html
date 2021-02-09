@@ -1,0 +1,21 @@
+<textarea
+  #textarea
+  [id]="inputId"
+  [disabled]="disabled"
+  [readonly]="readonly"
+  [placeholder]="placeholder"
+  [attr.maxlength]="maxlength !== 0 ? maxlength : null"
+  [attr.minlength]="minlength"
+  (focus)="_onFocus()"
+  (blur)="_onBlur()"
+  (input)="_onInput($event)"
+  cdkTextareaAutosize
+  #autosize="cdkTextareaAutosize"
+></textarea>
+<div
+  i18n="Counter text for textarea@@sbbTextareaCounterText"
+  *ngIf="maxlength && !disabled"
+  class="sbb-textarea-remaining-chars"
+>
+  {{ _counter | async }} characters remaining
+</div>

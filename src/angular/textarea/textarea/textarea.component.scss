@@ -1,0 +1,55 @@
+@import '../../../angular/styles/common';
+
+.sbb-textarea {
+  display: inline-block;
+  letter-spacing: 0;
+  width: 100%;
+
+  textarea {
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0;
+    min-height: inherit;
+    resize: none;
+    overflow: hidden;
+    background-color: transparent;
+
+    // Undo the red box-shadow glow added by Firefox on invalid inputs.
+    // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
+    &:-moz-ui-invalid {
+      box-shadow: none;
+    }
+  }
+
+  &.ng-touched.ng-invalid textarea {
+    color: $sbbColorError;
+  }
+}
+
+.sbb-textarea-remaining-chars {
+  position: relative;
+  float: right;
+  background: transparent;
+  color: $sbbColorBlack;
+  letter-spacing: 0;
+  line-height: pxToRem(13);
+  font-size: pxToRem(13);
+  font-family: $fontSbbRoman;
+
+  .sbb-textarea.sbb-standard & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+      line-height: pxToRem(13);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+      line-height: pxToRem(13);
+    }
+  }
+
+  .sbb-textarea.sbb-lean & {
+    color: $sbbColorMetal;
+  }
+}

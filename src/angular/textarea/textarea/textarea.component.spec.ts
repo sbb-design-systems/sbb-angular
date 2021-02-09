@@ -1,4 +1,3 @@
-import { TextFieldModule } from '@angular/cdk/text-field';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,8 +7,8 @@ import {
   dispatchFakeEvent,
   dispatchMouseEvent,
   typeInElement,
-} from '@sbb-esta/angular-core/testing';
-import { SbbError, SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
+} from '@sbb-esta/angular/core/testing';
+import { SbbError, SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 
 import { SbbTextareaModule } from '../textarea.module';
 
