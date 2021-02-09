@@ -6,12 +6,31 @@
 
 .sbb-pseudo-checkbox {
   display: inline-block;
-  margin-bottom: -4.5px;
-  margin-right: 4px;
+  margin-right: pxToRem(4);
+  margin-bottom: pxToRem(-4.5);
   overflow: hidden;
   line-height: 0;
 
   .sbb-selection-container {
     margin: 0;
+    .sbb-panel.sbb-standard & {
+      @include mq($from: desktop4k) {
+        margin: 0;
+      }
+    }
+  }
+
+  .sbb-panel.sbb-standard & {
+    @include mq($from: desktop4k) {
+      margin-top: pxToRem(-2);
+      margin-right: pxToRem(4 * $scalingFactor4k);
+      margin-bottom: pxToRem(-4.5 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-top: pxToRem(-4);
+      margin-right: pxToRem(4 * $scalingFactor5k);
+      margin-bottom: pxToRem(-4.5 * $scalingFactor5k);
+    }
   }
 }

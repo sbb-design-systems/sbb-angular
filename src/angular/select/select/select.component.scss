@@ -83,15 +83,9 @@
     border-top: none;
   }
 
-  &.sbb-select-multiple .sbb-menu-group .sbb-menu-item {
+  &.sbb-select-multiple.sbb-standard .sbb-menu-group .sbb-menu-item {
     padding-left: pxToRem(14);
-  }
 
-  &.sbb-lean.sbb-select-multiple .sbb-menu-group .sbb-menu-item {
-    padding-left: pxToRem(8);
-  }
-
-  &.sbb-standard.sbb-select-multiple .sbb-menu-group .sbb-menu-item {
     @include mq($from: desktop4k) {
       padding-left: pxToRem(14 * $scalingFactor4k);
     }

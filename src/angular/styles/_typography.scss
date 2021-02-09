@@ -1776,44 +1776,44 @@ $menuItemPaddingTopBottom: 4;
   }
 
   &:first-child > .sbb-label:first-child {
-    padding-top: pxToRem(14);
+    padding-top: pxToRem(16);
 
     .sbb-panel.sbb-standard > & {
       @include mq($from: desktop4k) {
-        padding-top: pxToRem(14 * $scalingFactor4k);
+        padding-top: pxToRem(16 * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        padding-top: pxToRem(14 * $scalingFactor5k);
+        padding-top: pxToRem(16 * $scalingFactor5k);
       }
     }
 
     .sbb-panel-padded > & {
-      padding-top: pxToRem(4);
+      padding-top: pxToRem(6);
     }
 
     .sbb-panel-padded.sbb-standard > & {
       @include mq($from: desktop4k) {
-        padding-top: pxToRem(4 * $scalingFactor4k);
+        padding-top: pxToRem(6 * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        padding-top: pxToRem(4 * $scalingFactor5k);
+        padding-top: pxToRem(6 * $scalingFactor5k);
       }
     }
   }
 
   .sbb-label {
     color: $sbbColorMetal;
-    padding: pxToRem(24) pxToRem(14) pxToRem(10) pxToRem(14);
+    padding: pxToRem(22) pxToRem(14) pxToRem(5) pxToRem(14);
 
     .sbb-panel.sbb-standard & {
       @include mq($from: desktop4k) {
-        padding: pxToRem(24 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k)
-          pxToRem(10 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k);
+        padding: pxToRem(22 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k)
+          pxToRem(5 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        padding: pxToRem(24 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k)
-          pxToRem(10 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k);
+        padding: pxToRem(22 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k)
+          pxToRem(5 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k);
       }
     }
 
