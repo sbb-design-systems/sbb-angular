@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.12.0 of the icon CDN.
+ * Generated from version v1.13.0 of the icon CDN.
  * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
@@ -392,6 +392,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'city-large',
         'curriculum-vitae-large',
         'hand-graduation-cap-large',
+        'aerosol-can-medium',
         'alarm-clock-medium',
         'app-icon-medium',
         'apple-bag-medium',
@@ -783,6 +784,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'train-tracks-medium',
         'city-medium',
         'ship-steering-wheel-medium',
+        'aerosol-can-small',
         'alarm-clock-small',
         'app-icon-small',
         'apple-bag-small',
