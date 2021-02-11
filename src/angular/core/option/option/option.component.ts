@@ -76,18 +76,16 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentCom
 export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
   // tslint:disable: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;
-  /** The form value of the option. */
-  @Input() value: any;
-  /** The unique ID of the option. */
-  @Input() id: string = `sbb-option-${uniqueIdCounter++}`;
-  /** Event emitted when the option is selected or deselected. */
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange>();
-  /** Emits when the state of the option changes and any parents have to be notified. */
-  readonly _stateChanges = new Subject<void>();
+  private _active = false;
   private _mostRecentViewValue = '';
   private _originalInnerHtml?: string;
   private _highlightValue?: string;
+
+  /** The form value of the option. */
+  @Input() value: any;
+
+  /** The unique ID of the option. */
+  @Input() id: string = `sbb-option-${uniqueIdCounter++}`;
   private _highlighted = false;
 
   constructor(
@@ -102,12 +100,12 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
 
   private _selected = false;
 
-  /** Whether or not the option is currently selected. */
-  get selected(): boolean {
-    return this._selected;
-  }
+  /** Event emitted when the option is selected or deselected. */
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange>();
 
-  private _active = false;
+  /** Emits when the state of the option changes and any parents have to be notified. */
+  readonly _stateChanges = new Subject<void>();
 
   /**
    * Whether or not the option is currently active and ready to be selected.
@@ -117,6 +115,19 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
    */
   get active(): boolean {
     return this._active;
+  }
+
+  /**
+   * The displayed value of the option. It is necessary to show the selected option in the
+   * select's trigger.
+   */
+  get viewValue(): string {
+    return (this._getHostElement().textContent || '').trim();
+  }
+
+  /** Whether or not the option is currently selected. */
+  get selected(): boolean {
+    return this._selected;
   }
 
   /** Whether the wrapping component is in multiple selection mode. */
@@ -130,19 +141,6 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
   @Input()
   get disabled() {
     return (this.group && this.group.disabled) || this._disabled;
-  }
-
-  set disabled(value: any) {
-    this._disabled = coerceBooleanProperty(value);
-    this._changeDetectorRef.markForCheck();
-  }
-
-  /**
-   * The displayed value of the option. It is necessary to show the selected option in the
-   * select's trigger.
-   */
-  get viewValue(): string {
-    return (this._getHostElement().textContent || '').trim();
   }
 
   /** Selects the option. */
@@ -267,6 +265,11 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
     this._stateChanges.complete();
   }
 
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+    this._changeDetectorRef.markForCheck();
+  }
+
   /**
    * Highlights a text part of the option by wrapping it with a strong element.
    * @docs-private
@@ -292,11 +295,6 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
       nodes.forEach((n) => this._highlightNode(n, matcher, normalizer));
       this._highlighted = !!nodes.length;
     }
-  }
-
-  /** Emits the selection change event. */
-  private _emitSelectionChangeEvent(isUserInput = false): void {
-    this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
   }
 
   private _findAllTextNodesWithMatch(
@@ -355,6 +353,11 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
     const parent = node.parentNode!;
     nodes.forEach((n) => parent.insertBefore(n, node));
     parent.removeChild(node);
+  }
+
+  /** Emits the selection change event. */
+  private _emitSelectionChangeEvent(isUserInput = false): void {
+    this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
   }
   // tslint:enable: member-ordering
 }

@@ -44,10 +44,11 @@ export const SBB_OPTGROUP = new InjectionToken<SbbOptgroup>('SbbOptgroup');
   providers: [{ provide: SBB_OPTGROUP, useExisting: SbbOptgroup }],
 })
 export class SbbOptgroup extends _SbbOptgroupMixinBase implements CanDisable {
-  static ngAcceptInputType_disabled: BooleanInput;
-
   /** Label for the option group. */
   @Input() label: string;
+
   /** Unique id for the underlying label. */
   _labelId: string = `sbb-optgroup-label-${uniqueOptgroupIdCounter++}`;
+
+  static ngAcceptInputType_disabled: BooleanInput;
 }
