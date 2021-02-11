@@ -83,7 +83,7 @@ html {
   color: $sbbColorText;
   font-family: $fontSbbRoman;
   font-size: $sizeFontBase / 16px * 100%;
-  line-height: $sizeLineHeightBase;
+  line-height: pxToRem($sizeLineHeightDefault);
 
   @include fontSmoothing;
 
@@ -92,6 +92,19 @@ html {
   optgroup[label='*'] {
     font-family: $fontSbbBold;
     font-weight: normal;
+  }
+
+  &:not(.sbb-lean) {
+    @include mq($from: desktop4k) {
+      line-height: pxToRem($sizeLineHeightDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      line-height: pxToRem($sizeLineHeightDefault5k);
+    }
+  }
+
+  &.sbb-lean {
+    line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 }
 
@@ -177,28 +190,12 @@ h1,
     font-family: $fontSbbLight;
     font-weight: normal;
     margin: 1em 0 0;
+    font-size: pxToRem(21);
+    line-height: pxToRem(25);
 
-    $sizes: (
-      base: (
-        pxToRem(21),
-        1.19,
-      ),
-      desktop: (
-        pxToRem(28),
-        1.214,
-      ),
-      desktop4k: (
-        pxToRem(42),
-        1.19,
-      ),
-      desktop5k: (
-        pxToRem(56),
-        1.196,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
-      font-size: $fontSize;
-      line-height: $lineHeight;
+    @include mq($from: desktop) {
+      font-size: pxToRem(28);
+      line-height: pxToRem(34);
     }
   }
 }
@@ -223,25 +220,11 @@ h2,
   }
   @include sbbLean {
     font-size: pxToRem(18);
-    line-height: 1.056;
+    line-height: pxToRem(19);
 
-    $sizes: (
-      desktop: (
-        pxToRem(21),
-        1.19,
-      ),
-      desktop4k: (
-        pxToRem(32),
-        1.188,
-      ),
-      desktop5k: (
-        pxToRem(42),
-        1.19,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
-      font-size: $fontSize;
-      line-height: $lineHeight;
+    @include mq($from: desktop) {
+      font-size: pxToRem(21);
+      line-height: pxToRem(25);
     }
   }
 }
@@ -265,27 +248,12 @@ h3,
     }
   }
   @include sbbLean {
-    $sizes: (
-      base: (
-        pxToRem(16),
-        1.063,
-      ),
-      desktop: (
-        pxToRem(18),
-        1.222,
-      ),
-      desktop4k: (
-        pxToRem(27),
-        1.185,
-      ),
-      desktop5k: (
-        pxToRem(36),
-        1.194,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
-      font-size: $fontSize;
-      line-height: $lineHeight;
+    font-size: pxToRem(16);
+    line-height: pxToRem(17);
+
+    @include mq($from: desktop) {
+      font-size: pxToRem(18);
+      line-height: pxToRem(22);
     }
   }
 }
@@ -296,39 +264,23 @@ h4,
   font-weight: normal;
   line-height: 1.5;
   margin: 2em 0 0;
+  font-size: pxToRem($sizeFontDefault);
 
   @include sbbStandard {
     $fontSizes: (
-      base: pxToRem(15),
-      desktop4k: pxToRem(23),
-      desktop5k: pxToRem(30),
+      desktop4k: pxToRem($sizeFontDefault4k),
+      desktop5k: pxToRem($sizeFontDefault5k),
     );
     @include mqSequence($fontSizes) using ($value) {
       font-size: $value;
     }
   }
   @include sbbLean {
-    $sizes: (
-      base: (
-        pxToRem(15),
-        0.933,
-      ),
-      desktop: (
-        pxToRem(16),
-        1.188,
-      ),
-      desktop4k: (
-        pxToRem(24),
-        1.208,
-      ),
-      desktop5k: (
-        pxToRem(32),
-        1.188,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $lineHeight) {
-      font-size: $fontSize;
-      line-height: $lineHeight;
+    line-height: pxToRem(14);
+
+    @include mq($from: desktop) {
+      font-size: pxToRem(16);
+      line-height: pxToRem(19);
     }
   }
 }
@@ -353,28 +305,31 @@ h4,
   @include mqSequence($fontSizes) using ($value) {
     font-size: $value;
   }
-  @include mq($from: desktop, $to: desktop) {
-    line-height: 1.524;
+  @include mq($from: desktop, $to: desktop4k) {
+    line-height: pxToRem(32);
   }
 }
 
 p,
 .sbb-copy {
-  font-size: pxToRem(15);
+  font-size: pxToRem($sizeFontDefault);
   margin: 1em 0 0; // paragraph as default
+  line-height: 1.733;
+
   @include sbbStandard {
-    line-height: 1.733;
+    $fontSizes: (
+      desktop4k: pxToRem($sizeFontDefault4k),
+      desktop5k: pxToRem($sizeFontDefault5k),
+    );
+    @include mqSequence($fontSizes) using ($value) {
+      font-size: $value;
+    }
+    @include mq($from: desktop4k, $to: desktop5k) {
+      line-height: pxToRem($sizeLineHeightDefault4k);
+    }
   }
   @include sbbLean {
-    line-height: 1.533;
-  }
-
-  $fontSizes: (
-    desktop4k: pxToRem(23),
-    desktop5k: pxToRem(30),
-  );
-  @include mqSequence($fontSizes) using ($value) {
-    font-size: $value;
+    line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 }
 
@@ -382,8 +337,8 @@ p,
 // Link
 // ----------------------------------------------------------------------------------------------------
 
-a,
-.sbb-link {
+a:not(.sbb-menu-item),
+.sbb-link:not(.sbb-menu-item) {
   color: $sbbColorText;
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
@@ -391,7 +346,7 @@ a,
     line-height: 1.733;
   }
   @include sbbLean {
-    line-height: 1.533;
+    line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 
   &:hover,
@@ -490,11 +445,11 @@ ul li ol > li::before,
   @include placeholder($sbbColorStorm);
 
   outline: none;
-  background: $sbbColorWhite;
+  background-color: $sbbColorWhite;
   border: pxToRem(2) solid $sbbColorGraphite;
   border-radius: pxToRem(2);
   color: $sbbColorGrey;
-  line-height: 1.5;
+  line-height: pxToRem(23);
   font-size: pxToRem($sizeFontDefault);
   padding: pxToRem(10) pxToRem(14) pxToRem(12);
   min-height: pxToRem(48);
@@ -591,6 +546,7 @@ ul li ol > li::before,
       border-width: pxToRem(2 * $scalingFactor4k);
       border-radius: pxToRem(2 * $scalingFactor4k);
       font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem(35);
     }
     @include mq($from: desktop5k) {
       padding: pxToRem(10 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k)
@@ -598,6 +554,7 @@ ul li ol > li::before,
       border-width: pxToRem(2 * $scalingFactor5k);
       border-radius: pxToRem(2 * $scalingFactor5k);
       font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem(45);
     }
   }
   @include sbbLean {
@@ -695,7 +652,9 @@ select {
   $sbbSelectExpandIconSize: 24;
   $sbbSelectExpandIconRight: 12;
   align-items: center;
-  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJfeDMwX18xXyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQ7ZmlsbDogJTIzNjY2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZD0iTTcuNywxMC43TDguNCwxMGwzLjYsMy42bDMuNi0zLjZsMC43LDAuN0wxMiwxNUw3LjcsMTAuN3oiLz48L3N2Zz4=')
+
+  // icon chevron-down-small-down with color #666 applied
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY2NiIgcG9pbnRzPSI4LjA5MiAxMC4zNSAxMS45OTYgMTQuMyAxNS45IDEwLjM1MiI+PC9wb2x5bGluZT4KPC9zdmc+')
     no-repeat;
   padding-right: pxToRem(44);
   background-position: center right pxToRem($sbbSelectExpandIconRight);
@@ -715,6 +674,8 @@ select {
     padding-right: pxToRem(38);
     background-position: center right pxToRem(6);
     background-size: pxToRem($sbbSelectExpandIconSize) pxToRem($sbbSelectExpandIconSize);
+    // icon chevron-right-small rotated and with color #686868 applied
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY4Njg2OCIgcG9pbnRzPSI0IDggMTIgMTYgMjAgOCI+PC9wb2x5bGluZT4KPC9zdmc+');
   }
 }
 
@@ -735,7 +696,7 @@ fieldset,
 .sbb-fieldset {
   margin: 0;
   min-width: 0;
-  border: 1px solid $sbbColorSilver;
+  border: pxToRem(1) solid $sbbColorSilver;
   padding: pxToRem(36) pxToRem(24);
 
   > legend {
@@ -746,8 +707,8 @@ fieldset,
     font-family: $fontSbbLight;
     font-weight: 400;
     line-height: 1.2;
-    font-size: 24px;
-    margin: 0 0 24px;
+    font-size: pxToRem(24);
+    margin: 0 0 pxToRem(24);
     float: left;
   }
 
@@ -763,22 +724,22 @@ fieldset,
     }
 
     > legend {
-      font-size: 20px;
+      font-size: pxToRem(20);
     }
   }
 
   @include sbbStandard {
     > legend {
       @include mq($from: desktop) {
-        font-size: 32px;
+        font-size: pxToRem(32);
       }
       @include mq($from: desktop4k) {
-        font-size: 48px;
-        margin: 0 0 36px;
+        font-size: pxToRem(48);
+        margin: 0 0 pxToRem(36);
       }
       @include mq($from: desktop5k) {
-        font-size: 64px;
-        margin: 0 0 48px;
+        font-size: pxToRem(64);
+        margin: 0 0 pxToRem(48);
       }
     }
 
@@ -806,7 +767,7 @@ fieldset,
     }
   }
   @include sbbLean {
-    border: 1px solid $sbbColorGraphite;
+    border: pxToRem(1) solid $sbbColorGraphite;
     padding: pxToRem(16);
 
     > legend {
@@ -846,20 +807,22 @@ fieldset,
 }
 
 @mixin sbbSelectionDimension($factor) {
-  width: toPx(20 * $factor);
-  min-width: toPx(20 * $factor);
-  height: toPx(20 * $factor);
-  min-height: toPx(20 * $factor);
-  border: toPx(2 * $factor) solid $sbbColorGraphite;
-  margin-right: toPx(8 * $factor);
-  margin-top: toPx(2.5 * $factor);
+  width: pxToRem(20 * $factor);
+  min-width: pxToRem(20 * $factor);
+  height: pxToRem(20 * $factor);
+  min-height: pxToRem(20 * $factor);
+  border: pxToRem(2 * $factor) solid $sbbColorGraphite;
+  margin-right: pxToRem(8 * $factor);
+  margin-top: pxToRem(2.5 * $factor);
 }
 
 .sbb-selection-container {
+  display: inline-block;
   background-color: $sbbColorWhite;
   @include sbbSelectionDimension(1);
 
-  .sbb-selection-item.sbb-standard & {
+  .sbb-selection-item.sbb-standard &,
+  .sbb-panel.sbb-standard & {
     @include mq($from: desktop4k) {
       @include sbbSelectionDimension($scalingFactor4k);
     }
@@ -867,9 +830,10 @@ fieldset,
       @include sbbSelectionDimension($scalingFactor5k);
     }
   }
-  .sbb-selection-item.sbb-lean & {
-    border-width: 1px;
-    margin-top: toPx(1);
+  .sbb-selection-item.sbb-lean &,
+  .sbb-panel.sbb-lean & {
+    border-width: pxToRem(1);
+    margin-top: pxToRem(1);
   }
 }
 
@@ -880,7 +844,8 @@ fieldset,
   width: 100%;
   transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-  .sbb-selection-item.sbb-lean & {
+  .sbb-selection-item.sbb-lean &,
+  .sbb-panel.sbb-lean & {
     color: $sbbColorIron;
   }
 }
@@ -904,34 +869,42 @@ fieldset,
   }
 }
 
-.sbb-checkbox-input {
-  & + .sbb-selection-container {
-    border-radius: toPx(2);
+// Applies focus highlight for pseudo-checkbox
+.sbb-menu-item.sbb-active .sbb-pseudo-checkbox .sbb-selection-container {
+  border-color: $sbbColorGrey;
 
-    & > .sbb-selection-container-checked {
-      display: none;
-      border-radius: toPx(2);
-      transform: scale(1.3);
+  .sbb-panel.sbb-lean & {
+    border-color: $sbbColorIron;
+  }
+}
 
-      & > svg {
-        display: inline-block;
-        line-height: 0;
-        width: 100%;
-        height: 100%;
-        transform: translateY(toPx(-1.5));
+.sbb-checkbox-input + .sbb-selection-container,
+.sbb-pseudo-checkbox > .sbb-selection-container {
+  border-radius: pxToRem(2);
 
-        .sbb-selection-item.sbb-standard & {
-          @include mq($from: desktop4k) {
-            transform: translateY(toPx(-1.5 * $scalingFactor4k));
-          }
-          @include mq($from: desktop5k) {
-            transform: translateY(toPx(-1.5 * $scalingFactor5k));
-          }
+  & > .sbb-selection-container-checked {
+    display: none;
+    border-radius: pxToRem(2);
+    transform: scale(1.3);
+
+    & > svg {
+      display: inline-block;
+      line-height: 0;
+      width: 100%;
+      height: 100%;
+      transform: translateY(pxToRem(-1.5));
+
+      .sbb-selection-item.sbb-standard & {
+        @include mq($from: desktop4k) {
+          transform: translateY(pxToRem(-1.5 * $scalingFactor4k));
         }
-
-        & > polyline {
-          stroke: currentColor;
+        @include mq($from: desktop5k) {
+          transform: translateY(pxToRem(-1.5 * $scalingFactor5k));
         }
+      }
+
+      & > polyline {
+        stroke: currentColor;
       }
     }
   }
@@ -981,11 +954,11 @@ fieldset,
     &::before {
       content: '';
       position: relative;
-      height: 1px;
-      width: 10px;
-      left: calc(50% - 5px);
-      top: calc(50% - 0.5px);
-      border: 1px solid $sbbColorRed;
+      height: pxToRem(1);
+      width: pxToRem(10);
+      left: calc(50% - #{pxToRem(5)});
+      top: calc(50% - #{pxToRem(0.5)});
+      border: pxToRem(1) solid $sbbColorRed;
       display: block;
     }
 
@@ -1001,7 +974,7 @@ fieldset,
   &.sbb-lean {
     .sbb-selection-container {
       &::before {
-        border: 1px solid $sbbColorGranite;
+        border: pxToRem(1) solid $sbbColorGranite;
       }
 
       & + .sbb-selection-content {
@@ -1009,6 +982,13 @@ fieldset,
       }
     }
   }
+}
+
+// Applies indeterminate styles for pseudo-checkbox
+.sbb-panel.sbb-lean
+  .sbb-pseudo-checkbox.sbb-selection-indeterminate
+  .sbb-selection-container::before {
+  border: pxToRem(1) solid $sbbColorGranite;
 }
 
 .sbb-selection-disabled {
@@ -1040,6 +1020,11 @@ fieldset,
   }
 }
 
+// Applies disabled styles for pseudo-checkbox
+.sbb-panel.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-container-checked {
+  color: $sbbColorGranite;
+}
+
 .sbb-checkbox-group-vertical,
 .sbb-radio-group-vertical {
   display: flex;
@@ -1048,18 +1033,18 @@ fieldset,
   align-items: flex-start;
 
   .sbb-selection-item + .sbb-selection-item {
-    margin-top: toPx(16);
+    margin-top: pxToRem(16);
 
     &.sbb-standard {
       @include mq($from: desktop4k) {
-        margin-top: toPx(16 * $scalingFactor4k);
+        margin-top: pxToRem(16 * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        margin-top: toPx(16 * $scalingFactor5k);
+        margin-top: pxToRem(16 * $scalingFactor5k);
       }
     }
     &.sbb-lean {
-      margin-top: toPx(3);
+      margin-top: pxToRem(3);
     }
   }
 }
@@ -1072,18 +1057,18 @@ fieldset,
   align-items: flex-start;
 
   .sbb-selection-item {
-    margin-right: toPx(32);
+    margin-right: pxToRem(32);
 
     &.sbb-standard {
       @include mq($from: desktop4k) {
-        margin-right: toPx(32 * $scalingFactor4k);
+        margin-right: pxToRem(32 * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        margin-right: toPx(32 * $scalingFactor5k);
+        margin-right: pxToRem(32 * $scalingFactor5k);
       }
     }
     &.sbb-lean {
-      margin-right: toPx(15);
+      margin-right: pxToRem(15);
     }
 
     &:last-of-type {
@@ -1109,12 +1094,12 @@ fieldset,
 
   @include sbbStandard {
     @include mq($from: desktop4k) {
-      font-size: pxToRem(13 * $scalingFactor4k);
-      line-height: pxToRem(16 * $scalingFactor4k);
+      font-size: pxToRem(20);
+      line-height: pxToRem(24);
     }
     @include mq($from: desktop5k) {
-      font-size: pxToRem(13 * $scalingFactor5k);
-      line-height: pxToRem(16 * $scalingFactor5k);
+      font-size: pxToRem(26);
+      line-height: pxToRem(32);
     }
   }
   @include sbbLean {
@@ -1207,7 +1192,7 @@ $tableCaptionColor: $sbbColorGrey;
     thead {
       text-align: left;
       background-color: $sbbColorMilk;
-      border-bottom: 1px solid $sbbColorAluminum;
+      border-bottom: pxToRem(1) solid $sbbColorAluminum;
 
       [dir='rtl'] & {
         text-align: right;
@@ -1217,7 +1202,7 @@ $tableCaptionColor: $sbbColorGrey;
     tbody {
       > tr {
         background-color: $sbbColorWhite;
-        border-bottom: 1px solid $sbbColorAluminum;
+        border-bottom: pxToRem(1) solid $sbbColorAluminum;
 
         &:hover {
           background-color: $sbbColorCloud;
@@ -1233,7 +1218,7 @@ $tableCaptionColor: $sbbColorGrey;
         td {
           height: $tableTrowHeightBusiness;
           padding: 0 $tableTbodyPadding;
-          border-right: 1px solid $sbbColorAluminum;
+          border-right: pxToRem(1) solid $sbbColorAluminum;
           overflow: hidden;
           text-overflow: ellipsis;
 
@@ -1303,7 +1288,7 @@ $tableCaptionColor: $sbbColorGrey;
 // SBB time-input
 // ----------------------------------------------------------------------------------------------------
 
-input.sbb-time-input {
+input.sbb-input-element.sbb-time-input {
   $timeInputWidth: 84;
   $timeInputHeight: 48;
 
@@ -1323,8 +1308,8 @@ input.sbb-time-input {
   }
 
   @include sbbLean {
-    width: 70px;
-    height: 36px;
+    width: pxToRem(70);
+    height: pxToRem(36);
   }
 }
 
@@ -1370,4 +1355,340 @@ $trackColor: $sbbColorMilk;
 
 .clearfix {
   @include clearfix;
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Sbb Panel
+// ----------------------------------------------------------------------------------------------------
+
+$panelBorderWidthStandard: 2;
+$panelBorderWidthLean: 1;
+$panelBorderRadius: 2;
+
+.sbb-panel {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: $sbbColorWhite;
+  border: pxToRem($panelBorderWidthStandard) solid $sbbColorGrey;
+  border-radius: 0 0 pxToRem($panelBorderRadius) pxToRem($panelBorderRadius);
+  border-top: none;
+  transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: $sbbColorGrey;
+
+  @include panelShadow();
+
+  hr {
+    margin: pxToRem(10) 0;
+    padding: 0;
+    border: none;
+    border-top: solid pxToRem(1) $sbbColorCloud;
+  }
+
+  &.sbb-standard {
+    @include mq($from: desktop4k) {
+      border-width: pxToRem($panelBorderWidthStandard * $scalingFactor4k);
+      border-radius: 0 0 pxToRem($panelBorderRadius * $scalingFactor4k)
+        pxToRem($panelBorderRadius * $scalingFactor4k);
+      @include panelShadow($scalingFactor: $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-width: pxToRem($panelBorderWidthStandard * $scalingFactor5k);
+      border-radius: 0 0 pxToRem($panelBorderRadius * $scalingFactor5k)
+        pxToRem($panelBorderRadius * $scalingFactor5k);
+      @include panelShadow($scalingFactor: $scalingFactor5k);
+    }
+  }
+
+  &.sbb-lean {
+    border-width: pxToRem($panelBorderWidthLean);
+    border-color: $sbbColorIron;
+    color: $sbbColorIron;
+    @include panelShadow($borderWidth: $panelBorderWidthLean);
+
+    hr {
+      margin: pxToRem(4) 0;
+    }
+  }
+
+  &.sbb-panel-above {
+    border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
+    border-top-width: pxToRem($panelBorderWidthStandard);
+    border-top-style: solid;
+    border-bottom: none;
+    @include panelShadow($attached: above);
+
+    &.sbb-standard {
+      @include mq($from: desktop4k) {
+        border-radius: pxToRem($panelBorderRadius * $scalingFactor4k)
+          pxToRem($panelBorderRadius * $scalingFactor4k) 0 0;
+        border-top-width: pxToRem($panelBorderRadius * $scalingFactor4k);
+        @include panelShadow($attached: above, $scalingFactor: $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border-radius: pxToRem($panelBorderRadius * $scalingFactor5k)
+          pxToRem($panelBorderRadius * $scalingFactor5k) 0 0;
+        border-top-width: pxToRem($panelBorderRadius * $scalingFactor5k);
+        @include panelShadow($attached: above, $scalingFactor: $scalingFactor5k);
+      }
+    }
+
+    &.sbb-lean {
+      border-width: pxToRem($panelBorderWidthLean);
+      border-bottom: none;
+      @include panelShadow($attached: above, $borderWidth: $panelBorderWidthLean);
+    }
+  }
+}
+
+.sbb-panel-padded {
+  padding-top: pxToRem(10);
+  padding-bottom: pxToRem(10);
+
+  &.sbb-standard {
+    @include mq($from: desktop4k) {
+      padding-top: pxToRem(10 * $scalingFactor4k);
+      padding-bottom: pxToRem(10 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      padding-top: pxToRem(10 * $scalingFactor5k);
+      padding-bottom: pxToRem(10 * $scalingFactor5k);
+    }
+  }
+
+  &.sbb-lean {
+    padding-top: pxToRem(4);
+    padding-bottom: pxToRem(4);
+  }
+}
+
+.sbb-input-with-open-panel {
+  border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
+}
+
+.sbb-input-with-open-panel-above {
+  border-radius: 0 0 pxToRem($panelBorderRadius) pxToRem($panelBorderRadius);
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Sbb Menu
+// ----------------------------------------------------------------------------------------------------
+
+$menuItemPaddingLeftRightStandard: 14;
+$menuItemPaddingTopBottom: 4;
+
+.sbb-menu-item {
+  @include ellipsis;
+
+  position: relative;
+  display: block;
+  text-decoration: none;
+  padding: pxToRem($menuItemPaddingTopBottom) pxToRem($menuItemPaddingLeftRightStandard);
+  text-align: left;
+  max-width: 100%;
+  cursor: pointer;
+  outline: 0;
+  color: $sbbColorGrey;
+  line-height: pxToRem(23);
+
+  .sbb-panel.sbb-standard & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem(35);
+      padding: pxToRem($menuItemPaddingTopBottom * $scalingFactor4k)
+        pxToRem($menuItemPaddingLeftRightStandard * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem(45);
+      padding: pxToRem($menuItemPaddingTopBottom * $scalingFactor5k)
+        pxToRem($menuItemPaddingLeftRightStandard * $scalingFactor5k);
+    }
+  }
+
+  .sbb-panel.sbb-lean & {
+    padding-left: pxToRem(8);
+    padding-right: pxToRem(8);
+    line-height: pxToRem(20);
+    color: $sbbColorIron;
+  }
+
+  &:not(.sbb-active) strong {
+    color: $sbbColorBlack;
+  }
+
+  &.sbb-selected {
+    color: $sbbColorBlack;
+    .sbb-panel.sbb-lean & {
+      // Copied color from '&.sbb-selected' to be specific enough.
+      // Otherwise color of '.sbb-panel.sbb-lean &' would be applied.
+      color: $sbbColorBlack;
+      background-color: $sbbColorCloud;
+      @include borderLeftAsBefore($sbbColorBlack);
+    }
+  }
+
+  &:disabled,
+  &[disabled],
+  &.sbb-disabled {
+    cursor: default;
+    opacity: 0.5;
+    user-select: none;
+  }
+
+  &:not(:disabled):not([disabled]):not(.sbb-disabled):hover,
+  &:not(:disabled):not([disabled]):not(.sbb-disabled):focus,
+  &:not(:disabled):not([disabled]):not(.sbb-disabled):hover strong,
+  &:not(:disabled):not([disabled]):not(.sbb-disabled):focus strong,
+  &.sbb-active {
+    color: $sbbColorRed;
+    .sbb-panel.sbb-lean & {
+      color: $sbbColorRed125;
+      background-color: $sbbColorMilk;
+      @include borderLeftAsBefore($sbbColorRed125);
+    }
+  }
+
+  /* Use tag and class selector to be more specific than the icon rule for width and height */
+  sbb-icon.sbb-icon {
+    line-height: 0;
+    margin: pxToRem(-7) 0 pxToRem(-7) 0;
+    transform: translateY(pxToRem(7));
+    width: pxToRem(24);
+    height: pxToRem(24);
+
+    .sbb-panel.sbb-standard & {
+      @include mq($from: desktop4k) {
+        margin-top: pxToRem(-12);
+        margin-bottom: pxToRem(-12);
+        transform: translateY(pxToRem(7 * $scalingFactor4k));
+        width: pxToRem(36);
+        height: pxToRem(36);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-top: pxToRem(-15);
+        margin-bottom: pxToRem(-15);
+        transform: translateY(pxToRem(7 * $scalingFactor5k));
+        width: pxToRem(48);
+        height: pxToRem(48);
+      }
+    }
+
+    .sbb-panel.sbb-lean & {
+      margin: pxToRem(-9) 0 pxToRem(-9) 0;
+    }
+  }
+
+  > .sbb-icon:first-child {
+    float: left; // used to ignore users whitespace and to ensure margin is correct
+    margin-right: pxToRem(11);
+    margin-left: pxToRem(-1);
+
+    .sbb-panel.sbb-standard & {
+      @include mq($from: desktop4k) {
+        margin-right: pxToRem(11 * $scalingFactor4k);
+        margin-left: pxToRem(-1 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-right: pxToRem(11 * $scalingFactor5k);
+        margin-left: pxToRem(-1 * $scalingFactor5k);
+      }
+    }
+
+    .sbb-panel.sbb-lean & {
+      margin-right: pxToRem(8);
+      margin-left: pxToRem(0);
+    }
+  }
+}
+
+.sbb-menu-group {
+  display: block;
+
+  .sbb-menu-item {
+    padding-left: pxToRem(22);
+
+    .sbb-panel.sbb-standard & {
+      @include mq($from: desktop4k) {
+        padding-left: pxToRem(22 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        padding-left: pxToRem(22 * $scalingFactor5k);
+      }
+    }
+
+    .sbb-panel.sbb-lean & {
+      padding-left: pxToRem(16);
+    }
+  }
+
+  &:first-child > .sbb-label:first-child {
+    padding-top: pxToRem(16);
+
+    .sbb-panel.sbb-standard > & {
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem(16 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem(16 * $scalingFactor5k);
+      }
+    }
+
+    .sbb-panel-padded > & {
+      padding-top: pxToRem(6);
+    }
+
+    .sbb-panel-padded.sbb-standard > & {
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem(6 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem(6 * $scalingFactor5k);
+      }
+    }
+  }
+
+  .sbb-label {
+    color: $sbbColorMetal;
+    padding: pxToRem(22) pxToRem(14) pxToRem(5) pxToRem(14);
+
+    .sbb-panel.sbb-standard & {
+      @include mq($from: desktop4k) {
+        padding: pxToRem(22 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k)
+          pxToRem(5 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        padding: pxToRem(22 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k)
+          pxToRem(5 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k);
+      }
+    }
+
+    .sbb-panel.sbb-lean & {
+      color: $sbbColorGranite;
+      padding: pxToRem(12) pxToRem(8) pxToRem(4) pxToRem(8);
+    }
+  }
+
+  & + &,
+  .sbb-menu-item + &,
+  & + .sbb-menu-item {
+    border-top: pxToRem(1) solid $sbbColorCloud;
+
+    &.sbb-panel.sbb-standard {
+      @include mq($from: desktop4k) {
+        border-top-width: pxToRem(1 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border-top-width: pxToRem(1 * $scalingFactor5k);
+      }
+    }
+  }
 }

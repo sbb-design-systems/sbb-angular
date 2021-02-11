@@ -164,6 +164,46 @@
   }
 }
 
+@mixin panelShadow($attached: below, $borderWidth: 2, $scalingFactor: 1) {
+  $sign: 1;
+  @if $attached == above {
+    $sign: -1;
+  }
+  $offset-top: -$sign * ($borderWidth - 1) * $scalingFactor;
+
+  @if $offset-top < 0 {
+    $offset-top: $offset-top - 0.05; // better rendering e.g. in 4k mode
+  }
+  @if $offset-top > 0 {
+    $offset-top: ceil($offset-top);
+  }
+  position: relative;
+  top: pxToRem($offset-top);
+  box-shadow: boxShadow($sign, $borderWidth, $scalingFactor),
+    horizontalBorderBoxShadow(-$sign, $borderWidth, $scalingFactor);
+}
+
+@function boxShadow($sign, $borderWidth, $scalingFactor) {
+  @return 0 pxToRem($sign * $borderWidth * 4 * $scalingFactor) 0 rgba(0, 0, 0, 0.15);
+}
+
+@function horizontalBorderBoxShadow($sign, $borderWidth, $scalingFactor) {
+  @return 0 pxToRem($sign * ($borderWidth + 1) * $scalingFactor) 0
+    pxToRem(-$borderWidth * $scalingFactor) $sbbColorCloud;
+}
+
+@mixin borderLeftAsBefore($color) {
+  &::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: pxToRem(1);
+    left: 0;
+    top: 0;
+    background-color: $color;
+  }
+}
+
 /**
  * Display content for screen reader only.
  * Copied from angular/components .cdk-visually-hidden, in order

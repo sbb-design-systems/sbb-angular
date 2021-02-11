@@ -4,7 +4,12 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
   ['merge' as TargetVersion]: [
     {
       pr: '',
-      changes: [],
+      changes: [
+        {
+          replace: 'SbbOptionGroup',
+          replaceWith: 'SbbOptgroup',
+        },
+      ],
     },
   ],
 };

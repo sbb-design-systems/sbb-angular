@@ -10,6 +10,7 @@ entryPoints = [
     "loading",
     "oauth",
     "radio-button",
+    "select",
     "textarea",
 ]
 
@@ -42,5 +43,6 @@ ANGULAR_MARKDOWN_TARGETS = [
     "loading",
     "oauth",
     "radio-button",
+    "select",
     "textarea",
 ]

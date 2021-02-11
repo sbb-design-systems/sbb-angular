@@ -1,0 +1,99 @@
+@import '../../../angular/styles/common';
+
+.sbb-select {
+  display: flex;
+  cursor: pointer;
+
+  padding-right: pxToRem(12);
+  padding-bottom: pxToRem(10);
+
+  // Use variant mixin here to be specific enough to overwrite sbb-input-element styles
+  @include sbbStandard() {
+    $paddings: (
+      desktop4k: (
+        pxToRem(12 * $scalingFactor4k),
+        pxToRem(10 * $scalingFactor4k),
+      ),
+      desktop5k: (
+        pxToRem(12 * $scalingFactor5k),
+        pxToRem(10 * $scalingFactor5k),
+      ),
+    );
+    @include mqSequence($paddings) using ($paddingRight, $paddingBottom) {
+      padding-right: $paddingRight;
+      padding-bottom: $paddingBottom;
+    }
+  }
+
+  // Use variant mixin here to be specific enough to overwrite sbb-input-element styles
+  @include sbbLean() {
+    padding-right: pxToRem(8);
+    padding-bottom: pxToRem(4);
+  }
+}
+
+.sbb-select-value {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sbb-icon.sbb-select-arrow-icon {
+  flex: 0 0 auto;
+  transition: transform 120ms cubic-bezier(0, 0, 0.2, 1);
+  color: $sbbColorGrey;
+
+  width: pxToRem(24);
+  height: pxToRem(24);
+  margin-left: pxToRem(12);
+
+  .sbb-select.sbb-standard & {
+    @include mq($from: desktop4k) {
+      width: pxToRem(24 * $scalingFactor4k);
+      height: pxToRem(24 * $scalingFactor4k);
+      margin-left: pxToRem(12 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: pxToRem(24 * $scalingFactor5k);
+      height: pxToRem(24 * $scalingFactor5k);
+      margin-left: pxToRem(12 * $scalingFactor5k);
+    }
+  }
+
+  .sbb-select.sbb-lean & {
+    color: $sbbColorGranite;
+    margin-left: pxToRem(6);
+  }
+
+  .sbb-input-with-open-panel & {
+    transform: rotate(180deg);
+  }
+}
+
+.sbb-icon.sbb-select-arrow-icon-lean {
+  transform: rotate(90deg);
+  .sbb-input-with-open-panel & {
+    transform: rotate(-90deg);
+  }
+}
+
+.sbb-select-panel {
+  .sbb-menu-group + .sbb-menu-group,
+  .sbb-menu-item + .sbb-menu-group,
+  .sbb-menu-group + .sbb-menu-item {
+    border-top: none;
+  }
+
+  &.sbb-select-multiple.sbb-standard .sbb-menu-group .sbb-menu-item {
+    padding-left: pxToRem(14);
+
+    @include mq($from: desktop4k) {
+      padding-left: pxToRem(14 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      padding-left: pxToRem(14 * $scalingFactor5k);
+    }
+  }
+}

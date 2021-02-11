@@ -12,16 +12,17 @@ See also our [migration issue](https://github.com/sbb-design-systems/sbb-angular
 Don't forget to run `yarn generate:bazel` after each step.
 
 1. Copy module from `src/angular-business` or `src/angular-public` to `src/angular`. If both a business and a public variant exist, use the more tolerant variant.
-2. Where a template or visual difference is necessary, extend the component/directive class with the variant mixin (`mixinVariant`). See [Variant Mixin](#mixinVariant).
-3. Refactor scss code according to [CODING_STANDARDS](./CODING_STANDARDS.md). Also see [SCSS Rules](#scssRules).
-4. Update symbols for automatic merge migration by applying following command: `yarn generate:merge-symbols`.
-5. Check documentation (\*.md) for any required changes.
-6. Migrate examples from showcase to src/components-examples, by running the following command: `yarn migrate:example --module name-of-module`.
+2. Remove deprecated code in the copied module.
+3. Where a template or visual difference is necessary, extend the component/directive class with the variant mixin (`mixinVariant`). See [Variant Mixin](#mixinVariant).
+4. Refactor scss code according to [CODING_STANDARDS](./CODING_STANDARDS.md). Also see [SCSS Rules](#scssRules).
+5. Update symbols for automatic merge migration by applying following command: `yarn generate:merge-symbols`.
+6. Check documentation (\*.md) for any required changes.
+7. Migrate examples from showcase to src/components-examples, by running the following command: `yarn migrate:example --module name-of-module`.
    Remove any CSS classes in the html template that are not part of the component or typography (e.g. remove `sbbsc-` CSS classes)
    and replace them with alternatives (e.g. <p> tag oder css definition in example itself)
-7. Check for usages of the component in src/showcase-merge, src/components-examples and src/angular and change them to the migrated one
-8. Add a test in src/angular/schematics/ng-add/test-cases/merge and run them by `yarn test src/angular/schematics`
-9. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
+8. Check for usages of the component in src/showcase-merge, src/components-examples and src/angular and change them to the migrated one
+9. Add a test in src/angular/schematics/ng-add/test-cases/merge and run them by `yarn test src/angular/schematics`
+10. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
 
 ## Start Showcase Merge
 
