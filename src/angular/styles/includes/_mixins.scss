@@ -199,8 +199,8 @@
   top: pxToRem($offset-top);
 }
 
-@mixin borderLeftAsAfter($color) {
-  &::after {
+@mixin borderLeftAsBefore($color) {
+  &::before {
     content: '';
     position: absolute;
     height: 100%;

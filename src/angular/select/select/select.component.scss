@@ -7,6 +7,7 @@
   padding-right: pxToRem(12);
   padding-bottom: pxToRem(10);
 
+  // Use variant mixin here to be specific enough to overwrite sbb-input-element styles
   @include sbbStandard() {
     $paddings: (
       desktop4k: (
@@ -24,6 +25,7 @@
     }
   }
 
+  // Use variant mixin here to be specific enough to overwrite sbb-input-element styles
   @include sbbLean() {
     padding-right: pxToRem(8);
     padding-bottom: pxToRem(4);

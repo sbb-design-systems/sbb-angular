@@ -1387,7 +1387,7 @@ $panelBorderRadius: 2;
     border-top: solid pxToRem(1) $sbbColorCloud;
   }
 
-  @include sbbStandard() {
+  &.sbb-standard {
     @include mq($from: desktop4k) {
       border-width: pxToRem($panelBorderWidthStandard * $scalingFactor4k);
       border-radius: 0 0 pxToRem($panelBorderRadius * $scalingFactor4k)
@@ -1405,7 +1405,7 @@ $panelBorderRadius: 2;
     }
   }
 
-  @include sbbLean() {
+  &.sbb-lean {
     border-width: pxToRem($panelBorderWidthLean);
     border-color: $sbbColorIron;
     color: $sbbColorIron;
@@ -1425,7 +1425,7 @@ $panelBorderRadius: 2;
     @include horizontalBorderAndShadowAsBoxShadow($attached: above);
     @include panelOffsetCorrection($attached: above);
 
-    @include sbbStandard() {
+    &.sbb-standard {
       @include mq($from: desktop4k) {
         border-radius: pxToRem($panelBorderRadius * $scalingFactor4k)
           pxToRem($panelBorderRadius * $scalingFactor4k) 0 0;
@@ -1449,7 +1449,7 @@ $panelBorderRadius: 2;
       }
     }
 
-    @include sbbLean() {
+    &.sbb-lean {
       border-width: pxToRem($panelBorderWidthLean);
       border-bottom: none;
       @include horizontalBorderAndShadowAsBoxShadow(
@@ -1465,7 +1465,7 @@ $panelBorderRadius: 2;
   padding-top: pxToRem(10);
   padding-bottom: pxToRem(10);
 
-  @include sbbStandard() {
+  &.sbb-standard {
     @include mq($from: desktop4k) {
       padding-top: pxToRem(10 * $scalingFactor4k);
       padding-bottom: pxToRem(10 * $scalingFactor4k);
@@ -1476,7 +1476,7 @@ $panelBorderRadius: 2;
     }
   }
 
-  @include sbbLean() {
+  &.sbb-lean {
     padding-top: pxToRem(4);
     padding-bottom: pxToRem(4);
   }
@@ -1544,7 +1544,7 @@ $menuItemPaddingTopBottom: 4;
       // Otherwise color of '.sbb-panel.sbb-lean &' would be applied.
       color: $sbbColorBlack;
       background-color: $sbbColorCloud;
-      @include borderLeftAsAfter($sbbColorBlack);
+      @include borderLeftAsBefore($sbbColorBlack);
     }
   }
 
@@ -1565,7 +1565,7 @@ $menuItemPaddingTopBottom: 4;
     .sbb-panel.sbb-lean & {
       color: $sbbColorRed125;
       background-color: $sbbColorMilk;
-      @include borderLeftAsAfter($sbbColorRed125);
+      @include borderLeftAsBefore($sbbColorRed125);
     }
   }
 
