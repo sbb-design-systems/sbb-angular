@@ -64,44 +64,41 @@ describe('SbbNotification', () => {
       testFixture.detectChanges();
     });
 
-    it('should have red background when type is ERROR', () => {
+    it('should have red background when type is ERROR', async () => {
       testComponent.type = 'error';
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-error'));
       expect(notifications.length).toBeGreaterThan(0);
-      testFixture.whenRenderingDone().then(() => {
-        const styles = window.getComputedStyle(notifications[0].nativeElement);
-        expect(styles.backgroundColor).toBe('rgb(235, 0, 0)');
-      });
+      await testFixture.whenRenderingDone();
+      const styles = getComputedStyle(notifications[0].nativeElement);
+      expect(styles.getPropertyValue('background-color')).toBe('rgb(235, 0, 0)');
     });
 
-    it('should have grey background when type is SUCCESS', () => {
+    it('should have grey background when type is SUCCESS', async () => {
       testComponent.type = 'success';
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-success'));
       expect(notifications.length).toBeGreaterThan(0);
-      testFixture.whenRenderingDone().then(() => {
-        const styles = window.getComputedStyle(notifications[0].nativeElement);
-        expect(styles.backgroundColor).toBe('rgb(102, 102, 102)');
-      });
+      await testFixture.whenRenderingDone();
+      const styles = getComputedStyle(notifications[0].nativeElement);
+      expect(styles.getPropertyValue('background-color')).toBe('rgb(102, 102, 102)');
     });
 
-    it('should have grey background when type is INFO', () => {
+    it('should have grey background when type is INFO', async () => {
       testComponent.type = 'info';
       testFixture.detectChanges();
       const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-info'));
       expect(notifications.length).toBeGreaterThan(0);
-      testFixture.whenRenderingDone().then(() => {
-        const styles = window.getComputedStyle(notifications[0].nativeElement);
-        expect(styles.backgroundColor).toBe('rgb(102, 102, 102)');
-      });
+      await testFixture.whenRenderingDone();
+      const styles = getComputedStyle(notifications[0].nativeElement);
+      expect(styles.getPropertyValue('background-color')).toBe('rgb(102, 102, 102)');
     });
 
-    it('should change height with jump marks', () => {
-      const componentStyles = window.getComputedStyle(
+    it('should change height with jump marks', async () => {
+      const componentStyles = getComputedStyle(
         testFixture.debugElement.query(By.css('.sbb-notification')).nativeElement
       );
-      expect(componentStyles.height).toBe('68px');
+      expect(componentStyles.getPropertyValue('height')).toBe('68px');
 
       testComponent.jumpMarks = [
         { elementId: '#here', title: 'Here' },
@@ -112,9 +109,8 @@ describe('SbbNotification', () => {
         By.css('.sbb-notification-jump-mark')
       );
       expect(notifications.length).toBeGreaterThan(0);
-      testFixture.whenRenderingDone().then(() => {
-        expect(componentStyles.height).toBe('92px');
-      });
+      await testFixture.whenRenderingDone();
+      expect(componentStyles.getPropertyValue('height')).toBe('92px');
     });
 
     it('should call callback of jump mark', () => {
