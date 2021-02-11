@@ -24,7 +24,7 @@ export const SBB_ICON_REGISTRY_WRAPPER_PROVIDER = {
 };
 
 /**
- * Generated from version v1.12.0 of the icon CDN.
+ * Generated from version v1.13.0 of the icon CDN.
  * @docs-private
  */
 export function SBB_ICON_REGISTRY_WRAPPER_PROVIDER_FACTORY(
