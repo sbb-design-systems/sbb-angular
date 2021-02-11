@@ -490,7 +490,6 @@ export class _SbbRadioButtonBase
   }
 
   ngOnInit(): void {
-    super.ngOnInit();
     if (this.radioGroup) {
       // If the radio is inside a radio group, determine if it should be checked
       this.checked = this.radioGroup.value === this._value;
@@ -513,7 +512,6 @@ export class _SbbRadioButtonBase
   }
 
   ngOnDestroy(): void {
-    super.ngOnDestroy();
     this._focusMonitor.stopMonitoring(this._elementRef);
     this._removeUniqueSelectionListener();
   }

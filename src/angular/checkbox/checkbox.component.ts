@@ -199,7 +199,6 @@ export class SbbCheckbox
   }
 
   ngOnDestroy() {
-    super.ngOnDestroy();
     this._focusMonitor.stopMonitoring(this._elementRef);
   }
 

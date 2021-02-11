@@ -40,22 +40,6 @@
 }
 
 // ----------------------------------------------------------------------------------------------------
-// CSS Variables
-// ----------------------------------------------------------------------------------------------------
-
-/* prettier-ignore */
-html:not(.sbb-lean) *, html body .sbb-standard {
-  -ie-sbbVariant:standard;
-  --sbbVariant:standard;
-}
-
-/* prettier-ignore */
-html.sbb-lean *, html body .sbb-lean {
-  -ie-sbbVariant:lean;
-  --sbbVariant:lean;
-}
-
-// ----------------------------------------------------------------------------------------------------
 // Reset HTML
 // ----------------------------------------------------------------------------------------------------
 
@@ -174,7 +158,7 @@ h1,
   line-height: 1.2;
   margin: 2em 0 0;
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     $fontSizes: (
       base: pxToRem(28),
       tablet: pxToRem(30),
@@ -186,7 +170,7 @@ h1,
       font-size: $value;
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     font-family: $fontSbbLight;
     font-weight: normal;
     margin: 1em 0 0;
@@ -207,7 +191,7 @@ h2,
   line-height: 1.2;
   margin: 1em 0 0;
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     $fontSizes: (
       base: pxToRem(24),
       desktop: pxToRem(32),
@@ -218,7 +202,7 @@ h2,
       font-size: $value;
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     font-size: pxToRem(18);
     line-height: pxToRem(19);
 
@@ -236,7 +220,7 @@ h3,
   line-height: 1.2;
   margin: 2em 0 0;
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     $fontSizes: (
       base: pxToRem(20),
       tablet: pxToRem(21),
@@ -247,7 +231,7 @@ h3,
       font-size: $value;
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     font-size: pxToRem(16);
     line-height: pxToRem(17);
 
@@ -266,7 +250,7 @@ h4,
   margin: 2em 0 0;
   font-size: pxToRem($sizeFontDefault);
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     $fontSizes: (
       desktop4k: pxToRem($sizeFontDefault4k),
       desktop5k: pxToRem($sizeFontDefault5k),
@@ -275,7 +259,7 @@ h4,
       font-size: $value;
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     line-height: pxToRem(14);
 
     @include mq($from: desktop) {
@@ -316,7 +300,7 @@ p,
   margin: 1em 0 0; // paragraph as default
   line-height: 1.733;
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     $fontSizes: (
       desktop4k: pxToRem($sizeFontDefault4k),
       desktop5k: pxToRem($sizeFontDefault5k),
@@ -328,7 +312,7 @@ p,
       line-height: pxToRem($sizeLineHeightDefault4k);
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 }
@@ -342,10 +326,10 @@ a:not(.sbb-menu-item),
   color: $sbbColorText;
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     line-height: 1.733;
   }
-  @include sbbLean {
+  html.sbb-lean & {
     line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 
@@ -539,7 +523,7 @@ ul li ol > li::before,
     border-color: $sbbColorError;
   }
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       padding: pxToRem(10 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k)
         pxToRem(12 * $scalingFactor4k);
@@ -557,7 +541,7 @@ ul li ol > li::before,
       line-height: pxToRem(45);
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     color: $sbbColorIron;
     border-width: pxToRem(1);
     padding: pxToRem(6) pxToRem(8) pxToRem(7);
@@ -660,7 +644,7 @@ select {
   background-position: center right pxToRem($sbbSelectExpandIconRight);
   background-size: pxToRem($sbbSelectExpandIconSize) pxToRem($sbbSelectExpandIconSize);
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       background-position: center right pxToRem($sbbSelectExpandIconRight * $scalingFactor4k);
       background-size: pxToRem($sbbSelectExpandIconSize * $scalingFactor4k);
@@ -670,7 +654,7 @@ select {
       background-size: pxToRem($sbbSelectExpandIconSize * $scalingFactor5k);
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     padding-right: pxToRem(38);
     background-position: center right pxToRem(6);
     background-size: pxToRem($sbbSelectExpandIconSize) pxToRem($sbbSelectExpandIconSize);
@@ -728,7 +712,7 @@ fieldset,
     }
   }
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     > legend {
       @include mq($from: desktop) {
         font-size: pxToRem(32);
@@ -766,7 +750,7 @@ fieldset,
       font-size: pxToRem($sizeFontBase * $scalingFactor5k);
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     border: pxToRem(1) solid $sbbColorGraphite;
     padding: pxToRem(16);
 
@@ -796,7 +780,7 @@ fieldset,
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
 
-  .sbb-selection-item.sbb-standard & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);
     }
@@ -821,8 +805,7 @@ fieldset,
   background-color: $sbbColorWhite;
   @include sbbSelectionDimension(1);
 
-  .sbb-selection-item.sbb-standard &,
-  .sbb-panel.sbb-standard & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       @include sbbSelectionDimension($scalingFactor4k);
     }
@@ -830,8 +813,7 @@ fieldset,
       @include sbbSelectionDimension($scalingFactor5k);
     }
   }
-  .sbb-selection-item.sbb-lean &,
-  .sbb-panel.sbb-lean & {
+  html.sbb-lean & {
     border-width: pxToRem(1);
     margin-top: pxToRem(1);
   }
@@ -844,8 +826,7 @@ fieldset,
   width: 100%;
   transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-  .sbb-selection-item.sbb-lean &,
-  .sbb-panel.sbb-lean & {
+  html.sbb-lean & {
     color: $sbbColorIron;
   }
 }
@@ -855,7 +836,7 @@ fieldset,
   color: $sbbColorGrey;
   transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-  .sbb-selection-item.sbb-lean & {
+  html.sbb-lean & {
     color: $sbbColorGranite;
     line-height: 1.4em;
   }
@@ -864,7 +845,7 @@ fieldset,
 .sbb-selection-input:focus + .sbb-selection-container {
   border-color: $sbbColorGrey;
 
-  .sbb-selection-item.sbb-lean & {
+  html.sbb-lean & {
     border-color: $sbbColorIron;
   }
 }
@@ -873,7 +854,7 @@ fieldset,
 .sbb-menu-item.sbb-active .sbb-pseudo-checkbox .sbb-selection-container {
   border-color: $sbbColorGrey;
 
-  .sbb-panel.sbb-lean & {
+  html.sbb-lean & {
     border-color: $sbbColorIron;
   }
 }
@@ -894,7 +875,7 @@ fieldset,
       height: 100%;
       transform: translateY(pxToRem(-1.5));
 
-      .sbb-selection-item.sbb-standard & {
+      html:not(.sbb-lean) & {
         @include mq($from: desktop4k) {
           transform: translateY(pxToRem(-1.5 * $scalingFactor4k));
         }
@@ -914,7 +895,7 @@ fieldset,
   & + .sbb-selection-container {
     border-radius: 50%;
 
-    .sbb-selection-item.sbb-lean & {
+    html.sbb-lean & {
       margin-top: 0;
     }
 
@@ -924,7 +905,7 @@ fieldset,
       transform: scale(0.65);
       background-color: $sbbColorRed;
 
-      .sbb-selection-item.sbb-lean & {
+      html.sbb-lean & {
         background-color: $sbbColorIron;
       }
     }
@@ -942,7 +923,7 @@ fieldset,
     }
   }
 
-  &.sbb-lean {
+  html.sbb-lean & {
     .sbb-selection-container + .sbb-selection-content {
       color: $sbbColorIron;
     }
@@ -971,7 +952,7 @@ fieldset,
     }
   }
 
-  &.sbb-lean {
+  html.sbb-lean & {
     .sbb-selection-container {
       &::before {
         border: pxToRem(1) solid $sbbColorGranite;
@@ -985,9 +966,7 @@ fieldset,
 }
 
 // Applies indeterminate styles for pseudo-checkbox
-.sbb-panel.sbb-lean
-  .sbb-pseudo-checkbox.sbb-selection-indeterminate
-  .sbb-selection-container::before {
+html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-indeterminate .sbb-selection-container::before {
   border: pxToRem(1) solid $sbbColorGranite;
 }
 
@@ -1007,7 +986,7 @@ fieldset,
     }
   }
 
-  &.sbb-lean {
+  html.sbb-lean & {
     .sbb-selection-container {
       & > .sbb-selection-container-checked {
         color: $sbbColorGranite;
@@ -1021,7 +1000,7 @@ fieldset,
 }
 
 // Applies disabled styles for pseudo-checkbox
-.sbb-panel.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-container-checked {
+html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-container-checked {
   color: $sbbColorGranite;
 }
 
@@ -1035,7 +1014,7 @@ fieldset,
   .sbb-selection-item + .sbb-selection-item {
     margin-top: pxToRem(16);
 
-    &.sbb-standard {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         margin-top: pxToRem(16 * $scalingFactor4k);
       }
@@ -1043,7 +1022,7 @@ fieldset,
         margin-top: pxToRem(16 * $scalingFactor5k);
       }
     }
-    &.sbb-lean {
+    html.sbb-lean & {
       margin-top: pxToRem(3);
     }
   }
@@ -1059,7 +1038,7 @@ fieldset,
   .sbb-selection-item {
     margin-right: pxToRem(32);
 
-    &.sbb-standard {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         margin-right: pxToRem(32 * $scalingFactor4k);
       }
@@ -1067,7 +1046,7 @@ fieldset,
         margin-right: pxToRem(32 * $scalingFactor5k);
       }
     }
-    &.sbb-lean {
+    html.sbb-lean & {
       margin-right: pxToRem(15);
     }
 
@@ -1092,7 +1071,7 @@ fieldset,
   color: $sbbColorGrey;
   display: block;
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(20);
       line-height: pxToRem(24);
@@ -1102,7 +1081,7 @@ fieldset,
       line-height: pxToRem(32);
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     color: $sbbColorGranite;
   }
 }
@@ -1128,7 +1107,7 @@ $tableCaptionColor: $sbbColorGrey;
   background-color: $tableBg;
   width: 100%;
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     padding-bottom: $tableTbodyPadding;
 
     thead {
@@ -1186,7 +1165,7 @@ $tableCaptionColor: $sbbColorGrey;
       font-size: toRem(1 * $scalingFactor5k);
     }
   }
-  @include sbbLean {
+  html.sbb-lean & {
     border-collapse: collapse;
 
     thead {
@@ -1296,7 +1275,7 @@ input.sbb-input-element.sbb-time-input {
   height: pxToRem($timeInputHeight);
   text-align: center;
 
-  @include sbbStandard {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       width: pxToRem($timeInputWidth * $scalingFactor4k);
       height: pxToRem($timeInputHeight * $scalingFactor4k);
@@ -1307,7 +1286,7 @@ input.sbb-input-element.sbb-time-input {
     }
   }
 
-  @include sbbLean {
+  html.sbb-lean & {
     width: pxToRem(70);
     height: pxToRem(36);
   }
@@ -1386,7 +1365,7 @@ $panelBorderRadius: 2;
     border-top: solid pxToRem(1) $sbbColorCloud;
   }
 
-  &.sbb-standard {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       border-width: pxToRem($panelBorderWidthStandard * $scalingFactor4k);
       border-radius: 0 0 pxToRem($panelBorderRadius * $scalingFactor4k)
@@ -1402,7 +1381,7 @@ $panelBorderRadius: 2;
     }
   }
 
-  &.sbb-lean {
+  html.sbb-lean & {
     border-width: pxToRem($panelBorderWidthLean);
     border-color: $sbbColorIron;
     color: $sbbColorIron;
@@ -1420,7 +1399,7 @@ $panelBorderRadius: 2;
     border-bottom: none;
     @include panelShadow($attached: above);
 
-    &.sbb-standard {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         border-radius: pxToRem($panelBorderRadius * $scalingFactor4k)
           pxToRem($panelBorderRadius * $scalingFactor4k) 0 0;
@@ -1436,7 +1415,7 @@ $panelBorderRadius: 2;
       }
     }
 
-    &.sbb-lean {
+    html.sbb-lean & {
       border-width: pxToRem($panelBorderWidthLean);
       border-bottom: none;
       @include panelShadow($attached: above, $borderWidth: $panelBorderWidthLean);
@@ -1448,7 +1427,7 @@ $panelBorderRadius: 2;
   padding-top: pxToRem(10);
   padding-bottom: pxToRem(10);
 
-  &.sbb-standard {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       padding-top: pxToRem(10 * $scalingFactor4k);
       padding-bottom: pxToRem(10 * $scalingFactor4k);
@@ -1459,7 +1438,7 @@ $panelBorderRadius: 2;
     }
   }
 
-  &.sbb-lean {
+  html.sbb-lean & {
     padding-top: pxToRem(4);
     padding-bottom: pxToRem(4);
   }
@@ -1494,7 +1473,7 @@ $menuItemPaddingTopBottom: 4;
   color: $sbbColorGrey;
   line-height: pxToRem(23);
 
-  .sbb-panel.sbb-standard & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);
       line-height: pxToRem(35);
@@ -1509,7 +1488,7 @@ $menuItemPaddingTopBottom: 4;
     }
   }
 
-  .sbb-panel.sbb-lean & {
+  html.sbb-lean & {
     padding-left: pxToRem(8);
     padding-right: pxToRem(8);
     line-height: pxToRem(20);
@@ -1522,7 +1501,7 @@ $menuItemPaddingTopBottom: 4;
 
   &.sbb-selected {
     color: $sbbColorBlack;
-    .sbb-panel.sbb-lean & {
+    html.sbb-lean & {
       // Copied color from '&.sbb-selected' to be specific enough.
       // Otherwise color of '.sbb-panel.sbb-lean &' would be applied.
       color: $sbbColorBlack;
@@ -1545,7 +1524,7 @@ $menuItemPaddingTopBottom: 4;
   &:not(:disabled):not([disabled]):not(.sbb-disabled):focus strong,
   &.sbb-active {
     color: $sbbColorRed;
-    .sbb-panel.sbb-lean & {
+    html.sbb-lean & {
       color: $sbbColorRed125;
       background-color: $sbbColorMilk;
       @include borderLeftAsBefore($sbbColorRed125);
@@ -1560,7 +1539,7 @@ $menuItemPaddingTopBottom: 4;
     width: pxToRem(24);
     height: pxToRem(24);
 
-    .sbb-panel.sbb-standard & {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         margin-top: pxToRem(-12);
         margin-bottom: pxToRem(-12);
@@ -1578,7 +1557,7 @@ $menuItemPaddingTopBottom: 4;
       }
     }
 
-    .sbb-panel.sbb-lean & {
+    html.sbb-lean & {
       margin: pxToRem(-9) 0 pxToRem(-9) 0;
     }
   }
@@ -1588,7 +1567,7 @@ $menuItemPaddingTopBottom: 4;
     margin-right: pxToRem(11);
     margin-left: pxToRem(-1);
 
-    .sbb-panel.sbb-standard & {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         margin-right: pxToRem(11 * $scalingFactor4k);
         margin-left: pxToRem(-1 * $scalingFactor4k);
@@ -1600,7 +1579,7 @@ $menuItemPaddingTopBottom: 4;
       }
     }
 
-    .sbb-panel.sbb-lean & {
+    html.sbb-lean & {
       margin-right: pxToRem(8);
       margin-left: pxToRem(0);
     }
@@ -1613,7 +1592,7 @@ $menuItemPaddingTopBottom: 4;
   .sbb-menu-item {
     padding-left: pxToRem(22);
 
-    .sbb-panel.sbb-standard & {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding-left: pxToRem(22 * $scalingFactor4k);
       }
@@ -1623,7 +1602,7 @@ $menuItemPaddingTopBottom: 4;
       }
     }
 
-    .sbb-panel.sbb-lean & {
+    html.sbb-lean & {
       padding-left: pxToRem(16);
     }
   }
@@ -1631,7 +1610,7 @@ $menuItemPaddingTopBottom: 4;
   &:first-child > .sbb-label:first-child {
     padding-top: pxToRem(16);
 
-    .sbb-panel.sbb-standard > & {
+    html:not(.sbb-lean) .sbb-panel > & {
       @include mq($from: desktop4k) {
         padding-top: pxToRem(16 * $scalingFactor4k);
       }
@@ -1644,7 +1623,7 @@ $menuItemPaddingTopBottom: 4;
       padding-top: pxToRem(6);
     }
 
-    .sbb-panel-padded.sbb-standard > & {
+    html:not(.sbb-lean) .sbb-panel > & {
       @include mq($from: desktop4k) {
         padding-top: pxToRem(6 * $scalingFactor4k);
       }
@@ -1658,7 +1637,7 @@ $menuItemPaddingTopBottom: 4;
     color: $sbbColorMetal;
     padding: pxToRem(22) pxToRem(14) pxToRem(5) pxToRem(14);
 
-    .sbb-panel.sbb-standard & {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding: pxToRem(22 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k)
           pxToRem(5 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k);
@@ -1670,7 +1649,7 @@ $menuItemPaddingTopBottom: 4;
       }
     }
 
-    .sbb-panel.sbb-lean & {
+    html.sbb-lean & {
       color: $sbbColorGranite;
       padding: pxToRem(12) pxToRem(8) pxToRem(4) pxToRem(8);
     }
@@ -1681,7 +1660,7 @@ $menuItemPaddingTopBottom: 4;
   & + .sbb-menu-item {
     border-top: pxToRem(1) solid $sbbColorCloud;
 
-    &.sbb-panel.sbb-standard {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         border-top-width: pxToRem(1 * $scalingFactor4k);
       }

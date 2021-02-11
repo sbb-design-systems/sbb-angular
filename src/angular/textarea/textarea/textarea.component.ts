@@ -336,7 +336,6 @@ export class SbbTextarea
 
   /** @docs-private */
   ngOnDestroy() {
-    super.ngOnDestroy();
     this.stateChanges.complete();
     this._destroyed.next();
     this._destroyed.complete();

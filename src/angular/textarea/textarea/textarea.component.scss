@@ -37,7 +37,7 @@
   line-height: 1;
   font-family: $fontSbbRoman;
 
-  .sbb-textarea.sbb-standard & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(20);
     }
@@ -47,7 +47,7 @@
     }
   }
 
-  .sbb-textarea.sbb-lean & {
+  html.sbb-lean & {
     color: $sbbColorMetal;
   }
 }

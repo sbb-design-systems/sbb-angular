@@ -5,14 +5,14 @@
   position: relative;
   width: pxToRem(320);
 
-  &.sbb-lean {
-    width: pxToRem(230);
-  }
-
-  &.sbb-standard {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       width: pxToRem(400);
     }
+  }
+
+  html.sbb-lean & {
+    width: pxToRem(230);
   }
 }
 
@@ -46,7 +46,7 @@
 .sbb-form-field-wrapper {
   padding-bottom: pxToEm(21, 14);
 
-  .sbb-form-field.sbb-lean & {
+  html.sbb-lean & {
     padding-bottom: pxToEm(16, 13);
   }
 
@@ -59,7 +59,7 @@
   margin-bottom: pxToRem(5);
   padding-left: pxToRem(10);
 
-  .sbb-form-field.sbb-standard & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       margin-bottom: pxToRem(5 * $scalingFactor4k);
       padding-left: pxToRem(10 * $scalingFactor4k);
@@ -71,7 +71,7 @@
     }
   }
 
-  .sbb-form-field.sbb-lean & {
+  html.sbb-lean & {
     margin-bottom: pxToRem(3);
     padding-left: 0;
   }
@@ -146,7 +146,7 @@
   font-size: pxToRem(14);
   line-height: pxToEm(21, 14);
 
-  .sbb-form-field.sbb-standard & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(14 * $scalingFactor4k);
     }
@@ -156,7 +156,7 @@
     }
   }
 
-  .sbb-form-field.sbb-lean & {
+  html.sbb-lean & {
     font-size: pxToRem(13);
     line-height: pxToEm(16, 13);
   }
