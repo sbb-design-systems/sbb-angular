@@ -122,7 +122,7 @@ table {
     color: $sbbColorBlack;
     font-size: pxToRem($sizeFontDefault);
     line-height: 1.5;
-    margin: 0.75em 0 0; // paragraph as default
+    margin: 0.75em 0 0;
   }
   th {
     font-family: $fontSbbBold;
@@ -155,31 +155,34 @@ h1,
 .sbb-headline1 {
   font-family: $fontSbbThin;
   font-weight: normal;
-  line-height: 1.2;
-  margin: 2em 0 0;
+  font-size: pxToRem(28);
+  line-height: pxToRem(28 * 1.2);
+  margin: pxToRem(28 * 2) 0 0;
 
   html:not(.sbb-lean) & {
     $fontSizes: (
-      base: pxToRem(28),
-      tablet: pxToRem(30),
-      desktop: pxToRem(40),
-      desktop4k: pxToRem(60),
-      desktop5k: pxToRem(80),
+      tablet: 30,
+      desktop: 40,
+      desktop4k: 60,
+      desktop5k: 80,
     );
     @include mqSequence($fontSizes) using ($value) {
-      font-size: $value;
+      font-size: pxToRem($value);
+      line-height: pxToRem($value * 1.2);
+      margin: pxToRem($value * 2) 0 0;
     }
   }
   html.sbb-lean & {
     font-family: $fontSbbLight;
     font-weight: normal;
-    margin: 1em 0 0;
+    margin: pxToRem(21) 0 0;
     font-size: pxToRem(21);
     line-height: pxToRem(25);
 
     @include mq($from: desktop) {
       font-size: pxToRem(28);
       line-height: pxToRem(34);
+      margin: pxToRem(28) 0 0;
     }
   }
 }
@@ -188,27 +191,31 @@ h2,
 .sbb-headline2 {
   font-family: $fontSbbLight;
   font-weight: normal;
-  line-height: 1.2;
-  margin: 1em 0 0;
+  font-size: pxToRem(24);
+  line-height: pxToRem(24 * 1.2);
+  margin: pxToRem(24) 0 0;
 
   html:not(.sbb-lean) & {
     $fontSizes: (
-      base: pxToRem(24),
-      desktop: pxToRem(32),
-      desktop4k: pxToRem(48),
-      desktop5k: pxToRem(64),
+      desktop: 32,
+      desktop4k: 48,
+      desktop5k: 64,
     );
     @include mqSequence($fontSizes) using ($value) {
-      font-size: $value;
+      font-size: pxToRem($value);
+      line-height: pxToRem($value * 1.2);
+      margin: pxToRem($value) 0 0;
     }
   }
   html.sbb-lean & {
     font-size: pxToRem(18);
     line-height: pxToRem(19);
+    margin: pxToRem(18) 0 0;
 
     @include mq($from: desktop) {
       font-size: pxToRem(21);
       line-height: pxToRem(25);
+      margin: pxToRem(21) 0 0;
     }
   }
 }
@@ -217,18 +224,20 @@ h3,
 .sbb-headline3 {
   font-family: $fontSbbLight;
   font-weight: normal;
-  line-height: 1.2;
-  margin: 2em 0 0;
+  font-size: pxToRem(20);
+  line-height: pxToRem(20 * 1.2);
+  margin: pxToRem(20 * 2) 0 0;
 
   html:not(.sbb-lean) & {
     $fontSizes: (
-      base: pxToRem(20),
-      tablet: pxToRem(21),
-      desktop4k: pxToRem(32),
-      desktop5k: pxToRem(42),
+      tablet: 21,
+      desktop4k: 32,
+      desktop5k: 42,
     );
     @include mqSequence($fontSizes) using ($value) {
-      font-size: $value;
+      font-size: pxToRem($value);
+      line-height: pxToRem($value * 1.2);
+      margin: pxToRem($value * 2) 0 0;
     }
   }
   html.sbb-lean & {
@@ -246,17 +255,19 @@ h4,
 .sbb-headline4 {
   font-family: $fontSbbBold;
   font-weight: normal;
-  line-height: 1.5;
-  margin: 2em 0 0;
   font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem($sizeFontDefault * 1.5);
+  margin: pxToRem($sizeFontDefault * 2) 0 0;
 
   html:not(.sbb-lean) & {
     $fontSizes: (
-      desktop4k: pxToRem($sizeFontDefault4k),
-      desktop5k: pxToRem($sizeFontDefault5k),
+      desktop4k: $sizeFontDefault4k,
+      desktop5k: $sizeFontDefault5k,
     );
     @include mqSequence($fontSizes) using ($value) {
       font-size: $value;
+      line-height: pxToRem($value * 1.5);
+      margin: pxToRem($value * 2) 0 0;
     }
   }
   html.sbb-lean & {
@@ -297,23 +308,24 @@ h4,
 p,
 .sbb-copy {
   font-size: pxToRem($sizeFontDefault);
-  margin: 1em 0 0; // paragraph as default
-  line-height: 1.733;
+  line-height: pxToRem($sizeLineHeightDefault);
+  margin: pxToRem($sizeFontDefault) 0 0;
 
   html:not(.sbb-lean) & {
-    $fontSizes: (
-      desktop4k: pxToRem($sizeFontDefault4k),
-      desktop5k: pxToRem($sizeFontDefault5k),
-    );
-    @include mqSequence($fontSizes) using ($value) {
-      font-size: $value;
-    }
-    @include mq($from: desktop4k, $to: desktop5k) {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
       line-height: pxToRem($sizeLineHeightDefault4k);
+      margin: pxToRem($sizeFontDefault4k) 0 0;
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
+      margin: pxToRem($sizeFontDefault5k) 0 0;
     }
   }
   html.sbb-lean & {
     line-height: pxToRem($sizeLineHeightDefaultLean);
+    margin: pxToRem($sizeLineHeightDefaultLean) 0 0;
   }
 }
 

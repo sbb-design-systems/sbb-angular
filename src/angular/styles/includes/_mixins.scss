@@ -109,6 +109,7 @@
 }
 
 @mixin inlineSVG() {
+  // TODO: remove or change em to rem
   float: none;
   display: inline-block;
   width: pxToEm(16, $sizeFontDefault);
@@ -141,6 +142,7 @@
   margin-right: -$offset;
 }
 
+// TODO: change em to rem
 @mixin baseBadgePill() {
   min-width: pxToEm(18, 11);
   border-radius: pxToEm(15, 11);
