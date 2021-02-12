@@ -885,23 +885,21 @@ fieldset,
   }
 }
 
-.sbb-radio-input {
-  & + .sbb-selection-container {
+.sbb-radio-input + .sbb-selection-container {
+  border-radius: 50%;
+
+  html.sbb-lean & {
+    margin-top: 0;
+  }
+
+  & > .sbb-selection-container-checked {
+    display: none;
     border-radius: 50%;
+    transform: scale(0.65);
+    background-color: $sbbColorRed;
 
     html.sbb-lean & {
-      margin-top: 0;
-    }
-
-    & > .sbb-selection-container-checked {
-      display: none;
-      border-radius: 50%;
-      transform: scale(0.65);
-      background-color: $sbbColorRed;
-
-      html.sbb-lean & {
-        background-color: $sbbColorIron;
-      }
+      background-color: $sbbColorIron;
     }
   }
 }
@@ -980,6 +978,10 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-indeterminate .sbb-selection-co
     }
   }
 
+  .sbb-radio-input + .sbb-selection-container > .sbb-selection-container-checked {
+    background-color: $sbbColorGrey;
+  }
+
   html.sbb-lean & {
     .sbb-selection-container {
       & > .sbb-selection-container-checked {
@@ -989,6 +991,10 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-indeterminate .sbb-selection-co
       & + .sbb-selection-content {
         color: $sbbColorStorm;
       }
+    }
+
+    .sbb-radio-input + .sbb-selection-container > .sbb-selection-container-checked {
+      background-color: $sbbColorGranite;
     }
   }
 }
