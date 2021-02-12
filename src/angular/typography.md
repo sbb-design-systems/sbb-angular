@@ -8,52 +8,6 @@ SBB Angular library sets basic global typography, display and link styles.
 - The html base font is a `SBBWeb Roman` size `93.75% | 15px` with a line height of `1.7`
 - Default body background color is `#FFFFFF`
 
-```scss
-$sizeFontBase: 15px;
-$sizeLineHeightBase: 1.7;
-
-/**
- * Font Families
- */
-$fontFamilyBase: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$fontSbbRoman: 'SBBWeb Roman', $fontFamilyBase;
-$fontSbbBold: 'SBBWeb Bold', $fontFamilyBase;
-$fontSbbUltralight: 'SBBWeb Ultralight', $fontFamilyBase;
-$fontSbbLight: 'SBBWeb Light', $fontFamilyBase;
-$fontSbbThin: 'SBBWeb Thin', $fontFamilyBase;
-
-$sbbColorWhite: #ffffff;
-$sbbColorBlack: #000000;
-
-$sbbColorBg: $sbbColorWhite;
-$sbbColorText: $sbbColorBlack;
-
-html {
-  background: $sbbColorBg;
-  color: $sbbColorText;
-  font-family: $fontSbbRoman;
-  font-size: $sizeFontBase / 16px * 100%;
-  line-height: $sizeLineHeightBase;
-
-  @include fontSmoothing;
-
-  b,
-  strong,
-  optgroup[label='*'] {
-    font-family: $fontSbbBold;
-    font-weight: normal;
-  }
-}
-
-a {
-  @include standardLink;
-}
-
-.clearfix {
-  @include clearfix;
-}
-```
-
 ## Headings
 
 HTML headings, from `h1` to `h4`.
@@ -70,6 +24,24 @@ You can also use the headings classes to make every tag looks like a heading. Av
 <h2>h2. SBB heading</h2>
 <h3>h3. SBB heading</h3>
 <h4>h4. SBB heading</h4>
+```
+
+## Lead Text
+
+<p class="sbb-text-lead">
+  Consectetur adipiscing elit. Mauris ac velit turpis. Integer vehicula sagittis libero, id pretium
+  metus rutrum sed. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique
+  eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac,
+  commodo arcu.
+</p>
+
+```html
+<p class="sbb-text-lead">
+  Consectetur adipiscing elit. Mauris ac velit turpis. Integer vehicula sagittis libero, id pretium
+  metus rutrum sed. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique
+  eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac,
+  commodo arcu.
+</p>
 ```
 
 ## Lists

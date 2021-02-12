@@ -361,33 +361,37 @@ h4,
   line-height: pxToRem(26);
   margin: pxToRem(36) 0 pxToRem(36) 0;
 
-  $sizes: (
-    tablet: (
-      21,
-      27.3,
-      48,
-    ),
-    desktop: (
-      21,
-      32,
-      48,
-    ),
-    desktop4k: (
-      32,
-      41.6,
-      72,
-    ),
-    desktop5k: (
-      40,
-      52,
-      96,
-    ),
-  );
-  @include mqSequence($sizes) using ($fontSize, $lineHeight, $margin) {
-    font-size: pxToRem($fontSize);
-    line-height: pxToRem($lineHeight);
-    margin-top: pxToRem($margin);
-    margin-bottom: pxToRem($margin);
+  // To allow usage with p tag (p.sbb-text-lead), use variant selectors which guarantee overwriting p/copy styles
+  html:not(.sbb-lean) &,
+  html.sbb-lean & {
+    $sizes: (
+      tablet: (
+        21,
+        27.3,
+        48,
+      ),
+      desktop: (
+        21,
+        32,
+        48,
+      ),
+      desktop4k: (
+        32,
+        41.6,
+        72,
+      ),
+      desktop5k: (
+        40,
+        52,
+        96,
+      ),
+    );
+    @include mqSequence($sizes) using($fontSize, $lineHeight, $margin) {
+      font-size: pxToRem($fontSize);
+      line-height: pxToRem($lineHeight);
+      margin-top: pxToRem($margin);
+      margin-bottom: pxToRem($margin);
+    }
   }
 }
 
