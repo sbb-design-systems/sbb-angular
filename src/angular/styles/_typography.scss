@@ -552,12 +552,6 @@ ul li ol > li::before,
       border-color: $sbbColorIron;
     }
 
-    // Copied color from '&.ng-touched.ng-invalid:not([aria-expanded='true'])' to be specific enough.
-    // Otherwise color of lean focus style would be applied.
-    &.ng-touched.ng-invalid:not([aria-expanded='true']) {
-      border-color: $sbbColorError;
-    }
-
     &:disabled,
     &[disabled],
     &.sbb-disabled {
