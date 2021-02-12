@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CheckboxGroupReactiveFormsVerticalExample {
   form: FormGroup;
+
   constructor(formBuilder: FormBuilder) {
     this.form = formBuilder.group({
       'Check 1': true,

@@ -3,11 +3,5 @@
     {{ option.name }}
   </sbb-radio-button>
 </sbb-radio-group>
-<h4>Properties</h4>
-<div>
-  <sbb-checkbox (change)="radioGroup.disabled ? radioGroup.enable() : radioGroup.disable()"
-    >Disabled</sbb-checkbox
-  >
-</div>
 <h4>Model</h4>
 <pre>{{ radioGroup.value }}</pre>
