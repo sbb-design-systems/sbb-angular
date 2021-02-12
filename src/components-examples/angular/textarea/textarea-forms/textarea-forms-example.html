@@ -11,16 +11,13 @@
 <pre>{{ textarea | json }}</pre>
 
 <h4>Properties</h4>
-<p>
-  <sbb-form-field label="Min Length">
-    <input sbbInput type="number" [(ngModel)]="minlength" />
-  </sbb-form-field>
-</p>
-<p>
-  <sbb-form-field label="Max Length">
-    <input sbbInput type="number" [(ngModel)]="maxlength" />
-  </sbb-form-field>
-</p>
+<sbb-form-field label="Min Length">
+  <input [(ngModel)]="minlength" sbbInput type="number" />
+</sbb-form-field>
+<br />
+<sbb-form-field label="Max Length">
+  <input [(ngModel)]="maxlength" sbbInput type="number" />
+</sbb-form-field>
 <div class="sbb-checkbox-group-vertical">
   <sbb-checkbox value="required" [(ngModel)]="required">Required</sbb-checkbox>
   <sbb-checkbox value="disabled" [(ngModel)]="disabled">Disabled</sbb-checkbox>

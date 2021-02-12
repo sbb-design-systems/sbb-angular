@@ -1,18 +1,13 @@
-<article class="container-fluid">
-  <div class="row">
-    <div>
-      <h4>Basic WebMap with eventhandlers</h4>
-      <sbb-esri-web-map
-        [portalItemId]="'f2e9b762544945f390ca4ac3671cfa72'"
-        (extentChanged)="mapExtentChanged($event)"
-        (mapClick)="mapClicked($event)"
-        (mapReady)="mapReady($event)"
-        #webMap
-        class="web-map"
-      >
-      </sbb-esri-web-map>
-      <pre>Active map section: {{ activeExtent | json }} </pre>
-      <pre>Last clicked point: {{ clickedPoint | json }} </pre>
-    </div>
-  </div>
-</article>
+<sbb-esri-web-map
+  #webMap
+  (extentChanged)="mapExtentChanged($event)"
+  (mapClick)="mapClicked($event)"
+  (mapReady)="mapReady($event)"
+  [portalItemId]="'f2e9b762544945f390ca4ac3671cfa72'"
+  class="web-map"
+>
+</sbb-esri-web-map>
+
+<h4>Values</h4>
+<pre>Active map section: {{ activeExtent | json }} </pre>
+<pre>Last clicked point: {{ clickedPoint | json }} </pre>

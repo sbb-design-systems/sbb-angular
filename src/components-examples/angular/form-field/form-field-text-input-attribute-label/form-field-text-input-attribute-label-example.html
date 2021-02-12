@@ -4,14 +4,12 @@
 </sbb-form-field>
 
 <h4>Properties</h4>
-<p>
-  <sbb-form-field label="Sizes">
-    <select [(ngModel)]="inputSize" sbbInput>
-      <option value=""></option>
-      <option value="short">Short</option>
-      <option value="medium">Medium</option>
-      <option value="long">Long</option>
-    </select>
-  </sbb-form-field>
-  <sbb-checkbox (change)="toggleDisabled($event)"> Disabled </sbb-checkbox>
-</p>
+<sbb-form-field label="Sizes">
+  <select [(ngModel)]="inputSize" sbbInput>
+    <option value=""></option>
+    <option value="short">Short</option>
+    <option value="medium">Medium</option>
+    <option value="long">Long</option>
+  </select>
+</sbb-form-field>
+<sbb-checkbox (change)="toggleDisabled($event)"> Disabled </sbb-checkbox>
