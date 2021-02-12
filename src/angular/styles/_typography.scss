@@ -937,7 +937,7 @@ fieldset,
 
   html.sbb-lean & {
     color: $sbbColorGranite;
-    line-height: 1.4em;
+    line-height: pxToRem(21);
   }
 }
 
