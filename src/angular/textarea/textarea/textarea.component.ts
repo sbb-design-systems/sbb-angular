@@ -41,7 +41,6 @@ let nextId = 0;
 /** @docs-private */
 export class SbbTextareaBase {
   constructor(
-    public _elementRef: ElementRef,
     public _defaultErrorStateMatcher: SbbErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
@@ -204,12 +203,12 @@ export class SbbTextarea
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
     private _focusMonitor: FocusMonitor,
-    elementRef: ElementRef,
+    private _elementRef: ElementRef,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective
   ) {
-    super(elementRef, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
+    super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
 
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of

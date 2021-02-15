@@ -1,4 +1,3 @@
-import { ElementRef } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { map, shareReplay, startWith } from 'rxjs/operators';
 
@@ -14,11 +13,6 @@ export interface HasVariant {
 /** @docs-private */
 export type HasVariantCtor = Constructor<HasVariant>;
 
-/** @docs-private */
-export interface HasElementRef {
-  _elementRef: ElementRef;
-}
-
 /** Possible variant values. */
 export type SbbVariant = 'standard' | 'lean' | undefined;
 
@@ -27,10 +21,8 @@ function detectVariant(): SbbVariant {
 }
 
 /** Mixin to augment a directive with a variant property. */
-export function mixinVariant<T extends AbstractConstructor<HasElementRef>>(
-  base: T
-): HasVariantCtor & T {
-  class Mixin extends ((base as unknown) as Constructor<HasElementRef>) {
+export function mixinVariant<T extends AbstractConstructor<any>>(base: T): HasVariantCtor & T {
+  class Mixin extends ((base as unknown) as Constructor<any>) {
     readonly variant: Observable<SbbVariant> = ɵtriggerVariantCheck.pipe(
       startWith(null),
       map(() => detectVariant()),

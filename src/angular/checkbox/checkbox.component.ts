@@ -62,9 +62,8 @@ export class SbbCheckboxChange {
 
 // Boilerplate for applying mixins to SbbCheckbox.
 /** @docs-private */
-class SbbCheckboxBase {
-  constructor(public _elementRef: ElementRef) {}
-}
+class SbbCheckboxBase {}
+
 // tslint:disable-next-line: naming-convention
 const _SbbCheckboxMixinBase: HasTabIndexCtor &
   CanDisableCtor &
@@ -167,7 +166,7 @@ export class SbbCheckbox
   private _controlValueAccessorChangeFn: (value: any) => void = () => {};
 
   constructor(
-    elementRef: ElementRef<HTMLElement>,
+    private _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef,
     private _focusMonitor: FocusMonitor,
     @Attribute('tabindex') tabIndex: string,
@@ -175,7 +174,7 @@ export class SbbCheckbox
     @Inject(SBB_CHECKBOX_DEFAULT_OPTIONS)
     private _options?: SbbCheckboxDefaultOptions
   ) {
-    super(elementRef);
+    super();
     this._options = this._options || defaults;
     this.tabIndex = parseInt(tabIndex, 10) || 0;
   }

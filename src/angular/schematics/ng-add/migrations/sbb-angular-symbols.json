@@ -29,7 +29,6 @@
   "Constructor": "core",
   "countGroupLabelsBeforeOption": "core",
   "getOptionScrollPosition": "core",
-  "HasElementRef": "core",
   "HasErrorState": "core",
   "HasInitialized": "core",
   "HasInitializedCtor": "core",

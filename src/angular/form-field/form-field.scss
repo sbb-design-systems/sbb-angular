@@ -18,29 +18,29 @@
 
 // Variant for .sbb-form-field
 .sbb-form-field-short {
-  width: 33.333%;
+  width: 33.333% !important;
 
   @include mq($from: mobileLandscape) {
-    width: 25%;
+    width: 25% !important;
   }
 
   @include mq($from: desktop) {
-    width: 16.66666%;
+    width: 16.66666% !important;
   }
 }
 
 // Variant for .sbb-form-field
 .sbb-form-field-medium {
-  width: 100%;
+  width: 100% !important;
 
   @include mq($from: tabletPortrait) {
-    width: 50%;
+    width: 50% !important;
   }
 }
 
 // Variant for .sbb-form-field
 .sbb-form-field-long {
-  width: 100%;
+  width: 100% !important;
 }
 
 .sbb-form-field-wrapper {
@@ -194,5 +194,13 @@
   html.sbb-lean & {
     font-size: pxToRem(13);
     line-height: pxToRem(16);
+  }
+}
+
+.sbb-form-group-vertical {
+  display: flex;
+  flex-direction: column;
+  & > * {
+    margin-bottom: pxToRem(8);
   }
 }
