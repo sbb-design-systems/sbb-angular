@@ -107,7 +107,8 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     '[attr.aria-expanded]': 'autocompleteDisabled ? null : panelOpen.toString()',
     '[attr.aria-owns]': '(autocompleteDisabled || !panelOpen) ? null : autocomplete?.id',
     '[attr.aria-haspopup]': '!autocompleteDisabled',
-    '[class.sbb-autocomplete-expanded]': 'this.autocompleteDisabled ? null : this.panelOpen',
+    '[class.sbb-focused]': 'panelOpen',
+    '[class.sbb-input-with-open-panel]': 'this.autocompleteDisabled ? null : this.panelOpen',
   },
 })
 export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewInit, OnDestroy {
@@ -620,16 +621,14 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
           (position) => {
             if (this.autocomplete.panel) {
               if (position.connectionPair.originY === 'top') {
-                this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
+                this.autocomplete.panel.nativeElement.classList.add('sbb-panel-above');
                 this._getConnectedElement().nativeElement.classList.add(
-                  'sbb-autocomplete-input-above'
+                  'sbb-input-with-open-panel-above'
                 );
               } else {
-                this.autocomplete.panel.nativeElement.classList.remove(
-                  'sbb-autocomplete-panel-above'
-                );
+                this.autocomplete.panel.nativeElement.classList.remove('sbb-panel-above');
                 this._getConnectedElement().nativeElement.classList.remove(
-                  'sbb-autocomplete-input-above'
+                  'sbb-input-with-open-panel-above'
                 );
               }
             }

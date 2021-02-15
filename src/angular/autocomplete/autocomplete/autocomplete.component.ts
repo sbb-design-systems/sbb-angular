@@ -15,7 +15,21 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { SbbOption, SbbOptionGroup, SBB_OPTION_PARENT_COMPONENT } from '@sbb-esta/angular/core';
+import {
+  HasVariantCtor,
+  mixinVariant,
+  SbbOption,
+  SbbOptionGroup,
+  SBB_OPTION_PARENT_COMPONENT,
+} from '@sbb-esta/angular/core';
+
+/** @docs-private */
+class SbbAutocompleteBase {}
+
+// tslint:disable-next-line: naming-convention
+const _SbbAutocompleteBase: HasVariantCtor & typeof SbbAutocompleteBase = mixinVariant(
+  SbbAutocompleteBase
+);
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
@@ -56,7 +70,7 @@ export interface SbbAutocompleteDefaultOptions {
     class: 'sbb-autocomplete',
   },
 })
-export class SbbAutocomplete implements AfterContentInit {
+export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterContentInit {
   // tslint:disable: member-ordering
   static ngAcceptInputType_autoActiveFirstOption: BooleanInput;
   /** Manages active item in option list based on key events. */
@@ -100,7 +114,9 @@ export class SbbAutocomplete implements AfterContentInit {
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private _elementRef: ElementRef<HTMLElement>
-  ) {}
+  ) {
+    super();
+  }
 
   _isOpen: boolean = false;
 

@@ -14,7 +14,7 @@ directive from `ReactiveFormsModule` to track the value of the input.
 _my-comp.html_
 
 ```html
-<sbb-form-field>
+<sbb-form-field label="MyLabel">
   <input type="text" [formControl]="myControl" />
 </sbb-form-field>
 ```
@@ -38,7 +38,7 @@ to the input's `sbbAutocomplete` property.
 _my-comp.html_
 
 ```html
-<sbb-form-field>
+<sbb-form-field label="Mylabel">
   <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto" />
 </sbb-form-field>
 
@@ -116,15 +116,15 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 ### Option groups
 
-`sbb-option` can be collected into groups using the `sbb-option-group` element:
+`sbb-option` can be collected into groups using the `sbb-optgroup` element:
 
 <!-- example(autocomplete-optgroup) -->
 
 ```html
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option-group *ngFor="let group of filteredGroups | async" [label]="group.name">
+  <sbb-optgroup *ngFor="let group of filteredGroups | async" [label]="group.name">
     <sbb-option *ngFor="let option of group.options" [value]="option"> {{option.name}} </sbb-option>
-  </sbb-option-group>
+  </sbb-optgroup>
 </sbb-autocomplete>
 ```
 

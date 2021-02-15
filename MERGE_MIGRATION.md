@@ -18,6 +18,7 @@ Don't forget to run `yarn generate:bazel` after each step.
 5. Update symbols for automatic merge migration by applying following command: `yarn generate:merge-symbols`.
 6. Check documentation (\*.md) for any required changes.
 7. Migrate examples from showcase to src/components-examples, by running the following command: `yarn migrate:example --module name-of-module`.
+   Sort examples according to the existing order on https://angular.app.sbb.ch by changing the `@order` number in example class docs.
    Remove any CSS classes in the html template that are not part of the component or typography (e.g. remove `sbbsc-` CSS classes)
    and replace them with alternatives (e.g. <p> tag oder css definition in example itself)
 8. Check for usages of the component in src/showcase-merge, src/components-examples and src/angular and change them to the migrated one

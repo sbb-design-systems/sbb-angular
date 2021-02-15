@@ -1,0 +1,13 @@
+<sbb-form-field label="Numbers">
+  <input
+    (ngModelChange)="valueChanged($event)"
+    [(ngModel)]="value"
+    [sbbAutocomplete]="auto"
+    sbbInput
+    type="text"
+  />
+</sbb-form-field>
+<sbb-autocomplete #auto="sbbAutocomplete">
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option"> {{ option }} </sbb-option>
+</sbb-autocomplete>
+<pre>{{ value | json }}</pre>

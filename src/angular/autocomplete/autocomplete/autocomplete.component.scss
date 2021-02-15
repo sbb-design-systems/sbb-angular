@@ -1,24 +1,23 @@
 @import '../../../angular/styles/common';
 
-.sbb-autocomplete-panel {
-  @include autocompleteBase();
-  @include autocompleteDirectionalRules();
-  @include optionGroupDivider();
-
-  &.sbb-autocomplete-panel-above {
-    @include autocompleteDirectionalRules($mode: reverse);
-  }
+.sbb-autocomplete-visible {
+  visibility: visible;
 }
 
-.sbb-autocomplete-expanded {
-  &,
-  &:focus {
-    &:not(.sbb-autocomplete-input-above) {
-      @include autocompleteInputActive();
+.sbb-autocomplete-hidden {
+  visibility: hidden;
+}
+
+.sbb-autocomplete-panel {
+  html:not(.sbb-lean) & .sbb-menu-group .sbb-menu-item {
+    padding-left: pxToRem(14);
+
+    @include mq($from: desktop4k) {
+      padding-left: pxToRem(14 * $scalingFactor4k);
     }
 
-    &.sbb-autocomplete-input-above {
-      @include autocompleteInputActive($mode: reverse);
+    @include mq($from: desktop5k) {
+      padding-left: pxToRem(14 * $scalingFactor5k);
     }
   }
 }
