@@ -71,22 +71,33 @@ export interface SbbAutocompleteDefaultOptions {
   },
 })
 export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterContentInit {
-  // tslint:disable: member-ordering
-  static ngAcceptInputType_autoActiveFirstOption: BooleanInput;
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<SbbOption>;
+
   /** Whether the autocomplete panel should be visible, depending on option length. */
   showPanel: boolean = false;
+
+  /** Whether the autocomplete panel is open. */
+  get isOpen(): boolean {
+    return this._isOpen && this.showPanel;
+  }
+  _isOpen: boolean = false;
+
   /** @docs-private */
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
+
   /** Element for the panel containing the autocomplete options. */
   @ViewChild('panel') panel: ElementRef;
+
   /** All of the defined select options. */
   @ContentChildren(SbbOption, { descendants: true }) options: QueryList<SbbOption>;
+
   /** All of the defined groups of options. */
   @ContentChildren(SbbOptionGroup) optionGroups: QueryList<SbbOptionGroup>;
+
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
+
   /**
    * Function which normalizes input values to highlight them in options.
    * E.g. If your function is <code>(value: string) => value.replace(new RegExp('[ö]', 'i'), 'o')</code>
@@ -95,49 +106,33 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
    * (e.g. changing `ä` to `ae` would break the highlighting function)
    */
   @Input() localeNormalizer: ((value: string) => string) | null = null;
-  /**
-   * Specify the width of the autocomplete panel.  Can be any CSS sizing value, otherwise it will
-   * match the width of its host.
-   */
-  @Input() panelWidth: string | number;
-  /** Event that is emitted whenever an option from the list is selected. */
-  @Output() readonly optionSelected: EventEmitter<SbbAutocompleteSelectedEvent> = new EventEmitter<
-    SbbAutocompleteSelectedEvent
-  >();
-  /** Event that is emitted when the autocomplete panel is opened. */
-  @Output() readonly opened: EventEmitter<void> = new EventEmitter<void>();
-  /** Event that is emitted when the autocomplete panel is closed. */
-  @Output() readonly closed: EventEmitter<void> = new EventEmitter<void>();
-  /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
-  id: string = `sbb-autocomplete-${nextId++}`;
-
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>
-  ) {
-    super();
-  }
-
-  _isOpen: boolean = false;
-
-  /** Whether the autocomplete panel is open. */
-  get isOpen(): boolean {
-    return this._isOpen && this.showPanel;
-  }
-
-  private _autoActiveFirstOption: boolean;
 
   /** Whether the first option should be highlighted when the autocomplete panel is opened. */
   @Input()
   get autoActiveFirstOption(): boolean {
     return this._autoActiveFirstOption;
   }
-
   set autoActiveFirstOption(value: boolean) {
     this._autoActiveFirstOption = coerceBooleanProperty(value);
   }
+  private _autoActiveFirstOption: boolean;
 
-  _classList: { [key: string]: boolean } = {};
+  /**
+   * Specify the width of the autocomplete panel.  Can be any CSS sizing value, otherwise it will
+   * match the width of its host.
+   */
+  @Input() panelWidth: string | number;
+
+  /** Event that is emitted whenever an option from the list is selected. */
+  @Output() readonly optionSelected: EventEmitter<SbbAutocompleteSelectedEvent> = new EventEmitter<
+    SbbAutocompleteSelectedEvent
+  >();
+
+  /** Event that is emitted when the autocomplete panel is opened. */
+  @Output() readonly opened: EventEmitter<void> = new EventEmitter<void>();
+
+  /** Event that is emitted when the autocomplete panel is closed. */
+  @Output() readonly closed: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * Takes classes set on the host sbb-autocomplete element and applies them to the panel
@@ -156,6 +151,17 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
 
     this._setVisibilityClasses(this._classList);
     this._elementRef.nativeElement.className = '';
+  }
+  _classList: { [key: string]: boolean } = {};
+
+  /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
+  id: string = `sbb-autocomplete-${nextId++}`;
+
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _elementRef: ElementRef<HTMLElement>
+  ) {
+    super();
   }
 
   ngAfterContentInit() {
@@ -197,5 +203,8 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
     classList['sbb-autocomplete-visible'] = this.showPanel;
     classList['sbb-autocomplete-hidden'] = !this.showPanel;
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_autoActiveFirstOption: BooleanInput;
   // tslint:enable: member-ordering
 }

@@ -112,98 +112,49 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   },
 })
 export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewInit, OnDestroy {
-  // tslint:disable: member-ordering
-  static ngAcceptInputType_autocompleteDisabled: BooleanInput;
-  /**
-   * Reference relative to which to position the autocomplete panel.
-   * Defaults to the autocomplete trigger element.
-   */
-  @Input('sbbAutocompleteConnectedTo') connectedTo: SbbAutocompleteOrigin;
-  /**
-   * `autocomplete` attribute to be set on the input element.
-   * @docs-private
-   */
-  @Input('autocomplete') autocompleteAttribute: string = 'off';
-  /** Stream of autocomplete option selections. */
-  readonly optionSelections: Observable<SbbOptionSelectionChange> = defer(() => {
-    if (this.autocomplete && this.autocomplete.options) {
-      return merge<SbbOptionSelectionChange>(
-        ...this.autocomplete.options.map((option) => option.onSelectionChange)
-      );
-    }
-
-    // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
-    // Return a stream that we'll replace with the real one once everything is in place.
-    return this._zone.onStable.asObservable().pipe(
-      take(1),
-      switchMap(() => this.optionSelections)
-    );
-  });
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
   private _document: Document;
   private _componentDestroyed = false;
+  private _autocompleteDisabled = false;
+
   /** Old value of the native input. Used to work around issues with the `input` event on IE. */
   private _previousValue: string | number | null;
+
   /** Strategy that is used to position the panel. */
   private _positionStrategy: FlexibleConnectedPositionStrategy;
+
   /** The subscription for closing actions (some are bound to document). */
   private _closingActionsSubscription: Subscription;
+
   /** Subscription to viewport size changes. */
   private _viewportSubscription = Subscription.EMPTY;
   private _positionSubscription = Subscription.EMPTY;
+
   /** Subscription to highlight options */
   private _highlightSubscription = Subscription.EMPTY;
+
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused,
    * closed autocomplete from being reopened if the user switches to another browser tab and then
    * comes back.
    */
   private _canOpenOnNextFocus = true;
+
   /** Whether the element is inside of a ShadowRoot component. */
   private _isInsideShadowRoot: boolean;
+
   /** Stream of keyboard events that can close the panel. */
   private readonly _closeKeyEventStream = new Subject<void>();
   private _overlayAttached = false;
+
   private _inputValue = new BehaviorSubject('');
-
-  constructor(
-    private _elementRef: ElementRef<HTMLInputElement>,
-    private _overlay: Overlay,
-    private _viewContainerRef: ViewContainerRef,
-    private _zone: NgZone,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy: any,
-    private _viewportRuler: ViewportRuler,
-    @Optional() @Inject(DOCUMENT) document: any,
-    @Optional() @Inject(SBB_FORM_FIELD) @Host() private _formField: TypeRef<SbbFormField>
-  ) {
-    this._document = document;
-  }
-
-  private _autocompleteDisabled = false;
-
-  /**
-   * Whether the autocomplete is disabled. When disabled, the element will
-   * act as a regular input and the user won't be able to open the panel.
-   */
-  @Input('sbbAutocompleteDisabled')
-  get autocompleteDisabled(): boolean {
-    return this._autocompleteDisabled;
-  }
-
-  set autocompleteDisabled(value: boolean) {
-    this._autocompleteDisabled = coerceBooleanProperty(value);
-  }
-
-  private _autocomplete: SbbAutocomplete;
 
   /** The autocomplete panel to be attached to this trigger. */
   @Input('sbbAutocomplete')
   get autocomplete(): SbbAutocomplete {
     return this._autocomplete;
   }
-
   set autocomplete(autocomplete: SbbAutocomplete) {
     this._autocomplete = autocomplete;
 
@@ -231,39 +182,47 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
         );
       });
   }
-
-  /** Whether or not the autocomplete panel is open. */
-  get panelOpen(): boolean {
-    return this._overlayAttached && this.autocomplete.showPanel;
-  }
+  private _autocomplete: SbbAutocomplete;
 
   /**
-   * A stream of actions that should close the autocomplete panel, including
-   * when an option is selected, on blur, and when TAB is pressed.
+   * Reference relative to which to position the autocomplete panel.
+   * Defaults to the autocomplete trigger element.
    */
-  get panelClosingActions(): Observable<SbbOptionSelectionChange | null> {
-    return merge(
-      this.optionSelections,
-      this.autocomplete.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
-      this._closeKeyEventStream,
-      this._getOutsideClickStream(),
-      this._overlayRef
-        ? this._overlayRef.detachments().pipe(filter(() => this._overlayAttached))
-        : observableOf()
-    ).pipe(
-      // Normalize the output so we return a consistent type.
-      map((event) => (event instanceof SbbOptionSelectionChange ? event : null))
-    );
-  }
+  @Input('sbbAutocompleteConnectedTo') connectedTo: SbbAutocompleteOrigin;
 
-  /** The currently active option, coerced to SbbOption type. */
-  get activeOption(): SbbOption | null {
-    if (this.autocomplete && this.autocomplete.keyManager) {
-      return this.autocomplete.keyManager.activeItem;
+  /**
+   * `autocomplete` attribute to be set on the input element.
+   * @docs-private
+   */
+  @Input('autocomplete') autocompleteAttribute: string = 'off';
+
+  /** Stream of autocomplete option selections. */
+  readonly optionSelections: Observable<SbbOptionSelectionChange> = defer(() => {
+    if (this.autocomplete && this.autocomplete.options) {
+      return merge<SbbOptionSelectionChange>(
+        ...this.autocomplete.options.map((option) => option.onSelectionChange)
+      );
     }
 
-    return null;
-  }
+    // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
+    // Return a stream that we'll replace with the real one once everything is in place.
+    return this._zone.onStable.asObservable().pipe(
+      take(1),
+      switchMap(() => this.optionSelections)
+    );
+  });
+
+  /**
+   * Event handler for when the window is blurred. Needs to be an
+   * arrow function in order to preserve the context.
+   */
+  private _windowBlurHandler = () => {
+    // If the user blurred the window while the autocomplete is focused, it means that it'll be
+    // refocused when they come back. In this case we want to skip the first focus event, if the
+    // pane was closed, in order to avoid reopening it unintentionally.
+    this._canOpenOnNextFocus =
+      this._document.activeElement !== this._elementRef.nativeElement || this.panelOpen;
+  };
 
   /** `View -> model callback called when value changes` */
   _onChange: (value: any) => void = () => {};
@@ -271,6 +230,32 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
   /** `View -> model callback called when autocomplete has been touched` */
   @HostListener('blur')
   _onTouched: () => void = () => {};
+
+  /**
+   * Whether the autocomplete is disabled. When disabled, the element will
+   * act as a regular input and the user won't be able to open the panel.
+   */
+  @Input('sbbAutocompleteDisabled')
+  get autocompleteDisabled(): boolean {
+    return this._autocompleteDisabled;
+  }
+  set autocompleteDisabled(value: boolean) {
+    this._autocompleteDisabled = coerceBooleanProperty(value);
+  }
+
+  constructor(
+    private _elementRef: ElementRef<HTMLInputElement>,
+    private _overlay: Overlay,
+    private _viewContainerRef: ViewContainerRef,
+    private _zone: NgZone,
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy: any,
+    private _viewportRuler: ViewportRuler,
+    @Optional() @Inject(DOCUMENT) document: any,
+    @Optional() @Inject(SBB_FORM_FIELD) @Host() private _formField: TypeRef<SbbFormField>
+  ) {
+    this._document = document;
+  }
 
   ngAfterViewInit() {
     const window = this._getWindow();
@@ -293,6 +278,11 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
     this._componentDestroyed = true;
     this._destroyPanel();
     this._closeKeyEventStream.complete();
+  }
+
+  /** Whether or not the autocomplete panel is open. */
+  get panelOpen(): boolean {
+    return this._overlayAttached && this.autocomplete.showPanel;
   }
 
   /** Opens the autocomplete suggestion panel. */
@@ -327,6 +317,59 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
       // user clicks outside.
       this._changeDetectorRef.detectChanges();
     }
+  }
+
+  /**
+   * A stream of actions that should close the autocomplete panel, including
+   * when an option is selected, on blur, and when TAB is pressed.
+   */
+  get panelClosingActions(): Observable<SbbOptionSelectionChange | null> {
+    return merge(
+      this.optionSelections,
+      this.autocomplete.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
+      this._closeKeyEventStream,
+      this._getOutsideClickStream(),
+      this._overlayRef
+        ? this._overlayRef.detachments().pipe(filter(() => this._overlayAttached))
+        : observableOf()
+    ).pipe(
+      // Normalize the output so we return a consistent type.
+      map((event) => (event instanceof SbbOptionSelectionChange ? event : null))
+    );
+  }
+
+  /** The currently active option, coerced to SbbOption type. */
+  get activeOption(): SbbOption | null {
+    if (this.autocomplete && this.autocomplete.keyManager) {
+      return this.autocomplete.keyManager.activeItem;
+    }
+
+    return null;
+  }
+
+  /** Stream of clicks outside of the autocomplete panel. */
+  private _getOutsideClickStream(): Observable<any> {
+    return merge(
+      fromEvent(this._document, 'click') as Observable<MouseEvent>,
+      fromEvent(this._document, 'touchend') as Observable<TouchEvent>
+    ).pipe(
+      filter((event) => {
+        // If we're in the Shadow DOM, the event target will be the shadow root, so we have to
+        // fall back to check the first element in the path of the click event.
+        const clickTarget = (this._isInsideShadowRoot && event.composedPath
+          ? event.composedPath()[0]
+          : event.target) as HTMLElement;
+        const formField = this._formField ? this._formField._elementRef.nativeElement : null;
+
+        return (
+          this._overlayAttached &&
+          clickTarget !== this._elementRef.nativeElement &&
+          (!formField || !formField.contains(clickTarget)) &&
+          !!this._overlayRef &&
+          !this._overlayRef.overlayElement.contains(clickTarget)
+        );
+      })
+    );
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -409,6 +452,7 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
     }
   }
 
+  // Note: we use `focusin`, as opposed to `focus`, in order to open the panel
   // a little earlier. This avoids issues where IE delays the focusing of the input.
   @HostListener('focusin')
   _handleFocus(): void {
@@ -419,8 +463,6 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
       this._attachOverlay();
     }
   }
-
-  // Note: we use `focusin`, as opposed to `focus`, in order to open the panel
 
   /**
    * Given that we are not actually focusing active options, we must manually adjust scroll
@@ -454,43 +496,6 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
 
       this.autocomplete.setScrollTop(newScrollPosition);
     }
-  }
-
-  /**
-   * Event handler for when the window is blurred. Needs to be an
-   * arrow function in order to preserve the context.
-   */
-  private _windowBlurHandler = () => {
-    // If the user blurred the window while the autocomplete is focused, it means that it'll be
-    // refocused when they come back. In this case we want to skip the first focus event, if the
-    // pane was closed, in order to avoid reopening it unintentionally.
-    this._canOpenOnNextFocus =
-      this._document.activeElement !== this._elementRef.nativeElement || this.panelOpen;
-  };
-
-  /** Stream of clicks outside of the autocomplete panel. */
-  private _getOutsideClickStream(): Observable<any> {
-    return merge(
-      fromEvent(this._document, 'click') as Observable<MouseEvent>,
-      fromEvent(this._document, 'touchend') as Observable<TouchEvent>
-    ).pipe(
-      filter((event) => {
-        // If we're in the Shadow DOM, the event target will be the shadow root, so we have to
-        // fall back to check the first element in the path of the click event.
-        const clickTarget = (this._isInsideShadowRoot && event.composedPath
-          ? event.composedPath()[0]
-          : event.target) as HTMLElement;
-        const formField = this._formField ? this._formField._elementRef.nativeElement : null;
-
-        return (
-          this._overlayAttached &&
-          clickTarget !== this._elementRef.nativeElement &&
-          (!formField || !formField.contains(clickTarget)) &&
-          !!this._overlayRef &&
-          !this._overlayRef.overlayElement.contains(clickTarget)
-        );
-      })
-    );
   }
 
   /**
@@ -747,5 +752,8 @@ export class SbbAutocompleteTrigger implements ControlValueAccessor, AfterViewIn
   private _getWindow(): Window {
     return this._document?.defaultView || window;
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_autocompleteDisabled: BooleanInput;
   // tslint:enable: member-ordering
 }
