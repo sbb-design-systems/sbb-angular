@@ -1,0 +1,24 @@
+@import '../../../angular/styles/common';
+
+.sbb-autocomplete-panel {
+  @include autocompleteBase();
+  @include autocompleteDirectionalRules();
+  @include optionGroupDivider();
+
+  &.sbb-autocomplete-panel-above {
+    @include autocompleteDirectionalRules($mode: reverse);
+  }
+}
+
+.sbb-autocomplete-expanded {
+  &,
+  &:focus {
+    &:not(.sbb-autocomplete-input-above) {
+      @include autocompleteInputActive();
+    }
+
+    &.sbb-autocomplete-input-above {
+      @include autocompleteInputActive($mode: reverse);
+    }
+  }
+}
