@@ -315,7 +315,6 @@ abstract class RadioButtonBase {
   // the mixin base class. To be able to use the tabindex mixin, a disabled property must be
   // defined to properly work.
   abstract disabled: boolean;
-  constructor(public _elementRef: ElementRef) {}
 }
 
 // tslint:disable-next-line: naming-convention
@@ -445,13 +444,13 @@ export class _SbbRadioButtonBase
 
   constructor(
     radioGroup: TypeRef<_SbbRadioGroupBase<_SbbRadioButtonBase>>,
-    elementRef: ElementRef,
+    private _elementRef: ElementRef,
     protected readonly _changeDetector: ChangeDetectorRef,
     private _focusMonitor: FocusMonitor,
     private _radioDispatcher: UniqueSelectionDispatcher,
     tabIndex?: string
   ) {
-    super(elementRef);
+    super();
 
     // Assertions. Ideally these should be stripped out by the compiler.
     // TODO(jelbourn): Assert that there's no name binding AND a parent radio group.
@@ -490,7 +489,6 @@ export class _SbbRadioButtonBase
   }
 
   ngOnInit(): void {
-    super.ngOnInit();
     if (this.radioGroup) {
       // If the radio is inside a radio group, determine if it should be checked
       this.checked = this.radioGroup.value === this._value;
@@ -513,7 +511,6 @@ export class _SbbRadioButtonBase
   }
 
   ngOnDestroy(): void {
-    super.ngOnDestroy();
     this._focusMonitor.stopMonitoring(this._elementRef);
     this._removeUniqueSelectionListener();
   }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
- * @title Esri Legend
+ * @title Esri Legend With Basemap Gallery
  */
 @Component({
   selector: 'sbb-esri-legend-example',

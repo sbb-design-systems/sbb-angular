@@ -4,7 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 
 /**
- * @title Esri Web Map
+ * @title Esri Web Map With Event Handlers
  */
 @Component({
   selector: 'sbb-esri-web-map-example',

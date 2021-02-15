@@ -24,9 +24,7 @@ import { getSbbFormFieldMissingControlError } from './form-field-errors';
 import { SbbLabel } from './label';
 
 /** @docs-private */
-class SbbFormFieldBase {
-  constructor(public _elementRef: ElementRef) {}
-}
+class SbbFormFieldBase {}
 
 // tslint:disable-next-line: naming-convention
 const _SbbFormFieldBase: HasVariantCtor & typeof SbbFormFieldBase = mixinVariant(SbbFormFieldBase);
@@ -91,10 +89,10 @@ export class SbbFormField
   @ContentChildren(SBB_ERROR, { descendants: true }) _errorChildren: QueryList<SbbError>;
 
   constructor(
-    public _elementRef: ElementRef<HTMLElement>,
+    private _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef
   ) {
-    super(_elementRef);
+    super();
   }
 
   /**

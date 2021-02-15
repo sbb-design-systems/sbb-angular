@@ -5,49 +5,57 @@
   position: relative;
   width: pxToRem(320);
 
-  &.sbb-lean {
-    width: pxToRem(230);
-  }
-
-  &.sbb-standard {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       width: pxToRem(400);
     }
+  }
+
+  html.sbb-lean & {
+    width: pxToRem(230);
   }
 }
 
 // Variant for .sbb-form-field
 .sbb-form-field-short {
-  width: 33.333%;
+  width: 33.333% !important;
 
   @include mq($from: mobileLandscape) {
-    width: 25%;
+    width: 25% !important;
   }
 
   @include mq($from: desktop) {
-    width: 16.66666%;
+    width: 16.66666% !important;
   }
 }
 
 // Variant for .sbb-form-field
 .sbb-form-field-medium {
-  width: 100%;
+  width: 100% !important;
 
   @include mq($from: tabletPortrait) {
-    width: 50%;
+    width: 50% !important;
   }
 }
 
 // Variant for .sbb-form-field
 .sbb-form-field-long {
-  width: 100%;
+  width: 100% !important;
 }
 
 .sbb-form-field-wrapper {
-  padding-bottom: pxToEm(21, 14);
+  padding-bottom: pxToRem(23);
 
-  .sbb-form-field.sbb-lean & {
-    padding-bottom: pxToEm(16, 13);
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding-bottom: pxToRem(35);
+    }
+    @include mq($from: desktop5k) {
+      padding-bottom: pxToRem(46);
+    }
+  }
+  html.sbb-lean & {
+    padding-bottom: pxToRem(16);
   }
 
   .sbb-form-field-errorless & {
@@ -59,19 +67,18 @@
   margin-bottom: pxToRem(5);
   padding-left: pxToRem(10);
 
-  .sbb-form-field.sbb-standard & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       margin-bottom: pxToRem(5 * $scalingFactor4k);
       padding-left: pxToRem(10 * $scalingFactor4k);
     }
-
     @include mq($from: desktop5k) {
       margin-bottom: pxToRem(5 * $scalingFactor5k);
       padding-left: pxToRem(10 * $scalingFactor5k);
     }
   }
 
-  .sbb-form-field.sbb-lean & {
+  html.sbb-lean & {
     margin-bottom: pxToRem(3);
     padding-left: 0;
   }
@@ -107,17 +114,34 @@
 // Scale down icons in the label and error to be the same size as the text.
 .sbb-form-field-error-wrapper,
 .sbb-form-field-label-wrapper {
-  .sbb-icon {
-    width: 1em;
-    height: 1em;
-    font-size: inherit;
-    vertical-align: baseline;
+  .sbb-icon,
+  .sbb-icon svg {
+    vertical-align: bottom;
+    width: pxToRem(16);
+    height: pxToRem(16);
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        width: pxToRem(16 * $scalingFactor4k);
+        height: pxToRem(16 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        width: pxToRem(16 * $scalingFactor5k);
+        height: pxToRem(16 * $scalingFactor5k);
+      }
+    }
   }
 
   // Make sbb-tooltip align nicely inside sbb-label.
   .sbb-tooltip {
-    position: relative;
-    margin-left: 0.66667em;
+    margin-left: pxToRem(8);
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        margin-left: pxToRem(8 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        margin-left: pxToRem(8 * $scalingFactor5k);
+      }
+    }
   }
   .sbb-tooltip-icon {
     vertical-align: bottom;
@@ -128,8 +152,18 @@
 
     &,
     .sbb-icon {
-      width: 1.25em;
-      height: 1.25em;
+      width: pxToRem(16);
+      height: pxToRem(16);
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          width: pxToRem(16 * $scalingFactor4k);
+          height: pxToRem(16 * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          width: pxToRem(16 * $scalingFactor5k);
+          height: pxToRem(16 * $scalingFactor5k);
+        }
+      }
     }
   }
 }
@@ -144,20 +178,29 @@
   color: $sbbColorError;
 
   font-size: pxToRem(14);
-  line-height: pxToEm(21, 14);
+  line-height: pxToRem(21);
 
-  .sbb-form-field.sbb-standard & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      font-size: pxToRem(14 * $scalingFactor4k);
+      font-size: pxToRem(23);
+      line-height: pxToRem(32);
     }
-
     @include mq($from: desktop5k) {
-      font-size: pxToRem(14 * $scalingFactor5k);
+      font-size: pxToRem(30);
+      line-height: pxToRem(42);
     }
   }
 
-  .sbb-form-field.sbb-lean & {
+  html.sbb-lean & {
     font-size: pxToRem(13);
-    line-height: pxToEm(16, 13);
+    line-height: pxToRem(16);
+  }
+}
+
+.sbb-form-group-vertical {
+  display: flex;
+  flex-direction: column;
+  & > * {
+    margin-bottom: pxToRem(8);
   }
 }

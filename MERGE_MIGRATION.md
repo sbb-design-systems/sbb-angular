@@ -82,10 +82,9 @@ export class SbbExample extends _SbbExampleMixinBase {
 - Use `encapsulation: ViewEncapsulation.None`
 - Add CSS classes where necessary
 - See [Form Field SCSS](https://github.com/sbb-design-systems/sbb-angular/blob/master/src/angular-public/form-field/form-field.scss) for reference
-- Replace `@include publicOnly() {` with `&.sbb-standard` on the host selector or `.sbb-example.sbb-standard & {` on nested element selectors,
-  `@include businessOnly() {` with `&.sbb-lean` on the host selector or `.sbb-example.sbb-lean & {` on nested element selectors
-  and `if ($sbbBusiness) {` or `if($sbbBusiness, ..., ...)` similar to the previous two,
-  where `.sbb-example` corresponds to the host element selector.
+- Replace `@include publicOnly() {` with `html:not(.sbb-lean) &`,
+  `@include businessOnly() {` with `html.sbb-lean &`
+  and `if ($sbbBusiness) {` or `if($sbbBusiness, ..., ...)` similar to the previous two
 
   e.g.
 
@@ -122,7 +121,7 @@ export class SbbExample extends _SbbExampleMixinBase {
   .sbb-example {
     width: pxToRem(320); /* public/standard */
 
-    &.sbb-lean {
+    html.sbb-lean & {
       width: pxToRem(230); /* business/lean */
     }
   }
@@ -131,7 +130,7 @@ export class SbbExample extends _SbbExampleMixinBase {
   .sbb-example-section {
     padding-top: pxToRem(30);
 
-    .sbb-example.sbb-standard {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding-top: pxToRem(40);
       }
@@ -139,7 +138,7 @@ export class SbbExample extends _SbbExampleMixinBase {
         padding-top: pxToRem(50);
       }
     }
-    .sbb-example.sbb-lean {
+    html.sbb-lean & {
       padding-top: pxToRem(10);
     }
   }
@@ -157,14 +156,14 @@ export class SbbExample extends _SbbExampleMixinBase {
   .sbb-example {
     width: pxToRem(320); /* public/standard */
 
-    &.sbb-lean {
+    html.sbb-lean & {
       width: pxToRem(230); /* business/lean */
     }
   }
   ```
 
 - Note that mediaqueries for 4k and 5k (`@include mq($from: desktop4k) { ... }` or `@include mq($from: desktop5k) { ... }`)
-  should always be contained in `&.sbb-standard {` or `.sbb-example.sbb-standard & {`
+  should always be contained in `html:not(.sbb-lean) & {`
   e.g.
 
   ```scss
@@ -180,7 +179,7 @@ export class SbbExample extends _SbbExampleMixinBase {
 
   // replace with
 
-  &.sbb-standard {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       margin-bottom: pxToRem(5 * $scalingFactor4k);
       padding-left: pxToRem(10 * $scalingFactor4k);
@@ -233,11 +232,11 @@ export class SbbExample extends _SbbExampleMixinBase {
 .sbb-example-button-icon {
   // Generic rules
 
-  .sbb-example.sbb-standard & {
+  html:not(.sbb-lean) & {
     // Standard specific rules
   }
 
-  .sbb-example.sbb-lean & {
+  html.sbb-lean & {
     // Lean specific rules
   }
 }

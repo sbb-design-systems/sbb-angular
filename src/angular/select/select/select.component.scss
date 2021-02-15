@@ -8,7 +8,7 @@
   padding-bottom: pxToRem(10);
 
   // Use variant mixin here to be specific enough to overwrite sbb-input-element styles
-  @include sbbStandard() {
+  html:not(.sbb-lean) & {
     $paddings: (
       desktop4k: (
         pxToRem(12 * $scalingFactor4k),
@@ -26,7 +26,7 @@
   }
 
   // Use variant mixin here to be specific enough to overwrite sbb-input-element styles
-  @include sbbLean() {
+  html.sbb-lean & {
     padding-right: pxToRem(8);
     padding-bottom: pxToRem(4);
   }
@@ -47,7 +47,7 @@
   height: pxToRem(24);
   margin-left: pxToRem(12);
 
-  .sbb-select.sbb-standard & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       width: pxToRem(24 * $scalingFactor4k);
       height: pxToRem(24 * $scalingFactor4k);
@@ -61,7 +61,7 @@
     }
   }
 
-  .sbb-select.sbb-lean & {
+  html.sbb-lean & {
     color: $sbbColorGranite;
     margin-left: pxToRem(6);
   }
@@ -85,7 +85,7 @@
     border-top: none;
   }
 
-  &.sbb-select-multiple.sbb-standard .sbb-menu-group .sbb-menu-item {
+  html:not(.sbb-lean) &.sbb-select-multiple .sbb-menu-group .sbb-menu-item {
     padding-left: pxToRem(14);
 
     @include mq($from: desktop4k) {

@@ -25,37 +25,6 @@
   @return ($val + 0px);
 }
 
-// Spacings
-// ----------------------------------------------------------------------------------------------------
-
-@function paragraphSpacing($fontSize: $sizeFontDefault) {
-  @return toEm($gutterHeight/$fontSize); // 8px
-}
-
-@function innerComponentSpacing($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 3) / $fontSize); // 24px
-}
-
-@function innerComponentBottomSpacingSmall($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 4.5) / $fontSize); // 36px
-}
-
-@function interComponentSpacingTiny($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 3) / $fontSize); // 24px
-}
-
-@function interComponentSpacingSmall($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 6) / $fontSize); // 48px
-}
-
-@function interComponentSpacingTablet($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 7) / $fontSize); // 56px
-}
-
-@function interComponentSpacing($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 10) / $fontSize); // 80px
-}
-
 // Arithmetic functions
 // ----------------------------------------------------------------------------------------------------
 

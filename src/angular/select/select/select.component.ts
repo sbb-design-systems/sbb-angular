@@ -172,7 +172,6 @@ export class SbbSelectChange {
 /** @docs-private */
 export class SbbSelectBase {
   constructor(
-    public _elementRef: ElementRef,
     public _defaultErrorStateMatcher: SbbErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
@@ -319,7 +318,7 @@ export class SbbSelect
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
-    elementRef: ElementRef,
+    public _elementRef: ElementRef,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     @Optional() @Inject(SBB_FORM_FIELD) private _parentFormField: SbbFormField,
@@ -329,7 +328,7 @@ export class SbbSelect
     private _liveAnnouncer: LiveAnnouncer,
     @Optional() @Inject(SBB_SELECT_CONFIG) private _defaultOptions?: SbbSelectConfig
   ) {
-    super(elementRef, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
+    super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
 
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of

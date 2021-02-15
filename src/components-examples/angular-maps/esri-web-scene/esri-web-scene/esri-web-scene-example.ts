@@ -4,7 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 
 /**
- * @title Esri Web Scene
+ * @title Esri Web Scene With Event Handlers & Custom Properties
  */
 @Component({
   selector: 'sbb-esri-web-scene-example',
