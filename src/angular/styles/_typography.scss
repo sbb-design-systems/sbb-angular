@@ -1496,35 +1496,35 @@ $panelBorderRadius: 2;
       margin: pxToRem(4) 0;
     }
   }
+}
 
-  &.sbb-panel-above {
-    border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
-    border-top-width: pxToRem($panelBorderWidthStandard);
-    border-top-style: solid;
+.sbb-panel-above {
+  border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
+  border-top-width: pxToRem($panelBorderWidthStandard);
+  border-top-style: solid;
+  border-bottom: none;
+  @include panelShadow($attached: above);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-radius: pxToRem($panelBorderRadius * $scalingFactor4k)
+        pxToRem($panelBorderRadius * $scalingFactor4k) 0 0;
+      border-top-width: pxToRem($panelBorderRadius * $scalingFactor4k);
+      @include panelShadow($attached: above, $scalingFactor: $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-radius: pxToRem($panelBorderRadius * $scalingFactor5k)
+        pxToRem($panelBorderRadius * $scalingFactor5k) 0 0;
+      border-top-width: pxToRem($panelBorderRadius * $scalingFactor5k);
+      @include panelShadow($attached: above, $scalingFactor: $scalingFactor5k);
+    }
+  }
+
+  html.sbb-lean & {
+    border-width: pxToRem($panelBorderWidthLean);
     border-bottom: none;
-    @include panelShadow($attached: above);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        border-radius: pxToRem($panelBorderRadius * $scalingFactor4k)
-          pxToRem($panelBorderRadius * $scalingFactor4k) 0 0;
-        border-top-width: pxToRem($panelBorderRadius * $scalingFactor4k);
-        @include panelShadow($attached: above, $scalingFactor: $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        border-radius: pxToRem($panelBorderRadius * $scalingFactor5k)
-          pxToRem($panelBorderRadius * $scalingFactor5k) 0 0;
-        border-top-width: pxToRem($panelBorderRadius * $scalingFactor5k);
-        @include panelShadow($attached: above, $scalingFactor: $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      border-width: pxToRem($panelBorderWidthLean);
-      border-bottom: none;
-      @include panelShadow($attached: above, $borderWidth: $panelBorderWidthLean);
-    }
+    @include panelShadow($attached: above, $borderWidth: $panelBorderWidthLean);
   }
 }
 
@@ -1608,7 +1608,7 @@ $menuItemPaddingTopBottom: 4;
     color: $sbbColorBlack;
     html.sbb-lean & {
       // Copied color from '&.sbb-selected' to be specific enough.
-      // Otherwise color of '.sbb-panel.sbb-lean &' would be applied.
+      // Otherwise color of 'html.sbb-lean &' would be applied.
       color: $sbbColorBlack;
       background-color: $sbbColorCloud;
       @include borderLeftAsBefore($sbbColorBlack);
@@ -1715,7 +1715,7 @@ $menuItemPaddingTopBottom: 4;
   &:first-child > .sbb-label:first-child {
     padding-top: pxToRem(16);
 
-    html:not(.sbb-lean) .sbb-panel > & {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding-top: pxToRem(16 * $scalingFactor4k);
       }
@@ -1726,14 +1726,14 @@ $menuItemPaddingTopBottom: 4;
 
     .sbb-panel-padded > & {
       padding-top: pxToRem(6);
-    }
 
-    html:not(.sbb-lean) .sbb-panel > & {
-      @include mq($from: desktop4k) {
-        padding-top: pxToRem(6 * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        padding-top: pxToRem(6 * $scalingFactor5k);
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          padding-top: pxToRem(6 * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          padding-top: pxToRem(6 * $scalingFactor5k);
+        }
       }
     }
   }
