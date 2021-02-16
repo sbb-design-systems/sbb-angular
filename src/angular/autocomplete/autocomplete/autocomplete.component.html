@@ -1,10 +1,12 @@
-<ng-template>
+<ng-template let-formFieldId="id">
   <div
-    #panel
-    [id]="id"
-    [ngClass]="_classList"
     class="sbb-panel sbb-panel-padded sbb-autocomplete-panel sbb-scrollbar"
     role="listbox"
+    [id]="id"
+    [attr.aria-label]="ariaLabel || null"
+    [attr.aria-labelledby]="_getPanelAriaLabelledby(formFieldId)"
+    [ngClass]="_classList"
+    #panel
   >
     <ng-content></ng-content>
   </div>

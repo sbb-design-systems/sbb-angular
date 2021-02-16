@@ -15,7 +15,7 @@ _my-comp.html_
 
 ```html
 <sbb-form-field label="MyLabel">
-  <input type="text" [formControl]="myControl" />
+  <input sbbInput type="text" [formControl]="myControl" />
 </sbb-form-field>
 ```
 
@@ -100,7 +100,12 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 ```html
 <div class="custom-wrapper-example" sbbAutocompleteOrigin #origin="sbbAutocompleteOrigin">
-  <input [formControl]="myControl" [sbbAutocomplete]="auto" [sbbAutocompleteConnectedTo]="origin" />
+  <input
+    sbbInput
+    [formControl]="myControl"
+    [sbbAutocomplete]="auto"
+    [sbbAutocompleteConnectedTo]="origin"
+  />
 </div>
 
 <sbb-autocomplete #auto="sbbAutocomplete">
@@ -110,9 +115,10 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 ### Keyboard interaction
 
-- <kbd>DOWN_ARROW</kbd>: Next option becomes active.
-- <kbd>UP_ARROW</kbd>: Previous option becomes active.
-- <kbd>ENTER</kbd>: Select currently active item.
+- <kbd>DOWN_ARROW</kbd>: Next option becomes active
+- <kbd>UP_ARROW</kbd>: Previous option becomes active
+- <kbd>ENTER</kbd>: Selects currently active item
+- <kbd>ESCAPE</kbd>: Closes the autocomplete panel
 
 ### Option groups
 
