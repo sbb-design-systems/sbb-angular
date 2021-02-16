@@ -17,7 +17,7 @@ Steps to reproduce the behavior:
 3. Scroll down to '....'
 4. See error
 
-If possible, provide a reproduction with https://stackblitz.com/fork/angular-sbb.
+Provide a reproduction with StackBlitz (e.g. use the StackBlitz buttons on the examples).
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
