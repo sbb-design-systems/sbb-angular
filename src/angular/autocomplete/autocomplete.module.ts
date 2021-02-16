@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbOptionModule } from '@sbb-esta/angular/core';
 
-import { SbbAutocompleteHint } from './autocomplete-hint/autocomplete-hint.component';
-import { SbbAutocompleteOrigin } from './autocomplete/autocomplete-origin.directive';
+import { SbbAutocompleteHint } from './autocomplete-hint/autocomplete-hint';
+import { SbbAutocomplete } from './autocomplete/autocomplete';
+import { SbbAutocompleteOrigin } from './autocomplete/autocomplete-origin';
 import {
   SbbAutocompleteTrigger,
   SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER,
-} from './autocomplete/autocomplete-trigger.directive';
-import { SbbAutocomplete } from './autocomplete/autocomplete.component';
+} from './autocomplete/autocomplete-trigger';
 
 @NgModule({
   imports: [SbbOptionModule, CommonModule, A11yModule, OverlayModule],

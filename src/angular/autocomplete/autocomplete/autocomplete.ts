@@ -85,8 +85,8 @@ export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefau
 @Component({
   selector: 'sbb-autocomplete',
   exportAs: 'sbbAutocomplete',
-  templateUrl: 'autocomplete.component.html',
-  styleUrls: ['autocomplete.component.css'],
+  templateUrl: 'autocomplete.html',
+  styleUrls: ['autocomplete.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

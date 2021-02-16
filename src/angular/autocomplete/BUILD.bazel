@@ -15,9 +15,10 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":autocomplete/autocomplete.component.css"] + glob(["**/*.html"]),
+    assets = [":autocomplete/autocomplete.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/autocomplete",
     deps = [
+        "//src:dev_mode_types",
         "//src/angular/core",
         "//src/angular/form-field",
         "@npm//@angular/cdk",
@@ -29,8 +30,8 @@ ng_module(
 )
 
 sass_binary(
-    name = "autocomplete_autocomplete_component_scss",
-    src = "autocomplete/autocomplete.component.scss",
+    name = "autocomplete_autocomplete_scss",
+    src = "autocomplete/autocomplete.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],

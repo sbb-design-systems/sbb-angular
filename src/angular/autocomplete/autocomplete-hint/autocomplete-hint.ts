@@ -8,7 +8,7 @@ let nextId = 0;
 
 @Component({
   selector: 'sbb-autocomplete-hint',
-  templateUrl: './autocomplete-hint.component.html',
+  templateUrl: './autocomplete-hint.html',
   host: {
     class: 'sbb-autocomplete-hint sbb-label',
     '[attr.id]': 'id',
