@@ -42,17 +42,17 @@ import { map, startWith } from 'rxjs/operators';
 
 import { SbbAutocompleteModule } from '../autocomplete.module';
 
-import { SbbAutocompleteOrigin } from './autocomplete-origin.directive';
-import {
-  getSbbAutocompleteMissingPanelError,
-  SbbAutocompleteTrigger,
-  SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
-} from './autocomplete-trigger.directive';
 import {
   SbbAutocomplete,
   SbbAutocompleteSelectedEvent,
   SBB_AUTOCOMPLETE_DEFAULT_OPTIONS,
-} from './autocomplete.component';
+} from './autocomplete';
+import { SbbAutocompleteOrigin } from './autocomplete-origin';
+import {
+  getSbbAutocompleteMissingPanelError,
+  SbbAutocompleteTrigger,
+  SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
+} from './autocomplete-trigger';
 
 const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
   <sbb-form-field [style.width.px]="width">
