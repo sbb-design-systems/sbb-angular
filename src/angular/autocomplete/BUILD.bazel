@@ -15,7 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":autocomplete/autocomplete.css"] + glob(["**/*.html"]),
+    assets = [":autocomplete.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/autocomplete",
     deps = [
         "//src:dev_mode_types",
@@ -30,8 +30,8 @@ ng_module(
 )
 
 sass_binary(
-    name = "autocomplete_autocomplete_scss",
-    src = "autocomplete/autocomplete.scss",
+    name = "autocomplete_scss",
+    src = "autocomplete.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],

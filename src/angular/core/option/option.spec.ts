@@ -1,6 +1,6 @@
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   createKeyboardEvent,
@@ -9,6 +9,7 @@ import {
 } from '@sbb-esta/angular/core/testing';
 
 import { SbbOption } from './option';
+import { SBB_OPTION_PARENT_COMPONENT } from './option-parent';
 import { SbbOptionModule } from './option.module';
 
 @Component({
@@ -18,6 +19,15 @@ class BasicOption {
   disabled: boolean;
   id: string;
 }
+
+@Component({
+  template: `
+    <sbb-optgroup label="Group">
+      <sbb-option>Option</sbb-option>
+    </sbb-optgroup>
+  `,
+})
+class InsideGroup {}
 
 describe('SbbOption component', () => {
   beforeEach(
@@ -154,5 +164,40 @@ describe('SbbOption component', () => {
 
     expect(spy).not.toHaveBeenCalled();
     subscription.unsubscribe();
+  });
+
+  describe('inside inert group', () => {
+    let fixture: ComponentFixture<InsideGroup>;
+
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.resetTestingModule();
+        TestBed.configureTestingModule({
+          imports: [SbbOptionModule],
+          declarations: [InsideGroup],
+          providers: [
+            {
+              provide: SBB_OPTION_PARENT_COMPONENT,
+              useValue: { inertGroups: true },
+            },
+          ],
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(InsideGroup);
+        fixture.detectChanges();
+      })
+    );
+
+    it('should remove all accessibility-related attributes from the group', () => {
+      const group: HTMLElement = fixture.nativeElement.querySelector('sbb-optgroup');
+      expect(group.hasAttribute('role')).toBe(false);
+      expect(group.hasAttribute('aria-disabled')).toBe(false);
+      expect(group.hasAttribute('aria-labelledby')).toBe(false);
+    });
+
+    it('should mirror the group label inside the option', () => {
+      const option: HTMLElement = fixture.nativeElement.querySelector('sbb-option');
+      expect(option.textContent?.trim()).toBe('Option(Group)');
+    });
   });
 });

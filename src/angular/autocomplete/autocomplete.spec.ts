@@ -40,8 +40,6 @@ import { SbbFormField, SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { SbbAutocompleteModule } from '../autocomplete.module';
-
 import {
   SbbAutocomplete,
   SbbAutocompleteSelectedEvent,
@@ -53,6 +51,7 @@ import {
   SbbAutocompleteTrigger,
   SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
 } from './autocomplete-trigger';
+import { SbbAutocompleteModule } from './autocomplete.module';
 
 const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
   <sbb-form-field [style.width.px]="width">
@@ -1435,6 +1434,14 @@ describe('SbbAutocomplete', () => {
       expect(optionEls[0].classList).toContain('sbb-active');
     });
 
+    it('should set the active item properly after filtering', fakeAsync(() => {
+      const componentInstance = fixture.componentInstance;
+
+      componentInstance.trigger._handleKeydown(downArrowEvent);
+      tick();
+      fixture.detectChanges();
+    }));
+
     it('should set the active item properly after filtering', () => {
       const componentInstance = fixture.componentInstance;
 
@@ -2302,6 +2309,7 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
 
       panel = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
+
       expect(panel.getBoundingClientRect().height).toBeGreaterThan(initialPanelHeight);
     }));
 
@@ -2654,6 +2662,44 @@ describe('SbbAutocomplete', () => {
       expect(spy).toHaveBeenCalledWith(jasmine.any(SbbOptionSelectionChange));
       // tslint:disable-next-line:no-non-null-assertion
       subscription!.unsubscribe();
+    }));
+
+    it('should reposition the panel when the amount of options changes', fakeAsync(() => {
+      const formField = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
+      const input = formField.querySelector('input');
+
+      formField.style.bottom = '100px';
+      formField.style.position = 'fixed';
+
+      typeInElement(input, 'Cali');
+      fixture.detectChanges();
+      tick();
+      zone.simulateZoneExit();
+      fixture.detectChanges();
+
+      const inputBottom = input.getBoundingClientRect().bottom;
+      const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
+      const panelTop = panel.getBoundingClientRect().top;
+
+      // add 2px border to panel top
+      expect(Math.floor(inputBottom)).toBe(
+        Math.floor(panelTop + 2),
+        `Expected panel top to match input bottom when there is only one option.`
+      );
+
+      clearElement(input);
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      const inputTop = input.getBoundingClientRect().top;
+      const panelBottom = panel.getBoundingClientRect().bottom;
+
+      // subtract 1px horizontal line from panel bottom
+      expect(Math.floor(inputTop)).toBe(
+        Math.floor(panelBottom - 1),
+        `Expected panel switch to the above position if the options no longer fit.`
+      );
     }));
   });
 

@@ -153,7 +153,7 @@ export class SbbOption implements AfterViewChecked, OnDestroy, FocusableOption, 
   /** Sets focus onto this option. */
   focus(_origin?: FocusOrigin, options?: FocusOptions): void {
     // Note that we aren't using `_origin`, but we need to keep it because some internal consumers
-    // use `MatOption` in a `FocusKeyManager` and we need it to match `FocusableOption`.
+    // use `SbbOption` in a `FocusKeyManager` and we need it to match `FocusableOption`.
     const element = this._getHostElement();
 
     if (typeof element.focus === 'function') {
