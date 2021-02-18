@@ -59,6 +59,7 @@ $notificationMessageMarginRight: 24;
   .sbb-notification-icon-wrapper {
     flex-shrink: 0;
     flex-grow: 0;
+    align-self: flex-start;
 
     width: pxToEm(36);
     height: pxToEm(36);
