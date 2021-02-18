@@ -4,7 +4,7 @@ import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular
 import { By } from '@angular/platform-browser';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
 
-import { SbbRadioButton, SbbRadioChange, SbbRadioGroup } from './radio-button.component';
+import { SbbRadioButton, SbbRadioChange, SbbRadioGroup } from './radio-button';
 import { SbbRadioButtonModule } from './radio-button.module';
 
 @Component({

@@ -54,8 +54,8 @@ export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
 
 @Component({
   selector: 'sbb-textarea',
-  templateUrl: './textarea.component.html',
-  styleUrls: ['./textarea.component.css'],
+  templateUrl: './textarea.html',
+  styleUrls: ['./textarea.css'],
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbTextarea }],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

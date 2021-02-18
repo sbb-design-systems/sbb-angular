@@ -79,7 +79,7 @@ const _SbbCheckboxMixinBase: HasTabIndexCtor &
  */
 @Component({
   selector: 'sbb-checkbox',
-  templateUrl: './checkbox.component.html',
+  templateUrl: './checkbox.html',
   exportAs: 'sbbCheckbox',
   host: {
     class: 'sbb-checkbox sbb-selection-item',

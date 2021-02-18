@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { SbbRadioButton, SbbRadioGroup } from './radio-button.component';
+import { SbbRadioButton, SbbRadioGroup } from './radio-button';
 
 @NgModule({
   exports: [SbbRadioButton, SbbRadioGroup],

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { SbbLoading } from './loading.component';
+import { SbbLoading } from './loading';
 
 describe('SbbLoading', () => {
   let component: SbbLoading;

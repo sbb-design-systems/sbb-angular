@@ -1,2 +1,2 @@
 export * from './loading.module';
-export * from './loading/loading.component';
+export * from './loading/loading';
