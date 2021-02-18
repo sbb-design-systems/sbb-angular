@@ -40,8 +40,6 @@ import { SbbFormField, SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { SbbAutocompleteModule } from '../autocomplete.module';
-
 import {
   SbbAutocomplete,
   SbbAutocompleteSelectedEvent,
@@ -53,6 +51,7 @@ import {
   SbbAutocompleteTrigger,
   SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
 } from './autocomplete-trigger';
+import { SbbAutocompleteModule } from './autocomplete.module';
 
 const SIMPLE_AUTOCOMPLETE_TEMPLATE = `
   <sbb-form-field [style.width.px]="width">
