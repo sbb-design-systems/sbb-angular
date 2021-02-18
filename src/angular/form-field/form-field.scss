@@ -203,7 +203,7 @@
   & > * {
     margin-bottom: pxToRem(8);
 
-    html:not(.sbb-lean) {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         margin-bottom: pxToRem(12);
       }
