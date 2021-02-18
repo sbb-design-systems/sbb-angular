@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SbbOptgroup } from './option-group/option-group.component';
-import { SbbOption } from './option/option.component';
-import { SbbPseudoCheckbox } from './option/pseudo-checkbox';
+import { SbbOptgroup } from './optgroup';
+import { SbbOption } from './option';
+import { SbbPseudoCheckbox } from './pseudo-checkbox';
 
 @NgModule({
   imports: [CommonModule],

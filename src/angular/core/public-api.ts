@@ -17,9 +17,10 @@ export * from './error/error-options';
 export * from './icon-directive/icon-directive.module';
 export * from './icon-directive/icon.directive';
 export * from './option/option.module';
-export * from './option/option/option.component';
-export * from './option/option-group/option-group.component';
-export * from './option/option/pseudo-checkbox';
+export * from './option/option';
+export * from './option/option-parent';
+export * from './option/optgroup';
+export * from './option/pseudo-checkbox';
 
 /** @deprecated Remove with v13 */
-export { SbbOptgroup as SbbOptionGroup } from './option/option-group/option-group.component';
+export { SbbOptgroup as SbbOptionGroup } from './option/optgroup';

@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { CanDisable, CanDisableCtor, mixinDisabled } from '../../common-behaviors/disabled';
+import { CanDisable, CanDisableCtor, mixinDisabled } from '../common-behaviors/disabled';
 
 // Boilerplate for applying mixins to SbbOptgroup.
 /** @docs-private */
@@ -30,16 +30,16 @@ export const SBB_OPTGROUP = new InjectionToken<SbbOptgroup>('SbbOptgroup');
 @Component({
   selector: 'sbb-optgroup',
   exportAs: 'sbbOptgroup',
-  templateUrl: './option-group.component.html',
+  templateUrl: './optgroup.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled'],
   host: {
     class: 'sbb-optgroup sbb-menu-group',
     role: 'group',
-    '[class.sbb-optgroup-disabled]': 'disabled',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[attr.aria-labelledby]': '_labelId',
+    '[class.sbb-disabled]': 'disabled',
   },
   providers: [{ provide: SBB_OPTGROUP, useExisting: SbbOptgroup }],
 })
