@@ -1,5 +1,6 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty, coerceStringArray } from '@angular/cdk/coercion';
+import { Platform } from '@angular/cdk/platform';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -123,6 +124,7 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
   // The @ViewChild query for TemplateRef here needs to be static because some code paths
   // lead to the overlay being created before change detection has finished for this component.
   // Notably, another component may trigger `focus` on the autocomplete-trigger.
+
   /** @docs-private */
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
@@ -211,12 +213,25 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
   id: string = `sbb-autocomplete-${nextId++}`;
 
+  /**
+   * Tells any descendant `mat-optgroup` to use the inert a11y pattern.
+   * @docs-private
+   */
+  readonly inertGroups: boolean;
+
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private _elementRef: ElementRef<HTMLElement>,
-    @Inject(SBB_AUTOCOMPLETE_DEFAULT_OPTIONS) defaults: SbbAutocompleteDefaultOptions
+    @Inject(SBB_AUTOCOMPLETE_DEFAULT_OPTIONS) defaults: SbbAutocompleteDefaultOptions,
+    platform?: Platform
   ) {
     super();
+
+    // TODO(crisbeto): the problem that the `inertGroups` option resolves is only present on
+    // Safari using VoiceOver. We should occasionally check back to see whether the bug
+    // wasn't resolved in VoiceOver, and if it has, we can remove this and the `inertGroups`
+    // option altogether.
+    this.inertGroups = platform?.SAFARI || false;
     this._autoActiveFirstOption = !!defaults.autoActiveFirstOption;
   }
 
