@@ -22,7 +22,7 @@ import {
 import { Subject } from 'rxjs';
 
 import { TypeRef } from '../../common-behaviors/type-ref';
-import { SbbOptgroup, SBB_OPTGROUP } from '../option-group/option-group.component';
+import { SbbOptgroup, SBB_OPTGROUP } from '../optgroup/optgroup';
 
 /**
  * Option IDs need to be unique across components, so this counter exists outside of
@@ -56,8 +56,8 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentCom
 
 @Component({
   selector: 'sbb-option',
-  styleUrls: ['option.component.css'],
-  templateUrl: 'option.component.html',
+  styleUrls: ['option.css'],
+  templateUrl: 'option.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

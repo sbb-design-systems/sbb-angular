@@ -30,7 +30,7 @@ export const SBB_OPTGROUP = new InjectionToken<SbbOptgroup>('SbbOptgroup');
 @Component({
   selector: 'sbb-optgroup',
   exportAs: 'sbbOptgroup',
-  templateUrl: './option-group.component.html',
+  templateUrl: './optgroup.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled'],
