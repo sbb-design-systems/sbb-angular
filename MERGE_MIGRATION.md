@@ -11,7 +11,9 @@ See also our [migration issue](https://github.com/sbb-design-systems/sbb-angular
 
 Don't forget to run `yarn generate:bazel` after each step.
 
-1. Copy module from `src/angular-business` or `src/angular-public` to `src/angular`. If both a business and a public variant exist, use the more tolerant variant.
+1. Copy module from `src/angular-business` or `src/angular-public` to `src/angular`.
+   If both a business and a public variant exist, use the more tolerant variant.
+   Rename files with `*.component.*` pattern to `*.*` and update references (e.g. `autocomplete.component.ts` should become `autocomplete.ts`).
 2. Remove deprecated code in the copied module.
 3. Where a template or visual difference is necessary, extend the component/directive class with the variant mixin (`mixinVariant`). See [Variant Mixin](#mixinVariant).
 4. Refactor scss code according to [CODING_STANDARDS](./CODING_STANDARDS.md). Also see [SCSS Rules](#scssRules).

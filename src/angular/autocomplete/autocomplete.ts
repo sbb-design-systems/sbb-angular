@@ -214,7 +214,7 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
   id: string = `sbb-autocomplete-${nextId++}`;
 
   /**
-   * Tells any descendant `mat-optgroup` to use the inert a11y pattern.
+   * Tells any descendant `sbb-optgroup` to use the inert a11y pattern.
    * @docs-private
    */
   readonly inertGroups: boolean;
