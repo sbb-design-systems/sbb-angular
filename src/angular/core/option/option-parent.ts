@@ -6,9 +6,7 @@ import { InjectionToken } from '@angular/core';
  * @docs-private
  */
 export interface SbbOptionParentComponent {
-  disableRipple?: boolean;
   multiple?: boolean;
-  inertGroups?: boolean;
 }
 
 /**
