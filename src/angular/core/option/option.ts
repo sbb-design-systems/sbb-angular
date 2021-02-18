@@ -1,4 +1,4 @@
-import { FocusOrigin, Highlightable } from '@angular/cdk/a11y';
+import { FocusableOption, FocusOrigin, Highlightable } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { DOCUMENT } from '@angular/common';
@@ -11,7 +11,6 @@ import {
   EventEmitter,
   HostListener,
   Inject,
-  InjectionToken,
   Input,
   OnDestroy,
   Optional,
@@ -24,6 +23,7 @@ import { Subject } from 'rxjs';
 import { TypeRef } from '../common-behaviors/type-ref';
 
 import { SbbOptgroup, SBB_OPTGROUP } from './optgroup';
+import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-parent';
 
 /**
  * Option IDs need to be unique across components, so this counter exists outside of
@@ -41,22 +41,9 @@ export class SbbOptionSelectionChange {
   ) {}
 }
 
-/**
- * Describes a parent component that manages a list of options.
- * Contains properties that the options can inherit.
- * @docs-private
- */
-export interface SbbOptionParentComponent {
-  multiple?: boolean;
-}
-
-/** Injection token used to provide the parent component to options. */
-export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentComponent>(
-  'SBB_OPTION_PARENT_COMPONENT'
-);
-
 @Component({
   selector: 'sbb-option',
+  exportAs: 'sbbOption',
   styleUrls: ['option.css'],
   templateUrl: 'option.html',
   encapsulation: ViewEncapsulation.None,
@@ -74,20 +61,47 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentCom
     '[class.sbb-disabled]': 'disabled',
   },
 })
-export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
-  // tslint:disable: member-ordering
-  static ngAcceptInputType_disabled: BooleanInput;
+export class SbbOption implements AfterViewChecked, OnDestroy, FocusableOption, Highlightable {
+  private _selected = false;
   private _active = false;
+  private _disabled = false;
   private _mostRecentViewValue = '';
   private _originalInnerHtml?: string;
   private _highlightValue?: string;
+  private _highlighted = false;
+
+  /** Whether the wrapping component is in multiple selection mode. */
+  get multiple() {
+    return this._parent && this._parent.multiple;
+  }
+
+  /** Whether or not the option is currently selected. */
+  get selected(): boolean {
+    return this._selected;
+  }
 
   /** The form value of the option. */
   @Input() value: any;
 
   /** The unique ID of the option. */
   @Input() id: string = `sbb-option-${uniqueIdCounter++}`;
-  private _highlighted = false;
+
+  /** Whether the option is disabled. */
+  @Input()
+  get disabled() {
+    return (this.group && this.group.disabled) || this._disabled;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+    this._changeDetectorRef.markForCheck();
+  }
+
+  /** Event emitted when the option is selected or deselected. */
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange>();
+
+  /** Emits when the state of the option changes and any parents have to be notified. */
+  readonly _stateChanges = new Subject<void>();
 
   constructor(
     private _element: ElementRef<HTMLElement>,
@@ -98,15 +112,6 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
     private _parent: SbbOptionParentComponent,
     @Optional() @Inject(SBB_OPTGROUP) readonly group: SbbOptgroup
   ) {}
-
-  private _selected = false;
-
-  /** Event emitted when the option is selected or deselected. */
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange>();
-
-  /** Emits when the state of the option changes and any parents have to be notified. */
-  readonly _stateChanges = new Subject<void>();
 
   /**
    * Whether or not the option is currently active and ready to be selected.
@@ -123,25 +128,8 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
    * select's trigger.
    */
   get viewValue(): string {
+    // TODO(kara): Add input property alternative for node envs.
     return (this._getHostElement().textContent || '').trim();
-  }
-
-  /** Whether or not the option is currently selected. */
-  get selected(): boolean {
-    return this._selected;
-  }
-
-  /** Whether the wrapping component is in multiple selection mode. */
-  get multiple() {
-    return this._parent && this._parent.multiple;
-  }
-
-  private _disabled = false;
-
-  /** Whether the option is disabled. */
-  @Input()
-  get disabled() {
-    return (this.group && this.group.disabled) || this._disabled;
   }
 
   /** Selects the option. */
@@ -266,11 +254,6 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
     this._stateChanges.complete();
   }
 
-  set disabled(value: any) {
-    this._disabled = coerceBooleanProperty(value);
-    this._changeDetectorRef.markForCheck();
-  }
-
   /**
    * Highlights a text part of the option by wrapping it with a strong element.
    * @docs-private
@@ -360,32 +343,8 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
   private _emitSelectionChangeEvent(isUserInput = false): void {
     this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
   }
-  // tslint:enable: member-ordering
-}
 
-/**
- * Determines the position to which to scroll a panel in order for an option to be into view.
- * @param optionOffset Offset of the option from the top of the panel.
- * @param optionHeight Height of the options.
- * @param currentScrollPosition Current scroll position of the panel.
- * @param panelHeight Height of the panel.
- * @docs-private
- */
-export function getOptionScrollPosition(
-  optionOffset: number,
-  optionHeight: number,
-  currentScrollPosition: number,
-  panelHeight: number
-): number {
-  if (optionOffset < currentScrollPosition) {
-    return optionOffset;
-  }
-
-  if (optionOffset + optionHeight > currentScrollPosition + panelHeight) {
-    return Math.max(0, optionOffset - panelHeight + optionHeight);
-  }
-
-  return currentScrollPosition;
+  static ngAcceptInputType_disabled: BooleanInput;
 }
 
 /**
@@ -415,4 +374,29 @@ export function countGroupLabelsBeforeOption(
   }
 
   return 0;
+}
+
+/**
+ * Determines the position to which to scroll a panel in order for an option to be into view.
+ * @param optionOffset Offset of the option from the top of the panel.
+ * @param optionHeight Height of the options.
+ * @param currentScrollPosition Current scroll position of the panel.
+ * @param panelHeight Height of the panel.
+ * @docs-private
+ */
+export function getOptionScrollPosition(
+  optionOffset: number,
+  optionHeight: number,
+  currentScrollPosition: number,
+  panelHeight: number
+): number {
+  if (optionOffset < currentScrollPosition) {
+    return optionOffset;
+  }
+
+  if (optionOffset + optionHeight > currentScrollPosition + panelHeight) {
+    return Math.max(0, optionOffset - panelHeight + optionHeight);
+  }
+
+  return currentScrollPosition;
 }

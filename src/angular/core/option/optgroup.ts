@@ -37,9 +37,9 @@ export const SBB_OPTGROUP = new InjectionToken<SbbOptgroup>('SbbOptgroup');
   host: {
     class: 'sbb-optgroup sbb-menu-group',
     role: 'group',
-    '[class.sbb-optgroup-disabled]': 'disabled',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[attr.aria-labelledby]': '_labelId',
+    '[class.sbb-disabled]': 'disabled',
   },
   providers: [{ provide: SBB_OPTGROUP, useExisting: SbbOptgroup }],
 })

@@ -18,6 +18,7 @@ export * from './icon-directive/icon-directive.module';
 export * from './icon-directive/icon.directive';
 export * from './option/option.module';
 export * from './option/option';
+export * from './option/option-parent';
 export * from './option/optgroup';
 export * from './option/pseudo-checkbox';
 

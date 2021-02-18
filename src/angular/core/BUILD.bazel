@@ -38,6 +38,9 @@ ng_test_library(
     ),
     deps = [
         ":core",
+        "//src/angular/core/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/platform-browser",
     ],
 )
 
