@@ -58,7 +58,7 @@ import { map } from 'rxjs/operators';
 
 import { SbbSelectModule } from '../select.module';
 
-import { SbbSelect } from './select.component';
+import { SbbSelect } from './select';
 
 @Component({
   selector: 'sbb-basic-select',

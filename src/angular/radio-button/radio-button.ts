@@ -573,7 +573,7 @@ export class _SbbRadioButtonBase
 
 @Component({
   selector: 'sbb-radio-button',
-  templateUrl: './radio-button.component.html',
+  templateUrl: './radio-button.html',
   inputs: ['tabIndex'],
   encapsulation: ViewEncapsulation.None,
   exportAs: 'sbbRadioButton',

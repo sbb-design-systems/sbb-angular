@@ -15,7 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":select/select.component.css"] + glob(["**/*.html"]),
+    assets = [":select/select.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/select",
     deps = [
         "//src/angular/core",
@@ -31,8 +31,8 @@ ng_module(
 )
 
 sass_binary(
-    name = "select_select_component_scss",
-    src = "select/select.component.scss",
+    name = "select_select_scss",
+    src = "select/select.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],

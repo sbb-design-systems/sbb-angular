@@ -12,7 +12,7 @@ import { SbbError, SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 
 import { SbbTextareaModule } from '../textarea.module';
 
-import { SbbTextarea } from './textarea.component';
+import { SbbTextarea } from './textarea';
 
 @Component({
   selector: 'sbb-textarea-test',
