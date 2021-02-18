@@ -1,6 +1,6 @@
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
-import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   createKeyboardEvent,
@@ -154,21 +154,5 @@ describe('SbbOption component', () => {
 
     expect(spy).not.toHaveBeenCalled();
     subscription.unsubscribe();
-  });
-
-  describe('ripples', () => {
-    let fixture: ComponentFixture<BasicOption>;
-    let optionDebugElement: DebugElement;
-    let optionNativeElement: HTMLElement;
-    let optionInstance: SbbOption;
-
-    beforeEach(() => {
-      fixture = TestBed.createComponent(BasicOption);
-      fixture.detectChanges();
-
-      optionDebugElement = fixture.debugElement.query(By.directive(SbbOption))!;
-      optionNativeElement = optionDebugElement.nativeElement;
-      optionInstance = optionDebugElement.componentInstance;
-    });
   });
 });
