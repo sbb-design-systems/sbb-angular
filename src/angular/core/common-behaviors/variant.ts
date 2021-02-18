@@ -7,6 +7,7 @@ export const ɵtriggerVariantCheck = new Subject<void>();
 
 /** @docs-private */
 export interface HasVariant {
+  /** Observable holding current variant (`lean` or `standard`) which emits by change */
   readonly variant: Observable<SbbVariant>;
 }
 

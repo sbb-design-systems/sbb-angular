@@ -1,5 +1,6 @@
 entryPoints = [
     # do not sort
+    "autocomplete",
     "captcha",
     "checkbox",
     "core",
@@ -36,6 +37,7 @@ ANGULAR_TARGETS = ["//src/angular"] + \
 ANGULAR_TESTING_TARGETS = ["//src/angular/%s" % ep for ep in ANGULAR_TESTING_ENTRYPOINTS]
 
 ANGULAR_MARKDOWN_TARGETS = [
+    "autocomplete",
     "captcha",
     "checkbox",
     "form-field",

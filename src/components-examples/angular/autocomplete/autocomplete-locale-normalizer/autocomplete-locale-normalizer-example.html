@@ -1,0 +1,13 @@
+<sbb-form-field label="Words in different languages">
+  <input
+    (ngModelChange)="valueChanged($event)"
+    [(ngModel)]="value"
+    [sbbAutocomplete]="auto"
+    sbbInput
+    type="text"
+  />
+</sbb-form-field>
+<sbb-autocomplete #auto="sbbAutocomplete" [localeNormalizer]="normalizer">
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option"> {{ option }} </sbb-option>
+</sbb-autocomplete>
+<pre>{{ value | json }}</pre>

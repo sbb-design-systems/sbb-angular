@@ -1470,6 +1470,26 @@ $panelBorderRadius: 2;
     border-top: solid pxToRem(1) $sbbColorCloud;
   }
 
+  .sbb-label {
+    color: $sbbColorMetal;
+    padding: pxToRem(5) pxToRem(14);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        padding: pxToRem(5 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        padding: pxToRem(5 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      color: $sbbColorGranite; // Redefine color to be more specific than standard variant
+      padding: pxToRem(4) pxToRem(8);
+    }
+  }
+
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       border-width: pxToRem($panelBorderWidthStandard * $scalingFactor4k);
@@ -1739,24 +1759,20 @@ $menuItemPaddingTopBottom: 4;
   }
 
   .sbb-label {
-    color: $sbbColorMetal;
-    padding: pxToRem(22) pxToRem(14) pxToRem(5) pxToRem(14);
+    padding-top: pxToRem(22);
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        padding: pxToRem(22 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k)
-          pxToRem(5 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k);
+        padding-top: pxToRem(22 * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        padding: pxToRem(22 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k)
-          pxToRem(5 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k);
+        padding-top: pxToRem(22 * $scalingFactor5k);
       }
     }
 
     html.sbb-lean & {
-      color: $sbbColorGranite;
-      padding: pxToRem(12) pxToRem(8) pxToRem(4) pxToRem(8);
+      padding-top: pxToRem(12);
     }
   }
 
@@ -1764,15 +1780,58 @@ $menuItemPaddingTopBottom: 4;
   .sbb-menu-item + &,
   & + .sbb-menu-item {
     border-top: pxToRem(1) solid $sbbColorCloud;
+    margin-top: pxToRem(8);
+
+    .sbb-label {
+      padding-top: pxToRem(16);
+
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          padding-top: pxToRem(16 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          padding-top: pxToRem(16 * $scalingFactor5k);
+        }
+      }
+
+      html.sbb-lean & {
+        padding-top: pxToRem(8);
+      }
+    }
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         border-top-width: pxToRem(1 * $scalingFactor4k);
+        margin-top: pxToRem(8 * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
         border-top-width: pxToRem(1 * $scalingFactor5k);
+        margin-top: pxToRem(8 * $scalingFactor5k);
       }
+    }
+
+    html.sbb-lean & {
+      margin-top: pxToRem(4);
+    }
+  }
+
+  & + .sbb-menu-item {
+    padding-top: pxToRem(14);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem(14 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem(14 * $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      padding-top: pxToRem(8);
     }
   }
 }

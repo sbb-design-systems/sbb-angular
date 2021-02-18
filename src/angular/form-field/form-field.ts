@@ -89,7 +89,7 @@ export class SbbFormField
   @ContentChildren(SBB_ERROR, { descendants: true }) _errorChildren: QueryList<SbbError>;
 
   constructor(
-    private _elementRef: ElementRef<HTMLElement>,
+    public _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef
   ) {
     super();

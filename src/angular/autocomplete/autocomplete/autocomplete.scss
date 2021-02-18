@@ -1,0 +1,23 @@
+@import '../../../angular/styles/common';
+
+.sbb-autocomplete-visible {
+  visibility: visible;
+}
+
+.sbb-autocomplete-hidden {
+  visibility: hidden;
+}
+
+.sbb-autocomplete-panel {
+  html:not(.sbb-lean) & .sbb-menu-group .sbb-menu-item {
+    padding-left: pxToRem(14);
+
+    @include mq($from: desktop4k) {
+      padding-left: pxToRem(14 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      padding-left: pxToRem(14 * $scalingFactor5k);
+    }
+  }
+}

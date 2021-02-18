@@ -1,0 +1,79 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "autocomplete",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":autocomplete/autocomplete.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular/autocomplete",
+    deps = [
+        "//src:dev_mode_types",
+        "//src/angular/core",
+        "//src/angular/form-field",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "autocomplete_autocomplete_scss",
+    src = "autocomplete/autocomplete.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":autocomplete",
+        "//src/angular/core",
+        "//src/angular/core/testing",
+        "//src/angular/form-field",
+        "@npm//@angular/cdk",
+        "@npm//@angular/forms",
+        "@npm//@angular/platform-browser",
+        "@npm//rxjs",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    static_css = [
+        "//src/angular:typography",
+    ],
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":autocomplete.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
+
+filegroup(
+    name = "html-source-files",
+    srcs = glob(["**/*.html"]),
+)
