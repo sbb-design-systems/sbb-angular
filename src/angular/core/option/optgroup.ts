@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { CanDisable, CanDisableCtor, mixinDisabled } from '../../common-behaviors/disabled';
+import { CanDisable, CanDisableCtor, mixinDisabled } from '../common-behaviors/disabled';
 
 // Boilerplate for applying mixins to SbbOptgroup.
 /** @docs-private */

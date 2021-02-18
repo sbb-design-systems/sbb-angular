@@ -21,8 +21,9 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { TypeRef } from '../../common-behaviors/type-ref';
-import { SbbOptgroup, SBB_OPTGROUP } from '../optgroup/optgroup';
+import { TypeRef } from '../common-behaviors/type-ref';
+
+import { SbbOptgroup, SBB_OPTGROUP } from './optgroup';
 
 /**
  * Option IDs need to be unique across components, so this counter exists outside of
