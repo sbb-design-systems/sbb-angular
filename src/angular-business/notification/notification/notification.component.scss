@@ -100,6 +100,10 @@ $notificationVerticalMargin: 12;
     border: none;
     background: none;
     padding: 0;
+    align-self: flex-start;
+    margin-top: toPx(
+      0.5
+    ); // fix offset because notification container size is odd and 'align-self: flex-start' would cause to place icon a little bit to high.
 
     * {
       max-width: 100%;
