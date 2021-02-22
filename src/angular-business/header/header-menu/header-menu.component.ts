@@ -2,17 +2,16 @@ import { AnimationEvent } from '@angular/animations';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
 import { DOWN_ARROW, END, ESCAPE, hasModifierKey, HOME, UP_ARROW } from '@angular/cdk/keycodes';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { CdkPortal, CdkPortalOutlet } from '@angular/cdk/portal';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   ElementRef,
   EventEmitter,
   HostListener,
+  Inject,
   Input,
   OnDestroy,
   Output,
@@ -23,8 +22,9 @@ import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith, takeUntil } from 'rxjs/operators';
 
-import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
 import { SbbHeaderMenuItem } from '../header-menu-item/header-menu-item.directive';
+import { SBB_HEADER } from '../header/header-token';
+import type { SbbHeader } from '../header/header.component';
 
 let nextId = 0;
 
@@ -45,6 +45,7 @@ let nextId = 0;
     class: 'sbb-header-menu',
     '[id]': 'this.id',
     '[@open]': 'this._animationState',
+    '[class.sbb-header-menus-collapsed]': 'this._header._menusCollapsed',
   },
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
@@ -73,7 +74,7 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
       this._open = value;
       if (!value) {
         this._animationState = 'closed';
-      } else if (this._breakpointObserver.isMatched(SBB_HEADER_BREAKPOINT)) {
+      } else if (!this._header._menusCollapsed) {
         this._animationState = 'open-panel';
       } else {
         this._animationState = 'open-menu';
@@ -127,8 +128,7 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private _breakpointObserver: BreakpointObserver,
-    private _changeDetectorRef: ChangeDetectorRef
+    @Inject(SBB_HEADER) public _header: SbbHeader
   ) {}
 
   ngAfterContentInit() {
@@ -223,7 +223,7 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
       default:
         if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
           manager.setFocusOrigin('keyboard');
-        } else if (this._breakpointObserver.isMatched(SBB_HEADER_BREAKPOINT)) {
+        } else if (!this._header._menusCollapsed) {
           manager.onKeydown(event);
         }
     }

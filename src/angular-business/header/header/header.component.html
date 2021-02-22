@@ -1,6 +1,8 @@
-<div class="sbb-header-ribbon" *ngIf="environment" [style.background]="environmentColor">
+<!-- TODO: Remove inlined sbb-header-environment with merge or v12 and add migration -->
+<sbb-header-environment *ngIf="environment" [style.background]="environmentColor">
   {{ environment }}
-</div>
+</sbb-header-environment>
+<ng-content select="sbb-header-environment"></ng-content>
 
 <button
   type="button"
@@ -19,7 +21,7 @@
   <span *ngIf="subtitle">{{ subtitle }}</span>
 </div>
 
-<nav>
+<nav class="sbb-header-main-menu">
   <ng-template cdkPortalOutlet #mainMenuOutlet="cdkPortalOutlet"></ng-template>
 </nav>
 

@@ -29,6 +29,8 @@ import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 
 import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
 import { SbbHeaderMenu } from '../header-menu/header-menu.component';
+import { SBB_HEADER } from '../header/header-token';
+import type { SbbHeader } from '../header/header.component';
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_HEADER_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -110,6 +112,9 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
     return this._menuOpen;
   }
 
+  /**
+   * @deprecated No longer used
+   */
   _isDesktop: Observable<boolean>;
 
   private _overlayRef: OverlayRef | null = null;
@@ -131,7 +136,8 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
     private _focusMonitor: FocusMonitor,
     private _breakpointObserver: BreakpointObserver,
     @Optional() private _router: Router,
-    @Inject(SBB_HEADER_MENU_SCROLL_STRATEGY) scrollStrategy: any
+    @Inject(SBB_HEADER_MENU_SCROLL_STRATEGY) scrollStrategy: any,
+    @Inject(SBB_HEADER) private _header: SbbHeader
   ) {
     _element.nativeElement.addEventListener(
       'touchstart',
@@ -180,7 +186,7 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
     }
 
     this._checkMenu();
-    if (!this._breakpointObserver.isMatched(SBB_HEADER_BREAKPOINT)) {
+    if (this._header._menusCollapsed) {
       this.menu._panelPortalOutlet.attachTemplatePortal(this.menu._panelPortal);
     } else {
       const overlayRef = this._createOverlay();
@@ -353,10 +359,7 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
   private _menuClosingActions() {
     const backdrop = this._overlayRef ? this._overlayRef.backdropClick() : NEVER;
     const detachments = this._overlayRef ? this._overlayRef.detachments() : NEVER;
-    const dimensionChange = this._breakpointObserver.observe(SBB_HEADER_BREAKPOINT).pipe(
-      map((m) => m.matches),
-      filter((m) => !m)
-    );
+    const dimensionChange = this._header._headerMenusCollapsed;
     const routeChange = this._router
       ? this._router.events.pipe(filter((e) => e instanceof NavigationStart))
       : NEVER;

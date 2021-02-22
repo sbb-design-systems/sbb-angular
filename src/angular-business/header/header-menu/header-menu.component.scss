@@ -3,7 +3,7 @@
 $sbbHeaderMenuSectionHeight: 54px;
 
 :host {
-  display: block;
+  display: none;
   position: fixed;
   top: 0;
   right: 0;
@@ -16,10 +16,10 @@ $sbbHeaderMenuSectionHeight: 54px;
     width: calc(100vw - #{$sbbHeaderMenuWidth});
     z-index: $sbbHeaderMenuTabletZIndex;
   }
+}
 
-  @include mq($from: desktop) {
-    display: none;
-  }
+:host(.sbb-header-menus-collapsed) {
+  display: block;
 }
 
 button.sbb-header-menu-back,

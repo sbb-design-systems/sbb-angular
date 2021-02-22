@@ -16,29 +16,85 @@ import {
   Inject,
   Input,
   NgZone,
+  OnChanges,
   OnDestroy,
   OnInit,
   Optional,
   Output,
   QueryList,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, filter, map, take, takeUntil } from 'rxjs/operators';
+import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
+import { BehaviorSubject, fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  shareReplay,
+  switchMap,
+  take,
+  takeUntil,
+} from 'rxjs/operators';
 
 import { SbbAppChooserSection } from '../app-chooser-section/app-chooser-section.component';
-import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
 
 import { SBB_HEADER } from './header-token';
 
 /** Result of the toggle promise that indicates the state of the header menu. */
 export type SbbHeaderMenuToggleResult = 'open' | 'close';
 
+export type SbbHeaderCollapseBreakpoint =
+  | 'mobile'
+  | 'tablet'
+  | 'desktop'
+  | 'desktopLarge'
+  | 'desktopLargePlus'
+  | 'desktop4k'
+  | 'desktop5k';
+
+const breakpointMapping = {
+  mobile: [Breakpoints.Mobile],
+  tablet: [Breakpoints.Mobile, Breakpoints.Tablet],
+  desktop: [Breakpoints.Mobile, Breakpoints.Tablet, Breakpoints.Desktop],
+  desktopLarge: [
+    Breakpoints.Mobile,
+    Breakpoints.Tablet,
+    Breakpoints.Desktop,
+    Breakpoints.DesktopLarge,
+  ],
+  desktopLargePlus: [
+    Breakpoints.Mobile,
+    Breakpoints.Tablet,
+    Breakpoints.Desktop,
+    Breakpoints.DesktopLarge,
+    Breakpoints.DesktopLargePlus,
+  ],
+  desktop4k: [
+    Breakpoints.Mobile,
+    Breakpoints.Tablet,
+    Breakpoints.Desktop,
+    Breakpoints.DesktopLarge,
+    Breakpoints.DesktopLargePlus,
+    Breakpoints.Desktop4k,
+  ],
+  desktop5k: [
+    Breakpoints.Mobile,
+    Breakpoints.Tablet,
+    Breakpoints.Desktop,
+    Breakpoints.DesktopLarge,
+    Breakpoints.DesktopLargePlus,
+    Breakpoints.Desktop4k,
+    Breakpoints.Desktop5k,
+  ],
+};
+
 @Component({
   selector: 'sbb-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
+  exportAs: 'sbbHeader',
   animations: [
     trigger('menu', [
       state(
@@ -62,9 +118,10 @@ export type SbbHeaderMenuToggleResult = 'open' | 'close';
   host: {
     class: 'sbb-header',
     '[class.sbb-header-opened]': 'this.opened',
+    '[class.sbb-header-menus-collapsed]': 'this._menusCollapsed',
   },
 })
-export class SbbHeader implements OnInit, AfterViewInit, OnDestroy {
+export class SbbHeader implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   /** Main title shown in the header. */
   @Input() label: string;
 
@@ -72,12 +129,24 @@ export class SbbHeader implements OnInit, AfterViewInit, OnDestroy {
   @Input() subtitle?: string;
 
   /**
+   * The breakpoint on which to collapse the header menus into the burger menu.
+   * Matching the given breakpoint or anything below, will collapse the menus.
+   * (e.g. 'tablet' will collapse the menu, if 'tablet' or 'mobile' is matched)
+   * See breakpoint documentation for specific values.
+   */
+  @Input() collapseBreakpoint: SbbHeaderCollapseBreakpoint = 'tablet';
+
+  /**
    * String representing the kind of environment the application is running in.
    * Will be shown in a ribbon, top-left corner of the header.
+   * @deprecated Use the sbb-header-environment element. See sbb-header documentation.
    */
   @Input() environment?: string;
 
-  /** Background color for the ribbon, if present. */
+  /**
+   * Background color for the ribbon, if present.
+   * @deprecated Use the sbb-header-environment element. See sbb-header documentation.
+   */
   @Input() environmentColor?: string;
 
   /** Whether the header menu is open. */
@@ -97,6 +166,12 @@ export class SbbHeader implements OnInit, AfterViewInit, OnDestroy {
 
   /** Current state of the menu animation. */
   _animationState: 'open' | 'void' = 'void';
+
+  /** Observable of whether the menus are collapsed into the burger menu. */
+  _headerMenusCollapsed: Observable<boolean>;
+
+  /** Whether the menus are collapsed into the burger menu. */
+  _menusCollapsed: boolean = false;
 
   /** Event emitted when the header menu open state is changed. */
   @Output() readonly openedChange: EventEmitter<boolean> =
@@ -155,6 +230,10 @@ export class SbbHeader implements OnInit, AfterViewInit, OnDestroy {
 
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
+
+  private readonly _collapseBreakpoint = new BehaviorSubject<SbbHeaderCollapseBreakpoint>(
+    this.collapseBreakpoint
+  );
 
   private _focusTrap: FocusTrap;
   private _elementFocusedBeforeMenuWasOpened: HTMLElement | null = null;
@@ -218,31 +297,41 @@ export class SbbHeader implements OnInit, AfterViewInit, OnDestroy {
           this.openedChange.emit(this._opened);
         }
       });
+
+    // Programmatically track the collapsed state of the header menus.
+    // This is required in order to attach/detach the menus to the main
+    // or side navigation.
+    this._headerMenusCollapsed = this._collapseBreakpoint.pipe(
+      distinctUntilChanged(),
+      switchMap((breakpoint) => this._breakpointObserver.observe(breakpointMapping[breakpoint])),
+      map((r) => r.matches),
+      distinctUntilChanged(),
+      shareReplay(),
+      takeUntil(this._destroyed)
+    );
   }
 
   ngOnInit() {
     this._checkLabel();
   }
 
+  ngOnChanges(_changes: SimpleChanges): void {
+    this._collapseBreakpoint.next(this.collapseBreakpoint);
+  }
+
   ngAfterViewInit() {
     this._focusTrap = this._focusTrapFactory.create(this._menuElement.nativeElement);
     this._updateFocusTrapState();
-    this._breakpointObserver
-      .observe(SBB_HEADER_BREAKPOINT)
-      .pipe(
-        map((r) => r.matches),
-        distinctUntilChanged(),
-        takeUntil(this._destroyed)
-      )
-      .subscribe((isDesktop) => {
-        if (isDesktop) {
-          this._sideMenuOutlet.detach();
-          this._mainMenuOutlet.attachTemplatePortal(this._navigationPortal);
-        } else {
-          this._mainMenuOutlet.detach();
-          this._sideMenuOutlet.attachTemplatePortal(this._navigationPortal);
-        }
-      });
+    this._headerMenusCollapsed.subscribe((isCollapsed) => {
+      this._menusCollapsed = isCollapsed;
+      if (isCollapsed) {
+        this._mainMenuOutlet.detach();
+        this._sideMenuOutlet.attachTemplatePortal(this._navigationPortal);
+      } else {
+        this._sideMenuOutlet.detach();
+        this._mainMenuOutlet.attachTemplatePortal(this._navigationPortal);
+      }
+    });
   }
 
   ngOnDestroy() {

@@ -21,7 +21,7 @@
     }
   }
 
-  @include mq($from: desktop) {
+  :host-context(.sbb-header-main-menu) {
     padding: 0;
 
     > span {
