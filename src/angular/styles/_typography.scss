@@ -869,6 +869,320 @@ fieldset,
 }
 
 // ----------------------------------------------------------------------------------------------------
+// Button Resets
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-button-reset {
+  @include buttonReset();
+}
+
+.sbb-button-reset-frameless {
+  @include buttonResetFrameless();
+}
+
+// ----------------------------------------------------------------------------------------------------
+// SBB Button
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-button,
+.sbb-alt-button,
+.sbb-secondary-button,
+.sbb-ghost-button,
+.sbb-icon-button {
+  @include ellipsis;
+  width: 100%;
+  background: none;
+  max-width: none;
+  min-width: 0;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem(26);
+  border-style: solid;
+  border-width: pxToRem(1);
+  border-radius: pxToRem(2);
+  border-color: transparent;
+  // Subtract 1 from the padding values, since we always use the border
+  // in order to avoid tearing on state changes.
+  padding: pxToRem(9) pxToRem(39) pxToRem(11);
+  margin: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+
+  @include mq($from: tabletPortrait) {
+    width: auto;
+    // We use em here, in order to scale for 4k and 5k
+    min-width: toEm(60 / $sizeFontDefault);
+    max-width: toEm(400 / $sizeFontDefault);
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault * $scalingFactor4k);
+      line-height: pxToRem(39);
+      border-radius: pxToRem(2 * $scalingFactor4k);
+      border-width: pxToRem(2 * $scalingFactor4k);
+      // Subtract 2 from the padding values, since we always use the border
+      // in order to avoid tearing on state changes.
+      padding: pxToRem(14) pxToRem(58) pxToRem(15);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault * $scalingFactor5k);
+      line-height: pxToRem(52);
+      border-radius: pxToRem(2 * $scalingFactor5k);
+      border-width: pxToRem(2 * $scalingFactor5k);
+      // Subtract 2 from the padding values, since we always use the border
+      // in order to avoid tearing on state changes.
+      padding: pxToRem(19) pxToRem(78) pxToRem(21);
+    }
+  }
+
+  html.sbb-lean & {
+    line-height: pxToRem(23);
+    // Subtract 1 from the padding values, since we always use the border
+    // in order to avoid tearing on state changes.
+    padding: pxToRem(5) pxToRem(15) pxToRem(6);
+  }
+
+  &:not(:disabled),
+  &:not(.sbb-disabled) {
+    cursor: pointer;
+  }
+
+  &:disabled,
+  &.sbb-disabled {
+    html:not(.sbb-lean) & {
+      background-color: transparent;
+      color: $sbbColorGrey;
+      text-decoration: line-through;
+      border-color: $sbbColorGreyMedium;
+    }
+  }
+}
+
+.sbb-button {
+  background-color: $sbbColorRed;
+  color: $sbbColorWhite;
+
+  &:not(:disabled),
+  &:not(.sbb-disabled) {
+    &:hover,
+    &:focus {
+      background: $sbbColorRed125;
+    }
+  }
+
+  &:disabled,
+  &.sbb-disabled {
+    html.sbb-lean & {
+      background-color: rgba($sbbColorRed, 0.4);
+      color: rgba($sbbColorWhite, 0.5);
+    }
+  }
+}
+
+.sbb-alt-button {
+  background-color: $sbbColorGranite;
+  color: $sbbColorWhite;
+
+  &:not(:disabled),
+  &:not(.sbb-disabled) {
+    &:hover,
+    &:focus {
+      background: $sbbColorIron;
+    }
+  }
+
+  &:disabled,
+  &.sbb-disabled {
+    html.sbb-lean & {
+      background-color: rgba($sbbColorGranite, 0.4);
+      color: rgba($sbbColorWhite, 0.5);
+    }
+  }
+}
+
+.sbb-secondary-button,
+.sbb-icon-button {
+  background-color: $sbbColorSilver;
+  color: $sbbColorIron;
+
+  &:not(:disabled),
+  &:not(.sbb-disabled) {
+    &:hover,
+    &:focus {
+      background: $sbbColorPlatinum;
+    }
+  }
+
+  &:disabled,
+  &.sbb-disabled {
+    html.sbb-lean & {
+      background-color: rgba($sbbColorSilver, 0.4);
+      color: rgba($sbbColorIron, 0.5);
+    }
+  }
+}
+
+.sbb-ghost-button {
+  background-color: transparent;
+  color: $sbbColorGrey;
+  border-color: $sbbColorStorm;
+
+  html.sbb-lean & {
+    color: $sbbColorGranite;
+    border-color: $sbbColorStorm;
+  }
+
+  &:not(:disabled),
+  &:not(.sbb-disabled) {
+    &:hover,
+    &:focus {
+      border-color: $sbbColorIron;
+    }
+  }
+
+  &:disabled,
+  &.sbb-disabled {
+    html:not(.sbb-lean) & {
+      display: none;
+    }
+    html.sbb-lean & {
+      color: rgba($sbbColorIron, 0.4);
+      border-color: rgba($sbbColorStorm, 0.4);
+    }
+  }
+}
+
+.sbb-icon-button {
+  // Subtract 1 from the padding values, since we always use the border
+  // in order to avoid tearing on state changes.
+  padding: pxToRem(5) !important;
+  min-width: auto;
+  line-height: 0 !important;
+}
+
+.sbb-frameless-button,
+// We only want to style .sbb-link classes which use the sbb-link component
+.sbb-link.sbb-button-base {
+  @include buttonResetFrameless();
+  @include ellipsis;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault * $scalingFactor4k);
+      line-height: pxToRem(39);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault * $scalingFactor5k);
+      line-height: pxToRem(52);
+    }
+  }
+
+  &:not(:disabled),
+  &:not(.sbb-disabled) {
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+  }
+}
+
+.sbb-frameless-button {
+  color: $sbbColorIron;
+
+  &:disabled,
+  &.sbb-disabled {
+    display: none;
+  }
+}
+
+// We're using pxToEm for the rules below, since the used values do not
+// bleed and scale accordingly with 4k and 5k.
+
+.sbb-button-indicator-icon {
+  position: absolute;
+  top: 50%;
+  margin-top: pxToEm(-12.5);
+  transition: opacity $linkiconAnimation, margin-left $linkiconAnimation;
+  backface-visibility: hidden;
+  pointer-events: none;
+
+  &.sbb-icon-fit {
+    width: pxToEm(24);
+    height: pxToEm(24);
+  }
+
+  .sbb-button-base.sbb-disabled &,
+  .sbb-button-base.sbb-disabled:hover & {
+    opacity: 0;
+  }
+
+  html:not(.sbb-lean) .sbb-button-base.sbb-link & {
+    color: $sbbColorRed;
+  }
+
+  html:not(.sbb-lean) .sbb-button-base.sbb-link:hover & {
+    color: inherit;
+  }
+}
+
+.sbb-button-left-icon {
+  margin-left: pxToEm(-60);
+  opacity: 0;
+
+  .sbb-button-base:hover & {
+    margin-left: 0;
+    opacity: 1;
+  }
+}
+
+.sbb-button-right-icon {
+  margin-left: pxToEm(-20);
+  opacity: 1;
+
+  html:not(.sbb-lean) .sbb-button-base:hover & {
+    margin-left: pxToEm(40);
+    opacity: 0;
+  }
+
+  html.sbb-lean & {
+    margin-left: pxToEm(-24);
+  }
+}
+
+.sbb-button-wrapper {
+  // We only need to specify the animation for the text, if a left indicator icon exists.
+  .sbb-button-left-icon + & {
+    margin-left: 0;
+    margin-right: pxToEm(30);
+    transition: margin-left $linkiconAnimation, margin-right $linkiconAnimation;
+
+    .sbb-button-base:hover & {
+      margin-left: pxToEm(30);
+      margin-right: 0;
+    }
+
+    .sbb-button-base.sbb-disabled & {
+      margin-left: pxToEm(15);
+      margin-right: pxToEm(15);
+    }
+  }
+
+  html.sbb-lean .sbb-button-base.sbb-link & {
+    padding-right: pxToEm(32);
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
 // SBB Checkbox & Radio Button
 // ----------------------------------------------------------------------------------------------------
 

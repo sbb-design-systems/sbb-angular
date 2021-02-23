@@ -5,4 +5,5 @@ export * from './event-objects';
 export * from './mock-ng-zone';
 export * from './month-constants';
 export * from './type-in-element';
+export * from './variant';
 export * from './wrapped-error-message';

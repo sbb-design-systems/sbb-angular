@@ -3,10 +3,12 @@ import * as ts from 'typescript';
 
 /** Name of the sbb-angular module specifiers. */
 export const sbbAngularModuleSpecifiers = [
+  '@sbb-esta/angular',
+  '@sbb-esta/angular-maps',
+  // TODO: Remove these in a future release
   '@sbb-esta/angular-business',
   '@sbb-esta/angular-public',
   '@sbb-esta/angular-core',
-  '@sbb-esta/angular-maps',
 ];
 
 /** Whether the specified node is part of an SBB Angular or CDK import declaration. */

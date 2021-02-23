@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCaptchaModule } from '@sbb-esta/angular/captcha';
 
 import { CaptchaReactiveFormsExample } from './captcha-reactive-forms/captcha-reactive-forms-example';

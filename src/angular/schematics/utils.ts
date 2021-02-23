@@ -1,5 +1,10 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
+import { Migration, parse5, ResolvedResource } from '@angular/cdk/schematics';
+import type { UpdateRecorder } from '@angular/cdk/schematics/update-tool/update-recorder';
+import type { Attribute, DefaultTreeDocument, DefaultTreeElement, Location } from 'parse5';
 import * as ts from 'typescript';
+
+const parse: typeof import('parse5') = parse5;
 
 /** Whether the Angular module in the given path has the specified provider. */
 export function hasNgModuleProvider(tree: Tree, modulePath: string, providerName: string): boolean {
@@ -89,4 +94,181 @@ function resolveIdentifierOfExpression(expression: ts.Expression): ts.Identifier
     return expression.name;
   }
   return null;
+}
+
+/**
+ * Iterate over all nodes recursively and perform the given action.
+ */
+export function iterateNodes(
+  contentOrRoot: string | DefaultTreeElement,
+  nodeAction: (node: DefaultTreeElement) => void
+): void {
+  const root =
+    typeof contentOrRoot === 'string'
+      ? (parse.parseFragment(contentOrRoot, {
+          sourceCodeLocationInfo: true,
+        }) as DefaultTreeDocument)
+      : contentOrRoot;
+
+  const visitNodes = (nodes: any[]) => {
+    nodes.forEach((node: DefaultTreeElement) => {
+      if (node.childNodes) {
+        visitNodes(node.childNodes);
+      }
+
+      nodeAction(node);
+    });
+  };
+
+  visitNodes(root.childNodes);
+}
+
+export class MigrationRecorderRegistry {
+  private _elements = new Map<ResolvedResource, DefaultTreeElement[]>();
+
+  get empty() {
+    return this._elements.size === 0;
+  }
+
+  constructor(private _migration: Migration<any, any>) {}
+
+  add(resource: ResolvedResource, element: DefaultTreeElement) {
+    if (!this._elements.has(resource)) {
+      this._elements.set(resource, []);
+    }
+
+    this._elements.get(resource)!.push(element);
+  }
+
+  forEach(action: (changeSet: MigrationElement) => void) {
+    this._elements.forEach((elements, resource) => {
+      const recorder = this._migration.fileSystem.edit(resource.filePath);
+      elements.forEach((e) => action(new MigrationElement(e, resource, recorder)));
+    });
+  }
+}
+
+export class MigrationElement {
+  private _properties = new Map<string, MigrationElementProperty | undefined>();
+
+  constructor(
+    readonly element: DefaultTreeElement,
+    readonly resource: ResolvedResource,
+    readonly recorder: UpdateRecorder,
+    readonly location = element.sourceCodeLocation!
+  ) {}
+
+  /** Checks whether this element matches the given tag name. */
+  is(name: string) {
+    return this.element.tagName.toUpperCase() === name.toUpperCase();
+  }
+
+  /** Remove this element. */
+  remove() {
+    this.recorder.remove(
+      this.resource.start + this.location.startOffset,
+      this.location.endOffset - this.location.startOffset
+    );
+  }
+
+  /** Appends the given content behind this element. */
+  append(content: string) {
+    this.recorder.insertRight(this.resource.start + this.location.startTag.endOffset, content);
+  }
+
+  findElements(filter: (node: DefaultTreeElement) => boolean) {
+    const results: MigrationElement[] = [];
+    iterateNodes(this.element, (node) => {
+      if (filter(node)) {
+        results.push(new MigrationElement(node, this.resource, this.recorder));
+      }
+    });
+    return results;
+  }
+
+  /**
+   * Looks for attribute (e.g. example="...") or property (e.g. [example]="...") assignments.
+   */
+  findProperty(name: string) {
+    name = name.toLowerCase();
+    let property = this._properties.get(name);
+    if (property) {
+      return property;
+    }
+
+    const attribute = this.element.attrs.find(
+      (a) => a.name.toLowerCase() === name || a.name.toLowerCase() === `[${name}]`
+    );
+    if (!attribute) {
+      this._properties.set(name, undefined);
+      return undefined;
+    }
+
+    const location = this.location.attrs[attribute.name];
+    let value: string | undefined;
+    if (!attribute.name.startsWith('[')) {
+      value = attribute.value;
+    } else if (attribute.value.match(/^['"]([^'"]+)['"]$/)) {
+      // e.g. [example]="'value'"
+      value = attribute.value.substring(1, attribute.value.length - 1);
+    }
+
+    property = new MigrationElementProperty(attribute, location, value, this);
+    this._properties.set(name, property);
+    return property;
+  }
+
+  appendProperty(name: string, value?: string) {
+    const content = typeof value === 'string' ? ` ${name}="${value}"` : ` ${name}`;
+    this.recorder.insertRight(this.resource.start + this.location.startTag.endOffset - 1, content);
+  }
+
+  toString() {
+    return `<${this.element.tagName}>`;
+  }
+}
+
+export class MigrationElementProperty {
+  get isProperty() {
+    return this.attribute.name.startsWith('[');
+  }
+
+  get isAttribute() {
+    return !this.isProperty;
+  }
+
+  get nativeValue() {
+    return this.attribute.value;
+  }
+
+  constructor(
+    readonly attribute: Attribute,
+    readonly location: Location,
+    readonly value: string | undefined,
+    private _element: MigrationElement
+  ) {}
+
+  /** Remove this attribute from the element. */
+  remove() {
+    this._element.recorder.remove(
+      this._element.resource.start + this.location.startOffset - 1,
+      this.location.endOffset - this.location.startOffset + 1
+    );
+  }
+
+  /** Replace this attribute with a new attribute. */
+  replace(newAttribute: string) {
+    this._element.recorder.remove(
+      this._element.resource.start + this.location.startOffset,
+      this.location.endOffset - this.location.startOffset
+    );
+    this._element.recorder.insertRight(
+      this._element.resource.start + this.location.startOffset,
+      newAttribute
+    );
+  }
+
+  toString() {
+    return this.attribute.toString();
+  }
 }

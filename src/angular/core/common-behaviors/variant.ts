@@ -1,9 +1,8 @@
-import { Observable, Subject } from 'rxjs';
-import { map, shareReplay, startWith } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { AbstractConstructor, Constructor } from './constructor';
 
-export const ɵtriggerVariantCheck = new Subject<void>();
+export const ɵvariant = new BehaviorSubject<SbbVariant>(detectVariant());
 
 /** @docs-private */
 export interface HasVariant {
@@ -15,7 +14,7 @@ export interface HasVariant {
 export type HasVariantCtor = Constructor<HasVariant>;
 
 /** Possible variant values. */
-export type SbbVariant = 'standard' | 'lean' | undefined;
+export type SbbVariant = 'standard' | 'lean';
 
 function detectVariant(): SbbVariant {
   return document.documentElement.classList.contains('sbb-lean') ? 'lean' : 'standard';
@@ -24,11 +23,7 @@ function detectVariant(): SbbVariant {
 /** Mixin to augment a directive with a variant property. */
 export function mixinVariant<T extends AbstractConstructor<any>>(base: T): HasVariantCtor & T {
   class Mixin extends ((base as unknown) as Constructor<any>) {
-    readonly variant: Observable<SbbVariant> = ɵtriggerVariantCheck.pipe(
-      startWith(null),
-      map(() => detectVariant()),
-      shareReplay()
-    );
+    readonly variant: Observable<SbbVariant> = ɵvariant;
 
     constructor(...args: any[]) {
       super(...args);

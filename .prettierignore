@@ -9,6 +9,7 @@ src/*/schematics/ng-update/test-cases
 src/*/schematics/ng-add/test-cases
 src/angular-core/icon/icon-cdn-provider.ts
 src/angular/icon/icon-cdn-provider.ts
+src/angular-icons/*
 schematics/*/index.js
 schematics/*/files
 coverage

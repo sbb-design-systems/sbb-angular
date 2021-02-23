@@ -13,6 +13,7 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular/core/testing",
     deps = [
+        "//src/angular/core",
         "@npm//@angular/core",
     ],
 )

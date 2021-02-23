@@ -1,17 +1,31 @@
 import { Rule, SchematicContext } from '@angular-devkit/schematics';
-import { createMigrationSchematicRule, TargetVersion } from '@angular/cdk/schematics';
+import {
+  cdkMigrations,
+  createMigrationSchematicRule,
+  TargetVersion,
+} from '@angular/cdk/schematics';
 
 import { sbbAngularUpgradeData } from './add-data';
+import { ButtonMigration } from './migrations/button-migration';
+import { ClassNamesMigration } from './migrations/class-names';
 import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
 
 /** Entry point for the merge migration schematics */
 export function mergePublicAndBusiness(): Rule {
+  patchClassNamesMigration();
   return createMigrationSchematicRule(
     'merge' as TargetVersion,
-    [SecondaryEntryPointsMigration],
+    [SecondaryEntryPointsMigration, ButtonMigration],
     sbbAngularUpgradeData,
     onMigrationComplete
   );
+}
+
+function patchClassNamesMigration() {
+  const indexOfClassNamesMigration = cdkMigrations.findIndex(
+    (m) => m.name === 'ClassNamesMigration'
+  );
+  cdkMigrations[indexOfClassNamesMigration] = ClassNamesMigration;
 }
 
 /** Function that will be called when the migration completed. */

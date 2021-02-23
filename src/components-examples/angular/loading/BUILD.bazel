@@ -17,7 +17,7 @@ ng_module(
     ]),
     module_name = "@sbb-esta/components-examples/angular/loading",
     deps = [
-        "//src/angular-public/button",
+        "//src/angular/button",
         "//src/angular/loading",
         "@npm//@angular/common",
         "@npm//@angular/core",

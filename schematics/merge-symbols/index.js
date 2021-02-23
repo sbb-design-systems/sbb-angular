@@ -13,7 +13,12 @@ const IGNORED_FOLDERS = [
 ];
 function mergeSymbols() {
     return (tree) => {
-        let symbols = { SbbOptionGroup: 'core' }; // Init with deprecated symbols (re-exports)
+        // Initialize collection with deprecated symbols (re-exports)
+        let symbols = {
+            SbbOptionGroup: 'core',
+            SbbLinksModule: 'button',
+            SbbLink: 'button',
+        };
         extractExportsForModule('src/angular/');
         extractExportsForModule('src/angular-maps/');
         sortSymbols();

@@ -61,6 +61,7 @@ export function bazel(options: { filter?: string }): Rule {
               npmDependencyResolver,
               context.logger,
               new Map<string, string>()
+                .set('../styles/common', '//src/angular/styles:common_scss_lib')
                 .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
                 .set('/angular-core/styles/common', '//src/angular-core/styles:common_scss_lib')
                 .set(

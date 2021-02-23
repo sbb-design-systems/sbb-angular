@@ -1,0 +1,12 @@
+:host-context(html:not(.sbb-lean)) .sbb-lean-only {
+  display: none;
+}
+
+:host-context(html.sbb-lean) .sbb-standard-only {
+  display: none;
+}
+
+.properties,
+div {
+  margin-top: 3rem;
+}

@@ -1,0 +1,29 @@
+<h3>Buttons</h3>
+<h4>sbb-button</h4>
+<button type="button" sbb-button [disabled]="disabled">Primary</button>
+
+<h4>sbb-secondary-button</h4>
+<button type="button" sbb-secondary-button [disabled]="disabled">Secondary</button>
+
+<h4>sbb-ghost-button</h4>
+<button type="button" sbb-ghost-button [disabled]="disabled">Ghost</button>
+
+<div class="sbb-standard-only">
+  <h3>standard only buttons</h3>
+  <h4>sbb-frameless-button</h4>
+  <td><button type="button" sbb-frameless-button [disabled]="disabled">Frameless</button></td>
+</div>
+
+<div class="sbb-lean-only">
+  <h3>lean only buttons</h3>
+  <h4>sbb-alt-button</h4>
+  <button type="button" sbb-alt-button [disabled]="disabled">Primary Alt</button>
+
+  <h4>sbb-icon-button</h4>
+  <button type="button" sbb-icon-button [disabled]="disabled">
+    <sbb-icon svgIcon="kom:house-small"></sbb-icon>
+  </button>
+</div>
+
+<h4 class="properties">Properties</h4>
+<sbb-checkbox [(ngModel)]="disabled">Disable Buttons</sbb-checkbox>
