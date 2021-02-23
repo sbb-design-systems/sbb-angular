@@ -18,6 +18,7 @@ ng_module(
     assets = [":select/select.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/select",
     deps = [
+        "//src:dev_mode_types",
         "//src/angular/core",
         "//src/angular/form-field",
         "//src/angular/icon",
