@@ -4,3 +4,6 @@
   [disabled]="disabled"
 ></sbb-pseudo-checkbox>
 <ng-content></ng-content>
+
+<!-- See a11y notes inside optgroup.ts for context behind this element. -->
+<span class="cdk-visually-hidden" *ngIf="group && group._inert">({{ group.label }})</span>

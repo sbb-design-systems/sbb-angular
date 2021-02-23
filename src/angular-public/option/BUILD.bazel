@@ -1,6 +1,8 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
     "sass_binary",
 )
 
@@ -38,6 +40,25 @@ sass_binary(
 sass_binary(
     name = "option_group_option_group_component_scss",
     src = "option-group/option-group.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":option",
+        "//src/angular-core/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/platform-browser",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
 )
 
 filegroup(
