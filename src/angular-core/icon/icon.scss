@@ -3,15 +3,6 @@
   display: inline-block;
   line-height: 0;
 
-  // If any ancestor has .sbb-icon-fit as a class, this rule will be applied.
-  .sbb-icon-fit &,
-  .sbb-icon-fit & svg,
-  &.sbb-icon-fit,
-  &.sbb-icon-fit svg {
-    width: 100%;
-    height: 100%;
-  }
-
   svg:not(.color-immutable) {
     [fill]:not([fill='none']) {
       fill: currentColor;
@@ -38,4 +29,13 @@
     line-height: inherit;
     width: inherit;
   }
+}
+
+// If any ancestor has .sbb-icon-fit as a class, this rule will be applied.
+.sbb-icon-fit sbb-icon,
+.sbb-icon-fit sbb-icon svg,
+sbb-icon.sbb-icon-fit,
+sbb-icon.sbb-icon-fit svg {
+  width: 100%;
+  height: 100%;
 }

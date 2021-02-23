@@ -1656,8 +1656,7 @@ $menuItemPaddingTopBottom: 4;
     }
   }
 
-  /* Use tag and class selector to be more specific than the icon rule for width and height */
-  sbb-icon.sbb-icon {
+  .sbb-icon {
     line-height: 0;
     margin: pxToRem(-7) 0 pxToRem(-7) 0;
     transform: translateY(pxToRem(7));
