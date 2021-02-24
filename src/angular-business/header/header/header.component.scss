@@ -1,6 +1,6 @@
 @import '../header';
 
-$sbbHeaderHeight: 54px;
+$sbbHeaderHeight: pxToRem(54);
 
 :host {
   display: flex;
@@ -14,29 +14,55 @@ $sbbHeaderHeight: 54px;
   border-bottom: solid 1px $sbbColorSilver;
 
   > nav {
-    margin-left: 50px;
     overflow-x: hidden;
     display: flex;
     flex-grow: 1;
+  }
+
+  &:not(.sbb-header-flexible) > nav {
+    margin-left: pxToRem(50);
 
     > ::ng-deep a,
     > ::ng-deep button {
       flex: 0 0 20%;
     }
   }
+
+  &.sbb-header-flexible > nav {
+    > ::ng-deep a,
+    > ::ng-deep button {
+      margin-right: 1rem;
+    }
+  }
 }
 
-.sbb-header-ribbon {
-  width: 80px;
-  position: absolute;
-  top: 12px;
-  left: -20px;
-  text-align: center;
-  line-height: 12px;
-  letter-spacing: 0px;
-  font-size: 10px;
-  color: $sbbColorWhite;
-  transform: rotate(-45deg);
+::ng-deep {
+  .sbb-header-environment {
+    width: pxToRem(80);
+    position: absolute;
+    top: pxToRem(12);
+    left: pxToRem(-20);
+    text-align: center;
+    line-height: pxToRem(12);
+    letter-spacing: 0;
+    font-size: pxToRem(10);
+    color: $sbbColorWhite;
+    transform: rotate(-45deg);
+  }
+
+  // Default colors for the environments
+  .sbb-header-environment-dev {
+    background-color: $sbbColorPeach;
+  }
+  .sbb-header-environment-test {
+    background-color: $sbbColorNight;
+  }
+  .sbb-header-environment-edu {
+    background-color: $sbbColorGreen;
+  }
+  .sbb-header-environment-int {
+    background-color: $sbbColorGranite;
+  }
 }
 
 .sbb-header-open-menu,
@@ -44,17 +70,17 @@ $sbbHeaderHeight: 54px;
   @include buttonResetFrameless();
   flex-grow: 0;
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  margin-left: 15px;
+  width: pxToRem(24);
+  height: pxToRem(24);
+  margin-left: pxToRem(15);
   cursor: pointer;
   position: relative;
   outline: none;
 
   > .sbb-icon {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: pxToRem(24);
+    height: pxToRem(24);
   }
 
   &:focus {
@@ -64,8 +90,9 @@ $sbbHeaderHeight: 54px;
   }
 }
 
-.sbb-header-open-menu:not(.sbb-header-app-chooser-available) {
-  @include mq($from: desktop) {
+.sbb-header-open-menu {
+  &:not(.sbb-header-app-chooser-available),
+  :host:not(.sbb-header-menus-collapsed) {
     visibility: hidden;
   }
 }
@@ -74,22 +101,26 @@ $sbbHeaderHeight: 54px;
   display: flex;
   flex-grow: 0;
   flex-direction: column;
-  width: 200px;
-  margin-left: 15px;
+  width: pxToRem(200);
+  margin-left: pxToRem(15);
   font-family: $fontSbbLight;
 
+  :host(.sbb-header-flexible) & {
+    width: auto;
+    margin-right: 2.5rem;
+  }
   > span {
     @include ellipsis();
   }
   > span:first-child {
-    line-height: 23px;
+    line-height: pxToRem(23);
     color: $sbbColorBlack;
     font-family: $fontSbbRoman;
   }
   > span:nth-child(2) {
-    font-size: 13px;
+    font-size: pxToRem(13);
     font-weight: 300;
-    line-height: 16px;
+    line-height: pxToRem(16);
     color: $sbbColorAnthracite;
   }
 }
@@ -97,8 +128,8 @@ $sbbHeaderHeight: 54px;
 nav {
   > ::ng-deep a,
   > ::ng-deep button {
-    line-height: 23px;
-    font-size: 15px;
+    line-height: pxToRem(23);
+    font-size: pxToRem(15);
     border: transparent solid 1px;
     outline: none;
     color: $sbbColorBlack;
@@ -113,7 +144,7 @@ nav {
   }
   > ::ng-deep a {
     text-decoration: none;
-    padding: 6px 8px;
+    padding: pxToRem(6) pxToRem(8);
   }
   > ::ng-deep button {
     cursor: pointer;
@@ -127,12 +158,12 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-right: 35px;
+  margin-right: pxToRem(35);
 
   > .sbb-header-usermenu {
     z-index: 1;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: pxToRem(15);
+    margin-right: pxToRem(15);
   }
 
   > .sbb-header-logo {
@@ -140,7 +171,7 @@ nav {
     height: $sbbHeaderHeight;
 
     > svg {
-      width: 80px;
+      width: pxToRem(80);
     }
   }
 }
@@ -167,7 +198,7 @@ nav {
   top: 0;
   background-color: $sbbColorWhite;
   border-right: 1px solid $sbbColorGranite;
-  box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.15);
+  box-shadow: pxToRem(4) 0 0 0 rgba(0, 0, 0, 0.15);
   z-index: $sbbHeaderSideMenuZIndex;
   overflow-y: auto;
 
@@ -175,13 +206,13 @@ nav {
     display: flex;
     align-items: center;
     height: $sbbHeaderHeight;
-    margin-bottom: 12px;
+    margin-bottom: pxToRem(12);
     flex: 0 0 auto;
   }
 
   nav {
     flex-direction: column;
-    margin: 0 15px;
+    margin: 0 pxToRem(15);
 
     > ::ng-deep a,
     > ::ng-deep button {
