@@ -56,7 +56,6 @@ import {
   CanDisableCtor,
   CanUpdateErrorState,
   CanUpdateErrorStateCtor,
-  countGroupLabelsBeforeOption,
   getOptionScrollPosition,
   HasTabIndex,
   HasTabIndexCtor,
@@ -1151,8 +1150,6 @@ export class SbbSelect
 
   /** Scrolls the active option into view. */
   private _scrollOptionIntoView(index: number): void {
-    const labelCount = countGroupLabelsBeforeOption(index, this.options, this.optionGroups);
-
     if (index === 0) {
       // Scroll to top if first index is selected. This would ensure that group labels are displayed.
       this.panel.nativeElement.scrollTop = 0;
