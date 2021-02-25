@@ -1,5 +1,6 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty, coerceStringArray } from '@angular/cdk/coercion';
+import { Platform } from '@angular/cdk/platform';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -8,7 +9,10 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
+  Inject,
+  InjectionToken,
   Input,
+  OnDestroy,
   Output,
   QueryList,
   TemplateRef,
@@ -20,6 +24,7 @@ import {
   SbbOptionGroup,
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular-public/option';
+import { Subscription } from 'rxjs';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
@@ -37,10 +42,35 @@ export class SbbAutocompleteSelectedEvent {
   ) {}
 }
 
+/** Event object that is emitted when an autocomplete option is activated. */
+export interface SbbAutocompleteActivatedEvent {
+  /** Reference to the autocomplete panel that emitted the event. */
+  source: SbbAutocomplete;
+  /** Option that was selected. */
+  option: SbbOption | null;
+}
+
 /** Default `sbb-autocomplete` options that can be overridden. */
 export interface SbbAutocompleteDefaultOptions {
   /** Whether the first option should be highlighted when an autocomplete panel is opened. */
   autoActiveFirstOption?: boolean;
+
+  /** Class or list of classes to be applied to the autocomplete's overlay panel. */
+  overlayPanelClass?: string | string[];
+}
+
+/** Injection token to be used to override the default options for `sbb-autocomplete`. */
+export const SBB_AUTOCOMPLETE_DEFAULT_OPTIONS = new InjectionToken<SbbAutocompleteDefaultOptions>(
+  'sbb-autocomplete-default-options',
+  {
+    providedIn: 'root',
+    factory: SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY,
+  }
+);
+
+/** @docs-private */
+export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefaultOptions {
+  return { autoActiveFirstOption: false, overlayPanelClass: 'sbb-overlay-panel' };
 }
 
 @Component({
@@ -60,7 +90,15 @@ export interface SbbAutocompleteDefaultOptions {
     class: 'sbb-autocomplete',
   },
 })
-export class SbbAutocomplete implements AfterContentInit {
+export class SbbAutocomplete implements AfterContentInit, OnDestroy {
+  private _activeOptionChanges = Subscription.EMPTY;
+
+  /** Class to apply to the panel when it's visible. */
+  private _visibleClass: string = 'sbb-autocomplete-visible';
+
+  /** Class to apply to the panel when it's hidden. */
+  private _hiddenClass: string = 'sbb-autocomplete-hidden';
+
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<SbbOption>;
 
@@ -73,6 +111,10 @@ export class SbbAutocomplete implements AfterContentInit {
   }
   _isOpen: boolean = false;
 
+  // The @ViewChild query for TemplateRef here needs to be static because some code paths
+  // lead to the overlay being created before change detection has finished for this component.
+  // Notably, another component may trigger `focus` on the autocomplete-trigger.
+
   /** @docs-private */
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
@@ -83,7 +125,13 @@ export class SbbAutocomplete implements AfterContentInit {
   @ContentChildren(SbbOption, { descendants: true }) options: QueryList<SbbOption>;
 
   /** All of the defined groups of options. */
-  @ContentChildren(SbbOptionGroup) optionGroups: QueryList<SbbOptionGroup>;
+  @ContentChildren(SbbOptionGroup, { descendants: true }) optionGroups: QueryList<SbbOptionGroup>;
+
+  /** Aria label of the autocomplete. If not specified, the placeholder will be used as label. */
+  @Input('aria-label') ariaLabel: string;
+
+  /** Input that can be used to specify the `aria-labelledby` attribute. */
+  @Input('aria-labelledby') ariaLabelledby: string;
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
@@ -97,7 +145,10 @@ export class SbbAutocomplete implements AfterContentInit {
    */
   @Input() localeNormalizer: ((value: string) => string) | null = null;
 
-  /** Whether the first option should be highlighted when the autocomplete panel is opened. */
+  /**
+   * Whether the first option should be highlighted when the autocomplete panel is opened.
+   * Can be configured globally through the `SBB_AUTOCOMPLETE_DEFAULT_OPTIONS` token.
+   */
   @Input()
   get autoActiveFirstOption(): boolean {
     return this._autoActiveFirstOption;
@@ -124,15 +175,20 @@ export class SbbAutocomplete implements AfterContentInit {
   /** Event that is emitted when the autocomplete panel is closed. */
   @Output() readonly closed: EventEmitter<void> = new EventEmitter<void>();
 
+  /** Emits whenever an option is activated using the keyboard. */
+  @Output() readonly optionActivated: EventEmitter<
+    SbbAutocompleteActivatedEvent
+  > = new EventEmitter<SbbAutocompleteActivatedEvent>();
+
   /**
    * Takes classes set on the host sbb-autocomplete element and applies them to the panel
    * inside the overlay container to allow for easy styling.
    */
   @Input('class')
-  set classList(value: string) {
+  set classList(value: string | string[]) {
     if (value && value.length) {
-      this._classList = value.split(' ').reduce((classList, className) => {
-        classList[className.trim()] = true;
+      this._classList = coerceStringArray(value).reduce((classList, className) => {
+        classList[className] = true;
         return classList;
       }, {} as { [key: string]: boolean });
     } else {
@@ -147,15 +203,38 @@ export class SbbAutocomplete implements AfterContentInit {
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
   id: string = `sbb-autocomplete-${nextId++}`;
 
+  /**
+   * Tells any descendant `sbb-optgroup` to use the inert a11y pattern.
+   * @docs-private
+   */
+  readonly inertGroups: boolean;
+
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>
-  ) {}
+    private _elementRef: ElementRef<HTMLElement>,
+    @Inject(SBB_AUTOCOMPLETE_DEFAULT_OPTIONS) defaults: SbbAutocompleteDefaultOptions,
+    platform?: Platform
+  ) {
+    // TODO(crisbeto): the problem that the `inertGroups` option resolves is only present on
+    // Safari using VoiceOver. We should occasionally check back to see whether the bug
+    // wasn't resolved in VoiceOver, and if it has, we can remove this and the `inertGroups`
+    // option altogether.
+    this.inertGroups = platform?.SAFARI || false;
+    this._autoActiveFirstOption = !!defaults.autoActiveFirstOption;
+  }
 
   ngAfterContentInit() {
     this.keyManager = new ActiveDescendantKeyManager<SbbOption>(this.options).withWrap();
+    this._activeOptionChanges = this.keyManager.change.subscribe((index) => {
+      this.optionActivated.emit({ source: this, option: this.options.toArray()[index] || null });
+    });
+
     // Set the initial visibility state.
     this.setVisibility();
+  }
+
+  ngOnDestroy() {
+    this._activeOptionChanges.unsubscribe();
   }
 
   /**
@@ -186,13 +265,20 @@ export class SbbAutocomplete implements AfterContentInit {
     this.optionSelected.emit(event);
   }
 
-  /** Sets the autocomplete visibility classes on a classlist based on the panel is visible. */
-  private _setVisibilityClasses(classList: { [key: string]: boolean }) {
-    classList['sbb-autocomplete-visible'] = this.showPanel;
-    classList['sbb-autocomplete-hidden'] = !this.showPanel;
+  /** Gets the aria-labelledby for the autocomplete panel. */
+  _getPanelAriaLabelledby(labelId: string): string | null {
+    if (this.ariaLabel) {
+      return null;
+    }
+
+    return this.ariaLabelledby ? labelId + ' ' + this.ariaLabelledby : labelId;
   }
 
-  // tslint:disable: member-ordering
+  /** Sets the autocomplete visibility classes on a classlist based on the panel is visible. */
+  private _setVisibilityClasses(classList: { [key: string]: boolean }) {
+    classList[this._visibleClass] = this.showPanel;
+    classList[this._hiddenClass] = !this.showPanel;
+  }
+
   static ngAcceptInputType_autoActiveFirstOption: BooleanInput;
-  // tslint:enable: member-ordering
 }

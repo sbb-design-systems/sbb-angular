@@ -11,6 +11,7 @@ let nextId = 0;
   templateUrl: './autocomplete-hint.component.html',
   styleUrls: ['./autocomplete-hint.component.css'],
   host: {
+    class: 'sbb-autocomplete-hint',
     '[attr.id]': 'id',
   },
 })

@@ -54,8 +54,11 @@ import {
 } from 'rxjs';
 import { delay, filter, map, startWith, switchMap, take, tap } from 'rxjs/operators';
 
-import { SbbAutocomplete } from './autocomplete';
-import { SbbAutocompleteDefaultOptions, SBB_AUTOCOMPLETE_DEFAULT_OPTIONS } from './autocomplete';
+import {
+  SbbAutocomplete,
+  SbbAutocompleteDefaultOptions,
+  SBB_AUTOCOMPLETE_DEFAULT_OPTIONS,
+} from './autocomplete';
 import { SbbAutocompleteOrigin } from './autocomplete-origin';
 
 /** Injection token that determines the scroll handling while the autocomplete panel is open. */
