@@ -1,4 +1,4 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty, coerceStringArray } from '@angular/cdk/coercion';
 import { DOWN_ARROW, ENTER, ESCAPE, hasModifierKey, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   ConnectedPosition,
@@ -504,6 +504,10 @@ export class SbbAutocompleteTrigger
     }
   }
 
+  /**
+   * Note: we use `focusin`, as opposed to `focus`, in order to open the panel
+   * a little earlier. This avoids issues where IE delays the focusing of the input.
+   */
   @HostListener('focusin')
   _handleFocus(): void {
     if (!this._canOpenOnNextFocus) {
@@ -712,7 +716,7 @@ export class SbbAutocompleteTrigger
       positionStrategy: this._getOverlayPosition(),
       scrollStrategy: this._scrollStrategy(),
       width: this._getPanelWidth(),
-      panelClass: this._defaults?.overlayPanelClass,
+      panelClass: coerceStringArray(this._defaults?.overlayPanelClass).concat('sbb-overlay-panel'),
       minHeight: 30,
     });
   }
