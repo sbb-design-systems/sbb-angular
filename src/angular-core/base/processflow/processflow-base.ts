@@ -24,8 +24,10 @@ export abstract class SbbProcessflowBase<TProcessflowStepComponent extends SbbPr
 
   ngAfterContentInit(): void {
     if (this.steps && this.steps.length) {
-      this.steps.first.active = true;
-      this.steps.first.disabled = false;
+      Promise.resolve().then(() => {
+        this.steps.first.active = true;
+        this.steps.first.disabled = false;
+      });
     }
   }
 

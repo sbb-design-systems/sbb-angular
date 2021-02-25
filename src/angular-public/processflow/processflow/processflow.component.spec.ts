@@ -71,14 +71,16 @@ describe('SbbProcessflow user interaction', () => {
     fixture.detectChanges();
   });
 
-  it('should go to the next step', () => {
+  it('should go to the next step', async () => {
+    await fixture.whenStable();
     expect(component.processflow.getActiveStep()!.title).toBe('Step 1');
     component.processflow.nextStep();
     fixture.detectChanges();
     expect(component.processflow.getActiveStep()!.title).toBe('Step 2');
   });
 
-  it('should go to the previous step', () => {
+  it('should go to the previous step', async () => {
+    await fixture.whenStable();
     expect(component.processflow.getActiveStep()!.title).toBe('Step 1');
     component.processflow.nextStep();
     fixture.detectChanges();
@@ -88,7 +90,8 @@ describe('SbbProcessflow user interaction', () => {
     expect(component.processflow.getActiveStep()!.title).toBe('Step 1');
   });
 
-  it('should disable the next step when going backwards', () => {
+  it('should disable the next step when going backwards', async () => {
+    await fixture.whenStable();
     expect(component.processflow.getActiveStep()!.title).toBe('Step 1');
     component.processflow.nextStep();
     fixture.detectChanges();
@@ -99,7 +102,8 @@ describe('SbbProcessflow user interaction', () => {
     expect(component.processflow.steps.toArray()[1].disabled).toBeTruthy();
   });
 
-  it('should not be possible to click on next steps', () => {
+  it('should not be possible to click on next steps', async () => {
+    await fixture.whenStable();
     expect(component.processflow.getActiveStep()!.title).toBe('Step 1');
     const steps = document.querySelectorAll('.sbb-processflow-step button');
     dispatchMouseEvent(steps[1], 'click');
