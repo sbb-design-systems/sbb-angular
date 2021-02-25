@@ -18,6 +18,7 @@ ng_module(
     assets = [":select/select.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/select",
     deps = [
+        "//src:dev_mode_types",
         "//src/angular-core/common-behaviors",
         "//src/angular-core/error",
         "//src/angular-core/forms",
@@ -49,6 +50,7 @@ ng_test_library(
     ),
     deps = [
         ":select",
+        "//src/angular-core/error",
         "//src/angular-core/icon/testing",
         "//src/angular-core/testing",
         "//src/angular-public/form-field",
@@ -62,6 +64,9 @@ ng_test_library(
 
 ng_web_test_suite(
     name = "unit_tests",
+    static_css = [
+        "//src/angular-public:typography",
+    ],
     deps = [":unit_test_sources"],
 )
 

@@ -33,10 +33,9 @@
   cdk-connected-overlay
   cdkConnectedOverlayLockPosition
   cdkConnectedOverlayFlexibleDimensions
-  [cdkConnectedOverlayMinHeight]="30"
   cdkConnectedOverlayHasBackdrop
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-  cdkConnectedOverlayPanelClass="sbb-overlay-panel"
+  [cdkConnectedOverlayPanelClass]="_overlayPanelClass"
   [cdkConnectedOverlayScrollStrategy]="_scrollStrategy"
   [cdkConnectedOverlayOrigin]="{ elementRef: _elementRef }"
   [cdkConnectedOverlayOpen]="panelOpen"
@@ -44,6 +43,7 @@
   [cdkConnectedOverlayWidth]="_triggerRect?.width!"
   [cdkConnectedOverlayOffsetX]="0"
   [cdkConnectedOverlayOffsetY]="_offsetY"
+  [cdkConnectedOverlayMinHeight]="30"
   (backdropClick)="close()"
   (attach)="_onAttached()"
   (detach)="close()"
