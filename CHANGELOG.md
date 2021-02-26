@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.3...11.1.0) (2021-02-26)
+
+
+### Features
+
+* **business:** add flexible mode and environment element for header ([#733](https://github.com/sbb-design-systems/sbb-angular/issues/733)) ([15c2682](https://github.com/sbb-design-systems/sbb-angular/commit/15c2682082c4fbe774b2f3d7c949eb2c7629c483)), closes [#361](https://github.com/sbb-design-systems/sbb-angular/issues/361)
+
+
+### Bug Fixes
+
+* align icon in notifications on top ([#727](https://github.com/sbb-design-systems/sbb-angular/issues/727)) ([17491bc](https://github.com/sbb-design-systems/sbb-angular/commit/17491bcd2e63da386c1dea940e37ef4d9998ce54)), closes [#725](https://github.com/sbb-design-systems/sbb-angular/issues/725)
+* allow sbb-processflow to be initialized asynchronous ([#740](https://github.com/sbb-design-systems/sbb-angular/issues/740)) ([dc0d643](https://github.com/sbb-design-systems/sbb-angular/commit/dc0d64375f596894ead18e9323779ab467c60049)), closes [#738](https://github.com/sbb-design-systems/sbb-angular/issues/738)
+* breadcrumb check fails due lifecycle issue ([#708](https://github.com/sbb-design-systems/sbb-angular/issues/708)) ([6132b97](https://github.com/sbb-design-systems/sbb-angular/commit/6132b975e3ab45c49ffd28583b3b72433f4619f3)), closes [#705](https://github.com/sbb-design-systems/sbb-angular/issues/705)
+* fix ribbon color of sbb-header ([#704](https://github.com/sbb-design-systems/sbb-angular/issues/704)) ([2b2f3dd](https://github.com/sbb-design-systems/sbb-angular/commit/2b2f3ddbd16668eaa04f90b5ebbf501161547653))
+* remove positioning fix for tick ([#739](https://github.com/sbb-design-systems/sbb-angular/issues/739)) ([5b22c71](https://github.com/sbb-design-systems/sbb-angular/commit/5b22c71c08fb5ce8d2d5692e118758ecef5c0e2b))
+* reserve space for environment in header ([#732](https://github.com/sbb-design-systems/sbb-angular/issues/732)) ([ac8b2d9](https://github.com/sbb-design-systems/sbb-angular/commit/ac8b2d9d3c89dd90f8e5bd60e85c9e388eb9109c)), closes [#707](https://github.com/sbb-design-systems/sbb-angular/issues/707) [#724](https://github.com/sbb-design-systems/sbb-angular/issues/724)
+* scroll to active option in autocomplete and select ([#741](https://github.com/sbb-design-systems/sbb-angular/issues/741)) ([1d30dda](https://github.com/sbb-design-systems/sbb-angular/commit/1d30dda7096212d783e5864d7a3eb29f03a780d5)), closes [#723](https://github.com/sbb-design-systems/sbb-angular/issues/723)
+* **business:** fix context menu focus color ([#730](https://github.com/sbb-design-systems/sbb-angular/issues/730)) ([4a6bf72](https://github.com/sbb-design-systems/sbb-angular/commit/4a6bf720ab615ba87892aec18c946018e2a1eb80))
+
+
+### Documentation
+
+* fix sbb-radio-button-panel non label examples ([#709](https://github.com/sbb-design-systems/sbb-angular/issues/709)) ([72685c5](https://github.com/sbb-design-systems/sbb-angular/commit/72685c52e053e1a3e8feed67fc762e59fe71fa67))
+
 ### [11.0.3](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.2...11.0.3) (2021-01-06)
 
 
