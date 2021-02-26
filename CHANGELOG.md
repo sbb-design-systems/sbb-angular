@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.3.3](https://github.com/sbb-design-systems/sbb-angular/compare/10.3.2...10.3.3) (2021-02-26)
+
+
+### Bug Fixes
+
+* remove positioning fix for tick ([#739](https://github.com/sbb-design-systems/sbb-angular/issues/739)) ([4b48176](https://github.com/sbb-design-systems/sbb-angular/commit/4b4817640e0df175a17f74f44d64b89828795fe9))
+
 ### [10.3.2](https://github.com/sbb-design-systems/sbb-angular/compare/10.3.1...10.3.2) (2020-10-22)
 
 
