@@ -47,6 +47,9 @@ ng_test_library(
 
 ng_web_test_suite(
     name = "unit_tests",
+    static_css = [
+        "//src/angular-public:typography",
+    ],
     deps = [":unit_test_sources"],
 )
 

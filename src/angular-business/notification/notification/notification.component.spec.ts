@@ -125,7 +125,7 @@ describe('SbbNotification', () => {
       );
       expect(notifications.length).toBeGreaterThan(0);
       await testFixture.whenRenderingDone();
-      expect(componentStyles.getPropertyValue('height')).toBe('72px');
+      expect(componentStyles.getPropertyValue('height')).toBe('76px');
     });
 
     it('should emit when closing notification', async () => {

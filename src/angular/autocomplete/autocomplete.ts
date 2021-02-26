@@ -80,7 +80,7 @@ export const SBB_AUTOCOMPLETE_DEFAULT_OPTIONS = new InjectionToken<SbbAutocomple
 
 /** @docs-private */
 export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefaultOptions {
-  return { autoActiveFirstOption: false, overlayPanelClass: 'sbb-overlay-panel' };
+  return { autoActiveFirstOption: false };
 }
 
 @Component({

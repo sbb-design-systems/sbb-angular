@@ -11,7 +11,6 @@ import {
   EventEmitter,
   HostListener,
   Inject,
-  InjectionToken,
   Input,
   OnDestroy,
   Optional,
@@ -23,6 +22,7 @@ import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { Subject } from 'rxjs';
 
 import { SbbOptionGroup, SBB_OPTGROUP } from '../option-group/option-group.component';
+import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from '../option-parent';
 
 /**
  * Option IDs need to be unique across components, so this counter exists outside of
@@ -40,22 +40,9 @@ export class SbbOptionSelectionChange {
   ) {}
 }
 
-/**
- * Describes a parent component that manages a list of options.
- * Contains properties that the options can inherit.
- * @docs-private
- */
-export interface SbbOptionParentComponent {
-  multiple?: boolean;
-}
-
-/** Injection token used to provide the parent component to options. */
-export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentComponent>(
-  'SBB_OPTION_PARENT_COMPONENT'
-);
-
 @Component({
   selector: 'sbb-option',
+  exportAs: 'sbbOption',
   styleUrls: ['option.component.css'],
   templateUrl: 'option.component.html',
   encapsulation: ViewEncapsulation.None,
@@ -76,7 +63,11 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentCom
 export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
   private _selected = false;
   private _active = false;
+  private _disabled = false;
   private _mostRecentViewValue = '';
+  private _originalInnerHtml?: string;
+  private _highlightValue?: string;
+  private _highlighted = false;
 
   /** Whether the wrapping component is in multiple selection mode. */
   get multiple() {
@@ -103,7 +94,6 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
     this._disabled = coerceBooleanProperty(value);
     this._changeDetectorRef.markForCheck();
   }
-  private _disabled = false;
 
   /** Event emitted when the option is selected or deselected. */
   // tslint:disable-next-line:no-output-on-prefix
@@ -111,6 +101,16 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly _stateChanges = new Subject<void>();
+
+  constructor(
+    private _element: ElementRef<HTMLElement>,
+    @Inject(DOCUMENT) private _document: any,
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Optional()
+    @Inject(SBB_OPTION_PARENT_COMPONENT)
+    private _parent: SbbOptionParentComponent,
+    @Optional() @Inject(SBB_OPTGROUP) readonly group: SbbOptionGroup
+  ) {}
 
   /**
    * Whether or not the option is currently active and ready to be selected.
@@ -127,22 +127,9 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
    * select's trigger.
    */
   get viewValue(): string {
+    // TODO(kara): Add input property alternative for node envs.
     return (this._getHostElement().textContent || '').trim();
   }
-
-  private _originalInnerHtml?: string;
-  private _highlightValue?: string;
-  private _highlighted = false;
-
-  constructor(
-    private _element: ElementRef<HTMLElement>,
-    @Inject(DOCUMENT) private _document: any,
-    private _changeDetectorRef: ChangeDetectorRef,
-    @Optional()
-    @Inject(SBB_OPTION_PARENT_COMPONENT)
-    private _parent: SbbOptionParentComponent,
-    @Optional() @Inject(SBB_OPTGROUP) readonly group: SbbOptionGroup
-  ) {}
 
   /** Selects the option. */
   select(): void {
@@ -266,11 +253,6 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
     this._stateChanges.complete();
   }
 
-  /** Emits the selection change event. */
-  private _emitSelectionChangeEvent(isUserInput = false): void {
-    this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
-  }
-
   /**
    * Highlights a text part of the option by wrapping it with a strong element.
    * @docs-private
@@ -356,36 +338,12 @@ export class SbbOption implements AfterViewChecked, OnDestroy, Highlightable {
     parent.removeChild(node);
   }
 
-  // tslint:disable: member-ordering
+  /** Emits the selection change event. */
+  private _emitSelectionChangeEvent(isUserInput = false): void {
+    this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
+  }
+
   static ngAcceptInputType_disabled: BooleanInput;
-  // tslint:enable: member-ordering
-}
-
-/**
- * Determines the position to which to scroll a panel in order for an option to be into view.
- * @param optionIndex Index of the option to be scrolled into the view.
- * @param optionHeight Height of the options.
- * @param currentScrollPosition Current scroll position of the panel.
- * @param panelHeight Height of the panel.
- * @docs-private
- */
-export function getOptionScrollPosition(
-  optionIndex: number,
-  optionHeight: number,
-  currentScrollPosition: number,
-  panelHeight: number
-): number {
-  const optionOffset = optionIndex * optionHeight;
-
-  if (optionOffset < currentScrollPosition) {
-    return optionOffset;
-  }
-
-  if (optionOffset + optionHeight > currentScrollPosition + panelHeight) {
-    return Math.max(0, optionOffset - panelHeight + optionHeight);
-  }
-
-  return currentScrollPosition;
 }
 
 /**
@@ -415,4 +373,29 @@ export function countGroupLabelsBeforeOption(
   }
 
   return 0;
+}
+
+/**
+ * Determines the position to which to scroll a panel in order for an option to be into view.
+ * @param optionOffset Offset of the option from the top of the panel.
+ * @param optionHeight Height of the options.
+ * @param currentScrollPosition Current scroll position of the panel.
+ * @param panelHeight Height of the panel.
+ * @docs-private
+ */
+export function getOptionScrollPosition(
+  optionOffset: number,
+  optionHeight: number,
+  currentScrollPosition: number,
+  panelHeight: number
+): number {
+  if (optionOffset < currentScrollPosition) {
+    return optionOffset;
+  }
+
+  if (optionOffset + optionHeight > currentScrollPosition + panelHeight) {
+    return Math.max(0, optionOffset - panelHeight + optionHeight);
+  }
+
+  return currentScrollPosition;
 }

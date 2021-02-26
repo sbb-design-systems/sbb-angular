@@ -21,6 +21,7 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/autocomplete",
     deps = [
+        "//src:dev_mode_types",
         "//src/angular-core/common-behaviors",
         "//src/angular-public/form-field",
         "//src/angular-public/option",
@@ -68,6 +69,9 @@ ng_test_library(
 
 ng_web_test_suite(
     name = "unit_tests",
+    static_css = [
+        "//src/angular-public:typography",
+    ],
     deps = [":unit_test_sources"],
 )
 

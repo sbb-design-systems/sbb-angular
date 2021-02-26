@@ -1,8 +1,10 @@
-<ng-template>
+<ng-template let-formFieldId="id">
   <div
     class="sbb-autocomplete-panel sbb-scrollbar"
     role="listbox"
     [id]="id"
+    [attr.aria-label]="ariaLabel || null"
+    [attr.aria-labelledby]="_getPanelAriaLabelledby(formFieldId)"
     [ngClass]="_classList"
     #panel
   >

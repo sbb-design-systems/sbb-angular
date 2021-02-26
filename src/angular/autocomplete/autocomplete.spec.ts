@@ -1599,7 +1599,7 @@ describe('SbbAutocomplete', () => {
       // These down arrows will set the 6th option active, below the fold.
       [1, 2, 3, 4, 5].forEach(() => trigger._handleKeydown(downArrowEvent));
 
-      // Expect option bottom minus the panel height plus padding (288 - 256 + 10 = 32)
+      // Expect option bottom minus the panel height plus padding (288 - 256 + 10 = 42)
       expect(scrollContainer.scrollTop).toEqual(42, `Expected panel to reveal the sixth option.`);
     });
 
@@ -1658,7 +1658,7 @@ describe('SbbAutocomplete', () => {
       // These down arrows will set the 6th option active, below the fold.
       [1, 2, 3, 4, 5].forEach(() => trigger._handleKeydown(downArrowEvent));
 
-      // Expect option bottom minus the panel height plus padding (288 - 256 + 10 = 32)
+      // Expect option bottom minus the panel height plus padding (288 - 256 + 10 = 42)
       expect(scrollContainer.scrollTop).toEqual(42, `Expected panel to reveal the sixth option.`);
 
       // These up arrows will set the 2nd option active

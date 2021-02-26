@@ -63,6 +63,12 @@ ng_web_test_suite(
     deps = [":unit_test_sources"],<% if (path.includes('/angular/')) { %>
     static_css = [
             "//src/angular:typography",
+        ]<% } else if (path.includes('/angular-public/')) { %>
+    static_css = [
+            "//src/angular-public:typography",
+        ]<% } else if (path.includes('/angular-business/')) { %>
+    static_css = [
+            "//src/angular-business:typography",
         ]<% } %>
 )<% } %><% if (hasMarkdown) { %>
 
