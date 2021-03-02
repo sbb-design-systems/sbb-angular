@@ -1,0 +1,46 @@
+<button sbbButton [sbbMenuTriggerFor]="animals">Animal index</button>
+<sbb-menu #animals="sbbMenu">
+  <button sbb-menu-item [sbbMenuTriggerFor]="vertebrates">Vertebrates</button>
+  <button sbb-menu-item [sbbMenuTriggerFor]="invertebrates">Invertebrates</button>
+</sbb-menu>
+
+<sbb-menu #vertebrates="sbbMenu">
+  <button sbb-menu-item [sbbMenuTriggerFor]="fish">Fishes</button>
+  <button sbb-menu-item [sbbMenuTriggerFor]="amphibians">Amphibians</button>
+  <button sbb-menu-item [sbbMenuTriggerFor]="reptiles">Reptiles</button>
+  <button sbb-menu-item>Birds</button>
+  <button sbb-menu-item>Mammals</button>
+</sbb-menu>
+
+<sbb-menu #invertebrates="sbbMenu">
+  <button sbb-menu-item>Insects</button>
+  <button sbb-menu-item>Molluscs</button>
+  <button sbb-menu-item>Crustaceans</button>
+  <button sbb-menu-item>Corals</button>
+  <button sbb-menu-item>Arachnids</button>
+  <button sbb-menu-item>Velvet worms</button>
+  <button sbb-menu-item>Horseshoe crabs</button>
+</sbb-menu>
+
+<sbb-menu #fish="sbbMenu">
+  <button sbb-menu-item>Baikal oilfish</button>
+  <button sbb-menu-item>Bala shark</button>
+  <button sbb-menu-item>Ballan wrasse</button>
+  <button sbb-menu-item>Bamboo shark</button>
+  <button sbb-menu-item>Banded killifish</button>
+</sbb-menu>
+
+<sbb-menu #amphibians="sbbMenu">
+  <button sbb-menu-item>Sonoran desert toad</button>
+  <button sbb-menu-item>Western toad</button>
+  <button sbb-menu-item>Arroyo toad</button>
+  <button sbb-menu-item>Yosemite toad</button>
+</sbb-menu>
+
+<sbb-menu #reptiles="sbbMenu">
+  <button sbb-menu-item>Banded Day Gecko</button>
+  <button sbb-menu-item>Banded Gila Monster</button>
+  <button sbb-menu-item>Black Tree Monitor</button>
+  <button sbb-menu-item>Blue Spiny Lizard</button>
+  <button sbb-menu-item disabled>Velociraptor</button>
+</sbb-menu>
