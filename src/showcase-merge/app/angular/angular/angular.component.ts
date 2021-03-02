@@ -26,6 +26,7 @@ export class AngularComponent {
     accordion: 'Accordion',
     breadcrumb: 'Breadcrumb',
     ghettobox: 'Ghettobox',
+    menu: 'Menu',
     notification: 'Notification',
     pagination: 'Pagination',
     processflow: 'Processflow',

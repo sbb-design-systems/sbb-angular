@@ -1,0 +1,49 @@
+@import '../../angular/styles/common';
+
+$vertical-padding: 8px !default;
+$border-radius: 4px !default;
+$submenu-indicator-size: 10px !default;
+
+// Prevent rendering sbb-menu as it can affect the flex layout.
+sbb-menu {
+  display: none;
+}
+
+.sbb-menu-panel {
+  max-height: calc(100vh - #{pxToRem(24)});
+  border-radius: $border-radius;
+  outline: 0;
+
+  // Give the menu a minimum height so that the user can't
+  // collapse it to zero when they scroll away.
+  min-height: pxToRem(48);
+
+  // Prevent users from interacting with the panel while it's animating. Note that
+  // people won't be able to click through it, because the overlay pane will catch the click.
+  // This fixes the following issues:
+  //  * Users accidentally opening sub-menus when the `overlapTrigger` option is enabled.
+  //  * Users accidentally tapping on content inside the sub-menu on touch devices, if the
+  //    sub-menu overlaps the trigger. The issue is due to touch devices emulating the
+  //    `mouseenter` event by dispatching it on tap.
+  &.ng-animating {
+    pointer-events: none;
+  }
+}
+
+// `:not(:empty)` allows for the menu to collapse to 0x0 when it doesn't have content.
+.sbb-menu-content:not(:empty) {
+  padding-top: $vertical-padding;
+  padding-bottom: $vertical-padding;
+}
+
+.sbb-menu-item {
+  position: relative;
+}
+
+.sbb-menu-item-submenu-trigger {
+  // @include menu-common.item-submenu-trigger(menu-common.$side-padding);
+}
+
+button.sbb-menu-item {
+  width: 100%;
+}
