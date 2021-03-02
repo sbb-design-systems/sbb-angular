@@ -323,7 +323,9 @@ export class SbbHeader implements OnInit, OnChanges, AfterViewInit, OnDestroy {
     this._focusTrap = this._focusTrapFactory.create(this._menuElement.nativeElement);
     this._updateFocusTrapState();
     this._headerMenusCollapsed.subscribe((isCollapsed) => {
-      this._menusCollapsed = isCollapsed;
+      Promise.resolve().then(() => {
+        this._menusCollapsed = isCollapsed;
+      });
       if (isCollapsed) {
         this._mainMenuOutlet.detach();
         this._sideMenuOutlet.attachTemplatePortal(this._navigationPortal);
