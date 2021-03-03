@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/11.1.0...11.1.1) (2021-03-03)
+
+
+### Bug Fixes
+
+* **business:** avoid Expression has changed error for menus collapsed state ([#744](https://github.com/sbb-design-systems/sbb-angular/issues/744)) ([d168f96](https://github.com/sbb-design-systems/sbb-angular/commit/d168f96f2c3511246458b557f42e9bf2286d3437))
+
 ## [11.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/11.0.3...11.1.0) (2021-02-26)
 
 
