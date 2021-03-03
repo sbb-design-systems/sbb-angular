@@ -914,8 +914,8 @@ fieldset,
   @include mq($from: tabletPortrait) {
     width: auto;
     // We use em here, in order to scale for 4k and 5k
-    min-width: toEm(60 / $sizeFontDefault);
-    max-width: toEm(400 / $sizeFontDefault);
+    min-width: pxToEm(60);
+    max-width: pxToEm(400);
   }
 
   html:not(.sbb-lean) & {
@@ -946,8 +946,7 @@ fieldset,
     padding: pxToRem(5) pxToRem(15) pxToRem(6);
   }
 
-  &:not(:disabled),
-  &:not(.sbb-disabled) {
+  &:not(:disabled):not(.sbb-disabled) {
     cursor: pointer;
   }
 
@@ -966,8 +965,7 @@ fieldset,
   background-color: $sbbColorRed;
   color: $sbbColorWhite;
 
-  &:not(:disabled),
-  &:not(.sbb-disabled) {
+  &:not(:disabled):not(.sbb-disabled) {
     &:hover,
     &:focus {
       background: $sbbColorRed125;
@@ -987,8 +985,7 @@ fieldset,
   background-color: $sbbColorGranite;
   color: $sbbColorWhite;
 
-  &:not(:disabled),
-  &:not(.sbb-disabled) {
+  &:not(:disabled):not(.sbb-disabled) {
     &:hover,
     &:focus {
       background: $sbbColorIron;
@@ -1009,8 +1006,7 @@ fieldset,
   background-color: $sbbColorSilver;
   color: $sbbColorIron;
 
-  &:not(:disabled),
-  &:not(.sbb-disabled) {
+  &:not(:disabled):not(.sbb-disabled) {
     &:hover,
     &:focus {
       background: $sbbColorPlatinum;
@@ -1036,8 +1032,7 @@ fieldset,
     border-color: $sbbColorStorm;
   }
 
-  &:not(:disabled),
-  &:not(.sbb-disabled) {
+  &:not(:disabled):not(.sbb-disabled) {
     &:hover,
     &:focus {
       border-color: $sbbColorIron;
@@ -1087,8 +1082,7 @@ fieldset,
     }
   }
 
-  &:not(:disabled),
-  &:not(.sbb-disabled) {
+  &:not(:disabled):not(.sbb-disabled) {
     &:hover,
     &:focus {
       color: $sbbColorRed125;

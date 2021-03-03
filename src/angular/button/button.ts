@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostListener,
   Inject,
   Input,
   OnDestroy,
@@ -36,7 +37,7 @@ const BUTTON_HOST_ATTRIBUTES = [
   'sbb-link',
 ];
 
-const INDICATOR_ATTIBUTES = [
+const INDICATOR_ATTRIBUTES = [
   'sbb-button',
   'sbb-secondary-button',
   'sbb-frameless-button',
@@ -72,7 +73,6 @@ const _SbbButtonMixinBase: CanDisableCtor & HasVariantCtor & typeof SbbButtonBas
     '[attr.disabled]': 'disabled || null',
     '[class._sbb-animation-noopable]': '_animationMode === "NoopAnimations"',
     '[class.sbb-disabled]': 'disabled',
-    class: 'sbb-focus-indicator',
   },
   templateUrl: 'button.html',
   styleUrls: ['button.css'],
@@ -83,7 +83,8 @@ const _SbbButtonMixinBase: CanDisableCtor & HasVariantCtor & typeof SbbButtonBas
 export class SbbButton
   extends _SbbButtonMixinBase
   implements AfterViewInit, OnDestroy, CanDisable, FocusableOption {
-  _hasIconIndicator: boolean = this._hasHostAttributes(...INDICATOR_ATTIBUTES);
+  /** Whether this button has an icon indicator. */
+  _hasIconIndicator: boolean = this._hasHostAttributes(...INDICATOR_ATTRIBUTES);
   /** Whether the left indicator icon is visible. */
   _leftIconVisible: Observable<boolean>;
   /** Whether the right indicator icon is visible. */
@@ -93,6 +94,8 @@ export class SbbButton
    * The indicator icon, which will be shown around the button content
    * in the standard variant or behind the sbb-link in lean variant.
    * Must be a valid svgIcon input for sbb-icon.
+   *
+   * e.g. indicatorIcon="kom:plus-small"
    */
   @Input() indicatorIcon: string;
 
@@ -175,10 +178,8 @@ export class SbbButton
     '[attr.tabindex]': 'disabled ? -1 : (tabIndex || 0)',
     '[attr.disabled]': 'disabled || null',
     '[attr.aria-disabled]': 'disabled.toString()',
-    '(click)': '_haltDisabledEvents($event)',
     '[class._sbb-animation-noopable]': '_animationMode === "NoopAnimations"',
     '[class.sbb-disabled]': 'disabled',
-    class: 'sbb-focus-indicator',
   },
   inputs: ['disabled'],
   templateUrl: 'button.html',
@@ -198,6 +199,7 @@ export class SbbAnchor extends SbbButton {
     super(elementRef, focusMonitor, animationMode);
   }
 
+  @HostListener('click', ['$event'])
   _haltDisabledEvents(event: Event) {
     // A disabled button shouldn't apply any actions
     if (this.disabled) {

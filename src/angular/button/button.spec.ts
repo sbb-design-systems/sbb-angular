@@ -535,17 +535,6 @@ describe('SbbButton', () => {
       });
     });
   });
-
-  it('should have a focus indicator', () => {
-    const fixture = TestBed.createComponent(ButtonTest);
-    const buttonNativeElements = [
-      ...fixture.debugElement.nativeElement.querySelectorAll('a, button'),
-    ];
-
-    expect(
-      buttonNativeElements.every((element) => element.classList.contains('sbb-focus-indicator'))
-    ).toBe(true);
-  });
 });
 
 @Directive()

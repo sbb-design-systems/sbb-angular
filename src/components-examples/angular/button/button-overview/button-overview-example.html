@@ -1,4 +1,3 @@
-<h3>Buttons</h3>
 <h4>sbb-button</h4>
 <button type="button" sbb-button [disabled]="disabled">Primary</button>
 
@@ -6,24 +5,25 @@
 <button type="button" sbb-secondary-button [disabled]="disabled">Secondary</button>
 
 <h4>sbb-ghost-button</h4>
+<p>In standard variant, this button will be hidden when disabled.</p>
 <button type="button" sbb-ghost-button [disabled]="disabled">Ghost</button>
 
-<div class="sbb-standard-only">
-  <h3>standard only buttons</h3>
-  <h4>sbb-frameless-button</h4>
-  <td><button type="button" sbb-frameless-button [disabled]="disabled">Frameless</button></td>
-</div>
+<h4>sbb-frameless-button (standard only)</h4>
+<p>
+  This button is only intended to be used with standard variant.<br />
+  In standard variant, this button will be hidden when disabled.
+</p>
+<button type="button" sbb-frameless-button [disabled]="disabled">Frameless</button>
 
-<div class="sbb-lean-only">
-  <h3>lean only buttons</h3>
-  <h4>sbb-alt-button</h4>
-  <button type="button" sbb-alt-button [disabled]="disabled">Primary Alt</button>
+<h4>sbb-alt-button (lean only)</h4>
+<p>This button is only intended to be used with lean variant.</p>
+<button type="button" sbb-alt-button [disabled]="disabled">Primary Alt</button>
 
-  <h4>sbb-icon-button</h4>
-  <button type="button" sbb-icon-button [disabled]="disabled">
-    <sbb-icon svgIcon="kom:house-small"></sbb-icon>
-  </button>
-</div>
+<h4>sbb-icon-button (lean only)</h4>
+<p>This button is only intended to be used with lean variant.</p>
+<button type="button" sbb-icon-button [disabled]="disabled">
+  <sbb-icon svgIcon="kom:house-small"></sbb-icon>
+</button>
 
-<h4 class="properties">Properties</h4>
+<h3 class="properties">Properties</h3>
 <sbb-checkbox [(ngModel)]="disabled">Disable Buttons</sbb-checkbox>
