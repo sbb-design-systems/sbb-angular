@@ -99,9 +99,8 @@ export class SbbDropdown implements AfterContentInit {
   @Input() panelWidth: string | number;
 
   /** Event that is emitted whenever an option from the list is selected. */
-  @Output() readonly optionSelected: EventEmitter<SbbDropdownSelectedEvent> = new EventEmitter<
-    SbbDropdownSelectedEvent
-  >();
+  @Output()
+  readonly optionSelected: EventEmitter<SbbDropdownSelectedEvent> = new EventEmitter<SbbDropdownSelectedEvent>();
 
   /** Event that is emitted when the dropdown panel is opened. */
   @Output() readonly opened: EventEmitter<void> = new EventEmitter<void>();

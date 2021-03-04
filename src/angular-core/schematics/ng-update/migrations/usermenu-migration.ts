@@ -1,5 +1,5 @@
 import { Migration, parse5, ResolvedResource, TargetVersion } from '@angular/cdk/schematics';
-import type { DefaultTreeDocument, DefaultTreeElement } from 'parse5';
+import type { DocumentFragment, Element } from 'parse5';
 
 const parse: typeof import('parse5') = parse5;
 
@@ -19,13 +19,13 @@ export class UsermenuMigration extends Migration<null> {
   visitTemplate(template: ResolvedResource): void {
     const document = parse.parseFragment(template.content, {
       sourceCodeLocationInfo: true,
-    }) as DefaultTreeDocument;
-    const sbbIconElements: DefaultTreeElement[] = [];
-    const sbbDropdownElements: DefaultTreeElement[] = [];
-    const sbbDropdownItemElements: DefaultTreeElement[] = [];
+    }) as DocumentFragment;
+    const sbbIconElements: Element[] = [];
+    const sbbDropdownElements: Element[] = [];
+    const sbbDropdownItemElements: Element[] = [];
 
     const visitNodes = (nodes: any[]) => {
-      nodes.forEach((node: DefaultTreeElement) => {
+      nodes.forEach((node: Element) => {
         if (node.childNodes) {
           visitNodes(node.childNodes);
         }
@@ -132,40 +132,40 @@ export class UsermenuMigration extends Migration<null> {
     this.logger.info('');
   }
 
-  private _isUsermenu(node: DefaultTreeElement) {
+  private _isUsermenu(node: Element) {
     return node.nodeName.toLocaleLowerCase() === 'sbb-usermenu';
   }
 
-  private _isSbbDropdown(node: DefaultTreeElement) {
+  private _isSbbDropdown(node: Element) {
     return node.nodeName.toLowerCase() === 'sbb-dropdown';
   }
 
-  private _hasSbbIconDirective(node: DefaultTreeElement) {
+  private _hasSbbIconDirective(node: Element) {
     return node.attrs && node.attrs.some((a) => a.name.toLowerCase() === 'sbbicon');
   }
 
-  private _hasSbbDropdownItemDirective(node: DefaultTreeElement) {
+  private _hasSbbDropdownItemDirective(node: Element) {
     return node.attrs && node.attrs.some((a) => a.name.toLowerCase() === 'sbbdropdownitem');
   }
 
-  private _isInSbbDropdown(node: DefaultTreeElement) {
-    let parent = node.parentNode as DefaultTreeElement;
+  private _isInSbbDropdown(node: Element) {
+    let parent = node.parentNode as Element;
     while (parent) {
       if (this._isSbbDropdown(parent)) {
         return true;
       }
-      parent = parent.parentNode as DefaultTreeElement;
+      parent = parent.parentNode as Element;
     }
     return false;
   }
 
-  private _isInUsermenu(node: DefaultTreeElement) {
-    let parent = node.parentNode as DefaultTreeElement;
+  private _isInUsermenu(node: Element) {
+    let parent = node.parentNode as Element;
     while (parent) {
       if (this._isUsermenu(parent)) {
         return true;
       }
-      parent = parent.parentNode as DefaultTreeElement;
+      parent = parent.parentNode as Element;
     }
     return false;
   }

@@ -8,10 +8,14 @@ import {
   TargetVersion,
   WorkspacePath,
 } from '@angular/cdk/schematics';
-import type { Attribute, DefaultTreeDocument, DefaultTreeElement } from 'parse5';
+import type { Attribute, DocumentFragment, Element } from 'parse5';
 import * as ts from 'typescript';
 
 const parse: typeof import('parse5') = parse5;
+
+interface PackageJson {
+  name: string;
+}
 
 export class IconMigration extends Migration<any, DevkitContext> {
   readonly sbbIconModule = 'SbbIconModule';
@@ -112,8 +116,8 @@ export class IconMigration extends Migration<any, DevkitContext> {
 
     const document = parse.parseFragment(template.content, {
       sourceCodeLocationInfo: true,
-    }) as DefaultTreeDocument;
-    const elements: DefaultTreeElement[] = [];
+    }) as DocumentFragment;
+    const elements: Element[] = [];
 
     const visitNodes = (nodes: any[]) => {
       nodes.forEach((node: any) => {
@@ -183,7 +187,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
     const pkgJson = this.context.tree.get('package.json');
     return (
       pkgJson &&
-      JSON.parse(pkgJson.content.toString()).name === 'sbb-angular' &&
+      (JSON.parse(pkgJson.content.toString()) as PackageJson).name === 'sbb-angular' &&
       this.context.projectName === 'angular-showcase' &&
       [
         'angular-core/icon',
@@ -391,7 +395,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
     });
   }
 
-  private _resolveIconDimensions(element: DefaultTreeElement) {
+  private _resolveIconDimensions(element: Element) {
     let fit = false;
     let size = 'small';
     const elementAttrs = element.attrs || [];
@@ -421,7 +425,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
     return value ? `[style.${variant}]="${value}"` : undefined;
   }
 
-  private _normalizeAttributes(element: DefaultTreeElement, content: string, fit: boolean) {
+  private _normalizeAttributes(element: Element, content: string, fit: boolean) {
     if (!element.attrs.length) {
       return [];
     }
@@ -468,7 +472,7 @@ export class IconMigration extends Migration<any, DevkitContext> {
     return attrs;
   }
 
-  private _resolveIconName(element: DefaultTreeElement, size: string) {
+  private _resolveIconName(element: Element, size: string) {
     if (element.nodeName === 'svg') {
       const selector = element.attrs
         .find((a) => a.name.toLowerCase().startsWith('sbbicon'))
@@ -542,7 +546,7 @@ class TsMigrationContext {
 }
 
 class TemplateMigrationContext {
-  readonly resources = new Map<ResolvedResource, DefaultTreeElement[]>();
+  readonly resources = new Map<ResolvedResource, Element[]>();
   constructor(readonly recorder: UpdateRecorder) {}
 }
 

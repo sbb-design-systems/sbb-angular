@@ -83,9 +83,8 @@ export class SbbGhettobox {
   }
 
   /** Emit a GhettoboxDeletedEvent after every ghettobox deletion */
-  @Output() afterDelete: EventEmitter<SbbGhettoboxDeletedEvent> = new EventEmitter<
-    SbbGhettoboxDeletedEvent
-  >();
+  @Output()
+  afterDelete: EventEmitter<SbbGhettoboxDeletedEvent> = new EventEmitter<SbbGhettoboxDeletedEvent>();
 
   /** Ghettobox Default icon as a TemplateRef if any are not specified */
   @ViewChild('defaultIcon', { static: true }) defaultIcon: TemplateRef<any>;

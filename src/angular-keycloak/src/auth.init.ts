@@ -18,7 +18,7 @@ export function authInit(
 ) {
   return async () => {
     authService.keycloak = Keycloak(keycloakConfig);
-    await new Promise((resolve) => {
+    await new Promise<void>((resolve) => {
       authService.keycloak
         .init(keycloakOptions)
         .success(() => resolve())

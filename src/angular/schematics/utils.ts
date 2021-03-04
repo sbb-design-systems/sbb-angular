@@ -1,7 +1,7 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { Migration, parse5, ResolvedResource } from '@angular/cdk/schematics';
 import type { UpdateRecorder } from '@angular/cdk/schematics/update-tool/update-recorder';
-import type { Attribute, DefaultTreeDocument, DefaultTreeElement, Location } from 'parse5';
+import type { Attribute, DocumentFragment, Element, Location } from 'parse5';
 import * as ts from 'typescript';
 
 const parse: typeof import('parse5') = parse5;
@@ -100,18 +100,18 @@ function resolveIdentifierOfExpression(expression: ts.Expression): ts.Identifier
  * Iterate over all nodes recursively and perform the given action.
  */
 export function iterateNodes(
-  contentOrRoot: string | DefaultTreeElement,
-  nodeAction: (node: DefaultTreeElement) => void
+  contentOrRoot: string | Element,
+  nodeAction: (node: Element) => void
 ): void {
   const root =
     typeof contentOrRoot === 'string'
       ? (parse.parseFragment(contentOrRoot, {
           sourceCodeLocationInfo: true,
-        }) as DefaultTreeDocument)
+        }) as DocumentFragment)
       : contentOrRoot;
 
   const visitNodes = (nodes: any[]) => {
-    nodes.forEach((node: DefaultTreeElement) => {
+    nodes.forEach((node: Element) => {
       if (node.childNodes) {
         visitNodes(node.childNodes);
       }
@@ -124,7 +124,7 @@ export function iterateNodes(
 }
 
 export class MigrationRecorderRegistry {
-  private _elements = new Map<ResolvedResource, DefaultTreeElement[]>();
+  private _elements = new Map<ResolvedResource, Element[]>();
 
   get empty() {
     return this._elements.size === 0;
@@ -132,7 +132,7 @@ export class MigrationRecorderRegistry {
 
   constructor(private _migration: Migration<any, any>) {}
 
-  add(resource: ResolvedResource, element: DefaultTreeElement) {
+  add(resource: ResolvedResource, element: Element) {
     if (!this._elements.has(resource)) {
       this._elements.set(resource, []);
     }
@@ -152,7 +152,7 @@ export class MigrationElement {
   private _properties = new Map<string, MigrationElementProperty | undefined>();
 
   constructor(
-    readonly element: DefaultTreeElement,
+    readonly element: Element,
     readonly resource: ResolvedResource,
     readonly recorder: UpdateRecorder,
     readonly location = element.sourceCodeLocation!
@@ -176,7 +176,7 @@ export class MigrationElement {
     this.recorder.insertRight(this.resource.start + this.location.startTag.endOffset, content);
   }
 
-  findElements(filter: (node: DefaultTreeElement) => boolean) {
+  findElements(filter: (node: Element) => boolean) {
     const results: MigrationElement[] = [];
     iterateNodes(this.element, (node) => {
       if (filter(node)) {

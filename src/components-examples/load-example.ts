@@ -4,20 +4,45 @@ import { ComponentFactory, Injector, NgModuleFactory, Type } from '@angular/core
 import { EXAMPLE_COMPONENTS } from './example-module';
 
 /** Asynchronously loads the specified example and returns its component factory. */
-export async function loadExampleFactory(
+export function loadExampleFactory(
   name: string,
   injector: Injector
 ): Promise<ComponentFactory<any>> {
   const { componentName, module } = EXAMPLE_COMPONENTS[name];
-  const importSpecifier = `@sbb-esta/components-examples/${module.importSpecifier}`;
+  const importParts = module.importSpecifier.split('/');
+  if (importParts.length !== 2) {
+    throw new Error(
+      `Expected importSpecifier to contain two parts, but received ${importParts}. ` +
+        'Adapt load-example.ts, if that is no longer the case.'
+    );
+  }
+  const [packageName, moduleName] = importParts;
   // TODO(devversion): remove the NgFactory import when the `--config=view-engine` switch is gone.
-  const [moduleFactoryExports, moduleExports] = await Promise.all([
-    import(importSpecifier + '/index.ngfactory'),
-    import(importSpecifier),
-  ]);
-  const moduleFactory: NgModuleFactory<any> = moduleFactoryExports[`${module.name}NgFactory`];
-  const componentType: Type<any> = moduleExports[componentName];
-  return moduleFactory
-    .create(injector)
-    .componentFactoryResolver.resolveComponentFactory(componentType);
+  return loadModules(packageName, moduleName).then(([moduleFactoryExports, moduleExports]) => {
+    const moduleFactory: NgModuleFactory<any> = moduleFactoryExports[`${module.name}NgFactory`];
+    const componentType: Type<any> = moduleExports[componentName];
+    return moduleFactory
+      .create(injector)
+      .componentFactoryResolver.resolveComponentFactory(componentType);
+  });
+}
+
+declare let require: Function;
+
+function loadModules(packageName: string, moduleName: string): Promise<[any, any]> {
+  if (typeof require === 'function') {
+    return new Promise((resolve) => {
+      require([
+        `@sbb-esta/components-examples/${packageName}/${moduleName}/index.ngfactory`,
+        `@sbb-esta/components-examples/${packageName}/${moduleName}`,
+      ], (...dependencies: [any, any]) => {
+        resolve(dependencies);
+      });
+    });
+  } else {
+    return Promise.all([
+      import(`./${packageName}/${moduleName}/index.ngfactory.mjs`),
+      import(`./${packageName}/${moduleName}/index.mjs`),
+    ]);
+  }
 }

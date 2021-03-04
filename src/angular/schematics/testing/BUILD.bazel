@@ -15,11 +15,9 @@ ts_library(
         "@npm//@angular-devkit/core",
         "@npm//@angular-devkit/schematics",
         "@npm//@schematics/angular",
-        "@npm//@types/fs-extra",
         "@npm//@types/glob",
         "@npm//@types/jasmine",
         "@npm//@types/node",
-        "@npm//fs-extra",
         "@npm//rxjs",
     ],
 )

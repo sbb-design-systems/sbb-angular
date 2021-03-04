@@ -40,7 +40,7 @@ describe('ngAdd', () => {
     if (!host.exists(path)) {
       throw new SchematicsException(path + ' not found');
     }
-    return JSON.parse(host.read(path)!.toString('utf-8'));
+    return JSON.parse(host.read(path)!.toString('utf-8')) as any;
   }
 
   /** Assert that file exists and parse string file */

@@ -144,9 +144,8 @@ export class SbbCheckbox
   @Input() name: string | null = null;
 
   /** Event emitted when the checkbox's `checked` value changes. */
-  @Output() readonly change: EventEmitter<SbbCheckboxChange> = new EventEmitter<
-    SbbCheckboxChange
-  >();
+  @Output()
+  readonly change: EventEmitter<SbbCheckboxChange> = new EventEmitter<SbbCheckboxChange>();
 
   /** Event emitted when the checkbox's `indeterminate` value changes. */
   @Output() readonly indeterminateChange: EventEmitter<boolean> = new EventEmitter<boolean>();

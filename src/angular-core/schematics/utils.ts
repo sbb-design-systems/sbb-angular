@@ -23,7 +23,7 @@ export function readJsonFile(tree: Tree, path: string) {
   if (!tree.exists(path)) {
     throw new SchematicsException(path + ' not found');
   }
-  return JSON.parse(tree.read(path)!.toString('utf-8'));
+  return JSON.parse(tree.read(path)!.toString('utf-8')) as any;
 }
 
 /** Assert that file exists and parse string file */

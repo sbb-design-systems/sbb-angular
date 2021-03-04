@@ -1506,9 +1506,9 @@ describe('SbbSelect', () => {
             multiFixture.componentInstance.select.open();
             multiFixture.detectChanges();
 
-            const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-              HTMLElement
-            >;
+            const options = overlayContainerElement.querySelectorAll(
+              'sbb-option'
+            ) as NodeListOf<HTMLElement>;
 
             options[3].focus();
             expect(document.activeElement).toBe(
@@ -1991,9 +1991,9 @@ describe('SbbSelect', () => {
           select = fixture.debugElement.query(By.css('.sbb-select'))!.nativeElement;
           select.click();
           fixture.detectChanges();
-          groups = overlayContainerElement.querySelectorAll('sbb-optgroup') as NodeListOf<
-            HTMLElement
-          >;
+          groups = overlayContainerElement.querySelectorAll(
+            'sbb-optgroup'
+          ) as NodeListOf<HTMLElement>;
         }));
 
         it('should set the appropriate role', fakeAsync(() => {
@@ -2345,9 +2345,9 @@ describe('SbbSelect', () => {
         fixture.detectChanges();
         flush();
 
-        let options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+        let options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
 
         options[0].click();
         fixture.detectChanges();
@@ -2374,9 +2374,9 @@ describe('SbbSelect', () => {
         fixture.detectChanges();
         flush();
 
-        let options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+        let options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
 
         options[0].click();
         fixture.detectChanges();
@@ -2477,9 +2477,9 @@ describe('SbbSelect', () => {
         fixture.detectChanges();
         flush();
 
-        const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         options[8].click();
         fixture.detectChanges();
         flush();
@@ -2509,9 +2509,9 @@ describe('SbbSelect', () => {
         fixture.detectChanges();
         flush();
 
-        const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         options[2].click();
         fixture.detectChanges();
         flush();
@@ -2659,9 +2659,9 @@ describe('SbbSelect', () => {
         fixture.detectChanges();
         flush();
 
-        const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         expect(options[1].classList).toContain(
           'sbb-selected',
           `Expected option with the control's initial value to be selected.`
@@ -2685,9 +2685,9 @@ describe('SbbSelect', () => {
         fixture.detectChanges();
         flush();
 
-        const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         expect(options[1].classList).toContain(
           'sbb-selected',
           `Expected option with the control's new value to be selected.`
@@ -2736,9 +2736,9 @@ describe('SbbSelect', () => {
         fixture.detectChanges();
         flush();
 
-        const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         expect(options[1].classList).not.toContain(
           'sbb-selected',
           `Expected option w/ the old value not to be selected.`
@@ -2768,9 +2768,9 @@ describe('SbbSelect', () => {
         fixture.detectChanges();
         flush();
 
-        const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         expect(options[1].classList).not.toContain(
           'sbb-selected',
           `Expected option w/ the old value not to be selected.`
@@ -3974,9 +3974,9 @@ describe('SbbSelect', () => {
       select.click();
       fixture.detectChanges();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       fixture.detectChanges();
@@ -4212,9 +4212,9 @@ describe('SbbSelect', () => {
       select.click();
       fixture.detectChanges();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       options[2].click();
@@ -4246,9 +4246,9 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       flush();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       options[2].click();
@@ -4268,9 +4268,9 @@ describe('SbbSelect', () => {
       testInstance.control.setValue(['steak-0', 'eggs-5']);
       fixture.detectChanges();
       flush();
-      const optionNodes = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const optionNodes = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       const optionInstances = testInstance.options.toArray();
 
@@ -4285,9 +4285,9 @@ describe('SbbSelect', () => {
       select.click();
       fixture.detectChanges();
       flush();
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       fixture.detectChanges();
@@ -4307,9 +4307,9 @@ describe('SbbSelect', () => {
 
       expect(testInstance.select.panelOpen).toBe(true);
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       options[1].click();
@@ -4323,9 +4323,9 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       flush();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[2].click();
       options[0].click();
@@ -4346,9 +4346,9 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       flush();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       for (let i = 0; i < 3; i++) {
         options[i].click();
@@ -4408,9 +4408,9 @@ describe('SbbSelect', () => {
 
       expect(fixture.componentInstance.select._keyManager.activeItemIndex).toBe(0);
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[2].click();
       fixture.detectChanges();
@@ -4428,9 +4428,9 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
       select.click();
       fixture.detectChanges();
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       options[1].click();

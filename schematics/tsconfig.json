@@ -16,7 +16,7 @@
     "rootDir": ".",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "strictNullChecks": true,
     "target": "es2018",
     "types": ["jasmine", "node"]

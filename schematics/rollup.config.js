@@ -1,4 +1,4 @@
-import ts from '@wessberg/rollup-plugin-ts';
+import ts from '@rollup/plugin-typescript';
 import { existsSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
 
@@ -41,7 +41,6 @@ export default readdirSync(__dirname, { withFileTypes: true })
     ],
     plugins: [
       ts({
-        browserslist: false,
         tsconfig: join(__dirname, 'tsconfig.json'),
       }),
       {

@@ -14,9 +14,7 @@ export abstract class SbbProcessflowBase<TProcessflowStepComponent extends SbbPr
   implements AfterContentInit {
   /** Event emitted to the change of step in the process flow. */
   @Output()
-  stepChange: EventEmitter<SbbProcessflowStepDescriptor> = new EventEmitter<
-    SbbProcessflowStepDescriptor
-  >();
+  stepChange: EventEmitter<SbbProcessflowStepDescriptor> = new EventEmitter<SbbProcessflowStepDescriptor>();
   /** @docs-private */
   abstract steps: QueryList<TProcessflowStepComponent>;
 

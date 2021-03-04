@@ -10,9 +10,6 @@ module.exports = (config) => {
       require('karma-chrome-launcher'),
       require('karma-firefox-launcher'),
       require('karma-browserstack-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-sonarqube-reporter'),
-      require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma'),
     ],
     client: {
@@ -28,17 +25,7 @@ module.exports = (config) => {
       timeout: 1800,
       video: false,
     },
-    sonarqubeReporter: {
-      basePath: `projects/sbb-esta/${packageName}`,
-      outputFolder: dist,
-      reportName: () => 'sonarqube.xml',
-    },
-    coverageIstanbulReporter: {
-      dir: dist,
-      reports: ['html', 'lcovonly', 'cobertura'],
-      fixWebpackSourcePaths: true,
-    },
-    reporters: ['progress', 'kjhtml', 'sonarqube'],
+    reporters: ['dots'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
