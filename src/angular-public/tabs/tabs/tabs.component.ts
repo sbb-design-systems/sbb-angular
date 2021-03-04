@@ -96,6 +96,9 @@ export class SbbTabs implements AfterContentInit, OnDestroy {
 
   /** Method that selects the tab that matches with the tab in input */
   selectTab(tab: SbbTab, firstSelection = false) {
+    if (tab.active) {
+      return; // skip redundant update
+    }
     // TODO: Check if there is a better solution for this timing issue
     Promise.resolve().then(() => {
       this.tabs.forEach((t, index) => {
