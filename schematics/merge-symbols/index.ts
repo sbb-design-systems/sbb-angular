@@ -9,7 +9,12 @@ const IGNORED_FOLDERS = [
 
 export function mergeSymbols(): Rule {
   return (tree: Tree) => {
-    let symbols: { [key: string]: string } = { SbbOptionGroup: 'core' }; // Init with deprecated symbols (re-exports)
+    // Initialize collection with deprecated symbols (re-exports)
+    let symbols: { [key: string]: string } = {
+      SbbOptionGroup: 'core',
+      SbbLinksModule: 'button',
+      SbbLink: 'button',
+    };
 
     extractExportsForModule('src/angular/');
     extractExportsForModule('src/angular-maps/');

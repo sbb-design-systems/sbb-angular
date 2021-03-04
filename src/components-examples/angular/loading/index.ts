@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbLoadingModule } from '@sbb-esta/angular/loading';
 
 import { LoadingFullboxExample } from './loading-fullbox/loading-fullbox-example';

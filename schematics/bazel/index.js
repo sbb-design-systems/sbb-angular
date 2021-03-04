@@ -526,6 +526,7 @@ function bazel(options) {
                     ? new RelativeModuleTypeScriptDependencyResolver(tsConfig)
                     : new StrictModuleTypeScriptDependencyResolver(tsConfig);
                 const sassDependencyResolver = new FlexibleSassDependencyResolver(moduleDetector, npmDependencyResolver, context.logger, new Map()
+                    .set('../styles/common', '//src/angular/styles:common_scss_lib')
                     .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
                     .set('/angular-core/styles/common', '//src/angular-core/styles:common_scss_lib')
                     .set('external/npm/node_modules/@angular/cdk/a11y', '//src/angular/styles:common_scss_lib'));

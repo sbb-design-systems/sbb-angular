@@ -186,6 +186,8 @@ export function defineJasmineTestCases(
     return;
   }
 
+  jasmine.MAX_PRETTY_PRINT_CHARS = 10000;
+
   let appTree: UnitTestTree;
   let testCasesOutputPath: string;
 

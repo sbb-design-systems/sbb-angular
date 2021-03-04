@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SbbButtonModule } from '@sbb-esta/angular-public/button';
 import { SbbDatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { SbbTimeInputModule } from '@sbb-esta/angular-public/time-input';
 import { SbbTooltipModule } from '@sbb-esta/angular-public/tooltip';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbSelectModule } from '@sbb-esta/angular/select';

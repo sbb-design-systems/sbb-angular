@@ -9,6 +9,14 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbOptionGroup',
           replaceWith: 'SbbOptgroup',
         },
+        {
+          replace: 'SbbLink',
+          replaceWith: 'SbbAnchor',
+        },
+        {
+          replace: 'SbbLinksModule',
+          replaceWith: 'SbbButtonModule',
+        },
       ],
     },
   ],

@@ -6,19 +6,17 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "captcha",
+    name = "button",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = glob([
-        "**/*.html",
-        "**/*.css",
-    ]),
-    module_name = "@sbb-esta/components-examples/angular/captcha",
+    assets = glob(["**/*.html"]),
+    module_name = "@sbb-esta/components-examples/angular/button",
     deps = [
         "//src/angular/button",
-        "//src/angular/captcha",
+        "//src/angular/checkbox",
+        "//src/angular/icon",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

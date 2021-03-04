@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AfterContentInit, Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Breakpoints, ɵtriggerVariantCheck } from '@sbb-esta/angular/core';
+import { Breakpoints, ɵvariant } from '@sbb-esta/angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, startWith, takeUntil } from 'rxjs/operators';
 
@@ -45,7 +45,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
         } else {
           document.documentElement.classList.add(`sbb-lean`);
         }
-        ɵtriggerVariantCheck.next();
+        ɵvariant.next(value);
         localStorage.setItem(variantLocalstorageKey, value);
       });
   }
