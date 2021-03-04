@@ -8,6 +8,9 @@ is performed. An `<a>` element should be used whenever the user will _navigate_ 
 ```html
 <button type="button" sbb-button>Button</button>
 <a routerLink="..." sbb-button>Button</button>
+
+<button type="button" sbb-link>Link</button>
+<a routerLink="..." sbb-link>Button</button>
 ```
 
 There are several button variants, each applied as an attribute:
