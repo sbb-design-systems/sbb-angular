@@ -130,6 +130,17 @@ describe('SbbTabs', () => {
     expect(component.numberOfTimesSubComponentHasBeenInitialized).toEqual(1);
   });
 
+  it('should not render lazy tab content again, when opening active tab', async () => {
+    component.tabsComponent.openTabByIndex(3);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    component.tabsComponent.openTabByIndex(3); // open active tab (redundantly)
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.numberOfTimesSubComponentHasBeenInitialized).toEqual(1);
+  });
+
   it('should render lazy tab content multiple times, when switching tabs', async () => {
     component.tabsComponent.openTabByIndex(3);
     fixture.detectChanges();
