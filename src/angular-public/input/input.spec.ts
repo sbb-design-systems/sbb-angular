@@ -478,6 +478,37 @@ describe('SbbInput without forms', () => {
     expect(input.hasAttribute('placeholder')).toBe(false);
   });
 
+  it('should display string evaluated `placeholder` attribute', () => {
+    const fixture = createComponent(SbbInputWithPlaceholder);
+    fixture.detectChanges();
+    const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
+
+    expect(input.getAttribute('placeholder')).toBe('"placeholder"');
+  });
+
+  it('should evaluate `placeholder` variable', () => {
+    const fixture = createComponent(SbbInputWithVariablePlaceholder);
+    fixture.detectChanges();
+    const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
+    expect(input.getAttribute('placeholder')).toBe(null);
+
+    fixture.componentInstance.placeholder = '';
+    fixture.detectChanges();
+    expect(input.getAttribute('placeholder')).toBe(null);
+
+    fixture.componentInstance.placeholder = 'placeholder';
+    fixture.detectChanges();
+    expect(input.getAttribute('placeholder')).toBe('placeholder');
+  });
+
+  it('should display non angular placeholder', () => {
+    const fixture = createComponent(SbbInputWithAnotherNgIf);
+    fixture.detectChanges();
+    const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
+
+    expect(input.getAttribute('placeholder')).toBe('My placeholder');
+  });
+
   it('should not add the native select class if the control is not a native select', () => {
     const fixture = createComponent(SbbInputWithId);
     fixture.detectChanges();
@@ -1117,4 +1148,18 @@ class SbbInputWithDefaultNgIf {}
 })
 class SbbInputWithAnotherNgIf {
   inputValue = 'test';
+}
+
+@Component({
+  template: `<input sbbInput placeholder="{{ 'placeholder' | json }}" value="test" />`,
+})
+class SbbInputWithPlaceholder {}
+
+@Component({
+  template: ` <sbb-form-field>
+    <input sbbInput [placeholder]="placeholder" value="test" />
+  </sbb-form-field>`,
+})
+class SbbInputWithVariablePlaceholder {
+  placeholder: string;
 }

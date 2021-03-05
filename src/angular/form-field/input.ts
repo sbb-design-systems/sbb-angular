@@ -65,6 +65,7 @@ export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbInputBase =
     '[attr.readonly]': 'readonly && !_isNativeSelect || null',
     '[attr.aria-invalid]': 'errorState',
     '[attr.aria-required]': 'required.toString()',
+    '[attr.placeholder]': 'placeholder || null',
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
 })
