@@ -40,7 +40,7 @@ const _SbbMenuItemMixinBase: CanDisableCtor & typeof SbbMenuItemBase = mixinDisa
     '[attr.tabindex]': '_getTabIndex()',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[attr.disabled]': 'disabled || null',
-    class: 'sbb-focus-indicator',
+    class: 'sbb-menu-item sbb-icon-fit',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -116,7 +116,6 @@ export class SbbMenuItem
   // In Ivy the `host` bindings will be merged when this class is extended, whereas in
   // ViewEngine they're overwritten.
   // TODO(crisbeto): we move this back into `host` once Ivy is turned on by default.
-  // tslint:disable-next-line:no-host-decorator-in-concrete
   @HostListener('click', ['$event'])
   _checkDisabled(event: Event): void {
     if (this.disabled) {
@@ -130,7 +129,6 @@ export class SbbMenuItem
   // In Ivy the `host` bindings will be merged when this class is extended, whereas in
   // ViewEngine they're overwritten.
   // TODO(crisbeto): we move this back into `host` once Ivy is turned on by default.
-  // tslint:disable-next-line:no-host-decorator-in-concrete
   @HostListener('mouseenter')
   _handleMouseEnter() {
     this._hovered.next(this);
@@ -139,7 +137,7 @@ export class SbbMenuItem
   /** Gets the label to be used when determining whether the option should be focused. */
   getLabel(): string {
     const clone = this._elementRef.nativeElement.cloneNode(true) as HTMLElement;
-    const icons = clone.querySelectorAll('sbb-icon, .material-icons');
+    const icons = clone.querySelectorAll('sbb-icon');
 
     // Strip away icons so they don't show up in the text.
     for (let i = 0; i < icons.length; i++) {

@@ -1,6 +1,6 @@
 <ng-template>
   <div
-    class="sbb-panel sbb-menu-panel"
+    class="sbb-panel sbb-panel-padded sbb-menu-panel sbb-scrollbar"
     [id]="panelId"
     [ngClass]="_classList"
     (keydown)="_handleKeydown($event)"
@@ -13,9 +13,11 @@
     [attr.aria-label]="ariaLabel || null"
     [attr.aria-labelledby]="ariaLabelledby || null"
     [attr.aria-describedby]="ariaDescribedby || null"
+    [class.sbb-menu-panel-root]="!parentMenu"
   >
     <div class="sbb-menu-content">
       <ng-content></ng-content>
     </div>
+    <div class="sbb-menu-mask" aria-hidden="true" [style.width]="triggerWidth + 'px'"></div>
   </div>
 </ng-template>

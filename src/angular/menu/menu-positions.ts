@@ -1,3 +1,3 @@
-export type MenuPositionX = 'before' | 'after';
+export type SbbMenuPositionX = 'before' | 'after' | undefined;
 
-export type MenuPositionY = 'above' | 'below';
+export type SbbMenuPositionY = 'above' | 'below' | undefined;

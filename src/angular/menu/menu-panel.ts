@@ -1,9 +1,8 @@
 import { FocusOrigin } from '@angular/cdk/a11y';
-import { Direction } from '@angular/cdk/bidi';
 import { EventEmitter, InjectionToken, TemplateRef } from '@angular/core';
 
 import { SbbMenuContent } from './menu-content';
-import { MenuPositionX, MenuPositionY } from './menu-positions';
+import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
 
 /**
  * Injection token used to provide the parent menu to menu-specific components.
@@ -16,20 +15,20 @@ export const SBB_MENU_PANEL = new InjectionToken<SbbMenuPanel>('SBB_MENU_PANEL')
  * @docs-private
  */
 export interface SbbMenuPanel<T = any> {
-  xPosition: MenuPositionX;
-  yPosition: MenuPositionY;
+  xPosition: SbbMenuPositionX;
+  yPosition: SbbMenuPositionY;
   overlapTrigger: boolean;
   templateRef: TemplateRef<any>;
   closed: EventEmitter<void | 'click' | 'keydown' | 'tab'>;
   parentMenu?: SbbMenuPanel | undefined;
-  direction?: Direction;
   focusFirstItem: (origin?: FocusOrigin) => void;
   resetActiveItem: () => void;
-  setPositionClasses?: (x: MenuPositionX, y: MenuPositionY) => void;
+  setPositionClasses?: (x: SbbMenuPositionX, y: SbbMenuPositionY) => void;
   setElevation?(depth: number): void;
   lazyContent?: SbbMenuContent;
   backdropClass?: string;
   overlayPanelClass?: string | string[];
   hasBackdrop?: boolean;
   readonly panelId?: string;
+  triggerWidth: number;
 }

@@ -1964,7 +1964,6 @@ $panelBorderWidthLean: 1;
 $panelBorderRadius: 2;
 
 .sbb-panel {
-  position: relative;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -2100,6 +2099,7 @@ $menuItemPaddingTopBottom: 4;
 
 .sbb-menu-item {
   @include ellipsis;
+  @include buttonResetFrameless;
 
   position: relative;
   display: block;

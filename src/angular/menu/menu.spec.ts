@@ -43,12 +43,12 @@ import {
 import { Subject } from 'rxjs';
 
 import {
-  MenuPositionX,
-  MenuPositionY,
   SbbMenu,
   SbbMenuItem,
   SbbMenuModule,
   SbbMenuPanel,
+  SbbMenuPositionX,
+  SbbMenuPositionY,
   SbbMenuTrigger,
   SBB_MENU_DEFAULT_OPTIONS,
 } from './index';
@@ -2496,8 +2496,8 @@ class SimpleMenu {
 class PositionedMenu {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
   @ViewChild('triggerEl') triggerEl: ElementRef<HTMLElement>;
-  xPosition: MenuPositionX = 'before';
-  yPosition: MenuPositionY = 'above';
+  xPosition: SbbMenuPositionX = 'before';
+  yPosition: SbbMenuPositionY = 'above';
 }
 
 interface TestableMenu {
@@ -2530,8 +2530,8 @@ class OverlapMenu implements TestableMenu {
 })
 class CustomMenuPanel implements SbbMenuPanel {
   direction: Direction;
-  xPosition: MenuPositionX = 'after';
-  yPosition: MenuPositionY = 'below';
+  xPosition: SbbMenuPositionX = 'after';
+  yPosition: SbbMenuPositionY = 'below';
   overlapTrigger = true;
   parentMenu: SbbMenuPanel;
 

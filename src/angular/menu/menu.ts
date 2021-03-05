@@ -1,15 +1,7 @@
 import { AnimationEvent } from '@angular/animations';
 import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
-import { Direction } from '@angular/cdk/bidi';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-  DOWN_ARROW,
-  ESCAPE,
-  hasModifierKey,
-  LEFT_ARROW,
-  RIGHT_ARROW,
-  UP_ARROW,
-} from '@angular/cdk/keycodes';
+import { DOWN_ARROW, ESCAPE, hasModifierKey, LEFT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -38,15 +30,15 @@ import { SbbMenuContent, SBB_MENU_CONTENT } from './menu-content';
 import { throwSbbMenuInvalidPositionX, throwSbbMenuInvalidPositionY } from './menu-errors';
 import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
-import { MenuPositionX, MenuPositionY } from './menu-positions';
+import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
 
 /** Default `sbb-menu` options that can be overridden. */
 export interface SbbMenuDefaultOptions {
   /** The x-axis position of the menu. */
-  xPosition: MenuPositionX;
+  xPosition?: SbbMenuPositionX;
 
   /** The y-axis position of the menu. */
-  yPosition: MenuPositionY;
+  yPosition?: SbbMenuPositionY;
 
   /** Whether the menu should overlap the menu trigger. */
   overlapTrigger: boolean;
@@ -74,8 +66,6 @@ export const SBB_MENU_DEFAULT_OPTIONS = new InjectionToken<SbbMenuDefaultOptions
 export function SBB_MENU_DEFAULT_OPTIONS_FACTORY(): SbbMenuDefaultOptions {
   return {
     overlapTrigger: false,
-    xPosition: 'after',
-    yPosition: 'below',
     backdropClass: 'cdk-overlay-transparent-backdrop',
   };
 }
@@ -88,9 +78,8 @@ const SBB_MENU_BASE_ELEVATION = 4;
 let menuPanelUid = 0;
 
 /** Reason why the menu was closed. */
-export type MenuCloseReason = void | 'click' | 'keydown' | 'tab';
+export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
 
-/** @docs-public SbbMenu */
 @Component({
   selector: 'sbb-menu',
   templateUrl: 'menu.html',
@@ -103,13 +92,13 @@ export type MenuCloseReason = void | 'click' | 'keydown' | 'tab';
     '[attr.aria-labelledby]': 'null',
     '[attr.aria-describedby]': 'null',
   },
-  animations: [sbbMenuAnimations.transformMenu, sbbMenuAnimations.fadeInItems],
+  animations: [sbbMenuAnimations.transformMenu],
   providers: [{ provide: SBB_MENU_PANEL, useExisting: SbbMenu }],
 })
 export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy {
   private _keyManager: FocusKeyManager<SbbMenuItem>;
-  private _xPosition: MenuPositionX = this._defaultOptions.xPosition;
-  private _yPosition: MenuPositionY = this._defaultOptions.yPosition;
+  private _xPosition: SbbMenuPositionX = this._defaultOptions.xPosition;
+  private _yPosition: SbbMenuPositionY = this._defaultOptions.yPosition;
   private _previousElevation: string;
 
   /** All items inside the menu. Includes items nested inside another menu. */
@@ -136,14 +125,14 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   /** Parent menu of the current menu panel. */
   parentMenu: SbbMenuPanel | undefined;
 
-  /** Layout direction of the menu. */
-  direction: Direction;
-
   /** Class or list of classes to be added to the overlay panel. */
   overlayPanelClass: string | string[] = this._defaultOptions.overlayPanelClass || '';
 
   /** Class to be added to the backdrop element. */
   @Input() backdropClass: string = this._defaultOptions.backdropClass;
+
+  /** Width of the trigger to generate mask. */
+  triggerWidth: number;
 
   /** aria-label for the menu panel. */
   @Input('aria-label') ariaLabel: string;
@@ -156,10 +145,10 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
   /** Position of the menu in the X axis. */
   @Input()
-  get xPosition(): MenuPositionX {
+  get xPosition(): SbbMenuPositionX {
     return this._xPosition;
   }
-  set xPosition(value: MenuPositionX) {
+  set xPosition(value: SbbMenuPositionX) {
     if (
       value !== 'before' &&
       value !== 'after' &&
@@ -173,10 +162,10 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
   /** Position of the menu in the Y axis. */
   @Input()
-  get yPosition(): MenuPositionY {
+  get yPosition(): SbbMenuPositionY {
     return this._yPosition;
   }
-  set yPosition(value: MenuPositionY) {
+  set yPosition(value: SbbMenuPositionY) {
     if (value !== 'above' && value !== 'below' && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throwSbbMenuInvalidPositionY();
     }
@@ -215,7 +204,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
   /**
    * This method takes classes set on the host sbb-menu element and applies them on the
-   * menu template that displays in the overlay container.  Otherwise, it's difficult
+   * menu template that displays in the overlay container. Otherwise, it's difficult
    * to style the containing menu from outside the component.
    * @param classes list of class names
    */
@@ -242,7 +231,9 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   private _previousPanelClass: string;
 
   /** Event emitted when the menu is closed. */
-  @Output() readonly closed: EventEmitter<MenuCloseReason> = new EventEmitter<MenuCloseReason>();
+  @Output() readonly closed: EventEmitter<SbbMenuCloseReason> = new EventEmitter<
+    SbbMenuCloseReason
+  >();
 
   readonly panelId = `sbb-menu-panel-${menuPanelUid++}`;
 
@@ -304,12 +295,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
         }
         break;
       case LEFT_ARROW:
-        if (this.parentMenu && this.direction === 'ltr') {
-          this.closed.emit('keydown');
-        }
-        break;
-      case RIGHT_ARROW:
-        if (this.parentMenu && this.direction === 'rtl') {
+        if (this.parentMenu) {
           this.closed.emit('keydown');
         }
         break;
@@ -379,8 +365,7 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
    */
   setElevation(depth: number): void {
     // The elevation starts at the base and increases by one for each level.
-    // Capped at 24 because that's the maximum elevation defined in the Material design spec.
-    const elevation = Math.min(SBB_MENU_BASE_ELEVATION + depth, 24);
+    const elevation = SBB_MENU_BASE_ELEVATION + depth;
     const newElevation = `sbb-elevation-z${elevation}`;
     const customElevation = Object.keys(this._classList).find((c) =>
       c.startsWith('sbb-elevation-z')
@@ -403,7 +388,10 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
    * @param posY Position of the menu along the y axis.
    * @docs-private
    */
-  setPositionClasses(posX: MenuPositionX = this.xPosition, posY: MenuPositionY = this.yPosition) {
+  setPositionClasses(
+    posX: SbbMenuPositionX = this.xPosition,
+    posY: SbbMenuPositionY = this.yPosition
+  ) {
     const classes = this._classList;
     classes['sbb-menu-before'] = posX === 'before';
     classes['sbb-menu-after'] = posX === 'after';
@@ -450,9 +438,12 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
    * when it comes to maintaining the item order.
    */
   private _updateDirectDescendants() {
-    this._allItems.changes.pipe(startWith(this._allItems)).subscribe(() => {
-      this._directDescendantItems.notifyOnChanges();
-    });
+    this._allItems.changes
+      .pipe(startWith(this._allItems))
+      .subscribe((items: QueryList<SbbMenuItem>) => {
+        this._directDescendantItems.reset(items.filter((item) => item._parentMenu === this));
+        this._directDescendantItems.notifyOnChanges();
+      });
   }
 
   static ngAcceptInputType_overlapTrigger: BooleanInput;
