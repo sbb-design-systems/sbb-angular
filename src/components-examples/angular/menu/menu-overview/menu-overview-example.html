@@ -1,5 +1,9 @@
-<button sbbButton [sbbMenuTriggerFor]="menu">Menu</button>
+<button [sbbMenuTriggerFor]="menu" aria-label="Open Contextmenu">
+  <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+</button>
 <sbb-menu #menu="sbbMenu">
-  <button sbb-menu-item>Item 1</button>
-  <button sbb-menu-item>Item 2</button>
+  <button sbb-menu-item>Copy</button>
+  <button sbb-menu-item>Delete</button>
+  <hr />
+  <button sbb-menu-item>Cancel</button>
 </sbb-menu>

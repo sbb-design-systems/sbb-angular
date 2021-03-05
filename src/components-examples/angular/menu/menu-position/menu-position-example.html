@@ -1,22 +1,22 @@
-<button sbbButton [sbbMenuTriggerFor]="aboveMenu">Above</button>
+<button sbb-button [sbbMenuCustomTriggerFor]="aboveMenu">Above</button>
 <sbb-menu #aboveMenu="sbbMenu" yPosition="above">
   <button sbb-menu-item>Item 1</button>
   <button sbb-menu-item>Item 2</button>
 </sbb-menu>
 
-<button sbbButton [sbbMenuTriggerFor]="belowMenu">Below</button>
+<button sbb-button [sbbMenuCustomTriggerFor]="belowMenu">Below</button>
 <sbb-menu #belowMenu="sbbMenu" yPosition="below">
   <button sbb-menu-item>Item 1</button>
   <button sbb-menu-item>Item 2</button>
 </sbb-menu>
 
-<button sbbButton [sbbMenuTriggerFor]="beforeMenu">Before</button>
+<button sbb-button [sbbMenuCustomTriggerFor]="beforeMenu">Before</button>
 <sbb-menu #beforeMenu="sbbMenu" xPosition="before">
   <button sbb-menu-item>Item 1</button>
   <button sbb-menu-item>Item 2</button>
 </sbb-menu>
 
-<button sbbButton [sbbMenuTriggerFor]="afterMenu">After</button>
+<button sbb-button [sbbMenuCustomTriggerFor]="afterMenu">After</button>
 <sbb-menu #afterMenu="sbbMenu" xPosition="after">
   <button sbb-menu-item>Item 1</button>
   <button sbb-menu-item>Item 2</button>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbMenuModule } from '@sbb-esta/angular/menu';
 

@@ -44,7 +44,7 @@ its trigger. The position can be changed using the `xPosition` (`before | after`
 
 ### Nested menu
 
-Material supports the ability for an `sbb-menu-item` to open a sub-menu. To do so, you have to define
+Sbb Angular supports the ability for an `sbb-menu-item` to open a sub-menu. To do so, you have to define
 your root menu and sub-menus, in addition to setting the `[sbbMenuTriggerFor]` on the `sbb-menu-item`
 that should trigger the sub-menu:
 

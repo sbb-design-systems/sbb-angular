@@ -1,6 +1,6 @@
 import { FocusMonitor, FocusOrigin, isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
-import { Direction, Directionality } from '@angular/cdk/bidi';
-import { ENTER, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
+import { coerceStringArray } from '@angular/cdk/coercion';
+import { ENTER, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
   HorizontalConnectionPos,
@@ -30,11 +30,11 @@ import {
 import { asapScheduler, merge, of as observableOf, Subscription } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
-import { MenuCloseReason, SbbMenu } from './menu';
+import { SbbMenu, SbbMenuCloseReason } from './menu';
 import { throwSbbMenuMissingError, throwSbbMenuRecursiveError } from './menu-errors';
 import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
-import { MenuPositionX, MenuPositionY } from './menu-positions';
+import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -54,21 +54,26 @@ export const SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 };
 
 /** Default top padding of the menu panel. */
-export const MENU_PANEL_TOP_PADDING = 8;
+export const MENU_PANEL_TOP_PADDING = 0;
+
+/** Default left overlapping of the submenu panel. */
+export const SUBMENU_PANEL_LEFT_OVERLAP = 3;
 
 /** Options for binding a passive event listener. */
 const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: true });
 
-// TODO(andrewseguin): Remove the kebab versions in favor of camelCased attribute selectors
-
 /** Directive applied to an element that should trigger a `sbb-menu`. */
 @Directive({
-  selector: `[sbb-menu-trigger-for], [sbbMenuTriggerFor]`,
+  selector: `[sbbMenuTriggerFor], [sbbMenuCustomTriggerFor]`,
   host: {
     class: 'sbb-menu-trigger',
     'aria-haspopup': 'true',
     '[attr.aria-expanded]': 'menuOpen || null',
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
+    '[class.sbb-menu-trigger-standard]': 'this._triggerVariant === ""',
+    '[class.sbb-menu-trigger-custom]': 'this._triggerVariant === "custom"',
+    '[class.sbb-menu-trigger-open]': 'menuOpen',
+    '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
   },
   exportAs: 'sbbMenuTrigger',
 })
@@ -85,7 +90,7 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
    * We're specifically looking for a `SbbMenu` here since the generic `SbbMenuPanel`
    * interface lacks some functionality around nested menus and animations.
    */
-  private _parentSbbMenu: SbbMenu | undefined;
+  _parentSbbMenu: SbbMenu | undefined;
 
   /**
    * Handles touch start events on the trigger.
@@ -101,15 +106,13 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
   // the first item of the list when the menu is opened via the keyboard
   _openedBy: Exclude<FocusOrigin, 'program' | null> | undefined = undefined;
 
-  /**
-   * @deprecated
-   * @breaking-change 8.0.0
-   */
-  @Input('sbb-menu-trigger-for')
-  get _deprecatedSbbMenuTriggerFor(): SbbMenuPanel {
-    return this.menu;
-  }
-  set _deprecatedSbbMenuTriggerFor(v: SbbMenuPanel) {
+  /** Variant of which trigger is used. */
+  _triggerVariant: string = '';
+
+  /** References the menu instance that the custom trigger is associated with. */
+  @Input('sbbMenuCustomTriggerFor')
+  set sbbMenuCustomTriggerFor(v: SbbMenuPanel) {
+    this._triggerVariant = 'custom';
     this.menu = v;
   }
 
@@ -131,7 +134,7 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
         throwSbbMenuRecursiveError();
       }
 
-      this._menuCloseSubscription = menu.closed.subscribe((reason: MenuCloseReason) => {
+      this._menuCloseSubscription = menu.closed.subscribe((reason: SbbMenuCloseReason) => {
         this._destroyMenu(reason);
 
         // If a click closed the menu, we should close the entire chain of nested menus.
@@ -156,24 +159,8 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
   /** Event emitted when the associated menu is opened. */
   @Output() readonly menuOpened: EventEmitter<void> = new EventEmitter<void>();
 
-  /**
-   * Event emitted when the associated menu is opened.
-   * @deprecated Switch to `menuOpened` instead
-   * @breaking-change 8.0.0
-   */
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() readonly onMenuOpen: EventEmitter<void> = this.menuOpened;
-
   /** Event emitted when the associated menu is closed. */
   @Output() readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
-
-  /**
-   * Event emitted when the associated menu is closed.
-   * @deprecated Switch to `menuClosed` instead
-   * @breaking-change 8.0.0
-   */
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() readonly onMenuClose: EventEmitter<void> = this.menuClosed;
 
   constructor(
     private _overlay: Overlay,
@@ -182,11 +169,7 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
     @Inject(SBB_MENU_SCROLL_STRATEGY) scrollStrategy: any,
     @Inject(SBB_MENU_PANEL) @Optional() parentMenu: SbbMenuPanel,
     // `SbbMenuTrigger` is commonly used in combination with a `SbbMenuItem`.
-    // tslint:disable-next-line: lightweight-tokens
     @Optional() @Self() private _menuItemInstance: SbbMenuItem,
-    @Optional() private _dir: Directionality,
-    // TODO(crisbeto): make the _focusMonitor required when doing breaking changes.
-    // @breaking-change 8.0.0
     private _focusMonitor?: FocusMonitor
   ) {
     this._scrollStrategy = scrollStrategy;
@@ -228,11 +211,6 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
   /** Whether the menu is open. */
   get menuOpen(): boolean {
     return this._menuOpen;
-  }
-
-  /** The text direction of the containing app. */
-  get dir(): Direction {
-    return this._dir && this._dir.value === 'rtl' ? 'rtl' : 'ltr';
   }
 
   /** Whether the menu triggers a sub-menu or a top-level one. */
@@ -291,7 +269,7 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
   }
 
   /** Closes the menu and does the necessary cleanup. */
-  private _destroyMenu(reason: MenuCloseReason) {
+  private _destroyMenu(reason: SbbMenuCloseReason) {
     if (!this._overlayRef || !this.menuOpen) {
       return;
     }
@@ -345,7 +323,7 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
    */
   private _initMenu(): void {
     this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
-    this.menu.direction = this.dir;
+    this.menu.triggerWidth = this._element.nativeElement.clientWidth;
     this._setMenuElevation();
     this.menu.focusFirstItem(this._openedBy || 'program');
     this._setIsMenuOpen(true);
@@ -416,14 +394,14 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
         .flexibleConnectedTo(this._element)
         .withLockedPosition()
         .withGrowAfterOpen()
-        .withTransformOriginOn('.sbb-menu-panel, .sbb-mdc-menu-panel'),
+        .withTransformOriginOn('.sbb-menu-panel'),
       backdropClass: this.menu.backdropClass || 'cdk-overlay-transparent-backdrop',
-      panelClass: this.menu.overlayPanelClass,
+      panelClass: coerceStringArray(this.menu.overlayPanelClass).concat(
+        `sbb-menu-panel-variant-${this._triggerVariant === '' ? 'standard' : this._triggerVariant}`
+      ),
       scrollStrategy: this._scrollStrategy(),
-      direction: this._dir,
     });
   }
-
   /**
    * Listens to changes in the position of the overlay and sets the correct classes
    * on the menu based on the new position. This ensures the animation origin is always
@@ -432,8 +410,15 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
   private _subscribeToPositions(position: FlexibleConnectedPositionStrategy): void {
     if (this.menu.setPositionClasses) {
       position.positionChanges.subscribe((change) => {
-        const posX: MenuPositionX = change.connectionPair.overlayX === 'start' ? 'after' : 'before';
-        const posY: MenuPositionY = change.connectionPair.overlayY === 'top' ? 'below' : 'above';
+        const posX: SbbMenuPositionX =
+          change.connectionPair.overlayX === 'start' ? 'after' : 'before';
+        const posY: SbbMenuPositionY = change.connectionPair.overlayY === 'top' ? 'below' : 'above';
+
+        Array.from(this._element.nativeElement.classList)
+          .filter((className) => className.startsWith('sbb-menu-trigger-position-'))
+          .forEach((className) => this._element.nativeElement.classList.remove(className));
+        this._element.nativeElement.classList.add(`sbb-menu-trigger-position-${posX}`);
+        this._element.nativeElement.classList.add(`sbb-menu-trigger-position-${posY}`);
 
         this.menu.setPositionClasses!(posX, posY);
       });
@@ -447,35 +432,49 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
    */
   private _setPosition(positionStrategy: FlexibleConnectedPositionStrategy) {
     let [originX, originFallbackX]: HorizontalConnectionPos[] =
-      this.menu.xPosition === 'before' ? ['end', 'start'] : ['start', 'end'];
+      !this.menu.xPosition || this.menu.xPosition === 'before'
+        ? ['end', 'start']
+        : ['start', 'end'];
 
     const [overlayY, overlayFallbackY]: VerticalConnectionPos[] =
-      this.menu.yPosition === 'above' ? ['bottom', 'top'] : ['top', 'bottom'];
+      !this.menu.yPosition || this.menu.yPosition === 'below'
+        ? ['top', 'bottom']
+        : ['bottom', 'top'];
 
     let [originY, originFallbackY] = [overlayY, overlayFallbackY];
     let [overlayX, overlayFallbackX] = [originX, originFallbackX];
     let offsetY = 0;
+    let offsetX = 0;
 
     if (this.triggersSubmenu()) {
       // When the menu is a sub-menu, it should always align itself
       // to the edges of the trigger, instead of overlapping it.
       overlayFallbackX = originX = this.menu.xPosition === 'before' ? 'start' : 'end';
       originFallbackX = overlayX = originX === 'end' ? 'start' : 'end';
-      offsetY = overlayY === 'bottom' ? MENU_PANEL_TOP_PADDING : -MENU_PANEL_TOP_PADDING;
+      offsetY = overlayY === 'bottom' ? -MENU_PANEL_TOP_PADDING : MENU_PANEL_TOP_PADDING;
+      offsetX = overlayX === 'end' ? SUBMENU_PANEL_LEFT_OVERLAP : -SUBMENU_PANEL_LEFT_OVERLAP;
     } else if (!this.menu.overlapTrigger) {
       originY = overlayY === 'top' ? 'bottom' : 'top';
       originFallbackY = overlayFallbackY === 'top' ? 'bottom' : 'top';
     }
 
     positionStrategy.withPositions([
-      { originX, originY, overlayX, overlayY, offsetY },
-      { originX: originFallbackX, originY, overlayX: overlayFallbackX, overlayY, offsetY },
+      { originX, originY, overlayX, overlayY, offsetY, offsetX },
+      {
+        originX: originFallbackX,
+        originY,
+        overlayX: overlayFallbackX,
+        overlayY,
+        offsetY,
+        offsetX: -offsetX,
+      },
       {
         originX,
         originY: originFallbackY,
         overlayX,
         overlayY: overlayFallbackY,
         offsetY: -offsetY,
+        offsetX: offsetX,
       },
       {
         originX: originFallbackX,
@@ -483,6 +482,7 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
         overlayX: overlayFallbackX,
         overlayY: overlayFallbackY,
         offsetY: -offsetY,
+        offsetX: -offsetX,
       },
     ]);
   }
@@ -529,11 +529,7 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
       this._openedBy = 'keyboard';
     }
 
-    if (
-      this.triggersSubmenu() &&
-      ((keyCode === RIGHT_ARROW && this.dir === 'ltr') ||
-        (keyCode === LEFT_ARROW && this.dir === 'rtl'))
-    ) {
+    if (this.triggersSubmenu() && keyCode === RIGHT_ARROW) {
       this._openedBy = 'keyboard';
       this.openMenu();
     }

@@ -14,7 +14,7 @@ ng_module(
     assets = glob(["**/*.html"]),
     module_name = "@sbb-esta/components-examples/angular/menu",
     deps = [
-        "//src/angular-public/button",
+        "//src/angular/button",
         "//src/angular/icon",
         "//src/angular/menu",
         "@npm//@angular/core",
