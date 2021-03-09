@@ -462,9 +462,8 @@ export class SbbSelect
   );
 
   /** Event emitted when the selected value has been changed by the user. */
-  @Output() readonly selectionChange: EventEmitter<SbbSelectChange> = new EventEmitter<
-    SbbSelectChange
-  >();
+  @Output()
+  readonly selectionChange: EventEmitter<SbbSelectChange> = new EventEmitter<SbbSelectChange>();
 
   /**
    * Event that emits whenever the raw value of the select changes. This is here primarily

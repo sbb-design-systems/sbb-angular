@@ -11,7 +11,7 @@ export class IconModuleFactory {
   private readonly _svgOptimizer = createSvgOptimizer();
 
   constructor(private readonly _tree: Tree, private readonly _registryFileEntry: FileEntry) {
-    this._registry = JSON.parse(_registryFileEntry.content.toString('utf8'));
+    this._registry = JSON.parse(_registryFileEntry.content.toString('utf8')) as Registry;
   }
 
   async createIconModules() {

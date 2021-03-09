@@ -54,9 +54,8 @@ export class SbbTab implements OnChanges, OnDestroy {
   /** Class property that identifies the data-set for tabs content */
   @Input() badgePill?: number;
   /** Template provided in the tab content, which is lazily rendered */
-  @ContentChild(SbbTabContent, { read: TemplateRef, static: true }) _lazyTabContent: TemplateRef<
-    any
-  >;
+  @ContentChild(SbbTabContent, { read: TemplateRef, static: true })
+  _lazyTabContent: TemplateRef<any>;
 
   /**
    * Portal holding the user's lazy tab content

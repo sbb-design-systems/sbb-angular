@@ -1,9 +1,9 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("@npm//@babel/cli:index.bzl", "babel")
+load("@npm//@bazel/concatjs:index.bzl", "concatjs_devserver")
 load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@npm//@bazel/terser:index.bzl", "terser_minified")
-load("@npm//@bazel/typescript:index.bzl", "ts_devserver")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("//tools:defaults.bzl", "ng_ts_library")
@@ -150,7 +150,7 @@ html_insert_assets(
 # It doesn't run any bundler or code splitter. Instead, it concatenates
 # named UMD and named AMD JavaScript code on-the-fly in-memory.
 # This scales really well for massive codebases.
-ts_devserver(
+concatjs_devserver(
     name = "devserver",
     additional_root_paths = [
         "sbb_angular/src/showcase/_",
@@ -203,7 +203,6 @@ babel(
     ],
     data = [
         ":bundle-es2015",
-        "@npm//@babel/plugin-transform-modules-systemjs",
         "@npm//@babel/preset-env",
     ],
     output_dir = True,

@@ -11,6 +11,7 @@ ts_library(
         "//tools/highlight-files:sources",
         "@npm//@types/marked",
         "@npm//@types/node",
+        "@npm//marked",
     ],
 )
 
@@ -22,4 +23,5 @@ nodejs_binary(
         "@npm//marked",
     ],
     entry_point = ":transform-markdown.ts",
+    templated_args = ["--bazel_patch_module_resolver"],
 )

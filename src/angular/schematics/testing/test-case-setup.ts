@@ -9,7 +9,7 @@
 import { getSystemPath, JsonParseMode, parseJson, Path } from '@angular-devkit/core';
 import { HostTree, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
-import { readFileSync } from 'fs-extra';
+import { readFileSync } from 'fs';
 import { sync as globSync } from 'glob';
 import { basename, extname, join, relative, sep } from 'path';
 import { EMPTY } from 'rxjs';

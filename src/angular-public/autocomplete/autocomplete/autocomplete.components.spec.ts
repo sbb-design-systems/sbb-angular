@@ -742,9 +742,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       tick();
 
-      let options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      let options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
       options[0].click();
 
       // Changing value from 'Eins' to 'ei' to re-populate the option list,
@@ -1125,9 +1125,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
 
@@ -1142,9 +1142,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
 
@@ -1164,9 +1164,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
 
@@ -1182,9 +1182,9 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.options.toArray()[1].value = 'test value';
       fixture.detectChanges();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
       options[1].click();
 
       fixture.detectChanges();
@@ -1270,9 +1270,9 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
 
@@ -1379,9 +1379,9 @@ describe('SbbAutocomplete', () => {
 
     it('should set the active item to the first option when DOWN key is pressed', () => {
       const componentInstance = fixture.componentInstance;
-      const optionEls = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const optionEls = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       expect(componentInstance.trigger.panelOpen).toBe(
         true,
@@ -1410,9 +1410,9 @@ describe('SbbAutocomplete', () => {
 
     it('should set the active item to the last option when UP key is pressed', () => {
       const componentInstance = fixture.componentInstance;
-      const optionEls = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const optionEls = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       expect(componentInstance.trigger.panelOpen).toBe(
         true,
@@ -1456,9 +1456,9 @@ describe('SbbAutocomplete', () => {
       componentInstance.trigger._handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      const optionEls = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      const optionEls = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       expect(componentInstance.trigger.activeOption === componentInstance.options.first).toBe(
         true,
@@ -2515,9 +2515,9 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      let options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      let options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
       options[0].click();
       fixture.detectChanges();
       zone.simulateZoneExit();
@@ -2538,9 +2538,9 @@ describe('SbbAutocomplete', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      let options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-        HTMLElement
-      >;
+      let options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
       options[0].click();
       fixture.detectChanges();
       zone.simulateZoneExit();
@@ -2839,9 +2839,9 @@ describe('SbbAutocomplete', () => {
         typeInElement(input, 'eins');
         fixture.detectChanges();
 
-        const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         expect(options.length).toBe(1);
       }).not.toThrowError();
     });
@@ -3182,9 +3182,9 @@ describe('SbbAutocomplete', () => {
     zone.simulateZoneExit();
     fixture.detectChanges();
 
-    const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-      HTMLElement
-    >;
+    const options = overlayContainerElement.querySelectorAll(
+      'sbb-option'
+    ) as NodeListOf<HTMLElement>;
     const spy = fixture.componentInstance.optionSelected;
 
     options[1].click();
@@ -3212,9 +3212,9 @@ describe('SbbAutocomplete', () => {
     tick();
     fixture.detectChanges();
 
-    const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-      HTMLElement
-    >;
+    const options = overlayContainerElement.querySelectorAll(
+      'sbb-option'
+    ) as NodeListOf<HTMLElement>;
     const spy = fixture.componentInstance.optionSelected;
 
     options[3].click();

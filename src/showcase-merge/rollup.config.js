@@ -1,26 +1,14 @@
-const node = require('rollup-plugin-node-resolve');
-const commonjs = require('rollup-plugin-commonjs');
-const alias = require('@rollup/plugin-alias');
+import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
-module.exports = {
+export default {
+  // preserveEntrySignatures is disabled due to caching issues,
+  // as index.js would be cached in the browser.
+  // preserveEntrySignatures: false,
   plugins: [
-    alias({
-      // Work-around for https://github.com/bazelbuild/rules_nodejs/issues/1380#issuecomment-558631283
-      entries: [
-        'angular',
-        'angular-business',
-        'angular-core',
-        'angular-icons',
-        'angular-keycloak',
-        'angular-maps',
-        'angular-public',
-        'components-examples',
-      ].map((pkg) => ({
-        find: `@sbb-esta/${pkg}`,
-        replacement: `${__dirname}/../${pkg}`,
-      })),
-    }),
-    node({
+    dynamicImportVars(),
+    nodeResolve({
       mainFields: ['es2015', 'module', 'browser', 'jsnext:main', 'main'],
       extensions: ['.mjs'],
     }),

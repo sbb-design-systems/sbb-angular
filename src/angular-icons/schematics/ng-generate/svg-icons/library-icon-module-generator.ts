@@ -17,6 +17,10 @@ import { ApplicationIconModuleGenerator } from './application-icon-module-genera
 import { IconModule } from './icon-module';
 import { IconModuleCollection } from './icon-module-collection';
 
+interface PackageJson {
+  name: string;
+}
+
 export class LibraryIconModuleGenerator extends ApplicationIconModuleGenerator {
   private readonly _packageName: string;
 
@@ -32,7 +36,7 @@ export class LibraryIconModuleGenerator extends ApplicationIconModuleGenerator {
       throw new SchematicsException(`Expected package.json in ${this._projectRootDir}`);
     }
 
-    this._packageName = JSON.parse(packageJson.toString('utf8')).name;
+    this._packageName = (JSON.parse(packageJson.toString('utf8')) as PackageJson).name;
   }
 
   generate(): Rule[] {

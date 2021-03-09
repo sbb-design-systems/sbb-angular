@@ -2,10 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var core = require('@angular-devkit/core');
-var ts = _interopDefault(require('@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript'));
+var ts = require('@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var ts__default = /*#__PURE__*/_interopDefaultLegacy(ts);
 
 const IGNORED_FOLDERS = [
     '/src/angular/schematics/ng-add/test-cases/',
@@ -29,7 +31,7 @@ function mergeSymbols() {
                     isInIgnoredFolders(filePath)) {
                     return;
                 }
-                const tsFile = ts.createSourceFile(filePath, moduleDirEntry.content.toString(), ts.ScriptTarget.Latest);
+                const tsFile = ts__default['default'].createSourceFile(filePath, moduleDirEntry.content.toString(), ts__default['default'].ScriptTarget.Latest);
                 tsFile.statements.filter(hasExportModifier).forEach((statement) => {
                     extractSymbolOfStatement(filePath, rootPath, statement);
                 });
@@ -40,19 +42,19 @@ function mergeSymbols() {
         }
         function hasExportModifier(statement) {
             return (statement.modifiers &&
-                statement.modifiers.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword));
+                statement.modifiers.some((modifier) => modifier.kind === ts__default['default'].SyntaxKind.ExportKeyword));
         }
         function extractSymbolOfStatement(filePath, rootPath, statement) {
             const modulePath = resolvePackageModule(filePath).replace('/' + rootPath, '');
-            if (ts.isVariableStatement(statement)) {
+            if (ts__default['default'].isVariableStatement(statement)) {
                 statement.declarationList.declarations
                     .map((declaration) => declaration.name)
-                    .filter(ts.isIdentifier)
+                    .filter(ts__default['default'].isIdentifier)
                     .map((identifier) => identifier.escapedText)
                     .forEach((name) => addToSymbols(name, modulePath));
             }
             else if (statement.name &&
-                statement.name.kind === ts.SyntaxKind.Identifier) {
+                statement.name.kind === ts__default['default'].SyntaxKind.Identifier) {
                 const typedName = statement.name;
                 addToSymbols(typedName.escapedText, modulePath);
             }

@@ -1,6 +1,6 @@
 import { Migration, parse5, ResolvedResource, TargetVersion } from '@angular/cdk/schematics';
 import { UpdateRecorder } from '@angular/cdk/schematics/update-tool/update-recorder';
-import type { DefaultTreeDocument, DefaultTreeElement, DefaultTreeNode, Location } from 'parse5';
+import type { DocumentFragment, Element, Location, Node } from 'parse5';
 import * as ts from 'typescript';
 
 const parse: typeof import('parse5') = parse5;
@@ -71,14 +71,14 @@ export class FormFieldMigration extends Migration<null> {
   visitTemplate(template: ResolvedResource): void {
     const document = parse.parseFragment(template.content, {
       sourceCodeLocationInfo: true,
-    }) as DefaultTreeDocument;
-    const fieldElements: DefaultTreeElement[] = [];
-    const formFieldWithModesElements: DefaultTreeElement[] = [];
-    const missingInputElements: DefaultTreeElement[] = [];
-    const sbbLabelWithForElements: DefaultTreeElement[] = [];
+    }) as DocumentFragment;
+    const fieldElements: Element[] = [];
+    const formFieldWithModesElements: Element[] = [];
+    const missingInputElements: Element[] = [];
+    const sbbLabelWithForElements: Element[] = [];
 
     const visitNodes = (nodes: any[]) => {
-      nodes.forEach((node: DefaultTreeElement) => {
+      nodes.forEach((node: Element) => {
         if (node.childNodes) {
           visitNodes(node.childNodes);
         }
@@ -203,50 +203,50 @@ export class FormFieldMigration extends Migration<null> {
     }
   }
 
-  private _isInFormField(node: DefaultTreeElement) {
-    let parent = node.parentNode as DefaultTreeElement;
+  private _isInFormField(node: Element) {
+    let parent = node.parentNode as Element;
     while (parent) {
       if (this._isFormField(parent)) {
         return true;
       }
 
-      parent = parent.parentNode as DefaultTreeElement;
+      parent = parent.parentNode as Element;
     }
 
     return false;
   }
 
-  private _isFormField(node: DefaultTreeElement) {
+  private _isFormField(node: Element) {
     return ['sbb-field', 'sbb-form-field'].includes(node.nodeName.toLowerCase());
   }
 
-  private _hasCompatibleFormControl(nodes: DefaultTreeNode[]) {
+  private _hasCompatibleFormControl(nodes: Node[]) {
     return (
       !!nodes &&
       nodes.some(
         (n) =>
           this.compatibleFormControls.includes(n.nodeName.toLowerCase()) ||
-          this._hasCompatibleFormControl((n as DefaultTreeElement).childNodes)
+          this._hasCompatibleFormControl((n as Element).childNodes)
       )
     );
   }
 
-  private _hasInputDirective(node: DefaultTreeElement) {
+  private _hasInputDirective(node: Element) {
     return node.attrs.some((a) => a.name.toLowerCase() === 'sbbinput');
   }
 
-  private _hasModeInput(node: DefaultTreeElement) {
+  private _hasModeInput(node: Element) {
     return node.attrs.some((a) => ['mode', '[mode]'].includes(a.name.toLowerCase()));
   }
 
-  private _isSbbLabelWithFor(node: DefaultTreeElement) {
+  private _isSbbLabelWithFor(node: Element) {
     return (
       node.nodeName.toLowerCase() === 'sbb-label' &&
       node.attrs.some((a) => ['for', '[for]'].includes(a.name.toLowerCase()))
     );
   }
 
-  private _replaceMode(node: DefaultTreeElement, recorder: UpdateRecorder, templateStart: number) {
+  private _replaceMode(node: Element, recorder: UpdateRecorder, templateStart: number) {
     if ('mode' in node.sourceCodeLocation!.attrs) {
       this._replaceAttributeMode(node, recorder, templateStart, 'mode');
     } else if ('[mode]' in node.sourceCodeLocation!.attrs) {
@@ -255,7 +255,7 @@ export class FormFieldMigration extends Migration<null> {
   }
 
   private _replaceAttributeMode(
-    node: DefaultTreeElement,
+    node: Element,
     recorder: UpdateRecorder,
     templateStart: number,
     attribute: string
@@ -285,7 +285,7 @@ export class FormFieldMigration extends Migration<null> {
   }
 
   private _insertModeClass(
-    node: DefaultTreeElement,
+    node: Element,
     recorder: UpdateRecorder,
     templateStart: number,
     mode: string

@@ -116,7 +116,7 @@ export function iconCdnProvider(options: IconCdnProviderOptions): Rule {
           res.on('data', (chunk: any) => (body += chunk));
           res.on('end', () => {
             try {
-              resolve(JSON.parse(body));
+              resolve(JSON.parse(body) as CdnIndexResponse);
             } catch (error) {
               reject(error);
             }

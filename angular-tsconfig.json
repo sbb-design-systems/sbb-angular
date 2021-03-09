@@ -12,7 +12,8 @@
     "moduleResolution": "node",
     "lib": ["dom", "es2015"],
     "experimentalDecorators": true,
-    "types": []
+    "types": [],
+    "skipLibCheck": true
   },
   "include": ["node_modules/@angular/**/*"],
   "exclude": [
