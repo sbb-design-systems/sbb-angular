@@ -27,6 +27,7 @@ import {
   Self,
   ViewContainerRef,
 } from '@angular/core';
+import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
 import { asapScheduler, merge, of as observableOf, Subscription } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
@@ -62,6 +63,14 @@ export const SUBMENU_PANEL_LEFT_OVERLAP = 3;
 /** Options for binding a passive event listener. */
 const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: true });
 
+// Boilerplate for applying mixins to SbbMenu.
+/** @docs-private */
+class SbbMenuTriggerBase {}
+// tslint:disable-next-line: naming-convention
+const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase = mixinVariant(
+  SbbMenuTriggerBase
+);
+
 /** Directive applied to an element that should trigger a `sbb-menu`. */
 @Directive({
   selector: `[sbbMenuTriggerFor], [sbbMenuCustomTriggerFor]`,
@@ -77,7 +86,9 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
   },
   exportAs: 'sbbMenuTrigger',
 })
-export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
+export class SbbMenuTrigger
+  extends _SbbMenuTriggerMixinBase
+  implements AfterContentInit, OnDestroy {
   private _portal: TemplatePortal;
   private _overlayRef: OverlayRef | null = null;
   private _menuOpen: boolean = false;
@@ -172,6 +183,8 @@ export class SbbMenuTrigger implements AfterContentInit, OnDestroy {
     @Optional() @Self() private _menuItemInstance: SbbMenuItem,
     private _focusMonitor?: FocusMonitor
   ) {
+    super();
+
     this._scrollStrategy = scrollStrategy;
     this._parentSbbMenu = parentMenu instanceof SbbMenu ? parentMenu : undefined;
 
