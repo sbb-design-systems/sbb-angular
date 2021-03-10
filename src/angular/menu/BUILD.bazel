@@ -46,6 +46,8 @@ ng_test_library(
     deps = [
         ":menu",
         "//src/angular/core/testing",
+        "//src/angular/icon",
+        "//src/angular/icon/testing",
         "@npm//@angular/cdk",
         "@npm//@angular/platform-browser",
         "@npm//rxjs",
