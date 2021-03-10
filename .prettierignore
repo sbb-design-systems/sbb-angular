@@ -23,3 +23,4 @@ CONTRIBUTING.md
 WORKSPACE
 src/showcase/assets/stackblitz/*
 src/showcase-merge/assets/stackblitz/*
+bazel-out

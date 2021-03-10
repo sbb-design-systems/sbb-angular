@@ -240,9 +240,8 @@ export class SbbMenu
   private _previousPanelClass: string;
 
   /** Event emitted when the menu is closed. */
-  @Output() readonly closed: EventEmitter<SbbMenuCloseReason> = new EventEmitter<
-    SbbMenuCloseReason
-  >();
+  @Output()
+  readonly closed: EventEmitter<SbbMenuCloseReason> = new EventEmitter<SbbMenuCloseReason>();
 
   readonly panelId = `sbb-menu-panel-${menuPanelUid++}`;
 
