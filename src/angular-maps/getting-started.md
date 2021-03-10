@@ -29,13 +29,13 @@ You can create now your project as described in the official [Angular CLI docume
 Just after you created your own Angular project, in order to include the library, you have to install the `@sbb-esta/angular-maps`, `@types/arcgis-js-api` and `esri-loader` dependencies:
 
 ```sh
-npm install --save @types/arcgis-js-api esri-loader @sbb-esta/angular-maps
+npm install --save @types/arcgis-js-api esri-loader@2.13.0 @sbb-esta/angular-maps
 ```
 
 or, if using yarn:
 
 ```sh
-yarn add @types/arcgis-js-api esri-loader @sbb-esta/angular-maps
+yarn add @types/arcgis-js-api esri-loader@2.13.0 @sbb-esta/angular-maps
 ```
 
 ### Step 2: Configure the library
