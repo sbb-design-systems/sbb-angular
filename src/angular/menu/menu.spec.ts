@@ -40,6 +40,8 @@ import {
   MockNgZone,
   patchElementFocus,
 } from '@sbb-esta/angular/core/testing';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 
 import {
@@ -65,7 +67,7 @@ describe('SbbMenu', () => {
     declarations: any[] = []
   ): ComponentFixture<T> {
     TestBed.configureTestingModule({
-      imports: [SbbMenuModule, NoopAnimationsModule],
+      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
       declarations: [component, ...declarations],
       providers,
     }).compileComponents();
@@ -470,63 +472,6 @@ describe('SbbMenu', () => {
       expect(overlayContainerElement.textContent).toContain('Custom Menu header');
       expect(overlayContainerElement.textContent).toContain('Custom Content');
     }).not.toThrowError();
-  });
-
-  it('should set the panel direction based on the trigger direction', () => {
-    const fixture = createComponent(
-      SimpleMenu,
-      [
-        {
-          provide: Directionality,
-          useFactory: () => ({ value: 'rtl' }),
-        },
-      ],
-      [FakeIcon]
-    );
-
-    fixture.detectChanges();
-    fixture.componentInstance.trigger.openMenu();
-    fixture.detectChanges();
-
-    const boundingBox = overlayContainerElement.querySelector(
-      '.cdk-overlay-connected-position-bounding-box'
-    )!;
-    expect(boundingBox.getAttribute('dir')).toEqual('rtl');
-  });
-
-  it('should update the panel direction if the trigger direction changes', () => {
-    const dirProvider = { value: 'rtl' };
-    const fixture = createComponent(
-      SimpleMenu,
-      [
-        {
-          provide: Directionality,
-          useFactory: () => dirProvider,
-        },
-      ],
-      [FakeIcon]
-    );
-
-    fixture.detectChanges();
-    fixture.componentInstance.trigger.openMenu();
-    fixture.detectChanges();
-
-    let boundingBox = overlayContainerElement.querySelector(
-      '.cdk-overlay-connected-position-bounding-box'
-    )!;
-    expect(boundingBox.getAttribute('dir')).toEqual('rtl');
-
-    fixture.componentInstance.trigger.closeMenu();
-    fixture.detectChanges();
-
-    dirProvider.value = 'ltr';
-    fixture.componentInstance.trigger.openMenu();
-    fixture.detectChanges();
-
-    boundingBox = overlayContainerElement.querySelector(
-      '.cdk-overlay-connected-position-bounding-box'
-    )!;
-    expect(boundingBox.getAttribute('dir')).toEqual('ltr');
   });
 
   it('should transfer any custom classes from the host to the overlay', () => {
@@ -1297,8 +1242,9 @@ describe('SbbMenu', () => {
 
       let panel = overlayContainerElement.querySelector('.sbb-menu-panel') as HTMLElement;
 
-      expect(Math.floor(panel.getBoundingClientRect().bottom)).toBe(
+      expect(Math.floor(panel.getBoundingClientRect().bottom)).toBeCloseTo(
         Math.floor(trigger.getBoundingClientRect().top),
+        '-1',
         'Expected menu to open above'
       );
 
@@ -1312,7 +1258,8 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       panel = overlayContainerElement.querySelector('.sbb-menu-panel') as HTMLElement;
 
-      expect(Math.floor(panel.getBoundingClientRect().top)).toBe(
+      // Add 2px border width
+      expect(Math.floor(panel.getBoundingClientRect().top) + 2).toBe(
         Math.floor(trigger.getBoundingClientRect().bottom),
         'Expected menu to open below'
       );
@@ -1412,6 +1359,7 @@ describe('SbbMenu', () => {
 
     it('should re-position a menu with custom position set', () => {
       const fixture = createComponent(PositionedMenu);
+      fixture.componentInstance.marginleft = 0;
       fixture.detectChanges();
       const trigger = fixture.componentInstance.triggerEl.nativeElement;
 
@@ -1602,13 +1550,8 @@ describe('SbbMenu', () => {
     let fixture: ComponentFixture<NestedMenu>;
     let instance: NestedMenu;
     let overlay: HTMLElement;
-    const compileTestComponent = (direction: Direction = 'ltr') => {
-      fixture = createComponent(NestedMenu, [
-        {
-          provide: Directionality,
-          useFactory: () => ({ value: direction }),
-        },
-      ]);
+    const compileTestComponent = () => {
+      fixture = createComponent(NestedMenu);
 
       fixture.detectChanges();
       instance = fixture.componentInstance;
@@ -1636,22 +1579,6 @@ describe('SbbMenu', () => {
       expect(instance.rootMenu.parentMenu).toBeFalsy();
       expect(instance.levelOneMenu.parentMenu).toBe(instance.rootMenu);
       expect(instance.levelTwoMenu.parentMenu).toBe(instance.levelOneMenu);
-    });
-
-    it('should pass the layout direction the nested menus', () => {
-      compileTestComponent('rtl');
-      instance.rootTriggerEl.nativeElement.click();
-      fixture.detectChanges();
-
-      instance.levelOneTrigger.openMenu();
-      fixture.detectChanges();
-
-      instance.levelTwoTrigger.openMenu();
-      fixture.detectChanges();
-
-      expect(instance.rootMenu.direction).toBe('rtl');
-      expect(instance.levelOneMenu.direction).toBe('rtl');
-      expect(instance.levelTwoMenu.direction).toBe('rtl');
     });
 
     it('should emit an event when the hover state of the menu items changes', () => {
@@ -1826,27 +1753,6 @@ describe('SbbMenu', () => {
       expect(overlay.querySelectorAll('.sbb-menu-panel').length).toBe(1);
     }));
 
-    it('should open and close a nested menu with the arrow keys in rtl', fakeAsync(() => {
-      compileTestComponent('rtl');
-      instance.rootTriggerEl.nativeElement.click();
-      fixture.detectChanges();
-      expect(overlay.querySelectorAll('.sbb-menu-panel').length).toBe(1, 'Expected one open menu');
-
-      const levelOneTrigger = overlay.querySelector('#level-one-trigger')! as HTMLElement;
-
-      dispatchKeyboardEvent(levelOneTrigger, 'keydown', LEFT_ARROW);
-      fixture.detectChanges();
-
-      const panels = overlay.querySelectorAll('.sbb-menu-panel');
-
-      expect(panels.length).toBe(2, 'Expected two open menus');
-      dispatchKeyboardEvent(panels[1], 'keydown', RIGHT_ARROW);
-      fixture.detectChanges();
-      tick(500);
-
-      expect(overlay.querySelectorAll('.sbb-menu-panel').length).toBe(1);
-    }));
-
     it('should not do anything with the arrow keys for a top-level menu', () => {
       compileTestComponent();
       instance.rootTriggerEl.nativeElement.click();
@@ -1973,7 +1879,8 @@ describe('SbbMenu', () => {
       const triggerRect = overlay.querySelector('#level-one-trigger')!.getBoundingClientRect();
       const panelRect = overlay.querySelectorAll('.cdk-overlay-pane')[1].getBoundingClientRect();
 
-      expect(Math.round(triggerRect.right)).toBe(Math.round(panelRect.left));
+      // Subtract 3px space
+      expect(Math.round(triggerRect.right) - 3).toBe(Math.round(panelRect.left));
       expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top) + MENU_PANEL_TOP_PADDING);
     });
 
@@ -1991,47 +1898,10 @@ describe('SbbMenu', () => {
       const triggerRect = overlay.querySelector('#level-one-trigger')!.getBoundingClientRect();
       const panelRect = overlay.querySelectorAll('.cdk-overlay-pane')[1].getBoundingClientRect();
 
-      expect(Math.round(triggerRect.left)).toBe(Math.round(panelRect.right));
+      // Add 3px space
+      expect(Math.round(triggerRect.left) + 3).toBe(Math.round(panelRect.right));
       expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top) + MENU_PANEL_TOP_PADDING);
     });
-
-    it('should position the sub-menu to the left edge of the trigger in rtl', () => {
-      compileTestComponent('rtl');
-      instance.rootTriggerEl.nativeElement.style.position = 'fixed';
-      instance.rootTriggerEl.nativeElement.style.left = '50%';
-      instance.rootTriggerEl.nativeElement.style.top = '50%';
-      instance.rootTrigger.openMenu();
-      fixture.detectChanges();
-
-      instance.levelOneTrigger.openMenu();
-      fixture.detectChanges();
-
-      const triggerRect = overlay.querySelector('#level-one-trigger')!.getBoundingClientRect();
-      const panelRect = overlay.querySelectorAll('.cdk-overlay-pane')[1].getBoundingClientRect();
-
-      expect(Math.round(triggerRect.left)).toBe(Math.round(panelRect.right));
-      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top) + MENU_PANEL_TOP_PADDING);
-    });
-
-    it('should fall back to aligning to the right edge of the trigger in rtl', fakeAsync(() => {
-      compileTestComponent('rtl');
-      instance.rootTriggerEl.nativeElement.style.position = 'fixed';
-      instance.rootTriggerEl.nativeElement.style.left = '10px';
-      instance.rootTriggerEl.nativeElement.style.top = '50%';
-      instance.rootTrigger.openMenu();
-      fixture.detectChanges();
-      tick(500);
-
-      instance.levelOneTrigger.openMenu();
-      fixture.detectChanges();
-      tick(500);
-
-      const triggerRect = overlay.querySelector('#level-one-trigger')!.getBoundingClientRect();
-      const panelRect = overlay.querySelectorAll('.cdk-overlay-pane')[1].getBoundingClientRect();
-
-      expect(Math.round(triggerRect.right)).toBe(Math.round(panelRect.left));
-      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top) + MENU_PANEL_TOP_PADDING);
-    }));
 
     it('should close all of the menus when an item is clicked', fakeAsync(() => {
       compileTestComponent();
@@ -2402,26 +2272,12 @@ describe('SbbMenu', () => {
       );
     }));
   });
-
-  it('should have a focus indicator', () => {
-    const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
-    fixture.detectChanges();
-    fixture.componentInstance.trigger.openMenu();
-    fixture.detectChanges();
-    const menuItemNativeElements = Array.from(
-      overlayContainerElement.querySelectorAll('.sbb-menu-item')
-    );
-
-    expect(
-      menuItemNativeElements.every((element) => element.classList.contains('sbb-focus-indicator'))
-    ).toBe(true);
-  });
 });
 
 describe('SbbMenu default overrides', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [SbbMenuModule, NoopAnimationsModule],
+      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
       declarations: [SimpleMenu, FakeIcon],
       providers: [
         {
@@ -2459,8 +2315,8 @@ describe('SbbMenu default overrides', () => {
     >
       <button sbb-menu-item>Item</button>
       <button sbb-menu-item disabled>Disabled</button>
-      <button sbb-menu-item disableRipple>
-        <sbb-icon>unicorn</sbb-icon>
+      <button sbb-menu-item>
+        <sbb-icon svgIcon="unicorn"></sbb-icon>
         Item with an icon
       </button>
       <button sbb-menu-item>
@@ -2487,7 +2343,9 @@ class SimpleMenu {
 
 @Component({
   template: `
-    <button [sbbMenuTriggerFor]="menu" #triggerEl>Toggle menu</button>
+    <button [sbbMenuTriggerFor]="menu" #triggerEl [style.marginLeft]="marginleft + 'px'">
+      Toggle menu
+    </button>
     <sbb-menu [xPosition]="xPosition" [yPosition]="yPosition" #menu="sbbMenu">
       <button sbb-menu-item>Positioned Content</button>
     </sbb-menu>
@@ -2498,6 +2356,7 @@ class PositionedMenu {
   @ViewChild('triggerEl') triggerEl: ElementRef<HTMLElement>;
   xPosition: SbbMenuPositionX = 'before';
   yPosition: SbbMenuPositionY = 'above';
+  marginleft: number = 300;
 }
 
 interface TestableMenu {
@@ -2540,6 +2399,8 @@ class CustomMenuPanel implements SbbMenuPanel {
   focusFirstItem = () => {};
   resetActiveItem = () => {};
   setPositionClasses = () => {};
+
+  triggerWidth: number;
 }
 
 @Component({
@@ -2696,7 +2557,7 @@ class SubmenuDeclaredInsideParentMenu {
 }
 
 @Component({
-  selector: 'sbb-icon',
+  selector: 'sbb-fake-icon',
   template: '<ng-content></ng-content>',
 })
 class FakeIcon {}
