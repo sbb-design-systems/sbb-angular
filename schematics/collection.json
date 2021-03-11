@@ -17,6 +17,10 @@
       "description": "Create map for symbols of all packages to migrate to @sbb-esta/angular package",
       "factory": "./merge-symbols/index#mergeSymbols"
     },
+    "mergeMigrate": {
+      "description": "Migrate a module to angular",
+      "factory": "./merge-migrate/index#mergeMigrate"
+    },
     "migrateExamples": {
       "description": "Migrate examples to components-examples",
       "factory": "./migrate-examples/index#migrateExamples"
