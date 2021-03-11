@@ -181,7 +181,7 @@ export class SbbMenuTrigger
     @Inject(SBB_MENU_PANEL) @Optional() parentMenu: SbbMenuPanel,
     // `SbbMenuTrigger` is commonly used in combination with a `SbbMenuItem`.
     @Optional() @Self() private _menuItemInstance: SbbMenuItem,
-    private _focusMonitor?: FocusMonitor
+    private _focusMonitor: FocusMonitor
   ) {
     super();
 
@@ -274,7 +274,7 @@ export class SbbMenuTrigger
    * @param origin Source of the menu trigger's focus.
    */
   focus(origin?: FocusOrigin, options?: FocusOptions) {
-    if (this._focusMonitor && origin) {
+    if (origin) {
       this._focusMonitor.focusVia(this._element, origin, options);
     } else {
       this._element.nativeElement.focus(options);
