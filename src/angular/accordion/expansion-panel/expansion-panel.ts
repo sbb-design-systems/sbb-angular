@@ -24,7 +24,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { TypeRef } from '@sbb-esta/angular/core';
+import { HasVariantCtor, mixinVariant, TypeRef } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, filter, startWith, take } from 'rxjs/operators';
 
@@ -36,6 +36,14 @@ import { SbbExpansionPanelContent } from './expansion-panel-content';
 
 /** SbbExpansionPanel's states. */
 export type SbbExpansionPanelState = 'expanded' | 'collapsed';
+
+// Boilerplate for applying mixins to SbbExpansionPanel.
+/** @docs-private */
+class SbbExpansionPanelBase extends CdkAccordionItem {}
+// tslint:disable-next-line: naming-convention
+const _SbbExpansionPanelBase: HasVariantCtor & typeof SbbExpansionPanelBase = mixinVariant(
+  SbbExpansionPanelBase
+);
 
 /** Counter for generating unique element ids. */
 let uniqueId = 0;
@@ -69,7 +77,7 @@ let uniqueId = 0;
   },
 })
 export class SbbExpansionPanel
-  extends CdkAccordionItem
+  extends _SbbExpansionPanelBase
   implements AfterContentInit, OnChanges, OnDestroy {
   /** Whether the toggle indicator should be hidden. */
   @Input()

@@ -1,23 +1,32 @@
-@import '../accordion';
+@import '../../../angular/styles/common';
 
 .sbb-expansion-panel-header {
   cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: $sbb-accordion-header-padding;
   position: relative;
   background-color: $sbbColorMilk;
   outline: none;
+  padding: pxToRem(24) pxToRem(24) pxToRem(26) pxToRem(24);
 
   html:not(.sbb-lean) & {
+    @include mq($from: tablet) {
+      padding: pxToRem(35) pxToRem(48) pxToRem(37) pxToRem(48);
+    }
+    @include mq($from: desktop) {
+      padding: pxToRem(35) pxToRem(32) pxToRem(37) pxToRem(32);
+    }
     @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
+      padding: pxToRem(53) pxToRem(48) pxToRem(55) pxToRem(48);
     }
-
     @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
+      padding: pxToRem(72) pxToRem(64);
     }
+  }
+
+  html.sbb-lean & {
+    padding: pxToRem(11) pxToRem(16) pxToRem(12) pxToRem(16);
   }
 
   &.sbb-expanded {
@@ -26,19 +35,35 @@
       display: block;
       position: absolute;
       height: 0;
-      width: calc(100% - #{toPx($sbb-accordion-divider-left * 2)});
       bottom: 0;
-      left: toPx($sbb-accordion-divider-left);
-      border-bottom: 1px solid $sbb-accordion-body-expanded-border-color;
+      width: calc(100% - #{pxToRem(24 * 2)});
+      left: pxToRem(24);
+      border-bottom: pxToRem(1) solid $sbbColorCloud;
 
       html:not(.sbb-lean) & {
+        @include mq($from: tablet) {
+          width: calc(100% - #{pxToRem(48 * 2)});
+          left: pxToRem(48);
+        }
+        @include mq($from: desktop) {
+          width: calc(100% - #{pxToRem(32 * 2)});
+          left: pxToRem(32);
+        }
         @include mq($from: desktop4k) {
+          width: calc(100% - #{pxToRem(48 * 2)});
+          left: pxToRem(48);
           border-width: pxToRem(1 * $scalingFactor4k);
         }
-
         @include mq($from: desktop5k) {
+          width: calc(100% - #{pxToRem(64 * 2)});
+          left: pxToRem(64);
           border-width: pxToRem(1 * $scalingFactor5k);
         }
+      }
+
+      html.sbb-lean & {
+        width: calc(100% - #{pxToRem(16 * 2)});
+        left: pxToRem(16);
       }
     }
   }
@@ -48,10 +73,11 @@
   &.sbb-expanded:hover {
     background: inherit;
   }
-}
 
-.sbb-expansion-panel-header-disabled {
-  opacity: 0.75;
+  &.sbb-disabled {
+    cursor: default;
+    opacity: 0.75;
+  }
 }
 
 .sbb-expansion-panel-header-content {
@@ -59,48 +85,79 @@
   flex: 1;
   flex-direction: row;
   overflow: hidden;
-  font-size: pxToEm($sbb-accordion-header-font-size);
   font-family: $fontSbbLight;
-  line-height: $sbb-accordion-header-content-line-height;
-}
-
-.sbb-expansion-panel-header-indicator {
-  flex: 0 0 auto;
-  // Centers the svg icon inside sbb-icon
-  line-height: 0;
+  font-size: pxToRem(20);
+  line-height: pxToRem(28);
 
   html:not(.sbb-lean) & {
-    $borderWidth: 1px;
-    border: 1px solid $sbbColorStorm;
-    border-radius: 50%;
-    color: $sbbColorGranite;
-    padding: pxToRem(4px - $borderWidth);
-    height: pxToRem(24px);
-    width: pxToRem(24px);
-
     @include mq($from: tablet) {
-      height: pxToRem(32px);
-      width: pxToRem(32px);
+      font-size: pxToRem(21);
+      line-height: pxToRem(30);
     }
-
-    $borderWidth: 2px;
     @include mq($from: desktop4k) {
-      border-width: $borderWidth;
-      padding: pxToRem(6px - $borderWidth);
-      height: pxToRem(48px);
-      width: pxToRem(48px);
+      font-size: pxToRem(32);
+      line-height: pxToRem(45);
     }
-
     @include mq($from: desktop5k) {
-      padding: pxToRem(8px - $borderWidth);
-      height: pxToRem(64px);
-      width: pxToRem(64px);
+      font-size: pxToRem(42);
+      line-height: pxToRem(60);
     }
   }
 
   html.sbb-lean & {
-    height: pxToRem(24px);
-    width: pxToRem(24px);
+    font-size: pxToRem(21);
+    line-height: pxToRem(25);
+  }
+}
+
+.sbb-expansion-panel-header-indicator {
+  flex: 0 0 auto;
+  line-height: 0; // Centers the svg icon inside sbb-icon
+  margin-left: pxToRem(24);
+
+  html:not(.sbb-lean) & {
+    $borderWidth: 1;
+    border: pxToRem(1) solid $sbbColorStorm;
+    border-radius: 50%;
+    color: $sbbColorGranite;
+    padding: pxToRem(4 - $borderWidth);
+    height: pxToRem(24);
+    width: pxToRem(24);
+
+    // Reduce calculated weight by difference of icon height and line-height
+    margin-top: pxToRem(-2.5);
+    margin-bottom: pxToRem(-2.5);
+
+    @include mq($from: tablet) {
+      height: pxToRem(32);
+      width: pxToRem(32);
+      margin-left: pxToRem(40);
+    }
+
+    @include mq($from: desktop) {
+      margin-left: pxToRem(24);
+    }
+
+    $borderWidth: 2;
+    @include mq($from: desktop4k) {
+      border-width: $borderWidth;
+      padding: pxToRem(6 - $borderWidth);
+      height: pxToRem(48);
+      width: pxToRem(48);
+      margin-left: pxToRem(36);
+    }
+
+    @include mq($from: desktop5k) {
+      padding: pxToRem(8 - $borderWidth);
+      height: pxToRem(64);
+      width: pxToRem(64);
+      margin-left: pxToRem(44);
+    }
+  }
+
+  html.sbb-lean & {
+    height: pxToRem(24);
+    width: pxToRem(24);
   }
 
   .sbb-expansion-panel-header-hide-toggle & {
