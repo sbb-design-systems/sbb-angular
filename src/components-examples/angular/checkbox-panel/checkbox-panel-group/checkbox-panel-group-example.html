@@ -1,0 +1,29 @@
+<p>This is an example for grouping checkbox panels and is not intended to be used "as is".</p>
+
+<form [formGroup]="form">
+  <div class="sbb-checkbox-panel-group" [ngClass]="groupClasses">
+    <sbb-checkbox-panel
+      *ngFor="let control of checkboxes.controls"
+      [formControl]="$any(control.get('selected'))"
+      >{{ control.get('name')!.value }}</sbb-checkbox-panel
+    >
+  </div>
+
+  <div class="configuration">
+    <sbb-form-field>
+      <sbb-label>Amount</sbb-label>
+      <input sbbInput formControlName="amount" />
+    </sbb-form-field>
+    <sbb-form-field *ngFor="let breakpoint of breakpoints">
+      <sbb-label>{{ breakpoint }} columns</sbb-label>
+      <sbb-select [formControlName]="breakpoint">
+        <sbb-option *ngFor="let i of breakpointRange(breakpoint)" [value]="i"
+          >{{ i === 1 ? '-' : i }}</sbb-option
+        >
+      </sbb-select>
+    </sbb-form-field>
+  </div>
+</form>
+
+<h4>CSS Classes</h4>
+<pre>sbb-checkbox-panel-group {{ groupClasses.join(' ') }}</pre>

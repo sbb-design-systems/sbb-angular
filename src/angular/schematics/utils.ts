@@ -123,6 +123,20 @@ export function iterateNodes(
   visitNodes(root.childNodes);
 }
 
+export function nodeCheck(element: Element) {
+  return {
+    is(name: string) {
+      return element.nodeName.toLowerCase() === name.toLowerCase();
+    },
+    hasAttribute(...name: string[]) {
+      name = name.map((n) => n.toLowerCase());
+      return (
+        element.attrs && name.some((n) => element.attrs.some((a) => a.name.toLowerCase() === n))
+      );
+    },
+  };
+}
+
 export class MigrationRecorderRegistry {
   private _elements = new Map<ResolvedResource, Element[]>();
 
@@ -171,8 +185,18 @@ export class MigrationElement {
     );
   }
 
+  /** Prepends the given content before this element. */
+  prepend(content: string) {
+    this.recorder.insertLeft(this.resource.start + this.location.startOffset, content);
+  }
+
   /** Appends the given content behind this element. */
   append(content: string) {
+    this.recorder.insertRight(this.resource.start + this.location.endOffset, content);
+  }
+
+  /** Insert the given content at the start of the element. */
+  insertStart(content: string) {
     this.recorder.insertRight(this.resource.start + this.location.startTag.endOffset, content);
   }
 
@@ -266,6 +290,10 @@ export class MigrationElementProperty {
       this._element.resource.start + this.location.startOffset,
       newAttribute
     );
+  }
+
+  toTextNode() {
+    return this.isProperty ? `{{ ${this.nativeValue} }}` : this.nativeValue;
   }
 
   toString() {

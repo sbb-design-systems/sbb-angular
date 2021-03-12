@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Directive,
   ElementRef,
   EventEmitter,
   forwardRef,
@@ -70,31 +71,10 @@ const _SbbCheckboxMixinBase: HasTabIndexCtor &
   HasVariantCtor &
   typeof SbbCheckboxBase = mixinTabIndex(mixinDisabled(mixinVariant(SbbCheckboxBase)));
 
-/**
- * A SBB design checkbox component. Supports all of the functionality of an HTML5 checkbox,
- * and exposes a similar API. A SbbCheckbox can be either checked, unchecked, indeterminate, or
- * disabled. Note that all additional accessibility attributes are taken care of by the component,
- * so there is no need to provide them yourself. However, if you want to omit a label and still
- * have the checkbox be accessible, you may supply an [aria-label] input.
- */
-@Component({
-  selector: 'sbb-checkbox',
-  templateUrl: './checkbox.html',
-  exportAs: 'sbbCheckbox',
-  host: {
-    class: 'sbb-checkbox sbb-selection-item',
-    '[id]': 'id',
-    '[attr.tabindex]': 'null',
-    '[class.sbb-selection-indeterminate]': 'indeterminate',
-    '[class.sbb-selection-checked]': 'checked',
-    '[class.sbb-selection-disabled]': 'disabled',
-  },
-  providers: [SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR],
-  inputs: ['tabIndex'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class SbbCheckbox
+/** Base class with all of the `SbbCheckbox` functionality. */
+@Directive()
+// tslint:disable-next-line: naming-convention class-name
+export class _SbbCheckboxBase
   extends _SbbCheckboxMixinBase
   implements
     ControlValueAccessor,
@@ -386,3 +366,29 @@ export class SbbCheckbox
   static ngAcceptInputType_indeterminate: BooleanInput;
   static ngAcceptInputType_tabIndex: NumberInput;
 }
+
+/**
+ * A SBB design checkbox component. Supports all of the functionality of an HTML5 checkbox,
+ * and exposes a similar API. A SbbCheckbox can be either checked, unchecked, indeterminate, or
+ * disabled. Note that all additional accessibility attributes are taken care of by the component,
+ * so there is no need to provide them yourself. However, if you want to omit a label and still
+ * have the checkbox be accessible, you may supply an [aria-label] input.
+ */
+@Component({
+  selector: 'sbb-checkbox',
+  templateUrl: './checkbox.html',
+  exportAs: 'sbbCheckbox',
+  host: {
+    class: 'sbb-checkbox sbb-selection-item',
+    '[id]': 'id',
+    '[attr.tabindex]': 'null',
+    '[class.sbb-selection-indeterminate]': 'indeterminate',
+    '[class.sbb-selection-checked]': 'checked',
+    '[class.sbb-selection-disabled]': 'disabled',
+  },
+  providers: [SBB_CHECKBOX_CONTROL_VALUE_ACCESSOR],
+  inputs: ['tabIndex'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class SbbCheckbox extends _SbbCheckboxBase {}
