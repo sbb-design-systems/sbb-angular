@@ -1671,21 +1671,21 @@ $tableCaptionColor: $sbbColorGrey;
 // ----------------------------------------------------------------------------------------------------
 
 input.sbb-input-element.sbb-time-input {
-  $timeInputWidth: 84;
-  $timeInputHeight: 48;
+  $timeInputWidthStandard: 84;
+  $timeInputHeightStandard: 48;
 
-  width: pxToRem($timeInputWidth);
-  height: pxToRem($timeInputHeight);
+  width: pxToRem($timeInputWidthStandard);
+  height: pxToRem($timeInputHeightStandard);
   text-align: center;
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      width: pxToRem($timeInputWidth * $scalingFactor4k);
-      height: pxToRem($timeInputHeight * $scalingFactor4k);
+      width: pxToRem(128);
+      height: pxToRem($timeInputHeightStandard * $scalingFactor4k);
     }
     @include mq($from: desktop5k) {
-      width: pxToRem($timeInputWidth * $scalingFactor5k);
-      height: pxToRem($timeInputHeight * $scalingFactor5k);
+      width: pxToRem($timeInputWidthStandard * $scalingFactor5k);
+      height: pxToRem($timeInputHeightStandard * $scalingFactor5k);
     }
   }
 

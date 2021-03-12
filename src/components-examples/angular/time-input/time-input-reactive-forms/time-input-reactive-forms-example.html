@@ -1,0 +1,11 @@
+<sbb-form-field label="Time Input">
+  <input [formControl]="formControl" sbbTimeInput sbbInput />
+</sbb-form-field>
+
+<h4>Model</h4>
+<pre>{{ formControl.value }}</pre>
+
+<h4>Properties</h4>
+<sbb-checkbox (change)="$event.checked ? formControl.disable() : formControl.enable()"
+  >Disabled</sbb-checkbox
+>

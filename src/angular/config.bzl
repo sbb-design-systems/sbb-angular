@@ -15,6 +15,7 @@ entryPoints = [
     "select",
     "textarea",
     "textexpand",
+    "time-input",
 ]
 
 # List of all non-testing entry-points of the Angular package.
@@ -51,4 +52,5 @@ ANGULAR_MARKDOWN_TARGETS = [
     "select",
     "textarea",
     "textexpand",
+    "time-input",
 ]
