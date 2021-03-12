@@ -259,6 +259,11 @@
   "SbbTextareaBase": "textarea",
   "SbbTextareaMixinBase": "textarea",
   "SbbTextareaModule": "textarea",
+  "getSbbTextexpandInvalidError": "textexpand",
+  "SbbTextexpand": "textexpand",
+  "SbbTextexpandCollapsed": "textexpand",
+  "SbbTextexpandExpanded": "textexpand",
+  "SbbTextexpandModule": "textexpand",
   "SbbTimeInput": "time-input",
   "SbbTimeInputModule": "time-input"
 }

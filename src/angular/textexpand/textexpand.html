@@ -1,0 +1,22 @@
+<ng-content></ng-content>
+
+<button
+  type="button"
+  class="sbb-button-reset-frameless sbb-textexpand-button"
+  [attr.aria-controls]="id"
+  [attr.aria-expanded]="isExpanded"
+  (click)="toggleExpanded()"
+>
+  <span
+    class="sbb-textexpand-button-label"
+    *ngIf="isExpanded"
+    i18n="Button label for showing less@@sbbTextexpandShowLess"
+    >Show less</span
+  >
+  <span
+    class="sbb-textexpand-button-label"
+    *ngIf="!isExpanded"
+    i18n="Button label for showing more@@sbbTextexpandShowMore"
+    >Show more</span
+  >
+</button>

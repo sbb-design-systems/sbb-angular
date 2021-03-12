@@ -14,6 +14,7 @@ entryPoints = [
     "radio-button",
     "select",
     "textarea",
+    "textexpand",
     "time-input",
 ]
 
@@ -50,5 +51,6 @@ ANGULAR_MARKDOWN_TARGETS = [
     "radio-button",
     "select",
     "textarea",
+    "textexpand",
     "time-input",
 ]

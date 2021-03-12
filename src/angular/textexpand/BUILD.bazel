@@ -15,20 +15,21 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":textexpand/textexpand.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/textexpand",
+    assets = [":textexpand.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular/textexpand",
     deps = [
         "//src:dev_mode_types",
+        "//src/angular/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],
 )
 
 sass_binary(
-    name = "textexpand_textexpand_component_scss",
-    src = "textexpand/textexpand.component.scss",
+    name = "textexpand_scss",
+    src = "textexpand.scss",
     deps = [
-        "//src/angular-core/styles:common_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 
@@ -40,7 +41,7 @@ ng_test_library(
     ),
     deps = [
         ":textexpand",
-        "//src/angular-core/testing",
+        "//src/angular/core/testing",
         "@npm//@angular/common",
         "@npm//@angular/platform-browser",
     ],
@@ -49,7 +50,7 @@ ng_test_library(
 ng_web_test_suite(
     name = "unit_tests",
     static_css = [
-        "//src/angular-public:typography",
+        "//src/angular:typography",
     ],
     deps = [":unit_test_sources"],
 )
