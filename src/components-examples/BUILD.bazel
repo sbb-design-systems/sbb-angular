@@ -17,6 +17,7 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/radio-button",
     "//src/components-examples/angular/select",
     "//src/components-examples/angular/textarea",
+    "//src/components-examples/angular/time-input",
     "//src/components-examples/angular-maps/esri-basemap-gallery",
     "//src/components-examples/angular-maps/esri-layer-list",
     "//src/components-examples/angular-maps/esri-legend",

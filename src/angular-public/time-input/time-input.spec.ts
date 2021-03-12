@@ -1,0 +1,107 @@
+import { Component } from '@angular/core';
+import { TestBed, waitForAsync } from '@angular/core/testing';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { typeInElement } from '@sbb-esta/angular-core/testing';
+import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
+
+import { SbbTimeInputModule } from './time-input.module';
+
+@Component({
+  template: `<input sbbTimeInput />`,
+})
+class BasicTimeInput {}
+
+@Component({
+  template: `<input sbbTimeInput [placeholder]="placeholder" />`,
+})
+class PlaceholderTimeInput {
+  placeholder = 'Time';
+}
+
+@Component({
+  template: `<sbb-form-field label="Time Input">
+    <input [formControl]="formControl" sbbInput sbbTimeInput />
+  </sbb-form-field>`,
+})
+class FormControlTimeInput {
+  formControl = new FormControl('');
+}
+
+describe('SbbTimeInput', () => {
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbFormFieldModule],
+        declarations: [BasicTimeInput, FormControlTimeInput, PlaceholderTimeInput],
+      }).compileComponents();
+    })
+  );
+
+  const values = [
+    { input: '16:30', expectedOutput: '16:30' },
+    { input: '1', expectedOutput: '01:00' },
+    { input: '12', expectedOutput: '12:00' },
+    { input: '123', expectedOutput: '01:23' },
+    { input: '1234', expectedOutput: '12:34' },
+    { input: '13567', expectedOutput: '13:56' },
+    { input: '3.56', expectedOutput: '03:56' },
+    { input: '23,4', expectedOutput: '23:04' },
+    { input: '1,30', expectedOutput: '01:30' },
+    { input: 'nonNumeric', expectedOutput: 'nonNumeric' },
+  ];
+
+  it('should display default placeholder', () => {
+    const fixture = TestBed.createComponent(BasicTimeInput);
+    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    fixture.detectChanges();
+    expect(inputElement.getAttribute('placeholder')).toBe('HH:MM');
+  });
+
+  it('should accept custom placeholder', () => {
+    const fixture = TestBed.createComponent(PlaceholderTimeInput);
+    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    fixture.detectChanges();
+    expect(inputElement.getAttribute('placeholder')).toBe('Time');
+  });
+
+  it('should change placeholder', () => {
+    const fixture = TestBed.createComponent(PlaceholderTimeInput);
+    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    fixture.detectChanges();
+
+    fixture.componentInstance.placeholder = 'Other';
+    fixture.detectChanges();
+
+    expect(inputElement.getAttribute('placeholder')).toBe('Other');
+  });
+
+  it('should display values formatted without form control', () => {
+    const fixture = TestBed.createComponent(BasicTimeInput);
+    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    values.forEach((entry) => {
+      inputElement.value = '';
+
+      typeInElement(inputElement, entry.input);
+      inputElement.blur();
+
+      expect(inputElement.value).toBe(entry.expectedOutput);
+    });
+  });
+
+  it('should display values formatted with form control', () => {
+    const fixture = TestBed.createComponent(FormControlTimeInput);
+    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    values.forEach((entry) => {
+      fixture.componentInstance.formControl.setValue('');
+      fixture.detectChanges();
+
+      typeInElement(inputElement, entry.input);
+      inputElement.blur();
+
+      expect(fixture.componentInstance.formControl.value).toBe(entry.expectedOutput);
+    });
+  });
+});

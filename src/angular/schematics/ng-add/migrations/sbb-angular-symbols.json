@@ -258,5 +258,7 @@
   "SbbTextarea": "textarea",
   "SbbTextareaBase": "textarea",
   "SbbTextareaMixinBase": "textarea",
-  "SbbTextareaModule": "textarea"
+  "SbbTextareaModule": "textarea",
+  "SbbTimeInput": "time-input",
+  "SbbTimeInputModule": "time-input"
 }
