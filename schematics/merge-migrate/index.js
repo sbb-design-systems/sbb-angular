@@ -15,7 +15,8 @@ function mergeMigrate(options) {
         const businessModuleDirectory = tree.getDir(`src/angular-business/${options.module}`);
         const publicModuleDirectory = tree.getDir(`src/angular-public/${options.module}`);
         const targetDirectory = tree.getDir(`src/angular/${options.module}`);
-        if (businessModuleDirectory.subfiles.length) {
+        if (businessModuleDirectory.subfiles.length &&
+            businessModuleDirectory.subfiles.every((f) => f !== core.fragment('.gitignore'))) {
             migrateModule(businessModuleDirectory);
         }
         else if (publicModuleDirectory.subfiles.length) {
