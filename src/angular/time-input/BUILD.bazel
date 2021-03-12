@@ -14,9 +14,9 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-public/time-input",
+    module_name = "@sbb-esta/angular/time-input",
     deps = [
-        "//src/angular-public/input",
+        "//src/angular/form-field",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
@@ -31,8 +31,8 @@ ng_test_library(
     ),
     deps = [
         ":time-input",
-        "//src/angular-core/testing",
-        "//src/angular-public/form-field",
+        "//src/angular/core/testing",
+        "//src/angular/form-field",
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
     ],
@@ -41,7 +41,7 @@ ng_test_library(
 ng_web_test_suite(
     name = "unit_tests",
     static_css = [
-        "//src/angular-public:typography",
+        "//src/angular:typography",
     ],
     deps = [":unit_test_sources"],
 )
