@@ -1,4 +1,4 @@
-import { basename, join, Path, relative } from '@angular-devkit/core';
+import { basename, fragment, join, Path, relative } from '@angular-devkit/core';
 import {
   DirEntry,
   Rule,
@@ -19,7 +19,10 @@ export function mergeMigrate(options: { module: string }): Rule {
     const publicModuleDirectory = tree.getDir(`src/angular-public/${options.module}`);
     const targetDirectory = tree.getDir(`src/angular/${options.module}`);
 
-    if (businessModuleDirectory.subfiles.length) {
+    if (
+      businessModuleDirectory.subfiles.length &&
+      businessModuleDirectory.subfiles.every((f) => f !== fragment('.gitignore'))
+    ) {
       migrateModule(businessModuleDirectory);
     } else if (publicModuleDirectory.subfiles.length) {
       migrateModule(publicModuleDirectory);
