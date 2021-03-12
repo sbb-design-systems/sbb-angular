@@ -1,0 +1,109 @@
+@import '../accordion';
+
+.sbb-expansion-panel-header {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: $sbb-accordion-header-padding;
+  position: relative;
+  background-color: $sbbColorMilk;
+  outline: none;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
+  &.sbb-expanded {
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 0;
+      width: calc(100% - #{toPx($sbb-accordion-divider-left * 2)});
+      bottom: 0;
+      left: toPx($sbb-accordion-divider-left);
+      border-bottom: 1px solid $sbb-accordion-body-expanded-border-color;
+
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          border-width: pxToRem(1 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          border-width: pxToRem(1 * $scalingFactor5k);
+        }
+      }
+    }
+  }
+
+  &.sbb-expanded,
+  &.sbb-expanded:focus,
+  &.sbb-expanded:hover {
+    background: inherit;
+  }
+}
+
+.sbb-expansion-panel-header-disabled {
+  opacity: 0.75;
+}
+
+.sbb-expansion-panel-header-content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  overflow: hidden;
+  font-size: pxToEm($sbb-accordion-header-font-size);
+  font-family: $fontSbbLight;
+  line-height: $sbb-accordion-header-content-line-height;
+}
+
+.sbb-expansion-panel-header-indicator {
+  flex: 0 0 auto;
+  // Centers the svg icon inside sbb-icon
+  line-height: 0;
+
+  html:not(.sbb-lean) & {
+    $borderWidth: 1px;
+    border: 1px solid $sbbColorStorm;
+    border-radius: 50%;
+    color: $sbbColorGranite;
+    padding: pxToRem(4px - $borderWidth);
+    height: pxToRem(24px);
+    width: pxToRem(24px);
+
+    @include mq($from: tablet) {
+      height: pxToRem(32px);
+      width: pxToRem(32px);
+    }
+
+    $borderWidth: 2px;
+    @include mq($from: desktop4k) {
+      border-width: $borderWidth;
+      padding: pxToRem(6px - $borderWidth);
+      height: pxToRem(48px);
+      width: pxToRem(48px);
+    }
+
+    @include mq($from: desktop5k) {
+      padding: pxToRem(8px - $borderWidth);
+      height: pxToRem(64px);
+      width: pxToRem(64px);
+    }
+  }
+
+  html.sbb-lean & {
+    height: pxToRem(24px);
+    width: pxToRem(24px);
+  }
+
+  .sbb-expansion-panel-header-hide-toggle & {
+    display: none;
+  }
+}

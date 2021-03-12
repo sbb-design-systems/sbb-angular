@@ -1,0 +1,19 @@
+@import '../../angular/styles/common';
+
+$sbb-accordion-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$sbb-accordion-divider-left: 32;
+$sbb-accordion-header-padding: pxToEm(40) pxToEm(32);
+$sbb-accordion-header-content-line-height: 1.3;
+$sbb-accordion-content-padding-mobile: pxToEm(36) pxToEm(32);
+$sbb-accordion-content-padding: pxToEm(48) pxToEm(32);
+$sbb-accordion-header-font-size: 21;
+$sbb-accordion-body-expanded-border-color: $sbbColorCloud;
+
+/*
+@if $sbbBusiness {
+  $sbb-accordion-content-padding: pxToEm(12) pxToEm(16) pxToEm(13) pxToEm(16);
+  $sbb-accordion-header-padding: pxToEm(12) pxToEm(16) pxToEm(13) pxToEm(16);
+  $sbb-accordion-divider-left: 16;
+  $sbb-accordion-header-content-line-height: toEm(24 / $sbb-accordion-header-font-size);
+}
+*/
