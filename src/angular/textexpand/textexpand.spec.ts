@@ -10,19 +10,8 @@ import { SbbTextexpandModule } from './textexpand.module';
 
 @Component({
   template: `<sbb-textexpand (expandEvent)="expandEvent($event)">
-    <sbb-textexpand-collapsed
-      >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-      invidunt ut labore et dolore magna aliquyam erat,&nbsp;</sbb-textexpand-collapsed
-    >
-    <sbb-textexpand-expanded
-      >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-      invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-      justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-      ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos
-      et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-      sanctus est.&nbsp;</sbb-textexpand-expanded
-    >
+    <sbb-textexpand-collapsed>I am a</sbb-textexpand-collapsed>
+    <sbb-textexpand-expanded>I am a long text</sbb-textexpand-expanded>
   </sbb-textexpand> `,
 })
 class BasicTextexpand {
@@ -34,10 +23,7 @@ class BasicTextexpand {
 
 @Component({
   template: `<sbb-textexpand>
-    <sbb-textexpand-collapsed
-      >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-      invidunt ut labore et dolore magna aliquyam erat,&nbsp;</sbb-textexpand-collapsed
-    ></sbb-textexpand
+    <sbb-textexpand-collapsed>Lorem ipsum dolor</sbb-textexpand-collapsed></sbb-textexpand
   >`,
 })
 class InvalidTextexpand {}
@@ -59,28 +45,35 @@ describe('SbbTextexpand', () => {
     const expanded = fixture.debugElement.query(By.css('.sbb-textexpand-expanded')).nativeElement;
     const collapsed = fixture.debugElement.query(By.css('.sbb-textexpand-collapsed')).nativeElement;
 
-    expect(toggleButton.textContent).toBe('Show more');
-    expect(collapsed.getAttribute('hidden')).toBeFalsy();
-    expect(expanded.getAttribute('hidden')).toBe('true');
-    expect(fixture.componentInstance.textexpand.isExpanded).toBe(false);
+    assertCollapsed();
 
     toggleButton.click();
     fixture.detectChanges();
 
-    expect(toggleButton.textContent).toBe('Show less');
-    expect(collapsed.getAttribute('hidden')).toBe('true');
-    expect(expanded.getAttribute('hidden')).toBeFalsy();
-    expect(fixture.componentInstance.textexpand.isExpanded).toBe(true);
+    assertExpanded();
     expect(fixture.componentInstance.expandEvent).toHaveBeenCalledWith(true);
 
     toggleButton.click();
     fixture.detectChanges();
 
-    expect(toggleButton.textContent).toBe('Show more');
-    expect(collapsed.getAttribute('hidden')).toBeFalsy();
-    expect(expanded.getAttribute('hidden')).toBe('true');
-    expect(fixture.componentInstance.textexpand.isExpanded).toBe(false);
+    assertCollapsed();
     expect(fixture.componentInstance.expandEvent).toHaveBeenCalledWith(false);
+
+    function assertCollapsed() {
+      expect(toggleButton.textContent).toBe('Show more');
+      expect(toggleButton.attributes['aria-expanded'].value).toBe('false');
+      expect(collapsed.getAttribute('hidden')).toBeFalsy();
+      expect(expanded.getAttribute('hidden')).toBe('true');
+      expect(fixture.componentInstance.textexpand.isExpanded).toBe(false);
+    }
+
+    function assertExpanded() {
+      expect(toggleButton.textContent).toBe('Show less');
+      expect(toggleButton.attributes['aria-expanded'].value).toBe('true');
+      expect(collapsed.getAttribute('hidden')).toBe('true');
+      expect(expanded.getAttribute('hidden')).toBeFalsy();
+      expect(fixture.componentInstance.textexpand.isExpanded).toBe(true);
+    }
   });
 
   it('should throw if component is not used like specified', () => {
