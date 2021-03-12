@@ -1,0 +1,66 @@
+@import '../accordion';
+
+.sbb-expansion-panel {
+  box-sizing: content-box;
+  display: block;
+  margin: 0;
+  transition: margin 225ms $sbb-accordion-timing-function;
+  border: pxToRem(1) solid transparent;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-width: pxToRem(1 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-width: pxToRem(1 * $scalingFactor5k);
+    }
+  }
+
+  &.sbb-expanded {
+    border-color: $sbb-accordion-body-expanded-border-color;
+    margin-bottom: pxToRem(2);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        margin-bottom: pxToRem(2 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-bottom: pxToRem(2 * $scalingFactor5k);
+      }
+    }
+  }
+}
+
+.sbb-expansion-panel-content {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  &.ng-animating {
+    overflow: hidden;
+  }
+}
+
+.sbb-expansion-panel-body {
+  padding: $sbb-accordion-content-padding-mobile;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: tabletPortrait) {
+      padding: $sbb-accordion-content-padding;
+    }
+
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
+  html.sbb-lean & {
+    padding: $sbb-accordion-content-padding;
+    line-height: pxToEm(23);
+  }
+}
