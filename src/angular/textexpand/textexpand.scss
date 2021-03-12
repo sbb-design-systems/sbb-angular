@@ -1,0 +1,41 @@
+@import '../../angular/styles/common';
+
+.sbb-textexpand {
+  font-size: pxToRem(13);
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: $sbbColorMetal;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+    }
+  }
+
+  html.sbb-lean & {
+    font-size: pxToRem($sizeFontDefault);
+    line-height: pxToRem(23);
+    color: $sbbColorBlack;
+  }
+}
+
+.sbb-textexpand-button {
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  font-size: inherit;
+
+  &:focus,
+  &:hover {
+    cursor: pointer;
+    color: $sbbColorCallToActionHover;
+  }
+}
+
+.sbb-textexpand-button-label {
+  text-decoration: underline;
+}

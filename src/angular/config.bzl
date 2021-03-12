@@ -14,6 +14,7 @@ entryPoints = [
     "radio-button",
     "select",
     "textarea",
+    "textexpand",
 ]
 
 # List of all non-testing entry-points of the Angular package.
@@ -49,4 +50,5 @@ ANGULAR_MARKDOWN_TARGETS = [
     "radio-button",
     "select",
     "textarea",
+    "textexpand",
 ]
