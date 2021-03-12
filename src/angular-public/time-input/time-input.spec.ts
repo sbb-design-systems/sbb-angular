@@ -16,7 +16,7 @@ class BasicTimeInput {}
   template: `<input sbbTimeInput [placeholder]="placeholder" />`,
 })
 class PlaceholderTimeInput {
-  placeholder = 'Time';
+  placeholder?: string | null = 'Time';
 }
 
 @Component({
@@ -48,14 +48,24 @@ describe('SbbTimeInput', () => {
     { input: '3.56', expectedOutput: '03:56' },
     { input: '23,4', expectedOutput: '23:04' },
     { input: '1,30', expectedOutput: '01:30' },
+    { input: '1:2', expectedOutput: '01:02' },
+    { input: '1.2', expectedOutput: '01:02' },
+    { input: '1,2', expectedOutput: '01:02' },
+    { input: '1-2', expectedOutput: '01:02' },
+    { input: '1;2', expectedOutput: '01:02' },
     { input: 'nonNumeric', expectedOutput: 'nonNumeric' },
   ];
 
-  it('should display default placeholder', () => {
+  it('should have proper type, pattern, inputmode, class attributes set', () => {
     const fixture = TestBed.createComponent(BasicTimeInput);
     const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     fixture.detectChanges();
-    expect(inputElement.getAttribute('placeholder')).toBe('HH:MM');
+
+    expect(inputElement.getAttribute('type')).toEqual('text');
+    expect(inputElement.getAttribute('pattern')).toEqual('[0-9]*');
+    expect(inputElement.getAttribute('inputmode')).toEqual('numeric');
+    expect(inputElement.getAttribute('class')).toContain('sbb-time-input');
+    expect(inputElement.getAttribute('placeholder')).toEqual('HH:MM');
   });
 
   it('should accept custom placeholder', () => {
@@ -74,6 +84,18 @@ describe('SbbTimeInput', () => {
     fixture.detectChanges();
 
     expect(inputElement.getAttribute('placeholder')).toBe('Other');
+
+    fixture.componentInstance.placeholder = '';
+    fixture.detectChanges();
+    expect(inputElement.getAttribute('placeholder')).toEqual('');
+
+    fixture.componentInstance.placeholder = null;
+    fixture.detectChanges();
+    expect(inputElement.getAttribute('placeholder')).toEqual('HH:MM');
+
+    fixture.componentInstance.placeholder = undefined;
+    fixture.detectChanges();
+    expect(inputElement.getAttribute('placeholder')).toEqual('HH:MM');
   });
 
   it('should display values formatted without form control', () => {
