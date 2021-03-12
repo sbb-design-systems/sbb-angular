@@ -1,4 +1,5 @@
-`<sbb-radio-button>` provides the same functionality as a native `<input type="radio">`
+`<sbb-radio-button>` provides the same functionality as a native `<input type="radio">` enhanced with
+the SBB Design.
 
 ```html
 <sbb-radio-button

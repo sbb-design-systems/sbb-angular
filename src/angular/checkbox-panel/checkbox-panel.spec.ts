@@ -33,7 +33,7 @@ class ModelOptionSelectionMultipleTest {
 }
 
 @Component({
-  selector: 'sbb-checkbox-panel-subtitle-test',
+  selector: 'sbb-checkbox-panel-directices-test',
   template: `
     <sbb-checkbox-panel [formControl]="control">
       Zürich HB - Basel SBB
@@ -43,7 +43,7 @@ class ModelOptionSelectionMultipleTest {
     </sbb-checkbox-panel>
   `,
 })
-class CheckboxPanelSubtitleTest {
+class CheckboxPanelDirectivesTest {
   control = new FormControl(false);
   subtitle = 'Valid: Mo, 01.03.2021';
   warning = 'Reservation not possible';
@@ -79,7 +79,7 @@ describe('SbbCheckboxPanel', () => {
         ],
         declarations: [
           ModelOptionSelectionMultipleTest,
-          CheckboxPanelSubtitleTest,
+          CheckboxPanelDirectivesTest,
           CheckboxPanelIconTest,
         ],
       }).compileComponents();
@@ -148,33 +148,33 @@ describe('SbbCheckboxPanel', () => {
     });
   });
 
-  describe('subtitle', () => {
-    let component: CheckboxPanelSubtitleTest;
-    let fixture: ComponentFixture<CheckboxPanelSubtitleTest>;
+  describe('directives', () => {
+    let component: CheckboxPanelDirectivesTest;
+    let fixture: ComponentFixture<CheckboxPanelDirectivesTest>;
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(CheckboxPanelSubtitleTest);
+      fixture = TestBed.createComponent(CheckboxPanelDirectivesTest);
       component = fixture.componentInstance;
 
       fixture.detectChanges();
     });
 
     it('should display the subtitle', () => {
-      const subtitle = fixture.debugElement.query(By.directive(SbbCheckboxPanelSubtitle));
-      const subtitleElement = subtitle.nativeElement as HTMLElement;
-      expect(subtitleElement.textContent).toEqual(component.subtitle);
+      const debugElement = fixture.debugElement.query(By.directive(SbbCheckboxPanelSubtitle));
+      const element = debugElement.nativeElement as HTMLElement;
+      expect(element.textContent).toEqual(component.subtitle);
     });
 
     it('should display the warning', () => {
-      const subtitle = fixture.debugElement.query(By.directive(SbbCheckboxPanelWarning));
-      const subtitleElement = subtitle.nativeElement as HTMLElement;
-      expect(subtitleElement.textContent).toEqual(component.warning);
+      const debugElement = fixture.debugElement.query(By.directive(SbbCheckboxPanelWarning));
+      const element = debugElement.nativeElement as HTMLElement;
+      expect(element.textContent).toEqual(component.warning);
     });
 
     it('should display the note', () => {
-      const subtitle = fixture.debugElement.query(By.directive(SbbCheckboxPanelNote));
-      const subtitleElement = subtitle.nativeElement as HTMLElement;
-      expect(subtitleElement.textContent).toEqual(component.note);
+      const debugElement = fixture.debugElement.query(By.directive(SbbCheckboxPanelNote));
+      const element = debugElement.nativeElement as HTMLElement;
+      expect(element.textContent).toEqual(component.note);
     });
 
     it('should add class on checked', () => {
