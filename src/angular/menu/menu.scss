@@ -8,6 +8,20 @@ sbb-menu {
   display: none;
 }
 
+.sbb-menu-panel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .sbb-menu-panel-above & {
+    flex-direction: column-reverse;
+  }
+
+  .sbb-menu-panel-before & {
+    align-items: flex-end;
+  }
+}
+
 .sbb-menu-panel {
   border-top-style: solid;
   border-radius: pxToRem(2);
@@ -119,38 +133,6 @@ sbb-menu {
 
 .sbb-menu-panel-variant-standard .sbb-menu-panel-root {
   overflow: inherit;
-
-  &.sbb-menu-below {
-    margin-top: pxToRem(-$borderWidthStandard);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        margin-top: pxToRem(-$borderWidthStandard * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        margin-top: pxToRem(-$borderWidthStandard * $scalingFactor5k);
-      }
-    }
-    html.sbb-lean & {
-      margin-top: pxToRem(-$borderWidthLean);
-    }
-  }
-
-  &.sbb-menu-above {
-    margin-bottom: pxToRem(-$borderWidthStandard - 1);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        margin-bottom: pxToRem((-$borderWidthStandard - 1) * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        margin-bottom: pxToRem((-$borderWidthStandard - 1) * $scalingFactor5k);
-      }
-    }
-    html.sbb-lean & {
-      margin-bottom: pxToRem(-$borderWidthLean - 1);
-    }
-  }
 
   &.sbb-menu-before.sbb-menu-below {
     border-top-right-radius: 0;
@@ -269,6 +251,54 @@ button.sbb-menu-item {
     &:active,
     &:focus {
       color: $sbbColorBlack;
+    }
+  }
+}
+
+.sbb-menu-panel-trigger.sbb-menu-trigger-root {
+  background-color: $sbbColorWhite;
+  z-index: 100;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: $sbbColorWhite;
+    right: 0;
+    left: 0;
+    bottom: pxToEm(-$borderWidthStandard);
+    height: pxToEm($borderWidthStandard);
+
+    html.sbb-lean & {
+      bottom: pxToEm(-$borderWidthLean);
+      height: pxToEm($borderWidthLean);
+    }
+
+    .sbb-menu-panel-above & {
+      bottom: inherit;
+      top: pxToEm(-$borderWidthStandard);
+
+      html.sbb-lean & {
+        top: pxToEm(-$borderWidthLean);
+      }
+    }
+  }
+}
+
+.sbb-menu-panel-trigger + .sbb-menu-panel {
+  .sbb-menu-panel-below & {
+    top: pxToRem(-$borderWidthStandard);
+
+    html.sbb-lean & {
+      top: pxToRem(-$borderWidthLean);
+    }
+  }
+
+  .sbb-menu-panel-above & {
+    top: pxToRem($borderWidthStandard);
+
+    html.sbb-lean & {
+      top: pxToRem($borderWidthLean);
     }
   }
 }

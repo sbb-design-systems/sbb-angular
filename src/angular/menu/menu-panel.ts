@@ -3,6 +3,7 @@ import { EventEmitter, InjectionToken, TemplateRef } from '@angular/core';
 
 import { SbbMenuContent } from './menu-content';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
+import { SbbMenuTriggerContext } from './menu-trigger-context';
 
 /**
  * Injection token used to provide the parent menu to menu-specific components.
@@ -29,6 +30,6 @@ export interface SbbMenuPanel<T = any> {
   backdropClass?: string;
   overlayPanelClass?: string | string[];
   hasBackdrop?: boolean;
+  triggerContext: SbbMenuTriggerContext;
   readonly panelId?: string;
-  triggerWidth: number;
 }

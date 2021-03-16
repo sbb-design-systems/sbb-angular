@@ -25,10 +25,12 @@ import {
   OnDestroy,
   Optional,
   Output,
+  Sanitizer,
   Self,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
 import { asapScheduler, merge, of as observableOf, Subscription } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
@@ -99,6 +101,7 @@ export class SbbMenuTrigger
   private _hoverSubscription = Subscription.EMPTY;
   private _menuCloseSubscription = Subscription.EMPTY;
   private _scrollStrategy: () => ScrollStrategy;
+  private _contentPortal?: TemplatePortal;
 
   /**
    * We're specifically looking for a `SbbMenu` here since the generic `SbbMenuPanel`
@@ -187,7 +190,8 @@ export class SbbMenuTrigger
     @Inject(SBB_MENU_PANEL) @Optional() parentMenu: SbbMenuPanel,
     // `SbbMenuTrigger` is commonly used in combination with a `SbbMenuItem`.
     @Optional() @Self() private _menuItemInstance: SbbMenuItem,
-    private _focusMonitor: FocusMonitor
+    private _focusMonitor: FocusMonitor,
+    private _sanitizer: DomSanitizer
   ) {
     super();
 
@@ -207,6 +211,7 @@ export class SbbMenuTrigger
 
   ngAfterContentInit() {
     this._checkMenu();
+    this._initializeTriggerContentPortal();
     this._handleHover();
   }
 
@@ -342,7 +347,15 @@ export class SbbMenuTrigger
    */
   private _initMenu(): void {
     this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
-    this.menu.triggerWidth = this._element.nativeElement.clientWidth;
+    if (!this.triggersSubmenu()) {
+      this.menu.triggerContext = {
+        triggerWidth: this._element.nativeElement.clientWidth,
+        contentPortal: this._contentPortal,
+        elementContent: this._sanitizer.bypassSecurityTrustHtml(
+          this._element.nativeElement.innerHTML
+        ),
+      };
+    }
     this._setMenuElevation();
     this.menu.focusFirstItem(this._openedBy || 'program');
     this._setIsMenuOpen(true);
@@ -380,6 +393,12 @@ export class SbbMenuTrigger
   private _checkMenu() {
     if (!this.menu && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throwSbbMenuMissingError();
+    }
+  }
+
+  private _initializeTriggerContentPortal() {
+    if (!this.triggersSubmenu() && this._triggerContent) {
+      this._contentPortal = new TemplatePortal(this._triggerContent, this._viewContainerRef);
     }
   }
 
@@ -477,8 +496,20 @@ export class SbbMenuTrigger
       originFallbackY = overlayFallbackY === 'top' ? 'bottom' : 'top';
     }
 
+    const panelClasses = (xOrientation: 'start' | 'end', yOrientation: 'top' | 'bottom') => [
+      `sbb-menu-panel-${xOrientation === 'start' ? 'after' : 'before'}`,
+      `sbb-menu-panel-${yOrientation === 'top' ? 'below' : 'above'}`,
+    ];
     positionStrategy.withPositions([
-      { originX, originY, overlayX, overlayY, offsetY, offsetX },
+      {
+        originX,
+        originY,
+        overlayX,
+        overlayY,
+        offsetY,
+        offsetX,
+        panelClass: panelClasses(originX, originY),
+      },
       {
         originX: originFallbackX,
         originY,
@@ -486,6 +517,7 @@ export class SbbMenuTrigger
         overlayY,
         offsetY,
         offsetX: -offsetX,
+        panelClass: panelClasses(originFallbackX, originY),
       },
       {
         originX,
@@ -494,6 +526,7 @@ export class SbbMenuTrigger
         overlayY: overlayFallbackY,
         offsetY: -offsetY,
         offsetX: offsetX,
+        panelClass: panelClasses(originX, originFallbackY),
       },
       {
         originX: originFallbackX,
@@ -502,6 +535,7 @@ export class SbbMenuTrigger
         overlayY: overlayFallbackY,
         offsetY: -offsetY,
         offsetX: -offsetX,
+        panelClass: panelClasses(originFallbackX, originFallbackY),
       },
     ]);
   }

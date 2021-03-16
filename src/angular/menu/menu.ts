@@ -32,6 +32,7 @@ import { throwSbbMenuInvalidPositionX, throwSbbMenuInvalidPositionY } from './me
 import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
+import { SbbMenuTriggerContext } from './menu-trigger-context';
 
 /** Default `sbb-menu` options that can be overridden. */
 export interface SbbMenuDefaultOptions {
@@ -66,7 +67,7 @@ export const SBB_MENU_DEFAULT_OPTIONS = new InjectionToken<SbbMenuDefaultOptions
 /** @docs-private */
 export function SBB_MENU_DEFAULT_OPTIONS_FACTORY(): SbbMenuDefaultOptions {
   return {
-    overlapTrigger: false,
+    overlapTrigger: true,
     backdropClass: 'cdk-overlay-transparent-backdrop',
   };
 }
@@ -139,9 +140,6 @@ export class SbbMenu
 
   /** Class to be added to the backdrop element. */
   @Input() backdropClass: string = this._defaultOptions.backdropClass;
-
-  /** Width of the trigger to generate mask. */
-  triggerWidth: number;
 
   /** aria-label for the menu panel. */
   @Input('aria-label') ariaLabel: string;
@@ -238,6 +236,8 @@ export class SbbMenu
     }
   }
   private _previousPanelClass: string;
+
+  triggerContext: SbbMenuTriggerContext;
 
   /** Event emitted when the menu is closed. */
   @Output()

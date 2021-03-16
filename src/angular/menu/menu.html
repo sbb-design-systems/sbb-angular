@@ -1,6 +1,6 @@
 <ng-template>
   <div
-    class="sbb-panel sbb-panel-padded sbb-menu-panel sbb-scrollbar"
+    class="sbb-menu-panel-wrapper"
     [id]="panelId"
     [ngClass]="_classList"
     (keydown)="_handleKeydown($event)"
@@ -15,12 +15,25 @@
     [attr.aria-describedby]="ariaDescribedby || null"
     [class.sbb-menu-panel-root]="!parentMenu"
   >
-    <button>
-      <ng-container *ngTemplateOutlet="templateRef"></ng-container>
-    </button>
-    <div class="sbb-menu-content">
+    <ng-container *ngIf="triggerContext">
+      <button
+        *ngIf="!triggerContext.contentPortal"
+        type="button"
+        class="sbb-menu-panel-trigger sbb-menu-trigger-root sbb-menu-trigger-open sbb-menu-trigger-standard"
+        [innerHTML]="triggerContext.elementContent"
+        aria-hidden="true"
+      ></button>
+      <button
+        *ngIf="triggerContext.contentPortal"
+        type="button"
+        class="sbb-menu-panel-trigger sbb-menu-trigger-root sbb-menu-trigger-open sbb-menu-trigger-standard"
+        aria-hidden="true"
+      >
+        <ng-template [cdkPortalOutlet]="triggerContext.contentPortal"></ng-template>
+      </button>
+    </ng-container>
+    <div class="sbb-panel sbb-panel-padded sbb-menu-panel sbb-menu-content sbb-scrollbar">
       <ng-content></ng-content>
     </div>
-    <div class="sbb-menu-mask" aria-hidden="true" [style.width]="triggerWidth + 'px'"></div>
   </div>
 </ng-template>
