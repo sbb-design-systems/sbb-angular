@@ -50,6 +50,7 @@
   }
 
   &.sbb-expansion-panel-header-disabled {
+    cursor: default;
     opacity: 0.75;
   }
 
@@ -75,6 +76,10 @@
       padding: pxToRem(4px - $borderWidth);
       height: pxToRem(24px);
       width: pxToRem(24px);
+
+      // Reduce calculated weight by difference of icon height and line-height
+      margin-top: pxToRem(-2.5);
+      margin-bottom: pxToRem(-2.5);
 
       @include mq($from: tablet) {
         height: pxToRem(32px);

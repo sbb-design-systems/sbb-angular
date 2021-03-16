@@ -1,10 +1,10 @@
-@import '../accordion';
+@import '../../../angular/styles/common';
 
 .sbb-expansion-panel {
   box-sizing: content-box;
   display: block;
   margin: 0;
-  transition: margin 225ms $sbb-accordion-timing-function;
+  transition: margin 225ms cubic-bezier(0.4, 0, 0.2, 1);
   border: pxToRem(1) solid transparent;
 
   html:not(.sbb-lean) & {
@@ -18,7 +18,7 @@
   }
 
   &.sbb-expanded {
-    border-color: $sbb-accordion-body-expanded-border-color;
+    border-color: $sbbColorCloud;
     margin-bottom: pxToRem(2);
 
     html:not(.sbb-lean) & {
@@ -37,30 +37,34 @@
   display: flex;
   flex-direction: column;
   overflow: visible;
-  &.ng-animating {
+
+  &.ng-animating,
+  .sbb-expansion-panel:not(.sbb-expanded) & {
     overflow: hidden;
   }
 }
 
 .sbb-expansion-panel-body {
-  padding: $sbb-accordion-content-padding-mobile;
+  padding: pxToRem(36) pxToRem(24);
 
   html:not(.sbb-lean) & {
-    @include mq($from: tabletPortrait) {
-      padding: $sbb-accordion-content-padding;
+    @include mq($from: tablet) {
+      padding: pxToRem(48) pxToRem(48);
     }
-
+    @include mq($from: desktop) {
+      padding: pxToRem(48) pxToRem(32);
+    }
     @include mq($from: desktop4k) {
+      padding: pxToRem(72) pxToRem(48);
       font-size: pxToRem($sizeFontDefault4k);
     }
-
     @include mq($from: desktop5k) {
+      padding: pxToRem(96) pxToRem(64);
       font-size: pxToRem($sizeFontDefault5k);
     }
   }
 
   html.sbb-lean & {
-    padding: $sbb-accordion-content-padding;
-    line-height: pxToEm(23);
+    padding: pxToEm(24) pxToEm(16);
   }
 }
