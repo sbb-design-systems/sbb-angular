@@ -7,11 +7,11 @@ import { SbbAccordion } from '@sbb-esta/angular/accordion';
  * @order 20
  */
 @Component({
-  selector: 'sbb-basic-accordion-example',
-  templateUrl: './basic-accordion-example.html',
-  styleUrls: ['./basic-accordion-example.css'],
+  selector: 'sbb-accordion-basic-example',
+  templateUrl: './accordion-basic-example.html',
+  styleUrls: ['./accordion-basic-example.css'],
 })
-export class BasicAccordionExample {
+export class AccordionBasicExample {
   @ViewChild(SbbAccordion, { static: true }) firstAccordion: SbbAccordion;
 
   disabled = new FormControl(false);

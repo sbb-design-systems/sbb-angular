@@ -8,13 +8,13 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 
-import { BasicAccordionExample } from './basic-accordion/basic-accordion-example';
-import { SimplePanelExample } from './simple-panel/simple-panel-example';
-import { WizardAccordionExample } from './wizard-accordion/wizard-accordion-example';
+import { AccordionBasicExample } from './accordion-basic/accordion-basic-example';
+import { AccordionSimplePanelExample } from './accordion-simple-panel/accordion-simple-panel-example';
+import { AccordionWizardExample } from './accordion-wizard/accordion-wizard-example';
 
-export { BasicAccordionExample, SimplePanelExample, WizardAccordionExample };
+export { AccordionBasicExample, AccordionSimplePanelExample, AccordionWizardExample };
 
-const EXAMPLES = [BasicAccordionExample, SimplePanelExample, WizardAccordionExample];
+const EXAMPLES = [AccordionBasicExample, AccordionSimplePanelExample, AccordionWizardExample];
 
 @NgModule({
   imports: [

@@ -5,11 +5,11 @@ import { Component } from '@angular/core';
  * @order 30
  */
 @Component({
-  selector: 'sbb-wizard-accordion-example',
-  templateUrl: './wizard-accordion-example.html',
-  styleUrls: ['./wizard-accordion-example.css'],
+  selector: 'sbb-accordion-wizard-example',
+  templateUrl: './accordion-wizard-example.html',
+  styleUrls: ['./accordion-wizard-example.css'],
 })
-export class WizardAccordionExample {
+export class AccordionWizardExample {
   step = 0;
 
   setStep(index: number) {

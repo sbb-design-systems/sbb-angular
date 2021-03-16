@@ -34,6 +34,9 @@ ng_module(
 sass_binary(
     name = "expansion_panel_expansion_panel_scss",
     src = "expansion-panel/expansion-panel.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
