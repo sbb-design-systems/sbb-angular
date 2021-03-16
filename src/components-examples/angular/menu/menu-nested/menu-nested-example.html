@@ -1,5 +1,7 @@
 <button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
-  <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+  <ng-template sbbMenuDynamicTrigger>
+    <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+  </ng-template>
 </button>
 <sbb-menu #animals="sbbMenu">
   <button sbb-menu-item [sbbMenuTriggerFor]="vertebrates">Vertebrates</button>

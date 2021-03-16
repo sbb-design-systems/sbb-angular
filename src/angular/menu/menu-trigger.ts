@@ -14,6 +14,7 @@ import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   AfterContentInit,
+  ContentChild,
   Directive,
   ElementRef,
   EventEmitter,
@@ -25,6 +26,7 @@ import {
   Optional,
   Output,
   Self,
+  TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
 import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
@@ -32,6 +34,7 @@ import { asapScheduler, merge, of as observableOf, Subscription } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
 import { SbbMenu, SbbMenuCloseReason } from './menu';
+import { SbbMenuDynamicTrigger } from './menu-dynamic-trigger';
 import { throwSbbMenuMissingError, throwSbbMenuRecursiveError } from './menu-errors';
 import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
@@ -172,6 +175,9 @@ export class SbbMenuTrigger
 
   /** Event emitted when the associated menu is closed. */
   @Output() readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
+
+  @ContentChild(SbbMenuDynamicTrigger, { read: TemplateRef })
+  _triggerContent: TemplateRef<any>;
 
   constructor(
     private _overlay: Overlay,

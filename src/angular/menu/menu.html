@@ -15,6 +15,9 @@
     [attr.aria-describedby]="ariaDescribedby || null"
     [class.sbb-menu-panel-root]="!parentMenu"
   >
+    <button>
+      <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+    </button>
     <div class="sbb-menu-content">
       <ng-content></ng-content>
     </div>
