@@ -37,7 +37,9 @@
   display: flex;
   flex-direction: column;
   overflow: visible;
-  &.ng-animating {
+
+  &.ng-animating,
+  .sbb-expansion-panel:not(.sbb-expanded) & {
     overflow: hidden;
   }
 }
