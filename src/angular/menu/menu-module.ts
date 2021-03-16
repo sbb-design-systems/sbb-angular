@@ -6,13 +6,21 @@ import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/a
 
 import { SbbMenu } from './menu';
 import { SbbMenuContent } from './menu-content';
+import { SbbMenuDynamicTrigger } from './menu-dynamic-trigger';
 import { SbbMenuItem } from './menu-item';
 import { SbbMenuTrigger, SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from './menu-trigger';
 
 @NgModule({
   imports: [CommonModule, OverlayModule, SbbIconModule],
-  exports: [CdkScrollableModule, SbbMenu, SbbMenuItem, SbbMenuTrigger, SbbMenuContent],
-  declarations: [SbbMenu, SbbMenuItem, SbbMenuTrigger, SbbMenuContent],
+  exports: [
+    CdkScrollableModule,
+    SbbMenu,
+    SbbMenuItem,
+    SbbMenuTrigger,
+    SbbMenuDynamicTrigger,
+    SbbMenuContent,
+  ],
+  declarations: [SbbMenu, SbbMenuItem, SbbMenuTrigger, SbbMenuDynamicTrigger, SbbMenuContent],
   providers: [SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
 export class SbbMenuModule {}
