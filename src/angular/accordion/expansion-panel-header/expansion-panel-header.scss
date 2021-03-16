@@ -124,7 +124,7 @@
     height: pxToRem(24);
     width: pxToRem(24);
 
-    // Reduce calculated weight by difference of icon height and line-height
+    // Reduce calculated height by difference of icon height and line-height
     margin-top: pxToRem(-2.5);
     margin-bottom: pxToRem(-2.5);
 
