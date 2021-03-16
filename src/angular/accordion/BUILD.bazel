@@ -5,7 +5,6 @@ load(
     "ng_test_library",
     "ng_web_test_suite",
     "sass_binary",
-    "sass_library",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -32,25 +31,16 @@ ng_module(
     ],
 )
 
-sass_library(
-    name = "accordion_scss_lib",
-    srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular-core/styles:common_scss_lib"],
-)
-
 sass_binary(
     name = "expansion_panel_expansion_panel_scss",
     src = "expansion-panel/expansion-panel.scss",
-    deps = [
-        ":accordion_scss_lib",
-    ],
 )
 
 sass_binary(
     name = "expansion_panel_header_expansion_panel_header_scss",
     src = "expansion-panel-header/expansion-panel-header.scss",
     deps = [
-        ":accordion_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 
