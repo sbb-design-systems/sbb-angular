@@ -54,7 +54,7 @@ As an alternative, you can either provide a custom icon or image by applying the
 
 ### Menu content
 
-The expanded usermenu respects `<a sbb-usermenu-item>`, `<button sbb-usermenu-item>` and `<hr />` tags.
+The expanded usermenu respects `<a sbb-usermenu-item>`, `<button type="button" sbb-usermenu-item>` and `<hr />` tags.
 The last button in the menu should be the logout button.
 `<sbb-icon>` icons can optionally be used in menu items.
 
@@ -67,7 +67,7 @@ The last button in the menu should be the logout button.
     <sbb-icon svgIcon="kom:tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
   </a>
   <hr />
-  <button sbb-usermenu-item (click)="logout()">
+  <button type="button" sbb-usermenu-item (click)="logout()">
     <sbb-icon svgIcon="kom:exit-small" class="sbb-icon-fit"></sbb-icon> Logout
   </button>
 </sbb-usermenu>

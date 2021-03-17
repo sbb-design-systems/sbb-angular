@@ -140,21 +140,21 @@ You can navigate between panels of the accordion with "Next" and "Previous" butt
       </p>
     </sbb-expansion-panel-header>
     <div class="sbbsc-block">
-      <button sbbButton mode="primary" (click)="nextStep()">Next</button>
+      <button type="button" sbbButton mode="primary" (click)="nextStep()">Next</button>
     </div>
   </sbb-expansion-panel>
   <sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
     <sbb-expansion-panel-header> Step 1 </sbb-expansion-panel-header>
     <div class="sbbsc-block">
-      <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
-      <button sbbButton mode="primary" (click)="nextStep()">Next</button>
+      <button type="button" sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
+      <button type="button" sbbButton mode="primary" (click)="nextStep()">Next</button>
     </div>
   </sbb-expansion-panel>
   <sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
     <sbb-expansion-panel-header> Step 2 </sbb-expansion-panel-header>
     <div class="sbbsc-block">
-      <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
-      <button sbbButton mode="primary" (click)="nextStep()">End</button>
+      <button type="button" sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
+      <button type="button" sbbButton mode="primary" (click)="nextStep()">End</button>
     </div>
   </sbb-expansion-panel>
 </sbb-accordion>

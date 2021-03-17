@@ -258,7 +258,7 @@ For example if using with a routerLink, write `routerLinkActive="sbb-active"`.
     </sbb-expansion-panel>
     <fieldset>
       <legend>Fieldset Example</legend>
-      <button sbbButton mode="primary">Random Content</button>
+      <button type="button" sbbButton mode="primary">Random Content</button>
     </fieldset>
   </sbb-sidebar>
   <sbb-sidebar-content role="main">
