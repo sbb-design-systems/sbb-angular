@@ -91,21 +91,21 @@ You can navigate between panels of the accordion with "Next" and "Previous" butt
       </p>
     </sbb-expansion-panel-header>
 
-    <button sbb-button (click)="nextStep()">Next</button>
+    <button type="button" sbb-button (click)="nextStep()">Next</button>
   </sbb-expansion-panel>
 
   <sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
     <sbb-expansion-panel-header> Step 1 </sbb-expansion-panel-header>
 
-    <button sbb-ghost-button (click)="prevStep()">Previous</button>&nbsp;
-    <button sbb-button (click)="nextStep()">Next</button>
+    <button type="button" sbb-ghost-button (click)="prevStep()">Previous</button>&nbsp;
+    <button type="button" sbb-button (click)="nextStep()">Next</button>
   </sbb-expansion-panel>
 
   <sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
     <sbb-expansion-panel-header> Step 2 </sbb-expansion-panel-header>
 
-    <button sbb-ghost-button (click)="prevStep()">Previous</button>&nbsp;
-    <button sbb-button (click)="nextStep()">End</button>
+    <button type="button" sbb-ghost-button (click)="prevStep()">Previous</button>&nbsp;
+    <button type="button" sbb-button (click)="nextStep()">End</button>
   </sbb-expansion-panel>
 </sbb-accordion>
 ```
