@@ -6,7 +6,7 @@ if (require.main === module) {
   writeFileSync(
     outputFile,
     `/** THIS FILE IS AUTO-GENERATED! DO NOT MODIFY! */
-export const angularVersion = '${packageJson.dependencies['@angular/core'].replace('^', '')}';
+export const angularVersion = '${packageJson.dependencies['@angular/core'].replace(/[^\d.]/, '')}';
 export const libraryVersion = '${packageJson.version}';`,
     'utf8'
   );
