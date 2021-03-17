@@ -1,5 +1,5 @@
-<sbb-accordion [multi]="multi">
-  <sbb-expansion-panel [expanded]="panelMode.value === 'panel 1'" [hideToggle]="hideToggle.value">
+<sbb-accordion [multi]="multi.value" #accordion="sbbAccordion">
+  <sbb-expansion-panel [expanded]="firstPanelExpanded" [hideToggle]="hideToggle.value">
     <sbb-expansion-panel-header> Some generic content accordion panel </sbb-expansion-panel-header>
     Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin blandit, justo eget
     pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna. Suspendisse
@@ -7,16 +7,15 @@
     aliquet eleifend.
   </sbb-expansion-panel>
   <sbb-expansion-panel
-    [expanded]="panelMode.value === 'panel 2'"
-    (opened)="panelOpenState = true; log('opened called')"
-    (closed)="panelOpenState = false; log('closed called')"
+    (opened)="secondPanelExpanded = true; log('opened called')"
+    (closed)="secondPanelExpanded = false; log('closed called')"
     (expandedChange)="log('expandedChange called', $event)"
     [hideToggle]="hideToggle.value"
   >
     <sbb-expansion-panel-header>
       Panel with table
       <p class="accordion-example-open-state">
-        Currently I am {{ panelOpenState ? 'open' : 'closed' }}
+        Currently I am {{ secondPanelExpanded ? 'open' : 'closed' }}
       </p>
     </sbb-expansion-panel-header>
     <table class="sbb-table">
@@ -76,13 +75,8 @@
       </tbody>
     </table>
   </sbb-expansion-panel>
-  <sbb-expansion-panel
-    [expanded]="panelMode.value === 'panel 3'"
-    [disabled]="disabled.value"
-    [hideToggle]="hideToggle.value"
-  >
-    <sbb-expansion-panel-header> I can disable this panel </sbb-expansion-panel-header>
-
+  <sbb-expansion-panel [disabled]="disabled.value" [hideToggle]="hideToggle.value">
+    <sbb-expansion-panel-header> This panel can be disabled </sbb-expansion-panel-header>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -94,29 +88,20 @@
 </sbb-accordion>
 
 <h4>Properties</h4>
-
 <div class="sbb-checkbox-group-vertical">
-  <sbb-checkbox value="multi" [(ngModel)]="multi">
-    Open and close all panels of the accordion together
+  <sbb-checkbox [formControl]="multi">
+    Open and close all panels of the accordion together ('multi' property of sbb-accordion)
   </sbb-checkbox>
 
-  <div *ngIf="multi" class="accordion-example-open-close-buttons">
-    <button sbb-button (click)="firstAccordion.openAll()" class="sbb-secondary-button">
-      Open all
+  <sbb-checkbox [formControl]="disabled"> Disable last accordion panel </sbb-checkbox>
+
+  <sbb-checkbox [formControl]="hideToggle"> Hide toggle icon</sbb-checkbox>
+
+  <div class="accordion-example-open-close-buttons">
+    <button sbb-ghost-button (click)="firstPanelExpanded = !firstPanelExpanded">
+      Toggle first panel
     </button>
-    <button sbb-button (click)="firstAccordion.closeAll()" class="sbb-secondary-button">
-      Close all
-    </button>
+    <button *ngIf="multi.value" sbb-ghost-button (click)="accordion.openAll()">Open all</button>
+    <button *ngIf="multi.value" sbb-ghost-button (click)="accordion.closeAll()">Close all</button>
   </div>
-
-  <sbb-checkbox value="disabled" [formControl]="disabled">
-    Disable corresponding accordion panel
-  </sbb-checkbox>
-  <sbb-checkbox value="hideToggle" [formControl]="hideToggle"> Hide toggle icon</sbb-checkbox>
 </div>
-
-<sbb-form-field label="Programmatically open panel">
-  <select [formControl]="panelMode" id="panelMode" sbbInput>
-    <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
-  </select>
-</sbb-form-field>

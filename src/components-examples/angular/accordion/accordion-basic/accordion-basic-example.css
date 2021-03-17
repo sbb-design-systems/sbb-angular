@@ -1,11 +1,12 @@
 .accordion-example-open-state {
   margin: 0 0 0 1rem;
+  align-self: center;
 }
 
 .accordion-example-open-close-buttons {
-  margin: 4px 0 8px 28px;
+  margin: 1rem 0 0 0;
 }
 
 .accordion-example-open-close-buttons button {
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
