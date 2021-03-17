@@ -1,4 +1,13 @@
 {
+  "SBB_ACCORDION": "accordion",
+  "SBB_EXPANSION_PANEL_ANIMATION_TIMING": "accordion",
+  "SbbAccordion": "accordion",
+  "SbbAccordionModule": "accordion",
+  "sbbExpansionAnimations": "accordion",
+  "SbbExpansionPanel": "accordion",
+  "SbbExpansionPanelContent": "accordion",
+  "SbbExpansionPanelHeader": "accordion",
+  "SbbExpansionPanelState": "accordion",
   "getSbbAutocompleteMissingPanelError": "autocomplete",
   "SBB_AUTOCOMPLETE_DEFAULT_OPTIONS": "autocomplete",
   "SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY": "autocomplete",

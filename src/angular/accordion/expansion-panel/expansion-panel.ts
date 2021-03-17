@@ -39,18 +39,15 @@ export type SbbExpansionPanelState = 'expanded' | 'collapsed';
 
 // Boilerplate for applying mixins to SbbExpansionPanel.
 /** @docs-private */
-class SbbExpansionPanelBase extends CdkAccordionItem {}
 // tslint:disable-next-line: naming-convention
-const _SbbExpansionPanelBase: HasVariantCtor & typeof SbbExpansionPanelBase = mixinVariant(
-  SbbExpansionPanelBase
+const _SbbExpansionPanelBase: HasVariantCtor & typeof CdkAccordionItem = mixinVariant(
+  CdkAccordionItem
 );
 
 /** Counter for generating unique element ids. */
 let uniqueId = 0;
 
 /**
- * `<sbb-expansion-panel>`
- *
  * This component can be used as a single element to show expandable content, or as one of
  * multiple children of an element with the SbbAccordion component attached.
  */
@@ -79,6 +76,8 @@ let uniqueId = 0;
 export class SbbExpansionPanel
   extends _SbbExpansionPanelBase
   implements AfterContentInit, OnChanges, OnDestroy {
+  private _document: Document;
+
   /** Whether the toggle indicator should be hidden. */
   @Input()
   get hideToggle(): boolean {
@@ -91,6 +90,7 @@ export class SbbExpansionPanel
 
   /** An event emitted after the body's expansion animation happens. */
   @Output() afterExpand: EventEmitter<void> = new EventEmitter<void>();
+
   /** An event emitted after the body's collapse animation happens. */
   @Output() afterCollapse: EventEmitter<void> = new EventEmitter<void>();
 
@@ -115,14 +115,12 @@ export class SbbExpansionPanel
   /** Stream of body animation done events. */
   _bodyAnimationDone: Subject<AnimationEvent> = new Subject<AnimationEvent>();
 
-  private _document: Document;
-
   constructor(
     private _viewContainerRef: ViewContainerRef,
     @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: TypeRef<SbbAccordion>,
     changeDetectorRef: ChangeDetectorRef,
     uniqueSelectionDispatcher: UniqueSelectionDispatcher,
-    @Inject(DOCUMENT) document?: any
+    @Inject(DOCUMENT) document: any
   ) {
     super(accordion, changeDetectorRef, uniqueSelectionDispatcher);
     this.accordion = accordion;
@@ -172,7 +170,7 @@ export class SbbExpansionPanel
       // Render the content as soon as the panel becomes open.
       this.opened
         .pipe(
-          startWith(null!),
+          startWith(null),
           filter(() => this.expanded && !this._portal),
           take(1)
         )
@@ -194,7 +192,7 @@ export class SbbExpansionPanel
 
   /** Checks whether the expansion panel's content contains the currently-focused element. */
   _containsFocus(): boolean {
-    if (this._body && this._document) {
+    if (this._body) {
       const focusedElement = this._document.activeElement;
       const bodyElement = this._body.nativeElement;
       return focusedElement === bodyElement || bodyElement.contains(focusedElement);

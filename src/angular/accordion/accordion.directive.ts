@@ -1,8 +1,15 @@
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { CdkAccordion } from '@angular/cdk/accordion';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { END, HOME } from '@angular/cdk/keycodes';
-import { AfterContentInit, ContentChildren, Directive, Input, QueryList } from '@angular/core';
+import {
+  AfterContentInit,
+  ContentChildren,
+  Directive,
+  Input,
+  OnDestroy,
+  QueryList,
+} from '@angular/core';
+import { startWith } from 'rxjs/operators';
 
 import { SBB_ACCORDION } from './accordion-token';
 import { SbbExpansionPanelHeader } from './expansion-panel-header/expansion-panel-header';
@@ -20,11 +27,15 @@ import { SbbExpansionPanelHeader } from './expansion-panel-header/expansion-pane
     class: 'sbb-accordion',
   },
 })
-export class SbbAccordion extends CdkAccordion implements AfterContentInit {
+export class SbbAccordion extends CdkAccordion implements AfterContentInit, OnDestroy {
   private _keyManager: FocusKeyManager<SbbExpansionPanelHeader>;
-  /** Class property that refers to the headers of the panels of the accordion. */
+
+  /** Headers belonging to this accordion. */
+  private _ownHeaders = new QueryList<SbbExpansionPanelHeader>();
+
+  /** All headers inside the accordion. Includes headers inside nested accordions. */
   @ContentChildren(SbbExpansionPanelHeader, { descendants: true })
-  headers: QueryList<SbbExpansionPanelHeader>;
+  _headers: QueryList<SbbExpansionPanelHeader>;
 
   /** Whether the expansion indicator should be hidden. */
   @Input()
@@ -34,31 +45,31 @@ export class SbbAccordion extends CdkAccordion implements AfterContentInit {
   set hideToggle(show: boolean) {
     this._hideToggle = coerceBooleanProperty(show);
   }
-  private _hideToggle = false;
+  private _hideToggle: boolean = false;
 
   ngAfterContentInit() {
-    this._keyManager = new FocusKeyManager(this.headers).withWrap();
+    this._headers.changes
+      .pipe(startWith(this._headers))
+      .subscribe((headers: QueryList<SbbExpansionPanelHeader>) => {
+        this._ownHeaders.reset(headers.filter((header) => header.panel.accordion === this));
+        this._ownHeaders.notifyOnChanges();
+      });
+
+    this._keyManager = new FocusKeyManager(this._ownHeaders).withWrap().withHomeAndEnd();
   }
 
   /** Handles keyboard events coming in from the panel headers. */
-  handleHeaderKeydown(event: KeyboardEvent) {
-    // tslint:disable-next-line:deprecation
-    const { keyCode } = event;
-    const manager = this._keyManager;
-
-    if (keyCode === HOME) {
-      manager.setFirstItemActive();
-      event.preventDefault();
-    } else if (keyCode === END) {
-      manager.setLastItemActive();
-      event.preventDefault();
-    } else {
-      this._keyManager.onKeydown(event);
-    }
+  _handleHeaderKeydown(event: KeyboardEvent) {
+    this._keyManager.onKeydown(event);
   }
-  /** Handles a event coming on a header of a panel associated at a specific item. */
-  handleHeaderFocus(header: SbbExpansionPanelHeader) {
+
+  _handleHeaderFocus(header: SbbExpansionPanelHeader) {
     this._keyManager.updateActiveItem(header);
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this._ownHeaders.destroy();
   }
 
   static ngAcceptInputType_hideToggle: BooleanInput;

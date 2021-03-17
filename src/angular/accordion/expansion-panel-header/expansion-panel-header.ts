@@ -2,11 +2,13 @@ import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { DOCUMENT } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
   Host,
+  HostListener,
   Inject,
   OnDestroy,
   ViewEncapsulation,
@@ -19,17 +21,15 @@ import { sbbExpansionAnimations } from '../accordion-animations';
 import { SbbExpansionPanel } from '../expansion-panel/expansion-panel';
 
 /**
- * `<sbb-expansion-panel-header>`
- *
  * This component corresponds to the header element of an `<sbb-expansion-panel>`.
  */
 @Component({
   selector: 'sbb-expansion-panel-header',
   styleUrls: ['./expansion-panel-header.css'],
   templateUrl: './expansion-panel-header.html',
-  animations: [sbbExpansionAnimations.indicatorRotate],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [sbbExpansionAnimations.indicatorRotate],
   host: {
     class: 'sbb-expansion-panel-header',
     role: 'button',
@@ -38,26 +38,14 @@ import { SbbExpansionPanel } from '../expansion-panel/expansion-panel';
     '[attr.aria-controls]': '_getPanelId()',
     '[attr.aria-expanded]': '_isExpanded()',
     '[attr.aria-disabled]': 'disabled',
-    '[class.sbb-expansion-panel-header-hide-toggle]': '!_showToggle()',
     '[class.sbb-expanded]': '_isExpanded()',
     '[class.sbb-disabled]': 'disabled',
-    '(click)': '_toggle()',
-    '(keydown)': '_keydown($event)',
   },
 })
-export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
-  /**
-   * Whether the associated panel is disabled. Implemented as a part of `FocusableOption`.
-   * @docs-private
-   */
-  get disabled() {
-    return this.panel.disabled;
-  }
-
+export class SbbExpansionPanelHeader implements AfterViewInit, OnDestroy, FocusableOption {
   private _parentChangeSubscription = Subscription.EMPTY;
 
   constructor(
-    /** Class property that refers to the ExpansionPanelComponent. */
     @Host() public panel: SbbExpansionPanel,
     private _element: ElementRef,
     private _focusMonitor: FocusMonitor,
@@ -80,18 +68,19 @@ export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
     // Avoids focus being lost if the panel contained the focused element and was closed.
     panel.closed
       .pipe(filter(() => panel._containsFocus()))
-      .subscribe(() => _focusMonitor.focusVia(_element.nativeElement, 'program'));
+      .subscribe(() => _focusMonitor.focusVia(_element, 'program'));
+  }
 
-    _focusMonitor.monitor(_element.nativeElement).subscribe((origin) => {
-      if (origin && panel.accordion) {
-        panel.accordion.handleHeaderFocus(this);
-      }
-    });
-
-    this._document = document;
+  /**
+   * Whether the associated panel is disabled. Implemented as a part of `FocusableOption`.
+   * @docs-private
+   */
+  get disabled() {
+    return this.panel.disabled;
   }
 
   /** Toggles the expanded state of the panel. */
+  @HostListener('click')
   _toggle(): void {
     if (!this.disabled) {
       this.panel.toggle();
@@ -119,19 +108,21 @@ export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
   }
 
   /** Handle keydown event calling to toggle() if appropriate. */
+  @HostListener('keydown', ['$event'])
   _keydown(event: TypeRef<KeyboardEvent>) {
     switch (event.keyCode) {
       // Toggle for space and enter keys.
       case SPACE:
       case ENTER:
         if (!hasModifierKey(event) && this._isFocused()) {
+          // See https://github.com/sbb-design-systems/sbb-angular/issues/377
           event.preventDefault();
           this._toggle();
         }
         break;
       default:
         if (this.panel.accordion) {
-          this.panel.accordion.handleHeaderKeydown(event);
+          this.panel.accordion._handleHeaderKeydown(event);
         }
 
         return;
@@ -143,13 +134,25 @@ export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
    * @param origin Origin of the action that triggered the focus.
    * @docs-private
    */
-  focus(origin: FocusOrigin = 'program', options?: FocusOptions) {
-    this._focusMonitor.focusVia(this._element.nativeElement, origin, options);
+  focus(origin?: FocusOrigin, options?: FocusOptions) {
+    if (origin) {
+      this._focusMonitor.focusVia(this._element, origin, options);
+    } else {
+      this._element.nativeElement.focus(options);
+    }
+  }
+
+  ngAfterViewInit() {
+    this._focusMonitor.monitor(this._element).subscribe((origin) => {
+      if (origin && this.panel.accordion) {
+        this.panel.accordion._handleHeaderFocus(this);
+      }
+    });
   }
 
   ngOnDestroy() {
     this._parentChangeSubscription.unsubscribe();
-    this._focusMonitor.stopMonitoring(this._element.nativeElement);
+    this._focusMonitor.stopMonitoring(this._element);
   }
 
   private _isFocused() {
