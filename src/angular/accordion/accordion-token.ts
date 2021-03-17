@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-import type { SbbAccordion } from './accordion.directive';
+import type { SbbAccordion } from './accordion';
 
 /**
  * Token used to provide a `SbbAccordion` to `SbbExpansionPanel`.

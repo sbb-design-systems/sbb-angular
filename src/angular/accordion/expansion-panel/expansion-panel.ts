@@ -28,9 +28,9 @@ import { HasVariantCtor, mixinVariant, TypeRef } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, filter, startWith, take } from 'rxjs/operators';
 
+import type { SbbAccordion } from '../accordion';
 import { sbbExpansionAnimations } from '../accordion-animations';
 import { SBB_ACCORDION } from '../accordion-token';
-import type { SbbAccordion } from '../accordion.directive';
 
 import { SbbExpansionPanelContent } from './expansion-panel-content';
 
