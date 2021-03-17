@@ -1,4 +1,4 @@
-The lightbox can be used to open modal dialogs as see below
+The lightbox can be used to open modal dialogs as seen below
 
 ```html
 <header sbbLightboxHeader></header>

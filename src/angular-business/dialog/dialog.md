@@ -1,4 +1,4 @@
-The dialog can be used to seek confirmation as see below
+The dialog can be used to seek confirmation as seen below
 
 ```html
 <div sbbDialog>
