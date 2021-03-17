@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 /**
  * @title Custom HTML Panel
- * @order 40
+ * @order 50
  */
 @Component({
   selector: 'sbb-accordion-custom-html-example',

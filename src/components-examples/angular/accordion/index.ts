@@ -10,12 +10,14 @@ import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 
 import { AccordionBasicExample } from './accordion-basic/accordion-basic-example';
 import { AccordionCustomHtmlExample } from './accordion-custom-html/accordion-custom-html-example';
+import { AccordionNestedPanelLazyContentExample } from './accordion-nested-panel-lazy-content/accordion-nested-panel-lazy-content-example';
 import { AccordionSimplePanelExample } from './accordion-simple-panel/accordion-simple-panel-example';
 import { AccordionWizardExample } from './accordion-wizard/accordion-wizard-example';
 
 export {
   AccordionBasicExample,
   AccordionCustomHtmlExample,
+  AccordionNestedPanelLazyContentExample,
   AccordionSimplePanelExample,
   AccordionWizardExample,
 };
@@ -23,6 +25,7 @@ export {
 const EXAMPLES = [
   AccordionBasicExample,
   AccordionCustomHtmlExample,
+  AccordionNestedPanelLazyContentExample,
   AccordionSimplePanelExample,
   AccordionWizardExample,
 ];
