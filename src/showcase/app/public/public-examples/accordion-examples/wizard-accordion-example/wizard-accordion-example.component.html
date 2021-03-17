@@ -8,20 +8,20 @@
       </p>
     </sbb-expansion-panel-header>
 
-    <button sbbButton mode="primary" (click)="nextStep()">Next</button>
+    <button type="button" sbbButton mode="primary" (click)="nextStep()">Next</button>
   </sbb-expansion-panel>
 
   <sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
     <sbb-expansion-panel-header> Step 1 </sbb-expansion-panel-header>
 
-    <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
-    <button sbbButton mode="primary" (click)="nextStep()">Next</button>
+    <button type="button" sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
+    <button type="button" sbbButton mode="primary" (click)="nextStep()">Next</button>
   </sbb-expansion-panel>
 
   <sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
     <sbb-expansion-panel-header> Step 2 </sbb-expansion-panel-header>
 
-    <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
-    <button sbbButton mode="primary" (click)="nextStep()">End</button>
+    <button type="button" sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
+    <button type="button" sbbButton mode="primary" (click)="nextStep()">End</button>
   </sbb-expansion-panel>
 </sbb-accordion>

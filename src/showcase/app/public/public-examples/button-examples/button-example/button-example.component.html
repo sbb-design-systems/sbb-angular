@@ -1,5 +1,6 @@
 <ng-container [formGroup]="buttonForm">
   <button
+    type="button"
     sbbButton
     [mode]="buttonForm.get('mode')?.value"
     [disabled]="buttonForm.get('disabled')?.value"
@@ -8,6 +9,7 @@
     Description
   </button>
   <button
+    type="button"
     sbbButton
     [mode]="buttonForm.get('mode')?.value"
     [disabled]="buttonForm.get('disabled')?.value"

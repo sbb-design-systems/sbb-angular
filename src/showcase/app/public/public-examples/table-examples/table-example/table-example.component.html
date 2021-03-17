@@ -36,8 +36,10 @@
 </sbb-table>
 
 <h4 class="sbbsc-block">Properties</h4>
-<button sbbButton mode="ghost" (click)="removeRow()">Remove a row</button>
-<button sbbButton mode="ghost" (click)="resetRows()" style="margin-left: 0.5rem">Reset rows</button>
+<button type="button" sbbButton mode="ghost" (click)="removeRow()">Remove a row</button>
+<button type="button" sbbButton mode="ghost" (click)="resetRows()" style="margin-left: 0.5rem">
+  Reset rows
+</button>
 
 <sbb-form-field class="sbbsc-block" style="margin-left: 0.5rem" label="Set a filter">
   <input type="text" placeholder="Filter table" (keyup)="filterTable($event)" sbbInput />

@@ -63,13 +63,17 @@
 Der Zugang zum Ticket Shop ist vom 20.10.2015, 22:00 Uhr, bis zum 21.10.2015, 05:00 Uhr wegen Wartungsarbeiten unterbrochen.</textarea
           >
         </div>
-        <button sbbButton (click)="addGhettobox(ghettoMessage.value)">Add ghettobox</button>
+        <button type="button" sbbButton (click)="addGhettobox(ghettoMessage.value)">
+          Add ghettobox
+        </button>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <h4 class="sbbsc-block">Delete Ghettobox</h4>
       <div class="sbbsc-block">
         <input #ghettoId type="text" placeholder="ID to delete" style="margin-right: 0.5rem" />
-        <button sbbButton (click)="deleteById(ghettoId.value)">Delete ghettoxbox by ID</button>
+        <button type="button" sbbButton (click)="deleteById(ghettoId.value)">
+          Delete ghettoxbox by ID
+        </button>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
@@ -79,17 +83,19 @@ Der Zugang zum Ticket Shop ist vom 20.10.2015, 22:00 Uhr, bis zum 21.10.2015, 05
           placeholder="Index to delete"
           style="margin-right: 0.5rem"
         />
-        <button sbbButton (click)="deleteByIndex(ghettoIndex.value)">
+        <button type="button" sbbButton (click)="deleteByIndex(ghettoIndex.value)">
           Delete ghettobox by Index
         </button>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
-        <button sbbButton (click)="deleteByRef()">Delete first ghettobox from GhettoboxRef</button>
+        <button type="button" sbbButton (click)="deleteByRef()">
+          Delete first ghettobox from GhettoboxRef
+        </button>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
-        <button sbbButton (click)="clear()">Clear All</button>
+        <button type="button" sbbButton (click)="clear()">Clear All</button>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <h4 class="sbbsc-block">Ghettobox Ids</h4>

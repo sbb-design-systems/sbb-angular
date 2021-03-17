@@ -1,5 +1,7 @@
 <div class="sbbsc-block">
-  <button sbbButton mode="secondary" (click)="openDialog()">Open Lightbox From Template</button>
+  <button type="button" sbbButton mode="secondary" (click)="openDialog()">
+    Open Lightbox From Template
+  </button>
 </div>
 
 <ng-template #sampleLightboxTemplate>
@@ -91,7 +93,7 @@
     </p>
   </sbb-lightbox-content>
   <sbb-lightbox-footer alignment="right">
-    <button sbbButton mode="ghost" sbbLightboxClose>Cancel</button>
-    <button sbbButton [sbbLightboxClose]="true" cdkFocusInitial>Accept</button>
+    <button type="button" sbbButton mode="ghost" sbbLightboxClose>Cancel</button>
+    <button type="button" sbbButton [sbbLightboxClose]="true" cdkFocusInitial>Accept</button>
   </sbb-lightbox-footer>
 </ng-template>

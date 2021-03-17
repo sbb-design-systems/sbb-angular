@@ -8,4 +8,6 @@
     <option *ngFor="let position of positions" [value]="position">{{ position }}</option>
   </select>
 </sbb-form-field>
-<button sbbButton mode="primary" (click)="showNotification()">Show notification</button>
+<button type="button" sbbButton mode="primary" (click)="showNotification()">
+  Show notification
+</button>

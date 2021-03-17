@@ -10,8 +10,16 @@
   </sbb-processflow-step>
 </sbb-processflow>
 <h4 class="sbbsc-block">Processflow Controls</h4>
-<button sbbButton (click)="processflow.prevStep()">Previous step</button>
-<button sbbButton (click)="processflow.nextStep()" style="margin-left: 0.5rem">Next step</button>
-<button sbbButton mode="ghost" (click)="processflow.reset()" style="margin-left: 0.5rem">
+<button type="button" sbbButton (click)="processflow.prevStep()">Previous step</button>
+<button type="button" sbbButton (click)="processflow.nextStep()" style="margin-left: 0.5rem">
+  Next step
+</button>
+<button
+  type="button"
+  sbbButton
+  mode="ghost"
+  (click)="processflow.reset()"
+  style="margin-left: 0.5rem"
+>
   Reset
 </button>
