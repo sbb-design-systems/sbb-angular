@@ -50,6 +50,7 @@
   }
 
   &.sbb-expansion-panel-header-disabled {
+    cursor: default;
     opacity: 0.75;
   }
 
@@ -79,6 +80,10 @@
       @include mq($from: tablet) {
         height: pxToRem(32px);
         width: pxToRem(32px);
+
+        // Reduce calculated height by difference of icon height and line-height
+        margin-top: pxToRem(-2.5);
+        margin-bottom: pxToRem(-2.5);
       }
 
       $borderWidth: 2px;
@@ -87,12 +92,20 @@
         padding: pxToRem(6px - $borderWidth);
         height: pxToRem(48px);
         width: pxToRem(48px);
+
+        // Reduce calculated height by difference of icon height and line-height
+        margin-top: pxToRem(-4);
+        margin-bottom: pxToRem(-4);
       }
 
       @include mq($from: desktop5k) {
         padding: pxToRem(8px - $borderWidth);
         height: pxToRem(64px);
         width: pxToRem(64px);
+
+        // Reduce calculated height by difference of icon height and line-height
+        margin-top: pxToRem(-5);
+        margin-bottom: pxToRem(-5);
       }
     }
 
