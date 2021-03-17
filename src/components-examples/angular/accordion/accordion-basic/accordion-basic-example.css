@@ -1,14 +1,5 @@
-.accordion-example-custom-html-panel {
-  margin: 0;
-}
-
 .accordion-example-open-state {
   margin: 0 0 0 1rem;
-}
-
-.accordion-example-panel-button {
-  flex: 1 0 auto;
-  text-align: right;
 }
 
 .accordion-example-open-close-buttons {

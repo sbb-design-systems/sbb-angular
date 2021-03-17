@@ -146,14 +146,14 @@ You can navigate between panels of the accordion with "Next" and "Previous" butt
   <sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
     <sbb-expansion-panel-header> Step 1 </sbb-expansion-panel-header>
     <div>
-      <button sbb-button class="sbb-ghost-button" (click)="prevStep()">Previous</button>&nbsp;
+      <button sbb-ghost-button (click)="prevStep()">Previous</button>
       <button sbb-button (click)="nextStep()">Next</button>
     </div>
   </sbb-expansion-panel>
   <sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
     <sbb-expansion-panel-header> Step 2 </sbb-expansion-panel-header>
     <div>
-      <button sbb-button class="sbb-ghost-button" (click)="prevStep()">Previous</button>&nbsp;
+      <button sbb-ghost-button (click)="prevStep()">Previous</button>&nbsp;
       <button sbb-button (click)="nextStep()">End</button>
     </div>
   </sbb-expansion-panel>

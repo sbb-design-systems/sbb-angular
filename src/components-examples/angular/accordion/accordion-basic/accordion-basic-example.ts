@@ -24,10 +24,4 @@ export class AccordionBasicExample {
   log(...args: any[]) {
     console.log(args);
   }
-
-  logAndPreventOpeningPanel(evt: any, message: any) {
-    console.log(message);
-    evt.preventDefault();
-    evt.stopPropagation();
-  }
 }

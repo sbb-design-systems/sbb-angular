@@ -1,0 +1,8 @@
+.accordion-example-custom-html-panel {
+  margin: 0;
+}
+
+.accordion-example-panel-button {
+  flex: 1 0 auto;
+  text-align: right;
+}

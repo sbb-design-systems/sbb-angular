@@ -9,12 +9,23 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 
 import { AccordionBasicExample } from './accordion-basic/accordion-basic-example';
+import { AccordionCustomHtmlExample } from './accordion-custom-html/accordion-custom-html-example';
 import { AccordionSimplePanelExample } from './accordion-simple-panel/accordion-simple-panel-example';
 import { AccordionWizardExample } from './accordion-wizard/accordion-wizard-example';
 
-export { AccordionBasicExample, AccordionSimplePanelExample, AccordionWizardExample };
+export {
+  AccordionBasicExample,
+  AccordionCustomHtmlExample,
+  AccordionSimplePanelExample,
+  AccordionWizardExample,
+};
 
-const EXAMPLES = [AccordionBasicExample, AccordionSimplePanelExample, AccordionWizardExample];
+const EXAMPLES = [
+  AccordionBasicExample,
+  AccordionCustomHtmlExample,
+  AccordionSimplePanelExample,
+  AccordionWizardExample,
+];
 
 @NgModule({
   imports: [
