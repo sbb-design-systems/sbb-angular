@@ -1,4 +1,4 @@
-You can use table component to display rows of data as see below
+You can use table component to display rows of data as seen below
 
 ```html
 <sbb-table tableId="testID">

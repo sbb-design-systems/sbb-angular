@@ -35,7 +35,7 @@ The module has two states:
 
 It is possible to define the categories and the types of file accepted globally.
 You can provide them at the module-level using respectively `FILE_TYPES` and
-`FILE_SELECTOR_OPTIONS` providers as see below:
+`FILE_SELECTOR_OPTIONS` providers as seen below:
 
 ```ts
 const fileCategories: FileTypeCategory[] = [FileTypeCategory.IMAGE, FileTypeCategory.VIDEO];

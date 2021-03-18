@@ -143,7 +143,7 @@ toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 
 ```
 
 3. To disable a specific group of options using the 'toggleDisabledOptions' method on the disabled
-   option checkbox passing it, as third param , the value 'optionGroups' as see below (using the
+   option checkbox passing it, as third param , the value 'optionGroups' as seen below (using the
    same 'toggleDisabledOptions' method in the second point):
 
 ```html

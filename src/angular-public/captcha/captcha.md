@@ -1,4 +1,4 @@
-You can use captcha component as see below.
+You can use captcha component as seen below.
 
 ### What does captcha do?
 
@@ -42,7 +42,7 @@ The captcha component also supports the following options:
 
 ### Configuring the component globally
 
-Some properties as `siteKey`, `size` and others are globals. You can provide them at the module-level using the RECAPTCHA_SETTINGS provider as see below:
+Some properties as `siteKey`, `size` and others are globals. You can provide them at the module-level using the RECAPTCHA_SETTINGS provider as seen below:
 
 ```ts
 const globalSetting: RecaptchaSettings = { siteKey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI' };

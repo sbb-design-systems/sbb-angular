@@ -1,4 +1,4 @@
-At first, you can define a simple panel (without accordion) as see below
+At first, you can define a simple panel (without accordion) as seen below
 
 ```html
 <sbb-expansion-panel>
@@ -127,7 +127,7 @@ To instead defer initialization until the panel is open, the content should be p
 
 ### Advanced Accordion
 
-You can navigate between panels of the accordion with "Next" and "Previous" buttons (step by step) as see below
+You can navigate between panels of the accordion with "Next" and "Previous" buttons (step by step) as seen below
 
 ```html
 <sbb-accordion class="example-headers-align">
