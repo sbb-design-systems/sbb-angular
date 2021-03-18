@@ -25,7 +25,6 @@ import { SbbExpansionPanel } from '../expansion-panel/expansion-panel';
  */
 @Component({
   selector: 'sbb-expansion-panel-header',
-  styleUrls: ['./expansion-panel-header.css'],
   templateUrl: './expansion-panel-header.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
