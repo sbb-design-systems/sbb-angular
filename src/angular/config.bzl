@@ -1,5 +1,6 @@
 entryPoints = [
     # do not sort
+    "accordion",
     "autocomplete",
     "button",
     "captcha",
@@ -40,6 +41,7 @@ ANGULAR_TARGETS = ["//src/angular"] + \
 ANGULAR_TESTING_TARGETS = ["//src/angular/%s" % ep for ep in ANGULAR_TESTING_ENTRYPOINTS]
 
 ANGULAR_MARKDOWN_TARGETS = [
+    "accordion",
     "autocomplete",
     "button",
     "captcha",

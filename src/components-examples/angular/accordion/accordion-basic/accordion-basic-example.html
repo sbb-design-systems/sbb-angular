@@ -1,0 +1,111 @@
+<sbb-accordion [multi]="multi.value" #accordion="sbbAccordion">
+  <sbb-expansion-panel [expanded]="firstPanelExpanded" [hideToggle]="hideToggle.value">
+    <sbb-expansion-panel-header> Some generic content accordion panel </sbb-expansion-panel-header>
+    Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin blandit, justo eget
+    pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna. Suspendisse
+    finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci. Mauris gravida
+    aliquet eleifend.
+  </sbb-expansion-panel>
+  <sbb-expansion-panel
+    (opened)="secondPanelExpanded = true; log('opened called')"
+    (closed)="secondPanelExpanded = false; log('closed called')"
+    (expandedChange)="log('expandedChange called', $event)"
+    [hideToggle]="hideToggle.value"
+  >
+    <sbb-expansion-panel-header>
+      Panel with table
+      <p class="accordion-example-open-state">
+        Currently I am {{ secondPanelExpanded ? 'open' : 'closed' }}
+      </p>
+    </sbb-expansion-panel-header>
+    <table class="sbb-table">
+      <thead>
+        <tr>
+          <th scope="col">Company and country *1</th>
+          <th scope="col">Passenger-kilometers (Mio. Pkm)</th>
+          <th scope="col">Tonne-kilometers (Mio. Ntkm)</th>
+          <th scope="col">Route-kilometers (Mio. Trkm)</th>
+          <th scope="col">Staff (FTE)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">Long text in a link to see how it wraps in the cell. *1</th>
+          <td>6 907</td>
+          <td>Long text in a link to see how it wraps in the cell.</td>
+          <td>Long text in a link to see how exactly the cell wraps</td>
+          <td>24 882</td>
+        </tr>
+        <tr>
+          <th scope="row">SZDC (CZ) *2</th>
+          <td>-</td>
+          <td>-</td>
+          <td>161</td>
+          <td>17 380</td>
+        </tr>
+        <tr>
+          <th scope="row">DB AG (DE) *3</th>
+          <td>80 805</td>
+          <td>78 542</td>
+          <td>1 037</td>
+          <td>286 237</td>
+        </tr>
+        <tr>
+          <th scope="row">FS (IT) *3</th>
+          <td>37 489</td>
+          <td>22 081</td>
+          <td>316</td>
+          <td>72 341</td>
+        </tr>
+        <tr>
+          <th scope="row">JR (JP) *3</th>
+          <td>244 591</td>
+          <td>20 255</td>
+          <td>693</td>
+          <td>127 989</td>
+        </tr>
+        <tr>
+          <th scope="row">NS (NL) *1</th>
+          <td>16 604</td>
+          <td>-</td>
+          <td>-</td>
+          <td>7 959</td>
+        </tr>
+      </tbody>
+    </table>
+  </sbb-expansion-panel>
+  <sbb-expansion-panel [disabled]="disabled.value" [hideToggle]="hideToggle.value">
+    <sbb-expansion-panel-header> This panel can be disabled </sbb-expansion-panel-header>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+  </sbb-expansion-panel>
+</sbb-accordion>
+
+<h4>Properties</h4>
+<div class="sbb-checkbox-group-vertical">
+  <sbb-checkbox [formControl]="multi">
+    Open and close all panels of the accordion together ('multi' property of sbb-accordion)
+  </sbb-checkbox>
+
+  <sbb-checkbox [formControl]="disabled"> Disable last accordion panel </sbb-checkbox>
+
+  <sbb-checkbox [formControl]="hideToggle"> Hide toggle icon</sbb-checkbox>
+
+  <div class="accordion-example-open-close-buttons">
+    <button type="button" sbb-ghost-button (click)="firstPanelExpanded = !firstPanelExpanded">
+      Toggle first panel
+    </button>
+    <button type="button" *ngIf="multi.value" sbb-ghost-button (click)="accordion.openAll()">
+      Open all
+    </button>
+    <button type="button" *ngIf="multi.value" sbb-ghost-button (click)="accordion.closeAll()">
+      Close all
+    </button>
+  </div>
+</div>

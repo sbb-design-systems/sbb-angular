@@ -1,0 +1,263 @@
+@import '../../../angular/styles/common';
+
+$sbbExpansionPanelHeaderLineHeightStandard: 28;
+$sbbExpansionPanelHeaderLineHeightStandardTablet: 30;
+$sbbExpansionPanelHeaderLineHeightStandard4k: 45;
+$sbbExpansionPanelHeaderLineHeightStandard5k: 60;
+$sbbExpansionPanelBorderWidth: 1;
+$sbbExpansionPanelBorderWidth4k: 2;
+
+.sbb-expansion-panel {
+  box-sizing: content-box;
+  display: block;
+  margin: 0;
+  transition: border-color 225ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: pxToRem($sbbExpansionPanelBorderWidth) solid $sbbColorMilk;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-width: pxToRem($sbbExpansionPanelBorderWidth4k);
+    }
+  }
+
+  & + & {
+    margin-top: pxToRem($sbbExpansionPanelBorderWidth * 2);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        margin-top: pxToRem($sbbExpansionPanelBorderWidth4k * 2);
+      }
+    }
+  }
+
+  &.sbb-expanded {
+    border-color: $sbbColorCloud;
+  }
+}
+
+.sbb-expansion-panel-full-width.sbb-expanded {
+  // Setting border color to transparent is necessary because of border-color animation
+  border-left-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 0;
+  padding-left: pxToRem($sbbExpansionPanelBorderWidth);
+  padding-right: pxToRem($sbbExpansionPanelBorderWidth);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-left-width: 0;
+      border-right-width: 0;
+      padding-left: pxToRem($sbbExpansionPanelBorderWidth4k);
+      padding-right: pxToRem($sbbExpansionPanelBorderWidth4k);
+    }
+  }
+}
+
+.sbb-expansion-panel-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: $sbbColorMilk;
+  outline: none;
+  padding: pxToRem(24 - $sbbExpansionPanelBorderWidth) pxToRem(24 - $sbbExpansionPanelBorderWidth)
+    pxToRem(26 - $sbbExpansionPanelBorderWidth) pxToRem(24 - $sbbExpansionPanelBorderWidth);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: tablet) {
+      padding: pxToRem(35 - $sbbExpansionPanelBorderWidth)
+        pxToRem(48 - $sbbExpansionPanelBorderWidth) pxToRem(37 - $sbbExpansionPanelBorderWidth)
+        pxToRem(48 - $sbbExpansionPanelBorderWidth);
+    }
+    @include mq($from: desktop) {
+      padding: pxToRem(35 - $sbbExpansionPanelBorderWidth)
+        pxToRem(32 - $sbbExpansionPanelBorderWidth) pxToRem(37 - $sbbExpansionPanelBorderWidth)
+        pxToRem(32 - $sbbExpansionPanelBorderWidth);
+    }
+    @include mq($from: desktop4k) {
+      padding: pxToRem(53 - $sbbExpansionPanelBorderWidth4k)
+        pxToRem(48 - $sbbExpansionPanelBorderWidth4k) pxToRem(55 - $sbbExpansionPanelBorderWidth4k)
+        pxToRem(48 - $sbbExpansionPanelBorderWidth4k);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(72 - $sbbExpansionPanelBorderWidth4k)
+        pxToRem(64 - $sbbExpansionPanelBorderWidth4k);
+    }
+  }
+
+  html.sbb-lean & {
+    padding: pxToRem(11 - $sbbExpansionPanelBorderWidth) pxToRem(16 - $sbbExpansionPanelBorderWidth)
+      pxToRem(12 - $sbbExpansionPanelBorderWidth) pxToRem(16 - $sbbExpansionPanelBorderWidth);
+  }
+
+  &.sbb-expanded {
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 0;
+      bottom: 0;
+      width: calc(100% - #{pxToRem((24 - $sbbExpansionPanelBorderWidth) * 2)});
+      left: pxToRem((24 - $sbbExpansionPanelBorderWidth));
+      border-bottom: pxToRem($sbbExpansionPanelBorderWidth) solid $sbbColorCloud;
+
+      html:not(.sbb-lean) & {
+        @include mq($from: tablet) {
+          width: calc(100% - #{pxToRem((48 - $sbbExpansionPanelBorderWidth) * 2)});
+          left: pxToRem((48 - $sbbExpansionPanelBorderWidth));
+        }
+        @include mq($from: desktop) {
+          width: calc(100% - #{pxToRem((32 - $sbbExpansionPanelBorderWidth) * 2)});
+          left: pxToRem((32 - $sbbExpansionPanelBorderWidth));
+        }
+        @include mq($from: desktop4k) {
+          width: calc(100% - #{pxToRem((48 - $sbbExpansionPanelBorderWidth4k) * 2)});
+          left: pxToRem((48 - $sbbExpansionPanelBorderWidth4k));
+          border-width: pxToRem($sbbExpansionPanelBorderWidth4k);
+        }
+        @include mq($from: desktop5k) {
+          width: calc(100% - #{pxToRem((64 - $sbbExpansionPanelBorderWidth4k) * 2)});
+          left: pxToRem((64 - $sbbExpansionPanelBorderWidth4k));
+        }
+      }
+
+      html.sbb-lean & {
+        width: calc(100% - #{pxToRem((16 - $sbbExpansionPanelBorderWidth) * 2)});
+        left: pxToRem((16 - $sbbExpansionPanelBorderWidth));
+      }
+    }
+  }
+
+  &.sbb-expanded,
+  &.sbb-expanded:focus,
+  &.sbb-expanded:hover {
+    background: inherit;
+  }
+
+  &.sbb-disabled {
+    cursor: default;
+    opacity: 0.75;
+  }
+}
+
+.sbb-expansion-panel-header-indicator {
+  flex: 0 0 auto;
+  line-height: 0; // Centers the svg icon inside sbb-icon
+  margin-left: pxToRem(24);
+  height: pxToRem(24);
+  width: pxToRem(24);
+
+  html:not(.sbb-lean) & {
+    border: pxToRem(1) solid $sbbColorStorm;
+    border-radius: 50%;
+    color: $sbbColorGranite;
+    padding: pxToRem(4 - $sbbExpansionPanelBorderWidth);
+
+    @include mq($from: tablet) {
+      $iconSize: 32;
+      height: pxToRem($iconSize);
+      width: pxToRem($iconSize);
+      margin-left: pxToRem(40);
+
+      // Ensure calculated height of icon is not higher than line-height
+      margin-top: pxToRem(($sbbExpansionPanelHeaderLineHeightStandardTablet - $iconSize) / 2);
+      margin-bottom: pxToRem(($sbbExpansionPanelHeaderLineHeightStandardTablet - $iconSize) / 2);
+    }
+
+    @include mq($from: desktop) {
+      margin-left: pxToRem(24);
+    }
+
+    @include mq($from: desktop4k) {
+      $iconSize: 48;
+      border-width: pxToRem($sbbExpansionPanelBorderWidth4k);
+      padding: pxToRem(6 - $sbbExpansionPanelBorderWidth4k);
+      height: pxToRem($iconSize);
+      width: pxToRem($iconSize);
+      margin-left: pxToRem(36);
+
+      // Ensure calculated height of icon is not higher than line-height
+      margin-top: pxToRem(($sbbExpansionPanelHeaderLineHeightStandard4k - $iconSize) / 2);
+      margin-bottom: pxToRem(($sbbExpansionPanelHeaderLineHeightStandard4k - $iconSize) / 2);
+    }
+
+    @include mq($from: desktop5k) {
+      $iconSize: 64;
+      padding: pxToRem(8 - $sbbExpansionPanelBorderWidth4k);
+      height: pxToRem($iconSize);
+      width: pxToRem($iconSize);
+      margin-left: pxToRem(44);
+
+      // Ensure calculated height of icon is not higher than line-height
+      margin-top: pxToRem(($sbbExpansionPanelHeaderLineHeightStandard5k - $iconSize) / 2);
+      margin-bottom: pxToRem(($sbbExpansionPanelHeaderLineHeightStandard5k - $iconSize) / 2);
+    }
+  }
+}
+
+.sbb-expansion-panel-header-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  font-family: $fontSbbLight;
+  font-size: pxToRem(20);
+  line-height: pxToRem($sbbExpansionPanelHeaderLineHeightStandard);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: tablet) {
+      font-size: pxToRem(21);
+      line-height: pxToRem($sbbExpansionPanelHeaderLineHeightStandardTablet);
+    }
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(32);
+      line-height: pxToRem($sbbExpansionPanelHeaderLineHeightStandard4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(42);
+      line-height: pxToRem($sbbExpansionPanelHeaderLineHeightStandard5k);
+    }
+  }
+
+  html.sbb-lean & {
+    font-size: pxToRem(21);
+    line-height: pxToRem(25);
+  }
+}
+
+.sbb-expansion-panel-content {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+
+  &.ng-animating,
+  .sbb-expansion-panel:not(.sbb-expanded) & {
+    overflow: hidden;
+  }
+}
+
+.sbb-expansion-panel-body {
+  padding: pxToRem(36) pxToRem(24 - $sbbExpansionPanelBorderWidth);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: tablet) {
+      padding: pxToRem(48) pxToRem(48 - $sbbExpansionPanelBorderWidth);
+    }
+    @include mq($from: desktop) {
+      padding: pxToRem(48) pxToRem(32 - $sbbExpansionPanelBorderWidth);
+    }
+    @include mq($from: desktop4k) {
+      padding: pxToRem(72) pxToRem(48 - $sbbExpansionPanelBorderWidth4k);
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(96) pxToRem(64 - $sbbExpansionPanelBorderWidth4k);
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
+  html.sbb-lean & {
+    padding: pxToEm(24) pxToEm(16 - $sbbExpansionPanelBorderWidth);
+  }
+}
