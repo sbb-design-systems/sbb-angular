@@ -24,7 +24,12 @@
           #captchaControl="ngModel"
         ></sbb-captcha>
         <div class="sbbsc-block">
-          <button sbbButton (click)="formModel.captcha = ''" style="margin-top: 0.5rem">
+          <button
+            type="button"
+            sbbButton
+            (click)="formModel.captcha = ''"
+            style="margin-top: 0.5rem"
+          >
             Reset Captcha
           </button>
         </div>
@@ -52,7 +57,7 @@
         </sbb-captcha>
       </form>
       <div class="sbbsc-block">
-        <button sbbButton (click)="resetForm()">Reset Captcha</button>
+        <button type="button" sbbButton (click)="resetForm()">Reset Captcha</button>
       </div>
     </div>
     <div class="col-lg-6">

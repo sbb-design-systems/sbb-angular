@@ -4,7 +4,7 @@
     <input type="text" [(ngModel)]="name" placeholder="What's your name?" />
   </li>
   <li>
-    <button sbbButton mode="secondary" (click)="openDialog()">Pick one</button>
+    <button type="button" sbbButton mode="secondary" (click)="openDialog()">Pick one</button>
   </li>
   <li *ngIf="animal">
     You chose: <i>{{ animal }}</i>

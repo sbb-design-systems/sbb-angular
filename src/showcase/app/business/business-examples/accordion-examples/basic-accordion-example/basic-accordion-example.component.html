@@ -127,6 +127,7 @@
       <div class="accordion-example-panel-button">
         <button
           sbbButton
+          type="button"
           (click)="logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')"
         >
           Test button
@@ -149,8 +150,12 @@
   </sbb-checkbox>
 
   <div *ngIf="multi" class="accordion-example-open-close-buttons">
-    <button sbbButton (click)="firstAccordion.openAll()" mode="secondary">Open all</button>
-    <button sbbButton (click)="firstAccordion.closeAll()" mode="secondary">Close all</button>
+    <button type="button" sbbButton (click)="firstAccordion.openAll()" mode="secondary">
+      Open all
+    </button>
+    <button type="button" sbbButton (click)="firstAccordion.closeAll()" mode="secondary">
+      Close all
+    </button>
   </div>
 
   <sbb-checkbox value="disabled" [formControl]="disabled">

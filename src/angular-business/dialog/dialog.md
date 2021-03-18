@@ -12,8 +12,8 @@ The dialog can be used to seek confirmation as seen below
     </div>
   </div>
   <div sbbDialogFooter>
-    <button sbbButton [sbbDialogClose]="data.animal">Ok</button>
-    <button sbbButton mode="secondary" (click)="noThanks()">No Thanks</button>
+    <button type="button" sbbButton [sbbDialogClose]="data.animal">Ok</button>
+    <button type="button" sbbButton mode="secondary" (click)="noThanks()">No Thanks</button>
   </div>
 </div>
 ```
@@ -92,8 +92,8 @@ export class DialogShowcaseExample3Component {
       </div>
     </div>
     <div sbbDialogFooter>
-      <button sbbButton [sbbDialogClose]="true">Accept</button>
-      <button sbbButton mode="secondary" sbbDialogClose>Cancel</button>
+      <button type="button" sbbButton [sbbDialogClose]="true">Accept</button>
+      <button type="button" sbbButton mode="secondary" sbbDialogClose>Cancel</button>
     </div>
   </div>
 </ng-template>

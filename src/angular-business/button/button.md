@@ -1,7 +1,7 @@
 You can use the button component as seen below
 
 ```html
-<button sbbButton>Action</button>
+<button type="button" sbbButton>Action</button>
 ```
 
 ### Mode
@@ -10,7 +10,7 @@ The button supports five modes: primary (default), alternative primary, secondar
 ghost and icon as shown in the example.
 
 ```html
-<button sbbButton mode="secondary">Action</button>
+<button type="button" sbbButton mode="secondary">Action</button>
 ```
 
 ### Icon Mode
@@ -18,7 +18,7 @@ ghost and icon as shown in the example.
 To use the icon mode, simply use an icon with the button.
 
 ```html
-<button sbbButton mode="icon">
+<button type="button" sbbButton mode="icon">
   <sbb-icon svgIcon="kom:pen-small" *sbbIcon></sbb-icon>
 </button>
 ```

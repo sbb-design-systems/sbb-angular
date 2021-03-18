@@ -10,10 +10,10 @@ The lightbox can be used to open modal dialogs as seen below
       <input type="text" [(ngModel)]="data.animal" cdkFocusInitial />
     </sbb-form-field>
     <div class="sbbsc-block">
-      <button sbbButton mode="ghost" (click)="noThanks()" style="margin-right: 1em;">
+      <button type="button" sbbButton mode="ghost" (click)="noThanks()" style="margin-right: 1em;">
         No Thanks
       </button>
-      <button sbbButton [sbbLightboxClose]="data.animal" cdkFocusInitial>Ok</button>
+      <button type="button" sbbButton [sbbLightboxClose]="data.animal" cdkFocusInitial>Ok</button>
     </div>
   </div>
 </div>
@@ -102,8 +102,8 @@ export class LightboxShowcaseExample3Component {
     </p>
   </sbb-lightbox-content>
   <sbb-lightbox-footer alignment="right">
-    <button sbbButton mode="ghost" sbbLightboxClose>Cancel</button>
-    <button sbbButton [sbbLightboxClose]="true" cdkFocusInitial>Accept</button>
+    <button type="button" sbbButton mode="ghost" sbbLightboxClose>Cancel</button>
+    <button type="button" sbbButton [sbbLightboxClose]="true" cdkFocusInitial>Accept</button>
   </sbb-lightbox-footer>
 </ng-template>
 ```
@@ -116,7 +116,7 @@ export class LightboxShowcaseExample3Component {
   selector: 'sbb-lightbox-showcase-example-5',
   template: `
     <div class="sbbsc-block">
-      <button sbbButton mode="secondary" (click)="openDialog()">
+      <button type="button" sbbButton mode="secondary" (click)="openDialog()">
         Open with confirmation button in separate one
       </button>
     </div>

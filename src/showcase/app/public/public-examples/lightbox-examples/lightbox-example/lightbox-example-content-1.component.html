@@ -7,10 +7,10 @@
       <input type="text" sbbInput [(ngModel)]="data.animal" cdkFocusInitial />
     </sbb-form-field>
     <div class="sbbsc-block">
-      <button sbbButton mode="ghost" (click)="noThanks()" style="margin-right: 0.7em">
+      <button type="button" sbbButton mode="ghost" (click)="noThanks()" style="margin-right: 0.7em">
         No Thanks
       </button>
-      <button sbbButton [sbbLightboxClose]="data.animal" cdkFocusInitial>Ok</button>
+      <button type="button" sbbButton [sbbLightboxClose]="data.animal" cdkFocusInitial>Ok</button>
     </div>
   </div>
 </div>

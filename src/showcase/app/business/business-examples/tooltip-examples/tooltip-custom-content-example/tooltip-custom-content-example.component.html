@@ -1,6 +1,6 @@
 <sbb-tooltip #t (opened)="onOpen($event)" (closed)="onClose($event)">
   <span>This is a tooltip with a button inside.</span><br />
-  <button mode="secondary" sbbButton (click)="t.close(true)">Close tooltip</button>
+  <button type="button" mode="secondary" sbbButton (click)="t.close(true)">Close tooltip</button>
 </sbb-tooltip>
 <div class="sbbsc-block"></div>
 <sbb-tooltip (opened)="onOpen($event)" (closed)="onClose($event)">

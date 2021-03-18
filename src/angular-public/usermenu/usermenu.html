@@ -20,6 +20,7 @@
   aria-haspopup="true"
   [attr.aria-controls]="panelOpen ? id + '-panel' : null"
   [attr.aria-expanded]="panelOpen"
+  type="button"
 >
   <ng-container *ngTemplateOutlet="usermenuTriggerContent"></ng-container>
 </button>
@@ -85,6 +86,7 @@
       class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in sbb-usermenu-trigger-close"
       (click)="_closeAndFocus()"
       [attr.aria-label]="_ariaLabelClosePanel"
+      type="button"
     >
       <ng-container *ngTemplateOutlet="usermenuTriggerContent"></ng-container>
     </button>

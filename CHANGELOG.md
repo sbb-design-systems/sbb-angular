@@ -129,7 +129,7 @@ one of both).
 The `userName` is not shown anymore in collapsed state of menu (according to digital.sbb.ch). Use
 `displayName` to show a name in collapsed state.
 The usermenu doesn't depend on `<sbb-dropdown>` anymore, just use `<a sbb-usermenu-item>`,
-`<button sbb-usermenu-item>` and `<hr />` tags.
+`<button type="button" sbb-usermenu-item>` and `<hr />` tags.
 Providing a custom icon or image now needs to set the structural `*sbbIcon` directive instead of
 using only `sbbIcon`.
 * The field module has been majorly refactored. The `sbb-field`
