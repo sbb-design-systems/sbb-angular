@@ -1,0 +1,13 @@
+@import '../../../../../../angular-core/styles/common';
+
+.sidebar-frame {
+  display: block;
+  height: 400px;
+  width: 500px;
+  position: relative;
+  border: 1px solid $sbbColorGraphite;
+}
+
+sbb-icon-sidebar-content {
+  padding: 15px;
+}

@@ -53,7 +53,8 @@ export class SbbExample {
 // Boilerplate for applying mixins to SbbExample.
 /** @docs-private */
 class SbbExampleBase {
-  constructor(public _elementRef: ElementRef) {}
+  constructor(public _elementRef: ElementRef) {
+  }
 }
 
 // tslint:disable-next-line: naming-convention
@@ -66,18 +67,8 @@ const _SbbExampleMixinBase: HasVariantCtor & typeof SbbExampleBase = mixinVarian
 export class SbbExample extends _SbbExampleMixinBase {
   ...
 
-  // If this component/directive has its own ngOnInit, it must call super.ngOnInit()
-  // e.g.
-  ngOnInit() {
-    super.ngOnInit();
-    ...
-  }
-
-  // If this component/directive has its own ngOnDestroy, it must call super.ngOnDestroy()
-  // e.g.
-  ngOnDestroy() {
-    super.ngOnDestroy();
-    ...
+  constructor() {
+    super();
   }
 }
 ```

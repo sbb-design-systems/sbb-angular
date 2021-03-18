@@ -16,6 +16,7 @@ ng_module(
     deps = [
         "//src/angular-business/sidebar",
         "//src/angular-maps/esri-config",
+        "//src/angular/sidebar",
         "//src/angular/accordion",
         "//src/showcase-merge/app/shared",
         "//src/showcase-merge/app/shared/component-viewer",

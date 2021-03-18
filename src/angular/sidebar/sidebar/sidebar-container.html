@@ -1,0 +1,25 @@
+<div class="sbb-sidebar-mobile-menu-bar">
+  <button
+    type="button"
+    class="sbb-sidebar-mobile-menu-bar-trigger sbb-icon-fit"
+    (click)="toggleSidebar()"
+    aria-label-i18n="Button label to open the sidebar@@sbbSidebarOpenSidebar"
+    aria-label="Open Sidebar"
+  >
+    <sbb-icon svgIcon="kom:hamburger-menu-small"></sbb-icon>
+  </button>
+</div>
+
+<div
+  class="sbb-sidebar-backdrop"
+  (click)="_onBackdropClicked()"
+  *ngIf="hasBackdrop"
+  [class.sbb-sidebar-shown]="_isShowingBackdrop()"
+></div>
+
+<ng-content select="sbb-sidebar"></ng-content>
+
+<ng-content select="sbb-sidebar-content"> </ng-content>
+<sbb-sidebar-content *ngIf="!_content" cdkScrollable>
+  <ng-content></ng-content>
+</sbb-sidebar-content>

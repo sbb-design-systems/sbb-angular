@@ -1,0 +1,252 @@
+@import '../../styles/common';
+@import '../sidebar';
+
+$sbb-sidebar-mobile-menu-bar-height: pxToRem(48px);
+
+.sbb-sidebar-container {
+  @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
+
+  // Need this to take up space in the layout.
+  display: flex;
+  flex-direction: column;
+
+  // Hide the sidebars when they're closed.
+  overflow: hidden;
+
+  &.sbb-sidebar-container-has-open {
+    overflow: hidden;
+  }
+}
+
+.sbb-sidebar-container.sbb-sidebar-after-header,
+sbb-header + .sbb-sidebar-container {
+  top: $sbb-sidebar-after-header-top;
+}
+
+.sbb-sidebar-backdrop {
+  @include sbb-sidebar-fill();
+
+  display: block;
+
+  // Because of the new stacking context, the z-index stack is new and we can use our own
+  // numbers.
+  z-index: $sbb-sidebar-backdrop-z-index;
+
+  // We use 'visibility: hidden | visible' because 'display: none' will not animate any
+  // transitions, while visibility will interpolate transitions properly.
+  // see https://developer.mozilla.org/en-US/docs/Web/CSS/visibility, the Interpolation
+  // section.
+  visibility: hidden;
+
+  &.sbb-sidebar-shown {
+    visibility: visible;
+  }
+}
+
+.sbb-sidebar-transition .sbb-sidebar-backdrop {
+  transition: {
+    duration: $swift-ease-out-duration;
+    timing-function: $swift-ease-out-timing-function;
+    property: background-color, visibility;
+  }
+}
+
+.sbb-sidebar-content {
+  @include sbb-sidebar-content;
+  z-index: $sbb-sidebar-content-z-index;
+  height: 100%;
+}
+
+.sbb-sidebar-transition .sbb-sidebar-content {
+  transition: {
+    duration: $swift-ease-out-duration;
+    timing-function: $swift-ease-out-timing-function;
+    property: transform, margin-left, margin-right;
+  }
+}
+
+.sbb-sidebar {
+  @include sbb-sidebar;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: pxToRem(300px);
+  transform: translate3d(-100%, 0, 0);
+  border-right: pxToRem(1px) solid $sbbColorCloud;
+  background-color: $sbbColorWhite;
+
+  &.sbb-sidebar-side {
+    z-index: $sbb-sidebar-side-sidebar-z-index;
+  }
+
+  &.sbb-sidebar-over {
+    z-index: $sbb-sidebar-over-sidebar-z-index;
+    box-shadow: pxToRem(4px) 0 0 0 rgba(0, 0, 0, 0.15);
+    border-right: pxToRem(1px) solid $sbbColorGranite;
+  }
+
+  .sbb-sidebar-inner-container {
+    @include sbb-sidebar-inner-container();
+
+    > sbb-expansion-panel,
+    > fieldset {
+      border: none;
+      border-bottom: pxToRem(1px) solid $sbbColorCloud;
+
+      + fieldset,
+      + sbb-expansion-panel {
+        margin-top: pxToRem(12px);
+      }
+
+      + fieldset fieldset {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .sbb-expansion-panel-header {
+    background-color: inherit;
+
+    /**
+     animate line below legend when collapsing.
+     styles are copied from .sbb-expansion-panel-header
+    */
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 0;
+      width: calc(100% - #{pxToRem(32px)});
+      bottom: 0;
+      left: pxToRem(16px);
+      border-bottom: pxToRem(1px) solid transparent;
+      transition: border-bottom $swift-ease-out-duration $swift-ease-out-timing-function;
+    }
+  }
+
+  .sbb-sidebar-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    padding: pxToRem(5px) pxToRem(16px) pxToRem(7px) pxToRem(15px);
+    width: calc(100% + #{pxToRem(16px)});
+    color: $sbbColorIron;
+    text-decoration: none;
+    line-height: pxToRem(20px);
+
+    .sbb-sidebar-link-label {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      flex: 1 1;
+    }
+
+    .sbb-sidebar-link-arrow {
+      display: inline-flex;
+      height: pxToRem(24px);
+      width: pxToRem(24px);
+    }
+
+    &:hover,
+    &:focus,
+    &.sbb-active {
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: pxToRem(1px);
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+      background-color: $sbbColorMilk;
+
+      &:after {
+        background-color: $sbbColorRed125;
+      }
+    }
+
+    &.sbb-active {
+      background-color: $sbbColorCloud;
+      color: $sbbColorBlack;
+      cursor: default;
+      pointer-events: none;
+
+      &:after {
+        background-color: $sbbColorBlack;
+      }
+    }
+
+    &:not(.sbb-active) {
+      outline: 0;
+    }
+  }
+}
+
+.sbb-sidebar-container-mobile {
+  padding-top: $sbb-sidebar-mobile-menu-bar-height;
+
+  .sbb-sidebar-mobile-menu-bar,
+  .sbb-sidebar-mobile-menu-bar-close-wrapper {
+    display: flex;
+  }
+
+  .sbb-sidebar .sbb-sidebar-inner-container {
+    padding-top: $sbb-sidebar-mobile-menu-bar-height;
+  }
+
+  .sbb-sidebar-content {
+    padding-top: pxToRem(1px);
+  }
+}
+
+.sbb-sidebar-mobile-menu-bar,
+.sbb-sidebar-mobile-menu-bar-close-wrapper {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.sbb-sidebar-mobile-menu-bar {
+  z-index: 2;
+  border-bottom: pxToRem(1px) solid $sbbColorCloud;
+}
+
+.sbb-sidebar-mobile-menu-bar-trigger,
+.sbb-sidebar-mobile-menu-bar-close {
+  @include buttonResetFrameless();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  width: pxToRem(54px);
+  height: $sbb-sidebar-mobile-menu-bar-height;
+  cursor: pointer;
+  outline: none;
+
+  .sbb-icon {
+    width: pxToRem(24px);
+    height: pxToRem(24px);
+  }
+
+  &:focus {
+    color: $sbbColorRed125;
+  }
+}
+
+.sbb-sidebar-mobile-menu-bar-close-wrapper {
+  background-color: $sbbColorWhite;
+  z-index: 1;
+}

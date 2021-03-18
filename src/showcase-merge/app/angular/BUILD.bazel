@@ -32,6 +32,7 @@ ng_module(
         "//src/angular/icon",
         "//src/angular/loading",
         "//src/angular/select",
+        "//src/angular/sidebar",
         "//src/showcase-merge/app/shared",
         "//src/showcase-merge/app/shared/component-viewer",
         "@npm//@angular/cdk",

@@ -1,0 +1,29 @@
+<div class="sbb-icon-sidebar-inner-container sbb-scrollbar sbb-scrollbar-opaque" cdkScrollable>
+  <div class="sbb-icon-sidebar-links">
+    <ng-content select="a[sbbIconSidebarItem], hr"></ng-content>
+  </div>
+
+  <button
+    *ngIf="!_container._mobile"
+    class="sbb-icon-sidebar-item sbb-icon-sidebar-collapse-expand-button"
+    (click)="toggleExpanded()"
+    type="button"
+  >
+    <span class="sbb-icon-sidebar-item-icon sbb-icon-fit">
+      <sbb-icon svgIcon="kom:chevron-small-left-circle-small"></sbb-icon>
+    </span>
+    <span
+      [attr.aria-hidden]="!expanded"
+      class="sbb-icon-sidebar-item-label"
+      i18n="Label to 'collapse' icon sidebar@@sbbSidebarCollapse"
+      >Collapse</span
+    >
+
+    <span
+      [attr.aria-hidden]="expanded"
+      class="sbb-icon-sidebar-item-label cdk-visually-hidden"
+      i18n="Label to 'expand' icon sidebar@@sbbSidebarExpand"
+      >Expand</span
+    >
+  </button>
+</div>
