@@ -11,7 +11,6 @@ import {
   Input,
   OnDestroy,
   QueryList,
-  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
@@ -108,7 +107,16 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef
-  ) {}
+  ) {
+    // Initially map classes to mode
+    if (_elementRef.nativeElement.classList.contains('sbb-form-field-short')) {
+      this._mode = 'short';
+    } else if (_elementRef.nativeElement.classList.contains('sbb-form-field-medium')) {
+      this._mode = 'medium';
+    } else if (_elementRef.nativeElement.classList.contains('sbb-form-field-long')) {
+      this._mode = 'long';
+    }
+  }
 
   /**
    * Gets the id of the label element. If no label is present, returns `null`.
