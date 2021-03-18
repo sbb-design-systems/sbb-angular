@@ -75,37 +75,3 @@ expansion panel's id as value.
 The expansion panel headers are buttons. Users can use the keyboard to activate the expansion panel
 header to switch between expanded state and collapsed state. Because the header acts as a button,
 additional interactive elements should carefully be placed inside the header.
-
-### Advanced Accordion
-
-You can navigate between panels of the accordion with "Next" and "Previous" buttons (step by step) as seen below
-
-```html
-<sbb-accordion>
-  <sbb-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
-    <sbb-expansion-panel-header>
-      <span>I'm a wizard like accordion</span>
-      <p class="panel-text">
-        conditionally open using [expand] property<br />
-        and (opened) event
-      </p>
-    </sbb-expansion-panel-header>
-
-    <button type="button" sbb-button (click)="nextStep()">Next</button>
-  </sbb-expansion-panel>
-
-  <sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
-    <sbb-expansion-panel-header> Step 1 </sbb-expansion-panel-header>
-
-    <button type="button" sbb-ghost-button (click)="prevStep()">Previous</button>&nbsp;
-    <button type="button" sbb-button (click)="nextStep()">Next</button>
-  </sbb-expansion-panel>
-
-  <sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
-    <sbb-expansion-panel-header> Step 2 </sbb-expansion-panel-header>
-
-    <button type="button" sbb-ghost-button (click)="prevStep()">Previous</button>&nbsp;
-    <button type="button" sbb-button (click)="nextStep()">End</button>
-  </sbb-expansion-panel>
-</sbb-accordion>
-```

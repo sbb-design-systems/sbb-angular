@@ -4,34 +4,44 @@ $sbbExpansionPanelHeaderLineHeightStandard: 28;
 $sbbExpansionPanelHeaderLineHeightStandardTablet: 30;
 $sbbExpansionPanelHeaderLineHeightStandard4k: 45;
 $sbbExpansionPanelHeaderLineHeightStandard5k: 60;
+$sbbExpansionPanelBorderWidth: 1;
+$sbbExpansionPanelBorderWidth4k: 2;
 
 .sbb-expansion-panel-header {
   cursor: pointer;
   display: flex;
-  flex-direction: row;
   align-items: center;
   position: relative;
   background-color: $sbbColorMilk;
   outline: none;
-  padding: pxToRem(24) pxToRem(24) pxToRem(26) pxToRem(24);
+  padding: pxToRem(23 - $sbbExpansionPanelBorderWidth) pxToRem(23 - $sbbExpansionPanelBorderWidth)
+    pxToRem(25 - $sbbExpansionPanelBorderWidth) pxToRem(23 - $sbbExpansionPanelBorderWidth);
 
   html:not(.sbb-lean) & {
     @include mq($from: tablet) {
-      padding: pxToRem(35) pxToRem(48) pxToRem(37) pxToRem(48);
+      padding: pxToRem(35 - $sbbExpansionPanelBorderWidth)
+        pxToRem(48 - $sbbExpansionPanelBorderWidth) pxToRem(37 - $sbbExpansionPanelBorderWidth)
+        pxToRem(48 - $sbbExpansionPanelBorderWidth);
     }
     @include mq($from: desktop) {
-      padding: pxToRem(35) pxToRem(32) pxToRem(37) pxToRem(32);
+      padding: pxToRem(35 - $sbbExpansionPanelBorderWidth)
+        pxToRem(32 - $sbbExpansionPanelBorderWidth) pxToRem(37 - $sbbExpansionPanelBorderWidth)
+        pxToRem(32 - $sbbExpansionPanelBorderWidth);
     }
     @include mq($from: desktop4k) {
-      padding: pxToRem(53) pxToRem(48) pxToRem(55) pxToRem(48);
+      padding: pxToRem(53 - $sbbExpansionPanelBorderWidth4k)
+        pxToRem(48 - $sbbExpansionPanelBorderWidth4k) pxToRem(55 - $sbbExpansionPanelBorderWidth4k)
+        pxToRem(48 - $sbbExpansionPanelBorderWidth4k);
     }
     @include mq($from: desktop5k) {
-      padding: pxToRem(72) pxToRem(64);
+      padding: pxToRem(72 - $sbbExpansionPanelBorderWidth4k)
+        pxToRem(64 - $sbbExpansionPanelBorderWidth4k);
     }
   }
 
   html.sbb-lean & {
-    padding: pxToRem(11) pxToRem(16) pxToRem(12) pxToRem(16);
+    padding: pxToRem(11 - $sbbExpansionPanelBorderWidth) pxToRem(16 - $sbbExpansionPanelBorderWidth)
+      pxToRem(12 - $sbbExpansionPanelBorderWidth) pxToRem(16 - $sbbExpansionPanelBorderWidth);
   }
 
   &.sbb-expanded {
@@ -41,34 +51,33 @@ $sbbExpansionPanelHeaderLineHeightStandard5k: 60;
       position: absolute;
       height: 0;
       bottom: 0;
-      width: calc(100% - #{pxToRem(24 * 2)});
-      left: pxToRem(24);
+      width: calc(100% - #{pxToRem((24 - $sbbExpansionPanelBorderWidth) * 2)});
+      left: pxToRem((24 - $sbbExpansionPanelBorderWidth));
       border-bottom: pxToRem(1) solid $sbbColorCloud;
 
       html:not(.sbb-lean) & {
         @include mq($from: tablet) {
-          width: calc(100% - #{pxToRem(48 * 2)});
-          left: pxToRem(48);
+          width: calc(100% - #{pxToRem((48 - $sbbExpansionPanelBorderWidth) * 2)});
+          left: pxToRem((48 - $sbbExpansionPanelBorderWidth));
         }
         @include mq($from: desktop) {
-          width: calc(100% - #{pxToRem(32 * 2)});
-          left: pxToRem(32);
+          width: calc(100% - #{pxToRem((32 - $sbbExpansionPanelBorderWidth) * 2)});
+          left: pxToRem((32 - $sbbExpansionPanelBorderWidth));
         }
         @include mq($from: desktop4k) {
-          width: calc(100% - #{pxToRem(48 * 2)});
-          left: pxToRem(48);
-          border-width: pxToRem(1 * $scalingFactor4k);
+          width: calc(100% - #{pxToRem((48 - $sbbExpansionPanelBorderWidth4k) * 2)});
+          left: pxToRem((48 - $sbbExpansionPanelBorderWidth4k));
+          border-width: pxToRem(2);
         }
         @include mq($from: desktop5k) {
-          width: calc(100% - #{pxToRem(64 * 2)});
-          left: pxToRem(64);
-          border-width: pxToRem(1 * $scalingFactor5k);
+          width: calc(100% - #{pxToRem((64 - $sbbExpansionPanelBorderWidth4k) * 2)});
+          left: pxToRem((64 - $sbbExpansionPanelBorderWidth4k));
         }
       }
 
       html.sbb-lean & {
-        width: calc(100% - #{pxToRem(16 * 2)});
-        left: pxToRem(16);
+        width: calc(100% - #{pxToRem((16 - $sbbExpansionPanelBorderWidth) * 2)});
+        left: pxToRem((16 - $sbbExpansionPanelBorderWidth));
       }
     }
   }
@@ -88,7 +97,6 @@ $sbbExpansionPanelHeaderLineHeightStandard5k: 60;
 .sbb-expansion-panel-header-content {
   display: flex;
   flex: 1;
-  flex-direction: row;
   overflow: hidden;
   font-family: $fontSbbLight;
   font-size: pxToRem(20);
@@ -123,11 +131,10 @@ $sbbExpansionPanelHeaderLineHeightStandard5k: 60;
   width: pxToRem(24);
 
   html:not(.sbb-lean) & {
-    $borderWidth: 1;
     border: pxToRem(1) solid $sbbColorStorm;
     border-radius: 50%;
     color: $sbbColorGranite;
-    padding: pxToRem(4 - $borderWidth);
+    padding: pxToRem(4 - $sbbExpansionPanelBorderWidth);
 
     @include mq($from: tablet) {
       $iconSize: 32;
@@ -144,11 +151,10 @@ $sbbExpansionPanelHeaderLineHeightStandard5k: 60;
       margin-left: pxToRem(24);
     }
 
-    $borderWidth: 2;
     @include mq($from: desktop4k) {
       $iconSize: 48;
-      border-width: pxToRem($borderWidth);
-      padding: pxToRem(6 - $borderWidth);
+      border-width: pxToRem($sbbExpansionPanelBorderWidth4k);
+      padding: pxToRem(6 - $sbbExpansionPanelBorderWidth4k);
       height: pxToRem($iconSize);
       width: pxToRem($iconSize);
       margin-left: pxToRem(36);
@@ -160,7 +166,7 @@ $sbbExpansionPanelHeaderLineHeightStandard5k: 60;
 
     @include mq($from: desktop5k) {
       $iconSize: 64;
-      padding: pxToRem(8 - $borderWidth);
+      padding: pxToRem(8 - $sbbExpansionPanelBorderWidth4k);
       height: pxToRem($iconSize);
       width: pxToRem($iconSize);
       margin-left: pxToRem(44);

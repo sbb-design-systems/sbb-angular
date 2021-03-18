@@ -12,7 +12,6 @@ import { Component } from '@angular/core';
 export class AccordionCustomHtmlExample {
   logAndPreventOpeningPanel(evt: any) {
     console.log('Button clicked and prevented panel to open');
-    evt.preventDefault();
     evt.stopPropagation();
   }
 }
