@@ -62,8 +62,8 @@ $sbbExpansionPanelBorderWidth4k: 2;
   position: relative;
   background-color: $sbbColorMilk;
   outline: none;
-  padding: pxToRem(23 - $sbbExpansionPanelBorderWidth) pxToRem(23 - $sbbExpansionPanelBorderWidth)
-    pxToRem(25 - $sbbExpansionPanelBorderWidth) pxToRem(23 - $sbbExpansionPanelBorderWidth);
+  padding: pxToRem(24 - $sbbExpansionPanelBorderWidth) pxToRem(24 - $sbbExpansionPanelBorderWidth)
+    pxToRem(26 - $sbbExpansionPanelBorderWidth) pxToRem(24 - $sbbExpansionPanelBorderWidth);
 
   html:not(.sbb-lean) & {
     @include mq($from: tablet) {
@@ -101,7 +101,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
       bottom: 0;
       width: calc(100% - #{pxToRem((24 - $sbbExpansionPanelBorderWidth) * 2)});
       left: pxToRem((24 - $sbbExpansionPanelBorderWidth));
-      border-bottom: pxToRem(1) solid $sbbColorCloud;
+      border-bottom: pxToRem($sbbExpansionPanelBorderWidth) solid $sbbColorCloud;
 
       html:not(.sbb-lean) & {
         @include mq($from: tablet) {
@@ -115,7 +115,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
         @include mq($from: desktop4k) {
           width: calc(100% - #{pxToRem((48 - $sbbExpansionPanelBorderWidth4k) * 2)});
           left: pxToRem((48 - $sbbExpansionPanelBorderWidth4k));
-          border-width: pxToRem(2);
+          border-width: pxToRem($sbbExpansionPanelBorderWidth4k);
         }
         @include mq($from: desktop5k) {
           width: calc(100% - #{pxToRem((64 - $sbbExpansionPanelBorderWidth4k) * 2)});
