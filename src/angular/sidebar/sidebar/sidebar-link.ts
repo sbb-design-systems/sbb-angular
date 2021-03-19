@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'sbb-sidebar-link',
+    class: 'sbb-sidebar-link sbb-alternative-link',
   },
 })
 export class SbbSidebarLink {}

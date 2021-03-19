@@ -37,7 +37,7 @@ ng_module(
 sass_library(
     name = "sidebar_scss_lib",
     srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/core/styles:common_scss_lib"],
+    deps = ["//src/angular/styles:common_scss_lib"],
 )
 
 sass_binary(

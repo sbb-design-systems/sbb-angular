@@ -426,8 +426,8 @@ p,
 // Link
 // ----------------------------------------------------------------------------------------------------
 
-a:not(.sbb-menu-item),
-.sbb-link:not(.sbb-menu-item) {
+a:not(.sbb-menu-item):not(.sbb-alternative-link),
+.sbb-link:not(.sbb-menu-item):not(.sbb-alternative-link) {
   color: $sbbColorText;
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b

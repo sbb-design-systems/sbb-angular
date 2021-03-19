@@ -35,7 +35,7 @@ ng_module(
 sass_library(
     name = "<%= name %>_scss_lib",
     srcs = glob(["**/_*.scss"]),
-    deps = [<% if(path.includes('/angular/')) { %>"//src/angular/core/styles:common_scss_lib"<% } else {%>"//src/angular-core/styles:common_scss_lib"<% } %>],
+    deps = [<% if(path.includes('/angular/')) { %>"//src/angular/styles:common_scss_lib"<% } else {%>"//src/angular-core/styles:common_scss_lib"<% } %>],
 )<% } %><% for (let stylesheet of sassBinaries) { %>
 
 sass_binary(
