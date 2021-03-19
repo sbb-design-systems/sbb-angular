@@ -194,18 +194,6 @@
     pxToRem(-$borderWidth * $scalingFactor) $sbbColorCloud;
 }
 
-@mixin borderLeftAsBefore($color) {
-  &::before {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: pxToRem(1);
-    left: 0;
-    top: 0;
-    background-color: $color;
-  }
-}
-
 /**
  * Display content for screen reader only.
  * Copied from angular/components .cdk-visually-hidden, in order
@@ -240,4 +228,32 @@
 @mixin buttonResetFrameless() {
   @include buttonReset();
   border: none;
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Sbb Menu
+// ----------------------------------------------------------------------------------------------------
+
+@mixin borderLeftAsBefore($color) {
+  &::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: pxToRem(1);
+    left: 0;
+    top: 0;
+    background-color: $color;
+  }
+}
+
+@mixin sbbMenuItemSelectedLean() {
+  color: $sbbColorBlack;
+  background-color: $sbbColorCloud;
+  @include borderLeftAsBefore($sbbColorBlack);
+}
+
+@mixin sbbMenuItemActiveLean() {
+  color: $sbbColorRed125;
+  background-color: $sbbColorMilk;
+  @include borderLeftAsBefore($sbbColorRed125);
 }

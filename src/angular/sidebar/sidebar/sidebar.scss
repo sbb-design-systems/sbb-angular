@@ -131,29 +131,26 @@ sbb-header + .sbb-sidebar-container {
 }
 
 .sbb-sidebar-link {
+  position: relative;
+  text-decoration: none;
+  color: $sbbColorIron;
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  position: relative;
-  padding: pxToRem(5) pxToRem(16) pxToRem(7) pxToRem(15);
+  padding: pxToRem(5) pxToRem(16) pxToRem(7) pxToRem(16);
   width: calc(100% + #{pxToRem(15)}); // TODO: adapt 4k
-  color: $sbbColorIron;
-  text-decoration: none;
   line-height: pxToRem(20);
 
   &:hover,
   &:focus {
-    color: $sbbColorRed125;
-    background-color: $sbbColorMilk;
-    @include borderLeftAsBefore($sbbColorRed125);
+    @include sbbMenuItemActiveLean();
   }
 
   &.sbb-active {
-    background-color: $sbbColorCloud;
-    color: $sbbColorBlack;
-    cursor: default;
+    @include sbbMenuItemSelectedLean();
     pointer-events: none;
-    @include borderLeftAsBefore($sbbColorBlack);
+    cursor: default;
   }
 
   &:not(.sbb-active) {
@@ -162,9 +159,7 @@ sbb-header + .sbb-sidebar-container {
 }
 
 .sbb-sidebar-link-label {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  @include ellipsis();
   flex: 1 1;
 }
 

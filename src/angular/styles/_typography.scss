@@ -1921,11 +1921,7 @@ $menuItemPaddingTopBottom: 4;
   &.sbb-selected {
     color: $sbbColorBlack;
     html.sbb-lean & {
-      // Copied color from '&.sbb-selected' to be specific enough.
-      // Otherwise color of 'html.sbb-lean &' would be applied.
-      color: $sbbColorBlack;
-      background-color: $sbbColorCloud;
-      @include borderLeftAsBefore($sbbColorBlack);
+      @include sbbMenuItemSelectedLean();
     }
   }
 
@@ -1944,9 +1940,7 @@ $menuItemPaddingTopBottom: 4;
   &.sbb-active {
     color: $sbbColorRed;
     html.sbb-lean & {
-      color: $sbbColorRed125;
-      background-color: $sbbColorMilk;
-      @include borderLeftAsBefore($sbbColorRed125);
+      @include sbbMenuItemActiveLean();
     }
   }
 
