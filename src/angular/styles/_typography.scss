@@ -777,10 +777,11 @@ textarea {
 
 fieldset,
 .sbb-fieldset {
+  $borderWidth: 1;
   margin: 0;
   min-width: 0;
-  border: pxToRem(1) solid $sbbColorSilver;
-  padding: pxToRem(36) pxToRem(24);
+  border: pxToRem($borderWidth) solid $sbbColorSilver;
+  padding: pxToRem(36 - $borderWidth) pxToRem(24 - $borderWidth);
 
   > legend {
     display: block;
@@ -850,8 +851,8 @@ fieldset,
     }
   }
   html.sbb-lean & {
-    border: pxToRem(1) solid $sbbColorGraphite;
-    padding: pxToRem(16);
+    border: pxToRem($borderWidth) solid $sbbColorGraphite;
+    padding: pxToRem(16 - $borderWidth);
 
     > legend {
       font-size: pxToRem(21);

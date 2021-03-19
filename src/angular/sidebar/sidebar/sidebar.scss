@@ -1,6 +1,10 @@
 @import '../../styles/common';
 @import '../sidebar';
 
+// Standard styles for sbb-sidebar are taken from NBC definitions and are a simple
+// modification to achieve a minimal acceptable look of the sbb-sidebar in standard.
+// There are no 4k and 5k styles.
+
 $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
 
 .sbb-sidebar-container {
@@ -92,28 +96,72 @@ sbb-header + .sbb-sidebar-container {
   .sbb-expansion-panel-header {
     background-color: inherit;
 
+    html:not(.sbb-lean) & {
+      padding: pxToRem(24 - 1) pxToRem(24 - 1) pxToRem(26 - 1) pxToRem(24 - 1);
+
+      .sbb-expansion-panel-header-indicator {
+        width: pxToRem(24);
+        height: pxToRem(24);
+        border-width: pxToRem(1);
+        padding: pxToRem(3);
+        margin-left: pxToRem(24);
+      }
+
+      .sbb-expansion-panel-header-content {
+        font-size: pxToRem(21);
+        line-height: pxToRem(25.2);
+      }
+
+      &::after {
+        left: pxToRem(24);
+        width: calc(100% - #{pxToRem(2 * 24)});
+      }
+
+      &.sbb-expanded::after {
+        border-width: pxToRem(1);
+        left: pxToRem(24);
+        width: calc(100% - #{pxToRem(2 * 24)});
+      }
+    }
+
     /**
      animate line below legend when collapsing.
      styles are copied from .sbb-expansion-panel-header
-     TODO
     */
     &::after {
       content: '';
       display: block;
       position: absolute;
       height: 0;
-      width: calc(100% - #{pxToRem(32)});
       bottom: 0;
+      width: calc(100% - #{pxToRem(2 * 16)});
       left: pxToRem(16);
       border-bottom: pxToRem(1) solid transparent;
       transition: border-bottom $swift-ease-out-duration $swift-ease-out-timing-function;
     }
   }
 
+  html:not(.sbb-lean) & {
+    > fieldset,
+    .sbb-expansion-panel-body {
+      padding: pxToRem(24 - 1);
+    }
+
+    > fieldset {
+      & > legend {
+        font-size: pxToRem(21);
+      }
+    }
+  }
+
   > sbb-expansion-panel,
   > fieldset {
-    border: none;
-    border-bottom: pxToRem(1) solid $sbbColorCloud;
+    html.sbb-lean &,
+    html:not(.sbb-lean) & {
+      // Used to overwrite fieldset styles from typography
+      border: none;
+      border-bottom: pxToRem(1) solid $sbbColorCloud;
+    }
 
     + fieldset,
     + sbb-expansion-panel {
@@ -135,11 +183,12 @@ sbb-header + .sbb-sidebar-container {
   text-decoration: none;
   color: $sbbColorIron;
 
+  font-size: pxToRem($sizeFontDefault);
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: pxToRem(5) pxToRem(16) pxToRem(7) pxToRem(16);
-  width: calc(100% + #{pxToRem(15)}); // TODO: adapt 4k
+  width: calc(100% + #{pxToRem(16 - 1)});
   line-height: pxToRem(20);
 
   &:hover,
@@ -155,6 +204,10 @@ sbb-header + .sbb-sidebar-container {
 
   &:not(.sbb-active) {
     outline: 0;
+  }
+
+  html:not(.sbb-lean) & {
+    width: calc(100% + #{pxToRem(24 - 1)});
   }
 }
 
