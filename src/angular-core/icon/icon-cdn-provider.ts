@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.13.0 of the icon CDN.
+ * Generated from version v1.14.0 of the icon CDN.
  * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
@@ -223,6 +223,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'sa-vo',
         'sa-vp',
         'sa-vr',
+        'sa-vs',
         'sa-vt',
         'sa-vx',
         'sa-wb',
