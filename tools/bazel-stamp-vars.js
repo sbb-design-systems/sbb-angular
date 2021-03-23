@@ -9,14 +9,13 @@
 
 const spawnSync = require('child_process').spawnSync;
 const packageJson = require('../package');
-
-const currentCommitSha = getCurrentCommitSha();
+const isSnapshotStamp = process.argv.slice(2).includes('--snapshot');
 
 // The "BUILD_SCM_VERSION" will be picked up by the "npm_package" and "ng_package"
 // rule in order to populate the "0.0.0-PLACEHOLDER". Note that the SHA will be only
 // appended for snapshots builds from within the "publish-build-artifacts.sh" script.
-console.log(`BUILD_SCM_VERSION ${packageJson.version}`);
-console.log(`BUILD_SCM_COMMIT_SHA ${currentCommitSha}`);
+console.log(`BUILD_SCM_VERSION ${getBuildVersion()}`);
+console.log(`BUILD_SCM_COMMIT_SHA ${getCurrentCommitSha()}`);
 console.log(`BUILD_SCM_BRANCH ${getCurrentBranchName()}`);
 console.log(`BUILD_SCM_USER ${getCurrentGitUser()}`);
 
@@ -36,4 +35,18 @@ function getCurrentGitUser() {
   const userEmail = spawnSync('git', ['config', 'user.email']).stdout.toString().trim();
 
   return `${userName} <${userEmail}>`;
+}
+
+/** Gets the version for the current build. */
+function getBuildVersion() {
+  if (isSnapshotStamp) {
+    // Note that we cannot store the commit SHA as prerelease segment as it will not comply
+    // with the semver specification in some situations. For example: `1.0.0-00abcdef` will
+    // break since the SHA starts with zeros. To fix this, we create a prerelease segment with
+    // label where the SHA is considered part of the label and not the prerelease number.
+    // Here is an example of the valid format: "1.0.0-sha-00abcdef".
+    // See issue: https://jubianchi.github.io/semver-check/#/^8.0.0/8.2.2-0462599
+    return `${packageJson.version}-sha-${getAbbreviatedCommitSha()}`;
+  }
+  return packageJson.version;
 }
