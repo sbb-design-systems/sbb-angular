@@ -22,6 +22,10 @@ export class AngularComponent {
     'time-input': 'Time Input',
     toggle: 'Toggle',
   };
+  navigationComponents = {
+    header: 'Header',
+    sidebar: 'Sidebar',
+  };
   layoutComponents = {
     accordion: 'Accordion',
     breadcrumb: 'Breadcrumb',

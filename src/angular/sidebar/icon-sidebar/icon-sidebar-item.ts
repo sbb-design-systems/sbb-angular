@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'sbb-icon-sidebar-item sbb-icon-fit sbb-alternative-link',
+    class: 'sbb-icon-sidebar-item sbb-icon-fit',
   },
 })
 export class SbbIconSidebarItem {

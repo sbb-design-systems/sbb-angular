@@ -23,6 +23,16 @@
       >
     </sbb-expansion-panel>
     <sbb-expansion-panel expanded>
+      <sbb-expansion-panel-header>Navigation Components</sbb-expansion-panel-header>
+      <a
+        sbbSidebarLink
+        *ngFor="let c of navigationComponents | keyvalue"
+        [routerLink]="['./components/', c.key]"
+        routerLinkActive="sbb-active"
+        >{{ c.value }}</a
+      >
+    </sbb-expansion-panel>
+    <sbb-expansion-panel expanded>
       <sbb-expansion-panel-header>Layout Components</sbb-expansion-panel-header>
       <a
         sbbSidebarLink

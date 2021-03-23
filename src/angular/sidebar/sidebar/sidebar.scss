@@ -78,6 +78,41 @@ sbb-header + .sbb-sidebar-container {
   transform: translate3d(-100%, 0, 0);
   border-right: pxToRem(1) solid $sbbColorCloud;
   background-color: $sbbColorWhite;
+
+  .sbb-sidebar-link {
+    position: relative;
+    text-decoration: none;
+    color: $sbbColorIron;
+    font-size: pxToRem($sizeFontDefault);
+    line-height: pxToRem(20);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: calc(100% + #{pxToRem(24 - 1)});
+    padding: pxToRem(5) pxToRem(16) pxToRem(7) pxToRem(16);
+
+    &:hover,
+    &:focus {
+      @include sbbMenuItemActiveLean();
+    }
+
+    &.sbb-active {
+      @include sbbMenuItemSelectedLean();
+      pointer-events: none;
+      cursor: default;
+    }
+
+    &:not(.sbb-active) {
+      outline: 0;
+    }
+
+    html.sbb-lean & {
+      width: calc(100% + #{pxToRem(16 - 1)});
+
+      // Redefined to be more specific
+      line-height: pxToRem(20);
+    }
+  }
 }
 
 .sbb-sidebar-side {
@@ -156,9 +191,9 @@ sbb-header + .sbb-sidebar-container {
 
   > sbb-expansion-panel,
   > fieldset {
+    // Used standard and lean selectors to be more specific than typography styles
     html.sbb-lean &,
     html:not(.sbb-lean) & {
-      // Used to overwrite fieldset styles from typography
       border: none;
       border-bottom: pxToRem(1) solid $sbbColorCloud;
     }
@@ -175,39 +210,6 @@ sbb-header + .sbb-sidebar-container {
     &:last-child {
       border-bottom: none;
     }
-  }
-}
-
-.sbb-sidebar-link {
-  position: relative;
-  text-decoration: none;
-  color: $sbbColorIron;
-
-  font-size: pxToRem($sizeFontDefault);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: pxToRem(5) pxToRem(16) pxToRem(7) pxToRem(16);
-  width: calc(100% + #{pxToRem(16 - 1)});
-  line-height: pxToRem(20);
-
-  &:hover,
-  &:focus {
-    @include sbbMenuItemActiveLean();
-  }
-
-  &.sbb-active {
-    @include sbbMenuItemSelectedLean();
-    pointer-events: none;
-    cursor: default;
-  }
-
-  &:not(.sbb-active) {
-    outline: 0;
-  }
-
-  html:not(.sbb-lean) & {
-    width: calc(100% + #{pxToRem(24 - 1)});
   }
 }
 

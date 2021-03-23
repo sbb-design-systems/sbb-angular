@@ -426,14 +426,13 @@ p,
 // Link
 // ----------------------------------------------------------------------------------------------------
 
-a:not(.sbb-menu-item):not(.sbb-alternative-link),
-.sbb-link:not(.sbb-menu-item):not(.sbb-alternative-link) {
+a:not(.sbb-menu-item),
+.sbb-link:not(.sbb-menu-item) {
   color: $sbbColorText;
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
-  html:not(.sbb-lean) & {
-    line-height: 1.733;
-  }
+  line-height: 1.733;
+
   html.sbb-lean & {
     line-height: pxToRem($sizeLineHeightDefaultLean);
   }

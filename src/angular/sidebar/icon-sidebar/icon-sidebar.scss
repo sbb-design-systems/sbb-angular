@@ -34,6 +34,73 @@ sbb-header + .sbb-icon-sidebar-container {
     border: none;
     border-top: solid pxToRem(1) $sbbColorGraphite;
   }
+
+  // To be more specific this definition has to be inside sbb-icon-sidebar
+  .sbb-icon-sidebar-item {
+    position: relative;
+    text-decoration: none;
+    color: $sbbColorIron;
+    font-size: pxToRem($sizeFontDefault);
+    line-height: pxToRem(23);
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: pxToRem(48);
+
+    &:not(.sbb-active) {
+      outline: 0;
+    }
+
+    &:hover,
+    &:focus {
+      @include sbbMenuItemActiveLean();
+    }
+
+    &.sbb-active {
+      @include sbbMenuItemSelectedLean();
+      background-color: $sbbColorWhite;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    html.sbb-lean & {
+      // Redefined to be more specific
+      line-height: pxToRem(23);
+    }
+
+    // To be more specific this definition has to be inside sbb-icon-sidebar-item
+    &.sbb-icon-sidebar-collapse-expand-button {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: $sbbColorMilk;
+      cursor: pointer;
+      outline: 0;
+      overflow: hidden;
+
+      &:hover,
+      &:focus {
+        &:before {
+          content: none;
+        }
+      }
+
+      .sbb-icon-sidebar-item-icon {
+        transition: transform $swift-ease-out-duration $swift-ease-out-timing-function;
+      }
+    }
+  }
+
+  &.sbb-icon-sidebar-collapsed .sbb-icon-sidebar-item.sbb-icon-sidebar-collapse-expand-button {
+    // Clip expand / collapse button text instead of ellipsis because of weird animation
+    &.sbb-icon-sidebar-item .sbb-icon-sidebar-item-label {
+      text-overflow: clip;
+    }
+
+    .sbb-icon-sidebar-item-icon {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .sbb-icon-sidebar-inner-container {
@@ -50,34 +117,6 @@ sbb-header + .sbb-icon-sidebar-container {
 
 .sbb-icon-sidebar-links {
   margin-bottom: pxToRem(48);
-}
-
-.sbb-icon-sidebar-item {
-  display: inline-flex;
-  width: 100%;
-  align-items: center;
-  height: pxToRem(48);
-  color: $sbbColorIron;
-  text-decoration: none;
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem(23);
-  position: relative;
-
-  &:not(.sbb-active) {
-    outline: 0;
-  }
-
-  &:hover,
-  &:focus {
-    @include sbbMenuItemActiveLean();
-  }
-
-  &.sbb-active {
-    @include sbbMenuItemSelectedLean();
-    background-color: $sbbColorWhite;
-    cursor: default;
-    pointer-events: none;
-  }
 }
 
 .sbb-icon-sidebar-item-icon {
@@ -103,42 +142,6 @@ sbb-header + .sbb-icon-sidebar-container {
   padding: 0 pxToRem(12) 0 pxToRem(4);
 }
 
-.sbb-icon-sidebar-collapse-expand-button {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: $sbbColorMilk;
-  cursor: pointer;
-  outline: 0;
-  overflow: hidden;
-
-  &:hover,
-  &:focus {
-    &:before {
-      content: none;
-    }
-  }
-
-  .sbb-icon-sidebar-item-icon {
-    transition: transform $swift-ease-out-duration $swift-ease-out-timing-function;
-    .sbb-icon {
-      width: pxToRem(24);
-      height: pxToRem(24);
-    }
-  }
-
-  .sbb-icon-sidebar-collapsed & {
-    // Clip expand / collapse button text instead of ellipsis because of weird animation
-    &.sbb-icon-sidebar-item .sbb-icon-sidebar-item-label {
-      text-overflow: clip;
-    }
-
-    .sbb-icon-sidebar-item-icon {
-      transform: rotate(180deg);
-    }
-  }
-}
-
 .sbb-icon-sidebar-container-mobile {
   flex-direction: column-reverse;
 
@@ -156,6 +159,24 @@ sbb-header + .sbb-icon-sidebar-container {
       flex: 0 0 pxToRem(1);
       border-top: none;
       border-left: solid pxToRem(1) $sbbColorGraphite;
+    }
+
+    // To be more specific this definition has to be inside sbb-icon-sidebar
+    .sbb-icon-sidebar-item {
+      display: flex;
+      flex: 1 0 $sbb-icon-sidebar-collapsed-width;
+      justify-content: center;
+
+      &:hover,
+      &:focus,
+      &.sbb-active {
+        &:before {
+          width: 100%;
+          height: pxToRem(2);
+          top: auto;
+          bottom: 0;
+        }
+      }
     }
   }
 
@@ -177,23 +198,6 @@ sbb-header + .sbb-icon-sidebar-container {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 0;
-  }
-
-  .sbb-icon-sidebar-item {
-    display: flex;
-    flex: 1 0 $sbb-icon-sidebar-collapsed-width;
-    justify-content: center;
-
-    &:hover,
-    &:focus,
-    &.sbb-active {
-      &:before {
-        width: 100%;
-        height: pxToRem(2);
-        top: auto;
-        bottom: 0;
-      }
-    }
   }
 
   .sbb-icon-sidebar-item-label {
