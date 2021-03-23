@@ -8,7 +8,7 @@ import { startWith, takeUntil } from 'rxjs/operators';
 
 /**
  * @title Icon Sidebar
- * @order 10
+ * @order 20
  */
 @Component({
   selector: 'sbb-icon-sidebar-example',

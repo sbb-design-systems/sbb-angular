@@ -24,7 +24,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
 
 .sbb-sidebar-container.sbb-sidebar-after-header,
 sbb-header + .sbb-sidebar-container {
-  top: $sbb-sidebar-after-header-top;
+  top: pxToRem($sbb-sidebar-after-header-top);
 }
 
 .sbb-sidebar-backdrop {

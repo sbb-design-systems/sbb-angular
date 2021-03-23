@@ -5,7 +5,7 @@ $sbb-sidebar-backdrop-z-index: 3;
 $sbb-sidebar-over-sidebar-z-index: 4;
 $swift-ease-out-duration: 300ms !default;
 $swift-ease-out-timing-function: ease-in-out !default;
-$sbb-sidebar-after-header-top: 54px; // TODO: can be changed to rem if header is defined with rem
+$sbb-sidebar-after-header-top: 54;
 
 @mixin sbb-sidebar-fill {
   top: 0;

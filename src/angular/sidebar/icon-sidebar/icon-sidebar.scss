@@ -13,7 +13,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
 
 .sbb-icon-sidebar-container.sbb-icon-sidebar-after-header,
 sbb-header + .sbb-icon-sidebar-container {
-  top: $sbb-sidebar-after-header-top;
+  top: pxToRem($sbb-sidebar-after-header-top);
 }
 
 .sbb-icon-sidebar-content {
