@@ -1,6 +1,7 @@
 import { DevkitContext, Migration, TargetVersion } from '@angular/cdk/schematics';
 import * as ts from 'typescript';
 
+import { classNames } from '../data';
 import { sbbAngularModuleSpecifiers } from '../typescript/module-specifiers';
 
 const ONLY_SUBPACKAGE_FAILURE_STR =
@@ -22,6 +23,15 @@ const ANGULAR_FILEPATH_REGEX = new RegExp(`(${sbbAngularModuleSpecifiers.join('|
  * we didn't manage to resolve the module name of a symbol using the type checker.
  */
 const ENTRY_POINT_MAPPINGS: { [name: string]: string } = require('./sbb-angular-symbols.json');
+
+/**
+ * Mapping of the class name rename migrations.
+ */
+const CLASS_NAME_RENAMES = classNames['merge' as TargetVersion]!.reduce(
+  (renames, entry) =>
+    entry.changes.reduce((current, next) => current.set(next.replace, next.replaceWith), renames),
+  new Map<string, string>()
+);
 
 /**
  * Migration that updates imports which refer to the primary Angular SBB Angular
@@ -101,7 +111,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
       if (!moduleName) {
         this.createFailureAtNode(
           element,
-          `"${element.getText()}" was not found in the Angular library.`
+          `"${element.getText()}" was not found in the @sbb-esta/angular library.`
         );
         return;
       }
@@ -125,7 +135,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
         const newImport = ts.createImportDeclaration(
           undefined,
           undefined,
-          ts.createImportClause(undefined, ts.createNamedImports(elements)),
+          ts.createImportClause(undefined, ts.createNamedImports(applyRenames(elements))),
           createStringLiteral(`@sbb-esta/${destinationPackageName}/${name}`, singleQuoteImport)
         );
         return this.printer.printNode(
@@ -206,4 +216,29 @@ function resolveModuleName(node: ts.Identifier, typeChecker: ts.TypeChecker) {
   // filename. This will always match since only SBB Angular elements are analyzed.
   const matches = sourceFile.match(ANGULAR_FILEPATH_REGEX);
   return matches ? matches[1] : null;
+}
+
+/** Applies the renames from the class migration to the given elements. */
+function applyRenames(elements: ts.ImportSpecifier[]) {
+  return (
+    elements
+      .map((element) => {
+        const elementName = element.propertyName ? element.propertyName : element.name;
+        if (!CLASS_NAME_RENAMES.has(elementName.text)) {
+          return element;
+        }
+
+        const nameIdentifier = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
+        return element.propertyName
+          ? ts.createImportSpecifier(nameIdentifier, element.name)
+          : ts.createImportSpecifier(undefined, nameIdentifier);
+      })
+      // If the import name occurs multiple times, filter out the duplicates.
+      // (e.g. both SbbLinksModule and SbbButtonModule will be SbbButtonModule,
+      // so the second import should be removed)
+      .filter(
+        (e, i, a) =>
+          e.propertyName || a.findIndex((v) => !v.propertyName && v.name.text === e.name.text) === i
+      )
+  );
 }

@@ -22,8 +22,8 @@ import {
 import {
   HasVariantCtor,
   mixinVariant,
+  SbbOptgroup,
   SbbOption,
-  SbbOptionGroup,
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular/core';
 import { Subscription } from 'rxjs';
@@ -135,7 +135,7 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
   @ContentChildren(SbbOption, { descendants: true }) options: QueryList<SbbOption>;
 
   /** All of the defined groups of options. */
-  @ContentChildren(SbbOptionGroup, { descendants: true }) optionGroups: QueryList<SbbOptionGroup>;
+  @ContentChildren(SbbOptgroup, { descendants: true }) optionGroups: QueryList<SbbOptgroup>;
 
   /** Aria label of the autocomplete. If not specified, the placeholder will be used as label. */
   @Input('aria-label') ariaLabel: string;

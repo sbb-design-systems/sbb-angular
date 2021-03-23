@@ -19,13 +19,15 @@ import {
 } from '@sbb-esta/angular-core/breakpoints';
 import { SbbIconDirectiveModule, SbbIconDirective } from '@sbb-esta/angular-core/icon-directive';
 import { SbbOptionGroup, SbbOptionModule } from '@sbb-esta/angular-public/option';
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'sbb-optgroup-test',
   template: `<sbb-option-group></sbb-option-group>`,
 })
-export class SbbOptgroupTestComponent {}
+export class SbbOptgroupTestComponent {
+  @ViewChild(SbbOptionGroup) optionGroup: SbbOptionGroup;
+}
 
 @NgModule({
   declarations: [SbbOptgroupTestComponent],

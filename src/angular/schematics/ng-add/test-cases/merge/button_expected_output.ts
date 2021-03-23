@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbButtonModule, SbbLinksModule } from '@sbb-esta/angular/button';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 
 @Component({
   selector: 'sbb-button-test',

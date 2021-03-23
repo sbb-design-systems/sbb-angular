@@ -21,6 +21,3 @@ export * from './option/option';
 export * from './option/option-parent';
 export * from './option/optgroup';
 export * from './option/pseudo-checkbox';
-
-/** @deprecated Remove with v13 */
-export { SbbOptgroup as SbbOptionGroup } from './option/optgroup';
