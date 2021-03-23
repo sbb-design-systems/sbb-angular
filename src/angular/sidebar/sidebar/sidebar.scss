@@ -1,0 +1,282 @@
+@import '../../styles/common';
+@import '../sidebar';
+
+// Standard styles for sbb-sidebar are taken from NBC definitions and are a simple
+// modification to achieve a minimal acceptable look of the sbb-sidebar in standard.
+// There are no 4k and 5k styles.
+
+$sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
+
+.sbb-sidebar-container {
+  @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
+
+  // Need this to take up space in the layout.
+  display: flex;
+  flex-direction: column;
+
+  // Hide the sidebars when they're closed.
+  overflow: hidden;
+
+  &.sbb-sidebar-container-has-open {
+    overflow: hidden;
+  }
+}
+
+.sbb-sidebar-container.sbb-sidebar-after-header,
+sbb-header + .sbb-sidebar-container {
+  top: pxToRem($sbb-sidebar-after-header-top);
+}
+
+.sbb-sidebar-backdrop {
+  @include sbb-sidebar-fill();
+
+  display: block;
+
+  // Because of the new stacking context, the z-index stack is new and we can use our own
+  // numbers.
+  z-index: $sbb-sidebar-backdrop-z-index;
+
+  // We use 'visibility: hidden | visible' because 'display: none' will not animate any
+  // transitions, while visibility will interpolate transitions properly.
+  // see https://developer.mozilla.org/en-US/docs/Web/CSS/visibility, the Interpolation
+  // section.
+  visibility: hidden;
+
+  &.sbb-sidebar-shown {
+    visibility: visible;
+  }
+}
+
+.sbb-sidebar-transition .sbb-sidebar-backdrop {
+  transition: {
+    duration: $swift-ease-out-duration;
+    timing-function: $swift-ease-out-timing-function;
+    property: background-color, visibility;
+  }
+}
+
+.sbb-sidebar-content {
+  @include sbb-sidebar-content;
+  z-index: $sbb-sidebar-content-z-index;
+  height: 100%;
+
+  .sbb-sidebar-transition & {
+    transition: {
+      duration: $swift-ease-out-duration;
+      timing-function: $swift-ease-out-timing-function;
+      property: transform, margin-left, margin-right;
+    }
+  }
+}
+
+.sbb-sidebar {
+  @include sbb-sidebar;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: pxToRem(300);
+  transform: translate3d(-100%, 0, 0);
+  border-right: pxToRem(1) solid $sbbColorCloud;
+  background-color: $sbbColorWhite;
+
+  .sbb-sidebar-link {
+    position: relative;
+    text-decoration: none;
+    color: $sbbColorIron;
+    font-size: pxToRem($sizeFontDefault);
+    line-height: pxToRem(20);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: calc(100% + #{pxToRem(24 - 1)});
+    padding: pxToRem(5) pxToRem(16) pxToRem(7) pxToRem(16);
+
+    &:hover,
+    &:focus {
+      @include sbbMenuItemActiveLean();
+    }
+
+    &.sbb-active {
+      @include sbbMenuItemSelectedLean();
+      pointer-events: none;
+      cursor: default;
+    }
+
+    &:not(.sbb-active) {
+      outline: 0;
+    }
+
+    html.sbb-lean & {
+      width: calc(100% + #{pxToRem(16 - 1)});
+
+      // Redefined to be more specific
+      line-height: pxToRem(20);
+    }
+  }
+}
+
+.sbb-sidebar-side {
+  z-index: $sbb-sidebar-side-sidebar-z-index;
+}
+
+.sbb-sidebar-over {
+  z-index: $sbb-sidebar-over-sidebar-z-index;
+  box-shadow: pxToRem(4) 0 0 0 rgba(0, 0, 0, 0.15);
+  border-right: pxToRem(1) solid $sbbColorGranite;
+}
+
+.sbb-sidebar-inner-container {
+  @include sbb-sidebar-inner-container();
+
+  .sbb-expansion-panel-header {
+    background-color: inherit;
+
+    html:not(.sbb-lean) & {
+      padding: pxToRem(24 - 1) pxToRem(24 - 1) pxToRem(26 - 1) pxToRem(24 - 1);
+
+      .sbb-expansion-panel-header-indicator {
+        width: pxToRem(24);
+        height: pxToRem(24);
+        border-width: pxToRem(1);
+        padding: pxToRem(3);
+        margin-left: pxToRem(24);
+      }
+
+      .sbb-expansion-panel-header-content {
+        font-size: pxToRem(21);
+        line-height: pxToRem(25.2);
+      }
+
+      &::after {
+        left: pxToRem(24);
+        width: calc(100% - #{pxToRem(2 * 24)});
+      }
+
+      &.sbb-expanded::after {
+        border-width: pxToRem(1);
+        left: pxToRem(24);
+        width: calc(100% - #{pxToRem(2 * 24)});
+      }
+    }
+
+    /**
+     animate line below legend when collapsing.
+     styles are copied from .sbb-expansion-panel-header
+    */
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 0;
+      bottom: 0;
+      width: calc(100% - #{pxToRem(2 * 16)});
+      left: pxToRem(16);
+      border-bottom: pxToRem(1) solid transparent;
+      transition: border-bottom $swift-ease-out-duration $swift-ease-out-timing-function;
+    }
+  }
+
+  html:not(.sbb-lean) & {
+    > fieldset,
+    .sbb-expansion-panel-body {
+      padding: pxToRem(24 - 1);
+    }
+
+    > fieldset {
+      & > legend {
+        font-size: pxToRem(21);
+      }
+    }
+  }
+
+  > sbb-expansion-panel,
+  > fieldset {
+    // Used standard and lean selectors to be more specific than typography styles
+    html.sbb-lean &,
+    html:not(.sbb-lean) & {
+      border: none;
+      border-bottom: pxToRem(1) solid $sbbColorCloud;
+    }
+
+    + fieldset,
+    + sbb-expansion-panel {
+      margin-top: pxToRem(12);
+    }
+
+    + fieldset fieldset {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.sbb-sidebar-link-label {
+  @include ellipsis();
+  flex: 1 1;
+}
+
+sbb-icon.sbb-sidebar-link-arrow {
+  display: inline-flex;
+  height: pxToRem(24);
+  width: pxToRem(24);
+}
+
+.sbb-sidebar-container-mobile {
+  padding-top: $sbb-sidebar-mobile-menu-bar-height;
+
+  .sbb-sidebar-mobile-menu-bar,
+  .sbb-sidebar-mobile-menu-bar-close-wrapper {
+    display: flex;
+  }
+
+  .sbb-sidebar .sbb-sidebar-inner-container {
+    padding-top: $sbb-sidebar-mobile-menu-bar-height;
+  }
+
+  .sbb-sidebar-content {
+    padding-top: pxToRem(1);
+  }
+}
+
+.sbb-sidebar-mobile-menu-bar,
+.sbb-sidebar-mobile-menu-bar-close-wrapper {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.sbb-sidebar-mobile-menu-bar {
+  z-index: 2;
+  border-bottom: pxToRem(1) solid $sbbColorCloud;
+}
+
+.sbb-sidebar-mobile-menu-bar-trigger,
+.sbb-sidebar-mobile-menu-bar-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  width: pxToRem(54);
+  height: $sbb-sidebar-mobile-menu-bar-height;
+  cursor: pointer;
+  outline: none;
+
+  .sbb-icon {
+    width: pxToRem(24);
+    height: pxToRem(24);
+  }
+
+  &:focus {
+    color: $sbbColorRed125;
+  }
+}
+
+.sbb-sidebar-mobile-menu-bar-close-wrapper {
+  background-color: $sbbColorWhite;
+  z-index: 1;
+}

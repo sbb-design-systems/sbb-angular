@@ -431,9 +431,8 @@ a:not(.sbb-menu-item),
   color: $sbbColorText;
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
-  html:not(.sbb-lean) & {
-    line-height: 1.733;
-  }
+  line-height: 1.733;
+
   html.sbb-lean & {
     line-height: pxToRem($sizeLineHeightDefaultLean);
   }
@@ -777,10 +776,11 @@ textarea {
 
 fieldset,
 .sbb-fieldset {
+  $borderWidth: 1;
   margin: 0;
   min-width: 0;
-  border: pxToRem(1) solid $sbbColorSilver;
-  padding: pxToRem(36) pxToRem(24);
+  border: pxToRem($borderWidth) solid $sbbColorSilver;
+  padding: pxToRem(36 - $borderWidth) pxToRem(24 - $borderWidth);
 
   > legend {
     display: block;
@@ -850,8 +850,8 @@ fieldset,
     }
   }
   html.sbb-lean & {
-    border: pxToRem(1) solid $sbbColorGraphite;
-    padding: pxToRem(16);
+    border: pxToRem($borderWidth) solid $sbbColorGraphite;
+    padding: pxToRem(16 - $borderWidth);
 
     > legend {
       font-size: pxToRem(21);
@@ -1921,11 +1921,7 @@ $menuItemPaddingTopBottom: 4;
   &.sbb-selected {
     color: $sbbColorBlack;
     html.sbb-lean & {
-      // Copied color from '&.sbb-selected' to be specific enough.
-      // Otherwise color of 'html.sbb-lean &' would be applied.
-      color: $sbbColorBlack;
-      background-color: $sbbColorCloud;
-      @include borderLeftAsBefore($sbbColorBlack);
+      @include sbbMenuItemSelectedLean();
     }
   }
 
@@ -1944,9 +1940,7 @@ $menuItemPaddingTopBottom: 4;
   &.sbb-active {
     color: $sbbColorRed;
     html.sbb-lean & {
-      color: $sbbColorRed125;
-      background-color: $sbbColorMilk;
-      @include borderLeftAsBefore($sbbColorRed125);
+      @include sbbMenuItemActiveLean();
     }
   }
 

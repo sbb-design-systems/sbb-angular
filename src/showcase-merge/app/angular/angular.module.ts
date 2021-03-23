@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SbbDialogModule } from '@sbb-esta/angular-business/dialog';
-import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { SbbTooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { SbbPaginationModule } from '@sbb-esta/angular-public/pagination';
 import { SbbTabsModule } from '@sbb-esta/angular-public/tabs';
@@ -14,6 +13,7 @@ import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbLoadingModule } from '@sbb-esta/angular/loading';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
+import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 
 import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';
 import { SharedModule } from '../shared/shared.module';

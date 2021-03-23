@@ -1,0 +1,214 @@
+@import '../../styles/common';
+@import '../sidebar';
+
+$sbb-icon-sidebar-expanded-width: pxToRem(250);
+$sbb-icon-sidebar-collapsed-width: pxToRem(48);
+
+.sbb-icon-sidebar-container {
+  @include sbb-sidebar-container('.sbb-icon-sidebar');
+
+  display: flex;
+  flex-direction: row;
+}
+
+.sbb-icon-sidebar-container.sbb-icon-sidebar-after-header,
+sbb-header + .sbb-icon-sidebar-container {
+  top: pxToRem($sbb-sidebar-after-header-top);
+}
+
+.sbb-icon-sidebar-content {
+  @include sbb-sidebar-content;
+  flex: 1 1;
+}
+
+.sbb-icon-sidebar {
+  @include sbb-sidebar;
+  position: relative;
+  background-color: $sbbColorMilk;
+  transition: width $swift-ease-out-duration $swift-ease-out-timing-function;
+
+  hr {
+    margin-top: pxToRem(8);
+    margin-bottom: pxToRem(8);
+    padding: 0;
+    border: none;
+    border-top: solid pxToRem(1) $sbbColorGraphite;
+  }
+
+  // To be more specific this definition has to be inside sbb-icon-sidebar
+  .sbb-icon-sidebar-item {
+    position: relative;
+    text-decoration: none;
+    color: $sbbColorIron;
+    font-size: pxToRem($sizeFontDefault);
+    line-height: pxToRem(23);
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: pxToRem(48);
+
+    &:not(.sbb-active) {
+      outline: 0;
+    }
+
+    &:hover,
+    &:focus {
+      @include sbbMenuItemActiveLean();
+      &::before {
+        width: pxToRem(2);
+      }
+    }
+
+    &.sbb-active {
+      @include sbbMenuItemSelectedLean();
+      background-color: $sbbColorWhite;
+      cursor: default;
+      pointer-events: none;
+      &::before {
+        width: pxToRem(2);
+      }
+    }
+
+    html.sbb-lean & {
+      // Redefined to be more specific
+      line-height: pxToRem(23);
+    }
+
+    // To be more specific this definition has to be inside sbb-icon-sidebar-item
+    &.sbb-icon-sidebar-collapse-expand-button {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: $sbbColorMilk;
+      cursor: pointer;
+      outline: 0;
+      overflow: hidden;
+
+      &:hover,
+      &:focus {
+        &:before {
+          content: none;
+        }
+      }
+
+      .sbb-icon-sidebar-item-icon {
+        transition: transform $swift-ease-out-duration $swift-ease-out-timing-function;
+      }
+    }
+  }
+
+  &.sbb-icon-sidebar-collapsed .sbb-icon-sidebar-item.sbb-icon-sidebar-collapse-expand-button {
+    // Clip expand / collapse button text instead of ellipsis because of weird animation
+    &.sbb-icon-sidebar-item .sbb-icon-sidebar-item-label {
+      text-overflow: clip;
+    }
+
+    .sbb-icon-sidebar-item-icon {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.sbb-icon-sidebar-inner-container {
+  @include sbb-sidebar-inner-container();
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sbb-icon-sidebar-expanded {
+  width: $sbb-icon-sidebar-expanded-width;
+}
+
+.sbb-icon-sidebar-collapsed {
+  width: $sbb-icon-sidebar-collapsed-width;
+}
+
+.sbb-icon-sidebar-links {
+  margin-bottom: pxToRem(48);
+}
+
+.sbb-icon-sidebar-item-icon {
+  display: inline-flex;
+  height: pxToRem(48);
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 $sbb-icon-sidebar-collapsed-width;
+
+  .sbb-icon {
+    width: pxToRem(24);
+    height: pxToRem(24);
+  }
+
+  &:empty:after {
+    content: '?';
+    display: block;
+  }
+}
+
+.sbb-icon-sidebar-item-label {
+  @include ellipsis();
+  padding: 0 pxToRem(12) 0 pxToRem(4);
+}
+
+.sbb-icon-sidebar-container-mobile {
+  flex-direction: column-reverse;
+
+  .sbb-icon-sidebar {
+    width: auto;
+    height: pxToRem(48);
+    top: auto;
+    left: 0;
+    right: 0;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    hr {
+      margin: 0 pxToRem(8);
+      flex: 0 0 pxToRem(1);
+      border-top: none;
+      border-left: solid pxToRem(1) $sbbColorGraphite;
+    }
+
+    // To be more specific this definition has to be inside sbb-icon-sidebar
+    .sbb-icon-sidebar-item {
+      display: flex;
+      flex: 1 0 $sbb-icon-sidebar-collapsed-width;
+      justify-content: center;
+
+      &:hover,
+      &:focus,
+      &.sbb-active {
+        &:before {
+          width: 100%;
+          height: pxToRem(2);
+          top: auto;
+          bottom: 0;
+        }
+      }
+    }
+  }
+
+  .sbb-icon-sidebar-inner-container {
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    &.sbb-scrollbar {
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    }
+  }
+
+  .sbb-icon-sidebar-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+
+  .sbb-icon-sidebar-item-label {
+    @include sbbVisuallyHidden();
+  }
+}

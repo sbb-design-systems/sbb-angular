@@ -21,7 +21,6 @@ ng_module(
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
         "//src/angular-business/dialog",
-        "//src/angular-business/sidebar",
         "//src/angular-business/tooltip",
         "//src/angular-public/pagination",
         "//src/angular-public/tabs",
@@ -32,6 +31,7 @@ ng_module(
         "//src/angular/icon",
         "//src/angular/loading",
         "//src/angular/select",
+        "//src/angular/sidebar",
         "//src/showcase-merge/app/shared",
         "//src/showcase-merge/app/shared/component-viewer",
         "@npm//@angular/cdk",

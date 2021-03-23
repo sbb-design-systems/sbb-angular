@@ -121,6 +121,7 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
    *  - @sbb-esta/angular-public/usermenu: kom:chevron-right-small, kom:chevron-small-down-small, kom:user-small
    *  - @sbb-esta/angular/accordion: kom:chevron-right-small, kom:minus-small, kom:plus-small
    *  - @sbb-esta/angular/select: kom:chevron-right-small, kom:chevron-small-down-small
+   *  - @sbb-esta/angular/sidebar: kom:arrow-right-small, kom:chevron-small-left-circle-small, kom:cross-small, kom:hamburger-menu-small
    */
   const registry =
     parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);

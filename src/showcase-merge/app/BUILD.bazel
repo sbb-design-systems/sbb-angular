@@ -19,11 +19,11 @@ ng_module(
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
         "//src/angular-business/header",
-        "//src/angular-business/sidebar",
         "//src/angular/checkbox",
         "//src/angular/core",
         "//src/angular/icon",
         "//src/angular/radio-button",
+        "//src/angular/sidebar",
         "//src/showcase-merge/app/angular",
         "//src/showcase-merge/app/maps",
         "//src/showcase-merge/app/shared",

@@ -1,0 +1,59 @@
+$sbb-sidebar-container-z-index: 1;
+$sbb-sidebar-content-z-index: 1;
+$sbb-sidebar-side-sidebar-z-index: 2;
+$sbb-sidebar-backdrop-z-index: 3;
+$sbb-sidebar-over-sidebar-z-index: 4;
+$swift-ease-out-duration: 300ms !default;
+$swift-ease-out-timing-function: ease-in-out !default;
+$sbb-sidebar-after-header-top: 54;
+
+@mixin sbb-sidebar-fill {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+@mixin sbb-sidebar-container($cssNoneTransitionClasses) {
+  // We need a stacking context here so that the backdrop and sidebars are clipped to the
+  // SbbSidebarContainer. This creates a new z-index stack so we use low numbered z-indices.
+  // We create another stacking context in the '.sbb-sidebar-content' and in each sidebar so that
+  // the application content does not get messed up with our own CSS.
+  z-index: $sbb-sidebar-container-z-index;
+
+  -webkit-overflow-scrolling: touch;
+
+  @include sbb-sidebar-fill();
+
+  // Note that the `NoopAnimationsModule` is being handled inside of the component code.
+  &.ng-animate-disabled,
+  .ng-animate-disabled & {
+    #{$cssNoneTransitionClasses} {
+      transition: none;
+    }
+  }
+}
+
+@mixin sbb-sidebar-content {
+  display: block;
+  position: relative;
+  overflow: auto;
+}
+
+@mixin sbb-sidebar {
+  display: block;
+  outline: 0;
+  overflow-y: auto; // TODO(kara): revisit scrolling behavior for sidebars
+}
+
+// Note that this div isn't strictly necessary on all browsers, however we need it in
+// order to avoid a layout issue in Chrome. The issue is that in RTL mode the browser doesn't
+// account for the sidebar's scrollbar while positioning, which ends up pushing it partially
+// out of the screen. We work around the issue by having the scrollbar be on this inner container.
+@mixin sbb-sidebar-inner-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}

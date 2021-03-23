@@ -5,10 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbHeaderModule } from '@sbb-esta/angular-business/header';
-import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbIconModule, SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular/icon';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
+import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

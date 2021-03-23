@@ -1,9 +1,9 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbSidebarModule } from '@sbb-esta/angular-business/sidebar';
 import { SbbEsriConfigModule } from '@sbb-esta/angular-maps/esri-config';
 import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
+import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 
 import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';
 import { SharedModule } from '../shared/shared.module';

@@ -1,0 +1,28 @@
+<div class="sidebar-frame">
+  <sbb-icon-sidebar-container>
+    <sbb-icon-sidebar [(expanded)]="expanded">
+      <a sbbIconSidebarItem label="Station" href="">
+        <sbb-icon svgIcon="kom:station-small"></sbb-icon>
+      </a>
+      <a sbbIconSidebarItem label="Lockers" class="sbb-active">
+        <sbb-icon svgIcon="kom:locker-small"></sbb-icon>
+      </a>
+      <hr />
+      <a sbbIconSidebarItem label="Money Exchange" href="">
+        <sbb-icon svgIcon="kom:money-exchange-small"></sbb-icon>
+      </a>
+      <a sbbIconSidebarItem label="Waiting Room" href="">
+        <sbb-icon svgIcon="kom:waiting-room-small"></sbb-icon>
+      </a>
+    </sbb-icon-sidebar>
+    <sbb-icon-sidebar-content role="main"> Lockers (Content) </sbb-icon-sidebar-content>
+  </sbb-icon-sidebar-container>
+</div>
+
+<h4>Properties</h4>
+<div class="sbb-checkbox-group-vertical">
+  <sbb-checkbox [(ngModel)]="expanded" [disabled]="simulateMobile.value"
+    >Expand Icon Menu</sbb-checkbox
+  >
+  <sbb-checkbox [formControl]="simulateMobile">Simulate Mobile View</sbb-checkbox>
+</div>
