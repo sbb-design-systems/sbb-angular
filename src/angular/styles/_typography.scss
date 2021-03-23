@@ -900,10 +900,8 @@ fieldset,
   text-align: center;
   font-size: pxToRem($sizeFontDefault);
   line-height: pxToRem(26);
-  border-style: solid;
-  border-width: pxToRem(1);
-  border-radius: pxToRem(2);
-  border-color: transparent;
+  border: pxToRem(1) solid transparent;
+  border-radius: pxToEm(2);
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
   padding: pxToRem(9) pxToRem(39) pxToRem(11);
@@ -922,8 +920,7 @@ fieldset,
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault * $scalingFactor4k);
       line-height: pxToRem(39);
-      border-radius: pxToRem(2 * $scalingFactor4k);
-      border-width: pxToRem(2 * $scalingFactor4k);
+      border-width: pxToRem(2);
       // Subtract 2 from the padding values, since we always use the border
       // in order to avoid tearing on state changes.
       padding: pxToRem(14) pxToRem(58) pxToRem(15);
@@ -931,8 +928,6 @@ fieldset,
     @include mq($from: desktop5k) {
       font-size: pxToRem($sizeFontDefault * $scalingFactor5k);
       line-height: pxToRem(52);
-      border-radius: pxToRem(2 * $scalingFactor5k);
-      border-width: pxToRem(2 * $scalingFactor5k);
       // Subtract 2 from the padding values, since we always use the border
       // in order to avoid tearing on state changes.
       padding: pxToRem(19) pxToRem(78) pxToRem(21);
@@ -1154,6 +1149,8 @@ fieldset,
 }
 
 .sbb-button-wrapper {
+  display: inline-block;
+
   // We only need to specify the animation for the text, if a left indicator icon exists.
   .sbb-button-left-icon + & {
     margin-left: 0;
