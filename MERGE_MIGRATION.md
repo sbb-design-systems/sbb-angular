@@ -53,7 +53,7 @@ export class SbbExample {
 // Boilerplate for applying mixins to SbbExample.
 /** @docs-private */
 class SbbExampleBase {
-  (public _elementRef: ElementRef) {}
+  constructor(public _elementRef: ElementRef) {}
 }
 
 // tslint:disable-next-line: naming-convention
