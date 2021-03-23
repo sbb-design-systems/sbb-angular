@@ -105,6 +105,8 @@ sbb-header + .sbb-icon-sidebar-container {
 
 .sbb-icon-sidebar-inner-container {
   @include sbb-sidebar-inner-container();
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sbb-icon-sidebar-expanded {
@@ -117,7 +119,6 @@ sbb-header + .sbb-icon-sidebar-container {
 
 .sbb-icon-sidebar-links {
   margin-bottom: pxToRem(48);
-  overflow-x: hidden;
 }
 
 .sbb-icon-sidebar-item-icon {
@@ -199,7 +200,6 @@ sbb-header + .sbb-icon-sidebar-container {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 0;
-    overflow-x: visible;
   }
 
   .sbb-icon-sidebar-item-label {
