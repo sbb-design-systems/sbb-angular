@@ -13,10 +13,10 @@ VERSION_PLACEHOLDER_REPLACEMENTS = {
     "0.0.0-CDK": CDK_PACKAGE_VERSION,
     # Version of `@angular/core`
     "0.0.0-NG": ANGULAR_PACKAGE_VERSION,
-    # Version of `tslib`
-    "0.0.0-TSLIB": TSLIB_PACKAGE_VERSION,
     # Version of the local package being built, generated via the `--workspace_status_command` flag.
     "0.0.0-PLACEHOLDER": "{BUILD_SCM_VERSION}",
+    # Version of `tslib`
+    "0.0.0-TSLIB": TSLIB_PACKAGE_VERSION,
 }
 
 # List of default Angular library UMD bundles which are not processed by ngcc.
