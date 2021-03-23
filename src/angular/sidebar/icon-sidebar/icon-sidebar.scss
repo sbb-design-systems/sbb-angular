@@ -54,6 +54,9 @@ sbb-header + .sbb-icon-sidebar-container {
     &:hover,
     &:focus {
       @include sbbMenuItemActiveLean();
+      &::before {
+        width: pxToRem(2);
+      }
     }
 
     &.sbb-active {
@@ -61,6 +64,9 @@ sbb-header + .sbb-icon-sidebar-container {
       background-color: $sbbColorWhite;
       cursor: default;
       pointer-events: none;
+      &::before {
+        width: pxToRem(2);
+      }
     }
 
     html.sbb-lean & {
