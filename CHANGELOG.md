@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/11.1.1...11.1.2) (2021-03-23)
+
+
+### Bug Fixes
+
+* add type button to buttons ([#763](https://github.com/sbb-design-systems/sbb-angular/issues/763)) ([fd14722](https://github.com/sbb-design-systems/sbb-angular/commit/fd1472271a3d9fc4f0eea3bcd97c9394fcf8b8e9))
+* display placeholder attribute when using sbbInput directive ([#749](https://github.com/sbb-design-systems/sbb-angular/issues/749)) ([f3953a0](https://github.com/sbb-design-systems/sbb-angular/commit/f3953a01ceb9791312082d720307fb3d7b4e26c4))
+* hide content of nested accordion in collapsed state ([#759](https://github.com/sbb-design-systems/sbb-angular/issues/759)) ([80799a5](https://github.com/sbb-design-systems/sbb-angular/commit/80799a578ebc6b288148ac4dc2fa792e1bd3be17)), closes [#758](https://github.com/sbb-design-systems/sbb-angular/issues/758)
+* initially set form-field mode based on classes ([#764](https://github.com/sbb-design-systems/sbb-angular/issues/764)) ([5494c21](https://github.com/sbb-design-systems/sbb-angular/commit/5494c21342302fcb288ab33d9164aa29fb0f566c))
+* keep accordion panel height if expand icon is hidden ([#760](https://github.com/sbb-design-systems/sbb-angular/issues/760)) ([7fef33d](https://github.com/sbb-design-systems/sbb-angular/commit/7fef33df3d55c75f768f5a37e9db558b68ab4f09)), closes [#666](https://github.com/sbb-design-systems/sbb-angular/issues/666)
+* prevent re-creation of existing tab instances on (redundant) activation of active tab ([#746](https://github.com/sbb-design-systems/sbb-angular/issues/746)) ([1af37bf](https://github.com/sbb-design-systems/sbb-angular/commit/1af37bffb8fbc404dfa112befc8a3f0c12a227fb)), closes [#638](https://github.com/sbb-design-systems/sbb-angular/issues/638)
+
+
+### Documentation
+
+* correct typo 'see below' to 'seen below' ([#762](https://github.com/sbb-design-systems/sbb-angular/issues/762)) ([f09b115](https://github.com/sbb-design-systems/sbb-angular/commit/f09b115e2424cc30b00e9b3b3b723f0161fb2a5b))
+* **maps:** specifiy esri-loader version to use ([#751](https://github.com/sbb-design-systems/sbb-angular/issues/751)) ([a84c907](https://github.com/sbb-design-systems/sbb-angular/commit/a84c907af06c97d2b81c837557d43e9c74a1ecc9))
+
 ### [11.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/11.1.0...11.1.1) (2021-03-03)
 
 
