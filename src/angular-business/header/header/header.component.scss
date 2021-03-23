@@ -38,6 +38,7 @@ $sbbHeaderHeight: pxToRem(54);
 
 ::ng-deep {
   .sbb-header-environment {
+    z-index: 0;
     width: pxToRem(80);
     position: absolute;
     top: pxToRem(12);
