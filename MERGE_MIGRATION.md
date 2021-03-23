@@ -53,7 +53,7 @@ export class SbbExample {
 // Boilerplate for applying mixins to SbbExample.
 /** @docs-private */
 class SbbExampleBase {
-  constructor(public _elementRef: ElementRef) {}
+  (public _elementRef: ElementRef) {}
 }
 
 // tslint:disable-next-line: naming-convention
@@ -65,10 +65,6 @@ const _SbbExampleMixinBase: HasVariantCtor & typeof SbbExampleBase = mixinVarian
 })
 export class SbbExample extends _SbbExampleMixinBase {
   ...
-
-  constructor() {
-    super();
-  }
 }
 ```
 
