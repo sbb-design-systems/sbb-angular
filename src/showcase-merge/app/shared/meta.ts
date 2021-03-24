@@ -1,5 +1,4 @@
 export interface ShowcaseMetaPackage {
-  shortName: string;
   packageName: string;
   svgIcon: string;
   image: string;
@@ -19,9 +18,8 @@ export interface ShowcaseMetaEntry {
 }
 
 export class ShowcaseMeta {
-  static readonly PACKAGES: ShowcaseMetaPackage[] = [
-    {
-      shortName: 'angular',
+  static readonly PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
+    angular: {
       packageName: '@sbb-esta/angular',
       svgIcon: 'kom:browser-small',
       image: 'assets/websites.jpg',
@@ -99,8 +97,7 @@ export class ShowcaseMeta {
         },
       ],
     },
-    {
-      shortName: 'angular-maps',
+    'angular-maps': {
       packageName: '@sbb-esta/angular-maps',
       svgIcon: 'kom:location-pin-map-small',
       image: 'assets/maps.jpg',
@@ -131,18 +128,14 @@ export class ShowcaseMeta {
         },
       ],
     },
-  ];
+  };
 
-  static findByLibraryName(libraryName: string): ShowcaseMetaPackage {
-    return this.PACKAGES.find((library) => library.shortName === libraryName);
-  }
-
-  static findEntryByLibraryNameAndComponentId(
-    libraryName: string,
-    componentId: any
+  static findEntryByPackageNameAndComponentId(
+    packageName: string,
+    componentId: string
   ): ShowcaseMetaEntry {
-    for (const section of this.findByLibraryName(libraryName).sections) {
-      const foundEntry = section.entries.find((link) => link.link.endsWith(componentId));
+    for (const section of this.PACKAGES[packageName].sections) {
+      const foundEntry = section.entries.find((entry) => entry.link.endsWith(componentId));
       if (foundEntry) {
         return foundEntry;
       }

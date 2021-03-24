@@ -18,8 +18,9 @@ export class ComponentViewerComponent implements OnInit, AfterViewInit, OnDestro
   overview: Observable<string>;
   api: Observable<string>;
   examples: Observable<ExampleData[] | null>;
+  showcaseMetaEntry: Observable<ShowcaseMetaEntry>;
+
   private _destroyed = new Subject<void>();
-  metaInfoEntry: Observable<ShowcaseMetaEntry>;
 
   constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
 
@@ -33,8 +34,8 @@ export class ComponentViewerComponent implements OnInit, AfterViewInit, OnDestro
     this.overview = this._htmlLoader.with(this._route).fromModuleDocumentation().observe();
     this.api = this._htmlLoader.with(this._route).fromApiDocumentation().observe();
 
-    this.metaInfoEntry = combineLatest([this._route.params, this._route.data]).pipe(
-      map(([{ id }, { library }]) => ShowcaseMeta.findEntryByLibraryNameAndComponentId(library, id))
+    this.showcaseMetaEntry = combineLatest([this._route.params, this._route.data]).pipe(
+      map(([{ id }, { library }]) => ShowcaseMeta.findEntryByPackageNameAndComponentId(library, id))
     );
   }
 

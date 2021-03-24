@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: PackageViewerComponent,
-    data: { package: ShowcaseMeta.findByLibraryName('angular') },
+    data: { package: ShowcaseMeta.PACKAGES.angular },
     children: [
       {
         path: '',

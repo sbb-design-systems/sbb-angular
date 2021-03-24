@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: PackageViewerComponent,
-    data: { package: ShowcaseMeta.findByLibraryName('angular-maps') },
+    data: { package: ShowcaseMeta.PACKAGES['angular-maps'] },
     children: [
       {
         path: '',

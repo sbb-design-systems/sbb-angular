@@ -1,19 +1,23 @@
 <sbb-tabs>
   <sbb-tab label="Overview">
-    <sbb-variant-limitation [showcaseMetaEntry]="metaInfoEntry | async"></sbb-variant-limitation>
+    <sbb-variant-limitation
+      [showcaseMetaEntry]="showcaseMetaEntry | async"
+    ></sbb-variant-limitation>
 
     <div [innerHtml]="overview | async"></div>
   </sbb-tab>
   <sbb-tab label="API">
-    <sbb-variant-limitation [showcaseMetaEntry]="metaInfoEntry | async"></sbb-variant-limitation>
+    <sbb-variant-limitation
+      [showcaseMetaEntry]="showcaseMetaEntry | async"
+    ></sbb-variant-limitation>
 
     <div [innerHtml]="api | async"></div>
   </sbb-tab>
   <sbb-tab *ngIf="examples | async as exampleDatas" label="Examples">
     <ng-template sbbTabContent>
-      <sbb-variant-limitation>
-        [showcaseMetaEntry]="metaInfoEntry | async" ></sbb-variant-limitation
-      >
+      <sbb-variant-limitation
+        [showcaseMetaEntry]="showcaseMetaEntry | async"
+      ></sbb-variant-limitation>
 
       <sbb-example-viewer
         *ngFor="let exampleData of exampleDatas"

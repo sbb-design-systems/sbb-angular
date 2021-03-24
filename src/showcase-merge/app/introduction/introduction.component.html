@@ -27,13 +27,13 @@
 
 <nav>
   <ul>
-    <li *ngFor="let package of packages">
-      <a [routerLink]="['/', package.shortName]">
+    <li *ngFor="let package of packages | keyvalue">
+      <a [routerLink]="['/', package.key]">
         <div class="hero">
-          <img [attr.alt]="package.packageName" [attr.src]="package.image" />
+          <img [attr.alt]="package.value.packageName" [attr.src]="package.value.image" />
         </div>
-        <span class="title">{{ package.packageName }}</span>
-        <span class="text">{{ package.description }}</span>
+        <span class="title">{{ package.value.packageName }}</span>
+        <span class="text">{{ package.value.description }}</span>
       </a>
     </li>
   </ul>
