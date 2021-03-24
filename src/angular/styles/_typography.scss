@@ -1177,6 +1177,11 @@ fieldset,
 // SBB Checkbox & Radio Button
 // ----------------------------------------------------------------------------------------------------
 
+// This is the basic class for checkbox and radio button.
+.sbb-selection-item {
+  display: inline-block;
+}
+
 // This is the class that should be applied to the label wrapper of
 // custom checkboxes or radio buttons.
 .sbb-selection-item-label {
@@ -1201,19 +1206,21 @@ fieldset,
   min-height: pxToRem(20 * $factor);
   border: pxToRem(2 * $factor) solid $sbbColorGraphite;
   margin-right: pxToRem(8 * $factor);
-  margin-top: pxToRem(2.5 * $factor);
 }
 
 .sbb-selection-container {
   display: inline-block;
   background-color: $sbbColorWhite;
+  margin-top: pxToRem(3);
   @include sbbSelectionDimension(1);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
+      margin-top: pxToRem(4);
       @include sbbSelectionDimension($scalingFactor4k);
     }
     @include mq($from: desktop5k) {
+      margin-top: pxToRem(5);
       @include sbbSelectionDimension($scalingFactor5k);
     }
   }
@@ -1229,6 +1236,7 @@ fieldset,
   height: 100%;
   width: 100%;
   transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  position: relative;
 
   html.sbb-lean & {
     color: $sbbColorIron;
@@ -1275,6 +1283,7 @@ fieldset,
     & > svg {
       display: inline-block;
       line-height: 0;
+      position: absolute;
       width: 100%;
       height: 100%;
 
@@ -1451,6 +1460,196 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
 
     &:last-of-type {
       margin-right: 0;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// SBB Checkbox Panel & Radio Button Panel
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-selection-panel-item {
+  display: inline-block;
+  background-color: $sbbColorMilk;
+  border: pxToRem(1) solid transparent;
+  border-radius: pxToRem(2);
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem(26);
+  color: $sbbColorGrey;
+  width: 100%;
+  transition: border-color 0.15s ease-in-out;
+  user-select: none;
+  position: relative;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-radius: pxToRem(3);
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem(39);
+    }
+    @include mq($from: desktop5k) {
+      border-radius: pxToRem(4);
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem(52);
+    }
+  }
+
+  &.sbb-selection-checked {
+    background-color: $sbbColorWhite;
+    border-color: $sbbColorBlack;
+    color: $sbbColorBlack;
+  }
+
+  &.ng-invalid {
+    border-color: $sbbColorRed;
+    color: $sbbColorRed;
+  }
+
+  &.sbb-selection-disabled {
+    background-color: $sbbColorWhite;
+    border-color: $sbbColorAluminum;
+  }
+
+  .sbb-selection-container,
+  .sbb-selection-panel-icon {
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+
+  .sbb-selection-content {
+    flex: 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+  }
+}
+
+.sbb-selection-panel-item .sbb-selection-item-label {
+  padding: pxToRem(19) pxToRem(24);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding: pxToRem(29) pxToRem(36) pxToRem(28);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(39) pxToRem(48) pxToRem(37);
+    }
+  }
+}
+
+.sbb-selection-inner-content {
+  flex-direction: column;
+  display: flex;
+  flex: 1 1 50%;
+  padding-right: pxToEm(8);
+  margin-bottom: pxToEm(8);
+
+  @include mq($from: tablet) {
+    margin-bottom: 0;
+  }
+}
+
+.sbb-selection-panel-subtitle {
+  font-size: pxToRem(13);
+  line-height: pxToRem(20);
+  color: $sbbColorGrey;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+      line-height: pxToRem(30);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+      line-height: pxToRem(39);
+    }
+  }
+  html.sbb-lean {
+    color: $sbbColorGranite;
+  }
+}
+
+.sbb-selection-panel-warning {
+  flex: 1 100%;
+  order: 3;
+  color: $sbbColorGrey;
+
+  @include mq($from: tablet) {
+    padding-left: pxToEm(24);
+    padding-right: pxToEm(8);
+    flex-basis: auto;
+    order: initial;
+  }
+
+  html.sbb-lean {
+    color: $sbbColorGranite;
+  }
+}
+
+.sbb-selection-panel-note {
+  margin-left: auto;
+  margin-bottom: pxToEm(8);
+
+  @include mq($from: tablet) {
+    margin-bottom: 0;
+  }
+
+  img,
+  sbb-icon {
+    max-height: pxToEm(24);
+  }
+}
+
+// These are the css classes to group sbb-checkbox-panel & sbb-radio-button-panel
+// We use em here to reduce media query usage.
+.sbb-checkbox-panel-group,
+.sbb-radio-panel-group {
+  display: flex;
+  flex-direction: column;
+  font-size: pxToRem($sizeFontDefault);
+
+  $sbbSelectionPanelMargin: 3;
+  @include mq($from: tablet) {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: pxToEm($sbbSelectionPanelMargin * -1);
+    margin-right: pxToEm($sbbSelectionPanelMargin * -1);
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
+  .sbb-selection-panel-item {
+    flex: 1 1 100%;
+    margin: 0 pxToEm($sbbSelectionPanelMargin) pxToEm(8);
+  }
+
+  // The number indicates the max number of columns for the resolution
+  $sbbSelectionPanelResolutions: (
+    tablet: 4,
+    desktop: 8,
+    desktopLarge: 8,
+    desktop2k: 8,
+    desktop4k: 8,
+    desktop5k: 8,
+  );
+
+  @each $from, $max in $sbbSelectionPanelResolutions {
+    @for $i from 2 through $max {
+      &.sbb-col-#{$from}-#{$i} .sbb-selection-panel-item {
+        $percentage: toPercent(1 / $i);
+        @include mq($from: $from) {
+          flex-basis: calc(#{$percentage} - #{pxToEm($sbbSelectionPanelMargin * 2)});
+          max-width: calc(#{$percentage} - #{pxToEm($sbbSelectionPanelMargin * 2)});
+        }
+      }
     }
   }
 }

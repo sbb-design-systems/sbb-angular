@@ -1,14 +1,11 @@
 import { DevkitContext, Migration, ResolvedResource, TargetVersion } from '@angular/cdk/schematics';
-import * as ts from 'typescript';
 
-import { iterateNodes, MigrationElement, MigrationRecorderRegistry } from '../../utils';
+import { iterateNodes, MigrationElement, MigrationRecorderRegistry, nodeCheck } from '../../utils';
 
 /**
  * Migration that updates sbbButton and sbbLink usages to the new format.
  */
 export class ButtonMigration extends Migration<null, DevkitContext> {
-  printer = ts.createPrinter();
-
   enabled: boolean = this.targetVersion === ('merge' as TargetVersion);
 
   private readonly _modeSelectorMapping: { [mode: string]: string } = {
@@ -27,9 +24,9 @@ export class ButtonMigration extends Migration<null, DevkitContext> {
   /** Method that will be called for each Angular template in the program. */
   visitTemplate(template: ResolvedResource): void {
     iterateNodes(template.content, (node) => {
-      if (node.attrs?.some((a) => a.name.toLowerCase() === 'sbbbutton')) {
+      if (nodeCheck(node).hasAttribute('sbbButton')) {
         this._buttons.add(template, node);
-      } else if (node.attrs?.some((a) => a.name.toLowerCase() === 'sbblink')) {
+      } else if (nodeCheck(node).hasAttribute('sbbLink')) {
         this._links.add(template, node);
       }
     });
@@ -72,7 +69,7 @@ export class ButtonMigration extends Migration<null, DevkitContext> {
     let selector = this._modeSelectorMapping[mode?.value || ''] || 'sbb-button';
     if (mode && !mode.value) {
       this._buttonMigrationFailedPartially = true;
-      element.append(
+      element.insertStart(
         `<!-- TODO: Unable to determine selector from mode "${mode.attribute.value}". ` +
           'Please manually select the appropriate selector: https://angular.app.sbb.ch/angular/components/button -->'
       );
@@ -80,20 +77,20 @@ export class ButtonMigration extends Migration<null, DevkitContext> {
     if (icon) {
       icon.remove();
       this._buttonMigrationFailedPartially = true;
-      element.append(
+      element.insertStart(
         `<!-- TODO: Unable to determine custom icon from icon "${icon.attribute.value}". ` +
           'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/button -->'
       );
     }
     const [iconElement, ...iconElements] = element.findElements((n) =>
-      n.attrs?.some((a) => a.name.toLowerCase() === '*sbbicon')
+      nodeCheck(n).hasAttribute('*sbbIcon')
     );
     if (mode?.value === 'icon' && iconElement) {
       const sbbIcon = iconElement.findProperty('*sbbIcon')!;
       sbbIcon.remove();
     } else if (iconElements.length) {
       this._buttonMigrationFailedPartially = true;
-      element.append(
+      element.insertStart(
         `<!-- TODO: Unable to determine custom icon. ` +
           'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/button -->'
       );
@@ -101,7 +98,7 @@ export class ButtonMigration extends Migration<null, DevkitContext> {
       const svgIcon = iconElement.findProperty('svgIcon');
       if (!svgIcon) {
         this._buttonMigrationFailedPartially = true;
-        element.append(
+        element.insertStart(
           `<!-- TODO: Unable to determine custom icon from "${iconElement.toString()}". ` +
             'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/button -->'
         );
@@ -112,7 +109,7 @@ export class ButtonMigration extends Migration<null, DevkitContext> {
       iconElement.remove();
     } else if (iconElement) {
       this._buttonMigrationFailedPartially = true;
-      element.append(
+      element.insertStart(
         `<!-- TODO: Unable to determine custom icon from "${iconElement.toString()}". ` +
           'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/button -->'
       );

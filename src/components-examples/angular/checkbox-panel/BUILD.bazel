@@ -1,0 +1,39 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "checkbox-panel",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob([
+        "**/*.html",
+        "**/*.css",
+    ]),
+    module_name = "@sbb-esta/components-examples/angular/checkbox-panel",
+    deps = [
+        "//src/angular/checkbox",
+        "//src/angular/checkbox-panel",
+        "//src/angular/form-field",
+        "//src/angular/icon",
+        "//src/angular/select",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.css",
+        "**/*.ts",
+    ]),
+)

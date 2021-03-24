@@ -9,13 +9,14 @@ import { sbbAngularUpgradeData } from './add-data';
 import { ButtonMigration } from './migrations/button-migration';
 import { ClassNamesMigration } from './migrations/class-names';
 import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
+import { SelectionPanelMigration } from './migrations/selection-panel-migration';
 
 /** Entry point for the merge migration schematics */
 export function mergePublicAndBusiness(): Rule {
   patchClassNamesMigration();
   return createMigrationSchematicRule(
     'merge' as TargetVersion,
-    [SecondaryEntryPointsMigration, ButtonMigration],
+    [SecondaryEntryPointsMigration, ButtonMigration, SelectionPanelMigration],
     sbbAngularUpgradeData,
     onMigrationComplete
   );

@@ -12,6 +12,7 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/button",
     "//src/components-examples/angular/captcha",
     "//src/components-examples/angular/checkbox",
+    "//src/components-examples/angular/checkbox-panel",
     "//src/components-examples/angular/form-field",
     "//src/components-examples/angular/icon",
     "//src/components-examples/angular/loading",
