@@ -15,9 +15,12 @@ ng_module(
     assets = [
         ":component-viewer/component-viewer.component.css",
         ":example-viewer/example-viewer.component.css",
+        ":variant-limitation-component/variant-limitation.component.css",
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
+        "//src/angular-business/notification",
+        "//src/angular-business/tooltip",
         "//src/angular-public/tabs",
         "//src/angular/icon",
         "//src/components-examples",
@@ -45,6 +48,14 @@ sass_binary(
 sass_binary(
     name = "example_viewer_example_viewer_component_scss",
     src = "example-viewer/example-viewer.component.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "variant_limitation_component_variant_limitation_component_scss",
+    src = "variant-limitation-component/variant-limitation.component.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],

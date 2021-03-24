@@ -6,6 +6,7 @@ import { combineLatest, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, skip, take, takeUntil } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../html-loader.service';
+import { findPackageEntry, ShowcaseMetaEntry } from '../../meta';
 
 @Component({
   selector: 'sbb-component-viewer',
@@ -17,19 +18,25 @@ export class ComponentViewerComponent implements OnInit, AfterViewInit, OnDestro
   overview: Observable<string>;
   api: Observable<string>;
   examples: Observable<ExampleData[] | null>;
+  showcaseMetaEntry: Observable<ShowcaseMetaEntry>;
+
   private _destroyed = new Subject<void>();
 
   constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
 
   ngOnInit() {
     this.examples = combineLatest([this._route.params, this._route.data]).pipe(
-      map(([{ id }, { library }]) => {
-        const examples = ExampleData.find(library, id);
+      map(([{ id }, { packageName }]) => {
+        const examples = ExampleData.find(packageName, id);
         return examples.length === 0 ? null : examples;
       })
     );
     this.overview = this._htmlLoader.with(this._route).fromModuleDocumentation().observe();
     this.api = this._htmlLoader.with(this._route).fromApiDocumentation().observe();
+
+    this.showcaseMetaEntry = combineLatest([this._route.params, this._route.data]).pipe(
+      map(([{ id }, { packageName }]) => findPackageEntry(packageName, id))
+    );
   }
 
   ngAfterViewInit(): void {

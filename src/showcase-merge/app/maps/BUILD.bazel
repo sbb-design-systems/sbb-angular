@@ -11,12 +11,9 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
         "//src/angular-maps/esri-config",
-        "//src/angular/accordion",
-        "//src/angular/sidebar",
         "//src/showcase-merge/app/shared",
         "//src/showcase-merge/app/shared/component-viewer",
         "@npm//@angular/cdk",

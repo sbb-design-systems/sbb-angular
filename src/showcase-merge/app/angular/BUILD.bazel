@@ -13,25 +13,22 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [
-        ":angular/icon-overview/icon-overview.component.css",
-        ":angular/icon-overview/cdn-icon-list/cdn-icon-list.component.css",
-        ":angular/icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.css",
-        ":angular/icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.css",
+        ":icon-overview/icon-overview.component.css",
+        ":icon-overview/cdn-icon-list/cdn-icon-list.component.css",
+        ":icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.css",
+        ":icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.css",
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
         "//src/angular-business/dialog",
         "//src/angular-business/tooltip",
         "//src/angular-public/pagination",
-        "//src/angular-public/tabs",
-        "//src/angular/accordion",
         "//src/angular/button",
         "//src/angular/checkbox",
         "//src/angular/form-field",
         "//src/angular/icon",
         "//src/angular/loading",
         "//src/angular/select",
-        "//src/angular/sidebar",
         "//src/showcase-merge/app/shared",
         "//src/showcase-merge/app/shared/component-viewer",
         "@npm//@angular/cdk",
@@ -44,27 +41,27 @@ ng_module(
 )
 
 sass_binary(
-    name = "angular_icon_overview_icon_overview_component_scss",
-    src = "angular/icon-overview/icon-overview.component.scss",
+    name = "icon_overview_icon_overview_component_scss",
+    src = "icon-overview/icon-overview.component.scss",
 )
 
 sass_binary(
-    name = "angular_icon_overview_cdn_icon_list_cdn_icon_list_component_scss",
-    src = "angular/icon-overview/cdn-icon-list/cdn-icon-list.component.scss",
+    name = "icon_overview_cdn_icon_list_cdn_icon_list_component_scss",
+    src = "icon-overview/cdn-icon-list/cdn-icon-list.component.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],
 )
 
 sass_binary(
-    name = "angular_icon_overview_cdn_icon_list_cdn_icon_cdn_icon_component_scss",
-    src = "angular/icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.scss",
+    name = "icon_overview_cdn_icon_list_cdn_icon_cdn_icon_component_scss",
+    src = "icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],
 )
 
 sass_binary(
-    name = "angular_icon_overview_cdn_icon_list_cdn_icon_dialog_cdn_icon_dialog_component_scss",
-    src = "angular/icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.scss",
+    name = "icon_overview_cdn_icon_list_cdn_icon_dialog_cdn_icon_dialog_component_scss",
+    src = "icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.scss",
 )

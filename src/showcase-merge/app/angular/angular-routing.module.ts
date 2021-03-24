@@ -3,15 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
+import { PACKAGES } from '../shared/meta';
+import { PackageViewerComponent } from '../shared/package-viewer/package-viewer.component';
 
-import { AngularComponent } from './angular/angular.component';
-import { IconOverviewComponent } from './angular/icon-overview/icon-overview.component';
+import { IconOverviewComponent } from './icon-overview/icon-overview.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AngularComponent,
-    data: { library: 'angular' },
+    component: PackageViewerComponent,
+    data: { packageData: PACKAGES.angular },
     children: [
       {
         path: '',
@@ -25,22 +26,22 @@ const routes: Routes = [
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular' },
+        data: { packageName: 'angular' },
       },
       {
         path: 'guides/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular' },
+        data: { packageName: 'angular' },
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'angular' },
+        data: { packageName: 'angular' },
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'angular' },
+        data: { packageName: 'angular' },
       },
     ],
   },

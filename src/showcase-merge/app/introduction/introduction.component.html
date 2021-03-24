@@ -27,22 +27,13 @@
 
 <nav>
   <ul>
-    <li>
-      <a routerLink="/angular">
+    <li *ngFor="let packageEntry of packages | keyvalue">
+      <a [routerLink]="['/', packageEntry.key]">
         <div class="hero">
-          <img alt="@sbb-esta/angular" src="assets/websites.jpg" />
+          <img [attr.alt]="packageEntry.value.name" [attr.src]="packageEntry.value.image" />
         </div>
-        <span class="title">@sbb-esta/angular</span>
-        <span class="text">Components which can be used for websites and webapps.</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/maps">
-        <div class="hero">
-          <img alt="@sbb-esta/angular-maps" src="assets/maps.jpg" />
-        </div>
-        <span class="title">@sbb-esta/angular-maps</span>
-        <span class="text">Components to display 2D/3D maps and to provide map interaction.</span>
+        <span class="title">{{ packageEntry.value.name }}</span>
+        <span class="text">{{ packageEntry.value.description }}</span>
       </a>
     </li>
   </ul>

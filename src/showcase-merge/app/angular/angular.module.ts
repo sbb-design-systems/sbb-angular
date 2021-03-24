@@ -5,29 +5,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SbbDialogModule } from '@sbb-esta/angular-business/dialog';
 import { SbbTooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { SbbPaginationModule } from '@sbb-esta/angular-public/pagination';
-import { SbbTabsModule } from '@sbb-esta/angular-public/tabs';
-import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbLoadingModule } from '@sbb-esta/angular/loading';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
-import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 
 import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { AngularRoutingModule } from './angular-routing.module';
-import { AngularComponent } from './angular/angular.component';
-import { CdnIconDialogComponent } from './angular/icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component';
-import { CdnIconListComponent } from './angular/icon-overview/cdn-icon-list/cdn-icon-list.component';
-import { CdnIconComponent } from './angular/icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component';
-import { IconOverviewComponent } from './angular/icon-overview/icon-overview.component';
+import { CdnIconDialogComponent } from './icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component';
+import { CdnIconListComponent } from './icon-overview/cdn-icon-list/cdn-icon-list.component';
+import { CdnIconComponent } from './icon-overview/cdn-icon-list/cdn-icon/cdn-icon.component';
+import { IconOverviewComponent } from './icon-overview/icon-overview.component';
 
 @NgModule({
   declarations: [
-    AngularComponent,
     IconOverviewComponent,
     CdnIconComponent,
     CdnIconListComponent,
@@ -40,9 +35,6 @@ import { IconOverviewComponent } from './angular/icon-overview/icon-overview.com
     AngularRoutingModule,
     ReactiveFormsModule,
     ComponentViewerModule,
-    SbbTabsModule,
-    SbbSidebarModule,
-    SbbAccordionModule,
     SbbPaginationModule,
     SbbLoadingModule,
     SbbTooltipModule,

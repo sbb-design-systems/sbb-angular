@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./angular/angular.module').then((m) => m.AngularModule),
   },
   {
-    path: 'maps',
+    path: 'angular-maps',
     loadChildren: () => import('./maps/maps.module').then((m) => m.MapsModule),
   },
   {
