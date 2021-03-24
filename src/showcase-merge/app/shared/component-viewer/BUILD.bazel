@@ -15,9 +15,11 @@ ng_module(
     assets = [
         ":component-viewer/component-viewer.component.css",
         ":example-viewer/example-viewer.component.css",
+        ":one-variant-only-notification/one-variant-only-notification.component.css",
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
+        "//src/angular-business/notification",
         "//src/angular-public/tabs",
         "//src/angular/icon",
         "//src/components-examples",
@@ -48,4 +50,9 @@ sass_binary(
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],
+)
+
+sass_binary(
+    name = "one_variant_only_notification_one_variant_only_notification_component_scss",
+    src = "one-variant-only-notification/one-variant-only-notification.component.scss",
 )
