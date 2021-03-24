@@ -162,7 +162,7 @@
         <source>Collapse</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">19</context>
         </context-group>
         <note priority="1" from="description">Label to &apos;collapse&apos; icon sidebar</note>
       </trans-unit>
@@ -170,7 +170,7 @@
         <source>Expand</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">26</context>
         </context-group>
         <note priority="1" from="description">Label to &apos;expand&apos; icon sidebar</note>
       </trans-unit>
@@ -186,13 +186,14 @@
         <source><x id="INTERPOLATION" equiv-text="{{ tab.badgePill }}"/> entries</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular-business/tabs/tabs/tabs.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular-public/tabs/tabs/tabs.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
-        <note priority="1" from="description">Aria label for amount of entries displayed in badge pill</note>
+        <note priority="1" from="description">Aria label for amount of entries displayed in badge
+            pill</note>
       </trans-unit>
       <trans-unit id="sbbTextareaCounterText" datatype="html">
         <source> <x id="INTERPOLATION" equiv-text="{{ _counter | async }}"/> characters remaining
@@ -203,6 +204,10 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular-public/textarea/textarea/textarea.component.html</context>
+          <context context-type="linenumber">19,21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular/textarea/textarea/textarea.html</context>
           <context context-type="linenumber">19,21</context>
         </context-group>
         <note priority="1" from="description">Counter text for textarea</note>
@@ -217,6 +222,10 @@
           <context context-type="sourcefile">../../../../../../src/angular-public/textexpand/textexpand/textexpand.component.html</context>
           <context context-type="linenumber">14</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular/textexpand/textexpand.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
         <note priority="1" from="description">Button label for showing less</note>
       </trans-unit>
       <trans-unit id="sbbTextexpandShowMore" datatype="html">
@@ -229,33 +238,11 @@
           <context context-type="sourcefile">../../../../../../src/angular-public/textexpand/textexpand/textexpand.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular/textexpand/textexpand.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
         <note priority="1" from="description">Button label for showing more</note>
-      </trans-unit>
-      <trans-unit id="sbbUsermenuOpenPanel" datatype="html">
-        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
-        "/>. Click or press enter to open user menu.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../../src/angular-business/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">198,200</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../../src/angular-public/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">196,198</context>
-        </context-group>
-        <note priority="1" from="description">Aria label to open user menu</note>
-      </trans-unit>
-      <trans-unit id="sbbUsermenuClosePanel" datatype="html">
-        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
-        "/>. Click or press enter to close user menu.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../../src/angular-business/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">208,210</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../../../../../../src/angular-public/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">206,208</context>
-        </context-group>
-        <note priority="1" from="description">Aria label to close user menu</note>
       </trans-unit>
       <trans-unit id="sbbUsermenuLogin" datatype="html">
         <source>Login</source>
@@ -268,6 +255,32 @@
           <context context-type="linenumber">10</context>
         </context-group>
         <note priority="1" from="description">Button label for login</note>
+      </trans-unit>
+      <trans-unit id="sbbUsermenuOpenPanel" datatype="html">
+        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
+        "/>. Click or press enter to open user menu.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/usermenu/usermenu.ts</context>
+          <context context-type="linenumber">197,199</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/usermenu/usermenu.ts</context>
+          <context context-type="linenumber">195,197</context>
+        </context-group>
+        <note priority="1" from="description">Aria label to open user menu</note>
+      </trans-unit>
+      <trans-unit id="sbbUsermenuClosePanel" datatype="html">
+        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
+        "/>. Click or press enter to close user menu.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-business/usermenu/usermenu.ts</context>
+          <context context-type="linenumber">207,209</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular-public/usermenu/usermenu.ts</context>
+          <context context-type="linenumber">205,207</context>
+        </context-group>
+        <note priority="1" from="description">Aria label to close user menu</note>
       </trans-unit>
       <trans-unit id="sbbGhettoboxCloseGhettobox" datatype="html">
         <source>Close message</source>

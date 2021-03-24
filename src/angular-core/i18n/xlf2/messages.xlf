@@ -126,7 +126,7 @@
     </unit>
     <unit id="sbbSidebarCollapse">
       <notes>
-        <note category="location">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html:18</note>
+        <note category="location">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html:19</note>
         <note category="description">Label to &apos;collapse&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -135,7 +135,7 @@
     </unit>
     <unit id="sbbSidebarExpand">
       <notes>
-        <note category="location">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html:25</note>
+        <note category="location">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html:26</note>
         <note category="description">Label to &apos;expand&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -153,9 +153,10 @@
     </unit>
     <unit id="sbbTabsBadgePillAmountOfEntries">
       <notes>
-        <note category="location">../../../../../../src/angular-business/tabs/tabs/tabs.component.html:25</note>
+        <note category="location">../../../../../../src/angular-business/tabs/tabs/tabs.component.html:27</note>
         <note category="location">../../../../../../src/angular-public/tabs/tabs/tabs.component.html:27</note>
-        <note category="description">Aria label for amount of entries displayed in badge pill</note>
+        <note category="description">Aria label for amount of entries displayed in badge
+            pill</note>
       </notes>
       <segment>
         <source><ph id="0" equiv="INTERPOLATION" disp="{{ tab.badgePill }}"/> entries</source>
@@ -165,6 +166,7 @@
       <notes>
         <note category="location">../../../../../../src/angular-business/textarea/textarea/textarea.component.html:19,21</note>
         <note category="location">../../../../../../src/angular-public/textarea/textarea/textarea.component.html:19,21</note>
+        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.html:19,21</note>
         <note category="description">Counter text for textarea</note>
       </notes>
       <segment>
@@ -176,6 +178,7 @@
       <notes>
         <note category="location">../../../../../../src/angular-business/textexpand/textexpand/textexpand.component.html:14</note>
         <note category="location">../../../../../../src/angular-public/textexpand/textexpand/textexpand.component.html:14</note>
+        <note category="location">../../../../../../src/angular/textexpand/textexpand.html:14</note>
         <note category="description">Button label for showing less</note>
       </notes>
       <segment>
@@ -186,32 +189,11 @@
       <notes>
         <note category="location">../../../../../../src/angular-business/textexpand/textexpand/textexpand.component.html:20</note>
         <note category="location">../../../../../../src/angular-public/textexpand/textexpand/textexpand.component.html:20</note>
+        <note category="location">../../../../../../src/angular/textexpand/textexpand.html:20</note>
         <note category="description">Button label for showing more</note>
       </notes>
       <segment>
         <source>Show more</source>
-      </segment>
-    </unit>
-    <unit id="sbbUsermenuOpenPanel">
-      <notes>
-        <note category="location">../../../../../../src/angular-business/usermenu/usermenu.ts:198,200</note>
-        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:196,198</note>
-        <note category="description">Aria label to open user menu</note>
-      </notes>
-      <segment>
-        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-        "/>. Click or press enter to open user menu.</source>
-      </segment>
-    </unit>
-    <unit id="sbbUsermenuClosePanel">
-      <notes>
-        <note category="location">../../../../../../src/angular-business/usermenu/usermenu.ts:208,210</note>
-        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:206,208</note>
-        <note category="description">Aria label to close user menu</note>
-      </notes>
-      <segment>
-        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-        "/>. Click or press enter to close user menu.</source>
       </segment>
     </unit>
     <unit id="sbbUsermenuLogin">
@@ -222,6 +204,28 @@
       </notes>
       <segment>
         <source>Login</source>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuOpenPanel">
+      <notes>
+        <note category="location">../../../../../../src/angular-business/usermenu/usermenu.ts:197,199</note>
+        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:195,197</note>
+        <note category="description">Aria label to open user menu</note>
+      </notes>
+      <segment>
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
+        "/>. Click or press enter to open user menu.</source>
+      </segment>
+    </unit>
+    <unit id="sbbUsermenuClosePanel">
+      <notes>
+        <note category="location">../../../../../../src/angular-business/usermenu/usermenu.ts:207,209</note>
+        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:205,207</note>
+        <note category="description">Aria label to close user menu</note>
+      </notes>
+      <segment>
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
+        "/>. Click or press enter to close user menu.</source>
       </segment>
     </unit>
     <unit id="sbbGhettoboxCloseGhettobox">
