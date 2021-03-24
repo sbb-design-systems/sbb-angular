@@ -63,13 +63,13 @@
         <target state="translated">Cambia l'ordinamento per <x id="PH" equiv-text="this.id"/></target>
       </trans-unit>
       <trans-unit id="sbbTabsBadgePillAmountOfEntries" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="aria-label=&quot;{{ tab."/> entries</source>
-        <target state="translated"><x id="INTERPOLATION" equiv-text="aria-label=&quot;{{ tab."/> voci</target>
+        <source><x id="INTERPOLATION" equiv-text="{{ tab.badgePill }}"/> entries</source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ tab.badgePill }}"/> voci</target>
       </trans-unit>
       <trans-unit id="sbbTextareaCounterText" datatype="html">
-        <source> <x id="INTERPOLATION" equiv-text="  {{ _counter | async "/> characters remaining
+        <source> <x id="INTERPOLATION" equiv-text="{{ _counter | async }}"/> characters remaining
 </source>
-        <target state="translated"><x id="INTERPOLATION" equiv-text=" {{ _counter | async "/> caratteri rimanenti</target>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ _counter | async }}"/> caratteri rimanenti</target>
       </trans-unit>
       <trans-unit id="sbbTextexpandShowLess" datatype="html">
         <source>Show less</source>
@@ -79,21 +79,21 @@
         <source>Show more</source>
         <target state="signed-off">Visualizzare di più</target>
       </trans-unit>
+      <trans-unit id="sbbUsermenuLogin" datatype="html">
+        <source>Login</source>
+        <target state="signed-off">Accedi</target>
+      </trans-unit>
       <trans-unit id="sbbUsermenuOpenPanel" datatype="html">
         <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
-    "/>. Click or press enter to open user menu.</source>
+        "/>. Click or press enter to open user menu.</source>
         <target state="translated">Accesso eseguito come <x id="PH" equiv-text="this.displayName || this.userName
 "/>. Fare clic o premere Invio per aprire il menu utente.</target>
       </trans-unit>
       <trans-unit id="sbbUsermenuClosePanel" datatype="html">
         <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
-    "/>. Click or press enter to close user menu.</source>
+        "/>. Click or press enter to close user menu.</source>
         <target state="translated">Accesso eseguito come <x id="PH" equiv-text="this.displayName || this.userName
 "/>. Fare clic o premere Invio per chiudere il menu utente.</target>
-      </trans-unit>
-      <trans-unit id="sbbUsermenuLogin" datatype="html">
-        <source>Login</source>
-        <target state="signed-off">Accedi</target>
       </trans-unit>
       <trans-unit id="sbbGhettoboxCloseGhettobox" datatype="html">
         <source>Close message</source>
@@ -104,8 +104,8 @@
         <target state="translated">Avviare la ricerca</target>
       </trans-unit>
       <trans-unit id="sbbTagBadgePillAmountOfResults" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="aria-label=&quot;"/> results available</source>
-        <target state="translated"><x id="INTERPOLATION" equiv-text="aria-label=&quot;"/> risultati disponibili</target>
+        <source><x id="INTERPOLATION" equiv-text="{{ amount }}"/> results available</source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ amount }}"/> risultati disponibili</target>
       </trans-unit>
       <trans-unit id="sbbTagsAll" datatype="html">
         <source>All</source>

@@ -93,15 +93,15 @@
     </unit>
     <unit id="sbbTabsBadgePillAmountOfEntries">
       <segment state="translated">
-        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;{{ tab."/> entries</source>
-        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;{{ tab."/> entrées</target>
+        <source><ph id="0" equiv="INTERPOLATION" disp="{{ tab.badgePill }}"/> entries</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="{{ tab.badgePill }}"/> entrées</target>
       </segment>
     </unit>
     <unit id="sbbTextareaCounterText">
       <segment state="translated">
-        <source> <ph id="0" equiv="INTERPOLATION" disp="  {{ _counter | async "/> characters remaining
+        <source> <ph id="0" equiv="INTERPOLATION" disp="{{ _counter | async }}"/> characters remaining
 </source>
-        <target><ph id="0" equiv="INTERPOLATION" disp=" {{ _counter | async "/> caractères restants</target>
+        <target><ph id="0" equiv="INTERPOLATION" disp="{{ _counter | async }}"/> caractères restants</target>
       </segment>
     </unit>
     <unit id="sbbTextexpandShowLess">
@@ -116,10 +116,16 @@
         <target>Afficher plus</target>
       </segment>
     </unit>
+    <unit id="sbbUsermenuLogin">
+      <segment state="translated">
+        <source>Login</source>
+        <target>Se connecter</target>
+      </segment>
+    </unit>
     <unit id="sbbUsermenuOpenPanel">
       <segment state="translated">
         <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-    "/>. Click or press enter to open user menu.</source>
+        "/>. Click or press enter to open user menu.</source>
         <target>Connecté en tant que <ph id="0" equiv="PH" disp="this.displayName || this.userName
 "/>. Cliquez ou appuyez sur Entrée pour ouvrir le menu utilisateur.</target>
       </segment>
@@ -127,15 +133,9 @@
     <unit id="sbbUsermenuClosePanel">
       <segment state="translated">
         <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-    "/>. Click or press enter to close user menu.</source>
+        "/>. Click or press enter to close user menu.</source>
         <target>Connecté en tant que <ph id="0" equiv="PH" disp="this.displayName || this.userName
 "/>. Cliquez ou appuyez sur Entrée pour fermer le menu utilisateur.</target>
-      </segment>
-    </unit>
-    <unit id="sbbUsermenuLogin">
-      <segment state="translated">
-        <source>Login</source>
-        <target>Se connecter</target>
       </segment>
     </unit>
     <unit id="sbbGhettoboxCloseGhettobox">
@@ -152,8 +152,8 @@
     </unit>
     <unit id="sbbTagBadgePillAmountOfResults">
       <segment state="translated">
-        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> results available</source>
-        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> resultats disponbiles</target>
+        <source><ph id="0" equiv="INTERPOLATION" disp="{{ amount }}"/> results available</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="{{ amount }}"/> resultats disponbiles</target>
       </segment>
     </unit>
     <unit id="sbbTagsAll">

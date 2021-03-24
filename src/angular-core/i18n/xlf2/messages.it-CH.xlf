@@ -93,15 +93,15 @@
     </unit>
     <unit id="sbbTabsBadgePillAmountOfEntries">
       <segment state="translated">
-        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;{{ tab."/> entries</source>
-        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;{{ tab."/> voci</target>
+        <source><ph id="0" equiv="INTERPOLATION" disp="{{ tab.badgePill }}"/> entries</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="{{ tab.badgePill }}"/> voci</target>
       </segment>
     </unit>
     <unit id="sbbTextareaCounterText">
       <segment state="translated">
-        <source> <ph id="0" equiv="INTERPOLATION" disp="  {{ _counter | async "/> characters remaining
+        <source> <ph id="0" equiv="INTERPOLATION" disp="{{ _counter | async }}"/> characters remaining
 </source>
-        <target><x id="INTERPOLATION" equiv-text=" {{ _counter | async "/> caratteri rimanenti</target>
+        <target><x id="INTERPOLATION" equiv-text="{{ _counter | async }}"/> caratteri rimanenti</target>
       </segment>
     </unit>
     <unit id="sbbTextexpandShowLess">
@@ -116,10 +116,16 @@
         <target>Visualizzare di più</target>
       </segment>
     </unit>
+    <unit id="sbbUsermenuLogin">
+      <segment state="translated">
+        <source>Login</source>
+        <target>Accedi</target>
+      </segment>
+    </unit>
     <unit id="sbbUsermenuOpenPanel">
       <segment state="translated">
         <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-    "/>. Click or press enter to open user menu.</source>
+        "/>. Click or press enter to open user menu.</source>
         <target>Accesso eseguito come <ph id="0" equiv="PH" disp="this.displayName || this.userName
 "/>. Fare clic o premere Invio per aprire il menu utente.</target>
       </segment>
@@ -127,15 +133,9 @@
     <unit id="sbbUsermenuClosePanel">
       <segment state="translated">
         <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-    "/>. Click or press enter to close user menu.</source>
+        "/>. Click or press enter to close user menu.</source>
         <target>Accesso eseguito come <ph id="0" equiv="PH" disp="this.displayName || this.userName
 "/>. Fare clic o premere Invio per chiudere il menu utente.</target>
-      </segment>
-    </unit>
-    <unit id="sbbUsermenuLogin">
-      <segment state="translated">
-        <source>Login</source>
-        <target>Accedi</target>
       </segment>
     </unit>
     <unit id="sbbGhettoboxCloseGhettobox">
@@ -152,8 +152,8 @@
     </unit>
     <unit id="sbbTagBadgePillAmountOfResults">
       <segment state="translated">
-        <source><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> results available</source>
-        <target><ph id="0" equiv="INTERPOLATION" disp="aria-label=&quot;"/> risultati disponibili</target>
+        <source><ph id="0" equiv="INTERPOLATION" disp="{{ amount }}"/> results available</source>
+        <target><ph id="0" equiv="INTERPOLATION" disp="{{ amount }}"/> risultati disponibili</target>
       </segment>
     </unit>
     <unit id="sbbTagsAll">
