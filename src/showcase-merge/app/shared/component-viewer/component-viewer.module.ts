@@ -10,15 +10,15 @@ import {
   ExampleOutletComponent,
   ExampleViewerComponent,
 } from './example-viewer/example-viewer.component';
-import { OneVariantOnlyNotificationComponent } from './one-variant-only-notification/one-variant-only-notification.component';
 import { StackblitzWriterService } from './stackblitz-writer/stackblitz-writer.service';
+import { VariantLimitationComponent } from './variant-limitation-component/variant-limitation.component';
 
 @NgModule({
   declarations: [
     ExampleViewerComponent,
     ExampleOutletComponent,
     ComponentViewerComponent,
-    OneVariantOnlyNotificationComponent,
+    VariantLimitationComponent,
   ],
   providers: [StackblitzWriterService],
   imports: [CommonModule, PortalModule, SbbIconModule, SbbTabsModule, SbbNotificationModule],

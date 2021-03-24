@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ShowcaseMeta, ShowcaseMetaLibrary } from '../shared/meta';
+import { ShowcaseMeta } from '../shared/meta';
 
 @Component({
   selector: 'sbb-introduction',
@@ -8,7 +8,5 @@ import { ShowcaseMeta, ShowcaseMetaLibrary } from '../shared/meta';
   styleUrls: ['./introduction.component.css'],
 })
 export class IntroductionComponent {
-  get libraries(): ShowcaseMetaLibrary[] {
-    return ShowcaseMeta.libraries();
-  }
+  packages = ShowcaseMeta.PACKAGES;
 }

@@ -1,0 +1,9 @@
+<sbb-notification *ngIf="variantOnly" type="info" class="sbb-variant-limitation" readonly>
+  <span class="sbb-variant-limitation-title">{{ variantOnly }}-only</span>
+  <p class="sbb-variant-limitation-text">
+    This component is designed to be only used with
+    {{ variantOnly }}
+    variant. However, using it with {{ oppositeVariant }} is possible, but should be considered
+    carefully.
+  </p>
+</sbb-notification>

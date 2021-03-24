@@ -6,12 +6,12 @@ import { SbbAccordionModule } from '@sbb-esta/angular/accordion';
 import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 
 import { ApiViewerComponent } from './api-viewer/api-viewer.component';
-import { LibraryViewerComponent } from './library-viewer/library-viewer.component';
 import { MarkdownViewerComponent } from './markdown-viewer/markdown-viewer.component';
+import { PackageViewerComponent } from './package-viewer/package-viewer.component';
 
 @NgModule({
-  declarations: [MarkdownViewerComponent, ApiViewerComponent, LibraryViewerComponent],
+  declarations: [MarkdownViewerComponent, ApiViewerComponent, PackageViewerComponent],
   imports: [CommonModule, PortalModule, SbbSidebarModule, SbbAccordionModule, RouterModule],
-  exports: [MarkdownViewerComponent, ApiViewerComponent, LibraryViewerComponent],
+  exports: [MarkdownViewerComponent, ApiViewerComponent, PackageViewerComponent],
 })
 export class SharedModule {}

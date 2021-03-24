@@ -1,5 +1,5 @@
-export interface ShowcaseMetaLibrary {
-  name: string;
+export interface ShowcaseMetaPackage {
+  shortName: string;
   packageName: string;
   svgIcon: string;
   image: string;
@@ -19,9 +19,9 @@ export interface ShowcaseMetaEntry {
 }
 
 export class ShowcaseMeta {
-  static showcaseMetaLibraries: ShowcaseMetaLibrary[] = [
+  static readonly PACKAGES: ShowcaseMetaPackage[] = [
     {
-      name: 'angular',
+      shortName: 'angular',
       packageName: '@sbb-esta/angular',
       svgIcon: 'kom:browser-small',
       image: 'assets/websites.jpg',
@@ -100,7 +100,7 @@ export class ShowcaseMeta {
       ],
     },
     {
-      name: 'angular-maps',
+      shortName: 'angular-maps',
       packageName: '@sbb-esta/angular-maps',
       svgIcon: 'kom:location-pin-map-small',
       image: 'assets/maps.jpg',
@@ -133,12 +133,8 @@ export class ShowcaseMeta {
     },
   ];
 
-  static libraries(): ShowcaseMetaLibrary[] {
-    return this.showcaseMetaLibraries;
-  }
-
-  static findByLibraryName(libraryName: string): ShowcaseMetaLibrary {
-    return this.showcaseMetaLibraries.find((library) => library.name === libraryName);
+  static findByLibraryName(libraryName: string): ShowcaseMetaPackage {
+    return this.PACKAGES.find((library) => library.shortName === libraryName);
   }
 
   static findEntryByLibraryNameAndComponentId(

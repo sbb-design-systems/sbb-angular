@@ -21,13 +21,13 @@
   <sbb-icon-sidebar [expanded]="expanded">
     <a
       sbbIconSidebarItem
-      *ngFor="let library of libraries"
-      [label]="library.packageName"
-      [title]="library.packageName"
-      [routerLink]="library.name"
+      *ngFor="let package of packages"
+      [label]="package.packageName"
+      [title]="package.packageName"
+      [routerLink]="package.shortName"
       routerLinkActive="sbb-active"
     >
-      <sbb-icon [svgIcon]="library.svgIcon"></sbb-icon>
+      <sbb-icon [svgIcon]="package.svgIcon"></sbb-icon>
     </a>
   </sbb-icon-sidebar>
   <sbb-icon-sidebar-content role="main">

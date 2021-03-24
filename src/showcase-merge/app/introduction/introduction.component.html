@@ -27,13 +27,13 @@
 
 <nav>
   <ul>
-    <li *ngFor="let library of libraries">
-      <a [routerLink]="['/', library.name]">
+    <li *ngFor="let package of packages">
+      <a [routerLink]="['/', package.shortName]">
         <div class="hero">
-          <img [attr.alt]="library.packageName" [attr.src]="library.image" />
+          <img [attr.alt]="package.packageName" [attr.src]="package.image" />
         </div>
-        <span class="title">{{ library.packageName }}</span>
-        <span class="text">{{ library.description }}</span>
+        <span class="title">{{ package.packageName }}</span>
+        <span class="text">{{ package.description }}</span>
       </a>
     </li>
   </ul>

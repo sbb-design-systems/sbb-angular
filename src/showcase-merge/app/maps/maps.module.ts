@@ -9,7 +9,6 @@ import { SharedModule } from '../shared/shared.module';
 import { MapsRoutingModule } from './maps-routing.module';
 
 @NgModule({
-  declarations: [],
   imports: [
     SbbEsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' }),
     CommonModule,
