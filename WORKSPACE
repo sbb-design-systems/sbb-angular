@@ -63,14 +63,6 @@ load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories"
 
 web_test_repositories()
 
-load("@io_bazel_rules_webtesting//web/versioned:browsers-0.3.2.bzl", "browser_repositories")
-
-browser_repositories(
-    chromium = True,
-    # TODO: Currently disabled due to missing windows support. Check if available with next version.
-    # firefox = True,
-)
-
 # Fetch transitive dependencies which are needed to use the Sass rules.
 load("@io_bazel_rules_sass//:package.bzl", "rules_sass_dependencies")
 
@@ -80,3 +72,12 @@ rules_sass_dependencies()
 load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
 
 sass_repositories()
+
+# Load pinned rules_webtesting browser versions for tests.
+#
+# TODO(wagnermaciel): deduplicate browsers - this will load another version of chromium in the
+# repository. We probably want to use the chromium version loaded here (from dev-infra) as that
+# one has RBE improvements.
+load("@npm//@angular/dev-infra-private/browsers:browser_repositories.bzl", _dev_infra_browser_repositories = "browser_repositories")
+
+_dev_infra_browser_repositories()

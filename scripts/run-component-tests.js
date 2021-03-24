@@ -54,12 +54,6 @@ const { _: components, local, firefox, watch } = minimist(args, {
   default: { watch: true },
 });
 
-// TODO: Firefox currently disabled due to missing windows support. Check if available with next version.
-if (firefox) {
-  console.error(chalk.red('Firefox currently unsupported on windows.'));
-  process.exit(1);
-}
-
 // Whether tests for all components should be run.
 const all = components.length === 1 && components[0] === 'all';
 
@@ -75,17 +69,22 @@ if (local && (components.length > 1 || all)) {
   process.exit(1);
 }
 
+const browserName = firefox ? 'firefox' : 'chromium';
 const bazelBinary = `yarn -s ${watch ? 'ibazel' : 'bazel'}`;
-const testTargetName = `unit_tests_${
-  local ? 'local' : firefox ? 'firefox-local' : 'chromium-local'
-}`;
 
 // If `all` has been specified as component, we run tests for all components
 // in the repository. The `--firefox` flag can be still specified.
 if (all) {
+  // `ibazel` doesn't allow us to filter tests and build targets as it only allows
+  // a subset of Bazel flags to be passed through. We temporarily always use `bazel`
+  // instead of ibazel until https://github.com/bazelbuild/bazel-watcher/pull/382 lands.
+  if (watch) {
+    console.warn(chalk.yellow('Unable to run all component tests in watch mode.'));
+    console.warn(chalk.yellow('Tests will be run in non-watch mode..'));
+  }
   shelljs.exec(
-    `${bazelBinary} test //src/... --test_tag_filters=-e2e,-browser:${testTargetName} ` +
-      `--build_tag_filters=-browser:${testTargetName} --build_tests_only`
+    `yarn -s bazel test --test_tag_filters=-e2e,browser:${browserName} ` +
+      `--build_tag_filters=browser:${browserName} --build_tests_only ${configFlag} //src/...`
   );
   return;
 }
@@ -106,14 +105,9 @@ if (!components.length) {
 }
 
 const bazelAction = local ? 'run' : 'test';
-const testLabels = components
-  .map((t) => correctTypos(t))
-  .map(
-    (t) =>
-      `${getBazelPackageOfComponentName(t)}:${
-        t.endsWith('schematics') ? 'unit_tests' : testTargetName
-      }`
-  );
+const testLabels = components.map(
+  (t) => `${getBazelPackageOfComponentName(t)}:${getTargetName(t)}`
+);
 
 // Runs Bazel for the determined test labels.
 shelljs.exec(`${bazelBinary} ${bazelAction} ${testLabels.join(' ')}`);
@@ -156,17 +150,17 @@ function convertPathToBazelLabel(name) {
   return null;
 }
 
-/** Correct common typos in a target name */
-function correctTypos(target) {
-  let correctedTarget = target;
-  for (const [typo, correction] of commonTypos) {
-    correctedTarget = correctedTarget.replace(typo, correction);
-  }
-
-  return correctedTarget;
-}
-
 /** Converts an arbitrary path to a Posix path. */
 function convertPathToPosix(pathName) {
   return pathName.replace(/\\/g, '/');
+}
+
+/** Gets the name of the target that should be run. */
+function getTargetName(packageName) {
+  // Schematics don't have _local and browser targets.
+  if (packageName && packageName.endsWith('schematics')) {
+    return 'unit_tests';
+  }
+
+  return `unit_tests_${local ? 'local' : browserName}`;
 }
