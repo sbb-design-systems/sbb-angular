@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
+import { LibraryViewerComponent } from '../shared/library-viewer/library-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
-
-import { MapsComponent } from './maps/maps.component';
+import { ShowcaseMeta } from '../shared/meta';
 
 const routes: Routes = [
   {
     path: '',
-    component: MapsComponent,
-    data: { library: 'angular-maps' },
+    component: LibraryViewerComponent,
+    data: { library: ShowcaseMeta.findByLibraryName('angular-maps') },
     children: [
       {
         path: '',

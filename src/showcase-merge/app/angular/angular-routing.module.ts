@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
+import { LibraryViewerComponent } from '../shared/library-viewer/library-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
+import { ShowcaseMeta } from '../shared/meta';
 
-import { AngularComponent } from './angular/angular.component';
-import { IconOverviewComponent } from './angular/icon-overview/icon-overview.component';
+import { IconOverviewComponent } from './icon-overview/icon-overview.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AngularComponent,
-    data: { library: 'angular' },
+    component: LibraryViewerComponent,
+    data: { library: ShowcaseMeta.findByLibraryName('angular') },
     children: [
       {
         path: '',

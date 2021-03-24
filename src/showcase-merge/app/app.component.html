@@ -21,21 +21,13 @@
   <sbb-icon-sidebar [expanded]="expanded">
     <a
       sbbIconSidebarItem
-      label="@sbb-esta/angular"
-      title="@sbb-esta/angular"
-      routerLink="/angular"
+      *ngFor="let library of libraries"
+      [label]="library.packageName"
+      [title]="library.packageName"
+      [routerLink]="library.name"
       routerLinkActive="sbb-active"
     >
-      <sbb-icon svgIcon="kom:globe-small"></sbb-icon>
-    </a>
-    <a
-      sbbIconSidebarItem
-      label="@sbb-esta/angular-maps"
-      title="@sbb-esta/angular-maps"
-      routerLink="/maps"
-      routerLinkActive="sbb-active"
-    >
-      <sbb-icon svgIcon="kom:location-pin-map-small"></sbb-icon>
+      <sbb-icon [svgIcon]="library.svgIcon"></sbb-icon>
     </a>
   </sbb-icon-sidebar>
   <sbb-icon-sidebar-content role="main">

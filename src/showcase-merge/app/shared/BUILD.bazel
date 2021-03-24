@@ -18,6 +18,8 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
+        "//src/angular/accordion",
+        "//src/angular/sidebar",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

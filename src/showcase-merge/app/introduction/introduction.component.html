@@ -27,22 +27,13 @@
 
 <nav>
   <ul>
-    <li>
-      <a routerLink="/angular">
+    <li *ngFor="let library of libraries">
+      <a [routerLink]="['/', library.name]">
         <div class="hero">
-          <img alt="@sbb-esta/angular" src="assets/websites.jpg" />
+          <img [attr.alt]="library.packageName" [attr.src]="library.image" />
         </div>
-        <span class="title">@sbb-esta/angular</span>
-        <span class="text">Components which can be used for websites and webapps.</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/maps">
-        <div class="hero">
-          <img alt="@sbb-esta/angular-maps" src="assets/maps.jpg" />
-        </div>
-        <span class="title">@sbb-esta/angular-maps</span>
-        <span class="text">Components to display 2D/3D maps and to provide map interaction.</span>
+        <span class="title">{{ library.packageName }}</span>
+        <span class="text">{{ library.description }}</span>
       </a>
     </li>
   </ul>
