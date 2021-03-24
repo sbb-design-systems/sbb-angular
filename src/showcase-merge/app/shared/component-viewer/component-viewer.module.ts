@@ -2,6 +2,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbNotificationModule } from '@sbb-esta/angular-business/notification';
+import { SbbTooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { SbbTabsModule } from '@sbb-esta/angular-public/tabs';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
@@ -21,6 +22,13 @@ import { VariantLimitationComponent } from './variant-limitation-component/varia
     VariantLimitationComponent,
   ],
   providers: [StackblitzWriterService],
-  imports: [CommonModule, PortalModule, SbbIconModule, SbbTabsModule, SbbNotificationModule],
+  imports: [
+    CommonModule,
+    PortalModule,
+    SbbIconModule,
+    SbbTabsModule,
+    SbbNotificationModule,
+    SbbTooltipModule,
+  ],
 })
 export class ComponentViewerModule {}

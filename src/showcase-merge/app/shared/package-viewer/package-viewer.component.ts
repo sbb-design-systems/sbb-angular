@@ -13,6 +13,6 @@ export class PackageViewerComponent {
   package: Observable<ShowcaseMetaPackage>;
 
   constructor(activatedRoute: ActivatedRoute) {
-    this.package = activatedRoute.data.pipe(map((data) => data.package));
+    this.package = activatedRoute.data.pipe(map((data) => data.packageData));
   }
 }

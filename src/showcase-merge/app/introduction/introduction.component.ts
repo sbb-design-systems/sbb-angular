@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ShowcaseMeta } from '../shared/meta';
+import { PACKAGES } from '../shared/meta';
 
 @Component({
   selector: 'sbb-introduction',
@@ -8,5 +8,5 @@ import { ShowcaseMeta } from '../shared/meta';
   styleUrls: ['./introduction.component.css'],
 })
 export class IntroductionComponent {
-  packages = ShowcaseMeta.PACKAGES;
+  packages = PACKAGES;
 }

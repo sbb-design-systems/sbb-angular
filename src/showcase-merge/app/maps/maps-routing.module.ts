@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
-import { ShowcaseMeta } from '../shared/meta';
+import { PACKAGES } from '../shared/meta';
 import { PackageViewerComponent } from '../shared/package-viewer/package-viewer.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PackageViewerComponent,
-    data: { package: ShowcaseMeta.PACKAGES['angular-maps'] },
+    data: { packageData: PACKAGES['angular-maps'] },
     children: [
       {
         path: '',
@@ -20,22 +20,22 @@ const routes: Routes = [
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular-maps' },
+        data: { packageName: 'angular-maps' },
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'angular-maps' },
+        data: { packageName: 'angular-maps' },
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'angular-maps' },
+        data: { packageName: 'angular-maps' },
       },
       {
         path: 'advanced/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular-maps' },
+        data: { packageName: 'angular-maps' },
       },
     ],
   },

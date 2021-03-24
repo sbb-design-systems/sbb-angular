@@ -6,7 +6,7 @@ import { fromEvent, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, startWith, takeUntil } from 'rxjs/operators';
 
 import { ROUTER_ANIMATION } from './shared/animations';
-import { ShowcaseMeta } from './shared/meta';
+import { PACKAGES } from './shared/meta';
 // @ts-ignore versions.ts is generated automatically by bazel
 import { angularVersion, libraryVersion } from './versions';
 
@@ -25,7 +25,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
   sbbVariant: FormControl = new FormControl(
     localStorage.getItem(variantLocalstorageKey) || 'standard'
   );
-  packages = ShowcaseMeta.PACKAGES;
+  packages = PACKAGES;
   private _destroyed = new Subject();
 
   constructor(private _breakpointObserver: BreakpointObserver) {

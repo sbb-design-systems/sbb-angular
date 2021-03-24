@@ -6,7 +6,7 @@ import { combineLatest, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, skip, take, takeUntil } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../html-loader.service';
-import { ShowcaseMeta, ShowcaseMetaEntry } from '../../meta';
+import { findPackageEntry, ShowcaseMetaEntry } from '../../meta';
 
 @Component({
   selector: 'sbb-component-viewer',
@@ -26,8 +26,8 @@ export class ComponentViewerComponent implements OnInit, AfterViewInit, OnDestro
 
   ngOnInit() {
     this.examples = combineLatest([this._route.params, this._route.data]).pipe(
-      map(([{ id }, { library }]) => {
-        const examples = ExampleData.find(library, id);
+      map(([{ id }, { packageName }]) => {
+        const examples = ExampleData.find(packageName, id);
         return examples.length === 0 ? null : examples;
       })
     );
@@ -35,7 +35,7 @@ export class ComponentViewerComponent implements OnInit, AfterViewInit, OnDestro
     this.api = this._htmlLoader.with(this._route).fromApiDocumentation().observe();
 
     this.showcaseMetaEntry = combineLatest([this._route.params, this._route.data]).pipe(
-      map(([{ id }, { library }]) => ShowcaseMeta.findEntryByPackageNameAndComponentId(library, id))
+      map(([{ id }, { packageName }]) => findPackageEntry(packageName, id))
     );
   }
 

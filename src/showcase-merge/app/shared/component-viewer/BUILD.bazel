@@ -20,6 +20,7 @@ ng_module(
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
         "//src/angular-business/notification",
+        "//src/angular-business/tooltip",
         "//src/angular-public/tabs",
         "//src/angular/icon",
         "//src/components-examples",
