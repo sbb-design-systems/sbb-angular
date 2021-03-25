@@ -1,4 +1,6 @@
-# Re-export of Bazel rules with repository-wide defaults
+"""
+  Re-export of Bazel rules with repository-wide defaults
+"""
 
 load("@io_bazel_rules_sass//:defs.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
 load("@npm//@angular/bazel:index.bzl", _ng_module = "ng_module", _ng_package = "ng_package")
@@ -45,6 +47,7 @@ def ts_library(tsconfig = None, deps = [], testonly = False, **kwargs):
         **kwargs
     )
 
+# buildifier: disable=function-docstring
 def ng_module(
         deps = [],
         srcs = [],
@@ -164,6 +167,7 @@ def ng_e2e_test_library(deps = [], tsconfig = None, **kwargs):
         **kwargs
     )
 
+# buildifier: disable=function-docstring
 def karma_web_test_suite(name, **kwargs):
     web_test_args = {}
     kwargs["srcs"] = ["@npm//:node_modules/tslib/tslib.js"] + kwargs.get("srcs", [])
@@ -217,6 +221,7 @@ def protractor_web_test_suite(flaky = True, **kwargs):
         **kwargs
     )
 
+# buildifier: disable=function-docstring
 def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], exclude_init_script = False, **kwargs):
     # Workaround for https://github.com/bazelbuild/rules_typescript/issues/301
     # Since some of our tests depend on CSS files which are not part of the `ng_module` rule,
@@ -226,7 +231,7 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], exclude_init_s
     # loads the given CSS file.
     for css_label in static_css:
         css_id = "static-css-file-%s" % (css_label.replace("/", "_").replace(":", "-"))
-        deps += [":%s" % css_id]
+        deps.append(":%s" % css_id)
 
         native.genrule(
             name = css_id,

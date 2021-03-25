@@ -1,4 +1,8 @@
-entryPoints = [
+"""
+  Entry points list for angular.
+"""
+
+entry_points = [
     # do not sort
     "accordion",
     "autocomplete",
@@ -23,14 +27,14 @@ entryPoints = [
 # List of all non-testing entry-points of the Angular package.
 ANGULAR_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not "/testing" in ep
 ]
 
 # List of all testing entry-points of the Angular package.
 ANGULAR_TESTING_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not ep in ANGULAR_ENTRYPOINTS
 ]
 

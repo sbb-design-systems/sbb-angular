@@ -1,4 +1,8 @@
-entryPoints = [
+"""
+  Entry points list for maps.
+"""
+
+entry_points = [
     # do not sort
     "core",
     "esri-basemap-gallery",
@@ -12,14 +16,14 @@ entryPoints = [
 # List of all non-testing entry-points of the Maps package.
 MAPS_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not "/testing" in ep
 ]
 
 # List of all testing entry-points of the Maps package.
 MAPS_TESTING_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not ep in MAPS_ENTRYPOINTS
 ]
 

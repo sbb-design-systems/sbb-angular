@@ -4,7 +4,14 @@ import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  inject,
+  TestBed,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
@@ -20,24 +27,18 @@ import { SbbSidebarModule } from '../sidebar.module';
 
 import { SbbIconSidebar, SbbIconSidebarContainer } from './icon-sidebar';
 
-let mediaMatcher: FakeMediaMatcher;
-
 const PROVIDE_FAKE_MEDIA_MATCHER = {
   provide: MediaMatcher,
   useFactory: () => {
-    mediaMatcher = new FakeMediaMatcher();
+    const mediaMatcher = new FakeMediaMatcher();
     mediaMatcher.defaultMatches = false; // enforce desktop view
     return mediaMatcher;
   },
 };
 
-const registerClearMediaMatcher = () => {
-  afterEach(() => {
-    mediaMatcher.clear();
-  });
-};
-
 describe('SbbIconSidebar', () => {
+  let mediaMatcher: FakeMediaMatcher;
+
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
@@ -65,10 +66,14 @@ describe('SbbIconSidebar', () => {
       });
 
       TestBed.compileComponents();
+
+      inject([MediaMatcher], (fm: FakeMediaMatcher) => {
+        mediaMatcher = fm;
+      })();
     })
   );
 
-  registerClearMediaMatcher();
+  afterEach(() => mediaMatcher.clear());
 
   describe('methods', () => {
     it('does not throw when created without a sidebar content', fakeAsync(() => {
@@ -327,6 +332,8 @@ describe('SbbIconSidebar', () => {
 });
 
 describe('SbbIconSidebarContainer', () => {
+  let mediaMatcher: FakeMediaMatcher;
+
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
@@ -349,10 +356,14 @@ describe('SbbIconSidebarContainer', () => {
       });
 
       TestBed.compileComponents();
+
+      inject([MediaMatcher], (fm: FakeMediaMatcher) => {
+        mediaMatcher = fm;
+      })();
     })
   );
 
-  registerClearMediaMatcher();
+  afterEach(() => mediaMatcher.clear());
 
   it('should expose a scrollable when the consumer has not specified sidebar content', fakeAsync(() => {
     const fixture = TestBed.createComponent(SidebarContainerEmptyTestComponent);

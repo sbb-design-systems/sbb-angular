@@ -7,11 +7,8 @@
 def _relative_to_label(label, short_path):
     return short_path[len(label.package) + 1:]
 
-"""
-  Implementation of the "markdown_to_html" rule. The implementation runs the transform
-  executable in order to create the outputs for the specified source files.
-"""
-
+# Implementation of the "markdown_to_html" rule. The implementation runs the transform
+# executable in order to create the outputs for the specified source files.
 def _markdown_to_html(ctx):
     input_files = ctx.files.srcs
     args = ctx.actions.args()
@@ -35,7 +32,7 @@ def _markdown_to_html(ctx):
         relative_basepath = _relative_to_label(ctx.label, input_file.short_path)[:-len(".md")]
 
         # For each input file "xxx.md", we want to write an output file "xxx.html"
-        expected_outputs += [ctx.actions.declare_file("%s.html" % relative_basepath)]
+        expected_outputs.append(ctx.actions.declare_file("%s.html" % relative_basepath))
 
         # Add the input file to the command line arguments that will be passed to the
         # transform-markdown executable.
@@ -54,11 +51,9 @@ def _markdown_to_html(ctx):
 
     return DefaultInfo(files = depset(expected_outputs))
 
-"""
-  Rule definition for the "markdown_to_html" rule that can accept arbritary source files
-  that will be transformed into HTML files. The outputs can be referenced through the
-  default output provider.
-"""
+# Rule definition for the "markdown_to_html" rule that can accept arbritary source files
+# that will be transformed into HTML files. The outputs can be referenced through the
+# default output provider.
 markdown_to_html = rule(
     implementation = _markdown_to_html,
     attrs = {

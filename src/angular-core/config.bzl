@@ -1,4 +1,8 @@
-entryPoints = [
+"""
+  Entry points list for core.
+"""
+
+entry_points = [
     # do not sort
     "base",
     "base/checkbox",
@@ -21,14 +25,14 @@ entryPoints = [
 # List of all non-testing entry-points of the Core package.
 CORE_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not "/testing" in ep
 ]
 
 # List of all testing entry-points of the Core package.
 CORE_TESTING_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not ep in CORE_ENTRYPOINTS
 ]
 

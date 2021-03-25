@@ -21,26 +21,26 @@ ts_config(
     deps = ["bazel-tsconfig-build.json"],
 )
 
-angularApiEntryPoints = ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS
+angular_api_entry_points = ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS
 
-businessApiEntryPoints = BUSINESS_ENTRYPOINTS + BUSINESS_TESTING_ENTRYPOINTS
+business_api_entry_points = BUSINESS_ENTRYPOINTS + BUSINESS_TESTING_ENTRYPOINTS
 
-coreApiEntryPoints = CORE_ENTRYPOINTS + CORE_TESTING_ENTRYPOINTS
+core_api_entry_points = CORE_ENTRYPOINTS + CORE_TESTING_ENTRYPOINTS
 
-mapsApiEntryPoints = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
+maps_api_entry_points = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
 
-publicApiEntryPoints = PUBLIC_ENTRYPOINTS + PUBLIC_TESTING_ENTRYPOINTS
+public_api_entry_points = PUBLIC_ENTRYPOINTS + PUBLIC_TESTING_ENTRYPOINTS
 
 # List that contains all source files that need to be processed by Dgeni.
-apiSourceFiles = ["//src/angular/%s:source-files" % name for name in angularApiEntryPoints] + \
-                 ["//src/angular-business/%s:source-files" % name for name in businessApiEntryPoints] + \
-                 ["//src/angular-core/%s:source-files" % name for name in coreApiEntryPoints] + \
-                 ["//src/angular-maps/%s:source-files" % name for name in mapsApiEntryPoints] + \
-                 ["//src/angular-public/%s:source-files" % name for name in publicApiEntryPoints]
+api_source_files = ["//src/angular/%s:source-files" % name for name in angular_api_entry_points] + \
+                   ["//src/angular-business/%s:source-files" % name for name in business_api_entry_points] + \
+                   ["//src/angular-core/%s:source-files" % name for name in core_api_entry_points] + \
+                   ["//src/angular-maps/%s:source-files" % name for name in maps_api_entry_points] + \
+                   ["//src/angular-public/%s:source-files" % name for name in public_api_entry_points]
 
 dgeni_api_docs(
     name = "api-docs",
-    srcs = apiSourceFiles + [
+    srcs = api_source_files + [
         # Add all Angular packages to the sources because some Material exports use
         # Angular exports and these should not cause any warnings when Dgeni uses the
         # type checker to parse our TypeScript sources.
@@ -52,11 +52,11 @@ dgeni_api_docs(
         "@npm//@angular/platform-browser",
     ],
     entry_points = {
-        "angular": angularApiEntryPoints,
-        "angular-business": businessApiEntryPoints,
-        "angular-core": coreApiEntryPoints,
-        "angular-maps": mapsApiEntryPoints,
-        "angular-public": publicApiEntryPoints,
+        "angular": angular_api_entry_points,
+        "angular-business": business_api_entry_points,
+        "angular-core": core_api_entry_points,
+        "angular-maps": maps_api_entry_points,
+        "angular-public": public_api_entry_points,
     },
     tags = ["docs-package"],
 )
@@ -66,15 +66,15 @@ ts_library(
     srcs = ["dev-mode-types.d.ts"],
 )
 
-htmlSourceFiles = ["//src/angular/%s:html-source-files" % name for name in angularApiEntryPoints] + \
-                  ["//src/angular-business/%s:html-source-files" % name for name in businessApiEntryPoints] + \
-                  ["//src/angular-core/%s:html-source-files" % name for name in coreApiEntryPoints] + \
-                  ["//src/angular-maps/%s:html-source-files" % name for name in mapsApiEntryPoints] + \
-                  ["//src/angular-public/%s:html-source-files" % name for name in publicApiEntryPoints]
+html_source_files = ["//src/angular/%s:html-source-files" % name for name in angular_api_entry_points] + \
+                    ["//src/angular-business/%s:html-source-files" % name for name in business_api_entry_points] + \
+                    ["//src/angular-core/%s:html-source-files" % name for name in core_api_entry_points] + \
+                    ["//src/angular-maps/%s:html-source-files" % name for name in maps_api_entry_points] + \
+                    ["//src/angular-public/%s:html-source-files" % name for name in public_api_entry_points]
 
 filegroup(
     name = "used-icons-source-files",
-    srcs = htmlSourceFiles,
+    srcs = html_source_files,
 )
 
 genrule(

@@ -41,7 +41,7 @@ def _package_docs_content(ctx):
 
             # Add the output file to the expected outputs so that Bazel throws an error if the file
             # hasn't been generated properly.
-            expected_outputs += [output_file]
+            expected_outputs.append(output_file)
 
             # Pass the input file path and the output file path to the packager executable. We need
             # to do this for each file because we cannot determine the general path to the output
@@ -66,11 +66,9 @@ def _package_docs_content(ctx):
 
     return DefaultInfo(files = depset(expected_outputs))
 
-"""
-  Rule definition for the "package_docs_content" rule that can accept arbritary source files
-  that will be grouped into specified sections. This is being used to package the docs
-  content into a desired folder structure that can be shared with the docs application.
-"""
+# Rule definition for the "package_docs_content" rule that can accept arbritary source files
+# that will be grouped into specified sections. This is being used to package the docs
+# content into a desired folder structure that can be shared with the docs application.
 package_docs_content_legacy = rule(
     implementation = _package_docs_content,
     attrs = {

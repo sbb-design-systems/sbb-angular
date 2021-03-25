@@ -37,13 +37,13 @@ def _dgeni_api_docs(ctx):
         args.add_joined(entry_points, join_with = ",")
 
         for entry_point in entry_points:
-            expected_outputs += [
+            expected_outputs.append(
                 # Declare the output for the current entry-point. The output file will always follow the
                 # same format: "{output_folder}/{package_name}-{entry_point_name}.html"
                 # (e.g. "api-docs/material-slider-testing.html")
                 ctx.actions.declare_file("%s/%s-%s.html" %
                                          (output_dir_name, package_name, entry_point.replace("/", "-"))),
-            ]
+            )
 
     # Run the Dgeni bazel executable which builds the documentation output based on the
     # configured rule attributes.
@@ -59,10 +59,8 @@ def _dgeni_api_docs(ctx):
 
     return DefaultInfo(files = depset(expected_outputs))
 
-"""
-  Rule definition for the "dgeni_api_docs" rule that can generate API documentation
-  for specified packages and their entry points.
-"""
+# Rule definition for the "dgeni_api_docs" rule that can generate API documentation
+# for specified packages and their entry points.
 dgeni_api_docs = rule(
     implementation = _dgeni_api_docs,
     attrs = {
