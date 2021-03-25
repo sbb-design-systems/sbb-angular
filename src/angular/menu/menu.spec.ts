@@ -1,5 +1,4 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { Direction, Directionality } from '@angular/cdk/bidi';
 import {
   DOWN_ARROW,
   END,
@@ -52,6 +51,7 @@ import {
   SbbMenuPositionX,
   SbbMenuPositionY,
   SbbMenuTrigger,
+  SbbMenuTriggerContext,
   SBB_MENU_DEFAULT_OPTIONS,
 } from './index';
 import { MENU_PANEL_TOP_PADDING, SBB_MENU_SCROLL_STRATEGY } from './menu-trigger';
@@ -2388,7 +2388,6 @@ class OverlapMenu implements TestableMenu {
   exportAs: 'matCustomMenu',
 })
 class CustomMenuPanel implements SbbMenuPanel {
-  direction: Direction;
   xPosition: SbbMenuPositionX = 'after';
   yPosition: SbbMenuPositionY = 'below';
   overlapTrigger = true;
@@ -2401,6 +2400,7 @@ class CustomMenuPanel implements SbbMenuPanel {
   setPositionClasses = () => {};
 
   triggerWidth: number;
+  triggerContext: SbbMenuTriggerContext;
 }
 
 @Component({
