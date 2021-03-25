@@ -163,9 +163,20 @@ You can also use the headings classes to make every tag looks like a heading. Av
 
 ### Ordered Lists
 
-1.1. Consectetur adipiscing elit. Mauris ac velit turpis. Integer vehicula sagittis libero, id pretium metus rutrum sed.
-1.2. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-1.3. Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.
+<ol>
+  <li>
+    Consectetur adipiscing elit. Mauris ac velit turpis. Integer vehicula sagittis libero, id
+    pretium metus rutrum sed.
+  </li>
+  <li>
+    Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+    vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+  </li>
+  <li>
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
+  </li>
+</ol>
 
 ```html
 <ol>
@@ -186,11 +197,32 @@ You can also use the headings classes to make every tag looks like a heading. Av
 
 ### Nested Ordered Lists
 
-1.1. Consectetur adipiscing elit. Mauris ac velit turpis. Integer vehicula sagittis libero, id pretium metus rutrum sed.
-1.1.1. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-1.1.1.1. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec.
-1.1.2. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-1.2. Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.
+<ol>
+  <li>
+    Consectetur adipiscing elit. Mauris ac velit turpis. Integer vehicula sagittis libero, id
+    pretium metus rutrum sed.
+    <ol>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+        <ol>
+          <li>
+            Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend
+            augue, vitae consectetur ipsum porta nec.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
+  </li>
+</ol>
 
 ```html
 <ol>
@@ -223,20 +255,66 @@ You can also use the headings classes to make every tag looks like a heading. Av
 
 ### Mixed Lists
 
-1.1. Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.:
-
-- Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-- Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-  1.2. Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.:
-- Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-- Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-
-- Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.:
-  1. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-  2. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-- Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl, bibendum cursus felis.:
-  1. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-  2. Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+<ol>
+  <li>
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
+    <ul>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+      </li>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
+    <ul>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+      </li>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+      </li>
+    </ul>
+  </li>
+</ol>
+<ul>
+  <li>
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
+    <ol>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+      </li>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed
+    condimentum nisl, bibendum cursus felis.
+    <ol>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+      </li>
+      <li>
+        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue,
+        vitae consectetur ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
+      </li>
+    </ol>
+  </li>
+</ul>
 
 ```html
 <ol>
