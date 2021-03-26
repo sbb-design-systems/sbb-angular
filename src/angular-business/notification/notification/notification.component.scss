@@ -28,6 +28,7 @@ $notificationVerticalMargin: 12;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  line-height: pxToRem(23);
   min-height: pxToEm($notificationHeight);
   width: $notificationBaseWidth;
   border-radius: toPx($notificationBorderRadius);

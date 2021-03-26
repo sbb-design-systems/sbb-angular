@@ -2204,8 +2204,8 @@ describe('SbbAutocomplete', () => {
       const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
       const panelTop = panel.getBoundingClientRect().top;
 
-      // subtract 2px border
-      expect(Math.floor(inputBottom - 2)).toEqual(
+      // subtract 1px border
+      expect(Math.floor(inputBottom - 1)).toEqual(
         Math.floor(panelTop),
         `Expected panel top to match input bottom by default.`
       );
