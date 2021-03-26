@@ -209,9 +209,12 @@ def karma_web_test_suite(name, **kwargs):
         testonly = True,
     )
 
+    kwargs["deps"] = ["@npm//karma-junit-reporter"] + kwargs.get("deps", [])
+
     # Default test suite with all configured browsers.
     _karma_web_test_suite(
         name = name,
+        config_file = "//test:bazel-karma-coverage.js",
         **kwargs
     )
 

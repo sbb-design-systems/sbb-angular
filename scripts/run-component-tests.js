@@ -49,9 +49,9 @@ shelljs.set('-e');
 shelljs.cd(projectDir);
 
 // Extracts the supported command line options.
-const { _: components, local, firefox, watch } = minimist(args, {
-  boolean: ['local', 'firefox', 'watch'],
-  default: { watch: true },
+const { _: components, local, firefox, watch, 'view-engine': viewEngine } = minimist(args, {
+  boolean: ['local', 'firefox', 'watch', 'view-engine'],
+  default: { watch: true, 'view-engine': false },
 });
 
 // Whether tests for all components should be run.
@@ -71,6 +71,7 @@ if (local && (components.length > 1 || all)) {
 
 const browserName = firefox ? 'firefox' : 'chromium';
 const bazelBinary = `yarn -s ${watch ? 'ibazel' : 'bazel'}`;
+const configFlag = viewEngine ? '--config=view-engine' : '';
 
 // If `all` has been specified as component, we run tests for all components
 // in the repository. The `--firefox` flag can be still specified.
