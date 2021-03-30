@@ -15,7 +15,6 @@ import {
   Input,
   NgZone,
   OnDestroy,
-  OnInit,
   Output,
   QueryList,
   TemplateRef,
@@ -105,7 +104,7 @@ const _SbbMenuMixinBase: HasVariantCtor & typeof SbbMenuBase = mixinVariant(SbbM
 })
 export class SbbMenu
   extends _SbbMenuMixinBase
-  implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy {
+  implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnDestroy {
   private _keyManager: FocusKeyManager<SbbMenuItem>;
   private _xPosition: SbbMenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: SbbMenuPositionY = this._defaultOptions.yPosition;
@@ -164,7 +163,6 @@ export class SbbMenu
       throwSbbMenuInvalidPositionX();
     }
     this._xPosition = value;
-    this.setPositionClasses();
   }
 
   /** Position of the menu in the Y axis. */
@@ -177,7 +175,6 @@ export class SbbMenu
       throwSbbMenuInvalidPositionY();
     }
     this._yPosition = value;
-    this.setPositionClasses();
   }
 
   /** @docs-private */
@@ -251,10 +248,6 @@ export class SbbMenu
     @Inject(SBB_MENU_DEFAULT_OPTIONS) private _defaultOptions: SbbMenuDefaultOptions
   ) {
     super();
-  }
-
-  ngOnInit() {
-    this.setPositionClasses();
   }
 
   ngAfterContentInit() {
@@ -389,24 +382,6 @@ export class SbbMenu
       this._classList[newElevation] = true;
       this._previousElevation = newElevation;
     }
-  }
-
-  /**
-   * Adds classes to the menu panel based on its position. Can be used by
-   * consumers to add specific styling based on the position.
-   * @param posX Position of the menu along the x axis.
-   * @param posY Position of the menu along the y axis.
-   * @docs-private
-   */
-  setPositionClasses(
-    posX: SbbMenuPositionX = this.xPosition,
-    posY: SbbMenuPositionY = this.yPosition
-  ) {
-    const classes = this._classList;
-    classes['sbb-menu-before'] = posX === 'before';
-    classes['sbb-menu-after'] = posX === 'after';
-    classes['sbb-menu-above'] = posY === 'above';
-    classes['sbb-menu-below'] = posY === 'below';
   }
 
   /** Starts the enter animation. */

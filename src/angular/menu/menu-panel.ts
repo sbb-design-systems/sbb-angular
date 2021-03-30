@@ -24,7 +24,6 @@ export interface SbbMenuPanel<T = any> {
   parentMenu?: SbbMenuPanel | undefined;
   focusFirstItem: (origin?: FocusOrigin) => void;
   resetActiveItem: () => void;
-  setPositionClasses?: (x: SbbMenuPositionX, y: SbbMenuPositionY) => void;
   setElevation?(depth: number): void;
   lazyContent?: SbbMenuContent;
   backdropClass?: string;

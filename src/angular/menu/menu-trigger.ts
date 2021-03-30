@@ -25,7 +25,6 @@ import {
   OnDestroy,
   Optional,
   Output,
-  Sanitizer,
   Self,
   TemplateRef,
   ViewContainerRef,
@@ -347,7 +346,7 @@ export class SbbMenuTrigger
    */
   private _initMenu(): void {
     this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
-    if (!this.triggersSubmenu()) {
+    if (!this.triggersSubmenu() && this._triggerVariant !== 'custom') {
       this.menu.triggerContext = {
         triggerWidth: this._element.nativeElement.clientWidth,
         contentPortal: this._contentPortal,
@@ -397,7 +396,7 @@ export class SbbMenuTrigger
   }
 
   private _initializeTriggerContentPortal() {
-    if (!this.triggersSubmenu() && this._triggerContent) {
+    if (!this.triggersSubmenu() && this._triggerContent && this._triggerVariant !== 'custom') {
       this._contentPortal = new TemplatePortal(this._triggerContent, this._viewContainerRef);
     }
   }
@@ -432,7 +431,8 @@ export class SbbMenuTrigger
         .flexibleConnectedTo(this._element)
         .withLockedPosition()
         .withGrowAfterOpen()
-        .withTransformOriginOn('.sbb-menu-panel'),
+        .withTransformOriginOn('.sbb-menu-panel-wrapper')
+        .withPush(false),
       backdropClass: this.menu.backdropClass || 'cdk-overlay-transparent-backdrop',
       panelClass: coerceStringArray(this.menu.overlayPanelClass).concat(
         `sbb-menu-panel-variant-${this._triggerVariant === '' ? 'standard' : this._triggerVariant}`
@@ -446,21 +446,18 @@ export class SbbMenuTrigger
    * correct, even if a fallback position is used for the overlay.
    */
   private _subscribeToPositions(position: FlexibleConnectedPositionStrategy): void {
-    if (this.menu.setPositionClasses) {
-      position.positionChanges.subscribe((change) => {
-        const posX: SbbMenuPositionX =
-          change.connectionPair.overlayX === 'start' ? 'after' : 'before';
-        const posY: SbbMenuPositionY = change.connectionPair.overlayY === 'top' ? 'below' : 'above';
+    position.positionChanges.subscribe((change) => {
+      const posX: SbbMenuPositionX =
+        change.connectionPair.overlayX === 'start' ? 'after' : 'before';
+      const posY: SbbMenuPositionY = change.connectionPair.overlayY === 'top' ? 'below' : 'above';
 
-        Array.from(this._element.nativeElement.classList)
-          .filter((className) => className.startsWith('sbb-menu-trigger-position-'))
-          .forEach((className) => this._element.nativeElement.classList.remove(className));
-        this._element.nativeElement.classList.add(`sbb-menu-trigger-position-${posX}`);
-        this._element.nativeElement.classList.add(`sbb-menu-trigger-position-${posY}`);
-
-        this.menu.setPositionClasses!(posX, posY);
-      });
-    }
+      this._element.nativeElement.classList.remove('sbb-menu-trigger-after');
+      this._element.nativeElement.classList.remove('sbb-menu-trigger-before');
+      this._element.nativeElement.classList.remove('sbb-menu-trigger-below');
+      this._element.nativeElement.classList.remove('sbb-menu-trigger-above');
+      this._element.nativeElement.classList.add(`sbb-menu-trigger-${posX}`);
+      this._element.nativeElement.classList.add(`sbb-menu-trigger-${posY}`);
+    });
   }
 
   /**
@@ -508,7 +505,7 @@ export class SbbMenuTrigger
         overlayY,
         offsetY,
         offsetX,
-        panelClass: panelClasses(originX, originY),
+        panelClass: panelClasses(overlayX, overlayY),
       },
       {
         originX: originFallbackX,
@@ -517,7 +514,7 @@ export class SbbMenuTrigger
         overlayY,
         offsetY,
         offsetX: -offsetX,
-        panelClass: panelClasses(originFallbackX, originY),
+        panelClass: panelClasses(overlayFallbackX, overlayY),
       },
       {
         originX,
@@ -526,7 +523,7 @@ export class SbbMenuTrigger
         overlayY: overlayFallbackY,
         offsetY: -offsetY,
         offsetX: offsetX,
-        panelClass: panelClasses(originX, originFallbackY),
+        panelClass: panelClasses(overlayX, overlayFallbackY),
       },
       {
         originX: originFallbackX,
@@ -535,7 +532,7 @@ export class SbbMenuTrigger
         overlayY: overlayFallbackY,
         offsetY: -offsetY,
         offsetX: -offsetX,
-        panelClass: panelClasses(originFallbackX, originFallbackY),
+        panelClass: panelClasses(overlayFallbackX, overlayFallbackY),
       },
     ]);
   }

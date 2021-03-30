@@ -33,9 +33,9 @@ Menus support displaying `sbb-icon` elements before the menu item text.
 
 ### Customizing menu position
 
-By default, the menu will display below (y-axis), after (x-axis), without overlapping
+By default, the menu will display below (y-axis), after (x-axis), with overlapping
 its trigger. The position can be changed using the `xPosition` (`before | after`) and `yPosition`
-(`above | below`) attributes. The menu can be forced to overlap the trigger using the
+(`above | below`) attributes. The menu can be forced to not overlap the trigger using the
 `overlapTrigger` attribute.
 
 <!-- example({"example": "menu-position",

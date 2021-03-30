@@ -1188,36 +1188,44 @@ describe('SbbMenu', () => {
       trigger.style.left = '100px';
     });
 
-    it('should append sbb-menu-before if the x position is changed', () => {
+    it('should append panel classes', () => {
       fixture.componentInstance.trigger.openMenu();
       fixture.detectChanges();
 
-      const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
+      const panel = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
 
-      expect(panel.classList).toContain('sbb-menu-before');
-      expect(panel.classList).not.toContain('sbb-menu-after');
-
-      fixture.componentInstance.xPosition = 'after';
-      fixture.detectChanges();
-
-      expect(panel.classList).toContain('sbb-menu-after');
-      expect(panel.classList).not.toContain('sbb-menu-before');
+      expect(panel.classList).toContain('sbb-menu-panel-before');
+      expect(panel.classList).toContain('sbb-menu-panel-above');
     });
 
-    it('should append sbb-menu-above if the y position is changed', () => {
+    it('should update panel classes if position is changed after reopening', async () => {
       fixture.componentInstance.trigger.openMenu();
       fixture.detectChanges();
 
-      const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
+      const panel = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
 
-      expect(panel.classList).toContain('sbb-menu-above');
-      expect(panel.classList).not.toContain('sbb-menu-below');
+      expect(panel.classList).toContain('sbb-menu-panel-above');
+      expect(panel.classList).toContain('sbb-menu-panel-before');
+      expect(panel.classList).not.toContain('sbb-menu-panel-below');
+      expect(panel.classList).not.toContain('sbb-menu-panel-after');
 
-      fixture.componentInstance.yPosition = 'below';
+      fixture.componentInstance.trigger.closeMenu();
       fixture.detectChanges();
+      await fixture.whenStable();
 
-      expect(panel.classList).toContain('sbb-menu-below');
-      expect(panel.classList).not.toContain('sbb-menu-above');
+      trigger.style.top = '0';
+      fixture.componentInstance.yPosition = 'below';
+      fixture.componentInstance.xPosition = 'after';
+      fixture.detectChanges();
+      fixture.componentInstance.trigger.openMenu();
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(panel.classList).not.toContain('sbb-menu-panel-above');
+      expect(panel.classList).not.toContain('sbb-menu-panel-before');
+      expect(panel.classList).toContain('sbb-menu-panel-below');
+      expect(panel.classList).toContain('sbb-menu-panel-after');
     });
 
     it('should default to the "below" and "after" positions', () => {
@@ -1230,13 +1238,13 @@ describe('SbbMenu', () => {
       newFixture.detectChanges();
       newFixture.componentInstance.trigger.openMenu();
       newFixture.detectChanges();
-      const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
+      const panel = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
 
-      expect(panel.classList).toContain('sbb-menu-below');
-      expect(panel.classList).toContain('sbb-menu-after');
+      expect(panel.classList).toContain('sbb-menu-panel-below');
+      expect(panel.classList).toContain('sbb-menu-panel-after');
     });
 
-    xit('should be able to update the position after the first open', () => {
+    it('should be able to update the position after the first open', () => {
       trigger.style.position = 'fixed';
       trigger.style.top = '200px';
 
@@ -1264,16 +1272,15 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
 
-      // Add 2px border width
-      expect(Math.floor(panel.getBoundingClientRect().top) + 2).toBe(
-        Math.floor(trigger.getBoundingClientRect().bottom),
+      expect(Math.floor(panel.getBoundingClientRect().top)).toBe(
+        Math.floor(trigger.getBoundingClientRect().top),
         'Expected menu to open below'
       );
     });
   });
 
   describe('fallback positions', () => {
-    xit('should fall back to "before" mode if "after" mode would not fit on screen', () => {
+    it('should fall back to "before" mode if "after" mode would not fit on screen', () => {
       const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
       fixture.detectChanges();
       const trigger = fixture.componentInstance.triggerEl.nativeElement;
@@ -1300,12 +1307,12 @@ describe('SbbMenu', () => {
 
       // The y-position of the overlay should be unaffected, as it can already fit vertically
       expect(Math.floor(overlayRect.top)).toBe(
-        Math.floor(triggerRect.bottom),
+        Math.floor(triggerRect.top),
         `Expected menu top position to be unchanged if it can fit in the viewport.`
       );
     });
 
-    xit('should fall back to "above" mode if "below" mode would not fit on screen', () => {
+    it('should fall back to "above" mode if "below" mode would not fit on screen', () => {
       const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
       fixture.detectChanges();
       const trigger = fixture.componentInstance.triggerEl.nativeElement;
@@ -1322,7 +1329,7 @@ describe('SbbMenu', () => {
       const overlayRect = overlayPane.getBoundingClientRect();
 
       expect(Math.floor(overlayRect.bottom)).toBe(
-        Math.floor(triggerRect.top),
+        Math.floor(triggerRect.bottom),
         `Expected menu to open in "above" position if "below" position wouldn't fit.`
       );
 
@@ -1333,7 +1340,7 @@ describe('SbbMenu', () => {
       );
     });
 
-    xit('should re-position menu on both axes if both defaults would not fit', () => {
+    it('should re-position menu on both axes if both defaults would not fit', () => {
       const fixture = createComponent(SimpleMenu, [], [FakeIcon]);
       fixture.detectChanges();
       const trigger = fixture.componentInstance.triggerEl.nativeElement;
@@ -1358,12 +1365,12 @@ describe('SbbMenu', () => {
       );
 
       expect(Math.floor(overlayRect.bottom)).toBe(
-        Math.floor(triggerRect.top),
+        Math.floor(triggerRect.bottom),
         `Expected menu to open in "above" position if "below" position wouldn't fit.`
       );
     });
 
-    xit('should re-position a menu with custom position set', () => {
+    it('should re-position a menu with custom position set', () => {
       const fixture = createComponent(PositionedMenu);
       fixture.componentInstance.marginleft = 0;
       fixture.detectChanges();
@@ -1385,7 +1392,7 @@ describe('SbbMenu', () => {
       // As designated "above" position won't fit on screen, the menu should fall back
       // to "below" mode, where the top edges of the overlay and trigger are aligned.
       expect(Math.floor(overlayRect.top)).toBe(
-        Math.floor(triggerRect.bottom),
+        Math.floor(triggerRect.top),
         `Expected menu to open in "below" position if "above" position wouldn't fit.`
       );
     });
@@ -1425,7 +1432,7 @@ describe('SbbMenu', () => {
       }
 
       get overlayRect() {
-        return this._getOverlayPane().getBoundingClientRect();
+        return this.overlayPane.getBoundingClientRect();
       }
 
       get triggerRect() {
@@ -1436,7 +1443,7 @@ describe('SbbMenu', () => {
         return overlayContainerElement.querySelector('.sbb-menu-panel-wrapper');
       }
 
-      private _getOverlayPane() {
+      get overlayPane() {
         return overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
       }
     }
@@ -1487,12 +1494,12 @@ describe('SbbMenu', () => {
         );
       });
 
-      xit('repositions the origin to be below, so the menu opens from the trigger', () => {
+      it('repositions the origin to be below, so the menu opens from the trigger', () => {
         subject.openMenu();
         subject.fixture.detectChanges();
 
-        expect(subject.menuPanel!.classList).toContain('sbb-menu-below');
-        expect(subject.menuPanel!.classList).not.toContain('sbb-menu-above');
+        expect(subject.overlayPane.classList).toContain('sbb-menu-panel-below');
+        expect(subject.overlayPane.classList).not.toContain('sbb-menu-panel-above');
       });
     });
   });
@@ -2446,7 +2453,7 @@ interface TestableMenu {
 }
 @Component({
   template: `
-    <button [sbbMenuTriggerFor]="menu" #triggerEl>Toggle menu</button>
+    <button [sbbMenuCustomTriggerFor]="menu" #triggerEl>Toggle menu</button>
     <sbb-menu [overlapTrigger]="overlapTrigger" #menu="sbbMenu">
       <button sbb-menu-item>Not overlapped Content</button>
     </sbb-menu>

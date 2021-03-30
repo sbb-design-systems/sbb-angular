@@ -66,97 +66,29 @@ sbb-menu {
   }
 }
 
-.sbb-menu-mask {
-  display: none;
-  position: absolute;
-  height: pxToRem($borderWidthStandard);
-  background-color: $sbbColorWhite;
-
-  // TODO: find better solution for position static selector
-  .sbb-menu-panel-variant-standard[style*='position: static'] .sbb-menu-panel-root & {
-    display: block;
-  }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      height: pxToRem($borderWidthStandard * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      height: pxToRem($borderWidthStandard * $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
-    height: pxToRem($borderWidthLean);
-  }
-
-  .sbb-menu-below & {
-    top: pxToRem(-$borderWidthStandard);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        top: pxToRem(-$borderWidthStandard * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        top: pxToRem(-$borderWidthStandard * $scalingFactor5k);
-      }
-    }
-    html.sbb-lean & {
-      top: pxToRem(-$borderWidthLean);
-    }
-  }
-
-  .sbb-menu-above & {
-    bottom: pxToRem(-$borderWidthStandard);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        bottom: pxToRem(-$borderWidthStandard * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        bottom: pxToRem(-$borderWidthStandard * $scalingFactor5k);
-      }
-    }
-    html.sbb-lean & {
-      bottom: pxToRem(-$borderWidthLean);
-    }
-  }
-
-  .sbb-menu-before & {
-    right: 0;
-  }
-
-  .sbb-menu-after & {
-    left: 0;
-  }
-}
-
-.sbb-menu-panel-variant-standard .sbb-menu-panel-root {
-  overflow: inherit;
-
-  &.sbb-menu-before.sbb-menu-below {
+.sbb-menu-panel-root {
+  .sbb-menu-panel-variant-standard.sbb-menu-panel-before.sbb-menu-panel-below & {
     border-top-right-radius: 0;
   }
-  &.sbb-menu-before.sbb-menu-above {
+  .sbb-menu-panel-variant-standard.sbb-menu-panel-before.sbb-menu-panel-above & {
     border-bottom-right-radius: 0;
   }
-  &.sbb-menu-after.sbb-menu-below {
+
+  .sbb-menu-panel-variant-standard.sbb-menu-panel-after.sbb-menu-panel-below & {
     border-top-left-radius: 0;
   }
-  &.sbb-menu-after.sbb-menu-above {
+
+  .sbb-menu-panel-variant-standard.sbb-menu-panel-after.sbb-menu-panel-above & {
     border-bottom-left-radius: 0;
   }
 }
 
-.sbb-menu-item {
-  position: relative;
-}
-
-button.sbb-menu-item {
+.sbb-menu-panel button.sbb-menu-item {
   width: 100%;
 }
 
-.sbb-menu-trigger-root.sbb-menu-trigger-standard {
+.sbb-menu-trigger-standard.sbb-menu-trigger-root,
+.sbb-menu-panel-trigger {
   display: inline-block;
   background: none;
   max-width: none;
@@ -206,59 +138,46 @@ button.sbb-menu-item {
   html.sbb-lean & {
     border-width: pxToRem($borderWidthLean);
   }
-
-  &.sbb-menu-trigger-open {
-    border-color: $sbbColorGrey;
-    background-color: $sbbColorWhite;
-
-    html.sbb-lean & {
-      border-color: $sbbColorIron;
-
-      &.sbb-menu-trigger-position-below {
-        border-bottom-color: transparent;
-      }
-      &.sbb-menu-trigger-position-above {
-        border-top-color: transparent;
-      }
-    }
-
-    &.sbb-menu-trigger-position-below {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      border-bottom-color: transparent;
-    }
-    &.sbb-menu-trigger-position-above {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      border-top-color: transparent;
-      box-shadow: boxShadow(1, $borderWidthStandard, 1);
-
-      html:not(.sbb-lean) & {
-        @include mq($from: desktop4k) {
-          box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
-        }
-        @include mq($from: desktop5k) {
-          box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k);
-        }
-      }
-
-      html.sbb-lean & {
-        box-shadow: boxShadow(1, $borderWidthLean, 1);
-      }
-    }
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: $sbbColorBlack;
-    }
-  }
 }
 
-.sbb-menu-panel-trigger.sbb-menu-trigger-root {
+.sbb-menu-panel-trigger {
   background-color: $sbbColorWhite;
   z-index: 100;
   position: relative;
+  border-color: $sbbColorGrey;
+
+  html.sbb-lean & {
+    border-color: $sbbColorIron;
+  }
+
+  .sbb-menu-panel-below & {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .sbb-menu-panel-above & {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactorDefault);
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      box-shadow: boxShadow(1, $borderWidthLean, $scalingFactorDefault);
+    }
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $sbbColorBlack;
+  }
 
   &::after {
     content: '';
