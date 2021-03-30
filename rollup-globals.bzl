@@ -1,3 +1,8 @@
+"""
+  Package version management. These are used for replacement in built bundles.
+"""
+
+load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS")
 load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS")
 load("//src/angular-core:config.bzl", "CORE_ENTRYPOINTS")
 load("//src/angular-icons:config.bzl", "ICONS_ENTRYPOINTS")
@@ -66,13 +71,14 @@ def to_umd_name(name):
 # Creates globals for a given package and its entry-points.
 def create_globals(packageName, entryPoints):
     ROLLUP_GLOBALS.update({
-        "@sbb-esta/angular-%s/%s" % (packageName, ep): "ng.%s.%s" % (to_umd_name(packageName), to_umd_name(ep))
+        "@sbb-esta/%s/%s" % (packageName, ep): "ng.%s.%s" % (to_umd_name(packageName), to_umd_name(ep))
         for ep in entryPoints
     })
 
-create_globals("business", BUSINESS_ENTRYPOINTS)
-create_globals("core", CORE_ENTRYPOINTS)
-create_globals("icons", ICONS_ENTRYPOINTS)
-create_globals("keycloak", KEYCLOAK_ENTRYPOINTS)
-create_globals("maps", MAPS_ENTRYPOINTS)
-create_globals("public", PUBLIC_ENTRYPOINTS)
+create_globals("angular", ANGULAR_ENTRYPOINTS)
+create_globals("angular-business", BUSINESS_ENTRYPOINTS)
+create_globals("angular-core", CORE_ENTRYPOINTS)
+create_globals("angular-icons", ICONS_ENTRYPOINTS)
+create_globals("angular-keycloak", KEYCLOAK_ENTRYPOINTS)
+create_globals("angular-maps", MAPS_ENTRYPOINTS)
+create_globals("angular-public", PUBLIC_ENTRYPOINTS)

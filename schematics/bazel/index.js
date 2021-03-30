@@ -89,24 +89,11 @@ class BazelModuleFileRegistry {
 }
 
 const { getNativeBinary } = require('@bazel/buildifier/buildifier');
-const buildifierArguments = parseBuildifierArguments();
-function parseBuildifierArguments() {
-    const pckg = require('../../package.json');
-    const script = pckg.scripts['bazel:buildifier'];
-    if (!script) {
-        throw new schematics.SchematicsException('Could not find script bazel:buildifier in package.json');
-    }
-    const args = script.split('xargs buildifier -v')[1];
-    if (!args) {
-        throw new schematics.SchematicsException('Could not find `xargs buildifier -v` in bazel:buildifier in package.json');
-    }
-    return `${args} --lint=fix --mode=fix`;
-}
 function formatBazelFile(relativePath, content) {
     const tmpPath = path.join(os.tmpdir(), `bazel_file_to_format_${crypto.randomBytes(32).toString('hex')}.bazel`);
     fs.writeFileSync(tmpPath, content, 'utf8');
     const binary = getNativeBinary();
-    child_process.execSync(`"${binary}" ${buildifierArguments} -path=${relativePath} "${tmpPath}"`);
+    child_process.execSync(`"${binary}" -path=${relativePath} "${tmpPath}"`);
     const result = fs.readFileSync(tmpPath, 'utf8');
     fs.unlinkSync(tmpPath);
     return result;

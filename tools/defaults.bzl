@@ -1,4 +1,6 @@
-# Re-export of Bazel rules with repository-wide defaults
+"""
+  Re-export of Bazel rules with repository-wide defaults
+"""
 
 load("@io_bazel_rules_sass//:defs.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
 load("@npm//@angular/bazel:index.bzl", _ng_module = "ng_module", _ng_package = "ng_package")
@@ -45,6 +47,7 @@ def ts_library(tsconfig = None, deps = [], testonly = False, **kwargs):
         **kwargs
     )
 
+# buildifier: disable=function-docstring
 def ng_module(
         deps = [],
         srcs = [],
@@ -164,14 +167,24 @@ def ng_e2e_test_library(deps = [], tsconfig = None, **kwargs):
         **kwargs
     )
 
+# buildifier: disable=function-docstring
 def karma_web_test_suite(name, **kwargs):
     web_test_args = {}
     kwargs["srcs"] = ["@npm//:node_modules/tslib/tslib.js"] + kwargs.get("srcs", [])
     kwargs["deps"] = [
         "//tools/rxjs:rxjs_umd_modules",
-        "//tools/esri-loader:esri_loader_umd_module",
         "//tools/angular-localize:angular_localize_umd_module",
     ] + kwargs.get("deps", [])
+
+    # Set up default browsers if no explicit `browsers` have been specified.
+    if not hasattr(kwargs, "browsers"):
+        kwargs["tags"] = ["native"] + kwargs.get("tags", [])
+        kwargs["browsers"] = [
+            # Note: when changing the browser names here, also update the "yarn test"
+            # script to reflect the new browser names.
+            "@npm//@angular/dev-infra-private/browsers/chromium:chromium",
+            "@npm//@angular/dev-infra-private/browsers/firefox:firefox",
+        ]
 
     for opt_name in kwargs.keys():
         # Filter out options which are specific to "karma_web_test" targets. We cannot
@@ -196,22 +209,23 @@ def karma_web_test_suite(name, **kwargs):
         testonly = True,
     )
 
+    kwargs["deps"] = ["@npm//karma-junit-reporter"] + kwargs.get("deps", [])
+
     # Default test suite with all configured browsers.
     _karma_web_test_suite(
         name = name,
+        config_file = "//test:bazel-karma-coverage.js",
         **kwargs
     )
 
-# Protractor web test targets are flaky by default as the browser can sometimes
-# crash (e.g. due to too much concurrency). Passing the "flaky" flag ensures that
-# Bazel detects flaky tests and re-runs these a second time in case of a flake.
 def protractor_web_test_suite(flaky = True, **kwargs):
     _protractor_web_test_suite(
-        flaky = flaky,
+        browsers = ["@npm//@angular/dev-infra-private/browsers/chromium:chromium"],
         **kwargs
     )
 
-def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], tags = [], **kwargs):
+# buildifier: disable=function-docstring
+def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], exclude_init_script = False, **kwargs):
     # Workaround for https://github.com/bazelbuild/rules_typescript/issues/301
     # Since some of our tests depend on CSS files which are not part of the `ng_module` rule,
     # we need to somehow load static CSS files within Karma (e.g. overlay prebuilt). Those styles
@@ -220,7 +234,7 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], tags = [], **k
     # loads the given CSS file.
     for css_label in static_css:
         css_id = "static-css-file-%s" % (css_label.replace("/", "_").replace(":", "-"))
-        deps += [":%s" % css_id]
+        deps.append(":%s" % css_id)
 
         native.genrule(
             name = css_id,
@@ -243,15 +257,7 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], tags = [], **k
 
     karma_web_test_suite(
         # Depend on our custom test initialization script. This needs to be the first dependency.
-        deps = [
-            "//test:angular_test_init",
-        ] + deps,
-        browsers = [
-            # Note: when changing the browser names here, also update the "yarn test"
-            # script to reflect the new browser names.
-            "@io_bazel_rules_webtesting//browsers:chromium-local",
-            #"@io_bazel_rules_webtesting//browsers:firefox-local",
-        ],
+        deps = deps if exclude_init_script else ["//test:angular_test_init"] + deps,
         bootstrap = [
             # do not sort
             # This matches the ZoneJS bundles used in default CLI projects. See:
@@ -266,6 +272,5 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], tags = [], **k
             "@npm//:node_modules/zone.js/dist/zone-testing.js",
             "@npm//:node_modules/reflect-metadata/Reflect.js",
         ] + bootstrap,
-        tags = ["native"] + tags,
         **kwargs
     )

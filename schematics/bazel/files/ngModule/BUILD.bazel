@@ -59,8 +59,13 @@ ng_test_library(
 )
 
 ng_web_test_suite(
-    name = "unit_tests",
-    deps = [":unit_test_sources"],<% if (path.includes('/angular/')) { %>
+    name = "unit_tests",<% if (!path.includes('/angular-maps/')) { %>
+    deps = [":unit_test_sources"],<% } else { %>
+    deps = [
+        # do not sort
+        "//tools/esri-loader:esri_loader_umd_module",
+        ":unit_test_sources",
+    ]<% } %><% if (path.includes('/angular/')) { %>
     static_css = [
             "//src/angular:typography",
         ]<% } else if (path.includes('/angular-public/')) { %>

@@ -1,4 +1,8 @@
-entryPoints = [
+"""
+  Entry points list for icons.
+"""
+
+entry_points = [
     # do not sort
     "arrow",
     "audio",
@@ -9,7 +13,6 @@ entryPoints = [
     "core",
     "document",
     "experimental",
-    "experimental/_meta",
     "experimental/fpl",
     "experimental/fpl/him-cus",
     "experimental/fpl/timetable-attributes",
@@ -35,6 +38,7 @@ entryPoints = [
     "experimental/kom/user",
     "experimental/kom/weather",
     "experimental/social-media",
+    "experimental/_meta",
     "hardware",
     "him-cus",
     "installation",
@@ -56,14 +60,14 @@ entryPoints = [
 # List of all non-testing entry-points of the Icons package.
 ICONS_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not "/testing" in ep
 ]
 
 # List of all testing entry-points of the Icons package.
 ICONS_TESTING_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not ep in ICONS_ENTRYPOINTS
 ]
 

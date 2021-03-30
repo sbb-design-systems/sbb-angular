@@ -1,4 +1,8 @@
-entryPoints = [
+"""
+  Entry points list for <%= shortName %>.
+"""
+
+entry_points = [
     # do not sort<% for (let entryPoint of entryPoints) { %>
     "<%= entryPoint %>",<% } %>
 ]
@@ -6,14 +10,14 @@ entryPoints = [
 # List of all non-testing entry-points of the <%= capitalize(shortName) %> package.
 <%= uc(shortName) %>_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not "/testing" in ep
 ]
 
 # List of all testing entry-points of the <%= capitalize(shortName) %> package.
 <%= uc(shortName) %>_TESTING_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not ep in <%= uc(shortName) %>_ENTRYPOINTS
 ]
 

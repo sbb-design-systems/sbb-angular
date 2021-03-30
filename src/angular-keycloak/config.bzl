@@ -1,18 +1,22 @@
-entryPoints = [
+"""
+  Entry points list for keycloak.
+"""
+
+entry_points = [
     # do not sort
 ]
 
 # List of all non-testing entry-points of the Keycloak package.
 KEYCLOAK_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not "/testing" in ep
 ]
 
 # List of all testing entry-points of the Keycloak package.
 KEYCLOAK_TESTING_ENTRYPOINTS = [
     ep
-    for ep in entryPoints
+    for ep in entry_points
     if not ep in KEYCLOAK_ENTRYPOINTS
 ]
 

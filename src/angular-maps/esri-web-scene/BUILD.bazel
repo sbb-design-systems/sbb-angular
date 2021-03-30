@@ -43,7 +43,11 @@ ng_test_library(
 
 ng_web_test_suite(
     name = "unit_tests",
-    deps = [":unit_test_sources"],
+    deps = [
+        # do not sort
+        "//tools/esri-loader:esri_loader_umd_module",
+        ":unit_test_sources",
+    ],
 )
 
 markdown_to_html(

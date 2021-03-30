@@ -8,11 +8,8 @@ def _relative_to_label(label, short_path):
     # TODO(devversion): extract into generic utility under tools/
     return short_path[len(label.package) + 1:]
 
-"""
-  Implementation of the "highlight_files" rule. The implementation runs the
-  highlight-files executable in order to highlight the specified source files.
-"""
-
+# Implementation of the "highlight_files" rule. The implementation runs the
+# highlight-files executable in order to highlight the specified source files.
 def _highlight_files(ctx):
     input_files = ctx.files.srcs
     args = ctx.actions.args()
@@ -46,9 +43,9 @@ def _highlight_files(ctx):
 
         # Construct the output path from the relative basepath and file extension. For example:
         # "autocomplete.ts" should result in "autocomplete-ts.html".
-        expected_outputs += [
+        expected_outputs.append(
             ctx.actions.declare_file("%s-%s.html" % (relative_basepath, file_extension)),
-        ]
+        )
 
         # Add the path for the input file to the command line arguments, so that the executable
         # can process it.
@@ -65,11 +62,9 @@ def _highlight_files(ctx):
 
     return DefaultInfo(files = depset(expected_outputs))
 
-"""
-  Rule definition for the "highlight_files" rule that can accept arbritary source files
-  that will be transformed into HTML files which reflect the highlighted source code of
-  the given files. The outputs can be referenced through the default output provider.
-"""
+# Rule definition for the "highlight_files" rule that can accept arbritary source files
+# that will be transformed into HTML files which reflect the highlighted source code of
+# the given files. The outputs can be referenced through the default output provider.
 highlight_files = rule(
     implementation = _highlight_files,
     attrs = {
