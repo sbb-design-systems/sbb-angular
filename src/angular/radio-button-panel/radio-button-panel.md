@@ -96,15 +96,15 @@ The below example will show one column on `mobile`, two on `tablet` and `desktop
   formControlName="option"
   class="sbb-radio-panel-group sbb-col-tablet-2 sbb-col-desktop2k-4 sbb-col-desktop5k-6"
 >
-  <sbb-radio-panel-panel>Option 1</sbb-radio-panel-panel>
-  <sbb-radio-panel-panel>Option 2</sbb-radio-panel-panel>
-  <sbb-radio-panel-panel>Option 3</sbb-radio-panel-panel>
-  <sbb-radio-panel-panel>Option 4</sbb-radio-panel-panel>
-  <sbb-radio-panel-panel>Option 5</sbb-radio-panel-panel>
-  <sbb-radio-panel-panel>Option 6</sbb-radio-panel-panel>
-  <sbb-radio-panel-panel>Option 7</sbb-radio-panel-panel>
-  <sbb-radio-panel-panel>Option 8</sbb-radio-panel-panel>
-  <sbb-radio-panel-panel>Option 9</sbb-radio-panel-panel>
+  <sbb-radio-button-panel>Option 1</sbb-radio-button-panel>
+  <sbb-radio-button-panel>Option 2</sbb-radio-button-panel>
+  <sbb-radio-button-panel>Option 3</sbb-radio-button-panel>
+  <sbb-radio-button-panel>Option 4</sbb-radio-button-panel>
+  <sbb-radio-button-panel>Option 5</sbb-radio-button-panel>
+  <sbb-radio-button-panel>Option 6</sbb-radio-button-panel>
+  <sbb-radio-button-panel>Option 7</sbb-radio-button-panel>
+  <sbb-radio-button-panel>Option 8</sbb-radio-button-panel>
+  <sbb-radio-button-panel>Option 9</sbb-radio-button-panel>
 </sbb-radio-group>
 ```
 

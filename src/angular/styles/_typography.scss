@@ -1594,9 +1594,17 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
     margin-bottom: 0;
   }
 
-  img,
-  sbb-icon {
+  img {
     max-height: pxToEm(24);
+  }
+  sbb-icon {
+    width: pxToEm(24);
+    height: pxToEm(24);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
