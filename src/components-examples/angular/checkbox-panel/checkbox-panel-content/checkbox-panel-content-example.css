@@ -1,0 +1,11 @@
+.panel-content {
+  display: flex;
+}
+
+.panel-content span {
+  flex: 0 0 auto;
+}
+
+.panel-content .separator {
+  flex: 1 1 auto;
+}

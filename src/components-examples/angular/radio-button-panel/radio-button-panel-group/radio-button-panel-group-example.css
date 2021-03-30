@@ -1,0 +1,12 @@
+.configuration {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.configuration sbb-form-field {
+  margin-right: 1rem;
+}
+
+pre {
+  user-select: all;
+}

@@ -1,0 +1,34 @@
+<label [attr.for]="inputId" class="sbb-selection-item-label">
+  <input
+    #input
+    type="radio"
+    class="cdk-visually-hidden sbb-selection-input sbb-radio-input"
+    [id]="inputId"
+    [checked]="checked"
+    [disabled]="disabled"
+    [tabIndex]="tabIndex"
+    [attr.name]="name"
+    [attr.value]="value"
+    [required]="required"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-labelledby]="ariaLabelledby"
+    [attr.aria-describedby]="ariaDescribedby"
+    (change)="_onInputChange($event)"
+    (click)="_onInputClick($event)"
+  />
+
+  <div class="sbb-selection-container">
+    <div class="sbb-selection-container-checked"></div>
+  </div>
+
+  <div class="sbb-selection-content">
+    <div class="sbb-selection-inner-content">
+      <!-- Add an invisible span so JAWS can read the label -->
+      <span style="display: none">&nbsp;</span>
+      <span><ng-content></ng-content></span>
+      <ng-content select="sbb-radio-button-panel-subtitle"></ng-content>
+    </div>
+    <ng-content select="sbb-radio-button-panel-warning"></ng-content>
+    <ng-content select="sbb-radio-button-panel-note"></ng-content>
+  </div>
+</label>

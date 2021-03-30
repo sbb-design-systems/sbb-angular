@@ -1,0 +1,16 @@
+<sbb-radio-group class="sbb-radio-panel-group" [disabled]="disabled">
+  <sbb-radio-button-panel [value]="1">
+    Zürich - Bern
+    <sbb-radio-button-panel-subtitle>Valid: Mo, 01.03.2021</sbb-radio-button-panel-subtitle>
+    <sbb-radio-button-panel-warning>Reservation not possible</sbb-radio-button-panel-warning>
+    <sbb-radio-button-panel-note>CHF 25.50</sbb-radio-button-panel-note>
+  </sbb-radio-button-panel>
+  <sbb-radio-button-panel [value]="2">
+    Bern - Genf
+    <sbb-radio-button-panel-subtitle>Valid: Mo, 01.03.2021</sbb-radio-button-panel-subtitle>
+    <sbb-radio-button-panel-note>CHF 25.50</sbb-radio-button-panel-note>
+  </sbb-radio-button-panel>
+</sbb-radio-group>
+
+<h4>Properties</h4>
+<sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>
