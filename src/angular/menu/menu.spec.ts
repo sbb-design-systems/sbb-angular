@@ -2459,7 +2459,7 @@ describe('SbbMenu contextmenu', () => {
     testTriggerCopy(ContextmenuDynamicTrigger);
   });
 
-  it('should not set elementContent of triggerContext if contentPortal is provided', () => {
+  it('should not set elementContent of triggerContext if templateContent is provided', () => {
     const fixture = TestBed.createComponent(ContextmenuDynamicTrigger);
     fixture.detectChanges();
 

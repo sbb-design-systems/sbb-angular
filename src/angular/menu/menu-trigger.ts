@@ -99,7 +99,6 @@ export class SbbMenuTrigger
   private _hoverSubscription = Subscription.EMPTY;
   private _menuCloseSubscription = Subscription.EMPTY;
   private _scrollStrategy: () => ScrollStrategy;
-  private _contentPortal?: TemplatePortal;
 
   /**
    * We're specifically looking for a `SbbMenu` here since the generic `SbbMenuPanel`
@@ -209,7 +208,6 @@ export class SbbMenuTrigger
 
   ngAfterContentInit() {
     this._checkMenu();
-    this._initializeTriggerContentPortal();
     this._handleHover();
   }
 
@@ -348,8 +346,8 @@ export class SbbMenuTrigger
     if (!this.triggersSubmenu() && this._triggerVariant !== 'custom') {
       this.menu.triggerContext = {
         triggerWidth: this._element.nativeElement.clientWidth,
-        contentPortal: this._contentPortal,
-        elementContent: this._contentPortal
+        templateContent: this._triggerContent,
+        elementContent: this._triggerContent
           ? undefined
           : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
       };
@@ -391,12 +389,6 @@ export class SbbMenuTrigger
   private _checkMenu() {
     if (!this.menu && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throwSbbMenuMissingError();
-    }
-  }
-
-  private _initializeTriggerContentPortal() {
-    if (!this.triggersSubmenu() && this._triggerContent && this._triggerVariant !== 'custom') {
-      this._contentPortal = new TemplatePortal(this._triggerContent, this._viewContainerRef);
     }
   }
 
