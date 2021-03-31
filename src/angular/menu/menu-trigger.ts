@@ -83,7 +83,7 @@ const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase = mix
     'aria-haspopup': 'true',
     '[attr.aria-expanded]': 'menuOpen || null',
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
-    '[class.sbb-menu-trigger-standard]': 'this._triggerVariant === ""',
+    '[class.sbb-menu-trigger-default]': 'this._triggerVariant === ""',
     '[class.sbb-menu-trigger-custom]': 'this._triggerVariant === "custom"',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
   },

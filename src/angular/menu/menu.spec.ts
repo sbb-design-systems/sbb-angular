@@ -2459,13 +2459,11 @@ describe('SbbMenu contextmenu', () => {
     testTriggerCopy(ContextmenuDynamicTrigger);
   });
 
-  it('should apply sbb-menu-trigger-standard css class', () => {
+  it('should apply sbb-menu-trigger-default css class', () => {
     const fixture = TestBed.createComponent(ContextmenuDynamicTrigger);
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector(
-        '.sbb-menu-trigger.sbb-menu-trigger-standard'
-      )
+      fixture.debugElement.nativeElement.querySelector('.sbb-menu-trigger.sbb-menu-trigger-default')
     ).toBeTruthy();
   });
 });
