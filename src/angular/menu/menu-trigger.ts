@@ -349,9 +349,9 @@ export class SbbMenuTrigger
       this.menu.triggerContext = {
         triggerWidth: this._element.nativeElement.clientWidth,
         contentPortal: this._contentPortal,
-        elementContent: this._sanitizer.bypassSecurityTrustHtml(
-          this._element.nativeElement.innerHTML
-        ),
+        elementContent: this._contentPortal
+          ? undefined
+          : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
       };
     }
     this._setMenuElevation();

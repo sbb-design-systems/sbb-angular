@@ -2459,6 +2459,16 @@ describe('SbbMenu contextmenu', () => {
     testTriggerCopy(ContextmenuDynamicTrigger);
   });
 
+  it('should not set elementContent of triggerContext if contentPortal is provided', () => {
+    const fixture = TestBed.createComponent(ContextmenuDynamicTrigger);
+    fixture.detectChanges();
+
+    const trigger = fixture.componentInstance.trigger;
+    trigger.openMenu();
+
+    expect(trigger.menu.triggerContext.elementContent).toBeUndefined();
+  });
+
   it('should apply sbb-menu-trigger-default css class', () => {
     const fixture = TestBed.createComponent(ContextmenuDynamicTrigger);
     fixture.detectChanges();
