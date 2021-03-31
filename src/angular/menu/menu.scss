@@ -64,6 +64,10 @@ sbb-menu {
     box-shadow: boxShadow(1, $borderWidthLean, 1);
     border-top-width: pxToRem($borderWidthLean);
   }
+
+  button.sbb-menu-item {
+    width: 100%;
+  }
 }
 
 .sbb-menu-panel-root {
@@ -81,10 +85,6 @@ sbb-menu {
   .sbb-menu-panel-variant-standard.sbb-menu-panel-after.sbb-menu-panel-above & {
     border-bottom-left-radius: 0;
   }
-}
-
-.sbb-menu-panel button.sbb-menu-item {
-  width: 100%;
 }
 
 .sbb-menu-trigger-standard.sbb-menu-trigger-root,
