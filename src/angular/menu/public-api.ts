@@ -8,7 +8,6 @@ export {
   SBB_MENU_SCROLL_STRATEGY_FACTORY,
   SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER,
 } from './menu-trigger';
-export * from './menu-trigger-context';
 export * from './menu-panel';
 export * from './menu-module';
 export * from './menu-animations';

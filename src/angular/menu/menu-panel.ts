@@ -3,7 +3,7 @@ import { EventEmitter, InjectionToken, TemplateRef } from '@angular/core';
 
 import { SbbMenuContent } from './menu-content';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
-import { SbbMenuTriggerContext } from './menu-trigger-context';
+import type { SbbMenuTriggerContext } from './menu-trigger';
 
 /**
  * Injection token used to provide the parent menu to menu-specific components.
@@ -24,6 +24,7 @@ export interface SbbMenuPanel<T = any> {
   parentMenu?: SbbMenuPanel | undefined;
   focusFirstItem: (origin?: FocusOrigin) => void;
   resetActiveItem: () => void;
+  setPositionClasses?: (x: SbbMenuPositionX, y: SbbMenuPositionY) => void;
   setElevation?(depth: number): void;
   lazyContent?: SbbMenuContent;
   backdropClass?: string;

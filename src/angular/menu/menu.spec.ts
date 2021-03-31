@@ -51,10 +51,13 @@ import {
   SbbMenuPositionX,
   SbbMenuPositionY,
   SbbMenuTrigger,
-  SbbMenuTriggerContext,
   SBB_MENU_DEFAULT_OPTIONS,
 } from './index';
-import { MENU_PANEL_TOP_PADDING, SBB_MENU_SCROLL_STRATEGY } from './menu-trigger';
+import {
+  MENU_PANEL_TOP_PADDING,
+  SbbMenuTriggerContext,
+  SBB_MENU_SCROLL_STRATEGY,
+} from './menu-trigger';
 
 describe('SbbMenu', () => {
   let overlayContainer: OverlayContainer;
@@ -1188,21 +1191,43 @@ describe('SbbMenu', () => {
       trigger.style.left = '100px';
     });
 
-    it('should append panel classes', () => {
+    it('should append sbb-menu-before if the x position is changed', () => {
       fixture.componentInstance.trigger.openMenu();
       fixture.detectChanges();
 
-      const panel = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
+      const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
 
       expect(panel.classList).toContain('sbb-menu-panel-before');
+      expect(panel.classList).not.toContain('sbb-menu-panel-after');
+
+      fixture.componentInstance.xPosition = 'after';
+      fixture.detectChanges();
+
+      expect(panel.classList).toContain('sbb-menu-panel-after');
+      expect(panel.classList).not.toContain('sbb-menu-panel-before');
+    });
+
+    it('should append sbb-menu-above if the y position is changed', () => {
+      fixture.componentInstance.trigger.openMenu();
+      fixture.detectChanges();
+
+      const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
+
       expect(panel.classList).toContain('sbb-menu-panel-above');
+      expect(panel.classList).not.toContain('sbb-menu-panel-below');
+
+      fixture.componentInstance.yPosition = 'below';
+      fixture.detectChanges();
+
+      expect(panel.classList).toContain('sbb-menu-panel-below');
+      expect(panel.classList).not.toContain('sbb-menu-panel-above');
     });
 
     it('should update panel classes if position is changed after reopening', async () => {
       fixture.componentInstance.trigger.openMenu();
       fixture.detectChanges();
 
-      const panel = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
+      const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
 
       expect(panel.classList).toContain('sbb-menu-panel-above');
       expect(panel.classList).toContain('sbb-menu-panel-before');
@@ -1222,10 +1247,14 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
       await fixture.whenStable();
 
-      expect(panel.classList).not.toContain('sbb-menu-panel-above');
-      expect(panel.classList).not.toContain('sbb-menu-panel-before');
-      expect(panel.classList).toContain('sbb-menu-panel-below');
-      expect(panel.classList).toContain('sbb-menu-panel-after');
+      const panelBelow = overlayContainerElement.querySelector(
+        '.sbb-menu-panel-wrapper'
+      ) as HTMLElement;
+
+      expect(panelBelow.classList).not.toContain('sbb-menu-panel-above');
+      expect(panelBelow.classList).not.toContain('sbb-menu-panel-before');
+      expect(panelBelow.classList).toContain('sbb-menu-panel-below');
+      expect(panelBelow.classList).toContain('sbb-menu-panel-after');
     });
 
     it('should default to the "below" and "after" positions', () => {
@@ -1238,7 +1267,7 @@ describe('SbbMenu', () => {
       newFixture.detectChanges();
       newFixture.componentInstance.trigger.openMenu();
       newFixture.detectChanges();
-      const panel = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
+      const panel = overlayContainerElement.querySelector('.sbb-menu-panel-wrapper') as HTMLElement;
 
       expect(panel.classList).toContain('sbb-menu-panel-below');
       expect(panel.classList).toContain('sbb-menu-panel-after');
@@ -1276,6 +1305,10 @@ describe('SbbMenu', () => {
         Math.floor(trigger.getBoundingClientRect().top),
         'Expected menu to open below'
       );
+    });
+
+    it('should not throw if a menu reposition is requested while the menu is closed', () => {
+      expect(() => fixture.componentInstance.trigger.updatePosition()).not.toThrow();
     });
   });
 
@@ -1432,7 +1465,7 @@ describe('SbbMenu', () => {
       }
 
       get overlayRect() {
-        return this.overlayPane.getBoundingClientRect();
+        return this._getOverlayPane().getBoundingClientRect();
       }
 
       get triggerRect() {
@@ -1443,7 +1476,7 @@ describe('SbbMenu', () => {
         return overlayContainerElement.querySelector('.sbb-menu-panel-wrapper');
       }
 
-      get overlayPane() {
+      private _getOverlayPane() {
         return overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
       }
     }
@@ -1498,8 +1531,8 @@ describe('SbbMenu', () => {
         subject.openMenu();
         subject.fixture.detectChanges();
 
-        expect(subject.overlayPane.classList).toContain('sbb-menu-panel-below');
-        expect(subject.overlayPane.classList).not.toContain('sbb-menu-panel-above');
+        expect(subject.menuPanel!.classList).toContain('sbb-menu-panel-below');
+        expect(subject.menuPanel!.classList).not.toContain('sbb-menu-panel-above');
       });
     });
   });
@@ -2593,8 +2626,9 @@ class CustomMenuPanel implements SbbMenuPanel {
   @Output() closed = new EventEmitter<void | 'click' | 'keydown' | 'tab'>();
   focusFirstItem = () => {};
   resetActiveItem = () => {};
+  setPositionClasses = () => {};
 
-  triggerWidth: number;
+  width: number;
   triggerContext: SbbMenuTriggerContext;
 }
 

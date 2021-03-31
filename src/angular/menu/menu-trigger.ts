@@ -1,5 +1,4 @@
 import { FocusMonitor, FocusOrigin, isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
-import { coerceStringArray } from '@angular/cdk/coercion';
 import { ENTER, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
@@ -29,7 +28,7 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
 import { asapScheduler, merge, of as observableOf, Subscription } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
@@ -40,6 +39,15 @@ import { throwSbbMenuMissingError, throwSbbMenuRecursiveError } from './menu-err
 import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
+
+export type SbbMenuTriggerType = 'default' | 'custom';
+
+export interface SbbMenuTriggerContext {
+  type: SbbMenuTriggerType;
+  width?: number;
+  templateContent?: TemplateRef<any>;
+  elementContent?: SafeHtml;
+}
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -83,8 +91,8 @@ const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase = mix
     'aria-haspopup': 'true',
     '[attr.aria-expanded]': 'menuOpen || null',
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
-    '[class.sbb-menu-trigger-default]': 'this._triggerVariant === ""',
-    '[class.sbb-menu-trigger-custom]': 'this._triggerVariant === "custom"',
+    '[class.sbb-menu-trigger-default]': 'this._type === "default"',
+    '[class.sbb-menu-trigger-custom]': 'this._type === "custom"',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
   },
   exportAs: 'sbbMenuTrigger',
@@ -121,12 +129,12 @@ export class SbbMenuTrigger
   _openedBy: Exclude<FocusOrigin, 'program' | null> | undefined = undefined;
 
   /** Variant of which trigger is used. */
-  _triggerVariant: string = '';
+  _type: SbbMenuTriggerType = 'default';
 
   /** References the menu instance that the custom trigger is associated with. */
   @Input('sbbMenuCustomTriggerFor')
   set sbbMenuCustomTriggerFor(v: SbbMenuPanel) {
-    this._triggerVariant = 'custom';
+    this._type = 'custom';
     this.menu = v;
   }
 
@@ -288,6 +296,13 @@ export class SbbMenuTrigger
     }
   }
 
+  /**
+   * Updates the position of the menu to ensure that it fits all options within the viewport.
+   */
+  updatePosition(): void {
+    this._overlayRef?.updatePosition();
+  }
+
   /** Closes the menu and does the necessary cleanup. */
   private _destroyMenu(reason: SbbMenuCloseReason) {
     if (!this._overlayRef || !this.menuOpen) {
@@ -343,14 +358,18 @@ export class SbbMenuTrigger
    */
   private _initMenu(): void {
     this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
-    if (!this.triggersSubmenu() && this._triggerVariant !== 'custom') {
-      this.menu.triggerContext = {
-        triggerWidth: this._element.nativeElement.clientWidth,
-        templateContent: this._triggerContent,
-        elementContent: this._triggerContent
-          ? undefined
-          : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
-      };
+    if (!this.triggersSubmenu()) {
+      this.menu.triggerContext =
+        this._type === 'custom'
+          ? { type: this._type }
+          : {
+              width: this._element.nativeElement.clientWidth,
+              templateContent: this._triggerContent,
+              elementContent: this._triggerContent
+                ? undefined
+                : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
+              type: this._type,
+            };
     }
     this._setMenuElevation();
     this.menu.focusFirstItem(this._openedBy || 'program');
@@ -425,9 +444,7 @@ export class SbbMenuTrigger
         .withTransformOriginOn('.sbb-menu-panel-wrapper')
         .withPush(false),
       backdropClass: this.menu.backdropClass || 'cdk-overlay-transparent-backdrop',
-      panelClass: coerceStringArray(this.menu.overlayPanelClass).concat(
-        `sbb-menu-panel-variant-${this._triggerVariant === '' ? 'standard' : this._triggerVariant}`
-      ),
+      panelClass: this.menu.overlayPanelClass,
       scrollStrategy: this._scrollStrategy(),
     });
   }
@@ -437,18 +454,22 @@ export class SbbMenuTrigger
    * correct, even if a fallback position is used for the overlay.
    */
   private _subscribeToPositions(position: FlexibleConnectedPositionStrategy): void {
-    position.positionChanges.subscribe((change) => {
-      const posX: SbbMenuPositionX =
-        change.connectionPair.overlayX === 'start' ? 'after' : 'before';
-      const posY: SbbMenuPositionY = change.connectionPair.overlayY === 'top' ? 'below' : 'above';
+    if (this.menu.setPositionClasses) {
+      position.positionChanges.subscribe((change) => {
+        const posX: SbbMenuPositionX =
+          change.connectionPair.overlayX === 'start' ? 'after' : 'before';
+        const posY: SbbMenuPositionY = change.connectionPair.overlayY === 'top' ? 'below' : 'above';
 
-      this._element.nativeElement.classList.remove('sbb-menu-trigger-after');
-      this._element.nativeElement.classList.remove('sbb-menu-trigger-before');
-      this._element.nativeElement.classList.remove('sbb-menu-trigger-below');
-      this._element.nativeElement.classList.remove('sbb-menu-trigger-above');
-      this._element.nativeElement.classList.add(`sbb-menu-trigger-${posX}`);
-      this._element.nativeElement.classList.add(`sbb-menu-trigger-${posY}`);
-    });
+        this._element.nativeElement.classList.remove('sbb-menu-trigger-after');
+        this._element.nativeElement.classList.remove('sbb-menu-trigger-before');
+        this._element.nativeElement.classList.remove('sbb-menu-trigger-below');
+        this._element.nativeElement.classList.remove('sbb-menu-trigger-above');
+        this._element.nativeElement.classList.add(`sbb-menu-trigger-${posX}`);
+        this._element.nativeElement.classList.add(`sbb-menu-trigger-${posY}`);
+
+        this.menu.setPositionClasses!(posX, posY);
+      });
+    }
   }
 
   /**
@@ -484,10 +505,6 @@ export class SbbMenuTrigger
       originFallbackY = overlayFallbackY === 'top' ? 'bottom' : 'top';
     }
 
-    const panelClasses = (xOrientation: 'start' | 'end', yOrientation: 'top' | 'bottom') => [
-      `sbb-menu-panel-${xOrientation === 'start' ? 'after' : 'before'}`,
-      `sbb-menu-panel-${yOrientation === 'top' ? 'below' : 'above'}`,
-    ];
     positionStrategy.withPositions([
       {
         originX,
@@ -496,7 +513,6 @@ export class SbbMenuTrigger
         overlayY,
         offsetY,
         offsetX,
-        panelClass: panelClasses(overlayX, overlayY),
       },
       {
         originX: originFallbackX,
@@ -505,7 +521,6 @@ export class SbbMenuTrigger
         overlayY,
         offsetY,
         offsetX: -offsetX,
-        panelClass: panelClasses(overlayFallbackX, overlayY),
       },
       {
         originX,
@@ -514,7 +529,6 @@ export class SbbMenuTrigger
         overlayY: overlayFallbackY,
         offsetY: -offsetY,
         offsetX: offsetX,
-        panelClass: panelClasses(overlayX, overlayFallbackY),
       },
       {
         originX: originFallbackX,
@@ -523,7 +537,6 @@ export class SbbMenuTrigger
         overlayY: overlayFallbackY,
         offsetY: -offsetY,
         offsetX: -offsetX,
-        panelClass: panelClasses(overlayFallbackX, overlayFallbackY),
       },
     ]);
   }

@@ -26,14 +26,14 @@ sbb-menu {
       max-width: pxToRem(400 * $sizeFontDefault5k);
     }
   }
+}
 
-  .sbb-menu-panel-above & {
-    flex-direction: column-reverse;
-  }
+.sbb-menu-panel-above {
+  flex-direction: column-reverse;
+}
 
-  .sbb-menu-panel-before & {
-    align-items: flex-end;
-  }
+.sbb-menu-panel-before {
+  align-items: flex-end;
 }
 
 .sbb-menu-panel {
@@ -85,18 +85,18 @@ sbb-menu {
 }
 
 .sbb-menu-panel-root {
-  .sbb-menu-panel-variant-standard.sbb-menu-panel-before.sbb-menu-panel-below & {
+  .sbb-menu-panel-type-default.sbb-menu-panel-before.sbb-menu-panel-below & {
     border-top-right-radius: 0;
   }
-  .sbb-menu-panel-variant-standard.sbb-menu-panel-before.sbb-menu-panel-above & {
+  .sbb-menu-panel-type-default.sbb-menu-panel-before.sbb-menu-panel-above & {
     border-bottom-right-radius: 0;
   }
 
-  .sbb-menu-panel-variant-standard.sbb-menu-panel-after.sbb-menu-panel-below & {
+  .sbb-menu-panel-type-default.sbb-menu-panel-after.sbb-menu-panel-below & {
     border-top-left-radius: 0;
   }
 
-  .sbb-menu-panel-variant-standard.sbb-menu-panel-after.sbb-menu-panel-above & {
+  .sbb-menu-panel-type-default.sbb-menu-panel-after.sbb-menu-panel-above & {
     border-bottom-left-radius: 0;
   }
 }

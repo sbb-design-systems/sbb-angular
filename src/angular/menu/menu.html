@@ -13,8 +13,10 @@
     [attr.aria-label]="ariaLabel || null"
     [attr.aria-labelledby]="ariaLabelledby || null"
     [attr.aria-describedby]="ariaDescribedby || null"
+    [class.sbb-menu-panel-type-default]="triggerContext?.type === 'default'"
+    [class.sbb-menu-panel-type-custom]="triggerContext?.type === 'custom'"
   >
-    <ng-container *ngIf="triggerContext">
+    <ng-container *ngIf="triggerContext && triggerContext.type !== 'custom'">
       <button
         *ngIf="!triggerContext.templateContent"
         type="button"
