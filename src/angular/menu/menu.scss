@@ -12,6 +12,20 @@ sbb-menu {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: pxToRem(150);
+  max-width: pxToRem(400);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      min-width: pxToRem(150 * $scalingFactor4k);
+      max-width: pxToRem(400 * $sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      min-width: pxToRem(150 * $scalingFactor5k);
+      max-width: pxToRem(400 * $sizeFontDefault5k);
+    }
+  }
 
   .sbb-menu-panel-above & {
     flex-direction: column-reverse;
@@ -27,7 +41,7 @@ sbb-menu {
   border-radius: pxToRem(2);
   max-height: calc(100vh - #{pxToRem(24)});
   outline: 0;
-  width: pxToRem(216);
+  width: 100%;
 
   // Give the menu a minimum height so that the user can't
   // collapse it to zero when they scroll away.
@@ -188,6 +202,17 @@ sbb-menu {
     bottom: pxToEm(-$borderWidthStandard);
     height: pxToEm($borderWidthStandard);
 
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        bottom: pxToEm(-$borderWidthStandard * $scalingFactor4k);
+        height: pxToEm($borderWidthStandard * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        bottom: pxToEm(-$borderWidthStandard * $scalingFactor5k);
+        height: pxToEm($borderWidthStandard * $scalingFactor5k);
+      }
+    }
+
     html.sbb-lean & {
       bottom: pxToEm(-$borderWidthLean);
       height: pxToEm($borderWidthLean);
@@ -196,6 +221,15 @@ sbb-menu {
     .sbb-menu-panel-above & {
       bottom: inherit;
       top: pxToEm(-$borderWidthStandard);
+
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          top: pxToEm(-$borderWidthStandard * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          top: pxToEm(-$borderWidthStandard * $scalingFactor5k);
+        }
+      }
 
       html.sbb-lean & {
         top: pxToEm(-$borderWidthLean);
@@ -208,6 +242,15 @@ sbb-menu {
   .sbb-menu-panel-below & {
     top: pxToRem(-$borderWidthStandard);
 
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        top: pxToEm(-$borderWidthStandard * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        top: pxToEm(-$borderWidthStandard * $scalingFactor5k);
+      }
+    }
+
     html.sbb-lean & {
       top: pxToRem(-$borderWidthLean);
     }
@@ -215,6 +258,15 @@ sbb-menu {
 
   .sbb-menu-panel-above & {
     top: pxToRem($borderWidthStandard);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        top: pxToEm($borderWidthStandard * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        top: pxToEm($borderWidthStandard * $scalingFactor5k);
+      }
+    }
 
     html.sbb-lean & {
       top: pxToRem($borderWidthLean);
