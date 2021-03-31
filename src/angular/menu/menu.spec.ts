@@ -2359,6 +2359,46 @@ describe('SbbMenu', () => {
         'Expected focus not to be returned to the initial trigger.'
       );
     }));
+
+    it('should only apply sbb-menu-panel-root css class to panel root', () => {
+      compileTestComponent();
+
+      fixture.componentInstance.rootTrigger.openMenu();
+      fixture.detectChanges();
+
+      fixture.componentInstance.levelOneTrigger.openMenu();
+      fixture.detectChanges();
+
+      const panels = fixture.debugElement.queryAll(By.css('.sbb-menu-panel'));
+      expect(panels.length).toBe(2, 'Expected to have 2 panels open');
+
+      expect(
+        fixture.debugElement.queryAll(By.css('.sbb-menu-panel.sbb-menu-panel-root')).length
+      ).toBe(1, 'Expected to to find sbb-menu-panel-root class only once');
+
+      expect(panels[0].nativeElement.classList.contains('sbb-menu-panel-root')).toBeTrue();
+    });
+
+    it('should only apply sbb-menu-trigger-root css class to root trigger', () => {
+      compileTestComponent();
+
+      fixture.componentInstance.rootTrigger.openMenu();
+      fixture.detectChanges();
+
+      fixture.componentInstance.levelOneTrigger.openMenu();
+      fixture.detectChanges();
+
+      const triggers = fixture.debugElement.queryAll(By.css('.sbb-menu-trigger'));
+      expect(triggers.length).toBe(4, 'Expected to have 4 triggers found');
+      expect(
+        fixture.debugElement.queryAll(By.css('.sbb-menu-trigger.sbb-menu-trigger-root')).length
+      ).toBe(
+        2,
+        'Expected to to find sbb-menu-trigger-root class twice (root trigger and alternative root trigger)'
+      );
+
+      expect(triggers[0].nativeElement.classList.contains('sbb-menu-trigger-root')).toBeTrue();
+    });
   });
 });
 
@@ -2384,6 +2424,66 @@ describe('SbbMenu default overrides', () => {
     expect(menu.overlapTrigger).toBe(true);
     expect(menu.xPosition).toBe('before');
     expect(menu.yPosition).toBe('above');
+  });
+});
+
+describe('SbbMenu contextmenu', () => {
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [ContextmenuStaticTrigger, ContextmenuDynamicTrigger],
+    }).compileComponents();
+  }));
+
+  function testTriggerCopy(component: Type<ContextmenuDynamicTrigger | ContextmenuStaticTrigger>) {
+    const fixture = TestBed.createComponent(component);
+    fixture.detectChanges();
+
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+
+    const panelWrapper = fixture.debugElement.query(By.css('.sbb-menu-panel-wrapper'))
+      .nativeElement;
+
+    const copiedTriggerButton = panelWrapper.querySelector('button');
+
+    expect(panelWrapper.children.length).toBe(2);
+    expect(copiedTriggerButton.children[0].tagName.toLowerCase()).toBe('sbb-icon');
+  }
+
+  it('should copy html from trigger to panel trigger', () => {
+    testTriggerCopy(ContextmenuStaticTrigger);
+  });
+
+  it('should copy dynamic trigger from trigger to panel trigger', () => {
+    testTriggerCopy(ContextmenuDynamicTrigger);
+  });
+
+  it('should apply sbb-menu-trigger-standard css class', () => {
+    const fixture = TestBed.createComponent(ContextmenuDynamicTrigger);
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '.sbb-menu-trigger.sbb-menu-trigger-standard'
+      )
+    ).toBeTruthy();
+  });
+});
+
+describe('SbbMenu custom trigger', () => {
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [CustomTrigger],
+    }).compileComponents();
+  }));
+
+  it('should apply sbb-menu-trigger-custom css class', () => {
+    const fixture = TestBed.createComponent(CustomTrigger);
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('.sbb-menu-trigger.sbb-menu-trigger-custom')
+    ).toBeTruthy();
   });
 });
 
@@ -2485,7 +2585,6 @@ class CustomMenuPanel implements SbbMenuPanel {
   @Output() closed = new EventEmitter<void | 'click' | 'keydown' | 'tab'>();
   focusFirstItem = () => {};
   resetActiveItem = () => {};
-  setPositionClasses = () => {};
 
   triggerWidth: number;
   triggerContext: SbbMenuTriggerContext;
@@ -2817,3 +2916,44 @@ class StaticAriaLabelledByMenu {}
   template: '<sbb-menu aria-describedby="some-element"></sbb-menu>',
 })
 class StaticAriaDescribedbyMenu {}
+
+@Component({
+  template: `<button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
+      <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+    </button>
+    <sbb-menu #animals="sbbMenu">
+      <button sbb-menu-item>Invertebrates</button>
+    </sbb-menu>`,
+})
+class ContextmenuStaticTrigger {
+  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu: SbbMenu;
+}
+
+@Component({
+  template: `<button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
+      <ng-template sbbMenuDynamicTrigger>
+        <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+      </ng-template>
+    </button>
+    <sbb-menu #animals="sbbMenu">
+      <button sbb-menu-item>Invertebrates</button>
+    </sbb-menu>`,
+})
+class ContextmenuDynamicTrigger {
+  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu: SbbMenu;
+}
+
+@Component({
+  template: `<button [sbbMenuCustomTriggerFor]="animals" aria-label="Show animals">
+      <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+    </button>
+    <sbb-menu #animals="sbbMenu">
+      <button sbb-menu-item>Invertebrates</button>
+    </sbb-menu>`,
+})
+class CustomTrigger {
+  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu: SbbMenu;
+}

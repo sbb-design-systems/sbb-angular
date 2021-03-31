@@ -85,7 +85,6 @@ const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase = mix
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
     '[class.sbb-menu-trigger-standard]': 'this._triggerVariant === ""',
     '[class.sbb-menu-trigger-custom]': 'this._triggerVariant === "custom"',
-    '[class.sbb-menu-trigger-open]': 'menuOpen',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
   },
   exportAs: 'sbbMenuTrigger',
