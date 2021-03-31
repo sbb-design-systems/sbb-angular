@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.1.4](https://github.com/sbb-design-systems/sbb-angular/compare/11.1.3...11.1.4) (2021-03-31)
+
+
+### Bug Fixes
+
+* update xlf files to fix interpolated entries ([#772](https://github.com/sbb-design-systems/sbb-angular/issues/772)) ([68118c7](https://github.com/sbb-design-systems/sbb-angular/commit/68118c751660ff71e4173c4b6eb775aefabcf19f))
+* **business:** sbb header environment label on top of hamburger menu ([#770](https://github.com/sbb-design-systems/sbb-angular/issues/770)) ([d6cbd9b](https://github.com/sbb-design-systems/sbb-angular/commit/d6cbd9be319d9983487d47d04d72a06a792faa27))
+
+
+### Documentation
+
+* display lists in showcase typography correctly ([#773](https://github.com/sbb-design-systems/sbb-angular/issues/773)) ([0b930d1](https://github.com/sbb-design-systems/sbb-angular/commit/0b930d101e29e2485419baccbe928d5ca11c8440))
+
 ### [11.1.3](https://github.com/sbb-design-systems/sbb-angular/compare/11.1.2...11.1.3) (2021-03-23)
 
 ### [11.1.2](https://github.com/sbb-design-systems/sbb-angular/compare/11.1.1...11.1.2) (2021-03-23)
