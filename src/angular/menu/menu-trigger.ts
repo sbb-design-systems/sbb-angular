@@ -1,4 +1,9 @@
-import { FocusMonitor, FocusOrigin, isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
+import {
+  FocusMonitor,
+  FocusOrigin,
+  isFakeMousedownFromScreenReader,
+  isFakeTouchstartFromScreenReader,
+} from '@angular/cdk/a11y';
 import { ENTER, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
@@ -119,9 +124,9 @@ export class SbbMenuTrigger
    * Needs to be an arrow function so we can easily use addEventListener and removeEventListener.
    */
   private _handleTouchStart = (event: TouchEvent) => {
-    // if (!isFakeTouchstartFromScreenReader(event)) { TODO: activate with next cdk release
-    this._openedBy = 'touch';
-    // }
+    if (!isFakeTouchstartFromScreenReader(event)) {
+      this._openedBy = 'touch';
+    }
   };
 
   // Tracking input type is necessary so it's possible to only auto-focus
