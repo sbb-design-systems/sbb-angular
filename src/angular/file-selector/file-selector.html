@@ -1,0 +1,78 @@
+<label
+  class="sbb-file-selector-label sbb-secondary-button sbb-button-base"
+  [class.sbb-disabled]="disabled"
+  [for]="inputId"
+>
+  <input
+    type="file"
+    class="cdk-visually-hidden"
+    #fileInput
+    [attr.id]="inputId"
+    [attr.accept]="accept"
+    [attr.capture]="capture"
+    [attr.multiple]="multiple"
+    [disabled]="disabled"
+    (change)="fileChange($event)"
+    (blur)="_onTouched()"
+  />
+  <sbb-icon
+    *ngIf="(variant | async) === 'standard'"
+    class="sbb-button-indicator-icon sbb-button-left-icon sbb-icon-fit"
+    svgIcon="kom:arrow-right-small"
+  ></sbb-icon>
+  <span
+    class="sbb-button-wrapper"
+    i18n="Button label to select files for upload@@sbbFileSelectorUploadFile"
+    >Upload file</span
+  >
+  <sbb-icon
+    *ngIf="(variant | async) === 'standard'"
+    class="sbb-button-indicator-icon sbb-button-right-icon sbb-icon-fit"
+    svgIcon="kom:arrow-right-small"
+  ></sbb-icon>
+</label>
+
+<ul class="sbb-file-selector-list sbb-icon-fit">
+  <li *ngFor="let file of filesList">
+    <div
+      role="presentation"
+      class="sbb-file-selector-list-type-icon"
+      [ngSwitch]="_resolveFileTypeCategory(file)"
+    >
+      <sbb-icon svgIcon="kom:document-text-small" *ngSwitchCase="_fileTypeCategory.DOC"></sbb-icon>
+      <sbb-icon
+        svgIcon="kom:document-image-small"
+        *ngSwitchCase="_fileTypeCategory.IMAGE"
+      ></sbb-icon>
+      <sbb-icon svgIcon="kom:document-pdf-small" *ngSwitchCase="_fileTypeCategory.PDF"></sbb-icon>
+      <sbb-icon
+        svgIcon="kom:document-sound-small"
+        *ngSwitchCase="_fileTypeCategory.AUDIO"
+      ></sbb-icon>
+      <sbb-icon
+        svgIcon="kom:document-video-small"
+        *ngSwitchCase="_fileTypeCategory.VIDEO"
+      ></sbb-icon>
+      <sbb-icon svgIcon="kom:document-zip-small" *ngSwitchCase="_fileTypeCategory.ZIP"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-standard-small" *ngSwitchDefault></sbb-icon>
+    </div>
+    <span class="sbb-file-selector-list-desc"
+      >{{ _fileNameNoExtension(file) }} (<span class="sbb-file-selector-list-file-ext"
+        >{{ _fileExtension(file) }}</span
+      >, {{ _fileSizeFormatted(file) }})</span
+    >
+    <button
+      type="button"
+      class="sbb-file-selector-list-remove-icon sbb-button-reset-frameless"
+      (click)="removeFile(file)"
+    >
+      <span
+        i18n="
+          Hidden button label to remove a file from the selection list@@sbbFileSelectorRemoveFile"
+        class="cdk-visually-hidden"
+        >Remove file</span
+      >
+      <sbb-icon svgIcon="kom:trash-small"></sbb-icon>
+    </button>
+  </li>
+</ul>

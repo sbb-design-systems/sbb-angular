@@ -1,0 +1,75 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "file-selector",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":file-selector.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular/file-selector",
+    deps = [
+        "//src/angular/core",
+        "//src/angular/icon",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+sass_binary(
+    name = "file_selector_scss",
+    src = "file-selector.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":file-selector",
+        "//src/angular/core/testing",
+        "//src/angular/icon",
+        "//src/angular/icon/testing",
+        "@npm//@angular/forms",
+        "@npm//@angular/platform-browser",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    static_css = [
+        "//src/angular:typography",
+    ],
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":file-selector.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
+
+filegroup(
+    name = "html-source-files",
+    srcs = glob(["**/*.html"]),
+)
