@@ -3,48 +3,57 @@
 .sbb-status {
   display: inline-flex;
   align-items: center;
-  font-size: pxToRem($sizeFontBase);
-  line-height: pxToRem(26);
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem($sizeLineHeightDefault);
   height: pxToEm(24);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontBase * $scalingFactor4k);
-      line-height: pxToRem(39);
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem($sizeLineHeightDefault4k);
     }
     @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontBase * $scalingFactor5k);
-      line-height: pxToRem(52);
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
     }
   }
   html.sbb-lean & {
-    line-height: pxToRem(23);
+    line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 }
 
 .sbb-status-icon {
-  width: pxToEm(24px);
-  height: pxToEm(24px);
-  border-radius: pxToRem(1px);
+  width: pxToEm(24);
+  height: pxToEm(24);
+  border-radius: pxToRem(1);
   color: $sbbColorWhite;
 
-  &.sbb-status-icon-valid {
-    background-color: $sbbColorGreen;
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-radius: pxToRem(2);
+    }
   }
+}
 
-  &.sbb-status-icon-warning {
-    background-color: $sbbColorOrange;
-  }
+// Variant for .sbb-status-icon
+.sbb-status-icon-valid {
+  background-color: $sbbColorGreen;
+}
 
-  &.sbb-status-icon-invalid {
-    background-color: $sbbColorRed;
-  }
+// Variant for .sbb-status-icon
+.sbb-status-icon-warning {
+  background-color: $sbbColorOrange;
+}
+
+// Variant for .sbb-status-icon
+.sbb-status-icon-invalid {
+  background-color: $sbbColorRed;
 }
 
 .sbb-status-message {
   background-color: $sbbColorMilk;
   color: $sbbColorGranite;
   font-family: $fontSbbRoman;
-  margin-left: pxToEm(6px);
-  padding: pxToEm(0px) pxToEm(8px) pxToEm(1px) pxToEm(8px);
+  margin-left: pxToEm(6);
+  padding: pxToEm(0) pxToEm(8) pxToEm(1) pxToEm(8);
 }
