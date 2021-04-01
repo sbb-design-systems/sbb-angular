@@ -41,7 +41,7 @@ class DirectiveWithViewContainer {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: 'hello',
 })
-class ComponentWithOnPushViewContainerComponent {
+class ComponentWithOnPushViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
 
@@ -49,7 +49,7 @@ class ComponentWithOnPushViewContainerComponent {
   selector: 'sbb-arbitrary-component',
   template: `<sbb-dir-with-view-container></sbb-dir-with-view-container>`,
 })
-class ComponentWithChildViewContainerComponent {
+class ComponentWithChildViewContainer {
   @ViewChild(DirectiveWithViewContainer) childWithViewContainer: DirectiveWithViewContainer;
 
   get childViewContainer() {
@@ -63,7 +63,7 @@ class ComponentWithChildViewContainerComponent {
     Cheese {{ localValue }} {{ data?.value }}{{ setDialogRef(dialogRef) }}</ng-template
   >`,
 })
-class ComponentWithTemplateRefComponent {
+class ComponentWithTemplateRef {
   localValue: string;
   dialogRef: SbbDialogRef<any>;
 
@@ -77,9 +77,9 @@ class ComponentWithTemplateRefComponent {
 
 /** Simple component for testing ComponentPortal. */
 @Component({ template: '<p>Pizza</p> <input> <button>Close</button>' })
-class PizzaMsgComponent {
+class PizzaMsg {
   constructor(
-    public dialogRef: SbbDialogRef<PizzaMsgComponent>,
+    public dialogRef: SbbDialogRef<PizzaMsg>,
     public dialogInjector: Injector,
     public directionality: Directionality
   ) {}
@@ -101,7 +101,7 @@ class PizzaMsgComponent {
     </sbb-dialog-footer>
   `,
 })
-class ContentElementDialogComponent {}
+class ContentElementDialog {}
 
 @Component({
   template: `
@@ -121,7 +121,7 @@ class ContentElementDialogComponent {}
     </ng-template>
   `,
 })
-class ComponentWithContentElementTemplateRefComponent {
+class ComponentWithContentElementTemplateRef {
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 }
 
@@ -129,31 +129,31 @@ class ComponentWithContentElementTemplateRefComponent {
   template: '',
   providers: [SbbDialog],
 })
-class ComponentThatProvidesDialogComponent {
+class ComponentThatProvidesDialog {
   constructor(public dialog: SbbDialog) {}
 }
 
 /** Simple component for testing ComponentPortal. */
 @Component({ template: '' })
-class DialogWithInjectedDataComponent {
+class DialogWithInjectedData {
   constructor(@Inject(SBB_DIALOG_DATA) public data: any) {}
 }
 
 @Component({ template: '<p>Pasta</p>' })
-class DialogWithoutFocusableElementsComponent {}
+class DialogWithoutFocusableElements {}
 
 // Create a real (non-test) NgModule as a workaround for
 // https://github.com/angular/angular/issues/10760
 const TEST_DIRECTIVES = [
-  ComponentWithChildViewContainerComponent,
-  ComponentWithTemplateRefComponent,
-  PizzaMsgComponent,
+  ComponentWithChildViewContainer,
+  ComponentWithTemplateRef,
+  PizzaMsg,
   DirectiveWithViewContainer,
-  ComponentWithOnPushViewContainerComponent,
-  ContentElementDialogComponent,
-  DialogWithInjectedDataComponent,
-  DialogWithoutFocusableElementsComponent,
-  ComponentWithContentElementTemplateRefComponent,
+  ComponentWithOnPushViewContainer,
+  ContentElementDialog,
+  DialogWithInjectedData,
+  DialogWithoutFocusableElements,
+  ComponentWithContentElementTemplateRef,
 ];
 
 @NgModule({
@@ -161,12 +161,12 @@ const TEST_DIRECTIVES = [
   exports: TEST_DIRECTIVES,
   declarations: TEST_DIRECTIVES,
   entryComponents: [
-    ComponentWithChildViewContainerComponent,
-    ComponentWithTemplateRefComponent,
-    PizzaMsgComponent,
-    ContentElementDialogComponent,
-    DialogWithInjectedDataComponent,
-    DialogWithoutFocusableElementsComponent,
+    ComponentWithChildViewContainer,
+    ComponentWithTemplateRef,
+    PizzaMsg,
+    ContentElementDialog,
+    DialogWithInjectedData,
+    DialogWithoutFocusableElements,
   ],
 })
 class DialogTestModule {}
@@ -178,7 +178,7 @@ describe('SbbDialog', () => {
   const scrolledSubject = new Subject();
 
   let testViewContainerRef: ViewContainerRef;
-  let viewContainerFixture: ComponentFixture<ComponentWithChildViewContainerComponent>;
+  let viewContainerFixture: ComponentFixture<ComponentWithChildViewContainer>;
   let mockLocation: SpyLocation;
 
   beforeEach(fakeAsync(() => {
@@ -213,21 +213,21 @@ describe('SbbDialog', () => {
   });
 
   beforeEach(() => {
-    viewContainerFixture = TestBed.createComponent(ComponentWithChildViewContainerComponent);
+    viewContainerFixture = TestBed.createComponent(ComponentWithChildViewContainer);
 
     viewContainerFixture.detectChanges();
     testViewContainerRef = viewContainerFixture.componentInstance.childViewContainer;
   });
 
   it('should open a dialog with a component', () => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
 
     viewContainerFixture.detectChanges();
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
-    expect(dialogRef.componentInstance instanceof PizzaMsgComponent).toBe(true);
+    expect(dialogRef.componentInstance instanceof PizzaMsg).toBe(true);
     expect(dialogRef.componentInstance!.dialogRef).toBe(dialogRef);
 
     viewContainerFixture.detectChanges();
@@ -236,7 +236,7 @@ describe('SbbDialog', () => {
   });
 
   it('should open a dialog with a template', () => {
-    const templateRefFixture = TestBed.createComponent(ComponentWithTemplateRefComponent);
+    const templateRefFixture = TestBed.createComponent(ComponentWithTemplateRef);
     templateRefFixture.componentInstance.localValue = 'Bees';
     templateRefFixture.detectChanges();
 
@@ -257,8 +257,8 @@ describe('SbbDialog', () => {
     dialogRef.close();
   });
 
-  it('should emit when dialog opening animation is compconste', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+  it('should emit when dialog opening animation is complete', fakeAsync(() => {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
     const spy = jasmine.createSpy('afterOpen spy');
@@ -267,7 +267,7 @@ describe('SbbDialog', () => {
 
     viewContainerFixture.detectChanges();
 
-    // callback should not be called before animation is compconste
+    // callback should not be called before animation is complete
     expect(spy).not.toHaveBeenCalled();
 
     flushMicrotasks();
@@ -275,7 +275,7 @@ describe('SbbDialog', () => {
   }));
 
   it('should use injector from viewContainerRef for DialogInjector', () => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -290,12 +290,12 @@ describe('SbbDialog', () => {
   });
 
   it('should open a dialog with a component and no ViewContainerRef', () => {
-    const dialogRef = dialog.open(PizzaMsgComponent);
+    const dialogRef = dialog.open(PizzaMsg);
 
     viewContainerFixture.detectChanges();
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
-    expect(dialogRef.componentInstance instanceof PizzaMsgComponent).toBe(true);
+    expect(dialogRef.componentInstance instanceof PizzaMsg).toBe(true);
     expect(dialogRef.componentInstance!.dialogRef).toBe(dialogRef);
 
     viewContainerFixture.detectChanges();
@@ -304,7 +304,7 @@ describe('SbbDialog', () => {
   });
 
   it('should apply the configured role to the dialog element', () => {
-    dialog.open(PizzaMsgComponent, { role: 'alertdialog' });
+    dialog.open(PizzaMsg, { role: 'alertdialog' });
 
     viewContainerFixture.detectChanges();
 
@@ -313,7 +313,7 @@ describe('SbbDialog', () => {
   });
 
   it('should apply the specified `aria-describedby`', () => {
-    dialog.open(PizzaMsgComponent, { ariaDescribedBy: 'description-element' });
+    dialog.open(PizzaMsg, { ariaDescribedBy: 'description-element' });
 
     viewContainerFixture.detectChanges();
 
@@ -322,7 +322,7 @@ describe('SbbDialog', () => {
   });
 
   it('should close a dialog and get back a result', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
     const afterCloseCallback = jasmine.createSpy('afterClose callback');
@@ -337,7 +337,7 @@ describe('SbbDialog', () => {
   }));
 
   it('should dispose of dialog if view container is destroyed while animating', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -354,7 +354,7 @@ describe('SbbDialog', () => {
       'overlay is detached externally',
     fakeAsync(
       inject([Overlay], (overlay: Overlay) => {
-        const dialogRef = dialog.open(PizzaMsgComponent, {
+        const dialogRef = dialog.open(PizzaMsg, {
           viewContainerRef: testViewContainerRef,
           scrollStrategy: overlay.scrollStrategies.close(),
         });
@@ -375,7 +375,7 @@ describe('SbbDialog', () => {
   );
 
   it('should close a dialog and get back a result before it is closed', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -399,7 +399,7 @@ describe('SbbDialog', () => {
   }));
 
   it('should close a dialog via the escape key', fakeAsync(() => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -411,11 +411,11 @@ describe('SbbDialog', () => {
   }));
 
   it('should close from a ViewContainerRef with OnPush change detection', fakeAsync(() => {
-    const onPushFixture = TestBed.createComponent(ComponentWithOnPushViewContainerComponent);
+    const onPushFixture = TestBed.createComponent(ComponentWithOnPushViewContainer);
 
     onPushFixture.detectChanges();
 
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: onPushFixture.componentInstance.viewContainerRef,
     });
 
@@ -440,7 +440,7 @@ describe('SbbDialog', () => {
   }));
 
   it('should close when clicking on the overlay backdrop', fakeAsync(() => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -458,7 +458,7 @@ describe('SbbDialog', () => {
   }));
 
   it('should emit the backdropClick stream when clicking on the overlay backdrop', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -483,7 +483,7 @@ describe('SbbDialog', () => {
   }));
 
   it('should emit the keyboardEvent stream when key events target the overlay', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
 
@@ -506,7 +506,7 @@ describe('SbbDialog', () => {
   it('should notify the observers if a dialog has been opened', () => {
     dialog.afterOpen.subscribe((ref) => {
       expect(
-        dialog.open(PizzaMsgComponent, {
+        dialog.open(PizzaMsg, {
           viewContainerRef: testViewContainerRef,
         })
       ).toBe(ref);
@@ -514,8 +514,8 @@ describe('SbbDialog', () => {
   });
 
   it('should notify the observers if all open dialogs have finished closing', fakeAsync(() => {
-    const ref1 = dialog.open(PizzaMsgComponent, { viewContainerRef: testViewContainerRef });
-    const ref2 = dialog.open(ContentElementDialogComponent, {
+    const ref1 = dialog.open(PizzaMsg, { viewContainerRef: testViewContainerRef });
+    const ref2 = dialog.open(ContentElementDialog, {
       viewContainerRef: testViewContainerRef,
     });
     const spy = jasmine.createSpy('afterAllClosed spy');
@@ -543,7 +543,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the width of the overlay pane', () => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       width: '500px',
     });
 
@@ -555,7 +555,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the height of the overlay pane', () => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       height: '100px',
     });
 
@@ -567,7 +567,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the min-width of the overlay pane', () => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       minWidth: '500px',
     });
 
@@ -579,7 +579,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the max-width of the overlay pane', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent);
+    const dialogRef = dialog.open(PizzaMsg);
 
     viewContainerFixture.detectChanges();
 
@@ -596,7 +596,7 @@ describe('SbbDialog', () => {
     viewContainerFixture.detectChanges();
     flushMicrotasks();
 
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       maxWidth: '100px',
     });
 
@@ -608,7 +608,7 @@ describe('SbbDialog', () => {
   }));
 
   it('should override the min-height of the overlay pane', () => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       minHeight: '300px',
     });
 
@@ -620,7 +620,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the max-height of the overlay pane', () => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       maxHeight: '100px',
     });
 
@@ -632,7 +632,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the top offset of the overlay pane', () => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       position: {
         top: '100px',
       },
@@ -646,7 +646,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the bottom offset of the overlay pane', () => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       position: {
         bottom: '200px',
       },
@@ -660,7 +660,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the left offset of the overlay pane', () => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       position: {
         left: '250px',
       },
@@ -674,7 +674,7 @@ describe('SbbDialog', () => {
   });
 
   it('should override the right offset of the overlay pane', () => {
-    dialog.open(PizzaMsgComponent, {
+    dialog.open(PizzaMsg, {
       position: {
         right: '125px',
       },
@@ -688,7 +688,7 @@ describe('SbbDialog', () => {
   });
 
   it('should allow for the position to be updated', () => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       position: {
         left: '250px',
       },
@@ -706,7 +706,7 @@ describe('SbbDialog', () => {
   });
 
   it('should use the passed in ViewContainerRef from the config', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent, {
+    const dialogRef = dialog.open(PizzaMsg, {
       viewContainerRef: testViewContainerRef,
     });
     viewContainerFixture.detectChanges();
@@ -723,9 +723,9 @@ describe('SbbDialog', () => {
   }));
 
   it('should close all of the dialogs', fakeAsync(() => {
-    dialog.open(PizzaMsgComponent);
-    dialog.open(PizzaMsgComponent);
-    dialog.open(PizzaMsgComponent);
+    dialog.open(PizzaMsg);
+    dialog.open(PizzaMsg);
+    dialog.open(PizzaMsg);
 
     expect(overlayContainerElement.querySelectorAll('sbb-dialog-container').length).toBe(3);
 
@@ -737,8 +737,8 @@ describe('SbbDialog', () => {
   }));
 
   it('should close all dialogs when the user goes forwards/backwards in history', fakeAsync(() => {
-    dialog.open(PizzaMsgComponent);
-    dialog.open(PizzaMsgComponent);
+    dialog.open(PizzaMsg);
+    dialog.open(PizzaMsg);
 
     expect(overlayContainerElement.querySelectorAll('sbb-dialog-container').length).toBe(2);
 
@@ -750,8 +750,8 @@ describe('SbbDialog', () => {
   }));
 
   it('should close all open dialogs when the location hash changes', fakeAsync(() => {
-    dialog.open(PizzaMsgComponent);
-    dialog.open(PizzaMsgComponent);
+    dialog.open(PizzaMsg);
+    dialog.open(PizzaMsg);
 
     expect(overlayContainerElement.querySelectorAll('sbb-dialog-container').length).toBe(2);
 
@@ -763,9 +763,9 @@ describe('SbbDialog', () => {
   }));
 
   it('should close all of the dialogs when the injectable is destroyed', fakeAsync(() => {
-    dialog.open(PizzaMsgComponent);
-    dialog.open(PizzaMsgComponent);
-    dialog.open(PizzaMsgComponent);
+    dialog.open(PizzaMsg);
+    dialog.open(PizzaMsg);
+    dialog.open(PizzaMsg);
 
     expect(overlayContainerElement.querySelectorAll('sbb-dialog-container').length).toBe(3);
 
@@ -777,8 +777,8 @@ describe('SbbDialog', () => {
   }));
 
   it('should allow the consumer to disable closing a dialog on navigation', fakeAsync(() => {
-    dialog.open(PizzaMsgComponent);
-    dialog.open(PizzaMsgComponent, { closeOnNavigation: false });
+    dialog.open(PizzaMsg);
+    dialog.open(PizzaMsg, { closeOnNavigation: false });
 
     expect(overlayContainerElement.querySelectorAll('sbb-dialog-container').length).toBe(2);
 
@@ -790,7 +790,7 @@ describe('SbbDialog', () => {
   }));
 
   it('should have the componentInstance available in the afterClosed callback', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent);
+    const dialogRef = dialog.open(PizzaMsg);
     const spy = jasmine.createSpy('afterClosed spy');
 
     flushMicrotasks();
@@ -819,7 +819,7 @@ describe('SbbDialog', () => {
       disable: () => {},
     };
 
-    dialog.open(PizzaMsgComponent, { scrollStrategy });
+    dialog.open(PizzaMsg, { scrollStrategy });
     expect(scrollStrategy.enable).toHaveBeenCalled();
   }));
 
@@ -832,7 +832,7 @@ describe('SbbDialog', () => {
         },
       };
 
-      const instance = dialog.open(DialogWithInjectedDataComponent, config).componentInstance;
+      const instance = dialog.open(DialogWithInjectedData, config).componentInstance;
 
       expect(instance!.data.stringParam).toBe(config.data.stringParam);
 
@@ -841,14 +841,14 @@ describe('SbbDialog', () => {
 
     it('should default to null if no data is passed', () => {
       expect(() => {
-        const dialogRef = dialog.open(DialogWithInjectedDataComponent);
+        const dialogRef = dialog.open(DialogWithInjectedData);
         expect(dialogRef.componentInstance!.data).toBeNull();
       }).not.toThrow();
     });
   });
 
   it('should not keep a reference to the component after the dialog is closed', fakeAsync(() => {
-    const dialogRef = dialog.open(PizzaMsgComponent);
+    const dialogRef = dialog.open(PizzaMsg);
 
     expect(dialogRef.componentInstance).toBeTruthy();
 
@@ -860,8 +860,8 @@ describe('SbbDialog', () => {
   }));
 
   it('should assign a unique id to each dialog', () => {
-    const one = dialog.open(PizzaMsgComponent);
-    const two = dialog.open(PizzaMsgComponent);
+    const one = dialog.open(PizzaMsg);
+    const two = dialog.open(PizzaMsg);
 
     expect(one.id).toBeTruthy();
     expect(two.id).toBeTruthy();
@@ -869,23 +869,23 @@ describe('SbbDialog', () => {
   });
 
   it('should allow for the id to be overwritten', () => {
-    const dialogRef = dialog.open(PizzaMsgComponent, { id: 'pizza' });
+    const dialogRef = dialog.open(PizzaMsg, { id: 'pizza' });
     expect(dialogRef.id).toBe('pizza');
   });
 
   it('should throw when trying to open a dialog with the same id as another dialog', () => {
-    dialog.open(PizzaMsgComponent, { id: 'pizza' });
-    expect(() => dialog.open(PizzaMsgComponent, { id: 'pizza' })).toThrowError(/must be unique/g);
+    dialog.open(PizzaMsg, { id: 'pizza' });
+    expect(() => dialog.open(PizzaMsg, { id: 'pizza' })).toThrowError(/must be unique/g);
   });
 
   it('should be able to find a dialog by id', () => {
-    const dialogRef = dialog.open(PizzaMsgComponent, { id: 'pizza' });
+    const dialogRef = dialog.open(PizzaMsg, { id: 'pizza' });
     expect(dialog.getDialogById('pizza')).toBe(dialogRef);
   });
 
   describe('disableClose option', () => {
     it('should prevent closing via clicks on the backdrop', fakeAsync(() => {
-      dialog.open(PizzaMsgComponent, {
+      dialog.open(PizzaMsg, {
         disableClose: true,
         viewContainerRef: testViewContainerRef,
       });
@@ -903,7 +903,7 @@ describe('SbbDialog', () => {
     }));
 
     it('should prevent closing via the escape key', fakeAsync(() => {
-      dialog.open(PizzaMsgComponent, {
+      dialog.open(PizzaMsg, {
         disableClose: true,
         viewContainerRef: testViewContainerRef,
       });
@@ -917,7 +917,7 @@ describe('SbbDialog', () => {
     }));
 
     it('should allow for the disableClose option to be updated while open', fakeAsync(() => {
-      const dialogRef = dialog.open(PizzaMsgComponent, {
+      const dialogRef = dialog.open(PizzaMsg, {
         disableClose: true,
         viewContainerRef: testViewContainerRef,
       });
@@ -940,7 +940,7 @@ describe('SbbDialog', () => {
     }));
 
     it('should recapture focus when clicking on the backdrop', fakeAsync(() => {
-      dialog.open(PizzaMsgComponent, {
+      dialog.open(PizzaMsg, {
         disableClose: true,
         viewContainerRef: testViewContainerRef,
       });
@@ -967,7 +967,7 @@ describe('SbbDialog', () => {
       'should recapture focus to the container when clicking on the backdrop with ' +
         'autoFocus disabled',
       fakeAsync(() => {
-        dialog.open(PizzaMsgComponent, {
+        dialog.open(PizzaMsg, {
           disableClose: true,
           viewContainerRef: testViewContainerRef,
           autoFocus: false,
@@ -1000,7 +1000,7 @@ describe('SbbDialog', () => {
 
   describe('hasBackdrop option', () => {
     it('should have a backdrop', () => {
-      dialog.open(PizzaMsgComponent, {
+      dialog.open(PizzaMsg, {
         viewContainerRef: testViewContainerRef,
       });
 
@@ -1012,7 +1012,7 @@ describe('SbbDialog', () => {
 
   describe('panelClass option', () => {
     it('should have custom panel class', () => {
-      dialog.open(PizzaMsgComponent, {
+      dialog.open(PizzaMsg, {
         panelClass: 'custom-panel-class',
         viewContainerRef: testViewContainerRef,
       });
@@ -1029,7 +1029,7 @@ describe('SbbDialog', () => {
     afterEach(() => document.body.removeChild(overlayContainerElement));
 
     it('should focus the first tabbable element of the dialog on open', fakeAsync(() => {
-      dialog.open(PizzaMsgComponent, {
+      dialog.open(PizzaMsg, {
         viewContainerRef: testViewContainerRef,
       });
 
@@ -1043,7 +1043,7 @@ describe('SbbDialog', () => {
     }));
 
     it('should allow disabling focus of the first tabbable element', fakeAsync(() => {
-      dialog.open(PizzaMsgComponent, {
+      dialog.open(PizzaMsg, {
         viewContainerRef: testViewContainerRef,
         autoFocus: false,
       });
@@ -1055,7 +1055,7 @@ describe('SbbDialog', () => {
     }));
 
     it('should attach the focus trap even if automatic focus is disabled', fakeAsync(() => {
-      dialog.open(PizzaMsgComponent, {
+      dialog.open(PizzaMsg, {
         viewContainerRef: testViewContainerRef,
         autoFocus: false,
       });
@@ -1075,7 +1075,7 @@ describe('SbbDialog', () => {
       document.body.appendChild(button);
       button.focus();
 
-      const dialogRef = dialog.open(PizzaMsgComponent, {
+      const dialogRef = dialog.open(PizzaMsg, {
         viewContainerRef: testViewContainerRef,
       });
 
@@ -1118,7 +1118,7 @@ describe('SbbDialog', () => {
       document.body.appendChild(input);
       button.focus();
 
-      const dialogRef = dialog.open(PizzaMsgComponent, {
+      const dialogRef = dialog.open(PizzaMsg, {
         viewContainerRef: testViewContainerRef,
       });
 
@@ -1143,7 +1143,7 @@ describe('SbbDialog', () => {
     }));
 
     it('should move focus to the container if there are no focusable elements in the dialog', fakeAsync(() => {
-      dialog.open(DialogWithoutFocusableElementsComponent);
+      dialog.open(DialogWithoutFocusableElements);
 
       viewContainerFixture.detectChanges();
       flushMicrotasks();
@@ -1165,7 +1165,7 @@ describe('SbbDialog', () => {
       body.appendChild(otherButton);
       button.focus();
 
-      const dialogRef = dialog.open(PizzaMsgComponent, {
+      const dialogRef = dialog.open(PizzaMsg, {
         viewContainerRef: testViewContainerRef,
       });
 
@@ -1206,7 +1206,7 @@ describe('SbbDialog', () => {
 
     describe('inside component dialog', () => {
       beforeEach(fakeAsync(() => {
-        dialogRef = dialog.open(ContentElementDialogComponent, {
+        dialogRef = dialog.open(ContentElementDialog, {
           viewContainerRef: testViewContainerRef,
         });
         viewContainerFixture.detectChanges();
@@ -1218,7 +1218,7 @@ describe('SbbDialog', () => {
 
     describe('inside template portal', () => {
       beforeEach(fakeAsync(() => {
-        const fixture = TestBed.createComponent(ComponentWithContentElementTemplateRefComponent);
+        const fixture = TestBed.createComponent(ComponentWithContentElementTemplateRef);
         fixture.detectChanges();
 
         dialogRef = dialog.open(fixture.componentInstance.templateRef, {
@@ -1278,12 +1278,12 @@ describe('Dialog with a parent Dialog', () => {
   let parentDialog: SbbDialog;
   let childDialog: SbbDialog;
   let overlayContainerElement: HTMLElement;
-  let fixture: ComponentFixture<ComponentThatProvidesDialogComponent>;
+  let fixture: ComponentFixture<ComponentThatProvidesDialog>;
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbDialogModule, DialogTestModule, SbbIconTestingModule],
-      declarations: [ComponentThatProvidesDialogComponent],
+      declarations: [ComponentThatProvidesDialog],
       providers: [
         {
           provide: OverlayContainer,
@@ -1302,7 +1302,7 @@ describe('Dialog with a parent Dialog', () => {
   beforeEach(inject([SbbDialog], (d: SbbDialog) => {
     parentDialog = d;
 
-    fixture = TestBed.createComponent(ComponentThatProvidesDialogComponent);
+    fixture = TestBed.createComponent(ComponentThatProvidesDialog);
     childDialog = fixture.componentInstance.dialog;
     fixture.detectChanges();
   }));
@@ -1312,7 +1312,7 @@ describe('Dialog with a parent Dialog', () => {
   });
 
   it('should close dialogs opened by a parent when calling closeAll on a child Dialog', fakeAsync(() => {
-    parentDialog.open(PizzaMsgComponent);
+    parentDialog.open(PizzaMsg);
     fixture.detectChanges();
     flush();
 
@@ -1332,7 +1332,7 @@ describe('Dialog with a parent Dialog', () => {
   }));
 
   it('should close dialogs opened by a child when calling closeAll on a parent Dialog', fakeAsync(() => {
-    childDialog.open(PizzaMsgComponent);
+    childDialog.open(PizzaMsg);
     fixture.detectChanges();
 
     expect(overlayContainerElement.textContent).toContain(
@@ -1351,7 +1351,7 @@ describe('Dialog with a parent Dialog', () => {
   }));
 
   it('should close the top dialog via the escape key', fakeAsync(() => {
-    childDialog.open(PizzaMsgComponent);
+    childDialog.open(PizzaMsg);
 
     dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
     fixture.detectChanges();
@@ -1361,7 +1361,7 @@ describe('Dialog with a parent Dialog', () => {
   }));
 
   it('should not close the parent dialogs when a child is destroyed', fakeAsync(() => {
-    parentDialog.open(PizzaMsgComponent);
+    parentDialog.open(PizzaMsg);
     fixture.detectChanges();
     flush();
 
