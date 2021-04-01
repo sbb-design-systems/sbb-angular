@@ -14,7 +14,7 @@ ng_module(
     assets = glob(["**/*.html"]),
     module_name = "@sbb-esta/components-examples/angular/file-selector",
     deps = [
-        "//src/angular-public/checkbox",
+        "//src/angular/checkbox",
         "//src/angular/file-selector",
         "@npm//@angular/common",
         "@npm//@angular/core",
