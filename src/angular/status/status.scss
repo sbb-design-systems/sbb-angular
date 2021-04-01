@@ -1,0 +1,59 @@
+@import '../styles/common';
+
+.sbb-status {
+  display: inline-flex;
+  align-items: center;
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem($sizeLineHeightDefault);
+  height: pxToEm(24);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem($sizeLineHeightDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
+    }
+  }
+  html.sbb-lean & {
+    line-height: pxToRem($sizeLineHeightDefaultLean);
+  }
+}
+
+.sbb-status-icon {
+  width: pxToEm(24);
+  height: pxToEm(24);
+  border-radius: pxToRem(1);
+  color: $sbbColorWhite;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-radius: pxToRem(2);
+    }
+  }
+}
+
+// Variant for .sbb-status-icon
+.sbb-status-icon-valid {
+  background-color: $sbbColorGreen;
+}
+
+// Variant for .sbb-status-icon
+.sbb-status-icon-warning {
+  background-color: $sbbColorOrange;
+}
+
+// Variant for .sbb-status-icon
+.sbb-status-icon-invalid {
+  background-color: $sbbColorRed;
+}
+
+.sbb-status-message {
+  background-color: $sbbColorMilk;
+  color: $sbbColorGranite;
+  font-family: $fontSbbRoman;
+  margin-left: pxToEm(6);
+  padding: pxToEm(0) pxToEm(8) pxToEm(1) pxToEm(8);
+}
