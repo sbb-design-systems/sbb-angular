@@ -1,91 +1,80 @@
-You can use file selector component as seen below
+The file selector allows single or multiple file selections and enables integration into Angular
+Forms.
 
 ```html
-<sbb-file-selector></sbb-file-selector>
-```
-
-### What does the module do?
-
-The main function of file selector module is upload files.
-
-### When can you use it?
-
-You can use it in applications that require one or more files of a user.
-
-### Characteristics and states
-
-1. By clicking on the "Datei hochladen" button, the file browser of the system opens.
-   The uploaded files choosen by the user are displayed in a list.
-2. The list entry includes the icon of the file type upload, the file name and in brackets
-   the file type and the file size.
-3. With the "Delete button" (as a trash icon) a single file can be removed from the list.
-4. You can select more files together using the `multiple` property (by setting it at 'true' value)
-   on file selector component.
-5. You can set the property `multipleMode` to `persistent` in order to change the default
-   input file behaviour that replace already selected files with the new selection. With
-   this option later selection will add files instead replacing.
-
-The module has two states:
-
-- normal
-
-- disabled
-
-### Configuring the component globally
-
-It is possible to define the categories and the types of file accepted globally.
-You can provide them at the module-level using respectively `FILE_TYPES` and
-`FILE_SELECTOR_OPTIONS` providers as seen below:
-
-```ts
-const fileCategories: FileTypeCategory[] = [FileTypeCategory.IMAGE, FileTypeCategory.VIDEO];
-const fileSelectorOptions: FileSelectorOptions = {
-  accept: 'image/jpeg,video.mp4',
-  multiple: true,
-  multipleMode: 'persistent',
-  capture: 'user',
-};
-```
-
-Configure them in the providers section of your module:
-
-```ts
-providers: [
-  { provide: FILE_TYPES, useValue: fileCategories },
-  { provide: FILE_SELECTOR_OPTIONS, useValue: fileSelectorOptions },
-];
-```
-
-### Examples
-
-- Simple example (you can chose single file)
-
-```html
-<h4>Simple example (single file)</h4>
 <sbb-file-selector (fileChanged)="fileChanged($event)"></sbb-file-selector>
 ```
 
-- Advanced example (you can chose multiple files)
+The selected files will be displayed below the button as a list and can individually be removed
+via the trash can delete button.
+
+### Accept input
+
+The `accept` input value is a string that defines the file types the file input should accept.
+This string is a comma-separated list of unique file type specifiers. Because a given file type
+may be identified in more than one manner, it's useful to provide a thorough set of type specifiers
+when you need files of a given format.
 
 ```html
-<h4>Example multiple files allowed and ngModel attached</h4>
-<sbb-file-selector multiple="true" [(ngModel)]="filesList2"></sbb-file-selector>
+<sbb-file-selector accept="image/*,.pdf"></sbb-file-selector>
 ```
 
-- Advanced example (you can chose multiple files and allow adding new files to the collection instead replacing)
+### Multiple and multiple mode input
+
+When the `multiple` input is set, the file input allows the user to select more than one file.
+Additionally the `multipleMode` input configures, whether newly selected files should be
+replaced (`default`) or appended (`persistent`).
 
 ```html
-<h4>Example multiple files allowed and ngModel attached</h4>
-<sbb-file-selector
-  multiple="true"
-  multipleMode="persistent"
-  [(ngModel)]="filesList2"
-></sbb-file-selector>
+<sbb-file-selector multiple multipleMode="persistent"></sbb-file-selector>
 ```
 
-- Advanced example (disable status)
+### Capture input
+
+The capture attribute value is a string that specifies which camera to use for capture of image or
+video data, if the `accept` attribute indicates that the input should be of one of those types. A
+value of `user` indicates that the user-facing camera and/or microphone should be used. A value of
+`environment` specifies that the outward-facing camera and/or microphone should be used. If this
+attribute is missing, the user agent is free to decide on its own what to do. If the requested
+facing mode isn't available, the user agent may fall back to its preferred default mode.
 
 ```html
-<h4>Example with disable status</h4>
-<sbb-file-selector multiple="true" [(ngModel)]="filesList2" [disabled]="true"></sbb-file-selector>
+<sbb-file-selector capture="user" accept="audio/*"></sbb-file-selector>
+<sbb-file-selector capture="environment" accept="video/*"></sbb-file-selector>
+<sbb-file-selector capture="user" accept="image/*"></sbb-file-selector>
+```
+
+### Use with `@angular/forms`
+
+`<sbb-file-selector>` is compatible with `@angular/forms` and supports both `FormsModule`
+and `ReactiveFormsModule`.
+
+#### Template-driven forms
+
+```html
+<sbb-file-selector [(ngModel)]="files"></sbb-file-selector>
+```
+
+#### Reactive Forms
+
+```html
+<sbb-file-selector formControlName="files"></sbb-file-selector>
+```
+
+### Global configuration
+
+It is possible to define some options globally.
+
+```ts
+providers: [
+  {
+    provide: SBB_FILE_SELECTOR_OPTIONS,
+    useValue: {
+      accept: 'image/jpeg,video.mp4',
+      multiple: true,
+      multipleMode: 'persistent',
+      capture: 'user',
+    } as SbbFileSelectorOptions,
+  },
+];
 ```
