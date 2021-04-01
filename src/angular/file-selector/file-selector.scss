@@ -5,8 +5,8 @@
 }
 
 .sbb-file-selector-list {
-  font-size: pxToRem($sizeFontBase);
-  line-height: pxToRem(26);
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem($sizeLineHeightDefault);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -14,17 +14,16 @@
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      font-size: pxToRem(23);
-      line-height: pxToRem(34.5);
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem($sizeLineHeightDefault4k);
     }
-
     @include mq($from: desktop5k) {
-      font-size: pxToRem(30);
-      line-height: pxToRem(52);
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
     }
   }
   html.sbb-lean & {
-    line-height: pxToRem(23);
+    line-height: pxToRem($sizeLineHeightDefaultLean);
   }
 
   li {
