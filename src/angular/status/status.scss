@@ -1,0 +1,50 @@
+@import '../styles/common';
+
+.sbb-status {
+  display: inline-flex;
+  align-items: center;
+  font-size: pxToRem($sizeFontBase);
+  line-height: pxToRem(26);
+  height: pxToEm(24);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontBase * $scalingFactor4k);
+      line-height: pxToRem(39);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontBase * $scalingFactor5k);
+      line-height: pxToRem(52);
+    }
+  }
+  html.sbb-lean & {
+    line-height: pxToRem(23);
+  }
+}
+
+.sbb-status-icon {
+  width: pxToEm(24px);
+  height: pxToEm(24px);
+  border-radius: pxToRem(1px);
+  color: $sbbColorWhite;
+
+  &.sbb-status-icon-valid {
+    background-color: $sbbColorGreen;
+  }
+
+  &.sbb-status-icon-warning {
+    background-color: $sbbColorOrange;
+  }
+
+  &.sbb-status-icon-invalid {
+    background-color: $sbbColorRed;
+  }
+}
+
+.sbb-status-message {
+  background-color: $sbbColorMilk;
+  color: $sbbColorGranite;
+  font-family: $fontSbbRoman;
+  margin-left: pxToEm(6px);
+  padding: pxToEm(0px) pxToEm(8px) pxToEm(1px) pxToEm(8px);
+}

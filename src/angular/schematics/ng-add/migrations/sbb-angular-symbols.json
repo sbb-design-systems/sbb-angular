@@ -296,6 +296,8 @@
   "SbbSidebarModule": "sidebar",
   "SbbSidebarToggleResult": "sidebar",
   "throwSbbDuplicatedSidebarError": "sidebar",
+  "SbbStatus": "status",
+  "SbbStatusModule": "status",
   "SbbTextarea": "textarea",
   "SbbTextareaBase": "textarea",
   "SbbTextareaMixinBase": "textarea",
