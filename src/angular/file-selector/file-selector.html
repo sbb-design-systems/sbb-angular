@@ -15,21 +15,14 @@
     (change)="fileChange($event)"
     (blur)="_onTouched()"
   />
-  <sbb-icon
-    *ngIf="(variant | async) === 'standard'"
-    class="sbb-button-indicator-icon sbb-button-left-icon sbb-icon-fit"
-    svgIcon="kom:upload-small"
-  ></sbb-icon>
   <span
     class="sbb-button-wrapper"
     i18n="Button label to select files for upload@@sbbFileSelectorUploadFile"
     >Upload file</span
   >
-  <sbb-icon
-    *ngIf="(variant | async) === 'standard'"
-    class="sbb-button-indicator-icon sbb-button-right-icon sbb-icon-fit"
-    svgIcon="kom:upload-small"
-  ></sbb-icon>
+  <span class="sbb-file-selector-upload-icon">
+    <sbb-icon class="sbb-icon-fit" svgIcon="kom:upload-small"></sbb-icon>
+  </span>
 </label>
 
 <ul *ngIf="filesList?.length" class="sbb-file-selector-list sbb-icon-fit">

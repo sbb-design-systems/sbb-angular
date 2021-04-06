@@ -4,6 +4,14 @@
   display: inline-block;
 }
 
+.sbb-file-selector-upload-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: pxToEm(24);
+  height: pxToEm(24);
+  margin-left: pxToEm(6);
+}
+
 .sbb-file-selector-list {
   font-size: pxToRem($sizeFontDefault);
   line-height: pxToRem($sizeLineHeightDefault);
