@@ -23,10 +23,7 @@ export class MultipleModeDefaultFileSelectorExample implements OnInit, OnDestroy
   accept: string;
 
   constructor(private _fileTypeService: SbbFileSelectorTypesService) {
-    this.accept = this._fileTypeService.resolveAcceptString([
-      FileTypeCategory.IMAGE,
-      FileTypeCategory.ZIP,
-    ]);
+    this.accept = this._fileTypeService.getAcceptString('image', 'zip');
   }
 
   ngOnInit() {

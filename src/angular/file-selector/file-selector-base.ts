@@ -25,16 +25,7 @@ export interface SbbFileSelectorOptions {
   multipleMode?: 'default' | 'persistent';
 }
 
-export enum FileTypeCategory {
-  // tslint:disable-next-line: naming-convention
-  GENERIC_DOC = 1,
-  DOC,
-  IMAGE,
-  PDF,
-  AUDIO,
-  VIDEO,
-  ZIP,
-}
+export type FileTypeCategory = 'generic' | 'doc' | 'image' | 'pdf' | 'audio' | 'video' | 'zip';
 
 export const SBB_FILE_TYPES = {
   TEXT: ['text/*'],
@@ -115,26 +106,26 @@ export const SBB_FILE_TYPES = {
 };
 
 export const SBB_CATEGORY_MIME_TYPES = new Map<FileTypeCategory, string[]>()
-  .set(FileTypeCategory.DOC, [
+  .set('doc', [
     ...SBB_FILE_TYPES.MS_WORD_DOC,
     ...SBB_FILE_TYPES.MS_EXCEL,
     ...SBB_FILE_TYPES.MS_POWERPOINT,
   ])
-  .set(FileTypeCategory.AUDIO, [
+  .set('audio', [
     ...SBB_FILE_TYPES.AUDIO_MP4,
     ...SBB_FILE_TYPES.AUDIO_MP3,
     ...SBB_FILE_TYPES.AUDIO_OGG,
     ...SBB_FILE_TYPES.AUDIO_WAVE,
     ...SBB_FILE_TYPES.AUDIO_WAV,
   ])
-  .set(FileTypeCategory.IMAGE, [
+  .set('image', [
     ...SBB_FILE_TYPES.IMAGE_GIF,
     ...SBB_FILE_TYPES.IMAGE_JPG,
     ...SBB_FILE_TYPES.IMAGE_PNG,
     ...SBB_FILE_TYPES.IMAGE_SVG,
   ])
-  .set(FileTypeCategory.PDF, SBB_FILE_TYPES.PDF)
-  .set(FileTypeCategory.VIDEO, [
+  .set('pdf', SBB_FILE_TYPES.PDF)
+  .set('video', [
     ...SBB_FILE_TYPES.VIDEO_MP4,
     ...SBB_FILE_TYPES.VIDEO_MPEG,
     ...SBB_FILE_TYPES.VIDEO_OGG,
@@ -143,4 +134,4 @@ export const SBB_CATEGORY_MIME_TYPES = new Map<FileTypeCategory, string[]>()
     ...SBB_FILE_TYPES.VIDEO_AVI,
     ...SBB_FILE_TYPES.VIDEO_WMV,
   ])
-  .set(FileTypeCategory.ZIP, SBB_FILE_TYPES.ZIP);
+  .set('zip', SBB_FILE_TYPES.ZIP);

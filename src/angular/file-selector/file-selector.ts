@@ -81,10 +81,10 @@ export class SbbFileSelector
 
   /** Mode on file selector component to chose more files to upload. */
   @Input()
-  get multiple() {
+  get multiple(): boolean {
     return this._multiple;
   }
-  set multiple(value: any) {
+  set multiple(value: boolean) {
     this._multiple = coerceBooleanProperty(value);
   }
   private _multiple = false;
@@ -99,12 +99,6 @@ export class SbbFileSelector
 
   /** List of files uploaded. */
   filesList: File[];
-
-  /**
-   * Available file type categories.
-   * @docs-private
-   */
-  _fileTypeCategory: typeof FileTypeCategory = FileTypeCategory;
 
   /** Property that listens changes on file selector. */
   _onChange: (_: any) => void = (_) => {};
@@ -123,7 +117,7 @@ export class SbbFileSelector
     if (options) {
       this.accept = options.accept;
       this.capture = options.capture;
-      this.multiple = options.multiple;
+      this.multiple = !!options.multiple;
       this.multipleMode = options.multipleMode || this.multipleMode;
     }
   }
@@ -194,7 +188,7 @@ export class SbbFileSelector
 
   /** Returns the file type category by the file type in input. */
   _resolveFileTypeCategory(file: File): FileTypeCategory {
-    return this._fileTypeService.resolveFileTypeCategoryByMimeType(file.type);
+    return this._fileTypeService.getFileTypeCategoryByMimeType(file.type);
   }
 
   /** Get the file name without the extension. */
@@ -232,10 +226,8 @@ export class SbbFileSelector
     );
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_capture: 'user' | 'environment' | string | null | undefined;
   static ngAcceptInputType_multipleMode: 'default' | 'persistent' | string | null | undefined;
   static ngAcceptInputType_disabled: BooleanInput;
   static ngAcceptInputType_multiple: BooleanInput;
-  // tslint:enable: member-ordering
 }

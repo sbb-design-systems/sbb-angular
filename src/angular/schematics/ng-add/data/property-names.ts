@@ -6,20 +6,6 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
       pr: '',
       changes: [
         {
-          replace: 'getFileTypeCategoryByMimeType',
-          replaceWith: 'resolveFileTypeCategoryByMimeType',
-          limitedTo: {
-            classes: ['SbbFileSelectorTypesService'],
-          },
-        },
-        {
-          replace: 'getAcceptString',
-          replaceWith: 'resolveAcceptString',
-          limitedTo: {
-            classes: ['SbbFileSelectorTypesService'],
-          },
-        },
-        {
           replace: 'getFileExtensionFromFileName',
           replaceWith: 'fileExtension',
           limitedTo: {

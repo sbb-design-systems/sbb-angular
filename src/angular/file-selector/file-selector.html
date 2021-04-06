@@ -32,28 +32,19 @@
   ></sbb-icon>
 </label>
 
-<ul class="sbb-file-selector-list sbb-icon-fit">
+<ul *ngIf="filesList?.length" class="sbb-file-selector-list sbb-icon-fit">
   <li *ngFor="let file of filesList">
     <div
       role="presentation"
       class="sbb-file-selector-list-type-icon"
       [ngSwitch]="_resolveFileTypeCategory(file)"
     >
-      <sbb-icon svgIcon="kom:document-text-small" *ngSwitchCase="_fileTypeCategory.DOC"></sbb-icon>
-      <sbb-icon
-        svgIcon="kom:document-image-small"
-        *ngSwitchCase="_fileTypeCategory.IMAGE"
-      ></sbb-icon>
-      <sbb-icon svgIcon="kom:document-pdf-small" *ngSwitchCase="_fileTypeCategory.PDF"></sbb-icon>
-      <sbb-icon
-        svgIcon="kom:document-sound-small"
-        *ngSwitchCase="_fileTypeCategory.AUDIO"
-      ></sbb-icon>
-      <sbb-icon
-        svgIcon="kom:document-video-small"
-        *ngSwitchCase="_fileTypeCategory.VIDEO"
-      ></sbb-icon>
-      <sbb-icon svgIcon="kom:document-zip-small" *ngSwitchCase="_fileTypeCategory.ZIP"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-text-small" *ngSwitchCase="'doc'"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-image-small" *ngSwitchCase="'image'"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-pdf-small" *ngSwitchCase="'pdf'"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-sound-small" *ngSwitchCase="'audio'"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-video-small" *ngSwitchCase="'video'"></sbb-icon>
+      <sbb-icon svgIcon="kom:document-zip-small" *ngSwitchCase="'zip'"></sbb-icon>
       <sbb-icon svgIcon="kom:document-standard-small" *ngSwitchDefault></sbb-icon>
     </div>
     <span class="sbb-file-selector-list-desc"

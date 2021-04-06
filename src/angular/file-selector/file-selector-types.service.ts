@@ -11,11 +11,11 @@ export class SbbFileSelectorTypesService {
    * @param mimeType Mime type of a file.
    * @returns File type category/ies.
    */
-  resolveFileTypeCategoryByMimeType(mimeType: string): FileTypeCategory {
+  getFileTypeCategoryByMimeType(mimeType: string): FileTypeCategory {
     return (
       Array.from(SBB_CATEGORY_MIME_TYPES).find(
         ([_f, mimeTypes]) => mimeTypes.indexOf(mimeType) >= 0
-      )?.[0] ?? FileTypeCategory.GENERIC_DOC
+      )?.[0] ?? 'generic'
     );
   }
 
@@ -24,11 +24,9 @@ export class SbbFileSelectorTypesService {
    * @param typeCats File type category/ies.
    * @returns All formats accepted.
    */
-  resolveAcceptString(typeCats: FileTypeCategory | FileTypeCategory[]): string {
-    if (!Array.isArray(typeCats)) {
-      return this._buildAcceptString(typeCats);
-    }
-    return typeCats
+  getAcceptString(...typeCats: FileTypeCategory[] | FileTypeCategory[][]): string {
+    return (typeCats as FileTypeCategory[][])
+      .reduce((current, next) => current.concat(next), [] as FileTypeCategory[])
       .map((t) => this._buildAcceptString(t))
       .filter((a) => !!a)
       .join(',');
@@ -73,20 +71,20 @@ export class SbbFileSelectorTypesService {
 
   private _buildAcceptString(fileTypeCategory: FileTypeCategory): string {
     switch (fileTypeCategory) {
-      case FileTypeCategory.DOC:
+      case 'doc':
         return SBB_FILE_TYPES.MS_WORD_DOC.concat(
           SBB_FILE_TYPES.MS_EXCEL,
           SBB_FILE_TYPES.MS_POWERPOINT
         ).join(',');
-      case FileTypeCategory.IMAGE:
+      case 'image':
         return SBB_FILE_TYPES.IMAGE.join(',');
-      case FileTypeCategory.PDF:
+      case 'pdf':
         return SBB_FILE_TYPES.PDF.join(',');
-      case FileTypeCategory.VIDEO:
+      case 'video':
         return SBB_FILE_TYPES.VIDEO.join(',');
-      case FileTypeCategory.AUDIO:
+      case 'audio':
         return SBB_FILE_TYPES.AUDIO.join(',');
-      case FileTypeCategory.ZIP:
+      case 'zip':
         return SBB_FILE_TYPES.ZIP.join(',');
       default:
         return '';

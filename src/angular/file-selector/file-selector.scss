@@ -10,7 +10,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-top: pxToEm(25);
+  margin-top: pxToEm(16);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
@@ -63,6 +63,7 @@
   html:not(.sbb-lean) & {
     border: pxToEm(1) solid $sbbColorStorm;
     border-radius: 50%;
+    padding: pxToEm(3);
   }
   html.sbb-lean & {
     width: pxToEm(24);
@@ -70,12 +71,6 @@
     color: $sbbColorBlack;
     vertical-align: top;
     margin-top: pxToRem(1);
-  }
-
-  .sbb-icon > svg {
-    @include absoluteCenterXY();
-    width: pxToEm(24);
-    height: pxToEm(24);
   }
 
   &:hover,
