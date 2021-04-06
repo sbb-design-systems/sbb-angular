@@ -88,8 +88,10 @@
     border-color: $sbbColorRed125;
 
     // Redefine color for specificity
-    html.sbb-lean {
+    html:not(.sbb-lean) &,
+    html.sbb-lean & {
       color: $sbbColorRed125;
+      border-color: $sbbColorRed125;
     }
   }
 }
