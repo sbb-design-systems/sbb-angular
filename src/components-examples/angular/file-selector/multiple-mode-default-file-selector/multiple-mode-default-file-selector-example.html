@@ -1,0 +1,6 @@
+<sbb-file-selector [accept]="accept" [formControl]="fileControl" multiple="true" capture="user">
+</sbb-file-selector>
+<h4>Properties</h4>
+<sbb-checkbox (change)="setDisabled($event)">Disabled</sbb-checkbox>
+<h4>Model</h4>
+<pre>{{ beautifyFileList(filesList) | json }}</pre>

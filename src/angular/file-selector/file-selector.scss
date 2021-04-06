@@ -1,0 +1,101 @@
+@import '../styles/common';
+
+.sbb-file-selector {
+  display: inline-block;
+}
+
+.sbb-file-selector-upload-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: pxToEm(24);
+  height: pxToEm(24);
+  margin-left: pxToEm(6);
+}
+
+.sbb-file-selector-list {
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem($sizeLineHeightDefault);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: pxToEm(16);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem($sizeLineHeightDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
+    }
+  }
+  html.sbb-lean & {
+    line-height: pxToRem($sizeLineHeightDefaultLean);
+  }
+
+  li {
+    padding-left: 0;
+  }
+}
+
+.sbb-file-selector-list-type-icon,
+.sbb-file-selector-list-remove-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sbb-file-selector-list-type-icon {
+  width: pxToEm(24);
+  height: pxToEm(24);
+  margin-right: pxToEm(8);
+
+  html.sbb-lean & {
+    vertical-align: top;
+  }
+}
+
+.sbb-file-selector-list-desc {
+  text-decoration: underline;
+}
+
+.sbb-file-selector-list-remove-icon {
+  position: relative;
+  width: pxToEm(32);
+  height: pxToEm(32);
+  margin-left: pxToEm(8);
+  cursor: pointer;
+  outline: 0;
+  color: $sbbColorGranite;
+
+  html:not(.sbb-lean) & {
+    border: pxToEm(1) solid $sbbColorStorm;
+    border-radius: 50%;
+    padding: pxToEm(3);
+  }
+  html.sbb-lean & {
+    width: pxToEm(24);
+    height: pxToEm(24);
+    color: $sbbColorBlack;
+    vertical-align: top;
+    margin-top: pxToRem(1);
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $sbbColorRed125;
+    border-color: $sbbColorRed125;
+
+    // Redefine color for specificity
+    html:not(.sbb-lean) &,
+    html.sbb-lean & {
+      color: $sbbColorRed125;
+      border-color: $sbbColorRed125;
+    }
+  }
+}
+
+.sbb-file-selector-list-file-ext {
+  text-transform: uppercase;
+}

@@ -950,8 +950,12 @@ fieldset,
     html:not(.sbb-lean) & {
       background-color: transparent;
       color: $sbbColorGrey;
-      text-decoration: line-through;
       border-color: $sbbColorGreyMedium;
+
+      &,
+      & * {
+        text-decoration: line-through;
+      }
     }
   }
 }

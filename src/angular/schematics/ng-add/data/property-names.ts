@@ -4,7 +4,22 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
   ['merge' as TargetVersion]: [
     {
       pr: '',
-      changes: [],
+      changes: [
+        {
+          replace: 'getFileExtensionFromFileName',
+          replaceWith: 'fileExtension',
+          limitedTo: {
+            classes: ['SbbFileSelectorTypesService'],
+          },
+        },
+        {
+          replace: 'getFileNameNoExtension',
+          replaceWith: 'removeFileExtension',
+          limitedTo: {
+            classes: ['SbbFileSelectorTypesService'],
+          },
+        },
+      ],
     },
   ],
 };
