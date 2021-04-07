@@ -622,6 +622,9 @@ ul li ol > li::before,
     border-color: $sbbColorAluminum;
   }
 
+  // We want to provide the error styles both for invalid state
+  // in a sbb-form-field and also for Angular Form Validation.
+  .sbb-form-field-invalid &:not([aria-expanded='true']),
   &.ng-touched.ng-invalid:not([aria-expanded='true']) {
     color: $sbbColorError;
     border-color: $sbbColorError;
@@ -1504,7 +1507,13 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
     color: $sbbColorBlack;
   }
 
-  &.ng-invalid {
+  // We need to provide error styling for both on the element
+  // or on a wrapper (e.g. sbb-radio-group) with both manual
+  // classes and Angular Form Validation classes.
+  &.sbb-selection-error,
+  .sbb-selection-error &,
+  &.ng-touched.ng-invalid,
+  .ng-touched.ng-invalid & {
     border-color: $sbbColorRed;
     color: $sbbColorRed;
   }

@@ -55,6 +55,9 @@
     opacity: 1;
   }
 
+  // We want to provide the error styles both for invalid state
+  // in a sbb-form-field and also for Angular Form Validation.
+  .sbb-form-field-invalid &,
   &.ng-touched.ng-invalid {
     border-color: $sbbColorCallToAction;
 

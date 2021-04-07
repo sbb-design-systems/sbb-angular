@@ -22,6 +22,9 @@
     }
   }
 
+  // We want to provide the error styles both for invalid state
+  // in a sbb-form-field and also for Angular Form Validation.
+  .sbb-form-field-invalid & textarea,
   &.ng-touched.ng-invalid textarea {
     color: $sbbColorError;
   }
