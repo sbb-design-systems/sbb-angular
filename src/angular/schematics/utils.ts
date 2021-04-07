@@ -137,6 +137,10 @@ export function nodeCheck(element: Element) {
   };
 }
 
+export function findReferenceAttribute(element: Element) {
+  return element.attrs?.find((a) => a.name.toLowerCase().startsWith('#'));
+}
+
 export class MigrationRecorderRegistry {
   private _elements = new Map<ResolvedResource, Element[]>();
 
@@ -185,6 +189,20 @@ export class MigrationElement {
     );
   }
 
+  removeEndTag() {
+    this.recorder.remove(
+      this.resource.start + this.location.endTag.startOffset,
+      this.location.endTag.endOffset - this.location.endTag.startOffset
+    );
+  }
+
+  removeStartTag() {
+    this.recorder.remove(
+      this.resource.start + this.location.startTag.startOffset,
+      this.location.startTag.endOffset - this.location.startTag.startOffset
+    );
+  }
+
   /** Prepends the given content before this element. */
   prepend(content: string) {
     this.recorder.insertLeft(this.resource.start + this.location.startOffset, content);
@@ -227,7 +245,33 @@ export class MigrationElement {
       this._properties.set(name, undefined);
       return undefined;
     }
+    property = this._createMigrationElementProperty(attribute);
+    this._properties.set(name, property);
+    return property;
+  }
 
+  findPropertyByValue(value: string) {
+    let property: MigrationElementProperty | undefined;
+    this._properties.forEach((propertyEntry) => {
+      if (propertyEntry!.nativeValue === value) {
+        property = propertyEntry;
+        return;
+      }
+    });
+    if (property) {
+      return property;
+    }
+
+    const attribute = this.element.attrs.find((a) => a.value === value);
+    if (!attribute) {
+      return undefined;
+    }
+    property = this._createMigrationElementProperty(attribute);
+    this._properties.set(property!.attribute.name, property);
+    return property;
+  }
+
+  private _createMigrationElementProperty(attribute: Attribute) {
     const location = this.location.attrs[attribute.name];
     let value: string | undefined;
     if (!attribute.name.startsWith('[')) {
@@ -237,9 +281,7 @@ export class MigrationElement {
       value = attribute.value.substring(1, attribute.value.length - 1);
     }
 
-    property = new MigrationElementProperty(attribute, location, value, this);
-    this._properties.set(name, property);
-    return property;
+    return new MigrationElementProperty(attribute, location, value, this);
   }
 
   appendProperty(name: string, value?: string) {
@@ -289,6 +331,17 @@ export class MigrationElementProperty {
     this._element.recorder.insertRight(
       this._element.resource.start + this.location.startOffset,
       newAttribute
+    );
+  }
+
+  replaceValue(newValue: string) {
+    this._element.recorder.remove(
+      this._element.resource.start + this.location.startOffset,
+      this.location.endOffset - this.location.startOffset
+    );
+    this._element.recorder.insertRight(
+      this._element.resource.start + this.location.startOffset,
+      `${this.attribute.name}="${newValue}"`
     );
   }
 

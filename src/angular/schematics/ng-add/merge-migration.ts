@@ -9,6 +9,7 @@ import { sbbAngularUpgradeData } from './add-data';
 import { ButtonMigration } from './migrations/button-migration';
 import { ClassNamesMigration } from './migrations/class-names';
 import { EnumToStringLiteralMigration } from './migrations/enum-to-string-literal-migration';
+import { MenuMigration } from './migrations/menu-migration';
 import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
 import { SelectionPanelMigration } from './migrations/selection-panel-migration';
 
@@ -22,6 +23,7 @@ export function mergePublicAndBusiness(): Rule {
       ButtonMigration,
       SelectionPanelMigration,
       EnumToStringLiteralMigration,
+      MenuMigration,
     ],
     sbbAngularUpgradeData,
     onMigrationComplete
