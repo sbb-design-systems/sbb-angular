@@ -9,8 +9,11 @@
     spellcheck="false"
   />
   <sbb-error *ngIf="name.errors?.required">Name is required!</sbb-error>
+  <sbb-error *ngIf="name.errors?.minlength"
+    >Min length is {{ name.errors?.minlength?.requiredLength }}!</sbb-error
+  >
 </sbb-form-field>
-<p>*Name must be at least 3 characters long</p>
+<p>Name must be at least 3 characters long</p>
 
 <h4>Properties</h4>
 <sbb-checkbox (change)="toggleDisabled($event)">Disabled</sbb-checkbox>
