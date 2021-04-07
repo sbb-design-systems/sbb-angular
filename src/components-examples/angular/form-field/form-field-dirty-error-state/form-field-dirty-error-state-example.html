@@ -1,10 +1,4 @@
-<p>
-  The default error state matcher checks for errors and whether the form control has been touched,
-  which is usually triggered by leaving the form (blur event). An alternative is the
-  <code>SbbShowOnDirtyErrorStateMatcher</code> (which needs to be added as a global provider), which
-  checks for errors and whether the form control is dirty instead of touched, which is triggered as
-  soon as the form control value changes, either by typing in the input field or selecting a value.
-</p>
+<p>Local usage of <code>SbbShowOnDirtyErrorStateMatcher</code>.</p>
 
 <sbb-form-field>
   <sbb-label>Name</sbb-label>
@@ -13,9 +7,7 @@
     sbbInput
     [formControl]="name"
     [errorStateMatcher]="errorStateMatcher"
-    autocomplete="off"
     placeholder="Name"
-    spellcheck="false"
   />
   <sbb-error *ngIf="name.errors?.required">Name is required!</sbb-error>
   <sbb-error *ngIf="name.errors?.minlength"
