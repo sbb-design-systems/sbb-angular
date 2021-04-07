@@ -28,6 +28,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
         name: 'Introduction',
         entries: [
           { label: 'Getting started', link: './introduction/getting-started' },
+          { label: 'Migration Guide', link: './introduction/migration-guide' },
           { label: 'i18n', link: './introduction/i18n' },
           { label: 'Typography', link: './introduction/typography' },
           { label: 'Icon Overview', link: './icon-overview' },
