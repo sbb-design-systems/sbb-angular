@@ -87,6 +87,50 @@ if the messages are contained in one sbb-error element.
 </sbb-form-field>
 ```
 
+#### Touched vs dirty error state checking
+
+The default error state matcher checks for errors and whether the form control has been touched,
+which is usually triggered by leaving the form (blur event). An alternative is the
+`SbbShowOnDirtyErrorStateMatcher` (which needs to be added as a global provider), which
+checks for errors and whether the form control is dirty instead of touched, which is triggered as
+soon as the form control value changes, either by typing in the input field or selecting a value.
+
+You can either configure the `SbbShowOnDirtyErrorStateMatcher` globally by overriding the default
+`SbbErrorStateMatcher` or locally by proving it via input.
+
+**Global**
+
+```ts
+providers: [...{ provide: SbbErrorStateMatcher, useClass: SbbShowOnDirtyErrorStateMatcher }];
+```
+
+**Local**
+
+```ts
+providers: [...SbbShowOnDirtyErrorStateMatcher];
+```
+
+```ts
+  constructor(readonly errorStateMatcher: SbbShowOnDirtyErrorStateMatcher) {}
+```
+
+```html
+<sbb-form-field>
+  <sbb-label>Name</sbb-label>
+  <input
+    type="text"
+    sbbInput
+    formControlName="name"
+    placeholder="Name"
+    [errorStateMatcher]="errorStateMatcher"
+  />
+  <sbb-error *ngIf="form.get('name').errors?.required">This field is required.</sbb-error>
+  <sbb-error *ngIf="form.get('name').errors?.minlength"
+    >Min length is {{ name.errors?.minlength?.requiredLength }}!</sbb-error
+  >
+</sbb-form-field>
+```
+
 ### Accessibility
 
 Any errors added to the form field are automatically added to the form field control's

@@ -73,6 +73,9 @@ $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
     }
   }
 
+  // We want to provide the error styles both for invalid state
+  // in a sbb-form-field and also for Angular Form Validation.
+  .sbb-form-field-invalid &:not([aria-expanded='true']),
   &.ng-touched.ng-invalid:not([aria-expanded='true']) {
     color: $sbbColorError;
     border-color: $sbbColorError;
