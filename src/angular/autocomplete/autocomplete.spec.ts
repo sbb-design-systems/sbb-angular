@@ -524,10 +524,7 @@ class AutocompleteLocaleNormalizer {
 
 @Component({
   template: `<input type="text" [sbbAutocomplete]="auto" />
-    <sbb-autocomplete
-      #auto="sbbAutocomplete"
-      [showPanelIfOnlyHintExists]="showPanelIfOnlyHintExists"
-    >
+    <sbb-autocomplete #auto="sbbAutocomplete" [showHintIfNoOptions]="showHintIfNoOptions">
       <sbb-option *ngIf="showOption">option</sbb-option>
       <sbb-autocomplete-hint *ngIf="showHint">hint</sbb-autocomplete-hint>
     </sbb-autocomplete>`,
@@ -536,7 +533,7 @@ class AutocompleteHint {
   @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
   showOption: boolean;
   showHint: boolean;
-  showPanelIfOnlyHintExists: boolean;
+  showHintIfNoOptions: boolean;
 }
 
 describe('SbbAutocomplete', () => {
@@ -3457,20 +3454,20 @@ describe('SbbAutocomplete', () => {
 
     it('should display panel according to options, hints and configuration', () => {
       const params = [
-        { option: true, hint: false, showPanelIfOnlyHintExists: true, expectedVisible: true },
-        { option: true, hint: false, showPanelIfOnlyHintExists: false, expectedVisible: true },
-        { option: true, hint: true, showPanelIfOnlyHintExists: true, expectedVisible: true },
-        { option: true, hint: true, showPanelIfOnlyHintExists: false, expectedVisible: true },
-        { option: false, hint: true, showPanelIfOnlyHintExists: true, expectedVisible: true },
-        { option: false, hint: true, showPanelIfOnlyHintExists: false, expectedVisible: false },
-        { option: false, hint: false, showPanelIfOnlyHintExists: true, expectedVisible: false },
-        { option: false, hint: false, showPanelIfOnlyHintExists: false, expectedVisible: false },
+        { option: true, hint: false, showHintIfNoOptions: true, expectedVisible: true },
+        { option: true, hint: false, showHintIfNoOptions: false, expectedVisible: true },
+        { option: true, hint: true, showHintIfNoOptions: true, expectedVisible: true },
+        { option: true, hint: true, showHintIfNoOptions: false, expectedVisible: true },
+        { option: false, hint: true, showHintIfNoOptions: true, expectedVisible: true },
+        { option: false, hint: true, showHintIfNoOptions: false, expectedVisible: false },
+        { option: false, hint: false, showHintIfNoOptions: true, expectedVisible: false },
+        { option: false, hint: false, showHintIfNoOptions: false, expectedVisible: false },
       ];
 
       params.forEach((param) => {
         fixture.componentInstance.showOption = param.option;
         fixture.componentInstance.showHint = param.hint;
-        fixture.componentInstance.showPanelIfOnlyHintExists = param.showPanelIfOnlyHintExists;
+        fixture.componentInstance.showHintIfNoOptions = param.showHintIfNoOptions;
         fixture.detectChanges();
 
         fixture.componentInstance.trigger.openPanel();

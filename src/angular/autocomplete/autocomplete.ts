@@ -214,17 +214,15 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
   }
   _classList: { [key: string]: boolean } = {};
 
-  /**
-   * If activated, panel is also displayed if there are no options but hints.
-   */
+  /** If set to true, the panel is also displayed if there are no options but hints. */
   @Input()
-  get showPanelIfOnlyHintExists(): boolean {
-    return this._showPanelIfOnlyHintExists;
+  get showHintIfNoOptions(): boolean {
+    return this._showHintIfNoOptions;
   }
-  set showPanelIfOnlyHintExists(value: boolean) {
-    this._showPanelIfOnlyHintExists = coerceBooleanProperty(value);
+  set showHintIfNoOptions(value: boolean) {
+    this._showHintIfNoOptions = coerceBooleanProperty(value);
   }
-  private _showPanelIfOnlyHintExists: boolean = false;
+  private _showHintIfNoOptions: boolean = false;
 
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
   id: string = `sbb-autocomplete-${nextId++}`;
@@ -282,12 +280,11 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
 
   /**
    * Panel should hide itself when the option list is empty.
-   * If there are only hints and showPanelWhenOnlyHintExists is true,
-   * panel can be displayed too.
+   * If there are only hints and showHintIfNoOptions is true,
+   * the panel should still be displayed.
    */
   _setVisibility() {
-    this.showPanel =
-      !!this.options.length || (!!this.hints.length && this.showPanelIfOnlyHintExists);
+    this.showPanel = !!this.options.length || (!!this.hints.length && this.showHintIfNoOptions);
     this._setVisibilityClasses(this._classList);
     this._changeDetectorRef.markForCheck();
   }
@@ -314,5 +311,5 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
   }
 
   static ngAcceptInputType_autoActiveFirstOption: BooleanInput;
-  static ngAcceptInputType_showPanelWhenOnlyHintExists: BooleanInput;
+  static ngAcceptInputType_showHintIfNoOptions: BooleanInput;
 }

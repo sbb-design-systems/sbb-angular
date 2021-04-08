@@ -148,11 +148,11 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 </sbb-autocomplete>
 ```
 
-If you like to display the autocomplete panel if there are hints but no displayed options,
-set `showPanelIfOnlyHintExists` on `<sbb-autocomplete>` to true.
+To always display the hint even if there are no options,
+add the attribute `showHintIfNoOptions` to the `<sbb-autocomplete>`.
 
 ```html
-<sbb-autocomplete showPanelIfOnlyHintExists="true">
+<sbb-autocomplete showHintIfNoOptions>
   <sbb-autocomplete-hint> {{ remainingOptionsCount }} further results found </sbb-autocomplete-hint>
 </sbb-autocomplete>
 ```
