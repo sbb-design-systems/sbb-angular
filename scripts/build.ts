@@ -218,7 +218,7 @@ function generateIconRegistry(packageName: string) {
   copyPackageOutput(outputPath, targetFolder);
 
   exec(
-    `yarn ng generate @sbb-esta/${packageName}:icon-cdn-provider --path src/${packageName}/icon --generateWrapperRegistry`
+    `yarn ng generate @sbb-esta/${packageName}:icon-cdn-provider --path src/${packageName}/icon --generate-wrapper-registry`
   );
 
   const cdnIconProviderPath = join(projectDir, `src/${packageName}/icon/icon-cdn-provider.ts`);

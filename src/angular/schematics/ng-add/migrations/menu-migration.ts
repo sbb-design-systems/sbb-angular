@@ -85,6 +85,12 @@ export class MenuMigration extends Migration<null, DevkitContext> {
 
   private _addContextmenuTrigger(contextmenu: MigrationElement) {
     const dropdown = contextmenu.findElements((node) => nodeCheck(node).is('sbb-dropdown'))[0];
+    if (!dropdown) {
+      this.logger.warn(
+        'No sbb-dropdown was found inside an sbb-contextmenu. Could not perform migration.'
+      );
+      return;
+    }
     const dropdownReference = dropdown.findPropertyByValue('sbbDropdown');
     let menuReferenceName = this._nextMenuReferenceName(contextmenu);
 

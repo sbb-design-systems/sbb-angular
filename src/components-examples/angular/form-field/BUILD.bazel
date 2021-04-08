@@ -18,6 +18,7 @@ ng_module(
         "//src/angular-public/tooltip",
         "//src/angular/button",
         "//src/angular/checkbox",
+        "//src/angular/core",
         "//src/angular/form-field",
         "//src/angular/select",
         "//src/angular/time-input",
