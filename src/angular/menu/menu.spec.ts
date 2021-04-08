@@ -2530,7 +2530,12 @@ describe('SbbMenu custom trigger', () => {
 
 @Component({
   template: `
-    <button [sbbMenuTriggerFor]="menu" [sbbMenuTriggerRestoreFocus]="restoreFocus" #triggerEl>
+    <button
+      [sbbMenuTriggerFor]="menu"
+      [sbbMenuTriggerRestoreFocus]="restoreFocus"
+      #triggerEl
+      type="button"
+    >
       Toggle menu
     </button>
     <sbb-menu
@@ -2542,16 +2547,16 @@ describe('SbbMenu custom trigger', () => {
       [aria-labelledby]="ariaLabelledby"
       [aria-describedby]="ariaDescribedby"
     >
-      <button sbb-menu-item>Item</button>
-      <button sbb-menu-item disabled>Disabled</button>
-      <button sbb-menu-item>
+      <button sbb-menu-item type="button">Item</button>
+      <button sbb-menu-item disabled type="button">Disabled</button>
+      <button sbb-menu-item type="button">
         <sbb-icon svgIcon="unicorn"></sbb-icon>
         Item with an icon
       </button>
-      <button sbb-menu-item>
+      <button sbb-menu-item type="button">
         <span>Item with text inside span</span>
       </button>
-      <button *ngFor="let item of extraItems" sbb-menu-item>{{ item }}</button>
+      <button *ngFor="let item of extraItems" sbb-menu-item type="button">{{ item }}</button>
     </sbb-menu>
   `,
 })
@@ -2572,11 +2577,16 @@ class SimpleMenu {
 
 @Component({
   template: `
-    <button [sbbMenuTriggerFor]="menu" #triggerEl [style.marginLeft]="marginleft + 'px'">
+    <button
+      [sbbMenuTriggerFor]="menu"
+      #triggerEl
+      [style.marginLeft]="marginleft + 'px'"
+      type="button"
+    >
       Toggle menu
     </button>
     <sbb-menu [xPosition]="xPosition" [yPosition]="yPosition" #menu="sbbMenu">
-      <button sbb-menu-item>Positioned Content</button>
+      <button sbb-menu-item type="button">Positioned Content</button>
     </sbb-menu>
   `,
 })
@@ -2594,9 +2604,9 @@ interface TestableMenu {
 }
 @Component({
   template: `
-    <button [sbbMenuCustomTriggerFor]="menu" #triggerEl>Toggle menu</button>
+    <button [sbbMenuCustomTriggerFor]="menu" #triggerEl type="button">Toggle menu</button>
     <sbb-menu [overlapTrigger]="overlapTrigger" #menu="sbbMenu">
-      <button sbb-menu-item>Not overlapped Content</button>
+      <button sbb-menu-item type="button">Not overlapped Content</button>
     </sbb-menu>
   `,
 })
@@ -2634,9 +2644,9 @@ class CustomMenuPanel implements SbbMenuPanel {
 
 @Component({
   template: `
-    <button [sbbMenuTriggerFor]="menu">Toggle menu</button>
+    <button [sbbMenuTriggerFor]="menu" type="button">Toggle menu</button>
     <custom-menu #menu="sbbCustomMenu">
-      <button sbb-menu-item>Custom Content</button>
+      <button sbb-menu-item type="button">Custom Content</button>
     </custom-menu>
   `,
 })
@@ -2646,11 +2656,11 @@ class CustomMenu {
 
 @Component({
   template: `
-    <button [sbbMenuTriggerFor]="root" #rootTrigger="sbbMenuTrigger" #rootTriggerEl>
+    <button [sbbMenuTriggerFor]="root" #rootTrigger="sbbMenuTrigger" #rootTriggerEl type="button">
       Toggle menu
     </button>
 
-    <button [sbbMenuTriggerFor]="levelTwo" #alternateTrigger="sbbMenuTrigger">
+    <button [sbbMenuTriggerFor]="levelTwo" #alternateTrigger="sbbMenuTrigger" type="button">
       Toggle alternate menu
     </button>
 
@@ -2660,44 +2670,47 @@ class CustomMenu {
         id="level-one-trigger"
         [sbbMenuTriggerFor]="levelOne"
         #levelOneTrigger="sbbMenuTrigger"
+        type="button"
       >
         One
       </button>
-      <button sbb-menu-item>Two</button>
+      <button sbb-menu-item type="button">Two</button>
       <button
         sbb-menu-item
         *ngIf="showLazy"
         id="lazy-trigger"
         [sbbMenuTriggerFor]="lazy"
         #lazyTrigger="sbbMenuTrigger"
+        type="button"
       >
         Three
       </button>
     </sbb-menu>
 
     <sbb-menu #levelOne="sbbMenu" (closed)="levelOneCloseCallback($event)">
-      <button sbb-menu-item>Four</button>
+      <button sbb-menu-item type="button">Four</button>
       <button
         sbb-menu-item
         id="level-two-trigger"
         [sbbMenuTriggerFor]="levelTwo"
         #levelTwoTrigger="sbbMenuTrigger"
+        type="button"
       >
         Five
       </button>
-      <button sbb-menu-item>Six</button>
+      <button sbb-menu-item type="button">Six</button>
     </sbb-menu>
 
     <sbb-menu #levelTwo="sbbMenu" (closed)="levelTwoCloseCallback($event)">
-      <button sbb-menu-item>Seven</button>
-      <button sbb-menu-item>Eight</button>
-      <button sbb-menu-item>Nine</button>
+      <button sbb-menu-item type="button">Seven</button>
+      <button sbb-menu-item type="button">Eight</button>
+      <button sbb-menu-item type="button">Nine</button>
     </sbb-menu>
 
     <sbb-menu #lazy="sbbMenu">
-      <button sbb-menu-item>Ten</button>
-      <button sbb-menu-item>Eleven</button>
-      <button sbb-menu-item>Twelve</button>
+      <button sbb-menu-item type="button">Ten</button>
+      <button sbb-menu-item type="button">Eleven</button>
+      <button sbb-menu-item type="button">Twelve</button>
     </sbb-menu>
   `,
 })
@@ -2723,10 +2736,17 @@ class NestedMenu {
 
 @Component({
   template: `
-    <button [sbbMenuTriggerFor]="root" #rootTrigger="sbbMenuTrigger">Toggle menu</button>
+    <button [sbbMenuTriggerFor]="root" #rootTrigger="sbbMenuTrigger" type="button">
+      Toggle menu
+    </button>
 
     <sbb-menu #root="sbbMenu">
-      <button sbb-menu-item [sbbMenuTriggerFor]="levelOne" #levelOneTrigger="sbbMenuTrigger">
+      <button
+        sbb-menu-item
+        [sbbMenuTriggerFor]="levelOne"
+        #levelOneTrigger="sbbMenuTrigger"
+        type="button"
+      >
         One
       </button>
     </sbb-menu>

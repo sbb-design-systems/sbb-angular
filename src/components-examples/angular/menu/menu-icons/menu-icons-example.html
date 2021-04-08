@@ -1,9 +1,15 @@
-<button [sbbMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+<button [sbbMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" type="button">
   <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
 </button>
 <sbb-menu #menu="sbbMenu">
-  <button sbb-menu-item><sbb-icon svgIcon="kom:face-worker-small"></sbb-icon> Copy</button>
-  <button sbb-menu-item><sbb-icon svgIcon="kom:trash-small"></sbb-icon> Delete</button>
+  <button sbb-menu-item type="button">
+    <sbb-icon svgIcon="kom:face-worker-small"></sbb-icon> Copy
+  </button>
+  <button sbb-menu-item type="button">
+    <sbb-icon svgIcon="kom:trash-small"></sbb-icon> Delete
+  </button>
   <hr />
-  <button sbb-menu-item><sbb-icon svgIcon="kom:cross-small"></sbb-icon> Cancel</button>
+  <button sbb-menu-item type="button">
+    <sbb-icon svgIcon="kom:cross-small"></sbb-icon> Cancel
+  </button>
 </sbb-menu>

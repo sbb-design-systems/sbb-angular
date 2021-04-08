@@ -7,7 +7,7 @@ export function throwSbbMenuMissingError() {
 
     Example:
       <sbb-menu #menu="sbbMenu"></sbb-menu>
-      <button [sbbMenuTriggerFor]="menu"></button>`);
+      <button [sbbMenuTriggerFor]="menu" type="button"></button>`);
 }
 
 /**
