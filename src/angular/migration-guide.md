@@ -19,8 +19,9 @@ one of these changes breaks your project in a non-recoverable way.
 
 _Automatic migration available_
 
-The re-export from root has been removed. All symbols have to be imported from the respective
-module (e.g. `import { ... } from '@sbb-esta/angular/button';`).
+The re-export from root (e.g. `import { SbbButtonModule } from '@sbb-esta/angular-public';`) has
+been removed. All symbols have to be imported from the respective
+module (e.g. `import { SbbButtonModule } from '@sbb-esta/angular/button';`).
 
 ### Button
 
