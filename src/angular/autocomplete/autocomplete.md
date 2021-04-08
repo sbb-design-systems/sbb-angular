@@ -149,6 +149,15 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 </sbb-autocomplete>
 ```
 
+To always display the hint even if there are no options,
+add the attribute `showHintIfNoOptions` to the `<sbb-autocomplete>`.
+
+```html
+<sbb-autocomplete showHintIfNoOptions>
+  <sbb-autocomplete-hint> {{ remainingOptionsCount }} further results found </sbb-autocomplete-hint>
+</sbb-autocomplete>
+```
+
 ### Accessibility
 
 The input for an autocomplete without text or labels should be given a meaningful label via

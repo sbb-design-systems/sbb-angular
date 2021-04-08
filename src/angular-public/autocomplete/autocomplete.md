@@ -14,8 +14,8 @@ directive from `ReactiveFormsModule` to track the value of the input.
 _my-comp.html_
 
 ```html
-<sbb-form-field>
-  <input type="text" [formControl]="myControl" />
+<sbb-form-field label="MyLabel">
+  <input sbbInput type="text" [formControl]="myControl" />
 </sbb-form-field>
 ```
 
@@ -38,7 +38,7 @@ to the input's `sbbAutocomplete` property.
 _my-comp.html_
 
 ```html
-<sbb-form-field>
+<sbb-form-field label="Mylabel">
   <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto" />
 </sbb-form-field>
 
@@ -100,7 +100,12 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 ```html
 <div class="custom-wrapper-example" sbbAutocompleteOrigin #origin="sbbAutocompleteOrigin">
-  <input [formControl]="myControl" [sbbAutocomplete]="auto" [sbbAutocompleteConnectedTo]="origin" />
+  <input
+    sbbInput
+    [formControl]="myControl"
+    [sbbAutocomplete]="auto"
+    [sbbAutocompleteConnectedTo]="origin"
+  />
 </div>
 
 <sbb-autocomplete #auto="sbbAutocomplete">
@@ -139,6 +144,15 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
     {{ option.name }}
   </sbb-option>
+  <sbb-autocomplete-hint> {{ remainingOptionsCount }} further results found </sbb-autocomplete-hint>
+</sbb-autocomplete>
+```
+
+To always display the hint even if there are no options,
+add the attribute `showHintIfNoOptions` to the `<sbb-autocomplete>`.
+
+```html
+<sbb-autocomplete showHintIfNoOptions>
   <sbb-autocomplete-hint> {{ remainingOptionsCount }} further results found </sbb-autocomplete-hint>
 </sbb-autocomplete>
 ```

@@ -26,6 +26,8 @@ import {
 } from '@sbb-esta/angular-public/option';
 import { Subscription } from 'rxjs';
 
+import { SbbAutocompleteHint } from '../autocomplete-hint/autocomplete-hint.component';
+
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
  * the component definition.
@@ -127,6 +129,10 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   /** All of the defined groups of options. */
   @ContentChildren(SbbOptionGroup, { descendants: true }) optionGroups: QueryList<SbbOptionGroup>;
 
+  /** All of the defined autocomplete hints. */
+  @ContentChildren(SbbAutocompleteHint, { descendants: true })
+  hints: QueryList<SbbAutocompleteHint>;
+
   /** Aria label of the autocomplete. If not specified, the placeholder will be used as label. */
   @Input('aria-label') ariaLabel: string;
 
@@ -198,6 +204,16 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   }
   _classList: { [key: string]: boolean } = {};
 
+  /** If set to true, the panel is also displayed if there are no options but hints. */
+  @Input()
+  get showHintIfNoOptions(): boolean {
+    return this._showHintIfNoOptions;
+  }
+  set showHintIfNoOptions(value: boolean) {
+    this._showHintIfNoOptions = coerceBooleanProperty(value);
+  }
+  private _showHintIfNoOptions: boolean = false;
+
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
   id: string = `sbb-autocomplete-${nextId++}`;
 
@@ -250,9 +266,13 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
     return this.panel ? this.panel.nativeElement.scrollTop : 0;
   }
 
-  /** Panel should hide itself when the option list is empty. */
+  /**
+   * Panel should hide itself when the option list is empty.
+   * If there are only hints and showHintIfNoOptions is true,
+   * the panel should still be displayed.
+   */
   setVisibility() {
-    this.showPanel = !!this.options.length;
+    this.showPanel = !!this.options.length || (!!this.hints.length && this.showHintIfNoOptions);
     this._setVisibilityClasses(this._classList);
     this._changeDetectorRef.markForCheck();
   }
@@ -279,4 +299,5 @@ export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   }
 
   static ngAcceptInputType_autoActiveFirstOption: BooleanInput;
+  static ngAcceptInputType_showHintIfNoOptions: BooleanInput;
 }
