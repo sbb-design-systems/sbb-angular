@@ -522,6 +522,23 @@ class AutocompleteLocaleNormalizer {
       .replace(/[ùûüú]/gi, 'u');
 }
 
+@Component({
+  template: `<input type="text" [sbbAutocomplete]="auto" />
+    <sbb-autocomplete
+      #auto="sbbAutocomplete"
+      [showPanelIfOnlyHintExists]="showPanelIfOnlyHintExists"
+    >
+      <sbb-option *ngIf="showOption">option</sbb-option>
+      <sbb-autocomplete-hint *ngIf="showHint">hint</sbb-autocomplete-hint>
+    </sbb-autocomplete>`,
+})
+class AutocompleteHint {
+  @ViewChild(SbbAutocompleteTrigger) trigger: SbbAutocompleteTrigger;
+  showOption: boolean;
+  showHint: boolean;
+  showPanelIfOnlyHintExists: boolean;
+}
+
 describe('SbbAutocomplete', () => {
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
@@ -3428,5 +3445,45 @@ describe('SbbAutocomplete', () => {
       zone.simulateZoneExit();
       expect(countOfHighlightedSnippets()).toBe(1);
     }));
+  });
+
+  describe('hints', () => {
+    let fixture: ComponentFixture<AutocompleteHint>;
+
+    beforeEach(() => {
+      fixture = createComponent(AutocompleteHint);
+      fixture.detectChanges();
+    });
+
+    it('should display panel according to options, hints and configuration', () => {
+      const params = [
+        { option: true, hint: false, showPanelIfOnlyHintExists: true, expectedVisible: true },
+        { option: true, hint: false, showPanelIfOnlyHintExists: false, expectedVisible: true },
+        { option: true, hint: true, showPanelIfOnlyHintExists: true, expectedVisible: true },
+        { option: true, hint: true, showPanelIfOnlyHintExists: false, expectedVisible: true },
+        { option: false, hint: true, showPanelIfOnlyHintExists: true, expectedVisible: true },
+        { option: false, hint: true, showPanelIfOnlyHintExists: false, expectedVisible: false },
+        { option: false, hint: false, showPanelIfOnlyHintExists: true, expectedVisible: false },
+        { option: false, hint: false, showPanelIfOnlyHintExists: false, expectedVisible: false },
+      ];
+
+      params.forEach((param) => {
+        fixture.componentInstance.showOption = param.option;
+        fixture.componentInstance.showHint = param.hint;
+        fixture.componentInstance.showPanelIfOnlyHintExists = param.showPanelIfOnlyHintExists;
+        fixture.detectChanges();
+
+        fixture.componentInstance.trigger.openPanel();
+        fixture.detectChanges();
+
+        const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel');
+        expect(panel!.classList.contains('sbb-autocomplete-visible')).toBe(
+          param.expectedVisible,
+          JSON.stringify(param)
+        );
+        fixture.componentInstance.trigger.closePanel();
+        fixture.detectChanges();
+      });
+    });
   });
 });
