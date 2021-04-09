@@ -42,7 +42,7 @@ export class SbbMenuContent implements OnDestroy {
     private _injector: Injector,
     private _viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private _document: any,
-    private _changeDetectorRef?: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef
   ) {}
 
   /**
@@ -77,10 +77,7 @@ export class SbbMenuContent implements OnDestroy {
     // by Angular. This causes the `@ContentChildren` for menu items within the menu to
     // not be updated by Angular. By explicitly marking for check here, we tell Angular that
     // it needs to check for new menu items and update the `@ContentChild` in `SbbMenu`.
-    // @breaking-change 9.0.0 Make change detector ref required
-    if (this._changeDetectorRef) {
-      this._changeDetectorRef.markForCheck();
-    }
+    this._changeDetectorRef.markForCheck();
 
     this._portal.attach(this._outlet, context);
     this._attached.next();

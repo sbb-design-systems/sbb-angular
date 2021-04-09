@@ -17,10 +17,9 @@ export const sbbMenuAnimations: {
   /**
    * This animation controls the menu panel's entry and exit from the page.
    *
-   * When the menu panel is added to the DOM, it scales in and fades in its border.
+   * When the menu panel is added to the DOM, it fades in.
    *
-   * When the menu panel is removed from the DOM, it simply fades out after a brief
-   * delay to display the ripple.
+   * When the menu panel is removed from the DOM, it fades out.
    */
   transformMenu: trigger('transformMenu', [
     state(

@@ -44,7 +44,7 @@ export const SBB_ICON_REGISTRY_PROVIDER = {
 };
 
 /**
- * Generated from version v1.16.0 of the icon CDN.
+ * Generated from version v1.14.0 of the icon CDN.
  * Icons that are not needed by your app and are not @sbb-esta required icons (see list below) can be removed.
  *
  * You can also add additional icons from your assets:
@@ -119,12 +119,6 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
    *  - @sbb-esta/angular-public/select: kom:chevron-right-small, kom:chevron-small-down-small
    *  - @sbb-esta/angular-public/tooltip: kom:circle-question-mark-small, kom:cross-small
    *  - @sbb-esta/angular-public/usermenu: kom:chevron-right-small, kom:chevron-small-down-small, kom:user-small
-   *  - @sbb-esta/angular/accordion: kom:chevron-right-small, kom:minus-small, kom:plus-small
-   *  - @sbb-esta/angular/file-selector: kom:document-image-small, kom:document-pdf-small, kom:document-sound-small, kom:document-standard-small, kom:document-text-small, kom:document-video-small, kom:document-zip-small, kom:trash-small, kom:upload-small
-   *  - @sbb-esta/angular/menu: kom:chevron-small-right-small
-   *  - @sbb-esta/angular/select: kom:chevron-right-small, kom:chevron-small-down-small
-   *  - @sbb-esta/angular/sidebar: kom:arrow-right-small, kom:chevron-small-left-circle-small, kom:cross-small, kom:hamburger-menu-small
-   *  - @sbb-esta/angular/status: kom:cross-small, kom:exclamation-point-small, kom:tick-small
    */
   const registry =
     parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);
@@ -392,7 +386,6 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'three-adults-large',
         'train-ski-large',
         'two-adults-kid-large',
-        'barrier-construction-large',
         'railway-switch-large',
         'train-signal-large',
         'train-tracks-large',
@@ -786,7 +779,6 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'mountain-sun-medium',
         'skis-ski-poles-medium',
         'sunshade-sun-sand-medium',
-        'barrier-construction-medium',
         'construction-medium',
         'railway-switch-medium',
         'train-signal-medium',
@@ -1179,7 +1171,6 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
         'mountain-sun-small',
         'skis-ski-poles-small',
         'sunshade-sun-sand-small',
-        'barrier-construction-small',
         'construction-small',
         'railway-switch-small',
         'train-signal-small',
