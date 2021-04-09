@@ -28,6 +28,7 @@ Don't forget to run `yarn generate:bazel` after each step.
 8. Check for usages of the component in src/showcase-merge, src/components-examples and src/angular and change them to the migrated one
 9. Add a test in src/angular/schematics/ng-add/test-cases/merge and run them by `yarn test src/angular/schematics`
 10. Provide an automatic migration (src/angular/schematics/ng-add) for complex changes.
+11. Update migration guide (migration-guide.md).
 
 ## Start Showcase Merge
 

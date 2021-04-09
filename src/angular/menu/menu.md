@@ -1,13 +1,27 @@
 `<sbb-menu>` is a floating panel containing list of options.
 
-<!-- example(menu-overview) -->
+```html
+<button [sbbMenuTriggerFor]="menu" aria-label="Show actions" type="button">
+  <ng-template sbbMenuDynamicTrigger>
+    <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+  </ng-template>
+</button>
+<sbb-menu #menu="sbbMenu">
+  <button sbb-menu-item type="button">Copy</button>
+  <button sbb-menu-item type="button">Delete</button>
+  <hr />
+  <button sbb-menu-item type="button">Cancel</button>
+</sbb-menu>
+```
+
+### Trigger
 
 By itself, the `<sbb-menu>` element does not render anything. The menu is attached to and opened
-via application of the `sbbMenuTriggerFor` directive:
+via application of the `sbbMenuTriggerFor` directive.
+Ideally the trigger directive is applied to a button. The content of the trigger should be wrapped
+with `<ng-template sbbMenuDynamicTrigger>`.
 
-<!-- example({"example": "menu-overview",
-              "file": "menu-overview-example.html",
-              "region": "sbb-menu-trigger-for"}) -->
+If you don't use `sbbMenuDynamicTrigger`, the inner HTML would be duplicated which is a potential security risk.
 
 ### Toggling the menu programmatically
 
@@ -28,29 +42,26 @@ class MyComponent {
 
 Menus support displaying `sbb-icon` elements before the menu item text.
 
-<!-- example({"example": "menu-icons",
-              "file": "menu-icons-example.html"}) -->
-
-### Customizing menu position
-
-By default, the menu will display below (y-axis), after (x-axis), with overlapping
-its trigger. The position can be changed using the `xPosition` (`before | after`) and `yPosition`
-(`above | below`) attributes. The menu can be forced to not overlap the trigger using the
-`overlapTrigger` attribute.
-
-<!-- example({"example": "menu-position",
-              "file": "menu-position-example.html",
-              "region": "menu-position"}) -->
-
 ### Nested menu
 
 Sbb Angular supports the ability for an `sbb-menu-item` to open a sub-menu. To do so, you have to define
 your root menu and sub-menus, in addition to setting the `[sbbMenuTriggerFor]` on the `sbb-menu-item`
 that should trigger the sub-menu:
 
-<!-- example({"example": "menu-nested",
-              "file": "menu-nested-example.html",
-              "region": "sub-menu"}) -->
+```html
+<sbb-menu #animals="sbbMenu">
+  <button sbb-menu-item [sbbMenuTriggerFor]="vertebrates" type="button">Vertebrates</button>
+  <button sbb-menu-item [sbbMenuTriggerFor]="invertebrates" type="button">Invertebrates</button>
+</sbb-menu>
+
+<sbb-menu #vertebrates="sbbMenu">
+  <button sbb-menu-item [sbbMenuTriggerFor]="fish" type="button">Fishes</button>
+  <button sbb-menu-item [sbbMenuTriggerFor]="amphibians" type="button">Amphibians</button>
+  <button sbb-menu-item [sbbMenuTriggerFor]="reptiles" type="button">Reptiles</button>
+  <button sbb-menu-item type="button">Birds</button>
+  <button sbb-menu-item type="button">Mammals</button>
+</sbb-menu>
+```
 
 ### Lazy rendering
 
@@ -61,14 +72,10 @@ with the `sbbMenuContent` attribute:
 ```html
 <sbb-menu #appMenu="sbbMenu">
   <ng-template sbbMenuContent>
-    <button sbb-menu-item>Settings</button>
-    <button sbb-menu-item>Help</button>
+    <button sbb-menu-item type="button">Settings</button>
+    <button sbb-menu-item type="button">Help</button>
   </ng-template>
 </sbb-menu>
-
-<button sbb-icon-button [sbbMenuTriggerFor]="appMenu">
-  <sbb-icon>more_vert</sbb-icon>
-</button>
 ```
 
 ### Passing in data to a menu
@@ -78,20 +85,34 @@ the `sbbMenuTriggerData` input. This allows for a single menu instance to be ren
 with a different set of data, depending on the trigger that opened it:
 
 ```html
+<button
+  [sbbMenuTriggerFor]="appMenu"
+  [sbbMenuTriggerData]="{name: 'Alice'}"
+  aria-label="Show actions"
+  type="button"
+>
+  <ng-template sbbMenuDynamicTrigger>
+    <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+  </ng-template>
+</button>
+
+<button
+  [sbbMenuTriggerFor]="appMenu"
+  [sbbMenuTriggerData]="{name: 'Bob'}"
+  aria-label="Show actions"
+  type="button"
+>
+  <ng-template sbbMenuDynamicTrigger>
+    <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+  </ng-template>
+</button>
+
 <sbb-menu #appMenu="sbbMenu">
   <ng-template sbbMenuContent let-name="name">
-    <button sbb-menu-item>Settings</button>
-    <button sbb-menu-item>Log off {{name}}</button>
+    <button sbb-menu-item type="button">Settings</button>
+    <button sbb-menu-item type="button">Logout {{name}}</button>
   </ng-template>
 </sbb-menu>
-
-<button sbb-icon-button [sbbMenuTriggerFor]="appMenu" [sbbMenuTriggerData]="{name: 'Sally'}">
-  <sbb-icon>more_vert</sbb-icon>
-</button>
-
-<button sbb-icon-button [sbbMenuTriggerFor]="appMenu" [sbbMenuTriggerData]="{name: 'Bob'}">
-  <sbb-icon>more_vert</sbb-icon>
-</button>
 ```
 
 ### Keyboard interaction
