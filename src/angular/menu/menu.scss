@@ -199,40 +199,40 @@ sbb-menu {
     background-color: $sbbColorWhite;
     right: 0;
     left: 0;
-    bottom: pxToEm(-$borderWidthStandard);
-    height: pxToEm($borderWidthStandard);
+    bottom: pxToRem(-$borderWidthStandard);
+    height: pxToRem($borderWidthStandard);
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        bottom: pxToEm(-$borderWidthStandard * $scalingFactor4k);
-        height: pxToEm($borderWidthStandard * $scalingFactor4k);
+        bottom: pxToRem(-$borderWidthStandard * $scalingFactor4k);
+        height: pxToRem($borderWidthStandard * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        bottom: pxToEm(-$borderWidthStandard * $scalingFactor5k);
-        height: pxToEm($borderWidthStandard * $scalingFactor5k);
+        bottom: pxToRem(-$borderWidthStandard * $scalingFactor5k);
+        height: pxToRem($borderWidthStandard * $scalingFactor5k);
       }
     }
 
     html.sbb-lean & {
-      bottom: pxToEm(-$borderWidthLean);
-      height: pxToEm($borderWidthLean);
+      bottom: pxToRem(-$borderWidthLean);
+      height: pxToRem($borderWidthLean);
     }
 
     .sbb-menu-panel-above & {
       bottom: inherit;
-      top: pxToEm(-$borderWidthStandard);
+      top: pxToRem(-$borderWidthStandard);
 
       html:not(.sbb-lean) & {
         @include mq($from: desktop4k) {
-          top: pxToEm(-$borderWidthStandard * $scalingFactor4k);
+          top: pxToRem(-$borderWidthStandard * $scalingFactor4k);
         }
         @include mq($from: desktop5k) {
-          top: pxToEm(-$borderWidthStandard * $scalingFactor5k);
+          top: pxToRem(-$borderWidthStandard * $scalingFactor5k);
         }
       }
 
       html.sbb-lean & {
-        top: pxToEm(-$borderWidthLean);
+        top: pxToRem(-$borderWidthLean);
       }
     }
   }
@@ -244,10 +244,10 @@ sbb-menu {
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        top: pxToEm(-$borderWidthStandard * $scalingFactor4k);
+        top: pxToRem(-$borderWidthStandard * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        top: pxToEm(-$borderWidthStandard * $scalingFactor5k);
+        top: pxToRem(-$borderWidthStandard * $scalingFactor5k);
       }
     }
 
@@ -261,10 +261,10 @@ sbb-menu {
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        top: pxToEm($borderWidthStandard * $scalingFactor4k);
+        top: pxToRem($borderWidthStandard * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        top: pxToEm($borderWidthStandard * $scalingFactor5k);
+        top: pxToRem($borderWidthStandard * $scalingFactor5k);
       }
     }
 
