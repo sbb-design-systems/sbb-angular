@@ -38,6 +38,6 @@ export const sbbMenuAnimations: {
         })
       )
     ),
-    transition('* => void', animate('100ms 25ms linear', style({ opacity: 0 }))),
+    transition('* => void', animate('100ms linear', style({ opacity: 0 }))),
   ]),
 };

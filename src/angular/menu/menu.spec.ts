@@ -2994,9 +2994,11 @@ class ContextmenuStaticTrigger {
 
 @Component({
   template: `<button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
-      <ng-template sbbMenuDynamicTrigger>
-        <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
-      </ng-template>
+      <sbb-icon
+        *sbbMenuDynamicTrigger
+        svgIcon="kom:context-menu-small"
+        class="sbb-icon-fit"
+      ></sbb-icon>
     </button>
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>

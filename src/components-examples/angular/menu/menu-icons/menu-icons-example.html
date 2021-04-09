@@ -1,7 +1,5 @@
 <button [sbbMenuTriggerFor]="menu" aria-label="Show actions" type="button">
-  <ng-template sbbMenuDynamicTrigger>
-    <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
-  </ng-template>
+  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
 </button>
 <sbb-menu #menu="sbbMenu">
   <button sbb-menu-item type="button">

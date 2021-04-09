@@ -2,9 +2,7 @@
 
 ```html
 <button [sbbMenuTriggerFor]="menu" aria-label="Show actions" type="button">
-  <ng-template sbbMenuDynamicTrigger>
-    <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
-  </ng-template>
+  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
 </button>
 <sbb-menu #menu="sbbMenu">
   <button sbb-menu-item type="button">Copy</button>
@@ -19,9 +17,14 @@
 By itself, the `<sbb-menu>` element does not render anything. The menu is attached to and opened
 via application of the `sbbMenuTriggerFor` directive.
 Ideally the trigger directive is applied to a button. The content of the trigger should be wrapped
-with `<ng-template sbbMenuDynamicTrigger>`.
+with `<ng-template sbbMenuDynamicTrigger>` or `<sbb-icon *sbbMenuDynamicTrigger svgIcon="...">`.
 
-If you don't use `sbbMenuDynamicTrigger`, the inner HTML would be duplicated which is a potential security risk.
+Due to the way some menu occurrences are designed we need to copy the trigger content into the overlay panel.
+If `sbbMenuDynamicTrigger` is not used in these cases, the trigger content is copied as-is.
+This uses the DomSanitizer in the background, which has consequences when enforcing
+[trusted types](https://angular.io/guide/security#enforcing-trusted-types).
+Due to this reason we recommend to always use the template (`<ng-template sbbMenuDynamicTrigger>`)
+or structural directive (`<sbb-icon *sbbMenuDynamicTrigger svgIcon="...">`) for the trigger content.
 
 ### Toggling the menu programmatically
 
@@ -91,9 +94,7 @@ with a different set of data, depending on the trigger that opened it:
   aria-label="Show actions"
   type="button"
 >
-  <ng-template sbbMenuDynamicTrigger>
-    <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
-  </ng-template>
+  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
 </button>
 
 <button
@@ -102,9 +103,7 @@ with a different set of data, depending on the trigger that opened it:
   aria-label="Show actions"
   type="button"
 >
-  <ng-template sbbMenuDynamicTrigger>
-    <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
-  </ng-template>
+  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
 </button>
 
 <sbb-menu #appMenu="sbbMenu">
