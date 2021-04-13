@@ -1,3 +1,5 @@
+@import '../styles/common';
+
 .sbb-icon {
   background-repeat: no-repeat;
   display: inline-block;
@@ -35,7 +37,26 @@
 .sbb-icon-fit sbb-icon,
 .sbb-icon-fit sbb-icon svg,
 sbb-icon.sbb-icon-fit,
-sbb-icon.sbb-icon-fit svg {
+sbb-icon.sbb-icon-fit svg,
+.sbb-icon-scaled sbb-icon svg,
+sbb-icon.sbb-icon-scaled svg {
   width: 100%;
   height: 100%;
+}
+
+.sbb-icon-scaled sbb-icon,
+sbb-icon.sbb-icon-scaled {
+  width: pxToRem(24);
+  height: pxToRem(24);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      width: pxToRem(36);
+      height: pxToRem(36);
+    }
+    @include mq($from: desktop5k) {
+      width: pxToRem(48);
+      height: pxToRem(48);
+    }
+  }
 }
