@@ -5,18 +5,10 @@
   </span>
 </div>
 
-<ng-container [ngSwitch]="variant | async">
-  <sbb-icon
-    *ngSwitchCase="'standard'"
-    class="sbb-icon-fit sbb-select-arrow-icon"
-    svgIcon="kom:chevron-small-down-small"
-  ></sbb-icon>
-  <sbb-icon
-    *ngSwitchCase="'lean'"
-    class="sbb-icon-fit sbb-select-arrow-icon sbb-select-arrow-icon-lean"
-    svgIcon="kom:chevron-right-small"
-  ></sbb-icon>
-</ng-container>
+<sbb-icon
+  class="sbb-icon-fit sbb-select-arrow-icon"
+  svgIcon="kom:chevron-small-down-small"
+></sbb-icon>
 
 <ng-template
   cdk-connected-overlay

@@ -28,7 +28,7 @@
 
 .sbb-icon.sbb-select-arrow-icon {
   @include absoluteCenterY();
-  right: pxToEm(7);
+  right: pxToEm(9);
   color: $sbbColorGrey;
   width: pxToRem(24);
   height: pxToRem(24);
@@ -45,7 +45,7 @@
   }
   html.sbb-lean & {
     color: $sbbColorGranite;
-    margin-left: pxToRem(6);
+    right: pxToRem(6);
   }
 }
 
@@ -54,13 +54,6 @@
 
   .sbb-input-with-open-panel & {
     transform: rotate(180deg);
-  }
-}
-
-.sbb-icon.sbb-select-arrow-icon-lean > svg {
-  transform: rotate(90deg);
-  .sbb-input-with-open-panel & {
-    transform: rotate(-90deg);
   }
 }
 

@@ -528,19 +528,21 @@ ul li ol > li::before,
 // Form Elements
 // ----------------------------------------------------------------------------------------------------
 
+$sbbInputMinHeightStandard: 48;
+
 .sbb-input-element {
   @include ellipsis;
   @include placeholder($sbbColorStorm);
 
   outline: none;
   background-color: $sbbColorWhite;
+  padding: pxToRem(10) pxToRem(14) pxToRem(11);
   border: pxToRem(2) solid $sbbColorGraphite;
   border-radius: pxToRem(2);
   color: $sbbColorGrey;
-  line-height: pxToRem(23);
   font-size: pxToRem($sizeFontDefault);
-  padding: pxToRem(10) pxToRem(14) pxToRem(11);
-  min-height: pxToRem(48);
+  line-height: pxToRem(23);
+  min-height: pxToRem($sbbInputMinHeightStandard);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
@@ -549,7 +551,7 @@ ul li ol > li::before,
       border-radius: pxToRem(2 * $scalingFactor4k);
       font-size: pxToRem($sizeFontDefault4k);
       line-height: pxToRem(35);
-      min-height: pxToRem(72);
+      min-height: pxToRem($sbbInputMinHeightStandard * $scalingFactor4k);
     }
     @include mq($from: desktop5k) {
       padding: pxToRem(21) pxToRem(28) pxToRem(22);
@@ -557,13 +559,14 @@ ul li ol > li::before,
       border-radius: pxToRem(2 * $scalingFactor5k);
       font-size: pxToRem($sizeFontDefault5k);
       line-height: pxToRem(45);
-      min-height: pxToRem(96);
+      min-height: pxToRem($sbbInputMinHeightStandard * $scalingFactor5k);
     }
   }
   html.sbb-lean & {
     color: $sbbColorIron;
     border-width: pxToRem(1);
-    padding: pxToRem(6) pxToRem(8) pxToRem(7);
+    padding: pxToRem(6) pxToRem(7) pxToRem(8);
+    line-height: pxToRem(20);
     min-height: pxToRem(36);
   }
 
@@ -694,6 +697,30 @@ select {
   background-color: transparent;
   display: inline-flex;
   box-sizing: border-box;
+  padding-right: pxToEm(44);
+
+  // Custom select expand icon
+  align-items: center;
+  // icon chevron-small-down-small with color #666 applied
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBwb2ludHM9IjguMDkyIDEwLjM1IDExLjk5NiAxNC4zIDE1LjkgMTAuMzUyIi8+Cjwvc3ZnPg==')
+    no-repeat;
+  background-position: center right pxToEm(9);
+  background-size: pxToRem(24) pxToRem(24);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      background-size: pxToRem(24 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      background-size: pxToRem(24 * $scalingFactor5k);
+    }
+  }
+  html.sbb-lean & {
+    padding-right: pxToRem(38);
+    background-position: center right pxToRem(6);
+    // icon chevron-small-down-small rotated and with color #686868 applied
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjguMDkyIDEwLjM1IDExLjk5NiAxNC4zIDE1LjkgMTAuMzUyIi8+Cjwvc3ZnPg==');
+  }
 
   &::-ms-expand {
     display: none;
@@ -728,36 +755,6 @@ select {
 
   &:not(:disabled) {
     cursor: pointer;
-  }
-
-  // Custom select expand icon
-  $sbbSelectExpandIconSize: 24;
-  $sbbSelectExpandIconRight: 12;
-  align-items: center;
-
-  // icon chevron-down-small-down with color #666 applied
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY2NiIgcG9pbnRzPSI4LjA5MiAxMC4zNSAxMS45OTYgMTQuMyAxNS45IDEwLjM1MiI+PC9wb2x5bGluZT4KPC9zdmc+')
-    no-repeat;
-  padding-right: pxToRem(44);
-  background-position: center right pxToRem($sbbSelectExpandIconRight);
-  background-size: pxToRem($sbbSelectExpandIconSize) pxToRem($sbbSelectExpandIconSize);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      background-position: center right pxToRem($sbbSelectExpandIconRight * $scalingFactor4k);
-      background-size: pxToRem($sbbSelectExpandIconSize * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      background-position: center right pxToRem($sbbSelectExpandIconRight * $scalingFactor5k);
-      background-size: pxToRem($sbbSelectExpandIconSize * $scalingFactor5k);
-    }
-  }
-  html.sbb-lean & {
-    padding-right: pxToRem(38);
-    background-position: center right pxToRem(6);
-    background-size: pxToRem($sbbSelectExpandIconSize) pxToRem($sbbSelectExpandIconSize);
-    // icon chevron-right-small rotated and with color #686868 applied
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY4Njg2OCIgcG9pbnRzPSI0IDggMTIgMTYgMjAgOCI+PC9wb2x5bGluZT4KPC9zdmc+');
   }
 }
 
@@ -2084,7 +2081,8 @@ $panelBorderRadius: 2;
   border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
 }
 
-.sbb-input-with-open-panel-above {
+.sbb-input-with-open-panel-above.sbb-input-element,
+.sbb-input-with-open-panel-above .sbb-input-with-open-panel {
   border-radius: 0 0 pxToRem($panelBorderRadius) pxToRem($panelBorderRadius);
 }
 
