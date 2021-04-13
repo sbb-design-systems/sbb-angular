@@ -1667,7 +1667,7 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
 
       expect(levelOneTrigger.classList).toContain(
-        'sbb-menu-item-highlighted',
+        'sbb-active',
         'Expected the trigger to be highlighted'
       );
       expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(
@@ -1684,7 +1684,7 @@ describe('SbbMenu', () => {
         'Expected one open menu'
       );
       expect(levelOneTrigger.classList).not.toContain(
-        'sbb-menu-item-highlighted',
+        'sbb-active',
         'Expected the trigger to not be highlighted'
       );
     }));
@@ -2195,7 +2195,7 @@ describe('SbbMenu', () => {
       fixture.detectChanges();
 
       expect(lazyTrigger.classList).toContain(
-        'sbb-menu-item-highlighted',
+        'sbb-active',
         'Expected the trigger to be highlighted'
       );
       expect(overlay.querySelectorAll('.sbb-menu-panel-wrapper').length).toBe(

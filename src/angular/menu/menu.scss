@@ -14,16 +14,32 @@ sbb-menu {
   align-items: flex-start;
   min-width: pxToRem(150);
   max-width: pxToRem(400);
+  outline: 0;
+
+  // Give the menu a minimum height so that the user can't
+  // collapse it to zero when they scroll away.
+  min-height: pxToRem(72);
+
+  // Prevent users from interacting with the panel while it's animating. Note that
+  // people won't be able to click through it, because the overlay pane will catch the click.
+  // This fixes the following issues:
+  //  * Users accidentally opening sub-menus when the `overlapTrigger` option is enabled.
+  //  * Users accidentally tapping on content inside the sub-menu on touch devices, if the
+  //    sub-menu overlaps the trigger. The issue is due to touch devices emulating the
+  //    `mouseenter` event by dispatching it on tap.
+  &.ng-animating {
+    pointer-events: none;
+  }
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       min-width: pxToRem(150 * $scalingFactor4k);
-      max-width: pxToRem(400 * $sizeFontDefault4k);
+      max-width: pxToRem(400 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
       min-width: pxToRem(150 * $scalingFactor5k);
-      max-width: pxToRem(400 * $sizeFontDefault5k);
+      max-width: pxToRem(400 * $scalingFactor5k);
     }
   }
 }
@@ -37,38 +53,19 @@ sbb-menu {
 }
 
 .sbb-menu-panel {
-  border-top-style: solid;
   border-radius: pxToRem(2);
-  max-height: calc(100vh - #{pxToRem(24)});
-  outline: 0;
+  border-top-style: solid;
   width: 100%;
-
-  // Give the menu a minimum height so that the user can't
-  // collapse it to zero when they scroll away.
-  min-height: pxToRem(48);
-
-  // Prevent users from interacting with the panel while it's animating. Note that
-  // people won't be able to click through it, because the overlay pane will catch the click.
-  // This fixes the following issues:
-  //  * Users accidentally opening sub-menus when the `overlapTrigger` option is enabled.
-  //  * Users accidentally tapping on content inside the sub-menu on touch devices, if the
-  //    sub-menu overlaps the trigger. The issue is due to touch devices emulating the
-  //    `mouseenter` event by dispatching it on tap.
-  &.ng-animating {
-    pointer-events: none;
-  }
 
   box-shadow: boxShadow(1, $borderWidthStandard, 1);
   border-top-width: pxToRem($borderWidthStandard);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      width: pxToRem(216 * $scalingFactor4k);
       box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
       border-top-width: pxToRem($borderWidthStandard * $scalingFactor4k);
     }
     @include mq($from: desktop5k) {
-      width: pxToRem(216 * $scalingFactor5k);
       box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k);
       border-top-width: pxToRem($borderWidthStandard * $scalingFactor5k);
     }
@@ -108,12 +105,12 @@ sbb-menu {
   max-width: none;
   min-width: 0;
   border: pxToRem($borderWidthStandard) solid transparent;
+  border-radius: pxToRem(2);
   padding: pxToRem(6);
   outline: 0;
   cursor: pointer;
   color: $sbbColorBlack;
   line-height: 0;
-  border-radius: pxToRem(2);
 
   &:hover,
   &:active,

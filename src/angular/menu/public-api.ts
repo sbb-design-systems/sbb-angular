@@ -4,6 +4,7 @@ export * from './menu-errors';
 export * from './menu-item';
 export {
   SbbMenuTrigger,
+  SbbMenuTriggerContext,
   SBB_MENU_SCROLL_STRATEGY,
   SBB_MENU_SCROLL_STRATEGY_FACTORY,
   SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER,

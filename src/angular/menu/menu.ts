@@ -67,7 +67,7 @@ export const SBB_MENU_DEFAULT_OPTIONS = new InjectionToken<SbbMenuDefaultOptions
 /** @docs-private */
 export function SBB_MENU_DEFAULT_OPTIONS_FACTORY(): SbbMenuDefaultOptions {
   return {
-    overlapTrigger: true,
+    overlapTrigger: false,
     backdropClass: 'cdk-overlay-transparent-backdrop',
   };
 }

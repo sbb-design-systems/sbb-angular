@@ -46,13 +46,11 @@ export class MenuMigration extends Migration<null, DevkitContext> {
   postAnalysis() {
     if (!this._contextmenus.empty) {
       this.logger.info('Migrating sbb-contextmenu usages');
-
       this._contextmenus.forEach((e) => this._handleContextmenu(e));
     }
 
     if (!this._dropdowns.empty) {
       this.logger.info('Migrating sbb-dropdown usages');
-
       this._dropdowns.forEach((e) => this._handleDropdown(e));
     }
   }
@@ -134,12 +132,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
   }
 
   private _removeDropdownProperties(dropdown: MigrationElement) {
-    const propertiesToRemove = [
-      'autoActiveFirstOption',
-      '(opened)',
-      '(optionSelected)',
-      'panelWidth',
-    ]
+    const propertiesToRemove = ['autoActiveFirstOption', 'opened', 'optionSelected', 'panelWidth']
       .map((propertyName) => dropdown.findProperty(propertyName))
       .filter((property) => !!property);
 
@@ -148,7 +141,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     }
 
     propertiesToRemove.forEach((property) => {
-      property?.remove();
+      property!.remove();
     });
 
     dropdown.prepend(

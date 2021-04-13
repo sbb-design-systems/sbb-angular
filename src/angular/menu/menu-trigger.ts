@@ -75,7 +75,7 @@ export const SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 export const MENU_PANEL_TOP_PADDING = 0;
 
 /** Default left overlapping of the submenu panel. */
-export const SUBMENU_PANEL_LEFT_OVERLAP = 3;
+const SUBMENU_PANEL_LEFT_OVERLAP = 3;
 
 /** Options for binding a passive event listener. */
 const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: true });
@@ -138,9 +138,9 @@ export class SbbMenuTrigger
 
   /** References the menu instance that the custom trigger is associated with. */
   @Input('sbbMenuCustomTriggerFor')
-  set sbbMenuCustomTriggerFor(v: SbbMenuPanel) {
+  set sbbMenuCustomTriggerFor(menu: SbbMenuPanel) {
     this._type = 'custom';
-    this.menu = v;
+    this._setMenu(menu);
   }
 
   /** References the menu instance that the trigger is associated with. */
@@ -149,6 +149,14 @@ export class SbbMenuTrigger
     return this._menu;
   }
   set menu(menu: SbbMenuPanel) {
+    this._setMenu(menu);
+    if (menu) {
+      this.menu.overlapTrigger = true;
+    }
+  }
+  private _menu: SbbMenuPanel;
+
+  private _setMenu(menu: SbbMenuPanel) {
     if (menu === this._menu) {
       return;
     }
@@ -171,7 +179,6 @@ export class SbbMenuTrigger
       });
     }
   }
-  private _menu: SbbMenuPanel;
 
   /** Data to be passed along to any lazily-rendered content. */
   @Input('sbbMenuTriggerData') menuData: any;
@@ -396,7 +403,7 @@ export class SbbMenuTrigger
     }
   }
 
-  // set state rather than toggle to support triggers sharing a menu
+  // Set state rather than toggle to support triggers sharing a menu
   private _setIsMenuOpen(isOpen: boolean): void {
     this._menuOpen = isOpen;
     this._menuOpen ? this.menuOpened.emit() : this.menuClosed.emit();

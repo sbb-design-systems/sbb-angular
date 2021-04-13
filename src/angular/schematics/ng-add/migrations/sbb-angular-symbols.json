@@ -241,7 +241,6 @@
   "SbbMenuTrigger": "menu",
   "SbbMenuTriggerContext": "menu",
   "SbbMenuTriggerType": "menu",
-  "SUBMENU_PANEL_LEFT_OVERLAP": "menu",
   "throwSbbMenuInvalidPositionX": "menu",
   "throwSbbMenuInvalidPositionY": "menu",
   "throwSbbMenuMissingError": "menu",

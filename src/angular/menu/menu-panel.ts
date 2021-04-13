@@ -16,6 +16,7 @@ export const SBB_MENU_PANEL = new InjectionToken<SbbMenuPanel>('SBB_MENU_PANEL')
  * @docs-private
  */
 export interface SbbMenuPanel<T = any> {
+  triggerContext: SbbMenuTriggerContext;
   xPosition: SbbMenuPositionX;
   yPosition: SbbMenuPositionY;
   overlapTrigger: boolean;
@@ -30,6 +31,5 @@ export interface SbbMenuPanel<T = any> {
   backdropClass?: string;
   overlayPanelClass?: string | string[];
   hasBackdrop?: boolean;
-  triggerContext: SbbMenuTriggerContext;
   readonly panelId?: string;
 }

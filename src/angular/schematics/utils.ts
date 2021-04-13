@@ -238,9 +238,12 @@ export class MigrationElement {
       return property;
     }
 
-    const attribute = this.element.attrs.find(
-      (a) => a.name.toLowerCase() === name || a.name.toLowerCase() === `[${name}]`
-    );
+    const attribute = this.element.attrs.find((a) => {
+      const lowerCaseName = a.name.toLowerCase();
+      return (
+        lowerCaseName === name || lowerCaseName === `[${name}]` || lowerCaseName === `(${name})`
+      );
+    });
     if (!attribute) {
       this._properties.set(name, undefined);
       return undefined;

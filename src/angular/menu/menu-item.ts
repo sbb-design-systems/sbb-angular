@@ -34,8 +34,7 @@ const _SbbMenuItemMixinBase: CanDisableCtor & typeof SbbMenuItemBase = mixinDisa
   inputs: ['disabled'],
   host: {
     '[attr.role]': 'role',
-    '[class.sbb-menu-item]': 'true',
-    '[class.sbb-menu-item-highlighted]': '_highlighted',
+    '[class.sbb-active]': '_highlighted',
     '[class.sbb-menu-item-submenu-trigger]': '_triggersSubmenu',
     '[attr.tabindex]': '_getTabIndex()',
     '[attr.aria-disabled]': 'disabled.toString()',
