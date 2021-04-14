@@ -59,7 +59,7 @@ export class SbbTableDataSource<
    * Subscription to the changes that should trigger an update to the table's rendered rows, such
    * as filtering, sorting, pagination, or base data changes.
    */
-  _renderChangesSubscription: Subscription = Subscription.EMPTY;
+  _renderChangesSubscription: Subscription | null = null;
 
   /**
    * The filtered set of data that has been matched by the filter string, or all the data if there
@@ -73,16 +73,19 @@ export class SbbTableDataSource<
   get data(): T[] {
     return this._data.value;
   }
-
   set data(data: T[]) {
     this._data.next(data);
+    // Normally the `filteredData` is updated by the re-render
+    // subscription, but that won't happen if it's inactive.
+    if (!this._renderChangesSubscription) {
+      this._filterData(data);
+    }
   }
 
   /** Array of data that should be rendered by the table, where each group represents one borderless column. */
   get groups(): string[][] | null {
     return this._groups.value;
   }
-
   set groups(groups: string[][] | null) {
     this._groups.next(groups);
   }
@@ -94,9 +97,13 @@ export class SbbTableDataSource<
   get filter(): TFilter {
     return this._filter.value;
   }
-
   set filter(filter: TFilter) {
     this._filter.next(filter);
+    // Normally the `filteredData` is updated by the re-render
+    // subscription, but that won't happen if it's inactive.
+    if (!this._renderChangesSubscription) {
+      this._filterData(this.data);
+    }
   }
 
   /**
@@ -106,12 +113,10 @@ export class SbbTableDataSource<
   get sort(): any | null {
     return this._sort;
   }
-
   set sort(sort: any | null) {
     this._sort = sort;
     this._updateChangeSubscription();
   }
-
   private _sort: any | null;
 
   /**
@@ -127,12 +132,10 @@ export class SbbTableDataSource<
   get paginator(): any | null {
     return this._paginator;
   }
-
   set paginator(paginator: any | null) {
     this._paginator = paginator;
     this._updateChangeSubscription();
   }
-
   private _paginator: any | null;
 
   /**
@@ -178,8 +181,23 @@ export class SbbTableDataSource<
     }
 
     return data.sort((a, b) => {
-      const valueA = this.sortingDataAccessor(a, active);
-      const valueB = this.sortingDataAccessor(b, active);
+      let valueA = this.sortingDataAccessor(a, active);
+      let valueB = this.sortingDataAccessor(b, active);
+
+      // If there are data in the column that can be converted to a number,
+      // it must be ensured that the rest of the data
+      // is of the same type so as not to order incorrectly.
+      const valueAType = typeof valueA;
+      const valueBType = typeof valueB;
+
+      if (valueAType !== valueBType) {
+        if (valueAType === 'number') {
+          valueA += '';
+        }
+        if (valueBType === 'number') {
+          valueB += '';
+        }
+      }
 
       // If both valueA and valueB exist (truthy), then compare the two. Otherwise, check if
       // one value exists while the other doesn't. In this case, existing value should come last.
@@ -283,7 +301,7 @@ export class SbbTableDataSource<
       map(([data]) => this._pageData(data))
     );
     // Watched for paged data changes and send the result to the table to render.
-    this._renderChangesSubscription.unsubscribe();
+    this._renderChangesSubscription?.unsubscribe();
     this._renderChangesSubscription = paginatedData.subscribe((data) =>
       this._renderData.next(data)
     );
@@ -298,9 +316,10 @@ export class SbbTableDataSource<
     // If there is a filter string, filter out data that does not contain it.
     // Each data object is converted to a string using the function defined by filterTermAccessor.
     // May be overridden for customization.
-    this.filteredData = !this.filter
-      ? data
-      : data.filter((obj) => this.filterPredicate(obj, this.filter));
+    this.filteredData =
+      this.filter == null || this.filter === ''
+        ? data
+        : data.filter((obj) => this.filterPredicate(obj, this.filter));
 
     if (this.paginator) {
       this._updatePaginator(this.filteredData.length);
@@ -372,6 +391,10 @@ export class SbbTableDataSource<
    * @docs-private
    */
   connect() {
+    if (!this._renderChangesSubscription) {
+      this._updateChangeSubscription();
+    }
+
     return this._renderData;
   }
 
