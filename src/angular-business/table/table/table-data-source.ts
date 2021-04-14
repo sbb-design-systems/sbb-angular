@@ -399,7 +399,7 @@ export class SbbTableDataSource<
   }
 
   /**
-   * Used by the Table. Called when it is destroyed. No-op.
+   * Used by the SbbTable. Called when it disconnects from the data source.
    * @docs-private
    */
   disconnect() {
