@@ -402,7 +402,10 @@ export class SbbTableDataSource<
    * Used by the Table. Called when it is destroyed. No-op.
    * @docs-private
    */
-  disconnect() {}
+  disconnect() {
+    this._renderChangesSubscription?.unsubscribe();
+    this._renderChangesSubscription = null;
+  }
 
   /** Converts a TableFilter object to a key value object of strings. */
   _normalizeTableFilter(tableFilter: SbbTableFilter): { [key: string]: string[] } {
