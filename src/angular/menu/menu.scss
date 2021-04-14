@@ -2,6 +2,7 @@
 
 $borderWidthStandard: 2;
 $borderWidthLean: 1;
+$triggerPadding: (36 - 24) / 2; // (Desired width - icon width) / 2
 
 // Prevent rendering sbb-menu as it can affect the flex layout.
 sbb-menu {
@@ -53,19 +54,21 @@ sbb-menu {
 }
 
 .sbb-menu-panel {
-  border-radius: pxToRem(2);
   border-top-style: solid;
   width: 100%;
 
+  border-radius: pxToRem(2);
   box-shadow: boxShadow(1, $borderWidthStandard, 1);
   border-top-width: pxToRem($borderWidthStandard);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
+      border-radius: pxToRem(2 * $scalingFactor4k);
       box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
       border-top-width: pxToRem($borderWidthStandard * $scalingFactor4k);
     }
     @include mq($from: desktop5k) {
+      border-radius: pxToRem(2 * $scalingFactor5k);
       box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k);
       border-top-width: pxToRem($borderWidthStandard * $scalingFactor5k);
     }
@@ -104,9 +107,8 @@ sbb-menu {
   background: none;
   max-width: none;
   min-width: 0;
-  border: pxToRem($borderWidthStandard) solid transparent;
-  border-radius: pxToRem(2);
-  padding: pxToRem(6);
+  border: none;
+  padding: pxToRem($triggerPadding);
   outline: 0;
   cursor: pointer;
   color: $sbbColorBlack;
@@ -145,41 +147,78 @@ sbb-menu {
       border-width: pxToRem($borderWidthStandard * $scalingFactor5k);
     }
   }
-
-  html.sbb-lean & {
-    border-width: pxToRem($borderWidthLean);
-  }
 }
 
 .sbb-menu-panel-trigger {
   background-color: $sbbColorWhite;
-  z-index: 100;
   position: relative;
-  border-color: $sbbColorGrey;
+  z-index: 1;
+  padding: pxToRem($triggerPadding - $borderWidthStandard);
+  border: pxToRem($borderWidthStandard) solid $sbbColorGrey;
+  border-radius: pxToRem(2);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding: pxToRem(($triggerPadding - $borderWidthStandard) * $scalingFactor4k);
+      border-width: pxToRem($borderWidthStandard * $scalingFactor4k);
+      border-radius: pxToRem(2 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(($triggerPadding - $borderWidthStandard) * $scalingFactor5k);
+      border-width: pxToRem($borderWidthStandard * $scalingFactor5k);
+      border-radius: pxToRem(2 * $scalingFactor5k);
+    }
+  }
 
   html.sbb-lean & {
+    padding: pxToRem($triggerPadding - $borderWidthLean);
+    border-width: pxToRem($borderWidthLean);
     border-color: $sbbColorIron;
   }
 
   .sbb-menu-panel-below & {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    padding-bottom: pxToRem($triggerPadding);
+    border-bottom-width: 0;
+
+    html:not(.sbb-lean) & {
+      border-bottom-width: 0; // Redefined to be more specific
+
+      @include mq($from: desktop4k) {
+        padding-bottom: pxToRem($triggerPadding * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-bottom: pxToRem($triggerPadding * $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      border-bottom-width: 0; // Redefined to be more specific
+    }
   }
   .sbb-menu-panel-above & {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    padding-top: pxToRem($triggerPadding);
+    border-top-width: 0;
 
     box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactorDefault);
     html:not(.sbb-lean) & {
+      border-top-width: 0; // Redefined to be more specific
+
       @include mq($from: desktop4k) {
+        padding-top: pxToRem($triggerPadding * $scalingFactor4k);
         box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
+        padding-top: pxToRem($triggerPadding * $scalingFactor5k);
         box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k);
       }
     }
 
     html.sbb-lean & {
+      border-top-width: 0; // Redefined because of specificity
       box-shadow: boxShadow(1, $borderWidthLean, $scalingFactorDefault);
     }
   }
@@ -188,50 +227,6 @@ sbb-menu {
   &:active,
   &:focus {
     color: $sbbColorBlack;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    background-color: $sbbColorWhite;
-    right: 0;
-    left: 0;
-    bottom: pxToRem(-$borderWidthStandard);
-    height: pxToRem($borderWidthStandard);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        bottom: pxToRem(-$borderWidthStandard * $scalingFactor4k);
-        height: pxToRem($borderWidthStandard * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        bottom: pxToRem(-$borderWidthStandard * $scalingFactor5k);
-        height: pxToRem($borderWidthStandard * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      bottom: pxToRem(-$borderWidthLean);
-      height: pxToRem($borderWidthLean);
-    }
-
-    .sbb-menu-panel-above & {
-      bottom: inherit;
-      top: pxToRem(-$borderWidthStandard);
-
-      html:not(.sbb-lean) & {
-        @include mq($from: desktop4k) {
-          top: pxToRem(-$borderWidthStandard * $scalingFactor4k);
-        }
-        @include mq($from: desktop5k) {
-          top: pxToRem(-$borderWidthStandard * $scalingFactor5k);
-        }
-      }
-
-      html.sbb-lean & {
-        top: pxToRem(-$borderWidthLean);
-      }
-    }
   }
 }
 
