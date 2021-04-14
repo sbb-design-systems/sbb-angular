@@ -45,6 +45,13 @@
   }
 }
 
+.sbb-icon.sbb-select-arrow-icon-lean > svg {
+  transform: rotate(90deg);
+  .sbb-input-with-open-panel & {
+    transform: rotate(-90deg);
+  }
+}
+
 .sbb-select-panel {
   .sbb-menu-group + .sbb-menu-group,
   .sbb-menu-item + .sbb-menu-group,

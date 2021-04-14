@@ -718,8 +718,8 @@ select {
   html.sbb-lean & {
     padding-right: pxToRem(38);
     background-position: center right pxToRem(6);
-    // icon chevron-small-down-small rotated and with color #686868 applied
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjguMDkyIDEwLjM1IDExLjk5NiAxNC4zIDE1LjkgMTAuMzUyIi8+Cjwvc3ZnPg==');
+    // icon chevron-right-small rotated and with color #686868 applied
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY4Njg2OCIgcG9pbnRzPSI0IDggMTIgMTYgMjAgOCI+PC9wb2x5bGluZT4KPC9zdmc+');
   }
 
   &::-ms-expand {
@@ -2081,6 +2081,13 @@ $panelBorderRadius: 2;
   border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
 }
 
+/**
+ * The .sbb-input-with-open-panel-above class is applied to the panel origin,
+ * which might not be the same element as the trigger itself. We target the
+ * class when it is on the trigger (in both autocomplete and select this has
+ * .sbb-input-element) or on an ancester of the trigger, which should only
+ * happen, when the .sbb-input-with-open-panel class is on the trigger.
+ */
 .sbb-input-with-open-panel-above.sbb-input-element,
 .sbb-input-with-open-panel-above .sbb-input-with-open-panel {
   border-radius: 0 0 pxToRem($panelBorderRadius) pxToRem($panelBorderRadius);
