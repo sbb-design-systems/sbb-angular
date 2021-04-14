@@ -253,23 +253,19 @@ export class MigrationElement {
     return property;
   }
 
-  findPropertyByValue(value: string) {
-    let property: MigrationElementProperty | undefined;
-    this._properties.forEach((propertyEntry) => {
-      if (propertyEntry!.nativeValue === value) {
-        property = propertyEntry;
-        return;
-      }
-    });
-    if (property) {
-      return property;
+  findPropertyByValue(value: string): MigrationElementProperty | undefined {
+    const cachedProperty = Array.from(this._properties).find(
+      ([_, propertyEntry]) => propertyEntry!.nativeValue === value
+    )?.[1];
+    if (cachedProperty) {
+      return cachedProperty;
     }
 
     const attribute = this.element.attrs.find((a) => a.value === value);
     if (!attribute) {
       return undefined;
     }
-    property = this._createMigrationElementProperty(attribute);
+    const property = this._createMigrationElementProperty(attribute);
     this._properties.set(property!.attribute.name, property);
     return property;
   }

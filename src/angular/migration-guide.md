@@ -97,11 +97,11 @@ The link module has been integrated into the button module. All button types can
 
 _Automatic migration available_
 
-The contextmenu module has been integrated into the new more generic menu module and now supports submenus.
-Due to this change you have to define the contextmenu trigger yourself (migration will take care about it),
-and the contextmenu no longer depends on `SbbDropdown`. The APIs of `SbbDropdown` and `SbbMenu` have got some differences,
+The contextmenu module has been integrated into the new more generic menu module, which also supports submenus.
+Due to this change you have to define the contextmenu trigger yourself (the migration will take care of it),
+and the contextmenu no longer depends on `SbbDropdown`. The APIs of `SbbDropdown` and `SbbMenu` have some differences,
 so please check your code carefully after migration.
-The width of a `sbb-menu-item` is not fix anymore and adapts itself to the content. The width also can be overridden.
+The width of a `sbb-menu-item` is not fixed anymore and adapts itself to the content. The width also can be overridden.
 
 [Documentation](angular/components/menu)
 

@@ -2511,19 +2511,21 @@ describe('SbbMenu contextmenu', () => {
   });
 });
 
-describe('SbbMenu custom trigger', () => {
+describe('SbbMenu headless trigger', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [CustomTrigger],
+      declarations: [HeadlessTrigger],
     }).compileComponents();
   }));
 
-  it('should apply sbb-menu-trigger-custom css class', () => {
-    const fixture = TestBed.createComponent(CustomTrigger);
+  it('should apply sbb-menu-trigger-headless css class', () => {
+    const fixture = TestBed.createComponent(HeadlessTrigger);
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('.sbb-menu-trigger.sbb-menu-trigger-custom')
+      fixture.debugElement.nativeElement.querySelector(
+        '.sbb-menu-trigger.sbb-menu-trigger-headless'
+      )
     ).toBeTruthy();
   });
 });
@@ -2604,7 +2606,7 @@ interface TestableMenu {
 }
 @Component({
   template: `
-    <button [sbbMenuCustomTriggerFor]="menu" #triggerEl type="button">Toggle menu</button>
+    <button [sbbMenuHeadlessTriggerFor]="menu" #triggerEl type="button">Toggle menu</button>
     <sbb-menu [overlapTrigger]="overlapTrigger" #menu="sbbMenu">
       <button sbb-menu-item type="button">Not overlapped Content</button>
     </sbb-menu>
@@ -2981,7 +2983,7 @@ class StaticAriaDescribedbyMenu {}
 
 @Component({
   template: `<button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
-      <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+      <sbb-icon svgIcon="kom:context-menu-small"></sbb-icon>
     </button>
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
@@ -2994,11 +2996,7 @@ class ContextmenuStaticTrigger {
 
 @Component({
   template: `<button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
-      <sbb-icon
-        *sbbMenuDynamicTrigger
-        svgIcon="kom:context-menu-small"
-        class="sbb-icon-fit"
-      ></sbb-icon>
+      <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
     </button>
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
@@ -3010,14 +3008,14 @@ class ContextmenuDynamicTrigger {
 }
 
 @Component({
-  template: `<button [sbbMenuCustomTriggerFor]="animals" aria-label="Show animals">
-      <sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+  template: `<button [sbbMenuHeadlessTriggerFor]="animals" aria-label="Show animals">
+      <sbb-icon svgIcon="kom:context-menu-small"></sbb-icon>
     </button>
     <sbb-menu #animals="sbbMenu">
       <button sbb-menu-item>Invertebrates</button>
     </sbb-menu>`,
 })
-class CustomTrigger {
+class HeadlessTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
   @ViewChild(SbbMenu) menu: SbbMenu;
 }

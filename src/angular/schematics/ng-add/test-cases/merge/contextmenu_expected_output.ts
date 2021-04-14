@@ -6,7 +6,7 @@ import { SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular/men
 
 @Component({
   selector: 'sbb-contextmenu-test',
-  template: `<button [sbbMenuTriggerFor]="menu2"><sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon></button>
+  template: `<button [sbbMenuTriggerFor]="menu2"><sbb-icon svgIcon="kom:context-menu-small"></sbb-icon></button>
       <!-- TODO: Removed properties [autoactivefirstoption], (opened), (optionselected), [panelwidth] because they no longer exist. --><sbb-menu
        
        
@@ -28,10 +28,10 @@ import { SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular/men
         </button>
       </sbb-menu>
     
-    <button [sbbMenuTriggerFor]="menu"><sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon></button>
+    <button [sbbMenuTriggerFor]="menu"><sbb-icon svgIcon="kom:context-menu-small"></sbb-icon></button>
       <sbb-menu #menu="sbbMenu"></sbb-menu>
     
-    <button [sbbMenuTriggerFor]="menu3"><sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon></button>
+    <button [sbbMenuTriggerFor]="menu3"><sbb-icon svgIcon="kom:context-menu-small"></sbb-icon></button>
       <sbb-menu #menu1 #menu3="sbbMenu"></sbb-menu>
     `,
 })

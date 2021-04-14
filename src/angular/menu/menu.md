@@ -2,7 +2,7 @@
 
 ```html
 <button [sbbMenuTriggerFor]="menu" aria-label="Show actions" type="button">
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
 </button>
 <sbb-menu #menu="sbbMenu">
   <button sbb-menu-item type="button">Copy</button>
@@ -94,7 +94,7 @@ with a different set of data, depending on the trigger that opened it:
   aria-label="Show actions"
   type="button"
 >
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
 </button>
 
 <button
@@ -103,7 +103,7 @@ with a different set of data, depending on the trigger that opened it:
   aria-label="Show actions"
   type="button"
 >
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon>
+  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
 </button>
 
 <sbb-menu #appMenu="sbbMenu">

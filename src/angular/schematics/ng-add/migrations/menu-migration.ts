@@ -85,7 +85,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     const dropdown = contextmenu.findElements((node) => nodeCheck(node).is('sbb-dropdown'))[0];
     if (!dropdown) {
       this.logger.warn(
-        'No sbb-dropdown was found inside an sbb-contextmenu. Could not perform migration.'
+        `No sbb-dropdown was found inside an sbb-contextmenu (${contextmenu.resource.filePath}). Could not perform migration.`
       );
       return;
     }
@@ -105,7 +105,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     contextmenu.prepend(
       `<button [sbbMenuTriggerFor]="${menuReferenceName.substring(
         1
-      )}"><sbb-icon svgIcon="kom:context-menu-small" class="sbb-icon-fit"></sbb-icon></button>`
+      )}"><sbb-icon svgIcon="kom:context-menu-small"></sbb-icon></button>`
     );
   }
 

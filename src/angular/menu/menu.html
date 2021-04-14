@@ -14,9 +14,9 @@
     [attr.aria-labelledby]="ariaLabelledby || null"
     [attr.aria-describedby]="ariaDescribedby || null"
     [class.sbb-menu-panel-type-default]="triggerContext?.type === 'default'"
-    [class.sbb-menu-panel-type-custom]="triggerContext?.type === 'custom'"
+    [class.sbb-menu-panel-type-headless]="triggerContext?.type === 'headless'"
   >
-    <ng-container *ngIf="triggerContext && triggerContext.type !== 'custom'">
+    <ng-container *ngIf="triggerContext && triggerContext.type !== 'headless'">
       <button
         *ngIf="!triggerContext.templateContent"
         type="button"

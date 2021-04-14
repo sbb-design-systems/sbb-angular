@@ -55,7 +55,7 @@ export class SbbMenuItem
   readonly _hovered: Subject<SbbMenuItem> = new Subject<SbbMenuItem>();
 
   /** Stream that emits when the menu item is focused. */
-  readonly _focused = new Subject<SbbMenuItem>();
+  readonly _focused: Subject<SbbMenuItem> = new Subject<SbbMenuItem>();
 
   /** Whether the menu item is highlighted. */
   _highlighted: boolean = false;

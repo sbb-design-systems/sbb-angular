@@ -45,7 +45,7 @@ import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
 
-export type SbbMenuTriggerType = 'default' | 'custom';
+export type SbbMenuTriggerType = 'default' | 'headless';
 
 export interface SbbMenuTriggerContext {
   type: SbbMenuTriggerType;
@@ -90,14 +90,14 @@ const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase = mix
 
 /** Directive applied to an element that should trigger a `sbb-menu`. */
 @Directive({
-  selector: `[sbbMenuTriggerFor], [sbbMenuCustomTriggerFor]`,
+  selector: `[sbbMenuTriggerFor], [sbbMenuHeadlessTriggerFor]`,
   host: {
-    class: 'sbb-menu-trigger',
+    class: 'sbb-menu-trigger sbb-icon-fit',
     'aria-haspopup': 'true',
     '[attr.aria-expanded]': 'menuOpen || null',
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
     '[class.sbb-menu-trigger-default]': 'this._type === "default"',
-    '[class.sbb-menu-trigger-custom]': 'this._type === "custom"',
+    '[class.sbb-menu-trigger-headless]': 'this._type === "headless"',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
   },
   exportAs: 'sbbMenuTrigger',
@@ -136,10 +136,10 @@ export class SbbMenuTrigger
   /** Variant of which trigger is used. */
   _type: SbbMenuTriggerType = 'default';
 
-  /** References the menu instance that the custom trigger is associated with. */
-  @Input('sbbMenuCustomTriggerFor')
-  set sbbMenuCustomTriggerFor(menu: SbbMenuPanel) {
-    this._type = 'custom';
+  /** References the menu instance that the headless trigger is associated with. */
+  @Input('sbbMenuHeadlessTriggerFor')
+  set sbbMenuHeadlessTriggerFor(menu: SbbMenuPanel) {
+    this._type = 'headless';
     this._setMenu(menu);
   }
 
@@ -156,6 +156,7 @@ export class SbbMenuTrigger
   }
   private _menu: SbbMenuPanel;
 
+  /** Inits the menu for the different trigger types. Method is intentionally placed after corresponding inputs. */
   private _setMenu(menu: SbbMenuPanel) {
     if (menu === this._menu) {
       return;
@@ -372,7 +373,7 @@ export class SbbMenuTrigger
     this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
     if (!this.triggersSubmenu()) {
       this.menu.triggerContext =
-        this._type === 'custom'
+        this._type === 'headless'
           ? { type: this._type }
           : {
               width: this._element.nativeElement.clientWidth,
@@ -460,6 +461,7 @@ export class SbbMenuTrigger
       scrollStrategy: this._scrollStrategy(),
     });
   }
+
   /**
    * Listens to changes in the position of the overlay and sets the correct classes
    * on the menu based on the new position. This ensures the animation origin is always
