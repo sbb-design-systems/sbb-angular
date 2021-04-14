@@ -101,7 +101,7 @@
       <segment state="translated">
         <source> <ph id="0" equiv="INTERPOLATION" disp="{{ _counter | async }}"/> characters remaining
 </source>
-        <target><x id="INTERPOLATION" equiv-text="{{ _counter | async }}"/> caratteri rimanenti</target>
+        <target><ph id="0" equiv="INTERPOLATION" disp="{{ _counter | async }}"/> caratteri rimanenti</target>
       </segment>
     </unit>
     <unit id="sbbTextexpandShowLess">
