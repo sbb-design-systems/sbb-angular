@@ -528,19 +528,47 @@ ul li ol > li::before,
 // Form Elements
 // ----------------------------------------------------------------------------------------------------
 
+$sbbInputMinHeightStandard: 48;
+
 .sbb-input-element {
   @include ellipsis;
   @include placeholder($sbbColorStorm);
 
   outline: none;
   background-color: $sbbColorWhite;
+  padding: pxToRem(10) pxToRem(14) pxToRem(11);
   border: pxToRem(2) solid $sbbColorGraphite;
   border-radius: pxToRem(2);
   color: $sbbColorGrey;
-  line-height: pxToRem(23);
   font-size: pxToRem($sizeFontDefault);
-  padding: pxToRem(10) pxToRem(14) pxToRem(12);
-  min-height: pxToRem(48);
+  line-height: pxToRem(23);
+  min-height: pxToRem($sbbInputMinHeightStandard);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding: pxToRem(15) pxToRem(21) pxToRem(16);
+      border-width: pxToRem(2 * $scalingFactor4k);
+      border-radius: pxToRem(2 * $scalingFactor4k);
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem(35);
+      min-height: pxToRem($sbbInputMinHeightStandard * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(21) pxToRem(28) pxToRem(22);
+      border-width: pxToRem(2 * $scalingFactor5k);
+      border-radius: pxToRem(2 * $scalingFactor5k);
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem(45);
+      min-height: pxToRem($sbbInputMinHeightStandard * $scalingFactor5k);
+    }
+  }
+  html.sbb-lean & {
+    color: $sbbColorIron;
+    border-width: pxToRem(1);
+    padding: pxToRem(6) pxToRem(7) pxToRem(8);
+    line-height: pxToRem(20);
+    min-height: pxToRem(36);
+  }
 
   // Undo the red box-shadow glow added by Firefox on invalid inputs.
   // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
@@ -602,6 +630,10 @@ ul li ol > li::before,
   &:focus,
   &.sbb-focused {
     border-color: $sbbColorGrey;
+
+    html.sbb-lean & {
+      border-color: $sbbColorIron;
+    }
   }
 
   &:disabled,
@@ -614,6 +646,11 @@ ul li ol > li::before,
     opacity: 1;
     cursor: default;
     pointer-events: none;
+
+    html.sbb-lean & {
+      color: $sbbColorGranite;
+      -webkit-text-fill-color: $sbbColorGranite;
+    }
   }
 
   &[readonly],
@@ -628,43 +665,6 @@ ul li ol > li::before,
   &.ng-touched.ng-invalid:not([aria-expanded='true']) {
     color: $sbbColorError;
     border-color: $sbbColorError;
-  }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      padding: pxToRem(10 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k)
-        pxToRem(12 * $scalingFactor4k);
-      border-width: pxToRem(2 * $scalingFactor4k);
-      border-radius: pxToRem(2 * $scalingFactor4k);
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem(35);
-    }
-    @include mq($from: desktop5k) {
-      padding: pxToRem(10 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k)
-        pxToRem(12 * $scalingFactor5k);
-      border-width: pxToRem(2 * $scalingFactor5k);
-      border-radius: pxToRem(2 * $scalingFactor5k);
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem(45);
-    }
-  }
-  html.sbb-lean & {
-    color: $sbbColorIron;
-    border-width: pxToRem(1);
-    padding: pxToRem(6) pxToRem(8) pxToRem(7);
-    min-height: pxToRem(36);
-
-    &:focus,
-    &.sbb-focused {
-      border-color: $sbbColorIron;
-    }
-
-    &:disabled,
-    &[disabled],
-    &.sbb-disabled {
-      color: $sbbColorGranite;
-      -webkit-text-fill-color: $sbbColorGranite;
-    }
   }
 }
 
@@ -697,6 +697,30 @@ select {
   background-color: transparent;
   display: inline-flex;
   box-sizing: border-box;
+  padding-right: pxToEm(44);
+
+  // Custom select expand icon
+  align-items: center;
+  // icon chevron-small-down-small with color #666 applied
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBwb2ludHM9IjguMDkyIDEwLjM1IDExLjk5NiAxNC4zIDE1LjkgMTAuMzUyIi8+Cjwvc3ZnPg==')
+    no-repeat;
+  background-position: center right pxToEm(9);
+  background-size: pxToRem(24) pxToRem(24);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      background-size: pxToRem(24 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      background-size: pxToRem(24 * $scalingFactor5k);
+    }
+  }
+  html.sbb-lean & {
+    padding-right: pxToRem(38);
+    background-position: center right pxToRem(6);
+    // icon chevron-right-small rotated and with color #686868 applied
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY4Njg2OCIgcG9pbnRzPSI0IDggMTIgMTYgMjAgOCI+PC9wb2x5bGluZT4KPC9zdmc+');
+  }
 
   &::-ms-expand {
     display: none;
@@ -731,36 +755,6 @@ select {
 
   &:not(:disabled) {
     cursor: pointer;
-  }
-
-  // Custom select expand icon
-  $sbbSelectExpandIconSize: 24;
-  $sbbSelectExpandIconRight: 12;
-  align-items: center;
-
-  // icon chevron-down-small-down with color #666 applied
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY2NiIgcG9pbnRzPSI4LjA5MiAxMC4zNSAxMS45OTYgMTQuMyAxNS45IDEwLjM1MiI+PC9wb2x5bGluZT4KPC9zdmc+')
-    no-repeat;
-  padding-right: pxToRem(44);
-  background-position: center right pxToRem($sbbSelectExpandIconRight);
-  background-size: pxToRem($sbbSelectExpandIconSize) pxToRem($sbbSelectExpandIconSize);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      background-position: center right pxToRem($sbbSelectExpandIconRight * $scalingFactor4k);
-      background-size: pxToRem($sbbSelectExpandIconSize * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      background-position: center right pxToRem($sbbSelectExpandIconRight * $scalingFactor5k);
-      background-size: pxToRem($sbbSelectExpandIconSize * $scalingFactor5k);
-    }
-  }
-  html.sbb-lean & {
-    padding-right: pxToRem(38);
-    background-position: center right pxToRem(6);
-    background-size: pxToRem($sbbSelectExpandIconSize) pxToRem($sbbSelectExpandIconSize);
-    // icon chevron-right-small rotated and with color #686868 applied
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY4Njg2OCIgcG9pbnRzPSI0IDggMTIgMTYgMjAgOCI+PC9wb2x5bGluZT4KPC9zdmc+');
   }
 }
 
@@ -921,7 +915,7 @@ fieldset,
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault * $scalingFactor4k);
+      font-size: pxToRem($sizeFontDefault4k);
       line-height: pxToRem(39);
       border-width: pxToRem(2);
       // Subtract 2 from the padding values, since we always use the border
@@ -929,7 +923,7 @@ fieldset,
       padding: pxToRem(14) pxToRem(58) pxToRem(15);
     }
     @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault * $scalingFactor5k);
+      font-size: pxToRem($sizeFontDefault5k);
       line-height: pxToRem(52);
       // Subtract 2 from the padding values, since we always use the border
       // in order to avoid tearing on state changes.
@@ -2087,7 +2081,15 @@ $panelBorderRadius: 2;
   border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
 }
 
-.sbb-input-with-open-panel-above {
+/**
+ * The .sbb-input-with-open-panel-above class is applied to the panel origin,
+ * which might not be the same element as the trigger itself. We target the
+ * class when it is on the trigger (in both autocomplete and select this has
+ * .sbb-input-element) or on an ancester of the trigger, which should only
+ * happen, when the .sbb-input-with-open-panel class is on the trigger.
+ */
+.sbb-input-with-open-panel-above.sbb-input-element,
+.sbb-input-with-open-panel-above .sbb-input-with-open-panel {
   border-radius: 0 0 pxToRem($panelBorderRadius) pxToRem($panelBorderRadius);
 }
 
