@@ -1,0 +1,306 @@
+@import '../styles/common';
+
+$breadcrumbHeight: 48;
+$breadcrumbLabelHeight: 24;
+$breadcrumbArrowSize: 24;
+$breadcrumbArrowLineHeight: 20;
+$breadcrumbArrowMarginsDT: if($sbbBusiness, 4, 12);
+
+$breadcrumbStepButtonFontSizeDT: 13;
+$breadcrumbStepButtonLineHeightDT: 20;
+
+$breadcrumbDropdownTriggerIconSize: 24;
+$breadcrumbDropdownTriggerIconMarginLeft: 6.5;
+$breadcrumbDropdownTriggerIconMarginRight: 20 - $breadcrumbDropdownTriggerIconSize;
+
+$breadcrumbTriggerBorderActive: solid 2px $sbbColorGranite;
+$breadcrumbTriggerBorder: solid 2px white;
+
+.sbb-breadcrumb {
+  display: none;
+  align-items: center;
+
+  &:first-of-type,
+  &:last-of-type {
+    display: flex;
+  }
+
+  &:first-of-type a {
+    height: toPx($breadcrumbLabelHeight);
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        height: toPx($breadcrumbLabelHeight * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        height: toPx($breadcrumbLabelHeight * $scalingFactor5k);
+      }
+    }
+  }
+
+  @include businessOnly() {
+    &:last-of-type a {
+      color: $sbbColorBlack;
+    }
+  }
+
+  @include mq($from: tabletPortrait) {
+    display: flex;
+  }
+
+  padding-left: 0;
+  height: toPx($breadcrumbHeight);
+  margin-right: toPx($breadcrumbArrowMarginsDT);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+      height: toPx($breadcrumbHeight * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+      height: toPx($breadcrumbHeight * $scalingFactor5k);
+    }
+  }
+
+  .sbb-breadcrumb-trigger {
+    outline: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: $sbbColorGranite;
+    position: relative;
+    height: 100%;
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+
+    &::before {
+      border: $breadcrumbTriggerBorder;
+    }
+
+    .sbb-breadcrumb-trigger-icon {
+      width: toPx($breadcrumbDropdownTriggerIconSize);
+      height: toPx($breadcrumbDropdownTriggerIconSize);
+      line-height: toPx($breadcrumbArrowLineHeight);
+      margin: 0;
+      margin-right: toPx($breadcrumbDropdownTriggerIconMarginRight);
+      margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft);
+      display: none;
+      transition: transform 0.225s cubic-bezier(0.4, 0, 0.2, 1);
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          height: toPx($breadcrumbDropdownTriggerIconSize * $scalingFactor4k);
+          width: toPx($breadcrumbDropdownTriggerIconSize * $scalingFactor4k);
+          margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k);
+          margin-right: toPx($breadcrumbDropdownTriggerIconMarginRight * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          height: toPx($breadcrumbDropdownTriggerIconSize * $scalingFactor5k);
+          width: toPx($breadcrumbDropdownTriggerIconSize * $scalingFactor5k);
+          margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k);
+          margin-right: toPx($breadcrumbDropdownTriggerIconMarginRight * $scalingFactor5k);
+        }
+      }
+
+      &.sbb-breadcrumb-trigger-icon-visible {
+        display: block;
+      }
+      &.sbb-breadcrumb-trigger-icon-active {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &.sbb-breadcrumb-trigger-open {
+      &::before {
+        content: '';
+        border-top: $breadcrumbTriggerBorderActive;
+        border-right: $breadcrumbTriggerBorderActive;
+        border-left: $breadcrumbTriggerBorderActive;
+        position: absolute;
+        top: 0;
+        background-color: $sbbColorWhite;
+        height: calc(100% + 1px); // 1px is needed to fit borders without any gap to overly panel
+        min-width: 132px;
+        transform: translateX(-30px);
+        width: calc(100% + 60px);
+
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            min-width: toPx(132 * $scalingFactor4k);
+            transform: translateX(#{toPx(-30 * $scalingFactor4k)});
+            width: calc(100% + #{toPx(60 * $scalingFactor4k)});
+            border-width: toPx(2 * $scalingFactor4k);
+          }
+          @include mq($from: desktop5k) {
+            min-width: toPx(132 * $scalingFactor5k);
+            transform: translateX(#{toPx(-30 * $scalingFactor5k)});
+            width: calc(100% + #{toPx(60 * $scalingFactor5k)});
+            border-width: toPx(2 * $scalingFactor5k);
+          }
+        }
+      }
+    }
+  }
+
+  .sbb-breadcrumb-arrow {
+    @if $sbbBusiness {
+      color: $sbbColorGranite;
+    } @else {
+      color: $sbbColorPlatinum;
+    }
+
+    line-height: toPx($breadcrumbArrowLineHeight);
+
+    margin-right: toPx($breadcrumbArrowMarginsDT);
+    width: toPx($breadcrumbArrowSize);
+    height: toPx($breadcrumbArrowSize);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+        width: toPx($breadcrumbArrowSize * $scalingFactor4k);
+        height: toPx($breadcrumbArrowSize * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+        width: toPx($breadcrumbArrowSize * $scalingFactor5k);
+        height: toPx($breadcrumbArrowSize * $scalingFactor5k);
+      }
+    }
+  }
+  a,
+  button {
+    outline: 0;
+    @include svgIconColor(
+      $sbbColorGranite
+    ); // TODO(icon-migration): remove definition because new icons inherit colors
+    color: $sbbColorGranite;
+    &:hover,
+    &:focus {
+      @include svgIconColor(
+        $sbbColorRed125
+      ); // TODO(icon-migration): remove definition because new icons inherit colors
+      color: $sbbColorRed125;
+    }
+  }
+  a,
+  button,
+  .sbb-breadcrumb-label {
+    @include buttonResetFrameless();
+    white-space: nowrap;
+    font-family: $fontSbbRoman;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    font-size: toPx($breadcrumbStepButtonFontSizeDT);
+    line-height: toPx($breadcrumbStepButtonLineHeightDT);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor4k);
+        line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor5k);
+        line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor5k);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+    min-width: toPx(24);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        min-width: toPx(24 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        min-width: toPx(24 * $scalingFactor5k);
+      }
+    }
+
+    // display: inline-flex solves a sizing issue on IE11 and Legacy Edge
+    .sbb-icon {
+      display: inline-flex;
+    }
+
+    // TODO(icon-migration): remove definition because new icons inherit colors (also color: can be removed)
+    > .sbb-icon-component {
+      &:hover,
+      &:focus {
+        @include svgIconColor($sbbColorRed125);
+        color: $sbbColorRed125;
+      }
+    }
+  }
+}
+
+.sbb-breadcrumb-panel {
+  min-width: 132px;
+  transform: translateX(-30px);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      min-width: toPx(132 * $scalingFactor4k);
+      transform: translateX(toPx(-30 * $scalingFactor4k));
+    }
+    @include mq($from: desktop5k) {
+      min-width: toPx(132 * $scalingFactor5k);
+      transform: translateX(toPx(-30 * $scalingFactor5k));
+    }
+  }
+
+  .sbb-dropdown-panel {
+    a {
+      font-size: 13px;
+      white-space: normal;
+      text-overflow: clip;
+      padding-left: 28px;
+      padding-right: 28px;
+      font-family: $fontSbbRoman;
+
+      &.sbb-active {
+        // TODO(icon-migration): remove definition because new icons inherit colors
+        @include svgIconColor($sbbColorRed125);
+        color: $sbbColorRed125;
+      }
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          font-size: toPx(13 * $scalingFactor4k);
+          padding-left: toPx(28 * $scalingFactor4k);
+          padding-right: toPx(28 * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          font-size: toPx(13 * $scalingFactor5k);
+          padding-left: toPx(28 * $scalingFactor5k);
+          padding-right: toPx(28 * $scalingFactor5k);
+        }
+      }
+    }
+  }
+}
+
+.sbb-breadcrumb-dots {
+  margin-left: toPx($breadcrumbArrowMarginsDT);
+  display: flex;
+  align-items: center;
+  @include mq($from: tabletPortrait) {
+    display: none;
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+    }
+  }
+}

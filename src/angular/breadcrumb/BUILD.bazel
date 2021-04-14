@@ -1,0 +1,89 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "breadcrumb",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":breadcrumb.css",
+        ":breadcrumbs.css",
+    ] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular/breadcrumb",
+    deps = [
+        "//src/angular/core",
+        "//src/angular/icon",
+        "//src/angular/menu",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "breadcrumb_scss",
+    src = "breadcrumb.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "breadcrumbs_scss",
+    src = "breadcrumbs.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":breadcrumb",
+        "//src/angular/core/testing",
+        "//src/angular/icon",
+        "//src/angular/icon/testing",
+        "//src/angular/menu",
+        "@npm//@angular/common",
+        "@npm//@angular/platform-browser",
+        "@npm//@angular/router",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    static_css = [
+        "//src/angular:typography",
+    ],
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":breadcrumb.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
+
+filegroup(
+    name = "html-source-files",
+    srcs = glob(["**/*.html"]),
+)
