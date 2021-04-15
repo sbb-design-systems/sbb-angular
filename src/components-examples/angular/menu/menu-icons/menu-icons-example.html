@@ -1,0 +1,15 @@
+<button [sbbMenuTriggerFor]="menu" aria-label="Show actions" type="button">
+  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
+</button>
+<sbb-menu #menu="sbbMenu">
+  <button sbb-menu-item type="button">
+    <sbb-icon svgIcon="kom:face-worker-small"></sbb-icon> Copy
+  </button>
+  <button sbb-menu-item type="button">
+    <sbb-icon svgIcon="kom:trash-small"></sbb-icon> Delete
+  </button>
+  <hr />
+  <button sbb-menu-item type="button">
+    <sbb-icon svgIcon="kom:cross-small"></sbb-icon> Cancel
+  </button>
+</sbb-menu>

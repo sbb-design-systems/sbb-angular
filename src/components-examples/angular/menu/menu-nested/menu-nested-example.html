@@ -1,0 +1,48 @@
+<button [sbbMenuTriggerFor]="animals" aria-label="Show animals" type="button">
+  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
+</button>
+<sbb-menu #animals="sbbMenu">
+  <button sbb-menu-item [sbbMenuTriggerFor]="vertebrates" type="button">Vertebrates</button>
+  <button sbb-menu-item [sbbMenuTriggerFor]="invertebrates" type="button">Invertebrates</button>
+</sbb-menu>
+
+<sbb-menu #vertebrates="sbbMenu">
+  <button sbb-menu-item [sbbMenuTriggerFor]="fish" type="button">Fishes</button>
+  <button sbb-menu-item [sbbMenuTriggerFor]="amphibians" type="button">Amphibians</button>
+  <button sbb-menu-item [sbbMenuTriggerFor]="reptiles" type="button">Reptiles</button>
+  <button sbb-menu-item type="button">Birds</button>
+  <button sbb-menu-item type="button">Mammals</button>
+</sbb-menu>
+
+<sbb-menu #invertebrates="sbbMenu">
+  <button sbb-menu-item type="button">Insects</button>
+  <button sbb-menu-item type="button">Molluscs</button>
+  <button sbb-menu-item type="button">Crustaceans</button>
+  <button sbb-menu-item type="button">Corals</button>
+  <button sbb-menu-item type="button">Arachnids</button>
+  <button sbb-menu-item type="button">Velvet worms</button>
+  <button sbb-menu-item type="button">Horseshoe crabs</button>
+</sbb-menu>
+
+<sbb-menu #fish="sbbMenu">
+  <button sbb-menu-item type="button">Baikal oilfish</button>
+  <button sbb-menu-item type="button">Bala shark</button>
+  <button sbb-menu-item type="button">Ballan wrasse</button>
+  <button sbb-menu-item type="button">Bamboo shark</button>
+  <button sbb-menu-item type="button">Banded killifish</button>
+</sbb-menu>
+
+<sbb-menu #amphibians="sbbMenu">
+  <button sbb-menu-item type="button">Sonoran desert toad</button>
+  <button sbb-menu-item type="button">Western toad</button>
+  <button sbb-menu-item type="button">Arroyo toad</button>
+  <button sbb-menu-item type="button">Yosemite toad</button>
+</sbb-menu>
+
+<sbb-menu #reptiles="sbbMenu">
+  <button sbb-menu-item type="button">Banded Day Gecko</button>
+  <button sbb-menu-item type="button">Banded Gila Monster</button>
+  <button sbb-menu-item type="button">Black Tree Monitor</button>
+  <button sbb-menu-item type="button">Blue Spiny Lizard</button>
+  <button sbb-menu-item type="button" disabled>Velociraptor</button>
+</sbb-menu>

@@ -120,8 +120,11 @@ export function SBB_ICON_REGISTRY_PROVIDER_FACTORY(
    *  - @sbb-esta/angular-public/tooltip: kom:circle-question-mark-small, kom:cross-small
    *  - @sbb-esta/angular-public/usermenu: kom:chevron-right-small, kom:chevron-small-down-small, kom:user-small
    *  - @sbb-esta/angular/accordion: kom:chevron-right-small, kom:minus-small, kom:plus-small
+   *  - @sbb-esta/angular/file-selector: kom:document-image-small, kom:document-pdf-small, kom:document-sound-small, kom:document-standard-small, kom:document-text-small, kom:document-video-small, kom:document-zip-small, kom:trash-small, kom:upload-small
+   *  - @sbb-esta/angular/menu: kom:chevron-small-right-small
    *  - @sbb-esta/angular/select: kom:chevron-right-small, kom:chevron-small-down-small
    *  - @sbb-esta/angular/sidebar: kom:arrow-right-small, kom:chevron-small-left-circle-small, kom:cross-small, kom:hamburger-menu-small
+   *  - @sbb-esta/angular/status: kom:cross-small, kom:exclamation-point-small, kom:tick-small
    */
   const registry =
     parentRegistry || new SbbIconRegistry(httpClient, sanitizer, document, errorHandler);

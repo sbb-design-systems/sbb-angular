@@ -1,0 +1,43 @@
+<ng-template>
+  <div
+    class="sbb-menu-panel-wrapper"
+    [id]="panelId"
+    [ngClass]="_classList"
+    (keydown)="_handleKeydown($event)"
+    (click)="closed.emit('click')"
+    [@transformMenu]="_panelAnimationState"
+    (@transformMenu.start)="_onAnimationStart($event)"
+    (@transformMenu.done)="_onAnimationDone($event)"
+    tabindex="-1"
+    role="menu"
+    [attr.aria-label]="ariaLabel || null"
+    [attr.aria-labelledby]="ariaLabelledby || null"
+    [attr.aria-describedby]="ariaDescribedby || null"
+    [class.sbb-menu-panel-type-default]="triggerContext?.type === 'default'"
+    [class.sbb-menu-panel-type-headless]="triggerContext?.type === 'headless'"
+  >
+    <ng-container *ngIf="triggerContext && triggerContext.type !== 'headless'">
+      <button
+        *ngIf="!triggerContext.templateContent"
+        type="button"
+        class="sbb-menu-panel-trigger"
+        [innerHTML]="triggerContext.elementContent"
+        aria-hidden="true"
+      ></button>
+      <button
+        *ngIf="triggerContext.templateContent"
+        type="button"
+        class="sbb-menu-panel-trigger"
+        aria-hidden="true"
+      >
+        <ng-template [ngTemplateOutlet]="triggerContext.templateContent"></ng-template>
+      </button>
+    </ng-container>
+    <div
+      class="sbb-panel sbb-panel-padded sbb-menu-panel sbb-menu-content sbb-scrollbar"
+      [class.sbb-menu-panel-root]="!parentMenu"
+    >
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-template>

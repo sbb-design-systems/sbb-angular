@@ -9,6 +9,10 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-option-group',
           replaceWith: 'sbb-optgroup',
         },
+        {
+          replace: 'sbb-dropdown',
+          replaceWith: 'sbb-menu',
+        },
       ],
     },
   ],

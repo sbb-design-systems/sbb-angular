@@ -6,25 +6,18 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "form-field",
+    name = "menu",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     assets = glob(["**/*.html"]),
-    module_name = "@sbb-esta/components-examples/angular/form-field",
+    module_name = "@sbb-esta/components-examples/angular/menu",
     deps = [
-        "//src/angular-public/datepicker",
-        "//src/angular-public/tooltip",
         "//src/angular/button",
-        "//src/angular/checkbox",
-        "//src/angular/core",
-        "//src/angular/form-field",
-        "//src/angular/select",
-        "//src/angular/time-input",
-        "@npm//@angular/common",
+        "//src/angular/icon",
+        "//src/angular/menu",
         "@npm//@angular/core",
-        "@npm//@angular/forms",
     ],
 )
 

@@ -1,0 +1,287 @@
+@import '../../angular/styles/common';
+
+$borderWidthStandard: 2;
+$borderWidthLean: 1;
+$triggerPadding: (36 - 24) / 2; // (Desired width - icon width) / 2
+
+// Prevent rendering sbb-menu as it can affect the flex layout.
+sbb-menu {
+  display: none;
+}
+
+.sbb-menu-panel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: pxToRem(150);
+  max-width: pxToRem(400);
+  outline: 0;
+
+  // Give the menu a minimum height so that the user can't
+  // collapse it to zero when they scroll away.
+  min-height: pxToRem(72);
+
+  // Prevent users from interacting with the panel while it's animating. Note that
+  // people won't be able to click through it, because the overlay pane will catch the click.
+  // This fixes the following issues:
+  //  * Users accidentally opening sub-menus when the `overlapTrigger` option is enabled.
+  //  * Users accidentally tapping on content inside the sub-menu on touch devices, if the
+  //    sub-menu overlaps the trigger. The issue is due to touch devices emulating the
+  //    `mouseenter` event by dispatching it on tap.
+  &.ng-animating {
+    pointer-events: none;
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      min-width: pxToRem(150 * $scalingFactor4k);
+      max-width: pxToRem(400 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      min-width: pxToRem(150 * $scalingFactor5k);
+      max-width: pxToRem(400 * $scalingFactor5k);
+    }
+  }
+}
+
+.sbb-menu-panel-above {
+  flex-direction: column-reverse;
+}
+
+.sbb-menu-panel-before {
+  align-items: flex-end;
+}
+
+.sbb-menu-panel {
+  border-top-style: solid;
+  width: 100%;
+
+  border-radius: pxToRem(2);
+  box-shadow: boxShadow(1, $borderWidthStandard, 1);
+  border-top-width: pxToRem($borderWidthStandard);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-radius: pxToRem(2 * $scalingFactor4k);
+      box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
+      border-top-width: pxToRem($borderWidthStandard * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      border-radius: pxToRem(2 * $scalingFactor5k);
+      box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k);
+      border-top-width: pxToRem($borderWidthStandard * $scalingFactor5k);
+    }
+  }
+
+  html.sbb-lean & {
+    box-shadow: boxShadow(1, $borderWidthLean, 1);
+    border-top-width: pxToRem($borderWidthLean);
+  }
+
+  button.sbb-menu-item {
+    width: 100%;
+  }
+}
+
+.sbb-menu-panel-root {
+  .sbb-menu-panel-type-default.sbb-menu-panel-before.sbb-menu-panel-below & {
+    border-top-right-radius: 0;
+  }
+  .sbb-menu-panel-type-default.sbb-menu-panel-before.sbb-menu-panel-above & {
+    border-bottom-right-radius: 0;
+  }
+  .sbb-menu-panel-type-default.sbb-menu-panel-after.sbb-menu-panel-below & {
+    border-top-left-radius: 0;
+  }
+  .sbb-menu-panel-type-default.sbb-menu-panel-after.sbb-menu-panel-above & {
+    border-bottom-left-radius: 0;
+  }
+}
+
+.sbb-menu-trigger-default.sbb-menu-trigger-root,
+.sbb-menu-panel-trigger {
+  display: inline-block;
+  background: none;
+  max-width: none;
+  min-width: 0;
+  border: none;
+  padding: pxToRem($triggerPadding);
+  outline: 0;
+  cursor: pointer;
+  color: $sbbColorBlack;
+  line-height: 0;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+
+  .sbb-icon {
+    width: pxToRem(24);
+    height: pxToRem(24);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        width: pxToRem(24 * $scalingFactor4k);
+        height: pxToRem(24 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        width: pxToRem(24 * $scalingFactor5k);
+        height: pxToRem(24 * $scalingFactor5k);
+      }
+    }
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding: pxToRem(6 * $scalingFactor4k);
+      border-width: pxToRem($borderWidthStandard * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(6 * $scalingFactor5k);
+      border-width: pxToRem($borderWidthStandard * $scalingFactor5k);
+    }
+  }
+}
+
+.sbb-menu-panel-trigger {
+  background-color: $sbbColorWhite;
+  position: relative;
+  z-index: 1;
+  padding: pxToRem($triggerPadding - $borderWidthStandard);
+  border: pxToRem($borderWidthStandard) solid $sbbColorGrey;
+  border-radius: pxToRem(2);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding: pxToRem(($triggerPadding - $borderWidthStandard) * $scalingFactor4k);
+      border-width: pxToRem($borderWidthStandard * $scalingFactor4k);
+      border-radius: pxToRem(2 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(($triggerPadding - $borderWidthStandard) * $scalingFactor5k);
+      border-width: pxToRem($borderWidthStandard * $scalingFactor5k);
+      border-radius: pxToRem(2 * $scalingFactor5k);
+    }
+  }
+
+  html.sbb-lean & {
+    padding: pxToRem($triggerPadding - $borderWidthLean);
+    border-width: pxToRem($borderWidthLean);
+    border-color: $sbbColorIron;
+  }
+
+  .sbb-menu-panel-below & {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-bottom: pxToRem($triggerPadding);
+    border-bottom-width: 0;
+
+    html:not(.sbb-lean) & {
+      border-bottom-width: 0; // Redefined to be more specific
+
+      @include mq($from: desktop4k) {
+        padding-bottom: pxToRem($triggerPadding * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-bottom: pxToRem($triggerPadding * $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      border-bottom-width: 0; // Redefined to be more specific
+    }
+  }
+  .sbb-menu-panel-above & {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-top: pxToRem($triggerPadding);
+    border-top-width: 0;
+
+    box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactorDefault);
+    html:not(.sbb-lean) & {
+      border-top-width: 0; // Redefined to be more specific
+
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem($triggerPadding * $scalingFactor4k);
+        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem($triggerPadding * $scalingFactor5k);
+        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      border-top-width: 0; // Redefined because of specificity
+      box-shadow: boxShadow(1, $borderWidthLean, $scalingFactorDefault);
+    }
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $sbbColorBlack;
+  }
+}
+
+.sbb-menu-panel-trigger + .sbb-menu-panel {
+  .sbb-menu-panel-below & {
+    top: pxToRem(-$borderWidthStandard);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        top: pxToRem(-$borderWidthStandard * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        top: pxToRem(-$borderWidthStandard * $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      top: pxToRem(-$borderWidthLean);
+    }
+  }
+
+  .sbb-menu-panel-above & {
+    top: pxToRem($borderWidthStandard);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        top: pxToRem($borderWidthStandard * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        top: pxToRem($borderWidthStandard * $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      top: pxToRem($borderWidthLean);
+    }
+  }
+}
+
+.sbb-menu-item-submenu-trigger {
+  // We have to overwrite typography styles
+  &,
+  html.sbb-lean &.sbb-menu-item {
+    padding-right: pxToRem(32);
+  }
+
+  html:not(.sbb-lean) &.sbb-menu-item {
+    @include mq($from: desktop4k) {
+      padding-right: pxToRem(32 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      padding-right: pxToRem(32 * $scalingFactor5k);
+    }
+  }
+}
+
+.sbb-menu-item-submenu-trigger-icon {
+  position: absolute;
+  right: 0;
+}
