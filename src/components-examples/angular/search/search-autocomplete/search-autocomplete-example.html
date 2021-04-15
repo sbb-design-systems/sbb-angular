@@ -1,0 +1,9 @@
+<sbb-search (search)="handleSearch($event)">
+  <input sbbInput [formControl]="searchControl" [sbbAutocomplete]="auto" />
+</sbb-search>
+<sbb-autocomplete #auto="sbbAutocomplete">
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option">{{ option }}</sbb-option>
+</sbb-autocomplete>
+
+<h4>Results</h4>
+<pre>{{ searchValues | json }}</pre>

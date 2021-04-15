@@ -1,0 +1,50 @@
+@import '../styles/common';
+
+.sbb-header-search {
+  display: inline-flex;
+  cursor: pointer;
+  color: $sbbColorMetal;
+  font-size: pxToRem(14);
+  line-height: pxToRem(17);
+  outline: none;
+  padding: pxToRem(12) 0;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(21);
+      line-height: pxToRem(25);
+      padding: pxToRem(12 * $scalingFactor4k) 0;
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(28);
+      line-height: pxToRem(34);
+      padding: pxToRem(12 * $scalingFactor5k) 0;
+    }
+  }
+  html.sbb-lean & {
+    padding: pxToRem(6) 0;
+  }
+}
+
+.sbb-header-search-label {
+  padding-left: pxToEm(8);
+  padding-top: pxToEm(4);
+
+  @include mq($to: tablet) {
+    @include sbbVisuallyHidden();
+  }
+}
+
+.sbb-header-search-overlay {
+  width: 100%;
+}
+
+.sbb-header-search-overlay .sbb-search {
+  width: 100%;
+  max-width: 100%;
+}

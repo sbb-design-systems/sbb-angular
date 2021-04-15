@@ -1,0 +1,8 @@
+<button sbbHeaderSearch>
+  <sbb-search (search)="handleSearch($event)">
+    <input sbbInput placeholder="Search" [formControl]="searchControl" />
+  </sbb-search>
+</button>
+
+<h4>Results</h4>
+<pre>{{ searchValues | json }}</pre>

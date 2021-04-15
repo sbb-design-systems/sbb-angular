@@ -134,3 +134,25 @@ the generic `<sbb-radio-button-panel-note>` wrapper.
 ```
 
 [Documentation](angular/components/radio-button-panel)
+
+### Search
+
+_Automatic migration available_
+
+The search component has been refactored as a wrapper for an input field.
+
+**Previous**
+
+```html
+<sbb-search placeholder="Search" [formControl]="searchControl"> </sbb-search>
+```
+
+**New**
+
+```html
+<sbb-search (search)="handleSearch($event)">
+  <input sbbInput [formControl]="searchControl" />
+</sbb-search>
+```
+
+[Documentation](angular/components/search)
