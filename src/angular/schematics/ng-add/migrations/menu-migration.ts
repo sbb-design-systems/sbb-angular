@@ -20,6 +20,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
   enabled: boolean = this.targetVersion === ('merge' as TargetVersion);
 
   private _contextmenus = new MigrationRecorderRegistry(this);
+  private _breadcrumbs = new MigrationRecorderRegistry(this);
   private _dropdowns = new MigrationRecorderRegistry(this);
   private _referenceNamesPerTemplate = new Map<ResolvedResource, string[]>();
 
@@ -32,6 +33,8 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     iterateNodes(template.content, async (node) => {
       if (nodeCheck(node).is('sbb-contextmenu')) {
         this._contextmenus.add(template, node);
+      } else if (nodeCheck(node).is('sbb-breadcrumb')) {
+        this._breadcrumbs.add(template, node);
       } else if (nodeCheck(node).is('sbb-dropdown')) {
         this._dropdowns.add(template, node);
       }
@@ -44,20 +47,29 @@ export class MenuMigration extends Migration<null, DevkitContext> {
   }
 
   postAnalysis() {
+    if (!this._dropdowns.empty) {
+      this.logger.info('Migrating sbb-dropdown usages');
+      this._dropdowns.forEach((e) => this._handleDropdown(e));
+    }
+
     if (!this._contextmenus.empty) {
       this.logger.info('Migrating sbb-contextmenu usages');
       this._contextmenus.forEach((e) => this._handleContextmenu(e));
     }
 
-    if (!this._dropdowns.empty) {
-      this.logger.info('Migrating sbb-dropdown usages');
-      this._dropdowns.forEach((e) => this._handleDropdown(e));
+    if (!this._breadcrumbs.empty) {
+      this.logger.info('Migrating sbb-breadcrumb usages');
+      this._breadcrumbs.forEach((e) => this._handleBreadcrumb(e));
     }
   }
 
   private _handleContextmenu(contextmenu: MigrationElement) {
     this._addIconModuleImport(contextmenu);
     this._addContextmenuTrigger(contextmenu);
+  }
+
+  private _handleBreadcrumb(breadcrumb: MigrationElement) {
+    this._addBreadcrumbTrigger(breadcrumb);
   }
 
   private _handleDropdown(dropdown: MigrationElement) {
@@ -89,16 +101,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
       );
       return;
     }
-    const dropdownReference = dropdown.findPropertyByValue('sbbDropdown');
-    let menuReferenceName = this._nextMenuReferenceName(contextmenu);
-
-    if (dropdownReference) {
-      dropdownReference.replaceValue('sbbMenu');
-      menuReferenceName = dropdownReference.attribute.name;
-    } else {
-      dropdown.appendProperty(menuReferenceName, 'sbbMenu');
-      this._referenceNamesPerTemplate.get(contextmenu.resource)!.push(menuReferenceName);
-    }
+    const menuReferenceName = this._setReferenceOnDropdown(dropdown, contextmenu);
 
     contextmenu.removeStartTag();
     contextmenu.removeEndTag();
@@ -109,8 +112,56 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     );
   }
 
-  private _nextMenuReferenceName(contextmenu: MigrationElement): string {
-    const existingNames = this._referenceNamesPerTemplate.get(contextmenu.resource);
+  private _addBreadcrumbTrigger(breadcrumb: MigrationElement) {
+    const dropdown = breadcrumb.findElements((node) => nodeCheck(node).is('sbb-dropdown'))[0];
+    if (dropdown) {
+      const menuReferenceName = this._nextMenuReferenceName(breadcrumb);
+      this._referenceNamesPerTemplate.get(breadcrumb.resource)!.push(menuReferenceName);
+
+      dropdown.remove();
+      const migratedDropdown = dropdown
+        .outerHtml()
+        .replace('<sbb-dropdown', `<sbb-menu ${menuReferenceName}="sbbMenu"`)
+        .replace('</sbb-dropdown', '</sbb-menu')
+        .replace(/routerLinkActive=["']sbb-selected["']/g, 'routerLinkActive="sbb-active"')
+        .replace(/sbbDropdownItem/g, 'sbb-menu-item');
+
+      breadcrumb.insertStart(
+        `\n<button [sbbMenuTriggerFor]="${menuReferenceName.substring(
+          1
+        )}"><ng-template sbbMenuDynamicTrigger>`
+      );
+
+      breadcrumb.insertBeforeEnd(`</ng-template></button>\n${migratedDropdown}\n`);
+    } else {
+      breadcrumb
+        .findElements((node) => nodeCheck(node).hasAttribute('routerLinkActive'))
+        .forEach((migrationElement) => {
+          const routerLinkActiveProperty = migrationElement.findProperty('routerLinkActive');
+          if (routerLinkActiveProperty?.nativeValue === 'sbb-selected') {
+            routerLinkActiveProperty!.replaceValue('sbb-active');
+          }
+        });
+    }
+  }
+
+  private _setReferenceOnDropdown(dropdown: MigrationElement, migrationElement: MigrationElement) {
+    const dropdownReference = dropdown.findPropertyByValue('sbbDropdown');
+    let menuReferenceName = this._nextMenuReferenceName(migrationElement);
+
+    if (dropdownReference) {
+      dropdownReference.replaceValue('sbbMenu');
+      menuReferenceName = dropdownReference.attribute.name;
+    } else {
+      dropdown.appendProperty(menuReferenceName, 'sbbMenu');
+      this._referenceNamesPerTemplate.get(migrationElement.resource)!.push(menuReferenceName);
+    }
+
+    return menuReferenceName;
+  }
+
+  private _nextMenuReferenceName(migrationElement: MigrationElement): string {
+    const existingNames = this._referenceNamesPerTemplate.get(migrationElement.resource);
     if (!existingNames?.includes('#menu')) {
       return '#menu';
     }

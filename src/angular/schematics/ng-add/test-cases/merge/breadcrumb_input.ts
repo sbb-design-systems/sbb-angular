@@ -12,18 +12,20 @@ import { SbbBreadcrumbModule, SbbDropdownModule, SbbIconModule } from '@sbb-esta
       </sbb-breadcrumb>
 
       <sbb-breadcrumb>
-        Level 1 with detail pages
-        <sbb-menu>
+        <sbb-dropdown>
           <a sbbDropdownItem routerLink="/level1" routerLinkActive="sbb-selected">Level 1</a>
           <a sbbDropdownItem routerLink="/level1b" routerLinkActive="sbb-selected">Level 1b</a>
-        </sbb-menu>
+        </sbb-dropdown>
+        Level 1 with detail pages
       </sbb-breadcrumb>
 
       <sbb-breadcrumb>
-        Level 2
-        <sbb-menu>
+        <span>Level</span>
+        <!-- I'm a comment -->
+        <sbb-dropdown>
           <a sbbDropdownItem routerLink="/level1/level2" routerLinkActive="sbb-selected">Level 2</a>
-        </sbb-menu>
+        </sbb-dropdown>
+        2
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
   `,
