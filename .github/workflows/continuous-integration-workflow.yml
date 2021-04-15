@@ -75,7 +75,8 @@ jobs:
         key: bazel-noop-${{ github.sha }}
         restore-keys: |
           bazel-merged-
-    - run: ls -la ~/.bazel-cache/sbb-angular
+    - run: ls -laR ~/.bazel-cache/sbb-angular
+    - run: du -h ~/.bazel-cache
     - name: "Bazel: Build"
       run: yarn -s build all
     - name: "Bazel: Clean bazel disk cache"
@@ -409,6 +410,7 @@ jobs:
         rm -f bazel-cache-showcase-merge.tar.zst
     - run: ls -la ~/.bazel-cache/
     - run: ls -la ~/.bazel-cache/sbb-angular
+    - run: du -h ~/.bazel-cache
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ always() }}
       run: yarn -s bazel:cache clean --maxSize 750MB --individualMaxSize=20MB
