@@ -408,4 +408,4 @@ jobs:
         rm -f bazel-cache-showcase-merge.tar.zst
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ always() }}
-      run: yarn -s bazel:cache clean --maxSize 500MB --individualMaxSize=20MB
+      run: yarn -s bazel:cache clean --maxSize 750MB --individualMaxSize=20MB
