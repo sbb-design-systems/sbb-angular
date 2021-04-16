@@ -175,3 +175,22 @@ $sbbColorCallToAction: $sbbColorRed;
 $sbbColorCallToActionHover: $sbbColorRed125;
 $sbbColorError: $sbbColorRed;
 $sbbColorText: $sbbColorBlack;
+
+/**
+ * Icons
+ *
+ * Basically icons should embedded by using sbb-icon.
+ * Due to various styling reasons there are some copied exceptions which are listed here.
+ */
+
+// Chevron-right-small rotated and with color #686868 (granite) applied
+$sbbIconChevronRightSmallRotatedDownGranite: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY4Njg2OCIgcG9pbnRzPSI0IDggMTIgMTYgMjAgOCI+PC9wb2x5bGluZT4KPC9zdmc+';
+
+// Chevron-small-down-small with color #666 (grey) applied
+$sbbIconChevronSmallDownSmallGrey: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBwb2ludHM9IjguMDkyIDEwLjM1IDExLjk5NiAxNC4zIDE1LjkgMTAuMzUyIi8+Cjwvc3ZnPg==';
+
+// Chevron-small-right-small color #686868 (granite) applied
+$sbbIconChevronSmallRightSmallGranite: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4K';
+
+// Chevron-small-right-small color #cdcdcd (platinum) applied
+$sbbIconChevronSmallRightSmallPlatinum: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2RjZGNkIiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4=';

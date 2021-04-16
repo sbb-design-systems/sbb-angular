@@ -694,17 +694,13 @@ select {
   -moz-appearance: none;
   -webkit-appearance: none;
   position: relative;
-  background-color: transparent;
   display: inline-flex;
   box-sizing: border-box;
   padding-right: pxToEm(44);
 
   // Custom select expand icon
   align-items: center;
-  // icon chevron-small-down-small with color #666 applied
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBwb2ludHM9IjguMDkyIDEwLjM1IDExLjk5NiAxNC4zIDE1LjkgMTAuMzUyIi8+Cjwvc3ZnPg==')
-    no-repeat;
-  background-position: center right pxToEm(9);
+  background: transparent url($sbbIconChevronSmallDownSmallGrey) no-repeat center right pxToEm(9);
   background-size: pxToRem(24) pxToRem(24);
 
   html:not(.sbb-lean) & {
@@ -718,8 +714,7 @@ select {
   html.sbb-lean & {
     padding-right: pxToRem(38);
     background-position: center right pxToRem(6);
-    // icon chevron-right-small rotated and with color #686868 applied
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY4Njg2OCIgcG9pbnRzPSI0IDggMTIgMTYgMjAgOCI+PC9wb2x5bGluZT4KPC9zdmc+');
+    background-image: url($sbbIconChevronRightSmallRotatedDownGranite);
   }
 
   &::-ms-expand {
