@@ -40,7 +40,6 @@
   },
   "include": [
     "src/**/*.ts",
-    "e2e/**/*.ts",
     "schematics/**/*.ts",
     "test/**/*.ts",
     "tools/**/*.ts",

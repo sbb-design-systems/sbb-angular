@@ -153,15 +153,6 @@ function applyPatches() {
     'node_modules/@angular/bazel/src/ng_module.bzl'
   );
 
-  // Fix ng_package until version 12 of @angular/bazel is used
-  // TODO: Remove after Angular 12 upgrade
-  searchAndReplace(
-    'name = "rollup_for_ng_package",',
-    `name = "rollup_for_ng_package",
-    templated_args = ["--bazel_patch_module_resolver"],`,
-    'node_modules/@angular/bazel/src/ng_package/BUILD.bazel'
-  );
-
   // More info in https://github.com/angular/angular/pull/33786
   shelljs.rm('-rf', [
     'node_modules/rxjs/add/',
