@@ -1,0 +1,35 @@
+@import './tabs';
+
+@include paginated-tab-header;
+@include paginated-tab-header-shadows;
+
+.sbb-tab-links {
+  @include paginated-tab-header-item-wrapper('.sbb-tab-link-container');
+}
+
+.sbb-tab-link-container {
+  @include paginated-tab-header-container;
+}
+
+// Wraps each link in the header
+.sbb-tab-link {
+  @include tab-label;
+  vertical-align: top;
+  text-decoration: none; // Removes anchor underline styling
+  position: relative;
+  overflow: hidden; // Keeps the ripple from extending outside the element bounds
+  -webkit-tap-highlight-color: transparent;
+
+  [sbb-stretch-tabs] & {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  &.sbb-tab-disabled {
+    // We use `pointer-events` to make the element unclickable when it's disabled, rather than
+    // preventing the default action through JS, because we can't prevent the action reliably
+    // due to other directives potentially registering their events earlier. This shouldn't cause
+    // the user to click through, because we always have a `.sbb-tab-links` behind the link.
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,17 @@
+@import './tabs';
+
+@include paginated-tab-header-shadows;
+
+.sbb-tab-labels {
+  @include paginated-tab-header-item-wrapper('.sbb-tab-header');
+}
+
+.sbb-tab-label-container {
+  @include paginated-tab-header-container;
+}
+
+// Wraps each tab label
+.sbb-tab-label {
+  @include tab-label;
+  position: relative;
+}

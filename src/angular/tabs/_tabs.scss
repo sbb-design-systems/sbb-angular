@@ -1,0 +1,211 @@
+@import '../styles/common';
+
+$tabsHoverColor: $sbbColorRed125;
+$tabsFontSize: 20;
+
+$tab-bar-height: 48px !default;
+$tab-animation-duration: 500ms !default;
+
+// Mixin styles for labels that are contained within the tab header.
+@mixin tab-label {
+  margin-right: pxToRem(18);
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  font-family: $fontSbbLight;
+  font-size: pxToRem(20);
+  line-height: 1em;
+  padding-bottom: pxToRem(20);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: tablet) {
+      margin-right: pxToRem(42);
+      font-size: pxToRem(26);
+    }
+    @include mq($from: desktop4k) {
+      margin-right: pxToRem(52.5);
+      font-size: pxToRem(39);
+    }
+    @include mq($from: desktop5k) {
+      margin-right: pxToRem(63);
+      font-size: pxToRem(52);
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: pxToRem(1);
+      border-bottom: pxToRem(1) solid $sbbColorBlack;
+      transition: width 0.3s, left 0.3s;
+
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      background: green;
+    }
+  }
+
+  html.sbb-lean & {
+    font-size: pxToRem(15);
+    padding-bottom: 0;
+  }
+
+  &:last-child {
+    margin-right: 0 !important;
+  }
+
+  &.sbb-tab-label-active,
+  &:not(.sbb-tab-label-active):focus,
+  &:not(.sbb-tab-label-active):hover {
+    html:not(.sbb-lean) & {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &:not(.sbb-tab-label-active):focus,
+  &:not(.sbb-tab-label-active):hover {
+    color: $tabsHoverColor;
+
+    html:not(.sbb-lean) & {
+      &::after {
+        border-bottom-color: $sbbColorRed125;
+      }
+    }
+  }
+
+  &.sbb-tab-label-active:hover,
+  &.sbb-tab-label-active:focus {
+    color: currentColor;
+    cursor: default;
+
+    html.sbb-lean & {
+      &::after {
+        border-bottom-color: currentColor;
+      }
+    }
+  }
+
+  &.sbb-tab-disabled {
+    color: $sbbColorStorm;
+
+    &:hover,
+    &:focus {
+      color: $sbbColorStorm;
+      cursor: default;
+    }
+
+    html:not(.sbb-lean) & {
+      &::after {
+        // TODO: ask how to do it without !important
+        width: 0 !important;
+      }
+    }
+  }
+
+  .sbb-tab-label-content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    position: relative;
+  }
+}
+
+// Structural styles for a tab header. Used by both `sbb-tab-header` and `sbb-tab-nav-bar`.
+@mixin paginated-tab-header {
+  .sbb-tab-header {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .sbb-tab-list {
+    flex-grow: 1;
+    position: relative;
+    transition: transform 500ms cubic-bezier(0.35, 0, 0.25, 1);
+  }
+}
+
+// Styles for scrolling state shadows.
+@mixin paginated-tab-header-shadows {
+  .sbb-tab-header {
+    position: relative;
+
+    html:not(.sbb-lean) & {
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        content: '';
+        z-index: 2;
+        width: pxToRem(12);
+        height: calc(100% - 0.5rem);
+        transition: transform 0.25s ease;
+
+        @include mq($from: tablet) {
+          width: pxToRem(24);
+        }
+        @include mq($from: desktop4k) {
+          width: pxToRem(36);
+        }
+        @include mq($from: desktop4k) {
+          width: pxToRem(48);
+        }
+      }
+
+      &::before {
+        left: 0;
+        transform: translateX(-100%);
+        background: linear-gradient(270deg, hsla(0, 0%, 100%, 0.37) 0, $sbbColorWhite);
+      }
+
+      &.sbb-tab-header-left-shadow::before {
+        transform: translateX(0);
+      }
+
+      &::after {
+        right: 0;
+        transform: translateX(100%);
+        background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.37) 0, $sbbColorWhite);
+      }
+
+      &.sbb-tab-header-right-shadow::after {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+// Structural styles for the element that wraps the paginated header items.
+@mixin paginated-tab-header-item-wrapper($parent) {
+  display: flex;
+
+  // We need to set the parent here explicitly, in order to prevent the alignment
+  // from any parent tab groups from propagating down to the children when nesting.
+  [sbb-align-tabs='center'] > #{$parent} & {
+    justify-content: center;
+  }
+
+  [sbb-align-tabs='end'] > #{$parent} & {
+    justify-content: flex-end;
+  }
+}
+
+@mixin paginated-tab-header-container {
+  display: flex;
+  position: relative;
+  flex-grow: 1;
+  overflow-x: auto;
+  z-index: 1;
+  padding-bottom: 20px;
+}

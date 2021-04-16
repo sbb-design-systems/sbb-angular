@@ -1,0 +1,17 @@
+<div
+  class="sbb-tab-label-container sbb-scrollbar"
+  #tabListContainer
+  (keydown)="_handleKeydown($event)"
+>
+  <div
+    #tabList
+    class="sbb-tab-list"
+    [class._sbb-animation-noopable]="_animationMode === 'NoopAnimations'"
+    role="tablist"
+    (cdkObserveContent)="_onContentChanges()"
+  >
+    <div class="sbb-tab-labels">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
