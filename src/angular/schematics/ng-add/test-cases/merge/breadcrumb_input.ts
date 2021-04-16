@@ -6,7 +6,7 @@ import { SbbBreadcrumbModule, SbbDropdownModule, SbbIconModule } from '@sbb-esta
   template: `
     <sbb-breadcrumbs>
       <sbb-breadcrumb>
-        <a routerLink="/" routerLinkActive="sbb-selected">
+        <a routerLink="/" routerLinkActive="sbb-selected" aria-label="Back to the homepage">
           <sbb-icon svgIcon="kom:house-small"></sbb-icon>
         </a>
       </sbb-breadcrumb>

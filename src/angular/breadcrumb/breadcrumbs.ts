@@ -1,34 +1,28 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import { take } from 'rxjs/operators';
 
-import { SbbBreadcrumb, SBB_BREADCRUMB_PARENT_COMPONENT } from './breadcrumb';
+import { SbbBreadcrumb } from './breadcrumb';
 
 @Component({
   selector: 'sbb-breadcrumbs',
+  exportAs: 'sbbBreadcrumbs',
   templateUrl: './breadcrumbs.html',
   styleUrls: ['./breadcrumbs.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: SBB_BREADCRUMB_PARENT_COMPONENT,
-      useExisting: SbbBreadcrumbs,
-    },
-  ],
   host: {
     class: 'sbb-breadcrumbs',
+    role: 'navigation',
     '[class.sbb-breadcrumbs-expanded]': 'this.expanded',
+    'aria-label': 'Breadcrumb',
   },
 })
-export class SbbBreadcrumbs implements AfterViewInit {
+export class SbbBreadcrumbs {
   /** Refers to BreadcrumbComponents instance. */
   @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;
 
@@ -37,18 +31,12 @@ export class SbbBreadcrumbs implements AfterViewInit {
     if (this.levels.length > 2) {
       return this._expanded;
     }
+    // If there is only the home icon and one level, always display all breadcrumb entries
     return true;
   }
   private _expanded = false;
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
-
-  ngAfterViewInit() {
-    if (this.levels && this.levels.first) {
-      this.levels.first.expandEvent.pipe(take(1)).subscribe(() => {
-        this._expanded = true;
-        this._changeDetectorRef.markForCheck();
-      });
-    }
+  expand() {
+    this._expanded = true;
   }
 }

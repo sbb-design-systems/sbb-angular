@@ -11,15 +11,15 @@ On any page where the user should be able to quickly navigate to a sister or par
 ```html
 <sbb-breadcrumbs>
   <sbb-breadcrumb>
-    <a routerLink="/" routerLinkActive="sbb-selected">
+    <a routerLink="/" routerLinkActive="sbb-active" aria-label="Back to the homepage">
       <sbb-icon svgIcon="kom:house-small"></sbb-icon>
     </a>
   </sbb-breadcrumb>
   <sbb-breadcrumb>
-    <a routerLink="/level1" routerLinkActive="sbb-selected">Level 1</a>
+    <a routerLink="/level1" routerLinkActive="sbb-active">Level 1</a>
   </sbb-breadcrumb>
   <sbb-breadcrumb>
-    <a routerLink="/level1/level2" routerLinkActive="sbb-selected">Level 2</a>
+    <a routerLink="/level1/level2" routerLinkActive="sbb-active">Level 2</a>
   </sbb-breadcrumb>
 </sbb-breadcrumbs>
 ```
@@ -29,27 +29,31 @@ On any page where the user should be able to quickly navigate to a sister or par
 ```html
 <sbb-breadcrumbs>
   <sbb-breadcrumb>
-    <a routerLink="/" routerLinkActive="sbb-selected">
+    <a routerLink="/" routerLinkActive="sbb-active" aria-label="Back to the homepage">
       <sbb-icon svgIcon="kom:house-small"></sbb-icon>
     </a>
   </sbb-breadcrumb>
 
   <sbb-breadcrumb>
-    Level 1 with detail pages
-    <sbb-dropdown>
-      <a sbbDropdownItem routerLink="/level1" routerLinkActive="sbb-selected">Level 1</a>
-      <a sbbDropdownItem routerLink="/level1b" routerLinkActive="sbb-selected">Level 1b</a>
-    </sbb-dropdown>
+    <button [sbbMenuTriggerFor]="menu">
+      <ng-template sbbMenuDynamicTrigger>Level 1 with detail pages</ng-template>
+    </button>
+    <sbb-menu #menu="sbbMenu">
+      <a sbb-menu-item routerLink="/level1" routerLinkActive="sbb-active">Level 1</a>
+      <a sbb-menu-item routerLink="/level1b" routerLinkActive="sbb-active">Level 1b</a>
+    </sbb-menu>
   </sbb-breadcrumb>
 
   <sbb-breadcrumb>
-    Level 2
-    <sbb-dropdown>
-      <a sbbDropdownItem routerLink="/level1/level2" routerLinkActive="sbb-selected">Level 2</a>
-      <a sbbDropdownItem routerLink="/level1/level2b" routerLinkActive="sbb-selected"
+    <button [sbbMenuTriggerFor]="menu2">
+      <ng-template sbbMenuDynamicTrigger>Level 2</ng-template>
+    </button>
+    <sbb-menu #menu2="sbbMenu">
+      <a sbb-menu-item routerLink="/level1/level2" routerLinkActive="sbb-active">Level 2</a>
+      <a sbb-menu-item routerLink="/level1/level2b" routerLinkActive="sbb-active"
         >Level 2 with detail pages</a
       >
-    </sbb-dropdown>
+    </sbb-menu>
   </sbb-breadcrumb>
 </sbb-breadcrumbs>
 ```

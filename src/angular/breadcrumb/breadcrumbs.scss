@@ -1,27 +1,190 @@
 @import '../styles/common';
 
-$breadcrumbHeight: 48;
+$breadcrumbHeightDesktop: 48;
+$breadcrumbLabelHeightDesktop: 24;
 
 .sbb-breadcrumbs {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  min-height: toPx($breadcrumbHeight);
+  padding-bottom: pxToRem(12);
 
-  @include mq($from: desktop4k) {
-    min-height: toPx($breadcrumbHeight * $scalingFactor4k);
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding-bottom: pxToRem(12 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      padding-bottom: pxToRem(12 * $scalingFactor5k);
+    }
+  }
+}
+
+.sbb-breadcrumb {
+  display: none;
+  align-items: center;
+  order: 1;
+  margin-top: pxToRem(12);
+  margin-right: pxToRem(6);
+
+  @include mq($from: tabletPortrait) {
+    display: flex;
   }
 
-  @include mq($from: desktop5k) {
-    min-height: toPx($breadcrumbHeight * $scalingFactor5k);
+  .sbb-breadcrumbs-expanded & {
+    display: flex;
   }
 
-  &-expanded {
-    .sbb-breadcrumb {
-      display: flex;
+  // Last user defined breadcrumb
+  &:nth-last-child(2) {
+    display: flex;
+    margin-right: 0;
+  }
+
+  // Home icon
+  &:first-child {
+    order: 0;
+    display: flex;
+
+    a {
+      height: pxToRem($breadcrumbLabelHeightDesktop);
+      width: pxToRem(24);
+
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          height: pxToRem($breadcrumbLabelHeightDesktop * $scalingFactor4k);
+          width: pxToRem(24 * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          height: pxToRem($breadcrumbLabelHeightDesktop * $scalingFactor5k);
+          width: pxToRem(24 * $scalingFactor5k);
+        }
+      }
     }
-    .sbb-breadcrumb-dots {
-      display: none;
+  }
+
+  // Arrow between breadcrumb entries
+  & + .sbb-breadcrumb {
+    &::before {
+      content: '';
+      display: inline-block;
+      // icon kom:chevron-small-right-small color #cdcdcd applied
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2RjZGNkIiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4=')
+        no-repeat center;
+      background-size: pxToRem(24) pxToRem(24);
+      width: pxToRem(24);
+      height: pxToRem(24);
+      margin-right: pxToRem(6);
+
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          background-size: pxToRem(24 * $scalingFactor4k) pxToRem(24 * $scalingFactor4k);
+          width: pxToRem(24 * $scalingFactor4k);
+          height: pxToRem(24 * $scalingFactor4k);
+          margin-right: pxToRem(6 * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          background-size: pxToRem(24 * $scalingFactor5k) pxToRem(24 * $scalingFactor5k);
+          width: pxToRem(24 * $scalingFactor5k);
+          height: pxToRem(24 * $scalingFactor5k);
+          margin-right: pxToRem(6 * $scalingFactor5k);
+        }
+      }
+
+      html.sbb-lean & {
+        // icon kom:chevron-small-right-small color #686868 applied
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4K');
+        margin-right: pxToRem(4);
+      }
     }
+  }
+
+  a,
+  button,
+  .sbb-menu-trigger-default.sbb-menu-trigger-root {
+    @include buttonResetFrameless();
+    outline: 0;
+    white-space: nowrap;
+    font-family: $fontSbbRoman;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    font-size: pxToRem(13);
+    line-height: pxToRem(20);
+    color: $sbbColorGrey;
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+
+    // Display: inline-flex solves a sizing issue on IE11 and Legacy Edge TODO
+    .sbb-icon {
+      display: inline-flex;
+    }
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        font-size: pxToRem(20);
+        line-height: pxToRem(24);
+        padding: 0;
+      }
+      @include mq($from: desktop5k) {
+        font-size: pxToRem(26);
+        line-height: pxToRem(31);
+        padding: 0;
+      }
+    }
+
+    html.sbb-lean & {
+      color: $sbbColorGranite;
+      line-height: pxToRem(16);
+
+      &:hover,
+      &:focus {
+        color: $sbbColorRed125;
+      }
+    }
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      margin-top: pxToRem(12 * $scalingFactor4k);
+      margin-right: pxToRem(6 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      margin-top: pxToRem(12 * $scalingFactor5k);
+      margin-right: pxToRem(6 * $scalingFactor5k);
+    }
+  }
+
+  html.sbb-lean & {
+    margin-right: pxToRem(4);
+
+    // Last user defined breadcrumb
+    &:nth-last-child(2) {
+      &,
+      a,
+      button {
+        color: $sbbColorBlack;
+
+        &:hover,
+        &:focus {
+          color: $sbbColorRed125;
+        }
+      }
+    }
+  }
+}
+
+.sbb-breadcrumb-dots {
+  display: flex;
+  order: 0;
+
+  .sbb-breadcrumbs-expanded & {
+    display: none;
+  }
+
+  @include mq($from: tabletPortrait) {
+    display: none;
   }
 }

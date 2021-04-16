@@ -22,7 +22,12 @@ import { SbbBreadcrumbs } from './breadcrumbs';
   template: `
     <sbb-breadcrumbs>
       <sbb-breadcrumb>
-        <a routerLink="." [queryParams]="{ level: 'home' }" routerLinkActive="sbb-selected">
+        <a
+          routerLink="."
+          [queryParams]="{ level: 'home' }"
+          routerLinkActive="sbb-selected"
+          aria-label="Back to the homepage"
+        >
           <sbb-icon svgIcon="kom:house-small"></sbb-icon>
         </a>
       </sbb-breadcrumb>
@@ -42,7 +47,12 @@ export class BreadcrumbsTestComponent {}
   template: `
     <sbb-breadcrumbs>
       <sbb-breadcrumb>
-        <a routerLink="." [queryParams]="{ level: 'home' }" routerLinkActive="sbb-selected">
+        <a
+          routerLink="."
+          [queryParams]="{ level: 'home' }"
+          routerLinkActive="sbb-selected"
+          aria-label="Back to the homepage"
+        >
           <sbb-icon svgIcon="kom:house-small"></sbb-icon>
         </a>
       </sbb-breadcrumb>
@@ -96,7 +106,7 @@ export class BreadcrumbsTest2Component {}
   template: `
     <sbb-breadcrumbs>
       <sbb-breadcrumb>
-        <a routerLink="." [queryParams]="{ level: 'home' }">
+        <a routerLink="." [queryParams]="{ level: 'home' }" aria-label="Back to the homepage">
           <sbb-icon svgIcon="kom:house-small"></sbb-icon>
         </a>
       </sbb-breadcrumb>
