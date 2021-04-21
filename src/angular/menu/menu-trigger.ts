@@ -66,13 +66,7 @@ export interface SbbMenuInheritedTriggerContext {
   xPosition?: SbbMenuPositionX;
   yPosition?: SbbMenuPositionY;
   xOffset?: number;
-  xOffset4k?: number;
-  xOffset5k?: number;
   yOffset?: number;
-  yOffset4kTop?: number;
-  yOffset4kBottom?: number;
-  yOffset5kTop?: number;
-  yOffset5kBottom?: number;
 }
 
 /** Injection token for SbbMenuInheritedTriggerContext */
@@ -222,7 +216,7 @@ export class SbbMenuTrigger
   @ContentChild(SbbMenuDynamicTrigger, { read: TemplateRef })
   _triggerContent: TemplateRef<any>;
 
-  private _activeBreakpoint?: string;
+  private _scalingFactor: number = 1;
 
   constructor(
     private _overlay: Overlay,
@@ -257,14 +251,14 @@ export class SbbMenuTrigger
     this._breakpointSubscription = this._breakpointObserver
       .observe([Breakpoints.Desktop4k, Breakpoints.Desktop5k])
       .subscribe((result: BreakpointState) => {
-        this._activeBreakpoint = undefined;
+        this._scalingFactor = 1;
 
         if (result.matches) {
           if (result.breakpoints[Breakpoints.Desktop4k]) {
-            this._activeBreakpoint = Breakpoints.Desktop4k;
+            this._scalingFactor = SCALING_FACTOR_4K;
           }
           if (result.breakpoints[Breakpoints.Desktop5k]) {
-            this._activeBreakpoint = Breakpoints.Desktop5k;
+            this._scalingFactor = SCALING_FACTOR_5K;
           }
         }
       });
@@ -560,48 +554,14 @@ export class SbbMenuTrigger
     let [overlayX, overlayFallbackX] = [originX, originFallbackX];
 
     let offsetX = this._inheritedTriggerContext?.xOffset || 0;
-    let offsetYTop = this._inheritedTriggerContext?.yOffset || 0;
-    let offsetYBottom = this._inheritedTriggerContext?.yOffset || 0;
-    if (this.variant.value === 'standard') {
-      if (this._activeBreakpoint === Breakpoints.Desktop4k) {
-        if (this._inheritedTriggerContext?.xOffset4k) {
-          offsetX = this._inheritedTriggerContext?.xOffset4k;
-        }
-        if (this._inheritedTriggerContext?.yOffset4kTop) {
-          offsetYTop = this._inheritedTriggerContext?.yOffset4kTop;
-        }
-        if (this._inheritedTriggerContext?.yOffset4kBottom) {
-          offsetYBottom = this._inheritedTriggerContext?.yOffset4kBottom;
-        }
-      }
-      if (this._activeBreakpoint === Breakpoints.Desktop5k) {
-        if (this._inheritedTriggerContext?.xOffset5k) {
-          offsetX = this._inheritedTriggerContext?.xOffset5k;
-        }
-        if (this._inheritedTriggerContext?.yOffset5kTop) {
-          offsetYTop = this._inheritedTriggerContext?.yOffset5kTop;
-        }
-        if (this._inheritedTriggerContext?.yOffset5kBottom) {
-          offsetYBottom = this._inheritedTriggerContext?.yOffset5kBottom;
-        }
-      }
-    }
+    let offsetY = this._inheritedTriggerContext?.yOffset || 0;
 
     if (this.triggersSubmenu()) {
       // When the menu is a sub-menu, it should always align itself
       // to the edges of the trigger, instead of overlapping it.
       overlayFallbackX = originX = this.menu.xPosition === 'before' ? 'start' : 'end';
       originFallbackX = overlayX = originX === 'end' ? 'start' : 'end';
-
       offsetX = -SUBMENU_PANEL_LEFT_OVERLAP;
-      if (this.variant.value === 'standard') {
-        if (this._activeBreakpoint === Breakpoints.Desktop4k) {
-          offsetX = -SUBMENU_PANEL_LEFT_OVERLAP * SCALING_FACTOR_4K;
-        }
-        if (this._activeBreakpoint === Breakpoints.Desktop5k) {
-          offsetX = -SUBMENU_PANEL_LEFT_OVERLAP * SCALING_FACTOR_5K;
-        }
-      }
     } else if (!this.menu.overlapTrigger) {
       originY = overlayY === 'top' ? 'bottom' : 'top';
       originFallbackY = overlayFallbackY === 'top' ? 'bottom' : 'top';
@@ -609,8 +569,13 @@ export class SbbMenuTrigger
 
     // Set sign whether panel is above, below, before or after
     offsetX = offsetX * (overlayX === 'end' ? -1 : 1);
-    offsetYTop = offsetYTop * (overlayY === 'bottom' ? -1 : 1);
-    offsetYBottom = offsetYBottom * (overlayY === 'bottom' ? -1 : 1);
+    offsetY = offsetY * (overlayY === 'bottom' ? -1 : 1);
+
+    // Apply scaling factor if variant is standard
+    if (this.variant.value === 'standard') {
+      offsetX = offsetX * this._scalingFactor;
+      offsetY = offsetY * this._scalingFactor;
+    }
 
     positionStrategy.withPositions([
       {
@@ -618,7 +583,7 @@ export class SbbMenuTrigger
         originY,
         overlayX,
         overlayY,
-        offsetY: offsetYTop,
+        offsetY,
         offsetX,
       },
       {
@@ -626,7 +591,7 @@ export class SbbMenuTrigger
         originY,
         overlayX: overlayFallbackX,
         overlayY,
-        offsetY: offsetYTop,
+        offsetY,
         offsetX: -offsetX,
       },
       {
@@ -634,7 +599,7 @@ export class SbbMenuTrigger
         originY: originFallbackY,
         overlayX,
         overlayY: overlayFallbackY,
-        offsetY: -offsetYBottom,
+        offsetY: -offsetY,
         offsetX: offsetX,
       },
       {
@@ -642,7 +607,7 @@ export class SbbMenuTrigger
         originY: originFallbackY,
         overlayX: overlayFallbackX,
         overlayY: overlayFallbackY,
-        offsetY: -offsetYBottom,
+        offsetY: -offsetY,
         offsetX: -offsetX,
       },
     ]);

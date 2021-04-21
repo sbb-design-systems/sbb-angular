@@ -25,6 +25,7 @@ $breadcrumbLabelHeightDesktop: 24;
   order: 1;
   margin-top: pxToRem(12);
   margin-right: pxToRem(6);
+  max-width: 100%;
 
   @include mq($from: tabletPortrait) {
     display: flex;
@@ -72,6 +73,7 @@ $breadcrumbLabelHeightDesktop: 24;
       width: pxToRem(24);
       height: pxToRem(24);
       margin-right: pxToRem(6);
+      flex-shrink: 0;
 
       html:not(.sbb-lean) & {
         @include mq($from: desktop4k) {
@@ -156,25 +158,22 @@ $breadcrumbLabelHeightDesktop: 24;
   font-size: pxToRem(13);
   line-height: pxToRem(20);
   color: $sbbColorGrey;
+  text-align: left;
+  @include ellipsis;
 
   &:hover,
   &:focus {
     color: $sbbColorRed125;
   }
 
-  // Display: inline-flex solves a sizing issue on IE11 and Legacy Edge TODO
-  .sbb-icon {
-    display: inline-flex;
-  }
-
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(20);
-      line-height: pxToRem(24);
+      line-height: pxToRem(30);
     }
     @include mq($from: desktop5k) {
       font-size: pxToRem(26);
-      line-height: pxToRem(31);
+      line-height: pxToRem(40);
     }
   }
 
@@ -192,13 +191,6 @@ $breadcrumbLabelHeightDesktop: 24;
 .sbb-menu-panel-trigger {
   $triggerPaddingX: 30;
   $triggerPaddingY: 14;
-
-  $triggerPaddingYTop4k: 24;
-  $triggerPaddingYBottom4k: 16;
-
-  $triggerPaddingYTop5k: 28;
-  $triggerPaddingYBottom5k: 33;
-
   $borderWidthStandard: 2;
   $borderWidthLean: 1;
 
@@ -206,17 +198,16 @@ $breadcrumbLabelHeightDesktop: 24;
     padding: pxToRem($triggerPaddingY - $borderWidthStandard)
       pxToRem($triggerPaddingX - $borderWidthStandard);
     color: $sbbColorRed125;
+    width: 100%;
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        padding: pxToRem(($triggerPaddingYTop4k - $borderWidthStandard * $scalingFactor4k))
-          pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor4k)
-          pxToRem(($triggerPaddingYBottom4k - $borderWidthStandard * $scalingFactor4k));
+        padding: pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor4k)
+          pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        padding: pxToRem(($triggerPaddingYTop5k - $borderWidthStandard * $scalingFactor5k))
-          pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor5k)
-          pxToRem(($triggerPaddingYBottom5k - $borderWidthStandard * $scalingFactor5k));
+        padding: pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor5k)
+          pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor5k);
       }
     }
 
@@ -232,11 +223,11 @@ $breadcrumbLabelHeightDesktop: 24;
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        padding-bottom: pxToRem($triggerPaddingYBottom4k);
+        padding-bottom: pxToRem($triggerPaddingY * $scalingFactor4k);
         box-shadow: horizontalBorderBoxShadow(1, $borderWidthStandard, $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        padding-bottom: pxToRem($triggerPaddingYBottom5k);
+        padding-bottom: pxToRem($triggerPaddingY * $scalingFactor5k);
         box-shadow: horizontalBorderBoxShadow(1, $borderWidthStandard, $scalingFactor5k);
       }
     }
@@ -252,12 +243,12 @@ $breadcrumbLabelHeightDesktop: 24;
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        padding-top: pxToRem($triggerPaddingYTop4k);
+        padding-top: pxToRem($triggerPaddingY * $scalingFactor4k);
         box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k),
           horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        padding-top: pxToRem($triggerPaddingYTop5k);
+        padding-top: pxToRem($triggerPaddingY * $scalingFactor5k);
         box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k),
           horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor5k);
       }
