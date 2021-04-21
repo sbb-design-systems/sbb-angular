@@ -15,6 +15,7 @@
     [attr.aria-describedby]="ariaDescribedby || null"
     [class.sbb-menu-panel-type-default]="triggerContext?.type === 'default'"
     [class.sbb-menu-panel-type-headless]="triggerContext?.type === 'headless'"
+    [class.sbb-menu-panel-type-breadcrumb]="triggerContext?.type === 'breadcrumb'"
   >
     <ng-container *ngIf="triggerContext && triggerContext.type !== 'headless'">
       <button

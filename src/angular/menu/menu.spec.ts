@@ -53,11 +53,7 @@ import {
   SbbMenuTrigger,
   SBB_MENU_DEFAULT_OPTIONS,
 } from './index';
-import {
-  MENU_PANEL_TOP_PADDING,
-  SbbMenuTriggerContext,
-  SBB_MENU_SCROLL_STRATEGY,
-} from './menu-trigger';
+import { SbbMenuTriggerContext, SBB_MENU_SCROLL_STRATEGY } from './menu-trigger';
 
 describe('SbbMenu', () => {
   let overlayContainer: OverlayContainer;
@@ -1959,7 +1955,7 @@ describe('SbbMenu', () => {
 
       // Subtract 3px space
       expect(Math.round(triggerRect.right) - 3).toBe(Math.round(panelRect.left));
-      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top) + MENU_PANEL_TOP_PADDING);
+      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top));
     });
 
     it('should fall back to aligning to the left edge of the trigger in ltr', () => {
@@ -1978,7 +1974,7 @@ describe('SbbMenu', () => {
 
       // Add 3px space
       expect(Math.round(triggerRect.left) + 3).toBe(Math.round(panelRect.right));
-      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top) + MENU_PANEL_TOP_PADDING);
+      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top));
     });
 
     it('should close all of the menus when an item is clicked', fakeAsync(() => {

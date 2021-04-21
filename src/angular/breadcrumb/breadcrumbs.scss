@@ -97,50 +97,10 @@ $breadcrumbLabelHeightDesktop: 24;
 
   a,
   button,
-  .sbb-menu-trigger-default.sbb-menu-trigger-root {
+  .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root {
     @include buttonResetFrameless();
     outline: 0;
-    white-space: nowrap;
-    font-family: $fontSbbRoman;
-    text-decoration: none;
-    position: relative;
     cursor: pointer;
-    font-size: pxToRem(13);
-    line-height: pxToRem(20);
-    color: $sbbColorGrey;
-
-    &:hover,
-    &:focus {
-      color: $sbbColorRed125;
-    }
-
-    // Display: inline-flex solves a sizing issue on IE11 and Legacy Edge TODO
-    .sbb-icon {
-      display: inline-flex;
-    }
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        font-size: pxToRem(20);
-        line-height: pxToRem(24);
-        padding: 0;
-      }
-      @include mq($from: desktop5k) {
-        font-size: pxToRem(26);
-        line-height: pxToRem(31);
-        padding: 0;
-      }
-    }
-
-    html.sbb-lean & {
-      color: $sbbColorGranite;
-      line-height: pxToRem(16);
-
-      &:hover,
-      &:focus {
-        color: $sbbColorRed125;
-      }
-    }
   }
 
   html:not(.sbb-lean) & {
@@ -183,5 +143,128 @@ $breadcrumbLabelHeightDesktop: 24;
 
   @include mq($from: tabletPortrait) {
     display: none;
+  }
+}
+
+.sbb-breadcrumb a,
+.sbb-breadcrumb button,
+.sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
+.sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger {
+  white-space: nowrap;
+  font-family: $fontSbbRoman;
+  text-decoration: none;
+  font-size: pxToRem(13);
+  line-height: pxToRem(20);
+  color: $sbbColorGrey;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+
+  // Display: inline-flex solves a sizing issue on IE11 and Legacy Edge TODO
+  .sbb-icon {
+    display: inline-flex;
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+      line-height: pxToRem(24);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+      line-height: pxToRem(31);
+    }
+  }
+
+  html.sbb-lean & {
+    color: $sbbColorGranite;
+    line-height: pxToRem(16);
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+  }
+}
+
+.sbb-menu-panel-trigger {
+  $triggerPaddingX: 30;
+  $triggerPaddingY: 14;
+
+  $triggerPaddingYTop4k: 24;
+  $triggerPaddingYBottom4k: 16;
+
+  $triggerPaddingYTop5k: 28;
+  $triggerPaddingYBottom5k: 33;
+
+  $borderWidthStandard: 2;
+  $borderWidthLean: 1;
+
+  .sbb-menu-panel-type-breadcrumb & {
+    padding: pxToRem($triggerPaddingY - $borderWidthStandard)
+      pxToRem($triggerPaddingX - $borderWidthStandard);
+    color: $sbbColorRed125;
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        padding: pxToRem(($triggerPaddingYTop4k - $borderWidthStandard * $scalingFactor4k))
+          pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor4k)
+          pxToRem(($triggerPaddingYBottom4k - $borderWidthStandard * $scalingFactor4k));
+      }
+      @include mq($from: desktop5k) {
+        padding: pxToRem(($triggerPaddingYTop5k - $borderWidthStandard * $scalingFactor5k))
+          pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor5k)
+          pxToRem(($triggerPaddingYBottom5k - $borderWidthStandard * $scalingFactor5k));
+      }
+    }
+
+    html.sbb-lean & {
+      padding: pxToRem($triggerPaddingY - $borderWidthLean)
+        pxToRem($triggerPaddingX - $borderWidthLean);
+    }
+  }
+
+  .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-below & {
+    padding-bottom: pxToRem($triggerPaddingY);
+    box-shadow: horizontalBorderBoxShadow(1, $borderWidthStandard, $scalingFactorDefault);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        padding-bottom: pxToRem($triggerPaddingYBottom4k);
+        box-shadow: horizontalBorderBoxShadow(1, $borderWidthStandard, $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-bottom: pxToRem($triggerPaddingYBottom5k);
+        box-shadow: horizontalBorderBoxShadow(1, $borderWidthStandard, $scalingFactor5k);
+      }
+    }
+  }
+  .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
+    padding-top: pxToRem($triggerPaddingY);
+    box-shadow: horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactorDefault);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem($triggerPaddingYTop4k);
+        box-shadow: horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem($triggerPaddingYTop5k);
+        box-shadow: horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor5k);
+      }
+    }
+  }
+}
+
+.sbb-menu-panel-root {
+  .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-below & {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
