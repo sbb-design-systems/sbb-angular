@@ -240,20 +240,32 @@ $breadcrumbLabelHeightDesktop: 24;
         box-shadow: horizontalBorderBoxShadow(1, $borderWidthStandard, $scalingFactor5k);
       }
     }
+
+    html.sbb-lean & {
+      box-shadow: horizontalBorderBoxShadow(1, $borderWidthLean, $scalingFactorDefault);
+    }
   }
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
     padding-top: pxToRem($triggerPaddingY);
-    box-shadow: horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactorDefault);
+    box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactorDefault),
+      horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactorDefault);
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding-top: pxToRem($triggerPaddingYTop4k);
-        box-shadow: horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor4k);
+        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k),
+          horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
         padding-top: pxToRem($triggerPaddingYTop5k);
-        box-shadow: horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor5k);
+        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k),
+          horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor5k);
       }
+    }
+
+    html.sbb-lean & {
+      box-shadow: boxShadow(1, $borderWidthLean, $scalingFactorDefault),
+        horizontalBorderBoxShadow(-1, $borderWidthLean, $scalingFactorDefault);
     }
   }
 }
