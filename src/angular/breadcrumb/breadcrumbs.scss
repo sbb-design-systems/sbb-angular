@@ -2,6 +2,7 @@
 
 $breadcrumbHeightDesktop: 48;
 $breadcrumbLabelHeightDesktop: 24;
+$breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
 
 .sbb-breadcrumbs {
   display: flex;
@@ -152,14 +153,13 @@ $breadcrumbLabelHeightDesktop: 24;
 .sbb-breadcrumb button,
 .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
 .sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger {
-  white-space: nowrap;
+  @include ellipsis;
   font-family: $fontSbbRoman;
-  text-decoration: none;
   font-size: pxToRem(13);
   line-height: pxToRem(20);
   color: $sbbColorGrey;
   text-align: left;
-  @include ellipsis;
+  text-decoration: none;
 
   &:hover,
   &:focus {
@@ -188,6 +188,68 @@ $breadcrumbLabelHeightDesktop: 24;
   }
 }
 
+.sbb-breadcrumb .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root.sbb-menu-trigger-menu-open {
+  &::after {
+    transform: translateY(-50%) rotate(-180deg);
+  }
+}
+
+.sbb-breadcrumb .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
+.sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger {
+  position: relative;
+  padding-right: pxToRem(24);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding-right: pxToRem(24 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      padding-right: pxToRem(24 * $scalingFactor5k);
+    }
+  }
+
+  &,
+  html.sbb-lean & {
+    // Redefine lean to be more specific
+    &:focus,
+    &:hover {
+      &::after {
+        background-image: url($sbbIconChevronSmallDownCircleSmallRed125);
+      }
+    }
+  }
+
+  &::after {
+    content: '';
+    display: inline-block;
+    @include absoluteCenterY;
+    background: url($sbbIconChevronSmallDownCircleSmallGranite) no-repeat center;
+    background-size: pxToRem(24) pxToRem(24);
+    width: pxToRem(24);
+    height: pxToRem(24);
+    flex-shrink: 0;
+    transition: transform $breadcrumbAnimationTiming;
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        background-size: pxToRem(24 * $scalingFactor4k) pxToRem(24 * $scalingFactor4k);
+        width: pxToRem(24 * $scalingFactor4k);
+        height: pxToRem(24 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        background-size: pxToRem(24 * $scalingFactor5k) pxToRem(24 * $scalingFactor5k);
+        width: pxToRem(24 * $scalingFactor5k);
+        height: pxToRem(24 * $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      background-image: url($sbbIconChevronSmallDownCircleSmallGranite);
+    }
+  }
+}
+
 .sbb-menu-panel-trigger {
   $triggerPaddingX: 30;
   $triggerPaddingY: 14;
@@ -197,8 +259,45 @@ $breadcrumbLabelHeightDesktop: 24;
   .sbb-menu-panel-type-breadcrumb & {
     padding: pxToRem($triggerPaddingY - $borderWidthStandard)
       pxToRem($triggerPaddingX - $borderWidthStandard);
-    color: $sbbColorRed125;
     width: 100%;
+
+    &::after {
+      @keyframes arrowRotate {
+        0% {
+          transform: translateY(-50%) rotate(0);
+        }
+        100% {
+          transform: translateY(-50%) rotate(-180deg);
+        }
+      }
+
+      animation: $breadcrumbAnimationTiming 0s 1 arrowRotate;
+      transform: translateY(-50%) rotate(-180deg);
+      margin-top: pxToRem(-($borderWidthStandard - 1));
+
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          margin-top: pxToRem(-($borderWidthStandard - 1) * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          margin-top: pxToRem(-($borderWidthStandard - 1) * $scalingFactor5k);
+        }
+      }
+
+      html.sbb-lean & {
+        margin-top: pxToRem(-($borderWidthLean - 1));
+      }
+    }
+
+    &,
+    html.sbb-lean & {
+      // Redefine lean to be more specific
+      color: $sbbColorRed125;
+
+      &::after {
+        background-image: url($sbbIconChevronSmallDownCircleSmallRed125);
+      }
+    }
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
