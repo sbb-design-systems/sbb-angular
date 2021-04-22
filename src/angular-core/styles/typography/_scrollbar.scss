@@ -27,7 +27,7 @@ $trackColor: $sbbColorMilk;
     }
 
     @supports (-webkit-touch-callout: none) {
-      // Only visible on iOS devices.
+      // Only applied on iOS devices.
       // Sets scrollbar on iOS devices invisible which solves a bug where a scrollbar
       // is wrongly visible for a short time (until clicking or scrolling) inside the sidebar.
       &::-webkit-scrollbar {
