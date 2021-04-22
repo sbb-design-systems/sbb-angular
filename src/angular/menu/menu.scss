@@ -284,9 +284,20 @@ sbb-menu {
       padding-right: pxToRem(32 * $scalingFactor5k);
     }
   }
-}
 
-.sbb-menu-item-submenu-trigger-icon {
-  position: absolute;
-  right: 0;
+  &.sbb-menu-item .sbb-menu-item-submenu-trigger-icon.sbb-icon {
+    @include absoluteCenterY;
+    margin: 0 !important; // Without important it would need redefinitions for all sizes and variants. It only affects submenu trigger icon, which should be ok.
+    float: none;
+    right: pxToRem(5);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        right: pxToRem(5 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        right: pxToRem(5 * $scalingFactor5k);
+      }
+    }
+  }
 }
