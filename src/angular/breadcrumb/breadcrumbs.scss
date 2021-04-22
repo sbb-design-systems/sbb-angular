@@ -3,6 +3,7 @@
 $breadcrumbHeightDesktop: 48;
 $breadcrumbLabelHeightDesktop: 24;
 $breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
+$breadcrumbDropdownIconWidth: 24;
 
 .sbb-breadcrumbs {
   display: flex;
@@ -149,6 +150,7 @@ $breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+// Every breadcrumb item inclusive menu trigger and copied menu trigger (inside panel)
 .sbb-breadcrumb a,
 .sbb-breadcrumb button,
 .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
@@ -188,24 +190,26 @@ $breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+// Menu trigger inside sbb-breadcrumb if menu is open
 .sbb-breadcrumb .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root.sbb-menu-trigger-menu-open {
   &::after {
     transform: translateY(-50%) rotate(-180deg);
   }
 }
 
+// Menu trigger and copied menu trigger (inside panel)
 .sbb-breadcrumb .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
 .sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger {
   position: relative;
-  padding-right: pxToRem(24);
+  padding-right: pxToRem($breadcrumbDropdownIconWidth);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      padding-right: pxToRem(24 * $scalingFactor4k);
+      padding-right: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      padding-right: pxToRem(24 * $scalingFactor5k);
+      padding-right: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k);
     }
   }
 
@@ -225,22 +229,24 @@ $breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block;
     @include absoluteCenterY;
     background: url($sbbIconChevronSmallDownCircleSmallGranite) no-repeat center;
-    background-size: pxToRem(24) pxToRem(24);
-    width: pxToRem(24);
-    height: pxToRem(24);
+    background-size: pxToRem($breadcrumbDropdownIconWidth) pxToRem($breadcrumbDropdownIconWidth);
+    width: pxToRem($breadcrumbDropdownIconWidth);
+    height: pxToRem($breadcrumbDropdownIconWidth);
     flex-shrink: 0;
     transition: transform $breadcrumbAnimationTiming;
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        background-size: pxToRem(24 * $scalingFactor4k) pxToRem(24 * $scalingFactor4k);
-        width: pxToRem(24 * $scalingFactor4k);
-        height: pxToRem(24 * $scalingFactor4k);
+        background-size: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k)
+          pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
+        width: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
+        height: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        background-size: pxToRem(24 * $scalingFactor5k) pxToRem(24 * $scalingFactor5k);
-        width: pxToRem(24 * $scalingFactor5k);
-        height: pxToRem(24 * $scalingFactor5k);
+        background-size: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k)
+          pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k);
+        width: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k);
+        height: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k);
       }
     }
 
@@ -250,6 +256,7 @@ $breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+// Copied menu trigger (inside panel)
 .sbb-menu-panel-trigger {
   $triggerPaddingX: 30;
   $triggerPaddingY: 14;
@@ -258,6 +265,8 @@ $breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
 
   .sbb-menu-panel-type-breadcrumb & {
     padding: pxToRem($triggerPaddingY - $borderWidthStandard)
+      pxToRem($triggerPaddingX - $borderWidthStandard + $breadcrumbDropdownIconWidth)
+      pxToRem($triggerPaddingY - $borderWidthStandard)
       pxToRem($triggerPaddingX - $borderWidthStandard);
     width: 100%;
 
@@ -302,17 +311,28 @@ $breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding: pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor4k)
+          pxToRem(
+            ($triggerPaddingX - $borderWidthStandard + $breadcrumbDropdownIconWidth) *
+              $scalingFactor4k
+          )
+          pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor4k)
           pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
         padding: pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor5k)
+          pxToRem(
+            ($triggerPaddingX - $borderWidthStandard + $breadcrumbDropdownIconWidth) *
+              $scalingFactor5k
+          )
+          pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor5k)
           pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor5k);
       }
     }
 
     html.sbb-lean & {
       padding: pxToRem($triggerPaddingY - $borderWidthLean)
-        pxToRem($triggerPaddingX - $borderWidthLean);
+        pxToRem($triggerPaddingX - $borderWidthLean + $breadcrumbDropdownIconWidth)
+        pxToRem($triggerPaddingY - $borderWidthLean) pxToRem($triggerPaddingX - $borderWidthLean);
     }
   }
 
