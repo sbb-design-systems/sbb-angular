@@ -7,15 +7,15 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
 @Component({
   template: `
     <sbb-breadcrumbs>
-      <sbb-breadcrumb>
-        <a routerLink="/" routerLinkActive="sbb-active" aria-label="Back to the homepage">
-          <sbb-icon svgIcon="kom:house-small"></sbb-icon>
+      
+        <a routerLink="/" routerLinkActive="sbb-active" aria-label="Back to the homepage" sbb-breadcrumb-root>
+          
         </a>
-      </sbb-breadcrumb>
+      
 
       <sbb-breadcrumb>
 <button [sbbMenuTriggerFor]="menu"><ng-template sbbMenuDynamicTrigger>
-
+        
         Level 1 with detail pages
       </ng-template></button>
 <sbb-menu #menu="sbbMenu">
@@ -28,7 +28,7 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
 <button [sbbMenuTriggerFor]="menu1"><ng-template sbbMenuDynamicTrigger>
         <span>Level</span>
         <!-- I'm a comment -->
-
+        
         2
       </ng-template></button>
 <sbb-menu #menu1="sbbMenu">

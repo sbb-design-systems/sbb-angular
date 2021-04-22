@@ -27,7 +27,6 @@ $breadcrumbBorderWidthLean: 1;
 .sbb-breadcrumb {
   display: none;
   align-items: center;
-  order: 1;
   margin-top: pxToRem(12);
   margin-right: pxToRem(6);
   max-width: 100%;
@@ -41,31 +40,9 @@ $breadcrumbBorderWidthLean: 1;
   }
 
   // Last user defined breadcrumb
-  &:nth-last-child(2) {
+  &:last-child {
     display: flex;
     margin-right: 0;
-  }
-
-  // Home icon
-  &:first-child {
-    order: 0;
-    display: flex;
-
-    a {
-      height: pxToRem($breadcrumbLabelHeightDesktop);
-      width: pxToRem(24);
-
-      html:not(.sbb-lean) & {
-        @include mq($from: desktop4k) {
-          height: pxToRem($breadcrumbLabelHeightDesktop * $scalingFactor4k);
-          width: pxToRem(24 * $scalingFactor4k);
-        }
-        @include mq($from: desktop5k) {
-          height: pxToRem($breadcrumbLabelHeightDesktop * $scalingFactor5k);
-          width: pxToRem(24 * $scalingFactor5k);
-        }
-      }
-    }
   }
 
   // Arrow between breadcrumb entries
@@ -125,7 +102,7 @@ $breadcrumbBorderWidthLean: 1;
     margin-right: pxToRem(4);
 
     // Last user defined breadcrumb
-    &:nth-last-child(2) {
+    &:last-child {
       &,
       a,
       button {
@@ -140,9 +117,28 @@ $breadcrumbBorderWidthLean: 1;
   }
 }
 
+.sbb-breadcrumb-root {
+  display: flex;
+
+  a {
+    height: pxToRem($breadcrumbLabelHeightDesktop);
+    width: pxToRem(24);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        height: pxToRem($breadcrumbLabelHeightDesktop * $scalingFactor4k);
+        width: pxToRem(24 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        height: pxToRem($breadcrumbLabelHeightDesktop * $scalingFactor5k);
+        width: pxToRem(24 * $scalingFactor5k);
+      }
+    }
+  }
+}
+
 .sbb-breadcrumb-dots {
   display: flex;
-  order: 0;
 
   .sbb-breadcrumbs-expanded & {
     display: none;

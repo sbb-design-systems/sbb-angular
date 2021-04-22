@@ -10,11 +10,12 @@ On any page where the user should be able to quickly navigate to a sister or par
 
 ```html
 <sbb-breadcrumbs>
-  <sbb-breadcrumb>
-    <a routerLink="/" routerLinkActive="sbb-active" aria-label="Back to the homepage">
-      <sbb-icon svgIcon="kom:house-small"></sbb-icon>
-    </a>
-  </sbb-breadcrumb>
+  <a
+    sbb-breadcrumb-root
+    routerLink="/"
+    routerLinkActive="sbb-active"
+    aria-label="Back to the homepage"
+  ></a>
   <sbb-breadcrumb>
     <a routerLink="/level1" routerLinkActive="sbb-active">Level 1</a>
   </sbb-breadcrumb>
@@ -28,11 +29,12 @@ On any page where the user should be able to quickly navigate to a sister or par
 
 ```html
 <sbb-breadcrumbs>
-  <sbb-breadcrumb>
-    <a routerLink="/" routerLinkActive="sbb-active" aria-label="Back to the homepage">
-      <sbb-icon svgIcon="kom:house-small"></sbb-icon>
-    </a>
-  </sbb-breadcrumb>
+  <a
+    sbb-breadcrumb-root
+    routerLink="/"
+    routerLinkActive="sbb-active"
+    aria-label="Back to the homepage"
+  ></a>
 
   <sbb-breadcrumb>
     <button [sbbMenuTriggerFor]="menu">

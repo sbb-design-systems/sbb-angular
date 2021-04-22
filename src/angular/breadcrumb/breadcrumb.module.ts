@@ -4,12 +4,13 @@ import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/a
 import { SbbMenuModule } from '@sbb-esta/angular/menu';
 
 import { SbbBreadcrumb } from './breadcrumb';
+import { SbbBreadcrumbRoot } from './breadcrumb-root';
 import { SbbBreadcrumbs } from './breadcrumbs';
 
 @NgModule({
-  declarations: [SbbBreadcrumbs, SbbBreadcrumb],
+  declarations: [SbbBreadcrumbs, SbbBreadcrumb, SbbBreadcrumbRoot],
   imports: [CommonModule, SbbMenuModule, SbbIconModule],
-  exports: [SbbBreadcrumbs, SbbBreadcrumb],
+  exports: [SbbBreadcrumbs, SbbBreadcrumb, SbbBreadcrumbRoot],
   providers: [ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
 export class SbbBreadcrumbModule {}

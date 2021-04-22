@@ -1,4 +1,6 @@
-<ng-content select="sbb-breadcrumb"></ng-content>
+<sbb-breadcrumb class="sbb-breadcrumb-root">
+  <ng-content select="[sbb-breadcrumb-root]"></ng-content>
+</sbb-breadcrumb>
 
 <sbb-breadcrumb class="sbb-breadcrumb-dots">
   <button
@@ -11,3 +13,5 @@
     ...
   </button>
 </sbb-breadcrumb>
+
+<ng-content select="sbb-breadcrumb"></ng-content>

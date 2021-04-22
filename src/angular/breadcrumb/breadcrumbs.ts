@@ -29,8 +29,8 @@ const sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   host: {
     class: 'sbb-breadcrumbs',
     role: 'navigation',
-    '[class.sbb-breadcrumbs-expanded]': 'this.expanded',
     'aria-label': 'Breadcrumb',
+    '[class.sbb-breadcrumbs-expanded]': 'this.expanded',
   },
   providers: [
     { provide: SBB_MENU_INHERITED_TRIGGER_CONTEXT, useValue: sbbMenuInheritedTriggerContext },
@@ -40,12 +40,12 @@ export class SbbBreadcrumbs {
   /** Refers to BreadcrumbComponents instance. */
   @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;
 
-  /** Status expanded of a sbb-breadcrumbs. */
+  /** Whether the sbb-breadcrumbs are expanded or not */
   get expanded(): boolean {
-    if (this.levels.length > 2) {
+    if (this.levels.length > 1) {
       return this._expanded;
     }
-    // If there is only the home icon and one level, always display all breadcrumb entries
+    // If there is only one level, always display all breadcrumb entries
     return true;
   }
   private _expanded = false;
