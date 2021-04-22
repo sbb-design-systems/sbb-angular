@@ -4,6 +4,9 @@ $breadcrumbHeightDesktop: 48;
 $breadcrumbLabelHeightDesktop: 24;
 $breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
 $breadcrumbDropdownIconWidth: 24;
+$breadcrumbPaddingX: 30;
+$breadcrumbBorderWidthStandard: 2;
+$breadcrumbBorderWidthLean: 1;
 
 .sbb-breadcrumbs {
   display: flex;
@@ -258,16 +261,13 @@ $breadcrumbDropdownIconWidth: 24;
 
 // Copied menu trigger (inside panel)
 .sbb-menu-panel-trigger {
-  $triggerPaddingX: 30;
   $triggerPaddingY: 14;
-  $borderWidthStandard: 2;
-  $borderWidthLean: 1;
 
   .sbb-menu-panel-type-breadcrumb & {
-    padding: pxToRem($triggerPaddingY - $borderWidthStandard)
-      pxToRem($triggerPaddingX - $borderWidthStandard + $breadcrumbDropdownIconWidth)
-      pxToRem($triggerPaddingY - $borderWidthStandard)
-      pxToRem($triggerPaddingX - $borderWidthStandard);
+    padding: pxToRem($triggerPaddingY - $breadcrumbBorderWidthStandard)
+      pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard + $breadcrumbDropdownIconWidth)
+      pxToRem($triggerPaddingY - $breadcrumbBorderWidthStandard)
+      pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
     width: 100%;
 
     &::after {
@@ -282,19 +282,19 @@ $breadcrumbDropdownIconWidth: 24;
 
       animation: $breadcrumbAnimationTiming 0s 1 arrowRotate;
       transform: translateY(-50%) rotate(-180deg);
-      margin-top: pxToRem(-($borderWidthStandard - 1));
+      margin-top: pxToRem(-($breadcrumbBorderWidthStandard - 1));
 
       html:not(.sbb-lean) & {
         @include mq($from: desktop4k) {
-          margin-top: pxToRem(-($borderWidthStandard - 1) * $scalingFactor4k);
+          margin-top: pxToRem(-($breadcrumbBorderWidthStandard - 1) * $scalingFactor4k);
         }
         @include mq($from: desktop5k) {
-          margin-top: pxToRem(-($borderWidthStandard - 1) * $scalingFactor5k);
+          margin-top: pxToRem(-($breadcrumbBorderWidthStandard - 1) * $scalingFactor5k);
         }
       }
 
       html.sbb-lean & {
-        margin-top: pxToRem(-($borderWidthLean - 1));
+        margin-top: pxToRem(-($breadcrumbBorderWidthLean - 1));
       }
     }
 
@@ -310,72 +310,73 @@ $breadcrumbDropdownIconWidth: 24;
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        padding: pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor4k)
+        padding: pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor4k)
           pxToRem(
-            ($triggerPaddingX - $borderWidthStandard + $breadcrumbDropdownIconWidth) *
+            ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard + $breadcrumbDropdownIconWidth) *
               $scalingFactor4k
           )
-          pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor4k)
-          pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor4k);
+          pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor4k)
+          pxToRem(($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        padding: pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor5k)
+        padding: pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor5k)
           pxToRem(
-            ($triggerPaddingX - $borderWidthStandard + $breadcrumbDropdownIconWidth) *
+            ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard + $breadcrumbDropdownIconWidth) *
               $scalingFactor5k
           )
-          pxToRem(($triggerPaddingY - $borderWidthStandard) * $scalingFactor5k)
-          pxToRem(($triggerPaddingX - $borderWidthStandard) * $scalingFactor5k);
+          pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor5k)
+          pxToRem(($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor5k);
       }
     }
 
     html.sbb-lean & {
-      padding: pxToRem($triggerPaddingY - $borderWidthLean)
-        pxToRem($triggerPaddingX - $borderWidthLean + $breadcrumbDropdownIconWidth)
-        pxToRem($triggerPaddingY - $borderWidthLean) pxToRem($triggerPaddingX - $borderWidthLean);
+      padding: pxToRem($triggerPaddingY - $breadcrumbBorderWidthLean)
+        pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean + $breadcrumbDropdownIconWidth)
+        pxToRem($triggerPaddingY - $breadcrumbBorderWidthLean)
+        pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
     }
   }
 
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-below & {
     padding-bottom: pxToRem($triggerPaddingY);
-    box-shadow: horizontalBorderBoxShadow(1, $borderWidthStandard, $scalingFactorDefault);
+    box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactorDefault);
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding-bottom: pxToRem($triggerPaddingY * $scalingFactor4k);
-        box-shadow: horizontalBorderBoxShadow(1, $borderWidthStandard, $scalingFactor4k);
+        box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
         padding-bottom: pxToRem($triggerPaddingY * $scalingFactor5k);
-        box-shadow: horizontalBorderBoxShadow(1, $borderWidthStandard, $scalingFactor5k);
+        box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor5k);
       }
     }
 
     html.sbb-lean & {
-      box-shadow: horizontalBorderBoxShadow(1, $borderWidthLean, $scalingFactorDefault);
+      box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthLean, $scalingFactorDefault);
     }
   }
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
     padding-top: pxToRem($triggerPaddingY);
-    box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactorDefault),
-      horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactorDefault);
+    box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactorDefault),
+      horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard, $scalingFactorDefault);
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding-top: pxToRem($triggerPaddingY * $scalingFactor4k);
-        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k),
-          horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor4k);
+        box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor4k),
+          horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard, $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
         padding-top: pxToRem($triggerPaddingY * $scalingFactor5k);
-        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k),
-          horizontalBorderBoxShadow(-1, $borderWidthStandard, $scalingFactor5k);
+        box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor5k),
+          horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard, $scalingFactor5k);
       }
     }
 
     html.sbb-lean & {
-      box-shadow: boxShadow(1, $borderWidthLean, $scalingFactorDefault),
-        horizontalBorderBoxShadow(-1, $borderWidthLean, $scalingFactorDefault);
+      box-shadow: boxShadow(1, $breadcrumbBorderWidthLean, $scalingFactorDefault),
+        horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthLean, $scalingFactorDefault);
     }
   }
 }
@@ -388,5 +389,40 @@ $breadcrumbDropdownIconWidth: 24;
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+  }
+}
+
+.sbb-menu-panel-type-breadcrumb .sbb-menu-item {
+  font-size: pxToRem(13);
+  line-height: pxToRem(20);
+  padding-left: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
+  padding-right: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+      line-height: pxToRem(30);
+      padding-left: pxToRem(
+        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor4k
+      );
+      padding-right: pxToRem(
+        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor4k
+      );
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+      line-height: pxToRem(40);
+      padding-left: pxToRem(
+        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor5k
+      );
+      padding-right: pxToRem(
+        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor5k
+      );
+    }
+  }
+
+  html.sbb-lean & {
+    padding-left: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
+    padding-right: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
   }
 }

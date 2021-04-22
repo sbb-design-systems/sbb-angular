@@ -414,21 +414,19 @@ export class SbbMenuTrigger
    */
   private _initMenu(): void {
     this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
-    if (!this.triggersSubmenu()) {
-      const triggerContext =
-        this._type === 'headless'
-          ? { type: this._type }
-          : {
-              width: this._element.nativeElement.clientWidth,
-              templateContent: this._triggerContent,
-              elementContent: this._triggerContent
-                ? undefined
-                : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
-              type: this._type,
-            };
+    const triggerContext =
+      this._type === 'headless' || this.triggersSubmenu()
+        ? { type: this._type }
+        : {
+            width: this._element.nativeElement.clientWidth,
+            templateContent: this._triggerContent,
+            elementContent: this._triggerContent
+              ? undefined
+              : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
+            type: this._type,
+          };
 
-      this.menu.triggerContext = { ...triggerContext, ...this._inheritedTriggerContext };
-    }
+    this.menu.triggerContext = { ...triggerContext, ...this._inheritedTriggerContext };
     this._setMenuElevation();
     this.menu.focusFirstItem(this._openedBy || 'program');
     this._setIsMenuOpen(true);
