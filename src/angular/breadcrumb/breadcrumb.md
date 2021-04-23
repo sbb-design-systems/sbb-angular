@@ -1,12 +1,5 @@
 The breadcrumb module is used to display the navigation hierarchy of the current page.
-
-### When should the module be used?
-
-On any page where the user should be able to quickly navigate to a sister or parent page.
-
-### Examples
-
-- Basic breadcrumb without sister pages
+It is intended to be used on pages where the user should be able to quickly navigate to a sister or parent page.
 
 ```html
 <sbb-breadcrumbs>
@@ -20,7 +13,24 @@ On any page where the user should be able to quickly navigate to a sister or par
 </sbb-breadcrumbs>
 ```
 
-- Advanced breadcrumb with sister pages
+#### First entry
+
+The first breadcrumb entry should always point to the homepage and can be defined
+by applying `sbb-breadcrumb-root` directive to a link.
+
+```html
+<a sbb-breadcrumb-root routerLink="/" aria-label="Back to the homepage"></a>
+```
+
+#### Last entry
+
+The last `<sbb-breadcrumb>` entry has always to be the currently displayed page.
+
+### Sister pages
+
+If using sister pages, consider that the trigger text should always be the active page name.
+Inside the menu panel the current active page can be highlighted by applying `sbb-active` class
+which is typically done by the `routerLinkActive` attribute.
 
 ```html
 <sbb-breadcrumbs>
@@ -59,7 +69,7 @@ On any page where the user should be able to quickly navigate to a sister or par
 
 ### Accessibility
 
-For a better accessibility add an aria-label to your `sbb-breadcrumb-root` link
-(e.g. `<a aria-label="Back to the homepage" ...>`).
-The active link (normally the last entry) should receive the `aria-current="location"`
-attribute to indicate that this site is currently being displayed.
+- For a better accessibility add an aria-label to your `sbb-breadcrumb-root` link
+  (e.g. `<a aria-label="Back to the homepage" ...>`).
+- The active link (normally the last entry) should receive the `aria-current="location"`
+  attribute to indicate that this site is currently being displayed.
