@@ -14,7 +14,7 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
       <sbb-breadcrumb>
 <button [sbbMenuTriggerFor]="menu"><ng-template sbbMenuDynamicTrigger>
         
-        Level 1 with detail pages
+        Level 1 with sister pages
       </ng-template></button>
 <sbb-menu #menu="sbbMenu">
           <a sbb-menu-item routerLink="/level1" routerLinkActive="sbb-active">Level 1</a>

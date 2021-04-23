@@ -52,7 +52,7 @@ export class BreadcrumbsTestComponent {}
       ></a>
 
       <sbb-breadcrumb>
-        Level 1 with detail pages
+        Level 1 with sister pages
         <sbb-dropdown>
           <a
             sbbDropdownItem
@@ -86,7 +86,7 @@ export class BreadcrumbsTestComponent {}
             routerLink="."
             [queryParams]="{ level: '1', sub: '2b' }"
             routerLinkActive="sbb-selected"
-            >Level 2 with detail pages</a
+            >Level 2 with sister pages</a
           >
         </sbb-dropdown>
       </sbb-breadcrumb>
@@ -108,7 +108,7 @@ export class BreadcrumbsTest2Component {}
       ></a>
 
       <sbb-breadcrumb>
-        Level 1 with detail pages
+        Level 1 with sister pages
         <sbb-dropdown>
           <a
             sbbDropdownItem

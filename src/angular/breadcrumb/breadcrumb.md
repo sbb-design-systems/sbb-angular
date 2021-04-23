@@ -24,28 +24,33 @@ On any page where the user should be able to quickly navigate to a sister or par
 
 ```html
 <sbb-breadcrumbs>
-  <a sbb-breadcrumb-root routerLink="/" aria-label="Back to the homepage"></a>
+  <a
+    sbb-breadcrumb-root
+    routerLink="/"
+    routerLinkActive="sbb-active"
+    aria-label="Back to the homepage"
+  ></a>
 
   <sbb-breadcrumb>
-    <button [sbbMenuTriggerFor]="menu">Level 1 with detail pages</button>
+    <button [sbbMenuTriggerFor]="menu">Level 1 with sister pages</button>
     <sbb-menu #menu="sbbMenu">
-      <a sbb-menu-item routerLink="/level1" routerLinkActive="sbb-active">Level 1</a>
+      <a sbb-menu-item routerLink="/level1" routerLinkActive="sbb-active"
+        >Level 1 with sister pages</a
+      >
       <a sbb-menu-item routerLink="/level1b" routerLinkActive="sbb-active">Level 1b</a>
     </sbb-menu>
   </sbb-breadcrumb>
 
   <sbb-breadcrumb>
-    <button [sbbMenuTriggerFor]="menu2">Level 2</button>
+    <button [sbbMenuTriggerFor]="menu2">Level 2b with sister pages</button>
     <sbb-menu #menu2="sbbMenu">
+      <a sbb-menu-item routerLink="/level1/level2" routerLinkActive="sbb-active">Level 2</a>
       <a
         sbb-menu-item
-        routerLink="/level1/level2"
+        routerLink="/level1/level2b"
         routerLinkActive="sbb-active"
         aria-current="location"
-        >Level 2</a
-      >
-      <a sbb-menu-item routerLink="/level1/level2b" routerLinkActive="sbb-active"
-        >Level 2 with detail pages</a
+        >Level 2b with sister pages</a
       >
     </sbb-menu>
   </sbb-breadcrumb>

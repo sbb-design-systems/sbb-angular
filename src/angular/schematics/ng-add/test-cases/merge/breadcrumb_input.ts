@@ -16,7 +16,7 @@ import { SbbBreadcrumbModule, SbbDropdownModule, SbbIconModule } from '@sbb-esta
           <a sbbDropdownItem routerLink="/level1" routerLinkActive="sbb-selected">Level 1</a>
           <a sbbDropdownItem routerLink="/level1b" routerLinkActive="sbb-selected">Level 1b</a>
         </sbb-dropdown>
-        Level 1 with detail pages
+        Level 1 with sister pages
       </sbb-breadcrumb>
 
       <sbb-breadcrumb>
