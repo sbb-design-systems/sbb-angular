@@ -1,0 +1,23 @@
+<sbb-breadcrumbs>
+  <a sbb-breadcrumb-root routerLink="/" aria-label="Back to the homepage"></a>
+  <sbb-breadcrumb *ngFor="let group of groups; last as isLast">
+    <button [sbbMenuTriggerFor]="menu">{{groupTitle(group)}}</button>
+    <sbb-menu #menu="sbbMenu">
+      <a
+        *ngFor="let item of group.items"
+        sbb-menu-item
+        [routerLink]="composeHref(group, item.path)"
+        routerLinkActive="sbb-active"
+        #rla="routerLinkActive"
+        [attr.aria-current]="isLast && (rla.isActive || item.active) ? 'location' : null"
+      >
+        {{item.title}}
+      </a>
+    </sbb-menu>
+  </sbb-breadcrumb>
+</sbb-breadcrumbs>
+
+<p>
+  This example should not be used as is. Router Config should be considered instead of creating own
+  groups.
+</p>

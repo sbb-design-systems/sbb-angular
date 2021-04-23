@@ -33,7 +33,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     iterateNodes(template.content, async (node) => {
       if (nodeCheck(node).is('sbb-contextmenu')) {
         this._contextmenus.add(template, node);
-      } else if (nodeCheck(node).is('sbb-breadcrumb')) {
+      } else if (nodeCheck(node).is('sbb-breadcrumbs')) {
         this._breadcrumbs.add(template, node);
       } else if (nodeCheck(node).is('sbb-dropdown')) {
         this._dropdowns.add(template, node);
@@ -58,8 +58,8 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     }
 
     if (!this._breadcrumbs.empty) {
-      this.logger.info('Migrating sbb-breadcrumb usages');
-      this._breadcrumbs.forEach((e) => this._handleBreadcrumb(e));
+      this.logger.info('Migrating sbb-breadcrumbs usages');
+      this._breadcrumbs.forEach((e) => this._handleBreadcrumbs(e));
     }
   }
 
@@ -68,8 +68,23 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     this._addContextmenuTrigger(contextmenu);
   }
 
-  private _handleBreadcrumb(breadcrumb: MigrationElement) {
-    this._addBreadcrumbTrigger(breadcrumb);
+  private _handleBreadcrumbs(breadcrumbs: MigrationElement) {
+    let couldMigrateRoot = false;
+
+    breadcrumbs
+      .findElements((node) => nodeCheck(node).is('sbb-breadcrumb'))
+      .forEach((breadcrumb) => {
+        if (!couldMigrateRoot) {
+          couldMigrateRoot = this._replaceBreadcrumbRoot(breadcrumb);
+        }
+        this._addBreadcrumbTriggerAndReplaceActiveClass(breadcrumb);
+      });
+
+    if (!couldMigrateRoot) {
+      breadcrumbs.insertStart(
+        `<!-- TODO: It seems that your sbb-breadcrumbs is missing the root element (home icon) or the automatic migration could not perform correctly. Please manually add your root element like this: <a routerLink="/" routerLinkActive="sbb-active" aria-label="Back to the homepage" sbb-breadcrumb-root></a> -->`
+      );
+    }
   }
 
   private _handleDropdown(dropdown: MigrationElement) {
@@ -112,7 +127,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     );
   }
 
-  private _addBreadcrumbTrigger(breadcrumb: MigrationElement) {
+  private _addBreadcrumbTriggerAndReplaceActiveClass(breadcrumb: MigrationElement) {
     const dropdown = breadcrumb.findElements((node) => nodeCheck(node).is('sbb-dropdown'))[0];
     if (dropdown) {
       const menuReferenceName = this._nextMenuReferenceName(breadcrumb);
@@ -143,6 +158,33 @@ export class MenuMigration extends Migration<null, DevkitContext> {
           }
         });
     }
+  }
+
+  /**
+   * If exactly one link with one sbb-icon with attribute svgIcon=kom:houses-small is inside
+   * an sbb-breadcrumb, migrate to new sbb-breadcrumb-root directive.
+   */
+  private _replaceBreadcrumbRoot(breadcrumb: MigrationElement): boolean {
+    const links = breadcrumb.findElements((node) => node.tagName === 'a');
+    if (links.length !== 1) {
+      return false;
+    }
+    const icons = links[0].findElements((node) => node.tagName === 'sbb-icon');
+    if (icons.length !== 1) {
+      return false;
+    }
+    const svgIconProperty = icons[0].findProperty('svgIcon');
+    if (!svgIconProperty || svgIconProperty!.value !== 'kom:house-small') {
+      return false;
+    }
+    breadcrumb.removeStartTag();
+    breadcrumb.removeEndTag();
+
+    const homeLink = links[0];
+    homeLink.appendProperty('sbb-breadcrumb-root');
+    homeLink.removeContent();
+
+    return true;
   }
 
   private _setReferenceOnDropdown(dropdown: MigrationElement, migrationElement: MigrationElement) {

@@ -5,7 +5,7 @@ import { Directive } from '@angular/core';
   exportAs: 'sbbBreadcrumb',
   host: {
     class: 'sbb-breadcrumb sbb-icon-fit',
-    role: 'menuitem',
+    role: 'listitem',
   },
 })
 export class SbbBreadcrumb {}

@@ -28,6 +28,7 @@ import { SbbBreadcrumbModule, SbbDropdownModule, SbbIconModule } from '@sbb-esta
         2
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
+    <sbb-breadcrumbs></sbb-breadcrumbs>
   `,
 })
 export class BreadcrumbTestComponent {}

@@ -189,6 +189,14 @@ export class MigrationElement {
     );
   }
 
+  /** Remove all content of this element. */
+  removeContent() {
+    this.recorder.remove(
+      this.resource.start + this.location.startTag.endOffset,
+      this.location.endTag.startOffset - this.location.startTag.endOffset
+    );
+  }
+
   removeEndTag() {
     this.recorder.remove(
       this.resource.start + this.location.endTag.startOffset,

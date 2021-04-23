@@ -29,7 +29,7 @@ const sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   host: {
     class: 'sbb-breadcrumbs',
     role: 'navigation',
-    'aria-label': 'Breadcrumb',
+    'aria-label': 'breadcrumbs',
     '[class.sbb-breadcrumbs-expanded]': 'this.expanded',
   },
   providers: [
