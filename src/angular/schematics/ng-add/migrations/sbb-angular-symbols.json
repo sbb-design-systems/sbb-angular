@@ -24,6 +24,7 @@
   "SbbAutocompleteTrigger": "autocomplete",
   "SbbBreadcrumb": "breadcrumb",
   "SbbBreadcrumbModule": "breadcrumb",
+  "SbbBreadcrumbRoot": "breadcrumb",
   "SbbBreadcrumbs": "breadcrumb",
   "SbbAnchor": "button",
   "SbbButton": "button",
