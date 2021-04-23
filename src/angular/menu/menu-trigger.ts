@@ -414,7 +414,7 @@ export class SbbMenuTrigger
    */
   private _initMenu(): void {
     this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
-    const triggerContext =
+    const triggerContext: SbbMenuTriggerContext =
       this._type === 'headless' || this.triggersSubmenu()
         ? { type: this._type }
         : {
@@ -422,6 +422,8 @@ export class SbbMenuTrigger
             templateContent: this._triggerContent,
             elementContent: this._triggerContent
               ? undefined
+              : this._element.nativeElement.childElementCount === 0
+              ? this._element.nativeElement.innerText
               : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
             type: this._type,
           };

@@ -27,7 +27,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { By, DomSanitizer } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   createKeyboardEvent,
@@ -2457,11 +2457,21 @@ describe('SbbMenu default overrides', () => {
 });
 
 describe('SbbMenu contextmenu', () => {
+  let securityBypassSpy: jasmine.Spy;
+
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [ContextmenuStaticTrigger, ContextmenuDynamicTrigger],
+      declarations: [
+        ContextmenuStaticTrigger,
+        ContextmenuDynamicTrigger,
+        ContextmenuOnlyTextTrigger,
+      ],
     }).compileComponents();
+
+    inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
+      securityBypassSpy = spyOn(domSanitizer, 'bypassSecurityTrustHtml').and.callThrough();
+    })();
   }));
 
   function testTriggerCopy(component: Type<ContextmenuDynamicTrigger | ContextmenuStaticTrigger>) {
@@ -2482,10 +2492,29 @@ describe('SbbMenu contextmenu', () => {
 
   it('should copy html from trigger to panel trigger', () => {
     testTriggerCopy(ContextmenuStaticTrigger);
+    expect(securityBypassSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should copy dynamic trigger from trigger to panel trigger', () => {
     testTriggerCopy(ContextmenuDynamicTrigger);
+    expect(securityBypassSpy).not.toHaveBeenCalled();
+  });
+
+  it('should copy trigger with only text', () => {
+    const fixture = TestBed.createComponent(ContextmenuOnlyTextTrigger);
+    fixture.detectChanges();
+
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+
+    const panelWrapper = fixture.debugElement.query(By.css('.sbb-menu-panel-wrapper'))
+      .nativeElement;
+
+    const copiedTriggerButton = panelWrapper.querySelector('button')!;
+
+    expect(panelWrapper.children.length).toBe(2);
+    expect(copiedTriggerButton.innerHTML).toBe(`I'm only a simple text`);
+    expect(securityBypassSpy).not.toHaveBeenCalled();
   });
 
   it('should not set elementContent of triggerContext if templateContent is provided', () => {
@@ -2999,6 +3028,19 @@ class ContextmenuStaticTrigger {
     </sbb-menu>`,
 })
 class ContextmenuDynamicTrigger {
+  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu: SbbMenu;
+}
+
+@Component({
+  template: `<button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
+      I'm only a simple text
+    </button>
+    <sbb-menu #animals="sbbMenu">
+      <button sbb-menu-item>Invertebrates</button>
+    </sbb-menu>`,
+})
+class ContextmenuOnlyTextTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
   @ViewChild(SbbMenu) menu: SbbMenu;
 }
