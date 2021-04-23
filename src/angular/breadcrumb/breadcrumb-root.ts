@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 @Component({
   selector: '[sbb-breadcrumb-root]',
   exportAs: 'sbbBreadcrumbRoot',
-  template: `<sbb-icon svgIcon="kom:house-small"></sbb-icon>`,
+  templateUrl: './breadcrumb-root.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
