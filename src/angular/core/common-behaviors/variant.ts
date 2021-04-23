@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { AbstractConstructor, Constructor } from './constructor';
 
@@ -6,8 +6,8 @@ export const ɵvariant = new BehaviorSubject<SbbVariant>(detectVariant());
 
 /** @docs-private */
 export interface HasVariant {
-  /** BehaviorSubject holding current variant (`lean` or `standard`) which emits by change */
-  readonly variant: BehaviorSubject<SbbVariant>;
+  /** Observable holding current variant (`lean` or `standard`) which emits by change */
+  readonly variant: Observable<SbbVariant>;
 }
 
 /** @docs-private */
@@ -23,7 +23,7 @@ function detectVariant(): SbbVariant {
 /** Mixin to augment a directive with a variant property. */
 export function mixinVariant<T extends AbstractConstructor<any>>(base: T): HasVariantCtor & T {
   class Mixin extends ((base as unknown) as Constructor<any>) {
-    readonly variant: BehaviorSubject<SbbVariant> = ɵvariant;
+    readonly variant: Observable<SbbVariant> = ɵvariant;
 
     constructor(...args: any[]) {
       super(...args);

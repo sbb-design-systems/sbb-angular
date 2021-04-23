@@ -40,10 +40,11 @@ import {
   Breakpoints,
   HasVariantCtor,
   mixinVariant,
+  SbbVariant,
   SCALING_FACTOR_4K,
   SCALING_FACTOR_5K,
 } from '@sbb-esta/angular/core';
-import { asapScheduler, merge, of as observableOf, Subscription } from 'rxjs';
+import { asapScheduler, BehaviorSubject, merge, of as observableOf, Subscription } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
 import { SbbMenu, SbbMenuCloseReason } from './menu';
@@ -573,7 +574,7 @@ export class SbbMenuTrigger
     offsetY = offsetY * (overlayY === 'bottom' ? -1 : 1);
 
     // Apply scaling factor if variant is standard
-    if (this.variant.value === 'standard') {
+    if ((this.variant as BehaviorSubject<SbbVariant>).value === 'standard') {
       offsetX = offsetX * this._scalingFactor;
       offsetY = offsetY * this._scalingFactor;
     }
