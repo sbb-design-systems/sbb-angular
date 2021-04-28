@@ -423,6 +423,30 @@ describe('Test Component with userName and displayName without image', () => {
     expect(initialLettersReference.nativeElement.textContent).toContain('MM');
   });
 
+  it('should determine initial letters', () => {
+    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
+
+    const params = [
+      { name: 'Max Muster', expected: 'MM' },
+      { name: 'Max', expected: 'MA' },
+      { name: 'Meier Julian', expected: 'MJ' },
+      { name: 'Meier Pablo Enrique José', expected: 'MJ' },
+      { name: 'Meier Ruedi (IT-BDE)', expected: 'MR' },
+      { name: 'Åberg Niels (IT-BDE)', expected: 'ÅN' },
+      { name: 'aberg niels', expected: 'AN' },
+      { name: '(dummy)', expected: '' },
+    ];
+
+    params.forEach((param) => {
+      componentTest.displayName = param.name;
+      fixtureTest.detectChanges();
+      const initialLettersReference = usermenuComponent.query(
+        By.css('.sbb-usermenu-initial-letters')
+      );
+      expect(initialLettersReference.nativeElement.textContent).toContain(param.expected);
+    });
+  });
+
   it('should display login button after performing logout', () => {
     performLoginAndReturnUsermenuComponent(fixtureTest);
     expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-trigger-logged-in'))).toBeTruthy();
