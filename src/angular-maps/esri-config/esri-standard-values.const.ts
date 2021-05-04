@@ -13,6 +13,4 @@ export class SbbEsriConfigConsts {
   ];
 
   public static arcgisPortalUrl: string = 'https://www.arcgis.com';
-
-  public static cssUrl: string = 'https://js.arcgis.com/4.19/esri/css/main.css';
 }

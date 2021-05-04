@@ -18,8 +18,6 @@ export class SbbEsriLoaderService {
 
   /** @docs-private */
   private _configure(url: string) {
-    const cssUrl = this._config?.cssUrl ?? SbbEsriConfigConsts.cssUrl;
-    this._loadCss(cssUrl);
     esriConfig.portalUrl = this._config?.portalUrl ?? SbbEsriConfigConsts.arcgisPortalUrl;
     const trustedServers = this._config?.trustedServers ?? [];
     esriConfig.request.trustedServers!.push(
@@ -39,13 +37,5 @@ export class SbbEsriLoaderService {
       },
       error: () => {},
     });
-  }
-
-  private _loadCss(url: string): void {
-    // load script
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
   }
 }

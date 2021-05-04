@@ -8,7 +8,6 @@ import configRequest = __esri.configRequest;
 
 describe('EsriLoaderService', () => {
   const esriCustomConf: SbbEsriConfiguration = {
-    cssUrl: 'myCssUrl',
     trustedServers: ['t1', 't2'],
     portalUrl: 'urlToPortalInstance',
     originsWithCredentialsRequired: ['o1', 'o2'],

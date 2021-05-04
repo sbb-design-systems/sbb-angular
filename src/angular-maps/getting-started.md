@@ -100,3 +100,14 @@ import { EsriWebMapModule, EsriWebSceneModule } from '@sbb-esta/angular-maps';
 })
 export class TrainChooChooAppModule {}
 ```
+
+### Step 4: Configure CSS
+
+Choose an angular-map [theme](https://developers.arcgis.com/javascript/latest/styling/#themes) and then configure your App to use the Esri ArcGIS CDN, for example:
+
+_index.css_
+```
+@import "https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css";
+```
+
+Or, if you are working with local assets, see the [Managing assets locally](https://developers.arcgis.com/javascript/latest/es-modules/#managing-assets-locally) section.
