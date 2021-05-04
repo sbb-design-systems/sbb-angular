@@ -179,11 +179,17 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
   get _initialLetters(): string {
     const name = this.displayName ? this.displayName : this.userName || '';
     const names: string[] = name.split(' ');
-    if (names.length === 1) {
-      return names[0].substring(0, 2).toLocaleUpperCase();
+    const filteredNames = names.filter((namePart) => namePart[0].match(/^\p{L}/u));
+
+    if (filteredNames.length === 0) {
+      return '';
     }
 
-    return names
+    if (filteredNames.length === 1) {
+      return filteredNames[0].substring(0, 2).toLocaleUpperCase();
+    }
+
+    return filteredNames
       .reduce((current, next) => {
         return current[0] + next[0];
       })
