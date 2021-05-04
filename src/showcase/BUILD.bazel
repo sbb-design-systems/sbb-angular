@@ -161,6 +161,7 @@ concatjs_devserver(
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
         "//tools/rxjs:rxjs_umd_modules",
+        "//tools/arcgis-core:arcgis_umd_modules",
     ],
     static_files = _ASSETS + [
         "@npm//:node_modules/core-js/client/core.min.js",
