@@ -1,6 +1,3 @@
-// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
-/// <reference types="arcgis-js-api" />
-
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,13 +7,16 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import {
-  SbbEsriTypesService,
-  SbbGraphicService,
-  SbbHitTestService,
-} from '@sbb-esta/angular-maps/core';
+import Camera from '@arcgis/core/Camera';
+import Point from '@arcgis/core/geometry/Point';
+import Graphic from '@arcgis/core/Graphic';
+import SceneView from '@arcgis/core/views/SceneView';
+import WebScene from '@arcgis/core/WebScene';
+import { SbbGraphicService, SbbHitTestService } from '@sbb-esta/angular-maps/core';
 
 import { SbbEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
+import SceneViewProperties = __esri.SceneViewProperties;
+import SceneViewClickEvent = __esri.SceneViewClickEvent;
 
 @Component({
   selector: 'sbb-esri-web-scene',
@@ -28,10 +28,10 @@ export class SbbEsriWebScene implements OnInit {
   private _camera: SbbEsri3DCamera;
 
   /** The reference to the esri.SceneView*/
-  sceneView: __esri.SceneView;
+  sceneView: SceneView;
 
   /** The reference to the esri.WebScene */
-  webScene: __esri.WebScene;
+  webScene: WebScene;
 
   /** This id references to a portal web-scene item. It is used to display the scene. */
   @Input() portalItemId: string;
@@ -40,7 +40,7 @@ export class SbbEsriWebScene implements OnInit {
    * See the arcgis js api doc for a list of all possible properties.
    * https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html#properties-summary
    */
-  @Input() sceneViewProperties: __esri.SceneViewProperties;
+  @Input() sceneViewProperties: SceneViewProperties;
 
   /** Update the active SceneView extent */
   @Input() set sceneCamera(newCamera: SbbEsri3DCamera) {
@@ -49,7 +49,7 @@ export class SbbEsriWebScene implements OnInit {
   }
 
   /** Moves map to a specific point . */
-  @Input() set goTo(camera: __esri.Camera | any) {
+  @Input() set goTo(camera: Camera | any) {
     if (camera) {
       const cam = this._createNewCamera(camera);
       this.sceneView.goTo(cam);
@@ -59,42 +59,39 @@ export class SbbEsriWebScene implements OnInit {
 
   /** Event that is emitted when the map is clicked */
   @Output() mapClick: EventEmitter<{
-    clickedPoint: __esri.Point;
-    clickedGraphics: __esri.Graphic[];
+    clickedPoint: Point;
+    clickedGraphics: Graphic[];
   }> = new EventEmitter();
 
   /** Event that is emitted when the extent of the map has been changed. */
-  @Output() cameraChanged: EventEmitter<__esri.Camera> = new EventEmitter();
+  @Output() cameraChanged: EventEmitter<Camera> = new EventEmitter();
 
   /** Event that is emitted when the map is ready */
-  @Output() mapReady: EventEmitter<__esri.SceneView> = new EventEmitter();
+  @Output() mapReady: EventEmitter<SceneView> = new EventEmitter();
 
   constructor(
-    private _esri: SbbEsriTypesService,
     private _elementRef: ElementRef,
     private _geometryUtilsService: SbbGraphicService,
     private _hitTestService: SbbHitTestService
   ) {}
 
   ngOnInit() {
-    this._esri.load().then(() => {
-      this.webScene = new this._esri.WebScene({
-        portalItem: {
-          id: this.portalItemId,
-        },
-      });
-      this.sceneView = new this._esri.SceneView(this._mergeSceneViewProperties());
-
-      this._setSceneViewCamera(this._camera);
-      this._registerEvents();
-
-      this.sceneView.when(() => this.mapReady.emit(this.sceneView));
+    this.webScene = new WebScene({
+      portalItem: {
+        id: this.portalItemId,
+      },
     });
+    this.sceneView = new SceneView(this._mergeSceneViewProperties());
+
+    this._setSceneViewCamera(this._camera);
+    this._registerEvents();
+
+    this.sceneView.when(() => this.mapReady.emit(this.sceneView));
   }
 
   /** Merges input esri.SceneViewProperties with default SceneViewProperties */
-  private _mergeSceneViewProperties(): __esri.SceneViewProperties {
-    let svProperties = {} as __esri.SceneViewProperties;
+  private _mergeSceneViewProperties(): SceneViewProperties {
+    let svProperties = {} as SceneViewProperties;
     if (this.sceneViewProperties) {
       svProperties = this.sceneViewProperties;
     }
@@ -117,7 +114,7 @@ export class SbbEsriWebScene implements OnInit {
     this.sceneView.watch('camera', (camera) => this._handleCameraChange(camera));
   }
 
-  private _handleMouseClick(e: __esri.SceneViewClickEvent) {
+  private _handleMouseClick(e: SceneViewClickEvent) {
     this._hitTestService
       .esriHitTest(this.sceneView, e)
       .then((hitTestGraphics) =>
@@ -125,12 +122,12 @@ export class SbbEsriWebScene implements OnInit {
       );
   }
 
-  private _handleCameraChange(camera: __esri.Camera) {
+  private _handleCameraChange(camera: Camera) {
     this.cameraChanged.emit(camera);
   }
 
-  private _createNewCamera(newCam: SbbEsri3DCamera): __esri.Camera {
-    return new this._esri.Camera({
+  private _createNewCamera(newCam: SbbEsri3DCamera): Camera {
+    return new Camera({
       position: newCam.position,
       tilt: newCam.tilt,
       heading: newCam.heading,

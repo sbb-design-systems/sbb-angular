@@ -357,6 +357,18 @@
   dependencies:
     tslib "^2.0.0"
 
+"@arcgis/core@~4.19.1":
+  version "4.19.1"
+  resolved "https://registry.yarnpkg.com/@arcgis/core/-/core-4.19.1.tgz#67a5578aad4275d475b5a22162523a8095dc71d8"
+  integrity sha512-H7OWfmwbq/xzfVaaL25bX4gCggMrmoatK3MgEwyJQJ97IDbxpouTfM73idpBV3wN6CUe/gHqfi73qkfIdAOaTA==
+  dependencies:
+    "@esri/arcgis-html-sanitizer" "~2.5.0"
+    "@esri/calcite-colors" "~5.0.0"
+    "@popperjs/core" "~2.6.0"
+    focus-trap "~6.3.0"
+    moment "~2.29.1"
+    sortablejs "~1.13.0"
+
 "@babel/cli@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.10.4.tgz#ba38ad6d0b4b772a67b106934b7c33d656031896"
@@ -2478,6 +2490,19 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
 
+"@esri/arcgis-html-sanitizer@~2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@esri/arcgis-html-sanitizer/-/arcgis-html-sanitizer-2.5.0.tgz#45fb2a22ca98adf6890b294ba064211b1cb76c81"
+  integrity sha512-axq4dGwm3bjY/iR1DoPxrnJOt2SKXD0Cy1QYihK4yZx25CEDpfdSUBE71oz77BSYFz+KQZvh6A3xxOgLnVEoWA==
+  dependencies:
+    lodash.isplainobject "^4.0.6"
+    xss "^1.0.8"
+
+"@esri/calcite-colors@~5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@esri/calcite-colors/-/calcite-colors-5.0.0.tgz#41e96c65bad19441b93d2fae26b1e10edc02c35d"
+  integrity sha512-8+coTzRjHQkk/T7UTvX4bTpseyiL41lKzAfVC11b4C3ORKrIOI+uhJFssBb0rGl7N40Epuzxto/2HY8xs4pLsA==
+
 "@fimbul/bifrost@^0.21.0":
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/@fimbul/bifrost/-/bifrost-0.21.0.tgz#d0fafa25938fda475657a6a1e407a21bbe02c74e"
@@ -2798,6 +2823,11 @@
   dependencies:
     esquery "^1.0.1"
 
+"@popperjs/core@~2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.6.0.tgz#f022195afdfc942e088ee2101285a1d31c7d727f"
+  integrity sha512-cPqjjzuFWNK3BSKLm0abspP0sp/IGOli4p5I5fKFAzdS8fvjdOwDCfZqAaIiXd9lPkOWi3SUUfZof3hEb7J/uw==
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -2991,11 +3021,6 @@
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
-
-"@types/arcgis-js-api@~4.15.0":
-  version "4.15.0"
-  resolved "https://registry.yarnpkg.com/@types/arcgis-js-api/-/arcgis-js-api-4.15.0.tgz#f29f123c55cf210bf0108d671f62104f08aaab2a"
-  integrity sha512-8k3izWm6TBuNgYjYr7k5S9aXpzJ6R51g3HMecQvB4CAD5tgO+kUFn3i1BPnfweAPnrURei9ponU9QL1N5o0BhA==
 
 "@types/archy@^0.0.31":
   version "0.0.31"
@@ -5055,7 +5080,7 @@ comma-separated-tokens@^1.0.0, comma-separated-tokens@^1.0.1:
   resolved "https://registry.yarnpkg.com/comma-separated-tokens/-/comma-separated-tokens-1.0.8.tgz#632b80b6117867a158f1080ad498b2fbe7e3f5ea"
   integrity sha512-GHuDRO12Sypu2cV70d1dkA2EUmXHgntrzbpvOB+Qy+49ypNfGgFQIC2fhhXbnyrJRynDCAARsT7Ou0M6hirpfw==
 
-commander@^2.11.0, commander@^2.12.1, commander@^2.20.0, commander@^2.7.1:
+commander@^2.11.0, commander@^2.12.1, commander@^2.20.0, commander@^2.20.3, commander@^2.7.1:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
@@ -5760,6 +5785,11 @@ cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
+
+cssfilter@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/cssfilter/-/cssfilter-0.0.10.tgz#c6d2672632a2e5c83e013e6864a42ce8defd20ae"
+  integrity sha1-xtJnJjKi5cg+AT5oZKQs6N79IK4=
 
 cssnano-preset-default@^4.0.8:
   version "4.0.8"
@@ -6650,11 +6680,6 @@ esrecurse@^4.1.0:
   dependencies:
     estraverse "^5.2.0"
 
-esri-loader@~2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/esri-loader/-/esri-loader-2.13.0.tgz#2faea3dc21f34b2ecc1421c29420829f871577a8"
-  integrity sha512-8a0sKovo1p3udCzj4ybT4/bn4+1w3tAhRIKbrL+KrV08919luOc+PR0gsnh4X7fbZ1KaU8uLt3KcpIhio71TlA==
-
 estraverse@^1.9.1:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-1.9.3.tgz#af67f2dc922582415950926091a4005d29c9bb44"
@@ -7127,6 +7152,13 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
+
+focus-trap@~6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-6.3.0.tgz#31c08f0b6099705f71f6e0a16d88fbcc4c012586"
+  integrity sha512-BBzvFfkPg5PqrVVCdQ1YOIVNKGvqG9YNVkiAUQFuDM66N8J9uADhs6mlYKrd30ofDJIzEniBnBKM7GO45iCzKQ==
+  dependencies:
+    tabbable "^5.1.5"
 
 follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.0"
@@ -9412,6 +9444,11 @@ lodash.ismatch@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.ismatch/-/lodash.ismatch-4.4.0.tgz#756cb5150ca3ba6f11085a78849645f188f85f37"
   integrity sha1-dWy1FQyjum8RCFp4hJZF8Yj4Xzc=
 
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -10113,6 +10150,11 @@ modify-values@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
+
+moment@~2.29.1:
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -13238,6 +13280,11 @@ socks@^2.3.3:
     ip "^1.1.5"
     smart-buffer "^4.1.0"
 
+sortablejs@~1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.13.0.tgz#3ab2473f8c69ca63569e80b1cd1b5669b51269e9"
+  integrity sha512-RBJirPY0spWCrU5yCmWM1eFs/XgX2J5c6b275/YyxFRgnzPhKl/TDeU2hNR8Dt7ITq66NRPM4UlOt+e5O4CFHg==
+
 source-list-map@^2.0.0, source-list-map@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.1.tgz#3993bd873bfc48479cca9ea3a547835c7c154b34"
@@ -14002,6 +14049,11 @@ systemjs@^6.3.3:
   version "6.3.3"
   resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.3.3.tgz#c0f2bec5cc72d0b36a8b971b1fa32bfc828b50d4"
   integrity sha512-djQ6mZ4/cWKnVnhAWvr/4+5r7QHnC7WiA8sS9VuYRdEv3wYZYTIIQv8zPT79PdDSUwfX3bgvu5mZ8eTyLm2YQA==
+
+tabbable@^5.1.5:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-5.2.0.tgz#4fba60991d8bb89d06e5d9455c92b453acf88fb2"
+  integrity sha512-0uyt8wbP0P3T4rrsfYg/5Rg3cIJ8Shl1RJ54QMqYxm1TLdWqJD1u6+RQjr2Lor3wmfT7JRHkirIwy99ydBsyPg==
 
 table@^6.0.7:
   version "6.0.7"
@@ -15355,6 +15407,14 @@ xmlhttprequest-ssl@~1.5.4:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.5.tgz#c2876b06168aadc40e57d97e81191ac8f4398b3e"
   integrity sha1-wodrBhaKrcQOV9l+gRkayPQ5iz4=
+
+xss@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/xss/-/xss-1.0.8.tgz#32feb87feb74b3dcd3d404b7a68ababf10700535"
+  integrity sha512-3MgPdaXV8rfQ/pNn16Eio6VXYPTkqwa0vc7GkiymmY/DqR1SE/7VPAAVZz1GJsJFrllMYO3RHfEaiUGjab6TNw==
+  dependencies:
+    commander "^2.20.3"
+    cssfilter "0.0.10"
 
 xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.2"

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { SbbEsriTypesService } from '@sbb-esta/angular-maps/core';
 
 import { SbbEsriLegend } from './esri-legend.component';
 
@@ -11,7 +10,7 @@ describe('SbbEsriLegend', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [SbbEsriLegend],
-        providers: [SbbEsriTypesService],
+        providers: [],
       }).compileComponents();
     })
   );

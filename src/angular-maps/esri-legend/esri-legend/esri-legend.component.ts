@@ -1,8 +1,7 @@
-// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
-/// <reference types="arcgis-js-api" />
-
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
-import { SbbEsriTypesService } from '@sbb-esta/angular-maps/core';
+import MapView from '@arcgis/core/views/MapView';
+import SceneView from '@arcgis/core/views/SceneView';
+import Legend from '@arcgis/core/widgets/Legend';
 
 @Component({
   selector: 'sbb-esri-legend',
@@ -12,7 +11,7 @@ import { SbbEsriTypesService } from '@sbb-esta/angular-maps/core';
 })
 export class SbbEsriLegend implements OnInit {
   /** References the map or scene to load the legend for.*/
-  @Input() mapView: __esri.MapView | __esri.SceneView;
+  @Input() mapView: MapView | SceneView;
 
   /** Styles the legend using styles from https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Legend.html#style */
   @Input() sbblegendStyle: {
@@ -21,18 +20,16 @@ export class SbbEsriLegend implements OnInit {
   } = { type: 'classic', layout: 'auto' };
 
   /** References the ESRI legend object */
-  public legend: __esri.Legend;
+  public legend: Legend;
 
-  constructor(private _esri: SbbEsriTypesService, private _hostReference: ElementRef) {}
+  constructor(private _hostReference: ElementRef) {}
 
   /** Loads & instantiates the legend. */
   ngOnInit() {
-    this._esri.load().then(() => {
-      this.legend = new this._esri.Legend({
-        view: this.mapView,
-        style: this.sbblegendStyle,
-        container: this._hostReference.nativeElement,
-      });
+    this.legend = new Legend({
+      view: this.mapView,
+      style: this.sbblegendStyle,
+      container: this._hostReference.nativeElement,
     });
   }
 }

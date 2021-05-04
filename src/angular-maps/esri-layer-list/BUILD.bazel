@@ -18,10 +18,9 @@ ng_module(
     assets = [":esri-layer-list/esri-layer-list.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-maps/esri-layer-list",
     deps = [
-        "//src/angular-maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//@types/arcgis-js-api",
+        "@npm//@arcgis/core",
     ],
 )
 
@@ -38,7 +37,6 @@ ng_test_library(
     ),
     deps = [
         ":esri-layer-list",
-        "//src/angular-maps/core",
     ],
 )
 
@@ -46,7 +44,6 @@ ng_web_test_suite(
     name = "unit_tests",
     deps = [
         # do not sort
-        "//tools/esri-loader:esri_loader_umd_module",
         ":unit_test_sources",
     ],
 )

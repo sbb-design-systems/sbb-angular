@@ -1,6 +1,3 @@
-// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
-/// <reference types="arcgis-js-api" />
-
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,13 +7,15 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import {
-  SbbEsriTypesService,
-  SbbGraphicService,
-  SbbHitTestService,
-} from '@sbb-esta/angular-maps/core';
+import Extent from '@arcgis/core/geometry/Extent';
+import Point from '@arcgis/core/geometry/Point';
+import Graphic from '@arcgis/core/Graphic';
+import MapView from '@arcgis/core/views/MapView';
+import WebMap from '@arcgis/core/WebMap';
+import { SbbGraphicService, SbbHitTestService } from '@sbb-esta/angular-maps/core';
 
 import { SbbEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
+import MapViewClickEvent = __esri.MapViewClickEvent;
 
 @Component({
   selector: 'sbb-esri-web-map',
@@ -27,10 +26,10 @@ import { SbbEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
 export class SbbEsriWebMap implements OnInit {
   private _extent: SbbEsriExtent2D;
   /** The reference to the esri.MapView */
-  mapView: __esri.MapView;
+  mapView: MapView;
 
   /** The reference to the esri.WebMap */
-  webMap: __esri.WebMap;
+  webMap: WebMap;
 
   /** This id references to a portal web-map item. It is used to display the map. */
   @Input() portalItemId: string;
@@ -44,7 +43,7 @@ export class SbbEsriWebMap implements OnInit {
   }
 
   /** Moves map to a specific point . */
-  @Input() set goTo(point: __esri.Point | any) {
+  @Input() set goTo(point: Point | any) {
     if (point) {
       this.mapView.center = point;
       this._geometryUtilsService.addNewGraphicToMap(point, this.mapView);
@@ -53,46 +52,43 @@ export class SbbEsriWebMap implements OnInit {
 
   /** Event that is emitted when the map is clicked */
   @Output() mapClick: EventEmitter<{
-    clickedPoint: __esri.Point;
-    clickedGraphics: __esri.Graphic[];
+    clickedPoint: Point;
+    clickedGraphics: Graphic[];
   }> = new EventEmitter();
 
   /** Event that is emitted when the extent of the map has been changed. */
-  @Output() extentChanged: EventEmitter<__esri.Extent> = new EventEmitter();
+  @Output() extentChanged: EventEmitter<Extent> = new EventEmitter();
 
   /** Event that is emitted when the map is ready */
-  @Output() mapReady: EventEmitter<__esri.MapView> = new EventEmitter();
+  @Output() mapReady: EventEmitter<MapView> = new EventEmitter();
 
   constructor(
-    private _esri: SbbEsriTypesService,
     private _elementRef: ElementRef,
     private _geometryUtilsService: SbbGraphicService,
     private _hitTestService: SbbHitTestService
   ) {}
 
   ngOnInit() {
-    this._esri.load().then(() => {
-      this.webMap = new this._esri.WebMap({
-        portalItem: {
-          id: this.portalItemId,
-        },
-      });
-
-      this.mapView = new this._esri.MapView({
-        map: this.webMap,
-        container: this._elementRef.nativeElement,
-      });
-
-      this._setMapExtent(this._extent);
-      this._registerEvents();
-
-      this.mapView.when(() => this.mapReady.emit(this.mapView));
+    this.webMap = new WebMap({
+      portalItem: {
+        id: this.portalItemId,
+      },
     });
+
+    this.mapView = new MapView({
+      map: this.webMap,
+      container: this._elementRef.nativeElement,
+    });
+
+    this._setMapExtent(this._extent);
+    this._registerEvents();
+
+    this.mapView.when(() => this.mapReady.emit(this.mapView));
   }
 
   private _setMapExtent(newExtent: SbbEsriExtent2D) {
     if (this.mapView && newExtent) {
-      this.mapView.extent = new this._esri.Extent({
+      this.mapView.extent = new Extent({
         xmin: newExtent.xmin,
         xmax: newExtent.xmax,
         ymin: newExtent.ymin,
@@ -107,7 +103,7 @@ export class SbbEsriWebMap implements OnInit {
     this.mapView.watch('extent', (extent) => this._emitExtentChange(extent));
   }
 
-  private _emitMouseClick(e: __esri.MapViewClickEvent) {
+  private _emitMouseClick(e: MapViewClickEvent) {
     this._hitTestService
       .esriHitTest(this.mapView, e)
       .then((hitTestGraphics) =>
@@ -115,7 +111,7 @@ export class SbbEsriWebMap implements OnInit {
       );
   }
 
-  private _emitExtentChange(extent: __esri.Extent) {
+  private _emitExtentChange(extent: Extent) {
     this.extentChanged.emit(extent);
   }
 }
