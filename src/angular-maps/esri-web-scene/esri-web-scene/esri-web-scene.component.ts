@@ -4,6 +4,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -13,10 +14,12 @@ import Graphic from '@arcgis/core/Graphic';
 import SceneView from '@arcgis/core/views/SceneView';
 import WebScene from '@arcgis/core/WebScene';
 import { SbbGraphicService, SbbHitTestService } from '@sbb-esta/angular-maps/core';
-
-import { SbbEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
 import SceneViewProperties = __esri.SceneViewProperties;
 import SceneViewClickEvent = __esri.SceneViewClickEvent;
+import { ReplaySubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { SbbEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
 
 @Component({
   selector: 'sbb-esri-web-scene',
@@ -24,8 +27,10 @@ import SceneViewClickEvent = __esri.SceneViewClickEvent;
   styleUrls: ['./esri-web-scene.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbEsriWebScene implements OnInit {
-  private _camera: SbbEsri3DCamera;
+export class SbbEsriWebScene implements OnInit, OnDestroy {
+  private readonly _setSceneCameraSubject = new ReplaySubject<SbbEsri3DCamera>(1);
+  private readonly _goToSubject = new ReplaySubject<SbbEsri3DCamera | any>(1);
+  private readonly _ngUnsubscribe = new Subject<void>();
 
   /** The reference to the esri.SceneView*/
   sceneView: SceneView;
@@ -44,17 +49,12 @@ export class SbbEsriWebScene implements OnInit {
 
   /** Update the active SceneView extent */
   @Input() set sceneCamera(newCamera: SbbEsri3DCamera) {
-    this._camera = newCamera;
-    this._setSceneViewCamera(newCamera);
+    this._setSceneCameraSubject.next(newCamera);
   }
 
   /** Moves map to a specific point . */
-  @Input() set goTo(camera: Camera | any) {
-    if (camera) {
-      const cam = this._createNewCamera(camera);
-      this.sceneView.goTo(cam);
-      this._geometryUtilsService.addNewGraphicToMap(cam.position, this.sceneView);
-    }
+  @Input() set goTo(camera: SbbEsri3DCamera | any) {
+    this._goToSubject.next(camera);
   }
 
   /** Event that is emitted when the map is clicked */
@@ -83,10 +83,32 @@ export class SbbEsriWebScene implements OnInit {
     });
     this.sceneView = new SceneView(this._mergeSceneViewProperties());
 
-    this._setSceneViewCamera(this._camera);
+    this._subscribeToInputChanges();
     this._registerEvents();
-
     this.sceneView.when(() => this.mapReady.emit(this.sceneView));
+  }
+
+  ngOnDestroy() {
+    this._ngUnsubscribe.next();
+    this._ngUnsubscribe.complete();
+    this._destroySceneView();
+  }
+
+  private _subscribeToInputChanges() {
+    this._setSceneCameraSubject
+      .pipe(takeUntil(this._ngUnsubscribe))
+      .subscribe((newCamera: SbbEsri3DCamera) => {
+        this._setSceneViewCamera(newCamera);
+      });
+
+    this._goToSubject
+      .pipe(takeUntil(this._ngUnsubscribe))
+      .subscribe((camera: SbbEsri3DCamera | any) => {
+        if (this.sceneView && camera) {
+          this._setSceneViewCamera(camera);
+          this._geometryUtilsService.addNewGraphicToMap(camera.position, this.sceneView);
+        }
+      });
   }
 
   /** Merges input esri.SceneViewProperties with default SceneViewProperties */
@@ -104,7 +126,13 @@ export class SbbEsriWebScene implements OnInit {
   /** Updates the extent of the sceneview. */
   private _setSceneViewCamera(newCamera: SbbEsri3DCamera) {
     if (this.sceneView && newCamera) {
-      const cam = this._createNewCamera(newCamera);
+      const cam = new Camera({
+        position: newCamera.position,
+        tilt: newCamera.tilt,
+        heading: newCamera.heading,
+        fov: newCamera.fov,
+      });
+
       this.sceneView.goTo(cam);
     }
   }
@@ -126,12 +154,17 @@ export class SbbEsriWebScene implements OnInit {
     this.cameraChanged.emit(camera);
   }
 
-  private _createNewCamera(newCam: SbbEsri3DCamera): Camera {
-    return new Camera({
-      position: newCam.position,
-      tilt: newCam.tilt,
-      heading: newCam.heading,
-      fov: newCam.fov,
-    });
+  private _destroySceneView() {
+    // it was in 4.18, but just to be sure it's cleaned-up: https://community.esri.com/t5/arcgis-api-for-javascript/4-17-memory-issue-angular/td-p/140389
+    const sceneView = this.sceneView;
+    const map = this.webScene;
+    if (sceneView) {
+      sceneView?.destroy();
+    }
+
+    if (map) {
+      map.removeAll();
+      map.destroy();
+    }
   }
 }

@@ -4,6 +4,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -13,9 +14,11 @@ import Graphic from '@arcgis/core/Graphic';
 import MapView from '@arcgis/core/views/MapView';
 import WebMap from '@arcgis/core/WebMap';
 import { SbbGraphicService, SbbHitTestService } from '@sbb-esta/angular-maps/core';
+import MapViewClickEvent = __esri.MapViewClickEvent;
+import { ReplaySubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { SbbEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
-import MapViewClickEvent = __esri.MapViewClickEvent;
 
 @Component({
   selector: 'sbb-esri-web-map',
@@ -23,8 +26,11 @@ import MapViewClickEvent = __esri.MapViewClickEvent;
   styleUrls: ['./esri-web-map.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbEsriWebMap implements OnInit {
-  private _extent: SbbEsriExtent2D;
+export class SbbEsriWebMap implements OnInit, OnDestroy {
+  private readonly _setMapExtentSubject = new ReplaySubject<SbbEsriExtent2D>(1);
+  private readonly _goToSubject = new ReplaySubject<Point | any>(1);
+  private readonly _ngUnsubscribe = new Subject<void>();
+
   /** The reference to the esri.MapView */
   mapView: MapView;
 
@@ -38,16 +44,12 @@ export class SbbEsriWebMap implements OnInit {
    * If empty, portal default map extent will be used.
    * You need to add a wkid as well. (switzerland default is 2056). */
   @Input() set mapExtent(newExtent: SbbEsriExtent2D) {
-    this._extent = newExtent;
-    this._setMapExtent(newExtent);
+    this._setMapExtentSubject.next(newExtent);
   }
 
   /** Moves map to a specific point . */
   @Input() set goTo(point: Point | any) {
-    if (point) {
-      this.mapView.center = point;
-      this._geometryUtilsService.addNewGraphicToMap(point, this.mapView);
-    }
+    this._goToSubject.next(point);
   }
 
   /** Event that is emitted when the map is clicked */
@@ -80,10 +82,27 @@ export class SbbEsriWebMap implements OnInit {
       container: this._elementRef.nativeElement,
     });
 
-    this._setMapExtent(this._extent);
+    this._subscribeToInputChanges();
     this._registerEvents();
-
     this.mapView.when(() => this.mapReady.emit(this.mapView));
+  }
+
+  ngOnDestroy() {
+    this._ngUnsubscribe.next();
+    this._ngUnsubscribe.complete();
+    this._destroyMapView();
+  }
+
+  private _subscribeToInputChanges() {
+    this._setMapExtentSubject
+      .pipe(takeUntil(this._ngUnsubscribe))
+      .subscribe((newExtent: SbbEsriExtent2D) => {
+        this._setMapExtent(newExtent);
+      });
+
+    this._goToSubject.pipe(takeUntil(this._ngUnsubscribe)).subscribe((point: Point | any) => {
+      this._setMapCenter(point);
+    });
   }
 
   private _setMapExtent(newExtent: SbbEsriExtent2D) {
@@ -95,6 +114,13 @@ export class SbbEsriWebMap implements OnInit {
         ymax: newExtent.ymax,
         spatialReference: newExtent.spatialReference,
       });
+    }
+  }
+
+  private _setMapCenter(point: Point | any) {
+    if (this.mapView && point) {
+      this.mapView.center = point;
+      this._geometryUtilsService.addNewGraphicToMap(point, this.mapView);
     }
   }
 
@@ -113,5 +139,19 @@ export class SbbEsriWebMap implements OnInit {
 
   private _emitExtentChange(extent: Extent) {
     this.extentChanged.emit(extent);
+  }
+
+  private _destroyMapView() {
+    // it was in 4.18, but just to be sure it's cleaned-up: https://community.esri.com/t5/arcgis-api-for-javascript/4-17-memory-issue-angular/td-p/140389
+    const mapView = this.mapView;
+    const map = this.webMap;
+    if (mapView) {
+      mapView?.destroy();
+    }
+
+    if (map) {
+      map.removeAll();
+      map.destroy();
+    }
   }
 }
