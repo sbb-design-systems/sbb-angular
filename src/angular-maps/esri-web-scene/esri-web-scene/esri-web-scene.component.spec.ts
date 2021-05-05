@@ -6,17 +6,6 @@ describe('SbbEsriWebScene', () => {
   let component: SbbEsriWebScene;
   let fixture: ComponentFixture<SbbEsriWebScene>;
 
-  let oriConsoleWarn: any;
-
-  beforeAll(() => {
-    oriConsoleWarn = console.warn;
-    console.warn = function (): void {};
-  });
-
-  afterAll(() => {
-    console.warn = oriConsoleWarn;
-  });
-
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
