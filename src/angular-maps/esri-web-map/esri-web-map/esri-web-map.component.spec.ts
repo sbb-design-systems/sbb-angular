@@ -6,6 +6,17 @@ describe('SbbEsriWebMap', () => {
   let component: SbbEsriWebMap;
   let fixture: ComponentFixture<SbbEsriWebMap>;
 
+  let oriConsoleWarn: any;
+
+  beforeAll(() => {
+    oriConsoleWarn = console.warn;
+    console.warn = function (): void {};
+  });
+
+  afterAll(() => {
+    console.warn = oriConsoleWarn;
+  });
+
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
