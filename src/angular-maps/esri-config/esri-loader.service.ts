@@ -9,20 +9,24 @@ import { SbbEsriConfigConsts } from './esri-standard-values.const';
   providedIn: 'root',
 })
 export class SbbEsriLoaderService {
-  private _configuration: Promise<void>;
-
   constructor(
     /** Inject an optional configuration to configure arcgis-js-api settings. */
     @Optional() @Inject(SBB_ESRI_CONFIG_TOKEN) private _config: SbbEsriConfiguration
-  ) {}
+  ) {
+    this._configure();
+  }
 
   /** @docs-private */
-  private _configure(url: string) {
+  private _configure() {
     esriConfig.portalUrl = this._config?.portalUrl ?? SbbEsriConfigConsts.arcgisPortalUrl;
+
     const trustedServers = this._config?.trustedServers ?? [];
-    esriConfig.request.trustedServers!.push(
-      ...SbbEsriConfigConsts.trustedServers.concat(trustedServers)
-    );
+    const esriConfigTrustedServers = esriConfig.request.trustedServers!;
+    SbbEsriConfigConsts.trustedServers.concat(trustedServers).forEach((srv) => {
+      if (esriConfigTrustedServers.indexOf(srv) === -1) {
+        esriConfigTrustedServers.push(srv);
+      }
+    });
 
     const originsWithCredentials = SbbEsriConfigConsts.originsWithCredentialsReuqired;
     const originsWithCredentialsRequired = this._config?.originsWithCredentialsRequired
