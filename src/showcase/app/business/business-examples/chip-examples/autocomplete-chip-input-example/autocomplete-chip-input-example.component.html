@@ -1,4 +1,4 @@
-<ng-container [formGroup]="formGroup">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit($event)">
   <sbb-form-field label="Label" class="sbb-form-field-long">
     <sbb-chip-input formControlName="chip" [sbbAutocomplete]="auto"></sbb-chip-input>
     <sbb-autocomplete #auto="sbbAutocomplete">
@@ -6,6 +6,6 @@
     </sbb-autocomplete>
     <sbb-error *ngIf="formGroup.get('chip')?.errors?.required">This field is required.</sbb-error>
   </sbb-form-field>
-</ng-container>
+</form>
 <h4>Properties</h4>
 <pre>{{ formGroup.get('chip')?.value | json }}</pre>
