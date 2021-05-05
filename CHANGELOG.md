@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/11.1.4...11.2.0) (2021-05-05)
+
+
+### Features
+
+* autocomplete panel can be set to visible if only hints exist ([#785](https://github.com/sbb-design-systems/sbb-angular/issues/785)) ([5e7db7f](https://github.com/sbb-design-systems/sbb-angular/commit/5e7db7fb6c2b98ead071cc50c711d8990097214a))
+
+
+### Bug Fixes
+
+* **business:** prevent submit event in chips when pressing enter with content ([#799](https://github.com/sbb-design-systems/sbb-angular/issues/799)) ([b79870e](https://github.com/sbb-design-systems/sbb-angular/commit/b79870e7a2dd5e4d81e1f2927e5abc6e99650968))
+* ignore non letter characters in initial letters of usermenu ([#796](https://github.com/sbb-design-systems/sbb-angular/issues/796)) ([4111663](https://github.com/sbb-design-systems/sbb-angular/commit/4111663bd64e4e4d8dd8a98f8d0d339f25450dc6))
+* **business:** hide sidebar scrollbar on iOS devices ([#794](https://github.com/sbb-design-systems/sbb-angular/issues/794)) ([481bdf8](https://github.com/sbb-design-systems/sbb-angular/commit/481bdf89d4428c1c444642b78dab65951f64b1a2))
+* **business:** update SbbTableDataSource data on disconnected state ([#789](https://github.com/sbb-design-systems/sbb-angular/issues/789)) ([40d895a](https://github.com/sbb-design-systems/sbb-angular/commit/40d895a25ad1af22ecb2ed16319564f33caf7af8))
+* apply error styles based on the error state of the form field ([#781](https://github.com/sbb-design-systems/sbb-angular/issues/781)) ([76fb4e8](https://github.com/sbb-design-systems/sbb-angular/commit/76fb4e8d9308932cb4431a4b8547557c71153093))
+* optimize input element and select styles ([#787](https://github.com/sbb-design-systems/sbb-angular/issues/787)) ([0aa269c](https://github.com/sbb-design-systems/sbb-angular/commit/0aa269c385a17c72fec5e4e1f9a34b4668b675c7))
+* use correct interpolation for it-CH XLIFF 2.0 ([#788](https://github.com/sbb-design-systems/sbb-angular/issues/788)) ([488b2ce](https://github.com/sbb-design-systems/sbb-angular/commit/488b2ced18c3b9693ba5c6add7d6dfcbe4758bea))
+
 ### [11.1.4](https://github.com/sbb-design-systems/sbb-angular/compare/11.1.3...11.1.4) (2021-03-31)
 
 
