@@ -21,8 +21,8 @@ ng_module(
         "//src/angular-maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//rxjs",
         "@npm//@arcgis/core",
+        "@npm//rxjs",
     ],
 )
 

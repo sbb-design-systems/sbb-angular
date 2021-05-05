@@ -13,13 +13,13 @@ filegroup(
 
 rollup_bundle(
     name = "arcgis_bundle",
+    config_file = "rollup.config.js",
     entry_point = "arcgis-core-bundle.js",
     format = "umd",
-    config_file = "rollup.config.js",
     rollup_bin = "@npm//rollup2/bin:rollup",
     deps = [
         "@npm//@arcgis/core",
         "@npm//@rollup/plugin-commonjs",
         "@npm//@rollup/plugin-node-resolve",
-    ]
+    ],
 )
