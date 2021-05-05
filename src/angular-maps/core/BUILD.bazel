@@ -36,6 +36,7 @@ ng_web_test_suite(
     name = "unit_tests",
     deps = [
         # do not sort
+        "//tools/arcgis-core:arcgis_umd_modules",
         ":unit_test_sources",
     ],
 )
