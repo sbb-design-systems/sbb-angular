@@ -14,20 +14,21 @@ describe('EsriLoaderService', () => {
   };
 
   let loaderService: SbbEsriLoaderService;
-  const beforeEach = () => {
+  const configureTestingModule = (customConfig?: SbbEsriConfiguration) => {
     TestBed.configureTestingModule({
+      imports: [...(customConfig ? [SbbEsriConfigModule.forRoot(customConfig!)] : [])],
       providers: [SbbEsriLoaderService],
     });
     loaderService = TestBed.inject(SbbEsriLoaderService);
   };
 
   it('should be created', () => {
-    beforeEach();
+    configureTestingModule();
     expect(loaderService).toBeTruthy();
   });
 
   it('should configure esri with standard config', async () => {
-    beforeEach();
+    configureTestingModule();
     const esriConfig = config;
     expect(esriConfig.portalUrl).toEqual(SbbEsriConfigConsts.arcgisPortalUrl);
     expect(esriConfig.request.trustedServers).toEqual(SbbEsriConfigConsts.trustedServers);
@@ -35,12 +36,7 @@ describe('EsriLoaderService', () => {
   });
 
   it('should load modules with custom config', async () => {
-    TestBed.configureTestingModule({
-      imports: [SbbEsriConfigModule.forRoot(esriCustomConf)],
-      providers: [SbbEsriLoaderService],
-    });
-    loaderService = TestBed.inject(SbbEsriLoaderService);
-
+    configureTestingModule(esriCustomConf);
     const esriConfig = config;
     expect(esriConfig.portalUrl).toEqual(esriCustomConf.portalUrl!);
     expect(esriConfig.request.trustedServers).toEqual(
