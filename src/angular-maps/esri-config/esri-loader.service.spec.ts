@@ -31,7 +31,9 @@ describe('EsriLoaderService', () => {
     configureTestingModule();
     const esriConfig = config;
     expect(esriConfig.portalUrl).toEqual(SbbEsriConfigConsts.arcgisPortalUrl);
-    expect(esriConfig.request.trustedServers).toEqual(SbbEsriConfigConsts.trustedServers);
+    SbbEsriConfigConsts.trustedServers.forEach((srv) => {
+      expect(esriConfig.request.trustedServers).toContain(srv);
+    });
     expect(esriConfig.request.interceptors!.length).toBeGreaterThan(0);
   });
 
@@ -39,9 +41,10 @@ describe('EsriLoaderService', () => {
     configureTestingModule(esriCustomConf);
     const esriConfig = config;
     expect(esriConfig.portalUrl).toEqual(esriCustomConf.portalUrl!);
-    expect(esriConfig.request.trustedServers).toEqual(
-      SbbEsriConfigConsts.trustedServers.concat(esriCustomConf.trustedServers!)
-    );
+    expect(esriConfig.request.trustedServers).toContain(esriCustomConf.trustedServers![0]);
+    SbbEsriConfigConsts.trustedServers.concat(esriCustomConf.trustedServers!).forEach((srv) => {
+      expect(esriConfig.request.trustedServers).toContain(srv);
+    });
     expect(esriConfig.request.interceptors!.length).toBeGreaterThan(0);
   });
 });
