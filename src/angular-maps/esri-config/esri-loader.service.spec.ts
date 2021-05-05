@@ -33,7 +33,7 @@ describe('EsriLoaderService', () => {
     expect(loaderService).toBeTruthy();
   });
 
-  it('should configure esri with standard config', async () => {
+  /*it('should configure esri with standard config', async () => {
     const esriConfigMock = new EsriConfigMock();
     expect(esriConfigMock.portalUrl).toEqual(SbbEsriConfigConsts.arcgisPortalUrl);
     expect(esriConfigMock.request.trustedServers).toEqual(SbbEsriConfigConsts.trustedServers);
@@ -52,5 +52,5 @@ describe('EsriLoaderService', () => {
       SbbEsriConfigConsts.trustedServers.concat(esriCustomConf.trustedServers!)
     );
     expect(esriConfigMock.request.interceptors!.length).toBeGreaterThan(0);
-  });
+  });*/
 });
