@@ -21,4 +21,8 @@ export class AutocompleteChipInputExampleComponent {
       chip: [['option-1'], Validators.required],
     });
   }
+
+  onSubmit(event: Event) {
+    console.log(event);
+  }
 }

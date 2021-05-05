@@ -1,5 +1,6 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
+import { ENTER } from '@angular/cdk/keycodes';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -278,14 +279,27 @@ export class SbbChipInput
     this._inputElement.nativeElement.value = '';
   }
 
-  /** Selects a given value if the action doesn't refer to an autocomplete option. */
-  _onEnter(option: string) {
+  /**
+   * Selects a given value if the action doesn't refer to an autocomplete option.
+   * @deprecated No longer used.
+   */
+  _onEnter(_option: string) {}
+
+  /** Handle the keydown event. */
+  _handleKeydown(event: KeyboardEvent) {
+    const keyCode = event.keyCode;
+    const currentValue = this._inputElement.nativeElement.value;
+    if (keyCode !== ENTER || !currentValue) {
+      return;
+    }
+
+    event.preventDefault();
     if (this.autocomplete) {
       if (!this.autocomplete.options.some((opt) => opt.active)) {
-        this._onSelect(option);
+        this._onSelect(currentValue);
       }
     } else {
-      this._onSelect(option);
+      this._onSelect(currentValue);
     }
   }
 
