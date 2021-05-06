@@ -23,7 +23,7 @@ export const sbbSearchAnimations: {
   growShrink: trigger('growShrink', [
     state('void', style({ opacity: 0, width: '0px' })),
     state('open', style({ opacity: 1, width: '*' })),
-    transition('void => *', animate('120ms cubic-bezier(0, 0, 0.2, 1)')),
-    transition('* => void', animate('100ms 25ms linear')),
+    transition('void => *', animate('300ms ease')),
+    transition('* => void', animate('300ms 25ms linear')),
   ]),
 };

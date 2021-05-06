@@ -4,8 +4,8 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 /**
- * @title Custom Icon
- * @order 20
+ * @title Custom Icon And Autocomplete With Static Options
+ * @order 30
  */
 @Component({
   selector: 'sbb-search-custom-icon-autocomplete-static-options-example',

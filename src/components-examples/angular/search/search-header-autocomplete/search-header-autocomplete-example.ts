@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 
 /**
  * @title Search Header Mode With Autocomplete
- * @order 30
+ * @order 50
  */
 @Component({
   selector: 'sbb-search-header-autocomplete-example',

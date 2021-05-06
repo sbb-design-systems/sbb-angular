@@ -6,7 +6,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 /**
  * @title Search Historic Railway Pictures
- * @order 50
+ * @order 60
  */
 @Component({
   selector: 'sbb-search-historic-railway-pictures-example',
