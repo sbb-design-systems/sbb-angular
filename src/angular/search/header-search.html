@@ -1,0 +1,35 @@
+<sbb-icon [svgIcon]="indicatorIcon" class="sbb-icon-scaled"></sbb-icon>
+<span class="sbb-header-search-label">
+  <ng-container *ngIf="!label" i18n="Button label for the header search@@sbbSearchHeaderButtonLabel"
+    >Search</ng-container
+  >
+  {{ label }}
+</span>
+
+<ng-template
+  cdk-connected-overlay
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayFlexibleDimensions
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayPush
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayPanelClass]="_overlayPanelClass"
+  [cdkConnectedOverlayScrollStrategy]="_scrollStrategy"
+  [cdkConnectedOverlayOrigin]="{ elementRef: _elementRef }"
+  [cdkConnectedOverlayOpen]="panelOpen"
+  [cdkConnectedOverlayPositions]="(_positions | async)!"
+  [cdkConnectedOverlayViewportMargin]="10"
+  [cdkConnectedOverlayWidth]="(_overlayWidth | async)!"
+  (backdropClick)="close()"
+  (detach)="close()"
+>
+  <div
+    class="sbb-header-search-overlay"
+    [id]="panelId"
+    [@growShrink]="_animationState"
+    (@growShrink.start)="_onAnimationStart($event)"
+    (@growShrink.done)="_onAnimationDone($event)"
+  >
+    <ng-content></ng-content>
+  </div>
+</ng-template>

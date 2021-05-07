@@ -1,0 +1,12 @@
+<ng-content select="input"></ng-content>
+<button
+  [type]="type"
+  (click)="_emitSearch()"
+  [disabled]="disabled"
+  class="sbb-search-button sbb-button sbb-icon-fit"
+  [attr.aria-label]="ariaLabel || null"
+  [attr.aria-labelledby]="ariaLabelledby || null"
+  [attr.aria-describedby]="ariaDescribedby || null"
+>
+  <sbb-icon class="sbb-search-icon sbb-icon-scaled" [svgIcon]="indicatorIcon"></sbb-icon>
+</button>

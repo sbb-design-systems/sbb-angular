@@ -508,6 +508,13 @@ export class SbbAutocompleteTrigger
   }
 
   /**
+   * This method updates the width of the autocomplete panel.
+   */
+  _updateSize() {
+    this._overlayRef?.updateSize({ width: this._getPanelWidth() });
+  }
+
+  /**
    * This method listens to a stream of panel closing actions and resets the
    * stream every time the option list changes.
    */

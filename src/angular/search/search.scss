@@ -1,0 +1,87 @@
+@import '../styles/common';
+
+.sbb-search {
+  font-size: pxToRem($sizeFontDefault);
+  display: flex;
+  position: relative;
+  max-width: pxToEm(329);
+
+  @include mq($from: tabletPortrait) {
+    max-width: pxToEm(376);
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    border: pxToRem(2) solid transparent;
+    border-radius: pxToRem(2);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        border-radius: pxToRem(3);
+        border-width: pxToRem(3);
+      }
+      @include mq($from: desktop5k) {
+        border-radius: pxToRem(4);
+        border-width: pxToRem(4);
+      }
+    }
+    html.sbb-lean & {
+      border-width: pxToRem(1);
+    }
+  }
+
+  &.sbb-focused::after {
+    border-color: $sbbColorGrey;
+
+    html.sbb-lean & {
+      border-color: $sbbColorIron;
+    }
+  }
+
+  &.sbb-autocomplete-panel-open:not(.sbb-input-with-open-panel-above)::after {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &.sbb-autocomplete-panel-open.sbb-input-with-open-panel-above::after {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.sbb-search > input {
+  flex: 1 1 auto;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.sbb-search .sbb-search-button {
+  flex: 0 0 pxToEm(56);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: pxToEm(-2);
+
+  html:not(.sbb-lean) & {
+    padding: pxToEm(0);
+  }
+}
+
+.sbb-search .sbb-search-icon {
+  @include absoluteCenterXY();
+}

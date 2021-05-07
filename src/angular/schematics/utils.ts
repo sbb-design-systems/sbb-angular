@@ -228,12 +228,18 @@ export class MigrationElement {
     return results;
   }
 
+  properties() {
+    return this.element.attrs.map(
+      (a) => this._properties.get(a.name) ?? this._createMigrationElementProperty(a)
+    );
+  }
+
   /**
    * Looks for attribute (e.g. example="...") or property (e.g. [example]="...") assignments.
    */
   findProperty(name: string) {
     name = name.toLowerCase();
-    let property = this._properties.get(name);
+    const property = this._properties.get(name);
     if (property) {
       return property;
     }
@@ -248,9 +254,7 @@ export class MigrationElement {
       this._properties.set(name, undefined);
       return undefined;
     }
-    property = this._createMigrationElementProperty(attribute);
-    this._properties.set(name, property);
-    return property;
+    return this._createMigrationElementProperty(attribute);
   }
 
   findPropertyByValue(value: string): MigrationElementProperty | undefined {
@@ -265,9 +269,7 @@ export class MigrationElement {
     if (!attribute) {
       return undefined;
     }
-    const property = this._createMigrationElementProperty(attribute);
-    this._properties.set(property!.attribute.name, property);
-    return property;
+    return this._createMigrationElementProperty(attribute);
   }
 
   private _createMigrationElementProperty(attribute: Attribute) {
@@ -280,7 +282,9 @@ export class MigrationElement {
       value = attribute.value.substring(1, attribute.value.length - 1);
     }
 
-    return new MigrationElementProperty(attribute, location, value, this);
+    const property = new MigrationElementProperty(attribute, location, value, this);
+    this._properties.set(property.attribute.name, property);
+    return property;
   }
 
   appendProperty(name: string, value?: string) {
@@ -294,6 +298,8 @@ export class MigrationElement {
 }
 
 export class MigrationElementProperty {
+  readonly name: string;
+
   get isProperty() {
     return this.attribute.name.startsWith('[');
   }
@@ -311,7 +317,11 @@ export class MigrationElementProperty {
     readonly location: Location,
     readonly value: string | undefined,
     private _element: MigrationElement
-  ) {}
+  ) {
+    this.name = this._element.resource.content
+      .substring(this.location.startOffset, this.location.endOffset)
+      .split('=')[0];
+  }
 
   /** Remove this attribute from the element. */
   remove() {
@@ -338,9 +348,10 @@ export class MigrationElementProperty {
       this._element.resource.start + this.location.startOffset,
       this.location.endOffset - this.location.startOffset
     );
+
     this._element.recorder.insertRight(
       this._element.resource.start + this.location.startOffset,
-      `${this.attribute.name}="${newValue}"`
+      `${this.name}="${newValue}"`
     );
   }
 
@@ -349,6 +360,9 @@ export class MigrationElementProperty {
   }
 
   toString() {
-    return this.attribute.toString();
+    return this._element.resource.content.substr(
+      this.location.startOffset,
+      this.location.endOffset - this.location.startOffset
+    );
   }
 }
