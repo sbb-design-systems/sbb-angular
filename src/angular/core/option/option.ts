@@ -54,7 +54,7 @@ export class SbbOptionSelectionChange {
     '[attr.tabindex]': '_getTabIndex()',
     '[class.sbb-selected]': 'selected',
     '[class.sbb-option-multiple]': 'multiple',
-    '[class.sbb-active]': 'active',
+    '[class.sbb-focused]': 'active',
     '[id]': 'id',
     '[attr.aria-selected]': '_getAriaSelected()',
     '[attr.aria-disabled]': 'disabled.toString()',
