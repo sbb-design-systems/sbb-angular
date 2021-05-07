@@ -8,7 +8,6 @@ export default {
   // preserveEntrySignatures: false,
   plugins: [
     dynamicImportVars({
-      // warnOnError: true
       exclude: [
         'node_modules/@arcgis/core/core/workers/workers.js',
         'node_modules/@arcgis/core/core/workers/WorkerFallback.js',
