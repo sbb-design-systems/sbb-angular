@@ -9,6 +9,7 @@ import {
   RIGHT_ARROW,
   TAB,
 } from '@angular/cdk/keycodes';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
@@ -29,6 +30,7 @@ import {
 import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
 import { By, DomSanitizer } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Breakpoints, SCALING_FACTOR_4K, SCALING_FACTOR_5K } from '@sbb-esta/angular/core';
 import {
   createKeyboardEvent,
   createMouseEvent,
@@ -36,8 +38,10 @@ import {
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
+  FakeMediaMatcher,
   MockNgZone,
   patchElementFocus,
+  switchToLean,
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
@@ -45,6 +49,7 @@ import { Subject } from 'rxjs';
 
 import {
   SbbMenu,
+  SbbMenuInheritedTriggerContext,
   SbbMenuItem,
   SbbMenuModule,
   SbbMenuPanel,
@@ -52,8 +57,20 @@ import {
   SbbMenuPositionY,
   SbbMenuTrigger,
   SBB_MENU_DEFAULT_OPTIONS,
+  SBB_MENU_INHERITED_TRIGGER_CONTEXT,
 } from './index';
 import { SbbMenuTriggerContext, SBB_MENU_SCROLL_STRATEGY } from './menu-trigger';
+
+let mediaMatcher: FakeMediaMatcher;
+
+const PROVIDE_FAKE_MEDIA_MATCHER = {
+  provide: MediaMatcher,
+  useFactory: () => {
+    mediaMatcher = new FakeMediaMatcher();
+    mediaMatcher.defaultMatches = false; // enforce desktop view
+    return mediaMatcher;
+  },
+};
 
 describe('SbbMenu', () => {
   let overlayContainer: OverlayContainer;
@@ -2552,6 +2569,71 @@ describe('SbbMenu headless trigger', () => {
         '.sbb-menu-trigger.sbb-menu-trigger-headless'
       )
     ).toBeTruthy();
+  });
+});
+
+describe('SbbMenu offset', () => {
+  const xOffset = 30;
+  const yOffset = 15;
+  const sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
+    type: 'breadcrumb',
+    xPosition: 'after',
+    xOffset: xOffset,
+    yOffset: yOffset,
+  };
+
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [ContextmenuOnlyTextTrigger],
+      providers: [
+        PROVIDE_FAKE_MEDIA_MATCHER,
+        { provide: SBB_MENU_INHERITED_TRIGGER_CONTEXT, useValue: sbbMenuInheritedTriggerContext },
+      ],
+    }).compileComponents();
+  }));
+
+  afterEach(() => {
+    mediaMatcher.clear();
+  });
+
+  function assertOffset(expectedXOffset: number, expectedYOffset: number, breakpoint?: string) {
+    const fixture = TestBed.createComponent(ContextmenuOnlyTextTrigger);
+    fixture.detectChanges();
+    if (breakpoint) {
+      mediaMatcher.setMatchesQuery(breakpoint, true);
+    }
+    tick();
+
+    // Open menu
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+
+    const overlay = document.body.querySelector('.cdk-overlay-pane');
+    expect(overlay!.getBoundingClientRect().left).toBe(expectedXOffset);
+    expect(overlay!.getBoundingClientRect().top).toBe(expectedYOffset);
+
+    flush();
+  }
+
+  it('should apply offset in desktop view', fakeAsync(() => {
+    assertOffset(xOffset, yOffset);
+  }));
+
+  it('should apply offset in 4k resolution', fakeAsync(() => {
+    assertOffset(xOffset * SCALING_FACTOR_4K, yOffset * SCALING_FACTOR_4K, Breakpoints.Desktop4k);
+  }));
+
+  it('should apply offset in 5k resolution', fakeAsync(() => {
+    assertOffset(xOffset * SCALING_FACTOR_5K, yOffset * SCALING_FACTOR_5K, Breakpoints.Desktop5k);
+  }));
+
+  describe('lean', () => {
+    switchToLean();
+
+    it('should not apply scaling factor in lean in 4k resolution', fakeAsync(() => {
+      assertOffset(xOffset, yOffset, Breakpoints.Desktop4k);
+    }));
   });
 });
 
