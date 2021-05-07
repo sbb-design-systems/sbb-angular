@@ -4,7 +4,7 @@
   </sbb-search>
 </button>
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of filteredOptions" [value]="option">{{ option }}</sbb-option>
+  <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
 </sbb-autocomplete>
 
 <h4>Results</h4>

@@ -20,7 +20,6 @@
   [cdkConnectedOverlayPositions]="(_positions | async)!"
   [cdkConnectedOverlayViewportMargin]="10"
   [cdkConnectedOverlayWidth]="(_overlayWidth | async)!"
-  (attach)="_handleAttach()"
   (backdropClick)="close()"
   (detach)="close()"
 >
@@ -28,8 +27,8 @@
     class="sbb-header-search-overlay"
     [id]="panelId"
     [@growShrink]="_animationState"
-    (@growShrink.start)="_onAnimationStart()"
-    (@growShrink.done)="_onAnimationDone()"
+    (@growShrink.start)="_onAnimationStart($event)"
+    (@growShrink.done)="_onAnimationDone($event)"
   >
     <ng-content></ng-content>
   </div>

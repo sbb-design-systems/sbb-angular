@@ -78,25 +78,10 @@
   margin-left: pxToEm(-2);
 
   html:not(.sbb-lean) & {
-    // Subtract 2 pixel from padding for border.
-    // This scales for 4k and 5k.
     padding: pxToEm(0);
   }
 }
 
 .sbb-search .sbb-search-icon {
   @include absoluteCenterXY();
-  height: pxToRem(24);
-  width: pxToRem(24);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      height: pxToRem(36);
-      width: pxToRem(36);
-    }
-    @include mq($from: desktop5k) {
-      height: pxToRem(48);
-      width: pxToRem(48);
-    }
-  }
 }

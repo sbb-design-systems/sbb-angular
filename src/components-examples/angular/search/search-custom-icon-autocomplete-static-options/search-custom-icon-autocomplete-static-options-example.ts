@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 /**
  * @title Custom Icon And Autocomplete With Static Options
@@ -11,16 +11,16 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   selector: 'sbb-search-custom-icon-autocomplete-static-options-example',
   templateUrl: './search-custom-icon-autocomplete-static-options-example.html',
 })
-export class SearchCustomIconAutocompleteStaticOptionsExample implements OnInit {
+export class SearchCustomIconAutocompleteStaticOptionsExample implements OnInit, OnDestroy {
   searchControl = new FormControl('');
-
   staticOptions: string[] = ['static option one', 'static option two'];
   options = new Subject<string[]>();
 
+  private _destroyed = new Subject<void>();
+
   ngOnInit() {
     this.searchControl.valueChanges
-      .pipe(debounceTime(500))
-      .pipe(distinctUntilChanged())
+      .pipe(debounceTime(500), distinctUntilChanged(), takeUntil(this._destroyed))
       .subscribe((newValue) => {
         if (newValue.length >= 2) {
           this.options.next(
@@ -32,6 +32,11 @@ export class SearchCustomIconAutocompleteStaticOptionsExample implements OnInit 
           this.options.next([]);
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }
 

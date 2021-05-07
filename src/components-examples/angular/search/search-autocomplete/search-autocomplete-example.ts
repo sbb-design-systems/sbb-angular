@@ -12,23 +12,22 @@ import { FormControl } from '@angular/forms';
 export class SearchAutocompleteExample {
   searchControl = new FormControl('');
   searchValues: string[] = [];
-
-  filteredOptions = options.slice(0);
+  options: string[] = [
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'ten',
+  ];
 
   handleSearch(value: string) {
+    // Only display up to the last five search values.
+    // This is only for the purpose of this example.
     this.searchValues = [value, ...this.searchValues].slice(0, 5);
   }
 }
-
-const options: string[] = [
-  'one',
-  'two',
-  'three',
-  'four',
-  'five',
-  'six',
-  'seven',
-  'eight',
-  'nine',
-  'ten',
-];

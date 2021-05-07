@@ -1,3 +1,4 @@
+import { AnimationEvent } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   ConnectedPosition,
@@ -16,7 +17,7 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
-import { Breakpoints, TypeRef } from '@sbb-esta/angular/core';
+import { Breakpoints, SCALING_FACTOR_4K, SCALING_FACTOR_5K, TypeRef } from '@sbb-esta/angular/core';
 import { animationFrameScheduler, interval, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -131,13 +132,26 @@ export class SbbHeaderSearch {
     this._scrollStrategyFactory = scrollStrategyFactory;
     this._scrollStrategy = this._scrollStrategyFactory();
 
-    const mobileObservable = this._breakpointObserver.observe(Breakpoints.Mobile);
-    this._positions = mobileObservable.pipe(
-      map((m) => (m.matches ? searchOverlayMobilePosition : searchOverlayPositions))
-    );
-    this._overlayWidth = mobileObservable.pipe(
-      map((m) => (m.matches ? 'calc(100vw - 20px)' : '376px'))
-    );
+    this._positions = this._breakpointObserver
+      .observe(Breakpoints.Mobile)
+      .pipe(map((m) => (m.matches ? searchOverlayMobilePosition : searchOverlayPositions)));
+    // Compare overlay base width with the scss definition.
+    const overlayBaseWidth = 376;
+    this._overlayWidth = this._breakpointObserver
+      .observe([Breakpoints.Mobile, Breakpoints.Desktop4k, Breakpoints.Desktop5k])
+      .pipe(
+        map((m) => {
+          if (m.breakpoints[Breakpoints.Mobile]) {
+            return 'calc(100vw - 20px)';
+          } else if (m.breakpoints[Breakpoints.Desktop5k]) {
+            return `${overlayBaseWidth * SCALING_FACTOR_5K}px`;
+          } else if (m.breakpoints[Breakpoints.Desktop4k]) {
+            return `${overlayBaseWidth * SCALING_FACTOR_4K}px`;
+          } else {
+            return `${overlayBaseWidth}px`;
+          }
+        })
+      );
   }
 
   /** Toggles the overlay panel open or closed. */
@@ -169,40 +183,54 @@ export class SbbHeaderSearch {
     this.open();
   }
 
-  _handleAttach() {
-    Promise.resolve().then(() => {
-      this._search._input.focus();
-      this._search._autocompleteTrigger?.openPanel();
-    });
-  }
-
   /**
    * Called on overlay animation start.
-   * If available and in a browser environment, updates the autocomplete
-   * size until the end of the overlay animation.
+   * If available and in a browser environment, opens the autocomplete with a delay
+   * and updates the autocomplete size until the end of the overlay animation.
    */
-  _onAnimationStart() {
+  _onAnimationStart(event: AnimationEvent) {
+    // We need to check for requestAnimationFrame, because the animationFrameScheduler
+    // internally uses it, which ensures a smooth animation.
     if (!this._search._autocompleteTrigger || typeof requestAnimationFrame !== 'function') {
+      this._search._input.focus();
       return;
     }
 
-    // The animationFrameScheduler internally uses the requestAnimationFrame
-    // function, which ensures a smooth animation.
-    this._animationSubscription = interval(0, animationFrameScheduler).subscribe(() =>
-      this._search._autocompleteTrigger!._updateSize()
-    );
+    const isOpening = event.toState === 'open';
+    const trigger = this._search._autocompleteTrigger!;
+    this._animationSubscription = interval(0, animationFrameScheduler).subscribe(() => {
+      trigger._updateSize();
+      // Wait until mininum width is reached before setting the focus in the input, which
+      // opens the autocomplete, in order to avoid a zero width autocomplete.
+      if (
+        isOpening &&
+        !trigger.panelOpen &&
+        trigger.connectedTo.elementRef.nativeElement.getBoundingClientRect().width > 50
+      ) {
+        this._search._input.focus();
+      }
+    });
   }
 
   /**
    * Called at the end of the overlay animation.
    * Unsubscribes from the autocomplete animation subscription, if available.
    */
-  _onAnimationDone() {
+  _onAnimationDone(event: AnimationEvent) {
     this._animationSubscription?.unsubscribe();
     this._animationSubscription = undefined;
 
     // This call is required as the unsubscription might happen too early, in
     // which case the autocomplete is not the exact same width as the sbb-search.
-    Promise.resolve().then(() => this._search._autocompleteTrigger?._updateSize());
+    const trigger = this._search._autocompleteTrigger;
+    if (trigger) {
+      Promise.resolve().then(() => {
+        if (trigger.panelOpen) {
+          trigger._updateSize();
+        } else if (event.toState === 'open') {
+          this._search._input.focus();
+        }
+      });
+    }
   }
 }
