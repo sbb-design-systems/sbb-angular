@@ -105,7 +105,7 @@ export class TrainChooChooAppModule {}
 
 Choose an angular-map [theme](https://developers.arcgis.com/javascript/latest/styling/#themes) and then configure your App to use the Esri ArcGIS CDN, for example:
 
-_index.css_
+_styles.(s)css_
 
 ```
 @import "https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css";

@@ -10,7 +10,6 @@ describe('SbbEsriLegend', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [SbbEsriLegend],
-        providers: [],
       }).compileComponents();
     })
   );

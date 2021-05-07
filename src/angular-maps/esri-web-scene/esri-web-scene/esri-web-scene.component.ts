@@ -30,7 +30,7 @@ import { SbbEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
 export class SbbEsriWebScene implements OnInit, OnDestroy {
   private readonly _setSceneCameraSubject = new ReplaySubject<SbbEsri3DCamera>(1);
   private readonly _goToSubject = new ReplaySubject<SbbEsri3DCamera | any>(1);
-  private readonly _ngUnsubscribe = new Subject<void>();
+  private readonly _destroyed = new Subject<void>();
 
   /** The reference to the esri.SceneView*/
   sceneView: SceneView;
@@ -89,20 +89,20 @@ export class SbbEsriWebScene implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._ngUnsubscribe.next();
-    this._ngUnsubscribe.complete();
+    this._destroyed.next();
+    this._destroyed.complete();
     this._destroySceneView();
   }
 
   private _subscribeToInputChanges() {
     this._setSceneCameraSubject
-      .pipe(takeUntil(this._ngUnsubscribe))
+      .pipe(takeUntil(this._destroyed))
       .subscribe((newCamera: SbbEsri3DCamera) => {
         this._setSceneViewCamera(newCamera);
       });
 
     this._goToSubject
-      .pipe(takeUntil(this._ngUnsubscribe))
+      .pipe(takeUntil(this._destroyed))
       .subscribe((camera: SbbEsri3DCamera | any) => {
         if (this.sceneView && camera) {
           this._setSceneViewCamera(camera);
@@ -156,15 +156,8 @@ export class SbbEsriWebScene implements OnInit, OnDestroy {
 
   private _destroySceneView() {
     // it was in 4.18, but just to be sure it's cleaned-up: https://community.esri.com/t5/arcgis-api-for-javascript/4-17-memory-issue-angular/td-p/140389
-    const sceneView = this.sceneView;
-    const map = this.webScene;
-    if (sceneView) {
-      sceneView?.destroy();
-    }
-
-    if (map) {
-      map.removeAll();
-      map.destroy();
-    }
+    this.sceneView?.destroy();
+    this.webScene?.removeAll();
+    this.webScene?.destroy();
   }
 }

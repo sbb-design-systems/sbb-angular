@@ -29,7 +29,7 @@ import { SbbEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
 export class SbbEsriWebMap implements OnInit, OnDestroy {
   private readonly _setMapExtentSubject = new ReplaySubject<SbbEsriExtent2D>(1);
   private readonly _goToSubject = new ReplaySubject<Point | any>(1);
-  private readonly _ngUnsubscribe = new Subject<void>();
+  private readonly _destroyed = new Subject<void>();
 
   /** The reference to the esri.MapView */
   mapView: MapView;
@@ -88,19 +88,19 @@ export class SbbEsriWebMap implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._ngUnsubscribe.next();
-    this._ngUnsubscribe.complete();
+    this._destroyed.next();
+    this._destroyed.complete();
     this._destroyMapView();
   }
 
   private _subscribeToInputChanges() {
     this._setMapExtentSubject
-      .pipe(takeUntil(this._ngUnsubscribe))
+      .pipe(takeUntil(this._destroyed))
       .subscribe((newExtent: SbbEsriExtent2D) => {
         this._setMapExtent(newExtent);
       });
 
-    this._goToSubject.pipe(takeUntil(this._ngUnsubscribe)).subscribe((point: Point | any) => {
+    this._goToSubject.pipe(takeUntil(this._destroyed)).subscribe((point: Point | any) => {
       this._setMapCenter(point);
     });
   }
@@ -143,15 +143,8 @@ export class SbbEsriWebMap implements OnInit, OnDestroy {
 
   private _destroyMapView() {
     // it was in 4.18, but just to be sure it's cleaned-up: https://community.esri.com/t5/arcgis-api-for-javascript/4-17-memory-issue-angular/td-p/140389
-    const mapView = this.mapView;
-    const map = this.webMap;
-    if (mapView) {
-      mapView?.destroy();
-    }
-
-    if (map) {
-      map.removeAll();
-      map.destroy();
-    }
+    this.mapView?.destroy();
+    this.webMap?.removeAll();
+    this.webMap?.destroy();
   }
 }

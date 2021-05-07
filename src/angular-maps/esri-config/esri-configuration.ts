@@ -1,6 +1,6 @@
 export interface SbbEsriConfiguration {
   /**
-   * @deprecated read the angular-maps "Getting Started" section (http://localhost:4200/public/introduction/getting-started).
+   * @deprecated read the angular-maps "Getting Started" section (https://angular.app.sbb.ch/maps/introduction/getting-started).
    */
   cssUrl?: string;
   /**

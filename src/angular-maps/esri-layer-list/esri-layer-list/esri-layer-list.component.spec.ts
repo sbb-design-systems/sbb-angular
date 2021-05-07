@@ -10,7 +10,6 @@ describe('SbbEsriLayerList', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [SbbEsriLayerList],
-        providers: [],
       }).compileComponents();
     })
   );
