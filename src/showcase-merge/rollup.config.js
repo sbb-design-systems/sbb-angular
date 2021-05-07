@@ -7,7 +7,13 @@ export default {
   // as index.js would be cached in the browser.
   // preserveEntrySignatures: false,
   plugins: [
-    dynamicImportVars(),
+    dynamicImportVars({
+      // warnOnError: true
+      exclude: [
+        'node_modules/@arcgis/core/core/workers/workers.js',
+        'node_modules/@arcgis/core/core/workers/WorkerFallback.js',
+      ],
+    }),
     nodeResolve({
       mainFields: ['es2015', 'module', 'browser', 'jsnext:main', 'main'],
       extensions: ['.mjs', '.js'],
