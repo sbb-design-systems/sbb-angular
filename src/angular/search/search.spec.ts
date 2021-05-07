@@ -1,7 +1,14 @@
 import { DOWN_ARROW, ENTER } from '@angular/cdk/keycodes';
 import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  inject,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
@@ -424,18 +431,20 @@ describe('SbbSearch', () => {
           expect(searchOverlay?.id).toEqual(component.searchComponent.panelId);
         });
 
-        it('should show the autocomplete', async () => {
+        it('should show the autocomplete', fakeAsync(async () => {
           const searchButton = fixture.debugElement.query(By.css('.sbb-header-search'));
           searchButton.nativeElement.click();
           fixture.detectChanges();
           await fixture.whenStable();
+          flush();
           expect(component.searchComponent._search._autocompleteTrigger!.panelOpen).toBeTrue();
-        });
+        }));
 
-        it('should have the same width for the overlay and the autocomplete', async () => {
+        it('should have the same width for the overlay and the autocomplete', fakeAsync(async () => {
           const searchButton = fixture.debugElement.query(By.css('.sbb-header-search'));
           searchButton.nativeElement.click();
           fixture.detectChanges();
+          flush();
           await fixture.whenStable();
           const searchOverlay = overlayContainerElement.querySelector(
             '.sbb-header-search-overlay'
@@ -446,7 +455,7 @@ describe('SbbSearch', () => {
           expect(searchOverlay.getBoundingClientRect().width).toEqual(
             autocompleteOverlay.getBoundingClientRect().width
           );
-        });
+        }));
       });
     });
   });
