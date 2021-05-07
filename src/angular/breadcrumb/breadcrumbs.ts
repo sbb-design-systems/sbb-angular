@@ -47,10 +47,10 @@ const sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   ],
 })
 export class SbbBreadcrumbs extends _SbbBreadcrumbsMixinBase {
-  /** Refers to BreadcrumbComponents instance. */
+  /** List of all user defined SbbBreadcrumb entries. */
   @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;
 
-  /** Whether the sbb-breadcrumbs are expanded or not */
+  /** Whether the sbb-breadcrumbs are expanded or not in mobile view */
   get expanded(): boolean {
     if (this.levels.length > 1) {
       return this._expanded;

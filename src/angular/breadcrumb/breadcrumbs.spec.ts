@@ -1,14 +1,9 @@
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import {
-  createMouseEvent,
-  dispatchEvent,
-  dispatchMouseEvent,
-} from '@sbb-esta/angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { dispatchMouseEvent } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbMenuModule } from '@sbb-esta/angular/menu';
@@ -18,540 +13,227 @@ import { SbbBreadcrumbModule } from './breadcrumb.module';
 import { SbbBreadcrumbs } from './breadcrumbs';
 
 @Component({
-  selector: 'sbb-breadcrumbs-test',
   template: `
     <sbb-breadcrumbs>
       <a
         sbb-breadcrumb-root
-        routerLink="."
-        [queryParams]="{ level: 'home' }"
+        routerLink="/"
         routerLinkActive="sbb-active"
         aria-label="Back to the homepage"
       ></a>
       <sbb-breadcrumb>
-        <a routerLink="." [queryParams]="{ level: '1' }" routerLinkActive="sbb-selected">Level 1</a>
+        <a routerLink="/level1" routerLinkActive="sbb-active">Level 1</a>
       </sbb-breadcrumb>
       <sbb-breadcrumb>
-        <a routerLink="." [queryParams]="{ level: '2' }" routerLinkActive="sbb-selected">Level 2</a>
+        <a routerLink="/level1/level2" routerLinkActive="sbb-active" aria-current="location"
+          >Level 2</a
+        >
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
   `,
 })
-export class BreadcrumbsTestComponent {}
+export class BreadcrumbsSimpleTest {}
 
 @Component({
-  selector: 'sbb-breadcrumbs-test2',
   template: `
     <sbb-breadcrumbs>
       <a
         sbb-breadcrumb-root
-        routerLink="."
-        [queryParams]="{ level: 'home' }"
+        routerLink="/"
         routerLinkActive="sbb-active"
         aria-label="Back to the homepage"
       ></a>
 
       <sbb-breadcrumb>
-        Level 1 with sister pages
-        <sbb-dropdown>
-          <a
-            sbbDropdownItem
-            routerLink="."
-            [queryParams]="{ level: '1', sub: '1' }"
-            routerLinkActive="sbb-selected"
-            >Level 1</a
+        <button [sbbMenuTriggerFor]="menu">Level 1 with sister pages</button>
+        <sbb-menu #menu="sbbMenu">
+          <a sbb-menu-item routerLink="/level1" routerLinkActive="sbb-active"
+            >Level 1 with sister pages</a
           >
-          <a
-            sbbDropdownItem
-            routerLink="."
-            [queryParams]="{ level: '1', sub: '1b' }"
-            routerLinkActive="sbb-selected"
-            >Level 1b</a
+          <a sbb-menu-item routerLink="/level1b" routerLinkActive="sbb-active"
+            >Level 1b with very long text that is wider than trigger</a
           >
-        </sbb-dropdown>
+        </sbb-menu>
       </sbb-breadcrumb>
 
       <sbb-breadcrumb>
-        Level 2
-        <sbb-dropdown>
-          <a
-            sbbDropdownItem
-            routerLink="."
-            [queryParams]="{ level: '1', sub: '2' }"
-            routerLinkActive="sbb-selected"
-            >Level 2</a
-          >
-          <a
-            sbbDropdownItem
-            routerLink="."
-            [queryParams]="{ level: '1', sub: '2b' }"
-            routerLinkActive="sbb-selected"
-            >Level 2 with sister pages</a
-          >
-        </sbb-dropdown>
+        <a routerLink="/level1/level2b/level3" routerLinkActive="sbb-active" aria-current="location"
+          >Level 3</a
+        >
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
   `,
 })
-export class BreadcrumbsTest2Component {}
-
-@Component({
-  selector: 'sbb-breadcrumbs-test3',
-  template: `
-    <sbb-breadcrumbs>
-      <a
-        sbb-breadcrumb-root
-        routerLink="."
-        [queryParams]="{ level: 'home' }"
-        routerLinkActive="sbb-active"
-        aria-label="Back to the homepage"
-      ></a>
-
-      <sbb-breadcrumb>
-        Level 1 with sister pages
-        <sbb-dropdown>
-          <a
-            sbbDropdownItem
-            routerLink="."
-            [queryParams]="{ level: '1', sub: '1' }"
-            routerLinkActive="sbb-selected"
-            >Level 1</a
-          >
-          <a
-            sbbDropdownItem
-            routerLink="."
-            [queryParams]="{ level: '1', sub: '1b' }"
-            routerLinkActive="sbb-selected"
-            >Level 1b</a
-          >
-        </sbb-dropdown>
-      </sbb-breadcrumb>
-    </sbb-breadcrumbs>
-  `,
-})
-export class BreadcrumbsTest3Component {}
+export class BreadcrumbsMenuTest {}
 
 describe('SbbBreadcrumbs', () => {
-  let component: SbbBreadcrumbs;
-  let fixture: ComponentFixture<SbbBreadcrumbs>;
+  describe('Instantiating', () => {
+    let component: SbbBreadcrumbs;
+    let fixture: ComponentFixture<SbbBreadcrumbs>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SbbBreadcrumbs],
-        imports: [CommonModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
-      }).compileComponents();
-    })
-  );
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          declarations: [SbbBreadcrumbs, SbbBreadcrumb],
+          imports: [CommonModule, SbbMenuModule, SbbIconModule, SbbIconTestingModule],
+        }).compileComponents();
+      })
+    );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SbbBreadcrumbs);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    beforeEach(() => {
+      fixture = TestBed.createComponent(SbbBreadcrumbs);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  describe('Breadcrumbs standalone', () => {
+    let component: BreadcrumbsSimpleTest;
+    let fixture: ComponentFixture<BreadcrumbsSimpleTest>;
 
-describe('Breadcrumb behaviour Test', () => {
-  let component: BreadcrumbsTestComponent;
-  let fixtureTest: ComponentFixture<BreadcrumbsTestComponent>;
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          declarations: [BreadcrumbsSimpleTest],
+          imports: [
+            CommonModule,
+            SbbBreadcrumbModule,
+            SbbMenuModule,
+            SbbIconModule,
+            SbbIconTestingModule,
+          ],
+        }).compileComponents();
+      })
+    );
 
-  let location: Location = null!;
-  let router: Router;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(BreadcrumbsSimpleTest);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbBreadcrumbModule,
-          RouterTestingModule,
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-        ],
-        declarations: [BreadcrumbsTestComponent],
-      }).compileComponents();
-    })
-  );
+    it('should layout sbb-breadcrumb entries', () => {
+      const breadcrumbs = fixture.debugElement.queryAll(By.css('.sbb-breadcrumb'));
+      expect(breadcrumbs.length).toBe(4);
 
-  beforeEach(() => {
-    fixtureTest = TestBed.createComponent(BreadcrumbsTestComponent);
-    component = fixtureTest.componentInstance;
-    router = TestBed.inject(Router);
-    fixtureTest.detectChanges();
-  });
+      const breadrcrumbRoot = fixture.debugElement.query(By.css('.sbb-breadcrumb-root'));
+      expect(breadrcrumbRoot).toBeTruthy();
+      expect(breadrcrumbRoot.query(By.css('.sbb-icon[svgicon="kom:house-small"]'))).toBeTruthy();
+      expect(breadrcrumbRoot).toBe(breadcrumbs[0], 'Expected breadcrumbRoot to be at position 1');
 
-  it(
-    'breadcrumb with navigation to home page',
-    waitForAsync(() => {
-      fixtureTest.ngZone!.run(async () => {
-        router = TestBed.inject(Router);
-        router.initialNavigation();
-        fixtureTest.detectChanges();
-        location = TestBed.inject(Location);
+      const breadcrumbDots = fixture.debugElement.query(By.css('.sbb-breadcrumb-dots'));
+      expect(breadcrumbDots).toBe(breadcrumbs[1], 'Expected breadcrumb dots to be at position 2');
+    });
 
-        await router.navigate(['.'], { queryParams: { level: 'home' } });
-        fixtureTest.detectChanges();
+    it('should provide accessibility', () => {
+      const breadcrumbList = fixture.debugElement.queryAll(By.css('.sbb-breadcrumb'));
+      const breadcrumbWrapper = fixture.debugElement.query(By.css('.sbb-breadcrumbs-wrapper'));
+      const breadcrumbs = fixture.debugElement.query(By.css('.sbb-breadcrumbs'));
+      const breadcrumbDots = fixture.debugElement.query(By.css('.sbb-breadcrumb-dots'));
 
-        await fixtureTest.whenStable();
-        const breadcrumbLevelHomeComponent = fixtureTest.debugElement.queryAll(
-          By.directive(SbbBreadcrumb)
-        )[0];
+      expect(breadcrumbs.attributes['role']).toBe('navigation');
+      expect(breadcrumbs.attributes['aria-label']).toBe('breadcrumbs');
+      expect(breadcrumbWrapper.attributes['role']).toBe('list');
+      breadcrumbList.forEach((breadcrumb) =>
+        expect(breadcrumb.attributes['role']).toBe('listitem')
+      );
 
-        const linkHome = breadcrumbLevelHomeComponent.query(
-          By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a')
-        ).nativeElement;
+      expect(breadcrumbDots.nativeElement.querySelector('button')!.getAttribute('aria-label')).toBe(
+        'Show all levels'
+      );
+    });
 
-        dispatchEvent(linkHome, createMouseEvent('click'));
-        fixtureTest.detectChanges();
-        expect(location.path()).toContain('?level=home');
+    it('should set sbb-breadcrumbs-expanded class when expanding', () => {
+      const breadcrumbs = fixture.debugElement.query(By.directive(SbbBreadcrumbs));
 
-        const iconHome = breadcrumbLevelHomeComponent.query(
-          By.css('.sbb-dropdown-trigger .sbb-icon')
-        ).nativeElement;
-        expect(iconHome).toBeTruthy();
-      });
-    })
-  );
+      expect(breadcrumbs.nativeElement.classList).not.toContain('sbb-breadcrumbs-expanded');
 
-  it(
-    'breadcrumb with navigation to level 1 page',
-    waitForAsync(() => {
-      fixtureTest.ngZone!.run(async () => {
-        router = TestBed.inject(Router);
-        router.initialNavigation();
-        fixtureTest.detectChanges();
-        location = TestBed.inject(Location);
+      breadcrumbs.componentInstance.expand();
+      fixture.detectChanges();
 
-        await router.navigate(['.'], { queryParams: { level: '1' } });
-        fixtureTest.detectChanges();
-
-        await fixtureTest.whenStable();
-        const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
-
-        const link1 = breadcrumbLevel1.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a'))
-          .nativeElement;
-
-        dispatchEvent(link1, createMouseEvent('click'));
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-
-        expect(location.path()).toContain('?level=1');
-      });
-    })
-  );
-
-  it(
-    'breadcrumb with navigation to level 2 page',
-    waitForAsync(() => {
-      fixtureTest.ngZone!.run(async () => {
-        router = TestBed.inject(Router);
-        router.initialNavigation();
-        fixtureTest.detectChanges();
-        location = TestBed.inject(Location);
-
-        await router.navigate(['.'], { queryParams: { level: '2' } });
-        fixtureTest.detectChanges();
-
-        await fixtureTest.whenStable();
-        const breadcrumbLevel2 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[2];
-
-        const link2 = breadcrumbLevel2.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a'))
-          .nativeElement;
-
-        dispatchEvent(link2, createMouseEvent('click'));
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-
-        expect(location.path()).toContain('?level=2');
-      });
-    })
-  );
-});
-
-describe('Breadcrumb behaviour Test 2', () => {
-  let component: BreadcrumbsTest2Component;
-  let fixtureTest: ComponentFixture<BreadcrumbsTest2Component>;
-
-  let location: Location = null!;
-  let router: Router;
-
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbBreadcrumbModule,
-          RouterTestingModule,
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          SbbMenuModule,
-        ],
-        declarations: [BreadcrumbsTest2Component],
-      }).compileComponents();
-    })
-  );
-
-  beforeEach(() => {
-    fixtureTest = TestBed.createComponent(BreadcrumbsTest2Component);
-    component = fixtureTest.componentInstance;
-    router = TestBed.inject(Router);
+      expect(breadcrumbs.nativeElement.classList).toContain('sbb-breadcrumbs-expanded');
+    });
   });
 
-  it(
-    'breadcrumb with correctly sized dropdown width',
-    waitForAsync(() => {
-      fixtureTest.ngZone!.run(async () => {
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
+  describe('Breadcrumbs with menu', () => {
+    let component: BreadcrumbsMenuTest;
+    let fixture: ComponentFixture<BreadcrumbsMenuTest>;
 
-        const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          declarations: [BreadcrumbsMenuTest],
+          imports: [
+            CommonModule,
+            SbbBreadcrumbModule,
+            SbbMenuModule,
+            SbbIconModule,
+            SbbIconTestingModule,
+            NoopAnimationsModule,
+          ],
+        }).compileComponents();
+      })
+    );
 
-        const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'));
+    beforeEach(() => {
+      fixture = TestBed.createComponent(BreadcrumbsMenuTest);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
 
-        dropdownTrigger.nativeElement.click();
+    it('should place panel trigger text at same position as trigger text', () => {
+      const menuTrigger = fixture.debugElement.query(By.css('.sbb-menu-trigger-breadcrumb'))
+        .nativeElement;
+      dispatchMouseEvent(menuTrigger, 'click');
+      fixture.detectChanges();
+      const menuTriggerPanel = fixture.debugElement.query(By.css('.sbb-menu-panel-trigger'))
+        .nativeElement;
 
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
+      // Trigger text has to be at the exact same position on the screen
+      const menuTriggerText = document.createRange();
+      menuTriggerText.selectNode(menuTrigger.childNodes[0]);
 
-        const dropdownPanel: HTMLElement = fixtureTest.debugElement.queryAll(
-          By.css('.sbb-dropdown-panel.sbb-dropdown-visible')
-        )[0].nativeElement;
+      const menuTriggerPanelText = document.createRange();
+      menuTriggerPanelText.selectNode(menuTriggerPanel.childNodes[0]);
 
-        expect(dropdownPanel.getBoundingClientRect().width).toBeGreaterThan(0); // TODO
-      });
-    })
-  );
+      expect(menuTriggerText.getBoundingClientRect().left).toBe(
+        menuTriggerPanelText.getBoundingClientRect().left
+      );
+      expect(menuTriggerText.getBoundingClientRect().top).toBe(
+        menuTriggerPanelText.getBoundingClientRect().top
+      );
+    });
 
-  it(
-    'breadcrumb with navigation to home page',
-    waitForAsync(() => {
-      fixtureTest.ngZone!.run(async () => {
-        router = TestBed.inject(Router);
-        router.initialNavigation();
-        fixtureTest.detectChanges();
-        location = TestBed.inject(Location);
+    it('should grow panel to the right side and stretch trigger width too', () => {
+      const menuTrigger = fixture.debugElement.query(By.css('.sbb-menu-trigger-breadcrumb'))
+        .nativeElement;
+      dispatchMouseEvent(menuTrigger, 'click');
+      fixture.detectChanges();
+      const menuTriggerPanel = fixture.debugElement.query(By.css('.sbb-menu-panel-trigger'))
+        .nativeElement;
+      const menuPanel = fixture.debugElement.query(By.css('.sbb-menu-panel')).nativeElement;
 
-        await router.navigate(['.'], { queryParams: { level: 'home' } });
-        fixtureTest.detectChanges();
+      const xOffset = 30;
+      expect(menuTrigger.getBoundingClientRect().left).toBe(
+        menuTriggerPanel.getBoundingClientRect().left + xOffset,
+        'Expected menu trigger to be left aligned with trigger including x offset'
+      );
+      expect(parseInt(getComputedStyle(menuTrigger).width, 10) + 2 * xOffset).toBeLessThan(
+        parseInt(getComputedStyle(menuTriggerPanel).width, 10),
+        'Expected panel trigger width to be wider than trigger'
+      );
 
-        await fixtureTest.whenStable();
-        const breadcrumbLevelHomeComponent = fixtureTest.debugElement.queryAll(
-          By.directive(SbbBreadcrumb)
-        )[0];
-
-        const linkHome = breadcrumbLevelHomeComponent.query(
-          By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a')
-        ).nativeElement;
-
-        dispatchEvent(linkHome, createMouseEvent('click'));
-        fixtureTest.detectChanges();
-        expect(location.path()).toContain('?level=home');
-
-        const iconHome = breadcrumbLevelHomeComponent.query(
-          By.css('.sbb-dropdown-trigger .sbb-icon')
-        ).nativeElement;
-        expect(iconHome).toBeTruthy();
-      });
-    })
-  );
-
-  it(
-    'breadcrumb with navigation to level 1 page with dropdown',
-    waitForAsync(() => {
-      fixtureTest.ngZone!.run(async () => {
-        router = TestBed.inject(Router);
-        router.initialNavigation();
-        fixtureTest.detectChanges();
-        location = TestBed.inject(Location);
-
-        await router.navigate(['.'], { queryParams: { level: '1', sub: '1' } });
-        fixtureTest.detectChanges();
-
-        await fixtureTest.whenStable();
-        const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
-
-        const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'))
-          .nativeElement as HTMLButtonElement;
-        dispatchMouseEvent(dropdownTrigger, 'click');
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-
-        const subLink1 = fixtureTest.debugElement.queryAll(
-          By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')
-        )[0].nativeElement;
-        dispatchMouseEvent(subLink1, 'click');
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-        expect(location.path()).toContain('?level=1&sub=1');
-
-        dispatchMouseEvent(dropdownTrigger, 'click');
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-
-        const subLink2 = fixtureTest.debugElement.queryAll(
-          By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')
-        )[1].nativeElement;
-        dispatchMouseEvent(subLink2, 'click');
-        await fixtureTest.whenStable();
-        fixtureTest.detectChanges();
-        expect(location.path()).toContain('?level=1&sub=1b');
-      });
-    })
-  );
-
-  it(
-    'breadcrumb with navigation to level 2 page with dropdown',
-    waitForAsync(() => {
-      fixtureTest.ngZone!.run(async () => {
-        router = TestBed.inject(Router);
-        router.initialNavigation();
-        fixtureTest.detectChanges();
-        location = TestBed.inject(Location);
-
-        await router.navigate(['.'], { queryParams: { level: '1', sub: '2' } });
-        fixtureTest.detectChanges();
-
-        await fixtureTest.whenStable();
-        const breadcrumbLevel2 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[2];
-
-        const dropdownTrigger = breadcrumbLevel2.query(By.css('.sbb-breadcrumb-trigger'))
-          .nativeElement;
-        dispatchMouseEvent(dropdownTrigger, 'click');
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-
-        const subLink1 = fixtureTest.debugElement.queryAll(
-          By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')
-        )[0].nativeElement;
-        dispatchEvent(subLink1, createMouseEvent('click'));
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-
-        expect(location.path()).toContain('?level=1&sub=2');
-
-        dispatchMouseEvent(dropdownTrigger, 'click');
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-
-        const subLink2 = fixtureTest.debugElement.queryAll(
-          By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')
-        )[1].nativeElement;
-        dispatchEvent(subLink2, createMouseEvent('click'));
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-        expect(location.path()).toContain('?level=1&sub=2b');
-      });
-    })
-  );
-});
-
-describe('Breadcrumb behaviour Test 3', () => {
-  let component: BreadcrumbsTest3Component;
-  let fixtureTest: ComponentFixture<BreadcrumbsTest3Component>;
-
-  let location: Location = null!;
-  let router: Router;
-
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SbbBreadcrumbModule,
-          RouterTestingModule,
-          CommonModule,
-          SbbIconModule,
-          SbbIconTestingModule,
-          SbbMenuModule,
-        ],
-        declarations: [BreadcrumbsTest3Component],
-      }).compileComponents();
-    })
-  );
-
-  beforeEach(() => {
-    fixtureTest = TestBed.createComponent(BreadcrumbsTest3Component);
-    component = fixtureTest.componentInstance;
-    router = TestBed.inject(Router);
+      // Panel trigger should be as wide as panel and aligned with panel
+      expect(menuTriggerPanel.getBoundingClientRect().right).toBe(
+        menuPanel.getBoundingClientRect().right
+      );
+      expect(menuTriggerPanel.getBoundingClientRect().left).toBe(
+        menuPanel.getBoundingClientRect().left
+      );
+    });
   });
-
-  it(
-    'breadcrumb with navigation to home page',
-    waitForAsync(() => {
-      fixtureTest.ngZone!.run(async () => {
-        router = TestBed.inject(Router);
-        router.initialNavigation();
-        fixtureTest.detectChanges();
-        location = TestBed.inject(Location);
-
-        await router.navigate(['.'], { queryParams: { level: 'home' } });
-        fixtureTest.detectChanges();
-
-        await fixtureTest.whenStable();
-        const breadcrumbLevelHomeComponent = fixtureTest.debugElement.queryAll(
-          By.directive(SbbBreadcrumb)
-        )[0];
-
-        const linkHome = breadcrumbLevelHomeComponent.query(
-          By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a')
-        ).nativeElement;
-
-        dispatchEvent(linkHome, createMouseEvent('click'));
-        fixtureTest.detectChanges();
-        expect(location.path()).toContain('?level=home');
-
-        const iconHome = breadcrumbLevelHomeComponent.query(
-          By.css('.sbb-dropdown-trigger .sbb-icon')
-        ).nativeElement;
-        expect(iconHome).toBeTruthy();
-      });
-    })
-  );
-
-  it(
-    'breadcrumb with navigation to level 1 page with dropdown',
-    waitForAsync(() => {
-      fixtureTest.ngZone!.run(async () => {
-        router = TestBed.inject(Router);
-        router.initialNavigation();
-        fixtureTest.detectChanges();
-        location = TestBed.inject(Location);
-
-        await router.navigate(['.'], { queryParams: { level: '1', sub: '1' } });
-        fixtureTest.detectChanges();
-
-        await fixtureTest.whenStable();
-        const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
-
-        const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'))
-          .nativeElement;
-        dispatchMouseEvent(dropdownTrigger, 'click');
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-
-        const subLink1 = fixtureTest.debugElement.queryAll(
-          By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')
-        )[0].nativeElement;
-        dispatchEvent(subLink1, createMouseEvent('click'));
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-        expect(location.path()).toContain('?level=1&sub=1');
-
-        dispatchMouseEvent(dropdownTrigger, 'click');
-        fixtureTest.detectChanges();
-        await fixtureTest.whenStable();
-
-        const subLink2 = fixtureTest.debugElement.queryAll(
-          By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')
-        )[1].nativeElement;
-        dispatchEvent(subLink2, createMouseEvent('click'));
-        await fixtureTest.whenStable();
-        fixtureTest.detectChanges();
-        expect(location.path()).toContain('?level=1&sub=1b');
-      });
-    })
-  );
 });

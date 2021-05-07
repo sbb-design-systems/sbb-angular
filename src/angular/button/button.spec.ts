@@ -1,7 +1,7 @@
 import { Component, Directive } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { dispatchMouseEvent, switchToLean } from '@sbb-esta/angular/core/testing';
+import { switchToLean } from '@sbb-esta/angular/core/testing';
 import { SbbIcon, SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
