@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, finalize, map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { distinctUntilChanged, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 interface ImageResponse {
   records: Array<{ fields: { filename: { id: string }; bahnhof: string } }>;
@@ -77,10 +77,15 @@ export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
               } as ImageRecord)
           )
         ),
-        finalize(() => (this.showSpinner = false)),
         takeUntil(this._destroyed)
       )
-      .subscribe((searchResults) => (this.searchResults = searchResults));
+      .subscribe(
+        (searchResults) => {
+          this.showSpinner = false;
+          this.searchResults = searchResults;
+        },
+        () => (this.showSpinner = false)
+      );
   }
 
   ngOnDestroy(): void {
