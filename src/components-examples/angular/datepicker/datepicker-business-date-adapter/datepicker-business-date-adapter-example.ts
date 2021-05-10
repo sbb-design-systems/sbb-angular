@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SBB_BUSINESS_DATE_ADAPTER } from '@sbb-esta/angular-core/datetime';
+import { SBB_BUSINESS_DATE_ADAPTER } from '@sbb-esta/angular/core';
 
 /**
  * @title Datepicker Business Date Adapter

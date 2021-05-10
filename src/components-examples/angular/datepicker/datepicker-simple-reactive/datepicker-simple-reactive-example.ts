@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { SbbDateAdapter } from '@sbb-esta/angular/core/datetime/date-adapter';
-import { SbbDateInputEvent } from '@sbb-esta/angular/datepicker/date-input/date-input.directive';
+import { SbbDateAdapter } from '@sbb-esta/angular/core';
+import { SbbDateInputEvent } from '@sbb-esta/angular/datepicker';
 
 /**
  * @title Datepicker Simple Reactive
