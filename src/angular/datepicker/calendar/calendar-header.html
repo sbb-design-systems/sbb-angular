@@ -1,0 +1,56 @@
+<div class="sbb-calendar-header">
+  <div class="sbb-calendar-controls">
+    <div class="sbb-calendar-controls-months">
+      <button
+        type="button"
+        class="sbb-calendar-controls-left-arrow sbb-icon-fit"
+        [disabled]="!previousMonthEnabled()"
+        (click)="previousMonthClicked()"
+        i18n-aria-label="
+          Button label to switch to the previous month@@sbbDatepickerSwitchToPreviousMonth"
+        aria-label="Change to the previous month"
+      >
+        <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
+      </button>
+      <span class="sbb-calendar-controls-label" [attr.aria-label]="monthText" cdkAriaLive="polite"
+        >{{ monthText }}</span
+      >
+      <button
+        type="button"
+        class="sbb-calendar-controls-right-arrow sbb-icon-fit"
+        [disabled]="!nextMonthEnabled()"
+        (click)="nextMonthClicked()"
+        i18n-aria-label="Button label to switch to the next month@@sbbDatepickerSwitchToNextMonth"
+        aria-label="Change to the next month"
+      >
+        <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
+      </button>
+    </div>
+    <div class="sbb-calendar-controls-years">
+      <button
+        type="button"
+        class="sbb-calendar-controls-left-arrow sbb-icon-fit"
+        [disabled]="!previousYearEnabled()"
+        (click)="previousYearClicked()"
+        i18n-aria-label="
+          Button label to switch to the previous year@@sbbDatepickerSwitchToPreviousYear"
+        aria-label="Change to the previous year"
+      >
+        <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
+      </button>
+      <span class="sbb-calendar-controls-label" [attr.aria-label]="yearText" cdkAriaLive="polite"
+        >{{ yearText }}</span
+      >
+      <button
+        type="button"
+        class="sbb-calendar-controls-right-arrow sbb-icon-fit"
+        [disabled]="!nextYearEnabled()"
+        (click)="nextYearClicked()"
+        i18n-aria-label="Button label to switch to the next year@@sbbDatepickerSwitchToNextYear"
+        aria-label="Change to the next year"
+      >
+        <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
+      </button>
+    </div>
+  </div>
+</div>

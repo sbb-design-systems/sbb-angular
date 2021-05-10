@@ -1,0 +1,16 @@
+<sbb-form-field label="Datepicker">
+  <sbb-datepicker arrows>
+    <input
+      type="text"
+      sbbDateInput
+      sbbInput
+      [formControl]="dateWithFilter"
+      [dateFilter]="filterDates"
+    />
+  </sbb-datepicker>
+</sbb-form-field>
+
+<h4 class="h4-margin-bottom">Properties</h4>
+<pre>model: {{ dateWithFilter.value | date: 'mediumDate' }}</pre>
+<pre>form control validity: {{ dateWithFilter.valid }}</pre>
+<pre>form control errors: {{ dateWithFilter.errors | json }}</pre>

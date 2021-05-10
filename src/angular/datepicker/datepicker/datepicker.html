@@ -1,0 +1,20 @@
+<button
+  *ngIf="prevDayActive"
+  type="button"
+  class="sbb-datepicker-arrow sbb-datepicker-arrow-left sbb-icon-fit"
+  [disabled]="disabled"
+  (click)="prevDay()"
+>
+  <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
+</button>
+<sbb-datepicker-toggle *ngIf="toggle"></sbb-datepicker-toggle>
+<ng-content></ng-content>
+<button
+  *ngIf="nextDayActive"
+  type="button"
+  class="sbb-datepicker-arrow sbb-datepicker-arrow-right sbb-icon-fit"
+  [disabled]="disabled"
+  (click)="nextDay()"
+>
+  <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
+</button>

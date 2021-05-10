@@ -1,0 +1,40 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "datepicker",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob([
+        "**/*.html",
+        "**/*.css",
+    ]),
+    module_name = "@sbb-esta/components-examples/angular/datepicker",
+    deps = [
+        "//src/angular-core/datetime",
+        "//src/angular-public/checkbox",
+        "//src/angular-public/form-field",
+        "//src/angular/core",
+        "//src/angular/core/datetime/date-adapter",
+        "//src/angular/datepicker",
+        "//src/angular/datepicker/date-input/date-input.directive",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.css",
+        "**/*.ts",
+    ]),
+)

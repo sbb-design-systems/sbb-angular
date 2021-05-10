@@ -32,7 +32,7 @@ Don't forget to run `yarn generate:bazel` after each step.
 
 ## Start Showcase Merge
 
-`yarn start:devserver:dev-app`
+`yarn dev`
 
 ## <a name="mixinVariant"></a> Variant Mixin
 
