@@ -68,7 +68,7 @@ jobs:
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: "Bazel: Restore remote cache"
-      if: ${{ always() }}
+      if: ${{ always() && !contains(github.event.head_commit.message, '--no-cache') }}
       uses: actions/cache@v2
       with:
         path: ~/.bazel-cache/sbb-angular
