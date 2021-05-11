@@ -106,6 +106,7 @@
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-dynamic-import-vars": "^1.1.1",
     "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-replace": "^2.4.2",
     "@rollup/plugin-typescript": "^8.2.0",
     "@schematics/angular": "11.1.0",
     "@types/fs-extra": "^9.0.8",
