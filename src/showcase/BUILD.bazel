@@ -1,6 +1,5 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "npm_package_bin", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
-load("@npm//@babel/cli:index.bzl", "babel")
 load("@npm//@bazel/concatjs:index.bzl", "concatjs_devserver")
 load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@npm//@bazel/terser:index.bzl", "terser_minified")
@@ -192,15 +191,13 @@ rollup_bundle(
 
 nodejs_binary(
     name = "babel_large_memory",
+    data = ["@npm//@babel/cli"],
     entry_point = "@npm//:node_modules/@babel/cli/bin/babel.js",
-    data = ["@npm//@babel/cli:cli"],
     templated_args = ["--node_options=--max-old-space-size=4096"],
 )
 
-
 npm_package_bin(
     name = "bundle-es5",
-    tool = ":babel_large_memory",
     args = [
         "$(execpath :bundle-es2015)",
         "--no-babelrc",
@@ -216,6 +213,7 @@ npm_package_bin(
     ],
     output_dir = True,
     tags = ["prod-showcase"],
+    tool = ":babel_large_memory",
 )
 
 terser_minified(
