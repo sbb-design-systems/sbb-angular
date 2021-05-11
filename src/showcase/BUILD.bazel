@@ -1,4 +1,4 @@
-load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "npm_package_bin", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("@npm//@babel/cli:index.bzl", "babel")
 load("@npm//@bazel/concatjs:index.bzl", "concatjs_devserver")
@@ -190,8 +190,17 @@ rollup_bundle(
     ],
 )
 
-babel(
+nodejs_binary(
+    name = "babel_large_memory",
+    entry_point = "@npm//:node_modules/@babel/cli/bin/babel.js",
+    data = ["@npm//@babel/cli:cli"],
+    templated_args = ["--node_options=--max-old-space-size=4096"],
+)
+
+
+npm_package_bin(
     name = "bundle-es5",
+    tool = ":babel_large_memory",
     args = [
         "$(execpath :bundle-es2015)",
         "--no-babelrc",
