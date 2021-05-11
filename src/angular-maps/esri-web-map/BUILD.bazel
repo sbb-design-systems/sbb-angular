@@ -21,7 +21,8 @@ ng_module(
         "//src/angular-maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//@types/arcgis-js-api",
+        "@npm//@arcgis/core",
+        "@npm//rxjs",
     ],
 )
 
@@ -45,7 +46,7 @@ ng_web_test_suite(
     name = "unit_tests",
     deps = [
         # do not sort
-        "//tools/esri-loader:esri_loader_umd_module",
+        "//tools/arcgis-core:arcgis_umd_modules",
         ":unit_test_sources",
     ],
 )

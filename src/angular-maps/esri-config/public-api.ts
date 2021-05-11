@@ -1,7 +1,6 @@
 export * from './esri-config.module';
 export * from './esri-config.token';
 export * from './esri-configuration';
-export * from './esri-loader.service';
 export * from './esri-standard-values.const';
 /** @deprecated Remove with v12 */
 export { SbbEsriConfigModule as EsriConfigModule } from './esri-config.module';
@@ -9,7 +8,5 @@ export { SbbEsriConfigModule as EsriConfigModule } from './esri-config.module';
 export { SBB_ESRI_CONFIG_TOKEN as ESRI_CONFIG_TOKEN } from './esri-config.token';
 /** @deprecated Remove with v12 */
 export { SbbEsriConfiguration as EsriConfiguration } from './esri-configuration';
-/** @deprecated Remove with v12 */
-export { SbbEsriLoaderService as EsriLoaderService } from './esri-loader.service';
 /** @deprecated Remove with v12 */
 export { SbbEsriConfigConsts as EsriConfigConsts } from './esri-standard-values.const';

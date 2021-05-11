@@ -63,7 +63,7 @@ ng_web_test_suite(
     deps = [":unit_test_sources"],<% } else { %>
     deps = [
         # do not sort
-        "//tools/esri-loader:esri_loader_umd_module",
+        "//tools/arcgis-core:arcgis_umd_modules",
         ":unit_test_sources",
     ]<% } %><% if (path.includes('/angular/')) { %>
     static_css = [

@@ -14,9 +14,9 @@ This currently comes with the requirement to use _web maps_ provided by Portal f
 
 ### Technology
 
-The current implementation of `@sbb-esta/angular-maps` bases on the [ArcGIS API for Javascript](https://developers.arcgis.com/javascript/) by [Esri](https://www.esri.com). The components provided in `@sbb-esta/angular-maps` are basically wrappers around the core functionality of the _ArcGIS API for Javascript_ with the intention to hide things like the [esri-loader](https://github.com/Esri/esri-loader) and ease the integration in Angular applications (also see our introduction to [Loading ArcGIS API Types](/maps/advanced/loading-arcgis-types)).
+The current implementation of `@sbb-esta/angular-maps` bases on the [ArcGIS API for Javascript](https://developers.arcgis.com/javascript/) by [Esri](https://www.esri.com). The components provided in `@sbb-esta/angular-maps` are basically wrappers around the core functionality of the _ArcGIS API for Javascript_ with the intention to hide things like the [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) configuration and ease the integration in Angular applications (also see our introduction to [Using ArcGIS API Types](/maps/advanced/using-arcgis-types)).
 
-Currently, `@sbb-esta/angular-maps` bases on the _ArcGIS API for Javascript_ version _4.14_.
+Currently, `@sbb-esta/angular-maps` bases on the [ArcGIS API for Javascript version 4.19](https://developers.arcgis.com/javascript/latest/4.19/).
 
 ### Maps and layers
 

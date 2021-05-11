@@ -77,9 +77,9 @@ concatjs_devserver(
     entry_module = "sbb_angular/src/showcase-merge/main.dev",
     port = 4200,
     scripts = [
-        "//tools/esri-loader:esri_loader_umd_module",
         "@npm//:node_modules/tslib/tslib.js",
         "//tools/rxjs:rxjs_umd_modules",
+        "//tools/arcgis-core:arcgis_umd_modules",
     ],
     static_files = _ASSETS + [
         "@npm//:node_modules/core-js/client/core.min.js",
@@ -106,6 +106,7 @@ rollup_bundle(
         "@npm//@rollup/plugin-commonjs",
         "@npm//@rollup/plugin-dynamic-import-vars",
         "@npm//@rollup/plugin-node-resolve",
+        "@npm//@rollup/plugin-replace",
     ],
 )
 

@@ -1,9 +1,8 @@
-// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
-/// <reference types="arcgis-js-api" />
+import Point from '@arcgis/core/geometry/Point';
 
 export class SbbEsri3DCamera {
   fov?: number = 55;
   heading?: number = 0;
-  position: __esri.Point;
+  position: Point;
   tilt?: number = 0;
 }

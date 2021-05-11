@@ -1,8 +1,5 @@
-export * from './esri-types/esri-types.service';
 export * from './graphic/graphic.service';
 export * from './hit-test/hit-test.service';
-/** @deprecated Remove with v12 */
-export { SbbEsriTypesService as EsriTypesService } from './esri-types/esri-types.service';
 /** @deprecated Remove with v12 */
 export { SbbGraphicService as GraphicService } from './graphic/graphic.service';
 /** @deprecated Remove with v12 */

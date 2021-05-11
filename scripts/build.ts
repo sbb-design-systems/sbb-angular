@@ -52,7 +52,9 @@ if (module === require.main) {
  * Builds all available targets, except the release packages and the prod showcase.
  */
 function buildAllTargets() {
-  exec(`${bazelCmd} build src/... --build_tag_filters=-release-package,-prod-showcase`);
+  exec(
+    `${bazelCmd} build src/... --build_tag_filters=-release-package,-prod-showcase,-prod-showcase-merge`
+  );
 }
 
 /**

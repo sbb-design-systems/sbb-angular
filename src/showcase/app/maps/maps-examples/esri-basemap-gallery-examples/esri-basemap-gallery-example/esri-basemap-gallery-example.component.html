@@ -3,7 +3,7 @@
     <h4>SceneView with basemap gallery</h4>
     <div class="basemap-gallery">
       <sbb-esri-basemap-gallery
-        *ngIf="webScene.sceneView"
+        *ngIf="mapIsReady"
         [mapView]="webScene.sceneView"
       ></sbb-esri-basemap-gallery>
     </div>
@@ -11,6 +11,7 @@
       <sbb-esri-web-scene
         [portalItemId]="'1c7a06421a314ac9b7d0fae22aa367fb'"
         #webScene
+        (mapReady)="mapIsReady = true"
         class="web-map"
       >
       </sbb-esri-web-scene>
