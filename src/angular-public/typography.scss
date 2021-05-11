@@ -1,6 +1,5 @@
+@use 'external/npm/node_modules/@angular/cdk' as cdk;
 @import '../angular-core/styles/main';
-@import 'external/npm/node_modules/@angular/cdk/a11y';
-@import 'external/npm/node_modules/@angular/cdk/overlay';
 
 @include sbbFonts();
 @include reset();
@@ -14,7 +13,7 @@
 @include sbbFieldset();
 @include sbbTimeInputField();
 @include sbbTable();
-@include cdk-a11y();
-@include cdk-overlay();
+@include cdk.a11y-visually-hidden();
+@include cdk.overlay();
 @include sbbOverlay();
 @include sbbScrollbar();

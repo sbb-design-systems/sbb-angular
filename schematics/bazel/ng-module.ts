@@ -76,32 +76,35 @@ export class NgModule {
   }
 
   render(): Rule[] {
-    return this._modules.reduce((current, next) => current.concat(next.render()), [
-      mergeWith(
-        apply(url(this._templateUrl), [
-          template(this._templateOptions()),
-          move(this.path),
-          forEach((fileEntry) => {
-            const content = formatBazelFile(
-              relative(this._tree.root.path, fileEntry.path),
-              fileEntry.content.toString()
-            );
-            fileEntry = {
-              path: fileEntry.path,
-              content: Buffer.from(content),
-            };
-            if (!this._tree.exists(fileEntry.path)) {
-              return fileEntry;
-            } else if (
-              this._tree.read(fileEntry.path)!.toString() !== fileEntry.content.toString()
-            ) {
-              this._tree.overwrite(fileEntry.path, fileEntry.content);
-            }
-            return null;
-          }),
-        ])
-      ),
-    ]);
+    return this._modules.reduce(
+      (current, next) => current.concat(next.render()),
+      [
+        mergeWith(
+          apply(url(this._templateUrl), [
+            template(this._templateOptions()),
+            move(this.path),
+            forEach((fileEntry) => {
+              const content = formatBazelFile(
+                relative(this._tree.root.path, fileEntry.path),
+                fileEntry.content.toString()
+              );
+              fileEntry = {
+                path: fileEntry.path,
+                content: Buffer.from(content),
+              };
+              if (!this._tree.exists(fileEntry.path)) {
+                return fileEntry;
+              } else if (
+                this._tree.read(fileEntry.path)!.toString() !== fileEntry.content.toString()
+              ) {
+                this._tree.overwrite(fileEntry.path, fileEntry.content);
+              }
+              return null;
+            }),
+          ])
+        ),
+      ]
+    );
   }
 
   protected _templateOptions() {

@@ -43,8 +43,9 @@ describe('SbbOption component', () => {
     const fixture = TestBed.createComponent(BasicOption);
     fixture.detectChanges();
 
-    const optionInstance: SbbOption = fixture.debugElement.query(By.directive(SbbOption))!
-      .componentInstance;
+    const optionInstance: SbbOption = fixture.debugElement.query(
+      By.directive(SbbOption)
+    )!.componentInstance;
     const completeSpy = jasmine.createSpy('complete spy');
     const subscription = optionInstance._stateChanges.subscribe({ complete: completeSpy });
 
@@ -57,8 +58,9 @@ describe('SbbOption component', () => {
     const fixture = TestBed.createComponent(BasicOption);
     fixture.detectChanges();
 
-    const optionInstance: SbbOption = fixture.debugElement.query(By.directive(SbbOption))!
-      .componentInstance;
+    const optionInstance: SbbOption = fixture.debugElement.query(
+      By.directive(SbbOption)
+    )!.componentInstance;
 
     optionInstance.select();
     expect(optionInstance.selected).toBe(true);
@@ -79,8 +81,9 @@ describe('SbbOption component', () => {
     const fixture = TestBed.createComponent(BasicOption);
     fixture.detectChanges();
 
-    const optionInstance: SbbOption = fixture.debugElement.query(By.directive(SbbOption))!
-      .componentInstance;
+    const optionInstance: SbbOption = fixture.debugElement.query(
+      By.directive(SbbOption)
+    )!.componentInstance;
 
     optionInstance.deselect();
     expect(optionInstance.selected).toBe(false);

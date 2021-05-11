@@ -18,7 +18,8 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'checkbox-group-reactive-forms-vertical-example': CheckboxGroupReactiveFormsVerticalExampleComponent,
+  'checkbox-group-reactive-forms-vertical-example':
+    CheckboxGroupReactiveFormsVerticalExampleComponent,
   'checkbox-group-horizontal-example': CheckboxGroupHorizontalExampleComponent,
   'checkbox-indeterminate-state-example': CheckboxIndeterminateStateExampleComponent,
   'checkbox-example': CheckboxExampleComponent,

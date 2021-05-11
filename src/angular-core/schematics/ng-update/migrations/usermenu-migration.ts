@@ -88,9 +88,8 @@ export class UsermenuMigration extends Migration<null> {
     if (sbbDropdownItemElements.length) {
       this.migrateDropdownItems = true;
       for (const sbbDropdownItemElement of sbbDropdownItemElements) {
-        const sbbDropdownItemLocation = sbbDropdownItemElement.sourceCodeLocation!.attrs[
-          'sbbdropdownitem'
-        ];
+        const sbbDropdownItemLocation =
+          sbbDropdownItemElement.sourceCodeLocation!.attrs['sbbdropdownitem'];
         if (!sbbDropdownItemLocation) {
           break;
         }

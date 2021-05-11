@@ -18,7 +18,8 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'textarea-reactive-forms-with-sbb-form-field-example': TextareaReactiveFormsWithSbbFormFieldExampleComponent,
+  'textarea-reactive-forms-with-sbb-form-field-example':
+    TextareaReactiveFormsWithSbbFormFieldExampleComponent,
   'textarea-forms-example': TextareaFormsExampleComponent,
   'textarea-native-example': TextareaNativeExampleComponent,
 };

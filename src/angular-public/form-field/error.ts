@@ -11,8 +11,7 @@ export const SBB_ERROR = new InjectionToken<SbbError>('SbbError');
 
 /** Single error message to be shown underneath the form field. */
 @Directive({
-  // TODO(v12,@sbb-esta/angular): Remove sbb-form-error, [sbbFormError]
-  selector: 'sbb-error, [sbbError], sbb-form-error, [sbbFormError]',
+  selector: 'sbb-error, [sbbError]',
   host: {
     class: 'sbb-error',
     role: 'alert',

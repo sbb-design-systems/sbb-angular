@@ -32,8 +32,7 @@ let nextId = 0;
 export const SBB_FORM_FIELD = new InjectionToken<SbbFormField>('SBB_FORM_FIELD');
 
 @Component({
-  // TODO(v12,@sbb-esta/angular): Remove sbb-field
-  selector: 'sbb-form-field, sbb-field',
+  selector: 'sbb-form-field',
   exportAs: 'sbbFormField',
   templateUrl: './form-field.html',
   styleUrls: ['./form-field.css'],
@@ -42,10 +41,6 @@ export const SBB_FORM_FIELD = new InjectionToken<SbbFormField>('SBB_FORM_FIELD')
   providers: [{ provide: SBB_FORM_FIELD, useExisting: SbbFormField }],
   host: {
     class: 'sbb-form-field',
-    '[class.sbb-form-field-default]': 'this.mode === "default"',
-    '[class.sbb-form-field-short]': 'this.mode === "short"',
-    '[class.sbb-form-field-medium]': 'this.mode === "medium"',
-    '[class.sbb-form-field-long]': 'this.mode === "long"',
     '[class.sbb-form-field-invalid]': '_control?.errorState',
     '[class.sbb-form-field-disabled]': '_control?.disabled',
     '[class.sbb-focused]': '_control?.focused',
@@ -61,26 +56,6 @@ export const SBB_FORM_FIELD = new InjectionToken<SbbFormField>('SBB_FORM_FIELD')
 export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDestroy {
   /** The label text for the input. */
   @Input() label?: string;
-  /**
-   * Mode set the length of the input field.
-   * @deprecated Use corresponding css classes instead (.sbb-form-field-short, .sbb-form-field-medium, .sbb-form-field-long).
-   * @breaking-change 12.0.0
-   */
-  @Input()
-  get mode(): 'default' | 'short' | 'medium' | 'long' {
-    return this._mode;
-  }
-  set mode(value: 'default' | 'short' | 'medium' | 'long') {
-    if (typeof ngDevMode === 'undefined' || ngDevMode) {
-      console.warn(
-        `${this._elementRef.nativeElement.nodeName.toLowerCase()}[mode] is deprecated! ` +
-          'Use the corresponding css classes instead ' +
-          '(.sbb-form-field-short, .sbb-form-field-medium, .sbb-form-field-long).'
-      );
-    }
-    this._mode = value;
-  }
-  private _mode: 'default' | 'short' | 'medium' | 'long' = 'default';
 
   private _destroyed = new Subject<void>();
 
@@ -107,16 +82,7 @@ export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDe
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef
-  ) {
-    // Initially map classes to mode
-    if (_elementRef.nativeElement.classList.contains('sbb-form-field-short')) {
-      this._mode = 'short';
-    } else if (_elementRef.nativeElement.classList.contains('sbb-form-field-medium')) {
-      this._mode = 'medium';
-    } else if (_elementRef.nativeElement.classList.contains('sbb-form-field-long')) {
-      this._mode = 'long';
-    }
-  }
+  ) {}
 
   /**
    * Gets the id of the label element. If no label is present, returns `null`.

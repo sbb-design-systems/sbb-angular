@@ -9,9 +9,7 @@ sass_library(
     name = "common_scss_lib",
     srcs = [
         "_common.scss",
-        "@npm//:node_modules/@angular/cdk/_a11y.scss",
-        "@npm//:node_modules/@angular/cdk/_overlay.scss",
-        "@npm//:node_modules/@angular/cdk/_text-field.scss",
+        "@npm//:node_modules/@angular/cdk/_index.scss",
     ] + glob(["includes/_*.scss"]),
 )
 

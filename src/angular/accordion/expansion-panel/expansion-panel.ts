@@ -40,9 +40,8 @@ export type SbbExpansionPanelState = 'expanded' | 'collapsed';
 // Boilerplate for applying mixins to SbbExpansionPanel.
 /** @docs-private */
 // tslint:disable-next-line: naming-convention
-const _SbbExpansionPanelBase: HasVariantCtor & typeof CdkAccordionItem = mixinVariant(
-  CdkAccordionItem
-);
+const _SbbExpansionPanelBase: HasVariantCtor & typeof CdkAccordionItem =
+  mixinVariant(CdkAccordionItem);
 
 /** Counter for generating unique element ids. */
 let uniqueId = 0;
@@ -75,7 +74,8 @@ let uniqueId = 0;
 })
 export class SbbExpansionPanel
   extends _SbbExpansionPanelBase
-  implements AfterContentInit, OnChanges, OnDestroy {
+  implements AfterContentInit, OnChanges, OnDestroy
+{
   private _document: Document;
 
   /** Whether the toggle indicator should be hidden. */

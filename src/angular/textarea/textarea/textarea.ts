@@ -78,7 +78,8 @@ export class SbbTextarea
     ControlValueAccessor,
     DoCheck,
     AfterViewInit,
-    OnDestroy {
+    OnDestroy
+{
   private _uniqueId = `sbb-textarea-${++nextId}`;
   /** Unique id of the element. */
   @Input()

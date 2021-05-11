@@ -60,7 +60,7 @@ const TEMPLATE_FILES = [
  */
 const TAGS: string[] = ['sbb', 'angular', 'example'];
 
-const angularVersion = '^11.0.0';
+const angularVersion = '^12.0.0';
 const dependencies = {
   '@angular/animations': angularVersion,
   '@angular/cdk': angularVersion,
@@ -72,12 +72,11 @@ const dependencies = {
   '@angular/platform-browser-dynamic': angularVersion,
   '@angular/router': angularVersion,
   '@sbb-esta/angular-core': libraryVersion,
-  '@sbb-esta/angular-icons': libraryVersion,
   '@sbb-esta/angular-public': libraryVersion,
   '@sbb-esta/angular-business': libraryVersion,
-  rxjs: '^6.6.3',
-  tslib: '^2.0.3',
-  'zone.js': '^0.11.2',
+  rxjs: '~6.5.4',
+  tslib: '^2.1.0',
+  'zone.js': '~0.11.4',
 };
 
 /**

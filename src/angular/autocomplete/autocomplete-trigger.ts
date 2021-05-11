@@ -113,7 +113,8 @@ export function getSbbAutocompleteMissingPanelError(): Error {
   },
 })
 export class SbbAutocompleteTrigger
-  implements ControlValueAccessor, AfterViewInit, OnDestroy, OnChanges {
+  implements ControlValueAccessor, AfterViewInit, OnDestroy, OnChanges
+{
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
   private _componentDestroyed = false;
@@ -395,9 +396,9 @@ export class SbbAutocompleteTrigger
       filter((event) => {
         // If we're in the Shadow DOM, the event target will be the shadow root, so we have to
         // fall back to check the first element in the path of the click event.
-        const clickTarget = (this._isInsideShadowRoot && event.composedPath
-          ? event.composedPath()[0]
-          : event.target) as HTMLElement;
+        const clickTarget = (
+          this._isInsideShadowRoot && event.composedPath ? event.composedPath()[0] : event.target
+        ) as HTMLElement;
         const formField = this._formField ? this._formField._elementRef.nativeElement : null;
         const customOrigin = this.connectedTo ? this.connectedTo.elementRef.nativeElement : null;
 

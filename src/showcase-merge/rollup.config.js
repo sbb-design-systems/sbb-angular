@@ -3,6 +3,8 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 
+// @arcgis/core can cause terser errors (e.g. ERROR: "e" is redeclared).
+// In order to avoid this, we rename problematic variables during bundling.
 const replacements = [
   { include: 'node_modules/@arcgis/core/support/webSceneUtils.js', o: 'o_1' },
   {

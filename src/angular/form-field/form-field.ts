@@ -62,7 +62,8 @@ export const SBB_FORM_FIELD = new InjectionToken<SbbFormField>('SBB_FORM_FIELD')
 })
 export class SbbFormField
   extends _SbbFormFieldBase
-  implements AfterContentInit, AfterContentChecked, OnDestroy {
+  implements AfterContentInit, AfterContentChecked, OnDestroy
+{
   /** The label text for the input. */
   @Input() label?: string;
 

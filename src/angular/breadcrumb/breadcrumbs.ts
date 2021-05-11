@@ -18,9 +18,8 @@ import { SbbBreadcrumb } from './breadcrumb';
 class SbbBreadcrumbsBase {}
 
 // tslint:disable-next-line: naming-convention
-const _SbbBreadcrumbsMixinBase: HasVariantCtor & typeof SbbBreadcrumbsBase = mixinVariant(
-  SbbBreadcrumbsBase
-);
+const _SbbBreadcrumbsMixinBase: HasVariantCtor & typeof SbbBreadcrumbsBase =
+  mixinVariant(SbbBreadcrumbsBase);
 
 const sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   type: 'breadcrumb',

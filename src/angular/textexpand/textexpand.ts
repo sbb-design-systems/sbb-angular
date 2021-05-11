@@ -18,9 +18,8 @@ import { SbbTextexpandExpanded } from './textexpand-expanded';
 /** @docs-private */
 class SbbTextexpandBase {}
 // tslint:disable-next-line: naming-convention
-const _SbbTextexpandBase: HasVariantCtor & typeof SbbTextexpandBase = mixinVariant(
-  SbbTextexpandBase
-);
+const _SbbTextexpandBase: HasVariantCtor & typeof SbbTextexpandBase =
+  mixinVariant(SbbTextexpandBase);
 
 let nextId = 0;
 

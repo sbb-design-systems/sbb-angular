@@ -14,7 +14,6 @@ entry_points = [
     "checkbox-panel",
     "datepicker",
     "dropdown",
-    "field",
     "file-selector",
     "form-field",
     "ghettobox",

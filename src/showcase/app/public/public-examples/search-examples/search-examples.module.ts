@@ -26,7 +26,8 @@ const EXAMPLE_INDEX = {
   'search-simple-reactive-forms-example': SearchSimpleReactiveFormsExample,
   'search-simple-header-mode-example': SearchSimpleHeaderModeExample,
   'search-autocomplete-example': SearchAutocompleteExample,
-  'search-custom-icon-autocomplete-static-options-example': SearchCustomIconAutocompleteStaticOptionsExample,
+  'search-custom-icon-autocomplete-static-options-example':
+    SearchCustomIconAutocompleteStaticOptionsExample,
   'search-historic-railway-pictures-example': SearchHistoricRailwayPicturesExample,
 };
 

@@ -40,7 +40,8 @@ import { SbbToggleOption } from '../toggle-option/toggle-option.component';
 })
 export class SbbToggle
   extends SbbRadioGroup<SbbToggleOption>
-  implements ControlValueAccessor, AfterContentInit, OnDestroy {
+  implements ControlValueAccessor, AfterContentInit, OnDestroy
+{
   private _destroyed = new Subject<void>();
 
   constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {

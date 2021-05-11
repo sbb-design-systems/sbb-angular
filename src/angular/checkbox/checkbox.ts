@@ -82,7 +82,8 @@ export class _SbbCheckboxBase
     OnDestroy,
     CanDisable,
     HasTabIndex,
-    FocusableOption {
+    FocusableOption
+{
   /**
    * Attached to the aria-label attribute of the host element. In most cases, aria-labelledby will
    * take precedence so this may be omitted.

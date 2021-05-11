@@ -56,18 +56,19 @@ export function bazel(options: { filter?: string }): Rule {
               isShowcase || isMergeShowcase
                 ? new RelativeModuleTypeScriptDependencyResolver(tsConfig)
                 : new StrictModuleTypeScriptDependencyResolver(tsConfig);
+            const styleReplaceMap = new Map<string, string>()
+              .set('../styles/common', '//src/angular/styles:common_scss_lib')
+              .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
+              .set('/angular-core/styles/common', '//src/angular-core/styles:common_scss_lib')
+              .set(
+                'external/npm/node_modules/@angular/cdk',
+                '//src/angular/styles:common_scss_lib'
+              );
             const sassDependencyResolver = new FlexibleSassDependencyResolver(
               moduleDetector,
               npmDependencyResolver,
               context.logger,
-              new Map<string, string>()
-                .set('../styles/common', '//src/angular/styles:common_scss_lib')
-                .set('/angular/styles/common', '//src/angular/styles:common_scss_lib')
-                .set('/angular-core/styles/common', '//src/angular-core/styles:common_scss_lib')
-                .set(
-                  'external/npm/node_modules/@angular/cdk/a11y',
-                  '//src/angular/styles:common_scss_lib'
-                )
+              styleReplaceMap
             );
             const bazelGenruleResolver = new BazelGenruleResolver();
             if (isMergeShowcase) {
@@ -111,6 +112,10 @@ export function bazel(options: { filter?: string }): Rule {
                 bazelGenruleResolver,
               });
             } else {
+              styleReplaceMap.set(
+                'external/npm/node_modules/@angular/cdk',
+                '//src/angular-core/styles:common_scss_lib'
+              );
               return new NgPackage(packageDir, tree, {
                 ...context,
                 organization,

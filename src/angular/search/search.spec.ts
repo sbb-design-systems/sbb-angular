@@ -449,9 +449,8 @@ describe('SbbSearch', () => {
           const searchOverlay = overlayContainerElement.querySelector(
             '.sbb-header-search-overlay'
           )!;
-          const autocompleteOverlay = overlayContainerElement.querySelector(
-            '.sbb-autocomplete-panel'
-          )!;
+          const autocompleteOverlay =
+            overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
           expect(searchOverlay.getBoundingClientRect().width).toEqual(
             autocompleteOverlay.getBoundingClientRect().width
           );

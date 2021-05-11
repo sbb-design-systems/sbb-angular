@@ -37,9 +37,8 @@ import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-
 /** @docs-private */
 class SbbOptgroupBase {}
 // tslint:disable-next-line: naming-convention
-const _SbbOptgroupMixinBase: CanDisableCtor & typeof SbbOptgroupBase = mixinDisabled(
-  SbbOptgroupBase
-);
+const _SbbOptgroupMixinBase: CanDisableCtor & typeof SbbOptgroupBase =
+  mixinDisabled(SbbOptgroupBase);
 
 // Counter for unique group ids.
 let uniqueOptgroupIdCounter = 0;

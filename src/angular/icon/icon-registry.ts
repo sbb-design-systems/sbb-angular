@@ -373,17 +373,15 @@ export class SbbIconRegistry implements OnDestroy {
       .filter((iconSetConfig) => !iconSetConfig.svgElement)
       .map((iconSetConfig) => {
         return this._loadSvgIconSetFromConfig(iconSetConfig).pipe(
-          catchError(
-            (err: HttpErrorResponse): Observable<SVGElement | null> => {
-              const url = this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, iconSetConfig.url);
+          catchError((err: HttpErrorResponse): Observable<SVGElement | null> => {
+            const url = this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, iconSetConfig.url);
 
-              // Swallow errors fetching individual URLs so the
-              // combined Observable won't necessarily fail.
-              const errorMessage = `Loading icon set URL: ${url} failed: ${err.message}`;
-              this._errorHandler.handleError(new Error(errorMessage));
-              return observableOf(null);
-            }
-          )
+            // Swallow errors fetching individual URLs so the
+            // combined Observable won't necessarily fail.
+            const errorMessage = `Loading icon set URL: ${url} failed: ${err.message}`;
+            this._errorHandler.handleError(new Error(errorMessage));
+            return observableOf(null);
+          })
         );
       });
 

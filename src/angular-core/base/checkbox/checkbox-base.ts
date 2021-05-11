@@ -26,7 +26,8 @@ export class SbbCheckboxChange<TCheckbox extends SbbCheckboxBase = SbbCheckboxBa
 
 @Directive()
 export abstract class SbbCheckboxBase<TChange extends SbbCheckboxChange = SbbCheckboxChange<any>>
-  implements ControlValueAccessor {
+  implements ControlValueAccessor
+{
   private _uniqueId: string;
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() id: string;

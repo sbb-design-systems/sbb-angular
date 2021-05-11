@@ -60,7 +60,7 @@ const TEMPLATE_FILES = [
  */
 const TAGS: string[] = ['sbb', 'angular', 'example'];
 
-const angularVersion = '^11.0.0';
+const angularVersion = '^12.0.0';
 const dependencies = {
   '@angular/animations': angularVersion,
   '@angular/cdk': angularVersion,

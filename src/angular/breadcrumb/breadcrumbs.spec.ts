@@ -186,12 +186,14 @@ describe('SbbBreadcrumbs', () => {
     });
 
     it('should place panel trigger text at same position as trigger text', () => {
-      const menuTrigger = fixture.debugElement.query(By.css('.sbb-menu-trigger-breadcrumb'))
-        .nativeElement;
+      const menuTrigger = fixture.debugElement.query(
+        By.css('.sbb-menu-trigger-breadcrumb')
+      ).nativeElement;
       dispatchMouseEvent(menuTrigger, 'click');
       fixture.detectChanges();
-      const menuTriggerPanel = fixture.debugElement.query(By.css('.sbb-menu-panel-trigger'))
-        .nativeElement;
+      const menuTriggerPanel = fixture.debugElement.query(
+        By.css('.sbb-menu-panel-trigger')
+      ).nativeElement;
 
       // Trigger text has to be at the exact same position on the screen
       const menuTriggerText = document.createRange();
@@ -209,12 +211,14 @@ describe('SbbBreadcrumbs', () => {
     });
 
     it('should grow panel to the right side and stretch trigger width too', () => {
-      const menuTrigger = fixture.debugElement.query(By.css('.sbb-menu-trigger-breadcrumb'))
-        .nativeElement;
+      const menuTrigger = fixture.debugElement.query(
+        By.css('.sbb-menu-trigger-breadcrumb')
+      ).nativeElement;
       dispatchMouseEvent(menuTrigger, 'click');
       fixture.detectChanges();
-      const menuTriggerPanel = fixture.debugElement.query(By.css('.sbb-menu-panel-trigger'))
-        .nativeElement;
+      const menuTriggerPanel = fixture.debugElement.query(
+        By.css('.sbb-menu-panel-trigger')
+      ).nativeElement;
       const menuPanel = fixture.debugElement.query(By.css('.sbb-menu-panel')).nativeElement;
 
       const xOffset = 30;

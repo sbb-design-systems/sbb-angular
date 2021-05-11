@@ -105,7 +105,8 @@ const _SbbMenuMixinBase: HasVariantCtor & typeof SbbMenuBase = mixinVariant(SbbM
 })
 export class SbbMenu
   extends _SbbMenuMixinBase
-  implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy {
+  implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy
+{
   private _keyManager: FocusKeyManager<SbbMenuItem>;
   private _xPosition: SbbMenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: SbbMenuPositionY = this._defaultOptions.yPosition;
@@ -271,9 +272,9 @@ export class SbbMenu
     this._directDescendantItems.changes
       .pipe(
         startWith(this._directDescendantItems),
-        switchMap((items) => merge<SbbMenuItem>(...items.map((item: SbbMenuItem) => item._focused)))
+        switchMap((items) => merge(...items.map((item: SbbMenuItem) => item._focused)))
       )
-      .subscribe((focusedItem) => this._keyManager.updateActiveItem(focusedItem));
+      .subscribe((focusedItem) => this._keyManager.updateActiveItem(focusedItem as SbbMenuItem));
   }
 
   ngOnDestroy() {

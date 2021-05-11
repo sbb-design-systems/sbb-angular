@@ -48,8 +48,8 @@ export interface SbbSort {
 /** @docs-private */
 export class SbbSortDirectiveBase {}
 /** @docs-private */
-export const SbbSortDirectiveMixinBase: HasInitializedCtor &
-  typeof SbbSortDirectiveBase = mixinInitialized(SbbSortDirectiveBase);
+export const SbbSortDirectiveMixinBase: HasInitializedCtor & typeof SbbSortDirectiveBase =
+  mixinInitialized(SbbSortDirectiveBase);
 
 /** Container for SbbSortables to manage the sort state and provide default sort parameters. */
 @Directive({
@@ -59,7 +59,8 @@ export const SbbSortDirectiveMixinBase: HasInitializedCtor &
 })
 export class SbbSortDirective
   extends SbbSortDirectiveMixinBase
-  implements OnInit, OnChanges, OnDestroy, HasInitialized {
+  implements OnInit, OnChanges, OnDestroy, HasInitialized
+{
   /** The sort direction of the currently active SbbSortable. */
   @Input('sbbSortDirection')
   get direction(): SbbSortDirection {

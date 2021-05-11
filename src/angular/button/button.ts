@@ -82,7 +82,8 @@ const _SbbButtonMixinBase: CanDisableCtor & HasVariantCtor & typeof SbbButtonBas
 })
 export class SbbButton
   extends _SbbButtonMixinBase
-  implements AfterViewInit, OnDestroy, CanDisable, FocusableOption {
+  implements AfterViewInit, OnDestroy, CanDisable, FocusableOption
+{
   /** Whether this button has an icon indicator. */
   _hasIconIndicator: boolean = this._hasHostAttributes(...INDICATOR_ATTRIBUTES);
   /** Whether the left indicator icon is visible. */

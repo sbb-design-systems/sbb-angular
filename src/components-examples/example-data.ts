@@ -52,15 +52,8 @@ export class ExampleData {
       return;
     }
 
-    const {
-      componentName,
-      files,
-      selector,
-      primaryFile,
-      additionalComponents,
-      title,
-      variant,
-    } = EXAMPLE_COMPONENTS[example];
+    const { componentName, files, selector, primaryFile, additionalComponents, title, variant } =
+      EXAMPLE_COMPONENTS[example];
     const exampleName = example.replace(/(?:^\w|\b\w)/g, (letter) => letter.toUpperCase());
 
     this.id = example;

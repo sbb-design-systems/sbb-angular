@@ -44,7 +44,14 @@ import {
   SCALING_FACTOR_4K,
   SCALING_FACTOR_5K,
 } from '@sbb-esta/angular/core';
-import { asapScheduler, BehaviorSubject, merge, of as observableOf, Subscription } from 'rxjs';
+import {
+  asapScheduler,
+  BehaviorSubject,
+  merge,
+  Observable,
+  of as observableOf,
+  Subscription,
+} from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
 import { SbbMenu, SbbMenuCloseReason } from './menu';
@@ -71,9 +78,8 @@ export interface SbbMenuInheritedTriggerContext {
 }
 
 /** Injection token for SbbMenuInheritedTriggerContext */
-export const SBB_MENU_INHERITED_TRIGGER_CONTEXT = new InjectionToken<SbbMenuInheritedTriggerContext>(
-  'sbb-menu-inherited-trigger-context'
-);
+export const SBB_MENU_INHERITED_TRIGGER_CONTEXT =
+  new InjectionToken<SbbMenuInheritedTriggerContext>('sbb-menu-inherited-trigger-context');
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -102,9 +108,8 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
 /** @docs-private */
 class SbbMenuTriggerBase {}
 // tslint:disable-next-line: naming-convention
-const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase = mixinVariant(
-  SbbMenuTriggerBase
-);
+const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase =
+  mixinVariant(SbbMenuTriggerBase);
 
 /** Directive applied to an element that should trigger a `sbb-menu`. */
 @Directive({
@@ -121,7 +126,8 @@ const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase = mix
 })
 export class SbbMenuTrigger
   extends _SbbMenuTriggerMixinBase
-  implements OnInit, AfterContentInit, OnDestroy {
+  implements OnInit, AfterContentInit, OnDestroy
+{
   private _portal: TemplatePortal;
   private _overlayRef: OverlayRef | null = null;
   private _menuOpen: boolean = false;
@@ -627,7 +633,7 @@ export class SbbMenuTrigger
         )
       : observableOf();
 
-    return merge(backdrop, parentClose, hover, detachments);
+    return merge(backdrop, parentClose as Observable<SbbMenuCloseReason>, hover, detachments);
   }
 
   /** Handles mouse presses on the trigger. */

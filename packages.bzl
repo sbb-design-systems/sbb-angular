@@ -5,9 +5,9 @@
 # Each individual package uses a placeholder for the version of Angular to ensure they're
 # all in-sync. This map is passed to each ng_package rule to stamp out the appropriate
 # version for the placeholders.
-ANGULAR_PACKAGE_VERSION = "^11.0.0 || ^12.0.0-0"
-CDK_PACKAGE_VERSION = "^11.0.0"
-TSLIB_PACKAGE_VERSION = "^2.0.0"
+ANGULAR_PACKAGE_VERSION = "^12.0.0-0 || ^13.0.0-0"
+CDK_PACKAGE_VERSION = "^12.0.0-0"
+TSLIB_PACKAGE_VERSION = "^2.1.0"
 
 # Each placer holder is used to stamp versions during the build process, replacing the key with it's
 # value pair. These replacements occur during building of `npm_package` and `ng_package` stamping in

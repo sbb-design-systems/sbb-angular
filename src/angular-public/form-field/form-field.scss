@@ -1,5 +1,5 @@
+@use 'external/npm/node_modules/@angular/cdk' as cdk;
 @import '../../angular-core/styles/common';
-@import 'external/npm/node_modules/@angular/cdk/a11y';
 
 .sbb-form-field {
   display: inline-block;
@@ -186,7 +186,7 @@ select.sbb-input-element {
     // as the background, however this causes it blend in because we've reset the `background`
     // above. We have to add a more specific selector in order to ensure that it gets the
     // `color` from our theme instead.
-    @include cdk-high-contrast(active, off) {
+    @include cdk.high-contrast(active, off) {
       .sbb-focused & {
         color: inherit;
       }

@@ -59,9 +59,8 @@ export class SbbChipsBase {
   ) {}
 }
 
-export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = mixinErrorState(
-  SbbChipsBase
-);
+export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase =
+  mixinErrorState(SbbChipsBase);
 
 @Component({
   selector: 'sbb-chip-input',
@@ -88,7 +87,8 @@ export class SbbChipInput
     OnDestroy,
     OnChanges,
     CanUpdateErrorState,
-    ControlValueAccessor {
+    ControlValueAccessor
+{
   /** Optional autocomplete Component */
   @Input('sbbAutocomplete')
   autocomplete: SbbAutocomplete;
@@ -278,12 +278,6 @@ export class SbbChipInput
     }
     this._inputElement.nativeElement.value = '';
   }
-
-  /**
-   * Selects a given value if the action doesn't refer to an autocomplete option.
-   * @deprecated No longer used.
-   */
-  _onEnter(_option: string) {}
 
   /** Handle the keydown event. */
   _handleKeydown(event: KeyboardEvent) {

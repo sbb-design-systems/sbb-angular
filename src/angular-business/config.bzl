@@ -15,7 +15,6 @@ entry_points = [
     "datepicker",
     "dialog",
     "dropdown",
-    "field",
     "file-selector",
     "form-field",
     "header",

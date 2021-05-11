@@ -143,9 +143,8 @@ export abstract class TypeScriptDependencyResolverBase implements TypeScriptDepe
     } else if (importPath.startsWith('.')) {
       const moduleBaseDir = this._config.moduleDetector.findModuleBaseDirectory(file.path);
       const importFilePath = join(dirname(file.path), importPath.replace(/(\.ts)?$/, '.ts'));
-      const importFileModuleBaseDir = this._config.moduleDetector.findModuleBaseDirectory(
-        importFilePath
-      );
+      const importFileModuleBaseDir =
+        this._config.moduleDetector.findModuleBaseDirectory(importFilePath);
       return this._resolveRelativeImport({
         file,
         files,

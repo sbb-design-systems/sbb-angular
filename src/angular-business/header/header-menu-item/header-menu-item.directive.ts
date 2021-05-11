@@ -17,9 +17,8 @@ import { CanDisableCtor, mixinDisabled, TypeRef } from '@sbb-esta/angular-core/c
 /** @docs-private */
 class HeaderMenuItemBase {}
 // tslint:disable-next-line: naming-convention
-const _HeaderMenuItemBase: CanDisableCtor & typeof HeaderMenuItemBase = mixinDisabled(
-  HeaderMenuItemBase
-);
+const _HeaderMenuItemBase: CanDisableCtor & typeof HeaderMenuItemBase =
+  mixinDisabled(HeaderMenuItemBase);
 
 @Directive({
   selector: '[sbbHeaderMenuItem]',

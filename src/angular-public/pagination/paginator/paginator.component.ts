@@ -61,9 +61,8 @@ export const SBB_PAGINATOR_DEFAULT_OPTIONS = new InjectionToken<SbbPaginatorDefa
 // Boilerplate for applying mixins to SbbPaginatorComponent.
 /** @docs-private */
 class SbbPaginatorBase {}
-const sbbPaginatorBase: CanDisableCtor &
-  HasInitializedCtor &
-  typeof SbbPaginatorBase = mixinDisabled(mixinInitialized(SbbPaginatorBase));
+const sbbPaginatorBase: CanDisableCtor & HasInitializedCtor & typeof SbbPaginatorBase =
+  mixinDisabled(mixinInitialized(SbbPaginatorBase));
 
 /**
  * Component to provide navigation between paged information. Displays the size of the current
@@ -84,7 +83,8 @@ const sbbPaginatorBase: CanDisableCtor &
 })
 export class SbbPaginatorComponent
   extends sbbPaginatorBase
-  implements OnInit, CanDisable, HasInitialized {
+  implements OnInit, CanDisable, HasInitialized
+{
   private _initialized: boolean;
   private _previousPageSize: number;
 

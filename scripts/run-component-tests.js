@@ -49,7 +49,13 @@ shelljs.set('-e');
 shelljs.cd(projectDir);
 
 // Extracts the supported command line options.
-const { _: components, local, firefox, watch, 'view-engine': viewEngine } = minimist(args, {
+const {
+  _: components,
+  local,
+  firefox,
+  watch,
+  'view-engine': viewEngine,
+} = minimist(args, {
   boolean: ['local', 'firefox', 'watch', 'view-engine'],
   default: { watch: true, 'view-engine': false },
 });

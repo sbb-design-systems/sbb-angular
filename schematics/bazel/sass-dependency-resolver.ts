@@ -37,7 +37,7 @@ export class FlexibleSassDependencyResolver implements SassDependencyResolver {
   }
 
   private _findStylesheetDependencies(file: FileEntry, moduleDir: DirEntry) {
-    const matches = file.content.toString().match(/@import '([^']+)';/g);
+    const matches = file.content.toString().match(/(@import|@use) '([^']+)';/g);
     if (!matches) {
       return [];
     }

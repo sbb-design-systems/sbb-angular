@@ -58,9 +58,8 @@ export interface SbbAutocompleteActivatedEvent {
 /** @docs-private */
 class SbbAutocompleteBase {}
 // tslint:disable-next-line: naming-convention
-const _SbbAutocompleteBase: HasVariantCtor & typeof SbbAutocompleteBase = mixinVariant(
-  SbbAutocompleteBase
-);
+const _SbbAutocompleteBase: HasVariantCtor & typeof SbbAutocompleteBase =
+  mixinVariant(SbbAutocompleteBase);
 
 /** Default `sbb-autocomplete` options that can be overridden. */
 export interface SbbAutocompleteDefaultOptions {

@@ -123,7 +123,7 @@ _ASSETS = [
     ":styles.css",
     "@npm//:node_modules/highlight.js/styles/github.css",
     "@npm//:node_modules/zone.js/dist/zone.min.js",
-    "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.min.js",
+    "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.js",
 ]
 
 # Insert script tags into index.html
@@ -184,6 +184,7 @@ rollup_bundle(
     deps = [
         "//src/showcase",
         "@npm//@rollup/plugin-alias",
+        "@npm//@rollup/plugin-replace",
         "@npm//rollup-plugin-commonjs",
         "@npm//rollup-plugin-node-resolve",
     ],

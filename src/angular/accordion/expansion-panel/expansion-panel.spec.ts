@@ -65,8 +65,9 @@ describe('SbbExpansionPanel', () => {
 
   it('should be able to render panel content lazily', fakeAsync(() => {
     const fixture = TestBed.createComponent(LazyPanelWithContent);
-    const content = fixture.debugElement.query(By.css('.sbb-expansion-panel-content'))!
-      .nativeElement;
+    const content = fixture.debugElement.query(
+      By.css('.sbb-expansion-panel-content')
+    )!.nativeElement;
     fixture.detectChanges();
 
     expect(content.textContent.trim()).toBe('', 'Expected content element to be empty.');
@@ -82,8 +83,9 @@ describe('SbbExpansionPanel', () => {
 
   it('should render the content for a lazy-loaded panel that is opened on init', fakeAsync(() => {
     const fixture = TestBed.createComponent(LazyPanelOpenOnLoad);
-    const content = fixture.debugElement.query(By.css('.sbb-expansion-panel-content'))!
-      .nativeElement;
+    const content = fixture.debugElement.query(
+      By.css('.sbb-expansion-panel-content')
+    )!.nativeElement;
     fixture.detectChanges();
 
     expect(content.textContent.trim()).toContain(

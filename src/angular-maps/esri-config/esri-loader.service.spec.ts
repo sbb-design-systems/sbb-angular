@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import config from '@arcgis/core/config';
-import { SbbEsriConfigModule } from '@sbb-esta/angular-maps/esri-config/esri-config.module';
 
-import { SbbEsriConfiguration } from './esri-configuration';
-import { SbbEsriLoaderService } from './esri-loader.service';
-import { SbbEsriConfigConsts } from './esri-standard-values.const';
+import {
+  SbbEsriConfigConsts,
+  SbbEsriConfigModule,
+  SbbEsriConfiguration,
+  SbbEsriLoaderService,
+} from './index';
 
 describe('EsriLoaderService', () => {
   const esriCustomConf: SbbEsriConfiguration = {

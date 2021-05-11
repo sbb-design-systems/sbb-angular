@@ -872,8 +872,9 @@ describe('RadioButton', () => {
       const predefinedFixture = TestBed.createComponent(RadioButtonWithPredefinedTabindexComponent);
       predefinedFixture.detectChanges();
 
-      const radioButtonEl = predefinedFixture.debugElement.query(By.css('.sbb-radio-button'))!
-        .nativeElement;
+      const radioButtonEl = predefinedFixture.debugElement.query(
+        By.css('.sbb-radio-button')
+      )!.nativeElement;
 
       expect(radioButtonEl.getAttribute('tabindex')).toBe('-1');
     });
@@ -884,8 +885,9 @@ describe('RadioButton', () => {
       );
       predefinedFixture.detectChanges();
 
-      const radioButtonEl = predefinedFixture.debugElement.query(By.css('.sbb-radio-button'))!
-        .nativeElement;
+      const radioButtonEl = predefinedFixture.debugElement.query(
+        By.css('.sbb-radio-button')
+      )!.nativeElement;
 
       expect(radioButtonEl.hasAttribute('aria-label')).toBe(false);
       expect(radioButtonEl.hasAttribute('aria-describedby')).toBe(false);

@@ -28,7 +28,7 @@ export function runPostScheduledTasks(
   const host = runner.engine['_host'] as EngineHost<{}, {}>;
   const tasks = runner.engine['_taskSchedulers'] as TaskScheduler[];
   const createTaskExecutor = (name: string) =>
-    (host.createTaskExecutor(name) as any) as Observable<TaskExecutor<any>>;
+    host.createTaskExecutor(name) as any as Observable<TaskExecutor<any>>;
 
   return observableFrom(tasks).pipe(
     concatMap((scheduler) => scheduler.finalize()),

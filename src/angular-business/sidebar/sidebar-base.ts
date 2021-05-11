@@ -58,7 +58,8 @@ export abstract class SbbSidebarBase {
  */
 @Directive()
 export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
-  implements AfterContentInit, OnDestroy, SbbSidebarMobileCapableContainer {
+  implements AfterContentInit, OnDestroy, SbbSidebarMobileCapableContainer
+{
   _mobile: boolean;
 
   /** The sidebar child */
