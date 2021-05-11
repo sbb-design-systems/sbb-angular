@@ -321,7 +321,7 @@ export class MigrationElementProperty {
   readonly name: string;
 
   get isProperty() {
-    return this.attribute.name.startsWith('[');
+    return this.name.startsWith('[');
   }
 
   get isAttribute() {
@@ -365,12 +365,12 @@ export class MigrationElementProperty {
 
   replaceValue(newValue: string) {
     this._element.recorder.remove(
-      this._element.resource.start + this.location.startOffset + this.attribute.name.length,
-      this.location.endOffset - this.location.startOffset - this.attribute.name.length
+      this._element.resource.start + this.location.startOffset + this.name.length,
+      this.location.endOffset - this.location.startOffset - this.name.length
     );
 
     this._element.recorder.insertRight(
-      this._element.resource.start + this.location.startOffset + this.attribute.name.length,
+      this._element.resource.start + this.location.startOffset + this.name.length,
       `="${newValue}"`
     );
   }
