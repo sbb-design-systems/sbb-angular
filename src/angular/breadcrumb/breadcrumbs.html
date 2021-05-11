@@ -1,0 +1,19 @@
+<div role="list" class="sbb-breadcrumbs-wrapper">
+  <sbb-breadcrumb class="sbb-breadcrumb-root">
+    <ng-content select="[sbb-breadcrumb-root]"></ng-content>
+  </sbb-breadcrumb>
+
+  <sbb-breadcrumb class="sbb-breadcrumb-dots">
+    <button
+      type="button"
+      (click)="expand()"
+      i18n-aria-label="
+          Button with three dots to show all breadcrumb levels@@sbbBreadcrumbExpand"
+      aria-label="Show all levels"
+    >
+      ...
+    </button>
+  </sbb-breadcrumb>
+
+  <ng-content select="sbb-breadcrumb"></ng-content>
+</div>

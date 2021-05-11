@@ -23,6 +23,31 @@ The re-export from root (e.g. `import { SbbButtonModule } from '@sbb-esta/angula
 been removed. All symbols have to be imported from the respective
 module (e.g. `import { SbbButtonModule } from '@sbb-esta/angular/button';`).
 
+### Breadcrumb
+
+_Automatic migration available_
+
+Sbb breadcrumb has been refactored resulting in several changes.
+Mainly the new `sbb-menu` replaces the `sbb-dropdown` but also improvements
+to accessibility were made. All changes are handled by automatic migration.
+
+- To define your root element (home icon) you can now simply define a
+  link and apply the directive `<a sbb-breadcrumb-root>`.
+  The responsibility to place the icon is taken over by the `sbb-breadcrumb` component.
+
+- All `<a sbbDropdownItem>` become `<a sbb-menu-item>` elements wrapped by a `<sbb-menu>`.
+  The Trigger has to be defined by the developer and linked with
+  the `<sbb-menu>` (see [Documentation](angular/components/breadcrumb) for examples).
+
+- In order to standardize sbb-active classes, all active classes should be `sbb-active`.
+  In Breadcrumb context it means, the property `routerLinkActive`
+  should now set to `sbb-active` (`sbb-selected` before).
+
+The automatic migration wraps your menu trigger with `<ng-template sbbMenuDynamicTrigger>`.
+If you only use text you can remove the `<ng-template>` tag.
+
+[Documentation](angular/components/breadcrumb)
+
 ### Button
 
 _Automatic migration available_

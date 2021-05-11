@@ -74,6 +74,7 @@ export function SBB_ICON_REGISTRY_WRAPPER_PROVIDER_FACTORY(
         'download-small',
         'exclamation-point-small',
         'hamburger-menu-small',
+        'house-small',
         'magnifying-glass-small',
         'minus-small',
         'plus-small',

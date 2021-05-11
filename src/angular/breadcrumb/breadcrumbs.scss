@@ -1,0 +1,424 @@
+@import '../styles/common';
+
+$breadcrumbHeightDesktop: 48;
+$breadcrumbLabelHeightDesktop: 24;
+$breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
+$breadcrumbDropdownIconWidth: 24;
+$breadcrumbPaddingX: 30;
+$breadcrumbBorderWidthStandard: 2;
+$breadcrumbBorderWidthLean: 1;
+
+.sbb-breadcrumbs-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: pxToRem(12);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding-bottom: pxToRem(12 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      padding-bottom: pxToRem(12 * $scalingFactor5k);
+    }
+  }
+}
+
+.sbb-breadcrumb {
+  display: none;
+  align-items: center;
+  margin-top: pxToRem(12);
+  margin-right: pxToRem(6);
+  max-width: 100%;
+
+  @include mq($from: tabletPortrait) {
+    display: flex;
+  }
+
+  .sbb-breadcrumbs-expanded & {
+    display: flex;
+  }
+
+  // Last user defined breadcrumb
+  &:last-child {
+    display: flex;
+    margin-right: 0;
+  }
+
+  // Arrow between breadcrumb entries
+  & + .sbb-breadcrumb {
+    &::before {
+      content: '';
+      display: inline-block;
+      background: url($sbbIconChevronSmallRightSmallPlatinum) no-repeat center;
+      background-size: pxToRem(24) pxToRem(24);
+      width: pxToRem(24);
+      height: pxToRem(24);
+      margin-right: pxToRem(6);
+      flex-shrink: 0;
+
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          background-size: pxToRem(24 * $scalingFactor4k) pxToRem(24 * $scalingFactor4k);
+          width: pxToRem(24 * $scalingFactor4k);
+          height: pxToRem(24 * $scalingFactor4k);
+          margin-right: pxToRem(6 * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          background-size: pxToRem(24 * $scalingFactor5k) pxToRem(24 * $scalingFactor5k);
+          width: pxToRem(24 * $scalingFactor5k);
+          height: pxToRem(24 * $scalingFactor5k);
+          margin-right: pxToRem(6 * $scalingFactor5k);
+        }
+      }
+
+      html.sbb-lean & {
+        background-image: url($sbbIconChevronSmallRightSmallGranite);
+        margin-right: pxToRem(4);
+      }
+    }
+  }
+
+  a,
+  button,
+  .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root {
+    @include buttonResetFrameless();
+    outline: 0;
+    cursor: pointer;
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      margin-top: pxToRem(12 * $scalingFactor4k);
+      margin-right: pxToRem(6 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      margin-top: pxToRem(12 * $scalingFactor5k);
+      margin-right: pxToRem(6 * $scalingFactor5k);
+    }
+  }
+
+  html.sbb-lean & {
+    margin-right: pxToRem(4);
+
+    // Last user defined breadcrumb
+    &:last-child {
+      &,
+      a,
+      button {
+        color: $sbbColorBlack;
+
+        &:hover,
+        &:focus {
+          color: $sbbColorRed125;
+        }
+      }
+    }
+  }
+}
+
+.sbb-breadcrumb-root {
+  display: flex;
+
+  a {
+    height: pxToRem($breadcrumbLabelHeightDesktop);
+    width: pxToRem(24);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        height: pxToRem($breadcrumbLabelHeightDesktop * $scalingFactor4k);
+        width: pxToRem(24 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        height: pxToRem($breadcrumbLabelHeightDesktop * $scalingFactor5k);
+        width: pxToRem(24 * $scalingFactor5k);
+      }
+    }
+  }
+}
+
+.sbb-breadcrumb-dots {
+  display: flex;
+
+  .sbb-breadcrumbs-expanded & {
+    display: none;
+  }
+
+  @include mq($from: tabletPortrait) {
+    display: none;
+  }
+}
+
+// Every breadcrumb item inclusive menu trigger and copied menu trigger (inside panel)
+.sbb-breadcrumb a,
+.sbb-breadcrumb button,
+.sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
+.sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger {
+  @include ellipsis;
+  font-family: $fontSbbRoman;
+  font-size: pxToRem(13);
+  line-height: pxToRem(20);
+  color: $sbbColorGrey;
+  text-align: left;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+      line-height: pxToRem(30);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+      line-height: pxToRem(40);
+    }
+  }
+
+  html.sbb-lean & {
+    color: $sbbColorGranite;
+    line-height: pxToRem(16);
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+  }
+}
+
+// Menu trigger inside sbb-breadcrumb if menu is open
+.sbb-breadcrumb .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root.sbb-menu-trigger-menu-open {
+  &::after {
+    transform: translateY(-50%) rotate(-180deg);
+  }
+}
+
+// Menu trigger and copied menu trigger (inside panel)
+.sbb-breadcrumb .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
+.sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger {
+  position: relative;
+  padding-right: pxToRem($breadcrumbDropdownIconWidth);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding-right: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      padding-right: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k);
+    }
+  }
+
+  &,
+  html.sbb-lean & {
+    // Redefine lean to be more specific
+    &:focus,
+    &:hover {
+      &::after {
+        background-image: url($sbbIconChevronSmallDownCircleSmallRed125);
+      }
+    }
+  }
+
+  &::after {
+    content: '';
+    display: inline-block;
+    @include absoluteCenterY;
+    background: url($sbbIconChevronSmallDownCircleSmallGranite) no-repeat center;
+    background-size: pxToRem($breadcrumbDropdownIconWidth) pxToRem($breadcrumbDropdownIconWidth);
+    width: pxToRem($breadcrumbDropdownIconWidth);
+    height: pxToRem($breadcrumbDropdownIconWidth);
+    flex-shrink: 0;
+    transition: transform $breadcrumbAnimationTiming;
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        background-size: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k)
+          pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
+        width: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
+        height: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        background-size: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k)
+          pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k);
+        width: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k);
+        height: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      background-image: url($sbbIconChevronSmallDownCircleSmallGranite);
+    }
+  }
+}
+
+// Copied menu trigger (inside panel)
+.sbb-menu-panel-trigger {
+  $triggerPaddingY: 14;
+
+  .sbb-menu-panel-type-breadcrumb & {
+    padding: pxToRem($triggerPaddingY - $breadcrumbBorderWidthStandard)
+      pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard + $breadcrumbDropdownIconWidth)
+      pxToRem($triggerPaddingY - $breadcrumbBorderWidthStandard)
+      pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
+    width: 100%;
+
+    &::after {
+      @keyframes arrowRotate {
+        0% {
+          transform: translateY(-50%) rotate(0);
+        }
+        100% {
+          transform: translateY(-50%) rotate(-180deg);
+        }
+      }
+
+      animation: $breadcrumbAnimationTiming 0s 1 arrowRotate;
+      transform: translateY(-50%) rotate(-180deg);
+      margin-top: pxToRem(-($breadcrumbBorderWidthStandard - 1));
+
+      html:not(.sbb-lean) & {
+        @include mq($from: desktop4k) {
+          margin-top: pxToRem(-($breadcrumbBorderWidthStandard - 1) * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          margin-top: pxToRem(-($breadcrumbBorderWidthStandard - 1) * $scalingFactor5k);
+        }
+      }
+
+      html.sbb-lean & {
+        margin-top: pxToRem(-($breadcrumbBorderWidthLean - 1));
+      }
+    }
+
+    &,
+    html.sbb-lean & {
+      // Redefine lean to be more specific
+      color: $sbbColorRed125;
+
+      &::after {
+        background-image: url($sbbIconChevronSmallDownCircleSmallRed125);
+      }
+    }
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        padding: pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor4k)
+          pxToRem(
+            ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard + $breadcrumbDropdownIconWidth) *
+              $scalingFactor4k
+          )
+          pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor4k)
+          pxToRem(($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding: pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor5k)
+          pxToRem(
+            ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard + $breadcrumbDropdownIconWidth) *
+              $scalingFactor5k
+          )
+          pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor5k)
+          pxToRem(($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      padding: pxToRem($triggerPaddingY - $breadcrumbBorderWidthLean)
+        pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean + $breadcrumbDropdownIconWidth)
+        pxToRem($triggerPaddingY - $breadcrumbBorderWidthLean)
+        pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
+    }
+  }
+
+  .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-below & {
+    padding-bottom: pxToRem($triggerPaddingY);
+    box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactorDefault);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        padding-bottom: pxToRem($triggerPaddingY * $scalingFactor4k);
+        box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-bottom: pxToRem($triggerPaddingY * $scalingFactor5k);
+        box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthLean, $scalingFactorDefault);
+    }
+  }
+  .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
+    padding-top: pxToRem($triggerPaddingY);
+    box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactorDefault),
+      horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard, $scalingFactorDefault);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        padding-top: pxToRem($triggerPaddingY * $scalingFactor4k);
+        box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor4k),
+          horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard, $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        padding-top: pxToRem($triggerPaddingY * $scalingFactor5k);
+        box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor5k),
+          horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard, $scalingFactor5k);
+      }
+    }
+
+    html.sbb-lean & {
+      box-shadow: boxShadow(1, $breadcrumbBorderWidthLean, $scalingFactorDefault),
+        horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthLean, $scalingFactorDefault);
+    }
+  }
+}
+
+.sbb-menu-panel-root {
+  .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-below & {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.sbb-menu-panel-type-breadcrumb .sbb-menu-item {
+  font-size: pxToRem(13);
+  line-height: pxToRem(20);
+  padding-left: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
+  padding-right: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+      line-height: pxToRem(30);
+      padding-left: pxToRem(
+        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor4k
+      );
+      padding-right: pxToRem(
+        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor4k
+      );
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+      line-height: pxToRem(40);
+      padding-left: pxToRem(
+        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor5k
+      );
+      padding-right: pxToRem(
+        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor5k
+      );
+    }
+  }
+
+  html.sbb-lean & {
+    padding-left: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
+    padding-right: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
+  }
+}

@@ -9,6 +9,7 @@ ALL_EXAMPLES = [
     # with "bazel query 'kind("ng_module", //src/components-examples/...:*)' --output="label"
     "//src/components-examples/angular/accordion",
     "//src/components-examples/angular/autocomplete",
+    "//src/components-examples/angular/breadcrumb",
     "//src/components-examples/angular/button",
     "//src/components-examples/angular/captcha",
     "//src/components-examples/angular/checkbox",

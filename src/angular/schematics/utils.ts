@@ -189,6 +189,14 @@ export class MigrationElement {
     );
   }
 
+  /** Remove all content of this element. */
+  removeContent() {
+    this.recorder.remove(
+      this.resource.start + this.location.startTag.endOffset,
+      this.location.endTag.startOffset - this.location.startTag.endOffset
+    );
+  }
+
   removeEndTag() {
     this.recorder.remove(
       this.resource.start + this.location.endTag.startOffset,
@@ -216,6 +224,11 @@ export class MigrationElement {
   /** Insert the given content at the start of the element. */
   insertStart(content: string) {
     this.recorder.insertRight(this.resource.start + this.location.startTag.endOffset, content);
+  }
+
+  /** Insert the given content at the end of the element. */
+  insertBeforeEnd(content: string) {
+    this.recorder.insertLeft(this.resource.start + this.location.endTag.startOffset, content);
   }
 
   findElements(filter: (node: Element) => boolean) {
@@ -292,6 +305,13 @@ export class MigrationElement {
     this.recorder.insertRight(this.resource.start + this.location.startTag.endOffset - 1, content);
   }
 
+  outerHtml() {
+    return this.resource.content.substr(
+      this.location.startOffset,
+      this.location.endOffset - this.location.startOffset
+    );
+  }
+
   toString() {
     return `<${this.element.tagName}>`;
   }
@@ -301,7 +321,7 @@ export class MigrationElementProperty {
   readonly name: string;
 
   get isProperty() {
-    return this.attribute.name.startsWith('[');
+    return this.name.startsWith('[');
   }
 
   get isAttribute() {
@@ -345,13 +365,13 @@ export class MigrationElementProperty {
 
   replaceValue(newValue: string) {
     this._element.recorder.remove(
-      this._element.resource.start + this.location.startOffset,
-      this.location.endOffset - this.location.startOffset
+      this._element.resource.start + this.location.startOffset + this.name.length,
+      this.location.endOffset - this.location.startOffset - this.name.length
     );
 
     this._element.recorder.insertRight(
-      this._element.resource.start + this.location.startOffset,
-      `${this.name}="${newValue}"`
+      this._element.resource.start + this.location.startOffset + this.name.length,
+      `="${newValue}"`
     );
   }
 

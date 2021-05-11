@@ -9,6 +9,7 @@ import {
   RIGHT_ARROW,
   TAB,
 } from '@angular/cdk/keycodes';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
@@ -27,8 +28,9 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { By, DomSanitizer } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Breakpoints, SCALING_FACTOR_4K, SCALING_FACTOR_5K } from '@sbb-esta/angular/core';
 import {
   createKeyboardEvent,
   createMouseEvent,
@@ -36,8 +38,10 @@ import {
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
+  FakeMediaMatcher,
   MockNgZone,
   patchElementFocus,
+  switchToLean,
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
@@ -45,6 +49,7 @@ import { Subject } from 'rxjs';
 
 import {
   SbbMenu,
+  SbbMenuInheritedTriggerContext,
   SbbMenuItem,
   SbbMenuModule,
   SbbMenuPanel,
@@ -52,12 +57,20 @@ import {
   SbbMenuPositionY,
   SbbMenuTrigger,
   SBB_MENU_DEFAULT_OPTIONS,
+  SBB_MENU_INHERITED_TRIGGER_CONTEXT,
 } from './index';
-import {
-  MENU_PANEL_TOP_PADDING,
-  SbbMenuTriggerContext,
-  SBB_MENU_SCROLL_STRATEGY,
-} from './menu-trigger';
+import { SbbMenuTriggerContext, SBB_MENU_SCROLL_STRATEGY } from './menu-trigger';
+
+let mediaMatcher: FakeMediaMatcher;
+
+const PROVIDE_FAKE_MEDIA_MATCHER = {
+  provide: MediaMatcher,
+  useFactory: () => {
+    mediaMatcher = new FakeMediaMatcher();
+    mediaMatcher.defaultMatches = false; // enforce desktop view
+    return mediaMatcher;
+  },
+};
 
 describe('SbbMenu', () => {
   let overlayContainer: OverlayContainer;
@@ -1959,7 +1972,7 @@ describe('SbbMenu', () => {
 
       // Subtract 3px space
       expect(Math.round(triggerRect.right) - 3).toBe(Math.round(panelRect.left));
-      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top) + MENU_PANEL_TOP_PADDING);
+      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top));
     });
 
     it('should fall back to aligning to the left edge of the trigger in ltr', () => {
@@ -1978,7 +1991,7 @@ describe('SbbMenu', () => {
 
       // Add 3px space
       expect(Math.round(triggerRect.left) + 3).toBe(Math.round(panelRect.right));
-      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top) + MENU_PANEL_TOP_PADDING);
+      expect(Math.round(triggerRect.top)).toBe(Math.round(panelRect.top));
     });
 
     it('should close all of the menus when an item is clicked', fakeAsync(() => {
@@ -2461,11 +2474,21 @@ describe('SbbMenu default overrides', () => {
 });
 
 describe('SbbMenu contextmenu', () => {
+  let securityBypassSpy: jasmine.Spy;
+
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
-      declarations: [ContextmenuStaticTrigger, ContextmenuDynamicTrigger],
+      declarations: [
+        ContextmenuStaticTrigger,
+        ContextmenuDynamicTrigger,
+        ContextmenuOnlyTextTrigger,
+      ],
     }).compileComponents();
+
+    inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
+      securityBypassSpy = spyOn(domSanitizer, 'bypassSecurityTrustHtml').and.callThrough();
+    })();
   }));
 
   function testTriggerCopy(component: Type<ContextmenuDynamicTrigger | ContextmenuStaticTrigger>) {
@@ -2486,10 +2509,29 @@ describe('SbbMenu contextmenu', () => {
 
   it('should copy html from trigger to panel trigger', () => {
     testTriggerCopy(ContextmenuStaticTrigger);
+    expect(securityBypassSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should copy dynamic trigger from trigger to panel trigger', () => {
     testTriggerCopy(ContextmenuDynamicTrigger);
+    expect(securityBypassSpy).not.toHaveBeenCalled();
+  });
+
+  it('should copy trigger with only text', () => {
+    const fixture = TestBed.createComponent(ContextmenuOnlyTextTrigger);
+    fixture.detectChanges();
+
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+
+    const panelWrapper = fixture.debugElement.query(By.css('.sbb-menu-panel-wrapper'))
+      .nativeElement;
+
+    const copiedTriggerButton = panelWrapper.querySelector('button')!;
+
+    expect(panelWrapper.children.length).toBe(2);
+    expect(copiedTriggerButton.innerHTML).toBe(`I'm only a simple text`);
+    expect(securityBypassSpy).not.toHaveBeenCalled();
   });
 
   it('should not set elementContent of triggerContext if templateContent is provided', () => {
@@ -2527,6 +2569,71 @@ describe('SbbMenu headless trigger', () => {
         '.sbb-menu-trigger.sbb-menu-trigger-headless'
       )
     ).toBeTruthy();
+  });
+});
+
+describe('SbbMenu offset', () => {
+  const xOffset = 30;
+  const yOffset = 15;
+  const sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
+    type: 'breadcrumb',
+    xPosition: 'after',
+    xOffset: xOffset,
+    yOffset: yOffset,
+  };
+
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [ContextmenuOnlyTextTrigger],
+      providers: [
+        PROVIDE_FAKE_MEDIA_MATCHER,
+        { provide: SBB_MENU_INHERITED_TRIGGER_CONTEXT, useValue: sbbMenuInheritedTriggerContext },
+      ],
+    }).compileComponents();
+  }));
+
+  afterEach(() => {
+    mediaMatcher.clear();
+  });
+
+  function assertOffset(expectedXOffset: number, expectedYOffset: number, breakpoint?: string) {
+    const fixture = TestBed.createComponent(ContextmenuOnlyTextTrigger);
+    fixture.detectChanges();
+    if (breakpoint) {
+      mediaMatcher.setMatchesQuery(breakpoint, true);
+    }
+    tick();
+
+    // Open menu
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+
+    const overlay = document.body.querySelector('.cdk-overlay-pane');
+    expect(overlay!.getBoundingClientRect().left).toBe(expectedXOffset);
+    expect(overlay!.getBoundingClientRect().top).toBe(expectedYOffset);
+
+    flush();
+  }
+
+  it('should apply offset in desktop view', fakeAsync(() => {
+    assertOffset(xOffset, yOffset);
+  }));
+
+  it('should apply offset in 4k resolution', fakeAsync(() => {
+    assertOffset(xOffset * SCALING_FACTOR_4K, yOffset * SCALING_FACTOR_4K, Breakpoints.Desktop4k);
+  }));
+
+  it('should apply offset in 5k resolution', fakeAsync(() => {
+    assertOffset(xOffset * SCALING_FACTOR_5K, yOffset * SCALING_FACTOR_5K, Breakpoints.Desktop5k);
+  }));
+
+  describe('lean', () => {
+    switchToLean();
+
+    it('should not apply scaling factor in lean in 4k resolution', fakeAsync(() => {
+      assertOffset(xOffset, yOffset, Breakpoints.Desktop4k);
+    }));
   });
 });
 
@@ -3003,6 +3110,19 @@ class ContextmenuStaticTrigger {
     </sbb-menu>`,
 })
 class ContextmenuDynamicTrigger {
+  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  @ViewChild(SbbMenu) menu: SbbMenu;
+}
+
+@Component({
+  template: `<button [sbbMenuTriggerFor]="animals" aria-label="Show animals">
+      I'm only a simple text
+    </button>
+    <sbb-menu #animals="sbbMenu">
+      <button sbb-menu-item>Invertebrates</button>
+    </sbb-menu>`,
+})
+class ContextmenuOnlyTextTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
   @ViewChild(SbbMenu) menu: SbbMenu;
 }

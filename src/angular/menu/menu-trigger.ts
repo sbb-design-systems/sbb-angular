@@ -5,6 +5,7 @@ import {
   isFakeTouchstartFromScreenReader,
 } from '@angular/cdk/a11y';
 import { ENTER, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import {
   FlexibleConnectedPositionStrategy,
   HorizontalConnectionPos,
@@ -27,6 +28,7 @@ import {
   InjectionToken,
   Input,
   OnDestroy,
+  OnInit,
   Optional,
   Output,
   Self,
@@ -34,8 +36,15 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
-import { asapScheduler, merge, of as observableOf, Subscription } from 'rxjs';
+import {
+  Breakpoints,
+  HasVariantCtor,
+  mixinVariant,
+  SbbVariant,
+  SCALING_FACTOR_4K,
+  SCALING_FACTOR_5K,
+} from '@sbb-esta/angular/core';
+import { asapScheduler, BehaviorSubject, merge, of as observableOf, Subscription } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
 import { SbbMenu, SbbMenuCloseReason } from './menu';
@@ -45,14 +54,26 @@ import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
 
-export type SbbMenuTriggerType = 'default' | 'headless';
+export type SbbMenuTriggerType = 'default' | 'headless' | 'breadcrumb';
 
-export interface SbbMenuTriggerContext {
-  type: SbbMenuTriggerType;
+export interface SbbMenuTriggerContext extends SbbMenuInheritedTriggerContext {
   width?: number;
   templateContent?: TemplateRef<any>;
   elementContent?: SafeHtml;
 }
+
+export interface SbbMenuInheritedTriggerContext {
+  type: SbbMenuTriggerType;
+  xPosition?: SbbMenuPositionX;
+  yPosition?: SbbMenuPositionY;
+  xOffset?: number;
+  yOffset?: number;
+}
+
+/** Injection token for SbbMenuInheritedTriggerContext */
+export const SBB_MENU_INHERITED_TRIGGER_CONTEXT = new InjectionToken<SbbMenuInheritedTriggerContext>(
+  'sbb-menu-inherited-trigger-context'
+);
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -70,9 +91,6 @@ export const SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   deps: [Overlay],
   useFactory: SBB_MENU_SCROLL_STRATEGY_FACTORY,
 };
-
-/** Default top padding of the menu panel. */
-export const MENU_PANEL_TOP_PADDING = 0;
 
 /** Default left overlapping of the submenu panel. */
 const SUBMENU_PANEL_LEFT_OVERLAP = 3;
@@ -96,18 +114,18 @@ const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase = mix
     'aria-haspopup': 'true',
     '[attr.aria-expanded]': 'menuOpen || null',
     '[attr.aria-controls]': 'menuOpen ? menu.panelId : null',
-    '[class.sbb-menu-trigger-default]': 'this._type === "default"',
-    '[class.sbb-menu-trigger-headless]': 'this._type === "headless"',
     '[class.sbb-menu-trigger-root]': '!_parentSbbMenu',
+    '[class.sbb-menu-trigger-menu-open]': 'menuOpen',
   },
   exportAs: 'sbbMenuTrigger',
 })
 export class SbbMenuTrigger
   extends _SbbMenuTriggerMixinBase
-  implements AfterContentInit, OnDestroy {
+  implements OnInit, AfterContentInit, OnDestroy {
   private _portal: TemplatePortal;
   private _overlayRef: OverlayRef | null = null;
   private _menuOpen: boolean = false;
+  private _breakpointSubscription = Subscription.EMPTY;
   private _closingActionsSubscription = Subscription.EMPTY;
   private _hoverSubscription = Subscription.EMPTY;
   private _menuCloseSubscription = Subscription.EMPTY;
@@ -134,7 +152,7 @@ export class SbbMenuTrigger
   _openedBy: Exclude<FocusOrigin, 'program' | null> | undefined = undefined;
 
   /** Variant of which trigger is used. */
-  _type: SbbMenuTriggerType = 'default';
+  _type: SbbMenuTriggerType = this._inheritedTriggerContext?.type || 'default';
 
   /** References the menu instance that the headless trigger is associated with. */
   @Input('sbbMenuHeadlessTriggerFor')
@@ -200,16 +218,22 @@ export class SbbMenuTrigger
   @ContentChild(SbbMenuDynamicTrigger, { read: TemplateRef })
   _triggerContent: TemplateRef<any>;
 
+  private _scalingFactor: number = 1;
+
   constructor(
     private _overlay: Overlay,
     private _element: ElementRef<HTMLElement>,
     private _viewContainerRef: ViewContainerRef,
     @Inject(SBB_MENU_SCROLL_STRATEGY) scrollStrategy: any,
     @Inject(SBB_MENU_PANEL) @Optional() parentMenu: SbbMenuPanel,
+    @Inject(SBB_MENU_INHERITED_TRIGGER_CONTEXT)
+    @Optional()
+    private _inheritedTriggerContext: SbbMenuInheritedTriggerContext,
     // `SbbMenuTrigger` is commonly used in combination with a `SbbMenuItem`.
     @Optional() @Self() private _menuItemInstance: SbbMenuItem,
     private _focusMonitor: FocusMonitor,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private _breakpointObserver: BreakpointObserver
   ) {
     super();
 
@@ -225,6 +249,25 @@ export class SbbMenuTrigger
     if (_menuItemInstance) {
       _menuItemInstance._triggersSubmenu = this.triggersSubmenu();
     }
+
+    this._breakpointSubscription = this._breakpointObserver
+      .observe([Breakpoints.Desktop4k, Breakpoints.Desktop5k])
+      .subscribe((result: BreakpointState) => {
+        this._scalingFactor = 1;
+
+        if (result.matches) {
+          if (result.breakpoints[Breakpoints.Desktop4k]) {
+            this._scalingFactor = SCALING_FACTOR_4K;
+          }
+          if (result.breakpoints[Breakpoints.Desktop5k]) {
+            this._scalingFactor = SCALING_FACTOR_5K;
+          }
+        }
+      });
+  }
+
+  ngOnInit(): void {
+    this._element.nativeElement.classList.add(`sbb-menu-trigger-${this._type}`);
   }
 
   ngAfterContentInit() {
@@ -247,6 +290,7 @@ export class SbbMenuTrigger
     this._menuCloseSubscription.unsubscribe();
     this._closingActionsSubscription.unsubscribe();
     this._hoverSubscription.unsubscribe();
+    this._breakpointSubscription.unsubscribe();
   }
 
   /** Whether the menu is open. */
@@ -371,19 +415,21 @@ export class SbbMenuTrigger
    */
   private _initMenu(): void {
     this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
-    if (!this.triggersSubmenu()) {
-      this.menu.triggerContext =
-        this._type === 'headless'
-          ? { type: this._type }
-          : {
-              width: this._element.nativeElement.clientWidth,
-              templateContent: this._triggerContent,
-              elementContent: this._triggerContent
-                ? undefined
-                : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
-              type: this._type,
-            };
-    }
+    const triggerContext: SbbMenuTriggerContext =
+      this._type === 'headless' || this.triggersSubmenu()
+        ? { type: this._type }
+        : {
+            width: this._element.nativeElement.clientWidth,
+            templateContent: this._triggerContent,
+            elementContent: this._triggerContent
+              ? undefined
+              : this._element.nativeElement.childElementCount === 0
+              ? this._element.nativeElement.innerText
+              : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
+            type: this._type,
+          };
+
+    this.menu.triggerContext = { ...triggerContext, ...this._inheritedTriggerContext };
     this._setMenuElevation();
     this.menu.focusFirstItem(this._openedBy || 'program');
     this._setIsMenuOpen(true);
@@ -493,30 +539,44 @@ export class SbbMenuTrigger
    */
   private _setPosition(positionStrategy: FlexibleConnectedPositionStrategy) {
     let [originX, originFallbackX]: HorizontalConnectionPos[] =
-      !this.menu.xPosition || this.menu.xPosition === 'before'
+      (!this.menu.xPosition && !this._inheritedTriggerContext?.xPosition) ||
+      this.menu.xPosition === 'before' ||
+      this._inheritedTriggerContext?.xPosition === 'before'
         ? ['end', 'start']
         : ['start', 'end'];
 
     const [overlayY, overlayFallbackY]: VerticalConnectionPos[] =
-      !this.menu.yPosition || this.menu.yPosition === 'below'
+      (!this.menu.yPosition && !this._inheritedTriggerContext?.yPosition) ||
+      this.menu.yPosition === 'below' ||
+      this._inheritedTriggerContext?.yPosition === 'below'
         ? ['top', 'bottom']
         : ['bottom', 'top'];
 
     let [originY, originFallbackY] = [overlayY, overlayFallbackY];
     let [overlayX, overlayFallbackX] = [originX, originFallbackX];
-    let offsetY = 0;
-    let offsetX = 0;
+
+    let offsetX = this._inheritedTriggerContext?.xOffset || 0;
+    let offsetY = this._inheritedTriggerContext?.yOffset || 0;
 
     if (this.triggersSubmenu()) {
       // When the menu is a sub-menu, it should always align itself
       // to the edges of the trigger, instead of overlapping it.
       overlayFallbackX = originX = this.menu.xPosition === 'before' ? 'start' : 'end';
       originFallbackX = overlayX = originX === 'end' ? 'start' : 'end';
-      offsetY = overlayY === 'bottom' ? -MENU_PANEL_TOP_PADDING : MENU_PANEL_TOP_PADDING;
-      offsetX = overlayX === 'end' ? SUBMENU_PANEL_LEFT_OVERLAP : -SUBMENU_PANEL_LEFT_OVERLAP;
+      offsetX = -SUBMENU_PANEL_LEFT_OVERLAP;
     } else if (!this.menu.overlapTrigger) {
       originY = overlayY === 'top' ? 'bottom' : 'top';
       originFallbackY = overlayFallbackY === 'top' ? 'bottom' : 'top';
+    }
+
+    // Set sign whether panel is above, below, before or after
+    offsetX = offsetX * (overlayX === 'end' ? -1 : 1);
+    offsetY = offsetY * (overlayY === 'bottom' ? -1 : 1);
+
+    // Apply scaling factor if variant is standard
+    if ((this.variant as BehaviorSubject<SbbVariant>).value === 'standard') {
+      offsetX = offsetX * this._scalingFactor;
+      offsetY = offsetY * this._scalingFactor;
     }
 
     positionStrategy.withPositions([
