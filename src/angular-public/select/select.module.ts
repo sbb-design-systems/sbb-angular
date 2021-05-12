@@ -1,7 +1,7 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbOptionModule } from '@sbb-esta/angular-public/option';
 
 import { SbbSelect, SBB_SELECT_SCROLL_STRATEGY_PROVIDER } from './select/select.component';
@@ -10,6 +10,6 @@ import { SbbSelect, SBB_SELECT_SCROLL_STRATEGY_PROVIDER } from './select/select.
   imports: [SbbIconModule, SbbOptionModule, CommonModule, OverlayModule],
   declarations: [SbbSelect],
   exports: [SbbOptionModule, OverlayModule, SbbSelect],
-  providers: [SBB_SELECT_SCROLL_STRATEGY_PROVIDER, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
+  providers: [SBB_SELECT_SCROLL_STRATEGY_PROVIDER],
 })
 export class SbbSelectModule {}

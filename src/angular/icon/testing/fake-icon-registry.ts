@@ -74,6 +74,10 @@ export class FakeSbbIconRegistry implements PublicApi<SbbIconRegistry>, OnDestro
     return true;
   }
 
+  addSvgIconResolver(): this {
+    return this;
+  }
+
   ngOnDestroy() {}
 
   private _generateEmptySvg(): SVGElement {

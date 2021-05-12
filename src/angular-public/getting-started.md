@@ -97,23 +97,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 export class TrainChooChooAppModule {}
 ```
 
-#### Step 1.4: Configure Icons
-
-Add `SBB_ICON_REGISTRY_PROVIDER` to your providers list of the AppModule (or another appropriate NgModule).
-
-```ts
-import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
-
-@NgModule({
-  ...
-  providers: [
-    ...
-    SBB_ICON_REGISTRY_PROVIDER
-  ],
-})
-export class TrainChooChooAppModule {}
-```
-
 ## Step 2: Import the component modules
 
 Import the NgModule for each component you want to use:

@@ -3,7 +3,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 import { SbbAppChooserSection } from './app-chooser-section/app-chooser-section.component';
 import { SbbHeaderEnvironment } from './header-environment/header-environment.directive';
@@ -33,9 +33,6 @@ import { SbbHeader } from './header/header.component';
     SbbHeaderMenuItem,
     SbbHeaderEnvironment,
   ],
-  providers: [
-    SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER,
-    ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER,
-  ],
+  providers: [SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class SbbHeaderModule {}

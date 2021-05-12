@@ -18,11 +18,6 @@
       "private": true,
       "factory": "./ng-add/merge-migration#mergePublicAndBusiness",
       "schema": "./ng-add/schema.json"
-    },
-    "icon-cdn-provider": {
-      "description": "Create the CDN icon provider, which registers all available icons from the CDN",
-      "factory": "./ng-generate/icon-cdn-provider/index#iconCdnProvider",
-      "schema": "./ng-generate/icon-cdn-provider/schema.json"
     }
   }
 }

@@ -4,7 +4,7 @@ if (require.main === module) {
   const [targetPath, ...modules] = process.argv.slice(2);
   const template = `import { NgModule } from '@angular/core';
 ${modules.map((m) => `import { ${toModuleName(m)} } from '{packageName}/${m}';`).join('\n')}
-import { SbbIconModule, SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 
 const modules = [
   SbbIconModule,
@@ -14,7 +14,6 @@ const modules = [
 @NgModule({
   imports: modules,
   exports: modules,
-  providers: [SBB_ICON_REGISTRY_PROVIDER],
 })
 export class SbbModule {}
 `;

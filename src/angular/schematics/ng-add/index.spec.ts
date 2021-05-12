@@ -1,22 +1,14 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
-import {
-  getAppModulePath,
-  getProjectFromWorkspace,
-  getProjectMainFile,
-} from '@angular/cdk/schematics';
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
 import { COLLECTION_PATH } from '../index.spec';
-import { hasNgModuleProvider } from '../utils';
 
 import { addPackageToPackageJson } from './package-config';
 import { Schema } from './schema';
 import {
   BROWSER_ANIMATIONS_MODULE_NAME,
-  ICON_CDN_REGISTRY_NAME,
   NOOP_ANIMATIONS_MODULE_NAME,
   TYPOGRAPHY_CSS_PATH,
 } from './setup-project';
@@ -165,20 +157,6 @@ describe('ngAdd', () => {
     expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
       NOOP_ANIMATIONS_MODULE_NAME
     );
-  });
-
-  it('should add ICON_CDN_REGISTRY_NAME to AppModule providers', async () => {
-    const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, appOptions.name);
-    const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
-    expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeFalse();
-
-    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
-
-    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
-      ICON_CDN_REGISTRY_NAME
-    );
-    expect(hasNgModuleProvider(tree, appModulePath, ICON_CDN_REGISTRY_NAME)).toBeTrue();
   });
 
   it('should execute migration from public, business and core', async () => {

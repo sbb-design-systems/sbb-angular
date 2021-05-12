@@ -2,7 +2,7 @@ import { PlatformModule } from '@angular/cdk/platform';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular/icon';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import {
   SbbIconSidebar,
@@ -39,6 +39,5 @@ import { SbbSidebarLink } from './sidebar/sidebar-link';
     SbbIconSidebarContent,
     SbbIconSidebarItem,
   ],
-  providers: [ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
 })
 export class SbbSidebarModule {}
