@@ -128,7 +128,7 @@ export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    @Inject(SBB_HEADER) public _header: SbbHeader
+    @Inject(SBB_HEADER) public _header: TypeRef<SbbHeader>
   ) {}
 
   ngAfterContentInit() {
