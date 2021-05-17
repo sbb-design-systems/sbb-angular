@@ -34,9 +34,9 @@ _app.component.ts_:
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public mapView: MapView;
+  public mapView: __esri.MapView;
 
-  mapReady(mv: MapView) {
+  mapReady(mv: __esri.MapView) {
     this.mapView = mv;
     this.()
   }
@@ -45,7 +45,7 @@ export class AppComponent {
     this.mapView.on('layerview-create', async event => {
       const { layer } = event;
       if (layer.id === 'Accidental_Deaths_8938') {
-        const featureLayer = layer as FeatureLayer;
+        const featureLayer = layer as __esri.FeatureLayer;
       }
     });
   }
@@ -56,9 +56,9 @@ export class AppComponent {
 
 _Note: The map does not load all data at once, but only data that is required to display the active map extent by default. Thus, you have to load the data again._
 
-When you got the layer you want, you can _query_ it, using the `FeatureLayer`'s method `queryFeatures()`.
+When you got the layer you want, you can _query_ it, using the `__esri.FeatureLayer`'s method `queryFeatures()`.
 
-_Note: To query a FeatureLayer you need an [`Query`](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html) Object, which you can create using the `FeatureLayer`'s method `createQuery()`. You can define configure the query using the [`where()` property](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html#where) and other things. Just check out the ArcGIS Javascript Documentation._
+_Note: To query a FeatureLayer you need an [`__esri.Query`](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html) Object, which you can create using the `__esri.FeatureLayer`'s method `createQuery()`. You can define configure the query using the [`where()` property](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html#where) and other things. Just check out the ArcGIS Javascript Documentation._
 
 _app.component.ts_:
 
@@ -69,9 +69,9 @@ _app.component.ts_:
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public mapView: MapView;
+  public mapView: __esri.MapView;
 
-  mapReady(mv: MapView) {
+  mapReady(mv: __esri.MapView) {
     this.mapView = mv;
     this.loadDataFromLayer();
   }
@@ -80,7 +80,7 @@ export class AppComponent {
     this.mapView.on('layerview-create', async (event) => {
       const { layer } = event;
       if (layer.id === 'Accidental_Deaths_8938') {
-        const featureLayer = layer as FeatureLayer;
+        const featureLayer = layer as __esri.FeatureLayer;
         const q = featureLayer.createQuery();
         const featureSet = await featureLayer.queryFeatures(q);
       }
@@ -89,4 +89,4 @@ export class AppComponent {
 }
 ```
 
-The `queryFeatures()` method returns an [`FeatureSet`](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-FeatureSet.html). The `FeatureSet` contains all the requested objects as [`Graphic[]`](https://developers.arcgis.com/javascript/latest/api-reference/esri-Graphic.html) and some other informations about the queried layer.
+The `queryFeatures()` method returns an [`__esri.FeatureSet`](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-FeatureSet.html). The `__esri.FeatureSet` contains all the requested objects as [`__esri.Graphic[]`](https://developers.arcgis.com/javascript/latest/api-reference/esri-Graphic.html) and some other informations about the queried layer.

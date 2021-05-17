@@ -18,9 +18,10 @@ ng_module(
     assets = [":esri-legend/esri-legend.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-maps/esri-legend",
     deps = [
+        "//src/angular-maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//@arcgis/core",
+        "@npm//@types/arcgis-js-api",
     ],
 )
 
@@ -37,6 +38,7 @@ ng_test_library(
     ),
     deps = [
         ":esri-legend",
+        "//src/angular-maps/core",
     ],
 )
 
@@ -44,7 +46,7 @@ ng_web_test_suite(
     name = "unit_tests",
     deps = [
         # do not sort
-        "//tools/arcgis-core:arcgis_umd_modules",
+        "//tools/esri-loader:esri_loader_umd_module",
         ":unit_test_sources",
     ],
 )

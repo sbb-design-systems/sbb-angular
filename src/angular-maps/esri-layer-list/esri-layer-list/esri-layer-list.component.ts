@@ -1,7 +1,8 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="arcgis-js-api" />
+
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
-import MapView from '@arcgis/core/views/MapView';
-import SceneView from '@arcgis/core/views/SceneView';
-import LayerList from '@arcgis/core/widgets/LayerList';
+import { SbbEsriTypesService } from '@sbb-esta/angular-maps/core';
 
 @Component({
   selector: 'sbb-esri-layer-list',
@@ -11,18 +12,20 @@ import LayerList from '@arcgis/core/widgets/LayerList';
 })
 export class SbbEsriLayerList implements OnInit {
   /** References the map or scene to load the the layer list */
-  @Input() mapView: MapView | SceneView;
+  @Input() mapView: __esri.MapView | __esri.SceneView;
 
   /** References the ESRI Layerlist object */
-  public layerList: LayerList;
+  public layerList: __esri.LayerList;
 
-  constructor(private _hostReference: ElementRef) {}
+  constructor(private _esri: SbbEsriTypesService, private _hostReference: ElementRef) {}
 
   /** Loads & instantiates the basemap gallery. */
   ngOnInit() {
-    this.layerList = new LayerList({
-      view: this.mapView,
-      container: this._hostReference.nativeElement,
+    this._esri.load().then(() => {
+      this.layerList = new this._esri.LayerList({
+        view: this.mapView,
+        container: this._hostReference.nativeElement,
+      });
     });
   }
 }

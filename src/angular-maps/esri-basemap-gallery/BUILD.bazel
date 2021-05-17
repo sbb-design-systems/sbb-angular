@@ -2,8 +2,6 @@ load(
     "//tools:defaults.bzl",
     "markdown_to_html",
     "ng_module",
-    "ng_test_library",
-    "ng_web_test_suite",
     "sass_binary",
 )
 
@@ -18,35 +16,16 @@ ng_module(
     assets = [":esri-basemap-gallery/esri-basemap-gallery.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-maps/esri-basemap-gallery",
     deps = [
+        "//src/angular-maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//@arcgis/core",
+        "@npm//@types/arcgis-js-api",
     ],
 )
 
 sass_binary(
     name = "esri_basemap_gallery_esri_basemap_gallery_component_scss",
     src = "esri-basemap-gallery/esri-basemap-gallery.component.scss",
-)
-
-ng_test_library(
-    name = "unit_test_sources",
-    srcs = glob(
-        ["**/*.spec.ts"],
-        exclude = ["**/*.e2e.spec.ts"],
-    ),
-    deps = [
-        ":esri-basemap-gallery",
-    ],
-)
-
-ng_web_test_suite(
-    name = "unit_tests",
-    deps = [
-        # do not sort
-        "//tools/arcgis-core:arcgis_umd_modules",
-        ":unit_test_sources",
-    ],
 )
 
 markdown_to_html(

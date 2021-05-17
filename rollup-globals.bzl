@@ -50,7 +50,7 @@ ROLLUP_GLOBALS = {
     "@angular/cdk/tree": "ng.cdk.tree",
 
     # Third-party libraries.
-    "@arcgis/core": "arcgis.core",
+    "esri-loader": "esriLoader",
     "protractor": "protractor",
     "rxjs": "rxjs",
     "rxjs/operators": "rxjs.operators",

@@ -17,7 +17,8 @@ ng_module(
     module_name = "@sbb-esta/angular-maps/esri-config",
     deps = [
         "@npm//@angular/core",
-        "@npm//@arcgis/core",
+        "@npm//@types/arcgis-js-api",
+        "@npm//esri-loader",
     ],
 )
 
@@ -29,7 +30,8 @@ ng_test_library(
     ),
     deps = [
         ":esri-config",
-        "@npm//@arcgis/core",
+        "@npm//@types/arcgis-js-api",
+        "@npm//esri-loader",
     ],
 )
 
@@ -37,7 +39,7 @@ ng_web_test_suite(
     name = "unit_tests",
     deps = [
         # do not sort
-        "//tools/arcgis-core:arcgis_umd_modules",
+        "//tools/esri-loader:esri_loader_umd_module",
         ":unit_test_sources",
     ],
 )

@@ -28,7 +28,7 @@ export default {
     }),
     node({
       mainFields: ['es2015', 'module', 'browser', 'jsnext:main', 'main'],
-      extensions: ['.mjs', '.js'],
+      extensions: ['.mjs'],
     }),
     commonjs(),
   ],

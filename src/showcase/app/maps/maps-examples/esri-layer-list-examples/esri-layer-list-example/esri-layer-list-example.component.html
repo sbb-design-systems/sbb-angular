@@ -2,13 +2,15 @@
   <div class="row">
     <h4>SceneView with a layerlist</h4>
     <div class="layer-list">
-      <sbb-esri-layer-list *ngIf="mapIsReady" [mapView]="webScene.sceneView"></sbb-esri-layer-list>
+      <sbb-esri-layer-list
+        *ngIf="webScene.sceneView"
+        [mapView]="webScene.sceneView"
+      ></sbb-esri-layer-list>
     </div>
     <div class="map-container">
       <sbb-esri-web-scene
         [portalItemId]="'1c7a06421a314ac9b7d0fae22aa367fb'"
         #webScene
-        (mapReady)="mapIsReady = true"
         class="web-map"
       >
       </sbb-esri-web-scene>
