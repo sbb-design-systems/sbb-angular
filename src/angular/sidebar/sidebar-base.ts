@@ -19,9 +19,8 @@ import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators'
 class SbbSidebarVariantBase {}
 
 // tslint:disable-next-line: naming-convention
-const _SbbSidebarMixinBase: HasVariantCtor & typeof SbbSidebarVariantBase = mixinVariant(
-  SbbSidebarVariantBase
-);
+const _SbbSidebarMixinBase: HasVariantCtor & typeof SbbSidebarVariantBase =
+  mixinVariant(SbbSidebarVariantBase);
 
 /**
  * Throws an exception if more than one SbbSidebarBase is provided.
@@ -68,7 +67,8 @@ export abstract class SbbSidebarBase {
 @Directive()
 export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
   extends _SbbSidebarMixinBase
-  implements AfterContentInit, OnDestroy, SbbSidebarMobileCapableContainer {
+  implements AfterContentInit, OnDestroy, SbbSidebarMobileCapableContainer
+{
   _mobile: boolean;
 
   /** The sidebar child */

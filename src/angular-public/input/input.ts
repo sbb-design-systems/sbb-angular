@@ -44,9 +44,8 @@ export class SbbInputBase {
     public ngControl: NgControl
   ) {}
 }
-export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbInputBase = mixinErrorState(
-  SbbInputBase
-);
+export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbInputBase =
+  mixinErrorState(SbbInputBase);
 
 @Directive({
   selector: 'input[sbbInput], select[sbbInput], textarea[sbbInput]',
@@ -67,7 +66,8 @@ export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbInputBase =
 })
 export class SbbInput
   extends SbbNativeInputBase
-  implements SbbFormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
+  implements SbbFormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy
+{
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
 

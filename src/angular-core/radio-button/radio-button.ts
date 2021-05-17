@@ -38,16 +38,16 @@ abstract class RadioButtonBase {
 }
 
 // tslint:disable-next-line: naming-convention
-const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTabIndex(
-  RadioButtonBase
-);
+const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase =
+  mixinTabIndex(RadioButtonBase);
 
 let nextId = 0;
 
 @Directive()
 export abstract class SbbRadioButton
   extends _RadioButtonMixinBase
-  implements OnInit, AfterViewInit, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy
+{
   private _uniqueId = `sbb-radio-button-${++nextId}`;
 
   /** The id of this component. */

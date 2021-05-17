@@ -110,8 +110,9 @@ const performLoginAndReturnUsermenuComponent = (fixtureTest: ComponentFixture<an
   const usermenuComponent = fixtureTest.debugElement.query(By.directive(SbbUsermenu));
   const usermenuComponentInstance = usermenuComponent.componentInstance;
   spyOn(usermenuComponentInstance.loginRequest, 'emit').and.callThrough();
-  const buttonLogin = usermenuComponent.query(By.css('.sbb-usermenu-trigger-logged-out'))
-    .nativeElement;
+  const buttonLogin = usermenuComponent.query(
+    By.css('.sbb-usermenu-trigger-logged-out')
+  ).nativeElement;
   buttonLogin.click();
   fixtureTest.detectChanges();
 
@@ -232,8 +233,9 @@ describe('SbbUsermenu', () => {
     const displayName = fixtureUsermenu.debugElement.query(
       By.css('.sbb-usermenu-user-info-display-name')
     ).nativeElement;
-    const userName = fixtureUsermenu.debugElement.query(By.css('.sbb-usermenu-user-info-name'))
-      .nativeElement;
+    const userName = fixtureUsermenu.debugElement.query(
+      By.css('.sbb-usermenu-user-info-name')
+    ).nativeElement;
 
     // assertions in collapsed state
     expect(fixtureUsermenu.debugElement.nativeElement.classList).not.toContain(
@@ -310,8 +312,9 @@ describe('SbbUsermenu', () => {
   it('should open and close menu by keyboard space event', async () => {
     login();
 
-    const trigger = fixtureUsermenu.debugElement.query(By.css('.sbb-usermenu-trigger'))!
-      .nativeElement;
+    const trigger = fixtureUsermenu.debugElement.query(
+      By.css('.sbb-usermenu-trigger')
+    )!.nativeElement;
     trigger.focus();
 
     // open menu
@@ -330,8 +333,9 @@ describe('SbbUsermenu', () => {
   it('should open and close menu by keyboard enter event', async () => {
     login();
 
-    const trigger = fixtureUsermenu.debugElement.query(By.css('.sbb-usermenu-trigger'))!
-      .nativeElement;
+    const trigger = fixtureUsermenu.debugElement.query(
+      By.css('.sbb-usermenu-trigger')
+    )!.nativeElement;
     trigger.focus();
 
     // open menu
@@ -551,8 +555,9 @@ describe('Test Component with only displayName', () => {
   it('should display only displayName', () => {
     const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
 
-    const displayName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
-      .nativeElement;
+    const displayName = usermenuComponent.query(
+      By.css('.sbb-usermenu-user-info-display-name')
+    ).nativeElement;
     expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
     expect(displayName.textContent).toContain('Max Muster');
 
@@ -593,8 +598,9 @@ describe('Test Component with only userName', () => {
   it('should display only username', () => {
     const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest);
 
-    const displayName = usermenuComponent.query(By.css('.sbb-usermenu-user-info-display-name'))
-      .nativeElement;
+    const displayName = usermenuComponent.query(
+      By.css('.sbb-usermenu-user-info-display-name')
+    ).nativeElement;
     expect(usermenuComponent.nativeElement.classList).not.toContain('sbb-usermenu-opened');
     expect(displayName.textContent).toContain('walter_14');
 

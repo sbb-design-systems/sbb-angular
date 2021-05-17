@@ -16,10 +16,10 @@ rollup_bundle(
     config_file = "rollup.config.js",
     entry_point = "arcgis-core-bundle.js",
     format = "umd",
-    rollup_bin = "@npm//rollup2/bin:rollup",
     deps = [
         "@npm//@arcgis/core",
         "@npm//@rollup/plugin-commonjs",
         "@npm//@rollup/plugin-node-resolve",
+        "@npm//@rollup/plugin-replace",
     ],
 )

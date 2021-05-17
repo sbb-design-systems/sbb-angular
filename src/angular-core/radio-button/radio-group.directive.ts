@@ -33,7 +33,8 @@ let nextUniqueId = 0;
   },
 })
 export class SbbRadioGroup<TRadio extends SbbRadioButton = SbbRadioButton>
-  implements AfterContentInit, ControlValueAccessor {
+  implements AfterContentInit, ControlValueAccessor
+{
   /** Name of the radio button group. All radio buttons inside this group will use this name. */
   @Input()
   get name(): string {

@@ -227,8 +227,9 @@ describe('Breadcrumb behaviour Test', () => {
         await fixtureTest.whenStable();
         const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
 
-        const link1 = breadcrumbLevel1.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a'))
-          .nativeElement;
+        const link1 = breadcrumbLevel1.query(
+          By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a')
+        ).nativeElement;
 
         dispatchEvent(link1, createMouseEvent('click'));
         fixtureTest.detectChanges();
@@ -254,8 +255,9 @@ describe('Breadcrumb behaviour Test', () => {
         await fixtureTest.whenStable();
         const breadcrumbLevel2 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[2];
 
-        const link2 = breadcrumbLevel2.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a'))
-          .nativeElement;
+        const link2 = breadcrumbLevel2.query(
+          By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a')
+        ).nativeElement;
 
         dispatchEvent(link2, createMouseEvent('click'));
         fixtureTest.detectChanges();
@@ -415,8 +417,9 @@ describe('Breadcrumb behaviour Test 2', () => {
         await fixtureTest.whenStable();
         const breadcrumbLevel2 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[2];
 
-        const dropdownTrigger = breadcrumbLevel2.query(By.css('.sbb-breadcrumb-trigger'))
-          .nativeElement;
+        const dropdownTrigger = breadcrumbLevel2.query(
+          By.css('.sbb-breadcrumb-trigger')
+        ).nativeElement;
         dispatchMouseEvent(dropdownTrigger, 'click');
         fixtureTest.detectChanges();
         await fixtureTest.whenStable();
@@ -523,8 +526,9 @@ describe('Breadcrumb behaviour Test 3', () => {
         await fixtureTest.whenStable();
         const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(SbbBreadcrumb))[1];
 
-        const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'))
-          .nativeElement;
+        const dropdownTrigger = breadcrumbLevel1.query(
+          By.css('.sbb-breadcrumb-trigger')
+        ).nativeElement;
         dispatchMouseEvent(dropdownTrigger, 'click');
         fixtureTest.detectChanges();
         await fixtureTest.whenStable();

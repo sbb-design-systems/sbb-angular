@@ -1,3 +1,4 @@
+@use 'external/npm/node_modules/@angular/cdk' as cdk;
 @import './common';
 
 // ----------------------------------------------------------------------------------------------------
@@ -138,9 +139,9 @@ table {
 // CDK Styles
 // ----------------------------------------------------------------------------------------------------
 
-@include cdk-a11y;
-@include cdk-overlay();
-@include cdk-text-field;
+@include cdk.a11y-visually-hidden();
+@include cdk.overlay();
+@include cdk.text-field();
 
 // SBB CDK Overlay Patch
 .cdk-overlay-pane.sbb-overlay-panel {
@@ -734,7 +735,7 @@ select {
     // as the background, however this causes it blend in because we've reset the `background`
     // above. We have to add a more specific selector in order to ensure that it gets the
     // `color` from our theme instead.
-    @include cdk-high-contrast(active, off) {
+    @include cdk.high-contrast(active, off) {
       .sbb-focused & {
         color: inherit;
       }

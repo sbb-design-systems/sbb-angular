@@ -17,7 +17,8 @@ const EXAMPLES = [
 ];
 
 const EXAMPLE_INDEX = {
-  'radio-button-group-reactive-forms-vertical-example': RadioButtonGroupReactiveFormsVerticalExampleComponent,
+  'radio-button-group-reactive-forms-vertical-example':
+    RadioButtonGroupReactiveFormsVerticalExampleComponent,
   'radio-button-group-horizontal-example': RadioButtonGroupHorizontalExampleComponent,
   'radio-button-example': RadioButtonExampleComponent,
 };

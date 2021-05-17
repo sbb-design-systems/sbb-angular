@@ -11,7 +11,8 @@ import { SbbProcessflowStepBase, SbbProcessflowStepDescriptor } from './processf
 
 @Directive()
 export abstract class SbbProcessflowBase<TProcessflowStepComponent extends SbbProcessflowStepBase>
-  implements AfterContentInit {
+  implements AfterContentInit
+{
   /** Event emitted to the change of step in the process flow. */
   @Output()
   stepChange: EventEmitter<SbbProcessflowStepDescriptor> = new EventEmitter<SbbProcessflowStepDescriptor>();

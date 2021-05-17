@@ -2202,8 +2202,9 @@ describe('SbbAutocomplete', () => {
     it('should use below positioning by default', fakeAsync(() => {
       const fixture = createComponent(SimpleAutocomplete);
       fixture.detectChanges();
-      const inputReference = fixture.debugElement.query(By.css('.sbb-form-field input'))!
-        .nativeElement;
+      const inputReference = fixture.debugElement.query(
+        By.css('.sbb-form-field input')
+      )!.nativeElement;
 
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
@@ -2233,8 +2234,9 @@ describe('SbbAutocomplete', () => {
 
       fixture.detectChanges();
 
-      const inputReference = fixture.debugElement.query(By.css('.sbb-form-field input'))!
-        .nativeElement;
+      const inputReference = fixture.debugElement.query(
+        By.css('.sbb-form-field input')
+      )!.nativeElement;
       spacer.style.height = '1000px';
       document.body.appendChild(spacer);
 
@@ -2261,8 +2263,9 @@ describe('SbbAutocomplete', () => {
     it('should fall back to above position if panel cannot fit below', fakeAsync(() => {
       const fixture = createComponent(SimpleAutocomplete);
       fixture.detectChanges();
-      const inputReference = fixture.debugElement.query(By.css('.sbb-form-field input'))!
-        .nativeElement;
+      const inputReference = fixture.debugElement.query(
+        By.css('.sbb-form-field input')
+      )!.nativeElement;
 
       // Push the autocomplete trigger down so it won't have room to open "below"
       inputReference.style.bottom = '0';

@@ -70,7 +70,8 @@ let uniqueId = 0;
 })
 export class SbbExpansionPanel
   extends CdkAccordionItem
-  implements AfterContentInit, OnChanges, OnDestroy {
+  implements AfterContentInit, OnChanges, OnDestroy
+{
   /** Whether the toggle indicator should be hidden. */
   @Input()
   get hideToggle(): boolean {

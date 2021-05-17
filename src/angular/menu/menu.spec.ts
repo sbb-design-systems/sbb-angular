@@ -982,9 +982,9 @@ describe('SbbMenu', () => {
     fixture.detectChanges();
 
     fixture.componentInstance.trigger.menuOpened.subscribe(() => {
-      (document.querySelectorAll(
-        '.sbb-menu-panel-wrapper [sbb-menu-item]'
-      )[3] as HTMLElement).focus();
+      (
+        document.querySelectorAll('.sbb-menu-panel-wrapper [sbb-menu-item]')[3] as HTMLElement
+      ).focus();
     });
     fixture.componentInstance.trigger.openMenu();
     fixture.detectChanges();
@@ -2152,8 +2152,8 @@ describe('SbbMenu', () => {
       elevationFixture.componentInstance.levelOneTrigger.openMenu();
       elevationFixture.detectChanges();
 
-      const menuClasses = overlayContainerElement.querySelectorAll('.sbb-menu-panel-wrapper')[1]
-        .classList;
+      const menuClasses =
+        overlayContainerElement.querySelectorAll('.sbb-menu-panel-wrapper')[1].classList;
 
       expect(menuClasses).toContain(
         'sbb-elevation-z24',
@@ -2498,8 +2498,9 @@ describe('SbbMenu contextmenu', () => {
     fixture.componentInstance.trigger.openMenu();
     fixture.detectChanges();
 
-    const panelWrapper = fixture.debugElement.query(By.css('.sbb-menu-panel-wrapper'))
-      .nativeElement;
+    const panelWrapper = fixture.debugElement.query(
+      By.css('.sbb-menu-panel-wrapper')
+    ).nativeElement;
 
     const copiedTriggerButton = panelWrapper.querySelector('button');
 
@@ -2524,8 +2525,9 @@ describe('SbbMenu contextmenu', () => {
     fixture.componentInstance.trigger.openMenu();
     fixture.detectChanges();
 
-    const panelWrapper = fixture.debugElement.query(By.css('.sbb-menu-panel-wrapper'))
-      .nativeElement;
+    const panelWrapper = fixture.debugElement.query(
+      By.css('.sbb-menu-panel-wrapper')
+    ).nativeElement;
 
     const copiedTriggerButton = panelWrapper.querySelector('button')!;
 

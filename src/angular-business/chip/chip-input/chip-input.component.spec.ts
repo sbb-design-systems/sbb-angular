@@ -107,8 +107,9 @@ describe('SbbChipInput', () => {
       fixture = TestBed.createComponent(ChipInputReactiveFormsTestComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
-      inputElement = fixture.debugElement.query(By.css('input.sbb-chip-input-textfield'))
-        .nativeElement;
+      inputElement = fixture.debugElement.query(
+        By.css('input.sbb-chip-input-textfield')
+      ).nativeElement;
     });
 
     it('should create', () => {
@@ -216,8 +217,9 @@ describe('SbbChipInput', () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
       flush();
-      inputElement = fixture.debugElement.query(By.css('input.sbb-chip-input-textfield'))
-        .nativeElement;
+      inputElement = fixture.debugElement.query(
+        By.css('input.sbb-chip-input-textfield')
+      ).nativeElement;
     }));
 
     it('should create', () => {

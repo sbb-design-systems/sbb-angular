@@ -21,9 +21,8 @@ import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 /** @docs-private */
 class SbbMenuItemBase {}
 // tslint:disable-next-line:naming-convention
-const _SbbMenuItemMixinBase: CanDisableCtor & typeof SbbMenuItemBase = mixinDisabled(
-  SbbMenuItemBase
-);
+const _SbbMenuItemMixinBase: CanDisableCtor & typeof SbbMenuItemBase =
+  mixinDisabled(SbbMenuItemBase);
 
 /**
  * Single item inside of a `sbb-menu`. Provides the menu item styling and accessibility treatment.
@@ -47,7 +46,8 @@ const _SbbMenuItemMixinBase: CanDisableCtor & typeof SbbMenuItemBase = mixinDisa
 })
 export class SbbMenuItem
   extends _SbbMenuItemMixinBase
-  implements FocusableOption, CanDisable, AfterViewInit, OnDestroy {
+  implements FocusableOption, CanDisable, AfterViewInit, OnDestroy
+{
   /** ARIA role for the menu item. */
   @Input() role: 'menuitem' | 'menuitemradio' | 'menuitemcheckbox' = 'menuitem';
 

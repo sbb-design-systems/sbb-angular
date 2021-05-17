@@ -251,7 +251,8 @@ export class SbbSelect
     CanDisable,
     HasTabIndex,
     SbbFormFieldControl<any>,
-    CanUpdateErrorState {
+    CanUpdateErrorState
+{
   /** The scroll position of the overlay panel, calculated to center the selected option. */
   private _scrollTop = 0;
 

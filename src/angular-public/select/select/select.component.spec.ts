@@ -2310,9 +2310,8 @@ describe('SbbSelect', () => {
         flush();
 
         const optionInstances = fixture.componentInstance.options.toArray();
-        const optionNodes: NodeListOf<HTMLElement> = overlayContainerElement.querySelectorAll(
-          'sbb-option'
-        );
+        const optionNodes: NodeListOf<HTMLElement> =
+          overlayContainerElement.querySelectorAll('sbb-option');
 
         optionInstances[1].select();
         fixture.detectChanges();
@@ -3366,7 +3365,7 @@ describe('SbbSelect', () => {
 
     describe('comparing by value', () => {
       it('should have a selection', fakeAsync(() => {
-        const selectedOption = (instance.select.selected as unknown) as SbbOption;
+        const selectedOption = instance.select.selected as unknown as SbbOption;
         expect(selectedOption.value.value).toEqual('pizza-1');
       }));
 
@@ -3375,7 +3374,7 @@ describe('SbbSelect', () => {
         fixture.detectChanges();
         flush();
 
-        const selectedOption = (instance.select.selected as unknown) as SbbOption;
+        const selectedOption = instance.select.selected as unknown as SbbOption;
         expect(instance.selectedFood.value).toEqual('tacos-2');
         expect(selectedOption.value.value).toEqual('tacos-2');
       }));

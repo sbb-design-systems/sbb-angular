@@ -55,14 +55,16 @@ describe('SbbStatus', () => {
     });
 
     it('should have tick icon', () => {
-      const element = fixture.debugElement.query(By.css('sbb-icon[svgIcon="kom:tick-small"]'))
-        .nativeElement;
+      const element = fixture.debugElement.query(
+        By.css('sbb-icon[svgIcon="kom:tick-small"]')
+      ).nativeElement;
       expect(element).toBeTruthy();
     });
 
     it('should have the correct class on the wrapper div', () => {
-      const element = fixture.debugElement.query(By.css('.sbb-status-icon.sbb-status-icon-valid'))
-        .nativeElement;
+      const element = fixture.debugElement.query(
+        By.css('.sbb-status-icon.sbb-status-icon-valid')
+      ).nativeElement;
       expect(element).toBeTruthy();
     });
 
@@ -92,8 +94,9 @@ describe('SbbStatus', () => {
     });
 
     it('should have the correct class on the wrapper div', () => {
-      const element = fixture.debugElement.query(By.css('.sbb-status-icon.sbb-status-icon-warning'))
-        .nativeElement;
+      const element = fixture.debugElement.query(
+        By.css('.sbb-status-icon.sbb-status-icon-warning')
+      ).nativeElement;
       expect(element).toBeTruthy();
     });
 
@@ -116,14 +119,16 @@ describe('SbbStatus', () => {
     });
 
     it('should have cross icon', () => {
-      const element = fixture.debugElement.query(By.css('sbb-icon[svgIcon="kom:cross-small"]'))
-        .nativeElement;
+      const element = fixture.debugElement.query(
+        By.css('sbb-icon[svgIcon="kom:cross-small"]')
+      ).nativeElement;
       expect(element).toBeTruthy();
     });
 
     it('should have the correct class on the wrapper div', () => {
-      const element = fixture.debugElement.query(By.css('.sbb-status-icon.sbb-status-icon-invalid'))
-        .nativeElement;
+      const element = fixture.debugElement.query(
+        By.css('.sbb-status-icon.sbb-status-icon-invalid')
+      ).nativeElement;
       expect(element).toBeTruthy();
     });
 
@@ -146,8 +151,9 @@ describe('SbbStatus', () => {
     });
 
     it('should have the correct message', () => {
-      const element: HTMLElement = fixture.debugElement.query(By.css('.sbb-status-message'))
-        .nativeElement;
+      const element: HTMLElement = fixture.debugElement.query(
+        By.css('.sbb-status-message')
+      ).nativeElement;
       expect(element.textContent).toEqual(component.message);
     });
   });
@@ -161,11 +167,13 @@ describe('SbbStatus', () => {
     });
 
     it('should move the aria-label', () => {
-      const statusElement: HTMLElement = fixture.debugElement.query(By.css('sbb-status'))
-        .nativeElement;
+      const statusElement: HTMLElement = fixture.debugElement.query(
+        By.css('sbb-status')
+      ).nativeElement;
       expect(statusElement.getAttribute('aria-label')).toBeNull();
-      const iconWrapperElement: HTMLElement = fixture.debugElement.query(By.css('.sbb-status-icon'))
-        .nativeElement;
+      const iconWrapperElement: HTMLElement = fixture.debugElement.query(
+        By.css('.sbb-status-icon')
+      ).nativeElement;
       expect(iconWrapperElement.getAttribute('aria-label')).toEqual('Test');
     });
   });

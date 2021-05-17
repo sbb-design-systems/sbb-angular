@@ -37,9 +37,8 @@ class SbbFileSelectorBase {
   constructor(public _elementRef: ElementRef) {}
 }
 // tslint:disable-next-line: naming-convention
-const _SbbFileSelectorMixinBase: CanDisableCtor &
-  HasVariantCtor &
-  typeof SbbFileSelectorBase = mixinDisabled(mixinVariant(SbbFileSelectorBase));
+const _SbbFileSelectorMixinBase: CanDisableCtor & HasVariantCtor & typeof SbbFileSelectorBase =
+  mixinDisabled(mixinVariant(SbbFileSelectorBase));
 
 @Component({
   selector: 'sbb-file-selector',
@@ -63,7 +62,8 @@ const _SbbFileSelectorMixinBase: CanDisableCtor &
 })
 export class SbbFileSelector
   extends _SbbFileSelectorMixinBase
-  implements ControlValueAccessor, SbbFileSelectorOptions {
+  implements ControlValueAccessor, SbbFileSelectorOptions
+{
   private _uniqueId = `sbb-file-selector-${++nextId}`;
 
   /** Unique id of the element. */

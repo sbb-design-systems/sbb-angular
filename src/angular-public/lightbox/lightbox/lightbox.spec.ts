@@ -239,9 +239,8 @@ describe('Lightbox', () => {
     expect(lightboxRef.componentInstance!.lightboxRef).toBe(lightboxRef);
 
     viewContainerFixture.detectChanges();
-    const lightboxContainerElement = overlayContainerElement.querySelector(
-      'sbb-lightbox-container'
-    )!;
+    const lightboxContainerElement =
+      overlayContainerElement.querySelector('sbb-lightbox-container')!;
     expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
   });
 
@@ -263,9 +262,8 @@ describe('Lightbox', () => {
 
     viewContainerFixture.detectChanges();
 
-    const lightboxContainerElement = overlayContainerElement.querySelector(
-      'sbb-lightbox-container'
-    )!;
+    const lightboxContainerElement =
+      overlayContainerElement.querySelector('sbb-lightbox-container')!;
     expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
 
     lightboxRef.close();
@@ -315,9 +313,8 @@ describe('Lightbox', () => {
     expect(lightboxRef.componentInstance!.lightboxRef).toBe(lightboxRef);
 
     viewContainerFixture.detectChanges();
-    const lightboxContainerElement = overlayContainerElement.querySelector(
-      'sbb-lightbox-container'
-    );
+    const lightboxContainerElement =
+      overlayContainerElement.querySelector('sbb-lightbox-container');
     expect(lightboxContainerElement!.getAttribute('role')).toBe('dialog');
   });
 
@@ -326,9 +323,8 @@ describe('Lightbox', () => {
 
     viewContainerFixture.detectChanges();
 
-    const lightboxContainerElement = overlayContainerElement.querySelector(
-      'sbb-lightbox-container'
-    );
+    const lightboxContainerElement =
+      overlayContainerElement.querySelector('sbb-lightbox-container');
     expect(lightboxContainerElement!.getAttribute('role')).toBe('alertdialog');
   });
 
@@ -339,9 +335,8 @@ describe('Lightbox', () => {
 
     viewContainerFixture.detectChanges();
 
-    const lightboxContainerElement = overlayContainerElement.querySelector(
-      'sbb-lightbox-container'
-    );
+    const lightboxContainerElement =
+      overlayContainerElement.querySelector('sbb-lightbox-container');
     expect(lightboxContainerElement!.getAttribute('aria-describedby')).toBe('description-element');
   });
 

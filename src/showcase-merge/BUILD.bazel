@@ -42,7 +42,7 @@ _ASSETS = [
     ":styles.css",
     "@npm//:node_modules/highlight.js/styles/github.css",
     "@npm//:node_modules/zone.js/dist/zone.min.js",
-    "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.min.js",
+    "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.js",
 ]
 
 # Insert script tags into index.html
@@ -99,7 +99,6 @@ rollup_bundle(
         ":main.prod.ts": "index",
     },
     output_dir = True,
-    rollup_bin = "@npm//rollup2/bin:rollup",
     tags = ["prod-showcase-merge"],
     deps = [
         "//src/showcase-merge",

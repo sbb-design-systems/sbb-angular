@@ -31,13 +31,11 @@ import {
 } from './simple-notification.component';
 
 /** Injection token that can be used to specify default notification toast. */
-export const SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS = new InjectionToken<SbbNotificationToastConfig>(
-  'notification-default-options',
-  {
+export const SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS =
+  new InjectionToken<SbbNotificationToastConfig>('notification-default-options', {
     providedIn: 'root',
     factory: SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS_FACTORY,
-  }
-);
+  });
 
 /** @docs-private */
 export function SBB_NOTIFICATION_TOAST_DEFAULT_OPTIONS_FACTORY(): SbbNotificationToastConfig {
@@ -55,10 +53,12 @@ export class SbbNotificationToast implements OnDestroy {
   private _notificationRefAtThisLevel: SbbNotificationToastRef<any> | null = null;
 
   /** The component that should be rendered as the notification toast's simple component. */
-  protected _simpleNotificationToastComponent: Type<SbbTextOnlyNotificationToast> = SbbSimpleNotification;
+  protected _simpleNotificationToastComponent: Type<SbbTextOnlyNotificationToast> =
+    SbbSimpleNotification;
 
   /** The container component that attaches the provided template or component. */
-  protected _notificationToastContainerComponent: Type<SbbNotificationToastContainer> = SbbNotificationToastContainer;
+  protected _notificationToastContainerComponent: Type<SbbNotificationToastContainer> =
+    SbbNotificationToastContainer;
 
   /** The CSS class to applie for mobile mode. */
   protected _mobileDeviceCssClass: string = 'sbb-notification-toast-mobile';
@@ -170,9 +170,8 @@ export class SbbNotificationToast implements OnDestroy {
       config.viewContainerRef,
       injector
     );
-    const containerRef: ComponentRef<SbbNotificationToastContainer> = overlayRef.attach(
-      containerPortal
-    );
+    const containerRef: ComponentRef<SbbNotificationToastContainer> =
+      overlayRef.attach(containerPortal);
     containerRef.instance.config = config;
     return containerRef.instance;
   }

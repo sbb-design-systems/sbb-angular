@@ -145,8 +145,9 @@ describe('SbbSidebar', () => {
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
 
-      const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))!
-        .componentInstance;
+      const sidebar: SbbSidebar = fixture.debugElement.query(
+        By.directive(SbbSidebar)
+      )!.componentInstance;
 
       sidebar.open().then((result) => expect(result).toBe('open'));
       fixture.detectChanges();
@@ -398,8 +399,9 @@ describe('SbbSidebar', () => {
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
 
-      const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))!
-        .componentInstance;
+      const sidebar: SbbSidebar = fixture.debugElement.query(
+        By.directive(SbbSidebar)
+      )!.componentInstance;
 
       const openButton = fixture.componentInstance.openButton.nativeElement;
       const closeButton = fixture.componentInstance.closeButton.nativeElement;
@@ -504,8 +506,9 @@ describe('SbbSidebar', () => {
         // Note that we need actual timeouts and the `BrowserAnimationsModule`
         // in order to test it correctly.
         setTimeout(() => {
-          const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))
-            .componentInstance;
+          const sidebar: SbbSidebar = fixture.debugElement.query(
+            By.directive(SbbSidebar)
+          ).componentInstance;
           sidebar.toggle();
           expect(() => fixture.detectChanges()).not.toThrow();
 
@@ -661,8 +664,9 @@ describe('SbbSidebarContainer', () => {
 
     const testComponent: SidebarContainerEmptyTestComponent =
       fixture.debugElement.componentInstance;
-    const sidebar: SbbSidebar = fixture.debugElement.query(By.directive(SbbSidebar))
-      .componentInstance;
+    const sidebar: SbbSidebar = fixture.debugElement.query(
+      By.directive(SbbSidebar)
+    ).componentInstance;
 
     expect(sidebar.opened).toBe(false);
 

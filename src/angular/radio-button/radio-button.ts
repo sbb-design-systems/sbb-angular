@@ -83,7 +83,8 @@ export const SBB_RADIO_BUTTON = new InjectionToken<_SbbRadioButtonBase>('SbbRadi
 @Directive()
 // tslint:disable-next-line: naming-convention class-name
 export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
-  implements AfterContentInit, ControlValueAccessor {
+  implements AfterContentInit, ControlValueAccessor
+{
   /** Name of the radio button group. All radio buttons inside this group will use this name. */
   @Input()
   get name(): string {
@@ -318,9 +319,8 @@ abstract class RadioButtonBase {
 }
 
 // tslint:disable-next-line: naming-convention
-const _RadioButtonMixinBase: HasTabIndexCtor &
-  HasVariantCtor &
-  typeof RadioButtonBase = mixinTabIndex(mixinVariant(RadioButtonBase));
+const _RadioButtonMixinBase: HasTabIndexCtor & HasVariantCtor & typeof RadioButtonBase =
+  mixinTabIndex(mixinVariant(RadioButtonBase));
 
 let nextId = 0;
 
@@ -328,7 +328,8 @@ let nextId = 0;
 // tslint:disable-next-line: naming-convention class-name
 export class _SbbRadioButtonBase
   extends _RadioButtonMixinBase
-  implements OnInit, AfterViewInit, OnDestroy, HasTabIndex, HasVariant {
+  implements OnInit, AfterViewInit, OnDestroy, HasTabIndex, HasVariant
+{
   private _uniqueId = `sbb-radio-button-${++nextId}`;
 
   /** The id of this component. */

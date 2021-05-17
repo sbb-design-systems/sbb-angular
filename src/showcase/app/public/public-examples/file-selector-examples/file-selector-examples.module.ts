@@ -19,7 +19,8 @@ const EXAMPLES = [
 const EXAMPLE_INDEX = {
   'simple-file-selector-example': SimpleFileSelectorExampleComponent,
   'multiple-mode-default-file-selector-example': MultipleModeDefaultFileSelectorExampleComponent,
-  'multiple-mode-persistent-file-selector-example': MultipleModePersistentFileSelectorExampleComponent,
+  'multiple-mode-persistent-file-selector-example':
+    MultipleModePersistentFileSelectorExampleComponent,
 };
 
 @NgModule({

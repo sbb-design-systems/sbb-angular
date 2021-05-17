@@ -108,7 +108,8 @@ export class SbbSidebarContent extends SbbSidebarContentBase implements AfterCon
 })
 export class SbbSidebar
   extends SbbSidebarBase
-  implements AfterContentInit, AfterContentChecked, OnDestroy {
+  implements AfterContentInit, AfterContentChecked, OnDestroy
+{
   /** Whether the sidebar is initialized. Used for disabling the initial animation. */
   private _enableAnimations = false;
 
@@ -489,7 +490,8 @@ export class SbbSidebar
 })
 export class SbbSidebarContainer
   extends SbbSidebarContainerBase<SbbSidebar>
-  implements AfterContentInit, SbbSidebarMobileCapableContainer, OnDestroy {
+  implements AfterContentInit, SbbSidebarMobileCapableContainer, OnDestroy
+{
   /** The sidebar child */
   get sidebar(): SbbSidebar | null {
     return this._sidebar;

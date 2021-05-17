@@ -116,10 +116,12 @@ describe('SbbInput without forms', () => {
     const fixture = createComponent(SbbInputTextTestController);
     fixture.detectChanges();
 
-    const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input'))!
-      .nativeElement;
-    const labelElement: HTMLInputElement = fixture.debugElement.query(By.css('label'))!
-      .nativeElement;
+    const inputElement: HTMLInputElement = fixture.debugElement.query(
+      By.css('input')
+    )!.nativeElement;
+    const labelElement: HTMLInputElement = fixture.debugElement.query(
+      By.css('label')
+    )!.nativeElement;
 
     expect(inputElement.id).toBeTruthy();
     expect(inputElement.id).toEqual(labelElement.getAttribute('for')!);
@@ -129,10 +131,12 @@ describe('SbbInput without forms', () => {
     const fixture = createComponent(SbbInputTextTestController);
     fixture.detectChanges();
 
-    const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input'))!
-      .nativeElement;
-    const labelElement: HTMLInputElement = fixture.debugElement.query(By.css('label'))!
-      .nativeElement;
+    const inputElement: HTMLInputElement = fixture.debugElement.query(
+      By.css('input')
+    )!.nativeElement;
+    const labelElement: HTMLInputElement = fixture.debugElement.query(
+      By.css('label')
+    )!.nativeElement;
 
     expect(labelElement.getAttribute('aria-owns')).toBe(inputElement.id);
   }));
@@ -141,8 +145,9 @@ describe('SbbInput without forms', () => {
     const fixture = createComponent(SbbInputWithRequired);
     fixture.detectChanges();
 
-    const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input'))!
-      .nativeElement;
+    const inputElement: HTMLInputElement = fixture.debugElement.query(
+      By.css('input')
+    )!.nativeElement;
 
     expect(inputElement.getAttribute('aria-required')).toBe(
       'false',
@@ -162,10 +167,12 @@ describe('SbbInput without forms', () => {
     const fixture = createComponent(SbbInputWithId);
     fixture.detectChanges();
 
-    const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input'))!
-      .nativeElement;
-    const labelElement: HTMLInputElement = fixture.debugElement.query(By.css('label'))!
-      .nativeElement;
+    const inputElement: HTMLInputElement = fixture.debugElement.query(
+      By.css('input')
+    )!.nativeElement;
+    const labelElement: HTMLInputElement = fixture.debugElement.query(
+      By.css('label')
+    )!.nativeElement;
 
     expect(inputElement.id).toBe('test-id');
     expect(labelElement.getAttribute('for')).toBe('test-id');

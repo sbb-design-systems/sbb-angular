@@ -6,10 +6,20 @@ import { By } from '@angular/platform-browser';
 import { SbbCheckboxChange as SbbTagChange } from '@sbb-esta/angular-core/base/checkbox';
 import { SbbBadge, SbbBadgeModule } from '@sbb-esta/angular-public/badge';
 
-import { Tag } from '../tag.model';
 import { SbbTag } from '../tag/tag.component';
 
 import { SbbTags } from './tags.component';
+
+interface Tag {
+  /** Identifier of a tag. */
+  id?: string;
+  /** Label of a tag. */
+  label: string;
+  /** Amount of results of a tag. */
+  amount: number;
+  /** Refers if a tag is selected. */
+  selected?: boolean;
+}
 
 @Component({
   selector: 'sbb-tags-test-fixture',
@@ -558,8 +568,9 @@ describe('SbbTag as a Link Tag', () => {
 });
 
 function expectTotalAmount(expectedTotalAmount: number, fixture: any) {
-  const tagsComponent: SbbTags = fixture.debugElement.query(By.directive(SbbTags))
-    .componentInstance;
+  const tagsComponent: SbbTags = fixture.debugElement.query(
+    By.directive(SbbTags)
+  ).componentInstance;
   expect(tagsComponent.totalAmount).toBe(expectedTotalAmount);
 
   const allTag = fixture.debugElement.query(By.directive(SbbTag));

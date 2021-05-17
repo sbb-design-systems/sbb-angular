@@ -168,8 +168,9 @@ describe('SbbIconSidebar', () => {
       const fixture = TestBed.createComponent(SidebarExpandedBindingTestComponent);
       fixture.detectChanges();
 
-      const sidebar: SbbIconSidebar = fixture.debugElement.query(By.directive(SbbIconSidebar))!
-        .componentInstance;
+      const sidebar: SbbIconSidebar = fixture.debugElement.query(
+        By.directive(SbbIconSidebar)
+      )!.componentInstance;
 
       sidebar.expanded = false;
       fixture.detectChanges();

@@ -24,10 +24,9 @@ import {
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
-import { merge, NEVER, Observable, Subject, Subscription } from 'rxjs';
-import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
+import { merge, NEVER, Subject, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
-import { SBB_HEADER_BREAKPOINT } from '../header-breakpoint';
 import { SbbHeaderMenu } from '../header-menu/header-menu.component';
 import { SBB_HEADER } from '../header/header-token';
 import type { SbbHeader } from '../header/header.component';
@@ -112,11 +111,6 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
     return this._menuOpen;
   }
 
-  /**
-   * @deprecated No longer used
-   */
-  _isDesktop: Observable<boolean>;
-
   private _overlayRef: OverlayRef | null = null;
   private _menuOpen: boolean = false;
   private _closingActionsSubscription = Subscription.EMPTY;
@@ -143,11 +137,6 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
       'touchstart',
       this._handleTouchStart,
       passiveEventListenerOptions
-    );
-    this._isDesktop = this._breakpointObserver.observe(SBB_HEADER_BREAKPOINT).pipe(
-      map((m) => m.matches),
-      distinctUntilChanged(),
-      takeUntil(this._destroyed)
     );
     this._scrollStrategy = scrollStrategy;
   }

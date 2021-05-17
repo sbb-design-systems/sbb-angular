@@ -43,9 +43,9 @@ export const SBB_SEARCH_SCROLL_STRATEGY_PROVIDER = {
   useFactory: SBB_SEARCH_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
-const searchOverlayPositions: ConnectedPosition[] = (['start', 'center', 'end'] as Array<
-  'start' | 'center' | 'end'
->).map((x) => ({
+const searchOverlayPositions: ConnectedPosition[] = (
+  ['start', 'center', 'end'] as Array<'start' | 'center' | 'end'>
+).map((x) => ({
   originX: x,
   originY: 'top',
   overlayX: x,

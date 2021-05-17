@@ -142,8 +142,9 @@ describe('SbbTooltip using mock component for single tooltip', () => {
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
 
-    const internalButton = singleFixtureTest.debugElement.query(By.css('.sbb-button-secondary'))
-      .nativeElement;
+    const internalButton = singleFixtureTest.debugElement.query(
+      By.css('.sbb-button-secondary')
+    ).nativeElement;
     internalButton.click();
     singleFixtureTest.detectChanges();
 

@@ -647,8 +647,9 @@ describe('Tooltip', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      const tooltipContainerComponent = fixture.debugElement.query(By.css('.sbb-tooltip-content'))
-        .nativeElement;
+      const tooltipContainerComponent = fixture.debugElement.query(
+        By.css('.sbb-tooltip-content')
+      ).nativeElement;
       expect(tooltipContainerComponent).toBeTruthy();
       expect(
         tooltipContainerComponent.classList.contains('sbb-tooltip-content-below') ||
