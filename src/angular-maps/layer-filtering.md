@@ -44,9 +44,9 @@ _app.component.ts_:
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public mapView: MapView;
+  public mapView: __esri.MapView;
 
-  mapReady(mv: MapView) {
+  mapReady(mv: __esri.MapView) {
     this.mapView = mv;
   }
 }
@@ -67,9 +67,9 @@ _app.component.ts_:
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public mapView: MapView;
+  public mapView: __esri.MapView;
 
-  mapReady(mv: MapView) {
+  mapReady(mv: __esri.MapView) {
     this.mapView = mv;
     this.putMyMapFilterOn();
   }
@@ -78,7 +78,7 @@ export class AppComponent {
     this.mapView.on('layerview-create', (event) => {
       const { layer } = event;
       if (layer.id === 'Accidental_Deaths_8938') {
-        const featureLayer = layer as FeatureLayer;
+        const featureLayer = layer as __esri.FeatureLayer;
         featureLayer.definitionExpression = 'U_C_Rate > 60';
       }
     });

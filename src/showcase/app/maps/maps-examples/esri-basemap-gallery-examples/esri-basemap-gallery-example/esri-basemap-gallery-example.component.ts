@@ -5,6 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './esri-basemap-gallery-example.component.html',
   styleUrls: ['./esri-basemap-gallery-example.component.css'],
 })
-export class EsriBasemapGalleryExampleComponent {
-  mapIsReady = false;
-}
+export class EsriBasemapGalleryExampleComponent {}

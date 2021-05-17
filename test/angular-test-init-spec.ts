@@ -80,12 +80,6 @@ function patchTestBedToDestroyFixturesAfterEveryTest(testBedInstance: TestBed) {
 function patchConsoleToDetectWarningsOrErrors(): void {
   console.warn = function (message?: any, ...optionalParams: any[]): void {
     const params = optionalParams ? `\nParams: ${optionalParams}` : '';
-
-    // ESRI JS API Requires WebGL, which is deactivated in the capabilities in Test-Chromium on Github-CI:
-    if (params.indexOf('#validate(),WebGL is required but not supported') !== -1) {
-      return;
-    }
-
     throw new Error(`Test contained console warning:\n${message}${params}`);
   };
   console.error = function (message?: any, ...optionalParams: any[]): void {
