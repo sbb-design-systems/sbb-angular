@@ -53,14 +53,14 @@ describe('SbbIcon', () => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule, SbbIconModule],
         declarations: [
-          IconWithLigatureComponent,
-          IconWithCustomFontCssComponent,
-          IconFromSvgNameComponent,
-          IconWithAriaHiddenFalseComponent,
-          IconWithBindingAndNgIfComponent,
-          InlineIconComponent,
-          SvgIconWithUserContentComponent,
-          IconWithLigatureAndSvgBindingComponent,
+          IconWithLigature,
+          IconWithCustomFontCss,
+          IconFromSvgName,
+          IconWithAriaHiddenFalse,
+          IconWithBindingAndNgIf,
+          InlineIcon,
+          SvgIconWithUserContent,
+          IconWithLigatureAndSvgBinding,
         ],
         providers: [
           {
@@ -92,7 +92,7 @@ describe('SbbIcon', () => {
   ));
 
   it('should include notranslate class by default', () => {
-    const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+    const fixture = TestBed.createComponent(IconFromSvgName);
 
     const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
     expect(sbbIconElement.classList.contains('notranslate')).toBeTruthy(
@@ -101,7 +101,7 @@ describe('SbbIcon', () => {
   });
 
   it('should mark sbb-icon as aria-hidden by default', () => {
-    const fixture = TestBed.createComponent(IconWithLigatureComponent);
+    const fixture = TestBed.createComponent(IconWithLigature);
     const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
     expect(iconElement.getAttribute('aria-hidden')).toBe(
       'true',
@@ -110,7 +110,7 @@ describe('SbbIcon', () => {
   });
 
   it('should not override a user-provided aria-hidden attribute', () => {
-    const fixture = TestBed.createComponent(IconWithAriaHiddenFalseComponent);
+    const fixture = TestBed.createComponent(IconWithAriaHiddenFalse);
     const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
     expect(iconElement.getAttribute('aria-hidden')).toBe(
       'false',
@@ -119,7 +119,7 @@ describe('SbbIcon', () => {
   });
 
   it('should apply inline styling', () => {
-    const fixture = TestBed.createComponent(InlineIconComponent);
+    const fixture = TestBed.createComponent(InlineIcon);
     const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
     expect(iconElement.classList.contains('sbb-icon-inline')).toBeFalsy(
       'Expected the sbb-icon element to not include the inline styling class'
@@ -134,7 +134,7 @@ describe('SbbIcon', () => {
 
   describe('Ligature icons', () => {
     it('should add sbb-icons class by default', () => {
-      const fixture = TestBed.createComponent(IconWithLigatureComponent);
+      const fixture = TestBed.createComponent(IconWithLigature);
 
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
@@ -146,7 +146,7 @@ describe('SbbIcon', () => {
     it('should use alternate icon font if set', () => {
       iconRegistry.setDefaultFontSetClass('myfont');
 
-      const fixture = TestBed.createComponent(IconWithLigatureComponent);
+      const fixture = TestBed.createComponent(IconWithLigature);
 
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
@@ -156,7 +156,7 @@ describe('SbbIcon', () => {
     });
 
     it('should not clear the text of a ligature icon if the svgIcon is bound to something falsy', () => {
-      const fixture = TestBed.createComponent(IconWithLigatureAndSvgBindingComponent);
+      const fixture = TestBed.createComponent(IconWithLigatureAndSvgBinding);
 
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
@@ -173,7 +173,7 @@ describe('SbbIcon', () => {
       iconRegistry.addSvgIcon('fido', trustUrl('dog.svg'));
       iconRegistry.addSvgIcon('felix', trustUrl('auth-cat.svg'), { withCredentials: true });
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       let svgElement: SVGElement;
       let testRequest: TestRequest;
       const testComponent = fixture.componentInstance;
@@ -220,7 +220,7 @@ describe('SbbIcon', () => {
       iconRegistry.addSvgIcon('fluffy', trustUrl('cat.svg'), { viewBox: '0 0 27 27' });
       iconRegistry.addSvgIcon('fido', trustUrl('dog.svg'), { viewBox: '0 0 43 43' });
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       let svgElement: SVGElement;
       const testComponent = fixture.componentInstance;
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
@@ -243,7 +243,7 @@ describe('SbbIcon', () => {
       iconRegistry.addSvgIcon('fluffy', 'farm-set-1.svg');
 
       expect(() => {
-        const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+        const fixture = TestBed.createComponent(IconFromSvgName);
         fixture.componentInstance.iconName = 'fluffy';
         fixture.detectChanges();
       }).toThrowError(/unsafe value used in a resource URL context/);
@@ -253,7 +253,7 @@ describe('SbbIcon', () => {
       iconRegistry.addSvgIconSetInNamespace('farm', 'farm-set-1.svg');
 
       expect(() => {
-        const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+        const fixture = TestBed.createComponent(IconFromSvgName);
         fixture.componentInstance.iconName = 'farm:pig';
         fixture.detectChanges();
       }).toThrowError(/unsafe value used in a resource URL context/);
@@ -262,7 +262,7 @@ describe('SbbIcon', () => {
     it('should delegate http error logging to the ErrorHandler', () => {
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-1.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
 
       testComponent.iconName = 'farm:pig';
@@ -286,7 +286,7 @@ describe('SbbIcon', () => {
     it('should delegate an error getting an SVG icon to the ErrorHandler', () => {
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-1.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
 
       testComponent.iconName = 'farm:DNE';
@@ -305,7 +305,7 @@ describe('SbbIcon', () => {
     it('should extract icon from SVG icon set', () => {
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-1.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -338,7 +338,7 @@ describe('SbbIcon', () => {
     it('should handle unescape characters in icon names', () => {
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-4.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -381,7 +381,7 @@ describe('SbbIcon', () => {
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-1.svg'));
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-2.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -419,7 +419,7 @@ describe('SbbIcon', () => {
     it('should clear the id attribute from the svg node', () => {
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-1.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
 
       fixture.componentInstance.iconName = 'farm:pig';
       fixture.detectChanges();
@@ -434,7 +434,7 @@ describe('SbbIcon', () => {
     it('should unwrap <symbol> nodes', () => {
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-3.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
@@ -454,7 +454,7 @@ describe('SbbIcon', () => {
     it('should copy over the attributes when unwrapping <symbol> nodes', () => {
       iconRegistry.addSvgIconSetInNamespace('farm', trustUrl('farm-set-5.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
@@ -471,7 +471,7 @@ describe('SbbIcon', () => {
     it('should not wrap <svg> elements in icon sets in another svg tag', () => {
       iconRegistry.addSvgIconSet(trustUrl('arrow-set.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -489,7 +489,7 @@ describe('SbbIcon', () => {
     it('should return unmodified copies of icons from icon sets', () => {
       iconRegistry.addSvgIconSet(trustUrl('arrow-set.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -519,7 +519,7 @@ describe('SbbIcon', () => {
     it('should not throw when toggling an icon that has a binding in IE11', () => {
       iconRegistry.addSvgIcon('fluffy', trustUrl('cat.svg'));
 
-      const fixture = TestBed.createComponent(IconWithBindingAndNgIfComponent);
+      const fixture = TestBed.createComponent(IconWithBindingAndNgIf);
 
       fixture.detectChanges();
       http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
@@ -536,7 +536,7 @@ describe('SbbIcon', () => {
     it('should be able to configure the viewBox for the icon set', () => {
       iconRegistry.addSvgIconSet(trustUrl('arrow-set.svg'), { viewBox: '0 0 43 43' });
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -552,7 +552,7 @@ describe('SbbIcon', () => {
     it('should remove the SVG element from the DOM when the binding is cleared', () => {
       iconRegistry.addSvgIconSet(trustUrl('arrow-set.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
 
       const testComponent = fixture.componentInstance;
       const icon = fixture.debugElement.nativeElement.querySelector('sbb-icon');
@@ -572,7 +572,7 @@ describe('SbbIcon', () => {
     it('should keep non-SVG user content inside the icon element', fakeAsync(() => {
       iconRegistry.addSvgIcon('fido', trustUrl('dog.svg'));
 
-      const fixture = TestBed.createComponent(SvgIconWithUserContentComponent);
+      const fixture = TestBed.createComponent(SvgIconWithUserContent);
       const testComponent = fixture.componentInstance;
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
@@ -595,7 +595,7 @@ describe('SbbIcon', () => {
       // Register a different icon that takes some time to resolve.
       iconRegistry.addSvgIcon('fido', trustUrl('dog.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       // Assign the slow icon first.
@@ -616,7 +616,7 @@ describe('SbbIcon', () => {
     it('should cancel in-progress fetches if the component is destroyed', fakeAsync(() => {
       iconRegistry.addSvgIcon('fido', trustUrl('dog.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
       fixture.destroy();
@@ -630,7 +630,7 @@ describe('SbbIcon', () => {
       iconRegistry.addSvgIconLiteral('fluffy', trustHtml(SBB_FAKE_SVGS.cat));
       iconRegistry.addSvgIconLiteral('fido', trustHtml(SBB_FAKE_SVGS.dog));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       let svgElement: SVGElement;
       const testComponent = fixture.componentInstance;
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
@@ -661,7 +661,7 @@ describe('SbbIcon', () => {
         viewBox: '0 0 27 27',
       });
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       let svgElement: SVGElement;
       const testComponent = fixture.componentInstance;
       const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
@@ -690,7 +690,7 @@ describe('SbbIcon', () => {
     it('should extract an icon from SVG icon set', () => {
       iconRegistry.addSvgIconSetLiteralInNamespace('farm', trustHtml(SBB_FAKE_SVGS.farmSet1));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -725,7 +725,7 @@ describe('SbbIcon', () => {
       iconRegistry.addSvgIconSetLiteralInNamespace('farm', trustHtml(SBB_FAKE_SVGS.farmSet1));
       iconRegistry.addSvgIconSetLiteralInNamespace('farm', trustHtml(SBB_FAKE_SVGS.farmSet2));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -763,7 +763,7 @@ describe('SbbIcon', () => {
     it('should return unmodified copies of icons from icon sets', () => {
       iconRegistry.addSvgIconSetLiteral(trustHtml(SBB_FAKE_SVGS.arrows));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -793,7 +793,7 @@ describe('SbbIcon', () => {
     it('should be able to configure the viewBox for the icon set', () => {
       iconRegistry.addSvgIconSetLiteral(trustHtml(SBB_FAKE_SVGS.arrows), { viewBox: '0 0 43 43' });
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
       let svgElement: any;
@@ -816,7 +816,7 @@ describe('SbbIcon', () => {
       `)
       );
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
       const styleTag = fixture.nativeElement.querySelector('sbb-icon svg style');
@@ -842,7 +842,7 @@ describe('SbbIcon', () => {
       `)
       );
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
       const circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
@@ -868,7 +868,7 @@ describe('SbbIcon', () => {
       `)
       );
 
-      let fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      let fixture = TestBed.createComponent(IconFromSvgName);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
       let circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
@@ -878,7 +878,7 @@ describe('SbbIcon', () => {
       fixture.destroy();
 
       fakePath = '/$another-fake-path';
-      fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      fixture = TestBed.createComponent(IconFromSvgName);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
       circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
@@ -903,7 +903,7 @@ describe('SbbIcon', () => {
       `)
       );
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
       const circle = fixture.nativeElement.querySelector('sbb-icon svg circle');
@@ -925,7 +925,7 @@ describe('SbbIcon', () => {
       iconRegistry.registerFontClassAlias('f1', 'font1');
       iconRegistry.registerFontClassAlias('f2');
 
-      const fixture = TestBed.createComponent(IconWithCustomFontCssComponent);
+      const fixture = TestBed.createComponent(IconWithCustomFontCss);
       const testComponent = fixture.componentInstance;
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
@@ -951,7 +951,7 @@ describe('SbbIcon', () => {
     });
 
     it('should handle values with extraneous spaces being passed in to `fontSet`', () => {
-      const fixture = TestBed.createComponent(IconWithCustomFontCssComponent);
+      const fixture = TestBed.createComponent(IconWithCustomFontCss);
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       expect(() => {
@@ -970,7 +970,7 @@ describe('SbbIcon', () => {
     });
 
     it('should handle values with extraneous spaces being passed in to `fontIcon`', () => {
-      const fixture = TestBed.createComponent(IconWithCustomFontCssComponent);
+      const fixture = TestBed.createComponent(IconWithCustomFontCss);
       const sbbIconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
 
       expect(() => {
@@ -999,6 +999,117 @@ describe('SbbIcon', () => {
     });
   });
 
+  describe('Icons resolved through a resolver function', () => {
+    it('should resolve icons through a resolver function', fakeAsync(() => {
+      iconRegistry.addSvgIconResolver((name) => {
+        if (name === 'fluffy') {
+          return trustUrl('cat.svg');
+        } else if (name === 'fido') {
+          return trustUrl('dog.svg');
+        } else if (name === 'felix') {
+          return { url: trustUrl('auth-cat.svg'), options: { withCredentials: true } };
+        }
+        return null;
+      });
+
+      const fixture = TestBed.createComponent(IconFromSvgName);
+      let svgElement: SVGElement;
+      let testRequest: TestRequest;
+      const testComponent = fixture.componentInstance;
+      const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
+
+      testComponent.iconName = 'fido';
+      fixture.detectChanges();
+      http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
+      svgElement = verifyAndGetSingleSvgChild(iconElement);
+      verifyPathChildElement(svgElement, 'woof');
+
+      // Change the icon, and the SVG element should be replaced.
+      testComponent.iconName = 'fluffy';
+      fixture.detectChanges();
+      http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
+      svgElement = verifyAndGetSingleSvgChild(iconElement);
+      verifyPathChildElement(svgElement, 'meow');
+
+      // Using an icon from a previously loaded URL should not cause another HTTP request.
+      testComponent.iconName = 'fido';
+      fixture.detectChanges();
+      http.expectNone('dog.svg');
+      svgElement = verifyAndGetSingleSvgChild(iconElement);
+      verifyPathChildElement(svgElement, 'woof');
+
+      // Change icon to one that needs credentials during fetch.
+      testComponent.iconName = 'felix';
+      fixture.detectChanges();
+      testRequest = http.expectOne('auth-cat.svg');
+      expect(testRequest.request.withCredentials).toBeTrue();
+      testRequest.flush(SBB_FAKE_SVGS.cat);
+      svgElement = verifyAndGetSingleSvgChild(iconElement);
+      verifyPathChildElement(svgElement, 'meow');
+
+      // Assert that a registered icon can be looked-up by url.
+      iconRegistry.getSvgIconFromUrl(trustUrl('cat.svg')).subscribe((element) => {
+        verifyPathChildElement(element, 'meow');
+      });
+
+      tick();
+    }));
+
+    it('should fall back to second resolver if the first one returned null', fakeAsync(() => {
+      iconRegistry
+        .addSvgIconResolver(() => null)
+        .addSvgIconResolver((name) => (name === 'fido' ? trustUrl('dog.svg') : null));
+
+      const fixture = TestBed.createComponent(IconFromSvgName);
+      const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
+
+      fixture.componentInstance.iconName = 'fido';
+      fixture.detectChanges();
+      http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
+      verifyPathChildElement(verifyAndGetSingleSvgChild(iconElement), 'woof');
+      tick();
+    }));
+
+    it('should be able to set the viewBox when resolving an icon with a function', fakeAsync(() => {
+      iconRegistry.addSvgIconResolver((name) => {
+        if (name === 'fluffy') {
+          return { url: trustUrl('cat.svg'), options: { viewBox: '0 0 27 27' } };
+        } else if (name === 'fido') {
+          return { url: trustUrl('dog.svg'), options: { viewBox: '0 0 43 43' } };
+        }
+        return null;
+      });
+
+      const fixture = TestBed.createComponent(IconFromSvgName);
+      let svgElement: SVGElement;
+      const testComponent = fixture.componentInstance;
+      const iconElement = fixture.debugElement.nativeElement.querySelector('sbb-icon');
+
+      testComponent.iconName = 'fido';
+      fixture.detectChanges();
+      http.expectOne('dog.svg').flush(SBB_FAKE_SVGS.dog);
+      svgElement = verifyAndGetSingleSvgChild(iconElement);
+      expect(svgElement.getAttribute('viewBox')).toBe('0 0 43 43');
+
+      // Change the icon, and the SVG element should be replaced.
+      testComponent.iconName = 'fluffy';
+      fixture.detectChanges();
+      http.expectOne('cat.svg').flush(SBB_FAKE_SVGS.cat);
+      svgElement = verifyAndGetSingleSvgChild(iconElement);
+      expect(svgElement.getAttribute('viewBox')).toBe('0 0 27 27');
+    }));
+
+    it('should throw an error when the resolver returns an untrusted URL', () => {
+      iconRegistry.addSvgIconResolver(() => 'not-trusted.svg');
+
+      expect(() => {
+        const fixture = TestBed.createComponent(IconFromSvgName);
+        fixture.componentInstance.iconName = 'fluffy';
+        fixture.detectChanges();
+      }).toThrowError(/unsafe value used in a resource URL context/);
+    });
+  });
+
   /** Marks an SVG icon url as explicitly trusted. */
   function trustUrl(iconUrl: string): SafeResourceUrl {
     return sanitizer.bypassSecurityTrustResourceUrl(iconUrl);
@@ -1018,7 +1129,7 @@ describe('SbbIcon without HttpClientModule', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [SbbIconModule],
-        declarations: [IconFromSvgNameComponent],
+        declarations: [IconFromSvgName],
       });
 
       TestBed.compileComponents();
@@ -1036,7 +1147,7 @@ describe('SbbIcon without HttpClientModule', () => {
     expect(() => {
       iconRegistry.addSvgIcon('fido', sanitizer.bypassSecurityTrustResourceUrl('dog.svg'));
 
-      const fixture = TestBed.createComponent(IconFromSvgNameComponent);
+      const fixture = TestBed.createComponent(IconFromSvgName);
 
       fixture.componentInstance.iconName = 'fido';
       fixture.detectChanges();
@@ -1045,34 +1156,34 @@ describe('SbbIcon without HttpClientModule', () => {
 });
 
 @Component({ template: ` <sbb-icon>{{ iconName }}</sbb-icon>` })
-class IconWithLigatureComponent {
+class IconWithLigature {
   iconName = '';
 }
 
 @Component({ template: ` <sbb-icon [fontSet]="fontSet" [fontIcon]="fontIcon"></sbb-icon>` })
-class IconWithCustomFontCssComponent {
+class IconWithCustomFontCss {
   fontSet = '';
   fontIcon = '';
 }
 
 @Component({ template: ` <sbb-icon [svgIcon]="iconName"></sbb-icon>` })
-class IconFromSvgNameComponent {
+class IconFromSvgName {
   iconName: string | undefined = '';
 }
 
 @Component({ template: '<sbb-icon aria-hidden="false">face</sbb-icon>' })
-class IconWithAriaHiddenFalseComponent {}
+class IconWithAriaHiddenFalse {}
 
 @Component({
   template: ` <sbb-icon [svgIcon]="iconName" *ngIf="showIcon">{{ iconName }}</sbb-icon>`,
 })
-class IconWithBindingAndNgIfComponent {
+class IconWithBindingAndNgIf {
   iconName = 'fluffy';
   showIcon = true;
 }
 
 @Component({ template: ` <sbb-icon [inline]="inline">{{ iconName }}</sbb-icon>` })
-class InlineIconComponent {
+class InlineIcon {
   inline = false;
   iconName: string;
 }
@@ -1082,11 +1193,11 @@ class InlineIconComponent {
     <div>Hello</div>
   </sbb-icon>`,
 })
-class SvgIconWithUserContentComponent {
+class SvgIconWithUserContent {
   iconName: string | undefined = '';
 }
 
 @Component({ template: '<sbb-icon [svgIcon]="iconName">house</sbb-icon>' })
-class IconWithLigatureAndSvgBindingComponent {
+class IconWithLigatureAndSvgBinding {
   iconName: string | undefined;
 }

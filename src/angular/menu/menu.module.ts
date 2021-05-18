@@ -3,7 +3,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconModule, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER } from '@sbb-esta/angular/icon';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbMenu } from './menu';
 import { SbbMenuContent } from './menu-content';
@@ -22,6 +22,6 @@ import { SbbMenuTrigger, SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from './men
     SbbMenuContent,
   ],
   declarations: [SbbMenu, SbbMenuItem, SbbMenuTrigger, SbbMenuDynamicTrigger, SbbMenuContent],
-  providers: [SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER, ɵSBB_ICON_REGISTRY_WRAPPER_PROVIDER],
+  providers: [SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class SbbMenuModule {}

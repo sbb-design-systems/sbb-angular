@@ -1,34 +1,11 @@
 `sbb-icon` makes it easy to use _vector-based_ icons in your app and is basically meant to use with sbb icons. This directive supports both
 icon fonts and SVG icons, but not bitmap-based formats (png, jpg, etc.).
 
-### Available Sbb Icons
-
-See [Icon Overview](/angular/icon-overview)
-
 ### Usage
 
-In most use cases it is recommended to use the pre-registered icons as shown below.
+See available icons in our [Icon Overview](/angular/icon-overview)
 The browser loads and caches the icons from the [SBB Icon CDN](https://icons.app.sbb.ch) at runtime.
-(See the bottom sections for alternatives and optimizations.)
-
-1. Add `SBB_ICON_REGISTRY_PROVIDER` to your providers list of the AppModule (or another appropriate NgModule).
-
-   ```ts
-   import { SBB_ICON_REGISTRY_PROVIDER } from '@sbb-esta/angular/icon';
-
-   @NgModule({
-     ...
-     providers: [
-       ...
-       SBB_ICON_REGISTRY_PROVIDER
-     ],
-   })
-   export class AppModule {
-     ...
-   }
-   ```
-
-2. Include `<sbb-icon>` in your template and add your icon name to the `svgIcon` attribute.
+Include `<sbb-icon>` in your template and add your icon name to the `svgIcon` attribute.
 
 ```html
 <sbb-icon svgIcon="kom:cloud-small"></sbb-icon>
@@ -192,18 +169,41 @@ as for individually registered icons.
 Multiple icon sets can be registered in the same namespace. Requesting an icon whose id appears in
 more than one icon set, the icon from the most recently registered set will be used.
 
-### Optimize icon registry size
+### Icon resolver
 
-If you like to optimize the size of the icon registry, run `ng generate @sbb-esta/angular:icon-cdn-provider`
-to create your own registry. Manually remove all icons you don't need and register the generated registry in
-your AppModule (and remove the `SBB_ICON_REGISTRY_PROVIDER` import from `@sbb-esta/angular/icon`).
+You can add an icon resolver to the `SbbIconRegistry`, if you want to use icons that follow
+a certain pattern. In this regard it is also possible to host your required icons from your
+assets, by providing an icon resolver.
 
-### Self-Hosting
+#### Add icon resolver for project specific icons
 
-You can also self-host the CDN icons, by downloading the icons from the [SBB Icon CDN](https://icons.app.sbb.ch) and adding them to your assets.
-Instead of using our pre-defined `SBB_ICON_REGISTRY_PROVIDER` constant, you have to create your own registry provider and provider factory.
-Run `ng generate @sbb-esta/angular:icon-cdn-provider` to create your own registry and adapt the urls of the icons (e.g. change `https://icons.app.sbb.ch` to `/assets/icons`).
-For custom usage you can completely replace the content of the `SBB_ICON_REGISTRY_PROVIDER_FACTORY` function.
+```ts
+constructor(iconRegistry: SbbIconRegistry, sanitizer: DomSanitizer) {
+  iconRegistry.addSvgIconResolver(
+    (name, namespace) => {
+      if (namespace === 'project') {
+        return sanitizer.bypassSecurityTrustResourceUrl(
+          `https://custom-icon-host.example/${namespace}/${name}.svg`
+        );
+      }
 
-Don't forget to include the registry in your AppModule's providers and make sure, that icons which are needed by sbb-angular components were not removed.
-See JSDoc of `SBB_ICON_REGISTRY_PROVIDER_FACTORY` for required icons.
+      // Return null, if the next icon resolver should try to resolve the icon.
+      return null;
+    }
+  );
+}
+```
+
+#### Add icon resolver to serve all icons from localhost/server
+
+Not recommended, unless you are familiar with compression and HTTP caching specifics.
+
+```ts
+constructor(iconRegistry: SbbIconRegistry, sanitizer: DomSanitizer) {
+  iconRegistry.addSvgIconResolver(
+    (name, namespace) => sanitizer.bypassSecurityTrustResourceUrl(
+      `/assets/${namespace}/${name}.svg`
+    )
+  );
+}
+```

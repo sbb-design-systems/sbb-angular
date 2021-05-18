@@ -6,15 +6,15 @@
       "description": "Update sbb-angular to v10",
       "factory": "./ng-update/index#updateToV10"
     },
-    "migration-icon-cdn": {
-      "version": "10.2.0",
-      "description": "Add icon cdn registry to app module",
-      "factory": "./ng-update/index#addIconCdnRegistry"
-    },
     "migration-v11": {
       "version": "11.0.0-0",
       "description": "Update sbb-angular to v11",
       "factory": "./ng-update/index#updateToV11"
+    },
+    "migration-v12": {
+      "version": "12.0.0-0",
+      "description": "Update sbb-angular to v12",
+      "factory": "./ng-update/index#updateToV12"
     }
   }
 }

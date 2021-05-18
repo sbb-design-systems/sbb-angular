@@ -68,23 +68,36 @@ export interface SbbIconOptions {
 }
 
 /**
+ * Function that will be invoked by the icon registry when trying to resolve the
+ * URL from which to fetch an icon. The returned URL will be used to make a request for the icon.
+ */
+export type IconResolver = (
+  name: string,
+  namespace: string
+) => SafeResourceUrl | SafeResourceUrlWithIconOptions | null;
+
+/** Object that specifies a URL from which to fetch an icon and the options to use for it. */
+export interface SafeResourceUrlWithIconOptions {
+  url: SafeResourceUrl;
+  options: SbbIconOptions;
+}
+
+/**
  * Configuration for an icon, including the URL and possibly the cached SVG element.
  * @docs-private
  */
 class SvgIconConfig {
-  url: SafeResourceUrl | null;
   svgElement: SVGElement | null;
 
-  constructor(data: SafeResourceUrl | SVGElement, public options?: SbbIconOptions) {
-    // Note that we can't use `instanceof SVGElement` here,
-    // because it'll break during server-side rendering.
-    if (!!(data as any).nodeName) {
-      this.svgElement = data as SVGElement;
-    } else {
-      this.url = data as SafeResourceUrl;
-    }
-  }
+  constructor(
+    public url: SafeResourceUrl,
+    public svgText: string | null,
+    public options?: SbbIconOptions
+  ) {}
 }
+
+/** Icon configuration whose content has already been loaded. */
+type LoadedSvgIconConfig = SvgIconConfig & { svgText: string };
 
 /**
  * Service to register and display icons used by the `<sbb-icon>` component.
@@ -115,11 +128,20 @@ export class SbbIconRegistry implements OnDestroy {
   /** Map from font identifiers to their CSS class names. Used for icon fonts. */
   private _fontCssClassesByAlias = new Map<string, string>();
 
+  /** Registered icon resolver functions. */
+  private _resolvers: IconResolver[] = [];
+
   /**
    * The CSS class to apply when an `<sbb-icon>` component has no icon name, url, or font specified.
    * The default is 'sbb-icons'.
    */
   private _defaultFontSetClass = 'sbb-icons';
+
+  /**
+   * A list of internally supported namespaces, which can be served from the icon CDN.
+   * (See https://icons.app.sbb.ch/)
+   */
+  private _sbbCdnSupportedNamespaces = ['kom', 'fpl'];
 
   constructor(
     @Optional() private _httpClient: HttpClient,
@@ -158,7 +180,20 @@ export class SbbIconRegistry implements OnDestroy {
     url: SafeResourceUrl,
     options?: SbbIconOptions
   ): this {
-    return this._addSvgIconConfig(namespace, iconName, new SvgIconConfig(url, options));
+    return this._addSvgIconConfig(namespace, iconName, new SvgIconConfig(url, null, options));
+  }
+
+  /**
+   * Registers an icon resolver function with the registry. The function will be invoked with the
+   * name and namespace of an icon when the registry tries to resolve the URL from which to fetch
+   * the icon. The resolver is expected to return a `SafeResourceUrl` that points to the icon,
+   * an object with the icon URL and icon options, or `null` if the icon is not supported. Resolvers
+   * will be invoked in the order in which they have been registered.
+   * @param resolver Resolver function to be registered.
+   */
+  addSvgIconResolver(resolver: IconResolver): this {
+    this._resolvers.push(resolver);
+    return this;
   }
 
   /**
@@ -173,17 +208,23 @@ export class SbbIconRegistry implements OnDestroy {
     literal: SafeHtml,
     options?: SbbIconOptions
   ): this {
-    const sanitizedLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
+    const cleanLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
 
-    if (!sanitizedLiteral) {
+    // TODO: add an ngDevMode check
+    if (!cleanLiteral) {
       throw getSbbIconFailedToSanitizeLiteralError(literal);
     }
 
-    const svgElement = this._createSvgElementForSingleIcon(sanitizedLiteral, options);
-    return this._addSvgIconConfig(namespace, iconName, new SvgIconConfig(svgElement, options));
+    return this._addSvgIconConfig(
+      namespace,
+      iconName,
+      new SvgIconConfig('', cleanLiteral, options)
+    );
   }
 
-  /** Registers an icon set by URL in the default namespace. */
+  /**
+   * Registers an icon set by URL in the default namespace.
+   */
   addSvgIconSet(url: SafeResourceUrl, options?: SbbIconOptions): this {
     return this.addSvgIconSetInNamespace('', url, options);
   }
@@ -205,7 +246,7 @@ export class SbbIconRegistry implements OnDestroy {
     url: SafeResourceUrl,
     options?: SbbIconOptions
   ): this {
-    return this._addSvgIconSetConfig(namespace, new SvgIconConfig(url, options));
+    return this._addSvgIconSetConfig(namespace, new SvgIconConfig(url, null, options));
   }
 
   /**
@@ -218,14 +259,13 @@ export class SbbIconRegistry implements OnDestroy {
     literal: SafeHtml,
     options?: SbbIconOptions
   ): this {
-    const sanitizedLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
+    const cleanLiteral = this._sanitizer.sanitize(SecurityContext.HTML, literal);
 
-    if (!sanitizedLiteral) {
+    if (!cleanLiteral) {
       throw getSbbIconFailedToSanitizeLiteralError(literal);
     }
 
-    const svgElement = this._svgElementFromString(sanitizedLiteral);
-    return this._addSvgIconSetConfig(namespace, new SvgIconConfig(svgElement, options));
+    return this._addSvgIconSetConfig(namespace, new SvgIconConfig('', cleanLiteral, options));
   }
 
   /**
@@ -287,7 +327,7 @@ export class SbbIconRegistry implements OnDestroy {
       return observableOf(cloneSvg(cachedIcon));
     }
 
-    return this._loadSvgIconFromConfig(new SvgIconConfig(safeUrl)).pipe(
+    return this._loadSvgIconFromConfig(new SvgIconConfig(safeUrl, null)).pipe(
       tap((svg) => this._cachedIconsByUrl.set(url!, svg)),
       map((svg) => cloneSvg(svg))
     );
@@ -302,11 +342,19 @@ export class SbbIconRegistry implements OnDestroy {
    * @param namespace Namespace in which to look for the icon.
    */
   getNamedSvgIcon(name: string, namespace: string = ''): Observable<SVGElement> {
-    // Return (copy of) cached icon if possible.
     const key = iconKey(namespace, name);
-    const config = this._svgIconConfigs.get(key);
+    let config = this._svgIconConfigs.get(key);
+
+    // Return (copy of) cached icon if possible.
+    if (config) {
+      return this._getSvgFromConfig(config);
+    }
+
+    // Otherwise try to resolve the config from one of the resolver functions.
+    config = this._getIconConfigFromResolvers(namespace, name);
 
     if (config) {
+      this._svgIconConfigs.set(key, config);
       return this._getSvgFromConfig(config);
     }
 
@@ -320,27 +368,23 @@ export class SbbIconRegistry implements OnDestroy {
     return observableThrow(getSbbIconNameNotFoundError(key));
   }
 
-  hasNamespaceSvgIcon(namespace: string, iconName: string): boolean {
-    return this._svgIconConfigs.has(iconKey(namespace, iconName));
-  }
-
   ngOnDestroy() {
+    this._resolvers = [];
     this._svgIconConfigs.clear();
     this._iconSetConfigs.clear();
     this._cachedIconsByUrl.clear();
   }
 
-  /** Returns the cached icon for a SvgIconConfig if available, or fetches it from its URL if not. */
+  /**
+   * Returns the cached icon for a SvgIconConfig if available, or fetches it from its URL if not.
+   */
   private _getSvgFromConfig(config: SvgIconConfig): Observable<SVGElement> {
-    if (config.svgElement) {
+    if (config.svgText) {
       // We already have the SVG element for this icon, return a copy.
-      return observableOf(cloneSvg(config.svgElement));
+      return observableOf(cloneSvg(this._svgElementFromConfig(config as LoadedSvgIconConfig)));
     } else {
       // Fetch the icon from the config's URL, cache it, and return a copy.
-      return this._loadSvgIconFromConfig(config).pipe(
-        tap((svg) => (config.svgElement = svg)),
-        map((svg) => cloneSvg(svg))
-      );
+      return this._loadSvgIconFromConfig(config).pipe(map((svg) => cloneSvg(svg)));
     }
   }
 
@@ -369,11 +413,11 @@ export class SbbIconRegistry implements OnDestroy {
 
     // Not found in any cached icon sets. If there are icon sets with URLs that we haven't
     // fetched, fetch them now and look for iconName in the results.
-    const iconSetFetchRequests: Observable<SVGElement | null>[] = iconSetConfigs
-      .filter((iconSetConfig) => !iconSetConfig.svgElement)
+    const iconSetFetchRequests: Observable<string | null>[] = iconSetConfigs
+      .filter((iconSetConfig) => !iconSetConfig.svgText)
       .map((iconSetConfig) => {
         return this._loadSvgIconSetFromConfig(iconSetConfig).pipe(
-          catchError((err: HttpErrorResponse): Observable<SVGElement | null> => {
+          catchError((err: HttpErrorResponse) => {
             const url = this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, iconSetConfig.url);
 
             // Swallow errors fetching individual URLs so the
@@ -391,6 +435,7 @@ export class SbbIconRegistry implements OnDestroy {
       map(() => {
         const foundIcon = this._extractIconWithNameFromAnySet(name, iconSetConfigs);
 
+        // TODO: add an ngDevMode check
         if (!foundIcon) {
           throw getSbbIconNameNotFoundError(name);
         }
@@ -412,8 +457,14 @@ export class SbbIconRegistry implements OnDestroy {
     // Iterate backwards, so icon sets added later have precedence.
     for (let i = iconSetConfigs.length - 1; i >= 0; i--) {
       const config = iconSetConfigs[i];
-      if (config.svgElement) {
-        const foundIcon = this._extractSvgIconFromSet(config.svgElement, iconName, config.options);
+
+      // Parsing the icon set's text into an SVG element can be expensive. We can avoid some of
+      // the parsing by doing a quick check using `indexOf` to see if there's any chance for the
+      // icon to be in the set. This won't be 100% accurate, but it should help us avoid at least
+      // some of the parsing.
+      if (config.svgText && config.svgText.indexOf(iconName) > -1) {
+        const svg = this._svgElementFromConfig(config as LoadedSvgIconConfig);
+        const foundIcon = this._extractSvgIconFromSet(svg, iconName, config.options);
         if (foundIcon) {
           return foundIcon;
         }
@@ -428,41 +479,21 @@ export class SbbIconRegistry implements OnDestroy {
    */
   private _loadSvgIconFromConfig(config: SvgIconConfig): Observable<SVGElement> {
     return this._fetchIcon(config).pipe(
-      map((svgText) => this._createSvgElementForSingleIcon(svgText, config.options))
+      tap((svgText) => (config.svgText = svgText)),
+      map(() => this._svgElementFromConfig(config as LoadedSvgIconConfig))
     );
   }
 
   /**
-   * Loads the content of the icon set URL specified in the SvgIconConfig and creates an SVG element
-   * from it.
+   * Loads the content of the icon set URL specified in the
+   * SvgIconConfig and attaches it to the config.
    */
-  private _loadSvgIconSetFromConfig(config: SvgIconConfig): Observable<SVGElement> {
-    // If the SVG for this icon set has already been parsed, do nothing.
-    if (config.svgElement) {
-      return observableOf(config.svgElement);
+  private _loadSvgIconSetFromConfig(config: SvgIconConfig): Observable<string | null> {
+    if (config.svgText) {
+      return observableOf(null);
     }
 
-    return this._fetchIcon(config).pipe(
-      map((svgText) => {
-        // It is possible that the icon set was parsed and cached by an earlier request, so parsing
-        // only needs to occur if the cache is yet unset.
-        if (!config.svgElement) {
-          config.svgElement = this._svgElementFromString(svgText);
-        }
-
-        return config.svgElement;
-      })
-    );
-  }
-
-  /** Creates a DOM element from the given SVG string, and adds default attributes. */
-  private _createSvgElementForSingleIcon(
-    responseText: string,
-    options?: SbbIconOptions
-  ): SVGElement {
-    const svg = this._svgElementFromString(responseText);
-    this._setSvgAttributes(svg, options);
-    return svg;
+    return this._fetchIcon(config).pipe(tap((svgText) => (config.svgText = svgText)));
   }
 
   /**
@@ -574,12 +605,14 @@ export class SbbIconRegistry implements OnDestroy {
       throw getSbbIconNoHttpProviderError();
     }
 
+    // TODO: add an ngDevMode check
     if (safeUrl == null) {
       throw Error(`Cannot fetch icon from URL "${safeUrl}".`);
     }
 
     const url = this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, safeUrl);
 
+    // TODO: add an ngDevMode check
     if (!url) {
       throw getSbbIconFailedToSanitizeUrlError(safeUrl);
     }
@@ -593,8 +626,6 @@ export class SbbIconRegistry implements OnDestroy {
       return inProgressFetch;
     }
 
-    // TODO(jelbourn): for some reason, the `finalize` operator "loses" the generic type on the
-    // Observable. Figure out why and fix it.
     const req = this._httpClient.get(url, { responseType: 'text', withCredentials }).pipe(
       finalize(() => this._inProgressUrlFetches.delete(url)),
       share()
@@ -631,6 +662,40 @@ export class SbbIconRegistry implements OnDestroy {
 
     return this;
   }
+
+  /** Parses a config's text into an SVG element. */
+  private _svgElementFromConfig(config: LoadedSvgIconConfig): SVGElement {
+    if (!config.svgElement) {
+      const svg = this._svgElementFromString(config.svgText);
+      this._setSvgAttributes(svg, config.options);
+      config.svgElement = svg;
+    }
+
+    return config.svgElement;
+  }
+
+  /** Tries to create an icon config through the registered resolver functions. */
+  private _getIconConfigFromResolvers(namespace: string, name: string): SvgIconConfig | undefined {
+    for (let i = 0; i < this._resolvers.length; i++) {
+      const result = this._resolvers[i](name, namespace);
+
+      if (result) {
+        return isSafeUrlWithOptions(result)
+          ? new SvgIconConfig(result.url, null, result.options)
+          : new SvgIconConfig(result, null);
+      }
+    }
+
+    // If the namespace is one from our supported list, we return the CDN config.
+    if (this._sbbCdnSupportedNamespaces.indexOf(namespace) !== -1) {
+      const url = this._sanitizer.bypassSecurityTrustResourceUrl(
+        `https://icons.app.sbb.ch/${namespace}/${name}.svg`
+      );
+      return new SvgIconConfig(url, null);
+    }
+
+    return undefined;
+  }
 }
 
 /** Clones an SVGElement while preserving type information. */
@@ -641,4 +706,8 @@ function cloneSvg(svg: SVGElement): SVGElement {
 /** Returns the cache key to use for an icon namespace and name. */
 function iconKey(namespace: string, name: string) {
   return namespace + ':' + name;
+}
+
+function isSafeUrlWithOptions(value: any): value is SafeResourceUrlWithIconOptions {
+  return !!(value.url && value.options);
 }
