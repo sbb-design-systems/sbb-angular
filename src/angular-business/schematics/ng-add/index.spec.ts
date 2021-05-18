@@ -85,7 +85,7 @@ describe('ngAdd', () => {
       `~0.0.0-PLACEHOLDER`
     );
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`~0.0.0-CDK`);
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
 
