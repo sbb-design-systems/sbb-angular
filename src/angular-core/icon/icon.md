@@ -196,7 +196,7 @@ constructor(iconRegistry: SbbIconRegistry, sanitizer: DomSanitizer) {
 
 #### Add icon resolver to serve all icons from localhost/server
 
-Not recommended, unless you are familiar compression and HTTP caching specifics.
+Not recommended, unless you are familiar with compression and HTTP caching specifics.
 
 ```ts
 constructor(iconRegistry: SbbIconRegistry, sanitizer: DomSanitizer) {
