@@ -11,7 +11,6 @@ All notable changes to this project will be documented in this file. See [standa
 and the icon-cdn-provider schematics in favor of icon resolvers. See the icon documentation
 for detail. This will be fixed in a migration via `ng update`.
 * Update to Angular 12 and removed deprecated symbols/properties/methods
-* **maps:** esri-loader is replaced with @arcgis/core as a peer dependency for @sbb-esta/angular-maps and usage has been updated accordingly.
 
 ### Features
 
@@ -23,8 +22,9 @@ for detail. This will be fixed in a migration via `ng update`.
 * **business:** avoid metadata inlining for the header ([#803](https://github.com/sbb-design-systems/sbb-angular/issues/803)) ([e4f2572](https://github.com/sbb-design-systems/sbb-angular/commit/e4f2572a98207688e464f7903906cf503095cdc3)), closes [#798](https://github.com/sbb-design-systems/sbb-angular/issues/798)
 
 
+### Refactor
+
 * update packages ([#804](https://github.com/sbb-design-systems/sbb-angular/issues/804)) ([8e8a608](https://github.com/sbb-design-systems/sbb-angular/commit/8e8a6080270d978ff1a93b09ca3bc31312d2950f))
-* **maps:** replacing the esri-loader with @arcgis/core ES-module  ([#800](https://github.com/sbb-design-systems/sbb-angular/issues/800)) ([6fc5268](https://github.com/sbb-design-systems/sbb-angular/commit/6fc5268fde95d483ecb6a23d8e34300372b0fd3f))
 
 ## [11.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/11.1.4...11.2.0) (2021-05-05)
 
