@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.0.0-next.1](https://github.com/sbb-design-systems/sbb-angular/compare/12.0.0-next.0...12.0.0-next.1) (2021-05-19)
+
+
+### Bug Fixes
+
+* use correct version range for @angular/cdk ([#808](https://github.com/sbb-design-systems/sbb-angular/issues/808)) ([0625618](https://github.com/sbb-design-systems/sbb-angular/commit/062561882dc6d0002fa71d9db02196e88316332d))
+
+
 ## [12.0.0-next.0](https://github.com/sbb-design-systems/sbb-angular/compare/11.2.0...12.0.0-next.0) (2021-05-18)
 
 
