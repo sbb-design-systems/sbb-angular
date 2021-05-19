@@ -131,7 +131,7 @@ export class SbbHeaderMenuTrigger implements AfterContentInit, OnDestroy {
     private _breakpointObserver: BreakpointObserver,
     @Optional() private _router: Router,
     @Inject(SBB_HEADER_MENU_SCROLL_STRATEGY) scrollStrategy: any,
-    @Inject(SBB_HEADER) private _header: SbbHeader
+    @Inject(SBB_HEADER) private _header: TypeRef<SbbHeader>
   ) {
     _element.nativeElement.addEventListener(
       'touchstart',
