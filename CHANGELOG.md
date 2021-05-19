@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/12.0.0...12.0.1) (2021-05-19)
+
+
+### Bug Fixes
+
+* **business:** avoid inlining SbbHeader reference ([#811](https://github.com/sbb-design-systems/sbb-angular/issues/811)) ([44568a5](https://github.com/sbb-design-systems/sbb-angular/commit/44568a58637600703b90cce19240771430182497))
+
 ## [12.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.0.0-next.2...12.0.0) (2021-05-19)
 
 ## [12.0.0-next.2](https://github.com/sbb-design-systems/sbb-angular/compare/12.0.0-next.1...12.0.0-next.2) (2021-05-19)
