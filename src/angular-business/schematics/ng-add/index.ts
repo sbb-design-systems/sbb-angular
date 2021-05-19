@@ -15,7 +15,7 @@ import { Schema } from './schema';
  * the default for Angular framework dependencies in CLI projects.
  */
 const fallbackSbbAngularVersionRange = `~0.0.0-PLACEHOLDER`;
-const fallbackCdkVersionRange = `~0.0.0-CDK`;
+const fallbackCdkVersionRange = `0.0.0-CDK`.replace('-0', '');
 
 /**
  * Schematic factory entry-point for the `ng-add` schematic. The ng-add schematic will be

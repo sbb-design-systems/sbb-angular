@@ -76,7 +76,7 @@ describe('ngAdd', () => {
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`~0.0.0-CDK`);
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
 
