@@ -68,7 +68,7 @@ jobs:
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: "Bazel: Restore remote cache"
-      if: ${{ always() && !contains(github.event.head_commit.message, '--no-cache') }}
+      if: ${{ (success() || failure()) && !contains(github.event.head_commit.message, '--no-cache') }}
       uses: actions/cache@v2
       with:
         path: ~/.bazel-cache/sbb-angular
@@ -78,21 +78,21 @@ jobs:
     - name: "Bazel: Build"
       run: yarn -s build all
     - name: "Bazel: Clean bazel disk cache"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=50MB
     - name: "Bazel: Compress artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: |
         cd ~/.bazel-cache
         tar -I zstd -cf bazel-cache.tar.zst sbb-angular
     - name: "Bazel: Upload cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/upload-artifact@v2
       with:
         name: bazel-cache-artifact
         path: ~/.bazel-cache/bazel-cache.tar.zst
     - name: "Bazel: Clear cache directory"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: rm -rf ~/.bazel-cache
 
   packages:
@@ -122,7 +122,7 @@ jobs:
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: "Bazel: Restore remote cache"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/cache@v2
       with:
         path: ~/.bazel-cache/sbb-angular
@@ -132,11 +132,11 @@ jobs:
     - name: "Bazel: Build packages"
       run: yarn -s build packages
     - name: "Bazel: Clean bazel disk cache"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --maxSize 150MB
 
   test:
-    if: always()
+    if: ${{ success() || failure() }}
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -164,13 +164,13 @@ jobs:
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: "Bazel: Download cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/download-artifact@v2
       with:
         name: bazel-cache-artifact
         path: ~/.bazel-cache/
     - name: "Bazel: Unpack artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: |
         cd ~/.bazel-cache/
         tar -I zstd -xf bazel-cache.tar.zst
@@ -178,22 +178,22 @@ jobs:
     - name: "Bazel: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
     - name: "Bazel: Clean bazel disk cache"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=50MB
     - name: "Bazel: Compress artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: |
         cd ~/.bazel-cache
         tar -I zstd -cf bazel-cache-test.tar.zst sbb-angular
     - name: "Bazel: Upload cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/upload-artifact@v2
       with:
         name: bazel-cache-test-artifact
         path: ~/.bazel-cache/bazel-cache-test.tar.zst
 
   showcase:
-    if: always()
+    if: ${{ success() || failure() }}
     needs: build
     runs-on: ubuntu-latest
     env:
@@ -223,13 +223,13 @@ jobs:
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: "Bazel: Download cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/download-artifact@v2
       with:
         name: bazel-cache-artifact
         path: ~/.bazel-cache/
     - name: "Bazel: Unpack artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: |
         cd ~/.bazel-cache/
         tar -I zstd -xf bazel-cache.tar.zst
@@ -237,15 +237,15 @@ jobs:
     - name: "Bazel: Build showcase"
       run: yarn -s build showcase
     - name: "Bazel: Clean bazel disk cache"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=50MB
     - name: "Bazel: Compress artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: |
         cd ~/.bazel-cache
         tar -I zstd -cf bazel-cache-showcase.tar.zst sbb-angular
     - name: "Bazel: Upload cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/upload-artifact@v2
       with:
         name: bazel-cache-showcase-artifact
@@ -267,7 +267,7 @@ jobs:
         -F "tarball=@sbb-esta-angular-showcase.tgz"
 
   showcase-merge:
-    if: always()
+    if: ${{ success() || failure() }}
     needs: build
     runs-on: ubuntu-latest
     env:
@@ -297,30 +297,30 @@ jobs:
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: "Bazel: Download cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/download-artifact@v2
       with:
         name: bazel-cache-artifact
         path: ~/.bazel-cache/
     - name: "Bazel: Unpack artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: |
         cd ~/.bazel-cache/
         tar -I zstd -xf bazel-cache.tar.zst
         rm -f bazel-cache.tar.zst
     - name: "Bazel: Build showcase"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: yarn -s build showcase-merge
     - name: "Bazel: Clean bazel disk cache"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=50MB
     - name: "Bazel: Compress artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: |
         cd ~/.bazel-cache
         tar -I zstd -cf bazel-cache-showcase-merge.tar.zst sbb-angular
     - name: "Bazel: Upload cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/upload-artifact@v2
       with:
         name: bazel-cache-showcase-merge-artifact
@@ -342,7 +342,7 @@ jobs:
         -F "tarball=@sbb-esta-angular-showcase-merge.tgz"
 
   merge-caches:
-    if: always()
+    if: ${{ success() || failure() }}
     needs: [test, showcase, showcase-merge]
     runs-on: ubuntu-latest
     steps:
@@ -370,7 +370,7 @@ jobs:
     - name: "Bazel: Create cache directory"
       run: mkdir -p ~/.bazel-cache/
     - name: "Bazel: Restore remote cache"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/cache@v2
       with:
         path: ~/.bazel-cache/sbb-angular
@@ -378,25 +378,25 @@ jobs:
         restore-keys: |
           bazel-merged-
     - name: "Bazel: Download test cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/download-artifact@v2
       with:
         name: bazel-cache-test-artifact
         path: ~/.bazel-cache/
     - name: "Bazel: Download showcase cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/download-artifact@v2
       with:
         name: bazel-cache-showcase-artifact
         path: ~/.bazel-cache/
     - name: "Bazel: Download showcase-merge cache artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       uses: actions/download-artifact@v2
       with:
         name: bazel-cache-showcase-merge-artifact
         path: ~/.bazel-cache/
     - name: "Bazel: Unpack artifacts"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: |
         cd ~/.bazel-cache/
         ls -la
@@ -407,5 +407,5 @@ jobs:
         tar -I zstd -xf bazel-cache-showcase-merge.tar.zst
         rm -f bazel-cache-showcase-merge.tar.zst
     - name: "Bazel: Clean bazel disk cache"
-      if: ${{ always() }}
+      if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --maxSize 750MB --individualMaxSize=20MB
