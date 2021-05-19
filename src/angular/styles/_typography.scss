@@ -2150,7 +2150,7 @@ $menuItemPaddingTopBottom: 4;
   &.sbb-active {
     color: $sbbColorBlack;
     html.sbb-lean & {
-      @include sbbMenuItemSelectedLean();
+      @include sbbMenuItemBlackLean();
     }
   }
 
@@ -2169,7 +2169,7 @@ $menuItemPaddingTopBottom: 4;
   &.sbb-focused {
     color: $sbbColorRed;
     html.sbb-lean & {
-      @include sbbMenuItemActiveLean();
+      @include sbbMenuItemRedLean();
     }
   }
 

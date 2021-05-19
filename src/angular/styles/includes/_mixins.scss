@@ -250,13 +250,13 @@
   }
 }
 
-@mixin sbbMenuItemSelectedLean() {
+@mixin sbbMenuItemBlackLean() {
   color: $sbbColorBlack;
   background-color: $sbbColorCloud;
   @include borderLeftAsBefore($sbbColorBlack);
 }
 
-@mixin sbbMenuItemActiveLean() {
+@mixin sbbMenuItemRedLean() {
   color: $sbbColorRed125;
   background-color: $sbbColorMilk;
   @include borderLeftAsBefore($sbbColorRed125);

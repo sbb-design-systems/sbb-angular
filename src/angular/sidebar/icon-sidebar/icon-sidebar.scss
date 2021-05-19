@@ -53,14 +53,14 @@ sbb-header + .sbb-icon-sidebar-container {
 
     &:hover,
     &:focus {
-      @include sbbMenuItemActiveLean();
+      @include sbbMenuItemRedLean();
       &::before {
         width: pxToRem(2);
       }
     }
 
     &.sbb-active {
-      @include sbbMenuItemSelectedLean();
+      @include sbbMenuItemBlackLean();
       background-color: $sbbColorWhite;
       cursor: default;
       pointer-events: none;
