@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.0.0-next.2](https://github.com/sbb-design-systems/sbb-angular/compare/12.0.0-next.1...12.0.0-next.2) (2021-05-19)
+
+
+### Bug Fixes
+
+* remove call to ng-add schematic of angular-core ([#809](https://github.com/sbb-design-systems/sbb-angular/issues/809)) ([2387f2d](https://github.com/sbb-design-systems/sbb-angular/commit/2387f2d8b48712d47c91962495e62783bf756bc0))
+
 ## [12.0.0-next.1](https://github.com/sbb-design-systems/sbb-angular/compare/12.0.0-next.0...12.0.0-next.1) (2021-05-19)
 
 
