@@ -5,7 +5,7 @@ and `@sbb-esta/angular-core` to `@sbb-esta/angular`.
 
 `@sbb-esta/angular` now contains all modules in either `standard` (previously public),
 `lean` (previously business) or in both variants. If a module is only available for either
-`standard` or `lean`, but not both, it will have an notification at the top of the documentation.
+`standard` or `lean`, but not both, it will have a notification at the top of the documentation.
 The default variant is `standard`. To use the `lean` variant, add the `sbb-lean` CSS class to the
 `html` element (e.g. `<html class="sbb-lean" ...>`).
 
@@ -14,6 +14,12 @@ Most of the breaking changes should automatically be migrated via `ng update`
 
 Please [reach out to us](https://github.com/sbb-design-systems/sbb-angular/issues/new/choose), if
 one of these changes breaks your project in a non-recoverable way.
+
+### Styling
+
+In order to standardize css classes for an active router link, in
+each component you should now use `sbb-active` class for `routerLinkActive`-attribute.
+See also specific comments in components sections below.
 
 ### Secondary Entrypoints
 
