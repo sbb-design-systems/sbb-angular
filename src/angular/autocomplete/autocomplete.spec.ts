@@ -1404,8 +1404,8 @@ describe('SbbAutocomplete', () => {
         true,
         'Expected first option to be active.'
       );
-      expect(optionEls[0].classList).toContain('sbb-active');
-      expect(optionEls[1].classList).not.toContain('sbb-active');
+      expect(optionEls[0].classList).toContain('sbb-focused');
+      expect(optionEls[1].classList).not.toContain('sbb-focused');
 
       componentInstance.trigger._handleKeydown(downArrowEvent);
       fixture.detectChanges();
@@ -1413,8 +1413,8 @@ describe('SbbAutocomplete', () => {
       expect(
         componentInstance.trigger.activeOption === componentInstance.options.toArray()[1]
       ).toBe(true, 'Expected second option to be active.');
-      expect(optionEls[0].classList).not.toContain('sbb-active');
-      expect(optionEls[1].classList).toContain('sbb-active');
+      expect(optionEls[0].classList).not.toContain('sbb-focused');
+      expect(optionEls[1].classList).toContain('sbb-focused');
     });
 
     it('should set the active item to the last option when UP key is pressed', () => {
@@ -1435,8 +1435,8 @@ describe('SbbAutocomplete', () => {
         true,
         'Expected last option to be active.'
       );
-      expect(optionEls[10].classList).toContain('sbb-active');
-      expect(optionEls[0].classList).not.toContain('sbb-active');
+      expect(optionEls[10].classList).toContain('sbb-focused');
+      expect(optionEls[0].classList).not.toContain('sbb-focused');
 
       componentInstance.trigger._handleKeydown(downArrowEvent);
       fixture.detectChanges();
@@ -1445,7 +1445,7 @@ describe('SbbAutocomplete', () => {
         true,
         'Expected first option to be active.'
       );
-      expect(optionEls[0].classList).toContain('sbb-active');
+      expect(optionEls[0].classList).toContain('sbb-focused');
     });
 
     it('should set the active item properly after filtering', fakeAsync(() => {
@@ -1473,8 +1473,8 @@ describe('SbbAutocomplete', () => {
         true,
         'Expected first option to be active.'
       );
-      expect(optionEls[0].classList).toContain('sbb-active');
-      expect(optionEls[1].classList).not.toContain('sbb-active');
+      expect(optionEls[0].classList).toContain('sbb-focused');
+      expect(optionEls[1].classList).not.toContain('sbb-focused');
     });
 
     it('should fill the text field when an option is selected with ENTER', fakeAsync(() => {
@@ -2579,7 +2579,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       expect(overlayContainerElement.querySelectorAll('sbb-option')[0].classList).toContain(
-        'sbb-active',
+        'sbb-focused',
         'Expected first option to be highlighted.'
       );
     }));
@@ -2598,7 +2598,7 @@ describe('SbbAutocomplete', () => {
         fixture.detectChanges();
 
         expect(overlayContainerElement.querySelectorAll('sbb-option')[2].classList).toContain(
-          'sbb-active',
+          'sbb-focused',
           'Expected third option to be highlighted.'
         );
       })
@@ -2646,7 +2646,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       expect(overlayContainerElement.querySelectorAll('sbb-option')[0].classList).toContain(
-        'sbb-active',
+        'sbb-focused',
         'Expected first option to be highlighted.'
       );
     }));

@@ -2142,14 +2142,15 @@ $menuItemPaddingTopBottom: 4;
     color: $sbbColorIron;
   }
 
-  &:not(.sbb-active) strong {
+  &:not(.sbb-focused) strong {
     color: $sbbColorBlack;
   }
 
-  &.sbb-selected {
+  &.sbb-selected,
+  &.sbb-active {
     color: $sbbColorBlack;
     html.sbb-lean & {
-      @include sbbMenuItemSelectedLean();
+      @include sbbMenuItemBlackLean();
     }
   }
 
@@ -2165,10 +2166,10 @@ $menuItemPaddingTopBottom: 4;
   &:not(:disabled):not([disabled]):not(.sbb-disabled):focus,
   &:not(:disabled):not([disabled]):not(.sbb-disabled):hover strong,
   &:not(:disabled):not([disabled]):not(.sbb-disabled):focus strong,
-  &.sbb-active {
+  &.sbb-focused {
     color: $sbbColorRed;
     html.sbb-lean & {
-      @include sbbMenuItemActiveLean();
+      @include sbbMenuItemRedLean();
     }
   }
 

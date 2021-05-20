@@ -93,11 +93,11 @@ sbb-header + .sbb-sidebar-container {
 
     &:hover,
     &:focus {
-      @include sbbMenuItemActiveLean();
+      @include sbbMenuItemRedLean();
     }
 
     &.sbb-active {
-      @include sbbMenuItemSelectedLean();
+      @include sbbMenuItemBlackLean();
       pointer-events: none;
       cursor: default;
     }

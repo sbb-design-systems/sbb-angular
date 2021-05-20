@@ -1945,7 +1945,7 @@ describe('SbbSelect', () => {
         }));
 
         it('should remove the active state from options that have been deselected while closed', fakeAsync(() => {
-          let activeOptions = options.filter((option) => option.classList.contains('sbb-active'));
+          let activeOptions = options.filter((option) => option.classList.contains('sbb-focused'));
           expect(activeOptions).toEqual(
             [options[0]],
             'Expected first option to have active styles.'
@@ -1957,7 +1957,7 @@ describe('SbbSelect', () => {
           fixture.detectChanges();
           flush();
 
-          activeOptions = options.filter((option) => option.classList.contains('sbb-active'));
+          activeOptions = options.filter((option) => option.classList.contains('sbb-focused'));
           expect(activeOptions).toEqual(
             [options[1]],
             'Expected only selected option to be marked as active after it is clicked.'
@@ -1972,7 +1972,7 @@ describe('SbbSelect', () => {
           fixture.componentInstance.select.open();
           fixture.detectChanges();
 
-          activeOptions = options.filter((option) => option.classList.contains('sbb-active'));
+          activeOptions = options.filter((option) => option.classList.contains('sbb-focused'));
           expect(activeOptions).toEqual(
             [options[7]],
             'Expected only selected option to be marked as active after the value has changed.'
