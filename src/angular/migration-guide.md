@@ -19,7 +19,7 @@ one of these changes breaks your project in a non-recoverable way.
 
 In order to standardize css classes for an active router link, in
 each component you should now use `sbb-active` class for `routerLinkActive`-attribute.
-See also specific comments in components sections below.
+See also specific comments in component sections below.
 
 ### Secondary Entrypoints
 
