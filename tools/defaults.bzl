@@ -5,6 +5,7 @@
 load("@io_bazel_rules_sass//:defs.bzl", _sass_binary = "sass_binary", _sass_library = "sass_library")
 load("@npm//@angular/bazel:index.bzl", _ng_module = "ng_module", _ng_package = "ng_package")
 load("@npm//@bazel/concatjs:index.bzl", _karma_web_test = "karma_web_test", _karma_web_test_suite = "karma_web_test_suite")
+load("@npm//@bazel/esbuild:index.bzl", _esbuild = "esbuild")
 load("@npm//@bazel/jasmine:index.bzl", _jasmine_node_test = "jasmine_node_test")
 load("@npm//@bazel/protractor:index.bzl", _protractor_web_test_suite = "protractor_web_test_suite")
 load("@npm//@bazel/typescript:index.bzl", _ts_library = "ts_library")
@@ -209,12 +210,9 @@ def karma_web_test_suite(name, **kwargs):
         testonly = True,
     )
 
-    kwargs["deps"] = ["@npm//karma-junit-reporter"] + kwargs.get("deps", [])
-
     # Default test suite with all configured browsers.
     _karma_web_test_suite(
         name = name,
-        config_file = "//test:bazel-karma-coverage.js",
         **kwargs
     )
 
@@ -272,5 +270,15 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], exclude_init_s
             "@npm//:node_modules/zone.js/dist/zone-testing.js",
             "@npm//:node_modules/reflect-metadata/Reflect.js",
         ] + bootstrap,
+        **kwargs
+    )
+
+def esbuild(**kwargs):
+    _esbuild(
+        tool = select({
+            "@bazel_tools//src/conditions:darwin": "@esbuild_darwin//:bin/esbuild",
+            "@bazel_tools//src/conditions:windows": "@esbuild_windows//:esbuild.exe",
+            "@bazel_tools//src/conditions:linux_x86_64": "@esbuild_linux//:bin/esbuild",
+        }),
         **kwargs
     )

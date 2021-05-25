@@ -1,12 +1,9 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
-load("@npm//@babel/cli:index.bzl", "babel")
 load("@npm//@bazel/concatjs:index.bzl", "concatjs_devserver")
-load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
-load("@npm//@bazel/terser:index.bzl", "terser_minified")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
-load("//tools:defaults.bzl", "ng_ts_library")
+load("//tools:defaults.bzl", "esbuild", "ng_ts_library")
 load("//tools/highlight-files:index.bzl", "highlight_files")
 
 package(default_visibility = ["//visibility:public"])
@@ -174,61 +171,18 @@ concatjs_devserver(
     ],
 )
 
-rollup_bundle(
-    name = "bundle-es2015",
-    config_file = "rollup.config.js",
-    entry_points = {
-        ":main.prod.ts": "index",
-    },
-    output_dir = True,
-    tags = ["prod-showcase"],
-    deps = [
-        "//src/showcase",
-        "@npm//@rollup/plugin-alias",
-        "@npm//@rollup/plugin-replace",
-        "@npm//rollup-plugin-commonjs",
-        "@npm//rollup-plugin-node-resolve",
-    ],
-)
-
-babel(
-    name = "bundle-es5",
+esbuild(
+    name = "bundle-esbuild",
+    entry_point = "main.prod.ts",
+    format = "esm",
     args = [
-        "$(execpath :bundle-es2015)",
-        "--no-babelrc",
-        "--source-maps",
-        "--presets=@babel/preset-env",
-        "--plugins=@babel/plugin-transform-modules-systemjs",
-        "--out-dir",
-        "$(@D)",
+        "--resolve-extensions=.mjs,.js"
     ],
-    data = [
-        ":bundle-es2015",
-        "@npm//@babel/preset-env",
+    deps = [
+        ":showcase",
     ],
+    minify = True,
     output_dir = True,
-    tags = ["prod-showcase"],
-)
-
-terser_minified(
-    name = "bundle-es2015.min",
-    src = ":bundle-es2015",
-    sourcemap = False,
-    tags = ["prod-showcase"],
-)
-
-terser_minified(
-    name = "bundle-es5.min",
-    src = ":bundle-es5",
-    sourcemap = False,
-    tags = ["prod-showcase"],
-)
-
-terser_minified(
-    name = "regenerator",
-    src = "@npm//:node_modules/regenerator-runtime/runtime.js",
-    sourcemap = False,
-    tags = ["prod-showcase"],
 )
 
 genrule(
@@ -265,21 +219,14 @@ html_insert_assets(
 pkg_web(
     name = "prodapp",
     srcs = _ASSETS + [
-        ":bundle-es2015.min",
-        ":bundle-es5.min",
+        ":bundle-esbuild",
         ":index_html_prod",
-        ":regenerator",
         "//src/showcase/assets",
-        # Include polyfills that will be requested by old browsers
-        "@npm//:node_modules/systemjs/dist/system.min.js",
-        "@npm//:node_modules/core-js/client/core.min.js",
     ],
     # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
     # so we must serve them at that path, by stripping a prefix
     additional_root_paths = [
         "src/showcase/_prodapp/src",
-        "npm/node_modules/core-js/client",
-        "npm/node_modules/systemjs/dist",
     ],
     tags = ["prod-showcase"],
 )

@@ -36,4 +36,6 @@ export interface NgModuleInfo {
   importSpecifier: string;
 }
 
+export const EXAMPLE_COMPONENTS_LOADER = new Map<string, () => Promise<[any, any]>>()${exampleComponentsLoader}
+
 export const EXAMPLE_COMPONENTS: {[id: string]: LiveExample} = ${exampleComponents};

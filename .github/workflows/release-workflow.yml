@@ -19,7 +19,7 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
         registry-url: 'https://registry.npmjs.org'
         scope: sbb-esta
 
@@ -104,7 +104,7 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
