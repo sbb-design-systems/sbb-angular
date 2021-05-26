@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { existsSync, readdirSync, statSync, unlinkSync } from 'fs';
-import minimist from 'minimist';
 import { homedir } from 'os';
 import { basename, join } from 'path';
 
@@ -94,15 +93,23 @@ class LRUCache {
 }
 
 if (module === require.main) {
-  const options = minimist(process.argv.slice(2));
-  const [target] = options._;
+  const options = process.argv.slice(2);
+  const [target, ...args] = options;
   if (!target) {
     throw new Error('Target parameter required');
   }
 
   if (target === 'clean') {
-    cleanBazelCache(options.path || bazelCacheDir, options as any);
+    cleanBazelCache(parseArgument('path', args.join(' ')) || bazelCacheDir, {
+      maxSize: parseArgument('maxSize', args.join(' ')),
+      individualMaxSize: parseArgument('individualMaxSize', args.join(' ')),
+    });
   }
+}
+
+function parseArgument(name: string, args: string) {
+  const match = args.match(new RegExp(`--${name}[= ]([^ ]+)`));
+  return match ? match[1] : undefined;
 }
 
 /**
