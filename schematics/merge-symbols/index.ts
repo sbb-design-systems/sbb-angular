@@ -2,10 +2,7 @@ import { Path, PathFragment, PathIsFileException } from '@angular-devkit/core';
 import { Rule, Tree } from '@angular-devkit/schematics';
 import ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 
-const IGNORED_FOLDERS = [
-  '/src/angular/schematics/ng-add/test-cases/',
-  '/src/angular/schematics/ng-generate/icon-cdn-provider/files',
-];
+const IGNORED_FOLDERS = ['/src/angular/schematics/ng-add/test-cases/'];
 
 export function mergeSymbols(): Rule {
   return (tree: Tree) => {

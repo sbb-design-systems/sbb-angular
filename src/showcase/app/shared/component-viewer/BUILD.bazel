@@ -30,7 +30,7 @@ ng_module(
 )
 
 genrule(
-    name = "used-icons",
+    name = "library-version",
     srcs = ["//src/showcase/app:versions.ts"],
     outs = ["stackblitz-writer/versions.ts"],
     cmd = "cp $< $@",
