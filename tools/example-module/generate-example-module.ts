@@ -66,9 +66,19 @@ function inlineExampleModuleTemplate(parsedData: AnalyzedExamples): string {
     return result;
   }, {} as any);
 
+  const exampleComponentsLoader = exampleMetadata
+    .map(
+      (data) => `
+  .set('${data.module.packagePath}', () => import('./${data.module.packagePath}/index'))`
+    )
+    .filter((v, i, a) => a.indexOf(v) === i)
+    .join('')
+    .replace(/$/, ';');
+
   return fs
     .readFileSync(require.resolve('./example-module.template'), 'utf8')
-    .replace(/\${exampleComponents}/g, JSON.stringify(exampleComponents, null, 2));
+    .replace(/\${exampleComponents}/g, JSON.stringify(exampleComponents, null, 2))
+    .replace(/\${exampleComponentsLoader}/g, exampleComponentsLoader);
 }
 
 /** Converts a given camel-cased string to a dash-cased string. */

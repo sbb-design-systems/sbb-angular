@@ -1,4 +1,4 @@
-load("//tools:defaults.bzl", "ng_module", "ng_package")
+load("//tools:defaults.bzl", "ng_module")
 load("//tools/highlight-files:index.bzl", "highlight_files")
 
 package(default_visibility = ["//visibility:public"])
@@ -50,13 +50,6 @@ filegroup(
 highlight_files(
     name = "examples-highlighted",
     srcs = [":example-source-files"],
-)
-
-ng_package(
-    name = "npm_package",
-    srcs = ["package.json"],
-    entry_point = ":public-api.ts",
-    deps = [":components-examples"] + ALL_EXAMPLES,
 )
 
 genrule(

@@ -23,7 +23,7 @@ jobs:
         fetch-depth: 1
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
@@ -52,7 +52,7 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
@@ -106,7 +106,7 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
@@ -148,7 +148,7 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
@@ -207,7 +207,7 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
@@ -281,7 +281,7 @@ jobs:
       run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
@@ -352,7 +352,7 @@ jobs:
         fetch-depth: 1
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
 
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
