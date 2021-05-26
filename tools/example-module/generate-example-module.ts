@@ -69,14 +69,9 @@ function inlineExampleModuleTemplate(parsedData: AnalyzedExamples): string {
   const exampleComponentsLoader = exampleMetadata
     .map(
       (data) => `
-  .set('${data.module.packagePath}', () =>
-    Promise.all([
-      // @ts-ignore
-      import('./${data.module.packagePath}/index.ngfactory'),
-      import('./${data.module.packagePath}/index'),
-    ])
-  )`
+  .set('${data.module.packagePath}', () => import('./${data.module.packagePath}/index'))`
     )
+    .filter((v, i, a) => a.indexOf(v) === i)
     .join('')
     .replace(/$/, ';');
 

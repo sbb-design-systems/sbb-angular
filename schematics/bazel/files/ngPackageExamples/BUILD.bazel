@@ -27,13 +27,6 @@ highlight_files(
     srcs = [":example-source-files"],
 )
 
-ng_package(
-    name = "npm_package",
-    srcs = ["package.json"],
-    entry_point = ":public-api.ts",
-    deps = [":components-examples"] + ALL_EXAMPLES,
-)
-
 genrule(
     name = "example-module",
     srcs = [":example-source-files"],
