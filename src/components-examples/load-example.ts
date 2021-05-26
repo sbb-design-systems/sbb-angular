@@ -9,7 +9,6 @@ export function loadExampleFactory(
   injector: Injector
 ): Promise<ComponentFactory<any>> {
   const { componentName, module } = EXAMPLE_COMPONENTS[name];
-  // TODO(devversion): remove the NgFactory import when the `--config=view-engine` switch is gone.
   return loadModules(module.importSpecifier).then((moduleExports) => {
     const moduleFactory: NgModuleFactory<any> = new ɵNgModuleFactory(moduleExports[module.name]);
     const componentType: Type<any> = moduleExports[componentName];

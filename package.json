@@ -15,7 +15,6 @@
     "watch:public2business": "node ./scripts/public2business-watcher.js",
     "generate:bazel": "ng g .:bazel",
     "generate:examples": "ng g .:normalize-examples && yarn -s generate:bazel",
-    "generate:icon-registry": "yarn -s build icon-registry",
     "generate:merge-symbols": "ng g .:mergeSymbols",
     "bazel": "bazelisk",
     "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/schematics/bazel/*\" | xargs buildifier -v",
@@ -44,7 +43,6 @@
     "baz": "yarn -s generate:bazel",
     "dev": "ibazel run //src/showcase-merge:devserver",
     "prod": "ibazel run //src/showcase-merge:prodserver",
-    "icn": "yarn -s generate:icon-registry",
     "p2b": "yarn -s build:public2business",
     "sym": "yarn -s generate:merge-symbols"
   },

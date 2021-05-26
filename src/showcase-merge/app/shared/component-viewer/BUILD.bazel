@@ -34,7 +34,7 @@ ng_module(
 )
 
 genrule(
-    name = "stackblitz-versions",
+    name = "library-versions",
     srcs = ["//src/showcase-merge/app:versions.ts"],
     outs = ["stackblitz-writer/versions.ts"],
     cmd = "cp $< $@",

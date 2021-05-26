@@ -36,10 +36,6 @@ if (module === require.main) {
       buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular-core/i18n')),
     showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
     'showcase-merge': () => buildShowcaseMerge(join(projectDir, 'dist/releases')),
-    'icon-registry': () => {
-      generateIconRegistry('angular-core');
-      generateIconRegistry('angular');
-    },
   };
   if (!target || !(target in tasks)) {
     throw new Error(`Please provide a valid build target (e.g. ${Object.keys(tasks).join(', ')})`);
@@ -196,41 +192,6 @@ function buildShowcaseMerge(distPath: string) {
     }),
     'utf8'
   );
-}
-
-/**
- * Generate the icon registry.
- */
-function generateIconRegistry(packageName: string) {
-  console.log('######################################');
-  console.log(`  Generating icon registry in ${packageName}...`);
-  console.log('######################################');
-
-  const distPath = join(projectDir, 'node_modules/@sbb-esta');
-
-  const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
-
-  exec(`${bazelCmd} build src/${packageName}:npm_package`);
-
-  cleanDistPath(distPath);
-  const outputPath = join(bazelBinPath, `src/${packageName}/npm_package`);
-  const targetFolder = join(distPath, packageName);
-  copyPackageOutput(outputPath, targetFolder);
-
-  exec(
-    `yarn ng generate @sbb-esta/${packageName}:icon-cdn-provider --path src/${packageName}/icon --generate-wrapper-registry`
-  );
-
-  const cdnIconProviderPath = join(projectDir, `src/${packageName}/icon/icon-cdn-provider.ts`);
-  const content = readFileSync(cdnIconProviderPath, 'utf8');
-  const formattedContent = prettier.format(content, {
-    parser: 'typescript',
-    ...require('../package.json').prettier,
-  });
-
-  writeFileSync(cdnIconProviderPath, formattedContent, 'utf8');
-
-  cleanDistPath(distPath);
 }
 
 /**

@@ -89,9 +89,4 @@ filegroup(
         "**/*.css",
         "**/*.ts",
     ]),<% } %>
-)<% if (!path.includes('/components-examples/')) { %>
-
-filegroup(
-    name = "html-source-files",
-    srcs = glob(["**/*.html"]),
-)<% } %>
+)

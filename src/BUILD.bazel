@@ -65,33 +65,3 @@ ts_library(
     name = "dev_mode_types",
     srcs = ["dev-mode-types.d.ts"],
 )
-
-html_source_files = ["//src/angular/%s:html-source-files" % name for name in angular_api_entry_points] + \
-                    ["//src/angular-business/%s:html-source-files" % name for name in business_api_entry_points] + \
-                    ["//src/angular-core/%s:html-source-files" % name for name in core_api_entry_points] + \
-                    ["//src/angular-maps/%s:html-source-files" % name for name in maps_api_entry_points] + \
-                    ["//src/angular-public/%s:html-source-files" % name for name in public_api_entry_points]
-
-filegroup(
-    name = "used-icons-source-files",
-    srcs = html_source_files,
-)
-
-genrule(
-    name = "used-icons",
-    srcs = [":used-icons-source-files"],
-    outs = [
-        "used-icons.json",
-        "_used-icons.MF",
-    ],
-    cmd = """
-      echo "$(execpaths //src:used-icons-source-files)" > $(execpath _used-icons.MF)
-
-      # Run the bazel entry-point for generating the package info.
-      ./$(execpath //tools/icons-in-library:bazel-bin) \
-          "$(execpath _used-icons.MF)" \
-          "$(execpath used-icons.json)"
-    """,
-    output_to_bindir = True,
-    tools = ["//tools/icons-in-library:bazel-bin"],
-)

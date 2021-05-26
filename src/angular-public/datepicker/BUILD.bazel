@@ -92,8 +92,3 @@ filegroup(
     name = "source-files",
     srcs = glob(["**/*.ts"]),
 )
-
-filegroup(
-    name = "html-source-files",
-    srcs = glob(["**/*.html"]),
-)
