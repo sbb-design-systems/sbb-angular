@@ -180,6 +180,7 @@ esbuild(
     format = "esm",
     minify = True,
     output_dir = True,
+    tags = ["prod-showcase"],
     deps = [
         ":showcase",
     ],
@@ -190,6 +191,7 @@ genrule(
     srcs = ["index.prod.html"],
     outs = ["stamped_index.html"],
     cmd = "sed \"s/TIMESTAMP-VARIABLE/$$(date +%s)/g\" $< > $@",
+    tags = ["prod-showcase"],
 )
 
 # Insert script tags into index.html

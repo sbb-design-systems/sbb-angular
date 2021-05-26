@@ -98,6 +98,7 @@ esbuild(
     format = "esm",
     minify = True,
     output_dir = True,
+    tags = ["prod-showcase"],
     deps = [
         ":showcase-merge",
     ],
@@ -108,6 +109,7 @@ genrule(
     srcs = ["index.prod.html"],
     outs = ["stamped_index.html"],
     cmd = "sed \"s/TIMESTAMP-VARIABLE/$$(date +%s)/g\" $< > $@",
+    tags = ["prod-showcase"],
 )
 
 # Insert script tags into index.html
@@ -131,7 +133,7 @@ html_insert_assets(
     data = _ASSETS + [
         ":stamped_index.html",
     ],
-    tags = ["prod-showcase-merge"],
+    tags = ["prod-showcase"],
 )
 
 pkg_web(
@@ -146,7 +148,7 @@ pkg_web(
     additional_root_paths = [
         "src/showcase-merge/_prodapp/src",
     ],
-    tags = ["prod-showcase-merge"],
+    tags = ["prod-showcase"],
 )
 
 history_server(
@@ -156,7 +158,7 @@ history_server(
         "4200",
     ],
     data = [":prodapp"],
-    tags = ["prod-showcase-merge"],
+    tags = ["prod-showcase"],
     templated_args = [
         "-a",
         "$$(rlocation $(rootpath :prodapp))",
