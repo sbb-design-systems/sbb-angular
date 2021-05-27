@@ -88,7 +88,6 @@
     "@angular/localize": "~12.0.2",
     "@bazel/bazelisk": "1.7.5",
     "@bazel/buildifier": "4.0.1",
-    "@bazel/concatjs": "3.3.0",
     "@bazel/concatjs": "3.5.0",
     "@bazel/esbuild": "3.5.0",
     "@bazel/ibazel": "0.15.8",
