@@ -240,6 +240,9 @@
     ],
     "*.ts": [
       "tslint -c tslint.json --project ./tsconfig.json"
+    ],
+    "{WORKSPACE,*.bzl,*.bazel}": [
+      "buildifier -v"
     ]
   }
 }
