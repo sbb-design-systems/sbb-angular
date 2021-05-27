@@ -125,5 +125,30 @@ have 2000 added to it, years from pivot year + 1 to 100 (exclusive) will have 19
 
 ### Date Adapter
 
-For business applications we optionally provide an alternative date adapter (e.g. for parsing a manually entered date string).
-See [Datetime documentation](/core/components/datetime) for more information.
+A Date Adapter defines how to deal with dates and converts user inputs in to date objets.
+The `Datepicker` uses the `DateAdapter` internally, respectively the `NativeDateAdapter`,
+which uses the JavaScript `Date` object.
+
+#### LeanDateAdapter
+
+For lean applications you have the ability to use `LeanDateAdapter` which extends `NativeDateAdapter`
+and additionally allows parsing dates like '01012020'.
+
+```ts
+import { SBB_LEAN_DATE_ADAPTER } from '@sbb-esta/angular/core';
+@NgModule({
+  providers: [SBB_LEAN_DATE_ADAPTER],
+})
+export class AppModule {}
+```
+
+#### Custom DateAdapter
+
+It is possible to implement your own `DateAdapter` and register it globally:
+
+```ts
+@NgModule({
+  providers: [{ provide: DateAdapter, useClass: MyDateAdapter }],
+})
+export class AppModule {}
+```

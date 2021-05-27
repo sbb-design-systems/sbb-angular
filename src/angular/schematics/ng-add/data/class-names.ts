@@ -53,6 +53,14 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbDropdownDefaultOptions',
           replaceWith: 'SbbMenuDefaultOptions',
         },
+        {
+          replace: 'SbbBusinessDateAdapter',
+          replaceWith: 'SbbLeanDateAdapter',
+        },
+        {
+          replace: 'SBB_BUSINESS_DATE_ADAPTER',
+          replaceWith: 'SBB_LEAN_DATE_ADAPTER',
+        },
       ],
     },
   ],

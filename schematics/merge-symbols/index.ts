@@ -29,6 +29,8 @@ export function mergeSymbols(): Rule {
       SbbDropdownItem: 'menu',
       SbbDropdownModule: 'menu',
       SbbDropdownDefaultOptions: 'menu',
+      SbbBusinessDateAdapter: 'core',
+      SBB_BUSINESS_DATE_ADAPTER: 'core',
     };
 
     extractExportsForModule('src/angular/');

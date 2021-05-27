@@ -13,6 +13,28 @@ var path = require('path');
 var schematicsTs = require('@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript');
 var astUtils = require('@schematics/angular/utility/ast-utils');
 
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    var n = Object.create(null);
+    if (e) {
+        Object.keys(e).forEach(function (k) {
+            if (k !== 'default') {
+                var d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: function () {
+                        return e[k];
+                    }
+                });
+            }
+        });
+    }
+    n['default'] = e;
+    return Object.freeze(n);
+}
+
+var schematicsTs__namespace = /*#__PURE__*/_interopNamespace(schematicsTs);
+
 class BazelGenruleResolver {
     constructor() {
         this._buildFile = core.fragment('BUILD.bazel');
@@ -388,7 +410,7 @@ class TypeScriptDependencyResolverBase {
         return this._findStaticDependencies(details).concat(this._findDependencyByOccurrence(details.file));
     }
     _findStaticDependencies(details) {
-        const sourceFile = schematicsTs.createSourceFile(core.basename(details.file.path), details.file.content.toString(), schematicsTs.ScriptTarget.ESNext, true);
+        const sourceFile = schematicsTs__namespace.createSourceFile(core.basename(details.file.path), details.file.content.toString(), schematicsTs__namespace.ScriptTarget.ESNext, true);
         return this._findImportsAndReexports(sourceFile)
             .concat(this._findDynamicImports(sourceFile))
             .concat(this._findReferences(sourceFile))
@@ -397,15 +419,15 @@ class TypeScriptDependencyResolverBase {
     }
     _findImportsAndReexports(sourceFile) {
         return [
-            ...astUtils.findNodes(sourceFile, schematicsTs.SyntaxKind.ImportDeclaration, undefined, true),
-            ...astUtils.findNodes(sourceFile, schematicsTs.SyntaxKind.ExportDeclaration, undefined, true),
+            ...astUtils.findNodes(sourceFile, schematicsTs__namespace.SyntaxKind.ImportDeclaration, undefined, true),
+            ...astUtils.findNodes(sourceFile, schematicsTs__namespace.SyntaxKind.ExportDeclaration, undefined, true),
         ].map((n) => { var _a, _b; return (_b = (_a = n.moduleSpecifier) === null || _a === void 0 ? void 0 : _a.getText().replace(/['"]/g, '')) !== null && _b !== void 0 ? _b : ''; });
     }
     _findDynamicImports(sourceFile) {
-        return astUtils.findNodes(sourceFile, schematicsTs.SyntaxKind.ImportKeyword, undefined, true)
+        return astUtils.findNodes(sourceFile, schematicsTs__namespace.SyntaxKind.ImportKeyword, undefined, true)
             .filter((n) => n.getFullText().match(/ import/) &&
-            schematicsTs.isCallExpression(n.parent) &&
-            schematicsTs.isStringLiteral(n.parent.arguments[0]))
+            schematicsTs__namespace.isCallExpression(n.parent) &&
+            schematicsTs__namespace.isStringLiteral(n.parent.arguments[0]))
             .map((n) => n.parent.arguments[0].getText().replace(/['"]/g, ''));
     }
     _findReferences(sourceFile) {
