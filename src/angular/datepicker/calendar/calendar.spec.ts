@@ -15,7 +15,8 @@ import {
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
-import { SbbCalendar, SbbDatepickerModule } from '../public-api';
+import { SbbCalendar } from '../calendar/calendar';
+import { SbbDatepickerModule } from '../datepicker.module';
 
 @Component({
   template: `

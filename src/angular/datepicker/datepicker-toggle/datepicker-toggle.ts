@@ -35,12 +35,12 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
   /** Whether the toggle button is disabled. */
   @Input()
   get disabled(): boolean {
-    return this._disabled === undefined ? this._datepicker.disabled : !!this._disabled;
+    return this._disabled === undefined ? this._datepicker.disabled : this._disabled;
   }
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
   }
-  private _disabled: boolean;
+  private _disabled?: boolean;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
@@ -88,7 +88,5 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
     );
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;
-  // tslint:enable: member-ordering
 }

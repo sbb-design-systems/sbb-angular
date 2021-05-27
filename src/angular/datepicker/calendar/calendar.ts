@@ -25,6 +25,7 @@ import { SbbMonthView } from '../month-view/month-view';
 
 @Component({
   selector: 'sbb-calendar-header',
+  exportAs: 'sbbCalendarHeader',
   templateUrl: './calendar-header.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
