@@ -23,9 +23,9 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular-public/input';
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular/core';
 import { TypeRef } from '@sbb-esta/angular/core';
+import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular/form-field';
 import { Subscription } from 'rxjs';
 
 import { createMissingDateImplError } from '../datepicker-errors';
@@ -145,7 +145,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
   /** Whether the datepicker-input is disabled. */
   @Input()
   get disabled(): boolean {
-    return !!this._disabled;
+    return this._disabled;
   }
   set disabled(value: boolean) {
     const newValue = coerceBooleanProperty(value);
@@ -368,7 +368,5 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;
-  // tslint:enable: member-ordering
 }
