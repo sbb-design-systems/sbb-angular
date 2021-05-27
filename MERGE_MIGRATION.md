@@ -19,7 +19,7 @@ Don't forget to run `yarn generate:bazel` after each step.
 2. Remove deprecated code in the copied module.
 3. Where a template or visual difference is necessary, extend the component/directive class with the variant mixin (`mixinVariant`). See [Variant Mixin](#mixinVariant).
 4. Refactor scss code according to [CODING_STANDARDS](./CODING_STANDARDS.md). Also see [SCSS Rules](#scssRules).
-5. Update symbols for automatic merge migration by applying following command: `yarn generate:merge-symbols`.
+5. Update symbols for automatic merge migration by applying following command: `yarn sym`.
 6. Check documentation (\*.md) for any required changes.
 7. Migrate examples from showcase to src/components-examples, by running the following command: `yarn migrate:example --module name-of-module`.
    Sort examples according to the existing order on https://angular.app.sbb.ch by changing the `@order` number in example class docs.
