@@ -19,7 +19,7 @@
     "bazel": "bazelisk",
     "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/schematics/bazel/*\" | xargs buildifier -v",
     "bazel:format-lint": "yarn -s bazel:buildifier --lint=warn --mode=check",
-    "bazel:cache": "ts-node-script ./scripts/cache.ts",
+    "bazel:cache": "ts-node-script -T ./scripts/cache.ts",
     "start": "npm-run-all build:public2business --parallel start:devserver watch:public2business",
     "start:devserver": "ibazel run //src/showcase:devserver",
     "start:prod": "npm-run-all build:public2business --parallel start:prodserver watch:public2business",

@@ -68,7 +68,7 @@ jobs:
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: "Bazel: Restore remote cache"
-      if: ${{ contains(github.event.head_commit.message, '--with-cache') }}
+      if: ${{ (success() || failure()) && !contains(github.event.head_commit.message, '--no-cache') }}
       uses: actions/cache@v2
       with:
         path: ~/.bazel-cache/sbb-angular
@@ -191,6 +191,9 @@ jobs:
       with:
         name: bazel-cache-test-artifact
         path: ~/.bazel-cache/bazel-cache-test.tar.zst
+    - name: "Bazel: Clear cache directory"
+      if: ${{ success() || failure() }}
+      run: rm -rf ~/.bazel-cache
 
   showcase:
     if: ${{ success() || failure() }}
@@ -250,6 +253,9 @@ jobs:
       with:
         name: bazel-cache-showcase-artifact
         path: ~/.bazel-cache/bazel-cache-showcase.tar.zst
+    - name: "Bazel: Clear cache directory"
+      if: ${{ success() || failure() }}
+      run: rm -rf ~/.bazel-cache
 
     - name: "Deploy: Pack showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
@@ -325,6 +331,9 @@ jobs:
       with:
         name: bazel-cache-showcase-merge-artifact
         path: ~/.bazel-cache/bazel-cache-showcase-merge.tar.zst
+    - name: "Bazel: Clear cache directory"
+      if: ${{ success() || failure() }}
+      run: rm -rf ~/.bazel-cache
 
     - name: "Deploy: Pack showcase"
       run: mv $(npm pack ./dist/releases/showcase-merge | tail -n 1) sbb-esta-angular-showcase-merge.tgz
@@ -354,18 +363,8 @@ jobs:
       with:
         node-version: 14
 
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive --ignore-scripts
+    - name: "Yarn: Install global dependencies"
+      run: yarn global add typescript ts-node
 
     - name: "Bazel: Create cache directory"
       run: mkdir -p ~/.bazel-cache/
