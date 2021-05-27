@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SbbCheckboxModule } from '@sbb-esta/angular-public/checkbox';
-import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SBB_BUSINESS_DATE_ADAPTER } from '@sbb-esta/angular/core';
 import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
+import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 
 import { DatepickerBusinessDateAdapterExample } from './datepicker-business-date-adapter/datepicker-business-date-adapter-example';
 import { DatepickerDateFilterExample } from './datepicker-date-filter/datepicker-date-filter-example';

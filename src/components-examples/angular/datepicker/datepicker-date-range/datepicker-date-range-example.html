@@ -1,23 +1,18 @@
-<form [formGroup]="twoDatepickersForm">
-  <sbb-form-field label="Datepicker" class="sbbsc-block" style="display: block">
-    <sbb-datepicker [connected]="datepickerTheSecond" arrows>
-      <input type="text" sbbDateInput sbbInput formControlName="firstDatepicker" />
-    </sbb-datepicker>
-  </sbb-form-field>
-  <sbb-form-field label="Datepicker">
-    <sbb-datepicker #datepickerTheSecond arrows>
-      <input type="text" sbbDateInput sbbInput formControlName="secondDatepicker" />
-    </sbb-datepicker>
-  </sbb-form-field>
-</form>
-<h4 class="h4-margin-bottom">Properties</h4>
-<pre>datepicker 1 errors: {{ twoDatepickersForm.get('firstDatepicker')?.errors | json }}</pre>
-<pre>datepicker 2 errors: {{ twoDatepickersForm.get('secondDatepicker')?.errors | json }}</pre>
+<sbb-form-field label="Start" style="display: block">
+  <sbb-datepicker [connected]="endDatepicker" arrows>
+    <input type="text" sbbDateInput sbbInput [formControl]="start" />
+  </sbb-datepicker>
+</sbb-form-field>
+<sbb-form-field label="End">
+  <sbb-datepicker #endDatepicker arrows>
+    <input type="text" sbbDateInput sbbInput [formControl]="end" />
+  </sbb-datepicker>
+</sbb-form-field>
 
-<pre>form validity: {{ twoDatepickersForm.valid | json }}</pre>
+<h4>Properties</h4>
 <pre>
-firstDatepicker model: {{ twoDatepickersForm.get('firstDatepicker')?.value | date: 'mediumDate' }}
-secondDatepicker model: {{
-    twoDatepickersForm.get('secondDatepicker')?.value | date: 'mediumDate'
-  }}</pre
->
+start model: {{ start.value | date: 'mediumDate' }}
+</pre>
+<pre>
+end model: {{ start.value | date: 'mediumDate' }}
+</pre>

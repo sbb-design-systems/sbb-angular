@@ -1,44 +1,42 @@
-<form [formGroup]="formGroup">
-  <sbb-form-field label="Datepicker">
-    <sbb-datepicker
-      [arrows]="arrows"
-      [toggle]="toggle"
-      (closed)="closedEvent()"
-      (opened)="openedEvent()"
-    >
-      <input
-        type="text"
-        sbbDateInput
-        sbbInput
-        formControlName="date"
-        [min]="minDate"
-        [max]="maxDate"
-        (dateChange)="dateChangeEvent($event)"
-        (dateInput)="dateInputEvent($event)"
-      />
-    </sbb-datepicker>
-  </sbb-form-field>
-</form>
-<h4 class="h4-margin-bottom">Properties</h4>
-<p class="sbb-checkbox-group-vertical h4-margin-bottom">
-  <sbb-checkbox [(ngModel)]="arrows">Arrows</sbb-checkbox>
-  <sbb-checkbox [(ngModel)]="toggle">Toggle</sbb-checkbox>
-  <sbb-checkbox [(ngModel)]="disabled" (change)="onDisabled()">Disabled</sbb-checkbox>
+<sbb-form-field label="Datepicker">
+  <sbb-datepicker
+    [arrows]="arrows.value"
+    [toggle]="toggle.value"
+    (closed)="closedEvent()"
+    (opened)="openedEvent()"
+  >
+    <input
+      type="text"
+      sbbDateInput
+      sbbInput
+      [formControl]="date"
+      [min]="minDate.value"
+      [max]="maxDate.value"
+      (dateChange)="dateChangeEvent($event)"
+      (dateInput)="dateInputEvent($event)"
+    />
+  </sbb-datepicker>
+</sbb-form-field>
+
+<h4>Properties</h4>
+<p class="sbb-checkbox-group-vertical">
+  <sbb-checkbox [formControl]="arrows">Arrows</sbb-checkbox>
+  <sbb-checkbox [formControl]="toggle">Toggle</sbb-checkbox>
+  <sbb-checkbox [formControl]="disabled">Disabled</sbb-checkbox>
 </p>
 
-<sbb-form-field class="h4-margin-bottom" style="display: block">
-  <sbb-label for="minDate">Min Date</sbb-label>
+<sbb-form-field label="Min Date" style="display: block">
   <sbb-datepicker arrows>
-    <input type="text" sbbDateInput sbbInput [(ngModel)]="minDate" />
-  </sbb-datepicker>
-</sbb-form-field>
-<sbb-form-field>
-  <sbb-label for="maxDate">Max Date</sbb-label>
-  <sbb-datepicker arrows>
-    <input type="text" sbbDateInput sbbInput [(ngModel)]="maxDate" />
+    <input type="text" sbbDateInput sbbInput [formControl]="minDate" />
   </sbb-datepicker>
 </sbb-form-field>
 
-<pre>model: {{ formGroup.get('date')?.value | date: 'mediumDate' }}</pre>
-<pre>form control validity: {{ formGroup.get('date')?.valid }}</pre>
-<pre>form control errors: {{ formGroup.get('date')?.errors | json }}</pre>
+<sbb-form-field label="Max Date">
+  <sbb-datepicker arrows>
+    <input type="text" sbbDateInput sbbInput [formControl]="maxDate" />
+  </sbb-datepicker>
+</sbb-form-field>
+
+<pre>model: {{ date.value | date: 'mediumDate' }}</pre>
+<pre>form control validity: {{ date.valid }}</pre>
+<pre>form control errors: {{ date.errors | json }}</pre>

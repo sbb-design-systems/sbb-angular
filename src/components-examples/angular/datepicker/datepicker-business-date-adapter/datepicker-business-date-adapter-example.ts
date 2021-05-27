@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SBB_BUSINESS_DATE_ADAPTER } from '@sbb-esta/angular/core';
 
 /**
- * @title Datepicker Business Date Adapter
+ * @title Datepicker Lean Date Adapter
  * @order 50
  */
 @Component({

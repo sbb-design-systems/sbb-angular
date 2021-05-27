@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { SbbDateAdapter } from '@sbb-esta/angular/core';
 import { SbbDateInputEvent } from '@sbb-esta/angular/datepicker';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * @title Datepicker Simple Reactive
@@ -11,29 +13,30 @@ import { SbbDateInputEvent } from '@sbb-esta/angular/datepicker';
   selector: 'sbb-datepicker-simple-reactive-example',
   templateUrl: './datepicker-simple-reactive-example.html',
 })
-export class DatepickerSimpleReactiveExample {
-  formGroup = new FormGroup({ date: new FormControl(new Date()) });
+export class DatepickerSimpleReactiveExample implements OnDestroy {
+  date = new FormControl(new Date());
 
-  minDate: Date;
-  maxDate: Date;
+  minDate = new FormControl();
+  maxDate = new FormControl();
 
-  toggle = true;
-  arrows = false;
-  disabled = false;
+  toggle = new FormControl(true);
+  arrows = new FormControl(false);
+  disabled = new FormControl(false);
+
+  destroyed = new Subject();
 
   constructor(dateAdapter: SbbDateAdapter<Date>) {
-    this.minDate = dateAdapter.addCalendarMonths(dateAdapter.today(), -6);
-    this.maxDate = dateAdapter.addCalendarMonths(dateAdapter.today(), 6);
+    this.minDate.setValue(dateAdapter.addCalendarMonths(dateAdapter.today(), -6));
+    this.maxDate.setValue(dateAdapter.addCalendarMonths(dateAdapter.today(), 6));
+
+    this.disabled.valueChanges
+      .pipe(takeUntil(this.destroyed))
+      .subscribe((value) => (value ? this.date.disable() : this.date.enable()));
   }
 
-  async onDisabled() {
-    // Wait a tick to ensure this.disabled is updated
-    await Promise.resolve();
-    if (this.disabled) {
-      this.formGroup.get('date')?.disable();
-    } else {
-      this.formGroup.get('date')?.enable();
-    }
+  ngOnDestroy() {
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 
   closedEvent() {

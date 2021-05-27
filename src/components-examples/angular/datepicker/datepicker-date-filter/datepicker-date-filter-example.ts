@@ -10,9 +10,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './datepicker-date-filter-example.html',
 })
 export class DatepickerDateFilterExample {
-  dateWithFilter = new FormControl();
+  date = new FormControl();
 
-  filterDates = (date: Date | null): boolean => {
-    return date?.getDate() === 1;
-  };
+  filterDates = (date: Date | null): boolean => date?.getDate() === 1;
 }
