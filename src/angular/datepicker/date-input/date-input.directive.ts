@@ -164,7 +164,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
       element.blur();
     }
   }
-  private _disabled: boolean;
+  private _disabled = false;
 
   /** Emits when a `change` event is fired on this `<input>`. */
   @Output() readonly dateChange: EventEmitter<SbbDateInputEvent<D>> = new EventEmitter<

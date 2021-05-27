@@ -102,7 +102,7 @@ export class SbbDatepicker<D> implements OnDestroy {
       this.disabledChange.next(newValue);
     }
   }
-  private _disabled: boolean;
+  private _disabled?: boolean;
 
   /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[];
@@ -516,9 +516,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;
   static ngAcceptInputType_arrows: BooleanInput;
   static ngAcceptInputType_toggle: BooleanInput;
-  // tslint:enable: member-ordering
 }
