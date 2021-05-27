@@ -173,8 +173,8 @@ def karma_web_test_suite(name, **kwargs):
     web_test_args = {}
     kwargs["srcs"] = ["@npm//:node_modules/tslib/tslib.js"] + kwargs.get("srcs", [])
     kwargs["deps"] = [
-        "//tools/rxjs:rxjs_umd_modules",
-        "//tools/angular-localize:angular_localize_umd_module",
+        "//tools/umd-modules:rxjs",
+        "//tools/umd-modules:ng-localize",
     ] + kwargs.get("deps", [])
 
     # Set up default browsers if no explicit `browsers` have been specified.

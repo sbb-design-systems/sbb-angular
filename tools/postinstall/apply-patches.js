@@ -124,12 +124,6 @@ function applyPatches() {
     `$& + [m for dep in ctx.attr.deps if (hasattr(dep, "angular") and hasattr(dep.angular, "metadata")) for m in dep.angular.metadata]`,
     'node_modules/@angular/bazel/src/ng_module.bzl'
   );
-  // Name umd module in esri-loader
-  searchAndReplace(
-    `define(['exports'], factory)`,
-    `define('esri-loader', ['exports'], factory)`,
-    'node_modules/esri-loader/dist/umd/esri-loader.js'
-  );
   // Fix view-engine compilation. It seems in the CDK scrolling module, the .ngfactory path
   // is mistakenly changed to an invalid path during bazel compilation.
   searchAndReplace(

@@ -1,11 +1,12 @@
-// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
-/// <reference types="arcgis-js-api" />
-
 import { Injectable } from '@angular/core';
-
-import { SbbEsriTypesService } from '../esri-types/esri-types.service';
+import Point from '@arcgis/core/geometry/Point';
+import Graphic from '@arcgis/core/Graphic';
+import MapView from '@arcgis/core/views/MapView';
+import SceneView from '@arcgis/core/views/SceneView';
 
 import { SbbMarkerSymbolFactory } from './marker-symbol-factory/marker-symbol.factory';
+import GraphicProperties = __esri.GraphicProperties;
+import PointProperties = __esri.PointProperties;
 
 @Injectable({
   providedIn: 'root',
@@ -13,37 +14,37 @@ import { SbbMarkerSymbolFactory } from './marker-symbol-factory/marker-symbol.fa
 export class SbbGraphicService {
   private _markerSymbolFactory: SbbMarkerSymbolFactory;
 
-  constructor(private _esri: SbbEsriTypesService) {
-    this._markerSymbolFactory = new SbbMarkerSymbolFactory(this._esri);
+  constructor() {
+    this._markerSymbolFactory = new SbbMarkerSymbolFactory();
   }
 
   /** Adds a new point graphic at given loation to the map/scene. */
-  addNewGraphicToMap(point: __esri.Point, mapView: __esri.MapView | __esri.SceneView) {
+  addNewGraphicToMap(point: Point, mapView: MapView | SceneView) {
     const markerGraphic = this._createPointGraphic(point);
     mapView.graphics.removeAll();
     mapView.graphics.add(markerGraphic);
   }
 
   /** @docs-private */
-  private _createPointGraphic(geometryPoint: __esri.Point): __esri.Graphic {
+  private _createPointGraphic(geometryPoint: Point): Graphic {
     const point = this._createGeometryPoint(geometryPoint);
 
     const markerSymbol = this._markerSymbolFactory.createCircleSymbol();
-    const graphicProperties: __esri.GraphicProperties = {
+    const graphicProperties: GraphicProperties = {
       geometry: point,
       symbol: markerSymbol,
     };
-    return new this._esri.Graphic(graphicProperties);
+    return new Graphic(graphicProperties);
   }
 
   /** @docs-private */
-  private _createGeometryPoint(geometry: any): __esri.Point {
-    const pointProperties: __esri.PointProperties = {
+  private _createGeometryPoint(geometry: any): Point {
+    const pointProperties: PointProperties = {
       x: geometry.x,
       y: geometry.y,
       spatialReference: geometry.spatialReference,
     };
 
-    return new this._esri.Point(pointProperties);
+    return new Point(pointProperties);
   }
 }

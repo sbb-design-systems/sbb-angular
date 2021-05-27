@@ -20,7 +20,6 @@ ng_module(
         "//src/angular-maps/esri-web-scene",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//@types/arcgis-js-api",
     ],
 )
 

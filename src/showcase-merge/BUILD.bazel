@@ -74,9 +74,9 @@ concatjs_devserver(
     entry_module = "sbb_angular/src/showcase-merge/main.dev",
     port = 4200,
     scripts = [
-        "//tools/esri-loader:esri_loader_umd_module",
         "@npm//:node_modules/tslib/tslib.js",
-        "//tools/rxjs:rxjs_umd_modules",
+        "//tools/umd-modules:rxjs",
+        "//tools/umd-modules:arcgis",
     ],
     static_files = _ASSETS + [
         "@npm//:node_modules/core-js/client/core.min.js",

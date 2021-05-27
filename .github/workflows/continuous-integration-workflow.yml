@@ -44,6 +44,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: "VM: Free disk space"
+      run: |
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /opt/ghc
+        sudo rm -rf "/usr/local/share/boost"
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
     - name: Shallow checkout
       uses: actions/checkout@v2
       with:
@@ -77,6 +83,7 @@ jobs:
           bazel-merged-
     - name: "Bazel: Build"
       run: yarn -s build all
+      timeout-minutes: 45
     - name: "Bazel: Clean bazel disk cache"
       if: ${{ success() || failure() }}
       run: yarn -s bazel:cache clean --individualMaxSize=50MB
