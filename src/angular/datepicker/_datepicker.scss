@@ -1,15 +1,10 @@
 @import '../../angular/styles/common';
 
-$dateInputBorderWidth: 2;
 $defaultPickerIconSize: 24;
 $defaultToggleLeftOffset: $defaultPickerIconSize / 2;
 $pickerIconsHoverColor: $sbbColorRed125;
-$dateInputOneIconPadding: 44;
-$dateInputTwoIconPadding: 72;
 $withArrowsToggleLeftOffset: $defaultPickerIconSize + ($defaultPickerIconSize / 2) + 4;
 $withArrowsLeftArrowOffset: $defaultPickerIconSize / 2;
-$withArrowsRightArrowOffset: $defaultPickerIconSize / 2;
-$datePickerMinWidth: 116;
 
 $datePickerContentTop: 17;
 
@@ -59,16 +54,12 @@ $datePickerDisabledCellTop: 20;
 $datePickerDisabledCellLeft: 18;
 
 // start of lean variables
-$dateInputBorderWidthLean: 0;
-$dateInputOneIconPaddingLean: 38;
-$dateInputTwoIconPaddingLean: 62;
 
 $datePickerContentTopLean: 8;
 
 $defaultToggleLeftOffsetLean: 6;
 $withArrowsToggleLeftOffsetLean: 30;
 $withArrowsLeftArrowOffsetLean: 6;
-$withArrowsRightArrowOffsetLean: 6;
 
 $datePickerCalendarBorderLean: pxToEm(1) solid $sbbColorIron;
 $datePickerCalendarBorderWidthLean: 1;
