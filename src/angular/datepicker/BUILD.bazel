@@ -5,7 +5,6 @@ load(
     "ng_test_library",
     "ng_web_test_suite",
     "sass_binary",
-    "sass_library",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -33,17 +32,11 @@ ng_module(
     ],
 )
 
-sass_library(
-    name = "datepicker_scss_lib",
-    srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:common_scss_lib"],
-)
-
 sass_binary(
     name = "datepicker_datepicker_scss",
     src = "datepicker/datepicker.scss",
     deps = [
-        ":datepicker_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 
@@ -51,7 +44,7 @@ sass_binary(
     name = "datepicker_content_datepicker_content_scss",
     src = "datepicker-content/datepicker-content.scss",
     deps = [
-        ":datepicker_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 
