@@ -124,107 +124,7 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   padding-bottom: pxToEm(1);
 }
 
-@mixin datePickerToggleArrow($dir: calendarDown) {
-  position: absolute;
-  left: pxToEm($datePickerToggleWrapperArrowLeftOffset);
-  width: pxToEm($datePickerToggleWrapperArrowWidth);
-  background-color: $datePickerCalendarBg;
-  height: $datePickerToggleWrapperArrowHeight;
-
-  html.sbb-lean & {
-    width: pxToEm($datePickerToggleWrapperArrowWidthLean);
-    height: $datePickerToggleWrapperArrowHeightLean;
-    left: pxToEm($datePickerToggleWrapperArrowLeftOffsetLean);
-  }
-
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    background-color: $datePickerToggleArrowColor;
-    width: pxToEm($datePickerToggleArrowWidth);
-    height: $datePickerToggleArrowHeight;
-
-    html.sbb-lean & {
-      width: pxToEm($datePickerToggleArrowWidthLean);
-      height: $datePickerToggleArrowHeightLean;
-      background-color: $datePickerToggleArrowColorLean;
-    }
-  }
-  &::before {
-    left: $datePickerToggleArrowBeforeOffset;
-
-    html.sbb-lean & {
-      left: $datePickerToggleArrowBeforeOffsetLean;
-    }
-  }
-  &::after {
-    left: $datePickerToggleArrowAfterOffset;
-
-    html.sbb-lean & {
-      left: $datePickerToggleArrowAfterOffsetLean;
-    }
-  }
-  @if $dir == calendarDown {
-    top: $datePickerToggleArrowTopOffset;
-    &::before,
-    &::after {
-      top: $datePickerToggleWrapperArrowHeight / 2;
-
-      html.sbb-lean & {
-        top: $datePickerToggleWrapperArrowHeightLean / 2;
-      }
-    }
-    &::before {
-      transform: rotate(-45deg);
-    }
-    &::after {
-      transform: rotate(45deg);
-    }
-    .sbb-datepicker-with-arrows & {
-      left: pxToEm($datePickerToggleWithArrowsWrapperArrowLeftOffset);
-
-      html.sbb-lean & {
-        left: pxToEm($datePickerToggleWithArrowsWrapperArrowLeftOffsetLean);
-      }
-    }
-  } @else if $dir == calendarTop {
-    top: auto;
-    bottom: $datePickerToggleArrowTopOffset;
-    &::before,
-    &::after {
-      top: auto;
-      bottom: $datePickerToggleWrapperArrowHeight / 2;
-
-      html.sbb-lean & {
-        bottom: $datePickerToggleWrapperArrowHeightLean / 2;
-      }
-    }
-    &::before {
-      transform: rotate(45deg);
-    }
-    &::after {
-      transform: rotate(-45deg);
-    }
-  }
-}
-
 .sbb-datepicker-popup {
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-    }
-  }
-
-  .sbb-datepicker-popup-arrow {
-    @include datePickerToggleArrow();
-  }
-
   button {
     @include buttonResetFrameless();
 
@@ -235,48 +135,78 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   }
 }
 
-.sbb-datepicker-popup-above {
-  .sbb-datepicker-popup {
-    .sbb-datepicker-popup-arrow {
-      @include datePickerToggleArrow(calendarTop);
-    }
-
-    &.sbb-datepicker-with-arrows {
-      .sbb-datepicker-popup-arrow {
-        left: pxToEm($datePickerToggleWithArrowsWrapperArrowLeftOffset);
-
-        html.sbb-lean & {
-          left: pxToEm($datePickerToggleWithArrowsWrapperArrowLeftOffsetLean);
-        }
-      }
-    }
-
-    .sbb-datepicker-content {
-      top: auto;
-      bottom: pxToEm($datePickerContentTop);
-
-      html.sbb-lean & {
-        bottom: pxToEm($datePickerContentTopLean);
-      }
-
-      .sbb-calendar {
-        box-shadow: $datePickerRevertCalendarBoxShadow;
-
-        html.sbb-lean & {
-          box-shadow: $datePickerRevertCalendarBoxShadowLean;
-        }
-      }
-    }
-  }
-}
-
 .sbb-datepicker-content {
   position: relative;
   width: 100%;
-  top: pxToRem($datePickerContentTop);
+  top: pxToEm($datePickerContentTop);
+  font-size: pxToRem($sizeFontDefault);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
 
   html.sbb-lean & {
-    top: pxToRem($datePickerContentTopLean);
+    top: pxToEm($datePickerContentTopLean);
+  }
+
+  .sbb-datepicker-popup-above & {
+    top: auto;
+    bottom: pxToEm($datePickerContentTop);
+
+    html.sbb-lean & {
+      top: auto; // Redefine to be specific enough
+      bottom: pxToEm($datePickerContentTopLean);
+    }
+  }
+
+  // Arrow
+  &:after {
+    top: pxToEm(-8);
+    left: pxToEm(14);
+    content: '';
+    height: pxToEm(20);
+    width: pxToEm(20);
+    position: absolute;
+    pointer-events: none;
+    transform: rotate(-135deg);
+    background-color: $sbbColorWhite;
+    border: pxToEm(2) solid transparent;
+    border-right-color: $datePickerToggleArrowColor;
+    border-bottom-color: $datePickerToggleArrowColor;
+
+    html.sbb-lean & {
+      top: pxToEm(-4);
+      left: pxToEm(12);
+      border-width: pxToEm(1);
+      width: pxToEm(10);
+      height: pxToEm(10);
+      border-right-color: $datePickerToggleArrowColorLean;
+      border-bottom-color: $datePickerToggleArrowColorLean;
+    }
+
+    .sbb-datepicker-with-arrows & {
+      left: pxToEm(42);
+
+      html.sbb-lean & {
+        left: pxToEm(36);
+      }
+    }
+
+    .sbb-datepicker-popup-above & {
+      top: auto;
+      bottom: pxToEm(-8);
+      transform: rotate(45deg);
+
+      html.sbb-lean & {
+        top: auto;
+        bottom: pxToEm(-4);
+      }
+    }
   }
 }
 
@@ -304,6 +234,14 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
     html.sbb-lean & {
       width: $datePickerCalendarWidthLean;
       height: $datePickerCalendarHeightLean;
+    }
+  }
+
+  .sbb-datepicker-popup-above & {
+    box-shadow: $datePickerRevertCalendarBoxShadow;
+
+    html.sbb-lean & {
+      box-shadow: $datePickerRevertCalendarBoxShadowLean;
     }
   }
 }
