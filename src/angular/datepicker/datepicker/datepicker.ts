@@ -399,7 +399,7 @@ export class SbbDatepicker<D> implements OnDestroy {
 
   private _getPanelClasses(): Array<string> {
     return [
-      'sbb-datepicker-popup',
+      'sbb-datepicker-panel',
       this.arrows ? 'sbb-datepicker-with-arrows' : 'sbb-datepicker-no-arrows',
     ];
   }
@@ -499,9 +499,9 @@ export class SbbDatepicker<D> implements OnDestroy {
 
     this._posStrategySubsription = posStrategy.positionChanges.subscribe((pos) => {
       if (pos.connectionPair.originY === 'top') {
-        this.popupRef.hostElement.classList.add('sbb-datepicker-popup-above');
+        this.popupRef.hostElement.classList.add('sbb-datepicker-panel-above');
       } else {
-        this.popupRef.hostElement.classList.remove('sbb-datepicker-popup-above');
+        this.popupRef.hostElement.classList.remove('sbb-datepicker-panel-above');
       }
     });
 

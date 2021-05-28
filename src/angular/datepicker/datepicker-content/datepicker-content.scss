@@ -124,17 +124,6 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   padding-bottom: pxToEm(1);
 }
 
-.sbb-datepicker-popup {
-  button {
-    @include buttonResetFrameless();
-
-    &:hover:enabled,
-    &:focus:enabled {
-      cursor: pointer;
-    }
-  }
-}
-
 .sbb-datepicker-content {
   position: relative;
   width: 100%;
@@ -154,7 +143,7 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
     top: pxToEm($datePickerContentTopLean);
   }
 
-  .sbb-datepicker-popup-above & {
+  .sbb-datepicker-panel-above & {
     top: auto;
     bottom: pxToEm($datePickerContentTop);
 
@@ -197,7 +186,7 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
       }
     }
 
-    .sbb-datepicker-popup-above & {
+    .sbb-datepicker-panel-above & {
       top: auto;
       bottom: pxToEm(-8);
       transform: rotate(45deg);
@@ -237,7 +226,7 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
     }
   }
 
-  .sbb-datepicker-popup-above & {
+  .sbb-datepicker-panel-above & {
     box-shadow: $datePickerRevertCalendarBoxShadow;
 
     html.sbb-lean & {
@@ -314,13 +303,17 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   }
 }
 
-.sbb-calendar-controls-left-arrow,
-.sbb-calendar-controls-right-arrow {
+.sbb-calender-controls-button {
+  @include buttonResetFrameless();
+
   display: flex;
   align-items: center;
   justify-content: center;
   outline: 0;
-
+  width: pxToEm($defaultPickerIconSize + 16);
+  height: $datePickerCalendarHeaderHeight;
+  vertical-align: middle;
+  cursor: pointer;
   color: $datePickerCalendarHeaderColor;
 
   &:hover,
@@ -329,32 +322,28 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
     color: $datePickerCalendarTableActiveColor;
   }
 
-  width: pxToEm($defaultPickerIconSize);
-  height: $datePickerCalendarHeaderHeight;
-  vertical-align: middle;
+  &:disabled {
+    cursor: default;
+    opacity: 0;
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($to: tabletPortrait) {
+      width: pxToEm($defaultPickerIconSize);
+    }
+  }
 
   html.sbb-lean & {
     height: $datePickerCalendarHeaderHeightLean;
     color: $datePickerCalendarHeaderColorLean;
   }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: tabletPortrait) {
-      width: pxToEm($defaultPickerIconSize) + pxToEm(16);
-    }
-  }
-
-  &[disabled] {
-    opacity: 0;
-    cursor: default;
-  }
 }
 
-.sbb-calendar-controls-left-arrow {
+.sbb-calender-controls-button-previous {
   float: left;
 }
 
-.sbb-calendar-controls-right-arrow {
+.sbb-calender-controls-button-next {
   float: right;
 }
 

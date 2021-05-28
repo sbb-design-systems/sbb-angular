@@ -197,12 +197,12 @@ describe('SbbDatepicker', () => {
       }));
 
       it('open non-touch should open popup', () => {
-        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-popup')).toBeNull();
+        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-panel')).toBeNull();
 
         testComponent.datepicker.open();
         fixture.detectChanges();
 
-        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-popup')).not.toBeNull();
+        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-panel')).not.toBeNull();
       });
 
       it('should open datepicker if opened input is set to true', fakeAsync(() => {
