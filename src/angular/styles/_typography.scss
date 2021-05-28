@@ -124,6 +124,15 @@ table {
     font-size: pxToRem($sizeFontDefault);
     line-height: 1.5;
     margin: 0.75em 0 0;
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        font-size: pxToRem($sizeFontDefault4k);
+      }
+      @include mq($from: desktop5k) {
+        font-size: pxToRem($sizeFontDefault5k);
+      }
+    }
   }
   th {
     font-family: $fontSbbBold;

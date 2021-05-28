@@ -213,11 +213,11 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 .sbb-datepicker-popup {
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      font-size: pxToRem(23);
+      font-size: pxToRem($sizeFontDefault4k);
     }
 
     @include mq($from: desktop5k) {
-      font-size: pxToRem(30);
+      font-size: pxToRem($sizeFontDefault5k);
     }
   }
 
