@@ -189,6 +189,10 @@
   @return 0 pxToRem($sign * $borderWidth * 4 * $scalingFactor) 0 rgba(0, 0, 0, 0.15);
 }
 
+@function boxShadowEm($sign, $borderWidth, $scalingFactor) {
+  @return 0 pxToEm($sign * $borderWidth * 4 * $scalingFactor) 0 rgba(0, 0, 0, 0.15);
+}
+
 @function horizontalBorderBoxShadow($sign, $borderWidth, $scalingFactor) {
   @return 0 pxToRem($sign * ($borderWidth + 1) * $scalingFactor) 0
     pxToRem(-$borderWidth * $scalingFactor) $sbbColorCloud;
