@@ -29,6 +29,9 @@ import { SbbMonthView } from '../month-view/month-view';
   templateUrl: './calendar-header.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-calendar-header sbb-icon-scaled',
+  },
 })
 export class SbbCalendarHeader<D> {
   public calendar: SbbCalendar<D>;

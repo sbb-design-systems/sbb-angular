@@ -119,29 +119,6 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   }
 }
 
-@mixin pickerIconsSize(
-  $pickerIconWidth: $defaultPickerIconSize,
-  $pickerIconHeight: $defaultPickerIconSize
-) {
-  width: toPx($pickerIconWidth);
-  height: toPx($pickerIconHeight);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      width: toPx($pickerIconWidth * $scalingFactor4k);
-      height: toPx($pickerIconHeight * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      width: toPx($pickerIconWidth * $scalingFactor5k);
-      height: toPx($pickerIconHeight * $scalingFactor5k);
-    }
-  }
-}
-
-%pickerIconsSize {
-  @include pickerIconsSize();
-}
-
 @mixin datePickerCellContentBase() {
   position: absolute;
   top: 12.5%;
@@ -339,11 +316,8 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 }
 
 .sbb-calendar-header {
-  border-bottom: 1px solid $datepickerCalendarLineColor;
-
-  html.sbb-lean & {
-    border-bottom: 1px solid $datepickerCalendarLineColorLean;
-  }
+  display: block;
+  border-bottom: pxToRem(1) solid $datepickerCalendarLineColor;
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
@@ -353,6 +327,10 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
     @include mq($from: desktop5k) {
       border-bottom-width: pxToRem(1 * $scalingFactor5k);
     }
+  }
+
+  html.sbb-lean & {
+    border-bottom-color: $datepickerCalendarLineColorLean;
   }
 }
 
@@ -553,10 +531,6 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 
   html.sbb-lean & {
     height: $datePickerCalendarHeaderHeightLean;
-  }
-
-  .sbb-icon {
-    @extend %pickerIconsSize;
   }
 }
 
