@@ -97,7 +97,9 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
+      font-size: pxToRem(
+        22.5
+      ); // Using $sizeFontDefault4k here would mean to replace em definitions with media queries in whole datepicker-content.scss
     }
     @include mq($from: desktop5k) {
       font-size: pxToRem($sizeFontDefault5k);
@@ -133,6 +135,10 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
     border-right-color: $datePickerToggleArrowColor;
     border-bottom-color: $datePickerToggleArrowColor;
 
+    // Cut out obsolete triangle so it does not collide with calendar content
+    // `-0.4px` fixes calculation issue in Firefox
+    clip-path: polygon(-0.4px 100%, 100% -0.4px, 100% 100%);
+
     html.sbb-lean & {
       top: pxToEm(-4);
       left: pxToEm(12);
@@ -156,9 +162,27 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
       bottom: pxToEm(-8);
       transform: rotate(45deg);
 
+      // Cut out obsolete triangle and also overlapping shadow so it does not collide with calendar content
+      // `-0.4px` fixes calculation issue in Firefox
+      clip-path: polygon(
+        -0.4px 100%,
+        100% -0.4px,
+        100% 71%,
+        150% 21%,
+        150% 150%,
+        21% 150%,
+        71% 100%,
+        100% 100%
+      );
+      $boxWidth: pxToEm($datePickerCalendarBorderWidth * 2);
+      box-shadow: $boxWidth $boxWidth 0 $boxWidth rgb(0 0 0 / 15%);
+
       html.sbb-lean & {
         top: auto;
         bottom: pxToEm(-4);
+
+        $boxWidth: pxToEm(1 * 2);
+        box-shadow: $boxWidth $boxWidth 0 $boxWidth rgb(0 0 0 / 15%);
       }
     }
   }
@@ -404,7 +428,7 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 }
 
 // TODO: Check from here and ensure no pxToEm or similar is in a variable, inline into code, collision of indicator arrow in 5k with lowest circle
-
+// TODO: Kreis 4k nicht rund, arrow unten nicht exakt positioniert
 .sbb-calendar-body-cell {
   position: relative;
   height: 0;
