@@ -1,4 +1,5 @@
-export * from './datepicker.module';
+// To avoid colliding name exports in bundles, don't use star export here
+export { SbbDatepickerModule } from './datepicker.module';
 export * from './datepicker/datepicker.component';
 export * from './datepicker-content/datepicker-content.component';
 export * from './datepicker-toggle/datepicker-toggle.component';
