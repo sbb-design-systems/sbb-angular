@@ -1,0 +1,44 @@
+load("//tools:defaults.bzl", "esbuild")
+
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "arcgis",
+    srcs = [
+        # do not sort
+        ":arcgis_bundle.js",
+        ":arcgis-core-umd.js",
+    ],
+)
+
+esbuild(
+    name = "arcgis_bundle",
+    args = [
+        "--global-name=arcgis.core",
+        "--resolve-extensions=.mjs,.js",
+    ],
+    entry_point = "arcgis-core-bundle.js",
+    format = "iife",
+    minify = True,
+    deps = [
+        "@npm//@arcgis/core",
+    ],
+)
+
+filegroup(
+    name = "ng-localize",
+    srcs = [
+        # do not sort
+        "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.js",
+        ":ng-localize-shim.js",
+    ],
+)
+
+filegroup(
+    name = "rxjs",
+    srcs = [
+        # do not sort
+        "@npm//:node_modules/rxjs/bundles/rxjs.umd.js",
+        ":rxjs-shims.js",
+    ],
+)

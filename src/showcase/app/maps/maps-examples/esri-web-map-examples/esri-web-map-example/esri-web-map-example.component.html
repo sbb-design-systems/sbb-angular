@@ -4,13 +4,14 @@
       <h4>Basic WebMap with eventhandlers</h4>
       <sbb-esri-web-map
         [portalItemId]="'f2e9b762544945f390ca4ac3671cfa72'"
-        (extentChanged)="mapExtentChanged($event)"
-        (mapClick)="mapClicked($event)"
-        (mapReady)="mapReady($event)"
+        (extentChanged)="activeExtent = $event"
+        (mapClick)="clickedPoint = $event.clickedPoint"
+        (mapReady)="mapIsReady = true"
         #webMap
         class="web-map"
       >
       </sbb-esri-web-map>
+      <pre>Map is ready: {{ mapIsReady }} </pre>
       <pre>Active map section: {{ activeExtent | json }} </pre>
       <pre>Last clicked point: {{ clickedPoint | json }} </pre>
     </div>

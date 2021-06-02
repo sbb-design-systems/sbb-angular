@@ -1,11 +1,9 @@
-import { SbbEsriTypesService } from '../../esri-types/esri-types.service';
+import SimpleMarkerSymbol from '@arcgis/core/symbols/SimpleMarkerSymbol';
 
 import { SbbMarkerSymbolSettings } from './marker-symbol.settings';
 
 export class SbbMarkerSymbolFactory {
-  constructor(private _esri: SbbEsriTypesService) {}
-
   createCircleSymbol() {
-    return new this._esri.SimpleMarkerSymbol(SbbMarkerSymbolSettings.simpleSymbol);
+    return new SimpleMarkerSymbol(SbbMarkerSymbolSettings.simpleSymbol);
   }
 }

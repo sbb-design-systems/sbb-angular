@@ -1,7 +1,11 @@
-// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
-/// <reference types="arcgis-js-api" />
-
 import { Injectable } from '@angular/core';
+import MapViewClickEvent = __esri.MapViewClickEvent;
+import SceneViewClickEvent = __esri.SceneViewClickEvent;
+import Graphic from '@arcgis/core/Graphic';
+import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
+import MapView from '@arcgis/core/views/MapView';
+import SceneView from '@arcgis/core/views/SceneView';
+import HitTestResult = __esri.HitTestResult;
 
 @Injectable({
   providedIn: 'root',
@@ -9,12 +13,12 @@ import { Injectable } from '@angular/core';
 export class SbbHitTestService {
   /** Calls the ESRI hitTest method for a location on a given map-/scene-view. */
   esriHitTest(
-    mapView: __esri.MapView | __esri.SceneView,
-    mapClickEvent: __esri.MapViewClickEvent | __esri.SceneViewClickEvent
-  ): Promise<__esri.Graphic[]> {
-    mapView.map.layers.forEach((l) => ((l as __esri.FeatureLayer).outFields = ['*']));
+    mapView: MapView | SceneView,
+    mapClickEvent: MapViewClickEvent | SceneViewClickEvent
+  ): Promise<Graphic[]> {
+    mapView.map.layers.forEach((l) => ((l as FeatureLayer).outFields = ['*']));
     return mapView
       .hitTest(mapClickEvent)
-      .then((response: __esri.HitTestResult) => response.results.map((r) => r.graphic));
+      .then((response: HitTestResult) => response.results.map((r) => r.graphic));
   }
 }

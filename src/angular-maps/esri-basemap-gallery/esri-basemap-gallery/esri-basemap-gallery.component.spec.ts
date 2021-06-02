@@ -1,21 +1,22 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { SbbEsriLegend } from './esri-legend.component';
+import { SbbEsriBasemapGallery } from './esri-basemap-gallery.component';
 
-describe('SbbEsriLegend', () => {
-  let component: SbbEsriLegend;
-  let fixture: ComponentFixture<SbbEsriLegend>;
+describe('SbbEsriBasemapGallery', () => {
+  let component: SbbEsriBasemapGallery;
+  let fixture: ComponentFixture<SbbEsriBasemapGallery>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [SbbEsriLegend],
+        declarations: [SbbEsriBasemapGallery],
+        providers: [],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SbbEsriLegend);
+    fixture = TestBed.createComponent(SbbEsriBasemapGallery);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

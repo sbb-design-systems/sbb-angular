@@ -65,8 +65,8 @@
     "@angular/platform-browser": "~12.0.0",
     "@angular/platform-browser-dynamic": "~12.0.0",
     "@angular/router": "~12.0.0",
+    "@arcgis/core": "~4.19.1",
     "core-js": "^2.6.11",
-    "esri-loader": "~2.13.0",
     "keycloak-js": "^4.8.3",
     "regenerator-runtime": "^0.13.7",
     "rxjs": "~6.5.4",
@@ -100,7 +100,6 @@
     "@commitlint/config-conventional": "^12.1.1",
     "@rollup/plugin-typescript": "^8.2.1",
     "@schematics/angular": "12.0.0",
-    "@types/arcgis-js-api": "~4.15.0",
     "@types/fs-extra": "^9.0.11",
     "@types/glob": "^7.1.3",
     "@types/grecaptcha": "^2.0.36",
@@ -241,7 +240,7 @@
     "*.ts": [
       "tslint -c tslint.json --project ./tsconfig.json"
     ],
-    "{WORKSPACE,*.bzl,*.bazel}": [
+    "{WORKSPACE,{src,test,tools}/**/*.{bzl,bazel}}": [
       "buildifier -v"
     ]
   }

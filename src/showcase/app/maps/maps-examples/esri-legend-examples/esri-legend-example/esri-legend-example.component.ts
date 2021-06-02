@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './esri-legend-example.component.html',
   styleUrls: ['./esri-legend-example.component.css'],
 })
-export class EsriLegendExampleComponent {}
+export class EsriLegendExampleComponent {
+  mapIsReady = false;
+}

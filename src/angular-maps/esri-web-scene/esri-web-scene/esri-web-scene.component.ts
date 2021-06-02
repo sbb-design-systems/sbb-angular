@@ -1,20 +1,23 @@
-// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
-/// <reference types="arcgis-js-api" />
-
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
-import {
-  SbbEsriTypesService,
-  SbbGraphicService,
-  SbbHitTestService,
-} from '@sbb-esta/angular-maps/core';
+import Camera from '@arcgis/core/Camera';
+import Point from '@arcgis/core/geometry/Point';
+import Graphic from '@arcgis/core/Graphic';
+import SceneView from '@arcgis/core/views/SceneView';
+import WebScene from '@arcgis/core/WebScene';
+import { SbbGraphicService, SbbHitTestService } from '@sbb-esta/angular-maps/core';
+import SceneViewProperties = __esri.SceneViewProperties;
+import SceneViewClickEvent = __esri.SceneViewClickEvent;
+import { ReplaySubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { SbbEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
 
@@ -24,14 +27,16 @@ import { SbbEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
   styleUrls: ['./esri-web-scene.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SbbEsriWebScene implements OnInit {
-  private _camera: SbbEsri3DCamera;
+export class SbbEsriWebScene implements OnInit, OnDestroy {
+  private readonly _setSceneCameraSubject = new ReplaySubject<SbbEsri3DCamera>(1);
+  private readonly _goToSubject = new ReplaySubject<SbbEsri3DCamera | any>(1);
+  private readonly _destroyed = new Subject<void>();
 
   /** The reference to the esri.SceneView*/
-  sceneView: __esri.SceneView;
+  sceneView: SceneView;
 
   /** The reference to the esri.WebScene */
-  webScene: __esri.WebScene;
+  webScene: WebScene;
 
   /** This id references to a portal web-scene item. It is used to display the scene. */
   @Input() portalItemId: string;
@@ -40,61 +45,75 @@ export class SbbEsriWebScene implements OnInit {
    * See the arcgis js api doc for a list of all possible properties.
    * https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html#properties-summary
    */
-  @Input() sceneViewProperties: __esri.SceneViewProperties;
+  @Input() sceneViewProperties: SceneViewProperties;
 
   /** Update the active SceneView extent */
   @Input() set sceneCamera(newCamera: SbbEsri3DCamera) {
-    this._camera = newCamera;
-    this._setSceneViewCamera(newCamera);
+    this._setSceneCameraSubject.next(newCamera);
   }
 
   /** Moves map to a specific point . */
-  @Input() set goTo(camera: __esri.Camera | any) {
-    if (camera) {
-      const cam = this._createNewCamera(camera);
-      this.sceneView.goTo(cam);
-      this._geometryUtilsService.addNewGraphicToMap(cam.position, this.sceneView);
-    }
+  @Input() set goTo(camera: SbbEsri3DCamera | any) {
+    this._goToSubject.next(camera);
   }
 
   /** Event that is emitted when the map is clicked */
   @Output() mapClick: EventEmitter<{
-    clickedPoint: __esri.Point;
-    clickedGraphics: __esri.Graphic[];
+    clickedPoint: Point;
+    clickedGraphics: Graphic[];
   }> = new EventEmitter();
 
   /** Event that is emitted when the extent of the map has been changed. */
-  @Output() cameraChanged: EventEmitter<__esri.Camera> = new EventEmitter();
+  @Output() cameraChanged: EventEmitter<Camera> = new EventEmitter();
 
   /** Event that is emitted when the map is ready */
-  @Output() mapReady: EventEmitter<__esri.SceneView> = new EventEmitter();
+  @Output() mapReady: EventEmitter<SceneView> = new EventEmitter();
 
   constructor(
-    private _esri: SbbEsriTypesService,
     private _elementRef: ElementRef,
     private _geometryUtilsService: SbbGraphicService,
     private _hitTestService: SbbHitTestService
   ) {}
 
   ngOnInit() {
-    this._esri.load().then(() => {
-      this.webScene = new this._esri.WebScene({
-        portalItem: {
-          id: this.portalItemId,
-        },
-      });
-      this.sceneView = new this._esri.SceneView(this._mergeSceneViewProperties());
-
-      this._setSceneViewCamera(this._camera);
-      this._registerEvents();
-
-      this.sceneView.when(() => this.mapReady.emit(this.sceneView));
+    this.webScene = new WebScene({
+      portalItem: {
+        id: this.portalItemId,
+      },
     });
+    this.sceneView = new SceneView(this._mergeSceneViewProperties());
+
+    this._subscribeToInputChanges();
+    this._registerEvents();
+    this.sceneView.when(() => this.mapReady.emit(this.sceneView));
+  }
+
+  ngOnDestroy() {
+    this._destroyed.next();
+    this._destroyed.complete();
+    this._destroySceneView();
+  }
+
+  private _subscribeToInputChanges() {
+    this._setSceneCameraSubject
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((newCamera: SbbEsri3DCamera) => {
+        this._setSceneViewCamera(newCamera);
+      });
+
+    this._goToSubject
+      .pipe(takeUntil(this._destroyed))
+      .subscribe((camera: SbbEsri3DCamera | any) => {
+        if (this.sceneView && camera) {
+          this._setSceneViewCamera(camera);
+          this._geometryUtilsService.addNewGraphicToMap(camera.position, this.sceneView);
+        }
+      });
   }
 
   /** Merges input esri.SceneViewProperties with default SceneViewProperties */
-  private _mergeSceneViewProperties(): __esri.SceneViewProperties {
-    let svProperties = {} as __esri.SceneViewProperties;
+  private _mergeSceneViewProperties(): SceneViewProperties {
+    let svProperties = {} as SceneViewProperties;
     if (this.sceneViewProperties) {
       svProperties = this.sceneViewProperties;
     }
@@ -107,7 +126,13 @@ export class SbbEsriWebScene implements OnInit {
   /** Updates the extent of the sceneview. */
   private _setSceneViewCamera(newCamera: SbbEsri3DCamera) {
     if (this.sceneView && newCamera) {
-      const cam = this._createNewCamera(newCamera);
+      const cam = new Camera({
+        position: newCamera.position,
+        tilt: newCamera.tilt,
+        heading: newCamera.heading,
+        fov: newCamera.fov,
+      });
+
       this.sceneView.goTo(cam);
     }
   }
@@ -117,7 +142,7 @@ export class SbbEsriWebScene implements OnInit {
     this.sceneView.watch('camera', (camera) => this._handleCameraChange(camera));
   }
 
-  private _handleMouseClick(e: __esri.SceneViewClickEvent) {
+  private _handleMouseClick(e: SceneViewClickEvent) {
     this._hitTestService
       .esriHitTest(this.sceneView, e)
       .then((hitTestGraphics) =>
@@ -125,16 +150,14 @@ export class SbbEsriWebScene implements OnInit {
       );
   }
 
-  private _handleCameraChange(camera: __esri.Camera) {
+  private _handleCameraChange(camera: Camera) {
     this.cameraChanged.emit(camera);
   }
 
-  private _createNewCamera(newCam: SbbEsri3DCamera): __esri.Camera {
-    return new this._esri.Camera({
-      position: newCam.position,
-      tilt: newCam.tilt,
-      heading: newCam.heading,
-      fov: newCam.fov,
-    });
+  private _destroySceneView() {
+    // it was in 4.18, but just to be sure it's cleaned-up: https://community.esri.com/t5/arcgis-api-for-javascript/4-17-memory-issue-angular/td-p/140389
+    this.sceneView?.destroy();
+    this.webScene?.removeAll();
+    this.webScene?.destroy();
   }
 }
