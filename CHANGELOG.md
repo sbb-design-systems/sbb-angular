@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.0.1...12.1.0) (2021-06-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **maps:** esri-loader is replaced with @arcgis/core as a
+peer dependency for @sbb-esta/angular-maps and usage has been
+updated accordingly.
+
+### Bug Fixes
+
+* fix import errors if using primary imports ([#820](https://github.com/sbb-design-systems/sbb-angular/issues/820)) ([c847253](https://github.com/sbb-design-systems/sbb-angular/commit/c84725300afb95c2a88378bdc424c63f1a482edb))
+
+
+* **maps:** replacing the esri-loader with @arcgis/core ES-module ([#819](https://github.com/sbb-design-systems/sbb-angular/issues/819)) ([126118d](https://github.com/sbb-design-systems/sbb-angular/commit/126118d8e8e63d780266313ef6e99142c869da8d))
+
 ### [12.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/12.0.0...12.0.1) (2021-05-19)
 
 
