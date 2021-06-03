@@ -1,20 +1,18 @@
 The dialog can be used to seek confirmation as seen below
 
 ```html
-<div sbbDialog>
-  <div sbbDialogHeader>Hi {{ data.name }}</div>
-  <div sbbDialogContent>
-    <div>
-      What's your favorite animal?
-      <sbb-form-field label="Animal">
-        <input type="text" [(ngModel)]="data.animal" cdkFocusInitial />
-      </sbb-form-field>
-    </div>
+<div sbbDialogHeader>Hi {{ data.name }}</div>
+<div sbbDialogContent>
+  <div>
+    What's your favorite animal?
+    <sbb-form-field label="Animal">
+      <input type="text" [(ngModel)]="data.animal" cdkFocusInitial />
+    </sbb-form-field>
   </div>
-  <div sbbDialogFooter>
-    <button type="button" sbbButton [sbbDialogClose]="data.animal">Ok</button>
-    <button type="button" sbbButton mode="secondary" (click)="noThanks()">No Thanks</button>
-  </div>
+</div>
+<div sbbDialogFooter>
+  <button type="button" sbbButton [sbbDialogClose]="data.animal">Ok</button>
+  <button type="button" sbbButton mode="secondary" (click)="noThanks()">No Thanks</button>
 </div>
 ```
 
@@ -84,17 +82,15 @@ export class DialogShowcaseExample3Component {
 
 ```html
 <ng-template #sampleDialogTemplate>
-  <div sbbDialog>
-    <div sbbDialogHeader>Terms and conditions</div>
-    <div sbbDialogContent>
-      <div>
-        <p>Lorem ipsum dolor sit amet...</p>
-      </div>
+  <div sbbDialogHeader>Terms and conditions</div>
+  <div sbbDialogContent>
+    <div>
+      <p>Lorem ipsum dolor sit amet...</p>
     </div>
-    <div sbbDialogFooter>
-      <button type="button" sbbButton [sbbDialogClose]="true">Accept</button>
-      <button type="button" sbbButton mode="secondary" sbbDialogClose>Cancel</button>
-    </div>
+  </div>
+  <div sbbDialogFooter>
+    <button type="button" sbbButton [sbbDialogClose]="true">Accept</button>
+    <button type="button" sbbButton mode="secondary" sbbDialogClose>Cancel</button>
   </div>
 </ng-template>
 ```
