@@ -1,64 +1,24 @@
 @import '../../../angular/styles/common';
 
-$datePickerContentTop: 17;
-
-$datePickerToggleWrapperArrowHeight: pxToEm(16);
-$datePickerToggleArrowWidth: 18;
-$datePickerToggleArrowHeight: pxToEm(2);
+$datePickerContentOffset: 17;
 $datePickerToggleArrowColor: $sbbColorGrey;
-$datePickerToggleArrowAfterOffset: pxToEm(9);
-
 $datePickerCalendarBorderWidth: 2;
-$datePickerCalendarBorder: pxToEm($datePickerCalendarBorderWidth) solid $sbbColorGrey;
 $datePickerCalendarBg: $sbbColorWhite;
 $datePickerCalendarHeaderColor: $sbbColorMetal;
-$datePickerCalendarWidthMobile: pxToEm(340);
-$datePickerCalendarWidth: pxToEm(428);
-$datePickerCalendarHeight: pxToEm(428);
 $datepickerCalendarLineColor: $sbbColorPlatinum;
-
-$datePickerCalendarBorderRadius: pxToEm(2);
 $datePickerCalendarHeaderHeight: 68;
-$datePickerCalendarHeaderLabelFontSize: 21;
-$datePickerCalendarHeaderLabelLineHeight: 3.2;
-
 $datePickerCalendarTableContentPaddingWidthMobile: 11;
 $datePickerCalendarTableContentPaddingWidth: 18;
-$datePickerCalendarTableTodayFontFamily: $fontSbbBold;
-$datePickerCalendarTableTodayColor: $sbbColorBlack;
 $datePickerCalendarTableActiveColor: $sbbColorRed125;
-$datePickerCalendarTableSelectedColor: $sbbColorGrey;
 $datePickerCalendarTableRangeBgColor: $sbbColorMilk;
 
-$datePickerCalendarDisabledCellColor: $sbbColorCement;
-$datePickerCalendarDisabledTextCellColor: $sbbColorCement;
-$datePickerDisabledCellWidth: 32;
-$datePickerDisabledCellTop: 20;
-$datePickerDisabledCellLeft: 18;
-
-// start of lean variables
-$datePickerContentTopLean: 8;
-
+// Lean variables
+$datePickerContentOffsetLean: 8;
 $datepickerCalendarLineColorLean: $sbbColorCloud;
-
 $datePickerCalendarHeaderHeightLean: 36;
-$datePickerCalendarHeaderLabelFontSizeLean: 15;
-$datePickerCalendarHeaderLabelLineHeightLean: pxToEm(36);
 $datePickerCalendarHeaderColorLean: $sbbColorIron;
-
 $datePickerCalendarTableContentPaddingWidthLean: 8;
-$datePickerCalendarTableSelectedColorLean: $sbbColorIron;
-
-$datePickerToggleArrowWidthLean: 9;
 $datePickerToggleArrowColorLean: $sbbColorIron;
-$datePickerToggleArrowAfterOffsetLean: pxToEm($datePickerToggleArrowWidthLean / 2);
-
-$datePickerCalendarDisabledCellColorLean: $sbbColorStorm;
-$datePickerCalendarDisabledTextCellColorLean: $sbbColorStorm;
-// end of lean variables
-
-$datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
-      $datePickerToggleArrowHeight);
 
 @mixin datePickerCellContentBase() {
   position: absolute;
@@ -81,7 +41,7 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 
 .sbb-datepicker-content {
   position: relative;
-  top: pxToEm($datePickerContentTop);
+  top: pxToEm($datePickerContentOffset);
   font-size: pxToRem($sizeFontDefault);
 
   html:not(.sbb-lean) & {
@@ -95,16 +55,16 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   }
 
   html.sbb-lean & {
-    top: pxToEm($datePickerContentTopLean);
+    top: pxToEm($datePickerContentOffsetLean);
   }
 
   .sbb-datepicker-panel-above & {
     top: auto;
-    bottom: pxToEm($datePickerContentTop);
+    bottom: pxToEm($datePickerContentOffset);
 
     html.sbb-lean & {
       top: auto; // Redefine to be specific enough
-      bottom: pxToEm($datePickerContentTopLean);
+      bottom: pxToEm($datePickerContentOffsetLean);
     }
   }
 
@@ -178,17 +138,17 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 
 .sbb-calendar {
   display: block;
-  width: $datePickerCalendarWidthMobile;
   max-width: 100%;
-  height: $datePickerCalendarHeight;
+  width: pxToEm(340);
+  height: pxToEm(428);
   background-color: $datePickerCalendarBg;
-  border: $datePickerCalendarBorder;
-  border-radius: $datePickerCalendarBorderRadius;
+  border: pxToEm($datePickerCalendarBorderWidth) solid $sbbColorGrey;
+  border-radius: pxToEm(2);
   box-shadow: boxShadowEm(1, $datePickerCalendarBorderWidth, 1);
 
   html:not(.sbb-lean) & {
     @include mq($from: tabletPortrait) {
-      width: $datePickerCalendarWidth;
+      width: pxToEm(428);
     }
   }
 
@@ -296,13 +256,13 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 
 .sbb-calendar-controls-label {
   font-family: $fontSbbLight;
-  font-size: pxToEm($datePickerCalendarHeaderLabelFontSize);
-  line-height: $datePickerCalendarHeaderLabelLineHeight;
+  font-size: pxToEm(21);
+  line-height: 3.2;
   color: $datePickerCalendarHeaderColor;
 
   html.sbb-lean & {
-    font-size: pxToEm($datePickerCalendarHeaderLabelFontSizeLean);
-    line-height: $datePickerCalendarHeaderLabelLineHeightLean;
+    font-size: pxToEm($sizeFontDefault);
+    line-height: pxToEm(36);
     color: $datePickerCalendarHeaderColorLean;
   }
 }
@@ -366,10 +326,19 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   tr th {
     font-family: $fontSbbRoman;
     font-weight: 400;
-    font-size: pxToEm(13);
+    font-size: pxToRem(13);
     text-transform: uppercase;
     padding: pxToEm(7, 13);
     color: $datePickerCalendarHeaderColor;
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        font-size: pxToRem(19.5);
+      }
+      @include mq($from: desktop5k) {
+        font-size: pxToRem(26);
+      }
+    }
 
     html.sbb-lean & {
       color: $datePickerCalendarHeaderColorLean;
@@ -381,8 +350,6 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   height: pxToEm(15);
 }
 
-// TODO: Check from here and ensure no pxToEm or similar is in a variable, inline into code, collision of indicator arrow in 5k with lowest circle
-// TODO: Kreis 4k nicht rund, arrow unten nicht exakt positioniert
 .sbb-calendar-body-cell {
   position: relative;
   height: 0;
@@ -395,9 +362,9 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   &.sbb-calendar-body-selected-begin,
   &.sbb-calendar-body-selected-end {
     &::before {
+      @include datePickerCellContentBase();
       content: '';
       background-color: $datePickerCalendarTableRangeBgColor;
-      @include datePickerCellContentBase();
       &,
       html.sbb-lean & {
         // To be more specific
@@ -434,9 +401,9 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   &.sbb-calendar-body-range-background:first-child,
   &.sbb-calendar-body-range-background-offset-start {
     &::after {
+      @include datePickerCellContentBase();
       content: '';
       background-color: $datePickerCalendarTableRangeBgColor;
-      @include datePickerCellContentBase();
     }
   }
 
@@ -452,7 +419,7 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
     }
   }
 
-  // If there is only one label on a row, or start is first or last entry
+  // If there is only one label in a row, or start is first or last entry
   &.sbb-calendar-body-range-background:first-child:last-child,
   &.sbb-calendar-body-range-background-offset-start:last-child,
   &.sbb-calendar-body-selected-end:first-child,
@@ -479,32 +446,32 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 
 // Use .sbb-calendar-body-cell selector to be specific enough
 .sbb-calendar-body-cell.sbb-calendar-body-disabled {
-  color: $datePickerCalendarDisabledTextCellColor;
+  color: $sbbColorCement;
   cursor: default;
 
   html.sbb-lean & {
-    color: $datePickerCalendarDisabledTextCellColorLean;
+    color: $sbbColorStorm;
   }
 
   &::after {
     content: '';
-    width: pxToEm($datePickerDisabledCellWidth);
+    width: pxToEm(32);
     height: pxToEm(1);
-    top: pxToEm($datePickerDisabledCellTop);
-    left: calc(50% - #{pxToEm($datePickerDisabledCellLeft)});
-    background-color: $datePickerCalendarDisabledCellColor;
+    top: pxToEm(25);
+    left: calc(50% - #{pxToEm(12)});
+    background-color: $sbbColorCement;
     display: block;
     position: absolute;
     transform: rotate(-45deg);
 
     html:not(.sbb-lean) & {
       @include mq($from: tabletPortrait) {
-        top: pxToEm(26);
+        left: calc(50% - #{pxToEm(17)});
       }
     }
 
     html.sbb-lean & {
-      background-color: $datePickerCalendarDisabledCellColorLean;
+      background-color: $sbbColorStorm;
       width: pxToEm(24);
       top: pxToEm(18);
       left: calc(50% - #{pxToEm(12)});
@@ -513,8 +480,8 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
 }
 
 .sbb-calendar-body-today {
-  font-family: $datePickerCalendarTableTodayFontFamily;
-  color: $datePickerCalendarTableTodayColor;
+  font-family: $fontSbbBold;
+  color: $sbbColorBlack;
 }
 
 .sbb-calendar-body-cell-content {
@@ -536,12 +503,12 @@ $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
   .sbb-calendar-body-selected-begin &,
   .sbb-calendar-body-selected-end & {
     background-color: $datePickerCalendarBg;
-    color: $datePickerCalendarTableSelectedColor;
-    border-color: $datePickerCalendarTableSelectedColor;
+    color: $sbbColorGrey;
+    border-color: $sbbColorGrey;
 
     html.sbb-lean & {
-      color: $datePickerCalendarTableSelectedColorLean;
-      border-color: $datePickerCalendarTableSelectedColorLean;
+      color: $sbbColorIron;
+      border-color: $sbbColorIron;
     }
   }
 }
