@@ -46,8 +46,6 @@ jobs:
     steps:
     - name: "VM: Free disk space"
       run: |
-        sudo rm -rf /usr/share/dotnet
-        sudo rm -rf /opt/ghc
         sudo rm -rf "/usr/local/share/boost"
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"
     - name: Shallow checkout
@@ -147,6 +145,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - name: "VM: Free disk space"
+      run: |
+        sudo rm -rf "/usr/local/share/boost"
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
     - name: Shallow checkout
       uses: actions/checkout@v2
       with:
