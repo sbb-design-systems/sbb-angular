@@ -30,7 +30,6 @@ ng_ts_library(
     deps = [
         "//src/showcase/app",
         "@npm//@angular/core",
-        "@npm//@angular/localize",
         "@npm//@angular/platform-browser",
         "@npm//core-js",
     ],
@@ -119,28 +118,30 @@ highlight_files(
 
 _ASSETS = [
     ":styles.css",
-    "@npm//:node_modules/highlight.js/styles/github.css",
     "@npm//:node_modules/zone.js/dist/zone.min.js",
-    "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.js",
 ]
 
 # Insert script tags into index.html
 # Supports differential loading by providing a.js and a.mjs
 html_insert_assets(
     name = "index_html_dev",
-    outs = ["_/index.html"],
+    outs = ["index.html"],
     args = [
-        "--html",
-        "$(execpath :index.html)",
-        "--out",
-        "$@",
-        "--roots",
-        "$(RULEDIR)",
+        "--html=$(execpath :index.dev.html)",
+        "--out=$@",
+        "--roots=. $(RULEDIR)",
+        "--scripts",
+        "--nomodule",
+        "$(execpath @npm//:node_modules/core-js/client/core.min.js)",
         "--assets",
     ] + ["$(execpath %s)" % s for s in _ASSETS] + [
+        # This file doesn't exist during the build, but will be served by concatjs_devserver
         "./_/ts_scripts.js",
     ],
-    data = [":index.html"] + _ASSETS,
+    data = [
+        ":index.dev.html",
+        "@npm//:node_modules/core-js/client/core.min.js",
+    ] + _ASSETS,
 )
 
 # This devserver is written in Go and is super-fast.
@@ -157,6 +158,7 @@ concatjs_devserver(
     port = 4200,
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
+        "//tools/umd-modules:ng-localize",
         "//tools/umd-modules:rxjs",
         "//tools/umd-modules:arcgis",
     ],
@@ -186,14 +188,6 @@ esbuild(
     ],
 )
 
-genrule(
-    name = "stamp_index",
-    srcs = ["index.prod.html"],
-    outs = ["stamped_index.html"],
-    cmd = "sed \"s/TIMESTAMP-VARIABLE/$$(date +%s)/g\" $< > $@",
-    tags = ["prod-showcase"],
-)
-
 # Insert script tags into index.html
 # Supports differential loading by providing a.js and a.mjs
 html_insert_assets(
@@ -204,16 +198,16 @@ html_insert_assets(
     # `index.html` in the web package.
     outs = ["_prodapp/src/index.html"],
     args = [
-        "--html",
-        "$(execpath :stamped_index.html)",
-        "--out",
-        "$@",
-        "--roots",
-        "$(RULEDIR)",
+        "--html=$(execpath :index.prod.html)",
+        "--out=$@",
+        "--roots=. $(RULEDIR)/_prodapp/src $(RULEDIR)",
         "--assets",
-    ] + ["$(execpath %s)" % s for s in _ASSETS],
+    ] + ["$(execpath %s)" % s for s in _ASSETS] + [
+        "ng_localize.js",
+        "--scripts --module bundle-esbuild/main.prod.js",
+    ],
     data = _ASSETS + [
-        ":stamped_index.html",
+        ":index.prod.html",
     ],
     tags = ["prod-showcase"],
 )
@@ -224,11 +218,13 @@ pkg_web(
         ":bundle-esbuild",
         ":index_html_prod",
         "//src/showcase/assets",
+        "//tools/umd-modules:ng-localize",
     ],
     # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
     # so we must serve them at that path, by stripping a prefix
     additional_root_paths = [
         "src/showcase/_prodapp/src",
+        "tools/umd-modules",
     ],
     tags = ["prod-showcase"],
 )

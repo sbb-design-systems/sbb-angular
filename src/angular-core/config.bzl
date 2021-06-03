@@ -13,6 +13,7 @@ entry_points = [
     "datetime",
     "error",
     "forms",
+    "i18n",
     "icon",
     "icon/testing",
     "icon-directive",

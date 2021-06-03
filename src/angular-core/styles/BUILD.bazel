@@ -18,8 +18,3 @@ sass_library(
     srcs = ["_main.scss"] + glob(["typography/_*.scss"]),
     deps = [":common_scss_lib"],
 )
-
-filegroup(
-    name = "legacy_scss",
-    srcs = glob(["common/*.scss"]),
-)

@@ -27,10 +27,22 @@ esbuild(
 
 filegroup(
     name = "ng-localize",
-    srcs = [
-        # do not sort
-        "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.js",
-        ":ng-localize-shim.js",
+    srcs = [":ng_localize.js"],
+)
+
+esbuild(
+    name = "ng_localize",
+    args = [
+        "--resolve-extensions=.mjs,.js",
+    ],
+    entry_point = "ng-localize-bundle.js",
+    format = "iife",
+    #minify = True,
+    deps = [
+        "//src/angular-core/i18n",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/localize",
     ],
 )
 
