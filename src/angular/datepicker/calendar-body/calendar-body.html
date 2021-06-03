@@ -11,8 +11,6 @@
     aria-hidden="true"
     class="sbb-calendar-body-label"
     [attr.colspan]="firstRowOffset"
-    [style.paddingTop.%]="(45 * cellAspectRatio) / numCols"
-    [style.paddingBottom.%]="(45 * cellAspectRatio) / numCols"
   ></td>
   <td
     *ngFor="let item of row; let colIndex = index"
@@ -22,6 +20,7 @@
     [class.sbb-calendar-body-disabled]="!item.enabled"
     [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
     [class.sbb-calendar-body-range-background]="item.rangeBackground === 'range'"
+    [class.sbb-calendar-body-range-background-offset-start]="item.rangeBackground === 'range' && rowIndex === 0 && firstRowOffset && colIndex === 0"
     [class.sbb-calendar-body-selected-begin]="item.rangeBackground === 'begin'"
     [class.sbb-calendar-body-selected-end]="item.rangeBackground === 'end'"
     [class.sbb-calendar-body-selected]="selectedValue === item.value"
@@ -31,8 +30,6 @@
     [attr.aria-selected]="selectedValue === item.value"
     (click)="cellClicked(item)"
     [style.width.%]="100 / numCols"
-    [style.paddingTop.%]="(45 * cellAspectRatio) / numCols"
-    [style.paddingBottom.%]="(45 * cellAspectRatio) / numCols"
   >
     <div class="sbb-calendar-body-cell-content">{{ item.displayValue }}</div>
   </td>
