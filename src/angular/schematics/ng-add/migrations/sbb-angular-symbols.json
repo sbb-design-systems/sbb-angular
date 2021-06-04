@@ -92,7 +92,6 @@
   "SbbDateAdapter": "core",
   "SbbDateFormats": "core",
   "SbbErrorStateMatcher": "core",
-  "SbbEsriTypesService": "core",
   "SbbGraphicService": "core",
   "SbbHitTestService": "core",
   "SbbIconDirective": "core",
