@@ -182,6 +182,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
 
 .sbb-calendar-controls-months,
 .sbb-calendar-controls-years {
+  display: flex;
   height: pxToEm($datePickerCalendarHeaderHeight);
   flex: 1 0 50%;
   text-align: center;
@@ -215,10 +216,12 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  flex-grow: 0;
   outline: 0;
-  width: pxToEm(36);
+  padding-left: pxToEm(6);
+  padding-right: pxToEm(6);
   height: pxToEm($datePickerCalendarHeaderHeight);
-  vertical-align: middle;
   cursor: pointer;
   color: $datePickerCalendarHeaderColor;
 
@@ -235,12 +238,14 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
 
   html:not(.sbb-lean) & {
     @include mq($from: tabletPortrait) {
-      width: pxToEm(40);
+      padding-left: pxToEm(8);
+      padding-right: pxToEm(8);
     }
   }
 
   html.sbb-lean & {
-    width: pxToEm(40);
+    padding-left: pxToEm(8);
+    padding-right: pxToEm(8);
     height: pxToEm($datePickerCalendarHeaderHeightLean);
     color: $datePickerCalendarHeaderColorLean;
   }
@@ -248,13 +253,17 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
 
 .sbb-calender-controls-button-previous {
   float: left;
+  padding-right: 0; // Only affects mobile view of standard variant (on purpose)
 }
 
 .sbb-calender-controls-button-next {
   float: right;
+  padding-left: 0; // Only affects mobile view of standard variant (on purpose)
 }
 
 .sbb-calendar-controls-label {
+  flex-grow: 1;
+  flex-shrink: 1;
   font-family: $fontSbbLight;
   font-size: pxToEm(21);
   line-height: 3.2;
