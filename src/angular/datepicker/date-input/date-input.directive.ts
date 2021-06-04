@@ -52,14 +52,12 @@ export class SbbDateInputEvent<D> {
 
 export const SBB_DATE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line:no-use-before-declare
   useExisting: forwardRef(() => SbbDateInput),
   multi: true,
 };
 
 export const SBB_DATE_VALIDATORS: any = {
   provide: NG_VALIDATORS,
-  // tslint:disable-next-line:no-use-before-declare
   useExisting: forwardRef(() => SbbDateInput),
   multi: true,
 };
@@ -176,6 +174,7 @@ export class SbbDateInput<D> implements ControlValueAccessor, Validator, OnInit,
     SbbDateInputEvent<D>
   >();
 
+  /** Emits when the input gets blurred. */
   @Output() readonly inputBlurred: EventEmitter<void> = new EventEmitter<void>();
 
   /** Emits when the value changes (either due to user input or programmatic change). */

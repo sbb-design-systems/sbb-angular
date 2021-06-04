@@ -150,11 +150,9 @@ export class SbbDatepicker<D> implements OnDestroy {
   private _toggle = true;
 
   /** Emits when the datepicker has been opened. */
-  // tslint:disable-next-line:no-output-rename
   @Output('opened') openedStream: EventEmitter<void> = new EventEmitter<void>();
 
   /** Emits when the datepicker has been closed. */
-  // tslint:disable-next-line:no-output-rename
   @Output('closed') closedStream: EventEmitter<void> = new EventEmitter<void>();
 
   /** Whether the calendar is open. */
@@ -190,11 +188,13 @@ export class SbbDatepicker<D> implements OnDestroy {
     return this.datepickerInput && this.datepickerInput.max;
   }
 
+  /** Currently active date filter function. */
   get dateFilter(): (date: D | null) => boolean {
     return this.datepickerInput && this.datepickerInput.dateFilter;
   }
 
-  get prevDayActive() {
+  /** Whether the previous day is reachable and therefore next buttons should be shown or not. */
+  get prevDayActive(): boolean {
     return (
       this.arrows &&
       this.datepickerInput &&
@@ -203,7 +203,8 @@ export class SbbDatepicker<D> implements OnDestroy {
     );
   }
 
-  get nextDayActive() {
+  /** Whether the next day is reachable and therefore next buttons should be shown or not. */
+  get nextDayActive(): boolean {
     return (
       this.arrows &&
       this.datepickerInput &&
@@ -231,7 +232,7 @@ export class SbbDatepicker<D> implements OnDestroy {
 
   private _connectedDatepickerSubscription = Subscription.EMPTY;
 
-  private _posStrategySubsription = Subscription.EMPTY;
+  private _posStrategySubscription = Subscription.EMPTY;
 
   /** The input element this datepicker is associated with. */
   datepickerInput: SbbDateInput<D>;
@@ -250,7 +251,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() private _dateAdapter: SbbDateAdapter<D>,
     @Optional() @Inject(DOCUMENT) private _document: any,
-    @Inject(LOCALE_ID) public locale: string
+    @Inject(LOCALE_ID) public readonly locale: string
   ) {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -266,7 +267,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     this.disabledChange.complete();
 
     if (this.popupRef) {
-      this._posStrategySubsription.unsubscribe();
+      this._posStrategySubscription.unsubscribe();
       this.popupRef.dispose();
       this._popupComponentRef = null;
     }
@@ -281,6 +282,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     }
   }
 
+  /** Set next day as selected. */
   nextDay() {
     if (this.selected) {
       this.selected = this._dateAdapter.addCalendarDays(this.selected, 1);
@@ -288,6 +290,7 @@ export class SbbDatepicker<D> implements OnDestroy {
     }
   }
 
+  /** Set previous day as selected. */
   prevDay() {
     if (this.selected) {
       this.selected = this._dateAdapter.addCalendarDays(this.selected, -1);
@@ -497,7 +500,7 @@ export class SbbDatepicker<D> implements OnDestroy {
         },
       ]);
 
-    this._posStrategySubsription = posStrategy.positionChanges.subscribe((pos) => {
+    this._posStrategySubscription = posStrategy.positionChanges.subscribe((pos) => {
       if (pos.connectionPair.originY === 'top') {
         this.popupRef.hostElement.classList.add('sbb-datepicker-panel-above');
       } else {

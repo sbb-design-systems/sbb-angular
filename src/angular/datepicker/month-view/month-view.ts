@@ -126,11 +126,12 @@ export class SbbMonthView<D> implements AfterContentInit {
   /** The names of the weekdays. */
   weekdays: { long: string; narrow: string }[];
 
+  /** Currently active date range. */
   dateRange: SbbDateRange<D> | null = null;
 
   constructor(
     @Optional() public _dateAdapter: SbbDateAdapter<D>,
-    @Inject(LOCALE_ID) public locale: string,
+    @Inject(LOCALE_ID) public readonly locale: string,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: SbbDateFormats,
     @Optional() @Inject(SBB_DATEPICKER) datepicker: TypeRef<SbbDatepicker<D>>

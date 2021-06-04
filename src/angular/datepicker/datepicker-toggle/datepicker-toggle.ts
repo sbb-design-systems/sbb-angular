@@ -65,6 +65,7 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
     this._watchStateChanges();
   }
 
+  /** Open datepicker calendar. */
   open(event: Event): void {
     if (this._datepicker && !this.disabled) {
       this._datepicker.open();
