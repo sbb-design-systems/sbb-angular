@@ -1,5 +1,6 @@
 @use 'external/npm/node_modules/@angular/cdk' as cdk;
 @import '../angular-core/styles/main';
+@import 'highlight.js/styles/github';
 
 html,
 body {

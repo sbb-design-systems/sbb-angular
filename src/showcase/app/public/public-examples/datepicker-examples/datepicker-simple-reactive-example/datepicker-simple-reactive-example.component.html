@@ -39,6 +39,6 @@
   </sbb-datepicker>
 </sbb-form-field>
 
-<pre>model: {{ formGroup.get('date').value | date: 'mediumDate' }}</pre>
+<pre>model: {{ formGroup.get('date').value | date: 'shortDate' }}</pre>
 <pre>form control validity: {{ formGroup.get('date').valid }}</pre>
 <pre>form control errors: {{ formGroup.get('date').errors | json }}</pre>

@@ -89,4 +89,9 @@ filegroup(
         "**/*.css",
         "**/*.ts",
     ]),<% } %>
-)
+)<% if (moduleName.endsWith('i18n')) { %>
+
+filegroup(
+    name = "xlf",
+    srcs = glob(["**/*.xlf"]),
+)<% } %>
