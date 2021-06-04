@@ -10,6 +10,7 @@ import {
   SbbDateAdapter,
   SBB_DATE_PIPE_DATE_FORMATS,
   SbbBusinessDateAdapter,
+  SBB_BUSINESS_DATE_ADAPTER
 } from '@sbb-esta/angular-core/datetime';
 import { TypeRef, mixinDisabled, mixinErrorState } from '@sbb-esta/angular-core/common-behaviors';
 import {

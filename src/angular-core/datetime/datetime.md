@@ -6,11 +6,11 @@ is the `NativeDateAdapter`, which uses the JavaScript `Date` object.
 ### BusinessDateAdapter
 
 For business applications you have the ability to use `BusinessDateAdapter` which extends `NativeDateAdapter`
-and additionally allows to parse dates like '01012020'.
+and additionally allows parsing dates like '01012020'.
 
 ```ts
 ...
-import { SBB_BUSINESS_DATE_ADAPTER } from '@sbb-esta/angular-core/datetime'
+import { SBB_BUSINESS_DATE_ADAPTER } from '@sbb-esta/angular-core/datetime';
 ...
 @NgModule({
   ...

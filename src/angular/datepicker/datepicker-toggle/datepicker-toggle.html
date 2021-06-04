@@ -1,0 +1,12 @@
+<button
+  aria-haspopup="true"
+  i18n-aria-label="Open calendar@@sbbDatepickerOpenCalendar"
+  aria-label="Show calendar"
+  [attr.tabindex]="disabled ? -1 : tabIndex"
+  [disabled]="disabled"
+  (click)="open($event)"
+  type="button"
+  class="sbb-datepicker-toggle-button sbb-icon-scaled"
+>
+  <sbb-icon svgIcon="kom:calendar-small"></sbb-icon>
+</button>

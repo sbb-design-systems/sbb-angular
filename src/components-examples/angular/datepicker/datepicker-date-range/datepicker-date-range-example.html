@@ -1,0 +1,18 @@
+<sbb-form-field label="Start" style="display: block">
+  <sbb-datepicker [connected]="endDatepicker" arrows>
+    <input type="text" sbbDateInput sbbInput [formControl]="start" />
+  </sbb-datepicker>
+</sbb-form-field>
+<sbb-form-field label="End">
+  <sbb-datepicker #endDatepicker arrows>
+    <input type="text" sbbDateInput sbbInput [formControl]="end" />
+  </sbb-datepicker>
+</sbb-form-field>
+
+<h4>Properties</h4>
+<pre>
+start model: {{ start.value | date: 'mediumDate' }}
+</pre>
+<pre>
+end model: {{ start.value | date: 'mediumDate' }}
+</pre>

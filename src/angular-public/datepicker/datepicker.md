@@ -1,10 +1,4 @@
-The datepicker field accepts dates in the format of dd.MM.yyyy as seen below
-
-| Input      | Output         |
-| ---------- | -------------- |
-| 08.12.2018 | Sa, 08.12.2018 |
-
-### Basic Usage
+The datepicker helps to enter and display dates in a form field.
 
 ```html
 <sbb-datepicker>
@@ -12,37 +6,35 @@ The datepicker field accepts dates in the format of dd.MM.yyyy as seen below
 </sbb-datepicker>
 ```
 
-By default the datepicker has the toggle enabled and the arrows disabled. Toggle and arrows can
-be enabled/disabled via attributes or property:
+### Calendar Toggle And Navigation Arrows
+
+The datepicker form field can have a toggle to show a calendar to pick dates from (enabled by default)
+and arrows which by clicking increase or decrease dates.
 
 ```html
 <sbb-datepicker toggle="false" arrows>
   <input sbbDateInput />
 </sbb-datepicker>
+```
 
-<sbb-datepicker [toggle]="toggleEnabled" [arrows]="arrowsEnabled">
-  <input sbbDateInput />
+### Min and Max Date
+
+The date input supports min and max dates.
+
+```html
+<sbb-datepicker>
+  <input sbbDateInput [min]="minDate" [max]="maxDate" />
 </sbb-datepicker>
 ```
 
-### Full Field Example
+### `sbb-form-field` usage
 
-The date input supports min and max dates. The datepicker emits events for opening and closing the datepicker.
-The initial focus for the datepicker is the current date value.
+To use a datepicker within a `sbb-form-field`, simply add `sbbInput` directive beside `sbbDateInput` directive.
 
 ```html
-<sbb-form-field>
-  <sbb-label>Datum</sbb-label>
-  <sbb-datepicker (closed)="closedEvent()" (opened)="openedEvent()">
-    <input
-      sbbDateInput
-      sbbInput
-      formControlName="date"
-      [min]="minDate"
-      [max]="maxDate"
-      (dateChange)="dateChangeEvent($event)"
-      (dateInput)="dateInputEvent($event)"
-    />
+<sbb-form-field label="Date">
+  <sbb-datepicker>
+    <input sbbDateInput sbbInput formControlName="date" />
   </sbb-datepicker>
 </sbb-form-field>
 ```
@@ -50,24 +42,21 @@ The initial focus for the datepicker is the current date value.
 ### Connected Datepickers
 
 Datepickers can be connected. On selecting a date in the first/main datepicker, the second/connected
-datepicker will have its datepicker opened if it was empty or the value of the connected datepicker is before the
-newly selected date. Also the value of the main datepicker is set to be the min value of the connected datepicker, if no
+datepicker will have its datepicker opened if it was empty, or the value of the connected datepicker is before the
+newly selected date. Also, the value of the main datepicker is set to be the min value of the connected datepicker, if no
 manual min has been set.
 
 ```html
-<form [formGroup]="twoDatepickersForm">
-  <sbb-form-field>
-    <sbb-label for="Datum">Datumsbereich innerhalb eines Monats</sbb-label>
-    <sbb-datepicker [connected]="second" arrows>
-      <input sbbDateInput sbbInput formControlName="firstDatepicker" />
-    </sbb-datepicker>
-  </sbb-form-field>
-  <sbb-form-field>
-    <sbb-datepicker #second arrows>
-      <input sbbDateInput sbbInput formControlName="secondDatepicker" />
-    </sbb-datepicker>
-  </sbb-form-field>
-</form>
+<sbb-form-field label="Select date range">
+  <sbb-datepicker [connected]="second">
+    <input sbbDateInput sbbInput formControlName="firstDatepicker" />
+  </sbb-datepicker>
+</sbb-form-field>
+<sbb-form-field>
+  <sbb-datepicker #second>
+    <input sbbDateInput sbbInput formControlName="secondDatepicker" />
+  </sbb-datepicker>
+</sbb-form-field>
 ```
 
 ### Date Filter
@@ -76,13 +65,9 @@ You can create a function to only enable certain dates. For example only enablin
 of each month as seen below.
 
 ```html
-<h4>Date filter</h4>
-<sbb-form-field>
-  <sbb-label for="Datum">Datum</sbb-label>
-  <sbb-datepicker arrows>
-    <input sbbDateInput sbbInput [formControl]="dateWithFilter" [dateFilter]="filterDates" />
-  </sbb-datepicker>
-</sbb-form-field>
+<sbb-datepicker>
+  <input sbbDateInput sbbInput [dateFilter]="filterDates" />
+</sbb-datepicker>
 ```
 
 ```ts
@@ -93,12 +78,11 @@ filterDates = (date: Date): boolean => {
 
 ### Standalone Date Input
 
-The sbbDateInput can be used without a datepicker.
+The `sbbDateInput` can be used without a `sbb-datepicker`.
 
 ```html
-<sbb-form-field>
-  <sbb-label for="Datum">Datum</sbb-label>
-  <input sbbDateInput sbbInput [formControl]="standaloneDate" />
+<sbb-form-field label="Date">
+  <input sbbDateInput sbbInput />
 </sbb-form-field>
 ```
 

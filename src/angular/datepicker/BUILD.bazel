@@ -1,0 +1,86 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "datepicker",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":datepicker/datepicker.css",
+        ":datepicker-content/datepicker-content.css",
+    ] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular/datepicker",
+    deps = [
+        "//src/angular/core",
+        "//src/angular/form-field",
+        "//src/angular/icon",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "datepicker_datepicker_scss",
+    src = "datepicker/datepicker.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "datepicker_content_datepicker_content_scss",
+    src = "datepicker-content/datepicker-content.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":datepicker",
+        "//src/angular/core",
+        "//src/angular/core/testing",
+        "//src/angular/icon",
+        "//src/angular/icon/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/forms",
+        "@npm//@angular/platform-browser",
+        "@npm//@angular/platform-browser-dynamic",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    static_css = [
+        "//src/angular:typography",
+    ],
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":datepicker.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

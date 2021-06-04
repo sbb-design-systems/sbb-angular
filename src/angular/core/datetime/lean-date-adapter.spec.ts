@@ -1,9 +1,9 @@
-import { SbbBusinessDateAdapter } from './business-date-adapter';
+import { SbbLeanDateAdapter } from './lean-date-adapter';
 
-describe('BusinessDateAdapter', () => {
-  let businessDateAdapter: SbbBusinessDateAdapter;
+describe('LeanDateAdapter', () => {
+  let leanDateAdapter: SbbLeanDateAdapter;
   beforeEach(() => {
-    businessDateAdapter = new SbbBusinessDateAdapter('de-ch', 50);
+    leanDateAdapter = new SbbLeanDateAdapter('de-ch', 50);
   });
 
   it('should parse date', () => {
@@ -23,7 +23,7 @@ describe('BusinessDateAdapter', () => {
     ];
 
     params.forEach((param) =>
-      expect(businessDateAdapter.parse(param.input)!.getTime()).toBe(
+      expect(leanDateAdapter.parse(param.input)!.getTime()).toBe(
         new Date(param.expectedYear, param.expectedMonth - 1, param.expectedDay).getTime()
       )
     );
@@ -41,6 +41,6 @@ describe('BusinessDateAdapter', () => {
       { input: '000000000' },
     ];
 
-    params.forEach((param) => expect(businessDateAdapter.parse(param.input)).toBeNull());
+    params.forEach((param) => expect(leanDateAdapter.parse(param.input)).toBeNull());
   });
 });

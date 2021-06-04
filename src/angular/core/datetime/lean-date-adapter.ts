@@ -4,7 +4,7 @@ import { SBB_DATEPICKER_2DIGIT_YEAR_PIVOT } from './datepicker-token';
 import { SbbNativeDateAdapter } from './native-date-adapter';
 
 @Injectable()
-export class SbbBusinessDateAdapter extends SbbNativeDateAdapter {
+export class SbbLeanDateAdapter extends SbbNativeDateAdapter {
   constructor(
     @Inject(LOCALE_ID) protected _locale: string,
     @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number
@@ -13,10 +13,10 @@ export class SbbBusinessDateAdapter extends SbbNativeDateAdapter {
   }
 
   protected _parseStringDate(value: string): null | Date {
-    return super._parseStringDate(value) || this._parseStringDateBusiness(value);
+    return super._parseStringDate(value) || this._parseStringDateLean(value);
   }
 
-  private _parseStringDateBusiness(value: string): null | Date {
+  private _parseStringDateLean(value: string): null | Date {
     const match = /^(\w+,[ ]?)?(\d{2})(\d{2})(\d{2}|\d{4})$/.exec(value);
     if (!match) {
       return null;
