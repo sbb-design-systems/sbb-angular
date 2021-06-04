@@ -111,7 +111,7 @@ the generic `<sbb-checkbox-panel-note>` wrapper.
 
 _Automatic migration available_
 
-Mainly, the Datepicker remains as it is. As a small change, `SBB_BUSINESS_DATE_ADAPTER` was renamed to `SBB_LEAN_DATE_ADAPTER`.
+The Datepicker has no significant changes. `SBB_BUSINESS_DATE_ADAPTER` was renamed to `SBB_LEAN_DATE_ADAPTER`.
 
 [Documentation](angular/components/datepicker)
 

@@ -12,7 +12,7 @@ The datepicker form field can have a toggle to show a calendar to pick dates fro
 and arrows which by clicking increase or decrease dates.
 
 ```html
-<sbb-datepicker [toggle]="toggleEnabled" [arrows]="arrowsEnabled">
+<sbb-datepicker toggle="false" arrows>
   <input sbbDateInput />
 </sbb-datepicker>
 ```
