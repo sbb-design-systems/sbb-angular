@@ -26,7 +26,7 @@ declare let window: any;
     .filter((l) => !!l)
     .forEach((l) => {
       l[2] = undefined;
-      l[10] = ['dd.MM.y', 'dd.MM.y', 'd. MMMM y', 'EEEE, d. MMMM y'];
+      l[10] = ['dd.MM.yy', 'dd.MM.y', 'd. MMMM y', 'EEEE, d. MMMM y'];
       l[12][0] = '{1} {0}';
     });
 })(
