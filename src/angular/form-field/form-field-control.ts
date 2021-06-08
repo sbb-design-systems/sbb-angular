@@ -44,6 +44,6 @@ export abstract class SbbFormFieldControl<TValue> {
   /** Sets the list of element IDs that currently describe this control. */
   abstract setDescribedByIds(ids: string[]): void;
 
-  /** callback is called when a click event occurs on the label. */
-  abstract onContainerClick(event: Event): void;
+  /** Handles a click on the control's container. */
+  abstract onContainerClick(event: MouseEvent): void;
 }
