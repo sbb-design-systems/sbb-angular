@@ -164,3 +164,22 @@ The input for an autocomplete without text or labels should be given a meaningfu
 
 The autocomplete trigger is given `role="combobox"`. The trigger sets `aria-owns` to the
 autocomplete's id, and sets `aria-activedescendant` to the active option's id.
+
+### Known Issues
+
+Chrome sometimes ignores the `autocomplete="off"` attribute: [Chromium Issue #914451](https://bugs.chromium.org/p/chromium/issues/detail?id=914451)
+A potential workaround is to assign a completely random `name` attribute to the trigger input.
+
+```ts
+export class ExampleComponent {
+  ...
+  randomName: string = crypto.getRandomValues(new Uint8Array(length))
+    .reduce((current, next) => current + (next & 15).toString(16), '');
+  ...
+}
+
+```
+
+```html
+<input type="text" [name]="randomName" [formControl]="myControl" [sbbAutocomplete]="auto" />
+```
