@@ -1,6 +1,6 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-import { Constructor } from './constructor';
+import { AbstractConstructor, Constructor } from './constructor';
 
 /** @docs-private */
 export interface CanDisable {
@@ -8,13 +8,18 @@ export interface CanDisable {
   disabled: boolean;
 }
 
-/** @docs-private */
-export type CanDisableCtor = Constructor<CanDisable>;
+/**
+ * @docs-private
+ * @deprecated No longer necessary to apply to mixin classes. To be made private.
+ * @breaking-change 13.0.0
+ */
+export type CanDisableCtor = Constructor<CanDisable> & AbstractConstructor<CanDisable>;
 
 /** Mixin to augment a directive with a `disabled` property. */
+export function mixinDisabled<T extends AbstractConstructor<{}>>(base: T): CanDisableCtor & T;
 export function mixinDisabled<T extends Constructor<{}>>(base: T): CanDisableCtor & T {
   return class extends base {
-    private _disabled = false;
+    private _disabled: boolean = false;
 
     get disabled() {
       return this._disabled;
