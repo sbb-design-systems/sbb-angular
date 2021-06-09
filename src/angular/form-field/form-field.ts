@@ -11,10 +11,11 @@ import {
   Input,
   OnDestroy,
   QueryList,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
+import { mixinVariant } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -23,11 +24,8 @@ import { SbbFormFieldControl } from './form-field-control';
 import { getSbbFormFieldMissingControlError } from './form-field-errors';
 import { SbbLabel } from './label';
 
-/** @docs-private */
-class SbbFormFieldBase {}
-
 // tslint:disable-next-line: naming-convention
-const _SbbFormFieldBase: HasVariantCtor & typeof SbbFormFieldBase = mixinVariant(SbbFormFieldBase);
+const _SbbFormFieldBase = mixinVariant(class {});
 
 let nextId = 0;
 
@@ -71,6 +69,8 @@ export class SbbFormField
 
   // Unique id for the label element.
   readonly _labelId = `sbb-form-field-label-${nextId++}`;
+
+  @ViewChild('connectionContainer', { static: true }) _connectionContainerRef: ElementRef;
 
   @ContentChild(SbbFormFieldControl) _controlNonStatic: SbbFormFieldControl<any>;
   @ContentChild(SbbFormFieldControl, { static: true }) _controlStatic: SbbFormFieldControl<any>;
@@ -184,5 +184,13 @@ export class SbbFormField
     if (!this._control && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throw getSbbFormFieldMissingControlError();
     }
+  }
+
+  /**
+   * Gets an ElementRef for the element that a overlay attached to the form-field should be
+   * positioned relative to.
+   */
+  getConnectedOverlayOrigin(): ElementRef {
+    return this._connectionContainerRef || this._elementRef;
   }
 }

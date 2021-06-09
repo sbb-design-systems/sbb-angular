@@ -764,7 +764,7 @@ export class SbbAutocompleteTrigger
       return this.connectedTo.elementRef;
     }
 
-    return this._elementRef;
+    return this._formField ? this._formField.getConnectedOverlayOrigin() : this._elementRef;
   }
 
   private _getPanelWidth(): number | string {
