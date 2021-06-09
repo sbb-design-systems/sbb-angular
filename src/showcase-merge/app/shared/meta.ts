@@ -42,7 +42,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
           { label: 'Captcha', link: './components/captcha' },
           { label: 'Checkbox', link: './components/checkbox' },
           { label: 'Checkbox Panel', link: './components/checkbox-panel' },
-          { label: 'Chip Input', link: './components/chip', variantOnly: 'lean' },
+          { label: 'Chips', link: './components/chips', variantOnly: 'lean' },
           { label: 'Datepicker', link: './components/datepicker' },
           { label: 'Form Field', link: './components/form-field' },
           { label: 'File Selector', link: './components/file-selector' },

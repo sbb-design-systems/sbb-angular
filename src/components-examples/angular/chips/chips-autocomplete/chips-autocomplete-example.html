@@ -1,0 +1,23 @@
+<sbb-form-field class="example-chip-list">
+  <sbb-label>Favorite Fruits</sbb-label>
+  <sbb-chip-list #chipList aria-label="Fruit selection">
+    <sbb-chip *ngFor="let fruit of fruits" removable (removed)="remove(fruit)">
+      {{fruit}}
+      <sbb-icon sbbChipRemove>cancel</sbb-icon>
+    </sbb-chip>
+    <input
+      placeholder="New fruit..."
+      #fruitInput
+      [formControl]="fruitCtrl"
+      [sbbAutocomplete]="auto"
+      [sbbChipInputFor]="chipList"
+      [sbbChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (sbbChipInputTokenEnd)="add($event)"
+    />
+  </sbb-chip-list>
+  <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="selected($event)">
+    <sbb-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+      {{fruit}}
+    </sbb-option>
+  </sbb-autocomplete>
+</sbb-form-field>

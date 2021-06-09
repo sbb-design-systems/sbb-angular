@@ -1,0 +1,20 @@
+<div class="example-button-container">
+  <button sbb-ghost-button (click)="formControl.disable()">Disable form control</button>
+  <button sbb-ghost-button (click)="formControl.enable()">Enable form control</button>
+</div>
+
+<p>Selected keywords: {{formControl.value}}</p>
+
+<sbb-form-field class="example-chip-list">
+  <sbb-label>Video keywords</sbb-label>
+  <sbb-chip-list #chipList aria-label="Video keywords" multiple [formControl]="formControl">
+    <sbb-chip *ngFor="let keyword of keywords" (removed)="removeKeyword(keyword)">
+      {{keyword}}
+    </sbb-chip>
+    <input
+      placeholder="New keyword..."
+      [sbbChipInputFor]="chipList"
+      (sbbChipInputTokenEnd)="addKeywordFromInput($event)"
+    />
+  </sbb-chip-list>
+</sbb-form-field>
