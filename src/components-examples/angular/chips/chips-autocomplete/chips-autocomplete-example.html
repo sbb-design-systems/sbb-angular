@@ -3,7 +3,7 @@
   <sbb-chip-list #chipList aria-label="Fruit selection">
     <sbb-chip *ngFor="let fruit of fruits" removable (removed)="remove(fruit)">
       {{fruit}}
-      <sbb-icon sbbChipRemove>cancel</sbb-icon>
+      <sbb-icon sbbChipRemove svgIcon="kom:cross-small">cancel</sbb-icon>
     </sbb-chip>
     <input
       placeholder="New fruit..."

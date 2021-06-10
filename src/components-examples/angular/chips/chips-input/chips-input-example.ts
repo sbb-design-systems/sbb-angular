@@ -17,7 +17,6 @@ export interface Fruit {
 })
 export class ChipsInputExample {
   visible = true;
-  selectable = true;
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;

@@ -1,10 +1,10 @@
-import { BACKSPACE, DELETE, SPACE } from '@angular/cdk/keycodes';
+import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createKeyboardEvent, dispatchFakeEvent } from '@sbb-esta/angular/core/testing';
 
-import { SbbChip, SbbChipEvent, SbbChipSelectionChange } from './chip';
+import { SbbChip, SbbChipEvent } from './chip';
 import { SbbChipList } from './chip-list';
 import { SbbChipsModule } from './chips.module';
 
@@ -107,21 +107,6 @@ describe('SbbChip', () => {
         expect(testComponent.chipDestroy).toHaveBeenCalledTimes(1);
       });
 
-      it('allows selection', () => {
-        spyOn(testComponent, 'chipSelectionChange');
-        expect(chipNativeElement.classList).not.toContain('sbb-chip-selected');
-
-        testComponent.selected = true;
-        fixture.detectChanges();
-
-        expect(chipNativeElement.classList).toContain('sbb-chip-selected');
-        expect(testComponent.chipSelectionChange).toHaveBeenCalledWith({
-          source: chipInstance,
-          isUserInput: false,
-          selected: true,
-        });
-      });
-
       it('allows removal', () => {
         spyOn(testComponent, 'chipRemove');
 
@@ -148,58 +133,6 @@ describe('SbbChip', () => {
         expect(event.defaultPrevented).toBe(true);
       });
 
-      it('should not dispatch `selectionChange` event when deselecting a non-selected chip', () => {
-        chipInstance.deselect();
-
-        const spy = jasmine.createSpy('selectionChange spy');
-        const subscription = chipInstance.selectionChange.subscribe(spy);
-
-        chipInstance.deselect();
-
-        expect(spy).not.toHaveBeenCalled();
-        subscription.unsubscribe();
-      });
-
-      it('should not dispatch `selectionChange` event when selecting a selected chip', () => {
-        chipInstance.select();
-
-        const spy = jasmine.createSpy('selectionChange spy');
-        const subscription = chipInstance.selectionChange.subscribe(spy);
-
-        chipInstance.select();
-
-        expect(spy).not.toHaveBeenCalled();
-        subscription.unsubscribe();
-      });
-
-      it(
-        'should not dispatch `selectionChange` event when selecting a selected chip via ' +
-          'user interaction',
-        () => {
-          chipInstance.select();
-
-          const spy = jasmine.createSpy('selectionChange spy');
-          const subscription = chipInstance.selectionChange.subscribe(spy);
-
-          chipInstance.selectViaInteraction();
-
-          expect(spy).not.toHaveBeenCalled();
-          subscription.unsubscribe();
-        }
-      );
-
-      it('should not dispatch `selectionChange` through setter if the value did not change', () => {
-        chipInstance.selected = false;
-
-        const spy = jasmine.createSpy('selectionChange spy');
-        const subscription = chipInstance.selectionChange.subscribe(spy);
-
-        chipInstance.selected = false;
-
-        expect(spy).not.toHaveBeenCalled();
-        subscription.unsubscribe();
-      });
-
       it('should return the chip text if value is undefined', () => {
         expect(chipInstance.value.trim()).toBe(fixture.componentInstance.name);
       });
@@ -220,91 +153,6 @@ describe('SbbChip', () => {
     });
 
     describe('keyboard behavior', () => {
-      describe('when selectable is true', () => {
-        beforeEach(() => {
-          testComponent.selectable = true;
-          fixture.detectChanges();
-        });
-
-        it('should selects/deselects the currently focused chip on SPACE', () => {
-          const spaceEvent = createKeyboardEvent('keydown', SPACE);
-          const chipSelectedEvent: SbbChipSelectionChange = {
-            source: chipInstance,
-            isUserInput: true,
-            selected: true,
-          };
-
-          const chipDeselectedEvent: SbbChipSelectionChange = {
-            source: chipInstance,
-            isUserInput: true,
-            selected: false,
-          };
-
-          spyOn(testComponent, 'chipSelectionChange');
-
-          // Use the spacebar to select the chip
-          chipInstance._handleKeydown(spaceEvent);
-          fixture.detectChanges();
-
-          expect(chipInstance.selected).toBeTruthy();
-          expect(testComponent.chipSelectionChange).toHaveBeenCalledTimes(1);
-          expect(testComponent.chipSelectionChange).toHaveBeenCalledWith(chipSelectedEvent);
-
-          // Use the spacebar to deselect the chip
-          chipInstance._handleKeydown(spaceEvent);
-          fixture.detectChanges();
-
-          expect(chipInstance.selected).toBeFalsy();
-          expect(testComponent.chipSelectionChange).toHaveBeenCalledTimes(2);
-          expect(testComponent.chipSelectionChange).toHaveBeenCalledWith(chipDeselectedEvent);
-        });
-
-        it('should have correct aria-selected in single selection mode', () => {
-          expect(chipNativeElement.hasAttribute('aria-selected')).toBe(false);
-
-          testComponent.selected = true;
-          fixture.detectChanges();
-
-          expect(chipNativeElement.getAttribute('aria-selected')).toBe('true');
-        });
-
-        it('should have the correct aria-selected in multi-selection mode', () => {
-          testComponent.chipList.multiple = true;
-          fixture.detectChanges();
-
-          expect(chipNativeElement.getAttribute('aria-selected')).toBe('false');
-
-          testComponent.selected = true;
-          fixture.detectChanges();
-
-          expect(chipNativeElement.getAttribute('aria-selected')).toBe('true');
-        });
-      });
-
-      describe('when selectable is false', () => {
-        beforeEach(() => {
-          testComponent.selectable = false;
-          fixture.detectChanges();
-        });
-
-        it('SPACE ignores selection', () => {
-          const spaceEvent = createKeyboardEvent('keydown', SPACE);
-
-          spyOn(testComponent, 'chipSelectionChange');
-
-          // Use the spacebar to attempt to select the chip
-          chipInstance._handleKeydown(spaceEvent);
-          fixture.detectChanges();
-
-          expect(chipInstance.selected).toBeFalsy();
-          expect(testComponent.chipSelectionChange).not.toHaveBeenCalled();
-        });
-
-        it('should not have the aria-selected attribute', () => {
-          expect(chipNativeElement.hasAttribute('aria-selected')).toBe(false);
-        });
-      });
-
       describe('when removable is true', () => {
         beforeEach(() => {
           testComponent.removable = true;
@@ -396,13 +244,10 @@ describe('SbbChip', () => {
   template: ` <sbb-chip-list>
     <div *ngIf="shouldShow">
       <sbb-chip
-        [selectable]="selectable"
         [removable]="removable"
-        [selected]="selected"
         [disabled]="disabled"
         (focus)="chipFocus($event)"
         (destroyed)="chipDestroy($event)"
-        (selectionChange)="chipSelectionChange($event)"
         (removed)="chipRemove($event)"
         [value]="value"
       >
@@ -415,15 +260,12 @@ class SingleChip {
   @ViewChild(SbbChipList) chipList: SbbChipList;
   disabled: boolean = false;
   name: string = 'Test';
-  selected: boolean = false;
-  selectable: boolean = true;
   removable: boolean = true;
   shouldShow: boolean = true;
   value: any;
 
   chipFocus: (event?: SbbChipEvent) => void = () => {};
   chipDestroy: (event?: SbbChipEvent) => void = () => {};
-  chipSelectionChange: (event?: SbbChipSelectionChange) => void = () => {};
   chipRemove: (event?: SbbChipEvent) => void = () => {};
 }
 

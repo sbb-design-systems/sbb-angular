@@ -12,7 +12,6 @@ import {
   SPACE,
 } from '@angular/cdk/keycodes';
 import {
-  ChangeDetectionStrategy,
   Component,
   DebugElement,
   NgZone,
@@ -71,20 +70,6 @@ describe('SbbChipList', () => {
 
       it('should add the `sbb-chip-list` class', () => {
         expect(chipListNativeElement.classList).toContain('sbb-chip-list');
-      });
-
-      it('should not have the aria-selected attribute when is not selectable', () => {
-        testComponent.selectable = false;
-        fixture.detectChanges();
-
-        const chipsValid = chips
-          .toArray()
-          .every(
-            (chip) =>
-              !chip.selectable && !chip._elementRef.nativeElement.hasAttribute('aria-selected')
-          );
-
-        expect(chipsValid).toBe(true);
       });
 
       it('should toggle the chips disabled state based on whether it is disabled', () => {
@@ -152,42 +137,6 @@ describe('SbbChipList', () => {
           false,
           false,
         ]);
-      });
-    });
-
-    describe('with selected chips', () => {
-      beforeEach(() => {
-        fixture = createComponent(SelectedChipList);
-        fixture.detectChanges();
-        chipListDebugElement = fixture.debugElement.query(By.directive(SbbChipList))!;
-        chipListNativeElement = chipListDebugElement.nativeElement;
-      });
-
-      it('should not override chips selected', () => {
-        const instanceChips = fixture.componentInstance.chips.toArray();
-
-        expect(instanceChips[0].selected).toBe(true, 'Expected first option to be selected.');
-        expect(instanceChips[1].selected).toBe(false, 'Expected second option to be not selected.');
-        expect(instanceChips[2].selected).toBe(true, 'Expected third option to be selected.');
-      });
-
-      it('should have role listbox', () => {
-        expect(chipListNativeElement.getAttribute('role')).toBe('listbox');
-      });
-
-      it('should not have role when empty', () => {
-        fixture.componentInstance.foods = [];
-        fixture.detectChanges();
-
-        expect(chipListNativeElement.getAttribute('role')).toBeNull('Expect no role attribute');
-      });
-
-      it('should not have aria-required when it has no role', () => {
-        fixture.componentInstance.foods = [];
-        fixture.detectChanges();
-
-        expect(chipListNativeElement.hasAttribute('role')).toBe(false);
-        expect(chipListNativeElement.hasAttribute('aria-required')).toBe(false);
       });
     });
 
@@ -524,345 +473,7 @@ describe('SbbChipList', () => {
     });
   });
 
-  describe('selection logic', () => {
-    let formField: HTMLElement;
-    let nativeChips: HTMLElement[];
-
-    beforeEach(() => {
-      fixture = createComponent(BasicChipList);
-      fixture.detectChanges();
-
-      formField = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
-      nativeChips = fixture.debugElement
-        .queryAll(By.css('sbb-chip'))
-        .map((chip) => chip.nativeElement);
-
-      chipListDebugElement = fixture.debugElement.query(By.directive(SbbChipList))!;
-      chipListInstance = chipListDebugElement.componentInstance;
-      chips = chipListInstance.chips;
-    });
-
-    it('should remove selection if chip has been removed', fakeAsync(() => {
-      const instanceChips = fixture.componentInstance.chips;
-      const chipList = fixture.componentInstance.chipList;
-      const firstChip = nativeChips[0];
-      dispatchKeyboardEvent(firstChip, 'keydown', SPACE);
-      fixture.detectChanges();
-
-      expect(instanceChips.first.selected).toBe(true, 'Expected first option to be selected.');
-      expect(chipList.selected).toBe(chips.first, 'Expected first option to be selected.');
-
-      fixture.componentInstance.foods = [];
-      fixture.detectChanges();
-      tick();
-
-      expect(chipList.selected).toBe(
-        undefined,
-        'Expected selection to be removed when option no longer exists.'
-      );
-    }));
-
-    it('should select an option that was added after initialization', () => {
-      fixture.componentInstance.foods.push({ viewValue: 'Potatoes', value: 'potatoes-8' });
-      fixture.detectChanges();
-
-      nativeChips = fixture.debugElement
-        .queryAll(By.css('sbb-chip'))
-        .map((chip) => chip.nativeElement);
-      const lastChip = nativeChips[8];
-      dispatchKeyboardEvent(lastChip, 'keydown', SPACE);
-      fixture.detectChanges();
-
-      expect(fixture.componentInstance.chipList.value).toContain(
-        'potatoes-8',
-        'Expect value contain the value of the last option'
-      );
-      expect(fixture.componentInstance.chips.last.selected).toBeTruthy(
-        'Expect last option selected'
-      );
-    });
-
-    it('should not select disabled chips', () => {
-      const array = chips.toArray();
-      const disabledChip = nativeChips[2];
-      dispatchKeyboardEvent(disabledChip, 'keydown', SPACE);
-      fixture.detectChanges();
-
-      expect(fixture.componentInstance.chipList.value).toBeUndefined(
-        'Expect value to be undefined'
-      );
-      expect(array[2].selected).toBeFalsy('Expect disabled chip not selected');
-      expect(fixture.componentInstance.chipList.selected).toBeUndefined('Expect no selected chips');
-    });
-  });
-
   describe('forms integration', () => {
-    let nativeChips: HTMLElement[];
-
-    describe('single selection', () => {
-      beforeEach(() => {
-        fixture = createComponent(BasicChipList);
-        fixture.detectChanges();
-
-        nativeChips = fixture.debugElement
-          .queryAll(By.css('sbb-chip'))
-          .map((chip) => chip.nativeElement);
-        chips = fixture.componentInstance.chips;
-      });
-
-      it('should take an initial view value with reactive forms', () => {
-        fixture.componentInstance.control = new FormControl('pizza-1');
-        fixture.detectChanges();
-
-        const array = chips.toArray();
-
-        expect(array[1].selected).toBeTruthy('Expect pizza-1 chip to be selected');
-
-        dispatchKeyboardEvent(nativeChips[1], 'keydown', SPACE);
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeFalsy('Expect chip to be not selected after toggle selected');
-      });
-
-      it('should set the view value from the form', () => {
-        const chipList = fixture.componentInstance.chipList;
-        const array = chips.toArray();
-
-        expect(chipList.value).toBeFalsy('Expect chip list to have no initial value');
-
-        fixture.componentInstance.control.setValue('pizza-1');
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeTruthy('Expect chip to be selected');
-      });
-
-      it('should update the form value when the view changes', () => {
-        expect(fixture.componentInstance.control.value).toEqual(
-          null,
-          `Expected the control's value to be empty initially.`
-        );
-
-        dispatchKeyboardEvent(nativeChips[0], 'keydown', SPACE);
-        fixture.detectChanges();
-
-        expect(fixture.componentInstance.control.value).toEqual(
-          'steak-0',
-          `Expected control's value to be set to the new option.`
-        );
-      });
-
-      it('should clear the selection when a nonexistent option value is selected', () => {
-        const array = chips.toArray();
-
-        fixture.componentInstance.control.setValue('pizza-1');
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeTruthy(`Expected chip with the value to be selected.`);
-
-        fixture.componentInstance.control.setValue('gibberish');
-
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeFalsy(`Expected chip with the old value not to be selected.`);
-      });
-
-      it('should clear the selection when the control is reset', () => {
-        const array = chips.toArray();
-
-        fixture.componentInstance.control.setValue('pizza-1');
-        fixture.detectChanges();
-
-        fixture.componentInstance.control.reset();
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeFalsy(`Expected chip with the old value not to be selected.`);
-      });
-
-      it('should set the control to touched when the chip list is touched', () => {
-        expect(fixture.componentInstance.control.touched).toBe(
-          false,
-          'Expected the control to start off as untouched.'
-        );
-
-        const nativeChipList = fixture.debugElement.query(By.css('.sbb-chip-list'))!.nativeElement;
-        dispatchFakeEvent(nativeChipList, 'blur');
-
-        expect(fixture.componentInstance.control.touched).toBe(
-          true,
-          'Expected the control to be touched.'
-        );
-      });
-
-      it('should not set touched when a disabled chip list is touched', () => {
-        expect(fixture.componentInstance.control.touched).toBe(
-          false,
-          'Expected the control to start off as untouched.'
-        );
-
-        fixture.componentInstance.control.disable();
-        const nativeChipList = fixture.debugElement.query(By.css('.sbb-chip-list'))!.nativeElement;
-        dispatchFakeEvent(nativeChipList, 'blur');
-
-        expect(fixture.componentInstance.control.touched).toBe(
-          false,
-          'Expected the control to stay untouched.'
-        );
-      });
-
-      it("should set the control to dirty when the chip list's value changes in the DOM", () => {
-        expect(fixture.componentInstance.control.dirty).toEqual(
-          false,
-          `Expected control to start out pristine.`
-        );
-
-        dispatchKeyboardEvent(nativeChips[1], 'keydown', SPACE);
-        fixture.detectChanges();
-
-        expect(fixture.componentInstance.control.dirty).toEqual(
-          true,
-          `Expected control to be dirty after value was changed by user.`
-        );
-      });
-
-      it('should not set the control to dirty when the value changes programmatically', () => {
-        expect(fixture.componentInstance.control.dirty).toEqual(
-          false,
-          `Expected control to start out pristine.`
-        );
-
-        fixture.componentInstance.control.setValue('pizza-1');
-
-        expect(fixture.componentInstance.control.dirty).toEqual(
-          false,
-          `Expected control to stay pristine after programmatic change.`
-        );
-      });
-
-      it('should be able to programmatically select a falsy option', () => {
-        fixture.destroy();
-        TestBed.resetTestingModule();
-
-        const falsyFixture = createComponent(FalsyValueChipList);
-        falsyFixture.detectChanges();
-
-        falsyFixture.componentInstance.control.setValue([0]);
-        falsyFixture.detectChanges();
-        falsyFixture.detectChanges();
-
-        expect(falsyFixture.componentInstance.chips.first.selected).toBe(
-          true,
-          'Expected first option to be selected'
-        );
-      });
-
-      it('should not focus the active chip when the value is set programmatically', () => {
-        const chipArray = fixture.componentInstance.chips.toArray();
-
-        spyOn(chipArray[4], 'focus').and.callThrough();
-
-        fixture.componentInstance.control.setValue('chips-4');
-        fixture.detectChanges();
-
-        expect(chipArray[4].focus).not.toHaveBeenCalled();
-      });
-
-      it('should blur the form field when the active chip is blurred', fakeAsync(() => {
-        const formField: HTMLElement = fixture.nativeElement.querySelector('.sbb-form-field');
-
-        nativeChips[0].focus();
-        fixture.detectChanges();
-
-        expect(formField.classList).toContain('sbb-focused');
-
-        nativeChips[0].blur();
-        fixture.detectChanges();
-        zone.simulateZoneExit();
-        fixture.detectChanges();
-
-        expect(formField.classList).not.toContain('sbb-focused');
-      }));
-    });
-
-    describe('multiple selection', () => {
-      beforeEach(() => {
-        fixture = createComponent(MultiSelectionChipList);
-        fixture.detectChanges();
-
-        nativeChips = fixture.debugElement
-          .queryAll(By.css('sbb-chip'))
-          .map((chip) => chip.nativeElement);
-        chips = fixture.componentInstance.chips;
-      });
-
-      it('should take an initial view value with reactive forms', () => {
-        fixture.componentInstance.control = new FormControl(['pizza-1']);
-        fixture.detectChanges();
-
-        const array = chips.toArray();
-
-        expect(array[1].selected).toBeTruthy('Expect pizza-1 chip to be selected');
-
-        dispatchKeyboardEvent(nativeChips[1], 'keydown', SPACE);
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeFalsy('Expect chip to be not selected after toggle selected');
-      });
-
-      it('should set the view value from the form', () => {
-        const chipList = fixture.componentInstance.chipList;
-        const array = chips.toArray();
-
-        expect(chipList.value).toBeFalsy('Expect chip list to have no initial value');
-
-        fixture.componentInstance.control.setValue(['pizza-1']);
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeTruthy('Expect chip to be selected');
-      });
-
-      it('should update the form value when the view changes', () => {
-        expect(fixture.componentInstance.control.value).toEqual(
-          null,
-          `Expected the control's value to be empty initially.`
-        );
-
-        dispatchKeyboardEvent(nativeChips[0], 'keydown', SPACE);
-        fixture.detectChanges();
-
-        expect(fixture.componentInstance.control.value).toEqual(
-          ['steak-0'],
-          `Expected control's value to be set to the new option.`
-        );
-      });
-
-      it('should clear the selection when a nonexistent option value is selected', () => {
-        const array = chips.toArray();
-
-        fixture.componentInstance.control.setValue(['pizza-1']);
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeTruthy(`Expected chip with the value to be selected.`);
-
-        fixture.componentInstance.control.setValue(['gibberish']);
-
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeFalsy(`Expected chip with the old value not to be selected.`);
-      });
-
-      it('should clear the selection when the control is reset', () => {
-        const array = chips.toArray();
-
-        fixture.componentInstance.control.setValue(['pizza-1']);
-        fixture.detectChanges();
-
-        fixture.componentInstance.control.reset();
-        fixture.detectChanges();
-
-        expect(array[1].selected).toBeFalsy(`Expected chip with the old value not to be selected.`);
-      });
-    });
-
     it(
       'should keep the disabled state in sync if the form group is swapped and ' +
         'disabled at the same time',
@@ -896,73 +507,6 @@ describe('SbbChipList', () => {
         .map((chip) => chip.nativeElement);
     });
 
-    it('should take an initial view value with reactive forms', () => {
-      fixture.componentInstance.control = new FormControl(['pizza-1']);
-      fixture.detectChanges();
-
-      const array = fixture.componentInstance.chips.toArray();
-
-      expect(array[1].selected).toBeTruthy('Expect pizza-1 chip to be selected');
-
-      dispatchKeyboardEvent(nativeChips[1], 'keydown', SPACE);
-      fixture.detectChanges();
-
-      expect(array[1].selected).toBeFalsy('Expect chip to be not selected after toggle selected');
-    });
-
-    it('should set the view value from the form', () => {
-      const array = fixture.componentInstance.chips.toArray();
-
-      expect(array[1].selected).toBeFalsy('Expect chip to not be selected');
-
-      fixture.componentInstance.control.setValue(['pizza-1']);
-      fixture.detectChanges();
-
-      expect(array[1].selected).toBeTruthy('Expect chip to be selected');
-    });
-
-    it('should update the form value when the view changes', () => {
-      expect(fixture.componentInstance.control.value).toEqual(
-        null,
-        `Expected the control's value to be empty initially.`
-      );
-
-      dispatchKeyboardEvent(nativeChips[0], 'keydown', SPACE);
-      fixture.detectChanges();
-
-      expect(fixture.componentInstance.control.value).toEqual(
-        ['steak-0'],
-        `Expected control's value to be set to the new option.`
-      );
-    });
-
-    it('should clear the selection when a nonexistent option value is selected', () => {
-      const array = fixture.componentInstance.chips.toArray();
-
-      fixture.componentInstance.control.setValue(['pizza-1']);
-      fixture.detectChanges();
-
-      expect(array[1].selected).toBeTruthy(`Expected chip with the value to be selected.`);
-
-      fixture.componentInstance.control.setValue(['gibberish']);
-
-      fixture.detectChanges();
-
-      expect(array[1].selected).toBeFalsy(`Expected chip with the old value not to be selected.`);
-    });
-
-    it('should clear the selection when the control is reset', () => {
-      const array = fixture.componentInstance.chips.toArray();
-
-      fixture.componentInstance.control.setValue(['pizza-1']);
-      fixture.detectChanges();
-
-      fixture.componentInstance.control.reset();
-      fixture.detectChanges();
-
-      expect(array[1].selected).toBeFalsy(`Expected chip with the old value not to be selected.`);
-    });
-
     it('should set the control to touched when the chip list is touched', fakeAsync(() => {
       expect(fixture.componentInstance.control.touched).toBe(
         false,
@@ -993,21 +537,6 @@ describe('SbbChipList', () => {
       expect(fixture.componentInstance.control.touched).toBe(
         false,
         'Expected the control to stay untouched.'
-      );
-    });
-
-    it("should set the control to dirty when the chip list's value changes in the DOM", () => {
-      expect(fixture.componentInstance.control.dirty).toEqual(
-        false,
-        `Expected control to start out pristine.`
-      );
-
-      dispatchKeyboardEvent(nativeChips[1], 'keydown', SPACE);
-      fixture.detectChanges();
-
-      expect(fixture.componentInstance.control.dirty).toEqual(
-        true,
-        `Expected control to be dirty after value was changed by user.`
       );
     });
 
@@ -1051,20 +580,6 @@ describe('SbbChipList', () => {
 
       expect(document.activeElement).toBe(nativeInput, 'Expected input to remain focused.');
     }));
-
-    it('should set aria-invalid if the form field is invalid', () => {
-      fixture.componentInstance.control = new FormControl(undefined, [Validators.required]);
-      fixture.detectChanges();
-
-      const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
-
-      expect(input.getAttribute('aria-invalid')).toBe('true');
-
-      fixture.componentInstance.chips.first.selectViaInteraction();
-      fixture.detectChanges();
-
-      expect(input.getAttribute('aria-invalid')).toBe('false');
-    });
 
     describe('keyboard behavior', () => {
       let nativeInput: HTMLInputElement;
@@ -1265,18 +780,6 @@ describe('SbbChipList', () => {
     });
   });
 
-  it('should preselected chip as selected inside an OnPush component', fakeAsync(() => {
-    fixture = createComponent(PreselectedChipInsideOnPush);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-
-    expect(fixture.nativeElement.querySelector('.sbb-chip').classList).toContain(
-      'sbb-chip-selected',
-      'Expected first chip to be selected.'
-    );
-  }));
-
   function createComponent<T>(
     component: Type<T>,
     providers: Provider[] = [],
@@ -1324,17 +827,12 @@ describe('SbbChipList', () => {
 });
 
 @Component({
-  template: ` <sbb-chip-list [tabIndex]="tabIndex" [selectable]="selectable">
-    <sbb-chip *ngFor="let i of chips" (select)="chipSelect(i)" (deselect)="chipDeselect(i)">
-      {{ name }} {{ i + 1 }}
-    </sbb-chip>
+  template: ` <sbb-chip-list [tabIndex]="tabIndex">
+    <sbb-chip *ngFor="let i of chips"> {{ name }} {{ i + 1 }} </sbb-chip>
   </sbb-chip-list>`,
 })
 class StandardChipList {
   name: string = 'Test';
-  selectable: boolean = true;
-  chipSelect: (index?: number) => void = () => {};
-  chipDeselect: (index?: number) => void = () => {};
   tabIndex: number = 0;
   chips = [0, 1, 2, 3, 4];
 }
@@ -1371,7 +869,6 @@ class FormFieldChipList {
         [formControl]="control"
         [required]="isRequired"
         [tabIndex]="tabIndexOverride"
-        [selectable]="selectable"
       >
         <sbb-chip *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
           {{ food.viewValue }}
@@ -1394,46 +891,6 @@ class BasicChipList {
   control = new FormControl();
   isRequired: boolean;
   tabIndexOverride: number;
-  selectable: boolean;
-
-  @ViewChild(SbbChipList) chipList: SbbChipList;
-  @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
-}
-
-@Component({
-  selector: 'multi-selection-chip-list',
-  template: `
-    <sbb-form-field>
-      <sbb-chip-list
-        [multiple]="true"
-        placeholder="Food"
-        [formControl]="control"
-        [required]="isRequired"
-        [tabIndex]="tabIndexOverride"
-        [selectable]="selectable"
-      >
-        <sbb-chip *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
-          {{ food.viewValue }}
-        </sbb-chip>
-      </sbb-chip-list>
-    </sbb-form-field>
-  `,
-})
-class MultiSelectionChipList {
-  foods: any[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos', disabled: true },
-    { value: 'sandwich-3', viewValue: 'Sandwich' },
-    { value: 'chips-4', viewValue: 'Chips' },
-    { value: 'eggs-5', viewValue: 'Eggs' },
-    { value: 'pasta-6', viewValue: 'Pasta' },
-    { value: 'sushi-7', viewValue: 'Sushi' },
-  ];
-  control = new FormControl();
-  isRequired: boolean;
-  tabIndexOverride: number;
-  selectable: boolean;
 
   @ViewChild(SbbChipList) chipList: SbbChipList;
   @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
@@ -1443,13 +900,7 @@ class MultiSelectionChipList {
   selector: 'input-chip-list',
   template: `
     <sbb-form-field>
-      <sbb-chip-list
-        [multiple]="true"
-        placeholder="Food"
-        [formControl]="control"
-        [required]="isRequired"
-        #chipList1
-      >
+      <sbb-chip-list placeholder="Food" [formControl]="control" [required]="isRequired" #chipList1>
         <sbb-chip *ngFor="let food of foods" [value]="food.value" (removed)="remove(food)">
           {{ food.viewValue }}
         </sbb-chip>
@@ -1511,46 +962,10 @@ class InputChipList {
 
 @Component({
   template: `
-    <sbb-form-field>
-      <sbb-chip-list [formControl]="control">
-        <sbb-chip *ngFor="let food of foods" [value]="food.value">{{ food.viewValue }}</sbb-chip>
-      </sbb-chip-list>
-    </sbb-form-field>
-  `,
-})
-class FalsyValueChipList {
-  foods: any[] = [
-    { value: 0, viewValue: 'Steak' },
-    { value: 1, viewValue: 'Pizza' },
-  ];
-  control = new FormControl();
-  @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
-}
-
-@Component({
-  template: `
-    <sbb-chip-list>
-      <sbb-chip *ngFor="let food of foods" [value]="food.value" [selected]="food.selected">
-        {{ food.viewValue }}
-      </sbb-chip>
-    </sbb-chip-list>
-  `,
-})
-class SelectedChipList {
-  foods: any[] = [
-    { value: 0, viewValue: 'Steak', selected: true },
-    { value: 1, viewValue: 'Pizza', selected: false },
-    { value: 2, viewValue: 'Pasta', selected: true },
-  ];
-  @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
-}
-
-@Component({
-  template: `
     <form #form="ngForm" novalidate>
       <sbb-form-field>
         <sbb-chip-list [formControl]="formControl">
-          <sbb-chip *ngFor="let food of foods" [value]="food.value" [selected]="food.selected">
+          <sbb-chip *ngFor="let food of foods" [value]="food.value">
             {{ food.viewValue }}
           </sbb-chip>
         </sbb-chip-list>
@@ -1561,9 +976,9 @@ class SelectedChipList {
 })
 class ChipListWithFormErrorMessages {
   foods: any[] = [
-    { value: 0, viewValue: 'Steak', selected: true },
-    { value: 1, viewValue: 'Pizza', selected: false },
-    { value: 2, viewValue: 'Pasta', selected: true },
+    { value: 0, viewValue: 'Steak' },
+    { value: 1, viewValue: 'Pizza' },
+    { value: 2, viewValue: 'Pasta' },
   ];
   @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
 
@@ -1613,21 +1028,6 @@ class ChipListWithRemove {
   removeChip(event: SbbChipEvent) {
     this.chips.splice(event.chip.value, 1);
   }
-}
-
-@Component({
-  template: `
-    <sbb-form-field>
-      <sbb-chip-list [formControl]="control">
-        <sbb-chip>Pizza</sbb-chip>
-        <sbb-chip>Pasta</sbb-chip>
-      </sbb-chip-list>
-    </sbb-form-field>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-class PreselectedChipInsideOnPush {
-  control = new FormControl('Pizza');
 }
 
 @Component({

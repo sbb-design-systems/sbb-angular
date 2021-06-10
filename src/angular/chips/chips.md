@@ -5,18 +5,10 @@
 
 ### Unstyled chips
 
-By default, `<sbb-chip>` has Sbberial Design styles applied. For a chip with no styles applied,
+By default, `<sbb-chip>` has SBB Design styles applied. For a chip with no styles applied,
 use `<sbb-basic-chip>`. You can then customize the chip appearance by adding your own CSS.
 
 _Hint: `<sbb-basic-chip>` receives the `sbb-basic-chip` CSS class in addition to the `sbb-chip` class._
-
-### Selection
-
-Chips can be selected via the `selected` property. Selection can be disabled by setting
-`selectable` to `false` on the `<sbb-chip-list>`.
-
-Whenever the selection state changes, a `ChipSelectionChange` event will be emitted via
-`(selectionChange)`.
 
 ### Disabled chips
 

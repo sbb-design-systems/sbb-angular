@@ -1,8 +1,6 @@
 import { FocusableOption } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty, NumberInput } from '@angular/cdk/coercion';
-import { BACKSPACE, DELETE, SPACE } from '@angular/cdk/keycodes';
-import { Platform } from '@angular/cdk/platform';
-import { DOCUMENT } from '@angular/common';
+import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import {
   Attribute,
   ChangeDetectorRef,
@@ -29,31 +27,12 @@ export interface SbbChipEvent {
   chip: SbbChip;
 }
 
-/** Event object emitted by SbbChip when selected or deselected. */
-export class SbbChipSelectionChange {
-  constructor(
-    /** Reference to the chip that emitted the event. */
-    public source: SbbChip,
-    /** Whether the chip that emitted the event is selected. */
-    public selected: boolean,
-    /** Whether the selection change was a result of a user interaction. */
-    public isUserInput = false
-  ) {}
-}
-
 /**
  * Injection token that can be used to reference instances of `SbbChipRemove`. It serves as
  * alternative token to the actual `SbbChipRemove` class which could cause unnecessary
  * retention of the class and its directive metadata.
  */
 export const SBB_CHIP_REMOVE = new InjectionToken<SbbChipRemove>('SbbChipRemove');
-
-/**
- * Injection token that can be used to reference instances of `SbbChipAvatar`. It serves as
- * alternative token to the actual `SbbChipAvatar` class which could cause unnecessary
- * retention of the class and its directive metadata.
- */
-export const SBB_CHIP_AVATAR = new InjectionToken<SbbChipAvatar>('SbbChipAvatar');
 
 /**
  * Injection token that can be used to reference instances of `SbbChipTrailingIcon`. It serves as
@@ -75,17 +54,6 @@ abstract class SbbChipBase {
 const _SbbChipMixinBase = mixinTabIndex(SbbChipBase, -1);
 
 /**
- * Dummy directive to add CSS class to chip avatar.
- * @docs-private
- */
-@Directive({
-  selector: 'sbb-chip-avatar, [sbbChipAvatar]',
-  host: { class: 'sbb-chip-avatar' },
-  providers: [{ provide: SBB_CHIP_AVATAR, useExisting: SbbChipAvatar }],
-})
-export class SbbChipAvatar {}
-
-/**
  * Dummy directive to add CSS class to chip trailing icon.
  * @docs-private
  */
@@ -97,7 +65,7 @@ export class SbbChipAvatar {}
 export class SbbChipTrailingIcon {}
 
 /**
- * Sbberial design styled Chip component. Used inside the SbbChipList component.
+ * Design styled Chip component. Used inside the SbbChipList component.
  */
 @Directive({
   selector: `sbb-basic-chip, [sbb-basic-chip], sbb-chip, [sbb-chip]`,
@@ -107,14 +75,11 @@ export class SbbChipTrailingIcon {}
     class: 'sbb-chip sbb-focus-indicator',
     '[attr.tabindex]': 'disabled ? null : tabIndex',
     role: 'option',
-    '[class.sbb-chip-selected]': 'selected',
-    '[class.sbb-chip-with-avatar]': 'avatar',
     '[class.sbb-chip-with-trailing-icon]': 'trailingIcon || removeIcon',
     '[class.sbb-chip-disabled]': 'disabled',
     '[class._sbb-animation-noopable]': '_animationsDisabled',
     '[attr.disabled]': 'disabled || null',
     '[attr.aria-disabled]': 'disabled.toString()',
-    '[attr.aria-selected]': 'ariaSelected',
     '(click)': '_handleClick($event)',
     '(keydown)': '_handleKeydown($event)',
     '(focus)': 'focus()',
@@ -131,38 +96,14 @@ export class SbbChip
   /** Whether animations for the chip are enabled. */
   _animationsDisabled: boolean;
 
-  /** Whether the chip list is selectable */
-  chipListSelectable: boolean = true;
-
-  /** Whether the chip list is in multi-selection mode. */
-  _chipListMultiple: boolean = false;
-
   /** Whether the chip list as a whole is disabled. */
   _chipListDisabled: boolean = false;
-
-  /** The chip avatar */
-  @ContentChild(SBB_CHIP_AVATAR) avatar: SbbChipAvatar;
 
   /** The chip's trailing icon. */
   @ContentChild(SBB_CHIP_TRAILING_ICON) trailingIcon: SbbChipTrailingIcon;
 
   /** The chip's remove toggler. */
   @ContentChild(SBB_CHIP_REMOVE) removeIcon: SbbChipRemove;
-
-  /** Whether the chip is selected. */
-  @Input()
-  get selected(): boolean {
-    return this._selected;
-  }
-  set selected(value: boolean) {
-    const coercedValue = coerceBooleanProperty(value);
-
-    if (coercedValue !== this._selected) {
-      this._selected = coercedValue;
-      this._dispatchSelectionChange();
-    }
-  }
-  protected _selected: boolean = false;
 
   /** The value of the chip. Defaults to the content inside `<sbb-chip>` tags. */
   @Input()
@@ -173,21 +114,6 @@ export class SbbChip
     this._value = value;
   }
   protected _value: any;
-
-  /**
-   * Whether or not the chip is selectable. When a chip is not selectable,
-   * changes to its selected state are always ignored. By default a chip is
-   * selectable, and it becomes non-selectable if its parent chip list is
-   * not selectable.
-   */
-  @Input()
-  get selectable(): boolean {
-    return this._selectable && this.chipListSelectable;
-  }
-  set selectable(value: boolean) {
-    this._selectable = coerceBooleanProperty(value);
-  }
-  protected _selectable: boolean = true;
 
   /** Whether the chip is disabled. */
   @Input()
@@ -217,24 +143,11 @@ export class SbbChip
   /** Emits when the chip is blurred. */
   readonly _onBlur = new Subject<SbbChipEvent>();
 
-  /** Emitted when the chip is selected or deselected. */
-  @Output() readonly selectionChange: EventEmitter<SbbChipSelectionChange> =
-    new EventEmitter<SbbChipSelectionChange>();
-
   /** Emitted when the chip is destroyed. */
   @Output() readonly destroyed: EventEmitter<SbbChipEvent> = new EventEmitter<SbbChipEvent>();
 
   /** Emitted when a chip is to be removed. */
   @Output() readonly removed: EventEmitter<SbbChipEvent> = new EventEmitter<SbbChipEvent>();
-
-  /** The ARIA selected applied to the chip. */
-  get ariaSelected(): string | null {
-    // Remove the `aria-selected` when the chip is deselected in single-selection mode, because
-    // it adds noise to NVDA users where "not selected" will be read out for each chip.
-    return this.selectable && (this._chipListMultiple || this.selected)
-      ? this.selected.toString()
-      : null;
-  }
 
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
@@ -269,41 +182,6 @@ export class SbbChip
 
   ngOnDestroy() {
     this.destroyed.emit({ chip: this });
-  }
-
-  /** Selects the chip. */
-  select(): void {
-    if (!this._selected) {
-      this._selected = true;
-      this._dispatchSelectionChange();
-      this._changeDetectorRef.markForCheck();
-    }
-  }
-
-  /** Deselects the chip. */
-  deselect(): void {
-    if (this._selected) {
-      this._selected = false;
-      this._dispatchSelectionChange();
-      this._changeDetectorRef.markForCheck();
-    }
-  }
-
-  /** Select this chip and emit selected event */
-  selectViaInteraction(): void {
-    if (!this._selected) {
-      this._selected = true;
-      this._dispatchSelectionChange(true);
-      this._changeDetectorRef.markForCheck();
-    }
-  }
-
-  /** Toggles the current selected state of this chip. */
-  toggleSelected(isUserInput: boolean = false): boolean {
-    this._selected = !this.selected;
-    this._dispatchSelectionChange(isUserInput);
-    this._changeDetectorRef.markForCheck();
-    return this.selected;
   }
 
   /** Allows for programmatic focusing of the chip. */
@@ -350,15 +228,6 @@ export class SbbChip
         // Always prevent so page navigation does not occur
         event.preventDefault();
         break;
-      case SPACE:
-        // If we are selectable, toggle the focused chip
-        if (this.selectable) {
-          this.toggleSelected(true);
-        }
-
-        // Always prevent space from scrolling the page since the list has focus
-        event.preventDefault();
-        break;
     }
   }
 
@@ -375,24 +244,13 @@ export class SbbChip
     });
   }
 
-  private _dispatchSelectionChange(isUserInput = false) {
-    this.selectionChange.emit({
-      source: this,
-      isUserInput,
-      selected: this._selected,
-    });
-  }
-
-  static ngAcceptInputType_selected: BooleanInput;
-  static ngAcceptInputType_selectable: BooleanInput;
   static ngAcceptInputType_removable: BooleanInput;
   static ngAcceptInputType_disabled: BooleanInput;
   static ngAcceptInputType_tabIndex: NumberInput;
 }
 
 /**
- * Applies proper (click) support and adds styling for use with the Sbb Design "cancel" icon
- * available at https://material.io/icons/#ic_cancel. TODO
+ * Applies proper (click) support and adds styling for use with the Sbb Design "cancel"
  *
  * Example:
  *

@@ -1,7 +1,6 @@
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { Directionality } from '@angular/cdk/bidi';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { SelectionModel } from '@angular/cdk/collections';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -26,7 +25,7 @@ import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
-import { SbbChip, SbbChipEvent, SbbChipSelectionChange } from './chip';
+import { SbbChip, SbbChipEvent } from './chip';
 import { SbbChipTextControl } from './chip-text-control';
 
 // Boilerplate for applying mixins to SbbChipList.
@@ -47,16 +46,6 @@ const _SbbChipListBase = mixinErrorState(
 // Increasing integer for generating unique ids for chip-list components.
 let nextUniqueId = 0;
 
-/** Change event object that is emitted when the chip list value has changed. */
-export class SbbChipListChange {
-  constructor(
-    /** Chip list that emitted the event. */
-    public source: SbbChipList,
-    /** Value of the chip list when the event was emitted. */
-    public value: any
-  ) {}
-}
-
 /**
  * A design chips component (named ChipList for its similarity to the List component).
  */
@@ -70,7 +59,6 @@ export class SbbChipListChange {
     '[attr.aria-required]': 'role ? required : null',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[attr.aria-invalid]': 'errorState',
-    '[attr.aria-multiselectable]': 'multiple',
     '[attr.role]': 'role',
     '[class.sbb-chip-list-disabled]': 'disabled',
     '[class.sbb-chip-list-invalid]': 'errorState',
@@ -120,9 +108,6 @@ export class SbbChipList
   /** Subscription to blur changes in the chips. */
   private _chipBlurSubscription: Subscription | null;
 
-  /** Subscription to selection changes in chips. */
-  private _chipSelectionSubscription: Subscription | null;
-
   /** Subscription to remove changes in chips. */
   private _chipRemoveSubscription: Subscription | null;
 
@@ -153,13 +138,6 @@ export class SbbChipList
   /** Function when changed */
   _onChange: (value: any) => void = () => {};
 
-  _selectionModel: SelectionModel<SbbChip>;
-
-  /** The array of selected chips inside chip list. */
-  get selected(): SbbChip[] | SbbChip {
-    return this.multiple ? this._selectionModel.selected : this._selectionModel.selected[0];
-  }
-
   /** The ARIA role applied to the chip list. */
   get role(): string | null {
     return this.empty ? null : 'listbox';
@@ -167,35 +145,6 @@ export class SbbChipList
 
   /** An object used to control when error messages are shown. */
   @Input() errorStateMatcher: SbbErrorStateMatcher;
-
-  /** Whether the user should be allowed to select multiple chips. */
-  @Input()
-  get multiple(): boolean {
-    return this._multiple;
-  }
-  set multiple(value: boolean) {
-    this._multiple = coerceBooleanProperty(value);
-    this._syncChipsState();
-  }
-  private _multiple: boolean = false;
-
-  /**
-   * A function to compare the option values with the selected values. The first argument
-   * is a value from an option. The second is a value from the selection. A boolean
-   * should be returned.
-   */
-  @Input()
-  get compareWith(): (o1: any, o2: any) => boolean {
-    return this._compareWith;
-  }
-  set compareWith(fn: (o1: any, o2: any) => boolean) {
-    this._compareWith = fn;
-    if (this._selectionModel) {
-      // A different comparator means the selection could change.
-      this._initializeSelection();
-    }
-  }
-  private _compareWith = (o1: any, o2: any) => o1 === o2;
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -277,32 +226,10 @@ export class SbbChipList
   /** Orientation of the chip list. */
   @Input('aria-orientation') ariaOrientation: 'horizontal' | 'vertical' = 'horizontal';
 
-  /**
-   * Whether or not this chip list is selectable. When a chip list is not selectable,
-   * the selected states for all the chips inside the chip list are always ignored.
-   */
-  @Input()
-  get selectable(): boolean {
-    return this._selectable;
-  }
-  set selectable(value: boolean) {
-    this._selectable = coerceBooleanProperty(value);
-
-    if (this.chips) {
-      this.chips.forEach((chip) => (chip.chipListSelectable = this._selectable));
-    }
-  }
-  protected _selectable: boolean = true;
-
   @Input()
   set tabIndex(value: number) {
     this._userTabIndex = value;
     this._tabIndex = value;
-  }
-
-  /** Combined stream of all of the child chips' selection change events. */
-  get chipSelectionChanges(): Observable<SbbChipSelectionChange> {
-    return merge(...this.chips.map((chip) => chip.selectionChange));
   }
 
   /** Combined stream of all of the child chips' focus change events. */
@@ -319,9 +246,6 @@ export class SbbChipList
   get chipRemoveChanges(): Observable<SbbChipEvent> {
     return merge(...this.chips.map((chip) => chip.destroyed));
   }
-
-  /** Event emitted when the selected chip list value has been changed by the user. */
-  @Output() readonly change = new EventEmitter<SbbChipListChange>();
 
   /**
    * Event that emits whenever the raw value of the chip-list changes. This is here primarily
@@ -383,9 +307,6 @@ export class SbbChipList
 
       this._resetChips();
 
-      // Reset chips selected/deselected status
-      this._initializeSelection();
-
       // Check to see if we need to update our tab index
       this._updateTabIndex();
 
@@ -397,7 +318,6 @@ export class SbbChipList
   }
 
   ngOnInit() {
-    this._selectionModel = new SelectionModel<SbbChip>(this.multiple, undefined, false);
     this.stateChanges.next();
   }
 
@@ -440,11 +360,7 @@ export class SbbChipList
   }
 
   // Implemented as part of ControlValueAccessor.
-  writeValue(value: any): void {
-    if (this.chips) {
-      this._setSelectionByValue(value, false);
-    }
-  }
+  writeValue(value: any): void {}
 
   // Implemented as part of ControlValueAccessor.
   registerOnChange(fn: (value: any) => void): void {
@@ -481,7 +397,6 @@ export class SbbChipList
       return;
     }
 
-    // TODO: ARIA says this should focus the first `selected` chip if any are selected.
     // Focus on first element if there's no chipInput inside chip-list
     if (this._chipInput && this._chipInput.focused) {
       // do nothing
@@ -549,98 +464,8 @@ export class SbbChipList
     return index >= 0 && index < this.chips.length;
   }
 
-  _setSelectionByValue(value: any, isUserInput: boolean = true) {
-    this._clearSelection();
-    this.chips.forEach((chip) => chip.deselect());
-
-    if (Array.isArray(value)) {
-      value.forEach((currentValue) => this._selectValue(currentValue, isUserInput));
-      this._sortValues();
-    } else {
-      const correspondingChip = this._selectValue(value, isUserInput);
-
-      // Shift focus to the active item. Note that we shouldn't do this in multiple
-      // mode, because we don't know what chip the user interacted with last.
-      if (correspondingChip && isUserInput) {
-        this._keyManager.setActiveItem(correspondingChip);
-      }
-    }
-  }
-
-  /**
-   * Finds and selects the chip based on its value.
-   * @returns Chip that has the corresponding value.
-   */
-  private _selectValue(value: any, isUserInput: boolean = true): SbbChip | undefined {
-    const correspondingChip = this.chips.find((chip) => {
-      return chip.value != null && this._compareWith(chip.value, value);
-    });
-
-    if (correspondingChip) {
-      isUserInput ? correspondingChip.selectViaInteraction() : correspondingChip.select();
-      this._selectionModel.select(correspondingChip);
-    }
-
-    return correspondingChip;
-  }
-
-  private _initializeSelection(): void {
-    // Defer setting the value in order to avoid the "Expression
-    // has changed after it was checked" errors from Angular.
-    Promise.resolve().then(() => {
-      if (this.ngControl || this._value) {
-        this._setSelectionByValue(this.ngControl ? this.ngControl.value : this._value, false);
-        this.stateChanges.next();
-      }
-    });
-  }
-
-  /**
-   * Deselects every chip in the list.
-   * @param skip Chip that should not be deselected.
-   */
-  private _clearSelection(skip?: SbbChip): void {
-    this._selectionModel.clear();
-    this.chips.forEach((chip) => {
-      if (chip !== skip) {
-        chip.deselect();
-      }
-    });
-    this.stateChanges.next();
-  }
-
-  /**
-   * Sorts the model values, ensuring that they keep the same
-   * order that they have in the panel.
-   */
-  private _sortValues(): void {
-    if (this._multiple) {
-      this._selectionModel.clear();
-
-      this.chips.forEach((chip) => {
-        if (chip.selected) {
-          this._selectionModel.select(chip);
-        }
-      });
-      this.stateChanges.next();
-    }
-  }
-
   /** Emits change event to set the model value. */
-  private _propagateChanges(fallbackValue?: any): void {
-    let valueToEmit: any = null;
-
-    if (Array.isArray(this.selected)) {
-      valueToEmit = this.selected.map((chip) => chip.value);
-    } else {
-      valueToEmit = this.selected ? this.selected.value : fallbackValue;
-    }
-    this._value = valueToEmit;
-    this.change.emit(new SbbChipListChange(this, valueToEmit));
-    this.valueChange.emit(valueToEmit);
-    this._onChange(valueToEmit);
-    this._changeDetectorRef.markForCheck();
-  }
+  private _propagateChanges(fallbackValue?: any): void {}
 
   /** When blurred, mark the field as touched when focus moved outside the chip list. */
   _blur() {
@@ -692,7 +517,6 @@ export class SbbChipList
   private _resetChips() {
     this._dropSubscriptions();
     this._listenToChipsFocus();
-    this._listenToChipsSelection();
     this._listenToChipsRemoved();
   }
 
@@ -707,37 +531,10 @@ export class SbbChipList
       this._chipBlurSubscription = null;
     }
 
-    if (this._chipSelectionSubscription) {
-      this._chipSelectionSubscription.unsubscribe();
-      this._chipSelectionSubscription = null;
-    }
-
     if (this._chipRemoveSubscription) {
       this._chipRemoveSubscription.unsubscribe();
       this._chipRemoveSubscription = null;
     }
-  }
-
-  /** Listens to user-generated selection events on each chip. */
-  private _listenToChipsSelection(): void {
-    this._chipSelectionSubscription = this.chipSelectionChanges.subscribe((event) => {
-      event.source.selected
-        ? this._selectionModel.select(event.source)
-        : this._selectionModel.deselect(event.source);
-
-      // For single selection chip list, make sure the deselected value is unselected.
-      if (!this.multiple) {
-        this.chips.forEach((chip) => {
-          if (!this._selectionModel.isSelected(chip) && chip.selected) {
-            chip.deselect();
-          }
-        });
-      }
-
-      if (event.isUserInput) {
-        this._propagateChanges();
-      }
-    });
   }
 
   /** Listens to user-generated selection events on each chip. */
@@ -796,13 +593,10 @@ export class SbbChipList
     if (this.chips) {
       this.chips.forEach((chip) => {
         chip._chipListDisabled = this._disabled;
-        chip._chipListMultiple = this.multiple;
       });
     }
   }
 
-  static ngAcceptInputType_multiple: BooleanInput;
   static ngAcceptInputType_required: BooleanInput;
   static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_selectable: BooleanInput;
 }
