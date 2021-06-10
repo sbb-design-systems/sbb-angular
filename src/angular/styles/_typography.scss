@@ -2167,20 +2167,16 @@ $panelBorderRadius: 2;
   }
 }
 
-.sbb-input-with-open-panel {
-  border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
+.sbb-input-with-open-panel.sbb-input-element,
+.sbb-input-with-open-panel > .sbb-input-element {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
 
-/**
- * The .sbb-input-with-open-panel-above class is applied to the panel origin,
- * which might not be the same element as the trigger itself. We target the
- * class when it is on the trigger (in both autocomplete and select this has
- * .sbb-input-element) or on an ancester of the trigger, which should only
- * happen, when the .sbb-input-with-open-panel class is on the trigger.
- */
 .sbb-input-with-open-panel-above.sbb-input-element,
-.sbb-input-with-open-panel-above .sbb-input-with-open-panel {
-  border-radius: 0 0 pxToRem($panelBorderRadius) pxToRem($panelBorderRadius);
+.sbb-input-with-open-panel-above > .sbb-input-element {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
 }
 
 // ----------------------------------------------------------------------------------------------------
