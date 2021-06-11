@@ -137,7 +137,6 @@ describe('SbbChipInput', () => {
     });
 
     it('should set input styling classes', () => {
-      expect(inputNativeElement.classList).toContain('sbb-input-element');
       expect(inputNativeElement.classList).toContain('sbb-chip-input');
     });
   });

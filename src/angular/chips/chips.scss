@@ -1,0 +1,115 @@
+@import '../styles/common';
+
+$chip-right-padding: 8;
+
+.sbb-chip-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background: transparent;
+
+  &.sbb-input-element {
+    .sbb-input-with-open-panel & {
+      border-color: $sbbColorGrey;
+
+      html.sbb-lean & {
+        border-color: $sbbColorIron;
+      }
+    }
+
+    &,
+    html:not(.sbb-lean) &,
+    html.sbb-lean & {
+      padding: 0;
+    }
+
+    input.sbb-chip-input {
+      max-width: 100%;
+      border: none;
+      width: pxToEm(150);
+      flex: 1 0 pxToEm(150);
+      min-height: pxToEm(34);
+
+      html.sbb-lean & {
+        padding-bottom: pxToEm(6);
+      }
+    }
+  }
+}
+
+.sbb-chip-list-disabled.sbb-input-element {
+  input.sbb-chip-input {
+    display: none;
+  }
+}
+
+.sbb-chip {
+  // Chips could be set on buttons so we need to reset the user agent styles.
+  @include buttonResetFrameless();
+}
+
+.sbb-standard-chip {
+  @include ellipsis();
+
+  height: pxToEm(36);
+  border-radius: pxToEm(36 / 2);
+  color: $sbbColorIron;
+  background-color: $sbbColorCloud;
+  max-width: 100%;
+  margin: pxToEm(4);
+  padding: pxToEm(10.25) pxToEm(14);
+  font-size: pxToRem($sizeFontDefault);
+
+  &,
+  html:not(.sbb-lean) &,
+  html.sbb-lean & {
+    line-height: 1;
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
+  html.sbb-lean & {
+    height: pxToEm(30);
+    border-radius: pxToEm(30 / 2);
+    margin: pxToEm(2);
+    padding-top: pxToEm(7);
+    padding-bottom: pxToEm(6);
+  }
+
+  &:not(.sbb-chip-disabled) {
+    &:hover,
+    &:focus {
+      background-color: $sbbColorAluminum;
+    }
+  }
+
+  &.sbb-chip-disabled {
+    opacity: 0.6;
+
+    .sbb-chip-remove,
+    .sbb-chip-trailing-icon {
+      cursor: default;
+    }
+  }
+
+  &.sbb-chip-with-trailing-icon {
+    padding-right: pxToEm(4 + 24 + $chip-right-padding);
+    position: relative;
+  }
+
+  .sbb-chip-remove,
+  .sbb-chip-trailing-icon {
+    @include absoluteCenterY();
+    cursor: pointer;
+    margin-left: pxToEm(8);
+    right: pxToEm($chip-right-padding);
+  }
+}

@@ -233,10 +233,6 @@ describe('SbbChip', () => {
         expect(chipNativeElement.getAttribute('tabindex')).toBeFalsy();
       });
     });
-
-    it('should have a focus indicator', () => {
-      expect(chipNativeElement.classList.contains('sbb-focus-indicator')).toBe(true);
-    });
   });
 });
 

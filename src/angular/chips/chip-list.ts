@@ -51,9 +51,10 @@ let nextUniqueId = 0;
  */
 @Component({
   selector: 'sbb-chip-list',
-  template: `<div class="sbb-chip-list-wrapper"><ng-content></ng-content></div>`,
+  template: `<ng-content></ng-content>`,
   exportAs: 'sbbChipList',
   host: {
+    class: 'sbb-chip-list',
     '[attr.tabindex]': 'disabled ? null : _tabIndex',
     '[attr.aria-describedby]': '_ariaDescribedby || null',
     '[attr.aria-required]': 'role ? required : null',
@@ -61,10 +62,12 @@ let nextUniqueId = 0;
     '[attr.aria-invalid]': 'errorState',
     '[attr.role]': 'role',
     '[class.sbb-chip-list-disabled]': 'disabled',
+    '[class.sbb-disabled]': 'disabled',
     '[class.sbb-chip-list-invalid]': 'errorState',
     '[class.sbb-chip-list-required]': 'required',
+    '[class.sbb-focused]': 'focused',
+    '[class.sbb-input-element]': '_chipInput',
     '[attr.aria-orientation]': 'ariaOrientation',
-    class: 'sbb-chip-list',
     '(focus)': 'focus()',
     '(blur)': '_blur()',
     '(keydown)': '_keydown($event)',
@@ -112,7 +115,7 @@ export class SbbChipList
   private _chipRemoveSubscription: Subscription | null;
 
   /** The chip input to add more chips */
-  protected _chipInput: SbbChipTextControl;
+  _chipInput: SbbChipTextControl;
 
   /** Uid of the chip list */
   _uid: string = `sbb-chip-list-${nextUniqueId++}`;

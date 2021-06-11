@@ -72,7 +72,7 @@ export class SbbChipTrailingIcon {}
   inputs: ['tabIndex'],
   exportAs: 'sbbChip',
   host: {
-    class: 'sbb-chip sbb-focus-indicator',
+    class: 'sbb-chip sbb-icon-scaled',
     '[attr.tabindex]': 'disabled ? null : tabIndex',
     role: 'option',
     '[class.sbb-chip-with-trailing-icon]': 'trailingIcon || removeIcon',
