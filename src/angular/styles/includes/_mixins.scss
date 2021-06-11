@@ -142,30 +142,6 @@
   margin-right: -$offset;
 }
 
-// TODO: change em to rem
-@mixin baseBadgePill() {
-  min-width: pxToEm(18, 11);
-  border-radius: pxToEm(15, 11);
-  padding: pxToEm(3, 11) pxToEm(5, 11) pxToEm(4, 11);
-  background-color: $sbbColorMetal;
-  color: $sbbColorWhite;
-  font-family: $fontSbbBold;
-  line-height: 1.1;
-  font-size: pxToRem(11);
-  text-align: center;
-  height: pxToEm(18, 11);
-
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(17);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(22);
-    }
-  }
-}
-
 @mixin panelShadow($attached: below, $borderWidth: 2, $scalingFactor: 1) {
   $sign: 1;
   @if $attached == above {

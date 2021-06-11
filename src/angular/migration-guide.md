@@ -29,11 +29,21 @@ The re-export from root (e.g. `import { SbbButtonModule } from '@sbb-esta/angula
 been removed. All symbols have to be imported from the respective
 module (e.g. `import { SbbButtonModule } from '@sbb-esta/angular/button';`).
 
+### Badge
+
+_Automatic migration available_
+
+`<sbb-badge>` has been replaced with the `sbbBadge=""` directive.
+This is a slight restriction, as we no longer allow HTML inside the badge. However it was
+never intended to be used in that way.
+
+[Documentation](angular/components/badge)
+
 ### Breadcrumb
 
 _Automatic migration available_
 
-Sbb breadcrumb has been refactored resulting in several changes.
+The breadcrumb module has been refactored resulting in several changes.
 Mainly the new `sbb-menu` replaces the `sbb-dropdown` but also improvements
 to accessibility were made. All changes are handled by automatic migration.
 
