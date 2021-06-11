@@ -1,5 +1,4 @@
 import { Component, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { SbbBadgeModule } from '@sbb-esta/angular-public';
 
 @Component({
@@ -16,6 +15,6 @@ export class BadgeTestComponent {}
 
 @NgModule({
   declarations: [BadgeTestComponent],
-  imports: [SbbBadgeModule, RouterModule],
+  imports: [SbbBadgeModule],
 })
 export class BadgeTestModule {}

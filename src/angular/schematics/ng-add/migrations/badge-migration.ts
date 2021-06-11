@@ -31,7 +31,7 @@ export class BadgeMigration extends Migration<null, DevkitContext> {
     ariaLabel?.rename('sbbBadgeDescription');
     const active = element.findProperty('active');
     if (active) {
-      active.replace(`[matBadgeDisabled]="!${active.nativeValue}"`);
+      active.replace(`[sbbBadgeDisabled]="!${active.nativeValue}"`);
     }
 
     const start = element.resource.start;
