@@ -6,6 +6,8 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular/core/testing';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbChipsDefaultOptions, SBB_CHIPS_DEFAULT_OPTIONS } from './chip-default-options';
 import { SbbChipInput, SbbChipInputEvent } from './chip-input';
@@ -22,7 +24,14 @@ describe('SbbChipInput', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [PlatformModule, SbbChipsModule, SbbFormFieldModule, NoopAnimationsModule],
+        imports: [
+          PlatformModule,
+          SbbChipsModule,
+          SbbFormFieldModule,
+          NoopAnimationsModule,
+          SbbIconModule,
+          SbbIconTestingModule,
+        ],
         declarations: [TestChipInput],
       });
 
@@ -199,7 +208,14 @@ describe('SbbChipInput', () => {
 
       TestBed.resetTestingModule()
         .configureTestingModule({
-          imports: [SbbChipsModule, SbbFormFieldModule, PlatformModule, NoopAnimationsModule],
+          imports: [
+            SbbChipsModule,
+            SbbFormFieldModule,
+            PlatformModule,
+            NoopAnimationsModule,
+            SbbIconModule,
+            SbbIconTestingModule,
+          ],
           declarations: [TestChipInput],
           providers: [
             {

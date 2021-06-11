@@ -3,7 +3,9 @@ import { BooleanInput, coerceBooleanProperty, NumberInput } from '@angular/cdk/c
 import { BACKSPACE, DELETE } from '@angular/cdk/keycodes';
 import {
   Attribute,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
   ContentChild,
   Directive,
   ElementRef,
@@ -15,6 +17,7 @@ import {
   OnDestroy,
   Optional,
   Output,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, HasTabIndex, mixinTabIndex } from '@sbb-esta/angular/core';
@@ -67,17 +70,21 @@ export class SbbChipTrailingIcon {}
 /**
  * Design styled Chip component. Used inside the SbbChipList component.
  */
-@Directive({
+@Component({
   selector: `sbb-basic-chip, [sbb-basic-chip], sbb-chip, [sbb-chip]`,
   inputs: ['tabIndex'],
   exportAs: 'sbbChip',
+  template: ` <ng-content></ng-content>
+    <sbb-icon sbbChipRemove svgIcon="kom:cross-small" *ngIf="removable && !removeIcon">
+    </sbb-icon>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   host: {
     class: 'sbb-chip sbb-icon-scaled',
     '[attr.tabindex]': 'disabled ? null : tabIndex',
     role: 'option',
-    '[class.sbb-chip-with-trailing-icon]': 'trailingIcon || removeIcon',
+    '[class.sbb-chip-with-trailing-icon]': 'trailingIcon || removable',
     '[class.sbb-chip-disabled]': 'disabled',
-    '[class._sbb-animation-noopable]': '_animationsDisabled',
     '[attr.disabled]': 'disabled || null',
     '[attr.aria-disabled]': 'disabled.toString()',
     '(click)': '_handleClick($event)',

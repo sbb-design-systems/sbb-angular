@@ -46,6 +46,8 @@ import {
   typeInElement,
 } from '@sbb-esta/angular/core/testing';
 import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbChip, SbbChipEvent, SbbChipRemove } from './chip';
 import { SbbChipInputEvent } from './chip-input';
@@ -795,6 +797,8 @@ describe('SbbChipList', () => {
         SbbFormFieldModule,
         SbbInputModule,
         animationsModule,
+        SbbIconModule,
+        SbbIconTestingModule,
       ],
       declarations: [component],
       providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }, ...providers],

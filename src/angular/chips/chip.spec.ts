@@ -3,6 +3,8 @@ import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createKeyboardEvent, dispatchFakeEvent } from '@sbb-esta/angular/core/testing';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbChip, SbbChipEvent } from './chip';
 import { SbbChipList } from './chip-list';
@@ -17,7 +19,7 @@ describe('SbbChip', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbChipsModule],
+        imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
         declarations: [
           BasicChip,
           SingleChip,

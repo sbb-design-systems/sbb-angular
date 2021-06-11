@@ -20,6 +20,7 @@ ng_module(
     deps = [
         "//src/angular/core",
         "//src/angular/form-field",
+        "//src/angular/icon",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -32,6 +33,9 @@ ng_module(
 sass_binary(
     name = "chips_scss",
     src = "chips.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(
@@ -44,6 +48,8 @@ ng_test_library(
         ":chips",
         "//src/angular/core/testing",
         "//src/angular/form-field",
+        "//src/angular/icon",
+        "//src/angular/icon/testing",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/forms",

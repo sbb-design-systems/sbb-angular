@@ -1,39 +1,41 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbChip } from './chip';
 import { SbbChipsModule } from './chips.module';
 
 describe('Chip Remove', () => {
-  let fixture: ComponentFixture<TestChip>;
-  let testChip: TestChip;
-  let chipDebugElement: DebugElement;
-  let chipNativeElement: HTMLElement;
-
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbChipsModule],
-        declarations: [TestChip],
+        imports: [SbbChipsModule, SbbIconModule, SbbIconTestingModule],
+        declarations: [TestChip, ChipWithoutRemoveIcon],
       });
 
       TestBed.compileComponents();
     })
   );
 
-  beforeEach(
-    waitForAsync(() => {
-      fixture = TestBed.createComponent(TestChip);
-      testChip = fixture.debugElement.componentInstance;
-      fixture.detectChanges();
-
-      chipDebugElement = fixture.debugElement.query(By.directive(SbbChip))!;
-      chipNativeElement = chipDebugElement.nativeElement;
-    })
-  );
-
   describe('basic behavior', () => {
+    let fixture: ComponentFixture<TestChip>;
+    let testChip: TestChip;
+    let chipDebugElement: DebugElement;
+    let chipNativeElement: HTMLElement;
+
+    beforeEach(
+      waitForAsync(() => {
+        fixture = TestBed.createComponent(TestChip);
+        testChip = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
+
+        chipDebugElement = fixture.debugElement.query(By.directive(SbbChip))!;
+        chipNativeElement = chipDebugElement.nativeElement;
+      })
+    );
+
     it('should apply a CSS class to the remove icon', () => {
       const buttonElement = chipNativeElement.querySelector('button')!;
 
@@ -81,6 +83,40 @@ describe('Chip Remove', () => {
       expect(testChip.didRemove).not.toHaveBeenCalled();
     });
   });
+
+  describe('icon fallback behavior', () => {
+    let fixture: ComponentFixture<ChipWithoutRemoveIcon>;
+    let testChip: ChipWithoutRemoveIcon;
+    let chipDebugElement: DebugElement;
+    let chipNativeElement: HTMLElement;
+
+    beforeEach(
+      waitForAsync(() => {
+        fixture = TestBed.createComponent(ChipWithoutRemoveIcon);
+        testChip = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
+
+        chipDebugElement = fixture.debugElement.query(By.directive(SbbChip))!;
+        chipNativeElement = chipDebugElement.nativeElement;
+      })
+    );
+
+    it('should fallback to default remove icon', () => {
+      const iconElement = chipNativeElement.querySelector('sbb-icon')!;
+
+      expect(iconElement).toBeTruthy();
+      expect(iconElement.getAttribute('svgIcon')).toBe('kom:cross-small');
+      expect(iconElement.hasAttribute('sbbChipRemove')).toBeTrue();
+    });
+
+    it('should hide fallback icon because it is not removable', () => {
+      testChip.removable = false;
+      fixture.detectChanges();
+      const iconElement = chipNativeElement.querySelector('sbb-icon')!;
+
+      expect(iconElement).toBeFalsy();
+    });
+  });
 });
 
 @Component({
@@ -96,4 +132,11 @@ class TestChip {
   disabled = false;
 
   didRemove() {}
+}
+
+@Component({
+  template: ` <sbb-chip [removable]="removable"> </sbb-chip> `,
+})
+class ChipWithoutRemoveIcon {
+  removable = true;
 }
