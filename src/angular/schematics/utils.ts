@@ -312,6 +312,13 @@ export class MigrationElement {
     );
   }
 
+  innerHtml() {
+    return this.resource.content.substring(
+      this.location.startTag.endOffset,
+      this.location.endTag.startOffset
+    );
+  }
+
   toString() {
     return `<${this.element.tagName}>`;
   }
@@ -360,6 +367,18 @@ export class MigrationElementProperty {
     this._element.recorder.insertRight(
       this._element.resource.start + this.location.startOffset,
       newAttribute
+    );
+  }
+
+  rename(newName: string) {
+    newName = this.isProperty ? `[${newName}]` : newName;
+    this._element.recorder.remove(
+      this._element.resource.start + this.location.startOffset,
+      this.name.length
+    );
+    this._element.recorder.insertRight(
+      this._element.resource.start + this.location.startOffset,
+      newName
     );
   }
 

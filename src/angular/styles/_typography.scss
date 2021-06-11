@@ -883,6 +883,82 @@ fieldset,
 }
 
 // ----------------------------------------------------------------------------------------------------
+// SBB Badge
+// ----------------------------------------------------------------------------------------------------
+
+.sbb-badge {
+  position: relative;
+}
+
+.sbb-badge-above {
+  .sbb-badge-content {
+    top: 0;
+  }
+}
+
+.sbb-badge-after {
+  .sbb-badge-content {
+    right: 0;
+  }
+}
+
+.sbb-badge-hidden {
+  .sbb-badge-content {
+    display: none;
+  }
+}
+
+.sbb-badge-disabled {
+  .sbb-badge-content {
+    background: $sbbColorMetal;
+    color: $sbbColorWhite;
+  }
+}
+
+.sbb-badge-content {
+  position: absolute;
+  text-align: center;
+  display: inline-block;
+  transition: transform 200ms ease-in-out;
+  transform: scale(0.6);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+
+  min-width: pxToEm(18, 11);
+  border-radius: pxToEm(15, 11);
+  padding: pxToEm(3, 11) pxToEm(5, 11) pxToEm(4, 11);
+  background-color: $sbbColorRed;
+  color: $sbbColorWhite;
+  font-family: $fontSbbBold;
+  line-height: 1;
+  font-size: pxToRem(11);
+  height: pxToEm(18, 11);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(17);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(22);
+    }
+  }
+}
+
+.ng-animate-disabled .sbb-badge-content,
+.sbb-badge-content._sbb-animation-noopable {
+  transition: none;
+}
+
+// The active class is added after the element is added
+// so it can animate scale to default
+.sbb-badge-content.sbb-badge-active {
+  // Scale to `none` instead of `1` to avoid blurry text in some browsers.
+  transform: none;
+}
+
+// ----------------------------------------------------------------------------------------------------
 // SBB Button
 // ----------------------------------------------------------------------------------------------------
 

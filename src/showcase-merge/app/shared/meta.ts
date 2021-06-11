@@ -80,6 +80,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
       {
         name: 'Button & Indicator Components',
         entries: [
+          { label: 'Badge', link: './components/badge' },
           { label: 'Button', link: './components/button' },
           { label: 'Icon', link: './components/icon' },
           { label: 'Loading', link: './components/loading' },

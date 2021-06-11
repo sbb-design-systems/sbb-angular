@@ -6,6 +6,7 @@ import {
 } from '@angular/cdk/schematics';
 
 import { sbbAngularUpgradeData } from './add-data';
+import { BadgeMigration } from './migrations/badge-migration';
 import { ButtonMigration } from './migrations/button-migration';
 import { ClassNamesMigration } from './migrations/class-names';
 import { EnumToStringLiteralMigration } from './migrations/enum-to-string-literal-migration';
@@ -26,6 +27,7 @@ export function mergePublicAndBusiness(): Rule {
       EnumToStringLiteralMigration,
       MenuMigration,
       SearchMigration,
+      BadgeMigration,
     ],
     sbbAngularUpgradeData,
     onMigrationComplete

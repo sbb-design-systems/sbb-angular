@@ -6,6 +6,7 @@ entry_points = [
     # do not sort
     "accordion",
     "autocomplete",
+    "badge",
     "breadcrumb",
     "button",
     "captcha",
@@ -56,6 +57,7 @@ ANGULAR_TESTING_TARGETS = ["//src/angular/%s" % ep for ep in ANGULAR_TESTING_ENT
 ANGULAR_MARKDOWN_TARGETS = [
     "accordion",
     "autocomplete",
+    "badge",
     "breadcrumb",
     "button",
     "captcha",
