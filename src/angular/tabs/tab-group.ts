@@ -106,13 +106,6 @@ export abstract class SbbTabGroupBase
   }
   private _selectedIndex: number | null = null;
 
-  /**
-   * Whether pagination should be disabled. This can be used to avoid unnecessary
-   * layout recalculations if it's known that pagination won't be required.
-   */
-  @Input()
-  disablePagination: boolean;
-
   /** Output to enable support for two-way binding on `[(selectedIndex)]` */
   @Output() readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();
 
@@ -139,10 +132,6 @@ export abstract class SbbTabGroupBase
   ) {
     super(elementRef);
     this._groupId = nextId++;
-    this.disablePagination =
-      defaultConfig && defaultConfig.disablePagination != null
-        ? defaultConfig.disablePagination
-        : false;
     this.dynamicHeight =
       defaultConfig && defaultConfig.dynamicHeight != null ? defaultConfig.dynamicHeight : false;
   }
@@ -352,7 +341,6 @@ export abstract class SbbTabGroupBase
 
   static ngAcceptInputType_dynamicHeight: BooleanInput;
   static ngAcceptInputType_selectedIndex: NumberInput;
-  static ngAcceptInputType_disableRipple: BooleanInput;
 }
 
 /**
@@ -367,7 +355,6 @@ export abstract class SbbTabGroupBase
   encapsulation: ViewEncapsulation.None,
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
-  inputs: ['color', 'disableRipple'],
   providers: [
     {
       provide: SBB_TAB_GROUP,

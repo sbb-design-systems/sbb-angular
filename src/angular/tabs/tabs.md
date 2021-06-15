@@ -1,12 +1,18 @@
-Angular Material tabs organize content into separate views where only one view can be
+Tabs organize content into separate views where only one view can be
 visible at a time. Each tab's label is shown in the tab header and the active
-tab's label is designated with the animated ink bar. When the list of tab labels exceeds the width
-of the header, pagination controls appear to let the user scroll left and right across the labels.
+tab's label is designated with the animated bar. When the list of tab labels exceeds the width
+of the header, it will become scrollable.
 
 The active tab may be set using the `selectedIndex` input or when the user selects one of the
 tab labels in the header.
 
-<!-- example(tab-group-basic) -->
+```html
+<sbb-tab-group>
+  <sbb-tab label="First">Content 1</sbb-tab>
+  <sbb-tab label="Second">Content 2</sbb-tab>
+  <sbb-tab label="Third">Content 3</sbb-tab>
+</sbb-tab-group>
+```
 
 ### Events
 

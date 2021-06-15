@@ -1,0 +1,13 @@
+.example-input-label,
+.example-delete-tab-button {
+  margin: 8px;
+}
+
+.example-add-tab-button {
+  margin-right: 1rem;
+}
+
+.add-tab {
+  display: flex;
+  align-items: center;
+}

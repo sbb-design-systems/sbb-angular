@@ -40,12 +40,10 @@ export abstract class _SbbTabHeaderBase
     elementRef: ElementRef,
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
-    @Optional() dir: Directionality,
     ngZone: NgZone,
-    platform: Platform,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, changeDetectorRef, viewportRuler, dir, ngZone, platform, animationMode);
+    super(elementRef, changeDetectorRef, viewportRuler, ngZone, animationMode);
   }
 
   protected _itemSelected(event: KeyboardEvent) {
@@ -70,7 +68,6 @@ export abstract class _SbbTabHeaderBase
   changeDetection: ChangeDetectionStrategy.Default,
   host: {
     class: 'sbb-tab-header',
-    '[class.sbb-tab-header-pagination-controls-enabled]': '_showPaginationControls',
   },
 })
 export class SbbTabHeader extends _SbbTabHeaderBase {
@@ -91,6 +88,6 @@ export class SbbTabHeader extends _SbbTabHeaderBase {
     platform: Platform,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, changeDetectorRef, viewportRuler, dir, ngZone, platform, animationMode);
+    super(elementRef, changeDetectorRef, viewportRuler, ngZone, animationMode);
   }
 }

@@ -152,31 +152,6 @@ describe('SbbTabNavBar', () => {
     });
   });
 
-  it('should hide the ink bar if no tabs are active on init', fakeAsync(() => {
-    const fixture = TestBed.createComponent(TabBarWithInactiveTabsOnInit);
-    fixture.detectChanges();
-    tick(20); // Angular turns rAF calls into 16.6ms timeouts in tests.
-    fixture.detectChanges();
-
-    expect(fixture.nativeElement.querySelector('.sbb-ink-bar').style.visibility).toBe('hidden');
-  }));
-
-  it('should clean up the ripple event handlers on destroy', () => {
-    const fixture: ComponentFixture<TabLinkWithNgIf> = TestBed.createComponent(TabLinkWithNgIf);
-    fixture.detectChanges();
-
-    const link = fixture.debugElement.nativeElement.querySelector('.sbb-tab-link');
-
-    fixture.componentInstance.isDestroyed = true;
-    fixture.detectChanges();
-
-    dispatchMouseEvent(link, 'mousedown');
-
-    expect(link.querySelector('.sbb-ripple-element')).toBeFalsy(
-      'Expected no ripple to be created when ripple target is destroyed.'
-    );
-  });
-
   it('should support the native tabindex attribute', () => {
     const fixture = TestBed.createComponent(TabLinkWithNativeTabindexAttr);
     fixture.detectChanges();
@@ -222,43 +197,12 @@ describe('SbbTabNavBar', () => {
 
     expect(instance.tabNavBar.selectedIndex).toBe(1);
   });
-
-  describe('ripples', () => {
-    let fixture: ComponentFixture<SimpleTabNavBarTestApp>;
-
-    beforeEach(() => {
-      fixture = TestBed.createComponent(SimpleTabNavBarTestApp);
-      fixture.detectChanges();
-    });
-
-    it('should show up for tab link elements on mousedown', () => {
-      const tabLink = fixture.debugElement.nativeElement.querySelector('.sbb-tab-link');
-
-      dispatchMouseEvent(tabLink, 'mousedown');
-      dispatchMouseEvent(tabLink, 'mouseup');
-
-      expect(tabLink.querySelectorAll('.sbb-ripple-element').length).toBe(
-        1,
-        'Expected one ripple to show up if user clicks on tab link.'
-      );
-    });
-
-    it('should have a focus indicator', () => {
-      const tabLinkNativeElements = [
-        ...fixture.debugElement.nativeElement.querySelectorAll('.sbb-tab-link'),
-      ];
-
-      expect(
-        tabLinkNativeElements.every((element) => element.classList.contains('sbb-focus-indicator'))
-      ).toBe(true);
-    });
-  });
 });
 
 @Component({
   selector: 'test-app',
   template: `
-    <nav sbb-tab-nav-bar [disableRipple]="disableRippleOnBar">
+    <nav sbb-tab-nav-bar>
       <a
         sbb-tab-link
         *ngFor="let tab of tabs; let index = index"
@@ -277,7 +221,6 @@ class SimpleTabNavBarTestApp {
 
   label = '';
   disabled = false;
-  disableRippleOnBar = false;
   tabs = [0, 1, 2];
 
   activeIndex = 0;

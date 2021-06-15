@@ -8,7 +8,7 @@ $tab-animation-duration: 500ms !default;
 
 // Mixin styles for labels that are contained within the tab header.
 @mixin tab-label {
-  margin-right: pxToRem(18);
+  margin-right: pxToRem(32);
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
@@ -20,6 +20,7 @@ $tab-animation-duration: 500ms !default;
   font-size: pxToRem(20);
   line-height: 1em;
   padding-bottom: pxToRem(20);
+  outline: none;
 
   html:not(.sbb-lean) & {
     @include mq($from: tablet) {
@@ -116,7 +117,6 @@ $tab-animation-duration: 500ms !default;
     justify-content: center;
     align-items: center;
     white-space: nowrap;
-    position: relative;
   }
 }
 
@@ -151,6 +151,7 @@ $tab-animation-duration: 500ms !default;
         width: pxToRem(12);
         height: calc(100% - 0.5rem);
         transition: transform 0.25s ease;
+        pointer-events: none;
 
         @include mq($from: tablet) {
           width: pxToRem(24);
@@ -189,6 +190,16 @@ $tab-animation-duration: 500ms !default;
 // Structural styles for the element that wraps the paginated header items.
 @mixin paginated-tab-header-item-wrapper($parent) {
   display: flex;
+  padding-top: pxToRem(2);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding-top: pxToRem(3);
+    }
+    @include mq($from: desktop4k) {
+      padding-top: pxToRem(4);
+    }
+  }
 
   // We need to set the parent here explicitly, in order to prevent the alignment
   // from any parent tab groups from propagating down to the children when nesting.

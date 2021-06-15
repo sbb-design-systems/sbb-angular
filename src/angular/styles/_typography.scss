@@ -464,6 +464,21 @@ a:not(.sbb-menu-item),
   // TODO: 4k, 5k
 }
 
+.sbb-link-reset {
+  color: unset;
+  text-decoration: unset;
+  line-height: unset;
+
+  html.sbb-lean & {
+    line-height: unset;
+  }
+
+  &:hover,
+  &:focus {
+    color: unset;
+  }
+}
+
 // ----------------------------------------------------------------------------------------------------
 // Lists TODO: add 4k, 5k styles and check every usage of our angular modules for specificity
 // ----------------------------------------------------------------------------------------------------
@@ -892,7 +907,7 @@ fieldset,
 
 .sbb-badge-above {
   .sbb-badge-content {
-    top: 0;
+    top: pxToEm(-2, 11);
   }
 }
 

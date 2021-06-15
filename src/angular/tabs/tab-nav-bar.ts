@@ -1,7 +1,5 @@
 import { FocusableOption, FocusMonitor } from '@angular/cdk/a11y';
-import { Directionality } from '@angular/cdk/bidi';
 import { BooleanInput, coerceBooleanProperty, NumberInput } from '@angular/cdk/coercion';
-import { Platform } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
   AfterContentChecked,
@@ -52,14 +50,12 @@ export abstract class _SbbTabNavBase
 
   constructor(
     elementRef: ElementRef,
-    @Optional() dir: Directionality,
     ngZone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
-    platform: Platform,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, changeDetectorRef, viewportRuler, dir, ngZone, platform, animationMode);
+    super(elementRef, changeDetectorRef, viewportRuler, ngZone, animationMode);
   }
 
   protected _itemSelected() {
@@ -103,12 +99,10 @@ export abstract class _SbbTabNavBase
 @Component({
   selector: '[sbb-tab-nav-bar]',
   exportAs: 'sbbTabNavBar, sbbTabNav',
-  inputs: ['color'],
   templateUrl: 'tab-nav-bar.html',
   styleUrls: ['tab-nav-bar.css'],
   host: {
     class: 'sbb-tab-nav-bar sbb-tab-header',
-    '[class.sbb-tab-header-pagination-controls-enabled]': '_showPaginationControls',
   },
   encapsulation: ViewEncapsulation.None,
   // tslint:disable-next-line:validate-decorators
@@ -119,22 +113,16 @@ export class SbbTabNav extends _SbbTabNavBase {
   _items: QueryList<SbbTabLink>;
   @ViewChild('tabListContainer', { static: true }) _tabListContainer: ElementRef;
   @ViewChild('tabList', { static: true }) _tabList: ElementRef;
-  @ViewChild('nextPaginator') _nextPaginator: ElementRef<HTMLElement>;
-  @ViewChild('previousPaginator') _previousPaginator: ElementRef<HTMLElement>;
 
   constructor(
     elementRef: ElementRef,
-    @Optional() dir: Directionality,
     ngZone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
-    platform: Platform,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, dir, ngZone, changeDetectorRef, viewportRuler, platform, animationMode);
+    super(elementRef, ngZone, changeDetectorRef, viewportRuler, animationMode);
   }
-
-  static ngAcceptInputType_disableRipple: BooleanInput;
 }
 
 // Boilerplate for applying mixins to SbbTabLink.
@@ -171,8 +159,7 @@ export class _SbbTabLinkBase
     private _tabNavBar: _SbbTabNavBase,
     /** @docs-private */ public elementRef: ElementRef,
     @Attribute('tabindex') tabIndex: string,
-    private _focusMonitor: FocusMonitor,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
+    private _focusMonitor: FocusMonitor
   ) {
     super();
 
@@ -194,7 +181,6 @@ export class _SbbTabLinkBase
 
   static ngAcceptInputType_active: BooleanInput;
   static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_disableRipple: BooleanInput;
   static ngAcceptInputType_tabIndex: NumberInput;
 }
 
@@ -204,9 +190,9 @@ export class _SbbTabLinkBase
 @Directive({
   selector: '[sbb-tab-link], [sbbTabLink]',
   exportAs: 'sbbTabLink',
-  inputs: ['disabled', 'disableRipple', 'tabIndex'],
+  inputs: ['disabled', 'tabIndex'],
   host: {
-    class: 'sbb-tab-link sbb-focus-indicator',
+    class: 'sbb-tab-link sbb-link-reset sbb-focus-indicator',
     '[attr.aria-current]': 'active ? "page" : null',
     '[attr.aria-disabled]': 'disabled',
     '[attr.tabIndex]': 'tabIndex',
@@ -214,20 +200,13 @@ export class _SbbTabLinkBase
     '[class.sbb-tab-label-active]': 'active',
   },
 })
-export class SbbTabLink extends _SbbTabLinkBase implements OnDestroy {
+export class SbbTabLink extends _SbbTabLinkBase {
   constructor(
     tabNavBar: SbbTabNav,
     elementRef: ElementRef,
-    ngZone: NgZone,
-    platform: Platform,
     @Attribute('tabindex') tabIndex: string,
-    focusMonitor: FocusMonitor,
-    @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
+    focusMonitor: FocusMonitor
   ) {
-    super(tabNavBar, elementRef, tabIndex, focusMonitor, animationMode);
-  }
-
-  ngOnDestroy() {
-    super.ngOnDestroy();
+    super(tabNavBar, elementRef, tabIndex, focusMonitor);
   }
 }

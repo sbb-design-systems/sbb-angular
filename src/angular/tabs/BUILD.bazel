@@ -78,11 +78,9 @@ ng_test_library(
     deps = [
         ":tabs",
         "//src/angular/core/testing",
-        "//src/angular/tabs/imported/ripple",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/platform-browser",
-        "@npm//protractor",
         "@npm//rxjs",
     ],
 )
@@ -103,9 +101,4 @@ markdown_to_html(
 filegroup(
     name = "source-files",
     srcs = glob(["**/*.ts"]),
-)
-
-filegroup(
-    name = "html-source-files",
-    srcs = glob(["**/*.html"]),
 )

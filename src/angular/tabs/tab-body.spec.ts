@@ -38,15 +38,15 @@ describe('SbbTabBody', () => {
   describe('when initialized as center', () => {
     let fixture: ComponentFixture<SimpleTabBodyApp>;
 
-    it('should be center position if origin is unchanged', () => {
+    it('should be show position if origin is unchanged', () => {
       fixture = TestBed.createComponent(SimpleTabBodyApp);
       fixture.componentInstance.position = 0;
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.tabBody._position).toBe('center');
+      expect(fixture.componentInstance.tabBody._position).toBe('show');
     });
 
-    it('should be center position if origin is explicitly set to null', () => {
+    it('should be show position if origin is explicitly set to null', () => {
       fixture = TestBed.createComponent(SimpleTabBodyApp);
       fixture.componentInstance.position = 0;
 
@@ -56,7 +56,7 @@ describe('SbbTabBody', () => {
       fixture.componentInstance.origin = null;
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.tabBody._position).toBe('center');
+      expect(fixture.componentInstance.tabBody._position).toBe('show');
     });
 
     describe('in LTR direction', () => {
@@ -64,20 +64,20 @@ describe('SbbTabBody', () => {
         dir = 'ltr';
         fixture = TestBed.createComponent(SimpleTabBodyApp);
       });
-      it('should be left-origin-center position with negative or zero origin', () => {
+      it('should be show position with negative or zero origin', () => {
         fixture.componentInstance.position = 0;
         fixture.componentInstance.origin = 0;
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.tabBody._position).toBe('left-origin-center');
+        expect(fixture.componentInstance.tabBody._position).toBe('show');
       });
 
-      it('should be right-origin-center position with positive nonzero origin', () => {
+      it('should be show position with positive nonzero origin', () => {
         fixture.componentInstance.position = 0;
         fixture.componentInstance.origin = 1;
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.tabBody._position).toBe('right-origin-center');
+        expect(fixture.componentInstance.tabBody._position).toBe('show');
       });
     });
 
@@ -87,25 +87,25 @@ describe('SbbTabBody', () => {
         fixture = TestBed.createComponent(SimpleTabBodyApp);
       });
 
-      it('should be right-origin-center position with negative or zero origin', () => {
+      it('should be show position with negative or zero origin', () => {
         fixture.componentInstance.position = 0;
         fixture.componentInstance.origin = 0;
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.tabBody._position).toBe('right-origin-center');
+        expect(fixture.componentInstance.tabBody._position).toBe('show');
       });
 
-      it('should be left-origin-center position with positive nonzero origin', () => {
+      it('should be show position with positive nonzero origin', () => {
         fixture.componentInstance.position = 0;
         fixture.componentInstance.origin = 1;
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.tabBody._position).toBe('left-origin-center');
+        expect(fixture.componentInstance.tabBody._position).toBe('show');
       });
     });
   });
 
-  describe('should properly set the position in LTR', () => {
+  describe('should properly set the position', () => {
     let fixture: ComponentFixture<SimpleTabBodyApp>;
 
     beforeEach(() => {
@@ -114,73 +114,26 @@ describe('SbbTabBody', () => {
       fixture.detectChanges();
     });
 
-    it('to be left position with negative position', () => {
+    it('to be hidden position with negative position', () => {
       fixture.componentInstance.position = -1;
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.tabBody._position).toBe('left');
+      expect(fixture.componentInstance.tabBody._position).toBe('hidden');
     });
 
-    it('to be center position with zero position', () => {
+    it('to be show position with zero position', () => {
       fixture.componentInstance.position = 0;
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.tabBody._position).toBe('center');
+      expect(fixture.componentInstance.tabBody._position).toBe('show');
     });
 
-    it('to be left position with positive position', () => {
+    it('to be hidden position with positive position', () => {
       fixture.componentInstance.position = 1;
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.tabBody._position).toBe('right');
+      expect(fixture.componentInstance.tabBody._position).toBe('hidden');
     });
-  });
-
-  describe('should properly set the position in RTL', () => {
-    let fixture: ComponentFixture<SimpleTabBodyApp>;
-
-    beforeEach(() => {
-      dir = 'rtl';
-      fixture = TestBed.createComponent(SimpleTabBodyApp);
-      fixture.detectChanges();
-    });
-
-    it('to be right position with negative position', () => {
-      fixture.componentInstance.position = -1;
-      fixture.detectChanges();
-
-      expect(fixture.componentInstance.tabBody._position).toBe('right');
-    });
-
-    it('to be center position with zero position', () => {
-      fixture.componentInstance.position = 0;
-      fixture.detectChanges();
-
-      expect(fixture.componentInstance.tabBody._position).toBe('center');
-    });
-
-    it('to be left position with positive position', () => {
-      fixture.componentInstance.position = 1;
-      fixture.detectChanges();
-
-      expect(fixture.componentInstance.tabBody._position).toBe('left');
-    });
-  });
-
-  it('should update position if direction changed at runtime', () => {
-    const fixture = TestBed.createComponent(SimpleTabBodyApp);
-
-    fixture.componentInstance.position = 1;
-    fixture.detectChanges();
-
-    expect(fixture.componentInstance.tabBody._position).toBe('right');
-
-    dirChange.next('rtl');
-    dir = 'rtl';
-
-    fixture.detectChanges();
-
-    expect(fixture.componentInstance.tabBody._position).toBe('left');
   });
 
   it('should mark the tab body content as a scrollable container', () => {

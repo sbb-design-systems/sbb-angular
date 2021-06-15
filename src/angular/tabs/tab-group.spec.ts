@@ -181,47 +181,6 @@ describe('SbbTabGroup', () => {
       }).not.toThrow();
     });
 
-    it('should show ripples for tab-group labels', () => {
-      fixture.detectChanges();
-
-      const testElement = fixture.nativeElement;
-      const tabLabel = fixture.debugElement.queryAll(By.css('.sbb-tab-label'))[1];
-
-      expect(testElement.querySelectorAll('.sbb-ripple-element').length).toBe(
-        0,
-        'Expected no ripples to show up initially.'
-      );
-
-      dispatchFakeEvent(tabLabel.nativeElement, 'mousedown');
-      dispatchFakeEvent(tabLabel.nativeElement, 'mouseup');
-
-      expect(testElement.querySelectorAll('.sbb-ripple-element').length).toBe(
-        1,
-        'Expected one ripple to show up on label mousedown.'
-      );
-    });
-
-    it('should allow disabling ripples for tab-group labels', () => {
-      fixture.componentInstance.disableRipple = true;
-      fixture.detectChanges();
-
-      const testElement = fixture.nativeElement;
-      const tabLabel = fixture.debugElement.queryAll(By.css('.sbb-tab-label'))[1];
-
-      expect(testElement.querySelectorAll('.sbb-ripple-element').length).toBe(
-        0,
-        'Expected no ripples to show up initially.'
-      );
-
-      dispatchFakeEvent(tabLabel.nativeElement, 'mousedown');
-      dispatchFakeEvent(tabLabel.nativeElement, 'mouseup');
-
-      expect(testElement.querySelectorAll('.sbb-ripple-element').length).toBe(
-        0,
-        'Expected no ripple to show up on label mousedown.'
-      );
-    });
-
     it('should set the isActive flag on each of the tabs', fakeAsync(() => {
       fixture.detectChanges();
       tick();
@@ -780,7 +739,6 @@ describe('nested SbbTabGroup with enabled animations', () => {
     <sbb-tab-group
       class="tab-group"
       [(selectedIndex)]="selectedIndex"
-      [disableRipple]="disableRipple"
       (animationDone)="animationDone()"
       (focusChange)="handleFocus($event)"
       (selectedTabChange)="handleSelection($event)"
@@ -806,7 +764,6 @@ class SimpleTabsTestApp {
   selectedIndex: number = 1;
   focusEvent: any;
   selectEvent: any;
-  disableRipple: boolean = false;
   handleFocus(event: any) {
     this.focusEvent = event;
   }
