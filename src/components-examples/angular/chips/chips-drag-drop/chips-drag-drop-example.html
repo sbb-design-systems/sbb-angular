@@ -1,10 +1,10 @@
 <sbb-chip-list
-  class="example-chip"
+  class="sbb-form-field-long example-box"
   cdkDropList
   cdkDropListOrientation="horizontal"
   (cdkDropListDropped)="drop($event)"
 >
-  <sbb-chip class="example-box" cdkDrag *ngFor="let vegetable of vegetables">
+  <sbb-chip class="example-chip" cdkDrag *ngFor="let vegetable of vegetables" removable="false">
     {{vegetable.name}}
   </sbb-chip>
 </sbb-chip-list>

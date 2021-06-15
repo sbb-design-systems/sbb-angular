@@ -1,14 +1,9 @@
-<sbb-form-field class="example-chip-list">
-  <sbb-label>Video keywords</sbb-label>
-  <sbb-chip-list #chipList aria-label="Video keywords" multiple [formControl]="formControl">
-    <sbb-chip *ngFor="let keyword of formControl.value" (removed)="removeKeyword(keyword)">
-      {{keyword}}
+<sbb-form-field class="sbb-form-field-long" label="Locomotives">
+  <sbb-chip-list #chipList aria-label="Locomotives" [formControl]="formControl">
+    <sbb-chip *ngFor="let locomotiveName of formControl.value" [value]="locomotiveName">
+      {{locomotiveName}}
     </sbb-chip>
-    <input
-      placeholder="New keyword..."
-      [sbbChipInputFor]="chipList"
-      (sbbChipInputTokenEnd)="addKeywordFromInput($event)"
-    />
+    <input placeholder="New locomotive..." [sbbChipInputFor]="chipList" />
   </sbb-chip-list>
 </sbb-form-field>
 
@@ -21,4 +16,4 @@
 </p>
 
 <h4>Model</h4>
-<pre>{{formControl.value}}</pre>
+<pre>{{valuesArray | json}}</pre>

@@ -1,3 +1,5 @@
+import { SbbAutocompleteTrigger } from '@sbb-esta/angular/autocomplete';
+
 /** Interface for a text control that is used to drive interaction with a sbb-chip-list. */
 export interface SbbChipTextControl {
   /** Unique identifier for the text control. */
@@ -14,4 +16,7 @@ export interface SbbChipTextControl {
 
   /** Focuses the text control. */
   focus(options?: FocusOptions): void;
+
+  /** Autocomplete trigger.  */
+  autocompleteTrigger?: SbbAutocompleteTrigger;
 }

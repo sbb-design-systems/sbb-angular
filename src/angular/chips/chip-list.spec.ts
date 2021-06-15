@@ -4,6 +4,7 @@ import {
   A,
   BACKSPACE,
   DELETE,
+  DOWN_ARROW,
   END,
   ENTER,
   HOME,
@@ -36,6 +37,12 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import {
+  SbbAutocompleteModule,
+  SbbAutocompleteSelectedEvent,
+  SbbAutocompleteTrigger,
+} from '@sbb-esta/angular/autocomplete';
+import { SbbOption } from '@sbb-esta/angular/core';
 import {
   createKeyboardEvent,
   dispatchEvent,
@@ -782,6 +789,195 @@ describe('SbbChipList', () => {
     });
   });
 
+  describe('autocomplete', () => {
+    let testChipsAutocomplete: ChipsAutocomplete;
+
+    beforeEach(() => {
+      fixture = createComponent(ChipsAutocomplete);
+      fixture.detectChanges();
+
+      testChipsAutocomplete = fixture.debugElement.componentInstance;
+    });
+
+    it('should reposition autocomplete when chip list changes', async () => {
+      spyOn(testChipsAutocomplete.trigger, 'updatePosition').and.callThrough();
+
+      const input = fixture.nativeElement.querySelector('input');
+
+      input.focus();
+      zone.simulateZoneExit();
+      fixture.detectChanges();
+
+      testChipsAutocomplete.selectedFruits.value.push('Pineapple');
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(testChipsAutocomplete.trigger.updatePosition).toHaveBeenCalled();
+    });
+
+    it('should skip repositioning autocomplete if autocomplete is closed', async () => {
+      spyOn(testChipsAutocomplete.trigger, 'updatePosition').and.callThrough();
+
+      testChipsAutocomplete.selectedFruits.value.push('Pineapple');
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(testChipsAutocomplete.trigger.updatePosition).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('convenience', () => {
+    let input: HTMLInputElement;
+
+    describe('without custom handlers', () => {
+      let testChipsAutocomplete: ChipsAutocomplete;
+
+      beforeEach(() => {
+        fixture = createComponent(ChipsAutocomplete);
+        fixture.detectChanges();
+
+        chipListDebugElement = fixture.debugElement.query(By.directive(SbbChipList))!;
+        chipListInstance = chipListDebugElement.componentInstance;
+        testChipsAutocomplete = fixture.debugElement.componentInstance;
+        chips = chipListInstance.chips;
+        input = fixture.nativeElement.querySelector('input');
+      });
+
+      it('should add value to form control Array', async () => {
+        input.focus();
+        typeInElement(input, '123');
+        dispatchKeyboardEvent(input, 'keydown', ENTER);
+        await fixture.whenStable();
+
+        expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon', '123']);
+        expect(input.value).toEqual('');
+      });
+
+      it('should remove value from form control Array', async () => {
+        expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon']);
+
+        chips.last.remove();
+        await fixture.whenStable();
+
+        expect(testChipsAutocomplete.selectedFruits.value).toEqual([]);
+      });
+
+      it('should add value to form control Set', async () => {
+        testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
+        fixture.detectChanges();
+
+        input.focus();
+        typeInElement(input, '123');
+        dispatchKeyboardEvent(input, 'keydown', ENTER);
+        await fixture.whenStable();
+
+        expect([...testChipsAutocomplete.selectedFruits.value]).toEqual(['Lemon', '123']);
+        expect(input.value).toEqual('');
+      });
+
+      it('should remove value from form control Set', async () => {
+        testChipsAutocomplete.selectedFruits = new FormControl(new Set(['Lemon']));
+        fixture.detectChanges();
+
+        chips.last.remove();
+        await fixture.whenStable();
+
+        expect([...testChipsAutocomplete.selectedFruits.value]).toEqual([]);
+      });
+
+      it('should not add empty value to form control', async () => {
+        input.focus();
+        dispatchKeyboardEvent(input, 'keydown', ENTER);
+        await fixture.whenStable();
+
+        expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon']);
+      });
+
+      it('should add value to form control from autocomplete by click', async () => {
+        input.focus();
+        typeInElement(input, 'L');
+
+        zone.simulateZoneExit();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const options = fixture.debugElement.queryAll(By.directive(SbbOption));
+        const option: SbbOption = options[2].componentInstance;
+
+        option.select();
+
+        expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon', 'Lime']);
+        expect(input.value).toEqual('');
+      });
+
+      it('should add value to form control from autocomplete by hitting Enter', async () => {
+        input.focus();
+        typeInElement(input, 'A');
+        zone.simulateZoneExit();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW); // Select first entry (Apple)
+        dispatchKeyboardEvent(input, 'keydown', ENTER);
+
+        expect(testChipsAutocomplete.selectedFruits.value).toEqual(['Lemon', 'Apple']);
+        expect(input.value).toEqual('');
+      });
+    });
+
+    describe('with custom handlers', () => {
+      let testChipsAutocompleteCustomHandlers: ChipsAutocompleteCustomHandlers;
+
+      beforeEach(() => {
+        fixture = createComponent(ChipsAutocompleteCustomHandlers);
+        fixture.detectChanges();
+
+        chipListDebugElement = fixture.debugElement.query(By.directive(SbbChipList))!;
+        chipListInstance = chipListDebugElement.componentInstance;
+        testChipsAutocompleteCustomHandlers = fixture.debugElement.componentInstance;
+        chips = chipListInstance.chips;
+        input = fixture.nativeElement.querySelector('input');
+      });
+
+      it('should not add value to form control if there is already a listener to (sbbChipInputTokenEnd)', async () => {
+        input.focus();
+        typeInElement(input, '123');
+        dispatchKeyboardEvent(input, 'keydown', ENTER);
+        await fixture.whenStable();
+
+        expect(testChipsAutocompleteCustomHandlers.selectedFruits.value).toEqual(['Lemon']);
+        expect(input.value).toEqual('123'); // Input value should be left in input element
+      });
+
+      it('should not remove value from form control if there is already a listener to (removed)', async () => {
+        expect(testChipsAutocompleteCustomHandlers.selectedFruits.value).toEqual(['Lemon']);
+
+        chips.last.remove();
+        await fixture.whenStable();
+
+        expect(testChipsAutocompleteCustomHandlers.selectedFruits.value).toEqual(['Lemon']);
+      });
+
+      it('should not add value to form control from autocomplete', async () => {
+        input.focus();
+        typeInElement(input, 'L');
+        zone.simulateZoneExit();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const options = fixture.debugElement.queryAll(By.directive(SbbOption));
+        const option: SbbOption = options[2].componentInstance;
+
+        option.select();
+
+        expect(testChipsAutocompleteCustomHandlers.selectedFruits.value).toEqual(['Lemon']);
+        expect(input.value).toEqual('L'); // Input value should be left in input element
+      });
+    });
+  });
+
   function createComponent<T>(
     component: Type<T>,
     providers: Provider[] = [],
@@ -799,6 +995,7 @@ describe('SbbChipList', () => {
         animationsModule,
         SbbIconModule,
         SbbIconTestingModule,
+        SbbAutocompleteModule,
       ],
       declarations: [component],
       providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }, ...providers],
@@ -1059,4 +1256,69 @@ class ChipListInsideDynamicFormGroup {
       control: { value: [], disabled: isDisabled },
     });
   }
+}
+
+@Component({
+  template: `
+    <sbb-form-field label="Favorite Fruits">
+      <sbb-chip-list #chipList aria-label="Fruit selection" [formControl]="selectedFruits">
+        <sbb-chip *ngFor="let fruit of selectedFruits.value" [value]="fruit">
+          {{ fruit }}
+        </sbb-chip>
+        <input
+          placeholder="New fruit..."
+          [sbbChipInputFor]="chipList"
+          [sbbAutocomplete]="auto"
+          #trigger="sbbAutocompleteTrigger"
+        />
+      </sbb-chip-list>
+      <sbb-autocomplete #auto="sbbAutocomplete">
+        <sbb-option *ngFor="let fruit of allFruits" [value]="fruit">
+          {{ fruit }}
+        </sbb-option>
+      </sbb-autocomplete>
+    </sbb-form-field>
+  `,
+})
+class ChipsAutocomplete {
+  selectedFruits = new FormControl(['Lemon']);
+  allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  @ViewChild('trigger') trigger: SbbAutocompleteTrigger;
+}
+
+@Component({
+  template: `
+    <sbb-form-field label="Favorite Fruits">
+      <sbb-chip-list #chipList aria-label="Fruit selection" [formControl]="selectedFruits">
+        <sbb-chip
+          *ngFor="let fruit of selectedFruits.value"
+          [value]="fruit"
+          (removed)="remove($event)"
+        >
+          {{ fruit }}
+        </sbb-chip>
+        <input
+          placeholder="New fruit..."
+          [sbbChipInputFor]="chipList"
+          [sbbAutocomplete]="auto"
+          (sbbChipInputTokenEnd)="add($event)"
+        />
+      </sbb-chip-list>
+      <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="optionSelected($event)">
+        <sbb-option *ngFor="let fruit of allFruits" [value]="fruit">
+          {{ fruit }}
+        </sbb-option>
+      </sbb-autocomplete>
+    </sbb-form-field>
+  `,
+})
+class ChipsAutocompleteCustomHandlers {
+  selectedFruits = new FormControl(['Lemon']);
+  allFruits = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+
+  add($event: SbbChipInputEvent) {}
+
+  remove($event: SbbChipEvent) {}
+
+  optionSelected($event: SbbAutocompleteSelectedEvent) {}
 }

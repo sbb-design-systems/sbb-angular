@@ -316,6 +316,14 @@ export class SbbChipList
       // Check to see if we have a destroyed chip and need to refocus
       this._updateFocusForDestroyedChips();
 
+      // Reposition autocomplete if present and open because size of list can be changed
+      if (this._chipInput?.autocompleteTrigger?.autocomplete.isOpen) {
+        // We have to delay position update after DOM is rendered
+        Promise.resolve().then(() => {
+          this._chipInput?.autocompleteTrigger?.updatePosition();
+        });
+      }
+
       this.stateChanges.next();
     });
   }

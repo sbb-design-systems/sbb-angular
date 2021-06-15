@@ -9,8 +9,16 @@ import {
   Input,
   OnChanges,
   OnDestroy,
+  Optional,
   Output,
+  Self,
 } from '@angular/core';
+import {
+  SbbAutocompleteSelectedEvent,
+  SbbAutocompleteTrigger,
+} from '@sbb-esta/angular/autocomplete';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 import { SbbChipsDefaultOptions, SBB_CHIPS_DEFAULT_OPTIONS } from './chip-default-options';
 import { SbbChipList } from './chip-list';
@@ -59,6 +67,8 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   focused: boolean = false;
   _chipList: SbbChipList;
 
+  private _destroyed = new Subject();
+
   /** Register input for chip list */
   @Input('sbbChipInputFor')
   set chipList(value: SbbChipList) {
@@ -89,7 +99,13 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   separatorKeyCodes: readonly number[] | ReadonlySet<number> =
     this._defaultOptions.separatorKeyCodes;
 
-  /** Emitted when a chip is to be added. */
+  /**
+   * Emitted when a chip is to be added.
+   *
+   * If a FormControl (Array or Set) on the sbb-chip-list is present and no subscriber
+   * listens to (sbbChipInputTokenEnd), the input value will automatically be added to
+   * the FormControl collection.
+   */
   @Output('sbbChipInputTokenEnd') readonly chipEnd = new EventEmitter<SbbChipInputEvent>();
 
   /** The input's placeholder text. */
@@ -118,7 +134,8 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
 
   constructor(
     protected _elementRef: ElementRef<HTMLInputElement>,
-    @Inject(SBB_CHIPS_DEFAULT_OPTIONS) private _defaultOptions: SbbChipsDefaultOptions
+    @Inject(SBB_CHIPS_DEFAULT_OPTIONS) private _defaultOptions: SbbChipsDefaultOptions,
+    @Self() @Optional() public autocompleteTrigger?: SbbAutocompleteTrigger
   ) {
     this.inputElement = this._elementRef.nativeElement as HTMLInputElement;
   }
@@ -129,10 +146,31 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
 
   ngOnDestroy(): void {
     this.chipEnd.complete();
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 
   ngAfterContentInit(): void {
     this._focusLastChipOnBackspace = this.empty;
+
+    // Try to add autocomplete selected value to FormControl.
+    // Skip this part, if there are already other observers which might have its own logic.
+    if (this.autocompleteTrigger && this.autocompleteTrigger.autocomplete) {
+      this.autocompleteTrigger.autocomplete.optionSelected
+        .pipe(
+          filter(
+            () => this.autocompleteTrigger?.autocomplete.optionSelected.observers.length === 1
+          ),
+          takeUntil(this._destroyed)
+        )
+        .subscribe((selectedEvent: SbbAutocompleteSelectedEvent) => {
+          this._addValueToControlAndEmit(selectedEvent.option.viewValue);
+          this.chipEnd.emit({
+            value: selectedEvent.option.viewValue,
+            chipInput: this,
+          });
+        });
+    }
   }
 
   /** Utility method to make host definition/tests more clear. */
@@ -156,7 +194,16 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
       }
     }
 
-    this._emitChipEnd(event);
+    // If an autocomplete is open, we have to ensure that the (optionSelected) listener
+    // is called before this._emitChipEnd is called. The (optionSelected) listener clears
+    // the input and therefore we can prevent adding the current chip input value to the formControl.
+    // If not using this logic, the current chip input value will be added together
+    // with the selected autocomplete value.
+    if (this.autocompleteTrigger?.autocomplete.isOpen) {
+      Promise.resolve().then(() => this._emitChipEnd(event));
+    } else {
+      this._emitChipEnd(event);
+    }
   }
 
   /**
@@ -195,12 +242,33 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
     }
 
     if (!event || this._isSeparatorKey(event)) {
+      this._addValueToControlAndEmit(this.inputElement.value);
+
       this.chipEnd.emit({
         value: this.inputElement.value,
         chipInput: this,
       });
 
       event?.preventDefault();
+    }
+  }
+
+  private _addValueToControlAndEmit(inputValue: string) {
+    if (!this._chipList?.ngControl?.control || inputValue === '' || this.chipEnd.observers.length) {
+      return;
+    }
+    const control = this._chipList.ngControl.control;
+    const currentCollection = control.value;
+    const isArray = Array.isArray(currentCollection);
+    const isSet = currentCollection instanceof Set;
+    if (isArray) {
+      currentCollection.push(inputValue);
+    } else if (isSet) {
+      currentCollection.add(inputValue);
+    }
+    if (isArray || isSet) {
+      control.updateValueAndValidity();
+      this.clear();
     }
   }
 

@@ -10,6 +10,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  Host,
   Inject,
   InjectionToken,
   Input,
@@ -23,6 +24,8 @@ import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { CanDisable, HasTabIndex, mixinTabIndex } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
+
+import { SbbChipList } from './chip-list';
 
 /** Represents an event fired on an individual `sbb-chip`. */
 export interface SbbChipEvent {
@@ -153,7 +156,13 @@ export class SbbChip
   /** Emitted when the chip is destroyed. */
   @Output() readonly destroyed: EventEmitter<SbbChipEvent> = new EventEmitter<SbbChipEvent>();
 
-  /** Emitted when a chip is to be removed. */
+  /**
+   * Emitted when a chip is to be removed.
+   *
+   * If a FormControl (Array or Set) on the sbb-chip-list is present and no subscriber
+   * listens to (removed), the input value will automatically be removed from
+   * the FormControl collection.
+   */
   @Output() readonly removed: EventEmitter<SbbChipEvent> = new EventEmitter<SbbChipEvent>();
 
   constructor(
@@ -161,6 +170,7 @@ export class SbbChip
     private _ngZone: NgZone,
     @Optional()
     private _changeDetectorRef: ChangeDetectorRef,
+    @Optional() @Host() private _chipList?: SbbChipList,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
     @Attribute('tabindex') tabIndex?: string
   ) {
@@ -208,7 +218,27 @@ export class SbbChip
    */
   remove(): void {
     if (this.removable) {
+      this._removeValueFromControl();
       this.removed.emit({ chip: this });
+    }
+  }
+
+  private _removeValueFromControl() {
+    const control = this._chipList?.ngControl?.control;
+    if (!control || this.removed.observers.length) {
+      return;
+    }
+    const currentCollection = control.value;
+    if (Array.isArray(currentCollection)) {
+      const index = currentCollection.indexOf(this.value);
+      if (index === -1) {
+        return;
+      }
+      currentCollection.splice(index, 1);
+      control.updateValueAndValidity();
+    } else if (currentCollection instanceof Set) {
+      currentCollection.delete(this.value);
+      control.updateValueAndValidity();
     }
   }
 

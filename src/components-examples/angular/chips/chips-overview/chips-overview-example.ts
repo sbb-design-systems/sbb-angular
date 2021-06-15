@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 /**
  * @title Chips Overview
- * @order 4
+ * @order 5
  */
 @Component({
   selector: 'sbb-chips-overview-example',

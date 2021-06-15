@@ -7,7 +7,7 @@ export interface Vegetable {
 
 /**
  * @title Chips Drag and Drop
- * @order 5
+ * @order 6
  */
 @Component({
   selector: 'sbb-chips-drag-drop-example',
