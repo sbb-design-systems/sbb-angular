@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.1.0...12.2.0) (2021-06-17)
+
+
+### Features
+
+* **core:** implement SBB i18n patch for locales ([#823](https://github.com/sbb-design-systems/sbb-angular/issues/823)) ([3492f69](https://github.com/sbb-design-systems/sbb-angular/commit/3492f69a90903c3a7a6dcc2c553b2371fca7a00d))
+
+
+### Documentation
+
+* add known issues section to autocomplete ([#826](https://github.com/sbb-design-systems/sbb-angular/issues/826)) ([a8e31ea](https://github.com/sbb-design-systems/sbb-angular/commit/a8e31ea29a92b27fd4ed92967b506b4d39b7b59e)), closes [#824](https://github.com/sbb-design-systems/sbb-angular/issues/824)
+* **business:** remove inexistent sbbDialog directive from dialog docu ([#822](https://github.com/sbb-design-systems/sbb-angular/issues/822)) ([fdfc841](https://github.com/sbb-design-systems/sbb-angular/commit/fdfc841d8e9d798b06c2f168f2de8c99fe40fe2a))
+
 ## [12.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.0.1...12.1.0) (2021-06-03)
 
 
