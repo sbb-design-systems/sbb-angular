@@ -21,11 +21,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { CanDisable, HasTabIndex, mixinTabIndex } from '@sbb-esta/angular/core';
+import { CanDisable, HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { SbbChipList } from './chip-list';
+import { SBB_CHIP_LIST } from './chip-list';
+import type { SbbChipList } from './chip-list';
 
 /** Represents an event fired on an individual `sbb-chip`. */
 export interface SbbChipEvent {
@@ -170,7 +171,7 @@ export class SbbChip
     private _ngZone: NgZone,
     @Optional()
     private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() @Host() private _chipList?: SbbChipList,
+    @Optional() @Host() @Inject(SBB_CHIP_LIST) private _chipList?: TypeRef<SbbChipList>,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string,
     @Attribute('tabindex') tabIndex?: string
   ) {

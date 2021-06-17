@@ -1261,13 +1261,13 @@ class ChipListInsideDynamicFormGroup {
 @Component({
   template: `
     <sbb-form-field label="Favorite Fruits">
-      <sbb-chip-list #chipList aria-label="Fruit selection" [formControl]="selectedFruits">
+      <sbb-chip-list aria-label="Fruit selection" [formControl]="selectedFruits">
         <sbb-chip *ngFor="let fruit of selectedFruits.value" [value]="fruit">
           {{ fruit }}
         </sbb-chip>
         <input
           placeholder="New fruit..."
-          [sbbChipInputFor]="chipList"
+          sbbChipInput
           [sbbAutocomplete]="auto"
           #trigger="sbbAutocompleteTrigger"
         />
@@ -1289,7 +1289,7 @@ class ChipsAutocomplete {
 @Component({
   template: `
     <sbb-form-field label="Favorite Fruits">
-      <sbb-chip-list #chipList aria-label="Fruit selection" [formControl]="selectedFruits">
+      <sbb-chip-list aria-label="Fruit selection" [formControl]="selectedFruits">
         <sbb-chip
           *ngFor="let fruit of selectedFruits.value"
           [value]="fruit"
@@ -1299,7 +1299,7 @@ class ChipsAutocomplete {
         </sbb-chip>
         <input
           placeholder="New fruit..."
-          [sbbChipInputFor]="chipList"
+          sbbChipInput
           [sbbAutocomplete]="auto"
           (sbbChipInputTokenEnd)="add($event)"
         />

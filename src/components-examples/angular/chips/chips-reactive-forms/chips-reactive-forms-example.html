@@ -1,9 +1,9 @@
 <sbb-form-field class="sbb-form-field-long" label="Locomotives">
-  <sbb-chip-list #chipList aria-label="Locomotives" [formControl]="formControl">
+  <sbb-chip-list aria-label="Locomotives" [formControl]="formControl">
     <sbb-chip *ngFor="let locomotiveName of formControl.value" [value]="locomotiveName">
       {{locomotiveName}}
     </sbb-chip>
-    <input placeholder="New locomotive..." [sbbChipInputFor]="chipList" />
+    <input placeholder="New locomotive..." sbbChipInput />
   </sbb-chip-list>
 </sbb-form-field>
 

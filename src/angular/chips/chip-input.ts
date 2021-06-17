@@ -5,6 +5,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  Host,
   Inject,
   Input,
   OnChanges,
@@ -43,7 +44,7 @@ let nextUniqueId = 0;
  * May be placed inside or outside of an `<sbb-chip-list>`.
  */
 @Directive({
-  selector: 'input[sbbChipInputFor]',
+  selector: 'input[sbbChipInputFor], input[sbbChipInput]',
   exportAs: 'sbbChipInput, sbbChipInputFor',
   host: {
     class: 'sbb-chip-input sbb-input-element',
@@ -135,9 +136,14 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   constructor(
     protected _elementRef: ElementRef<HTMLInputElement>,
     @Inject(SBB_CHIPS_DEFAULT_OPTIONS) private _defaultOptions: SbbChipsDefaultOptions,
-    @Self() @Optional() public autocompleteTrigger?: SbbAutocompleteTrigger
+    @Self() @Optional() public autocompleteTrigger?: SbbAutocompleteTrigger,
+    @Host() @Optional() chipList?: SbbChipList
   ) {
     this.inputElement = this._elementRef.nativeElement as HTMLInputElement;
+
+    if (chipList) {
+      this.chipList = chipList;
+    }
   }
 
   ngOnChanges(): void {

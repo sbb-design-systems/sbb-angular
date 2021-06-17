@@ -9,6 +9,7 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
+  InjectionToken,
   Input,
   OnDestroy,
   OnInit,
@@ -26,6 +27,12 @@ import { startWith, takeUntil } from 'rxjs/operators';
 
 import { SbbChip, SbbChipEvent } from './chip';
 import { SbbChipTextControl } from './chip-text-control';
+
+/**
+ * Token used to provide a `SbbChipList` to `SbbChip`.
+ * Used primarily to avoid circular imports between `SbbChipList` and `SbbChip`.
+ */
+export const SBB_CHIP_LIST = new InjectionToken<SbbChipList>('SBB_CHIP_LIST');
 
 // Boilerplate for applying mixins to SbbChipList.
 /** @docs-private */
@@ -72,7 +79,10 @@ let nextUniqueId = 0;
     '(keydown)': '_keydown($event)',
     '[id]': '_uid',
   },
-  providers: [{ provide: SbbFormFieldControl, useExisting: SbbChipList }],
+  providers: [
+    { provide: SbbFormFieldControl, useExisting: SbbChipList },
+    { provide: SBB_CHIP_LIST, useExisting: SbbChipList },
+  ],
   styleUrls: ['./chips.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
