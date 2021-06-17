@@ -1,6 +1,6 @@
 @import '../styles/common';
 
-$chip-right-padding: 8;
+$chipsRightPadding: 8;
 
 .sbb-chip-list {
   display: flex;
@@ -101,7 +101,7 @@ $chip-right-padding: 8;
   }
 
   &.sbb-chip-with-trailing-icon {
-    padding-right: pxToEm(4 + 24 + $chip-right-padding);
+    padding-right: pxToEm(4 + 24 + $chipsRightPadding);
     position: relative;
   }
 
@@ -110,6 +110,6 @@ $chip-right-padding: 8;
     @include absoluteCenterY();
     cursor: pointer;
     margin-left: pxToEm(8);
-    right: pxToEm($chip-right-padding);
+    right: pxToEm($chipsRightPadding);
   }
 }

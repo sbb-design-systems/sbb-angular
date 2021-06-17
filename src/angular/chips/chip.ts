@@ -289,12 +289,6 @@ export class SbbChip
 /**
  * Applies proper (click) support and adds styling for use with the Sbb Design "cancel"
  *
- * Example:
- *
- *     `<sbb-chip>
- *       <sbb-icon sbbChipRemove>cancel</sbb-icon>
- *     </sbb-chip>`
- *
  * You *may* use a custom icon, but you may need to override the `sbb-chip-remove` positioning
  * styles to properly center the icon within the chip.
  */

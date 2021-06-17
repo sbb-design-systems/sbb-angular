@@ -1,5 +1,4 @@
 import { FocusKeyManager } from '@angular/cdk/a11y';
-import { Directionality } from '@angular/cdk/bidi';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
@@ -268,7 +267,6 @@ export class SbbChipList
   constructor(
     protected _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() private _dir: Directionality,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
@@ -286,13 +284,7 @@ export class SbbChipList
       .withWrap()
       .withVerticalOrientation()
       .withHomeAndEnd()
-      .withHorizontalOrientation(this._dir ? this._dir.value : 'ltr');
-
-    if (this._dir) {
-      this._dir.change
-        .pipe(takeUntil(this._destroyed))
-        .subscribe((dir) => this._keyManager.withHorizontalOrientation(dir));
-    }
+      .withHorizontalOrientation('ltr');
 
     this._keyManager.tabOut.pipe(takeUntil(this._destroyed)).subscribe(() => {
       this._allowFocusEscape();
@@ -474,9 +466,6 @@ export class SbbChipList
   private _isValidIndex(index: number): boolean {
     return index >= 0 && index < this.chips.length;
   }
-
-  /** Emits change event to set the model value. */
-  private _propagateChanges(fallbackValue?: any): void {}
 
   /** When blurred, mark the field as touched when focus moved outside the chip list. */
   _blur() {
