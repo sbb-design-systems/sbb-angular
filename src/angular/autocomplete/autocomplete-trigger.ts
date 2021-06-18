@@ -109,7 +109,6 @@ export function getSbbAutocompleteMissingPanelError(): Error {
     '[attr.aria-owns]': '(autocompleteDisabled || !panelOpen) ? null : autocomplete?.id',
     '[attr.aria-haspopup]': '!autocompleteDisabled',
     '[class.sbb-focused]': 'panelOpen',
-    '[class.sbb-input-with-open-panel]': 'this.autocompleteDisabled ? null : this.panelOpen',
   },
 })
 export class SbbAutocompleteTrigger
@@ -322,6 +321,9 @@ export class SbbAutocompleteTrigger
       this._overlayRef.detach();
       this._closingActionsSubscription.unsubscribe();
     }
+
+    this._getConnectedElement().nativeElement.classList.remove('sbb-input-with-open-panel');
+    this._getConnectedElement().nativeElement.classList.remove('sbb-input-with-open-panel-above');
 
     // Note that in some cases this can end up being called after the component is destroyed.
     // Add a check to ensure that we don't try to run change detection on a destroyed view.
@@ -699,6 +701,8 @@ export class SbbAutocompleteTrigger
     this.autocomplete._setVisibility();
     this.autocomplete._isOpen = this._overlayAttached = true;
 
+    this._getConnectedElement().nativeElement.classList.add('sbb-input-with-open-panel');
+
     // We need to do an extra `panelOpen` check in here, because the
     // autocomplete won't be shown if there are no options.
     if (this.panelOpen && wasOpen !== this.panelOpen) {
@@ -764,7 +768,7 @@ export class SbbAutocompleteTrigger
       return this.connectedTo.elementRef;
     }
 
-    return this._elementRef;
+    return this._formField ? this._formField.getConnectedOverlayOrigin() : this._elementRef;
   }
 
   private _getPanelWidth(): number | string {

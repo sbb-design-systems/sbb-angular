@@ -1,0 +1,19 @@
+<sbb-form-field class="sbb-form-field-long" label="Locomotives">
+  <sbb-chip-list aria-label="Locomotives" [formControl]="formControl">
+    <sbb-chip *ngFor="let locomotiveName of formControl.value" [value]="locomotiveName">
+      {{locomotiveName}}
+    </sbb-chip>
+    <input placeholder="New locomotive..." sbbChipInput />
+  </sbb-chip-list>
+</sbb-form-field>
+
+<h4>Properties</h4>
+<p>
+  <button sbb-ghost-button (click)="formControl.disable()">Disable form control</button>
+</p>
+<p>
+  <button sbb-ghost-button (click)="formControl.enable()">Enable form control</button>
+</p>
+
+<h4>Model</h4>
+<pre>{{valuesArray | json}}</pre>

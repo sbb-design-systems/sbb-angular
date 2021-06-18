@@ -1,0 +1,17 @@
+<sbb-form-field class="sbb-form-field-long" label="Favorite Fruits">
+  <sbb-chip-list aria-label="Fruit selection" [formControl]="selectedFruits">
+    <sbb-chip *ngFor="let fruit of selectedFruits.value" [value]="fruit"> {{fruit}} </sbb-chip>
+    <input
+      placeholder="New fruit..."
+      sbbChipInput
+      [sbbChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [formControl]="fruitInputCtrl"
+      [sbbAutocomplete]="auto"
+    />
+  </sbb-chip-list>
+  <sbb-autocomplete #auto="sbbAutocomplete">
+    <sbb-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+      {{fruit}}
+    </sbb-option>
+  </sbb-autocomplete>
+</sbb-form-field>

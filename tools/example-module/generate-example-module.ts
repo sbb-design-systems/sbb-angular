@@ -139,10 +139,10 @@ function analyzeExamples(sourceFiles: string[], baseDir: string): AnalyzedExampl
 
       // For consistency, we expect the example component selector to match
       // the id of the example.
-      const expectedSelector = `${exampleId}-example`;
-      if (primaryComponent.selector !== 'sbb-' + expectedSelector) {
+      const expectedSelector = `sbb-${exampleId}-example`;
+      if (primaryComponent.selector !== expectedSelector) {
         throw Error(
-          `Example ${exampleId} uses selector: sbb-${primaryComponent.selector}, ` +
+          `Example ${exampleId} uses selector: ${primaryComponent.selector}, ` +
             `but expected: ${expectedSelector}`
         );
       }
