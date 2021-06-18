@@ -31,6 +31,8 @@ export function mergeSymbols(): Rule {
       SbbDropdownDefaultOptions: 'menu',
       SbbBusinessDateAdapter: 'core',
       SBB_BUSINESS_DATE_ADAPTER: 'core',
+      SbbChipInputChange: 'chips',
+      SbbChipModule: 'chips',
     };
 
     extractExportsForModule('src/angular/');

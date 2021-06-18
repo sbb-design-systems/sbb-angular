@@ -260,7 +260,10 @@ export class MigrationElement {
     const attribute = this.element.attrs.find((a) => {
       const lowerCaseName = a.name.toLowerCase();
       return (
-        lowerCaseName === name || lowerCaseName === `[${name}]` || lowerCaseName === `(${name})`
+        lowerCaseName === name ||
+        lowerCaseName === `[${name}]` ||
+        lowerCaseName === `(${name})` ||
+        lowerCaseName === `[(${name})]`
       );
     });
     if (!attribute) {

@@ -8,6 +8,7 @@ import {
 import { sbbAngularUpgradeData } from './add-data';
 import { BadgeMigration } from './migrations/badge-migration';
 import { ButtonMigration } from './migrations/button-migration';
+import { ChipsMigration } from './migrations/chips-migration';
 import { ClassNamesMigration } from './migrations/class-names';
 import { EnumToStringLiteralMigration } from './migrations/enum-to-string-literal-migration';
 import { MenuMigration } from './migrations/menu-migration';
@@ -28,6 +29,7 @@ export function mergePublicAndBusiness(): Rule {
       MenuMigration,
       SearchMigration,
       BadgeMigration,
+      ChipsMigration,
     ],
     sbbAngularUpgradeData,
     onMigrationComplete
