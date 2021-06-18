@@ -316,6 +316,7 @@
   "BROWSER_ANIMATIONS_MODULE_NAME": "schematics",
   "BUSINESS_TYPOGRAPHY_CSS_PATH": "schematics",
   "ButtonMigration": "schematics",
+  "ChipsMigration": "schematics",
   "classNames": "schematics",
   "ClassNamesMigration": "schematics",
   "constructorChecks": "schematics",
