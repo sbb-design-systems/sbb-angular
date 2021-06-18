@@ -31,7 +31,7 @@ export class ChipsMigration extends Migration<null, DevkitContext> {
   }
 
   private _handleChipInput(chip: MigrationElement) {
-    let template;
+    let template: string;
     const formControlNameProperty = chip.findProperty('formControlName');
     const formControlProperty = chip.findProperty('formControl');
     const ngModelProperty = chip.findProperty('ngModel');

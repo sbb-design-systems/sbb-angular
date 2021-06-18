@@ -1,7 +1,6 @@
 import { ENTER } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbErrorStateMatcher } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbChip, SbbChipRemove, SbbChipTrailingIcon } from './chip';
@@ -16,7 +15,6 @@ const CHIP_DECLARATIONS = [SbbChipList, SbbChip, SbbChipInput, SbbChipRemove, Sb
   exports: CHIP_DECLARATIONS,
   declarations: CHIP_DECLARATIONS,
   providers: [
-    SbbErrorStateMatcher,
     {
       provide: SBB_CHIPS_DEFAULT_OPTIONS,
       useValue: {
