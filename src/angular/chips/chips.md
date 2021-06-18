@@ -1,7 +1,4 @@
-`<sbb-chip-list>` displays a list of values as individual, keyboard accessible, chips.
-
-<!-- example({"example": "chips-overview",
-              "file": "chips-overview-example.html"}) -->
+`<sbb-chip-list>` displays a list of values as individual, keyboard accessible, chips and can control user inputs.
 
 ## Unstyled chips
 
