@@ -259,10 +259,8 @@ export class SbbPaginator extends sbbPaginatorBase implements OnInit, CanDisable
     return Math.max(Math.min(Math.max(value, 0), this.numberOfPages() - 1), 0);
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_pageIndex: NumberInput;
   static ngAcceptInputType_length: NumberInput;
   static ngAcceptInputType_pageSize: NumberInput;
   static ngAcceptInputType_disabled: BooleanInput;
-  // tslint:disable: member-ordering
 }

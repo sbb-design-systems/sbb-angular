@@ -38,10 +38,8 @@
 
 .sbb-paginator-item-button {
   cursor: pointer;
-  border-color: transparent;
-  border-width: pxToEm(2);
-  border-style: solid;
   border-radius: 50%;
+  border: pxToEm(2) solid transparent;
   background-color: $sbbColorWhite;
   text-decoration: none;
   position: absolute;

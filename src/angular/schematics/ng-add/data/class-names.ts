@@ -81,6 +81,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbPageChangeEvent',
           replaceWith: 'SbbPageEvent',
         },
+        {
+          replace: 'SbbPagination',
+          replaceWith: 'SbbPaginator',
+        },
       ],
     },
   ],

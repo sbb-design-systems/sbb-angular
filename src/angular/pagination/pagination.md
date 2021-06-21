@@ -1,7 +1,4 @@
-This module contains two different components:
-
-- sbb-paginator
-- sbb-navigation
+This module contains two different components: `<sbb-paginator>` and `<sbb-navigation>`
 
 ### The sbb-paginator component
 

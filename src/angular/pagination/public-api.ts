@@ -1,5 +1,4 @@
 export * from './pagination.module';
-// To avoid colliding name exports in bundles, don't use star export here
 export * from './navigation/navigation';
 
 // To avoid colliding name exports in bundles, don't use star export here

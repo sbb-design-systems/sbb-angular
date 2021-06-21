@@ -3,7 +3,7 @@ import { DevkitContext, Migration, ResolvedResource, TargetVersion } from '@angu
 import { iterateNodes, MigrationElement, MigrationRecorderRegistry, nodeCheck } from '../../utils';
 
 /**
- * Migration that updates replaces <sbb-badge> instances with <span sbbBadge="">.
+ * Migration that updates replaces <sbb-pagination> instances with <sbb-paginator>.
  */
 export class PaginationMigration extends Migration<null, DevkitContext> {
   enabled: boolean = this.targetVersion === ('merge' as TargetVersion);
@@ -23,7 +23,7 @@ export class PaginationMigration extends Migration<null, DevkitContext> {
     if (!this._paginations.empty) {
       this.logger.info('Migrating sbb-pagination usages');
       this.logger.info(
-        '  See documentation at https://angular.app.sbb.ch/angular/components/pagination for the differences between sbb-pagination and sbb-paginator'
+        '  See documentation at https://angular.app.sbb.ch/angular/components/pagination on how to configure sbb-paginator'
       );
       this._paginations.forEach((e) => this._handlePagination(e));
     }
