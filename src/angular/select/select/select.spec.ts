@@ -529,7 +529,7 @@ class SelectWithGroups {
 @Component({
   selector: 'sbb-select-with-indirect-groups',
   // Note that we need the blank `ngSwitch` in order to have
-  // a directive between `mat-select` and `mat-optgroup`.
+  // a directive between `sbb-select` and `sbb-optgroup`.
   template: `
     <sbb-form-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
@@ -3656,7 +3656,7 @@ describe('SbbSelect', () => {
       fixture.detectChanges();
 
       expect(fixture.componentInstance.customAccessor.select.ngControl).toBeFalsy(
-        'Expected mat-select NOT to inherit control from parent value accessor.'
+        'Expected sbb-select NOT to inherit control from parent value accessor.'
       );
       expect(fixture.componentInstance.customAccessor.writeValue).toHaveBeenCalled();
     }));

@@ -37,6 +37,8 @@ function mergeSymbols() {
             SbbDropdownDefaultOptions: 'menu',
             SbbBusinessDateAdapter: 'core',
             SBB_BUSINESS_DATE_ADAPTER: 'core',
+            SbbChipInputChange: 'chips',
+            SbbChipModule: 'chips',
             SbbPaginatorComponent: 'pagination',
             SbbPageChangeEvent: 'pagination',
         };

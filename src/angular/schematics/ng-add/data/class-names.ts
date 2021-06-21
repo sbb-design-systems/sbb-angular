@@ -62,6 +62,18 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replaceWith: 'SBB_LEAN_DATE_ADAPTER',
         },
         {
+          replace: 'SbbChipModule',
+          replaceWith: 'SbbChipsModule',
+        },
+        {
+          replace: 'SbbChipInput',
+          replaceWith: 'SbbChipList',
+        },
+        {
+          replace: 'SbbChipInputChange',
+          replaceWith: 'SbbChipInputEvent',
+        },
+        {
           replace: 'SbbPaginatorComponent',
           replaceWith: 'SbbPaginator',
         },

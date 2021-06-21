@@ -33,6 +33,8 @@ export function mergeSymbols(): Rule {
       SBB_BUSINESS_DATE_ADAPTER: 'core',
       SbbPaginatorComponent: 'pagination',
       SbbPageChangeEvent: 'pagination',
+      SbbChipInputChange: 'chips',
+      SbbChipModule: 'chips',
     };
 
     extractExportsForModule('src/angular/');

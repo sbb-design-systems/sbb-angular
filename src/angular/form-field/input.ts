@@ -2,24 +2,21 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import {
+  AfterViewInit,
   Directive,
   DoCheck,
   ElementRef,
   HostListener,
   Inject,
   Input,
+  NgZone,
   OnChanges,
   OnDestroy,
-  OnInit,
   Optional,
   Self,
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import {
-  CanUpdateErrorStateCtor,
-  mixinErrorState,
-  SbbErrorStateMatcher,
-} from '@sbb-esta/angular/core';
+import { CanUpdateErrorState, mixinErrorState, SbbErrorStateMatcher } from '@sbb-esta/angular/core';
 
 import { SbbFormFieldControl } from './form-field-control';
 import { SBB_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
@@ -39,18 +36,20 @@ const SBB_INPUT_INVALID_TYPES = [
 ];
 
 /** @docs-private */
-export class SbbInputBase {
-  constructor(
-    public _defaultErrorStateMatcher: SbbErrorStateMatcher,
-    public _parentForm: NgForm,
-    public _parentFormGroup: FormGroupDirective,
-    /** @docs-private */
-    public ngControl: NgControl
-  ) {}
-}
-export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbInputBase =
-  mixinErrorState(SbbInputBase);
+// tslint:disable-next-line:naming-convention
+const _SbbInputBase = mixinErrorState(
+  class {
+    constructor(
+      public _defaultErrorStateMatcher: SbbErrorStateMatcher,
+      public _parentForm: NgForm,
+      public _parentFormGroup: FormGroupDirective,
+      /** @docs-private */
+      public ngControl: NgControl
+    ) {}
+  }
+);
 
+/** Directive that allows a native input to work inside a `SbbFormField`. */
 @Directive({
   selector: 'input[sbbInput], select[sbbInput], textarea[sbbInput]',
   exportAs: 'sbbInput',
@@ -62,15 +61,23 @@ export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbInputBase =
     '[disabled]': 'disabled',
     '[required]': 'required',
     '[attr.readonly]': 'readonly && !_isNativeSelect || null',
-    '[attr.aria-invalid]': 'errorState',
-    '[attr.aria-required]': 'required.toString()',
+    // Only mark the input as invalid for assistive technology if it has a value since the
+    // state usually overlaps with `aria-required` when the input is empty and can be redundant.
+    '[attr.aria-invalid]': '(empty && required) ? null : errorState',
+    '[attr.aria-required]': 'required',
     '[attr.placeholder]': 'placeholder || null',
   },
   providers: [{ provide: SbbFormFieldControl, useExisting: SbbInput }],
 })
 export class SbbInput
-  extends SbbNativeInputBase
-  implements SbbFormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy
+  extends _SbbInputBase
+  implements
+    SbbFormFieldControl<any>,
+    AfterViewInit,
+    OnChanges,
+    DoCheck,
+    OnDestroy,
+    CanUpdateErrorState
 {
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
@@ -236,7 +243,8 @@ export class SbbInput
     @Self()
     @Inject(SBB_INPUT_VALUE_ACCESSOR)
     inputValueAccessor: any,
-    private _autofillMonitor: AutofillMonitor
+    private _autofillMonitor: AutofillMonitor,
+    ngZone: NgZone
   ) {
     super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
     const element = this._elementRef.nativeElement;
@@ -245,7 +253,34 @@ export class SbbInput
     // If no input value accessor was explicitly specified, use the element as the input value
     // accessor.
     this._inputValueAccessor = inputValueAccessor || element;
+
     this._previousNativeValue = this.value;
+
+    // On some versions of iOS the caret gets stuck in the wrong place when holding down the delete
+    // key. In order to get around this we need to "jiggle" the caret loose. Since this bug only
+    // exists on iOS, we only bother to install the listener on iOS.
+    if (_platform.IOS) {
+      ngZone.runOutsideAngular(() => {
+        _elementRef.nativeElement.addEventListener('keyup', (event: Event) => {
+          const el = event.target as HTMLInputElement;
+
+          // Note: We specifically check for 0, rather than `!el.selectionStart`, because the two
+          // indicate different things. If the value is 0, it means that the caret is at the start
+          // of the input, whereas a value of `null` means that the input doesn't support
+          // manipulating the selection range. Inputs that don't support setting the selection range
+          // will throw an error so we want to avoid calling `setSelectionRange` on them. See:
+          // https://html.spec.whatwg.org/multipage/input.html#do-not-apply
+          if (!el.value && el.selectionStart === 0 && el.selectionEnd === 0) {
+            // Note: Just setting `0, 0` doesn't fix the issue. Setting
+            // `1, 1` fixes it for the first time that you type text and
+            // then hold delete. Toggling to `1, 1` and then back to
+            // `0, 0` seems to completely fix it.
+            el.setSelectionRange(1, 1);
+            el.setSelectionRange(0, 0);
+          }
+        });
+      });
+    }
 
     this._isNativeSelect = nodeName === 'select';
     this._isTextarea = nodeName === 'textarea';
@@ -257,7 +292,7 @@ export class SbbInput
     }
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     if (this._platform.isBrowser) {
       this._autofillMonitor.monitor(this._elementRef.nativeElement).subscribe((event) => {
         this.autofilled = event.isAutofilled;
@@ -306,18 +341,6 @@ export class SbbInput
     }
   }
 
-  /**
-   * Implemented as part of SbbFormFieldControl.
-   * @docs-private
-   */
-  setDescribedByIds(ids: string[]) {
-    if (ids.length) {
-      this._elementRef.nativeElement.setAttribute('aria-describedby', ids.join(' '));
-    } else {
-      this._elementRef.nativeElement.removeAttribute('aria-describedby');
-    }
-  }
-
   /** Does some manual dirty checking on the native input `value` property. */
   private _dirtyCheckNativeValue() {
     const newValue = this._elementRef.nativeElement.value;
@@ -330,7 +353,10 @@ export class SbbInput
 
   /** Make sure the input is a supported type. */
   private _validateType() {
-    if (SBB_INPUT_INVALID_TYPES.indexOf(this._type) > -1) {
+    if (
+      SBB_INPUT_INVALID_TYPES.indexOf(this._type) > -1 &&
+      (typeof ngDevMode === 'undefined' || ngDevMode)
+    ) {
       throw new Error(`Input type "${this._type}" is not supported by sbbInput!`);
     }
   }
@@ -351,6 +377,18 @@ export class SbbInput
    * Implemented as part of SbbFormFieldControl.
    * @docs-private
    */
+  setDescribedByIds(ids: string[]) {
+    if (ids.length) {
+      this._elementRef.nativeElement.setAttribute('aria-describedby', ids.join(' '));
+    } else {
+      this._elementRef.nativeElement.removeAttribute('aria-describedby');
+    }
+  }
+
+  /**
+   * Implemented as part of SbbFormFieldControl.
+   * @docs-private
+   */
   onContainerClick() {
     // Do not re-focus the input element if the element is already focused. Otherwise it can happen
     // that someone clicks on a time input and the cursor resets to the "hours" field while the
@@ -360,12 +398,11 @@ export class SbbInput
     }
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;
-  static ngAcceptInputType_required: BooleanInput;
   static ngAcceptInputType_readonly: BooleanInput;
+  static ngAcceptInputType_required: BooleanInput;
+
   // Accept `any` to avoid conflicts with other directives on `<input>` that may
   // accept different types.
   static ngAcceptInputType_value: any;
-  // tslint:enable: member-ordering
 }

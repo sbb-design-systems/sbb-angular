@@ -2264,7 +2264,7 @@ describe('SbbAutocomplete', () => {
       const fixture = createComponent(SimpleAutocomplete);
       fixture.detectChanges();
       const inputReference = fixture.debugElement.query(
-        By.css('.sbb-form-field input')
+        By.css('.sbb-form-field-input-wrapper')
       )!.nativeElement;
 
       // Push the autocomplete trigger down so it won't have room to open "below"
@@ -2334,10 +2334,13 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
 
       const input = fixture.debugElement.query(By.css('input'))!.nativeElement;
+      const inputReference = fixture.debugElement.query(
+        By.css('.sbb-form-field-input-wrapper')
+      )!.nativeElement;
 
       // Push the autocomplete trigger down so it won't have room to open "below"
-      input.style.bottom = '0';
-      input.style.position = 'fixed';
+      inputReference.style.bottom = '0';
+      inputReference.style.position = 'fixed';
 
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
@@ -2347,7 +2350,7 @@ describe('SbbAutocomplete', () => {
       fixture.detectChanges();
       tick();
 
-      const inputTop = input.getBoundingClientRect().top;
+      const inputTop = inputReference.getBoundingClientRect().top;
       const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
       const panelBottom = panel.getBoundingClientRect().bottom;
 
@@ -2511,6 +2514,38 @@ describe('SbbAutocomplete', () => {
         Math.floor(panelRect.top),
         'Expected panel to be below the input.'
       );
+      expect(panel.classList).not.toContain('sbb-autocomplete-panel-above');
+    }));
+
+    it('should cleanup positioning css classes', fakeAsync(() => {
+      const fixture = createComponent(SimpleAutocomplete);
+      fixture.componentInstance.position = 'above';
+      fixture.detectChanges();
+      const inputReference = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
+      const inputWrapper = fixture.debugElement.query(
+        By.css('.sbb-form-field-input-wrapper')
+      )!.nativeElement;
+
+      // Push the autocomplete trigger up so it won't have room to open below.
+      inputReference.style.top = '0';
+      inputReference.style.position = 'fixed';
+
+      fixture.componentInstance.trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+      fixture.detectChanges();
+
+      const panel = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
+
+      expect(inputWrapper.classList).toContain('sbb-input-with-open-panel');
+      expect(inputWrapper.classList).toContain('sbb-input-with-open-panel-above');
+      expect(panel.classList).toContain('sbb-autocomplete-panel-above');
+
+      fixture.componentInstance.trigger.closePanel();
+      fixture.detectChanges();
+
+      expect(inputWrapper.classList).not.toContain('sbb-input-with-open-panel');
+      expect(inputWrapper.classList).not.toContain('sbb-input-with-open-panel-above');
       expect(panel.classList).not.toContain('sbb-autocomplete-panel-above');
     }));
   });

@@ -1,0 +1,18 @@
+<sbb-form-field class="sbb-form-field-long" label="Favorite Fruits">
+  <sbb-chip-list aria-label="Fruit selection" [(ngModel)]="fruits">
+    <sbb-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+      {{fruit.name}} ({{fruit.color}})
+    </sbb-chip>
+    <input
+      placeholder="Type name of an available fruit..."
+      sbbChipInput
+      [sbbChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (sbbChipInputTokenEnd)="add($event)"
+    />
+  </sbb-chip-list>
+</sbb-form-field>
+
+<p>Available Fruits: Apple, Lemon, Lime</p>
+
+<h4>Model</h4>
+<pre>{{fruits | json}}</pre>

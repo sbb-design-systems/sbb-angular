@@ -554,7 +554,7 @@ describe('SbbInput with forms', () => {
     let fixture: ComponentFixture<SbbInputWithFormErrorMessages>;
     let testComponent: SbbInputWithFormErrorMessages;
     let containerEl: HTMLElement;
-    let inputEl: HTMLElement;
+    let inputEl: HTMLInputElement;
 
     beforeEach(fakeAsync(() => {
       fixture = createComponent(SbbInputWithFormErrorMessages);
@@ -577,6 +577,7 @@ describe('SbbInput with forms', () => {
       expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid');
       expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
 
+      inputEl.value = 'not valid';
       testComponent.formControl.markAsTouched();
       fixture.detectChanges();
       flush();
@@ -600,6 +601,7 @@ describe('SbbInput with forms', () => {
       expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid');
       expect(containerEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error message');
 
+      inputEl.value = 'not valid';
       dispatchFakeEvent(fixture.debugElement.query(By.css('form'))!.nativeElement, 'submit');
       fixture.detectChanges();
       flush();
@@ -642,6 +644,7 @@ describe('SbbInput with forms', () => {
         'Expected form not to have been submitted'
       );
 
+      inputEl.value = 'not valid';
       dispatchFakeEvent(groupFixture.debugElement.query(By.css('form'))!.nativeElement, 'submit');
       groupFixture.detectChanges();
       flush();
@@ -664,11 +667,11 @@ describe('SbbInput with forms', () => {
       );
     }));
 
-    it('should set the proper role on the error messages', fakeAsync(() => {
+    it('should set the proper aria-live attribute on the error messages', fakeAsync(() => {
       testComponent.formControl.markAsTouched();
       fixture.detectChanges();
 
-      expect(containerEl.querySelector('sbb-error')!.getAttribute('role')).toBe('alert');
+      expect(containerEl.querySelector('sbb-error')!.getAttribute('aria-live')).toBe('polite');
     }));
 
     it('sets the aria-describedby to reference errors when in error state', fakeAsync(() => {
@@ -685,6 +688,29 @@ describe('SbbInput with forms', () => {
 
       expect(errorIds).toBeTruthy('errors should be shown');
       expect(describedBy).toBe(errorIds);
+    }));
+
+    it('should set `aria-invalid` to true if the input is empty', fakeAsync(() => {
+      // Submit the form since it's the one that triggers the default error state matcher.
+      dispatchFakeEvent(fixture.nativeElement.querySelector('form'), 'submit');
+      fixture.detectChanges();
+      flush();
+
+      expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid');
+      expect(inputEl.value).toBeFalsy();
+      expect(inputEl.getAttribute('aria-invalid')).toBe(
+        'true',
+        'Expected aria-invalid to be set to "true".'
+      );
+
+      inputEl.value = 'not valid';
+      fixture.detectChanges();
+
+      expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid');
+      expect(inputEl.getAttribute('aria-invalid')).toBe(
+        'true',
+        'Expected aria-invalid to be set to "true".'
+      );
     }));
   });
 
@@ -989,7 +1015,7 @@ class SbbInputMissingSbbInputTestController {}
 })
 class SbbInputWithFormErrorMessages {
   @ViewChild('form') form: NgForm;
-  formControl = new FormControl('', Validators.required);
+  formControl = new FormControl('', [Validators.required, Validators.pattern(/valid value/)]);
   renderError = true;
 }
 
@@ -1005,7 +1031,7 @@ class SbbInputWithFormErrorMessages {
 })
 class SbbInputWithCustomErrorStateMatcher {
   formGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.pattern(/valid value/)]),
   });
 
   errorState = false;
@@ -1028,7 +1054,7 @@ class SbbInputWithCustomErrorStateMatcher {
 class SbbInputWithFormGroupErrorMessages {
   @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
   formGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.pattern(/valid value/)]),
   });
 }
 

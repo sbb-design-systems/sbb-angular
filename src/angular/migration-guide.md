@@ -117,6 +117,32 @@ the generic `<sbb-checkbox-panel-note>` wrapper.
 
 [Documentation](angular/components/checkbox-panel)
 
+### Chip Input
+
+_Automatic migration available_
+
+The Chip Input has been recreated from scratch. The module is now a lot more flexible and controllable
+by developers but needs a little more of template code.
+
+**Previous**
+
+```html
+<sbb-chip-input [formControl]="formControl"></sbb-chip-input>
+```
+
+**New**
+
+```html
+<sbb-chip-list aria-label="Locomotives" [formControl]="formControl">
+  <sbb-chip *ngFor="let element of formControl.value" [value]="element">{{ element }}</sbb-chip>
+  <input sbbChipInput placeholder="New locomotive..." />
+</sbb-chip-list>
+```
+
+Please carefully check the changes from the automatic migration and manually add aria-label and placeholder as required.
+
+[Documentation](angular/components/chips)
+
 ### Datepicker
 
 _Automatic migration available_

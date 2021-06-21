@@ -1,0 +1,40 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "chips",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob([
+        "**/*.html",
+        "**/*.css",
+    ]),
+    module_name = "@sbb-esta/components-examples/angular/chips",
+    deps = [
+        "//src/angular/autocomplete",
+        "//src/angular/button",
+        "//src/angular/chips",
+        "//src/angular/form-field",
+        "//src/angular/icon",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.css",
+        "**/*.ts",
+    ]),
+)
