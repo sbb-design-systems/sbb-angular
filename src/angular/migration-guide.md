@@ -205,3 +205,26 @@ The search component has been refactored as a wrapper for an input field.
 ```
 
 [Documentation](angular/components/search)
+
+### Pagination
+
+_Partial migration available_
+
+The `sbb-pagination` component has been removed. From now on, the `sbb-paginator` component should be used.
+At the sbb-pagination component the `length` property stood for the number of pages. With the sbb-paginator component,
+the `length` property stands for the total number of items that are being paginated. There is a new property `pageSize`, which
+determines the number of items on a page.
+
+**Previous**
+
+```html
+<sbb-pagination (pageChange)="changePage($event)" length="5"></sbb-pagination>
+```
+
+**New**
+
+```html
+<sbb-paginator (page)="pageChange($event)" [pageSize]="10" [length]="50"></sbb-paginator>
+```
+
+[Documentation](angular/components/pagination)

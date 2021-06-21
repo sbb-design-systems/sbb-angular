@@ -9,10 +9,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 
 var ts__default = /*#__PURE__*/_interopDefaultLegacy(ts);
 
-const IGNORED_FOLDERS = [
-    '/src/angular/schematics/ng-add/test-cases/',
-    '/src/angular/schematics/ng-generate/icon-cdn-provider/files',
-];
+const IGNORED_FOLDERS = ['/src/angular/schematics/ng-add/test-cases/'];
 function mergeSymbols() {
     return (tree) => {
         // Initialize collection with deprecated symbols (re-exports)
@@ -40,6 +37,8 @@ function mergeSymbols() {
             SbbDropdownDefaultOptions: 'menu',
             SbbBusinessDateAdapter: 'core',
             SBB_BUSINESS_DATE_ADAPTER: 'core',
+            SbbPaginatorComponent: 'pagination',
+            SbbPageChangeEvent: 'pagination',
         };
         extractExportsForModule('src/angular/');
         extractExportsForModule('src/angular-maps/');

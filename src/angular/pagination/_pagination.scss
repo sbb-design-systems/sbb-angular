@@ -1,0 +1,20 @@
+@import '../../angular-core/styles/common';
+
+$paginationLiWidthHeight: 40;
+$paginationLiWidthHeight4K: $paginationLiWidthHeight * $scalingFactor4k;
+$paginationLiWidthHeight5K: $paginationLiWidthHeight * $scalingFactor5k;
+
+$paginationItemIconSize: 24;
+$paginationItemIconSize4K: $paginationItemIconSize * $scalingFactor4k;
+$paginationItemIconSize5K: $paginationItemIconSize * $scalingFactor5k;
+
+$paginationLiWidthHeightBusiness: 30;
+
+$paginationBaseColor: $sbbColorGrey;
+$paginationBaseColorLean: $sbbColorGranite;
+$paginationItemBoundaryColor: $sbbColorGranite;
+$paginationItemBoundaryColorLean: $sbbColorIron;
+$paginationDisabledColor: $sbbColorSilver;
+$paginationDisabledColorLean: $sbbColorStorm;
+$paginationActiveHoverColor: $sbbColorRed;
+$paginationActiveHoverColorLean: $sbbColorRed125;

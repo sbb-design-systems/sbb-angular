@@ -13,6 +13,10 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-dropdown',
           replaceWith: 'sbb-menu',
         },
+        {
+          replace: 'sbb-pagination',
+          replaceWith: 'sbb-paginator',
+        },
       ],
     },
   ],
