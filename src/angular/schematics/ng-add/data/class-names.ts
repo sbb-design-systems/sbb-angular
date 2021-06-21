@@ -62,6 +62,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replaceWith: 'SBB_LEAN_DATE_ADAPTER',
         },
         {
+          replace: 'SbbPaginatorComponent',
+          replaceWith: 'SbbPaginator',
+        },
+        {
           replace: 'SbbPageChangeEvent',
           replaceWith: 'SbbPageEvent',
         },
