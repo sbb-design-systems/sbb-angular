@@ -1,10 +1,8 @@
 import { AnimationEvent } from '@angular/animations';
-import { Direction, Directionality } from '@angular/cdk/bidi';
 import { CdkPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
   Directive,
@@ -15,7 +13,6 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
   ViewChild,
   ViewContainerRef,

@@ -25,11 +25,26 @@
     flex-grow: 1;
   }
 
+  html.sbb-lean & {
+    // We need to unset overflow: hidden on business due to our requirement of hiding
+    // the border between the tab link header and body.
+    overflow: unset;
+  }
+
   &.sbb-tab-disabled {
     // We use `pointer-events` to make the element unclickable when it's disabled, rather than
     // preventing the default action through JS, because we can't prevent the action reliably
     // due to other directives potentially registering their events earlier. This shouldn't cause
     // the user to click through, because we always have a `.sbb-tab-links` behind the link.
     pointer-events: none;
+  }
+}
+
+// The bottom section of the view; contains the tab bodies
+.sbb-tab-nav-bar-body {
+  @include tab-body-wrapper;
+
+  html.sbb-lean & {
+    padding: pxToRem(15);
   }
 }

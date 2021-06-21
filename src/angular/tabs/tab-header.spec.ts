@@ -1,24 +1,14 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
-import { MutationObserverFactory, ObserversModule } from '@angular/cdk/observers';
+import { ObserversModule } from '@angular/cdk/observers';
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule, ViewportRuler } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import {
-  ComponentFixture,
-  discardPeriodicTasks,
-  fakeAsync,
-  TestBed,
-  tick,
-  waitForAsync,
-} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {
   createKeyboardEvent,
-  createMouseEvent,
   dispatchEvent,
-  dispatchFakeEvent,
   dispatchKeyboardEvent,
 } from '@sbb-esta/angular/core/testing';
 import { Subject } from 'rxjs';

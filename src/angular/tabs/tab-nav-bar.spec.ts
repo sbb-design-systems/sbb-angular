@@ -1,8 +1,7 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { dispatchFakeEvent, dispatchMouseEvent } from '@sbb-esta/angular/core/testing';
 import { Subject } from 'rxjs';
 
 import { SbbTabLink, SbbTabNav, SbbTabsModule } from './index';

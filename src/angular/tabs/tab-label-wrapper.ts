@@ -1,13 +1,10 @@
 import { BooleanInput } from '@angular/cdk/coercion';
 import { Directive, ElementRef } from '@angular/core';
-import { CanDisable, CanDisableCtor, mixinDisabled } from '@sbb-esta/angular/core';
+import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 
 // Boilerplate for applying mixins to SbbTabLabelWrapper.
-/** @docs-private */
-class SbbTabLabelWrapperBase {}
 // tslint:disable-next-line:naming-convention
-const _SbbTabLabelWrapperMixinBase: CanDisableCtor & typeof SbbTabLabelWrapperBase =
-  mixinDisabled(SbbTabLabelWrapperBase);
+const _SbbTabLabelWrapperMixinBase = mixinDisabled(class {});
 
 /**
  * Used in the `sbb-tab-group` view to display tab labels.

@@ -19,12 +19,13 @@
   <a sbb-tab-link disabled>Disabled Link</a>
 </nav>
 
-<!--
-  Use <router-outlet> in a real application:
+<!-- The wrapping div with the css class 'sbb-tab-nav-bar-body' is only required for the lean design -->
+<div class="sbb-tab-nav-bar-body">
+  <!--
+    Use <router-outlet> in a real application:
 
-  <div class="sbb-tab-body-wrapper">
     <router-outlet></router-outlet>
-  </div>
--->
+  -->
 
-<button sbb-button class="example-action-button" (click)="addLink()">Add link</button>
+  <button sbb-button class="example-action-button" (click)="addLink()">Add link</button>
+</div>

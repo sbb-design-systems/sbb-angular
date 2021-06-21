@@ -2,6 +2,10 @@
 
 $tabsHoverColor: $sbbColorRed125;
 $tabsFontSize: 20;
+$tabsBorderWidthLean: 1px;
+// Due to a bug in WebKit, the underline border seems to more than one pixel
+// when using 1px. Due to this we use the value below, which also works on Firefox.
+$tabsBorderUnderlineOffset: -0.9999px;
 
 $tab-bar-height: 48px !default;
 $tab-animation-duration: 500ms !default;
@@ -49,25 +53,41 @@ $tab-animation-duration: 500ms !default;
       right: 0;
       bottom: 0;
       width: 0;
-      background: green;
     }
   }
-
   html.sbb-lean & {
     font-size: pxToRem(15);
-    padding-bottom: 0;
+    line-height: pxToRem(20);
+    padding: pxToRem(6) pxToRem(15) pxToRem(9);
+    background-color: $sbbColorWhite;
+    margin-right: 0;
+    margin-bottom: $tabsBorderWidthLean;
+    border: $tabsBorderWidthLean solid transparent;
+    border-bottom: none;
+    border-radius: pxToRem(2) pxToRem(2) 0 0;
   }
 
   &:last-child {
     margin-right: 0 !important;
   }
 
-  &.sbb-tab-label-active,
-  &:not(.sbb-tab-label-active):focus,
-  &:not(.sbb-tab-label-active):hover {
+  &.sbb-tab-label-active {
     html:not(.sbb-lean) & {
       &::after {
         width: 100%;
+      }
+    }
+    html.sbb-lean & {
+      border-color: $sbbColorGraphite;
+
+      &::after {
+        content: '';
+        position: absolute;
+        height: $tabsBorderWidthLean;
+        bottom: $tabsBorderUnderlineOffset;
+        left: 0;
+        right: 0;
+        background-color: $sbbColorWhite;
       }
     }
   }
@@ -78,7 +98,19 @@ $tab-animation-duration: 500ms !default;
 
     html:not(.sbb-lean) & {
       &::after {
+        width: 100%;
         border-bottom-color: $sbbColorRed125;
+      }
+    }
+    html.sbb-lean & {
+      &::after {
+        content: '';
+        position: absolute;
+        height: $tabsBorderWidthLean;
+        bottom: $tabsBorderUnderlineOffset;
+        left: 0;
+        right: 0;
+        background-color: $sbbColorRed125;
       }
     }
   }
@@ -106,7 +138,6 @@ $tab-animation-duration: 500ms !default;
 
     html:not(.sbb-lean) & {
       &::after {
-        // TODO: ask how to do it without !important
         width: 0 !important;
       }
     }
@@ -117,6 +148,20 @@ $tab-animation-duration: 500ms !default;
     justify-content: center;
     align-items: center;
     white-space: nowrap;
+  }
+
+  // Reserve space for the badge in lean mode.
+  .sbb-badge:not(.sbb-badge-hidden) {
+    html.sbb-lean & {
+      padding-right: pxToRem(11);
+    }
+  }
+
+  // Reduce size of badge in lean mode.
+  .sbb-badge-content {
+    html.sbb-lean & {
+      transform: scale(0.8);
+    }
   }
 }
 
@@ -219,4 +264,28 @@ $tab-animation-duration: 500ms !default;
   overflow-x: auto;
   z-index: 1;
   padding-bottom: 20px;
+
+  html.sbb-lean & {
+    padding-bottom: 0;
+
+    // We want to display the scrollbar above the header in order not to separate the borders
+    // of the header and body. We do this by rotating the container and the content.
+    &,
+    & > .sbb-tab-list {
+      transform: rotateX(180deg);
+    }
+  }
+}
+
+@mixin tab-body-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  transition: height $tab-animation-duration;
+
+  html.sbb-lean & {
+    border: pxToRem(1) solid $sbbColorGraphite;
+    margin-top: pxToRem(-1);
+    background-color: $sbbColorWhite;
+  }
 }

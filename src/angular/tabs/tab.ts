@@ -16,17 +16,15 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { CanDisable, CanDisableCtor, mixinDisabled } from '@sbb-esta/angular/core';
+import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 
 import { SBB_TAB_CONTENT } from './tab-content';
 import { SbbTabLabel, SBB_TAB_LABEL } from './tab-label';
 
 // Boilerplate for applying mixins to SbbTab.
-/** @docs-private */
-class SbbTabBase {}
 // tslint:disable-next-line:naming-convention
-const _SbbTabMixinBase: CanDisableCtor & typeof SbbTabBase = mixinDisabled(SbbTabBase);
+const _SbbTabMixinBase = mixinDisabled(class {});
 
 /**
  * Used to provide a tab group to a tab without causing a circular dependency.

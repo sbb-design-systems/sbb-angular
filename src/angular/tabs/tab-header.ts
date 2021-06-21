@@ -83,9 +83,7 @@ export class SbbTabHeader extends _SbbTabHeaderBase {
     elementRef: ElementRef,
     changeDetectorRef: ChangeDetectorRef,
     viewportRuler: ViewportRuler,
-    @Optional() dir: Directionality,
     ngZone: NgZone,
-    platform: Platform,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
     super(elementRef, changeDetectorRef, viewportRuler, ngZone, animationMode);

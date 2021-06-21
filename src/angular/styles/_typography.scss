@@ -436,8 +436,7 @@ p,
 // Link
 // ----------------------------------------------------------------------------------------------------
 
-a:not(.sbb-menu-item),
-.sbb-link:not(.sbb-menu-item) {
+.sbb-link {
   color: $sbbColorText;
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
@@ -462,21 +461,6 @@ a:not(.sbb-menu-item),
   }
 
   // TODO: 4k, 5k
-}
-
-.sbb-link-reset {
-  color: unset;
-  text-decoration: unset;
-  line-height: unset;
-
-  html.sbb-lean & {
-    line-height: unset;
-  }
-
-  &:hover,
-  &:focus {
-    color: unset;
-  }
 }
 
 // ----------------------------------------------------------------------------------------------------

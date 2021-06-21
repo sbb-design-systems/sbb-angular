@@ -25,7 +25,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
+import { mixinVariant } from '@sbb-esta/angular/core';
 import { merge, Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
@@ -44,11 +44,12 @@ export class SbbTabChangeEvent {
 }
 
 /** Possible positions for the tab header. */
-class SbbTabGroupMixinBase {
-  constructor(public _elementRef: ElementRef) {}
-}
-const sbbTabGroupMixinBase: HasVariantCtor & typeof SbbTabGroupMixinBase =
-  mixinVariant(SbbTabGroupMixinBase);
+// tslint:disable-next-line:class-name naming-convention
+const _SbbTabGroupMixinBase = mixinVariant(
+  class {
+    constructor(public _elementRef: ElementRef) {}
+  }
+);
 
 interface SbbTabGroupBaseHeader {
   focusIndex: number;
@@ -60,7 +61,7 @@ interface SbbTabGroupBaseHeader {
  */
 @Directive()
 export abstract class SbbTabGroupBase
-  extends sbbTabGroupMixinBase
+  extends _SbbTabGroupMixinBase
   implements AfterContentInit, AfterContentChecked, OnDestroy
 {
   /**

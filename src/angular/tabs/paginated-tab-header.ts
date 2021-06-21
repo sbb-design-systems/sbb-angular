@@ -18,7 +18,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { fromEvent, merge, of, Subject } from 'rxjs';
+import { fromEvent, merge, Subject } from 'rxjs';
 import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
 
 /** Config used to bind passive event listeners */

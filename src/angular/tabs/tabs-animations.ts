@@ -1,11 +1,4 @@
-import {
-  animate,
-  AnimationTriggerMetadata,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, AnimationTriggerMetadata, style, transition, trigger } from '@angular/animations';
 
 /**
  * Animations used by the SBB tabs.

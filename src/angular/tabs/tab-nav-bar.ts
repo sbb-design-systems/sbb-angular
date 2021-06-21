@@ -23,14 +23,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import {
-  CanDisable,
-  CanDisableCtor,
-  HasTabIndex,
-  HasTabIndexCtor,
-  mixinDisabled,
-  mixinTabIndex,
-} from '@sbb-esta/angular/core';
+import { CanDisable, HasTabIndex, mixinDisabled, mixinTabIndex } from '@sbb-esta/angular/core';
 import { startWith, takeUntil } from 'rxjs/operators';
 
 import { SbbPaginatedTabHeader, SbbPaginatedTabHeaderItem } from './paginated-tab-header';
@@ -126,10 +119,8 @@ export class SbbTabNav extends _SbbTabNavBase {
 }
 
 // Boilerplate for applying mixins to SbbTabLink.
-class SbbTabLinkMixinBase {}
 // tslint:disable-next-line:naming-convention
-const _SbbTabLinkMixinBase: HasTabIndexCtor & CanDisableCtor & typeof SbbTabLinkMixinBase =
-  mixinTabIndex(mixinDisabled(SbbTabLinkMixinBase));
+const _SbbTabLinkMixinBase = mixinTabIndex(mixinDisabled(class {}));
 
 /** Base class with all of the `SbbTabLink` functionality. */
 @Directive()
@@ -192,7 +183,7 @@ export class _SbbTabLinkBase
   exportAs: 'sbbTabLink',
   inputs: ['disabled', 'tabIndex'],
   host: {
-    class: 'sbb-tab-link sbb-link-reset sbb-focus-indicator',
+    class: 'sbb-tab-link sbb-focus-indicator',
     '[attr.aria-current]': 'active ? "page" : null',
     '[attr.aria-disabled]': 'disabled',
     '[attr.tabIndex]': 'tabIndex',
