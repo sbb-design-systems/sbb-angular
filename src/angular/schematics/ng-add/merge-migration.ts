@@ -16,6 +16,7 @@ import { PaginationMigration } from './migrations/pagination-migration';
 import { SearchMigration } from './migrations/search-migration';
 import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
 import { SelectionPanelMigration } from './migrations/selection-panel-migration';
+import { TabsMigration } from './migrations/tabs-migration';
 
 /** Entry point for the merge migration schematics */
 export function mergePublicAndBusiness(): Rule {
@@ -32,6 +33,7 @@ export function mergePublicAndBusiness(): Rule {
       BadgeMigration,
       PaginationMigration,
       ChipsMigration,
+      TabsMigration,
     ],
     sbbAngularUpgradeData,
     onMigrationComplete

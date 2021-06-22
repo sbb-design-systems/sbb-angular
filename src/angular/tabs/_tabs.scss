@@ -245,16 +245,6 @@ $tab-animation-duration: 500ms !default;
       padding-top: pxToRem(4);
     }
   }
-
-  // We need to set the parent here explicitly, in order to prevent the alignment
-  // from any parent tab groups from propagating down to the children when nesting.
-  [sbb-align-tabs='center'] > #{$parent} & {
-    justify-content: center;
-  }
-
-  [sbb-align-tabs='end'] > #{$parent} & {
-    justify-content: flex-end;
-  }
 }
 
 @mixin paginated-tab-header-container {

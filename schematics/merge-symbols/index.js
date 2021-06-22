@@ -42,6 +42,7 @@ function mergeSymbols() {
             SbbPaginatorComponent: 'pagination',
             SbbPageChangeEvent: 'pagination',
             SbbPagination: 'pagination',
+            SbbTabs: 'tabs',
         };
         extractExportsForModule('src/angular/');
         extractExportsForModule('src/angular-maps/');

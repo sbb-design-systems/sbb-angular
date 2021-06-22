@@ -29,6 +29,10 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-dialog-footer',
           replaceWith: 'sbb-dialog-actions',
         },
+        {
+          replace: 'sbb-tabs',
+          replaceWith: 'sbb-tab-group',
+        },
       ],
     },
   ],
