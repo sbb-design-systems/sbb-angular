@@ -1,0 +1,66 @@
+@use '../core/style/layout-common';
+@use './processflow-variables';
+
+.sbb-step-header {
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  box-sizing: content-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sbb-step-optional,
+.sbb-step-sub-label-error {
+  font-size: stepper-variables.$step-sub-label-font-size;
+}
+
+.sbb-step-icon {
+  border-radius: 50%;
+  height: stepper-variables.$label-header-height;
+  width: stepper-variables.$label-header-height;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.sbb-step-icon-content,
+.sbb-step-icon .sbb-icon {
+  // Use absolute positioning to center the content, because it works better with text.
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sbb-step-icon .sbb-icon {
+  font-size: stepper-variables.$step-header-icon-size;
+  height: stepper-variables.$step-header-icon-size;
+  width: stepper-variables.$step-header-icon-size;
+}
+
+.sbb-step-icon-state-error .sbb-icon {
+  font-size: stepper-variables.$step-header-icon-size + 8;
+  height: stepper-variables.$step-header-icon-size + 8;
+  width: stepper-variables.$step-header-icon-size + 8;
+}
+
+.sbb-step-label {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: stepper-variables.$label-min-width;
+  vertical-align: middle;
+}
+
+.sbb-step-text-label {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// Increase specificity because ripple styles are part of the `sbb-core` mixin and can
+// potentially overwrite the absolute position of the container.
+.sbb-step-header .sbb-step-header-ripple {
+  @include layout-common.fill;
+  pointer-events: none;
+}

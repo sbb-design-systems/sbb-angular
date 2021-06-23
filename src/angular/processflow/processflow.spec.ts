@@ -1,0 +1,1909 @@
+import { Direction, Directionality } from '@angular/cdk/bidi';
+import {
+  DOWN_ARROW,
+  END,
+  ENTER,
+  HOME,
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  SPACE,
+  UP_ARROW,
+} from '@angular/cdk/keycodes';
+import {
+  CdkStep,
+  StepperOrientation,
+  STEPPER_GLOBAL_OPTIONS,
+  STEP_STATE,
+} from '@angular/cdk/stepper';
+import {
+  Component,
+  DebugElement,
+  EventEmitter,
+  OnInit,
+  Provider,
+  QueryList,
+  Type,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
+import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  createKeyboardEvent,
+  dispatchEvent,
+  dispatchKeyboardEvent,
+} from '@sbb-esta/angular/core/testing';
+import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field';
+import { merge, Observable, Subject } from 'rxjs';
+import { map, take } from 'rxjs/operators';
+
+import { SbbProcessflowModule, SbbStepHeader } from './index';
+import { SbbProcessflow, SbbStep } from './processflow';
+import { SbbProcessflowNext, SbbProcessflowPrevious } from './processflow-button';
+import { SbbProcessflowIntl } from './processflow-intl';
+
+const VALID_REGEX = /valid/;
+let dir: { value: Direction; readonly change: EventEmitter<Direction> };
+
+describe('SbbProcessflow', () => {
+  beforeEach(() => {
+    dir = {
+      value: 'ltr',
+      change: new EventEmitter(),
+    };
+  });
+
+  describe('basic stepper', () => {
+    let fixture: ComponentFixture<SimpleSbbVerticalStepperApp>;
+
+    beforeEach(() => {
+      fixture = createComponent(SimpleSbbVerticalStepperApp);
+      fixture.detectChanges();
+    });
+
+    it('should default to the first step', () => {
+      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+        By.css('sbb-processflow')
+      )!.componentInstance;
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+    });
+
+    it('should throw when a negative `selectedIndex` is assigned', () => {
+      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+        By.css('sbb-processflow')
+      )!.componentInstance;
+
+      expect(() => {
+        stepperComponent.selectedIndex = -10;
+        fixture.detectChanges();
+      }).toThrowError(/Cannot assign out-of-bounds/);
+    });
+
+    it('should throw when an out-of-bounds `selectedIndex` is assigned', () => {
+      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+        By.css('sbb-processflow')
+      )!.componentInstance;
+
+      expect(() => {
+        stepperComponent.selectedIndex = 1337;
+        fixture.detectChanges();
+      }).toThrowError(/Cannot assign out-of-bounds/);
+    });
+
+    it('should change selected index on header click', () => {
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+
+      // select the second step
+      let stepHeaderEl = stepHeaders[1].nativeElement;
+      stepHeaderEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+
+      // select the third step
+      stepHeaderEl = stepHeaders[2].nativeElement;
+      stepHeaderEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(2);
+      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+    });
+
+    it('should set the "tablist" role on stepper', () => {
+      const stepperEl = fixture.debugElement.query(By.css('sbb-processflow'))!.nativeElement;
+      expect(stepperEl.getAttribute('role')).toBe('tablist');
+    });
+
+    it('should set aria-expanded of content correctly', () => {
+      const stepContents = fixture.debugElement.queryAll(By.css(`.sbb-vertical-stepper-content`));
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+      const firstStepContentEl = stepContents[0].nativeElement;
+      expect(firstStepContentEl.getAttribute('aria-expanded')).toBe('true');
+
+      stepperComponent.selectedIndex = 1;
+      fixture.detectChanges();
+
+      expect(firstStepContentEl.getAttribute('aria-expanded')).toBe('false');
+      const secondStepContentEl = stepContents[1].nativeElement;
+      expect(secondStepContentEl.getAttribute('aria-expanded')).toBe('true');
+    });
+
+    it('should display the correct label', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+      let selectedLabel = fixture.nativeElement.querySelector('[aria-selected="true"]');
+      expect(selectedLabel.textContent).toMatch('Step 1');
+
+      stepperComponent.selectedIndex = 2;
+      fixture.detectChanges();
+
+      selectedLabel = fixture.nativeElement.querySelector('[aria-selected="true"]');
+      expect(selectedLabel.textContent).toMatch('Step 3');
+
+      fixture.componentInstance.inputLabel = 'New Label';
+      fixture.detectChanges();
+
+      selectedLabel = fixture.nativeElement.querySelector('[aria-selected="true"]');
+      expect(selectedLabel.textContent).toMatch('New Label');
+    });
+
+    it('should go to next available step when the next button is clicked', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+
+      let nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+
+      nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[1]
+        .nativeElement;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(2);
+
+      nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[2]
+        .nativeElement;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(2);
+    });
+
+    it('should set the next stepper button type to "submit"', () => {
+      const button = fixture.debugElement.query(By.directive(SbbProcessflowNext))!.nativeElement;
+      expect(button.type).toBe('submit', `Expected the button to have "submit" set as type.`);
+    });
+
+    it('should go to previous available step when the previous button is clicked', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+
+      stepperComponent.selectedIndex = 2;
+      let previousButtonNativeEl = fixture.debugElement.queryAll(
+        By.directive(SbbProcessflowPrevious)
+      )[2].nativeElement;
+      previousButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+
+      previousButtonNativeEl = fixture.debugElement.queryAll(
+        By.directive(SbbProcessflowPrevious)
+      )[1].nativeElement;
+      previousButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+
+      previousButtonNativeEl = fixture.debugElement.queryAll(
+        By.directive(SbbProcessflowPrevious)
+      )[0].nativeElement;
+      previousButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+    });
+
+    it('should set the previous stepper button type to "button"', () => {
+      const button = fixture.debugElement.query(
+        By.directive(SbbProcessflowPrevious)
+      )!.nativeElement;
+      expect(button.type).toBe('button', `Expected the button to have "button" set as type.`);
+    });
+
+    it('should set the correct step position for animation', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+
+      expect(stepperComponent._getAnimationDirection(0)).toBe('current');
+      expect(stepperComponent._getAnimationDirection(1)).toBe('next');
+      expect(stepperComponent._getAnimationDirection(2)).toBe('next');
+
+      stepperComponent.selectedIndex = 1;
+      fixture.detectChanges();
+
+      expect(stepperComponent._getAnimationDirection(0)).toBe('previous');
+      expect(stepperComponent._getAnimationDirection(2)).toBe('next');
+      expect(stepperComponent._getAnimationDirection(1)).toBe('current');
+
+      stepperComponent.selectedIndex = 2;
+      fixture.detectChanges();
+
+      expect(stepperComponent._getAnimationDirection(0)).toBe('previous');
+      expect(stepperComponent._getAnimationDirection(1)).toBe('previous');
+      expect(stepperComponent._getAnimationDirection(2)).toBe('current');
+    });
+
+    it('should not set focus on header of selected step if header is not clicked', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+      const stepHeaderEl = fixture.debugElement.queryAll(By.css('sbb-step-header'))[1]
+        .nativeElement;
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+      spyOn(stepHeaderEl, 'focus');
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(stepHeaderEl.focus).not.toHaveBeenCalled();
+    });
+
+    it('should focus next step header if focus is inside the stepper', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+      const stepHeaderEl = fixture.debugElement.queryAll(By.css('sbb-step-header'))[1]
+        .nativeElement;
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+      spyOn(stepHeaderEl, 'focus');
+      nextButtonNativeEl.focus();
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(stepHeaderEl.focus).toHaveBeenCalled();
+    });
+
+    it('should only be able to return to a previous step if it is editable', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+
+      stepperComponent.selectedIndex = 1;
+      stepperComponent.steps.toArray()[0].editable = false;
+      const previousButtonNativeEl = fixture.debugElement.queryAll(
+        By.directive(SbbProcessflowPrevious)
+      )[1].nativeElement;
+      previousButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+
+      stepperComponent.steps.toArray()[0].editable = true;
+      previousButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+    });
+
+    it('should set create icon if step is editable and completed', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+      expect(stepperComponent._getIndicatorType(0)).toBe('number');
+      stepperComponent.steps.toArray()[0].editable = true;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent._getIndicatorType(0)).toBe('edit');
+    });
+
+    it('should set done icon if step is not editable and is completed', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+      expect(stepperComponent._getIndicatorType(0)).toBe('number');
+      stepperComponent.steps.toArray()[0].editable = false;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent._getIndicatorType(0)).toBe('done');
+    });
+
+    it('should emit an event when the enter animation is done', fakeAsync(() => {
+      const stepper = fixture.debugElement.query(By.directive(SbbProcessflow))!.componentInstance;
+      const selectionChangeSpy = jasmine.createSpy('selectionChange spy');
+      const animationDoneSpy = jasmine.createSpy('animationDone spy');
+      const selectionChangeSubscription = stepper.selectionChange.subscribe(selectionChangeSpy);
+      const animationDoneSubscription = stepper.animationDone.subscribe(animationDoneSpy);
+
+      stepper.selectedIndex = 1;
+      fixture.detectChanges();
+
+      expect(selectionChangeSpy).toHaveBeenCalledTimes(1);
+      expect(animationDoneSpy).not.toHaveBeenCalled();
+
+      flush();
+
+      expect(selectionChangeSpy).toHaveBeenCalledTimes(1);
+      expect(animationDoneSpy).toHaveBeenCalledTimes(1);
+
+      selectionChangeSubscription.unsubscribe();
+      animationDoneSubscription.unsubscribe();
+    }));
+
+    it('should set the correct aria-posinset and aria-setsize', () => {
+      const headers = Array.from<HTMLElement>(
+        fixture.nativeElement.querySelectorAll('.sbb-step-header')
+      );
+
+      expect(headers.map((header) => header.getAttribute('aria-posinset'))).toEqual([
+        '1',
+        '2',
+        '3',
+      ]);
+      expect(headers.every((header) => header.getAttribute('aria-setsize') === '3')).toBe(true);
+    });
+
+    it('should adjust the index when removing a step before the current one', () => {
+      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+        By.css('sbb-processflow')
+      )!.componentInstance;
+
+      stepperComponent.selectedIndex = 2;
+      fixture.detectChanges();
+
+      // Re-assert since the setter has some extra logic.
+      expect(stepperComponent.selectedIndex).toBe(2);
+
+      expect(() => {
+        fixture.componentInstance.showStepTwo = false;
+        fixture.detectChanges();
+      }).not.toThrow();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+    });
+
+    it('should not do anything when pressing the ENTER key with a modifier', () => {
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
+      assertSelectKeyWithModifierInteraction(fixture, stepHeaders, 'vertical', ENTER);
+    });
+
+    it('should not do anything when pressing the SPACE key with a modifier', () => {
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
+      assertSelectKeyWithModifierInteraction(fixture, stepHeaders, 'vertical', SPACE);
+    });
+
+    it('should have a focus indicator', () => {
+      const stepHeaderNativeElements = [
+        ...fixture.debugElement.nativeElement.querySelectorAll('.sbb-vertical-stepper-header'),
+      ];
+
+      expect(
+        stepHeaderNativeElements.every((element) => element.querySelector('.sbb-focus-indicator'))
+      ).toBe(true);
+    });
+  });
+
+  describe('basic stepper when attempting to set the selected step too early', () => {
+    it('should not throw', () => {
+      const fixture = createComponent(SimpleSbbVerticalStepperApp);
+      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+        By.css('sbb-processflow')
+      )!.componentInstance;
+
+      expect(() => stepperComponent.selected).not.toThrow();
+    });
+  });
+
+  describe('basic stepper when attempting to set the selected step too early', () => {
+    it('should not throw', () => {
+      const fixture = createComponent(SimpleSbbVerticalStepperApp);
+      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+        By.css('sbb-processflow')
+      )!.componentInstance;
+
+      expect(() => (stepperComponent.selected = null!)).not.toThrow();
+      expect(stepperComponent.selectedIndex).toBe(-1);
+    });
+  });
+
+  describe('basic stepper with i18n label change', () => {
+    let i18nFixture: ComponentFixture<SimpleSbbHorizontalStepperApp>;
+
+    beforeEach(() => {
+      i18nFixture = createComponent(SimpleSbbHorizontalStepperApp);
+      i18nFixture.detectChanges();
+    });
+
+    it('should re-render when the i18n labels change', inject(
+      [SbbProcessflowIntl],
+      (intl: SbbProcessflowIntl) => {
+        const header = i18nFixture.debugElement.queryAll(By.css('sbb-step-header'))[2]
+          .nativeElement;
+        const optionalLabel = header.querySelector('.sbb-step-optional');
+
+        expect(optionalLabel).toBeTruthy();
+        expect(optionalLabel.textContent).toBe('Optional');
+
+        intl.optionalLabel = 'Valgfri';
+        intl.changes.next();
+        i18nFixture.detectChanges();
+
+        expect(optionalLabel.textContent).toBe('Valgfri');
+      }
+    ));
+  });
+
+  describe('icon overrides', () => {
+    let fixture: ComponentFixture<IconOverridesStepper>;
+
+    beforeEach(() => {
+      fixture = createComponent(IconOverridesStepper);
+      fixture.detectChanges();
+    });
+
+    it('should allow for the `edit` icon to be overridden', () => {
+      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
+      const stepperComponent: SbbProcessflow = stepperDebugElement.componentInstance;
+
+      stepperComponent.steps.toArray()[0].editable = true;
+      stepperComponent.next();
+      fixture.detectChanges();
+
+      const header = stepperDebugElement.nativeElement.querySelector('sbb-step-header');
+
+      expect(header.textContent).toContain('Custom edit');
+    });
+
+    it('should allow for the `done` icon to be overridden', () => {
+      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
+      const stepperComponent: SbbProcessflow = stepperDebugElement.componentInstance;
+
+      stepperComponent.steps.toArray()[0].editable = false;
+      stepperComponent.next();
+      fixture.detectChanges();
+
+      const header = stepperDebugElement.nativeElement.querySelector('sbb-step-header');
+
+      expect(header.textContent).toContain('Custom done');
+    });
+
+    it('should allow for the `number` icon to be overridden with context', () => {
+      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
+      const headers = stepperDebugElement.nativeElement.querySelectorAll('sbb-step-header');
+
+      expect(headers[2].textContent).toContain('III');
+    });
+  });
+
+  describe('RTL', () => {
+    let fixture: ComponentFixture<SimpleSbbVerticalStepperApp>;
+
+    beforeEach(() => {
+      dir.value = 'rtl';
+      fixture = createComponent(SimpleSbbVerticalStepperApp);
+      fixture.detectChanges();
+    });
+
+    it('should reverse animation in RTL mode', () => {
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+
+      expect(stepperComponent._getAnimationDirection(0)).toBe('current');
+      expect(stepperComponent._getAnimationDirection(1)).toBe('previous');
+      expect(stepperComponent._getAnimationDirection(2)).toBe('previous');
+
+      stepperComponent.selectedIndex = 1;
+      fixture.detectChanges();
+
+      expect(stepperComponent._getAnimationDirection(0)).toBe('next');
+      expect(stepperComponent._getAnimationDirection(2)).toBe('previous');
+      expect(stepperComponent._getAnimationDirection(1)).toBe('current');
+
+      stepperComponent.selectedIndex = 2;
+      fixture.detectChanges();
+
+      expect(stepperComponent._getAnimationDirection(0)).toBe('next');
+      expect(stepperComponent._getAnimationDirection(1)).toBe('next');
+      expect(stepperComponent._getAnimationDirection(2)).toBe('current');
+    });
+  });
+
+  describe('linear stepper', () => {
+    let fixture: ComponentFixture<LinearSbbVerticalStepperApp>;
+    let testComponent: LinearSbbVerticalStepperApp;
+    let stepperComponent: SbbProcessflow;
+
+    beforeEach(() => {
+      fixture = createComponent(LinearSbbVerticalStepperApp);
+      fixture.detectChanges();
+
+      testComponent = fixture.componentInstance;
+      stepperComponent = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
+    });
+
+    it('should have true linear attribute', () => {
+      expect(stepperComponent.linear).toBe(true);
+    });
+
+    it('should not move to next step if current step is invalid', () => {
+      expect(testComponent.oneGroup.get('oneCtrl')!.value).toBe('');
+      expect(testComponent.oneGroup.get('oneCtrl')!.valid).toBe(false);
+      expect(testComponent.oneGroup.valid).toBe(false);
+      expect(testComponent.oneGroup.invalid).toBe(true);
+      expect(stepperComponent.selectedIndex).toBe(0);
+
+      const stepHeaderEl = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'))[1]
+        .nativeElement;
+
+      stepHeaderEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+
+      testComponent.oneGroup.get('oneCtrl')!.setValue('answer');
+      stepHeaderEl.click();
+      fixture.detectChanges();
+
+      expect(testComponent.oneGroup.valid).toBe(true);
+      expect(stepperComponent.selectedIndex).toBe(1);
+    });
+
+    it('should not move to next step if current step is pending', () => {
+      const stepHeaderEl = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'))[2]
+        .nativeElement;
+
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[1]
+        .nativeElement;
+
+      testComponent.oneGroup.get('oneCtrl')!.setValue('input');
+      testComponent.twoGroup.get('twoCtrl')!.setValue('input');
+      stepperComponent.selectedIndex = 1;
+      fixture.detectChanges();
+      expect(stepperComponent.selectedIndex).toBe(1);
+
+      // Step status = PENDING
+      // Assert that linear stepper does not allow step selection change
+      expect(testComponent.twoGroup.pending).toBe(true);
+
+      stepHeaderEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+
+      // Trigger asynchronous validation
+      testComponent.validationTrigger.next();
+      // Asynchronous validation completed:
+      // Step status = VALID
+      expect(testComponent.twoGroup.pending).toBe(false);
+      expect(testComponent.twoGroup.valid).toBe(true);
+
+      stepHeaderEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(2);
+
+      stepperComponent.selectedIndex = 1;
+      fixture.detectChanges();
+      expect(stepperComponent.selectedIndex).toBe(1);
+
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(2);
+    });
+
+    it('should be able to focus step header upon click if it is unable to be selected', () => {
+      const stepHeaderEl = fixture.debugElement.queryAll(By.css('sbb-step-header'))[1]
+        .nativeElement;
+
+      fixture.detectChanges();
+
+      expect(stepHeaderEl.getAttribute('tabindex')).toBe('-1');
+    });
+
+    it('should be able to move to next step even when invalid if current step is optional', () => {
+      testComponent.oneGroup.get('oneCtrl')!.setValue('input');
+      testComponent.twoGroup.get('twoCtrl')!.setValue('input');
+      testComponent.validationTrigger.next();
+      stepperComponent.selectedIndex = 1;
+      fixture.detectChanges();
+      stepperComponent.selectedIndex = 2;
+      fixture.detectChanges();
+
+      expect(stepperComponent.steps.toArray()[2].optional).toBe(true);
+      expect(stepperComponent.selectedIndex).toBe(2);
+      expect(testComponent.threeGroup.get('threeCtrl')!.valid).toBe(true);
+
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[2]
+        .nativeElement;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(
+        3,
+        'Expected selectedIndex to change when optional step input is empty.'
+      );
+
+      stepperComponent.selectedIndex = 2;
+      testComponent.threeGroup.get('threeCtrl')!.setValue('input');
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(testComponent.threeGroup.get('threeCtrl')!.valid).toBe(false);
+      expect(stepperComponent.selectedIndex).toBe(
+        3,
+        'Expected selectedIndex to change when optional step input is invalid.'
+      );
+    });
+
+    it('should be able to reset the stepper to its initial state', () => {
+      const steps = stepperComponent.steps.toArray();
+
+      testComponent.oneGroup.get('oneCtrl')!.setValue('value');
+      fixture.detectChanges();
+
+      stepperComponent.next();
+      fixture.detectChanges();
+
+      stepperComponent.next();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(steps[0].interacted).toBe(true);
+      expect(steps[0].completed).toBe(true);
+      expect(testComponent.oneGroup.get('oneCtrl')!.valid).toBe(true);
+      expect(testComponent.oneGroup.get('oneCtrl')!.value).toBe('value');
+
+      expect(steps[1].interacted).toBe(true);
+      expect(steps[1].completed).toBe(false);
+      expect(testComponent.twoGroup.get('twoCtrl')!.valid).toBe(false);
+
+      stepperComponent.reset();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(steps[0].interacted).toBe(false);
+      expect(steps[0].completed).toBe(false);
+      expect(testComponent.oneGroup.get('oneCtrl')!.valid).toBe(false);
+      expect(testComponent.oneGroup.get('oneCtrl')!.value).toBeFalsy();
+
+      expect(steps[1].interacted).toBe(false);
+      expect(steps[1].completed).toBe(false);
+      expect(testComponent.twoGroup.get('twoCtrl')!.valid).toBe(false);
+    });
+
+    it('should reset back to the first step when some of the steps are not editable', () => {
+      const steps = stepperComponent.steps.toArray();
+
+      steps[0].editable = false;
+
+      testComponent.oneGroup.get('oneCtrl')!.setValue('value');
+      fixture.detectChanges();
+
+      stepperComponent.next();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+
+      stepperComponent.reset();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+    });
+
+    it('should not clobber the `complete` binding when resetting', () => {
+      const steps: CdkStep[] = stepperComponent.steps.toArray();
+      const fillOutStepper = () => {
+        testComponent.oneGroup.get('oneCtrl')!.setValue('input');
+        testComponent.twoGroup.get('twoCtrl')!.setValue('input');
+        testComponent.threeGroup.get('threeCtrl')!.setValue('valid');
+        testComponent.validationTrigger.next();
+        stepperComponent.selectedIndex = 1;
+        fixture.detectChanges();
+        stepperComponent.selectedIndex = 2;
+        fixture.detectChanges();
+        stepperComponent.selectedIndex = 3;
+        fixture.detectChanges();
+      };
+
+      fillOutStepper();
+
+      expect(steps[2].completed).toBe(
+        true,
+        'Expected third step to be considered complete after the first run through.'
+      );
+
+      stepperComponent.reset();
+      fixture.detectChanges();
+      fillOutStepper();
+
+      expect(steps[2].completed).toBe(
+        true,
+        'Expected third step to be considered complete when doing a run after a reset.'
+      );
+    });
+
+    it('should be able to skip past the current step if a custom `completed` value is set', () => {
+      expect(testComponent.oneGroup.get('oneCtrl')!.value).toBe('');
+      expect(testComponent.oneGroup.get('oneCtrl')!.valid).toBe(false);
+      expect(testComponent.oneGroup.valid).toBe(false);
+      expect(stepperComponent.selectedIndex).toBe(0);
+
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+
+      stepperComponent.steps.first.completed = true;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(testComponent.oneGroup.valid).toBe(false);
+      expect(stepperComponent.selectedIndex).toBe(1);
+    });
+  });
+
+  describe('linear stepper with a pre-defined selectedIndex', () => {
+    let preselectedFixture: ComponentFixture<SimplePreselectedSbbHorizontalStepperApp>;
+    let stepper: SbbProcessflow;
+
+    beforeEach(() => {
+      preselectedFixture = createComponent(SimplePreselectedSbbHorizontalStepperApp);
+      preselectedFixture.detectChanges();
+      stepper = preselectedFixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+    });
+
+    it('should not throw', () => {
+      expect(() => preselectedFixture.detectChanges()).not.toThrow();
+    });
+
+    it('selectedIndex should be typeof number', () => {
+      expect(typeof stepper.selectedIndex).toBe('number');
+    });
+
+    it('value of selectedIndex should be the pre-defined value', () => {
+      expect(stepper.selectedIndex).toBe(0);
+    });
+  });
+
+  describe('linear stepper with no `stepControl`', () => {
+    let noStepControlFixture: ComponentFixture<SimpleStepperWithoutStepControl>;
+    beforeEach(() => {
+      noStepControlFixture = createComponent(SimpleStepperWithoutStepControl);
+      noStepControlFixture.detectChanges();
+    });
+    it('should not move to the next step if the current one is not completed ', () => {
+      const stepper: SbbProcessflow = noStepControlFixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+
+      const headers = noStepControlFixture.debugElement.queryAll(
+        By.css('.sbb-horizontal-stepper-header')
+      );
+
+      expect(stepper.selectedIndex).toBe(0);
+
+      headers[1].nativeElement.click();
+      noStepControlFixture.detectChanges();
+
+      expect(stepper.selectedIndex).toBe(0);
+    });
+  });
+
+  describe('linear stepper with `stepControl`', () => {
+    let controlAndBindingFixture: ComponentFixture<SimpleStepperWithStepControlAndCompletedBinding>;
+    beforeEach(() => {
+      controlAndBindingFixture = createComponent(SimpleStepperWithStepControlAndCompletedBinding);
+      controlAndBindingFixture.detectChanges();
+    });
+
+    it('should have the `stepControl` take precedence when `completed` is set', () => {
+      expect(controlAndBindingFixture.componentInstance.steps[0].control.valid).toBe(true);
+      expect(controlAndBindingFixture.componentInstance.steps[0].completed).toBe(false);
+
+      const stepper: SbbProcessflow = controlAndBindingFixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+
+      const headers = controlAndBindingFixture.debugElement.queryAll(
+        By.css('.sbb-horizontal-stepper-header')
+      );
+
+      expect(stepper.selectedIndex).toBe(0);
+
+      headers[1].nativeElement.click();
+      controlAndBindingFixture.detectChanges();
+
+      expect(stepper.selectedIndex).toBe(1);
+    });
+  });
+
+  describe('vertical stepper', () => {
+    it('should set the aria-orientation to "vertical"', () => {
+      const fixture = createComponent(SimpleSbbVerticalStepperApp);
+      fixture.detectChanges();
+
+      const stepperEl = fixture.debugElement.query(By.css('sbb-processflow'))!.nativeElement;
+      expect(stepperEl.getAttribute('aria-orientation')).toBe('vertical');
+    });
+
+    it('should support using the left/right arrows to move focus', () => {
+      const fixture = createComponent(SimpleSbbVerticalStepperApp);
+      fixture.detectChanges();
+
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
+      assertCorrectKeyboardInteraction(fixture, stepHeaders, 'horizontal');
+    });
+
+    it('should support using the up/down arrows to move focus', () => {
+      const fixture = createComponent(SimpleSbbVerticalStepperApp);
+      fixture.detectChanges();
+
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
+      assertCorrectKeyboardInteraction(fixture, stepHeaders, 'vertical');
+    });
+
+    it('should reverse arrow key focus in RTL mode', () => {
+      dir.value = 'rtl';
+      const fixture = createComponent(SimpleSbbVerticalStepperApp);
+      fixture.detectChanges();
+
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
+      assertArrowKeyInteractionInRtl(fixture, stepHeaders);
+    });
+  });
+
+  describe('horizontal stepper', () => {
+    it('should set the aria-orientation to "horizontal"', () => {
+      const fixture = createComponent(SimpleSbbHorizontalStepperApp);
+      fixture.detectChanges();
+
+      const stepperEl = fixture.debugElement.query(By.css('sbb-processflow'))!.nativeElement;
+      expect(stepperEl.getAttribute('aria-orientation')).toBe('horizontal');
+    });
+
+    it('should support using the left/right arrows to move focus', () => {
+      const fixture = createComponent(SimpleSbbHorizontalStepperApp);
+      fixture.detectChanges();
+
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-horizontal-stepper-header'));
+      assertCorrectKeyboardInteraction(fixture, stepHeaders, 'horizontal');
+    });
+
+    it('should reverse arrow key focus in RTL mode', () => {
+      dir.value = 'rtl';
+      const fixture = createComponent(SimpleSbbHorizontalStepperApp);
+      fixture.detectChanges();
+
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-horizontal-stepper-header'));
+      assertArrowKeyInteractionInRtl(fixture, stepHeaders);
+    });
+
+    it('should reverse arrow key focus when switching into RTL after init', () => {
+      const fixture = createComponent(SimpleSbbHorizontalStepperApp);
+      fixture.detectChanges();
+
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-horizontal-stepper-header'));
+      assertCorrectKeyboardInteraction(fixture, stepHeaders, 'horizontal');
+
+      dir.value = 'rtl';
+      dir.change.emit('rtl');
+      fixture.detectChanges();
+
+      assertArrowKeyInteractionInRtl(fixture, stepHeaders);
+    });
+
+    it('should be able to mark all steps as interacted', () => {
+      const fixture = createComponent(SimpleSbbHorizontalStepperApp);
+      fixture.detectChanges();
+
+      const stepper: SbbProcessflow = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      ).componentInstance;
+
+      expect(stepper.steps.map((step) => step.interacted)).toEqual([false, false, false]);
+
+      stepper.next();
+      fixture.detectChanges();
+      expect(stepper.steps.map((step) => step.interacted)).toEqual([true, false, false]);
+
+      stepper.next();
+      fixture.detectChanges();
+      expect(stepper.steps.map((step) => step.interacted)).toEqual([true, true, false]);
+
+      stepper.next();
+      fixture.detectChanges();
+      expect(stepper.steps.map((step) => step.interacted)).toEqual([true, true, true]);
+    });
+
+    it('should emit when the user has interacted with a step', () => {
+      const fixture = createComponent(SimpleSbbHorizontalStepperApp);
+      fixture.detectChanges();
+
+      const stepper: SbbProcessflow = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      ).componentInstance;
+      const interactedSteps: number[] = [];
+      const subscription = merge(...stepper.steps.map((step) => step.interactedStream)).subscribe(
+        (step) => interactedSteps.push(stepper.steps.toArray().indexOf(step as SbbStep))
+      );
+
+      expect(interactedSteps).toEqual([]);
+
+      stepper.next();
+      fixture.detectChanges();
+      expect(interactedSteps).toEqual([0]);
+
+      stepper.next();
+      fixture.detectChanges();
+      expect(interactedSteps).toEqual([0, 1]);
+
+      stepper.next();
+      fixture.detectChanges();
+      expect(interactedSteps).toEqual([0, 1, 2]);
+      subscription.unsubscribe();
+    });
+  });
+
+  describe('linear stepper with valid step', () => {
+    let fixture: ComponentFixture<LinearStepperWithValidOptionalStep>;
+    let testComponent: LinearStepperWithValidOptionalStep;
+    let stepper: SbbProcessflow;
+
+    beforeEach(() => {
+      fixture = createComponent(LinearStepperWithValidOptionalStep);
+      fixture.detectChanges();
+
+      testComponent = fixture.componentInstance;
+      stepper = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
+    });
+
+    it('must be visited if not optional', () => {
+      stepper.selectedIndex = 2;
+      fixture.detectChanges();
+      expect(stepper.selectedIndex).toBe(0);
+
+      stepper.selectedIndex = 1;
+      fixture.detectChanges();
+      expect(stepper.selectedIndex).toBe(1);
+
+      stepper.selectedIndex = 2;
+      fixture.detectChanges();
+      expect(stepper.selectedIndex).toBe(2);
+    });
+
+    it('can be skipped entirely if optional', () => {
+      testComponent.step2Optional = true;
+      fixture.detectChanges();
+      stepper.selectedIndex = 2;
+      fixture.detectChanges();
+      expect(stepper.selectedIndex).toBe(2);
+    });
+  });
+
+  describe('aria labelling', () => {
+    let fixture: ComponentFixture<StepperWithAriaInputs>;
+    let stepHeader: HTMLElement;
+
+    beforeEach(() => {
+      fixture = createComponent(StepperWithAriaInputs);
+      fixture.detectChanges();
+      stepHeader = fixture.nativeElement.querySelector('.sbb-step-header');
+    });
+
+    it('should not set aria-label or aria-labelledby attributes if they are not passed in', () => {
+      expect(stepHeader.hasAttribute('aria-label')).toBe(false);
+      expect(stepHeader.hasAttribute('aria-labelledby')).toBe(false);
+    });
+
+    it('should set the aria-label attribute', () => {
+      fixture.componentInstance.ariaLabel = 'First step';
+      fixture.detectChanges();
+
+      expect(stepHeader.getAttribute('aria-label')).toBe('First step');
+    });
+
+    it('should set the aria-labelledby attribute', () => {
+      fixture.componentInstance.ariaLabelledby = 'first-step-label';
+      fixture.detectChanges();
+
+      expect(stepHeader.getAttribute('aria-labelledby')).toBe('first-step-label');
+    });
+
+    it('should not be able to set both an aria-label and aria-labelledby', () => {
+      fixture.componentInstance.ariaLabel = 'First step';
+      fixture.componentInstance.ariaLabelledby = 'first-step-label';
+      fixture.detectChanges();
+
+      expect(stepHeader.getAttribute('aria-label')).toBe('First step');
+      expect(stepHeader.hasAttribute('aria-labelledby')).toBe(false);
+    });
+  });
+
+  describe('stepper with error state', () => {
+    let fixture: ComponentFixture<SbbHorizontalStepperWithErrorsApp>;
+    let stepper: SbbProcessflow;
+
+    function createFixture(showErrorByDefault: boolean | undefined) {
+      fixture = createComponent(
+        SbbHorizontalStepperWithErrorsApp,
+        [
+          {
+            provide: STEPPER_GLOBAL_OPTIONS,
+            useValue: { showError: showErrorByDefault },
+          },
+        ],
+        [SbbFormFieldModule, SbbInputModule]
+      );
+      fixture.detectChanges();
+      stepper = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
+    }
+
+    it('should show error state', () => {
+      createFixture(true);
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+
+      stepper.selectedIndex = 1;
+      stepper.steps.first.hasError = true;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepper._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
+    });
+
+    it('should respect a custom falsy hasError value', () => {
+      createFixture(true);
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+
+      stepper.selectedIndex = 1;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepper._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
+
+      stepper.steps.first.hasError = false;
+      fixture.detectChanges();
+
+      expect(stepper._getIndicatorType(0)).not.toBe(STEP_STATE.ERROR);
+    });
+
+    it('should show error state if explicitly enabled, even when disabled globally', () => {
+      createFixture(undefined);
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+
+      stepper.selectedIndex = 1;
+      stepper.steps.first.hasError = true;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepper._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
+    });
+  });
+
+  describe('stepper using Sbberial UI Guideline logic', () => {
+    let fixture: ComponentFixture<SbbHorizontalStepperWithErrorsApp>;
+    let stepper: SbbProcessflow;
+
+    beforeEach(() => {
+      fixture = createComponent(
+        SbbHorizontalStepperWithErrorsApp,
+        [
+          {
+            provide: STEPPER_GLOBAL_OPTIONS,
+            useValue: { displayDefaultIndicatorType: false },
+          },
+        ],
+        [SbbFormFieldModule, SbbInputModule]
+      );
+      fixture.detectChanges();
+      stepper = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
+    });
+
+    it('should show done state when step is completed and its not the current step', () => {
+      const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
+        .nativeElement;
+
+      stepper.selectedIndex = 1;
+      stepper.steps.first.completed = true;
+      nextButtonNativeEl.click();
+      fixture.detectChanges();
+
+      expect(stepper._getIndicatorType(0)).toBe(STEP_STATE.DONE);
+    });
+
+    it('should show edit state when step is editable and its the current step', () => {
+      stepper.selectedIndex = 1;
+      stepper.steps.toArray()[1].editable = true;
+      fixture.detectChanges();
+
+      expect(stepper._getIndicatorType(1)).toBe(STEP_STATE.EDIT);
+    });
+  });
+
+  describe('indirect descendants', () => {
+    it('should be able to change steps when steps are indirect descendants', () => {
+      const fixture = createComponent(StepperWithIndirectDescendantSteps);
+      fixture.detectChanges();
+
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
+      const stepperComponent = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
+
+      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+
+      // select the second step
+      let stepHeaderEl = stepHeaders[1].nativeElement;
+      stepHeaderEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+
+      // select the third step
+      stepHeaderEl = stepHeaders[2].nativeElement;
+      stepHeaderEl.click();
+      fixture.detectChanges();
+
+      expect(stepperComponent.selectedIndex).toBe(2);
+      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+    });
+
+    it('should allow for the `edit` icon to be overridden', () => {
+      const fixture = createComponent(IndirectDescendantIconOverridesStepper);
+      fixture.detectChanges();
+
+      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
+      const stepperComponent: SbbProcessflow = stepperDebugElement.componentInstance;
+
+      stepperComponent.steps.toArray()[0].editable = true;
+      stepperComponent.next();
+      fixture.detectChanges();
+
+      const header = stepperDebugElement.nativeElement.querySelector('sbb-step-header');
+
+      expect(header.textContent).toContain('Custom edit');
+    });
+
+    it('should allow for the `done` icon to be overridden', () => {
+      const fixture = createComponent(IndirectDescendantIconOverridesStepper);
+      fixture.detectChanges();
+
+      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
+      const stepperComponent: SbbProcessflow = stepperDebugElement.componentInstance;
+
+      stepperComponent.steps.toArray()[0].editable = false;
+      stepperComponent.next();
+      fixture.detectChanges();
+
+      const header = stepperDebugElement.nativeElement.querySelector('sbb-step-header');
+
+      expect(header.textContent).toContain('Custom done');
+    });
+
+    it('should allow for the `number` icon to be overridden with context', () => {
+      const fixture = createComponent(IndirectDescendantIconOverridesStepper);
+      fixture.detectChanges();
+
+      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
+      const headers = stepperDebugElement.nativeElement.querySelectorAll('sbb-step-header');
+
+      expect(headers[2].textContent).toContain('III');
+    });
+  });
+
+  it('should be able to toggle steps via ngIf', () => {
+    const fixture = createComponent(StepperWithNgIf);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelectorAll('.sbb-step-header').length).toBe(1);
+
+    fixture.componentInstance.showStep2 = true;
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelectorAll('.sbb-step-header').length).toBe(2);
+  });
+
+  it('should not pick up the steps from descendant steppers', () => {
+    const fixture = createComponent(NestedSteppers);
+    fixture.detectChanges();
+    const steppers = fixture.componentInstance.steppers.toArray();
+
+    expect(steppers[0].steps.length).toBe(3);
+    expect(steppers[1].steps.length).toBe(2);
+  });
+
+  it('should not throw when trying to change steps after initializing to an out-of-bounds index', () => {
+    const fixture = createComponent(StepperWithStaticOutOfBoundsIndex);
+    fixture.detectChanges();
+    const stepper = fixture.componentInstance.stepper;
+
+    expect(stepper.selectedIndex).toBe(0);
+    expect(stepper.selected).toBeTruthy();
+
+    expect(() => {
+      stepper.selectedIndex = 1;
+      fixture.detectChanges();
+    }).not.toThrow();
+
+    expect(stepper.selectedIndex).toBe(1);
+    expect(stepper.selected).toBeTruthy();
+  });
+
+  describe('stepper with lazy content', () => {
+    it('should render the content of the selected step on init', () => {
+      const fixture = createComponent(StepperWithLazyContent);
+      const element = fixture.nativeElement;
+      fixture.componentInstance.selectedIndex = 1;
+      fixture.detectChanges();
+
+      expect(element.textContent).not.toContain('Step 1 content');
+      expect(element.textContent).toContain('Step 2 content');
+      expect(element.textContent).not.toContain('Step 3 content');
+    });
+
+    it('should render the content of steps when the user navigates to them', () => {
+      const fixture = createComponent(StepperWithLazyContent);
+      const element = fixture.nativeElement;
+      fixture.componentInstance.selectedIndex = 0;
+      fixture.detectChanges();
+
+      expect(element.textContent).toContain('Step 1 content');
+      expect(element.textContent).not.toContain('Step 2 content');
+      expect(element.textContent).not.toContain('Step 3 content');
+
+      fixture.componentInstance.selectedIndex = 1;
+      fixture.detectChanges();
+
+      expect(element.textContent).toContain('Step 1 content');
+      expect(element.textContent).toContain('Step 2 content');
+      expect(element.textContent).not.toContain('Step 3 content');
+
+      fixture.componentInstance.selectedIndex = 2;
+      fixture.detectChanges();
+
+      expect(element.textContent).toContain('Step 1 content');
+      expect(element.textContent).toContain('Step 2 content');
+      expect(element.textContent).toContain('Step 3 content');
+    });
+  });
+});
+
+/** Asserts that keyboard interaction works correctly. */
+function assertCorrectKeyboardInteraction(
+  fixture: ComponentFixture<any>,
+  stepHeaders: DebugElement[],
+  orientation: StepperOrientation
+) {
+  const stepperComponent = fixture.debugElement.query(
+    By.directive(SbbProcessflow)
+  )!.componentInstance;
+  const nextKey = orientation === 'vertical' ? DOWN_ARROW : RIGHT_ARROW;
+  const prevKey = orientation === 'vertical' ? UP_ARROW : LEFT_ARROW;
+
+  expect(stepperComponent._getFocusIndex()).toBe(0);
+  expect(stepperComponent.selectedIndex).toBe(0);
+
+  let stepHeaderEl = stepHeaders[0].nativeElement;
+  dispatchKeyboardEvent(stepHeaderEl, 'keydown', nextKey);
+  fixture.detectChanges();
+
+  expect(stepperComponent._getFocusIndex()).toBe(
+    1,
+    'Expected index of focused step to increase by 1 after pressing the next key.'
+  );
+  expect(stepperComponent.selectedIndex).toBe(
+    0,
+    'Expected index of selected step to remain unchanged after pressing the next key.'
+  );
+
+  stepHeaderEl = stepHeaders[1].nativeElement;
+  dispatchKeyboardEvent(stepHeaderEl, 'keydown', ENTER);
+  fixture.detectChanges();
+
+  expect(stepperComponent._getFocusIndex()).toBe(
+    1,
+    'Expected index of focused step to remain unchanged after ENTER event.'
+  );
+  expect(stepperComponent.selectedIndex).toBe(
+    1,
+    'Expected index of selected step to change to index of focused step after ENTER event.'
+  );
+
+  stepHeaderEl = stepHeaders[1].nativeElement;
+  dispatchKeyboardEvent(stepHeaderEl, 'keydown', prevKey);
+  fixture.detectChanges();
+
+  expect(stepperComponent._getFocusIndex()).toBe(
+    0,
+    'Expected index of focused step to decrease by 1 after pressing the previous key.'
+  );
+  expect(stepperComponent.selectedIndex).toBe(
+    1,
+    'Expected index of selected step to remain unchanged after pressing the previous key.'
+  );
+
+  // When the focus is on the last step and right arrow key is pressed, the focus should cycle
+  // through to the first step.
+  stepperComponent._keyManager.updateActiveItem(2);
+  stepHeaderEl = stepHeaders[2].nativeElement;
+  dispatchKeyboardEvent(stepHeaderEl, 'keydown', nextKey);
+  fixture.detectChanges();
+
+  expect(stepperComponent._getFocusIndex()).toBe(
+    0,
+    'Expected index of focused step to cycle through to index 0 after pressing the next key.'
+  );
+  expect(stepperComponent.selectedIndex).toBe(
+    1,
+    'Expected index of selected step to remain unchanged after pressing the next key.'
+  );
+
+  stepHeaderEl = stepHeaders[0].nativeElement;
+  dispatchKeyboardEvent(stepHeaderEl, 'keydown', SPACE);
+  fixture.detectChanges();
+
+  expect(stepperComponent._getFocusIndex()).toBe(
+    0,
+    'Expected index of focused to remain unchanged after SPACE event.'
+  );
+  expect(stepperComponent.selectedIndex).toBe(
+    0,
+    'Expected index of selected step to change to index of focused step after SPACE event.'
+  );
+
+  const endEvent = dispatchKeyboardEvent(stepHeaderEl, 'keydown', END);
+  expect(stepperComponent._getFocusIndex()).toBe(
+    stepHeaders.length - 1,
+    'Expected last step to be focused when pressing END.'
+  );
+  expect(endEvent.defaultPrevented).toBe(true, 'Expected default END action to be prevented.');
+
+  const homeEvent = dispatchKeyboardEvent(stepHeaderEl, 'keydown', HOME);
+  expect(stepperComponent._getFocusIndex()).toBe(
+    0,
+    'Expected first step to be focused when pressing HOME.'
+  );
+  expect(homeEvent.defaultPrevented).toBe(true, 'Expected default HOME action to be prevented.');
+}
+
+/** Asserts that arrow key direction works correctly in RTL mode. */
+function assertArrowKeyInteractionInRtl(
+  fixture: ComponentFixture<any>,
+  stepHeaders: DebugElement[]
+) {
+  const stepperComponent = fixture.debugElement.query(
+    By.directive(SbbProcessflow)
+  )!.componentInstance;
+
+  expect(stepperComponent._getFocusIndex()).toBe(0);
+
+  let stepHeaderEl = stepHeaders[0].nativeElement;
+  dispatchKeyboardEvent(stepHeaderEl, 'keydown', LEFT_ARROW);
+  fixture.detectChanges();
+
+  expect(stepperComponent._getFocusIndex()).toBe(1);
+
+  stepHeaderEl = stepHeaders[1].nativeElement;
+  dispatchKeyboardEvent(stepHeaderEl, 'keydown', RIGHT_ARROW);
+  fixture.detectChanges();
+
+  expect(stepperComponent._getFocusIndex()).toBe(0);
+}
+
+/** Asserts that keyboard interaction works correctly when the user is pressing a modifier key. */
+function assertSelectKeyWithModifierInteraction(
+  fixture: ComponentFixture<any>,
+  stepHeaders: DebugElement[],
+  orientation: StepperOrientation,
+  selectionKey: number
+) {
+  const stepperComponent = fixture.debugElement.query(
+    By.directive(SbbProcessflow)
+  )!.componentInstance;
+  const modifiers = ['altKey', 'shiftKey', 'ctrlKey', 'metaKey'];
+
+  expect(stepperComponent._getFocusIndex()).toBe(0);
+  expect(stepperComponent.selectedIndex).toBe(0);
+
+  dispatchKeyboardEvent(
+    stepHeaders[0].nativeElement,
+    'keydown',
+    orientation === 'vertical' ? DOWN_ARROW : RIGHT_ARROW
+  );
+  fixture.detectChanges();
+
+  expect(stepperComponent._getFocusIndex()).toBe(
+    1,
+    'Expected index of focused step to increase by 1 after pressing the next key.'
+  );
+  expect(stepperComponent.selectedIndex).toBe(
+    0,
+    'Expected index of selected step to remain unchanged after pressing the next key.'
+  );
+
+  modifiers.forEach((modifier) => {
+    const event = createKeyboardEvent('keydown', selectionKey);
+    Object.defineProperty(event, modifier, { get: () => true });
+    dispatchEvent(stepHeaders[1].nativeElement, event);
+    fixture.detectChanges();
+
+    expect(stepperComponent.selectedIndex).toBe(
+      0,
+      `Expected selected index to remain unchanged ` +
+        `when pressing the selection key with ${modifier} modifier.`
+    );
+    expect(event.defaultPrevented).toBe(false);
+  });
+}
+
+function asyncValidator(minLength: number, validationTrigger: Subject<void>): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return validationTrigger.pipe(
+      map(() =>
+        control.value && control.value.length >= minLength ? null : { asyncValidation: {} }
+      ),
+      take(1)
+    );
+  };
+}
+
+function createComponent<T>(
+  component: Type<T>,
+  providers: Provider[] = [],
+  imports: any[] = []
+): ComponentFixture<T> {
+  TestBed.configureTestingModule({
+    imports: [SbbProcessflowModule, NoopAnimationsModule, ReactiveFormsModule, ...imports],
+    declarations: [component],
+    providers: [{ provide: Directionality, useFactory: () => dir }, ...providers],
+  }).compileComponents();
+
+  return TestBed.createComponent<T>(component);
+}
+
+@Component({
+  template: `
+    <form [formGroup]="formGroup">
+      <sbb-processflow>
+        <sbb-step
+          errorMessage="This field is required"
+          [stepControl]="formGroup.get('firstNameCtrl')"
+        >
+          <ng-template sbbStepLabel>Step 1</ng-template>
+          <sbb-form-field>
+            <sbb-label>First name</sbb-label>
+            <input matInput formControlName="firstNameCtrl" required />
+            <sbb-error>This field is required</sbb-error>
+          </sbb-form-field>
+          <div>
+            <button sbb-button sbbProcessflowPrevious>Back</button>
+            <button sbb-button sbbProcessflowNext>Next</button>
+          </div>
+        </sbb-step>
+        <sbb-step>
+          <ng-template sbbStepLabel>Step 2</ng-template>
+          Content 2
+          <div>
+            <button sbb-button sbbProcessflowPrevious>Back</button>
+            <button sbb-button sbbProcessflowNext>Next</button>
+          </div>
+        </sbb-step>
+      </sbb-processflow>
+    </form>
+  `,
+})
+class SbbHorizontalStepperWithErrorsApp implements OnInit {
+  formGroup: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.formGroup = this._formBuilder.group({
+      firstNameCtrl: ['', Validators.required],
+      lastNameCtrl: ['', Validators.required],
+    });
+  }
+}
+
+@Component({
+  template: `
+    <sbb-processflow [disableRipple]="disableRipple">
+      <sbb-step>
+        <ng-template sbbStepLabel>Step 1</ng-template>
+        Content 1
+        <div>
+          <button sbb-button sbbProcessflowPrevious>Back</button>
+          <button sbb-button sbbProcessflowNext>Next</button>
+        </div>
+      </sbb-step>
+      <sbb-step>
+        <ng-template sbbStepLabel>Step 2</ng-template>
+        Content 2
+        <div>
+          <button sbb-button sbbProcessflowPrevious>Back</button>
+          <button sbb-button sbbProcessflowNext>Next</button>
+        </div>
+      </sbb-step>
+      <sbb-step [label]="inputLabel" optional>
+        Content 3
+        <div>
+          <button sbb-button sbbProcessflowPrevious>Back</button>
+          <button sbb-button sbbProcessflowNext>Next</button>
+        </div>
+      </sbb-step>
+    </sbb-processflow>
+  `,
+})
+class SimpleSbbHorizontalStepperApp {
+  inputLabel = 'Step 3';
+  disableRipple = false;
+}
+
+@Component({
+  template: `
+    <sbb-stepper orientation="vertical" [disableRipple]="disableRipple">
+      <sbb-step>
+        <ng-template sbbStepLabel>Step 1</ng-template>
+        Content 1
+        <div>
+          <button sbb-button sbbProcessflowPrevious>Back</button>
+          <button sbb-button sbbProcessflowNext>Next</button>
+        </div>
+      </sbb-step>
+      <sbb-step *ngIf="showStepTwo">
+        <ng-template sbbStepLabel>Step 2</ng-template>
+        Content 2
+        <div>
+          <button sbb-button sbbProcessflowPrevious>Back</button>
+          <button sbb-button sbbProcessflowNext>Next</button>
+        </div>
+      </sbb-step>
+      <sbb-step [label]="inputLabel">
+        Content 3
+        <div>
+          <button sbb-button sbbProcessflowPrevious>Back</button>
+          <button sbb-button sbbProcessflowNext>Next</button>
+        </div>
+      </sbb-step>
+    </sbb-stepper>
+  `,
+})
+class SimpleSbbVerticalStepperApp {
+  inputLabel = 'Step 3';
+  showStepTwo = true;
+  disableRipple = false;
+}
+
+@Component({
+  template: `
+    <sbb-processflow orientation="vertical" linear>
+      <sbb-step [stepControl]="oneGroup">
+        <form [formGroup]="oneGroup">
+          <ng-template sbbStepLabel>Step one</ng-template>
+          <input formControlName="oneCtrl" required />
+          <div>
+            <button sbb-button sbbProcessflowPrevious>Back</button>
+            <button sbb-button sbbProcessflowNext>Next</button>
+          </div>
+        </form>
+      </sbb-step>
+      <sbb-step [stepControl]="twoGroup">
+        <form [formGroup]="twoGroup">
+          <ng-template sbbStepLabel>Step two</ng-template>
+          <input formControlName="twoCtrl" required />
+          <div>
+            <button sbb-button sbbProcessflowPrevious>Back</button>
+            <button sbb-button sbbProcessflowNext>Next</button>
+          </div>
+        </form>
+      </sbb-step>
+      <sbb-step [stepControl]="threeGroup" optional>
+        <form [formGroup]="threeGroup">
+          <ng-template sbbStepLabel>Step two</ng-template>
+          <input formControlName="threeCtrl" />
+          <div>
+            <button sbb-button sbbProcessflowPrevious>Back</button>
+            <button sbb-button sbbProcessflowNext>Next</button>
+          </div>
+        </form>
+      </sbb-step>
+      <sbb-step> Done </sbb-step>
+    </sbb-processflow>
+  `,
+})
+class LinearSbbVerticalStepperApp implements OnInit {
+  oneGroup: FormGroup;
+  twoGroup: FormGroup;
+  threeGroup: FormGroup;
+
+  validationTrigger = new Subject<void>();
+
+  ngOnInit() {
+    this.oneGroup = new FormGroup({
+      oneCtrl: new FormControl('', Validators.required),
+    });
+    this.twoGroup = new FormGroup({
+      twoCtrl: new FormControl('', Validators.required, asyncValidator(3, this.validationTrigger)),
+    });
+    this.threeGroup = new FormGroup({
+      threeCtrl: new FormControl('', Validators.pattern(VALID_REGEX)),
+    });
+  }
+}
+
+@Component({
+  template: `
+    <sbb-processflow [linear]="true" [selectedIndex]="index">
+      <sbb-step label="One"></sbb-step>
+      <sbb-step label="Two"></sbb-step>
+      <sbb-step label="Three"></sbb-step>
+    </sbb-processflow>
+  `,
+})
+class SimplePreselectedSbbHorizontalStepperApp {
+  index = 0;
+}
+
+@Component({
+  template: `
+    <sbb-processflow linear>
+      <sbb-step
+        *ngFor="let step of steps"
+        [label]="step.label"
+        [completed]="step.completed"
+      ></sbb-step>
+    </sbb-processflow>
+  `,
+})
+class SimpleStepperWithoutStepControl {
+  steps = [
+    { label: 'One', completed: false },
+    { label: 'Two', completed: false },
+    { label: 'Three', completed: false },
+  ];
+}
+
+@Component({
+  template: `
+    <sbb-processflow linear>
+      <sbb-step
+        *ngFor="let step of steps"
+        [label]="step.label"
+        [stepControl]="step.control"
+        [completed]="step.completed"
+      ></sbb-step>
+    </sbb-processflow>
+  `,
+})
+class SimpleStepperWithStepControlAndCompletedBinding {
+  steps = [
+    { label: 'One', completed: false, control: new FormControl() },
+    { label: 'Two', completed: false, control: new FormControl() },
+    { label: 'Three', completed: false, control: new FormControl() },
+  ];
+}
+
+@Component({
+  template: `
+    <sbb-processflow>
+      <ng-template sbbProcessflowIcon="edit">Custom edit</ng-template>
+      <ng-template sbbProcessflowIcon="done">Custom done</ng-template>
+      <ng-template sbbProcessflowIcon="number" let-index="index">
+        {{ getRomanNumeral(index + 1) }}
+      </ng-template>
+
+      <sbb-step>Content 1</sbb-step>
+      <sbb-step>Content 2</sbb-step>
+      <sbb-step>Content 3</sbb-step>
+    </sbb-processflow>
+  `,
+})
+class IconOverridesStepper {
+  getRomanNumeral(value: number) {
+    const numberMap: { [key: number]: string } = {
+      1: 'I',
+      2: 'II',
+      3: 'III',
+      4: 'IV',
+      5: 'V',
+      6: 'VI',
+      7: 'VII',
+      8: 'VIII',
+      9: 'IX',
+    };
+
+    return numberMap[value];
+  }
+}
+
+@Component({
+  template: `
+    <sbb-processflow>
+      <ng-container [ngSwitch]="true">
+        <ng-template sbbProcessflowIcon="edit">Custom edit</ng-template>
+        <ng-template sbbProcessflowIcon="done">Custom done</ng-template>
+        <ng-template sbbProcessflowIcon="number" let-index="index">
+          {{ getRomanNumeral(index + 1) }}
+        </ng-template>
+      </ng-container>
+
+      <sbb-step>Content 1</sbb-step>
+      <sbb-step>Content 2</sbb-step>
+      <sbb-step>Content 3</sbb-step>
+    </sbb-processflow>
+  `,
+})
+class IndirectDescendantIconOverridesStepper extends IconOverridesStepper {}
+
+@Component({
+  template: `
+    <sbb-processflow linear>
+      <sbb-step label="Step 1" [stepControl]="controls[0]"></sbb-step>
+      <sbb-step label="Step 2" [stepControl]="controls[1]" [optional]="step2Optional"></sbb-step>
+      <sbb-step label="Step 3" [stepControl]="controls[2]"></sbb-step>
+    </sbb-processflow>
+  `,
+})
+class LinearStepperWithValidOptionalStep {
+  controls = [0, 0, 0].map(() => new FormControl());
+  step2Optional = false;
+}
+
+@Component({
+  template: `
+    <sbb-processflow>
+      <sbb-step [aria-label]="ariaLabel" [aria-labelledby]="ariaLabelledby" label="One"></sbb-step>
+    </sbb-processflow>
+  `,
+})
+class StepperWithAriaInputs {
+  ariaLabel: string;
+  ariaLabelledby: string;
+}
+
+@Component({
+  template: `
+    <sbb-processflow orientation="vertical">
+      <ng-container [ngSwitch]="true">
+        <sbb-step label="Step 1">Content 1</sbb-step>
+        <sbb-step label="Step 2">Content 2</sbb-step>
+        <sbb-step label="Step 3">Content 3</sbb-step>
+      </ng-container>
+    </sbb-processflow>
+  `,
+})
+class StepperWithIndirectDescendantSteps {}
+
+@Component({
+  template: `
+    <sbb-processflow orientation="vertical">
+      <sbb-step>
+        <ng-template sbbStepLabel>Step 1</ng-template>
+      </sbb-step>
+
+      <sbb-step *ngIf="showStep2">
+        <ng-template sbbStepLabel>Step 2</ng-template>
+      </sbb-step>
+    </sbb-processflow>
+  `,
+})
+class StepperWithNgIf {
+  showStep2 = false;
+}
+
+@Component({
+  template: `
+    <sbb-processflow orientation="vertical">
+      <sbb-step label="Step 1">Content 1</sbb-step>
+      <sbb-step label="Step 2">Content 2</sbb-step>
+      <sbb-step label="Step 3">
+        <sbb-processflow>
+          <sbb-step label="Sub-Step 1">Sub-Content 1</sbb-step>
+          <sbb-step label="Sub-Step 2">Sub-Content 2</sbb-step>
+        </sbb-processflow>
+      </sbb-step>
+    </sbb-processflow>
+  `,
+})
+class NestedSteppers {
+  @ViewChildren(SbbProcessflow) steppers: QueryList<SbbProcessflow>;
+}
+
+@Component({
+  template: `
+    <sbb-processflow orientation="vertical" selectedIndex="1337">
+      <sbb-step label="Step 1">Content 1</sbb-step>
+      <sbb-step label="Step 2">Content 2</sbb-step>
+      <sbb-step label="Step 3">Content 3</sbb-step>
+    </sbb-processflow>
+  `,
+})
+class StepperWithStaticOutOfBoundsIndex {
+  @ViewChild(SbbProcessflow) stepper: SbbProcessflow;
+}
+
+@Component({
+  template: `
+    <sbb-processflow orientation="vertical" [selectedIndex]="selectedIndex">
+      <sbb-step>
+        <ng-template sbbStepLabel>Step 1</ng-template>
+        <ng-template sbbStepContent>Step 1 content</ng-template>
+      </sbb-step>
+      <sbb-step>
+        <ng-template sbbStepLabel>Step 2</ng-template>
+        <ng-template sbbStepContent>Step 2 content</ng-template>
+      </sbb-step>
+      <sbb-step>
+        <ng-template sbbStepLabel>Step 3</ng-template>
+        <ng-template sbbStepContent>Step 3 content</ng-template>
+      </sbb-step>
+    </sbb-processflow>
+  `,
+})
+class StepperWithLazyContent {
+  selectedIndex = 0;
+}

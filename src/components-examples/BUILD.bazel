@@ -24,6 +24,7 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/loading",
     "//src/components-examples/angular/menu",
     "//src/components-examples/angular/pagination",
+    "//src/components-examples/angular/processflow",
     "//src/components-examples/angular/radio-button",
     "//src/components-examples/angular/radio-button-panel",
     "//src/components-examples/angular/search",
