@@ -1,0 +1,91 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+    "sass_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "pagination",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":navigation/navigation.css",
+        ":paginator/paginator.css",
+    ] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular/pagination",
+    deps = [
+        "//src/angular-core/common-behaviors",
+        "//src/angular-core/icon",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+sass_library(
+    name = "pagination_scss_lib",
+    srcs = glob(["**/_*.scss"]),
+    deps = ["//src/angular/styles:common_scss_lib"],
+)
+
+sass_binary(
+    name = "navigation_navigation_scss",
+    src = "navigation/navigation.scss",
+    deps = [
+        ":pagination_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "paginator_paginator_scss",
+    src = "paginator/paginator.scss",
+    deps = [
+        ":pagination_scss_lib",
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":pagination",
+        "//src/angular-core/icon",
+        "//src/angular-core/icon/testing",
+        "//src/angular-core/testing",
+        "//src/angular-public/button",
+        "@npm//@angular/common",
+        "@npm//@angular/forms",
+        "@npm//@angular/platform-browser",
+        "@npm//@angular/router",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    static_css = [
+        "//src/angular:typography",
+    ],
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":pagination.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

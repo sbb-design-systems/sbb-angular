@@ -1,0 +1,128 @@
+@import '../pagination';
+
+$navigationIconTextMargin: 4;
+
+.sbb-navigation {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  margin-left: 0;
+}
+
+.sbb-navigation-item {
+  position: relative;
+  line-height: 0;
+  text-align: center;
+  outline: 0;
+  height: pxToRem($paginationLiWidthHeight);
+  width: 50%;
+  display: flex;
+  padding-left: 0;
+
+  &.sbb-navigation-item-right {
+    justify-content: flex-end;
+  }
+
+  &.sbb-navigation-item-left {
+    justify-content: flex-start;
+  }
+}
+
+.sbb-navigation-item-single {
+  width: 100%;
+}
+
+.sbb-navigation-item-button {
+  cursor: pointer;
+  background-color: $sbbColorWhite;
+  max-width: 100%;
+  height: 100%;
+  outline: 0;
+  font-size: pxToRem(13);
+  line-height: pxToRem(20);
+  color: $paginationBaseColor;
+
+  &:hover,
+  &:focus {
+    color: $paginationActiveHoverColor;
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+      line-height: pxToRem(30);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+      line-height: pxToRem(19);
+    }
+  }
+
+  html.sbb-lean & {
+    color: $paginationBaseColorLean;
+
+    &:hover,
+    &:focus {
+      color: $paginationActiveHoverColorLean;
+    }
+  }
+}
+
+.sbb-navigation-item-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sbb-navigation-item-boundary-left {
+  justify-content: flex-start;
+}
+
+.sbb-navigation-item-boundary-right {
+  justify-content: flex-end;
+}
+
+.sbb-navigation-item-boundary-arrow {
+  line-height: 0;
+  flex: 0 0 pxToRem($paginationItemIconSize);
+
+  @include mq($from: desktop4k) {
+    flex: 0 0 pxToRem($paginationItemIconSize4K);
+  }
+
+  @include mq($from: desktop5k) {
+    flex: 0 0 pxToRem($paginationItemIconSize5K);
+  }
+
+  .sbb-navigation-item-boundary-right & {
+    margin-left: pxToRem($navigationIconTextMargin);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        margin-left: pxToRem($navigationIconTextMargin * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        margin-left: pxToRem($navigationIconTextMargin * $scalingFactor5k);
+      }
+    }
+  }
+
+  .sbb-navigation-item-boundary-left & {
+    margin-right: pxToRem($navigationIconTextMargin);
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        margin-right: pxToRem($navigationIconTextMargin * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        margin-right: pxToRem($navigationIconTextMargin * $scalingFactor5k);
+      }
+    }
+  }
+}
+
+.sbb-navigation-item-boundary-text {
+  @include ellipsis;
+  max-width: 100%;
+}

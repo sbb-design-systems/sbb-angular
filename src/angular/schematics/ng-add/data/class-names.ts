@@ -73,6 +73,18 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbChipInputChange',
           replaceWith: 'SbbChipInputEvent',
         },
+        {
+          replace: 'SbbPaginatorComponent',
+          replaceWith: 'SbbPaginator',
+        },
+        {
+          replace: 'SbbPageChangeEvent',
+          replaceWith: 'SbbPageEvent',
+        },
+        {
+          replace: 'SbbPagination',
+          replaceWith: 'SbbPaginator',
+        },
       ],
     },
   ],

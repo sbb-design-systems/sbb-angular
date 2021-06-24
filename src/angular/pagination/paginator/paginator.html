@@ -1,0 +1,52 @@
+<ul class="sbb-paginator sbb-icon-fit">
+  <li class="sbb-paginator-item">
+    <button
+      type="button"
+      i18n-aria-label="Button label to navigate to the previous page@@sbbPaginationPreviousPage"
+      aria-label="Previous Page"
+      class="sbb-paginator-item-boundary sbb-paginator-item-button"
+      [disabled]="_previousButtonDisabled()"
+      [class.sbb-paginator-item-disabled]="_previousButtonDisabled()"
+      (click)="previousPage()"
+    >
+      <sbb-icon svgIcon="kom:chevron-small-left-small" class="sbb-icon-scaled"></sbb-icon>
+    </button>
+  </li>
+
+  <li *ngFor="let page of _pageRange()" class="sbb-paginator-item">
+    <ng-container *ngIf="page === null">
+      <span
+        class="sbb-paginator-item-ellipsis"
+        [class.sbb-paginator-item-ellipsis-disabled]="disabled"
+        >...</span
+      >
+    </ng-container>
+    <ng-container *ngIf="page !== null">
+      <button
+        type="button"
+        class="sbb-paginator-item-button"
+        [attr.tabindex]="page === pageIndex ? '-1' : null"
+        [class.sbb-paginator-item-selected]="page === pageIndex"
+        [attr.aria-current]="page === pageIndex"
+        [disabled]="disabled"
+        [class.sbb-paginator-item-disabled]="disabled"
+        (click)="selectPage(page)"
+      >
+        <ng-container>{{ page + 1 }}</ng-container>
+      </button>
+    </ng-container>
+  </li>
+  <li class="sbb-paginator-item">
+    <button
+      type="button"
+      i18n-aria-label="Button label to navigate to the next page@@sbbPaginationNextPage"
+      aria-label="Next Page"
+      class="sbb-paginator-item-boundary sbb-paginator-item-button"
+      [disabled]="_nextButtonDisabled()"
+      [class.sbb-paginator-item-disabled]="_nextButtonDisabled()"
+      (click)="nextPage()"
+    >
+      <sbb-icon svgIcon="kom:chevron-small-right-small" class="sbb-icon-scaled"></sbb-icon>
+    </button>
+  </li>
+</ul>

@@ -1,0 +1,11 @@
+<sbb-navigation
+  (pageChange)="pageChange($event)"
+  [nextPage]="nextPage"
+  [previousPage]="previousPage"
+>
+</sbb-navigation>
+<h4>Properties</h4>
+<sbb-form-field label="Page title">
+  <input sbbInput type="text" [(ngModel)]="newPage.title" />
+</sbb-form-field>
+<button type="button" sbb-button (click)="addPage()">Add new page</button>

@@ -39,6 +39,8 @@ function mergeSymbols() {
             SBB_BUSINESS_DATE_ADAPTER: 'core',
             SbbChipInputChange: 'chips',
             SbbChipModule: 'chips',
+            SbbPaginatorComponent: 'pagination',
+            SbbPageChangeEvent: 'pagination',
         };
         extractExportsForModule('src/angular/');
         extractExportsForModule('src/angular-maps/');

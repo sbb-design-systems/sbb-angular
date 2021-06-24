@@ -17,6 +17,10 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-chip-input',
           replaceWith: 'sbb-chip-list',
         },
+        {
+          replace: 'sbb-pagination',
+          replaceWith: 'sbb-paginator',
+        },
       ],
     },
   ],

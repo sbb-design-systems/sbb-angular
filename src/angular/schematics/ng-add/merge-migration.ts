@@ -12,6 +12,7 @@ import { ChipsMigration } from './migrations/chips-migration';
 import { ClassNamesMigration } from './migrations/class-names';
 import { EnumToStringLiteralMigration } from './migrations/enum-to-string-literal-migration';
 import { MenuMigration } from './migrations/menu-migration';
+import { PaginationMigration } from './migrations/pagination-migration';
 import { SearchMigration } from './migrations/search-migration';
 import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
 import { SelectionPanelMigration } from './migrations/selection-panel-migration';
@@ -29,6 +30,7 @@ export function mergePublicAndBusiness(): Rule {
       MenuMigration,
       SearchMigration,
       BadgeMigration,
+      PaginationMigration,
       ChipsMigration,
     ],
     sbbAngularUpgradeData,
