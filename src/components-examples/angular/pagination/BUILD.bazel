@@ -17,9 +17,9 @@ ng_module(
     ]),
     module_name = "@sbb-esta/components-examples/angular/pagination",
     deps = [
-        "//src/angular-public/button",
-        "//src/angular-public/checkbox",
-        "//src/angular-public/form-field",
+        "//src/angular/button",
+        "//src/angular/checkbox",
+        "//src/angular/form-field",
         "//src/angular/pagination",
         "@npm//@angular/common",
         "@npm//@angular/core",
