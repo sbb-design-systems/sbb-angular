@@ -19,7 +19,7 @@
       [active]="step.completed || selectedIndex === i || !linear"
       [optional]="step.optional"
     ></sbb-step-header>
-    <div *ngIf="!isLast" class="sbb-processflow-horizontal-separator">
+    <div *ngIf="!isLast" class="sbb-processflow-separator">
       <sbb-icon svgIcon="kom:chevron-right-small" class="sbb-icon-fit"></sbb-icon>
     </div>
   </ng-container>

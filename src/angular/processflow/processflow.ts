@@ -116,6 +116,7 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
   inputs: ['selectedIndex'],
   host: {
     class: 'sbb-processflow',
+    '[attr.aria-orientation]': 'orientation',
     role: 'tablist',
   },
   animations: [sbbProcessflowAnimations.stepTransition],
@@ -138,9 +139,6 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
 
   /** Stream of animation `done` events when the body expands/collapses. */
   readonly _animationDone = new Subject<AnimationEvent>();
-
-  /** Not available for the SBB implementation. */
-  set orientation(_value: StepperOrientation) {}
 
   constructor(
     @Optional() dir: Directionality,

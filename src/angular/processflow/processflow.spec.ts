@@ -45,6 +45,7 @@ import {
   dispatchKeyboardEvent,
 } from '@sbb-esta/angular/core/testing';
 import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { merge, Observable, Subject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -67,7 +68,7 @@ describe('SbbProcessflow', () => {
     };
   });
 
-  describe('basic stepper', () => {
+  describe('basic processflow', () => {
     let fixture: ComponentFixture<SimpleSbbVerticalStepperApp>;
 
     beforeEach(() => {
@@ -76,75 +77,75 @@ describe('SbbProcessflow', () => {
     });
 
     it('should default to the first step', () => {
-      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+      const processflowComponent: SbbProcessflow = fixture.debugElement.query(
         By.css('sbb-processflow')
       )!.componentInstance;
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
     });
 
     it('should throw when a negative `selectedIndex` is assigned', () => {
-      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+      const processflowComponent: SbbProcessflow = fixture.debugElement.query(
         By.css('sbb-processflow')
       )!.componentInstance;
 
       expect(() => {
-        stepperComponent.selectedIndex = -10;
+        processflowComponent.selectedIndex = -10;
         fixture.detectChanges();
       }).toThrowError(/Cannot assign out-of-bounds/);
     });
 
     it('should throw when an out-of-bounds `selectedIndex` is assigned', () => {
-      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+      const processflowComponent: SbbProcessflow = fixture.debugElement.query(
         By.css('sbb-processflow')
       )!.componentInstance;
 
       expect(() => {
-        stepperComponent.selectedIndex = 1337;
+        processflowComponent.selectedIndex = 1337;
         fixture.detectChanges();
       }).toThrowError(/Cannot assign out-of-bounds/);
     });
 
     it('should change selected index on header click', () => {
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
-      const stepperComponent = fixture.debugElement.query(
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'));
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
 
-      expect(stepperComponent.selectedIndex).toBe(0);
-      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+      expect(processflowComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selected instanceof SbbStep).toBe(true);
 
       // select the second step
       let stepHeaderEl = stepHeaders[1].nativeElement;
       stepHeaderEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
-      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+      expect(processflowComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selected instanceof SbbStep).toBe(true);
 
       // select the third step
       stepHeaderEl = stepHeaders[2].nativeElement;
       stepHeaderEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(2);
-      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+      expect(processflowComponent.selectedIndex).toBe(2);
+      expect(processflowComponent.selected instanceof SbbStep).toBe(true);
     });
 
-    it('should set the "tablist" role on stepper', () => {
-      const stepperEl = fixture.debugElement.query(By.css('sbb-processflow'))!.nativeElement;
-      expect(stepperEl.getAttribute('role')).toBe('tablist');
+    it('should set the "tablist" role on processflow', () => {
+      const processflowEl = fixture.debugElement.query(By.css('sbb-processflow'))!.nativeElement;
+      expect(processflowEl.getAttribute('role')).toBe('tablist');
     });
 
     it('should set aria-expanded of content correctly', () => {
-      const stepContents = fixture.debugElement.queryAll(By.css(`.sbb-vertical-stepper-content`));
-      const stepperComponent = fixture.debugElement.query(
+      const stepContents = fixture.debugElement.queryAll(By.css(`.sbb-processflow-content`));
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
       const firstStepContentEl = stepContents[0].nativeElement;
       expect(firstStepContentEl.getAttribute('aria-expanded')).toBe('true');
 
-      stepperComponent.selectedIndex = 1;
+      processflowComponent.selectedIndex = 1;
       fixture.detectChanges();
 
       expect(firstStepContentEl.getAttribute('aria-expanded')).toBe('false');
@@ -153,13 +154,13 @@ describe('SbbProcessflow', () => {
     });
 
     it('should display the correct label', () => {
-      const stepperComponent = fixture.debugElement.query(
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
       let selectedLabel = fixture.nativeElement.querySelector('[aria-selected="true"]');
       expect(selectedLabel.textContent).toMatch('Step 1');
 
-      stepperComponent.selectedIndex = 2;
+      processflowComponent.selectedIndex = 2;
       fixture.detectChanges();
 
       selectedLabel = fixture.nativeElement.querySelector('[aria-selected="true"]');
@@ -173,54 +174,54 @@ describe('SbbProcessflow', () => {
     });
 
     it('should go to next available step when the next button is clicked', () => {
-      const stepperComponent = fixture.debugElement.query(
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
 
       let nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
 
       nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[1]
         .nativeElement;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(2);
+      expect(processflowComponent.selectedIndex).toBe(2);
 
       nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[2]
         .nativeElement;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(2);
+      expect(processflowComponent.selectedIndex).toBe(2);
     });
 
-    it('should set the next stepper button type to "submit"', () => {
+    it('should set the next processflow button type to "submit"', () => {
       const button = fixture.debugElement.query(By.directive(SbbProcessflowNext))!.nativeElement;
       expect(button.type).toBe('submit', `Expected the button to have "submit" set as type.`);
     });
 
     it('should go to previous available step when the previous button is clicked', () => {
-      const stepperComponent = fixture.debugElement.query(
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
 
-      stepperComponent.selectedIndex = 2;
+      processflowComponent.selectedIndex = 2;
       let previousButtonNativeEl = fixture.debugElement.queryAll(
         By.directive(SbbProcessflowPrevious)
       )[2].nativeElement;
       previousButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
 
       previousButtonNativeEl = fixture.debugElement.queryAll(
         By.directive(SbbProcessflowPrevious)
@@ -228,7 +229,7 @@ describe('SbbProcessflow', () => {
       previousButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
 
       previousButtonNativeEl = fixture.debugElement.queryAll(
         By.directive(SbbProcessflowPrevious)
@@ -236,10 +237,10 @@ describe('SbbProcessflow', () => {
       previousButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
     });
 
-    it('should set the previous stepper button type to "button"', () => {
+    it('should set the previous processflow button type to "button"', () => {
       const button = fixture.debugElement.query(
         By.directive(SbbProcessflowPrevious)
       )!.nativeElement;
@@ -247,31 +248,31 @@ describe('SbbProcessflow', () => {
     });
 
     it('should set the correct step position for animation', () => {
-      const stepperComponent = fixture.debugElement.query(
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
 
-      expect(stepperComponent._getAnimationDirection(0)).toBe('current');
-      expect(stepperComponent._getAnimationDirection(1)).toBe('next');
-      expect(stepperComponent._getAnimationDirection(2)).toBe('next');
+      expect(processflowComponent._getAnimationDirection(0)).toBe('current');
+      expect(processflowComponent._getAnimationDirection(1)).toBe('next');
+      expect(processflowComponent._getAnimationDirection(2)).toBe('next');
 
-      stepperComponent.selectedIndex = 1;
+      processflowComponent.selectedIndex = 1;
       fixture.detectChanges();
 
-      expect(stepperComponent._getAnimationDirection(0)).toBe('previous');
-      expect(stepperComponent._getAnimationDirection(2)).toBe('next');
-      expect(stepperComponent._getAnimationDirection(1)).toBe('current');
+      expect(processflowComponent._getAnimationDirection(0)).toBe('previous');
+      expect(processflowComponent._getAnimationDirection(2)).toBe('next');
+      expect(processflowComponent._getAnimationDirection(1)).toBe('current');
 
-      stepperComponent.selectedIndex = 2;
+      processflowComponent.selectedIndex = 2;
       fixture.detectChanges();
 
-      expect(stepperComponent._getAnimationDirection(0)).toBe('previous');
-      expect(stepperComponent._getAnimationDirection(1)).toBe('previous');
-      expect(stepperComponent._getAnimationDirection(2)).toBe('current');
+      expect(processflowComponent._getAnimationDirection(0)).toBe('previous');
+      expect(processflowComponent._getAnimationDirection(1)).toBe('previous');
+      expect(processflowComponent._getAnimationDirection(2)).toBe('current');
     });
 
     it('should not set focus on header of selected step if header is not clicked', () => {
-      const stepperComponent = fixture.debugElement.query(
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
       const stepHeaderEl = fixture.debugElement.queryAll(By.css('sbb-step-header'))[1]
@@ -282,12 +283,12 @@ describe('SbbProcessflow', () => {
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
       expect(stepHeaderEl.focus).not.toHaveBeenCalled();
     });
 
-    it('should focus next step header if focus is inside the stepper', () => {
-      const stepperComponent = fixture.debugElement.query(
+    it('should focus next step header if focus is inside the processflow', () => {
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
       const stepHeaderEl = fixture.debugElement.queryAll(By.css('sbb-step-header'))[1]
@@ -299,68 +300,70 @@ describe('SbbProcessflow', () => {
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
       expect(stepHeaderEl.focus).toHaveBeenCalled();
     });
 
     it('should only be able to return to a previous step if it is editable', () => {
-      const stepperComponent = fixture.debugElement.query(
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
 
-      stepperComponent.selectedIndex = 1;
-      stepperComponent.steps.toArray()[0].editable = false;
+      processflowComponent.selectedIndex = 1;
+      processflowComponent.steps.toArray()[0].editable = false;
       const previousButtonNativeEl = fixture.debugElement.queryAll(
         By.directive(SbbProcessflowPrevious)
       )[1].nativeElement;
       previousButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
 
-      stepperComponent.steps.toArray()[0].editable = true;
+      processflowComponent.steps.toArray()[0].editable = true;
       previousButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
     });
 
     it('should set create icon if step is editable and completed', () => {
-      const stepperComponent = fixture.debugElement.query(
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
-      expect(stepperComponent._getIndicatorType(0)).toBe('number');
-      stepperComponent.steps.toArray()[0].editable = true;
+      expect(processflowComponent._getIndicatorType(0)).toBe('number');
+      processflowComponent.steps.toArray()[0].editable = true;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent._getIndicatorType(0)).toBe('edit');
+      expect(processflowComponent._getIndicatorType(0)).toBe('edit');
     });
 
     it('should set done icon if step is not editable and is completed', () => {
-      const stepperComponent = fixture.debugElement.query(
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
-      expect(stepperComponent._getIndicatorType(0)).toBe('number');
-      stepperComponent.steps.toArray()[0].editable = false;
+      expect(processflowComponent._getIndicatorType(0)).toBe('number');
+      processflowComponent.steps.toArray()[0].editable = false;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent._getIndicatorType(0)).toBe('done');
+      expect(processflowComponent._getIndicatorType(0)).toBe('done');
     });
 
     it('should emit an event when the enter animation is done', fakeAsync(() => {
-      const stepper = fixture.debugElement.query(By.directive(SbbProcessflow))!.componentInstance;
+      const processflow: SbbProcessflow = fixture.debugElement.query(
+        By.directive(SbbProcessflow)
+      )!.componentInstance;
       const selectionChangeSpy = jasmine.createSpy('selectionChange spy');
       const animationDoneSpy = jasmine.createSpy('animationDone spy');
-      const selectionChangeSubscription = stepper.selectionChange.subscribe(selectionChangeSpy);
-      const animationDoneSubscription = stepper.animationDone.subscribe(animationDoneSpy);
+      const selectionChangeSubscription = processflow.selectionChange.subscribe(selectionChangeSpy);
+      const animationDoneSubscription = processflow.animationDone.subscribe(animationDoneSpy);
 
-      stepper.selectedIndex = 1;
+      processflow.selectedIndex = 1;
       fixture.detectChanges();
 
       expect(selectionChangeSpy).toHaveBeenCalledTimes(1);
@@ -369,7 +372,7 @@ describe('SbbProcessflow', () => {
       flush();
 
       expect(selectionChangeSpy).toHaveBeenCalledTimes(1);
-      expect(animationDoneSpy).toHaveBeenCalledTimes(1);
+      expect(animationDoneSpy).toHaveBeenCalledTimes(2);
 
       selectionChangeSubscription.unsubscribe();
       animationDoneSubscription.unsubscribe();
@@ -389,107 +392,55 @@ describe('SbbProcessflow', () => {
     });
 
     it('should adjust the index when removing a step before the current one', () => {
-      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+      const processflowComponent: SbbProcessflow = fixture.debugElement.query(
         By.css('sbb-processflow')
       )!.componentInstance;
 
-      stepperComponent.selectedIndex = 2;
+      processflowComponent.selectedIndex = 2;
       fixture.detectChanges();
 
       // Re-assert since the setter has some extra logic.
-      expect(stepperComponent.selectedIndex).toBe(2);
+      expect(processflowComponent.selectedIndex).toBe(2);
 
       expect(() => {
         fixture.componentInstance.showStepTwo = false;
         fixture.detectChanges();
       }).not.toThrow();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
     });
 
     it('should not do anything when pressing the ENTER key with a modifier', () => {
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
-      assertSelectKeyWithModifierInteraction(fixture, stepHeaders, 'vertical', ENTER);
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'));
+      assertSelectKeyWithModifierInteraction(fixture, stepHeaders, ENTER);
     });
 
     it('should not do anything when pressing the SPACE key with a modifier', () => {
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
-      assertSelectKeyWithModifierInteraction(fixture, stepHeaders, 'vertical', SPACE);
-    });
-
-    it('should have a focus indicator', () => {
-      const stepHeaderNativeElements = [
-        ...fixture.debugElement.nativeElement.querySelectorAll('.sbb-vertical-stepper-header'),
-      ];
-
-      expect(
-        stepHeaderNativeElements.every((element) => element.querySelector('.sbb-focus-indicator'))
-      ).toBe(true);
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'));
+      assertSelectKeyWithModifierInteraction(fixture, stepHeaders, SPACE);
     });
   });
 
-  describe('basic stepper when attempting to set the selected step too early', () => {
+  describe('basic processflow when attempting to set the selected step too early', () => {
     it('should not throw', () => {
       const fixture = createComponent(SimpleSbbVerticalStepperApp);
-      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+      const processflowComponent: SbbProcessflow = fixture.debugElement.query(
         By.css('sbb-processflow')
       )!.componentInstance;
 
-      expect(() => stepperComponent.selected).not.toThrow();
+      expect(() => processflowComponent.selected).not.toThrow();
     });
   });
 
-  describe('basic stepper when attempting to set the selected step too early', () => {
+  describe('basic processflow when attempting to set the selected step too early', () => {
     it('should not throw', () => {
       const fixture = createComponent(SimpleSbbVerticalStepperApp);
-      const stepperComponent: SbbProcessflow = fixture.debugElement.query(
+      const processflowComponent: SbbProcessflow = fixture.debugElement.query(
         By.css('sbb-processflow')
       )!.componentInstance;
 
-      expect(() => (stepperComponent.selected = null!)).not.toThrow();
-      expect(stepperComponent.selectedIndex).toBe(-1);
-    });
-  });
-
-  describe('icon overrides', () => {
-    let fixture: ComponentFixture<IconOverridesStepper>;
-
-    beforeEach(() => {
-      fixture = createComponent(IconOverridesStepper);
-      fixture.detectChanges();
-    });
-
-    it('should allow for the `edit` icon to be overridden', () => {
-      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
-      const stepperComponent: SbbProcessflow = stepperDebugElement.componentInstance;
-
-      stepperComponent.steps.toArray()[0].editable = true;
-      stepperComponent.next();
-      fixture.detectChanges();
-
-      const header = stepperDebugElement.nativeElement.querySelector('sbb-step-header');
-
-      expect(header.textContent).toContain('Custom edit');
-    });
-
-    it('should allow for the `done` icon to be overridden', () => {
-      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
-      const stepperComponent: SbbProcessflow = stepperDebugElement.componentInstance;
-
-      stepperComponent.steps.toArray()[0].editable = false;
-      stepperComponent.next();
-      fixture.detectChanges();
-
-      const header = stepperDebugElement.nativeElement.querySelector('sbb-step-header');
-
-      expect(header.textContent).toContain('Custom done');
-    });
-
-    it('should allow for the `number` icon to be overridden with context', () => {
-      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
-      const headers = stepperDebugElement.nativeElement.querySelectorAll('sbb-step-header');
-
-      expect(headers[2].textContent).toContain('III');
+      expect(() => (processflowComponent.selected = null!)).not.toThrow();
+      expect(processflowComponent.selectedIndex).toBe(-1);
     });
   });
 
@@ -503,45 +454,47 @@ describe('SbbProcessflow', () => {
     });
 
     it('should reverse animation in RTL mode', () => {
-      const stepperComponent = fixture.debugElement.query(
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
 
-      expect(stepperComponent._getAnimationDirection(0)).toBe('current');
-      expect(stepperComponent._getAnimationDirection(1)).toBe('previous');
-      expect(stepperComponent._getAnimationDirection(2)).toBe('previous');
+      expect(processflowComponent._getAnimationDirection(0)).toBe('current');
+      expect(processflowComponent._getAnimationDirection(1)).toBe('previous');
+      expect(processflowComponent._getAnimationDirection(2)).toBe('previous');
 
-      stepperComponent.selectedIndex = 1;
+      processflowComponent.selectedIndex = 1;
       fixture.detectChanges();
 
-      expect(stepperComponent._getAnimationDirection(0)).toBe('next');
-      expect(stepperComponent._getAnimationDirection(2)).toBe('previous');
-      expect(stepperComponent._getAnimationDirection(1)).toBe('current');
+      expect(processflowComponent._getAnimationDirection(0)).toBe('next');
+      expect(processflowComponent._getAnimationDirection(2)).toBe('previous');
+      expect(processflowComponent._getAnimationDirection(1)).toBe('current');
 
-      stepperComponent.selectedIndex = 2;
+      processflowComponent.selectedIndex = 2;
       fixture.detectChanges();
 
-      expect(stepperComponent._getAnimationDirection(0)).toBe('next');
-      expect(stepperComponent._getAnimationDirection(1)).toBe('next');
-      expect(stepperComponent._getAnimationDirection(2)).toBe('current');
+      expect(processflowComponent._getAnimationDirection(0)).toBe('next');
+      expect(processflowComponent._getAnimationDirection(1)).toBe('next');
+      expect(processflowComponent._getAnimationDirection(2)).toBe('current');
     });
   });
 
-  describe('linear stepper', () => {
+  describe('linear processflow', () => {
     let fixture: ComponentFixture<LinearSbbVerticalStepperApp>;
     let testComponent: LinearSbbVerticalStepperApp;
-    let stepperComponent: SbbProcessflow;
+    let processflowComponent: SbbProcessflow;
 
     beforeEach(() => {
       fixture = createComponent(LinearSbbVerticalStepperApp);
       fixture.detectChanges();
 
       testComponent = fixture.componentInstance;
-      stepperComponent = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
+      processflowComponent = fixture.debugElement.query(
+        By.css('sbb-processflow')
+      )!.componentInstance;
     });
 
     it('should have true linear attribute', () => {
-      expect(stepperComponent.linear).toBe(true);
+      expect(processflowComponent.linear).toBe(true);
     });
 
     it('should not move to next step if current step is invalid', () => {
@@ -549,33 +502,33 @@ describe('SbbProcessflow', () => {
       expect(testComponent.oneGroup.get('oneCtrl')!.valid).toBe(false);
       expect(testComponent.oneGroup.valid).toBe(false);
       expect(testComponent.oneGroup.invalid).toBe(true);
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
 
-      const stepHeaderEl = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'))[1]
+      const stepHeaderEl = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'))[1]
         .nativeElement;
 
       stepHeaderEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
 
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
 
       testComponent.oneGroup.get('oneCtrl')!.setValue('answer');
       stepHeaderEl.click();
       fixture.detectChanges();
 
       expect(testComponent.oneGroup.valid).toBe(true);
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
     });
 
     it('should not move to next step if current step is pending', () => {
-      const stepHeaderEl = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'))[2]
+      const stepHeaderEl = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'))[2]
         .nativeElement;
 
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[1]
@@ -583,23 +536,23 @@ describe('SbbProcessflow', () => {
 
       testComponent.oneGroup.get('oneCtrl')!.setValue('input');
       testComponent.twoGroup.get('twoCtrl')!.setValue('input');
-      stepperComponent.selectedIndex = 1;
+      processflowComponent.selectedIndex = 1;
       fixture.detectChanges();
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
 
       // Step status = PENDING
-      // Assert that linear stepper does not allow step selection change
+      // Assert that linear processflow does not allow step selection change
       expect(testComponent.twoGroup.pending).toBe(true);
 
       stepHeaderEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
 
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
 
       // Trigger asynchronous validation
       testComponent.validationTrigger.next();
@@ -611,16 +564,16 @@ describe('SbbProcessflow', () => {
       stepHeaderEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(2);
+      expect(processflowComponent.selectedIndex).toBe(2);
 
-      stepperComponent.selectedIndex = 1;
+      processflowComponent.selectedIndex = 1;
       fixture.detectChanges();
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
 
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(2);
+      expect(processflowComponent.selectedIndex).toBe(2);
     });
 
     it('should be able to focus step header upon click if it is unable to be selected', () => {
@@ -636,13 +589,13 @@ describe('SbbProcessflow', () => {
       testComponent.oneGroup.get('oneCtrl')!.setValue('input');
       testComponent.twoGroup.get('twoCtrl')!.setValue('input');
       testComponent.validationTrigger.next();
-      stepperComponent.selectedIndex = 1;
+      processflowComponent.selectedIndex = 1;
       fixture.detectChanges();
-      stepperComponent.selectedIndex = 2;
+      processflowComponent.selectedIndex = 2;
       fixture.detectChanges();
 
-      expect(stepperComponent.steps.toArray()[2].optional).toBe(true);
-      expect(stepperComponent.selectedIndex).toBe(2);
+      expect(processflowComponent.steps.toArray()[2].optional).toBe(true);
+      expect(processflowComponent.selectedIndex).toBe(2);
       expect(testComponent.threeGroup.get('threeCtrl')!.valid).toBe(true);
 
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[2]
@@ -650,36 +603,36 @@ describe('SbbProcessflow', () => {
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(
+      expect(processflowComponent.selectedIndex).toBe(
         3,
         'Expected selectedIndex to change when optional step input is empty.'
       );
 
-      stepperComponent.selectedIndex = 2;
+      processflowComponent.selectedIndex = 2;
       testComponent.threeGroup.get('threeCtrl')!.setValue('input');
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
       expect(testComponent.threeGroup.get('threeCtrl')!.valid).toBe(false);
-      expect(stepperComponent.selectedIndex).toBe(
+      expect(processflowComponent.selectedIndex).toBe(
         3,
         'Expected selectedIndex to change when optional step input is invalid.'
       );
     });
 
-    it('should be able to reset the stepper to its initial state', () => {
-      const steps = stepperComponent.steps.toArray();
+    it('should be able to reset the processflow to its initial state', () => {
+      const steps = processflowComponent.steps.toArray();
 
       testComponent.oneGroup.get('oneCtrl')!.setValue('value');
       fixture.detectChanges();
 
-      stepperComponent.next();
+      processflowComponent.next();
       fixture.detectChanges();
 
-      stepperComponent.next();
+      processflowComponent.next();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
       expect(steps[0].interacted).toBe(true);
       expect(steps[0].completed).toBe(true);
       expect(testComponent.oneGroup.get('oneCtrl')!.valid).toBe(true);
@@ -689,10 +642,10 @@ describe('SbbProcessflow', () => {
       expect(steps[1].completed).toBe(false);
       expect(testComponent.twoGroup.get('twoCtrl')!.valid).toBe(false);
 
-      stepperComponent.reset();
+      processflowComponent.reset();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
       expect(steps[0].interacted).toBe(false);
       expect(steps[0].completed).toBe(false);
       expect(testComponent.oneGroup.get('oneCtrl')!.valid).toBe(false);
@@ -704,36 +657,36 @@ describe('SbbProcessflow', () => {
     });
 
     it('should reset back to the first step when some of the steps are not editable', () => {
-      const steps = stepperComponent.steps.toArray();
+      const steps = processflowComponent.steps.toArray();
 
       steps[0].editable = false;
 
       testComponent.oneGroup.get('oneCtrl')!.setValue('value');
       fixture.detectChanges();
 
-      stepperComponent.next();
+      processflowComponent.next();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
 
-      stepperComponent.reset();
+      processflowComponent.reset();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
     });
 
     it('should not clobber the `complete` binding when resetting', () => {
-      const steps: CdkStep[] = stepperComponent.steps.toArray();
+      const steps: CdkStep[] = processflowComponent.steps.toArray();
       const fillOutStepper = () => {
         testComponent.oneGroup.get('oneCtrl')!.setValue('input');
         testComponent.twoGroup.get('twoCtrl')!.setValue('input');
         testComponent.threeGroup.get('threeCtrl')!.setValue('valid');
         testComponent.validationTrigger.next();
-        stepperComponent.selectedIndex = 1;
+        processflowComponent.selectedIndex = 1;
         fixture.detectChanges();
-        stepperComponent.selectedIndex = 2;
+        processflowComponent.selectedIndex = 2;
         fixture.detectChanges();
-        stepperComponent.selectedIndex = 3;
+        processflowComponent.selectedIndex = 3;
         fixture.detectChanges();
       };
 
@@ -744,7 +697,7 @@ describe('SbbProcessflow', () => {
         'Expected third step to be considered complete after the first run through.'
       );
 
-      stepperComponent.reset();
+      processflowComponent.reset();
       fixture.detectChanges();
       fillOutStepper();
 
@@ -758,32 +711,32 @@ describe('SbbProcessflow', () => {
       expect(testComponent.oneGroup.get('oneCtrl')!.value).toBe('');
       expect(testComponent.oneGroup.get('oneCtrl')!.valid).toBe(false);
       expect(testComponent.oneGroup.valid).toBe(false);
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
 
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selectedIndex).toBe(0);
 
-      stepperComponent.steps.first.completed = true;
+      processflowComponent.steps.first.completed = true;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
       expect(testComponent.oneGroup.valid).toBe(false);
-      expect(stepperComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selectedIndex).toBe(1);
     });
   });
 
-  describe('linear stepper with a pre-defined selectedIndex', () => {
+  describe('linear processflow with a pre-defined selectedIndex', () => {
     let preselectedFixture: ComponentFixture<SimplePreselectedSbbHorizontalStepperApp>;
-    let stepper: SbbProcessflow;
+    let processflow: SbbProcessflow;
 
     beforeEach(() => {
       preselectedFixture = createComponent(SimplePreselectedSbbHorizontalStepperApp);
       preselectedFixture.detectChanges();
-      stepper = preselectedFixture.debugElement.query(
+      processflow = preselectedFixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
     });
@@ -793,39 +746,37 @@ describe('SbbProcessflow', () => {
     });
 
     it('selectedIndex should be typeof number', () => {
-      expect(typeof stepper.selectedIndex).toBe('number');
+      expect(typeof processflow.selectedIndex).toBe('number');
     });
 
     it('value of selectedIndex should be the pre-defined value', () => {
-      expect(stepper.selectedIndex).toBe(0);
+      expect(processflow.selectedIndex).toBe(0);
     });
   });
 
-  describe('linear stepper with no `stepControl`', () => {
+  describe('linear processflow with no `stepControl`', () => {
     let noStepControlFixture: ComponentFixture<SimpleStepperWithoutStepControl>;
     beforeEach(() => {
       noStepControlFixture = createComponent(SimpleStepperWithoutStepControl);
       noStepControlFixture.detectChanges();
     });
     it('should not move to the next step if the current one is not completed ', () => {
-      const stepper: SbbProcessflow = noStepControlFixture.debugElement.query(
+      const processflow: SbbProcessflow = noStepControlFixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
 
-      const headers = noStepControlFixture.debugElement.queryAll(
-        By.css('.sbb-horizontal-stepper-header')
-      );
+      const headers = noStepControlFixture.debugElement.queryAll(By.css('.sbb-processflow-header'));
 
-      expect(stepper.selectedIndex).toBe(0);
+      expect(processflow.selectedIndex).toBe(0);
 
       headers[1].nativeElement.click();
       noStepControlFixture.detectChanges();
 
-      expect(stepper.selectedIndex).toBe(0);
+      expect(processflow.selectedIndex).toBe(0);
     });
   });
 
-  describe('linear stepper with `stepControl`', () => {
+  describe('linear processflow with `stepControl`', () => {
     let controlAndBindingFixture: ComponentFixture<SimpleStepperWithStepControlAndCompletedBinding>;
     beforeEach(() => {
       controlAndBindingFixture = createComponent(SimpleStepperWithStepControlAndCompletedBinding);
@@ -836,73 +787,38 @@ describe('SbbProcessflow', () => {
       expect(controlAndBindingFixture.componentInstance.steps[0].control.valid).toBe(true);
       expect(controlAndBindingFixture.componentInstance.steps[0].completed).toBe(false);
 
-      const stepper: SbbProcessflow = controlAndBindingFixture.debugElement.query(
+      const processflow: SbbProcessflow = controlAndBindingFixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
 
       const headers = controlAndBindingFixture.debugElement.queryAll(
-        By.css('.sbb-horizontal-stepper-header')
+        By.css('.sbb-processflow-header')
       );
 
-      expect(stepper.selectedIndex).toBe(0);
+      expect(processflow.selectedIndex).toBe(0);
 
       headers[1].nativeElement.click();
       controlAndBindingFixture.detectChanges();
 
-      expect(stepper.selectedIndex).toBe(1);
+      expect(processflow.selectedIndex).toBe(1);
     });
   });
 
-  describe('vertical stepper', () => {
-    it('should set the aria-orientation to "vertical"', () => {
-      const fixture = createComponent(SimpleSbbVerticalStepperApp);
-      fixture.detectChanges();
-
-      const stepperEl = fixture.debugElement.query(By.css('sbb-processflow'))!.nativeElement;
-      expect(stepperEl.getAttribute('aria-orientation')).toBe('vertical');
-    });
-
-    it('should support using the left/right arrows to move focus', () => {
-      const fixture = createComponent(SimpleSbbVerticalStepperApp);
-      fixture.detectChanges();
-
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
-      assertCorrectKeyboardInteraction(fixture, stepHeaders, 'horizontal');
-    });
-
-    it('should support using the up/down arrows to move focus', () => {
-      const fixture = createComponent(SimpleSbbVerticalStepperApp);
-      fixture.detectChanges();
-
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
-      assertCorrectKeyboardInteraction(fixture, stepHeaders, 'vertical');
-    });
-
-    it('should reverse arrow key focus in RTL mode', () => {
-      dir.value = 'rtl';
-      const fixture = createComponent(SimpleSbbVerticalStepperApp);
-      fixture.detectChanges();
-
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
-      assertArrowKeyInteractionInRtl(fixture, stepHeaders);
-    });
-  });
-
-  describe('horizontal stepper', () => {
+  describe('horizontal processflow', () => {
     it('should set the aria-orientation to "horizontal"', () => {
       const fixture = createComponent(SimpleSbbHorizontalStepperApp);
       fixture.detectChanges();
 
-      const stepperEl = fixture.debugElement.query(By.css('sbb-processflow'))!.nativeElement;
-      expect(stepperEl.getAttribute('aria-orientation')).toBe('horizontal');
+      const processflowEl = fixture.debugElement.query(By.css('sbb-processflow'))!.nativeElement;
+      expect(processflowEl.getAttribute('aria-orientation')).toBe('horizontal');
     });
 
     it('should support using the left/right arrows to move focus', () => {
       const fixture = createComponent(SimpleSbbHorizontalStepperApp);
       fixture.detectChanges();
 
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-horizontal-stepper-header'));
-      assertCorrectKeyboardInteraction(fixture, stepHeaders, 'horizontal');
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'));
+      assertCorrectKeyboardInteraction(fixture, stepHeaders);
     });
 
     it('should reverse arrow key focus in RTL mode', () => {
@@ -910,7 +826,7 @@ describe('SbbProcessflow', () => {
       const fixture = createComponent(SimpleSbbHorizontalStepperApp);
       fixture.detectChanges();
 
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-horizontal-stepper-header'));
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'));
       assertArrowKeyInteractionInRtl(fixture, stepHeaders);
     });
 
@@ -918,8 +834,8 @@ describe('SbbProcessflow', () => {
       const fixture = createComponent(SimpleSbbHorizontalStepperApp);
       fixture.detectChanges();
 
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-horizontal-stepper-header'));
-      assertCorrectKeyboardInteraction(fixture, stepHeaders, 'horizontal');
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'));
+      assertCorrectKeyboardInteraction(fixture, stepHeaders);
 
       dir.value = 'rtl';
       dir.change.emit('rtl');
@@ -932,87 +848,89 @@ describe('SbbProcessflow', () => {
       const fixture = createComponent(SimpleSbbHorizontalStepperApp);
       fixture.detectChanges();
 
-      const stepper: SbbProcessflow = fixture.debugElement.query(
+      const processflow: SbbProcessflow = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       ).componentInstance;
 
-      expect(stepper.steps.map((step) => step.interacted)).toEqual([false, false, false]);
+      expect(processflow.steps.map((step) => step.interacted)).toEqual([false, false, false]);
 
-      stepper.next();
+      processflow.next();
       fixture.detectChanges();
-      expect(stepper.steps.map((step) => step.interacted)).toEqual([true, false, false]);
+      expect(processflow.steps.map((step) => step.interacted)).toEqual([true, false, false]);
 
-      stepper.next();
+      processflow.next();
       fixture.detectChanges();
-      expect(stepper.steps.map((step) => step.interacted)).toEqual([true, true, false]);
+      expect(processflow.steps.map((step) => step.interacted)).toEqual([true, true, false]);
 
-      stepper.next();
+      processflow.next();
       fixture.detectChanges();
-      expect(stepper.steps.map((step) => step.interacted)).toEqual([true, true, true]);
+      expect(processflow.steps.map((step) => step.interacted)).toEqual([true, true, true]);
     });
 
     it('should emit when the user has interacted with a step', () => {
       const fixture = createComponent(SimpleSbbHorizontalStepperApp);
       fixture.detectChanges();
 
-      const stepper: SbbProcessflow = fixture.debugElement.query(
+      const processflow: SbbProcessflow = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       ).componentInstance;
       const interactedSteps: number[] = [];
-      const subscription = merge(...stepper.steps.map((step) => step.interactedStream)).subscribe(
-        (step) => interactedSteps.push(stepper.steps.toArray().indexOf(step as SbbStep))
+      const subscription = merge(
+        ...processflow.steps.map((step) => step.interactedStream)
+      ).subscribe((step) =>
+        interactedSteps.push(processflow.steps.toArray().indexOf(step as SbbStep))
       );
 
       expect(interactedSteps).toEqual([]);
 
-      stepper.next();
+      processflow.next();
       fixture.detectChanges();
       expect(interactedSteps).toEqual([0]);
 
-      stepper.next();
+      processflow.next();
       fixture.detectChanges();
       expect(interactedSteps).toEqual([0, 1]);
 
-      stepper.next();
+      processflow.next();
       fixture.detectChanges();
       expect(interactedSteps).toEqual([0, 1, 2]);
       subscription.unsubscribe();
     });
   });
 
-  describe('linear stepper with valid step', () => {
+  describe('linear processflow with valid step', () => {
     let fixture: ComponentFixture<LinearStepperWithValidOptionalStep>;
     let testComponent: LinearStepperWithValidOptionalStep;
-    let stepper: SbbProcessflow;
+    let processflow: SbbProcessflow;
 
     beforeEach(() => {
       fixture = createComponent(LinearStepperWithValidOptionalStep);
       fixture.detectChanges();
 
       testComponent = fixture.componentInstance;
-      stepper = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
+      processflow = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
     });
 
     it('must be visited if not optional', () => {
-      stepper.selectedIndex = 2;
+      processflow.selectedIndex = 2;
       fixture.detectChanges();
-      expect(stepper.selectedIndex).toBe(0);
+      expect(processflow.selectedIndex).toBe(0);
 
-      stepper.selectedIndex = 1;
+      processflow.selectedIndex = 1;
       fixture.detectChanges();
-      expect(stepper.selectedIndex).toBe(1);
+      expect(processflow.selectedIndex).toBe(1);
 
-      stepper.selectedIndex = 2;
+      processflow.selectedIndex = 2;
       fixture.detectChanges();
-      expect(stepper.selectedIndex).toBe(2);
+      expect(processflow.selectedIndex).toBe(2);
     });
 
     it('can be skipped entirely if optional', () => {
       testComponent.step2Optional = true;
       fixture.detectChanges();
-      stepper.selectedIndex = 2;
+      processflow.selectedIndex = 2;
       fixture.detectChanges();
-      expect(stepper.selectedIndex).toBe(2);
+      expect(processflow.selectedIndex).toBe(2);
     });
   });
 
@@ -1055,9 +973,9 @@ describe('SbbProcessflow', () => {
     });
   });
 
-  describe('stepper with error state', () => {
+  describe('processflow with error state', () => {
     let fixture: ComponentFixture<SbbHorizontalStepperWithErrorsApp>;
-    let stepper: SbbProcessflow;
+    let processflow: SbbProcessflow;
 
     function createFixture(showErrorByDefault: boolean | undefined) {
       fixture = createComponent(
@@ -1071,7 +989,7 @@ describe('SbbProcessflow', () => {
         [SbbFormFieldModule, SbbInputModule]
       );
       fixture.detectChanges();
-      stepper = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
+      processflow = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
     }
 
     it('should show error state', () => {
@@ -1079,12 +997,12 @@ describe('SbbProcessflow', () => {
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
 
-      stepper.selectedIndex = 1;
-      stepper.steps.first.hasError = true;
+      processflow.selectedIndex = 1;
+      processflow.steps.first.hasError = true;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepper._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
+      expect(processflow._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
     });
 
     it('should respect a custom falsy hasError value', () => {
@@ -1092,16 +1010,16 @@ describe('SbbProcessflow', () => {
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
 
-      stepper.selectedIndex = 1;
+      processflow.selectedIndex = 1;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepper._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
+      expect(processflow._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
 
-      stepper.steps.first.hasError = false;
+      processflow.steps.first.hasError = false;
       fixture.detectChanges();
 
-      expect(stepper._getIndicatorType(0)).not.toBe(STEP_STATE.ERROR);
+      expect(processflow._getIndicatorType(0)).not.toBe(STEP_STATE.ERROR);
     });
 
     it('should show error state if explicitly enabled, even when disabled globally', () => {
@@ -1109,18 +1027,18 @@ describe('SbbProcessflow', () => {
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
 
-      stepper.selectedIndex = 1;
-      stepper.steps.first.hasError = true;
+      processflow.selectedIndex = 1;
+      processflow.steps.first.hasError = true;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepper._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
+      expect(processflow._getIndicatorType(0)).toBe(STEP_STATE.ERROR);
     });
   });
 
-  describe('stepper using Sbberial UI Guideline logic', () => {
+  describe('processflow using defined logic', () => {
     let fixture: ComponentFixture<SbbHorizontalStepperWithErrorsApp>;
-    let stepper: SbbProcessflow;
+    let processflow: SbbProcessflow;
 
     beforeEach(() => {
       fixture = createComponent(
@@ -1134,27 +1052,27 @@ describe('SbbProcessflow', () => {
         [SbbFormFieldModule, SbbInputModule]
       );
       fixture.detectChanges();
-      stepper = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
+      processflow = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
     });
 
     it('should show done state when step is completed and its not the current step', () => {
       const nextButtonNativeEl = fixture.debugElement.queryAll(By.directive(SbbProcessflowNext))[0]
         .nativeElement;
 
-      stepper.selectedIndex = 1;
-      stepper.steps.first.completed = true;
+      processflow.selectedIndex = 1;
+      processflow.steps.first.completed = true;
       nextButtonNativeEl.click();
       fixture.detectChanges();
 
-      expect(stepper._getIndicatorType(0)).toBe(STEP_STATE.DONE);
+      expect(processflow._getIndicatorType(0)).toBe(STEP_STATE.DONE);
     });
 
     it('should show edit state when step is editable and its the current step', () => {
-      stepper.selectedIndex = 1;
-      stepper.steps.toArray()[1].editable = true;
+      processflow.selectedIndex = 1;
+      processflow.steps.toArray()[1].editable = true;
       fixture.detectChanges();
 
-      expect(stepper._getIndicatorType(1)).toBe(STEP_STATE.EDIT);
+      expect(processflow._getIndicatorType(1)).toBe(STEP_STATE.EDIT);
     });
   });
 
@@ -1163,71 +1081,29 @@ describe('SbbProcessflow', () => {
       const fixture = createComponent(StepperWithIndirectDescendantSteps);
       fixture.detectChanges();
 
-      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-vertical-stepper-header'));
-      const stepperComponent = fixture.debugElement.query(
+      const stepHeaders = fixture.debugElement.queryAll(By.css('.sbb-processflow-header'));
+      const processflowComponent = fixture.debugElement.query(
         By.directive(SbbProcessflow)
       )!.componentInstance;
 
-      expect(stepperComponent.selectedIndex).toBe(0);
-      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+      expect(processflowComponent.selectedIndex).toBe(0);
+      expect(processflowComponent.selected instanceof SbbStep).toBe(true);
 
       // select the second step
       let stepHeaderEl = stepHeaders[1].nativeElement;
       stepHeaderEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(1);
-      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
+      expect(processflowComponent.selectedIndex).toBe(1);
+      expect(processflowComponent.selected instanceof SbbStep).toBe(true);
 
       // select the third step
       stepHeaderEl = stepHeaders[2].nativeElement;
       stepHeaderEl.click();
       fixture.detectChanges();
 
-      expect(stepperComponent.selectedIndex).toBe(2);
-      expect(stepperComponent.selected instanceof SbbStep).toBe(true);
-    });
-
-    it('should allow for the `edit` icon to be overridden', () => {
-      const fixture = createComponent(IndirectDescendantIconOverridesStepper);
-      fixture.detectChanges();
-
-      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
-      const stepperComponent: SbbProcessflow = stepperDebugElement.componentInstance;
-
-      stepperComponent.steps.toArray()[0].editable = true;
-      stepperComponent.next();
-      fixture.detectChanges();
-
-      const header = stepperDebugElement.nativeElement.querySelector('sbb-step-header');
-
-      expect(header.textContent).toContain('Custom edit');
-    });
-
-    it('should allow for the `done` icon to be overridden', () => {
-      const fixture = createComponent(IndirectDescendantIconOverridesStepper);
-      fixture.detectChanges();
-
-      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
-      const stepperComponent: SbbProcessflow = stepperDebugElement.componentInstance;
-
-      stepperComponent.steps.toArray()[0].editable = false;
-      stepperComponent.next();
-      fixture.detectChanges();
-
-      const header = stepperDebugElement.nativeElement.querySelector('sbb-step-header');
-
-      expect(header.textContent).toContain('Custom done');
-    });
-
-    it('should allow for the `number` icon to be overridden with context', () => {
-      const fixture = createComponent(IndirectDescendantIconOverridesStepper);
-      fixture.detectChanges();
-
-      const stepperDebugElement = fixture.debugElement.query(By.directive(SbbProcessflow))!;
-      const headers = stepperDebugElement.nativeElement.querySelectorAll('sbb-step-header');
-
-      expect(headers[2].textContent).toContain('III');
+      expect(processflowComponent.selectedIndex).toBe(2);
+      expect(processflowComponent.selected instanceof SbbStep).toBe(true);
     });
   });
 
@@ -1243,33 +1119,33 @@ describe('SbbProcessflow', () => {
     expect(fixture.nativeElement.querySelectorAll('.sbb-step-header').length).toBe(2);
   });
 
-  it('should not pick up the steps from descendant steppers', () => {
+  it('should not pick up the steps from descendant processflows', () => {
     const fixture = createComponent(NestedSteppers);
     fixture.detectChanges();
-    const steppers = fixture.componentInstance.steppers.toArray();
+    const processflows = fixture.componentInstance.processflows.toArray();
 
-    expect(steppers[0].steps.length).toBe(3);
-    expect(steppers[1].steps.length).toBe(2);
+    expect(processflows[0].steps.length).toBe(3);
+    expect(processflows[1].steps.length).toBe(2);
   });
 
   it('should not throw when trying to change steps after initializing to an out-of-bounds index', () => {
     const fixture = createComponent(StepperWithStaticOutOfBoundsIndex);
     fixture.detectChanges();
-    const stepper = fixture.componentInstance.stepper;
+    const processflow = fixture.componentInstance.processflow;
 
-    expect(stepper.selectedIndex).toBe(0);
-    expect(stepper.selected).toBeTruthy();
+    expect(processflow.selectedIndex).toBe(0);
+    expect(processflow.selected).toBeTruthy();
 
     expect(() => {
-      stepper.selectedIndex = 1;
+      processflow.selectedIndex = 1;
       fixture.detectChanges();
     }).not.toThrow();
 
-    expect(stepper.selectedIndex).toBe(1);
-    expect(stepper.selected).toBeTruthy();
+    expect(processflow.selectedIndex).toBe(1);
+    expect(processflow.selected).toBeTruthy();
   });
 
-  describe('stepper with lazy content', () => {
+  describe('processflow with lazy content', () => {
     it('should render the content of the selected step on init', () => {
       const fixture = createComponent(StepperWithLazyContent);
       const element = fixture.nativeElement;
@@ -1311,27 +1187,26 @@ describe('SbbProcessflow', () => {
 /** Asserts that keyboard interaction works correctly. */
 function assertCorrectKeyboardInteraction(
   fixture: ComponentFixture<any>,
-  stepHeaders: DebugElement[],
-  orientation: StepperOrientation
+  stepHeaders: DebugElement[]
 ) {
-  const stepperComponent = fixture.debugElement.query(
+  const processflowComponent = fixture.debugElement.query(
     By.directive(SbbProcessflow)
   )!.componentInstance;
-  const nextKey = orientation === 'vertical' ? DOWN_ARROW : RIGHT_ARROW;
-  const prevKey = orientation === 'vertical' ? UP_ARROW : LEFT_ARROW;
+  const nextKey = RIGHT_ARROW;
+  const prevKey = LEFT_ARROW;
 
-  expect(stepperComponent._getFocusIndex()).toBe(0);
-  expect(stepperComponent.selectedIndex).toBe(0);
+  expect(processflowComponent._getFocusIndex()).toBe(0);
+  expect(processflowComponent.selectedIndex).toBe(0);
 
   let stepHeaderEl = stepHeaders[0].nativeElement;
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', nextKey);
   fixture.detectChanges();
 
-  expect(stepperComponent._getFocusIndex()).toBe(
+  expect(processflowComponent._getFocusIndex()).toBe(
     1,
     'Expected index of focused step to increase by 1 after pressing the next key.'
   );
-  expect(stepperComponent.selectedIndex).toBe(
+  expect(processflowComponent.selectedIndex).toBe(
     0,
     'Expected index of selected step to remain unchanged after pressing the next key.'
   );
@@ -1340,11 +1215,11 @@ function assertCorrectKeyboardInteraction(
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', ENTER);
   fixture.detectChanges();
 
-  expect(stepperComponent._getFocusIndex()).toBe(
+  expect(processflowComponent._getFocusIndex()).toBe(
     1,
     'Expected index of focused step to remain unchanged after ENTER event.'
   );
-  expect(stepperComponent.selectedIndex).toBe(
+  expect(processflowComponent.selectedIndex).toBe(
     1,
     'Expected index of selected step to change to index of focused step after ENTER event.'
   );
@@ -1353,27 +1228,27 @@ function assertCorrectKeyboardInteraction(
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', prevKey);
   fixture.detectChanges();
 
-  expect(stepperComponent._getFocusIndex()).toBe(
+  expect(processflowComponent._getFocusIndex()).toBe(
     0,
     'Expected index of focused step to decrease by 1 after pressing the previous key.'
   );
-  expect(stepperComponent.selectedIndex).toBe(
+  expect(processflowComponent.selectedIndex).toBe(
     1,
     'Expected index of selected step to remain unchanged after pressing the previous key.'
   );
 
   // When the focus is on the last step and right arrow key is pressed, the focus should cycle
   // through to the first step.
-  stepperComponent._keyManager.updateActiveItem(2);
+  processflowComponent._keyManager.updateActiveItem(2);
   stepHeaderEl = stepHeaders[2].nativeElement;
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', nextKey);
   fixture.detectChanges();
 
-  expect(stepperComponent._getFocusIndex()).toBe(
+  expect(processflowComponent._getFocusIndex()).toBe(
     0,
     'Expected index of focused step to cycle through to index 0 after pressing the next key.'
   );
-  expect(stepperComponent.selectedIndex).toBe(
+  expect(processflowComponent.selectedIndex).toBe(
     1,
     'Expected index of selected step to remain unchanged after pressing the next key.'
   );
@@ -1382,24 +1257,24 @@ function assertCorrectKeyboardInteraction(
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', SPACE);
   fixture.detectChanges();
 
-  expect(stepperComponent._getFocusIndex()).toBe(
+  expect(processflowComponent._getFocusIndex()).toBe(
     0,
     'Expected index of focused to remain unchanged after SPACE event.'
   );
-  expect(stepperComponent.selectedIndex).toBe(
+  expect(processflowComponent.selectedIndex).toBe(
     0,
     'Expected index of selected step to change to index of focused step after SPACE event.'
   );
 
   const endEvent = dispatchKeyboardEvent(stepHeaderEl, 'keydown', END);
-  expect(stepperComponent._getFocusIndex()).toBe(
+  expect(processflowComponent._getFocusIndex()).toBe(
     stepHeaders.length - 1,
     'Expected last step to be focused when pressing END.'
   );
   expect(endEvent.defaultPrevented).toBe(true, 'Expected default END action to be prevented.');
 
   const homeEvent = dispatchKeyboardEvent(stepHeaderEl, 'keydown', HOME);
-  expect(stepperComponent._getFocusIndex()).toBe(
+  expect(processflowComponent._getFocusIndex()).toBe(
     0,
     'Expected first step to be focused when pressing HOME.'
   );
@@ -1411,52 +1286,47 @@ function assertArrowKeyInteractionInRtl(
   fixture: ComponentFixture<any>,
   stepHeaders: DebugElement[]
 ) {
-  const stepperComponent = fixture.debugElement.query(
+  const processflowComponent = fixture.debugElement.query(
     By.directive(SbbProcessflow)
   )!.componentInstance;
 
-  expect(stepperComponent._getFocusIndex()).toBe(0);
+  expect(processflowComponent._getFocusIndex()).toBe(0);
 
   let stepHeaderEl = stepHeaders[0].nativeElement;
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', LEFT_ARROW);
   fixture.detectChanges();
 
-  expect(stepperComponent._getFocusIndex()).toBe(1);
+  expect(processflowComponent._getFocusIndex()).toBe(1);
 
   stepHeaderEl = stepHeaders[1].nativeElement;
   dispatchKeyboardEvent(stepHeaderEl, 'keydown', RIGHT_ARROW);
   fixture.detectChanges();
 
-  expect(stepperComponent._getFocusIndex()).toBe(0);
+  expect(processflowComponent._getFocusIndex()).toBe(0);
 }
 
 /** Asserts that keyboard interaction works correctly when the user is pressing a modifier key. */
 function assertSelectKeyWithModifierInteraction(
   fixture: ComponentFixture<any>,
   stepHeaders: DebugElement[],
-  orientation: StepperOrientation,
   selectionKey: number
 ) {
-  const stepperComponent = fixture.debugElement.query(
+  const processflowComponent = fixture.debugElement.query(
     By.directive(SbbProcessflow)
   )!.componentInstance;
   const modifiers = ['altKey', 'shiftKey', 'ctrlKey', 'metaKey'];
 
-  expect(stepperComponent._getFocusIndex()).toBe(0);
-  expect(stepperComponent.selectedIndex).toBe(0);
+  expect(processflowComponent._getFocusIndex()).toBe(0);
+  expect(processflowComponent.selectedIndex).toBe(0);
 
-  dispatchKeyboardEvent(
-    stepHeaders[0].nativeElement,
-    'keydown',
-    orientation === 'vertical' ? DOWN_ARROW : RIGHT_ARROW
-  );
+  dispatchKeyboardEvent(stepHeaders[0].nativeElement, 'keydown', RIGHT_ARROW);
   fixture.detectChanges();
 
-  expect(stepperComponent._getFocusIndex()).toBe(
+  expect(processflowComponent._getFocusIndex()).toBe(
     1,
     'Expected index of focused step to increase by 1 after pressing the next key.'
   );
-  expect(stepperComponent.selectedIndex).toBe(
+  expect(processflowComponent.selectedIndex).toBe(
     0,
     'Expected index of selected step to remain unchanged after pressing the next key.'
   );
@@ -1467,7 +1337,7 @@ function assertSelectKeyWithModifierInteraction(
     dispatchEvent(stepHeaders[1].nativeElement, event);
     fixture.detectChanges();
 
-    expect(stepperComponent.selectedIndex).toBe(
+    expect(processflowComponent.selectedIndex).toBe(
       0,
       `Expected selected index to remain unchanged ` +
         `when pressing the selection key with ${modifier} modifier.`
@@ -1493,7 +1363,13 @@ function createComponent<T>(
   imports: any[] = []
 ): ComponentFixture<T> {
   TestBed.configureTestingModule({
-    imports: [SbbProcessflowModule, NoopAnimationsModule, ReactiveFormsModule, ...imports],
+    imports: [
+      SbbProcessflowModule,
+      SbbIconTestingModule,
+      NoopAnimationsModule,
+      ReactiveFormsModule,
+      ...imports,
+    ],
     declarations: [component],
     providers: [{ provide: Directionality, useFactory: () => dir }, ...providers],
   }).compileComponents();
@@ -1505,14 +1381,11 @@ function createComponent<T>(
   template: `
     <form [formGroup]="formGroup">
       <sbb-processflow>
-        <sbb-step
-          errorMessage="This field is required"
-          [stepControl]="formGroup.get('firstNameCtrl')"
-        >
+        <sbb-step [stepControl]="formGroup.get('firstNameCtrl')">
           <ng-template sbbStepLabel>Step 1</ng-template>
           <sbb-form-field>
             <sbb-label>First name</sbb-label>
-            <input matInput formControlName="firstNameCtrl" required />
+            <input sbbInput formControlName="firstNameCtrl" required />
             <sbb-error>This field is required</sbb-error>
           </sbb-form-field>
           <div>
@@ -1547,7 +1420,7 @@ class SbbHorizontalStepperWithErrorsApp implements OnInit {
 
 @Component({
   template: `
-    <sbb-processflow [disableRipple]="disableRipple">
+    <sbb-processflow>
       <sbb-step>
         <ng-template sbbStepLabel>Step 1</ng-template>
         Content 1
@@ -1576,12 +1449,11 @@ class SbbHorizontalStepperWithErrorsApp implements OnInit {
 })
 class SimpleSbbHorizontalStepperApp {
   inputLabel = 'Step 3';
-  disableRipple = false;
 }
 
 @Component({
   template: `
-    <sbb-stepper orientation="vertical" [disableRipple]="disableRipple">
+    <sbb-processflow>
       <sbb-step>
         <ng-template sbbStepLabel>Step 1</ng-template>
         Content 1
@@ -1605,7 +1477,7 @@ class SimpleSbbHorizontalStepperApp {
           <button sbb-button sbbProcessflowNext>Next</button>
         </div>
       </sbb-step>
-    </sbb-stepper>
+    </sbb-processflow>
   `,
 })
 class SimpleSbbVerticalStepperApp {
@@ -1616,7 +1488,7 @@ class SimpleSbbVerticalStepperApp {
 
 @Component({
   template: `
-    <sbb-processflow orientation="vertical" linear>
+    <sbb-processflow linear>
       <sbb-step [stepControl]="oneGroup">
         <form [formGroup]="oneGroup">
           <ng-template sbbStepLabel>Step one</ng-template>
@@ -1725,58 +1597,6 @@ class SimpleStepperWithStepControlAndCompletedBinding {
 
 @Component({
   template: `
-    <sbb-processflow>
-      <ng-template sbbProcessflowIcon="edit">Custom edit</ng-template>
-      <ng-template sbbProcessflowIcon="done">Custom done</ng-template>
-      <ng-template sbbProcessflowIcon="number" let-index="index">
-        {{ getRomanNumeral(index + 1) }}
-      </ng-template>
-
-      <sbb-step>Content 1</sbb-step>
-      <sbb-step>Content 2</sbb-step>
-      <sbb-step>Content 3</sbb-step>
-    </sbb-processflow>
-  `,
-})
-class IconOverridesStepper {
-  getRomanNumeral(value: number) {
-    const numberMap: { [key: number]: string } = {
-      1: 'I',
-      2: 'II',
-      3: 'III',
-      4: 'IV',
-      5: 'V',
-      6: 'VI',
-      7: 'VII',
-      8: 'VIII',
-      9: 'IX',
-    };
-
-    return numberMap[value];
-  }
-}
-
-@Component({
-  template: `
-    <sbb-processflow>
-      <ng-container [ngSwitch]="true">
-        <ng-template sbbProcessflowIcon="edit">Custom edit</ng-template>
-        <ng-template sbbProcessflowIcon="done">Custom done</ng-template>
-        <ng-template sbbProcessflowIcon="number" let-index="index">
-          {{ getRomanNumeral(index + 1) }}
-        </ng-template>
-      </ng-container>
-
-      <sbb-step>Content 1</sbb-step>
-      <sbb-step>Content 2</sbb-step>
-      <sbb-step>Content 3</sbb-step>
-    </sbb-processflow>
-  `,
-})
-class IndirectDescendantIconOverridesStepper extends IconOverridesStepper {}
-
-@Component({
-  template: `
     <sbb-processflow linear>
       <sbb-step label="Step 1" [stepControl]="controls[0]"></sbb-step>
       <sbb-step label="Step 2" [stepControl]="controls[1]" [optional]="step2Optional"></sbb-step>
@@ -1803,7 +1623,7 @@ class StepperWithAriaInputs {
 
 @Component({
   template: `
-    <sbb-processflow orientation="vertical">
+    <sbb-processflow>
       <ng-container [ngSwitch]="true">
         <sbb-step label="Step 1">Content 1</sbb-step>
         <sbb-step label="Step 2">Content 2</sbb-step>
@@ -1816,7 +1636,7 @@ class StepperWithIndirectDescendantSteps {}
 
 @Component({
   template: `
-    <sbb-processflow orientation="vertical">
+    <sbb-processflow>
       <sbb-step>
         <ng-template sbbStepLabel>Step 1</ng-template>
       </sbb-step>
@@ -1833,7 +1653,7 @@ class StepperWithNgIf {
 
 @Component({
   template: `
-    <sbb-processflow orientation="vertical">
+    <sbb-processflow>
       <sbb-step label="Step 1">Content 1</sbb-step>
       <sbb-step label="Step 2">Content 2</sbb-step>
       <sbb-step label="Step 3">
@@ -1846,12 +1666,12 @@ class StepperWithNgIf {
   `,
 })
 class NestedSteppers {
-  @ViewChildren(SbbProcessflow) steppers: QueryList<SbbProcessflow>;
+  @ViewChildren(SbbProcessflow) processflows: QueryList<SbbProcessflow>;
 }
 
 @Component({
   template: `
-    <sbb-processflow orientation="vertical" selectedIndex="1337">
+    <sbb-processflow selectedIndex="1337">
       <sbb-step label="Step 1">Content 1</sbb-step>
       <sbb-step label="Step 2">Content 2</sbb-step>
       <sbb-step label="Step 3">Content 3</sbb-step>
@@ -1859,12 +1679,12 @@ class NestedSteppers {
   `,
 })
 class StepperWithStaticOutOfBoundsIndex {
-  @ViewChild(SbbProcessflow) stepper: SbbProcessflow;
+  @ViewChild(SbbProcessflow) processflow: SbbProcessflow;
 }
 
 @Component({
   template: `
-    <sbb-processflow orientation="vertical" [selectedIndex]="selectedIndex">
+    <sbb-processflow [selectedIndex]="selectedIndex">
       <sbb-step>
         <ng-template sbbStepLabel>Step 1</ng-template>
         <ng-template sbbStepContent>Step 1 content</ng-template>
