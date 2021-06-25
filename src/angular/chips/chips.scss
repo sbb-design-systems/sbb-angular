@@ -53,7 +53,7 @@ $chipsRightPadding: 8;
   @include ellipsis();
 
   height: pxToEm(36);
-  border-radius: pxToEm(36 / 2);
+  border-radius: pxToEm(private-div(36, 2));
   color: $sbbColorIron;
   background-color: $sbbColorCloud;
   max-width: 100%;
@@ -78,7 +78,7 @@ $chipsRightPadding: 8;
 
   html.sbb-lean & {
     height: pxToEm(30);
-    border-radius: pxToEm(30 / 2);
+    border-radius: pxToEm(private-div(30, 2));
     margin: pxToEm(2);
     padding-top: pxToEm(7);
     padding-bottom: pxToEm(6);

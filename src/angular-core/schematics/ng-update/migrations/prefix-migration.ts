@@ -193,7 +193,7 @@ export class PrefixMigration extends Migration<any, DevkitContext> {
     while (fileName) {
       const dir = dirname(fileName);
       const publicApi = this.fileSystem.resolve(fileName, 'public-api.ts');
-      if (this.fileSystem.exists(publicApi)) {
+      if (this.fileSystem.fileExists(publicApi)) {
         return publicApi;
       }
       fileName = dir;

@@ -1,0 +1,11 @@
+@use 'sass:math';
+@use 'sass:meta';
+
+// Private polyfill for the `math.div` function from Sass..
+@function private-div($a, $b) {
+  @if (meta.function-exists('div', 'math')) {
+    @return math.div($a, $b);
+  } @else {
+    @return $a / $b;
+  }
+}

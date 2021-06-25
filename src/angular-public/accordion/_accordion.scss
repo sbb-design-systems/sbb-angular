@@ -13,5 +13,5 @@ $sbb-accordion-body-expanded-border-color: $sbbColorCloud;
   $sbb-accordion-content-padding: pxToEm(12) pxToEm(16) pxToEm(13) pxToEm(16);
   $sbb-accordion-header-padding: pxToEm(12) pxToEm(16) pxToEm(13) pxToEm(16);
   $sbb-accordion-divider-left: 16;
-  $sbb-accordion-header-content-line-height: toEm(24 / $sbb-accordion-header-font-size);
+  $sbb-accordion-header-content-line-height: toEm(private-div(24, $sbb-accordion-header-font-size));
 }

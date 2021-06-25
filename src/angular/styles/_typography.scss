@@ -67,7 +67,7 @@ html {
   background: $sbbColorBg;
   color: $sbbColorText;
   font-family: $fontSbbRoman;
-  font-size: $sizeFontBase / 16px * 100%;
+  font-size: private-div($sizeFontBase, 16px) * 100%;
   line-height: pxToRem($sizeLineHeightDefault);
 
   @include fontSmoothing;
@@ -1740,7 +1740,7 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
   @each $from, $max in $sbbSelectionPanelResolutions {
     @for $i from 2 through $max {
       &.sbb-col-#{$from}-#{$i} .sbb-selection-panel-item {
-        $percentage: toPercent(1 / $i);
+        $percentage: toPercent(private-div(1, $i));
         @include mq($from: $from) {
           flex-basis: calc(#{$percentage} - #{pxToEm($sbbSelectionPanelMargin * 2)});
           max-width: calc(#{$percentage} - #{pxToEm($sbbSelectionPanelMargin * 2)});

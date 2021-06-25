@@ -162,8 +162,12 @@ $sbbExpansionPanelBorderWidth4k: 2;
       margin-left: pxToRem(40);
 
       // Ensure calculated height of icon is not higher than line-height
-      margin-top: pxToRem(($sbbExpansionPanelHeaderLineHeightStandardTablet - $iconSize) / 2);
-      margin-bottom: pxToRem(($sbbExpansionPanelHeaderLineHeightStandardTablet - $iconSize) / 2);
+      margin-top: pxToRem(
+        private-div(($sbbExpansionPanelHeaderLineHeightStandardTablet - $iconSize), 2)
+      );
+      margin-bottom: pxToRem(
+        private-div(($sbbExpansionPanelHeaderLineHeightStandardTablet - $iconSize), 2)
+      );
     }
 
     @include mq($from: desktop) {
@@ -179,8 +183,12 @@ $sbbExpansionPanelBorderWidth4k: 2;
       margin-left: pxToRem(36);
 
       // Ensure calculated height of icon is not higher than line-height
-      margin-top: pxToRem(($sbbExpansionPanelHeaderLineHeightStandard4k - $iconSize) / 2);
-      margin-bottom: pxToRem(($sbbExpansionPanelHeaderLineHeightStandard4k - $iconSize) / 2);
+      margin-top: pxToRem(
+        private-div(($sbbExpansionPanelHeaderLineHeightStandard4k - $iconSize), 2)
+      );
+      margin-bottom: pxToRem(
+        private-div(($sbbExpansionPanelHeaderLineHeightStandard4k - $iconSize), 2)
+      );
     }
 
     @include mq($from: desktop5k) {
@@ -191,8 +199,12 @@ $sbbExpansionPanelBorderWidth4k: 2;
       margin-left: pxToRem(44);
 
       // Ensure calculated height of icon is not higher than line-height
-      margin-top: pxToRem(($sbbExpansionPanelHeaderLineHeightStandard5k - $iconSize) / 2);
-      margin-bottom: pxToRem(($sbbExpansionPanelHeaderLineHeightStandard5k - $iconSize) / 2);
+      margin-top: pxToRem(
+        private-div(($sbbExpansionPanelHeaderLineHeightStandard5k - $iconSize), 2)
+      );
+      margin-bottom: pxToRem(
+        private-div(($sbbExpansionPanelHeaderLineHeightStandard5k - $iconSize), 2)
+      );
     }
   }
 }

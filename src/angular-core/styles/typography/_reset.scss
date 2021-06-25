@@ -22,7 +22,7 @@
     background: $sbbColorBg;
     color: $sbbColorText;
     font-family: $fontSbbRoman;
-    font-size: $sizeFontBase / 16px * 100%;
+    font-size: private-div($sizeFontBase, 16px) * 100%;
     line-height: $sizeLineHeightBase;
 
     @include fontSmoothing;

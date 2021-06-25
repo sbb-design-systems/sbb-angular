@@ -24,10 +24,10 @@ http_archive(
 # Add sass rules
 http_archive(
     name = "io_bazel_rules_sass",
-    sha256 = "9ad74e6e75a86939f4349b31d43bb1db4279e4f2a139c5ebaf56cf99feea1faa",
-    strip_prefix = "rules_sass-1.32.8",
+    sha256 = "80d3e70ab5a8d59494aa9e3a7e4722f9f9a6fe98d1497be6bfa0b9e106b1ea54",
+    strip_prefix = "rules_sass-1.34.1",
     urls = [
-        "https://github.com/bazelbuild/rules_sass/archive/1.32.8.zip",
+        "https://github.com/bazelbuild/rules_sass/archive/1.34.1.zip",
     ],
 )
 
@@ -73,12 +73,11 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
 
 sass_repositories()
 
-# Load pinned rules_webtesting browser versions for tests.
-#
-# TODO(wagnermaciel): deduplicate browsers - this will load another version of chromium in the
-# repository. We probably want to use the chromium version loaded here (from dev-infra) as that
-# one has RBE improvements.
-load("@npm//@angular/dev-infra-private/browsers:browser_repositories.bzl", _dev_infra_browser_repositories = "browser_repositories")
+# Setup repositories for browsers provided by the shared dev-infra package.
+load(
+    "@npm//@angular/dev-infra-private/bazel/browsers:browser_repositories.bzl",
+    _dev_infra_browser_repositories = "browser_repositories",
+)
 
 _dev_infra_browser_repositories()
 
