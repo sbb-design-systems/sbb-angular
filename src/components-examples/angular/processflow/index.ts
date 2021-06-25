@@ -1,17 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field';
 import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
 
-import { ProcessflowExample } from './processflow/processflow-example';
+import { ProcessflowEditableExample } from './processflow-editable/processflow-editable-example';
+import { ProcessflowLazyContentExample } from './processflow-lazy-content/processflow-lazy-content-example';
+import { ProcessflowOverviewExample } from './processflow-overview/processflow-overview-example';
 
-export { ProcessflowExample };
+export { ProcessflowEditableExample, ProcessflowOverviewExample, ProcessflowLazyContentExample };
 
-const EXAMPLES = [ProcessflowExample];
+const EXAMPLES = [
+  ProcessflowEditableExample,
+  ProcessflowOverviewExample,
+  ProcessflowLazyContentExample,
+];
 
 @NgModule({
-  imports: [CommonModule, SbbButtonModule, SbbProcessflowModule],
+  imports: [
+    FormsModule,
+    SbbButtonModule,
+    SbbFormFieldModule,
+    SbbInputModule,
+    SbbProcessflowModule,
+    ReactiveFormsModule,
+    CommonModule,
+  ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
+  entryComponents: EXAMPLES,
 })
 export class ProcessflowExamplesModule {}

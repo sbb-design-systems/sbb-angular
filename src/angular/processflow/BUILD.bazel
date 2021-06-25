@@ -11,18 +11,25 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "processflow",
-    srcs = [":.processflow-step/processflow-step.ts"] + glob(
+    srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":processflow.css"] + glob(["**/*.html"]),
+    assets = [
+        ":processflow.css",
+        ":step-header.css",
+    ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/processflow",
     deps = [
+        "//src/angular/button",
+        "//src/angular/core",
         "//src/angular/icon",
-        "//src/angular/processflow",
+        "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
     ],
 )
 
@@ -30,7 +37,15 @@ sass_binary(
     name = "processflow_scss",
     src = "processflow.scss",
     deps = [
-        ":processflow_scss_lib",
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "step_header_scss",
+    src = "step-header.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 
@@ -43,8 +58,11 @@ ng_test_library(
     deps = [
         ":processflow",
         "//src/angular/core/testing",
-        "//src/angular/icon",
-        "//src/angular/icon/testing",
+        "//src/angular/form-field",
+        "@npm//@angular/cdk",
+        "@npm//@angular/forms",
+        "@npm//@angular/platform-browser",
+        "@npm//rxjs",
     ],
 )
 

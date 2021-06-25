@@ -26,7 +26,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -48,10 +48,13 @@ import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field
 import { merge, Observable, Subject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
-import { SbbProcessflowModule, SbbStepHeader } from './index';
-import { SbbProcessflow, SbbStep } from './processflow';
-import { SbbProcessflowNext, SbbProcessflowPrevious } from './processflow-button';
-import { SbbProcessflowIntl } from './processflow-intl';
+import {
+  SbbProcessflow,
+  SbbProcessflowModule,
+  SbbProcessflowNext,
+  SbbProcessflowPrevious,
+  SbbStep,
+} from './index';
 
 const VALID_REGEX = /valid/;
 let dir: { value: Direction; readonly change: EventEmitter<Direction> };
@@ -446,33 +449,6 @@ describe('SbbProcessflow', () => {
       expect(() => (stepperComponent.selected = null!)).not.toThrow();
       expect(stepperComponent.selectedIndex).toBe(-1);
     });
-  });
-
-  describe('basic stepper with i18n label change', () => {
-    let i18nFixture: ComponentFixture<SimpleSbbHorizontalStepperApp>;
-
-    beforeEach(() => {
-      i18nFixture = createComponent(SimpleSbbHorizontalStepperApp);
-      i18nFixture.detectChanges();
-    });
-
-    it('should re-render when the i18n labels change', inject(
-      [SbbProcessflowIntl],
-      (intl: SbbProcessflowIntl) => {
-        const header = i18nFixture.debugElement.queryAll(By.css('sbb-step-header'))[2]
-          .nativeElement;
-        const optionalLabel = header.querySelector('.sbb-step-optional');
-
-        expect(optionalLabel).toBeTruthy();
-        expect(optionalLabel.textContent).toBe('Optional');
-
-        intl.optionalLabel = 'Valgfri';
-        intl.changes.next();
-        i18nFixture.detectChanges();
-
-        expect(optionalLabel.textContent).toBe('Valgfri');
-      }
-    ));
   });
 
   describe('icon overrides', () => {

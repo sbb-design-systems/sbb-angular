@@ -1,10 +1,8 @@
-export { StepperOrientation, StepState } from '@angular/cdk/stepper';
-export * from './processflow-module';
+export { StepState } from '@angular/cdk/stepper';
+export * from './processflow.module';
 export * from './step-label';
 export * from './processflow';
 export * from './processflow-button';
 export * from './step-header';
-export * from './processflow-intl';
 export * from './processflow-animations';
-export * from './processflow-icon';
 export * from './step-content';

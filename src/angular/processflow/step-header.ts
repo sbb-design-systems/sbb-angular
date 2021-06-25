@@ -3,18 +3,13 @@ import { CdkStepHeader, StepState } from '@angular/cdk/stepper';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   Input,
   OnDestroy,
-  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 
-import { SbbProcessflowIconContext } from './processflow-icon';
-import { SbbProcessflowIntl } from './processflow-intl';
 import { SbbStepLabel } from './step-label';
 
 @Component({
@@ -29,19 +24,11 @@ import { SbbStepLabel } from './step-label';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDestroy {
-  private _intlSubscription: Subscription;
-
   /** State of the given step. */
   @Input() state: StepState;
 
   /** Label of the given step. */
   @Input() label: SbbStepLabel | string;
-
-  /** Error message to display when there's an error. */
-  @Input() errorMessage: string;
-
-  /** Overrides for the header icons, passed in via the stepper. */
-  @Input() iconOverrides: { [key: string]: TemplateRef<SbbProcessflowIconContext> };
 
   /** Index of the given step. */
   @Input() index: number;
@@ -55,14 +42,8 @@ export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDes
   /** Whether the given step is optional. */
   @Input() optional: boolean;
 
-  constructor(
-    public _intl: SbbProcessflowIntl,
-    private _focusMonitor: FocusMonitor,
-    elementRef: ElementRef<HTMLElement>,
-    changeDetectorRef: ChangeDetectorRef
-  ) {
+  constructor(private _focusMonitor: FocusMonitor, elementRef: ElementRef<HTMLElement>) {
     super(elementRef);
-    this._intlSubscription = _intl.changes.subscribe(() => changeDetectorRef.markForCheck());
   }
 
   ngAfterViewInit() {
@@ -70,7 +51,6 @@ export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDes
   }
 
   ngOnDestroy() {
-    this._intlSubscription.unsubscribe();
     this._focusMonitor.stopMonitoring(this._elementRef);
   }
 
@@ -96,27 +76,5 @@ export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDes
   /** Returns the host HTML element. */
   _getHostElement() {
     return this._elementRef.nativeElement;
-  }
-
-  /** Template context variables that are exposed to the `sbbProcessflowIcon` instances. */
-  _getIconContext(): SbbProcessflowIconContext {
-    return {
-      index: this.index,
-      active: this.active,
-      optional: this.optional,
-    };
-  }
-
-  _getDefaultTextForState(state: StepState): string {
-    if (state === 'number') {
-      return `${this.index + 1}`;
-    }
-    if (state === 'edit') {
-      return 'create';
-    }
-    if (state === 'error') {
-      return 'warning';
-    }
-    return state;
   }
 }

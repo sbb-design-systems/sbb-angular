@@ -33,6 +33,10 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-tabs',
           replaceWith: 'sbb-tab-group',
         },
+        {
+          replace: 'sbb-processflow-step',
+          replaceWith: 'sbb-step',
+        },
       ],
     },
   ],

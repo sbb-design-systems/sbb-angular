@@ -7,7 +7,6 @@ import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbProcessflow, SbbStep } from './processflow';
 import { SbbProcessflowNext, SbbProcessflowPrevious } from './processflow-button';
-import { SbbProcessflowIcon } from './processflow-icon';
 import { SbbStepContent } from './step-content';
 import { SbbStepHeader } from './step-header';
 import { SbbStepLabel } from './step-label';
@@ -21,7 +20,6 @@ import { SbbStepLabel } from './step-label';
     SbbProcessflowNext,
     SbbProcessflowPrevious,
     SbbStepHeader,
-    SbbProcessflowIcon,
     SbbStepContent,
   ],
   declarations: [
@@ -31,7 +29,6 @@ import { SbbStepLabel } from './step-label';
     SbbProcessflowNext,
     SbbProcessflowPrevious,
     SbbStepHeader,
-    SbbProcessflowIcon,
     SbbStepContent,
   ],
 })

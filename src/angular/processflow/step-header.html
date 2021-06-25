@@ -1,16 +1,3 @@
-<div class="sbb-step-icon-state-{{state}} sbb-step-icon" [class.sbb-step-icon-selected]="selected">
-  <div class="sbb-step-icon-content" [ngSwitch]="!!(iconOverrides && iconOverrides[state])">
-    <ng-container
-      *ngSwitchCase="true"
-      [ngTemplateOutlet]="iconOverrides[state]"
-      [ngTemplateOutletContext]="_getIconContext()"
-    ></ng-container>
-    <ng-container *ngSwitchDefault [ngSwitch]="state">
-      <span *ngSwitchCase="'number'">{{_getDefaultTextForState(state)}}</span>
-      <sbb-icon *ngSwitchDefault>{{_getDefaultTextForState(state)}}</sbb-icon>
-    </ng-container>
-  </div>
-</div>
 <div
   class="sbb-step-label"
   [class.sbb-step-label-active]="active"
@@ -23,7 +10,4 @@
   </div>
   <!-- If there is no label template, fall back to the text label. -->
   <div class="sbb-step-text-label" *ngIf="_stringLabel()">{{label}}</div>
-
-  <div class="sbb-step-optional" *ngIf="optional && state != 'error'">{{_intl.optionalLabel}}</div>
-  <div class="sbb-step-sub-label-error" *ngIf="state == 'error'">{{errorMessage}}</div>
 </div>

@@ -1,47 +1,11 @@
-@use '../core/style/layout-common';
-@use './processflow-variables';
+@import '../styles/common';
 
 .sbb-step-header {
   overflow: hidden;
   outline: none;
-  cursor: pointer;
   position: relative;
-  box-sizing: content-box;
+  font-family: $fontSbbLight;
   -webkit-tap-highlight-color: transparent;
-}
-
-.sbb-step-optional,
-.sbb-step-sub-label-error {
-  font-size: stepper-variables.$step-sub-label-font-size;
-}
-
-.sbb-step-icon {
-  border-radius: 50%;
-  height: stepper-variables.$label-header-height;
-  width: stepper-variables.$label-header-height;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.sbb-step-icon-content,
-.sbb-step-icon .sbb-icon {
-  // Use absolute positioning to center the content, because it works better with text.
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.sbb-step-icon .sbb-icon {
-  font-size: stepper-variables.$step-header-icon-size;
-  height: stepper-variables.$step-header-icon-size;
-  width: stepper-variables.$step-header-icon-size;
-}
-
-.sbb-step-icon-state-error .sbb-icon {
-  font-size: stepper-variables.$step-header-icon-size + 8;
-  height: stepper-variables.$step-header-icon-size + 8;
-  width: stepper-variables.$step-header-icon-size + 8;
 }
 
 .sbb-step-label {
@@ -49,8 +13,41 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-width: stepper-variables.$label-min-width;
   vertical-align: middle;
+  color: $sbbColorMetal;
+  cursor: default;
+
+  html:not(.sbb-lean) & {
+    font-size: pxToRem(20);
+    line-height: pxToRem(20);
+    padding-bottom: pxToRem(11);
+
+    @include mq($from: tabletPortrait) {
+      font-size: pxToRem(21);
+      line-height: pxToRem(21);
+      padding-bottom: pxToRem(14);
+    }
+    @include mq($from: desktop) {
+      font-size: pxToRem(21);
+      line-height: pxToRem(21);
+      padding-bottom: pxToRem(22);
+    }
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(32);
+      line-height: pxToRem(34);
+      padding-bottom: pxToRem(32);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(42);
+      line-height: pxToRem(45);
+      padding-bottom: pxToRem(42);
+    }
+  }
+  html.sbb-lean & {
+    font-size: pxToRem(16);
+    line-height: pxToRem(16);
+    padding-bottom: pxToRem(5);
+  }
 }
 
 .sbb-step-text-label {
@@ -58,9 +55,42 @@
   overflow: hidden;
 }
 
-// Increase specificity because ripple styles are part of the `sbb-core` mixin and can
-// potentially overwrite the absolute position of the container.
-.sbb-step-header .sbb-step-header-ripple {
-  @include layout-common.fill;
-  pointer-events: none;
+.sbb-step-label-active {
+  cursor: pointer;
+  color: $sbbColorBlack;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    left: 50%;
+    height: pxToRem(1);
+    border-bottom: pxToRem(1) solid currentColor;
+    transition: width 0.3s, left 0.3s;
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        border-bottom-width: pxToRem(2);
+      }
+    }
+  }
+
+  .sbb-step-header:focus &,
+  .sbb-step-header:hover & {
+    color: $sbbColorRed125;
+
+    &::after {
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+
+.sbb-step-label-selected {
+  &::after {
+    left: 0;
+    width: 100%;
+  }
 }

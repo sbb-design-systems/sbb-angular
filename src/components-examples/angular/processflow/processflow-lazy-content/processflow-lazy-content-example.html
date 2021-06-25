@@ -1,0 +1,22 @@
+<sbb-processflow>
+  <sbb-step>
+    <ng-template sbbStepLabel>Step 1</ng-template>
+    <ng-template sbbStepContent>
+      <p>This content was rendered lazily</p>
+      <button sbb-button sbbProcessflowNext>Next</button>
+    </ng-template>
+  </sbb-step>
+  <sbb-step>
+    <ng-template sbbStepLabel>Step 2</ng-template>
+    <ng-template sbbStepContent>
+      <p>This content was also rendered lazily</p>
+      <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+      <button sbb-button sbbProcessflowNext>Next</button>
+    </ng-template>
+  </sbb-step>
+  <sbb-step>
+    <ng-template sbbStepLabel>Step 3</ng-template>
+    <p>This content was rendered eagerly</p>
+    <button sbb-button sbbProcessflowPrevious>Back</button>
+  </sbb-step>
+</sbb-processflow>

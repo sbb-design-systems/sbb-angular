@@ -45,6 +45,7 @@ function mergeSymbols() {
             SbbTabs: 'tabs',
             SbbDialogHeader: 'dialog',
             SbbDialogFooter: 'dialog',
+            SbbProcessflowStep: 'processflow',
         };
         extractExportsForModule('src/angular/');
         extractExportsForModule('src/angular-maps/');

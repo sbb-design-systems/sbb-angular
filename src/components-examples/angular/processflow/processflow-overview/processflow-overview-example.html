@@ -1,0 +1,48 @@
+<button sbb-secondary-button (click)="linear = !linear" id="toggle-linear">
+  {{!linear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>
+<sbb-processflow [linear]="linear" #processflow>
+  <sbb-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template sbbStepLabel>Fill out your name</ng-template>
+      <sbb-form-field appearance="fill">
+        <sbb-label>Name</sbb-label>
+        <input sbbInput placeholder="Last name, First name" formControlName="firstCtrl" required />
+        <sbb-error *ngIf="firstFormGroup.get('firstCtrl')!.errors?.required"
+          >Name is required!</sbb-error
+        >
+      </sbb-form-field>
+      <div>
+        <button sbb-button sbbProcessflowNext>Next</button>
+      </div>
+    </form>
+  </sbb-step>
+  <sbb-step [stepControl]="secondFormGroup" label="Fill out your address">
+    <form [formGroup]="secondFormGroup">
+      <sbb-form-field appearance="fill">
+        <sbb-label>Address</sbb-label>
+        <input
+          sbbInput
+          formControlName="secondCtrl"
+          placeholder="Ex. 1 Main St, New York, NY"
+          required
+        />
+        <sbb-error *ngIf="secondFormGroup.get('secondCtrl')!.errors?.required"
+          >Name is required!</sbb-error
+        >
+      </sbb-form-field>
+      <div>
+        <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+        <button sbb-button sbbProcessflowNext>Next</button>
+      </div>
+    </form>
+  </sbb-step>
+  <sbb-step>
+    <ng-template sbbStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+      <button sbb-button (click)="processflow.reset()">Reset</button>
+    </div>
+  </sbb-step>
+</sbb-processflow>

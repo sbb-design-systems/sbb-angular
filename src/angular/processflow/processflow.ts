@@ -1,11 +1,13 @@
 import { AnimationEvent } from '@angular/animations';
 import { Directionality } from '@angular/cdk/bidi';
+import { BooleanInput } from '@angular/cdk/coercion';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   CdkStep,
   CdkStepper,
   StepContentPositionState,
   StepperOptions,
+  StepperOrientation,
   STEPPER_GLOBAL_OPTIONS,
 } from '@angular/cdk/stepper';
 import { DOCUMENT } from '@angular/common';
@@ -16,7 +18,6 @@ import {
   Component,
   ContentChild,
   ContentChildren,
-  Directive,
   ElementRef,
   EventEmitter,
   forwardRef,
@@ -27,7 +28,6 @@ import {
   Output,
   QueryList,
   SkipSelf,
-  TemplateRef,
   ViewChildren,
   ViewContainerRef,
   ViewEncapsulation,
@@ -38,7 +38,6 @@ import { Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 import { sbbProcessflowAnimations } from './processflow-animations';
-import { SbbProcessflowIcon, SbbProcessflowIconContext } from './processflow-icon';
 import { SbbStepContent } from './step-content';
 import { SbbStepHeader } from './step-header';
 import { SbbStepLabel } from './step-label';
@@ -67,12 +66,12 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
   _portal: TemplatePortal;
 
   constructor(
-    @Inject(forwardRef(() => SbbProcessflow)) stepper: SbbProcessflow,
-    @SkipSelf() private _errorStateSbbcher: SbbErrorStateMatcher,
+    @Inject(forwardRef(() => SbbProcessflow)) processflow: SbbProcessflow,
+    @SkipSelf() private _errorStateMatcher: SbbErrorStateMatcher,
     private _viewContainerRef: ViewContainerRef,
-    @Optional() @Inject(STEPPER_GLOBAL_OPTIONS) stepperOptions?: StepperOptions
+    @Optional() @Inject(STEPPER_GLOBAL_OPTIONS) processflowOptions?: StepperOptions
   ) {
-    super(stepper, stepperOptions);
+    super(processflow, processflowOptions);
   }
 
   ngAfterContentInit() {
@@ -98,7 +97,7 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
 
   /** Custom error state matcher that additionally checks for validity of interacted form. */
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const originalErrorState = this._errorStateSbbcher.isErrorState(control, form);
+    const originalErrorState = this._errorStateMatcher.isErrorState(control, form);
 
     // Custom error state checks for the validity of form that is not submitted or touched
     // since user can trigger a form change by calling for another step without directly
@@ -112,55 +111,36 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
 @Component({
   selector: 'sbb-processflow, [sbbProcessflow]',
   exportAs: 'sbbProcessflow',
-  templateUrl: 'stepper.html',
-  styleUrls: ['stepper.css'],
+  templateUrl: 'processflow.html',
+  styleUrls: ['processflow.css'],
   inputs: ['selectedIndex'],
   host: {
-    '[class.sbb-processflow-horizontal]': 'orientation === "horizontal"',
-    '[class.sbb-processflow-vertical]': 'orientation === "vertical"',
-    '[class.sbb-processflow-label-position-end]':
-      'orientation === "horizontal" && labelPosition == "end"',
-    '[class.sbb-processflow-label-position-bottom]':
-      'orientation === "horizontal" && labelPosition == "bottom"',
-    '[attr.aria-orientation]': 'orientation',
+    class: 'sbb-processflow',
     role: 'tablist',
   },
-  animations: [
-    sbbProcessflowAnimations.horizontalStepTransition,
-    sbbProcessflowAnimations.verticalStepTransition,
-  ],
+  animations: [sbbProcessflowAnimations.stepTransition],
   providers: [{ provide: CdkStepper, useExisting: SbbProcessflow }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SbbProcessflow extends CdkStepper implements AfterContentInit {
-  /** The list of step headers of the steps in the stepper. */
+  /** The list of step headers of the steps in the processflow. */
   @ViewChildren(SbbStepHeader) _stepHeader: QueryList<SbbStepHeader>;
 
-  /** Full list of steps inside the stepper, including inside nested steppers. */
+  /** Full list of steps inside the processflow, including inside nested processflows. */
   @ContentChildren(SbbStep, { descendants: true }) _steps: QueryList<SbbStep>;
 
-  /** Steps that belong to the current stepper, excluding ones from nested steppers. */
+  /** Steps that belong to the current processflow, excluding ones from nested processflows. */
   readonly steps: QueryList<SbbStep> = new QueryList<SbbStep>();
-
-  /** Custom icon overrides passed in by the consumer. */
-  @ContentChildren(SbbProcessflowIcon, { descendants: true }) _icons: QueryList<SbbProcessflowIcon>;
 
   /** Event emitted when the current step is done transitioning in. */
   @Output() readonly animationDone: EventEmitter<void> = new EventEmitter<void>();
 
-  /**
-   * Whether the label should display in bottom or end position.
-   * Only applies in the `horizontal` orientation.
-   */
-  @Input()
-  labelPosition: 'bottom' | 'end' = 'end';
-
-  /** Consumer-specified template-refs to be used to override the header icons. */
-  _iconOverrides: Record<string, TemplateRef<SbbProcessflowIconContext>> = {};
-
   /** Stream of animation `done` events when the body expands/collapses. */
   readonly _animationDone = new Subject<AnimationEvent>();
+
+  /** Not available for the SBB implementation. */
+  set orientation(_value: StepperOrientation) {}
 
   constructor(
     @Optional() dir: Directionality,
@@ -169,13 +149,10 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
     @Inject(DOCUMENT) document: any
   ) {
     super(dir, changeDetectorRef, elementRef, document);
-    const nodeName = elementRef.nativeElement.nodeName.toLowerCase();
-    this.orientation = nodeName === 'sbb-vertical-stepper' ? 'vertical' : 'horizontal';
   }
 
   ngAfterContentInit() {
     super.ngAfterContentInit();
-    this._icons.forEach(({ name, templateRef }) => (this._iconOverrides[name] = templateRef));
 
     // Mark the component for change detection whenever the content children query changes
     this.steps.changes.pipe(takeUntil(this._destroyed)).subscribe(() => {

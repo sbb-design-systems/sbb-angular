@@ -1,121 +1,55 @@
-@use '../core/style/variables';
-@use '../core/style/private';
-@use './processflow-variables';
+@import '../styles/common';
 
-.sbb-processflow-vertical,
-.sbb-processflow-horizontal {
+.sbb-processflow {
   display: block;
 }
 
-.sbb-horizontal-stepper-header-container {
+.sbb-processflow-header-container {
   white-space: nowrap;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+}
 
-  .sbb-processflow-label-position-bottom & {
-    align-items: flex-start;
+.sbb-processflow-horizontal-separator {
+  line-height: 0;
+  color: $sbbColorGrey;
+
+  html:not(.sbb-lean) & {
+    width: pxToRem(21);
+    height: pxToRem(21);
+    margin: 0 pxToRem(12);
+
+    @include mq($from: tabletPortrait) {
+      margin: 0 pxToRem(16);
+    }
+    @include mq($from: desktop) {
+      margin: 0 pxToRem(24);
+    }
+    @include mq($from: desktop4k) {
+      width: pxToRem(36);
+      height: pxToRem(36);
+      margin: 0 pxToRem(36);
+    }
+    @include mq($from: desktop5k) {
+      width: pxToRem(48);
+      height: pxToRem(48);
+      margin: 0 pxToRem(48);
+    }
+  }
+  html.sbb-lean & {
+    width: pxToRem(12);
+    height: pxToRem(12);
+    margin: pxToRem(1) pxToRem(22) 0;
   }
 }
 
-.sbb-processflow-horizontal-line {
-  border-top-width: stepper-variables.$line-width;
-  border-top-style: solid;
-  flex: auto;
-  height: 0;
-  margin: 0 stepper-variables.$line-gap - stepper-variables.$side-gap;
-  min-width: stepper-variables.$line-gap + stepper-variables.$side-gap;
-
-  .sbb-processflow-label-position-bottom & {
-    margin: 0;
-    min-width: 0;
-    position: relative;
-  }
-}
-
-%sbb-header-horizontal-line-label-position-bottom {
-  $half-side-gap: private.private-div(stepper-variables.$side-gap, 2);
-  border-top-width: stepper-variables.$line-width;
-  border-top-style: solid;
-  content: '';
-  display: inline-block;
-  height: 0;
-  position: absolute;
-  width: calc(50% - #{$half-side-gap + stepper-variables.$line-gap});
-}
-
-.sbb-horizontal-stepper-header {
+.sbb-processflow-header {
   display: flex;
-  height: stepper-variables.$header-height;
   overflow: hidden;
   align-items: center;
-  padding: 0 stepper-variables.$side-gap;
-
-  .sbb-step-icon {
-    margin-right: stepper-variables.$line-gap;
-    flex: none;
-
-    [dir='rtl'] & {
-      margin-right: 0;
-      margin-left: stepper-variables.$line-gap;
-    }
-  }
-
-  .sbb-processflow-label-position-bottom & {
-    box-sizing: border-box;
-    flex-direction: column;
-    // We use auto instead of fixed 104px (by spec) because when there is an optional step
-    //  the height is greater than that
-    height: auto;
-
-    &:not(:last-child)::after,
-    [dir='rtl'] &:not(:first-child)::after {
-      @extend %sbb-header-horizontal-line-label-position-bottom;
-      right: 0;
-    }
-
-    &:not(:first-child)::before,
-    [dir='rtl'] &:not(:last-child)::before {
-      @extend %sbb-header-horizontal-line-label-position-bottom;
-      left: 0;
-    }
-
-    [dir='rtl'] &:last-child::before,
-    [dir='rtl'] &:first-child::after {
-      display: none;
-    }
-
-    & .sbb-step-icon {
-      // Cleans margin both for ltr and rtl direction
-      margin-right: 0;
-      margin-left: 0;
-    }
-
-    & .sbb-step-label {
-      padding: stepper-variables.$label-position-bottom-top-gap 0 0 0;
-      text-align: center;
-      width: 100%;
-    }
-  }
 }
 
-.sbb-vertical-stepper-header {
-  display: flex;
-  align-items: center;
-
-  // We can't use `max-height` here, because it breaks the flexbox centering in IE.
-  height: stepper-variables.$label-header-height;
-
-  .sbb-step-icon {
-    margin-right: stepper-variables.$vertical-stepper-content-margin - stepper-variables.$side-gap;
-
-    [dir='rtl'] & {
-      margin-right: 0;
-      margin-left: stepper-variables.$vertical-stepper-content-margin - stepper-variables.$side-gap;
-    }
-  }
-}
-
-.sbb-horizontal-stepper-content {
+.sbb-processflow-content {
   outline: 0;
 
   &[aria-expanded='false'] {
@@ -124,42 +58,8 @@
   }
 }
 
-.sbb-horizontal-content-container {
+.sbb-processflow-content-container {
   overflow: hidden;
-  padding: 0 stepper-variables.$side-gap stepper-variables.$side-gap stepper-variables.$side-gap;
-}
-
-.sbb-vertical-content-container {
-  margin-left: stepper-variables.$vertical-stepper-content-margin;
-  border: 0;
-  position: relative;
-
-  [dir='rtl'] & {
-    margin-left: 0;
-    margin-right: stepper-variables.$vertical-stepper-content-margin;
-  }
-}
-
-.sbb-processflow-vertical-line::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  border-left-width: stepper-variables.$line-width;
-  border-left-style: solid;
-
-  [dir='rtl'] & {
-    left: auto;
-    right: 0;
-  }
-}
-
-.sbb-vertical-stepper-content {
-  overflow: hidden;
-  outline: 0;
-}
-
-.sbb-vertical-content {
-  padding: 0 stepper-variables.$side-gap stepper-variables.$side-gap stepper-variables.$side-gap;
 }
 
 .sbb-step:last-child {
