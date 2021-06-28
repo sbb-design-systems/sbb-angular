@@ -57,15 +57,15 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
   font-size: pxToRem($fontSize);
   line-height: 1.4;
   border-style: solid;
-  border-radius: toEm(2 / $fontSize);
+  border-radius: toEm(private-div(2, $fontSize));
   color: $buttonDefaultColor;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   @include mq($from: tabletPortrait) {
     font-size: pxToRem($fontSize);
     width: auto;
-    min-width: toEm(60 / $fontSize);
-    max-width: toEm(400 / $fontSize);
+    min-width: toEm(private-div(60, $fontSize));
+    max-width: toEm(private-div(400, $fontSize));
   }
 
   @include mq($from: desktop) {
@@ -74,8 +74,9 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
 
   @include publicOnly() {
     border-width: pxToRem(2);
-    height: toEm(48 / $fontSize);
-    padding: toEm(12.5 / $fontSize) toEm(40 / $fontSize) toEm(15.5 / $fontSize) toEm(40 / $fontSize);
+    height: toEm(private-div(48, $fontSize));
+    padding: toEm(private-div(12.5, $fontSize)) toEm(private-div(40, $fontSize))
+      toEm(private-div(15.5, $fontSize)) toEm(private-div(40, $fontSize));
 
     @include mq($from: desktop4k) {
       font-size: pxToRem($fontSize * $scalingFactor4k);
@@ -90,8 +91,9 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
 
   @include businessOnly() {
     border-width: pxToRem(1);
-    height: toEm(36 / $fontSize);
-    padding: toEm(6 / $fontSize) toEm(16 / $fontSize) toEm(7 / $fontSize);
+    height: toEm(private-div(36, $fontSize));
+    padding: toEm(private-div(6, $fontSize)) toEm(private-div(16, $fontSize))
+      toEm(private-div(7, $fontSize));
   }
 
   &:not(:disabled) {
@@ -129,8 +131,8 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
   font-size: pxToRem($buttonSizeFontDefault);
 
   @include publicOnly() {
-    padding-left: toEm(40 / $buttonSizeFontDefault);
-    padding-right: toEm(70 / $buttonSizeFontDefault);
+    padding-left: toEm(private-div(40, $buttonSizeFontDefault));
+    padding-right: toEm(private-div(70, $buttonSizeFontDefault));
     transition: height $linkiconAnimation, padding-left $linkiconAnimation,
       padding-right $linkiconAnimation, color $linkiconAnimation;
 
@@ -144,7 +146,7 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
   }
 
   @include businessOnly() {
-    padding-right: toEm(46 / $buttonSizeFontDefault);
+    padding-right: toEm(private-div(46, $buttonSizeFontDefault));
   }
 
   .sbb-svgsprite-icon {
@@ -373,7 +375,7 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
   @extend %framelessButton;
   @extend %arrowbuttons;
 
-  padding-right: toEm(30 / $fontSize);
+  padding-right: toEm(private-div(30, $fontSize));
 
   // TODO(icon-migration): remove definition because icons take color from button
   .sbb-svgsprite-icon {
@@ -382,7 +384,7 @@ $buttonDisabledBorderColor: $sbbColorGreyMedium;
 
   &:hover,
   &:focus {
-    padding-left: toEm(30 / $fontSize);
+    padding-left: toEm(private-div(30, $fontSize));
     padding-right: 0;
 
     // TODO(icon-migration): remove definition because icons take color from button

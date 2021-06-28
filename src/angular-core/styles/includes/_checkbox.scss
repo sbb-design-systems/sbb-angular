@@ -91,7 +91,7 @@ $checkboxRadioButtonHorizontalSpace: if($sbbBusiness, 15, 32);
 
       & + .sbb-checkbox-label-content {
         @include businessOnly() {
-          line-height: toEm(21 / $sizeFontDefault);
+          line-height: toEm(private-div(21, $sizeFontDefault));
         }
 
         color: $checkboxRadioButtonGreyColor;

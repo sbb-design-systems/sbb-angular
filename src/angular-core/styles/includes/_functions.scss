@@ -6,15 +6,15 @@
 // ----------------------------------------------------------------------------------------------------
 
 @function pxToEm($px, $ref: $sizeFontBase) {
-  @return toEm(toPx($px) / toPx($ref));
+  @return toEm(private-div(toPx($px), toPx($ref)));
 }
 
 @function pxToRem($px) {
-  @return toRem(toPx($px) / toPx($sizeFontBase));
+  @return toRem(private-div(toPx($px), toPx($sizeFontBase)));
 }
 
 @function pxToPc($px, $ref: $sizeWidthContent) {
-  @return (toPx($px) / toPx($ref) * 100%);
+  @return (private-div(toPx($px), toPx($ref)) * 100%);
 }
 
 @function toEm($val) {
@@ -33,31 +33,31 @@
 // ----------------------------------------------------------------------------------------------------
 
 @function paragraphSpacing($fontSize: $sizeFontDefault) {
-  @return toEm($gutterHeight/$fontSize); // 8px
+  @return toEm(private-div($gutterHeight, $fontSize)); // 8px
 }
 
 @function innerComponentSpacing($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 3) / $fontSize); // 24px
+  @return toEm(private-div(($gutterHeight * 3), $fontSize)); // 24px
 }
 
 @function innerComponentBottomSpacingSmall($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 4.5) / $fontSize); // 36px
+  @return toEm(private-div(($gutterHeight * 4.5), $fontSize)); // 36px
 }
 
 @function interComponentSpacingTiny($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 3) / $fontSize); // 24px
+  @return toEm(private-div(($gutterHeight * 3), $fontSize)); // 24px
 }
 
 @function interComponentSpacingSmall($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 6) / $fontSize); // 48px
+  @return toEm(private-div(($gutterHeight * 6), $fontSize)); // 48px
 }
 
 @function interComponentSpacingTablet($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 7) / $fontSize); // 56px
+  @return toEm(private-div(($gutterHeight * 7), $fontSize)); // 56px
 }
 
 @function interComponentSpacing($fontSize: $sizeFontDefault) {
-  @return toEm(($gutterHeight * 10) / $fontSize); // 80px
+  @return toEm(private-div(($gutterHeight * 10), $fontSize)); // 80px
 }
 
 // Arithmetic functions
@@ -72,7 +72,7 @@
     }
   } @else if $exp < 0 {
     @for $i from 1 through -$exp {
-      $value: $value / $number;
+      $value: private-div($value, $number);
     }
   }
   @return $value;
@@ -100,9 +100,9 @@
 // Get radians from angle
 @function rad($angle) {
   $unit: unit($angle);
-  $unitless: $angle / ($angle * 0 + 1);
+  $unitless: private-div($angle, ($angle * 0 + 1));
   @if $unit == deg {
-    $unitless: $unitless / 180 * pi();
+    $unitless: private-div($unitless, 180) * pi();
   }
   @return $unitless;
 }
@@ -112,7 +112,7 @@
   $sin: 0;
   $angle: rad($angle);
   @for $i from 0 through 10 {
-    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+    $sin: $sin + pow(-1, $i) * private-div(pow($angle, (2 * $i + 1)), fact(2 * $i + 1));
   }
   @return $sin;
 }
@@ -122,12 +122,12 @@
   $cos: 0;
   $angle: rad($angle);
   @for $i from 0 through 10 {
-    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+    $cos: $cos + pow(-1, $i) * private-div(pow($angle, 2 * $i), fact(2 * $i));
   }
   @return $cos;
 }
 
 // Tangent function
 @function tan($angle) {
-  @return sin($angle) / cos($angle);
+  @return private-div(sin($angle), cos($angle));
 }

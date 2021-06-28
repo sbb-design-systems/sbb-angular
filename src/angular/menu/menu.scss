@@ -2,7 +2,7 @@
 
 $borderWidthStandard: 2;
 $borderWidthLean: 1;
-$triggerPadding: (36 - 24) / 2; // (Desired width - icon width) / 2
+$triggerPadding: private-div((36 - 24), 2); // (Desired width - icon width) / 2
 
 // Prevent rendering sbb-menu as it can affect the flex layout.
 sbb-menu {

@@ -44,7 +44,7 @@
     top: $datePickerToggleArrowTopOffset;
     &::before,
     &::after {
-      top: $datePickerToggleWrapperArrowHeight / 2;
+      top: private-div($datePickerToggleWrapperArrowHeight, 2);
     }
     &::before {
       transform: rotate(-45deg);
@@ -61,7 +61,7 @@
     &::before,
     &::after {
       top: auto;
-      bottom: $datePickerToggleWrapperArrowHeight / 2;
+      bottom: private-div($datePickerToggleWrapperArrowHeight, 2);
     }
     &::before {
       transform: rotate(45deg);

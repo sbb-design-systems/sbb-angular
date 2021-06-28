@@ -6,11 +6,11 @@
 // ----------------------------------------------------------------------------------------------------
 
 @function pxToEm($px, $ref: $sizeFontBase) {
-  @return toEm(toPx($px) / toPx($ref));
+  @return toEm(private-div(toPx($px), toPx($ref)));
 }
 
 @function pxToRem($px) {
-  @return toRem(toPx($px) / toPx($sizeFontBase));
+  @return toRem(private-div(toPx($px), toPx($sizeFontBase)));
 }
 
 @function toEm($val) {
@@ -41,7 +41,7 @@
     }
   } @else if $exp < 0 {
     @for $i from 1 through -$exp {
-      $value: $value / $number;
+      $value: private-div($value, $number);
     }
   }
   @return $value;
@@ -71,7 +71,7 @@
   $unit: unit($angle);
   $unitless: $angle / ($angle * 0 + 1);
   @if $unit == deg {
-    $unitless: $unitless / 180 * pi();
+    $unitless: private-div($unitless, 180) * pi();
   }
   @return $unitless;
 }
@@ -81,7 +81,7 @@
   $sin: 0;
   $angle: rad($angle);
   @for $i from 0 through 10 {
-    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+    $sin: $sin + pow(-1, $i) * private-div(pow($angle, (2 * $i + 1)), fact(2 * $i + 1));
   }
   @return $sin;
 }
@@ -91,12 +91,12 @@
   $cos: 0;
   $angle: rad($angle);
   @for $i from 0 through 10 {
-    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+    $cos: $cos + pow(-1, $i) * private-div(pow($angle, 2 * $i), fact(2 * $i));
   }
   @return $cos;
 }
 
 // Tangent function
 @function tan($angle) {
-  @return sin($angle) / cos($angle);
+  @return private-div(sin($angle), cos($angle));
 }

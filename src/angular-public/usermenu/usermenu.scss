@@ -1,4 +1,5 @@
 @import '../../angular-core/styles/common';
+
 $textColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
 
 $triggerHeight: 48px;
@@ -107,24 +108,24 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
     flex-grow: 0;
     flex-shrink: 0;
     padding: 0;
-    margin-top: pxToRem(-$borderWidth / 2);
+    margin-top: pxToRem(private-div(-$borderWidth, 2));
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
         height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor4k);
         box-shadow: 0 pxToRem($scalingFactor4k) 0 0 $sbbColorCloud; // horizontal line
-        margin-top: pxToRem(-$borderWidth4k / 2);
+        margin-top: pxToRem(private-div(-$borderWidth4k, 2));
       }
 
       @include mq($from: desktop5k) {
         height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor5k);
         box-shadow: 0 pxToRem($scalingFactor5k) 0 0 $sbbColorCloud; // horizontal line
-        margin-top: pxToRem(-$borderWidth5k / 2);
+        margin-top: pxToRem(private-div(-$borderWidth5k, 2));
       }
     }
 
     .sbb-icon:not(.sbb-usermenu-arrow) {
-      $padding: ($imageBaseSize - 24) / 2;
+      $padding: private-div(($imageBaseSize - 24), 2);
       margin: 0 pxToRem($padding);
 
       @include publicOnly() {

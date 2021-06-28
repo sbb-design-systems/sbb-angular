@@ -88,7 +88,7 @@ $sizeFontLeadTextTablet: 21;
 /* form element sizing */
 $formElementMaxWidth: 320;
 $formElementMinWidth: 240;
-$formElementSpacing: $gutterDesktop/2;
+$formElementSpacing: private-div($gutterDesktop, 2);
 
 /**
  * Animation-Stuff
