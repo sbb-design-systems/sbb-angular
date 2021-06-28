@@ -44,8 +44,8 @@ There are two button directives to support navigation between different steps:
 `sbbProcessflowPrevious` and `sbbProcessflowNext`.
 
 ```html
-<button sbb-secondary-button matProcessflowPrevious>Back</button>
-<button sbb-button matProcessflowNext>Next</button>
+<button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+<button sbb-button sbbProcessflowNext>Next</button>
 ```
 
 ### Linear processflow
