@@ -62,6 +62,7 @@ jobs:
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: "Yarn: Restore dependencies from cache"
+      if: ${{ (success() || failure()) && !contains(github.event.head_commit.message, '--no-cache') }}
       uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}

@@ -1,13 +1,11 @@
 import { AnimationEvent } from '@angular/animations';
 import { Directionality } from '@angular/cdk/bidi';
-import { BooleanInput } from '@angular/cdk/coercion';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   CdkStep,
   CdkStepper,
   StepContentPositionState,
   StepperOptions,
-  StepperOrientation,
   STEPPER_GLOBAL_OPTIONS,
 } from '@angular/cdk/stepper';
 import { DOCUMENT } from '@angular/common';
@@ -22,7 +20,6 @@ import {
   EventEmitter,
   forwardRef,
   Inject,
-  Input,
   OnDestroy,
   Optional,
   Output,
