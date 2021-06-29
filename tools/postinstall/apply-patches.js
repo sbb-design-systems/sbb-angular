@@ -131,6 +131,8 @@ function applyPatches() {
     'FromJsonDeserializer.prototype.deserialize = function (libraryFileName, json) {' +
       ' if (libraryFileName.endsWith("@angular/cdk/scrolling/index.d.ts")) {' +
       'json = json.replace(/virtual-scroll-viewport.ngfactory/g, "index.ngfactory")}' +
+      ' if (libraryFileName.endsWith("@angular/cdk/stepper/index.d.ts")) {' +
+      'json = json.replace(/[a-z-]+.ngfactory/g, "index.ngfactory")}' +
       ' if (libraryFileName.endsWith("@angular/cdk/table/index.d.ts")) {' +
       'json = json.replace(/[a-z-]+.ngfactory/g, "index.ngfactory")}',
     'node_modules/@angular/compiler/bundles/compiler.umd.js'
