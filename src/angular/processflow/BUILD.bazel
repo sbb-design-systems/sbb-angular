@@ -21,7 +21,6 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/processflow",
     deps = [
-        "//src/angular/button",
         "//src/angular/core",
         "//src/angular/icon",
         "@npm//@angular/animations",
@@ -57,6 +56,7 @@ ng_test_library(
     ),
     deps = [
         ":processflow",
+        "//src/angular/button",
         "//src/angular/core/testing",
         "//src/angular/form-field",
         "//src/angular/icon/testing",

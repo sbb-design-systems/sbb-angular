@@ -1,20 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import {
-  DOWN_ARROW,
-  END,
-  ENTER,
-  HOME,
-  LEFT_ARROW,
-  RIGHT_ARROW,
-  SPACE,
-  UP_ARROW,
-} from '@angular/cdk/keycodes';
-import {
-  CdkStep,
-  StepperOrientation,
-  STEPPER_GLOBAL_OPTIONS,
-  STEP_STATE,
-} from '@angular/cdk/stepper';
+import { END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
+import { CdkStep, STEPPER_GLOBAL_OPTIONS, STEP_STATE } from '@angular/cdk/stepper';
 import {
   Component,
   DebugElement,
@@ -39,6 +25,7 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import {
   createKeyboardEvent,
   dispatchEvent,
@@ -1365,6 +1352,7 @@ function createComponent<T>(
   TestBed.configureTestingModule({
     imports: [
       SbbProcessflowModule,
+      SbbButtonModule,
       SbbIconTestingModule,
       NoopAnimationsModule,
       ReactiveFormsModule,
