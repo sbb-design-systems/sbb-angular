@@ -125,7 +125,7 @@
     "karma-browserstack-launcher": "^1.6.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "^2.0.3",
-    "karma-firefox-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^2.1.0",
     "karma-jasmine": "^4.0.1",
     "karma-junit-reporter": "^2.0.1",
     "karma-parallel": "^0.3.1",

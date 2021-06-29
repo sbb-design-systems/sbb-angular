@@ -32,9 +32,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn2--${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        key: ${{ runner.os }}-yarn3-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
-          ${{ runner.os }}-yarn2--
+          ${{ runner.os }}-yarn3-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
@@ -65,9 +65,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn2--${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        key: ${{ runner.os }}-yarn3-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
-          ${{ runner.os }}-yarn2--
+          ${{ runner.os }}-yarn3-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
     - name: "Bazel: Restore remote cache"
@@ -122,9 +122,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn2--${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        key: ${{ runner.os }}-yarn3-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
-          ${{ runner.os }}-yarn2--
+          ${{ runner.os }}-yarn3-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
@@ -136,6 +136,9 @@ jobs:
         key: bazel-packages-${{ github.sha }}
         restore-keys: |
           bazel-packages-
+    - name: "Bazel: Clear cache"
+      if: ${{ contains(github.event.head_commit.message, '--no-cache') }}
+      run: rm -rf ~/.bazel-cache
     - name: "Bazel: Build packages"
       run: yarn -s build packages
     - name: "Bazel: Clean bazel disk cache"
@@ -168,9 +171,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn2--${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        key: ${{ runner.os }}-yarn3-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
-          ${{ runner.os }}-yarn2--
+          ${{ runner.os }}-yarn3-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
@@ -230,9 +233,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn2--${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        key: ${{ runner.os }}-yarn3-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
-          ${{ runner.os }}-yarn2--
+          ${{ runner.os }}-yarn3-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
@@ -307,9 +310,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn2--${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
+        key: ${{ runner.os }}-yarn3-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
-          ${{ runner.os }}-yarn2--
+          ${{ runner.os }}-yarn3-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
