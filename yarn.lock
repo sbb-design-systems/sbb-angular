@@ -1918,10 +1918,10 @@
   resolved "https://registry.yarnpkg.com/@bazel/esbuild/-/esbuild-3.5.0.tgz#4b635dd23a6c88e2575b52b934654ea54bf2c4f8"
   integrity sha512-q8u2vby+LpGIRD3rzyIIxXvI6FZGS0o1F+CW48hiJkNEY13pVnh68j1h3tp04YmvvbKFaJUetqK2ki/+FSQSBw==
 
-"@bazel/ibazel@0.15.8":
-  version "0.15.8"
-  resolved "https://registry.yarnpkg.com/@bazel/ibazel/-/ibazel-0.15.8.tgz#355632324fb4504611acb6f4a40cc6570c1a6c87"
-  integrity sha512-VC60wGXKkzN35DZJnrlujl+fttLSdTBVrT+Hb9P+6nkR+dciN48f1KgluauG3DPopF/N681XhAiTYxg1WfGIYg==
+"@bazel/ibazel@0.15.10":
+  version "0.15.10"
+  resolved "https://registry.yarnpkg.com/@bazel/ibazel/-/ibazel-0.15.10.tgz#cf0cff1aec6d8e7bb23e1fc618d09fbd39b7a13f"
+  integrity sha512-0v+OwCQ6fsGFa50r6MXWbUkSGuWOoZ22K4pMSdtWiL5LKFIE4kfmMmtQS+M7/ICNwk2EIYob+NRreyi/DGUz5A==
 
 "@bazel/jasmine@3.5.0":
   version "3.5.0"
@@ -13436,7 +13436,7 @@ tslib@2.0.3, tslib@>=1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
-tslib@2.3.0, tslib@^2.2.0:
+tslib@2.3.0, tslib@^2.1.0, tslib@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
@@ -13460,11 +13460,6 @@ tslib@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
   integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
-
-tslib@^2.1.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
-  integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
 
 tslint-config-prettier@^1.18.0:
   version "1.18.0"
