@@ -1,0 +1,10 @@
+<p>This implementation shows how to share data between parent.and dialog.</p>
+<ol>
+  <li>
+    <input type="text" [(ngModel)]="name" placeholder="What's your name?" />
+  </li>
+  <li>
+    <button type="button" sbb-button mode="secondary" (click)="openDialog()">Pick one</button>
+  </li>
+  <li *ngIf="animal">You chose: <i>{{ animal }}</i></li>
+</ol>

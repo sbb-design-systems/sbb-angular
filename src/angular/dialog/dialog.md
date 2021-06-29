@@ -1,0 +1,96 @@
+The dialog can be used to seek confirmation as seen below
+
+```html
+<div sbbDialogHeader>Hi {{ data.name }}</div>
+<div sbbDialogContent>
+  <div>
+    What's your favorite animal?
+    <sbb-form-field label="Animal">
+      <input type="text" [(ngModel)]="data.animal" cdkFocusInitial />
+    </sbb-form-field>
+  </div>
+</div>
+<div sbbDialogFooter>
+  <button type="button" sbbButton [sbbDialogClose]="data.animal">Ok</button>
+  <button type="button" sbbButton mode="secondary" (click)="noThanks()">No Thanks</button>
+</div>
+```
+
+### Sharing data with the Dialog component
+
+A dialog is opened by calling the `open` method and if you want to share data with your dialog,
+you can use the `data` option to pass information to the dialog component.
+
+```ts
+const dialogRef = this.dialog.open(DialogShowcaseExampleContentComponent, {
+  data: { name: this.name, animal: this.animal },
+});
+```
+
+Components created via `Dialog` can use `DialogRef` to close the dialog in which they are
+contained. To access data in your dialog component, you have to use the `DIALOG_DATA` injection
+token. When closing, the data result value is provided. This result value is forwarded as the
+result of the `afterClosed` promise.
+
+```ts
+@Component({
+  selector: 'sbb-dialog-showcase-content-1',
+  templateUrl: 'dialog-showcase-content-1.html',
+})
+export class DialogShowcaseExampleContentComponent {
+  constructor(
+    public dialogRef: DialogRef<DialogShowcaseExampleContentComponent>,
+    @Inject(DIALOG_DATA) public data: DialogData
+  ) {}
+
+  close(): void {
+    this.dialogRef.close();
+  }
+}
+```
+
+```ts
+dialogRef.afterClosed().subscribe((result) => {
+  console.log('Dialog sharing data was closed');
+  this.animal = result;
+});
+```
+
+### Dialog with content loaded from Template
+
+You can use `Dialog` to load content from a TemplateRef by calling `open` method and
+passing it the template reference:
+
+```ts
+@Component({
+  selector: 'sbb-dialog-showcase-example-3',
+  templateUrl: 'dialog-showcase-content-3.html',
+})
+export class DialogShowcaseExample3Component {
+  @ViewChild('sampleDialogTemplate', { static: true }) sampleDialogTemplate: TemplateRef<any>;
+  constructor(public dialog: Dialog) {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(this.sampleDialogTemplate);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+}
+```
+
+```html
+<ng-template #sampleDialogTemplate>
+  <div sbbDialogHeader>Terms and conditions</div>
+  <div sbbDialogContent>
+    <div>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </div>
+  </div>
+  <div sbbDialogFooter>
+    <button type="button" sbbButton [sbbDialogClose]="true">Accept</button>
+    <button type="button" sbbButton mode="secondary" sbbDialogClose>Cancel</button>
+  </div>
+</ng-template>
+```
