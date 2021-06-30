@@ -1,24 +1,24 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconModule } from '@sbb-esta/angular/icon';
 
-import { SbbDialogContainer } from './dialog-container/dialog-container';
-import { SbbDialogContent } from './dialog-content/dialog-content';
-import { SbbDialogFooter } from './dialog-footer/dialog-footer';
-import { SbbDialogHeader } from './dialog-header/dialog-header';
-import { SbbDialogClose } from './dialog/dialog-close.directive';
-import { SbbDialog, SBB_DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog/dialog.service';
+import { SbbDialog, SBB_DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog';
+import { SbbDialogContainer } from './dialog-container';
+import {
+  SbbDialogActions,
+  SbbDialogClose,
+  SbbDialogContent,
+  SbbDialogTitle,
+} from './dialog-content-directives';
 
 @NgModule({
-  imports: [CommonModule, SbbIconModule, OverlayModule, PortalModule],
-  exports: [SbbDialogContainer, SbbDialogClose, SbbDialogHeader, SbbDialogContent, SbbDialogFooter],
+  imports: [OverlayModule, PortalModule],
+  exports: [SbbDialogContainer, SbbDialogClose, SbbDialogTitle, SbbDialogContent, SbbDialogActions],
   declarations: [
     SbbDialogContainer,
     SbbDialogClose,
-    SbbDialogHeader,
-    SbbDialogFooter,
+    SbbDialogTitle,
+    SbbDialogActions,
     SbbDialogContent,
   ],
   providers: [SbbDialog, SBB_DIALOG_SCROLL_STRATEGY_PROVIDER],
