@@ -41,6 +41,7 @@ import {
   dispatchMouseEvent,
   patchElementFocus,
 } from '@sbb-esta/angular/core/testing';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { Subject } from 'rxjs';
 
 import { SbbDialogContainer } from './dialog-container';
@@ -1127,7 +1128,7 @@ describe('SbbDialog', () => {
 
       viewContainerFixture.detectChanges();
 
-      expect(overlayContainerElement.querySelector('.cdk-overlay-dark-backdrop')).toBeTruthy();
+      expect(overlayContainerElement.querySelector('.sbb-overlay-background')).toBeTruthy();
     });
 
     it('should have custom backdrop class', () => {
@@ -1441,7 +1442,7 @@ describe('SbbDialog', () => {
       flushMicrotasks();
 
       expect(document.activeElement!.tagName).toBe(
-        'MAT-DIALOG-CONTAINER',
+        'SBB-DIALOG-CONTAINER',
         'Expected dialog container to be focused.'
       );
     }));
@@ -2093,7 +2094,7 @@ const TEST_DIRECTIVES = [
 ];
 
 @NgModule({
-  imports: [SbbDialogModule, NoopAnimationsModule],
+  imports: [SbbDialogModule, SbbIconTestingModule, NoopAnimationsModule],
   exports: TEST_DIRECTIVES,
   declarations: TEST_DIRECTIVES,
   entryComponents: [
