@@ -3,18 +3,20 @@
 $navigationIconTextMargin: 4;
 
 .sbb-navigation {
+  margin: 0; // Overwrite styles from typography (ul)
+  padding-left: 0; // Overwrite styles from typography (ul)
+
   display: flex;
-  margin: 0;
-  padding-left: 0;
   list-style: none;
 }
 
 .sbb-navigation-item {
+  margin: 0; // Overwrite styles from typography (li)
+  padding-left: 0; // Overwrite styles from typography (li)
+
   display: flex;
   position: relative;
   width: 50%;
-  margin: 0;
-  padding-left: 0;
   line-height: 0;
   text-align: center;
   outline: 0;

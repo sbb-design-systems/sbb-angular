@@ -23,7 +23,7 @@ export class PaginationMigration extends Migration<null, DevkitContext> {
     if (!this._paginations.empty) {
       this.logger.info('Migrating sbb-pagination usages');
       this.logger.info(
-        '  See documentation at https://angular.app.sbb.ch/angular/components/pagination on how to configure sbb-paginator'
+        '  See documentation at https://angular.app.sbb.ch/angular/introduction/migration-guide on how to configure sbb-paginator'
       );
       this._paginations.forEach((e) => this._handlePagination(e));
     }

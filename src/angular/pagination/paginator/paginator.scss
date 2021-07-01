@@ -9,19 +9,21 @@ $paginatorDisabledColor: $sbbColorSilver;
 $paginatorDisabledColorLean: $sbbColorStorm;
 
 .sbb-paginator {
+  margin: 0; // Overwrite styles from typography (ul)
+  padding-left: 0; // Overwrite styles from typography (ul)
+
   display: flex;
-  padding-left: 0;
   list-style: none;
-  margin: 0;
 }
 
 .sbb-paginator-item {
+  margin: 0; // Overwrite styles from typography (li)
+  padding-left: 0; // Overwrite styles from typography (li)
+
   position: relative;
   line-height: 0;
   text-align: center;
   outline: 0;
-  margin: 0;
-  padding-left: 0;
   flex-shrink: 0;
   font-size: pxToRem($sizeFontDefault);
   width: pxToRem($paginatorSize);
