@@ -11,7 +11,8 @@ import { SbbPageEvent } from '@sbb-esta/angular/pagination';
   styleUrls: ['./paginator-example.css'],
 })
 export class PaginatorExample {
-  length = 7;
+  length = 70;
+  pageSize = 10;
   pageIndex = 5;
   disabled = false;
 

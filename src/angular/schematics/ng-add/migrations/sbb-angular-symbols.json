@@ -301,6 +301,7 @@
   "SbbNavigationPageChangeEvent": "pagination",
   "SbbPageChangeEvent": "pagination",
   "SbbPageEvent": "pagination",
+  "SbbPagination": "pagination",
   "SbbPaginationModule": "pagination",
   "SbbPaginator": "pagination",
   "SbbPaginatorComponent": "pagination",

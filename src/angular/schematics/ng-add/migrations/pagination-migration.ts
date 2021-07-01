@@ -23,7 +23,7 @@ export class PaginationMigration extends Migration<null, DevkitContext> {
     if (!this._paginations.empty) {
       this.logger.info('Migrating sbb-pagination usages');
       this.logger.info(
-        '  See documentation at https://angular.app.sbb.ch/angular/components/pagination on how to configure sbb-paginator'
+        '  See documentation at https://angular.app.sbb.ch/angular/introduction/migration-guide on how to configure sbb-paginator'
       );
       this._paginations.forEach((e) => this._handlePagination(e));
     }
@@ -32,12 +32,13 @@ export class PaginationMigration extends Migration<null, DevkitContext> {
   private _handlePagination(element: MigrationElement) {
     const pageChangeProperty = element.findProperty('pageChange');
     const length = element.findProperty('length');
-    const pageSize = 10;
     if (pageChangeProperty) {
       pageChangeProperty.rename('(page)');
     }
     if (length) {
-      length.replaceValue(`TODO: Change according to documentation" pageSize="${pageSize}`);
+      length.replaceValue(
+        `TODO: Change according to documentation. Most likely the value is the current length multiplied by the pageSize." pageSize="10`
+      );
     }
   }
 }

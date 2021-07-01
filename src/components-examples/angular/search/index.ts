@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbLoadingModule } from '@sbb-esta/angular/loading';
 import { SbbSearchModule } from '@sbb-esta/angular/search';
 

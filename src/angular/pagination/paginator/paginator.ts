@@ -14,12 +14,10 @@ import {
 } from '@angular/core';
 import {
   CanDisable,
-  CanDisableCtor,
   HasInitialized,
-  HasInitializedCtor,
   mixinDisabled,
   mixinInitialized,
-} from '@sbb-esta/angular-core/common-behaviors';
+} from '@sbb-esta/angular/core';
 
 /** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 50;
@@ -58,11 +56,10 @@ export const SBB_PAGINATOR_DEFAULT_OPTIONS = new InjectionToken<SbbPaginatorDefa
   'SBB_PAGINATOR_DEFAULT_OPTIONS'
 );
 
-// Boilerplate for applying mixins to SbbPaginatorComponent.
+// Boilerplate for applying mixins to _SbbPaginatorBase.
 /** @docs-private */
-class SbbPaginatorBase {}
-const sbbPaginatorBase: CanDisableCtor & HasInitializedCtor & typeof SbbPaginatorBase =
-  mixinDisabled(mixinInitialized(SbbPaginatorBase));
+// tslint:disable-next-line:naming-convention
+const _SbbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
 
 /**
  * Component to provide navigation between paged information. Displays the size of the current
@@ -78,10 +75,10 @@ const sbbPaginatorBase: CanDisableCtor & HasInitializedCtor & typeof SbbPaginato
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    role: 'navigation',
+    role: 'group',
   },
 })
-export class SbbPaginator extends sbbPaginatorBase implements OnInit, CanDisable, HasInitialized {
+export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisable, HasInitialized {
   private _initialized: boolean;
   private _previousPageSize: number;
 

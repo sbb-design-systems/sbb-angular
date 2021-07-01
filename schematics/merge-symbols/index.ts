@@ -31,10 +31,11 @@ export function mergeSymbols(): Rule {
       SbbDropdownDefaultOptions: 'menu',
       SbbBusinessDateAdapter: 'core',
       SBB_BUSINESS_DATE_ADAPTER: 'core',
-      SbbPaginatorComponent: 'pagination',
-      SbbPageChangeEvent: 'pagination',
       SbbChipInputChange: 'chips',
       SbbChipModule: 'chips',
+      SbbPaginatorComponent: 'pagination',
+      SbbPageChangeEvent: 'pagination',
+      SbbPagination: 'pagination',
     };
 
     extractExportsForModule('src/angular/');

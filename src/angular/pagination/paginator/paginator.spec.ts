@@ -2,9 +2,9 @@ import { Component, Provider, Type, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
-import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
+import { dispatchMouseEvent } from '@sbb-esta/angular/core/testing';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbPaginationModule } from '../pagination.module';
 
@@ -382,6 +382,12 @@ describe('SbbPaginator', () => {
     const paginator = fixture.componentInstance.paginator;
 
     expect(paginator.pageSize).toBe(7);
+  });
+
+  it('should set `role="group"` on the host element', () => {
+    const fixture = createComponent(SbbPaginatorTestComponent);
+    const hostElement = fixture.nativeElement.querySelector('sbb-paginator');
+    expect(hostElement.getAttribute('role')).toBe('group');
   });
 
   describe('with more than 5 pages', () => {

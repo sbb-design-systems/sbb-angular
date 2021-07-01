@@ -41,6 +41,7 @@ function mergeSymbols() {
             SbbChipModule: 'chips',
             SbbPaginatorComponent: 'pagination',
             SbbPageChangeEvent: 'pagination',
+            SbbPagination: 'pagination',
         };
         extractExportsForModule('src/angular/');
         extractExportsForModule('src/angular-maps/');

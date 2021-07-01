@@ -1,18 +1,21 @@
 This module contains two different components: `<sbb-paginator>` and `<sbb-navigation>`
 
-### The sbb-paginator component
+### Pagination
 
-A sbb-paginator requires a length property, which defines the length of the data.
-Optionally a pageIndex property (defaults to 0) to select the displayed page, and a pageSize property (defaults to 50) which defines how many entries are on a page, can be set.
-Note that the pageIndex is Zero-based.
+Each paginator instance requires:
 
-The paginator emits a PageEvent, when the page changes. The event contains the new
-page index, the previous page index, the page size and the length property.
+- The number of items per page (default set to 50)
+- The total number of items being paged (length property)
+
+The current page index defaults to 0, but can be explicitly set via pageIndex. Note that the pageIndex is Zero-based.
+
+When the page changes, a `PageEvent` will be fired that can be used to update any associated data view.
 
 If you like to define the amount of pages manually, just set pageSize to 1 and length to the count of pages.
 
 ```html
 <sbb-paginator
+  aria-label="Select page"
   (page)="onPageChange($event)"
   [pageSize]="pageSize"
   [length]="length"
@@ -21,7 +24,13 @@ If you like to define the amount of pages manually, just set pageSize to 1 and l
 </sbb-paginator>
 ```
 
-### The sbb-navigation component
+#### Accessibility
+
+The paginator uses `role="group"` to semantically group its child controls. You must add an
+`aria-label` or `aria-labelledby` attribute to `<sbb-paginator>` with a label that describes
+the content controlled by the pagination control.
+
+### Navigation
 
 This component has only two buttons labelled by a title, one for navigating to the previous page,
 another to get to the next page.
