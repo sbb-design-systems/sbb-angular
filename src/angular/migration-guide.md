@@ -185,7 +185,7 @@ The link module has been integrated into the button module. All button types can
 _Partial migration available_
 
 The `sbb-pagination` component has been removed. From now on, only the `sbb-paginator` component can be used.
-At the sbb-pagination component, the `length` property stood for the number of pages. With the sbb-paginator component,
+With the sbb-pagination component, the `length` property stood for the number of pages. With the sbb-paginator component,
 the `length` property stands for the total number of items that are being paginated.
 There is a new property `pageSize`, which determines the number of items on a page.
 
@@ -233,7 +233,7 @@ You have to manually migrate them.
 #### Styles
 
 `sbb-paginator` and `sbb-navigation` don't reserve space around them anymore.
-Please control the layout yourself.
+Please manually check the layout.
 
 [Documentation](angular/components/pagination)
 
