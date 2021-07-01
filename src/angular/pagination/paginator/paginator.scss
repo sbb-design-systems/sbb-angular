@@ -1,10 +1,18 @@
 @import '../pagination';
 
+$paginatorSize: 40;
+$paginatorSize4K: $paginatorSize * $scalingFactor4k;
+$paginatorSize5K: $paginatorSize * $scalingFactor5k;
+$paginatorSizeLean: 30;
+
+$paginatorDisabledColor: $sbbColorSilver;
+$paginatorDisabledColorLean: $sbbColorStorm;
+
 .sbb-paginator {
   display: flex;
   padding-left: 0;
   list-style: none;
-  margin-left: 0;
+  margin: 0;
 }
 
 .sbb-paginator-item {
@@ -12,37 +20,38 @@
   line-height: 0;
   text-align: center;
   outline: 0;
+  margin: 0;
   padding-left: 0;
-  width: pxToRem($paginationLiWidthHeight);
-  height: pxToRem($paginationLiWidthHeight);
-
-  html.sbb-lean & {
-    width: pxToRem($paginationLiWidthHeightBusiness);
-    height: pxToRem($paginationLiWidthHeightBusiness);
-  }
+  flex-shrink: 0;
+  font-size: pxToRem($sizeFontDefault);
+  width: pxToRem($paginatorSize);
+  height: pxToRem($paginatorSize);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      width: pxToRem($paginationLiWidthHeight4K);
-      height: pxToRem($paginationLiWidthHeight4K);
-      font-size: pxToRem($sizeFontBase * $scalingFactor4k);
+      font-size: pxToRem($sizeFontDefault4k);
+      width: pxToRem($paginatorSize4K);
+      height: pxToRem($paginatorSize4K);
     }
 
     @include mq($from: desktop5k) {
-      width: pxToRem($paginationLiWidthHeight5K);
-      height: pxToRem($paginationLiWidthHeight5K);
-      font-size: pxToRem($sizeFontBase * $scalingFactor5k);
+      font-size: pxToRem($sizeFontDefault5k);
+      width: pxToRem($paginatorSize5K);
+      height: pxToRem($paginatorSize5K);
     }
+  }
+
+  html.sbb-lean & {
+    width: pxToRem($paginatorSizeLean);
+    height: pxToRem($paginatorSizeLean);
   }
 }
 
 .sbb-paginator-item-button {
   cursor: pointer;
   border-radius: 50%;
-  border: pxToEm(2) solid transparent;
-  background-color: $sbbColorWhite;
+  border: pxToRem(2) solid transparent;
   text-decoration: none;
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,12 +59,20 @@
   height: 100%;
   line-height: 1;
   outline: 0;
-  padding: 0;
   color: $paginationBaseColor;
 
   &:hover,
   &:focus {
     color: $paginationActiveHoverColor;
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-width: pxToRem(2 * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      border-width: pxToRem(2 * $scalingFactor5k);
+    }
   }
 
   html.sbb-lean & {
@@ -88,52 +105,52 @@
 }
 
 .sbb-paginator-item-boundary {
-  color: $paginationItemBoundaryColor;
-  width: pxToRem($paginationLiWidthHeight);
-  height: pxToRem($paginationLiWidthHeight);
+  color: $sbbColorGranite;
+  width: pxToRem($paginatorSize);
+  height: pxToRem($paginatorSize);
 
   &:hover {
     color: $paginationActiveHoverColor;
   }
 
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      width: pxToRem($paginatorSize4K);
+      height: pxToRem($paginatorSize4K);
+    }
+
+    @include mq($from: desktop5k) {
+      width: pxToRem($paginatorSize5K);
+      height: pxToRem($paginatorSize5K);
+    }
+  }
+
   html.sbb-lean & {
-    color: $paginationItemBoundaryColorLean;
-    height: pxToRem($paginationLiWidthHeightBusiness);
-    width: pxToRem($paginationLiWidthHeightBusiness);
+    color: $sbbColorIron;
+    height: pxToRem($paginatorSizeLean);
+    width: pxToRem($paginatorSizeLean);
 
     &:hover {
       color: $paginationActiveHoverColorLean;
     }
   }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      width: pxToRem($paginationLiWidthHeight4K);
-      height: pxToRem($paginationLiWidthHeight4K);
-    }
-
-    @include mq($from: desktop5k) {
-      width: pxToRem($paginationLiWidthHeight5K);
-      height: pxToRem($paginationLiWidthHeight5K);
-    }
-  }
 }
 
 .sbb-paginator-item-disabled {
-  color: $paginationDisabledColor;
+  color: $paginatorDisabledColor;
   cursor: default;
   pointer-events: none;
 
-  html.sbb-lean & {
-    color: $paginationDisabledColorLean;
-  }
-
   &.sbb-paginator-item-selected {
-    border-color: $paginationDisabledColor;
+    border-color: $paginatorDisabledColor;
 
     html.sbb-lean & {
-      border-color: $paginationDisabledColorLean;
+      border-color: $paginatorDisabledColorLean;
     }
+  }
+
+  html.sbb-lean & {
+    color: $paginatorDisabledColorLean;
   }
 }
 
@@ -149,9 +166,9 @@
 }
 
 .sbb-paginator-item-ellipsis-disabled {
-  color: $paginationDisabledColor;
+  color: $paginatorDisabledColor;
 
   html.sbb-lean & {
-    color: $paginationDisabledColorLean;
+    color: $paginatorDisabledColorLean;
   }
 }

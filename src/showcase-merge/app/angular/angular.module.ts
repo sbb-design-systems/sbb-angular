@@ -4,12 +4,12 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SbbDialogModule } from '@sbb-esta/angular-business/dialog';
 import { SbbTooltipModule } from '@sbb-esta/angular-business/tooltip';
-import { SbbPaginationModule } from '@sbb-esta/angular-public/pagination';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbLoadingModule } from '@sbb-esta/angular/loading';
+import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 
 import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';

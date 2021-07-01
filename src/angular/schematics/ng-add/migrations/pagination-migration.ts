@@ -32,12 +32,13 @@ export class PaginationMigration extends Migration<null, DevkitContext> {
   private _handlePagination(element: MigrationElement) {
     const pageChangeProperty = element.findProperty('pageChange');
     const length = element.findProperty('length');
-    const pageSize = 10;
     if (pageChangeProperty) {
       pageChangeProperty.rename('(page)');
     }
     if (length) {
-      length.replaceValue(`TODO: Change according to documentation" pageSize="${pageSize}`);
+      length.replaceValue(
+        `TODO: Change according to documentation. Most likely the value is the current length multiplied by the pageSize." pageSize="10`
+      );
     }
   }
 }

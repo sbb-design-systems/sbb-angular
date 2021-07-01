@@ -2,7 +2,7 @@ import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
+import { dispatchFakeEvent } from '@sbb-esta/angular/core/testing';
 
 import { SbbRadioButton, SbbRadioChange, SbbRadioGroup } from './radio-button';
 import { SbbRadioButtonModule } from './radio-button.module';

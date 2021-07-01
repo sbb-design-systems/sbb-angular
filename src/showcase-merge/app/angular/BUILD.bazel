@@ -22,12 +22,12 @@ ng_module(
     deps = [
         "//src/angular-business/dialog",
         "//src/angular-business/tooltip",
-        "//src/angular-public/pagination",
         "//src/angular/button",
         "//src/angular/checkbox",
         "//src/angular/form-field",
         "//src/angular/icon",
         "//src/angular/loading",
+        "//src/angular/pagination",
         "//src/angular/select",
         "//src/showcase-merge/app/shared",
         "//src/showcase-merge/app/shared/component-viewer",

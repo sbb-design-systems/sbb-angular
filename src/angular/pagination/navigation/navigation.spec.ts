@@ -4,9 +4,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
-import { SbbIconTestingModule } from '@sbb-esta/angular-core/icon/testing';
-import { SbbButtonModule } from '@sbb-esta/angular-public/button';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
 import { SbbPaginationModule } from '../pagination.module';
 
@@ -22,7 +22,7 @@ import { SbbNavigation, SbbNavigationPageChangeEvent } from './navigation';
       [previousPage]="previousPage"
     ></sbb-navigation>
     <input type="text" name="newPage" [(ngModel)]="newPage.title" />
-    <button id="new-page-button" sbbButton (click)="addPage()">Add new page</button>
+    <button id="new-page-button" sbb-button (click)="addPage()">Add new page</button>
   `,
 })
 export class NavigationTestComponent {

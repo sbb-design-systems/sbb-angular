@@ -1,13 +1,18 @@
 <sbb-paginator
+  aria-label="Select page"
   (page)="pageChange($event)"
-  [pageSize]="1"
+  [pageSize]="pageSize"
   [length]="length"
   [pageIndex]="pageIndex"
   [disabled]="disabled"
 ></sbb-paginator>
+
 <h4>Properties</h4>
 <sbb-form-field label="Length">
   <input sbbInput type="number" [(ngModel)]="length" [min]="0" />
+</sbb-form-field>
+<sbb-form-field label="Page size">
+  <input sbbInput type="number" [(ngModel)]="pageSize" [min]="0" />
 </sbb-form-field>
 <sbb-form-field label="Page index">
   <input sbbInput type="number" [(ngModel)]="pageIndex" [min]="0" />

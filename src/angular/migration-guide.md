@@ -143,6 +143,18 @@ Please carefully check the changes from the automatic migration and manually add
 
 [Documentation](angular/components/chips)
 
+### Contextmenu
+
+_Automatic migration available_
+
+The contextmenu module has been integrated into the new more generic menu module, which also supports submenus.
+Due to this change you have to define the contextmenu trigger yourself (the migration will take care of it),
+and the contextmenu no longer depends on `SbbDropdown`. The APIs of `SbbDropdown` and `SbbMenu` have some differences,
+so please check your code carefully after migration.
+The width of a `sbb-menu-item` is not fixed anymore and adapts itself to the content. The width also can be overridden.
+
+[Documentation](angular/components/menu)
+
 ### Datepicker
 
 _Automatic migration available_
@@ -168,17 +180,62 @@ The link module has been integrated into the button module. All button types can
 
 [Documentation](angular/components/button)
 
-### Contextmenu
+### Pagination
 
-_Automatic migration available_
+_Partial migration available_
 
-The contextmenu module has been integrated into the new more generic menu module, which also supports submenus.
-Due to this change you have to define the contextmenu trigger yourself (the migration will take care of it),
-and the contextmenu no longer depends on `SbbDropdown`. The APIs of `SbbDropdown` and `SbbMenu` have some differences,
-so please check your code carefully after migration.
-The width of a `sbb-menu-item` is not fixed anymore and adapts itself to the content. The width also can be overridden.
+The `sbb-pagination` component has been removed. From now on, only the `sbb-paginator` component can be used.
+At the sbb-pagination component, the `length` property stood for the number of pages. With the sbb-paginator component,
+the `length` property stands for the total number of items that are being paginated.
+There is a new property `pageSize`, which determines the number of items on a page.
 
-[Documentation](angular/components/menu)
+**Previous**
+
+```html
+<sbb-pagination (pageChange)="changePage($event)" length="5"></sbb-pagination>
+```
+
+**New**
+
+```html
+<sbb-paginator (page)="pageChange($event)" [pageSize]="10" [length]="50"></sbb-paginator>
+```
+
+If you have used the `selectByIndex` method, you should now use the setter `pageIndex` of SbbPaginator.
+
+**Previous**
+
+```ts
+class Component {
+  @ViewChild(SbbPagination) pagination: SbbPagination;
+
+  constructor() {
+    this.pagination.selectByIndex(2);
+  }
+}
+```
+
+**New**
+
+```ts
+class Component {
+  @ViewChild(SbbPaginator) paginator: SbbPaginator;
+
+  constructor() {
+    this.paginator.pageIndex = 2;
+  }
+}
+```
+
+The `SbbPageChangeEvent` is now called `SbbPageEvent` and contains different properties than before.
+You have to manually migrate them.
+
+#### Styles
+
+`sbb-paginator` and `sbb-navigation` don't reserve space around them anymore.
+Please control the layout yourself.
+
+[Documentation](angular/components/pagination)
 
 ### Radio Button Panel
 
@@ -231,26 +288,3 @@ The search component has been refactored as a wrapper for an input field.
 ```
 
 [Documentation](angular/components/search)
-
-### Pagination
-
-_Partial migration available_
-
-The `sbb-pagination` component has been removed. From now on, the `sbb-paginator` component should be used.
-At the sbb-pagination component the `length` property stood for the number of pages. With the sbb-paginator component,
-the `length` property stands for the total number of items that are being paginated. There is a new property `pageSize`, which
-determines the number of items on a page.
-
-**Previous**
-
-```html
-<sbb-pagination (pageChange)="changePage($event)" length="5"></sbb-pagination>
-```
-
-**New**
-
-```html
-<sbb-paginator (page)="pageChange($event)" [pageSize]="10" [length]="50"></sbb-paginator>
-```
-
-[Documentation](angular/components/pagination)

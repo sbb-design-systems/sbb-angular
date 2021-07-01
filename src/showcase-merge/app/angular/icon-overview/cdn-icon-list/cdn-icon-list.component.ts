@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SbbPaginatorComponent } from '@sbb-esta/angular-public/pagination';
+import { SbbPaginator } from '@sbb-esta/angular/pagination';
 import { merge, Observable } from 'rxjs';
 import { debounceTime, map, startWith } from 'rxjs/operators';
 
@@ -30,7 +30,7 @@ export class CdnIconListComponent implements AfterViewInit {
   namespaces: string[];
   pageSize = 50;
 
-  @ViewChild(SbbPaginatorComponent) private _paginator: SbbPaginatorComponent;
+  @ViewChild(SbbPaginator) private _paginator: SbbPaginator;
 
   constructor(formBuilder: FormBuilder) {
     this.filterForm = formBuilder.group({
