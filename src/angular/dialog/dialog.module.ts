@@ -1,6 +1,8 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbDialog, SBB_DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog';
 import { SbbDialogContainer } from './dialog-container';
@@ -12,7 +14,7 @@ import {
 } from './dialog-content-directives';
 
 @NgModule({
-  imports: [OverlayModule, PortalModule],
+  imports: [CommonModule, OverlayModule, PortalModule, SbbIconModule],
   exports: [SbbDialogContainer, SbbDialogClose, SbbDialogTitle, SbbDialogContent, SbbDialogActions],
   declarations: [
     SbbDialogContainer,

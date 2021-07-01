@@ -5,7 +5,6 @@ load(
     "ng_test_library",
     "ng_web_test_suite",
     "sass_binary",
-    "sass_library",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -17,57 +16,26 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [
-        ":dialog-container/dialog-container.css",
-        ":dialog-content/dialog-content.css",
-        ":dialog-footer/dialog-footer.css",
-        ":dialog-header/dialog-header.css",
+        ":dialog.css",
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/dialog",
     deps = [
+        "//src:dev_mode_types",
         "//src/angular/icon",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/localize",
         "@npm//rxjs",
     ],
 )
 
-sass_library(
-    name = "dialog_scss_lib",
-    srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:common_scss_lib"],
-)
-
 sass_binary(
-    name = "dialog_container_dialog_container_scss",
-    src = "dialog-container/dialog-container.scss",
+    name = "dialog_scss",
+    src = "dialog.scss",
     deps = [
-        ":dialog_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "dialog_content_dialog_content_scss",
-    src = "dialog-content/dialog-content.scss",
-    deps = [
-        ":dialog_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "dialog_footer_dialog_footer_scss",
-    src = "dialog-footer/dialog-footer.scss",
-    deps = [
-        ":dialog_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "dialog_header_dialog_header_scss",
-    src = "dialog-header/dialog-header.scss",
-    deps = [
-        ":dialog_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 
@@ -80,7 +48,6 @@ ng_test_library(
     deps = [
         ":dialog",
         "//src/angular/core/testing",
-        "//src/angular/icon/testing",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/platform-browser",

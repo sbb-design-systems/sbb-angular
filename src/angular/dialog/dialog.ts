@@ -1,4 +1,5 @@
 import { Directionality } from '@angular/cdk/bidi';
+import { coerceArray } from '@angular/cdk/coercion';
 import {
   Overlay,
   OverlayConfig,
@@ -115,19 +116,8 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
   }
 
   /**
-   * Opens a modal dialog containing the given component.
-   * @param component Type of the component to load into the dialog.
-   * @param config Extra configuration options.
-   * @returns Reference to the newly-opened dialog.
-   */
-  open<T, D = any, R = any>(
-    component: ComponentType<T>,
-    config?: SbbDialogConfig<D>
-  ): SbbDialogRef<T, R>;
-
-  /**
    * Opens a modal dialog containing the given template.
-   * @param template TemplateRef to instantiate as the dialog content.
+   * @param componentOrTemplateRef Component type or TemplateRef to instantiate as the dialog content.
    * @param config Extra configuration options.
    * @returns Reference to the newly-opened dialog.
    */
@@ -213,6 +203,7 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
       scrollStrategy: dialogConfig.scrollStrategy || this._scrollStrategy(),
       panelClass: dialogConfig.panelClass,
       hasBackdrop: dialogConfig.hasBackdrop,
+      backdropClass: ['sbb-overlay-background'],
       direction: dialogConfig.direction,
       minWidth: dialogConfig.minWidth,
       minHeight: dialogConfig.minHeight,
@@ -222,7 +213,7 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
     });
 
     if (dialogConfig.backdropClass) {
-      state.backdropClass = dialogConfig.backdropClass;
+      state.backdropClass = coerceArray(dialogConfig.backdropClass).concat(state.backdropClass!);
     }
 
     return state;

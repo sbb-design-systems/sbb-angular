@@ -119,9 +119,9 @@ For example:
   undone.</sbb-dialog-content
 >
 <sbb-dialog-actions>
-  <button sbb-secondary-button sbb-dialog-close>Cancel</button>
   <!-- The sbb-dialog-close directive optionally accepts a value as a result for the dialog. -->
   <button sbb-button [sbb-dialog-close]="true">Delete</button>
+  <button sbb-secondary-button sbb-dialog-close>Cancel</button>
 </sbb-dialog-actions>
 ```
 

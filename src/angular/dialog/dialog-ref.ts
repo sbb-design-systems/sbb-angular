@@ -4,7 +4,7 @@ import { GlobalPositionStrategy, OverlayRef } from '@angular/cdk/overlay';
 import { Observable, Subject } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
-import { DialogPosition } from './dialog-config';
+import { SbbDialogPosition } from './dialog-config';
 import { _SbbDialogContainerBase } from './dialog-container';
 
 // TODO(jelbourn): resizing
@@ -180,7 +180,7 @@ export class SbbDialogRef<T, R = any> {
    * Updates the dialog's position.
    * @param position New dialog position.
    */
-  updatePosition(position?: DialogPosition): this {
+  updatePosition(position?: SbbDialogPosition): this {
     const strategy = this._getPositionStrategy();
 
     if (position && (position.left || position.right)) {

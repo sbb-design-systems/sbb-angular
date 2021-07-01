@@ -3,10 +3,10 @@ import { ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 
 /** Valid ARIA roles for a dialog element. */
-export type DialogRole = 'dialog' | 'alertdialog';
+export type SbbDialogRole = 'dialog' | 'alertdialog';
 
 /** Possible overrides for a dialog's position. */
-export interface DialogPosition {
+export interface SbbDialogPosition {
   /** Override for the dialog's top position. */
   top?: string;
 
@@ -36,7 +36,7 @@ export class SbbDialogConfig<D = any> {
   id?: string;
 
   /** The ARIA role of the dialog element. */
-  role?: DialogRole = 'dialog';
+  role?: SbbDialogRole = 'dialog';
 
   /** Custom class for the overlay pane. */
   panelClass?: string | string[] = '';
@@ -66,10 +66,10 @@ export class SbbDialogConfig<D = any> {
   maxWidth?: number | string = '80vw';
 
   /** Max-height of the dialog. If a number is provided, assumes pixel units. */
-  maxHeight?: number | string;
+  maxHeight?: number | string = '96vh';
 
   /** Position overrides. */
-  position?: DialogPosition;
+  position?: SbbDialogPosition;
 
   /** Data being injected into the child component. */
   data?: D | null = null;

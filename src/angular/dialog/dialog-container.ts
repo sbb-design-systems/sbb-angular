@@ -18,6 +18,7 @@ import {
   ElementRef,
   EmbeddedViewRef,
   EventEmitter,
+  HostListener,
   Inject,
   Optional,
   ViewChild,
@@ -257,8 +258,6 @@ export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
     '[attr.aria-label]': '_config.ariaLabel',
     '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
     '[@dialogContainer]': '_state',
-    '(@dialogContainer.start)': '_onAnimationStart($event)',
-    '(@dialogContainer.done)': '_onAnimationDone($event)',
   },
 })
 export class SbbDialogContainer extends _SbbDialogContainerBase {
@@ -266,6 +265,7 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
   _state: 'void' | 'enter' | 'exit' = 'enter';
 
   /** Callback, invoked whenever an animation on the host completes. */
+  @HostListener('@dialogContainer.done', ['$event'])
   _onAnimationDone({ toState, totalTime }: AnimationEvent) {
     if (toState === 'enter') {
       this._trapFocus();
@@ -277,6 +277,7 @@ export class SbbDialogContainer extends _SbbDialogContainerBase {
   }
 
   /** Callback, invoked when an animation on the host starts. */
+  @HostListener('@dialogContainer.start', ['$event'])
   _onAnimationStart({ toState, totalTime }: AnimationEvent) {
     if (toState === 'enter') {
       this._animationStateChanged.next({ state: 'opening', totalTime });

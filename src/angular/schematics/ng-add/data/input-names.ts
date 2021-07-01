@@ -4,7 +4,16 @@ export const inputNames: VersionChanges<InputNameUpgradeData> = {
   ['merge' as TargetVersion]: [
     {
       pr: '',
-      changes: [],
+      changes: [
+        {
+          replace: 'alignment',
+          replaceWith: 'align',
+          limitedTo: {
+            elements: ['sbb-dialog-footer', 'sbb-dialog-actions'],
+            attributes: ['sbbDialogFooter', 'sbbDialogActions'],
+          },
+        },
+      ],
     },
   ],
 };

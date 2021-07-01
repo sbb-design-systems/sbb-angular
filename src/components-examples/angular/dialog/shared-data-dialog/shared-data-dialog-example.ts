@@ -35,7 +35,7 @@ export class SharedDataDialogExample {
 @Component({
   selector: 'sbb-shared-data-dialog',
   template: `
-    <div sbbDialogHeader>Hi {{ data.name }}</div>
+    <div sbbDialogTitle>Hi {{ data.name }}</div>
     <div sbbDialogContent>
       <div>
         What's your favorite animal?
@@ -44,7 +44,7 @@ export class SharedDataDialogExample {
         </sbb-form-field>
       </div>
     </div>
-    <div sbbDialogFooter>
+    <div sbbDialogActions>
       <button sbb-button [sbbDialogClose]="data.animal" cdkFocusInitial>Ok</button>
       <button sbb-secondary-button utton mode="secondary" (click)="noThanks()">No Thanks</button>
     </div>

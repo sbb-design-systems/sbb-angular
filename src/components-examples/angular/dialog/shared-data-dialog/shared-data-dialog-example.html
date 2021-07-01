@@ -1,7 +1,12 @@
 <p>This implementation shows how to share data between parent.and dialog.</p>
 <ol>
   <li>
-    <input type="text" [(ngModel)]="name" placeholder="What's your name?" />
+    <input
+      type="text"
+      [(ngModel)]="name"
+      placeholder="What's your name?"
+      class="sbb-input-element"
+    />
   </li>
   <li>
     <button type="button" sbb-button mode="secondary" (click)="openDialog()">Pick one</button>

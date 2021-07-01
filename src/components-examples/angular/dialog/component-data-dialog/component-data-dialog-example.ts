@@ -6,8 +6,8 @@ import { SbbDialog } from '@sbb-esta/angular/dialog';
  * @order 10
  */
 @Component({
-  selector: 'sbb-data-dialog-example',
-  templateUrl: './data-dialog-example.html',
+  selector: 'sbb-component-data-dialog-example',
+  templateUrl: './component-data-dialog-example.html',
 })
 export class ComponentDataDialogExample {
   constructor(public dialog: SbbDialog) {}
@@ -24,9 +24,9 @@ export class ComponentDataDialogExample {
 }
 
 @Component({
-  selector: 'sbb.data-dialog',
+  selector: 'sbb-data-dialog',
   template: `
-    <div sbbDialogHeader>Install Angular</div>
+    <div sbbDialogTitle>Install Angular</div>
     <div sbbDialogContent>
       <div>
         <p>
@@ -114,7 +114,7 @@ export class ComponentDataDialogExample {
         </p>
       </div>
     </div>
-    <div sbbDialogFooter>
+    <div sbbDialogActions>
       <button sbb-button [sbbDialogClose]="true">Accept</button>
       <button sbb-secondary-button sbbDialogClose>Cancel</button>
     </div>

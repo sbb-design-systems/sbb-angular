@@ -21,6 +21,14 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-pagination',
           replaceWith: 'sbb-paginator',
         },
+        {
+          replace: 'sbb-dialog-header',
+          replaceWith: 'sbb-dialog-title',
+        },
+        {
+          replace: 'sbb-dialog-footer',
+          replaceWith: 'sbb-dialog-actions',
+        },
       ],
     },
   ],
