@@ -159,7 +159,7 @@ We have renamed `SbbDialogHeader`/`[sbbDialogHeader]` to `SbbDialogTitle`/`[sbbD
 `SbbDialogFooter`/`[sbbDialogFooter]` to `SbbDialogActions`/`[sbbDialogActions]` in order to more
 accurately describe the purpose of these sections.
 
-[Documentation](angular/components/datepicker)
+[Documentation](angular/components/dialog)
 
 ### File Selector
 
