@@ -11,7 +11,7 @@ $sbb-dialog-button-margin: pxToRem(8);
 
 .sbb-dialog-container {
   display: block;
-  border: 1px solid $sbbColorIron;
+  border: pxToRem(2) solid $sbbColorGrey;
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;
@@ -26,8 +26,17 @@ $sbb-dialog-button-margin: pxToRem(8);
   min-height: inherit;
   max-height: inherit;
 
+  html:not(.sbb-lean) {
+    @include mq($from: desktop4k) {
+      border-width: pxToRem(4);
+    }
+  }
+  html.sbb-lean & {
+    border: pxToRem(1) solid $sbbColorIron;
+  }
+
   @include cdk.high-contrast(active, off) {
-    outline: solid 1px;
+    outline: solid pxToRem(1);
   }
 }
 
@@ -61,6 +70,11 @@ $sbb-dialog-button-margin: pxToRem(8);
   right: pxToRem(16);
   cursor: pointer;
   line-height: 0;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorRed125;
+  }
 }
 
 .sbb-dialog-actions {
@@ -87,10 +101,5 @@ $sbb-dialog-button-margin: pxToRem(8);
 
   .sbb-button-base + .sbb-button-base {
     margin-left: $sbb-dialog-button-margin;
-
-    [dir='rtl'] & {
-      margin-left: 0;
-      margin-right: $sbb-dialog-button-margin;
-    }
   }
 }

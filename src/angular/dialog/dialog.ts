@@ -204,7 +204,6 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
       panelClass: dialogConfig.panelClass,
       hasBackdrop: dialogConfig.hasBackdrop,
       backdropClass: ['sbb-overlay-background'],
-      direction: dialogConfig.direction,
       minWidth: dialogConfig.minWidth,
       minHeight: dialogConfig.minHeight,
       maxWidth: dialogConfig.maxWidth,
@@ -306,17 +305,6 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
       { provide: this._dialogDataToken, useValue: config.data },
       { provide: this._dialogRefConstructor, useValue: dialogRef },
     ];
-
-    if (
-      config.direction &&
-      (!userInjector ||
-        !userInjector.get<Directionality | null>(Directionality, null, InjectFlags.Optional))
-    ) {
-      providers.push({
-        provide: Directionality,
-        useValue: { value: config.direction, change: observableOf() },
-      });
-    }
 
     return Injector.create({ parent: userInjector || this._injector, providers });
   }

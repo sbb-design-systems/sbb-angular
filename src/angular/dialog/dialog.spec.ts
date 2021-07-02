@@ -640,24 +640,6 @@ describe('SbbDialog', () => {
     expect(overlayPane.style.height).toBeFalsy();
   });
 
-  it('should allow setting the layout direction', () => {
-    dialog.open(PizzaMsg, { direction: 'rtl' });
-
-    viewContainerFixture.detectChanges();
-
-    const overlayPane = overlayContainerElement.querySelector('.cdk-global-overlay-wrapper')!;
-
-    expect(overlayPane.getAttribute('dir')).toBe('rtl');
-  });
-
-  it('should inject the correct layout direction in the component instance', () => {
-    const dialogRef = dialog.open(PizzaMsg, { direction: 'rtl' });
-
-    viewContainerFixture.detectChanges();
-
-    expect(dialogRef.componentInstance.directionality.value).toBe('rtl');
-  });
-
   it('should fall back to injecting the global direction if none is passed by the config', () => {
     const dialogRef = dialog.open(PizzaMsg, {});
 

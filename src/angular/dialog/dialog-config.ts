@@ -74,9 +74,6 @@ export class SbbDialogConfig<D = any> {
   /** Data being injected into the child component. */
   data?: D | null = null;
 
-  /** Layout direction for the dialog's content. */
-  direction?: Direction;
-
   /** ID of the element that describes the dialog. */
   ariaDescribedBy?: string | null = null;
 
