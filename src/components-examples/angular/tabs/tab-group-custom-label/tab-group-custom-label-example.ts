@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 /**
  * @title Using tabs with a custom label template
- * @order 40
+ * @order 20
  */
 @Component({
   selector: 'sbb-tab-group-custom-label-example',

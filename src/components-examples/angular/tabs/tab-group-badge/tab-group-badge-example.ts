@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 /**
  * @title Tabs with badge
- * @order 30
+ * @order 40
  */
 @Component({
   selector: 'sbb-tab-group-badge-example',

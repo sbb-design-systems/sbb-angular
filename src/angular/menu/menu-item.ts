@@ -38,7 +38,7 @@ const _SbbMenuItemMixinBase: CanDisableCtor & typeof SbbMenuItemBase =
     '[attr.tabindex]': '_getTabIndex()',
     '[attr.aria-disabled]': 'disabled.toString()',
     '[attr.disabled]': 'disabled || null',
-    class: 'sbb-menu-item sbb-icon-fit',
+    class: 'sbb-menu-item sbb-link-reset sbb-icon-fit',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

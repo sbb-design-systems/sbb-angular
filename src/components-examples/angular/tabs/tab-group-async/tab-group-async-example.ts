@@ -8,7 +8,7 @@ export interface ExampleTab {
 
 /**
  * @title Tab group with asynchronously loading tab contents
- * @order 20
+ * @order 50
  */
 @Component({
   selector: 'sbb-tab-group-async-example',

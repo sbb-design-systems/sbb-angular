@@ -183,7 +183,7 @@ export class _SbbTabLinkBase
   exportAs: 'sbbTabLink',
   inputs: ['disabled', 'tabIndex'],
   host: {
-    class: 'sbb-tab-link sbb-focus-indicator',
+    class: 'sbb-tab-link sbb-link-reset sbb-focus-indicator',
     '[attr.aria-current]': 'active ? "page" : null',
     '[attr.aria-disabled]': 'disabled',
     '[attr.tabIndex]': 'tabIndex',

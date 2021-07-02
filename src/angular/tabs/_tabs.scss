@@ -177,7 +177,6 @@ $tab-animation-duration: 500ms !default;
   .sbb-tab-list {
     flex-grow: 1;
     position: relative;
-    transition: transform 500ms cubic-bezier(0.35, 0, 0.25, 1);
   }
 }
 

@@ -24,14 +24,7 @@ import { distinctUntilChanged, startWith } from 'rxjs/operators';
 import { sbbTabsAnimations } from './tabs-animations';
 
 /**
- * These position states are used internally as animation states for the tab body. Setting the
- * position state to left, right, or center will transition the tab body from its current
- * position to its respective state. If there is not current position (void, in the case of a new
- * tab body), then there will be no transition animation to its state.
- *
- * In the case of a new tab body that should immediately be centered with an animating transition,
- * then left-origin-center or right-origin-center can be used, which will use left or right as its
- * psuedo-prior state.
+ * These position states are used internally as animation states for the tab body.
  */
 export type SbbTabBodyPositionState = 'hidden' | 'show';
 

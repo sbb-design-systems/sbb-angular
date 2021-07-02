@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 /**
  * @title Tab group where the tab content is loaded lazily (when activated)
- * @order 50
+ * @order 30
  */
 @Component({
   selector: 'sbb-tab-group-lazy-loaded-example',

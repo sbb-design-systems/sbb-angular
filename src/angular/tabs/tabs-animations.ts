@@ -14,7 +14,7 @@ export const sbbTabsAnimations: {
     ]),
     transition('hidden => show', [
       style({ opacity: 0 }),
-      animate('1500ms ease', style({ opacity: 1 })),
+      animate('500ms ease', style({ opacity: 1 })),
     ]),
     transition('void => show', animate('0s')),
   ]),
