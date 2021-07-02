@@ -44,7 +44,7 @@ export type SbbTabHeaderScrollState = 'hidden' | 'middle' | 'left' | 'right';
 export type SbbPaginatedTabHeaderItem = FocusableOption & { elementRef: ElementRef };
 
 /**
- * Base class for a tab header that supported pagination.
+ * Base class for a tab header that supports pagination.
  * @docs-private
  */
 @Directive()

@@ -45,7 +45,7 @@ describe('TabsMigration', () => {
       .runExternalSchematicAsync('@schematics/angular', 'application', appOptions, tree)
       .toPromise();
 
-    // Add contextmenu
+    // Add sbb-tabs
     const workspace = await getWorkspace(tree);
     project = getProjectFromWorkspace(workspace, appOptions.name);
     appModulePath = getAppModulePath(tree, getProjectMainFile(project));
