@@ -1,18 +1,18 @@
 The `<sbb-processflow>` provides a wizard-like workflow by dividing content into logical steps.
 
-The `SbbProcessflow` builds on the foundation of the CDK processflow that is responsible for the logic
-that drives a stepped workflow.
+The `SbbProcessflow` builds on the foundation of the CDK stepper that is responsible for the logic
+that drives a processflow.
 
 ```html
 <sbb-processflow>
   <sbb-step label="Step 1">
-    <p>This content was rendered lazily</p>
+    <p>Content for first step</p>
     <button sbb-button sbbProcessflowNext>Next</button>
   </sbb-step>
   <sbb-step>
     <ng-template sbbStepLabel>Step 2</ng-template>
     <ng-template sbbStepContent>
-      <p>This content was also rendered lazily</p>
+      <p>This content was rendered lazily</p>
       <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
       <button sbb-button sbbProcessflowNext>Next</button>
     </ng-template>

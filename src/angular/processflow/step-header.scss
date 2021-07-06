@@ -10,9 +10,7 @@
 
 .sbb-step-label {
   display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @include ellipsis;
   vertical-align: middle;
   color: $sbbColorMetal;
   cursor: default;
