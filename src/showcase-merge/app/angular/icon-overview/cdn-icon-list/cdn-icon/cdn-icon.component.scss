@@ -13,7 +13,7 @@
   @include ellipsis();
 }
 
-::ng-deep .sbb-button-wrapper {
+.sbb-svg-icon-wrapper ::ng-deep .sbb-button-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
