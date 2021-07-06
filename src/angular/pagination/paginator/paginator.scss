@@ -26,32 +26,32 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   outline: 0;
   flex-shrink: 0;
   font-size: pxToRem($sizeFontDefault);
-  width: pxToRem($paginatorSize);
+  min-width: pxToRem($paginatorSize);
   height: pxToRem($paginatorSize);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);
-      width: pxToRem($paginatorSize4K);
+      min-width: pxToRem($paginatorSize4K);
       height: pxToRem($paginatorSize4K);
     }
 
     @include mq($from: desktop5k) {
       font-size: pxToRem($sizeFontDefault5k);
-      width: pxToRem($paginatorSize5K);
+      min-width: pxToRem($paginatorSize5K);
       height: pxToRem($paginatorSize5K);
     }
   }
 
   html.sbb-lean & {
-    width: pxToRem($paginatorSizeLean);
+    min-width: pxToRem($paginatorSizeLean);
     height: pxToRem($paginatorSizeLean);
   }
 }
 
 .sbb-paginator-item-button {
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 1.5em;
   border: pxToRem(2) solid transparent;
   text-decoration: none;
   display: flex;
@@ -62,6 +62,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   line-height: 1;
   outline: 0;
   color: $paginationBaseColor;
+  padding: 0 pxToRem(private-div($sizeFontDefault, 2));
 
   &:hover,
   &:focus {
@@ -71,14 +72,17 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       border-width: pxToRem(2 * $scalingFactor4k);
+      padding: 0 pxToRem(private-div($sizeFontDefault4k, 2));
     }
     @include mq($from: desktop5k) {
       border-width: pxToRem(2 * $scalingFactor5k);
+      padding: 0 pxToRem(private-div($sizeFontDefault5k, 2));
     }
   }
 
   html.sbb-lean & {
     color: $paginationBaseColorLean;
+    padding: 0 pxToRem(5);
 
     &:hover,
     &:focus {
@@ -110,6 +114,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   color: $sbbColorGranite;
   width: pxToRem($paginatorSize);
   height: pxToRem($paginatorSize);
+  padding: 0;
 
   &:hover {
     color: $paginationActiveHoverColor;
@@ -119,11 +124,13 @@ $paginatorDisabledColorLean: $sbbColorStorm;
     @include mq($from: desktop4k) {
       width: pxToRem($paginatorSize4K);
       height: pxToRem($paginatorSize4K);
+      padding: 0;
     }
 
     @include mq($from: desktop5k) {
       width: pxToRem($paginatorSize5K);
       height: pxToRem($paginatorSize5K);
+      padding: 0;
     }
   }
 
@@ -131,6 +138,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
     color: $sbbColorIron;
     height: pxToRem($paginatorSizeLean);
     width: pxToRem($paginatorSizeLean);
+    padding: 0;
 
     &:hover {
       color: $paginationActiveHoverColorLean;

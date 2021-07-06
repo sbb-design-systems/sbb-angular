@@ -12,7 +12,7 @@ sbb-paginator {
       text-align: center;
       outline: 0;
       padding-left: 0;
-      width: if(
+      min-width: if(
         $sbbBusiness,
         toPx($paginationLiWidthHeightBusiness),
         toPx($paginationLiWidthHeight)
@@ -22,16 +22,17 @@ sbb-paginator {
         toPx($paginationLiWidthHeightBusiness),
         toPx($paginationLiWidthHeight)
       );
+      font-size: toPx($sizeFontBase);
 
       @include publicOnly() {
         @include mq($from: desktop4k) {
-          width: toPx($paginationLiWidthHeight4K);
+          min-width: toPx($paginationLiWidthHeight4K);
           height: toPx($paginationLiWidthHeight4K);
           font-size: toPx($sizeFontBase * $scalingFactor4k);
         }
 
         @include mq($from: desktop5k) {
-          width: toPx($paginationLiWidthHeight5K);
+          min-width: toPx($paginationLiWidthHeight5K);
           height: toPx($paginationLiWidthHeight5K);
           font-size: toPx($sizeFontBase * $scalingFactor5k);
         }
@@ -61,10 +62,9 @@ sbb-paginator {
         border-color: transparent;
         border-width: pxToEm(2);
         border-style: solid;
-        border-radius: 50%;
+        border-radius: 1.5em;
         background-color: $sbbColorWhite;
         text-decoration: none;
-        position: absolute;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -72,7 +72,7 @@ sbb-paginator {
         height: 100%;
         line-height: 1;
         outline: 0;
-        padding: 0;
+        padding: 0 if($sbbBusiness, pxToRem(5), 0.5em);
 
         color: $paginationBaseColor;
 
@@ -103,16 +103,19 @@ sbb-paginator {
             toPx($paginationLiWidthHeightBusiness),
             toPx($paginationLiWidthHeight)
           );
+          padding: 0;
 
           @include publicOnly() {
             @include mq($from: desktop4k) {
               width: toPx($paginationLiWidthHeight4K);
               height: toPx($paginationLiWidthHeight4K);
+              padding: 0;
             }
 
             @include mq($from: desktop5k) {
               width: toPx($paginationLiWidthHeight5K);
               height: toPx($paginationLiWidthHeight5K);
+              padding: 0;
             }
           }
 
