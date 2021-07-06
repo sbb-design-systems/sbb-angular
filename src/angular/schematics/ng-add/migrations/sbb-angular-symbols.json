@@ -201,6 +201,8 @@
   "SbbDialogConfig": "dialog",
   "SbbDialogContainer": "dialog",
   "SbbDialogContent": "dialog",
+  "SbbDialogFooter": "dialog",
+  "SbbDialogHeader": "dialog",
   "SbbDialogModule": "dialog",
   "SbbDialogPosition": "dialog",
   "SbbDialogRef": "dialog",
