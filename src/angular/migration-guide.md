@@ -163,6 +163,16 @@ The Datepicker has no significant changes. `SBB_BUSINESS_DATE_ADAPTER` was renam
 
 [Documentation](angular/components/datepicker)
 
+### Dialog
+
+_Automatic migration available_
+
+We have renamed `SbbDialogHeader`/`[sbbDialogHeader]` to `SbbDialogTitle`/`[sbbDialogTitle]` and
+`SbbDialogFooter`/`[sbbDialogFooter]` to `SbbDialogActions`/`[sbbDialogActions]` in order to more
+accurately describe the purpose of these sections.
+
+[Documentation](angular/components/dialog)
+
 ### File Selector
 
 _Automatic migration available_

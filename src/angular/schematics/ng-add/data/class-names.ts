@@ -85,6 +85,14 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbPagination',
           replaceWith: 'SbbPaginator',
         },
+        {
+          replace: 'SbbDialogHeader',
+          replaceWith: 'SbbDialogTitle',
+        },
+        {
+          replace: 'SbbDialogFooter',
+          replaceWith: 'SbbDialogActions',
+        },
       ],
     },
   ],

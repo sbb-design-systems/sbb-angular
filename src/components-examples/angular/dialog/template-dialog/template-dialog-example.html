@@ -1,0 +1,26 @@
+<p>Dialog with content loaded from a TemplateRef.</p>
+<button type="button" sbb-button mode="secondary" (click)="openDialog()">
+  Open Dialog From Template
+</button>
+
+<ng-template #sampleDialogTemplate>
+  <div>
+    <div sbbDialogTitle>Lorem Ipsum</div>
+    <div sbbDialogContent>
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+      </div>
+    </div>
+    <div sbbDialogActions>
+      <button type="button" sbb-button [sbbDialogClose]="true">Accept</button>
+      <button type="button" sbb-secondary-button mode="secondary" sbbDialogClose>Cancel</button>
+    </div>
+  </div>
+</ng-template>

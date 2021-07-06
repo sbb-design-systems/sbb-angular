@@ -1,0 +1,105 @@
+@use 'external/npm/node_modules/@angular/cdk' as cdk;
+@import '../styles/common';
+
+$sbb-dialog-padding: pxToRem(16);
+$sbb-dialog-button-margin: pxToRem(8);
+
+.sbb-overlay-background {
+  background-color: rgba(255, 255, 255, 0.7);
+  align-items: center;
+}
+
+.sbb-dialog-container {
+  display: block;
+  border: pxToRem(2) solid $sbbColorGrey;
+  box-sizing: border-box;
+  overflow: hidden;
+  outline: 0;
+  background-color: $sbbColorWhite;
+
+  // The dialog container should completely fill its parent overlay element.
+  width: 100%;
+  height: 100%;
+
+  // Since the dialog won't stretch to fit the parent, if the height
+  // isn't set, we have to inherit the min and max values explicitly.
+  min-height: inherit;
+  max-height: inherit;
+
+  html:not(.sbb-lean) {
+    @include mq($from: desktop4k) {
+      border-width: pxToRem(4);
+    }
+  }
+  html.sbb-lean & {
+    border: pxToRem(1) solid $sbbColorIron;
+  }
+
+  @include cdk.high-contrast(active, off) {
+    outline: solid pxToRem(1);
+  }
+}
+
+.sbb-dialog-container > *:only-child {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sbb-dialog-content {
+  display: block;
+  padding: $sbb-dialog-padding;
+  flex: 1 1 auto;
+  max-height: 80vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sbb-dialog-title {
+  padding: pxToRem(15) pxToRem(40) pxToRem(15) $sbb-dialog-padding;
+  flex: 0 0 auto;
+  display: block;
+  position: relative;
+  box-shadow: horizontalBorderBoxShadow(1, 1, 1);
+  @include ellipsis;
+}
+
+.sbb-dialog-title-close-button {
+  position: absolute;
+  right: pxToRem(16);
+  cursor: pointer;
+  line-height: 0;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+}
+
+.sbb-dialog-actions {
+  padding: pxToRem(7) pxToRem(16);
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+
+  // Explicitly set a box-sizing since people commonly set `border-box`
+  // on all elements which will break the height of the dialog actions.
+  box-sizing: content-box;
+  box-shadow: horizontalBorderBoxShadow(-1, 1, 1);
+
+  &[align='start'],
+  &[align='left'] {
+    justify-content: flex-start;
+  }
+
+  &[align='center'] {
+    justify-content: center;
+  }
+
+  .sbb-button-base + .sbb-button-base {
+    margin-left: $sbb-dialog-button-margin;
+  }
+}
