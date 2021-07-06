@@ -1,0 +1,280 @@
+@import '../styles/common';
+
+$tabsHoverColor: $sbbColorRed125;
+$tabsFontSize: 20;
+$tabsBorderWidthLean: 1px;
+// Due to a bug in WebKit, the underline border seems to more than one pixel
+// when using 1px. Due to this we use the value below, which also works on Firefox.
+$tabsBorderUnderlineOffset: -0.9999px;
+
+$tab-bar-height: 48px !default;
+$tab-animation-duration: 500ms !default;
+
+// Mixin styles for labels that are contained within the tab header.
+@mixin tab-label {
+  margin-right: pxToRem(32);
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  font-family: $fontSbbLight;
+  font-size: pxToRem(20);
+  line-height: 1em;
+  padding-bottom: pxToRem(20);
+  outline: none;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: tablet) {
+      margin-right: pxToRem(42);
+      font-size: pxToRem(26);
+    }
+    @include mq($from: desktop4k) {
+      margin-right: pxToRem(52.5);
+      font-size: pxToRem(39);
+    }
+    @include mq($from: desktop5k) {
+      margin-right: pxToRem(63);
+      font-size: pxToRem(52);
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: pxToRem(1);
+      border-bottom: pxToRem(1) solid $sbbColorBlack;
+      transition: width 0.3s, left 0.3s;
+
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 0;
+    }
+  }
+  html.sbb-lean & {
+    font-size: pxToRem(15);
+    line-height: pxToRem(20);
+    padding: pxToRem(6) pxToRem(15) pxToRem(9);
+    background-color: $sbbColorWhite;
+    margin-right: 0;
+    margin-bottom: $tabsBorderWidthLean;
+    border: $tabsBorderWidthLean solid transparent;
+    border-bottom: none;
+    border-radius: pxToRem(2) pxToRem(2) 0 0;
+  }
+
+  &:last-child {
+    margin-right: 0 !important;
+  }
+
+  &.sbb-tab-label-active {
+    html:not(.sbb-lean) & {
+      &::after {
+        width: 100%;
+      }
+    }
+    html.sbb-lean & {
+      border-color: $sbbColorGraphite;
+
+      &::after {
+        content: '';
+        position: absolute;
+        height: $tabsBorderWidthLean;
+        bottom: $tabsBorderUnderlineOffset;
+        left: 0;
+        right: 0;
+        background-color: $sbbColorWhite;
+      }
+    }
+  }
+
+  &:not(.sbb-tab-label-active):focus,
+  &:not(.sbb-tab-label-active):hover {
+    color: $tabsHoverColor;
+
+    html:not(.sbb-lean) & {
+      &::after {
+        width: 100%;
+        border-bottom-color: $sbbColorRed125;
+      }
+    }
+    html.sbb-lean & {
+      &::after {
+        content: '';
+        position: absolute;
+        height: $tabsBorderWidthLean;
+        bottom: $tabsBorderUnderlineOffset;
+        left: 0;
+        right: 0;
+        background-color: $sbbColorRed125;
+      }
+    }
+  }
+
+  &.sbb-tab-label-active:hover,
+  &.sbb-tab-label-active:focus {
+    color: currentColor;
+    cursor: default;
+
+    html.sbb-lean & {
+      &::after {
+        border-bottom-color: currentColor;
+      }
+    }
+  }
+
+  &.sbb-tab-disabled {
+    color: $sbbColorStorm;
+
+    &:hover,
+    &:focus {
+      color: $sbbColorStorm;
+      cursor: default;
+    }
+
+    html:not(.sbb-lean) & {
+      &::after {
+        width: 0 !important;
+      }
+    }
+  }
+
+  .sbb-tab-label-content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  // Reserve space for the badge in lean mode.
+  .sbb-badge:not(.sbb-badge-hidden) {
+    html.sbb-lean & {
+      padding-right: pxToRem(11);
+    }
+  }
+
+  // Reduce size of badge in lean mode.
+  .sbb-badge-content {
+    html.sbb-lean & {
+      transform: scale(0.8);
+    }
+  }
+}
+
+// Structural styles for a tab header. Used by both `sbb-tab-header` and `sbb-tab-nav-bar`.
+@mixin paginated-tab-header {
+  .sbb-tab-header {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .sbb-tab-list {
+    flex-grow: 1;
+    position: relative;
+  }
+}
+
+// Styles for scrolling state shadows.
+@mixin paginated-tab-header-shadows {
+  .sbb-tab-header {
+    position: relative;
+
+    html:not(.sbb-lean) & {
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        content: '';
+        z-index: 2;
+        width: pxToRem(12);
+        height: calc(100% - 0.5rem);
+        transition: transform 0.25s ease;
+        pointer-events: none;
+
+        @include mq($from: tablet) {
+          width: pxToRem(24);
+        }
+        @include mq($from: desktop4k) {
+          width: pxToRem(36);
+        }
+        @include mq($from: desktop4k) {
+          width: pxToRem(48);
+        }
+      }
+
+      &::before {
+        left: 0;
+        transform: translateX(-100%);
+        background: linear-gradient(270deg, hsla(0, 0%, 100%, 0.37) 0, $sbbColorWhite);
+      }
+
+      &.sbb-tab-header-left-shadow::before {
+        transform: translateX(0);
+      }
+
+      &::after {
+        right: 0;
+        transform: translateX(100%);
+        background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.37) 0, $sbbColorWhite);
+      }
+
+      &.sbb-tab-header-right-shadow::after {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+// Structural styles for the element that wraps the paginated header items.
+@mixin paginated-tab-header-item-wrapper($parent) {
+  display: flex;
+  padding-top: pxToRem(2);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding-top: pxToRem(3);
+    }
+    @include mq($from: desktop4k) {
+      padding-top: pxToRem(4);
+    }
+  }
+}
+
+@mixin paginated-tab-header-container {
+  display: flex;
+  position: relative;
+  flex-grow: 1;
+  overflow-x: auto;
+  z-index: 1;
+  padding-bottom: 20px;
+
+  html.sbb-lean & {
+    padding-bottom: 0;
+
+    // We want to display the scrollbar above the header in order not to separate the borders
+    // of the header and body. We do this by rotating the container and the content.
+    &,
+    & > .sbb-tab-list {
+      transform: rotateX(180deg);
+    }
+  }
+}
+
+@mixin tab-body-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  transition: height $tab-animation-duration;
+
+  html.sbb-lean & {
+    border: pxToRem(1) solid $sbbColorGraphite;
+    margin-top: pxToRem(-1);
+    background-color: $sbbColorWhite;
+  }
+}

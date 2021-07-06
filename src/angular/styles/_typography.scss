@@ -436,8 +436,8 @@ p,
 // Link
 // ----------------------------------------------------------------------------------------------------
 
-a:not(.sbb-menu-item),
-.sbb-link:not(.sbb-menu-item) {
+a,
+.sbb-link {
   color: $sbbColorText;
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
@@ -462,6 +462,32 @@ a:not(.sbb-menu-item),
   }
 
   // TODO: 4k, 5k
+}
+
+// Reset <a> styles for specific scenarios.
+.sbb-link-reset {
+  color: unset;
+  text-decoration: unset;
+  text-decoration-skip-ink: unset;
+  line-height: unset;
+
+  html.sbb-lean & {
+    line-height: unset;
+  }
+
+  &:hover,
+  &:focus {
+    color: unset;
+
+    @media screen and (-ms-high-contrast: active) {
+      color: unset;
+
+      &::before,
+      &::after {
+        border-color: unset;
+      }
+    }
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -892,7 +918,7 @@ fieldset,
 
 .sbb-badge-above {
   .sbb-badge-content {
-    top: 0;
+    top: pxToEm(-2, 11);
   }
 }
 
@@ -908,7 +934,8 @@ fieldset,
   }
 }
 
-.sbb-badge-disabled {
+.sbb-badge-disabled,
+.sbb-tab-disabled {
   .sbb-badge-content {
     background: $sbbColorMetal;
     color: $sbbColorWhite;
@@ -927,8 +954,9 @@ fieldset,
   pointer-events: none;
 
   min-width: pxToEm(18, 11);
-  border-radius: pxToEm(15, 11);
-  padding: pxToEm(3, 11) pxToEm(5, 11) pxToEm(4, 11);
+  border-radius: 1em; // 1em ensures the borders are always fully rounded, but not oval.
+  padding: pxToEm(4, 11) pxToEm(5, 11);
+  margin-left: pxToEm(2, 11);
   background-color: $sbbColorRed;
   color: $sbbColorWhite;
   font-family: $fontSbbBold;

@@ -1,0 +1,145 @@
+import { BooleanInput } from '@angular/cdk/coercion';
+import { TemplatePortal } from '@angular/cdk/portal';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  Inject,
+  InjectionToken,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation,
+} from '@angular/core';
+import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
+import { Subject } from 'rxjs';
+
+import { SBB_TAB_CONTENT } from './tab-content';
+import { SbbTabLabel, SBB_TAB_LABEL } from './tab-label';
+
+// Boilerplate for applying mixins to SbbTab.
+// tslint:disable-next-line:naming-convention
+const _SbbTabMixinBase = mixinDisabled(class {});
+
+/**
+ * Used to provide a tab group to a tab without causing a circular dependency.
+ * @docs-private
+ */
+export const SBB_TAB_GROUP = new InjectionToken<any>('SBB_TAB_GROUP');
+
+@Component({
+  selector: 'sbb-tab',
+  templateUrl: 'tab.html',
+  inputs: ['disabled'],
+  // tslint:disable-next-line:validate-decorators
+  changeDetection: ChangeDetectionStrategy.Default,
+  encapsulation: ViewEncapsulation.None,
+  exportAs: 'sbbTab',
+})
+export class SbbTab extends _SbbTabMixinBase implements OnInit, CanDisable, OnChanges, OnDestroy {
+  /** Content for the tab label given by `<ng-template sbb-tab-label>`. */
+  @ContentChild(SBB_TAB_LABEL)
+  get templateLabel(): SbbTabLabel {
+    return this._templateLabel;
+  }
+  set templateLabel(value: SbbTabLabel) {
+    this._setTemplateLabelInput(value);
+  }
+  protected _templateLabel: SbbTabLabel;
+
+  /**
+   * Template provided in the tab content that will be used if present, used to enable lazy-loading
+   */
+  @ContentChild(SBB_TAB_CONTENT, { read: TemplateRef, static: true })
+  _explicitContent: TemplateRef<any>;
+
+  /** Template inside the SbbTab view that contains an `<ng-content>`. */
+  @ViewChild(TemplateRef, { static: true }) _implicitContent: TemplateRef<any>;
+
+  /** Plain text label for the tab, used when there is no template label. */
+  @Input('label') textLabel: string = '';
+
+  /** Aria label for the tab. */
+  @Input('aria-label') ariaLabel: string;
+
+  /**
+   * Reference to the element that the tab is labelled by.
+   * Will be cleared if `aria-label` is set at the same time.
+   */
+  @Input('aria-labelledby') ariaLabelledby: string;
+
+  /** Portal that will be the hosted content of the tab */
+  private _contentPortal: TemplatePortal | null = null;
+
+  /** @docs-private */
+  get content(): TemplatePortal | null {
+    return this._contentPortal;
+  }
+
+  /** Emits whenever the internal state of the tab changes. */
+  readonly _stateChanges = new Subject<void>();
+
+  /**
+   * The relatively indexed position where 0 represents the center, negative is left, and positive
+   * represents the right.
+   */
+  position: number | null = null;
+
+  /**
+   * The initial relatively index origin of the tab if it was created and selected after there
+   * was already a selected tab. Provides context of what position the tab should originate from.
+   */
+  origin: number | null = null;
+
+  /**
+   * Whether the tab is currently active.
+   */
+  isActive: boolean = false;
+
+  constructor(
+    private _viewContainerRef: ViewContainerRef,
+    @Inject(SBB_TAB_GROUP) public _closestTabGroup: any
+  ) {
+    super();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('textLabel') || changes.hasOwnProperty('disabled')) {
+      this._stateChanges.next();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this._stateChanges.complete();
+  }
+
+  ngOnInit(): void {
+    this._contentPortal = new TemplatePortal(
+      this._explicitContent || this._implicitContent,
+      this._viewContainerRef
+    );
+  }
+
+  /**
+   * This has been extracted to a util because of TS 4 and VE.
+   * View Engine doesn't support property rename inheritance.
+   * TS 4.0 doesn't allow properties to override accessors or vice-versa.
+   * @docs-private
+   */
+  protected _setTemplateLabelInput(value: SbbTabLabel) {
+    // Only update the templateLabel via query if there is actually
+    // a SbbTabLabel found. This works around an issue where a user may have
+    // manually set `templateLabel` during creation mode, which would then get clobbered
+    // by `undefined` when this query resolves.
+    if (value) {
+      this._templateLabel = value;
+    }
+  }
+
+  static ngAcceptInputType_disabled: BooleanInput;
+}

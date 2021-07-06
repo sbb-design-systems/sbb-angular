@@ -1,0 +1,8 @@
+<ng-container *ngIf="(asyncTabs | async) === null"> Loading tabs... </ng-container>
+
+<sbb-tab-group>
+  <sbb-tab *ngFor="let tab of asyncTabs | async">
+    <ng-template sbb-tab-label>{{tab.label}}</ng-template>
+    {{tab.content}}
+  </sbb-tab>
+</sbb-tab-group>

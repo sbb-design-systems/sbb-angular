@@ -1,0 +1,50 @@
+@import './tabs';
+
+@include paginated-tab-header;
+@include paginated-tab-header-shadows;
+
+.sbb-tab-links {
+  @include paginated-tab-header-item-wrapper('.sbb-tab-link-container');
+}
+
+.sbb-tab-link-container {
+  @include paginated-tab-header-container;
+}
+
+// Wraps each link in the header
+.sbb-tab-link {
+  @include tab-label;
+  vertical-align: top;
+  text-decoration: none; // Removes anchor underline styling
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+
+  [sbb-stretch-tabs] & {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  html.sbb-lean & {
+    // We need to unset overflow: hidden on business due to our requirement of hiding
+    // the border between the tab link header and body.
+    overflow: unset;
+  }
+
+  &.sbb-tab-disabled {
+    // We use `pointer-events` to make the element unclickable when it's disabled, rather than
+    // preventing the default action through JS, because we can't prevent the action reliably
+    // due to other directives potentially registering their events earlier. This shouldn't cause
+    // the user to click through, because we always have a `.sbb-tab-links` behind the link.
+    pointer-events: none;
+  }
+}
+
+// The bottom section of the view; contains the tab bodies
+.sbb-tab-nav-bar-body {
+  @include tab-body-wrapper;
+
+  html.sbb-lean & {
+    padding: pxToRem(15);
+  }
+}

@@ -1,0 +1,31 @@
+<nav sbb-tab-nav-bar>
+  <!--
+    [routerLink] would be used in a real application, e.g.:
+
+    <a sbb-tab-link
+      [routerLink]="link-to-your-content"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive">{{section}}</a>
+  -->
+  <a
+    sbb-tab-link
+    *ngFor="let link of links"
+    (click)="activeLink = link"
+    [active]="activeLink == link"
+  >
+    {{link}}
+  </a>
+  <a sbb-tab-link disabled>Disabled Link</a>
+</nav>
+
+<!-- The wrapping div with the css class 'sbb-tab-nav-bar-body' is only required for the lean design -->
+<div class="sbb-tab-nav-bar-body">
+  <!--
+    Use <router-outlet> in a real application:
+
+    <router-outlet></router-outlet>
+  -->
+
+  <button sbb-button class="example-action-button" (click)="addLink()">Add link</button>
+</div>

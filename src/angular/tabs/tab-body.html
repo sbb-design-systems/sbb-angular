@@ -1,0 +1,10 @@
+<div
+  class="sbb-tab-body-content"
+  #content
+  [@translateTab]="_position"
+  (@translateTab.start)="_onTranslateTabStarted($event)"
+  (@translateTab.done)="_translateTabComplete.next($event)"
+  cdkScrollable
+>
+  <ng-template sbbTabBodyHost></ng-template>
+</div>

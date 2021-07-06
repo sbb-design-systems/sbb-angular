@@ -298,3 +298,35 @@ The search component has been refactored as a wrapper for an input field.
 ```
 
 [Documentation](angular/components/search)
+
+### Tabs
+
+_Automatic migration available_
+
+The tabs module has been refactored to improve programmatic access. We have also created a
+separate variant that can be used with `<router-outlet>`.
+Due to a structural change, we have renamed `<sbb-tabs>` to `<sbb-tab-group>`.
+The `labelId` and `badgePill` properties on `<sbb-tab>` have been removed. A badge pill
+can be applied with the `sbbBadge` directive from the `SbbBadgeModule`.
+
+**Previous**
+
+```html
+<sbb-tabs>
+  <sbb-tab label="Notes"></sbb-tab>
+  <sbb-tab label="Messages" [badgePill]="5"></sbb-tab>
+</sbb-tabs>
+```
+
+**New**
+
+```html
+<sbb-tab-group>
+  <sbb-tab label="Notes"></sbb-tab>
+  <sbb-tab>
+    <span *sbb-tab-label sbbBadge="5">Messages</span>
+  </sbb-tab>
+</sbb-tab-group>
+```
+
+[Documentation](angular/components/tabs)

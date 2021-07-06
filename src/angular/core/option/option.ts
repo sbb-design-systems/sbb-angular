@@ -49,7 +49,7 @@ export class SbbOptionSelectionChange {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'sbb-option sbb-menu-item',
+    class: 'sbb-option sbb-menu-item sbb-link-reset',
     role: 'option',
     '[attr.tabindex]': '_getTabIndex()',
     '[class.sbb-selected]': 'selected',

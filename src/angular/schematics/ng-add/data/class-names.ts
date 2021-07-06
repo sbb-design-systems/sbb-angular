@@ -93,6 +93,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbDialogFooter',
           replaceWith: 'SbbDialogActions',
         },
+        {
+          replace: 'SbbTabs',
+          replaceWith: 'SbbTabGroup',
+        },
       ],
     },
   ],

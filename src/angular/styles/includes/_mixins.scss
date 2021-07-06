@@ -241,3 +241,11 @@
   background-color: $sbbColorMilk;
   @include borderLeftAsBefore($sbbColorRed125);
 }
+
+@mixin sbbAbsoluteFill() {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

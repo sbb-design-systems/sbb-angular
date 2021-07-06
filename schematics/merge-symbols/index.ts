@@ -36,6 +36,7 @@ export function mergeSymbols(): Rule {
       SbbPaginatorComponent: 'pagination',
       SbbPageChangeEvent: 'pagination',
       SbbPagination: 'pagination',
+      SbbTabs: 'tabs',
     };
 
     extractExportsForModule('src/angular/');

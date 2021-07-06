@@ -30,7 +30,7 @@ const appOptions: ApplicationOptions = {
   style: Style.Css,
 };
 
-describe('MenuMigration', () => {
+describe('TabsMigration', () => {
   let runner: SchematicTestRunner;
   let tree: UnitTestTree;
   let project: ProjectDefinition;
@@ -45,35 +45,36 @@ describe('MenuMigration', () => {
       .runExternalSchematicAsync('@schematics/angular', 'application', appOptions, tree)
       .toPromise();
 
-    // Add contextmenu
+    // Add sbb-tabs
     const workspace = await getWorkspace(tree);
     project = getProjectFromWorkspace(workspace, appOptions.name);
     appModulePath = getAppModulePath(tree, getProjectMainFile(project));
     tree.overwrite(
       '/projects/dummy/src/app/app.component.html',
-      `<sbb-contextmenu>
-         <sbb-dropdown></sbb-dropdown>
-       </sbb-contextmenu>`
+      `<sbb-tabs>
+        <sbb-tab label="Test" labelId="test1"></sbb-tab>
+        <sbb-tab label="Test 2" labelId="test2" [badgePill]="5"></sbb-tab>
+      </sbb-tabs>`
     );
   });
 
-  it('should import SbbIconModule when migrating sbb-contextmenu', async () => {
-    expect(hasNgModuleImport(tree, appModulePath, 'SbbIconModule')).toBe(false);
+  it('should import SbbBadgeModule when migrating sbb-tabs with badgePill', async () => {
+    expect(hasNgModuleImport(tree, appModulePath, 'SbbBadgeModule')).toBe(false);
 
     await runner.runSchematicAsync('ng-add-migrate', {}, tree).toPromise();
 
-    expect(hasNgModuleImport(tree, appModulePath, 'SbbIconModule')).toBe(true);
+    expect(hasNgModuleImport(tree, appModulePath, 'SbbBadgeModule')).toBe(true);
   });
 
-  it('should not import SbbIconModule when migrating sbb-contextmenu and SbbIconModule is already imported', async () => {
-    addModuleImportToRootModule(tree, 'SbbIconModule', '@sbb-esta/angular/icon', project);
-    expect(hasNgModuleImport(tree, appModulePath, 'SbbIconModule')).toBe(true);
+  it('should not import SbbBadgeModule when migrating sbb-tabs with badgePill and SbbBadgeModule is already imported', async () => {
+    addModuleImportToRootModule(tree, 'SbbBadgeModule', '@sbb-esta/angular/badge', project);
+    expect(hasNgModuleImport(tree, appModulePath, 'SbbBadgeModule')).toBe(true);
 
     await runner.runSchematicAsync('ng-add-migrate', {}, tree).toPromise();
 
-    expect((tree.readContent(appModulePath).match(/SbbIconModule/g) || []).length).toBe(
+    expect((tree.readContent(appModulePath).match(/SbbBadgeModule/g) || []).length).toBe(
       2,
-      'Expected to have two occurrences of SbbIconModule (one in import declaration and one in module imports).'
+      'Expected to have two occurrences of SbbBadgeModule (one in import declaration and one in module imports).'
     );
   });
 });

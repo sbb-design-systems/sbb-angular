@@ -1,0 +1,8 @@
+.sbb-tab-body-content {
+  height: 100%;
+  overflow: auto;
+
+  .sbb-tab-group-dynamic-height & {
+    overflow: hidden;
+  }
+}
