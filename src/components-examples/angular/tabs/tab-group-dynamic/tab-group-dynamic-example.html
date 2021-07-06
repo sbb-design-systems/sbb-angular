@@ -1,15 +1,3 @@
-<sbb-form-field>
-  <sbb-label>Selected tab index</sbb-label>
-  <input sbbInput type="number" [formControl]="selected" />
-</sbb-form-field>
-
-<p class="add-tab">
-  <button sbb-button class="example-add-tab-button" (click)="addTab(selectAfterAdding.checked)">
-    Add new tab
-  </button>
-  <sbb-checkbox #selectAfterAdding>Select tab after adding</sbb-checkbox>
-</p>
-
 <sbb-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
   <sbb-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
     Contents for {{tab}} tab
@@ -24,3 +12,16 @@
     </button>
   </sbb-tab>
 </sbb-tab-group>
+
+<h4>Config</h4>
+<sbb-form-field>
+  <sbb-label>Selected tab index</sbb-label>
+  <input sbbInput type="number" [formControl]="selected" />
+</sbb-form-field>
+
+<p class="add-tab">
+  <button sbb-button class="example-add-tab-button" (click)="addTab(selectAfterAdding.checked)">
+    Add new tab
+  </button>
+  <sbb-checkbox #selectAfterAdding>Select tab after adding</sbb-checkbox>
+</p>
