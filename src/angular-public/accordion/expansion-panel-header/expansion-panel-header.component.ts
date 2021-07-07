@@ -1,7 +1,9 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
+import { NumberInput } from '@angular/cdk/coercion';
 import { ENTER, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { DOCUMENT } from '@angular/common';
 import {
+  Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -11,12 +13,20 @@ import {
   OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
-import { TypeRef } from '@sbb-esta/angular-core/common-behaviors';
+import { HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular-core/common-behaviors';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { sbbExpansionAnimations } from '../accordion/accordion-animations';
 import { SbbExpansionPanel } from '../expansion-panel/expansion-panel.component';
+
+// Boilerplate for applying mixins to SbbExpansionPanelHeader.
+/** @docs-private */
+abstract class SbbExpansionPanelHeaderBase {
+  abstract readonly disabled: boolean;
+}
+// tslint:disable-next-line: naming-convention
+const _SbbExpansionPanelHeaderMixinBase = mixinTabIndex(SbbExpansionPanelHeaderBase);
 
 /**
  * `<sbb-expansion-panel-header>`
@@ -27,14 +37,15 @@ import { SbbExpansionPanel } from '../expansion-panel/expansion-panel.component'
   selector: 'sbb-expansion-panel-header',
   styleUrls: ['./expansion-panel-header.component.css'],
   templateUrl: './expansion-panel-header.component.html',
-  animations: [sbbExpansionAnimations.indicatorRotate],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  inputs: ['tabIndex'],
+  animations: [sbbExpansionAnimations.indicatorRotate],
   host: {
     class: 'sbb-expansion-panel-header',
     role: 'button',
     '[attr.id]': 'panel._headerId',
-    '[attr.tabindex]': 'disabled ? -1 : 0',
+    '[attr.tabindex]': 'tabIndex',
     '[attr.aria-controls]': '_getPanelId()',
     '[attr.aria-expanded]': '_isExpanded()',
     '[attr.aria-disabled]': 'panel.disabled',
@@ -45,7 +56,10 @@ import { SbbExpansionPanel } from '../expansion-panel/expansion-panel.component'
     '(keydown)': '_keydown($event)',
   },
 })
-export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
+export class SbbExpansionPanelHeader
+  extends _SbbExpansionPanelHeaderMixinBase
+  implements OnDestroy, FocusableOption, HasTabIndex
+{
   /**
    * Whether the associated panel is disabled. Implemented as a part of `FocusableOption`.
    * @docs-private
@@ -62,11 +76,14 @@ export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
     private _element: ElementRef,
     private _focusMonitor: FocusMonitor,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(DOCUMENT) private _document?: TypeRef<Document>
+    @Inject(DOCUMENT) private _document?: TypeRef<Document>,
+    @Attribute('tabindex') tabIndex?: string
   ) {
+    super();
     const accordionHideToggleChange = panel.accordion
       ? panel.accordion._stateChanges.pipe(filter((changes) => !!changes.hideToggle))
       : EMPTY;
+    this.tabIndex = parseInt(tabIndex || '', 10) || 0;
 
     // Since the toggle state depends on an @Input on the panel, we
     // need to subscribe and trigger change detection manually.
@@ -155,4 +172,6 @@ export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
   private _isFocused() {
     return this._document?.activeElement === this._element.nativeElement;
   }
+
+  static ngAcceptInputType_tabIndex: NumberInput;
 }

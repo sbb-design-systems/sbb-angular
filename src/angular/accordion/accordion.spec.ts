@@ -16,7 +16,7 @@ import {
   SbbAccordionModule,
   SbbExpansionPanel,
   SbbExpansionPanelHeader,
-} from './public-api';
+} from './index';
 
 describe('AccordionDirective', () => {
   let focusMonitor: FocusMonitor;

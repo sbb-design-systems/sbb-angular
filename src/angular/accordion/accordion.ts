@@ -12,7 +12,7 @@ import {
 import { startWith } from 'rxjs/operators';
 
 import { SBB_ACCORDION } from './accordion-token';
-import { SbbExpansionPanelHeader } from './expansion-panel-header/expansion-panel-header';
+import { SbbExpansionPanelHeader } from './expansion-panel-header';
 
 @Directive({
   selector: 'sbb-accordion',

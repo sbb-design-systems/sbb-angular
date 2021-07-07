@@ -5,9 +5,9 @@ import { NgModule } from '@angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbAccordion } from './accordion';
-import { SbbExpansionPanelHeader } from './expansion-panel-header/expansion-panel-header';
-import { SbbExpansionPanel } from './expansion-panel/expansion-panel';
-import { SbbExpansionPanelContent } from './expansion-panel/expansion-panel-content';
+import { SbbExpansionPanel } from './expansion-panel';
+import { SbbExpansionPanelContent } from './expansion-panel-content';
+import { SbbExpansionPanelHeader } from './expansion-panel-header';
 
 @NgModule({
   imports: [CommonModule, CdkAccordionModule, PortalModule, SbbIconModule],

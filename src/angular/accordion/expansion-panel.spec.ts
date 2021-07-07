@@ -18,7 +18,7 @@ import {
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
-import { SbbAccordionModule, SbbExpansionPanel } from '../public-api';
+import { SbbAccordionModule, SbbExpansionPanel } from './index';
 
 describe('SbbExpansionPanel', () => {
   let originalTimeout: number;
@@ -43,6 +43,7 @@ describe('SbbExpansionPanel', () => {
           LazyPanelWithContent,
           LazyPanelOpenOnLoad,
           PanelWithTwoWayBinding,
+          PanelWithHeaderTabindex,
         ],
       });
       TestBed.compileComponents();
@@ -351,6 +352,14 @@ describe('SbbExpansionPanel', () => {
     expect(afterCollapse).toBe(1);
   }));
 
+  it('should be able to set a custom tabindex on the header', fakeAsync(() => {
+    const fixture = TestBed.createComponent(PanelWithHeaderTabindex);
+    const headerEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-header');
+    fixture.detectChanges();
+
+    expect(headerEl.getAttribute('tabindex')).toBe('7');
+  }));
+
   describe('disabled state', () => {
     let fixture: ComponentFixture<PanelWithContent>;
     let panel: HTMLElement;
@@ -452,6 +461,15 @@ describe('SbbExpansionPanel', () => {
       expect(panelInstance.expanded).toBe(false);
       expect(header.classList).not.toContain('sbb-expanded');
     });
+
+    it('should update the tabindex if the header becomes disabled', () => {
+      expect(header.getAttribute('tabindex')).toBe('0');
+
+      fixture.componentInstance.disabled = true;
+      fixture.detectChanges();
+
+      expect(header.getAttribute('tabindex')).toBe('-1');
+    });
   });
 });
 
@@ -552,3 +570,10 @@ class LazyPanelOpenOnLoad {}
 class PanelWithTwoWayBinding {
   expanded = false;
 }
+
+@Component({
+  template: `<sbb-expansion-panel>
+    <sbb-expansion-panel-header tabindex="7">Panel Title</sbb-expansion-panel-header>
+  </sbb-expansion-panel>`,
+})
+class PanelWithHeaderTabindex {}
