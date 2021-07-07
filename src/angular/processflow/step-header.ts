@@ -42,6 +42,9 @@ export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDes
   /** Whether the given step is optional. */
   @Input() optional: boolean;
 
+  /** Whether the giben step is not editable and completed. */
+  @Input() locked: boolean;
+
   constructor(private _focusMonitor: FocusMonitor, elementRef: ElementRef<HTMLElement>) {
     super(elementRef);
   }

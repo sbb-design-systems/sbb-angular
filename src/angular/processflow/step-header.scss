@@ -92,3 +92,11 @@
     width: 100%;
   }
 }
+
+.sbb-step-label-active.sbb-step-label-locked {
+  cursor: default;
+
+  &::after {
+    display: none;
+  }
+}

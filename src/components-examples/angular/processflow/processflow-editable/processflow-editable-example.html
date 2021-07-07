@@ -1,9 +1,9 @@
-<button sbb-secondary-button (click)="isEditable = !isEditable">
-  {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
-</button>
-
-<sbb-processflow #processflow>
-  <sbb-step [stepControl]="firstFormGroup" [editable]="isEditable">
+<sbb-processflow aria-label="Process flow to fill out your name and address" #processflow>
+  <sbb-step
+    aria-label="Step to fill out your name"
+    [stepControl]="firstFormGroup"
+    [editable]="!disableEditable"
+  >
     <form [formGroup]="firstFormGroup">
       <ng-template sbbStepLabel>Fill out your name</ng-template>
       <sbb-form-field>
@@ -15,7 +15,11 @@
       </div>
     </form>
   </sbb-step>
-  <sbb-step [stepControl]="secondFormGroup" [editable]="isEditable">
+  <sbb-step
+    aria-label="Step to fill out your address"
+    [stepControl]="secondFormGroup"
+    [editable]="!disableEditable"
+  >
     <form [formGroup]="secondFormGroup">
       <ng-template sbbStepLabel>Fill out your address</ng-template>
       <sbb-form-field>
@@ -28,17 +32,20 @@
         />
       </sbb-form-field>
       <div>
-        <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+        <button *ngIf="!disableEditable" sbb-secondary-button sbbProcessflowPrevious>Back</button>
         <button sbb-button sbbProcessflowNext>Next</button>
       </div>
     </form>
   </sbb-step>
-  <sbb-step>
+  <sbb-step aria-label="Step to finish the process flow or reset it">
     <ng-template sbbStepLabel>Done</ng-template>
     <p>You are now done.</p>
     <div>
-      <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+      <button *ngIf="!disableEditable" sbb-secondary-button sbbProcessflowPrevious>Back</button>
       <button sbb-button (click)="processflow.reset()">Reset</button>
     </div>
   </sbb-step>
 </sbb-processflow>
+
+<h4>Properties</h4>
+<sbb-checkbox [(ngModel)]="disableEditable">Disable edit mode</sbb-checkbox>

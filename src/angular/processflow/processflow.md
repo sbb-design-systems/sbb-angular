@@ -4,12 +4,12 @@ The `SbbProcessflow` builds on the foundation of the CDK stepper that is respons
 that drives a processflow.
 
 ```html
-<sbb-processflow>
-  <sbb-step label="Step 1">
+<sbb-processflow aria-label="Describe the purpose of this processflow">
+  <sbb-step label="Step 1" aria-label="Brief description of Step 1">
     <p>Content for first step</p>
     <button sbb-button sbbProcessflowNext>Next</button>
   </sbb-step>
-  <sbb-step>
+  <sbb-step aria-label="Brief description of Step 2">
     <ng-template sbbStepLabel>Step 2</ng-template>
     <ng-template sbbStepContent>
       <p>This content was rendered lazily</p>

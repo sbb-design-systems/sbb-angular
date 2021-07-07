@@ -16,12 +16,14 @@ export const sbbProcessflowAnimations: {
 } = {
   /** Animation that transitions the step along the X axis in a horizontal stepper. */
   stepTransition: trigger('stepTransition', [
-    state('previous', style({ transform: 'translate3d(-100%, 0, 0)', visibility: 'hidden' })),
-    // Transition to `inherit`, rather than `visible`,
-    // because visibility on a child element the one from the parent,
-    // making this element focusable inside of a `hidden` element.
-    state('current', style({ transform: 'none', visibility: 'inherit' })),
-    state('next', style({ transform: 'translate3d(100%, 0, 0)', visibility: 'hidden' })),
-    transition('* => *', animate('500ms cubic-bezier(0.35, 0, 0.25, 1)')),
+    transition('* => previous, * => next', [
+      style({ opacity: 1 }),
+      animate('150ms ease', style({ opacity: 0 })),
+    ]),
+    transition('previous => current, next => current', [
+      style({ opacity: 0 }),
+      animate('500ms ease', style({ opacity: 1 })),
+    ]),
+    transition('void => current', animate('0s')),
   ]),
 };

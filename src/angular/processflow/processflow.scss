@@ -67,3 +67,10 @@
     border: none;
   }
 }
+
+.sbb-processflow-previous + .sbb-processflow-next,
+.sbb-processflow-previous + .sbb-button-base {
+  @include mq($from: tabletPortrait) {
+    margin-left: pxToRem(8);
+  }
+}

@@ -18,6 +18,7 @@
       [selected]="selectedIndex === i"
       [active]="step.completed || selectedIndex === i || !linear"
       [optional]="step.optional"
+      [locked]="!step.editable && i < selectedIndex"
     ></sbb-step-header>
     <div *ngIf="!isLast" class="sbb-processflow-separator">
       <sbb-icon svgIcon="kom:chevron-right-small" class="sbb-icon-fit"></sbb-icon>

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field';
 import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
 
@@ -21,6 +22,7 @@ const EXAMPLES = [
   imports: [
     FormsModule,
     SbbButtonModule,
+    SbbCheckboxModule,
     SbbFormFieldModule,
     SbbInputModule,
     SbbProcessflowModule,

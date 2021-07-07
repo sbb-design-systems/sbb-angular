@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProcessflowEditableExample implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  isEditable = false;
+  disableEditable = true;
 
   constructor(private _formBuilder: FormBuilder) {}
 

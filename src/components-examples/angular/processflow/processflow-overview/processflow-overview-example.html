@@ -1,8 +1,9 @@
-<button sbb-secondary-button (click)="linear = !linear" id="toggle-linear">
-  {{!linear ? 'Enable linear mode' : 'Disable linear mode'}}
-</button>
-<sbb-processflow [linear]="linear" #processflow>
-  <sbb-step [stepControl]="firstFormGroup">
+<sbb-processflow
+  aria-label="Process flow to fill out your name and address"
+  [linear]="linear"
+  #processflow
+>
+  <sbb-step aria-label="Step to fill out your name" [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template sbbStepLabel>Fill out your name</ng-template>
       <sbb-form-field>
@@ -17,7 +18,11 @@
       </div>
     </form>
   </sbb-step>
-  <sbb-step [stepControl]="secondFormGroup" label="Fill out your address">
+  <sbb-step
+    aria-label="Step to fill out your address"
+    [stepControl]="secondFormGroup"
+    label="Fill out your address"
+  >
     <form [formGroup]="secondFormGroup">
       <sbb-form-field>
         <sbb-label>Address</sbb-label>
@@ -37,7 +42,7 @@
       </div>
     </form>
   </sbb-step>
-  <sbb-step>
+  <sbb-step aria-label="Step to finish the process flow or reset it">
     <ng-template sbbStepLabel>Done</ng-template>
     <p>You are now done.</p>
     <div>
@@ -46,3 +51,6 @@
     </div>
   </sbb-step>
 </sbb-processflow>
+
+<h4>Properties</h4>
+<sbb-checkbox [(ngModel)]="linear">Linear mode</sbb-checkbox>

@@ -7,6 +7,5 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-processflow-lazy-content-example',
   templateUrl: 'processflow-lazy-content-example.html',
-  styleUrls: ['processflow-lazy-content-example.css'],
 })
 export class ProcessflowLazyContentExample {}
