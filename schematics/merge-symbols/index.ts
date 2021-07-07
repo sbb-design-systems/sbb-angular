@@ -37,6 +37,8 @@ export function mergeSymbols(): Rule {
       SbbPageChangeEvent: 'pagination',
       SbbPagination: 'pagination',
       SbbTabs: 'tabs',
+      SbbDialogHeader: 'dialog',
+      SbbDialogFooter: 'dialog',
     };
 
     extractExportsForModule('src/angular/');
