@@ -13,20 +13,22 @@ sbb-how-to-update {
   pre {
     background-color: #efefef;
     padding: 1rem 1.5rem;
-    margin: 1rem -1.5rem;
     white-space: pre-wrap;
   }
 }
 
-sbb-component-viewer sbb-example-viewer pre {
-  margin: 1rem -24px;
-  white-space: pre-wrap;
-}
+sbb-introduction,
+sbb-how-to-update {
+  display: block;
+  padding: 0 1.5rem;
 
-sbb-api-viewer,
-sbb-markdown-viewer {
-  > .docs-markdown > h1:first-child {
-    margin-top: 0;
+  h1 {
+    margin-top: 1rem !important;
+    color: #eb0000;
+  }
+
+  p {
+    max-width: pxToEm(700);
   }
 }
 
@@ -105,28 +107,5 @@ pre code {
         background-color: transparent;
       }
     }
-  }
-}
-
-sbb-introduction,
-sbb-how-to-update {
-  display: block;
-  padding: 0 1.5rem;
-
-  h1 {
-    color: #eb0000;
-    font-size: 24px;
-    font-weight: 200;
-    line-height: 27px;
-    margin-bottom: 20px;
-  }
-
-  p {
-    max-width: 700px;
-  }
-
-  a {
-    line-height: pxToEm(23px);
-    font-size: pxToRem($sizeFontDefault);
   }
 }

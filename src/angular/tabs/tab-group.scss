@@ -20,6 +20,7 @@
 // The bottom section of the view; contains the tab bodies
 .sbb-tab-body-wrapper {
   @include tab-body-wrapper;
+  display: flex;
 }
 
 // Wraps each tab body

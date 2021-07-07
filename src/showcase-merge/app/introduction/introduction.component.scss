@@ -1,6 +1,18 @@
-nav {
+@import '../../../angular/styles/common';
+
+:host nav {
   padding: 0;
-  margin: 50px 0 50px 0;
+  margin: pxToEm(50) 0 pxToEm(50) 0;
+  font-size: 1rem;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
 
   ul {
     margin: 0;
@@ -12,13 +24,14 @@ nav {
     justify-content: flex-start;
     align-content: flex-start;
     align-items: stretch;
+    font-size: inherit !important;
 
     > li {
-      width: 300px;
-      margin: 0 20px 20px 0;
-      border-radius: 6px;
+      width: pxToEm(300);
+      margin: 0 pxToEm(20) pxToEm(20) 0;
+      border-radius: pxToEm(6);
       background: #fff;
-      border: solid 1px #cccccc;
+      border: solid pxToEm(1) #cccccc;
       color: #1b1b1b;
       cursor: pointer;
       position: relative;
@@ -28,7 +41,6 @@ nav {
       &::before {
         content: '';
         display: inherit;
-        /* aha! */
         color: #000000;
         padding-right: 0;
       }
@@ -48,8 +60,8 @@ nav {
           overflow: hidden;
           display: block;
           width: 100%;
-          height: 180px;
-          border-radius: 4px 4px 0 0;
+          height: pxToEm(180);
+          border-radius: pxToEm(4) pxToEm(4) 0 0;
         }
 
         .hero img {
@@ -62,13 +74,13 @@ nav {
         }
 
         .title {
-          margin: 15px 20px 0 20px;
+          margin: pxToEm(15) pxToEm(20) 0 pxToEm(20);
           display: block;
           font-weight: 400;
         }
 
         .text {
-          margin: 5px 20px 15px 20px;
+          margin: pxToEm(5) pxToEm(20) pxToEm(15) pxToEm(20);
           display: block;
           font-weight: 200;
         }

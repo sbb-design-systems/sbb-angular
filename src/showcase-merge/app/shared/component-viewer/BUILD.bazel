@@ -14,15 +14,17 @@ ng_module(
     ),
     assets = [
         ":component-viewer/component-viewer.component.css",
+        ":example-list-viewer/example-list-viewer.component.css",
         ":example-viewer/example-viewer.component.css",
+        ":html-viewer/html-viewer.component.css",
         ":variant-limitation-component/variant-limitation.component.css",
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
         "//src/angular-business/notification",
         "//src/angular-business/tooltip",
-        "//src/angular-public/tabs",
         "//src/angular/icon",
+        "//src/angular/tabs",
         "//src/components-examples",
         "//src/showcase-merge/app/shared",
         "@npm//@angular/cdk",
@@ -46,11 +48,21 @@ sass_binary(
 )
 
 sass_binary(
+    name = "example_list_viewer_example_list_viewer_component_scss",
+    src = "example-list-viewer/example-list-viewer.component.scss",
+)
+
+sass_binary(
     name = "example_viewer_example_viewer_component_scss",
     src = "example-viewer/example-viewer.component.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],
+)
+
+sass_binary(
+    name = "html_viewer_html_viewer_component_scss",
+    src = "html-viewer/html-viewer.component.scss",
 )
 
 sass_binary(

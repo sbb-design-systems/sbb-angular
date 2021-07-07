@@ -7,32 +7,39 @@
   position: relative;
   border: 1px solid $sbbColorSilver;
 
-  > div {
-    border-bottom: 1px solid $sbbColorSilver;
-    display: flex;
-    padding-bottom: 20px;
-    margin-bottom: 1rem;
-
-    > h3 {
-      flex-grow: 1;
-      margin-top: 0;
-    }
-
-    button {
-      cursor: pointer;
-      flex-grow: 0;
-      @include buttonResetFrameless();
-
-      svg {
-        height: 24px;
-        width: 24px;
-      }
-
-      &.stackblitz-button {
-        margin-left: 0.5rem;
-      }
-    }
+  ::ng-deep pre {
+    margin: 1rem 0;
+    white-space: pre-wrap;
   }
+}
+
+.example-viewer-header {
+  border-bottom: 1px solid $sbbColorSilver;
+  display: flex;
+  padding-bottom: 20px;
+  margin-bottom: 1rem;
+}
+
+.example-viewer-header-button {
+  @include buttonResetFrameless();
+  cursor: pointer;
+  flex-grow: 0;
+  line-height: inherit;
+  outline: 0;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+}
+
+.stackblitz-button {
+  margin-left: 0.5rem;
+}
+
+.example-viewer-title {
+  flex-grow: 1;
+  margin-top: 0;
 }
 
 .sbb-example-viewer-tabs {

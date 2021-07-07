@@ -133,6 +133,14 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
           { label: 'Legend', link: './components/esri-legend' },
         ],
       },
+      {
+        name: 'Advanced Usage',
+        entries: [
+          { label: 'Using ArcGIS types', link: './advanced/using-arcgis-types' },
+          { label: 'Layer filtering', link: './advanced/layer-filtering' },
+          { label: 'Accessing map data', link: './advanced/accessing-map-data' },
+        ],
+      },
     ],
   },
 };

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 import { LoaderBuilder } from './loader-builder';
+import { ModuleParams } from './module-params';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ import { LoaderBuilder } from './loader-builder';
 export class HtmlLoader {
   constructor(private _http: HttpClient) {}
 
-  with(route: ActivatedRoute) {
-    return new LoaderBuilder(this._http, route);
+  withParams(moduleParams: ModuleParams): LoaderBuilder {
+    return new LoaderBuilder(this._http, moduleParams);
   }
 }

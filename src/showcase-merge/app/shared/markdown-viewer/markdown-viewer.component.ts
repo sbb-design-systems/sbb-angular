@@ -1,19 +1,17 @@
-import { AfterViewInit, Component, HostBinding, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, HostBinding } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 import { HtmlLoader } from '../html-loader.service';
+import { moduleParams } from '../module-params';
 
 @Component({
   selector: 'sbb-markdown-viewer',
   template: '',
   styleUrls: ['./markdown-viewer.component.css'],
 })
-export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
-  private _destroyed = new Subject<void>();
-
+export class MarkdownViewerComponent implements AfterViewInit {
   @HostBinding('innerHTML')
   content: SafeHtml;
 
@@ -24,16 +22,8 @@ export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
   ) {}
 
   ngAfterViewInit(): void {
-    this._htmlLoader
-      .with(this._route)
-      .fromDocumentation()
-      .observe()
-      .pipe(takeUntil(this._destroyed))
+    moduleParams(this._route)
+      .pipe(switchMap((params) => this._htmlLoader.withParams(params).fromDocumentation().load()))
       .subscribe((content) => (this.content = this._domSanitizer.bypassSecurityTrustHtml(content)));
-  }
-
-  ngOnDestroy(): void {
-    this._destroyed.next();
-    this._destroyed.complete();
   }
 }

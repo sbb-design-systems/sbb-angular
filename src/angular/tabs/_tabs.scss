@@ -136,10 +136,8 @@ $tab-animation-duration: 500ms !default;
       cursor: default;
     }
 
-    html:not(.sbb-lean) & {
-      &::after {
-        width: 0 !important;
-      }
+    &::after {
+      width: 0 !important;
     }
   }
 
@@ -269,7 +267,6 @@ $tab-animation-duration: 500ms !default;
 @mixin tab-body-wrapper {
   position: relative;
   overflow: hidden;
-  display: flex;
   transition: height $tab-animation-duration;
 
   html.sbb-lean & {
