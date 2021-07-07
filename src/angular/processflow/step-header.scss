@@ -96,6 +96,10 @@
 .sbb-step-label-active.sbb-step-label-locked {
   cursor: default;
 
+  .sbb-step-header:hover & {
+    color: $sbbColorBlack;
+  }
+
   &::after {
     display: none;
   }
