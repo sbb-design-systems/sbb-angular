@@ -15,7 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":expansion-panel/expansion-panel.css"] + glob(["**/*.html"]),
+    assets = [":expansion-panel.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/accordion",
     deps = [
         "//src/angular/core",
@@ -29,8 +29,8 @@ ng_module(
 )
 
 sass_binary(
-    name = "expansion_panel_expansion_panel_scss",
-    src = "expansion-panel/expansion-panel.scss",
+    name = "expansion_panel_scss",
+    src = "expansion-panel.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],
