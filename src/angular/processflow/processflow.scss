@@ -70,7 +70,19 @@
 
 .sbb-processflow-previous + .sbb-processflow-next,
 .sbb-processflow-previous + .sbb-button-base {
+  @include mq($to: tabletPortrait) {
+    margin-top: pxToRem(8);
+  }
   @include mq($from: tabletPortrait) {
     margin-left: pxToRem(8);
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      margin-left: pxToRem(12);
+    }
+    @include mq($from: desktop5k) {
+      margin-left: pxToRem(16);
+    }
   }
 }
