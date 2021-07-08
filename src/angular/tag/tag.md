@@ -13,7 +13,7 @@ it changes the status of each tag in the filter to inactive.
 
 ```html
 <sbb-tags>
-  <sbb-tag label="Trains" amount="22"></sbb-tag>
+  <sbb-tag label="Trains" amount="23"></sbb-tag>
   <sbb-tag label="Cars" amount="2"></sbb-tag>
 </sbb-tags>
 ```

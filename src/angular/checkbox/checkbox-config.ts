@@ -3,6 +3,7 @@ import { InjectionToken } from '@angular/core';
 /** Default `sbb-checkbox` options that can be overridden. */
 export interface SbbCheckboxDefaultOptions {
   clickAction?: SbbCheckboxClickAction;
+  componentName: string;
 }
 
 /** Injection token to be used to override the default options for `sbb-checkbox`. */
@@ -18,6 +19,7 @@ export const SBB_CHECKBOX_DEFAULT_OPTIONS = new InjectionToken<SbbCheckboxDefaul
 export function SBB_CHECKBOX_DEFAULT_OPTIONS_FACTORY(): SbbCheckboxDefaultOptions {
   return {
     clickAction: 'check-indeterminate',
+    componentName: 'checkbox',
   };
 }
 

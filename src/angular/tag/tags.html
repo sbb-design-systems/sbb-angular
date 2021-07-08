@@ -1,0 +1,8 @@
+<sbb-tag
+  #allTag
+  i18n-label="Label for the 'All' tag@@sbbTagsAll"
+  label="All"
+  (change)="allTagClick()"
+  [amount]="_totalAmount | async"
+></sbb-tag>
+<ng-content select="sbb-tag, ng-container"></ng-content>

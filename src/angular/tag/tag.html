@@ -1,0 +1,45 @@
+<ng-container *ngIf="linkMode">
+  <div class="sbb-tag-content">
+    <span class="sbb-tag-label">{{ label }}</span>
+    <span>&nbsp;</span>
+    <ng-container *ngTemplateOutlet="badge"></ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!linkMode">
+  <label class="sbb-tag-content" [attr.for]="inputId">
+    <input
+      #input
+      type="checkbox"
+      class="cdk-visually-hidden"
+      [id]="inputId"
+      [attr.name]="name"
+      [attr.value]="value"
+      [required]="required"
+      [checked]="checked"
+      [tabIndex]="tabIndex"
+      [attr.aria-checked]="checked"
+      [attr.aria-label]="ariaLabel"
+      [attr.aria-labelledby]="ariaLabelledby"
+      [attr.aria-describedby]="ariaDescribedby"
+      [disabled]="disabled"
+      (change)="_onInteractionEvent($event)"
+      (click)="_onInputClick($event)"
+    />
+
+    <!-- Add an invisible span so JAWS can read the label -->
+    <span style="display: none">&nbsp;</span>
+    <span class="sbb-tag-label">{{ label }}</span>
+    <span>&nbsp;</span>
+    <ng-container *ngTemplateOutlet="badge"></ng-container>
+  </label>
+</ng-container>
+
+<ng-template #badge>
+  <span
+    [sbbBadge]="amount"
+    i18n-sbbBadgeDescription="
+        Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults"
+    sbbBadgeDescription="{{ amount }} results available"
+  ></span>
+</ng-template>

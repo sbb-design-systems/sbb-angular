@@ -98,7 +98,7 @@ export class _SbbCheckboxBase
   /** The 'aria-describedby' attribute is read after the element's label and field type. */
   @Input('aria-describedby') ariaDescribedby: string;
 
-  private _uniqueId: string = `sbb-checkbox-${++nextUniqueId}`;
+  private _uniqueId: string = `sbb-${this._options!.componentName}-${++nextUniqueId}`;
 
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() id: string = this._uniqueId;
@@ -147,7 +147,7 @@ export class _SbbCheckboxBase
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private _changeDetectorRef: ChangeDetectorRef,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _focusMonitor: FocusMonitor,
     @Attribute('tabindex') tabIndex: string,
     @Optional()
@@ -155,7 +155,7 @@ export class _SbbCheckboxBase
     private _options?: SbbCheckboxDefaultOptions
   ) {
     super();
-    this._options = this._options || defaults;
+    this._options = { ...defaults, ..._options };
     this.tabIndex = parseInt(tabIndex, 10) || 0;
   }
 
@@ -274,7 +274,7 @@ export class _SbbCheckboxBase
     return this.indeterminate ? 'mixed' : 'false';
   }
 
-  private _emitChangeEvent() {
+  protected _emitChangeEvent() {
     const event = new SbbCheckboxChange();
     event.source = this;
     event.checked = this.checked;
