@@ -1,13 +1,13 @@
 <sbb-esri-web-map
-  #webMap
-  (extentChanged)="mapExtentChanged($event)"
-  (mapClick)="mapClicked($event)"
-  (mapReady)="mapReady($event)"
+  (extentChanged)="activeExtent = $event"
+  (mapClick)="clickedPoint = $event.clickedPoint"
+  (mapReady)="mapIsReady = true"
   [portalItemId]="'f2e9b762544945f390ca4ac3671cfa72'"
   class="web-map"
 >
 </sbb-esri-web-map>
 
 <h4>Values</h4>
+<pre>Map is ready: {{ mapIsReady }} </pre>
 <pre>Active map section: {{ activeExtent | json }} </pre>
 <pre>Last clicked point: {{ clickedPoint | json }} </pre>

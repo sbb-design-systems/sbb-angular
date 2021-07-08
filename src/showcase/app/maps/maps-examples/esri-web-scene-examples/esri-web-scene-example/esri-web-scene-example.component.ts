@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./esri-web-scene-example.component.css'],
 })
 export class EsriWebSceneExampleComponent {
-  public mapIsReady = false;
-  public centerPoint: { x: number; y: number; z: number };
-  public clickedPoint: { x: number; y: number; z: number };
+  mapIsReady = false;
+  centerPoint: { x: number; y: number; z: number };
+  clickedPoint: { x: number; y: number; z: number };
 }

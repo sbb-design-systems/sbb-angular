@@ -128,8 +128,8 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
       {
         name: 'Map Utilities',
         entries: [
-          { label: 'Layerlist', link: './components/esri-layer-list' },
           { label: 'Basemap Gallery', link: './components/esri-basemap-gallery' },
+          { label: 'Layerlist', link: './components/esri-layer-list' },
           { label: 'Legend', link: './components/esri-legend' },
         ],
       },

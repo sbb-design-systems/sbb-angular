@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./esri-web-map-example.component.css'],
 })
 export class EsriWebMapExampleComponent {
-  public mapIsReady = false;
-  public activeExtent: { xmin: number; xmax: number; ymin: number; ymax: number };
-  public clickedPoint: { x: number; y: number };
+  mapIsReady = false;
+  activeExtent: { xmin: number; xmax: number; ymin: number; ymax: number };
+  clickedPoint: { x: number; y: number };
 }

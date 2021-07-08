@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './esri-basemap-gallery-example.html',
   styleUrls: ['./esri-basemap-gallery-example.css'],
 })
-export class EsriBasemapGalleryExample {}
+export class EsriBasemapGalleryExample {
+  mapIsReady = false;
+}
