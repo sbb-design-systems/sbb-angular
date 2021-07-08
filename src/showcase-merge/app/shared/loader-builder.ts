@@ -1,56 +1,45 @@
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { combineLatest, Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+import { ModuleParams } from './module-params';
 
 export class LoaderBuilder {
-  private _urlBuilder: (packageName: string, id?: string) => string;
+  private _url: string;
+  private readonly _packageName: string;
+  private readonly _id: string;
 
-  constructor(private _http: HttpClient, private _route: ActivatedRoute) {}
-
-  from(urlBuilder: (packageName: string, id?: string) => string) {
-    this._urlBuilder = urlBuilder;
-    return this;
+  constructor(private _http: HttpClient, params: ModuleParams) {
+    this._packageName = params.packageName;
+    this._id = params.id;
   }
 
   fromDocumentation() {
-    return this.from(
-      (packageName, id) => `assets/docs-content/overviews/${packageName}/${id}.html`
-    );
+    this._url = `assets/docs-content/overviews/${this._packageName}/${this._id}.html`;
+    return this;
   }
 
   fromModuleDocumentation() {
-    return this.from(
-      (packageName, id) => `assets/docs-content/overviews/${packageName}/${id}/${id}.html`
-    );
+    this._url = `assets/docs-content/overviews/${this._packageName}/${this._id}/${this._id}.html`;
+    return this;
   }
 
   fromApiDocumentation() {
-    return this.from((packageName, id) => `assets/docs-content/api-docs/${packageName}-${id}.html`);
+    this._url = `assets/docs-content/api-docs/${this._packageName}-${this._id}.html`;
+    return this;
   }
 
   fromExamples(example: string, type: 'html' | 'ts' | 'css') {
-    return this.from(
-      (packageName, id) =>
-        `assets/docs-content/examples-highlighted/${packageName}/${id}/${example}/${example}-example-${type}.html`
-    );
+    this._url = `assets/docs-content/examples-highlighted/${this._packageName}/${this._id}/${example}/${example}-example-${type}.html`;
+    return this;
   }
 
   fromSourceExamples(example: string, type: 'html' | 'ts' | 'css') {
-    return this.from(
-      (packageName, id) =>
-        `assets/docs-content/examples-source/${packageName}/${id}/${example}/${example}-example.${type}`
-    );
+    this._url = `assets/docs-content/examples-source/${this._packageName}/${this._id}/${example}/${example}-example.${type}`;
+    return this;
   }
 
-  observe(): Observable<string> {
-    return combineLatest([this._route.params, this._route.data]).pipe(
-      map(([p, d]) => ({ ...p, ...d })),
-      switchMap(({ id, packageName }) =>
-        this._http
-          .get(this._urlBuilder(packageName, id), { responseType: 'text' })
-          .pipe(catchError(() => of('')))
-      )
-    );
+  load(): Observable<string> {
+    return this._http.get(this._url, { responseType: 'text' }).pipe(catchError(() => of('')));
   }
 }

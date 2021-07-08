@@ -1,28 +1,16 @@
-<sbb-tabs>
-  <sbb-tab label="Overview">
-    <sbb-variant-limitation
-      [showcaseMetaEntry]="showcaseMetaEntry | async"
-    ></sbb-variant-limitation>
+<nav sbb-tab-nav-bar aria-label="Documentation Sections">
+  <a
+    *ngFor="let section of sections"
+    sbb-tab-link
+    [routerLink]="['.', section.toLowerCase()]"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [active]="rla.isActive"
+    >{{ section }}</a
+  >
+</nav>
 
-    <div [innerHtml]="overview | async"></div>
-  </sbb-tab>
-  <sbb-tab label="API">
-    <sbb-variant-limitation
-      [showcaseMetaEntry]="showcaseMetaEntry | async"
-    ></sbb-variant-limitation>
-
-    <div [innerHtml]="api | async"></div>
-  </sbb-tab>
-  <sbb-tab *ngIf="examples | async as exampleDatas" label="Examples">
-    <ng-template sbbTabContent>
-      <sbb-variant-limitation
-        [showcaseMetaEntry]="showcaseMetaEntry | async"
-      ></sbb-variant-limitation>
-
-      <sbb-example-viewer
-        *ngFor="let exampleData of exampleDatas"
-        [exampleData]="exampleData"
-      ></sbb-example-viewer>
-    </ng-template>
-  </sbb-tab>
-</sbb-tabs>
+<div class="sbb-tab-nav-bar-body">
+  <sbb-variant-limitation [showcaseMetaEntry]="showcaseMetaEntry | async"></sbb-variant-limitation>
+  <router-outlet></router-outlet>
+</div>

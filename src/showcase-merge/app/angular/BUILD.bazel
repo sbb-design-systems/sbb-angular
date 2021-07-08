@@ -20,10 +20,10 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
-        "//src/angular-business/dialog",
         "//src/angular-business/tooltip",
         "//src/angular/button",
         "//src/angular/checkbox",
+        "//src/angular/dialog",
         "//src/angular/form-field",
         "//src/angular/icon",
         "//src/angular/loading",

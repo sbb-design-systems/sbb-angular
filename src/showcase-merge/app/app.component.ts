@@ -1,7 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AfterContentInit, Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Breakpoints, ɵvariant } from '@sbb-esta/angular/core';
+import { SbbIconRegistry } from '@sbb-esta/angular/icon';
 import { fromEvent, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, startWith, takeUntil } from 'rxjs/operators';
 
@@ -28,7 +30,18 @@ export class AppComponent implements AfterContentInit, OnDestroy {
   packages = PACKAGES;
   private _destroyed = new Subject();
 
-  constructor(private _breakpointObserver: BreakpointObserver) {
+  constructor(
+    private _breakpointObserver: BreakpointObserver,
+    iconRegistry: SbbIconRegistry,
+    sanitizer: DomSanitizer
+  ) {
+    iconRegistry.addSvgIconResolver((name, namespace) => {
+      if (namespace === 'showcase') {
+        return sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${name}.svg`);
+      }
+      return null;
+    });
+
     // listen to ctrl + shift + V to toggle variant
     fromEvent<KeyboardEvent>(document, 'keyup')
       .pipe(

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { componentViewerSubnavigation } from '../shared/component-viewer/component-viewer/component-viewer-subnavigation';
 import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 import { PACKAGES } from '../shared/meta';
@@ -37,11 +38,7 @@ const routes: Routes = [
         path: 'components/:id',
         component: ComponentViewerComponent,
         data: { packageName: 'angular' },
-      },
-      {
-        path: 'components/:id/:section',
-        component: ComponentViewerComponent,
-        data: { packageName: 'angular' },
+        children: componentViewerSubnavigation,
       },
     ],
   },

@@ -1,10 +1,11 @@
-import { Component, Injector, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, Injector, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ExampleData } from '@sbb-esta/components-examples';
-import { Observable, Subject, zip } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { Observable, zip } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../html-loader.service';
+import { moduleParams } from '../../module-params';
 import {
   ExampleData as StackblitzExampleData,
   StackblitzWriterService,
@@ -15,7 +16,7 @@ import {
   templateUrl: './example-viewer.component.html',
   styleUrls: ['./example-viewer.component.css'],
 })
-export class ExampleViewerComponent implements OnInit, OnDestroy {
+export class ExampleViewerComponent implements OnInit {
   @Input() exampleData: ExampleData;
   html: Observable<string>;
   ts: Observable<string>;
@@ -25,7 +26,6 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
   isStackblitzDisabled = true;
   stackBlitzForm: HTMLFormElement;
 
-  private _destroyed = new Subject<void>();
   constructor(
     private _htmlLoader: HtmlLoader,
     private _route: ActivatedRoute,
@@ -35,22 +35,32 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const exampleName = this.exampleData.selectorName.replace('sbb-', '').replace('-example', '');
 
-    this.html = this._htmlLoader.with(this._route).fromExamples(exampleName, 'html').observe();
-    this.ts = this._htmlLoader.with(this._route).fromExamples(exampleName, 'ts').observe();
-    this.css = this._htmlLoader.with(this._route).fromExamples(exampleName, 'css').observe();
+    this.html = this._createLoader(exampleName, 'html');
+    this.ts = this._createLoader(exampleName, 'ts');
+    this.css = this._createLoader(exampleName, 'css');
 
     const exampleContents = ['ts', 'html', 'css'].map((type: 'ts' | 'html' | 'css') =>
-      this._htmlLoader
-        .with(this._route)
-        .fromSourceExamples(exampleName, type)
-        .observe()
-        .pipe(map((content) => ({ name: `${this.exampleData.selectorName}.${type}`, content })))
+      moduleParams(this._route).pipe(
+        switchMap((params) =>
+          this._htmlLoader
+            .withParams(params)
+            .fromSourceExamples(exampleName, type)
+            .load()
+            .pipe(map((content) => ({ name: `${this.exampleData.selectorName}.${type}`, content })))
+        )
+      )
     );
-    zip(...exampleContents)
-      .pipe(takeUntil(this._destroyed))
-      .subscribe((results) =>
-        this._createStackblitzForm(results.filter((result) => !!result.content))
-      );
+    zip(...exampleContents).subscribe((results) =>
+      this._createStackblitzForm(results.filter((result) => !!result.content))
+    );
+  }
+
+  private _createLoader(exampleName: string, type: 'html' | 'ts' | 'css') {
+    return moduleParams(this._route).pipe(
+      switchMap((params) =>
+        this._htmlLoader.withParams(params).fromExamples(exampleName, type).load()
+      )
+    );
   }
 
   private _createStackblitzForm(files: { name: string; content: string }[]) {
@@ -82,11 +92,6 @@ export class ExampleViewerComponent implements OnInit, OnDestroy {
     document.body.appendChild(this.stackBlitzForm);
     this.stackBlitzForm.submit();
     document.body.removeChild(this.stackBlitzForm);
-  }
-
-  ngOnDestroy(): void {
-    this._destroyed.next();
-    this._destroyed.complete();
   }
 }
 

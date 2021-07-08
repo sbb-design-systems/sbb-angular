@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { SBB_DIALOG_DATA } from '@sbb-esta/angular-business/dialog';
+import { SBB_DIALOG_DATA } from '@sbb-esta/angular/dialog';
 
 import { CdnIcon } from '../../cdn-icon.service';
 

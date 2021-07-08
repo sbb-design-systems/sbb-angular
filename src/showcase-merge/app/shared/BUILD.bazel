@@ -12,10 +12,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [
-        ":api-viewer/api-viewer.component.css",
-        ":markdown-viewer/markdown-viewer.component.css",
-    ] + glob(["**/*.html"]),
+    assets = [":markdown-viewer/markdown-viewer.component.css"] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
         "//src/angular/accordion",
@@ -28,11 +25,6 @@ ng_module(
         "@npm//@angular/router",
         "@npm//rxjs",
     ],
-)
-
-sass_binary(
-    name = "api_viewer_api_viewer_component_scss",
-    src = "api-viewer/api-viewer.component.scss",
 )
 
 sass_binary(
