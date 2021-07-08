@@ -15,13 +15,13 @@ Most of the breaking changes should automatically be migrated via `ng update`
 Please [reach out to us](https://github.com/sbb-design-systems/sbb-angular/issues/new/choose), if
 one of these changes breaks your project in a non-recoverable way.
 
-### Styling
+## Styling
 
 In order to standardize css classes for an active router link, in
 each component you should now use `sbb-active` class for `routerLinkActive`-attribute.
 See also specific comments in component sections below.
 
-### Secondary Entrypoints
+## Secondary Entrypoints
 
 _Automatic migration available_
 
@@ -29,12 +29,26 @@ The re-export from root (e.g. `import { SbbButtonModule } from '@sbb-esta/angula
 been removed. All symbols have to be imported from the respective
 module (e.g. `import { SbbButtonModule } from '@sbb-esta/angular/button';`).
 
+## Modules
+
+### Accordion
+
+No changes.
+
+[Documentation](angular/components/accordion)
+
+### Autocomplete
+
+No changes.
+
+[Documentation](angular/components/autocomplete)
+
 ### Badge
 
 _Automatic migration available_
 
 `<sbb-badge>` has been replaced with the `sbbBadge=""` directive.
-This is a slight restriction, as we no longer allow HTML inside the badge. However it was
+This is a slight restriction, as we no longer allow HTML inside the badge. However, it was
 never intended to be used in that way.
 
 [Documentation](angular/components/badge)
@@ -86,6 +100,18 @@ which is no longer supported. The button component now provides an `indicatorIco
 [any supported](angular/icon-overview) (or self registered) icon can be used.
 
 [Documentation](angular/components/button)
+
+### Captcha
+
+No changes.
+
+[Documentation](angular/components/captcha)
+
+### Checkbox
+
+No changes.
+
+[Documentation](angular/components/checkbox)
 
 ### Checkbox Panel
 
@@ -143,6 +169,20 @@ Please carefully check the changes from the automatic migration and manually add
 
 [Documentation](angular/components/chips)
 
+### Core
+
+_Automatic migration available_
+
+Most of the modules of `@sbb-esta/angular-core` have been moved to `@sbb-esta/angular/core` package.
+Base classes (checkbox, processflow, radio-button and tooltip) have been moved to its corresponding modules.
+The icon module was moved to `@sbb-esta/angular/icon` and the styles to `@sbb-esta/angular/styles`.
+
+`SbbOptionGroup` was renamed to `SbbOptgroup` and its selector from `sbb-option-group` to `sbb-optgroup`.
+With this renaming we now are closer to the browser's native `optgroup`.
+
+`SbbBusinessDateAdapter` was renamed to `SbbLeanDateAdapter`
+and `SBB_BUSINESS_DATE_ADAPTER` to `SBB_LEAN_DATE_ADAPTER`.
+
 ### Contextmenu
 
 _Automatic migration available_
@@ -181,6 +221,20 @@ The `FileTypeCategory` enum has been changed to a string literal type.
 
 [Documentation](angular/components/file-selector)
 
+### Form Field
+
+No changes.
+
+[Documentation](angular/components/form-field)
+
+### Icon
+
+_Automatic migration available_
+
+The icon module has been moved from `@sbb-esta/angular-core` to `@sbb-esta/angular/icon`,
+
+[Documentation](angular/components/icon)
+
 ### Links
 
 _Automatic migration available_
@@ -189,6 +243,18 @@ The link module has been integrated into the button module. All button types can
 `<a>` and `<button>`. The `sbbLink` selector has been renamed to `sbb-link`.
 
 [Documentation](angular/components/button)
+
+### Loading
+
+No changes.
+
+[Documentation](angular/components/loading)
+
+### Oauth
+
+No changes.
+
+[Documentation](angular/components/oauth)
 
 ### Pagination
 
@@ -247,6 +313,12 @@ Please manually check the layout.
 
 [Documentation](angular/components/pagination)
 
+### Radio Button
+
+No changes.
+
+[Documentation](angular/components/radio-button)
+
 ### Radio Button Panel
 
 _Automatic migration available_
@@ -299,6 +371,24 @@ The search component has been refactored as a wrapper for an input field.
 
 [Documentation](angular/components/search)
 
+### Select
+
+No changes.
+
+[Documentation](angular/components/select)
+
+### Sidebar
+
+No changes.
+
+[Documentation](angular/components/sidebar)
+
+### Status
+
+No changes.
+
+[Documentation](angular/components/status)
+
 ### Tabs
 
 _Automatic migration available_
@@ -330,3 +420,21 @@ can be applied with the `sbbBadge` directive from the `SbbBadgeModule`.
 ```
 
 [Documentation](angular/components/tabs)
+
+### Textarea
+
+No changes.
+
+[Documentation](angular/components/textarea)
+
+### Textexpand
+
+No changes.
+
+[Documentation](angular/components/textexpand)
+
+### Time Input
+
+No changes.
+
+[Documentation](angular/components/time-input)
