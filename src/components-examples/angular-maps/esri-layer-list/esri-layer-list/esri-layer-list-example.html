@@ -1,10 +1,12 @@
 <div class="layer-list">
-  <sbb-esri-layer-list
-    *ngIf="webScene.sceneView"
-    [mapView]="webScene.sceneView"
-  ></sbb-esri-layer-list>
+  <sbb-esri-layer-list *ngIf="mapIsReady" [mapView]="webScene.sceneView"></sbb-esri-layer-list>
 </div>
 <div class="map-container">
-  <sbb-esri-web-scene #webScene [portalItemId]="'1c7a06421a314ac9b7d0fae22aa367fb'" class="web-map">
+  <sbb-esri-web-scene
+    #webScene
+    [portalItemId]="'1c7a06421a314ac9b7d0fae22aa367fb'"
+    (mapReady)="mapIsReady = true"
+    class="web-map"
+  >
   </sbb-esri-web-scene>
 </div>

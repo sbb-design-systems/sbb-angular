@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './esri-layer-list-example.html',
   styleUrls: ['./esri-layer-list-example.css'],
 })
-export class EsriLayerListExample {}
+export class EsriLayerListExample {
+  mapIsReady = false;
+}
