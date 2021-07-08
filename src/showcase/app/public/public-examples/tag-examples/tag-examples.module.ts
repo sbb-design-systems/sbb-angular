@@ -8,12 +8,23 @@ import { SbbTagModule } from '@sbb-esta/angular-public/tag';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { TagExampleComponent } from './tag-example/tag-example.component';
+import { TagAdvancedExample } from './tag-advanced-example/tag-advanced-example.component';
+import { TagLinkExample } from './tag-link-example/tag-link-example.component';
+import { TagReactiveFormsExample } from './tag-reactive-forms-example/tag-reactive-forms-example.component';
+import { TagTemplateFormsExampleComponent } from './tag-template-forms-example/tag-template-forms-example.component';
 
-const EXAMPLES = [TagExampleComponent];
+const EXAMPLES = [
+  TagReactiveFormsExample,
+  TagTemplateFormsExampleComponent,
+  TagAdvancedExample,
+  TagLinkExample,
+];
 
 const EXAMPLE_INDEX = {
-  'tag-example': TagExampleComponent,
+  'tag-reactive-forms-example': TagReactiveFormsExample,
+  'tag-template-forms-example': TagTemplateFormsExampleComponent,
+  'tag-advanced-example': TagAdvancedExample,
+  'tag-link-example': TagLinkExample,
 };
 
 @NgModule({
