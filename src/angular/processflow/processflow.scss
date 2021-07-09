@@ -8,44 +8,43 @@
   white-space: nowrap;
   display: flex;
   align-items: flex-start;
+  overflow-x: auto;
 }
 
 .sbb-processflow-separator {
   line-height: 0;
   color: $sbbColorGrey;
+  font-size: pxToRem(18);
+  margin: pxToRem(3) pxToRem(15);
+  // We use em here to reduce redeclarations
+  width: 1em;
+  min-width: 1em;
+  height: 1em;
 
   html:not(.sbb-lean) & {
-    width: pxToRem(21);
-    height: pxToRem(21);
-    margin: 0 pxToRem(12);
-
     @include mq($from: tabletPortrait) {
-      margin: 0 pxToRem(16);
+      margin: pxToRem(3) pxToRem(19);
     }
     @include mq($from: desktop) {
-      margin: 0 pxToRem(24);
+      margin: pxToRem(3) pxToRem(27);
     }
     @include mq($from: desktop4k) {
-      width: pxToRem(36);
-      height: pxToRem(36);
-      margin: 0 pxToRem(36);
+      font-size: pxToRem(27);
+      margin: pxToRem(4) pxToRem(40);
     }
     @include mq($from: desktop5k) {
-      width: pxToRem(48);
-      height: pxToRem(48);
-      margin: 0 pxToRem(48);
+      font-size: pxToRem(36);
+      margin: pxToRem(6) pxToRem(54);
     }
   }
   html.sbb-lean & {
-    width: pxToRem(12);
-    height: pxToRem(12);
+    font-size: pxToRem(12);
     margin: pxToRem(1) pxToRem(22) 0;
   }
 }
 
 .sbb-processflow-header {
   display: flex;
-  overflow: hidden;
   align-items: center;
 }
 

@@ -1,11 +1,12 @@
 @import '../styles/common';
 
 .sbb-step-header {
-  overflow: hidden;
   outline: none;
   position: relative;
   font-family: $fontSbbLight;
   -webkit-tap-highlight-color: transparent;
+  // Create a buffer space in order for the scrollbar to not be adjacent to the active underline.
+  margin-bottom: pxToRem(8);
 }
 
 .sbb-step-label {
@@ -14,36 +15,26 @@
   vertical-align: middle;
   color: $sbbColorMetal;
   cursor: default;
+  padding-bottom: 0.5em;
+  font-size: pxToRem(20);
+  line-height: 1;
 
   html:not(.sbb-lean) & {
-    font-size: pxToRem(20);
-    line-height: pxToRem(20);
-    padding-bottom: pxToRem(11);
-
     @include mq($from: tabletPortrait) {
       font-size: pxToRem(21);
-      line-height: pxToRem(21);
-      padding-bottom: pxToRem(14);
     }
     @include mq($from: desktop) {
-      font-size: pxToRem(21);
-      line-height: pxToRem(21);
-      padding-bottom: pxToRem(22);
+      padding-bottom: 1em;
     }
     @include mq($from: desktop4k) {
       font-size: pxToRem(32);
-      line-height: pxToRem(34);
-      padding-bottom: pxToRem(32);
     }
     @include mq($from: desktop5k) {
       font-size: pxToRem(42);
-      line-height: pxToRem(45);
-      padding-bottom: pxToRem(42);
     }
   }
   html.sbb-lean & {
     font-size: pxToRem(16);
-    line-height: pxToRem(16);
     padding-bottom: pxToRem(5);
   }
 }

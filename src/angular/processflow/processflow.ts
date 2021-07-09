@@ -25,6 +25,7 @@ import {
   Output,
   QueryList,
   SkipSelf,
+  ViewChild,
   ViewChildren,
   ViewContainerRef,
   ViewEncapsulation,
@@ -124,6 +125,7 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
 export class SbbProcessflow extends CdkStepper implements AfterContentInit {
   /** The list of step headers of the steps in the processflow. */
   @ViewChildren(SbbStepHeader) _stepHeader: QueryList<SbbStepHeader>;
+  @ViewChild('stepListContainer', { static: true }) _tabListContainer: ElementRef;
 
   /** Full list of steps inside the processflow, including inside nested processflows. */
   @ContentChildren(SbbStep, { descendants: true }) _steps: QueryList<SbbStep>;
@@ -154,6 +156,10 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
       this._stateChanged();
     });
 
+    this.selectionChange.pipe(takeUntil(this._destroyed)).subscribe((selection) => {
+      this._scrollToLabel(selection.selectedIndex);
+    });
+
     this._animationDone
       .pipe(
         // This needs a `distinctUntilChanged` in order to avoid emitting the same event twice due
@@ -167,5 +173,30 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
           this.animationDone.emit();
         }
       });
+  }
+
+  /**
+   * Moves the tab list such that the desired tab label (marked by index) is moved into view.
+   */
+  _scrollToLabel(labelIndex: number) {
+    const selectedLabel = this._stepHeader ? this._stepHeader.toArray()[labelIndex] : null;
+    if (!selectedLabel) {
+      return;
+    }
+
+    const containerElement = this._tabListContainer.nativeElement;
+    // The view length is the visible width of the tab labels.
+    const viewLength = containerElement.offsetWidth;
+    const { offsetLeft, offsetWidth } = selectedLabel._elementRef.nativeElement;
+
+    // The offset is off by 24 pixels, which we have to manually remove.
+    const labelBeforePos = offsetLeft - 24;
+    const labelAfterPos = labelBeforePos + offsetWidth;
+
+    if (labelBeforePos < containerElement.scrollLeft) {
+      containerElement.scrollTo({ left: labelBeforePos, behavior: 'smooth' });
+    } else if (viewLength + containerElement.scrollLeft < labelAfterPos) {
+      containerElement.scrollTo({ left: labelAfterPos - viewLength, behavior: 'smooth' });
+    }
   }
 }
