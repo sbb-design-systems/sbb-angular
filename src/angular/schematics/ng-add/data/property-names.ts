@@ -19,6 +19,20 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
             classes: ['SbbFileSelectorTypesService'],
           },
         },
+        {
+          replace: 'prevStep',
+          replaceWith: 'previous',
+          limitedTo: {
+            classes: ['SbbProcessflow'],
+          },
+        },
+        {
+          replace: 'nextStep',
+          replaceWith: 'next',
+          limitedTo: {
+            classes: ['SbbProcessflow'],
+          },
+        },
       ],
     },
   ],

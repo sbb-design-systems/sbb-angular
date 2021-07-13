@@ -97,6 +97,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbTabs',
           replaceWith: 'SbbTabGroup',
         },
+        {
+          replace: 'SbbProcessflowStep',
+          replaceWith: 'SbbStep',
+        },
       ],
     },
   ],

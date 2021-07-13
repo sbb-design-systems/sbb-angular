@@ -1,0 +1,87 @@
+@import '../styles/common';
+
+.sbb-processflow {
+  display: block;
+}
+
+.sbb-processflow-header-container {
+  white-space: nowrap;
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+}
+
+.sbb-processflow-separator {
+  line-height: 0;
+  color: $sbbColorGrey;
+  font-size: pxToRem(18);
+  margin: pxToRem(3) pxToRem(15);
+  // We use em here to reduce redeclarations
+  width: 1em;
+  min-width: 1em;
+  height: 1em;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: tabletPortrait) {
+      margin: pxToRem(3) pxToRem(19);
+    }
+    @include mq($from: desktop) {
+      margin: pxToRem(3) pxToRem(27);
+    }
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(27);
+      margin: pxToRem(4) pxToRem(40);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(36);
+      margin: pxToRem(6) pxToRem(54);
+    }
+  }
+  html.sbb-lean & {
+    font-size: pxToRem(12);
+    margin: pxToRem(1) pxToRem(22) 0;
+  }
+}
+
+.sbb-processflow-header {
+  display: flex;
+  align-items: center;
+}
+
+.sbb-processflow-content {
+  outline: 0;
+
+  &[aria-expanded='false'] {
+    height: 0;
+    overflow: hidden;
+  }
+}
+
+.sbb-processflow-content-container {
+  overflow: hidden;
+}
+
+.sbb-step:last-child {
+  .sbb-vertical-content-container {
+    border: none;
+  }
+}
+
+.sbb-processflow-previous + .sbb-processflow-next,
+.sbb-processflow-previous + .sbb-button-base {
+  @include mq($to: tabletPortrait) {
+    margin-top: pxToRem(8);
+  }
+  @include mq($from: tabletPortrait) {
+    margin-left: pxToRem(8);
+  }
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      margin-left: pxToRem(12);
+    }
+    @include mq($from: desktop5k) {
+      margin-left: pxToRem(16);
+    }
+  }
+}

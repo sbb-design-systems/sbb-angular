@@ -1,0 +1,56 @@
+<sbb-processflow
+  aria-label="Process flow to fill out your name and address"
+  [linear]="linear"
+  #processflow
+>
+  <sbb-step aria-label="Step to fill out your name" [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template sbbStepLabel>Fill out your name</ng-template>
+      <sbb-form-field>
+        <sbb-label>Name</sbb-label>
+        <input sbbInput placeholder="Last name, First name" formControlName="firstCtrl" required />
+        <sbb-error *ngIf="firstFormGroup.get('firstCtrl')!.errors?.required"
+          >Name is required!</sbb-error
+        >
+      </sbb-form-field>
+      <div>
+        <button sbb-button sbbProcessflowNext>Next</button>
+      </div>
+    </form>
+  </sbb-step>
+  <sbb-step
+    aria-label="Step to fill out your address"
+    [stepControl]="secondFormGroup"
+    label="Fill out your address"
+  >
+    <form [formGroup]="secondFormGroup">
+      <sbb-form-field>
+        <sbb-label>Address</sbb-label>
+        <input
+          sbbInput
+          formControlName="secondCtrl"
+          placeholder="Hilfikerstrasse 1, 3000 Bern"
+          required
+        />
+        <sbb-error *ngIf="secondFormGroup.get('secondCtrl')!.errors?.required"
+          >Name is required!</sbb-error
+        >
+      </sbb-form-field>
+      <div>
+        <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+        <button sbb-button sbbProcessflowNext>Next</button>
+      </div>
+    </form>
+  </sbb-step>
+  <sbb-step aria-label="Step to finish the process flow or reset it">
+    <ng-template sbbStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button sbb-secondary-button sbbProcessflowPrevious>Back</button>
+      <button sbb-button (click)="processflow.reset()">Reset</button>
+    </div>
+  </sbb-step>
+</sbb-processflow>
+
+<h4>Properties</h4>
+<sbb-checkbox [(ngModel)]="linear">Linear mode</sbb-checkbox>

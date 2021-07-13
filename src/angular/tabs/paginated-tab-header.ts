@@ -293,8 +293,8 @@ export abstract class SbbPaginatedTabHeader
 
     if (labelBeforePos < containerElement.scrollLeft) {
       containerElement.scrollTo({ left: labelBeforePos, behavior: 'smooth' });
-    } else if (viewLength < labelAfterPos) {
-      containerElement.scrollTo({ left: viewLength - offsetWidth, behavior: 'smooth' });
+    } else if (viewLength + containerElement.scrollLeft < labelAfterPos) {
+      containerElement.scrollTo({ left: labelAfterPos - viewLength, behavior: 'smooth' });
     }
   }
 

@@ -70,15 +70,17 @@ jobs:
           ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
-
     - name: "Bazel: Restore remote cache"
-      if: ${{ (success() || failure()) && !contains(github.event.head_commit.message, '--no-cache') }}
+      if: ${{ success() || failure() }}
       uses: actions/cache@v2
       with:
         path: ~/.bazel-cache/sbb-angular
         key: bazel-noop-${{ github.sha }}
         restore-keys: |
           bazel-merged-
+    - name: "Bazel: Clear cache"
+      if: ${{ contains(github.event.head_commit.message, '--no-cache') }}
+      run: rm -rf ~/.bazel-cache
     - name: "Bazel: Build"
       run: yarn -s build all
       timeout-minutes: 45
@@ -134,6 +136,9 @@ jobs:
         key: bazel-packages-${{ github.sha }}
         restore-keys: |
           bazel-packages-
+    - name: "Bazel: Clear cache"
+      if: ${{ contains(github.event.head_commit.message, '--no-cache') }}
+      run: rm -rf ~/.bazel-cache
     - name: "Bazel: Build packages"
       run: yarn -s build packages
     - name: "Bazel: Clean bazel disk cache"

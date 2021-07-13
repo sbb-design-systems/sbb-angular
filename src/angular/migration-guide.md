@@ -306,6 +306,22 @@ class Component {
 The `SbbPageChangeEvent` is now called `SbbPageEvent` and contains different properties than before.
 You have to manually migrate them.
 
+### Processflow
+
+_Automatic migration available_
+
+We refactored the processflow implementation on top of the
+[CDK Stepper](https://material.angular.io/cdk/stepper/overview) implementation. This allows a
+better integration into the Form handling from Angular and a few other features.
+With this change, we have also removed the `skippable` input, but added the `linear` attribute.
+Skippable is now essentially the default and the usage of `linear` (which is similar to the
+previous non-skippable mode) is explained in the documentation linked below.
+Also the methods `prevStep()` and `nextStep()` on `SbbProcessflow` have been renamed to
+`previous()` and `next()`, the `<sbb-processflow-step>` selector and `SbbProcessflowStep` have been
+renamed/changed to `<sbb-step>` and `SbbStep`.
+
+[Documentation](angular/components/processflow)
+
 #### Styles
 
 `sbb-paginator` and `sbb-navigation` don't reserve space around them anymore.

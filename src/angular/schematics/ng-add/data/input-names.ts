@@ -13,6 +13,16 @@ export const inputNames: VersionChanges<InputNameUpgradeData> = {
             attributes: ['sbbDialogFooter', 'sbbDialogActions'],
           },
         },
+        {
+          replace: 'title',
+          replaceWith: 'label',
+          limitedTo: { elements: ['sbb-processflow-step', 'sbb-step'] },
+        },
+        {
+          replace: 'i18n-title',
+          replaceWith: 'i18n-label',
+          limitedTo: { elements: ['sbb-processflow-step', 'sbb-step'] },
+        },
       ],
     },
   ],
