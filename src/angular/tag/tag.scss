@@ -23,17 +23,17 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
 
 .sbb-tag-base {
   display: flex;
-  padding: pxToRem(4) pxToRem(8) pxToRem(6) pxToRem(15);
   transition: border-color $tagTransitionTiming, background-color $tagTransitionTiming,
     color $tagTransitionTiming;
   cursor: pointer;
-  border-radius: 1.2em;
-  border: pxToRem(1) solid transparent;
   background-color: $sbbColorMilk;
+  border: pxToRem(1) solid transparent;
+  border-radius: 1.2em;
   color: $sbbColorGrey;
 
   font-size: pxToRem($sizeFontDefault);
   line-height: pxToRem(23);
+  padding: pxToRem(4) pxToRem(8) pxToRem(6) pxToRem(15);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {

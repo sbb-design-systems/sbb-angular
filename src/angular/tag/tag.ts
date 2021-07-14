@@ -64,17 +64,8 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   /** Emits the current amount when the amount changes */
   readonly _amountChange = new Subject<number>();
 
-  /**
-   * A subject on tag checking.
-   * @deprecated Use the change event
-   */
-  readonly tagChecking$ = new Subject<any>();
-
-  /**
-   * Emits when values are set from outside
-   * @docs-private
-   */
-  readonly _internalChange = new Subject<any>();
+  /** Emits when values are set from outside */
+  readonly _valueChange = new Subject<any>();
 
   /** Refers if a tag is active. */
   get active() {
@@ -100,17 +91,14 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   ) {
     super(elementRef, changeDetectorRef, focusMonitor, tabIndex);
 
-    this.change.subscribe((e) => {
-      this.tagChecking$.next(e.checked);
-    });
     this._zone.onStable
       .pipe(take(1))
-      .subscribe(() => this._zone.run(() => this.tagChecking$.next(this.checked)));
+      .subscribe(() => this._zone.run(() => this._valueChange.next(this.checked)));
   }
 
   writeValue(value: any) {
     super.writeValue(value);
-    this._internalChange.next(value);
+    this._valueChange.next(value);
   }
 
   /** @docs-private internal use only */
@@ -123,8 +111,8 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.tagChecking$.complete();
     this._amountChange.complete();
+    this._valueChange.complete();
   }
 
   static ngAcceptInputType_amount: NumberInput;

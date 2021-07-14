@@ -96,7 +96,7 @@ class TagsTestFixtureReactiveComponent {
 }
 
 @Component({
-  selector: 'sbb-taglink-test-fixture',
+  selector: 'sbb-tag-link-test-fixture',
   template: ` <a sbb-tag-link href="#" amount="5" sbbBadgeDescription="amount">Tag Link</a> `,
 })
 class TagLinkTestFixtureComponent {}
@@ -167,14 +167,6 @@ describe('SbbTags with Model attached', () => {
     expect(thirdTag.inputId).toMatch(/sbb-checkbox-\d+-input/);
   });
 
-  it('should have all its sbb-tag children with linkMode set to false', () => {
-    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
-
-    const foundLinkModes = tags.findIndex((tag) => tag.componentInstance.linkMode === true) !== -1;
-
-    expect(foundLinkModes).toBeFalsy();
-  });
-
   it('should set an amount', () => {
     const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
 
@@ -213,6 +205,15 @@ describe('SbbTags with Model attached', () => {
     fixture.detectChanges();
 
     expectTotalAmount(23, fixture);
+  });
+
+  it('should set the total amount to zero after every tag was removed', () => {
+    expectTotalAmount(17, fixture);
+
+    component.tagItems = [];
+    fixture.detectChanges();
+
+    expectTotalAmount(0, fixture);
   });
 
   it('should check when click the label', () => {

@@ -11,8 +11,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { BehaviorSubject, merge, Observable, of, Subject } from 'rxjs';
-import { map, mergeAll, mergeMap, switchMap, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, of, Subject } from 'rxjs';
+import { filter, mergeAll, mergeMap, startWith, takeUntil } from 'rxjs/operators';
 
 import { SbbTag, SBB_TAGS_CONTAINER } from './tag';
 
@@ -33,7 +33,7 @@ import { SbbTag, SBB_TAGS_CONTAINER } from './tag';
 })
 export class SbbTags implements AfterContentInit, OnDestroy {
   /**
-   * Total amount visible on the all tag.
+   * Total amount visible on the all tag badge.
    * If not provided, the total amount is calculated by the sum of all amounts of all tags.
    */
   @Input()
@@ -44,7 +44,6 @@ export class SbbTags implements AfterContentInit, OnDestroy {
   get totalAmount(): number {
     return this._totalAmount.value;
   }
-  /** @docs-private */
   _totalAmount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   private _totalAmountSetAsInput = false;
@@ -52,74 +51,64 @@ export class SbbTags implements AfterContentInit, OnDestroy {
   /** Refers to the tags contained. */
   @ContentChildren(forwardRef(() => SbbTag))
   tags: QueryList<SbbTag>;
+
   /** Refers to the tag always displayed in the filter. */
-  @ViewChild('allTag', { static: true })
+  @ViewChild('allTag')
   allTag: SbbTag;
 
   private _destroyed = new Subject();
 
   ngAfterContentInit() {
-    this._tagsHandleChecking();
-
-    // listen to tag changes and amount changes of all tag components
-    merge<SbbTag[]>(of(this.tags.toArray()), this.tags.changes)
+    // Listen to tag changes in order to update state of 'all'-tag
+    this.tags.changes
       .pipe(
+        startWith(this.tags.toArray()),
         mergeMap((tags) => [
-          of(this.tags.toArray()),
-          this.tags.changes,
-          ...tags.map((item) =>
-            item._amountChange.pipe(
-              map(() => tags),
-              takeUntil(merge(this._destroyed, this.tags.changes))
-            )
-          ),
+          ...tags.map((tag: SbbTag) => tag.change),
+          ...tags.map((tag: SbbTag) => tag._valueChange),
         ]),
         mergeAll(),
         takeUntil(this._destroyed)
       )
-      .subscribe((tags: SbbTag[]) => {
-        if (this._totalAmountSetAsInput) {
-          return;
-        }
-        const calculatedTotalAmount = tags.reduce(
-          (current, next) => current + Number(next.amount),
-          0
-        );
-        this._totalAmount.next(calculatedTotalAmount);
-      });
-  }
+      .subscribe(() => this._setCheckedStateOfAllTag());
 
-  ngOnDestroy() {
-    this._destroyed.next();
-    this._destroyed.complete();
-    this._totalAmount.complete();
-  }
-
-  private _tagsHandleChecking() {
-    merge<SbbTag[]>(of(this.tags.toArray()), this.tags.changes)
+    // Listen to tag changes and amount changes of all tag components
+    this.tags.changes
       .pipe(
-        map((tags) =>
-          tags.reduce(
-            (current, next) => current.concat(next.tagChecking$, next.change, next._internalChange),
-            [] as Observable<unknown>[]
-          )
+        startWith(this.tags.toArray()),
+        mergeMap((tags: SbbTag[]) =>
+          tags.length === 0
+            ? [of(null)]
+            : tags.map((tag) => tag._amountChange.pipe(startWith(null)))
         ),
-        switchMap((o) => merge(...o)),
+        mergeAll(),
+        filter(() => !this._totalAmountSetAsInput),
         takeUntil(this._destroyed)
       )
-      .subscribe(() => this.setAllTagState());
+      .subscribe(() => this._calculateTotalAmountOfTags());
   }
 
-  setAllTagState() {
+  private _setCheckedStateOfAllTag() {
     const noTagChecked = this.tags.map((t) => !t.disabled && t.checked).every((v) => !v);
     if (noTagChecked !== this.allTag.checked) {
       this.allTag.checked = noTagChecked;
     }
   }
 
-  allTagClick() {
+  private _calculateTotalAmountOfTags() {
+    const calculatedTotalAmount = this.tags.reduce((current, next) => current + next.amount, 0);
+    this._totalAmount.next(calculatedTotalAmount);
+  }
+
+  _setAllTagChecked() {
     this.allTag._setCheckedAndEmit(true);
     this.tags.forEach((t) => t._setCheckedAndEmit(false));
+  }
+
+  ngOnDestroy() {
+    this._destroyed.next();
+    this._destroyed.complete();
+    this._totalAmount.complete();
   }
 
   static ngAcceptInputType_totalAmount: NumberInput;
