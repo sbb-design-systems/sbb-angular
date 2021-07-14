@@ -6,6 +6,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 
 @Component({
   selector: 'a[sbb-tag-link]',
+  exportAs: 'sbbTagLink',
   templateUrl: './tag-link.html',
   styleUrls: ['./tag.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

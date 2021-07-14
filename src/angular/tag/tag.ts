@@ -26,6 +26,7 @@ export const SBB_TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
 
 @Component({
   selector: 'sbb-tag',
+  exportAs: 'sbbTag',
   templateUrl: './tag.html',
   styleUrls: ['./tag.css'],
   providers: [

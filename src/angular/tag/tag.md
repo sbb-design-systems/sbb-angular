@@ -25,7 +25,7 @@ then you have to set the `totalAmount` property of `<sbb-tags>`.
 
 ```html
 <sbb-tags [totalAmount]="100">
-  <sbb-tag label="Tag" [amount]="10" [(ngModel)]="tag"></sbb-tag>
+  <sbb-tag label="Trains" [amount]="10" [(ngModel)]="tag"></sbb-tag>
 </sbb-tags>
 ```
 
@@ -34,7 +34,31 @@ then you have to set the `totalAmount` property of `<sbb-tags>`.
 You can use a tag link to navigate to the corresponding category page.
 
 ```html
-<a sbb-tag-link amount="5" sbbBadgeDescription="Amount of results" routerLink="/home">Tag Link</a>
+<a sbb-tag-link amount="5" routerLink="/home">Trains</a>
 ```
 
 Tag links can only receive the active state.
+
+### Accessibility
+
+To provide more precise aria descriptions for the badge label,
+it's possible to set the `sbbBadgeDescription` property on `<sbb-tag>` or `tag-link`.
+
+```html
+<sbb-tag
+  label="Trains"
+  [amount]="amount"
+  [(ngModel)]="tag"
+  sbbBadgeDescription="{{ amount }} trains available"
+></sbb-tag>
+```
+
+```html
+<a
+  sbb-tag-link
+  [amount]="amount"
+  routerLink="/home"
+  sbbBadgeDescription="{{ amount }} trains available"
+  >Trains</a
+>
+```

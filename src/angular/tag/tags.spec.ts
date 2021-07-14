@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -22,7 +22,6 @@ interface Tag {
 }
 
 @Component({
-  selector: 'sbb-tags-test-fixture',
   template: `
     <sbb-tags>
       <ng-container *ngFor="let tag of tagItems">
@@ -32,6 +31,7 @@ interface Tag {
           [label]="tag.label"
           [id]="tag.id"
           [amount]="tag.amount"
+          [sbbBadgeDescription]="description"
         ></sbb-tag>
       </ng-container>
     </sbb-tags>
@@ -51,12 +51,12 @@ class TagsTestFixtureComponent {
       selected: false,
     },
   ];
+  description?: string;
 
   change(evt: SbbTagChange) {}
 }
 
 @Component({
-  selector: 'sbb-tags-test-fixture-reactive',
   template: `
     <ng-container [formGroup]="formGroup">
       <sbb-tags [totalAmount]="totalAmount">
@@ -96,10 +96,11 @@ class TagsTestFixtureReactiveComponent {
 }
 
 @Component({
-  selector: 'sbb-tag-link-test-fixture',
-  template: ` <a sbb-tag-link href="#" amount="5" sbbBadgeDescription="amount">Tag Link</a> `,
+  template: ` <a sbb-tag-link href="#" amount="5" [sbbBadgeDescription]="description">Trains</a> `,
 })
-class TagLinkTestFixtureComponent {}
+class TagLinkTestFixtureComponent {
+  description?: string;
+}
 
 describe('SbbTags', () => {
   let component: SbbTags;
@@ -393,6 +394,25 @@ describe('SbbTags with Model attached', () => {
 
     expect(allTag.componentInstance.checked).toBe(false);
   });
+
+  it('should have default badge description for all tag', () => {
+    expect(extractBadgeDescription(fixture.debugElement)).toBe('A total of 17 results available');
+  });
+
+  it('should have default badge description for first tag', () => {
+    expect(extractBadgeDescription(fixture.debugElement.queryAll(By.directive(SbbTag))[1])).toBe(
+      '8 results available'
+    );
+  });
+
+  it('should have custom badge description for first tag', () => {
+    fixture.componentInstance.description = 'description';
+    fixture.detectChanges();
+
+    expect(extractBadgeDescription(fixture.debugElement.queryAll(By.directive(SbbTag))[1])).toBe(
+      'description'
+    );
+  });
 });
 
 describe('SbbTags with Reactive Forms and total amount set as input', () => {
@@ -550,15 +570,17 @@ describe('SBB Tag Link', () => {
     fixture.detectChanges();
   });
 
-  it('should have badge with amount and description', () => {
-    const linkTag = fixture.debugElement.query(By.css('.sbb-tag-link'));
-    const ariaDescribedById = fixture.debugElement
-      .query(By.css('.sbb-badge-content'))
-      .nativeElement.getAttribute('aria-describedby');
-    const description = document.getElementById(ariaDescribedById)!.textContent;
+  it('should have default badgeDescription', () => {
+    expect(extractBadgeDescription(fixture.debugElement)).toEqual('5 results available');
+  });
 
-    expect(linkTag.nativeElement.textContent).toEqual('Tag Link 5');
-    expect(description).toEqual('amount');
+  it('should have badge with amount and description', () => {
+    fixture.componentInstance.description = 'amount';
+    fixture.detectChanges();
+
+    const linkTag = fixture.debugElement.query(By.css('.sbb-tag-link'));
+    expect(linkTag.nativeElement.textContent).toEqual('Trains 5');
+    expect(extractBadgeDescription(fixture.debugElement)).toEqual('amount');
   });
 });
 
@@ -571,4 +593,11 @@ function expectTotalAmount(expectedTotalAmount: number, fixture: any) {
   const allTag = fixture.debugElement.query(By.directive(SbbTag));
   const sbbBadge = allTag.query(By.directive(SbbBadge)).nativeElement;
   expect(sbbBadge.textContent).toBe(expectedTotalAmount.toString(10));
+}
+
+function extractBadgeDescription(sbbTag: DebugElement) {
+  const ariaDescribedById = sbbTag
+    .query(By.css('.sbb-badge-content'))
+    .nativeElement.getAttribute('aria-describedby');
+  return document.getElementById(ariaDescribedById)!.textContent;
 }

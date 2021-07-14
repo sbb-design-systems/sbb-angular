@@ -18,6 +18,7 @@ import { SbbTag, SBB_TAGS_CONTAINER } from './tag';
 
 @Component({
   selector: 'sbb-tags',
+  exportAs: 'sbbTags',
   templateUrl: './tags.html',
   providers: [
     {
