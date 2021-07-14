@@ -1,4 +1,4 @@
-<label class="sbb-tag-base sbb-tag-content" [attr.for]="inputId">
+<label class="sbb-tag-base sbb-tag-label" [attr.for]="inputId">
   <input
     #input
     type="checkbox"
@@ -20,7 +20,7 @@
 
   <!-- Add an invisible span so JAWS can read the label -->
   <span style="display: none">&nbsp;</span>
-  <span class="sbb-tag-label"><ng-content></ng-content></span>
+  <span class="sbb-tag-content"><ng-content></ng-content></span>
   <span>&nbsp;</span>
   <span
     [sbbBadge]="amount"

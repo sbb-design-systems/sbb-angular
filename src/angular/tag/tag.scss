@@ -55,7 +55,7 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-.sbb-tag-content {
+.sbb-tag-label {
   .sbb-tag:not(.sbb-tag-disabled):hover &,
   .sbb-tag:not(.sbb-tag-disabled):focus &,
   .sbb-tag:not(.sbb-tag-disabled).cdk-focused & {
@@ -101,10 +101,6 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
     margin-right: pxToEm(8);
     margin-bottom: pxToEm(8);
   }
-}
-
-.sbb-tag-label {
-  display: inline-block;
 }
 
 .sbb-tag-link {
