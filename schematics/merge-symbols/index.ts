@@ -40,6 +40,7 @@ export function mergeSymbols(): Rule {
       SbbDialogHeader: 'dialog',
       SbbDialogFooter: 'dialog',
       SbbProcessflowStep: 'processflow',
+      SbbTagChange: 'tag',
     };
 
     extractExportsForModule('src/angular/');

@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
@@ -53,6 +56,11 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   }
   set amount(value: number) {
     this._amount = coerceNumberProperty(value);
+    this._badgeDescriptionFallback =
+      typeof $localize === 'function'
+        ? $localize`:Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults:${this.amount} results available`
+        : `${this.amount} results available`;
+
     this._amountChange.next(this._amount);
   }
   private _amount: number;
@@ -60,6 +68,7 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   /** Description of the badge (amount) */
   @Input('sbbBadgeDescription')
   badgeDescription: string;
+  _badgeDescriptionFallback: string;
 
   /** Emits the current amount when the amount changes */
   readonly _amountChange = new Subject<number>();

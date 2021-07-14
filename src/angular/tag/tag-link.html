@@ -1,3 +1,7 @@
 <ng-content></ng-content>
 <span>&nbsp;</span>
-<span [sbbBadge]="amount" sbbBadgePosition="after" [sbbBadgeDescription]="badgeDescription"></span>
+<span
+  [sbbBadge]="amount"
+  sbbBadgePosition="after"
+  [sbbBadgeDescription]="badgeDescription || _badgeDescriptionFallback"
+></span>

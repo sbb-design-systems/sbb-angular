@@ -5,6 +5,6 @@
   (change)="_setAllTagChecked()"
   [amount]="_totalAmount | async"
   i18n-sbbBadgeDescription="Badge description (total amount) for the 'All' tag@@sbbTagsAllBadgeDescription"
-  sbbBadgeDescription="Total amount of results"
+  sbbBadgeDescription="A total of {{ _totalAmount | async }} results available"
 ></sbb-tag>
 <ng-content select="sbb-tag, ng-container"></ng-content>

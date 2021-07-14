@@ -26,6 +26,6 @@
     [sbbBadge]="amount"
     [sbbBadgeDisabled]="_shouldDisableBadge"
     sbbBadgePosition="after"
-    [sbbBadgeDescription]="badgeDescription"
+    [sbbBadgeDescription]="badgeDescription || _badgeDescriptionFallback"
   ></span>
 </label>

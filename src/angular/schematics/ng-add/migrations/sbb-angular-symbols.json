@@ -483,6 +483,7 @@
   "SBB_TAGS_CONTAINER": "tag",
   "SbbTag": "tag",
   "SbbTagChange": "tag",
+  "SbbTagLink": "tag",
   "SbbTagModule": "tag",
   "SbbTags": "tag",
   "SbbTextarea": "textarea",
