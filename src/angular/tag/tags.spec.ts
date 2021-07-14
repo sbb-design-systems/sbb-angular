@@ -101,455 +101,456 @@ class TagsTestFixtureReactiveComponent {
 class TagLinkTestFixtureComponent {
   description?: string;
 }
-
 describe('SbbTags', () => {
-  let component: SbbTags;
-  let fixture: ComponentFixture<SbbTags>;
+  describe('SbbTags plain', () => {
+    let component: SbbTags;
+    let fixture: ComponentFixture<SbbTags>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [SbbBadgeModule, SbbTagModule],
-      }).compileComponents();
-    })
-  );
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [SbbBadgeModule, SbbTagModule],
+        }).compileComponents();
+      })
+    );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SbbTags);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+      fixture = TestBed.createComponent(SbbTags);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
 
-  it('should have a all tag instantiated', () => {
-    expect(component.allTag).toBeTruthy();
-  });
-});
-
-describe('SbbTags with Model attached', () => {
-  let component: TagsTestFixtureComponent;
-  let fixture: ComponentFixture<TagsTestFixtureComponent>;
-
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, SbbBadgeModule, SbbTagModule],
-        declarations: [TagsTestFixtureComponent],
-      }).compileComponents();
-    })
-  );
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TagsTestFixtureComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should have three sbb-tag instantiated', () => {
-    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
-
-    expect(tags.length).toBe(3);
-  });
-
-  it('should the second sbb-tag input have the ID set by the Model', () => {
-    const secondTag: SbbTag = fixture.debugElement.queryAll(By.directive(SbbTag))[1]
-      .componentInstance;
-
-    expect(secondTag.id).toBe('tag-1');
-  });
-
-  it('should the third sbb-tag input have an auto generated ID', () => {
-    const thirdTag: SbbTag = fixture.debugElement.queryAll(By.directive(SbbTag))[2]
-      .componentInstance;
-
-    expect(thirdTag.inputId).toMatch(/sbb-checkbox-\d+-input/);
-  });
-
-  it('should set an amount', () => {
-    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
-
-    tags.forEach((tag) => {
-      const tagAmount = tag.componentInstance.amount;
-      expect(tagAmount).toBeDefined();
-      expect(tagAmount).not.toBeNaN();
+    it('should have a "All" tag instantiated', () => {
+      expect(component.allTag).toBeTruthy();
     });
   });
 
-  it('should calculate the total amount', () => {
-    expectTotalAmount(17, fixture);
-
-    component.tagItems.push({ amount: 3, label: 'one more', selected: false });
-    fixture.detectChanges();
-
-    expectTotalAmount(20, fixture);
-  });
-
-  it('should calculate the total amount after a child has changed its amount', () => {
-    expectTotalAmount(17, fixture);
-
-    component.tagItems[0].amount = 6;
-    fixture.detectChanges();
-
-    expectTotalAmount(15, fixture);
-  });
-
-  it('should calculate the total amount after a later added child has changed its amount', () => {
-    expectTotalAmount(17, fixture);
-
-    component.tagItems.push({ amount: 5, label: 'laterAdded' });
-    fixture.detectChanges();
-
-    component.tagItems[component.tagItems.length - 1].amount = 6;
-    fixture.detectChanges();
-
-    expectTotalAmount(23, fixture);
-  });
-
-  it('should set the total amount to zero after every tag was removed', () => {
-    expectTotalAmount(17, fixture);
-
-    component.tagItems = [];
-    fixture.detectChanges();
-
-    expectTotalAmount(0, fixture);
-  });
-
-  it('should check when click the label', () => {
-    const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
-    const tagLabel = tag.query(By.css('label'));
-
-    tagLabel.nativeElement.click();
-
-    const tagChecked = tag.queryAll(By.css('input:checked'));
-
-    expect(tagChecked.length).toBe(1);
-  });
-
-  it('should sbb-tag to be checked if model is true and update Model if checked/unchecked', async () => {
-    const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
-    const tagLabel = tag.query(By.css('label'));
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(tag.componentInstance.checked).toBe(false);
-
-    component.tagItems[0].selected = true;
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(tag.componentInstance.checked).toBe(true);
-    expect(component.tagItems[0].selected).toBe(true);
-
-    tagLabel.nativeElement.click();
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(tag.componentInstance.checked).toBe(false);
-    expect(component.tagItems[0].selected).toBe(false);
-  });
-
-  it('should update all models when clicking all tag', async () => {
-    spyOn(component, 'change');
-
-    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
-    const allTag = tags[0];
-    const firstTag = tags[1];
-    const secondTag = tags[2];
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(allTag.componentInstance.checked).toBe(true);
-    expect(firstTag.componentInstance.checked).toBe(false);
-    expect(secondTag.componentInstance.checked).toBe(false);
-
-    component.tagItems[0].selected = true;
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    allTag.query(By.css('label')).nativeElement.click();
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(component.change).toHaveBeenCalledTimes(1);
-    expect(firstTag.componentInstance.checked).toBe(false);
-    expect(secondTag.componentInstance.checked).toBe(false);
-    expect(component.tagItems[0].selected).toBe(false);
-    expect(component.tagItems[1].selected).toBe(false);
-
-    // should still trigger no changeEvent if clicking a second time on allTag
-    allTag.query(By.css('label')).nativeElement.click();
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(component.change).toHaveBeenCalledTimes(1);
-  });
-
-  it('should the allTag be inactive with at least one tag selected and vice versa', async () => {
-    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
-    const allTag = tags[0];
-    const firstTag = tags[1];
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(allTag.componentInstance.checked).toBe(true);
-    expect(allTag.componentInstance.active).toBe(true);
-    expect(firstTag.componentInstance.checked).toBe(false);
-    expect(firstTag.componentInstance.active).toBe(false);
-
-    firstTag.query(By.css('label')).nativeElement.click();
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(allTag.componentInstance.checked).toBe(false);
-    expect(allTag.componentInstance.active).toBe(false);
-    expect(firstTag.componentInstance.checked).toBe(true);
-    expect(firstTag.componentInstance.active).toBe(true);
-
-    allTag.query(By.css('label')).nativeElement.click();
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(allTag.componentInstance.checked).toBe(true);
-    expect(allTag.componentInstance.active).toBe(true);
-    expect(firstTag.componentInstance.checked).toBe(false);
-    expect(firstTag.componentInstance.active).toBe(false);
-  });
-
-  it('should prevent uncheck the all tag at the same time when all other tags are unchecked', async () => {
-    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
-    const allTag = tags[0];
-    const firstTag = tags[1];
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(allTag.componentInstance.checked).toBe(true);
-    expect(allTag.componentInstance.active).toBe(true);
-    expect(firstTag.componentInstance.checked).toBe(false);
-    expect(firstTag.componentInstance.active).toBe(false);
-
-    allTag.query(By.css('label')).nativeElement.click();
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(allTag.componentInstance.checked).toBe(true);
-    expect(allTag.componentInstance.active).toBe(true);
-    expect(firstTag.componentInstance.checked).toBe(false);
-    expect(firstTag.componentInstance.active).toBe(false);
-  });
-
-  it('should when clicking the all tag all other tags to be unchecked/false', async () => {
-    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
-    const allTag = tags[0];
-
-    allTag.query(By.css('label')).nativeElement.click();
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    tags.splice(0, 1);
-
-    const hasTruthyValues =
-      tags.findIndex((t) => t.componentInstance.checked && t.componentInstance.active) !== -1;
-
-    expect(hasTruthyValues).toBeFalsy();
-  });
-
-  it('should call the change event when checking/unchecking a sbb-tag', () => {
-    const firstTag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
-
-    spyOn(component, 'change');
-
-    firstTag.query(By.css('label')).nativeElement.click();
-
-    fixture.detectChanges();
-
-    expect(component.change).toHaveBeenCalled();
-  });
-
-  it('should update allTag when model of a child sbb-tag is updated', async () => {
-    const allTag = fixture.debugElement.queryAll(By.directive(SbbTag))[0];
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(allTag.componentInstance.checked).toBe(true);
-
-    component.tagItems[0].selected = true;
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(allTag.componentInstance.checked).toBe(false);
-  });
-
-  it('should have default badge description for all tag', () => {
-    expect(extractBadgeDescription(fixture.debugElement)).toBe('A total of 17 results available');
-  });
-
-  it('should have default badge description for first tag', () => {
-    expect(extractBadgeDescription(fixture.debugElement.queryAll(By.directive(SbbTag))[1])).toBe(
-      '8 results available'
+  describe('SbbTags with Model attached', () => {
+    let component: TagsTestFixtureComponent;
+    let fixture: ComponentFixture<TagsTestFixtureComponent>;
+
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [CommonModule, FormsModule, SbbBadgeModule, SbbTagModule],
+          declarations: [TagsTestFixtureComponent],
+        }).compileComponents();
+      })
     );
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TagsTestFixtureComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should have three sbb-tag instantiated', () => {
+      const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
+
+      expect(tags.length).toBe(3);
+    });
+
+    it('should the second sbb-tag input have the ID set by the Model', () => {
+      const secondTag: SbbTag = fixture.debugElement.queryAll(By.directive(SbbTag))[1]
+        .componentInstance;
+
+      expect(secondTag.id).toBe('tag-1');
+    });
+
+    it('should the third sbb-tag input have an auto generated ID', () => {
+      const thirdTag: SbbTag = fixture.debugElement.queryAll(By.directive(SbbTag))[2]
+        .componentInstance;
+
+      expect(thirdTag.inputId).toMatch(/sbb-checkbox-\d+-input/);
+    });
+
+    it('should set an amount', () => {
+      const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
+
+      tags.forEach((tag) => {
+        const tagAmount = tag.componentInstance.amount;
+        expect(tagAmount).toBeDefined();
+        expect(tagAmount).not.toBeNaN();
+      });
+    });
+
+    it('should calculate the total amount', () => {
+      expectTotalAmount(17, fixture);
+
+      component.tagItems.push({ amount: 3, label: 'one more', selected: false });
+      fixture.detectChanges();
+
+      expectTotalAmount(20, fixture);
+    });
+
+    it('should calculate the total amount after a child has changed its amount', () => {
+      expectTotalAmount(17, fixture);
+
+      component.tagItems[0].amount = 6;
+      fixture.detectChanges();
+
+      expectTotalAmount(15, fixture);
+    });
+
+    it('should calculate the total amount after a later added child has changed its amount', () => {
+      expectTotalAmount(17, fixture);
+
+      component.tagItems.push({ amount: 5, label: 'laterAdded' });
+      fixture.detectChanges();
+
+      component.tagItems[component.tagItems.length - 1].amount = 6;
+      fixture.detectChanges();
+
+      expectTotalAmount(23, fixture);
+    });
+
+    it('should set the total amount to zero after every tag was removed', () => {
+      expectTotalAmount(17, fixture);
+
+      component.tagItems = [];
+      fixture.detectChanges();
+
+      expectTotalAmount(0, fixture);
+    });
+
+    it('should check when click the label', () => {
+      const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
+      const tagLabel = tag.query(By.css('label'));
+
+      tagLabel.nativeElement.click();
+
+      const tagChecked = tag.queryAll(By.css('input:checked'));
+
+      expect(tagChecked.length).toBe(1);
+    });
+
+    it('should sbb-tag to be checked if model is true and update Model if checked/unchecked', async () => {
+      const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
+      const tagLabel = tag.query(By.css('label'));
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(tag.componentInstance.checked).toBe(false);
+
+      component.tagItems[0].selected = true;
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(tag.componentInstance.checked).toBe(true);
+      expect(component.tagItems[0].selected).toBe(true);
+
+      tagLabel.nativeElement.click();
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(tag.componentInstance.checked).toBe(false);
+      expect(component.tagItems[0].selected).toBe(false);
+    });
+
+    it('should update all models when clicking "All" tag', async () => {
+      spyOn(component, 'change');
+
+      const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
+      const allTag = tags[0];
+      const firstTag = tags[1];
+      const secondTag = tags[2];
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(allTag.componentInstance.checked).toBe(true);
+      expect(firstTag.componentInstance.checked).toBe(false);
+      expect(secondTag.componentInstance.checked).toBe(false);
+
+      component.tagItems[0].selected = true;
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      allTag.query(By.css('label')).nativeElement.click();
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.change).toHaveBeenCalledTimes(1);
+      expect(firstTag.componentInstance.checked).toBe(false);
+      expect(secondTag.componentInstance.checked).toBe(false);
+      expect(component.tagItems[0].selected).toBe(false);
+      expect(component.tagItems[1].selected).toBe(false);
+
+      // should still trigger no changeEvent if clicking a second time on allTag
+      allTag.query(By.css('label')).nativeElement.click();
+      fixture.detectChanges();
+      await fixture.whenStable();
+      expect(component.change).toHaveBeenCalledTimes(1);
+    });
+
+    it('should the "All" tag be inactive with at least one tag selected and vice versa', async () => {
+      const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
+      const allTag = tags[0];
+      const firstTag = tags[1];
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(allTag.componentInstance.checked).toBe(true);
+      expect(allTag.componentInstance.active).toBe(true);
+      expect(firstTag.componentInstance.checked).toBe(false);
+      expect(firstTag.componentInstance.active).toBe(false);
+
+      firstTag.query(By.css('label')).nativeElement.click();
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(allTag.componentInstance.checked).toBe(false);
+      expect(allTag.componentInstance.active).toBe(false);
+      expect(firstTag.componentInstance.checked).toBe(true);
+      expect(firstTag.componentInstance.active).toBe(true);
+
+      allTag.query(By.css('label')).nativeElement.click();
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(allTag.componentInstance.checked).toBe(true);
+      expect(allTag.componentInstance.active).toBe(true);
+      expect(firstTag.componentInstance.checked).toBe(false);
+      expect(firstTag.componentInstance.active).toBe(false);
+    });
+
+    it('should prevent uncheck the "All" tag at the same time when all other tags are unchecked', async () => {
+      const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
+      const allTag = tags[0];
+      const firstTag = tags[1];
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(allTag.componentInstance.checked).toBe(true);
+      expect(allTag.componentInstance.active).toBe(true);
+      expect(firstTag.componentInstance.checked).toBe(false);
+      expect(firstTag.componentInstance.active).toBe(false);
+
+      allTag.query(By.css('label')).nativeElement.click();
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(allTag.componentInstance.checked).toBe(true);
+      expect(allTag.componentInstance.active).toBe(true);
+      expect(firstTag.componentInstance.checked).toBe(false);
+      expect(firstTag.componentInstance.active).toBe(false);
+    });
+
+    it('should when clicking the "All" tag all other tags to be unchecked/false', async () => {
+      const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
+      const allTag = tags[0];
+
+      allTag.query(By.css('label')).nativeElement.click();
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      tags.splice(0, 1);
+
+      const hasTruthyValues =
+        tags.findIndex((t) => t.componentInstance.checked && t.componentInstance.active) !== -1;
+
+      expect(hasTruthyValues).toBeFalsy();
+    });
+
+    it('should call the change event when checking/unchecking a sbb-tag', () => {
+      const firstTag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
+
+      spyOn(component, 'change');
+
+      firstTag.query(By.css('label')).nativeElement.click();
+
+      fixture.detectChanges();
+
+      expect(component.change).toHaveBeenCalled();
+    });
+
+    it('should update "All" tag when model of a child sbb-tag is updated', async () => {
+      const allTag = fixture.debugElement.queryAll(By.directive(SbbTag))[0];
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(allTag.componentInstance.checked).toBe(true);
+
+      component.tagItems[0].selected = true;
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(allTag.componentInstance.checked).toBe(false);
+    });
+
+    it('should have default badge description for "All" tag', () => {
+      expect(extractBadgeDescription(fixture.debugElement)).toBe('A total of 17 results available');
+    });
+
+    it('should have default badge description for first tag', () => {
+      expect(extractBadgeDescription(fixture.debugElement.queryAll(By.directive(SbbTag))[1])).toBe(
+        '8 results available'
+      );
+    });
+
+    it('should have custom badge description for first tag', () => {
+      fixture.componentInstance.description = 'description';
+      fixture.detectChanges();
+
+      expect(extractBadgeDescription(fixture.debugElement.queryAll(By.directive(SbbTag))[1])).toBe(
+        'description'
+      );
+    });
   });
 
-  it('should have custom badge description for first tag', () => {
-    fixture.componentInstance.description = 'description';
-    fixture.detectChanges();
+  describe('SbbTags with Reactive Forms and total amount set as input', () => {
+    let component: TagsTestFixtureReactiveComponent;
+    let fixture: ComponentFixture<TagsTestFixtureReactiveComponent>;
 
-    expect(extractBadgeDescription(fixture.debugElement.queryAll(By.directive(SbbTag))[1])).toBe(
-      'description'
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
+          declarations: [TagsTestFixtureReactiveComponent],
+        }).compileComponents();
+      })
     );
-  });
-});
 
-describe('SbbTags with Reactive Forms and total amount set as input', () => {
-  let component: TagsTestFixtureReactiveComponent;
-  let fixture: ComponentFixture<TagsTestFixtureReactiveComponent>;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TagsTestFixtureReactiveComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
-        declarations: [TagsTestFixtureReactiveComponent],
-      }).compileComponents();
-    })
-  );
+    it('should have three sbb-tag instantiated', () => {
+      const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TagsTestFixtureReactiveComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+      expect(tags.length).toBe(3);
+    });
 
-  it('should have three sbb-tag instantiated', () => {
-    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
+    it('should take totalAmount of input', () => {
+      component.totalAmount = 100;
+      fixture.detectChanges();
 
-    expect(tags.length).toBe(3);
-  });
+      expectTotalAmount(100, fixture);
 
-  it('should take totalAmount of input', () => {
-    component.totalAmount = 100;
-    fixture.detectChanges();
+      component.formGroup.addControl('onemore', new FormControl(false));
+      component.tagItems.push({ id: 'onemore', amount: 3, label: 'one more' });
+      fixture.detectChanges();
 
-    expectTotalAmount(100, fixture);
+      expectTotalAmount(100, fixture);
+    });
 
-    component.formGroup.addControl('onemore', new FormControl(false));
-    component.tagItems.push({ id: 'onemore', amount: 3, label: 'one more' });
-    fixture.detectChanges();
+    it('should check when click the label', () => {
+      const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
+      const tagLabel = tag.query(By.css('label'));
 
-    expectTotalAmount(100, fixture);
-  });
+      tagLabel.nativeElement.click();
 
-  it('should check when click the label', () => {
-    const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
-    const tagLabel = tag.query(By.css('label'));
+      const tagChecked = tag.queryAll(By.css('input:checked'));
 
-    tagLabel.nativeElement.click();
+      expect(tagChecked.length).toBe(1);
+    });
 
-    const tagChecked = tag.queryAll(By.css('input:checked'));
+    it('should sbb-tag to be checked if model is true and update Model if checked/unchecked', async () => {
+      const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
+      const tagLabel = tag.query(By.css('label'));
+      expect(tag.componentInstance.checked).toBe(false);
 
-    expect(tagChecked.length).toBe(1);
-  });
+      component.formGroup.patchValue({ services: true });
 
-  it('should sbb-tag to be checked if model is true and update Model if checked/unchecked', async () => {
-    const tag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
-    const tagLabel = tag.query(By.css('label'));
-    expect(tag.componentInstance.checked).toBe(false);
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-    component.formGroup.patchValue({ services: true });
+      expect(tag.componentInstance.checked).toBe(true);
+      expect(component.formGroup.get('services')!.value).toBe(true);
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+      tagLabel.nativeElement.click();
 
-    expect(tag.componentInstance.checked).toBe(true);
-    expect(component.formGroup.get('services')!.value).toBe(true);
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-    tagLabel.nativeElement.click();
+      expect(tag.componentInstance.checked).toBe(false);
+      expect(component.formGroup.get('services')!.value).toBe(false);
+    });
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+    it('should update all models when clicking "All" tag', async () => {
+      spyOn(component, 'change');
 
-    expect(tag.componentInstance.checked).toBe(false);
-    expect(component.formGroup.get('services')!.value).toBe(false);
-  });
+      const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
+      const allTag = tags[0];
+      const firstTag = tags[1];
+      const secondTag = tags[2];
 
-  it('should update all models when clicking all tag', async () => {
-    spyOn(component, 'change');
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-    const tags = fixture.debugElement.queryAll(By.directive(SbbTag));
-    const allTag = tags[0];
-    const firstTag = tags[1];
-    const secondTag = tags[2];
+      expect(allTag.componentInstance.checked).toBe(true);
+      expect(firstTag.componentInstance.checked).toBe(false);
+      expect(secondTag.componentInstance.checked).toBe(false);
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+      component.formGroup.patchValue({ services: true });
 
-    expect(allTag.componentInstance.checked).toBe(true);
-    expect(firstTag.componentInstance.checked).toBe(false);
-    expect(secondTag.componentInstance.checked).toBe(false);
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-    component.formGroup.patchValue({ services: true });
+      allTag.query(By.css('label')).nativeElement.click();
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-    allTag.query(By.css('label')).nativeElement.click();
+      expect(component.change).toHaveBeenCalledTimes(1);
+      expect(firstTag.componentInstance.checked).toBe(false);
+      expect(secondTag.componentInstance.checked).toBe(false);
+      expect(component.formGroup.get('services')!.value).toBe(false);
+      expect(component.formGroup.get('restaurants')!.value).toBe(false);
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+      // should still trigger no changeEvent if clicking a second time on allTag
+      allTag.query(By.css('label')).nativeElement.click();
+      fixture.detectChanges();
+      await fixture.whenStable();
+      expect(component.change).toHaveBeenCalledTimes(1);
+    });
 
-    expect(component.change).toHaveBeenCalledTimes(1);
-    expect(firstTag.componentInstance.checked).toBe(false);
-    expect(secondTag.componentInstance.checked).toBe(false);
-    expect(component.formGroup.get('services')!.value).toBe(false);
-    expect(component.formGroup.get('restaurants')!.value).toBe(false);
+    it('should call the change event when checking/unchecking a sbb-tag', () => {
+      const firstTag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
 
-    // should still trigger no changeEvent if clicking a second time on allTag
-    allTag.query(By.css('label')).nativeElement.click();
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(component.change).toHaveBeenCalledTimes(1);
-  });
+      spyOn(component, 'change');
 
-  it('should call the change event when checking/unchecking a sbb-tag', () => {
-    const firstTag = fixture.debugElement.queryAll(By.directive(SbbTag))[1];
+      firstTag.query(By.css('label')).nativeElement.click();
 
-    spyOn(component, 'change');
+      fixture.detectChanges();
 
-    firstTag.query(By.css('label')).nativeElement.click();
+      expect(component.change).toHaveBeenCalled();
+    });
 
-    fixture.detectChanges();
+    it('should update allTag when model of a child sbb-tag is updated', async () => {
+      const allTag = fixture.debugElement.queryAll(By.directive(SbbTag))[0];
 
-    expect(component.change).toHaveBeenCalled();
-  });
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-  it('should update allTag when model of a child sbb-tag is updated', async () => {
-    const allTag = fixture.debugElement.queryAll(By.directive(SbbTag))[0];
+      expect(allTag.componentInstance.checked).toBe(true);
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+      component.formGroup.patchValue({ services: true });
 
-    expect(allTag.componentInstance.checked).toBe(true);
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-    component.formGroup.patchValue({ services: true });
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(allTag.componentInstance.checked).toBe(false);
+      expect(allTag.componentInstance.checked).toBe(false);
+    });
   });
 });
 

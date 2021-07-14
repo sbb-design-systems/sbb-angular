@@ -59,7 +59,7 @@ export class TagAdvancedExample implements OnDestroy {
   }
 
   reset() {
-    this.tags = JSON.parse(JSON.stringify(tagItems));
+    this.tags = JSON.parse(JSON.stringify(tagItems)); // Create a deep copy for example purposes
     this.amountFirstItem.setValue('', { emitEvent: false });
   }
 

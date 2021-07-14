@@ -937,11 +937,11 @@ fieldset,
 .sbb-badge-disabled,
 .sbb-tab-disabled {
   .sbb-badge-content {
-    background: $sbbColorMetal;
+    background-color: $sbbColorMetal;
     color: $sbbColorWhite;
 
     html.sbb-lean & {
-      background: $sbbColorGranite;
+      background-color: $sbbColorGranite;
     }
   }
 }

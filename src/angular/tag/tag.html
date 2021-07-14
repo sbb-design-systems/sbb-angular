@@ -24,7 +24,7 @@
   <span>&nbsp;</span>
   <span
     [sbbBadge]="amount"
-    [sbbBadgeDisabled]="_shouldDisableBadge"
+    [sbbBadgeDisabled]="this.disabled || !this.checked"
     sbbBadgePosition="after"
     [sbbBadgeDescription]="badgeDescription || _badgeDescriptionFallback"
   ></span>

@@ -14,18 +14,12 @@ import {
 import { BehaviorSubject, of, Subject } from 'rxjs';
 import { filter, mergeAll, mergeMap, startWith, takeUntil } from 'rxjs/operators';
 
-import { SbbTag, SBB_TAGS_CONTAINER } from './tag';
+import { SbbTag } from './tag';
 
 @Component({
   selector: 'sbb-tags',
   exportAs: 'sbbTags',
   templateUrl: './tags.html',
-  providers: [
-    {
-      provide: SBB_TAGS_CONTAINER,
-      useExisting: SbbTags,
-    },
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -34,7 +28,7 @@ import { SbbTag, SBB_TAGS_CONTAINER } from './tag';
 })
 export class SbbTags implements AfterContentInit, OnDestroy {
   /**
-   * Total amount visible on the all tag badge.
+   * Total amount visible on the "All" tag badge.
    * If not provided, the total amount is calculated by the sum of all amounts of all tags.
    */
   @Input()
@@ -60,7 +54,7 @@ export class SbbTags implements AfterContentInit, OnDestroy {
   private _destroyed = new Subject();
 
   ngAfterContentInit() {
-    // Listen to tag changes in order to update state of 'all'-tag
+    // Listen to tag changes in order to update state of "All" tag
     this.tags.changes
       .pipe(
         startWith(this.tags.toArray()),
@@ -73,7 +67,7 @@ export class SbbTags implements AfterContentInit, OnDestroy {
       )
       .subscribe(() => this._setCheckedStateOfAllTag());
 
-    // Listen to tag changes and amount changes of all tag components
+    // Listen to tag changes and amount changes of every tag component
     this.tags.changes
       .pipe(
         startWith(this.tags.toArray()),

@@ -42,7 +42,6 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
       padding: pxToRem(6) pxToRem(12) pxToRem(7) pxToRem(22);
       border-width: pxToRem(2);
     }
-
     @include mq($from: desktop5k) {
       font-size: pxToRem($sizeFontDefault5k);
       line-height: pxToRem(45);
@@ -105,9 +104,7 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sbb-tag-label {
-  @include ellipsis;
   display: inline-block;
-  max-width: pxToEm(250);
 }
 
 .sbb-tag-link {

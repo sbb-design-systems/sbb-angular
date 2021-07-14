@@ -21,9 +21,6 @@ import { _SbbCheckboxBase } from '@sbb-esta/angular/checkbox';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-/** Injection token used to provide the parent component to TagComponent. */
-export const SBB_TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
-
 @Component({
   selector: 'sbb-tag',
   exportAs: 'sbbTag',
@@ -87,11 +84,6 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   }
   private _active = false;
 
-  /* @docs-private */
-  get _shouldDisableBadge(): boolean {
-    return this.disabled || !this.checked;
-  }
-
   constructor(
     private _zone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
@@ -121,6 +113,7 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   }
 
   ngOnDestroy() {
+    super.ngOnDestroy();
     this._amountChange.complete();
     this._valueChange.complete();
   }
