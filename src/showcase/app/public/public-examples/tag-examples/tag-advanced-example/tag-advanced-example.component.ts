@@ -34,7 +34,7 @@ const tagItems: Tag[] = [
   selector: 'sbb-tag-advanced-example',
   templateUrl: './tag-advanced-example.component.html',
 })
-export class TagAdvancedExample implements OnDestroy {
+export class TagAdvancedExampleComponent implements OnDestroy {
   tags: Tag[];
 
   amountFirstItem = new FormControl();

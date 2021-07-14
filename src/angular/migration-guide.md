@@ -441,7 +441,27 @@ can be applied with the `sbbBadge` directive from the `SbbBadgeModule`.
 
 _Partial migration available_
 
-The tag module has been slightly refactored. Mainly the usage of a tag link has changed (no automatic migration):
+The tag module has been slightly refactored.
+
+#### '<sbb-tag>'
+
+The `label` inputs has been changed to content projection which is handled by automatic migration:
+
+**Previous**
+
+```html
+<sbb-tag label="Trains" amount="5"></sbb-tag>
+```
+
+**New**
+
+```html
+<sbb-tag amount="5">Trains</sbb-tag>
+```
+
+#### Tag Link
+
+The usage of the tag link has changed (no automatic migration):
 
 **Previous**
 
@@ -456,6 +476,8 @@ The tag module has been slightly refactored. Mainly the usage of a tag link has 
 ```html
 <a href="#" sbb-tag-link amount="5">Trains</a>
 ```
+
+#### Accessibility
 
 Additionally, it's now possible to set the aria description of the badge by using `[sbbBadgeDescription]` property
 on `<sbb-tag>` or on `sbb-tag-link`. As a fallback, the predefined aria labels will still be applied

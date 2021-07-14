@@ -8,23 +8,23 @@ import { SbbTagModule } from '@sbb-esta/angular-public/tag';
 
 import { provideExamples } from '../../../shared/example-provider';
 
-import { TagAdvancedExample } from './tag-advanced-example/tag-advanced-example.component';
-import { TagLinkExample } from './tag-link-example/tag-link-example.component';
-import { TagReactiveFormsExample } from './tag-reactive-forms-example/tag-reactive-forms-example.component';
+import { TagAdvancedExampleComponent } from './tag-advanced-example/tag-advanced-example.component';
+import { TagLinkExampleComponent } from './tag-link-example/tag-link-example.component';
+import { TagReactiveFormsExampleComponent } from './tag-reactive-forms-example/tag-reactive-forms-example.component';
 import { TagTemplateFormsExampleComponent } from './tag-template-forms-example/tag-template-forms-example.component';
 
 const EXAMPLES = [
-  TagReactiveFormsExample,
+  TagReactiveFormsExampleComponent,
   TagTemplateFormsExampleComponent,
-  TagAdvancedExample,
-  TagLinkExample,
+  TagAdvancedExampleComponent,
+  TagLinkExampleComponent,
 ];
 
 const EXAMPLE_INDEX = {
-  'tag-reactive-forms-example': TagReactiveFormsExample,
+  'tag-reactive-forms-example': TagReactiveFormsExampleComponent,
   'tag-template-forms-example': TagTemplateFormsExampleComponent,
-  'tag-advanced-example': TagAdvancedExample,
-  'tag-link-example': TagLinkExample,
+  'tag-advanced-example': TagAdvancedExampleComponent,
+  'tag-link-example': TagLinkExampleComponent,
 };
 
 @NgModule({

@@ -1,11 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sbb-tag-reactive-forms-example',
   templateUrl: './tag-reactive-forms-example.component.html',
 })
-export class TagReactiveFormsExample {
+export class TagReactiveFormsExampleComponent {
   formGroup: FormGroup;
 
   constructor(formBuilder: FormBuilder) {

@@ -20,7 +20,7 @@
 
   <!-- Add an invisible span so JAWS can read the label -->
   <span style="display: none">&nbsp;</span>
-  <span class="sbb-tag-label">{{ label }}</span>
+  <span class="sbb-tag-label"><ng-content></ng-content></span>
   <span>&nbsp;</span>
   <span
     [sbbBadge]="amount"

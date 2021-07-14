@@ -43,10 +43,6 @@ import { take } from 'rxjs/operators';
   },
 })
 export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
-  /** Label of the tag. */
-  @Input()
-  label: string;
-
   /** Amount displayed in badge */
   @Input()
   get amount(): number {

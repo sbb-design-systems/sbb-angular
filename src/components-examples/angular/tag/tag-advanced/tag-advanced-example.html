@@ -1,10 +1,7 @@
 <sbb-tags>
-  <sbb-tag
-    *ngFor="let tag of tags; let i = index"
-    (change)="change($event)"
-    [label]="tag.label"
-    [amount]="tag.amount"
-  ></sbb-tag>
+  <sbb-tag *ngFor="let tag of tags; let i = index" (change)="change($event)" [amount]="tag.amount"
+    >{{tag.label}}</sbb-tag
+  >
 </sbb-tags>
 
 <h4>Properties</h4>

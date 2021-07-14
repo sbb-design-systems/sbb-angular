@@ -28,11 +28,11 @@ interface Tag {
         <sbb-tag
           [(ngModel)]="tag.selected"
           (change)="change($event)"
-          [label]="tag.label"
           [id]="tag.id"
           [amount]="tag.amount"
           [sbbBadgeDescription]="description"
-        ></sbb-tag>
+          >{{ tag.label }}</sbb-tag
+        >
       </ng-container>
     </sbb-tags>
   `,
@@ -64,10 +64,10 @@ class TagsTestFixtureComponent {
           <sbb-tag
             [formControlName]="tag.id"
             (change)="change($event)"
-            [label]="tag.label"
             [id]="tag.id"
             [amount]="tag.amount"
-          ></sbb-tag>
+            >{{ tag.label }}</sbb-tag
+          >
         </ng-container>
       </sbb-tags>
     </ng-container>

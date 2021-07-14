@@ -12,8 +12,8 @@ it changes the status of each tag in the filter to inactive.
 
 ```html
 <sbb-tags>
-  <sbb-tag label="Trains" amount="23" formControlName="trains"></sbb-tag>
-  <sbb-tag label="Cars" amount="2" formControlName="cars"></sbb-tag>
+  <sbb-tag amount="23" formControlName="trains">Trains</sbb-tag>
+  <sbb-tag amount="2" formControlName="cars">Cars</sbb-tag>
 </sbb-tags>
 ```
 
@@ -25,7 +25,7 @@ then you have to set the `totalAmount` property of `<sbb-tags>`.
 
 ```html
 <sbb-tags [totalAmount]="100">
-  <sbb-tag label="Trains" [amount]="10" [(ngModel)]="tag"></sbb-tag>
+  <sbb-tag [amount]="10" [(ngModel)]="tag">Trains</sbb-tag>
 </sbb-tags>
 ```
 
@@ -45,12 +45,9 @@ To provide more precise aria descriptions for the badge label,
 it's possible to set the `sbbBadgeDescription` property on `<sbb-tag>` or `tag-link`.
 
 ```html
-<sbb-tag
-  label="Trains"
-  [amount]="amount"
-  [(ngModel)]="tag"
-  sbbBadgeDescription="{{ amount }} trains available"
-></sbb-tag>
+<sbb-tag [amount]="amount" [(ngModel)]="tag" sbbBadgeDescription="{{ amount }} trains available"
+  >Trains</sbb-tag
+>
 ```
 
 ```html
