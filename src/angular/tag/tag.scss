@@ -49,6 +49,11 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
       padding: pxToRem(9) pxToRem(16) pxToRem(12) pxToRem(30);
     }
   }
+
+  html.sbb-lean & {
+    color: $sbbColorGranite;
+    padding: pxToRem(2) pxToRem(6) pxToRem(3) pxToRem(13);
+  }
 }
 
 .sbb-tag-content {
@@ -66,7 +71,11 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   .sbb-tag-active & {
     background-color: $tagActiveBgColor;
     border-color: $tagActiveColor;
-    color: $tagActiveColor;
+    &,
+    html.sbb-lean & {
+      // Redefine for specificity
+      color: $tagActiveColor;
+    }
   }
 
   .sbb-tag-active:not(.sbb-tag-disabled):hover &,
@@ -78,6 +87,10 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
 
     .sbb-badge-content {
       background-color: $sbbColorRed;
+
+      html.sbb-lean & {
+        background-color: $sbbColorBlack;
+      }
     }
   }
 
@@ -101,14 +114,30 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   background-color: $tagActiveBgColor;
   border-color: $tagActiveColor;
-  color: $tagActiveColor;
   outline: 0;
+
+  &,
+  html.sbb-lean & {
+    // Redefine for specificity
+    color: $tagActiveColor;
+  }
 
   &:hover,
   &:focus,
   &:active,
   .sbb-active {
     border-color: $sbbColorCallToActionHover;
-    color: $sbbColorCallToActionHover;
+
+    &,
+    html.sbb-lean & {
+      // Redefine for specificity
+      color: $sbbColorCallToActionHover;
+    }
+
+    .sbb-badge-content {
+      html.sbb-lean & {
+        background-color: $sbbColorCallToActionHover;
+      }
+    }
   }
 }

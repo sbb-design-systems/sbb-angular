@@ -939,6 +939,10 @@ fieldset,
   .sbb-badge-content {
     background: $sbbColorMetal;
     color: $sbbColorWhite;
+
+    html.sbb-lean & {
+      background: $sbbColorGranite;
+    }
   }
 }
 
@@ -971,6 +975,10 @@ fieldset,
     @include mq($from: desktop5k) {
       font-size: pxToRem(22);
     }
+  }
+
+  html.sbb-lean & {
+    background-color: $sbbColorBlack;
   }
 }
 
