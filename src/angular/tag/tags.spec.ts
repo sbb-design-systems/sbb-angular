@@ -7,6 +7,7 @@ import { SbbBadge, SbbBadgeModule } from '@sbb-esta/angular/badge';
 import { SbbCheckboxChange as SbbTagChange } from '@sbb-esta/angular/checkbox';
 
 import { SbbTag } from './tag';
+import { SbbTagModule } from './tag.module';
 import { SbbTags } from './tags';
 
 interface Tag {
@@ -96,11 +97,7 @@ class TagsTestFixtureReactiveComponent {
 
 @Component({
   selector: 'sbb-taglink-test-fixture',
-  template: `
-    <a href="#">
-      <sbb-tag label="Link tag" amount="5"></sbb-tag>
-    </a>
-  `,
+  template: ` <a sbb-tag-link href="#" amount="5" sbbBadgeDescription="amount">Tag Link</a> `,
 })
 class TagLinkTestFixtureComponent {}
 
@@ -111,8 +108,7 @@ describe('SbbTags', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbBadgeModule],
-        declarations: [SbbTags, SbbTag],
+        imports: [SbbBadgeModule, SbbTagModule],
       }).compileComponents();
     })
   );
@@ -139,8 +135,8 @@ describe('SbbTags with Model attached', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, SbbBadgeModule],
-        declarations: [SbbTags, SbbTag, TagsTestFixtureComponent],
+        imports: [CommonModule, FormsModule, SbbBadgeModule, SbbTagModule],
+        declarations: [TagsTestFixtureComponent],
       }).compileComponents();
     })
   );
@@ -168,7 +164,7 @@ describe('SbbTags with Model attached', () => {
     const thirdTag: SbbTag = fixture.debugElement.queryAll(By.directive(SbbTag))[2]
       .componentInstance;
 
-    expect(thirdTag.inputId).toMatch(/sbb-tag-\d+-input/);
+    expect(thirdTag.inputId).toMatch(/sbb-checkbox-\d+-input/);
   });
 
   it('should have all its sbb-tag children with linkMode set to false', () => {
@@ -405,8 +401,8 @@ describe('SbbTags with Reactive Forms and total amount set as input', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule],
-        declarations: [SbbTags, SbbTag, TagsTestFixtureReactiveComponent],
+        imports: [CommonModule, ReactiveFormsModule, SbbBadgeModule, SbbTagModule],
+        declarations: [TagsTestFixtureReactiveComponent],
       }).compileComponents();
     })
   );
@@ -536,14 +532,14 @@ describe('SbbTags with Reactive Forms and total amount set as input', () => {
   });
 });
 
-describe('SbbTag as a Link Tag', () => {
+describe('SBB Tag Link', () => {
   let fixture: ComponentFixture<TagLinkTestFixtureComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SbbBadgeModule],
-        declarations: [SbbTag, TagLinkTestFixtureComponent],
+        imports: [SbbBadgeModule, SbbTagModule],
+        declarations: [TagLinkTestFixtureComponent],
       }).compileComponents();
     })
   );
@@ -553,16 +549,15 @@ describe('SbbTag as a Link Tag', () => {
     fixture.detectChanges();
   });
 
-  it('should have linkMode set to true', () => {
-    const linkTag = fixture.debugElement.query(By.directive(SbbTag));
+  it('should have badge with amount and description', () => {
+    const linkTag = fixture.debugElement.query(By.css('.sbb-tag-link'));
+    const ariaDescribedById = fixture.debugElement
+      .query(By.css('.sbb-badge-content'))
+      .nativeElement.getAttribute('aria-describedby');
+    const description = document.getElementById(ariaDescribedById)!.textContent;
 
-    expect(linkTag.componentInstance.linkMode).toBe(true);
-  });
-
-  it('should be active', () => {
-    const linkTag = fixture.debugElement.query(By.directive(SbbTag));
-
-    expect(linkTag.componentInstance.active).toBe(true);
+    expect(linkTag.nativeElement.textContent).toEqual('Tag Link 5');
+    expect(description).toEqual('amount');
   });
 });
 

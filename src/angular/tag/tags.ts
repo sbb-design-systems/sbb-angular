@@ -68,7 +68,7 @@ export class SbbTags implements AfterContentInit, OnDestroy {
           of(this.tags.toArray()),
           this.tags.changes,
           ...tags.map((item) =>
-            item.amountChange.pipe(
+            item._amountChange.pipe(
               map(() => tags),
               takeUntil(merge(this._destroyed, this.tags.changes))
             )

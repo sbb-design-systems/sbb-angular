@@ -30,14 +30,12 @@ then you have to set the `totalAmount` property of `<sbb-tags>`.
 </sbb-tags>
 ```
 
-### Link tag
+### Tag Link
 
-You can use a link tag to navigate to the corresponding category page.
+You can use a tag link to navigate to the corresponding category page.
 
 ```html
-<a routerLink="/home">
-  <sbb-tag label="Link tag" amount="5"></sbb-tag>
-</a>
+<a sbb-tag-link amount="5" sbbBadgeDescription="Amount of results" routerLink="/home">Tag Link</a>
 ```
 
-Link tags can only receive the active state.
+Tag links can only receive the active state.

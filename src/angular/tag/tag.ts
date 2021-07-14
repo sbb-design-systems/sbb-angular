@@ -7,25 +7,19 @@ import {
   Component,
   ElementRef,
   forwardRef,
-  Inject,
   InjectionToken,
   Input,
   NgZone,
   OnDestroy,
-  OnInit,
-  Optional,
   ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SbbCheckboxChange, _SbbCheckboxBase } from '@sbb-esta/angular/checkbox';
+import { _SbbCheckboxBase } from '@sbb-esta/angular/checkbox';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 /** Injection token used to provide the parent component to TagComponent. */
 export const SBB_TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
-
-// tslint:disable-next-line:no-empty-interface
-export interface SbbTagChange extends SbbCheckboxChange {}
 
 @Component({
   selector: 'sbb-tag',
@@ -40,39 +34,35 @@ export interface SbbTagChange extends SbbCheckboxChange {}
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  inputs: ['tabIndex'],
   host: {
     class: 'sbb-tag',
     '[class.sbb-tag-disabled]': 'disabled',
     '[class.sbb-tag-active]': 'active',
   },
 })
-export class SbbTag extends _SbbCheckboxBase implements OnInit, OnDestroy {
-  /** Link mode of a tag. */
-  get linkMode() {
-    return this._linkMode;
-  }
-  set linkMode(value: boolean) {
-    this._linkMode = value;
-    this.active = value;
-  }
-  private _linkMode = false;
-
+export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
   /** Label of the tag. */
   @Input()
   label: string;
-  /** Amount of result found. */
+
+  /** Amount displayed in badge */
   @Input()
   get amount(): number {
     return this._amount;
   }
   set amount(value: number) {
     this._amount = coerceNumberProperty(value);
-    this.amountChange.next(this._amount);
+    this._amountChange.next(this._amount);
   }
   private _amount: number;
 
+  /** Description of the badge (amount) */
+  @Input('sbbBadgeDescription')
+  badgeDescription: string;
+
   /** Emits the current amount when the amount changes */
-  readonly amountChange = new Subject<number>();
+  readonly _amountChange = new Subject<number>();
 
   /**
    * A subject on tag checking.
@@ -96,28 +86,26 @@ export class SbbTag extends _SbbCheckboxBase implements OnInit, OnDestroy {
   }
   private _active = false;
 
+  /* @docs-private */
+  get _shouldDisableBadge(): boolean {
+    return this.disabled || !this.checked;
+  }
+
   constructor(
-    @Optional() @Inject(SBB_TAGS_CONTAINER) private _tagsContainer: any,
     private _zone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     focusMonitor: FocusMonitor,
     elementRef: ElementRef<HTMLElement>,
     @Attribute('tabindex') tabIndex: string
   ) {
-    super(elementRef, changeDetectorRef, focusMonitor, tabIndex, { componentName: 'tag' });
+    super(elementRef, changeDetectorRef, focusMonitor, tabIndex);
 
-    this.change.subscribe((e: SbbTagChange) => {
+    this.change.subscribe((e) => {
       this.tagChecking$.next(e.checked);
     });
     this._zone.onStable
       .pipe(take(1))
       .subscribe(() => this._zone.run(() => this.tagChecking$.next(this.checked)));
-  }
-
-  ngOnInit() {
-    if (!this._tagsContainer) {
-      this.linkMode = true;
-    }
   }
 
   writeValue(value: any) {
@@ -136,7 +124,7 @@ export class SbbTag extends _SbbCheckboxBase implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.tagChecking$.complete();
-    this.amountChange.complete();
+    this._amountChange.complete();
   }
 
   static ngAcceptInputType_amount: NumberInput;

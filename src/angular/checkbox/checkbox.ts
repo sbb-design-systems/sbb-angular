@@ -98,7 +98,7 @@ export class _SbbCheckboxBase
   /** The 'aria-describedby' attribute is read after the element's label and field type. */
   @Input('aria-describedby') ariaDescribedby: string;
 
-  private _uniqueId: string = `sbb-${this._options!.componentName}-${++nextUniqueId}`;
+  private _uniqueId: string = `sbb-checkbox-${++nextUniqueId}`;
 
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() id: string = this._uniqueId;
@@ -155,7 +155,7 @@ export class _SbbCheckboxBase
     private _options?: SbbCheckboxDefaultOptions
   ) {
     super();
-    this._options = { ...defaults, ..._options };
+    this._options = this._options || defaults;
     this.tabIndex = parseInt(tabIndex, 10) || 0;
   }
 
