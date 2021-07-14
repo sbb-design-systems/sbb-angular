@@ -37,7 +37,7 @@ You can use a tag link to navigate to the corresponding category page.
 <a sbb-tag-link amount="5" routerLink="/home">Trains</a>
 ```
 
-Tag links can only receive the active state.
+Tag links are always active.
 
 ### Accessibility
 

@@ -7,7 +7,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'sbb-tag-template-forms-example',
   templateUrl: './tag-template-forms-example.html',
-  encapsulation: ViewEncapsulation.None,
 })
 export class TagTemplateFormsExample {
   trains = false;

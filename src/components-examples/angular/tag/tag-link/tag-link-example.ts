@@ -7,6 +7,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'sbb-tag-link-example',
   templateUrl: './tag-link-example.html',
-  encapsulation: ViewEncapsulation.None,
 })
 export class TagLinkExample {}

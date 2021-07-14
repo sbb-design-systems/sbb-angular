@@ -37,7 +37,6 @@ const tagItems: Tag[] = [
 @Component({
   selector: 'sbb-tag-advanced-example',
   templateUrl: './tag-advanced-example.html',
-  encapsulation: ViewEncapsulation.None,
 })
 export class TagAdvancedExample implements OnDestroy {
   tags: Tag[];
