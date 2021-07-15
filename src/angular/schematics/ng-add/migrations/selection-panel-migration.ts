@@ -36,11 +36,22 @@ export class SelectionPanelMigration extends Migration<null, DevkitContext> {
   private _handlePanel(element: MigrationElement, type: string) {
     const label = element.findProperty('label')!;
     const subtitle = element.findProperty('subtitle');
+    const i18nSubtitle = element.findProperty('i18n-subtitle');
     let content = label.toTextNode();
     label.remove();
+
+    let i18nSubtitleTransformed = '';
+    if (i18nSubtitle) {
+      i18nSubtitleTransformed = ' i18n';
+      if (i18nSubtitle.nativeValue?.length) {
+        i18nSubtitleTransformed += `="${i18nSubtitle.nativeValue}"`;
+      }
+    }
+
     if (subtitle) {
-      content += `<sbb-${type}-panel-subtitle>${subtitle.toTextNode()}</sbb-${type}-panel-subtitle>`;
+      content += `<sbb-${type}-panel-subtitle${i18nSubtitleTransformed}>${subtitle.toTextNode()}</sbb-${type}-panel-subtitle>`;
       subtitle.remove();
+      i18nSubtitle?.remove();
     }
     element.insertStart(content);
 

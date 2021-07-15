@@ -9,13 +9,16 @@ import { SbbCheckboxPanelModule } from '@sbb-esta/angular/checkbox-panel';
       name="single-option"
       value="single-option"
       [checked]="checked2"
+      i18n="desc@@id"
      
      
-    >SBB - Finanzen<sbb-checkbox-panel-subtitle>Armin Burgermeister</sbb-checkbox-panel-subtitle></sbb-checkbox-panel>
+     
+    >SBB - Finanzen<sbb-checkbox-panel-subtitle i18n="desc@@id">Armin Burgermeister</sbb-checkbox-panel-subtitle></sbb-checkbox-panel>
     <sbb-checkbox-panel
       name="single-option"
       value="single-option"
       [checked]="checked2"
+      i18n="desc@@id"
      
      
     >SBB - Finanzen<sbb-checkbox-panel-subtitle>{{ test }}</sbb-checkbox-panel-subtitle>
