@@ -1,0 +1,10 @@
+<sbb-tag
+  #allTag
+  i18n="Label for the 'All' tag@@sbbTagsAll"
+  (change)="_setAllTagChecked()"
+  [amount]="_totalAmount | async"
+  i18n-sbbBadgeDescription="Badge description (total amount) for the 'All' tag@@sbbTagsAllBadgeDescription"
+  sbbBadgeDescription="A total of {{ _totalAmount | async }} results available"
+  >All</sbb-tag
+>
+<ng-content></ng-content>

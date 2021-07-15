@@ -23,6 +23,11 @@ export const inputNames: VersionChanges<InputNameUpgradeData> = {
           replaceWith: 'i18n-label',
           limitedTo: { elements: ['sbb-processflow-step', 'sbb-step'] },
         },
+        {
+          replace: 'i18n-label',
+          replaceWith: 'i18n',
+          limitedTo: { elements: ['sbb-tag'] },
+        },
       ],
     },
   ],

@@ -937,8 +937,12 @@ fieldset,
 .sbb-badge-disabled,
 .sbb-tab-disabled {
   .sbb-badge-content {
-    background: $sbbColorMetal;
+    background-color: $sbbColorMetal;
     color: $sbbColorWhite;
+
+    html.sbb-lean & {
+      background-color: $sbbColorGranite;
+    }
   }
 }
 
@@ -971,6 +975,10 @@ fieldset,
     @include mq($from: desktop5k) {
       font-size: pxToRem(22);
     }
+  }
+
+  html.sbb-lean & {
+    background-color: $sbbColorBlack;
   }
 }
 

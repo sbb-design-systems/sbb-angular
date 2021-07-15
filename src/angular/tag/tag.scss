@@ -1,0 +1,136 @@
+@import '../styles/common';
+
+$tagActiveBgColor: $sbbColorWhite;
+$tagActiveColor: $sbbColorBlack;
+$tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
+
+.sbb-tag,
+.sbb-tag-link {
+  .sbb-badge {
+    display: flex;
+    align-self: center;
+  }
+  .sbb-badge-content {
+    position: relative;
+    display: block;
+    transition: background-color $tagTransitionTiming;
+  }
+}
+
+.sbb-tag {
+  display: inline-block;
+}
+
+.sbb-tag-base {
+  display: flex;
+  transition: border-color $tagTransitionTiming, background-color $tagTransitionTiming,
+    color $tagTransitionTiming;
+  cursor: pointer;
+  background-color: $sbbColorMilk;
+  border: pxToRem(1) solid transparent;
+  border-radius: 1.2em;
+  color: $sbbColorGrey;
+
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem(23);
+  padding: pxToRem(4) pxToRem(8) pxToRem(6) pxToRem(15);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem(35);
+      padding: pxToRem(6) pxToRem(12) pxToRem(7) pxToRem(22);
+      border-width: pxToRem(2);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem(45);
+      padding: pxToRem(9) pxToRem(16) pxToRem(12) pxToRem(30);
+    }
+  }
+
+  html.sbb-lean & {
+    color: $sbbColorGranite;
+    padding: pxToRem(2) pxToRem(6) pxToRem(3) pxToRem(13);
+  }
+}
+
+.sbb-tag-label {
+  .sbb-tag:not(.sbb-tag-disabled):hover &,
+  .sbb-tag:not(.sbb-tag-disabled):focus &,
+  .sbb-tag:not(.sbb-tag-disabled).cdk-focused & {
+    background-color: $sbbColorCloud;
+    color: $tagActiveColor;
+
+    .sbb-badge-content {
+      background-color: $sbbColorCement;
+    }
+  }
+
+  .sbb-tag-active & {
+    background-color: $tagActiveBgColor;
+    border-color: $tagActiveColor;
+    &,
+    html.sbb-lean & {
+      // Redefine for specificity
+      color: $tagActiveColor;
+    }
+  }
+
+  .sbb-tag-active:not(.sbb-tag-disabled):hover &,
+  .sbb-tag-active:not(.sbb-tag-disabled):focus &,
+  .sbb-tag-active:not(.sbb-tag-disabled).cdk-focused & {
+    background-color: transparent;
+    border-color: $sbbColorGraphite;
+    color: $sbbColorGrey;
+
+    .sbb-badge-content {
+      background-color: $sbbColorRed;
+
+      html.sbb-lean & {
+        background-color: $sbbColorBlack;
+      }
+    }
+  }
+
+  .sbb-tag-disabled & {
+    cursor: default;
+  }
+
+  .sbb-tags & {
+    margin-right: pxToEm(8);
+    margin-bottom: pxToEm(8);
+  }
+}
+
+.sbb-tag-link {
+  display: inline-flex;
+  background-color: $tagActiveBgColor;
+  border-color: $tagActiveColor;
+  outline: 0;
+
+  &,
+  html.sbb-lean & {
+    // Redefine for specificity
+    color: $tagActiveColor;
+  }
+
+  &:hover,
+  &:focus,
+  &:active,
+  .sbb-active {
+    border-color: $sbbColorCallToActionHover;
+
+    &,
+    html.sbb-lean & {
+      // Redefine for specificity
+      color: $sbbColorCallToActionHover;
+    }
+
+    .sbb-badge-content {
+      html.sbb-lean & {
+        background-color: $sbbColorCallToActionHover;
+      }
+    }
+  }
+}

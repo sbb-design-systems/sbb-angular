@@ -1,0 +1,25 @@
+<sbb-tags>
+  <sbb-tag
+    *ngFor="let tag of tags; let i = index"
+    (change)="change($event)"
+    [label]="tag.label"
+    [amount]="tag.amount"
+  ></sbb-tag>
+</sbb-tags>
+
+<h4>Properties</h4>
+<p>
+  <button type="button" sbbButton mode="ghost" (click)="removeOneItem()">Remove one tag</button>
+</p>
+<p>
+  <button type="button" sbbButton mode="ghost" (click)="addOneItem()">Add one tag</button>
+</p>
+<p><button type="button" sbbButton mode="ghost" (click)="reset()">Reset</button></p>
+<p>
+  <sbb-form-field label="Amount of first item">
+    <input type="number" [formControl]="amountFirstItem" sbbInput />
+  </sbb-form-field>
+</p>
+
+<h4>Model</h4>
+<pre>{{ tags | json }}</pre>

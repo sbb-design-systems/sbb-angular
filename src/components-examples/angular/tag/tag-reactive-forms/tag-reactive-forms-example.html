@@ -1,0 +1,8 @@
+<sbb-tags [formGroup]="formGroup">
+  <sbb-tag formControlName="trains" amount="23">Trains</sbb-tag>
+  <sbb-tag formControlName="cars" amount="2">Cars</sbb-tag>
+  <sbb-tag formControlName="bicycles" amount="150">Bicycles</sbb-tag>
+</sbb-tags>
+
+<h4>Model</h4>
+<pre>{{ formGroup.getRawValue() | json }}</pre>

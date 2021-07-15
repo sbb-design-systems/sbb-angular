@@ -147,7 +147,7 @@ export class _SbbCheckboxBase
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private _changeDetectorRef: ChangeDetectorRef,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _focusMonitor: FocusMonitor,
     @Attribute('tabindex') tabIndex: string,
     @Optional()
@@ -274,7 +274,7 @@ export class _SbbCheckboxBase
     return this.indeterminate ? 'mixed' : 'false';
   }
 
-  private _emitChangeEvent() {
+  protected _emitChangeEvent() {
     const event = new SbbCheckboxChange();
     event.source = this;
     event.checked = this.checked;

@@ -437,6 +437,54 @@ can be applied with the `sbbBadge` directive from the `SbbBadgeModule`.
 
 [Documentation](angular/components/tabs)
 
+### Tag
+
+_Partial migration available_
+
+The tag module has been slightly refactored.
+
+#### '<sbb-tag>'
+
+The `label` inputs has been changed to content projection which is handled by automatic migration:
+
+**Previous**
+
+```html
+<sbb-tag label="Trains" amount="5"></sbb-tag>
+```
+
+**New**
+
+```html
+<sbb-tag amount="5">Trains</sbb-tag>
+```
+
+#### Tag Link
+
+The usage of the tag link has changed (no automatic migration):
+
+**Previous**
+
+```html
+<a href="#">
+  <sbb-tag label="Trains" amount="5"></sbb-tag>
+</a>
+```
+
+**New**
+
+```html
+<a href="#" sbb-tag-link amount="5">Trains</a>
+```
+
+#### Accessibility
+
+Additionally, it's now possible to set the aria description of the badge by using `[sbbBadgeDescription]` property
+on `<sbb-tag>` or on `sbb-tag-link`. As a fallback, the predefined aria labels will still be applied
+so that in most cases no action is required.
+
+[Documentation](angular/components/tag)
+
 ### Textarea
 
 No changes.

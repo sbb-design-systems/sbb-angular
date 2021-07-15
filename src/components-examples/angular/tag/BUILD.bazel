@@ -6,18 +6,17 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "tag-examples",
+    name = "tag",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     assets = glob(["**/*.html"]),
-    tsconfig = "//src/showcase:tsconfig.json",
+    module_name = "@sbb-esta/components-examples/angular/tag",
     deps = [
-        "//src/angular-public/button",
-        "//src/angular-public/form-field",
-        "//src/angular-public/tag",
-        "//src/showcase/app/shared",
+        "//src/angular/button",
+        "//src/angular/form-field",
+        "//src/angular/tag",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
@@ -30,7 +29,7 @@ filegroup(
     name = "source-files",
     srcs = glob([
         "**/*.html",
-        "**/*.scss",
+        "**/*.css",
         "**/*.ts",
     ]),
 )

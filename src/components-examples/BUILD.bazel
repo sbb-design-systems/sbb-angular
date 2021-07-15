@@ -32,6 +32,7 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/sidebar",
     "//src/components-examples/angular/status",
     "//src/components-examples/angular/tabs",
+    "//src/components-examples/angular/tag",
     "//src/components-examples/angular/textarea",
     "//src/components-examples/angular/textexpand",
     "//src/components-examples/angular/time-input",
