@@ -26,7 +26,7 @@ export const inputNames: VersionChanges<InputNameUpgradeData> = {
         {
           replace: 'i18n-label',
           replaceWith: 'i18n',
-          limitedTo: { elements: ['sbb-tag'] },
+          limitedTo: { elements: ['sbb-tag', 'sbb-checkbox-panel', 'sbb-radio-button-panel'] },
         },
       ],
     },

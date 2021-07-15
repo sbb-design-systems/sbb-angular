@@ -44,9 +44,19 @@ export class TabsMigration extends Migration<null, DevkitContext> {
       const label = element.findProperty('label')!;
       label.remove();
 
+      const i18nLabel = element.findProperty('i18n-label');
+      i18nLabel?.remove();
+      let i18nLabelTransformed = '';
+      if (i18nLabel) {
+        i18nLabelTransformed = ' i18n';
+        if (i18nLabel.nativeValue?.length) {
+          i18nLabelTransformed += `="${i18nLabel.nativeValue}"`;
+        }
+      }
+
       const labelContent = label.isProperty ? `{{ ${label.nativeValue} }}` : label.nativeValue;
       element.insertStart(
-        `<span *sbb-tab-label [sbbBadge]="${badgePill.nativeValue}">${labelContent}</span>`
+        `<span *sbb-tab-label [sbbBadge]="${badgePill.nativeValue}"${i18nLabelTransformed}>${labelContent}</span>`
       );
 
       this._addBadgeModule(element.resource);

@@ -5,16 +5,16 @@ import { SbbTabGroup, SbbTabsModule } from '@sbb-esta/angular/tabs';
   selector: 'sbb-tabs-test',
   template: `
     <sbb-tab-group>
-      <sbb-tab label="Test"></sbb-tab>
-      <sbb-tab><span *sbb-tab-label [sbbBadge]="5">Test 2</span></sbb-tab>
+      <sbb-tab i18n-label="desc@@id" label="Test"></sbb-tab>
+      <sbb-tab><span *sbb-tab-label [sbbBadge]="5" i18n="desc@@id">Test 2</span></sbb-tab>
     </sbb-tab-group>
 
     <sbb-tab-group>
-      <sbb-tab label="{{ 'UPLOAD.DIALOG.TAB_TITLE' | translate }}">
+      <sbb-tab i18n-label="desc@@id" label="{{ 'UPLOAD.DIALOG.TAB_TITLE' | translate }}">
         <div class="tab-container">
         </div>
       </sbb-tab>
-      <sbb-tab label="{{ 'UPLOAD.METADATA.TAB_TITLE' | translate }}">
+      <sbb-tab i18n-label="desc@@id" label="{{ 'UPLOAD.METADATA.TAB_TITLE' | translate }}">
         <div class="tab-container">
         </div>
       </sbb-tab>
@@ -22,11 +22,13 @@ import { SbbTabGroup, SbbTabsModule } from '@sbb-esta/angular/tabs';
 
     <sbb-tab-group #tabs>
       <sbb-tab [active]="setTrainrunTabAsActive()"
+               i18n-label="desc@@id"
                label="{{selectedTrainrun.getCategoryShortName()}}{{selectedTrainrun.getTitle()}}" id="trainrun-tab"
                #tabTrainrun>
         <div>content</div>
       </sbb-tab>
       <sbb-tab [active]="setTrainrunSectionTabAsActive()"
+               i18n-label="desc@@id"
                label="{{selectedTrainrunSectionName}}" id="trainrun-section-tab"
                #tabTrainrunSection>
         <div>content</div>
@@ -46,7 +48,7 @@ import { SbbTabGroup, SbbTabsModule } from '@sbb-esta/angular/tabs';
         </ng-template>
       </sbb-tab>
 
-      <sbb-tab label="Karte" id="mapId">
+      <sbb-tab i18n-label="desc@@id" label="Karte" id="mapId">
         <ng-template sbbTabContent>
           <div class="row">
           </div>
