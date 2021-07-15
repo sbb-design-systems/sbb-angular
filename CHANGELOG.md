@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.2.1](https://github.com/sbb-design-systems/sbb-angular/compare/12.2.0...12.2.1) (2021-07-15)
+
+
+### Bug Fixes
+
+* allow custom tabindex on expansion panel header ([#839](https://github.com/sbb-design-systems/sbb-angular/issues/839)) ([f8700b8](https://github.com/sbb-design-systems/sbb-angular/commit/f8700b8242399738bc1f0e79c40c22a255806f46))
+* display large numbers in pagination correctly ([#837](https://github.com/sbb-design-systems/sbb-angular/issues/837)) ([2cfb12a](https://github.com/sbb-design-systems/sbb-angular/commit/2cfb12a8a8d78bd153e5ec2507014b0f88e91f1f)), closes [#435](https://github.com/sbb-design-systems/sbb-angular/issues/435)
+
 ## [12.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.1.0...12.2.0) (2021-06-17)
 
 
