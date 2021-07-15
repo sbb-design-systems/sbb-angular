@@ -65,20 +65,24 @@ export const SBB_DIALOG_SCROLL_STRATEGY_PROVIDER = {
  */
 @Directive()
 // tslint:disable-next-line: class-name naming-convention
-export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implements OnDestroy {
-  private _openDialogsAtThisLevel: SbbDialogRef<any>[] = [];
+export abstract class _SbbDialogBase<
+  C extends _SbbDialogContainerBase,
+  F extends SbbDialogRef<any> = SbbDialogRef<any>
+> implements OnDestroy
+{
+  private _openDialogsAtThisLevel: F[] = [];
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
-  private readonly _afterOpenedAtThisLevel = new Subject<SbbDialogRef<any>>();
+  private readonly _afterOpenedAtThisLevel = new Subject<F>();
   private _ariaHiddenElements = new Map<Element, string | null>();
   private _scrollStrategy: () => ScrollStrategy;
 
   /** Keeps track of the currently-open dialogs. */
-  get openDialogs(): SbbDialogRef<any>[] {
+  get openDialogs(): F[] {
     return this._parentDialog ? this._parentDialog.openDialogs : this._openDialogsAtThisLevel;
   }
 
   /** Stream that emits when a dialog has been opened. */
-  get afterOpened(): Subject<SbbDialogRef<any>> {
+  get afterOpened(): Subject<F> {
     return this._parentDialog ? this._parentDialog.afterOpened : this._afterOpenedAtThisLevel;
   }
 
@@ -102,10 +106,10 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
     private _overlay: Overlay,
     private _injector: Injector,
     private _defaultOptions: SbbDialogConfig | undefined,
-    private _parentDialog: _SbbDialogBase<C> | undefined,
+    private _parentDialog: _SbbDialogBase<C, F> | undefined,
     private _overlayContainer: OverlayContainer,
     scrollStrategy: any,
-    private _dialogRefConstructor: Type<SbbDialogRef<any>>,
+    private _dialogRefConstructor: Type<F>,
     private _dialogContainerType: Type<C>,
     private _dialogDataToken: InjectionToken<any>
   ) {
@@ -167,7 +171,7 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
    * Finds an open dialog by its id.
    * @param id ID to use when looking up the dialog.
    */
-  getDialogById(id: string): SbbDialogRef<any> | undefined {
+  getDialogById(id: string): F | undefined {
     return this.openDialogs.find((dialog) => dialog.id === id);
   }
 
@@ -253,7 +257,7 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
     dialogContainer: C,
     overlayRef: OverlayRef,
     config: SbbDialogConfig
-  ): SbbDialogRef<T, R> {
+  ): F {
     // Create a reference to the dialog we're creating in order to give the user a handle
     // to modify and close it.
     const dialogRef = new this._dialogRefConstructor(overlayRef, dialogContainer, config.id);
@@ -263,6 +267,7 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
         new TemplatePortal<T>(componentOrTemplateRef, null!, <any>{
           $implicit: config.data,
           dialogRef,
+          lightboxRef: dialogRef,
         })
       );
     } else {
@@ -310,7 +315,7 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
    * Removes a dialog from the array of open dialogs.
    * @param dialogRef Dialog to be removed.
    */
-  private _removeOpenDialog(dialogRef: SbbDialogRef<any>) {
+  private _removeOpenDialog(dialogRef: F) {
     const index = this.openDialogs.indexOf(dialogRef);
 
     if (index > -1) {
@@ -360,7 +365,7 @@ export abstract class _SbbDialogBase<C extends _SbbDialogContainerBase> implemen
   }
 
   /** Closes all of the dialogs in an array. */
-  private _closeDialogs(dialogs: SbbDialogRef<any>[]) {
+  private _closeDialogs(dialogs: F[]) {
     let i = dialogs.length;
 
     while (i--) {

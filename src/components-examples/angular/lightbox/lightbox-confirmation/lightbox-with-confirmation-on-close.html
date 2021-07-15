@@ -1,0 +1,14 @@
+<header sbbLightboxTitle>Confirm on close example</header>
+<div sbbLightboxContent class="lightbox-content">
+  <div *ngIf="!confirmPanel">
+    <h3>
+      In order to close this lightbox you have to confirm in the confirm panel which is going to
+      appear when trying to close this lightbox
+    </h3>
+  </div>
+  <div *ngIf="confirmPanel">
+    <h3>Are you sure you want to close this window? Your inputs will be discarded.</h3>
+    <button type="button" sbb-secondary-button (click)="confirmPanel = false">Abort</button>
+    <button type="button" sbb-button sbbLightboxClose="confirmed">Close</button>
+  </div>
+</div>

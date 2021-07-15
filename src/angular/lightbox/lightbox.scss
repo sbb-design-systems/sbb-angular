@@ -1,0 +1,164 @@
+@use 'external/npm/node_modules/@angular/cdk' as cdk;
+@import '../styles/common';
+
+.sbb-overlay-background {
+  background-color: rgba(255, 255, 255, 0.7);
+  align-items: center;
+}
+
+.sbb-lightbox-container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  outline: 0;
+  background-color: $sbbColorWhite;
+
+  // The dialog container should completely fill its parent overlay element.
+  width: 100%;
+  height: 100%;
+
+  // The lightbox should always cover the entire viewbox.
+  min-height: 100vh;
+  max-height: 100vw;
+
+  @include cdk.high-contrast(active, off) {
+    outline: solid pxToRem(1);
+  }
+}
+
+// When using lightbox with a component, the component element is placed as a
+// single element inside the container.
+.sbb-lightbox-container > *:only-child:not(.sbb-lightbox-content) {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sbb-lightbox-content {
+  display: block;
+  padding: pxToRem(54) pxToRem(24) pxToRem(45);
+  flex: 1 1 auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @include mq($from: tablet) {
+    padding: pxToRem(72) pxToRem(24) pxToRem(48);
+  }
+  @include mq($from: desktop) {
+    padding: pxToRem(96) pxToRem(136) pxToRem(48);
+  }
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding: pxToRem(144) pxToRem(204) pxToRem(72);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(192) pxToRem(272) pxToRem(96);
+    }
+  }
+
+  // Remove the top margin from headings if it is the first element inside the content.
+  h1,
+  h2,
+  h3,
+  h4 {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.sbb-lightbox-title {
+  padding: pxToRem(21) pxToRem(44) pxToRem(17) pxToRem(20);
+  flex: 0 0 auto;
+  display: block;
+  position: relative;
+  box-shadow: horizontalBorderBoxShadow(1, 1, 1);
+  @include ellipsis;
+
+  @include mq($from: tablet) {
+    padding-left: pxToRem(24);
+    padding-right: pxToRem(48);
+  }
+  @include mq($from: desktop) {
+    padding-left: pxToRem(80);
+    padding-right: pxToRem(80);
+  }
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+      padding: pxToRem(28) pxToRem(120);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      padding: pxToRem(42) pxToRem(160) pxToRem(34);
+    }
+  }
+}
+
+.sbb-lightbox-title-close-button {
+  position: absolute;
+  right: pxToRem(20);
+  cursor: pointer;
+  line-height: 0;
+  color: $sbbColorStorm;
+
+  &:hover,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+
+  @include mq($from: tablet) {
+    right: pxToRem(24);
+  }
+  @include mq($from: desktop) {
+    right: pxToRem(56);
+  }
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      right: pxToRem(84);
+    }
+    @include mq($from: desktop5k) {
+      right: pxToRem(112);
+    }
+  }
+}
+
+.sbb-lightbox-actions {
+  padding: pxToRem(24);
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  // center is used for ie11 compatibility. TODO: Remove once we drop ie11 support.
+  justify-content: center;
+  justify-content: space-between;
+
+  // Explicitly set a box-sizing since people commonly set `border-box`
+  // on all elements which will break the height of the dialog actions.
+  box-sizing: content-box;
+  box-shadow: horizontalBorderBoxShadow(-1, 1, 1);
+
+  @include mq($from: tablet) {
+    flex-direction: row;
+  }
+  @include mq($from: desktop) {
+    padding: pxToRem(24) pxToRem(136);
+  }
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      padding: pxToRem(36) pxToRem(204);
+    }
+    @include mq($from: desktop5k) {
+      padding: pxToRem(48) pxToRem(272);
+    }
+  }
+
+  .sbb-button-base + .sbb-button-base {
+    @include mq($to: tablet) {
+      margin-top: pxToRem(8);
+    }
+  }
+}

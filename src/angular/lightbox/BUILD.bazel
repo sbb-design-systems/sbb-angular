@@ -1,0 +1,74 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "lightbox",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":lightbox.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular/lightbox",
+    deps = [
+        "//src/angular/dialog",
+        "//src/angular/icon",
+        "@npm//@angular/animations",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/localize",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "lightbox_scss",
+    src = "lightbox.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":lightbox",
+        "//src/angular/core/testing",
+        "//src/angular/dialog",
+        "//src/angular/icon/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/platform-browser",
+        "@npm//rxjs",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    static_css = [
+        "//src/angular:typography",
+    ],
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":lightbox.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

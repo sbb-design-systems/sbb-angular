@@ -54,7 +54,7 @@ export class LightboxShowcaseExampleContentComponent {
 
 ```ts
 lightboxRef.afterClosed().subscribe((result) => {
-  console.log('Lighbox sharing data was closed');
+  console.log('Lightbox sharing data was closed');
   this.animal = result;
 });
 ```

@@ -235,6 +235,17 @@ The icon module has been moved from `@sbb-esta/angular-core` to `@sbb-esta/angul
 
 [Documentation](angular/components/icon)
 
+### Lightbox
+
+_Automatic migration available_
+
+We have renamed `SbbLightboxHeader`/`[sbbLightboxHeader]` to `SbbLightboxTitle`/`[sbbLightboxTitle]` and
+`SbbLightboxFooter`/`[sbbLightboxFooter]` to `SbbLightboxActions`/`[sbbLightboxActions]` in order to more
+accurately describe the purpose of these sections.
+Also the property `manualCloseAction` on `SbbLightboxRef` has been renamed to `closeRequest` for the same reason.
+
+[Documentation](angular/components/lightbox)
+
 ### Links
 
 _Automatic migration available_

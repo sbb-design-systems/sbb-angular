@@ -21,6 +21,7 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/file-selector",
     "//src/components-examples/angular/form-field",
     "//src/components-examples/angular/icon",
+    "//src/components-examples/angular/lightbox",
     "//src/components-examples/angular/loading",
     "//src/components-examples/angular/menu",
     "//src/components-examples/angular/pagination",

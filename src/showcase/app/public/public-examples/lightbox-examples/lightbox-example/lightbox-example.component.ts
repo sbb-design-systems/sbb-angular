@@ -15,7 +15,7 @@ export interface LightboxData {
   name: string;
 }
 
-/** Lighbox sharing data */
+/** Lightbox sharing data */
 @Component({
   selector: 'sbb-lightbox-example-content-1',
   templateUrl: 'lightbox-example-content-1.component.html',
@@ -59,13 +59,13 @@ export class LightboxExampleExampleComponent {
     });
 
     lightboxRef.afterClosed().subscribe((result) => {
-      console.log('Lighbox sharing data was closed');
+      console.log('Lightbox sharing data was closed');
       this.animal = result;
     });
   }
 }
 
-/** Lighbox with content loaded from component, footer button bar */
+/** Lightbox with content loaded from component, footer button bar */
 @Component({
   selector: 'sbb-lightbox-example-content-2',
   templateUrl: 'lightbox-example-content-2.component.html',
@@ -97,7 +97,7 @@ export class LightboxExampleExample2Component {
   }
 }
 
-/** Lighbox with content loaded from Template */
+/** Lightbox with content loaded from Template */
 @Component({
   selector: 'sbb-lightbox-example-example-3',
   templateUrl: 'lightbox-example-content-3.component.html',
@@ -116,7 +116,7 @@ export class LightboxExampleExample3Component {
 }
 
 /**
- * Lighbox Alert with confirmation button
+ * Lightbox Alert with confirmation button
  * all into one Lightbox using manualCloseAction Observable
  */
 @Component({
@@ -165,7 +165,7 @@ export class LightboxExampleExample4Component {
 }
 
 /**
- * Lighbox Alert with confirmation button
+ * Lightbox Alert with confirmation button
  * opening in a new extra Lightbox
  */
 @Component({

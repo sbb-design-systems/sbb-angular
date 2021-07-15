@@ -39,6 +39,8 @@ export function mergeSymbols(): Rule {
       SbbTabs: 'tabs',
       SbbDialogHeader: 'dialog',
       SbbDialogFooter: 'dialog',
+      SbbLightboxHeader: 'lightbox',
+      SbbLightboxFooter: 'lightbox',
       SbbProcessflowStep: 'processflow',
       SbbTagChange: 'tag',
     };

@@ -17,6 +17,14 @@ export const attributeSelectors: VersionChanges<AttributeSelectorUpgradeData> = 
           replace: 'sbbDialogFooter',
           replaceWith: 'sbbDialogActions',
         },
+        {
+          replace: 'sbbLightboxHeader',
+          replaceWith: 'sbbLightboxTitle',
+        },
+        {
+          replace: 'sbbLightboxFooter',
+          replaceWith: 'sbbLightboxActions',
+        },
       ],
     },
   ],
