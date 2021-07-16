@@ -8,8 +8,8 @@ src/*/schematics/*/*/files
 src/*/schematics/ng-update/test-cases
 src/*/schematics/ng-add/test-cases
 src/angular-icons/*
-schematics/*/index.js
-schematics/*/files
+tools/schematics/*/index.js
+tools/schematics/*/files
 coverage
 **/svg-icons/**/icon-*.module.ts
 **/*.svg

@@ -89,7 +89,7 @@ export class ${moduleName} {}
 `;
         const formattedContent = prettier.format(content, {
           parser: 'typescript',
-          ...require('../../package.json').prettier,
+          ...require('../../../package.json').prettier,
         });
 
         if (this.moduleFile.content.toString() !== formattedContent) {
@@ -258,7 +258,7 @@ export class ${moduleName} {}
 `;
       const formattedContent = prettier.format(content, {
         parser: 'typescript',
-        ...require('../../package.json').prettier,
+        ...require('../../../package.json').prettier,
       });
 
       const moduleFile = dir.file(fragment(`${dirName}.module.ts`))!;
