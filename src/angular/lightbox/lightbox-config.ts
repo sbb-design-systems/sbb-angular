@@ -9,12 +9,12 @@ export class SbbLightboxConfig<D = any> {
   /**
    * Where the attached component should live in Angular's *logical* component tree.
    * This affects what is available for injection and the change detection order for the
-   * component instantiated inside of the dialog. This does not affect where the dialog
+   * component instantiated inside of the lightbox. This does not affect where the lightbox
    * content will be rendered.
    */
   viewContainerRef?: ViewContainerRef;
 
-  /** ID for the dialog. If omitted, a unique one will be generated. */
+  /** ID for the lightbox. If omitted, a unique one will be generated. */
   id?: string;
 
   /** The ARIA role of the dialog element. */

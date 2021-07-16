@@ -1,7 +1,7 @@
 The `SbbLightbox` service can be used to open modal dialogs with SBB styling and animations.
 
 ```html
-<div sbbLightboxHeader>Hi {{ data.name }}</div>
+<div sbbLightboxTitle>Hi {{ data.name }}</div>
 <div sbbLightboxContent>
   <div>
     What's your favorite animal?
@@ -10,7 +10,7 @@ The `SbbLightbox` service can be used to open modal dialogs with SBB styling and
     </sbb-form-field>
   </div>
 </div>
-<div sbbLightboxFooter>
+<div sbbLightboxActions>
   <button type="button" sbb-button [sbbLightboxClose]="data.animal">Ok</button>
   <button type="button" sbb-secondary-button (click)="noThanks()">No Thanks</button>
 </div>

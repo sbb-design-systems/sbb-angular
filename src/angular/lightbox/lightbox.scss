@@ -103,6 +103,7 @@
   cursor: pointer;
   line-height: 0;
   color: $sbbColorStorm;
+outline: 0
 
   &:hover,
   &:focus {
@@ -137,7 +138,7 @@
   justify-content: space-between;
 
   // Explicitly set a box-sizing since people commonly set `border-box`
-  // on all elements which will break the height of the dialog actions.
+  // on all elements which will break the height of the lightbox actions.
   box-sizing: content-box;
   box-shadow: horizontalBorderBoxShadow(-1, 1, 1);
 

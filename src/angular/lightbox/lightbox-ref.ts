@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
 let uniqueId = 0;
 
 /**
- * Reference to a dialog opened via the SbbDialog service.
+ * Reference to a dialog opened via the SbbLightbox service.
  */
 export class SbbLightboxRef<T, R = any> extends SbbDialogRef<T, R> {
   /**

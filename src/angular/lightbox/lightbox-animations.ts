@@ -8,7 +8,7 @@ import {
 } from '@angular/animations';
 
 /**
- * Animations used by SbbDialog.
+ * Animations used by SbbLightbox.
  * @docs-private
  */
 export const sbbLightboxAnimations: {
