@@ -58,7 +58,7 @@ export class SbbStepHeader extends CdkStepHeader implements AfterViewInit, OnDes
   }
 
   /** Focuses the step header. */
-  focus(origin?: FocusOrigin, options?: FocusOptions) {
+  override focus(origin?: FocusOrigin, options?: FocusOptions) {
     if (origin) {
       this._focusMonitor.focusVia(this._elementRef, origin, options);
     } else {

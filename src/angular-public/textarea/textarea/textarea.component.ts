@@ -96,7 +96,7 @@ export class SbbTextarea
   }
 
   /** Emits when the state of the option changes and any parents have to be notified. */
-  readonly stateChanges = new Subject<void>();
+  override readonly stateChanges = new Subject<void>();
 
   private _destroyed = new Subject<void>();
 
@@ -198,7 +198,7 @@ export class SbbTextarea
   _onTouched: () => void = () => {};
 
   constructor(
-    @Self() @Optional() public ngControl: NgControl,
+    @Self() @Optional() public override ngControl: NgControl,
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
     private _focusMonitor: FocusMonitor,

@@ -15,12 +15,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  CanDisableCtor,
-  HasVariantCtor,
-  mixinDisabled,
-  mixinVariant,
-} from '@sbb-esta/angular/core';
+import { mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
 
 import {
   FileTypeCategory,
@@ -32,13 +27,14 @@ import { SbbFileSelectorTypesService } from './file-selector-types.service';
 let nextId = 0;
 
 // Boilerplate for applying mixins to SbbButton.
-/** @docs-private */
-class SbbFileSelectorBase {
-  constructor(public _elementRef: ElementRef) {}
-}
 // tslint:disable-next-line: naming-convention
-const _SbbFileSelectorMixinBase: CanDisableCtor & HasVariantCtor & typeof SbbFileSelectorBase =
-  mixinDisabled(mixinVariant(SbbFileSelectorBase));
+const _SbbFileSelectorMixinBase = mixinDisabled(
+  mixinVariant(
+    class {
+      constructor(public _elementRef: ElementRef) {}
+    }
+  )
+);
 
 @Component({
   selector: 'sbb-file-selector',

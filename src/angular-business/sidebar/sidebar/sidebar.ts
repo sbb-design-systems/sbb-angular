@@ -208,7 +208,7 @@ export class SbbSidebar
     private _platform: Platform,
     private _ngZone: NgZone,
     @Optional() @Inject(DOCUMENT) private _doc: any,
-    @Inject(SBB_SIDEBAR_CONTAINER) public _container: SbbSidebarContainer,
+    @Inject(SBB_SIDEBAR_CONTAINER) public override _container: SbbSidebarContainer,
     @Optional() private _router: Router
   ) {
     super(_container);
@@ -493,7 +493,7 @@ export class SbbSidebarContainer
   implements AfterContentInit, SbbSidebarMobileCapableContainer, OnDestroy
 {
   /** The sidebar child */
-  get sidebar(): SbbSidebar | null {
+  override get sidebar(): SbbSidebar | null {
     return this._sidebar;
   }
 
@@ -526,16 +526,16 @@ export class SbbSidebarContainer
     // indirect descendants if it's left as false.
     descendants: true,
   })
-  _allSidebars: QueryList<SbbSidebar>;
+  override _allSidebars: QueryList<SbbSidebar>;
 
-  @ContentChild(SbbSidebarContent) _content: SbbSidebarContent;
-  @ViewChild(SbbSidebarContent) _userContent: SbbSidebarContent;
+  @ContentChild(SbbSidebarContent) override _content: SbbSidebarContent;
+  @ViewChild(SbbSidebarContent) override _userContent: SbbSidebarContent;
 
   /** Event emitted when the sidebar backdrop is clicked. */
   @Output() readonly backdropClick: EventEmitter<void> = new EventEmitter<void>();
 
   /** The sidebar */
-  protected _sidebar: SbbSidebar | null;
+  protected override _sidebar: SbbSidebar | null;
 
   /**
    * Margins to be applied to the content. These are used to shrink the sidebar content when a
@@ -546,7 +546,7 @@ export class SbbSidebarContainer
 
   readonly _contentMarginChanges = new Subject<{ left: number | null }>();
 
-  ngAfterContentInit() {
+  override ngAfterContentInit() {
     super.ngAfterContentInit();
 
     this._sidebars.changes.pipe(startWith(null)).subscribe(() => {
@@ -686,7 +686,7 @@ export class SbbSidebarContainer
     this._sidebar?.toggle();
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     super.ngOnDestroy();
     this._contentMarginChanges.complete();
   }

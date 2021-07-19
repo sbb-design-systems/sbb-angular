@@ -33,9 +33,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   HasTabIndex,
-  HasTabIndexCtor,
   HasVariant,
-  HasVariantCtor,
   mixinTabIndex,
   mixinVariant,
   TypeRef,
@@ -307,7 +305,7 @@ export class SbbRadioGroup<
   TRadio extends _SbbRadioButtonBase = SbbRadioButton
 > extends _SbbRadioGroupBase<SbbRadioButton> {
   @ContentChildren(forwardRef(() => SBB_RADIO_BUTTON), { descendants: true })
-  _radios: QueryList<TRadio>;
+  override _radios: QueryList<TRadio>;
 }
 
 /** @docs-private */
@@ -319,8 +317,7 @@ abstract class RadioButtonBase {
 }
 
 // tslint:disable-next-line: naming-convention
-const _RadioButtonMixinBase: HasTabIndexCtor & HasVariantCtor & typeof RadioButtonBase =
-  mixinTabIndex(mixinVariant(RadioButtonBase));
+const _RadioButtonMixinBase = mixinTabIndex(mixinVariant(RadioButtonBase));
 
 let nextId = 0;
 

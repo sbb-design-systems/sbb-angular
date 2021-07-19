@@ -6,13 +6,13 @@ import { SbbNativeDateAdapter } from './native-date-adapter';
 @Injectable()
 export class SbbLeanDateAdapter extends SbbNativeDateAdapter {
   constructor(
-    @Inject(LOCALE_ID) protected _locale: string,
+    @Inject(LOCALE_ID) protected override _locale: string,
     @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number
   ) {
     super(_locale, yearPivot);
   }
 
-  protected _parseStringDate(value: string): null | Date {
+  protected override _parseStringDate(value: string): null | Date {
     return super._parseStringDate(value) || this._parseStringDateLean(value);
   }
 

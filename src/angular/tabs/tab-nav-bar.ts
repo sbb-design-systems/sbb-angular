@@ -39,7 +39,7 @@ export abstract class _SbbTabNavBase
   implements AfterContentChecked, AfterContentInit, OnDestroy
 {
   /** Query list of all tab links of the tab navigation. */
-  abstract _items: QueryList<SbbPaginatedTabHeaderItem & { active: boolean }>;
+  abstract override _items: QueryList<SbbPaginatedTabHeaderItem & { active: boolean }>;
 
   constructor(
     elementRef: ElementRef,
@@ -55,7 +55,7 @@ export abstract class _SbbTabNavBase
     // noop
   }
 
-  ngAfterContentInit() {
+  override ngAfterContentInit() {
     // We need this to run before the `changes` subscription in parent to ensure that the
     // selectedIndex is up-to-date by the time the super class starts looking for it.
     this._items.changes.pipe(startWith(null), takeUntil(this._destroyed)).subscribe(() => {

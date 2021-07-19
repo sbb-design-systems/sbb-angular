@@ -133,10 +133,10 @@ export class SbbIconSidebarContainer
     // indirect descendants if it's left as false.
     descendants: true,
   })
-  _allSidebars: QueryList<SbbIconSidebar>;
+  override _allSidebars: QueryList<SbbIconSidebar>;
 
-  @ContentChild(SbbIconSidebarContent) _content: SbbIconSidebarContent;
-  @ViewChild(SbbIconSidebarContent) _userContent: SbbIconSidebarContent;
+  @ContentChild(SbbIconSidebarContent) override _content: SbbIconSidebarContent;
+  @ViewChild(SbbIconSidebarContent) override _userContent: SbbIconSidebarContent;
 
   constructor(
     ngZone: NgZone,
@@ -146,7 +146,7 @@ export class SbbIconSidebarContainer
     super(ngZone, changeDetectorRef, breakpointObserver);
   }
 
-  ngAfterContentInit() {
+  override ngAfterContentInit() {
     super.ngAfterContentInit();
 
     this._sidebars.changes.pipe(startWith(null)).subscribe(() => {

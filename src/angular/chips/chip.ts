@@ -167,7 +167,7 @@ export class SbbChip
   @Output() readonly removed: EventEmitter<SbbChipEvent> = new EventEmitter<SbbChipEvent>();
 
   constructor(
-    public _elementRef: ElementRef<HTMLElement>,
+    public override _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
     @Optional()
     private _changeDetectorRef: ChangeDetectorRef,

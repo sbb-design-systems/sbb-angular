@@ -77,7 +77,7 @@ export class SbbCheckbox extends SbbCheckboxBase<SbbCheckboxChange> {
    * Do not toggle on (change) event since IE doesn't fire change event when
    *   indeterminate checkbox is clicked.
    */
-  _onInputClick(event: Event) {
+  override _onInputClick(event: Event) {
     // We have to stop propagation for click events on the visual hidden input element.
     // By default, when a user clicks on a label element, a generated click event will be
     // dispatched on the associated input element. Since we are using a label element as our

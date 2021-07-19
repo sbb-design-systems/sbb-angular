@@ -89,7 +89,7 @@ export class SbbInput
   readonly _isTextarea: boolean;
 
   /** Whether the component is in an error state. */
-  errorState: boolean = false;
+  override errorState: boolean = false;
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -176,7 +176,7 @@ export class SbbInput
   private _type = 'text';
 
   /** An object used to control when error messages are shown. */
-  @Input() errorStateMatcher: SbbErrorStateMatcher;
+  @Input() override errorStateMatcher: SbbErrorStateMatcher;
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -235,7 +235,7 @@ export class SbbInput
     private _elementRef: ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     private _platform: Platform,
     /** @docs-private */
-    @Optional() @Self() public ngControl: NgControl,
+    @Optional() @Self() public override ngControl: NgControl,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     defaultErrorStateMatcher: SbbErrorStateMatcher,

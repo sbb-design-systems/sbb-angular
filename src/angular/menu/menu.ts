@@ -22,7 +22,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
+import { mixinVariant } from '@sbb-esta/angular/core';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
 import { startWith, switchMap, take } from 'rxjs/operators';
 
@@ -83,10 +83,8 @@ let menuPanelUid = 0;
 export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
 
 // Boilerplate for applying mixins to SbbMenu.
-/** @docs-private */
-class SbbMenuBase {}
 // tslint:disable-next-line: naming-convention
-const _SbbMenuMixinBase: HasVariantCtor & typeof SbbMenuBase = mixinVariant(SbbMenuBase);
+const _SbbMenuMixinBase = mixinVariant(class {});
 
 @Component({
   selector: 'sbb-menu',

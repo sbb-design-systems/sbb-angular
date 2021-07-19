@@ -94,7 +94,7 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
       .subscribe(() => this._zone.run(() => this._valueChange.next(this.checked)));
   }
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     super.writeValue(value);
     this._valueChange.next(value);
   }
@@ -108,7 +108,7 @@ export class SbbTag extends _SbbCheckboxBase implements OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     super.ngOnDestroy();
     this._amountChange.complete();
     this._valueChange.complete();

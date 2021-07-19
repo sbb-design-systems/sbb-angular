@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { CanDisable, CanDisableCtor, mixinDisabled } from '../common-behaviors/disabled';
+import { CanDisable, mixinDisabled } from '../common-behaviors/disabled';
 
 import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-parent';
 
@@ -34,11 +34,8 @@ import { SbbOptionParentComponent, SBB_OPTION_PARENT_COMPONENT } from './option-
 //     doesn't read out the text at all. Furthermore, on
 
 // Boilerplate for applying mixins to SbbOptgroup.
-/** @docs-private */
-class SbbOptgroupBase {}
 // tslint:disable-next-line: naming-convention
-const _SbbOptgroupMixinBase: CanDisableCtor & typeof SbbOptgroupBase =
-  mixinDisabled(SbbOptgroupBase);
+const _SbbOptgroupMixinBase = mixinDisabled(class {});
 
 // Counter for unique group ids.
 let uniqueOptgroupIdCounter = 0;

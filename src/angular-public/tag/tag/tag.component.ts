@@ -119,7 +119,7 @@ export class SbbTag extends SbbCheckboxBase<SbbTagChange> implements OnInit, OnD
     }
   }
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     super.writeValue(value);
     this._internalChange.next(value);
   }

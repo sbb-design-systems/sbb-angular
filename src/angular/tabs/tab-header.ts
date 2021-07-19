@@ -76,8 +76,8 @@ export class SbbTabHeader extends _SbbTabHeaderBase {
   @ViewChild('tabListContainer', { static: true }) _tabListContainer: ElementRef;
   @ViewChild('tabList', { static: true }) _tabList: ElementRef;
 
-  @Output() selectFocusedIndex: EventEmitter<number> = new EventEmitter<number>();
-  @Output() indexFocused: EventEmitter<number> = new EventEmitter<number>();
+  @Output() override selectFocusedIndex: EventEmitter<number> = new EventEmitter<number>();
+  @Output() override indexFocused: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     elementRef: ElementRef,
