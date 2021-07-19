@@ -1,4 +1,3 @@
-import { Directionality } from '@angular/cdk/bidi';
 import { coerceArray } from '@angular/cdk/coercion';
 import {
   Overlay,
@@ -8,12 +7,10 @@ import {
   ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
-import { Location } from '@angular/common';
 import {
   Directive,
   Inject,
   Injectable,
-  InjectFlags,
   InjectionToken,
   Injector,
   OnDestroy,
@@ -23,7 +20,7 @@ import {
   TemplateRef,
   Type,
 } from '@angular/core';
-import { defer, Observable, of as observableOf, Subject } from 'rxjs';
+import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
 import { SbbDialogConfig } from './dialog-config';

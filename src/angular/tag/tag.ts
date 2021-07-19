@@ -10,7 +10,6 @@ import {
   Component,
   ElementRef,
   forwardRef,
-  InjectionToken,
   Input,
   NgZone,
   OnDestroy,

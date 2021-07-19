@@ -1,4 +1,4 @@
-import { dirname, normalize } from '@angular-devkit/core';
+import { dirname } from '@angular-devkit/core';
 import {
   addModuleImportToModule,
   DevkitContext,

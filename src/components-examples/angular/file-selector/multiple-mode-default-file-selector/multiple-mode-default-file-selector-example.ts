@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
-import { FileTypeCategory, SbbFileSelectorTypesService } from '@sbb-esta/angular/file-selector';
+import { SbbFileSelectorTypesService } from '@sbb-esta/angular/file-selector';
 import { Subscription } from 'rxjs';
 
 /**

@@ -1,5 +1,4 @@
 import { Renderer } from 'marked';
-import { basename, extname } from 'path';
 
 /** Regular expression that matches whitespace. */
 const whitespaceRegex = /\W+/g;

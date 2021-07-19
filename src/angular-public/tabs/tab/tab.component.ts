@@ -5,11 +5,9 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChild,
-  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
-  Output,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';

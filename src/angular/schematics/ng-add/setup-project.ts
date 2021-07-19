@@ -10,20 +10,15 @@ import {
 } from '@angular-devkit/schematics';
 import {
   addModuleImportToRootModule,
-  addSymbolToNgModuleMetadata,
   defaultTargetBuilders,
   getAppModulePath,
   getProjectFromWorkspace,
   getProjectMainFile,
   getProjectTargetOptions,
   hasNgModuleImport,
-  parseSourceFile,
 } from '@angular/cdk/schematics';
-import { InsertChange } from '@schematics/angular/utility/change';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
-
-import { hasNgModuleProvider } from '../utils';
 
 import { Schema } from './schema';
 

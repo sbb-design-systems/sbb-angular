@@ -1,4 +1,3 @@
-import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 

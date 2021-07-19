@@ -151,6 +151,8 @@
     "no-switch-case-fall-through": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
+    // Uncomment to following line and run `yarn tslint --fix` to remove unused imports
+    // "no-unused-variable": [true, {"ignore-pattern": "^_"}],
     "no-var-before-return": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,

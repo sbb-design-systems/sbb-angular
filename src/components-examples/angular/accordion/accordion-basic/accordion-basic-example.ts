@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SbbAccordion } from '@sbb-esta/angular/accordion';
 
 /**
  * @title Basic Accordion

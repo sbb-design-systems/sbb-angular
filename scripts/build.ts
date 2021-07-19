@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
-import { readFileSync, writeFileSync } from 'fs';
+import { writeFileSync } from 'fs';
 import minimist from 'minimist';
 import { join, relative } from 'path';
 const prettier: {

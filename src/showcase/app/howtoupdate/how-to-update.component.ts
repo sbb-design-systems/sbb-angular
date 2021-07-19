@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 // @ts-ignore versions.ts is generated automatically by bazel
 import { libraryVersion } from '../versions';
