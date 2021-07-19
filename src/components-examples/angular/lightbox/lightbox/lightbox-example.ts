@@ -7,7 +7,7 @@ export interface LightboxData {
 }
 
 /**
- * @title Lightbox
+ * @title Lightbox data sharing
  * @order 10
  */
 @Component({

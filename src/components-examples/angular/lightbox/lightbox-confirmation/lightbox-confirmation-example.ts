@@ -1,13 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SbbLightbox, SbbLightboxRef } from '@sbb-esta/angular/lightbox';
 
-export interface LightboxData {
-  animal: string;
-  name: string;
-}
-
 /**
- * @title Lightbox
+ * @title Lightbox with confirmation
  * @order 40
  */
 @Component({

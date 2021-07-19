@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SbbLightbox } from '@sbb-esta/angular/lightbox';
 
 /**
- * @title Lightbox
+ * @title Lightbox with component
  * @order 20
  */
 @Component({
@@ -21,11 +21,8 @@ export class LightboxComponentExample {
   }
 }
 
-/** Lightbox with content loaded from. footer button bar */
 @Component({
   selector: 'sbb-lightbox-component-example-content',
   templateUrl: 'lightbox-component-example-content.html',
 })
-export class LightboxComponentExampleContent {
-  align = 'center';
-}
+export class LightboxComponentExampleContent {}

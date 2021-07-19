@@ -11,7 +11,12 @@ import {
   OnInit,
   Optional,
 } from '@angular/core';
-import { SbbDialogClose, _closeDialogVia, _SbbDialogTitleBase } from '@sbb-esta/angular/dialog';
+import {
+  SbbDialog,
+  SbbDialogClose,
+  _closeDialogVia,
+  _SbbDialogTitleBase,
+} from '@sbb-esta/angular/dialog';
 
 import { SbbLightbox } from './lightbox';
 import { SbbLightboxRef } from './lightbox-ref';
@@ -55,7 +60,7 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
     elementRef: ElementRef<HTMLElement>,
     lightbox: SbbLightbox
   ) {
-    super(lightboxRef, elementRef, lightbox as any);
+    super(lightboxRef, elementRef, lightbox as unknown as SbbDialog);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -100,7 +105,7 @@ export class SbbLightboxTitle extends _SbbDialogTitleBase {
     lightbox: SbbLightbox,
     changeDetectorRef: ChangeDetectorRef
   ) {
-    super(lightboxRef, elementRef, lightbox as any, changeDetectorRef);
+    super(lightboxRef, elementRef, lightbox as unknown as SbbDialog, changeDetectorRef);
   }
 
   /** Called when the close button is clicked. */

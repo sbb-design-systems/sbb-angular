@@ -69,7 +69,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
       overlay,
       injector,
       defaultOptions,
-      parentDialog as any,
+      parentDialog,
       overlayContainer,
       scrollStrategy,
       SbbLightboxRef,

@@ -24,7 +24,7 @@ export {
   LightboxComponentExample,
   LightboxComponentExampleContent,
   LightboxConfirmationExample,
-  LightboxWithConfirmationOnClose as LightboxContent4Example,
+  LightboxWithConfirmationOnClose,
   LightboxTemplateExample,
 };
 

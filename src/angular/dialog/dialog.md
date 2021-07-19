@@ -1,7 +1,7 @@
 The `SbbDialog` service can be used to open modal dialogs with SBB styling and animations.
 
 ```html
-<div sbbDialogHeader>Hi {{ data.name }}</div>
+<div sbbDialogTitle>Hi {{ data.name }}</div>
 <div sbbDialogContent>
   <div>
     What's your favorite animal?
@@ -10,7 +10,7 @@ The `SbbDialog` service can be used to open modal dialogs with SBB styling and a
     </sbb-form-field>
   </div>
 </div>
-<div sbbDialogFooter>
+<div sbbDialogActions>
   <button type="button" sbb-button [sbbDialogClose]="data.animal">Ok</button>
   <button type="button" sbb-secondary-button (click)="noThanks()">No Thanks</button>
 </div>

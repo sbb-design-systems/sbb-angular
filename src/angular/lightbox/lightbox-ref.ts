@@ -44,7 +44,10 @@ export class SbbLightboxRef<T, R = any> extends SbbDialogRef<T, R> {
     return this;
   }
 
-  /** Not supported for lightbox. */
+  /**
+   * Not supported for lightbox.
+   * @docs-private
+   */
   updateSize(): this {
     return this;
   }
