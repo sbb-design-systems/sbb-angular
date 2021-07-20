@@ -1,4 +1,4 @@
-import { DOWN_ARROW, ENTER, UP_ARROW } from '@angular/cdk/keycodes';
+import { DOWN_ARROW, ENTER } from '@angular/cdk/keycodes';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
@@ -239,12 +239,10 @@ describe('SbbSearch', () => {
 
     describe('when selecting an option with ENTER key', () => {
       let downArrowEvent: KeyboardEvent;
-      let upArrowEvent: KeyboardEvent;
       let enterEvent: KeyboardEvent;
 
       beforeEach(() => {
         downArrowEvent = createKeyboardEvent('keydown', DOWN_ARROW);
-        upArrowEvent = createKeyboardEvent('keydown', UP_ARROW);
         enterEvent = createKeyboardEvent('keydown', ENTER);
       });
 

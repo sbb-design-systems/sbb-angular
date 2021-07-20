@@ -505,15 +505,9 @@ describe('SbbChipList', () => {
   });
 
   describe('chip list with chip input', () => {
-    let nativeChips: HTMLElement[];
-
     beforeEach(() => {
       fixture = createComponent(InputChipList);
       fixture.detectChanges();
-
-      nativeChips = fixture.debugElement
-        .queryAll(By.css('sbb-chip'))
-        .map((chip) => chip.nativeElement);
     });
 
     it('should set the control to touched when the chip list is touched', fakeAsync(() => {
@@ -1059,42 +1053,6 @@ class FormFieldChipList {
       this.chips.splice(index, 1);
     }
   }
-}
-
-@Component({
-  selector: 'basic-chip-list',
-  template: `
-    <sbb-form-field>
-      <sbb-chip-list
-        placeholder="Food"
-        [formControl]="control"
-        [required]="isRequired"
-        [tabIndex]="tabIndexOverride"
-      >
-        <sbb-chip *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
-          {{ food.viewValue }}
-        </sbb-chip>
-      </sbb-chip-list>
-    </sbb-form-field>
-  `,
-})
-class BasicChipList {
-  foods: any[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos', disabled: true },
-    { value: 'sandwich-3', viewValue: 'Sandwich' },
-    { value: 'chips-4', viewValue: 'Chips' },
-    { value: 'eggs-5', viewValue: 'Eggs' },
-    { value: 'pasta-6', viewValue: 'Pasta' },
-    { value: 'sushi-7', viewValue: 'Sushi' },
-  ];
-  control = new FormControl();
-  isRequired: boolean;
-  tabIndexOverride: number;
-
-  @ViewChild(SbbChipList) chipList: SbbChipList;
-  @ViewChildren(SbbChip) chips: QueryList<SbbChip>;
 }
 
 @Component({

@@ -79,7 +79,6 @@ describe('SbbTooltip using mock component for single tooltip', () => {
   let singleComponentTest: TooltipTestComponent;
   let singleFixtureTest: ComponentFixture<TooltipTestComponent>;
   let overlayContainer: OverlayContainer;
-  let overlayContainerElement: HTMLElement;
 
   beforeEach(
     waitForAsync(() => {
@@ -90,7 +89,6 @@ describe('SbbTooltip using mock component for single tooltip', () => {
 
       inject([OverlayContainer], (oc: OverlayContainer) => {
         overlayContainer = oc;
-        overlayContainerElement = oc.getContainerElement();
       })();
     })
   );

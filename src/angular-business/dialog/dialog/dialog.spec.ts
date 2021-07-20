@@ -403,7 +403,7 @@ describe('SbbDialog', () => {
       viewContainerRef: testViewContainerRef,
     });
 
-    const event = dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
+    dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
     viewContainerFixture.detectChanges();
     flush();
 
