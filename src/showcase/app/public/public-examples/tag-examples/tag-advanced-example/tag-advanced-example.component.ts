@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SbbTagChange } from '@sbb-esta/angular-public/tag';
 import { Subject } from 'rxjs';

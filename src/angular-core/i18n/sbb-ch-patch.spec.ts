@@ -25,7 +25,6 @@ class DateFormat {
 }
 
 describe('i18n sbb patch', () => {
-  let component: DateFormat;
   let fixture: ComponentFixture<DateFormat>;
 
   beforeEach(
@@ -38,7 +37,6 @@ describe('i18n sbb patch', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DateFormat);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 

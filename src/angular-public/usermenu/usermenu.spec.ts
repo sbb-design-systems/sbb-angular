@@ -125,7 +125,6 @@ describe('SbbUsermenu', () => {
   let usermenuComponent: SbbUsermenu;
   let fixtureUsermenu: ComponentFixture<SbbUsermenu>;
   let overlayContainerElement: HTMLElement;
-  let overlayContainer: OverlayContainer;
 
   beforeEach(
     waitForAsync(() => {
@@ -149,7 +148,6 @@ describe('SbbUsermenu', () => {
   });
 
   beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
-    overlayContainer = oc;
     overlayContainerElement = oc.getContainerElement();
   }));
 
@@ -528,7 +526,6 @@ describe('Test Component with userName and displayName without image', () => {
 });
 
 describe('Test Component with only displayName', () => {
-  let componentTest: UsermenuTestComponentWithOnlyDisplayName;
   let fixtureTest: ComponentFixture<UsermenuTestComponentWithOnlyDisplayName>;
 
   beforeEach(
@@ -548,7 +545,6 @@ describe('Test Component with only displayName', () => {
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuTestComponentWithOnlyDisplayName);
-    componentTest = fixtureTest.componentInstance;
     fixtureTest.detectChanges();
   });
 
@@ -571,7 +567,6 @@ describe('Test Component with only displayName', () => {
 });
 
 describe('Test Component with only userName', () => {
-  let componentTest: UsermenuTestComponentWithOnlyUsername;
   let fixtureTest: ComponentFixture<UsermenuTestComponentWithOnlyUsername>;
 
   beforeEach(
@@ -591,7 +586,6 @@ describe('Test Component with only userName', () => {
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuTestComponentWithOnlyUsername);
-    componentTest = fixtureTest.componentInstance;
     fixtureTest.detectChanges();
   });
 
@@ -614,7 +608,6 @@ describe('Test Component with only userName', () => {
 });
 
 describe('Test Component with custom image', () => {
-  let componentTest: UsermenuTestComponentWithCustomImage;
   let fixtureTest: ComponentFixture<UsermenuTestComponentWithCustomImage>;
 
   beforeEach(
@@ -634,7 +627,6 @@ describe('Test Component with custom image', () => {
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuTestComponentWithCustomImage);
-    componentTest = fixtureTest.componentInstance;
     fixtureTest.detectChanges();
   });
 

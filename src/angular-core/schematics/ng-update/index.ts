@@ -1,14 +1,9 @@
-import { basename, dirname, NormalizedRoot, Path } from '@angular-devkit/core';
-import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { Rule, SchematicContext } from '@angular-devkit/schematics';
 import {
   cdkMigrations,
   createMigrationSchematicRule,
-  getProjectMainFile,
   TargetVersion,
 } from '@angular/cdk/schematics';
-import { DevkitFileSystem } from '@angular/cdk/schematics/ng-update/devkit-file-system';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
-import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
 import { ClassNamesMigration } from './migrations/class-names';
 import { FormFieldMigration } from './migrations/form-field-migration';

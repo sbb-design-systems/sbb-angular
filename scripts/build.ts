@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
-import { readFileSync, writeFileSync } from 'fs';
+import { writeFileSync } from 'fs';
 import minimist from 'minimist';
 import { join, relative } from 'path';
-const prettier: {
-  format: (source: string, options: { parser: string }) => string;
-} = require('prettier');
 
 const { chmod, cp, mkdir, rm, set, test } = require('shelljs');
 

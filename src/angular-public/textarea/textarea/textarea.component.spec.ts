@@ -1,4 +1,3 @@
-import { TextFieldModule } from '@angular/cdk/text-field';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -241,7 +240,6 @@ describe('SbbTextarea digits counter', () => {
 describe('SbbTextarea reactive forms in sbb-form-field behaviour', () => {
   let component: TextareaSbbFieldTestComponent;
   let fixture: ComponentFixture<TextareaSbbFieldTestComponent>;
-  let sbbTextareaComponent: DebugElement;
   let textarea: HTMLTextAreaElement;
 
   beforeEach(
@@ -256,7 +254,6 @@ describe('SbbTextarea reactive forms in sbb-form-field behaviour', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaSbbFieldTestComponent);
     component = fixture.componentInstance;
-    sbbTextareaComponent = fixture.debugElement.query(By.directive(SbbTextarea));
     textarea = fixture.debugElement.query(By.css('textarea')).nativeElement;
     fixture.detectChanges();
   });

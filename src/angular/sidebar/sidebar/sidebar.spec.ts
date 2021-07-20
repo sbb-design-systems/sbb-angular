@@ -528,9 +528,7 @@ describe('SbbSidebar', () => {
 
   describe('focus trapping behavior', () => {
     let fixture: ComponentFixture<SidebarWithFocusableElementsTestComponent>;
-    let testComponent: SidebarWithFocusableElementsTestComponent;
     let sidebar: SbbSidebar;
-    let firstFocusableElement: HTMLElement;
     let lastFocusableElement: HTMLElement;
     let mobileCloseSidebarButton: HTMLElement;
 
@@ -539,9 +537,7 @@ describe('SbbSidebar', () => {
       fixture.detectChanges();
       mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
       tick();
-      testComponent = fixture.debugElement.componentInstance;
       sidebar = fixture.debugElement.query(By.directive(SbbSidebar))!.componentInstance;
-      firstFocusableElement = fixture.debugElement.query(By.css('.input1'))!.nativeElement;
       lastFocusableElement = fixture.debugElement.query(By.css('.input2'))!.nativeElement;
       mobileCloseSidebarButton = fixture.debugElement.query(
         By.css('.sbb-sidebar-mobile-menu-bar-close')

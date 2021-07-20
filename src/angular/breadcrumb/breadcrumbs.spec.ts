@@ -92,7 +92,6 @@ describe('SbbBreadcrumbs', () => {
   });
 
   describe('Breadcrumbs standalone', () => {
-    let component: BreadcrumbsSimpleTest;
     let fixture: ComponentFixture<BreadcrumbsSimpleTest>;
 
     beforeEach(
@@ -112,7 +111,6 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(() => {
       fixture = TestBed.createComponent(BreadcrumbsSimpleTest);
-      component = fixture.componentInstance;
       fixture.detectChanges();
     });
 
@@ -160,7 +158,6 @@ describe('SbbBreadcrumbs', () => {
   });
 
   describe('Breadcrumbs with menu', () => {
-    let component: BreadcrumbsMenuTest;
     let fixture: ComponentFixture<BreadcrumbsMenuTest>;
 
     beforeEach(
@@ -181,7 +178,6 @@ describe('SbbBreadcrumbs', () => {
 
     beforeEach(() => {
       fixture = TestBed.createComponent(BreadcrumbsMenuTest);
-      component = fixture.componentInstance;
       fixture.detectChanges();
     });
 

@@ -15,7 +15,6 @@ import {
   EmbeddedViewRef,
   NgZone,
   OnDestroy,
-  TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';

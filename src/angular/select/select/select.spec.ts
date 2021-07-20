@@ -527,31 +527,6 @@ class SelectWithGroups {
 }
 
 @Component({
-  selector: 'sbb-select-with-indirect-groups',
-  // Note that we need the blank `ngSwitch` in order to have
-  // a directive between `sbb-select` and `sbb-optgroup`.
-  template: `
-    <sbb-form-field>
-      <sbb-select placeholder="Pokemon" [formControl]="control">
-        <ng-container [ngSwitch]="true">
-          <sbb-optgroup
-            *ngFor="let group of pokemonTypes"
-            [label]="group.name"
-            [disabled]="group.disabled"
-          >
-            <sbb-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
-              {{ pokemon.viewValue }}
-            </sbb-option>
-          </sbb-optgroup>
-          <sbb-option value="mime-11">Mr. Mime</sbb-option>
-        </ng-container>
-      </sbb-select>
-    </sbb-form-field>
-  `,
-})
-class SelectWithIndirectDescendantGroups extends SelectWithGroups {}
-
-@Component({
   selector: 'sbb-select-with-groups',
   template: `
     <sbb-form-field>
@@ -867,7 +842,6 @@ describe('SbbSelect', () => {
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
   const scrolledSubject = new Subject();
-  let platform: Platform;
 
   /**
    * Configures the test module for SbbSelect with the given declarations. This is broken out so
@@ -898,10 +872,9 @@ describe('SbbSelect', () => {
       ],
     }).compileComponents();
 
-    inject([OverlayContainer, Platform], (oc: OverlayContainer, p: Platform) => {
+    inject([OverlayContainer, Platform], (oc: OverlayContainer) => {
       overlayContainer = oc;
       overlayContainerElement = oc.getContainerElement();
-      platform = p;
     })();
   }
 
@@ -2282,13 +2255,11 @@ describe('SbbSelect', () => {
     describe('selection logic', () => {
       let fixture: ComponentFixture<BasicSelect>;
       let select: HTMLElement;
-      let formField: HTMLElement;
 
       beforeEach(fakeAsync(() => {
         fixture = TestBed.createComponent(BasicSelect);
         fixture.detectChanges();
         select = fixture.debugElement.query(By.css('sbb-select'))!.nativeElement;
-        formField = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
       }));
 
       it('should focus the first option if no option is selected', fakeAsync(() => {
@@ -3731,14 +3702,12 @@ describe('SbbSelect', () => {
 
     let fixture: ComponentFixture<ResetValuesSelect>;
     let select: HTMLElement;
-    let formField: HTMLElement;
     let options: NodeListOf<HTMLElement>;
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(ResetValuesSelect);
       fixture.detectChanges();
       select = fixture.debugElement.query(By.css('.sbb-select'))!.nativeElement;
-      formField = fixture.debugElement.query(By.css('.sbb-form-field'))!.nativeElement;
 
       select.click();
       fixture.detectChanges();

@@ -5,9 +5,7 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  EventEmitter,
   Input,
-  Output,
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';

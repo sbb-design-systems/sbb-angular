@@ -452,7 +452,6 @@ describe('SbbToggle simple case using mock component', () => {
 });
 
 describe('SbbToggle case with only toggle content for second toggle', () => {
-  let componentTest: ToggleOnlySecondWithContentTestComponent;
   let fixtureTest: ComponentFixture<ToggleOnlySecondWithContentTestComponent>;
 
   beforeEach(
@@ -473,7 +472,6 @@ describe('SbbToggle case with only toggle content for second toggle', () => {
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleOnlySecondWithContentTestComponent);
-    componentTest = fixtureTest.componentInstance;
     fixtureTest.detectChanges();
   });
 

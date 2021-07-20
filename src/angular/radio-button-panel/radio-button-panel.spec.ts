@@ -182,13 +182,10 @@ describe('SbbRadioButtonPanel', () => {
   });
 
   describe('note with icon', () => {
-    let component: RadioButtonPanelIconTest;
     let fixture: ComponentFixture<RadioButtonPanelIconTest>;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(RadioButtonPanelIconTest);
-      component = fixture.componentInstance;
-
       fixture.detectChanges();
     });
 

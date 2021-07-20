@@ -11,13 +11,7 @@ import {
   CdkRowDef,
   CDK_ROW_TEMPLATE,
 } from '@angular/cdk/table';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Directive,
-  HostBinding,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Directive, ViewEncapsulation } from '@angular/core';
 
 @Directive({
   selector: '[sbbHeaderRowDef]',

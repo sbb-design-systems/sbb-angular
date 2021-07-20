@@ -41,7 +41,6 @@ describe('SbbCalendarHeader', () => {
 
   describe('standard calendar', () => {
     let fixture: ComponentFixture<StandardCalendarComponent>;
-    let testComponent: StandardCalendarComponent;
     let calendarElement: HTMLElement;
     let prevButton: HTMLElement;
     let nextButton: HTMLElement;
@@ -61,7 +60,6 @@ describe('SbbCalendarHeader', () => {
       ) as HTMLElement;
 
       calendarInstance = calendarDebugElement.componentInstance;
-      testComponent = fixture.componentInstance;
     });
 
     it('should go to next and previous month', () => {

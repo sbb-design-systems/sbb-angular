@@ -151,7 +151,6 @@ describe('SbbBreadcrumbs', () => {
 });
 
 describe('Breadcrumb behaviour Test', () => {
-  let component: BreadcrumbsTestComponent;
   let fixtureTest: ComponentFixture<BreadcrumbsTestComponent>;
 
   let location: Location = null!;
@@ -174,7 +173,6 @@ describe('Breadcrumb behaviour Test', () => {
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTestComponent);
-    component = fixtureTest.componentInstance;
     router = TestBed.inject(Router);
     fixtureTest.detectChanges();
   });
@@ -270,7 +268,6 @@ describe('Breadcrumb behaviour Test', () => {
 });
 
 describe('Breadcrumb behaviour Test 2', () => {
-  let component: BreadcrumbsTest2Component;
   let fixtureTest: ComponentFixture<BreadcrumbsTest2Component>;
 
   let location: Location = null!;
@@ -294,7 +291,6 @@ describe('Breadcrumb behaviour Test 2', () => {
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTest2Component);
-    component = fixtureTest.componentInstance;
     router = TestBed.inject(Router);
   });
 
@@ -450,7 +446,6 @@ describe('Breadcrumb behaviour Test 2', () => {
 });
 
 describe('Breadcrumb behaviour Test 3', () => {
-  let component: BreadcrumbsTest3Component;
   let fixtureTest: ComponentFixture<BreadcrumbsTest3Component>;
 
   let location: Location = null!;
@@ -474,7 +469,6 @@ describe('Breadcrumb behaviour Test 3', () => {
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTest3Component);
-    component = fixtureTest.componentInstance;
     router = TestBed.inject(Router);
   });
 

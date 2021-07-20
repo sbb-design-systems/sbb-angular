@@ -240,7 +240,6 @@ describe('RadioButton', () => {
     let fixture: ComponentFixture<RadiosInsideRadioGroupComponent>;
     let groupDebugElement: DebugElement;
     let radioDebugElements: DebugElement[];
-    let radioNativeElements: HTMLElement[];
     let radioLabelElements: HTMLLabelElement[];
     let radioInputElements: HTMLInputElement[];
     let groupInstance: SbbRadioGroup;
@@ -258,7 +257,6 @@ describe('RadioButton', () => {
         groupInstance = groupDebugElement.injector.get<SbbRadioGroup>(SbbRadioGroup);
 
         radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButtonComponent));
-        radioNativeElements = radioDebugElements.map((debugEl) => debugEl.nativeElement);
         radioInstances = radioDebugElements.map((debugEl) => debugEl.componentInstance);
 
         radioLabelElements = radioDebugElements.map(
