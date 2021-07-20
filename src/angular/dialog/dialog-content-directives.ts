@@ -88,28 +88,11 @@ export class SbbDialogClose implements OnInit, OnChanges {
 }
 
 /**
- * Title of a dialog element. Stays fixed to the top of the dialog when scrolling.
+ * Base class for dialog title.
  */
-@Component({
-  selector: 'sbb-dialog-title, [sbb-dialog-title], [sbbDialogTitle]',
-  exportAs: 'sbbDialogTitle',
-  template: `
-    <ng-content></ng-content>
-    <button
-      *ngIf="_closeEnabled"
-      sbb-dialog-close
-      class="sbb-dialog-title-close-button sbb-button-reset-frameless"
-    >
-      <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
-    </button>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'sbb-dialog-title',
-    '[id]': 'id',
-  },
-})
-export class SbbDialogTitle implements OnInit {
+@Directive()
+// tslint:disable-next-line: class-name naming-convention
+export class _SbbDialogTitleBase implements OnInit {
   /** Unique id for the dialog title. If none is supplied, it will be auto-generated. */
   @Input() id: string = `sbb-dialog-title-${dialogElementUid++}`;
 
@@ -119,7 +102,7 @@ export class SbbDialogTitle implements OnInit {
   constructor(
     // The dialog title directive is always used in combination with a `SbbDialogRef`.
     // tslint:disable-next-line: lightweight-tokens
-    @Optional() private _dialogRef: SbbDialogRef<any>,
+    @Optional() protected _dialogRef: SbbDialogRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
     private _dialog: SbbDialog,
     private _changeDetectorRef: ChangeDetectorRef
@@ -127,6 +110,11 @@ export class SbbDialogTitle implements OnInit {
 
   ngOnInit() {
     if (!this._dialogRef) {
+      // When this directive is included in a dialog via TemplateRef (rather than being
+      // in a Component), the DialogRef isn't available via injection because embedded
+      // views cannot be given a custom injector. Instead, we look up the DialogRef by
+      // ID. This must occur in `onInit`, as the ID binding for the dialog container won't
+      // be resolved at constructor time.
       this._dialogRef = getClosestDialog(this._elementRef, this._dialog.openDialogs)!;
     }
 
@@ -148,6 +136,30 @@ export class SbbDialogTitle implements OnInit {
     }
   }
 }
+
+/**
+ * Title of a dialog element. Stays fixed to the top of the dialog when scrolling.
+ */
+@Component({
+  selector: 'sbb-dialog-title, [sbb-dialog-title], [sbbDialogTitle]',
+  exportAs: 'sbbDialogTitle',
+  template: `
+    <ng-content></ng-content>
+    <button
+      *ngIf="_closeEnabled"
+      sbb-dialog-close
+      class="sbb-dialog-title-close-button sbb-button-reset-frameless"
+    >
+      <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
+    </button>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'sbb-dialog-title',
+    '[id]': 'id',
+  },
+})
+export class SbbDialogTitle extends _SbbDialogTitleBase {}
 
 /**
  * Scrollable content container of a dialog.
@@ -176,7 +188,11 @@ export class SbbDialogActions {}
 function getClosestDialog(element: ElementRef<HTMLElement>, openDialogs: SbbDialogRef<any>[]) {
   let parent: HTMLElement | null = element.nativeElement.parentElement;
 
-  while (parent && !parent.classList.contains('sbb-dialog-container')) {
+  while (
+    parent &&
+    !parent.classList.contains('sbb-dialog-container') &&
+    !parent.classList.contains('sbb-lightbox-container')
+  ) {
     parent = parent.parentElement;
   }
 

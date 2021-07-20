@@ -94,6 +94,14 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replaceWith: 'SbbDialogActions',
         },
         {
+          replace: 'SbbLightboxHeader',
+          replaceWith: 'SbbLightboxTitle',
+        },
+        {
+          replace: 'SbbLightboxFooter',
+          replaceWith: 'SbbLightboxActions',
+        },
+        {
           replace: 'SbbTabs',
           replaceWith: 'SbbTabGroup',
         },

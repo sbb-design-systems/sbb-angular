@@ -30,6 +30,14 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replaceWith: 'sbb-dialog-actions',
         },
         {
+          replace: 'sbb-lightbox-header',
+          replaceWith: 'sbb-lightbox-title',
+        },
+        {
+          replace: 'sbb-lightbox-footer',
+          replaceWith: 'sbb-lightbox-actions',
+        },
+        {
           replace: 'sbb-tabs',
           replaceWith: 'sbb-tab-group',
         },

@@ -1,0 +1,35 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "lightbox",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = glob(["**/*.html"]),
+    module_name = "@sbb-esta/components-examples/angular/lightbox",
+    deps = [
+        "//src/angular/button",
+        "//src/angular/form-field",
+        "//src/angular/icon",
+        "//src/angular/lightbox",
+        "//src/angular/radio-button",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.css",
+        "**/*.ts",
+    ]),
+)

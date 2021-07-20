@@ -10,7 +10,8 @@ $sbb-dialog-button-margin: pxToRem(8);
 }
 
 .sbb-dialog-container {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border: pxToRem(2) solid $sbbColorGrey;
   box-sizing: border-box;
   overflow: hidden;
@@ -40,7 +41,9 @@ $sbb-dialog-button-margin: pxToRem(8);
   }
 }
 
-.sbb-dialog-container > *:only-child {
+// When using dialog with a component, the component element is placed as a
+// single element inside the container.
+.sbb-dialog-container > *:only-child:not(.sbb-dialog-content) {
   width: 100%;
   height: 100%;
   display: flex;

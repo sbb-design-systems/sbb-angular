@@ -1,0 +1,11 @@
+<h4>Share data with the Lightbox</h4>
+<sbb-form-field>
+  <input sbbInput [(ngModel)]="name" placeholder="What's your name?" />
+</sbb-form-field>
+<p>
+  <button sbb-secondary-button (click)="open()">Pick one</button>
+</p>
+<span *ngIf="animal">You chose: <i>{{ animal }}</i></span>
+
+<h4>Description</h4>
+<p>This implementation shows how to share data between parent and the lightbox.</p>

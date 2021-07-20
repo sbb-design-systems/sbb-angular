@@ -1,0 +1,12 @@
+<sbb-lightbox-title>Example</sbb-lightbox-title>
+<sbb-lightbox-content>
+  <h1>Hi {{ data.name }}</h1>
+  <p>What's your favorite animal?</p>
+  <sbb-form-field label="Animal">
+    <input type="text" sbbInput [(ngModel)]="data.animal" cdkFocusInitial />
+  </sbb-form-field>
+</sbb-lightbox-content>
+<sbb-lightbox-actions>
+  <button type="button" sbb-secondary-button (click)="noThanks()">No Thanks</button>
+  <button type="button" sbb-button [sbbLightboxClose]="data.animal" cdkFocusInitial>Ok</button>
+</sbb-lightbox-actions>

@@ -33,6 +33,13 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
             classes: ['SbbProcessflow'],
           },
         },
+        {
+          replace: 'manualCloseAction',
+          replaceWith: 'closeRequest',
+          limitedTo: {
+            classes: ['SbbLightboxRef'],
+          },
+        },
       ],
     },
   ],
