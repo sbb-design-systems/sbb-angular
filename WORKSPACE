@@ -82,12 +82,12 @@ load(
 _dev_infra_browser_repositories()
 
 # esbuild binaries
-_ESBUILD_VERSION = "0.11.14"  # reminder: update SHAs below when changing this value
+_ESBUILD_VERSION = "0.12.15"  # reminder: update SHAs below when changing this value
 
 http_archive(
     name = "esbuild_darwin",
     build_file_content = """exports_files(["bin/esbuild"])""",
-    sha256 = "81c8623c4c03a1fc449c37a90dd630025e334d312420d42106a899f78bd5e3fe",
+    sha256 = "ad9332d0180c0a59ae6bbf54e457ae8c270b212a3c098eb1594adf110d55b2bd",
     strip_prefix = "package",
     urls = [
         "https://registry.npmjs.org/esbuild-darwin-64/-/esbuild-darwin-64-%s.tgz" % _ESBUILD_VERSION,
@@ -97,7 +97,7 @@ http_archive(
 http_archive(
     name = "esbuild_windows",
     build_file_content = """exports_files(["esbuild.exe"])""",
-    sha256 = "d977751550550099cb9deb95d3fc436c21374b3875131589dde162dfb1c03bf4",
+    sha256 = "b33ebb813345e298e46881a774850f55f49f2c86a829cb431af5eb44e4a0a096",
     strip_prefix = "package",
     urls = [
         "https://registry.npmjs.org/esbuild-windows-64/-/esbuild-windows-64-%s.tgz" % _ESBUILD_VERSION,
@@ -107,7 +107,7 @@ http_archive(
 http_archive(
     name = "esbuild_linux",
     build_file_content = """exports_files(["bin/esbuild"])""",
-    sha256 = "fbf8d42fbd12d2392893a5d8cea3860e875c47ee715660e844dff822b8747321",
+    sha256 = "c2038ea88eb4f5009d557d319ff1f9b0627e5ecca06684c6716ec8c62f7b89db",
     strip_prefix = "package",
     urls = [
         "https://registry.npmjs.org/esbuild-linux-64/-/esbuild-linux-64-%s.tgz" % _ESBUILD_VERSION,

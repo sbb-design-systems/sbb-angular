@@ -1,12 +1,12 @@
 import { basename, fragment, Path, relative } from '@angular-devkit/core';
 import {
   apply,
+  applyTemplates,
   DirEntry,
   forEach,
   mergeWith,
   move,
   Rule,
-  template,
   Tree,
   url,
 } from '@angular-devkit/schematics';
@@ -81,7 +81,7 @@ export class NgModule {
       [
         mergeWith(
           apply(url(this._templateUrl), [
-            template(this._templateOptions()),
+            applyTemplates(this._templateOptions()),
             move(this.path),
             forEach((fileEntry) => {
               const content = formatBazelFile(

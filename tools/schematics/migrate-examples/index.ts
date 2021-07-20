@@ -95,7 +95,7 @@ export function migrateExamples(options: { module: string }): Rule {
 
       content = prettier.format(lintFix(content), {
         parser: 'typescript',
-        ...require('../../package.json').prettier,
+        ...require('../../../package.json').prettier,
       });
       const indexPath = join(targetDir.path, 'index.ts');
       if (tree.exists(indexPath)) {
@@ -140,7 +140,7 @@ export function migrateExamples(options: { module: string }): Rule {
           );
         content = prettier.format(content, {
           parser: 'typescript',
-          ...require('../../package.json').prettier,
+          ...require('../../../package.json').prettier,
         });
       }
       if (tree.exists(targetPath)) {
