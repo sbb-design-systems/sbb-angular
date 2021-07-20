@@ -156,7 +156,7 @@ export class SbbChipList
   }
 
   /** An object used to control when error messages are shown. */
-  @Input() errorStateMatcher: SbbErrorStateMatcher;
+  @Input() override errorStateMatcher: SbbErrorStateMatcher;
 
   /**
    * Implemented as part of SbbFormFieldControl.
@@ -281,7 +281,7 @@ export class SbbChipList
     @Optional() parentFormGroup: FormGroupDirective,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     /** @docs-private */
-    @Optional() @Self() public ngControl: NgControl
+    @Optional() @Self() public override ngControl: NgControl
   ) {
     super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
     if (this.ngControl) {

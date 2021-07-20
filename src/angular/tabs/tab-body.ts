@@ -52,7 +52,7 @@ export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestr
   }
 
   /** Set initial visibility or set up subscription for changing visibility. */
-  ngOnInit(): void {
+  override ngOnInit(): void {
     super.ngOnInit();
 
     this._centeringSub = this._host._beforeCentering
@@ -69,7 +69,7 @@ export class SbbTabBodyPortal extends CdkPortalOutlet implements OnInit, OnDestr
   }
 
   /** Clean up centering subscription. */
-  ngOnDestroy(): void {
+  override ngOnDestroy(): void {
     super.ngOnDestroy();
     this._centeringSub.unsubscribe();
     this._leavingSub.unsubscribe();

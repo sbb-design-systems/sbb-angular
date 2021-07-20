@@ -48,7 +48,7 @@ export class SbbToggle
     super(changeDetectorRef);
   }
 
-  ngAfterContentInit() {
+  override ngAfterContentInit() {
     super.ngAfterContentInit();
     this._zone.onStable.pipe(take(1)).subscribe(() =>
       this._zone.run(() => {

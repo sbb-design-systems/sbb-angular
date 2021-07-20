@@ -13,13 +13,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import {
-  CanDisable,
-  CanDisableCtor,
-  HasVariantCtor,
-  mixinDisabled,
-  mixinVariant,
-} from '@sbb-esta/angular/core';
+import { CanDisable, mixinDisabled, mixinVariant } from '@sbb-esta/angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -52,13 +46,13 @@ const DEFAULT_INDICATOR_ICONS: { [attr: string]: string } = {
 };
 
 // Boilerplate for applying mixins to SbbButton.
-/** @docs-private */
-class SbbButtonBase {
-  constructor(public _elementRef: ElementRef) {}
-}
 // tslint:disable-next-line: naming-convention
-const _SbbButtonMixinBase: CanDisableCtor & HasVariantCtor & typeof SbbButtonBase = mixinDisabled(
-  mixinVariant(SbbButtonBase)
+const _SbbButtonMixinBase = mixinDisabled(
+  mixinVariant(
+    class {
+      constructor(public _elementRef: ElementRef) {}
+    }
+  )
 );
 
 /**

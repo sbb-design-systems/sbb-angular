@@ -5,7 +5,7 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
+import { mixinVariant } from '@sbb-esta/angular/core';
 import {
   SbbMenuInheritedTriggerContext,
   SBB_MENU_INHERITED_TRIGGER_CONTEXT,
@@ -15,11 +15,8 @@ import { SbbBreadcrumb } from './breadcrumb';
 
 // Boilerplate for applying mixins to SbbBreadcrumbs.
 /** @docs-private */
-class SbbBreadcrumbsBase {}
-
 // tslint:disable-next-line: naming-convention
-const _SbbBreadcrumbsMixinBase: HasVariantCtor & typeof SbbBreadcrumbsBase =
-  mixinVariant(SbbBreadcrumbsBase);
+const _SbbBreadcrumbsMixinBase = mixinVariant(class {});
 
 const sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   type: 'breadcrumb',

@@ -91,7 +91,7 @@ export class SbbExpansionPanel
   readonly _inputChanges = new Subject<SimpleChanges>();
 
   /** Optionally defined accordion the expansion panel belongs to. */
-  accordion: SbbAccordion;
+  override accordion: SbbAccordion;
 
   /** Content that will be rendered lazily. */
   @ContentChild(SbbExpansionPanelContent) _lazyContent: SbbExpansionPanelContent;
@@ -146,17 +146,17 @@ export class SbbExpansionPanel
   }
 
   /** Toggles the expanded state of the expansion panel. */
-  toggle(): void {
+  override toggle(): void {
     this.expanded = !this.expanded;
   }
 
   /** Sets the expanded state of the expansion panel to false. */
-  close(): void {
+  override close(): void {
     this.expanded = false;
   }
 
   /** Sets the expanded state of the expansion panel to true. */
-  open(): void {
+  override open(): void {
     this.expanded = true;
   }
 
@@ -179,7 +179,7 @@ export class SbbExpansionPanel
     this._inputChanges.next(changes);
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     super.ngOnDestroy();
     this._bodyAnimationDone.complete();
     this._inputChanges.complete();
@@ -198,7 +198,5 @@ export class SbbExpansionPanel
 
   // tslint:disable: member-ordering
   static ngAcceptInputType_hideToggle: BooleanInput;
-  static ngAcceptInputType_expanded: BooleanInput;
-  static ngAcceptInputType_disabled: BooleanInput;
   // tslint:enable: member-ordering
 }

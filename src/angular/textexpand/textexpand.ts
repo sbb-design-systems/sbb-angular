@@ -8,18 +8,15 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
+import { mixinVariant } from '@sbb-esta/angular/core';
 
 import { SbbTextexpandCollapsed } from './textexpand-collapsed';
 import { getSbbTextexpandInvalidError } from './textexpand-errors';
 import { SbbTextexpandExpanded } from './textexpand-expanded';
 
 // Boilerplate for applying mixins to SbbTextexpand.
-/** @docs-private */
-class SbbTextexpandBase {}
 // tslint:disable-next-line: naming-convention
-const _SbbTextexpandBase: HasVariantCtor & typeof SbbTextexpandBase =
-  mixinVariant(SbbTextexpandBase);
+const _SbbTextexpandBase = mixinVariant(class {});
 
 let nextId = 0;
 

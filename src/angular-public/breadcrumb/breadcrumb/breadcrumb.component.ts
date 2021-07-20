@@ -59,13 +59,13 @@ export const SBB_BREADCRUMB_LEVEL_OFFSET = 60;
 })
 export class SbbBreadcrumb extends SbbDropdownTrigger implements AfterViewInit {
   /** Refers to a dropdown instance. */
-  @ContentChild(SbbDropdown) dropdown: SbbDropdown;
+  @ContentChild(SbbDropdown) override dropdown: SbbDropdown;
 
   /** Trigger on the open of the dropdown contained in breadcrumb. */
   @ViewChild('breadcrumbTrigger') breadcrumbTrigger: ElementRef;
 
   /** Css class on a breadcrumb panel. */
-  panelClass: string = 'sbb-breadcrumb-panel';
+  override panelClass: string = 'sbb-breadcrumb-panel';
 
   private _scalingFactor: number = 1;
 
@@ -82,14 +82,14 @@ export class SbbBreadcrumb extends SbbDropdownTrigger implements AfterViewInit {
     @Inject(SBB_BREADCRUMB_PARENT_COMPONENT)
     private _parent: SbbBreadcrumbParent,
     private _breakpointObserver: BreakpointObserver,
-    protected _elementRef: ElementRef<HTMLInputElement>,
-    protected _overlay: Overlay,
-    protected _viewContainerRef: ViewContainerRef,
-    protected _zone: NgZone,
-    protected _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy: any,
-    @Optional() @Inject(DOCUMENT) protected _document: any,
-    protected _viewportRuler?: ViewportRuler
+    protected override _elementRef: ElementRef<HTMLInputElement>,
+    protected override _overlay: Overlay,
+    protected override _viewContainerRef: ViewContainerRef,
+    protected override _zone: NgZone,
+    protected override _changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_DROPDOWN_SCROLL_STRATEGY) protected override _scrollStrategy: any,
+    @Optional() @Inject(DOCUMENT) protected override _document: any,
+    protected override _viewportRuler?: ViewportRuler
   ) {
     super(
       _elementRef,
@@ -125,7 +125,7 @@ export class SbbBreadcrumb extends SbbDropdownTrigger implements AfterViewInit {
   }
 
   /** Handles all keydown events on the select. */
-  _handleKeydown(event: KeyboardEvent): void {
+  override _handleKeydown(event: KeyboardEvent): void {
     if (this.dropdown) {
       super._handleKeydown(event);
     }
@@ -136,11 +136,11 @@ export class SbbBreadcrumb extends SbbDropdownTrigger implements AfterViewInit {
     $event.stopPropagation();
   }
 
-  protected _getPanelWidth(): number | string {
+  protected override _getPanelWidth(): number | string {
     return this._getHostWidth() + SBB_BREADCRUMB_LEVEL_OFFSET * this._scalingFactor;
   }
 
-  protected _attachOverlay(): void {
+  protected override _attachOverlay(): void {
     if (this.dropdown) {
       super._attachOverlay();
     }

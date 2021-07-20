@@ -52,7 +52,7 @@ export class SbbTable<T> extends CdkTable<T> implements AfterViewInit {
 
   /** Overrides the sticky CSS class set by the `CdkTable`. */
   // tslint:disable-next-line:naming-convention
-  protected stickyCssClass: string = 'sbb-table-sticky';
+  protected override stickyCssClass: string = 'sbb-table-sticky';
 
   ngAfterViewInit(): void {
     this.headerElements.changes.subscribe((value) => this._setGroupClasses(value));

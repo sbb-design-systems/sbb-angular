@@ -10,13 +10,6 @@ export interface HasVariant {
   readonly variant: Observable<SbbVariant>;
 }
 
-/**
- * @docs-private
- * @deprecated No longer necessary to apply to mixin classes. To be made private.
- * @breaking-change 13.0.0
- */
-export type HasVariantCtor = Constructor<HasVariant>;
-
 /** Possible variant values. */
 export type SbbVariant = 'standard' | 'lean';
 
@@ -25,17 +18,15 @@ function detectVariant(): SbbVariant {
 }
 
 /** Mixin to augment a directive with a variant property. */
-export function mixinVariant<T extends AbstractConstructor<any>>(base: T): HasVariantCtor & T {
-  class Mixin extends (base as unknown as Constructor<any>) {
+export function mixinVariant<T extends AbstractConstructor<any>>(
+  base: T
+): AbstractConstructor<HasVariant> & T;
+export function mixinVariant<T extends Constructor<any>>(base: T): Constructor<HasVariant> & T {
+  return class extends base {
     readonly variant: Observable<SbbVariant> = ɵvariant;
 
     constructor(...args: any[]) {
       super(...args);
     }
-  }
-
-  // Since we don't directly extend from `base` with it's original types, and we instruct
-  // TypeScript that `T` actually is instantiatable through `new`, the types don't overlap.
-  // This is a limitation in TS as abstract classes cannot be typed properly dynamically.
-  return Mixin as unknown as T & Constructor<HasVariant>;
+  };
 }

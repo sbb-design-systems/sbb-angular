@@ -46,11 +46,11 @@ export class SbbProcessflow
     return this._skippable;
   }
 
-  constructor(protected _changeDetectorRef: ChangeDetectorRef) {
+  constructor(protected override _changeDetectorRef: ChangeDetectorRef) {
     super(_changeDetectorRef);
   }
 
-  ngAfterContentInit(): void {
+  override ngAfterContentInit(): void {
     super.ngAfterContentInit();
     this.setSkippableSteps();
   }
@@ -61,7 +61,7 @@ export class SbbProcessflow
     }
   }
 
-  stepClick($event: any, stepIndex: number) {
+  override stepClick($event: any, stepIndex: number) {
     $event.preventDefault();
     const currentIndex = super._findActiveStepIndex(this.steps.toArray());
     if (stepIndex < currentIndex || this.skippable) {
@@ -69,7 +69,7 @@ export class SbbProcessflow
     }
   }
 
-  changeStep(index: number) {
+  override changeStep(index: number) {
     const step = this.steps.toArray()[index];
     if (step) {
       this.steps.forEach((s, i) => {
@@ -84,7 +84,7 @@ export class SbbProcessflow
     }
   }
 
-  prevStep() {
+  override prevStep() {
     const activeStepIndex = this._findActiveStepIndex(this.steps.toArray());
     if (activeStepIndex > 0) {
       if (!this.skippable) {

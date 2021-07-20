@@ -21,10 +21,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   CanDisable,
-  CanDisableCtor,
   HasTabIndex,
-  HasTabIndexCtor,
-  HasVariantCtor,
   mixinDisabled,
   mixinTabIndex,
   mixinVariant,
@@ -62,14 +59,8 @@ export class SbbCheckboxChange {
 }
 
 // Boilerplate for applying mixins to SbbCheckbox.
-/** @docs-private */
-class SbbCheckboxBase {}
-
 // tslint:disable-next-line: naming-convention
-const _SbbCheckboxMixinBase: HasTabIndexCtor &
-  CanDisableCtor &
-  HasVariantCtor &
-  typeof SbbCheckboxBase = mixinTabIndex(mixinDisabled(mixinVariant(SbbCheckboxBase)));
+const _SbbCheckboxMixinBase = mixinTabIndex(mixinDisabled(mixinVariant(class {})));
 
 /** Base class with all of the `SbbCheckbox` functionality. */
 @Directive()
@@ -201,10 +192,10 @@ export class _SbbCheckboxBase
    * mixinDisabled, but the mixin is still required because mixinTabIndex requires it.
    */
   @Input()
-  get disabled() {
+  override get disabled() {
     return this._disabled;
   }
-  set disabled(value: any) {
+  override set disabled(value: any) {
     const newValue = coerceBooleanProperty(value);
 
     if (newValue !== this.disabled) {

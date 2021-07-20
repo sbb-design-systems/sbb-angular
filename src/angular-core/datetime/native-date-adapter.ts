@@ -28,7 +28,7 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
   private _titleCasePipe = new TitleCasePipe();
 
   constructor(
-    @Inject(LOCALE_ID) protected _locale: string,
+    @Inject(LOCALE_ID) protected override _locale: string,
     @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number
   ) {
     super();
@@ -185,7 +185,7 @@ export class SbbNativeDateAdapter extends SbbDateAdapter<Date> {
    * (https://www.ietf.org/rfc/rfc3339.txt) into valid Dates and empty string into null. Returns an
    * invalid date for all other values.
    */
-  deserialize(value: any): Date | null {
+  override deserialize(value: any): Date | null {
     if (typeof value === 'string') {
       if (!value) {
         return null;

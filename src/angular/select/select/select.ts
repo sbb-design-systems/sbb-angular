@@ -53,13 +53,9 @@ import {
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
   CanDisable,
-  CanDisableCtor,
   CanUpdateErrorState,
-  CanUpdateErrorStateCtor,
   getOptionScrollPosition,
   HasTabIndex,
-  HasTabIndexCtor,
-  HasVariantCtor,
   mixinDisabled,
   mixinErrorState,
   mixinTabIndex,
@@ -141,21 +137,23 @@ export class SbbSelectChange {
 }
 
 // Boilerplate for applying mixins to SbbSelect.
-/** @docs-private */
-class SbbSelectBase {
-  constructor(
-    public _defaultErrorStateMatcher: SbbErrorStateMatcher,
-    public _parentForm: NgForm,
-    public _parentFormGroup: FormGroupDirective,
-    public ngControl: NgControl
-  ) {}
-}
 // tslint:disable-next-line:naming-convention
-const _SbbSelectMixinBase: CanDisableCtor &
-  HasTabIndexCtor &
-  CanUpdateErrorStateCtor &
-  HasVariantCtor &
-  typeof SbbSelectBase = mixinTabIndex(mixinDisabled(mixinErrorState(mixinVariant(SbbSelectBase))));
+const _SbbSelectMixinBase = mixinTabIndex(
+  mixinDisabled(
+    mixinErrorState(
+      mixinVariant(
+        class {
+          constructor(
+            public _defaultErrorStateMatcher: SbbErrorStateMatcher,
+            public _parentForm: NgForm,
+            public _parentFormGroup: FormGroupDirective,
+            public ngControl: NgControl
+          ) {}
+        }
+      )
+    )
+  )
+);
 
 @Component({
   selector: 'sbb-select',
@@ -401,7 +399,7 @@ export class SbbSelect
   @Input('aria-labelledby') ariaLabelledby: string;
 
   /** Object used to control when error messages are shown. */
-  @Input() errorStateMatcher: SbbErrorStateMatcher;
+  @Input() override errorStateMatcher: SbbErrorStateMatcher;
 
   /** Time to wait in milliseconds after the last keystroke before moving focus to an item. */
   @Input()
@@ -482,7 +480,7 @@ export class SbbSelect
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     @Optional() @Inject(SBB_FORM_FIELD) private _parentFormField: SbbFormField,
-    @Self() @Optional() public ngControl: NgControl,
+    @Self() @Optional() public override ngControl: NgControl,
     @Attribute('tabindex') tabIndex: string,
     @Inject(SBB_SELECT_SCROLL_STRATEGY) scrollStrategyFactory: any,
     private _liveAnnouncer: LiveAnnouncer,

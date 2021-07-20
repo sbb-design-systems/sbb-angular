@@ -442,7 +442,7 @@ export class SbbSelect
   @Input('aria-labelledby') ariaLabelledby: string;
 
   /** Object used to control when error messages are shown. */
-  @Input() errorStateMatcher: SbbErrorStateMatcher;
+  @Input() override errorStateMatcher: SbbErrorStateMatcher;
 
   /** Time to wait in milliseconds after the last keystroke before moving focus to an item. */
   @Input()
@@ -536,7 +536,7 @@ export class SbbSelect
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     @Optional() @Inject(SBB_FORM_FIELD) private _parentFormField: SbbFormField,
-    @Self() @Optional() public ngControl: NgControl,
+    @Self() @Optional() public override ngControl: NgControl,
     @Attribute('tabindex') tabIndex: string,
     @Inject(SBB_SELECT_SCROLL_STRATEGY) scrollStrategyFactory: any,
     private _liveAnnouncer: LiveAnnouncer,

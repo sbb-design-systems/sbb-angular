@@ -10,17 +10,13 @@ import {
   OnDestroy,
   QueryList,
 } from '@angular/core';
-import { Breakpoints, HasVariantCtor, mixinVariant } from '@sbb-esta/angular/core';
+import { Breakpoints, mixinVariant } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
 
 // Boilerplate for applying mixins to SbbExample.
-/** @docs-private */
-class SbbSidebarVariantBase {}
-
 // tslint:disable-next-line: naming-convention
-const _SbbSidebarMixinBase: HasVariantCtor & typeof SbbSidebarVariantBase =
-  mixinVariant(SbbSidebarVariantBase);
+const _SbbSidebarMixinBase = mixinVariant(class {});
 
 /**
  * Throws an exception if more than one SbbSidebarBase is provided.

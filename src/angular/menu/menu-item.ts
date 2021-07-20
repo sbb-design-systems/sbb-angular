@@ -12,17 +12,14 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
-import { CanDisable, CanDisableCtor, mixinDisabled } from '@sbb-esta/angular/core';
+import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 
 // Boilerplate for applying mixins to SbbMenuItem.
-/** @docs-private */
-class SbbMenuItemBase {}
 // tslint:disable-next-line:naming-convention
-const _SbbMenuItemMixinBase: CanDisableCtor & typeof SbbMenuItemBase =
-  mixinDisabled(SbbMenuItemBase);
+const _SbbMenuItemMixinBase = mixinDisabled(class {});
 
 /**
  * Single item inside of a `sbb-menu`. Provides the menu item styling and accessibility treatment.

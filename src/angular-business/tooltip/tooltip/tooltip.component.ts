@@ -65,7 +65,7 @@ export class SbbTooltipComponent extends SbbTooltipBase implements OnInit, OnDes
 
   constructor(
     private _platform: Platform,
-    protected _elementRef: ElementRef,
+    protected override _elementRef: ElementRef,
     overlay: Overlay,
     tooltipRegistry: SbbTooltipRegistryService,
     @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
@@ -93,7 +93,7 @@ export class SbbTooltipComponent extends SbbTooltipBase implements OnInit, OnDes
     }
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     super.ngOnDestroy();
 
     // Clean up the event listeners set in the constructor

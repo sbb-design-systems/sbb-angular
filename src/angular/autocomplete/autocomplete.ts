@@ -20,7 +20,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  HasVariantCtor,
   mixinVariant,
   SbbOptgroup,
   SbbOption,
@@ -56,10 +55,8 @@ export interface SbbAutocompleteActivatedEvent {
 
 // Boilerplate for applying mixins to SbbAutocomplete.
 /** @docs-private */
-class SbbAutocompleteBase {}
 // tslint:disable-next-line: naming-convention
-const _SbbAutocompleteBase: HasVariantCtor & typeof SbbAutocompleteBase =
-  mixinVariant(SbbAutocompleteBase);
+const _SbbAutocompleteBase = mixinVariant(class {});
 
 /** Default `sbb-autocomplete` options that can be overridden. */
 export interface SbbAutocompleteDefaultOptions {

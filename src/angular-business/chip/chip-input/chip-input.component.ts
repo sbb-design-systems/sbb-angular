@@ -167,7 +167,7 @@ export class SbbChipInput
   selectionModel: SelectionModel<string>;
 
   /** Emits when the state of the option changes and any parents have to be notified. */
-  readonly stateChanges = new Subject<void>();
+  override readonly stateChanges = new Subject<void>();
 
   /** The element reference for the autocomplete origin. */
   readonly _origin = new SbbAutocompleteOrigin(this._elementRef);
@@ -186,7 +186,7 @@ export class SbbChipInput
   private _onChange: (_: any) => void = () => {};
 
   constructor(
-    @Self() @Optional() public ngControl: NgControl,
+    @Self() @Optional() public override ngControl: NgControl,
     private _changeDetectorRef: ChangeDetectorRef,
     elementRef: ElementRef,
     defaultErrorStateMatcher: SbbErrorStateMatcher,

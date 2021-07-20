@@ -21,15 +21,10 @@ export interface HasInitialized {
   _markInitialized: () => void;
 }
 
-/**
- * @docs-private
- * @deprecated No longer necessary to apply to mixin classes. To be made private.
- * @breaking-change 13.0.0
- */
-export type HasInitializedCtor = Constructor<HasInitialized>;
-
 /** Mixin to augment a directive with an initialized property that will emits when ngOnInit ends. */
-export function mixinInitialized<T extends Constructor<{}>>(base: T): HasInitializedCtor & T {
+export function mixinInitialized<T extends Constructor<{}>>(
+  base: T
+): Constructor<HasInitialized> & T {
   return class extends base {
     /** Whether this directive has been marked as initialized. */
     _isInitialized = false;

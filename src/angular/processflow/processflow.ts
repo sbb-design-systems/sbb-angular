@@ -55,7 +55,7 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
   private _isSelected = Subscription.EMPTY;
 
   /** Content for step label given by `<ng-template sbbStepLabel>`. */
-  @ContentChild(SbbStepLabel) stepLabel: SbbStepLabel;
+  @ContentChild(SbbStepLabel) override stepLabel: SbbStepLabel;
 
   /** Content that will be rendered lazily. */
   @ContentChild(SbbStepContent, { static: false }) _lazyContent: SbbStepContent;
@@ -124,14 +124,14 @@ export class SbbStep extends CdkStep implements SbbErrorStateMatcher, AfterConte
 })
 export class SbbProcessflow extends CdkStepper implements AfterContentInit {
   /** The list of step headers of the steps in the processflow. */
-  @ViewChildren(SbbStepHeader) _stepHeader: QueryList<SbbStepHeader>;
+  @ViewChildren(SbbStepHeader) override _stepHeader: QueryList<SbbStepHeader>;
   @ViewChild('stepListContainer', { static: true }) _tabListContainer: ElementRef;
 
   /** Full list of steps inside the processflow, including inside nested processflows. */
-  @ContentChildren(SbbStep, { descendants: true }) _steps: QueryList<SbbStep>;
+  @ContentChildren(SbbStep, { descendants: true }) override _steps: QueryList<SbbStep>;
 
   /** Steps that belong to the current processflow, excluding ones from nested processflows. */
-  readonly steps: QueryList<SbbStep> = new QueryList<SbbStep>();
+  override readonly steps: QueryList<SbbStep> = new QueryList<SbbStep>();
 
   /** Event emitted when the current step is done transitioning in. */
   @Output() readonly animationDone: EventEmitter<void> = new EventEmitter<void>();
@@ -148,7 +148,7 @@ export class SbbProcessflow extends CdkStepper implements AfterContentInit {
     super(dir, changeDetectorRef, elementRef, document);
   }
 
-  ngAfterContentInit() {
+  override ngAfterContentInit() {
     super.ngAfterContentInit();
 
     // Mark the component for change detection whenever the content children query changes

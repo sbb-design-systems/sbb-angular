@@ -134,7 +134,7 @@ export abstract class _SbbDialogContainerBase extends BasePortalOutlet {
    * Attaches a DOM portal to the dialog container.
    * @param portal Portal to be attached.
    */
-  attachDomPortal = (portal: DomPortal) => {
+  override attachDomPortal = (portal: DomPortal) => {
     if (this._portalOutlet.hasAttached() && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       throwSbbDialogContentAlreadyAttachedError();
     }

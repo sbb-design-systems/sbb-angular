@@ -38,7 +38,6 @@ import {
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
   Breakpoints,
-  HasVariantCtor,
   mixinVariant,
   SbbVariant,
   SCALING_FACTOR_4K,
@@ -105,11 +104,8 @@ const SUBMENU_PANEL_LEFT_OVERLAP = 3;
 const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: true });
 
 // Boilerplate for applying mixins to SbbMenu.
-/** @docs-private */
-class SbbMenuTriggerBase {}
 // tslint:disable-next-line: naming-convention
-const _SbbMenuTriggerMixinBase: HasVariantCtor & typeof SbbMenuTriggerBase =
-  mixinVariant(SbbMenuTriggerBase);
+const _SbbMenuTriggerMixinBase = mixinVariant(class {});
 
 /** Directive applied to an element that should trigger a `sbb-menu`. */
 @Directive({

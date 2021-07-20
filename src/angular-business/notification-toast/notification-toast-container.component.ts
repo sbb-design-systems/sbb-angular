@@ -115,7 +115,7 @@ export class SbbNotificationToastContainer extends BasePortalOutlet implements O
    * @deprecated To be turned into a method.
    * @breaking-change 10.0.0
    */
-  attachDomPortal = (portal: DomPortal) => {
+  override attachDomPortal = (portal: DomPortal) => {
     this._assertNotAttached();
     this._applyNotificationClasses();
     return this._portalOutlet.attachDomPortal(portal);

@@ -24,7 +24,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { HasVariantCtor, mixinVariant, TypeRef } from '@sbb-esta/angular/core';
+import { mixinVariant, TypeRef } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, filter, startWith, take } from 'rxjs/operators';
 
@@ -39,8 +39,7 @@ export type SbbExpansionPanelState = 'expanded' | 'collapsed';
 // Boilerplate for applying mixins to SbbExpansionPanel.
 /** @docs-private */
 // tslint:disable-next-line: naming-convention
-const _SbbExpansionPanelBase: HasVariantCtor & typeof CdkAccordionItem =
-  mixinVariant(CdkAccordionItem);
+const _SbbExpansionPanelBase = mixinVariant(CdkAccordionItem);
 
 /** Counter for generating unique element ids. */
 let uniqueId = 0;
@@ -97,7 +96,7 @@ export class SbbExpansionPanel
   readonly _inputChanges = new Subject<SimpleChanges>();
 
   /** Optionally defined accordion the expansion panel belongs to. */
-  accordion: SbbAccordion;
+  override accordion: SbbAccordion;
 
   /** Content that will be rendered lazily. */
   @ContentChild(SbbExpansionPanelContent) _lazyContent: SbbExpansionPanelContent;
@@ -150,17 +149,17 @@ export class SbbExpansionPanel
   }
 
   /** Toggles the expanded state of the expansion panel. */
-  toggle(): void {
+  override toggle(): void {
     this.expanded = !this.expanded;
   }
 
   /** Sets the expanded state of the expansion panel to false. */
-  close(): void {
+  override close(): void {
     this.expanded = false;
   }
 
   /** Sets the expanded state of the expansion panel to true. */
-  open(): void {
+  override open(): void {
     this.expanded = true;
   }
 
@@ -183,7 +182,7 @@ export class SbbExpansionPanel
     this._inputChanges.next(changes);
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     super.ngOnDestroy();
     this._bodyAnimationDone.complete();
     this._inputChanges.complete();
@@ -201,6 +200,4 @@ export class SbbExpansionPanel
   }
 
   static ngAcceptInputType_hideToggle: BooleanInput;
-  static ngAcceptInputType_expanded: BooleanInput;
-  static ngAcceptInputType_disabled: BooleanInput;
 }

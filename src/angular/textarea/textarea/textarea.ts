@@ -25,8 +25,6 @@ import {
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
   CanUpdateErrorState,
-  CanUpdateErrorStateCtor,
-  HasVariantCtor,
   mixinErrorState,
   mixinVariant,
   SbbErrorStateMatcher,
@@ -38,19 +36,19 @@ import { auditTime, take, takeUntil } from 'rxjs/operators';
 let nextId = 0;
 
 // Boilerplate for applying mixins to TextareaComponent.
-/** @docs-private */
-export class SbbTextareaBase {
-  constructor(
-    public _defaultErrorStateMatcher: SbbErrorStateMatcher,
-    public _parentForm: NgForm,
-    public _parentFormGroup: FormGroupDirective,
-    public ngControl: NgControl
-  ) {}
-}
-
-export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
-  HasVariantCtor &
-  typeof SbbTextareaBase = mixinErrorState(mixinVariant(SbbTextareaBase));
+// tslint:disable-next-line: naming-convention
+const _SbbTextareaMixinBase = mixinErrorState(
+  mixinVariant(
+    class {
+      constructor(
+        public _defaultErrorStateMatcher: SbbErrorStateMatcher,
+        public _parentForm: NgForm,
+        public _parentFormGroup: FormGroupDirective,
+        public ngControl: NgControl
+      ) {}
+    }
+  )
+);
 
 @Component({
   selector: 'sbb-textarea',
@@ -71,7 +69,7 @@ export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
   },
 })
 export class SbbTextarea
-  extends SbbTextareaMixinBase
+  extends _SbbTextareaMixinBase
   implements
     SbbFormFieldControl<string>,
     CanUpdateErrorState,
@@ -98,7 +96,7 @@ export class SbbTextarea
   }
 
   /** Emits when the state of the option changes and any parents have to be notified. */
-  readonly stateChanges = new Subject<void>();
+  override readonly stateChanges = new Subject<void>();
 
   private _destroyed = new Subject<void>();
 
@@ -200,7 +198,7 @@ export class SbbTextarea
   _onTouched: () => void = () => {};
 
   constructor(
-    @Self() @Optional() public ngControl: NgControl,
+    @Self() @Optional() public override ngControl: NgControl,
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
     private _focusMonitor: FocusMonitor,
