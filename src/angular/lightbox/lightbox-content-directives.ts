@@ -37,7 +37,7 @@ let dialogElementUid = 0;
 })
 export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChanges {
   /** Screenreader label for the button. */
-  @Input('aria-label') ariaLabel: string =
+  @Input('aria-label') override ariaLabel: string =
     typeof $localize === 'function'
       ? $localize`:Aria label to close a dialog@@sbbLightboxCloseLightbox:Close lightbox`
       : 'Close lightbox';
@@ -63,7 +63,7 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
     super(lightboxRef, elementRef, lightbox as unknown as SbbDialog);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  override ngOnChanges(changes: SimpleChanges) {
     const proxiedChange = changes['_sbbLightboxClose'] || changes['_sbbLightboxCloseResult'];
 
     if (proxiedChange) {
@@ -95,7 +95,7 @@ export class SbbLightboxClose extends SbbDialogClose implements OnInit, OnChange
 })
 export class SbbLightboxTitle extends _SbbDialogTitleBase {
   /** Unique id for the lightbox title. If none is supplied, it will be auto-generated. */
-  @Input() id: string = `sbb-lightbox-title-${dialogElementUid++}`;
+  @Input() override id: string = `sbb-lightbox-title-${dialogElementUid++}`;
 
   constructor(
     // The lightbox title directive is always used in combination with a `SbbDialogRef`.

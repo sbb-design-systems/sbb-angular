@@ -84,7 +84,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
    * @param config Extra configuration options.
    * @returns Reference to the newly-opened lightbox.
    */
-  open<T, D = any, R = any>(
+  override open<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
     config?: SbbLightboxConfig<D>
   ): SbbLightboxRef<T, R> {
@@ -105,7 +105,7 @@ export class SbbLightbox extends _SbbDialogBase<SbbLightboxContainer, SbbLightbo
    * @param id ID to use when looking up the lightbox.
    * @alias getLightboxById
    */
-  getDialogById(id: string): SbbLightboxRef<any> | undefined {
+  override getDialogById(id: string): SbbLightboxRef<any> | undefined {
     return this.openDialogs.find((dialog) => dialog.id === id);
   }
 

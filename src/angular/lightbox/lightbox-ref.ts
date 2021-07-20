@@ -40,7 +40,7 @@ export class SbbLightboxRef<T, R = any> extends SbbDialogRef<T, R> {
    * Not supported for lightbox.
    * @docs-private
    */
-  updatePosition(): this {
+  override updatePosition(): this {
     return this;
   }
 
@@ -48,7 +48,7 @@ export class SbbLightboxRef<T, R = any> extends SbbDialogRef<T, R> {
    * Not supported for lightbox.
    * @docs-private
    */
-  updateSize(): this {
+  override updateSize(): this {
     return this;
   }
 }
