@@ -1001,3 +1001,11 @@ class TooltipOnTextFieldsComponent {
 class TooltipOnDraggableElementComponent {
   @ViewChild('button') button: ElementRef;
 }
+
+/** Asserts whether a tooltip directive has a tooltip instance. */
+function assertTooltipInstance(tooltip: SbbTooltip, shouldExist: boolean): void {
+  // Note that we have to cast this to a boolean, because Jasmine will go into an infinite loop
+  // if it tries to stringify the `_tooltipInstance` when an assertion fails. The infinite loop
+  // happens due to the `_tooltipInstance` having a circular structure.
+  expect(!!tooltip._tooltipInstance).toBe(shouldExist);
+}
