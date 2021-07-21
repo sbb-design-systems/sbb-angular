@@ -30,7 +30,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
       this._referenceNamesPerTemplate.set(template, []);
     }
 
-    iterateNodes(template.content, async (node) => {
+    iterateNodes(template.content, (node) => {
       if (nodeCheck(node).is('sbb-contextmenu')) {
         this._contextmenus.add(template, node);
       } else if (nodeCheck(node).is('sbb-breadcrumbs')) {

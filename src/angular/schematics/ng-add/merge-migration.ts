@@ -6,19 +6,11 @@ import {
 } from '@angular/cdk/schematics';
 
 import { sbbAngularUpgradeData } from './add-data';
-import { BadgeMigration } from './migrations/badge-migration';
-import { ButtonMigration } from './migrations/button-migration';
-import { ChipsMigration } from './migrations/chips-migration';
 import { ClassNamesMigration } from './migrations/class-names';
 import { EnumToStringLiteralMigration } from './migrations/enum-to-string-literal-migration';
 import { MenuMigration } from './migrations/menu-migration';
-import { PaginationMigration } from './migrations/pagination-migration';
-import { ProcessflowMigration } from './migrations/processflow-migration';
-import { SearchMigration } from './migrations/search-migration';
+import { MergeRefactorMigration } from './migrations/merge-refactor-migration';
 import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
-import { SelectionPanelMigration } from './migrations/selection-panel-migration';
-import { TabsMigration } from './migrations/tabs-migration';
-import { TagMigration } from './migrations/tag-migration';
 
 /** Entry point for the merge migration schematics */
 export function mergePublicAndBusiness(): Rule {
@@ -27,17 +19,9 @@ export function mergePublicAndBusiness(): Rule {
     'merge' as TargetVersion,
     [
       SecondaryEntryPointsMigration,
-      ButtonMigration,
-      SelectionPanelMigration,
       EnumToStringLiteralMigration,
+      MergeRefactorMigration,
       MenuMigration,
-      SearchMigration,
-      BadgeMigration,
-      PaginationMigration,
-      ChipsMigration,
-      TabsMigration,
-      ProcessflowMigration,
-      TagMigration,
     ],
     sbbAngularUpgradeData,
     onMigrationComplete
