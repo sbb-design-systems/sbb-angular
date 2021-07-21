@@ -30,7 +30,7 @@ const appOptions: ApplicationOptions = {
   style: Style.Css,
 };
 
-describe('TabsMigration', () => {
+describe('MergeRefactorMigration', () => {
   let runner: SchematicTestRunner;
   let tree: UnitTestTree;
   let project: ProjectDefinition;

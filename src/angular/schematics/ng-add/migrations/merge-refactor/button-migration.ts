@@ -1,13 +1,14 @@
-import { DevkitContext, Migration, ResolvedResource, TargetVersion } from '@angular/cdk/schematics';
+import type { Element } from 'parse5';
 
-import { iterateNodes, MigrationElement, MigrationRecorderRegistry, nodeCheck } from '../../utils';
+import { MigrationElement, nodeCheck } from '../../../utils';
+
+import { RefactorMigration } from './refactor-migration';
 
 /**
- * Migration that updates sbbButton and sbbLink usages to the new format.
+ * Migration that updates sbbButton usages to the new format.
  */
-export class ButtonMigration extends Migration<null, DevkitContext> {
-  enabled: boolean = this.targetVersion === ('merge' as TargetVersion);
-
+export class ButtonMigration extends RefactorMigration {
+  protected _migrateMessage: string = 'Migrating sbbButton usages';
   private readonly _modeSelectorMapping: { [mode: string]: string } = {
     primary: 'sbb-button',
     secondary: 'sbb-secondary-button',
@@ -16,50 +17,25 @@ export class ButtonMigration extends Migration<null, DevkitContext> {
     alternative: 'sbb-alt-button',
     icon: 'sbb-icon-button',
   };
-  private _buttons = new MigrationRecorderRegistry(this);
-  private _links = new MigrationRecorderRegistry(this);
   private _buttonMigrationFailedPartially = false;
-  private _linkModeUsed = false;
 
-  /** Method that will be called for each Angular template in the program. */
-  visitTemplate(template: ResolvedResource): void {
-    iterateNodes(template.content, (node) => {
-      if (nodeCheck(node).hasAttribute('sbbButton')) {
-        this._buttons.add(template, node);
-      } else if (nodeCheck(node).hasAttribute('sbbLink')) {
-        this._links.add(template, node);
-      }
-    });
+  protected _shouldMigrate(element: Element): boolean {
+    return this._hasAttribute(element, 'sbbButton');
   }
 
-  postAnalysis() {
-    if (!this._buttons.empty) {
-      this.logger.info('Migrating sbbButton usages');
-      this._buttons.forEach((e) => this._handleButton(e));
-      if (this._buttonMigrationFailedPartially) {
-        this.logger.warn('  Automatic migration failed for some sbbButton instances.');
-        this.logger.warn('  Check generated TODO in templates.');
-        this.logger.warn(
-          '  See https://angular.app.sbb.ch/angular/components/button for reference.'
-        );
-        this.logger.info('');
-      }
-    }
-    if (!this._links.empty) {
-      this.logger.info('Migrating sbbLink usages');
-      this._links.forEach((e) => this._handleLink(e));
-      if (this._linkModeUsed) {
-        this.logger.warn('  sbbLink[mode] is no longer available.');
-        this.logger.warn('  Maybe you want to use a link group?');
-        this.logger.warn(
-          '  See https://angular.app.sbb.ch/angular/components/button on how to use.'
-        );
-        this.logger.info('');
-      }
+  override applyMigration() {
+    super.applyMigration();
+    if (this._buttonMigrationFailedPartially) {
+      this._migration.logger.warn('  Automatic migration failed for some sbbButton instances.');
+      this._migration.logger.warn('  Check generated TODO in templates.');
+      this._migration.logger.warn(
+        '  See https://angular.app.sbb.ch/angular/components/button for reference.'
+      );
+      this._migration.logger.info('');
     }
   }
 
-  private _handleButton(element: MigrationElement) {
+  protected _migrate(element: MigrationElement) {
     const sbbButton = element.findProperty('sbbButton')!;
     const mode = element.findProperty('mode');
     const icon = element.findProperty('icon');
@@ -116,23 +92,5 @@ export class ButtonMigration extends Migration<null, DevkitContext> {
       iconElement.remove();
     }
     sbbButton.replace(selector);
-  }
-
-  private _handleLink(element: MigrationElement) {
-    const sbbLink = element.findProperty('sbbLink')!;
-    const mode = element.findProperty('mode');
-    const icon = element.findProperty('icon');
-    if (mode) {
-      this._linkModeUsed = true;
-      mode.remove();
-    }
-    sbbLink.replace('sbb-link');
-    if (!icon) {
-      // Do nothing, if no icon specified
-    } else if (icon.value === 'download') {
-      icon.replace('indicatorIcon="kom:download-small"');
-    } else {
-      icon.remove();
-    }
   }
 }

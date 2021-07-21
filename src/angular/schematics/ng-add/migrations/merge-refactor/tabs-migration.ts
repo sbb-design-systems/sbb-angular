@@ -1,40 +1,23 @@
 import { dirname } from '@angular-devkit/core';
-import {
-  addModuleImportToModule,
-  DevkitContext,
-  Migration,
-  ResolvedResource,
-  TargetVersion,
-} from '@angular/cdk/schematics';
+import { addModuleImportToModule, ResolvedResource } from '@angular/cdk/schematics';
 import { findModule } from '@schematics/angular/utility/find-module';
+import type { Element } from 'parse5';
 
-import { iterateNodes, MigrationElement, MigrationRecorderRegistry, nodeCheck } from '../../utils';
+import { MigrationElement } from '../../../utils';
+
+import { RefactorMigration } from './refactor-migration';
 
 /**
  * Migration that migrates the tabs usages.
  */
-export class TabsMigration extends Migration<null, DevkitContext> {
-  enabled: boolean = this.targetVersion === ('merge' as TargetVersion);
+export class TabsMigration extends RefactorMigration {
+  protected _migrateMessage: string = 'Migrating sbb-tab usages';
 
-  private _tabs = new MigrationRecorderRegistry(this);
-
-  /** Method that will be called for each Angular template in the program. */
-  visitTemplate(template: ResolvedResource): void {
-    iterateNodes(template.content, (node) => {
-      if (nodeCheck(node).is('sbb-tab')) {
-        this._tabs.add(template, node);
-      }
-    });
+  protected _shouldMigrate(element: Element): boolean {
+    return this._isElement(element, 'sbb-tab');
   }
 
-  postAnalysis() {
-    if (!this._tabs.empty) {
-      this.logger.info('Migrating sbb-tab usages');
-      this._tabs.forEach((e) => this._handleTab(e));
-    }
-  }
-
-  private _handleTab(element: MigrationElement) {
+  protected _migrate(element: MigrationElement) {
     const labelId = element.findProperty('labelId');
     labelId?.remove();
 
@@ -65,15 +48,15 @@ export class TabsMigration extends Migration<null, DevkitContext> {
 
   private _addBadgeModule(resource: ResolvedResource) {
     try {
-      const modulePath = findModule(this.context.tree, dirname(resource.filePath));
+      const modulePath = findModule(this._migration.context.tree, dirname(resource.filePath));
       addModuleImportToModule(
-        this.context.tree,
+        this._migration.context.tree,
         modulePath,
         'SbbBadgeModule',
         '@sbb-esta/angular/badge'
       );
     } catch {
-      this.logger.warn(
+      this._migration.logger.warn(
         `Unable to add SbbBadgeModule for usage in <sbb-tab> at ${resource.filePath}. Please add it manually.`
       );
     }

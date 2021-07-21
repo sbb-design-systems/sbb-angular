@@ -1,41 +1,22 @@
-import { DevkitContext, Migration, ResolvedResource, TargetVersion } from '@angular/cdk/schematics';
 import type { Attribute, Element } from 'parse5';
 
-import {
-  iterateNodes,
-  MigrationElement,
-  MigrationElementProperty,
-  MigrationRecorderRegistry,
-  nodeCheck,
-} from '../../utils';
+import { MigrationElement, MigrationElementProperty } from '../../../utils';
 
-export class ChipsMigration extends Migration<null, DevkitContext> {
-  enabled: boolean = this.targetVersion === ('merge' as TargetVersion);
+import { RefactorMigration } from './refactor-migration';
 
-  private _chipInputs = new MigrationRecorderRegistry(this);
+export class ChipsMigration extends RefactorMigration {
+  protected _migrateMessage: string = 'Migrating sbb-chip-input usages';
 
-  /** Method that will be called for each Angular template in the program. */
-  visitTemplate(template: ResolvedResource): void {
-    iterateNodes(template.content, async (node) => {
-      if (nodeCheck(node).is('sbb-chip-input')) {
-        this._chipInputs.add(template, node);
-      }
-    });
+  protected _shouldMigrate(element: Element): boolean {
+    return this._isElement(element, 'sbb-chip-input');
   }
 
-  postAnalysis() {
-    if (!this._chipInputs.empty) {
-      this.logger.info('Migrating sbb-chip-input usages');
-      this._chipInputs.forEach((e) => this._handleChipInput(e));
-    }
-  }
-
-  private _handleChipInput(chip: MigrationElement) {
+  protected _migrate(element: MigrationElement) {
     let template: string;
-    const formControlNameProperty = chip.findProperty('formControlName');
-    const formControlProperty = chip.findProperty('formControl');
-    const ngModelProperty = chip.findProperty('ngModel');
-    const autocompleteProperty = chip.findProperty('sbbAutocomplete');
+    const formControlNameProperty = element.findProperty('formControlName');
+    const formControlProperty = element.findProperty('formControl');
+    const ngModelProperty = element.findProperty('ngModel');
+    const autocompleteProperty = element.findProperty('sbbAutocomplete');
 
     if (formControlNameProperty) {
       let accessFormControlString = `'${formControlNameProperty.nativeValue}'`;
@@ -48,7 +29,7 @@ export class ChipsMigration extends Migration<null, DevkitContext> {
         accessFormControlString = `${formControlNameProperty.nativeValue}`;
       }
 
-      const formGroupName = this._findFormGroupName(chip.element);
+      const formGroupName = this._findFormGroupName(element.element);
       if (formGroupName) {
         template = this._createTemplate(
           `${formGroupName}.get(${accessFormControlString}).value`,
@@ -76,7 +57,7 @@ export class ChipsMigration extends Migration<null, DevkitContext> {
       );
     }
 
-    chip.insertStart(template);
+    element.insertStart(template);
 
     if (autocompleteProperty) {
       autocompleteProperty.remove();

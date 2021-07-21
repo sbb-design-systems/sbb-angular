@@ -123,7 +123,12 @@ export function iterateNodes(
   visitNodes(root.childNodes);
 }
 
-export function nodeCheck(element: Element) {
+export interface NodeCheck {
+  is(name: string): boolean;
+  hasAttribute(...name: string[]): boolean;
+}
+
+export function nodeCheck(element: Element): NodeCheck {
   return {
     is(name: string) {
       return element.nodeName.toLowerCase() === name.toLowerCase();
