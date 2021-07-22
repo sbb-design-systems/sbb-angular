@@ -25,7 +25,7 @@ import {
 } from '@angular/forms';
 import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular/core';
 import { TypeRef } from '@sbb-esta/angular/core';
-import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular/form-field';
+import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular/input';
 import { Subscription } from 'rxjs';
 
 import { createMissingDateImplError } from '../datepicker-errors';

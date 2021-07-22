@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { SbbAutocompleteOrigin, SbbAutocompleteTrigger } from '@sbb-esta/angular/autocomplete';
 import { TypeRef } from '@sbb-esta/angular/core';
-import { SbbInput } from '@sbb-esta/angular/form-field';
+import { SbbInput } from '@sbb-esta/angular/input';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 

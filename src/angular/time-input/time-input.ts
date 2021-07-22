@@ -10,7 +10,7 @@ import {
   Self,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { SbbInput } from '@sbb-esta/angular/form-field';
+import { SbbInput } from '@sbb-esta/angular/input';
 
 const REGEX_PATTERN = /[0-9]{3,4}/;
 const REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/;

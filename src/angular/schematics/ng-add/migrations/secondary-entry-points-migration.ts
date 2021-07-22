@@ -97,7 +97,10 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
 
     // Determine the subpackage each symbol in the namedBinding comes from.
     for (const element of declaration.importClause.namedBindings.elements) {
-      const elementName = element.propertyName ? element.propertyName : element.name;
+      let elementName = element.propertyName ? element.propertyName : element.name;
+      if (CLASS_NAME_RENAMES.has(elementName.text)) {
+        elementName = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
+      }
 
       // Try to resolve the module name via the type checker, and if it fails, fall back to
       // resolving it from our list of symbol to entry point mappings. Using the type checker is

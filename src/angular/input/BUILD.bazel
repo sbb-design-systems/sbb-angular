@@ -4,47 +4,24 @@ load(
     "ng_module",
     "ng_test_library",
     "ng_web_test_suite",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "datepicker",
+    name = "input",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [
-        ":datepicker/datepicker.css",
-        ":datepicker-content/datepicker-content.css",
-    ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/datepicker",
+    module_name = "@sbb-esta/angular/input",
     deps = [
+        "//src:dev_mode_types",
         "//src/angular/core",
-        "//src/angular/icon",
-        "//src/angular/input",
+        "//src/angular/form-field",
         "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
-        "@npm//rxjs",
-    ],
-)
-
-sass_binary(
-    name = "datepicker_datepicker_scss",
-    src = "datepicker/datepicker.scss",
-    deps = [
-        "//src/angular/styles:common_scss_lib",
-    ],
-)
-
-sass_binary(
-    name = "datepicker_content_datepicker_content_scss",
-    src = "datepicker-content/datepicker-content.scss",
-    deps = [
-        "//src/angular/styles:common_scss_lib",
     ],
 )
 
@@ -55,15 +32,13 @@ ng_test_library(
         exclude = ["**/*.e2e.spec.ts"],
     ),
     deps = [
-        ":datepicker",
+        ":input",
         "//src/angular/core",
         "//src/angular/core/testing",
-        "//src/angular/icon",
-        "//src/angular/icon/testing",
+        "//src/angular/form-field",
         "@npm//@angular/cdk",
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
-        "@npm//@angular/platform-browser-dynamic",
     ],
 )
 
@@ -77,7 +52,7 @@ ng_web_test_suite(
 
 markdown_to_html(
     name = "overview",
-    srcs = [":datepicker.md"],
+    srcs = [":input.md"],
 )
 
 filegroup(

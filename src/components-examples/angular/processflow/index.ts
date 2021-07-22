@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
-import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbProcessflowModule } from '@sbb-esta/angular/processflow';
 
 import { ProcessflowEditableExample } from './processflow-editable/processflow-editable-example';
@@ -23,7 +23,6 @@ const EXAMPLES = [
     FormsModule,
     SbbButtonModule,
     SbbCheckboxModule,
-    SbbFormFieldModule,
     SbbInputModule,
     SbbProcessflowModule,
     ReactiveFormsModule,

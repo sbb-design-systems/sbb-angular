@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { SbbFormFieldModule } from '@sbb-esta/angular-public/form-field';
 import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
 
@@ -11,3 +11,9 @@ import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
   `,
 })
 export class TestComponent {}
+
+@NgModule({
+  declarations: [TestComponent],
+  imports: [SbbFormFieldModule],
+})
+export class FormFieldModule {}

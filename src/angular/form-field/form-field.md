@@ -4,9 +4,13 @@ In this document, "form field" refers to the wrapper component `<sbb-form-field>
 "form field control" refers to the component that the `<sbb-form-field>` is wrapping
 (e.g. the input, textarea, select, etc.)
 
-On native form elements you have to apply the `sbbInput`-directive.
+The following components are designed to work inside a `<sbb-form-field>`:
 
-`<sbb-form-field>` works with `<input sbbInput>`, `<textarea sbbInput>`, `<sbb-textarea>`, `<select sbbInput>`, `<sbb-select>`, `<input sbbInput sbbDateInput>` and `<input sbbInput sbbTimeInput>`.
+- [`<input sbbInput>` &amp; `<textarea sbbInput>`](/angular/components/input/overview)
+- [`<select sbbInput>`](/angular/components/select/overview)
+- [`<sbb-select>`](/angular/components/select/overview)
+- [`<sbb-chip-list>`](/angular/components/chips/overview)
+- [`<sbb-textarea>`](/angular/components/chips/textarea)
 
 #### Basic examples
 

@@ -223,9 +223,17 @@ The `FileTypeCategory` enum has been changed to a string literal type.
 
 ### Form Field
 
-No changes.
+_Automatic migration available_
 
-[Documentation](angular/components/form-field)
+The `sbbInput` directive has been moved into its own module `SbbInputModule`, which also re-exports
+the `SbbFormFieldModule`. This was done because we now support multiple modules that do not depend
+on `sbbInput`.
+In order to minimize impact, we implemented a migration that replaces usage of `SbbFormFieldModule`
+with `SbbInputModule`.
+
+[Form Field Documentation](angular/components/form-field)
+
+[Input Documentation](angular/components/input)
 
 ### Icon
 

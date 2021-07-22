@@ -21,9 +21,11 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbErrorStateMatcher, SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
 import { dispatchFakeEvent, wrappedErrorMessage } from '@sbb-esta/angular/core/testing';
+import {
+  getSbbFormFieldMissingControlError,
+  SbbFormFieldModule,
+} from '@sbb-esta/angular/form-field';
 
-import { getSbbFormFieldMissingControlError } from './form-field-errors';
-import { SbbFormFieldModule } from './form-field.module';
 import { SbbInput } from './input';
 import { SBB_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
 import { SbbInputModule } from './input.module';
@@ -422,53 +424,6 @@ describe('SbbInput without forms', () => {
     input.disabled = true;
     fixture.detectChanges();
 
-    expect(container.classList).not.toContain('sbb-focused');
-  }));
-
-  it('should not highlight when focusing a readonly input', fakeAsync(() => {
-    const fixture = createComponent(SbbInputWithReadonlyInput);
-    fixture.detectChanges();
-
-    const input = fixture.debugElement
-      .query(By.directive(SbbInput))!
-      .injector.get<SbbInput>(SbbInput);
-    const container = fixture.debugElement.query(By.css('sbb-form-field'))!.nativeElement;
-
-    // Call the focus handler directly to avoid flakyness where
-    // browsers don't focus elements if the window is minimized.
-    input._focusChanged(true);
-    fixture.detectChanges();
-
-    expect(input.focused).toBe(false);
-    expect(container.classList).not.toContain('sbb-focused');
-  }));
-
-  it('should reset the highlight when a readonly input is blurred', fakeAsync(() => {
-    const fixture = createComponent(SbbInputWithReadonlyInput);
-    fixture.detectChanges();
-
-    const inputDebugElement = fixture.debugElement.query(By.directive(SbbInput))!;
-    const input = inputDebugElement.injector.get<SbbInput>(SbbInput);
-    const container = fixture.debugElement.query(By.css('sbb-form-field'))!.nativeElement;
-
-    fixture.componentInstance.isReadonly = false;
-    fixture.detectChanges();
-
-    // Call the focus handler directly to avoid flakyness where
-    // browsers don't focus elements if the window is minimized.
-    input._focusChanged(true);
-    fixture.detectChanges();
-
-    expect(input.focused).toBe(true);
-    expect(container.classList).toContain('sbb-focused');
-
-    fixture.componentInstance.isReadonly = true;
-    fixture.detectChanges();
-
-    input._focusChanged(false);
-    fixture.detectChanges();
-
-    expect(input.focused).toBe(false);
     expect(container.classList).not.toContain('sbb-focused');
   }));
 
@@ -1079,17 +1034,6 @@ class SbbInputWithNgIf {
 })
 class SbbInputOnPush {
   formControl = new FormControl('');
-}
-
-@Component({
-  template: `
-    <sbb-form-field>
-      <input sbbInput [readonly]="isReadonly" value="Only for reading" />
-    </sbb-form-field>
-  `,
-})
-class SbbInputWithReadonlyInput {
-  isReadonly = true;
 }
 
 @Component({

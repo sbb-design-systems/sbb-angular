@@ -19,7 +19,7 @@ ng_module(
     deps = [
         "//src/angular/button",
         "//src/angular/checkbox",
-        "//src/angular/form-field",
+        "//src/angular/input",
         "//src/angular/processflow",
         "@npm//@angular/common",
         "@npm//@angular/core",

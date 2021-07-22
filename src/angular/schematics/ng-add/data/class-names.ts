@@ -109,6 +109,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbProcessflowStep',
           replaceWith: 'SbbStep',
         },
+        {
+          replace: 'SbbFormFieldModule',
+          replaceWith: 'SbbInputModule',
+        },
       ],
     },
   ],

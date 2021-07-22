@@ -1,0 +1,57 @@
+<form class="example-form">
+  <sbb-form-field class="example-full-width">
+    <sbb-label>Company (disabled)</sbb-label>
+    <input sbbInput disabled value="SBB" />
+  </sbb-form-field>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <sbb-form-field class="example-full-width">
+          <sbb-label>First name</sbb-label>
+          <input sbbInput />
+        </sbb-form-field>
+      </td>
+      <td>
+        <sbb-form-field class="example-full-width">
+          <sbb-label>Long Last Name That Will Be Truncated</sbb-label>
+          <input sbbInput />
+        </sbb-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    <sbb-form-field class="example-full-width">
+      <sbb-label>Address</sbb-label>
+      <textarea sbbInput placeholder="Ex. Hilfikerstrasse 1, 3000 Bern"></textarea>
+    </sbb-form-field>
+    <sbb-form-field class="example-full-width">
+      <sbb-label>Address 2</sbb-label>
+      <textarea sbbInput></textarea>
+    </sbb-form-field>
+  </p>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <sbb-form-field class="example-full-width">
+          <sbb-label>City</sbb-label>
+          <input sbbInput placeholder="Ex. Bern" />
+        </sbb-form-field>
+      </td>
+      <td>
+        <sbb-form-field class="example-full-width">
+          <sbb-label>Canton</sbb-label>
+          <input sbbInput placeholder="Ex. Bern" />
+        </sbb-form-field>
+      </td>
+      <td>
+        <sbb-form-field class="example-full-width">
+          <sbb-label>Postal Code</sbb-label>
+          <input sbbInput #postalCode maxlength="4" placeholder="Ex. 3000" value="3000" />
+        </sbb-form-field>
+      </td>
+    </tr>
+  </table>
+</form>

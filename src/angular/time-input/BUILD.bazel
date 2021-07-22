@@ -16,7 +16,7 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular/time-input",
     deps = [
-        "//src/angular/form-field",
+        "//src/angular/input",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
