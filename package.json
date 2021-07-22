@@ -239,7 +239,7 @@
       "prettier --write"
     ],
     "*.ts": [
-      "tslint -c tslint.json --project ./tsconfig.json"
+      "tslint -c tslint.json --project ./tsconfig.json --fix"
     ],
     "*.{bzl,bazel}": [
       "buildifier -v"

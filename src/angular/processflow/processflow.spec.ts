@@ -31,8 +31,8 @@ import {
   dispatchEvent,
   dispatchKeyboardEvent,
 } from '@sbb-esta/angular/core/testing';
-import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { merge, Observable, Subject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -973,7 +973,7 @@ describe('SbbProcessflow', () => {
             useValue: { showError: showErrorByDefault },
           },
         ],
-        [SbbFormFieldModule, SbbInputModule]
+        [SbbInputModule]
       );
       fixture.detectChanges();
       processflow = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;
@@ -1036,7 +1036,7 @@ describe('SbbProcessflow', () => {
             useValue: { displayDefaultIndicatorType: false },
           },
         ],
-        [SbbFormFieldModule, SbbInputModule]
+        [SbbInputModule]
       );
       fixture.detectChanges();
       processflow = fixture.debugElement.query(By.css('sbb-processflow'))!.componentInstance;

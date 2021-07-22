@@ -52,9 +52,9 @@ import {
   MockNgZone,
   typeInElement,
 } from '@sbb-esta/angular/core/testing';
-import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 import { SbbChip, SbbChipEvent, SbbChipRemove } from './chip';
 import { SbbChipInputEvent } from './chip-input';
@@ -984,7 +984,6 @@ describe('SbbChipList', () => {
         FormsModule,
         ReactiveFormsModule,
         SbbChipsModule,
-        SbbFormFieldModule,
         SbbInputModule,
         animationsModule,
         SbbIconModule,

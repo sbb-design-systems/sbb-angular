@@ -21,8 +21,8 @@ import {
   dispatchKeyboardEvent,
   typeInElement,
 } from '@sbb-esta/angular/core/testing';
-import { SbbInput } from '@sbb-esta/angular/form-field';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
+import { SbbInput } from '@sbb-esta/angular/input';
 
 import { SbbHeaderSearch } from './header-search';
 import { SbbSearch, SbbSearchModule } from './index';
