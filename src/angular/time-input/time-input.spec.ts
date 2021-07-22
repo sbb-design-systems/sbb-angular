@@ -3,7 +3,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { typeInElement } from '@sbb-esta/angular/core/testing';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 import { SbbTimeInputModule } from './time-input.module';
 
@@ -32,7 +32,7 @@ describe('SbbTimeInput', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbFormFieldModule],
+        imports: [FormsModule, ReactiveFormsModule, SbbTimeInputModule, SbbInputModule],
         declarations: [BasicTimeInput, FormControlTimeInput, PlaceholderTimeInput],
       }).compileComponents();
     })
