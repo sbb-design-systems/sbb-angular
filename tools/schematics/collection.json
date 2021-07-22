@@ -1,9 +1,21 @@
 {
-  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "bazel": {
       "description": "Bazelify",
       "factory": "./bazel/index#bazel"
+    },
+    "mergeMigrate": {
+      "description": "Migrate a module to angular",
+      "factory": "./merge-migrate/index#mergeMigrate"
+    },
+    "mergeSymbols": {
+      "description": "Create map for symbols of all packages to migrate to @sbb-esta/angular package",
+      "factory": "./merge-symbols/index#mergeSymbols"
+    },
+    "migrateExamples": {
+      "description": "Migrate examples to components-examples",
+      "factory": "./migrate-examples/index#migrateExamples"
     },
     "normalize-examples": {
       "description": "Normalize examples",
@@ -13,17 +25,9 @@
       "description": "Copy public components to business",
       "factory": "./public2business/index#public2business"
     },
-    "mergeSymbols": {
-      "description": "Create map for symbols of all packages to migrate to @sbb-esta/angular package",
-      "factory": "./merge-symbols/index#mergeSymbols"
-    },
-    "mergeMigrate": {
-      "description": "Migrate a module to angular",
-      "factory": "./merge-migrate/index#mergeMigrate"
-    },
-    "migrateExamples": {
-      "description": "Migrate examples to components-examples",
-      "factory": "./migrate-examples/index#migrateExamples"
+    "selectorGroups": {
+      "description": "Get a list of selector for metrics",
+      "factory": "./selector-groups/index#selectorGroups"
     }
   }
 }

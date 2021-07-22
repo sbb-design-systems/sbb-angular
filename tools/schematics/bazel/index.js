@@ -411,10 +411,7 @@ var TypeScriptDependencyResolverBase = class {
     return [
       ...(0, import_ast_utils.findNodes)(sourceFile, schematicsTs.SyntaxKind.ImportDeclaration, void 0, true),
       ...(0, import_ast_utils.findNodes)(sourceFile, schematicsTs.SyntaxKind.ExportDeclaration, void 0, true)
-    ].map((n) => {
-      var _a, _b;
-      return (_b = (_a = n.moduleSpecifier) == null ? void 0 : _a.getText().replace(/['"]/g, "")) != null ? _b : "";
-    });
+    ].map((n) => n.moduleSpecifier?.getText().replace(/['"]/g, "") ?? "");
   }
   _findDynamicImports(sourceFile) {
     return (0, import_ast_utils.findNodes)(sourceFile, schematicsTs.SyntaxKind.ImportKeyword, void 0, true).filter((n) => n.getFullText().match(/ import/) && schematicsTs.isCallExpression(n.parent) && schematicsTs.isStringLiteral(n.parent.arguments[0])).map((n) => n.parent.arguments[0].getText().replace(/['"]/g, ""));

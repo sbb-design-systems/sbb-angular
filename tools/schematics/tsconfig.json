@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "tsconfig",
-    "lib": ["es2018", "dom"],
+    "lib": ["es2020", "dom"],
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "esModuleInterop": true,
@@ -18,7 +18,7 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "strictNullChecks": true,
-    "target": "es2018",
+    "target": "es2020",
     "types": ["jasmine", "node"]
   },
   "include": ["**/*"],
