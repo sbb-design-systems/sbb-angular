@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbTextareaModule } from '@sbb-esta/angular/textarea';
 
 import { TextareaFormsExample } from './textarea-forms/textarea-forms-example';
@@ -27,7 +27,7 @@ const EXAMPLES = [
     FormsModule,
     ReactiveFormsModule,
     SbbCheckboxModule,
-    SbbFormFieldModule,
+    SbbInputModule,
     SbbTextareaModule,
   ],
   declarations: EXAMPLES,

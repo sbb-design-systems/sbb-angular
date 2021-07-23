@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbDialogModule } from '@sbb-esta/angular/dialog';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 import {
   ComponentDataDialogComponent,
@@ -38,7 +38,7 @@ const EXAMPLES = [
     ReactiveFormsModule,
     SbbButtonModule,
     SbbDialogModule,
-    SbbFormFieldModule,
+    SbbInputModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

@@ -1,7 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbLoadingModule, SbbLoading } from '@sbb-esta/angular/loading';
-import { SbbLoadingModule as SbbBusinessLoadingModule } from '@sbb-esta/angular/loading';
-import { SbbLoadingModule as SbbBusinessLoadingModuleSecond } from '@sbb-esta/angular/loading';
+import { SbbLoadingModule, SbbLoading, SbbLoadingModule as SbbBusinessLoadingModule, SbbLoadingModule as SbbBusinessLoadingModuleSecond } from '@sbb-esta/angular/loading';
 
 @Component({
   selector: 'sbb-loading-test',

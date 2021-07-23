@@ -18,8 +18,8 @@ ng_module(
     module_name = "@sbb-esta/components-examples/angular/radio-button-panel",
     deps = [
         "//src/angular/checkbox",
-        "//src/angular/form-field",
         "//src/angular/icon",
+        "//src/angular/input",
         "//src/angular/radio-button-panel",
         "//src/angular/select",
         "@npm//@angular/common",

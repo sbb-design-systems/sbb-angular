@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 import { AutocompleteDisplayWithExample } from './autocomplete-display-with/autocomplete-display-with-example';
 import { AutocompleteFormsExample } from './autocomplete-forms/autocomplete-forms-example';
@@ -30,13 +30,7 @@ const EXAMPLES = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SbbAutocompleteModule,
-    SbbFormFieldModule,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SbbAutocompleteModule, SbbInputModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
 })

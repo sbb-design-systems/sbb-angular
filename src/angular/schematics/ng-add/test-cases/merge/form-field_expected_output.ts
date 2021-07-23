@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 @Component({
   selector: 'test',

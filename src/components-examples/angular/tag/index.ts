@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbTagModule } from '@sbb-esta/angular/tag';
 
 import { TagAdvancedExample } from './tag-advanced/tag-advanced-example';
@@ -27,7 +27,7 @@ const EXAMPLES = [
     FormsModule,
     ReactiveFormsModule,
     SbbButtonModule,
-    SbbFormFieldModule,
+    SbbInputModule,
     SbbTagModule,
   ],
   declarations: EXAMPLES,

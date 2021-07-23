@@ -15,7 +15,7 @@ ng_module(
     module_name = "@sbb-esta/components-examples/angular/select",
     deps = [
         "//src/angular/checkbox",
-        "//src/angular/form-field",
+        "//src/angular/input",
         "//src/angular/select",
         "@npm//@angular/common",
         "@npm//@angular/core",

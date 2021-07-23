@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbLightboxModule } from '@sbb-esta/angular/lightbox';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 
@@ -45,7 +45,7 @@ const EXAMPLES = [
     ReactiveFormsModule,
     SbbIconModule,
     SbbButtonModule,
-    SbbFormFieldModule,
+    SbbInputModule,
     SbbLightboxModule,
     SbbRadioButtonModule,
   ],

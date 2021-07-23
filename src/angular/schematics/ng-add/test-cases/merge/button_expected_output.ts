@@ -41,6 +41,6 @@ export class ButtonTestComponent {}
 
 @NgModule({
   declarations: [ButtonTestComponent],
-  imports: [SbbButtonModule, SbbButtonModule],
+  imports: [SbbButtonModule],
 })
 export class ButtonTestModule {}

@@ -221,13 +221,16 @@ The `FileTypeCategory` enum has been changed to a string literal type.
 
 [Documentation](angular/components/file-selector)
 
-### Form Field
+### Form Field & Input
 
 _Automatic migration available_
 
-The `sbbInput` directive has been moved into its own module `SbbInputModule`, which also re-exports
-the `SbbFormFieldModule`. This was done because we now support multiple modules that do not depend
-on `sbbInput`.
+The dependency order of the `SbbFormFieldModule` and `SbbInputModule` have been changed.
+Previously the `SbbFormFieldModule` re-exported the `SbbInputModule`. However, since
+`<sbb-form-field>` can be used without `sbbInput` (e.g. with `<sbb-select>`, `<sbb-chip-list>`,
+`<sbb-textarea>`), but `sbbInput` has no purpose without a surrounding `<sbb-form-field>`,
+we switched it up, so that `SbbFormFieldModule` no longer re-exports `SbbInputModule`, but now
+`SbbInputModule` re-exports `SbbFormFieldModule`.
 In order to minimize impact, we implemented a migration that replaces usage of `SbbFormFieldModule`
 with `SbbInputModule`.
 

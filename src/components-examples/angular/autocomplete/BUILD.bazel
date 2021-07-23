@@ -15,7 +15,7 @@ ng_module(
     module_name = "@sbb-esta/components-examples/angular/autocomplete",
     deps = [
         "//src/angular/autocomplete",
-        "//src/angular/form-field",
+        "//src/angular/input",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

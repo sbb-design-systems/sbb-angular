@@ -17,7 +17,7 @@ ng_module(
         "//src/angular/checkbox",
         "//src/angular/core",
         "//src/angular/datepicker",
-        "//src/angular/form-field",
+        "//src/angular/input",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",
