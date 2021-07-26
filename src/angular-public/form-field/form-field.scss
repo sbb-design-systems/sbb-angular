@@ -43,7 +43,8 @@
 .sbb-form-field-wrapper {
   padding-bottom: if($sbbBusiness, pxToEm(16, 13), pxToEm(21, 14));
 
-  .sbb-form-field-errorless & {
+  .sbb-form-field-errorless &,
+  .sbb-form-field-flexible-errors & {
     padding-bottom: 0;
   }
 }
@@ -199,6 +200,10 @@ select.sbb-input-element {
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
+
+  .sbb-form-field-flexible-errors & {
+    position: relative;
+  }
 }
 
 // Scale down icons in the label and error to be the same size as the text.

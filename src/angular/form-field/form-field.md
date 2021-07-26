@@ -41,16 +41,25 @@ messages can be shown at the same time if desired, but the `<sbb-form-field>` on
 space to display one error message at a time. Ensuring that enough space is available to display
 multiple errors is up to the user.
 
-#### Display error messages outside sbb-form-field
+#### Remove reserved space for error messages
 
 `<sbb-form-field>` reserves space below the input field for a potential error message.
-To remove this reserved space, apply the css class `sbb-form-field-errorless` to the `<sbb-form-field>` tag.
+To remove this reserved space, apply the css class `sbb-form-field-flexible-errors` to the
+`<sbb-form-field>` tag or any ancestor (e.g. `<body class="sbb-form-field-flexible-errors">`).
 Place the `<sbb-error>` below the `<sbb-form-field>` and conditionally add the aria-describedby attribute.
 Please note that this will lead to the content below the `<sbb-error>` to be pushed downward when
 the error is being displayed and upward when it is being hidden.
 
+#### Display error messages outside sbb-form-field
+
+`<sbb-form-field>` constrains error messages to its width. In order to display errors with a wider width
+the `<sbb-error>` element can be placed outside the `<sbb-form-field>`. Apply the css class
+`sbb-form-field-flexible-errors` to the `<sbb-form-field>` tag or any ancestor to remove the reserved
+error space. You will also manually need to assign the aria-describedby, as `<sbb-form-field>` is only
+able to detect and automatically assign `<sbb-error>` instances inside of itself.
+
 ```html
-<sbb-form-field label="Name" class="sbb-form-field-errorless">
+<sbb-form-field label="Name" class="sbb-form-field-flexible-errors">
   <input
     type="text"
     sbbInput

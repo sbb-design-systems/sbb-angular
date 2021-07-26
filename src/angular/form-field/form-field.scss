@@ -58,7 +58,7 @@
     padding-bottom: pxToRem(16);
   }
 
-  .sbb-form-field-errorless & {
+  .sbb-form-field-flexible-errors & {
     padding-bottom: 0;
   }
 }
@@ -109,6 +109,10 @@
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
+
+  .sbb-form-field-flexible-errors & {
+    position: relative;
+  }
 }
 
 // Scale down icons in the label and error to be the same size as the text.
