@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SBB_LEAN_DATE_ADAPTER } from '@sbb-esta/angular/core';
 import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 
 import { DatepickerDateFilterExample } from './datepicker-date-filter/datepicker-date-filter-example';
 import { DatepickerDateRangeExample } from './datepicker-date-range/datepicker-date-range-example';
@@ -35,7 +35,7 @@ const EXAMPLES = [
     ReactiveFormsModule,
     SbbCheckboxModule,
     SbbDatepickerModule,
-    SbbFormFieldModule,
+    SbbInputModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,

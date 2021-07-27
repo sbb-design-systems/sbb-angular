@@ -66,7 +66,10 @@ export function ngAdd(options: Schema): Rule {
         '@sbb-esta/angular-core',
       ].some((packageName) => !!getPackageVersionFromPackageJson(host, packageName))
     ) {
-      context.addTask(new RunSchematicTask('ng-add-migrate', options), [setupProjectId]);
+      const migrateId = context.addTask(new RunSchematicTask('ng-add-migrate', options), [
+        setupProjectId,
+      ]);
+      context.addTask(new RunSchematicTask('ng-migration-clean-up', options), [migrateId]);
     }
   };
 }

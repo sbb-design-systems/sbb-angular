@@ -36,7 +36,8 @@ import {
   MockNgZone,
   typeInElement,
 } from '@sbb-esta/angular/core/testing';
-import { SbbFormField, SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbFormField } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -546,7 +547,7 @@ describe('SbbAutocomplete', () => {
     TestBed.configureTestingModule({
       imports: [
         SbbAutocompleteModule,
-        SbbFormFieldModule,
+        SbbInputModule,
         FormsModule,
         ReactiveFormsModule,
         SbbOptionModule,

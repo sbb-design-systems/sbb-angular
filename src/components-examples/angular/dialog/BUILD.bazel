@@ -16,7 +16,7 @@ ng_module(
     deps = [
         "//src/angular/button",
         "//src/angular/dialog",
-        "//src/angular/form-field",
+        "//src/angular/input",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

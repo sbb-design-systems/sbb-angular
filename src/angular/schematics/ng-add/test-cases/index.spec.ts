@@ -7,6 +7,6 @@ describe('@sbb-esta/angular ng-add test cases', () => {
   );
 
   describe(`ng-add-migrate`, () => {
-    defineJasmineTestCases('ng-add-migrate', COLLECTION_PATH, testCasesMap.get('merge'));
+    defineJasmineTestCases(['ng-add-migrate', 'ng-migration-clean-up'], COLLECTION_PATH, testCasesMap.get('merge'));
   });
 });

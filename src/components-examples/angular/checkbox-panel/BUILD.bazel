@@ -19,8 +19,8 @@ ng_module(
     deps = [
         "//src/angular/checkbox",
         "//src/angular/checkbox-panel",
-        "//src/angular/form-field",
         "//src/angular/icon",
+        "//src/angular/input",
         "//src/angular/select",
         "@npm//@angular/common",
         "@npm//@angular/core",

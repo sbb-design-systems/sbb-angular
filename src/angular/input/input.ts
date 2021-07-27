@@ -17,8 +17,9 @@ import {
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { CanUpdateErrorState, mixinErrorState, SbbErrorStateMatcher } from '@sbb-esta/angular/core';
+import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
 
-import { SbbFormFieldControl } from './form-field-control';
+import { getSbbInputUnsupportedTypeError } from './input-errors';
 import { SBB_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
 
 let nextId = 0;
@@ -332,10 +333,11 @@ export class SbbInput
     this._elementRef.nativeElement.focus(options);
   }
 
+  /** Callback for the cases where the focused state of the input changes. */
   @HostListener('focus', ['true'])
   @HostListener('blur', ['false'])
   _focusChanged(isFocused: boolean) {
-    if (isFocused !== this.focused && (!this.readonly || !isFocused)) {
+    if (isFocused !== this.focused) {
       this.focused = isFocused;
       this.stateChanges.next();
     }
@@ -357,7 +359,7 @@ export class SbbInput
       SBB_INPUT_INVALID_TYPES.indexOf(this._type) > -1 &&
       (typeof ngDevMode === 'undefined' || ngDevMode)
     ) {
-      throw new Error(`Input type "${this._type}" is not supported by sbbInput!`);
+      throw getSbbInputUnsupportedTypeError(this._type);
     }
   }
 

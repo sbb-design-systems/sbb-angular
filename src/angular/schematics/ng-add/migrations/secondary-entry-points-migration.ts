@@ -1,12 +1,9 @@
 import { DevkitContext, Migration, TargetVersion } from '@angular/cdk/schematics';
+import { EOL } from 'os';
 import * as ts from 'typescript';
 
 import { classNames } from '../data';
 import { sbbAngularModuleSpecifiers } from '../typescript/module-specifiers';
-
-const ONLY_SUBPACKAGE_FAILURE_STR =
-  `Importing from "@sbb-esta/angular-business", "@sbb-esta/angular-public", "@sbb-esta/angular-core" and "@sbb-esta/angular-maps" is deprecated. ` +
-  `Instead import from the entry-point the symbol belongs to.`;
 
 const NO_IMPORT_NAMED_SYMBOLS_FAILURE_STR =
   `Imports from SBB Angular should import ` +
@@ -33,6 +30,12 @@ const CLASS_NAME_RENAMES = classNames['merge' as TargetVersion]!.reduce(
   new Map<string, string>()
 );
 
+interface SecondaryEntryPointContext {
+  importMap: Map<string, ts.ImportSpecifier[]>;
+  declarations: ts.ImportDeclaration[];
+  singleQuoteImport: boolean;
+}
+
 /**
  * Migration that updates imports which refer to the primary Angular SBB Angular
  * entry-point to use the appropriate secondary entry points (e.g. @sbb-esta/angular-business/button).
@@ -41,6 +44,8 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
   printer = ts.createPrinter();
 
   enabled: boolean = this.targetVersion === ('merge' as TargetVersion);
+
+  private _fileImportMap = new Map<ts.SourceFile, SecondaryEntryPointContext>();
 
   visitNode(declaration: ts.Node): void {
     // Only look at import declarations.
@@ -53,9 +58,10 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
     const importLocation = declaration.moduleSpecifier.text;
     // If the import module is not in an SBB angular module specifier, skip the check.
     if (
-      sbbAngularModuleSpecifiers.every(
-        (moduleSpecifier) => !importLocation.startsWith(moduleSpecifier)
-      )
+      sbbAngularModuleSpecifiers
+        // We exclude @sbb-esta/angular, since it should not be in use when using this migration
+        .filter((s) => s !== '@sbb-esta/angular')
+        .every((moduleSpecifier) => !importLocation.startsWith(moduleSpecifier))
     ) {
       return;
     }
@@ -84,20 +90,34 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
     // Whether the existing import declaration is using a single quote module specifier.
     const singleQuoteImport = declaration.moduleSpecifier.getText()[0] === `'`;
 
+    let context = this._fileImportMap.get(declaration.getSourceFile());
+    if (!context) {
+      context = {
+        importMap: new Map<string, ts.ImportSpecifier[]>(),
+        declarations: [declaration],
+        singleQuoteImport,
+      };
+      this._fileImportMap.set(declaration.getSourceFile(), context);
+    } else {
+      context.declarations.push(declaration);
+    }
+
     // Map which consists of secondary entry-points and import specifiers which are used
     // within the current import declaration.
-    const importMap = new Map<string, ts.ImportSpecifier[]>();
+    const importMap = context.importMap;
 
     const destinationPackageName = declaration.moduleSpecifier
       .getText()
-      .slice(1) // remove quote for comparison
-      .startsWith('@sbb-esta/angular-maps')
-      ? 'angular-maps'
-      : 'angular';
+      .split('/')[1]
+      .replace(/(-core|-business|-public)/, '')
+      .replace(/\W+$/, '');
 
     // Determine the subpackage each symbol in the namedBinding comes from.
     for (const element of declaration.importClause.namedBindings.elements) {
-      const elementName = element.propertyName ? element.propertyName : element.name;
+      let elementName = element.propertyName ? element.propertyName : element.name;
+      if (CLASS_NAME_RENAMES.has(elementName.text)) {
+        elementName = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
+      }
 
       // Try to resolve the module name via the type checker, and if it fails, fall back to
       // resolving it from our list of symbol to entry point mappings. Using the type checker is
@@ -118,49 +138,48 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
 
       // The module name where the symbol is defined e.g. card, dialog. The
       // first capture group is contains the module name.
-      if (importMap.has(moduleName)) {
-        importMap.get(moduleName)!.push(element);
+      const fullModuleName = `@sbb-esta/${destinationPackageName}/${moduleName}`;
+      if (importMap.has(fullModuleName)) {
+        importMap.get(fullModuleName)!.push(element);
       } else {
-        importMap.set(moduleName, [element]);
+        importMap.set(fullModuleName, [element]);
       }
     }
+  }
 
-    // Transforms the import declaration into multiple import declarations that import
-    // the given symbols from the individual secondary entry-points. For example:
-    // import {SbbUsermenuModule, SbbUsermenu} from '@sbb-esta/angular-business/usermenu';
-    // import {SbbLoadingModule} from '@sbb-esta/angular-business/loading';
-    const newImportStatements = Array.from(importMap.entries())
-      .sort()
-      .map(([name, elements]) => {
-        const newImport = ts.createImportDeclaration(
-          undefined,
-          undefined,
-          ts.createImportClause(undefined, ts.createNamedImports(applyRenames(elements))),
-          createStringLiteral(`@sbb-esta/${destinationPackageName}/${name}`, singleQuoteImport)
-        );
-        return this.printer.printNode(
-          ts.EmitHint.Unspecified,
-          newImport,
-          declaration.getSourceFile()
-        );
-      })
-      .join('\n');
+  postAnalysis() {
+    this._fileImportMap.forEach(({ declarations, importMap, singleQuoteImport }, file) => {
+      // Transforms the import declaration into multiple import declarations that import
+      // the given symbols from the individual secondary entry-points. For example:
+      // import {SbbUsermenuModule, SbbUsermenu} from '@sbb-esta/angular-business/usermenu';
+      // import {SbbLoadingModule} from '@sbb-esta/angular-business/loading';
+      const newImportStatements = Array.from(importMap.entries())
+        .sort()
+        .map(([name, elements]) => {
+          const newImport = ts.createImportDeclaration(
+            undefined,
+            undefined,
+            ts.createImportClause(undefined, ts.createNamedImports(applyRenames(elements))),
+            createStringLiteral(name, singleQuoteImport)
+          );
+          return this.printer.printNode(ts.EmitHint.Unspecified, newImport, file);
+        })
+        .join('\n');
 
-    // Without any import statements that were generated, we can assume that this was an empty
-    // import declaration. We still want to add a failure in order to make developers aware that
-    // importing from top level package is deprecated.
-    if (!newImportStatements) {
-      this.createFailureAtNode(declaration.moduleSpecifier, ONLY_SUBPACKAGE_FAILURE_STR);
-      return;
-    }
+      const filePath = this.fileSystem.resolve(file.fileName);
+      const recorder = this.fileSystem.edit(filePath);
 
-    const filePath = this.fileSystem.resolve(declaration.moduleSpecifier.getSourceFile().fileName);
-    const recorder = this.fileSystem.edit(filePath);
-
-    // Perform the replacement that switches the primary entry-point import to
-    // the individual secondary entry-point imports.
-    recorder.remove(declaration.getStart(), declaration.getWidth());
-    recorder.insertRight(declaration.getStart(), newImportStatements);
+      // Perform the replacement that switches the primary entry-point import to
+      // the individual secondary entry-point imports.
+      declarations.forEach((d) => {
+        const match = file
+          .getFullText()
+          .substring(d.getStart() + d.getWidth())
+          .match(/^(\r\n|\n\r|\n)/);
+        recorder.remove(d.getStart(), d.getWidth() + (match ? match[0].length : 0));
+      });
+      recorder.insertRight(declarations[0].getStart(), newImportStatements + EOL);
+    });
   }
 }
 

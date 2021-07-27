@@ -1,8 +1,6 @@
 import { Component, NgModule, ViewChild } from '@angular/core';
-import { SbbMenuModule } from '@sbb-esta/angular/menu';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
-import { SbbMenu, SbbDropdownSelectedEvent } from '@sbb-esta/angular/menu';
-import { SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular/menu';
+import { SbbMenuModule, SbbMenu, SbbDropdownSelectedEvent, SBB_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular/menu';
 
 @Component({
   selector: 'sbb-contextmenu-test',

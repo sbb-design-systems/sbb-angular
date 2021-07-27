@@ -18,6 +18,12 @@
       "private": true,
       "factory": "./ng-add/merge-migration#mergePublicAndBusiness",
       "schema": "./ng-add/schema.json"
+    },
+    "ng-migration-clean-up": {
+      "description": "Cleans up after all migrations have been applied",
+      "private": true,
+      "factory": "./ng-add/clean-up#cleanUp",
+      "schema": "./ng-add/schema.json"
     }
   }
 }

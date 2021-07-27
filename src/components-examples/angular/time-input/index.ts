@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbTimeInputModule } from '@sbb-esta/angular/time-input';
 
 import { SimpleTimeInputExample } from './simple-time-input/simple-time-input-example';
@@ -19,7 +19,7 @@ const EXAMPLES = [SimpleTimeInputExample, TimeInputReactiveFormsExample, TimeInp
     FormsModule,
     ReactiveFormsModule,
     SbbCheckboxModule,
-    SbbFormFieldModule,
+    SbbInputModule,
     SbbTimeInputModule,
   ],
   declarations: EXAMPLES,

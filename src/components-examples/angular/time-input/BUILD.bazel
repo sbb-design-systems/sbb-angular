@@ -15,7 +15,7 @@ ng_module(
     module_name = "@sbb-esta/components-examples/angular/time-input",
     deps = [
         "//src/angular/checkbox",
-        "//src/angular/form-field",
+        "//src/angular/input",
         "//src/angular/time-input",
         "@npm//@angular/common",
         "@npm//@angular/core",

@@ -6,7 +6,7 @@ import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
 import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { SbbTimeInputModule } from '@sbb-esta/angular/time-input';
 
@@ -49,7 +49,7 @@ const EXAMPLES = [
     SbbButtonModule,
     SbbCheckboxModule,
     SbbDatepickerModule,
-    SbbFormFieldModule,
+    SbbInputModule,
     SbbSelectModule,
     SbbTooltipModule,
     SbbTimeInputModule,

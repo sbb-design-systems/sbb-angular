@@ -15,7 +15,7 @@ ng_module(
     module_name = "@sbb-esta/components-examples/angular/tag",
     deps = [
         "//src/angular/button",
-        "//src/angular/form-field",
+        "//src/angular/input",
         "//src/angular/tag",
         "@npm//@angular/common",
         "@npm//@angular/core",

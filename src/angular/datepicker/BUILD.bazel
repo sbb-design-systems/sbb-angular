@@ -22,8 +22,8 @@ ng_module(
     module_name = "@sbb-esta/angular/datepicker",
     deps = [
         "//src/angular/core",
-        "//src/angular/form-field",
         "//src/angular/icon",
+        "//src/angular/input",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",

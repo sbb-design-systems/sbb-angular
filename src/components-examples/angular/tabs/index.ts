@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SbbBadgeModule } from '@sbb-esta/angular/badge';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
-import { SbbFormFieldModule, SbbInputModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 
 import { TabGroupAsyncExample } from './tab-group-async/tab-group-async-example';
@@ -44,7 +44,6 @@ const EXAMPLES = [
     CommonModule,
     SbbButtonModule,
     SbbCheckboxModule,
-    SbbFormFieldModule,
     SbbIconModule,
     SbbBadgeModule,
     SbbInputModule,

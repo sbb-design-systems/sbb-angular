@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbCheckboxPanelModule } from '@sbb-esta/angular/checkbox-panel';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 
 import { CheckboxPanelContentExample } from './checkbox-panel-content/checkbox-panel-content-example';
@@ -31,7 +31,7 @@ const EXAMPLES = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SbbFormFieldModule,
+    SbbInputModule,
     SbbIconModule,
     SbbCheckboxModule,
     SbbCheckboxPanelModule,

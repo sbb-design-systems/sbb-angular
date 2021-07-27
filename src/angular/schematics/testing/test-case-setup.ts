@@ -63,7 +63,7 @@ export async function createFileSystemTestApp(runner: SchematicTestRunner) {
 }
 
 export async function createTestCaseSetup(
-  migrationName: string,
+  migrationName: string | string[],
   collectionPath: string,
   inputFiles: string[]
 ) {
@@ -99,6 +99,7 @@ export async function createTestCaseSetup(
 
   writeFile(testAppTsconfigPath, JSON.stringify(testAppTsconfig, null, 2));
 
+  const migrationNames = Array.isArray(migrationName) ? migrationName : [migrationName];
   const runFixers = async function () {
     // Patch "executePostTasks" to do nothing. This is necessary since
     // we cannot run the node install task in unit tests. Rather we just
@@ -106,7 +107,9 @@ export async function createTestCaseSetup(
     // TODO(devversion): RxJS version conflicts between angular-devkit and our dev deps.
     runner.engine.executePostTasks = () => EMPTY as any;
 
-    await runner.runSchematicAsync(migrationName, {}, appTree).toPromise();
+    for (const migration of migrationNames) {
+      await runner.runSchematicAsync(migration, {}, appTree).toPromise();
+    }
 
     return { logOutput };
   };
@@ -176,7 +179,7 @@ export function findBazelVersionTestCases(basePath: string) {
  * spec definitions. This should be used within a "describe" jasmine closure.
  */
 export function defineJasmineTestCases(
-  versionName: string,
+  versionName: string | string[],
   collectionFile: string,
   inputFiles: string[] | undefined
 ) {

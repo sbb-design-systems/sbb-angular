@@ -46,6 +46,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
           { label: 'Datepicker', link: './components/datepicker' },
           { label: 'Form Field', link: './components/form-field' },
           { label: 'File Selector', link: './components/file-selector' },
+          { label: 'Input', link: './components/input' },
           { label: 'Radiobutton', link: './components/radio-button' },
           { label: 'Radiobutton Panel', link: './components/radio-button-panel' },
           { label: 'Select', link: './components/select' },
