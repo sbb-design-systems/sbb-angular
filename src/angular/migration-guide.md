@@ -595,3 +595,10 @@ as content when the option was selected. This content now needs to be wrapped in
 ```
 
 [Documentation](angular/components/toggle)
+
+### Tooltip
+
+`sbb-tooltip` has been refactored to internally use `sbbTooltip`. `SbbTooltipComponent` has been
+renamed to `SbbTooltipWrapper`.
+
+[Documentation](angular/components/tooltip)

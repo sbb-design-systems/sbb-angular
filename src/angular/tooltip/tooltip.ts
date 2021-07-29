@@ -1,21 +1,9 @@
 import { AnimationEvent } from '@angular/animations';
 import { AriaDescriber, FocusMonitor } from '@angular/cdk/a11y';
-import { Directionality } from '@angular/cdk/bidi';
 import { BooleanInput, coerceBooleanProperty, NumberInput } from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import {
-  ConnectedPosition,
-  ConnectionPositionPair,
-  FlexibleConnectedPositionStrategy,
-  HorizontalConnectionPos,
-  OriginConnectionPosition,
-  Overlay,
-  OverlayConnectionPosition,
-  OverlayRef,
-  ScrollStrategy,
-  VerticalConnectionPos,
-} from '@angular/cdk/overlay';
+import { ConnectionPositionPair, Overlay, OverlayRef, ScrollStrategy } from '@angular/cdk/overlay';
 import { normalizePassiveListenerOptions, Platform } from '@angular/cdk/platform';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
@@ -33,16 +21,17 @@ import {
   NgZone,
   OnDestroy,
   Optional,
+  TemplateRef,
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { filter, take, takeUntil } from 'rxjs/operators';
 
 import { sbbTooltipAnimations } from './tooltip-animations';
 
 /** Possible positions for a tooltip. */
-export type TooltipPosition = 'left' | 'right' | 'above' | 'below' | 'before' | 'after';
+export type TooltipPosition = 'left' | 'right' | 'above' | 'below';
 
 /**
  * Options for how the tooltip trigger should handle touch gestures.
@@ -134,7 +123,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   _tooltipInstance: T | null;
 
   private _portal: ComponentPortal<T>;
-  private _position: TooltipPosition = 'below';
   private _disabled: boolean = false;
   private _tooltipClass: string | string[] | Set<string> | { [key: string]: any };
   private _scrollStrategy: () => ScrollStrategy;
@@ -145,22 +133,11 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   private _currentPosition: TooltipPosition;
   protected readonly _cssClassPrefix: string = 'sbb';
 
-  /** Allows the user to define the position of the tooltip relative to the parent element */
-  @Input('sbbTooltipPosition')
-  get position(): TooltipPosition {
-    return this._position;
-  }
-  set position(value: TooltipPosition) {
-    if (value !== this._position) {
-      this._position = value;
-
-      if (this._overlayRef) {
-        this._updatePosition(this._overlayRef);
-        this._tooltipInstance?.show(0);
-        this._overlayRef.updatePosition();
-      }
-    }
-  }
+  /**
+   * The trigger event, on which the tooltip opens.
+   * This is primarily used for sbb-tooltip and should be used with care.
+   */
+  @Input('sbbTooltipTrigger') trigger: 'click' | 'hover' = 'hover';
 
   /** Disables the display of the tooltip. */
   @Input('sbbTooltipDisabled')
@@ -205,31 +182,44 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   get message() {
     return this._message;
   }
-  set message(value: string) {
-    this._ariaDescriber.removeDescription(this._elementRef.nativeElement, this._message, 'tooltip');
+  set message(value: string | TemplateRef<any>) {
+    if (typeof this._message === 'string') {
+      this._ariaDescriber.removeDescription(
+        this._elementRef.nativeElement,
+        this._message,
+        'tooltip'
+      );
+    }
 
     // If the message is not a string (e.g. number), convert it to a string and trim it.
     // Must convert with `String(value)`, not `${value}`, otherwise Closure Compiler optimises
     // away the string-conversion: https://github.com/angular/components/issues/20684
-    this._message = value != null ? String(value).trim() : '';
+    this._message =
+      value instanceof TemplateRef ? value : value != null ? String(value).trim() : '';
 
     if (!this._message && this._isTooltipVisible()) {
       this.hide(0);
     } else {
       this._setupPointerEnterEventsIfNeeded();
       this._updateTooltipMessage();
-      this._ngZone.runOutsideAngular(() => {
-        // The `AriaDescriber` has some functionality that avoids adding a description if it's the
-        // same as the `aria-label` of an element, however we can't know whether the tooltip trigger
-        // has a data-bound `aria-label` or when it'll be set for the first time. We can avoid the
-        // issue by deferring the description by a tick so Angular has time to set the `aria-label`.
-        Promise.resolve().then(() => {
-          this._ariaDescriber.describe(this._elementRef.nativeElement, this.message, 'tooltip');
+      if (typeof this._message === 'string') {
+        this._ngZone.runOutsideAngular(() => {
+          // The `AriaDescriber` has some functionality that avoids adding a description if it's the
+          // same as the `aria-label` of an element, however we can't know whether the tooltip trigger
+          // has a data-bound `aria-label` or when it'll be set for the first time. We can avoid the
+          // issue by deferring the description by a tick so Angular has time to set the `aria-label`.
+          Promise.resolve().then(() => {
+            this._ariaDescriber.describe(
+              this._elementRef.nativeElement,
+              this._message as string,
+              'tooltip'
+            );
+          });
         });
-      });
+      }
     }
   }
-  private _message = '';
+  private _message: string | TemplateRef<any> = '';
 
   /** Classes to be passed to the tooltip. Supports the same syntax as `ngClass`. */
   @Input('sbbTooltipClass')
@@ -266,7 +256,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     private _ariaDescriber: AriaDescriber,
     private _focusMonitor: FocusMonitor,
     scrollStrategy: any,
-    protected _dir: Directionality,
     private _defaultOptions: SbbTooltipDefaultOptions,
     @Inject(DOCUMENT) document: any
   ) {
@@ -276,12 +265,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     if (_defaultOptions?.touchGestures) {
       this.touchGestures = _defaultOptions.touchGestures;
     }
-
-    _dir.change.pipe(takeUntil(this._destroyed)).subscribe(() => {
-      if (this._overlayRef) {
-        this._updatePosition(this._overlayRef);
-      }
-    });
 
     _ngZone.runOutsideAngular(() => {
       _elementRef.nativeElement.addEventListener('keydown', this._handleKeydown);
@@ -295,7 +278,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
 
     this._focusMonitor
       .monitor(this._elementRef)
-      .pipe(takeUntil(this._destroyed))
+      .pipe(
+        filter(() => this.trigger === 'hover'),
+        takeUntil(this._destroyed)
+      )
       .subscribe((origin) => {
         // Note that the focus monitor runs outside the Angular zone.
         if (!origin) {
@@ -329,7 +315,9 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     this._destroyed.next();
     this._destroyed.complete();
 
-    this._ariaDescriber.removeDescription(nativeElement, this.message, 'tooltip');
+    if (typeof this._message === 'string') {
+      this._ariaDescriber.removeDescription(nativeElement, this._message, 'tooltip');
+    }
     this._focusMonitor.stopMonitoring(nativeElement);
   }
 
@@ -350,6 +338,12 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     this._portal =
       this._portal || new ComponentPortal(this._tooltipComponent, this._viewContainerRef);
     this._tooltipInstance = overlayRef.attach(this._portal).instance;
+    if (this.message instanceof TemplateRef) {
+      this._ariaDescriber.describe(
+        this._elementRef.nativeElement,
+        this._tooltipInstance._elementRef.nativeElement
+      );
+    }
     this._tooltipInstance
       .afterHidden()
       .pipe(takeUntil(this._destroyed))
@@ -398,6 +392,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       this._elementRef
     );
 
+    const classPrefix = `${this._cssClassPrefix}-${PANEL_CLASS}-`;
     // Create connected position strategy that listens for scroll events to reposition.
     const strategy = this._overlay
       .position()
@@ -405,7 +400,59 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       .withTransformOriginOn(`.${this._cssClassPrefix}-tooltip`)
       .withFlexibleDimensions(false)
       .withViewportMargin(this._viewportMargin)
-      .withScrollableContainers(scrollableAncestors);
+      .withScrollableContainers(scrollableAncestors)
+      .withPositions([
+        {
+          originX: 'center',
+          originY: 'bottom',
+          overlayX: 'center',
+          overlayY: 'top',
+          offsetY: 2,
+        },
+        {
+          originX: 'end',
+          originY: 'bottom',
+          overlayX: 'end',
+          overlayY: 'top',
+          offsetX: 5,
+          offsetY: 2,
+          panelClass: `${classPrefix}left`,
+        },
+        {
+          originX: 'start',
+          originY: 'bottom',
+          overlayX: 'start',
+          overlayY: 'top',
+          offsetX: -5,
+          offsetY: 2,
+          panelClass: `${classPrefix}right`,
+        },
+        {
+          originX: 'center',
+          originY: 'top',
+          overlayX: 'center',
+          overlayY: 'bottom',
+          offsetY: -2,
+        },
+        {
+          originX: 'end',
+          originY: 'top',
+          overlayX: 'end',
+          overlayY: 'bottom',
+          offsetX: 5,
+          offsetY: -2,
+          panelClass: `${classPrefix}left`,
+        },
+        {
+          originX: 'start',
+          originY: 'top',
+          overlayX: 'start',
+          overlayY: 'bottom',
+          offsetX: -5,
+          offsetY: -2,
+          panelClass: `${classPrefix}right`,
+        },
+      ]);
 
     strategy.positionChanges.pipe(takeUntil(this._destroyed)).subscribe((change) => {
       this._updateCurrentPositionClass(change.connectionPair);
@@ -422,13 +469,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     });
 
     this._overlayRef = this._overlay.create({
-      direction: this._dir,
       positionStrategy: strategy,
       panelClass: `${this._cssClassPrefix}-${PANEL_CLASS}`,
       scrollStrategy: this._scrollStrategy(),
     });
-
-    this._updatePosition(this._overlayRef);
 
     this._overlayRef
       .detachments()
@@ -446,96 +490,16 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   /** Detaches the currently-attached tooltip. */
   private _detach() {
     if (this._overlayRef && this._overlayRef.hasAttached()) {
+      if (this.message instanceof TemplateRef && this._tooltipInstance) {
+        this._ariaDescriber.removeDescription(
+          this._elementRef.nativeElement,
+          this._tooltipInstance._elementRef.nativeElement
+        );
+      }
       this._overlayRef.detach();
     }
 
     this._tooltipInstance = null;
-  }
-
-  /** Updates the position of the current tooltip. */
-  private _updatePosition(overlayRef: OverlayRef) {
-    const position = overlayRef.getConfig().positionStrategy as FlexibleConnectedPositionStrategy;
-    const origin = this._getOrigin();
-    const overlay = this._getOverlayPosition();
-
-    position.withPositions([
-      this._addOffset({ ...origin.main, ...overlay.main }),
-      this._addOffset({ ...origin.fallback, ...overlay.fallback }),
-    ]);
-  }
-
-  /** Adds the configured offset to a position. Used as a hook for child classes. */
-  protected _addOffset(position: ConnectedPosition): ConnectedPosition {
-    return position;
-  }
-
-  /**
-   * Returns the origin position and a fallback position based on the user's position preference.
-   * The fallback position is the inverse of the origin (e.g. `'below' -> 'above'`).
-   */
-  _getOrigin(): { main: OriginConnectionPosition; fallback: OriginConnectionPosition } {
-    const isLtr = !this._dir || this._dir.value === 'ltr';
-    const position = this.position;
-    let originPosition: OriginConnectionPosition;
-
-    if (position === 'above' || position === 'below') {
-      originPosition = { originX: 'center', originY: position === 'above' ? 'top' : 'bottom' };
-    } else if (
-      position === 'before' ||
-      (position === 'left' && isLtr) ||
-      (position === 'right' && !isLtr)
-    ) {
-      originPosition = { originX: 'start', originY: 'center' };
-    } else if (
-      position === 'after' ||
-      (position === 'right' && isLtr) ||
-      (position === 'left' && !isLtr)
-    ) {
-      originPosition = { originX: 'end', originY: 'center' };
-    } else if (typeof ngDevMode === 'undefined' || ngDevMode) {
-      throw getSbbTooltipInvalidPositionError(position);
-    }
-
-    const { x, y } = this._invertPosition(originPosition!.originX, originPosition!.originY);
-
-    return {
-      main: originPosition!,
-      fallback: { originX: x, originY: y },
-    };
-  }
-
-  /** Returns the overlay position and a fallback position based on the user's preference */
-  _getOverlayPosition(): { main: OverlayConnectionPosition; fallback: OverlayConnectionPosition } {
-    const isLtr = !this._dir || this._dir.value === 'ltr';
-    const position = this.position;
-    let overlayPosition: OverlayConnectionPosition;
-
-    if (position === 'above') {
-      overlayPosition = { overlayX: 'center', overlayY: 'bottom' };
-    } else if (position === 'below') {
-      overlayPosition = { overlayX: 'center', overlayY: 'top' };
-    } else if (
-      position === 'before' ||
-      (position === 'left' && isLtr) ||
-      (position === 'right' && !isLtr)
-    ) {
-      overlayPosition = { overlayX: 'end', overlayY: 'center' };
-    } else if (
-      position === 'after' ||
-      (position === 'right' && isLtr) ||
-      (position === 'left' && !isLtr)
-    ) {
-      overlayPosition = { overlayX: 'start', overlayY: 'center' };
-    } else if (typeof ngDevMode === 'undefined' || ngDevMode) {
-      throw getSbbTooltipInvalidPositionError(position);
-    }
-
-    const { x, y } = this._invertPosition(overlayPosition!.overlayX, overlayPosition!.overlayY);
-
-    return {
-      main: overlayPosition!,
-      fallback: { overlayX: x, overlayY: y },
-    };
   }
 
   /** Updates the tooltip message and repositions the overlay according to the new message length */
@@ -562,23 +526,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     }
   }
 
-  /** Inverts an overlay position. */
-  private _invertPosition(x: HorizontalConnectionPos, y: VerticalConnectionPos) {
-    if (this.position === 'above' || this.position === 'below') {
-      if (y === 'top') {
-        y = 'bottom';
-      } else if (y === 'bottom') {
-        y = 'top';
-      }
-    } else if (x === 'end') {
-      x = 'start';
-    } else if (x === 'start') {
-      x = 'end';
-    }
-
-    return { x, y };
-  }
-
   /** Updates the class on the overlay panel based on the current position of the tooltip. */
   private _updateCurrentPositionClass(connectionPair: ConnectionPositionPair): void {
     const { overlayY, originX, originY } = connectionPair;
@@ -590,11 +537,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       // Note that since this information is used for styling, we want to
       // resolve `start` and `end` to their real values, otherwise consumers
       // would have to remember to do it themselves on each consumption.
-      if (this._dir && this._dir.value === 'rtl') {
-        newPosition = originX === 'end' ? 'left' : 'right';
-      } else {
-        newPosition = originX === 'start' ? 'left' : 'right';
-      }
+      newPosition = originX === 'start' ? 'left' : 'right';
     } else {
       newPosition = overlayY === 'bottom' && originY === 'top' ? 'above' : 'below';
     }
@@ -624,9 +567,12 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       return;
     }
 
+    if (this.trigger === 'click') {
+      this._passiveListeners.push(['click', () => this.show(0)]);
+    }
     // The mouse events shouldn't be bound on mobile devices, because they can prevent the
     // first tap from firing its click event or can cause the tooltip to open for clicks.
-    if (this._platformSupportsMouseEvents()) {
+    else if (this._platformSupportsMouseEvents()) {
       this._passiveListeners.push([
         'mouseenter',
         () => {
@@ -748,7 +694,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   selector: '[sbbTooltip]',
   exportAs: 'sbbTooltip',
   host: {
-    class: 'sbb-tooltip-trigger',
+    '[class.sbb-tooltip-trigger]': 'trigger === "click"',
   },
 })
 export class SbbTooltip extends _SbbTooltipBase<TooltipComponent> {
@@ -764,7 +710,6 @@ export class SbbTooltip extends _SbbTooltipBase<TooltipComponent> {
     ariaDescriber: AriaDescriber,
     focusMonitor: FocusMonitor,
     @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() dir: Directionality,
     @Optional() @Inject(SBB_TOOLTIP_DEFAULT_OPTIONS) defaultOptions: SbbTooltipDefaultOptions,
     @Inject(DOCUMENT) document: any
   ) {
@@ -778,7 +723,6 @@ export class SbbTooltip extends _SbbTooltipBase<TooltipComponent> {
       ariaDescriber,
       focusMonitor,
       scrollStrategy,
-      dir,
       defaultOptions,
       document
     );
@@ -789,7 +733,7 @@ export class SbbTooltip extends _SbbTooltipBase<TooltipComponent> {
 // tslint:disable-next-line: class-name naming-convention
 export abstract class _TooltipComponentBase implements OnDestroy {
   /** Message to display in the tooltip */
-  message: string;
+  message: string | TemplateRef<any>;
 
   /** Classes to be added to the tooltip. Supports the same syntax as `ngClass`. */
   tooltipClass: string | string[] | Set<string> | { [key: string]: any };
@@ -809,7 +753,10 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   /** Subject for notifying that the tooltip has been hidden from the view */
   private readonly _onHide: Subject<void> = new Subject();
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    public _elementRef: ElementRef<HTMLElement>,
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   /**
    * Shows the tooltip with an animation originating from the provided origin
@@ -824,7 +771,6 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     this._showTimeoutId = setTimeout(() => {
       this._visibility = 'visible';
       this._showTimeoutId = undefined;
-      this._onShow();
 
       // Mark for check so if any parent component has set the
       // ChangeDetectionStrategy to OnPush it will be checked anyways
@@ -883,9 +829,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   }
 
   /**
-   * Interactions on the HTML body should close the tooltip immediately as defined in the
-   * material design spec.
-   * https://material.io/design/components/tooltips.html#behavior
+   * Interactions on the HTML body should close the tooltip immediately.
    */
   _handleBodyInteraction(): void {
     if (this._closeOnInteraction) {
@@ -901,13 +845,6 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   _markForCheck(): void {
     this._changeDetectorRef.markForCheck();
   }
-
-  /**
-   * Callback for when the timeout in this.show() gets completed.
-   * This method is only needed by the mdc-tooltip, and so it is only implemented
-   * in the mdc-tooltip, not here.
-   */
-  protected _onShow(): void {}
 }
 
 /**
@@ -922,6 +859,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sbbTooltipAnimations.tooltipState],
   host: {
+    class: 'sbb-tooltip-component',
     // Forces the element to have a layout in IE and Edge. This fixes issues where the element
     // won't be rendered if the animations are disabled or there is no web animations polyfill.
     '[style.zoom]': '_visibility === "visible" ? 1 : null',
@@ -932,10 +870,15 @@ export class TooltipComponent extends _TooltipComponentBase {
   /** Stream that emits whether the user has a handset-sized display.  */
   _isHandset: Observable<BreakpointState> = this._breakpointObserver.observe(Breakpoints.Handset);
 
+  get _templateRef(): TemplateRef<any> | null {
+    return this.message instanceof TemplateRef ? this.message : null;
+  }
+
   constructor(
+    elementRef: ElementRef<HTMLElement>,
     changeDetectorRef: ChangeDetectorRef,
     private _breakpointObserver: BreakpointObserver
   ) {
-    super(changeDetectorRef);
+    super(elementRef, changeDetectorRef);
   }
 }

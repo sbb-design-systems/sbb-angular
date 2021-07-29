@@ -1,0 +1,60 @@
+@import '../styles/common';
+
+.sbb-tooltip-content-close-button {
+  padding-right: pxToEm(48);
+
+  html.sbb-lean & {
+    padding-right: pxToRem(40);
+  }
+}
+
+.sbb-tooltip-trigger,
+.sbb-tooltip-icon {
+  line-height: 0;
+  cursor: pointer;
+}
+
+.sbb-tooltip-icon:active,
+.sbb-tooltip-icon:hover,
+.sbb-tooltip-trigger:active,
+.sbb-tooltip-trigger:hover,
+.sbb-tooltip-trigger-active {
+  color: $sbbColorRed;
+  border-color: $sbbColorRed;
+
+  html.sbb-lean & {
+    color: $sbbColorRed125;
+    border-color: $sbbColorRed125;
+  }
+}
+
+.sbb-tooltip-close-icon {
+  border: pxToEm(1) solid $sbbColorGrey;
+  border-radius: 50%;
+  float: right;
+  position: absolute;
+  // padding + margin-top + border
+  top: pxToEm(23 + 7.2 + 2);
+  right: pxToEm(23);
+  line-height: 0;
+
+  html.sbb-lean & {
+    top: pxToRem(8);
+    right: pxToRem(8);
+
+    &,
+    &:hover,
+    &:focus {
+      border-color: transparent;
+    }
+  }
+
+  .sbb-tooltip-panel-above & {
+    // padding + border
+    top: pxToEm(23 + 2);
+  }
+
+  .sbb-tooltip-trigger-hover & {
+    display: none;
+  }
+}

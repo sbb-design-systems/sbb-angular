@@ -1,10 +1,15 @@
 <div
-  class="sbb-tooltip"
-  [ngClass]="tooltipClass"
+  class="sbb-tooltip-container"
   [class.sbb-tooltip-handset]="(_isHandset | async)?.matches"
   [@state]="_visibility"
   (@state.start)="_animationStart()"
   (@state.done)="_animationDone($event)"
 >
-  {{message}}
+  <div class="sbb-tooltip" [ngClass]="tooltipClass">
+    <ng-container *ngIf="_templateRef as templateRef; else stringMessage">
+      <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+    </ng-container>
+    <ng-template #stringMessage>{{ message }}</ng-template>
+  </div>
+  <div class="sbb-tooltip-shadow"></div>
 </div>

@@ -1,0 +1,30 @@
+<button
+  #triggerButton
+  class="sbb-tooltip-icon sbb-tooltip-trigger sbb-icon-scaled sbb-button-reset-frameless"
+  [class.sbb-tooltip-trigger-active]="tooltip._tooltipInstance?.isVisible()"
+  type="button"
+  [sbbTooltip]="tooltipTemplate"
+  [sbbTooltipTrigger]="trigger"
+  [sbbTooltipShowDelay]="hoverShowDelay"
+  [sbbTooltipHideDelay]="hoverHideDelay"
+  #tooltip="sbbTooltip"
+  (click)="tooltip.show(0)"
+>
+  <sbb-icon [svgIcon]="indicatorIcon"></sbb-icon>
+</button>
+<ng-template #tooltipTemplate>
+  <div
+    class="sbb-tooltip-content-body"
+    [class.sbb-tooltip-content-close-button]="trigger === 'click'"
+  >
+    <ng-content></ng-content>
+  </div>
+  <button
+    *ngIf="trigger === 'click'"
+    type="button"
+    class="sbb-tooltip-icon sbb-tooltip-close-icon sbb-icon-scaled sbb-button-reset-frameless"
+    (click)="tooltip.hide(0)"
+  >
+    <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
+  </button>
+</ng-template>
