@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.2.1...12.3.0) (2021-07-29)
+
+
+### Features
+
+* add css class for normal error flow inside sbb-form-field ([#853](https://github.com/sbb-design-systems/sbb-angular/issues/853)) ([9f8dd4a](https://github.com/sbb-design-systems/sbb-angular/commit/9f8dd4a751ea8e75e2bb2eea68007972cc098e8f))
+
 ### [12.2.1](https://github.com/sbb-design-systems/sbb-angular/compare/12.2.0...12.2.1) (2021-07-15)
 
 
