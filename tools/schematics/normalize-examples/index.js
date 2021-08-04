@@ -30,7 +30,6 @@ var import_core = __toModule(require("@angular-devkit/core"));
 var prettier = require("prettier");
 function normalizeExamples() {
   return (tree, _context) => {
-    var _a, _b;
     class ExampleModule {
       constructor(dir) {
         this.dir = dir;
@@ -143,7 +142,7 @@ export class ${moduleName} {}
     class ExampleFileComponents {
       constructor(entry) {
         this.entry = entry;
-        this.components = (_b = (_a = this.entry.content.toString().match(/export class \w+Component/g)) == null ? void 0 : _a.map((m) => m.substring(13)).sort()) != null ? _b : [];
+        this.components = this.entry.content.toString().match(/export class \w+Component/g)?.map((m) => m.substring(13)).sort() ?? [];
       }
     }
     class ModuleImport {
@@ -155,16 +154,14 @@ export class ${moduleName} {}
         return new ModuleImport(`@sbb-esta/${packageName}/${moduleName}`, `${prefixed ? "Sbb" : ""}${import_core.strings.classify(moduleName)}Module`);
       }
       static detectTypeScriptImports(entry) {
-        var _a2, _b2;
         const content = entry.content.toString();
-        return (_b2 = (_a2 = content.match(/@sbb-esta\/angular-\w+\/[^']+/g)) == null ? void 0 : _a2.filter((v, i, a) => a.indexOf(v) === i).filter((i) => ["base", "models", "datetime", "angular-core/radio-button"].every((m) => !i.endsWith(`/${m}`))).map((i) => new ModuleImport(i, `${import_core.strings.classify(i.split("/")[2])}Module`))) != null ? _b2 : [];
+        return content.match(/@sbb-esta\/angular-\w+\/[^']+/g)?.filter((v, i, a) => a.indexOf(v) === i).filter((i) => ["base", "models", "datetime", "angular-core/radio-button"].every((m) => !i.endsWith(`/${m}`))).map((i) => new ModuleImport(i, `${import_core.strings.classify(i.split("/")[2])}Module`)) ?? [];
       }
       static detectHtmlTagUsages(entry, packageName) {
-        var _a2, _b2, _c, _d;
         const content = entry.content.toString();
         const packageRoot = tree.getDir(`src/${packageName}`);
-        const elementSelectors = (_b2 = (_a2 = content.match(/<sbb-[^ >]+/g)) == null ? void 0 : _a2.map((t) => t.substring(5).trim())) != null ? _b2 : [];
-        const attributeSelectors = (_d = (_c = content.match(/ sbb[^= ><]+/g)) == null ? void 0 : _c.filter((m) => !m.includes("sbbsc") && !m.includes("sbb-label")).map((t) => t.substring(4).trim().replace(/^-/, "").replace(/[A-Z]/g, (m, i) => `${i > 0 ? "-" : ""}${m.toLowerCase()}`).replace(/^link$/, "links")).filter((m) => m !== "input" && m !== "icon")) != null ? _d : [];
+        const elementSelectors = content.match(/<sbb-[^ >]+/g)?.map((t) => t.substring(5).trim()) ?? [];
+        const attributeSelectors = content.match(/ sbb[^= ><]+/g)?.filter((m) => !m.includes("sbbsc") && !m.includes("sbb-label")).map((t) => t.substring(4).trim().replace(/^-/, "").replace(/[A-Z]/g, (m, i) => `${i > 0 ? "-" : ""}${m.toLowerCase()}`).replace(/^link$/, "links")).filter((m) => m !== "input" && m !== "icon") ?? [];
         const selectors = elementSelectors.concat(attributeSelectors);
         const imports = selectors.filter((t) => t !== "option" && t !== "icon" && packageRoot.subdirs.includes((0, import_core.fragment)(t))).filter((v, i, a) => a.indexOf(v) === i).map((i) => ModuleImport.fromPackageModule(packageName, i));
         if (selectors.some((s) => s === "icon")) {
