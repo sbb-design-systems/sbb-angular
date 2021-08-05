@@ -6,11 +6,11 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { JAN } from '@sbb-esta/angular/core/testing';
 import {
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent,
+  JAN,
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
