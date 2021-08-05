@@ -1,4 +1,4 @@
-import { Platform, PlatformModule, _supportsShadowDom } from '@angular/cdk/platform';
+import { Platform, PlatformModule } from '@angular/cdk/platform';
 import {
   ChangeDetectionStrategy,
   Component,

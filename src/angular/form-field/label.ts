@@ -1,4 +1,5 @@
 import { Directive } from '@angular/core';
+
 @Directive({
   selector: 'sbb-label',
   host: {

@@ -23,8 +23,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { TypeRef } from '@sbb-esta/angular/core';
-import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular/core';
+import { SbbDateAdapter, SbbDateFormats, SBB_DATE_FORMATS, TypeRef } from '@sbb-esta/angular/core';
 
 import { SbbCalendarBody, SbbCalendarCell } from '../calendar-body/calendar-body';
 import { SbbDateRange } from '../date-range';

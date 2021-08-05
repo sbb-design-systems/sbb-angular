@@ -18,8 +18,15 @@ import {
   SBB_DATE_FORMATS,
   SBB_DATE_PIPE_DATE_FORMATS,
 } from '@sbb-esta/angular/core';
-import { DEC, FEB, JAN, MAR, NOV } from '@sbb-esta/angular/core/testing';
-import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular/core/testing';
+import {
+  DEC,
+  dispatchFakeEvent,
+  dispatchKeyboardEvent,
+  FEB,
+  JAN,
+  MAR,
+  NOV,
+} from '@sbb-esta/angular/core/testing';
 
 import { SbbCalendarBody } from '../calendar-body/calendar-body';
 

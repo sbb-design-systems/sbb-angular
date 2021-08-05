@@ -25,8 +25,8 @@ import { CanDisable, HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angul
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { SBB_CHIP_LIST } from './chip-list';
 import type { SbbChipList } from './chip-list';
+import { SBB_CHIP_LIST } from './chip-list';
 
 /** Represents an event fired on an individual `sbb-chip`. */
 export interface SbbChipEvent {

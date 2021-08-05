@@ -1,5 +1,4 @@
 import { AnimationEvent } from '@angular/animations';
-import { _getFocusedElementPierceShadowDom } from '@angular/cdk/platform';
 import { ChangeDetectionStrategy, Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { _SbbDialogContainerBase } from '@sbb-esta/angular/dialog';
 

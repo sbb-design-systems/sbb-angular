@@ -13,7 +13,7 @@ export function svgRegistry(options: Schema): Rule {
     const registryPath = join(svgDir.path, registryFileName);
     const registryFileContent = tree.read(registryPath);
     const registry: Registry = registryFileContent
-      ? JSON.parse(registryFileContent.toString('utf8')) as Registry
+      ? (JSON.parse(registryFileContent.toString('utf8')) as Registry)
       : {};
     findSvgFiles(svgDir)
       .map((f) => relative(svgDir.path, f))

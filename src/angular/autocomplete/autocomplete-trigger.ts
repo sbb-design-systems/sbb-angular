@@ -32,15 +32,15 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TypeRef } from '@sbb-esta/angular/core';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
   SbbOption,
   SbbOptionSelectionChange,
+  TypeRef,
 } from '@sbb-esta/angular/core';
-import { SBB_FORM_FIELD } from '@sbb-esta/angular/form-field';
 import type { SbbFormField } from '@sbb-esta/angular/form-field';
+import { SBB_FORM_FIELD } from '@sbb-esta/angular/form-field';
 import {
   BehaviorSubject,
   combineLatest,
