@@ -2,8 +2,22 @@ var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __export = (target, all) => {
   __markAsModule(target);
@@ -30,6 +44,7 @@ var import_core = __toModule(require("@angular-devkit/core"));
 var prettier = require("prettier");
 function normalizeExamples() {
   return (tree, _context) => {
+    var _a, _b;
     class ExampleModule {
       constructor(dir) {
         this.dir = dir;
@@ -95,10 +110,9 @@ const EXAMPLE_INDEX = {
 })
 export class ${moduleName} {}
 `;
-        const formattedContent = prettier.format(content, {
-          parser: "typescript",
-          ...require("../../../package.json").prettier
-        });
+        const formattedContent = prettier.format(content, __spreadValues({
+          parser: "typescript"
+        }, require("../../../package.json").prettier));
         if (this.moduleFile.content.toString() !== formattedContent) {
           tree.overwrite(this.moduleFile.path, formattedContent);
         }
@@ -142,7 +156,7 @@ export class ${moduleName} {}
     class ExampleFileComponents {
       constructor(entry) {
         this.entry = entry;
-        this.components = this.entry.content.toString().match(/export class \w+Component/g)?.map((m) => m.substring(13)).sort() ?? [];
+        this.components = (_b = (_a = this.entry.content.toString().match(/export class \w+Component/g)) == null ? void 0 : _a.map((m) => m.substring(13)).sort()) != null ? _b : [];
       }
     }
     class ModuleImport {
@@ -154,14 +168,16 @@ export class ${moduleName} {}
         return new ModuleImport(`@sbb-esta/${packageName}/${moduleName}`, `${prefixed ? "Sbb" : ""}${import_core.strings.classify(moduleName)}Module`);
       }
       static detectTypeScriptImports(entry) {
+        var _a2, _b2;
         const content = entry.content.toString();
-        return content.match(/@sbb-esta\/angular-\w+\/[^']+/g)?.filter((v, i, a) => a.indexOf(v) === i).filter((i) => ["base", "models", "datetime", "angular-core/radio-button"].every((m) => !i.endsWith(`/${m}`))).map((i) => new ModuleImport(i, `${import_core.strings.classify(i.split("/")[2])}Module`)) ?? [];
+        return (_b2 = (_a2 = content.match(/@sbb-esta\/angular-\w+\/[^']+/g)) == null ? void 0 : _a2.filter((v, i, a) => a.indexOf(v) === i).filter((i) => ["base", "models", "datetime", "angular-core/radio-button"].every((m) => !i.endsWith(`/${m}`))).map((i) => new ModuleImport(i, `${import_core.strings.classify(i.split("/")[2])}Module`))) != null ? _b2 : [];
       }
       static detectHtmlTagUsages(entry, packageName) {
+        var _a2, _b2, _c, _d;
         const content = entry.content.toString();
         const packageRoot = tree.getDir(`src/${packageName}`);
-        const elementSelectors = content.match(/<sbb-[^ >]+/g)?.map((t) => t.substring(5).trim()) ?? [];
-        const attributeSelectors = content.match(/ sbb[^= ><]+/g)?.filter((m) => !m.includes("sbbsc") && !m.includes("sbb-label")).map((t) => t.substring(4).trim().replace(/^-/, "").replace(/[A-Z]/g, (m, i) => `${i > 0 ? "-" : ""}${m.toLowerCase()}`).replace(/^link$/, "links")).filter((m) => m !== "input" && m !== "icon") ?? [];
+        const elementSelectors = (_b2 = (_a2 = content.match(/<sbb-[^ >]+/g)) == null ? void 0 : _a2.map((t) => t.substring(5).trim())) != null ? _b2 : [];
+        const attributeSelectors = (_d = (_c = content.match(/ sbb[^= ><]+/g)) == null ? void 0 : _c.filter((m) => !m.includes("sbbsc") && !m.includes("sbb-label")).map((t) => t.substring(4).trim().replace(/^-/, "").replace(/[A-Z]/g, (m, i) => `${i > 0 ? "-" : ""}${m.toLowerCase()}`).replace(/^link$/, "links")).filter((m) => m !== "input" && m !== "icon")) != null ? _d : [];
         const selectors = elementSelectors.concat(attributeSelectors);
         const imports = selectors.filter((t) => t !== "option" && t !== "icon" && packageRoot.subdirs.includes((0, import_core.fragment)(t))).filter((v, i, a) => a.indexOf(v) === i).map((i) => ModuleImport.fromPackageModule(packageName, i));
         if (selectors.some((s) => s === "icon")) {
@@ -195,10 +211,9 @@ const EXAMPLES = [
 })
 export class ${moduleName} {}
 `;
-      const formattedContent = prettier.format(content, {
-        parser: "typescript",
-        ...require("../../../package.json").prettier
-      });
+      const formattedContent = prettier.format(content, __spreadValues({
+        parser: "typescript"
+      }, require("../../../package.json").prettier));
       const moduleFile = dir.file((0, import_core.fragment)(`${dirName}.module.ts`));
       if (moduleFile.content.toString() !== formattedContent) {
         tree.overwrite(moduleFile.path, formattedContent);

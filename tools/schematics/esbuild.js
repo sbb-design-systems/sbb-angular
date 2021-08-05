@@ -10,6 +10,7 @@ readdirSync(__dirname, { withFileTypes: true })
         entryPoints: [join(__dirname, d.name, 'index.ts')],
         bundle: true,
         outfile: join(__dirname, d.name, 'index.js'),
+        target: 'node14',
         platform: 'node',
         plugins: [
           {

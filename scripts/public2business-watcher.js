@@ -1,7 +1,7 @@
 const { HostSink, HostTree } = require('@angular-devkit/schematics');
 const { NodeJsSyncHost } = require('@angular-devkit/core/node');
 const { normalize, virtualFs } = require('@angular-devkit/core');
-const { MODULES, public2business } = require('../schematics/public2business/index');
+const { MODULES, public2business } = require('../tools/schematics/public2business/index');
 const { resolve, join } = require('path');
 const chokidar = require('chokidar');
 

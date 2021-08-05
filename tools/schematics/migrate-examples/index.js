@@ -2,8 +2,22 @@ var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __export = (target, all) => {
   __markAsModule(target);
@@ -82,10 +96,9 @@ function migrateExamples(options) {
 `;
       const exportDeclarationInserPosition = content.indexOf("const EXAMPLES");
       content = content.slice(0, exportDeclarationInserPosition) + exportDeclaration + content.slice(exportDeclarationInserPosition);
-      content = prettier.format(lintFix(content), {
-        parser: "typescript",
-        ...require("../../../package.json").prettier
-      });
+      content = prettier.format(lintFix(content), __spreadValues({
+        parser: "typescript"
+      }, require("../../../package.json").prettier));
       const indexPath = (0, import_core.join)(targetDir.path, "index.ts");
       if (tree.exists(indexPath)) {
         context.logger.warn(`${(0, import_core.basename)(indexPath)} already exists (probably from public). Manual merge of ${(0, import_core.basename)(entry.path)} required.`);
@@ -107,10 +120,9 @@ function migrateExamples(options) {
  * @order ${++order * 10}
  */
 @Component`).replace(new RegExp(`angular-(business|public)\\/${options.module}`, "g"), `angular/${options.module}`);
-        content = prettier.format(content, {
-          parser: "typescript",
-          ...require("../../../package.json").prettier
-        });
+        content = prettier.format(content, __spreadValues({
+          parser: "typescript"
+        }, require("../../../package.json").prettier));
       }
       if (tree.exists(targetPath)) {
         context.logger.warn(`${targetPath} already exists (probably from public). Manual check of ${entry.path} recommended.`);
