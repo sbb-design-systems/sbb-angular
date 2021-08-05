@@ -1,0 +1,50 @@
+@import '../../../angular/styles/common';
+
+$sbb-row-horizontal-padding: pxToEm(16);
+$inputBorderWidth: pxToEm(1);
+$inputPaddingLeft: pxToEm(8);
+$filterInputPadding: $sbb-row-horizontal-padding - $inputPaddingLeft - $inputBorderWidth;
+
+/**
+ * Native HTML table structure
+ */
+table.sbb-table {
+  th.sbb-header-cell {
+    &.sbb-table-filter {
+      padding: 0 $filterInputPadding $filterInputPadding $filterInputPadding;
+      font-family: $fontSbbRoman;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    &:first-of-type.sbb-table-filter {
+      padding-left: $filterInputPadding;
+
+      [dir='rtl'] & {
+        padding-right: $filterInputPadding;
+      }
+    }
+
+    &:last-of-type.sbb-table-filter {
+      padding-right: $filterInputPadding;
+
+      [dir='rtl'] & {
+        padding-left: $filterInputPadding;
+      }
+    }
+  }
+
+  /**
+   * Alias of .sbb-table-align-center
+   * @deprecated
+   */
+  .sbb-col-center-align {
+    text-align: center !important;
+  }
+
+  .sbb-no-border-left {
+    border-right: none !important;
+  }
+}

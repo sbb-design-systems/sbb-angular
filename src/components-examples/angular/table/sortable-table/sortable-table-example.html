@@ -1,0 +1,21 @@
+<table sbbTable sbbSort [dataSource]="dataSource" sbbSortActive="letter" sbbSortDirection="asc">
+  <ng-container sbbColumnDef="letter">
+    <th sbbHeaderCell sbbSortHeader="letter" *sbbHeaderCellDef>Letter</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.letter }}</td>
+  </ng-container>
+  <ng-container sbbColumnDef="number">
+    <th sbbHeaderCell sbbSortHeader="number" *sbbHeaderCellDef>Number</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.number }}</td>
+  </ng-container>
+  <ng-container sbbColumnDef="word">
+    <th sbbHeaderCell sbbSortHeader="word" *sbbHeaderCellDef>Word</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.word }}</td>
+  </ng-container>
+  <ng-container sbbColumnDef="date">
+    <th sbbHeaderCell sbbSortHeader="date" *sbbHeaderCellDef>Date</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.date | date }}</td>
+  </ng-container>
+
+  <tr sbbHeaderRow *sbbHeaderRowDef="displayedColumns"></tr>
+  <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
+</table>
