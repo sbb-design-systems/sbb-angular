@@ -13,12 +13,16 @@
 
     <ng-container sbbColumnDef="filter-name">
       <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
-        <input formControlName="name" />
+        <input class="sbb-input-element" formControlName="name" />
       </th>
     </ng-container>
     <ng-container sbbColumnDef="filter-description">
       <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
-        <input formControlName="description" [sbbAutocomplete]="descriptionsAuto" />
+        <input
+          class="sbb-input-element"
+          formControlName="description"
+          [sbbAutocomplete]="descriptionsAuto"
+        />
         <sbb-autocomplete #descriptionsAuto="sbbAutocomplete">
           <sbb-option *ngFor="let option of descriptions | async" [value]="option">
             {{ option }}
