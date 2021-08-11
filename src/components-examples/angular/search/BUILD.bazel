@@ -19,6 +19,7 @@ ng_module(
     deps = [
         "//src/angular/autocomplete",
         "//src/angular/icon",
+        "//src/angular/input",
         "//src/angular/loading",
         "//src/angular/search",
         "@npm//@angular/common",
