@@ -1,6 +1,6 @@
 --- node_modules/@angular/localize/src/tools/src/source_file_utils.d.ts
 +++ node_modules/@angular/localize/src/tools/src/source_file_utils.d.ts
-@@ -9,14 +9,14 @@
+@@ -17,14 +17,14 @@
   * @param expression The expression to check.
   * @param localizeName The configured name of `$localize`.
   */
@@ -16,8 +16,8 @@
 +export declare function isNamedIdentifier(expression: NodePath<any>, name: string): expression is NodePath<t.Identifier>;
  /**
   * Is the given `identifier` declared globally.
-  * @param identifier The identifier to check.
-@@ -97,7 +97,7 @@
+  *
+@@ -126,7 +126,7 @@
   * Are all the given `nodes` expressions?
   * @param nodes The nodes to test.
   */
