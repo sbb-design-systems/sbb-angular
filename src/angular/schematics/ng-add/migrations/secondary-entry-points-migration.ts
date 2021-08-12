@@ -239,7 +239,7 @@ function resolveModuleName(node: ts.Identifier, typeChecker: ts.TypeChecker) {
   // File the module the symbol belongs to from a regex match of the
   // filename. This will always match since only SBB Angular elements are analyzed.
   const matches = sourceFile.match(ANGULAR_FILEPATH_REGEX);
-  return matches ? matches[1] : null;
+  return matches ? matches[2] : null;
 }
 
 /** Applies the renames from the class migration to the given elements. */
