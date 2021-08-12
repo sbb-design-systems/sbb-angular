@@ -16,6 +16,7 @@ interface VehicleExampleItem {
  */
 @Component({
   selector: 'sbb-paginator-table-example',
+  styleUrls: ['./paginator-table-example.css'],
   templateUrl: './paginator-table-example.html',
 })
 export class PaginatorTableExample implements OnInit {
