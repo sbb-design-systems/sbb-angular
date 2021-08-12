@@ -2203,8 +2203,8 @@ $panelBorderRadius: 2;
   }
 }
 
-.sbb-input-with-open-panel.sbb-input-element,
-.sbb-input-with-open-panel > .sbb-input-element {
+.sbb-input-with-open-panel:not(.sbb-input-with-open-panel-above).sbb-input-element,
+.sbb-input-with-open-panel:not(.sbb-input-with-open-panel-above) > .sbb-input-element {
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
