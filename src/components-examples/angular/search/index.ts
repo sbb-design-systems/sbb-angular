@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SbbAutocompleteModule } from '@sbb-esta/angular/autocomplete';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbLoadingModule } from '@sbb-esta/angular/loading';
 import { SbbSearchModule } from '@sbb-esta/angular/search';
 
@@ -40,6 +41,7 @@ const EXAMPLES = [
     SbbIconModule,
     SbbLoadingModule,
     SbbSearchModule,
+    SbbInputModule,
   ],
   declarations: EXAMPLES,
   exports: EXAMPLES,
