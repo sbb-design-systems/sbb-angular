@@ -666,7 +666,7 @@ describe('SbbAutocomplete', () => {
           fixture.componentInstance.trigger.openPanel();
 
           Promise.resolve().then(() => {
-            expect(fixture.componentInstance.panel.showPanel).toBe(
+            expect(fixture.componentInstance.panel.showPanel.value).toBe(
               true,
               `Expected panel to be visible.`
             );
@@ -2548,6 +2548,38 @@ describe('SbbAutocomplete', () => {
       expect(inputWrapper.classList).not.toContain('sbb-input-with-open-panel');
       expect(inputWrapper.classList).not.toContain('sbb-input-with-open-panel-above');
       expect(panel.classList).not.toContain('sbb-autocomplete-panel-above');
+    }));
+
+    it('should not set css class on trigger if there are no options to display', fakeAsync(() => {
+      const fixture = createComponent(SimpleAutocomplete);
+      fixture.componentInstance.filteredNumbers = [];
+      fixture.detectChanges();
+
+      const inputWrapper = fixture.debugElement.query(
+        By.css('.sbb-form-field-input-wrapper')
+      )!.nativeElement;
+
+      fixture.componentInstance.trigger.openPanel();
+      fixture.detectChanges();
+      zone.simulateZoneExit();
+      fixture.detectChanges();
+
+      // Initially expect not to have class set because there are no options
+      expect(inputWrapper.classList).not.toContain('sbb-input-with-open-panel');
+
+      // Add option and expect class set
+      fixture.componentInstance.filteredNumbers = [{ code: '1', name: 'Eins', height: 48 }];
+      fixture.detectChanges();
+      tick();
+
+      expect(inputWrapper.classList).toContain('sbb-input-with-open-panel');
+
+      // Remove option and expect class to be removed
+      fixture.componentInstance.filteredNumbers = [];
+      fixture.detectChanges();
+      tick();
+
+      expect(inputWrapper.classList).not.toContain('sbb-input-with-open-panel');
     }));
   });
 

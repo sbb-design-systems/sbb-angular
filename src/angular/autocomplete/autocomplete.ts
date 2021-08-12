@@ -25,7 +25,7 @@ import {
   SbbOption,
   SBB_OPTION_PARENT_COMPONENT,
 } from '@sbb-esta/angular/core';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { SbbAutocompleteHint } from './autocomplete-hint';
 
@@ -111,11 +111,11 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
   _keyManager: ActiveDescendantKeyManager<SbbOption>;
 
   /** Whether the autocomplete panel should be visible, depending on option length. */
-  showPanel: boolean = false;
+  showPanel: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   /** Whether the autocomplete panel is open. */
   get isOpen(): boolean {
-    return this._isOpen && this.showPanel;
+    return this._isOpen && this.showPanel.value;
   }
   _isOpen: boolean = false;
 
@@ -280,7 +280,7 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
    * the panel should still be displayed.
    */
   _setVisibility() {
-    this.showPanel = !!this.options.length || (!!this.hints.length && this.showHintIfNoOptions);
+    this.showPanel.next(!!this.options.length || (!!this.hints.length && this.showHintIfNoOptions));
     this._setVisibilityClasses(this._classList);
     this._changeDetectorRef.markForCheck();
   }
@@ -302,8 +302,8 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
 
   /** Sets the autocomplete visibility classes on a classlist based on the panel is visible. */
   private _setVisibilityClasses(classList: { [key: string]: boolean }) {
-    classList[this._visibleClass] = this.showPanel;
-    classList[this._hiddenClass] = !this.showPanel;
+    classList[this._visibleClass] = this.showPanel.value;
+    classList[this._hiddenClass] = !this.showPanel.value;
   }
 
   static ngAcceptInputType_autoActiveFirstOption: BooleanInput;
