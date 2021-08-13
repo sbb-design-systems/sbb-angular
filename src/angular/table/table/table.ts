@@ -31,7 +31,7 @@ import { SbbTableDataSource } from './table-data-source';
  * tables that animate rows.
  */
 @Directive({
-  selector: 'sbb-table[recycleRows], table[sbbTable][recycleRows]',
+  selector: 'sbb-table[recycleRows], table[sbb-table][recycleRows]',
   providers: [{ provide: _VIEW_REPEATER_STRATEGY, useClass: _RecycleViewRepeaterStrategy }],
 })
 export class SbbRecycleRows {}
@@ -40,7 +40,7 @@ export class SbbRecycleRows {}
  * Wrapper for the CdkTable with Material design styles.
  */
 @Component({
-  selector: 'sbb-table, table[sbbTable]',
+  selector: 'sbb-table, table[sbb-table]',
   exportAs: 'sbbTable',
   template: CDK_TABLE_TEMPLATE,
   styleUrls: ['table.css'],

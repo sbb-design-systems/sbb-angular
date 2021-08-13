@@ -20,7 +20,7 @@ The table has got the following characteristics:
 ### Usage
 
 ```html
-<table sbbTable [dataSource]="dataSource" aria-describedby="sbb-table">
+<table sbb-table [dataSource]="dataSource" aria-describedby="sbb-table">
   <ng-container sbbColumnDef="column-one">
     <th sbbHeaderCell *sbbHeaderCellDef id="column-one">column-one</th>
     <td sbbCell *sbbCellDef="let element">{{ element.property1 }}</td>
@@ -36,14 +36,14 @@ The table has got the following characteristics:
 </table>
 ```
 
-1. Write your `sbbTable` and provide data
+1. Write your `sbb-table` and provide data
 
-   Begin by adding the `<table sbbTable>` component to your template and passing in data.
+   Begin by adding the `<table sbb-table>` component to your template and passing in data.
    The simplest way to provide data to the table is by passing a data array to the table's dataSource input.
    The table will take the array and render a row for each object in the data array.
 
    ```html
-   <table sbbTable [dataSource]="myDataArray" aria-describedby="my-table-name">
+   <table sbb-table [dataSource]="myDataArray" aria-describedby="my-table-name">
      ...
    </table>
    ```
@@ -82,7 +82,7 @@ The table has got the following characteristics:
    To start, create a variable in your component that contains the list of the columns you want to render.
 
    columnsToDisplay = ['example', 'result'];
-   Then add `sbbHeaderRow` and `sbbRow` to the content of your `sbbTable` and provide your column list as inputs.
+   Then add `sbbHeaderRow` and `sbbRow` to the content of your `sbb-table` and provide your column list as inputs.
 
    ```html
    <tr sbbHeaderRow *sbbHeaderRowDef="columnsToDisplay"></tr>
@@ -144,7 +144,7 @@ To achieve default sorting of a column, use `sbbSortActive` directive to define 
 
 ```html
 <table
-  sbbTable
+  sbb-table
   sbbSort
   [dataSource]="dataSource"
   sbbSortActive="letter"
@@ -174,7 +174,7 @@ It's easy to split up a datasource into pages. You can use the <sbb-paginator> c
 #### Html
 
 ```html
-<table sbbTable [dataSource]="dataSource">
+<table sbb-table [dataSource]="dataSource">
   ...
 </table>
 

@@ -618,7 +618,7 @@ class SbbTableTestComponent {
 
 @Component({
   template: `
-    <table sbbTable [dataSource]="dataSource">
+    <table sbb-table [dataSource]="dataSource">
       <ng-container sbbColumnDef="column_a">
         <th sbbHeaderCell *sbbHeaderCellDef>Column A</th>
         <td sbbCell *sbbCellDef="let row">{{ row.a }}</td>
@@ -648,7 +648,7 @@ class NativeHtmlTableTestComponent {
 
 @Component({
   template: `
-    <table sbbTable [dataSource]="dataSource">
+    <table sbb-table [dataSource]="dataSource">
       <ng-container sbbColumnDef="column_a">
         <th sbbHeaderCell *sbbHeaderCellDef>Column A</th>
         <td sbbCell *sbbCellDef="let row">{{ row.a }}</td>
@@ -657,7 +657,7 @@ class NativeHtmlTableTestComponent {
       <ng-container sbbColumnDef="column_b">
         <th sbbHeaderCell *sbbHeaderCellDef>Column B</th>
         <td sbbCell *sbbCellDef="let row">
-          <table sbbTable [dataSource]="dataSource">
+          <table sbb-table [dataSource]="dataSource">
             <ng-container sbbColumnDef="column_a">
               <th sbbHeaderCell *sbbHeaderCellDef>Column A</th>
               <td sbbCell *sbbCellDef="let row">{{ row.a }}</td>
@@ -696,7 +696,7 @@ class NestedHtmlTableTestComponent {
 
 @Component({
   template: `
-    <table sbbTable [dataSource]="dataSource">
+    <table sbb-table [dataSource]="dataSource">
       <ng-container sbbColumnDef="column_a">
         <th sbbHeaderCell *sbbHeaderCellDef>Column A</th>
         <td sbbCell *sbbCellDef="let row">{{ row.a }}</td>
