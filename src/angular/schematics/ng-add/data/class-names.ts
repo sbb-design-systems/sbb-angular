@@ -121,6 +121,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbTooltipComponent',
           replaceWith: 'SbbTooltipWrapper',
         },
+        {
+          replace: 'SbbSortHeaderComponent',
+          replaceWith: 'SbbSortHeader',
+        },
       ],
     },
   ],

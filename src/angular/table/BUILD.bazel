@@ -21,12 +21,12 @@ ng_module(
     ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular/table",
     deps = [
+        "//src:dev_mode_types",
         "//src/angular/core",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//@angular/localize",
         "@npm//rxjs",
     ],
 )
@@ -55,6 +55,7 @@ ng_test_library(
     ),
     deps = [
         ":table",
+        "//src/angular/core/testing",
         "//src/angular/icon",
         "//src/angular/icon/testing",
         "//src/angular/pagination",

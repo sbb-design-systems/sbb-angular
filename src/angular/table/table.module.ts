@@ -2,7 +2,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SbbSortHeaderComponent } from './sort-header/sort-header';
+import { SbbSortArrow } from './sort-header/sort-arrow';
+import { SbbSortHeader } from './sort-header/sort-header';
 import { SbbSortDirective } from './sort/sort';
 import {
   SbbCell,
@@ -21,48 +22,44 @@ import {
   SbbRow,
   SbbRowDef,
 } from './table-row/table-row';
-import { SbbTable } from './table/table';
+import { SbbRecycleRows, SbbTable } from './table/table';
 import { SbbTextColumn } from './text-column/text-column';
+
+const EXPORTED_DECLARATIONS = [
+  // Table
+  SbbTable,
+  SbbRecycleRows,
+
+  // Template defs
+  SbbHeaderCellDef,
+  SbbHeaderRowDef,
+  SbbColumnDef,
+  SbbCellDef,
+  SbbRowDef,
+  SbbFooterCellDef,
+  SbbFooterRowDef,
+
+  // Cell directives
+  SbbHeaderCell,
+  SbbCell,
+  SbbFooterCell,
+
+  // Row directives
+  SbbHeaderRow,
+  SbbRow,
+  SbbFooterRow,
+
+  SbbTextColumn,
+
+  // Sort
+  SbbSortDirective,
+  SbbSortHeader,
+  SbbSortArrow,
+];
 
 @NgModule({
   imports: [CdkTableModule, CommonModule],
-  declarations: [
-    SbbTable,
-    SbbTextColumn,
-    SbbCell,
-    SbbHeaderCell,
-    SbbCellDef,
-    SbbHeaderCellDef,
-    SbbFooterCellDef,
-    SbbFooterCell,
-    SbbColumnDef,
-    SbbHeaderRow,
-    SbbFooterRow,
-    SbbRow,
-    SbbRowDef,
-    SbbHeaderRowDef,
-    SbbFooterRowDef,
-    SbbSortDirective,
-    SbbSortHeaderComponent,
-  ],
-  exports: [
-    SbbTable,
-    SbbTextColumn,
-    SbbCell,
-    SbbHeaderCell,
-    SbbCellDef,
-    SbbHeaderCellDef,
-    SbbFooterCellDef,
-    SbbFooterCell,
-    SbbColumnDef,
-    SbbHeaderRow,
-    SbbFooterRow,
-    SbbRow,
-    SbbRowDef,
-    SbbHeaderRowDef,
-    SbbFooterRowDef,
-    SbbSortDirective,
-    SbbSortHeaderComponent,
-  ],
+  declarations: EXPORTED_DECLARATIONS,
+  exports: EXPORTED_DECLARATIONS,
 })
 export class SbbTableModule {}

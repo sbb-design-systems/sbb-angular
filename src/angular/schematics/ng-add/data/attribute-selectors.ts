@@ -25,6 +25,10 @@ export const attributeSelectors: VersionChanges<AttributeSelectorUpgradeData> = 
           replace: 'sbbLightboxFooter',
           replaceWith: 'sbbLightboxActions',
         },
+        {
+          replace: 'sbbSortHeader',
+          replaceWith: 'sbb-sort-header',
+        },
       ],
     },
   ],

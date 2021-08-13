@@ -115,11 +115,11 @@ The table will call disconnect when the table is destroyed, which may be the rig
 
 ### Sorting
 
-To add sorting behavior to the table, add the `sbbSort` directive to the table and add `sbbSortHeader` to each column header cell that should trigger sorting.
+To add sorting behavior to the table, add the `sbbSort` directive to the table and add `sbb-sort-header` to each column header cell that should trigger sorting.
 
 ```html
 <ng-container sbbColumnDef="letter">
-  <th sbbHeaderCell sbbSortHeader="letter" *sbbHeaderCellDef id="letter">Letter</th>
+  <th sbbHeaderCell sbb-sort-header="letter" *sbbHeaderCellDef id="letter">Letter</th>
   <td sbbCell *sbbCellDef="let element">{{ element.letter }}</td>
 </ng-container>
 ```

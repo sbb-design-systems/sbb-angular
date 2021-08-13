@@ -1,11 +1,17 @@
-import { _DisposeViewRepeaterStrategy, _VIEW_REPEATER_STRATEGY } from '@angular/cdk/collections';
+import {
+  _DisposeViewRepeaterStrategy,
+  _RecycleViewRepeaterStrategy,
+  _VIEW_REPEATER_STRATEGY,
+} from '@angular/cdk/collections';
 import {
   CdkTable,
   CDK_TABLE,
   CDK_TABLE_TEMPLATE,
+  STICKY_POSITIONING_LISTENER,
   _CoalescedStyleScheduler,
   _COALESCED_STYLE_SCHEDULER,
 } from '@angular/cdk/table';
+import { Directive } from '@angular/core';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -20,6 +26,19 @@ import { SbbCell, SbbHeaderCell } from '../table-cell/table-cell';
 
 import { SbbTableDataSource } from './table-data-source';
 
+/**
+ * Enables the recycle view repeater strategy, which reduces rendering latency. Not compatible with
+ * tables that animate rows.
+ */
+@Directive({
+  selector: 'sbb-table[recycleRows], table[sbbTable][recycleRows]',
+  providers: [{ provide: _VIEW_REPEATER_STRATEGY, useClass: _RecycleViewRepeaterStrategy }],
+})
+export class SbbRecycleRows {}
+
+/**
+ * Wrapper for the CdkTable with Material design styles.
+ */
 @Component({
   selector: 'sbb-table, table[sbbTable]',
   exportAs: 'sbbTable',
@@ -35,12 +54,12 @@ import { SbbTableDataSource } from './table-data-source';
     { provide: CdkTable, useExisting: SbbTable },
     { provide: CDK_TABLE, useExisting: SbbTable },
     { provide: _COALESCED_STYLE_SCHEDULER, useClass: _CoalescedStyleScheduler },
+    // Prevent nested tables from seeing this table's StickyPositioningListener.
+    { provide: STICKY_POSITIONING_LISTENER, useValue: null },
   ],
-  // The "OnPush" status for the `SbbTable` component is effectively a noop, so we are removing it.
-  // The view for `SbbTable` consists entirely of templates declared in other views. As they are
-  // declared elsewhere, they are checked when their declaration points are checked.
-  // tslint:disable-next-line:validate-decorators
   encapsulation: ViewEncapsulation.None,
+  // See note on CdkTable for explanation on why this uses the default change detection strategy.
+  // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SbbTable<T> extends CdkTable<T> implements AfterViewInit {
@@ -53,6 +72,10 @@ export class SbbTable<T> extends CdkTable<T> implements AfterViewInit {
   /** Overrides the sticky CSS class set by the `CdkTable`. */
   // tslint:disable-next-line:naming-convention
   protected override stickyCssClass: string = 'sbb-table-sticky';
+
+  /** Overrides the need to add position: sticky on every sticky cell element in `CdkTable`. */
+  // tslint:disable-next-line:naming-convention
+  protected override needsPositionStickyOnElement: boolean = false;
 
   ngAfterViewInit(): void {
     this.headerElements.changes.subscribe((value) => this._setGroupClasses(value));

@@ -18,32 +18,16 @@ const SORT_ANIMATION_TRANSITION = '225ms cubic-bezier(0.4,0.0,0.2,1)';
  */
 export const sbbSortAnimations: {
   readonly indicator: AnimationTriggerMetadata;
-  readonly leftPointer: AnimationTriggerMetadata;
-  readonly rightPointer: AnimationTriggerMetadata;
   readonly arrowOpacity: AnimationTriggerMetadata;
   readonly arrowPosition: AnimationTriggerMetadata;
   readonly allowChildren: AnimationTriggerMetadata;
 } = {
   /** Animation that moves the sort indicator. */
   indicator: trigger('indicator', [
-    state('active-asc, asc', style({ transform: 'translateY(0px)' })),
-    // 10px is the height of the sort indicator, minus the width of the pointers
-    state('active-desc, desc', style({ transform: 'translateY(10px)' })),
+    state('active-asc, asc', style({ transform: 'scaleY(-1)' })),
+    state('active-desc, desc', style({ transform: 'scaleY(1)' })),
     transition('active-asc <=> active-desc', animate(SORT_ANIMATION_TRANSITION)),
-  ]),
-
-  /** Animation that rotates the left pointer of the indicator based on the sorting direction. */
-  leftPointer: trigger('leftPointer', [
-    state('active-asc, asc', style({ transform: 'rotate(-45deg)' })),
-    state('active-desc, desc', style({ transform: 'rotate(45deg)' })),
-    transition('active-asc <=> active-desc', animate(SORT_ANIMATION_TRANSITION)),
-  ]),
-
-  /** Animation that rotates the right pointer of the indicator based on the sorting direction. */
-  rightPointer: trigger('rightPointer', [
-    state('active-asc, asc', style({ transform: 'rotate(45deg)' })),
-    state('active-desc, desc', style({ transform: 'rotate(-45deg)' })),
-    transition('active-asc <=> active-desc', animate(SORT_ANIMATION_TRANSITION)),
+    transition('asc <=> desc', animate('0ms')),
   ]),
 
   /** Animation that controls the arrow opacity. */

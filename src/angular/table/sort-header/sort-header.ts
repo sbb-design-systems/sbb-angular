@@ -1,12 +1,15 @@
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
-/// <reference types="@angular/localize/init" />
 
+import { FocusMonitor } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ENTER, SPACE } from '@angular/cdk/keycodes';
+import { CdkColumnDef } from '@angular/cdk/table';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  HostListener,
+  ElementRef,
   Inject,
   Input,
   OnDestroy,
@@ -14,13 +17,19 @@ import {
   Optional,
   ViewEncapsulation,
 } from '@angular/core';
+import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 import { merge, Subscription } from 'rxjs';
 
 import { SbbSortable, SbbSortDirective } from '../sort/sort';
 import { SbbSortDirection } from '../sort/sort-direction';
-import { getSortHeaderNotContainedWithinSortError } from '../sort/sort-error-functions';
+import { getSortHeaderNotContainedWithinSortError } from '../sort/sort-errors';
 
 import { sbbSortAnimations } from './sort-animations';
+
+// Boilerplate for applying mixins to the sort header.
+/** @docs-private */
+// tslint:disable-next-line:naming-convention
+const _SbbSortHeaderBase = mixinDisabled(class {});
 
 /**
  * Valid positions for the arrow to be in for its opacity and translation. If the state is a
@@ -39,7 +48,7 @@ export type SbbArrowViewState = SbbSortDirection | 'hint' | 'active';
  */
 export interface SbbArrowViewStateTransition {
   fromState?: SbbArrowViewState;
-  toState: SbbArrowViewState;
+  toState?: SbbArrowViewState;
 }
 
 /** Column definition associated with a `SbbSortHeader`. */
@@ -51,90 +60,39 @@ interface SbbSortHeaderColumnDef {
  * Applies sorting behavior (click to change sort) and styles to an element, including an
  * arrow to display the current sort direction.
  *
- * Must be provided with an id and contained within a parent SbbSort directive.
+ * Must be provided with an id and contained within a parent SbbSortDirective.
  *
  * If used on header cells in a CdkTable, it will automatically default its id from its containing
  * column definition.
  */
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: '[sbbSortHeader]',
+  selector: '[sbb-sort-header]',
   exportAs: 'sbbSortHeader',
   templateUrl: 'sort-header.html',
   styleUrls: ['sort-header.css'],
   host: {
     class: 'sbb-sort-header',
+    '(click)': '_handleClick()',
+    '(keydown)': '_handleKeydown($event)',
+    '(mouseenter)': '_setIndicatorHintVisible(true)',
+    '(mouseleave)': '_setIndicatorHintVisible(false)',
     '[attr.aria-sort]': '_getAriaSortAttribute()',
+    '[class.sbb-sort-header-disabled]': '_isDisabled()',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled'],
   animations: [
-    sbbSortAnimations.indicator,
-    sbbSortAnimations.leftPointer,
-    sbbSortAnimations.rightPointer,
     sbbSortAnimations.arrowOpacity,
     sbbSortAnimations.arrowPosition,
     sbbSortAnimations.allowChildren,
   ],
 })
-export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
-  /** Overrides the disable clear value of the containing SbbSort for this SbbSortable. */
-  @Input()
-  get disableClear(): boolean {
-    return this._disableClear;
-  }
-  set disableClear(v) {
-    this._disableClear = coerceBooleanProperty(v);
-  }
-
-  get _ariaLabelChangeSorting() {
-    return typeof $localize === 'function'
-      ? $localize`:Button label to change the sorting of column@@sbbTableChangeSorting:Change sorting for ${this.id}`
-      : `Change sorting for ${this.id}`;
-  }
-
+export class SbbSortHeader
+  extends _SbbSortHeaderBase
+  implements CanDisable, SbbSortable, OnDestroy, OnInit, AfterViewInit
+{
   private _rerenderSubscription: Subscription;
-
-  constructor(
-    @Optional() public _sort: SbbSortDirective,
-    @Inject('SBB_SORT_HEADER_COLUMN_DEF') @Optional() public _columnDef: SbbSortHeaderColumnDef,
-    changeDetectorRef: ChangeDetectorRef
-  ) {
-    if (!_sort) {
-      throw getSortHeaderNotContainedWithinSortError();
-    }
-
-    this._rerenderSubscription = merge(_sort.sbbSortChange, _sort._stateChanges).subscribe(() => {
-      if (this._isSorted()) {
-        this._updateArrowDirection();
-      }
-
-      // The following block is moved from _handleClick() as suggested by https://github.com/angular/components/issues/10242#issuecomment-587925784
-      // This is an open bug at angular material https://github.com/angular/components/issues/10242.
-      if (this._sort.active === this.id) {
-        // Do not show the animation if the header was already shown in the right position.
-        if (this._viewState.toState === 'hint' || this._viewState.toState === 'active') {
-          this._disableViewStateAnimation = true;
-        }
-
-        // If the arrow is now sorted, animate the arrow into place. Otherwise, animate it away into
-        // the direction it is facing.
-        const viewState: SbbArrowViewStateTransition = this._isSorted()
-          ? { fromState: this._arrowDirection, toState: 'active' }
-          : { fromState: 'active', toState: this._arrowDirection };
-        this._setAnimationTransitionState(viewState);
-      }
-
-      // If this header was recently active and now no longer sorted, animate away the arrow.
-      if (!this._isSorted() && this._viewState && this._viewState.toState === 'active') {
-        this._disableViewStateAnimation = false;
-        this._setAnimationTransitionState({ fromState: 'active', toState: this._arrowDirection });
-      }
-
-      changeDetectorRef.markForCheck();
-    });
-  }
 
   /**
    * Flag set to true when the indicator should be displayed while the sort is not active. Used to
@@ -147,7 +105,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * position through the animation. If animations are currently disabled, the fromState is removed
    * so that there is no animation displayed.
    */
-  _viewState: SbbArrowViewStateTransition;
+  _viewState: SbbArrowViewStateTransition = {};
 
   /** The direction the arrow should be facing according to the current state. */
   _arrowDirection: SbbSortDirection = '';
@@ -159,26 +117,52 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * ID of this sort header. If used within the context of a CdkColumnDef, this will default to
    * the column's name.
    */
-  @Input('sbbSortHeader') id: string;
+  @Input('sbb-sort-header') id: string;
 
   /** Sets the position of the arrow that displays when sorted. */
   @Input() arrowPosition: 'before' | 'after' = 'after';
 
-  /** Overrides the sort start value of the containing SbbSort for this SbbSortable. */
+  /** Overrides the sort start value of the containing SbbSortDirective for this SbbSortable. */
   @Input() start: 'asc' | 'desc';
+
+  /** Overrides the disable clear value of the containing SbbSortDirective for this SbbSortable. */
+  @Input()
+  get disableClear(): boolean {
+    return this._disableClear;
+  }
+  set disableClear(v) {
+    this._disableClear = coerceBooleanProperty(v);
+  }
   private _disableClear: boolean;
 
-  @HostListener('mouseenter') _onMouseEnter() {
-    this._setIndicatorHintVisible(true);
-  }
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    // `SbbSortDirective` is not optionally injected, but just asserted manually w/ better error.
+    @Optional() public _sort: SbbSortDirective,
+    @Inject('SBB_SORT_HEADER_COLUMN_DEF') @Optional() private _columnDef: SbbSortHeaderColumnDef,
+    // Also Inject MAT_SORT_HEADER_COLUMN_DEF to provide full cdkTable support
+    @Inject('MAT_SORT_HEADER_COLUMN_DEF') @Optional() private _columnDefCdk: CdkColumnDef,
+    private _focusMonitor: FocusMonitor,
+    private _elementRef: ElementRef<HTMLElement>
+  ) {
+    // Note that we use a string token for the `_columnDef`, because the value is provided both by
+    // `angular/table` and `cdk/table` and we can't have the CDK depending on SBB Angular,
+    // and we want to avoid having the sort header depending on the CDK table because
+    // of this single reference.
+    super();
 
-  @HostListener('mouseleave') _onMouseLeave() {
-    this._setIndicatorHintVisible(false);
+    if (!_sort && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+      throw getSortHeaderNotContainedWithinSortError();
+    }
+
+    this._handleStateChanges();
   }
 
   ngOnInit() {
     if (!this.id && this._columnDef) {
       this.id = this._columnDef.name;
+    } else if (!this.id && this._columnDefCdk) {
+      this.id = this._columnDefCdk.name;
     }
 
     // Initialize the direction of the arrow and set the view state to be immediately that state.
@@ -190,7 +174,20 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
     this._sort.register(this);
   }
 
+  ngAfterViewInit() {
+    // We use the focus monitor because we also want to style
+    // things differently based on the focus origin.
+    this._focusMonitor.monitor(this._elementRef, true).subscribe((origin) => {
+      const newState = !!origin;
+      if (newState !== this._showIndicatorHint) {
+        this._setIndicatorHintVisible(newState);
+        this._changeDetectorRef.markForCheck();
+      }
+    });
+  }
+
   ngOnDestroy() {
+    this._focusMonitor.stopMonitoring(this._elementRef);
     this._sort.deregister(this);
     this._rerenderSubscription.unsubscribe();
   }
@@ -200,6 +197,11 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * user showing what the active sort will become. If set to false, the arrow will fade away.
    */
   _setIndicatorHintVisible(visible: boolean) {
+    // No-op if the sort header is disabled - should not make the hint visible.
+    if (this._isDisabled() && visible) {
+      return;
+    }
+
     this._showIndicatorHint = visible;
 
     if (!this._isSorted()) {
@@ -218,7 +220,7 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    * no animation appears.
    */
   _setAnimationTransitionState(viewState: SbbArrowViewStateTransition) {
-    this._viewState = viewState;
+    this._viewState = viewState || {};
 
     // If the animation for arrow position state (opacity/translation) should be disabled,
     // remove the fromState so that it jumps right to the toState.
@@ -228,11 +230,26 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   }
 
   /** Triggers the sort on this sort header and removes the indicator hint. */
-  @HostListener('click')
-  _handleClick() {
+  _toggleOnInteraction() {
     this._sort.sort(this);
 
-    this._showIndicatorHint = false;
+    // Do not show the animation if the header was already shown in the right position.
+    if (this._viewState.toState === 'hint' || this._viewState.toState === 'active') {
+      this._disableViewStateAnimation = true;
+    }
+  }
+
+  _handleClick() {
+    if (!this._isDisabled()) {
+      this._sort.sort(this);
+    }
+  }
+
+  _handleKeydown(event: KeyboardEvent) {
+    if (!this._isDisabled() && (event.keyCode === SPACE || event.keyCode === ENTER)) {
+      event.preventDefault();
+      this._toggleOnInteraction();
+    }
   }
 
   /** Whether this SbbSortHeader is currently sorted in either ascending or descending order. */
@@ -268,6 +285,10 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
     this._arrowDirection = this._isSorted() ? this._sort.direction : this.start || this._sort.start;
   }
 
+  _isDisabled() {
+    return this._sort.disabled || this.disabled;
+  }
+
   /**
    * Gets the aria-sort attribute that should be applied to this sort header. If this header
    * is not sorted, returns null so that the attribute is removed from the host element. Aria spec
@@ -276,13 +297,44 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
    */
   _getAriaSortAttribute() {
     if (!this._isSorted()) {
-      return null;
+      return 'none';
     }
 
     return this._sort.direction === 'asc' ? 'ascending' : 'descending';
   }
 
-  // tslint:disable: member-ordering
+  /** Whether the arrow inside the sort header should be rendered. */
+  _renderArrow() {
+    return !this._isDisabled() || this._isSorted();
+  }
+
+  /** Handles changes in the sorting state. */
+  private _handleStateChanges() {
+    this._rerenderSubscription = merge(this._sort.sortChange, this._sort._stateChanges).subscribe(
+      () => {
+        if (this._isSorted()) {
+          this._updateArrowDirection();
+
+          // Do not show the animation if the header was already shown in the right position.
+          if (this._viewState.toState === 'hint' || this._viewState.toState === 'active') {
+            this._disableViewStateAnimation = true;
+          }
+
+          this._setAnimationTransitionState({ fromState: this._arrowDirection, toState: 'active' });
+          this._showIndicatorHint = false;
+        }
+
+        // If this header was recently active and now no longer sorted, animate away the arrow.
+        if (!this._isSorted() && this._viewState && this._viewState.toState === 'active') {
+          this._disableViewStateAnimation = false;
+          this._setAnimationTransitionState({ fromState: 'active', toState: this._arrowDirection });
+        }
+
+        this._changeDetectorRef.markForCheck();
+      }
+    );
+  }
+
   static ngAcceptInputType_disableClear: BooleanInput;
-  // tslint:enable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
 }

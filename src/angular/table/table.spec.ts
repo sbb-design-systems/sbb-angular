@@ -14,7 +14,7 @@ import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbPaginationModule, SbbPaginator } from '@sbb-esta/angular/pagination';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { SbbSortHeaderComponent } from './sort-header/sort-header';
+import { SbbSortHeader } from './sort-header/sort-header';
 import { SbbSortDirective } from './sort/sort';
 import { SbbTableModule } from './table.module';
 import { SbbTable } from './table/table';
@@ -318,6 +318,14 @@ describe('SbbTable', () => {
         ['a_2', 'b_2', 'c_2'],
         ['Footer A', 'Footer B', 'Footer C'],
       ]);
+
+      // Change the filter to a falsy value that might come in from the view.
+      dataSource.filter = 0 as any;
+      fixture.detectChanges();
+      expectTableToMatchContent(tableElement, [
+        ['Column A', 'Column B', 'Column C'],
+        ['Footer A', 'Footer B', 'Footer C'],
+      ]);
     }));
 
     it('should not match concatenated words', fakeAsync(() => {
@@ -603,9 +611,9 @@ class FakeDataSource extends DataSource<TestData> {
 class SbbTableTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
-
-  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
   isFourthRow = (i: number, _rowData: TestData) => i === 3;
+
+  @ViewChild(SbbTable) table: SbbTable<TestData>;
 }
 
 @Component({
@@ -635,7 +643,7 @@ class NativeHtmlTableTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
+  @ViewChild(SbbTable) table: SbbTable<TestData>;
 }
 
 @Component({
@@ -703,7 +711,7 @@ class StickyTableTestComponent {
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a'];
 
-  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
+  @ViewChild(SbbTable) table: SbbTable<TestData>;
 }
 
 @Component({
@@ -729,16 +737,16 @@ class StickyTableTestComponent {
 class SbbTableWithWhenRowTestComponent {
   multiTemplateDataRows: boolean = false;
   dataSource: FakeDataSource | null = new FakeDataSource();
+  isFourthRow = (i: number, _rowData: TestData) => i === 3;
 
   @ViewChild(SbbTable) table: SbbTable<TestData>;
-  isFourthRow = (i: number, _rowData: TestData) => i === 3;
 }
 
 @Component({
   template: `
     <sbb-table [dataSource]="dataSource" sbbSort>
       <ng-container sbbColumnDef="column_a">
-        <sbbHeaderCell *sbbHeaderCellDef sbbSortHeader="a"> Column A</sbbHeaderCell>
+        <sbbHeaderCell *sbbHeaderCellDef sbb-sort-header="a"> Column A</sbbHeaderCell>
         <sbbCell *sbbCellDef="let row"> {{ row.a }}</sbbCell>
         <sbbFooterCell *sbbFooterCellDef> Footer A</sbbFooterCell>
       </ng-container>
@@ -768,10 +776,10 @@ class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
   dataSource = new SbbTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
-  @ViewChild(SbbPaginator, { static: true }) paginator: SbbPaginator;
-  @ViewChild(SbbSortDirective, { static: true }) sort: SbbSortDirective;
-  @ViewChild(SbbSortHeaderComponent) sortHeader: SbbSortHeaderComponent;
+  @ViewChild(SbbTable) table: SbbTable<TestData>;
+  @ViewChild(SbbPaginator) paginator: SbbPaginator;
+  @ViewChild(SbbSortDirective) sort: SbbSortDirective;
+  @ViewChild(SbbSortHeader) sortHeader: SbbSortHeader;
 
   constructor() {
     this.underlyingDataSource.data = [];
@@ -796,7 +804,7 @@ class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
   template: `
     <sbb-table [dataSource]="dataSource" sbbSort>
       <ng-container sbbColumnDef="column_a">
-        <sbbHeaderCell *sbbHeaderCellDef sbbSortHeader="a"> Column A</sbbHeaderCell>
+        <sbbHeaderCell *sbbHeaderCellDef sbb-sort-header="a"> Column A</sbbHeaderCell>
         <sbbCell *sbbCellDef="let row"> {{ row.a }}</sbbCell>
       </ng-container>
 
@@ -820,8 +828,8 @@ class SbbTableWithSortTestComponent implements OnInit {
   dataSource = new SbbTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
-  @ViewChild(SbbSortDirective, { static: true }) sort: SbbSortDirective;
+  @ViewChild(SbbTable) table: SbbTable<TestData>;
+  @ViewChild(SbbSortDirective) sort: SbbSortDirective;
 
   constructor() {
     this.underlyingDataSource.data = [];
@@ -871,8 +879,8 @@ class SbbTableWithPaginatorTestComponent implements OnInit {
   dataSource = new SbbTableDataSource<TestData>();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(SbbTable, { static: true }) table: SbbTable<TestData>;
-  @ViewChild(SbbPaginator, { static: true }) paginator: SbbPaginator;
+  @ViewChild(SbbTable) table: SbbTable<TestData>;
+  @ViewChild(SbbPaginator) paginator: SbbPaginator;
 
   constructor() {
     this.underlyingDataSource.data = [];

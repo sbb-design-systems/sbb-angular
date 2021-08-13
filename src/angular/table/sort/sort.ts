@@ -2,14 +2,21 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Directive,
   EventEmitter,
+  Inject,
+  InjectionToken,
   Input,
-  isDevMode,
   OnChanges,
   OnDestroy,
   OnInit,
+  Optional,
   Output,
 } from '@angular/core';
-import { HasInitialized, mixinDisabled, mixinInitialized } from '@sbb-esta/angular/core';
+import {
+  CanDisable,
+  HasInitialized,
+  mixinDisabled,
+  mixinInitialized,
+} from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 
 import { SbbSortDirection } from './sort-direction';
@@ -17,7 +24,7 @@ import {
   getSortDuplicateSortableIdError,
   getSortHeaderMissingIdError,
   getSortInvalidDirectionError,
-} from './sort-error-functions';
+} from './sort-errors';
 
 /** Interface for a directive that holds sorting state consumed by `SbbSortHeader`. */
 export interface SbbSortable {
@@ -40,33 +47,65 @@ export interface SbbSort {
   direction: SbbSortDirection;
 }
 
-// Boilerplate for applying mixins to _SbbSortBase.
+/** Default options for `sbb-sort`.  */
+export interface SbbSortDefaultOptions {
+  /** Whether to disable clearing the sorting state. */
+  disableClear?: boolean;
+}
+
+/** Injection token to be used to override the default options for `sbb-sort`. */
+export const SBB_SORT_DEFAULT_OPTIONS = new InjectionToken<SbbSortDefaultOptions>(
+  'SBB_SORT_DEFAULT_OPTIONS'
+);
+
+// Boilerplate for applying mixins to SbbSort.
 /** @docs-private */
 // tslint:disable-next-line:naming-convention
-const _SbbSortBase = mixinDisabled(mixinInitialized(class {}));
+const _SbbSortBase = mixinInitialized(mixinDisabled(class {}));
 
 /** Container for SbbSortables to manage the sort state and provide default sort parameters. */
 @Directive({
   selector: '[sbbSort]',
   exportAs: 'sbbSort',
+  host: { class: 'sbb-sort' },
   inputs: ['disabled: sbbSortDisabled'],
 })
 export class SbbSortDirective
   extends _SbbSortBase
-  implements OnInit, OnChanges, OnDestroy, HasInitialized
+  implements CanDisable, HasInitialized, OnInit, OnChanges, OnDestroy
 {
+  /** Collection of all registered sortables that this directive manages. */
+  sortables: Map<string, SbbSortable> = new Map<string, SbbSortable>();
+
+  /** Used to notify any child components listening to state changes. */
+  readonly _stateChanges = new Subject<void>();
+
+  /** The id of the most recently sorted MatSortable. */
+  @Input('sbbSortActive') active: string;
+
+  /**
+   * The direction to set when an SbbSortable is initially sorted.
+   * May be overridden by the SbbSortable's sort start.
+   */
+  @Input('sbbSortStart') start: 'asc' | 'desc' = 'asc';
+
   /** The sort direction of the currently active SbbSortable. */
   @Input('sbbSortDirection')
   get direction(): SbbSortDirection {
     return this._direction;
   }
-
   set direction(direction: SbbSortDirection) {
-    if (isDevMode() && direction && direction !== 'asc' && direction !== 'desc') {
+    if (
+      direction &&
+      direction !== 'asc' &&
+      direction !== 'desc' &&
+      (typeof ngDevMode === 'undefined' || ngDevMode)
+    ) {
       throw getSortInvalidDirectionError(direction);
     }
     this._direction = direction;
   }
+  private _direction: SbbSortDirection = '';
 
   /**
    * Whether to disable the user from clearing the sort by finishing the sort direction cycle.
@@ -79,40 +118,34 @@ export class SbbSortDirective
   set disableClear(v: boolean) {
     this._disableClear = coerceBooleanProperty(v);
   }
-
-  /** Collection of all registered sortables that this directive manages. */
-  sortables: Map<string, SbbSortable> = new Map<string, SbbSortable>();
-
-  /** Used to notify any child components listening to state changes. */
-  readonly _stateChanges = new Subject<void>();
-
-  /** The id of the most recently sorted SbbSortable. */
-  @Input('sbbSortActive') active: string;
-
-  /**
-   * The direction to set when an SbbSortable is initially sorted.
-   * May be overriden by the SbbSortable's sort start.
-   */
-  @Input('sbbSortStart') start: 'asc' | 'desc' = 'asc';
-  private _direction: SbbSortDirection = '';
   private _disableClear: boolean;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
-  @Output() readonly sbbSortChange: EventEmitter<SbbSort> = new EventEmitter<SbbSort>();
-  readonly sortChange = this.sbbSortChange;
+  @Output('sbbSortChange') readonly sortChange: EventEmitter<SbbSort> = new EventEmitter<SbbSort>();
+
+  constructor(
+    @Optional()
+    @Inject(SBB_SORT_DEFAULT_OPTIONS)
+    private _defaultOptions?: SbbSortDefaultOptions
+  ) {
+    super();
+  }
 
   /**
    * Register function to be used by the contained SbbSortables. Adds the SbbSortable to the
    * collection of SbbSortables.
    */
   register(sortable: SbbSortable): void {
-    if (!sortable.id) {
-      throw getSortHeaderMissingIdError();
+    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+      if (!sortable.id) {
+        throw getSortHeaderMissingIdError();
+      }
+
+      if (this.sortables.has(sortable.id)) {
+        throw getSortDuplicateSortableIdError(sortable.id);
+      }
     }
 
-    if (this.sortables.has(sortable.id)) {
-      throw getSortDuplicateSortableIdError(sortable.id);
-    }
     this.sortables.set(sortable.id, sortable);
   }
 
@@ -133,7 +166,7 @@ export class SbbSortDirective
       this.direction = this.getNextSortDirection(sortable);
     }
 
-    this.sbbSortChange.emit({ active: this.active, direction: this.direction });
+    this.sortChange.emit({ active: this.active, direction: this.direction });
   }
 
   /** Returns the next sort direction of the active sortable, checking for potential overrides. */
@@ -143,7 +176,8 @@ export class SbbSortDirective
     }
 
     // Get the sort direction cycle with the potential sortable overrides.
-    const disableClear = sortable.disableClear != null ? sortable.disableClear : this.disableClear;
+    const disableClear =
+      sortable?.disableClear ?? this.disableClear ?? !!this._defaultOptions?.disableClear;
     const sortDirectionCycle = getSortDirectionCycle(sortable.start || this.start, disableClear);
 
     // Get and return the next direction in the cycle
@@ -154,7 +188,7 @@ export class SbbSortDirective
     return sortDirectionCycle[nextDirectionIndex];
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this._markInitialized();
   }
 
@@ -166,9 +200,8 @@ export class SbbSortDirective
     this._stateChanges.complete();
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_disableClear: BooleanInput;
-  // tslint:enable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
 }
 
 /** Returns the sort direction cycle to use given the provided parameters of order and clear. */

@@ -455,7 +455,9 @@ No changes.
 
 _Automatic migration available_
 
-The deprecated css class `sbb-col-center-align` was removed in will automatically be replaced by `sbb-table-align-center`.
+- `SbbSortHeaderComponent` was renamed to `SbbSortHeader`.
+- `sbbSortHeader` directive was renamed to `sbb-sort-header`.
+- The deprecated css class `sbb-col-center-align` was removed in will automatically be replaced by `sbb-table-align-center`.
 
 [Documentation](angular/components/table)
 

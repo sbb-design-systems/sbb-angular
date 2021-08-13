@@ -1,16 +1,18 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbTableModule } from '@sbb-esta/angular-business';
+import { SbbSortHeaderComponent, SbbTableModule } from '@sbb-esta/angular-business';
 
 @Component({
   template: `
     <table class="sbb-table">
       <tr>
-        <td class="sbb-col-center-align"></td>
+        <td class="sbb-col-center-align" [sbbSortHeader]=""></td>
       </tr>
     </table>
   `,
 })
-export class TableTestComponent {}
+export class TableTestComponent {
+  header: SbbSortHeaderComponent;
+}
 
 @NgModule({
   declarations: [TableTestComponent],

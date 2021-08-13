@@ -85,7 +85,8 @@ function mergeSymbols() {
       SbbProcessflowStep: "processflow",
       SbbTagChange: "tag",
       SbbGhettoboxContainer: "ghettobox",
-      SbbTooltipComponent: "tooltip"
+      SbbTooltipComponent: "tooltip",
+      SbbSortHeaderComponent: "table"
     };
     extractExportsForModule("src/angular/");
     extractExportsForModule("src/angular-maps/");
