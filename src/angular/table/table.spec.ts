@@ -634,7 +634,7 @@ class SbbTableTestComponent {
         <td sbbCell *sbbCellDef="let row">{{ row.c }}</td>
       </ng-container>
 
-      <tr sbbHeaderRow *sbbHeaderRowDef="columnsToRender"></tr>
+      <tr sbb-header-row *sbbHeaderRowDef="columnsToRender"></tr>
       <tr sbbRow *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
@@ -673,7 +673,7 @@ class NativeHtmlTableTestComponent {
               <td sbbCell *sbbCellDef="let row">{{ row.c }}</td>
             </ng-container>
 
-            <tr sbbHeaderRow *sbbHeaderRowDef="columnsToRender"></tr>
+            <tr sbb-header-row *sbbHeaderRowDef="columnsToRender"></tr>
             <tr sbbRow *sbbRowDef="let row; columns: columnsToRender"></tr>
           </table>
         </td>
@@ -684,7 +684,7 @@ class NativeHtmlTableTestComponent {
         <td sbbCell *sbbCellDef="let row">{{ row.c }}</td>
       </ng-container>
 
-      <tr sbbHeaderRow *sbbHeaderRowDef="columnsToRender"></tr>
+      <tr sbb-header-row *sbbHeaderRowDef="columnsToRender"></tr>
       <tr sbbRow *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
@@ -702,7 +702,7 @@ class NestedHtmlTableTestComponent {
         <td sbbCell *sbbCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
-      <tr sbbHeaderRow *sbbHeaderRowDef="columnsToRender; sticky: true"></tr>
+      <tr sbb-header-row *sbbHeaderRowDef="columnsToRender; sticky: true"></tr>
       <tr sbbRow *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,

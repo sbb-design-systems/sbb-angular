@@ -22,6 +22,6 @@
     <td sbbCell *sbbCellDef="let element" class="sbb-table-align-center">{{ element.center }}</td>
   </ng-container>
 
-  <tr sbbHeaderRow *sbbHeaderRowDef="displayedColumns"></tr>
+  <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
   <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
 </table>

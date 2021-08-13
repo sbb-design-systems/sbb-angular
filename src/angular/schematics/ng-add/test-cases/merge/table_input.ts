@@ -4,7 +4,7 @@ import { SbbSortHeaderComponent, SbbTableModule } from '@sbb-esta/angular-busine
 @Component({
   template: `
     <table sbbTable>
-      <tr>
+      <tr sbbHeaderRow>
         <td class="sbb-col-center-align" [sbbSortHeader]=""></td>
       </tr>
     </table>

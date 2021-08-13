@@ -31,7 +31,7 @@ The table has got the following characteristics:
     <td sbbCell *sbbCellDef="let element">{{ element.property2 }}</td>
   </ng-container>
 
-  <tr sbbHeaderRow *sbbHeaderRowDef="displayedColumns"></tr>
+  <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
   <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
 </table>
 ```
@@ -85,7 +85,7 @@ The table has got the following characteristics:
    Then add `sbbHeaderRow` and `sbbRow` to the content of your `sbb-table` and provide your column list as inputs.
 
    ```html
-   <tr sbbHeaderRow *sbbHeaderRowDef="columnsToDisplay"></tr>
+   <tr sbb-header-row *sbbHeaderRowDef="columnsToDisplay"></tr>
    <tr sbbRow *sbbRowDef="let row; columns: columnsToDisplay"></tr>
    ```
 

@@ -49,7 +49,7 @@ export class SbbRowDef<T> extends CdkRowDef<T> {}
 
 /** Header template container that contains the cell outlet. Adds the right class and role. */
 @Component({
-  selector: 'sbb-header-row, tr[sbbHeaderRow]',
+  selector: 'sbb-header-row, tr[sbb-header-row]',
   template: CDK_ROW_TEMPLATE,
   host: {
     class: 'sbb-header-row',

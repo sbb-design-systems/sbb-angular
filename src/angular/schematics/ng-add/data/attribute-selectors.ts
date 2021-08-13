@@ -33,6 +33,10 @@ export const attributeSelectors: VersionChanges<AttributeSelectorUpgradeData> = 
           replace: 'sbbTable',
           replaceWith: 'sbb-table',
         },
+        {
+          replace: 'sbbHeaderRow',
+          replaceWith: 'sbb-header-row',
+        },
       ],
     },
   ],
