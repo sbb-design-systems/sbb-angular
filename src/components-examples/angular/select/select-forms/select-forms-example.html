@@ -5,9 +5,8 @@
       *ngFor="let food of ['Beefsteak', 'Pizza', 'Pasta']; first as isFirst"
       [disabled]="isFirst && optionDisabled"
       [value]="food"
+      >{{ food }}</sbb-option
     >
-      {{ food }}
-    </sbb-option>
   </sbb-select>
 </sbb-form-field>
 

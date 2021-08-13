@@ -5,9 +5,8 @@
   <sbb-option
     *ngFor="let option of filteredOptionsHint | slice: 0:maxOptionsListLength"
     [value]="option"
+    >{{ option }}</sbb-option
   >
-    {{ option }}
-  </sbb-option>
   <sbb-autocomplete-hint *ngIf="filteredOptionsHint.length > maxOptionsListLength">
     {{ filteredOptionsHint.length - maxOptionsListLength }} further hits found
   </sbb-autocomplete-hint>

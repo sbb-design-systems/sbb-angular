@@ -4,6 +4,7 @@
   display: inline-block;
   cursor: pointer;
   position: relative;
+  text-align: left; // Used to be table header compatible where `center` is the default
 
   padding-right: pxToRem(44);
 
