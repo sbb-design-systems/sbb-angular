@@ -451,6 +451,14 @@ No changes.
 
 [Documentation](angular/components/status)
 
+### Table
+
+_Automatic migration available_
+
+The deprecated css class `sbb-col-center-align` was removed in will automatically be replaced by `sbb-table-align-center`.
+
+[Documentation](angular/components/table)
+
 ### Tabs
 
 _Automatic migration available_

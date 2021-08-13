@@ -1,4 +1,4 @@
-import { TargetVersion, VersionChanges } from '@angular/cdk/schematics';
+import { VersionChanges } from '@angular/cdk/schematics';
 
 export interface SbbAngularCssSelectorData {
   /** The CSS selector to replace. */
@@ -30,6 +30,10 @@ export const cssSelectors: VersionChanges<SbbAngularCssSelectorData> = {
           replaceIn: {
             stylesheet: true,
           },
+        },
+        {
+          replace: 'sbb-col-center-align',
+          replaceWith: 'sbb-table-align-center',
         },
       ],
     },
