@@ -1902,12 +1902,13 @@ $tableCaptionColor: $sbbColorGrey;
     }
 
     @include mq($from: desktop4k) {
-      font-size: toRem(1 * $scalingFactor4k);
+      font-size: pxToRem($sizeFontDefault4k);
     }
     @include mq($from: desktop5k) {
-      font-size: toRem(1 * $scalingFactor5k);
+      font-size: pxToRem($sizeFontDefault5k);
     }
   }
+
   html.sbb-lean & {
     border-collapse: collapse;
 
@@ -1915,10 +1916,6 @@ $tableCaptionColor: $sbbColorGrey;
       text-align: left;
       background-color: $sbbColorMilk;
       border-bottom: pxToRem(1) solid $sbbColorAluminum;
-
-      [dir='rtl'] & {
-        text-align: right;
-      }
     }
 
     tbody {
@@ -1947,21 +1944,11 @@ $tableCaptionColor: $sbbColorGrey;
           &:first-child {
             padding-left: $tableTbodyPadding;
             border-left: none;
-
-            [dir='rtl'] & {
-              padding-left: 0;
-              padding-right: $tableTbodyPadding;
-            }
           }
 
           &:last-child {
             padding-right: $tableTbodyPadding;
             border-right: none;
-
-            [dir='rtl'] & {
-              padding-right: 0;
-              padding-left: $tableTbodyPadding;
-            }
           }
         }
       }
@@ -1980,30 +1967,10 @@ $tableCaptionColor: $sbbColorGrey;
 
 .sbb-table-align-left {
   text-align: left;
-
-  /* th in IE11 won't inherit text-align: we apply it through selector */
-  thead,
-  tbody {
-    > tr {
-      th {
-        text-align: left;
-      }
-    }
-  }
 }
 
 .sbb-table-align-right {
   text-align: right;
-
-  /* th in IE11 won't inherit text-align: we apply it through selector */
-  thead,
-  tbody {
-    > tr {
-      th {
-        text-align: right;
-      }
-    }
-  }
 }
 
 // ----------------------------------------------------------------------------------------------------

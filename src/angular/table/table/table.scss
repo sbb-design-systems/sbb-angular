@@ -5,9 +5,6 @@ $inputBorderWidth: pxToEm(1);
 $inputPaddingLeft: pxToEm(8);
 $filterInputPadding: $sbb-row-horizontal-padding - $inputPaddingLeft - $inputBorderWidth;
 
-/**
- * Native HTML table structure
- */
 table.sbb-table {
   th.sbb-header-cell {
     &.sbb-table-filter {
@@ -16,6 +13,10 @@ table.sbb-table {
 
       input {
         width: 100%;
+      }
+
+      .sbb-select {
+        display: block;
       }
     }
 

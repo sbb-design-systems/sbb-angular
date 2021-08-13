@@ -24,15 +24,15 @@
           [sbbAutocomplete]="descriptionsAuto"
         />
         <sbb-autocomplete #descriptionsAuto="sbbAutocomplete">
-          <sbb-option *ngFor="let option of descriptions | async" [value]="option">
-            {{ option }}
-          </sbb-option>
+          <sbb-option *ngFor="let option of descriptions | async" [value]="option"
+            >{{ option }}</sbb-option
+          >
         </sbb-autocomplete>
       </th>
     </ng-container>
     <ng-container sbbColumnDef="filter-category">
       <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-filter">
-        <sbb-select formControlName="category" multiple>
+        <sbb-select formControlName="category" multiple placeholder="Select category...">
           <sbb-option *ngFor="let category of categories" [value]="category"
             >{{ category }}</sbb-option
           >
