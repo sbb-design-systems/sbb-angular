@@ -304,6 +304,7 @@ export class SbbTextarea
     this._onChange(event.target.value);
     this._updateDigitsCounter(event.target.value);
     this.autosize.reset();
+    this.autosize.resizeToFitContent(true);
     this.stateChanges.next();
   }
 
