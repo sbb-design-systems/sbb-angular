@@ -127,6 +127,12 @@ sbb-select.sbb-select {
         }
       }
     }
+
+    @include businessOnly() {
+      .sbb-select-placeholder {
+        color: $sbbColorStorm;
+      }
+    }
   }
 
   // We want to provide the error styles both for invalid state

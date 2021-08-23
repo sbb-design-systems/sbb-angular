@@ -27,6 +27,10 @@
   text-overflow: ellipsis;
 }
 
+html.sbb-lean .sbb-select-placeholder {
+  color: $sbbColorStorm;
+}
+
 .sbb-select-arrow-icon {
   @include absoluteCenterY();
   right: pxToEm(9);
