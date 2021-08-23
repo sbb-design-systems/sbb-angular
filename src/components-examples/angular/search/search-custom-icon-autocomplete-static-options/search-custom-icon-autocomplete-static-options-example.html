@@ -2,8 +2,8 @@
   <input sbbInput placeholder="Search" [formControl]="searchControl" [sbbAutocomplete]="auto" />
 </sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of options | async" [value]="option"> {{ option }} </sbb-option>
+  <sbb-option *ngFor="let option of options | async" [value]="option">{{ option }}</sbb-option>
   <sbb-optgroup label="Frequent searches">
-    <sbb-option *ngFor="let option of staticOptions" [value]="option"> {{ option }} </sbb-option>
+    <sbb-option *ngFor="let option of staticOptions" [value]="option">{{ option }}</sbb-option>
   </sbb-optgroup>
 </sbb-autocomplete>

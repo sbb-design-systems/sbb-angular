@@ -2,7 +2,7 @@
   <input sbbInput placeholder="Search" [formControl]="searchControl" [sbbAutocomplete]="auto" />
 </sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of filteredCities" [value]="option"> {{ option }} </sbb-option>
+  <sbb-option *ngFor="let option of filteredCities" [value]="option">{{ option }}</sbb-option>
 </sbb-autocomplete>
 
 <h4>Search results (only first 10 are shown)</h4>

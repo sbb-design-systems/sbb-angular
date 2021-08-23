@@ -8,6 +8,6 @@
   />
 </sbb-form-field>
 <sbb-autocomplete #auto="sbbAutocomplete">
-  <sbb-option *ngFor="let option of filteredOptions" [value]="option"> {{ option }} </sbb-option>
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option">{{ option }}</sbb-option>
 </sbb-autocomplete>
 <pre>{{ value | json }}</pre>
