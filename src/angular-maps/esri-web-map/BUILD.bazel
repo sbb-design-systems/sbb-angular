@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":esri-web-map/esri-web-map.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-maps/esri-web-map",
     deps = [
         "//src/angular-maps/core",
         "@npm//@angular/common",

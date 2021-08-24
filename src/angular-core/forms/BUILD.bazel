@@ -11,7 +11,6 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-core/forms",
     deps = [
         "@npm//@angular/forms",
         "@npm//rxjs",

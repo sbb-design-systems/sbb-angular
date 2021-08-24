@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":chips.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/chips",
     deps = [
         "//src/angular/autocomplete",
         "//src/angular/core",

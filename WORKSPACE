@@ -17,8 +17,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # Add NodeJS rules
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "10f534e1c80f795cffe1f2822becd4897754d18564612510c59b3c73544ae7c6",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/3.5.0/rules_nodejs-3.5.0.tar.gz"],
+    sha256 = "8a7c981217239085f78acc9898a1f7ba99af887c1996ceb3b4504655383a2c3c",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.0.0/rules_nodejs-4.0.0.tar.gz"],
 )
 
 # Add sass rules
@@ -36,10 +36,7 @@ load("@build_bazel_rules_nodejs//:index.bzl", "check_bazel_version", "node_repos
 # The minimum bazel version to use with this repo is v3.1.0.
 check_bazel_version("4.0.0")
 
-node_repositories(
-    node_version = "14.16.1",
-    package_json = ["//:package.json"],
-)
+node_repositories()
 
 yarn_install(
     name = "npm",
@@ -68,10 +65,17 @@ load("@io_bazel_rules_sass//:package.bzl", "rules_sass_dependencies")
 
 rules_sass_dependencies()
 
-# Setup the Sass rule repositories.
-load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
-
-sass_repositories()
+# TODO(devversion): remove workaround once `rules_sass` supports v4 of the Bazel NodeJS rules,
+# or when https://github.com/bazelbuild/rules_nodejs/issues/2807 is solved. For now, we just
+# replicate the original `sass_repositories` call and manually add the `--ignore-scripts`
+# Yarn argument to not run the postinstall version check of `@bazel/worker`
+yarn_install(
+    name = "build_bazel_rules_sass_deps",
+    args = ["--ignore-scripts"],
+    package_json = "@io_bazel_rules_sass//sass:package.json",
+    symlink_node_modules = False,
+    yarn_lock = "@io_bazel_rules_sass//sass:yarn.lock",
+)
 
 # Setup repositories for browsers provided by the shared dev-infra package.
 load(
@@ -81,36 +85,7 @@ load(
 
 _dev_infra_browser_repositories()
 
-# esbuild binaries
+# Setup repositories for esbuild.
+load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
 
-_ESBUILD_VERSION = "0.11.14"  # reminder: update SHAs below when changing this value
-
-http_archive(
-    name = "esbuild_darwin",
-    build_file_content = """exports_files(["bin/esbuild"])""",
-    sha256 = "81c8623c4c03a1fc449c37a90dd630025e334d312420d42106a899f78bd5e3fe",
-    strip_prefix = "package",
-    urls = [
-        "https://registry.npmjs.org/esbuild-darwin-64/-/esbuild-darwin-64-%s.tgz" % _ESBUILD_VERSION,
-    ],
-)
-
-http_archive(
-    name = "esbuild_windows",
-    build_file_content = """exports_files(["esbuild.exe"])""",
-    sha256 = "d977751550550099cb9deb95d3fc436c21374b3875131589dde162dfb1c03bf4",
-    strip_prefix = "package",
-    urls = [
-        "https://registry.npmjs.org/esbuild-windows-64/-/esbuild-windows-64-%s.tgz" % _ESBUILD_VERSION,
-    ],
-)
-
-http_archive(
-    name = "esbuild_linux",
-    build_file_content = """exports_files(["bin/esbuild"])""",
-    sha256 = "fbf8d42fbd12d2392893a5d8cea3860e875c47ee715660e844dff822b8747321",
-    strip_prefix = "package",
-    urls = [
-        "https://registry.npmjs.org/esbuild-linux-64/-/esbuild-linux-64-%s.tgz" % _ESBUILD_VERSION,
-    ],
-)
+esbuild_repositories()

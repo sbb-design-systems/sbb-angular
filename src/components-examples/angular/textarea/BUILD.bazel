@@ -15,7 +15,6 @@ ng_module(
         "**/*.html",
         "**/*.css",
     ]),
-    module_name = "@sbb-esta/components-examples/angular/textarea",
     deps = [
         "//src/angular/checkbox",
         "//src/angular/input",

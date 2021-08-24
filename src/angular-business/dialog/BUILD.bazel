@@ -22,7 +22,6 @@ ng_module(
         ":dialog-footer/dialog-footer.component.css",
         ":dialog-header/dialog-header.component.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-business/dialog",
     deps = [
         "//src/angular-core/icon",
         "@npm//@angular/animations",

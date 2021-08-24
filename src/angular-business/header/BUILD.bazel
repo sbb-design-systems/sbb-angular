@@ -20,7 +20,6 @@ ng_module(
         ":header-menu/header-menu.component.css",
         ":header-menu-trigger/header-menu-trigger.component.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-business/header",
     deps = [
         "//src/angular-core/breakpoints",
         "//src/angular-core/common-behaviors",

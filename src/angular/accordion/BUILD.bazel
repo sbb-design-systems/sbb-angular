@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":expansion-panel.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/accordion",
     deps = [
         "//src/angular/core",
         "//src/angular/icon",

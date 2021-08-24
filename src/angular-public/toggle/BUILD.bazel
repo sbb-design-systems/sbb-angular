@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":toggle/toggle.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/toggle",
     deps = [
         "//src/angular-core/icon-directive",
         "//src/angular-core/radio-button",

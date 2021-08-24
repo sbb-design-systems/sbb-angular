@@ -20,7 +20,6 @@ ng_module(
         ":navigation/navigation.css",
         ":paginator/paginator.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/pagination",
     deps = [
         "//src/angular/core",
         "//src/angular/icon",

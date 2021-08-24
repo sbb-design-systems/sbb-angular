@@ -15,7 +15,6 @@ ng_module(
         "**/*.html",
         "**/*.css",
     ]),
-    module_name = "@sbb-esta/components-examples/angular/checkbox-panel",
     deps = [
         "//src/angular/checkbox",
         "//src/angular/checkbox-panel",

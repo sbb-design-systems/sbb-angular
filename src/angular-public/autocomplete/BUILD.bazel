@@ -19,7 +19,6 @@ ng_module(
         ":autocomplete/autocomplete.component.css",
         ":autocomplete-hint/autocomplete-hint.component.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/autocomplete",
     deps = [
         "//src:dev_mode_types",
         "//src/angular-core/common-behaviors",

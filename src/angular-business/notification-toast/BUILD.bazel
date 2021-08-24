@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":notification-toast-container.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-business/notification-toast",
     deps = [
         "//src/angular-core/breakpoints",
         "//src/angular-core/common-behaviors",

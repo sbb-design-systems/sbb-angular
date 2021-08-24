@@ -11,7 +11,6 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-icons/timetable-products",
     deps = [
         "//src/angular-icons/core",
         "@npm//@angular/common",

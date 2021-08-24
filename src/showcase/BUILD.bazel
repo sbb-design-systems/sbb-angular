@@ -175,13 +175,17 @@ concatjs_devserver(
 
 esbuild(
     name = "bundle-esbuild",
-    args = [
-        "--resolve-extensions=.mjs,.js",
-    ],
+    args = {
+        "resolveExtensions": [
+            ".mjs",
+            ".js",
+        ],
+    },
     entry_point = "main.prod.ts",
     format = "esm",
     minify = True,
     output_dir = True,
+    splitting = True,
     tags = ["prod-showcase"],
     deps = [
         ":showcase",

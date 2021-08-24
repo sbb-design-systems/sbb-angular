@@ -26,7 +26,6 @@ ng_module(
         ],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-keycloak",
     deps = ["//src/angular-keycloak/%s" % p for p in KEYCLOAK_ENTRYPOINTS] + [
         "@npm//@angular/common",
         "@npm//@angular/core",

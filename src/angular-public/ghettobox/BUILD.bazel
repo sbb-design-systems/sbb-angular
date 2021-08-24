@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":ghettobox/ghettobox.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/ghettobox",
     deps = [
         "//src/angular-core/icon",
         "//src/angular-core/icon-directive",

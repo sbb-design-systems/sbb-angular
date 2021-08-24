@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":breadcrumbs.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/breadcrumb",
     deps = [
         "//src/angular/core",
         "//src/angular/icon",

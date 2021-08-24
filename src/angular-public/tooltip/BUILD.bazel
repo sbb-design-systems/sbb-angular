@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":tooltip/tooltip.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/tooltip",
     deps = [
         "//src/angular-core/base/tooltip",
         "//src/angular-core/icon",

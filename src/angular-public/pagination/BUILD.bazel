@@ -21,7 +21,6 @@ ng_module(
         ":pagination/pagination.component.css",
         ":paginator/paginator.component.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/pagination",
     deps = [
         "//src/angular-core/common-behaviors",
         "//src/angular-core/icon",

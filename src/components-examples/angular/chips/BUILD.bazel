@@ -15,7 +15,6 @@ ng_module(
         "**/*.html",
         "**/*.css",
     ]),
-    module_name = "@sbb-esta/components-examples/angular/chips",
     deps = [
         "//src/angular/autocomplete",
         "//src/angular/button",

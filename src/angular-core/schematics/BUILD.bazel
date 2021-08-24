@@ -23,7 +23,6 @@ ts_library(
             "testing/**/*.ts",
         ],
     ),
-    module_name = "@sbb-esta/angular-core/schematics",
     tsconfig = ":tsconfig.json",
     deps = [
         "@npm//@angular/cdk",

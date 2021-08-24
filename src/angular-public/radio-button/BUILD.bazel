@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":radio-button/radio-button.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/radio-button",
     deps = [
         "//src/angular-core/radio-button",
         "@npm//@angular/cdk",

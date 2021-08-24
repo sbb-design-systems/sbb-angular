@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":loading/loading.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/loading",
     deps = [
         "@npm//@angular/common",
         "@npm//@angular/core",

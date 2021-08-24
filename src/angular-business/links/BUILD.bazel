@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":link.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-business/links",
     deps = [
         "//src/angular-core/icon",
         "@npm//@angular/common",

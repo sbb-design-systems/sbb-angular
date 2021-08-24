@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":textarea/textarea.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/textarea",
     deps = [
         "//src/angular-core/common-behaviors",
         "//src/angular-core/error",
