@@ -15,7 +15,6 @@ ng_module(
         "**/*.html",
         "**/*.css",
     ]),
-    module_name = "@sbb-esta/components-examples/angular-maps/esri-web-scene",
     deps = [
         "//src/angular-maps/esri-web-scene",
         "@npm//@angular/common",

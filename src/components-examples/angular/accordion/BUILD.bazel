@@ -15,7 +15,6 @@ ng_module(
         "**/*.html",
         "**/*.css",
     ]),
-    module_name = "@sbb-esta/components-examples/angular/accordion",
     deps = [
         "//src/angular/accordion",
         "//src/angular/button",

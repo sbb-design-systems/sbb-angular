@@ -15,7 +15,6 @@ ng_module(
         "**/*.html",
         "**/*.css",
     ]),
-    module_name = "@sbb-esta/components-examples/angular/tabs",
     deps = [
         "//src/angular/badge",
         "//src/angular/button",

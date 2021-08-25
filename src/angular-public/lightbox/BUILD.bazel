@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":lightbox/lightbox-container.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/lightbox",
     deps = [
         "//src/angular-core/icon",
         "@npm//@angular/animations",

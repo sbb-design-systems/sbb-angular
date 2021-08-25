@@ -14,7 +14,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":table/table.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/table",
     deps = [
         "@npm//@angular/common",
         "@npm//@angular/core",

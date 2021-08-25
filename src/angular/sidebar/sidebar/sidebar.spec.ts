@@ -11,6 +11,7 @@ import {
   discardPeriodicTasks,
   fakeAsync,
   flush,
+  inject,
   TestBed,
   tick,
   waitForAsync,
@@ -488,7 +489,7 @@ describe('SbbSidebar', () => {
       }).toThrow();
     }));
 
-    describe('binding', () => {
+    it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
       TestBed.resetTestingModule()
         .configureTestingModule({
           imports: [SbbSidebarModule, BrowserAnimationsModule, SbbIconTestingModule],
@@ -497,33 +498,32 @@ describe('SbbSidebar', () => {
         })
         .compileComponents();
 
-      it('should not throw when a two-way binding is toggled quickly while animating', fakeAsync(() => {
-        const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
-        fixture.detectChanges();
-        mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
-        tick();
+      const fixture = TestBed.createComponent(SidebarOpenBindingTestComponent);
+      fixture.detectChanges();
+      inject([MediaMatcher], (m: FakeMediaMatcher) => (mediaMatcher = m))();
+      mediaMatcher.setMatchesQuery(Breakpoints.Mobile, true);
+      tick();
 
-        // Note that we need actual timeouts and the `BrowserAnimationsModule`
-        // in order to test it correctly.
+      // Note that we need actual timeouts and the `BrowserAnimationsModule`
+      // in order to test it correctly.
+      setTimeout(() => {
+        const sidebar: SbbSidebar = fixture.debugElement.query(
+          By.directive(SbbSidebar)
+        ).componentInstance;
+        sidebar.toggle();
+        expect(() => fixture.detectChanges()).not.toThrow();
+
         setTimeout(() => {
-          const sidebar: SbbSidebar = fixture.debugElement.query(
-            By.directive(SbbSidebar)
-          ).componentInstance;
           sidebar.toggle();
           expect(() => fixture.detectChanges()).not.toThrow();
-
-          setTimeout(() => {
-            sidebar.toggle();
-            expect(() => fixture.detectChanges()).not.toThrow();
-          }, 1);
-
-          tick(1);
         }, 1);
 
         tick(1);
-        flush();
-      }));
-    });
+      }, 1);
+
+      tick(1);
+      flush();
+    }));
   });
 
   describe('focus trapping behavior', () => {

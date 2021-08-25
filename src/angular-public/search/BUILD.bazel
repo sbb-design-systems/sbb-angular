@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":search/search.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/search",
     deps = [
         "//src/angular-core/icon",
         "//src/angular-core/icon-directive",

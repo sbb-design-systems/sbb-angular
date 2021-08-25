@@ -20,7 +20,6 @@ ng_module(
         ":icon-sidebar/icon-sidebar.css",
         ":sidebar/sidebar.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/sidebar",
     deps = [
         "//src/angular/core",
         "//src/angular/icon",

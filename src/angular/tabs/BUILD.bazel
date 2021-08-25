@@ -22,7 +22,6 @@ ng_module(
         ":tab-header.css",
         ":tab-nav-bar.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/tabs",
     deps = [
         "//src/angular/core",
         "@npm//@angular/animations",

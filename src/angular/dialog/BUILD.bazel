@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":dialog.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/dialog",
     deps = [
         "//src:dev_mode_types",
         "//src/angular/icon",

@@ -19,7 +19,6 @@ ng_module(
         ":breadcrumb/breadcrumb.component.css",
         ":breadcrumbs/breadcrumbs.component.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/breadcrumb",
     deps = [
         "//src/angular-core/breakpoints",
         "//src/angular-core/icon",

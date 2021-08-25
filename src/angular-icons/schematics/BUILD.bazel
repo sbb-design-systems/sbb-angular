@@ -21,7 +21,6 @@ ts_library(
             "ng-generate/*/files/**/*.ts",
         ],
     ),
-    module_name = "@sbb-esta/angular-icons/schematics",
     tsconfig = ":tsconfig.json",
     deps = [
         "@npm//@angular-devkit/core",

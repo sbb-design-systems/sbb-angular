@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":esri-layer-list/esri-layer-list.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-maps/esri-layer-list",
     deps = [
         "@npm//@angular/common",
         "@npm//@angular/core",

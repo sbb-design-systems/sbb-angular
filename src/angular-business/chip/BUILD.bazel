@@ -19,7 +19,6 @@ ng_module(
         ":chip/chip.component.css",
         ":chip-input/chip-input.component.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-business/chip",
     deps = [
         "//src/angular-business/autocomplete",
         "//src/angular-core/common-behaviors",

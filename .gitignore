@@ -37,6 +37,7 @@ testem.log
 /typings
 docker/browser
 *LintReport.json
+.husky/_
 
 # System Files
 .DS_Store

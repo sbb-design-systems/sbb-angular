@@ -19,7 +19,6 @@ ng_module(
         ":datepicker/datepicker.css",
         ":datepicker-content/datepicker-content.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/datepicker",
     deps = [
         "//src/angular/core",
         "//src/angular/icon",

@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":status.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/status",
     deps = [
         "//src/angular/icon",
         "@npm//@angular/common",

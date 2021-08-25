@@ -12,7 +12,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = glob(["**/*.html"]),
-    module_name = "@sbb-esta/components-examples/angular/textexpand",
     deps = [
         "//src/angular/textexpand",
         "@npm//@angular/common",

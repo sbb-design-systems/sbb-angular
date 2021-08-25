@@ -20,7 +20,6 @@ ng_module(
         ":expansion-panel/expansion-panel.component.css",
         ":expansion-panel-header/expansion-panel-header.component.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/accordion",
     deps = [
         "//src/angular-core/common-behaviors",
         "//src/angular-core/icon",

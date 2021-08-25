@@ -29,8 +29,7 @@ ng_module(
         ],<% } else { %>
         ["*.ts"],<% } %>
         exclude = ["**/*.spec.ts"],
-    ),
-    module_name = "@sbb-esta/<%= name %>",<% if (customTsConfig) { %>
+    ),<% if (customTsConfig) { %>
     tsconfig = "<%= customTsConfig %>",<% } %>
     deps = ["//src/<%= name %>/%s" % p for p in <%= uc(shortName) %>_ENTRYPOINTS]<% if (dependencies.length) { %> + [<% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>

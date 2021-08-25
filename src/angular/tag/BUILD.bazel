@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":tag.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/tag",
     deps = [
         "//src/angular/badge",
         "//src/angular/checkbox",

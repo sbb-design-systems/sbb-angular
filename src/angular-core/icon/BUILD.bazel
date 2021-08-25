@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":icon.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-core/icon",
     deps = [
         "//src:dev_mode_types",
         "@npm//@angular/cdk",

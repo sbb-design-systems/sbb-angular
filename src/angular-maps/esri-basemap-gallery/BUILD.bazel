@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":esri-basemap-gallery/esri-basemap-gallery.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-maps/esri-basemap-gallery",
     deps = [
         "@npm//@angular/common",
         "@npm//@angular/core",

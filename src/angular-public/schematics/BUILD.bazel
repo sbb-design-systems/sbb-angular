@@ -21,7 +21,6 @@ ts_library(
             # Schematics template files should be declared here, if available
         ],
     ),
-    module_name = "@sbb-esta/angular-public/schematics",
     tsconfig = ":tsconfig.json",
     deps = [
         "@npm//@angular/cdk",

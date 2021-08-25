@@ -13,10 +13,13 @@ filegroup(
 
 esbuild(
     name = "arcgis_bundle",
-    args = [
-        "--global-name=arcgis.core",
-        "--resolve-extensions=.mjs,.js",
-    ],
+    args = {
+        "globalName": "arcgis.core",
+        "resolveExtensions": [
+            ".mjs",
+            ".js",
+        ],
+    },
     entry_point = "arcgis-core-bundle.js",
     format = "iife",
     minify = True,
@@ -32,9 +35,12 @@ filegroup(
 
 esbuild(
     name = "ng_localize",
-    args = [
-        "--resolve-extensions=.mjs,.js",
-    ],
+    args = {
+        "resolveExtensions": [
+            ".mjs",
+            ".js",
+        ],
+    },
     entry_point = "ng-localize-bundle.js",
     format = "iife",
     #minify = True,

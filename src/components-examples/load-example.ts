@@ -21,7 +21,11 @@ export function loadExampleFactory(
 declare let require: Function;
 
 function loadModules(importSpecifier: string): Promise<any> {
-  if (typeof require === 'function') {
+  // require and require.version are available in dev mode, which use require.js.
+  // However, esbuild will bundle a wrapper for require, which will always throw.
+  // In order to detect prod mode, we need to check whether require exists but does
+  // not have the version property.
+  if (typeof require === 'function' && (require as any).version) {
     return new Promise((resolve) =>
       require([`@sbb-esta/components-examples/${importSpecifier}`], resolve)
     );

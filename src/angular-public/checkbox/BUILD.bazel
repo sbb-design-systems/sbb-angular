@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":checkbox/checkbox.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/checkbox",
     deps = [
         "//src/angular-core/base/checkbox",
         "//src/angular-core/icon",

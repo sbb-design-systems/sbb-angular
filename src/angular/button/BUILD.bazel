@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":button.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/button",
     deps = [
         "//src/angular/core",
         "//src/angular/icon",

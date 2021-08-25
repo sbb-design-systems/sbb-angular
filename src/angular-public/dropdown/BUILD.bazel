@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":dropdown/dropdown.component.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/dropdown",
     deps = [
         "//src/angular-core/common-behaviors",
         "@npm//@angular/cdk",

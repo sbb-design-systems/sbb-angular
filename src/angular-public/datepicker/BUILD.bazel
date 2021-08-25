@@ -20,7 +20,6 @@ ng_module(
         ":datepicker/datepicker.component.css",
         ":datepicker-content/datepicker-content.component.css",
     ] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular-public/datepicker",
     deps = [
         "//src/angular-core/common-behaviors",
         "//src/angular-core/datetime",

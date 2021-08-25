@@ -15,7 +15,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/checkbox",
     deps = [
         "//src/angular/core",
         "@npm//@angular/cdk",

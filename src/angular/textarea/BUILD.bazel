@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":textarea/textarea.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/textarea",
     deps = [
         "//src/angular/core",
         "//src/angular/form-field",

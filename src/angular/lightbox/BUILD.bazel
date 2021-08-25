@@ -16,7 +16,6 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     assets = [":lightbox.css"] + glob(["**/*.html"]),
-    module_name = "@sbb-esta/angular/lightbox",
     deps = [
         "//src/angular/dialog",
         "//src/angular/icon",
