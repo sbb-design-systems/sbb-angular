@@ -1,4 +1,3 @@
-import { FocusMonitor } from '@angular/cdk/a11y';
 import {
   BooleanInput,
   coerceBooleanProperty,
@@ -7,7 +6,6 @@ import {
 } from '@angular/cdk/coercion';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -30,8 +28,8 @@ import {
   SbbErrorStateMatcher,
 } from '@sbb-esta/angular/core';
 import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
-import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
-import { auditTime, take, takeUntil } from 'rxjs/operators';
+import { animationFrameScheduler, BehaviorSubject, interval, Subject } from 'rxjs';
+import { map, takeWhile, tap } from 'rxjs/operators';
 
 let nextId = 0;
 
@@ -75,7 +73,6 @@ export class SbbTextarea
     CanUpdateErrorState,
     ControlValueAccessor,
     DoCheck,
-    AfterViewInit,
     OnDestroy
 {
   private _uniqueId = `sbb-textarea-${++nextId}`;
@@ -108,6 +105,7 @@ export class SbbTextarea
   set value(value: string) {
     if (this._textarea) {
       this._textarea.nativeElement.value = value;
+      this._resizeIfNecessary();
       this.stateChanges.next();
     }
   }
@@ -201,7 +199,6 @@ export class SbbTextarea
     @Self() @Optional() public override ngControl: NgControl,
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
-    private _focusMonitor: FocusMonitor,
     private _elementRef: ElementRef,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional() parentForm: NgForm,
@@ -217,36 +214,15 @@ export class SbbTextarea
   }
 
   /**
-   * resize the textarea when the browser window size changes. It only works properly by calling reset() first.
-   * @docs-private
-   */
-  ngAfterViewInit() {
-    this._ngZone.runOutsideAngular(() => {
-      fromEvent(window, 'resize')
-        .pipe(auditTime(16), takeUntil(this._destroyed))
-        .subscribe(() => {
-          this.autosize.reset();
-          this.autosize.resizeToFitContent(true);
-        });
-    });
-  }
-
-  /**
    * Trigger resize on every check because it's possible that the textarea becomes visible after first rendering.
    * Without triggering resize, the textarea would not be correctly adjusted when it becomes visible only after first rendering.
    * This issue is due to the fact, that before being visible, autosize is deactivated.
    * @docs-private
    */
   ngDoCheck() {
-    this.triggerResize();
     if (this.ngControl) {
       this.updateErrorState();
     }
-  }
-
-  /** Trigger the resize of the textarea to fit the content */
-  triggerResize() {
-    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent());
   }
 
   /**
@@ -303,8 +279,7 @@ export class SbbTextarea
   _onInput(event: any) {
     this._onChange(event.target.value);
     this._updateDigitsCounter(event.target.value);
-    this.autosize.reset();
-    this.autosize.resizeToFitContent(true);
+    this._resizeIfNecessary();
     this.stateChanges.next();
   }
 
@@ -345,6 +320,20 @@ export class SbbTextarea
     if (!!this.maxlength) {
       this._counter.next(this.maxlength - newValue.length);
     }
+  }
+
+  private _resizeIfNecessary() {
+    this._ngZone.runOutsideAngular(() => {
+      let height = this._textarea.nativeElement.style.height;
+      this.autosize.resizeToFitContent(true);
+      interval(0, animationFrameScheduler)
+        .pipe(
+          map(() => this._textarea.nativeElement.style.height),
+          takeWhile((newHeight) => height !== newHeight),
+          tap((newHeight) => (height = newHeight))
+        )
+        .subscribe(() => this.autosize.resizeToFitContent(true));
+    });
   }
 
   // tslint:disable: member-ordering

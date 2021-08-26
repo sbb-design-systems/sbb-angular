@@ -30,8 +30,8 @@ import {
 } from '@sbb-esta/angular-core/common-behaviors';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
-import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
-import { auditTime, take, takeUntil } from 'rxjs/operators';
+import { animationFrameScheduler, BehaviorSubject, interval, Subject } from 'rxjs';
+import { map, takeWhile, tap } from 'rxjs/operators';
 
 let nextId = 0;
 
@@ -108,6 +108,7 @@ export class SbbTextarea
   set value(value: string) {
     if (this._textarea) {
       this._textarea.nativeElement.value = value;
+      this._resizeIfNecessary();
       this.stateChanges.next();
     }
   }
@@ -219,17 +220,9 @@ export class SbbTextarea
   /**
    * resize the textarea when the browser window size changes. It only works properly by calling reset() first.
    * @docs-private
+   * @deprecated No longer used.
    */
-  ngAfterViewInit() {
-    this._ngZone.runOutsideAngular(() => {
-      fromEvent(window, 'resize')
-        .pipe(auditTime(16), takeUntil(this._destroyed))
-        .subscribe(() => {
-          this.autosize.reset();
-          this.autosize.resizeToFitContent(true);
-        });
-    });
-  }
+  ngAfterViewInit() {}
 
   /**
    * Trigger resize on every check because it's possible that the textarea becomes visible after first rendering.
@@ -238,16 +231,16 @@ export class SbbTextarea
    * @docs-private
    */
   ngDoCheck() {
-    this.triggerResize();
     if (this.ngControl) {
       this.updateErrorState();
     }
   }
 
-  /** Trigger the resize of the textarea to fit the content */
-  triggerResize() {
-    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent());
-  }
+  /**
+   * Trigger the resize of the textarea to fit the content
+   * @deprecated No longer used.
+   */
+  triggerResize() {}
 
   /**
    * Forward focus if a user clicks on an associated label.
@@ -303,8 +296,7 @@ export class SbbTextarea
   _onInput(event: any) {
     this._onChange(event.target.value);
     this._updateDigitsCounter(event.target.value);
-    this.autosize.reset();
-    this.autosize.resizeToFitContent(true);
+    this._resizeIfNecessary();
     this.stateChanges.next();
   }
 
@@ -345,6 +337,20 @@ export class SbbTextarea
     if (!!this.maxlength) {
       this._counter.next(this.maxlength - newValue.length);
     }
+  }
+
+  private _resizeIfNecessary() {
+    this._ngZone.runOutsideAngular(() => {
+      let height = this._textarea.nativeElement.style.height;
+      this.autosize.resizeToFitContent(true);
+      interval(0, animationFrameScheduler)
+        .pipe(
+          map(() => this._textarea.nativeElement.style.height),
+          takeWhile((newHeight) => height !== newHeight),
+          tap((newHeight) => (height = newHeight))
+        )
+        .subscribe(() => this.autosize.resizeToFitContent(true));
+    });
   }
 
   // tslint:disable: member-ordering
