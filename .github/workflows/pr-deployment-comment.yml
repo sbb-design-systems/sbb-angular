@@ -20,7 +20,7 @@ jobs:
         with:
           script: |
             const { prNumber, headSha, createdAt, stagingUrl } = process.env;
-            const createdAtDate = new Date(createdAt).toLocaleString();
+            const createdAtDate = new Date(createdAt).toLocaleString('de');
             github.issues.createComment({
               issue_number: ${{ PR_NUMBER }},
               owner: context.repo.owner,
