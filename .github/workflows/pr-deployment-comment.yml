@@ -27,7 +27,7 @@ jobs:
             const { prNumber, headSha, createdAt, stagingUrl } = process.env;
             const createdAtDate = new Date(createdAt).toLocaleString();
             github.issues.createComment({
-              issue_number: ${{ PR_NUMBER }},
+              issue_number: prNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: `Staging ready from ${headSha} at ${createdAtDate}:\n- ${stagingUrl}/${prNumber}\n- ${stagingUrl}/${prNumber}-merge`
