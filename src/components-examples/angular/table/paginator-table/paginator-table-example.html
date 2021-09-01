@@ -5,7 +5,7 @@
   <sbb-text-column name="description"></sbb-text-column>
 
   <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
-  <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
+  <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
 <sbb-paginator [pageSize]="pageSize" #paginator></sbb-paginator>

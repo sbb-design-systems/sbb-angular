@@ -66,7 +66,7 @@ export class SbbHeaderRow extends CdkHeaderRow {}
 
 /** Footer template container that contains the cell outlet. Adds the right class and role. */
 @Component({
-  selector: 'sbb-footer-row, tr[sbbFooterRow]',
+  selector: 'sbb-footer-row, tr[sbb-footer-row]',
   template: CDK_ROW_TEMPLATE,
   host: {
     class: 'sbb-footer-row',
@@ -83,7 +83,7 @@ export class SbbFooterRow extends CdkFooterRow {}
 
 /** Data row template container that contains the cell outlet. Adds the right class and role. */
 @Component({
-  selector: 'sbb-row, tr[sbbRow]',
+  selector: 'sbb-row, tr[sbb-row]',
   template: CDK_ROW_TEMPLATE,
   host: {
     class: 'sbb-row',

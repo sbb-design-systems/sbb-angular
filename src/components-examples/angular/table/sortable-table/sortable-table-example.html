@@ -1,21 +1,21 @@
 <table sbb-table sbbSort [dataSource]="dataSource" sbbSortActive="letter" sbbSortDirection="asc">
   <ng-container sbbColumnDef="letter">
-    <th sbbHeaderCell sbb-sort-header="letter" *sbbHeaderCellDef>Letter</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.letter }}</td>
+    <th sbb-header-cell sbb-sort-header="letter" *sbbHeaderCellDef>Letter</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.letter }}</td>
   </ng-container>
   <ng-container sbbColumnDef="number">
-    <th sbbHeaderCell sbb-sort-header="number" *sbbHeaderCellDef>Number</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.number }}</td>
+    <th sbb-header-cell sbb-sort-header="number" *sbbHeaderCellDef>Number</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.number }}</td>
   </ng-container>
   <ng-container sbbColumnDef="word">
-    <th sbbHeaderCell sbb-sort-header="word" *sbbHeaderCellDef>Word</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.word }}</td>
+    <th sbb-header-cell sbb-sort-header="word" *sbbHeaderCellDef>Word</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.word }}</td>
   </ng-container>
   <ng-container sbbColumnDef="date">
-    <th sbbHeaderCell sbb-sort-header="date" *sbbHeaderCellDef>Date</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.date | date }}</td>
+    <th sbb-header-cell sbb-sort-header="date" *sbbHeaderCellDef>Date</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.date | date }}</td>
   </ng-container>
 
   <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
-  <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
+  <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
 </table>

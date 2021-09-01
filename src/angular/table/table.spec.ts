@@ -580,25 +580,25 @@ class FakeDataSource extends DataSource<TestData> {
   template: `
     <sbb-table [dataSource]="dataSource">
       <ng-container sbbColumnDef="column_a">
-        <sbbHeaderCell *sbbHeaderCellDef> Column A</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.a }}</sbbCell>
-        <sbbFooterCell *sbbFooterCellDef> Footer A</sbbFooterCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column A</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.a }}</sbb-cell>
+        <sbb-footer-cell *sbbFooterCellDef> Footer A</sbb-footer-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="column_b">
-        <sbbHeaderCell *sbbHeaderCellDef> Column B</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.b }}</sbbCell>
-        <sbbFooterCell *sbbFooterCellDef> Footer B</sbbFooterCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column B</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.b }}</sbb-cell>
+        <sbb-footer-cell *sbbFooterCellDef> Footer B</sbb-footer-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="column_c">
-        <sbbHeaderCell *sbbHeaderCellDef> Column C</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.c }}</sbbCell>
-        <sbbFooterCell *sbbFooterCellDef> Footer C</sbbFooterCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column C</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.c }}</sbb-cell>
+        <sbb-footer-cell *sbbFooterCellDef> Footer C</sbb-footer-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="special_column">
-        <sbbCell *sbbCellDef="let row"> fourth_row </sbbCell>
+        <sbb-cell *sbbCellDef="let row"> fourth_row </sbb-cell>
       </ng-container>
 
       <sbb-header-row *sbbHeaderRowDef="columnsToRender"></sbb-header-row>
@@ -620,22 +620,22 @@ class SbbTableTestComponent {
   template: `
     <table sbb-table [dataSource]="dataSource">
       <ng-container sbbColumnDef="column_a">
-        <th sbbHeaderCell *sbbHeaderCellDef>Column A</th>
-        <td sbbCell *sbbCellDef="let row">{{ row.a }}</td>
+        <th sbb-header-cell *sbbHeaderCellDef>Column A</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
       <ng-container sbbColumnDef="column_b">
-        <th sbbHeaderCell *sbbHeaderCellDef>Column B</th>
-        <td sbbCell *sbbCellDef="let row">{{ row.b }}</td>
+        <th sbb-header-cell *sbbHeaderCellDef>Column B</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.b }}</td>
       </ng-container>
 
       <ng-container sbbColumnDef="column_c">
-        <th sbbHeaderCell *sbbHeaderCellDef>Column C</th>
-        <td sbbCell *sbbCellDef="let row">{{ row.c }}</td>
+        <th sbb-header-cell *sbbHeaderCellDef>Column C</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.c }}</td>
       </ng-container>
 
       <tr sbb-header-row *sbbHeaderRowDef="columnsToRender"></tr>
-      <tr sbbRow *sbbRowDef="let row; columns: columnsToRender"></tr>
+      <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
 })
@@ -650,42 +650,42 @@ class NativeHtmlTableTestComponent {
   template: `
     <table sbb-table [dataSource]="dataSource">
       <ng-container sbbColumnDef="column_a">
-        <th sbbHeaderCell *sbbHeaderCellDef>Column A</th>
-        <td sbbCell *sbbCellDef="let row">{{ row.a }}</td>
+        <th sbb-header-cell *sbbHeaderCellDef>Column A</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
       <ng-container sbbColumnDef="column_b">
-        <th sbbHeaderCell *sbbHeaderCellDef>Column B</th>
-        <td sbbCell *sbbCellDef="let row">
+        <th sbb-header-cell *sbbHeaderCellDef>Column B</th>
+        <td sbb-cell *sbbCellDef="let row">
           <table sbb-table [dataSource]="dataSource">
             <ng-container sbbColumnDef="column_a">
-              <th sbbHeaderCell *sbbHeaderCellDef>Column A</th>
-              <td sbbCell *sbbCellDef="let row">{{ row.a }}</td>
+              <th sbb-header-cell *sbbHeaderCellDef>Column A</th>
+              <td sbb-cell *sbbCellDef="let row">{{ row.a }}</td>
             </ng-container>
 
             <ng-container sbbColumnDef="column_b">
-              <th sbbHeaderCell *sbbHeaderCellDef>Column B</th>
-              <td sbbCell *sbbCellDef="let row">{{ row.b }}</td>
+              <th sbb-header-cell *sbbHeaderCellDef>Column B</th>
+              <td sbb-cell *sbbCellDef="let row">{{ row.b }}</td>
             </ng-container>
 
             <ng-container sbbColumnDef="column_c">
-              <th sbbHeaderCell *sbbHeaderCellDef>Column C</th>
-              <td sbbCell *sbbCellDef="let row">{{ row.c }}</td>
+              <th sbb-header-cell *sbbHeaderCellDef>Column C</th>
+              <td sbb-cell *sbbCellDef="let row">{{ row.c }}</td>
             </ng-container>
 
             <tr sbb-header-row *sbbHeaderRowDef="columnsToRender"></tr>
-            <tr sbbRow *sbbRowDef="let row; columns: columnsToRender"></tr>
+            <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
           </table>
         </td>
       </ng-container>
 
       <ng-container sbbColumnDef="column_c">
-        <th sbbHeaderCell *sbbHeaderCellDef>Column C</th>
-        <td sbbCell *sbbCellDef="let row">{{ row.c }}</td>
+        <th sbb-header-cell *sbbHeaderCellDef>Column C</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.c }}</td>
       </ng-container>
 
       <tr sbb-header-row *sbbHeaderRowDef="columnsToRender"></tr>
-      <tr sbbRow *sbbRowDef="let row; columns: columnsToRender"></tr>
+      <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
 })
@@ -698,12 +698,12 @@ class NestedHtmlTableTestComponent {
   template: `
     <table sbb-table [dataSource]="dataSource">
       <ng-container sbbColumnDef="column_a">
-        <th sbbHeaderCell *sbbHeaderCellDef>Column A</th>
-        <td sbbCell *sbbCellDef="let row">{{ row.a }}</td>
+        <th sbb-header-cell *sbbHeaderCellDef>Column A</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.a }}</td>
       </ng-container>
 
       <tr sbb-header-row *sbbHeaderRowDef="columnsToRender; sticky: true"></tr>
-      <tr sbbRow *sbbRowDef="let row; columns: columnsToRender"></tr>
+      <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
     </table>
   `,
 })
@@ -718,13 +718,13 @@ class StickyTableTestComponent {
   template: `
     <sbb-table [dataSource]="dataSource" [multiTemplateDataRows]="multiTemplateDataRows">
       <ng-container sbbColumnDef="column_a">
-        <sbbHeaderCell *sbbHeaderCellDef> Column A</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.a }}</sbbCell>
-        <sbbFooterCell *sbbFooterCellDef> Footer A</sbbFooterCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column A</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.a }}</sbb-cell>
+        <sbb-footer-cell *sbbFooterCellDef> Footer A</sbb-footer-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="special_column">
-        <sbbCell *sbbCellDef="let row"> fourth_row </sbbCell>
+        <sbb-cell *sbbCellDef="let row"> fourth_row</sbb-cell>
       </ng-container>
 
       <sbb-header-row *sbbHeaderRowDef="['column_a']"></sbb-header-row>
@@ -746,21 +746,21 @@ class SbbTableWithWhenRowTestComponent {
   template: `
     <sbb-table [dataSource]="dataSource" sbbSort>
       <ng-container sbbColumnDef="column_a">
-        <sbbHeaderCell *sbbHeaderCellDef sbb-sort-header="a"> Column A</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.a }}</sbbCell>
-        <sbbFooterCell *sbbFooterCellDef> Footer A</sbbFooterCell>
+        <sbb-header-cell *sbbHeaderCellDef sbb-sort-header="a"> Column A</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.a }}</sbb-cell>
+        <sbb-footer-cell *sbbFooterCellDef> Footer A</sbb-footer-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="column_b">
-        <sbbHeaderCell *sbbHeaderCellDef> Column B</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.b }}</sbbCell>
-        <sbbFooterCell *sbbFooterCellDef> Footer B</sbbFooterCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column B</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.b }}</sbb-cell>
+        <sbb-footer-cell *sbbFooterCellDef> Footer B</sbb-footer-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="column_c">
-        <sbbHeaderCell *sbbHeaderCellDef> Column C</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.c }}</sbbCell>
-        <sbbFooterCell *sbbFooterCellDef> Footer C</sbbFooterCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column C</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.c }}</sbb-cell>
+        <sbb-footer-cell *sbbFooterCellDef> Footer C</sbb-footer-cell>
       </ng-container>
 
       <sbb-header-row *sbbHeaderRowDef="columnsToRender"></sbb-header-row>
@@ -804,18 +804,18 @@ class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
   template: `
     <sbb-table [dataSource]="dataSource" sbbSort>
       <ng-container sbbColumnDef="column_a">
-        <sbbHeaderCell *sbbHeaderCellDef sbb-sort-header="a"> Column A</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.a }}</sbbCell>
+        <sbb-header-cell *sbbHeaderCellDef sbb-sort-header="a"> Column A</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.a }}</sbb-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="column_b">
-        <sbbHeaderCell *sbbHeaderCellDef> Column B</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.b }}</sbbCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column B</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.b }}</sbb-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="column_c">
-        <sbbHeaderCell *sbbHeaderCellDef> Column C</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.c }}</sbbCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column C</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.c }}</sbb-cell>
       </ng-container>
 
       <sbb-header-row *sbbHeaderRowDef="columnsToRender"></sbb-header-row>
@@ -853,18 +853,18 @@ class SbbTableWithSortTestComponent implements OnInit {
   template: `
     <sbb-table [dataSource]="dataSource">
       <ng-container sbbColumnDef="column_a">
-        <sbbHeaderCell *sbbHeaderCellDef> Column A</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.a }}</sbbCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column A</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.a }}</sbb-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="column_b">
-        <sbbHeaderCell *sbbHeaderCellDef> Column B</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.b }}</sbbCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column B</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.b }}</sbb-cell>
       </ng-container>
 
       <ng-container sbbColumnDef="column_c">
-        <sbbHeaderCell *sbbHeaderCellDef> Column C</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row"> {{ row.c }}</sbbCell>
+        <sbb-header-cell *sbbHeaderCellDef> Column C</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row"> {{ row.c }}</sbb-cell>
       </ng-container>
 
       <sbb-header-row *sbbHeaderRowDef="columnsToRender"></sbb-header-row>
@@ -904,8 +904,8 @@ class SbbTableWithPaginatorTestComponent implements OnInit {
   template: `
     <sbb-table [dataSource]="dataSource">
       <ng-container sbbColumnDef="column_a">
-        <sbbHeaderCell *sbbHeaderCellDef>Column A</sbbHeaderCell>
-        <sbbCell *sbbCellDef="let row">{{ row.a }}</sbbCell>
+        <sbb-header-cell *sbbHeaderCellDef>Column A</sbb-header-cell>
+        <sbb-cell *sbbCellDef="let row">{{ row.a }}</sbb-cell>
       </ng-container>
 
       <sbb-header-row *sbbHeaderRowDef="columnsToRender"></sbb-header-row>
@@ -941,7 +941,7 @@ function getCells(row: Element): Element[] {
     return [];
   }
 
-  let cells = getElements(row, 'sbbCell');
+  let cells = getElements(row, 'sbb-cell');
   if (!cells.length) {
     cells = getElements(row, 'td');
   }
@@ -950,7 +950,7 @@ function getCells(row: Element): Element[] {
 }
 
 function getHeaderCells(headerRow: Element): Element[] {
-  let cells = getElements(headerRow, 'sbbHeaderCell');
+  let cells = getElements(headerRow, 'sbb-header-cell');
   if (!cells.length) {
     cells = getElements(headerRow, 'th');
   }
@@ -959,7 +959,7 @@ function getHeaderCells(headerRow: Element): Element[] {
 }
 
 function getFooterCells(footerRow: Element): Element[] {
-  let cells = getElements(footerRow, 'sbbFooterCell');
+  let cells = getElements(footerRow, 'sbb-footer-cell');
   if (!cells.length) {
     cells = getElements(footerRow, 'td');
   }

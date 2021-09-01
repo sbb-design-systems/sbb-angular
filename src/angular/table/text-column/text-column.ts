@@ -14,10 +14,10 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   selector: 'sbb-text-column',
   template: `
     <ng-container sbbColumnDef>
-      <th sbbHeaderCell *sbbHeaderCellDef [style.text-align]="justify">
+      <th sbb-header-cell *sbbHeaderCellDef [style.text-align]="justify">
         {{ headerText }}
       </th>
-      <td sbbCell *sbbCellDef="let data" [style.text-align]="justify">
+      <td sbb-cell *sbbCellDef="let data" [style.text-align]="justify">
         {{ dataAccessor(data, name) }}
       </td>
     </ng-container>

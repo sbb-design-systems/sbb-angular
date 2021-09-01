@@ -4,9 +4,19 @@ import { SbbSortHeaderComponent, SbbTableModule } from '@sbb-esta/angular-busine
 @Component({
   template: `
     <table sbbTable>
+      <tr>
+        <sbbHeaderCell></sbbHeaderCell>
+        <th sbbHeaderCell></th>
+        <sbbCell></sbbCell>
+        <td sbbCell></td>
+        <sbbFooterCell></sbbFooterCell>
+        <td sbbFooterCell></td>
+      </tr>
       <tr sbbHeaderRow>
         <td class="sbb-col-center-align" [sbbSortHeader]=""></td>
       </tr>
+      <tr sbbRow></tr>
+      <tr sbbFooterRow></tr>
     </table>
   `,
 })

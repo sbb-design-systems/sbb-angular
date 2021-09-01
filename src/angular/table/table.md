@@ -22,17 +22,17 @@ The table has got the following characteristics:
 ```html
 <table sbb-table [dataSource]="dataSource" aria-describedby="sbb-table">
   <ng-container sbbColumnDef="column-one">
-    <th sbbHeaderCell *sbbHeaderCellDef id="column-one">column-one</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.property1 }}</td>
+    <th sbb-header-cell *sbbHeaderCellDef id="column-one">column-one</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.property1 }}</td>
   </ng-container>
 
   <ng-container sbbColumnDef="column-two">
-    <th sbbHeaderCell *sbbHeaderCellDef id="column-two">column-two</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.property2 }}</td>
+    <th sbb-header-cell *sbbHeaderCellDef id="column-two">column-two</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.property2 }}</td>
   </ng-container>
 
   <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
-  <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
+  <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
 </table>
 ```
 
@@ -63,8 +63,8 @@ The table has got the following characteristics:
 
    ```html
    <ng-container sbbColumnDef="example">
-     <th sbbHeaderCell *sbbHeaderCellDef id="example">example</th>
-     <td sbbCell *sbbCellDef="let element">{{ element.example }}</td>
+     <th sbb-header-cell *sbbHeaderCellDef id="example">example</th>
+     <td sbb-cell *sbbCellDef="let element">{{ element.example }}</td>
    </ng-container>
    ```
 
@@ -82,11 +82,11 @@ The table has got the following characteristics:
    To start, create a variable in your component that contains the list of the columns you want to render.
 
    columnsToDisplay = ['example', 'result'];
-   Then add `sbbHeaderRow` and `sbbRow` to the content of your `sbb-table` and provide your column list as inputs.
+   Then add `sbb-header-row` and `sbb-row` to the content of your `sbb-table` and provide your column list as inputs.
 
    ```html
    <tr sbb-header-row *sbbHeaderRowDef="columnsToDisplay"></tr>
-   <tr sbbRow *sbbRowDef="let row; columns: columnsToDisplay"></tr>
+   <tr sbb-row *sbbRowDef="let row; columns: columnsToDisplay"></tr>
    ```
 
    Note that this list of columns provided to the rows can be in any order, not necessarily the order in which you wrote the column definitions.
@@ -119,8 +119,8 @@ To add sorting behavior to the table, add the `sbbSort` directive to the table a
 
 ```html
 <ng-container sbbColumnDef="letter">
-  <th sbbHeaderCell sbb-sort-header="letter" *sbbHeaderCellDef id="letter">Letter</th>
-  <td sbbCell *sbbCellDef="let element">{{ element.letter }}</td>
+  <th sbb-header-cell sbb-sort-header="letter" *sbbHeaderCellDef id="letter">Letter</th>
+  <td sbb-cell *sbbCellDef="let element">{{ element.letter }}</td>
 </ng-container>
 ```
 

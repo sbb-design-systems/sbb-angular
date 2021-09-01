@@ -1,27 +1,27 @@
 <table sbb-table [dataSource]="dataSource">
   <ng-container sbbColumnDef="leftAligned">
-    <th sbbHeaderCell *sbbHeaderCellDef>left-aligned</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.left }}</td>
+    <th sbb-header-cell *sbbHeaderCellDef>left-aligned</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.left }}</td>
   </ng-container>
 
   <ng-container sbbColumnDef="groupedOne">
-    <th sbbHeaderCell *sbbHeaderCellDef>Grouped col 1</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.groupedOne }}</td>
+    <th sbb-header-cell *sbbHeaderCellDef>Grouped col 1</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.groupedOne }}</td>
   </ng-container>
   <ng-container sbbColumnDef="groupedTwo">
-    <th sbbHeaderCell *sbbHeaderCellDef>Grouped col 2</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.groupedTwo }}</td>
+    <th sbb-header-cell *sbbHeaderCellDef>Grouped col 2</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.groupedTwo }}</td>
   </ng-container>
   <ng-container sbbColumnDef="groupedThree">
-    <th sbbHeaderCell *sbbHeaderCellDef>Grouped col 3</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.groupedThree }}</td>
+    <th sbb-header-cell *sbbHeaderCellDef>Grouped col 3</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element.groupedThree }}</td>
   </ng-container>
 
   <ng-container sbbColumnDef="centerAligned">
-    <th sbbHeaderCell *sbbHeaderCellDef class="sbb-table-align-center">center-aligned</th>
-    <td sbbCell *sbbCellDef="let element" class="sbb-table-align-center">{{ element.center }}</td>
+    <th sbb-header-cell *sbbHeaderCellDef class="sbb-table-align-center">center-aligned</th>
+    <td sbb-cell *sbbCellDef="let element" class="sbb-table-align-center">{{ element.center }}</td>
   </ng-container>
 
   <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
-  <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
+  <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
 </table>

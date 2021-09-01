@@ -37,6 +37,26 @@ export const attributeSelectors: VersionChanges<AttributeSelectorUpgradeData> = 
           replace: 'sbbHeaderRow',
           replaceWith: 'sbb-header-row',
         },
+        {
+          replace: 'sbbRow',
+          replaceWith: 'sbb-row',
+        },
+        {
+          replace: 'sbbFooterRow',
+          replaceWith: 'sbb-footer-row',
+        },
+        {
+          replace: 'sbbHeaderCell',
+          replaceWith: 'sbb-header-cell',
+        },
+        {
+          replace: 'sbbCell',
+          replaceWith: 'sbb-cell',
+        },
+        {
+          replace: 'sbbFooterCell',
+          replaceWith: 'sbb-footer-cell',
+        },
       ],
     },
   ],

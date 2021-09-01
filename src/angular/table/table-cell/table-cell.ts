@@ -79,7 +79,7 @@ export class SbbColumnDef extends CdkColumnDef {
 
 /** Header cell template container that adds the right classes and role. */
 @Directive({
-  selector: 'sbbHeaderCell, th[sbbHeaderCell]',
+  selector: 'sbb-header-cell, th[sbb-header-cell]',
   host: {
     class: 'sbb-header-cell',
     role: 'gridcell',
@@ -89,7 +89,7 @@ export class SbbHeaderCell extends CdkHeaderCell {}
 
 /** Footer cell template container that adds the right classes and role. */
 @Directive({
-  selector: 'sbbFooterCell, td[sbbFooterCell]',
+  selector: 'sbb-footer-cell, td[sbb-footer-cell]',
   host: {
     class: 'sbb-footer-cell',
     role: 'gridcell',
@@ -99,7 +99,7 @@ export class SbbFooterCell extends CdkFooterCell {}
 
 /** Cell template container that adds the right classes and role. */
 @Directive({
-  selector: 'sbbCell, td[sbbCell]',
+  selector: 'sbb-cell, td[sbb-cell]',
   host: {
     class: 'sbb-cell',
     role: 'gridcell',

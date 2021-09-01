@@ -1,7 +1,7 @@
 <table sbb-table [dataSource]="dataSource">
   <!-- Checkbox Column -->
   <ng-container sbbColumnDef="select">
-    <th sbbHeaderCell *sbbHeaderCellDef style="width: 50px">
+    <th sbb-header-cell *sbbHeaderCellDef style="width: 50px">
       <sbb-checkbox
         (change)="$event ? masterToggle() : null"
         [checked]="selection.hasValue() && isAllSelected()"
@@ -10,7 +10,7 @@
       >
       </sbb-checkbox>
     </th>
-    <td sbbCell *sbbCellDef="let row">
+    <td sbb-cell *sbbCellDef="let row">
       <sbb-checkbox
         (click)="$event.stopPropagation()"
         (change)="$event ? selection.toggle(row) : null"
@@ -22,12 +22,12 @@
   </ng-container>
 
   <ng-container *ngFor="let column of displayedColumns.slice(1)" [sbbColumnDef]="column">
-    <th sbbHeaderCell *sbbHeaderCellDef>{{ column }}</th>
-    <td sbbCell *sbbCellDef="let element">{{ element[column] }}</td>
+    <th sbb-header-cell *sbbHeaderCellDef>{{ column }}</th>
+    <td sbb-cell *sbbCellDef="let element">{{ element[column] }}</td>
   </ng-container>
 
   <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
-  <tr sbbRow *sbbRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
+  <tr sbb-row *sbbRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
 </table>
 
 <h4>Selected Models</h4>

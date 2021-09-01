@@ -455,10 +455,24 @@ No changes.
 
 _Automatic migration available_
 
-- `SbbTable` directive was renamed to `sbb-table`.
-- `sbbHeaderRow` directive was renamed to `sbb-header-row`.
-- `SbbSortHeaderComponent` was renamed to `SbbSortHeader`.
-- `sbbSortHeader` directive was renamed to `sbb-sort-header`.
+The following selector renames have been performed. All renames are processed by the automatic migration.
+
+| Previously           | New                    |
+| -------------------- | ---------------------- |
+| `<table sbbTable>`   | `<table sbb-table>`    |
+| `<tr sbbHeaderRow>`  | `<tr sbb-header-row>`  |
+| `<tr sbbRow>`        | `<tr sbb-row>`         |
+| `<tr sbbFooterRow>`  | `<tr sbb-footer-row>`  |
+| `<th sbbHeaderCell>` | `<th sbb-header-cell>` |
+| `<sbbHeaderCell>`    | `<sbb-header-cell>`    |
+| `<td sbbCell>`       | `<td sbb-cell>`        |
+| `<sbbCell>`          | `<sbb-cell>`           |
+| `<td sbbFooterCell>` | `<td sbb-footer-cell>` |
+| `<sbbFooterCell>`    | `<sbb-footer-cell>`    |
+| `<sbbFooterCell>`    | `<sbb-footer-cell>`    |
+| `[sbbSortHeader]`    | `[sbb-sort-header]`    |
+
+- `SbbSortHeaderComponent` class was renamed to `SbbSortHeader`.
 - The deprecated css class `sbb-col-center-align` was removed in will automatically be replaced by `sbb-table-align-center`.
 
 [Documentation](angular/components/table)
