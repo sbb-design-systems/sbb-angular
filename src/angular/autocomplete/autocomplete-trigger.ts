@@ -52,7 +52,7 @@ import {
   Subject,
   Subscription,
 } from 'rxjs';
-import { delay, filter, map, startWith, switchMap, take, tap } from 'rxjs/operators';
+import { delay, filter, map, mergeMap, startWith, switchMap, take, tap } from 'rxjs/operators';
 
 import {
   SbbAutocomplete,
@@ -138,6 +138,9 @@ export class SbbAutocompleteTrigger
   /** Subscription to highlight options */
   private _highlightSubscription = Subscription.EMPTY;
 
+  /** Subscription to toggle classes on the connected element */
+  private _connectedElementClassSubscription = Subscription.EMPTY;
+
   /** BehaviourSubject holding inputValue. Used for highlighting */
   private _inputValue = new BehaviorSubject('');
 
@@ -182,6 +185,7 @@ export class SbbAutocompleteTrigger
     this._autocomplete = autocomplete;
 
     this._highlightSubscription.unsubscribe();
+    this._connectedElementClassSubscription.unsubscribe();
     if (!autocomplete) {
       return;
     }
@@ -203,6 +207,17 @@ export class SbbAutocompleteTrigger
         options.forEach((option) =>
           option._highlight(inputValue, this.autocomplete.localeNormalizer)
         );
+      });
+
+    this._connectedElementClassSubscription = onReady
+      .pipe(mergeMap(() => this.autocomplete._showPanel))
+      .subscribe((showPanel) => {
+        if (!showPanel) {
+          this._getConnectedElement().nativeElement.classList.remove('sbb-input-with-open-panel');
+          this._getConnectedElement().nativeElement.classList.remove(
+            'sbb-input-with-open-panel-above'
+          );
+        }
       });
   }
   private _autocomplete: SbbAutocomplete;
@@ -288,6 +303,7 @@ export class SbbAutocompleteTrigger
     this._viewportSubscription.unsubscribe();
     this._positionSubscription.unsubscribe();
     this._highlightSubscription.unsubscribe();
+    this._connectedElementClassSubscription.unsubscribe();
     this._componentDestroyed = true;
     this._destroyPanel();
     this._closeKeyEventStream.complete();
@@ -642,23 +658,26 @@ export class SbbAutocompleteTrigger
 
       if (this._positionStrategy) {
         this._positionSubscription.unsubscribe();
-        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(
-          (position) => {
-            if (this.autocomplete.panel) {
-              if (position.connectionPair.originY === 'top') {
-                this.autocomplete.panel.nativeElement.classList.add('sbb-panel-above');
-                this._getConnectedElement().nativeElement.classList.add(
-                  'sbb-input-with-open-panel-above'
-                );
-              } else {
-                this.autocomplete.panel.nativeElement.classList.remove('sbb-panel-above');
-                this._getConnectedElement().nativeElement.classList.remove(
-                  'sbb-input-with-open-panel-above'
-                );
-              }
+        this._positionSubscription = combineLatest([
+          this._positionStrategy.positionChanges,
+          this.autocomplete._showPanel,
+        ]).subscribe(([position, showPanel]) => {
+          if (this.autocomplete.panel && showPanel) {
+            this._getConnectedElement().nativeElement.classList.add('sbb-input-with-open-panel');
+
+            if (position.connectionPair.originY === 'top') {
+              this.autocomplete.panel.nativeElement.classList.add('sbb-panel-above');
+              this._getConnectedElement().nativeElement.classList.add(
+                'sbb-input-with-open-panel-above'
+              );
+            } else {
+              this.autocomplete.panel.nativeElement.classList.remove('sbb-panel-above');
+              this._getConnectedElement().nativeElement.classList.remove(
+                'sbb-input-with-open-panel-above'
+              );
             }
           }
-        );
+        });
       }
 
       // Use the `keydownEvents` in order to take advantage of
@@ -700,8 +719,6 @@ export class SbbAutocompleteTrigger
 
     this.autocomplete._setVisibility();
     this.autocomplete._isOpen = this._overlayAttached = true;
-
-    this._getConnectedElement().nativeElement.classList.add('sbb-input-with-open-panel');
 
     // We need to do an extra `panelOpen` check in here, because the
     // autocomplete won't be shown if there are no options.
