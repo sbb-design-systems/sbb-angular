@@ -39,7 +39,7 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
           limitedTo: {
             classes: ['SbbLightboxRef'],
           },
-        }
+        },
       ],
     },
   ],

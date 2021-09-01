@@ -39,9 +39,7 @@ No changes.
 
 ### Autocomplete
 
-_Automatic migration available_
-
-The boolean property `showPanel` of the Autocomplete component has become a `BehaviourSubject<boolean>`.
+No changes.
 
 [Documentation](angular/components/autocomplete)
 
