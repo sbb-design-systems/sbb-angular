@@ -12,7 +12,6 @@ describe('EsriLoaderService', () => {
   const esriCustomConf: SbbEsriConfiguration = {
     trustedServers: ['t1', 't2'],
     portalUrl: 'urlToPortalInstance',
-    originsWithCredentialsRequired: ['o1', 'o2'],
   };
 
   let loaderService: SbbEsriLoaderService;
@@ -36,7 +35,6 @@ describe('EsriLoaderService', () => {
     SbbEsriConfigConsts.trustedServers.forEach((srv) => {
       expect(esriConfig.request.trustedServers).toContain(srv);
     });
-    expect(esriConfig.request.interceptors!.length).toBeGreaterThan(0);
   });
 
   it('should load modules with custom config', async () => {
@@ -47,6 +45,5 @@ describe('EsriLoaderService', () => {
     SbbEsriConfigConsts.trustedServers.concat(esriCustomConf.trustedServers!).forEach((srv) => {
       expect(esriConfig.request.trustedServers).toContain(srv);
     });
-    expect(esriConfig.request.interceptors!.length).toBeGreaterThan(0);
   });
 });

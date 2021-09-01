@@ -27,19 +27,5 @@ export class SbbEsriLoaderService {
         esriConfigTrustedServers.push(srv);
       }
     });
-
-    const originsWithCredentials = SbbEsriConfigConsts.originsWithCredentialsReuqired;
-    const originsWithCredentialsRequired = this._config?.originsWithCredentialsRequired
-      ? originsWithCredentials.concat(this._config.originsWithCredentialsRequired)
-      : originsWithCredentials;
-
-    esriConfig.request.interceptors!.push({
-      before: (params: any) => {
-        if (originsWithCredentialsRequired.some((o) => params.url.includes(o))) {
-          params.requestOptions.withCredentials = true;
-        }
-      },
-      error: () => {},
-    });
   }
 }

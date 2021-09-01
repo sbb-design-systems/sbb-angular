@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.3.0...12.4.0) (2021-09-01)
+
+
+### Features
+
+* Maps using ESRI Map API for JavaScript v4.20
+* Maps examples portalId changed 
+* Maps configuration `originsWithCredentialsRequired` property marked as deprecated
+
+
 ## [12.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.2.1...12.3.0) (2021-07-29)
 
 
