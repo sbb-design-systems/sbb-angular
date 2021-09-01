@@ -283,7 +283,9 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
    * the panel should still be displayed.
    */
   _setVisibility() {
-    this._showPanel.next(!!this.options.length || (!!this.hints.length && this.showHintIfNoOptions));
+    this._showPanel.next(
+      !!this.options.length || (!!this.hints.length && this.showHintIfNoOptions)
+    );
     this._setVisibilityClasses(this._classList);
     this._changeDetectorRef.markForCheck();
   }
