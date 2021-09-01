@@ -666,7 +666,7 @@ describe('SbbAutocomplete', () => {
           fixture.componentInstance.trigger.openPanel();
 
           Promise.resolve().then(() => {
-            expect(fixture.componentInstance.panel.showPanel.value).toBe(
+            expect(fixture.componentInstance.panel.showPanel).toBe(
               true,
               `Expected panel to be visible.`
             );

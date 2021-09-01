@@ -39,14 +39,7 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
           limitedTo: {
             classes: ['SbbLightboxRef'],
           },
-        },
-        {
-          replace: 'showPanel',
-          replaceWith: 'showPanel.value',
-          limitedTo: {
-            classes: ['SbbAutocomplete'],
-          },
-        },
+        }
       ],
     },
   ],

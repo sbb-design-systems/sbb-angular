@@ -210,7 +210,7 @@ export class SbbAutocompleteTrigger
       });
 
     this._connectedElementClassSubscription = onReady
-      .pipe(mergeMap(() => this.autocomplete.showPanel))
+      .pipe(mergeMap(() => this.autocomplete._showPanel))
       .subscribe((showPanel) => {
         if (!showPanel) {
           this._getConnectedElement().nativeElement.classList.remove('sbb-input-with-open-panel');
@@ -311,7 +311,7 @@ export class SbbAutocompleteTrigger
 
   /** Whether or not the autocomplete panel is open. */
   get panelOpen(): boolean {
-    return this._overlayAttached && this.autocomplete.showPanel.value;
+    return this._overlayAttached && this.autocomplete.showPanel;
   }
   private _overlayAttached: boolean = false;
 
@@ -660,7 +660,7 @@ export class SbbAutocompleteTrigger
         this._positionSubscription.unsubscribe();
         this._positionSubscription = combineLatest([
           this._positionStrategy.positionChanges,
-          this.autocomplete.showPanel,
+          this.autocomplete._showPanel,
         ]).subscribe(([position, showPanel]) => {
           if (this.autocomplete.panel && showPanel) {
             this._getConnectedElement().nativeElement.classList.add('sbb-input-with-open-panel');
