@@ -46,6 +46,7 @@ export class SbbRecycleRows {}
   styleUrls: ['table.css'],
   host: {
     class: 'sbb-table',
+    '[class.sbb-table-fixed-layout]': 'fixedLayout',
   },
   providers: [
     // TODO(michaeljamesparsons) Abstract the view repeater strategy to a directive API so this code
