@@ -1,9 +1,8 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { SbbEsriConfigConsts } from '../esri-config/esri-standard-values.const';
-
 import { SbbEsriConfiguration } from './esri-configuration';
 import { SbbEsriLoaderService } from './esri-loader.service';
+import { SbbEsriConfigConsts } from './esri-standard-values.const';
 
 @NgModule({})
 export class SbbEsriConfigModule {
