@@ -29,6 +29,31 @@
     (@arrowPosition.start)="_disableViewStateAnimation = true"
     (@arrowPosition.done)="_disableViewStateAnimation = false"
   >
-    <sbb-sort-arrow [arrowDirectionState]="_getArrowDirectionState()"></sbb-sort-arrow>
+    <!-- This is a modified version of the sbb kom:arrow-down-small icon to support the animation -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      preserveAspectRatio="xMidYMid meet"
+      focusable="false"
+    >
+      <path
+        fill="none"
+        fill-rule="evenodd"
+        stroke="#000"
+        stroke-width="1"
+        d="M11.5,5.75 L11.5,18.25"
+      ></path>
+      <path
+        fill="none"
+        fill-rule="evenodd"
+        stroke="#000"
+        stroke-width="1"
+        d="M7.5,14.25 L11.5,18.25 L15.5,14.25"
+        style="transform-origin: center"
+        [@indicator]="_getArrowDirectionState()"
+      ></path>
+    </svg>
   </div>
 </div>

@@ -9,4 +9,3 @@ export * from './sort-header/sort-animations';
 export * from './text-column/text-column';
 export * from './table-cell/table-cell';
 export * from './table-row/table-row';
-export * from './sort-header/sort-arrow';

@@ -86,6 +86,7 @@ interface SbbSortHeaderColumnDef {
     sbbSortAnimations.arrowOpacity,
     sbbSortAnimations.arrowPosition,
     sbbSortAnimations.allowChildren,
+    sbbSortAnimations.indicator,
   ],
 })
 export class SbbSortHeader

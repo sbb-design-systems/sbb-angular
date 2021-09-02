@@ -2,7 +2,6 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SbbSortArrow } from './sort-header/sort-arrow';
 import { SbbSortHeader } from './sort-header/sort-header';
 import { SbbSortDirective } from './sort/sort';
 import {
@@ -54,7 +53,6 @@ const EXPORTED_DECLARATIONS = [
   // Sort
   SbbSortDirective,
   SbbSortHeader,
-  SbbSortArrow,
 ];
 
 @NgModule({
