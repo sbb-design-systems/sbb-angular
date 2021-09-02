@@ -27,7 +27,8 @@
   text-overflow: ellipsis;
 }
 
-html.sbb-lean .sbb-select-placeholder {
+// Used when setting a placeholder
+html.sbb-lean .sbb-select-value-empty {
   color: $sbbColorStorm;
 }
 

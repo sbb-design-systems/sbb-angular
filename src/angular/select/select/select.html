@@ -1,4 +1,9 @@
-<div [attr.id]="_valueId" [ngSwitch]="empty" class="sbb-select-value">
+<div
+  [attr.id]="_valueId"
+  [ngSwitch]="empty"
+  class="sbb-select-value"
+  [class.sbb-select-value-empty]="empty"
+>
   <span *ngSwitchCase="true" class="sbb-select-placeholder">{{ placeholder || '\u00A0' }}</span>
   <span *ngSwitchCase="false" class="sbb-select-value-text">
     <span>{{ triggerValue || '\u00A0' }}</span>

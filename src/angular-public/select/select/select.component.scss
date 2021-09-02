@@ -129,7 +129,8 @@ sbb-select.sbb-select {
     }
 
     @include businessOnly() {
-      .sbb-select-placeholder {
+      // Used when setting a placeholder
+      .sbb-select-value-empty {
         color: $sbbColorStorm;
       }
     }

@@ -93,8 +93,7 @@ $sbbHeaderHeight: pxToRem(54);
 }
 
 .sbb-header-open-menu {
-  &:not(.sbb-header-app-chooser-available),
-  :host:not(.sbb-header-menus-collapsed) {
+  :host:not(.sbb-header-menus-collapsed) &:not(.sbb-header-app-chooser-available) {
     visibility: hidden;
   }
 }
