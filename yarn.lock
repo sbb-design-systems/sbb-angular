@@ -342,7 +342,7 @@
   dependencies:
     tslib "^2.2.0"
 
-"@arcgis/core@^4.20.2":
+"@arcgis/core@~4.20.2":
   version "4.20.2"
   resolved "https://registry.yarnpkg.com/@arcgis/core/-/core-4.20.2.tgz#baba4066b90cb9f6b6b7c0a43ff6e6eee14af919"
   integrity sha512-LmHNLhJRBri5UpLfmfSFhQ7B3O/lq0B0Qtwkdy3gJUJ1DOZBfo0c5ezpSfqsHjTTDxTxSyMF5fl8Y1H4+UagZQ==
