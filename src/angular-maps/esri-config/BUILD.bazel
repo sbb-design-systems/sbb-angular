@@ -10,7 +10,7 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "esri-config",
-    srcs = glob(
+    srcs = [":esri-config.token.ts"] + glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),

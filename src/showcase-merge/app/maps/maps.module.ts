@@ -10,7 +10,7 @@ import { MapsRoutingModule } from './maps-routing.module';
 
 @NgModule({
   imports: [
-    SbbEsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' }),
+    SbbEsriConfigModule.forRoot(),
     CommonModule,
     PortalModule,
     SharedModule,

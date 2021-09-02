@@ -40,7 +40,7 @@ yarn add @arcgis/core@4.20.2 @sbb-esta/angular-maps
 
 ### Step 2: Configure the library
 
-Once the `@sbb-esta/angular-maps` package is installed, you are able to configure your application, in order to use a specific portal (by default the ArcGIS online portal is used), a different version of [ArcGIS API for Javascript](https://developers.arcgis.com/javascript/latest/guide/get-api/) or some other settings.
+Once the `@sbb-esta/angular-maps` package is installed, you are able to configure your application, in order to use a specific portal (by default the ArcGIS online portal is used), a different version of [ArcGIS API for Javascript](https://developers.arcgis.com/javascript/latest/guide/get-api/) or some other settings:
 
 ```ts
 import { SbbEsriConfigModule } from '@sbb-esta/angular-maps';
@@ -53,56 +53,26 @@ import { SbbEsriConfigModule } from '@sbb-esta/angular-maps';
 export class TrainChooChooAppModule {}
 ```
 
-If you do not have specific configurations, you can use the standard configurations as well using:
 The ArcGIS API for Javascript allows for cross origin requests made to associated servers to include credentials such as cookies and authorization headers. This is indicated by a list of named so called _trustedServers_ (see [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)).
 
 [Read more on how the ArcGIS API for Javascript handles CORS](https://developers.arcgis.com/javascript/latest/guide/cors/index.html).
 
-Allowing a quick start in the SBB environment, the following hosts are preconfigured as _trustedServers_ in `@sbb-esta/angular-maps` by default: _geo-dev.sbb.ch_, _geo-int.sbb.ch_ and _geo.sbb.ch_. Additionally _wms.geo.admin.ch_ is preconfigured in _trustedServers_, too.
+Allowing a quick start in the SBB environment, the following hosts are preconfigured as _trustedServers_ in `@sbb-esta/angular-maps` by default: _geo-dev.sbb.ch_, _geo-int.sbb.ch_ and _geo.sbb.ch_. Additionally _wms.geo.admin.ch_ is preconfigured in _trustedServers_, too. In order to use the standard configurations, call `forRoot()` without parameters:
 
 ```ts
 import { SbbEsriConfigModule } from '@sbb-esta/angular-maps';
 
 @NgModule({
   ...
-  imports: [SbbEsriConfigModule.forRoot({
-      portalUrl: 'https://geo-dev.sbb.ch/portal',
-      trustedServers: ['geo-dev.sbb.ch'],
-    })],
-  ...
-})
-export class TrainChooChooAppModule { }
-```
-
-If you do not have specific configurations, you can use the standard configurations as well by using:
-
-```ts
-import { SbbEsriConfigModule } from '@sbb-esta/angular-maps';
-
-@NgModule({
-  ...
-  imports: [SbbEsriConfigModule],
+  imports: [SbbEsriConfigModule.forRoot()],
   ...
 })
 export class TrainChooChooAppModule {}
 ```
 
-### Step 3: Initialize the library configuration
+If you do not call `SbbEsriConfigModule.forRoot` at all, the default Esri ArcGIS API configuration will be used, without SBB environment specific `trustedServers`.
 
-In your app.component.ts file (or any startup service), import the `SbbEsriLoaderService` and add as constructor parameter. Otherwise the configuration (the standard or your specific) won't initialize:
-
-```ts
-import { SbbEsriLoaderService } from "@sbb-esta/angular-maps";
-...
-export class AppComponent {
-  constructor(
-    private esriLoaderService: SbbEsriLoaderService,
-    ...
-  ) { }
-}
-```
-
-### Step 4: Import the component modules
+### Step 3: Import the component modules
 
 Import the NgModule for each component you want to use:
 
@@ -117,7 +87,7 @@ import { EsriWebMapModule, EsriWebSceneModule } from '@sbb-esta/angular-maps';
 export class TrainChooChooAppModule {}
 ```
 
-### Step 5: Configure CSS
+### Step 4: Configure CSS
 
 Choose an angular-map [theme](https://developers.arcgis.com/javascript/latest/styling/#themes) and then configure your App to use the Esri ArcGIS CDN, for example:
 

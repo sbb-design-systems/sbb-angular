@@ -208,7 +208,6 @@
   "throwSbbDialogContentAlreadyAttachedError": "dialog",
   "SbbEsriBasemapGallery": "esri-basemap-gallery",
   "SbbEsriBasemapGalleryModule": "esri-basemap-gallery",
-  "SBB_ESRI_CONFIG_TOKEN": "esri-config",
   "SbbEsriConfigConsts": "esri-config",
   "SbbEsriConfigModule": "esri-config",
   "SbbEsriConfiguration": "esri-config",

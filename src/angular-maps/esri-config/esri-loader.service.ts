@@ -1,7 +1,6 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import esriConfig from '@arcgis/core/config';
 
-import { SBB_ESRI_CONFIG_TOKEN } from './esri-config.token';
 import { SbbEsriConfiguration } from './esri-configuration';
 import { SbbEsriConfigConsts } from './esri-standard-values.const';
 
@@ -9,10 +8,7 @@ import { SbbEsriConfigConsts } from './esri-standard-values.const';
   providedIn: 'root',
 })
 export class SbbEsriLoaderService {
-  constructor(
-    /** Inject an optional configuration to configure arcgis-js-api settings. */
-    @Optional() @Inject(SBB_ESRI_CONFIG_TOKEN) private _config: SbbEsriConfiguration
-  ) {
+  constructor(private _config: SbbEsriConfiguration) {
     this._configure();
   }
 
