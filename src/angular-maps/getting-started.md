@@ -123,7 +123,7 @@ Choose an angular-map [theme](https://developers.arcgis.com/javascript/latest/st
 _styles.(s)css_
 
 ```
-@import "https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css";
+@import url("https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css");
 ```
 
 Or, if you are working with local assets, see the [Managing assets locally](https://developers.arcgis.com/javascript/latest/es-modules/#managing-assets-locally) section.
