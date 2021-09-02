@@ -7,7 +7,7 @@ import SceneView from '@arcgis/core/views/SceneView';
 import HitTestResult = __esri.HitTestResult;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SbbHitTestService {
   /** Calls the ESRI hitTest method for a location on a given map-/scene-view. */

@@ -54,7 +54,7 @@ export class TrainChooChooAppModule {}
 ```
 
 If you do not have specific configurations, you can use the standard configurations as well using:
-The ArcGIS API for Javascript allows for cross origin requests made to associated servers to include credentials such as cookies and authorization headers. This is indicated by a list of named so called _trustedServers_ (see [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)). 
+The ArcGIS API for Javascript allows for cross origin requests made to associated servers to include credentials such as cookies and authorization headers. This is indicated by a list of named so called _trustedServers_ (see [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)).
 
 [Read more on how the ArcGIS API for Javascript handles CORS](https://developers.arcgis.com/javascript/latest/guide/cors/index.html).
 
@@ -86,6 +86,7 @@ import { SbbEsriConfigModule } from '@sbb-esta/angular-maps';
 })
 export class TrainChooChooAppModule {}
 ```
+
 ### Step 3: Initialize the library configuration
 
 In your app.component.ts file (or any startup service), import the `SbbEsriLoaderService` and add as constructor parameter. Otherwise the configuration (the standard or your specific) won't initialize:
