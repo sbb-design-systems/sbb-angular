@@ -21,9 +21,12 @@
     </td>
   </ng-container>
 
-  <ng-container *ngFor="let column of displayedColumns.slice(1)" [sbbColumnDef]="column">
-    <th sbb-header-cell *sbbHeaderCellDef>{{ column }}</th>
-    <td sbb-cell *sbbCellDef="let element">{{ element[column] }}</td>
+  <ng-container *ngFor="let column of columns.slice(1)" [sbbColumnDef]="column.title">
+    <th sbb-header-cell *sbbHeaderCellDef>
+      {{ column.title }}
+      <div *ngIf="column.subtitle" class="sbb-table-header-subtitle">{{ column.subtitle}}</div>
+    </th>
+    <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
   </ng-container>
 
   <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>

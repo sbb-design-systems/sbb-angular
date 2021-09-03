@@ -19,9 +19,20 @@ interface VehicleExampleItem {
   templateUrl: './selectable-table-example.html',
 })
 export class SelectableTableExample {
-  displayedColumns: string[] = ['select', 'position', 'name', 'power', 'description', 'category'];
+  columns = [
+    { title: 'select' },
+    { title: 'position' },
+    { title: 'name', subtitle: 'technical' },
+    { title: 'power', subtitle: 'horsepower' },
+    { title: 'description', subtitle: 'common name' },
+    { title: 'category' },
+  ];
   dataSource = new SbbTableDataSource<VehicleExampleItem>(VEHICLE_EXAMPLE_DATA.slice(0, 7));
   selection = new SelectionModel<VehicleExampleItem>(true, []);
+
+  get displayedColumns(): string[] {
+    return this.columns.map((column) => column.title);
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {

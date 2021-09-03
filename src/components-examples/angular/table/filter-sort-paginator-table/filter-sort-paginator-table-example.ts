@@ -33,8 +33,17 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
   @ViewChild(SbbSort) sort: SbbSort;
   @ViewChild(SbbTable) table: SbbTable<VehicleExampleItem>;
 
-  displayedColumns: string[] = ['position', 'name', 'power', 'description', 'category'];
+  columns = [
+    { title: 'position' },
+    { title: 'name', subtitle: 'technical' },
+    { title: 'power', subtitle: 'horsepower' },
+    { title: 'description', subtitle: 'common name' },
+    { title: 'category' },
+  ];
 
+  get displayedColumns(): string[] {
+    return this.columns.map((column) => column.title);
+  }
   dataSource = new SbbTableDataSource<VehicleExampleItem, VehicleFilter>(VEHICLE_EXAMPLE_DATA);
   categories = new Set(
     VEHICLE_EXAMPLE_DATA.map((vehicleExampleItem) => vehicleExampleItem.category)
