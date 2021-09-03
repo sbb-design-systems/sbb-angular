@@ -11,7 +11,7 @@ describe('EsriLoaderService', () => {
 
   const configureTestingModule = (customConfig?: SbbEsriConfiguration) => {
     TestBed.configureTestingModule({
-      imports: [...(customConfig ? [SbbEsriConfigModule.forRoot(customConfig!)] : [])],
+      imports: [...[SbbEsriConfigModule.forRoot(customConfig)]],
     });
   };
 
