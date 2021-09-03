@@ -20,7 +20,7 @@ import {
 import { CanDisable, mixinDisabled } from '@sbb-esta/angular/core';
 import { merge, Subscription } from 'rxjs';
 
-import { SbbSortable, SbbSortDirective } from '../sort/sort';
+import { SbbSort, SbbSortable } from '../sort/sort';
 import { SbbSortDirection } from '../sort/sort-direction';
 import { getSortHeaderNotContainedWithinSortError } from '../sort/sort-errors';
 
@@ -60,7 +60,7 @@ interface SbbSortHeaderColumnDef {
  * Applies sorting behavior (click to change sort) and styles to an element, including an
  * arrow to display the current sort direction.
  *
- * Must be provided with an id and contained within a parent SbbSortDirective.
+ * Must be provided with an id and contained within a parent SbbSort.
  *
  * If used on header cells in a CdkTable, it will automatically default its id from its containing
  * column definition.
@@ -123,10 +123,10 @@ export class SbbSortHeader
   /** Sets the position of the arrow that displays when sorted. */
   @Input() arrowPosition: 'before' | 'after' = 'after';
 
-  /** Overrides the sort start value of the containing SbbSortDirective for this SbbSortable. */
+  /** Overrides the sort start value of the containing SbbSort for this SbbSortable. */
   @Input() start: 'asc' | 'desc';
 
-  /** Overrides the disable clear value of the containing SbbSortDirective for this SbbSortable. */
+  /** Overrides the disable clear value of the containing SbbSort for this SbbSortable. */
   @Input()
   get disableClear(): boolean {
     return this._disableClear;
@@ -138,8 +138,8 @@ export class SbbSortHeader
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    // `SbbSortDirective` is not optionally injected, but just asserted manually w/ better error.
-    @Optional() public _sort: SbbSortDirective,
+    // `SbbSort` is not optionally injected, but just asserted manually w/ better error.
+    @Optional() public _sort: SbbSort,
     @Inject('SBB_SORT_HEADER_COLUMN_DEF') @Optional() private _columnDef: SbbSortHeaderColumnDef,
     // Also Inject MAT_SORT_HEADER_COLUMN_DEF to provide full cdkTable support
     @Inject('MAT_SORT_HEADER_COLUMN_DEF') @Optional() private _columnDefCdk: CdkColumnDef,

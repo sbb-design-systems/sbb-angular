@@ -86,7 +86,9 @@ function mergeSymbols() {
       SbbTagChange: "tag",
       SbbGhettoboxContainer: "ghettobox",
       SbbTooltipComponent: "tooltip",
-      SbbSortHeaderComponent: "table"
+      SbbSortHeaderComponent: "table",
+      SbbSortDirective: "table",
+      SbbSort: "table"
     };
     extractExportsForModule("src/angular/");
     extractExportsForModule("src/angular-maps/");

@@ -469,10 +469,12 @@ The following selector renames have been performed. All renames are processed by
 | `<sbbCell>`          | `<sbb-cell>`           |
 | `<td sbbFooterCell>` | `<td sbb-footer-cell>` |
 | `<sbbFooterCell>`    | `<sbb-footer-cell>`    |
-| `<sbbFooterCell>`    | `<sbb-footer-cell>`    |
 | `[sbbSortHeader]`    | `[sbb-sort-header]`    |
 
 - `SbbSortHeaderComponent` class was renamed to `SbbSortHeader`.
+- `SbbSortDirective` class was renamed to `SbbSort`.
+- `SbbSort` interface was renamed to `SbbSortState`.
+
 - The deprecated css class `sbb-col-center-align` was removed in will automatically be replaced by `sbb-table-align-center`.
 
 **SbbTableDataSource**

@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
 import { SbbSortHeader } from '../sort-header/sort-header';
 import { SbbTableModule } from '../table.module';
 
-import { SbbSort, SbbSortDirective, SBB_SORT_DEFAULT_OPTIONS } from './sort';
+import { SbbSort, SbbSortState, SBB_SORT_DEFAULT_OPTIONS } from './sort';
 import { SbbSortDirection } from './sort-direction';
 import {
   getSortDuplicateSortableIdError,
@@ -522,7 +522,7 @@ type SimpleSbbSortAppColumnIds = 'defaultA' | 'defaultB' | 'overrideStart' | 'ov
   `,
 })
 class SimpleSbbSortApp {
-  latestSortEvent: SbbSort;
+  latestSortEvent: SbbSortState;
 
   active: string;
   start: SbbSortDirection = 'asc';
@@ -531,7 +531,7 @@ class SimpleSbbSortApp {
   disabledColumnSort = false;
   disableAllSort = false;
 
-  @ViewChild(SbbSortDirective) sbbSort: SbbSortDirective;
+  @ViewChild(SbbSort) sbbSort: SbbSort;
   @ViewChild('defaultA') defaultA: SbbSortHeader;
   @ViewChild('defaultB') defaultB: SbbSortHeader;
   @ViewChild('overrideStart') overrideStart: SbbSortHeader;
@@ -601,7 +601,7 @@ class FakeDataSource extends DataSource<any> {
   `,
 })
 class CdkTableSbbSortApp {
-  @ViewChild(SbbSortDirective) sbbSort: SbbSortDirective;
+  @ViewChild(SbbSort) sbbSort: SbbSort;
 
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
@@ -631,7 +631,7 @@ class CdkTableSbbSortApp {
   `,
 })
 class SbbTableSbbSortApp {
-  @ViewChild(SbbSortDirective) sbbSort: SbbSortDirective;
+  @ViewChild(SbbSort) sbbSort: SbbSort;
 
   dataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
@@ -683,12 +683,12 @@ class SbbSortableInvalidDirection {}
   `,
 })
 class SbbSortWithoutExplicitInputs {
-  latestSortEvent: SbbSort;
+  latestSortEvent: SbbSortState;
 
   active: string;
   start: SbbSortDirection = 'asc';
 
-  @ViewChild(SbbSortDirective) sbbSort: SbbSortDirective;
+  @ViewChild(SbbSort) sbbSort: SbbSort;
   @ViewChild('defaultA') defaultA: SbbSortHeader;
 
   constructor(public elementRef: ElementRef<HTMLElement>) {}

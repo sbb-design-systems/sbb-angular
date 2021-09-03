@@ -1,5 +1,6 @@
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { DataSource } from '@angular/cdk/table';
+import { SbbPageEvent, SbbPaginator } from '@sbb-esta/angular/pagination';
 import {
   BehaviorSubject,
   combineLatest,
@@ -10,6 +11,19 @@ import {
   Subscription,
 } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { SbbSort, SbbSortState } from '../sort/sort';
+
+/**
+ * Interface that matches the required API parts of the SbbPaginator.
+ */
+export interface SbbTableDataSourcePaginator {
+  page: Subject<SbbPageEvent>;
+  pageIndex: number;
+  initialized: Observable<void>;
+  pageSize: number;
+  length: number;
+}
 
 /**
  * Corresponds to `Number.MAX_SAFE_INTEGER`. Moved out into a variable here due to
@@ -28,17 +42,12 @@ export interface SbbTableFilter {
   [key: string]: string | number | string[] | number[] | undefined;
 }
 
-/**
- * Data source that accepts a client-side data array and includes native support of filtering,
- * sorting (using Sort), and pagination (using Paginator).
- *
- * Allows for sort customization by overriding sortingDataAccessor, which defines how data
- * properties are accessed. Also allows for filter customization by overriding filterTermAccessor,
- * which defines how row data is converted to a string for filter matching.
- */
-export class SbbTableDataSource<
+/** Base class for SbbTableDataSource. */
+// tslint:disable-next-line:class-name naming-convention
+export class _SbbTableDataSource<
   T,
-  TFilter extends SbbTableFilter | string = string
+  TFilter extends SbbTableFilter | string = string,
+  P extends SbbTableDataSourcePaginator = SbbTableDataSourcePaginator
 > extends DataSource<T> {
   /** Stream that emits when a new data array is set on the data source. */
   private readonly _data: BehaviorSubject<T[]>;
@@ -96,21 +105,21 @@ export class SbbTableDataSource<
   }
 
   /**
-   * Instance of the Sort directive used by the table to control its sorting. Sort changes
-   * emitted by the Sort will trigger an update to the table's rendered data.
+   * Instance of the SbbSort directive used by the table to control its sorting. Sort changes
+   * emitted by the SbbSort will trigger an update to the table's rendered data.
    */
-  get sort(): any | null {
+  get sort(): SbbSort | null {
     return this._sort;
   }
-  set sort(sort: any | null) {
+  set sort(sort: SbbSort | null) {
     this._sort = sort;
     this._updateChangeSubscription();
   }
-  private _sort: any | null;
+  private _sort: SbbSort | null;
 
   /**
-   * Instance of the Paginator component used by the table to control what page of the data is
-   * displayed. Page changes emitted by the Paginator will trigger an update to the
+   * Instance of the SbbPaginator component used by the table to control what page of the data is
+   * displayed. Page changes emitted by the SbbPaginator will trigger an update to the
    * table's rendered data.
    *
    * Note that the data source uses the paginator's properties to calculate which page of data
@@ -118,14 +127,14 @@ export class SbbTableDataSource<
    * e.g. `[pageLength]=100` or `[pageIndex]=1`, then be sure that the paginator's view has been
    * initialized before assigning it to this data source.
    */
-  get paginator(): any | null {
+  get paginator(): P | null {
     return this._paginator;
   }
-  set paginator(paginator: any | null) {
+  set paginator(paginator: P | null) {
     this._paginator = paginator;
     this._updateChangeSubscription();
   }
-  private _paginator: any | null;
+  private _paginator: P | null;
 
   /**
    * Data accessor function that is used for accessing data properties for sorting through
@@ -154,15 +163,15 @@ export class SbbTableDataSource<
   };
 
   /**
-   * Gets a sorted copy of the data array based on the state of the Sort. Called
-   * after changes are made to the filtered data or when sort changes are emitted from Sort.
+   * Gets a sorted copy of the data array based on the state of the SbbSort. Called
+   * after changes are made to the filtered data or when sort changes are emitted from SbbSort.
    * By default, the function retrieves the active sort and its direction and compares data
    * by retrieving data using the sortingDataAccessor. May be overridden for a custom implementation
    * of data ordering.
    * @param data The array of data that should be sorted.
-   * @param sort The connected Sort that holds the current sort state.
+   * @param sort The connected SbbSort that holds the current sort state.
    */
-  sortData: (data: T[], sort: any) => T[] = (data: T[], sort: any): T[] => {
+  sortData: (data: T[], sort: SbbSort) => T[] = (data: T[], sort: SbbSort): T[] => {
     const active = sort.active;
     const direction = sort.direction;
     if (!active || direction === '') {
@@ -259,21 +268,21 @@ export class SbbTableDataSource<
    * the provided base data and send it to the table for rendering.
    */
   _updateChangeSubscription() {
-    // Sorting and/or pagination should be watched if Sort and/or Paginator are provided.
+    // Sorting and/or pagination should be watched if SbbSort and/or SbbPaginator are provided.
     // The events should emit whenever the component emits a change or initializes, or if no
     // component is provided, a stream with just a null event should be provided.
     // The `sortChange` and `pageChange` acts as a signal to the combineLatests below so that the
     // pipeline can progress to the next step. Note that the value from these streams are not used,
     // they purely act as a signal to progress in the pipeline.
-    const sortChange: Observable<any | null | void> = this._sort
-      ? (merge(this._sort.sortChange, this._sort.initialized) as Observable<any | void>)
+    const sortChange: Observable<SbbSortState | null | void> = this._sort
+      ? (merge(this._sort.sortChange, this._sort.initialized) as Observable<SbbSortState | void>)
       : observableOf(null);
-    const pageChange: Observable<any | null | void> = this._paginator
+    const pageChange: Observable<SbbPageEvent | null | void> = this._paginator
       ? (merge(
           this._paginator.page,
           this._internalPageChanges,
           this._paginator.initialized
-        ) as Observable<any | void>)
+        ) as Observable<SbbPageEvent | void>)
       : observableOf(null);
     const dataStream = this._data;
     // Watch for base data or filter changes to provide a filtered set of data.
@@ -317,7 +326,7 @@ export class SbbTableDataSource<
   }
 
   /**
-   * Returns a sorted copy of the data if Sort has a sort applied, otherwise just returns the
+   * Returns a sorted copy of the data if SbbSort has a sort applied, otherwise just returns the
    * data array as provided. Uses the default data accessor for data lookup, unless a
    * sortDataAccessor function is defined.
    */
@@ -331,7 +340,7 @@ export class SbbTableDataSource<
   }
 
   /**
-   * Returns a paged slice of the provided data array according to the provided Paginator's page
+   * Returns a paged slice of the provided data array according to the provided SbbPaginator's page
    * index and length. If there is no paginator provided, returns the data array as provided.
    */
   _pageData(data: T[]): T[] {
@@ -375,7 +384,7 @@ export class SbbTableDataSource<
   }
 
   /**
-   * Used by the Table. Called when it connects to the data source.
+   * Used by the SbbTable. Called when it connects to the data source.
    * @docs-private
    */
   connect() {
@@ -459,3 +468,16 @@ export class SbbTableDataSource<
     }, '');
   }
 }
+
+/**
+ * Data source that accepts a client-side data array and includes native support of filtering,
+ * sorting (using Sort), and pagination (using Paginator).
+ *
+ * Allows for sort customization by overriding sortingDataAccessor, which defines how data
+ * properties are accessed. Also allows for filter customization by overriding filterTermAccessor,
+ * which defines how row data is converted to a string for filter matching.
+ */
+export class SbbTableDataSource<
+  T,
+  TFilter extends SbbTableFilter | string = string
+> extends _SbbTableDataSource<T, TFilter, SbbPaginator> {}

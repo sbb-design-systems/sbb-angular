@@ -46,6 +46,8 @@ export function mergeSymbols(): Rule {
       SbbGhettoboxContainer: 'ghettobox',
       SbbTooltipComponent: 'tooltip',
       SbbSortHeaderComponent: 'table',
+      SbbSortDirective: 'table',
+      SbbSort: 'table',
     };
 
     extractExportsForModule('src/angular/');

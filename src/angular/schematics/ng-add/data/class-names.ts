@@ -125,6 +125,14 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbSortHeaderComponent',
           replaceWith: 'SbbSortHeader',
         },
+        {
+          replace: 'SbbSort',
+          replaceWith: 'SbbSortState',
+        },
+        {
+          replace: 'SbbSortDirective',
+          replaceWith: 'SbbSort',
+        },
       ],
     },
   ],

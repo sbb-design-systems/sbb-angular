@@ -1,9 +1,14 @@
-import { Component, NgModule } from '@angular/core';
-import { SbbSortHeaderComponent, SbbTableModule } from '@sbb-esta/angular-business';
+import { Component, NgModule, ViewChild } from '@angular/core';
+import {
+  SbbSort,
+  SbbSortDirective,
+  SbbSortHeaderComponent,
+  SbbTableModule,
+} from '@sbb-esta/angular-business';
 
 @Component({
   template: `
-    <table sbbTable>
+    <table sbbTable sbbSort>
       <tr>
         <sbbHeaderCell></sbbHeaderCell>
         <th sbbHeaderCell></th>
@@ -22,6 +27,8 @@ import { SbbSortHeaderComponent, SbbTableModule } from '@sbb-esta/angular-busine
 })
 export class TableTestComponent {
   header: SbbSortHeaderComponent;
+  @ViewChild(SbbSortDirective) sbbSort: SbbSortDirective;
+  sbbSortState: SbbSort;
 }
 
 @NgModule({

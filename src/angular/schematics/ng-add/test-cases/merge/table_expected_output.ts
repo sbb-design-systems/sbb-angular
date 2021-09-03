@@ -1,9 +1,9 @@
-import { Component, NgModule } from '@angular/core';
-import { SbbSortHeader, SbbTableModule } from '@sbb-esta/angular/table';
+import { Component, NgModule, ViewChild } from '@angular/core';
+import { SbbSortState, SbbSort, SbbSortHeader, SbbTableModule } from '@sbb-esta/angular/table';
 
 @Component({
   template: `
-    <table sbb-table>
+    <table sbb-table sbbSort>
       <tr>
         <sbb-header-cell></sbb-header-cell>
         <th sbb-header-cell></th>
@@ -22,6 +22,8 @@ import { SbbSortHeader, SbbTableModule } from '@sbb-esta/angular/table';
 })
 export class TableTestComponent {
   header: SbbSortHeader;
+  @ViewChild(SbbSort) sbbSort: SbbSort;
+  sbbSortState: SbbSortState;
 }
 
 @NgModule({

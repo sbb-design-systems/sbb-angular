@@ -1,12 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SbbPaginator } from '@sbb-esta/angular/pagination';
-import {
-  SbbSortDirective,
-  SbbTable,
-  SbbTableDataSource,
-  SbbTableFilter,
-} from '@sbb-esta/angular/table';
+import { SbbSort, SbbTable, SbbTableDataSource, SbbTableFilter } from '@sbb-esta/angular/table';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
@@ -35,7 +30,7 @@ interface VehicleFilter extends SbbTableFilter {
 })
 export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy {
   @ViewChild(SbbPaginator) paginator: SbbPaginator;
-  @ViewChild(SbbSortDirective) sort: SbbSortDirective;
+  @ViewChild(SbbSort) sort: SbbSort;
   @ViewChild(SbbTable) table: SbbTable<VehicleExampleItem>;
 
   displayedColumns: string[] = ['position', 'name', 'power', 'description', 'category'];

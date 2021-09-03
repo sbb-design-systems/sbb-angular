@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { SbbSortHeader } from './sort-header/sort-header';
-import { SbbSortDirective } from './sort/sort';
+import { SbbSort } from './sort/sort';
 import {
   SbbCell,
   SbbCellDef,
@@ -51,7 +51,7 @@ const EXPORTED_DECLARATIONS = [
   SbbTextColumn,
 
   // Sort
-  SbbSortDirective,
+  SbbSort,
   SbbSortHeader,
 ];
 

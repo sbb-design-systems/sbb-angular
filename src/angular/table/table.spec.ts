@@ -15,7 +15,7 @@ import { SbbPaginationModule, SbbPaginator } from '@sbb-esta/angular/pagination'
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { SbbSortHeader } from './sort-header/sort-header';
-import { SbbSortDirective } from './sort/sort';
+import { SbbSort } from './sort/sort';
 import { SbbTableModule } from './table.module';
 import { SbbTable } from './table/table';
 import { SbbTableDataSource } from './table/table-data-source';
@@ -795,7 +795,7 @@ class ArrayDataSourceSbbTableTestComponent implements AfterViewInit {
 
   @ViewChild(SbbTable) table: SbbTable<TestData>;
   @ViewChild(SbbPaginator) paginator: SbbPaginator;
-  @ViewChild(SbbSortDirective) sort: SbbSortDirective;
+  @ViewChild(SbbSort) sort: SbbSort;
   @ViewChild(SbbSortHeader) sortHeader: SbbSortHeader;
 
   constructor() {
@@ -846,7 +846,7 @@ class SbbTableWithSortTestComponent implements OnInit {
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
   @ViewChild(SbbTable) table: SbbTable<TestData>;
-  @ViewChild(SbbSortDirective) sort: SbbSortDirective;
+  @ViewChild(SbbSort) sort: SbbSort;
 
   constructor() {
     this.underlyingDataSource.data = [];

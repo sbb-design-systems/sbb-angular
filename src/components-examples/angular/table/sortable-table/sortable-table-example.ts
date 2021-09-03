@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { SbbSortDirective, SbbTableDataSource } from '@sbb-esta/angular/table';
+import { SbbSort, SbbTableDataSource } from '@sbb-esta/angular/table';
 
 /**
  * @title Sortable Table
@@ -13,7 +13,7 @@ export class SortableTableExample implements AfterViewInit {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA);
 
-  @ViewChild(SbbSortDirective) sort: SbbSortDirective;
+  @ViewChild(SbbSort) sort: SbbSort;
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

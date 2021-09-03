@@ -158,7 +158,7 @@ It's also possible to programmatically sort columns by calling `sort()` method o
 export class SortableTableExampleComponent implements AfterViewInit {
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(['A', '1']);
 
-  @ViewChild(SbbSortDirective) sort: SbbSortDirective;
+  @ViewChild(SbbSort) sort: SbbSort;
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

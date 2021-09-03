@@ -2,38 +2,32 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { SbbSortDirective } from '../sort/sort';
+import { SbbSort } from '../sort/sort';
 import { SbbTableModule } from '../table.module';
 
 import { SbbTableDataSource, SbbTableFilter } from './table-data-source';
 
-@Component({
-  template: ` <div sbbSort sbbSortDirection="asc"></div> `,
-})
-class SbbSortTestComponent {
-  @ViewChild(SbbSortDirective, { static: true }) sort: SbbSortDirective;
-}
-
 describe('SbbTableDataSource', () => {
-  const dataSource = new SbbTableDataSource();
-
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [SbbTableModule, NoopAnimationsModule],
-        declarations: [SbbSortTestComponent],
+        declarations: [SbbSortApp],
       }).compileComponents();
     })
   );
 
   describe('sort', () => {
-    let fixture: ComponentFixture<SbbSortTestComponent>;
-    let sort: SbbSortDirective;
+    let dataSource: SbbTableDataSource<any>;
+    let fixture: ComponentFixture<SbbSortApp>;
+    let sort: SbbSort;
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(SbbSortTestComponent);
-      sort = fixture.componentInstance.sort;
+      fixture = TestBed.createComponent(SbbSortApp);
       fixture.detectChanges();
+      dataSource = new SbbTableDataSource();
+      sort = fixture.componentInstance.sort;
+      dataSource.sort = sort;
     });
 
     /** Test the data source's `sortData` function. */
@@ -58,6 +52,32 @@ describe('SbbTableDataSource', () => {
 
     it('should be able to correctly sort an array of string', () => {
       testSortWithValues(['apples', 'bananas', 'cherries', 'lemons', 'strawberries']);
+    });
+
+    it('should be able to correctly sort an array of strings and numbers', () => {
+      testSortWithValues([3, 'apples', 'bananas', 'cherries', 'lemons', 'strawberries']);
+    });
+
+    it('should unsubscribe from the re-render stream when disconnected', () => {
+      const spy = spyOn(dataSource._renderChangesSubscription!, 'unsubscribe');
+      dataSource.disconnect();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should re-subscribe to the sort stream when re-connecting after being disconnected', () => {
+      dataSource.disconnect();
+      const spy = spyOn(fixture.componentInstance.sort.sortChange, 'subscribe');
+      dataSource.connect();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should update filteredData even if the data source is disconnected', () => {
+      dataSource.data = [1, 2, 3, 4, 5];
+      expect(dataSource.filteredData).toEqual([1, 2, 3, 4, 5]);
+
+      dataSource.disconnect();
+      dataSource.data = [5, 4, 3, 2, 1];
+      expect(dataSource.filteredData).toEqual([5, 4, 3, 2, 1]);
     });
   });
 
@@ -223,3 +243,10 @@ describe('SbbTableDataSource', () => {
     });
   });
 });
+
+@Component({
+  template: `<div sbbSort sbbSortDirection="asc"></div>`,
+})
+class SbbSortApp {
+  @ViewChild(SbbSort) sort: SbbSort;
+}

@@ -39,7 +39,7 @@ export interface SbbSortable {
 }
 
 /** The current sort state. */
-export interface SbbSort {
+export interface SbbSortState {
   /** The id of the column being sorted. */
   active: string;
 
@@ -70,7 +70,7 @@ const _SbbSortBase = mixinInitialized(mixinDisabled(class {}));
   host: { class: 'sbb-sort' },
   inputs: ['disabled: sbbSortDisabled'],
 })
-export class SbbSortDirective
+export class SbbSort
   extends _SbbSortBase
   implements CanDisable, HasInitialized, OnInit, OnChanges, OnDestroy
 {
@@ -121,7 +121,8 @@ export class SbbSortDirective
   private _disableClear: boolean;
 
   /** Event emitted when the user changes either the active sort or sort direction. */
-  @Output('sbbSortChange') readonly sortChange: EventEmitter<SbbSort> = new EventEmitter<SbbSort>();
+  @Output('sbbSortChange') readonly sortChange: EventEmitter<SbbSortState> =
+    new EventEmitter<SbbSortState>();
 
   constructor(
     @Optional()
