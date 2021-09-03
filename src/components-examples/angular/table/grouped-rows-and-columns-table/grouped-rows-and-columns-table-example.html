@@ -27,12 +27,11 @@
   <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
   <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
 
-  <!-- Group header -->
-  <ng-container sbbColumnDef="groupHeader">
+  <!-- Horizontal Table Divider -->
+  <ng-container sbbColumnDef="horizontalTableDivider">
     <td [attr.colspan]="displayedColumns.length" sbb-cell *sbbCellDef="let groupBy">
-      <strong>{{ groupBy.title }}</strong>
+      <span class="sbb-table-divider-title">{{ groupBy.title }}</span>
     </td>
   </ng-container>
-
-  <tr sbb-row *sbbRowDef="let row; columns: ['groupHeader']; when: isGroup"></tr>
+  <tr sbb-row *sbbRowDef="let row; columns: ['horizontalTableDivider']; when: isGroup"></tr>
 </table>

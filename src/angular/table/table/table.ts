@@ -24,7 +24,7 @@ import { ChangeDetectionStrategy, Component, Directive, ViewEncapsulation } from
 export class SbbRecycleRows {}
 
 /**
- * Wrapper for the CdkTable with Material design styles.
+ * Wrapper for the CdkTable with Sbb design styles.
  */
 @Component({
   selector: 'sbb-table, table[sbb-table]',

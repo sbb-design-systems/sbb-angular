@@ -13,6 +13,13 @@
 }
 
 @font-face {
+  font-family: 'SBBWeb Condensed Bold';
+  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Condensed-Bold.woff2') format('woff2'),
+    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Condensed-Bold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'SBBWeb Light';
   src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff') format('woff');
@@ -1850,6 +1857,10 @@ $tableCaptionColor: $sbbColorGrey;
   background-color: $tableBg;
   width: 100%;
 
+  th .sbb-table-header-subtitle {
+    font-family: $fontSbbRoman;
+  }
+
   html:not(.sbb-lean) & {
     padding-bottom: $tableTbodyPadding;
 
@@ -1987,6 +1998,10 @@ $tableCaptionColor: $sbbColorGrey;
 
 .sbb-table-fixed-layout {
   table-layout: fixed;
+}
+
+.sbb-table-divider-title {
+  font-family: $fontSbbCondensedBold;
 }
 
 // ----------------------------------------------------------------------------------------------------

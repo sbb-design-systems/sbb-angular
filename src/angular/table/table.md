@@ -205,3 +205,17 @@ The flag affects the sequence at runtime, not at definition time.
   <td sbb-cell *sbbCellDef="let element">{{ element.groupedOne }}</td>
 </ng-container>
 ```
+
+### Horizontal Divider With Title
+
+If using horizontal dividers to group content, use the
+css class `sbb-table-divider-title` to style the title correctly.
+
+```html
+<ng-container sbbColumnDef="horizontalTableDivider">
+  <td [attr.colspan]="displayedColumns.length" sbb-cell *sbbCellDef="let groupBy">
+    <span class="sbb-table-divider-title">{{ groupBy.title }}</span>
+  </td>
+</ng-container>
+<tr sbb-row *sbbRowDef="let row; columns: ['horizontalTableDivider']; when: isGroup"></tr>
+```

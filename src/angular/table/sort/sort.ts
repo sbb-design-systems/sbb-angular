@@ -80,7 +80,7 @@ export class SbbSort
   /** Used to notify any child components listening to state changes. */
   readonly _stateChanges = new Subject<void>();
 
-  /** The id of the most recently sorted MatSortable. */
+  /** The id of the most recently sorted SbbSortable. */
   @Input('sbbSortActive') active: string;
 
   /**
