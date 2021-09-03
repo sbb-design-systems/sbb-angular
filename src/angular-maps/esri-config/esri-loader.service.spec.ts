@@ -1,12 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import config from '@arcgis/core/config';
 
-import {
-  SbbEsriConfigConsts,
-  SbbEsriConfigModule,
-  SbbEsriConfiguration,
-  SbbEsriLoaderService,
-} from './index';
+import { SbbEsriConfigConsts, SbbEsriConfigModule, SbbEsriConfiguration } from './index';
 
 describe('EsriLoaderService', () => {
   const esriCustomConf: SbbEsriConfiguration = {
@@ -14,19 +9,11 @@ describe('EsriLoaderService', () => {
     portalUrl: 'urlToPortalInstance',
   };
 
-  let loaderService: SbbEsriLoaderService;
   const configureTestingModule = (customConfig?: SbbEsriConfiguration) => {
     TestBed.configureTestingModule({
       imports: [...(customConfig ? [SbbEsriConfigModule.forRoot(customConfig!)] : [])],
-      providers: [SbbEsriLoaderService],
     });
-    loaderService = TestBed.inject(SbbEsriLoaderService);
   };
-
-  it('should be created', () => {
-    configureTestingModule();
-    expect(loaderService).toBeTruthy();
-  });
 
   it('should configure esri with standard config', async () => {
     configureTestingModule();
