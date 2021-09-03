@@ -1941,6 +1941,10 @@ $tableCaptionColor: $sbbColorGrey;
           overflow: hidden;
           text-overflow: ellipsis;
 
+          &.sbb-table-group-with-next {
+            border-right: none;
+          }
+
           &:first-child {
             padding-left: $tableTbodyPadding;
             border-left: none;

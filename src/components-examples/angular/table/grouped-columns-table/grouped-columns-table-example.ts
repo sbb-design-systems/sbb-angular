@@ -17,9 +17,7 @@ export class GroupedColumnsTableExample {
     'groupedThree',
     'centerAligned',
   ];
-  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA_GROUPED_COLS, [
-    ['groupedOne', 'groupedTwo', 'groupedThree'],
-  ]);
+  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA_GROUPED_COLS);
 }
 
 const TABLE_EXAMPLE_DATA_GROUPED_COLS = [

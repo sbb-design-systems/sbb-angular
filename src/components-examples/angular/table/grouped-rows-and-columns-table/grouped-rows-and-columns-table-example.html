@@ -4,12 +4,12 @@
     <td sbb-cell *sbbCellDef="let element">{{ element.deviceName }}</td>
   </ng-container>
 
-  <ng-container sbbColumnDef="arrivalDate">
+  <ng-container sbbColumnDef="arrivalDate" groupWithNext>
     <th sbb-header-cell *sbbHeaderCellDef id="arrivalDate">Arrival date</th>
     <td sbb-cell *sbbCellDef="let element">{{ element.arrivalDate }}</td>
   </ng-container>
 
-  <ng-container sbbColumnDef="orderDate">
+  <ng-container sbbColumnDef="orderDate" groupWithNext>
     <th sbb-header-cell *sbbHeaderCellDef id="orderDate">Order date</th>
     <td sbb-cell *sbbCellDef="let element">{{ element.orderDate }}</td>
   </ng-container>

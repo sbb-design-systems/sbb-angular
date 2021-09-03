@@ -4,11 +4,11 @@
     <td sbb-cell *sbbCellDef="let element">{{ element.left }}</td>
   </ng-container>
 
-  <ng-container sbbColumnDef="groupedOne">
+  <ng-container sbbColumnDef="groupedOne" groupWithNext>
     <th sbb-header-cell *sbbHeaderCellDef>Grouped col 1</th>
     <td sbb-cell *sbbCellDef="let element">{{ element.groupedOne }}</td>
   </ng-container>
-  <ng-container sbbColumnDef="groupedTwo">
+  <ng-container sbbColumnDef="groupedTwo" groupWithNext>
     <th sbb-header-cell *sbbHeaderCellDef>Grouped col 2</th>
     <td sbb-cell *sbbCellDef="let element">{{ element.groupedTwo }}</td>
   </ng-container>

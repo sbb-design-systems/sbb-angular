@@ -475,6 +475,12 @@ The following selector renames have been performed. All renames are processed by
 - `SbbSortHeaderComponent` class was renamed to `SbbSortHeader`.
 - The deprecated css class `sbb-col-center-align` was removed in will automatically be replaced by `sbb-table-align-center`.
 
+**SbbTableDataSource**
+
+The group list constructor parameter of `SbbTableDataSource` was removed. Please use the
+`groupWithNext` flag of `sbbColumnDef` or `sbb-text-column` to achieve a grouped column styling.
+For more details consider the table documentation and examples.
+
 [Documentation](angular/components/table)
 
 ### Tabs

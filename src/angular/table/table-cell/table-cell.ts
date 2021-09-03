@@ -2,6 +2,7 @@
  * Cell definition for the sbb-table.
  * Captures the template of a column's data row cell as well as cell-specific properties.
  */
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   CdkCell,
   CdkCellDef,
@@ -11,7 +12,7 @@ import {
   CdkHeaderCell,
   CdkHeaderCellDef,
 } from '@angular/cdk/table';
-import { Directive, Input } from '@angular/core';
+import { Directive, ElementRef, Input } from '@angular/core';
 
 /**
  * Cell definition for the sbb-table.
@@ -66,6 +67,19 @@ export class SbbColumnDef extends CdkColumnDef {
   }
 
   /**
+   * Group this column with the next column.
+   * If set to true, the border to the next cell is hidden.
+   */
+  @Input()
+  get groupWithNext() {
+    return this._groupWithNext;
+  }
+  set groupWithNext(value) {
+    this._groupWithNext = coerceBooleanProperty(value);
+  }
+  private _groupWithNext: boolean = false;
+
+  /**
    * Add "sbb-column-" prefix in addition to "cdk-column-" prefix.
    * In the future, this will only add "sbb-column-" and columnCssClassName
    * will change from type string[] to string.
@@ -75,6 +89,8 @@ export class SbbColumnDef extends CdkColumnDef {
     super._updateColumnCssClassName();
     this._columnCssClassName!.push(`sbb-column-${this.cssClassFriendlyName}`);
   }
+
+  static ngAcceptInputType_groupWithNext: BooleanInput;
 }
 
 /** Header cell template container that adds the right classes and role. */
@@ -83,9 +99,14 @@ export class SbbColumnDef extends CdkColumnDef {
   host: {
     class: 'sbb-header-cell',
     role: 'gridcell',
+    '[class.sbb-table-group-with-next]': '_columnDef.groupWithNext',
   },
 })
-export class SbbHeaderCell extends CdkHeaderCell {}
+export class SbbHeaderCell extends CdkHeaderCell {
+  constructor(public readonly _columnDef: SbbColumnDef, elementRef: ElementRef) {
+    super(_columnDef, elementRef);
+  }
+}
 
 /** Footer cell template container that adds the right classes and role. */
 @Directive({
@@ -93,9 +114,14 @@ export class SbbHeaderCell extends CdkHeaderCell {}
   host: {
     class: 'sbb-footer-cell',
     role: 'gridcell',
+    '[class.sbb-table-group-with-next]': '_columnDef.groupWithNext',
   },
 })
-export class SbbFooterCell extends CdkFooterCell {}
+export class SbbFooterCell extends CdkFooterCell {
+  constructor(public readonly _columnDef: SbbColumnDef, elementRef: ElementRef) {
+    super(_columnDef, elementRef);
+  }
+}
 
 /** Cell template container that adds the right classes and role. */
 @Directive({
@@ -103,6 +129,11 @@ export class SbbFooterCell extends CdkFooterCell {}
   host: {
     class: 'sbb-cell',
     role: 'gridcell',
+    '[class.sbb-table-group-with-next]': '_columnDef.groupWithNext',
   },
 })
-export class SbbCell extends CdkCell {}
+export class SbbCell extends CdkCell {
+  constructor(public readonly _columnDef: SbbColumnDef, elementRef: ElementRef) {
+    super(_columnDef, elementRef);
+  }
+}

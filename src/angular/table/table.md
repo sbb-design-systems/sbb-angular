@@ -193,3 +193,15 @@ export class TablePaginatorExampleComponent implements OnInit {
   }
 }
 ```
+
+### Column Grouping
+
+To visually group columns you can use the `groupWithNext` flag of `sbbColumnDef` or `sbb-text-column`.
+The flag affects the sequence at runtime, not at definition time.
+
+```html
+<ng-container sbbColumnDef="groupedOne" groupWithNext>
+  <th sbb-header-cell *sbbHeaderCellDef>Grouped col 1</th>
+  <td sbb-cell *sbbCellDef="let element">{{ element.groupedOne }}</td>
+</ng-container>
+```

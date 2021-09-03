@@ -41,6 +41,7 @@ describe('SbbTable', () => {
           StickyTableTestComponent,
           TableWithNgContainerRowTestComponent,
           NestedHtmlTableTestComponent,
+          TableWithColumnGroupingTestComponent,
         ],
       }).compileComponents();
     })
@@ -532,6 +533,22 @@ describe('SbbTable', () => {
       ]);
     });
   });
+
+  it('should set css classes to grouped columns', () => {
+    const fixture = TestBed.createComponent(TableWithColumnGroupingTestComponent);
+    fixture.detectChanges();
+
+    const allHtml = fixture.debugElement.nativeElement;
+
+    expect(allHtml.querySelector('th.sbb-column-column_a.sbb-table-group-with-next')).toBeTruthy();
+    expect(allHtml.querySelector('th.sbb-column-column_b.sbb-table-group-with-next')).toBeTruthy();
+    expect(
+      allHtml.querySelectorAll('td.sbb-column-column_a.sbb-table-group-with-next').length
+    ).toBe(4);
+    expect(
+      allHtml.querySelectorAll('td.sbb-column-column_b.sbb-table-group-with-next').length
+    ).toBe(4);
+  });
 });
 
 interface TestData {
@@ -918,6 +935,26 @@ class SbbTableWithPaginatorTestComponent implements OnInit {
 class TableWithNgContainerRowTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
   columnsToRender = ['column_a'];
+}
+
+@Component({
+  template: `
+    <table sbb-table [dataSource]="dataSource">
+      <ng-container sbbColumnDef="column_a" groupWithNext>
+        <th sbb-header-cell *sbbHeaderCellDef>Column A</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.a }}</td>
+      </ng-container>
+
+      <sbb-text-column name="column_b" groupWithNext></sbb-text-column>
+
+      <tr sbb-header-row *sbbHeaderRowDef="columnsToRender"></tr>
+      <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
+    </table>
+  `,
+})
+class TableWithColumnGroupingTestComponent {
+  dataSource: FakeDataSource | null = new FakeDataSource();
+  columnsToRender = ['column_a', 'column_b'];
 }
 
 function getElements(element: Element, query: string): Element[] {

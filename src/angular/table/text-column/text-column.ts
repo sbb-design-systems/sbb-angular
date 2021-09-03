@@ -1,5 +1,14 @@
+import { BooleanInput } from '@angular/cdk/coercion';
 import { CdkTextColumn } from '@angular/cdk/table';
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
+
+import { SbbColumnDef } from '../table-cell/table-cell';
 
 /**
  * Column that simply shows text content for the header and row cells. Assumes that the table
@@ -31,4 +40,35 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class SbbTextColumn<T> extends CdkTextColumn<T> {}
+export class SbbTextColumn<T> extends CdkTextColumn<T> implements OnInit {
+  /**
+   * Group this column with the next column.
+   * If set to true, the border to the next cell is hidden.
+   */
+  @Input()
+  get groupWithNext(): boolean {
+    return this._groupWithNext;
+  }
+  set groupWithNext(value: boolean) {
+    this._groupWithNext = value;
+
+    // With Ivy, inputs can be initialized before static query results are
+    // available. In that case, we defer the synchronization until "ngOnInit" fires.
+    this._syncColumnDefGroupWithNext();
+  }
+  private _groupWithNext: boolean = false;
+
+  override ngOnInit() {
+    super.ngOnInit();
+    this._syncColumnDefGroupWithNext();
+  }
+
+  /** Synchronizes the column definition groupWithNext with the text column groupWithNext. */
+  private _syncColumnDefGroupWithNext() {
+    if (this.columnDef) {
+      (this.columnDef as SbbColumnDef).groupWithNext = this._groupWithNext;
+    }
+  }
+
+  static ngAcceptInputType_groupWithNext: BooleanInput;
+}

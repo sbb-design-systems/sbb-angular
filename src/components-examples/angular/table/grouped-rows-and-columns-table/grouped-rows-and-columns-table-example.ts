@@ -11,9 +11,7 @@ import { SbbTableDataSource } from '@sbb-esta/angular/table';
 })
 export class GroupedRowsAndColumnsTableExample {
   displayedColumns: string[] = ['deviceName', 'orderDate', 'arrivalDate', 'lifecycleEnd', 'status'];
-  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA_GROUPED_ROWS, [
-    ['orderDate', 'arrivalDate', 'lifecycleEnd'],
-  ]);
+  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA_GROUPED_ROWS);
 
   isGroup(_index: number, item: { isGroupBy: boolean }): boolean {
     return item.isGroupBy;

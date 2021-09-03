@@ -43,9 +43,6 @@ export class SbbTableDataSource<
   /** Stream that emits when a new data array is set on the data source. */
   private readonly _data: BehaviorSubject<T[]>;
 
-  /** Stream that emits when a new groups array is set on the data source. */
-  private readonly _groups: BehaviorSubject<string[][] | null>;
-
   /** Stream emitting render data to the table (depends on ordered data changes). */
   private readonly _renderData = new BehaviorSubject<T[]>([]);
 
@@ -80,14 +77,6 @@ export class SbbTableDataSource<
     if (!this._renderChangesSubscription) {
       this._filterData(data);
     }
-  }
-
-  /** Array of data that should be rendered by the table, where each group represents one borderless column. */
-  get groups(): string[][] | null {
-    return this._groups.value;
-  }
-  set groups(groups: string[][] | null) {
-    this._groups.next(groups);
   }
 
   /**
@@ -258,10 +247,9 @@ export class SbbTableDataSource<
     );
   };
 
-  constructor(initialData: T[] = [], groups?: string[][]) {
+  constructor(initialData: T[] = []) {
     super();
     this._data = new BehaviorSubject<T[]>(initialData);
-    this._groups = new BehaviorSubject<string[][] | null>(groups || null);
     this._updateChangeSubscription();
   }
 

@@ -11,20 +11,7 @@ import {
   _CoalescedStyleScheduler,
   _COALESCED_STYLE_SCHEDULER,
 } from '@angular/cdk/table';
-import { Directive } from '@angular/core';
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  ContentChildren,
-  ElementRef,
-  QueryList,
-  ViewEncapsulation,
-} from '@angular/core';
-
-import { SbbCell, SbbHeaderCell } from '../table-cell/table-cell';
-
-import { SbbTableDataSource } from './table-data-source';
+import { ChangeDetectionStrategy, Component, Directive, ViewEncapsulation } from '@angular/core';
 
 /**
  * Enables the recycle view repeater strategy, which reduces rendering latency. Not compatible with
@@ -63,13 +50,7 @@ export class SbbRecycleRows {}
   // tslint:disable-next-line:validate-decorators
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class SbbTable<T> extends CdkTable<T> implements AfterViewInit {
-  @ContentChildren(SbbHeaderCell, { descendants: true, read: ElementRef })
-  headerElements: QueryList<ElementRef>;
-
-  @ContentChildren(SbbCell, { descendants: true, read: ElementRef })
-  rowElements: QueryList<ElementRef>;
-
+export class SbbTable<T> extends CdkTable<T> {
   /** Overrides the sticky CSS class set by the `CdkTable`. */
   // tslint:disable-next-line:naming-convention
   protected override stickyCssClass: string = 'sbb-table-sticky';
@@ -77,32 +58,4 @@ export class SbbTable<T> extends CdkTable<T> implements AfterViewInit {
   /** Overrides the need to add position: sticky on every sticky cell element in `CdkTable`. */
   // tslint:disable-next-line:naming-convention
   protected override needsPositionStickyOnElement: boolean = false;
-
-  ngAfterViewInit(): void {
-    this.headerElements.changes.subscribe((value) => this._setGroupClasses(value));
-    this.rowElements.changes.subscribe((value) => this._setGroupClasses(value));
-  }
-
-  // TODO: set class manually in template and remove code below @breaking-change
-  private _setGroupClasses(elements: QueryList<ElementRef>) {
-    if (
-      this.dataSource instanceof SbbTableDataSource &&
-      this.dataSource.groups &&
-      elements.length
-    ) {
-      this.dataSource.groups.forEach((group) => {
-        if (group.length > 1) {
-          // remove right border from all cells except the last one, where the left one is removed
-          group.forEach((name, index) => {
-            const cells = elements.filter((item) =>
-              item.nativeElement.classList.contains(`sbb-column-${name}`)
-            );
-            if (index !== group.length - 1) {
-              cells.forEach((cell) => cell.nativeElement.classList.add('sbb-no-border-left'));
-            }
-          });
-        }
-      });
-    }
-  }
 }
