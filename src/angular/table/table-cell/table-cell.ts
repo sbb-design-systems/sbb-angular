@@ -98,7 +98,7 @@ export class SbbColumnDef extends CdkColumnDef {
   selector: 'sbb-header-cell, th[sbb-header-cell]',
   host: {
     class: 'sbb-header-cell',
-    role: 'gridcell',
+    role: 'columnheader',
     '[class.sbb-table-group-with-next]': '_columnDef.groupWithNext',
   },
 })
