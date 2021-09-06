@@ -9,5 +9,8 @@ export interface SbbEsriConfiguration {
   arcgisJsUrl?: string;
   trustedServers?: string[];
   portalUrl?: string;
+  /**
+   * @deprecated not used. Esri is using only the new FetchAPI instead of XMLHttpRequest (since API V4.10).
+   */
   originsWithCredentialsRequired?: string[];
 }

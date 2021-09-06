@@ -1,33 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import config from '@arcgis/core/config';
 
-import {
-  SbbEsriConfigConsts,
-  SbbEsriConfigModule,
-  SbbEsriConfiguration,
-  SbbEsriLoaderService,
-} from './index';
+import { SbbEsriConfigConsts, SbbEsriConfigModule, SbbEsriConfiguration } from './index';
 
 describe('EsriLoaderService', () => {
   const esriCustomConf: SbbEsriConfiguration = {
     trustedServers: ['t1', 't2'],
     portalUrl: 'urlToPortalInstance',
-    originsWithCredentialsRequired: ['o1', 'o2'],
   };
 
-  let loaderService: SbbEsriLoaderService;
   const configureTestingModule = (customConfig?: SbbEsriConfiguration) => {
     TestBed.configureTestingModule({
-      imports: [...(customConfig ? [SbbEsriConfigModule.forRoot(customConfig!)] : [])],
-      providers: [SbbEsriLoaderService],
+      imports: [SbbEsriConfigModule.forRoot(customConfig)],
     });
-    loaderService = TestBed.inject(SbbEsriLoaderService);
   };
-
-  it('should be created', () => {
-    configureTestingModule();
-    expect(loaderService).toBeTruthy();
-  });
 
   it('should configure esri with standard config', async () => {
     configureTestingModule();
@@ -36,7 +22,6 @@ describe('EsriLoaderService', () => {
     SbbEsriConfigConsts.trustedServers.forEach((srv) => {
       expect(esriConfig.request.trustedServers).toContain(srv);
     });
-    expect(esriConfig.request.interceptors!.length).toBeGreaterThan(0);
   });
 
   it('should load modules with custom config', async () => {
@@ -47,6 +32,5 @@ describe('EsriLoaderService', () => {
     SbbEsriConfigConsts.trustedServers.concat(esriCustomConf.trustedServers!).forEach((srv) => {
       expect(esriConfig.request.trustedServers).toContain(srv);
     });
-    expect(esriConfig.request.interceptors!.length).toBeGreaterThan(0);
   });
 });

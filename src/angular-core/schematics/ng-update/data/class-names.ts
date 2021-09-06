@@ -98,7 +98,6 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
         { replace: 'DropdownSelectionChange', replaceWith: 'SbbDropdownSelectionChange' },
         { replace: 'DropdownTriggerDirective', replaceWith: 'SbbDropdownTrigger' },
         { replace: 'ErrorStateMatcher', replaceWith: 'SbbErrorStateMatcher' },
-        { replace: 'ESRI_CONFIG_TOKEN', replaceWith: 'SBB_ESRI_CONFIG_TOKEN' },
         { replace: 'EsriBasemapGalleryComponent', replaceWith: 'SbbEsriBasemapGallery' },
         { replace: 'EsriBasemapGalleryModule', replaceWith: 'SbbEsriBasemapGalleryModule' },
         { replace: 'EsriConfigConsts', replaceWith: 'SbbEsriConfigConsts' },

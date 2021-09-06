@@ -14,7 +14,7 @@ import Graphic from '@arcgis/core/Graphic';
 import MapView from '@arcgis/core/views/MapView';
 import WebMap from '@arcgis/core/WebMap';
 import { SbbGraphicService, SbbHitTestService } from '@sbb-esta/angular-maps/core';
-import MapViewClickEvent = __esri.MapViewClickEvent;
+import ViewClickEvent = __esri.ViewClickEvent;
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -129,7 +129,7 @@ export class SbbEsriWebMap implements OnInit, OnDestroy {
     this.mapView.watch('extent', (extent) => this._emitExtentChange(extent));
   }
 
-  private _emitMouseClick(e: MapViewClickEvent) {
+  private _emitMouseClick(e: ViewClickEvent) {
     this._hitTestService
       .esriHitTest(this.mapView, e)
       .then((hitTestGraphics) =>

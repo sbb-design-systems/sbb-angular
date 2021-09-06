@@ -15,7 +15,7 @@ import { MapsComponent } from './maps/maps.component';
 @NgModule({
   declarations: [MapsComponent],
   imports: [
-    SbbEsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' }),
+    SbbEsriConfigModule.forRoot(),
     CommonModule,
     PortalModule,
     SharedModule,

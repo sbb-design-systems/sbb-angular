@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@angular/common": "0.0.0-NG",
     "@angular/core": "0.0.0-NG",
-    "@arcgis/core": "~4.19.1"
+    "@arcgis/core": "~4.20.2"
   },
   "ng-update": {
     "packageGroup": [

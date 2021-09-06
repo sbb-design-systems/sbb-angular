@@ -15,7 +15,7 @@ import SceneView from '@arcgis/core/views/SceneView';
 import WebScene from '@arcgis/core/WebScene';
 import { SbbGraphicService, SbbHitTestService } from '@sbb-esta/angular-maps/core';
 import SceneViewProperties = __esri.SceneViewProperties;
-import SceneViewClickEvent = __esri.SceneViewClickEvent;
+import ViewClickEvent = __esri.ViewClickEvent;
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -142,7 +142,7 @@ export class SbbEsriWebScene implements OnInit, OnDestroy {
     this.sceneView.watch('camera', (camera) => this._handleCameraChange(camera));
   }
 
-  private _handleMouseClick(e: SceneViewClickEvent) {
+  private _handleMouseClick(e: ViewClickEvent) {
     this._hitTestService
       .esriHitTest(this.sceneView, e)
       .then((hitTestGraphics) =>

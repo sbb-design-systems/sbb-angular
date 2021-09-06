@@ -29,62 +29,48 @@ You can create now your project as described in the official [Angular CLI docume
 Just after you created your own Angular project, in order to include the library, you have to install the `@sbb-esta/angular-maps` and [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) dependencies:
 
 ```sh
-npm install @arcgis/core@4.19.1 @sbb-esta/angular-maps
+npm install @arcgis/core@4.20.2 @sbb-esta/angular-maps
 ```
 
 or, if using yarn:
 
 ```sh
-yarn add @arcgis/core@4.19.1 @sbb-esta/angular-maps
+yarn add @arcgis/core@4.20.2 @sbb-esta/angular-maps
 ```
 
 ### Step 2: Configure the library
 
-Once the `@sbb-esta/angular-maps` package is installed, you are able to configure your application, in order to use a specific portal (by default the ArcGIS online portal is used), a different version of [ArcGIS API for Javascript](https://developers.arcgis.com/javascript/latest/guide/get-api/) or some other settings.
+Once the `@sbb-esta/angular-maps` package is installed, you are able to configure your application, in order to use a specific portal (by default the ArcGIS online portal is used), a different version of [ArcGIS API for Javascript](https://developers.arcgis.com/javascript/latest/guide/get-api/) or some other settings:
 
 ```ts
-import { EsriConfigModule } from '@sbb-esta/angular-maps';
+import { SbbEsriConfigModule } from '@sbb-esta/angular-maps';
 
 @NgModule({
   ...
-  imports: [EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' })],
+  imports: [SbbEsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' })],
   ...
 })
 export class TrainChooChooAppModule {}
 ```
 
-If you do not have specific configurations, you can use the standard configurations as well using:
-The ArcGIS API for Javascript allows for cross origin requests made to associated servers to include credentials such as cookies and authorization headers. This is indicated by a list of named so called _trustedServers_ (see [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)). When using the SBB Geoportal, it's currently also required to add the same host names to the list of _originsWithCredentialsRequired_. Whenever a request is made to a server listed in _originsWithCredentialsRequired_ it is being intercepted (using _interceptors_ as [described](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)) and the [_withCredentials_ header](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials) is set. [Read more on how the ArcGIS API for Javascript handles CORS](https://developers.arcgis.com/javascript/latest/guide/cors/index.html).
+The ArcGIS API for Javascript allows for cross origin requests made to associated servers to include credentials such as cookies and authorization headers. This is indicated by a list of named so called _trustedServers_ (see [documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-config.html#request)).
 
-Allowing a quick start in the SBB environment, the following hosts are preconfigured as _trustedServers_ and _originsWithCredentialsRequired_ in `@sbb-esta/angular-maps` by default: _geo-dev.sbb.ch_, _geo-int.sbb.ch_ and _geo.sbb.ch_. Additionally _wms.geo.admin.ch_ is preconfigured in _trustedServers_, too.
+[Read more on how the ArcGIS API for Javascript handles CORS](https://developers.arcgis.com/javascript/latest/guide/cors/index.html).
+
+Allowing a quick start in the SBB environment, the following hosts are preconfigured as _trustedServers_ in `@sbb-esta/angular-maps` by default: _geo-dev.sbb.ch_, _geo-int.sbb.ch_ and _geo.sbb.ch_. Additionally _wms.geo.admin.ch_ is preconfigured in _trustedServers_, too. In order to use the standard configurations, call `forRoot()` without parameters:
 
 ```ts
-import { EsriConfigModule } from '@sbb-esta/angular-maps';
+import { SbbEsriConfigModule } from '@sbb-esta/angular-maps';
 
 @NgModule({
   ...
-  imports: [EsriConfigModule.forRoot({
-      portalUrl: 'https://geo-dev.sbb.ch/portal',
-      trustedServers: ['geo-dev.sbb.ch'],
-      originsWithCredentialsRequired: ['geo-dev.sbb.ch']
-    })],
-  ...
-})
-export class TrainChooChooAppModule { }
-```
-
-If you do not have specific configurations, you can use the standard configurations as well by using:
-
-```ts
-import { EsriConfigModule } from '@sbb-esta/angular-maps';
-
-@NgModule({
-  ...
-  imports: [EsriConfigModule],
+  imports: [SbbEsriConfigModule.forRoot()],
   ...
 })
 export class TrainChooChooAppModule {}
 ```
+
+If you do not call `SbbEsriConfigModule.forRoot` at all, the default Esri ArcGIS API configuration will be used, without SBB environment specific `trustedServers`.
 
 ### Step 3: Import the component modules
 
@@ -108,7 +94,7 @@ Choose an angular-map [theme](https://developers.arcgis.com/javascript/latest/st
 _styles.(s)css_
 
 ```
-@import "https://js.arcgis.com/4.19/@arcgis/core/assets/esri/themes/light/main.css";
+@import url("https://js.arcgis.com/4.20/@arcgis/core/assets/esri/themes/light/main.css");
 ```
 
 Or, if you are working with local assets, see the [Managing assets locally](https://developers.arcgis.com/javascript/latest/es-modules/#managing-assets-locally) section.
