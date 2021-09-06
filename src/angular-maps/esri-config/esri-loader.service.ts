@@ -8,7 +8,7 @@ import { SbbEsriConfigConsts } from './esri-standard-values.const';
   providedIn: 'root',
 })
 export class SbbEsriLoaderService {
-  /** @docs-private */
+  /** Configures portalUrl and trustedServers. */
   public static configure(config: SbbEsriConfiguration): SbbEsriLoaderService {
     esriConfig.portalUrl = config?.portalUrl ?? SbbEsriConfigConsts.arcgisPortalUrl;
 
