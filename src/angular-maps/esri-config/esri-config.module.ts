@@ -12,7 +12,7 @@ export class SbbEsriConfigModule {
       providers: [
         {
           provide: SbbEsriLoaderService,
-          useValue: new SbbEsriLoaderService(config ?? SbbEsriConfigConsts),
+          useValue: SbbEsriLoaderService.configure(config ?? SbbEsriConfigConsts),
         },
       ],
     };

@@ -8,20 +8,17 @@ import { SbbEsriConfigConsts } from './esri-standard-values.const';
   providedIn: 'root',
 })
 export class SbbEsriLoaderService {
-  constructor(private _config: SbbEsriConfiguration) {
-    this._configure();
-  }
-
   /** @docs-private */
-  private _configure() {
-    esriConfig.portalUrl = this._config?.portalUrl ?? SbbEsriConfigConsts.arcgisPortalUrl;
+  public static configure(config: SbbEsriConfiguration): SbbEsriLoaderService {
+    esriConfig.portalUrl = config?.portalUrl ?? SbbEsriConfigConsts.arcgisPortalUrl;
 
-    const trustedServers = this._config?.trustedServers ?? [];
+    const trustedServers = config?.trustedServers ?? [];
     const esriConfigTrustedServers = esriConfig.request.trustedServers!;
     SbbEsriConfigConsts.trustedServers.concat(trustedServers).forEach((srv) => {
       if (esriConfigTrustedServers.indexOf(srv) === -1) {
         esriConfigTrustedServers.push(srv);
       }
     });
+    return this;
   }
 }
