@@ -26,7 +26,7 @@ let nextId = 1;
   host: {
     class: 'sbb-tooltip-wrapper',
     '[attr.id]': 'this.id',
-    '[attr.aria-expanded]': 'this.overlayAttached',
+    '[attr.aria-expanded]': '_tooltip._isTooltipVisible()',
   },
 })
 export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase {
