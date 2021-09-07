@@ -166,6 +166,7 @@ export class SbbTextarea
   }
   private _required = false;
 
+  /** Whether the autosizing is disabled or not. Autosizing is based on the CDK Autosize. */
   @Input() autosizeDisabled: boolean = false;
 
   /** Whether the textarea is focused. */
