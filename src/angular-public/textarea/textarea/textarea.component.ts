@@ -30,8 +30,7 @@ import {
 } from '@sbb-esta/angular-core/common-behaviors';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
-import { animationFrameScheduler, BehaviorSubject, interval, Subject } from 'rxjs';
-import { map, takeWhile, tap } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 let nextId = 0;
 
@@ -108,7 +107,8 @@ export class SbbTextarea
   set value(value: string) {
     if (this._textarea) {
       this._textarea.nativeElement.value = value;
-      this._resizeIfNecessary();
+      this._updateDigitsCounter(this.value);
+      this._changeDetectorRef.markForCheck();
       this.stateChanges.next();
     }
   }
@@ -170,6 +170,8 @@ export class SbbTextarea
   }
   private _required = false;
 
+  @Input() autosizeDisabled: boolean = false;
+
   /** Whether the textarea is focused. */
   get focused(): boolean {
     return this._focused;
@@ -191,7 +193,7 @@ export class SbbTextarea
   /** @docs-private */
   @ViewChild('textarea', { static: true }) _textarea: ElementRef<HTMLTextAreaElement>;
   /** Class property that automatically resize a textarea to fit its content. */
-  @ViewChild('autosize', { static: true }) autosize: CdkTextareaAutosize;
+  @ViewChild(CdkTextareaAutosize, { static: true }) autosize: CdkTextareaAutosize;
 
   /** `View -> model callback called when value changes` */
   _onChange: (value: any) => void = () => {};
@@ -218,7 +220,6 @@ export class SbbTextarea
   }
 
   /**
-   * resize the textarea when the browser window size changes. It only works properly by calling reset() first.
    * @docs-private
    * @deprecated No longer used.
    */
@@ -296,13 +297,11 @@ export class SbbTextarea
   _onInput(event: any) {
     this._onChange(event.target.value);
     this._updateDigitsCounter(event.target.value);
-    this._resizeIfNecessary();
     this.stateChanges.next();
   }
 
   writeValue(newValue: any) {
     this.value = newValue == null ? '' : newValue;
-    this._updateDigitsCounter(this.value);
   }
 
   registerOnChange(fn: (_: any) => void) {
@@ -337,20 +336,6 @@ export class SbbTextarea
     if (!!this.maxlength) {
       this._counter.next(this.maxlength - newValue.length);
     }
-  }
-
-  private _resizeIfNecessary() {
-    this._ngZone.runOutsideAngular(() => {
-      let height = this._textarea.nativeElement.style.height;
-      this.autosize.resizeToFitContent(true);
-      interval(0, animationFrameScheduler)
-        .pipe(
-          map(() => this._textarea.nativeElement.style.height),
-          takeWhile((newHeight) => height !== newHeight),
-          tap((newHeight) => (height = newHeight))
-        )
-        .subscribe(() => this.autosize.resizeToFitContent(true));
-    });
   }
 
   // tslint:disable: member-ordering

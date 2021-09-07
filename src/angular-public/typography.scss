@@ -15,5 +15,6 @@
 @include sbbTable();
 @include cdk.a11y-visually-hidden();
 @include cdk.overlay();
+@include cdk.text-field();
 @include sbbOverlay();
 @include sbbScrollbar();

@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
@@ -196,13 +196,16 @@ describe('SbbTextarea behaviour', () => {
     expect(textarea.focus).toHaveBeenCalled();
   });
 
-  it('should resize textarea on user input', () => {
+  it('should resize textarea on user input', fakeAsync(() => {
     const textarea = fixture.debugElement.query(By.css('textarea'))
       .nativeElement as HTMLTextAreaElement;
     expect(getComputedStyle(textarea).height).toBe('48px');
 
     // When
     typeInElement(textarea, 'Text \n\n\n');
+    fixture.detectChanges();
+    flush();
+    fixture.detectChanges();
 
     // Then
     const maxHeightInTest = parseInt(getComputedStyle(textarea).height, 10);
@@ -211,35 +214,40 @@ describe('SbbTextarea behaviour', () => {
     // When
     textarea.value = 'Text \n\n';
     dispatchFakeEvent(textarea, 'input');
+    fixture.detectChanges();
+    flush();
+    fixture.detectChanges();
 
     // Then
     expect(parseInt(getComputedStyle(textarea).height, 10)).toBeLessThan(maxHeightInTest);
-  });
+  }));
 
-  it('should resize textarea on model change', async () => {
+  it('should resize textarea on model change', fakeAsync(() => {
     const textarea = fixture.debugElement.query(By.css('textarea'))
       .nativeElement as HTMLTextAreaElement;
-    expect(getComputedStyle(textarea).height).toBe('48px');
+    expect(textarea.clientHeight).toBe(48);
 
     // When
     fixture.componentInstance.model = 'Text \n\n\n';
     fixture.detectChanges();
-    await fixture.whenStable();
+    flush();
+    fixture.detectChanges();
 
     // Then
-    const maxHeightInTest = parseInt(getComputedStyle(textarea).height, 10);
+    const maxHeightInTest = textarea.clientHeight;
     expect(maxHeightInTest).toBeGreaterThan(48);
 
     // When
     fixture.componentInstance.model = 'Text \n\n';
     fixture.detectChanges();
-    await fixture.whenStable();
+    flush();
+    fixture.detectChanges();
 
     // Then
-    expect(parseInt(getComputedStyle(textarea).height, 10)).toBeLessThan(maxHeightInTest);
-  });
+    expect(textarea.clientHeight).toBeLessThan(maxHeightInTest);
+  }));
 
-  it('should not resize if onInput was triggered without a value change', () => {
+  it('should not resize if onInput was triggered without a value change', fakeAsync(() => {
     const textarea = fixture.debugElement.query(By.css('textarea'))
       .nativeElement as HTMLTextAreaElement;
     fixture.componentInstance.maxlength = 10;
@@ -247,16 +255,22 @@ describe('SbbTextarea behaviour', () => {
 
     // When
     typeInElement(textarea, 'Text \n\n\n');
+    fixture.detectChanges();
+    flush();
+    fixture.detectChanges();
 
     // Then
     expect(parseInt(getComputedStyle(textarea).height, 10)).toBeGreaterThan(48);
 
     // When
     dispatchFakeEvent(textarea, 'input');
+    fixture.detectChanges();
+    flush();
+    fixture.detectChanges();
 
     // Then
     expect(parseInt(getComputedStyle(textarea).height, 10)).toBeGreaterThan(48);
-  });
+  }));
 });
 
 describe('SbbTextarea digits counter', () => {
