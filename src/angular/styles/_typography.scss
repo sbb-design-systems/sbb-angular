@@ -691,8 +691,16 @@ $sbbInputMinHeightStandard: 48;
 
   &[readonly],
   &.sbb-readonly {
-    background: $sbbColorMilk;
-    border-color: $sbbColorAluminum;
+    &,
+    &:focus {
+      background: $sbbColorMilk;
+      border-color: $sbbColorAluminum;
+
+      html.sbb-lean & {
+        background: transparent;
+        border-color: transparent;
+      }
+    }
   }
 
   // We want to provide the error styles both for invalid state
