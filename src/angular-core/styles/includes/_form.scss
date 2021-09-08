@@ -9,8 +9,15 @@ $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 }
 
 @mixin readonlyelement {
-  background: $sbbColorMilk;
-  border-color: $sbbColorAluminum;
+  @include publicOnly() {
+    background: $sbbColorMilk;
+    border-color: $sbbColorAluminum;
+  }
+
+  @include businessOnly() {
+    background: transparent;
+    border-color: transparent;
+  }
 }
 
 @mixin inputFieldPadding() {
@@ -35,6 +42,7 @@ $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
   @include ellipsis;
   @include placeholder($sbbColorStorm);
   @include disabledinputfields;
+  @include readonlyinputfields;
   @include inputFieldPadding();
 
   outline: none;
@@ -98,7 +106,10 @@ $labelColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 @mixin readonlyinputfields {
   &[readonly],
   &.sbb-readonly {
-    @include readonlyelement;
+    &,
+    &:focus {
+      @include readonlyelement;
+    }
   }
 }
 
