@@ -13,7 +13,8 @@ body {
 @include sbbLink();
 @include cdk.a11y-visually-hidden();
 @include cdk.overlay();
-@include cdk.text-field();
+@include cdk.text-field-autosize();
+@include cdk.text-field-autofill();
 @include sbbOverlay();
 @include sbbScrollbar();
 

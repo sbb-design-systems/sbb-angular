@@ -167,7 +167,14 @@ export class SbbTextarea
   private _required = false;
 
   /** Whether the autosizing is disabled or not. Autosizing is based on the CDK Autosize. */
-  @Input() autosizeDisabled: boolean = false;
+  @Input()
+  get autosizeDisabled(): boolean {
+    return this._autosizeDisabled;
+  }
+  set autosizeDisabled(value: boolean) {
+    this._autosizeDisabled = coerceBooleanProperty(value);
+  }
+  private _autosizeDisabled = false;
 
   /** Whether the textarea is focused. */
   get focused(): boolean {
