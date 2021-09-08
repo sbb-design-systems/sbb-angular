@@ -273,18 +273,18 @@ jobs:
 
     - name: "Deploy: Pack showcase"
       run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
-    - name: "Deploy: Upload PR to staging"
+    - name: "Artifact: Upload showcase merge artifact for pull request"
       if: github.event_name == 'pull_request'
-      run: |
-        curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
-        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
-        -F "tarball=@sbb-esta-angular-showcase.tgz"
-    - name: "Deploy: Upload master to staging"
+      uses: actions/upload-artifact@v2
+      with:
+        name: showcase-artifact-${{ PR_NUMBER }}
+        path: sbb-esta-angular-showcase.tgz
+    - name: "Artifact: Upload showcase merge artifact for master branch"
       if: github.ref == 'refs/heads/master'
-      run: |
-        curl --url https://angular-staging.app.sbb.ch/master \
-        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
-        -F "tarball=@sbb-esta-angular-showcase.tgz"
+      uses: actions/upload-artifact@v2
+      with:
+        name: showcase-artifact-master
+        path: sbb-esta-angular-showcase.tgz
 
   showcase-merge:
     if: ${{ success() || failure() }}
@@ -351,18 +351,18 @@ jobs:
 
     - name: "Deploy: Pack showcase"
       run: mv $(npm pack ./dist/releases/showcase-merge | tail -n 1) sbb-esta-angular-showcase-merge.tgz
-    - name: "Deploy: Upload PR to staging"
+    - name: "Artifact: Upload showcase merge artifact for pull request"
       if: github.event_name == 'pull_request'
-      run: |
-        curl --url https://angular-staging.app.sbb.ch/${PR_NUMBER}-merge \
-        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
-        -F "tarball=@sbb-esta-angular-showcase-merge.tgz"
-    - name: "Deploy: Upload master to staging"
+      uses: actions/upload-artifact@v2
+      with:
+        name: showcase-merge-artifact-${{ PR_NUMBER }}
+        path: sbb-esta-angular-showcase-merge.tgz
+    - name: "Artifact: Upload showcase merge artifact for master branch"
       if: github.ref == 'refs/heads/master'
-      run: |
-        curl --url https://angular-staging.app.sbb.ch/master-merge \
-        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
-        -F "tarball=@sbb-esta-angular-showcase-merge.tgz"
+      uses: actions/upload-artifact@v2
+      with:
+        name: showcase-merge-artifact-master
+        path: sbb-esta-angular-showcase-merge.tgz
 
   merge-caches:
     if: ${{ success() || failure() }}
