@@ -21,7 +21,8 @@
   html {
     background: $sbbColorBg;
     color: $sbbColorText;
-    font-family: $fontSbbRoman;
+    // !important is required, as arcgis defines its own font-family and we need to overwrite it.
+    font-family: $fontSbbRoman !important;
     font-size: private-div($sizeFontBase, 16px) * 100%;
     line-height: $sizeLineHeightBase;
 
