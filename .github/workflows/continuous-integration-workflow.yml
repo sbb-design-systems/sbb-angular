@@ -213,8 +213,6 @@ jobs:
     if: ${{ success() || failure() }}
     needs: build
     runs-on: ubuntu-latest
-    env:
-      PR_NUMBER: ${{ github.event.number }}
     steps:
     - name: Shallow checkout
       uses: actions/checkout@v2
@@ -277,7 +275,7 @@ jobs:
       if: github.event_name == 'pull_request'
       uses: actions/upload-artifact@v2
       with:
-        name: showcase-artifact-${{ PR_NUMBER }}
+        name: showcase-artifact-${{ github.event.number }}
         path: sbb-esta-angular-showcase.tgz
     - name: "Artifact: Upload showcase merge artifact for master branch"
       if: github.ref == 'refs/heads/master'
@@ -290,8 +288,6 @@ jobs:
     if: ${{ success() || failure() }}
     needs: build
     runs-on: ubuntu-latest
-    env:
-      PR_NUMBER: ${{ github.event.number }}
     steps:
     - name: Shallow checkout
       uses: actions/checkout@v2
@@ -355,7 +351,7 @@ jobs:
       if: github.event_name == 'pull_request'
       uses: actions/upload-artifact@v2
       with:
-        name: showcase-merge-artifact-${{ PR_NUMBER }}
+        name: showcase-merge-artifact-${{ github.event.number }}
         path: sbb-esta-angular-showcase-merge.tgz
     - name: "Artifact: Upload showcase merge artifact for master branch"
       if: github.ref == 'refs/heads/master'
