@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.3.0...12.4.0) (2021-09-09)
+
+
+### Features
+
+* **maps:** updated to ESRI arcgis-core v4.20.2 ([#872](https://github.com/sbb-design-systems/sbb-angular/issues/872)) ([e1f08f9](https://github.com/sbb-design-systems/sbb-angular/commit/e1f08f98fd14c61118d90b7a0f2e76b29b9d2693))
+
+
+### Bug Fixes
+
+* don't reset height for sbb-textarea ([#867](https://github.com/sbb-design-systems/sbb-angular/issues/867)) ([185d9f9](https://github.com/sbb-design-systems/sbb-angular/commit/185d9f9a31cb9113ea333dee663633c439a4006b)), closes [#862](https://github.com/sbb-design-systems/sbb-angular/issues/862)
+* ensure correct font-family ([#877](https://github.com/sbb-design-systems/sbb-angular/issues/877)) ([a60c155](https://github.com/sbb-design-systems/sbb-angular/commit/a60c1559aa545f5f165ab65b7dd9684bab8752ab))
+* **business:** adapt readonly input business style ([#876](https://github.com/sbb-design-systems/sbb-angular/issues/876)) ([3e5841a](https://github.com/sbb-design-systems/sbb-angular/commit/3e5841a878bed90378bcd016c61eef3bbd213548))
+* use correct sizing for input fields ([#875](https://github.com/sbb-design-systems/sbb-angular/issues/875)) ([1d65a09](https://github.com/sbb-design-systems/sbb-angular/commit/1d65a0927de94e9aebc015217ab56abbd9f81da6))
+* **business:** apply placeholder color of select to ellipsis ([#871](https://github.com/sbb-design-systems/sbb-angular/issues/871)) ([b9a9eae](https://github.com/sbb-design-systems/sbb-angular/commit/b9a9eae49cd2514dc42da2d55fab9d77df7fb325))
+* display header menu trigger in appropriate circumstances ([#870](https://github.com/sbb-design-systems/sbb-angular/issues/870)) ([2c25457](https://github.com/sbb-design-systems/sbb-angular/commit/2c25457b90fefcf618451de88c2e22650d44198e))
+* **business:** fix placeholder color of select ([#864](https://github.com/sbb-design-systems/sbb-angular/issues/864)) ([c5af48a](https://github.com/sbb-design-systems/sbb-angular/commit/c5af48aa331ddb8f0626479b236642087f189fb5)), closes [#863](https://github.com/sbb-design-systems/sbb-angular/issues/863)
+* resize textarea correctly on content pasting ([#856](https://github.com/sbb-design-systems/sbb-angular/issues/856)) ([84818da](https://github.com/sbb-design-systems/sbb-angular/commit/84818da808c98b8dadcae0472909acdd2cb563ae)), closes [#855](https://github.com/sbb-design-systems/sbb-angular/issues/855)
+
 ## [12.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.2.1...12.3.0) (2021-07-29)
 
 
