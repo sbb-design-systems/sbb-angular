@@ -43,6 +43,7 @@
     resize: none;
     overflow: hidden;
     background-color: transparent;
+    text-overflow: clip;
   }
 
   &.sbb-focused {

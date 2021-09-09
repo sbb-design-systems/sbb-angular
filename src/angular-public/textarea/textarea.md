@@ -1,7 +1,14 @@
-### Counter
+The `sbb-textarea` provides a textarea experience with an integrated counter. If the counter is
+not required, using a native `textarea` is preferred.
 
 If a `maxlength` is defined, a counter is displayed in the right bottom corner.
 The counter is hidden, if the `sbb-textarea` is disabled.
+
+### Autosize
+
+`sbb-textarea` internally uses the [`cdkTextareaAutosize`](https://material.angular.io/cdk/text-field/overview#automatically-resizing-a-textarea)
+directive to automatically resize the textarea. To disable this behavior set the `autosizeDisabled`
+input to `true` (e.g. `<sbb-textarea autosizeDisabled>`).
 
 ### Use with `@angular/forms`
 
@@ -28,7 +35,3 @@ If setting a validator with maxLength (e.g. `[Validators.maxLength(200)]`) the c
 
 The `<sbb-textarea>` uses an internal `<textarea>` to provide an accessible experience.
 This internal textarea receives focus.
-
-### Native Textarea
-
-The Native textarea (e.g. `<textarea>`) doesn't adapt its size automatically. If you like to have an auto resize behaviour, use `<sbb-textarea>` or apply `cdkTextareaAutosize` directive to `<textarea>`.

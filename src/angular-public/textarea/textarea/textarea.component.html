@@ -6,11 +6,10 @@
   [placeholder]="placeholder"
   [attr.maxlength]="maxlength !== 0 ? maxlength : null"
   [attr.minlength]="minlength"
+  [cdkTextareaAutosize]="!autosizeDisabled"
   (focus)="_onFocus()"
   (blur)="_onBlur()"
   (input)="_onInput($event)"
-  cdkTextareaAutosize
-  #autosize="cdkTextareaAutosize"
 ></textarea>
 <div
   i18n="Counter text for textarea@@sbbTextareaCounterText"

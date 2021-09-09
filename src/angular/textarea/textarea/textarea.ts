@@ -1,4 +1,3 @@
-import { FocusMonitor } from '@angular/cdk/a11y';
 import {
   BooleanInput,
   coerceBooleanProperty,
@@ -7,7 +6,6 @@ import {
 } from '@angular/cdk/coercion';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -15,7 +13,6 @@ import {
   ElementRef,
   HostListener,
   Input,
-  NgZone,
   OnDestroy,
   Optional,
   Self,
@@ -30,8 +27,7 @@ import {
   SbbErrorStateMatcher,
 } from '@sbb-esta/angular/core';
 import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
-import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
-import { auditTime, take, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 let nextId = 0;
 
@@ -75,7 +71,6 @@ export class SbbTextarea
     CanUpdateErrorState,
     ControlValueAccessor,
     DoCheck,
-    AfterViewInit,
     OnDestroy
 {
   private _uniqueId = `sbb-textarea-${++nextId}`;
@@ -108,6 +103,8 @@ export class SbbTextarea
   set value(value: string) {
     if (this._textarea) {
       this._textarea.nativeElement.value = value;
+      this._updateDigitsCounter(this.value);
+      this._changeDetectorRef.markForCheck();
       this.stateChanges.next();
     }
   }
@@ -169,6 +166,16 @@ export class SbbTextarea
   }
   private _required = false;
 
+  /** Whether the autosizing is disabled or not. Autosizing is based on the CDK Autosize. */
+  @Input()
+  get autosizeDisabled(): boolean {
+    return this._autosizeDisabled;
+  }
+  set autosizeDisabled(value: boolean) {
+    this._autosizeDisabled = coerceBooleanProperty(value);
+  }
+  private _autosizeDisabled = false;
+
   /** Whether the textarea is focused. */
   get focused(): boolean {
     return this._focused;
@@ -190,7 +197,7 @@ export class SbbTextarea
   /** @docs-private */
   @ViewChild('textarea', { static: true }) _textarea: ElementRef<HTMLTextAreaElement>;
   /** Class property that automatically resize a textarea to fit its content. */
-  @ViewChild('autosize', { static: true }) autosize: CdkTextareaAutosize;
+  @ViewChild(CdkTextareaAutosize, { static: true }) autosize: CdkTextareaAutosize;
 
   /** `View -> model callback called when value changes` */
   _onChange: (value: any) => void = () => {};
@@ -200,8 +207,6 @@ export class SbbTextarea
   constructor(
     @Self() @Optional() public override ngControl: NgControl,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _ngZone: NgZone,
-    private _focusMonitor: FocusMonitor,
     private _elementRef: ElementRef,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
     @Optional() parentForm: NgForm,
@@ -217,36 +222,15 @@ export class SbbTextarea
   }
 
   /**
-   * resize the textarea when the browser window size changes. It only works properly by calling reset() first.
-   * @docs-private
-   */
-  ngAfterViewInit() {
-    this._ngZone.runOutsideAngular(() => {
-      fromEvent(window, 'resize')
-        .pipe(auditTime(16), takeUntil(this._destroyed))
-        .subscribe(() => {
-          this.autosize.reset();
-          this.autosize.resizeToFitContent(true);
-        });
-    });
-  }
-
-  /**
    * Trigger resize on every check because it's possible that the textarea becomes visible after first rendering.
    * Without triggering resize, the textarea would not be correctly adjusted when it becomes visible only after first rendering.
    * This issue is due to the fact, that before being visible, autosize is deactivated.
    * @docs-private
    */
   ngDoCheck() {
-    this.triggerResize();
     if (this.ngControl) {
       this.updateErrorState();
     }
-  }
-
-  /** Trigger the resize of the textarea to fit the content */
-  triggerResize() {
-    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent());
   }
 
   /**
@@ -303,14 +287,11 @@ export class SbbTextarea
   _onInput(event: any) {
     this._onChange(event.target.value);
     this._updateDigitsCounter(event.target.value);
-    this.autosize.reset();
-    this.autosize.resizeToFitContent(true);
     this.stateChanges.next();
   }
 
   writeValue(newValue: any) {
     this.value = newValue == null ? '' : newValue;
-    this._updateDigitsCounter(this.value);
   }
 
   registerOnChange(fn: (_: any) => void) {

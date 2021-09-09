@@ -30,8 +30,7 @@ import {
 } from '@sbb-esta/angular-core/common-behaviors';
 import { SbbErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { SbbFormFieldControl } from '@sbb-esta/angular-core/forms';
-import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
-import { auditTime, take, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 let nextId = 0;
 
@@ -108,6 +107,8 @@ export class SbbTextarea
   set value(value: string) {
     if (this._textarea) {
       this._textarea.nativeElement.value = value;
+      this._updateDigitsCounter(this.value);
+      this._changeDetectorRef.markForCheck();
       this.stateChanges.next();
     }
   }
@@ -169,6 +170,16 @@ export class SbbTextarea
   }
   private _required = false;
 
+  /** Whether the autosizing is disabled or not. Autosizing is based on the CDK Autosize. */
+  @Input()
+  get autosizeDisabled(): boolean {
+    return this._autosizeDisabled;
+  }
+  set autosizeDisabled(value: boolean) {
+    this._autosizeDisabled = coerceBooleanProperty(value);
+  }
+  private _autosizeDisabled = false;
+
   /** Whether the textarea is focused. */
   get focused(): boolean {
     return this._focused;
@@ -190,7 +201,7 @@ export class SbbTextarea
   /** @docs-private */
   @ViewChild('textarea', { static: true }) _textarea: ElementRef<HTMLTextAreaElement>;
   /** Class property that automatically resize a textarea to fit its content. */
-  @ViewChild('autosize', { static: true }) autosize: CdkTextareaAutosize;
+  @ViewChild(CdkTextareaAutosize, { static: true }) autosize: CdkTextareaAutosize;
 
   /** `View -> model callback called when value changes` */
   _onChange: (value: any) => void = () => {};
@@ -217,19 +228,10 @@ export class SbbTextarea
   }
 
   /**
-   * resize the textarea when the browser window size changes. It only works properly by calling reset() first.
    * @docs-private
+   * @deprecated No longer used.
    */
-  ngAfterViewInit() {
-    this._ngZone.runOutsideAngular(() => {
-      fromEvent(window, 'resize')
-        .pipe(auditTime(16), takeUntil(this._destroyed))
-        .subscribe(() => {
-          this.autosize.reset();
-          this.autosize.resizeToFitContent(true);
-        });
-    });
-  }
+  ngAfterViewInit() {}
 
   /**
    * Trigger resize on every check because it's possible that the textarea becomes visible after first rendering.
@@ -238,16 +240,16 @@ export class SbbTextarea
    * @docs-private
    */
   ngDoCheck() {
-    this.triggerResize();
     if (this.ngControl) {
       this.updateErrorState();
     }
   }
 
-  /** Trigger the resize of the textarea to fit the content */
-  triggerResize() {
-    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent());
-  }
+  /**
+   * Trigger the resize of the textarea to fit the content
+   * @deprecated No longer used.
+   */
+  triggerResize() {}
 
   /**
    * Forward focus if a user clicks on an associated label.
@@ -303,14 +305,11 @@ export class SbbTextarea
   _onInput(event: any) {
     this._onChange(event.target.value);
     this._updateDigitsCounter(event.target.value);
-    this.autosize.reset();
-    this.autosize.resizeToFitContent(true);
     this.stateChanges.next();
   }
 
   writeValue(newValue: any) {
     this.value = newValue == null ? '' : newValue;
-    this._updateDigitsCounter(this.value);
   }
 
   registerOnChange(fn: (_: any) => void) {
