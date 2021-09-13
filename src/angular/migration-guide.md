@@ -524,3 +524,47 @@ No changes.
 No changes.
 
 [Documentation](angular/components/time-input)
+
+### Toggle
+
+_Automatic migration available_
+
+Previously to use an image in a `<sbb-toggle-option>` it had to be marked with `*sbbIcon`.
+This has been replaced with a wrapper element `<sbb-toggle-icon>`.
+
+**Previous**
+
+```html
+<sbb-toggle-option label="Option 2" value="cat">
+  <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
+</sbb-toggle-option>
+```
+
+**New**
+
+```html
+<sbb-toggle-option label="Option 2" value="cat">
+  <sbb-toggle-icon>
+    <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>
+  </sbb-toggle-icon>
+</sbb-toggle-option>
+```
+
+It was also previously possible to have any content inside `<sbb-toggle-option>` appear
+as content when the option was selected. This content now needs to be wrapped in `<sbb-toggle-details>`.
+
+**Previous**
+
+```html
+<sbb-toggle-option label="Option 1" value="dog"> Example </sbb-toggle-option>
+```
+
+**New**
+
+```html
+<sbb-toggle-option label="Option 1" value="dog">
+  <sbb-toggle-details>Example</sbb-toggle-details>
+</sbb-toggle-option>
+```
+
+[Documentation](angular/components/toggle)

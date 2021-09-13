@@ -38,6 +38,7 @@ ALL_EXAMPLES = [
     "//src/components-examples/angular/textarea",
     "//src/components-examples/angular/textexpand",
     "//src/components-examples/angular/time-input",
+    "//src/components-examples/angular/toggle",
     "//src/components-examples/angular-maps/esri-basemap-gallery",
     "//src/components-examples/angular-maps/esri-layer-list",
     "//src/components-examples/angular-maps/esri-legend",

@@ -40,6 +40,13 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
             classes: ['SbbLightboxRef'],
           },
         },
+        {
+          replace: 'infoText',
+          replaceWith: 'subtitle',
+          limitedTo: {
+            classes: ['SbbToggleOption'],
+          },
+        },
       ],
     },
   ],

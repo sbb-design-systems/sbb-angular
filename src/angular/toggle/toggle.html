@@ -1,0 +1,7 @@
+<div class="sbb-toggle-label-wrapper">
+  <ng-content select="sbb-toggle-option, ng-container"></ng-content>
+</div>
+
+<section class="sbb-toggle-option-content" [id]="_contentId" [hidden]="!selected?._details">
+  <ng-template [cdkPortalOutlet]="selected?._details ? selected?._content : null"></ng-template>
+</section>

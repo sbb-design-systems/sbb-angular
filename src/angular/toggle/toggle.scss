@@ -1,0 +1,194 @@
+@import '../styles/common';
+
+$toggleOptionRadius: 2;
+$toggleOptionBorderSize: 1;
+$toggleOptionBorderSize4kAndAbove: 2;
+
+.sbb-toggle {
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem($sizeLineHeightDefault);
+  display: block;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem($sizeLineHeightDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
+    }
+  }
+  html.sbb-lean & {
+    line-height: pxToRem($sizeLineHeightDefaultLean);
+  }
+}
+
+.sbb-toggle-label-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+.sbb-toggle-option {
+  flex: 1;
+}
+
+.sbb-toggle-option-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: $sbbColorMilk;
+  color: $sbbColorGrey;
+  border-radius: pxToEm($toggleOptionRadius);
+  padding: pxToEm(8) pxToEm(15) pxToEm(9);
+  line-height: 1.5;
+  border: pxToRem($toggleOptionBorderSize) solid transparent;
+
+  html:not(.sbb-lean) & {
+    min-height: pxToEm(65);
+
+    @include mq($from: desktop) {
+      padding: pxToEm(8) pxToEm(23) pxToEm(9);
+    }
+    @include mq($from: desktop4k) {
+      border-width: pxToRem($toggleOptionBorderSize4kAndAbove);
+    }
+  }
+  html.sbb-lean & {
+    padding: pxToEm(5) pxToEm(15) pxToEm(6);
+    border-color: $sbbColorAluminum;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .sbb-toggle-option-selected & {
+    background-color: $sbbColorWhite;
+    border-color: $sbbColorBlack;
+    color: $sbbColorBlack;
+
+    // Required to be more specific.
+    html.sbb-lean & {
+      border-color: $sbbColorBlack;
+    }
+  }
+}
+
+.sbb-toggle-option-button-icon {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: pxToEm(24);
+  max-height: pxToEm(24);
+}
+
+.sbb-toggle-option-button-label-wrapper {
+  text-align: center;
+}
+
+.sbb-toggle-option-button-label {
+  display: inline-block;
+  color: inherit;
+  vertical-align: middle;
+
+  .sbb-toggle-option-has-icon & {
+    max-width: calc(100% - #{pxToEm(24)});
+    text-align: left;
+    padding-left: 0.5em;
+  }
+}
+
+.sbb-toggle-option-button-subtitle {
+  display: block;
+  color: inherit;
+  font-size: pxToEm(13);
+  max-height: 3em;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.25s linear, opacity 0.25s ease;
+
+  .sbb-toggle-option-selected & {
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+.sbb-toggle-option-content {
+  display: flex;
+  background-color: $sbbColorWhite;
+  padding: pxToEm(24);
+  max-height: pxToEm(600);
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.25s ease, visibility 0.25s ease, padding 0.2s ease, max-height 0.2s ease;
+  margin-top: pxToEm(-2);
+  position: relative;
+  border: pxToRem($toggleOptionBorderSize) solid $sbbColorBlack;
+  border-radius: pxToEm($toggleOptionRadius);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      border-width: pxToRem($toggleOptionBorderSize4kAndAbove);
+    }
+  }
+  html.sbb-lean & {
+    padding: pxToEm(15);
+  }
+
+  &:empty {
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    padding: 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: 0;
+    top: pxToRem(-$toggleOptionBorderSize);
+    width: calc(50% - #{pxToRem($toggleOptionBorderSize)});
+    border-bottom: pxToRem(1) solid $sbbColorSilver;
+
+    .sbb-toggle-triple & {
+      width: calc(33.33333% - #{pxToRem($toggleOptionBorderSize)});
+    }
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        top: pxToRem(-$toggleOptionBorderSize4kAndAbove);
+        width: calc(50% - #{pxToRem($toggleOptionBorderSize4kAndAbove)});
+        border-bottom-width: pxToRem($toggleOptionBorderSize4kAndAbove);
+
+        .sbb-toggle-triple & {
+          width: calc(33.33333% - #{pxToRem($toggleOptionBorderSize4kAndAbove)});
+        }
+      }
+    }
+  }
+
+  .sbb-toggle-first-option-selected & {
+    border-top-left-radius: 0;
+    &::before {
+      left: 0;
+    }
+  }
+
+  .sbb-toggle-middle-option-selected &::before {
+    left: calc(33.33333% + #{pxToRem($toggleOptionBorderSize)});
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        left: calc(33.33333% + #{pxToRem($toggleOptionBorderSize4kAndAbove)});
+      }
+    }
+  }
+
+  .sbb-toggle-last-option-selected & {
+    border-top-right-radius: 0;
+    &::before {
+      right: 0;
+    }
+  }
+}

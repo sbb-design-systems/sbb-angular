@@ -1,0 +1,21 @@
+<p>Three options is only allowed in lean design.</p>
+
+<sbb-toggle aria-label="Choose journey" [formControl]="journey">
+  <sbb-toggle-option label="Option 1" subtitle="info text" value="option1"> </sbb-toggle-option>
+  <sbb-toggle-option value="option2">
+    <sbb-toggle-label>Option 2</sbb-toggle-label>
+    <sbb-toggle-details>
+      <sbb-form-field label="Select date">
+        <sbb-datepicker>
+          <input sbbDateInput sbbInput type="text" />
+        </sbb-datepicker>
+      </sbb-form-field>
+    </sbb-toggle-details>
+  </sbb-toggle-option>
+  <sbb-toggle-option label="Option 3" subtitle="subtitle" value="option3">
+    <sbb-toggle-details>Example</sbb-toggle-details>
+  </sbb-toggle-option>
+</sbb-toggle>
+
+<h4>Model</h4>
+{{ journey.value | json }}

@@ -516,5 +516,12 @@
   "SbbTextexpandExpanded": "textexpand",
   "SbbTextexpandModule": "textexpand",
   "SbbTimeInput": "time-input",
-  "SbbTimeInputModule": "time-input"
+  "SbbTimeInputModule": "time-input",
+  "SbbToggle": "toggle",
+  "SbbToggleDetails": "toggle",
+  "SbbToggleIcon": "toggle",
+  "SbbToggleLabel": "toggle",
+  "SbbToggleModule": "toggle",
+  "SbbToggleOption": "toggle",
+  "SbbToggleSubtitle": "toggle"
 }
