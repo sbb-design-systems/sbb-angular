@@ -45,6 +45,10 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-processflow-step',
           replaceWith: 'sbb-step',
         },
+        {
+          replace: 'sbb-ghettobox-container',
+          replaceWith: 'sbb-ghettobox-outlet',
+        },
       ],
     },
   ],

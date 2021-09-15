@@ -1,0 +1,25 @@
+<div class="sbb-ghettobox-icon sbb-icon-scaled">
+  <sbb-icon [svgIcon]="indicatorIcon || 'fpl:info'"></sbb-icon>
+</div>
+<div class="sbb-ghettobox-content">
+  <ng-content></ng-content>
+  <sbb-icon
+    *ngIf="_isNativeLink"
+    svgIcon="kom:arrow-long-right-small"
+    class="sbb-ghettobox-content-link-icon sbb-icon-scaled"
+  ></sbb-icon>
+</div>
+<div class="sbb-ghettobox-close">
+  <button
+    type="button"
+    class="sbb-ghettobox-close-button sbb-button-reset-frameless sbb-icon-fit"
+    (click)="_handleClose($event)"
+  >
+    <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
+    <span
+      i18n="Hidden button label to close the ghettobox@@sbbGhettoboxCloseGhettobox"
+      class="cdk-visually-hidden"
+      >Close message</span
+    >
+  </button>
+</div>
