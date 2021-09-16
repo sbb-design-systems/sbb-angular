@@ -34,17 +34,17 @@ export class GhettoboxOutletExample implements OnInit {
       `An important message to inform clients of a problem/incident ${currentId}`,
       config
     );
-    ref.afterRemoved().subscribe(() => {
-      console.log(`${currentId} has been removed`);
+    ref.afterDismissed().subscribe(() => {
+      console.log(`${currentId} has been dismissed`);
       this._refs = this._refs.filter((r) => r !== ref);
     });
     this._refs.push(ref);
   }
 
-  removeFirst() {
+  dismissFirst() {
     const ref = this._refs.shift();
     if (ref) {
-      ref.remove();
+      ref.dismiss();
     }
   }
 }

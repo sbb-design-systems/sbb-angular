@@ -64,8 +64,8 @@ export class SbbGhettoboxOutlet implements OnDestroy {
     return ref;
   }
 
-  /** Removes all ghettobox instances from this outlet. */
-  removeAll() {
+  /** Dismisss all ghettobox instances from this outlet. */
+  dismissAll() {
     this._containerRef.clear();
   }
 

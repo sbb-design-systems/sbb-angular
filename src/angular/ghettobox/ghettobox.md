@@ -24,12 +24,12 @@ To provide a custom icon, use the `indicatorIcon` input.
 <sbb-ghettobox [indicatorIcon]="icon">A major incident is currently happening.</sbb-ghettobox>
 ```
 
-### Removed event
+### Dismissed event
 
-You can subscribe to the `removed` event to get notified when the ghettobox is being removed/closed.
+You can subscribe to the `dismissed` event to get notified when the ghettobox is being dismissed/closed.
 
 ```html
-<sbb-ghettobox (removed)="handleRemoval($event)"
+<sbb-ghettobox (dismissed)="handleDismissed($event)"
   >A major incident is currently happening.</sbb-ghettobox
 >
 ```
@@ -44,7 +44,7 @@ the Ghettobox instances.
 <sbb-ghettobox-outlet></sbb-ghettobox-outlet>
 ```
 
-You can use the `SbbGhettoboxService` to add Ghettobox instances or remove all existing.
+You can use the `SbbGhettoboxService` to add Ghettobox instances or dismiss all existing.
 
 ```ts
 constructor(ghettoboxService: SbbGhettoboxService) {
@@ -69,21 +69,20 @@ ghettoboxService.add('A major incident is currently happening.', {
 ghettoboxService.add('A major incident is currently happening.', { routerLink: '/details' });
 ```
 
-To programmatically remove a Ghettobox instance from the outlet, use the `SbbGhettoboxRef` returned
+To programmatically dismiss a Ghettobox instance from the outlet, use the `SbbGhettoboxRef` returned
 by the add method.
 
 ```ts
 const ref = ghettoboxService.add('A major incident is currently happening.');
-ref.remove();
+ref.dismiss();
 ```
 
-Also to react to the removal of a Ghettobox instance from the outlet, the `SbbGhettoboxRef`
+Also to react to the dismissal of a Ghettobox instance from the outlet, the `SbbGhettoboxRef`
 provides an observable via method.
 
 ```ts
 const ref = ghettoboxService.add('A major incident is currently happening.');
-ref.afterRemoved().subscribe(() => {
+ref.afterDismissed().subscribe(() => {
   ...
 });
-``
 ```

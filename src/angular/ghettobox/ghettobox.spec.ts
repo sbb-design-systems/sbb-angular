@@ -61,7 +61,7 @@ describe('SbbGhettobox', () => {
     it('should delete the ghettobox on close button click', async () => {
       const closeButton = debugElement.query(By.css('.sbb-ghettobox-close-button'));
 
-      spyOn(component, 'removed');
+      spyOn(component, 'dismissed');
 
       closeButton.nativeElement.click();
 
@@ -70,7 +70,7 @@ describe('SbbGhettobox', () => {
 
       const ghettobox: SbbGhettobox = debugElement.componentInstance;
       expect(ghettobox._closed).toBe(true);
-      expect(component.removed).toHaveBeenCalled();
+      expect(component.dismissed).toHaveBeenCalled();
     });
   });
 
@@ -199,7 +199,7 @@ describe('SbbGhettoboxOutlet', () => {
       expect(contentElement.textContent).toEqual(message);
     });
 
-    it('should be able to remove a ghettobox via SbbGhettoboxRef', async () => {
+    it('should be able to dismiss a ghettobox via SbbGhettoboxRef', async () => {
       const ref = ghettoboxService.add('example');
 
       fixture.detectChanges();
@@ -208,7 +208,7 @@ describe('SbbGhettoboxOutlet', () => {
       let ghettoboxes = fixture.debugElement.queryAll(By.directive(SbbGhettobox));
       expect(ghettoboxes.length).toEqual(1);
 
-      ref.remove();
+      ref.dismiss();
 
       fixture.detectChanges();
       await fixture.whenStable();
@@ -227,7 +227,7 @@ describe('SbbGhettoboxOutlet', () => {
       let ghettoboxes = fixture.debugElement.queryAll(By.directive(SbbGhettobox));
       expect(ghettoboxes.length).toEqual(2);
 
-      ghettoboxService.removeAll();
+      ghettoboxService.dismissAll();
 
       fixture.detectChanges();
       await fixture.whenStable();
@@ -276,7 +276,7 @@ describe('SbbGhettoboxOutlet', () => {
       let ghettoboxes = fixture.debugElement.queryAll(By.directive(SbbGhettobox));
       expect(ghettoboxes.length).toEqual(2);
 
-      ref.remove();
+      ref.dismiss();
 
       fixture.detectChanges();
       await fixture.whenStable();
@@ -289,11 +289,11 @@ describe('SbbGhettoboxOutlet', () => {
 
 @Component({
   selector: 'sbb-ghettobox-simple',
-  template: `<sbb-ghettobox [indicatorIcon]="icon" (removed)="removed()">TEST</sbb-ghettobox>`,
+  template: `<sbb-ghettobox [indicatorIcon]="icon" (dismissed)="dismissed()">TEST</sbb-ghettobox>`,
 })
 export class GhettoboxSimple {
   icon: string;
-  removed() {}
+  dismissed() {}
 }
 
 @Component({
@@ -303,20 +303,20 @@ export class GhettoboxSimple {
     routerLink="/test"
     [queryParams]="{ param1: 'val1' }"
     fragment="frag1"
-    (removed)="removed()"
+    (dismissed)="dismissed()"
     >router link</a
   >`,
 })
 export class GhettoboxRouterLink {
-  removed() {}
+  dismissed() {}
 }
 
 @Component({
   selector: 'sbb-ghettobox-external-link',
-  template: `<a sbbGhettobox href="https://sbb.ch" (removed)="removed()">router link</a>`,
+  template: `<a sbbGhettobox href="https://sbb.ch" (dismissed)="dismissed()">router link</a>`,
 })
 export class GhettoboxExternalLink {
-  removed() {}
+  dismissed() {}
 }
 
 @Component({

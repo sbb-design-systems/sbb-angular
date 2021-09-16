@@ -20,19 +20,26 @@ export class SbbGhettoboxService {
     this.outletReady = this._outletReady.asObservable();
   }
 
-  /**
-   * Add a new ghettobox.
-   * @param ghettobox Ghettobox object passed by the consumer
-   */
-  add(message: string, config?: SbbGhettoboxConfig): SbbGhettoboxRef {
+  /** Add a new ghettobox. */
+  add(config: SbbGhettoboxConfig & { message: string }): SbbGhettoboxRef;
+  add(message: string, config?: SbbGhettoboxConfig): SbbGhettoboxRef;
+  add(
+    messageOrConfig: string | (SbbGhettoboxConfig & { message: string }),
+    config?: SbbGhettoboxConfig
+  ): SbbGhettoboxRef {
     this._assertOutlet();
-    return this._containerInstance!.createGhettobox(message, config || {});
+    if (typeof messageOrConfig === 'string') {
+      return this._containerInstance!.createGhettobox(messageOrConfig, config || {});
+    } else {
+      const { message, ...remainingConfig } = messageOrConfig;
+      return this._containerInstance!.createGhettobox(message, remainingConfig || {});
+    }
   }
 
-  /** Remove all ghettoboxes. */
-  removeAll() {
+  /** Dismiss all ghettoboxes. */
+  dismissAll() {
     this._assertOutlet();
-    this._containerInstance!.removeAll();
+    this._containerInstance!.dismissAll();
   }
 
   _register(containerInstance: SbbGhettoboxOutlet) {

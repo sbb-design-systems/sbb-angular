@@ -14,7 +14,7 @@ import {
 import { sbbGhettoboxAnimations } from './ghettobox-animations';
 
 /** Ghettobox states used for the animation */
-export type SbbGhettoboxState = 'visible' | 'removed';
+export type SbbGhettoboxState = 'visible' | 'dismissed';
 
 /** Ghettobox deleted custom event  */
 export interface SbbGhettoboxEvent {
@@ -29,7 +29,7 @@ let nextId = 0;
   styleUrls: ['./ghettobox.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  animations: [sbbGhettoboxAnimations.addRemove],
+  animations: [sbbGhettoboxAnimations.showDismiss],
   host: {
     class: 'sbb-ghettobox',
     tabindex: '0',
@@ -38,7 +38,7 @@ let nextId = 0;
     '[attr.aria-hidden]': '_closed ? true : null',
     '[attr.role]': '!_closed ? "alert" : null',
     '[class.sbb-ghettobox-link]': '_isNativeLink',
-    '[@addDelete]': '_animationState',
+    '[@showDismiss]': '_animationState',
   },
 })
 export class SbbGhettobox {
@@ -54,8 +54,8 @@ export class SbbGhettobox {
   /** Set to true, if the host element is an <a> element. */
   _isNativeLink: boolean = false;
 
-  /** Emitted when a ghettobox is to be removed. */
-  @Output() readonly removed: EventEmitter<SbbGhettoboxEvent> =
+  /** Emitted when a ghettobox is to be dismissed. */
+  @Output() readonly dismissed: EventEmitter<SbbGhettoboxEvent> =
     new EventEmitter<SbbGhettoboxEvent>();
 
   /**
@@ -72,27 +72,27 @@ export class SbbGhettobox {
     }
   }
 
-  /** Remove this ghettobox. */
-  remove(): void {
-    this._animationState = 'removed';
+  /** Dismiss this ghettobox. */
+  dismiss(): void {
+    this._animationState = 'dismissed';
   }
 
   /** Handles the click on the close button. */
   _handleClose(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    this.remove();
+    this.dismiss();
   }
 
   /** @docs-private */
-  @HostListener('@addDelete.done', ['$event'])
+  @HostListener('@showDismiss.done', ['$event'])
   _handleAnimation(event: AnimationEvent) {
     const { phaseName, toState } = event;
 
-    if (phaseName === 'done' && toState === 'removed') {
+    if (phaseName === 'done' && toState === 'dismissed') {
       this._closed = true;
       this._changeDetector.markForCheck();
-      this.removed.next({ ghettobox: this });
+      this.dismissed.next({ ghettobox: this });
     }
   }
 }

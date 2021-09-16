@@ -2,7 +2,10 @@
 <ng-template #outlet></ng-template>
 
 <ng-template #standard let-connector="connector">
-  <sbb-ghettobox #ghettobox [indicatorIcon]="connector.icon" (removed)="connector._handleRemoved()"
+  <sbb-ghettobox
+    #ghettobox
+    [indicatorIcon]="connector.icon"
+    (dismissed)="connector._handleDismissed()"
     >{{ connector.message }}</sbb-ghettobox
   >
 </ng-template>
@@ -20,17 +23,17 @@
     [replaceUrl]="connector.routerLink.replaceUrl"
     [state]="connector.routerLink.state"
     [relativeTo]="connector.routerLink.relativeTo"
-    (removed)="connector._handleRemoved()"
+    (dismissed)="connector._handleDismissed()"
     >{{ connector.message }}</a
   >
 </ng-template>
 <ng-template #externalLink let-connector="connector">
   <a
-    [href]="connector.link"
     sbbGhettobox
     #ghettobox
+    [href]="connector.link"
     [indicatorIcon]="connector.icon"
-    (removed)="connector._handleRemoved()"
+    (dismissed)="connector._handleDismissed()"
     >{{ connector.message }}</a
   >
 </ng-template>
