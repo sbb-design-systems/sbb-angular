@@ -48,6 +48,7 @@ export function mergeSymbols(): Rule {
       SbbSortHeaderComponent: 'table',
       SbbSortDirective: 'table',
       SbbSort: 'table',
+      NotificationType: 'notification',
     };
 
     extractExportsForModule('src/angular/');

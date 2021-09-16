@@ -25,6 +25,17 @@ export const enumMaps: VersionChanges<EnumKeysToStringLiteralData> = {
             enum: 'FileTypeCategory',
           },
         },
+        {
+          map: {
+            SUCCESS: 'success',
+            ERROR: 'error',
+            INFO: 'info',
+            WARN: 'warn',
+          },
+          limitedTo: {
+            enum: 'NotificationType',
+          },
+        },
       ],
     },
   ],

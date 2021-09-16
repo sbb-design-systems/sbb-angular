@@ -292,6 +292,32 @@ No changes.
 
 [Documentation](angular/components/loading)
 
+### Notification
+
+_Automatic migration available_
+
+The `message` input has been removed. It should now be provided as content inside `<sbb-notification>`.
+The input `toastPosition` has been removed. For this use case use the `notification-toast` module.
+
+**Previous**
+
+```html
+<sbb-notification message="Example"></sbb-notification>
+```
+
+**New**
+
+```html
+<sbb-notification>Example</sbb-notification>
+```
+
+Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
+which is no longer supported. The notification component now provides an `indicatorIcon` input, for which
+[any supported](angular/icon-overview) (or self registered) icon can be used.
+Alternatively the new element `<sbb-notification-icon>` can be used to wrap an icon.
+
+[Documentation](angular/components/notification)
+
 ### Oauth
 
 No changes.
