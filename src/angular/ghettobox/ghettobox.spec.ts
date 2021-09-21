@@ -285,6 +285,56 @@ describe('SbbGhettoboxOutlet', () => {
       expect(ghettoboxes.length).toEqual(1);
     });
   });
+
+  describe('with two outlets', () => {
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [
+            RouterTestingModule,
+            NoopAnimationsModule,
+            SbbIconTestingModule,
+            SbbGhettoboxModule,
+          ],
+          declarations: [GhettoboxOutletError],
+        }).compileComponents();
+      })
+    );
+
+    it('should throw', () => {
+      expect(() => TestBed.createComponent(GhettoboxOutletError)).toThrow();
+    });
+  });
+
+  describe('with no outlets', () => {
+    let fixture: ComponentFixture<GhettoboxOutletWithInnerGhettobox>;
+    let ghettoboxService: SbbGhettoboxService;
+
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [
+            RouterTestingModule,
+            NoopAnimationsModule,
+            SbbIconTestingModule,
+            SbbGhettoboxModule,
+          ],
+          declarations: [GhettoboxOutletWithoutOutlet],
+        }).compileComponents();
+      })
+    );
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(GhettoboxOutletWithoutOutlet);
+      ghettoboxService = TestBed.inject(SbbGhettoboxService);
+
+      fixture.detectChanges();
+    });
+
+    it('should throw', () => {
+      expect(() => ghettoboxService.add('Test')).toThrow();
+    });
+  });
 });
 
 @Component({
@@ -336,3 +386,20 @@ export class GhettoboxOutletSimple {
   `,
 })
 export class GhettoboxOutletWithInnerGhettobox {}
+
+@Component({
+  selector: 'sbb-ghettobox-outlet-error',
+  template: `
+    <sbb-ghettobox-outlet></sbb-ghettobox-outlet>
+    <sbb-ghettobox-outlet></sbb-ghettobox-outlet>
+  `,
+})
+export class GhettoboxOutletError {}
+
+@Component({
+  selector: 'sbb-ghettobox-outlet-without-outlet',
+  template: ``,
+})
+export class GhettoboxOutletWithoutOutlet {
+  constructor(public ghettoboxService: SbbGhettoboxService) {}
+}

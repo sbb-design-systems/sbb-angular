@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AsyncSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { filter, mapTo, take } from 'rxjs/operators';
 
 import { SbbGhettoboxConfig } from './ghettobox-config';
 import type { SbbGhettoboxOutlet } from './ghettobox-outlet';
@@ -13,11 +14,15 @@ export class SbbGhettoboxService {
   /** Observable you can subscribe to know if sbb-ghettobox-container has been loaded */
   readonly outletReady: Observable<void>;
 
-  private _outletReady = new AsyncSubject<void>();
+  private _outletReady = new BehaviorSubject<boolean>(false);
   private _containerInstance?: SbbGhettoboxOutlet;
 
   constructor() {
-    this.outletReady = this._outletReady.asObservable();
+    this.outletReady = this._outletReady.pipe(
+      filter((r) => !!r),
+      take(1),
+      mapTo(undefined)
+    );
   }
 
   /** Add a new ghettobox. */
@@ -47,6 +52,7 @@ export class SbbGhettoboxService {
       throw new Error('Only one <sbb-ghettobox-outlet> can be used at a time!');
     }
     this._containerInstance = containerInstance;
+    this._outletReady.next(true);
   }
 
   _unregister(containerInstance: SbbGhettoboxOutlet) {
@@ -58,6 +64,7 @@ export class SbbGhettoboxService {
       throw new Error('Trying to remove an unregistered <sbb-ghettobox-outlet>!');
     }
     this._containerInstance = undefined;
+    this._outletReady.next(false);
   }
 
   private _assertOutlet() {
