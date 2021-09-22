@@ -1849,7 +1849,6 @@ $tableTheadCellPaddingMobile: pxToEm(29) pxToEm(12) pxToEm(30) pxToEm(12);
 $tableTheadCellPadding: pxToEm(29) pxToEm(16) pxToEm(30) pxToEm(16);
 $tableTbodyCellPaddingMobile: pxToEm(18) pxToEm(12) pxToEm(19) pxToEm(12);
 $tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
-$tableTrowHeightBusiness: pxToEm(36);
 $tableCaptionColor: $sbbColorGrey;
 
 .sbb-table {
@@ -1953,8 +1952,7 @@ $tableCaptionColor: $sbbColorGrey;
       > tr {
         th,
         td {
-          height: $tableTrowHeightBusiness;
-          padding: 0 $tableTbodyPadding;
+          padding: pxToRem(6) $tableTbodyPadding pxToRem(7);
           border-right: pxToRem(1) solid $sbbColorAluminum;
           overflow: hidden;
           text-overflow: ellipsis;
