@@ -475,13 +475,20 @@ The following selector renames have been performed. All renames are processed by
 - `SbbSortDirective` class was renamed to `SbbSort`.
 - `SbbSort` interface was renamed to `SbbSortState`.
 
-- The deprecated css class `sbb-col-center-align` was removed in will automatically be replaced by `sbb-table-align-center`.
+- The deprecated css class `sbb-col-center-align` was removed and will automatically be replaced by `sbb-table-align-center`.
 
 **SbbTableDataSource**
 
 The group list constructor parameter of `SbbTableDataSource` was removed. Please use the
 `groupWithNext` flag of `sbbColumnDef` or `sbb-text-column` to achieve a grouped column styling.
 For more details consider the table documentation and examples.
+
+**Styling**
+
+Lean styles have slightly changed due to new specifications.
+
+We don't provide default styles anymore for a native `<table>` in the typography.
+Please always add the `sbb-table` css class to your `<table>` if you need a sbb styled table.
 
 [Documentation](angular/components/table)
 

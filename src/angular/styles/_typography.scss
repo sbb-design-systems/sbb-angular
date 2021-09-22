@@ -126,29 +126,6 @@ textarea {
   color: inherit;
 }
 
-table {
-  th,
-  td {
-    color: $sbbColorBlack;
-    font-size: pxToRem($sizeFontDefault);
-    line-height: 1.5;
-    margin: 0.75em 0 0;
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        font-size: pxToRem($sizeFontDefault4k);
-      }
-      @include mq($from: desktop5k) {
-        font-size: pxToRem($sizeFontDefault5k);
-      }
-    }
-  }
-  th {
-    font-family: $fontSbbBold;
-    font-weight: 400;
-  }
-}
-
 [hidden] {
   display: none !important;
 }
@@ -1852,12 +1829,44 @@ $tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
 $tableCaptionColor: $sbbColorGrey;
 
 .sbb-table {
+  th,
+  td {
+    color: $sbbColorBlack;
+    font-size: pxToRem($sizeFontDefault);
+    line-height: pxToRem($sizeLineHeightDefault);
+    vertical-align: top;
+
+    html:not(.sbb-lean) & {
+      @include mq($from: desktop4k) {
+        font-size: pxToRem($sizeFontDefault4k);
+        line-height: pxToRem($sizeLineHeightDefault4k);
+      }
+      @include mq($from: desktop5k) {
+        font-size: pxToRem($sizeFontDefault5k);
+        line-height: pxToRem($sizeLineHeightDefault5k);
+      }
+    }
+
+    html.sbb-lean & {
+      line-height: pxToRem($sizeLineHeightDefaultLean);
+    }
+  }
+
+  th {
+    font-family: $fontSbbBold;
+    font-weight: 400;
+
+    html.sbb-lean & {
+      color: $sbbColorGranite;
+    }
+
+    .sbb-table-header-subtitle {
+      font-family: $fontSbbRoman;
+    }
+  }
+
   border-spacing: 0;
   width: 100%;
-
-  th .sbb-table-header-subtitle {
-    font-family: $fontSbbRoman;
-  }
 
   html:not(.sbb-lean) & {
     padding-bottom: $tableTbodyPadding;

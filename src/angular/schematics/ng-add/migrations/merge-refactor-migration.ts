@@ -9,6 +9,7 @@ import { ChipsMigration } from './merge-refactor/chips-migration';
 import { FormFieldMigration } from './merge-refactor/form-field-migration';
 import { GhettoboxMigration } from './merge-refactor/ghettobox-migration';
 import { LinkMigration } from './merge-refactor/link-migration';
+import { NativeTableMigration } from './merge-refactor/native-table-migration';
 import { PaginationMigration } from './merge-refactor/pagination-migration';
 import { ProcessflowMigration } from './merge-refactor/processflow-migration';
 import { RadioButtonPanelMigration } from './merge-refactor/radio-button-panel-migration';
@@ -37,6 +38,7 @@ export class MergeRefactorMigration extends Migration<null, DevkitContext> {
     new ProcessflowMigration(this),
     new RadioButtonPanelMigration(this),
     new SearchMigration(this),
+    new NativeTableMigration(this),
     new TabsMigration(this),
     new TagMigration(this),
     new ToggleMigration(this),
