@@ -18,8 +18,8 @@ import { SbbSortState, SbbSort, SbbSortHeader, SbbTableModule } from '@sbb-esta/
       <tr sbb-row></tr>
       <tr sbb-footer-row></tr>
     </table>
-    <table class="sbb-table"></table>
-    <table class="special-table sbb-table"></table>
+    <table class="sbb-table"></table><!-- TODO: Check if table styles are still as desired -->
+    <table class="special-table sbb-table"></table><!-- TODO: Check if table styles are still as desired -->
     <table class="sbb-table"></table>
   `,
 })

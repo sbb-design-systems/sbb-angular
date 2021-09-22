@@ -14,7 +14,7 @@ export class NativeTableMigration extends RefactorMigration {
     return this._isElement(element, 'table');
   }
 
-  // Adds css class 'sbb-table' if not present
+  // Adds css class 'sbb-table' and a 'TODO' if not present
   protected _migrate(element: MigrationElement) {
     if (element.findProperty('sbbTable')) {
       return;
@@ -25,9 +25,9 @@ export class NativeTableMigration extends RefactorMigration {
     }
     if (classAttribute) {
       classAttribute.replaceValue(`${classAttribute.nativeValue} sbb-table`);
-      return;
     } else {
       element.appendProperty('class', 'sbb-table');
     }
+    element.append('<!-- TODO: Check if table styles are still as desired -->');
   }
 }
