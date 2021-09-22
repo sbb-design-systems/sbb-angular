@@ -25,7 +25,6 @@ $sbb-sort-header-arrow-container-size: 24;
 
 .sbb-sort-header-container {
   display: flex;
-  align-items: center;
   letter-spacing: normal;
   text-align: left;
   height: 100%;
@@ -62,8 +61,12 @@ $sbb-sort-header-arrow-container-size: 24;
   // This will be overwritten when the arrow animations kick in. See #11819.
   opacity: 0;
 
-  margin: 0 pxToEm(-8) 0 pxToEm($sbb-sort-header-arrow-margin);
+  margin: pxToEm(-1) pxToEm(-8) pxToEm(-1) pxToEm($sbb-sort-header-arrow-margin);
   .sbb-sort-header-position-before & {
-    margin: 0 pxToEm($sbb-sort-header-arrow-margin) 0 pxToEm(-8);
+    margin: pxToEm(-1) pxToEm($sbb-sort-header-arrow-margin) pxToEm(-1) pxToEm(-8);
+  }
+  svg {
+    width: 100%;
+    height: 100%;
   }
 }
