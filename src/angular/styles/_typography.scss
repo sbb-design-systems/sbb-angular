@@ -1854,7 +1854,6 @@ $tableCaptionColor: $sbbColorGrey;
 
 .sbb-table {
   border-spacing: 0;
-  background-color: $tableBg;
   width: 100%;
 
   th .sbb-table-header-subtitle {
@@ -1889,6 +1888,8 @@ $tableCaptionColor: $sbbColorGrey;
 
     tbody {
       > tr {
+        background-color: $tableBg;
+
         &:nth-child(even) {
           background-color: $tableTbodyStripesBgColor;
         }
@@ -1925,8 +1926,14 @@ $tableCaptionColor: $sbbColorGrey;
 
     thead {
       text-align: left;
-      background-color: $sbbColorMilk;
+      background-color: transparent;
+
       border-bottom: pxToRem(1) solid $sbbColorAluminum;
+
+      /*tr:last-child th,
+      tr:last-child td {
+        border-bottom: pxToRem(1) solid $sbbColorAluminum;
+      }*/
     }
 
     tbody {
