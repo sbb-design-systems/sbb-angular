@@ -5,22 +5,24 @@ import {
   SbbSortHeaderComponent,
   SbbTableModule,
 } from '@sbb-esta/angular-business';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   template: `
     <table sbbTable sbbSort>
       <tr>
-        <sbbHeaderCell></sbbHeaderCell>
         <th sbbHeaderCell></th>
-        <sbbCell></sbbCell>
         <td sbbCell></td>
-        <sbbFooterCell></sbbFooterCell>
         <td sbbFooterCell></td>
       </tr>
       <tr sbbHeaderRow>
         <td class="sbb-col-center-align" [sbbSortHeader]=""></td>
       </tr>
-      <tr sbbRow></tr>
+      <tr
+        sbbRow
+        *sbbRowDef="let row; columns: displayedColumns"
+        (click)="selection.toggle(row)"
+      ></tr>
       <tr sbbFooterRow></tr>
     </table>
     <table></table>
@@ -32,6 +34,7 @@ export class TableTestComponent {
   header: SbbSortHeaderComponent;
   @ViewChild(SbbSortDirective) sbbSort: SbbSortDirective;
   sbbSortState: SbbSort;
+  selection: SelectionModel<any>;
 }
 
 @NgModule({

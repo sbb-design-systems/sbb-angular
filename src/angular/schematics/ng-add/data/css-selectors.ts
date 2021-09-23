@@ -1,4 +1,4 @@
-import { VersionChanges } from '@angular/cdk/schematics';
+import { TargetVersion, VersionChanges } from '@angular/cdk/schematics';
 
 export interface SbbAngularCssSelectorData {
   /** The CSS selector to replace. */

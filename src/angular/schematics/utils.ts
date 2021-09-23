@@ -276,7 +276,7 @@ export class MigrationElement {
       return property;
     }
 
-    const attribute = this.element.attrs.find((a) => {
+    const attribute = this.element.attrs?.find((a) => {
       const lowerCaseName = a.name.toLowerCase();
       return (
         lowerCaseName === name ||

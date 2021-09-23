@@ -1937,11 +1937,6 @@ $tableCaptionColor: $sbbColorGrey;
       background-color: transparent;
 
       border-bottom: pxToRem(1) solid $sbbColorAluminum;
-
-      /*tr:last-child th,
-      tr:last-child td {
-        border-bottom: pxToRem(1) solid $sbbColorAluminum;
-      }*/
     }
 
     tbody {
@@ -1949,8 +1944,24 @@ $tableCaptionColor: $sbbColorGrey;
         background-color: $sbbColorWhite;
         border-bottom: pxToRem(1) solid $sbbColorAluminum;
 
-        &:hover {
+        &.sbb-table-row-selected {
           background-color: $sbbColorCloud;
+          border-bottom-color: $sbbColorBlack;
+
+          td {
+            // Reach a solid line in Chrome and Firefox
+            border-bottom: pxToRem(1) solid $sbbColorBlack;
+          }
+        }
+
+        &:hover {
+          background-color: $sbbColorMilk;
+          border-bottom-color: $sbbColorRed125;
+
+          td {
+            // Reach a solid line in Chrome and Firefox
+            border-bottom: pxToRem(1) solid $sbbColorRed125;
+          }
         }
       }
     }

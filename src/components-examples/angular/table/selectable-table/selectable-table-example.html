@@ -30,7 +30,12 @@
   </ng-container>
 
   <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
-  <tr sbb-row *sbbRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
+  <tr
+    sbb-row
+    *sbbRowDef="let row; columns: displayedColumns"
+    (click)="selection.toggle(row)"
+    [class.sbb-table-row-selected]="selection.isSelected(row)"
+  ></tr>
 </table>
 
 <h4>Selected Models</h4>

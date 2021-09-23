@@ -169,7 +169,10 @@ export class SortableTableExampleComponent implements AfterViewInit {
 
 ### Pagination
 
-It's easy to split up a datasource into pages. You can use the <sbb-paginator> component from the Pagination module to achieve pagination. To connect the paginator component to your dataSource you have to set `dataSource.paginator` to the viewReference of the SbbPaginatorComponent in your controller (see example below and on examples page).
+It's easy to split up a datasource into pages. You can use the <sbb-paginator> component
+from the Pagination module to achieve pagination.
+To connect the paginator component to your dataSource you have to set `dataSource.paginator`
+to the viewReference of the SbbPaginatorComponent in your controller (see example below and on examples page).
 
 #### Html
 
@@ -218,4 +221,33 @@ css class `sbb-table-divider-title` to style the title correctly.
   </td>
 </ng-container>
 <tr sbb-row *sbbRowDef="let row; columns: ['horizontalTableDivider']; when: isGroup"></tr>
+```
+
+### Style of a selected row
+
+If your table allows to select a row, you can conditionally apply the css class `sbb-table-row-selected`
+to a `<tr>`-tag to achieve the selected style.
+
+If using `SelectionModel`, it could look like the following example.
+Please also consider the working example in the examples section.
+
+```ts
+export class SelectableTableExample {
+  ...
+  selection = new SelectionModel<ItemModel>(true, []);
+  ...
+}
+```
+
+```html
+<table sbb-table>
+  ...
+  <tr
+    sbb-row
+    *sbbRowDef="let row; columns: displayedColumns"
+    (click)="selection.toggle(row)"
+    [class.sbb-table-row-selected]="selection.isSelected(row)"
+  ></tr>
+  ...
+</table>
 ```

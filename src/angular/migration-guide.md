@@ -490,6 +490,25 @@ Lean styles have slightly changed due to new specifications.
 We don't provide default styles anymore for a native `<table>` in the typography.
 Please always add the `sbb-table` css class to your `<table>` if you need a sbb styled table.
 
+As a new feature, the css class `sbb-table-row-selected` was introduced which can conditionally be applied on a `<tr>`-tag.
+If your row allows selecting it, this class would style the row correctly.
+
+If using `SelectionModel`, it could look like the following example.
+Please also consider the working example in the examples section of the table.
+
+```html
+<table sbb-table>
+  ...
+  <tr
+    sbb-row
+    *sbbRowDef="let row; columns: displayedColumns"
+    (click)="selection.toggle(row)"
+    [class.sbb-table-row-selected]="selection.isSelected(row)"
+  ></tr>
+  ...
+</table>
+```
+
 [Documentation](angular/components/table)
 
 ### Tabs
