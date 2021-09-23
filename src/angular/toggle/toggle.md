@@ -1,5 +1,5 @@
 The `<sbb-toggle>` component offers the user a choice of exactly two options
-(or optionally three for lean).
+(or optionally three for lean design).
 
 ```html
 <sbb-toggle>
