@@ -64,6 +64,40 @@ $toggleOptionBorderSize4kAndAbove: 2;
     cursor: pointer;
   }
 
+  .sbb-toggle-option:not(.sbb-toggle-option-selected):first-child & {
+    html.sbb-lean & {
+      border-right-color: transparent;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .sbb-toggle-option:not(.sbb-toggle-option-selected):not(:last-child):not(:first-child) & {
+    html.sbb-lean & {
+      border-radius: 0;
+    }
+
+    .sbb-toggle-option-selected + & {
+      html.sbb-lean & {
+        border-left-color: transparent;
+      }
+    }
+
+    .sbb-toggle-option:not(.sbb-toggle-option-selected) + & {
+      html.sbb-lean & {
+        border-right-color: transparent;
+      }
+    }
+  }
+
+  .sbb-toggle-option:not(.sbb-toggle-option-selected):last-child & {
+    html.sbb-lean & {
+      border-left-color: transparent;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
   .sbb-toggle-option-selected & {
     background-color: $sbbColorWhite;
     border-color: $sbbColorBlack;

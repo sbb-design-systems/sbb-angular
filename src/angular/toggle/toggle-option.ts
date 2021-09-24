@@ -56,7 +56,7 @@ import {
 })
 export class SbbToggleOption extends _SbbRadioButtonBase {
   /** Label of a sbb-toggle-option. */
-  @Input() label: string;
+  @Input() label?: string;
   /** Additional information for this option. */
   @Input() subtitle?: string;
 
