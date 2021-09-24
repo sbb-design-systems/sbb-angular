@@ -1,7 +1,7 @@
 The tooltip module allows the user to display additional information as needed.
 
 ```html
-<sbb-tooltip> Display additional information to a topic, input or something else. </sbb-tooltip>
+<sbb-tooltip> Display additional information about a topic, input or something else. </sbb-tooltip>
 ```
 
 By default the `sbb-tooltip` will be displayed as a circled question mark,
@@ -15,7 +15,7 @@ Additionally we provide a directive usage for the tooltip. This is also internal
 `sbb-tooltip`.
 
 ```html
-<span sbbTooltip="Display additional information to a topic, input or something else."
+<span sbbTooltip="Display additional information about a topic, input or something else."
   >Short description.</span
 >
 ```

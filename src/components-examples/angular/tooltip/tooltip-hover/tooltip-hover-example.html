@@ -4,17 +4,23 @@
 </sbb-tooltip>
 
 <h4>Tooltip Directive Usage</h4>
-<span
-  sbbTooltip="This tooltip can be placed on every element."
-  [sbbTooltipShowDelay]="hoverShowDelay"
-  [sbbTooltipHideDelay]="hoverHideDelay"
-  >I'm a tooltip bound to a text.</span
->
+<p>
+  <span
+    sbbTooltip="This tooltip can be placed on every element."
+    [sbbTooltipShowDelay]="hoverShowDelay"
+    [sbbTooltipHideDelay]="hoverHideDelay"
+    >I'm a tooltip bound to a text.</span
+  >
+</p>
 
 <h4>Configuration</h4>
-<sbb-form-field label="Open tooltip delay in milliseconds">
-  <input sbbInput type="number" [(ngModel)]="hoverShowDelay" />
-</sbb-form-field>
-<sbb-form-field label="Close tooltip delay in milliseconds">
-  <input sbbInput type="number" [(ngModel)]="hoverHideDelay" />
-</sbb-form-field>
+<div>
+  <sbb-form-field label="Open tooltip delay in milliseconds">
+    <input sbbInput type="number" [(ngModel)]="hoverShowDelay" />
+  </sbb-form-field>
+</div>
+<div>
+  <sbb-form-field label="Close tooltip delay in milliseconds">
+    <input sbbInput type="number" [(ngModel)]="hoverHideDelay" />
+  </sbb-form-field>
+</div>

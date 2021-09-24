@@ -1,10 +1,20 @@
 import { AnimationEvent } from '@angular/animations';
-import { AriaDescriber, FocusMonitor } from '@angular/cdk/a11y';
+import {
+  AriaDescriber,
+  ConfigurableFocusTrapFactory,
+  FocusMonitor,
+  FocusOrigin,
+  FocusTrap,
+} from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty, NumberInput } from '@angular/cdk/coercion';
 import { ESCAPE, hasModifierKey } from '@angular/cdk/keycodes';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ConnectionPositionPair, Overlay, OverlayRef, ScrollStrategy } from '@angular/cdk/overlay';
-import { normalizePassiveListenerOptions, Platform } from '@angular/cdk/platform';
+import {
+  normalizePassiveListenerOptions,
+  Platform,
+  _getFocusedElementPierceShadowDom,
+} from '@angular/cdk/platform';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
@@ -25,6 +35,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { Breakpoints } from '@sbb-esta/angular/core';
 import { Observable, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
 
@@ -44,13 +55,6 @@ export type TooltipVisibility = 'initial' | 'visible' | 'hidden';
 
 /** Time in ms to throttle repositioning after scroll events. */
 export const SCROLL_THROTTLE_MS = 20;
-
-/**
- * CSS class that will be attached to the overlay panel.
- * @deprecated
- * @breaking-change 13.0.0 remove this variable
- */
-export const TOOLTIP_PANEL_CLASS = 'sbb-tooltip-panel';
 
 const PANEL_CLASS = 'tooltip-panel';
 
@@ -94,6 +98,13 @@ export interface SbbTooltipDefaultOptions {
   hideDelay: number;
   touchendHideDelay: number;
   touchGestures?: TooltipTouchGestures;
+  /** Whether the tooltip should focus the first focusable element on open. */
+  autoFocus?: boolean;
+  /**
+   * Whether the tooltip should restore focus to the
+   * previously-focused element, after it's closed.
+   */
+  restoreFocus?: boolean;
 }
 
 /** Injection token to be used to override the default options for `sbbTooltip`. */
@@ -111,6 +122,8 @@ export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions 
     showDelay: 0,
     hideDelay: 0,
     touchendHideDelay: 1500,
+    autoFocus: true,
+    restoreFocus: true,
   };
 }
 
@@ -350,6 +363,17 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       .subscribe(() => this._detach());
     this._setTooltipClass(this._tooltipClass);
     this._updateTooltipMessage();
+    if (this.trigger === 'click') {
+      // If the tooltip has a click trigger, it behaves similar to a a dialog and should capture
+      // the focus and trap it inside the tooltip
+      this._tooltipInstance._config = {
+        autoFocus: this._defaultOptions.autoFocus ?? true,
+        restoreFocus: this._defaultOptions.restoreFocus ?? true,
+      };
+      this._tooltipInstance._initializeWithAttachedContent();
+    } else {
+      this._tooltipInstance._config = undefined;
+    }
     this._tooltipInstance!.show(delay);
   }
 
@@ -685,10 +709,8 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
 }
 
 /**
- * Directive that attaches a material design tooltip to the host element. Animates the showing and
+ * Directive that attaches a sbb design tooltip to the host element. Animates the showing and
  * hiding of a tooltip provided position (defaults to below the element).
- *
- * https://material.io/design/components/tooltips.html
  */
 @Directive({
   selector: '[sbbTooltip]',
@@ -747,16 +769,38 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   /** Property watched by the animation framework to show or hide the tooltip */
   _visibility: TooltipVisibility = 'initial';
 
+  /**
+   * Type of interaction that led to the tooltip being closed. This is used to determine
+   * whether the focus style will be applied when returning focus to its original location
+   * after the dialog is closed.
+   */
+  _closeInteractionType: FocusOrigin | null = null;
+
+  _config?: Pick<SbbTooltipDefaultOptions, 'autoFocus' | 'restoreFocus'> = {};
+
+  protected _document: Document;
+
   /** Whether interactions on the page should close the tooltip */
   private _closeOnInteraction: boolean = false;
+
+  /** The class that traps and manages focus within the tooltip. */
+  private _focusTrap: FocusTrap;
+
+  /** Element that was focused before the tooltip was opened. Save this to restore upon close. */
+  private _elementFocusedBeforeDialogWasOpened: HTMLElement | null = null;
 
   /** Subject for notifying that the tooltip has been hidden from the view */
   private readonly _onHide: Subject<void> = new Subject();
 
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
-    private _changeDetectorRef: ChangeDetectorRef
-  ) {}
+    protected _focusTrapFactory: ConfigurableFocusTrapFactory,
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _focusMonitor: FocusMonitor,
+    @Optional() @Inject(DOCUMENT) document: any
+  ) {
+    this._document = document;
+  }
 
   /**
    * Shows the tooltip with an animation originating from the provided origin
@@ -819,7 +863,13 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   _animationDone(event: AnimationEvent): void {
     const toState = event.toState as TooltipVisibility;
 
+    console.log(toState, this._config);
+    if (toState === 'visible' && this.isVisible() && this._config) {
+      this._trapFocus();
+    }
+
     if (toState === 'hidden' && !this.isVisible()) {
+      this._restoreFocus();
       this._onHide.next();
     }
 
@@ -837,6 +887,17 @@ export abstract class _TooltipComponentBase implements OnDestroy {
     }
   }
 
+  /** Initializes the dialog container with the attached content. */
+  _initializeWithAttachedContent() {
+    this._setupFocusTrap();
+    // Save the previously focused element. This element will be re-focused
+    // when the dialog closes.
+    this._capturePreviouslyFocusedElement();
+    // Move focus onto the dialog immediately in order to prevent the user
+    // from accidentally opening multiple dialogs at the same time.
+    this._focusDialogContainer();
+  }
+
   /**
    * Marks that the tooltip needs to be checked in the next change detection run.
    * Mainly used for rendering the initial text before positioning a tooltip, which
@@ -844,6 +905,83 @@ export abstract class _TooltipComponentBase implements OnDestroy {
    */
   _markForCheck(): void {
     this._changeDetectorRef.markForCheck();
+  }
+
+  /** Moves the focus inside the focus trap. */
+  protected _trapFocus() {
+    // If we were to attempt to focus immediately, then the content of the dialog would not yet be
+    // ready in instances where change detection has to run first. To deal with this, we simply
+    // wait for the microtask queue to be empty.
+    if (this._config?.autoFocus) {
+      this._focusTrap.focusInitialElementWhenReady();
+    } else if (!this._containsFocus()) {
+      // Otherwise ensure that focus is on the dialog container. It's possible that a different
+      // component tried to move focus while the open animation was running. See:
+      // https://github.com/angular/components/issues/16215. Note that we only want to do this
+      // if the focus isn't inside the dialog already, because it's possible that the consumer
+      // turned off `autoFocus` in order to move focus themselves.
+      this._elementRef.nativeElement.focus();
+    }
+  }
+
+  /** Restores focus to the element that was focused before the dialog opened. */
+  protected _restoreFocus() {
+    const previousElement = this._elementFocusedBeforeDialogWasOpened;
+
+    // We need the extra check, because IE can set the `activeElement` to null in some cases.
+    if (
+      this._config?.restoreFocus &&
+      previousElement &&
+      typeof previousElement.focus === 'function'
+    ) {
+      const activeElement = _getFocusedElementPierceShadowDom();
+      const element = this._elementRef.nativeElement;
+
+      // Make sure that focus is still inside the dialog or is on the body (usually because a
+      // non-focusable element like the backdrop was clicked) before moving it. It's possible that
+      // the consumer moved it themselves before the animation was done, in which case we shouldn't
+      // do anything.
+      if (
+        !activeElement ||
+        activeElement === this._document.body ||
+        activeElement === element ||
+        element.contains(activeElement)
+      ) {
+        this._focusMonitor.focusVia(previousElement, this._closeInteractionType);
+        this._closeInteractionType = null;
+      }
+    }
+
+    if (this._focusTrap) {
+      this._focusTrap.destroy();
+    }
+  }
+
+  /** Sets up the focus trap. */
+  private _setupFocusTrap() {
+    this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
+  }
+
+  /** Captures the element that was focused before the dialog was opened. */
+  private _capturePreviouslyFocusedElement() {
+    if (this._document) {
+      this._elementFocusedBeforeDialogWasOpened = _getFocusedElementPierceShadowDom();
+    }
+  }
+
+  /** Focuses the dialog container. */
+  private _focusDialogContainer() {
+    // Note that there is no focus method when rendering on the server.
+    if (this._elementRef.nativeElement.focus) {
+      this._elementRef.nativeElement.focus();
+    }
+  }
+
+  /** Returns whether focus is inside the dialog. */
+  private _containsFocus() {
+    const element = this._elementRef.nativeElement;
+    const activeElement = _getFocusedElementPierceShadowDom();
+    return element === activeElement || element.contains(activeElement);
   }
 }
 
@@ -868,7 +1006,9 @@ export abstract class _TooltipComponentBase implements OnDestroy {
 })
 export class TooltipComponent extends _TooltipComponentBase {
   /** Stream that emits whether the user has a handset-sized display.  */
-  _isHandset: Observable<BreakpointState> = this._breakpointObserver.observe(Breakpoints.Handset);
+  _isHandset: Observable<BreakpointState> = this._breakpointObserver.observe(
+    Breakpoints.MobileDevice
+  );
 
   get _templateRef(): TemplateRef<any> | null {
     return this.message instanceof TemplateRef ? this.message : null;
@@ -876,9 +1016,12 @@ export class TooltipComponent extends _TooltipComponentBase {
 
   constructor(
     elementRef: ElementRef<HTMLElement>,
+    focusTrapFactory: ConfigurableFocusTrapFactory,
     changeDetectorRef: ChangeDetectorRef,
+    focusMonitor: FocusMonitor,
+    @Optional() @Inject(DOCUMENT) document: any,
     private _breakpointObserver: BreakpointObserver
   ) {
-    super(elementRef, changeDetectorRef);
+    super(elementRef, focusTrapFactory, changeDetectorRef, focusMonitor, document);
   }
 }

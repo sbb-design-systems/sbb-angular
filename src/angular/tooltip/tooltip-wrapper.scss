@@ -1,5 +1,10 @@
 @import '../styles/common';
 
+$sbbTooltipPadding: 23;
+$sbbTooltipPaddingLean: 8;
+$sbbTooltipStandardBorderWidth: 2;
+$sbbTooltipArrowOffset: 7.2;
+
 .sbb-tooltip-content-close-button {
   padding-right: pxToEm(48);
 
@@ -16,31 +21,31 @@
 
 .sbb-tooltip-icon:active,
 .sbb-tooltip-icon:hover,
+.sbb-tooltip-icon:focus,
 .sbb-tooltip-trigger:active,
 .sbb-tooltip-trigger:hover,
+.sbb-tooltip-trigger:focus,
 .sbb-tooltip-trigger-active {
-  color: $sbbColorRed;
-  border-color: $sbbColorRed;
-
-  html.sbb-lean & {
-    color: $sbbColorRed125;
-    border-color: $sbbColorRed125;
-  }
+  outline: none;
+  color: $sbbColorRed125;
+  border-color: $sbbColorRed125;
 }
 
 .sbb-tooltip-close-icon {
-  border: pxToEm(1) solid $sbbColorGrey;
+  border: pxToEm(1) solid $sbbColorStorm;
   border-radius: 50%;
+  color: $sbbColorGranite;
   float: right;
   position: absolute;
   // padding + margin-top + border
-  top: pxToEm(23 + 7.2 + 2);
-  right: pxToEm(23);
+  top: pxToEm($sbbTooltipPadding + $sbbTooltipArrowOffset + $sbbTooltipStandardBorderWidth);
+  right: pxToEm($sbbTooltipPadding);
   line-height: 0;
 
   html.sbb-lean & {
-    top: pxToRem(8);
-    right: pxToRem(8);
+    top: pxToRem($sbbTooltipPaddingLean + $sbbTooltipArrowOffset);
+    right: pxToRem($sbbTooltipPaddingLean);
+    color: $sbbColorIron;
 
     &,
     &:hover,
@@ -51,7 +56,11 @@
 
   .sbb-tooltip-panel-above & {
     // padding + border
-    top: pxToEm(23 + 2);
+    top: pxToEm($sbbTooltipPadding + $sbbTooltipStandardBorderWidth);
+
+    html.sbb-lean & {
+      top: pxToRem($sbbTooltipPaddingLean);
+    }
   }
 
   .sbb-tooltip-trigger-hover & {

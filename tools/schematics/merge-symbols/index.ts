@@ -44,6 +44,7 @@ export function mergeSymbols(): Rule {
       SbbProcessflowStep: 'processflow',
       SbbTagChange: 'tag',
       SbbGhettoboxContainer: 'ghettobox',
+      SbbTooltipComponent: 'tooltip',
     };
 
     extractExportsForModule('src/angular/');

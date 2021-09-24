@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SbbNotificationModule } from '@sbb-esta/angular-business/notification';
-import { SbbTooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbTabsModule } from '@sbb-esta/angular/tabs';
+import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 
 import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
 import { ExampleListViewerComponent } from './example-list-viewer/example-list-viewer.component';
