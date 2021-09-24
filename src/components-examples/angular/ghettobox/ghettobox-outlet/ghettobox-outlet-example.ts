@@ -24,8 +24,8 @@ export class GhettoboxOutletExample implements OnInit {
     this.add();
     this.add({ routerLink: { routerLink: '#' } });
     this.add({ link: 'https://sbb.ch' });
-    this.add({ icon: 'fpl:disruption' });
-    this.add({ icon: 'kom:eye-disabled-small' });
+    this.add({ svgIcon: 'fpl:disruption' });
+    this.add({ svgIcon: 'kom:eye-disabled-small' });
   }
 
   add(config?: SbbGhettoboxConfig) {

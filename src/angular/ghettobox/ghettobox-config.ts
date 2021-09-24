@@ -11,9 +11,9 @@ export interface SbbGhettoboxConfig {
    * Icon to be used in the ghettobox.
    * Must be a valid svgIcon input for sbb-icon.
    *
-   * e.g. indicatorIcon="kom:plus-small"
+   * e.g. svgIcon="kom:plus-small"
    */
-  icon?: string;
+  svgIcon?: string;
   /** Link to be used for the ghettobox. Will be applied to routerLink. */
   routerLink?: string | any[] | SbbRouterLink;
   /** Link to be used for the ghettobox. Will be treated as an external link. */

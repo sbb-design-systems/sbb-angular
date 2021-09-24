@@ -47,6 +47,13 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
             classes: ['SbbToggleOption'],
           },
         },
+        {
+          replace: 'containerReady',
+          replaceWith: 'outletReady',
+          limitedTo: {
+            classes: ['SbbGhettoboxService'],
+          },
+        },
       ],
     },
   ],

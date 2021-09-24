@@ -4,7 +4,7 @@
 <ng-template #standard let-connector="connector">
   <sbb-ghettobox
     #ghettobox
-    [indicatorIcon]="connector.icon"
+    [indicatorIcon]="connector.svgIcon"
     (dismissed)="connector._handleDismissed()"
     >{{ connector.message }}</sbb-ghettobox
   >
@@ -13,7 +13,7 @@
   <a
     sbbGhettobox
     #ghettobox
-    [indicatorIcon]="connector.icon"
+    [indicatorIcon]="connector.svgIcon"
     [routerLink]="connector.routerLink.routerLink"
     [queryParams]="connector.routerLink.queryParams"
     [fragment]="connector.routerLink.fragment"
@@ -32,7 +32,7 @@
     sbbGhettobox
     #ghettobox
     [href]="connector.link"
-    [indicatorIcon]="connector.icon"
+    [indicatorIcon]="connector.svgIcon"
     (dismissed)="connector._handleDismissed()"
     >{{ connector.message }}</a
   >

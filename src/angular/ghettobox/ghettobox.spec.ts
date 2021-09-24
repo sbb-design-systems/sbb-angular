@@ -146,7 +146,7 @@ describe('SbbGhettoboxOutlet', () => {
 
     it('should be able to add a simple ghettobox', async () => {
       const message = 'simple message';
-      ghettoboxService.add(message, { icon: 'fpl:replacementbus' });
+      ghettoboxService.add(message, { svgIcon: 'fpl:replacementbus' });
 
       fixture.detectChanges();
       await fixture.whenStable();

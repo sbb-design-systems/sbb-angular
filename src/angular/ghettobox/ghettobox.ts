@@ -32,7 +32,6 @@ let nextId = 0;
   animations: [sbbGhettoboxAnimations.showDismiss],
   host: {
     class: 'sbb-ghettobox',
-    tabindex: '0',
     '[id]': 'id',
     '[attr.hidden]': '_closed ? true : null',
     '[attr.aria-hidden]': '_closed ? true : null',
@@ -78,7 +77,7 @@ export class SbbGhettobox {
   }
 
   /** Handles the click on the close button. */
-  _handleClose(event: Event) {
+  _handleDismiss(event: Event) {
     event.preventDefault();
     event.stopPropagation();
     this.dismiss();

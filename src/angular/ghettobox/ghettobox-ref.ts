@@ -11,7 +11,7 @@ export class SbbGhettoboxRefConnector implements SbbGhettoboxConfig {
    * Icon to be used in the ghettobox.
    * Must be a valid svgIcon input for sbb-icon.
    */
-  icon?: string;
+  svgIcon?: string;
   /** Link to be used for the ghettobox. Will be applied to routerLink. */
   routerLink?: SbbRouterLink;
   /** Link to be used for the ghettobox. Will be treated as an external link. */
@@ -21,7 +21,7 @@ export class SbbGhettoboxRefConnector implements SbbGhettoboxConfig {
 
   constructor(message: string, config: SbbGhettoboxConfig) {
     this.message = message;
-    this.icon = config.icon;
+    this.svgIcon = config.svgIcon;
     this.routerLink =
       typeof config.routerLink === 'string' || Array.isArray(config.routerLink)
         ? { routerLink: config.routerLink }
