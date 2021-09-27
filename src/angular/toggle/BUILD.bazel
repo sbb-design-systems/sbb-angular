@@ -17,6 +17,7 @@ ng_module(
     ),
     assets = [":toggle.css"] + glob(["**/*.html"]),
     deps = [
+        "//src/angular/icon",
         "//src/angular/radio-button",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

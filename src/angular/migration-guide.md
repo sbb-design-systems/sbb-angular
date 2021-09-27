@@ -529,12 +529,17 @@ No changes.
 
 _Automatic migration available_
 
-Previously to use an image in a `<sbb-toggle-option>` it had to be marked with `*sbbIcon`.
-This has been replaced with a wrapper element `<sbb-toggle-icon>`.
+Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
+which is no longer supported. The toggle option component now provides an `indicatorIcon` input, for which
+[any supported](angular/icon-overview) (or self registered) icon can be used.
+Alternatively the new element `<sbb-toggle-icon>` can be used to wrap an icon.
 
 **Previous**
 
 ```html
+<sbb-toggle-option label="Option 2" value="cat">
+  <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
+</sbb-toggle-option>
 <sbb-toggle-option label="Option 2" value="cat">
   <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
 </sbb-toggle-option>
@@ -543,6 +548,8 @@ This has been replaced with a wrapper element `<sbb-toggle-icon>`.
 **New**
 
 ```html
+<sbb-toggle-option label="Option 2" value="cat" indicatorIcon="kom:arrows-right-left-small">
+</sbb-toggle-option>
 <sbb-toggle-option label="Option 2" value="cat">
   <sbb-toggle-icon>
     <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>

@@ -19,8 +19,16 @@
     (click)="_onInputClick($event)"
   />
   <span class="sbb-toggle-option-button-label-wrapper">
-    <span *ngIf="_icon" role="presentation" class="sbb-toggle-option-button-icon sbb-icon-scaled">
-      <ng-content select="sbb-toggle-icon"></ng-content>
+    <span
+      *ngIf="_hasIcon()"
+      [ngSwitch]="!!_icon"
+      role="presentation"
+      class="sbb-toggle-option-button-icon sbb-icon-scaled"
+    >
+      <ng-content *ngSwitchCase="true" select="sbb-toggle-icon"></ng-content>
+      <span *ngSwitchCase="false">
+        <sbb-icon [svgIcon]="indicatorIcon"></sbb-icon>
+      </span>
     </span>
     <span class="sbb-toggle-option-button-label" [ngSwitch]="!!_label">
       <ng-container *ngSwitchCase="false">{{ label }}</ng-container>

@@ -41,7 +41,7 @@ import {
   host: {
     class: 'sbb-toggle-option',
     '[class.sbb-toggle-option-selected]': 'checked',
-    '[class.sbb-toggle-option-has-icon]': '!!_icon',
+    '[class.sbb-toggle-option-has-icon]': '_hasIcon()',
     // Needs to be removed since it causes some a11y issues (see angular/components#21266).
     '[attr.tabindex]': 'null',
     '[attr.id]': 'id',
@@ -83,6 +83,14 @@ export class SbbToggleOption extends _SbbRadioButtonBase {
     return this._iconNonStatic || this._iconStatic;
   }
 
+  /**
+   * The indicator icon, which will be shown on the left-hand side of the toggle option.
+   * Must be a valid svgIcon input for sbb-icon.
+   *
+   * e.g. indicatorIcon="kom:plus-small"
+   */
+  @Input() indicatorIcon: string;
+
   /** The toggle content projection label. */
   @ContentChild(SbbToggleDetails) _detailsNonStatic: SbbToggleDetails;
   @ContentChild(SbbToggleDetails, { static: true }) _detailsStatic: SbbToggleDetails;
@@ -101,5 +109,10 @@ export class SbbToggleOption extends _SbbRadioButtonBase {
     @Attribute('tabindex') tabIndex?: string
   ) {
     super(toggle, elementRef, changeDetector, focusMonitor, radioDispatcher, tabIndex);
+  }
+
+  /** Whether this toggle option has an icon. */
+  _hasIcon() {
+    return !!(this._icon || this.indicatorIcon);
   }
 }

@@ -29,12 +29,11 @@ The subtitle will be hidden on selection.
 A `<sbb-toggle-option>` can have an optional icon, which will be shown on the left side of
 the label.
 
+Either use the `indicatorIcon` input or the `<sbb-toggle-icon>` element.
+
 ```html
 <sbb-toggle>
-  <sbb-toggle-option label="Option 1" value="dog">
-    <sbb-toggle-icon>
-      <sbb-icon svgIcon="kom:arrow-right-small"></sbb-icon>
-    </sbb-toggle-icon>
+  <sbb-toggle-option label="Option 1" value="dog" indicatorIcon="kom:arrow-right-small">
   </sbb-toggle-option>
   <sbb-toggle-option value="cat">
     <sbb-toggle-icon>
