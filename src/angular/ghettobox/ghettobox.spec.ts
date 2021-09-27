@@ -37,7 +37,6 @@ describe('SbbGhettobox', () => {
 
     it('should bind proper accessibility attributes', () => {
       expect(debugElement.nativeElement.getAttribute('role')).toEqual('alert');
-      expect(debugElement.nativeElement.getAttribute('tabindex')).toEqual('0');
     });
 
     it('should have the info default icon', () => {

@@ -249,6 +249,10 @@ for linking to another site/page.
 describes its purpose.
 The API of `SbbGhettoboxService` has also been changed and simplified.
 
+Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
+which is no longer supported. The ghettobox component now provides an `indicatorIcon` input, for which
+[any supported](angular/icon-overview) (or self registered) icon can be used.
+
 See the documentation for details.
 
 [Documentation](angular/components/ghettobox)
