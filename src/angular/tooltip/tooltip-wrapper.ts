@@ -66,13 +66,13 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase {
 
   @ViewChild(SbbTooltip, { static: true }) _tooltip!: SbbTooltip;
 
-  /** Opens the tooltip. */
-  open() {
+  /** Shows the tooltip. */
+  show() {
     this._tooltip.show(0);
   }
 
-  /** Closes the tooltip. */
-  close() {
+  /** Hides the tooltip. */
+  hide() {
     this._tooltip.hide(0);
   }
 

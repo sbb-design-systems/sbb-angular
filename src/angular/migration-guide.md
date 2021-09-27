@@ -427,6 +427,10 @@ The search component has been refactored as a wrapper for an input field.
 </sbb-search>
 ```
 
+Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
+which is no longer supported. The search component now provides an `indicatorIcon` input, for which
+[any supported](angular/icon-overview) (or self registered) icon can be used.
+
 [Documentation](angular/components/search)
 
 ### Select
@@ -599,6 +603,11 @@ as content when the option was selected. This content now needs to be wrapped in
 ### Tooltip
 
 `sbb-tooltip` has been refactored to internally use `sbbTooltip`. `SbbTooltipComponent` has been
-renamed to `SbbTooltipWrapper`.
+renamed to `SbbTooltipWrapper` and its methods `open` and `close` have been renamed to `show` and
+`hide` to align with the directive usage.
+
+Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
+which is no longer supported. The tooltip component now provides an `indicatorIcon` input, for which
+[any supported](angular/icon-overview) (or self registered) icon can be used.
 
 [Documentation](angular/components/tooltip)

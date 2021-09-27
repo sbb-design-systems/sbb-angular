@@ -503,6 +503,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => this._detach());
 
+    // TODO: Check if https://github.com/angular/components/issues/23643 is resolved
     this._overlayRef
       .outsidePointerEvents()
       .pipe(takeUntil(this._destroyed))
@@ -717,6 +718,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   exportAs: 'sbbTooltip',
   host: {
     '[class.sbb-tooltip-trigger]': 'trigger === "click"',
+    '[attr.aria-expanded]': 'trigger === "click" ? _isTooltipVisible() : null',
   },
 })
 export class SbbTooltip extends _SbbTooltipBase<TooltipComponent> {
@@ -863,7 +865,6 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   _animationDone(event: AnimationEvent): void {
     const toState = event.toState as TooltipVisibility;
 
-    console.log(toState, this._config);
     if (toState === 'visible' && this.isVisible() && this._config) {
       this._trapFocus();
     }

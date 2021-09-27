@@ -54,7 +54,9 @@ ng_test_library(
     ),
     deps = [
         ":tooltip",
+        "//src/angular/button",
         "//src/angular/core/testing",
+        "//src/angular/icon/testing",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/platform-browser",
