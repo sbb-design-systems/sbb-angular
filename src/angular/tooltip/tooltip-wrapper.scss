@@ -37,7 +37,6 @@ $sbbTooltipArrowOffset: 7.2;
   color: $sbbColorGranite;
   float: right;
   position: absolute;
-  // padding + margin-top + border
   top: pxToEm($sbbTooltipPadding + $sbbTooltipArrowOffset + $sbbTooltipStandardBorderWidth);
   right: pxToEm($sbbTooltipPadding);
   line-height: 0;
@@ -55,7 +54,6 @@ $sbbTooltipArrowOffset: 7.2;
   }
 
   .sbb-tooltip-panel-above & {
-    // padding + border
     top: pxToEm($sbbTooltipPadding + $sbbTooltipStandardBorderWidth);
 
     html.sbb-lean & {

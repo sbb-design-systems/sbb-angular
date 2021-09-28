@@ -34,7 +34,7 @@ export class TooltipMigration extends RefactorMigration {
       this._tooltipMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon from icon "${icon.attribute.value}". ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/button -->'
+          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/tooltip -->'
       );
     }
     const [iconElement, ...iconElements] = element.findElements((n) =>
