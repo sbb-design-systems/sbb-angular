@@ -537,7 +537,7 @@ Alternatively the new element `<sbb-toggle-icon>` can be used to wrap an icon.
 **Previous**
 
 ```html
-<sbb-toggle-option label="Option 2" value="cat">
+<sbb-toggle-option label="Option 1" value="dog">
   <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
 </sbb-toggle-option>
 <sbb-toggle-option label="Option 2" value="cat">
@@ -548,7 +548,7 @@ Alternatively the new element `<sbb-toggle-icon>` can be used to wrap an icon.
 **New**
 
 ```html
-<sbb-toggle-option label="Option 2" value="cat" indicatorIcon="kom:arrows-right-left-small">
+<sbb-toggle-option label="Option 1" value="cat" indicatorIcon="kom:arrows-right-left-small">
 </sbb-toggle-option>
 <sbb-toggle-option label="Option 2" value="cat">
   <sbb-toggle-icon>
