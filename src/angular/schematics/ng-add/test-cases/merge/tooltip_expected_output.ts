@@ -15,7 +15,7 @@ import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
     <sbb-tooltip><!-- TODO: Unable to determine custom icon from "<sbb-icon-something>". Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/tooltip -->
       
     </sbb-tooltip>
-    <sbb-tooltip><!-- TODO: Unable to determine custom icon from icon "icon". Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/button -->Description</sbb-tooltip>
+    <sbb-tooltip><!-- TODO: Unable to determine custom icon from icon "icon". Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/tooltip -->Description</sbb-tooltip>
     <ng-template #icon><sbb-icon [svgIcon]="icon"></sbb-icon></ng-template>
   `,
 })

@@ -503,6 +503,14 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       .pipe(takeUntil(this._destroyed))
       .subscribe(() => this._detach());
 
+    this._overlayRef
+      .keydownEvents()
+      .pipe(
+        filter((e) => e.keyCode === ESCAPE),
+        takeUntil(this._destroyed)
+      )
+      .subscribe(() => this._tooltipInstance?._handleBodyInteraction());
+
     // TODO: Check if https://github.com/angular/components/issues/23643 is resolved
     this._overlayRef
       .outsidePointerEvents()

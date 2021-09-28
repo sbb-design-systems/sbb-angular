@@ -51,6 +51,11 @@ $sbbTooltipArrowOffset: 7.2;
     &:focus {
       border-color: transparent;
     }
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
   }
 
   .sbb-tooltip-panel-above & {
