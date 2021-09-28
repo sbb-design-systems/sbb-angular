@@ -1,0 +1,27 @@
+<sbb-toggle aria-label="Choose journey" [(ngModel)]="model">
+  <sbb-toggle-option label="Single Journey" subtitle="info text" value="SingleJourney">
+    <sbb-toggle-icon><sbb-icon svgIcon="kom:arrow-right-small"></sbb-icon></sbb-toggle-icon>
+    <sbb-toggle-details>
+      <sbb-form-field>
+        <sbb-label>Select date</sbb-label>
+        <sbb-datepicker>
+          <input sbbDateInput sbbInput type="text" />
+        </sbb-datepicker>
+      </sbb-form-field>
+    </sbb-toggle-details>
+  </sbb-toggle-option>
+  <sbb-toggle-option value="ReturnJourney">
+    <sbb-toggle-icon><sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon></sbb-toggle-icon>
+    <sbb-toggle-label>Single and return journey</sbb-toggle-label>
+    <sbb-toggle-details>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+    </sbb-toggle-details>
+  </sbb-toggle-option>
+</sbb-toggle>
+
+<h4>Model</h4>
+{{ model | json }}

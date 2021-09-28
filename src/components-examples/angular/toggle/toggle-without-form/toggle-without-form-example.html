@@ -1,0 +1,11 @@
+<sbb-toggle aria-label="Choose class" (change)="change($event)">
+  <sbb-toggle-option label="2nd class" subtitle="- CHF 5.60" [value]="{ secondClass: true }">
+  </sbb-toggle-option>
+  <sbb-toggle-option [value]="{ secondClass: false }">
+    <sbb-toggle-label>1st class</sbb-toggle-label>
+    <sbb-toggle-subtitle>+ CHF 39.00</sbb-toggle-subtitle>
+  </sbb-toggle-option>
+</sbb-toggle>
+
+<h4>Model</h4>
+{{ toggleValues | json }}

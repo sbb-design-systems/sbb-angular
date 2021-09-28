@@ -1,0 +1,26 @@
+<sbb-toggle aria-label="Choose journey" [formControl]="journey">
+  <sbb-toggle-option
+    label="Single Journey"
+    subtitle="Info text"
+    value="SingleJourney"
+    indicatorIcon="kom:arrow-right-small"
+  >
+  </sbb-toggle-option>
+  <sbb-toggle-option value="ReturnJourney">
+    <sbb-toggle-icon>
+      <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>
+    </sbb-toggle-icon>
+    <sbb-toggle-label>Single and return journey</sbb-toggle-label>
+    <sbb-toggle-subtitle>Another info text</sbb-toggle-subtitle>
+    <sbb-toggle-details>
+      <sbb-form-field label="Select date">
+        <sbb-datepicker>
+          <input sbbDateInput sbbInput type="text" />
+        </sbb-datepicker>
+      </sbb-form-field>
+    </sbb-toggle-details>
+  </sbb-toggle-option>
+</sbb-toggle>
+
+<h4>Model</h4>
+{{ journey.value | json }}

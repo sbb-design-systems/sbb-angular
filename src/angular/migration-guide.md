@@ -524,3 +524,54 @@ No changes.
 No changes.
 
 [Documentation](angular/components/time-input)
+
+### Toggle
+
+_Automatic migration available_
+
+Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
+which is no longer supported. The toggle option component now provides an `indicatorIcon` input, for which
+[any supported](angular/icon-overview) (or self registered) icon can be used.
+Alternatively the new element `<sbb-toggle-icon>` can be used to wrap an icon.
+
+**Previous**
+
+```html
+<sbb-toggle-option label="Option 1" value="dog">
+  <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
+</sbb-toggle-option>
+<sbb-toggle-option label="Option 2" value="cat">
+  <sbb-icon svgIcon="kom:arrows-right-left-small" *sbbIcon></sbb-icon>
+</sbb-toggle-option>
+```
+
+**New**
+
+```html
+<sbb-toggle-option label="Option 1" value="cat" indicatorIcon="kom:arrows-right-left-small">
+</sbb-toggle-option>
+<sbb-toggle-option label="Option 2" value="cat">
+  <sbb-toggle-icon>
+    <sbb-icon svgIcon="kom:arrows-right-left-small"></sbb-icon>
+  </sbb-toggle-icon>
+</sbb-toggle-option>
+```
+
+It was also previously possible to have any content inside `<sbb-toggle-option>` appear
+as content when the option was selected. This content now needs to be wrapped in `<sbb-toggle-details>`.
+
+**Previous**
+
+```html
+<sbb-toggle-option label="Option 1" value="dog"> Example </sbb-toggle-option>
+```
+
+**New**
+
+```html
+<sbb-toggle-option label="Option 1" value="dog">
+  <sbb-toggle-details>Example</sbb-toggle-details>
+</sbb-toggle-option>
+```
+
+[Documentation](angular/components/toggle)
