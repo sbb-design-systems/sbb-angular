@@ -1,0 +1,39 @@
+<ng-content select="sbb-ghettobox"></ng-content>
+<ng-template #outlet></ng-template>
+
+<ng-template #standard let-connector="connector">
+  <sbb-ghettobox
+    #ghettobox
+    [indicatorIcon]="connector.svgIcon"
+    (dismissed)="connector._handleDismissed()"
+    >{{ connector.message }}</sbb-ghettobox
+  >
+</ng-template>
+<ng-template #routerLink let-connector="connector">
+  <a
+    sbbGhettobox
+    #ghettobox
+    [indicatorIcon]="connector.svgIcon"
+    [routerLink]="connector.routerLink.routerLink"
+    [queryParams]="connector.routerLink.queryParams"
+    [fragment]="connector.routerLink.fragment"
+    [queryParamsHandling]="connector.routerLink.queryParamsHandling"
+    [preserveFragment]="connector.routerLink.preserveFragment"
+    [skipLocationChange]="connector.routerLink.skipLocationChange"
+    [replaceUrl]="connector.routerLink.replaceUrl"
+    [state]="connector.routerLink.state"
+    [relativeTo]="connector.routerLink.relativeTo"
+    (dismissed)="connector._handleDismissed()"
+    >{{ connector.message }}</a
+  >
+</ng-template>
+<ng-template #externalLink let-connector="connector">
+  <a
+    sbbGhettobox
+    #ghettobox
+    [href]="connector.link"
+    [indicatorIcon]="connector.svgIcon"
+    (dismissed)="connector._handleDismissed()"
+    >{{ connector.message }}</a
+  >
+</ng-template>

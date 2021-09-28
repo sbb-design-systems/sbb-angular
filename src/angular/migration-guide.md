@@ -238,6 +238,26 @@ with `SbbInputModule`.
 
 [Input Documentation](angular/components/input)
 
+### Ghettobox
+
+_Partial migration available_
+
+The ghettobox module has been majorly refactored. The `routerLink` support for `<sbb-ghettobox>`
+has been replaced with the `<a sbbGhettobox>` selector, which allows improved configuration
+for linking to another site/page.
+The output `afterDelete` on `<sbb-ghettobox>` has been replaced with the `dismissed` output.
+`<sbb-ghettobox-container>` has been replaced with `<sbb-ghettobox-outlet>`, which more accurately
+describes its purpose.
+The API of `SbbGhettoboxService` has also been changed and simplified.
+
+Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
+which is no longer supported. The ghettobox component now provides an `indicatorIcon` input, for which
+[any supported](angular/icon-overview) (or self registered) icon can be used.
+
+See the documentation for details.
+
+[Documentation](angular/components/ghettobox)
+
 ### Icon
 
 _Automatic migration available_

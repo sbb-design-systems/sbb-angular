@@ -113,6 +113,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbFormFieldModule',
           replaceWith: 'SbbInputModule',
         },
+        {
+          replace: 'SbbGhettoboxContainer',
+          replaceWith: 'SbbGhettoboxOutlet',
+        },
       ],
     },
   ],

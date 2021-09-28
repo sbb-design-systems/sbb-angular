@@ -216,6 +216,20 @@ export class MigrationElement {
     );
   }
 
+  rename(tagName: string, attributeSelector?: string) {
+    const startTagPosition = this.resource.start + this.location.startTag.startOffset + 1;
+    const tagLength = this.element.tagName.length;
+    this.recorder.remove(startTagPosition, tagLength);
+    this.recorder.insertRight(
+      startTagPosition,
+      attributeSelector ? `${tagName} ${attributeSelector}` : tagName
+    );
+
+    const endTagPosition = this.resource.start + this.location.endTag.startOffset + 2;
+    this.recorder.remove(endTagPosition, tagLength);
+    this.recorder.insertRight(endTagPosition, tagName);
+  }
+
   /** Prepends the given content before this element. */
   prepend(content: string) {
     this.recorder.insertLeft(this.resource.start + this.location.startOffset, content);

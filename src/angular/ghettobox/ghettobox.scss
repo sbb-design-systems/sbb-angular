@@ -1,0 +1,103 @@
+@import '../styles/common';
+
+.sbb-ghettobox {
+  display: flex;
+  background-color: $sbbColorIron;
+  color: $sbbColorWhite;
+  padding: pxToRem(16);
+  justify-content: center;
+  align-items: flex-start;
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem($sizeLineHeightDefault);
+  outline: none;
+
+  @include mq($from: tablet) {
+    padding: pxToRem(36) pxToRem(24) pxToRem(36) pxToRem(48);
+  }
+  @include mq($from: desktop) {
+    padding: pxToEm(40) pxToEm(56);
+  }
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem($sizeLineHeightDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
+    }
+  }
+
+  &.sbb-ghettobox-link {
+    text-decoration: none;
+    transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:active {
+      background-color: $sbbColorBlack;
+      color: $sbbColorWhite;
+    }
+  }
+}
+
+.sbb-ghettobox-icon,
+.sbb-ghettobox-close {
+  flex: 0 0 pxToRem(24);
+  line-height: 0;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      flex: 1 1 pxToRem(36);
+      text-align: right;
+    }
+    @include mq($from: desktop5k) {
+      flex-basis: pxToRem(48);
+    }
+  }
+}
+
+.sbb-ghettobox-content {
+  flex: 1 1 auto;
+  margin: pxToRem(-2) pxToRem(12) pxToRem(0);
+
+  html:not(.sbb-lean) & {
+    @include mq($from: tablet) {
+      margin: pxToRem(-2) pxToEm(24) pxToRem(0);
+    }
+    @include mq($from: desktop4k) {
+      flex: 0 0 50%;
+    }
+  }
+}
+
+.sbb-ghettobox-content-link-icon {
+  vertical-align: middle;
+  margin-left: pxToEm(3);
+}
+
+.sbb-ghettobox-close-button {
+  cursor: pointer;
+  color: $sbbColorWhite;
+  width: pxToEm(24);
+  height: pxToEm(24);
+
+  @include mq($from: desktop) {
+    align-self: center;
+  }
+}
+
+.sbb-ghettobox-close-button .sbb-icon {
+  padding: pxToEm(3);
+  border: $sbbColorWhite solid pxToEm(1);
+  border-radius: 50%;
+}
+
+.sbb-ghettobox a {
+  color: $sbbColorWhite;
+}
+
+.sbb-ghettobox-outlet {
+  display: block;
+}

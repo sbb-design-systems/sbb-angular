@@ -7,6 +7,7 @@ import { ButtonMigration } from './merge-refactor/button-migration';
 import { CheckboxPanelMigration } from './merge-refactor/checkbox-panel-migration';
 import { ChipsMigration } from './merge-refactor/chips-migration';
 import { FormFieldMigration } from './merge-refactor/form-field-migration';
+import { GhettoboxMigration } from './merge-refactor/ghettobox-migration';
 import { LinkMigration } from './merge-refactor/link-migration';
 import { PaginationMigration } from './merge-refactor/pagination-migration';
 import { ProcessflowMigration } from './merge-refactor/processflow-migration';
@@ -29,6 +30,7 @@ export class MergeRefactorMigration extends Migration<null, DevkitContext> {
     new CheckboxPanelMigration(this),
     new ChipsMigration(this),
     new FormFieldMigration(this),
+    new GhettoboxMigration(this),
     new LinkMigration(this),
     new PaginationMigration(this),
     new ProcessflowMigration(this),

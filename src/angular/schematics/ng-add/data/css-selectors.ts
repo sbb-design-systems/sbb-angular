@@ -1,4 +1,4 @@
-import { VersionChanges } from '@angular/cdk/schematics';
+import { TargetVersion, VersionChanges } from '@angular/cdk/schematics';
 
 export interface SbbAngularCssSelectorData {
   /** The CSS selector to replace. */
@@ -19,4 +19,19 @@ export interface SbbAngularCssSelectorData {
   };
 }
 
-export const cssSelectors: VersionChanges<SbbAngularCssSelectorData> = {};
+export const cssSelectors: VersionChanges<SbbAngularCssSelectorData> = {
+  ['merge' as TargetVersion]: [
+    {
+      pr: '',
+      changes: [
+        {
+          replace: 'sbb-ghettobox-container',
+          replaceWith: 'sbb-ghettobox-outlet',
+          replaceIn: {
+            stylesheet: true,
+          },
+        },
+      ],
+    },
+  ],
+};

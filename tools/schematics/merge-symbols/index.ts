@@ -43,6 +43,7 @@ export function mergeSymbols(): Rule {
       SbbLightboxFooter: 'lightbox',
       SbbProcessflowStep: 'processflow',
       SbbTagChange: 'tag',
+      SbbGhettoboxContainer: 'ghettobox',
     };
 
     extractExportsForModule('src/angular/');
