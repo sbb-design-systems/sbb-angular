@@ -6,8 +6,8 @@ import { SbbTooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbDialogModule } from '@sbb-esta/angular/dialog';
-import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbLoadingModule } from '@sbb-esta/angular/loading';
 import { SbbPaginationModule } from '@sbb-esta/angular/pagination';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
@@ -38,7 +38,7 @@ import { IconOverviewComponent } from './icon-overview/icon-overview.component';
     SbbPaginationModule,
     SbbLoadingModule,
     SbbTooltipModule,
-    SbbFormFieldModule,
+    SbbInputModule,
     SbbSelectModule,
     SbbIconModule,
     SbbDialogModule,
