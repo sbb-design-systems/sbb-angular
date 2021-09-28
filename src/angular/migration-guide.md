@@ -245,6 +245,7 @@ _Partial migration available_
 The ghettobox module has been majorly refactored. The `routerLink` support for `<sbb-ghettobox>`
 has been replaced with the `<a sbbGhettobox>` selector, which allows improved configuration
 for linking to another site/page.
+The output `afterDelete` on `<sbb-ghettobox>` has been replaced with the `dismissed` output.
 `<sbb-ghettobox-container>` has been replaced with `<sbb-ghettobox-outlet>`, which more accurately
 describes its purpose.
 The API of `SbbGhettoboxService` has also been changed and simplified.
