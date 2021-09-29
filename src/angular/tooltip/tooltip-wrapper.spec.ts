@@ -1,3 +1,4 @@
+import { ESCAPE } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, ViewChild } from '@angular/core';
 import {
@@ -15,6 +16,7 @@ import { SbbButtonModule } from '@sbb-esta/angular/button';
 import {
   createMouseEvent,
   dispatchEvent,
+  dispatchKeyboardEvent,
   dispatchMouseEvent,
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
@@ -57,7 +59,7 @@ describe('SbbTooltipWrapper', () => {
       expect(buttonElement.classList.contains('sbb-tooltip-trigger')).toBeTrue();
       expect(buttonElement.classList.contains('sbb-tooltip-trigger-active')).toBeTrue();
       expect(buttonElement.attributes.getNamedItem('aria-expanded')?.value).toBe('true');
-      expect(component.t1._tooltip._isTooltipVisible()).toBeTrue();
+      expect(component.tooltip._tooltip._isTooltipVisible()).toBeTrue();
     }));
 
     it('should hide the tooltip by clicking outside the tooltip', fakeAsync(() => {
@@ -74,7 +76,7 @@ describe('SbbTooltipWrapper', () => {
       expect(buttonElement.classList.contains('sbb-tooltip-trigger')).toBeTrue();
       expect(buttonElement.classList.contains('sbb-tooltip-trigger-active')).toBeFalse();
       expect(buttonElement.attributes.getNamedItem('aria-expanded')?.value).toBe('false');
-      expect(component.t1._tooltip._isTooltipVisible()).toBeFalse();
+      expect(component.tooltip._tooltip._isTooltipVisible()).toBeFalse();
     }));
 
     it('should close tooltip by internal button', () => {
@@ -90,7 +92,7 @@ describe('SbbTooltipWrapper', () => {
       dispatchMouseEvent(buttonInTooltip!, 'click');
       fixture.detectChanges();
 
-      expect(component.t1._tooltip._isTooltipVisible()).toBeFalse();
+      expect(component.tooltip._tooltip._isTooltipVisible()).toBeFalse();
     });
 
     it('should close tooltip programmatically', fakeAsync(() => {
@@ -99,13 +101,13 @@ describe('SbbTooltipWrapper', () => {
       buttonElement.click();
       fixture.detectChanges();
       flush();
-      expect(component.t1._tooltip._isTooltipVisible()).toBeTrue();
+      expect(component.tooltip._tooltip._isTooltipVisible()).toBeTrue();
 
-      component.t1.hide();
+      component.tooltip.hide();
       fixture.detectChanges();
       flush();
 
-      expect(component.t1._tooltip._isTooltipVisible()).toBeFalse();
+      expect(component.tooltip._tooltip._isTooltipVisible()).toBeFalse();
     }));
 
     it('should not close tooltip on mouse events inside overlay', fakeAsync(() => {
@@ -124,7 +126,7 @@ describe('SbbTooltipWrapper', () => {
       fixture.detectChanges();
       flush();
 
-      expect(component.t1._tooltip._isTooltipVisible()).toBeTrue();
+      expect(component.tooltip._tooltip._isTooltipVisible()).toBeTrue();
     }));
 
     it('should not close tooltip when releasing mouse outside overlay', fakeAsync(() => {
@@ -143,7 +145,20 @@ describe('SbbTooltipWrapper', () => {
       fixture.detectChanges();
       flush();
 
-      expect(component.t1._tooltip._isTooltipVisible()).toBeTrue();
+      expect(component.tooltip._tooltip._isTooltipVisible()).toBeTrue();
+    }));
+
+    it('should close the tooltip on ESC', fakeAsync(() => {
+      component.tooltip.show();
+      tick();
+      fixture.detectChanges();
+
+      const buttonInTooltip = overlayContainer.getContainerElement().querySelector('button')!;
+      dispatchKeyboardEvent(buttonInTooltip, 'keydown', ESCAPE);
+      fixture.detectChanges();
+      flush();
+
+      expect(component.tooltip._tooltip._isTooltipVisible()).toBeFalse();
     }));
   });
 
@@ -197,7 +212,7 @@ describe('SbbTooltipWrapper', () => {
   `,
 })
 class TooltipTestComponent {
-  @ViewChild('t1', { static: true }) t1: SbbTooltipWrapper;
+  @ViewChild('t1', { static: true }) tooltip: SbbTooltipWrapper;
 }
 
 @Component({
