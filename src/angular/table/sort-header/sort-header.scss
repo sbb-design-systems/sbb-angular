@@ -21,6 +21,14 @@ $sbb-sort-header-arrow-container-size: 24;
       bottom: 0;
     }
   }
+
+  &:hover .sbb-sort-header-container {
+    color: $sbbColorRed125;
+  }
+}
+
+.sbb-sort-header-sorted {
+  color: $sbbColorBlack;
 }
 
 .sbb-sort-header-container {
@@ -65,6 +73,7 @@ $sbb-sort-header-arrow-container-size: 24;
   .sbb-sort-header-position-before & {
     margin: pxToEm(-1) pxToEm($sbb-sort-header-arrow-margin) pxToEm(-1) pxToEm(-8);
   }
+
   svg {
     width: 100%;
     height: 100%;

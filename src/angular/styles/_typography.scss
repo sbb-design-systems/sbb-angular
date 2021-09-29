@@ -13,13 +13,6 @@
 }
 
 @font-face {
-  font-family: 'SBBWeb Condensed Bold';
-  src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Condensed-Bold.woff2') format('woff2'),
-    url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Condensed-Bold.woff') format('woff');
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'SBBWeb Light';
   src: url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff2') format('woff2'),
     url('https://cdn.app.sbb.ch/fonts/v1_6_subset/SBBWeb-Light.woff') format('woff');
@@ -1829,46 +1822,46 @@ $tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
 $tableCaptionColor: $sbbColorGrey;
 
 .sbb-table {
+  border-spacing: 0;
+  width: 100%;
+  font-size: pxToRem($sizeFontDefault);
+
+  thead {
+    text-align: left;
+  }
+
   th,
   td {
     color: $sbbColorBlack;
-    font-size: pxToRem($sizeFontDefault);
-    line-height: pxToRem($sizeLineHeightDefault);
     vertical-align: top;
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        font-size: pxToRem($sizeFontDefault4k);
-        line-height: pxToRem($sizeLineHeightDefault4k);
-      }
-      @include mq($from: desktop5k) {
-        font-size: pxToRem($sizeFontDefault5k);
-        line-height: pxToRem($sizeLineHeightDefault5k);
-      }
-    }
-
-    html.sbb-lean & {
-      line-height: pxToRem($sizeLineHeightDefaultLean);
-    }
   }
 
   th {
     font-family: $fontSbbBold;
     font-weight: 400;
 
-    html.sbb-lean & {
-      color: $sbbColorGranite;
-    }
-
     .sbb-table-header-subtitle {
       font-family: $fontSbbRoman;
     }
+
+    // Selector is placed here to be specific enough
+    &.sbb-header-cell.sbb-table-filter {
+      font-family: $fontSbbRoman;
+      font-weight: normal;
+      padding-top: 0;
+
+      input {
+        width: 100%;
+      }
+
+      .sbb-select {
+        display: block;
+      }
+    }
   }
 
-  border-spacing: 0;
-  width: 100%;
-
   html:not(.sbb-lean) & {
+    line-height: pxToRem($sizeLineHeightDefault);
     padding-bottom: $tableTbodyPadding;
 
     thead {
@@ -1923,47 +1916,20 @@ $tableCaptionColor: $sbbColorGrey;
 
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem($sizeLineHeightDefault4k);
     }
     @include mq($from: desktop5k) {
       font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
     }
   }
 
   html.sbb-lean & {
+    line-height: pxToRem($sizeLineHeightDefaultLean);
     border-collapse: collapse;
 
-    thead {
-      text-align: left;
-      background-color: transparent;
-
-      border-bottom: pxToRem(1) solid $sbbColorAluminum;
-    }
-
-    tbody {
-      > tr {
-        background-color: $sbbColorWhite;
-        border-bottom: pxToRem(1) solid $sbbColorAluminum;
-
-        &.sbb-table-row-selected {
-          background-color: $sbbColorCloud;
-          border-bottom-color: $sbbColorBlack;
-
-          td {
-            // Reach a solid line in Chrome and Firefox
-            border-bottom: pxToRem(1) solid $sbbColorBlack;
-          }
-        }
-
-        &:hover {
-          background-color: $sbbColorMilk;
-          border-bottom-color: $sbbColorRed125;
-
-          td {
-            // Reach a solid line in Chrome and Firefox
-            border-bottom: pxToRem(1) solid $sbbColorRed125;
-          }
-        }
-      }
+    th {
+      color: $sbbColorGranite;
     }
 
     thead,
@@ -1972,7 +1938,7 @@ $tableCaptionColor: $sbbColorGrey;
       > tr {
         th,
         td {
-          padding: pxToRem(6) $tableTbodyPadding pxToRem(7);
+          padding: pxToRem(6) $tableTbodyPadding pxToRem(6);
           border-right: pxToRem(1) solid $sbbColorAluminum;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -1993,11 +1959,54 @@ $tableCaptionColor: $sbbColorGrey;
         }
       }
     }
+
+    thead {
+      background-color: transparent;
+      border-bottom: pxToRem(1) solid $sbbColorGraphite;
+
+      > tr {
+        th,
+        td {
+          border-right: pxToRem(1) solid $sbbColorGraphite;
+        }
+      }
+    }
+
+    tbody {
+      > tr {
+        background-color: $sbbColorWhite;
+        border-bottom: pxToRem(1) solid $sbbColorAluminum;
+
+        &.sbb-table-row-selected {
+          background-color: $sbbColorCloud;
+          border-bottom-color: $sbbColorBlack;
+
+          td {
+            // By assigning an additional border-bottom to td, we can reach a solid line in Chrome and Firefox
+            border-bottom: pxToRem(1) solid $sbbColorBlack;
+          }
+        }
+
+        &:hover {
+          background-color: $sbbColorMilk;
+          border-bottom-color: $sbbColorRed125;
+
+          td {
+            // By assigning an additional border-bottom to td, we can reach a solid line in Chrome and Firefox
+            border-bottom: pxToRem(1) solid $sbbColorRed125;
+          }
+        }
+      }
+    }
   }
 
   caption {
     font-size: pxToRem(13);
     color: $tableCaptionColor;
+  }
+
+  .sbb-selection-item {
+    vertical-align: top;
   }
 }
 
@@ -2026,7 +2035,7 @@ $tableCaptionColor: $sbbColorGrey;
 }
 
 .sbb-table-divider-title {
-  font-family: $fontSbbCondensedBold;
+  font-family: $fontSbbBold;
 }
 
 // ----------------------------------------------------------------------------------------------------

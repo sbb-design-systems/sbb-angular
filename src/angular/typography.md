@@ -4,7 +4,7 @@
 
 SBB Angular library sets basic global typography, display and link styles.
 
-- Use the custom SBB Font stack. `SBBWeb Roman`, `SBBWeb Bold`, `SBBWeb Condensed Bold`, `SBBWeb Light`, `SBBWeb Thin` and `SBBWeb Ultralight`
+- Use the custom SBB Font stack. `SBBWeb Roman`, `SBBWeb Bold`, `SBBWeb Light`, `SBBWeb Thin` and `SBBWeb Ultralight`
 - The html base font is a `SBBWeb Roman` size `93.75% | 15px` with a line height of `1.7`
 - Default body background color is `#FFFFFF`
 
