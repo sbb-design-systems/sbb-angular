@@ -30,7 +30,6 @@ export class SbbRecycleRows {}
   selector: 'sbb-table, table[sbb-table]',
   exportAs: 'sbbTable',
   template: CDK_TABLE_TEMPLATE,
-  styleUrls: ['table.css'],
   host: {
     class: 'sbb-table',
     '[class.sbb-table-fixed-layout]': 'fixedLayout',

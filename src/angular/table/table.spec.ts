@@ -14,8 +14,8 @@ import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbPaginationModule, SbbPaginator } from '@sbb-esta/angular/pagination';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { SbbSortHeader } from './sort-header/sort-header';
 import { SbbSort } from './sort/sort';
+import { SbbSortHeader } from './sort/sort-header';
 import { SbbTableModule } from './table.module';
 import { SbbTable } from './table/table';
 import { SbbTableDataSource } from './table/table-data-source';

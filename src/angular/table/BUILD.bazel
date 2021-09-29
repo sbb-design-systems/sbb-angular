@@ -15,7 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":sort-header/sort-header.css"] + glob(["**/*.html"]),
+    assets = [":sort/sort-header.css"] + glob(["**/*.html"]),
     deps = [
         "//src:dev_mode_types",
         "//src/angular/core",
@@ -29,8 +29,8 @@ ng_module(
 )
 
 sass_binary(
-    name = "sort_header_sort_header_scss",
-    src = "sort-header/sort-header.scss",
+    name = "sort_sort_header_scss",
+    src = "sort/sort-header.scss",
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],

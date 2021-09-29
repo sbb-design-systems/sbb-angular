@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { SbbColumnDef } from '../table-cell/table-cell';
+import { SbbColumnDef } from './cell';
 
 /**
  * Column that simply shows text content for the header and row cells. Assumes that the table

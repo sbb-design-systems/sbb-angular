@@ -2,8 +2,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SbbSortHeader } from './sort-header/sort-header';
 import { SbbSort } from './sort/sort';
+import { SbbSortHeader } from './sort/sort-header';
 import {
   SbbCell,
   SbbCellDef,
@@ -12,7 +12,7 @@ import {
   SbbFooterCellDef,
   SbbHeaderCell,
   SbbHeaderCellDef,
-} from './table-cell/table-cell';
+} from './table/cell';
 import {
   SbbFooterRow,
   SbbFooterRowDef,
@@ -20,9 +20,9 @@ import {
   SbbHeaderRowDef,
   SbbRow,
   SbbRowDef,
-} from './table-row/table-row';
+} from './table/row';
 import { SbbRecycleRows, SbbTable } from './table/table';
-import { SbbTextColumn } from './text-column/text-column';
+import { SbbTextColumn } from './table/text-column';
 
 const EXPORTED_DECLARATIONS = [
   // Table

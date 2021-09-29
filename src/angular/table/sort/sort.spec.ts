@@ -12,7 +12,6 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { SbbSortHeader } from '../sort-header/sort-header';
 import { SbbTableModule } from '../table.module';
 
 import { SbbSort, SbbSortState, SBB_SORT_DEFAULT_OPTIONS } from './sort';
@@ -23,6 +22,7 @@ import {
   getSortHeaderNotContainedWithinSortError,
   getSortInvalidDirectionError,
 } from './sort-errors';
+import { SbbSortHeader } from './sort-header';
 
 describe('SbbSort', () => {
   describe('without default options', () => {
