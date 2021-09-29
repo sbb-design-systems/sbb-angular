@@ -54,6 +54,20 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
             classes: ['SbbGhettoboxService'],
           },
         },
+        {
+          replace: 'open',
+          replaceWith: 'show',
+          limitedTo: {
+            classes: ['SbbTooltipWrapper', 'SbbTooltipComponent'],
+          },
+        },
+        {
+          replace: 'close',
+          replaceWith: 'hide',
+          limitedTo: {
+            classes: ['SbbTooltipWrapper', 'SbbTooltipComponent'],
+          },
+        },
       ],
     },
   ],

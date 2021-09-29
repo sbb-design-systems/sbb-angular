@@ -17,6 +17,7 @@ import { SearchMigration } from './merge-refactor/search-migration';
 import { TabsMigration } from './merge-refactor/tabs-migration';
 import { TagMigration } from './merge-refactor/tag-migration';
 import { ToggleMigration } from './merge-refactor/toggle-migration';
+import { TooltipMigration } from './merge-refactor/tooltip-migration';
 
 /**
  * Migration that applies all required changes from the merge refactoring.
@@ -39,6 +40,7 @@ export class MergeRefactorMigration extends Migration<null, DevkitContext> {
     new TabsMigration(this),
     new TagMigration(this),
     new ToggleMigration(this),
+    new TooltipMigration(this),
   ];
 
   /** Method that will be called for each Angular template in the program. */

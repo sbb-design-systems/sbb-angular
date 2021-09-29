@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SbbTooltipModule } from '@sbb-esta/angular-public/tooltip';
 import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
@@ -9,6 +8,7 @@ import { SbbDatepickerModule } from '@sbb-esta/angular/datepicker';
 import { SbbInputModule } from '@sbb-esta/angular/input';
 import { SbbSelectModule } from '@sbb-esta/angular/select';
 import { SbbTimeInputModule } from '@sbb-esta/angular/time-input';
+import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 
 import { FormFieldDatepickerExample } from './form-field-datepicker/form-field-datepicker-example';
 import { FormFieldDirtyErrorStateExample } from './form-field-dirty-error-state/form-field-dirty-error-state-example';

@@ -20,7 +20,6 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
-        "//src/angular-business/tooltip",
         "//src/angular/button",
         "//src/angular/checkbox",
         "//src/angular/dialog",
@@ -29,6 +28,7 @@ ng_module(
         "//src/angular/loading",
         "//src/angular/pagination",
         "//src/angular/select",
+        "//src/angular/tooltip",
         "//src/showcase-merge/app/shared",
         "//src/showcase-merge/app/shared/component-viewer",
         "@npm//@angular/cdk",

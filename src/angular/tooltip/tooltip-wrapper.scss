@@ -1,0 +1,72 @@
+@import '../styles/common';
+
+$sbbTooltipPadding: 23;
+$sbbTooltipPaddingLean: 8;
+$sbbTooltipStandardBorderWidth: 2;
+$sbbTooltipArrowOffset: 7.2;
+
+.sbb-tooltip-content-close-button {
+  padding-right: pxToEm(48);
+
+  html.sbb-lean & {
+    padding-right: pxToRem(40);
+  }
+}
+
+.sbb-tooltip-trigger,
+.sbb-tooltip-icon {
+  line-height: 0;
+  cursor: pointer;
+}
+
+.sbb-tooltip-icon:active,
+.sbb-tooltip-icon:hover,
+.sbb-tooltip-icon:focus,
+.sbb-tooltip-trigger:active,
+.sbb-tooltip-trigger:hover,
+.sbb-tooltip-trigger:focus,
+.sbb-tooltip-trigger-active {
+  outline: none;
+  color: $sbbColorRed125;
+  border-color: $sbbColorRed125;
+}
+
+.sbb-tooltip-close-icon {
+  border: pxToEm(1) solid $sbbColorStorm;
+  border-radius: 50%;
+  color: $sbbColorGranite;
+  float: right;
+  position: absolute;
+  top: pxToEm($sbbTooltipPadding + $sbbTooltipArrowOffset + $sbbTooltipStandardBorderWidth);
+  right: pxToEm($sbbTooltipPadding);
+  line-height: 0;
+
+  html.sbb-lean & {
+    top: pxToRem($sbbTooltipPaddingLean + $sbbTooltipArrowOffset);
+    right: pxToRem($sbbTooltipPaddingLean);
+    color: $sbbColorIron;
+
+    &,
+    &:hover,
+    &:focus {
+      border-color: transparent;
+    }
+
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+  }
+
+  .sbb-tooltip-panel-above & {
+    top: pxToEm($sbbTooltipPadding + $sbbTooltipStandardBorderWidth);
+
+    html.sbb-lean & {
+      top: pxToRem($sbbTooltipPaddingLean);
+    }
+  }
+
+  .sbb-tooltip-trigger-hover & {
+    display: none;
+  }
+}

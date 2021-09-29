@@ -1,0 +1,12 @@
+<p>
+  <sbb-tooltip #tooltip>
+    <div>This is a tooltip with a button inside.</div>
+    <button type="button" sbb-secondary-button (click)="tooltip.hide()">Hide tooltip</button>
+  </sbb-tooltip>
+</p>
+<p>
+  <sbb-tooltip>
+    <div>This is another tooltip with a custom link.</div>
+    <a href="#" sbb-link>I'm a link</a>
+  </sbb-tooltip>
+</p>

@@ -6,7 +6,7 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "form-field",
+    name = "tooltip",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
@@ -14,12 +14,8 @@ ng_module(
     assets = glob(["**/*.html"]),
     deps = [
         "//src/angular/button",
-        "//src/angular/checkbox",
-        "//src/angular/core",
-        "//src/angular/datepicker",
+        "//src/angular/icon",
         "//src/angular/input",
-        "//src/angular/select",
-        "//src/angular/time-input",
         "//src/angular/tooltip",
         "@npm//@angular/common",
         "@npm//@angular/core",

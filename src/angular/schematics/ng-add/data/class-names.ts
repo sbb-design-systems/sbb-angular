@@ -117,6 +117,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbGhettoboxContainer',
           replaceWith: 'SbbGhettoboxOutlet',
         },
+        {
+          replace: 'SbbTooltipComponent',
+          replaceWith: 'SbbTooltipWrapper',
+        },
       ],
     },
   ],

@@ -41,6 +41,7 @@ entry_points = [
     "textexpand",
     "time-input",
     "toggle",
+    "tooltip",
 ]
 
 # List of all non-testing entry-points of the Angular package.
@@ -99,4 +100,5 @@ ANGULAR_MARKDOWN_TARGETS = [
     "textexpand",
     "time-input",
     "toggle",
+    "tooltip",
 ]
