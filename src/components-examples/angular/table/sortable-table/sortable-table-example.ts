@@ -3,7 +3,7 @@ import { SbbSort, SbbTableDataSource } from '@sbb-esta/angular/table';
 
 /**
  * @title Sortable Table
- * @order 40
+ * @order 50
  */
 @Component({
   selector: 'sbb-sortable-table-example',

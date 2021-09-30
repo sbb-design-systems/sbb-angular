@@ -483,6 +483,19 @@ The group list constructor parameter of `SbbTableDataSource` was removed. Please
 `groupWithNext` flag of `sbbColumnDef` or `sbb-text-column` to achieve a grouped column styling.
 For more details consider the table documentation and examples.
 
+**Table Wrapper**
+
+As a new feature we provide the `<sbb-table-wrapper>` tag which can be used to make the table scrollable.
+If using sticky rows or columns, the `<sbb-table-wrapper>` is mandatory.
+
+```html
+<sbb-table-wrapper>
+  <table sbb-table>
+    ...
+  </table>
+</sbb-table-wrapper>
+```
+
 **Styling**
 
 Lean styles have slightly changed due to new specifications.

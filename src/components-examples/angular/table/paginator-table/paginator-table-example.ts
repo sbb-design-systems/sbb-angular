@@ -12,7 +12,7 @@ interface VehicleExampleItem {
 
 /**
  * @title Paginator Table
- * @order 50
+ * @order 60
  */
 @Component({
   selector: 'sbb-paginator-table-example',

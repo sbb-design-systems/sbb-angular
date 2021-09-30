@@ -3,7 +3,7 @@ import { SbbTableDataSource } from '@sbb-esta/angular/table';
 
 /**
  * @title Grouped Columns Table
- * @order 20
+ * @order 30
  */
 @Component({
   selector: 'sbb-grouped-columns-table-example',

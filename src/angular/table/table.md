@@ -251,3 +251,85 @@ export class SelectableTableExample {
   ...
 </table>
 ```
+
+### Sticky Rows and Columns
+
+By using `position: sticky` styling, the table's rows and columns can be fixed so that they do not
+leave the viewport even when scrolled. The table provides inputs that will automatically apply the
+correct CSS styling so that the rows and columns become sticky.
+
+To let display shadows if a user is scrolling when a cell becomes sticky,
+please use the `<sbb-table-wrapper>` tag around the `<table sbb-table>`.
+
+In order to fix the header row to the top of the scrolling viewport containing the table, you can
+add a `sticky` input to the `sbbHeaderRowDef`.
+
+```html
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource">
+    <!-- Column definitions... -->
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr sbb-row *sbbRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+```
+
+Similarly, this can also be applied to the table's footer row. Note that if you are using the native
+`<table>` and using Safari, then the footer will only stick if `sticky` is applied to all the
+rendered footer rows.
+
+```html
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource">
+    <!-- Column definitions... -->
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr sbb-row *sbbRowDef="let row; columns: displayedColumns;"></tr>
+    <tr sbb-footer-row *sbbFooterRowDef="displayedColumns; sticky: true"></tr>
+  </table>
+</div>
+```
+
+It is also possible to fix cell columns to the start or end of the horizontally scrolling viewport.
+To do this, add the `sticky` or `stickyEnd` directive to the `ng-container` column definition.
+
+```html
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource">
+
+    <!-- Name Column -->
+    <ng-container sbbColumnDef="name" sticky>
+      <th sbb-header-cell *sbbHeaderCellDef>Name</th>
+      <td sbb-cell *sbbCellDef="let element">{{element.name}}</td>
+    </ng-container>
+
+    <!-- Star Column -->
+    <ng-container sbbColumnDef="star" stickyEnd>
+      <th sbb-header-cell *sbbHeaderCellDef>Star</th>
+      <td sbb-cell *sbbCellDef="let element">{{element.star}}</td>
+    </ng-container>
+  </table>
+</div>
+```
+
+This feature is supported by Chrome, Firefox, Safari, and Edge. It is not supported in IE, but
+it does fail gracefully so that the rows simply do not stick.
+
+Note that on Safari mobile when using the flex-based table, a cell stuck in more than one direction
+will struggle to stay in the correct position as you scroll. For example, if a header row is stuck
+to the top and the first column is stuck, then the top-left-most cell will appear jittery as you
+scroll.
+
+### Table Wrapper
+
+The `<sbb-table-wrapper>` tag can be used to make a table horizontally scrollable
+or vertically scrollable if a fix height is provided.
+
+If using sticky rows or columns, the `<sbb-table-wrapper>` is mandatory.
+
+```html
+<sbb-table-wrapper>
+  <table sbb-table>
+    ...
+  </table>
+</sbb-table-wrapper>
+```

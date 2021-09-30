@@ -1,21 +1,23 @@
-<table sbb-table sbbSort [dataSource]="dataSource" sbbSortActive="letter" sbbSortDirection="asc">
-  <ng-container sbbColumnDef="letter">
-    <th sbb-header-cell sbb-sort-header="letter" *sbbHeaderCellDef>Letter</th>
-    <td sbb-cell *sbbCellDef="let element">{{ element.letter }}</td>
-  </ng-container>
-  <ng-container sbbColumnDef="number">
-    <th sbb-header-cell sbb-sort-header="number" *sbbHeaderCellDef>Number</th>
-    <td sbb-cell *sbbCellDef="let element">{{ element.number }}</td>
-  </ng-container>
-  <ng-container sbbColumnDef="word">
-    <th sbb-header-cell sbb-sort-header="word" *sbbHeaderCellDef>Word</th>
-    <td sbb-cell *sbbCellDef="let element">{{ element.word }}</td>
-  </ng-container>
-  <ng-container sbbColumnDef="date">
-    <th sbb-header-cell sbb-sort-header="date" *sbbHeaderCellDef>Date</th>
-    <td sbb-cell *sbbCellDef="let element">{{ element.date | date }}</td>
-  </ng-container>
+<sbb-table-wrapper>
+  <table sbb-table sbbSort [dataSource]="dataSource" sbbSortActive="letter" sbbSortDirection="asc">
+    <ng-container sbbColumnDef="letter">
+      <th sbb-header-cell sbb-sort-header="letter" *sbbHeaderCellDef>Letter</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.letter }}</td>
+    </ng-container>
+    <ng-container sbbColumnDef="number">
+      <th sbb-header-cell sbb-sort-header="number" *sbbHeaderCellDef>Number</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.number }}</td>
+    </ng-container>
+    <ng-container sbbColumnDef="word">
+      <th sbb-header-cell sbb-sort-header="word" *sbbHeaderCellDef>Word</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.word }}</td>
+    </ng-container>
+    <ng-container sbbColumnDef="date">
+      <th sbb-header-cell sbb-sort-header="date" *sbbHeaderCellDef>Date</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.date | date }}</td>
+    </ng-container>
 
-  <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
-  <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
-</table>
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</sbb-table-wrapper>

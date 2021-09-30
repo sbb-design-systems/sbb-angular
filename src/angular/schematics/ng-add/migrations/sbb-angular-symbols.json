@@ -527,6 +527,8 @@
   "SbbTableDataSourcePaginator": "table",
   "SbbTableFilter": "table",
   "SbbTableModule": "table",
+  "SbbTableWrapper": "table",
+  "SbbTableWrapperScrollOffset": "table",
   "SbbTextColumn": "table",
   "_SbbTabBodyBase": "tabs",
   "_SbbTabHeaderBase": "tabs",

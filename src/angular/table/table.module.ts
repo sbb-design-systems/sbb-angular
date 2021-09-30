@@ -22,12 +22,14 @@ import {
   SbbRowDef,
 } from './table/row';
 import { SbbRecycleRows, SbbTable } from './table/table';
+import { SbbTableWrapper } from './table/table-wrapper';
 import { SbbTextColumn } from './table/text-column';
 
 const EXPORTED_DECLARATIONS = [
   // Table
   SbbTable,
   SbbRecycleRows,
+  SbbTableWrapper,
 
   // Template defs
   SbbHeaderCellDef,

@@ -12,7 +12,7 @@ interface VehicleExampleItem {
 
 /**
  * @title Selectable Table
- * @order 60
+ * @order 70
  */
 @Component({
   selector: 'sbb-selectable-table-example',

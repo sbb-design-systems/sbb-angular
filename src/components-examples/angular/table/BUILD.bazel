@@ -20,6 +20,7 @@ ng_module(
         "//src/angular/button",
         "//src/angular/checkbox",
         "//src/angular/input",
+        "//src/angular/loading",
         "//src/angular/pagination",
         "//src/angular/radio-button",
         "//src/angular/select",

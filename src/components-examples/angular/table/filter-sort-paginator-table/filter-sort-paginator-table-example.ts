@@ -21,7 +21,7 @@ interface VehicleFilter extends SbbTableFilter {
 
 /**
  * @title Filter Sort Paginator Table
- * @order 70
+ * @order 80
  */
 @Component({
   selector: 'sbb-filter-sort-paginator-table-example',

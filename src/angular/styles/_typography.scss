@@ -1820,6 +1820,12 @@ $tableTheadCellPadding: pxToEm(29) pxToEm(16) pxToEm(30) pxToEm(16);
 $tableTbodyCellPaddingMobile: pxToEm(18) pxToEm(12) pxToEm(19) pxToEm(12);
 $tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
 $tableCaptionColor: $sbbColorGrey;
+$tableStickyShadowWidth: 8;
+
+.sbb-table-wrapper {
+  display: block;
+  overflow: auto;
+}
 
 .sbb-table {
   border-spacing: 0;
@@ -1833,6 +1839,7 @@ $tableCaptionColor: $sbbColorGrey;
   th,
   td {
     color: $sbbColorBlack;
+    background-color: $sbbColorWhite;
     vertical-align: top;
   }
 
@@ -1864,12 +1871,12 @@ $tableCaptionColor: $sbbColorGrey;
     line-height: pxToRem($sizeLineHeightDefault);
     padding-bottom: $tableTbodyPadding;
 
-    thead {
-      background-color: $tableTheadBgColor;
-
+    thead,
+    tfoot {
       > tr {
         th,
         td {
+          background-color: $tableTheadBgColor;
           padding: $tableTheadCellPaddingMobile;
 
           @include mq($from: tabletPortrait) {
@@ -1889,9 +1896,7 @@ $tableCaptionColor: $sbbColorGrey;
 
     tbody {
       > tr {
-        background-color: $tableBg;
-
-        &:nth-child(even) {
+        &:nth-child(even) td {
           background-color: $tableTbodyStripesBgColor;
         }
 
@@ -1926,10 +1931,19 @@ $tableCaptionColor: $sbbColorGrey;
 
   html.sbb-lean & {
     line-height: pxToRem($sizeLineHeightDefaultLean);
-    border-collapse: collapse;
 
     th {
       color: $sbbColorGranite;
+    }
+
+    tbody,
+    tfoot {
+      > tr {
+        th,
+        td {
+          border-right: pxToRem(1) solid $sbbColorAluminum;
+        }
+      }
     }
 
     thead,
@@ -1939,9 +1953,6 @@ $tableCaptionColor: $sbbColorGrey;
         th,
         td {
           padding: pxToRem(6) $tableTbodyPadding pxToRem(6);
-          border-right: pxToRem(1) solid $sbbColorAluminum;
-          overflow: hidden;
-          text-overflow: ellipsis;
 
           &.sbb-table-group-with-next {
             border-right: none;
@@ -1961,38 +1972,44 @@ $tableCaptionColor: $sbbColorGrey;
     }
 
     thead {
-      background-color: transparent;
-      border-bottom: pxToRem(1) solid $sbbColorGraphite;
+      > tr:last-child {
+        th,
+        td {
+          border-bottom: pxToRem(1) solid $sbbColorGraphite;
+        }
+      }
 
       > tr {
         th,
         td {
           border-right: pxToRem(1) solid $sbbColorGraphite;
+
+          &.sbb-table-sticky-border-elem-right {
+            .sbb-table-wrapper-offset-right &,
+            .sbb-table-wrapper-offset-both & {
+              border-left: pxToRem(1) solid $sbbColorGraphite;
+            }
+          }
         }
       }
     }
 
     tbody {
       > tr {
-        background-color: $sbbColorWhite;
-        border-bottom: pxToRem(1) solid $sbbColorAluminum;
+        td {
+          border-bottom: pxToRem(1) solid $sbbColorAluminum;
+        }
 
         &.sbb-table-row-selected {
-          background-color: $sbbColorCloud;
-          border-bottom-color: $sbbColorBlack;
-
           td {
-            // By assigning an additional border-bottom to td, we can reach a solid line in Chrome and Firefox
+            background-color: $sbbColorCloud;
             border-bottom: pxToRem(1) solid $sbbColorBlack;
           }
         }
 
         &:hover {
-          background-color: $sbbColorMilk;
-          border-bottom-color: $sbbColorRed125;
-
           td {
-            // By assigning an additional border-bottom to td, we can reach a solid line in Chrome and Firefox
+            background-color: $sbbColorMilk;
             border-bottom: pxToRem(1) solid $sbbColorRed125;
           }
         }
@@ -2028,6 +2045,59 @@ $tableCaptionColor: $sbbColorGrey;
   // and to avoid cases where user styles have a higher specificity.
   position: -webkit-sticky !important;
   position: sticky !important;
+}
+
+.sbb-table-sticky-border-elem-left,
+.sbb-table-sticky-border-elem-right {
+  &::after {
+    content: '';
+    transition: visibility, opacity 0.2s ease-in;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    width: pxToRem($tableStickyShadowWidth);
+    top: 0;
+    bottom: 0;
+  }
+}
+
+.sbb-table-sticky-border-elem-left {
+  .sbb-table-wrapper-offset-left &,
+  .sbb-table-wrapper-offset-both & {
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      background-image: linear-gradient(-270deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+      right: pxToRem(-$tableStickyShadowWidth - 1);
+    }
+  }
+}
+
+.sbb-table-sticky-border-elem-right {
+  .sbb-table-wrapper-offset-right &,
+  .sbb-table-wrapper-offset-both & {
+    html.sbb-lean & {
+      border-left: pxToRem(1) solid $sbbColorAluminum;
+    }
+
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      background-image: linear-gradient(270deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+      left: pxToRem(-$tableStickyShadowWidth - 1);
+    }
+  }
+}
+
+html.sbb-lean .sbb-table-sticky-border-elem-bottom {
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: pxToRem(-1);
+    border-top: pxToRem(1) solid $sbbColorAluminum;
+  }
 }
 
 .sbb-table-fixed-layout {

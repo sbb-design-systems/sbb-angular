@@ -1,4 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
+import { ViewportRuler } from '@angular/cdk/scrolling';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {
   ComponentFixture,
@@ -8,11 +9,13 @@ import {
   tick,
   waitForAsync,
 } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbPaginationModule, SbbPaginator } from '@sbb-esta/angular/pagination';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { SbbTableWrapper } from '@sbb-esta/angular/table/table/table-wrapper';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { SbbSort } from './sort/sort';
 import { SbbSortHeader } from './sort/sort-header';
@@ -21,6 +24,11 @@ import { SbbTable } from './table/table';
 import { SbbTableDataSource } from './table/table-data-source';
 
 describe('SbbTable', () => {
+  const viewPortRulerMockChangeTrigger = new Subject();
+  const viewportRulerMock = {
+    change: () => viewPortRulerMockChangeTrigger,
+  };
+
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
@@ -42,7 +50,10 @@ describe('SbbTable', () => {
           TableWithNgContainerRowTestComponent,
           NestedHtmlTableTestComponent,
           TableWithColumnGroupingTestComponent,
+          TableWithWrapperAndStickyColumnsTestComponent,
+          TableWithTwoStickyColumnsTestComponent,
         ],
+        providers: [ViewportRuler, { provide: ViewportRuler, useValue: viewportRulerMock }],
       }).compileComponents();
     })
   );
@@ -549,6 +560,106 @@ describe('SbbTable', () => {
       allHtml.querySelectorAll('td.sbb-column-column_b.sbb-table-group-with-next').length
     ).toBe(4);
   });
+
+  it('should set shadow to sticky columns when scrolling', fakeAsync(() => {
+    const fixture = TestBed.createComponent(TableWithWrapperAndStickyColumnsTestComponent);
+    fixture.detectChanges();
+    flushMicrotasks(); // Set css sticky classes
+    const tableWrapper = fixture.debugElement.query(By.directive(SbbTableWrapper));
+    const allHtml = fixture.debugElement.nativeElement;
+
+    // Then sticky left and right classes should be applied
+    expect(
+      allHtml.querySelector(
+        '.sbb-column-column_a.sbb-table-sticky.sbb-table-sticky-border-elem-left'
+      )
+    ).toBeTruthy();
+    expect(
+      allHtml.querySelector(
+        '.sbb-column-column_c.sbb-table-sticky.sbb-table-sticky-border-elem-right'
+      )
+    ).toBeTruthy();
+
+    // Then it should have offset right
+    expect(
+      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-right')
+    ).toBeTrue();
+    expect(tableWrapper.nativeElement.classList.length).toBe(3); // Ensure old state classes were removed
+
+    // When scrolling to a middle position
+    tableWrapper.nativeElement.scrollLeft = 1;
+    tableWrapper.nativeElement.dispatchEvent(new CustomEvent('scroll'));
+
+    // Then it should have offset right and left
+    expect(
+      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-both')
+    ).toBeTrue();
+    expect(tableWrapper.nativeElement.classList.length).toBe(3); // Ensure old state classes were removed
+
+    // When scrolling to the right position
+    tableWrapper.nativeElement.scrollLeft =
+      tableWrapper.nativeElement.scrollWidth - tableWrapper.nativeElement.offsetWidth;
+    tableWrapper.nativeElement.dispatchEvent(new CustomEvent('scroll'));
+
+    // Then it should have offset left
+    expect(
+      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-left')
+    ).toBeTrue();
+    expect(tableWrapper.nativeElement.classList.length).toBe(3); // Ensure old state classes were removed
+
+    // When maximizing scroll area
+    fixture.componentInstance.wrapperWidth = 400;
+    fixture.detectChanges();
+    viewPortRulerMockChangeTrigger.next(); // Manually trigger resize observable
+
+    // Then it should have offset 'none'
+    expect(
+      tableWrapper.nativeElement.classList.contains('sbb-table-wrapper-offset-none')
+    ).toBeTrue();
+    expect(tableWrapper.nativeElement.classList.length).toBe(3); // Ensure old state classes were removed
+  }));
+
+  it('should update sticky left offset on data change (initially here)', fakeAsync(() => {
+    const fixture = TestBed.createComponent(TableWithTwoStickyColumnsTestComponent);
+    fixture.detectChanges();
+    flushMicrotasks(); // Set sticky css classes
+
+    const columnAComputedStyles = getComputedStyle(
+      fixture.nativeElement.querySelector('.sbb-column-column_a')
+    );
+    const columnBLeftOffset =
+      fixture.debugElement.nativeElement.querySelector('.sbb-column-column_b')!.style.left;
+
+    expect(parseInt(columnBLeftOffset, 10)).toBeCloseTo(parseInt(columnAComputedStyles.width, 10));
+  }));
+
+  it('should update sticky left offset on viewport change', fakeAsync(() => {
+    const fixture = TestBed.createComponent(TableWithTwoStickyColumnsTestComponent);
+    fixture.detectChanges();
+    flushMicrotasks(); // Set sticky css classes
+    const tableElement = fixture.nativeElement.querySelector('.sbb-table');
+
+    // Then left offset should be updated
+    let columnAComputedStyles = getComputedStyle(
+      fixture.nativeElement.querySelector('.sbb-column-column_a')
+    );
+    let columnBLeftOffset =
+      fixture.debugElement.nativeElement.querySelector('.sbb-column-column_b')!.style.left;
+    expect(parseInt(columnBLeftOffset, 10)).toBeCloseTo(parseInt(columnAComputedStyles.width, 10));
+
+    // When changing size of table
+    tableElement.style.width = '200px';
+    viewPortRulerMockChangeTrigger.next(); // Manually trigger viewportRulerChange
+    flushMicrotasks();
+
+    // Then the left offset should be updated
+    columnAComputedStyles = getComputedStyle(
+      fixture.nativeElement.querySelector('.sbb-column-column_a')
+    );
+    columnBLeftOffset =
+      fixture.debugElement.nativeElement.querySelector('.sbb-column-column_b')!.style.left;
+    expect(parseInt(columnBLeftOffset, 10)).toBeCloseTo(parseInt(columnAComputedStyles.width, 10));
+  }));
 });
 
 interface TestData {
@@ -955,6 +1066,60 @@ class TableWithNgContainerRowTestComponent {
 class TableWithColumnGroupingTestComponent {
   dataSource: FakeDataSource | null = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b'];
+}
+
+@Component({
+  template: `
+    <sbb-table-wrapper [style.width]="wrapperWidth + 'px'">
+      <table sbb-table [dataSource]="dataSource">
+        <ng-container sbbColumnDef="column_a" sticky>
+          <th sbb-header-cell *sbbHeaderCellDef>Column A with a very wide width</th>
+          <td sbb-cell *sbbCellDef="let row">{{ row.a }}</td>
+        </ng-container>
+
+        <sbb-text-column name="column_b"></sbb-text-column>
+
+        <ng-container sbbColumnDef="column_c" stickyEnd>
+          <th sbb-header-cell *sbbHeaderCellDef>Column C</th>
+          <td sbb-cell *sbbCellDef="let row">{{ row.c }}</td>
+        </ng-container>
+
+        <tr sbb-header-row *sbbHeaderRowDef="columnsToRender"></tr>
+        <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
+      </table>
+    </sbb-table-wrapper>
+  `,
+})
+class TableWithWrapperAndStickyColumnsTestComponent {
+  dataSource: FakeDataSource | null = new FakeDataSource();
+  columnsToRender = ['column_a', 'column_b', 'column_c'];
+  wrapperWidth: number = 200;
+}
+
+@Component({
+  template: `
+    <table sbb-table [dataSource]="dataSource">
+      <ng-container sbbColumnDef="column_a" sticky>
+        <th sbb-header-cell *sbbHeaderCellDef>Column A</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.a }} and a lot more content</td>
+      </ng-container>
+      <ng-container sbbColumnDef="column_b" sticky>
+        <th sbb-header-cell *sbbHeaderCellDef>Column B</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.b }}</td>
+      </ng-container>
+      <ng-container sbbColumnDef="column_c">
+        <th sbb-header-cell *sbbHeaderCellDef>Column C</th>
+        <td sbb-cell *sbbCellDef="let row">{{ row.c }}</td>
+      </ng-container>
+
+      <tr sbb-header-row *sbbHeaderRowDef="columnsToRender"></tr>
+      <tr sbb-row *sbbRowDef="let row; columns: columnsToRender"></tr>
+    </table>
+  `,
+})
+class TableWithTwoStickyColumnsTestComponent {
+  dataSource: FakeDataSource | null = new FakeDataSource();
+  columnsToRender = ['column_a', 'column_b', 'column_c'];
 }
 
 function getElements(element: Element, query: string): Element[] {

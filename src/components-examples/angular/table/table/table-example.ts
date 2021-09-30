@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 /**
  * @title Standard Table
- * @order 80
+ * @order 90
  */
 @Component({
   selector: 'sbb-table-example',
