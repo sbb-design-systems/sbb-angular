@@ -14,22 +14,22 @@ import { SbbTableModule } from '@sbb-esta/angular/table';
 import { FilterSortPaginatorTableExample } from './filter-sort-paginator-table/filter-sort-paginator-table-example';
 import { GroupedColumnsTableExample } from './grouped-columns-table/grouped-columns-table-example';
 import { GroupedRowsAndColumnsTableExample } from './grouped-rows-and-columns-table/grouped-rows-and-columns-table-example';
+import { NativeTableExample } from './native-table/native-table-example';
 import { PaginatorTableExample } from './paginator-table/paginator-table-example';
 import { SelectableTableExample } from './selectable-table/selectable-table-example';
 import { SimpleTableExample } from './simple-table/simple-table-example';
 import { SortableTableExample } from './sortable-table/sortable-table-example';
 import { StickyTableExample } from './sticky-table/sticky-table-example';
-import { TableExample } from './table/table-example';
 
 export {
   FilterSortPaginatorTableExample,
   GroupedColumnsTableExample,
   GroupedRowsAndColumnsTableExample,
+  NativeTableExample,
   PaginatorTableExample,
   SelectableTableExample,
   SimpleTableExample,
   SortableTableExample,
-  TableExample,
   StickyTableExample,
 };
 
@@ -37,11 +37,11 @@ const EXAMPLES = [
   FilterSortPaginatorTableExample,
   GroupedColumnsTableExample,
   GroupedRowsAndColumnsTableExample,
+  NativeTableExample,
   PaginatorTableExample,
   SelectableTableExample,
   SimpleTableExample,
   SortableTableExample,
-  TableExample,
   StickyTableExample,
 ];
 

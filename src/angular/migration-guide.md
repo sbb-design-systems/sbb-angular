@@ -455,6 +455,14 @@ No changes.
 
 _Automatic migration available_
 
+The former public `<sbb-table>` has been removed and will automatically be converted in a native table with sbb styles.
+The only exception is the `pinMode` which is not automatically migrated. In this case, please convert your table to the
+more powerful table attribute variant (`<table sbb-table>`) and use its sticky modes.
+Alternatively, the sticky classes can be set manually.
+
+The former business table (`<table sbbTable>`) has reached a few breaking changes
+which are explained in the following sections.
+
 The following selector renames have been performed. All renames are processed by the automatic migration.
 
 | Previously           | New                    |

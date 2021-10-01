@@ -1896,8 +1896,11 @@ $tableStickyShadowWidth: 8;
 
     tbody {
       > tr {
-        &:nth-child(even) td {
-          background-color: $tableTbodyStripesBgColor;
+        &:nth-child(even) {
+          td,
+          th {
+            background-color: $tableTbodyStripesBgColor;
+          }
         }
 
         th,
@@ -1996,19 +1999,22 @@ $tableStickyShadowWidth: 8;
 
     tbody {
       > tr {
-        td {
+        td,
+        th {
           border-bottom: pxToRem(1) solid $sbbColorAluminum;
         }
 
         &.sbb-table-row-selected {
-          td {
+          td,
+          th {
             background-color: $sbbColorCloud;
             border-bottom: pxToRem(1) solid $sbbColorBlack;
           }
         }
 
         &:hover {
-          td {
+          td,
+          th {
             background-color: $sbbColorMilk;
             border-bottom: pxToRem(1) solid $sbbColorRed125;
           }
@@ -2024,6 +2030,13 @@ $tableStickyShadowWidth: 8;
 
   .sbb-selection-item {
     vertical-align: top;
+  }
+}
+
+.sbb-table-caption {
+  > * {
+    font-size: pxToEm(13);
+    color: $tableCaptionColor;
   }
 }
 

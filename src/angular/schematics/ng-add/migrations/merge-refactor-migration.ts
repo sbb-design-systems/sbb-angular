@@ -15,6 +15,7 @@ import { ProcessflowMigration } from './merge-refactor/processflow-migration';
 import { RadioButtonPanelMigration } from './merge-refactor/radio-button-panel-migration';
 import { RefactorMigration } from './merge-refactor/refactor-migration';
 import { SearchMigration } from './merge-refactor/search-migration';
+import { StandardTableMigration } from './merge-refactor/standard-table-migration';
 import { TableMigration } from './merge-refactor/table-migration';
 import { TabsMigration } from './merge-refactor/tabs-migration';
 import { TagMigration } from './merge-refactor/tag-migration';
@@ -40,6 +41,7 @@ export class MergeRefactorMigration extends Migration<null, DevkitContext> {
     new ProcessflowMigration(this),
     new RadioButtonPanelMigration(this),
     new SearchMigration(this),
+    new StandardTableMigration(this),
     new TableMigration(this),
     new TabsMigration(this),
     new TagMigration(this),

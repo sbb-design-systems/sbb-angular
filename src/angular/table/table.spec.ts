@@ -14,7 +14,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 import { SbbPaginationModule, SbbPaginator } from '@sbb-esta/angular/pagination';
-import { SbbTableWrapper } from '@sbb-esta/angular/table/table/table-wrapper';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { SbbSort } from './sort/sort';
@@ -22,6 +21,7 @@ import { SbbSortHeader } from './sort/sort-header';
 import { SbbTableModule } from './table.module';
 import { SbbTable } from './table/table';
 import { SbbTableDataSource } from './table/table-data-source';
+import { SbbTableWrapper } from './table/table-wrapper';
 
 describe('SbbTable', () => {
   const viewPortRulerMockChangeTrigger = new Subject();

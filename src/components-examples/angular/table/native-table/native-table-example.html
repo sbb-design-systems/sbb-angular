@@ -1,0 +1,41 @@
+<sbb-table-wrapper>
+  <table class="sbb-table" aria-labelledby="caption">
+    <caption class="cdk-visually-hidden">
+      UIC-Statistics
+    </caption>
+
+    <thead>
+      <tr>
+        <th scope="col">Company and country *1</th>
+        <th scope="col">Passenger kilometers (Mio. Pkm)</th>
+        <th scope="col">Ton kilometers (Mio. Ntkm)</th>
+        <th scope="col">Route kilometers (Mio. Trkm)</th>
+        <th scope="col">Staff (FTE)</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let row of rows">
+        <th scope="row" [attr.aria-describedby]="row.describedby">{{ row.col1 }}</th>
+        <td>{{ row.col2 }}</td>
+        <td>{{ row.col3 }}</td>
+        <td>{{ row.col4 }}</td>
+        <td class="sbb-table-align-right">{{ row.col5 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</sbb-table-wrapper>
+
+<div class="sbb-table-caption">
+  <ol>
+    <li id="legend_item_1">Railway undertaking</li>
+    <li id="legend_item_2">Railway infrastructure manager</li>
+    <li id="legend_item_3">Integrated railway company/holding</li>
+  </ol>
+  <p id="caption">Source: UIC-Statistics 2012.</p>
+</div>
+
+<h4>Simple Filter Example</h4>
+<sbb-form-field label="Set a filter">
+  <input type="text" placeholder="Filter table" [formControl]="filterControl" sbbInput />
+</sbb-form-field>

@@ -1,21 +1,5 @@
-The `sbbTable` provides a SBB Design styled data-table that can be used to display rows of data.
-
-### When can you use it?
-
+The `sbb-table` provides a SBB Design styled data-table that can be used to display rows of data.
 You can use a table for displaying data, but not for structuring content.
-
-### Characteristics and states
-
-The table consists of a grid of columns and rows. Each column has a header.
-
-The table has got the following characteristics:
-
-- It can display data in grouped columns.
-- It can display data in grouped rows.
-- It can sort data with the following rules:
-  - Ascending
-  - Descending
-  - No sorting
 
 ### Usage
 
@@ -174,8 +158,6 @@ from the Pagination module to achieve pagination.
 To connect the paginator component to your dataSource you have to set `dataSource.paginator`
 to the viewReference of the SbbPaginatorComponent in your controller (see example below and on examples page).
 
-#### Html
-
 ```html
 <table sbb-table [dataSource]="dataSource">
   ...
@@ -183,8 +165,6 @@ to the viewReference of the SbbPaginatorComponent in your controller (see exampl
 
 <sbb-paginator pageSize="5" #paginator></sbb-paginator>
 ```
-
-#### Typescript
 
 ```ts
 export class TablePaginatorExampleComponent implements OnInit {
@@ -207,49 +187,6 @@ The flag affects the sequence at runtime, not at definition time.
   <th sbb-header-cell *sbbHeaderCellDef>Grouped col 1</th>
   <td sbb-cell *sbbCellDef="let element">{{ element.groupedOne }}</td>
 </ng-container>
-```
-
-### Horizontal Divider With Title
-
-If using horizontal dividers to group content, use the
-css class `sbb-table-divider-title` to style the title correctly.
-
-```html
-<ng-container sbbColumnDef="horizontalTableDivider">
-  <td [attr.colspan]="displayedColumns.length" sbb-cell *sbbCellDef="let groupBy">
-    <span class="sbb-table-divider-title">{{ groupBy.title }}</span>
-  </td>
-</ng-container>
-<tr sbb-row *sbbRowDef="let row; columns: ['horizontalTableDivider']; when: isGroup"></tr>
-```
-
-### Style of a selected row
-
-If your table allows to select a row, you can conditionally apply the css class `sbb-table-row-selected`
-to a `<tr>`-tag to achieve the selected style.
-
-If using `SelectionModel`, it could look like the following example.
-Please also consider the working example in the examples section.
-
-```ts
-export class SelectableTableExample {
-  ...
-  selection = new SelectionModel<ItemModel>(true, []);
-  ...
-}
-```
-
-```html
-<table sbb-table>
-  ...
-  <tr
-    sbb-row
-    *sbbRowDef="let row; columns: displayedColumns"
-    (click)="selection.toggle(row)"
-    [class.sbb-table-row-selected]="selection.isSelected(row)"
-  ></tr>
-  ...
-</table>
 ```
 
 ### Sticky Rows and Columns
@@ -332,4 +269,57 @@ If using sticky rows or columns, the `<sbb-table-wrapper>` is mandatory.
     ...
   </table>
 </sbb-table-wrapper>
+```
+
+## Styles
+
+### Alignments
+
+To align the text in a cell, the following css classes can be used on your desired tag (table, row or cell level).
+
+- `sbb-table-align-left`
+- `sbb-table-align-center`
+- `sbb-table-align-right`
+
+### Horizontal Divider With Title
+
+If using horizontal dividers to group content, use the
+css class `sbb-table-divider-title` to style the title correctly.
+
+```html
+<ng-container sbbColumnDef="horizontalTableDivider">
+  <td [attr.colspan]="displayedColumns.length" sbb-cell *sbbCellDef="let groupBy">
+    <span class="sbb-table-divider-title">{{ groupBy.title }}</span>
+  </td>
+</ng-container>
+<tr sbb-row *sbbRowDef="let row; columns: ['horizontalTableDivider']; when: isGroup"></tr>
+```
+
+### Style of a selected row
+
+If your table allows to select a row, you can conditionally apply the css class `sbb-table-row-selected`
+to a `<tr>`-tag to achieve the selected style.
+
+If using `SelectionModel`, it could look like the following example.
+Please also consider the working example in the examples section.
+
+```ts
+export class SelectableTableExample {
+  ...
+  selection = new SelectionModel<ItemModel>(true, []);
+  ...
+}
+```
+
+```html
+<table sbb-table>
+  ...
+  <tr
+    sbb-row
+    *sbbRowDef="let row; columns: displayedColumns"
+    (click)="selection.toggle(row)"
+    [class.sbb-table-row-selected]="selection.isSelected(row)"
+  ></tr>
+  ...
+</table>
 ```

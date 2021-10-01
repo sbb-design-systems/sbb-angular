@@ -433,6 +433,7 @@
   "Schema": "schematics",
   "SearchMigration": "schematics",
   "SecondaryEntryPointsMigration": "schematics",
+  "StandardTableMigration": "schematics",
   "TableMigration": "schematics",
   "TabsMigration": "schematics",
   "TagMigration": "schematics",
