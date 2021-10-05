@@ -1,7 +1,3 @@
-/**
- * Header row definition for the sbb-table.
- * Captures the header row's template and other header properties such as the columns to display.
- */
 import {
   CdkFooterRow,
   CdkFooterRowDef,

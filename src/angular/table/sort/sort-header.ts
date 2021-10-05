@@ -1,5 +1,3 @@
-// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
-
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';

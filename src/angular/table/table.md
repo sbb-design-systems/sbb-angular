@@ -319,7 +319,7 @@ selection state.
 ```js
 const initialSelection = [];
 const allowMultiSelect = true;
-this.selection = new SelectionModel() < MyDataType > (allowMultiSelect, initialSelection);
+this.selection = new SelectionModel<MyDataType>(allowMultiSelect, initialSelection);
 ```
 
 ##### 2. Define a selection column
@@ -376,8 +376,8 @@ By using `position: sticky` styling, the table's rows and columns can be fixed s
 leave the viewport even when scrolled. The table provides inputs that will automatically apply the
 correct CSS styling so that the rows and columns become sticky.
 
-To let display shadows if a user is scrolling when a cell becomes sticky,
-please use the `<sbb-table-wrapper>` tag around the `<table sbb-table>`.
+To display scroll shadows after/before sticky columns, wrap the `<table sbb-table>` with the
+`<sbb-table-wrapper>` element.
 
 In order to fix the header row to the top of the scrolling viewport containing the table, you can
 add a `sticky` input to the `sbbHeaderRowDef`.
@@ -505,7 +505,7 @@ If your table allows to select a row, you can conditionally apply the css class 
 to a `<tr>`-tag to achieve the selected style.
 
 If using `SelectionModel`, it could look like the following example.
-Please also consider the working example in the examples section.
+Please also consult the working example in the examples section.
 
 ```ts
 export class SelectableTableExample {

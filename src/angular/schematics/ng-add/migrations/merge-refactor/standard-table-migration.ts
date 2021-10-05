@@ -44,10 +44,6 @@ export class StandardTableMigration extends RefactorMigration {
     element.insertBeforeEnd('</table>');
   }
 
-  override applyMigration() {
-    super.applyMigration();
-  }
-
   private _tableClassString(
     tableClass?: MigrationElementProperty,
     tableAlignment?: MigrationElementProperty

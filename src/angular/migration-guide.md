@@ -460,8 +460,8 @@ The only exception is the `pinMode` which is not automatically migrated. In this
 more powerful table attribute variant (`<table sbb-table>`) and use its sticky modes.
 Alternatively, the sticky classes can be set manually.
 
-The former business table (`<table sbbTable>`) has reached a few breaking changes
-which are explained in the following sections.
+The former business table (`<table sbbTable>`) is the basis for the new table module,
+but it has a few breaking changes which are explained in the following sections.
 
 The following selector renames have been performed. All renames are processed by the automatic migration.
 
@@ -509,13 +509,13 @@ If using sticky rows or columns, the `<sbb-table-wrapper>` is mandatory.
 Lean styles have slightly changed due to new specifications.
 
 We don't provide default styles anymore for a native `<table>` in the typography.
-Please always add the `sbb-table` css class to your `<table>` if you need a sbb styled table.
+Please always add the `sbb-table` css class to your `<table>` if you need a sbb styled table (e.g. `<table class="sbb-table">`).
 
 As a new feature, the css class `sbb-table-row-selected` was introduced which can conditionally be applied on a `<tr>`-tag.
 If your row allows selecting it, this class would style the row correctly.
 
 If using `SelectionModel`, it could look like the following example.
-Please also consider the working example in the examples section of the table.
+Please also consult the working example in the examples section of the table.
 
 ```html
 <table sbb-table>

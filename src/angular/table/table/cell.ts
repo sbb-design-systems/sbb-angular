@@ -1,7 +1,3 @@
-/**
- * Cell definition for the sbb-table.
- * Captures the template of a column's data row cell as well as cell-specific properties.
- */
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   CdkCell,
