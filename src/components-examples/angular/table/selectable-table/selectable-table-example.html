@@ -1,0 +1,44 @@
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource">
+    <!-- Checkbox Column -->
+    <ng-container sbbColumnDef="select">
+      <th sbb-header-cell *sbbHeaderCellDef style="width: 50px">
+        <sbb-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()"
+        >
+        </sbb-checkbox>
+      </th>
+      <td sbb-cell *sbbCellDef="let row">
+        <sbb-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row)"
+        >
+        </sbb-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container *ngFor="let column of columns.slice(1)" [sbbColumnDef]="column.title">
+      <th sbb-header-cell *sbbHeaderCellDef>
+        {{ column.title }}
+        <div *ngIf="column.subtitle" class="sbb-table-header-subtitle">{{ column.subtitle}}</div>
+      </th>
+      <td sbb-cell *sbbCellDef="let element">{{ element[column.title] }}</td>
+    </ng-container>
+
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr
+      sbb-row
+      *sbbRowDef="let row; columns: displayedColumns"
+      (click)="selection.toggle(row)"
+      [class.sbb-table-row-selected]="selection.isSelected(row)"
+    ></tr>
+  </table>
+</sbb-table-wrapper>
+
+<h4>Selected Models</h4>
+<pre>{{ selection.selected | json }}</pre>

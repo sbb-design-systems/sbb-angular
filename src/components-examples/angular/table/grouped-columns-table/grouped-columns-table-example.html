@@ -1,0 +1,31 @@
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource">
+    <ng-container sbbColumnDef="leftAligned">
+      <th sbb-header-cell *sbbHeaderCellDef>left-aligned</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.left }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="groupedOne" groupWithNext>
+      <th sbb-header-cell *sbbHeaderCellDef>Grouped col 1</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.groupedOne }}</td>
+    </ng-container>
+    <ng-container sbbColumnDef="groupedTwo" groupWithNext>
+      <th sbb-header-cell *sbbHeaderCellDef>Grouped col 2</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.groupedTwo }}</td>
+    </ng-container>
+    <ng-container sbbColumnDef="groupedThree">
+      <th sbb-header-cell *sbbHeaderCellDef>Grouped col 3</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.groupedThree }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="centerAligned">
+      <th sbb-header-cell *sbbHeaderCellDef class="sbb-table-align-center">center-aligned</th>
+      <td sbb-cell *sbbCellDef="let element" class="sbb-table-align-center">
+        {{ element.center }}
+      </td>
+    </ng-container>
+
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</sbb-table-wrapper>

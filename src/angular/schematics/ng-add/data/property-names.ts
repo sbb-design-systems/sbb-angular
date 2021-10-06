@@ -68,6 +68,13 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
             classes: ['SbbTooltipWrapper', 'SbbTooltipComponent'],
           },
         },
+        {
+          replace: 'sbbSortChange',
+          replaceWith: 'sortChange',
+          limitedTo: {
+            classes: ['SbbSortDirective'],
+          },
+        },
       ],
     },
   ],

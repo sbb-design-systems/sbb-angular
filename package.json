@@ -84,7 +84,7 @@
     "@angular/cli": "12.2.0",
     "@angular/compiler": "12.2.0",
     "@angular/compiler-cli": "12.2.0",
-    "@angular/dev-infra-private": "https://github.com/angular/dev-infra-private-builds.git#0057daca63205a10c26256b6733b02af835497c0",
+    "@angular/dev-infra-private": "https://github.com/angular/dev-infra-private-builds.git#56655ed6ccf24b7f3ad6b9ccdd1ef2896c7fa9f4",
     "@angular/language-service": "12.2.0",
     "@angular/localize": "12.2.0",
     "@bazel/bazelisk": "1.9.0",

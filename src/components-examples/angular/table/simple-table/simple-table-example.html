@@ -1,0 +1,12 @@
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource">
+    <sbb-text-column name="columnOne"></sbb-text-column>
+    <sbb-text-column name="columnTwo"></sbb-text-column>
+    <sbb-text-column name="columnThree"></sbb-text-column>
+    <sbb-text-column name="columnFour"></sbb-text-column>
+    <sbb-text-column name="columnFive"></sbb-text-column>
+
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</sbb-table-wrapper>

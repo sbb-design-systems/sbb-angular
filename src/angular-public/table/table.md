@@ -21,7 +21,7 @@ You can use table component to display rows of data as seen below
 
 ### Pin Mode
 
-The sbb-table provides a pin mode, which pins the first column the the left side.
+The sbb-table provides a pin mode, which pins the first column on the left side.
 This is not supported in IE11.
 
 ### Remove/Reset table content

@@ -1,0 +1,32 @@
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource">
+    <sbb-text-column name="position"></sbb-text-column>
+    <sbb-text-column name="name"></sbb-text-column>
+    <sbb-text-column name="power"></sbb-text-column>
+    <sbb-text-column name="description"></sbb-text-column>
+
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</sbb-table-wrapper>
+
+<sbb-paginator [pageSize]="pageSize" #paginator></sbb-paginator>
+
+<h4>Properties</h4>
+
+<sbb-form-field label="Page Size">
+  <input sbbInput type="number" [(ngModel)]="pageSize" [min]="1" />
+</sbb-form-field>
+
+<p>
+  <sbb-form-field label="Count of rows">
+    <input
+      sbbInput
+      type="number"
+      [ngModel]="20"
+      (ngModelChange)="rowCount($event)"
+      [min]="0"
+      [max]="20"
+    />
+  </sbb-form-field>
+</p>

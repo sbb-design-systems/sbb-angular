@@ -1,0 +1,39 @@
+<sbb-table-wrapper>
+  <table sbb-table [dataSource]="dataSource">
+    <ng-container sbbColumnDef="deviceName">
+      <th sbb-header-cell *sbbHeaderCellDef id="deviceName">Device name</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.deviceName }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="arrivalDate" groupWithNext>
+      <th sbb-header-cell *sbbHeaderCellDef id="arrivalDate">Arrival date</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.arrivalDate }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="orderDate" groupWithNext>
+      <th sbb-header-cell *sbbHeaderCellDef id="orderDate">Order date</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.orderDate }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="lifecycleEnd">
+      <th sbb-header-cell *sbbHeaderCellDef id="lifecycleEnd">Lifecycle End</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.lifecycleEnd }}</td>
+    </ng-container>
+
+    <ng-container sbbColumnDef="status">
+      <th sbb-header-cell *sbbHeaderCellDef id="status">Status</th>
+      <td sbb-cell *sbbCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <tr sbb-header-row *sbbHeaderRowDef="displayedColumns"></tr>
+    <tr sbb-row *sbbRowDef="let row; columns: displayedColumns"></tr>
+
+    <!-- Horizontal Table Divider -->
+    <ng-container sbbColumnDef="horizontalTableDivider">
+      <td [attr.colspan]="displayedColumns.length" sbb-cell *sbbCellDef="let groupBy">
+        <span class="sbb-table-divider-title">{{ groupBy.title }}</span>
+      </td>
+    </ng-container>
+    <tr sbb-row *sbbRowDef="let row; columns: ['horizontalTableDivider']; when: isGroup"></tr>
+  </table>
+</sbb-table-wrapper>

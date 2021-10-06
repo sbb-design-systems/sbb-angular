@@ -119,29 +119,6 @@ textarea {
   color: inherit;
 }
 
-table {
-  th,
-  td {
-    color: $sbbColorBlack;
-    font-size: pxToRem($sizeFontDefault);
-    line-height: 1.5;
-    margin: 0.75em 0 0;
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        font-size: pxToRem($sizeFontDefault4k);
-      }
-      @include mq($from: desktop5k) {
-        font-size: pxToRem($sizeFontDefault5k);
-      }
-    }
-  }
-  th {
-    font-family: $fontSbbBold;
-    font-weight: 400;
-  }
-}
-
 [hidden] {
   display: none !important;
 }
@@ -1413,6 +1390,8 @@ fieldset,
       display: inline-block;
       line-height: 0;
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
 
@@ -1840,23 +1819,64 @@ $tableTheadCellPaddingMobile: pxToEm(29) pxToEm(12) pxToEm(30) pxToEm(12);
 $tableTheadCellPadding: pxToEm(29) pxToEm(16) pxToEm(30) pxToEm(16);
 $tableTbodyCellPaddingMobile: pxToEm(18) pxToEm(12) pxToEm(19) pxToEm(12);
 $tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
-$tableTrowHeightBusiness: pxToEm(36);
 $tableCaptionColor: $sbbColorGrey;
+$tableStickyShadowWidth: 8;
+
+.sbb-table-wrapper {
+  display: block;
+  overflow: auto;
+}
 
 .sbb-table {
   border-spacing: 0;
-  background-color: $tableBg;
   width: 100%;
+  font-size: pxToRem($sizeFontDefault);
+
+  thead {
+    text-align: left;
+  }
+
+  th,
+  td {
+    color: $sbbColorBlack;
+    background-color: $sbbColorWhite;
+    vertical-align: top;
+  }
+
+  th {
+    font-family: $fontSbbBold;
+    font-weight: 400;
+
+    .sbb-table-header-subtitle {
+      font-family: $fontSbbRoman;
+    }
+
+    // Selector is placed here to be specific enough
+    &.sbb-header-cell.sbb-table-filter {
+      font-family: $fontSbbRoman;
+      font-weight: normal;
+      padding-top: 0;
+
+      input {
+        width: 100%;
+      }
+
+      .sbb-select {
+        display: block;
+      }
+    }
+  }
 
   html:not(.sbb-lean) & {
+    line-height: pxToRem($sizeLineHeightDefault);
     padding-bottom: $tableTbodyPadding;
 
-    thead {
-      background-color: $tableTheadBgColor;
-
+    thead,
+    tfoot {
       > tr {
         th,
         td {
+          background-color: $tableTheadBgColor;
           padding: $tableTheadCellPaddingMobile;
 
           @include mq($from: tabletPortrait) {
@@ -1877,7 +1897,10 @@ $tableCaptionColor: $sbbColorGrey;
     tbody {
       > tr {
         &:nth-child(even) {
-          background-color: $tableTbodyStripesBgColor;
+          td,
+          th {
+            background-color: $tableTbodyStripesBgColor;
+          }
         }
 
         th,
@@ -1900,32 +1923,28 @@ $tableCaptionColor: $sbbColorGrey;
     }
 
     @include mq($from: desktop4k) {
-      font-size: toRem(1 * $scalingFactor4k);
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem($sizeLineHeightDefault4k);
     }
     @include mq($from: desktop5k) {
-      font-size: toRem(1 * $scalingFactor5k);
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
     }
   }
+
   html.sbb-lean & {
-    border-collapse: collapse;
+    line-height: pxToRem($sizeLineHeightDefaultLean);
 
-    thead {
-      text-align: left;
-      background-color: $sbbColorMilk;
-      border-bottom: pxToRem(1) solid $sbbColorAluminum;
-
-      [dir='rtl'] & {
-        text-align: right;
-      }
+    th {
+      color: $sbbColorGranite;
     }
 
-    tbody {
+    tbody,
+    tfoot {
       > tr {
-        background-color: $sbbColorWhite;
-        border-bottom: pxToRem(1) solid $sbbColorAluminum;
-
-        &:hover {
-          background-color: $sbbColorCloud;
+        th,
+        td {
+          border-right: pxToRem(1) solid $sbbColorAluminum;
         }
       }
     }
@@ -1936,30 +1955,68 @@ $tableCaptionColor: $sbbColorGrey;
       > tr {
         th,
         td {
-          height: $tableTrowHeightBusiness;
-          padding: 0 $tableTbodyPadding;
-          border-right: pxToRem(1) solid $sbbColorAluminum;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          padding: pxToRem(6) $tableTbodyPadding pxToRem(6);
+
+          &.sbb-table-group-with-next {
+            border-right: none;
+          }
 
           &:first-child {
             padding-left: $tableTbodyPadding;
             border-left: none;
-
-            [dir='rtl'] & {
-              padding-left: 0;
-              padding-right: $tableTbodyPadding;
-            }
           }
 
           &:last-child {
             padding-right: $tableTbodyPadding;
             border-right: none;
+          }
+        }
+      }
+    }
 
-            [dir='rtl'] & {
-              padding-right: 0;
-              padding-left: $tableTbodyPadding;
+    thead {
+      > tr:last-child {
+        th,
+        td {
+          border-bottom: pxToRem(1) solid $sbbColorGraphite;
+        }
+      }
+
+      > tr {
+        th,
+        td {
+          border-right: pxToRem(1) solid $sbbColorGraphite;
+
+          &.sbb-table-sticky-border-elem-right {
+            .sbb-table-wrapper-offset-right &,
+            .sbb-table-wrapper-offset-both & {
+              border-left: pxToRem(1) solid $sbbColorGraphite;
             }
+          }
+        }
+      }
+    }
+
+    tbody {
+      > tr {
+        td,
+        th {
+          border-bottom: pxToRem(1) solid $sbbColorAluminum;
+        }
+
+        &.sbb-table-row-selected {
+          td,
+          th {
+            background-color: $sbbColorCloud;
+            border-bottom: pxToRem(1) solid $sbbColorBlack;
+          }
+        }
+
+        &:hover {
+          td,
+          th {
+            background-color: $sbbColorMilk;
+            border-bottom: pxToRem(1) solid $sbbColorRed125;
           }
         }
       }
@@ -1970,6 +2027,17 @@ $tableCaptionColor: $sbbColorGrey;
     font-size: pxToRem(13);
     color: $tableCaptionColor;
   }
+
+  .sbb-selection-item {
+    vertical-align: top;
+  }
+}
+
+.sbb-table-caption {
+  > * {
+    font-size: pxToEm(13);
+    color: $tableCaptionColor;
+  }
 }
 
 .sbb-table-align-center {
@@ -1978,30 +2046,79 @@ $tableCaptionColor: $sbbColorGrey;
 
 .sbb-table-align-left {
   text-align: left;
-
-  /* th in IE11 won't inherit text-align: we apply it through selector */
-  thead,
-  tbody {
-    > tr {
-      th {
-        text-align: left;
-      }
-    }
-  }
 }
 
 .sbb-table-align-right {
   text-align: right;
+}
 
-  /* th in IE11 won't inherit text-align: we apply it through selector */
-  thead,
-  tbody {
-    > tr {
-      th {
-        text-align: right;
-      }
+.sbb-table-sticky {
+  // Note that the table can either set this class or an inline style to make something sticky.
+  // We set the style as `!important` so that we get an identical specificity in both cases
+  // and to avoid cases where user styles have a higher specificity.
+  position: -webkit-sticky !important;
+  position: sticky !important;
+}
+
+.sbb-table-sticky-border-elem-left,
+.sbb-table-sticky-border-elem-right {
+  &::after {
+    content: '';
+    transition: visibility, opacity 0.2s ease-in;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    width: pxToRem($tableStickyShadowWidth);
+    top: 0;
+    bottom: 0;
+  }
+}
+
+.sbb-table-sticky-border-elem-left {
+  .sbb-table-wrapper-offset-left &,
+  .sbb-table-wrapper-offset-both & {
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      background-image: linear-gradient(-270deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+      right: pxToRem(-$tableStickyShadowWidth - 1);
     }
   }
+}
+
+.sbb-table-sticky-border-elem-right {
+  .sbb-table-wrapper-offset-right &,
+  .sbb-table-wrapper-offset-both & {
+    html.sbb-lean & {
+      border-left: pxToRem(1) solid $sbbColorAluminum;
+    }
+
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      background-image: linear-gradient(270deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+      left: pxToRem(-$tableStickyShadowWidth - 1);
+    }
+  }
+}
+
+html.sbb-lean .sbb-table-sticky-border-elem-bottom {
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: pxToRem(-1);
+    border-top: pxToRem(1) solid $sbbColorAluminum;
+  }
+}
+
+.sbb-table-fixed-layout {
+  table-layout: fixed;
+}
+
+.sbb-table-divider-title {
+  font-family: $fontSbbBold;
 }
 
 // ----------------------------------------------------------------------------------------------------

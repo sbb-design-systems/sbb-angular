@@ -76,6 +76,7 @@ const _SbbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
   encapsulation: ViewEncapsulation.None,
   host: {
     role: 'group',
+    class: 'sbb-paginator sbb-icon-fit',
   },
 })
 export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisable, HasInitialized {

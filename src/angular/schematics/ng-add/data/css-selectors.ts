@@ -31,6 +31,10 @@ export const cssSelectors: VersionChanges<SbbAngularCssSelectorData> = {
             stylesheet: true,
           },
         },
+        {
+          replace: 'sbb-col-center-align',
+          replaceWith: 'sbb-table-align-center',
+        },
       ],
     },
   ],

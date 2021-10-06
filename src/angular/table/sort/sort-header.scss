@@ -1,0 +1,81 @@
+@import '../../../angular/styles/common';
+
+$sbb-sort-header-arrow-margin: 8;
+$sbb-sort-header-arrow-container-size: 24;
+
+.sbb-sort-header {
+  cursor: pointer;
+  position: relative;
+
+  // Usually we could rely on the arrow showing up to be focus indication, but if a header is
+  // active, the arrow will always be shown so the user has no way of telling the difference.
+  &.cdk-keyboard-focused,
+  &.cdk-program-focused {
+    &:before {
+      content: '';
+      border: pxToEm(1) solid $sbbColorIron;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  &:hover .sbb-sort-header-container {
+    color: $sbbColorRed125;
+  }
+}
+
+.sbb-sort-header-sorted {
+  color: $sbbColorBlack;
+}
+
+.sbb-sort-header-container {
+  display: flex;
+  letter-spacing: normal;
+  text-align: left;
+  height: 100%;
+
+  // Needs to be reset since we don't want an outline around the inner
+  // div which is focusable. We have our own alternate focus styling.
+  outline: 0;
+
+  .sbb-sort-header-disabled & {
+    cursor: default;
+  }
+
+  .sbb-table-align-center & {
+    text-align: center;
+  }
+}
+
+.sbb-sort-header-content {
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+
+.sbb-sort-header-position-before {
+  flex-direction: row-reverse;
+}
+
+.sbb-sort-header-arrow {
+  height: pxToEm($sbb-sort-header-arrow-container-size);
+  width: pxToEm($sbb-sort-header-arrow-container-size);
+  min-width: pxToEm($sbb-sort-header-arrow-container-size);
+  position: relative;
+
+  // Start off at 0 since the arrow may become visible while parent are animating.
+  // This will be overwritten when the arrow animations kick in. See #11819.
+  opacity: 0;
+
+  margin: pxToEm(-1) pxToEm(-8) pxToEm(-1) pxToEm($sbb-sort-header-arrow-margin);
+  .sbb-sort-header-position-before & {
+    margin: pxToEm(-1) pxToEm($sbb-sort-header-arrow-margin) pxToEm(-1) pxToEm(-8);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}

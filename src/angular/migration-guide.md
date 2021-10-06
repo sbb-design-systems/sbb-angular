@@ -451,6 +451,87 @@ No changes.
 
 [Documentation](angular/components/status)
 
+### Table
+
+_Automatic migration available_
+
+The former public `<sbb-table>` has been removed and will automatically be converted in a native table with sbb styles.
+The only exception is the `pinMode` which is not automatically migrated. In this case, please convert your table to the
+more powerful table attribute variant (`<table sbb-table>`) and use its sticky modes.
+Alternatively, the sticky classes can be set manually.
+
+The former business table (`<table sbbTable>`) is the basis for the new table module,
+but it has a few breaking changes which are explained in the following sections.
+
+The following selector renames have been performed. All renames are processed by the automatic migration.
+
+| Previously           | New                    |
+| -------------------- | ---------------------- |
+| `<table sbbTable>`   | `<table sbb-table>`    |
+| `<tr sbbHeaderRow>`  | `<tr sbb-header-row>`  |
+| `<tr sbbRow>`        | `<tr sbb-row>`         |
+| `<tr sbbFooterRow>`  | `<tr sbb-footer-row>`  |
+| `<th sbbHeaderCell>` | `<th sbb-header-cell>` |
+| `<sbbHeaderCell>`    | `<sbb-header-cell>`    |
+| `<td sbbCell>`       | `<td sbb-cell>`        |
+| `<sbbCell>`          | `<sbb-cell>`           |
+| `<td sbbFooterCell>` | `<td sbb-footer-cell>` |
+| `<sbbFooterCell>`    | `<sbb-footer-cell>`    |
+| `[sbbSortHeader]`    | `[sbb-sort-header]`    |
+
+- `SbbSortHeaderComponent` class was renamed to `SbbSortHeader`.
+- `SbbSortDirective` class was renamed to `SbbSort`.
+- `SbbSort` interface was renamed to `SbbSortState`.
+
+- The deprecated css class `sbb-col-center-align` was removed and will automatically be replaced by `sbb-table-align-center`.
+
+**SbbTableDataSource**
+
+The group list constructor parameter of `SbbTableDataSource` was removed. Please use the
+`groupWithNext` flag of `sbbColumnDef` or `sbb-text-column` to achieve a grouped column styling.
+For more details consider the table documentation and examples.
+
+**Table Wrapper**
+
+As a new feature we provide the `<sbb-table-wrapper>` tag which can be used to make the table scrollable.
+If using sticky rows or columns, the `<sbb-table-wrapper>` is mandatory.
+
+```html
+<sbb-table-wrapper>
+  <table sbb-table>
+    ...
+  </table>
+</sbb-table-wrapper>
+```
+
+**Styling**
+
+Lean styles have slightly changed due to new specifications.
+
+We don't provide default styles anymore for a native `<table>` in the typography.
+Please always add the `sbb-table` css class to your `<table>` if you need a sbb styled table (e.g. `<table class="sbb-table">`).
+
+As a new feature, the css class `sbb-table-row-selected` was introduced which can conditionally be applied on a `<tr>`-tag.
+If your row allows selecting it, this class would style the row correctly.
+
+If using `SelectionModel`, it could look like the following example.
+Please also consult the working example in the examples section of the table.
+
+```html
+<table sbb-table>
+  ...
+  <tr
+    sbb-row
+    *sbbRowDef="let row; columns: displayedColumns"
+    (click)="selection.toggle(row)"
+    [class.sbb-table-row-selected]="selection.isSelected(row)"
+  ></tr>
+  ...
+</table>
+```
+
+[Documentation](angular/components/table)
+
 ### Tabs
 
 _Automatic migration available_

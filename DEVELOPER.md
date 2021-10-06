@@ -12,6 +12,8 @@
    - On Windows: Follow the [instructions](https://docs.bazel.build/versions/master/install-windows.html#step-5-optional-install-compilers-and-language-runtimes)
      to install [`MSYS2`](https://www.msys2.org/) and the listed "Common MSYS2 packages".
      Afterwards add `C:\msys64\usr\bin` to the `PATH` environment variable.
+   - On macOS: Create .bazelrc file in your home directory and add `test --experimental_inprocess_symlink_creation`.
+     This avoids errors with Chromium as it currently contains spaces in the filename.
 3. From the root of the project, run `yarn` to install the dependencies.
 
 To build sbb-angular in release mode, run `yarn build`. The output can be found under `dist/releases`.

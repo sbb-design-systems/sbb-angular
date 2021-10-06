@@ -9,6 +9,10 @@ $paginatorDisabledColor: $sbbColorSilver;
 $paginatorDisabledColorLean: $sbbColorStorm;
 
 .sbb-paginator {
+  display: inline-block;
+}
+
+.sbb-paginator-list {
   margin: 0; // Overwrite styles from typography (ul)
   padding-left: 0; // Overwrite styles from typography (ul)
 

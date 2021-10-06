@@ -353,7 +353,7 @@ You can also use the headings classes to make every tag looks like a heading. Av
 
 ## Tables
 
-In order to see sbb table styling you have to use the class `sbb-table` or call the `@include table()` mixin into your custom table selector.
+In order to apply sbb table styling you have to use the class `sbb-table`.
 
 Don't forget to follow a couple of simple rules for the accessibility and styling. In order to have proper styles you must use the `thead` and `tbody` tags.
 
