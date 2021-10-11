@@ -18,9 +18,9 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
-        "//src/angular-business/header",
         "//src/angular/checkbox",
         "//src/angular/core",
+        "//src/angular/header-lean",
         "//src/angular/icon",
         "//src/angular/radio-button",
         "//src/angular/sidebar",

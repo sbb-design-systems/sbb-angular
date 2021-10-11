@@ -1,0 +1,234 @@
+@import '../styles/common';
+
+$sbbHeaderHeight: pxToRem(54);
+$sbbHeaderMenuWidth: 300px;
+$sbbHeaderBaseZIndex: 1000;
+$sbbHeaderSideMenuZIndex: 800;
+$sbbHeaderMenuMobileZIndex: 1100;
+$sbbHeaderMenuTabletZIndex: 700;
+
+.sbb-header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  height: $sbbHeaderHeight;
+  width: 100%;
+  z-index: $sbbHeaderBaseZIndex;
+  background-color: $sbbColorWhite;
+  border-bottom: solid 1px $sbbColorSilver;
+}
+
+/** Top positioned menu. */
+.sbb-header-main-menu {
+  overflow-x: hidden;
+  display: flex;
+  flex-grow: 1;
+}
+
+.sbb-header-main-menu {
+  > a,
+  > button {
+    margin-right: 1rem;
+  }
+}
+
+.sbb-header-fixed-columns .sbb-header-main-menu {
+  margin-left: pxToRem(50);
+
+  > a,
+  > button {
+    flex: 0 0 20%;
+    margin-right: unset;
+  }
+}
+
+/** Header environment styles. */
+.sbb-header-environment {
+  z-index: 1;
+  pointer-events: none;
+  width: pxToRem(80);
+  position: absolute;
+  top: pxToRem(12);
+  left: pxToRem(-20);
+  text-align: center;
+  line-height: pxToRem(12);
+  letter-spacing: 0;
+  font-size: pxToRem(10);
+  color: $sbbColorWhite;
+  transform: rotate(-45deg);
+}
+
+// Default colors for the environments
+.sbb-header-environment-dev {
+  background-color: $sbbColorPeach;
+}
+.sbb-header-environment-test {
+  background-color: $sbbColorNight;
+}
+.sbb-header-environment-edu {
+  background-color: $sbbColorGreen;
+}
+.sbb-header-environment-int {
+  background-color: $sbbColorGranite;
+}
+
+/** Side menu */
+.sbb-header-open-menu,
+.sbb-header-close-menu {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: pxToRem(24);
+  height: pxToRem(24);
+  margin-left: pxToRem(15);
+  cursor: pointer;
+  position: relative;
+  outline: none;
+
+  &:focus,
+  &:hover {
+    color: $sbbColorRed125;
+  }
+}
+
+.sbb-header-open-menu {
+  visibility: hidden;
+
+  .sbb-header.sbb-header-menus-collapsed &,
+  .sbb-header.sbb-header-app-chooser-available & {
+    visibility: visible;
+  }
+}
+
+.sbb-header-titlebox {
+  display: flex;
+  flex-grow: 0;
+  flex-direction: column;
+  width: auto;
+  margin-left: pxToRem(15);
+  margin-right: 2.5rem;
+  font-family: $fontSbbLight;
+
+  .sbb-header.sbb-header-fixed-columns & {
+    width: pxToRem(200);
+    margin-right: unset;
+  }
+}
+
+.sbb-header-label,
+.sbb-header-subtitle {
+  @include ellipsis();
+}
+
+.sbb-header-label {
+  line-height: pxToRem(23);
+  color: $sbbColorBlack;
+  font-family: $fontSbbRoman;
+}
+
+.sbb-header-subtitle {
+  font-size: pxToRem(13);
+  font-weight: 300;
+  line-height: pxToRem(16);
+  color: $sbbColorAnthracite;
+}
+
+.sbb-header-main-menu,
+.sbb-header-side-menu {
+  > a,
+  > button {
+    line-height: pxToRem(23);
+    font-size: pxToRem(15);
+    border: transparent solid pxToRem(1);
+    outline: none;
+    color: $sbbColorBlack;
+    font-family: $fontSbbRoman;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &.sbb-active {
+      color: $sbbColorRed125;
+    }
+  }
+  > a {
+    text-decoration: none;
+    padding: pxToRem(6) pxToRem(8);
+  }
+  > button {
+    cursor: pointer;
+    @include buttonResetFrameless();
+    text-align: left;
+  }
+}
+
+.sbb-header-container-end {
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: pxToRem(35);
+
+  > .sbb-header-usermenu {
+    z-index: 1;
+    margin-left: pxToRem(15);
+    margin-right: pxToRem(15);
+  }
+}
+
+.sbb-header-logo {
+  display: flex;
+  height: $sbbHeaderHeight;
+
+  > svg {
+    width: pxToRem(80);
+  }
+}
+
+.sbb-header-side-menu-backdrop {
+  display: none;
+}
+
+.sbb-header.sbb-header-opened .sbb-header-side-menu-backdrop {
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.sbb-header-side-menu-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: $sbbHeaderMenuWidth;
+  height: 100vh;
+  top: 0;
+  background-color: $sbbColorWhite;
+  border-right: 1px solid $sbbColorGranite;
+  box-shadow: pxToRem(4) 0 0 0 rgba(0, 0, 0, 0.15);
+  z-index: $sbbHeaderSideMenuZIndex;
+  overflow-y: auto;
+}
+
+.sbb-header-side-menu-title-section {
+  display: flex;
+  align-items: center;
+  height: $sbbHeaderHeight;
+  margin-bottom: pxToRem(12);
+  flex: 0 0 auto;
+}
+
+.sbb-header-side-menu {
+  flex-direction: column;
+  margin: 0 pxToRem(15);
+
+  > a,
+  > button {
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

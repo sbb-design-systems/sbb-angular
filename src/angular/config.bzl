@@ -20,6 +20,7 @@ entry_points = [
     "dialog",
     "file-selector",
     "form-field",
+    "header-lean",
     "icon",
     "icon/testing",
     "input",

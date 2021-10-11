@@ -1,0 +1,50 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "header-lean",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":app-chooser-section.css",
+        ":header.css",
+    ] + glob(["**/*.html"]),
+    deps = [
+        "//src/angular/core",
+        "//src/angular/icon",
+        "@npm//@angular/animations",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "app_chooser_section_scss",
+    src = "app-chooser-section.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "header_scss",
+    src = "header.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
