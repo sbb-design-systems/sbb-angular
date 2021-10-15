@@ -8,7 +8,7 @@ $sbbTooltipArrowOffset: 7.2;
 .sbb-tooltip-content-close-button {
   padding-right: pxToEm(48);
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-right: pxToRem(40);
   }
 }
@@ -41,7 +41,7 @@ $sbbTooltipArrowOffset: 7.2;
   right: pxToEm($sbbTooltipPadding);
   line-height: 0;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     top: pxToRem($sbbTooltipPaddingLean + $sbbTooltipArrowOffset);
     right: pxToRem($sbbTooltipPaddingLean);
     color: $sbbColorIron;
@@ -61,7 +61,7 @@ $sbbTooltipArrowOffset: 7.2;
   .sbb-tooltip-panel-above & {
     top: pxToEm($sbbTooltipPadding + $sbbTooltipStandardBorderWidth);
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       top: pxToRem($sbbTooltipPaddingLean);
     }
   }

@@ -49,7 +49,7 @@ sbb-icon.sbb-icon-scaled {
   width: pxToRem(24);
   height: pxToRem(24);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       width: pxToRem(36);
       height: pxToRem(36);

@@ -26,7 +26,7 @@ $tab-animation-duration: 500ms !default;
   padding-bottom: pxToRem(20);
   outline: none;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
       margin-right: pxToRem(42);
       font-size: pxToRem(26);
@@ -55,7 +55,7 @@ $tab-animation-duration: 500ms !default;
       width: 0;
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     font-size: pxToRem(15);
     line-height: pxToRem(20);
     padding: pxToRem(6) pxToRem(15) pxToRem(9);
@@ -72,12 +72,12 @@ $tab-animation-duration: 500ms !default;
   }
 
   &.sbb-tab-label-active {
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       &::after {
         width: 100%;
       }
     }
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       border-color: $sbbColorGraphite;
 
       &::after {
@@ -96,13 +96,13 @@ $tab-animation-duration: 500ms !default;
   &:not(.sbb-tab-label-active):hover {
     color: $tabsHoverColor;
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       &::after {
         width: 100%;
         border-bottom-color: $sbbColorRed125;
       }
     }
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       &::after {
         content: '';
         position: absolute;
@@ -120,7 +120,7 @@ $tab-animation-duration: 500ms !default;
     color: currentColor;
     cursor: default;
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       &::after {
         border-bottom-color: currentColor;
       }
@@ -150,14 +150,14 @@ $tab-animation-duration: 500ms !default;
 
   // Reserve space for the badge in lean mode.
   .sbb-badge:not(.sbb-badge-hidden) {
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       padding-right: pxToRem(11);
     }
   }
 
   // Reduce size of badge in lean mode.
   .sbb-badge-content {
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       transform: scale(0.8);
     }
   }
@@ -183,7 +183,7 @@ $tab-animation-duration: 500ms !default;
   .sbb-tab-header {
     position: relative;
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       &::before,
       &::after {
         position: absolute;
@@ -234,7 +234,7 @@ $tab-animation-duration: 500ms !default;
   display: flex;
   padding-top: pxToRem(2);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       padding-top: pxToRem(3);
     }
@@ -252,7 +252,7 @@ $tab-animation-duration: 500ms !default;
   z-index: 1;
   padding-bottom: 20px;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-bottom: 0;
 
     // We want to display the scrollbar above the header in order not to separate the borders
@@ -269,7 +269,7 @@ $tab-animation-duration: 500ms !default;
   overflow: hidden;
   transition: height $tab-animation-duration;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     border: pxToRem(1) solid $sbbColorGraphite;
     margin-top: pxToRem(-1);
     background-color: $sbbColorWhite;

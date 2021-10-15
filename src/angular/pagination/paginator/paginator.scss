@@ -29,11 +29,11 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   text-align: center;
   outline: 0;
   flex-shrink: 0;
-  font-size: pxToRem($sizeFontDefault);
+  font-size: var(--sbb-font-size);
   min-width: pxToRem($paginatorSize);
   height: pxToRem($paginatorSize);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);
       min-width: pxToRem($paginatorSize4K);
@@ -47,7 +47,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     min-width: pxToRem($paginatorSizeLean);
     height: pxToRem($paginatorSizeLean);
   }
@@ -73,7 +73,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
     color: $paginationActiveHoverColor;
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       border-width: pxToRem(2 * $scalingFactor4k);
       padding: 0 pxToRem(private-div($sizeFontDefault4k, 2));
@@ -84,7 +84,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $paginationBaseColorLean;
     padding: 0 pxToRem(5);
 
@@ -104,7 +104,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
     color: $paginationBaseColor;
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     border-color: $paginationBaseColorLean;
 
     &:hover,
@@ -124,7 +124,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
     color: $paginationActiveHoverColor;
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       width: pxToRem($paginatorSize4K);
       height: pxToRem($paginatorSize4K);
@@ -138,7 +138,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $sbbColorIron;
     height: pxToRem($paginatorSizeLean);
     width: pxToRem($paginatorSizeLean);
@@ -158,12 +158,12 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   &.sbb-paginator-item-selected {
     border-color: $paginatorDisabledColor;
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       border-color: $paginatorDisabledColorLean;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $paginatorDisabledColorLean;
   }
 }
@@ -174,7 +174,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   margin-top: 54%;
   color: $paginationBaseColor;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $paginationBaseColorLean;
   }
 }
@@ -182,7 +182,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
 .sbb-paginator-item-ellipsis-disabled {
   color: $paginatorDisabledColor;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $paginatorDisabledColorLean;
   }
 }

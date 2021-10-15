@@ -13,26 +13,12 @@
 }
 
 .sbb-file-selector-list {
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeLineHeightDefault);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
   list-style: none;
   padding: 0;
   margin: 0;
   margin-top: pxToEm(16);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
-    }
-  }
-  html.sbb-lean & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-  }
 
   li {
     padding-left: 0;
@@ -50,7 +36,7 @@
   height: pxToEm(24);
   margin-right: pxToEm(8);
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     vertical-align: top;
   }
 }
@@ -68,12 +54,12 @@
   outline: 0;
   color: $sbbColorGranite;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     border: pxToEm(1) solid $sbbColorStorm;
     border-radius: 50%;
     padding: pxToEm(3);
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     width: pxToEm(24);
     height: pxToEm(24);
     color: $sbbColorBlack;
@@ -88,8 +74,8 @@
     border-color: $sbbColorRed125;
 
     // Redefine color for specificity
-    html:not(.sbb-lean) &,
-    html.sbb-lean & {
+    :where(html:not(.sbb-lean)) &,
+    :where(html.sbb-lean) & {
       color: $sbbColorRed125;
       border-color: $sbbColorRed125;
     }

@@ -3,23 +3,9 @@
 .sbb-status {
   display: inline-flex;
   align-items: center;
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeLineHeightDefault);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
   height: pxToEm(24);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
-    }
-  }
-  html.sbb-lean & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-  }
 }
 
 .sbb-status-icon {
@@ -28,7 +14,7 @@
   border-radius: pxToRem(1);
   color: $sbbColorWhite;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       border-radius: pxToRem(2);
     }

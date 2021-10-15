@@ -9,7 +9,7 @@
   padding-right: pxToRem(44);
 
   // Use variant mixin here to be specific enough to overwrite sbb-input-element styles
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       padding-right: pxToRem(44 * $scalingFactor4k);
     }
@@ -17,7 +17,7 @@
       padding-right: pxToRem(44 * $scalingFactor5k);
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-right: pxToRem(38);
   }
 }
@@ -28,7 +28,7 @@
 }
 
 // Used when setting a placeholder
-html.sbb-lean .sbb-select-value-empty {
+:where(html.sbb-lean) .sbb-select-value-empty {
   color: $sbbColorStorm;
 }
 
@@ -37,7 +37,7 @@ html.sbb-lean .sbb-select-value-empty {
   right: pxToEm(9);
   color: $sbbColorGrey;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $sbbColorGranite;
     right: pxToRem(6);
   }
@@ -65,7 +65,7 @@ html.sbb-lean .sbb-select-value-empty {
     border-top: none;
   }
 
-  html:not(.sbb-lean) &.sbb-select-multiple .sbb-menu-group .sbb-menu-item {
+  :where(html:not(.sbb-lean)) &.sbb-select-multiple .sbb-menu-group .sbb-menu-item {
     padding-left: pxToRem(14);
 
     @include mq($from: desktop4k) {

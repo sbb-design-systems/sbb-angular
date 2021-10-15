@@ -1,4 +1,4 @@
-@import '../../angular/styles/common';
+@import '../styles/common';
 
 $sbbExpansionPanelHeaderLineHeightStandard: 28;
 $sbbExpansionPanelHeaderLineHeightStandardTablet: 30;
@@ -14,7 +14,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
   transition: border-color 225ms cubic-bezier(0.4, 0, 0.2, 1);
   border: pxToRem($sbbExpansionPanelBorderWidth) solid $sbbColorMilk;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       border-width: pxToRem($sbbExpansionPanelBorderWidth4k);
     }
@@ -23,7 +23,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
   & + & {
     margin-top: pxToRem($sbbExpansionPanelBorderWidth * 2);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         margin-top: pxToRem($sbbExpansionPanelBorderWidth4k * 2);
       }
@@ -45,7 +45,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
   padding-left: pxToRem($sbbExpansionPanelBorderWidth);
   padding-right: pxToRem($sbbExpansionPanelBorderWidth);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       border-left-width: 0;
       border-right-width: 0;
@@ -65,7 +65,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
   padding: pxToRem(24 - $sbbExpansionPanelBorderWidth) pxToRem(24 - $sbbExpansionPanelBorderWidth)
     pxToRem(26 - $sbbExpansionPanelBorderWidth) pxToRem(24 - $sbbExpansionPanelBorderWidth);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
       padding: pxToRem(35 - $sbbExpansionPanelBorderWidth)
         pxToRem(48 - $sbbExpansionPanelBorderWidth) pxToRem(37 - $sbbExpansionPanelBorderWidth)
@@ -87,7 +87,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding: pxToRem(11 - $sbbExpansionPanelBorderWidth) pxToRem(16 - $sbbExpansionPanelBorderWidth)
       pxToRem(12 - $sbbExpansionPanelBorderWidth) pxToRem(16 - $sbbExpansionPanelBorderWidth);
   }
@@ -103,7 +103,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
       left: pxToRem((24 - $sbbExpansionPanelBorderWidth));
       border-bottom: pxToRem($sbbExpansionPanelBorderWidth) solid $sbbColorCloud;
 
-      html:not(.sbb-lean) & {
+      :where(html:not(.sbb-lean)) & {
         @include mq($from: tablet) {
           width: calc(100% - #{pxToRem((48 - $sbbExpansionPanelBorderWidth) * 2)});
           left: pxToRem((48 - $sbbExpansionPanelBorderWidth));
@@ -123,7 +123,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
         }
       }
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         width: calc(100% - #{pxToRem((16 - $sbbExpansionPanelBorderWidth) * 2)});
         left: pxToRem((16 - $sbbExpansionPanelBorderWidth));
       }
@@ -149,7 +149,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
   height: pxToRem(24);
   width: pxToRem(24);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     border: pxToRem(1) solid $sbbColorStorm;
     border-radius: 50%;
     color: $sbbColorGranite;
@@ -217,7 +217,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
   font-size: pxToRem(20);
   line-height: pxToRem($sbbExpansionPanelHeaderLineHeightStandard);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
       font-size: pxToRem(21);
       line-height: pxToRem($sbbExpansionPanelHeaderLineHeightStandardTablet);
@@ -232,7 +232,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     font-size: pxToRem(21);
     line-height: pxToRem(25);
   }
@@ -252,7 +252,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
 .sbb-expansion-panel-body {
   padding: pxToRem(36) pxToRem(24 - $sbbExpansionPanelBorderWidth);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
       padding: pxToRem(48) pxToRem(48 - $sbbExpansionPanelBorderWidth);
     }
@@ -269,7 +269,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding: pxToEm(24) pxToEm(16 - $sbbExpansionPanelBorderWidth);
   }
 }

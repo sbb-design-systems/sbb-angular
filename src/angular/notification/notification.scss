@@ -15,7 +15,7 @@ $notificationMessagePaddingRight: 24;
   line-height: pxToRem($sizeLineHeightDefault);
   overflow-y: hidden;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     &:not(.ng-animating) {
       min-height: pxToEm(68);
     }
@@ -29,7 +29,7 @@ $notificationMessagePaddingRight: 24;
       line-height: pxToRem($sizeLineHeightDefault5k);
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     line-height: pxToRem($sizeLineHeightDefaultLean);
     padding: pxToRem(11) pxToRem(15);
     border: pxToRem(1) solid transparent;
@@ -47,19 +47,19 @@ $notificationMessagePaddingRight: 24;
   background-color: $sbbColorRed;
 }
 
-html.sbb-lean .sbb-notification-success {
+:where(html:not(.sbb-lean)) .sbb-notification-success {
   color: $sbbColorGreen;
   background-color: $sbbColorWhite;
   border-color: $sbbColorGreen;
 }
 
-html.sbb-lean .sbb-notification-info {
+:where(html:not(.sbb-lean)) .sbb-notification-info {
   color: $sbbColorGranite;
   background-color: $sbbColorWhite;
   border-color: $sbbColorGranite;
 }
 
-html.sbb-lean .sbb-notification-warn {
+:where(html:not(.sbb-lean)) .sbb-notification-warn {
   background-color: $sbbColorOrange;
 }
 
@@ -72,12 +72,12 @@ html.sbb-lean .sbb-notification-warn {
     line-height: pxToEm(23);
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     &:not(.ng-animating) {
       min-height: pxToEm(92);
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding: pxToRem(11) pxToRem(15) pxToRem(13.5);
   }
 }
@@ -93,7 +93,7 @@ html.sbb-lean .sbb-notification-warn {
     max-height: 100%;
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     flex-basis: pxToRem(24);
     width: pxToEm(24);
     height: pxToEm(24);
@@ -104,12 +104,12 @@ html.sbb-lean .sbb-notification-warn {
   flex: 1 1 auto;
   margin-left: pxToEm($notificationMessagePadding);
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     margin-left: pxToRem(8);
   }
 }
 
-html:not(.sbb-lean) .sbb-notification-content-title {
+:where(html:not(.sbb-lean)) .sbb-notification-content-title {
   font-family: $fontSbbBold;
 }
 
@@ -122,7 +122,7 @@ html:not(.sbb-lean) .sbb-notification-content-title {
   }
 }
 
-html.sbb-lean .sbb-notification-dismiss-icon {
+:where(html:not(.sbb-lean)) .sbb-notification-dismiss-icon {
   flex: 0 0 pxToEm(24);
   align-self: flex-start;
   width: pxToEm(24);

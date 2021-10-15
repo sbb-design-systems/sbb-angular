@@ -21,7 +21,7 @@
   min-width: 1em;
   height: 1em;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: tabletPortrait) {
       margin: pxToRem(3) pxToRem(19);
     }
@@ -37,7 +37,7 @@
       margin: pxToRem(6) pxToRem(54);
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     font-size: pxToRem(12);
     margin: pxToRem(1) pxToRem(22) 0;
   }
@@ -76,7 +76,7 @@
     margin-left: pxToRem(8);
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       margin-left: pxToRem(12);
     }

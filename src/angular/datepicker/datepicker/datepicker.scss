@@ -9,7 +9,7 @@ $buttonOffsetLean: 6;
   width: 100%;
   color: $sbbColorGrey;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $sbbColorIron;
   }
 }
@@ -17,7 +17,7 @@ $buttonOffsetLean: 6;
 .sbb-datepicker-disabled {
   color: $sbbColorGrey;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $sbbColorGranite;
   }
 }
@@ -31,7 +31,7 @@ $buttonOffsetLean: 6;
   .sbb-datepicker-arrows-enabled > & {
     padding-left: pxToRem($arrowsOnlyOrToggleOnlyPadding - $borderWidth);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         padding-left: pxToRem(($arrowsOnlyOrToggleOnlyPadding - $borderWidth) * $scalingFactor4k);
       }
@@ -41,7 +41,7 @@ $buttonOffsetLean: 6;
       }
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       padding-left: pxToRem($arrowsOnlyOrToggleOnlyPaddingLean);
     }
   }
@@ -49,7 +49,7 @@ $buttonOffsetLean: 6;
   .sbb-datepicker-arrows-enabled > & {
     padding-right: pxToRem($arrowsOnlyOrToggleOnlyPadding - $borderWidth);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         padding-right: pxToRem(($arrowsOnlyOrToggleOnlyPadding - $borderWidth) * $scalingFactor4k);
       }
@@ -59,7 +59,7 @@ $buttonOffsetLean: 6;
       }
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       padding-right: pxToRem($arrowsOnlyOrToggleOnlyPaddingLean);
     }
   }
@@ -69,7 +69,7 @@ $buttonOffsetLean: 6;
 
     padding-left: pxToRem($arrowsAndTogglePadding - $borderWidth);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         padding-left: pxToRem(($arrowsAndTogglePadding - $borderWidth) * $scalingFactor4k);
       }
@@ -79,7 +79,7 @@ $buttonOffsetLean: 6;
       }
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       padding-left: pxToRem(62);
     }
   }
@@ -108,7 +108,7 @@ $buttonOffsetLean: 6;
 .sbb-datepicker-toggle-button {
   left: pxToRem($buttonOffset);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       left: pxToRem($buttonOffset * $scalingFactor4k);
     }
@@ -118,7 +118,7 @@ $buttonOffsetLean: 6;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     left: pxToRem($buttonOffsetLean);
   }
 }
@@ -126,7 +126,7 @@ $buttonOffsetLean: 6;
 .sbb-datepicker-arrow-button-right {
   right: pxToRem($buttonOffset);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       right: pxToRem($buttonOffset * $scalingFactor4k);
     }
@@ -136,7 +136,7 @@ $buttonOffsetLean: 6;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     right: pxToRem($buttonOffsetLean);
   }
 }
@@ -145,7 +145,7 @@ $buttonOffsetLean: 6;
   $buttonOffset: 40;
   left: pxToRem($buttonOffset);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       left: pxToRem($buttonOffset * $scalingFactor4k);
     }
@@ -155,7 +155,7 @@ $buttonOffsetLean: 6;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     left: pxToRem(30);
   }
 }

@@ -10,7 +10,7 @@
   margin: pxToEm(50) 0 pxToEm(50) 0;
   font-size: 1rem;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);
     }

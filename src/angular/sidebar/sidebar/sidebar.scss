@@ -83,7 +83,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
     position: relative;
     text-decoration: none;
     color: $sbbColorIron;
-    font-size: pxToRem($sizeFontDefault);
+    font-size: var(--sbb-font-size);
     line-height: pxToRem(20);
     display: flex;
     justify-content: flex-start;
@@ -106,7 +106,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
       outline: 0;
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       width: calc(100% + #{pxToRem(16 - 1)});
 
       // Redefined to be more specific
@@ -131,7 +131,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
   .sbb-expansion-panel-header {
     background-color: inherit;
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       padding: pxToRem(24 - 1) pxToRem(24 - 1) pxToRem(26 - 1) pxToRem(24 - 1);
 
       .sbb-expansion-panel-header-indicator {
@@ -176,7 +176,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
     }
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     > fieldset,
     .sbb-expansion-panel-body {
       padding: pxToRem(24 - 1);
@@ -192,8 +192,8 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
   > sbb-expansion-panel,
   > fieldset {
     // Used standard and lean selectors to be more specific than typography styles
-    html.sbb-lean &,
-    html:not(.sbb-lean) & {
+    :where(html.sbb-lean) &,
+    :where(html:not(.sbb-lean)) & {
       border: none;
       border-bottom: pxToRem(1) solid $sbbColorCloud;
     }

@@ -6,7 +6,7 @@
   letter-spacing: 0;
   color: $sbbColorMetal;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(20);
     }
@@ -16,8 +16,8 @@
     }
   }
 
-  html.sbb-lean & {
-    font-size: pxToRem($sizeFontDefault);
+  :where(html.sbb-lean) & {
+    font-size: var(--sbb-font-size);
     line-height: pxToRem(23);
     color: $sbbColorBlack;
   }

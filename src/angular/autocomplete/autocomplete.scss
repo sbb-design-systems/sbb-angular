@@ -9,7 +9,7 @@
 }
 
 .sbb-autocomplete-panel {
-  html:not(.sbb-lean) & .sbb-menu-group .sbb-menu-item {
+  :where(html:not(.sbb-lean)) & .sbb-menu-group .sbb-menu-item {
     padding-left: pxToRem(14);
 
     @include mq($from: desktop4k) {

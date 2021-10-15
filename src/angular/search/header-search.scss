@@ -14,7 +14,7 @@
     color: $sbbColorRed125;
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(21);
       line-height: pxToRem(25);
@@ -26,7 +26,7 @@
       padding: pxToRem(12 * $scalingFactor5k) 0;
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding: pxToRem(6) 0;
   }
 }

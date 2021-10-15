@@ -33,7 +33,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   padding-left: pxToEm(1);
   padding-bottom: pxToEm(1);
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     width: pxToEm(30);
     height: pxToEm(30);
   }
@@ -42,9 +42,9 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
 .sbb-datepicker-content {
   position: relative;
   top: pxToEm($datePickerContentOffset);
-  font-size: pxToRem($sizeFontDefault);
+  font-size: var(--sbb-font-size);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       // Using $sizeFontDefault4k here would mean to replace em definitions with media queries in whole datepicker-content.scss
       font-size: pxToRem(22.5);
@@ -54,7 +54,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     top: pxToEm($datePickerContentOffsetLean);
   }
 
@@ -62,7 +62,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     top: auto;
     bottom: pxToEm($datePickerContentOffset);
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       top: auto; // Redefine to be specific enough
       bottom: pxToEm($datePickerContentOffsetLean);
     }
@@ -87,7 +87,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     // `-0.4px` fixes calculation issue in Firefox
     clip-path: polygon(-0.4px 100%, 100% -0.4px, 100% 100%);
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       top: pxToEm(-4);
       left: pxToEm(12);
       border-width: pxToEm(1);
@@ -100,7 +100,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     .sbb-datepicker-with-arrows & {
       left: pxToEm(42);
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         left: pxToEm(36);
       }
     }
@@ -125,7 +125,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
       $boxWidth: pxToEm($datePickerCalendarBorderWidth * 2);
       box-shadow: $boxWidth $boxWidth 0 $boxWidth rgb(0 0 0 / 15%);
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         top: auto;
         bottom: pxToEm(-4);
 
@@ -144,20 +144,20 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   background-color: $datePickerCalendarBg;
   border: pxToEm($datePickerCalendarBorderWidth) solid $sbbColorGrey;
   border-radius: pxToEm(2);
-  box-shadow: boxShadowEm(1, $datePickerCalendarBorderWidth, 1);
+  box-shadow: boxShadowEm(1, $datePickerCalendarBorderWidth);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: tabletPortrait) {
       width: pxToEm(428);
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     border-width: pxToEm(1);
     border-color: $sbbColorIron;
     width: pxToEm(303);
     height: pxToEm(303);
-    box-shadow: boxShadowEm(1, 1, 1);
+    box-shadow: boxShadowEm(1, 1);
   }
 }
 
@@ -165,7 +165,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   display: block;
   border-bottom: pxToEm(1) solid $datepickerCalendarLineColor;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     border-bottom-color: $datepickerCalendarLineColorLean;
   }
 }
@@ -175,7 +175,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   height: pxToEm($datePickerCalendarHeaderHeight);
   align-items: center;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     height: pxToEm($datePickerCalendarHeaderHeightLean);
   }
 }
@@ -188,7 +188,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   text-align: center;
   position: relative;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     height: pxToEm($datePickerCalendarHeaderHeightLean);
   }
 }
@@ -204,7 +204,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     right: 0;
     border-right: pxToEm(1) solid $datepickerCalendarLineColor;
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       border-right-color: $datepickerCalendarLineColorLean;
     }
   }
@@ -236,14 +236,14 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     opacity: 0;
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: tabletPortrait) {
       padding-left: pxToEm(8);
       padding-right: pxToEm(8);
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-left: pxToEm(8);
     padding-right: pxToEm(8);
     height: pxToEm($datePickerCalendarHeaderHeightLean);
@@ -269,7 +269,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   line-height: 3.2;
   color: $datePickerCalendarHeaderColor;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     font-size: pxToEm($sizeFontDefault);
     line-height: pxToEm(36);
     color: $datePickerCalendarHeaderColorLean;
@@ -280,14 +280,14 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   padding: 0 pxToEm($datePickerCalendarTableContentPaddingWidthMobile) 0
     pxToEm($datePickerCalendarTableContentPaddingWidthMobile);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: tabletPortrait) {
       padding-left: pxToEm($datePickerCalendarTableContentPaddingWidth);
       padding-right: pxToEm($datePickerCalendarTableContentPaddingWidth);
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-left: pxToEm($datePickerCalendarTableContentPaddingWidthLean);
     padding-right: pxToEm($datePickerCalendarTableContentPaddingWidthLean);
   }
@@ -305,7 +305,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     color: $sbbColorGrey;
     line-height: 1.5;
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         font-size: pxToRem($sizeFontDefault4k);
       }
@@ -314,7 +314,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
       }
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       color: $sbbColorIron;
     }
   }
@@ -335,7 +335,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
       left: pxToEm(-$datePickerCalendarTableContentPaddingWidth);
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       width: calc(100% + #{pxToEm(2 * $datePickerCalendarTableContentPaddingWidthLean)});
       left: pxToEm(-$datePickerCalendarTableContentPaddingWidthLean);
       border-bottom-color: $datepickerCalendarLineColorLean;
@@ -350,7 +350,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     padding: pxToEm(7, 13);
     color: $datePickerCalendarHeaderColor;
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         font-size: pxToRem(19.5);
       }
@@ -359,7 +359,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
       }
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       color: $datePickerCalendarHeaderColorLean;
     }
   }
@@ -385,7 +385,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
       content: '';
       background-color: $datePickerCalendarTableRangeBgColor;
       &,
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         // To be more specific
         width: 100%;
       }
@@ -400,7 +400,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   &.sbb-calendar-body-range-background-offset-start {
     &::before {
       &,
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         // To be more specific
         width: 50%;
       }
@@ -457,7 +457,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   padding-top: pxToEm(24);
   padding-bottom: pxToEm(24);
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-top: pxToEm(16.5);
     padding-bottom: pxToEm(16.5);
   }
@@ -468,7 +468,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   color: $sbbColorCement;
   cursor: default;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $sbbColorStorm;
   }
 
@@ -483,13 +483,13 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     position: absolute;
     transform: rotate(-45deg);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: tabletPortrait) {
         left: calc(50% - #{pxToEm(17)});
       }
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       background-color: $sbbColorStorm;
       width: pxToEm(24);
       top: pxToEm(18);
@@ -525,7 +525,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     color: $sbbColorGrey;
     border-color: $sbbColorGrey;
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       color: $sbbColorIron;
       border-color: $sbbColorIron;
     }

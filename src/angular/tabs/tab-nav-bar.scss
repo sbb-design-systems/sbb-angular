@@ -25,7 +25,7 @@
     flex-grow: 1;
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     // We need to unset overflow: hidden on business due to our requirement of hiding
     // the border between the tab link header and body.
     overflow: unset;
@@ -44,7 +44,7 @@
 .sbb-tab-nav-bar-body {
   @include tab-body-wrapper;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding: pxToRem(15);
   }
 }

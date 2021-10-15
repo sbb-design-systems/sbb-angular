@@ -13,14 +13,14 @@
 
   .sbb-selection-container {
     margin: 0;
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         margin: 0;
       }
     }
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       margin-top: pxToRem(-2);
       margin-right: pxToRem(8 * $scalingFactor4k);

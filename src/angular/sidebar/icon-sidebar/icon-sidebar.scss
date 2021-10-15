@@ -40,7 +40,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
     position: relative;
     text-decoration: none;
     color: $sbbColorIron;
-    font-size: pxToRem($sizeFontDefault);
+    font-size: var(--sbb-font-size);
     line-height: pxToRem(23);
     display: inline-flex;
     align-items: center;
@@ -69,7 +69,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
       }
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       // Redefined to be more specific
       line-height: pxToRem(23);
     }

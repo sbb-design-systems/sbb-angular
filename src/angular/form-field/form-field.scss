@@ -5,13 +5,13 @@
   position: relative;
   width: pxToRem(320);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       width: pxToRem(400);
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     width: pxToRem(230);
   }
 }
@@ -46,7 +46,7 @@
 .sbb-form-field-wrapper {
   padding-bottom: pxToRem(23);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       padding-bottom: pxToRem(35);
     }
@@ -54,7 +54,7 @@
       padding-bottom: pxToRem(46);
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-bottom: pxToRem(16);
   }
 
@@ -67,7 +67,7 @@
   margin-bottom: pxToRem(5);
   padding-left: pxToRem(10);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       margin-bottom: pxToRem(5 * $scalingFactor4k);
       padding-left: pxToRem(10 * $scalingFactor4k);
@@ -78,7 +78,7 @@
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     margin-bottom: pxToRem(3);
     padding-left: 0;
   }
@@ -123,7 +123,7 @@
     vertical-align: bottom;
     width: pxToRem(16);
     height: pxToRem(16);
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         width: pxToRem(16 * $scalingFactor4k);
         height: pxToRem(16 * $scalingFactor4k);
@@ -138,7 +138,7 @@
   // Make sbb-tooltip align nicely inside sbb-label.
   .sbb-tooltip {
     margin-left: pxToRem(8);
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         margin-left: pxToRem(8 * $scalingFactor4k);
       }
@@ -158,7 +158,7 @@
     .sbb-icon {
       width: pxToRem(16);
       height: pxToRem(16);
-      html:not(.sbb-lean) & {
+      :where(html:not(.sbb-lean)) & {
         @include mq($from: desktop4k) {
           width: pxToRem(16 * $scalingFactor4k);
           height: pxToRem(16 * $scalingFactor4k);
@@ -184,7 +184,7 @@
   font-size: pxToRem(14);
   line-height: pxToRem(21);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(23);
       line-height: pxToRem(32);
@@ -195,7 +195,7 @@
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     font-size: pxToRem(13);
     line-height: pxToRem(16);
   }
@@ -207,7 +207,7 @@
   & > * {
     margin-bottom: pxToRem(8);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         margin-bottom: pxToRem(12);
       }

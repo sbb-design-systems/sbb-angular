@@ -10,18 +10,14 @@ $chipsRightPadding: 8;
   background: transparent;
 
   &.sbb-input-element {
+    padding: 0;
+
     .sbb-input-with-open-panel & {
       border-color: $sbbColorGrey;
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         border-color: $sbbColorIron;
       }
-    }
-
-    &,
-    html:not(.sbb-lean) &,
-    html.sbb-lean & {
-      padding: 0;
     }
 
     input.sbb-chip-input {
@@ -31,7 +27,7 @@ $chipsRightPadding: 8;
       flex: 1 0 pxToEm(150);
       min-height: pxToEm(34);
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         padding-bottom: pxToEm(6);
       }
     }
@@ -59,15 +55,15 @@ $chipsRightPadding: 8;
   max-width: 100%;
   margin: pxToEm(4);
   padding: pxToEm(10.25) pxToEm(14);
-  font-size: pxToRem($sizeFontDefault);
+  font-size: var(--sbb-font-size);
 
   &,
-  html:not(.sbb-lean) &,
-  html.sbb-lean & {
+  :where(html:not(.sbb-lean)) &,
+  :where(html.sbb-lean) & {
     line-height: 1;
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);
     }
@@ -76,7 +72,7 @@ $chipsRightPadding: 8;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     height: pxToEm(30);
     border-radius: pxToEm(private-div(30, 2));
     margin: pxToEm(2);

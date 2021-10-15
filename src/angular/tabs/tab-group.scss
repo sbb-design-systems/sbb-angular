@@ -33,7 +33,7 @@
   // Fix for auto content wrapping in IE11
   flex-basis: 100%;
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     margin: pxToRem(15);
   }
 

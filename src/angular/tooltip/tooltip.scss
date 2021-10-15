@@ -12,22 +12,8 @@ $tooltipShadowArrowSizeLean: 13.333;
 
 .sbb-tooltip-container {
   height: 100%;
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeLineHeightDefault);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
-    }
-  }
-  html.sbb-lean & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-  }
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
 
   &::after {
     top: 0;
@@ -57,7 +43,7 @@ $tooltipShadowArrowSizeLean: 13.333;
   .sbb-tooltip-panel-right &::after {
     margin-left: pxToEm(6);
   }
-  html.sbb-lean &::after {
+  :where(html.sbb-lean) &::after {
     bottom: pxToRem(8.25);
     height: pxToRem($tooltipContentArrowSizeLean);
     width: pxToRem($tooltipContentArrowSizeLean);
@@ -85,7 +71,7 @@ $tooltipShadowArrowSizeLean: 13.333;
     margin-top: pxToEm(7.2);
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $sbbColorBlack;
     padding: pxToRem(8);
     border: pxToRem(1) solid $sbbColorIron;
@@ -114,7 +100,7 @@ $tooltipShadowArrowSizeLean: 13.333;
       border-bottom: 0;
       border-top-color: rgba(0, 0, 0, 0.15);
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         border-width: pxToRem($tooltipShadowArrowSizeLean);
         border-bottom: 0;
       }
@@ -127,7 +113,7 @@ $tooltipShadowArrowSizeLean: 13.333;
     margin-left: pxToEm(1);
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     height: pxToRem(4);
     border-radius: 0 0 pxToRem(1) pxToRem(1);
   }

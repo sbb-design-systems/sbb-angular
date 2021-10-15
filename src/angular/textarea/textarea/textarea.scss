@@ -41,7 +41,7 @@
   line-height: 1;
   font-family: $fontSbbRoman;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(20);
     }
@@ -51,7 +51,7 @@
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $sbbColorMetal;
   }
 }

@@ -27,12 +27,12 @@ $sbb-dialog-button-margin: pxToRem(8);
   min-height: inherit;
   max-height: inherit;
 
-  html:not(.sbb-lean) {
+  :where(html:not(.sbb-lean)) {
     @include mq($from: desktop4k) {
       border-width: pxToRem(4);
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     border: pxToRem(1) solid $sbbColorIron;
   }
 
@@ -64,7 +64,7 @@ $sbb-dialog-button-margin: pxToRem(8);
   flex: 0 0 auto;
   display: block;
   position: relative;
-  box-shadow: horizontalBorderBoxShadow(1, 1, 1);
+  box-shadow: horizontalBorderBoxShadow(1, 1);
   @include ellipsis;
 }
 
@@ -91,7 +91,7 @@ $sbb-dialog-button-margin: pxToRem(8);
   // Explicitly set a box-sizing since people commonly set `border-box`
   // on all elements which will break the height of the dialog actions.
   box-sizing: content-box;
-  box-shadow: horizontalBorderBoxShadow(-1, 1, 1);
+  box-shadow: horizontalBorderBoxShadow(-1, 1);
 
   &[align='start'],
   &[align='left'] {

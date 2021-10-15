@@ -31,11 +31,11 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 1.2em;
   color: $sbbColorGrey;
 
-  font-size: pxToRem($sizeFontDefault);
+  font-size: var(--sbb-font-size);
   line-height: pxToRem(23);
   padding: pxToRem(4) pxToRem(8) pxToRem(6) pxToRem(15);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);
       line-height: pxToRem(35);
@@ -49,7 +49,7 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $sbbColorGranite;
     padding: pxToRem(2) pxToRem(6) pxToRem(3) pxToRem(13);
   }
@@ -71,7 +71,7 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
     background-color: $tagActiveBgColor;
     border-color: $tagActiveColor;
     &,
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       // Redefine for specificity
       color: $tagActiveColor;
     }
@@ -87,7 +87,7 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
     .sbb-badge-content {
       background-color: $sbbColorRed;
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         background-color: $sbbColorBlack;
       }
     }
@@ -110,7 +110,7 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: 0;
 
   &,
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     // Redefine for specificity
     color: $tagActiveColor;
   }
@@ -122,13 +122,13 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
     border-color: $sbbColorCallToActionHover;
 
     &,
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       // Redefine for specificity
       color: $sbbColorCallToActionHover;
     }
 
     .sbb-badge-content {
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         background-color: $sbbColorCallToActionHover;
       }
     }

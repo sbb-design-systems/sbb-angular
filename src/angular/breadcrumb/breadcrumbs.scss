@@ -14,7 +14,7 @@ $breadcrumbBorderWidthLean: 1;
   flex-wrap: wrap;
   padding-bottom: pxToRem(12);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       padding-bottom: pxToRem(12 * $scalingFactor4k);
     }
@@ -57,7 +57,7 @@ $breadcrumbBorderWidthLean: 1;
       margin-right: pxToRem(6);
       flex-shrink: 0;
 
-      html:not(.sbb-lean) & {
+      :where(html:not(.sbb-lean)) & {
         @include mq($from: desktop4k) {
           background-size: pxToRem(24 * $scalingFactor4k) pxToRem(24 * $scalingFactor4k);
           width: pxToRem(24 * $scalingFactor4k);
@@ -72,7 +72,7 @@ $breadcrumbBorderWidthLean: 1;
         }
       }
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         background-image: url($sbbIconChevronSmallRightSmallGranite);
         margin-right: pxToRem(4);
       }
@@ -87,7 +87,7 @@ $breadcrumbBorderWidthLean: 1;
     cursor: pointer;
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       margin-top: pxToRem(12 * $scalingFactor4k);
       margin-right: pxToRem(6 * $scalingFactor4k);
@@ -98,7 +98,7 @@ $breadcrumbBorderWidthLean: 1;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     margin-right: pxToRem(4);
 
     // Last user defined breadcrumb
@@ -124,7 +124,7 @@ $breadcrumbBorderWidthLean: 1;
     height: pxToRem($breadcrumbLabelHeightDesktop);
     width: pxToRem(24);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         height: pxToRem($breadcrumbLabelHeightDesktop * $scalingFactor4k);
         width: pxToRem(24 * $scalingFactor4k);
@@ -167,7 +167,7 @@ $breadcrumbBorderWidthLean: 1;
     color: $sbbColorRed125;
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(20);
       line-height: pxToRem(30);
@@ -178,7 +178,7 @@ $breadcrumbBorderWidthLean: 1;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     color: $sbbColorGranite;
     line-height: pxToRem(16);
 
@@ -202,7 +202,7 @@ $breadcrumbBorderWidthLean: 1;
   position: relative;
   padding-right: pxToRem($breadcrumbDropdownIconWidth);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       padding-right: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
     }
@@ -213,7 +213,7 @@ $breadcrumbBorderWidthLean: 1;
   }
 
   &,
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     // Redefine lean to be more specific
     &:focus,
     &:hover {
@@ -234,7 +234,7 @@ $breadcrumbBorderWidthLean: 1;
     flex-shrink: 0;
     transition: transform $breadcrumbAnimationTiming;
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         background-size: pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k)
           pxToRem($breadcrumbDropdownIconWidth * $scalingFactor4k);
@@ -249,7 +249,7 @@ $breadcrumbBorderWidthLean: 1;
       }
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       background-image: url($sbbIconChevronSmallDownCircleSmallGranite);
     }
   }
@@ -279,7 +279,7 @@ $breadcrumbBorderWidthLean: 1;
       transform: translateY(-50%) rotate(-180deg);
       margin-top: pxToRem(-($breadcrumbBorderWidthStandard - 1));
 
-      html:not(.sbb-lean) & {
+      :where(html:not(.sbb-lean)) & {
         @include mq($from: desktop4k) {
           margin-top: pxToRem(-($breadcrumbBorderWidthStandard - 1) * $scalingFactor4k);
         }
@@ -288,13 +288,13 @@ $breadcrumbBorderWidthLean: 1;
         }
       }
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         margin-top: 0;
       }
     }
 
     &,
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       // Redefine lean to be more specific
       color: $sbbColorRed125;
 
@@ -303,7 +303,7 @@ $breadcrumbBorderWidthLean: 1;
       }
     }
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         padding: pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor4k)
           pxToRem(($breadcrumbPaddingX + $breadcrumbDropdownIconWidth) * $scalingFactor4k)
@@ -318,7 +318,7 @@ $breadcrumbBorderWidthLean: 1;
       }
     }
 
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       padding: pxToRem($triggerPaddingY - $breadcrumbBorderWidthLean)
         pxToRem($breadcrumbPaddingX + $breadcrumbDropdownIconWidth)
         pxToRem($triggerPaddingY - $breadcrumbBorderWidthLean)
@@ -328,50 +328,44 @@ $breadcrumbBorderWidthLean: 1;
 
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-below & {
     padding-bottom: pxToRem($triggerPaddingY);
-    box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactorDefault);
+    box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         padding-bottom: pxToRem($triggerPaddingY * $scalingFactor4k);
-        box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
         padding-bottom: pxToRem($triggerPaddingY * $scalingFactor5k);
-        box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor5k);
       }
     }
 
-    html.sbb-lean & {
-      box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthLean, $scalingFactorDefault);
+    :where(html.sbb-lean) & {
+      box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthLean);
     }
   }
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
     padding-top: pxToRem($triggerPaddingY);
-    box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactorDefault),
-      horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard, $scalingFactorDefault);
+    box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard),
+      horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         padding-top: pxToRem($triggerPaddingY * $scalingFactor4k);
-        box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor4k),
-          horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard, $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
         padding-top: pxToRem($triggerPaddingY * $scalingFactor5k);
-        box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard, $scalingFactor5k),
-          horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard, $scalingFactor5k);
       }
     }
 
-    html.sbb-lean & {
-      box-shadow: boxShadow(1, $breadcrumbBorderWidthLean, $scalingFactorDefault),
-        horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthLean, $scalingFactorDefault);
+    :where(html.sbb-lean) & {
+      box-shadow: boxShadow(1, $breadcrumbBorderWidthLean),
+        horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthLean);
     }
 
     &::after {
       margin-top: pxToRem(($breadcrumbBorderWidthStandard - 1));
 
-      html:not(.sbb-lean) & {
+      :where(html:not(.sbb-lean)) & {
         @include mq($from: desktop4k) {
           margin-top: pxToRem(($breadcrumbBorderWidthStandard - 1) * $scalingFactor4k);
         }
@@ -380,7 +374,7 @@ $breadcrumbBorderWidthLean: 1;
         }
       }
 
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         margin-top: 0;
       }
     }
@@ -404,7 +398,7 @@ $breadcrumbBorderWidthLean: 1;
   padding-left: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
   padding-right: pxToRem($breadcrumbPaddingX);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(20);
       line-height: pxToRem(30);
@@ -423,7 +417,7 @@ $breadcrumbBorderWidthLean: 1;
     }
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-left: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
     padding-right: pxToRem($breadcrumbPaddingX);
   }

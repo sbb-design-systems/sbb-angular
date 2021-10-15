@@ -19,7 +19,7 @@
   font-size: pxToRem(20);
   line-height: 1;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: tabletPortrait) {
       font-size: pxToRem(21);
     }
@@ -33,7 +33,7 @@
       font-size: pxToRem(42);
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     font-size: pxToRem(16);
     padding-bottom: pxToRem(5);
   }
@@ -59,7 +59,7 @@
     border-bottom: pxToRem(1) solid currentColor;
     transition: width 0.3s, left 0.3s;
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         border-bottom-width: pxToRem(2);
       }
