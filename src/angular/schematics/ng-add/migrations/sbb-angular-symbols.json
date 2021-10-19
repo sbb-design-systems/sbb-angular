@@ -620,5 +620,12 @@
   "TooltipComponent": "tooltip",
   "TooltipPosition": "tooltip",
   "TooltipTouchGestures": "tooltip",
-  "TooltipVisibility": "tooltip"
+  "TooltipVisibility": "tooltip",
+  "SBB_USERMENU_SCROLL_STRATEGY": "usermenu",
+  "SBB_USERMENU_SCROLL_STRATEGY_PROVIDER": "usermenu",
+  "SBB_USERMENU_SCROLL_STRATEGY_PROVIDER_FACTORY": "usermenu",
+  "SbbUsermenu": "usermenu",
+  "sbbUsermenuAnimations": "usermenu",
+  "SbbUsermenuItem": "usermenu",
+  "SbbUsermenuModule": "usermenu"
 }

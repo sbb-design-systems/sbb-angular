@@ -726,3 +726,9 @@ which is no longer supported. The tooltip component now provides an `indicatorIc
 [any supported](angular/icon-overview) (or self registered) icon can be used.
 
 [Documentation](angular/components/tooltip)
+
+### Usermenu
+
+`sbb-usermenu`... TODO
+
+[Documentation](angular/components/tooltip)
