@@ -72,7 +72,7 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
           replace: 'sbbSortChange',
           replaceWith: 'sortChange',
           limitedTo: {
-            classes: ['SbbSortDirective'],
+            classes: ['SbbSortDirective', 'SbbSort'],
           },
         },
       ],
