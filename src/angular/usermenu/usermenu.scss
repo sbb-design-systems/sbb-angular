@@ -212,21 +212,21 @@ $imageBaseSizeLean: 24;
 
   img {
     border-radius: 50%;
-    border: $borderWidth solid $sbbColorCloud;
+    border: pxToRem($borderWidth) solid $sbbColorCloud;
     @include imageSize();
 
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        border-width: $borderWidth4k;
+        border-width: pxToRem($borderWidth4k);
       }
 
       @include mq($from: desktop5k) {
-        border-width: $borderWidth5k;
+        border-width: pxToRem($borderWidth5k);
       }
     }
 
     html.sbb-lean & {
-      border-width: $borderWidthLean;
+      border-width: pxToRem($borderWidthLean);
     }
   }
 }
