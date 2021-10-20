@@ -1,53 +1,60 @@
 @import '../styles/common';
-/**
-$textColor: if($sbbBusiness, $sbbColorIron, $sbbColorGrey);
 
-$triggerHeight: 48px;
+$textColor: $sbbColorGrey;
+$textColorLean: $sbbColorIron;
 
-$borderWidth: if($sbbBusiness, 1px, 2px);
-$borderWidth4k: 3px;
-$borderWidth5k: 4px;
+$triggerHeight: 48;
 
-$panelWidth: 288px;
-$panelWidth4k: toPx($panelWidth * $scalingFactor4k);
-$panelWidth5k: toPx($panelWidth * $scalingFactor5k);
+$borderWidth: 2;
+$borderWidth4k: 3;
+$borderWidth5k: 4;
+$borderWidthLean: 1;
 
-$imageBaseSize: if($sbbBusiness, 24, 30);
+$panelWidth: 288;
+$panelWidth4k: $panelWidth * $scalingFactor4k;
+$panelWidth5k: $panelWidth * $scalingFactor5k;
+
+$imageBaseSize: 30;
+$imageBaseSizeLean: 24;
 
 @mixin imageSize() {
-  width: toPx($imageBaseSize);
-  height: toPx($imageBaseSize);
+  width: pxToRem($imageBaseSize);
+  height: pxToRem($imageBaseSize);
 
-  @include publicOnly() {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      width: toPx($imageBaseSize * $scalingFactor4k);
-      height: toPx($imageBaseSize * $scalingFactor4k);
+      width: pxToRem($imageBaseSize * $scalingFactor4k);
+      height: pxToRem($imageBaseSize * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      width: toPx($imageBaseSize * $scalingFactor5k);
-      height: toPx($imageBaseSize * $scalingFactor5k);
+      width: pxToRem($imageBaseSize * $scalingFactor5k);
+      height: pxToRem($imageBaseSize * $scalingFactor5k);
     }
+  }
+
+  html.sbb-lean & {
+    width: pxToRem($imageBaseSizeLean);
+    height: pxToRem($imageBaseSizeLean);
   }
 }
 
 .sbb-usermenu {
   display: inline-block;
-  max-width: $panelWidth;
+  max-width: pxToRem($panelWidth);
 
-  @include publicOnly() {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      max-width: $panelWidth4k;
+      max-width: pxToRem($panelWidth4k);
     }
 
     @include mq($from: desktop5k) {
-      max-width: $panelWidth5k;
+      max-width: pxToRem($panelWidth5k);
     }
   }
 }
 
 .sbb-usermenu-trigger {
-  @include buttonResetFrameless;
   display: flex;
   align-items: center;
   height: pxToRem($triggerHeight);
@@ -58,16 +65,16 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
   width: 100%;
   padding: 0 pxToRem($borderWidth);
 
-  @include publicOnly() {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       height: pxToRem($triggerHeight * $scalingFactor4k);
-      font-size: 1.5rem;
+      font-size: pxToRem($sizeFontDefault4k);
       padding: 0 pxToRem($borderWidth4k);
     }
 
     @include mq($from: desktop5k) {
       height: pxToRem($triggerHeight * $scalingFactor5k);
-      font-size: 2rem;
+      font-size: pxToRem($sizeFontDefault5k);
       padding: 0 pxToRem($borderWidth5k);
     }
   }
@@ -79,8 +86,8 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
 
   // applies to custom icons and arrow icon
   .sbb-icon {
-    width: 24px;
-    height: 24px;
+    width: pxToRem(24);
+    height: pxToRem(24);
     flex-shrink: 0;
     flex-grow: 0;
 
@@ -89,15 +96,15 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
       height: 100%;
     }
 
-    @include publicOnly() {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        height: toPx(24 * $scalingFactor4k);
-        width: toPx(24 * $scalingFactor4k);
+        height: pxToRem(24 * $scalingFactor4k);
+        width: pxToRem(24 * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        height: toPx(24 * $scalingFactor5k);
-        width: toPx(24 * $scalingFactor5k);
+        height: pxToRem(24 * $scalingFactor5k);
+        width: pxToRem(24 * $scalingFactor5k);
       }
     }
   }
@@ -109,26 +116,35 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
     flex-shrink: 0;
     padding: 0;
     margin-top: pxToRem(private-div(-$borderWidth, 2));
+    margin-bottom: pxToRem(10);
 
-    @include publicOnly() {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor4k);
         box-shadow: 0 pxToRem($scalingFactor4k) 0 0 $sbbColorCloud; // horizontal line
         margin-top: pxToRem(private-div(-$borderWidth4k, 2));
+        margin-bottom: pxToRem(10 * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
         height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor5k);
         box-shadow: 0 pxToRem($scalingFactor5k) 0 0 $sbbColorCloud; // horizontal line
         margin-top: pxToRem(private-div(-$borderWidth5k, 2));
+        margin-bottom: pxToRem(10 * $scalingFactor5k);
       }
+    }
+
+    html.sbb-lean & {
+      height: pxToRem($triggerHeight - $borderWidthLean);
+      margin-top: pxToRem(private-div(-$borderWidthLean, 2));
+      margin-bottom: pxToRem(4);
     }
 
     .sbb-icon:not(.sbb-usermenu-arrow) {
       $padding: private-div(($imageBaseSize - 24), 2);
       margin: 0 pxToRem($padding);
 
-      @include publicOnly() {
+      html:not(.sbb-lean) & {
         @include mq($from: desktop4k) {
           margin: 0 pxToRem($padding * $scalingFactor4k);
         }
@@ -137,6 +153,10 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
           margin: 0 pxToRem($padding * $scalingFactor5k);
         }
       }
+
+      html.sbb-lean & {
+        margin: 0;
+      }
     }
   }
 }
@@ -144,7 +164,7 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
 .sbb-usermenu-logged-out-icon {
   margin-right: pxToRem(4);
 
-  @include publicOnly() {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       margin-right: pxToRem(4 * $scalingFactor4k);
     }
@@ -168,10 +188,14 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
   flex-shrink: 0;
   color: $textColor;
 
-  .sbb-usermenu-panel & {
-    padding-left: pxToRem(if($sbbBusiness, 8, 12));
+  html.sbb-lean & {
+    color: $textColorLean;
+  }
 
-    @include publicOnly() {
+  .sbb-usermenu-panel & {
+    padding-left: pxToRem(12);
+
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding-left: pxToRem(12 * $scalingFactor4k);
       }
@@ -180,6 +204,10 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
         padding-left: pxToRem(12 * $scalingFactor5k);
       }
     }
+
+    html.sbb-lean & {
+      padding-left: pxToRem(8);
+    }
   }
 
   img {
@@ -187,14 +215,18 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
     border: $borderWidth solid $sbbColorCloud;
     @include imageSize();
 
-    @include publicOnly() {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
-        border: $borderWidth4k solid $sbbColorCloud;
+        border-width: $borderWidth4k;
       }
 
       @include mq($from: desktop5k) {
-        border: $borderWidth5k solid $sbbColorCloud;
+        border-width: $borderWidth5k;
       }
+    }
+
+    html.sbb-lean & {
+      border-width: $borderWidthLean;
     }
   }
 }
@@ -212,9 +244,9 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
   font-family: $fontSbbBold;
   font-weight: 700;
   text-align: center;
-  font-size: pxToRem(if($sbbBusiness, 10, 13));
+  font-size: pxToRem(13);
 
-  @include publicOnly() {
+  html:not(.sbb-lean) & {
     line-height: 1;
 
     @include mq($from: desktop4k) {
@@ -224,6 +256,10 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
     @include mq($from: desktop5k) {
       font-size: pxToRem(13 * $scalingFactor5k);
     }
+  }
+
+  html.sbb-lean & {
+    font-size: pxToRem(10);
   }
 }
 
@@ -236,7 +272,7 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
   color: $textColor;
   padding-left: pxToRem(8);
 
-  @include publicOnly() {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       padding-left: pxToRem(8 * $scalingFactor4k);
     }
@@ -244,6 +280,10 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
     @include mq($from: desktop5k) {
       padding-left: pxToRem(8 * $scalingFactor5k);
     }
+  }
+
+  html.sbb-lean & {
+    color: $textColorLean;
   }
 
   .sbb-usermenu-user-info-has-display-name &,
@@ -276,11 +316,11 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
     display: inline-block;
   }
 
-  color: if($sbbBusiness, $sbbColorIron, $sbbColorMetal);
+  color: $sbbColorMetal;
   font-size: pxToRem(13);
   line-height: pxToRem(14);
 
-  @include publicOnly() {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(13 * $scalingFactor4k);
       line-height: pxToRem(14 * $scalingFactor4k);
@@ -291,6 +331,10 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
       line-height: pxToRem(14 * $scalingFactor5k);
     }
   }
+
+  html.sbb-lean & {
+    color: $sbbColorIron;
+  }
 }
 
 .sbb-usermenu-arrow.sbb-icon {
@@ -298,9 +342,6 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
   flex-shrink: 0;
   flex-grow: 0;
   margin-right: pxToRem(8);
-  @if $sbbBusiness {
-    margin-left: pxToRem(8);
-  }
   transition: transform 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
   @include mq($from: tablet) {
@@ -310,14 +351,20 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
     display: inline-block;
   }
 
-  @if $sbbBusiness {
+  html.sbb-lean & {
+    margin-left: pxToRem(8);
     transform: rotate(90deg);
   }
+
   .sbb-usermenu-opened & {
-    transform: rotate(if($sbbBusiness, -90deg, -180deg));
+    transform: rotate(-180deg);
+
+    html.sbb-lean & {
+      transform: rotate(-90deg);
+    }
   }
 
-  @include publicOnly() {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       margin-right: pxToRem(8 * $scalingFactor4k);
     }
@@ -329,63 +376,60 @@ $imageBaseSize: if($sbbBusiness, 24, 30);
 }
 
 .sbb-usermenu-panel {
-  @include autocompleteBase();
-  box-shadow: autocompleteBoxShadow(1, 1);
-  position: absolute;
+  box-shadow: boxShadow(1, $borderWidth, 1);
+  position: absolute !important; // Overwrite sbb-panel styles in all sizes
   right: 0;
+  top: 0 !important; // Overwrite sbb-panel styles in all sizes
   overflow-y: hidden;
   max-width: 100%;
-  border-radius: $autocompleteBorderRadius;
+  border-radius: pxToRem(2);
   display: flex;
   flex-direction: column;
+  padding-top: 0 !important; // Overwrite sbb-panel-padded styles
+  border-top: pxToRem($borderWidth) solid $sbbColorGrey;
 
-  @include publicOnly() {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
-      box-shadow: autocompleteBoxShadow(1, $scalingFactor4k);
-      border-radius: $autocompleteBorderRadius * $scalingFactor4k;
+      box-shadow: boxShadow(1, $borderWidth4k, $scalingFactor4k);
+      border-radius: pxToRem(2 * $scalingFactor4k);
+      border-top-width: pxToRem($borderWidth4k);
     }
     @include mq($from: desktop5k) {
-      box-shadow: autocompleteBoxShadow(1, $scalingFactor5k);
-      border-radius: $autocompleteBorderRadius * $scalingFactor5k;
+      box-shadow: boxShadow(1, $borderWidth5k, $scalingFactor5k);
+      border-radius: pxToRem(2 * $scalingFactor5k);
+      border-top-width: pxToRem($borderWidth5k);
     }
   }
 
-  hr {
-    margin: pxToRem(4) 0;
-    padding: 0;
-    border: none;
-    border-top: solid 1px $sbbColorCloud;
+  html.sbb-lean & {
+    box-shadow: boxShadow(1, $borderWidthLean, 1);
+    border-top: pxToRem($borderWidthLean) solid $sbbColorIron;
   }
 }
 
 .sbb-usermenu-inner-panel {
-  min-width: toPx($panelWidth - 2 * $borderWidth);
+  min-width: pxToRem($panelWidth - 2 * $borderWidth);
   overflow-y: auto;
+
+  html:not(.sbb-lean) & {
+    @include mq($from: desktop4k) {
+      min-width: pxToRem($panelWidth4k - 2 * $borderWidth4k);
+    }
+
+    @include mq($from: desktop5k) {
+      min-width: pxToRem($panelWidth5k - 2 * $borderWidth5k);
+    }
+  }
+
+  html.sbb-lean & {
+    min-width: pxToRem($panelWidth - 2 * $borderWidthLean);
+  }
 
   .sbb-usermenu-panel.ng-animating & {
     overflow-y: hidden;
   }
-
-  @include publicOnly() {
-    @include mq($from: desktop4k) {
-      min-width: toPx($panelWidth4k - 2 * $borderWidth4k);
-    }
-
-    @include mq($from: desktop5k) {
-      min-width: toPx($panelWidth5k - 2 * $borderWidth5k);
-    }
-  }
 }
 
 .sbb-usermenu-item {
-  @include buttonResetFrameless;
-  @include optionBase;
   width: 100%;
-
-  &[disabled] {
-    cursor: default;
-    opacity: 0.5;
-    user-select: none;
-  }
 }
-*/

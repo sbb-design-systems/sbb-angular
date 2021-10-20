@@ -33,16 +33,18 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { Breakpoints } from '@sbb-esta/angular/core';
-import { TypeRef } from '@sbb-esta/angular/core';
-import { SbbIconDirective } from '@sbb-esta/angular/core';
-import { Subject } from 'rxjs';
+import {
+  Breakpoints,
+  mixinVariant,
+  SbbIconDirective,
+  SbbVariant,
+  TypeRef,
+} from '@sbb-esta/angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
 import { sbbUsermenuAnimations } from './usermenu-animations';
 import { SbbUsermenuItem } from './usermenu-item';
-
-const isBusiness = false;
 
 /** Injection token that determines the scroll handling while a usermenu is open. */
 export const SBB_USERMENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -65,20 +67,9 @@ export const SBB_USERMENU_SCROLL_STRATEGY_PROVIDER = {
 
 let counter = 0;
 
-const OVERLAY_MEDIA_SIZE_CONFIG = {
-  '4K': {
-    width: 432,
-    padding: 18,
-  },
-  '5K': {
-    width: 576,
-    padding: 24,
-  },
-  default: {
-    width: 288,
-    padding: isBusiness ? 8 : 12,
-  },
-};
+// Boilerplate for applying mixins to SbbNotification.
+// tslint:disable-next-line: naming-convention
+const _SbbUsermenuMixinBase = mixinVariant(class {});
 
 @Component({
   selector: 'sbb-usermenu',
@@ -95,7 +86,10 @@ const OVERLAY_MEDIA_SIZE_CONFIG = {
   },
   animations: [sbbUsermenuAnimations.transformPanel],
 })
-export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
+export class SbbUsermenu
+  extends _SbbUsermenuMixinBase
+  implements OnInit, OnDestroy, AfterContentInit
+{
   /** Identifier of the usermenu. */
   id: string = `sbb-usermenu-${counter++}`;
 
@@ -124,10 +118,10 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
   _triggerRect: ClientRect;
 
   /** Desired width of the overlay */
-  _overlayWidth: number = OVERLAY_MEDIA_SIZE_CONFIG.default.width;
+  _overlayWidth: number = this._overlayMediaSizeConfig().width;
 
   /** padding of overlay */
-  _overlayMinWidthPadding: number = OVERLAY_MEDIA_SIZE_CONFIG.default.padding;
+  _overlayMinWidthPadding: number = this._overlayMediaSizeConfig().padding;
 
   /** Min width of overlay when starting animation */
   get _overlayMinWidth(): number {
@@ -216,9 +210,6 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
         }. Click or press enter to close user menu.`;
   }
 
-  /** Whether the current component is used in business package or not */
-  _isBusiness: boolean = isBusiness;
-
   /** Strategy that will be used to handle scrolling while the usermenu panel is open. */
   _scrollStrategy: ScrollStrategy;
 
@@ -238,6 +229,7 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
     public _elementRef: ElementRef,
     @Inject(SBB_USERMENU_SCROLL_STRATEGY) scrollStrategyFactory: any
   ) {
+    super();
     this._scrollStrategyFactory = scrollStrategyFactory;
     this._scrollStrategy = this._scrollStrategyFactory();
   }
@@ -269,16 +261,18 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
         takeUntil(this._destroy)
       )
       .subscribe((breakpoint: string | null) => {
-        if (breakpoint === Breakpoints.Desktop4k && !isBusiness) {
-          this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG['4K'].width;
-          this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG['4K'].padding;
-        } else if (breakpoint === Breakpoints.Desktop5k && !isBusiness) {
-          this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG['5K'].width;
-          this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG['5K'].padding;
-        } else {
-          this._overlayWidth = OVERLAY_MEDIA_SIZE_CONFIG.default.width;
-          this._overlayMinWidthPadding = OVERLAY_MEDIA_SIZE_CONFIG.default.padding;
+        const isStandardVariant =
+          (this.variant as BehaviorSubject<SbbVariant>).value === 'standard';
+        let config = this._overlayMediaSizeConfig();
+
+        if (breakpoint === Breakpoints.Desktop4k && isStandardVariant) {
+          config = this._overlayMediaSizeConfig('4K');
+        } else if (breakpoint === Breakpoints.Desktop5k && isStandardVariant) {
+          config = this._overlayMediaSizeConfig('5K');
         }
+
+        this._overlayWidth = config.width;
+        this._overlayMinWidthPadding = config.padding;
       });
   }
 
@@ -402,6 +396,29 @@ export class SbbUsermenu implements OnInit, OnDestroy, AfterContentInit {
         this._keyManager.setFocusOrigin('keyboard');
       }
       this._keyManager.onKeydown(event);
+    }
+  }
+
+  private _overlayMediaSizeConfig(breakpoint?: '4K' | '5K') {
+    switch (breakpoint) {
+      case '4K': {
+        return {
+          width: 432,
+          padding: 18,
+        };
+      }
+      case '5K': {
+        return {
+          width: 576,
+          padding: 24,
+        };
+      }
+      default: {
+        return {
+          width: 288,
+          padding: (this.variant as BehaviorSubject<SbbVariant>).value === 'lean' ? 8 : 12,
+        };
+      }
     }
   }
 }

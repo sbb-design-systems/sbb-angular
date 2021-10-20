@@ -5,7 +5,7 @@ import { Directive, ElementRef } from '@angular/core';
   selector: 'a[sbb-usermenu-item], button[sbb-usermenu-item]',
   host: {
     role: 'menuitem',
-    class: 'sbb-usermenu-item',
+    class: 'sbb-usermenu-item sbb-menu-item',
   },
 })
 export class SbbUsermenuItem implements FocusableOption {

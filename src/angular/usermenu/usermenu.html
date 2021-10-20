@@ -1,7 +1,7 @@
 <button
   #loginButton
   *ngIf="!_loggedIn"
-  class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-out"
+  class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-out"
   (click)="_emitLogin()"
   type="button"
 >
@@ -14,7 +14,12 @@
 <button
   #triggerOpenButton
   *ngIf="_loggedIn"
-  class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in sbb-usermenu-trigger-open"
+  class="
+    sbb-button-reset-frameless
+    sbb-usermenu-trigger
+    sbb-usermenu-trigger-logged-in
+    sbb-usermenu-trigger-open
+  "
   (click)="open()"
   [attr.aria-label]="_ariaLabelOpenPanel"
   aria-haspopup="true"
@@ -40,16 +45,18 @@
     </span>
   </span>
 
-  <sbb-icon
-    *ngIf="!_isBusiness"
-    svgIcon="kom:chevron-small-down-small"
-    class="sbb-usermenu-arrow"
-  ></sbb-icon>
-  <sbb-icon
-    *ngIf="_isBusiness"
-    svgIcon="kom:chevron-right-small"
-    class="sbb-usermenu-arrow"
-  ></sbb-icon>
+  <ng-container [ngSwitch]="variant | async">
+    <sbb-icon
+      *ngSwitchDefault
+      svgIcon="kom:chevron-small-down-small"
+      class="sbb-usermenu-arrow"
+    ></sbb-icon>
+    <sbb-icon
+      *ngSwitchCase="'lean'"
+      svgIcon="kom:chevron-right-small"
+      class="sbb-usermenu-arrow"
+    ></sbb-icon>
+  </ng-container>
 </ng-template>
 
 <ng-template
@@ -71,7 +78,7 @@
     #panel
     tabindex="-1"
     role="menu"
-    class="sbb-usermenu-panel"
+    class="sbb-panel sbb-panel-padded sbb-usermenu-panel"
     [attr.id]="id + '-panel'"
     [class.sbb-usermenu-opened]="panelOpen"
     [style.minWidth]="_overlayMinWidth + 'px'"
@@ -83,7 +90,12 @@
   >
     <button
       #triggerCloseButton
-      class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in sbb-usermenu-trigger-close"
+      class="
+        sbb-button-reset-frameless
+        sbb-usermenu-trigger
+        sbb-usermenu-trigger-logged-in
+        sbb-usermenu-trigger-close
+      "
       (click)="_closeAndFocus()"
       [attr.aria-label]="_ariaLabelClosePanel"
       type="button"
