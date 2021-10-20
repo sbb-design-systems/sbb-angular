@@ -717,6 +717,8 @@ as content when the option was selected. This content now needs to be wrapped in
 
 ### Tooltip
 
+_Partial migration available_
+
 `sbb-tooltip` has been refactored to internally use `sbbTooltip`. `SbbTooltipComponent` has been
 renamed to `SbbTooltipWrapper` and its methods `open` and `close` have been renamed to `show` and
 `hide` to align with the directive usage.
@@ -729,6 +731,24 @@ which is no longer supported. The tooltip component now provides an `indicatorIc
 
 ### Usermenu
 
-`sbb-usermenu`... TODO
+_Automatic migration available_
 
-[Documentation](angular/components/tooltip)
+The css class of routerLinkActive of usermenu items was renamed from `sbb-selected` to `sbb-active`.
+
+**before**
+
+```html
+<sbb-usermenu>
+  <a sbb-usermenu-item routerLink="." routerLinkActive="sbb-selected"> Account </a>
+</sbb-usermenu>
+```
+
+**after**
+
+```html
+<sbb-usermenu>
+  <a sbb-usermenu-item routerLink="." routerLinkActive="sbb-active"> Account </a>
+</sbb-usermenu>
+```
+
+[Documentation](angular/components/usermenu)

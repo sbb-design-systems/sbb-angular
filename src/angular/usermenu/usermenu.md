@@ -60,10 +60,10 @@ The last button in the menu should be the logout button.
 
 ```html
 <sbb-usermenu [userName]="userName" [displayName]="displayName" (loginRequest)="login()">
-  <a sbb-usermenu-item routerLink="." routerLinkActive="sbb-selected">
+  <a sbb-usermenu-item routerLink="." routerLinkActive="sbb-active">
     <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon> Account
   </a>
-  <a sbb-usermenu-item routerLink="." routerLinkActive="sbb-selected">
+  <a sbb-usermenu-item routerLink="." routerLinkActive="sbb-active">
     <sbb-icon svgIcon="kom:tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
   </a>
   <hr />

@@ -19,8 +19,8 @@ import { SbbUsermenuModule } from './usermenu.module';
   selector: 'sbb-usermenu-test',
   template: `
     <sbb-usermenu [userName]="userName" [displayName]="displayName" (loginRequest)="login()">
-      <a sbb-usermenu-item [routerLink]="'.'" routerLinkActive="sbb-selected">Menu Item 1</a>
-      <a sbb-usermenu-item [routerLink]="'.'" routerLinkActive="sbb-selected">Menu Item 2</a>
+      <a sbb-usermenu-item [routerLink]="'.'" routerLinkActive="sbb-active">Menu Item 1</a>
+      <a sbb-usermenu-item [routerLink]="'.'" routerLinkActive="sbb-active">Menu Item 2</a>
       <hr />
       <button sbb-usermenu-item type="button" (click)="logout()">Logout</button>
     </sbb-usermenu>

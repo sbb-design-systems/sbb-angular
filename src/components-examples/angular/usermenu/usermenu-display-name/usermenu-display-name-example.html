@@ -1,8 +1,8 @@
 <sbb-usermenu [displayName]="displayName" (loginRequest)="login()">
-  <a sbb-usermenu-item [queryParams]="{ page: 0 }" routerLink="." routerLinkActive="sbb-selected">
+  <a sbb-usermenu-item [queryParams]="{ page: 0 }" routerLink="." routerLinkActive="sbb-active">
     <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon> Account
   </a>
-  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-selected">
+  <a sbb-usermenu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-active">
     <sbb-icon svgIcon="kom:tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
   </a>
   <hr />
