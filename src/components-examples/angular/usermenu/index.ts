@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbMenuModule } from '@sbb-esta/angular/menu';
 import { SbbUsermenuModule } from '@sbb-esta/angular/usermenu';
 
 import { UsermenuCustomIconExample } from './usermenu-custom-icon/usermenu-custom-icon-example';
@@ -27,7 +28,7 @@ const EXAMPLES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, SbbUsermenuModule, SbbIconModule],
+  imports: [CommonModule, RouterModule, SbbUsermenuModule, SbbIconModule, SbbMenuModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
 })

@@ -733,7 +733,28 @@ which is no longer supported. The tooltip component now provides an `indicatorIc
 
 _Automatic migration available_
 
-The css class of routerLinkActive of usermenu items was renamed from `sbb-selected` to `sbb-active`.
+The `sbb-usermenu` has been refactored to be used with the new `sbb-menu`. Therefore, the usage has been modified as following:
+
+**before**
+
+```html
+<sbb-usermenu [userName]="userName" (loginRequest)="login()">
+  <button type="button" sbb-usermenu-item>Action Button</button>
+  <button type="button" sbb-usermenu-item (click)="logout()">Logout</button>
+</sbb-usermenu>
+```
+
+**after**
+
+```html
+<sbb-usermenu [userName]="userName" (loginRequest)="login()" [menu]="menu"></sbb-usermenu>
+<sbb-menu #menu="sbbMenu">
+  <button type="button" sbb-menu-item>Action</button>
+  <button type="button" sbb-menu-item (click)="logout()">Logout</button>
+</sbb-menu>
+```
+
+Additionally, the css class of routerLinkActive of usermenu items was renamed from `sbb-selected` to `sbb-active`.
 
 **before**
 

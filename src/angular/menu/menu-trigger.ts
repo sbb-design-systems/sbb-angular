@@ -19,6 +19,7 @@ import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   AfterContentInit,
+  ChangeDetectorRef,
   ContentChild,
   Directive,
   ElementRef,
@@ -53,17 +54,24 @@ import {
 } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
-import { SbbMenu, SbbMenuCloseReason } from './menu';
+import {
+  SbbMenu,
+  SbbMenuAnimationState,
+  SbbMenuCloseReason,
+  SbbMenuPlainAnimationState,
+} from './menu';
 import { SbbMenuDynamicTrigger } from './menu-dynamic-trigger';
 import { throwSbbMenuMissingError, throwSbbMenuRecursiveError } from './menu-errors';
 import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
 
-export type SbbMenuTriggerType = 'default' | 'headless' | 'breadcrumb';
+export type SbbMenuTriggerType = 'default' | 'headless' | 'breadcrumb' | 'usermenu';
 
 export interface SbbMenuTriggerContext extends SbbMenuInheritedTriggerContext {
   width?: number;
+  height?: number;
+  scalingFactor?: number;
   templateContent?: TemplateRef<any>;
   elementContent?: SafeHtml;
 }
@@ -74,6 +82,9 @@ export interface SbbMenuInheritedTriggerContext {
   yPosition?: SbbMenuPositionY;
   xOffset?: number;
   yOffset?: number;
+  panelWidth?: number;
+  animationStartStateResolver?: (context: SbbMenuTriggerContext) => SbbMenuAnimationState;
+  shouldScrollOnAnimationStart?: (toState: SbbMenuPlainAnimationState) => boolean;
 }
 
 /** Injection token for SbbMenuInheritedTriggerContext */
@@ -235,7 +246,8 @@ export class SbbMenuTrigger
     @Optional() @Self() private _menuItemInstance: SbbMenuItem,
     private _focusMonitor: FocusMonitor,
     private _sanitizer: DomSanitizer,
-    private _breakpointObserver: BreakpointObserver
+    private _breakpointObserver: BreakpointObserver,
+    private _changeDetectorRef: ChangeDetectorRef
   ) {
     super();
 
@@ -422,6 +434,7 @@ export class SbbMenuTrigger
         ? { type: this._type }
         : {
             width: this._element.nativeElement.clientWidth,
+            height: this._element.nativeElement.clientHeight,
             templateContent: this._triggerContent,
             elementContent: this._triggerContent
               ? undefined
@@ -429,6 +442,7 @@ export class SbbMenuTrigger
               ? this._element.nativeElement.innerText
               : this._sanitizer.bypassSecurityTrustHtml(this._element.nativeElement.innerHTML),
             type: this._type,
+            scalingFactor: this._scalingFactor,
           };
 
     this.menu.triggerContext = { ...triggerContext, ...this._inheritedTriggerContext };
@@ -456,10 +470,10 @@ export class SbbMenuTrigger
   private _setIsMenuOpen(isOpen: boolean): void {
     this._menuOpen = isOpen;
     this._menuOpen ? this.menuOpened.emit() : this.menuClosed.emit();
-
     if (this.triggersSubmenu()) {
       this._menuItemInstance._highlighted = isOpen;
     }
+    this._changeDetectorRef.markForCheck();
   }
 
   /**

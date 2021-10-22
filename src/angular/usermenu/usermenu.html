@@ -1,5 +1,4 @@
 <button
-  #loginButton
   *ngIf="!_loggedIn"
   class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-out"
   (click)="_emitLogin()"
@@ -12,99 +11,38 @@
 </button>
 
 <button
-  #triggerOpenButton
   *ngIf="_loggedIn"
-  class="
-    sbb-button-reset-frameless
-    sbb-usermenu-trigger
-    sbb-usermenu-trigger-logged-in
-    sbb-usermenu-trigger-open
-  "
-  (click)="open()"
+  [sbbMenuTriggerFor]="menu"
+  class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
   [attr.aria-label]="_ariaLabelOpenPanel"
-  aria-haspopup="true"
-  [attr.aria-controls]="panelOpen ? id + '-panel' : null"
-  [attr.aria-expanded]="panelOpen"
   type="button"
 >
-  <ng-container *ngTemplateOutlet="usermenuTriggerContent"></ng-container>
-</button>
-
-<ng-template #usermenuTriggerContent>
-  <span class="sbb-usermenu-identification" aria-hidden="true">
-    <ng-container *ngIf="_icon">
-      <ng-container *ngTemplateOutlet="_icon"></ng-container>
-    </ng-container>
-    <span *ngIf="!_icon" class="sbb-usermenu-initial-letters"> {{ _initialLetters }} </span>
-  </span>
-
-  <span class="sbb-usermenu-user-info">
-    <span class="sbb-usermenu-user-info-display-name"> {{ displayName || userName }} </span>
-    <span class="sbb-usermenu-user-info-name" *ngIf="displayName && userName">
-      {{ userName }}
+  <ng-container *sbbMenuDynamicTrigger>
+    <span class="sbb-usermenu-identification" aria-hidden="true">
+      <ng-container *ngIf="_icon">
+        <ng-container *ngTemplateOutlet="_icon"></ng-container>
+      </ng-container>
+      <span *ngIf="!_icon" class="sbb-usermenu-initial-letters"> {{ _initialLetters }} </span>
     </span>
-  </span>
 
-  <ng-container [ngSwitch]="variant | async">
-    <sbb-icon
-      *ngSwitchDefault
-      svgIcon="kom:chevron-small-down-small"
-      class="sbb-usermenu-arrow"
-    ></sbb-icon>
-    <sbb-icon
-      *ngSwitchCase="'lean'"
-      svgIcon="kom:chevron-right-small"
-      class="sbb-usermenu-arrow"
-    ></sbb-icon>
+    <span class="sbb-usermenu-user-info">
+      <span class="sbb-usermenu-user-info-display-name"> {{ displayName || userName }} </span>
+      <span class="sbb-usermenu-user-info-name" *ngIf="displayName && userName">
+        {{ userName }}
+      </span>
+    </span>
+
+    <ng-container [ngSwitch]="variant | async">
+      <sbb-icon
+        *ngSwitchDefault
+        svgIcon="kom:chevron-small-down-small"
+        class="sbb-usermenu-arrow"
+      ></sbb-icon>
+      <sbb-icon
+        *ngSwitchCase="'lean'"
+        svgIcon="kom:chevron-right-small"
+        class="sbb-usermenu-arrow"
+      ></sbb-icon>
+    </ng-container>
   </ng-container>
-</ng-template>
-
-<ng-template
-  cdk-connected-overlay
-  cdkConnectedOverlayLockPosition
-  cdkConnectedOverlayFlexibleDimensions
-  [cdkConnectedOverlayWidth]="_overlayWidth"
-  cdkConnectedOverlayHasBackdrop
-  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-  cdkConnectedOverlayPanelClass="sbb-overlay-panel"
-  [cdkConnectedOverlayScrollStrategy]="_scrollStrategy"
-  [cdkConnectedOverlayOrigin]="{ elementRef: _elementRef }"
-  [cdkConnectedOverlayOpen]="panelOpen"
-  [cdkConnectedOverlayPositions]="_positions"
-  (backdropClick)="_closeAndFocus()"
-  (detach)="_closeAndFocus()"
->
-  <div
-    #panel
-    tabindex="-1"
-    role="menu"
-    class="sbb-panel sbb-panel-padded sbb-usermenu-panel"
-    [attr.id]="id + '-panel'"
-    [class.sbb-usermenu-opened]="panelOpen"
-    [style.minWidth]="_overlayMinWidth + 'px'"
-    [style.minHeight]="_triggerRect?.height + 'px'"
-    [@transformPanel]="{ value: 'showing', params: { width: _overlayWidth + 'px' } }"
-    (@transformPanel.start)="_handlePanelOpen($event)"
-    (keydown)="_handleKeydown($event)"
-    (click)="close()"
-  >
-    <button
-      #triggerCloseButton
-      class="
-        sbb-button-reset-frameless
-        sbb-usermenu-trigger
-        sbb-usermenu-trigger-logged-in
-        sbb-usermenu-trigger-close
-      "
-      (click)="_closeAndFocus()"
-      [attr.aria-label]="_ariaLabelClosePanel"
-      type="button"
-    >
-      <ng-container *ngTemplateOutlet="usermenuTriggerContent"></ng-container>
-    </button>
-
-    <div class="sbb-usermenu-inner-panel sbb-scrollbar">
-      <ng-content select="a[sbb-usermenu-item],button[sbb-usermenu-item],hr"></ng-content>
-    </div>
-  </div>
-</ng-template>
+</button>

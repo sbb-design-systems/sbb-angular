@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbIconDirectiveModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbMenuModule } from '@sbb-esta/angular/menu';
 
-import { SbbUsermenu, SBB_USERMENU_SCROLL_STRATEGY_PROVIDER } from './usermenu';
-import { SbbUsermenuItem } from './usermenu-item';
+import { SbbUsermenu } from './usermenu';
 
 @NgModule({
-  declarations: [SbbUsermenu, SbbUsermenuItem],
-  imports: [CommonModule, SbbIconModule, OverlayModule, SbbIconDirectiveModule],
-  exports: [SbbUsermenu, SbbUsermenuItem, SbbIconDirectiveModule],
-  providers: [SBB_USERMENU_SCROLL_STRATEGY_PROVIDER],
+  declarations: [SbbUsermenu],
+  imports: [CommonModule, SbbIconModule, OverlayModule, SbbIconDirectiveModule, SbbMenuModule],
+  exports: [SbbUsermenu, SbbIconDirectiveModule],
 })
 export class SbbUsermenuModule {}
