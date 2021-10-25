@@ -11,7 +11,7 @@
   </div>
   <div *ngIf="jumpMarks">
     <span *ngFor="let jumpMark of jumpMarks; let isLast = last" class="sbb-notification-jump-mark">
-      <a (click)="scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
+      <a (click)="_scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
       <ng-container *ngIf="!isLast"> / </ng-container>
     </span>
   </div>

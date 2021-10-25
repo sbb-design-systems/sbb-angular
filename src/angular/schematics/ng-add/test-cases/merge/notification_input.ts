@@ -4,9 +4,9 @@ import { SbbNotificationModule } from '@sbb-esta/angular-public';
 @Component({
   selector: 'test',
   template: `
-    <sbb-notification message="Success" type="success"></sbb-notification>
+    <sbb-notification i18n-message message="Success" type="success"></sbb-notification>
 
-    <sbb-notification message="New timezone saved successfully" type="error">
+    <sbb-notification i18n-message="@@exampleId" message="New timezone saved successfully" type="error">
       <sbb-icon svgIcon="kom:clock-small" *sbbIcon></sbb-icon>
     </sbb-notification>
   `,

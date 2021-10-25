@@ -25,6 +25,7 @@ export interface SbbJumpMark {
   title: string;
   /** Identifier of an element in jump marks. */
   elementId?: string;
+  /** Callback to be called on click on the jump mark. */
   callback?: (event$: any, jumpMark: SbbJumpMark) => void;
 }
 
@@ -66,7 +67,7 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
   /** Whether this notification is closed. */
   _closed: boolean = false;
 
-  /** The animaation state of this ghettobox. */
+  /** The animation state of this notification. */
   _animationState: 'visible' | 'dismissed' = 'visible';
 
   /** The id of this element. */
@@ -74,7 +75,7 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
 
   /**
    * Type of notification.
-   * warn is the same as error is standard design.
+   * In standard design, the types 'warn' and 'error' are equal.
    */
   @Input() type: SbbNotificationType = 'success';
 
@@ -143,17 +144,14 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
 
   /**
    * Used to scroll to an element identified by a jump mark
-   *
-   * @param $event click event
-   * @param jumpMark jump mark after the notification message
    */
-  scrollTo($event: any, jumpMark: SbbJumpMark) {
-    $event.preventDefault();
+  _scrollTo(event: MouseEvent, jumpMark: SbbJumpMark) {
+    event.preventDefault();
     if (jumpMark.elementId) {
       document.querySelector(jumpMark.elementId)?.scrollIntoView({ behavior: 'smooth' });
     }
     if (jumpMark.callback) {
-      jumpMark.callback($event, jumpMark);
+      jumpMark.callback(event, jumpMark);
     }
   }
 
@@ -174,7 +172,5 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
     }
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_readonly: BooleanInput;
-  // tslint:enable: member-ordering
 }

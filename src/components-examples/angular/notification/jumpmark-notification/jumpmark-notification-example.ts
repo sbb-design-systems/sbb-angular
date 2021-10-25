@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbJumpMark } from '@sbb-esta/angular/notification';
 
 /**
  * @title Jumpmark Notification
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
   templateUrl: './jumpmark-notification-example.html',
 })
 export class JumpmarkNotificationExample {
-  jumpmarks = [
+  jumpmarks: SbbJumpMark[] = [
     { elementId: '#tip1', title: 'Tip 1' },
     { elementId: '#tip2', title: 'Tip 2' },
   ];

@@ -44,7 +44,7 @@ export class SbbGhettobox {
   /** The id of this element. */
   @Input() id: string = `sbb-ghettobox-${nextId++}`;
 
-  /** The animaation state of this ghettobox. */
+  /** The animation state of this ghettobox. */
   _animationState: SbbGhettoboxState = 'visible';
 
   /** Whether this ghettobox is closed. */

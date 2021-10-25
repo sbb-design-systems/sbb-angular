@@ -28,6 +28,6 @@ export const sbbGhettoboxAnimations: {
       })
     ),
     transition('void => visible', animate('0.25s cubic-bezier(0.4,0.0,0.2,1)')),
-    transition('visible => dismissed', animate('0.8s cubic-bezier(0.4,0.0,0.2,1)')),
+    transition('visible => dismissed', animate('0.25s cubic-bezier(0.4,0.0,0.2,1)')),
   ]),
 };
