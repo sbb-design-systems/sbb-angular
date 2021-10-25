@@ -1,6 +1,9 @@
 load(
     "//tools:defaults.bzl",
+    "markdown_to_html",
     "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
     "sass_binary",
 )
 
@@ -42,6 +45,36 @@ sass_binary(
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":header-lean",
+        "//src/angular/core",
+        "//src/angular/core/testing",
+        "//src/angular/icon",
+        "//src/angular/icon/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/platform-browser",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    static_css = [
+        "//src/angular:typography",
+    ],
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":header-lean.md"],
 )
 
 filegroup(

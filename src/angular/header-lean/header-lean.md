@@ -5,8 +5,8 @@ provided, as well as any element with a `[brand]` attribute or `.brand` class, f
 the standard logo.
 
 ```html
-<sbb-header [label]="Title" [subtitle]="Subtitle">
-  <sbb-header-environment [style.background]="environmentColor">example</sbb-header-environment>
+<sbb-header-lean [label]="Title" [subtitle]="Subtitle">
+  <sbb-header-environment>dev</sbb-header-environment>
   <a routerLink="/">Home</a>
   <button type="button" [sbbHeaderMenu]="menu">Sections</button>
   <sbb-header-menu #menu="sbbHeaderMenu">
@@ -17,14 +17,14 @@ the standard logo.
   </sbb-header-menu>
   <sbb-usermenu ...><!-- Optional --></sbb-usermenu>
   <svg brand><!-- Optional --></svg>
-</sbb-header>
+</sbb-header-lean>
 ```
 
-### Flexible mode
+### Column mode
 
-By adding the class `.sbb-header-flexible` to the `sbb-header` element, the default five column
-layout is disabled and elements can be placed inside the header as desired. This will become the
-default in a future release.
+By default, the header content has no specific styling and can be configured as desired.
+To switch to the legacy five column layout, add the CSS class `.sbb-header-fixed-columns`
+to the `sbb-header-lean` element.
 
 Use the `collapseBreakpoint` input to define on which breakpoint the header menus should be
 collapsed. See the API documentation for more details.
@@ -47,9 +47,9 @@ Use the `sbb-header-environment` to add a ribbon to describe the current environ
 Note: For the production environment, the `sbb-header-environment` is expected to be hidden.
 
 ```html
-<sbb-header [label]="Title" [subtitle]="Subtitle">
+<sbb-header-lean [label]="Title" [subtitle]="Subtitle">
   <sbb-header-environment>dev</sbb-header-environment>
-</sbb-header>
+</sbb-header-lean>
 ```
 
 We provide default colors for `edu`, `dev`, `test` and `int`. In order to configure your own color,
@@ -57,10 +57,10 @@ set the background color of `sbb-header-environment`. Note that the normalized t
 element will be added as a class in the format of `.sbb-header-environment-{text}`.
 
 ```html
-<sbb-header [label]="Title" [subtitle]="Subtitle">
+<sbb-header-lean [label]="Title" [subtitle]="Subtitle">
   <!-- Configure your own color -->
   <sbb-header-environment [style.background]="environmentColor">example</sbb-header-environment>
-</sbb-header>
+</sbb-header-lean>
 ```
 
 ```scss
@@ -74,7 +74,7 @@ element will be added as a class in the format of `.sbb-header-environment-{text
 It is possible to provide app chooser sections for links to other apps or external addresses.
 
 ```html
-<sbb-header [label]="Title" [subtitle]="Subtitle">
+<sbb-header-lean [label]="Title" [subtitle]="Subtitle">
   <a routerLink="/">Home</a>
   ...
   <sbb-app-chooser-section label="Apps">
@@ -84,5 +84,5 @@ It is possible to provide app chooser sections for links to other apps or extern
   <sbb-app-chooser-section label="Angular">
     <a href="https://angular.io">Angular</a>
   </sbb-app-chooser-section>
-</sbb-header>
+</sbb-header-lean>
 ```

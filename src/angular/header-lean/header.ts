@@ -95,21 +95,21 @@ const breakpointMapping = {
 };
 
 @Component({
-  selector: 'sbb-header',
+  selector: 'sbb-header-lean',
   templateUrl: './header.html',
   styleUrls: ['./header.css'],
   exportAs: 'sbbHeader',
   animations: [sbbHeaderAnimations.menu],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [{ provide: SBB_HEADER, useExisting: SbbHeader }],
+  providers: [{ provide: SBB_HEADER, useExisting: SbbHeaderLean }],
   host: {
-    class: 'sbb-header',
-    '[class.sbb-header-opened]': 'opened',
-    '[class.sbb-header-app-chooser-available]': '_appChooserSections.length',
+    class: 'sbb-header-lean',
+    '[class.sbb-header-lean-opened]': 'opened',
+    '[class.sbb-header-lean-app-chooser-available]': '_appChooserSections.length',
   },
 })
-export class SbbHeader implements OnChanges, AfterViewInit, OnDestroy {
+export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   /** Main title shown in the header. */
   @Input() label?: string;
 
@@ -276,14 +276,14 @@ export class SbbHeader implements OnChanges, AfterViewInit, OnDestroy {
       takeUntil(this._destroyed)
     );
 
-    // Add or remove the sbb-header-menus-collapsed css class, depending on
+    // Add or remove the sbb-header-lean-menus-collapsed css class, depending on
     // collapsed state.
     this._ngZone.runOutsideAngular(() => {
       this._headerMenusCollapsed.subscribe((isCollapsed) => {
         if (isCollapsed) {
-          this._elementRef.nativeElement.classList.add('sbb-header-menus-collapsed');
+          this._elementRef.nativeElement.classList.add('sbb-header-lean-menus-collapsed');
         } else {
-          this._elementRef.nativeElement.classList.remove('sbb-header-menus-collapsed');
+          this._elementRef.nativeElement.classList.remove('sbb-header-lean-menus-collapsed');
         }
       });
     });

@@ -5,12 +5,12 @@ import { NgModule } from '@angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbAppChooserSection } from './app-chooser-section';
-import { SbbHeader } from './header';
+import { SbbHeaderLean } from './header';
 import { SbbHeaderEnvironment } from './header-directives';
 
 @NgModule({
   imports: [CommonModule, ObserversModule, PortalModule, SbbIconModule],
-  declarations: [SbbHeader, SbbAppChooserSection, SbbHeaderEnvironment],
-  exports: [SbbHeader, SbbAppChooserSection, SbbHeaderEnvironment],
+  declarations: [SbbHeaderLean, SbbAppChooserSection, SbbHeaderEnvironment],
+  exports: [SbbHeaderLean, SbbAppChooserSection, SbbHeaderEnvironment],
 })
 export class SbbHeaderLeanModule {}

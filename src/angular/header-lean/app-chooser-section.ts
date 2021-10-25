@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { TypeRef } from '@sbb-esta/angular/core';
 
-import type { SbbHeader } from './header';
+import type { SbbHeaderLean } from './header';
 import { SBB_HEADER } from './header-token';
 
 @Component({
@@ -24,7 +24,7 @@ import { SBB_HEADER } from './header-token';
 export class SbbAppChooserSection {
   @Input() label: string;
 
-  constructor(@Inject(SBB_HEADER) private _header: TypeRef<SbbHeader>) {}
+  constructor(@Inject(SBB_HEADER) private _header: TypeRef<SbbHeaderLean>) {}
 
   /** Close the header menu when any a or button child element is clicked. */
   @HostListener('click', ['$event'])

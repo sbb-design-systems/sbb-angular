@@ -2,8 +2,8 @@
 
 <button
   type="button"
-  class="sbb-header-open-menu sbb-button-reset-frameless"
-  [class.sbb-header-app-chooser-available]="_appChooserSections.length"
+  class="sbb-header-lean-open-menu sbb-button-reset-frameless"
+  [class.sbb-header-lean-app-chooser-available]="_appChooserSections.length"
   (click)="openMenu('mouse')"
   (keydown)="_openOnKeydownTrigger($event)"
   aria-label-i18n="Button label to open the sidebar of the header@@sbbHeaderOpenMenu"
@@ -14,31 +14,31 @@
   ></sbb-icon>
 </button>
 
-<div class="sbb-header-titlebox">
-  <span class="sbb-header-label">{{ label }}</span>
-  <span *ngIf="subtitle" class="sbb-header-subtitle">{{ subtitle }}</span>
+<div class="sbb-header-lean-titlebox">
+  <span class="sbb-header-lean-label">{{ label }}</span>
+  <span *ngIf="subtitle" class="sbb-header-lean-subtitle">{{ subtitle }}</span>
 </div>
 
-<nav class="sbb-header-main-menu">
+<nav class="sbb-header-lean-main-menu">
   <ng-template
     *ngIf="!(_headerMenusCollapsed | async)"
     [cdkPortalOutlet]="menuActions"
   ></ng-template>
 </nav>
 
-<div class="sbb-header-container-end">
-  <div class="sbb-header-additional-content">
+<div class="sbb-header-lean-container-end">
+  <div class="sbb-header-lean-additional-content">
     <ng-content select=".additional-header-content"></ng-content>
   </div>
-  <div class="sbb-header-usermenu">
+  <div class="sbb-header-lean-usermenu">
     <ng-content select="sbb-usermenu,.sbb-usermenu"></ng-content>
   </div>
 
   <!-- If an icon is provided, use that, otherwise use the sbb logo -->
-  <div #iconContent class="sbb-header-logo" [hidden]="!iconContent.childElementCount">
+  <div #iconContent class="sbb-header-lean-logo" [hidden]="!iconContent.childElementCount">
     <ng-content select="[brand],.brand"></ng-content>
   </div>
-  <div *ngIf="!iconContent.childElementCount" class="sbb-header-logo">
+  <div *ngIf="!iconContent.childElementCount" class="sbb-header-lean-logo">
     <svg viewBox="0 0 80 21" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h59.233v20.603H0V0z" fill="#EC0000"></path>
       <path
@@ -49,18 +49,18 @@
   </div>
 </div>
 
-<div class="sbb-header-side-menu-backdrop" (click)="_onBackdropClicked()"></div>
+<div class="sbb-header-lean-side-menu-backdrop" (click)="_onBackdropClicked()"></div>
 <div
   [@menu]="_animationState"
   (@menu.start)="_animationStartListener($event)"
   (@menu.done)="_animationDoneListener($event)"
-  class="sbb-header-side-menu-container sbb-scrollbar"
+  class="sbb-header-lean-side-menu-container sbb-scrollbar"
   #menu
 >
-  <div class="sbb-header-side-menu-title-section">
+  <div class="sbb-header-lean-side-menu-title-section">
     <button
       type="button"
-      class="sbb-header-close-menu sbb-button-reset-frameless"
+      class="sbb-header-lean-close-menu sbb-button-reset-frameless"
       (click)="closeMenu()"
       (keydown)="_closeOnKeydownTrigger($event)"
       aria-label-i18n="Button label to close the sidebar of the header@@sbbHeaderCloseMenu"
@@ -69,13 +69,13 @@
       <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
     </button>
 
-    <div class="sbb-header-titlebox">
-      <span class="sbb-header-label">{{ label }}</span>
-      <span *ngIf="subtitle" class="sbb-header-subtitle">{{ subtitle }}</span>
+    <div class="sbb-header-lean-titlebox">
+      <span class="sbb-header-lean-label">{{ label }}</span>
+      <span *ngIf="subtitle" class="sbb-header-lean-subtitle">{{ subtitle }}</span>
     </div>
   </div>
 
-  <nav class="sbb-header-side-menu">
+  <nav class="sbb-header-lean-side-menu">
     <ng-template
       *ngIf="_headerMenusCollapsed | async"
       [cdkPortalOutlet]="menuActions"
@@ -84,10 +84,10 @@
 
   <ng-content select="sbb-app-chooser-section"></ng-content>
 </div>
-<ng-content select="sbb-header-menu"></ng-content>
+<ng-content select="sbb-header-lean-menu"></ng-content>
 
 <!--
-  The outlet for links and buttons inside sbb-header, which will be placed in the header bar or
+  The outlet for links and buttons inside sbb-header-lean, which will be placed in the header bar or
   the sidebar depending on state. 
 -->
 <ng-template cdkPortal #menuActions="cdkPortal">
