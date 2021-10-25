@@ -137,6 +137,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'NotificationType',
           replaceWith: 'SbbNotificationType',
         },
+        {
+          replace: 'SbbNotificationVerticalPosition',
+          replaceWith: 'SbbNotificationToastVerticalPosition',
+        },
       ],
     },
   ],

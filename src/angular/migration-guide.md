@@ -318,6 +318,12 @@ Alternatively the new element `<sbb-notification-icon>` can be used to wrap an i
 
 [Documentation](angular/components/notification)
 
+### Notification Toast
+
+No changes.
+
+[Documentation](angular/components/notification-toast)
+
 ### Oauth
 
 No changes.

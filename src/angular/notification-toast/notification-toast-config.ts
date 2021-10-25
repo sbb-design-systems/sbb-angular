@@ -1,14 +1,11 @@
 import { AriaLivePoliteness } from '@angular/cdk/a11y';
 import { InjectionToken, ViewContainerRef } from '@angular/core';
 
-/** Injection token that can be used to access the data that was passed in to a notification toast. */
+/** Injection token that can be used to access the data that was passed into a notification toast. */
 export const SBB_NOTIFICATION_TOAST_DATA = new InjectionToken<any>('SbbNotificationToastData');
 
-/** Possible values for horizontalPosition on SbbNotificationToastConfig. */
-export type SbbNotificationHorizontalPosition = 'center';
-
 /** Possible values for verticalPosition on SbbNotificationToastConfig. */
-export type SbbNotificationVerticalPosition = 'top' | 'bottom';
+export type SbbNotificationToastVerticalPosition = 'top' | 'bottom';
 
 /** Possible values for verticalPosition on SbbNotificationToastConfig. */
 export type SbbNotificationType = 'success' | 'error' | 'warn' | 'info';
@@ -39,7 +36,7 @@ export class SbbNotificationToastConfig<D = any> {
   data?: D | null = null;
 
   /** Possible values for the notification's vertical position. */
-  verticalPosition?: SbbNotificationVerticalPosition = 'bottom';
+  verticalPosition?: SbbNotificationToastVerticalPosition = 'bottom';
 
   /** The notification type */
   type?: SbbNotificationType = 'success';
