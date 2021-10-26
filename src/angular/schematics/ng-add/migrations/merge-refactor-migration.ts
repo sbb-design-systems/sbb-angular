@@ -10,6 +10,7 @@ import { FormFieldMigration } from './merge-refactor/form-field-migration';
 import { GhettoboxMigration } from './merge-refactor/ghettobox-migration';
 import { LinkMigration } from './merge-refactor/link-migration';
 import { NativeTableMigration } from './merge-refactor/native-table-migration';
+import { NotificationMigration } from './merge-refactor/notification-migration';
 import { PaginationMigration } from './merge-refactor/pagination-migration';
 import { ProcessflowMigration } from './merge-refactor/processflow-migration';
 import { RadioButtonPanelMigration } from './merge-refactor/radio-button-panel-migration';
@@ -37,6 +38,7 @@ export class MergeRefactorMigration extends Migration<null, DevkitContext> {
     new GhettoboxMigration(this),
     new LinkMigration(this),
     new NativeTableMigration(this),
+    new NotificationMigration(this),
     new PaginationMigration(this),
     new ProcessflowMigration(this),
     new RadioButtonPanelMigration(this),

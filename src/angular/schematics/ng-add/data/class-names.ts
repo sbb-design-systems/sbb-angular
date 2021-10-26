@@ -133,6 +133,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbSortDirective',
           replaceWith: 'SbbSort',
         },
+        {
+          replace: 'NotificationType',
+          replaceWith: 'SbbNotificationType',
+        },
       ],
     },
   ],

@@ -38,6 +38,11 @@ export const inputNames: VersionChanges<InputNameUpgradeData> = {
           replaceWith: 'i18n-subtitle',
           limitedTo: { elements: ['sbb-toggle-option'] },
         },
+        {
+          replace: 'i18n-message',
+          replaceWith: 'i18n',
+          limitedTo: { elements: ['sbb-notification'] },
+        },
       ],
     },
   ],

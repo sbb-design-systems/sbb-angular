@@ -1,0 +1,27 @@
+<span class="sbb-notification-icon-wrapper sbb-icon-fit" [ngSwitch]="!!_notificationIcon">
+  <ng-container *ngSwitchCase="false">
+    <sbb-icon [svgIcon]="(_svgIcon | async)!"></sbb-icon>
+  </ng-container>
+  <ng-content select="sbb-notification-icon" *ngSwitchCase="true"></ng-content>
+</span>
+
+<div class="sbb-notification-content">
+  <div class="sbb-notification-content-message" [class.sbb-notification-content-title]="jumpMarks">
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="jumpMarks">
+    <span *ngFor="let jumpMark of jumpMarks; let isLast = last" class="sbb-notification-jump-mark">
+      <a (click)="_scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
+      <ng-container *ngIf="!isLast"> / </ng-container>
+    </span>
+  </div>
+</div>
+
+<button
+  *ngIf="(variant | async) === 'lean' && !readonly"
+  class="sbb-notification-dismiss-icon sbb-button-reset-frameless sbb-icon-fit"
+  type="button"
+  (click)="dismiss()"
+>
+  <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
+</button>

@@ -1,0 +1,137 @@
+@import '../styles/common';
+
+$notificationMessagePadding: 16;
+$notificationMessagePaddingRight: 24;
+
+.sbb-notification {
+  display: flex;
+  align-items: center;
+  color: $sbbColorWhite;
+  width: 100%;
+  border-radius: pxToEm(2);
+  padding: pxToEm($notificationMessagePadding) pxToEm($notificationMessagePaddingRight)
+    pxToEm($notificationMessagePadding) pxToEm($notificationMessagePadding);
+  font-size: pxToRem($sizeFontDefault);
+  line-height: pxToRem($sizeLineHeightDefault);
+  overflow-y: hidden;
+
+  html:not(.sbb-lean) & {
+    &:not(.ng-animating) {
+      min-height: pxToEm(68);
+    }
+
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+      line-height: pxToRem($sizeLineHeightDefault4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+      line-height: pxToRem($sizeLineHeightDefault5k);
+    }
+  }
+  html.sbb-lean & {
+    line-height: pxToRem($sizeLineHeightDefaultLean);
+    padding: pxToRem(11) pxToRem(15);
+    border: pxToRem(1) solid transparent;
+    border-radius: pxToRem(2);
+  }
+}
+
+.sbb-notification-success,
+.sbb-notification-info {
+  background-color: $sbbColorGrey;
+}
+
+.sbb-notification-error,
+.sbb-notification-warn {
+  background-color: $sbbColorRed;
+}
+
+html.sbb-lean .sbb-notification-success {
+  color: $sbbColorGreen;
+  background-color: $sbbColorWhite;
+  border-color: $sbbColorGreen;
+}
+
+html.sbb-lean .sbb-notification-info {
+  color: $sbbColorGranite;
+  background-color: $sbbColorWhite;
+  border-color: $sbbColorGranite;
+}
+
+html.sbb-lean .sbb-notification-warn {
+  background-color: $sbbColorOrange;
+}
+
+.sbb-notification-has-jump-marks {
+  padding: pxToEm(23) pxToEm($notificationMessagePaddingRight) pxToEm(23)
+    pxToEm($notificationMessagePadding);
+
+  &,
+  a {
+    line-height: pxToEm(23);
+  }
+
+  html:not(.sbb-lean) & {
+    &:not(.ng-animating) {
+      min-height: pxToEm(92);
+    }
+  }
+  html.sbb-lean & {
+    padding: pxToRem(11) pxToRem(15) pxToRem(13.5);
+  }
+}
+
+.sbb-notification-icon-wrapper {
+  flex: 0 0 pxToEm(36);
+  align-self: flex-start;
+  width: pxToEm(36);
+  height: pxToEm(36);
+
+  * {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  html.sbb-lean & {
+    flex-basis: pxToRem(24);
+    width: pxToEm(24);
+    height: pxToEm(24);
+  }
+}
+
+.sbb-notification-content {
+  flex: 1 1 auto;
+  margin-left: pxToEm($notificationMessagePadding);
+
+  html.sbb-lean & {
+    margin-left: pxToRem(8);
+  }
+}
+
+html:not(.sbb-lean) .sbb-notification-content-title {
+  font-family: $fontSbbBold;
+}
+
+.sbb-notification-content a {
+  &,
+  &:hover,
+  &:active {
+    color: inherit;
+    cursor: pointer;
+  }
+}
+
+html.sbb-lean .sbb-notification-dismiss-icon {
+  flex: 0 0 pxToEm(24);
+  align-self: flex-start;
+  width: pxToEm(24);
+  height: pxToEm(24);
+  cursor: pointer;
+  color: inherit;
+
+  * {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

@@ -10,6 +10,7 @@
   font-size: pxToRem($sizeFontDefault);
   line-height: pxToRem($sizeLineHeightDefault);
   outline: none;
+  overflow-y: hidden;
 
   @include mq($from: tablet) {
     padding: pxToRem(36) pxToRem(24) pxToRem(36) pxToRem(48);
