@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
+import {
+  SbbNotificationToast,
+  SbbNotificationToastVerticalPosition,
+  SbbNotificationType,
+} from '@sbb-esta/angular/notification-toast';
 
 /**
  * @title Simple Notification Toast
@@ -11,10 +15,10 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
   styleUrls: ['./simple-notification-toast-example.css'],
 })
 export class SimpleNotificationToastExample {
-  type: 'success' | 'info' | 'error' | 'warn' = 'success';
+  type: SbbNotificationType = 'success';
   types = ['success', 'info', 'error', 'warn'];
   positions = ['top', 'bottom'];
-  position: 'top' | 'bottom' = 'bottom';
+  position: SbbNotificationToastVerticalPosition = 'bottom';
 
   constructor(private _notification: SbbNotificationToast) {}
 

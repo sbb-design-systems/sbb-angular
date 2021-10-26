@@ -19,6 +19,7 @@ ng_module(
     deps = [
         "//src/angular/core",
         "//src/angular/icon",
+        "//src/angular/notification",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

@@ -1,14 +1,12 @@
 import { AriaLivePoliteness } from '@angular/cdk/a11y';
 import { InjectionToken, ViewContainerRef } from '@angular/core';
+import { SbbNotificationType } from '@sbb-esta/angular/notification';
 
 /** Injection token that can be used to access the data that was passed into a notification toast. */
 export const SBB_NOTIFICATION_TOAST_DATA = new InjectionToken<any>('SbbNotificationToastData');
 
 /** Possible values for verticalPosition on SbbNotificationToastConfig. */
 export type SbbNotificationToastVerticalPosition = 'top' | 'bottom';
-
-/** Possible values for verticalPosition on SbbNotificationToastConfig. */
-export type SbbNotificationType = 'success' | 'error' | 'warn' | 'info';
 
 export class SbbNotificationToastConfig<D = any> {
   /** The politeness level for the AriaLiveAnnouncer announcement. */

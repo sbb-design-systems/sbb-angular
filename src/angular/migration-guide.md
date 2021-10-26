@@ -320,7 +320,7 @@ Alternatively the new element `<sbb-notification-icon>` can be used to wrap an i
 
 ### Notification Toast
 
-No changes.
+`SbbNotificationVerticalPosition` has been renamed to `SbbNotificationToastVerticalPosition`.
 
 [Documentation](angular/components/notification-toast)
 
