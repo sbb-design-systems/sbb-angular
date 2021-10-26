@@ -1,0 +1,70 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "notification-toast",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":notification-toast-container.css"] + glob(["**/*.html"]),
+    deps = [
+        "//src/angular/core",
+        "//src/angular/icon",
+        "//src/angular/notification",
+        "@npm//@angular/animations",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "notification_toast_container_scss",
+    src = "notification-toast-container.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":notification-toast",
+        "//src/angular/icon/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/platform-browser",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    static_css = [
+        "//src/angular:typography",
+    ],
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":notification-toast.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

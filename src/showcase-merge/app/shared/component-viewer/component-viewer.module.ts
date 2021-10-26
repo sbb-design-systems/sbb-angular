@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
+import { SbbNotificationToastModule } from '@sbb-esta/angular/notification-toast';
 import { SbbTabsModule } from '@sbb-esta/angular/tabs';
 import { SbbTooltipModule } from '@sbb-esta/angular/tooltip';
 
@@ -33,6 +34,8 @@ import { VariantLimitationComponent } from './variant-limitation-component/varia
     SbbIconModule,
     SbbTabsModule,
     SbbNotificationModule,
+    // This is required, due to requiring a single instance of the notification toast service.
+    SbbNotificationToastModule,
     SbbTooltipModule,
     RouterModule,
   ],

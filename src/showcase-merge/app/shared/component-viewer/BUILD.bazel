@@ -23,6 +23,7 @@ ng_module(
     deps = [
         "//src/angular/icon",
         "//src/angular/notification",
+        "//src/angular/notification-toast",
         "//src/angular/tabs",
         "//src/angular/tooltip",
         "//src/components-examples",
