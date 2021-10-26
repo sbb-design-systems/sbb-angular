@@ -21,8 +21,8 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
-        "//src/angular-business/notification",
         "//src/angular/icon",
+        "//src/angular/notification",
         "//src/angular/tabs",
         "//src/angular/tooltip",
         "//src/components-examples",
