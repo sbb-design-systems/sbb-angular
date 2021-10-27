@@ -19,7 +19,7 @@ import { SbbBreadcrumb } from './breadcrumb';
 const _SbbBreadcrumbsMixinBase = mixinVariant(class {});
 
 // tslint:disable-next-line:naming-convention
-export const _sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
+export const _sbbBreadcrumbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   type: 'breadcrumb',
   xPosition: 'after',
   xOffset: -30,
@@ -40,7 +40,10 @@ export const _sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
     '[class.sbb-breadcrumbs-expanded]': 'this.expanded',
   },
   providers: [
-    { provide: SBB_MENU_INHERITED_TRIGGER_CONTEXT, useValue: _sbbMenuInheritedTriggerContext },
+    {
+      provide: SBB_MENU_INHERITED_TRIGGER_CONTEXT,
+      useValue: _sbbBreadcrumbMenuInheritedTriggerContext,
+    },
   ],
 })
 export class SbbBreadcrumbs extends _SbbBreadcrumbsMixinBase {

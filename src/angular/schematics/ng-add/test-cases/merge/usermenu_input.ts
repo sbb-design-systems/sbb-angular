@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbIconModule, SbbUsermenuModule } from '@sbb-esta/angular-public';
+import { SbbIconModule, SbbUsermenuItem, SbbUsermenuModule } from '@sbb-esta/angular-public';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -29,6 +29,8 @@ import { RouterModule } from '@angular/router';
 })
 export class UsermenuTestComponent {
   userName: any;
+
+  usermenuItem: SbbUsermenuItem;
 
   login() {}
 

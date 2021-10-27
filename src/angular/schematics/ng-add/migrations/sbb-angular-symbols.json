@@ -25,6 +25,7 @@
   "SbbBadge": "badge",
   "SbbBadgeModule": "badge",
   "SbbBadgePosition": "badge",
+  "_sbbBreadcrumbMenuInheritedTriggerContext": "breadcrumb",
   "SbbBreadcrumb": "breadcrumb",
   "SbbBreadcrumbModule": "breadcrumb",
   "SbbBreadcrumbRoot": "breadcrumb",
@@ -332,6 +333,7 @@
   "SbbMenuTrigger": "menu",
   "SbbMenuTriggerContext": "menu",
   "SbbMenuTriggerType": "menu",
+  "SbbUsermenuItem": "menu",
   "throwSbbMenuInvalidPositionX": "menu",
   "throwSbbMenuInvalidPositionY": "menu",
   "throwSbbMenuMissingError": "menu",
@@ -623,6 +625,7 @@
   "TooltipPosition": "tooltip",
   "TooltipTouchGestures": "tooltip",
   "TooltipVisibility": "tooltip",
+  "_sbbUsermenuMenuInheritedTriggerContext": "usermenu",
   "SbbUsermenu": "usermenu",
   "SbbUsermenuIcon": "usermenu",
   "SbbUsermenuModule": "usermenu"
