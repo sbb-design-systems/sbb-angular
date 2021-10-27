@@ -11,38 +11,39 @@
 </button>
 
 <button
-  *ngIf="_loggedIn"
+  *ngIf="_loggedIn && menu"
   [sbbMenuTriggerFor]="menu"
   class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
   [attr.aria-label]="_ariaLabelOpenPanel"
   type="button"
 >
-  <ng-container *sbbMenuDynamicTrigger>
-    <span class="sbb-usermenu-identification" aria-hidden="true">
-      <ng-container *ngIf="_icon">
-        <ng-container *ngTemplateOutlet="_icon"></ng-container>
-      </ng-container>
-      <span *ngIf="!_icon" class="sbb-usermenu-initial-letters"> {{ _initialLetters }} </span>
-    </span>
-
-    <span class="sbb-usermenu-user-info">
-      <span class="sbb-usermenu-user-info-display-name"> {{ displayName || userName }} </span>
-      <span class="sbb-usermenu-user-info-name" *ngIf="displayName && userName">
-        {{ userName }}
-      </span>
-    </span>
-
-    <ng-container [ngSwitch]="variant | async">
-      <sbb-icon
-        *ngSwitchDefault
-        svgIcon="kom:chevron-small-down-small"
-        class="sbb-usermenu-arrow"
-      ></sbb-icon>
-      <sbb-icon
-        *ngSwitchCase="'lean'"
-        svgIcon="kom:chevron-right-small"
-        class="sbb-usermenu-arrow"
-      ></sbb-icon>
-    </ng-container>
-  </ng-container>
+  <ng-template sbbMenuDynamicTrigger>
+    <ng-container *ngTemplateOutlet="triggerContent"></ng-container>
+    <sbb-icon
+      [svgIcon]="(variant | async) === 'standard' ? 'kom:chevron-small-down-small' : 'kom:chevron-right-small'"
+      class="sbb-usermenu-arrow"
+    ></sbb-icon>
+  </ng-template>
 </button>
+
+<div *ngIf="_loggedIn && !menu" class="sbb-usermenu-trigger sbb-usermenu-trigger-logged-in">
+  <ng-template sbbMenuDynamicTrigger>
+    <ng-container *ngTemplateOutlet="triggerContent"></ng-container>
+  </ng-template>
+</div>
+
+<ng-template #triggerContent>
+  <span class="sbb-usermenu-identification" aria-hidden="true">
+    <ng-container *ngIf="_icon">
+      <ng-container *ngTemplateOutlet="_icon"></ng-container>
+    </ng-container>
+    <span *ngIf="!_icon" class="sbb-usermenu-initial-letters"> {{ _initialLetters }} </span>
+  </span>
+
+  <span class="sbb-usermenu-user-info">
+    <span class="sbb-usermenu-user-info-display-name"> {{ displayName || userName }} </span>
+    <span class="sbb-usermenu-user-info-name" *ngIf="displayName && userName">
+      {{ userName }}
+    </span>
+  </span>
+</ng-template>

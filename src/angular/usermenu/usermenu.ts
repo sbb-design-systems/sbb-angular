@@ -28,7 +28,8 @@ let counter = 0;
 // tslint:disable-next-line: naming-convention
 const _SbbUsermenuMixinBase = mixinVariant(class {});
 
-const sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
+// tslint:disable-next-line:naming-convention
+export const _sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   type: 'usermenu',
   panelWidth: 288,
   animationStartStateResolver: (context) => ({
@@ -52,7 +53,7 @@ const sbbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
     '[class.sbb-usermenu-user-info-has-display-name]': '!!displayName',
   },
   providers: [
-    { provide: SBB_MENU_INHERITED_TRIGGER_CONTEXT, useValue: sbbMenuInheritedTriggerContext },
+    { provide: SBB_MENU_INHERITED_TRIGGER_CONTEXT, useValue: _sbbMenuInheritedTriggerContext },
   ],
 })
 export class SbbUsermenu extends _SbbUsermenuMixinBase {

@@ -61,13 +61,16 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
   display: flex;
   align-items: center;
   color: $textColor;
-  cursor: pointer;
   outline: 0;
   width: 100%;
   height: pxToRem($triggerHeight);
   font-size: pxToRem($sizeFontDefault);
   line-height: pxToRem($sizeLineHeightDefault);
   padding: 0 pxToRem($borderWidth);
+
+  &:where(button) {
+    cursor: pointer;
+  }
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
