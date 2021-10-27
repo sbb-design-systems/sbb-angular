@@ -1,5 +1,5 @@
 The usermenu is intended to log in / out a user and offers the logged-in user a menu
-with comprehensive functionalities. The usermenu should be placed in a site header, e.g. the `<sbb-header>`.
+with comprehensive functionalities. The usermenu should be placed in a site header, e.g. the `<sbb-header-lean>`.
 
 ### Log in
 
@@ -31,7 +31,7 @@ If both `displayName` and `userName` are provided, the `userName` has a smaller 
 
 ### Custom icon or custom image
 
-By default, the initial letters of a user are displayed next to the user name.
+By default, the initial letters of a user are displayed next to the username.
 As an alternative, you can either provide a custom icon or image by applying the `*sbbIcon` directive.
 
 #### Custom icon
@@ -39,7 +39,6 @@ As an alternative, you can either provide a custom icon or image by applying the
 ```html
 <sbb-usermenu [userName]="userName">
   <sbb-icon svgIcon="kom:avatar-train-staff-small" *sbbIcon></sbb-icon>
-  ...
 </sbb-usermenu>
 ```
 
@@ -48,18 +47,25 @@ As an alternative, you can either provide a custom icon or image by applying the
 ```html
 <sbb-usermenu [userName]="userName">
   <img src="assets/sbb-logo.png" alt="SBB Logo" *sbbIcon />
-  ...
 </sbb-usermenu>
 ```
 
-### Menu content
+### Menu
 
-The expanded usermenu respects `<a sbb-menu-item>`, `<button type="button" sbb-menu-item>` and `<hr />` tags.
-The last button in the menu should be the logout button.
-`<sbb-icon>` icons can optionally be used in menu items.
+To provide a menu with actions and links, please use the `<sbb-menu #menu="sbbMenu">`
+and link it with the `<sbb-username [menu]=""menu">` tag by reference.
+Note that you must import `SbbMenuModule` from `@sbb-esta/angular/menu` yourself.
+
+Please see the [Menu documentation](angular/components/menu) for more details of the menu usage.
 
 ```html
-<sbb-usermenu [userName]="userName" [displayName]="displayName" (loginRequest)="login()">
+<sbb-usermenu
+  [menu]="menu"
+  [userName]="userName"
+  [displayName]="displayName"
+  (loginRequest)="login()"
+></sbb-usermenu>
+<sbb-menu #menu="sbbMenu">
   <a sbb-menu-item routerLink="." routerLinkActive="sbb-active">
     <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon> Account
   </a>
@@ -70,5 +76,5 @@ The last button in the menu should be the logout button.
   <button type="button" sbb-menu-item (click)="logout()">
     <sbb-icon svgIcon="kom:exit-small" class="sbb-icon-fit"></sbb-icon> Logout
   </button>
-</sbb-usermenu>
+</sbb-menu>
 ```

@@ -58,8 +58,8 @@ describe('SbbUsermenu', () => {
 });
 
 describe('SbbUsermenu with userName and displayName without image', () => {
-  let componentTest: UsermenuTestComponentWithDisplayNameAndUserName;
-  let fixtureTest: ComponentFixture<UsermenuTestComponentWithDisplayNameAndUserName>;
+  let componentTest: UsermenuWithDisplayNameAndUserNameTestComponent;
+  let fixtureTest: ComponentFixture<UsermenuWithDisplayNameAndUserNameTestComponent>;
   let overlayContainerElement: HTMLElement;
 
   beforeEach(
@@ -74,13 +74,13 @@ describe('SbbUsermenu with userName and displayName without image', () => {
           NoopAnimationsModule,
           SbbMenuModule,
         ],
-        declarations: [UsermenuTestComponentWithDisplayNameAndUserName],
+        declarations: [UsermenuWithDisplayNameAndUserNameTestComponent],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithDisplayNameAndUserName);
+    fixtureTest = TestBed.createComponent(UsermenuWithDisplayNameAndUserNameTestComponent);
     componentTest = fixtureTest.componentInstance;
     fixtureTest.detectChanges();
   });
@@ -275,7 +275,7 @@ describe('SbbUsermenu with userName and displayName without image', () => {
 });
 
 describe('SbbUsermenu with only displayName', () => {
-  let fixtureTest: ComponentFixture<UsermenuTestComponentWithOnlyDisplayName>;
+  let fixtureTest: ComponentFixture<UsermenuWithOnlyDisplayNameTestComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -288,13 +288,13 @@ describe('SbbUsermenu with only displayName', () => {
           NoopAnimationsModule,
           SbbMenuModule,
         ],
-        declarations: [UsermenuTestComponentWithOnlyDisplayName],
+        declarations: [UsermenuWithOnlyDisplayNameTestComponent],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithOnlyDisplayName);
+    fixtureTest = TestBed.createComponent(UsermenuWithOnlyDisplayNameTestComponent);
     fixtureTest.detectChanges();
   });
 
@@ -316,7 +316,7 @@ describe('SbbUsermenu with only displayName', () => {
 });
 
 describe('SbbUsermenu with only userName', () => {
-  let fixtureTest: ComponentFixture<UsermenuTestComponentWithOnlyUsername>;
+  let fixtureTest: ComponentFixture<UsermenuWithOnlyUsernameTestComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -329,13 +329,13 @@ describe('SbbUsermenu with only userName', () => {
           NoopAnimationsModule,
           SbbMenuModule,
         ],
-        declarations: [UsermenuTestComponentWithOnlyUsername],
+        declarations: [UsermenuWithOnlyUsernameTestComponent],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithOnlyUsername);
+    fixtureTest = TestBed.createComponent(UsermenuWithOnlyUsernameTestComponent);
     fixtureTest.detectChanges();
   });
 
@@ -357,7 +357,7 @@ describe('SbbUsermenu with only userName', () => {
 });
 
 describe('SbbUsermenu with custom image', () => {
-  let fixtureTest: ComponentFixture<UsermenuTestComponentWithCustomImage>;
+  let fixtureTest: ComponentFixture<UsermenuWithCustomImageTestComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -370,13 +370,13 @@ describe('SbbUsermenu with custom image', () => {
           NoopAnimationsModule,
           SbbMenuModule,
         ],
-        declarations: [UsermenuTestComponentWithCustomImage],
+        declarations: [UsermenuWithCustomImageTestComponent],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixtureTest = TestBed.createComponent(UsermenuTestComponentWithCustomImage);
+    fixtureTest = TestBed.createComponent(UsermenuWithCustomImageTestComponent);
     fixtureTest.detectChanges();
   });
 
@@ -392,7 +392,37 @@ describe('SbbUsermenu with custom image', () => {
   });
 });
 
-// tslint:disable:i18n
+describe('SbbUsermenu with no connected menu', () => {
+  let fixtureTest: ComponentFixture<UsermenuNoMenuTestComponent>;
+
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [SbbUsermenuModule, CommonModule, SbbIconTestingModule, NoopAnimationsModule],
+        declarations: [UsermenuNoMenuTestComponent],
+      }).compileComponents();
+    })
+  );
+
+  beforeEach(() => {
+    fixtureTest = TestBed.createComponent(UsermenuNoMenuTestComponent);
+    fixtureTest.detectChanges();
+  });
+
+  it('should not provide button to open menu', () => {
+    performLoginAndReturnUsermenuComponent(fixtureTest);
+
+    expect(fixtureTest.debugElement.query(By.css('button.sbb-usermenu-trigger'))).toBeFalsy();
+    expect(fixtureTest.debugElement.query(By.css('div.sbb-usermenu-trigger'))).toBeTruthy();
+  });
+
+  it('should hide arrow', () => {
+    performLoginAndReturnUsermenuComponent(fixtureTest);
+
+    expect(fixtureTest.debugElement.query(By.css('.sbb-usermenu-arrow'))).toBeFalsy();
+  });
+});
+
 @Component({
   template: `
     <sbb-usermenu
@@ -409,7 +439,7 @@ describe('SbbUsermenu with custom image', () => {
     </sbb-menu>
   `,
 })
-class UsermenuTestComponentWithDisplayNameAndUserName {
+class UsermenuWithDisplayNameAndUserNameTestComponent {
   userName: string;
   displayName: string;
 
@@ -435,7 +465,7 @@ class UsermenuTestComponentWithDisplayNameAndUserName {
     </sbb-menu>
   `,
 })
-class UsermenuTestComponentWithOnlyDisplayName {
+class UsermenuWithOnlyDisplayNameTestComponent {
   displayName: string;
 
   login() {
@@ -454,7 +484,7 @@ class UsermenuTestComponentWithOnlyDisplayName {
     </sbb-menu>
   `,
 })
-class UsermenuTestComponentWithOnlyUsername {
+class UsermenuWithOnlyUsernameTestComponent {
   userName: string;
 
   login() {
@@ -485,12 +515,23 @@ class UsermenuTestComponentWithOnlyUsername {
     </sbb-menu>
   `,
 })
-class UsermenuTestComponentWithCustomImage {
+class UsermenuWithCustomImageTestComponent {
   userName: string;
   displayName: string;
 
   login() {
     this.userName = 'john_64';
+    this.displayName = 'John Scott';
+  }
+}
+
+@Component({
+  template: ` <sbb-usermenu [displayName]="displayName" (loginRequest)="login()"></sbb-usermenu> `,
+})
+class UsermenuNoMenuTestComponent {
+  displayName: string;
+
+  login() {
     this.displayName = 'John Scott';
   }
 }
