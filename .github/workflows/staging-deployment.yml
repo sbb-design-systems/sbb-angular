@@ -1,4 +1,6 @@
 name: Staging Deployment
+# Secure deployment of pull request artifacts
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 on:
   workflow_run:
     workflows: ["Continuous Integration"]
