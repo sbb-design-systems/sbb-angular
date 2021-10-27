@@ -160,11 +160,11 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
     }
   }
 
-  emitMenuOpened() {
+  _emitMenuOpened() {
     this.menuOpened.emit();
   }
 
-  emitMenuClosed() {
+  _emitMenuClosed() {
     this.menuClosed.emit();
   }
 }

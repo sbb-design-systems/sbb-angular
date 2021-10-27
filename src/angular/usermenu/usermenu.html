@@ -13,8 +13,8 @@
 <button
   *ngIf="_loggedIn && menu"
   [sbbMenuTriggerFor]="menu"
-  (menuOpened)="emitMenuOpened()"
-  (menuClosed)="emitMenuClosed()"
+  (menuOpened)="_emitMenuOpened()"
+  (menuClosed)="_emitMenuClosed()"
   class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
   [attr.aria-label]="_ariaLabelOpenPanel"
   type="button"
