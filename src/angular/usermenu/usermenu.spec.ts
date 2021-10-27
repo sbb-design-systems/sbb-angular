@@ -272,6 +272,27 @@ describe('SbbUsermenu with userName and displayName without image', () => {
     );
     expect(identificationSection.attributes['aria-hidden']).toBe('true');
   });
+
+  it('should forward menuOpened and menuClosed of menu to sbb-usermenu', () => {
+    // When panel closed
+    const usermenuComponent = performLoginAndReturnUsermenuComponent(fixtureTest)
+      .componentInstance as SbbUsermenu;
+
+    spyOn(fixtureTest.componentInstance, 'opened');
+    spyOn(fixtureTest.componentInstance, 'closed');
+
+    usermenuComponent.open();
+    fixtureTest.detectChanges();
+
+    expect(fixtureTest.componentInstance.opened).toHaveBeenCalledTimes(1);
+    expect(fixtureTest.componentInstance.closed).toHaveBeenCalledTimes(0);
+
+    usermenuComponent.close();
+    fixtureTest.detectChanges();
+
+    expect(fixtureTest.componentInstance.opened).toHaveBeenCalledTimes(1);
+    expect(fixtureTest.componentInstance.closed).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe('SbbUsermenu with only displayName', () => {
@@ -430,6 +451,8 @@ describe('SbbUsermenu with no connected menu', () => {
       [displayName]="displayName"
       (loginRequest)="login()"
       [menu]="menu"
+      (menuClosed)="closed()"
+      (menuOpened)="opened()"
     ></sbb-usermenu>
     <sbb-menu #menu="sbbMenu">
       <a sbb-menu-item [routerLink]="'.'" routerLinkActive="sbb-active">Menu Item 1</a>
@@ -452,6 +475,10 @@ class UsermenuWithDisplayNameAndUserNameTestComponent {
     this.userName = '';
     this.displayName = '';
   }
+
+  closed() {}
+
+  opened() {}
 }
 
 @Component({

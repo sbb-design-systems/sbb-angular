@@ -84,7 +84,13 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
   /** Event emitted on log in of a user. */
   @Output() loginRequest: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild(SbbMenuTrigger) private _menuTrigger!: SbbMenuTrigger;
+  /** Event emitted when the associated menu is opened. */
+  @Output() readonly menuOpened: EventEmitter<void> = new EventEmitter<void>();
+
+  /** Event emitted when the associated menu is closed. */
+  @Output() readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
+
+  @ViewChild(SbbMenuTrigger) private _menuTrigger: SbbMenuTrigger;
 
   /** Reference to user provided icon */
   @ContentChild(SbbUsermenuIcon, { read: TemplateRef })
@@ -92,7 +98,7 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
 
   /** Whether or not the overlay panel is open. */
   get panelOpen(): boolean {
-    return this._menuTrigger.menuOpen;
+    return this._menuTrigger?.menuOpen;
   }
 
   /** Whether the user is logged in or not. */
@@ -138,17 +144,27 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
   /** Open the overlay panel */
   open(): void {
     if (this._loggedIn) {
-      this._menuTrigger.openMenu();
+      this._menuTrigger?.openMenu();
     }
   }
 
   /** Close the overlay panel */
   close(): void {
-    this._menuTrigger.closeMenu();
+    this._menuTrigger?.closeMenu();
   }
 
   /** Toggle the visibility of the overlay panel */
   toggle(): void {
-    this._menuTrigger.toggleMenu();
+    if (this._loggedIn) {
+      this._menuTrigger?.toggleMenu();
+    }
+  }
+
+  emitMenuOpened() {
+    this.menuOpened.emit();
+  }
+
+  emitMenuClosed() {
+    this.menuClosed.emit();
   }
 }
