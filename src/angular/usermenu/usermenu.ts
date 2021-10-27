@@ -12,13 +12,15 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { mixinVariant, SbbIconDirective } from '@sbb-esta/angular/core';
+import { mixinVariant } from '@sbb-esta/angular/core';
 import {
   SbbMenu,
   SbbMenuInheritedTriggerContext,
   SbbMenuTrigger,
   SBB_MENU_INHERITED_TRIGGER_CONTEXT,
 } from '@sbb-esta/angular/menu';
+
+import { SbbUsermenuIcon } from './usermenu-icon';
 
 let counter = 0;
 
@@ -81,7 +83,7 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
   @ViewChild(SbbMenuTrigger) private _menuTrigger!: SbbMenuTrigger;
 
   /** Reference to user provided icon */
-  @ContentChild(SbbIconDirective, { read: TemplateRef })
+  @ContentChild(SbbUsermenuIcon, { read: TemplateRef })
   _icon?: TemplateRef<any>;
 
   /** Whether or not the overlay panel is open. */

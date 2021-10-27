@@ -108,8 +108,6 @@
   "SbbErrorStateMatcher": "core",
   "SbbGraphicService": "core",
   "SbbHitTestService": "core",
-  "SbbIconDirective": "core",
-  "SbbIconDirectiveModule": "core",
   "SbbLeanDateAdapter": "core",
   "SbbMarkerColors": "core",
   "SbbMarkerSizes": "core",
@@ -626,5 +624,6 @@
   "TooltipTouchGestures": "tooltip",
   "TooltipVisibility": "tooltip",
   "SbbUsermenu": "usermenu",
+  "SbbUsermenuIcon": "usermenu",
   "SbbUsermenuModule": "usermenu"
 }

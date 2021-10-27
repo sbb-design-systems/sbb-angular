@@ -43,7 +43,6 @@ ng_test_library(
     ),
     deps = [
         ":usermenu",
-        "//src/angular/core/testing",
         "//src/angular/icon",
         "//src/angular/icon/testing",
         "//src/angular/menu",

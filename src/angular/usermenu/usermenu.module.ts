@@ -1,15 +1,15 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbIconDirectiveModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbMenuModule } from '@sbb-esta/angular/menu';
 
 import { SbbUsermenu } from './usermenu';
+import { SbbUsermenuIcon } from './usermenu-icon';
 
 @NgModule({
-  declarations: [SbbUsermenu],
-  imports: [CommonModule, SbbIconModule, OverlayModule, SbbIconDirectiveModule, SbbMenuModule],
-  exports: [SbbUsermenu, SbbIconDirectiveModule],
+  declarations: [SbbUsermenu, SbbUsermenuIcon],
+  imports: [CommonModule, SbbIconModule, OverlayModule, SbbMenuModule],
+  exports: [SbbUsermenu, SbbUsermenuIcon],
 })
 export class SbbUsermenuModule {}
