@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SbbIconModule } from '@sbb-esta/angular-core/icon';
+import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbMenuModule } from '@sbb-esta/angular/menu';
 import { SbbUsermenuModule } from '@sbb-esta/angular/usermenu';
 
