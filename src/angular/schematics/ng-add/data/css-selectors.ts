@@ -26,7 +26,14 @@ export const cssSelectors: VersionChanges<SbbAngularCssSelectorData> = {
       changes: [
         {
           replace: 'sbb-ghettobox-container',
-          replaceWith: 'sbb-ghettobox-outlet',
+          replaceWith: 'sbb-alert-outlet',
+          replaceIn: {
+            stylesheet: true,
+          },
+        },
+        {
+          replace: 'sbb-ghettobox',
+          replaceWith: 'sbb-alert',
           replaceIn: {
             stylesheet: true,
           },

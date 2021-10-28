@@ -1,6 +1,6 @@
 @import '../styles/common';
 
-.sbb-ghettobox {
+.sbb-alert {
   display: flex;
   background-color: $sbbColorIron;
   color: $sbbColorWhite;
@@ -29,7 +29,7 @@
     }
   }
 
-  &.sbb-ghettobox-link {
+  &.sbb-alert-link {
     text-decoration: none;
     transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
@@ -43,8 +43,8 @@
   }
 }
 
-.sbb-ghettobox-icon,
-.sbb-ghettobox-close {
+.sbb-alert-icon,
+.sbb-alert-close {
   flex: 0 0 pxToRem(24);
   line-height: 0;
 
@@ -59,7 +59,7 @@
   }
 }
 
-.sbb-ghettobox-content {
+.sbb-alert-content {
   flex: 1 1 auto;
   margin: pxToRem(-2) pxToRem(12) pxToRem(0);
 
@@ -73,12 +73,12 @@
   }
 }
 
-.sbb-ghettobox-content-link-icon {
+.sbb-alert-content-link-icon {
   vertical-align: middle;
   margin-left: pxToEm(3);
 }
 
-.sbb-ghettobox-close-button {
+.sbb-alert-close-button {
   cursor: pointer;
   color: $sbbColorWhite;
   width: pxToEm(24);
@@ -89,16 +89,16 @@
   }
 }
 
-.sbb-ghettobox-close-button .sbb-icon {
+.sbb-alert-close-button .sbb-icon {
   padding: pxToEm(3);
   border: $sbbColorWhite solid pxToEm(1);
   border-radius: 50%;
 }
 
-.sbb-ghettobox a {
+.sbb-alert a {
   color: $sbbColorWhite;
 }
 
-.sbb-ghettobox-outlet {
+.sbb-alert-outlet {
   display: block;
 }

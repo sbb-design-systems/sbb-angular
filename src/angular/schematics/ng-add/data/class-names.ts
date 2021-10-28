@@ -115,7 +115,43 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
         },
         {
           replace: 'SbbGhettoboxContainer',
-          replaceWith: 'SbbGhettoboxOutlet',
+          replaceWith: 'SbbAlertOutlet',
+        },
+        {
+          replace: 'SbbGhettobox',
+          replaceWith: 'SbbAlert',
+        },
+        {
+          replace: 'sbbGhettoboxAnimations',
+          replaceWith: 'sbbAlertAnimations',
+        },
+        {
+          replace: 'SbbGhettoboxConfig',
+          replaceWith: 'SbbAlertConfig',
+        },
+        {
+          replace: 'SbbGhettoboxEvent',
+          replaceWith: 'SbbAlertEvent',
+        },
+        {
+          replace: 'SbbGhettoboxModule',
+          replaceWith: 'SbbAlertModule',
+        },
+        {
+          replace: 'SbbGhettoboxRef',
+          replaceWith: 'SbbAlertRef',
+        },
+        {
+          replace: 'SbbGhettoboxRefConnector',
+          replaceWith: 'SbbAlertRefConnector',
+        },
+        {
+          replace: 'SbbGhettoboxService',
+          replaceWith: 'SbbAlertService',
+        },
+        {
+          replace: 'SbbGhettoboxState',
+          replaceWith: 'SbbAlertState',
         },
         {
           replace: 'SbbTooltipComponent',

@@ -1,24 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  SbbGhettoboxConfig,
-  SbbGhettoboxRef,
-  SbbGhettoboxService,
-} from '@sbb-esta/angular/ghettobox';
+import { SbbAlertConfig, SbbAlertRef, SbbAlertService } from '@sbb-esta/angular/alert';
 
 let nextId = 1;
 
 /**
- * @title Ghettobox Outlet
+ * @title Alert Outlet
  * @order 40
  */
 @Component({
-  selector: 'sbb-ghettobox-outlet-example',
-  templateUrl: './ghettobox-outlet-example.html',
+  selector: 'sbb-alert-outlet-example',
+  templateUrl: './alert-outlet-example.html',
 })
-export class GhettoboxOutletExample implements OnInit {
-  private _refs: SbbGhettoboxRef[] = [];
+export class AlertOutletExample implements OnInit {
+  private _refs: SbbAlertRef[] = [];
 
-  constructor(private _ghettoboxService: SbbGhettoboxService) {}
+  constructor(private _alertService: SbbAlertService) {}
 
   ngOnInit(): void {
     this.add();
@@ -28,9 +24,9 @@ export class GhettoboxOutletExample implements OnInit {
     this.add({ svgIcon: 'kom:eye-disabled-small' });
   }
 
-  add(config?: SbbGhettoboxConfig) {
+  add(config?: SbbAlertConfig) {
     const currentId = nextId++;
-    const ref = this._ghettoboxService.add(
+    const ref = this._alertService.add(
       `An important message to inform clients of a problem/incident ${currentId}`,
       config
     );

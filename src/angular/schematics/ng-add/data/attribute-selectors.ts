@@ -29,6 +29,10 @@ export const attributeSelectors: VersionChanges<AttributeSelectorUpgradeData> = 
           replace: 'sbbSortHeader',
           replaceWith: 'sbb-sort-header',
         },
+        {
+          replace: 'sbbGhettobox',
+          replaceWith: 'sbbAlert',
+        },
       ],
     },
   ],

@@ -5,6 +5,7 @@
 entry_points = [
     # do not sort
     "accordion",
+    "alert",
     "autocomplete",
     "badge",
     "breadcrumb",
@@ -19,7 +20,6 @@ entry_points = [
     "dialog",
     "file-selector",
     "form-field",
-    "ghettobox",
     "icon",
     "icon/testing",
     "input",
@@ -70,6 +70,7 @@ ANGULAR_TESTING_TARGETS = ["//src/angular/%s" % ep for ep in ANGULAR_TESTING_ENT
 
 ANGULAR_MARKDOWN_TARGETS = [
     "accordion",
+    "alert",
     "autocomplete",
     "badge",
     "breadcrumb",
@@ -82,7 +83,6 @@ ANGULAR_MARKDOWN_TARGETS = [
     "dialog",
     "file-selector",
     "form-field",
-    "ghettobox",
     "icon",
     "input",
     "lightbox",

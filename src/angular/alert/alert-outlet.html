@@ -1,18 +1,15 @@
-<ng-content select="sbb-ghettobox"></ng-content>
+<ng-content select="sbb-alert"></ng-content>
 <ng-template #outlet></ng-template>
 
 <ng-template #standard let-connector="connector">
-  <sbb-ghettobox
-    #ghettobox
-    [indicatorIcon]="connector.svgIcon"
-    (dismissed)="connector._handleDismissed()"
-    >{{ connector.message }}</sbb-ghettobox
+  <sbb-alert #alert [indicatorIcon]="connector.svgIcon" (dismissed)="connector._handleDismissed()"
+    >{{ connector.message }}</sbb-alert
   >
 </ng-template>
 <ng-template #routerLink let-connector="connector">
   <a
-    sbbGhettobox
-    #ghettobox
+    sbbAlert
+    #alert
     [indicatorIcon]="connector.svgIcon"
     [routerLink]="connector.routerLink.routerLink"
     [queryParams]="connector.routerLink.queryParams"
@@ -29,8 +26,8 @@
 </ng-template>
 <ng-template #externalLink let-connector="connector">
   <a
-    sbbGhettobox
-    #ghettobox
+    sbbAlert
+    #alert
     [href]="connector.link"
     [indicatorIcon]="connector.svgIcon"
     (dismissed)="connector._handleDismissed()"

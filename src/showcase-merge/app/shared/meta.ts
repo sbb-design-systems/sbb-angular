@@ -67,8 +67,8 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
         name: 'Layout Components',
         entries: [
           { label: 'Accordion', link: './components/accordion' },
+          { label: 'Alert', link: './components/alert', variantOnly: 'standard' },
           { label: 'Breadcrumb', link: './components/breadcrumb' },
-          { label: 'Ghettobox', link: './components/ghettobox', variantOnly: 'standard' },
           { label: 'Notification', link: './components/notification' },
           { label: 'Pagination', link: './components/pagination' },
           { label: 'Processflow', link: './components/processflow' },

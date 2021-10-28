@@ -1,36 +1,36 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbGhettoboxModule } from '@sbb-esta/angular/ghettobox';
+import { SbbAlertModule, SbbAlertService, SBB_GHETTOBOX_ANIMATIONS, SBB_GHETTOBOX_PANEL_ANIMATION_TIMING, SBB_GHETTOBOX_PANEL_ONDELETE_TIMING, SbbAlertOutlet, SbbAlertConfig, SbbGhettoboxContainerService, SbbAlertRef, SbbAlertState, SbbGhettoboxDeletedEvent, SbbAlert } from '@sbb-esta/angular/alert';
 
 @Component({
   selector: 'test',
   template: `
-    <sbb-ghettobox indicatorIcon="fpl:disruption">
+    <sbb-alert indicatorIcon="fpl:disruption">
       
       This is a simple message with a simple <a href="#">Link</a> inside.
-    </sbb-ghettobox>
+    </sbb-alert>
 
-    <a sbbGhettobox
+    <a sbbAlert indicatorIcon="fpl:disruption"
       (dismissed)="afterDelete($event)"
       [routerLink]="['.', 'test']"
-      [queryParams]="{debug: false}"
+      [queryParams]="{ debug: false }"
       fragment="test"
-     indicatorIcon="fpl:disruption">
+    >
       
       This is a Link ghettobox with custom icon.
     </a>
 
-    <sbb-ghettobox-outlet>
-      <a sbbGhettobox [routerLink]="['.', 'test']" [queryParams]="{debug: true}" fragment="test" indicatorIcon="fpl:disruption">
+    <sbb-alert-outlet>
+      <a sbbAlert indicatorIcon="fpl:disruption" [routerLink]="['.', 'test']" [queryParams]="{ debug: true }" fragment="test">
         
         This is an initial ghettobox into a container.
       </a>
-    </sbb-ghettobox-outlet>
+    </sbb-alert-outlet>
   `,
 })
 export class TestComponent {}
 
 @NgModule({
   declarations: [TestComponent],
-  imports: [SbbGhettoboxModule],
+  imports: [SbbAlertModule],
 })
 export class GhettoboxTestModule {}

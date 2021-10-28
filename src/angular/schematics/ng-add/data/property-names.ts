@@ -51,7 +51,14 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
           replace: 'containerReady',
           replaceWith: 'outletReady',
           limitedTo: {
-            classes: ['SbbGhettoboxService'],
+            classes: ['SbbGhettoboxService', 'SbbAlertService'],
+          },
+        },
+        {
+          replace: 'createGhettobox',
+          replaceWith: 'createAlert',
+          limitedTo: {
+            classes: ['SbbGhettoboxContainer', 'SbbAlertOutlet'],
           },
         },
         {

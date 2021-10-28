@@ -1,5 +1,18 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbGhettoboxModule } from '@sbb-esta/angular-public';
+import {
+  SbbGhettoboxModule,
+  SbbGhettoboxService,
+  SBB_GHETTOBOX_ANIMATIONS,
+  SBB_GHETTOBOX_PANEL_ANIMATION_TIMING,
+  SBB_GHETTOBOX_PANEL_ONDELETE_TIMING,
+  SbbGhettoboxContainer,
+  SbbGhettoboxConfig,
+  SbbGhettoboxContainerService,
+  SbbGhettoboxRef,
+  SbbGhettoboxState,
+  SbbGhettoboxDeletedEvent,
+  SbbGhettobox,
+} from '@sbb-esta/angular-public/ghettobox';
 
 @Component({
   selector: 'test',
@@ -12,7 +25,7 @@ import { SbbGhettoboxModule } from '@sbb-esta/angular-public';
     <sbb-ghettobox
       (afterDelete)="afterDelete($event)"
       [routerLink]="['.', 'test']"
-      [queryParams]="{debug: false}"
+      [queryParams]="{ debug: false }"
       fragment="test"
     >
       <sbb-icon svgIcon="fpl:disruption" *sbbIcon></sbb-icon>
@@ -20,7 +33,7 @@ import { SbbGhettoboxModule } from '@sbb-esta/angular-public';
     </sbb-ghettobox>
 
     <sbb-ghettobox-container>
-      <sbb-ghettobox [routerLink]="['.', 'test']" [queryParams]="{debug: true}" fragment="test">
+      <sbb-ghettobox [routerLink]="['.', 'test']" [queryParams]="{ debug: true }" fragment="test">
         <sbb-icon svgIcon="fpl:disruption" *sbbIcon></sbb-icon>
         This is an initial ghettobox into a container.
       </sbb-ghettobox>

@@ -6,15 +6,15 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 ng_module(
-    name = "ghettobox",
+    name = "alert",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     assets = glob(["**/*.html"]),
     deps = [
+        "//src/angular/alert",
         "//src/angular/button",
-        "//src/angular/ghettobox",
         "//src/angular/icon",
         "@npm//@angular/common",
         "@npm//@angular/core",

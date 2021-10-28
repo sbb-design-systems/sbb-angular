@@ -1,25 +1,25 @@
 import { EmbeddedViewRef } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import { SbbGhettoboxConfig, SbbRouterLink } from './ghettobox-config';
-import type { SbbGhettoboxOutlet } from './ghettobox-outlet';
+import { SbbAlertConfig, SbbRouterLink } from './alert-config';
+import { SbbAlertOutlet } from './alert-outlet';
 
-export class SbbGhettoboxRefConnector implements SbbGhettoboxConfig {
-  /** The message to display in the ghettobox. */
+export class SbbAlertRefConnector implements SbbAlertConfig {
+  /** The message to display in the alert. */
   message: string;
   /**
-   * Icon to be used in the ghettobox.
+   * Icon to be used in the alert.
    * Must be a valid svgIcon input for sbb-icon.
    */
   svgIcon?: string;
-  /** Link to be used for the ghettobox. Will be applied to routerLink. */
+  /** Link to be used for the alert. Will be applied to routerLink. */
   routerLink?: SbbRouterLink;
-  /** Link to be used for the ghettobox. Will be treated as an external link. */
+  /** Link to be used for the alert. Will be treated as an external link. */
   link?: string;
   /** Subject which will emit once the dismissed event happened. */
   readonly afterDismissed = new Subject<void>();
 
-  constructor(message: string, config: SbbGhettoboxConfig) {
+  constructor(message: string, config: SbbAlertConfig) {
     this.message = message;
     this.svgIcon = config.svgIcon;
     this.routerLink =
@@ -29,7 +29,7 @@ export class SbbGhettoboxRefConnector implements SbbGhettoboxConfig {
     this.link = config.link;
   }
 
-  /** Handles the dismissed event of the referenced ghettobox. */
+  /** Handles the dismissed event of the referenced alert. */
   _handleDismissed() {
     if (!this.afterDismissed.closed) {
       this.afterDismissed.next();
@@ -39,16 +39,14 @@ export class SbbGhettoboxRefConnector implements SbbGhettoboxConfig {
 }
 
 /**
- * Reference to a ghettobox created via service API.
+ * Reference to a alert created via service API.
  */
-export class SbbGhettoboxRef {
-  /** The instance of the component making up the content of the snack bar. */
+export class SbbAlertRef {
+  /** The instance of the component making up the content of the alert. */
   instance: EmbeddedViewRef<any>;
 
-  constructor(
-    readonly instanceOutlet: SbbGhettoboxOutlet,
-    private _connector: SbbGhettoboxRefConnector
-  ) {
+  // noinspection JSUnusedGlobalSymbols
+  constructor(readonly instanceOutlet: SbbAlertOutlet, private _connector: SbbAlertRefConnector) {
     this.afterDismissed().subscribe(() => this.instance.destroy());
   }
 
@@ -59,7 +57,7 @@ export class SbbGhettoboxRef {
     }
   }
 
-  /** Gets an observable that is notified when the ghettobox has been dismissed. */
+  /** Gets an observable that is notified when the alert has been dismissed. */
   afterDismissed(): Observable<void> {
     return this._connector.afterDismissed;
   }
