@@ -21,17 +21,15 @@ export class GhettoboxMigration extends RefactorMigration {
       this._migration.logger.warn('  Automatic migration failed for some sbb-ghettobox instances.');
       this._migration.logger.warn('  Check generated TODO in templates.');
       this._migration.logger.warn(
-        '  See https://angular.app.sbb.ch/angular/components/ghettobox for reference.'
+        '  See https://angular.app.sbb.ch/angular/components/alert for reference.'
       );
       this._migration.logger.info('');
     }
   }
 
   protected _migrate(element: MigrationElement) {
+    let indicatorIcon = '';
     const routerLink = element.findProperty('routerLink');
-    if (routerLink) {
-      element.rename('a', 'sbbGhettobox');
-    }
 
     const icon = element.findProperty('icon');
     if (icon) {
@@ -39,7 +37,7 @@ export class GhettoboxMigration extends RefactorMigration {
       this._ghettoboxMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon from icon "${icon.attribute.value}". ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/ghettobox -->'
+          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/alert -->'
       );
     }
     const [iconElement, ...iconElements] = element.findElements((n) =>
@@ -49,7 +47,7 @@ export class GhettoboxMigration extends RefactorMigration {
       this._ghettoboxMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon. ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/ghettobox -->'
+          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/alert -->'
       );
     } else if (iconElement?.is('sbb-icon')) {
       const svgIcon = iconElement.findProperty('svgIcon');
@@ -57,20 +55,30 @@ export class GhettoboxMigration extends RefactorMigration {
         this._ghettoboxMigrationFailedPartially = true;
         element.insertStart(
           `<!-- TODO: Unable to determine custom icon from "${iconElement.toString()}". ` +
-            'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/ghettobox -->'
+            'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/alert -->'
         );
       } else {
         const attribute = svgIcon.isProperty ? '[indicatorIcon]' : 'indicatorIcon';
-        element.appendProperty(attribute, svgIcon.nativeValue);
+        indicatorIcon = `${attribute}="${svgIcon.nativeValue}"`;
       }
       iconElement.remove();
     } else if (iconElement) {
       this._ghettoboxMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon from "${iconElement.toString()}". ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/ghettobox -->'
+          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/alert -->'
       );
       iconElement.remove();
+    }
+
+    if (routerLink && indicatorIcon) {
+      element.rename('a', `sbbAlert ${indicatorIcon}`);
+    } else if (routerLink) {
+      element.rename('a', 'sbbAlert');
+    } else if (indicatorIcon) {
+      element.rename('sbb-alert', indicatorIcon);
+    } else {
+      element.rename('sbb-alert');
     }
   }
 }

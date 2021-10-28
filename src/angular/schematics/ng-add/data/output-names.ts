@@ -8,7 +8,7 @@ export const outputNames: VersionChanges<OutputNameUpgradeData> = {
         {
           replace: 'afterDelete',
           replaceWith: 'dismissed',
-          limitedTo: { elements: ['sbb-ghettobox'] },
+          limitedTo: { elements: ['sbb-ghettobox', 'sbb-alert'] },
         },
       ],
     },

@@ -11,51 +11,50 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { sbbGhettoboxAnimations } from './ghettobox-animations';
+import { sbbAlertAnimations } from './alert-animations';
 
-/** Ghettobox states used for the animation */
-export type SbbGhettoboxState = 'visible' | 'dismissed';
+/** Alert states used for the animation */
+export type SbbAlertState = 'visible' | 'dismissed';
 
-/** Ghettobox deleted custom event  */
-export interface SbbGhettoboxEvent {
-  ghettobox: SbbGhettobox;
+/** Alert deleted custom event  */
+export interface SbbAlertEvent {
+  alert: SbbAlert;
 }
 
 let nextId = 0;
 
 @Component({
-  selector: 'sbb-ghettobox, a[sbbGhettobox]',
-  templateUrl: './ghettobox.html',
-  styleUrls: ['./ghettobox.css'],
+  selector: 'sbb-alert, a[sbbAlert]',
+  templateUrl: './alert.html',
+  styleUrls: ['./alert.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  animations: [sbbGhettoboxAnimations.showDismiss],
+  animations: [sbbAlertAnimations.showDismiss],
   host: {
-    class: 'sbb-ghettobox',
+    class: 'sbb-alert',
     '[id]': 'id',
     '[attr.hidden]': '_closed ? true : null',
     '[attr.aria-hidden]': '_closed ? true : null',
     '[attr.role]': '!_closed ? "alert" : null',
-    '[class.sbb-ghettobox-link]': '_isNativeLink',
+    '[class.sbb-alert-link]': '_isNativeLink',
     '[@showDismiss]': '_animationState',
   },
 })
-export class SbbGhettobox {
+export class SbbAlert {
   /** The id of this element. */
-  @Input() id: string = `sbb-ghettobox-${nextId++}`;
+  @Input() id: string = `sbb-alert-${nextId++}`;
 
-  /** The animation state of this ghettobox. */
-  _animationState: SbbGhettoboxState = 'visible';
+  /** The animation state of this alert. */
+  _animationState: SbbAlertState = 'visible';
 
-  /** Whether this ghettobox is closed. */
+  /** Whether this alert is closed. */
   _closed: boolean = false;
 
   /** Set to true, if the host element is an <a> element. */
   _isNativeLink: boolean = false;
 
-  /** Emitted when a ghettobox is to be dismissed. */
-  @Output() readonly dismissed: EventEmitter<SbbGhettoboxEvent> =
-    new EventEmitter<SbbGhettoboxEvent>();
+  /** Emitted when a alert is to be dismissed. */
+  @Output() readonly dismissed: EventEmitter<SbbAlertEvent> = new EventEmitter<SbbAlertEvent>();
 
   /**
    * The indicator icon, which will be shown before the content.
@@ -71,7 +70,7 @@ export class SbbGhettobox {
     }
   }
 
-  /** Dismiss this ghettobox. */
+  /** Dismiss this alert. */
   dismiss(): void {
     this._animationState = 'dismissed';
   }
@@ -83,7 +82,6 @@ export class SbbGhettobox {
     this.dismiss();
   }
 
-  /** @docs-private */
   @HostListener('@showDismiss.done', ['$event'])
   _handleAnimation(event: AnimationEvent) {
     const { phaseName, toState } = event;
@@ -91,7 +89,7 @@ export class SbbGhettobox {
     if (phaseName === 'done' && toState === 'dismissed') {
       this._closed = true;
       this._changeDetector.markForCheck();
-      this.dismissed.next({ ghettobox: this });
+      this.dismissed.next({ alert: this });
     }
   }
 }

@@ -7,11 +7,11 @@ import {
   trigger,
 } from '@angular/animations';
 
-/** Animations used by ghettobox. */
-export const sbbGhettoboxAnimations: {
+/** Animations used by alert. */
+export const sbbAlertAnimations: {
   readonly showDismiss: AnimationTriggerMetadata;
 } = {
-  /** Animation that apply when add and delete a ghettobox. */
+  /** Animation that applies when adding and dismissing an alert. */
   showDismiss: trigger('showDismiss', [
     state(
       'void, dismissed',

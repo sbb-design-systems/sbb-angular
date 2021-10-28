@@ -238,25 +238,28 @@ with `SbbInputModule`.
 
 [Input Documentation](angular/components/input)
 
-### Ghettobox
+### Ghettobox (Alert)
 
 _Partial migration available_
 
-The ghettobox module has been majorly refactored. The `routerLink` support for `<sbb-ghettobox>`
-has been replaced with the `<a sbbGhettobox>` selector, which allows improved configuration
-for linking to another site/page.
-The output `afterDelete` on `<sbb-ghettobox>` has been replaced with the `dismissed` output.
-`<sbb-ghettobox-container>` has been replaced with `<sbb-ghettobox-outlet>`, which more accurately
+The former ghettobox module has been majorly refactored and is now called 'alert'.
+With this renaming, every class and selector name has been changed of which the automatic migration takes care of.
+Please note that also i18n keys have been changed (e.g. 'alert@@sbbAlertCloseAlert').
+
+The `routerLink` support for `<sbb-alert>` has been replaced with the `<a sbbAlert>` selector,
+which allows improved configuration for linking to another site/page.
+The output `afterDelete` on `<sbb-alert>` has been replaced with the `dismissed` output.
+`<sbb-ghettobox-container>` has been replaced with `<sbb-alert-outlet>`, which more accurately
 describes its purpose.
-The API of `SbbGhettoboxService` has also been changed and simplified.
+The API of `SbbAlertService` has also been changed and simplified.
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
-which is no longer supported. The ghettobox component now provides an `indicatorIcon` input, for which
+which is no longer supported. The alert component now provides an `indicatorIcon` input, for which
 [any supported](angular/icon-overview) (or self registered) icon can be used.
 
 See the documentation for details.
 
-[Documentation](angular/components/ghettobox)
+[Documentation](angular/components/alert)
 
 ### Icon
 
