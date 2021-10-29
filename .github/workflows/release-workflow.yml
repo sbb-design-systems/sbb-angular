@@ -62,28 +62,12 @@ jobs:
         fi
       env: 
         REF: ${{ github.ref }}
-    - name: "Publish: @sbb-esta/angular-core"
-      run: yarn publish dist/releases/angular-core --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: "Publish: @sbb-esta/angular-icons"
-      run: yarn publish dist/releases/angular-icons --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: "Publish: @sbb-esta/angular-keycloak"
-      run: yarn publish dist/releases/angular-keycloak --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: "Publish: @sbb-esta/angular-public"
-      run: yarn publish dist/releases/angular-public --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
+    - name: "Publish: @sbb-esta/angular"
+      run: yarn publish dist/releases/angular --tag ${{ steps.npm_tag.outputs.npm_tag }}  || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: "Publish: @sbb-esta/angular-maps"
       run: yarn publish dist/releases/angular-maps --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: "Publish: @sbb-esta/angular-business"
-      run: yarn publish dist/releases/angular-business --tag ${{ steps.npm_tag.outputs.npm_tag }} || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -127,7 +111,7 @@ jobs:
         restore-keys: |
           bazel-build-
     - name: "Bazel: Build showcase"
-      run: yarn -s build showcase
+      run: yarn -s build showcase-merge
 
     - name: "Docker: Parse release version"
       id: docker_release_version

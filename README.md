@@ -2,21 +2,23 @@
 
 This is the repository for the Angular component library for SBB.
 
-[Documentation/Showcase](https://angular.app.sbb.ch)
+[Documentation/Showcase](https://angular.app.sbb.ch/)
 
 [Design Specification](https://digital.sbb.ch/)
 
 ## Packages
 
-`npm install --save @sbb-esta/angular`
-
 ### [@sbb-esta/angular](https://www.npmjs.com/package/@sbb-esta/angular)
+
+`ng add @sbb-esta/angular`
 
 The package containing the components/modules for SBB websites and applications.
 
 [Documentation](https://angular.app.sbb.ch/angular)
 
 ### [@sbb-esta/angular-maps](https://www.npmjs.com/package/@sbb-esta/angular-maps)
+
+`ng add @sbb-esta/angular-maps`
 
 The package containing components to display 2D/3D maps and to provide map interaction.
 

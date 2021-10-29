@@ -209,81 +209,6 @@ jobs:
       if: ${{ success() || failure() }}
       run: rm -rf ~/.bazel-cache
 
-  showcase:
-    if: ${{ success() || failure() }}
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - name: "Bazel: Copy bazel.rc to user home"
-      run: cp ./.github/.bazelrc ~/
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14
-
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '**/tools/postinstall/apply-patches.js') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: "Yarn: Install dependencies"
-      run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Bazel: Download cache artifacts"
-      if: ${{ success() || failure() }}
-      uses: actions/download-artifact@v2
-      with:
-        name: bazel-cache-artifact
-        path: ~/.bazel-cache/
-    - name: "Bazel: Unpack artifacts"
-      if: ${{ success() || failure() }}
-      run: |
-        cd ~/.bazel-cache/
-        tar -I zstd -xf bazel-cache.tar.zst
-        rm -f bazel-cache.tar.zst
-    - name: "Bazel: Build showcase"
-      run: yarn -s build showcase
-    - name: "Bazel: Clean bazel disk cache"
-      if: ${{ success() || failure() }}
-      run: yarn -s bazel:cache clean --individualMaxSize=50MB
-    - name: "Bazel: Compress artifacts"
-      if: ${{ success() || failure() }}
-      run: |
-        cd ~/.bazel-cache
-        tar -I zstd -cf bazel-cache-showcase.tar.zst sbb-angular
-    - name: "Bazel: Upload cache artifacts"
-      if: ${{ success() || failure() }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: bazel-cache-showcase-artifact
-        path: ~/.bazel-cache/bazel-cache-showcase.tar.zst
-    - name: "Bazel: Clear cache directory"
-      if: ${{ success() || failure() }}
-      run: rm -rf ~/.bazel-cache
-
-    - name: "Deploy: Pack showcase"
-      run: mv $(npm pack ./dist/releases/showcase | tail -n 1) sbb-esta-angular-showcase.tgz
-    - name: "Artifact: Upload showcase merge artifact for pull request"
-      if: github.event_name == 'pull_request'
-      uses: actions/upload-artifact@v2
-      with:
-        name: showcase-artifact-${{ github.event.number }}
-        path: sbb-esta-angular-showcase.tgz
-    - name: "Artifact: Upload showcase merge artifact for master branch"
-      if: github.ref == 'refs/heads/master'
-      uses: actions/upload-artifact@v2
-      with:
-        name: showcase-artifact-master
-        path: sbb-esta-angular-showcase.tgz
-
   showcase-merge:
     if: ${{ success() || failure() }}
     needs: build
@@ -362,7 +287,7 @@ jobs:
 
   merge-caches:
     if: ${{ success() || failure() }}
-    needs: [test, showcase, showcase-merge]
+    needs: [test, showcase-merge]
     runs-on: ubuntu-latest
     steps:
     - name: Shallow checkout
@@ -392,12 +317,6 @@ jobs:
       with:
         name: bazel-cache-test-artifact
         path: ~/.bazel-cache/
-    - name: "Bazel: Download showcase cache artifacts"
-      if: ${{ success() || failure() }}
-      uses: actions/download-artifact@v2
-      with:
-        name: bazel-cache-showcase-artifact
-        path: ~/.bazel-cache/
     - name: "Bazel: Download showcase-merge cache artifacts"
       if: ${{ success() || failure() }}
       uses: actions/download-artifact@v2
@@ -411,8 +330,6 @@ jobs:
         ls -la
         tar -I zstd -xf bazel-cache-test.tar.zst
         rm -f bazel-cache-test.tar.zst
-        tar -I zstd -xf bazel-cache-showcase.tar.zst
-        rm -f bazel-cache-showcase.tar.zst
         tar -I zstd -xf bazel-cache-showcase-merge.tar.zst
         rm -f bazel-cache-showcase-merge.tar.zst
     - name: "Bazel: Clean bazel disk cache"
