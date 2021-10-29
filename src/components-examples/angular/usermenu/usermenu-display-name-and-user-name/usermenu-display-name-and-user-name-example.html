@@ -1,0 +1,20 @@
+<sbb-usermenu
+  [userName]="userName"
+  [displayName]="displayName"
+  (loginRequest)="login()"
+  [menu]="menu"
+>
+</sbb-usermenu>
+
+<sbb-menu #menu="sbbMenu">
+  <a sbb-menu-item [queryParams]="{ page: 0 }" routerLink="." routerLinkActive="sbb-active">
+    <sbb-icon svgIcon="kom:user-small" class="sbb-icon-fit"></sbb-icon> Account
+  </a>
+  <a sbb-menu-item [queryParams]="{ page: 1 }" routerLink="." routerLinkActive="sbb-active">
+    <sbb-icon svgIcon="kom:tickets-class-small" class="sbb-icon-fit"></sbb-icon> Orders
+  </a>
+  <hr />
+  <button type="button" sbb-menu-item (click)="logout()">
+    <sbb-icon svgIcon="kom:exit-small" class="sbb-icon-fit"></sbb-icon> Logout
+  </button>
+</sbb-menu>

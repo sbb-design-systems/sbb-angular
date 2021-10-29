@@ -71,6 +71,16 @@ export function SBB_MENU_DEFAULT_OPTIONS_FACTORY(): SbbMenuDefaultOptions {
     backdropClass: 'cdk-overlay-transparent-backdrop',
   };
 }
+
+export type SbbMenuPlainAnimationState = 'enter' | 'void' | 'enter-usermenu';
+
+export interface SbbMenuAnimationStateWithParams {
+  value: SbbMenuPlainAnimationState;
+  params?: { [key: string]: string };
+}
+
+export type SbbMenuAnimationState = SbbMenuPlainAnimationState | SbbMenuAnimationStateWithParams;
+
 /**
  * Start elevation for the menu panel.
  * @docs-private
@@ -123,7 +133,7 @@ export class SbbMenu
   _classList: { [key: string]: boolean } = {};
 
   /** Current state of the panel animation. */
-  _panelAnimationState: 'void' | 'enter' = 'void';
+  _panelAnimationState: SbbMenuAnimationState = 'void';
 
   /** Emits whenever an animation on the menu completes. */
   _animationDone: Subject<AnimationEvent> = new Subject<AnimationEvent>();
@@ -411,7 +421,8 @@ export class SbbMenu
   /** Starts the enter animation. */
   _startAnimation() {
     // @breaking-change 8.0.0 Combine with _resetAnimation.
-    this._panelAnimationState = 'enter';
+    this._panelAnimationState =
+      this.triggerContext.animationStartStateResolver?.(this.triggerContext) ?? 'enter';
   }
 
   /** Resets the panel animation to its initial state. */
@@ -435,9 +446,28 @@ export class SbbMenu
     // when the animation is done, however moving focus asynchronously will interrupt screen
     // readers which are in the process of reading out the menu already. We take the `element`
     // from the `event` since we can't use a `ViewChild` to access the pane.
-    if (event.toState === 'enter' && this._keyManager.activeItemIndex === 0) {
+    const animationStartState =
+      this._extractPlainAnimationState(
+        this.triggerContext.animationStartStateResolver?.(this.triggerContext)
+      ) ?? 'enter';
+    if (event.toState === animationStartState && this._keyManager.activeItemIndex === 0) {
       event.element.scrollTop = 0;
     }
+
+    if (event.toState === 'void') {
+      event.element.classList.add('sbb-menu-panel-closing');
+    } else {
+      event.element.classList.remove('sbb-menu-panel-closing');
+    }
+  }
+
+  private _extractPlainAnimationState(
+    state?: SbbMenuAnimationState
+  ): SbbMenuPlainAnimationState | null {
+    if (!state) {
+      return null;
+    }
+    return typeof state === 'string' ? state : state.value;
   }
 
   /**

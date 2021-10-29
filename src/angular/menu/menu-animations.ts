@@ -1,6 +1,7 @@
 import {
   animate,
   AnimationTriggerMetadata,
+  keyframes,
   state,
   style,
   transition,
@@ -28,6 +29,14 @@ export const sbbMenuAnimations: {
         opacity: 0,
       })
     ),
+    state(
+      'enter-usermenu',
+      style({
+        width: '{{width}}',
+        maxHeight: '100%',
+      }),
+      { params: { width: '288px' } }
+    ),
     transition(
       'void => enter',
       animate(
@@ -37,6 +46,37 @@ export const sbbMenuAnimations: {
         })
       )
     ),
-    transition('* => void', animate('100ms linear', style({ opacity: 0 }))),
+    transition('enter => void', animate('100ms linear', style({ opacity: 0 }))),
+    transition(
+      'void => enter-usermenu',
+      animate(
+        '300ms cubic-bezier(.785,.135,.15,.86)',
+        keyframes([
+          style({
+            width: 'var(--sbb-menu-trigger-width)',
+            height: 'var(--sbb-menu-trigger-height)',
+            offset: 0,
+          }),
+          style({
+            width: '{{width}}',
+            height: '*',
+            opacity: 1,
+            maxHeight: '100%',
+            offset: 1,
+          }),
+        ])
+      )
+    ),
+    transition(
+      'enter-usermenu => void',
+      animate(
+        '300ms cubic-bezier(.785,.135,.15,.86)',
+        style({
+          opacity: 0,
+          width: 'var(--sbb-menu-trigger-width)',
+          height: 'var(--sbb-menu-trigger-height)',
+        })
+      )
+    ),
   ]),
 };

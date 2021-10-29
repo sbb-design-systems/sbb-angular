@@ -45,6 +45,7 @@ entry_points = [
     "time-input",
     "toggle",
     "tooltip",
+    "usermenu",
 ]
 
 # List of all non-testing entry-points of the Angular package.
@@ -107,4 +108,5 @@ ANGULAR_MARKDOWN_TARGETS = [
     "time-input",
     "toggle",
     "tooltip",
+    "usermenu",
 ]

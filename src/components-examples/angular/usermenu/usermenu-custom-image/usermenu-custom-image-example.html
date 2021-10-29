@@ -1,0 +1,8 @@
+<sbb-usermenu [userName]="userName" (loginRequest)="login()" [menu]="menu">
+  <img src="assets/sbb-logo.png" alt="SBB Logo" *sbbIcon />
+</sbb-usermenu>
+
+<sbb-menu #menu="sbbMenu">
+  <button type="button" sbb-menu-item>Action</button>
+  <button type="button" sbb-menu-item (click)="logout()">Logout</button>
+</sbb-menu>

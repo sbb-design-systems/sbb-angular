@@ -177,6 +177,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbNotificationVerticalPosition',
           replaceWith: 'SbbNotificationToastVerticalPosition',
         },
+        {
+          replace: 'SbbUsermenuItem',
+          replaceWith: 'SbbMenuItem',
+        },
       ],
     },
   ],

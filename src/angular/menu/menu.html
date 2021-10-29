@@ -8,6 +8,8 @@
     [@transformMenu]="_panelAnimationState"
     (@transformMenu.start)="_onAnimationStart($event)"
     (@transformMenu.done)="_onAnimationDone($event)"
+    [style.--sbb-menu-trigger-width.px]="triggerContext?.width"
+    [style.--sbb-menu-trigger-height.px]="triggerContext?.height"
     tabindex="-1"
     role="menu"
     [attr.aria-label]="ariaLabel || null"
@@ -16,6 +18,7 @@
     [class.sbb-menu-panel-type-default]="triggerContext?.type === 'default'"
     [class.sbb-menu-panel-type-headless]="triggerContext?.type === 'headless'"
     [class.sbb-menu-panel-type-breadcrumb]="triggerContext?.type === 'breadcrumb'"
+    [class.sbb-menu-panel-type-usermenu]="triggerContext?.type === 'usermenu'"
   >
     <ng-container *ngIf="!parentMenu && triggerContext && triggerContext.type !== 'headless'">
       <button
