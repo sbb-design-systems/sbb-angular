@@ -87,8 +87,8 @@ export class SbbHeaderSearch {
   @ContentChild(SbbSearch, { static: true }) _search: SbbSearch;
 
   /** The indicator icon from the contained sbb-search component. */
-  get indicatorIcon(): string {
-    return this._search?.indicatorIcon || 'kom:magnifying-glass-small';
+  get svgIcon(): string {
+    return this._search?.svgIcon || 'kom:magnifying-glass-small';
   }
 
   /** Whether or not the overlay panel is open. */

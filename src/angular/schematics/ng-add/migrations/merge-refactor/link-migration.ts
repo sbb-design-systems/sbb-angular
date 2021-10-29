@@ -39,7 +39,7 @@ export class LinkMigration extends RefactorMigration {
     if (!icon) {
       // Do nothing, if no icon specified
     } else if (icon.value === 'download') {
-      icon.replace('indicatorIcon="kom:download-small"');
+      icon.replace('svgIcon="kom:download-small"');
     } else {
       icon.remove();
     }

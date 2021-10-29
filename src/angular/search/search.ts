@@ -53,9 +53,9 @@ export class SbbSearch implements AfterContentInit, OnDestroy {
   /**
    * The indicator icon, which will be used in the button.
    *
-   * e.g. indicatorIcon="kom:magnifying-glass-small"
+   * e.g. svgIcon="kom:magnifying-glass-small"
    */
-  @Input() indicatorIcon: string = 'kom:magnifying-glass-small';
+  @Input() svgIcon: string = 'kom:magnifying-glass-small';
 
   /** Type of the search button. Defaults to "button" if not specified. */
   @Input() type: string = 'button';

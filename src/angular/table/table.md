@@ -319,7 +319,7 @@ selection state.
 ```js
 const initialSelection = [];
 const allowMultiSelect = true;
-this.selection = new SelectionModel<MyDataType>(allowMultiSelect, initialSelection);
+this.selection = new SelectionModel() < MyDataType > (allowMultiSelect, initialSelection);
 ```
 
 ##### 2. Define a selection column

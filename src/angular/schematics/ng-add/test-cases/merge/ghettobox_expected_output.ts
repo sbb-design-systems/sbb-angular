@@ -4,24 +4,24 @@ import { SbbAlertModule, SbbAlertService, SBB_GHETTOBOX_ANIMATIONS, SBB_GHETTOBO
 @Component({
   selector: 'test',
   template: `
-    <sbb-alert indicatorIcon="fpl:disruption">
-      
+    <sbb-alert svgIcon="fpl:disruption">
+
       This is a simple message with a simple <a href="#">Link</a> inside.
     </sbb-alert>
 
-    <a sbbAlert indicatorIcon="fpl:disruption"
+    <a sbbAlert svgIcon="fpl:disruption"
       (dismissed)="afterDelete($event)"
       [routerLink]="['.', 'test']"
       [queryParams]="{ debug: false }"
       fragment="test"
     >
-      
+
       This is a Link ghettobox with custom icon.
     </a>
 
     <sbb-alert-outlet>
-      <a sbbAlert indicatorIcon="fpl:disruption" [routerLink]="['.', 'test']" [queryParams]="{ debug: true }" fragment="test">
-        
+      <a sbbAlert svgIcon="fpl:disruption" [routerLink]="['.', 'test']" [queryParams]="{ debug: true }" fragment="test">
+
         This is an initial ghettobox into a container.
       </a>
     </sbb-alert-outlet>

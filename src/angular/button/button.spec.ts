@@ -14,7 +14,7 @@ describe('SbbButton', () => {
         imports: [SbbButtonModule, SbbIconModule, SbbIconTestingModule],
         declarations: [
           ButtonTest,
-          ButtonWithCustomIndicatorIconTest,
+          ButtonWithCustomSvgIconTest,
           ButtonAltTest,
           ButtonSecondaryTest,
           ButtonGhostTest,
@@ -112,20 +112,18 @@ describe('SbbButton', () => {
       it('should have two indicator icons', () => {
         const fixture = TestBed.createComponent(ButtonTest);
         fixture.detectChanges();
-        const indicatorIcons = fixture.debugElement.queryAll(By.css('button[sbb-button] sbb-icon'));
-        expect(indicatorIcons.length).toEqual(2);
+        const svgIcons = fixture.debugElement.queryAll(By.css('button[sbb-button] sbb-icon'));
+        expect(svgIcons.length).toEqual(2);
       });
 
       it('should have custom indicator icons if specified', () => {
-        const fixture = TestBed.createComponent(ButtonWithCustomIndicatorIconTest);
+        const fixture = TestBed.createComponent(ButtonWithCustomSvgIconTest);
         fixture.detectChanges();
-        const indicatorIconElements = fixture.debugElement.queryAll(
+        const svgIconElements = fixture.debugElement.queryAll(
           By.css('button[sbb-button] sbb-icon')
         );
-        const icons: SbbIcon[] = indicatorIconElements.map((i) => i.componentInstance);
-        expect(
-          icons.every((i) => i.svgIcon === fixture.componentInstance.indicatorIcon)
-        ).toBeTrue();
+        const icons: SbbIcon[] = svgIconElements.map((i) => i.componentInstance);
+        expect(icons.every((i) => i.svgIcon === fixture.componentInstance.svgIcon)).toBeTrue();
       });
 
       it('should have a red background color of rgb(235, 0, 0)/#EB0000', () => {
@@ -207,8 +205,8 @@ describe('SbbButton', () => {
       it('should have no indicator icons', () => {
         const fixture = TestBed.createComponent(ButtonTest);
         fixture.detectChanges();
-        const indicatorIcons = fixture.debugElement.queryAll(By.css('button[sbb-button] sbb-icon'));
-        expect(indicatorIcons.length).toEqual(0);
+        const svgIcons = fixture.debugElement.queryAll(By.css('button[sbb-button] sbb-icon'));
+        expect(svgIcons.length).toEqual(0);
       });
 
       it('disabled should have a red background color of rgb(235, 0, 0, 0.4)/#EB0000', () => {
@@ -321,10 +319,8 @@ describe('SbbButton', () => {
       it('should have no indicator icons', () => {
         const fixture = TestBed.createComponent(ButtonAltTest);
         fixture.detectChanges();
-        const indicatorIcons = fixture.debugElement.queryAll(
-          By.css('button[sbb-alt-button] sbb-icon')
-        );
-        expect(indicatorIcons.length).toEqual(0);
+        const svgIcons = fixture.debugElement.queryAll(By.css('button[sbb-alt-button] sbb-icon'));
+        expect(svgIcons.length).toEqual(0);
       });
 
       it('should have a grey background color of rgb(104, 104, 104)/#686868', () => {
@@ -350,10 +346,10 @@ describe('SbbButton', () => {
       it('should have two indicator icons', () => {
         const fixture = TestBed.createComponent(ButtonSecondaryTest);
         fixture.detectChanges();
-        const indicatorIcons = fixture.debugElement.queryAll(
+        const svgIcons = fixture.debugElement.queryAll(
           By.css('button[sbb-secondary-button] sbb-icon')
         );
-        expect(indicatorIcons.length).toEqual(2);
+        expect(svgIcons.length).toEqual(2);
       });
 
       it('should have a grey background color of rgb(220, 220, 220)/#DCDCDC', () => {
@@ -379,10 +375,10 @@ describe('SbbButton', () => {
       it('should have no indicator icons', () => {
         const fixture = TestBed.createComponent(ButtonSecondaryTest);
         fixture.detectChanges();
-        const indicatorIcons = fixture.debugElement.queryAll(
+        const svgIcons = fixture.debugElement.queryAll(
           By.css('button[sbb-secondary-button] sbb-icon')
         );
-        expect(indicatorIcons.length).toEqual(0);
+        expect(svgIcons.length).toEqual(0);
       });
     });
   });
@@ -392,10 +388,8 @@ describe('SbbButton', () => {
       it('should have no indicator icons', () => {
         const fixture = TestBed.createComponent(ButtonGhostTest);
         fixture.detectChanges();
-        const indicatorIcons = fixture.debugElement.queryAll(
-          By.css('button[sbb-ghost-button] sbb-icon')
-        );
-        expect(indicatorIcons.length).toEqual(0);
+        const svgIcons = fixture.debugElement.queryAll(By.css('button[sbb-ghost-button] sbb-icon'));
+        expect(svgIcons.length).toEqual(0);
       });
 
       it('should have a transparent background color', () => {
@@ -434,10 +428,8 @@ describe('SbbButton', () => {
       it('should have no indicator icons', () => {
         const fixture = TestBed.createComponent(ButtonGhostTest);
         fixture.detectChanges();
-        const indicatorIcons = fixture.debugElement.queryAll(
-          By.css('button[sbb-ghost-button] sbb-icon')
-        );
-        expect(indicatorIcons.length).toEqual(0);
+        const svgIcons = fixture.debugElement.queryAll(By.css('button[sbb-ghost-button] sbb-icon'));
+        expect(svgIcons.length).toEqual(0);
       });
     });
   });
@@ -461,10 +453,10 @@ describe('SbbButton', () => {
       it('should have two indicator icons', () => {
         const fixture = TestBed.createComponent(ButtonFramelessTest);
         fixture.detectChanges();
-        const indicatorIcons = fixture.debugElement.queryAll(
+        const svgIcons = fixture.debugElement.queryAll(
           By.css('button[sbb-frameless-button] sbb-icon')
         );
-        expect(indicatorIcons.length).toEqual(2);
+        expect(svgIcons.length).toEqual(2);
       });
 
       it('should have a transparent background', () => {
@@ -511,12 +503,10 @@ describe('SbbButton', () => {
       it('should have two indicator icons', () => {
         const fixture = TestBed.createComponent(LinkTest);
         fixture.detectChanges();
-        const buttonIndicatorIcons = fixture.debugElement.queryAll(
-          By.css('button[sbb-link] sbb-icon')
-        );
-        expect(buttonIndicatorIcons.length).toEqual(2);
-        const aIndicatorIcons = fixture.debugElement.queryAll(By.css('a[sbb-link] sbb-icon'));
-        expect(aIndicatorIcons.length).toEqual(2);
+        const buttonSvgIcons = fixture.debugElement.queryAll(By.css('button[sbb-link] sbb-icon'));
+        expect(buttonSvgIcons.length).toEqual(2);
+        const aSvgIcons = fixture.debugElement.queryAll(By.css('a[sbb-link] sbb-icon'));
+        expect(aSvgIcons.length).toEqual(2);
       });
     });
 
@@ -526,12 +516,10 @@ describe('SbbButton', () => {
       it('should have one indicator icon', () => {
         const fixture = TestBed.createComponent(LinkTest);
         fixture.detectChanges();
-        const buttonIndicatorIcons = fixture.debugElement.queryAll(
-          By.css('button[sbb-link] sbb-icon')
-        );
-        expect(buttonIndicatorIcons.length).toEqual(1);
-        const aIndicatorIcons = fixture.debugElement.queryAll(By.css('a[sbb-link] sbb-icon'));
-        expect(aIndicatorIcons.length).toEqual(1);
+        const buttonSvgIcons = fixture.debugElement.queryAll(By.css('button[sbb-link] sbb-icon'));
+        expect(buttonSvgIcons.length).toEqual(1);
+        const aSvgIcons = fixture.debugElement.queryAll(By.css('a[sbb-link] sbb-icon'));
+        expect(aSvgIcons.length).toEqual(1);
       });
     });
   });
@@ -580,14 +568,14 @@ class ButtonTest extends ButtonTestBase {}
       type="button"
       (click)="increment()"
       [disabled]="isDisabled"
-      [indicatorIcon]="indicatorIcon"
+      [svgIcon]="svgIcon"
     >
       Go
     </button>
   `,
 })
-class ButtonWithCustomIndicatorIconTest extends ButtonTestBase {
-  indicatorIcon = 'example';
+class ButtonWithCustomSvgIconTest extends ButtonTestBase {
+  svgIcon = 'example';
 }
 
 @Component({

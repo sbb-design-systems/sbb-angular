@@ -90,9 +90,9 @@ export class SbbButton
    * in the standard variant or behind the sbb-link in lean variant.
    * Must be a valid svgIcon input for sbb-icon.
    *
-   * e.g. indicatorIcon="kom:plus-small"
+   * e.g. svgIcon="kom:plus-small"
    */
-  @Input() indicatorIcon: string;
+  @Input() svgIcon: string;
 
   constructor(
     elementRef: ElementRef,
@@ -119,7 +119,7 @@ export class SbbButton
 
         // Assign the correct default indicator icon.
         if (attr in DEFAULT_INDICATOR_ICONS) {
-          this.indicatorIcon = DEFAULT_INDICATOR_ICONS[attr];
+          this.svgIcon = DEFAULT_INDICATOR_ICONS[attr];
         }
       }
     }

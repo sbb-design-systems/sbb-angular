@@ -97,7 +97,7 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
    * The icon to be used for the notification.
    * Must be a valid svgIcon input for sbb-icon.
    */
-  @Input() indicatorIcon: string | null;
+  @Input() svgIcon: string | null;
 
   /** List of in page links displayed on the bottom of the notification */
   @Input() jumpMarks?: SbbJumpMark[];
@@ -112,11 +112,11 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
   _svgIcon: Observable<string>;
 
   /** Subject for the current indicator icon. */
-  private _indicatorIconSubject = new BehaviorSubject<string | null>(null);
+  private _svgIconSubject = new BehaviorSubject<string | null>(null);
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) {
     super();
-    this._svgIcon = combineLatest([this.variant, this._indicatorIconSubject]).pipe(
+    this._svgIcon = combineLatest([this.variant, this._svgIconSubject]).pipe(
       map(([variant, icon]) => {
         if (icon) {
           return icon;
@@ -134,11 +134,8 @@ export class SbbNotification extends _SbbNotificationMixinBase implements OnChan
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (
-      changes.indicatorIcon &&
-      changes.indicatorIcon.currentValue !== changes.indicatorIcon.previousValue
-    ) {
-      this._indicatorIconSubject.next(this.indicatorIcon);
+    if (changes.svgIcon && changes.svgIcon.currentValue !== changes.svgIcon.previousValue) {
+      this._svgIconSubject.next(this.svgIcon);
     }
   }
 

@@ -29,7 +29,7 @@ There are several button variants, each applied as an attribute:
 
 The standard variants of `sbb-button`, `sbb-secondary-button`, `sbb-frameless-button` and
 `sbb-link` and the lean variant of `sbb-link` have an indicator icon. This can be customized
-by using the `indicatorIcon` input. Any registered SVG icon of the `SbbIconRegistry` can be used.
+by using the `svgIcon` input. Any registered SVG icon of the `SbbIconRegistry` can be used.
 
 See [here](/angular/icon-overview) for our available icons.
 
@@ -41,8 +41,8 @@ Use the `.sbb-link-group` to display a list of `sbb-link` elements in a group.
 <div class="sbb-link-group">
   <a href="#" sbb-link>Navigation 1</a>
   <button type="button" sbb-link>Navigation 2</button>
-  <a href="#" sbb-link indicatorIcon="kom:download-small">Download 1</a>
-  <button type="button" sbb-link indicatorIcon="kom:download-small">Download 2</button>
+  <a href="#" sbb-link svgIcon="kom:download-small">Download 1</a>
+  <button type="button" sbb-link svgIcon="kom:download-small">Download 2</button>
 </div>
 ```
 

@@ -34,7 +34,7 @@ export class TooltipMigration extends RefactorMigration {
       this._tooltipMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon from icon "${icon.attribute.value}". ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/tooltip -->'
+          'Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/tooltip -->'
       );
     }
     const [iconElement, ...iconElements] = element.findElements((n) =>
@@ -44,7 +44,7 @@ export class TooltipMigration extends RefactorMigration {
       this._tooltipMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon. ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/tooltip -->'
+          'Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/tooltip -->'
       );
     } else if (iconElement?.is('sbb-icon')) {
       const svgIcon = iconElement.findProperty('svgIcon');
@@ -52,10 +52,10 @@ export class TooltipMigration extends RefactorMigration {
         this._tooltipMigrationFailedPartially = true;
         element.insertStart(
           `<!-- TODO: Unable to determine custom icon from "${iconElement.toString()}". ` +
-            'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/tooltip -->'
+            'Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/tooltip -->'
         );
       } else {
-        const attribute = svgIcon.isProperty ? '[indicatorIcon]' : 'indicatorIcon';
+        const attribute = svgIcon.isProperty ? '[svgIcon]' : 'svgIcon';
         element.appendProperty(attribute, svgIcon.nativeValue);
       }
       iconElement.remove();
@@ -63,7 +63,7 @@ export class TooltipMigration extends RefactorMigration {
       this._tooltipMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon from "${iconElement.toString()}". ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/tooltip -->'
+          'Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/tooltip -->'
       );
       iconElement.remove();
     }

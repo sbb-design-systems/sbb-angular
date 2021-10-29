@@ -20,13 +20,11 @@ We support different notification types: `success` (default), `info`, `warning` 
 ### Notification icon
 
 The notification component uses a specific icon corresponding to the type.
-It is also possible to provide a custom icon either via the `indicatorIcon` input or via
+It is also possible to provide a custom icon either via the `svgIcon` input or via
 the `<sbb-notification-icon>` element.
 
 ```html
-<sbb-notification indicatorIcon="kom:clock-small">
-  New timezone saved successfully.
-</sbb-notification>
+<sbb-notification svgIcon="kom:clock-small"> New timezone saved successfully. </sbb-notification>
 
 <sbb-notification>
   <sbb-notification-icon>

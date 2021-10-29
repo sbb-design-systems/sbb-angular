@@ -27,7 +27,7 @@
     >
       <ng-content *ngSwitchCase="true" select="sbb-toggle-icon"></ng-content>
       <span *ngSwitchCase="false">
-        <sbb-icon [svgIcon]="indicatorIcon"></sbb-icon>
+        <sbb-icon [svgIcon]="svgIcon"></sbb-icon>
       </span>
     </span>
     <span class="sbb-toggle-option-button-label" [ngSwitch]="!!_label">
