@@ -181,6 +181,14 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbUsermenuItem',
           replaceWith: 'SbbMenuItem',
         },
+        {
+          replace: 'SbbHeaderModule',
+          replaceWith: 'SbbHeaderLeanModule',
+        },
+        {
+          replace: 'SbbHeader',
+          replaceWith: 'SbbHeaderLean',
+        },
       ],
     },
   ],

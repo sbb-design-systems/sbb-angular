@@ -416,6 +416,13 @@ export class MigrationElementProperty {
     );
   }
 
+  appendValue(value: string) {
+    this._element.recorder.insertRight(
+      this._element.resource.start + this.location.endOffset - 1,
+      value
+    );
+  }
+
   toTextNode() {
     return this.isProperty ? `{{ ${this.nativeValue} }}` : this.nativeValue;
   }

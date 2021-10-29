@@ -59,7 +59,7 @@ export const PACKAGES: { [key: string]: ShowcaseMetaPackage } = {
       {
         name: 'Navigation Components',
         entries: [
-          { label: 'Header', link: './components/header', variantOnly: 'lean' },
+          { label: 'Header Lean', link: './components/header-lean', variantOnly: 'lean' },
           { label: 'Sidebar', link: './components/sidebar', variantOnly: 'lean' },
         ],
       },

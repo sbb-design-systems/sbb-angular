@@ -4,9 +4,9 @@ icon sidebar components.
 
 ### Utilisation of sidebars
 
-It is intended that in addition to the `<sbb-header>`, the two sidebars are only used once on each view,
+It is intended that in addition to the `<sbb-header-lean>`, the two sidebars are only used once on each view,
 so that a maximum of three navigation hierarchy levels occur.
-For example: `<sbb-header>` > `<sbb-icon-sidebar>` > `<sbb-sidebar>` (as it is in showcase).
+For example: `<sbb-header-lean>` > `<sbb-icon-sidebar>` > `<sbb-sidebar>` (as it is in showcase).
 All sidebar components can be technically nested in any form, or they can be used individually.
 
 ## Icon Sidebar
@@ -130,15 +130,16 @@ be explicitly set via CSS:
 }
 ```
 
-### Using with sbb-header
+### Using with sbb-header-lean
 
-If you place the `<sbb-icon-sidebar-container>` directly after the `<sbb-header>`, correct styles will automatically be applied.
+If you place the `<sbb-icon-sidebar-container>` directly after the `<sbb-header-lean>`, correct styles will automatically be applied.
 
 ```html
-<sbb-header>...</sbb-header> <sbb-icon-sidebar-container> ... </sbb-icon-sidebar-container>
+<sbb-header-lean>...</sbb-header-lean>
+<sbb-icon-sidebar-container> ... </sbb-icon-sidebar-container>
 ```
 
-Whenever you add content between `<sbb-header>` and `<sbb-icon-sidebar-container>` elements or wrap
+Whenever you add content between `<sbb-header-lean>` and `<sbb-icon-sidebar-container>` elements or wrap
 either in a component/element, add the css class `sbb-icon-sidebar-after-header` to the `<sbb-icon-sidebar-container>`
 (e.g. `<sbb-icon-sidebar-container class="sbb-icon-sidebar-after-header">`).
 
@@ -294,15 +295,15 @@ If you like fit the size of its content, just set css `width` to `auto`.
 
 Try to avoid percent based width as `resize` events are not (yet) supported.
 
-### Using with sbb-header
+### Using with sbb-header-lean
 
-If you place the `<sbb-sidebar-container>` directly after the `<sbb-header>`, correct styles will automatically be applied.
+If you place the `<sbb-sidebar-container>` directly after the `<sbb-header-lean>`, correct styles will automatically be applied.
 
 ```html
-<sbb-header>...</sbb-header> <sbb-sidebar-container> ... </sbb-sidebar-container>
+<sbb-header-lean>...</sbb-header-lean> <sbb-sidebar-container> ... </sbb-sidebar-container>
 ```
 
-Whenever you add content between `<sbb-header>` and `<sbb-sidebar-container>` elements or wrap
+Whenever you add content between `<sbb-header-lean>` and `<sbb-sidebar-container>` elements or wrap
 either in a component/element, add the css class `sbb-sidebar-after-header` to the `<sbb-sidebar-container>`
 (e.g. `<sbb-sidebar-container class="sbb-sidebar-after-header">`).
 

@@ -1,0 +1,48 @@
+@import '../styles/common';
+
+.sbb-app-chooser {
+  display: flex;
+  flex-direction: column;
+  margin: 0 pxToRem(15);
+}
+
+.sbb-app-chooser-label {
+  display: block;
+  font-family: $fontSbbLight;
+  font-size: pxToRem(21);
+  line-height: pxToRem(25);
+  margin-top: pxToRem(24);
+  margin-bottom: pxToRem(16);
+}
+
+.sbb-app-chooser a {
+  font-size: pxToRem(15);
+  line-height: pxToRem(20);
+  padding: pxToRem(8) pxToRem(32) pxToRem(10) 0;
+  border-top: pxToRem(1) solid $sbbColorCloud;
+  text-decoration: none;
+  outline: none;
+  position: relative;
+
+  &::after {
+    content: url($sbbIconArrowRightSmallBlack);
+    display: inline-block;
+    width: pxToRem(24);
+    height: pxToRem(24);
+    position: absolute;
+    right: 0;
+    vertical-align: middle;
+  }
+
+  &:hover::after {
+    content: url($sbbIconArrowRightSmallRed125);
+  }
+
+  &:last-child {
+    border-bottom: pxToRem(1) solid $sbbColorCloud;
+  }
+}
+
+.sbb-app-chooser:last-of-type {
+  margin-bottom: 1rem;
+}

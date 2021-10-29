@@ -12,7 +12,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
 }
 
 .sbb-icon-sidebar-container.sbb-icon-sidebar-after-header,
-sbb-header + .sbb-icon-sidebar-container {
+.sbb-header-lean + .sbb-icon-sidebar-container {
   top: pxToRem($sbb-sidebar-after-header-top);
 }
 

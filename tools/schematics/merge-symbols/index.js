@@ -104,7 +104,8 @@ function mergeSymbols() {
       SbbSortDirective: "table",
       SbbSort: "table",
       NotificationType: "notification",
-      SbbUsermenuItem: "menu"
+      SbbUsermenuItem: "menu",
+      SbbHeader: "header-lean"
     };
     extractExportsForModule("src/angular/");
     extractExportsForModule("src/angular-maps/");

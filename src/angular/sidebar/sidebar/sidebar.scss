@@ -23,7 +23,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
 }
 
 .sbb-sidebar-container.sbb-sidebar-after-header,
-sbb-header + .sbb-sidebar-container {
+.sbb-header-lean + .sbb-sidebar-container {
   top: pxToRem($sbb-sidebar-after-header-top);
 }
 

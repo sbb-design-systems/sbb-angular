@@ -261,11 +261,19 @@ See the documentation for details.
 
 [Documentation](angular/components/alert)
 
+### Header
+
+_Automatic migration available_
+
+TODO
+
+[Documentation](angular/components/header-lean)
+
 ### Icon
 
 _Automatic migration available_
 
-The icon module has been moved from `@sbb-esta/angular-core` to `@sbb-esta/angular/icon`,
+The icon module has been moved from `@sbb-esta/angular-core` to `@sbb-esta/angular/icon`.
 
 [Documentation](angular/components/icon)
 

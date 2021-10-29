@@ -8,6 +8,7 @@ import { CheckboxPanelMigration } from './merge-refactor/checkbox-panel-migratio
 import { ChipsMigration } from './merge-refactor/chips-migration';
 import { FormFieldMigration } from './merge-refactor/form-field-migration';
 import { GhettoboxMigration } from './merge-refactor/ghettobox-migration';
+import { HeaderMigration } from './merge-refactor/header-migration';
 import { LinkMigration } from './merge-refactor/link-migration';
 import { NativeTableMigration } from './merge-refactor/native-table-migration';
 import { NotificationMigration } from './merge-refactor/notification-migration';
@@ -37,6 +38,7 @@ export class MergeRefactorMigration extends Migration<null, DevkitContext> {
     new ChipsMigration(this),
     new FormFieldMigration(this),
     new GhettoboxMigration(this),
+    new HeaderMigration(this),
     new LinkMigration(this),
     new NativeTableMigration(this),
     new NotificationMigration(this),
