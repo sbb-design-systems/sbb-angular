@@ -1,5 +1,4 @@
-load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS")
-load("//src/angular-public:config.bzl", "PUBLIC_ENTRYPOINTS")
+load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS")
 load("//tools/package-docs-content-legacy:index.bzl", "package_docs_content_legacy")
 
 package(default_visibility = ["//visibility:public"])
@@ -15,8 +14,7 @@ filegroup(
         "stackblitz/**/*",
     ]) + [
         ":docs-content",
-        ":stackblitz/src/app/sbb-public.module.ts",
-        ":stackblitz/src/app/sbb-business.module.ts",
+        ":stackblitz/src/app/sbb.module.ts",
     ],
     data = [
         ":docs-content",
@@ -47,29 +45,15 @@ package_docs_content_legacy(
 )
 
 genrule(
-    name = "sbb_module_public",
-    outs = ["stackblitz/src/app/sbb-public.module.ts"],
+    name = "sbb_module",
+    outs = ["stackblitz/src/app/sbb.module.ts"],
     cmd = """
       # Run the bazel entry-point for generating the sbb modules
       # for the examples on StackBlitz info.
       ./$(execpath //tools/stackblitz-module-template:bazel-bin) \
-          "$(execpath stackblitz/src/app/sbb-public.module.ts)" \
+          "$(execpath stackblitz/src/app/sbb.module.ts)" \
           %s
-    """ % " ".join([ep for ep in PUBLIC_ENTRYPOINTS if ep != "field"]),
-    output_to_bindir = True,
-    tools = ["//tools/stackblitz-module-template:bazel-bin"],
-)
-
-genrule(
-    name = "sbb_module_business",
-    outs = ["stackblitz/src/app/sbb-business.module.ts"],
-    cmd = """
-      # Run the bazel entry-point for generating the sbb modules
-      # for the examples on StackBlitz info.
-      ./$(execpath //tools/stackblitz-module-template:bazel-bin) \
-          "$(execpath stackblitz/src/app/sbb-business.module.ts)" \
-          %s
-    """ % " ".join([ep for ep in BUSINESS_ENTRYPOINTS if ep != "field"]),
+    """ % " ".join([ep for ep in ANGULAR_ENTRYPOINTS if ep != "field"]),
     output_to_bindir = True,
     tools = ["//tools/stackblitz-module-template:bazel-bin"],
 )

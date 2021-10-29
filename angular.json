@@ -5,7 +5,7 @@
   "projects": {
     "angular-showcase": {
       "root": "src",
-      "sourceRoot": "src/showcase",
+      "sourceRoot": "src/showcase-merge",
       "projectType": "application",
       "prefix": "sbb",
       "schematics": {
@@ -18,57 +18,20 @@
           "builder": "no-builder",
           "options": {
             "outputPath": "dist/defunct",
-            "index": "src/showcase/index.html",
-            "main": "src/showcase/main.ts",
-            "polyfills": "src/showcase/polyfills.ts",
+            "index": "src/showcase-merge/index.html",
+            "main": "src/showcase-merge/main.ts",
+            "polyfills": "src/showcase-merge/polyfills.ts",
             "tsConfig": "tsconfig.json",
             "aot": true,
             "styles": [
-              "src/showcase/styles.css"
+              "src/showcase-merge/styles.css"
             ]
-          },
-          "configurations": {
-            "production": {
-              "targetLabel": "//src/showcase:prodapp"
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular/bazel:build",
-          "options": {
-            "targetLabel": "//src/showcase:devserver",
-            "bazelCommand": "run",
-            "watch": true
-          },
-          "configurations": {
-            "production": {
-              "targetLabel": "//src/showcase:prodserver"
-            }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "angular-showcase:build"
-          }
-        },
-        "test": {
-          "builder": "@angular/bazel:build",
-          "options": {
-            "bazelCommand": "test",
-            "targetLabel": "//src/showcase/app/..."
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.json",
-              "src/bazel-tsconfig-test.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

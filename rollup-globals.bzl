@@ -3,12 +3,7 @@
 """
 
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS")
-load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS")
-load("//src/angular-core:config.bzl", "CORE_ENTRYPOINTS")
-load("//src/angular-icons:config.bzl", "ICONS_ENTRYPOINTS")
-load("//src/angular-keycloak:config.bzl", "KEYCLOAK_ENTRYPOINTS")
 load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS")
-load("//src/angular-public:config.bzl", "PUBLIC_ENTRYPOINTS")
 
 # Base rollup globals for everything in the repo. Note that we want to disable
 # sorting of the globals as we manually group dict entries.
@@ -89,9 +84,4 @@ def create_globals(packageName, entryPoints):
     })
 
 create_globals("angular", ANGULAR_ENTRYPOINTS)
-create_globals("angular-business", BUSINESS_ENTRYPOINTS)
-create_globals("angular-core", CORE_ENTRYPOINTS)
-create_globals("angular-icons", ICONS_ENTRYPOINTS)
-create_globals("angular-keycloak", KEYCLOAK_ENTRYPOINTS)
 create_globals("angular-maps", MAPS_ENTRYPOINTS)
-create_globals("angular-public", PUBLIC_ENTRYPOINTS)

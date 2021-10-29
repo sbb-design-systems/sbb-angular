@@ -24,12 +24,7 @@
   "ng-update": {
     "packageGroup": [
       "@sbb-esta/angular",
-      "@sbb-esta/angular-business",
-      "@sbb-esta/angular-core",
-      "@sbb-esta/angular-icons",
-      "@sbb-esta/angular-keycloak",
-      "@sbb-esta/angular-maps",
-      "@sbb-esta/angular-public"
+      "@sbb-esta/angular-maps"
     ],
     "packageGroupName": "@sbb-esta/angular"
   },

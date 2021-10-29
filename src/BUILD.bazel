@@ -1,9 +1,6 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_config")
 load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
-load("//src/angular-business:config.bzl", "BUSINESS_ENTRYPOINTS", "BUSINESS_TESTING_ENTRYPOINTS")
-load("//src/angular-core:config.bzl", "CORE_ENTRYPOINTS", "CORE_TESTING_ENTRYPOINTS")
 load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")
-load("//src/angular-public:config.bzl", "PUBLIC_ENTRYPOINTS", "PUBLIC_TESTING_ENTRYPOINTS")
 load("//tools:defaults.bzl", "ts_library")
 load("//tools/dgeni:index.bzl", "dgeni_api_docs")
 
@@ -23,20 +20,11 @@ ts_config(
 
 angular_api_entry_points = ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS
 
-business_api_entry_points = BUSINESS_ENTRYPOINTS + BUSINESS_TESTING_ENTRYPOINTS
-
-core_api_entry_points = CORE_ENTRYPOINTS + CORE_TESTING_ENTRYPOINTS
-
 maps_api_entry_points = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
-
-public_api_entry_points = PUBLIC_ENTRYPOINTS + PUBLIC_TESTING_ENTRYPOINTS
 
 # List that contains all source files that need to be processed by Dgeni.
 api_source_files = ["//src/angular/%s:source-files" % name for name in angular_api_entry_points] + \
-                   ["//src/angular-business/%s:source-files" % name for name in business_api_entry_points] + \
-                   ["//src/angular-core/%s:source-files" % name for name in core_api_entry_points] + \
-                   ["//src/angular-maps/%s:source-files" % name for name in maps_api_entry_points] + \
-                   ["//src/angular-public/%s:source-files" % name for name in public_api_entry_points]
+                   ["//src/angular-maps/%s:source-files" % name for name in maps_api_entry_points]
 
 dgeni_api_docs(
     name = "api-docs",
@@ -53,10 +41,7 @@ dgeni_api_docs(
     ],
     entry_points = {
         "angular": angular_api_entry_points,
-        "angular-business": business_api_entry_points,
-        "angular-core": core_api_entry_points,
         "angular-maps": maps_api_entry_points,
-        "angular-public": public_api_entry_points,
     },
     tags = ["docs-package"],
 )

@@ -1,57 +1,34 @@
 # SBB Components and Design for Angular
 
 This is the repository for the Angular component library for SBB.
-It is generated, maintained, tested, linted and built with the [Angular CLI](https://cli.angular.io/).
 
-[Documentation/Showcase](https://angular.app.sbb.ch/latest/)
+[Documentation/Showcase](https://angular.app.sbb.ch)
 
 [Design Specification](https://digital.sbb.ch/)
 
 ## Packages
 
-`npm install --save @sbb-esta/angular-core @sbb-esta/angular-icons @sbb-esta/angular-public`
+`npm install --save @sbb-esta/angular`
 
-### [@sbb-esta/angular-core](https://www.npmjs.com/package/@sbb-esta/angular-core)
+### [@sbb-esta/angular](https://www.npmjs.com/package/@sbb-esta/angular)
 
-The package containing core functionality shared by `@sbb-esta/angular-public` and `@sbb-esta/angular-business`.
+The package containing the components/modules for SBB websites and applications.
 
-### [@sbb-esta/angular-icons](https://www.npmjs.com/package/@sbb-esta/angular-icons) (Deprecated)
-
-The package containing SBB icons as components.
-
-[Icon List](https://angular.app.sbb.ch/latest/icons/search)
-
-[SVG Origin](https://digital.sbb.ch/de/icons-und-piktogramme/sbb-icons)
-
-### [@sbb-esta/angular-public](https://www.npmjs.com/package/@sbb-esta/angular-public)
-
-The package containing the components/modules for public SBB websites.
-
-[Component List](https://angular.app.sbb.ch/latest/public)
-
-### [@sbb-esta/angular-business](https://www.npmjs.com/package/@sbb-esta/angular-business)
-
-The package containing the components/modules for SBB business applications.
-
-[Component List](https://angular.app.sbb.ch/latest/business)
+[Documentation](https://angular.app.sbb.ch/angular)
 
 ### [@sbb-esta/angular-maps](https://www.npmjs.com/package/@sbb-esta/angular-maps)
 
 The package containing components to display 2D/3D maps and to provide map interaction.
 
-[Component List](https://angular.app.sbb.ch/latest/maps)
-
-### [@sbb-esta/angular-keycloak](https://www.npmjs.com/package/@sbb-esta/angular-keycloak) (Deprecated)
-
-The package containing the authentication module keycloak.
+[Documentation](https://angular.app.sbb.ch/angular-maps)
 
 ## Browser and screen reader support
 
-This library supports the most recent two versions of all major browsers: Chrome (including Android), Firefox, Safari (including iOS), and IE11 / Edge.
+This library supports the most recent two versions of all major browsers: Chrome (including Android), Firefox, Safari (including iOS), and Edge.
 
 We aim for great user experience with the following screen readers:
 
-Windows: NVDA and JAWS with IE11 / FF / Chrome.
+Windows: NVDA and JAWS with FF / Chrome.
 macOS: VoiceOver with Safari / Chrome.
 iOS: VoiceOver with Safari
 Android: Android Accessibility Suite (formerly TalkBack) with Chrome.

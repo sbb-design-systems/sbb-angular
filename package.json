@@ -8,23 +8,18 @@
     "npm": "Please use Yarn instead of NPM to install dependencies. See: https://yarnpkg.com/lang/en/docs/install/"
   },
   "scripts": {
-    "postinstall": "node tools/postinstall/apply-patches.js && ngcc && yarn -s build:public2business",
+    "postinstall": "node tools/postinstall/apply-patches.js && ngcc",
     "build": "ts-node-script ./scripts/build.ts",
-    "build:public2business": "ng g .:public2business",
     "build:schematics": "node tools/schematics/esbuild.js",
     "build:i18n": "ts-node-script ./scripts/build.ts i18n",
-    "watch:public2business": "node ./scripts/public2business-watcher.js",
     "generate:bazel": "ng g .:bazel",
-    "generate:examples": "ng g .:normalize-examples && yarn -s generate:bazel",
     "generate:merge-symbols": "ng g .:mergeSymbols",
     "bazel": "bazelisk",
     "bazel:buildifier": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"*/tools/schematics/bazel/*\" | xargs buildifier -v",
     "bazel:format-lint": "yarn -s bazel:buildifier --lint=warn --mode=check",
     "bazel:cache": "ts-node-script -T ./scripts/cache.ts",
-    "start": "npm-run-all build:public2business --parallel start:devserver watch:public2business",
-    "start:devserver": "ibazel run //src/showcase:devserver",
-    "start:prod": "npm-run-all build:public2business --parallel start:prodserver watch:public2business",
-    "start:prodserver": "ibazel run //src/showcase:prodserver",
+    "start": "ibazel run //src/showcase-merge:devserver",
+    "start:prod": "ibazel run //src/showcase-merge:prodserver",
     "test": "node ./scripts/run-component-tests.js",
     "test-local": "yarn -s test --local",
     "test-firefox": "yarn -s test --firefox",
@@ -34,17 +29,12 @@
     "format:tslint": "yarn -s tslint --fix",
     "format:bazel": "yarn -s bazel:buildifier --lint=fix --mode=fix",
     "format": "npm-run-all --parallel format:prettier format:bazel format:tslint",
-    "migrate": "node ./scripts/run-migration.js",
-    "migrate:example": "ng g .:migrateExamples",
     "prepare": "husky install",
     "release": "standard-version --tag-prefix=\"\"",
     "t9n:xlf": "ng-t9n t9n-xlf.json",
     "t9n:xlf2": "ng-t9n t9n-xlf2.json",
     "_shortcuts": "Below are shortcuts for common commands",
     "baz": "yarn -s generate:bazel",
-    "dev": "ibazel run //src/showcase-merge:devserver",
-    "prod": "ibazel run //src/showcase-merge:prodserver",
-    "p2b": "yarn -s build:public2business",
     "sym": "yarn -s generate:merge-symbols"
   },
   "repository": {
@@ -55,7 +45,7 @@
   "bugs": {
     "url": "https://github.com/sbb-design-systems/sbb-angular/issues"
   },
-  "homepage": "https://angular.app.sbb.ch/latest",
+  "homepage": "https://angular.app.sbb.ch",
   "schematics": "./tools/schematics/collection.json",
   "dependencies": {
     "@angular/animations": "~12.2.0",

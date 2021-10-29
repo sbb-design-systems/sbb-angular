@@ -67,6 +67,7 @@ ng_package(
     data = [
         ":styles_bundle",
         ":typography",
+        "//src/angular/i18n:xlf",
     ],
     entry_point = ":public-api.ts",
     entry_point_name = "angular",
