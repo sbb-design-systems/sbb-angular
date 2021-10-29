@@ -85,6 +85,7 @@ ANGULAR_MARKDOWN_TARGETS = [
     "dialog",
     "file-selector",
     "form-field",
+    "header-lean",
     "icon",
     "input",
     "lightbox",
