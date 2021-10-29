@@ -708,7 +708,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       }
 
       style.touchAction = 'none';
-      style.webkitTapHighlightColor = 'transparent';
+      (style as any).webkitTapHighlightColor = 'transparent';
     }
   }
 

@@ -56,7 +56,6 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 };
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'sbb-datepicker',
   templateUrl: './datepicker.html',
   styleUrls: ['./datepicker.css'],
@@ -66,9 +65,9 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'sbb-datepicker',
-    '[class.sbb-datepicker-arrows-enabled]': 'this.arrows',
-    '[class.sbb-datepicker-toggle-enabled]': 'this.toggle',
-    '[class.sbb-datepicker-disabled]': 'this.disabled',
+    '[class.sbb-datepicker-arrows-enabled]': 'arrows',
+    '[class.sbb-datepicker-toggle-enabled]': 'toggle',
+    '[class.sbb-datepicker-disabled]': 'disabled',
   },
 })
 export class SbbDatepicker<D> implements OnDestroy {
@@ -131,7 +130,7 @@ export class SbbDatepicker<D> implements OnDestroy {
    * Defaults to false.
    */
   @Input()
-  set arrows(value: any) {
+  set arrows(value: boolean) {
     this._arrows = coerceBooleanProperty(value);
   }
   get arrows() {
@@ -141,7 +140,7 @@ export class SbbDatepicker<D> implements OnDestroy {
 
   /** Whether the datepicker toggle is enabled. Defaults to true. */
   @Input()
-  set toggle(value: any) {
+  set toggle(value: boolean) {
     this._toggle = coerceBooleanProperty(value);
   }
   get toggle() {

@@ -69,10 +69,7 @@ ng_package(
         ":typography",
         "//src/angular/i18n:xlf",
     ],
-    entry_point = ":public-api.ts",
-    entry_point_name = "angular",
     nested_packages = ["//src/angular/schematics:npm_package"],
-    readme_md = "README.md",
     tags = ["release-package"],
     deps = ANGULAR_TARGETS + ANGULAR_TESTING_TARGETS,
 )

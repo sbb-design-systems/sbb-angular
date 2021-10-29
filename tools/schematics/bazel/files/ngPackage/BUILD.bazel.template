@@ -101,9 +101,7 @@ ng_package(
         ":styles_bundle",<% } %><% if (hasTypography) { %>
         ":typography",<% } %><% if (name === 'angular') { %>
         "//src/angular/i18n:xlf",<% } %>
-    ],
-    entry_point = ":public-api.ts",
-    entry_point_name = "<%= name %>",<% if (hasSchematics) { %>
+    ],<% if (hasSchematics) { %>
     nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %><% if (hasReadme) { %>
     readme_md = "README.md",<% } %>
     tags = ["release-package"],

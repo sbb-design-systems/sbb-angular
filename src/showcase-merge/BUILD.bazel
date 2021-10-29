@@ -1,9 +1,10 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
-load("@npm//@bazel/concatjs:index.bzl", "concatjs_devserver")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
-load("//tools:defaults.bzl", "esbuild", "ng_ts_library")
+load("//tools:defaults.bzl", "esbuild", "ng_module")
+load("//tools/esbuild:index.bzl", dev_esbuild = "esbuild")
+load("//tools/angular:index.bzl", "LINKER_PROCESSED_FW_PACKAGES")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -16,7 +17,7 @@ sass_binary(
     deps = ["//src/angular/styles:typography_lib"],
 )
 
-ng_ts_library(
+ng_module(
     name = "showcase-merge",
     srcs = glob(
         include = ["*.ts"],
@@ -33,9 +34,55 @@ ng_ts_library(
     ],
 )
 
+dev_esbuild(
+    name = "dev-bundles",
+    args = {
+        "resolveExtensions": [".js"],
+    },
+    entry_points = [":main.dev.ts"],
+    format = "esm",
+    platform = "browser",
+    splitting = True,
+    # We cannot use `ES2017` or higher as that would result in `async/await` not being downleveled.
+    # ZoneJS needs to be able to intercept these as otherwise change detection would not work properly.
+    target = "es2016",
+    # Note: We add all linker-processed FW packages as dependencies here so that ESBuild will
+    # map all framework packages to their linker-processed bundles from `tools/angular`.
+    deps = LINKER_PROCESSED_FW_PACKAGES + [
+        ":showcase-merge",
+    ],
+)
+
+esbuild(
+    name = "ng_localize",
+    args = {
+        "resolveExtensions": [
+            ".mjs",
+            ".js",
+        ],
+    },
+    entry_point = "ng-localize-bundle.js",
+    format = "iife",
+    minify = True,
+    sourcemap = "external",
+    deps = [
+        "//src/angular/i18n",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/localize",
+    ],
+)
+
 _ASSETS = [
     ":styles.css",
+    # We load zone.js outside the bundle. That's because it's a "polyfill"
+    # which speculates that such features might be available in a browser.
+    # Also it's tricky to configure dead code elimination to understand that
+    # zone.js is used, given that we don't have any import statement that
+    # imports from it.
     "@npm//:node_modules/zone.js/dist/zone.min.js",
+    # We need to load the global $localize before the app.
+    ":ng_localize.js",
 ]
 
 # Insert script tags into index.html
@@ -44,61 +91,46 @@ html_insert_assets(
     name = "index_html_dev",
     outs = ["index.html"],
     args = [
-        "--html=$(execpath :index.dev.html)",
+        "--html=$(execpath :index.template.html)",
         "--out=$@",
         "--roots=. $(RULEDIR)",
-        "--scripts",
-        "--nomodule",
-        "$(execpath @npm//:node_modules/core-js/client/core.min.js)",
         "--assets",
     ] + ["$(execpath %s)" % s for s in _ASSETS] + [
-        # This file doesn't exist during the build, but will be served by concatjs_devserver
-        "./_/ts_scripts.js",
+        "--scripts --module dev-bundles/main.dev.js",
     ],
     data = [
-        ":index.dev.html",
-        "@npm//:node_modules/core-js/client/core.min.js",
+        ":index.template.html",
+        ":dev-bundles",
     ] + _ASSETS,
 )
 
-# This devserver is written in Go and is super-fast.
-# It doesn't run any bundler or code splitter. Instead, it concatenates
-# named UMD and named AMD JavaScript code on-the-fly in-memory.
-# This scales really well for massive codebases.
-concatjs_devserver(
-    name = "devserver",
-    additional_root_paths = [
-        "sbb_angular/src/showcase-merge/_",
-        "npm/node_modules/core-js/client",
-    ],
-    entry_module = "sbb_angular/src/showcase-merge/main.dev",
-    port = 4200,
-    scripts = [
-        "@npm//:node_modules/tslib/tslib.js",
-        "//tools/umd-modules:ng-localize",
-        "//tools/umd-modules:rxjs",
-        "//tools/umd-modules:arcgis",
-    ],
-    static_files = _ASSETS + [
-        "@npm//:node_modules/core-js/client/core.min.js",
+pkg_web(
+    name = "devapp",
+    srcs = _ASSETS + [
+        ":dev-bundles",
         ":index_html_dev",
-        "//src/showcase-merge/assets",
-    ],
-    deps = [
-        "//src/showcase-merge",
         "//src/showcase-merge/assets",
     ],
 )
 
+history_server(
+    name = "devserver",
+    args = [
+        "--port",
+        "4200",
+    ],
+    data = [":devapp"],
+    templated_args = ["-a $$(rlocation $(rootpath :devapp))"],
+)
+
 esbuild(
-    name = "bundle-esbuild",
+    name = "prod-bundles",
     args = {
         "resolveExtensions": [
             ".mjs",
             ".js",
         ],
         "sourcemap": False,
-        "define": {"PROD": True},
     },
     entry_point = "main.prod.ts",
     format = "esm",
@@ -106,7 +138,9 @@ esbuild(
     output_dir = True,
     splitting = True,
     tags = ["prod-showcase"],
-    deps = [
+    # Note: We add all linker-processed FW packages as dependencies here so that ESBuild will
+    # map all framework packages to their linker-processed bundles from `tools/angular`.
+    deps = LINKER_PROCESSED_FW_PACKAGES + [
         ":showcase-merge",
     ],
 )
@@ -121,16 +155,15 @@ html_insert_assets(
     # `index.html` in the web package.
     outs = ["_prodapp/src/index.html"],
     args = [
-        "--html=$(execpath :index.prod.html)",
+        "--html=$(execpath :index.template.html)",
         "--out=$@",
         "--roots=. $(RULEDIR)/_prodapp/src $(RULEDIR)",
         "--assets",
     ] + ["$(execpath %s)" % s for s in _ASSETS] + [
-        "ng_localize.js",
-        "--scripts --module bundle-esbuild/main.prod.js",
+        "--scripts --module prod-bundles/main.prod.js",
     ],
     data = _ASSETS + [
-        ":index.prod.html",
+        ":index.template.html",
     ],
     tags = ["prod-showcase"],
 )
@@ -138,10 +171,9 @@ html_insert_assets(
 pkg_web(
     name = "prodapp",
     srcs = _ASSETS + [
-        ":bundle-esbuild",
+        ":prod-bundles",
         ":index_html_prod",
         "//src/showcase-merge/assets",
-        "//tools/umd-modules:ng-localize",
     ],
     # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
     # so we must serve them at that path, by stripping a prefix

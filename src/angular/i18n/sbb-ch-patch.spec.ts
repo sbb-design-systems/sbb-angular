@@ -1,6 +1,11 @@
+import '@angular/common/locales/global/en-CH';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
+import './sbb-ch-patch';
+
+declare let $localize: any;
 
 @Component({
   selector: 'sbb-date-format',
@@ -36,6 +41,8 @@ describe('i18n sbb patch', () => {
   );
 
   beforeEach(() => {
+    $localize.locale = 'en-CH';
+
     fixture = TestBed.createComponent(DateFormat);
     fixture.detectChanges();
   });

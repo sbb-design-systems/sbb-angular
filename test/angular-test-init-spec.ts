@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import '@angular/localize/init';
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting,
@@ -8,9 +9,7 @@ import {
  * Common setup / initialization for all unit tests in sbb-angular.
  */
 
-TestBed.initTestEnvironment([BrowserDynamicTestingModule], platformBrowserDynamicTesting(), {
-  teardown: { destroyAfterEach: true },
-});
+TestBed.initTestEnvironment([BrowserDynamicTestingModule], platformBrowserDynamicTesting());
 patchConsoleToDetectWarningsOrErrors();
 
 (window as any).module = {};

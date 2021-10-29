@@ -18,6 +18,7 @@ ts_library(
         "@npm//@types/glob",
         "@npm//@types/jasmine",
         "@npm//@types/node",
+        "@npm//jsonc-parser",
         "@npm//rxjs",
     ],
 )

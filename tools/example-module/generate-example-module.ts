@@ -69,7 +69,7 @@ function inlineExampleModuleTemplate(parsedData: AnalyzedExamples): string {
   const exampleComponentsLoader = exampleMetadata
     .map(
       (data) => `
-  .set('${data.module.packagePath}', () => import('./${data.module.packagePath}/index'))`
+  .set('${data.module.packagePath}', () => import('./${data.module.packagePath}/index.js'))`
     )
     .filter((v, i, a) => a.indexOf(v) === i)
     .join('')

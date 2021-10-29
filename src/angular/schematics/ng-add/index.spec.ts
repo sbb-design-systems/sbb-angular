@@ -3,7 +3,7 @@ import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/te
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
-import { COLLECTION_PATH } from '../index.spec';
+import { COLLECTION_PATH } from '../paths';
 
 import { addPackageToPackageJson } from './package-config';
 import { Schema } from './schema';

@@ -1,6 +1,6 @@
 import { Component, Injector, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ExampleData } from '@sbb-esta/components-examples';
+import { ExampleData, loadExample } from '@sbb-esta/components-examples';
 import { Observable, zip } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
@@ -105,6 +105,7 @@ export class ExampleOutletComponent implements OnInit {
   constructor(private _viewContainerRef: ViewContainerRef, private _injector: Injector) {}
 
   async ngOnInit() {
-    this._viewContainerRef.createComponent(await this.exampleData.componentFactory(this._injector));
+    const example = await loadExample(this.exampleData.id, this._injector);
+    this._viewContainerRef.createComponent(example.component, { injector: example.injector });
   }
 }

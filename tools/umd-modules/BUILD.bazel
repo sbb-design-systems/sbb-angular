@@ -27,36 +27,3 @@ esbuild(
         "@npm//@arcgis/core",
     ],
 )
-
-filegroup(
-    name = "ng-localize",
-    srcs = [":ng_localize.js"],
-)
-
-esbuild(
-    name = "ng_localize",
-    args = {
-        "resolveExtensions": [
-            ".mjs",
-            ".js",
-        ],
-    },
-    entry_point = "ng-localize-bundle.js",
-    format = "iife",
-    #minify = True,
-    deps = [
-        "//src/angular/i18n",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/localize",
-    ],
-)
-
-filegroup(
-    name = "rxjs",
-    srcs = [
-        # do not sort
-        "@npm//:node_modules/rxjs/bundles/rxjs.umd.js",
-        ":rxjs-shims.js",
-    ],
-)

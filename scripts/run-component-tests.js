@@ -46,10 +46,9 @@ const {
   local,
   firefox,
   watch,
-  'view-engine': viewEngine,
 } = minimist(args, {
-  boolean: ['local', 'firefox', 'watch', 'view-engine'],
-  default: { watch: true, 'view-engine': false },
+  boolean: ['local', 'firefox', 'watch'],
+  default: { watch: true },
 });
 
 // Whether tests for all components should be run.
@@ -69,7 +68,6 @@ if (local && (components.length > 1 || all)) {
 
 const browserName = firefox ? 'firefox' : 'chromium';
 const bazelBinary = `yarn -s ${watch ? 'ibazel' : 'bazel'}`;
-const configFlag = viewEngine ? '--config=view-engine' : '';
 
 // If `all` has been specified as component, we run tests for all components
 // in the repository. The `--firefox` flag can be still specified.
@@ -83,7 +81,7 @@ if (all) {
   }
   shelljs.exec(
     `yarn -s bazel test --test_tag_filters=-e2e,browser:${browserName} ` +
-      `--build_tag_filters=browser:${browserName} --build_tests_only ${configFlag} //src/...`
+      `--build_tag_filters=browser:${browserName} --build_tests_only //src/...`
   );
   return;
 }

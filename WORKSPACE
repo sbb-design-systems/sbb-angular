@@ -17,31 +17,30 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # Add NodeJS rules
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "8a7c981217239085f78acc9898a1f7ba99af887c1996ceb3b4504655383a2c3c",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.0.0/rules_nodejs-4.0.0.tar.gz"],
+    sha256 = "3635797a96c7bfcd0d265dacd722a07335e64d6ded9834af8d3f1b7ba5a25bba",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.3.0/rules_nodejs-4.3.0.tar.gz"],
 )
 
 # Add sass rules
 http_archive(
     name = "io_bazel_rules_sass",
-    sha256 = "80d3e70ab5a8d59494aa9e3a7e4722f9f9a6fe98d1497be6bfa0b9e106b1ea54",
-    strip_prefix = "rules_sass-1.34.1",
+    sha256 = "435efe759f1c8baffadc320ecc1830454da181fa790aa83bb4326f07e903a0f4",
+    strip_prefix = "rules_sass-1.41.0",
     urls = [
-        "https://github.com/bazelbuild/rules_sass/archive/1.34.1.zip",
+        "https://github.com/bazelbuild/rules_sass/archive/1.41.0.zip",
     ],
 )
 
 load("@build_bazel_rules_nodejs//:index.bzl", "check_bazel_version", "node_repositories", "yarn_install")
 
-# The minimum bazel version to use with this repo is v3.1.0.
 check_bazel_version("4.0.0")
 
 node_repositories()
 
 yarn_install(
     name = "npm",
-    # We add the postinstall patches file, and ngcc main fields update script here so
-    # that Yarn will rerun whenever one of these files has been modified.
+    # We add the postinstall patches file here so that Yarn will rerun whenever
+    # the file is modified.
     data = [
         "//:tools/postinstall/apply-patches.js",
     ],
@@ -65,17 +64,10 @@ load("@io_bazel_rules_sass//:package.bzl", "rules_sass_dependencies")
 
 rules_sass_dependencies()
 
-# TODO(devversion): remove workaround once `rules_sass` supports v4 of the Bazel NodeJS rules,
-# or when https://github.com/bazelbuild/rules_nodejs/issues/2807 is solved. For now, we just
-# replicate the original `sass_repositories` call and manually add the `--ignore-scripts`
-# Yarn argument to not run the postinstall version check of `@bazel/worker`
-yarn_install(
-    name = "build_bazel_rules_sass_deps",
-    args = ["--ignore-scripts"],
-    package_json = "@io_bazel_rules_sass//sass:package.json",
-    symlink_node_modules = False,
-    yarn_lock = "@io_bazel_rules_sass//sass:yarn.lock",
-)
+# Setup the Sass rule repositories.
+load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
+
+sass_repositories()
 
 # Setup repositories for browsers provided by the shared dev-infra package.
 load(

@@ -42,14 +42,15 @@ test --test_output=errors
 build:release --workspace_status_command="node ./tools/bazel-stamp-vars.js"
 build:release --stamp
 
-################################
-# View Engine / Ivy toggle     #
-################################
-build:view-engine --define=angular_ivy_enabled=False
-build:ivy --define=angular_ivy_enabled=True
+####################################
+# Bazel custom flags               #
+####################################
+build --flag_alias=partial_compilation=@npm//@angular/bazel/src:partial_compilation
 
-# Set Ivy as the default
-build --config=ivy
+##################################
+# Always enable Ivy compilation  #
+##################################
+build --define=angular_ivy_enabled=True
 
 #######################
 # Remote Disk Caching #
