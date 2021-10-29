@@ -5,7 +5,7 @@ import { SbbAlertModule, SbbAlertService, SBB_GHETTOBOX_ANIMATIONS, SBB_GHETTOBO
   selector: 'test',
   template: `
     <sbb-alert svgIcon="fpl:disruption">
-
+      
       This is a simple message with a simple <a href="#">Link</a> inside.
     </sbb-alert>
 
@@ -15,13 +15,13 @@ import { SbbAlertModule, SbbAlertService, SBB_GHETTOBOX_ANIMATIONS, SBB_GHETTOBO
       [queryParams]="{ debug: false }"
       fragment="test"
     >
-
+      
       This is a Link ghettobox with custom icon.
     </a>
 
     <sbb-alert-outlet>
       <a sbbAlert svgIcon="fpl:disruption" [routerLink]="['.', 'test']" [queryParams]="{ debug: true }" fragment="test">
-
+        
         This is an initial ghettobox into a container.
       </a>
     </sbb-alert-outlet>

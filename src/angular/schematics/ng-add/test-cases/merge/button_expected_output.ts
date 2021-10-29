@@ -19,13 +19,13 @@ import { SbbButtonModule } from '@sbb-esta/angular/button';
     <button sbb-icon-button><sbb-icon [svgIcon]="icon"></sbb-icon></button>
     <button sbb-button><!-- TODO: Unable to determine selector from mode "mode". Please manually select the appropriate selector: https://angular.app.sbb.ch/angular/components/button -->Description</button>
     <button sbb-button svgIcon="kom:download-small">
-
+      
     </button>
     <button sbb-button [svgIcon]="icon">
-
+      
     </button>
     <button sbb-button><!-- TODO: Unable to determine custom icon from "<sbb-icon-something>". Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/button -->
-
+      
     </button>
     <button sbb-button><!-- TODO: Unable to determine custom icon from icon "icon". Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/button -->Description</button>
     <ng-template #icon><sbb-icon [svgIcon]="icon"></sbb-icon></ng-template>

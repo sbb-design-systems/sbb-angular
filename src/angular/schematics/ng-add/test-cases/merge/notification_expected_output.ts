@@ -7,7 +7,7 @@ import { SbbNotificationModule } from '@sbb-esta/angular/notification';
     <sbb-notification i18n type="success">Success</sbb-notification>
 
     <sbb-notification i18n="@@exampleId" type="error" svgIcon="kom:clock-small">New timezone saved successfully
-
+      
     </sbb-notification>
   `,
 })
