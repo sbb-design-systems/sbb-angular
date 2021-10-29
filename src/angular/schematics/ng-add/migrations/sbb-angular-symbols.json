@@ -281,6 +281,7 @@
   "sbbHeaderAnimations": "header-lean",
   "SbbHeaderCollapseBreakpoint": "header-lean",
   "SbbHeaderEnvironment": "header-lean",
+  "SbbHeaderLean": "header-lean",
   "SbbHeaderLeanModule": "header-lean",
   "SbbHeaderMenuToggleResult": "header-lean",
   "getSbbIconFailedToSanitizeLiteralError": "icon",

@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbHeaderLeanModule } from '@sbb-esta/angular/header-lean';
+import { SbbHeaderLeanModule, SbbHeaderLean } from '@sbb-esta/angular/header-lean';
 
 @Component({
   selector: 'sbb-header-test',

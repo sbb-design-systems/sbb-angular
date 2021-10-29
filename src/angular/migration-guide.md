@@ -267,7 +267,7 @@ _Automatic migration available_
 
 TODO
 
-[Documentation](angular/components/icon)
+[Documentation](angular/components/header-lean)
 
 ### Icon
 

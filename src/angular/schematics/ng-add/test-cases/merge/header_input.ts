@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { SbbHeaderModule } from '@sbb-esta/angular-business';
+import { SbbHeaderModule, SbbHeader } from '@sbb-esta/angular-business';
 
 @Component({
   selector: 'sbb-header-test',

@@ -422,7 +422,5 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
     }
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_opened: BooleanInput;
-  // tslint:enable: member-ordering
 }

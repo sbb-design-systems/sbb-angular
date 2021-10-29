@@ -25,7 +25,7 @@
   position: relative;
 
   &::after {
-    content: url($sbbHeaderLinkArrow);
+    content: url($sbbIconArrowRightSmallBlack);
     display: inline-block;
     width: pxToRem(24);
     height: pxToRem(24);
@@ -35,7 +35,7 @@
   }
 
   &:hover::after {
-    content: url($sbbHeaderLinkArrowRed);
+    content: url($sbbIconArrowRightSmallRed125);
   }
 
   &:last-child {

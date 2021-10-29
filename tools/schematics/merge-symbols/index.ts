@@ -64,6 +64,7 @@ export function mergeSymbols(): Rule {
       SbbSort: 'table',
       NotificationType: 'notification',
       SbbUsermenuItem: 'menu',
+      SbbHeader: 'header-lean',
     };
 
     extractExportsForModule('src/angular/');
