@@ -446,13 +446,11 @@ export class SbbMenu
     // when the animation is done, however moving focus asynchronously will interrupt screen
     // readers which are in the process of reading out the menu already. We take the `element`
     // from the `event` since we can't use a `ViewChild` to access the pane.
-    if (
-      (this.triggerContext.shouldScrollOnAnimationStart?.(
-        event.toState as SbbMenuPlainAnimationState
-      ) ||
-        event.toState === 'enter') &&
-      this._keyManager.activeItemIndex === 0
-    ) {
+    const animationStartState =
+      this._extractPlainAnimationState(
+        this.triggerContext.animationStartStateResolver?.(this.triggerContext)
+      ) ?? 'enter';
+    if (event.toState === animationStartState && this._keyManager.activeItemIndex === 0) {
       event.element.scrollTop = 0;
     }
 
@@ -461,6 +459,15 @@ export class SbbMenu
     } else {
       event.element.classList.remove('sbb-menu-panel-closing');
     }
+  }
+
+  private _extractPlainAnimationState(
+    state?: SbbMenuAnimationState
+  ): SbbMenuPlainAnimationState | null {
+    if (!state) {
+      return null;
+    }
+    return typeof state === 'string' ? state : state.value;
   }
 
   /**

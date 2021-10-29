@@ -58,14 +58,13 @@ export class UsermenuMigration extends RefactorMigration {
     const sbbUsermenuItemSelector = 'sbb-usermenu-item';
 
     element
-      .findElements((node) => {
-        return (
+      .findElements(
+        (node) =>
           (node.tagName === 'a' || node.tagName === 'button') &&
           node.attrs?.some((value) =>
             value.name.toUpperCase().includes(sbbUsermenuItemSelector.toUpperCase())
           )
-        );
-      })
+      )
       .forEach((value) => value.findProperty(sbbUsermenuItemSelector)?.rename('sbb-menu-item'));
   }
 

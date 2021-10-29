@@ -54,12 +54,7 @@ import {
 } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
 
-import {
-  SbbMenu,
-  SbbMenuAnimationState,
-  SbbMenuCloseReason,
-  SbbMenuPlainAnimationState,
-} from './menu';
+import { SbbMenu, SbbMenuAnimationState, SbbMenuCloseReason } from './menu';
 import { SbbMenuDynamicTrigger } from './menu-dynamic-trigger';
 import { throwSbbMenuMissingError, throwSbbMenuRecursiveError } from './menu-errors';
 import { SbbMenuItem } from './menu-item';
@@ -84,7 +79,6 @@ export interface SbbMenuInheritedTriggerContext {
   yOffset?: number;
   panelWidth?: number;
   animationStartStateResolver?: (context: SbbMenuTriggerContext) => SbbMenuAnimationState;
-  shouldScrollOnAnimationStart?: (toState: SbbMenuPlainAnimationState) => boolean;
 }
 
 /** Injection token for SbbMenuInheritedTriggerContext */

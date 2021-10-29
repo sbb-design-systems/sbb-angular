@@ -38,7 +38,6 @@ export const _sbbUsermenuMenuInheritedTriggerContext: SbbMenuInheritedTriggerCon
       width: context.panelWidth! * (context.scalingFactor ?? 1) + 'px',
     },
   }),
-  shouldScrollOnAnimationStart: (toState) => toState === 'enter-usermenu',
 };
 
 @Component({
@@ -75,11 +74,8 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
    */
   @Input() displayName?: string;
 
-  /**
-   * Reference to the menu
-   */
-  @Input()
-  menu: SbbMenu;
+  /** Reference to the menu. */
+  @Input() menu: SbbMenu;
 
   /** Event emitted on log in of a user. */
   @Output() loginRequest: EventEmitter<void> = new EventEmitter<void>();

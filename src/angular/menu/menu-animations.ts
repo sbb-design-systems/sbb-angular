@@ -1,7 +1,6 @@
 import {
   animate,
   AnimationTriggerMetadata,
-  AUTO_STYLE,
   keyframes,
   state,
   style,
@@ -60,7 +59,7 @@ export const sbbMenuAnimations: {
           }),
           style({
             width: '{{width}}',
-            height: AUTO_STYLE,
+            height: '*',
             opacity: 1,
             maxHeight: '100%',
             offset: 1,
