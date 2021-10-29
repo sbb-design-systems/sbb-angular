@@ -332,7 +332,7 @@ describe('SbbAlertOutlet', () => {
 
 @Component({
   selector: 'sbb-alert-simple',
-  template: `<sbb-alert [indicatorIcon]="icon" (dismissed)="dismissed()">TEST</sbb-alert>`,
+  template: `<sbb-alert [svgIcon]="icon" (dismissed)="dismissed()">TEST</sbb-alert>`,
 })
 export class AlertSimple {
   icon: string;

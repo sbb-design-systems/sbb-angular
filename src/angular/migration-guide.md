@@ -96,7 +96,7 @@ input has been split into separate selectors.
 | `<button sbbButton mode="icon">`        | `<button sbb-icon-button>`      |
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
-which is no longer supported. The button component now provides an `indicatorIcon` input, for which
+which is no longer supported. The button component now provides an `svgIcon` input, for which
 [any supported](angular/icon-overview) (or self registered) icon can be used.
 
 [Documentation](angular/components/button)
@@ -254,7 +254,7 @@ describes its purpose.
 The API of `SbbAlertService` has also been changed and simplified.
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
-which is no longer supported. The alert component now provides an `indicatorIcon` input, for which
+which is no longer supported. The alert component now provides an `svgIcon` input, for which
 [any supported](angular/icon-overview) (or self registered) icon can be used.
 
 See the documentation for details.
@@ -323,7 +323,7 @@ The input `toastPosition` has been removed. For this use case use the `notificat
 ```
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
-which is no longer supported. The notification component now provides an `indicatorIcon` input, for which
+which is no longer supported. The notification component now provides an `svgIcon` input, for which
 [any supported](angular/icon-overview) (or self registered) icon can be used.
 Alternatively the new element `<sbb-notification-icon>` can be used to wrap an icon.
 
@@ -473,7 +473,7 @@ The search component has been refactored as a wrapper for an input field.
 ```
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
-which is no longer supported. The search component now provides an `indicatorIcon` input, for which
+which is no longer supported. The search component now provides an `svgIcon` input, for which
 [any supported](angular/icon-overview) (or self registered) icon can be used.
 
 [Documentation](angular/components/search)
@@ -680,7 +680,7 @@ No changes.
 _Automatic migration available_
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
-which is no longer supported. The toggle option component now provides an `indicatorIcon` input, for which
+which is no longer supported. The toggle option component now provides an `svgIcon` input, for which
 [any supported](angular/icon-overview) (or self registered) icon can be used.
 Alternatively the new element `<sbb-toggle-icon>` can be used to wrap an icon.
 
@@ -698,7 +698,7 @@ Alternatively the new element `<sbb-toggle-icon>` can be used to wrap an icon.
 **New**
 
 ```html
-<sbb-toggle-option label="Option 1" value="cat" indicatorIcon="kom:arrows-right-left-small">
+<sbb-toggle-option label="Option 1" value="cat" svgIcon="kom:arrows-right-left-small">
 </sbb-toggle-option>
 <sbb-toggle-option label="Option 2" value="cat">
   <sbb-toggle-icon>
@@ -735,7 +735,7 @@ renamed to `SbbTooltipWrapper` and its methods `open` and `close` have been rena
 `hide` to align with the directive usage.
 
 Support for custom icon has been changed. Previously the `*sbbIcon` directive could be used,
-which is no longer supported. The tooltip component now provides an `indicatorIcon` input, for which
+which is no longer supported. The tooltip component now provides an `svgIcon` input, for which
 [any supported](angular/icon-overview) (or self registered) icon can be used.
 
 [Documentation](angular/components/tooltip)

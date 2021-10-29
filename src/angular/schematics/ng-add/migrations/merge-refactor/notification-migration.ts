@@ -45,7 +45,7 @@ export class NotificationMigration extends RefactorMigration {
       this._notificationMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon from icon "${icon.attribute.value}". ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/notification -->'
+          'Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/notification -->'
       );
     }
     const [iconElement, ...iconElements] = element.findElements((n) =>
@@ -55,7 +55,7 @@ export class NotificationMigration extends RefactorMigration {
       this._notificationMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon. ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/notification -->'
+          'Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/notification -->'
       );
     } else if (iconElement?.is('sbb-icon')) {
       const svgIcon = iconElement.findProperty('svgIcon');
@@ -63,10 +63,10 @@ export class NotificationMigration extends RefactorMigration {
         this._notificationMigrationFailedPartially = true;
         element.insertStart(
           `<!-- TODO: Unable to determine custom icon from "${iconElement.toString()}". ` +
-            'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/notification -->'
+            'Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/notification -->'
         );
       } else {
-        const attribute = svgIcon.isProperty ? '[indicatorIcon]' : 'indicatorIcon';
+        const attribute = svgIcon.isProperty ? '[svgIcon]' : 'svgIcon';
         element.appendProperty(attribute, svgIcon.nativeValue);
       }
       iconElement.remove();
@@ -74,7 +74,7 @@ export class NotificationMigration extends RefactorMigration {
       this._notificationMigrationFailedPartially = true;
       element.insertStart(
         `<!-- TODO: Unable to determine custom icon from "${iconElement.toString()}". ` +
-          'Please manually select a custom indicatorIcon: https://angular.app.sbb.ch/angular/components/notification -->'
+          'Please manually select a custom svgIcon: https://angular.app.sbb.ch/angular/components/notification -->'
       );
       iconElement.remove();
     }

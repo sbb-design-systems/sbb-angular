@@ -60,9 +60,9 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase {
    * The indicator icon, which will be shown as the tooltip indicator.
    * Must be a valid svgIcon input for sbb-icon.
    *
-   * e.g. indicatorIcon="kom:circle-question-mark-small"
+   * e.g. svgIcon="kom:circle-question-mark-small"
    */
-  @Input() indicatorIcon: string = 'kom:circle-question-mark-small';
+  @Input() svgIcon: string = 'kom:circle-question-mark-small';
 
   @ViewChild(SbbTooltip, { static: true }) _tooltip!: SbbTooltip;
 

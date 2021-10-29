@@ -2,7 +2,7 @@
 <ng-template #outlet></ng-template>
 
 <ng-template #standard let-connector="connector">
-  <sbb-alert #alert [indicatorIcon]="connector.svgIcon" (dismissed)="connector._handleDismissed()"
+  <sbb-alert #alert [svgIcon]="connector.svgIcon" (dismissed)="connector._handleDismissed()"
     >{{ connector.message }}</sbb-alert
   >
 </ng-template>
@@ -10,7 +10,7 @@
   <a
     sbbAlert
     #alert
-    [indicatorIcon]="connector.svgIcon"
+    [svgIcon]="connector.svgIcon"
     [routerLink]="connector.routerLink.routerLink"
     [queryParams]="connector.routerLink.queryParams"
     [fragment]="connector.routerLink.fragment"
@@ -29,7 +29,7 @@
     sbbAlert
     #alert
     [href]="connector.link"
-    [indicatorIcon]="connector.svgIcon"
+    [svgIcon]="connector.svgIcon"
     (dismissed)="connector._handleDismissed()"
     >{{ connector.message }}</a
   >

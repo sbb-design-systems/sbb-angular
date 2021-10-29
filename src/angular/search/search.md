@@ -26,7 +26,7 @@ You can use `<sbb-search>` along with `<sbb-autocomplete>` as below:
 
 ### Custom icon
 
-The `<sbb-search>` component supports a `indicatorIcon` input, which can be used with any
+The `<sbb-search>` component supports a `svgIcon` input, which can be used with any
 registered icon.
 
 See [here](/angular/icon-overview) for our available icons.

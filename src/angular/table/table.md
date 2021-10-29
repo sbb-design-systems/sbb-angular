@@ -316,7 +316,7 @@ it is not the only way to incorporate row selection in your table.
 Get started by setting up a `SelectionModel` from `@angular/cdk/collections` that will maintain the
 selection state.
 
-```js
+```ts
 const initialSelection = [];
 const allowMultiSelect = true;
 this.selection = new SelectionModel<MyDataType>(allowMultiSelect, initialSelection);

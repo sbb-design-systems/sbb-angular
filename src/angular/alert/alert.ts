@@ -60,9 +60,9 @@ export class SbbAlert {
    * The indicator icon, which will be shown before the content.
    * Must be a valid svgIcon input for sbb-icon.
    *
-   * e.g. indicatorIcon="kom:plus-small"
+   * e.g. svgIcon="kom:plus-small"
    */
-  @Input() indicatorIcon: string = 'fpl:info';
+  @Input() svgIcon: string = 'fpl:info';
 
   constructor(private _changeDetector: ChangeDetectorRef, elementRef: ElementRef<HTMLElement>) {
     if (elementRef.nativeElement.nodeName.toLowerCase() === 'a') {

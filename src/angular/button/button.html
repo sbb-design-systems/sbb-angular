@@ -1,11 +1,11 @@
 <sbb-icon
-  *ngIf="(_leftIconVisible | async) && indicatorIcon"
+  *ngIf="(_leftIconVisible | async) && svgIcon"
   class="sbb-button-indicator-icon sbb-button-left-icon sbb-icon-fit"
-  [svgIcon]="indicatorIcon"
+  [svgIcon]="svgIcon"
 ></sbb-icon>
 <span class="sbb-button-wrapper"><ng-content></ng-content></span>
 <sbb-icon
-  *ngIf="(_rightIconVisible | async) && indicatorIcon"
+  *ngIf="(_rightIconVisible | async) && svgIcon"
   class="sbb-button-indicator-icon sbb-button-right-icon sbb-icon-fit"
-  [svgIcon]="indicatorIcon"
+  [svgIcon]="svgIcon"
 ></sbb-icon>

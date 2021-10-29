@@ -15,11 +15,11 @@ Alert.
 
 ### Custom icon
 
-To provide a custom icon, use the `indicatorIcon` input.
+To provide a custom icon, use the `svgIcon` input.
 
 ```html
-<sbb-alert indicatorIcon="fpl:disruption">A major incident is currently happening.</sbb-alert>
-<sbb-alert [indicatorIcon]="icon">A major incident is currently happening.</sbb-alert>
+<sbb-alert svgIcon="fpl:disruption">A major incident is currently happening.</sbb-alert>
+<sbb-alert [svgIcon]="icon">A major incident is currently happening.</sbb-alert>
 ```
 
 ### Dismissed event
