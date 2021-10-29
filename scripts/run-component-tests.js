@@ -5,10 +5,9 @@
  * using Bazel. Here are a few examples:
  *
  *   node ./scripts/run-component-tests all               | Runs tests for all components
- *   node ./scripts/run-component-tests button            | Runs public button tests
- *   node ./scripts/run-component-tests contextmenu       | Runs business contextmenu tests
- *   node ./scripts/run-component-tests src/angular-core/oauth    | Runs core oauth tests
- *   node ./scripts/run-component-tests chip contextmenu  | Runs business chip and contextmenu tests
+ *   node ./scripts/run-component-tests button            | Runs button tests
+ *   node ./scripts/run-component-tests src/angular/menu  | Runs menu tests
+ *   node ./scripts/run-component-tests chip menu         | Runs chip and menu tests
  *
  * Supported command line flags:
  *
@@ -32,14 +31,7 @@ const packagesDir = path.join(projectDir, 'src/');
 // List of packages where the specified component could be defined in. The script uses the
 // first package that contains the component (if no package is specified explicitly).
 // e.g. "button" will become "public/button", and "contextmenu" becomes "business/contextmenu".
-const orderedGuessPackages = [
-  'angular',
-  'angular-public',
-  'angular-business',
-  'angular-maps',
-  'angular-core',
-  'angular-keycloak',
-].map((p) => `${p}`);
+const orderedGuessPackages = ['angular', 'angular-maps'].map((p) => `${p}`);
 
 /** Map of common typos in target names. The key is the typo, the value is the correct form. */
 const commonTypos = new Map([]);
@@ -106,7 +98,7 @@ if (!components.length) {
   );
   console.info(chalk.yellow('Below are a few examples of how the script can be run:'));
   console.info(chalk.yellow(` - yarn test all`));
-  console.info(chalk.yellow(` - yarn test angular-public/button angular-business/contextmenu`));
+  console.info(chalk.yellow(` - yarn test angular/button`));
   console.info(chalk.yellow(` - yarn test button contextmenu`));
   process.exit(1);
 }

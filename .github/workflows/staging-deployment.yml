@@ -24,7 +24,7 @@ jobs:
         with:
           script: |
             const decompress = require('decompress');
-            const { createReadStream, writeFileSync } = require('fs');
+            const { createReadStream } = require('fs');
             const fetch = require('node-fetch');
             const FormData = require('form-data');
 
@@ -33,7 +33,7 @@ jobs:
             
             const artifactsResult = await github.request(artifactsUrl);
             const artifacts = artifactsResult.data.artifacts.filter(
-              a => a.name.startsWith('showcase-artifact-') || a.name.startsWith('showcase-merge-artifact-')
+              a => a.name.startsWith('showcase-merge-artifact-')
             );
 
             for (const artifactEntry of artifacts) {
@@ -41,10 +41,7 @@ jobs:
                 const artifact = await github.request(artifactEntry.archive_download_url);
                 const result = await decompress(Buffer.from(artifact.data), '.');
 
-                let version = artifactEntry.name.match(/-([\w\d]+)$/)[1];
-                if (artifactEntry.name.includes('-merge-')) {
-                  version += '-merge';
-                }
+                const version = artifactEntry.name.match(/-([\w\d]+)$/)[1];
                 const form = new FormData();
                 form.append('tarball', createReadStream(result[0].path));
                 await fetch(`${stagingUrl}/${version}`, {
@@ -66,6 +63,6 @@ jobs:
                 issue_number: pullRequest.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: `Staging ready from ${pullRequest.head.sha} at ${createdAtDate}:\n- ${stagingUrl}/${pullRequest.number}\n- ${stagingUrl}/${pullRequest.number}-merge`
+                body: `Staging ready from ${pullRequest.head.sha} at ${createdAtDate}:\n- ${stagingUrl}/${pullRequest.number}`
               });
             }

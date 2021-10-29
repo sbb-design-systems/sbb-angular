@@ -29,9 +29,7 @@ if (module === require.main) {
      * output directory.
      */
     packages: () => buildReleasePackages(false, join(projectDir, 'dist/releases')),
-    i18n: () =>
-      buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular-core/i18n')),
-    showcase: () => buildShowcase(join(projectDir, 'dist/releases')),
+    i18n: () => buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular/i18n')),
     'showcase-merge': () => buildShowcaseMerge(join(projectDir, 'dist/releases')),
   };
   if (!target || !(target in tasks)) {
@@ -63,7 +61,7 @@ function buildReleasePackages(useIvy: boolean, distPath: string) {
     `${bazelCmd} query --output=label "attr('tags', '\\[.*${releaseTargetTag}.*\\]', //src/...) ` +
     `intersect kind('.*_package', //src/...)"`;
 
-  // List of targets to build. e.g. "src/angular-business:npm_package", or "src/angular-public:npm_package".
+  // List of targets to build. e.g. "src/angular:npm_package", or "src/angular-maps:npm_package".
   const targets = exec(queryPackagesCmd, true).split(/\r?\n/);
   const packageNames = getPackageNamesOfTargets(targets);
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
@@ -100,7 +98,7 @@ function buildReleasePackages(useIvy: boolean, distPath: string) {
 
 /**
  * Gets the package names of the specified Bazel targets.
- * e.g. //src/angular-public:npm_package -> public
+ * e.g. //src/angular:npm_package -> angular
  */
 function getPackageNamesOfTargets(targets: string[]) {
   return targets.map((targetName) => {
@@ -125,38 +123,6 @@ function buildI18n(distPath: string, i18nDistPath: string) {
     );
     console.log(`Updated ${relative(projectDir, outPath)}`);
   }
-}
-
-/**
- * Builds the showcase with ivy and copies the package output into the given directory.
- */
-function buildShowcase(distPath: string) {
-  console.log('######################################');
-  console.log('  Building showcase...');
-  console.log('######################################');
-
-  const pkgName = 'showcase';
-
-  exec(`${bazelCmd} build src/${pkgName}:prodapp`);
-
-  cleanDistPath(distPath);
-  const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
-  const outputPath = join(bazelBinPath, 'src', pkgName, 'prodapp');
-  const targetFolder = join(distPath, pkgName);
-  copyPackageOutput(outputPath, targetFolder);
-
-  // TODO: Remove once dockerized
-  // Create package.json
-  const { version } = require('../package.json');
-  writeFileSync(
-    join(targetFolder, 'package.json'),
-    JSON.stringify({
-      name: '@sbb-esta/angular-showcase',
-      version,
-      publishConfig: { access: 'public' },
-    }),
-    'utf8'
-  );
 }
 
 /**

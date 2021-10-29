@@ -45,7 +45,7 @@ esbuild(
     format = "iife",
     #minify = True,
     deps = [
-        "//src/angular-core/i18n",
+        "//src/angular/i18n",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/localize",

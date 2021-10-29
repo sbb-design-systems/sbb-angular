@@ -48,7 +48,3 @@ Thumbs.db
 .js
 .js.map
 .d.ts
-
-# Markdown
-src/showcase/src/assets/docs
-src/showcase/src/assets/examples

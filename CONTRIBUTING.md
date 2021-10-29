@@ -7,7 +7,7 @@ We appreciate all kinds of contributions. As a contributor, here are the guideli
  - [Submission Guidelines](#submit-pr)
  - [Coding Rules](#rules)
  - [Commit Message Guidelines](#commit)
- - [Public/Business Package](#public-business)
+ - [Packages](#packages)
 
 ## <a name="issue"></a> Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by
@@ -142,35 +142,14 @@ reference GitHub issues that this commit **Closes**.
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines.
 The rest of the commit message is then used for this.
 
-## <a name="public-business"></a> Public/Business Package
-This project publishes six packages:
+## <a name="packages"></a> Packages
+This project publishes the following packages:
 
-* @sbb-esta/angular-core
-* @sbb-esta/angular-icons (Deprecated)
-* @sbb-esta/angular-keycloak (Deprecated)
-* @sbb-esta/angular-public
+* @sbb-esta/angular
 * @sbb-esta/angular-maps
-* @sbb-esta/angular-business
 
 ### Styling
 This project uses [SASS](https://sass-lang.com/) for styling the components.
-
-To differentiate between public and business styles in code that is used in both the
-mixins `publicOnly()` and `businessOnly()` or the variable `$sbbBusiness` can be used.
-
-```sass
-padding: 1rem 2rem;
-color: if($sbbBusiness, $sbbColorIcon, $sbbColorGray);
-
-@include publicOnly() {
-  margin-bottom: 3rem;
-}
-@include businessOnly() {
-  margin-bottom: 1rem;
-}
-```
-
-For business components in `src/angular-business`, it is required to put `$sbbBusiness: true;` at the top of .scss files.
 
 ## Language
 

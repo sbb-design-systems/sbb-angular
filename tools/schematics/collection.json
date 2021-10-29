@@ -5,25 +5,9 @@
       "description": "Bazelify",
       "factory": "./bazel/index#bazel"
     },
-    "mergeMigrate": {
-      "description": "Migrate a module to angular",
-      "factory": "./merge-migrate/index#mergeMigrate"
-    },
     "mergeSymbols": {
       "description": "Create map for symbols of all packages to migrate to @sbb-esta/angular package",
       "factory": "./merge-symbols/index#mergeSymbols"
-    },
-    "migrateExamples": {
-      "description": "Migrate examples to components-examples",
-      "factory": "./migrate-examples/index#migrateExamples"
-    },
-    "normalize-examples": {
-      "description": "Normalize examples",
-      "factory": "./normalize-examples/index#normalizeExamples"
-    },
-    "public2business": {
-      "description": "Copy public components to business",
-      "factory": "./public2business/index#public2business"
     },
     "selectorGroups": {
       "description": "Get a list of selector for metrics",
