@@ -21,6 +21,7 @@ entry_points = [
     "file-selector",
     "form-field",
     "header-lean",
+    "i18n",
     "icon",
     "icon/testing",
     "input",
