@@ -139,7 +139,7 @@ function addTypographyToStylesNodeOfAngularJson(
         if (stylePath.includes(BUSINESS_TYPOGRAPHY_CSS_PATH)) {
           logger.error(
             `Could not add the typography to the CLI project ` +
-              `configuration because there is already a sbb typographyfile referenced.`
+              `configuration because there is already a sbb typography file referenced.`
           );
           return;
         }

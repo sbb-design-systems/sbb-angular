@@ -1,4 +1,4 @@
-import { Rule, SchematicContext } from '@angular-devkit/schematics';
+import { chain, Rule, SchematicContext } from '@angular-devkit/schematics';
 import {
   cdkMigrations,
   createMigrationSchematicRule,
@@ -11,21 +11,30 @@ import { EnumToStringLiteralMigration } from './migrations/enum-to-string-litera
 import { MenuMigration } from './migrations/menu-migration';
 import { MergeRefactorMigration } from './migrations/merge-refactor-migration';
 import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
+import {
+  migrateTypographyInAngularJson,
+  StyleImportMigration,
+} from './migrations/style-import-migration';
+import { Schema } from './schema';
 
 /** Entry point for the merge migration schematics */
-export function mergePublicAndBusiness(): Rule {
+export function mergePublicAndBusiness(options: Schema): Rule {
   patchClassNamesMigration();
-  return createMigrationSchematicRule(
-    'merge' as TargetVersion,
-    [
-      SecondaryEntryPointsMigration,
-      EnumToStringLiteralMigration,
-      MergeRefactorMigration,
-      MenuMigration,
-    ],
-    sbbAngularUpgradeData,
-    onMigrationComplete
-  );
+  return chain([
+    migrateTypographyInAngularJson(options),
+    createMigrationSchematicRule(
+      'merge' as TargetVersion,
+      [
+        SecondaryEntryPointsMigration,
+        EnumToStringLiteralMigration,
+        MergeRefactorMigration,
+        MenuMigration,
+        StyleImportMigration,
+      ],
+      sbbAngularUpgradeData,
+      onMigrationComplete
+    ),
+  ]);
 }
 
 function patchClassNamesMigration() {
