@@ -28,9 +28,9 @@ import { SbbNavigation, SbbNavigationPageChangeEvent } from './navigation';
 export class NavigationTestComponent {
   @ViewChild('navigation', { static: true }) navigation: SbbNavigation;
 
-  newPage = { title: 'paginaTest' };
+  newPage = { title: 'paginationTest' };
 
-  pages = ['Einführung', 'Kapitel 1', 'Kapitel 2', 'Kapitel 3'].map((page, index) => {
+  pages = ['Introduction', 'Chapter 1', 'Chapter 2', 'Chapter 3'].map((page, index) => {
     return { title: page, index: index };
   });
 
@@ -115,10 +115,8 @@ describe('SbbNavigation behaviour', () => {
     const previousButton = buttonsReference[0].nativeElement;
     const nextButton = buttonsReference[1].nativeElement;
 
-    expect(previousButton.attributes['title']).toBeTruthy();
-    expect(previousButton.attributes['title'].value).toBe('Kapitel 1');
-    expect(nextButton.attributes['title']).toBeTruthy();
-    expect(nextButton.attributes['title'].value).toBe('Kapitel 2');
+    expect(previousButton.textContent).toContain('Chapter 1');
+    expect(nextButton.textContent).toContain('Chapter 2');
   });
 
   it('it verifies the click to next chapter', () => {
@@ -128,7 +126,7 @@ describe('SbbNavigation behaviour', () => {
     nextButton.click();
     fixture.detectChanges();
 
-    expect(nextButton.attributes['title'].value).toBe('Kapitel 3');
+    expect(nextButton.textContent).toContain('Chapter 3');
   });
 
   it('it verifies the click to previous chapter', () => {
@@ -138,7 +136,7 @@ describe('SbbNavigation behaviour', () => {
     nextButton.click();
     fixture.detectChanges();
 
-    expect(nextButton.attributes['title'].value).toBe('Einführung');
+    expect(nextButton.textContent).toContain('Introduction');
   });
 
   it('it verifies the adding of new page', () => {
@@ -163,6 +161,6 @@ describe('SbbNavigation behaviour', () => {
     nextButton.click();
     fixture.detectChanges();
 
-    expect(nextButton.attributes['title'].value).toBe('paginaTest');
+    expect(nextButton.textContent).toContain('paginationTest');
   });
 });
