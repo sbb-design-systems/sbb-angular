@@ -20,7 +20,7 @@
     "variant": {
       "type": "string",
       "description": "Design variant (standard or lean)",
-      "x-prompt": "Which variant of the typography should be configured?",
+      "x-prompt": "Which design variant of the typography should be configured?",
       "enum": ["standard (previously known as public)", "lean (previously known as business)"],
       "default": "standard (previously known as public)"
     }

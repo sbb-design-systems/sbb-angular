@@ -147,7 +147,7 @@ describe('ngAdd', () => {
     ).toEqual([TYPOGRAPHY_CSS_PATH]);
   });
 
-  it('should not add typography in angular.json if legacy typography import exists styles.scss', async () => {
+  it('should not add typography in angular.json if legacy typography import exists in styles.scss', async () => {
     tree.overwrite(
       'projects/dummy/src/styles.css',
       `@import '@sbb-esta/angular-public/typography.css'`
@@ -164,7 +164,7 @@ describe('ngAdd', () => {
     ).toEqual(['projects/dummy/src/styles.css']);
   });
 
-  it('should not add typography in angular.json if legacy typography import exists angular.json', async () => {
+  it('should not add typography in angular.json if legacy typography import exists in angular.json', async () => {
     const angularJson = readJsonFile(tree, '/angular.json');
     const legacyImport = 'node_modules/@sbb-esta/angular-business/typography.css';
     (angularJson.projects.dummy.architect.build.options.styles as string[]).push(legacyImport);
