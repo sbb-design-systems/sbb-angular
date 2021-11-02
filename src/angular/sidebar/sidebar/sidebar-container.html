@@ -3,8 +3,7 @@
     type="button"
     class="sbb-button-reset-frameless sbb-sidebar-mobile-menu-bar-trigger sbb-icon-fit"
     (click)="toggleSidebar()"
-    aria-label-i18n="Button label to open the sidebar@@sbbSidebarOpenSidebar"
-    aria-label="Open Sidebar"
+    [attr.aria-label]="_labelOpenSidebar"
   >
     <sbb-icon svgIcon="kom:hamburger-menu-small"></sbb-icon>
   </button>

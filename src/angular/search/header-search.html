@@ -1,8 +1,6 @@
 <sbb-icon [svgIcon]="svgIcon" class="sbb-icon-scaled"></sbb-icon>
 <span class="sbb-header-search-label">
-  <ng-container *ngIf="!label" i18n="Button label for the header search@@sbbSearchHeaderButtonLabel"
-    >Search</ng-container
-  >
+  <ng-container *ngIf="!label">{{_labelSearch}}</ng-container>
   {{ label }}
 </span>
 

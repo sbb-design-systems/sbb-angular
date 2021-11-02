@@ -6,11 +6,8 @@
   >
     <button
       type="button"
-      i18n-aria-label="Button label to navigate to the previous page@@sbbNavigationPreviousPage"
-      aria-label="Previous Page"
       class="sbb-button-reset-frameless sbb-navigation-item-button"
       (click)="pageChange.emit('previous')"
-      [attr.title]="previousPage"
     >
       <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
         <span class="sbb-navigation-item-boundary-arrow">
@@ -30,11 +27,8 @@
   >
     <button
       type="button"
-      i18n-aria-label="Button label to navigate to the next page@@sbbNavigationNextPage"
-      aria-label="Next Page"
       class="sbb-button-reset-frameless sbb-navigation-item-button"
       (click)="pageChange.emit('next')"
-      [attr.title]="nextPage"
     >
       <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
         <span class="sbb-navigation-item-boundary-text">{{ nextPage }}</span>

@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { AnimationEvent } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
@@ -41,6 +44,11 @@ let nextId = 0;
   },
 })
 export class SbbAlert {
+  _labelClose: string =
+    typeof $localize === 'function'
+      ? $localize`:Hidden button label to close the alert@@sbbAlertCloseAlert:Dismiss alert`
+      : 'Dismiss alert';
+
   /** The id of this element. */
   @Input() id: string = `sbb-alert-${nextId++}`;
 

@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
@@ -58,6 +61,16 @@ export class SbbFileSelector
   extends _SbbFileSelectorMixinBase
   implements ControlValueAccessor, SbbFileSelectorOptions
 {
+  _labelUploadFile: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to select files for upload@@sbbFileSelectorUploadFile:Upload file`
+      : 'Upload file';
+
+  _labelRemoveFile: string =
+    typeof $localize === 'function'
+      ? $localize`:Hidden button label to remove a file from the selection list@@sbbFileSelectorRemoveFile:Remove file`
+      : 'Remove file';
+
   private _uniqueId = `sbb-file-selector-${++nextId}`;
 
   /** Unique id of the element. */

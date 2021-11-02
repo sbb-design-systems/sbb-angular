@@ -5,9 +5,7 @@
   type="button"
 >
   <sbb-icon svgIcon="kom:user-small" class="sbb-usermenu-logged-out-icon"></sbb-icon>
-  <span class="sbb-usermenu-logged-out-label" i18n="Button label for login@@sbbUsermenuLogin"
-    >Login</span
-  >
+  <span class="sbb-usermenu-logged-out-label">{{_labelLogin}}</span>
 </button>
 
 <button
@@ -16,7 +14,7 @@
   (menuOpened)="_emitMenuOpened()"
   (menuClosed)="_emitMenuClosed()"
   class="sbb-button-reset-frameless sbb-usermenu-trigger sbb-usermenu-trigger-logged-in"
-  [attr.aria-label]="_ariaLabelOpenPanel"
+  [attr.aria-label]="_labelOpenPanel"
   type="button"
 >
   <ng-template sbbMenuDynamicTrigger>

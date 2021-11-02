@@ -6,8 +6,7 @@
   [class.sbb-header-lean-app-chooser-available]="_appChooserSections.length"
   (click)="openMenu('mouse')"
   (keydown)="_openOnKeydownTrigger($event)"
-  aria-label-i18n="Button label to open the sidebar of the header@@sbbHeaderOpenMenu"
-  aria-label="Open Menu"
+  [attr.aria-label]="_labelOpenMenu"
 >
   <sbb-icon
     [svgIcon]="_appChooserSections.length ? 'kom:nine-squares-small' : 'kom:hamburger-menu-small'"
@@ -63,8 +62,7 @@
       class="sbb-header-lean-close-menu sbb-button-reset-frameless"
       (click)="closeMenu()"
       (keydown)="_closeOnKeydownTrigger($event)"
-      aria-label-i18n="Button label to close the sidebar of the header@@sbbHeaderCloseMenu"
-      aria-label="Close Menu"
+      [attr.aria-label]="_labelCloseMenu"
     >
       <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
     </button>
@@ -88,7 +86,7 @@
 
 <!--
   The outlet for links and buttons inside sbb-header-lean, which will be placed in the header bar or
-  the sidebar depending on state. 
+  the sidebar depending on state.
 -->
 <ng-template cdkPortal #menuActions="cdkPortal">
   <ng-content select="a,button"></ng-content>

@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -30,6 +33,16 @@ let nextId = 0;
   },
 })
 export class SbbTextexpand implements AfterContentInit {
+  _labelShowLess: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label for showing less@@sbbTextexpandShowLess:Show less`
+      : 'Show less';
+
+  _labelShowMore: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label for showing more@@sbbTextexpandShowMore:Show more`
+      : 'Show more';
+
   /** Describes if text content is expanded or not. Initially is collapsed. */
   isExpanded: boolean = false;
 

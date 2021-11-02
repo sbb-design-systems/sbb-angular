@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -41,6 +44,11 @@ export const _sbbBreadcrumbMenuInheritedTriggerContext: SbbMenuInheritedTriggerC
   ],
 })
 export class SbbBreadcrumbs {
+  _labelExpand: string =
+    typeof $localize === 'function'
+      ? $localize`:Button with three dots to show all breadcrumb levels@@sbbBreadcrumbExpand:Show all levels`
+      : 'Show all levels';
+
   /** List of all user defined SbbBreadcrumb entries. */
   @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;
 

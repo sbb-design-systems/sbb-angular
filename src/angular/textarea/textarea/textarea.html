@@ -11,10 +11,6 @@
   (blur)="_onBlur()"
   (input)="_onInput($event)"
 ></textarea>
-<div
-  i18n="Counter text for textarea@@sbbTextareaCounterText"
-  *ngIf="maxlength && !disabled"
-  class="sbb-textarea-remaining-chars"
->
-  {{ _counter | async }} characters remaining
+<div *ngIf="maxlength && !disabled" class="sbb-textarea-remaining-chars">
+  {{ _labelCharactersRemaining }}
 </div>

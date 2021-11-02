@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
@@ -27,6 +30,11 @@ import { SbbDatepicker } from '../datepicker/datepicker';
   },
 })
 export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterContentInit {
+  _labelShowCalendar: string =
+    typeof $localize === 'function'
+      ? $localize`:Open calendar@@sbbDatepickerOpenCalendar:Show calendar`
+      : 'Show calendar';
+
   private _stateChanges = Subscription.EMPTY;
 
   /** Tabindex for the toggle. */
