@@ -171,7 +171,13 @@ describe('ngAdd', () => {
     (angularJson.projects.dummy.architect.test.options.styles as string[]).push(legacyImport);
     tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'lean (previously known as business)' } as Schema,
+        tree
+      )
+      .toPromise();
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
@@ -180,6 +186,11 @@ describe('ngAdd', () => {
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
     ).toEqual(['projects/dummy/src/styles.css', legacyImport]);
+
+    // Should configure variant regardless of legacy packages
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      '<html sbb-lean lang="en">'
+    );
   });
 
   it('should add NoopAnimationsModule', async () => {

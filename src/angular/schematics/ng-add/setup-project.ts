@@ -37,11 +37,7 @@ export default function (options: Schema): Rule {
     const project = getProjectFromWorkspace(workspace, options.project);
 
     if (project.extensions.projectType === ProjectType.Application) {
-      return chain([
-        addAnimationsModule(options),
-        addTypographyToAngularJson(options),
-        setTypographyVariant(options),
-      ]);
+      return chain([addAnimationsModule(options), addAndConfigureTypography(options)]);
     }
     context.logger.warn(
       '@sbb-esta/angular has been set up in your workspace. There is no additional setup ' +
@@ -85,7 +81,7 @@ function addAnimationsModule(options: Schema) {
         project
       );
 
-      context.logger.info(`✔️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to ${appModulePath}`);
+      context.logger.info(`✔️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to ${appModulePath}.`);
     } else if (!hasNgModuleImport(host, appModulePath, BROWSER_ANIMATIONS_MODULE_NAME)) {
       // Do not add the NoopAnimationsModule module if the project already explicitly uses
       // the BrowserAnimationsModule.
@@ -99,7 +95,7 @@ function addAnimationsModule(options: Schema) {
   };
 }
 
-function addTypographyToAngularJson(options: Schema): Rule {
+function addAndConfigureTypography(options: Schema): Rule {
   return async (tree: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
@@ -111,6 +107,7 @@ function addTypographyToAngularJson(options: Schema): Rule {
       hasLegacyTypography(tree, project, 'test')
         ? noop()
         : addTypographyToStylesNodeOfAngularJson(options.project, 'test', context.logger),
+      setTypographyVariant(options),
     ]);
   };
 }
@@ -267,5 +264,9 @@ function setTypographyVariant(options: Schema) {
       // Add
       tree.overwrite(targetOptions.index as string, indexHtml.replace('<html', '<html sbb-lean'));
     }
+
+    context.logger.info(
+      `✔️ Configured typography with ${hasSbbLeanAttribute ? 'lean' : 'standard'} design variant.`
+    );
   };
 }

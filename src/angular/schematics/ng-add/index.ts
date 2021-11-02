@@ -1,6 +1,5 @@
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask, RunSchematicTask } from '@angular-devkit/schematics/tasks';
-import { getPackageJsonDependency } from '@schematics/angular/utility/dependencies';
 
 import { addPackageToPackageJson, getPackageVersionFromPackageJson } from './package-config';
 import { Schema } from './schema';
@@ -19,13 +18,6 @@ const fallbackCdkVersionRange = `0.0.0-CDK`.replace('-0', '');
 
 export function ngAdd(options: Schema): Rule {
   return (host: Tree, context: SchematicContext) => {
-    if (getPackageJsonDependency(host, '@sbb-esta/angular')) {
-      context.logger.info(
-        '@sbb-esta/angular is already installed, please set up @sbb-esta/angular manually'
-      );
-      return;
-    }
-
     // Version tag of the `@angular/core` dependency that has been loaded from the `package.json`
     // of the CLI project. This tag should be preferred because all Angular dependencies should
     // have the same version tag if possible.
