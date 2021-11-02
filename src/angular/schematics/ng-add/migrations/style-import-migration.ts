@@ -62,9 +62,18 @@ function migrateTypographyInAngularJsonPerTarget(
     const styles = targetOptions.styles as (string | { input: string })[];
 
     if (styles) {
-      targetOptions.styles = styles
-        .map((s) => (typeof s === 'string' ? s : s.input))
-        .map((path) => path.replace(/angular-(public|business)\//g, 'angular/'));
+      targetOptions.styles = styles.map((path) => {
+        function replace(pathToReplace: string) {
+          return pathToReplace.replace(/angular-(public|business)\//g, 'angular/');
+        }
+
+        if (typeof path === 'string') {
+          return replace(path);
+        } else {
+          path.input = replace(path.input);
+          return path;
+        }
+      });
     }
   });
 }

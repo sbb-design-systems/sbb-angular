@@ -49,6 +49,10 @@ describe('style import migration', () => {
     angularJson.projects['cdk-testing'].architect.test.options.styles.push(
       'node_modules/@sbb-esta/angular-business/typography.css'
     );
+    angularJson.projects['cdk-testing'].architect.test.options.styles.push({
+      input: 'node_modules/@sbb-esta/angular-business/typography.css',
+      foo: 'bar',
+    });
     tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
     await runMigration();
@@ -63,6 +67,10 @@ describe('style import migration', () => {
     expect(modifiedAngularJson.projects['cdk-testing'].architect.test.options.styles[1]).toBe(
       'node_modules/@sbb-esta/angular/typography.css'
     );
+    expect(modifiedAngularJson.projects['cdk-testing'].architect.test.options.styles[2]).toEqual({
+      input: 'node_modules/@sbb-esta/angular/typography.css',
+      foo: 'bar',
+    });
   });
 
   it('should migrate angular-(core|public|business) imports to angular', async () => {

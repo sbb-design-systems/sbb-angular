@@ -47,6 +47,8 @@ export function ngAdd(options: Schema): Rule {
       addPackageToPackageJson(host, '@angular/cdk', fallbackCdkVersionRange);
     }
 
+    // Forms and animations are added by default `ng new` command.
+    // However, to guarantee the dependencies are included, we add them here too
     addPackageToPackageJson(host, '@angular/forms', angularDependencyVersion);
     addPackageToPackageJson(host, '@angular/animations', angularDependencyVersion);
 

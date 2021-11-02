@@ -1,4 +1,5 @@
 import { logging } from '@angular-devkit/core';
+import { LoggerApi } from '@angular-devkit/core/src/logger';
 import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import {
   chain,
@@ -22,10 +23,7 @@ import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
 import { Schema } from './schema';
 
-// TODO: implement new typography workflow (ask user, provide different files)
-
 export const TYPOGRAPHY_CSS_PATH = 'node_modules/@sbb-esta/angular/typography.css';
-export const BUSINESS_TYPOGRAPHY_CSS_PATH = 'node_modules/@sbb-esta/angular/typography.css';
 
 /** Name of the Angular module that enables Angular browser animations. */
 export const BROWSER_ANIMATIONS_MODULE_NAME = 'BrowserAnimationsModule';
@@ -42,7 +40,7 @@ export default function (options: Schema): Rule {
     if (project.extensions.projectType === ProjectType.Application) {
       return chain([
         addAnimationsModule(options),
-        addTypographyToAngularJson(options, context.logger),
+        addTypographyToAngularJson(options, project, host, context.logger),
       ]);
     }
     context.logger.warn(
@@ -101,10 +99,19 @@ function addAnimationsModule(options: Schema) {
   };
 }
 
-function addTypographyToAngularJson(options: Schema, logger: logging.LoggerApi): Rule {
+function addTypographyToAngularJson(
+  options: Schema,
+  project: ProjectDefinition,
+  tree: Tree,
+  logger: LoggerApi
+): Rule {
   return chain([
-    addTypographyToStylesNodeOfAngularJson(options.project, 'build', logger),
-    addTypographyToStylesNodeOfAngularJson(options.project, 'test', logger),
+    hasLegacyTypography(tree, project, 'build')
+      ? noop()
+      : addTypographyToStylesNodeOfAngularJson(options.project, 'build', logger),
+    hasLegacyTypography(tree, project, 'test')
+      ? noop()
+      : addTypographyToStylesNodeOfAngularJson(options.project, 'test', logger),
   ]);
 }
 
@@ -122,31 +129,22 @@ function addTypographyToStylesNodeOfAngularJson(
     }
 
     const targetOptions = getProjectTargetOptions(project, targetName);
-    const styles = targetOptions.styles as (string | { input: string })[];
+    const styles = targetOptions.styles as (string | { input: string })[] | undefined;
 
     if (!styles) {
       targetOptions.styles = [TYPOGRAPHY_CSS_PATH];
-    } else {
-      const existingStyles = styles.map((s) => (typeof s === 'string' ? s : s.input));
-
-      for (const stylePath of existingStyles) {
-        // If the given asset is already specified in the styles, we don't need to do anything.
-        if (stylePath === TYPOGRAPHY_CSS_PATH) {
-          return;
-        }
-
-        // In case the public typography is already added, we skip adding the public typography.
-        if (stylePath.includes(BUSINESS_TYPOGRAPHY_CSS_PATH)) {
-          logger.error(
-            `Could not add the typography to the CLI project ` +
-              `configuration because there is already a sbb typography file referenced.`
-          );
-          return;
-        }
-      }
-
-      styles.unshift(TYPOGRAPHY_CSS_PATH);
+      return;
     }
+
+    const hasAlreadyTypographyAdded = styles
+      .map((s) => (typeof s === 'string' ? s : s.input))
+      .some((style) => style === TYPOGRAPHY_CSS_PATH);
+
+    if (hasAlreadyTypographyAdded) {
+      return;
+    }
+
+    styles.unshift(TYPOGRAPHY_CSS_PATH);
   });
 }
 
@@ -186,4 +184,27 @@ function validateDefaultTargetBuilder(
   }
 
   return isDefaultBuilder;
+}
+
+function hasLegacyTypography(tree: Tree, project: ProjectDefinition, targetName: 'build' | 'test') {
+  const targetOptions = getProjectTargetOptions(project, targetName);
+  const styles = targetOptions?.styles as (string | { input: string })[] | undefined;
+
+  if (!styles) {
+    return false;
+  }
+
+  const legacyImportRegex = /@sbb-esta\/angular-(public|business)\/typography.css/g;
+  const normalizedStyleFilenames = styles.map((s) => (typeof s === 'string' ? s : s.input));
+  if (normalizedStyleFilenames.some((fileName) => legacyImportRegex.test(fileName))) {
+    return true;
+  }
+
+  return normalizedStyleFilenames.some((fileName) => {
+    const file = tree.read(fileName)?.toString('utf-8');
+    if (!file) {
+      return false;
+    }
+    return legacyImportRegex.test(file);
+  });
 }

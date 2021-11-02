@@ -69,16 +69,14 @@ describe('ngAdd', () => {
     ).toBe(false, 'Expected the setup-project schematic not to be scheduled.');
   });
 
-  it('should add @angular/cdk and @angular/animations to "package.json" file', async () => {
-    ['@angular/cdk'].forEach((dependencyName) =>
-      expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBeUndefined()
-    );
+  it('should add @angular/cdk, @angular/animations and @angular/forms to "package.json" file', async () => {
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBeUndefined();
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);
-
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/forms']).toBeDefined();
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
@@ -147,6 +145,41 @@ describe('ngAdd', () => {
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
     ).toEqual([TYPOGRAPHY_CSS_PATH]);
+  });
+
+  it('should not add typography in angular.json if legacy typography import exists styles.scss', async () => {
+    tree.overwrite(
+      'projects/dummy/src/styles.css',
+      `@import '@sbb-esta/angular-public/typography.css'`
+    );
+
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
+    ).toEqual(['projects/dummy/src/styles.css']);
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
+    ).toEqual(['projects/dummy/src/styles.css']);
+  });
+
+  it('should not add typography in angular.json if legacy typography import exists angular.json', async () => {
+    const angularJson = readJsonFile(tree, '/angular.json');
+    const legacyImport = 'node_modules/@sbb-esta/angular-business/typography.css';
+    (angularJson.projects.dummy.architect.build.options.styles as string[]).push(legacyImport);
+    (angularJson.projects.dummy.architect.test.options.styles as string[]).push(legacyImport);
+    tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
+
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
+    ).toEqual(['projects/dummy/src/styles.css', legacyImport]);
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
+    ).toEqual(['projects/dummy/src/styles.css', legacyImport]);
   });
 
   it('should add NoopAnimationsModule', async () => {
