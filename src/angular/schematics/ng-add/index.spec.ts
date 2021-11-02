@@ -192,6 +192,63 @@ describe('ngAdd', () => {
     );
   });
 
+  it('should add sbb-lean attribute to index.html', async () => {
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'lean (previously known as business)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      '<html sbb-lean lang="en">'
+    );
+
+    // run migration a second time
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'lean (previously known as business)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    // Lean-tag should still be there only once
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      '<html sbb-lean lang="en">'
+    );
+  });
+
+  it('should not add sbb-lean attribute if standard variant was chosen', async () => {
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'standard (previously known as public)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
+  });
+
+  it('should remove sbb-lean attribute if standard variant was chosen but lean was set before', async () => {
+    tree.overwrite(
+      'projects/dummy/src/index.html',
+      `<html sbb-lean lang="en"><head></head><body></body></html>`
+    );
+
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'standard (previously known as public)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
+  });
+
   it('should execute migration from public, business and core', async () => {
     addPackageToPackageJson(tree, '@sbb-esta/angular-business', '0.0.0');
 

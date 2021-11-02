@@ -54,6 +54,9 @@ function onMigrationComplete(
   context.logger.info(
     `  ✓  Migrated from @sbb-esta/angular-business, @sbb-esta/angular-public and @sbb-esta/angular-core to @sbb-esta/angular.`
   );
+  context.logger.info(
+    `     Please manually remove deprecated dependencies from your package.json.`
+  );
   context.logger.info('');
 
   if (hasFailures) {

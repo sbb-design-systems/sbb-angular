@@ -1,5 +1,4 @@
 import { logging } from '@angular-devkit/core';
-import { LoggerApi } from '@angular-devkit/core/src/logger';
 import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import {
   chain,
@@ -40,7 +39,8 @@ export default function (options: Schema): Rule {
     if (project.extensions.projectType === ProjectType.Application) {
       return chain([
         addAnimationsModule(options),
-        addTypographyToAngularJson(options, project, host, context.logger),
+        addTypographyToAngularJson(options),
+        setTypographyVariant(options),
       ]);
     }
     context.logger.warn(
@@ -99,20 +99,20 @@ function addAnimationsModule(options: Schema) {
   };
 }
 
-function addTypographyToAngularJson(
-  options: Schema,
-  project: ProjectDefinition,
-  tree: Tree,
-  logger: LoggerApi
-): Rule {
-  return chain([
-    hasLegacyTypography(tree, project, 'build')
-      ? noop()
-      : addTypographyToStylesNodeOfAngularJson(options.project, 'build', logger),
-    hasLegacyTypography(tree, project, 'test')
-      ? noop()
-      : addTypographyToStylesNodeOfAngularJson(options.project, 'test', logger),
-  ]);
+function addTypographyToAngularJson(options: Schema): Rule {
+  return async (tree: Tree, context: SchematicContext) => {
+    const workspace = await getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace, options.project);
+
+    return chain([
+      hasLegacyTypography(tree, project, 'build')
+        ? noop()
+        : addTypographyToStylesNodeOfAngularJson(options.project, 'build', context.logger),
+      hasLegacyTypography(tree, project, 'test')
+        ? noop()
+        : addTypographyToStylesNodeOfAngularJson(options.project, 'test', context.logger),
+    ]);
+  };
 }
 
 function addTypographyToStylesNodeOfAngularJson(
@@ -207,4 +207,65 @@ function hasLegacyTypography(tree: Tree, project: ProjectDefinition, targetName:
     }
     return legacyImportRegex.test(file);
   });
+}
+
+function setTypographyVariant(options: Schema) {
+  return async (tree: Tree, context: SchematicContext) => {
+    const workspace = await getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace, options.project);
+    const targetOptions = getProjectTargetOptions(project, 'build');
+    const shouldBeLeanVariant = options.variant === 'lean (previously known as business)';
+
+    if (!targetOptions?.index) {
+      if (shouldBeLeanVariant) {
+        context.logger.error(
+          `Could not find index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' attribute to the <html> tag.`
+        );
+      } else {
+        context.logger.error(
+          `Could not find index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
+        );
+      }
+      return;
+    }
+
+    const indexHtml = tree.read(targetOptions.index as string)?.toString('utf-8');
+
+    if (!indexHtml) {
+      if (shouldBeLeanVariant) {
+        context.logger.error(
+          `Could not read index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' attribute to the <html> tag.`
+        );
+      } else {
+        context.logger.error(
+          `Could not read index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
+        );
+      }
+      return;
+    }
+
+    const htmlTag = indexHtml.match(
+      /<html(?=\s)(?!(?:[^>"\']|"[^"]*"|\'[^\']*\')*?(?<=\s)(?:term|range)\s*=)(?!\s*\/?>)\s+(?:".*?"|\'.*?\'|[^>]*?)+>/g
+    )?.[0];
+
+    if (!htmlTag) {
+      context.logger.error(
+        `Could not find <html> tag. Please check your <html> tag if the design variant is correctly configured.`
+      );
+      return;
+    }
+
+    const hasSbbLeanAttribute = htmlTag.includes(' sbb-lean');
+
+    if (hasSbbLeanAttribute && !shouldBeLeanVariant) {
+      // Remove
+      tree.overwrite(
+        targetOptions.index as string,
+        indexHtml.replace(htmlTag, htmlTag.replace(' sbb-lean', ''))
+      );
+    } else if (!hasSbbLeanAttribute && shouldBeLeanVariant) {
+      // Add
+      tree.overwrite(targetOptions.index as string, indexHtml.replace('<html', '<html sbb-lean'));
+    }
+  };
 }
