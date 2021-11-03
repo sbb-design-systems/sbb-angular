@@ -100,9 +100,7 @@ export class SbbIconSidebar extends SbbSidebarBase {
     this._changeDetectorRef.markForCheck();
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_expanded: BooleanInput;
-  // tslint:enable: member-ordering
 }
 
 @Component({

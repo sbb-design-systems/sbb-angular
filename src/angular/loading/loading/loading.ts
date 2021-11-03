@@ -24,7 +24,6 @@ export class SbbLoading {
   @Input() mode: 'tiny' | 'small' | 'medium' | 'big' | 'fullscreen' | 'fullbox' | 'inline' =
     'medium';
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_mode:
     | 'tiny'
     | 'small'
@@ -36,5 +35,4 @@ export class SbbLoading {
     | string
     | null
     | undefined;
-  // tslint:enable: member-ordering
 }

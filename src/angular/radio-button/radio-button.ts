@@ -283,10 +283,8 @@ export abstract class _SbbRadioGroupBase<TRadio extends _SbbRadioButtonBase>
     }
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;
   static ngAcceptInputType_required: BooleanInput;
-  // tslint:enable: member-ordering
 }
 
 @Directive({
@@ -561,12 +559,10 @@ export class _SbbRadioButtonBase
     }
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_checked: BooleanInput;
   static ngAcceptInputType_disabled: BooleanInput;
   static ngAcceptInputType_required: BooleanInput;
   static ngAcceptInputType_tabIndex: NumberInput;
-  // tslint:enable: member-ordering
 }
 
 @Component({

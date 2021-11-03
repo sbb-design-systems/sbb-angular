@@ -328,10 +328,8 @@ export class SbbTextarea
     }
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_maxlength: NumberInput;
   static ngAcceptInputType_minlength: NumberInput;
   static ngAcceptInputType_disabled: BooleanInput;
   static ngAcceptInputType_readonly: BooleanInput;
-  // tslint:enable: member-ordering
 }
