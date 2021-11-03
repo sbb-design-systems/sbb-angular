@@ -216,7 +216,7 @@ function setTypographyVariant(options: Schema) {
     if (!targetOptions?.index) {
       if (shouldBeLeanVariant) {
         context.logger.error(
-          `Could not find index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' attribute to the <html> tag.`
+          `Could not find index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
         );
       } else {
         context.logger.error(
@@ -231,7 +231,7 @@ function setTypographyVariant(options: Schema) {
     if (!indexHtml) {
       if (shouldBeLeanVariant) {
         context.logger.error(
-          `Could not read index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' attribute to the <html> tag.`
+          `Could not read index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
         );
       } else {
         context.logger.error(
@@ -252,21 +252,31 @@ function setTypographyVariant(options: Schema) {
       return;
     }
 
-    const hasSbbLeanAttribute = htmlTag.includes(' sbb-lean');
+    const classTag = htmlTag.match(/class=(["'])?((?:.(?!\1|>))*.?)\1?/g)?.[0];
+    const classList = classTag?.replace(/["']/g, '').replace('class=', '').split(' ');
+    const hasSbbLeanClass = classList?.includes('sbb-lean');
 
-    if (hasSbbLeanAttribute && !shouldBeLeanVariant) {
-      // Remove
+    if (hasSbbLeanClass && !shouldBeLeanVariant) {
+      // Remove sbb-lean class
+      const onlyLeanClassInClassList = classList!.length === 1;
+      const htmlTagWithoutLeanClass = onlyLeanClassInClassList
+        ? htmlTag.replace(` ${classTag!}`, '')
+        : htmlTag.replace(' sbb-lean', '').replace('sbb-lean ', '');
+
       tree.overwrite(
         targetOptions.index as string,
-        indexHtml.replace(htmlTag, htmlTag.replace(' sbb-lean', ''))
+        indexHtml.replace(htmlTag, htmlTagWithoutLeanClass)
       );
-    } else if (!hasSbbLeanAttribute && shouldBeLeanVariant) {
-      // Add
-      tree.overwrite(targetOptions.index as string, indexHtml.replace('<html', '<html sbb-lean'));
+    } else if (!hasSbbLeanClass && shouldBeLeanVariant) {
+      // Add sbb-lean class
+      const newIndexHtml = classTag
+        ? indexHtml.replace(classTag, classTag.replace(/(?<=^.{7})/, 'sbb-lean '))
+        : indexHtml.replace('<html', '<html class="sbb-lean"');
+      tree.overwrite(targetOptions.index as string, newIndexHtml);
     }
 
     context.logger.info(
-      `✔️ Configured typography with ${hasSbbLeanAttribute ? 'lean' : 'standard'} design variant.`
+      `✔️ Configured typography with ${hasSbbLeanClass ? 'lean' : 'standard'} design variant.`
     );
   };
 }
