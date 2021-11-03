@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import {
   BooleanInput,
   coerceBooleanProperty,
@@ -66,8 +69,15 @@ export class SbbTextarea
     DoCheck,
     OnDestroy
 {
-  private _uniqueId = `sbb-textarea-${++nextId}`;
+  get _labelCharactersRemaining(): string {
+    return typeof $localize === 'function'
+      ? $localize`:Counter text for textarea@@sbbTextareaCounterText:${this._counter.value} characters remaining`
+      : `${this._counter.value} characters remaining`;
+  }
+
   /** Unique id of the element. */
+  private _uniqueId = `sbb-textarea-${++nextId}`;
+
   @Input()
   get id(): string {
     return this._id;

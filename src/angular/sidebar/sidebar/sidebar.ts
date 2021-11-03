@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { AnimationEvent } from '@angular/animations';
 import {
   ConfigurableFocusTrapFactory,
@@ -110,6 +113,11 @@ export class SbbSidebar
   extends SbbSidebarBase
   implements AfterContentInit, AfterContentChecked, OnDestroy
 {
+  _labelCloseSidebar: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to close the sidebar@@sbbSidebarCloseSidebar:Close Sidebar`
+      : 'Close Sidebar';
+
   /** Whether the sidebar is initialized. Used for disabling the initial animation. */
   private _enableAnimations = false;
 
@@ -492,6 +500,11 @@ export class SbbSidebarContainer
   extends SbbSidebarContainerBase<SbbSidebar>
   implements AfterContentInit, SbbSidebarMobileCapableContainer, OnDestroy
 {
+  _labelOpenSidebar: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to open the sidebar@@sbbSidebarOpenSidebar:Open Sidebar`
+      : 'Open Sidebar';
+
   /** The sidebar child */
   override get sidebar(): SbbSidebar | null {
     return this._sidebar;

@@ -4,8 +4,7 @@
       type="button"
       class="sbb-button-reset-frameless sbb-sidebar-mobile-menu-bar-close sbb-icon-fit"
       (click)="_container.toggleSidebar()"
-      aria-label-i18n="Button label to close the sidebar@@sbbSidebarCloseSidebar"
-      aria-label="Close Sidebar"
+      [attr.aria-label]="_labelCloseSidebar"
     >
       <sbb-icon svgIcon="kom:cross-small"></sbb-icon>
     </button>

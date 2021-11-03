@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { ComponentPortal, ComponentType, Portal } from '@angular/cdk/portal';
 import {
   AfterContentInit,
@@ -34,6 +37,26 @@ import { SbbMonthView } from '../month-view/month-view';
   },
 })
 export class SbbCalendarHeader<D> {
+  _labelSwitchToPreviousMonth: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to switch to the previous month@@sbbDatepickerSwitchToPreviousMonth:Change to the previous month`
+      : 'Change to the previous month';
+
+  _labelSwitchToNextMonth: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to switch to the next month@@sbbDatepickerSwitchToNextMonth:Change to the next month`
+      : 'Change to the next month';
+
+  _labelSwitchToPreviousYear: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to switch to the previous year@@sbbDatepickerSwitchToPreviousYear:Change to the previous year`
+      : 'Change to the previous year';
+
+  _labelSwitchToNextYear: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to switch to the next year@@sbbDatepickerSwitchToNextYear:Change to the next year`
+      : 'Change to the next year';
+
   public calendar: SbbCalendar<D>;
 
   constructor(

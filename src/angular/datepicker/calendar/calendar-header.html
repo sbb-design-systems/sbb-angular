@@ -5,9 +5,7 @@
       class="sbb-calender-controls-button sbb-calender-controls-button-previous"
       [disabled]="!previousMonthEnabled()"
       (click)="previousMonthClicked()"
-      i18n-aria-label="
-          Button label to switch to the previous month@@sbbDatepickerSwitchToPreviousMonth"
-      aria-label="Change to the previous month"
+      [attr.aria-label]="_labelSwitchToPreviousMonth"
     >
       <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
     </button>
@@ -19,8 +17,7 @@
       class="sbb-calender-controls-button sbb-calender-controls-button-next"
       [disabled]="!nextMonthEnabled()"
       (click)="nextMonthClicked()"
-      i18n-aria-label="Button label to switch to the next month@@sbbDatepickerSwitchToNextMonth"
-      aria-label="Change to the next month"
+      [attr.aria-label]="_labelSwitchToNextMonth"
     >
       <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
     </button>
@@ -31,9 +28,7 @@
       class="sbb-calender-controls-button sbb-calender-controls-button-previous"
       [disabled]="!previousYearEnabled()"
       (click)="previousYearClicked()"
-      i18n-aria-label="
-          Button label to switch to the previous year@@sbbDatepickerSwitchToPreviousYear"
-      aria-label="Change to the previous year"
+      [attr.aria-label]="_labelSwitchToPreviousYear"
     >
       <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
     </button>
@@ -45,8 +40,7 @@
       class="sbb-calender-controls-button sbb-calender-controls-button-next"
       [disabled]="!nextYearEnabled()"
       (click)="nextYearClicked()"
-      i18n-aria-label="Button label to switch to the next year@@sbbDatepickerSwitchToNextYear"
-      aria-label="Change to the next year"
+      [attr.aria-label]="_labelSwitchToNextYear"
     >
       <sbb-icon svgIcon="kom:chevron-small-right-small"></sbb-icon>
     </button>

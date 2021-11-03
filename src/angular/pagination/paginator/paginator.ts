@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { BooleanInput, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
@@ -80,6 +83,16 @@ const _SbbPaginatorBase = mixinDisabled(mixinInitialized(class {}));
   },
 })
 export class SbbPaginator extends _SbbPaginatorBase implements OnInit, CanDisable, HasInitialized {
+  _labelPreviousPage: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to navigate to the previous page@@sbbPaginationPreviousPage:Previous Page`
+      : 'Previous Page';
+
+  _labelNextPage: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to navigate to the next page@@sbbPaginationNextPage:Next Page`
+      : 'Next Page';
+
   private _initialized: boolean;
   private _previousPageSize: number;
 

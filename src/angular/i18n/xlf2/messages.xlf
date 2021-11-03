@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en-CH">
   <file id="ngi18n" original="ng.template">
+    <unit id="sbbAlertCloseAlert">
+      <notes>
+        <note category="location">../../../../../../src/angular/alert/alert.ts:49</note>
+        <note category="description">Hidden button label to close the alert</note>
+      </notes>
+      <segment>
+        <source>Dismiss alert</source>
+      </segment>
+    </unit>
+    <unit id="sbbBreadcrumbExpand">
+      <notes>
+        <note category="location">../../../../../../src/angular/breadcrumb/breadcrumbs.ts:55</note>
+        <note category="description">Button with three dots to show all breadcrumb levels</note>
+      </notes>
+      <segment>
+        <source>Show all levels</source>
+      </segment>
+    </unit>
     <unit id="sbbDatepickerSwitchToPreviousMonth">
       <notes>
-        <note category="location">../../../../../../src/angular-business/datepicker/calendar/calendar-header.component.html:11</note>
-        <note category="location">../../../../../../src/angular-public/datepicker/calendar/calendar-header.component.html:11</note>
+        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:42</note>
         <note category="description">Button label to switch to the previous month</note>
       </notes>
       <segment>
@@ -13,8 +30,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToNextMonth">
       <notes>
-        <note category="location">../../../../../../src/angular-business/datepicker/calendar/calendar-header.component.html:27</note>
-        <note category="location">../../../../../../src/angular-public/datepicker/calendar/calendar-header.component.html:27</note>
+        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:47</note>
         <note category="description">Button label to switch to the next month</note>
       </notes>
       <segment>
@@ -23,8 +39,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToPreviousYear">
       <notes>
-        <note category="location">../../../../../../src/angular-business/datepicker/calendar/calendar-header.component.html:40</note>
-        <note category="location">../../../../../../src/angular-public/datepicker/calendar/calendar-header.component.html:40</note>
+        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:52</note>
         <note category="description">Button label to switch to the previous year</note>
       </notes>
       <segment>
@@ -33,8 +48,7 @@
     </unit>
     <unit id="sbbDatepickerSwitchToNextYear">
       <notes>
-        <note category="location">../../../../../../src/angular-business/datepicker/calendar/calendar-header.component.html:53</note>
-        <note category="location">../../../../../../src/angular-public/datepicker/calendar/calendar-header.component.html:53</note>
+        <note category="location">../../../../../../src/angular/datepicker/calendar/calendar.ts:57</note>
         <note category="description">Button label to switch to the next year</note>
       </notes>
       <segment>
@@ -43,18 +57,25 @@
     </unit>
     <unit id="sbbDatepickerOpenCalendar">
       <notes>
-        <note category="location">../../../../../../src/angular-business/datepicker/datepicker-toggle/datepicker-toggle.component.html:4</note>
-        <note category="location">../../../../../../src/angular-public/datepicker/datepicker-toggle/datepicker-toggle.component.html:4</note>
+        <note category="location">../../../../../../src/angular/datepicker/datepicker-toggle/datepicker-toggle.ts:35</note>
         <note category="description">Open calendar</note>
       </notes>
       <segment>
         <source>Show calendar</source>
       </segment>
     </unit>
+    <unit id="sbbDialogCloseDialog">
+      <notes>
+        <note category="location">../../../../../../src/angular/dialog/dialog-content-directives.ts:39</note>
+        <note category="description">Aria label to close a dialog</note>
+      </notes>
+      <segment>
+        <source>Close dialog</source>
+      </segment>
+    </unit>
     <unit id="sbbFileSelectorUploadFile">
       <notes>
-        <note category="location">../../../../../../src/angular-business/file-selector/file-selector/file-selector.component.html:16</note>
-        <note category="location">../../../../../../src/angular-public/file-selector/file-selector/file-selector.component.html:16</note>
+        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:68</note>
         <note category="description">Button label to select files for upload</note>
       </notes>
       <segment>
@@ -63,49 +84,43 @@
     </unit>
     <unit id="sbbFileSelectorRemoveFile">
       <notes>
-        <note category="location">../../../../../../src/angular-business/file-selector/file-selector/file-selector.component.html:59</note>
-        <note category="location">../../../../../../src/angular-public/file-selector/file-selector/file-selector.component.html:59</note>
+        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:73</note>
         <note category="description">Hidden button label to remove a file from the selection list</note>
       </notes>
       <segment>
         <source>Remove file</source>
       </segment>
     </unit>
-    <unit id="sbbHeaderMenuBack">
+    <unit id="sbbHeaderOpenMenu">
       <notes>
-        <note category="location">../../../../../../src/angular-business/header/header-menu/header-menu.component.html:3</note>
-        <note category="description">Go back to the app chooser navigation</note>
+        <note category="location">../../../../../../src/angular/header-lean/header.ts:118</note>
+        <note category="description">Button label to open the sidebar of the header</note>
       </notes>
       <segment>
-        <source>Back</source>
+        <source>Open Menu</source>
       </segment>
     </unit>
-    <unit id="sbbNavigationPreviousPage">
+    <unit id="sbbHeaderCloseMenu">
       <notes>
-        <note category="location">../../../../../../src/angular-business/pagination/navigation/navigation.component.html:6</note>
-        <note category="location">../../../../../../src/angular-public/pagination/navigation/navigation.component.html:6</note>
-        <note category="description">Button label to navigate to the previous page</note>
+        <note category="location">../../../../../../src/angular/header-lean/header.ts:123</note>
+        <note category="description">Button label to close the sidebar of the header</note>
       </notes>
       <segment>
-        <source>Previous Page</source>
+        <source>Close Menu</source>
       </segment>
     </unit>
-    <unit id="sbbNavigationNextPage">
+    <unit id="sbbLightboxCloseLightbox">
       <notes>
-        <note category="location">../../../../../../src/angular-business/pagination/navigation/navigation.component.html:22</note>
-        <note category="location">../../../../../../src/angular-public/pagination/navigation/navigation.component.html:22</note>
-        <note category="description">Button label to navigate to the next page</note>
+        <note category="location">../../../../../../src/angular/lightbox/lightbox-content-directives.ts:44</note>
+        <note category="description">Aria label to close a dialog</note>
       </notes>
       <segment>
-        <source>Next Page</source>
+        <source>Close lightbox</source>
       </segment>
     </unit>
     <unit id="sbbPaginationPreviousPage">
       <notes>
-        <note category="location">../../../../../../src/angular-business/pagination/pagination/pagination.component.html:6</note>
-        <note category="location">../../../../../../src/angular-business/pagination/paginator/paginator.component.html:6</note>
-        <note category="location">../../../../../../src/angular-public/pagination/pagination/pagination.component.html:6</note>
-        <note category="location">../../../../../../src/angular-public/pagination/paginator/paginator.component.html:6</note>
+        <note category="location">../../../../../../src/angular/pagination/paginator/paginator.ts:88</note>
         <note category="description">Button label to navigate to the previous page</note>
       </notes>
       <segment>
@@ -114,19 +129,25 @@
     </unit>
     <unit id="sbbPaginationNextPage">
       <notes>
-        <note category="location">../../../../../../src/angular-business/pagination/pagination/pagination.component.html:37</note>
-        <note category="location">../../../../../../src/angular-business/pagination/paginator/paginator.component.html:42</note>
-        <note category="location">../../../../../../src/angular-public/pagination/pagination/pagination.component.html:37</note>
-        <note category="location">../../../../../../src/angular-public/pagination/paginator/paginator.component.html:42</note>
+        <note category="location">../../../../../../src/angular/pagination/paginator/paginator.ts:93</note>
         <note category="description">Button label to navigate to the next page</note>
       </notes>
       <segment>
         <source>Next Page</source>
       </segment>
     </unit>
+    <unit id="sbbSearchHeaderButtonLabel">
+      <notes>
+        <note category="location">../../../../../../src/angular/search/header-search.ts:82</note>
+        <note category="description">Button label for the header search</note>
+      </notes>
+      <segment>
+        <source>Search</source>
+      </segment>
+    </unit>
     <unit id="sbbSidebarCollapse">
       <notes>
-        <note category="location">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html:19</note>
+        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:72</note>
         <note category="description">Label to &apos;collapse&apos; icon sidebar</note>
       </notes>
       <segment>
@@ -135,50 +156,71 @@
     </unit>
     <unit id="sbbSidebarExpand">
       <notes>
-        <note category="location">../../../../../../src/angular-business/sidebar/icon-sidebar/icon-sidebar.html:26</note>
+        <note category="location">../../../../../../src/angular/sidebar/icon-sidebar/icon-sidebar.ts:77</note>
         <note category="description">Label to &apos;expand&apos; icon sidebar</note>
       </notes>
       <segment>
         <source>Expand</source>
       </segment>
     </unit>
-    <unit id="sbbTableChangeSorting">
+    <unit id="sbbSidebarCloseSidebar">
       <notes>
-        <note category="location">../../../../../../src/angular-business/table/sort-header/sort-header.component.ts:93</note>
-        <note category="description">Button label to change the sorting of column</note>
+        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:118</note>
+        <note category="description">Button label to close the sidebar</note>
       </notes>
       <segment>
-        <source>Change sorting for <ph id="0" equiv="PH" disp="this.id"/></source>
+        <source>Close Sidebar</source>
       </segment>
     </unit>
-    <unit id="sbbTabsBadgePillAmountOfEntries">
+    <unit id="sbbSidebarOpenSidebar">
       <notes>
-        <note category="location">../../../../../../src/angular-business/tabs/tabs/tabs.component.html:27</note>
-        <note category="location">../../../../../../src/angular-public/tabs/tabs/tabs.component.html:27</note>
-        <note category="description">Aria label for amount of entries displayed in badge
-            pill</note>
+        <note category="location">../../../../../../src/angular/sidebar/sidebar/sidebar.ts:505</note>
+        <note category="description">Button label to open the sidebar</note>
       </notes>
       <segment>
-        <source><ph id="0" equiv="INTERPOLATION" disp="{{ tab.badgePill }}"/> entries</source>
+        <source>Open Sidebar</source>
+      </segment>
+    </unit>
+    <unit id="sbbTagBadgePillAmountOfResults">
+      <notes>
+        <note category="location">../../../../../../src/angular/tag/tag-link.ts:28</note>
+        <note category="location">../../../../../../src/angular/tag/tag.ts:54</note>
+        <note category="description">Aria label for amount of results displayed in badge pill</note>
+      </notes>
+      <segment>
+        <source><ph id="0" equiv="PH" disp="this.amount"/> results available</source>
+      </segment>
+    </unit>
+    <unit id="sbbTagsAll">
+      <notes>
+        <note category="location">../../../../../../src/angular/tag/tags.ts:34</note>
+        <note category="description">Label for the &apos;All&apos; tag</note>
+      </notes>
+      <segment>
+        <source>All</source>
+      </segment>
+    </unit>
+    <unit id="sbbTagsAllBadgeDescription">
+      <notes>
+        <note category="location">../../../../../../src/angular/tag/tags.ts:38</note>
+        <note category="description">Badge description (total amount) for the &apos;All&apos; tag</note>
+      </notes>
+      <segment>
+        <source>A total of <ph id="0" equiv="PH" disp="this.totalAmount"/> results available</source>
       </segment>
     </unit>
     <unit id="sbbTextareaCounterText">
       <notes>
-        <note category="location">../../../../../../src/angular-business/textarea/textarea/textarea.component.html:19,21</note>
-        <note category="location">../../../../../../src/angular-public/textarea/textarea/textarea.component.html:19,21</note>
-        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.html:19,21</note>
+        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.ts:81</note>
         <note category="description">Counter text for textarea</note>
       </notes>
       <segment>
-        <source> <ph id="0" equiv="INTERPOLATION" disp="{{ _counter | async }}"/> characters remaining
-</source>
+        <source><ph id="0" equiv="PH" disp="this._counter.value"/> characters remaining</source>
       </segment>
     </unit>
     <unit id="sbbTextexpandShowLess">
       <notes>
-        <note category="location">../../../../../../src/angular-business/textexpand/textexpand/textexpand.component.html:14</note>
-        <note category="location">../../../../../../src/angular-public/textexpand/textexpand/textexpand.component.html:14</note>
-        <note category="location">../../../../../../src/angular/textexpand/textexpand.html:14</note>
+        <note category="location">../../../../../../src/angular/textexpand/textexpand.ts:43</note>
         <note category="description">Button label for showing less</note>
       </notes>
       <segment>
@@ -187,9 +229,7 @@
     </unit>
     <unit id="sbbTextexpandShowMore">
       <notes>
-        <note category="location">../../../../../../src/angular-business/textexpand/textexpand/textexpand.component.html:20</note>
-        <note category="location">../../../../../../src/angular-public/textexpand/textexpand/textexpand.component.html:20</note>
-        <note category="location">../../../../../../src/angular/textexpand/textexpand.html:20</note>
+        <note category="location">../../../../../../src/angular/textexpand/textexpand.ts:48</note>
         <note category="description">Button label for showing more</note>
       </notes>
       <segment>
@@ -198,8 +238,7 @@
     </unit>
     <unit id="sbbUsermenuLogin">
       <notes>
-        <note category="location">../../../../../../src/angular-business/usermenu/usermenu.html:10</note>
-        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.html:10</note>
+        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:64</note>
         <note category="description">Button label for login</note>
       </notes>
       <segment>
@@ -208,61 +247,11 @@
     </unit>
     <unit id="sbbUsermenuOpenPanel">
       <notes>
-        <note category="location">../../../../../../src/angular-business/usermenu/usermenu.ts:197,199</note>
-        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:195,197</note>
+        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:69,71</note>
         <note category="description">Aria label to open user menu</note>
       </notes>
       <segment>
-        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-        "/>. Click or press enter to open user menu.</source>
-      </segment>
-    </unit>
-    <unit id="sbbUsermenuClosePanel">
-      <notes>
-        <note category="location">../../../../../../src/angular-business/usermenu/usermenu.ts:207,209</note>
-        <note category="location">../../../../../../src/angular-public/usermenu/usermenu.ts:205,207</note>
-        <note category="description">Aria label to close user menu</note>
-      </notes>
-      <segment>
-        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-        "/>. Click or press enter to close user menu.</source>
-      </segment>
-    </unit>
-    <unit id="sbbGhettoboxCloseGhettobox">
-      <notes>
-        <note category="location">../../../../../../src/angular-public/ghettobox/ghettobox/ghettobox.component.html:47</note>
-        <note category="description">Hidden button label to close the ghettobox</note>
-      </notes>
-      <segment>
-        <source>Close message</source>
-      </segment>
-    </unit>
-    <unit id="sbbSearchStartSearch">
-      <notes>
-        <note category="location">../../../../../../src/angular-public/search/search/search.component.html:31</note>
-        <note category="description">Start search</note>
-      </notes>
-      <segment>
-        <source>Start search</source>
-      </segment>
-    </unit>
-    <unit id="sbbTagBadgePillAmountOfResults">
-      <notes>
-        <note category="location">../../../../../../src/angular-public/tag/tag/tag.component.html:8</note>
-        <note category="location">../../../../../../src/angular-public/tag/tag/tag.component.html:43</note>
-        <note category="description">Aria label for amount of results displayed in badge pill</note>
-      </notes>
-      <segment>
-        <source><ph id="0" equiv="INTERPOLATION" disp="{{ amount }}"/> results available</source>
-      </segment>
-    </unit>
-    <unit id="sbbTagsAll">
-      <notes>
-        <note category="location">../../../../../../src/angular-public/tag/tags/tags.component.html:4</note>
-        <note category="description">Label for the &apos;All&apos; tag</note>
-      </notes>
-      <segment>
-        <source>All</source>
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName"/>. Click or press enter to open user menu.</source>
       </segment>
     </unit>
   </file>

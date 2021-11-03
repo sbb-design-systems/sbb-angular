@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { AnimationEvent } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import {
@@ -74,6 +77,11 @@ let nextId = 1;
   animations: [sbbSearchAnimations.growShrink],
 })
 export class SbbHeaderSearch {
+  _labelSearch: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label for the header search@@sbbSearchHeaderButtonLabel:Search`
+      : 'Search';
+
   /** Identifier of search. */
   @Input() id: string = `sbb-header-search-id-${nextId++}`;
 

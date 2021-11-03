@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
@@ -64,6 +67,16 @@ export class SbbIconSidebarContent extends SbbSidebarContentBase {
   encapsulation: ViewEncapsulation.None,
 })
 export class SbbIconSidebar extends SbbSidebarBase {
+  _labelCollapse: string =
+    typeof $localize === 'function'
+      ? $localize`:Label to 'collapse' icon sidebar@@sbbSidebarCollapse:Collapse`
+      : 'Collapse';
+
+  _labelExpand: string =
+    typeof $localize === 'function'
+      ? $localize`:Label to 'expand' icon sidebar@@sbbSidebarExpand:Expand`
+      : 'Expand';
+
   /** Whether the sidebar is expanded. */
   @Input()
   set expanded(value: boolean) {

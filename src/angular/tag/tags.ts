@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
@@ -27,6 +30,15 @@ import { SbbTag } from './tag';
   },
 })
 export class SbbTags implements AfterContentInit, OnDestroy {
+  _labelAllTag: string =
+    typeof $localize === 'function' ? $localize`:Label for the 'All' tag@@sbbTagsAll:All` : 'All';
+
+  get _labelBadgeDescription(): string {
+    return typeof $localize === 'function'
+      ? $localize`:Badge description (total amount) for the 'All' tag@@sbbTagsAllBadgeDescription:A total of ${this.totalAmount} results available`
+      : `A total of ${this.totalAmount} results available`;
+  }
+
   /**
    * Total amount visible on the "All" tag badge.
    * If not provided, the total amount is calculated by the sum of all amounts of all tags.

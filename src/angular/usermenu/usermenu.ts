@@ -59,6 +59,21 @@ export const _sbbUsermenuMenuInheritedTriggerContext: SbbMenuInheritedTriggerCon
   ],
 })
 export class SbbUsermenu extends _SbbUsermenuMixinBase {
+  _labelLogin: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label for login@@sbbUsermenuLogin:Login`
+      : 'Login';
+
+  get _labelOpenPanel() {
+    return typeof $localize === 'function'
+      ? $localize`:Aria label to open user menu@@sbbUsermenuOpenPanel:Logged in as ${
+          this.displayName || this.userName
+        }. Click or press enter to open user menu.`
+      : `Logged in as ${
+          this.displayName || this.userName
+        }. Click or press enter to open user menu.`;
+  }
+
   /** Identifier of the usermenu. */
   id: string = `sbb-usermenu-${counter++}`;
 
@@ -121,16 +136,6 @@ export class SbbUsermenu extends _SbbUsermenuMixinBase {
         return current[0] + next[0];
       })
       .toLocaleUpperCase();
-  }
-
-  get _ariaLabelOpenPanel() {
-    return typeof $localize === 'function'
-      ? $localize`:Aria label to open user menu@@sbbUsermenuOpenPanel:Logged in as ${
-          this.displayName || this.userName
-        }. Click or press enter to open user menu.`
-      : `Logged in as ${
-          this.displayName || this.userName
-        }. Click or press enter to open user menu.`;
   }
 
   _emitLogin() {

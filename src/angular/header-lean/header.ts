@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { AnimationEvent } from '@angular/animations';
 import {
   ConfigurableFocusTrapFactory,
@@ -110,6 +113,16 @@ const breakpointMapping = {
   },
 })
 export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
+  _labelOpenMenu: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to open the sidebar of the header@@sbbHeaderOpenMenu:Open Menu`
+      : 'Open Menu';
+
+  _labelCloseMenu: string =
+    typeof $localize === 'function'
+      ? $localize`:Button label to close the sidebar of the header@@sbbHeaderCloseMenu:Close Menu`
+      : 'Close Menu';
+
   /** Main title shown in the header. */
   @Input() label?: string;
 

@@ -21,6 +21,7 @@ ng_module(
         "//src/angular/menu",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/localize",
     ],
 )
 
