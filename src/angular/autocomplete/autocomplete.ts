@@ -19,12 +19,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  mixinVariant,
-  SbbOptgroup,
-  SbbOption,
-  SBB_OPTION_PARENT_COMPONENT,
-} from '@sbb-esta/angular/core';
+import { SbbOptgroup, SbbOption, SBB_OPTION_PARENT_COMPONENT } from '@sbb-esta/angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { SbbAutocompleteHint } from './autocomplete-hint';
@@ -52,11 +47,6 @@ export interface SbbAutocompleteActivatedEvent {
   /** Option that was selected. */
   option: SbbOption | null;
 }
-
-// Boilerplate for applying mixins to SbbAutocomplete.
-/** @docs-private */
-// tslint:disable-next-line: naming-convention
-const _SbbAutocompleteBase = mixinVariant(class {});
 
 /** Default `sbb-autocomplete` options that can be overridden. */
 export interface SbbAutocompleteDefaultOptions {
@@ -98,7 +88,7 @@ export function SBB_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): SbbAutocompleteDefau
     class: 'sbb-autocomplete',
   },
 })
-export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterContentInit, OnDestroy {
+export class SbbAutocomplete implements AfterContentInit, OnDestroy {
   private _activeOptionChanges = Subscription.EMPTY;
 
   /** Class to apply to the panel when it's visible. */
@@ -238,8 +228,6 @@ export class SbbAutocomplete extends _SbbAutocompleteBase implements AfterConten
     @Inject(SBB_AUTOCOMPLETE_DEFAULT_OPTIONS) defaults: SbbAutocompleteDefaultOptions,
     platform?: Platform
   ) {
-    super();
-
     // TODO(crisbeto): the problem that the `inertGroups` option resolves is only present on
     // Safari using VoiceOver. We should occasionally check back to see whether the bug
     // wasn't resolved in VoiceOver, and if it has, we can remove this and the `inertGroups`

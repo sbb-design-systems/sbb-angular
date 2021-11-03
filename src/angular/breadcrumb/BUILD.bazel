@@ -17,7 +17,6 @@ ng_module(
     ),
     assets = [":breadcrumbs.css"] + glob(["**/*.html"]),
     deps = [
-        "//src/angular/core",
         "//src/angular/icon",
         "//src/angular/menu",
         "@npm//@angular/common",

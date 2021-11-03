@@ -8,15 +8,10 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { mixinVariant } from '@sbb-esta/angular/core';
 
 import { SbbTextexpandCollapsed } from './textexpand-collapsed';
 import { getSbbTextexpandInvalidError } from './textexpand-errors';
 import { SbbTextexpandExpanded } from './textexpand-expanded';
-
-// Boilerplate for applying mixins to SbbTextexpand.
-// tslint:disable-next-line: naming-convention
-const _SbbTextexpandBase = mixinVariant(class {});
 
 let nextId = 0;
 
@@ -34,7 +29,7 @@ let nextId = 0;
     'aria-live': 'polite',
   },
 })
-export class SbbTextexpand extends _SbbTextexpandBase implements AfterContentInit {
+export class SbbTextexpand implements AfterContentInit {
   /** Describes if text content is expanded or not. Initially is collapsed. */
   isExpanded: boolean = false;
 

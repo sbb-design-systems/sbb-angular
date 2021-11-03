@@ -19,13 +19,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  CanDisable,
-  HasTabIndex,
-  mixinDisabled,
-  mixinTabIndex,
-  mixinVariant,
-} from '@sbb-esta/angular/core';
+import { CanDisable, HasTabIndex, mixinDisabled, mixinTabIndex } from '@sbb-esta/angular/core';
 
 import {
   SbbCheckboxDefaultOptions,
@@ -60,7 +54,7 @@ export class SbbCheckboxChange {
 
 // Boilerplate for applying mixins to SbbCheckbox.
 // tslint:disable-next-line: naming-convention
-const _SbbCheckboxMixinBase = mixinTabIndex(mixinDisabled(mixinVariant(class {})));
+const _SbbCheckboxMixinBase = mixinTabIndex(mixinDisabled(class {}));
 
 /** Base class with all of the `SbbCheckbox` functionality. */
 @Directive()

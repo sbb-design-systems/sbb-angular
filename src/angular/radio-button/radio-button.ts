@@ -31,13 +31,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  HasTabIndex,
-  HasVariant,
-  mixinTabIndex,
-  mixinVariant,
-  TypeRef,
-} from '@sbb-esta/angular/core';
+import { HasTabIndex, mixinTabIndex, TypeRef } from '@sbb-esta/angular/core';
 
 let nextUniqueId = 0;
 
@@ -315,7 +309,7 @@ abstract class RadioButtonBase {
 }
 
 // tslint:disable-next-line: naming-convention
-const _RadioButtonMixinBase = mixinTabIndex(mixinVariant(RadioButtonBase));
+const _RadioButtonMixinBase = mixinTabIndex(RadioButtonBase);
 
 let nextId = 0;
 
@@ -323,7 +317,7 @@ let nextId = 0;
 // tslint:disable-next-line: naming-convention class-name
 export class _SbbRadioButtonBase
   extends _RadioButtonMixinBase
-  implements OnInit, AfterViewInit, OnDestroy, HasTabIndex, HasVariant
+  implements OnInit, AfterViewInit, OnDestroy, HasTabIndex
 {
   private _uniqueId = `sbb-radio-button-${++nextId}`;
 

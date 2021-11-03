@@ -22,7 +22,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { mixinVariant } from '@sbb-esta/angular/core';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
 import { startWith, switchMap, take } from 'rxjs/operators';
 
@@ -92,10 +91,6 @@ let menuPanelUid = 0;
 /** Reason why the menu was closed. */
 export type SbbMenuCloseReason = void | 'click' | 'keydown' | 'tab';
 
-// Boilerplate for applying mixins to SbbMenu.
-// tslint:disable-next-line: naming-convention
-const _SbbMenuMixinBase = mixinVariant(class {});
-
 @Component({
   selector: 'sbb-menu',
   templateUrl: 'menu.html',
@@ -111,10 +106,7 @@ const _SbbMenuMixinBase = mixinVariant(class {});
   animations: [sbbMenuAnimations.transformMenu],
   providers: [{ provide: SBB_MENU_PANEL, useExisting: SbbMenu }],
 })
-export class SbbMenu
-  extends _SbbMenuMixinBase
-  implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy
-{
+export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnInit, OnDestroy {
   private _keyManager: FocusKeyManager<SbbMenuItem>;
   private _xPosition: SbbMenuPositionX = this._defaultOptions.xPosition;
   private _yPosition: SbbMenuPositionY = this._defaultOptions.yPosition;
@@ -258,9 +250,7 @@ export class SbbMenu
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
     @Inject(SBB_MENU_DEFAULT_OPTIONS) private _defaultOptions: SbbMenuDefaultOptions
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit() {
     this.setPositionClasses();

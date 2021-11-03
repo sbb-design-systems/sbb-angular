@@ -20,30 +20,23 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import {
-  CanUpdateErrorState,
-  mixinErrorState,
-  mixinVariant,
-  SbbErrorStateMatcher,
-} from '@sbb-esta/angular/core';
+import { CanUpdateErrorState, mixinErrorState, SbbErrorStateMatcher } from '@sbb-esta/angular/core';
 import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 let nextId = 0;
 
-// Boilerplate for applying mixins to TextareaComponent.
+// Boilerplate for applying mixins to SbbTextarea.
 // tslint:disable-next-line: naming-convention
 const _SbbTextareaMixinBase = mixinErrorState(
-  mixinVariant(
-    class {
-      constructor(
-        public _defaultErrorStateMatcher: SbbErrorStateMatcher,
-        public _parentForm: NgForm,
-        public _parentFormGroup: FormGroupDirective,
-        public ngControl: NgControl
-      ) {}
-    }
-  )
+  class {
+    constructor(
+      public _defaultErrorStateMatcher: SbbErrorStateMatcher,
+      public _parentForm: NgForm,
+      public _parentFormGroup: FormGroupDirective,
+      public ngControl: NgControl
+    ) {}
+  }
 );
 
 @Component({
