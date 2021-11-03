@@ -69,16 +69,14 @@ describe('ngAdd', () => {
     ).toBe(false, 'Expected the setup-project schematic not to be scheduled.');
   });
 
-  it('should add @angular/cdk and @angular/animations to "package.json" file', async () => {
-    ['@angular/cdk'].forEach((dependencyName) =>
-      expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBeUndefined()
-    );
+  it('should add @angular/cdk, @angular/animations and @angular/forms to "package.json" file', async () => {
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBeUndefined();
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);
-
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/forms']).toBeDefined();
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
@@ -149,6 +147,52 @@ describe('ngAdd', () => {
     ).toEqual([TYPOGRAPHY_CSS_PATH]);
   });
 
+  it('should not add typography in angular.json if legacy typography import exists in styles.scss', async () => {
+    tree.overwrite(
+      'projects/dummy/src/styles.css',
+      `@import '@sbb-esta/angular-public/typography.css'`
+    );
+
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
+    ).toEqual(['projects/dummy/src/styles.css']);
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
+    ).toEqual(['projects/dummy/src/styles.css']);
+  });
+
+  it('should not add typography in angular.json if legacy typography import exists in angular.json', async () => {
+    const angularJson = readJsonFile(tree, '/angular.json');
+    const legacyImport = 'node_modules/@sbb-esta/angular-business/typography.css';
+    (angularJson.projects.dummy.architect.build.options.styles as string[]).push(legacyImport);
+    (angularJson.projects.dummy.architect.test.options.styles as string[]).push(legacyImport);
+    tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
+
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'lean (previously known as business)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
+    ).toEqual(['projects/dummy/src/styles.css', legacyImport]);
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
+    ).toEqual(['projects/dummy/src/styles.css', legacyImport]);
+
+    // Should configure variant regardless of legacy packages
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      '<html class="sbb-lean" lang="en">'
+    );
+  });
+
   it('should add NoopAnimationsModule', async () => {
     await runner
       .runSchematicAsync('ng-add-setup-project', { animations: false } as Schema, tree)
@@ -157,6 +201,101 @@ describe('ngAdd', () => {
     expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
       NOOP_ANIMATIONS_MODULE_NAME
     );
+  });
+
+  it('should add sbb-lean class to index.html', async () => {
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'lean (previously known as business)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      '<html class="sbb-lean" lang="en">'
+    );
+
+    // run migration a second time
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'lean (previously known as business)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    // Lean-tag should still be there only once
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      '<html class="sbb-lean" lang="en">'
+    );
+  });
+
+  it('should add sbb-lean class to index.html with other existing classes', async () => {
+    tree.overwrite(
+      'projects/dummy/src/index.html',
+      `<html class='app-class' lang="en"><head></head><body></body></html>`
+    );
+
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'lean (previously known as business)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      `<html class='sbb-lean app-class' lang="en">`
+    );
+  });
+
+  it('should not add sbb-lean class if standard variant was chosen', async () => {
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'standard (previously known as public)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
+  });
+
+  it('should remove sbb-lean class if standard variant was chosen but lean was set before', async () => {
+    tree.overwrite(
+      'projects/dummy/src/index.html',
+      `<html class="sbb-lean app-class" lang="en"><head></head><body></body></html>`
+    );
+
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'standard (previously known as public)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain(
+      '<html class="app-class" lang="en">'
+    );
+  });
+
+  it('should completely remove class attribute if no css classes are present anymore', async () => {
+    tree.overwrite(
+      'projects/dummy/src/index.html',
+      `<html class="sbb-lean" lang="en"><head></head><body></body></html>`
+    );
+
+    await runner
+      .runSchematicAsync(
+        'ng-add-setup-project',
+        { variant: 'standard (previously known as public)' } as Schema,
+        tree
+      )
+      .toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/index.html')).toContain('<html lang="en">');
   });
 
   it('should execute migration from public, business and core', async () => {

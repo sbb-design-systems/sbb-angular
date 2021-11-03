@@ -22,10 +22,7 @@ import { ProjectType } from '@schematics/angular/utility/workspace-models';
 
 import { Schema } from './schema';
 
-// TODO: implement new typography workflow (ask user, provide different files)
-
 export const TYPOGRAPHY_CSS_PATH = 'node_modules/@sbb-esta/angular/typography.css';
-export const BUSINESS_TYPOGRAPHY_CSS_PATH = 'node_modules/@sbb-esta/angular/typography.css';
 
 /** Name of the Angular module that enables Angular browser animations. */
 export const BROWSER_ANIMATIONS_MODULE_NAME = 'BrowserAnimationsModule';
@@ -40,10 +37,7 @@ export default function (options: Schema): Rule {
     const project = getProjectFromWorkspace(workspace, options.project);
 
     if (project.extensions.projectType === ProjectType.Application) {
-      return chain([
-        addAnimationsModule(options),
-        addTypographyToAngularJson(options, context.logger),
-      ]);
+      return chain([addAnimationsModule(options), addAndConfigureTypography(options)]);
     }
     context.logger.warn(
       '@sbb-esta/angular has been set up in your workspace. There is no additional setup ' +
@@ -87,7 +81,7 @@ function addAnimationsModule(options: Schema) {
         project
       );
 
-      context.logger.info(`✔️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to ${appModulePath}`);
+      context.logger.info(`✔️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to ${appModulePath}.`);
     } else if (!hasNgModuleImport(host, appModulePath, BROWSER_ANIMATIONS_MODULE_NAME)) {
       // Do not add the NoopAnimationsModule module if the project already explicitly uses
       // the BrowserAnimationsModule.
@@ -101,11 +95,21 @@ function addAnimationsModule(options: Schema) {
   };
 }
 
-function addTypographyToAngularJson(options: Schema, logger: logging.LoggerApi): Rule {
-  return chain([
-    addTypographyToStylesNodeOfAngularJson(options.project, 'build', logger),
-    addTypographyToStylesNodeOfAngularJson(options.project, 'test', logger),
-  ]);
+function addAndConfigureTypography(options: Schema): Rule {
+  return async (tree: Tree, context: SchematicContext) => {
+    const workspace = await getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace, options.project);
+
+    return chain([
+      hasLegacyTypography(tree, project, 'build')
+        ? noop()
+        : addTypographyToStylesNodeOfAngularJson(options.project, 'build', context.logger),
+      hasLegacyTypography(tree, project, 'test')
+        ? noop()
+        : addTypographyToStylesNodeOfAngularJson(options.project, 'test', context.logger),
+      setTypographyVariant(options),
+    ]);
+  };
 }
 
 function addTypographyToStylesNodeOfAngularJson(
@@ -122,31 +126,22 @@ function addTypographyToStylesNodeOfAngularJson(
     }
 
     const targetOptions = getProjectTargetOptions(project, targetName);
-    const styles = targetOptions.styles as (string | { input: string })[];
+    const styles = targetOptions.styles as (string | { input: string })[] | undefined;
 
     if (!styles) {
       targetOptions.styles = [TYPOGRAPHY_CSS_PATH];
-    } else {
-      const existingStyles = styles.map((s) => (typeof s === 'string' ? s : s.input));
-
-      for (const stylePath of existingStyles) {
-        // If the given asset is already specified in the styles, we don't need to do anything.
-        if (stylePath === TYPOGRAPHY_CSS_PATH) {
-          return;
-        }
-
-        // In case the public typography is already added, we skip adding the public typography.
-        if (stylePath.includes(BUSINESS_TYPOGRAPHY_CSS_PATH)) {
-          logger.error(
-            `Could not add the typography to the CLI project ` +
-              `configuration because there is already a sbb typographyfile referenced.`
-          );
-          return;
-        }
-      }
-
-      styles.unshift(TYPOGRAPHY_CSS_PATH);
+      return;
     }
+
+    const hasAlreadyTypographyAdded = styles
+      .map((s) => (typeof s === 'string' ? s : s.input))
+      .some((style) => style === TYPOGRAPHY_CSS_PATH);
+
+    if (hasAlreadyTypographyAdded) {
+      return;
+    }
+
+    styles.unshift(TYPOGRAPHY_CSS_PATH);
   });
 }
 
@@ -186,4 +181,102 @@ function validateDefaultTargetBuilder(
   }
 
   return isDefaultBuilder;
+}
+
+function hasLegacyTypography(tree: Tree, project: ProjectDefinition, targetName: 'build' | 'test') {
+  const targetOptions = getProjectTargetOptions(project, targetName);
+  const styles = targetOptions?.styles as (string | { input: string })[] | undefined;
+
+  if (!styles) {
+    return false;
+  }
+
+  const legacyImportRegex = /@sbb-esta\/angular-(public|business)\/typography.css/g;
+  const normalizedStyleFilenames = styles.map((s) => (typeof s === 'string' ? s : s.input));
+  if (normalizedStyleFilenames.some((fileName) => legacyImportRegex.test(fileName))) {
+    return true;
+  }
+
+  return normalizedStyleFilenames.some((fileName) => {
+    const file = tree.read(fileName)?.toString('utf-8');
+    if (!file) {
+      return false;
+    }
+    return legacyImportRegex.test(file);
+  });
+}
+
+function setTypographyVariant(options: Schema) {
+  return async (tree: Tree, context: SchematicContext) => {
+    const workspace = await getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace, options.project);
+    const targetOptions = getProjectTargetOptions(project, 'build');
+    const shouldBeLeanVariant = options.variant === 'lean (previously known as business)';
+
+    if (!targetOptions?.index) {
+      if (shouldBeLeanVariant) {
+        context.logger.error(
+          `Could not find index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
+        );
+      } else {
+        context.logger.error(
+          `Could not find index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
+        );
+      }
+      return;
+    }
+
+    const indexHtml = tree.read(targetOptions.index as string)?.toString('utf-8');
+
+    if (!indexHtml) {
+      if (shouldBeLeanVariant) {
+        context.logger.error(
+          `Could not read index.html to configure design variant. If you like to use the lean design variant, please add 'sbb-lean' class to the <html> tag.`
+        );
+      } else {
+        context.logger.error(
+          `Could not read index.html to configure design variant. Please check your <html> tag if the design variant is correctly configured.`
+        );
+      }
+      return;
+    }
+
+    const htmlTag = indexHtml.match(
+      /<html(?=\s)(?!(?:[^>"\']|"[^"]*"|\'[^\']*\')*?(?<=\s)(?:term|range)\s*=)(?!\s*\/?>)\s+(?:".*?"|\'.*?\'|[^>]*?)+>/g
+    )?.[0];
+
+    if (!htmlTag) {
+      context.logger.error(
+        `Could not find <html> tag. Please check your <html> tag if the design variant is correctly configured.`
+      );
+      return;
+    }
+
+    const classTag = htmlTag.match(/class=(["'])?((?:.(?!\1|>))*.?)\1?/g)?.[0];
+    const classList = classTag?.replace(/["']/g, '').replace('class=', '').split(' ');
+    const hasSbbLeanClass = classList?.includes('sbb-lean');
+
+    if (hasSbbLeanClass && !shouldBeLeanVariant) {
+      // Remove sbb-lean class
+      const onlyLeanClassInClassList = classList!.length === 1;
+      const htmlTagWithoutLeanClass = onlyLeanClassInClassList
+        ? htmlTag.replace(` ${classTag!}`, '')
+        : htmlTag.replace(' sbb-lean', '').replace('sbb-lean ', '');
+
+      tree.overwrite(
+        targetOptions.index as string,
+        indexHtml.replace(htmlTag, htmlTagWithoutLeanClass)
+      );
+    } else if (!hasSbbLeanClass && shouldBeLeanVariant) {
+      // Add sbb-lean class
+      const newIndexHtml = classTag
+        ? indexHtml.replace(classTag, classTag.replace(/(?<=^.{7})/, 'sbb-lean '))
+        : indexHtml.replace('<html', '<html class="sbb-lean"');
+      tree.overwrite(targetOptions.index as string, newIndexHtml);
+    }
+
+    context.logger.info(
+      `✔️ Configured typography with ${hasSbbLeanClass ? 'lean' : 'standard'} design variant.`
+    );
+  };
 }
