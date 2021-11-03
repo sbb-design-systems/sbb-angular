@@ -10,13 +10,9 @@ import {
   OnDestroy,
   QueryList,
 } from '@angular/core';
-import { Breakpoints, mixinVariant } from '@sbb-esta/angular/core';
+import { Breakpoints } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
-
-// Boilerplate for applying mixins to SbbExample.
-// tslint:disable-next-line: naming-convention
-const _SbbSidebarMixinBase = mixinVariant(class {});
 
 /**
  * Throws an exception if more than one SbbSidebarBase is provided.
@@ -62,7 +58,6 @@ export abstract class SbbSidebarBase {
  */
 @Directive()
 export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
-  extends _SbbSidebarMixinBase
   implements AfterContentInit, OnDestroy, SbbSidebarMobileCapableContainer
 {
   _mobile: boolean;
@@ -81,9 +76,7 @@ export abstract class SbbSidebarContainerBase<T extends SbbSidebarBase>
     protected _ngZone: NgZone,
     protected _changeDetectorRef: ChangeDetectorRef,
     protected _breakpointObserver: BreakpointObserver
-  ) {
-    super();
-  }
+  ) {}
 
   /** All sidebars, also nested sidebars included **/
   _allSidebars: QueryList<T>;

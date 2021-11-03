@@ -25,7 +25,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { mixinVariant } from '@sbb-esta/angular/core';
 import { merge, Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
@@ -43,14 +42,6 @@ export class SbbTabChangeEvent {
   tab: SbbTab;
 }
 
-/** Possible positions for the tab header. */
-// tslint:disable-next-line:class-name naming-convention
-const _SbbTabGroupMixinBase = mixinVariant(
-  class {
-    constructor(public _elementRef: ElementRef) {}
-  }
-);
-
 interface SbbTabGroupBaseHeader {
   focusIndex: number;
 }
@@ -60,10 +51,7 @@ interface SbbTabGroupBaseHeader {
  * @docs-private
  */
 @Directive()
-export abstract class SbbTabGroupBase
-  extends _SbbTabGroupMixinBase
-  implements AfterContentInit, AfterContentChecked, OnDestroy
-{
+export abstract class SbbTabGroupBase implements AfterContentInit, AfterContentChecked, OnDestroy {
   /**
    * All tabs inside the tab group. This includes tabs that belong to groups that are nested
    * inside the current one. We filter out only the tabs that belong to this group in `_tabs`.
@@ -126,12 +114,10 @@ export abstract class SbbTabGroupBase
   private _groupId: number;
 
   constructor(
-    elementRef: ElementRef,
     protected _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_TABS_CONFIG) @Optional() defaultConfig?: SbbTabsConfig,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) public _animationMode?: string
   ) {
-    super(elementRef);
     this._groupId = nextId++;
     this.dynamicHeight =
       defaultConfig && defaultConfig.dynamicHeight != null ? defaultConfig.dynamicHeight : false;
@@ -373,11 +359,10 @@ export class SbbTabGroup extends SbbTabGroupBase {
   @ViewChild('tabHeader') _tabHeader: SbbTabGroupBaseHeader;
 
   constructor(
-    elementRef: ElementRef,
     changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_TABS_CONFIG) @Optional() defaultConfig?: SbbTabsConfig,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) animationMode?: string
   ) {
-    super(elementRef, changeDetectorRef, defaultConfig, animationMode);
+    super(changeDetectorRef, defaultConfig, animationMode);
   }
 }

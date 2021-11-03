@@ -15,7 +15,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { mixinVariant } from '@sbb-esta/angular/core';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
@@ -23,9 +22,6 @@ import { SbbError, SBB_ERROR } from './error';
 import { SbbFormFieldControl } from './form-field-control';
 import { getSbbFormFieldMissingControlError } from './form-field-errors';
 import { SbbLabel } from './label';
-
-// tslint:disable-next-line: naming-convention
-const _SbbFormFieldBase = mixinVariant(class {});
 
 let nextId = 0;
 
@@ -58,10 +54,7 @@ export const SBB_FORM_FIELD = new InjectionToken<SbbFormField>('SBB_FORM_FIELD')
     '[class.ng-pending]': '_shouldForward("pending")',
   },
 })
-export class SbbFormField
-  extends _SbbFormFieldBase
-  implements AfterContentInit, AfterContentChecked, OnDestroy
-{
+export class SbbFormField implements AfterContentInit, AfterContentChecked, OnDestroy {
   /** The label text for the input. */
   @Input() label?: string;
 
@@ -92,9 +85,7 @@ export class SbbFormField
   constructor(
     public _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef
-  ) {
-    super();
-  }
+  ) {}
 
   /**
    * Gets the id of the label element. If no label is present, returns `null`.

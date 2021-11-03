@@ -5,18 +5,12 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import { mixinVariant } from '@sbb-esta/angular/core';
 import {
   SbbMenuInheritedTriggerContext,
   SBB_MENU_INHERITED_TRIGGER_CONTEXT,
 } from '@sbb-esta/angular/menu';
 
 import { SbbBreadcrumb } from './breadcrumb';
-
-// Boilerplate for applying mixins to SbbBreadcrumbs.
-/** @docs-private */
-// tslint:disable-next-line: naming-convention
-const _SbbBreadcrumbsMixinBase = mixinVariant(class {});
 
 // tslint:disable-next-line:naming-convention
 export const _sbbBreadcrumbMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
@@ -46,7 +40,7 @@ export const _sbbBreadcrumbMenuInheritedTriggerContext: SbbMenuInheritedTriggerC
     },
   ],
 })
-export class SbbBreadcrumbs extends _SbbBreadcrumbsMixinBase {
+export class SbbBreadcrumbs {
   /** List of all user defined SbbBreadcrumb entries. */
   @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;
 
