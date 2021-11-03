@@ -402,7 +402,5 @@ export class SbbIcon implements OnChanges, OnInit, AfterViewChecked, OnDestroy {
     }
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_inline: BooleanInput;
-  // tslint:enable: member-ordering
 }
