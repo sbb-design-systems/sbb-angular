@@ -15,7 +15,7 @@
     (change)="fileChange($event)"
     (blur)="_onTouched()"
   />
-  <span class="sbb-button-wrapper">{{_labelUploadFile}}</span>
+  <span class="sbb-button-wrapper">{{ _labelUploadFile }}</span>
   <span class="sbb-file-selector-upload-icon">
     <sbb-icon class="sbb-icon-fit" svgIcon="kom:upload-small"></sbb-icon>
   </span>
@@ -46,7 +46,7 @@
       class="sbb-file-selector-list-remove-icon sbb-button-reset-frameless"
       (click)="removeFile(file)"
     >
-      <span class="cdk-visually-hidden">{{_labelRemoveFile}}</span>
+      <span class="cdk-visually-hidden">{{ _labelRemoveFile }}</span>
       <sbb-icon svgIcon="kom:trash-small"></sbb-icon>
     </button>
   </li>
