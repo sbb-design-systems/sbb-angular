@@ -680,7 +680,7 @@ describe('SbbMenu', () => {
   }));
 
   it('should close the menu when using the CloseScrollStrategy', fakeAsync(() => {
-    const scrolledSubject = new Subject();
+    const scrolledSubject = new Subject<void>();
     const fixture = createComponent(
       SimpleMenu,
       [

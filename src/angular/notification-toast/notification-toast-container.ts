@@ -53,10 +53,10 @@ export class SbbNotificationToastContainer extends BasePortalOutlet implements O
   @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
 
   /** Subject for notifying that the notification toast has exited from view. */
-  readonly _onExit: Subject<void> = new Subject();
+  readonly _onExit: Subject<void> = new Subject<void>();
 
   /** Subject for notifying that the notification toast has finished entering the view. */
-  readonly _onEnter: Subject<void> = new Subject();
+  readonly _onEnter: Subject<void> = new Subject<void>();
 
   /** The state of the notification toast animations. */
   _animationState: string = 'void';

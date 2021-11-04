@@ -70,7 +70,7 @@ export class SbbChipInput implements SbbChipTextControl, OnChanges, OnDestroy, A
   focused: boolean = false;
   _chipList: SbbChipList;
 
-  private _destroyed = new Subject();
+  private _destroyed = new Subject<void>();
 
   /** Register input for chip list */
   @Input('sbbChipInputFor')

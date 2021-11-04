@@ -8,7 +8,7 @@ import { SbbTabLink, SbbTabNav, SbbTabsModule } from './index';
 
 describe('SbbTabNavBar', () => {
   const dir: Direction = 'ltr';
-  const dirChange = new Subject();
+  const dirChange = new Subject<void>();
 
   beforeEach(
     waitForAsync(() => {

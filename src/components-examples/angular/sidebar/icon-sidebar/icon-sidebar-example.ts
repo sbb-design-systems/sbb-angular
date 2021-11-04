@@ -23,7 +23,7 @@ import { startWith, takeUntil } from 'rxjs/operators';
 export class IconSidebarExample implements AfterViewInit, OnDestroy {
   expanded = false;
   simulateMobile = new FormControl(false);
-  private _destroyed = new Subject();
+  private _destroyed = new Subject<void>();
 
   constructor(private _mediaMatcher: FakeMediaMatcher) {}
 

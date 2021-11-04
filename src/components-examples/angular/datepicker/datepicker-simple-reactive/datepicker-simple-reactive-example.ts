@@ -23,7 +23,7 @@ export class DatepickerSimpleReactiveExample implements OnDestroy {
   arrows = new FormControl(false);
   disabled = new FormControl(false);
 
-  destroyed = new Subject();
+  destroyed = new Subject<void>();
 
   constructor(dateAdapter: SbbDateAdapter<Date>) {
     this.minDate.setValue(dateAdapter.addCalendarMonths(dateAdapter.today(), -6));

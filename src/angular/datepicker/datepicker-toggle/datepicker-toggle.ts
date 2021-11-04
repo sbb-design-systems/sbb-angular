@@ -15,7 +15,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { merge, of, Subscription } from 'rxjs';
+import { merge, Observable, of, Subscription } from 'rxjs';
 
 import { SBB_DATEPICKER } from '../datepicker-token';
 import type { SbbDatepicker } from '../datepicker/datepicker';
@@ -94,9 +94,11 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
       : of();
 
     this._stateChanges.unsubscribe();
-    this._stateChanges = merge(datepickerDisabled, inputDisabled, datepickerToggled).subscribe(() =>
-      this._changeDetectorRef.markForCheck()
-    );
+    this._stateChanges = merge(
+      datepickerDisabled as Observable<void>,
+      inputDisabled as Observable<void>,
+      datepickerToggled
+    ).subscribe(() => this._changeDetectorRef.markForCheck());
   }
 
   static ngAcceptInputType_disabled: BooleanInput;
