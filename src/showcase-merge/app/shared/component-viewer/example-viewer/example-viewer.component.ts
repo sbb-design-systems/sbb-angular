@@ -1,5 +1,6 @@
 import { Component, Injector, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ɵvariant } from '@sbb-esta/angular/core';
 import { ExampleData, loadExample } from '@sbb-esta/components-examples';
 import { Observable, zip } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -7,7 +8,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { HtmlLoader } from '../../html-loader.service';
 import { moduleParams } from '../../module-params';
 import {
-  ExampleData as StackblitzExampleData,
+  StackblitzExampleData,
   StackblitzWriterService,
 } from '../stackblitz-writer/stackblitz-writer.service';
 
@@ -69,13 +70,13 @@ export class ExampleViewerComponent implements OnInit {
       return;
     }
     const example = new StackblitzExampleData({
-      componentName: this.exampleData.componentNames[0].concat('Component'),
+      componentName: this.exampleData.componentNames[0],
       selectorName: this.exampleData.selectorName,
       description: this.exampleData.description,
       indexFilename: files[0].name,
       exampleFiles: files,
-      business: this._route.snapshot.data.library === 'business',
     });
+
     this._stackBlitzWriter
       .constructStackBlitzForm(example)
       .then((stackBlitzForm: HTMLFormElement) => {
@@ -90,6 +91,14 @@ export class ExampleViewerComponent implements OnInit {
     // more details:
     // https://chromium.googlesource.com/chromium/src/+/962c2a22ddc474255c776aefc7abeba00edc7470%5E!
     document.body.appendChild(this.stackBlitzForm);
+
+    // set currently active variant
+    const mainTs = document.getElementsByName('files[src/main.ts]')[0] as HTMLFormElement;
+    mainTs.value = mainTs.value.replace(
+      `const isSbbLean = false;`,
+      `const isSbbLean = ${ɵvariant.value === 'lean'};`
+    );
+
     this.stackBlitzForm.submit();
     document.body.removeChild(this.stackBlitzForm);
   }

@@ -22,3 +22,8 @@ ng_module(
         "@npm//@angular/router",
     ],
 )
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

@@ -21,6 +21,8 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
+        "//src/angular/button",
+        "//src/angular/core",
         "//src/angular/icon",
         "//src/angular/notification",
         "//src/angular/notification-toast",
@@ -72,4 +74,9 @@ sass_binary(
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
 )

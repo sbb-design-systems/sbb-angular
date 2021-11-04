@@ -1,6 +1,7 @@
 <div class="example-viewer-header sbb-icon-scaled">
   <h3 class="example-viewer-title">{{ this.exampleData.description }}</h3>
   <button
+    sbb-icon-button
     type="button"
     (click)="showSource = !showSource"
     aria-label="View source"
@@ -10,8 +11,9 @@
   </button>
 
   <button
+    sbb-icon-button
     type="button"
-    class="example-viewer-header-button stackblitz-button"
+    class="example-viewer-header-button"
     (click)="openStackblitz()"
     [disabled]="isStackblitzDisabled"
     [attr.aria-label]="

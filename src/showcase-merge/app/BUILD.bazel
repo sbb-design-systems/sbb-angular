@@ -65,3 +65,8 @@ sass_binary(
         "//src/angular/styles:common_scss_lib",
     ],
 )
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

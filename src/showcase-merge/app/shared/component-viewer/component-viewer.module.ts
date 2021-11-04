@@ -2,6 +2,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbNotificationToastModule } from '@sbb-esta/angular/notification-toast';
@@ -37,6 +38,7 @@ import { VariantLimitationComponent } from './variant-limitation-component/varia
     // This is required, due to requiring a single instance of the notification toast service.
     SbbNotificationToastModule,
     SbbTooltipModule,
+    SbbButtonModule,
     RouterModule,
   ],
 })

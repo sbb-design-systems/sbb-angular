@@ -21,20 +21,10 @@
 }
 
 .example-viewer-header-button {
-  @include buttonResetFrameless();
-  cursor: pointer;
-  flex-grow: 0;
-  line-height: inherit;
-  outline: 0;
-
-  &:hover,
-  &:focus {
-    color: $sbbColorRed125;
-  }
-}
-
-.stackblitz-button {
+  flex-shrink: 0;
   margin-left: 0.5rem;
+  width: pxToRem(36);
+  height: pxToRem(36);
 }
 
 .example-viewer-title {
