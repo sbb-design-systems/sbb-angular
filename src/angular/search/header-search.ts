@@ -4,6 +4,7 @@
 import { AnimationEvent } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import {
+  CdkOverlayOrigin,
   ConnectedPosition,
   Overlay,
   RepositionScrollStrategy,
@@ -124,6 +125,8 @@ export class SbbHeaderSearch {
 
   _overlayWidth: Observable<string>;
 
+  _overlayOrigin: CdkOverlayOrigin;
+
   /** Factory function used to create a scroll strategy for this select. */
   private _scrollStrategyFactory: () => ScrollStrategy;
 
@@ -133,12 +136,13 @@ export class SbbHeaderSearch {
   private _animationSubscription: Subscription | undefined;
 
   constructor(
-    readonly _elementRef: ElementRef<HTMLElement>,
+    elementRef: ElementRef<HTMLElement>,
     private _breakpointObserver: BreakpointObserver,
     @Inject(SBB_SEARCH_SCROLL_STRATEGY) scrollStrategyFactory: any
   ) {
     this._scrollStrategyFactory = scrollStrategyFactory;
     this._scrollStrategy = this._scrollStrategyFactory();
+    this._overlayOrigin = new CdkOverlayOrigin(elementRef);
 
     this._positions = this._breakpointObserver
       .observe(Breakpoints.Mobile)

@@ -299,10 +299,9 @@ describe('ngAdd', () => {
   });
 
   it('should execute migration from public, business and core', async () => {
-    addPackageToPackageJson(tree, '@sbb-esta/angular-business', '0.0.0');
-
+    addPackageToPackageJson(tree, '@sbb-esta/angular-business', '12.0.0');
     expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-business']).toBe(
-      '0.0.0'
+      '12.0.0'
     );
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
@@ -314,6 +313,17 @@ describe('ngAdd', () => {
   });
 
   it('should not execute migration from public, business and core', async () => {
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+
+    expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate')).toBe(
+      false,
+      'Expected the ng-add-migrate schematic not to be scheduled.'
+    );
+  });
+
+  it('should not execute migration from public, business and core if major versions are not 12', async () => {
+    addPackageToPackageJson(tree, '@sbb-esta/angular-business', '11.0.0');
+
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
     expect(runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-migrate')).toBe(

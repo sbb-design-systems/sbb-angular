@@ -18,6 +18,7 @@ import {
 } from '@angular/cdk/keycodes';
 import {
   CdkConnectedOverlay,
+  CdkOverlayOrigin,
   ConnectedPosition,
   Overlay,
   RepositionScrollStrategy,
@@ -50,7 +51,13 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormGroupDirective,
+  NgControl,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import {
   CanDisable,
   CanUpdateErrorState,
@@ -256,6 +263,8 @@ export class SbbSelect
     },
   ];
 
+  _overlayOrigin: CdkOverlayOrigin;
+
   /** Factory function used to create a scroll strategy for this select. */
   private _scrollStrategyFactory: () => ScrollStrategy;
 
@@ -268,7 +277,7 @@ export class SbbSelect
   /** Unique id for this input. */
   private _uid = `sbb-select-${nextUniqueId++}`;
 
-  /** Current `ariar-labelledby` value for the select trigger. */
+  /** Current `aria-labelledby` value for the select trigger. */
   private _triggerAriaLabelledBy: string | null = null;
 
   /** Emits whenever the component is destroyed. */
@@ -293,7 +302,7 @@ export class SbbSelect
   _valueId: string = `sbb-select-value-${nextUniqueId++}`;
 
   /** Emits when the panel element is finished transforming in. */
-  _panelDoneAnimatingStream: Subject<string> = new Subject<string>();
+  readonly _panelDoneAnimatingStream: Subject<string> = new Subject<string>();
 
   /** Strategy that will be used to handle scrolling while the select panel is open. */
   _scrollStrategy: ScrollStrategy;
@@ -333,13 +342,13 @@ export class SbbSelect
   /** Whether the component is required. */
   @Input()
   get required(): boolean {
-    return this._required;
+    return this._required ?? this.ngControl?.control?.hasValidator(Validators.required) ?? false;
   }
   set required(value: boolean) {
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
-  private _required: boolean = false;
+  private _required: boolean | undefined;
 
   /** Whether the user should be allowed to select multiple options. */
   @Input()
@@ -476,7 +485,7 @@ export class SbbSelect
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
     defaultErrorStateMatcher: SbbErrorStateMatcher,
-    public _elementRef: ElementRef,
+    private _elementRef: ElementRef,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     @Optional() @Inject(SBB_FORM_FIELD) private _parentFormField: SbbFormField,
@@ -506,6 +515,8 @@ export class SbbSelect
 
     // Force setter to be called in case id was not specified.
     this.id = this.id;
+
+    this._overlayOrigin = new CdkOverlayOrigin(_elementRef);
   }
 
   ngOnInit() {
@@ -680,7 +691,7 @@ export class SbbSelect
 
   /** The currently selected option. */
   get selected(): SbbOption | SbbOption[] {
-    return this.multiple ? this._selectionModel.selected : this._selectionModel.selected[0];
+    return this.multiple ? this._selectionModel?.selected || [] : this._selectionModel?.selected[0];
   }
 
   /** The value displayed in the trigger. */
@@ -1059,8 +1070,9 @@ export class SbbSelect
       return null;
     }
 
-    const labelId = this._getLabelId();
-    return this.ariaLabelledby ? labelId + ' ' + this.ariaLabelledby : labelId;
+    const labelId = this._parentFormField?.getLabelId();
+    const labelExpression = labelId ? labelId + ' ' : '';
+    return this.ariaLabelledby ? labelExpression + this.ariaLabelledby : labelId;
   }
 
   /** Determines the `aria-activedescendant` to be set on the host. */
@@ -1072,18 +1084,14 @@ export class SbbSelect
     return null;
   }
 
-  /** Gets the ID of the element that is labelling the select. */
-  private _getLabelId(): string {
-    return this._parentFormField?.getLabelId() || '';
-  }
-
   /** Gets the aria-labelledby of the select component trigger. */
   private _getTriggerAriaLabelledby(): string | null {
     if (this.ariaLabel) {
       return null;
     }
 
-    let value = this._getLabelId() + ' ' + this._valueId;
+    const labelId = this._parentFormField?.getLabelId();
+    let value = (labelId ? labelId + ' ' : '') + this._valueId;
 
     if (this.ariaLabelledby) {
       value += ' ' + this.ariaLabelledby;
