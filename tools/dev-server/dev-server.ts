@@ -34,6 +34,9 @@ export class DevServer {
     server: {
       directory: false,
       middleware: [(req, res) => this._bazelMiddleware(req, res)],
+      serveStaticOptions: {
+        dotfiles: 'allow',
+      },
     },
   };
 
@@ -108,7 +111,7 @@ export class DevServer {
         return;
       }
 
-      send(req, resolvedPath).pipe(res);
+      send(req, resolvedPath, { dotfiles: 'allow' }).pipe(res);
     }
   }
 
