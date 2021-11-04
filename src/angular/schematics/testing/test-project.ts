@@ -16,7 +16,7 @@ export async function createTestProject(
   appOptions = {},
   tree?: Tree
 ): Promise<UnitTestTree> {
-  const workspaceTree = await runner
+  const workspaceTree = (await runner
     .runExternalSchematicAsync(
       '@schematics/angular',
       'workspace',
@@ -27,14 +27,14 @@ export async function createTestProject(
       },
       tree
     )
-    .toPromise();
+    .toPromise())!;
 
-  return runner
+  return (await runner
     .runExternalSchematicAsync(
       '@schematics/angular',
       projectType,
       { name: 'sbb-angular', ...appOptions },
       workspaceTree
     )
-    .toPromise();
+    .toPromise())!;
 }

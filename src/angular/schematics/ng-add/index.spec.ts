@@ -51,12 +51,12 @@ describe('ngAdd', () => {
 
   beforeEach(async () => {
     runner = new SchematicTestRunner('collection', COLLECTION_PATH);
-    tree = await runner
+    tree = (await runner
       .runExternalSchematicAsync('@schematics/angular', 'workspace', workspaceOptions)
-      .toPromise();
-    tree = await runner
+      .toPromise())!;
+    tree = (await runner
       .runExternalSchematicAsync('@schematics/angular', 'application', appOptions, tree)
-      .toPromise();
+      .toPromise())!;
   });
 
   it('should cancel installation if angular package is already installed', async () => {

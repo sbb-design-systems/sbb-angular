@@ -38,12 +38,12 @@ describe('MergeRefactorMigration', () => {
 
   beforeEach(async () => {
     runner = new SchematicTestRunner('collection', collection);
-    tree = await runner
+    tree = (await runner
       .runExternalSchematicAsync('@schematics/angular', 'workspace', workspaceOptions)
-      .toPromise();
-    tree = await runner
+      .toPromise())!;
+    tree = (await runner
       .runExternalSchematicAsync('@schematics/angular', 'application', appOptions, tree)
-      .toPromise();
+      .toPromise())!;
 
     // Add sbb-tabs
     const workspace = await getWorkspace(tree);
