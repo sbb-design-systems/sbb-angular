@@ -16,7 +16,7 @@ import {
 const workspaceOptions: WorkspaceOptions = {
   name: 'workspace',
   newProjectRoot: 'projects',
-  version: '12.0.0',
+  version: '13.0.0',
 };
 
 const appOptions: ApplicationOptions = {
