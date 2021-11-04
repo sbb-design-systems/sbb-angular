@@ -1,6 +1,8 @@
-load("@build_bazel_rules_nodejs//:providers.bzl", "JSNamedModuleInfo")
+"""
+  Gets the workspace name of the given rule context.
+"""
 
-"""Gets the workspace name of the given rule context."""
+load("@build_bazel_rules_nodejs//:providers.bzl", "JSNamedModuleInfo")
 
 def _get_workspace_name(ctx):
     if ctx.label.workspace_root:
@@ -11,8 +13,7 @@ def _get_workspace_name(ctx):
     else:
         return ctx.workspace_name
 
-"""Implementation of the dev server rule."""
-
+# Implementation of the dev server rule.
 def _dev_server_rule_impl(ctx):
     files = depset(ctx.files.srcs)
 
@@ -30,8 +31,10 @@ def _dev_server_rule_impl(ctx):
     # rule output.
     for d in ctx.attr.deps:
         if JSNamedModuleInfo in d:
+            # buildifier: disable=overly-nested-depset
             files = depset(transitive = [files, d[JSNamedModuleInfo].sources])
         elif hasattr(d, "files"):
+            # buildifier: disable=overly-nested-depset
             files = depset(transitive = [files, d.files])
 
     workspace_name = _get_workspace_name(ctx)
@@ -99,12 +102,9 @@ dev_server_rule = rule(
     },
 )
 
-"""
-  Creates a dev server that can depend on individual bazel targets. The server uses
-  bazel runfile resolution in order to work with Bazel package paths. e.g. developers can
-  request files through their manifest path: "my_workspace/src/dev-app/my-genfile".
-"""
-
+#  Creates a dev server that can depend on individual bazel targets. The server uses
+#  bazel runfile resolution in order to work with Bazel package paths. e.g. developers can
+#  request files through their manifest path: "my_workspace/src/dev-app/my-genfile".
 def dev_server(name, testonly = False, port = 4200, tags = [], **kwargs):
     dev_server_rule(
         name = "%s_launcher" % name,
