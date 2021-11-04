@@ -800,7 +800,7 @@ export abstract class _TooltipComponentBase implements OnDestroy {
   private _elementFocusedBeforeDialogWasOpened: HTMLElement | null = null;
 
   /** Subject for notifying that the tooltip has been hidden from the view */
-  private readonly _onHide: Subject<void> = new Subject();
+  private readonly _onHide: Subject<void> = new Subject<void>();
 
   constructor(
     public _elementRef: ElementRef<HTMLElement>,

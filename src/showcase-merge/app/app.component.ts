@@ -28,7 +28,7 @@ export class AppComponent implements AfterContentInit, OnDestroy {
     localStorage.getItem(variantLocalstorageKey) || 'standard'
   );
   packages = PACKAGES;
-  private _destroyed = new Subject();
+  private _destroyed = new Subject<void>();
 
   constructor(
     private _breakpointObserver: BreakpointObserver,

@@ -842,7 +842,7 @@ const DEFAULT_TYPEAHEAD_DEBOUNCE_INTERVAL = 200;
 describe('SbbSelect', () => {
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
-  const scrolledSubject = new Subject();
+  const scrolledSubject = new Subject<void>();
 
   /**
    * Configures the test module for SbbSelect with the given declarations. This is broken out so

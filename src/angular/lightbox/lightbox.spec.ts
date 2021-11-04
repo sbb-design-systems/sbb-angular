@@ -58,7 +58,7 @@ describe('SbbLightbox', () => {
   let lightbox: SbbLightbox;
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
-  const scrolledSubject = new Subject();
+  const scrolledSubject = new Subject<void>();
   let focusMonitor: FocusMonitor;
 
   let testViewContainerRef: ViewContainerRef;

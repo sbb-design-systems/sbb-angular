@@ -18,7 +18,7 @@ import { SbbTabLabelWrapper } from './tab-label-wrapper';
 
 describe('SbbTabHeader', () => {
   let dir: Direction = 'ltr';
-  const change = new Subject();
+  const change = new Subject<void>();
   let fixture: ComponentFixture<SimpleTabHeaderApp>;
   let appComponent: SimpleTabHeaderApp;
 

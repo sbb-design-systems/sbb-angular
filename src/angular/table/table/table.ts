@@ -83,7 +83,7 @@ export class SbbTable<T> extends CdkTable<T> implements OnInit, OnDestroy {
   // tslint:disable-next-line:naming-convention
   protected override needsPositionStickyOnElement: boolean = false;
 
-  private _destroyed = new Subject();
+  private _destroyed = new Subject<void>();
 
   constructor(
     differs: IterableDiffers,

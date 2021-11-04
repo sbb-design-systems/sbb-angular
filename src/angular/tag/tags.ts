@@ -63,7 +63,7 @@ export class SbbTags implements AfterContentInit, OnDestroy {
   @ViewChild('allTag')
   allTag: SbbTag;
 
-  private _destroyed = new Subject();
+  private _destroyed = new Subject<void>();
 
   ngAfterContentInit() {
     // Listen to tag changes in order to update state of "All" tag

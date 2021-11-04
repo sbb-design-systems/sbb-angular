@@ -42,7 +42,7 @@ export class TagAdvancedExample implements OnDestroy {
   tags: Tag[];
 
   amountFirstItem = new FormControl();
-  private _destroyed = new Subject();
+  private _destroyed = new Subject<void>();
 
   constructor() {
     this.reset();

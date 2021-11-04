@@ -24,7 +24,7 @@ import { SbbTableDataSource } from './table/table-data-source';
 import { SbbTableWrapper } from './table/table-wrapper';
 
 describe('SbbTable', () => {
-  const viewPortRulerMockChangeTrigger = new Subject();
+  const viewPortRulerMockChangeTrigger = new Subject<void>();
   const viewportRulerMock = {
     change: () => viewPortRulerMockChangeTrigger,
   };

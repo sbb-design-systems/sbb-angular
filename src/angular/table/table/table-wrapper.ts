@@ -1,13 +1,6 @@
 import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
 import { ViewportRuler } from '@angular/cdk/scrolling';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Directive,
-  ElementRef,
-  NgZone,
-  OnDestroy,
-} from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, NgZone, OnDestroy } from '@angular/core';
 import { fromEvent, merge, Subject } from 'rxjs';
 import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
 
@@ -33,11 +26,10 @@ export class SbbTableWrapper implements AfterViewInit, OnDestroy {
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
-    private _viewportRuler: ViewportRuler,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _viewportRuler: ViewportRuler
   ) {}
 
-  private _destroyed = new Subject();
+  private _destroyed = new Subject<void>();
 
   ngAfterViewInit(): void {
     const resize = this._viewportRuler.change(150);
