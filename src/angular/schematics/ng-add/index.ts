@@ -51,15 +51,27 @@ export function ngAdd(options: Schema): Rule {
       installTaskId,
     ]);
 
-    // If there are existing imports to @sbb-esta/angular-public, @sbb-esta/angular-business, @sbb-esta/angular-core or @sbb-esta/angular-maps run migration
+    // If there are existing imports to @sbb-esta/angular-public, @sbb-esta/angular-business, @sbb-esta/angular-core run migration
+    const legacyVersions = [
+      '@sbb-esta/angular-business',
+      '@sbb-esta/angular-public',
+      '@sbb-esta/angular-core',
+    ]
+      .map((packageName) => getPackageVersionFromPackageJson(host, packageName))
+      .filter((version) => !!version);
+
     if (
-      [
-        '@sbb-esta/angular-business',
-        '@sbb-esta/angular-public',
-        '@sbb-esta/angular-maps',
-        '@sbb-esta/angular-core',
-      ].some((packageName) => !!getPackageVersionFromPackageJson(host, packageName))
+      legacyVersions.some((version) => {
+        return parseInt(version?.match(/\d+/g)?.[0] ?? '0', 10) < 12;
+      })
     ) {
+      context.logger.warn(
+        `Skipped automatic migration because one of the packages @sbb-esta/angular-business, @sbb-esta/angular-public or @sbb-esta/angular-core has a major version not equals to 12.`
+      );
+      context.logger.warn(
+        `You can run the migration manually by running ng generate @sbb-esta/angular:ng-add-migrate && ng generate @sbb-esta/angular:ng-migration-clean-up`
+      );
+    } else if (legacyVersions.length) {
       const migrateId = context.addTask(new RunSchematicTask('ng-add-migrate', options), [
         setupProjectId,
       ]);

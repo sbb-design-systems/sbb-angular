@@ -60,7 +60,7 @@ const TEMPLATE_FILES = [
  */
 const TAGS: string[] = ['sbb', 'angular', 'example'];
 
-const angularVersion = '^12.0.0';
+const angularVersion = '^13.0.0';
 const dependencies = {
   '@angular/animations': angularVersion,
   '@angular/cdk': angularVersion,
@@ -71,13 +71,11 @@ const dependencies = {
   '@angular/platform-browser': angularVersion,
   '@angular/platform-browser-dynamic': angularVersion,
   '@angular/router': angularVersion,
-  '@sbb-esta/angular-core': libraryVersion,
-  '@sbb-esta/angular-icons': libraryVersion,
-  '@sbb-esta/angular-public': libraryVersion,
-  '@sbb-esta/angular-business': libraryVersion,
+  '@sbb-esta/angular': libraryVersion,
+  '@sbb-esta/angular-maps': libraryVersion,
   rxjs: '^6.6.3',
-  tslib: '^2.0.3',
-  'zone.js': '^0.11.2',
+  tslib: '^2.3.0',
+  'zone.js': '~0.11.3',
 };
 
 /**
@@ -115,9 +113,7 @@ export class StackblitzWriterService {
     this._appendFormInput(form, 'description', data.description);
     this._appendFormInput(form, 'dependencies', JSON.stringify(dependencies));
 
-    const moduleFile = data.business
-      ? 'src/app/sbb-business.module.ts'
-      : 'src/app/sbb-public.module.ts';
+    const moduleFile = 'src/app/sbb.module.ts';
 
     return Promise.all(
       TEMPLATE_FILES.map((file) =>
@@ -129,10 +125,7 @@ export class StackblitzWriterService {
               response = response
                 .replace(/\{componentName\}/g, data.componentName)
                 .replace(/\{selectorName\}/g, data.selectorName)
-                .replace(
-                  /\{moduleName\}/g,
-                  data.business ? 'sbb-business.module' : 'sbb-public.module'
-                );
+                .replace(/\{moduleName\}/g, 'sbb.module');
             } else if (file.includes('src/index.html')) {
               response = response
                 .replace(/my-app/g, `sbb-${data.selectorName}`)
@@ -140,9 +133,7 @@ export class StackblitzWriterService {
             } else if (file.includes('angular.json')) {
               response = response.replace(
                 '"src/styles.scss"',
-                `"src/styles.scss", "node_modules/@sbb-esta/angular-${
-                  data.business ? 'business' : 'public'
-                }/typography.css"`
+                `"src/styles.scss", "node_modules/@sbb-esta/angular/typography.css"`
               );
             }
             this._addFileToForm(form, data, response, file, TEMPLATE_PATH, false);
@@ -151,10 +142,7 @@ export class StackblitzWriterService {
         this._readFile(moduleFile, TEMPLATE_PATH)
           .toPromise()
           .then((response: string) => {
-            response = response.replace(
-              /\{packageName\}/g,
-              data.business ? '@sbb-esta/angular-business' : '@sbb-esta/angular-public'
-            );
+            response = response.replace(/\{packageName\}/g, '@sbb-esta/angular');
             this._addFileToForm(form, data, response, moduleFile, TEMPLATE_PATH, false);
           })
       )

@@ -51,8 +51,7 @@ function configureTestBed() {
 
     var testBed = testing.TestBed.initTestEnvironment(
       testingBrowser.BrowserDynamicTestingModule,
-      testingBrowser.platformBrowserDynamicTesting(),
-      { teardown: { destroyAfterEach: true } }
+      testingBrowser.platformBrowserDynamicTesting()
     );
 
     patchTestBedToDestroyFixturesAfterEveryTest(testBed);

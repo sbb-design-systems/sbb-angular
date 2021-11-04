@@ -25,15 +25,13 @@ ng_test_library(
     ),
     deps = [
         ":i18n",
+        "@npm//@angular/common",
         "@npm//@angular/platform-browser",
     ],
 )
 
 ng_web_test_suite(
     name = "unit_tests",
-    static_css = [
-        "//src/angular:typography",
-    ],
     deps = [":unit_test_sources"],
 )
 

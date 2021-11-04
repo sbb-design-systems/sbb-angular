@@ -6,11 +6,12 @@
  * found in the LICENSE file at https://angular.io/license
  */
 // tslint:disable: naming-convention
-import { getSystemPath, JsonParseMode, parseJson, Path } from '@angular-devkit/core';
+import { getSystemPath, Path } from '@angular-devkit/core';
 import { HostTree, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { readFileSync } from 'fs';
 import { sync as globSync } from 'glob';
+import { parse } from 'jsonc-parser';
 import { basename, extname, join, relative, sep } from 'path';
 import { EMPTY } from 'rxjs';
 
@@ -86,12 +87,11 @@ export async function createTestCaseSetup(
   });
 
   const testAppTsconfigPath = 'projects/cdk-testing/tsconfig.app.json';
-  // Parse TypeScript configuration files with JSON5 as they could contain comments or
-  // unquoted properties.
-  const testAppTsconfig = parseJson(
-    appTree.readContent(testAppTsconfigPath),
-    JsonParseMode.Json5
-  ) as any;
+  // Parse TypeScript configuration files with JSONC (like the CLI does) as the
+  // config files could contain comments or trailing commas
+  const testAppTsconfig = parse(appTree.readContent(testAppTsconfigPath), [], {
+    allowTrailingComma: true,
+  });
 
   // include all TypeScript files in the project. Otherwise all test input
   // files won't be part of the program and cannot be migrated.

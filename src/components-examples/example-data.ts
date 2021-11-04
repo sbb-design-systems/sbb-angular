@@ -1,6 +1,3 @@
-import { ComponentFactory, Injector } from '@angular/core';
-import { loadExampleFactory } from '@sbb-esta/components-examples/load-example';
-
 // The example-module file will be auto-generated. As soon as the
 // examples are being compiled, the module file will be generated.
 // @ts-ignore example-module.ts is generated automatically by bazel
@@ -63,9 +60,5 @@ export class ExampleData {
     this.description = title || exampleName.replace(/[\-]+/g, ' ') + ' Example';
     this.componentNames = [componentName, ...additionalComponents];
     this.variant = variant;
-  }
-
-  async componentFactory(injector: Injector): Promise<ComponentFactory<any>> {
-    return await loadExampleFactory(this.id, injector);
   }
 }

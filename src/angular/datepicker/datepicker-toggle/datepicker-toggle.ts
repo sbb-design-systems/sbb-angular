@@ -8,6 +8,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -16,7 +17,8 @@ import {
 } from '@angular/core';
 import { merge, of, Subscription } from 'rxjs';
 
-import { SbbDatepicker } from '../datepicker/datepicker';
+import { SBB_DATEPICKER } from '../datepicker-token';
+import type { SbbDatepicker } from '../datepicker/datepicker';
 
 @Component({
   selector: 'sbb-datepicker-toggle',
@@ -52,7 +54,7 @@ export class SbbDatepickerToggle<D> implements OnDestroy, OnChanges, AfterConten
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    public _datepicker: SbbDatepicker<D>,
+    @Inject(SBB_DATEPICKER) public _datepicker: SbbDatepicker<D>,
     @Attribute('tabindex') defaultTabIndex: string
   ) {
     const parsedTabIndex = Number(defaultTabIndex);

@@ -10,6 +10,7 @@ import {
   methodCallChecks,
   outputNames,
   propertyNames,
+  symbolRemoval,
 } from './data';
 
 /** Upgrade data that will be used for the sbb-angular ng-add schematic. */
@@ -23,4 +24,5 @@ export const sbbAngularUpgradeData: UpgradeData = {
   methodCallChecks,
   outputNames,
   propertyNames,
+  symbolRemoval,
 };

@@ -1,4 +1,4 @@
-import { COLLECTION_PATH } from '../../index.spec';
+import { COLLECTION_PATH } from '../../paths';
 import { defineJasmineTestCases, findBazelVersionTestCases } from '../../testing';
 
 describe('@sbb-esta/angular ng-add test cases', () => {

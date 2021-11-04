@@ -10,12 +10,19 @@ load("@npm//@bazel/esbuild:index.bzl", _esbuild = "esbuild")
 load("@npm//@bazel/jasmine:index.bzl", _jasmine_node_test = "jasmine_node_test")
 load("@npm//@bazel/protractor:index.bzl", _protractor_web_test_suite = "protractor_web_test_suite")
 load("@npm//@bazel/typescript:index.bzl", _ts_library = "ts_library")
-load("//:packages.bzl", "VERSION_PLACEHOLDER_REPLACEMENTS")
-load("//:rollup-globals.bzl", "ROLLUP_GLOBALS")
+load("//:packages.bzl", "NO_STAMP_NPM_PACKAGE_SUBSTITUTIONS", "NPM_PACKAGE_SUBSTITUTIONS")
+load("//:pkg-externals.bzl", "PKG_EXTERNALS")
 load("//tools/markdown-to-html:index.bzl", _markdown_to_html = "markdown_to_html")
+load("//tools/spec-bundling:index.bzl", "spec_bundle")
 
 _DEFAULT_TSCONFIG_BUILD = "//src:bazel-tsconfig-build.json"
 _DEFAULT_TSCONFIG_TEST = "//src:tsconfig-test"
+
+# buildifier: disable=name-conventions
+npmPackageSubstitutions = select({
+    "//tools:stamp": NPM_PACKAGE_SUBSTITUTIONS,
+    "//conditions:default": NO_STAMP_NPM_PACKAGE_SUBSTITUTIONS,
+})
 
 # Re-exports to simplify build file load statements
 markdown_to_html = _markdown_to_html
@@ -57,7 +64,15 @@ def sass_library(**kwargs):
     _sass_library(**kwargs)
 
 # buildifier: disable=function-docstring
-def ts_library(tsconfig = None, deps = [], testonly = False, **kwargs):
+def ts_library(
+        tsconfig = None,
+        deps = [],
+        testonly = False,
+        # TODO(devversion): disallow configuration of the target when schematics use ESM.
+        devmode_target = None,
+        prodmode_target = None,
+        devmode_module = None,
+        **kwargs):
     # Add tslib because we use import helpers for all public packages.
     local_deps = ["@npm//tslib"] + deps
 
@@ -74,6 +89,14 @@ def ts_library(tsconfig = None, deps = [], testonly = False, **kwargs):
         # NodeJS executions, by activating the Bazel NodeJS linker.
         # See: https://github.com/bazelbuild/rules_nodejs/pull/2799.
         package_name = module_name,
+        # For prodmode, the target is set to `ES2020`. `@bazel/typecript` sets `ES2015` by default. Note
+        # that this should be in sync with the `ng_module` tsconfig generation to emit proper APF v13.
+        # https://github.com/bazelbuild/rules_nodejs/blob/901df3868e3ceda177d3ed181205e8456a5592ea/third_party/github.com/bazelbuild/rules_typescript/internal/common/tsconfig.bzl#L195
+        prodmode_target = prodmode_target if prodmode_target != None else "es2020",
+        # We also set devmode output to the same settings as prodmode as a first step in combining
+        # devmode and prodmode output. We will not rely on AMD output anyway due to the linker processing.
+        devmode_target = devmode_target if devmode_target != None else "es2020",
+        devmode_module = devmode_module if devmode_module != None else "esnext",
         tsconfig = tsconfig,
         testonly = testonly,
         deps = local_deps,
@@ -91,27 +114,8 @@ def ng_module(
     if not tsconfig:
         tsconfig = _getDefaultTsConfig(testonly)
 
-    # We only generate a flat module if there is a "public-api.ts" file that
-    # will be picked up by NGC or ngtsc.
-    needs_flat_module = "public-api.ts" in srcs
-
     # Compute an AMD module name for the target.
     module_name = _compute_module_name(testonly)
-
-    # Targets which have a module name and are not used for tests, should
-    # have a default flat module out file named "index". This is necessary
-    # as imports to that target should go through the flat module bundle.
-    if needs_flat_module and module_name and not flat_module_out_file and not testonly:
-        flat_module_out_file = "index"
-
-    # Workaround to avoid a lot of changes to the Bazel build rules. Since
-    # for most targets the flat module out file is "index.js", we cannot
-    # include "index.ts" (if present) as source-file. This would resolve
-    # in a conflict in the metadata bundler. Once we switch to Ivy and
-    # no longer need metadata bundles, we can remove this logic.
-    if flat_module_out_file == "index":
-        if "index.ts" in srcs:
-            srcs.remove("index.ts")
 
     local_deps = [
         # Add tslib because we use import helpers for all public packages.
@@ -132,23 +136,14 @@ def ng_module(
         # NodeJS executions, by activating the Bazel NodeJS linker.
         # See: https://github.com/bazelbuild/rules_nodejs/pull/2799.
         package_name = module_name,
-        flat_module_out_file = flat_module_out_file,
+        strict_templates = True,
         deps = local_deps,
         tsconfig = tsconfig,
         testonly = testonly,
         **kwargs
     )
 
-def ng_ts_library(assets = [], **kwargs):
-    _ts_library(
-        angular_assets = assets,
-        compiler = "//tools:tsc_wrapped_with_angular",
-        supports_workers = True,
-        use_angular_plugin = True,
-        **kwargs
-    )
-
-def ng_package(name, data = [], deps = [], globals = ROLLUP_GLOBALS, readme_md = None, **kwargs):
+def ng_package(name, data = [], deps = [], externals = PKG_EXTERNALS, readme_md = None, visibility = None, **kwargs):
     # If no readme file has been specified explicitly, use the default readme for
     # release packages from "src/README.md".
     if not readme_md:
@@ -165,12 +160,9 @@ def ng_package(name, data = [], deps = [], globals = ROLLUP_GLOBALS, readme_md =
 
     _ng_package(
         name = name,
-        globals = globals,
+        externals = externals,
         data = data + [":license_copied"],
-        # Tslib needs to be explicitly specified as dependency here, so that the `ng_package`
-        # rollup bundling action can include tslib. Tslib is usually a transitive dependency of
-        # entry-points passed to `ng_package`, but the rule does not collect transitive deps.
-        deps = deps + ["@npm//tslib"],
+        deps = deps,
         # We never set a `package_name` for NPM packages, neither do we enable validation.
         # This is necessary because the source targets of the NPM packages all have
         # package names set and setting a similar `package_name` on the NPM package would
@@ -187,12 +179,14 @@ def ng_package(name, data = [], deps = [], globals = ROLLUP_GLOBALS, readme_md =
         package_name = None,
         validate = False,
         readme_md = readme_md,
-        substitutions = VERSION_PLACEHOLDER_REPLACEMENTS,
+        substitutions = npmPackageSubstitutions,
+        visibility = visibility,
         **kwargs
     )
 
-def pkg_npm(**kwargs):
+def pkg_npm(name, visibility = None, **kwargs):
     _pkg_npm(
+        name = name,
         # We never set a `package_name` for NPM packages, neither do we enable validation.
         # This is necessary because the source targets of the NPM packages all have
         # package names set and setting a similar `package_name` on the NPM package would
@@ -208,7 +202,8 @@ def pkg_npm(**kwargs):
         # https://github.com/bazelbuild/rules_nodejs/issues/2810.
         package_name = None,
         validate = False,
-        substitutions = VERSION_PLACEHOLDER_REPLACEMENTS,
+        substitutions = npmPackageSubstitutions,
+        visibility = visibility,
         **kwargs
     )
 
@@ -246,11 +241,16 @@ def ng_e2e_test_library(deps = [], tsconfig = None, **kwargs):
 # buildifier: disable=function-docstring
 def karma_web_test_suite(name, **kwargs):
     web_test_args = {}
-    kwargs["srcs"] = ["@npm//:node_modules/tslib/tslib.js"] + kwargs.get("srcs", [])
-    kwargs["deps"] = [
-        "//tools/umd-modules:rxjs",
-        "//tools/umd-modules:ng-localize",
-    ] + kwargs.get("deps", [])
+    test_deps = kwargs.get("deps", [])
+
+    kwargs["tags"] = ["partial-compilation-integration"] + kwargs.get("tags", [])
+    kwargs["deps"] = ["%s_bundle" % name]
+
+    spec_bundle(
+        name = "%s_bundle" % name,
+        deps = test_deps,
+        platform = "browser",
+    )
 
     # Set up default browsers if no explicit `browsers` have been specified.
     if not hasattr(kwargs, "browsers"):
@@ -291,14 +291,45 @@ def karma_web_test_suite(name, **kwargs):
         **kwargs
     )
 
-def protractor_web_test_suite(flaky = True, **kwargs):
+def protractor_web_test_suite(name, deps, **kwargs):
+    spec_bundle(
+        name = "%s_bundle" % name,
+        deps = deps,
+        platform = "node",
+        external = ["protractor", "selenium-webdriver"],
+    )
+
     _protractor_web_test_suite(
+        name = name,
         browsers = ["@npm//@angular/dev-infra-private/bazel/browsers/chromium:chromium"],
+        deps = ["%s_bundle" % name],
         **kwargs
     )
 
 # buildifier: disable=function-docstring
-def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], exclude_init_script = False, **kwargs):
+def ng_web_test_suite(deps = [], static_css = [], exclude_init_script = False, **kwargs):
+    bootstrap = [
+        # This matches the ZoneJS bundles used in default CLI projects. See:
+        # https://github.com/angular/angular-cli/blob/master/packages/schematics/angular/application/files/src/polyfills.ts.template#L58
+        # https://github.com/angular/angular-cli/blob/master/packages/schematics/angular/application/files/src/test.ts.template#L3
+        # Note `zone.js/dist/zone.js` is aliased in the CLI to point to the evergreen
+        # output that does not include legacy patches. See: https://github.com/angular/angular/issues/35157.
+        # TODO: Consider adding the legacy patches when testing Saucelabs/Browserstack with Bazel.
+        # CLI loads the legacy patches conditionally for ES5 legacy browsers. See:
+        # https://github.com/angular/angular-cli/blob/277bad3895cbce6de80aa10a05c349b10d9e09df/packages/angular_devkit/build_angular/src/angular-cli-files/models/webpack-configs/common.ts#L141
+        "@npm//:node_modules/zone.js/dist/zone-evergreen.js",
+        "@npm//:node_modules/zone.js/dist/zone-testing.js",
+        "@npm//:node_modules/reflect-metadata/Reflect.js",
+    ] + kwargs.pop("bootstrap", [])
+
+    # Always include a prebuilt theme in the test suite because otherwise tests, which depend on CSS
+    # that is needed for measuring, will unexpectedly fail. Also always adding a prebuilt theme
+    # reduces the amount of setup that is needed to create a test suite Bazel target. Note that the
+    # prebuilt theme will be also added to CDK test suites but shouldn't affect anything.
+    static_css = static_css + [
+        "//src/angular:typography",
+    ]
+
     # Workaround for https://github.com/bazelbuild/rules_typescript/issues/301
     # Since some of our tests depend on CSS files which are not part of the `ng_module` rule,
     # we need to somehow load static CSS files within Karma (e.g. overlay prebuilt). Those styles
@@ -307,12 +338,12 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], exclude_init_s
     # loads the given CSS file.
     for css_label in static_css:
         css_id = "static-css-file-%s" % (css_label.replace("/", "_").replace(":", "-"))
-        deps.append(":%s" % css_id)
+        bootstrap.append(":%s" % css_id)
 
         native.genrule(
             name = css_id,
             srcs = [css_label],
-            outs = ["%s.js" % css_id],
+            outs = ["%s.css.js" % css_id],
             output_to_bindir = True,
             cmd = """
         files=($(execpaths %s))
@@ -331,20 +362,7 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], exclude_init_s
     karma_web_test_suite(
         # Depend on our custom test initialization script. This needs to be the first dependency.
         deps = deps if exclude_init_script else ["//test:angular_test_init"] + deps,
-        bootstrap = [
-            # do not sort
-            # This matches the ZoneJS bundles used in default CLI projects. See:
-            # https://github.com/angular/angular-cli/blob/master/packages/schematics/angular/application/files/src/polyfills.ts.template#L58
-            # https://github.com/angular/angular-cli/blob/master/packages/schematics/angular/application/files/src/test.ts.template#L3
-            # Note `zone.js/dist/zone.js` is aliased in the CLI to point to the evergreen
-            # output that does not include legacy patches. See: https://github.com/angular/angular/issues/35157.
-            # TODO: Consider adding the legacy patches when testing Saucelabs/Browserstack with Bazel.
-            # CLI loads the legacy patches conditionally for ES5 legacy browsers. See:
-            # https://github.com/angular/angular-cli/blob/277bad3895cbce6de80aa10a05c349b10d9e09df/packages/angular_devkit/build_angular/src/angular-cli-files/models/webpack-configs/common.ts#L141
-            "@npm//:node_modules/zone.js/dist/zone-evergreen.js",
-            "@npm//:node_modules/zone.js/dist/zone-testing.js",
-            "@npm//:node_modules/reflect-metadata/Reflect.js",
-        ] + bootstrap,
+        bootstrap = bootstrap,
         **kwargs
     )
 

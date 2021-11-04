@@ -28,7 +28,7 @@ if (module === require.main) {
      * Builds the release packages with the default compile mode and
      * output directory.
      */
-    packages: () => buildReleasePackages(false, join(projectDir, 'dist/releases')),
+    packages: () => buildReleasePackages(join(projectDir, 'dist/releases')),
     i18n: () => buildI18n(join(projectDir, 'dist/releases'), join(projectDir, 'src/angular/i18n')),
     'showcase-merge': () => buildShowcaseMerge(join(projectDir, 'dist/releases')),
   };
@@ -50,10 +50,9 @@ function buildAllTargets() {
  * Builds the release packages with the given compile mode and copies
  * the package output into the given directory.
  */
-function buildReleasePackages(useIvy: boolean, distPath: string) {
+function buildReleasePackages(distPath: string) {
   console.log('######################################');
   console.log('  Building release packages...');
-  console.log(`  Compiling with Ivy: ${useIvy}`);
   console.log('######################################');
 
   /** Command that queries Bazel for all release package targets. */
@@ -80,11 +79,7 @@ function buildReleasePackages(useIvy: boolean, distPath: string) {
 
   // Build with "--config=release" so that Bazel runs the workspace stamping script. The
   // stamping script ensures that the version placeholder is populated in the release output.
-  exec(
-    `${bazelCmd} build --config=release --config=${useIvy ? 'ivy' : 'view-engine'} ${targets.join(
-      ' '
-    )}`
-  );
+  exec(`${bazelCmd} build --config=release ${targets.join(' ')}`);
 
   cleanDistPath(distPath);
 
@@ -114,7 +109,7 @@ function getPackageNamesOfTargets(targets: string[]) {
 }
 
 function buildI18n(distPath: string, i18nDistPath: string) {
-  buildReleasePackages(true, distPath);
+  buildReleasePackages(distPath);
   for (const format of ['xlf', 'xlf2']) {
     const relativeDistPath = relative(projectDir, distPath);
     const outPath = join(i18nDistPath, format, 'messages.xlf');

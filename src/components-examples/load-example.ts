@@ -1,35 +1,27 @@
-import { ComponentFactory, Injector, NgModuleFactory, Type, ɵNgModuleFactory } from '@angular/core';
+import { createNgModuleRef, Injector, Type } from '@angular/core';
 
 // @ts-ignore example-module.ts is generated automatically by bazel
 import { EXAMPLE_COMPONENTS, EXAMPLE_COMPONENTS_LOADER } from './example-module';
 
-/** Asynchronously loads the specified example and returns its component factory. */
-export function loadExampleFactory(
+/**
+ * Asynchronously loads the specified example and returns its component and
+ * an injector instantiated from the containing example module.
+ *
+ * This is used in the `dev-app` and `e2e-app` and assumes ESBuild having created
+ * entry-points for the example modules under the `<host>/bundles/` URL.
+ */
+export async function loadExample(
   name: string,
   injector: Injector
-): Promise<ComponentFactory<any>> {
+): Promise<{ component: Type<any>; injector: Injector }> {
   const { componentName, module } = EXAMPLE_COMPONENTS[name];
-  return loadModules(module.importSpecifier).then((moduleExports) => {
-    const moduleFactory: NgModuleFactory<any> = new ɵNgModuleFactory(moduleExports[module.name]);
-    const componentType: Type<any> = moduleExports[componentName];
-    return moduleFactory
-      .create(injector)
-      .componentFactoryResolver.resolveComponentFactory(componentType);
-  });
-}
+  const moduleExports = await EXAMPLE_COMPONENTS_LOADER.get(module.importSpecifier)!();
+  const moduleType: Type<any> = moduleExports[module.name];
+  const componentType: Type<any> = moduleExports[componentName];
+  const moduleRef = createNgModuleRef(moduleType, injector);
 
-declare let require: Function;
-
-function loadModules(importSpecifier: string): Promise<any> {
-  // require and require.version are available in dev mode, which use require.js.
-  // However, esbuild will bundle a wrapper for require, which will always throw.
-  // In order to detect prod mode, we need to check whether require exists but does
-  // not have the version property.
-  if (typeof require === 'function' && (require as any).version) {
-    return new Promise((resolve) =>
-      require([`@sbb-esta/components-examples/${importSpecifier}`], resolve)
-    );
-  }
-
-  return EXAMPLE_COMPONENTS_LOADER.get(importSpecifier)!();
+  return {
+    component: componentType,
+    injector: moduleRef.injector,
+  };
 }
