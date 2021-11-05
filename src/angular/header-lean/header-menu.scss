@@ -1,0 +1,122 @@
+@import '../styles/common';
+
+$sbbHeaderMenuSectionHeight: pxToRem(54);
+$sbbHeaderBaseZIndex: 1000;
+$sbbHeaderSideMenuZIndex: 800;
+$sbbHeaderMenuMobileZIndex: 1100;
+$sbbHeaderMenuTabletZIndex: 700;
+$sbbHeaderMenuWidth: pxToRem(300);
+
+.sbb-header-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: $sbbColorMilk;
+  z-index: $sbbHeaderMenuMobileZIndex;
+
+  @include mq($from: tabletPortrait) {
+    width: calc(100vw - #{$sbbHeaderMenuWidth});
+    z-index: $sbbHeaderMenuTabletZIndex;
+  }
+
+  &.sbb-header-menus-collapsed {
+    display: block;
+  }
+}
+
+button.sbb-header-menu-back,
+.sbb-header-menu > div.sbb-header-menu-title {
+  @include buttonResetFrameless();
+  height: $sbbHeaderMenuSectionHeight;
+  width: 100%;
+  line-height: pxToRem($sizeLineHeightDefaultLean);
+  font-size: pxToRem($sizeFontDefault);
+  color: $sbbColorBlack;
+  background-color: $sbbColorWhite;
+  border-bottom: pxToRem(1) solid $sbbColorSilver;
+}
+
+button.sbb-header-menu-back {
+  display: flex;
+  padding-top: pxToRem(15);
+  padding-left: pxToRem(8);
+  cursor: pointer;
+
+  @include mq($from: tabletPortrait) {
+    display: none;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+}
+
+.sbb-header-menu > div.sbb-header-menu-title {
+  font-size: pxToRem(21);
+  line-height: pxToRem(25);
+  padding-top: pxToRem(15);
+  padding-left: pxToRem(15);
+}
+
+.sbb-header-menu > div.sbb-header-menu-panel-container {
+  height: calc(100% - #{$sbbHeaderMenuSectionHeight * 2});
+
+  @include mq($from: tabletPortrait) {
+    height: calc(100% - #{$sbbHeaderMenuSectionHeight});
+  }
+
+  .sbb-header-menu-panel {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 0;
+    margin-top: pxToRem(32);
+    box-shadow: none;
+    border: 0;
+
+    & > hr {
+      display: none;
+    }
+
+    & > :is(a, button) {
+      padding: pxToRem(7) pxToRem(48) pxToRem(11) pxToRem(16);
+      color: $sbbColorIron;
+      line-height: pxToRem(20);
+      font-size: pxToRem(15);
+      text-decoration: none;
+      outline: 0;
+      position: relative;
+
+      &::after {
+        content: url($sbbIconArrowRightSmallBlack);
+        display: inline-block;
+        width: pxToRem(24);
+        height: pxToRem(24);
+        position: absolute;
+        right: pxToRem(16);
+        vertical-align: middle;
+      }
+
+      &:hover::after {
+        content: url($sbbIconArrowRightSmallRed125);
+      }
+
+      &.sbb-active,
+      &:hover,
+      &:active,
+      &:focus {
+        color: $sbbColorRed125;
+      }
+    }
+  }
+}
+
+.cdk-overlay-container .sbb-header-menu-panel .sbb-header-menu-item {
+  line-height: pxToRem(20);
+  font-size: pxToRem(15);
+}

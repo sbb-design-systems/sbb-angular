@@ -185,10 +185,6 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbHeaderModule',
           replaceWith: 'SbbHeaderLeanModule',
         },
-        {
-          replace: 'SbbHeader',
-          replaceWith: 'SbbHeaderLean',
-        },
       ],
     },
   ],
