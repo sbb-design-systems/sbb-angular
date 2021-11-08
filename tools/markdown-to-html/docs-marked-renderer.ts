@@ -35,12 +35,12 @@ export class DocsMarkdownRenderer extends Renderer {
    * Method that will be called whenever inline HTML is processed by marked. In that case,
    * we can easily transform the example comments into real HTML elements. For example:
    *
-   *  `<!-- example(name) -->` turns into `<div material-docs-example="name"></div>`
+   *  `<!-- example(name) -->` turns into `<div sbb-angular-docs-example="name"></div>`
    */
   html(html: string) {
     html = html.replace(
       exampleCommentRegex,
-      (_match: string, name: string) => `<div material-docs-example="${name}"></div>`
+      (_match: string, name: string) => `<div sbb-angular-docs-example="${name}"></div>`
     );
 
     return super.html(html);
