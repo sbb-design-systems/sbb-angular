@@ -3,7 +3,7 @@
   class="sbb-button-indicator-icon sbb-button-left-icon sbb-icon-fit"
   [svgIcon]="svgIcon"
 ></sbb-icon>
-<span class="sbb-button-wrapper"><ng-content></ng-content></span>
+<ng-content></ng-content>
 <sbb-icon
   *ngIf="(_rightIconVisible | async) && svgIcon"
   class="sbb-button-indicator-icon sbb-button-right-icon sbb-icon-fit"

@@ -1,5 +1,5 @@
 <label
-  class="sbb-file-selector-label sbb-secondary-button sbb-button-base"
+  class="sbb-file-selector-label sbb-secondary-button"
   [class.sbb-disabled]="disabled"
   [for]="inputId"
 >
@@ -15,7 +15,7 @@
     (change)="fileChange($event)"
     (blur)="_onTouched()"
   />
-  <span class="sbb-button-wrapper">{{ _labelUploadFile }}</span>
+  {{ _labelUploadFile }}
   <span class="sbb-file-selector-upload-icon">
     <sbb-icon class="sbb-icon-fit" svgIcon="kom:upload-small"></sbb-icon>
   </span>
