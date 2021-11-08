@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-tooltip-custom-content-example',
-  templateUrl: './tooltip-custom-content-example.html',
+  templateUrl: 'tooltip-custom-content-example.html',
 })
 export class TooltipCustomContentExample {}

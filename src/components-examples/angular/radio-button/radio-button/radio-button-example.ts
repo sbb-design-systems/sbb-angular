@@ -7,7 +7,7 @@ import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
  */
 @Component({
   selector: 'sbb-radio-button-example',
-  templateUrl: './radio-button-example.html',
+  templateUrl: 'radio-button-example.html',
 })
 export class RadioButtonExample {
   disabled: boolean;

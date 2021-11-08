@@ -8,8 +8,8 @@ import { startWith } from 'rxjs/operators';
  */
 @Component({
   selector: 'sbb-radio-button-panel-group-example',
-  templateUrl: './radio-button-panel-group-example.html',
-  styleUrls: ['./radio-button-panel-group-example.css'],
+  templateUrl: 'radio-button-panel-group-example.html',
+  styleUrls: ['radio-button-panel-group-example.css'],
 })
 export class RadioButtonPanelGroupExample {
   readonly breakpoints = [

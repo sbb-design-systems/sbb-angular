@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-autocomplete-forms-example',
-  templateUrl: './autocomplete-forms-example.html',
+  templateUrl: 'autocomplete-forms-example.html',
 })
 export class AutocompleteFormsExample {
   value: string;

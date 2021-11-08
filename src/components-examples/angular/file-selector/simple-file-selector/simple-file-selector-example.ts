@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-simple-file-selector-example',
-  templateUrl: './simple-file-selector-example.html',
+  templateUrl: 'simple-file-selector-example.html',
 })
 export class SimpleFileSelectorExample {
   filesList: File[] = [];

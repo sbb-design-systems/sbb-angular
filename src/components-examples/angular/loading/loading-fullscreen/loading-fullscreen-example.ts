@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-loading-fullscreen-example',
-  templateUrl: './loading-fullscreen-example.html',
+  templateUrl: 'loading-fullscreen-example.html',
 })
 export class LoadingFullscreenExample {
   showSpinner: boolean;

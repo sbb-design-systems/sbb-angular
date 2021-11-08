@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-select-reactive-forms-example',
-  templateUrl: './select-reactive-forms-example.html',
+  templateUrl: 'select-reactive-forms-example.html',
 })
 export class SelectReactiveFormsExample {
   form: FormGroup;

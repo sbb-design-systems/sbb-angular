@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-checkbox-example',
-  templateUrl: './checkbox-example.html',
+  templateUrl: 'checkbox-example.html',
 })
 export class CheckboxExample {
   disabled: boolean;

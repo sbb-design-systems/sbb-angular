@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-select-native-example',
-  templateUrl: './select-native-example.html',
+  templateUrl: 'select-native-example.html',
 })
 export class SelectNativeExample {
   form: FormGroup;

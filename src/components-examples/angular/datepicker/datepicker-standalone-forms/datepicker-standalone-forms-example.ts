@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-datepicker-standalone-forms-example',
-  templateUrl: './datepicker-standalone-forms-example.html',
+  templateUrl: 'datepicker-standalone-forms-example.html',
 })
 export class DatepickerStandaloneFormsExample {
   date: Date;

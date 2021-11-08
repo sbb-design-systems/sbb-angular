@@ -9,7 +9,7 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
  */
 @Component({
   selector: 'sbb-search-custom-icon-autocomplete-static-options-example',
-  templateUrl: './search-custom-icon-autocomplete-static-options-example.html',
+  templateUrl: 'search-custom-icon-autocomplete-static-options-example.html',
 })
 export class SearchCustomIconAutocompleteStaticOptionsExample implements OnInit, OnDestroy {
   searchControl = new FormControl('');

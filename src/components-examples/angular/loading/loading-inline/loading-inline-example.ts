@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-loading-inline-example',
-  templateUrl: './loading-inline-example.html',
+  templateUrl: 'loading-inline-example.html',
 })
 export class LoadingInlineExample {}

@@ -16,7 +16,7 @@ interface GroupItem {
  */
 @Component({
   selector: 'sbb-breadcrumb-dynamic-example',
-  templateUrl: './breadcrumb-dynamic-example.html',
+  templateUrl: 'breadcrumb-dynamic-example.html',
 })
 export class BreadcrumbDynamicExample {
   // This example should not be used as is. Router Config should be

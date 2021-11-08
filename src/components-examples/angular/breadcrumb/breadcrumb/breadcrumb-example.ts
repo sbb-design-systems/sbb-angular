@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-breadcrumb-example',
-  templateUrl: './breadcrumb-example.html',
+  templateUrl: 'breadcrumb-example.html',
 })
 export class BreadcrumbExample {}

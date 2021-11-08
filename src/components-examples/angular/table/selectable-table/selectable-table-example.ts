@@ -16,7 +16,7 @@ interface VehicleExampleItem {
  */
 @Component({
   selector: 'sbb-selectable-table-example',
-  templateUrl: './selectable-table-example.html',
+  templateUrl: 'selectable-table-example.html',
 })
 export class SelectableTableExample {
   columns = [

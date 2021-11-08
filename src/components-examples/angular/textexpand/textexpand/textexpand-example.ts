@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-textexpand-example',
-  templateUrl: './textexpand-example.html',
+  templateUrl: 'textexpand-example.html',
 })
 export class TextexpandExample {}

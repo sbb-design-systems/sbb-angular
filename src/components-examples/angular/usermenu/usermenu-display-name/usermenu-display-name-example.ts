@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-usermenu-display-name-example',
-  templateUrl: './usermenu-display-name-example.html',
+  templateUrl: 'usermenu-display-name-example.html',
 })
 export class UsermenuDisplayNameExample {
   displayName?: string;

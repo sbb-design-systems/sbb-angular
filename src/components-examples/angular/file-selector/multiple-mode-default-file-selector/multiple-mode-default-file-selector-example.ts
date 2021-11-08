@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
  */
 @Component({
   selector: 'sbb-multiple-mode-default-file-selector-example',
-  templateUrl: './multiple-mode-default-file-selector-example.html',
+  templateUrl: 'multiple-mode-default-file-selector-example.html',
 })
 export class MultipleModeDefaultFileSelectorExample implements OnInit, OnDestroy {
   filesList: File[] = [];

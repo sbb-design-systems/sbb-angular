@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-captcha-template-driven-forms-example',
-  templateUrl: './captcha-template-driven-forms-example.html',
-  styleUrls: ['./captcha-template-driven-forms-example.css'],
+  templateUrl: 'captcha-template-driven-forms-example.html',
+  styleUrls: ['captcha-template-driven-forms-example.css'],
 })
 export class CaptchaTemplateDrivenFormsExample {
   testSiteKey: string = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';

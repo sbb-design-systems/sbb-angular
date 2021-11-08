@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-radio-button-panel-simple-example',
-  templateUrl: './radio-button-panel-simple-example.html',
+  templateUrl: 'radio-button-panel-simple-example.html',
 })
 export class RadioButtonPanelSimpleExample {
   value = new FormControl();

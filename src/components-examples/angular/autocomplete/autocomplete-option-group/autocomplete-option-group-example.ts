@@ -9,7 +9,7 @@ import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operato
  */
 @Component({
   selector: 'sbb-autocomplete-option-group-example',
-  templateUrl: './autocomplete-option-group-example.html',
+  templateUrl: 'autocomplete-option-group-example.html',
 })
 export class AutocompleteOptionGroupExample implements OnInit {
   myControlStatic = new FormControl('one');

@@ -11,8 +11,8 @@ import {
  */
 @Component({
   selector: 'sbb-simple-notification-toast-example',
-  templateUrl: './simple-notification-toast-example.html',
-  styleUrls: ['./simple-notification-toast-example.css'],
+  templateUrl: 'simple-notification-toast-example.html',
+  styleUrls: ['simple-notification-toast-example.css'],
 })
 export class SimpleNotificationToastExample {
   type: SbbNotificationType = 'success';

@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-toggle-reactive-example',
-  templateUrl: './toggle-reactive-example.html',
+  templateUrl: 'toggle-reactive-example.html',
   encapsulation: ViewEncapsulation.None,
 })
 export class ToggleReactiveExample {

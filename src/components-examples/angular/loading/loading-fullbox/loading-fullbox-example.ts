@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-loading-fullbox-example',
-  templateUrl: './loading-fullbox-example.html',
+  templateUrl: 'loading-fullbox-example.html',
 })
 export class LoadingFullboxExample {
   showSpinner: boolean;

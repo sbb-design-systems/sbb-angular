@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-accordion-nested-panel-lazy-content-example',
-  templateUrl: './accordion-nested-panel-lazy-content-example.html',
+  templateUrl: 'accordion-nested-panel-lazy-content-example.html',
 })
 export class AccordionNestedPanelLazyContentExample {}

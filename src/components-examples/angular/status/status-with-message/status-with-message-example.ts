@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-status-with-message-example',
-  templateUrl: './status-with-message-example.html',
+  templateUrl: 'status-with-message-example.html',
 })
 export class StatusWithMessageExample {}

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-radio-button-panel-content-example',
-  templateUrl: './radio-button-panel-content-example.html',
+  templateUrl: 'radio-button-panel-content-example.html',
 })
 export class RadioButtonPanelContentExample {
   disabled = false;

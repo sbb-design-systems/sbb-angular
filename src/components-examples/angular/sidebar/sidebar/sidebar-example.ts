@@ -12,8 +12,8 @@ import { startWith, takeUntil } from 'rxjs/operators';
  */
 @Component({
   selector: 'sbb-sidebar-example',
-  templateUrl: './sidebar-example.html',
-  styleUrls: ['./sidebar-example.css'],
+  templateUrl: 'sidebar-example.html',
+  styleUrls: ['sidebar-example.css'],
   providers: [
     FakeMediaMatcher,
     { provide: MediaMatcher, useExisting: FakeMediaMatcher },

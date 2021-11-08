@@ -19,8 +19,8 @@ interface ImageRecord {
  */
 @Component({
   selector: 'sbb-search-historic-railway-pictures-example',
-  templateUrl: './search-historic-railway-pictures-example.html',
-  styleUrls: ['./search-historic-railway-pictures-example.css'],
+  templateUrl: 'search-historic-railway-pictures-example.html',
+  styleUrls: ['search-historic-railway-pictures-example.css'],
 })
 export class SearchHistoricRailwayPicturesExample implements OnInit, OnDestroy {
   searchControl = new FormControl('');

@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-accordion-simple-panel-example',
-  templateUrl: './accordion-simple-panel-example.html',
+  templateUrl: 'accordion-simple-panel-example.html',
 })
 export class AccordionSimplePanelExample {}

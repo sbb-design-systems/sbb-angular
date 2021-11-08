@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-custom-icon-notification-example',
-  templateUrl: './custom-icon-notification-example.html',
+  templateUrl: 'custom-icon-notification-example.html',
 })
 export class CustomIconNotificationExample {}

@@ -7,7 +7,7 @@ import { SbbTableDataSource } from '@sbb-esta/angular/table';
  */
 @Component({
   selector: 'sbb-simple-table-example',
-  templateUrl: './simple-table-example.html',
+  templateUrl: 'simple-table-example.html',
 })
 export class SimpleTableExample {
   displayedColumns: string[] = [

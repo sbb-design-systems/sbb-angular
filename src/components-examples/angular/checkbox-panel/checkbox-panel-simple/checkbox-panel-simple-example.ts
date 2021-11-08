@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-checkbox-panel-simple-example',
-  templateUrl: './checkbox-panel-simple-example.html',
+  templateUrl: 'checkbox-panel-simple-example.html',
 })
 export class CheckboxPanelSimpleExample {
   checked = new FormControl(false);

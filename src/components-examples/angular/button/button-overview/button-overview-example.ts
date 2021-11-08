@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-button-overview-example',
-  templateUrl: './button-overview-example.html',
+  templateUrl: 'button-overview-example.html',
 })
 export class ButtonOverviewExample {
   disabled = false;

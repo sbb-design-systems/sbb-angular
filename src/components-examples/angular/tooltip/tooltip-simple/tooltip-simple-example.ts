@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-tooltip-simple-example',
-  templateUrl: './tooltip-simple-example.html',
+  templateUrl: 'tooltip-simple-example.html',
 })
 export class TooltipSimpleExample {
   tooltipContent = 'Tooltip text content';

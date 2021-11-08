@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-simple-time-input-example',
-  templateUrl: './simple-time-input-example.html',
+  templateUrl: 'simple-time-input-example.html',
 })
 export class SimpleTimeInputExample {}

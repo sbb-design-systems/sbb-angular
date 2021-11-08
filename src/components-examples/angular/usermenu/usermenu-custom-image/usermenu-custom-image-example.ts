@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-usermenu-custom-image-example',
-  templateUrl: './usermenu-custom-image-example.html',
+  templateUrl: 'usermenu-custom-image-example.html',
 })
 export class UsermenuCustomImageExample {
   userName?: string;

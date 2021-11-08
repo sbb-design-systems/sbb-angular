@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-datepicker-date-range-example',
-  templateUrl: './datepicker-date-range-example.html',
+  templateUrl: 'datepicker-date-range-example.html',
 })
 export class DatepickerDateRangeExample {
   start = new FormControl();

@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-accordion-wizard-example',
-  templateUrl: './accordion-wizard-example.html',
-  styleUrls: ['./accordion-wizard-example.css'],
+  templateUrl: 'accordion-wizard-example.html',
+  styleUrls: ['accordion-wizard-example.css'],
 })
 export class AccordionWizardExample {
   step = 0;

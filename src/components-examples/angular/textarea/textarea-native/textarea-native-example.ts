@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-textarea-native-example',
-  templateUrl: './textarea-native-example.html',
+  templateUrl: 'textarea-native-example.html',
 })
 export class TextareaNativeExample {
   textarea: string = 'SBB';

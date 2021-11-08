@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-form-field-textarea-tooltip-example',
-  templateUrl: './form-field-textarea-tooltip-example.html',
+  templateUrl: 'form-field-textarea-tooltip-example.html',
 })
 export class FormFieldTextareaTooltipExample {}

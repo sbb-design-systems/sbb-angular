@@ -8,7 +8,7 @@ import { SbbCheckboxChange } from '@sbb-esta/angular/checkbox';
  */
 @Component({
   selector: 'sbb-form-field-text-input-attribute-label-example',
-  templateUrl: './form-field-text-input-attribute-label-example.html',
+  templateUrl: 'form-field-text-input-attribute-label-example.html',
 })
 export class FormFieldTextInputAttributeLabelExample {
   name: FormControl = new FormControl('', [Validators.required]);

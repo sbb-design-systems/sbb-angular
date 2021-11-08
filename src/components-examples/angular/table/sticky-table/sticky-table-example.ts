@@ -8,8 +8,8 @@ import { SbbSort, SbbTableDataSource } from '@sbb-esta/angular/table';
  */
 @Component({
   selector: 'sbb-sticky-table-example',
-  styleUrls: ['./sticky-table-example.css'],
-  templateUrl: './sticky-table-example.html',
+  styleUrls: ['sticky-table-example.css'],
+  templateUrl: 'sticky-table-example.html',
 })
 export class StickyTableExample {
   displayedColumns: string[] = [

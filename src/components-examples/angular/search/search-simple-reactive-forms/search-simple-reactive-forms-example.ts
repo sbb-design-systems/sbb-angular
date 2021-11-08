@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-search-simple-reactive-forms-example',
-  templateUrl: './search-simple-reactive-forms-example.html',
+  templateUrl: 'search-simple-reactive-forms-example.html',
 })
 export class SearchSimpleReactiveFormsExample {
   searchControl = new FormControl('');

@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-esri-layer-list-example',
-  templateUrl: './esri-layer-list-example.html',
-  styleUrls: ['./esri-layer-list-example.css'],
+  templateUrl: 'esri-layer-list-example.html',
+  styleUrls: ['esri-layer-list-example.css'],
 })
 export class EsriLayerListExample {
   mapIsReady = false;

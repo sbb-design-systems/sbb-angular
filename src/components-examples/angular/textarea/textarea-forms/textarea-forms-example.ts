@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-textarea-forms-example',
-  templateUrl: './textarea-forms-example.html',
-  styleUrls: ['./textarea-forms-example.css'],
+  templateUrl: 'textarea-forms-example.html',
+  styleUrls: ['textarea-forms-example.css'],
 })
 export class TextareaFormsExample {
   textarea = 'SBB';

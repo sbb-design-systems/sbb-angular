@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-time-input-reactive-forms-example',
-  templateUrl: './time-input-reactive-forms-example.html',
+  templateUrl: 'time-input-reactive-forms-example.html',
 })
 export class TimeInputReactiveFormsExample {
   formControl = new FormControl('');

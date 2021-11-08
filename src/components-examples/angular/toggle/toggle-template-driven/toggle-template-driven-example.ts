@@ -6,7 +6,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
  */
 @Component({
   selector: 'sbb-toggle-template-driven-example',
-  templateUrl: './toggle-template-driven-example.html',
+  templateUrl: 'toggle-template-driven-example.html',
   encapsulation: ViewEncapsulation.None,
 })
 export class ToggleTemplateDrivenExample {

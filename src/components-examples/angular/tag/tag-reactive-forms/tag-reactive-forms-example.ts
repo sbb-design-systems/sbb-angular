@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-tag-reactive-forms-example',
-  templateUrl: './tag-reactive-forms-example.html',
+  templateUrl: 'tag-reactive-forms-example.html',
 })
 export class TagReactiveFormsExample {
   formGroup: FormGroup;

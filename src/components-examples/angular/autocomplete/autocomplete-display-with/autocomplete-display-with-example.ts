@@ -14,7 +14,7 @@ interface ExampleOption {
  */
 @Component({
   selector: 'sbb-autocomplete-display-with-example',
-  templateUrl: './autocomplete-display-with-example.html',
+  templateUrl: 'autocomplete-display-with-example.html',
 })
 export class AutocompleteDisplayWithExample {
   myControl = new FormControl('');

@@ -7,8 +7,8 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-accordion-basic-example',
-  templateUrl: './accordion-basic-example.html',
-  styleUrls: ['./accordion-basic-example.css'],
+  templateUrl: 'accordion-basic-example.html',
+  styleUrls: ['accordion-basic-example.css'],
 })
 export class AccordionBasicExample {
   multi = new FormControl(false);

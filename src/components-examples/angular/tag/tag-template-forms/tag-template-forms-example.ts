@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-tag-template-forms-example',
-  templateUrl: './tag-template-forms-example.html',
+  templateUrl: 'tag-template-forms-example.html',
 })
 export class TagTemplateFormsExample {
   trains = false;
