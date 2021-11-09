@@ -12,6 +12,7 @@
   </button>
 
   <button
+    *ngIf="stackBlitzEnabled() | async"
     sbb-icon-button
     sbb-stack-blitz-button
     type="button"

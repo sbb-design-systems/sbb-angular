@@ -186,7 +186,7 @@ export class StackBlitzWriter {
     // seems to be able to partially re-use the lock file to speed up the module tree computation,
     // so providing a lock file is still reasonable while modifying the `package.json`.
     if (fileName === 'src/index.html' || fileName === 'package.json') {
-      fileContent = fileContent.replace(/\${version}/g, '13.0.0-snapshot.1'); // TODO libraryVersion
+      fileContent = fileContent.replace(/\${version}/g, libraryVersion);
     }
 
     if (fileName === 'src/index.html') {
@@ -233,8 +233,6 @@ export class StackBlitzWriter {
       const dotIndex = data.indexFilename.lastIndexOf('.');
       const importFileName = data.indexFilename.slice(0, dotIndex === -1 ? undefined : dotIndex);
       fileContent = fileContent.replace(/sbb-angular-docs-example/g, importFileName);
-    } else if (fileName === 'src/app/sbb.module.ts') {
-      fileContent = fileContent.replace(/\{packageName\}/g, '@sbb-esta/angular');
     }
     return fileContent;
   }

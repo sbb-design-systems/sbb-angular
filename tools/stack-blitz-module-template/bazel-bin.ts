@@ -1,16 +1,12 @@
 import { writeFileSync } from 'fs';
 
-const ignore = ['core', 'i18n', 'oauth'];
-
 if (require.main === module) {
-  const [targetPath, ...modules] = process.argv.slice(2);
-  const filteredModules = modules.filter((module) => !ignore.includes(module));
+  const [targetPath, packageName, ...modules] = process.argv.slice(2);
   const template = `import { NgModule } from '@angular/core';
-${filteredModules.map((m) => `import { ${toModuleName(m)} } from '{packageName}/${m}';`).join('\n')}
+${modules.map((m) => `import { ${toModuleName(m)} } from '${packageName}/${m}';`).join('\n')}
 
 const modules = [
-  SbbIconModule,
-  ${filteredModules.map(toModuleName).join(',\n  ')},
+  ${modules.map(toModuleName).join(',\n  ')},
 ];
 
 @NgModule({

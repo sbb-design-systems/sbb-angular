@@ -2,7 +2,7 @@ import { Component, Injector, Input, OnInit, ViewContainerRef } from '@angular/c
 import { ActivatedRoute } from '@angular/router';
 import { ExampleData, loadExample } from '@sbb-esta/components-examples';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../html-loader.service';
 import { moduleParams } from '../../module-params';
@@ -35,6 +35,10 @@ export class ExampleViewerComponent implements OnInit {
         this._htmlLoader.withParams(params).fromExamples(exampleName, type).load()
       )
     );
+  }
+
+  stackBlitzEnabled() {
+    return moduleParams(this._route).pipe(map((params) => params.packageName === 'angular'));
   }
 }
 
