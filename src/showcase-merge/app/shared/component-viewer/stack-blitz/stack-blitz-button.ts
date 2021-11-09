@@ -38,14 +38,14 @@ export class StackBlitzButton {
   constructor(
     private _stackBlitzWriter: StackBlitzWriter,
     private _ngZone: NgZone,
-    private _snackBar: SbbNotificationToast
+    private _notificationToast: SbbNotificationToast
   ) {}
 
   openStackBlitz(): void {
     if (this._openStackBlitzFn) {
       this._openStackBlitzFn(ɵvariant.value === 'lean');
     } else {
-      this._snackBar.open(
+      this._notificationToast.open(
         'StackBlitz is not ready yet. Please try again in a few seconds.',
         undefined
       );
