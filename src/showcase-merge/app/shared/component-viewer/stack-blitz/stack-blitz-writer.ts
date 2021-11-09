@@ -11,9 +11,9 @@ import { libraryVersion } from './versions';
 /**
  * Path that refers to the docs-content from the "@angular/components-examples" package.
  */
-const DOCS_CONTENT_PATH = '/assets/docs-content/examples-source';
+const DOCS_CONTENT_PATH = 'assets/docs-content/examples-source';
 
-const TEMPLATE_PATH = '/assets/stack-blitz/';
+const TEMPLATE_PATH = 'assets/stack-blitz/';
 
 /**
  * List of boilerplate files for an example StackBlitz.
