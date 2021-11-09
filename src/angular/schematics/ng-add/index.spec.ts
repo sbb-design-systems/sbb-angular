@@ -38,7 +38,7 @@ describe('ngAdd', () => {
     if (!host.exists(path)) {
       throw new SchematicsException(path + ' not found');
     }
-    return JSON.parse(host.read(path)!.toString('utf-8')) as any;
+    return JSON.parse(host.read(path)!.toString('utf-8')) as Record<string, any>;
   }
 
   /** Assert that file exists and parse string file */
@@ -59,14 +59,30 @@ describe('ngAdd', () => {
       .toPromise())!;
   });
 
-  it('should cancel installation if angular package is already installed', async () => {
-    addPackageToPackageJson(tree, '@sbb-esta/angular', '0.0.0');
+  it('should abort ng-add if @angular/core major version is below 13', async () => {
+    tree.overwrite(
+      '/package.json',
+      readStringFile(tree, '/package.json').replace(
+        /"@angular\/core": "(.*)",/g,
+        '"@angular/core": "~12.0.0",'
+      )
+    );
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular']).toBe('0.0.0');
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
     expect(
       runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project')
-    ).toBe(false, 'Expected the setup-project schematic not to be scheduled.');
+    ).toBe(false, 'Expected the ng-add-setup-project schematic not to be scheduled.');
+  });
+
+  it('should abort ng-add if @angular/cdk major version is below 13', async () => {
+    addPackageToPackageJson(tree, '@angular/cdk', '12.0.0');
+
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+
+    expect(
+      runner.tasks.some((task) => (task.options as any)!.name === 'ng-add-setup-project')
+    ).toBe(false, 'Expected the ng-add-setup-project schematic not to be scheduled.');
   });
 
   it('should add @angular/cdk, @angular/animations and @angular/forms to "package.json" file', async () => {
@@ -87,13 +103,13 @@ describe('ngAdd', () => {
   });
 
   it('should do nothing if @angular/cdk is in "package.json" file already', async () => {
-    addPackageToPackageJson(tree, '@angular/cdk', '0.0.0');
+    addPackageToPackageJson(tree, '@angular/cdk', '13.0.0');
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('0.0.0');
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('13.0.0');
 
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('0.0.0');
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe('13.0.0');
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.

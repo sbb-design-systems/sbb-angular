@@ -119,13 +119,13 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
         elementName = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
       }
 
-      // Try to resolve the module name via the type checker, and if it fails, fall back to
-      // resolving it from our list of symbol to entry point mappings. Using the type checker is
+      // Try to resolve the module name via our list of symbol to entry point mappings, and, if it fails, fall back to
+      // resolving it from the type checker. Using the type checker is
       // more accurate and doesn't require us to keep a list of symbols, but it won't work if
       // the symbols don't exist anymore (e.g. after we remove the top-level package).
       const moduleName =
-        resolveModuleName(elementName, this.typeChecker) ||
         ENTRY_POINT_MAPPINGS[elementName.text] ||
+        resolveModuleName(elementName, this.typeChecker) ||
         null;
 
       if (!moduleName) {

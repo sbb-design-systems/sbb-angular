@@ -30,7 +30,10 @@ export function ngAdd(options: Schema): Rule {
     const sbbAngularVersionRange = getPackageVersionFromPackageJson(host, '@sbb-esta/angular');
     const angularDependencyVersion = ngCoreVersionTag || `0.0.0-NG`;
 
-    if (getMajorVersion(ngCoreVersionTag) < 13 || getMajorVersion(cdkVersionTag) < 13) {
+    if (
+      getMajorVersion(ngCoreVersionTag) < 13 ||
+      (cdkVersionTag != null && getMajorVersion(cdkVersionTag) < 13)
+    ) {
       context.logger.error(
         `Please update Angular dependencies first (See https://update.angular.io/?l=3&v=12.0-13.0): `
       );
@@ -39,6 +42,7 @@ export function ngAdd(options: Schema): Rule {
       context.logger.error('');
       context.logger.error(`'--force' is required due to peerDependencies conflicts.`);
       context.logger.error(`Afterwards run 'ng add @sbb-esta/angular' once more.`);
+      return;
     }
 
     // The CLI inserts `@sbb-esta/angular` into the `package.json` before this schematic runs.
