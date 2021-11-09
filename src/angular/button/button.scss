@@ -30,11 +30,13 @@
       // Disable transitions from default behavior
       &,
       &:hover {
-        .sbb-button-indicator-icon,
-        .sbb-button-wrapper {
+        transition: none;
+        padding-left: 0;
+        padding-right: 0;
+
+        .sbb-button-indicator-icon {
           transition: none;
-          margin-left: 0;
-          margin-right: 0;
+          transform: none;
         }
 
         .sbb-button-left-icon {

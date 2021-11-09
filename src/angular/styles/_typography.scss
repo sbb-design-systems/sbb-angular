@@ -1204,12 +1204,12 @@ fieldset,
 // bleed and scale accordingly with 4k and 5k.
 
 .sbb-button-indicator-icon {
+  transition: opacity $linkiconAnimation, transform $linkiconAnimation, right $linkiconAnimation;
+  backface-visibility: hidden;
+  pointer-events: none;
   position: absolute;
   top: 50%;
   margin-top: pxToEm(-12.5);
-  transition: opacity $linkiconAnimation, margin-left $linkiconAnimation;
-  backface-visibility: hidden;
-  pointer-events: none;
 
   &.sbb-icon-fit {
     width: pxToEm(24);
@@ -1231,51 +1231,72 @@ fieldset,
 }
 
 .sbb-button-left-icon {
-  margin-left: pxToEm(-60);
+  margin-left: pxToEm(-30);
+  transform: translateX(pxToEm(-26));
   opacity: 0;
 
   .sbb-button-base:hover & {
-    margin-left: 0;
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
 .sbb-button-right-icon {
-  margin-left: pxToEm(-20);
+  margin-left: pxToEm(6);
+  transform: translateX(0);
   opacity: 1;
 
   html:not(.sbb-lean) .sbb-button-base:hover & {
-    margin-left: pxToEm(40);
+    transform: translateX(pxToEm(26));
     opacity: 0;
   }
 
   html.sbb-lean & {
-    margin-left: pxToEm(-24);
+    transform: translateX(pxToEm(-24));
   }
 }
 
-.sbb-button-wrapper {
-  display: inline-block;
+html:not(.sbb-lean)
+  .sbb-button-base:is(.sbb-button, .sbb-secondary-button):where(:not(.sbb-disabled)) {
+  transition: transform $linkiconAnimation, padding-left $linkiconAnimation,
+    padding-right $linkiconAnimation;
+  padding-left: pxToEm(39);
+  padding-right: pxToEm(69);
 
-  // We only need to specify the animation for the text, if a left indicator icon exists.
-  .sbb-button-left-icon + & {
-    margin-left: 0;
-    margin-right: pxToEm(30);
-    transition: margin-left $linkiconAnimation, margin-right $linkiconAnimation;
-
-    .sbb-button-base:hover & {
-      margin-left: pxToEm(30);
-      margin-right: 0;
-    }
-
-    .sbb-button-base.sbb-disabled & {
-      margin-left: pxToEm(15);
-      margin-right: pxToEm(15);
-    }
+  // This solves a bug with the placement of the right icon, which is otherwise displayed
+  // inside the text.
+  .sbb-button-right-icon {
+    right: pxToEm(39);
   }
 
-  html.sbb-lean .sbb-button-base.sbb-link & {
-    padding-right: pxToEm(32);
+  &:hover {
+    padding-left: pxToEm(69);
+    padding-right: pxToEm(39);
+
+    .sbb-button-right-icon {
+      right: 0;
+    }
+  }
+}
+
+html:not(.sbb-lean)
+  .sbb-button-base:is(.sbb-frameless-button, .sbb-link):where(:not(.sbb-disabled)) {
+  transition: transform $linkiconAnimation, padding-left $linkiconAnimation,
+    padding-right $linkiconAnimation;
+  padding-left: pxToEm(0);
+  padding-right: pxToEm(30);
+
+  &:hover {
+    padding-left: pxToEm(30);
+    padding-right: pxToEm(0);
+  }
+}
+
+html.sbb-lean .sbb-button-base.sbb-link {
+  padding-right: pxToEm(30);
+
+  .sbb-button-right-icon {
+    transform: none;
   }
 }
 
