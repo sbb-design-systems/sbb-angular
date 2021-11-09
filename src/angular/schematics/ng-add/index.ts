@@ -18,6 +18,10 @@ const fallbackCdkVersionRange = `0.0.0-CDK`.replace('-0', '');
 
 export function ngAdd(options: Schema): Rule {
   return (host: Tree, context: SchematicContext) => {
+    function getMajorVersion(version?: string | null) {
+      return parseInt(version?.match(/\d+/g)?.[0] ?? '0', 10);
+    }
+
     // Version tag of the `@angular/core` dependency that has been loaded from the `package.json`
     // of the CLI project. This tag should be preferred because all Angular dependencies should
     // have the same version tag if possible.
@@ -25,6 +29,17 @@ export function ngAdd(options: Schema): Rule {
     const cdkVersionTag = getPackageVersionFromPackageJson(host, '@angular/cdk');
     const sbbAngularVersionRange = getPackageVersionFromPackageJson(host, '@sbb-esta/angular');
     const angularDependencyVersion = ngCoreVersionTag || `0.0.0-NG`;
+
+    if (getMajorVersion(ngCoreVersionTag) < 13 || getMajorVersion(cdkVersionTag) < 13) {
+      context.logger.error(
+        `Please update Angular dependencies first (See https://update.angular.io/?l=3&v=12.0-13.0): `
+      );
+      context.logger.error('');
+      context.logger.error(`  ng update @angular/core@13 @angular/cli@13 @angular/cdk@13 --force`);
+      context.logger.error('');
+      context.logger.error(`'--force' is required due to peerDependencies conflicts.`);
+      context.logger.error(`Afterwards run 'ng add @sbb-esta/angular' once more.`);
+    }
 
     // The CLI inserts `@sbb-esta/angular` into the `package.json` before this schematic runs.
     // This means that we do not need to insert @sbb-esta/angular into `package.json` files again.
@@ -60,11 +75,7 @@ export function ngAdd(options: Schema): Rule {
       .map((packageName) => getPackageVersionFromPackageJson(host, packageName))
       .filter((version) => !!version);
 
-    if (
-      legacyVersions.some((version) => {
-        return parseInt(version?.match(/\d+/g)?.[0] ?? '0', 10) < 12;
-      })
-    ) {
+    if (legacyVersions.some((version) => getMajorVersion(version) < 12)) {
       context.logger.warn(
         `Skipped automatic migration because one of the packages @sbb-esta/angular-business, @sbb-esta/angular-public or @sbb-esta/angular-core has a major version not equals to 12.`
       );
