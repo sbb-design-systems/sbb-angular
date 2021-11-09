@@ -16,7 +16,7 @@ interface RowEntry {
  */
 @Component({
   selector: 'sbb-native-table-example',
-  templateUrl: './native-table-example.html',
+  templateUrl: 'native-table-example.html',
   encapsulation: ViewEncapsulation.None,
 })
 export class NativeTableExample {

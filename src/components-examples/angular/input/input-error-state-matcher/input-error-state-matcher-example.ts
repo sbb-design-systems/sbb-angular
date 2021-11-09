@@ -16,8 +16,8 @@ export class MyErrorStateMatcher implements SbbErrorStateMatcher {
  */
 @Component({
   selector: 'sbb-input-error-state-matcher-example',
-  templateUrl: './input-error-state-matcher-example.html',
-  styleUrls: ['./input-error-state-matcher-example.css'],
+  templateUrl: 'input-error-state-matcher-example.html',
+  styleUrls: ['input-error-state-matcher-example.css'],
 })
 export class InputErrorStateMatcherExample {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);

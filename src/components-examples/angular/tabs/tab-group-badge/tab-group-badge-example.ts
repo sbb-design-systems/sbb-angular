@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-tab-group-badge-example',
-  templateUrl: './tab-group-badge-example.html',
+  templateUrl: 'tab-group-badge-example.html',
 })
 export class TabGroupBadgeExample {}

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-loading-simple-example',
-  templateUrl: './loading-simple-example.html',
-  styleUrls: ['./loading-simple-example.css'],
+  templateUrl: 'loading-simple-example.html',
+  styleUrls: ['loading-simple-example.css'],
 })
 export class LoadingSimpleExample {}

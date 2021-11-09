@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/sbb-design-systems/sbb-angular/issues"
   },
-  "homepage": "https://angular.app.sbb.ch/latest",
+  "homepage": "https://angular.app.sbb.ch",
   "peerDependencies": {
     "@angular/cdk": "0.0.0-CDK",
     "@angular/common": "0.0.0-NG",

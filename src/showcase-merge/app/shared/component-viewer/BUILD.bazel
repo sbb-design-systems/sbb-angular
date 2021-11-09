@@ -8,7 +8,7 @@ package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "component-viewer",
-    srcs = [":stackblitz-writer/versions.ts"] + glob(
+    srcs = [":stack-blitz/versions.ts"] + glob(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
@@ -21,6 +21,8 @@ ng_module(
     ] + glob(["**/*.html"]),
     tsconfig = "//src/showcase-merge:tsconfig.json",
     deps = [
+        "//src/angular/button",
+        "//src/angular/core",
         "//src/angular/icon",
         "//src/angular/notification",
         "//src/angular/notification-toast",
@@ -32,6 +34,7 @@ ng_module(
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
+        "@npm//@stackblitz/sdk",
         "@npm//rxjs",
     ],
 )
@@ -39,7 +42,7 @@ ng_module(
 genrule(
     name = "library-versions",
     srcs = ["//src/showcase-merge/app:versions.ts"],
-    outs = ["stackblitz-writer/versions.ts"],
+    outs = ["stack-blitz/versions.ts"],
     cmd = "cp $< $@",
 )
 
@@ -72,4 +75,9 @@ sass_binary(
     deps = [
         "//src/angular/styles:common_scss_lib",
     ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
 )

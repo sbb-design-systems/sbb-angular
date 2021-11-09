@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-multiple-mode-persistent-file-selector-example',
-  templateUrl: './multiple-mode-persistent-file-selector-example.html',
+  templateUrl: 'multiple-mode-persistent-file-selector-example.html',
 })
 export class MultipleModePersistentFileSelectorExample {
   filesList: File[] = [];

@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
  */
 @Component({
   selector: 'sbb-datepicker-simple-reactive-example',
-  templateUrl: './datepicker-simple-reactive-example.html',
+  templateUrl: 'datepicker-simple-reactive-example.html',
 })
 export class DatepickerSimpleReactiveExample implements OnDestroy {
   date = new FormControl(new Date());

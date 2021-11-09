@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-accordion-custom-html-example',
-  templateUrl: './accordion-custom-html-example.html',
-  styleUrls: ['./accordion-custom-html-example.css'],
+  templateUrl: 'accordion-custom-html-example.html',
+  styleUrls: ['accordion-custom-html-example.css'],
 })
 export class AccordionCustomHtmlExample {
   logAndPreventOpeningPanel(evt: any) {

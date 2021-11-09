@@ -7,7 +7,7 @@ import { SbbTableDataSource } from '@sbb-esta/angular/table';
  */
 @Component({
   selector: 'sbb-grouped-rows-and-columns-table-example',
-  templateUrl: './grouped-rows-and-columns-table-example.html',
+  templateUrl: 'grouped-rows-and-columns-table-example.html',
 })
 export class GroupedRowsAndColumnsTableExample {
   displayedColumns: string[] = ['deviceName', 'orderDate', 'arrivalDate', 'lifecycleEnd', 'status'];

@@ -7,7 +7,7 @@ import { FormControl, Validators } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-form-field-sbb-select-example',
-  templateUrl: './form-field-sbb-select-example.html',
+  templateUrl: 'form-field-sbb-select-example.html',
 })
 export class FormFieldSbbSelectExample {
   select: FormControl = new FormControl('', [Validators.required]);

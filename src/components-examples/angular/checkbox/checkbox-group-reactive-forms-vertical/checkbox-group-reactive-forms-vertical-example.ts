@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-checkbox-group-reactive-forms-vertical-example',
-  templateUrl: './checkbox-group-reactive-forms-vertical-example.html',
+  templateUrl: 'checkbox-group-reactive-forms-vertical-example.html',
 })
 export class CheckboxGroupReactiveFormsVerticalExample {
   form: FormGroup;

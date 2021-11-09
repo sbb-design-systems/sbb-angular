@@ -9,7 +9,7 @@ let nextId = 1;
  */
 @Component({
   selector: 'sbb-alert-outlet-example',
-  templateUrl: './alert-outlet-example.html',
+  templateUrl: 'alert-outlet-example.html',
 })
 export class AlertOutletExample implements OnInit {
   private _refs: SbbAlertRef[] = [];

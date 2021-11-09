@@ -7,7 +7,7 @@ import { SBB_LEAN_DATE_ADAPTER } from '@sbb-esta/angular/core';
  */
 @Component({
   selector: 'sbb-datepicker-lean-date-adapter-example',
-  templateUrl: './datepicker-lean-date-adapter-example.html',
+  templateUrl: 'datepicker-lean-date-adapter-example.html',
   providers: [SBB_LEAN_DATE_ADAPTER],
 })
 export class DatepickerLeanDateAdapterExample {

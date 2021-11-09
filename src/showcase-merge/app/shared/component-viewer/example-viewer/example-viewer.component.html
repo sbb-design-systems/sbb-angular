@@ -1,22 +1,25 @@
 <div class="example-viewer-header sbb-icon-scaled">
   <h3 class="example-viewer-title">{{ this.exampleData.description }}</h3>
   <button
+    sbb-icon-button
     type="button"
     (click)="showSource = !showSource"
-    aria-label="View source"
     class="example-viewer-header-button"
+    aria-label="View code"
+    sbbTooltip="View code"
   >
     <sbb-icon svgIcon="showcase:code"></sbb-icon>
   </button>
 
   <button
+    *ngIf="stackBlitzEnabled() | async"
+    sbb-icon-button
+    sbb-stack-blitz-button
     type="button"
-    class="example-viewer-header-button stackblitz-button"
-    (click)="openStackblitz()"
-    [disabled]="isStackblitzDisabled"
-    [attr.aria-label]="
-      isStackblitzDisabled ? 'Building StackBlitz example...' : 'Edit this example in StackBlitz'
-    "
+    [example]="exampleData.id"
+    class="example-viewer-header-button"
+    aria-label="Edit example in StackBlitz"
+    sbbTooltip="Edit example in StackBlitz"
   >
     <sbb-icon svgIcon="kom:link-external-small"></sbb-icon>
   </button>

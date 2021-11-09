@@ -7,8 +7,8 @@ import { SbbNavigationPageChangeEvent } from '@sbb-esta/angular/pagination';
  */
 @Component({
   selector: 'sbb-navigation-example',
-  templateUrl: './navigation-example.html',
-  styleUrls: ['./navigation-example.css'],
+  templateUrl: 'navigation-example.html',
+  styleUrls: ['navigation-example.css'],
 })
 export class NavigationExample {
   pages = ['Introduction', 'Chapter 1', 'Chapter 2', 'Chapter 3'].map((page, index) => {

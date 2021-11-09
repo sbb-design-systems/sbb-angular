@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-autocomplete-reactive-forms-example',
-  templateUrl: './autocomplete-reactive-forms-example.html',
+  templateUrl: 'autocomplete-reactive-forms-example.html',
 })
 export class AutocompleteReactiveFormsExample implements OnInit {
   myControl = new FormControl('');

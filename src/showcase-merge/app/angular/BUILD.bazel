@@ -65,3 +65,8 @@ sass_binary(
     name = "icon_overview_cdn_icon_list_cdn_icon_dialog_cdn_icon_dialog_component_scss",
     src = "icon-overview/cdn-icon-list/cdn-icon-dialog/cdn-icon-dialog.component.scss",
 )
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

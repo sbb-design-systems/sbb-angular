@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-search-autocomplete-example',
-  templateUrl: './search-autocomplete-example.html',
+  templateUrl: 'search-autocomplete-example.html',
 })
 export class SearchAutocompleteExample {
   searchControl = new FormControl('');

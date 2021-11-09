@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-toggle-triple-example',
-  templateUrl: './toggle-triple-example.html',
+  templateUrl: 'toggle-triple-example.html',
   encapsulation: ViewEncapsulation.None,
 })
 export class ToggleTripleExample {

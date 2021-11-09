@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-link-group-example',
-  templateUrl: './link-group-example.html',
+  templateUrl: 'link-group-example.html',
 })
 export class LinkGroupExample {}

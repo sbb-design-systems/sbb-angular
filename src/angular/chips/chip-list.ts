@@ -9,7 +9,6 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
-  InjectionToken,
   Input,
   OnDestroy,
   OnInit,
@@ -25,14 +24,9 @@ import { SbbFormFieldControl } from '@sbb-esta/angular/form-field';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
-import { SbbChip, SbbChipEvent } from './chip';
+import type { SbbChip, SbbChipEvent } from './chip';
 import { SbbChipTextControl } from './chip-text-control';
-
-/**
- * Token used to provide a `SbbChipList` to `SbbChip`.
- * Used primarily to avoid circular imports between `SbbChipList` and `SbbChip`.
- */
-export const SBB_CHIP_LIST = new InjectionToken<SbbChipList>('SBB_CHIP_LIST');
+import { SBB_CHIP, SBB_CHIP_LIST } from './chip-tokens';
 
 // Boilerplate for applying mixins to SbbChipList.
 /** @docs-private */
@@ -267,7 +261,7 @@ export class SbbChipList
   @Output() readonly valueChange = new EventEmitter<any>();
 
   /** The chip components contained within this chip list. */
-  @ContentChildren(SbbChip, {
+  @ContentChildren(SBB_CHIP, {
     // We need to use `descendants: true`, because Ivy will no longer match
     // indirect descendants if it's left as false.
     descendants: true,

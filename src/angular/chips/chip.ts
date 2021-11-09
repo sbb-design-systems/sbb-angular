@@ -26,7 +26,7 @@ import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import type { SbbChipList } from './chip-list';
-import { SBB_CHIP_LIST } from './chip-list';
+import { SBB_CHIP, SBB_CHIP_LIST } from './chip-tokens';
 
 /** Represents an event fired on an individual `sbb-chip`. */
 export interface SbbChipEvent {
@@ -96,6 +96,7 @@ export class SbbChipTrailingIcon {}
     '(focus)': 'focus()',
     '(blur)': '_blur()',
   },
+  providers: [{ provide: SBB_CHIP, useExisting: SbbChip }],
 })
 export class SbbChip
   extends _SbbChipMixinBase

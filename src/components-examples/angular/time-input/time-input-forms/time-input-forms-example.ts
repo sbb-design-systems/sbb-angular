@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-time-input-forms-example',
-  templateUrl: './time-input-forms-example.html',
+  templateUrl: 'time-input-forms-example.html',
 })
 export class TimeInputFormsExample {
   value = '01:23';

@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-esri-web-scene-example',
-  templateUrl: './esri-web-scene-example.html',
-  styleUrls: ['./esri-web-scene-example.css'],
+  templateUrl: 'esri-web-scene-example.html',
+  styleUrls: ['esri-web-scene-example.css'],
 })
 export class EsriWebSceneExample {
   mapIsReady = false;

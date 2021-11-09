@@ -19,7 +19,7 @@ const availableFruits = [
  */
 @Component({
   selector: 'sbb-chips-input-custom-handler-example',
-  templateUrl: './chips-input-custom-handler-example.html',
+  templateUrl: 'chips-input-custom-handler-example.html',
 })
 export class ChipsInputCustomHandlerExample {
   readonly separatorKeysCodes = [ENTER, COMMA];

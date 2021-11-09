@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-checkbox-indeterminate-state-example',
-  templateUrl: './checkbox-indeterminate-state-example.html',
+  templateUrl: 'checkbox-indeterminate-state-example.html',
 })
 export class CheckboxIndeterminateStateExample {
   options = ['Waggon 1', 'Waggon 2', 'Waggon 3'];

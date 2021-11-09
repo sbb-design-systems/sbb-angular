@@ -7,7 +7,7 @@ import { SbbDialog } from '@sbb-esta/angular/dialog';
  */
 @Component({
   selector: 'sbb-component-data-dialog-example',
-  templateUrl: './component-data-dialog-example.html',
+  templateUrl: 'component-data-dialog-example.html',
 })
 export class ComponentDataDialogExample {
   constructor(public dialog: SbbDialog) {}

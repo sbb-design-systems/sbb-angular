@@ -16,5 +16,5 @@ CONTRIBUTING.md
 *.bazel
 *.bzl
 WORKSPACE
-src/showcase-merge/assets/stackblitz/*
+src/showcase-merge/assets/stack-blitz/*
 bazel-out

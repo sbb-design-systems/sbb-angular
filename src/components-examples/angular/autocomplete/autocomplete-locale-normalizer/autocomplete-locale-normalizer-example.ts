@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-autocomplete-locale-normalizer-example',
-  templateUrl: './autocomplete-locale-normalizer-example.html',
+  templateUrl: 'autocomplete-locale-normalizer-example.html',
 })
 export class AutocompleteLocaleNormalizerExample {
   value: string;

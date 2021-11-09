@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-icon-simple-example',
-  templateUrl: './icon-simple-example.html',
+  templateUrl: 'icon-simple-example.html',
 })
 export class IconSimpleExample {}

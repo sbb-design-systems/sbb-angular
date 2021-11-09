@@ -7,7 +7,7 @@ import { SbbNotificationToast } from '@sbb-esta/angular/notification-toast';
  */
 @Component({
   selector: 'sbb-notification-toast-component-example',
-  templateUrl: './notification-toast-component-example.html',
+  templateUrl: 'notification-toast-component-example.html',
 })
 export class NotificationToastComponentExample {
   constructor(private _notification: SbbNotificationToast) {}

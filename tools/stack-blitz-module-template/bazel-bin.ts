@@ -1,13 +1,11 @@
 import { writeFileSync } from 'fs';
 
 if (require.main === module) {
-  const [targetPath, ...modules] = process.argv.slice(2);
+  const [targetPath, packageName, ...modules] = process.argv.slice(2);
   const template = `import { NgModule } from '@angular/core';
-${modules.map((m) => `import { ${toModuleName(m)} } from '{packageName}/${m}';`).join('\n')}
-import { SbbIconModule } from '@sbb-esta/angular/icon';
+${modules.map((m) => `import { ${toModuleName(m)} } from '${packageName}/${m}';`).join('\n')}
 
 const modules = [
-  SbbIconModule,
   ${modules.map(toModuleName).join(',\n  ')},
 ];
 

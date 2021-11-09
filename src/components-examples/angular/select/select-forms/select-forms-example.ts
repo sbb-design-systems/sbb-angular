@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-select-forms-example',
-  templateUrl: './select-forms-example.html',
+  templateUrl: 'select-forms-example.html',
 })
 export class SelectFormsExample {
   value: string;

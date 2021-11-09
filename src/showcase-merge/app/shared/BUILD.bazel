@@ -31,3 +31,8 @@ sass_binary(
     name = "markdown_viewer_markdown_viewer_component_scss",
     src = "markdown-viewer/markdown-viewer.component.scss",
 )
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

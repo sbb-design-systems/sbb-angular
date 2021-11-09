@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-captcha-simple-example',
-  templateUrl: './captcha-simple-example.html',
-  styleUrls: ['./captcha-simple-example.css'],
+  templateUrl: 'captcha-simple-example.html',
+  styleUrls: ['captcha-simple-example.css'],
 })
 export class CaptchaSimpleExample {
   basicCaptchaResponse: string;

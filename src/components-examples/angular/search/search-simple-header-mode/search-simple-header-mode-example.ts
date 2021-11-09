@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-search-simple-header-mode-example',
-  templateUrl: './search-simple-header-mode-example.html',
+  templateUrl: 'search-simple-header-mode-example.html',
 })
 export class SearchSimpleHeaderModeExample {
   searchValues: string[] = [];

@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-search-header-autocomplete-example',
-  templateUrl: './search-header-autocomplete-example.html',
+  templateUrl: 'search-header-autocomplete-example.html',
 })
 export class SearchHeaderAutocompleteExample {
   searchValues: string[] = [];

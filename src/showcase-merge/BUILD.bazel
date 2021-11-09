@@ -113,10 +113,19 @@ angular_api_entry_points = ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS
 
 maps_api_entry_points = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
 
+showcase_entry_points = [
+    "",
+    "/angular",
+    "/maps",
+    "/shared",
+    "/shared/component-viewer",
+]
+
 # List that contains all source files that need to be provided as source files in devserver.
 source_files = ["//src/angular/%s:source-files" % name for name in angular_api_entry_points] + \
                ["//src/angular-maps/%s:source-files" % name for name in maps_api_entry_points] + \
-               ["%s:source-files" % name for name in ALL_EXAMPLES]
+               ["%s:source-files" % name for name in ALL_EXAMPLES] + \
+               ["//src/showcase-merge/app%s:source-files" % name for name in showcase_entry_points]
 
 # File group for all static files which are needed to serve the dev-app. These files are
 # used in the devserver as runfiles and will be copied into the static web package that can

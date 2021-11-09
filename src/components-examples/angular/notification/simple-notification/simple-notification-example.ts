@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-simple-notification-example',
-  templateUrl: './simple-notification-example.html',
-  styleUrls: ['./simple-notification-example.css'],
+  templateUrl: 'simple-notification-example.html',
+  styleUrls: ['simple-notification-example.css'],
 })
 export class SimpleNotificationExample {}

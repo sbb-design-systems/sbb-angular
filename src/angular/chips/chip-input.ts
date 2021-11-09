@@ -24,8 +24,8 @@ import { filter, takeUntil } from 'rxjs/operators';
 
 import { SbbChipsDefaultOptions, SBB_CHIPS_DEFAULT_OPTIONS } from './chip-default-options';
 import type { SbbChipList } from './chip-list';
-import { SBB_CHIP_LIST } from './chip-list';
 import { SbbChipTextControl } from './chip-text-control';
+import { SBB_CHIP_LIST } from './chip-tokens';
 
 /** Represents an input event on a `sbbChipInput`. */
 export interface SbbChipInputEvent {

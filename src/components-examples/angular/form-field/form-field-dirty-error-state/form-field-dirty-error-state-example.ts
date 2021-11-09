@@ -8,7 +8,7 @@ import { SbbShowOnDirtyErrorStateMatcher } from '@sbb-esta/angular/core';
  */
 @Component({
   selector: 'sbb-form-field-dirty-error-state-example',
-  templateUrl: './form-field-dirty-error-state-example.html',
+  templateUrl: 'form-field-dirty-error-state-example.html',
 })
 export class FormFieldDirtyErrorStateExample {
   name: FormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);

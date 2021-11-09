@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-select-multi-selection-example',
-  templateUrl: './select-multi-selection-example.html',
+  templateUrl: 'select-multi-selection-example.html',
 })
 export class SelectMultiSelectionExample {
   form: FormGroup;

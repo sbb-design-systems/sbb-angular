@@ -7,7 +7,7 @@ import { SbbRadioChange } from '@sbb-esta/angular/radio-button';
  */
 @Component({
   selector: 'sbb-toggle-without-form-example',
-  templateUrl: './toggle-without-form-example.html',
+  templateUrl: 'toggle-without-form-example.html',
   encapsulation: ViewEncapsulation.None,
 })
 export class ToggleWithoutFormExample {

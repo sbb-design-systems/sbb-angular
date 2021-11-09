@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-checkbox-group-horizontal-example',
-  templateUrl: './checkbox-group-horizontal-example.html',
+  templateUrl: 'checkbox-group-horizontal-example.html',
 })
 export class CheckboxGroupHorizontalExample {
   checkboxOptions = [

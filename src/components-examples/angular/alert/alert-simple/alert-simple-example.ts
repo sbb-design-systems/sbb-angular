@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-alert-simple-example',
-  templateUrl: './alert-simple-example.html',
+  templateUrl: 'alert-simple-example.html',
 })
 export class AlertSimpleExample {}

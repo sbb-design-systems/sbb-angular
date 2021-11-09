@@ -7,8 +7,8 @@ import { SbbPageEvent } from '@sbb-esta/angular/pagination';
  */
 @Component({
   selector: 'sbb-paginator-example',
-  templateUrl: './paginator-example.html',
-  styleUrls: ['./paginator-example.css'],
+  templateUrl: 'paginator-example.html',
+  styleUrls: ['paginator-example.css'],
 })
 export class PaginatorExample {
   length = 70;

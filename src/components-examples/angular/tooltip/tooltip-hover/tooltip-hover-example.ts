@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'sbb-tooltip-hover-example',
-  templateUrl: './tooltip-hover-example.html',
+  templateUrl: 'tooltip-hover-example.html',
 })
 export class TooltipHoverExample {
   hoverHideDelay = 0;

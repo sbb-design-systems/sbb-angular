@@ -8,8 +8,8 @@ import { startWith } from 'rxjs/operators';
  */
 @Component({
   selector: 'sbb-checkbox-panel-group-example',
-  templateUrl: './checkbox-panel-group-example.html',
-  styleUrls: ['./checkbox-panel-group-example.css'],
+  templateUrl: 'checkbox-panel-group-example.html',
+  styleUrls: ['checkbox-panel-group-example.css'],
 })
 export class CheckboxPanelGroupExample {
   readonly breakpoints = [

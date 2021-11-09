@@ -7,8 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
  */
 @Component({
   selector: 'sbb-textarea-reactive-forms-with-sbb-form-field-example',
-  templateUrl: './textarea-reactive-forms-with-sbb-form-field-example.html',
-  styleUrls: ['./textarea-reactive-forms-with-sbb-form-field-example.css'],
+  templateUrl: 'textarea-reactive-forms-with-sbb-form-field-example.html',
+  styleUrls: ['textarea-reactive-forms-with-sbb-form-field-example.css'],
 })
 export class TextareaReactiveFormsWithSbbFormFieldExample {
   form: FormGroup = new FormGroup({

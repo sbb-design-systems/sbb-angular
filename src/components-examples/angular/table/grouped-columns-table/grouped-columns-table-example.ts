@@ -7,7 +7,7 @@ import { SbbTableDataSource } from '@sbb-esta/angular/table';
  */
 @Component({
   selector: 'sbb-grouped-columns-table-example',
-  templateUrl: './grouped-columns-table-example.html',
+  templateUrl: 'grouped-columns-table-example.html',
 })
 export class GroupedColumnsTableExample {
   displayedColumns: string[] = [

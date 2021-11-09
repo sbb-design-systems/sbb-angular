@@ -7,7 +7,7 @@ import { SbbSort, SbbTableDataSource } from '@sbb-esta/angular/table';
  */
 @Component({
   selector: 'sbb-sortable-table-example',
-  templateUrl: './sortable-table-example.html',
+  templateUrl: 'sortable-table-example.html',
 })
 export class SortableTableExample implements AfterViewInit {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];

@@ -25,8 +25,8 @@ interface VehicleFilter extends SbbTableFilter {
  */
 @Component({
   selector: 'sbb-filter-sort-paginator-table-example',
-  styleUrls: ['./filter-sort-paginator-table-example.css'],
-  templateUrl: './filter-sort-paginator-table-example.html',
+  styleUrls: ['filter-sort-paginator-table-example.css'],
+  templateUrl: 'filter-sort-paginator-table-example.html',
 })
 export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy {
   @ViewChild(SbbPaginator) paginator: SbbPaginator;

@@ -8,7 +8,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
  */
 @Component({
   selector: 'sbb-autocomplete-hint-example',
-  templateUrl: './autocomplete-hint-example.html',
+  templateUrl: 'autocomplete-hint-example.html',
 })
 export class AutocompleteHintExample implements OnInit {
   readonly maxOptionsListLength = 5;
