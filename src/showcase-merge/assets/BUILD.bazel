@@ -11,10 +11,10 @@ filegroup(
         "**/*.jpg",
         "**/*.ico",
         "**/*.html",
-        "stackblitz/**/*",
+        "stack-blitz/**/*",
     ]) + [
         ":docs-content",
-        ":stackblitz/src/app/sbb.module.ts",
+        ":stack-blitz/src/app/sbb.module.ts",
     ],
     data = [
         ":docs-content",
@@ -46,14 +46,14 @@ package_docs_content_legacy(
 
 genrule(
     name = "sbb_module",
-    outs = ["stackblitz/src/app/sbb.module.ts"],
+    outs = ["stack-blitz/src/app/sbb.module.ts"],
     cmd = """
       # Run the bazel entry-point for generating the sbb modules
       # for the examples on StackBlitz info.
-      ./$(execpath //tools/stackblitz-module-template:bazel-bin) \
-          "$(execpath stackblitz/src/app/sbb.module.ts)" \
+      ./$(execpath //tools/stack-blitz-module-template:bazel-bin) \
+          "$(execpath stack-blitz/src/app/sbb.module.ts)" \
           %s
     """ % " ".join([ep for ep in ANGULAR_ENTRYPOINTS if ep != "field"]),
     output_to_bindir = True,
-    tools = ["//tools/stackblitz-module-template:bazel-bin"],
+    tools = ["//tools/stack-blitz-module-template:bazel-bin"],
 )

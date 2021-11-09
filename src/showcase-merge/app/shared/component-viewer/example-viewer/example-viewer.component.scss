@@ -2,13 +2,13 @@
 
 :host {
   display: block;
-  padding: 24px;
-  margin-bottom: 1rem;
+  padding: pxToEm(24);
+  margin-bottom: 1em;
   position: relative;
   border: 1px solid $sbbColorSilver;
 
   ::ng-deep pre {
-    margin: 1rem 0;
+    margin: 1em 0;
     white-space: pre-wrap;
   }
 }
@@ -16,15 +16,15 @@
 .example-viewer-header {
   border-bottom: 1px solid $sbbColorSilver;
   display: flex;
-  padding-bottom: 20px;
-  margin-bottom: 1rem;
+  padding-bottom: pxToEm(20);
+  margin-bottom: 1em;
 }
 
 .example-viewer-header-button {
   flex-shrink: 0;
-  margin-left: 0.5rem;
-  width: pxToRem(36);
-  height: pxToRem(36);
+  margin-left: 0.5em;
+  width: pxToEm(36);
+  height: pxToEm(36);
 }
 
 .example-viewer-title {
@@ -33,5 +33,5 @@
 }
 
 .sbb-example-viewer-tabs {
-  margin-bottom: 2rem;
+  margin-bottom: 2em;
 }

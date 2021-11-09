@@ -1,3 +1,4 @@
 .table-wrapper {
-  height: 400px;
+  min-height: 400px;
+  height: 30vh;
 }

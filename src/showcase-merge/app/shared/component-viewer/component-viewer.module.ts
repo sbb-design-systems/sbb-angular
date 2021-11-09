@@ -16,7 +16,8 @@ import {
   ExampleViewerComponent,
 } from './example-viewer/example-viewer.component';
 import { HtmlViewerComponent } from './html-viewer/html-viewer.component';
-import { StackblitzWriterService } from './stackblitz-writer/stackblitz-writer.service';
+import { StackBlitzButton } from './stack-blitz/stack-blitz-button';
+import { StackBlitzWriter } from './stack-blitz/stack-blitz-writer';
 import { VariantLimitationComponent } from './variant-limitation-component/variant-limitation.component';
 
 @NgModule({
@@ -27,15 +28,15 @@ import { VariantLimitationComponent } from './variant-limitation-component/varia
     ComponentViewerComponent,
     VariantLimitationComponent,
     HtmlViewerComponent,
+    StackBlitzButton,
   ],
-  providers: [StackblitzWriterService],
+  providers: [StackBlitzWriter],
   imports: [
     CommonModule,
     PortalModule,
     SbbIconModule,
     SbbTabsModule,
     SbbNotificationModule,
-    // This is required, due to requiring a single instance of the notification toast service.
     SbbNotificationToastModule,
     SbbTooltipModule,
     SbbButtonModule,

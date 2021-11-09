@@ -58,6 +58,7 @@
     "@angular/platform-server": "~13.0.0",
     "@angular/router": "~13.0.0",
     "@arcgis/core": "~4.20.2",
+    "@stackblitz/sdk": "1.5.3",
     "keycloak-js": "^4.8.3",
     "rxjs": "~7.4.0",
     "systemjs": "^6.3.3",

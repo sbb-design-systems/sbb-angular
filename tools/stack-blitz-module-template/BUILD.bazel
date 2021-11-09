@@ -4,7 +4,7 @@ load("//tools:defaults.bzl", "ts_library")
 package(default_visibility = ["//visibility:public"])
 
 ts_library(
-    name = "stackblitz-module-template-lib",
+    name = "stack-blitz-module-template-lib",
     srcs = glob(
         ["**/*.ts"],
         exclude = ["sbb-module.template.ts"],
@@ -20,7 +20,7 @@ ts_library(
 nodejs_binary(
     name = "bazel-bin",
     data = [
-        ":stackblitz-module-template-lib",
+        ":stack-blitz-module-template-lib",
     ],
     entry_point = ":bazel-bin.ts",
 )

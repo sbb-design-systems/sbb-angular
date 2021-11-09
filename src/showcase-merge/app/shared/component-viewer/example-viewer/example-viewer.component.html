@@ -4,21 +4,21 @@
     sbb-icon-button
     type="button"
     (click)="showSource = !showSource"
-    aria-label="View source"
     class="example-viewer-header-button"
+    aria-label="View code"
+    sbbTooltip="View code"
   >
     <sbb-icon svgIcon="showcase:code"></sbb-icon>
   </button>
 
   <button
     sbb-icon-button
+    sbb-stack-blitz-button
     type="button"
+    [example]="exampleData.id"
     class="example-viewer-header-button"
-    (click)="openStackblitz()"
-    [disabled]="isStackblitzDisabled"
-    [attr.aria-label]="
-      isStackblitzDisabled ? 'Building StackBlitz example...' : 'Edit this example in StackBlitz'
-    "
+    aria-label="Edit example in StackBlitz"
+    sbbTooltip="Edit example in StackBlitz"
   >
     <sbb-icon svgIcon="kom:link-external-small"></sbb-icon>
   </button>
