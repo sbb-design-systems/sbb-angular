@@ -1,3 +1,4 @@
+export * from './contextmenu-trigger';
 export * from './menu';
 export * from './menu-dynamic-trigger';
 export * from './menu-errors';

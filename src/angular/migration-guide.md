@@ -778,9 +778,9 @@ Additionally, the css class of routerLinkActive of usermenu items was renamed fr
 **after**
 
 ```html
-<sbb-usermenu>
-  <a sbb-usermenu-item routerLink="." routerLinkActive="sbb-active"> Account </a>
-</sbb-usermenu>
+<sbb-menu #menu="sbbMenu">
+  <a sbb-menu-item routerLink="." routerLinkActive="sbb-active"> Account </a>
+</sbb-menu>
 ```
 
 [Documentation](angular/components/usermenu)

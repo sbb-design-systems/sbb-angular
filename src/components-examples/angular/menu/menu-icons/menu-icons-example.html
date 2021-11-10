@@ -1,6 +1,4 @@
-<button [sbbMenuTriggerFor]="menu" aria-label="Show actions" type="button">
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
-</button>
+<button [sbbContextmenuTriggerFor]="menu" aria-label="Show actions" type="button"></button>
 <sbb-menu #menu="sbbMenu">
   <button sbb-menu-item type="button">
     <sbb-icon svgIcon="kom:face-worker-small"></sbb-icon> Copy

@@ -32,6 +32,7 @@ const _SbbUsermenuMixinBase = mixinVariant(class {});
 export const _sbbUsermenuMenuInheritedTriggerContext: SbbMenuInheritedTriggerContext = {
   type: 'usermenu',
   panelWidth: 288,
+  xPosition: 'before',
   animationStartStateResolver: (context) => ({
     value: 'enter-usermenu',
     params: {

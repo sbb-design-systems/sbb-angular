@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
- * @title Lazy rendering with passed data
+ * @title Lazy rendering Contextmenu with passed data
  * @order 40
  */
 @Component({
