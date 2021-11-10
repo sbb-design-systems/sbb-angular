@@ -18,10 +18,10 @@ export class LinkMigration extends RefactorMigration {
   override applyMigration() {
     super.applyMigration();
     if (this._linkModeUsed) {
-      this._migration.logger.warn('  sbbLink[mode] is no longer available.');
-      this._migration.logger.warn('  Maybe you want to use a link group?');
+      this._migration.logger.warn('  Automatic migration failed for some a[sbbLink] instances.');
+      this._migration.logger.warn('  Check generated TODO in templates.');
       this._migration.logger.warn(
-        '  See https://angular.app.sbb.ch/angular/components/button on how to use.'
+        '  See https://angular.app.sbb.ch/angular/components/button for reference.'
       );
       this._migration.logger.info('');
     }
@@ -33,6 +33,9 @@ export class LinkMigration extends RefactorMigration {
     const icon = element.findProperty('icon');
     if (mode) {
       this._linkModeUsed = true;
+      element.insertStart(
+        `<!-- TODO: sbbLink[mode] is no longer available. Maybe you want to use a link group? See https://angular.app.sbb.ch/angular/components/button on how to use. -->`
+      );
       mode.remove();
     }
     sbbLink.replace('sbb-link');

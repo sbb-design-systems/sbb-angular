@@ -1,5 +1,9 @@
 import { chain, Rule, SchematicContext } from '@angular-devkit/schematics';
 import {
+  UpdateBuffer2,
+  UpdateBufferBase,
+} from '@angular-devkit/schematics/src/utility/update-buffer';
+import {
   cdkMigrations,
   createMigrationSchematicRule,
   TargetVersion,
@@ -19,6 +23,7 @@ import { Schema } from './schema';
 
 /** Entry point for the merge migration schematics */
 export function mergePublicAndBusiness(options: Schema): Rule {
+  patchUpdateBuffer();
   patchClassNamesMigration();
   return chain([
     migrateTypographyInAngularJson(options),
@@ -35,6 +40,13 @@ export function mergePublicAndBusiness(options: Schema): Rule {
       onMigrationComplete
     ),
   ]);
+}
+
+function patchUpdateBuffer() {
+  if (UpdateBufferBase.create) {
+    UpdateBufferBase.create = (originalContent: Buffer): UpdateBufferBase =>
+      new UpdateBuffer2(originalContent);
+  }
 }
 
 function patchClassNamesMigration() {
