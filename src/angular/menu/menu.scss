@@ -99,12 +99,6 @@ sbb-menu {
   }
 }
 
-// Trigger styles for closed and opened (copied) state
-.sbb-menu-trigger-default.sbb-menu-trigger-root,
-.sbb-menu-trigger-contextmenu.sbb-menu-trigger-root,
-.sbb-menu-panel-trigger {
-}
-
 // Trigger styles for closed and opened (copied) state (contextmenu only)
 // Definition has to be before .sbb-menu-panel-trigger (will be overwritten)
 .sbb-menu-trigger-contextmenu.sbb-menu-trigger-root,
