@@ -1,6 +1,35 @@
 <h1>How to update</h1>
 
-<p>
+<h4>Upgrade from version 12.x.x to 13.x.x</h4>
+<ol>
+  <li>
+    Update your Angular dependencies to version 13.x.x with "--force" flag (due to unmet peer
+    dependencies). <br />
+    See <a href="https://update.angular.io">update.angular.io</a> for a step-by-step guide for
+    updating Angular.
+    <pre style="user-select: all">ng update @angular/core @angular/cli @angular/cdk --force</pre>
+  </li>
+  <li>
+    Use <code>ng add</code> to add <code>@sbb-esta/angular</code> package. Our automatic migration
+    takes care of most of the changes and also sets up your typography design variant (standard or
+    lean).
+    <pre style="user-select: all">ng add @sbb-esta/angular</pre>
+  </li>
+  <li>
+    Check console output, added TODOs in your code and consult
+    <a href="/angular/introduction/migration-guide">migration guide</a> for more explanations on
+    changes.
+  </li>
+  <li>
+    (Optional) if possible, remove deprecated dependencies <code>@sbb-esta/angular-public</code>,
+    <code>@sbb-esta/angular-business</code>, <code>@sbb-esta/angular-core</code>,
+    <code>@sbb-esta/angular-icons</code> and <code>@sbb-esta/angular-keycloak</code> from your
+    project.
+  </li>
+  <li>(Optional) run <code>ng update @sbb-esta/maps</code> if you are using maps package.</li>
+</ol>
+
+<!-- TODO: revert for version 14
   Before updating make sure your Angular packages (@angular/...) are up to date. For example if you
   would like to update from version
   {{ libraryPredecessorMajorVersion }}.x.x to version {{ libraryMajorVersion }}.x.x of our SBB
@@ -17,3 +46,4 @@
   style="user-select: all"
 >ng update<ng-container *ngIf="fullCommand.value"> @angular/core @angular/cli</ng-container> @angular/cdk @sbb-esta/angular</pre>
 <sbb-checkbox [formControl]="fullCommand">Include @angular packages in update command</sbb-checkbox>
+-->

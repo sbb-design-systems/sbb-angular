@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 import { SbbHeaderLeanModule } from '@sbb-esta/angular/header-lean';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
+import { SbbNotificationModule } from '@sbb-esta/angular/notification';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 import { SbbSidebarModule } from '@sbb-esta/angular/sidebar';
 
@@ -29,6 +30,7 @@ import { IntroductionComponent } from './introduction/introduction.component';
     SbbSidebarModule,
     SbbIconModule,
     SbbRadioButtonModule,
+    SbbNotificationModule,
   ],
   exports: [AppComponent],
   bootstrap: [AppComponent],

@@ -1,5 +1,12 @@
 <h1>SBB Angular Component Library</h1>
 
+<sbb-notification type="info" readonly>
+  Do you miss @sbb-esta/angular-public or @sbb-esta/angular-business package? <br />
+  See our <a href="/howtoupdate">how to update guide</a> and our
+  <a href="/angular/introduction/migration-guide">migration guide</a> on how to switch to
+  @sbb-esta/angular.
+</sbb-notification>
+
 <p>
   Our customers should find their way around SBB's digital channels and get to the information they
   need as quickly as possible. This only works with a consistent user experience across all
@@ -24,6 +31,31 @@
   open an
   <a href="https://github.com/sbb-design-systems/sbb-angular/issues/new/choose">issue</a>.
 </p>
+
+<h3>Design Variants</h3>
+
+<h4>Standard (default)</h4>
+<p>
+  The standard design variant is intended for public websites (e.g. sbb.ch or similar). It uses a
+  large amount of whitespace and supports responsive design for mobile, tablet, desktop, 4k and 5k.
+  The intended usage of our components in this variant are more limited according to the design
+  specification at
+  <a href="https://digital.sbb.ch/en/websites">Design System Web</a>.
+</p>
+
+<h4>Lean</h4>
+<p>
+  Lean uses a compact design and supports responsive design for mobile, tablet and desktop. The
+  components are more flexible in their usage as specified at
+  <a href="https://digital.sbb.ch/en/webapps">Design System Lean Applications</a>.
+</p>
+
+<p>
+  To activate lean design, set the css class <code>sbb-lean</code> on your
+  <code>&lt;html class="sbb-lean"&gt;</code> element.
+</p>
+
+<p>If you are uncertain which library to use, we recommend you to start with lean design.</p>
 
 <nav>
   <ul>

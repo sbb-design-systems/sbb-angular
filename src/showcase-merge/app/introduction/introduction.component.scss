@@ -1,5 +1,10 @@
 @import '../../../angular/styles/common';
 
+.sbb-notification {
+  margin-bottom: 2em;
+  max-width: pxToEm(700);
+}
+
 :host nav {
   padding: 0;
   margin: pxToEm(50) 0 pxToEm(50) 0;
