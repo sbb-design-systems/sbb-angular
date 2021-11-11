@@ -226,10 +226,6 @@ describe('SbbTabHeader', () => {
       expect(enterEvent.defaultPrevented).toBe(false);
     });
   });
-
-  describe('pagination', () => {
-    // TODO
-  });
 });
 
 interface Tab {
