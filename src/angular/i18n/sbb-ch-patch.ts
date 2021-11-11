@@ -13,10 +13,9 @@ declare let globalThis: any;
 declare let global: any;
 declare let window: any;
 
-// TODO: Convert to es6 with version 13
 // tslint:disable:no-var-keyword prefer-const
 (function (context: any) {
-  var locales = context?.ng?.common?.locales;
+  const locales = context?.ng?.common?.locales;
   if (!locales) {
     return;
   }

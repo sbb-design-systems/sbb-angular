@@ -133,8 +133,6 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  // center is used for ie11 compatibility. TODO: Remove once we drop ie11 support.
-  justify-content: center;
   justify-content: space-between;
 
   // Explicitly set a box-sizing since people commonly set `border-box`

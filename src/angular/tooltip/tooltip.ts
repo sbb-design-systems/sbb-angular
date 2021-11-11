@@ -511,7 +511,6 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
       )
       .subscribe(() => this._tooltipInstance?._handleBodyInteraction());
 
-    // TODO: Check if https://github.com/angular/components/issues/23643 is resolved
     this._overlayRef
       .outsidePointerEvents()
       .pipe(takeUntil(this._destroyed))
