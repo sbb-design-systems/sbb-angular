@@ -1,9 +1,7 @@
 `<sbb-menu>` is a floating panel containing list of options.
 
 ```html
-<button [sbbMenuTriggerFor]="menu" aria-label="Show actions" type="button">
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
-</button>
+<button [sbbContextmenuTriggerFor]="menu" aria-label="Show actions" type="button"></button>
 <sbb-menu #menu="sbbMenu">
   <button sbb-menu-item type="button">Copy</button>
   <button sbb-menu-item type="button">Delete</button>
@@ -15,7 +13,10 @@
 ### Trigger
 
 By itself, the `<sbb-menu>` element does not render anything. The menu is attached to and opened
-via application of the `sbbMenuTriggerFor` directive.
+via application of the `sbbMenuTriggerFor` or `sbbContextmenuTriggerFor` directive.
+The `sbbContextmenuTriggerFor` directive is a shortcut for a standard contextmenu and the best choice for most of the use cases.
+
+If using `sbbMenuTriggerFor` please consider the following notes.
 Ideally the trigger directive is applied to a button. The content of the trigger should be wrapped
 with `<ng-template sbbMenuDynamicTrigger>` or `<sbb-icon *sbbMenuDynamicTrigger svgIcon="...">`.
 
@@ -29,7 +30,7 @@ or structural directive (`<sbb-icon *sbbMenuDynamicTrigger svgIcon="...">`) for 
 ### Toggling the menu programmatically
 
 The menu exposes an API to open/close programmatically. Please note that in this case, an
-`sbbMenuTriggerFor` directive is still necessary to attach the menu to a trigger element in the DOM.
+`sbbMenuTriggerFor` or `sbbContextmenuTriggerFor` directive is still necessary to attach the menu to a trigger element in the DOM.
 
 ```ts
 class MyComponent {
@@ -89,22 +90,18 @@ with a different set of data, depending on the trigger that opened it:
 
 ```html
 <button
-  [sbbMenuTriggerFor]="appMenu"
+  [sbbContextmenuTriggerFor]="appMenu"
   [sbbMenuTriggerData]="{name: 'Alice'}"
   aria-label="Show actions"
   type="button"
->
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
-</button>
+></button>
 
 <button
-  [sbbMenuTriggerFor]="appMenu"
+  [sbbContextmenuTriggerFor]="appMenu"
   [sbbMenuTriggerData]="{name: 'Bob'}"
   aria-label="Show actions"
   type="button"
->
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
-</button>
+></button>
 
 <sbb-menu #appMenu="sbbMenu">
   <ng-template sbbMenuContent let-name="name">

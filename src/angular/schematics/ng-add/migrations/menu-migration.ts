@@ -1,12 +1,4 @@
-import { dirname } from '@angular-devkit/core';
-import {
-  addModuleImportToModule,
-  DevkitContext,
-  Migration,
-  ResolvedResource,
-  TargetVersion,
-} from '@angular/cdk/schematics';
-import { findModule } from '@schematics/angular/utility/find-module';
+import { DevkitContext, Migration, ResolvedResource, TargetVersion } from '@angular/cdk/schematics';
 
 import {
   findReferenceAttribute,
@@ -64,7 +56,6 @@ export class MenuMigration extends Migration<null, DevkitContext> {
   }
 
   private _handleContextmenu(contextmenu: MigrationElement) {
-    this._addIconModuleImport(contextmenu);
     this._addContextmenuTrigger(contextmenu);
   }
 
@@ -92,22 +83,6 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     this._removeDropdownProperties(dropdown);
   }
 
-  private _addIconModuleImport(contextmenu: MigrationElement) {
-    try {
-      const modulePath = findModule(this.context.tree, dirname(contextmenu.resource.filePath));
-      addModuleImportToModule(
-        this.context.tree,
-        modulePath,
-        'SbbIconModule',
-        '@sbb-esta/angular/icon'
-      );
-    } catch {
-      this.logger.warn(
-        'Could not find module where SbbContextmenu was imported. Please import SbbIconModule into your corresponding NgModule (if not already imported).'
-      );
-    }
-  }
-
   private _addContextmenuTrigger(contextmenu: MigrationElement) {
     const dropdown = contextmenu.findElements((node) => nodeCheck(node).is('sbb-dropdown'))[0];
     if (!dropdown) {
@@ -121,9 +96,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
     contextmenu.removeStartTag();
     contextmenu.removeEndTag();
     contextmenu.prepend(
-      `<button [sbbMenuTriggerFor]="${menuReferenceName.substring(
-        1
-      )}"><sbb-icon svgIcon="kom:context-menu-small"></sbb-icon></button>`
+      `<button [sbbContextmenuTriggerFor]="${menuReferenceName.substring(1)}"></button>`
     );
   }
 

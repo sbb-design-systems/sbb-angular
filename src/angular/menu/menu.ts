@@ -238,7 +238,17 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
   }
   private _previousPanelClass: string;
 
-  triggerContext: SbbMenuTriggerContext;
+  get triggerContext() {
+    return this._triggerContext;
+  }
+  set triggerContext(value: SbbMenuTriggerContext) {
+    if (this._triggerContext && this._triggerContext.type !== value.type) {
+      this._classList[`sbb-menu-panel-type-${this._triggerContext.type}`] = false;
+    }
+    this._classList[`sbb-menu-panel-type-${value.type}`] = true;
+    this._triggerContext = value;
+  }
+  private _triggerContext: SbbMenuTriggerContext;
 
   /** Event emitted when the menu is closed. */
   @Output()
@@ -315,6 +325,11 @@ export class SbbMenu implements AfterContentInit, SbbMenuPanel<SbbMenuItem>, OnI
 
         manager.onKeydown(event);
     }
+  }
+
+  /** Whether to display the menu header which mirrors the trigger content. */
+  _hasHeader() {
+    return !this.parentMenu && this.triggerContext && this.triggerContext.type !== 'headless';
   }
 
   /**

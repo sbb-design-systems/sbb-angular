@@ -1,22 +1,18 @@
 <p>Each trigger passes a name to the menu by using sbbMenuTriggerData property.</p>
 
 <button
-  [sbbMenuTriggerFor]="appMenu"
-  [sbbMenuTriggerData]="{name: 'Alice'}"
+  [sbbContextmenuTriggerFor]="appMenu"
+  [sbbMenuTriggerData]="{ name: 'Alice' }"
   aria-label="Show actions"
   type="button"
->
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
-</button>
+></button>
 
 <button
-  [sbbMenuTriggerFor]="appMenu"
-  [sbbMenuTriggerData]="{name: 'Bob'}"
+  [sbbContextmenuTriggerFor]="appMenu"
+  [sbbMenuTriggerData]="{ name: 'Bob' }"
   aria-label="Show actions"
   type="button"
->
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
-</button>
+></button>
 
 <sbb-menu #appMenu="sbbMenu">
   <ng-template sbbMenuContent let-name="name">

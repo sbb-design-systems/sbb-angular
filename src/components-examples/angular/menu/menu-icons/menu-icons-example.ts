@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
- * @title Menu with icons
+ * @title Contextmenu with icons
  * @order 20
  */
 @Component({

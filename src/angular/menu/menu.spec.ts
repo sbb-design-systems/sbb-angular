@@ -2639,6 +2639,52 @@ describe('SbbMenu offset', () => {
   });
 });
 
+describe('SbbMenu contextmenu trigger', () => {
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [SbbMenuModule, NoopAnimationsModule, SbbIconModule, SbbIconTestingModule],
+      declarations: [ContextmenuTrigger, ContextmenuCustomIconTrigger],
+    }).compileComponents();
+  }));
+
+  it('should apply contextmenu classes and use correct icon', () => {
+    const fixture = TestBed.createComponent(ContextmenuTrigger);
+    fixture.detectChanges();
+
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '.sbb-menu-trigger.sbb-menu-trigger-contextmenu sbb-icon'
+      )!.outerHTML
+    ).toContain('kom:context-menu-small');
+
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+
+    expect(document.querySelector('.sbb-menu-panel-type-contextmenu')).toBeTruthy();
+    expect(
+      document.querySelector('.sbb-menu-panel-type-contextmenu sbb-icon')!.outerHTML
+    ).toContain('kom:context-menu-small');
+  });
+
+  it('should allow custom icon', () => {
+    const fixture = TestBed.createComponent(ContextmenuCustomIconTrigger);
+    fixture.detectChanges();
+
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '.sbb-menu-trigger.sbb-menu-trigger-contextmenu sbb-icon'
+      )!.outerHTML
+    ).toContain('kom:other-icon');
+
+    fixture.componentInstance.trigger.openMenu();
+    fixture.detectChanges();
+
+    expect(
+      document.querySelector('.sbb-menu-panel-type-contextmenu sbb-icon')!.outerHTML
+    ).toContain('kom:other-icon');
+  });
+});
+
 @Component({
   template: `
     <button
@@ -3140,4 +3186,33 @@ class ContextmenuOnlyTextTrigger {
 class HeadlessTrigger {
   @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
   @ViewChild(SbbMenu) menu: SbbMenu;
+}
+
+@Component({
+  template: `<button [sbbContextmenuTriggerFor]="animals" aria-label="Show animals">
+      I'm only a simple text
+    </button>
+    <sbb-menu #animals="sbbMenu">
+      <button sbb-menu-item>Invertebrates</button>
+    </sbb-menu>`,
+})
+class ContextmenuTrigger {
+  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+}
+
+@Component({
+  template: `<button
+      [sbbContextmenuTriggerFor]="animals"
+      [svgIcon]="svgIcon"
+      aria-label="Show animals"
+    >
+      I'm only a simple text
+    </button>
+    <sbb-menu #animals="sbbMenu">
+      <button sbb-menu-item>Invertebrates</button>
+    </sbb-menu>`,
+})
+class ContextmenuCustomIconTrigger {
+  @ViewChild(SbbMenuTrigger) trigger: SbbMenuTrigger;
+  svgIcon = 'kom:other-icon';
 }

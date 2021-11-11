@@ -61,7 +61,7 @@ import { SbbMenuItem } from './menu-item';
 import { SbbMenuPanel, SBB_MENU_PANEL } from './menu-panel';
 import { SbbMenuPositionX, SbbMenuPositionY } from './menu-positions';
 
-export type SbbMenuTriggerType = 'default' | 'headless' | 'breadcrumb' | 'usermenu';
+export type SbbMenuTriggerType = 'default' | 'headless' | 'breadcrumb' | 'usermenu' | 'contextmenu';
 
 export interface SbbMenuTriggerContext extends SbbMenuInheritedTriggerContext {
   width?: number;
@@ -549,9 +549,7 @@ export class SbbMenuTrigger
    */
   private _setPosition(positionStrategy: FlexibleConnectedPositionStrategy) {
     let [originX, originFallbackX]: HorizontalConnectionPos[] =
-      (!this.menu.xPosition && !this._inheritedTriggerContext?.xPosition) ||
-      this.menu.xPosition === 'before' ||
-      this._inheritedTriggerContext?.xPosition === 'before'
+      this.menu.xPosition === 'before' || this._inheritedTriggerContext?.xPosition === 'before'
         ? ['end', 'start']
         : ['start', 'end'];
 

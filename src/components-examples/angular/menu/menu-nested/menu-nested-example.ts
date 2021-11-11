@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
- * @title Nested menu
+ * @title Nested Contextmenu
  * @order 30
  */
 @Component({

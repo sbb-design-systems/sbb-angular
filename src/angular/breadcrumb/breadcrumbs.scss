@@ -261,10 +261,9 @@ $breadcrumbBorderWidthLean: 1;
 
   .sbb-menu-panel-type-breadcrumb & {
     padding: pxToRem($triggerPaddingY - $breadcrumbBorderWidthStandard)
-      pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard + $breadcrumbDropdownIconWidth)
+      pxToRem($breadcrumbPaddingX + $breadcrumbDropdownIconWidth)
       pxToRem($triggerPaddingY - $breadcrumbBorderWidthStandard)
       pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
-    width: 100%;
 
     &::after {
       @keyframes arrowRotate {
@@ -307,19 +306,13 @@ $breadcrumbBorderWidthLean: 1;
     html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         padding: pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor4k)
-          pxToRem(
-            ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard + $breadcrumbDropdownIconWidth) *
-              $scalingFactor4k
-          )
+          pxToRem(($breadcrumbPaddingX + $breadcrumbDropdownIconWidth) * $scalingFactor4k)
           pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor4k)
           pxToRem(($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
         padding: pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor5k)
-          pxToRem(
-            ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard + $breadcrumbDropdownIconWidth) *
-              $scalingFactor5k
-          )
+          pxToRem(($breadcrumbPaddingX + $breadcrumbDropdownIconWidth) * $scalingFactor5k)
           pxToRem(($triggerPaddingY - $breadcrumbBorderWidthStandard) * $scalingFactor5k)
           pxToRem(($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor5k);
       }
@@ -327,7 +320,7 @@ $breadcrumbBorderWidthLean: 1;
 
     html.sbb-lean & {
       padding: pxToRem($triggerPaddingY - $breadcrumbBorderWidthLean)
-        pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean + $breadcrumbDropdownIconWidth)
+        pxToRem($breadcrumbPaddingX + $breadcrumbDropdownIconWidth)
         pxToRem($triggerPaddingY - $breadcrumbBorderWidthLean)
         pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
     }
@@ -409,7 +402,7 @@ $breadcrumbBorderWidthLean: 1;
   font-size: pxToRem(13);
   line-height: pxToRem(20);
   padding-left: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
-  padding-right: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthStandard);
+  padding-right: pxToRem($breadcrumbPaddingX);
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
@@ -418,9 +411,7 @@ $breadcrumbBorderWidthLean: 1;
       padding-left: pxToRem(
         ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor4k
       );
-      padding-right: pxToRem(
-        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor4k
-      );
+      padding-right: pxToRem($breadcrumbPaddingX * $scalingFactor4k);
     }
     @include mq($from: desktop5k) {
       font-size: pxToRem(26);
@@ -428,14 +419,12 @@ $breadcrumbBorderWidthLean: 1;
       padding-left: pxToRem(
         ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor5k
       );
-      padding-right: pxToRem(
-        ($breadcrumbPaddingX - $breadcrumbBorderWidthStandard) * $scalingFactor5k
-      );
+      padding-right: pxToRem($breadcrumbPaddingX * $scalingFactor5k);
     }
   }
 
   html.sbb-lean & {
     padding-left: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
-    padding-right: pxToRem($breadcrumbPaddingX - $breadcrumbBorderWidthLean);
+    padding-right: pxToRem($breadcrumbPaddingX);
   }
 }

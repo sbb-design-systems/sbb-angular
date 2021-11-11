@@ -99,9 +99,11 @@ sbb-menu {
   }
 }
 
-.sbb-menu-trigger-default.sbb-menu-trigger-root,
-.sbb-menu-panel-trigger {
-  display: inline-block;
+// Trigger styles for closed and opened (copied) state (contextmenu only)
+// Definition has to be before .sbb-menu-panel-trigger (will be overwritten)
+.sbb-menu-trigger-contextmenu.sbb-menu-trigger-root,
+:where(.sbb-menu-panel-type-contextmenu) .sbb-menu-panel-trigger {
+  display: inline-flex;
   background: none;
   max-width: none;
   min-width: 0;
@@ -110,7 +112,6 @@ sbb-menu {
   outline: 0;
   cursor: pointer;
   color: $sbbColorBlack;
-  line-height: 0;
 
   &:hover,
   &:active,
@@ -152,6 +153,7 @@ sbb-menu {
   }
 }
 
+// Trigger styles for opened (copied) state
 .sbb-menu-panel-trigger {
   background-color: $sbbColorWhite;
   position: relative;
@@ -159,6 +161,7 @@ sbb-menu {
   padding: pxToRem($triggerPadding - $borderWidthStandard);
   border: pxToRem($borderWidthStandard) solid $sbbColorGrey;
   border-radius: pxToRem(2);
+  width: 100%;
 
   html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
@@ -300,4 +303,9 @@ sbb-menu {
       }
     }
   }
+}
+
+// Trigger in opened state in the panel (contextmenu only)
+.sbb-menu-panel-type-contextmenu .sbb-menu-panel-trigger {
+  width: auto;
 }

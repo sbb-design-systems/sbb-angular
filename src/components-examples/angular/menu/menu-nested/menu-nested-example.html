@@ -1,6 +1,5 @@
-<button [sbbMenuTriggerFor]="animals" aria-label="Show animals" type="button">
-  <sbb-icon *sbbMenuDynamicTrigger svgIcon="kom:context-menu-small"></sbb-icon>
-</button>
+<button [sbbContextmenuTriggerFor]="animals" aria-label="Show animals" type="button"></button>
+
 <sbb-menu #animals="sbbMenu">
   <button sbb-menu-item [sbbMenuTriggerFor]="vertebrates" type="button">Vertebrates</button>
   <button sbb-menu-item [sbbMenuTriggerFor]="invertebrates" type="button">Invertebrates</button>

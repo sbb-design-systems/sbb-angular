@@ -4,7 +4,7 @@ import { SbbMenuModule, SbbMenu, SbbDropdownSelectedEvent, SBB_MENU_SCROLL_STRAT
 
 @Component({
   selector: 'sbb-contextmenu-test',
-  template: `<button [sbbMenuTriggerFor]="menu2"><sbb-icon svgIcon="kom:context-menu-small"></sbb-icon></button>
+  template: `<button [sbbContextmenuTriggerFor]="menu2"></button>
       <!-- TODO: Removed properties [autoactivefirstoption], (opened), (optionselected), [panelwidth] because they no longer exist. --><sbb-menu
        
        
@@ -26,10 +26,10 @@ import { SbbMenuModule, SbbMenu, SbbDropdownSelectedEvent, SBB_MENU_SCROLL_STRAT
         </button>
       </sbb-menu>
     
-    <button [sbbMenuTriggerFor]="menu"><sbb-icon svgIcon="kom:context-menu-small"></sbb-icon></button>
+    <button [sbbContextmenuTriggerFor]="menu"></button>
       <sbb-menu #menu="sbbMenu"></sbb-menu>
     
-    <button [sbbMenuTriggerFor]="menu3"><sbb-icon svgIcon="kom:context-menu-small"></sbb-icon></button>
+    <button [sbbContextmenuTriggerFor]="menu3"></button>
       <sbb-menu #menu1 #menu3="sbbMenu"></sbb-menu>
     `,
 })
