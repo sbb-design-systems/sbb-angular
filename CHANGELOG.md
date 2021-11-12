@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.4.0...13.0.0-rc.0) (2021-11-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update to Angular 13 and switch to Ivy distribution format. The ViewEngine format is no longer supported.
+* The packages `@sbb-esta/angular-business`, `@sbb-esta/angular-core` and `@sbb-esta/angular-public` have been replaced
+  with the new package `@sbb-esta/angular`. See our new [showcase](https://angular-next.app.sbb.ch), our
+  [update guide](https://angular-next.app.sbb.ch/howtoupdate) and our [migration guide](https://angular-next.app.sbb.ch/angular/introduction/migration-guide)
+  on how to use or upgrade to our new library.
+* The deprecated packages `@sbb-esta/angular-icons` and `@sbb-esta/angular-keycloak` have been removed.
+
+### Features
+
+* update to rxjs 7 ([#909](https://github.com/sbb-design-systems/sbb-angular/issues/909)) ([96b8ab2](https://github.com/sbb-design-systems/sbb-angular/commit/96b8ab2a96729ffb7c8716b5aaeeb90105a51d2b))
+
+
+### Bug Fixes
+
+* **showcase:** avoid blue button color on iOS 15 ([#884](https://github.com/sbb-design-systems/sbb-angular/issues/884)) ([4ae263a](https://github.com/sbb-design-systems/sbb-angular/commit/4ae263a11583633f14ffe595f7a8f72b796ba7c4))
+
+
+### build
+
+* update to Angular v13 and Bazel nodejs rules v4.3 ([#901](https://github.com/sbb-design-systems/sbb-angular/issues/901)) ([c8f0f0b](https://github.com/sbb-design-systems/sbb-angular/commit/c8f0f0b1213dec8075079ba0e34a8893653e2ae9))
+
+
+### Documentation
+
+* **angular:** update general docs ([#923](https://github.com/sbb-design-systems/sbb-angular/issues/923)) ([e16640f](https://github.com/sbb-design-systems/sbb-angular/commit/e16640f5ffe3f87520a740761ffe3817e99cfd96))
+* add link to security advisory for GitHub Actions ([#894](https://github.com/sbb-design-systems/sbb-angular/issues/894)) ([6b0fff1](https://github.com/sbb-design-systems/sbb-angular/commit/6b0fff15e2d37c28ad674579615d63f1c0f6dbbd))
+
 ## [12.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.3.0...12.4.0) (2021-09-09)
 
 
