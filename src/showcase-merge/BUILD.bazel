@@ -2,9 +2,6 @@ load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
-load("//src/angular:config.bzl", "ANGULAR_ENTRYPOINTS", "ANGULAR_TESTING_ENTRYPOINTS")
-load("//src/angular-maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")
-load("//src/components-examples:config.bzl", "ALL_EXAMPLES")
 load("//tools:defaults.bzl", "esbuild", "ng_module")
 load("//tools/dev-server:index.bzl", "dev_server")
 load("//tools/esbuild:index.bzl", dev_esbuild = "esbuild")
@@ -46,6 +43,7 @@ dev_esbuild(
     entry_points = [":main.dev.ts"],
     format = "esm",
     platform = "browser",
+    sources_content = True,
     splitting = True,
     # We cannot use `ES2017` or higher as that would result in `async/await` not being downleveled.
     # ZoneJS needs to be able to intercept these as otherwise change detection would not work properly.
@@ -109,24 +107,6 @@ html_insert_assets(
     ] + _ASSETS,
 )
 
-angular_api_entry_points = ANGULAR_ENTRYPOINTS + ANGULAR_TESTING_ENTRYPOINTS
-
-maps_api_entry_points = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
-
-showcase_entry_points = [
-    "",
-    "/angular",
-    "/maps",
-    "/shared",
-    "/shared/component-viewer",
-]
-
-# List that contains all source files that need to be provided as source files in devserver.
-source_files = ["//src/angular/%s:source-files" % name for name in angular_api_entry_points] + \
-               ["//src/angular-maps/%s:source-files" % name for name in maps_api_entry_points] + \
-               ["%s:source-files" % name for name in ALL_EXAMPLES] + \
-               ["//src/showcase-merge/app%s:source-files" % name for name in showcase_entry_points]
-
 # File group for all static files which are needed to serve the dev-app. These files are
 # used in the devserver as runfiles and will be copied into the static web package that can
 # be deployed on static hosting services (like firebase).
@@ -135,7 +115,7 @@ filegroup(
     srcs = [
         ":index.html",
         "//src/showcase-merge/assets",
-    ] + _ASSETS + source_files,
+    ] + _ASSETS,
 )
 
 dev_server(
