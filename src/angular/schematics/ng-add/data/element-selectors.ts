@@ -49,10 +49,6 @@ export const elementSelectors: VersionChanges<ElementSelectorUpgradeData> = {
           replace: 'sbb-ghettobox-container',
           replaceWith: 'sbb-alert-outlet',
         },
-        {
-          replace: 'sbb-header',
-          replaceWith: 'sbb-header-lean',
-        },
       ],
     },
   ],

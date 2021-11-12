@@ -423,17 +423,6 @@ export class SbbMenuTrigger
    */
   private _initMenu(): void {
     this.menu.parentMenu = this.triggersSubmenu() ? this._parentSbbMenu : undefined;
-    this.menu.triggerContext = this._createTriggerContext();
-    this._setMenuElevation();
-    this.menu.focusFirstItem(this._openedBy || 'program');
-    this._setIsMenuOpen(true);
-  }
-
-  /**
-   * The menu can have different contexts, depending on where it is used.
-   * (e.g. as a standalone menu, with breadcrumbs, with a context menu, etc.)
-   */
-  private _createTriggerContext(): SbbMenuTriggerContext {
     const triggerContext: SbbMenuTriggerContext =
       this._type === 'headless' || this.triggersSubmenu()
         ? { type: this._type }
@@ -450,7 +439,10 @@ export class SbbMenuTrigger
             scalingFactor: this._scalingFactor,
           };
 
-    return { ...triggerContext, ...this._inheritedTriggerContext };
+    this.menu.triggerContext = { ...triggerContext, ...this._inheritedTriggerContext };
+    this._setMenuElevation();
+    this.menu.focusFirstItem(this._openedBy || 'program');
+    this._setIsMenuOpen(true);
   }
 
   /** Updates the menu elevation based on the amount of parent menus that it has. */

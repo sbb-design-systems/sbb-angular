@@ -1,10 +1,11 @@
-import { Component, NgModule } from '@angular/core';
-import { SbbHeaderLeanModule, SbbHeaderLean } from '@sbb-esta/angular/header-lean';
+import { Component, NgModule, ViewChild } from '@angular/core';
+import { SbbHeaderLeanModule, SbbHeaderLean, SbbHeaderEnvironment } from '@sbb-esta/angular/header-lean';
 
 @Component({
   selector: 'sbb-header-test',
   template: `
-    <sbb-header-lean [label]="Title" [subtitle]="Subtitle">
+    <sbb-header-lean [label]="Title" [subtitle]="Subtitle" class="sbb-header-fixed-columns">
+      <sbb-header-environment>dev</sbb-header-environment>
       <a routerLink="/">Home</a>
       <sbb-app-chooser-section label="Apps">
         <a href="https://other-app.app.sbb.ch">Other App</a>
@@ -16,7 +17,10 @@ import { SbbHeaderLeanModule, SbbHeaderLean } from '@sbb-esta/angular/header-lea
     </sbb-header-lean>
   `,
 })
-export class HeaderTestComponent {}
+export class HeaderTestComponent {
+  @ViewChild(SbbHeaderLean) header: SbbHeaderLean;
+  @ViewChild(SbbHeaderEnvironment) env: SbbHeaderEnvironment;
+}
 
 @NgModule({
   declarations: [HeaderTestComponent],

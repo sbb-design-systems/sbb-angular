@@ -32,7 +32,7 @@ sbb-menu {
     pointer-events: none;
   }
 
-  :where(html:not(.sbb-lean)) & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       min-width: pxToRem(150 * $scalingFactor4k);
       max-width: pxToRem(400 * $scalingFactor4k);
@@ -61,7 +61,7 @@ sbb-menu {
   box-shadow: boxShadow(1, $borderWidthStandard, 1);
   border-top-width: pxToRem($borderWidthStandard);
 
-  :where(html:not(.sbb-lean)) & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       border-radius: pxToRem(2 * $scalingFactor4k);
       box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
@@ -74,7 +74,7 @@ sbb-menu {
     }
   }
 
-  :where(html.sbb-lean) & {
+  html.sbb-lean & {
     box-shadow: boxShadow(1, $borderWidthLean, 1);
     border-top-width: pxToRem($borderWidthLean);
   }
@@ -123,7 +123,7 @@ sbb-menu {
     width: pxToRem(24);
     height: pxToRem(24);
 
-    :where(html:not(.sbb-lean)) & {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         width: pxToRem(24 * $scalingFactor4k);
         height: pxToRem(24 * $scalingFactor4k);
@@ -141,7 +141,7 @@ sbb-menu {
     }
   }
 
-  :where(html:not(.sbb-lean)) & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       padding: pxToRem(6 * $scalingFactor4k);
       border-width: pxToRem($borderWidthStandard * $scalingFactor4k);
@@ -163,7 +163,7 @@ sbb-menu {
   border-radius: pxToRem(2);
   width: 100%;
 
-  :where(html:not(.sbb-lean)) & {
+  html:not(.sbb-lean) & {
     @include mq($from: desktop4k) {
       padding: pxToRem(($triggerPadding - $borderWidthStandard) * $scalingFactor4k);
       border-width: pxToRem($borderWidthStandard * $scalingFactor4k);
@@ -176,7 +176,7 @@ sbb-menu {
     }
   }
 
-  :where(html.sbb-lean) & {
+  html.sbb-lean & {
     padding: pxToRem($triggerPadding - $borderWidthLean);
     border-width: pxToRem($borderWidthLean);
     border-color: $sbbColorIron;
@@ -188,7 +188,7 @@ sbb-menu {
     padding-bottom: pxToRem($triggerPadding);
     border-bottom-width: 0;
 
-    :where(html:not(.sbb-lean)) & {
+    html:not(.sbb-lean) & {
       border-bottom-width: 0; // Redefined to be more specific
 
       @include mq($from: desktop4k) {
@@ -199,7 +199,7 @@ sbb-menu {
       }
     }
 
-    :where(html.sbb-lean) & {
+    html.sbb-lean & {
       border-bottom-width: 0; // Redefined to be more specific
     }
   }
@@ -210,7 +210,7 @@ sbb-menu {
     border-top-width: 0;
 
     box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactorDefault);
-    :where(html:not(.sbb-lean)) & {
+    html:not(.sbb-lean) & {
       border-top-width: 0; // Redefined to be more specific
 
       @include mq($from: desktop4k) {
@@ -223,7 +223,7 @@ sbb-menu {
       }
     }
 
-    :where(html.sbb-lean) & {
+    html.sbb-lean & {
       border-top-width: 0; // Redefined because of specificity
       box-shadow: boxShadow(1, $borderWidthLean, $scalingFactorDefault);
     }
@@ -240,7 +240,7 @@ sbb-menu {
   .sbb-menu-panel-below & {
     top: pxToRem(-$borderWidthStandard);
 
-    :where(html:not(.sbb-lean)) & {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         top: pxToRem(-$borderWidthStandard * $scalingFactor4k);
       }
@@ -249,7 +249,7 @@ sbb-menu {
       }
     }
 
-    :where(html.sbb-lean) & {
+    html.sbb-lean & {
       top: pxToRem(-$borderWidthLean);
     }
   }
@@ -257,7 +257,7 @@ sbb-menu {
   .sbb-menu-panel-above & {
     top: pxToRem($borderWidthStandard);
 
-    :where(html:not(.sbb-lean)) & {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         top: pxToRem($borderWidthStandard * $scalingFactor4k);
       }
@@ -266,7 +266,7 @@ sbb-menu {
       }
     }
 
-    :where(html.sbb-lean) & {
+    html.sbb-lean & {
       top: pxToRem($borderWidthLean);
     }
   }
@@ -275,11 +275,11 @@ sbb-menu {
 .sbb-menu-item-submenu-trigger {
   // We have to overwrite typography styles
   &,
-  :where(html.sbb-lean) &.sbb-menu-item {
+  html.sbb-lean &.sbb-menu-item {
     padding-right: pxToRem(32);
   }
 
-  :where(html:not(.sbb-lean)) &.sbb-menu-item {
+  html:not(.sbb-lean) &.sbb-menu-item {
     @include mq($from: desktop4k) {
       padding-right: pxToRem(32 * $scalingFactor4k);
     }
@@ -294,7 +294,7 @@ sbb-menu {
     float: none;
     right: pxToRem(5);
 
-    :where(html:not(.sbb-lean)) & {
+    html:not(.sbb-lean) & {
       @include mq($from: desktop4k) {
         right: pxToRem(5 * $scalingFactor4k);
       }
