@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { mixinDisabled, TypeRef } from '@sbb-esta/angular/core';
 
-// Boilerplate for applying mixins to HeaderMenuItemDirective.
+// Boilerplate for applying mixins to SbbHeaderMenuItem.
 /** @docs-private */
 // tslint:disable-next-line: naming-convention
 const _HeaderMenuItemBase = mixinDisabled(class {});
@@ -112,7 +112,5 @@ export class SbbHeaderMenuItem extends _HeaderMenuItemBase implements FocusableO
     return output.trim();
   }
 
-  // tslint:disable: member-ordering
   static ngAcceptInputType_disabled: BooleanInput;
-  // tslint:enable: member-ordering
 }

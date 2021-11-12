@@ -52,7 +52,6 @@ export const SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: true });
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'button[sbbHeaderMenu]',
   templateUrl: './header-menu-trigger.html',
   styleUrls: ['./header-menu-trigger.css'],
