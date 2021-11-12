@@ -47,6 +47,7 @@ import {
 
 import { SbbAppChooserSection } from './app-chooser-section';
 import { sbbHeaderAnimations } from './header-animations';
+import { SbbHeaderMenuTrigger } from './header-menu-trigger';
 import { SBB_HEADER } from './header-token';
 
 /** Result of the toggle promise that indicates the state of the header menu. */
@@ -158,6 +159,9 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
   /** Observable of whether the menus are collapsed into the burger menu. */
   _headerMenusCollapsed: Observable<boolean>;
 
+  /** Whether the menus are collapsed into the burger menu. */
+  _menusCollapsed: boolean = false;
+
   /** Event emitted when the header menu open state is changed. */
   @Output() readonly openedChange: EventEmitter<boolean> =
     // Note this has to be async in order to avoid some issues with two-bindings (see #8872).
@@ -201,8 +205,18 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
 
   /** @docs-private */
   @ViewChild('menu', { static: true }) _menuElement: ElementRef<HTMLElement>;
-  /** @docs-private */
+
+  /**
+   * The provided app chooser sections.
+   * @docs-private
+   */
   @ContentChildren(SbbAppChooserSection) _appChooserSections: QueryList<SbbAppChooserSection>;
+
+  /**
+   * Menu triggers used within the header.
+   * @docs-private
+   */
+  @ContentChildren(SbbHeaderMenuTrigger) _menuTriggers: QueryList<SbbHeaderMenuTrigger>;
 
   /** How the sidenav was opened (keypress, mouse click etc.) */
   private _openedVia: FocusOrigin | null;
@@ -289,6 +303,15 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
       takeUntil(this._destroyed)
     );
 
+    // Close menus on collapsing/uncollapsing the header menus.
+    merge(this.closedStart, this._headerMenusCollapsed).subscribe(() => {
+      this._menuTriggers?.forEach((t) => t.closeMenu());
+    });
+
+    // Change property according to collapsed state.
+    this._headerMenusCollapsed.subscribe((isCollapsed) => {
+      Promise.resolve().then(() => (this._menusCollapsed = isCollapsed));
+    });
     // Add or remove the sbb-header-lean-menus-collapsed css class, depending on
     // collapsed state.
     this._ngZone.runOutsideAngular(() => {

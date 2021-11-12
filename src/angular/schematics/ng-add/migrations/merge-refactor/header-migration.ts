@@ -11,10 +11,11 @@ export class HeaderMigration extends RefactorMigration {
   protected _migrateMessage: string = 'Migrating sbb-header usages';
 
   protected _shouldMigrate(element: Element): boolean {
-    return this._hasAttribute(element, 'sbb-header');
+    return this._isElement(element, 'sbb-header');
   }
 
   protected _migrate(element: MigrationElement) {
+    element.rename('sbb-header-lean');
     const classAttribute = element.findProperty('class');
     if (!classAttribute) {
       element.appendProperty('class', 'sbb-header-fixed-columns');

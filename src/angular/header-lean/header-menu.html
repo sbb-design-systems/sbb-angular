@@ -1,0 +1,25 @@
+<button type="button" class="sbb-header-menu-back" (click)="open = false">
+  <sbb-icon svgIcon="kom:chevron-small-left-small"></sbb-icon>
+  <span>{{ _backButton }}</span>
+</button>
+
+<div class="sbb-header-menu-title">
+  <ng-content></ng-content>
+</div>
+
+<div class="sbb-header-menu-panel-container">
+  <ng-template cdkPortal cdkPortalOutlet>
+    <div
+      class="sbb-header-menu-panel sbb-panel sbb-panel-padded sbb-scrollbar"
+      role="listbox"
+      [id]="id"
+      [ngClass]="_classList"
+      (keydown)="_handlePanelKeydown($event)"
+      (click)="closed.emit('click')"
+      tabindex="-1"
+      role="menu"
+    >
+      <ng-content select="a, button, hr"></ng-content>
+    </div>
+  </ng-template>
+</div>
