@@ -9,7 +9,7 @@ and `@sbb-esta/angular-core` to `@sbb-esta/angular`.
 The default variant is `standard`. To use the `lean` variant, add the `sbb-lean` CSS class to the
 `html` element (e.g. `<html class="sbb-lean" ...>`).
 
-Most of the breaking changes should automatically be migrated via `ng update`
+Most of the breaking changes should automatically be migrated via `ng add @sbb-esta/angular`
 (see our [How to update](howtoupdate) guide).
 
 Please [reach out to us](https://github.com/sbb-design-systems/sbb-angular/issues/new/choose), if

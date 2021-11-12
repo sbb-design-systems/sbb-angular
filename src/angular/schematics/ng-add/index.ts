@@ -40,7 +40,7 @@ export function ngAdd(options: Schema): Rule {
       context.logger.error('');
       context.logger.error(`  ng update @angular/core@13 @angular/cli@13 @angular/cdk@13 --force`);
       context.logger.error('');
-      context.logger.error(`'--force' is required due to peerDependencies conflicts.`);
+      context.logger.error(`'--force' is required due to peer dependencies conflicts.`);
       context.logger.error(`Afterwards run 'ng add @sbb-esta/angular' once more.`);
       return;
     }

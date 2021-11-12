@@ -1,5 +1,24 @@
 # Typography
 
+## Variants
+
+@sbb-esta/angular provides two design variants: standard and lean.
+
+**Standard** (default)
+
+The standard design variant is intended for public websites (e.g. sbb.ch or similar). It uses a
+large amount of whitespace and supports responsive design for mobile, tablet, desktop, 4k and 5k.
+The intended usage of our components in this variant are more limited according to the design
+specification at [Design System Web](https://digital.sbb.ch/en/websites).
+
+**Lean**
+
+Lean uses a compact design and supports responsive design for mobile, tablet and desktop.
+The components are more flexible in their usage as specified at [Design System Lean Applications](https://digital.sbb.ch/en/webapps).
+To activate lean design, set the css class `sbb-lean` on your `<html class="sbb-lean">` element.
+
+If you are uncertain which library to use, we recommend you to start with lean design.
+
 ## Global Settings
 
 SBB Angular library sets basic global typography, display and link styles.

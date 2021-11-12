@@ -67,11 +67,11 @@ or editing your `angular.json`:
   ...
 ```
 
-If you need more details about what the typography offers to you, you can get to [typography](./typography).
+If you need more details about what the typography offers to you, you can go to [typography](angular/introduction/typography).
 
 #### Step 1.3: Configure animations
 
-Once the "@sbb-esta/angular" package is installed, you have to configure your application to enable animations support:
+Once the `@sbb-esta/angular` package is installed, you have to configure your application to enable animations support:
 
 ```ts
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -102,12 +102,12 @@ export class TrainChooChooAppModule {}
 Import the NgModule for each component you want to use:
 
 ```ts
-import { ButtonModule } from '@sbb-esta/angular/button';
-import { CheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 
 @NgModule({
   ...
-  imports: [ButtonModule, CheckboxModule],
+  imports: [SbbButtonModule, SbbCheckboxModule],
   ...
 })
 export class TrainChooChooAppModule {}
@@ -116,12 +116,12 @@ export class TrainChooChooAppModule {}
 Alternatively, you can create a separate NgModule that imports all of the components that you will use in your application. You can then include this module wherever you'd like to use the components.
 
 ```ts
-import { ButtonModule } from '@sbb-esta/angular/button';
-import { CheckboxModule } from '@sbb-esta/angular/checkbox';
+import { SbbButtonModule } from '@sbb-esta/angular/button';
+import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
 
 @NgModule({
-  imports: [ButtonModule, CheckboxModule],
-  exports: [ButtonModule, CheckboxModule],
+  imports: [SbbButtonModule, SbbCheckboxModule],
+  exports: [SbbButtonModule, SbbCheckboxModule],
 })
 export class SbbModule {}
 ```
@@ -134,5 +134,5 @@ If you need to reuse some mixins from the library, you have to configure your ow
 SCSS mode and import `_styles.scss` from the library into your `styles.scss`:
 
 ```scss
-@import '../node_modules/@sbb-esta/angular/styles';
+@import 'node_modules/@sbb-esta/angular/styles';
 ```
