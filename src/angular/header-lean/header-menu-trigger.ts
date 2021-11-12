@@ -9,6 +9,7 @@ import {
 import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -55,7 +56,10 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
   selector: 'button[sbbHeaderMenu]',
   templateUrl: './header-menu-trigger.html',
   styleUrls: ['./header-menu-trigger.css'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  // We use the default change detection here, since it is unclear
+  // whether OnPush works in all use cases.
+  // TODO: Check if OnPush can be enabled.
+  changeDetection: ChangeDetectionStrategy.Default,
   exportAs: 'sbbHeaderMenu',
   encapsulation: ViewEncapsulation.None,
   host: {

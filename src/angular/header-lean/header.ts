@@ -334,18 +334,6 @@ export class SbbHeaderLean implements OnChanges, AfterViewInit, OnDestroy {
     }
   }
 
-  /*
-  ngAfterContentInit() {
-    // Close header menu and header menus on clicking a header menu item.
-    this._menuTriggers.changes
-      .pipe(
-        startWith(this._menuTriggers.toArray()),
-        switchMap((triggers: SbbHeaderMenuTrigger[]) => merge(...triggers.map((t) => t.menuClosed)))
-      )
-      .subscribe(() => this.closeMenu());
-  }
-  */
-
   ngAfterViewInit() {
     this._focusTrap = this._focusTrapFactory.create(this._menuElement.nativeElement);
     this._updateFocusTrapState();

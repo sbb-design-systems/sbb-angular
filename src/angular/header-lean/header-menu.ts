@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="@angular/localize/init" />
+
 import { AnimationEvent } from '@angular/animations';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FocusKeyManager, FocusOrigin } from '@angular/cdk/a11y';
@@ -51,6 +54,11 @@ let nextId = 0;
   },
 })
 export class SbbHeaderMenu implements AfterContentInit, OnDestroy {
+  _backButton: string =
+    typeof $localize === 'function'
+      ? $localize`:Go back to the app chooser navigation@@sbbHeaderMenuBack:Back`
+      : 'Back';
+
   /** Unique ID to be used by menu trigger's "aria-owns" property. */
   id: string = `sbb-header-menu-${nextId++}`;
 
