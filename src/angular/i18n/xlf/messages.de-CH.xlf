@@ -2,6 +2,14 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-CH" datatype="plaintext" original="ng2.template" target-language="de-CH">
     <body>
+      <trans-unit id="sbbAlertCloseAlert" datatype="html">
+        <source>Close message</source>
+        <target state="signed-off">Meldung schliessen</target>
+      </trans-unit>
+      <trans-unit id="sbbBreadcrumbExpand" datatype="html">
+        <source>Show entire path</source>
+        <target state="signed-off">Ganzen Pfad anzeigen</target>
+      </trans-unit>
       <trans-unit id="sbbDatepickerSwitchToPreviousMonth" datatype="html">
         <source>Change to the previous month</source>
         <target state="signed-off">Zum letzten Monat wechseln</target>
@@ -22,6 +30,10 @@
         <source>Show calendar</source>
         <target state="signed-off">Kalender anzeigen</target>
       </trans-unit>
+      <trans-unit id="sbbDialogCloseDialog" datatype="html">
+        <source>Close dialog</source>
+        <target state="signed-off">Dialog schliessen</target>
+      </trans-unit>
       <trans-unit id="sbbFileSelectorUploadFile" datatype="html">
         <source>Upload file</source>
         <target state="signed-off">Datei hochladen</target>
@@ -34,13 +46,17 @@
         <source>Back</source>
         <target state="signed-off">Zurück</target>
       </trans-unit>
-      <trans-unit id="sbbNavigationPreviousPage" datatype="html">
-        <source>Previous Page</source>
-        <target state="signed-off">Vorherige Seite</target>
+      <trans-unit id="sbbHeaderOpenMenu" datatype="html">
+        <source>Open Menu</source>
+        <target state="signed-off">Menü öffnen</target>
       </trans-unit>
-      <trans-unit id="sbbNavigationNextPage" datatype="html">
-        <source>Next Page</source>
-        <target state="signed-off">Nächste Seite</target>
+      <trans-unit id="sbbHeaderCloseMenu" datatype="html">
+        <source>Close Menu</source>
+        <target state="signed-off">Menü schliessen</target>
+      </trans-unit>
+      <trans-unit id="sbbLightboxCloseLightbox" datatype="html">
+        <source>Close lightbox</source>
+        <target state="signed-off">Lightbox schliessen</target>
       </trans-unit>
       <trans-unit id="sbbPaginationPreviousPage" datatype="html">
         <source>Previous Page</source>
@@ -50,26 +66,41 @@
         <source>Next Page</source>
         <target state="signed-off">Nächste Seite</target>
       </trans-unit>
+      <trans-unit id="sbbSearchHeaderButtonLabel" datatype="html">
+        <source>Search</source>
+        <target state="signed-off">Suche</target>
+      </trans-unit>
       <trans-unit id="sbbSidebarCollapse" datatype="html">
         <source>Collapse</source>
-        <target state="translated">Zusammenklappen</target>
+        <target state="signed-off">Zusammenklappen</target>
       </trans-unit>
       <trans-unit id="sbbSidebarExpand" datatype="html">
         <source>Expand</source>
-        <target state="translated">Erweitern</target>
+        <target state="signed-off">Erweitern</target>
       </trans-unit>
-      <trans-unit id="sbbTableChangeSorting" datatype="html">
-        <source>Change sorting for <x id="PH" equiv-text="this.id"/></source>
-        <target state="translated">Sortierung für <x id="PH" equiv-text="this.id"/> ändern</target>
+      <trans-unit id="sbbSidebarCloseSidebar" datatype="html">
+        <source>Close Sidebar</source>
+        <target state="signed-off">Seitenmenü schliessen</target>
       </trans-unit>
-      <trans-unit id="sbbTabsBadgePillAmountOfEntries" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ tab.badgePill }}"/> entries</source>
-        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ tab.badgePill }}"/> Einträge</target>
+      <trans-unit id="sbbSidebarOpenSidebar" datatype="html">
+        <source>Open Sidebar</source>
+        <target state="signed-off">Seitenmenü öffnen</target>
+      </trans-unit>
+      <trans-unit id="sbbTagBadgePillAmountOfResults" datatype="html">
+        <source><x id="PH" equiv-text="this.amount"/> results available</source>
+        <target state="signed-off"><x id="PH" equiv-text="this.amount"/> Resultate verfügbar</target>
+      </trans-unit>
+      <trans-unit id="sbbTagsAll" datatype="html">
+        <source>All</source>
+        <target state="signed-off">Alle</target>
+      </trans-unit>
+      <trans-unit id="sbbTagsAllBadgeDescription" datatype="html">
+        <source>A total of <x id="PH" equiv-text="this.totalAmount"/> results available</source>
+        <target state="signed-off">Ein Total von <x id="PH" equiv-text="this.totalAmount"/> Resultaten verfügbar</target>
       </trans-unit>
       <trans-unit id="sbbTextareaCounterText" datatype="html">
-        <source> <x id="INTERPOLATION" equiv-text="{{ _counter | async }}"/> characters remaining
-</source>
-        <target state="translated">Noch <x id="INTERPOLATION" equiv-text="{{ _counter | async }}"/> Zeichen</target>
+        <source><x id="PH" equiv-text="this._counter.value"/> characters remaining</source>
+        <target state="signed-off">Noch <x id="PH" equiv-text="this._counter.value"/> Zeichen</target>
       </trans-unit>
       <trans-unit id="sbbTextexpandShowLess" datatype="html">
         <source>Show less</source>
@@ -84,32 +115,9 @@
         <target state="signed-off">Anmelden</target>
       </trans-unit>
       <trans-unit id="sbbUsermenuOpenPanel" datatype="html">
-        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
-        "/>. Click or press enter to open user menu.</source>
-        <target state="translated">Angemeldet als <x id="PH" equiv-text="this.displayName || this.userName
+        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName"/>. Click or press enter to open user menu.</source>
+        <target state="signed-off">Angemeldet als <x id="PH" equiv-text="this.displayName || this.userName
 "/>. Klicken oder Enter drücken, um das Benutzermenü zu öffnen.</target>
-      </trans-unit>
-      <trans-unit id="sbbUsermenuClosePanel" datatype="html">
-        <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName
-        "/>. Click or press enter to close user menu.</source>
-        <target state="translated">Angemeldet als <x id="PH" equiv-text="this.displayName || this.userName
-"/>. Klicken oder Enter drücken, um das Benutzermenü zu schliessen.</target>
-      </trans-unit>
-      <trans-unit id="sbbGhettoboxCloseGhettobox" datatype="html">
-        <source>Close message</source>
-        <target state="signed-off">Hinweismeldung schliessen</target>
-      </trans-unit>
-      <trans-unit id="sbbSearchStartSearch" datatype="html">
-        <source>Start search</source>
-        <target state="translated">Starte Suche</target>
-      </trans-unit>
-      <trans-unit id="sbbTagBadgePillAmountOfResults" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ amount }}"/> results available</source>
-        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ amount }}"/> Resultate verfügbar</target>
-      </trans-unit>
-      <trans-unit id="sbbTagsAll" datatype="html">
-        <source>All</source>
-        <target state="signed-off">Alle</target>
       </trans-unit>
     </body>
   </file>

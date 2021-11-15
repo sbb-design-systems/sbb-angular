@@ -3,7 +3,7 @@
   <file source-language="en-CH" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="sbbAlertCloseAlert" datatype="html">
-        <source>Dismiss alert</source>
+        <source>Close message</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/alert/alert.ts</context>
           <context context-type="linenumber">49</context>
@@ -11,10 +11,10 @@
         <note priority="1" from="description">Hidden button label to close the alert</note>
       </trans-unit>
       <trans-unit id="sbbBreadcrumbExpand" datatype="html">
-        <source>Show all levels</source>
+        <source>Show entire path</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/breadcrumb/breadcrumbs.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <note priority="1" from="description">Button with three dots to show all breadcrumb levels</note>
       </trans-unit>
@@ -54,7 +54,7 @@
         <source>Show calendar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/datepicker/datepicker-toggle/datepicker-toggle.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">37</context>
         </context-group>
         <note priority="1" from="description">Open calendar</note>
       </trans-unit>
@@ -70,7 +70,7 @@
         <source>Upload file</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/file-selector/file-selector.ts</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">66</context>
         </context-group>
         <note priority="1" from="description">Button label to select files for upload</note>
       </trans-unit>
@@ -78,15 +78,23 @@
         <source>Remove file</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/file-selector/file-selector.ts</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">71</context>
         </context-group>
         <note priority="1" from="description">Hidden button label to remove a file from the selection list</note>
+      </trans-unit>
+      <trans-unit id="sbbHeaderMenuBack" datatype="html">
+        <source>Back</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../../../../src/angular/header-lean/header-menu.ts</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <note priority="1" from="description">Go back to the app chooser navigation</note>
       </trans-unit>
       <trans-unit id="sbbHeaderOpenMenu" datatype="html">
         <source>Open Menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/header-lean/header.ts</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">119</context>
         </context-group>
         <note priority="1" from="description">Button label to open the sidebar of the header</note>
       </trans-unit>
@@ -94,7 +102,7 @@
         <source>Close Menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/header-lean/header.ts</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">124</context>
         </context-group>
         <note priority="1" from="description">Button label to close the sidebar of the header</note>
       </trans-unit>
@@ -126,7 +134,7 @@
         <source>Search</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/search/header-search.ts</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">83</context>
         </context-group>
         <note priority="1" from="description">Button label for the header search</note>
       </trans-unit>
@@ -194,7 +202,7 @@
         <source><x id="PH" equiv-text="this._counter.value"/> characters remaining</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/textarea/textarea/textarea.ts</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <note priority="1" from="description">Counter text for textarea</note>
       </trans-unit>
@@ -202,7 +210,7 @@
         <source>Show less</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/textexpand/textexpand.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <note priority="1" from="description">Button label for showing less</note>
       </trans-unit>
@@ -210,7 +218,7 @@
         <source>Show more</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/textexpand/textexpand.ts</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <note priority="1" from="description">Button label for showing more</note>
       </trans-unit>
@@ -218,7 +226,7 @@
         <source>Login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <note priority="1" from="description">Button label for login</note>
       </trans-unit>
@@ -226,7 +234,7 @@
         <source>Logged in as <x id="PH" equiv-text="this.displayName || this.userName"/>. Click or press enter to open user menu.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../../../../src/angular/usermenu/usermenu.ts</context>
-          <context context-type="linenumber">69,71</context>
+          <context context-type="linenumber">70,72</context>
         </context-group>
         <note priority="1" from="description">Aria label to open user menu</note>
       </trans-unit>

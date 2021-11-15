@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en-CH" trgLang="it-CH">
   <file original="ng.template" id="ngi18n">
+    <unit id="sbbAlertCloseAlert">
+      <segment state="translated">
+        <source>Close message</source>
+        <target>Chiudere il messaggio</target>
+      </segment>
+    </unit>
+    <unit id="sbbBreadcrumbExpand">
+      <segment state="translated">
+        <source>Show entire path</source>
+        <target>Visualizzare intero percorso</target>
+      </segment>
+    </unit>
     <unit id="sbbDatepickerSwitchToPreviousMonth">
       <segment state="reviewed">
         <source>Change to the previous month</source>
@@ -31,6 +43,12 @@
         <target>Visualizzare calendario</target>
       </segment>
     </unit>
+    <unit id="sbbDialogCloseDialog">
+      <segment state="translated">
+        <source>Close dialog</source>
+        <target>Chiudere il dialogo</target>
+      </segment>
+    </unit>
     <unit id="sbbFileSelectorUploadFile">
       <segment state="translated">
         <source>Upload file</source>
@@ -49,16 +67,22 @@
         <target>Indietro</target>
       </segment>
     </unit>
-    <unit id="sbbNavigationPreviousPage">
+    <unit id="sbbHeaderOpenMenu">
       <segment state="translated">
-        <source>Previous Page</source>
-        <target>Pagina precedente</target>
+        <source>Open Menu</source>
+        <target>Aprire il menu</target>
       </segment>
     </unit>
-    <unit id="sbbNavigationNextPage">
+    <unit id="sbbHeaderCloseMenu">
       <segment state="translated">
-        <source>Next Page</source>
-        <target>Pagina successiva</target>
+        <source>Close Menu</source>
+        <target>Chiudere il menu</target>
+      </segment>
+    </unit>
+    <unit id="sbbLightboxCloseLightbox">
+      <segment state="translated">
+        <source>Close lightbox</source>
+        <target>Chiudere lightbox</target>
       </segment>
     </unit>
     <unit id="sbbPaginationPreviousPage">
@@ -73,6 +97,12 @@
         <target>Pagina successiva</target>
       </segment>
     </unit>
+    <unit id="sbbSearchHeaderButtonLabel">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Cerca</target>
+      </segment>
+    </unit>
     <unit id="sbbSidebarCollapse">
       <segment state="translated">
         <source>Collapse</source>
@@ -85,23 +115,40 @@
         <target>Espandi</target>
       </segment>
     </unit>
-    <unit id="sbbTableChangeSorting">
+    <unit id="sbbSidebarCloseSidebar">
       <segment state="translated">
-        <source>Change sorting for <ph id="0" equiv="PH" disp="this.id"/></source>
-        <target>Cambia l'ordinamento per <ph id="0" equiv="PH" disp="this.id"/></target>
+        <source>Close Sidebar</source>
+        <target>Chiudi il menu laterale</target>
       </segment>
     </unit>
-    <unit id="sbbTabsBadgePillAmountOfEntries">
+    <unit id="sbbSidebarOpenSidebar">
       <segment state="translated">
-        <source><ph id="0" equiv="INTERPOLATION" disp="{{ tab.badgePill }}"/> entries</source>
-        <target><ph id="0" equiv="INTERPOLATION" disp="{{ tab.badgePill }}"/> voci</target>
+        <source>Open Sidebar</source>
+        <target>Aprire il menu laterale</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagBadgePillAmountOfResults">
+      <segment state="translated">
+        <source><ph id="0" equiv="PH" disp="this.amount"/> results available</source>
+        <target><ph id="0" equiv="PH" disp="this.amount"/> risultati disponibili</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagsAll">
+      <segment state="translated">
+        <source>All</source>
+        <target>Tutte</target>
+      </segment>
+    </unit>
+    <unit id="sbbTagsAllBadgeDescription">
+      <segment state="translated">
+        <source>A total of <ph id="0" equiv="PH" disp="this.totalAmount"/> results available</source>
+        <target>Un totale di <ph id="0" equiv="PH" disp="this.totalAmount"/> risultati disponibili</target>
       </segment>
     </unit>
     <unit id="sbbTextareaCounterText">
       <segment state="translated">
-        <source> <ph id="0" equiv="INTERPOLATION" disp="{{ _counter | async }}"/> characters remaining
-</source>
-        <target><ph id="0" equiv="INTERPOLATION" disp="{{ _counter | async }}"/> caratteri rimanenti</target>
+        <source><ph id="0" equiv="PH" disp="this._counter.value"/> characters remaining</source>
+        <target><ph id="0" equiv="PH" disp="this._counter.value"/> caratteri rimanenti</target>
       </segment>
     </unit>
     <unit id="sbbTextexpandShowLess">
@@ -124,42 +171,8 @@
     </unit>
     <unit id="sbbUsermenuOpenPanel">
       <segment state="translated">
-        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-        "/>. Click or press enter to open user menu.</source>
-        <target>Accesso eseguito come <ph id="0" equiv="PH" disp="this.displayName || this.userName
-"/>. Fare clic o premere Invio per aprire il menu utente.</target>
-      </segment>
-    </unit>
-    <unit id="sbbUsermenuClosePanel">
-      <segment state="translated">
-        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName
-        "/>. Click or press enter to close user menu.</source>
-        <target>Accesso eseguito come <ph id="0" equiv="PH" disp="this.displayName || this.userName
-"/>. Fare clic o premere Invio per chiudere il menu utente.</target>
-      </segment>
-    </unit>
-    <unit id="sbbGhettoboxCloseGhettobox">
-      <segment state="translated">
-        <source>Close message</source>
-        <target>Chiudere il messaggio</target>
-      </segment>
-    </unit>
-    <unit id="sbbSearchStartSearch">
-      <segment state="translated">
-        <source>Start search</source>
-        <target>Avviare la ricerca</target>
-      </segment>
-    </unit>
-    <unit id="sbbTagBadgePillAmountOfResults">
-      <segment state="translated">
-        <source><ph id="0" equiv="INTERPOLATION" disp="{{ amount }}"/> results available</source>
-        <target><ph id="0" equiv="INTERPOLATION" disp="{{ amount }}"/> risultati disponibili</target>
-      </segment>
-    </unit>
-    <unit id="sbbTagsAll">
-      <segment state="translated">
-        <source>All</source>
-        <target>Tutte</target>
+        <source>Logged in as <ph id="0" equiv="PH" disp="this.displayName || this.userName"/>. Click or press enter to open user menu.</source>
+        <target>Accesso eseguito come <ph id="0" equiv="PH" disp="this.displayName || this.userName"/>. Fare clic o premere Invio per aprire il menu utente.</target>
       </segment>
     </unit>
   </file>
