@@ -29,6 +29,17 @@ The re-export from root (e.g. `import { SbbButtonModule } from '@sbb-esta/angula
 been removed. All symbols have to be imported from the respective
 module (e.g. `import { SbbButtonModule } from '@sbb-esta/angular/button';`).
 
+## i18n
+
+_Partial migration available_
+
+Various translatables have been changed (new and removed ones).
+Please run 'ng extract-i18n' and check the @sbb-esta/angular related translations.
+
+The provided translation files have been moved to @sbb-esta/angular/i18n.
+
+Please note, that also the i18n key 'sbbGhettoboxCloseGhettobox' have been renamed to 'sbbAlertCloseAlert'.
+
 ## Modules
 
 ### Accordion
@@ -244,7 +255,7 @@ _Partial migration available_
 
 The former ghettobox module has been majorly refactored and is now called 'alert'.
 With this renaming, every class and selector name has been changed of which the automatic migration takes care of.
-Please note that also i18n keys have been changed (e.g. 'alert@@sbbAlertCloseAlert').
+Please note, that also the i18n key 'sbbGhettoboxCloseGhettobox' have been renamed to 'sbbAlertCloseAlert'.
 
 The `routerLink` support for `<sbb-alert>` has been replaced with the `<a sbbAlert>` selector,
 which allows improved configuration for linking to another site/page.
