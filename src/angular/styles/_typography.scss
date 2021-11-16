@@ -1158,7 +1158,7 @@ textarea {
   }
 }
 
-:where(html:not(.sbb-lean)) .sbb-button-base.sbb-link {
+:where(html.sbb-lean) .sbb-button-base.sbb-link {
   padding-right: pxToEm(30);
 
   .sbb-button-right-icon {
@@ -1863,7 +1863,7 @@ textarea {
   }
 }
 
-:where(html:not(.sbb-lean)) .sbb-table-sticky-border-elem-bottom::before {
+:where(html.sbb-lean) .sbb-table-sticky-border-elem-bottom::before {
   content: '';
   position: absolute;
   left: 0;

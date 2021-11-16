@@ -47,19 +47,19 @@ $notificationMessagePaddingRight: 24;
   background-color: var(--sbb-color-red);
 }
 
-:where(html:not(.sbb-lean)) .sbb-notification-success {
+:where(html.sbb-lean) .sbb-notification-success {
   color: var(--sbb-color-green);
   background-color: var(--sbb-color-white);
   border-color: var(--sbb-color-green);
 }
 
-:where(html:not(.sbb-lean)) .sbb-notification-info {
+:where(html.sbb-lean) .sbb-notification-info {
   color: var(--sbb-color-granite);
   background-color: var(--sbb-color-white);
   border-color: var(--sbb-color-granite);
 }
 
-:where(html:not(.sbb-lean)) .sbb-notification-warn {
+:where(html.sbb-lean) .sbb-notification-warn {
   background-color: var(--sbb-color-orange);
 }
 
@@ -122,7 +122,7 @@ $notificationMessagePaddingRight: 24;
   }
 }
 
-:where(html:not(.sbb-lean)) .sbb-notification-dismiss-icon {
+:where(html.sbb-lean) .sbb-notification-dismiss-icon {
   flex: 0 0 pxToEm(24);
   align-self: flex-start;
   width: pxToEm(24);
