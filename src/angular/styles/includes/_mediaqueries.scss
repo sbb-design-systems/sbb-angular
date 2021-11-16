@@ -7,14 +7,6 @@
  */
 
 /**
- * // To enable support for browsers that do not support @media queries,
- * (IE <= 8, Firefox <= 3, Opera <= 9) set $mqResponsive to false
- * Create a separate stylesheet served exclusively to these browsers,
- * meaning @media queries will be rasterized, relying on the cascade itself
- */
-$mqResponsive: true;
-
-/**
  * Name your breakpoints in a way that creates a ubiquitous language
  * across team members. It will improve communication between
  * stakeholders, designers, developers, and testers.
@@ -36,8 +28,7 @@ $mqBreakpoints: (
 
 /**
  * Define the breakpoint from the $mqBreakpoints list that should
- * be used as the target width when outputting a static stylesheet
- * (i.e. when $mqResponsive is set to 'false').
+ * be used as the target width when outputting a static stylesheet.
  */
 $mqStaticBreakpoint: mobileLandscape;
 
@@ -110,86 +101,20 @@ $mqShowBreakpoints: (
     }
   }
 
-  // Responsive support is disabled, rasterize the output outside @media blocks
-  // The browser will rely on the cascade itself.
-  @if ($mqResponsive == false) {
-    $staticBreakpointWidth: mqGetBreakpointWidth($mqStaticBreakpoint);
-    @if type-of($staticBreakpointWidth) == number {
-      $targetWidth: pxToEm($staticBreakpointWidth, 16);
-      // Output only rules that start at or span our target width
-      @if (
-        $and ==
-          false and
-          ($minSize <= $targetWidth) and
-          (($to == false) or ($maxSize >= $targetWidth))
-      ) {
-        @content;
-      }
-    } @else {
-      // Throw a warning if $mqStaticBreakpoint is not in the $mqBreakpoints list
-      @warn "No static styles will be output: #{$staticBreakpointWidth}";
-    }
-  }
-
   // Responsive support is enabled, output rules inside @media queries
-  @else {
-    @if $minSize != 0 {
-      $mediaQuery: '#{$mediaQuery} and (min-#{$axis}: #{$minSize})';
-    }
-    @if $maxSize != 0 {
-      $mediaQuery: '#{$mediaQuery} and (max-#{$axis}: #{$maxSize})';
-    }
-    @if $and {
-      $mediaQuery: '#{$mediaQuery} and #{$and}';
-    }
-
-    $mediaQuery: unquote(#{$mediaQuery});
-
-    @media #{all + $mediaQuery} {
-      @content;
-    }
+  @if $minSize != 0 {
+    $mediaQuery: '#{$mediaQuery} and (min-#{$axis}: #{$minSize})';
   }
-}
+  @if $maxSize != 0 {
+    $mediaQuery: '#{$mediaQuery} and (max-#{$axis}: #{$maxSize})';
+  }
+  @if $and {
+    $mediaQuery: '#{$mediaQuery} and #{$and}';
+  }
 
-/**
- * Allows short form for mediaqueries sequences
- *
- * e.g. instead of:
- *
- *   font-size: toRem(28);
- * 
- *   @include mq($from: tabletPortrait) {
- *     font-size: toRem(30);
- *   }
- * 
- *   @include mq($from: desktop) {
- *     font-size: toRem(40);
- *   }
- * 
- *   @include mq($from: desktop4k) {
- *     font-size: toRem(60);
- *   }
- * 
- *   @include mq($from: desktop5k) {
- *     font-size: toRem(80);
- *   }
- *
- * write:
- *
- *   $fontSizes: (tabletPortrait: toRem(30), desktop: toRem(40), desktop4k: toRem(60), desktop5k: toRem(80));
- *   @include mqSequence($fontSizes) using ($value) {
- *     font-size: $value;
- *   }
- *
- */
-@mixin mqSequence($map) {
-  @each $from, $value in $map {
-    @if $from == base {
-      @content ($value...);
-    } @else {
-      @include mq($from: $from) {
-        @content ($value...);
-      }
-    }
+  $mediaQuery: unquote(#{$mediaQuery});
+
+  @media #{all + $mediaQuery} {
+    @content;
   }
 }

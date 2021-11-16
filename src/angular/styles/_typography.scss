@@ -277,35 +277,17 @@ textarea {
   font-weight: normal;
   font-size: pxToRem(28);
   line-height: 1.2;
-  margin: pxToRem(48) 0 pxToRem(36) 0;
+  margin: pxToRem(48) 0 pxToRem(36);
 
   :where(html:not(.sbb-lean)) & {
-    $sizes: (
-      tablet: (
-        30,
-        72,
-        48,
-      ),
-      desktop: (
-        40,
-        96,
-        48,
-      ),
-      desktop4k: (
-        60,
-        144,
-        72,
-      ),
-      desktop5k: (
-        80,
-        192,
-        96,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $marginTop, $marginBottom) {
-      font-size: pxToRem($fontSize);
-      margin-top: pxToRem($marginTop);
-      margin-bottom: pxToRem($marginBottom);
+    @include mq($from: tablet) {
+      font-size: pxToRem(30);
+      margin: pxToRem(72) 0 pxToRem(48);
+    }
+    @include mq($from: desktop) {
+      font-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
+      margin: calc(#{pxToRem(96)} * var(--sbb-scaling-factor)) 0
+        calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
@@ -313,14 +295,12 @@ textarea {
     font-weight: normal;
     font-size: pxToRem(21);
     line-height: pxToRem(25);
-    margin-top: pxToRem(24);
-    margin-bottom: pxToRem(16);
+    margin: pxToRem(24) 0 pxToRem(16);
 
     @include mq($from: desktop) {
       font-size: pxToRem(28);
       line-height: pxToRem(34);
-      margin-top: pxToRem(32);
-      margin-bottom: pxToRem(24);
+      margin: pxToRem(32) 0 pxToRem(24);
     }
   }
 }
@@ -330,48 +310,28 @@ textarea {
   font-weight: normal;
   font-size: pxToRem(24);
   line-height: 1.2;
-  margin: pxToRem(36) 0 pxToRem(24) 0;
+  margin: pxToRem(36) 0 pxToRem(24);
 
   :where(html:not(.sbb-lean)) & {
-    $sizes: (
-      tablet: (
-        24,
-        48,
-        24,
-      ),
-      desktop: (
-        32,
-        48,
-        24,
-      ),
-      desktop4k: (
-        48,
-        72,
-        36,
-      ),
-      desktop5k: (
-        64,
-        96,
-        48,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $marginTop, $marginBottom) {
-      font-size: pxToRem($fontSize);
-      margin-top: pxToRem($marginTop);
-      margin-bottom: pxToRem($marginBottom);
+    @include mq($from: tablet) {
+      font-size: pxToRem(24);
+      margin: pxToRem(48) 0 pxToRem(24);
+    }
+    @include mq($from: desktop) {
+      font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+      margin: calc(#{pxToRem(48)} * var(--sbb-scaling-factor)) 0
+        calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
     font-size: pxToRem(18);
     line-height: pxToRem(19);
-    margin-top: pxToRem(16);
-    margin-bottom: pxToRem(8);
+    margin: pxToRem(16) 0 pxToRem(8);
 
     @include mq($from: desktop) {
       font-size: pxToRem(21);
       line-height: pxToRem(25);
-      margin-top: pxToRem(24);
-      margin-bottom: pxToRem(16);
+      margin: pxToRem(24) 0 pxToRem(16);
     }
   }
 }
@@ -381,43 +341,29 @@ textarea {
   font-weight: normal;
   font-size: pxToRem(20);
   line-height: 1.2;
-  margin: pxToRem(24) 0 pxToRem(8) 0;
+  margin: calc(#{pxToRem(24)} * var(--sbb-scaling-factor)) 0
+    calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html:not(.sbb-lean)) & {
-    $sizes: (
-      tablet: (
-        21,
-        24,
-        8,
-      ),
-      desktop4k: (
-        32,
-        36,
-        12,
-      ),
-      desktop5k: (
-        42,
-        48,
-        16,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $marginTop, $marginBottom) {
-      font-size: pxToRem($fontSize);
-      margin-top: pxToRem($marginTop);
-      margin-bottom: pxToRem($marginBottom);
+    @include mq($from: tablet) {
+      font-size: pxToRem(21);
+    }
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(32);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(42);
     }
   }
   :where(html.sbb-lean) & {
     font-size: pxToRem(16);
     line-height: pxToRem(17);
-    margin-top: pxToRem(8);
-    margin-bottom: pxToRem(4);
+    margin: pxToRem(8) 0 pxToRem(4);
 
     @include mq($from: desktop) {
       font-size: pxToRem(18);
       line-height: pxToRem(22);
-      margin-top: pxToRem(16);
-      margin-bottom: pxToRem(8);
+      margin: pxToRem(16) 0 pxToRem(8);
     }
   }
 }
@@ -471,35 +417,24 @@ textarea {
   color: $sbbColorText;
   font-size: pxToRem(20);
   line-height: pxToRem(26);
-  margin: pxToRem(36) 0 pxToRem(36) 0;
+  margin: pxToRem(36) 0 pxToRem(36);
 
-  $sizes: (
-    tablet: (
-      21,
-      27.3,
-      48,
-    ),
-    desktop: (
-      21,
-      32,
-      48,
-    ),
-    desktop4k: (
-      32,
-      41.6,
-      72,
-    ),
-    desktop5k: (
-      40,
-      52,
-      96,
-    ),
-  );
-  @include mqSequence($sizes) using($fontSize, $lineHeight, $margin) {
-    font-size: pxToRem($fontSize);
-    line-height: pxToRem($lineHeight);
-    margin-top: pxToRem($margin);
-    margin-bottom: pxToRem($margin);
+  @include mq($from: tablet) {
+    font-size: pxToRem(21);
+    line-height: pxToRem(27.3);
+    margin: calc(#{pxToRem(48)} * var(--sbb-scaling-factor)) 0
+      calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  }
+  @include mq($from: desktop) {
+    line-height: pxToRem(32);
+  }
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(32);
+    line-height: pxToRem(41.6);
+  }
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(40);
+    line-height: pxToRem(52);
   }
 }
 
@@ -592,7 +527,6 @@ ul,
 
 :is(.sbb-input-element, input:where([type='email'], [type='password'], [type='search'], [type='text'], [type='number'], [type='tel'], [type='time'], [type='datetime'], [type='datetime-local'], [type='url'], :not([type]))) {
   @include ellipsis;
-  @include placeholder($sbbColorStorm);
 
   outline: none;
   background-color: var(--sbb-color-background);
@@ -617,6 +551,16 @@ ul,
   :where(html.sbb-lean) & {
     padding: pxToRem(6) pxToRem(7) pxToRem(8);
     line-height: pxToRem(20);
+  }
+
+  &::-webkit-input-placeholder {
+    color: var(--sbb-color-storm);
+  }
+
+  &::-moz-placeholder {
+    // Firefox 19+
+    color: var(--sbb-color-storm);
+    opacity: 1;
   }
 
   // Undo the red box-shadow glow added by Firefox on invalid inputs.
@@ -1997,8 +1941,23 @@ input.sbb-input-element.sbb-time-input {
 // Utility
 // ----------------------------------------------------------------------------------------------------
 
+/**
+ * Contain floats with clearfix
+ *
+ * http://nicolasgallagher.com/micro-clearfix-hack/
+ */
 .clearfix {
-  @include clearfix;
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------

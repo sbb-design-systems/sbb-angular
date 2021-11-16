@@ -3,48 +3,6 @@
 // ----------------------------------------------------------------------------------------------------
 
 /**
- * Contain floats with clearfix
- *
- * http://nicolasgallagher.com/micro-clearfix-hack/
- */
-
-@mixin clearfix() {
-  *zoom: 1;
-
-  &:before,
-  &:after {
-    content: '';
-    display: table;
-  }
-
-  &:after {
-    clear: both;
-  }
-}
-
-/**
- * Lists with layout purpose
- */
-
-@mixin resetList() {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: inherit;
-}
-
-/**
- * Replace text
- */
-
-@mixin replaceText() {
-  display: block;
-  overflow: hidden;
-  text-indent: 100%;
-  white-space: nowrap;
-}
-
-/**
  * Better font rendering (on OS X)
  * http://maximilianhoffmann.com/posts/better-font-rendering-on-osx
  *
@@ -68,54 +26,13 @@
   -moz-osx-font-smoothing: auto;
 }
 
-/**
- * Placeholder in input fields
- */
-@mixin placeholder($color: $sbbColorGrey) {
-  &::-webkit-input-placeholder {
-    color: $color;
-  }
-
-  &::-moz-placeholder {
-    // Firefox 19+
-    color: $color;
-    opacity: 1;
-  }
-
-  &:-ms-input-placeholder {
-    color: $color;
-  }
-}
-
 // Typo Styles
 // ----------------------------------------------------------------------------------------------------
-
-@mixin breakOutOfCenterAndGoFullBleed() {
-  // https://cloudfour.com/thinks/breaking-out-with-viewport-units-and-calc/
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-}
-
-// Centered tab module
-@mixin centeredTabModule() {
-  display: flex;
-  justify-content: center;
-}
 
 @mixin ellipsis() {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-@mixin inlineSVG() {
-  // TODO: remove or change em to rem
-  float: none;
-  display: inline-block;
-  width: pxToEm(16, $sizeFontDefault);
-  height: pxToEm(16, $sizeFontDefault);
-  margin-bottom: pxToEm(-4, $sizeFontDefault);
-  border-radius: 1px;
 }
 
 @mixin absoluteCenterXY() {
@@ -135,11 +52,6 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-}
-
-@mixin setFullBleed($offset) {
-  margin-left: -$offset;
-  margin-right: -$offset;
 }
 
 @mixin panelShadow($attached: below, $borderWidth: 2) {
