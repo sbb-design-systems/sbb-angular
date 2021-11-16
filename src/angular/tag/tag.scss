@@ -1,7 +1,7 @@
 @import '../styles/common';
 
-$tagActiveBgColor: $sbbColorWhite;
-$tagActiveColor: $sbbColorBlack;
+$tagActiveBgColor: var(--sbb-color-white);
+$tagActiveColor: var(--sbb-color-black);
 $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
 
 .sbb-tag,
@@ -26,10 +26,10 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: border-color $tagTransitionTiming, background-color $tagTransitionTiming,
     color $tagTransitionTiming;
   cursor: pointer;
-  background-color: $sbbColorMilk;
+  background-color: var(--sbb-color-milk);
   border: pxToRem(1) solid transparent;
   border-radius: 1.2em;
-  color: $sbbColorGrey;
+  color: var(--sbb-color-grey);
 
   font-size: var(--sbb-font-size);
   line-height: pxToRem(23);
@@ -50,7 +50,7 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   :where(html.sbb-lean) & {
-    color: $sbbColorGranite;
+    color: var(--sbb-color-granite);
     padding: pxToRem(2) pxToRem(6) pxToRem(3) pxToRem(13);
   }
 }
@@ -59,11 +59,11 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   .sbb-tag:not(.sbb-tag-disabled):hover &,
   .sbb-tag:not(.sbb-tag-disabled):focus &,
   .sbb-tag:not(.sbb-tag-disabled).cdk-focused & {
-    background-color: $sbbColorCloud;
+    background-color: var(--sbb-color-cloud);
     color: $tagActiveColor;
 
     .sbb-badge-content {
-      background-color: $sbbColorCement;
+      background-color: var(--sbb-color-cement);
     }
   }
 
@@ -81,14 +81,14 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   .sbb-tag-active:not(.sbb-tag-disabled):focus &,
   .sbb-tag-active:not(.sbb-tag-disabled).cdk-focused & {
     background-color: transparent;
-    border-color: $sbbColorGraphite;
-    color: $sbbColorGrey;
+    border-color: var(--sbb-color-graphite);
+    color: var(--sbb-color-grey);
 
     .sbb-badge-content {
-      background-color: $sbbColorRed;
+      background-color: var(--sbb-color-red);
 
       :where(html.sbb-lean) & {
-        background-color: $sbbColorBlack;
+        background-color: var(--sbb-color-black);
       }
     }
   }
@@ -119,17 +119,17 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   &:focus,
   &:active,
   .sbb-active {
-    border-color: $sbbColorCallToActionHover;
+    border-color: var(--sbb-color-call-to-action-hover);
 
     &,
     :where(html.sbb-lean) & {
       // Redefine for specificity
-      color: $sbbColorCallToActionHover;
+      color: var(--sbb-color-call-to-action-hover);
     }
 
     .sbb-badge-content {
       :where(html.sbb-lean) & {
-        background-color: $sbbColorCallToActionHover;
+        background-color: var(--sbb-color-call-to-action-hover);
       }
     }
   }

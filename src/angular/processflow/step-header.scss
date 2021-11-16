@@ -13,7 +13,7 @@
   display: inline-block;
   @include ellipsis;
   vertical-align: middle;
-  color: $sbbColorMetal;
+  color: var(--sbb-color-metal);
   cursor: default;
   padding-bottom: 0.5em;
   font-size: pxToRem(20);
@@ -46,7 +46,7 @@
 
 .sbb-step-label-active {
   cursor: pointer;
-  color: $sbbColorBlack;
+  color: var(--sbb-color-black);
 
   &::after {
     content: '';
@@ -68,7 +68,7 @@
 
   .sbb-step-header:focus &,
   .sbb-step-header:hover & {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
 
     &::after {
       left: 0;
@@ -88,7 +88,7 @@
   cursor: default;
 
   .sbb-step-header:hover & {
-    color: $sbbColorBlack;
+    color: var(--sbb-color-black);
   }
 
   &::after {

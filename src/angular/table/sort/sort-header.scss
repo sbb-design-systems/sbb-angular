@@ -1,4 +1,4 @@
-@import '../../../angular/styles/common';
+@import '../../styles/common';
 
 $sbb-sort-header-arrow-margin: 8;
 $sbb-sort-header-arrow-container-size: 24;
@@ -13,7 +13,7 @@ $sbb-sort-header-arrow-container-size: 24;
   &.cdk-program-focused {
     &:before {
       content: '';
-      border: pxToEm(1) solid $sbbColorIron;
+      border: pxToEm(1) solid var(--sbb-color-iron);
       position: absolute;
       top: 0;
       left: 0;
@@ -23,12 +23,12 @@ $sbb-sort-header-arrow-container-size: 24;
   }
 
   &:hover .sbb-sort-header-container {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 }
 
 .sbb-sort-header-sorted {
-  color: $sbbColorBlack;
+  color: var(--sbb-color-black);
 }
 
 .sbb-sort-header-container {

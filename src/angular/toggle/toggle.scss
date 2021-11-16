@@ -24,8 +24,8 @@ $toggleOptionBorderSize4kAndAbove: 2;
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: $sbbColorMilk;
-  color: $sbbColorGrey;
+  background-color: var(--sbb-color-milk);
+  color: var(--sbb-color-grey);
   border-radius: pxToEm($toggleOptionRadius);
   padding: pxToEm(8) pxToEm(15) pxToEm(9);
   line-height: 1.5;
@@ -43,7 +43,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
   }
   :where(html.sbb-lean) & {
     padding: pxToEm(5) pxToEm(15) pxToEm(6);
-    border-color: $sbbColorAluminum;
+    border-color: var(--sbb-color-aluminum);
   }
 
   &:hover {
@@ -85,13 +85,13 @@ $toggleOptionBorderSize4kAndAbove: 2;
   }
 
   .sbb-toggle-option-selected & {
-    background-color: $sbbColorWhite;
-    border-color: $sbbColorBlack;
-    color: $sbbColorBlack;
+    background-color: var(--sbb-color-white);
+    border-color: var(--sbb-color-black);
+    color: var(--sbb-color-black);
 
     // Required to be more specific.
     :where(html.sbb-lean) & {
-      border-color: $sbbColorBlack;
+      border-color: var(--sbb-color-black);
     }
   }
 }
@@ -136,7 +136,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
 
 .sbb-toggle-option-content {
   display: flex;
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-white);
   padding: pxToEm(24);
   max-height: pxToEm(600);
   visibility: visible;
@@ -144,7 +144,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
   transition: opacity 0.25s ease, visibility 0.25s ease, padding 0.2s ease, max-height 0.2s ease;
   margin-top: pxToEm(-2);
   position: relative;
-  border: pxToRem($toggleOptionBorderSize) solid $sbbColorBlack;
+  border: pxToRem($toggleOptionBorderSize) solid var(--sbb-color-black);
   border-radius: pxToEm($toggleOptionRadius);
 
   :where(html:not(.sbb-lean)) & {
@@ -169,7 +169,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
     height: 0;
     top: pxToRem(-$toggleOptionBorderSize);
     width: calc(50% - #{pxToRem($toggleOptionBorderSize)});
-    border-bottom: pxToRem(1) solid $sbbColorSilver;
+    border-bottom: pxToRem(1) solid var(--sbb-color-silver);
 
     .sbb-toggle-triple & {
       width: calc(33.33333% - #{pxToRem($toggleOptionBorderSize)});

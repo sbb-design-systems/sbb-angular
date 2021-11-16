@@ -6,7 +6,7 @@
   &:hover,
   &:active,
   &:focus {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 
   .sbb-header-lean-main-menu & {
@@ -22,7 +22,7 @@
   border: transparent solid pxToRem(1);
   display: block;
   padding-right: pxToRem(24);
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-white);
 
   .sbb-header-lean-main-menu & {
     display: inline-block;
@@ -32,10 +32,10 @@
     max-width: 100%;
   }
   .sbb-header-lean-main-menu .sbb-header-menu-trigger[aria-expanded='true'] & {
-    border: $sbbColorIron solid pxToRem(1);
+    border: var(--sbb-color-iron) solid pxToRem(1);
     border-top-left-radius: pxToRem(2);
     border-top-right-radius: pxToRem(2);
-    border-bottom: $sbbColorCloud solid pxToRem(1);
+    border-bottom: var(--sbb-color-cloud) solid pxToRem(1);
     width: 150%;
     max-width: unset;
     z-index: 1000;

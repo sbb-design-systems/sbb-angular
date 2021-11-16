@@ -24,7 +24,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
 .sbb-icon-sidebar {
   @include sbb-sidebar;
   position: relative;
-  background-color: $sbbColorMilk;
+  background-color: var(--sbb-color-milk);
   transition: width $swift-ease-out-duration $swift-ease-out-timing-function;
 
   hr {
@@ -32,14 +32,14 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
     margin-bottom: pxToRem(8);
     padding: 0;
     border: none;
-    border-top: solid pxToRem(1) $sbbColorGraphite;
+    border-top: solid pxToRem(1) var(--sbb-color-graphite);
   }
 
   // To be more specific this definition has to be inside sbb-icon-sidebar
   .sbb-icon-sidebar-item {
     position: relative;
     text-decoration: none;
-    color: $sbbColorIron;
+    color: var(--sbb-color-iron);
     font-size: var(--sbb-font-size);
     line-height: pxToRem(23);
     display: inline-flex;
@@ -61,7 +61,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
 
     &.sbb-active {
       @include sbbMenuItemBlackLean();
-      background-color: $sbbColorWhite;
+      background-color: var(--sbb-color-white);
       cursor: default;
       pointer-events: none;
       &::before {
@@ -79,7 +79,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
       position: absolute;
       bottom: 0;
       width: 100%;
-      background-color: $sbbColorMilk;
+      background-color: var(--sbb-color-milk);
       cursor: pointer;
       outline: 0;
       overflow: hidden;
@@ -166,7 +166,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
       margin: 0 pxToRem(8);
       flex: 0 0 pxToRem(1);
       border-top: none;
-      border-left: solid pxToRem(1) $sbbColorGraphite;
+      border-left: solid pxToRem(1) var(--sbb-color-graphite);
     }
 
     // To be more specific this definition has to be inside sbb-icon-sidebar

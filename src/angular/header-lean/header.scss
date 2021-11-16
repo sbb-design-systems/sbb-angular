@@ -15,8 +15,8 @@ $sbbHeaderMenuTabletZIndex: 700;
   height: $sbbHeaderHeight;
   width: 100%;
   z-index: $sbbHeaderBaseZIndex;
-  background-color: $sbbColorWhite;
-  border-bottom: solid 1px $sbbColorSilver;
+  background-color: var(--sbb-color-white);
+  border-bottom: solid 1px var(--sbb-color-silver);
 }
 
 /** Top positioned menu. */
@@ -51,22 +51,22 @@ $sbbHeaderMenuTabletZIndex: 700;
   line-height: pxToRem(12);
   letter-spacing: 0;
   font-size: pxToRem(10);
-  color: $sbbColorWhite;
+  color: var(--sbb-color-white);
   transform: rotate(-45deg);
 }
 
 // Default colors for the environments
 .sbb-header-environment-dev {
-  background-color: $sbbColorPeach;
+  background-color: var(--sbb-color-peach);
 }
 .sbb-header-environment-test {
-  background-color: $sbbColorNight;
+  background-color: var(--sbb-color-night);
 }
 .sbb-header-environment-edu {
-  background-color: $sbbColorGreen;
+  background-color: var(--sbb-color-green);
 }
 .sbb-header-environment-int {
-  background-color: $sbbColorGranite;
+  background-color: var(--sbb-color-granite);
 }
 
 /** Side menu */
@@ -81,7 +81,7 @@ $sbbHeaderMenuTabletZIndex: 700;
   outline: none;
 
   &:where(:focus, :hover) {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 }
 
@@ -115,7 +115,7 @@ $sbbHeaderMenuTabletZIndex: 700;
 
 .sbb-header-lean-label {
   line-height: pxToRem(23);
-  color: $sbbColorBlack;
+  color: var(--sbb-color-black);
   font-family: $fontSbbRoman;
 }
 
@@ -123,7 +123,7 @@ $sbbHeaderMenuTabletZIndex: 700;
   font-size: pxToRem(13);
   font-weight: 300;
   line-height: pxToRem(16);
-  color: $sbbColorAnthracite;
+  color: var(--sbb-color-anthracite);
 }
 
 :is(.sbb-header-lean-main-menu, .sbb-header-lean-side-menu) {
@@ -139,7 +139,7 @@ $sbbHeaderMenuTabletZIndex: 700;
     border: transparent solid pxToRem(1);
     padding: pxToRem(6) pxToRem(8);
     outline: none;
-    color: $sbbColorBlack;
+    color: var(--sbb-color-black);
     font-family: $fontSbbRoman;
     text-align: left;
     cursor: pointer;
@@ -148,7 +148,7 @@ $sbbHeaderMenuTabletZIndex: 700;
     &:active,
     &:focus,
     &.sbb-active {
-      color: $sbbColorRed125;
+      color: var(--sbb-color-red125);
     }
   }
 }
@@ -240,8 +240,8 @@ $sbbHeaderMenuTabletZIndex: 700;
   width: $sbbHeaderMenuWidth;
   height: 100vh;
   top: 0;
-  background-color: $sbbColorWhite;
-  border-right: 1px solid $sbbColorGranite;
+  background-color: var(--sbb-color-white);
+  border-right: 1px solid var(--sbb-color-granite);
   box-shadow: pxToRem(4) 0 0 0 rgba(0, 0, 0, 0.15);
   z-index: $sbbHeaderSideMenuZIndex;
   overflow-y: auto;

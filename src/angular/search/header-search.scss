@@ -3,7 +3,7 @@
 .sbb-header-search {
   display: inline-flex;
   cursor: pointer;
-  color: $sbbColorMetal;
+  color: var(--sbb-color-metal);
   font-size: pxToRem(14);
   line-height: pxToRem(17);
   outline: none;
@@ -11,7 +11,7 @@
 
   &:hover,
   &:focus {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 
   :where(html:not(.sbb-lean)) & {

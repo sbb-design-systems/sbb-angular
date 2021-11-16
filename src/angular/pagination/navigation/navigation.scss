@@ -36,7 +36,7 @@ $navigationIconTextMargin: 4;
 
 .sbb-navigation-item-button {
   cursor: pointer;
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-white);
   max-width: 100%;
   height: 100%;
   outline: 0;

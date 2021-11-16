@@ -4,7 +4,7 @@
   display: inline-flex;
   width: pxToRem(250);
   flex-direction: column;
-  border-top: pxToRem(1) solid $sbbColorSilver;
+  border-top: pxToRem(1) solid var(--sbb-color-silver);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
@@ -14,7 +14,7 @@
 
   .sbb-link {
     padding: pxToRem(8) pxToRem(28) pxToRem(8) 0;
-    border-bottom: pxToRem(1) solid $sbbColorSilver;
+    border-bottom: pxToRem(1) solid var(--sbb-color-silver);
 
     :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {

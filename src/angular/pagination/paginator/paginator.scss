@@ -5,8 +5,8 @@ $paginatorSize4K: $paginatorSize * $scalingFactor4k;
 $paginatorSize5K: $paginatorSize * $scalingFactor5k;
 $paginatorSizeLean: 30;
 
-$paginatorDisabledColor: $sbbColorSilver;
-$paginatorDisabledColorLean: $sbbColorStorm;
+$paginatorDisabledColor: var(--sbb-color-silver);
+$paginatorDisabledColorLean: var(--sbb-color-storm);
 
 .sbb-paginator {
   display: inline-block;
@@ -115,7 +115,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
 }
 
 .sbb-paginator-item-boundary {
-  color: $sbbColorGranite;
+  color: var(--sbb-color-granite);
   width: pxToRem($paginatorSize);
   height: pxToRem($paginatorSize);
   padding: 0;
@@ -139,7 +139,7 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   }
 
   :where(html.sbb-lean) & {
-    color: $sbbColorIron;
+    color: var(--sbb-color-iron);
     height: pxToRem($paginatorSizeLean);
     width: pxToRem($paginatorSizeLean);
     padding: 0;

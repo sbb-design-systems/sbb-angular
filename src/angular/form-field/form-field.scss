@@ -1,4 +1,4 @@
-@import '../../angular/styles/common';
+@import '../styles/common';
 
 .sbb-form-field {
   display: inline-block;
@@ -179,7 +179,7 @@
   resize: none;
   opacity: 1;
   font-family: $fontSbbRoman;
-  color: $sbbColorError;
+  color: var(--sbb-color-error);
 
   font-size: pxToRem(14);
   line-height: pxToRem(21);

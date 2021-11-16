@@ -1,6 +1,6 @@
 @import '../styles/common';
 
-$tabsHoverColor: $sbbColorRed125;
+$tabsHoverColor: var(--sbb-color-red125);
 $tabsFontSize: 20;
 $tabsBorderWidthLean: 1px;
 // Due to a bug in WebKit, the underline border seems to more than one pixel
@@ -45,7 +45,7 @@ $tab-animation-duration: 500ms !default;
       display: block;
       position: absolute;
       height: pxToRem(1);
-      border-bottom: pxToRem(1) solid $sbbColorBlack;
+      border-bottom: pxToRem(1) solid var(--sbb-color-black);
       transition: width 0.3s, left 0.3s;
 
       margin: 0 auto;
@@ -59,7 +59,7 @@ $tab-animation-duration: 500ms !default;
     font-size: pxToRem(15);
     line-height: pxToRem(20);
     padding: pxToRem(6) pxToRem(15) pxToRem(9);
-    background-color: $sbbColorWhite;
+    background-color: var(--sbb-color-white);
     margin-right: 0;
     margin-bottom: $tabsBorderWidthLean;
     border: $tabsBorderWidthLean solid transparent;
@@ -78,7 +78,7 @@ $tab-animation-duration: 500ms !default;
       }
     }
     :where(html.sbb-lean) & {
-      border-color: $sbbColorGraphite;
+      border-color: var(--sbb-color-graphite);
 
       &::after {
         content: '';
@@ -87,7 +87,7 @@ $tab-animation-duration: 500ms !default;
         bottom: $tabsBorderUnderlineOffset;
         left: 0;
         right: 0;
-        background-color: $sbbColorWhite;
+        background-color: var(--sbb-color-white);
       }
     }
   }
@@ -99,7 +99,7 @@ $tab-animation-duration: 500ms !default;
     :where(html:not(.sbb-lean)) & {
       &::after {
         width: 100%;
-        border-bottom-color: $sbbColorRed125;
+        border-bottom-color: var(--sbb-color-red125);
       }
     }
     :where(html.sbb-lean) & {
@@ -110,7 +110,7 @@ $tab-animation-duration: 500ms !default;
         bottom: $tabsBorderUnderlineOffset;
         left: 0;
         right: 0;
-        background-color: $sbbColorRed125;
+        background-color: var(--sbb-color-red125);
       }
     }
   }
@@ -128,11 +128,11 @@ $tab-animation-duration: 500ms !default;
   }
 
   &.sbb-tab-disabled {
-    color: $sbbColorStorm;
+    color: var(--sbb-color-storm);
 
     &:hover,
     &:focus {
-      color: $sbbColorStorm;
+      color: var(--sbb-color-storm);
       cursor: default;
     }
 
@@ -209,7 +209,7 @@ $tab-animation-duration: 500ms !default;
       &::before {
         left: 0;
         transform: translateX(-100%);
-        background: linear-gradient(270deg, hsla(0, 0%, 100%, 0.37) 0, $sbbColorWhite);
+        background: linear-gradient(270deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-white));
       }
 
       &.sbb-tab-header-left-shadow::before {
@@ -219,7 +219,7 @@ $tab-animation-duration: 500ms !default;
       &::after {
         right: 0;
         transform: translateX(100%);
-        background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.37) 0, $sbbColorWhite);
+        background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-white));
       }
 
       &.sbb-tab-header-right-shadow::after {
@@ -270,8 +270,8 @@ $tab-animation-duration: 500ms !default;
   transition: height $tab-animation-duration;
 
   :where(html.sbb-lean) & {
-    border: pxToRem(1) solid $sbbColorGraphite;
+    border: pxToRem(1) solid var(--sbb-color-graphite);
     margin-top: pxToRem(-1);
-    background-color: $sbbColorWhite;
+    background-color: var(--sbb-color-white);
   }
 }

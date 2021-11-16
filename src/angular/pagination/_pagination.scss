@@ -1,6 +1,6 @@
-@import '../../angular/styles/common';
+@import '../styles/common';
 
-$paginationBaseColor: $sbbColorGrey;
-$paginationBaseColorLean: $sbbColorGranite;
-$paginationActiveHoverColor: $sbbColorRed;
-$paginationActiveHoverColorLean: $sbbColorRed125;
+$paginationBaseColor: var(--sbb-color-grey);
+$paginationBaseColorLean: var(--sbb-color-granite);
+$paginationActiveHoverColor: var(--sbb-color-red);
+$paginationActiveHoverColorLean: var(--sbb-color-red125);

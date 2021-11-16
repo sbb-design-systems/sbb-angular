@@ -5,7 +5,7 @@
   padding: pxToEm(24);
   margin-bottom: 1em;
   position: relative;
-  border: 1px solid $sbbColorSilver;
+  border: 1px solid var(--sbb-color-silver);
 
   ::ng-deep pre {
     margin: 1em 0;
@@ -14,7 +14,7 @@
 }
 
 .example-viewer-header {
-  border-bottom: 1px solid $sbbColorSilver;
+  border-bottom: 1px solid var(--sbb-color-silver);
   display: flex;
   padding-bottom: pxToEm(20);
   margin-bottom: 1em;

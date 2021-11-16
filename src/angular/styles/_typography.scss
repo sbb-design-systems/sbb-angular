@@ -1189,7 +1189,7 @@ textarea {
   min-width: pxToRem(20 * $factor);
   height: pxToRem(20 * $factor);
   min-height: pxToRem(20 * $factor);
-  border: pxToRem(2 * $factor) solid $sbbColorGraphite;
+  border: pxToRem(2 * $factor) solid var(--sbb-color-graphite);
   margin-right: pxToRem(8 * $factor);
 }
 
@@ -1761,15 +1761,15 @@ textarea {
 
     thead {
       > tr:last-child :is(th, td) {
-        border-bottom: var(--sbb-border-width-thin) solid $sbbColorGraphite;
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
       }
 
       > tr :is(th, td) {
-        border-right: var(--sbb-border-width-thin) solid $sbbColorGraphite;
+        border-right: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
 
         :is(.sbb-table-wrapper-offset-right, .sbb-table-wrapper-offset-both)
           &.sbb-table-sticky-border-elem-right {
-          border-left: var(--sbb-border-width-thin) solid $sbbColorGraphite;
+          border-left: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
         }
       }
     }
@@ -1781,12 +1781,12 @@ textarea {
 
       &.sbb-table-row-selected :is(td, th) {
         background-color: var(--sbb-color-cloud);
-        border-bottom: var(--sbb-border-width-thin) solid $sbbColorBlack;
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-black);
       }
 
       &:hover :is(td, th) {
         background-color: var(--sbb-color-milk);
-        border-bottom: var(--sbb-border-width-thin) solid $sbbColorRed125;
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-red125);
       }
     }
   }

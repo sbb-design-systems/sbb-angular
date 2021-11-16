@@ -52,17 +52,17 @@
   margin-left: pxToEm(8);
   cursor: pointer;
   outline: 0;
-  color: $sbbColorGranite;
+  color: var(--sbb-color-granite);
 
   :where(html:not(.sbb-lean)) & {
-    border: pxToEm(1) solid $sbbColorStorm;
+    border: pxToEm(1) solid var(--sbb-color-storm);
     border-radius: 50%;
     padding: pxToEm(3);
   }
   :where(html.sbb-lean) & {
     width: pxToEm(24);
     height: pxToEm(24);
-    color: $sbbColorBlack;
+    color: var(--sbb-color-black);
     vertical-align: top;
     margin-top: pxToRem(1);
   }
@@ -70,14 +70,14 @@
   &:hover,
   &:focus,
   &:active {
-    color: $sbbColorRed125;
-    border-color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
+    border-color: var(--sbb-color-red125);
 
     // Redefine color for specificity
     :where(html:not(.sbb-lean)) &,
     :where(html.sbb-lean) & {
-      color: $sbbColorRed125;
-      border-color: $sbbColorRed125;
+      color: var(--sbb-color-red125);
+      border-color: var(--sbb-color-red125);
     }
   }
 }

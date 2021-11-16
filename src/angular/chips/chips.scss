@@ -13,10 +13,10 @@ $chipsRightPadding: 8;
     padding: 0;
 
     .sbb-input-with-open-panel & {
-      border-color: $sbbColorGrey;
+      border-color: var(--sbb-color-grey);
 
       :where(html.sbb-lean) & {
-        border-color: $sbbColorIron;
+        border-color: var(--sbb-color-iron);
       }
     }
 
@@ -50,8 +50,8 @@ $chipsRightPadding: 8;
 
   height: pxToEm(36);
   border-radius: pxToEm(private-div(36, 2));
-  color: $sbbColorIron;
-  background-color: $sbbColorCloud;
+  color: var(--sbb-color-iron);
+  background-color: var(--sbb-color-cloud);
   max-width: 100%;
   margin: pxToEm(4);
   padding: pxToEm(10.25) pxToEm(14);
@@ -83,7 +83,7 @@ $chipsRightPadding: 8;
   &:not(.sbb-chip-disabled) {
     &:hover,
     &:focus {
-      background-color: $sbbColorAluminum;
+      background-color: var(--sbb-color-aluminum);
     }
   }
 

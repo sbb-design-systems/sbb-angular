@@ -2,8 +2,8 @@
 
 .sbb-alert {
   display: flex;
-  background-color: $sbbColorIron;
-  color: $sbbColorWhite;
+  background-color: var(--sbb-color-iron);
+  color: var(--sbb-color-white);
   padding: pxToRem(16);
   justify-content: center;
   align-items: flex-start;
@@ -27,8 +27,8 @@
     &:focus,
     &:focus-within,
     &:active {
-      background-color: $sbbColorBlack;
-      color: $sbbColorWhite;
+      background-color: var(--sbb-color-black);
+      color: var(--sbb-color-white);
     }
   }
 }
@@ -70,7 +70,7 @@
 
 .sbb-alert-close-button {
   cursor: pointer;
-  color: $sbbColorWhite;
+  color: var(--sbb-color-white);
   width: pxToEm(24);
   height: pxToEm(24);
 
@@ -81,12 +81,12 @@
 
 .sbb-alert-close-button .sbb-icon {
   padding: pxToEm(3);
-  border: $sbbColorWhite solid pxToEm(1);
+  border: var(--sbb-color-white) solid pxToEm(1);
   border-radius: 50%;
 }
 
 .sbb-alert a {
-  color: $sbbColorWhite;
+  color: var(--sbb-color-white);
 }
 
 .sbb-alert-outlet {

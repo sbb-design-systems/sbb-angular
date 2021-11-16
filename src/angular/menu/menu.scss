@@ -1,4 +1,4 @@
-@import '../../angular/styles/common';
+@import '../styles/common';
 
 $borderWidthStandard: 2;
 $borderWidthLean: 1;
@@ -109,12 +109,12 @@ sbb-menu {
   padding: pxToRem($triggerPadding);
   outline: 0;
   cursor: pointer;
-  color: $sbbColorBlack;
+  color: var(--sbb-color-black);
 
   &:hover,
   &:active,
   &:focus {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 
   .sbb-icon {
@@ -153,11 +153,11 @@ sbb-menu {
 
 // Trigger styles for opened (copied) state
 .sbb-menu-panel-trigger {
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-white);
   position: relative;
   z-index: 1;
   padding: pxToRem($triggerPadding - $borderWidthStandard);
-  border: pxToRem($borderWidthStandard) solid $sbbColorGrey;
+  border: pxToRem($borderWidthStandard) solid var(--sbb-color-grey);
   border-radius: pxToRem(2);
   width: 100%;
 
@@ -177,7 +177,7 @@ sbb-menu {
   :where(html.sbb-lean) & {
     padding: pxToRem($triggerPadding - $borderWidthLean);
     border-width: pxToRem($borderWidthLean);
-    border-color: $sbbColorIron;
+    border-color: var(--sbb-color-iron);
   }
 
   .sbb-menu-panel-below & {
@@ -228,7 +228,7 @@ sbb-menu {
   &:hover,
   &:active,
   &:focus {
-    color: $sbbColorBlack;
+    color: var(--sbb-color-black);
   }
 }
 

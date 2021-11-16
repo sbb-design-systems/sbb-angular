@@ -46,10 +46,10 @@
   }
 
   &.sbb-focused::after {
-    border-color: $sbbColorGrey;
+    border-color: var(--sbb-color-grey);
 
     :where(html.sbb-lean) & {
-      border-color: $sbbColorIron;
+      border-color: var(--sbb-color-iron);
     }
   }
 

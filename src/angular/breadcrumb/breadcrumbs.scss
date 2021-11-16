@@ -106,11 +106,11 @@ $breadcrumbBorderWidthLean: 1;
       &,
       a,
       button {
-        color: $sbbColorBlack;
+        color: var(--sbb-color-black);
 
         &:hover,
         &:focus {
-          color: $sbbColorRed125;
+          color: var(--sbb-color-red125);
         }
       }
     }
@@ -158,13 +158,13 @@ $breadcrumbBorderWidthLean: 1;
   font-family: $fontSbbRoman;
   font-size: pxToRem(13);
   line-height: pxToRem(20);
-  color: $sbbColorGrey;
+  color: var(--sbb-color-grey);
   text-align: left;
   text-decoration: none;
 
   &:hover,
   &:focus {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 
   :where(html:not(.sbb-lean)) & {
@@ -179,12 +179,12 @@ $breadcrumbBorderWidthLean: 1;
   }
 
   :where(html.sbb-lean) & {
-    color: $sbbColorGranite;
+    color: var(--sbb-color-granite);
     line-height: pxToRem(16);
 
     &:hover,
     &:focus {
-      color: $sbbColorRed125;
+      color: var(--sbb-color-red125);
     }
   }
 }
@@ -296,7 +296,7 @@ $breadcrumbBorderWidthLean: 1;
     &,
     :where(html.sbb-lean) & {
       // Redefine lean to be more specific
-      color: $sbbColorRed125;
+      color: var(--sbb-color-red125);
 
       &::after {
         background-image: url($sbbIconChevronSmallDownCircleSmallRed125);

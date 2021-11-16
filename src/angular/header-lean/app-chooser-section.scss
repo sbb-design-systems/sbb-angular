@@ -19,7 +19,7 @@
   font-size: pxToRem(15);
   line-height: pxToRem(20);
   padding: pxToRem(8) pxToRem(32) pxToRem(10) 0;
-  border-top: pxToRem(1) solid $sbbColorCloud;
+  border-top: pxToRem(1) solid var(--sbb-color-cloud);
   text-decoration: none;
   outline: none;
   position: relative;
@@ -39,7 +39,7 @@
   }
 
   &:last-child {
-    border-bottom: pxToRem(1) solid $sbbColorCloud;
+    border-bottom: pxToRem(1) solid var(--sbb-color-cloud);
   }
 }
 

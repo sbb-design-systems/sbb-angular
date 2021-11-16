@@ -27,14 +27,14 @@ $sbbTooltipArrowOffset: 7.2;
 .sbb-tooltip-trigger:focus,
 .sbb-tooltip-trigger-active {
   outline: none;
-  color: $sbbColorRed125;
-  border-color: $sbbColorRed125;
+  color: var(--sbb-color-red125);
+  border-color: var(--sbb-color-red125);
 }
 
 .sbb-tooltip-close-icon {
-  border: pxToEm(1) solid $sbbColorStorm;
+  border: pxToEm(1) solid var(--sbb-color-storm);
   border-radius: 50%;
-  color: $sbbColorGranite;
+  color: var(--sbb-color-granite);
   float: right;
   position: absolute;
   top: pxToEm($sbbTooltipPadding + $sbbTooltipArrowOffset + $sbbTooltipStandardBorderWidth);
@@ -44,7 +44,7 @@ $sbbTooltipArrowOffset: 7.2;
   :where(html.sbb-lean) & {
     top: pxToRem($sbbTooltipPaddingLean + $sbbTooltipArrowOffset);
     right: pxToRem($sbbTooltipPaddingLean);
-    color: $sbbColorIron;
+    color: var(--sbb-color-iron);
 
     &,
     &:hover,
@@ -54,7 +54,7 @@ $sbbTooltipArrowOffset: 7.2;
 
     &:hover,
     &:focus {
-      color: $sbbColorRed125;
+      color: var(--sbb-color-red125);
     }
   }
 

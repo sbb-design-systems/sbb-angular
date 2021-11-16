@@ -12,7 +12,7 @@
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-white);
 
   // The dialog container should completely fill its parent overlay element.
   width: 100%;
@@ -102,12 +102,12 @@
   right: pxToRem(20);
   cursor: pointer;
   line-height: 0;
-  color: $sbbColorStorm;
+  color: var(--sbb-color-storm);
   outline: 0;
 
   &:hover,
   &:focus {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 
   @include mq($from: tablet) {

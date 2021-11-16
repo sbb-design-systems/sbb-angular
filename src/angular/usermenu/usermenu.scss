@@ -1,7 +1,7 @@
 @import '../styles/common';
 
-$textColor: $sbbColorGrey;
-$textColorLean: $sbbColorIron;
+$textColor: var(--sbb-color-grey);
+$textColorLean: var(--sbb-color-iron);
 
 $triggerHeight: 48;
 
@@ -94,7 +94,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
   &:hover,
   &:focus {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 
   // applies to custom icons and arrow icon
@@ -111,7 +111,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
     position: absolute;
     width: 100%;
     left: 0;
-    background-color: $sbbColorCloud;
+    background-color: var(--sbb-color-cloud);
     height: pxToRem(1);
     bottom: pxToRem(-1);
   }
@@ -186,7 +186,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
   img {
     border-radius: 50%;
-    border: pxToRem($borderWidth) solid $sbbColorCloud;
+    border: pxToRem($borderWidth) solid var(--sbb-color-cloud);
     @include imageSize();
 
     :where(html:not(.sbb-lean)) & {
@@ -213,8 +213,8 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
   flex-shrink: 0;
   @include imageSize();
   border-radius: 50%;
-  background-color: $sbbColorCloud;
-  color: $sbbColorMetal;
+  background-color: var(--sbb-color-cloud);
+  color: var(--sbb-color-metal);
   font-family: $fontSbbBold;
   font-weight: 700;
   text-align: center;
@@ -294,7 +294,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
     display: inline-block;
   }
 
-  color: $sbbColorMetal;
+  color: var(--sbb-color-metal);
   font-size: pxToRem(13);
   line-height: pxToRem(14);
 

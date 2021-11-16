@@ -84,7 +84,7 @@
 
 @function horizontalBorderBoxShadow($sign, $borderWidth) {
   @return 0 calc(#{pxToRem($sign * ($borderWidth + 1))} * var(--sbb-scaling-factor)) 0
-    calc(#{pxToRem(-$borderWidth)} * var(--sbb-scaling-factor)) $sbbColorCloud;
+    calc(#{pxToRem(-$borderWidth)} * var(--sbb-scaling-factor)) var(--sbb-color-cloud);
 }
 
 /**
@@ -144,15 +144,15 @@
 }
 
 @mixin sbbMenuItemBlackLean() {
-  color: $sbbColorBlack;
-  background-color: $sbbColorCloud;
-  @include borderLeftAsBefore($sbbColorBlack);
+  color: var(--sbb-color-black);
+  background-color: var(--sbb-color-cloud);
+  @include borderLeftAsBefore(var(--sbb-color-black));
 }
 
 @mixin sbbMenuItemRedLean() {
-  color: $sbbColorRed125;
-  background-color: $sbbColorMilk;
-  @include borderLeftAsBefore($sbbColorRed125);
+  color: var(--sbb-color-red125);
+  background-color: var(--sbb-color-milk);
+  @include borderLeftAsBefore(var(--sbb-color-red125));
 }
 
 @mixin sbbAbsoluteFill() {

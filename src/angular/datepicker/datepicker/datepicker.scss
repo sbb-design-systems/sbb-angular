@@ -1,4 +1,4 @@
-@import '../../../angular/styles/common';
+@import '../../styles/common';
 
 $buttonOffset: 12;
 $buttonOffsetLean: 6;
@@ -7,18 +7,18 @@ $buttonOffsetLean: 6;
   display: inline-block;
   position: relative;
   width: 100%;
-  color: $sbbColorGrey;
+  color: var(--sbb-color-grey);
 
   :where(html.sbb-lean) & {
-    color: $sbbColorIron;
+    color: var(--sbb-color-iron);
   }
 }
 
 .sbb-datepicker-disabled {
-  color: $sbbColorGrey;
+  color: var(--sbb-color-grey);
 
   :where(html.sbb-lean) & {
-    color: $sbbColorGranite;
+    color: var(--sbb-color-granite);
   }
 }
 
@@ -99,7 +99,7 @@ $buttonOffsetLean: 6;
     &:hover,
     &:focus,
     &:active {
-      color: $sbbColorRed125;
+      color: var(--sbb-color-red125);
     }
   }
 }

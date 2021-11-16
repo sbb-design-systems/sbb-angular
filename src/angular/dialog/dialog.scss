@@ -12,11 +12,11 @@ $sbb-dialog-button-margin: pxToRem(8);
 .sbb-dialog-container {
   display: flex;
   flex-direction: column;
-  border: pxToRem(2) solid $sbbColorGrey;
+  border: pxToRem(2) solid var(--sbb-color-grey);
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-white);
 
   // The dialog container should completely fill its parent overlay element.
   width: 100%;
@@ -33,7 +33,7 @@ $sbb-dialog-button-margin: pxToRem(8);
     }
   }
   :where(html.sbb-lean) & {
-    border: pxToRem(1) solid $sbbColorIron;
+    border: pxToRem(1) solid var(--sbb-color-iron);
   }
 
   @include cdk.high-contrast(active, off) {
@@ -76,7 +76,7 @@ $sbb-dialog-button-margin: pxToRem(8);
 
   &:hover,
   &:focus {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 }
 

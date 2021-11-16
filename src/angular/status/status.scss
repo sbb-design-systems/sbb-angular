@@ -12,7 +12,7 @@
   width: pxToEm(24);
   height: pxToEm(24);
   border-radius: pxToRem(1);
-  color: $sbbColorWhite;
+  color: var(--sbb-color-white);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
@@ -23,22 +23,22 @@
 
 // Variant for .sbb-status-icon
 .sbb-status-icon-valid {
-  background-color: $sbbColorGreen;
+  background-color: var(--sbb-color-green);
 }
 
 // Variant for .sbb-status-icon
 .sbb-status-icon-warning {
-  background-color: $sbbColorOrange;
+  background-color: var(--sbb-color-orange);
 }
 
 // Variant for .sbb-status-icon
 .sbb-status-icon-invalid {
-  background-color: $sbbColorRed;
+  background-color: var(--sbb-color-red);
 }
 
 .sbb-status-message {
-  background-color: $sbbColorMilk;
-  color: $sbbColorGranite;
+  background-color: var(--sbb-color-milk);
+  color: var(--sbb-color-granite);
   font-family: $fontSbbRoman;
   margin-left: pxToEm(6);
   padding: pxToEm(0) pxToEm(8) pxToEm(1) pxToEm(8);

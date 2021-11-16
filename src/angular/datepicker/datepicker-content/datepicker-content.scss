@@ -1,24 +1,24 @@
-@import '../../../angular/styles/common';
+@import '../../styles/common';
 
 $datePickerContentOffset: 17;
-$datePickerToggleArrowColor: $sbbColorGrey;
+$datePickerToggleArrowColor: var(--sbb-color-grey);
 $datePickerCalendarBorderWidth: 2;
-$datePickerCalendarBg: $sbbColorWhite;
-$datePickerCalendarHeaderColor: $sbbColorMetal;
-$datepickerCalendarLineColor: $sbbColorPlatinum;
+$datePickerCalendarBg: var(--sbb-color-white);
+$datePickerCalendarHeaderColor: var(--sbb-color-metal);
+$datepickerCalendarLineColor: var(--sbb-color-platinum);
 $datePickerCalendarHeaderHeight: 68;
 $datePickerCalendarTableContentPaddingWidthMobile: 11;
 $datePickerCalendarTableContentPaddingWidth: 18;
-$datePickerCalendarTableActiveColor: $sbbColorRed125;
-$datePickerCalendarTableRangeBgColor: $sbbColorMilk;
+$datePickerCalendarTableActiveColor: var(--sbb-color-red125);
+$datePickerCalendarTableRangeBgColor: var(--sbb-color-milk);
 
 // Lean variables
 $datePickerContentOffsetLean: 8;
-$datepickerCalendarLineColorLean: $sbbColorCloud;
+$datepickerCalendarLineColorLean: var(--sbb-color-cloud);
 $datePickerCalendarHeaderHeightLean: 36;
-$datePickerCalendarHeaderColorLean: $sbbColorIron;
+$datePickerCalendarHeaderColorLean: var(--sbb-color-iron);
 $datePickerCalendarTableContentPaddingWidthLean: 8;
-$datePickerToggleArrowColorLean: $sbbColorIron;
+$datePickerToggleArrowColorLean: var(--sbb-color-iron);
 
 @mixin datePickerCellContentBase() {
   position: absolute;
@@ -78,7 +78,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     position: absolute;
     pointer-events: none;
     transform: rotate(-135deg);
-    background-color: $sbbColorWhite;
+    background-color: var(--sbb-color-white);
     border: pxToEm(2) solid transparent;
     border-right-color: $datePickerToggleArrowColor;
     border-bottom-color: $datePickerToggleArrowColor;
@@ -142,7 +142,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   width: pxToEm(340);
   height: pxToEm(428);
   background-color: $datePickerCalendarBg;
-  border: pxToEm($datePickerCalendarBorderWidth) solid $sbbColorGrey;
+  border: pxToEm($datePickerCalendarBorderWidth) solid var(--sbb-color-grey);
   border-radius: pxToEm(2);
   box-shadow: boxShadowEm(1, $datePickerCalendarBorderWidth);
 
@@ -154,7 +154,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
 
   :where(html.sbb-lean) & {
     border-width: pxToEm(1);
-    border-color: $sbbColorIron;
+    border-color: var(--sbb-color-iron);
     width: pxToEm(303);
     height: pxToEm(303);
     box-shadow: boxShadowEm(1, 1);
@@ -302,7 +302,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
 
   td,
   th {
-    color: $sbbColorGrey;
+    color: var(--sbb-color-grey);
     line-height: 1.5;
 
     :where(html:not(.sbb-lean)) & {
@@ -315,7 +315,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     }
 
     :where(html.sbb-lean) & {
-      color: $sbbColorIron;
+      color: var(--sbb-color-iron);
     }
   }
 }
@@ -465,11 +465,11 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
 
 // Use .sbb-calendar-body-cell selector to be specific enough
 .sbb-calendar-body-cell.sbb-calendar-body-disabled {
-  color: $sbbColorCement;
+  color: var(--sbb-color-cement);
   cursor: default;
 
   :where(html.sbb-lean) & {
-    color: $sbbColorStorm;
+    color: var(--sbb-color-storm);
   }
 
   &::after {
@@ -478,7 +478,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     height: pxToEm(1);
     top: pxToEm(25);
     left: calc(50% - #{pxToEm(12)});
-    background-color: $sbbColorCement;
+    background-color: var(--sbb-color-cement);
     display: block;
     position: absolute;
     transform: rotate(-45deg);
@@ -490,7 +490,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
     }
 
     :where(html.sbb-lean) & {
-      background-color: $sbbColorStorm;
+      background-color: var(--sbb-color-storm);
       width: pxToEm(24);
       top: pxToEm(18);
       left: calc(50% - #{pxToEm(12)});
@@ -500,7 +500,7 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
 
 .sbb-calendar-body-today {
   font-family: $fontSbbBold;
-  color: $sbbColorBlack;
+  color: var(--sbb-color-black);
 }
 
 .sbb-calendar-body-cell-content {
@@ -522,12 +522,12 @@ $datePickerToggleArrowColorLean: $sbbColorIron;
   .sbb-calendar-body-selected-begin &,
   .sbb-calendar-body-selected-end & {
     background-color: $datePickerCalendarBg;
-    color: $sbbColorGrey;
-    border-color: $sbbColorGrey;
+    color: var(--sbb-color-grey);
+    border-color: var(--sbb-color-grey);
 
     :where(html.sbb-lean) & {
-      color: $sbbColorIron;
-      border-color: $sbbColorIron;
+      color: var(--sbb-color-iron);
+      border-color: var(--sbb-color-iron);
     }
   }
 }

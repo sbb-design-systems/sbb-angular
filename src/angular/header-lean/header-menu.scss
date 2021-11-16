@@ -14,7 +14,7 @@ $sbbHeaderMenuWidth: pxToRem(300);
   right: 0;
   height: 100vh;
   width: 100vw;
-  background-color: $sbbColorMilk;
+  background-color: var(--sbb-color-milk);
   z-index: $sbbHeaderMenuMobileZIndex;
 
   @include mq($from: tabletPortrait) {
@@ -34,9 +34,9 @@ button.sbb-header-menu-back,
   width: 100%;
   line-height: pxToRem($sizeLineHeightDefaultLean);
   font-size: pxToRem($sizeFontDefault);
-  color: $sbbColorBlack;
-  background-color: $sbbColorWhite;
-  border-bottom: pxToRem(1) solid $sbbColorSilver;
+  color: var(--sbb-color-black);
+  background-color: var(--sbb-color-white);
+  border-bottom: pxToRem(1) solid var(--sbb-color-silver);
 }
 
 button.sbb-header-menu-back {
@@ -52,7 +52,7 @@ button.sbb-header-menu-back {
   &:hover,
   &:active,
   &:focus {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-red125);
   }
 }
 
@@ -85,7 +85,7 @@ button.sbb-header-menu-back {
 
     & > :is(a, button) {
       padding: pxToRem(7) pxToRem(48) pxToRem(11) pxToRem(16);
-      color: $sbbColorIron;
+      color: var(--sbb-color-iron);
       line-height: pxToRem(20);
       font-size: pxToRem(15);
       text-decoration: none;
@@ -110,7 +110,7 @@ button.sbb-header-menu-back {
       &:hover,
       &:active,
       &:focus {
-        color: $sbbColorRed125;
+        color: var(--sbb-color-red125);
       }
     }
   }

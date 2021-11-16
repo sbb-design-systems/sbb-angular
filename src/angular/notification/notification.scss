@@ -6,7 +6,7 @@ $notificationMessagePaddingRight: 24;
 .sbb-notification {
   display: flex;
   align-items: center;
-  color: $sbbColorWhite;
+  color: var(--sbb-color-white);
   width: 100%;
   border-radius: pxToEm(2);
   padding: pxToEm($notificationMessagePadding) pxToEm($notificationMessagePaddingRight)
@@ -39,28 +39,28 @@ $notificationMessagePaddingRight: 24;
 
 .sbb-notification-success,
 .sbb-notification-info {
-  background-color: $sbbColorGrey;
+  background-color: var(--sbb-color-grey);
 }
 
 .sbb-notification-error,
 .sbb-notification-warn {
-  background-color: $sbbColorRed;
+  background-color: var(--sbb-color-red);
 }
 
 :where(html:not(.sbb-lean)) .sbb-notification-success {
-  color: $sbbColorGreen;
-  background-color: $sbbColorWhite;
-  border-color: $sbbColorGreen;
+  color: var(--sbb-color-green);
+  background-color: var(--sbb-color-white);
+  border-color: var(--sbb-color-green);
 }
 
 :where(html:not(.sbb-lean)) .sbb-notification-info {
-  color: $sbbColorGranite;
-  background-color: $sbbColorWhite;
-  border-color: $sbbColorGranite;
+  color: var(--sbb-color-granite);
+  background-color: var(--sbb-color-white);
+  border-color: var(--sbb-color-granite);
 }
 
 :where(html:not(.sbb-lean)) .sbb-notification-warn {
-  background-color: $sbbColorOrange;
+  background-color: var(--sbb-color-orange);
 }
 
 .sbb-notification-has-jump-marks {

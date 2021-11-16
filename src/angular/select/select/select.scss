@@ -29,16 +29,16 @@
 
 // Used when setting a placeholder
 :where(html.sbb-lean) .sbb-select-value-empty {
-  color: $sbbColorStorm;
+  color: var(--sbb-color-storm);
 }
 
 .sbb-select-arrow-icon {
   @include absoluteCenterY();
   right: pxToEm(9);
-  color: $sbbColorGrey;
+  color: var(--sbb-color-grey);
 
   :where(html.sbb-lean) & {
-    color: $sbbColorGranite;
+    color: var(--sbb-color-granite);
     right: pxToRem(6);
   }
 }
