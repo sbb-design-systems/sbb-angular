@@ -6,7 +6,7 @@ Basic steps to integrate the sbb-angular library into your own project.
 
 You need to install [Node.js](https://nodejs.org/it/) first, and assure yourself to have a working javascript dependency manager like [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/lang/en/).
 
-Also we recommend installing the latest Angular CLI globally using the following command:
+Also, we recommend installing the latest Angular CLI globally using the following command:
 
 ```sh
 npm install -g @angular/cli

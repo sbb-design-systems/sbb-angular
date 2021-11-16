@@ -1,5 +1,5 @@
-<button sbbHeaderSearch>
-  <sbb-search (search)="handleSearch($event)">
+<button sbbHeaderSearch aria-label="Show search input">
+  <sbb-search (search)="handleSearch($event)" aria-label="Start Search">
     <input sbbInput placeholder="Search" [formControl]="searchControl" />
   </sbb-search>
 </button>

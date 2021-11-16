@@ -141,7 +141,7 @@ describe('SbbBreadcrumbs', () => {
       );
 
       expect(breadcrumbDots.nativeElement.querySelector('button')!.getAttribute('aria-label')).toBe(
-        'Show all levels'
+        'Show entire path'
       );
     });
 

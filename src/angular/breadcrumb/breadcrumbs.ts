@@ -45,8 +45,8 @@ export const _sbbBreadcrumbMenuInheritedTriggerContext: SbbMenuInheritedTriggerC
 export class SbbBreadcrumbs {
   _labelExpand: string =
     typeof $localize === 'function'
-      ? $localize`:Button with three dots to show all breadcrumb levels@@sbbBreadcrumbExpand:Show all levels`
-      : 'Show all levels';
+      ? $localize`:Button with three dots to show all breadcrumb levels@@sbbBreadcrumbExpand:Show entire path`
+      : 'Show entire path';
 
   /** List of all user defined SbbBreadcrumb entries. */
   @ContentChildren(SbbBreadcrumb) levels: QueryList<SbbBreadcrumb>;

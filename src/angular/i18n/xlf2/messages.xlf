@@ -7,16 +7,16 @@
         <note category="description">Hidden button label to close the alert</note>
       </notes>
       <segment>
-        <source>Dismiss alert</source>
+        <source>Close message</source>
       </segment>
     </unit>
     <unit id="sbbBreadcrumbExpand">
       <notes>
-        <note category="location">../../../../../../src/angular/breadcrumb/breadcrumbs.ts:55</note>
+        <note category="location">../../../../../../src/angular/breadcrumb/breadcrumbs.ts:48</note>
         <note category="description">Button with three dots to show all breadcrumb levels</note>
       </notes>
       <segment>
-        <source>Show all levels</source>
+        <source>Show entire path</source>
       </segment>
     </unit>
     <unit id="sbbDatepickerSwitchToPreviousMonth">
@@ -57,7 +57,7 @@
     </unit>
     <unit id="sbbDatepickerOpenCalendar">
       <notes>
-        <note category="location">../../../../../../src/angular/datepicker/datepicker-toggle/datepicker-toggle.ts:35</note>
+        <note category="location">../../../../../../src/angular/datepicker/datepicker-toggle/datepicker-toggle.ts:37</note>
         <note category="description">Open calendar</note>
       </notes>
       <segment>
@@ -75,7 +75,7 @@
     </unit>
     <unit id="sbbFileSelectorUploadFile">
       <notes>
-        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:68</note>
+        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:66</note>
         <note category="description">Button label to select files for upload</note>
       </notes>
       <segment>
@@ -84,16 +84,25 @@
     </unit>
     <unit id="sbbFileSelectorRemoveFile">
       <notes>
-        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:73</note>
+        <note category="location">../../../../../../src/angular/file-selector/file-selector.ts:71</note>
         <note category="description">Hidden button label to remove a file from the selection list</note>
       </notes>
       <segment>
         <source>Remove file</source>
       </segment>
     </unit>
+    <unit id="sbbHeaderMenuBack">
+      <notes>
+        <note category="location">../../../../../../src/angular/header-lean/header-menu.ts:59</note>
+        <note category="description">Go back to the app chooser navigation</note>
+      </notes>
+      <segment>
+        <source>Back</source>
+      </segment>
+    </unit>
     <unit id="sbbHeaderOpenMenu">
       <notes>
-        <note category="location">../../../../../../src/angular/header-lean/header.ts:118</note>
+        <note category="location">../../../../../../src/angular/header-lean/header.ts:119</note>
         <note category="description">Button label to open the sidebar of the header</note>
       </notes>
       <segment>
@@ -102,7 +111,7 @@
     </unit>
     <unit id="sbbHeaderCloseMenu">
       <notes>
-        <note category="location">../../../../../../src/angular/header-lean/header.ts:123</note>
+        <note category="location">../../../../../../src/angular/header-lean/header.ts:124</note>
         <note category="description">Button label to close the sidebar of the header</note>
       </notes>
       <segment>
@@ -138,7 +147,7 @@
     </unit>
     <unit id="sbbSearchHeaderButtonLabel">
       <notes>
-        <note category="location">../../../../../../src/angular/search/header-search.ts:82</note>
+        <note category="location">../../../../../../src/angular/search/header-search.ts:83</note>
         <note category="description">Button label for the header search</note>
       </notes>
       <segment>
@@ -211,7 +220,7 @@
     </unit>
     <unit id="sbbTextareaCounterText">
       <notes>
-        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.ts:81</note>
+        <note category="location">../../../../../../src/angular/textarea/textarea/textarea.ts:74</note>
         <note category="description">Counter text for textarea</note>
       </notes>
       <segment>
@@ -220,7 +229,7 @@
     </unit>
     <unit id="sbbTextexpandShowLess">
       <notes>
-        <note category="location">../../../../../../src/angular/textexpand/textexpand.ts:43</note>
+        <note category="location">../../../../../../src/angular/textexpand/textexpand.ts:38</note>
         <note category="description">Button label for showing less</note>
       </notes>
       <segment>
@@ -229,7 +238,7 @@
     </unit>
     <unit id="sbbTextexpandShowMore">
       <notes>
-        <note category="location">../../../../../../src/angular/textexpand/textexpand.ts:48</note>
+        <note category="location">../../../../../../src/angular/textexpand/textexpand.ts:43</note>
         <note category="description">Button label for showing more</note>
       </notes>
       <segment>
@@ -238,7 +247,7 @@
     </unit>
     <unit id="sbbUsermenuLogin">
       <notes>
-        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:64</note>
+        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:65</note>
         <note category="description">Button label for login</note>
       </notes>
       <segment>
@@ -247,7 +256,7 @@
     </unit>
     <unit id="sbbUsermenuOpenPanel">
       <notes>
-        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:69,71</note>
+        <note category="location">../../../../../../src/angular/usermenu/usermenu.ts:70,72</note>
         <note category="description">Aria label to open user menu</note>
       </notes>
       <segment>
