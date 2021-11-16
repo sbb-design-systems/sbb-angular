@@ -1,19 +1,54 @@
 <sbb-table-wrapper>
-  <table sbb-table sbbSort [dataSource]="dataSource" sbbSortActive="letter" sbbSortDirection="asc">
+  <table
+    sbb-table
+    sbbSort
+    (sbbSortChange)="announceSortChange($event)"
+    [dataSource]="dataSource"
+    sbbSortActive="letter"
+    sbbSortDirection="asc"
+  >
     <ng-container sbbColumnDef="letter">
-      <th sbb-header-cell sbb-sort-header="letter" *sbbHeaderCellDef>Letter</th>
+      <th
+        sbb-header-cell
+        sbb-sort-header="letter"
+        *sbbHeaderCellDef
+        sortActionDescription="Sort by letter"
+      >
+        Letter
+      </th>
       <td sbb-cell *sbbCellDef="let element">{{ element.letter }}</td>
     </ng-container>
     <ng-container sbbColumnDef="number">
-      <th sbb-header-cell sbb-sort-header="number" *sbbHeaderCellDef>Number</th>
+      <th
+        sbb-header-cell
+        sbb-sort-header="number"
+        *sbbHeaderCellDef
+        sortActionDescription="Sort by number"
+      >
+        Number
+      </th>
       <td sbb-cell *sbbCellDef="let element">{{ element.number }}</td>
     </ng-container>
     <ng-container sbbColumnDef="word">
-      <th sbb-header-cell sbb-sort-header="word" *sbbHeaderCellDef>Word</th>
+      <th
+        sbb-header-cell
+        sbb-sort-header="word"
+        *sbbHeaderCellDef
+        sortActionDescription="Sort by word"
+      >
+        Word
+      </th>
       <td sbb-cell *sbbCellDef="let element">{{ element.word }}</td>
     </ng-container>
     <ng-container sbbColumnDef="date">
-      <th sbb-header-cell sbb-sort-header="date" *sbbHeaderCellDef>Date</th>
+      <th
+        sbb-header-cell
+        sbb-sort-header="date"
+        *sbbHeaderCellDef
+        sortActionDescription="Sort by date"
+      >
+        Date
+      </th>
       <td sbb-cell *sbbCellDef="let element">{{ element.date | date }}</td>
     </ng-container>
 

@@ -1,7 +1,14 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SbbPaginator } from '@sbb-esta/angular/pagination';
-import { SbbSort, SbbTable, SbbTableDataSource, SbbTableFilter } from '@sbb-esta/angular/table';
+import {
+  SbbSort,
+  SbbSortState,
+  SbbTable,
+  SbbTableDataSource,
+  SbbTableFilter,
+} from '@sbb-esta/angular/table';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
@@ -60,6 +67,8 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
 
   private _destroyed = new Subject<void>();
 
+  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -78,6 +87,19 @@ export class FilterSortPaginatorTableExample implements AfterViewInit, OnDestroy
           : [...new Set(this.dataSource.filteredData.map((vehicle) => vehicle.description))].sort()
       )
     );
+  }
+
+  /** Announce the change in sort state for assistive technology. */
+  announceSortChange(sortState: SbbSortState) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
   ngOnDestroy(): void {
