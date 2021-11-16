@@ -342,9 +342,8 @@ export class SbbSortHeader
     // nothing to update in the DOM.
     if (this._sortButton) {
       // removeDescription will no-op if there is no existing message.
-      // TODO(jelbourn): remove optional chaining when AriaDescriber is required.
-      this._ariaDescriber?.removeDescription(this._sortButton, this._sortActionDescription);
-      this._ariaDescriber?.describe(this._sortButton, newDescription);
+      this._ariaDescriber.removeDescription(this._sortButton, this._sortActionDescription);
+      this._ariaDescriber.describe(this._sortButton, newDescription);
     }
 
     this._sortActionDescription = newDescription;
