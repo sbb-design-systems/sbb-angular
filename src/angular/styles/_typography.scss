@@ -823,27 +823,6 @@ textarea {
   position: relative;
 }
 
-.sbb-badge-above .sbb-badge-content {
-  top: pxToEm(-2, 11);
-}
-
-.sbb-badge-after .sbb-badge-content {
-  right: 0;
-}
-
-.sbb-badge-hidden .sbb-badge-content {
-  display: none;
-}
-
-:is(.sbb-badge-disabled, .sbb-tab-disabled) .sbb-badge-content {
-  background-color: var(--sbb-color-metal);
-  color: var(--sbb-color-white);
-
-  :where(html.sbb-lean) & {
-    background-color: var(--sbb-color-granite);
-  }
-}
-
 .sbb-badge-content {
   position: absolute;
   text-align: center;
@@ -874,22 +853,42 @@ textarea {
       font-size: pxToRem(22);
     }
   }
-
   :where(html.sbb-lean) & {
     background-color: var(--sbb-color-black);
   }
-}
 
-.ng-animate-disabled .sbb-badge-content,
-.sbb-badge-content._sbb-animation-noopable {
-  transition: none;
-}
+  .sbb-badge-above & {
+    top: pxToEm(-2, 11);
+  }
 
-// The active class is added after the element is added
-// so it can animate scale to default
-.sbb-badge-content.sbb-badge-active {
-  // Scale to `none` instead of `1` to avoid blurry text in some browsers.
-  transform: none;
+  .sbb-badge-after & {
+    right: 0;
+  }
+
+  .sbb-badge-hidden & {
+    display: none;
+  }
+
+  :is(.sbb-badge-disabled, .sbb-tab-disabled) & {
+    background-color: var(--sbb-color-metal);
+    color: var(--sbb-color-white);
+
+    :where(html.sbb-lean) & {
+      background-color: var(--sbb-color-granite);
+    }
+  }
+
+  .ng-animate-disabled &,
+  &._sbb-animation-noopable {
+    transition: none;
+  }
+
+  // The active class is added after the element is added
+  // so it can animate scale to default
+  &.sbb-badge-active {
+    // Scale to `none` instead of `1` to avoid blurry text in some browsers.
+    transform: none;
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------
