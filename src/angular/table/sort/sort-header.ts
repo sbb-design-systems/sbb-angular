@@ -1,4 +1,4 @@
-import { FocusMonitor } from '@angular/cdk/a11y';
+import { AriaDescriber, FocusMonitor } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { CdkColumnDef } from '@angular/cdk/table';
@@ -94,6 +94,12 @@ export class SbbSortHeader
   private _rerenderSubscription: Subscription;
 
   /**
+   * The element with role="button" inside this component's view. We need this
+   * in order to apply a description with AriaDescriber.
+   */
+  private _sortButton: HTMLElement;
+
+  /**
    * Flag set to true when the indicator should be displayed while the sort is not active. Used to
    * provide an affordance that the header is sortable by showing on focus and hover.
    */
@@ -124,7 +130,23 @@ export class SbbSortHeader
   /** Overrides the sort start value of the containing SbbSort for this SbbSortable. */
   @Input() start: 'asc' | 'desc';
 
-  /** Overrides the disable clear value of the containing SbbSort for this SbbSortable. */
+  /**
+   * Description applied to SbbSortHeader's button element with aria-describedby. This text should
+   * describe the action that will occur when the user clicks the sort header.
+   */
+  @Input()
+  get sortActionDescription(): string {
+    return this._sortActionDescription;
+  }
+  set sortActionDescription(value: string) {
+    this._updateSortActionDescription(value);
+  }
+  // Default the action description to "Sort" because it's better than nothing.
+  // Without a description, the button's label comes from the sort header text content,
+  // which doesn't give any indication that it performs a sorting operation.
+  private _sortActionDescription: string = 'Sort';
+
+  /** Overrides the disable clear value of the containing MatSort for this MatSortable. */
   @Input()
   get disableClear(): boolean {
     return this._disableClear;
@@ -142,7 +164,8 @@ export class SbbSortHeader
     // Also Inject MAT_SORT_HEADER_COLUMN_DEF to provide full cdkTable support
     @Inject('MAT_SORT_HEADER_COLUMN_DEF') @Optional() private _columnDefCdk: CdkColumnDef,
     private _focusMonitor: FocusMonitor,
-    private _elementRef: ElementRef<HTMLElement>
+    private _elementRef: ElementRef<HTMLElement>,
+    private _ariaDescriber: AriaDescriber
   ) {
     // Note that we use a string token for the `_columnDef`, because the value is provided both by
     // `angular/table` and `cdk/table` and we can't have the CDK depending on SBB Angular,
@@ -171,6 +194,9 @@ export class SbbSortHeader
     });
 
     this._sort.register(this);
+
+    this._sortButton = this._elementRef.nativeElement.querySelector('[role="button"]')!;
+    this._updateSortActionDescription(this._sortActionDescription);
   }
 
   ngAfterViewInit() {
@@ -305,6 +331,22 @@ export class SbbSortHeader
   /** Whether the arrow inside the sort header should be rendered. */
   _renderArrow() {
     return !this._isDisabled() || this._isSorted();
+  }
+
+  private _updateSortActionDescription(newDescription: string) {
+    // We use AriaDescriber for the sort button instead of setting an `aria-label` because some
+    // screen readers (notably VoiceOver) will read both the column header *and* the button's label
+    // for every *cell* in the table, creating a lot of unnecessary noise.
+
+    // If _sortButton is undefined, the component hasn't been initialized yet so there's
+    // nothing to update in the DOM.
+    if (this._sortButton) {
+      // removeDescription will no-op if there is no existing message.
+      this._ariaDescriber.removeDescription(this._sortButton, this._sortActionDescription);
+      this._ariaDescriber.describe(this._sortButton, newDescription);
+    }
+
+    this._sortActionDescription = newDescription;
   }
 
   /** Handles changes in the sorting state. */

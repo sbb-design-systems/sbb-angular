@@ -414,6 +414,30 @@ describe('SbbSort', () => {
 
       expect(sortHeaderElement.querySelector('.sbb-sort-header-arrow')).toBeTruthy();
     }));
+
+    it('should add a default aria description to sort buttons', () => {
+      const sortButton = fixture.nativeElement.querySelector('[role="button"]');
+      const descriptionId = sortButton.getAttribute('aria-describedby');
+      expect(descriptionId).toBeDefined();
+
+      const descriptionElement = document.getElementById(descriptionId);
+      expect(descriptionElement?.textContent).toBe('Sort');
+    });
+
+    it('should add a custom aria description to sort buttons', () => {
+      const sortButton = fixture.nativeElement.querySelector('#defaultB [role="button"]');
+      let descriptionId = sortButton.getAttribute('aria-describedby');
+      expect(descriptionId).toBeDefined();
+
+      let descriptionElement = document.getElementById(descriptionId);
+      expect(descriptionElement?.textContent).toBe('Sort second column');
+
+      fixture.componentInstance.secondColumnDescription = 'Sort 2nd column';
+      fixture.detectChanges();
+      descriptionId = sortButton.getAttribute('aria-describedby');
+      descriptionElement = document.getElementById(descriptionId);
+      expect(descriptionElement?.textContent).toBe('Sort 2nd column');
+    });
   });
 
   describe('with default options', () => {
@@ -508,7 +532,14 @@ type SimpleSbbSortAppColumnIds = 'defaultA' | 'defaultB' | 'overrideStart' | 'ov
       <div id="defaultA" #defaultA sbb-sort-header="defaultA" [disabled]="disabledColumnSort">
         A
       </div>
-      <div id="defaultB" #defaultB sbb-sort-header="defaultB">B</div>
+      <div
+        id="defaultB"
+        #defaultB
+        sbb-sort-header="defaultB"
+        [sortActionDescription]="secondColumnDescription"
+      >
+        B
+      </div>
       <div id="overrideStart" #overrideStart sbb-sort-header="overrideStart" start="desc">D</div>
       <div
         id="overrideDisableClear"
@@ -530,6 +561,7 @@ class SimpleSbbSortApp {
   disableClear: boolean;
   disabledColumnSort = false;
   disableAllSort = false;
+  secondColumnDescription = 'Sort second column';
 
   @ViewChild(SbbSort) sbbSort: SbbSort;
   @ViewChild('defaultA') defaultA: SbbSortHeader;

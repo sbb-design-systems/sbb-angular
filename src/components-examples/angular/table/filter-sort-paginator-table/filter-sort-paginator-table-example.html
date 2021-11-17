@@ -4,9 +4,15 @@
   </sbb-form-field>
 
   <sbb-table-wrapper>
-    <table sbb-table sbbSort>
+    <table sbb-table sbbSort (sbbSortChange)="announceSortChange($event)">
       <ng-container *ngFor="let column of columns" [sbbColumnDef]="column.title">
-        <th sbb-header-cell [sbb-sort-header]="column.title" *sbbHeaderCellDef style="width: 20%">
+        <th
+          sbb-header-cell
+          [sbb-sort-header]="column.title"
+          *sbbHeaderCellDef
+          [sortActionDescription]="'Sort by ' + column.title"
+          style="width: 20%"
+        >
           {{ column.title }}
           <div *ngIf="column.subtitle" class="sbb-table-header-subtitle">{{column.subtitle}}</div>
         </th>
