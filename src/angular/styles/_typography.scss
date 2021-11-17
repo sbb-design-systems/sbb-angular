@@ -448,7 +448,7 @@ textarea {
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
   line-height: var(--sbb-line-height);
 
-  &:where(:hover, :focus) {
+  &:is(:hover, :focus) {
     color: var(--sbb-color-call-to-action-hover);
 
     @media screen and (-ms-high-contrast: active) {
@@ -609,7 +609,7 @@ ul,
     font-size: 0.75em;
   }
 
-  &:where(:focus, .sbb-focused) {
+  &:is(:focus, .sbb-focused) {
     border-color: var(--sbb-form-border-color-focused);
   }
 
@@ -623,7 +623,7 @@ ul,
     pointer-events: none;
   }
 
-  &:where([readonly], .sbb-readonly) {
+  &:is([readonly], .sbb-readonly) {
     &,
     &:focus {
       background-color: var(--sbb-form-background-color-readonly);
@@ -964,7 +964,7 @@ textarea {
   background-color: var(--sbb-color-call-to-action);
   color: var(--sbb-color-white);
 
-  &:not(:disabled):not(.sbb-disabled):where(:hover, :focus) {
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
     background-color: var(--sbb-color-call-to-action-hover);
   }
 
@@ -980,7 +980,7 @@ textarea {
   background-color: var(--sbb-color-granite);
   color: var(--sbb-color-white);
 
-  &:not(:disabled):not(.sbb-disabled):where(:hover, :focus) {
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
     background-color: var(--sbb-color-iron);
   }
 
@@ -996,7 +996,7 @@ textarea {
   background-color: var(--sbb-color-silver);
   color: var(--sbb-color-iron);
 
-  &:not(:disabled):not(.sbb-disabled):where(:hover, :focus) {
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
     background-color: var(--sbb-color-platinum);
   }
 
@@ -1017,7 +1017,7 @@ textarea {
     color: var(--sbb-color-granite);
   }
 
-  &:not(:disabled):not(.sbb-disabled):where(:hover, :focus) {
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
     border-color: var(--sbb-color-iron);
   }
 
@@ -1055,7 +1055,7 @@ textarea {
   cursor: pointer;
   outline: none;
 
-  &:not(:disabled):not(.sbb-disabled):where(:hover, :focus) {
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
     color: var(--sbb-color-call-to-action-hover);
   }
 }
@@ -2102,8 +2102,8 @@ $menuItemPaddingTopBottom: 4;
     user-select: none;
   }
 
-  &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):where(:hover, :focus, :hover
-        strong, :focus strong), .sbb-focused) {
+  &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, :focus, :hover strong, :focus
+        strong), .sbb-focused) {
     color: var(--sbb-color-red);
 
     :where(html.sbb-lean) & {
