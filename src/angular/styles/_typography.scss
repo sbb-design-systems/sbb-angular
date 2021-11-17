@@ -2004,7 +2004,6 @@ $panelBorderRadius: 2;
       calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      // TODO: Check if still necessary
       color: var(--sbb-color-granite); // Redefine color to be more specific than standard variant
       padding: pxToRem(4) pxToRem(8);
     }
