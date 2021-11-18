@@ -613,7 +613,7 @@ ul,
     border-color: var(--sbb-form-border-color-focused);
   }
 
-  &:where(:disabled, [disabled], .sbb-disabled) {
+  &:is(:disabled, [disabled], .sbb-disabled) {
     background-color: var(--sbb-color-milk);
     border-color: var(--sbb-color-aluminum);
     color: var(--sbb-form-input-color-disabled);
@@ -1123,7 +1123,7 @@ textarea {
 }
 
 :where(html:not(.sbb-lean))
-  .sbb-button-base:is(.sbb-button, .sbb-secondary-button):where(:not(.sbb-disabled)) {
+  .sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled) {
   transition: transform $linkiconAnimation, padding-left $linkiconAnimation,
     padding-right $linkiconAnimation;
   padding-left: pxToEm(39);
@@ -1146,7 +1146,7 @@ textarea {
 }
 
 :where(html:not(.sbb-lean))
-  .sbb-button-base:is(.sbb-frameless-button, .sbb-link):where(:not(.sbb-disabled)) {
+  .sbb-button-base:is(.sbb-frameless-button, .sbb-link):not(.sbb-disabled) {
   transition: transform $linkiconAnimation, padding-left $linkiconAnimation,
     padding-right $linkiconAnimation;
   padding-left: pxToEm(0);
@@ -1182,15 +1182,6 @@ textarea {
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
   font-size: var(--sbb-font-size);
-}
-
-@mixin sbbSelectionDimension($factor) {
-  width: pxToRem(20 * $factor);
-  min-width: pxToRem(20 * $factor);
-  height: pxToRem(20 * $factor);
-  min-height: pxToRem(20 * $factor);
-  border: pxToRem(2 * $factor) solid var(--sbb-color-graphite);
-  margin-right: pxToRem(8 * $factor);
 }
 
 .sbb-selection-container {
