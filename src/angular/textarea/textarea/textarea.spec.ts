@@ -199,7 +199,7 @@ describe('SbbTextarea behaviour', () => {
   it('should resize textarea on user input', fakeAsync(() => {
     const textarea = fixture.debugElement.query(By.css('textarea'))
       .nativeElement as HTMLTextAreaElement;
-    expect(getComputedStyle(textarea).height).toBe('23px');
+    expect(getComputedStyle(textarea).height).toBe('48px');
 
     // When
     typeInElement(textarea, 'Text \n\n\n');
@@ -225,7 +225,7 @@ describe('SbbTextarea behaviour', () => {
   it('should resize textarea on model change', fakeAsync(() => {
     const textarea = fixture.debugElement.query(By.css('textarea'))
       .nativeElement as HTMLTextAreaElement;
-    expect(textarea.clientHeight).toBe(23);
+    expect(textarea.clientHeight).toBe(48);
 
     // When
     fixture.componentInstance.model = 'Text \n\n\n';
