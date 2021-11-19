@@ -23,7 +23,7 @@ export class SbbCheckboxPanelWarning {}
   selector: 'sbb-checkbox-panel-note',
   exportAs: 'sbbCheckboxPanelNote',
   host: {
-    class: 'sbb-checkbox-panel-note sbb-selection-panel-note',
+    class: 'sbb-checkbox-panel-note sbb-selection-panel-note sbb-icon-scaled',
   },
 })
 export class SbbCheckboxPanelNote {}
