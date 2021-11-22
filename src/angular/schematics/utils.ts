@@ -1,6 +1,13 @@
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
-import { Migration, parse5, ResolvedResource } from '@angular/cdk/schematics';
+import {
+  addImportToModule,
+  Migration,
+  parse5,
+  parseSourceFile,
+  ResolvedResource,
+} from '@angular/cdk/schematics';
 import type { UpdateRecorder } from '@angular/cdk/schematics/update-tool/update-recorder';
+import { InsertChange } from '@schematics/angular/utility/change';
 import type { Attribute, DocumentFragment, Element, Location } from 'parse5';
 import * as ts from 'typescript';
 
@@ -94,6 +101,35 @@ function resolveIdentifierOfExpression(expression: ts.Expression): ts.Identifier
     return expression.name;
   }
   return null;
+}
+
+/**
+ * Import and add module to specific module path.
+ * @param host the tree we are updating
+ * @param modulePath src location of the module to import
+ * @param moduleName name of module to import
+ * @param src src location to import
+ */
+export function addModuleImportToModule(
+  host: Tree,
+  modulePath: string,
+  moduleName: string,
+  src: string,
+  recorder: UpdateRecorder
+) {
+  const moduleSource = parseSourceFile(host, modulePath);
+
+  if (!moduleSource) {
+    throw new SchematicsException(`Module not found: ${modulePath}`);
+  }
+
+  const changes = addImportToModule(moduleSource, modulePath, moduleName, src);
+
+  changes.forEach((change) => {
+    if (change instanceof InsertChange) {
+      recorder.insertLeft(change.pos, change.toAdd);
+    }
+  });
 }
 
 /**

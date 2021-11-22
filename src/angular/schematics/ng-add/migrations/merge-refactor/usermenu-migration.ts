@@ -1,9 +1,8 @@
 import { dirname } from '@angular-devkit/core';
-import { addModuleImportToModule } from '@angular/cdk/schematics';
 import { findModule } from '@schematics/angular/utility/find-module';
 import type { Element } from 'parse5';
 
-import { MigrationElement } from '../../../utils';
+import { addModuleImportToModule, MigrationElement } from '../../../utils';
 
 import { RefactorMigration } from './refactor-migration';
 
@@ -85,11 +84,14 @@ export class UsermenuMigration extends RefactorMigration {
         this._migration.context.tree,
         dirname(element.resource.filePath)
       );
+      const fileSystem = this._migration.fileSystem;
+      const recorder = fileSystem.edit(fileSystem.resolve(modulePath));
       addModuleImportToModule(
         this._migration.context.tree,
         modulePath,
         'SbbMenuModule',
-        '@sbb-esta/angular/menu'
+        '@sbb-esta/angular/menu',
+        recorder
       );
     } catch {
       this._migration.logger.warn(
