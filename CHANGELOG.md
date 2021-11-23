@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-rc.1](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.0...13.0.0-rc.1) (2021-11-23)
+
+
+### Bug Fixes
+
+* add description input for sort-header ([#927](https://github.com/sbb-design-systems/sbb-angular/issues/927)) ([7a9e48c](https://github.com/sbb-design-systems/sbb-angular/commit/7a9e48c44bcb40138a5ea497e2c2dba43e5f1544))
+* ensure adding menu module does not break migration ([#932](https://github.com/sbb-design-systems/sbb-angular/issues/932)) ([b1fc408](https://github.com/sbb-design-systems/sbb-angular/commit/b1fc408aa5b3a97a419935c6d9b229e7c5332755))
+* syntax error due to ES2020 being used for ng-add with NodeJS 12.x ([#924](https://github.com/sbb-design-systems/sbb-angular/issues/924)) ([4f7111a](https://github.com/sbb-design-systems/sbb-angular/commit/4f7111abe88c07e37f7e9c07fe22d47ff5544771))
+
 ## [13.0.0-rc.0](https://github.com/sbb-design-systems/sbb-angular/compare/12.4.0...13.0.0-rc.0) (2021-11-12)
 
 
