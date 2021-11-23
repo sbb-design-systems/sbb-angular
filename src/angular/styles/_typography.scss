@@ -107,6 +107,12 @@
   --sbb-line-height-constant: #{pxToRem($sizeLineHeightDefault)};
   --sbb-line-height: var(--sbb-line-height-constant);
 
+  // Dividers
+  --sbb-divider-thin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  --sbb-divider-small: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-divider-medium: pxToRem(36);
+  --sbb-divider-big: pxToRem(48);
+
   // Animation
   --sbb-transition-duration-default: 300ms;
   --sbb-transition-timing-default: cubic-bezier(0.785, 0.135, 0.15, 0.86);
@@ -141,6 +147,15 @@
   --sbb-url-icon-chevron-small-down-small-granite: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4K');
 
   &:where(:not(.sbb-lean)) {
+    @include mq($from: tablet) {
+      // Dividers
+      --sbb-divider-medium: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+      --sbb-divider-big: pxToRem(72);
+    }
+    @include mq($from: desktop) {
+      // Dividers
+      --sbb-divider-big: calc(#{pxToRem(96)} * var(--sbb-scaling-factor));
+    }
     @include mq($from: desktop4k) {
       // Scaling
       --sbb-scaling-factor: 1.5;
@@ -160,6 +175,12 @@
     }
   }
   &:where(.sbb-lean) {
+    // Dividers
+    --sbb-divider-thin: pxToRem(4);
+    --sbb-divider-small: pxToRem(8);
+    --sbb-divider-medium: pxToRem(16);
+    --sbb-divider-big: pxToRem(24);
+
     // Sizings
     --sbb-border-width: #{pxToRem(1)};
     --sbb-line-height: #{pxToRem($sizeLineHeightDefaultLean)};
@@ -171,6 +192,14 @@
     --sbb-form-input-color: var(--sbb-color-iron);
     --sbb-form-input-color-disabled: var(--sbb-color-granite);
     --sbb-form-input-min-height: #{pxToRem(36)};
+
+    @include mq($from: desktop) {
+      // Dividers
+      --sbb-divider-thin: pxToRem(8);
+      --sbb-divider-small: pxToRem(16);
+      --sbb-divider-medium: pxToRem(24);
+      --sbb-divider-big: pxToRem(32);
+    }
   }
 }
 
@@ -277,17 +306,14 @@ textarea {
   font-weight: normal;
   font-size: pxToRem(28);
   line-height: 1.2;
-  margin: pxToRem(48) 0 pxToRem(36);
+  margin: var(--sbb-divider-big) 0 var(--sbb-divider-medium);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
       font-size: pxToRem(30);
-      margin: pxToRem(72) 0 pxToRem(48);
     }
     @include mq($from: desktop) {
       font-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
-      margin: calc(#{pxToRem(96)} * var(--sbb-scaling-factor)) 0
-        calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
@@ -295,12 +321,10 @@ textarea {
     font-weight: normal;
     font-size: pxToRem(21);
     line-height: pxToRem(25);
-    margin: pxToRem(24) 0 pxToRem(16);
 
     @include mq($from: desktop) {
       font-size: pxToRem(28);
       line-height: pxToRem(34);
-      margin: pxToRem(32) 0 pxToRem(24);
     }
   }
 }
@@ -310,28 +334,23 @@ textarea {
   font-weight: normal;
   font-size: pxToRem(24);
   line-height: 1.2;
-  margin: pxToRem(36) 0 pxToRem(24);
+  margin: var(--sbb-divider-medium) 0 var(--sbb-divider-small);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
       font-size: pxToRem(24);
-      margin: pxToRem(48) 0 pxToRem(24);
     }
     @include mq($from: desktop) {
       font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
-      margin: calc(#{pxToRem(48)} * var(--sbb-scaling-factor)) 0
-        calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
     font-size: pxToRem(18);
     line-height: pxToRem(19);
-    margin: pxToRem(16) 0 pxToRem(8);
 
     @include mq($from: desktop) {
       font-size: pxToRem(21);
       line-height: pxToRem(25);
-      margin: pxToRem(24) 0 pxToRem(16);
     }
   }
 }
@@ -341,8 +360,7 @@ textarea {
   font-weight: normal;
   font-size: pxToRem(20);
   line-height: 1.2;
-  margin: calc(#{pxToRem(24)} * var(--sbb-scaling-factor)) 0
-    calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin: var(--sbb-divider-small) 0 var(--sbb-divider-thin);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
@@ -358,12 +376,10 @@ textarea {
   :where(html.sbb-lean) & {
     font-size: pxToRem(16);
     line-height: pxToRem(17);
-    margin: pxToRem(8) 0 pxToRem(4);
 
     @include mq($from: desktop) {
       font-size: pxToRem(18);
       line-height: pxToRem(22);
-      margin: pxToRem(16) 0 pxToRem(8);
     }
   }
 }
@@ -373,8 +389,7 @@ textarea {
   font-weight: normal;
   font-size: var(--sbb-font-size);
   line-height: 1.5;
-  margin: calc(#{pxToRem(24)} * var(--sbb-scaling-factor)) 0
-    calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin: var(--sbb-divider-small) 0 var(--sbb-divider-thin);
 
   :where(html.sbb-lean) & {
     line-height: pxToRem(17);
