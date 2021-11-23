@@ -1,9 +1,9 @@
 import { dirname } from '@angular-devkit/core';
-import { addModuleImportToModule, ResolvedResource } from '@angular/cdk/schematics';
+import { ResolvedResource } from '@angular/cdk/schematics';
 import { findModule } from '@schematics/angular/utility/find-module';
 import type { Element } from 'parse5';
 
-import { MigrationElement } from '../../../utils';
+import { addModuleImportToModule, MigrationElement } from '../../../utils';
 
 import { RefactorMigration } from './refactor-migration';
 
@@ -49,11 +49,14 @@ export class TabsMigration extends RefactorMigration {
   private _addBadgeModule(resource: ResolvedResource) {
     try {
       const modulePath = findModule(this._migration.context.tree, dirname(resource.filePath));
+      const fileSystem = this._migration.fileSystem;
+      const recorder = fileSystem.edit(fileSystem.resolve(modulePath));
       addModuleImportToModule(
         this._migration.context.tree,
         modulePath,
         'SbbBadgeModule',
-        '@sbb-esta/angular/badge'
+        '@sbb-esta/angular/badge',
+        recorder
       );
     } catch {
       this._migration.logger.warn(
