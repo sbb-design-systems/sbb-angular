@@ -24,6 +24,9 @@ import { SbbCheckboxPanelModule } from '@sbb-esta/angular-public';
     >
       <sbb-icon svgIcon="kom:heart-small" sbbIcon></sbb-icon>
     </sbb-checkbox-panel>
+    <sbb-checkbox-panel>
+      <sbb-icon svgIcon="kom:heart-small" sbbIcon></sbb-icon>
+    </sbb-checkbox-panel>
   `,
 })
 export class PanelTestComponent {}

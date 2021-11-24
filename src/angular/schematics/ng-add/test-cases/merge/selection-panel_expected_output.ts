@@ -24,6 +24,9 @@ import { SbbCheckboxPanelModule } from '@sbb-esta/angular/checkbox-panel';
     >SBB - Finanzen<sbb-checkbox-panel-subtitle>{{ test }}</sbb-checkbox-panel-subtitle>
       <sbb-checkbox-panel-note><sbb-icon svgIcon="kom:heart-small"></sbb-icon></sbb-checkbox-panel-note>
     </sbb-checkbox-panel>
+    <sbb-checkbox-panel>
+      <sbb-checkbox-panel-note><sbb-icon svgIcon="kom:heart-small"></sbb-icon></sbb-checkbox-panel-note>
+    </sbb-checkbox-panel>
   `,
 })
 export class PanelTestComponent {}
