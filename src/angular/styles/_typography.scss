@@ -45,6 +45,12 @@
 // ----------------------------------------------------------------------------------------------------
 
 :root {
+  // Fonts
+  --sbb-font-roman: #{$fontSbbRoman};
+  --sbb-font-bold: #{$fontSbbBold};
+  --sbb-font-light: #{$fontSbbLight};
+  --sbb-font-thin: #{$fontSbbThin};
+
   // Colors
   --sbb-color-red: #{$sbbColorRed};
   --sbb-color-red125: #{$sbbColorRed125};
@@ -212,7 +218,7 @@
   background: var(--sbb-color-background);
   color: var(--sbb-color-text);
   // !important is required, as arcgis defines its own font-family and we need to overwrite it.
-  font-family: $fontSbbRoman !important;
+  font-family: var(--sbb-font-roman) !important;
   font-size: private-div($sizeFontBase, 16px) * 100%;
   line-height: var(--sbb-line-height);
 
@@ -263,7 +269,7 @@ body {
 b,
 strong,
 optgroup[label='*'] {
-  font-family: $fontSbbBold;
+  font-family: var(--sbb-font-bold);
   font-weight: normal;
 }
 
@@ -302,7 +308,7 @@ textarea {
 // ----------------------------------------------------------------------------------------------------
 
 :is(h1, .sbb-headline1) {
-  font-family: $fontSbbThin;
+  font-family: var(--sbb-font-thin);
   font-weight: normal;
   font-size: pxToRem(28);
   line-height: 1.2;
@@ -317,7 +323,7 @@ textarea {
     }
   }
   :where(html.sbb-lean) & {
-    font-family: $fontSbbLight;
+    font-family: var(--sbb-font-light);
     font-weight: normal;
     font-size: pxToRem(21);
     line-height: pxToRem(25);
@@ -330,16 +336,13 @@ textarea {
 }
 
 :is(h2, .sbb-headline2) {
-  font-family: $fontSbbLight;
+  font-family: var(--sbb-font-light);
   font-weight: normal;
   font-size: pxToRem(24);
   line-height: 1.2;
   margin: var(--sbb-divider-medium) 0 var(--sbb-divider-small);
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: tablet) {
-      font-size: pxToRem(24);
-    }
     @include mq($from: desktop) {
       font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
     }
@@ -356,7 +359,7 @@ textarea {
 }
 
 :is(h3, .sbb-headline3) {
-  font-family: $fontSbbLight;
+  font-family: var(--sbb-font-light);
   font-weight: normal;
   font-size: pxToRem(20);
   line-height: 1.2;
@@ -385,7 +388,7 @@ textarea {
 }
 
 :is(h4, .sbb-headline4) {
-  font-family: $fontSbbBold;
+  font-family: var(--sbb-font-bold);
   font-weight: normal;
   font-size: var(--sbb-font-size);
   line-height: 1.5;
@@ -423,7 +426,7 @@ textarea {
 }
 
 .sbb-text-lead {
-  font-family: $fontSbbLight;
+  font-family: var(--sbb-font-light);
   font-weight: normal;
   color: $sbbColorText;
   font-size: pxToRem(20);
@@ -743,17 +746,8 @@ textarea {
   min-width: 0;
   font-size: var(--sbb-font-size);
   border: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
-  padding: pxToRem(36) pxToRem(23);
+  padding: var(--sbb-divider-medium) calc(var(--sbb-divider-small) - var(--sbb-border-width-thin));
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: tabletPortrait) {
-      padding: pxToRem(48) pxToRem(23);
-    }
-    @include mq($from: desktop) {
-      padding: calc(#{pxToEm(49)} - var(--sbb-border-width-thin))
-        calc(#{pxToRem(24)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
-    }
-  }
   :where(html.sbb-lean) & {
     border-color: var(--sbb-color-graphite);
     padding: pxToRem(15);
@@ -764,11 +758,11 @@ textarea {
     width: 100%;
     max-width: 100%;
     padding: 0;
-    font-family: $fontSbbLight;
+    font-family: var(--sbb-font-light);
     font-weight: 400;
     line-height: 1.2;
     font-size: pxToRem(24);
-    margin: 0 0 calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    margin: 0 0 var(--sbb-divider-small);
     float: left;
 
     :where(html:not(.sbb-lean)) & {
@@ -778,7 +772,6 @@ textarea {
     }
     :where(html.sbb-lean) & {
       font-size: pxToRem(21);
-      margin: 0 0 pxToRem(8);
     }
   }
 
@@ -849,7 +842,7 @@ textarea {
   margin-left: pxToEm(2, 11);
   background-color: var(--sbb-color-red);
   color: var(--sbb-color-white);
-  font-family: $fontSbbBold;
+  font-family: var(--sbb-font-bold);
   line-height: 1;
   font-size: pxToRem(11);
   height: pxToEm(18, 11);
@@ -917,7 +910,7 @@ textarea {
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
   border: var(--sbb-border-width-thin) solid transparent;
-  border-radius: pxToEm(2);
+  border-radius: var(--sbb-border-radius);
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
   padding: pxToRem(9) pxToRem(39) pxToRem(11);
@@ -1080,7 +1073,8 @@ textarea {
 // bleed and scale accordingly with 4k and 5k.
 
 .sbb-button-indicator-icon {
-  transition: opacity $linkiconAnimation, transform $linkiconAnimation, right $linkiconAnimation;
+  transition: opacity var(--sbb-animation-link), transform var(--sbb-animation-link),
+    right var(--sbb-animation-link);
   backface-visibility: hidden;
   pointer-events: none;
   position: absolute;
@@ -1132,8 +1126,8 @@ textarea {
 
 :where(html:not(.sbb-lean))
   .sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled) {
-  transition: transform $linkiconAnimation, padding-left $linkiconAnimation,
-    padding-right $linkiconAnimation;
+  transition: transform var(--sbb-animation-link), padding-left var(--sbb-animation-link),
+    padding-right var(--sbb-animation-link);
   padding-left: pxToEm(39);
   padding-right: pxToEm(69);
 
@@ -1155,8 +1149,8 @@ textarea {
 
 :where(html:not(.sbb-lean))
   .sbb-button-base:is(.sbb-frameless-button, .sbb-link):not(.sbb-disabled) {
-  transition: transform $linkiconAnimation, padding-left $linkiconAnimation,
-    padding-right $linkiconAnimation;
+  transition: transform var(--sbb-animation-link), padding-left var(--sbb-animation-link),
+    padding-right var(--sbb-animation-link);
   padding-left: pxToEm(0);
   padding-right: pxToEm(30);
 
@@ -1206,7 +1200,6 @@ textarea {
   margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
-    border-width: pxToRem(1);
     margin-top: pxToRem(1);
   }
 
@@ -1530,7 +1523,7 @@ textarea {
   outline: 0;
   resize: none;
   background-color: transparent;
-  font-family: $fontSbbRoman;
+  font-family: var(--sbb-font-roman);
   font-size: pxToRem(13);
   line-height: pxToRem(16);
   color: var(--sbb-color-grey);
@@ -1577,16 +1570,16 @@ textarea {
   }
 
   th {
-    font-family: $fontSbbBold;
+    font-family: var(--sbb-font-bold);
     font-weight: 400;
 
     .sbb-table-header-subtitle {
-      font-family: $fontSbbRoman;
+      font-family: var(--sbb-font-roman);
     }
 
     // Selector is placed here to be specific enough
     &.sbb-header-cell.sbb-table-filter {
-      font-family: $fontSbbRoman;
+      font-family: var(--sbb-font-roman);
       font-weight: normal;
       padding-top: 0;
 
@@ -1788,7 +1781,7 @@ textarea {
 }
 
 .sbb-table-divider-title {
-  font-family: $fontSbbBold;
+  font-family: var(--sbb-font-bold);
 }
 
 // ----------------------------------------------------------------------------------------------------

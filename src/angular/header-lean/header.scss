@@ -100,7 +100,7 @@ $sbbHeaderMenuTabletZIndex: 700;
   width: auto;
   margin-left: pxToRem(15);
   margin-right: 2.5rem;
-  font-family: $fontSbbLight;
+  font-family: var(--sbb-font-light);
 
   .sbb-header-fixed-columns & {
     width: pxToRem(200);
@@ -116,7 +116,7 @@ $sbbHeaderMenuTabletZIndex: 700;
 .sbb-header-lean-label {
   line-height: pxToRem(23);
   color: var(--sbb-color-black);
-  font-family: $fontSbbRoman;
+  font-family: var(--sbb-font-roman);
 }
 
 .sbb-header-lean-subtitle {
@@ -140,7 +140,7 @@ $sbbHeaderMenuTabletZIndex: 700;
     padding: pxToRem(6) pxToRem(8);
     outline: none;
     color: var(--sbb-color-black);
-    font-family: $fontSbbRoman;
+    font-family: var(--sbb-font-roman);
     text-align: left;
     cursor: pointer;
 

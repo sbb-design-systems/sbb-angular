@@ -155,7 +155,7 @@ $breadcrumbBorderWidthLean: 1;
 .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
 .sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger {
   @include ellipsis;
-  font-family: $fontSbbRoman;
+  font-family: var(--sbb-font-roman);
   font-size: pxToRem(13);
   line-height: pxToRem(20);
   color: var(--sbb-color-grey);

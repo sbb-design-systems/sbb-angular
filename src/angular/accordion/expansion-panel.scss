@@ -213,7 +213,7 @@ $sbbExpansionPanelBorderWidth4k: 2;
   display: flex;
   flex: 1;
   overflow: hidden;
-  font-family: $fontSbbLight;
+  font-family: var(--sbb-font-light);
   font-size: pxToRem(20);
   line-height: pxToRem($sbbExpansionPanelHeaderLineHeightStandard);
 

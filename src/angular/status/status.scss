@@ -39,7 +39,7 @@
 .sbb-status-message {
   background-color: var(--sbb-color-milk);
   color: var(--sbb-color-granite);
-  font-family: $fontSbbRoman;
+  font-family: var(--sbb-font-roman);
   margin-left: pxToEm(6);
   padding: pxToEm(0) pxToEm(8) pxToEm(1) pxToEm(8);
 }

@@ -178,7 +178,7 @@
   outline: none;
   resize: none;
   opacity: 1;
-  font-family: $fontSbbRoman;
+  font-family: var(--sbb-font-roman);
   color: var(--sbb-color-error);
 
   font-size: pxToRem(14);

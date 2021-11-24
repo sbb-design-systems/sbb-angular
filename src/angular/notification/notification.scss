@@ -110,7 +110,7 @@ $notificationMessagePaddingRight: 24;
 }
 
 :where(html:not(.sbb-lean)) .sbb-notification-content-title {
-  font-family: $fontSbbBold;
+  font-family: var(--sbb-font-bold);
 }
 
 .sbb-notification-content a {
