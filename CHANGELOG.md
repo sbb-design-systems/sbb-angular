@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-rc.2](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.1...13.0.0-rc.2) (2021-11-24)
+
+
+### Bug Fixes
+
+* fix undefined property access in checkbox panel merge migration ([#933](https://github.com/sbb-design-systems/sbb-angular/issues/933)) ([22acdbf](https://github.com/sbb-design-systems/sbb-angular/commit/22acdbf4a8c974165c60e63c85424f661f078c89))
+
 ## [13.0.0-rc.1](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.0...13.0.0-rc.1) (2021-11-23)
 
 
