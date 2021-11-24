@@ -1196,6 +1196,7 @@ textarea {
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
   font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
 }
 
 .sbb-selection-container {
@@ -1214,6 +1215,48 @@ textarea {
     border-width: pxToRem(1);
     margin-top: pxToRem(1);
   }
+
+  .sbb-selection-input:focus + &,
+  // Applies focus highlight for pseudo-checkbox
+  .sbb-menu-item.sbb-active .sbb-pseudo-checkbox & {
+    border-color: var(--sbb-color-grey);
+
+    :where(html.sbb-lean) & {
+      border-color: var(--sbb-color-iron);
+    }
+  }
+
+  :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
+    border-radius: var(--sbb-border-radius);
+  }
+
+  .sbb-radio-button & {
+    border-radius: 50%;
+
+    :where(html.sbb-lean) & {
+      margin-top: 0;
+    }
+  }
+
+  .sbb-selection-disabled & {
+    border-color: var(--sbb-color-aluminum);
+    background-color: var(--sbb-color-milk);
+  }
+
+  .sbb-selection-indeterminate &::before {
+    content: '';
+    position: relative;
+    height: pxToRem(1);
+    width: pxToRem(10);
+    left: calc(50% - #{pxToRem(5)});
+    top: calc(50% - #{pxToRem(0.5)});
+    border: pxToRem(1) solid var(--sbb-color-red);
+    display: block;
+
+    :where(html.sbb-lean) & {
+      border-color: var(--sbb-color-granite);
+    }
+  }
 }
 
 .sbb-selection-container-checked {
@@ -1227,43 +1270,9 @@ textarea {
   :where(html.sbb-lean) & {
     color: var(--sbb-color-iron);
   }
-}
 
-.sbb-selection-content {
-  user-select: auto;
-  color: var(--sbb-color-grey);
-  transition: color var(--sbb-transition-default);
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
-    line-height: pxToRem(21);
-  }
-}
-
-.sbb-selection-input:focus + .sbb-selection-container {
-  border-color: var(--sbb-color-grey);
-
-  :where(html.sbb-lean) & {
-    border-color: var(--sbb-color-iron);
-  }
-}
-
-// Applies focus highlight for pseudo-checkbox
-.sbb-menu-item.sbb-active .sbb-pseudo-checkbox .sbb-selection-container {
-  border-color: var(--sbb-color-grey);
-
-  :where(html.sbb-lean) & {
-    border-color: var(--sbb-color-iron);
-  }
-}
-
-:is(.sbb-checkbox-input + .sbb-selection-container, .sbb-pseudo-checkbox
-    > .sbb-selection-container) {
-  border-radius: var(--sbb-border-radius);
-
-  & > .sbb-selection-container-checked {
+  :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
     display: none;
-    border-radius: pxToRem(2);
     border-radius: var(--sbb-border-radius);
     transform: scale(1.3);
 
@@ -1281,16 +1290,8 @@ textarea {
       }
     }
   }
-}
 
-.sbb-radio-input + .sbb-selection-container {
-  border-radius: 50%;
-
-  :where(html.sbb-lean) & {
-    margin-top: 0;
-  }
-
-  & > .sbb-selection-container-checked {
+  .sbb-radio-button & {
     display: none;
     border-radius: 50%;
     transform: scale(0.65);
@@ -1300,104 +1301,53 @@ textarea {
       background-color: var(--sbb-color-iron);
     }
   }
-}
 
-.sbb-selection-checked {
-  .sbb-selection-container {
-    & > .sbb-selection-container-checked {
-      display: block;
-    }
+  .sbb-selection-disabled & {
+    color: var(--sbb-color-grey);
 
-    & + .sbb-selection-content {
-      color: var(--sbb-color-text);
+    :where(html.sbb-lean) & {
+      color: var(--sbb-color-granite);
     }
   }
 
+  .sbb-selection-checked & {
+    display: block;
+  }
+
+  .sbb-selection-indeterminate & {
+    display: none;
+  }
+}
+
+.sbb-selection-content {
+  user-select: auto;
+  color: var(--sbb-color-grey);
+  transition: color var(--sbb-transition-default);
+
   :where(html.sbb-lean) & {
-    .sbb-selection-container + .sbb-selection-content {
+    color: var(--sbb-color-granite);
+    line-height: pxToRem(21);
+  }
+
+  :is(.sbb-selection-checked, .sbb-selection-indeterminate) & {
+    color: var(--sbb-color-text);
+
+    :where(html.sbb-lean) & {
       color: var(--sbb-color-iron);
     }
   }
-}
 
-.sbb-selection-indeterminate {
-  .sbb-selection-container {
-    &::before {
-      content: '';
-      position: relative;
-      height: pxToRem(1);
-      width: pxToRem(10);
-      left: calc(50% - #{pxToRem(5)});
-      top: calc(50% - #{pxToRem(0.5)});
-      border: pxToRem(1) solid var(--sbb-color-red);
-      display: block;
+  .sbb-selection-disabled & {
+    color: var(--sbb-color-grey);
 
-      :where(html.sbb-lean) & {
-        border-color: var(--sbb-color-granite);
-      }
-    }
-
-    & > .sbb-selection-container-checked {
-      display: none;
-    }
-
-    & + .sbb-selection-content {
-      color: var(--sbb-color-text);
-
-      :where(html.sbb-lean) & {
-        color: var(--sbb-color-iron);
-      }
+    :where(html.sbb-lean) & {
+      color: var(--sbb-color-storm);
     }
   }
-}
-
-// Apply indeterminate styles for pseudo-checkbox
-:where(html.sbb-lean)
-  .sbb-pseudo-checkbox.sbb-selection-indeterminate
-  .sbb-selection-container::before {
-  border: pxToRem(1) solid var(--sbb-color-granite);
 }
 
 .sbb-selection-disabled {
   pointer-events: none;
-
-  .sbb-selection-container {
-    border-color: var(--sbb-color-aluminum);
-    background-color: var(--sbb-color-milk);
-
-    & > .sbb-selection-container-checked {
-      color: var(--sbb-color-grey);
-    }
-
-    & + .sbb-selection-content {
-      color: var(--sbb-color-grey);
-    }
-  }
-
-  .sbb-radio-input + .sbb-selection-container > .sbb-selection-container-checked {
-    background-color: var(--sbb-color-grey);
-  }
-
-  :where(html.sbb-lean) & {
-    .sbb-selection-container {
-      & > .sbb-selection-container-checked {
-        color: var(--sbb-color-granite);
-      }
-
-      & + .sbb-selection-content {
-        color: var(--sbb-color-storm);
-      }
-    }
-
-    .sbb-radio-input + .sbb-selection-container > .sbb-selection-container-checked {
-      background-color: var(--sbb-color-granite);
-    }
-  }
-}
-
-// Apply disabled styles for pseudo-checkbox
-:where(html.sbb-lean) .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-container-checked {
-  color: var(--sbb-color-granite);
 }
 
 :is(.sbb-checkbox-group-vertical, .sbb-radio-group-vertical) {
@@ -1405,13 +1355,10 @@ textarea {
   flex-wrap: wrap;
   flex-direction: column;
   align-items: flex-start;
+  row-gap: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
-  .sbb-selection-item + .sbb-selection-item {
-    margin-top: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
-
-    :where(html.sbb-lean) & {
-      margin-top: pxToRem(3);
-    }
+  :where(html.sbb-lean) & {
+    row-gap: pxToRem(3);
   }
 }
 
@@ -1419,17 +1366,10 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  column-gap: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
 
-  .sbb-selection-item {
-    margin-right: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
-
-    :where(html.sbb-lean) & {
-      margin-right: pxToRem(15);
-    }
-
-    &:last-of-type {
-      margin-right: 0;
-    }
+  :where(html.sbb-lean) & {
+    column-gap: pxToRem(15);
   }
 }
 
@@ -1516,11 +1456,10 @@ textarea {
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(20);
-      line-height: pxToRem(30);
+      line-height: 1.5;
     }
     @include mq($from: desktop5k) {
       font-size: pxToRem(26);
-      line-height: pxToRem(39);
     }
   }
   :where(html.sbb-lean) {
@@ -1556,39 +1495,16 @@ textarea {
   img {
     max-height: pxToEm(24);
   }
-  // TODO: Check if this can be replaced with scaled icon class
-  sbb-icon {
-    width: pxToEm(24);
-    height: pxToEm(24);
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
 }
 
 // These are the css classes to group sbb-checkbox-panel & sbb-radio-button-panel
 // We use em here to reduce media query usage.
 // TODO: Check if this can be refactored with grid.
 :is(.sbb-checkbox-panel-group, .sbb-radio-panel-group) {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: pxToEm(8) pxToEm(6);
   font-size: var(--sbb-font-size);
-
-  $sbbSelectionPanelMargin: 3;
-  @include mq($from: tablet) {
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-start;
-    margin-left: pxToEm($sbbSelectionPanelMargin * -1);
-    margin-right: pxToEm($sbbSelectionPanelMargin * -1);
-  }
-
-  .sbb-selection-panel-item {
-    flex: 1 1 100%;
-    margin: 0 pxToEm($sbbSelectionPanelMargin) pxToEm(8);
-  }
 
   // The number indicates the max number of columns for the resolution
   $sbbSelectionPanelResolutions: (
@@ -1601,12 +1517,10 @@ textarea {
   );
 
   @each $from, $max in $sbbSelectionPanelResolutions {
-    @for $i from 2 through $max {
-      &.sbb-col-#{$from}-#{$i} .sbb-selection-panel-item {
-        $percentage: toPercent(private-div(1, $i));
-        @include mq($from: $from) {
-          flex-basis: calc(#{$percentage} - #{pxToEm($sbbSelectionPanelMargin * 2)});
-          max-width: calc(#{$percentage} - #{pxToEm($sbbSelectionPanelMargin * 2)});
+    @include mq($from: $from) {
+      @for $i from 2 through $max {
+        &.sbb-col-#{$from}-#{$i} {
+          grid-template-columns: repeat(#{$i}, 1fr);
         }
       }
     }
