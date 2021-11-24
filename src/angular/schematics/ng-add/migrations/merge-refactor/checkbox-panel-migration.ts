@@ -16,11 +16,15 @@ export class CheckboxPanelMigration extends RefactorMigration {
   }
 
   protected _migrate(element: MigrationElement) {
-    const label = element.findProperty('label')!;
+    const label = element.findProperty('label');
     const subtitle = element.findProperty('subtitle');
     const i18nSubtitle = element.findProperty('i18n-subtitle');
-    let content = label.toTextNode();
-    label.remove();
+    let content = '';
+
+    if (label) {
+      content = label.toTextNode();
+      label.remove();
+    }
 
     let i18nSubtitleTransformed = '';
     if (i18nSubtitle) {
