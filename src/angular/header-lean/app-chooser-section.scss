@@ -8,7 +8,7 @@
 
 .sbb-app-chooser-label {
   display: block;
-  font-family: $fontSbbLight;
+  font-family: var(--sbb-font-light);
   font-size: pxToRem(21);
   line-height: pxToRem(25);
   margin-top: pxToRem(24);

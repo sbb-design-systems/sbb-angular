@@ -39,7 +39,7 @@
   letter-spacing: 0;
   font-size: pxToRem(13);
   line-height: 1;
-  font-family: $fontSbbRoman;
+  font-family: var(--sbb-font-roman);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {

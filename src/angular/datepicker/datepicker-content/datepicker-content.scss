@@ -264,7 +264,7 @@ $datePickerToggleArrowColorLean: var(--sbb-color-iron);
 .sbb-calendar-controls-label {
   flex-grow: 1;
   flex-shrink: 1;
-  font-family: $fontSbbLight;
+  font-family: var(--sbb-font-light);
   font-size: pxToEm(21);
   line-height: 3.2;
   color: $datePickerCalendarHeaderColor;
@@ -343,7 +343,7 @@ $datePickerToggleArrowColorLean: var(--sbb-color-iron);
   }
 
   tr th {
-    font-family: $fontSbbRoman;
+    font-family: var(--sbb-font-roman);
     font-weight: 400;
     font-size: pxToRem(13);
     text-transform: uppercase;
@@ -499,7 +499,7 @@ $datePickerToggleArrowColorLean: var(--sbb-color-iron);
 }
 
 .sbb-calendar-body-today {
-  font-family: $fontSbbBold;
+  font-family: var(--sbb-font-bold);
   color: var(--sbb-color-black);
 }
 

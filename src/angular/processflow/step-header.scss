@@ -3,7 +3,7 @@
 .sbb-step-header {
   outline: none;
   position: relative;
-  font-family: $fontSbbLight;
+  font-family: var(--sbb-font-light);
   -webkit-tap-highlight-color: transparent;
   // Create a buffer space in order for the scrollbar to not be adjacent to the active underline.
   margin-bottom: pxToRem(8);
