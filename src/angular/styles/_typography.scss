@@ -419,7 +419,7 @@ textarea {
 :is(p, .sbb-copy) {
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  margin: var(--sbb-divider-thin) 0 var(--sbb-divider-thin) 0;
+  margin: var(--sbb-divider-thin) 0;
 }
 
 .sbb-text-lead {
@@ -428,7 +428,7 @@ textarea {
   color: $sbbColorText;
   font-size: pxToRem(20);
   line-height: pxToRem(26);
-  margin: var(--sbb-divider-medium) 0 var(--sbb-divider-medium);
+  margin: var(--sbb-divider-medium) 0;
 
   @include mq($from: tablet) {
     font-size: pxToRem(21);
