@@ -1182,6 +1182,7 @@ textarea {
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
   font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
 }
 
 .sbb-selection-container {
