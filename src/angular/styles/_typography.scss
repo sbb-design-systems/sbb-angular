@@ -110,8 +110,8 @@
   // Dividers
   --sbb-divider-thin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   --sbb-divider-small: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-  --sbb-divider-medium: pxToRem(36);
-  --sbb-divider-big: pxToRem(48);
+  --sbb-divider-medium: #{pxToRem(36)};
+  --sbb-divider-big: #{pxToRem(48)};
 
   // Animation
   --sbb-transition-duration-default: 300ms;
@@ -150,7 +150,7 @@
     @include mq($from: tablet) {
       // Dividers
       --sbb-divider-medium: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
-      --sbb-divider-big: pxToRem(72);
+      --sbb-divider-big: #{pxToRem(72)};
     }
     @include mq($from: desktop) {
       // Dividers
@@ -176,10 +176,10 @@
   }
   &:where(.sbb-lean) {
     // Dividers
-    --sbb-divider-thin: pxToRem(4);
-    --sbb-divider-small: pxToRem(8);
-    --sbb-divider-medium: pxToRem(16);
-    --sbb-divider-big: pxToRem(24);
+    --sbb-divider-thin: #{pxToRem(4)};
+    --sbb-divider-small: #{pxToRem(8)};
+    --sbb-divider-medium: #{pxToRem(16)};
+    --sbb-divider-big: #{pxToRem(24)};
 
     // Sizings
     --sbb-border-width: #{pxToRem(1)};
@@ -195,10 +195,10 @@
 
     @include mq($from: desktop) {
       // Dividers
-      --sbb-divider-thin: pxToRem(8);
-      --sbb-divider-small: pxToRem(16);
-      --sbb-divider-medium: pxToRem(24);
-      --sbb-divider-big: pxToRem(32);
+      --sbb-divider-thin: #{pxToRem(8)};
+      --sbb-divider-small: #{pxToRem(16)};
+      --sbb-divider-medium: #{pxToRem(24)};
+      --sbb-divider-big: #{pxToRem(32)};
     }
   }
 }
@@ -419,11 +419,7 @@ textarea {
 :is(p, .sbb-copy) {
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  margin: pxToEm(8) 0 pxToEm(8) 0;
-
-  :where(html.sbb-lean) & {
-    margin: pxToRem(4) 0 pxToRem(4) 0;
-  }
+  margin: var(--sbb-divider-thin) 0;
 }
 
 .sbb-text-lead {
@@ -432,13 +428,11 @@ textarea {
   color: $sbbColorText;
   font-size: pxToRem(20);
   line-height: pxToRem(26);
-  margin: pxToRem(36) 0 pxToRem(36);
+  margin: var(--sbb-divider-medium) 0;
 
   @include mq($from: tablet) {
     font-size: pxToRem(21);
     line-height: pxToRem(27.3);
-    margin: calc(#{pxToRem(48)} * var(--sbb-scaling-factor)) 0
-      calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
   }
   @include mq($from: desktop) {
     line-height: pxToRem(32);
