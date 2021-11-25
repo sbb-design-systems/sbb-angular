@@ -10,7 +10,6 @@
       width: pxToRem(400);
     }
   }
-
   :where(html.sbb-lean) & {
     width: pxToRem(230);
   }
@@ -18,42 +17,34 @@
 
 // Variant for .sbb-form-field
 .sbb-form-field-short {
-  width: 33.333% !important;
+  width: 33.333%;
 
   @include mq($from: mobileLandscape) {
-    width: 25% !important;
+    width: 25%;
   }
 
   @include mq($from: desktop) {
-    width: 16.66666% !important;
+    width: 16.66666%;
   }
 }
 
 // Variant for .sbb-form-field
 .sbb-form-field-medium {
-  width: 100% !important;
+  width: 100%;
 
   @include mq($from: tabletPortrait) {
-    width: 50% !important;
+    width: 50%;
   }
 }
 
 // Variant for .sbb-form-field
 .sbb-form-field-long {
-  width: 100% !important;
+  width: 100%;
 }
 
 .sbb-form-field-wrapper {
-  padding-bottom: pxToRem(23);
+  padding-bottom: pxToEm(23);
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      padding-bottom: pxToRem(35);
-    }
-    @include mq($from: desktop5k) {
-      padding-bottom: pxToRem(46);
-    }
-  }
   :where(html.sbb-lean) & {
     padding-bottom: pxToRem(16);
   }
@@ -64,19 +55,8 @@
 }
 
 .sbb-form-field-label-wrapper {
-  margin-bottom: pxToRem(5);
-  padding-left: pxToRem(10);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      margin-bottom: pxToRem(5 * $scalingFactor4k);
-      padding-left: pxToRem(10 * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      margin-bottom: pxToRem(5 * $scalingFactor5k);
-      padding-left: pxToRem(10 * $scalingFactor5k);
-    }
-  }
+  margin-bottom: calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
+  padding-left: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     margin-bottom: pxToRem(3);
@@ -116,59 +96,20 @@
 }
 
 // Scale down icons in the label and error to be the same size as the text.
-.sbb-form-field-error-wrapper,
-.sbb-form-field-label-wrapper {
-  .sbb-icon,
+:is(.sbb-form-field-error-wrapper, .sbb-form-field-label-wrapper) {
+  :is(.sbb-icon, .sbb-tooltip-icon),
   .sbb-icon svg {
     vertical-align: bottom;
-    width: pxToRem(16);
-    height: pxToRem(16);
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        width: pxToRem(16 * $scalingFactor4k);
-        height: pxToRem(16 * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        width: pxToRem(16 * $scalingFactor5k);
-        height: pxToRem(16 * $scalingFactor5k);
-      }
-    }
+    width: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+    height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  }
+  .sbb-tooltip-icon:not(:hover):not(:focus) {
+    color: inherit;
   }
 
   // Make sbb-tooltip align nicely inside sbb-label.
-  .sbb-tooltip {
-    margin-left: pxToRem(8);
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        margin-left: pxToRem(8 * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        margin-left: pxToRem(8 * $scalingFactor5k);
-      }
-    }
-  }
-  .sbb-tooltip-icon {
-    vertical-align: bottom;
-
-    &:not(:hover):not(:focus) {
-      color: inherit;
-    }
-
-    &,
-    .sbb-icon {
-      width: pxToRem(16);
-      height: pxToRem(16);
-      :where(html:not(.sbb-lean)) & {
-        @include mq($from: desktop4k) {
-          width: pxToRem(16 * $scalingFactor4k);
-          height: pxToRem(16 * $scalingFactor4k);
-        }
-        @include mq($from: desktop5k) {
-          width: pxToRem(16 * $scalingFactor5k);
-          height: pxToRem(16 * $scalingFactor5k);
-        }
-      }
-    }
+  .sbb-tooltip-trigger {
+    margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -181,19 +122,8 @@
   font-family: var(--sbb-font-roman);
   color: var(--sbb-color-error);
 
-  font-size: pxToRem(14);
-  line-height: pxToRem(21);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(23);
-      line-height: pxToRem(32);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(30);
-      line-height: pxToRem(42);
-    }
-  }
+  font-size: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+  line-height: calc(#{pxToRem(21)} * var(--sbb-scaling-factor));
 
   :where(html.sbb-lean) & {
     font-size: pxToRem(13);
@@ -204,16 +134,5 @@
 .sbb-form-group-vertical {
   display: flex;
   flex-direction: column;
-  & > * {
-    margin-bottom: pxToRem(8);
-
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        margin-bottom: pxToRem(12);
-      }
-      @include mq($from: desktop5k) {
-        margin-bottom: pxToRem(16);
-      }
-    }
-  }
+  row-gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 }
