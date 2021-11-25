@@ -41,7 +41,7 @@ const _SbbExpansionPanelHeaderMixinBase = mixinTabIndex(SbbExpansionPanelHeaderB
   inputs: ['tabIndex'],
   animations: [sbbExpansionAnimations.indicatorRotate],
   host: {
-    class: 'sbb-expansion-panel-header',
+    class: 'sbb-expansion-panel-header sbb-expansion-panel-horizontal-padding',
     role: 'button',
     '[attr.id]': 'panel._headerId',
     '[attr.tabindex]': 'tabIndex',
