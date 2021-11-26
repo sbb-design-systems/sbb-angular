@@ -75,7 +75,7 @@
     border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   }
 
-  &:is(.sbb-expanded, .sbb-expanded:focus, .sbb-expanded:hover) {
+  &:is(.sbb-expanded, .sbb-expanded:is(:focus, :hover)) {
     background: inherit;
   }
 
