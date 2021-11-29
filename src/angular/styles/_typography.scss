@@ -135,6 +135,9 @@
   --sbb-form-input-color-disabled: var(--sbb-color-grey);
   --sbb-form-input-min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
 
+  // Expansion Panel
+  --sbb-expansion-panel-horizontal-padding: #{pxToRem(24)};
+
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
   --sbb-table-thead-background-color: var(--sbb-color-cloud);
@@ -157,10 +160,16 @@
       // Dividers
       --sbb-divider-medium: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
       --sbb-divider-big: #{pxToRem(72)};
+
+      // Expansion Panel
+      --sbb-expansion-panel-horizontal-padding: #{pxToRem(48)};
     }
     @include mq($from: desktop) {
       // Dividers
       --sbb-divider-big: calc(#{pxToRem(96)} * var(--sbb-scaling-factor));
+
+      // Expansion Panel
+      --sbb-expansion-panel-horizontal-padding: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
     }
     @include mq($from: desktop4k) {
       // Scaling
@@ -198,6 +207,9 @@
     --sbb-form-input-color: var(--sbb-color-iron);
     --sbb-form-input-color-disabled: var(--sbb-color-granite);
     --sbb-form-input-min-height: #{pxToRem(36)};
+
+    // Expansion Panel
+    --sbb-expansion-panel-horizontal-padding: #{pxToRem(16)};
 
     @include mq($from: desktop) {
       // Dividers

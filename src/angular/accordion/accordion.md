@@ -66,6 +66,17 @@ an `ng-template`:
 </sbb-expansion-panel>
 ```
 
+### Full Width Styles
+
+For mobile and tablet views the accordion can be displayed with full width
+by applying the css class `sbb-expansion-panel-full-width`.
+
+```html
+<sbb-expansion-panel class="sbb-expansion-panel-full-width">
+  <sbb-expansion-panel-header> This is the expansion title </sbb-expansion-panel-header>
+</sbb-expansion-panel>
+```
+
 ### Accessibility
 
 The expansion panel aims to mimic the experience of the native `<details>` and `<summary>` elements.
