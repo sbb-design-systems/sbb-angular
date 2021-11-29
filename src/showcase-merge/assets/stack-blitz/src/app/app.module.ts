@@ -7,6 +7,7 @@ import { SbbAngularDocsExample } from './sbb-angular-docs-example';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [SbbAngularDocsExample],
@@ -17,6 +18,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     HttpClientModule,
     ReactiveFormsModule,
     DragDropModule,
+    RouterModule.forRoot([]),
     SbbModule,
   ],
   providers: [],
