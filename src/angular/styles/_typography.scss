@@ -1863,15 +1863,15 @@ input.sbb-input-element.sbb-time-input {
  * http://nicolasgallagher.com/micro-clearfix-hack/
  */
 .clearfix {
-  *zoom: 1;
+  zoom: 1;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: '';
     display: table;
   }
 
-  &:after {
+  &::after {
     clear: both;
   }
 }
