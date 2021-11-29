@@ -1,15 +1,5 @@
 @import '../styles/common';
 
-$tabsHoverColor: var(--sbb-color-red125);
-$tabsFontSize: 20;
-$tabsBorderWidthLean: 1px;
-// Due to a bug in WebKit, the underline border seems to more than one pixel
-// when using 1px. Due to this we use the value below, which also works on Firefox.
-$tabsBorderUnderlineOffset: -0.9999px;
-
-$tab-bar-height: 48px !default;
-$tab-animation-duration: 500ms !default;
-
 // Mixin styles for labels that are contained within the tab header.
 @mixin tab-label {
   margin-right: pxToRem(32);
@@ -22,31 +12,25 @@ $tab-animation-duration: 500ms !default;
   white-space: nowrap;
   font-family: var(--sbb-font-light);
   font-size: pxToRem(20);
+  color: var(--sbb-color-text);
   line-height: 1em;
   padding-bottom: pxToRem(20);
   outline: none;
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
-      margin-right: pxToRem(42);
-      font-size: pxToRem(26);
-    }
-    @include mq($from: desktop4k) {
-      margin-right: pxToRem(52.5);
-      font-size: pxToRem(39);
-    }
-    @include mq($from: desktop5k) {
-      margin-right: pxToRem(63);
-      font-size: pxToRem(52);
+      margin-right: pxToEm(42, 26);
+      font-size: calc(#{pxToRem(26)} * var(--sbb-scaling-factor));
     }
 
     &::after {
       content: '';
       display: block;
       position: absolute;
-      height: pxToRem(1);
-      border-bottom: pxToRem(1) solid var(--sbb-color-black);
-      transition: width 0.3s, left 0.3s;
+      height: 0;
+      border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-text);
+      transition: width var(--sbb-transition-duration-default),
+        left var(--sbb-transition-duration-default);
 
       margin: 0 auto;
       left: 0;
@@ -56,15 +40,15 @@ $tab-animation-duration: 500ms !default;
     }
   }
   :where(html.sbb-lean) & {
-    font-size: pxToRem(15);
+    font-size: var(--sbb-font-size);
     line-height: pxToRem(20);
     padding: pxToRem(6) pxToRem(15) pxToRem(9);
-    background-color: var(--sbb-color-white);
+    background-color: var(--sbb-color-background);
     margin-right: 0;
-    margin-bottom: $tabsBorderWidthLean;
-    border: $tabsBorderWidthLean solid transparent;
+    margin-bottom: var(--sbb-border-width);
+    border: var(--sbb-border-width) solid transparent;
     border-bottom: none;
-    border-radius: pxToRem(2) pxToRem(2) 0 0;
+    border-radius: var(--sbb-border-radius) var(--sbb-border-radius) 0 0;
   }
 
   &:last-child {
@@ -79,59 +63,35 @@ $tab-animation-duration: 500ms !default;
     }
     :where(html.sbb-lean) & {
       border-color: var(--sbb-color-graphite);
-
-      &::after {
-        content: '';
-        position: absolute;
-        height: $tabsBorderWidthLean;
-        bottom: $tabsBorderUnderlineOffset;
-        left: 0;
-        right: 0;
-        background-color: var(--sbb-color-white);
-      }
+      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 calc(var(--sbb-border-width) * -1)
+        var(--sbb-color-background);
     }
   }
 
-  &:not(.sbb-tab-label-active):focus,
-  &:not(.sbb-tab-label-active):hover {
-    color: $tabsHoverColor;
+  &:not(.sbb-tab-label-active):is(:focus, :hover) {
+    color: var(--sbb-color-call-to-action-hover);
 
     :where(html:not(.sbb-lean)) & {
       &::after {
         width: 100%;
-        border-bottom-color: var(--sbb-color-red125);
+        border-bottom-color: var(--sbb-color-call-to-action-hover);
       }
     }
     :where(html.sbb-lean) & {
-      &::after {
-        content: '';
-        position: absolute;
-        height: $tabsBorderWidthLean;
-        bottom: $tabsBorderUnderlineOffset;
-        left: 0;
-        right: 0;
-        background-color: var(--sbb-color-red125);
-      }
+      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 calc(var(--sbb-border-width) * -1)
+        var(--sbb-color-call-to-action-hover);
     }
   }
 
-  &.sbb-tab-label-active:hover,
-  &.sbb-tab-label-active:focus {
+  &.sbb-tab-label-active:is(:hover, :focus) {
     color: currentColor;
     cursor: default;
-
-    :where(html.sbb-lean) & {
-      &::after {
-        border-bottom-color: currentColor;
-      }
-    }
   }
 
   &.sbb-tab-disabled {
     color: var(--sbb-color-storm);
 
-    &:hover,
-    &:focus {
+    &:is(:hover, :focus) {
       color: var(--sbb-color-storm);
       cursor: default;
     }
@@ -196,20 +156,14 @@ $tab-animation-duration: 500ms !default;
         pointer-events: none;
 
         @include mq($from: tablet) {
-          width: pxToRem(24);
-        }
-        @include mq($from: desktop4k) {
-          width: pxToRem(36);
-        }
-        @include mq($from: desktop4k) {
-          width: pxToRem(48);
+          width: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
         }
       }
 
       &::before {
         left: 0;
         transform: translateX(-100%);
-        background: linear-gradient(270deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-white));
+        background: linear-gradient(270deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-background));
       }
 
       &.sbb-tab-header-left-shadow::before {
@@ -219,7 +173,7 @@ $tab-animation-duration: 500ms !default;
       &::after {
         right: 0;
         transform: translateX(100%);
-        background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-white));
+        background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.37) 0, var(--sbb-color-background));
       }
 
       &.sbb-tab-header-right-shadow::after {
@@ -232,16 +186,7 @@ $tab-animation-duration: 500ms !default;
 // Structural styles for the element that wraps the paginated header items.
 @mixin paginated-tab-header-item-wrapper($parent) {
   display: flex;
-  padding-top: pxToRem(2);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      padding-top: pxToRem(3);
-    }
-    @include mq($from: desktop4k) {
-      padding-top: pxToRem(4);
-    }
-  }
+  padding-top: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
 }
 
 @mixin paginated-tab-header-container {
@@ -250,15 +195,14 @@ $tab-animation-duration: 500ms !default;
   flex-grow: 1;
   overflow-x: auto;
   z-index: 1;
-  padding-bottom: 20px;
+  padding-bottom: pxToRem(20);
 
   :where(html.sbb-lean) & {
     padding-bottom: 0;
 
     // We want to display the scrollbar above the header in order not to separate the borders
     // of the header and body. We do this by rotating the container and the content.
-    &,
-    & > .sbb-tab-list {
+    :is(&, & > .sbb-tab-list) {
       transform: rotateX(180deg);
     }
   }
@@ -267,7 +211,7 @@ $tab-animation-duration: 500ms !default;
 @mixin tab-body-wrapper {
   position: relative;
   overflow: hidden;
-  transition: height $tab-animation-duration;
+  transition: height var(--sbb-transition-duration-tags-body);
 
   :where(html.sbb-lean) & {
     border: pxToRem(1) solid var(--sbb-color-graphite);

@@ -121,6 +121,7 @@
 
   // Animation
   --sbb-transition-duration-default: 300ms;
+  --sbb-transition-duration-tags-body: 500ms;
   --sbb-transition-timing-default: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   --sbb-transition-default: var(--sbb-transition-duration-default)
     var(--sbb-transition-timing-default);
