@@ -28,8 +28,8 @@
 }
 
 .sbb-expansion-panel-horizontal-padding {
-  padding-left: calc(var(--sbb-expansion-panel-horizontal-padding) - var(--sbb-border-width-thin));
-  padding-right: calc(var(--sbb-expansion-panel-horizontal-padding) - var(--sbb-border-width-thin));
+  padding-left: calc(var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
+  padding-right: calc(var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
 }
 
 .sbb-expansion-panel-header {
@@ -39,26 +39,10 @@
   position: relative;
   background-color: var(--sbb-color-milk);
   outline: none;
-  padding-top: pxToRem(23);
-  padding-bottom: pxToRem(26);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: tablet) {
-      padding-top: pxToRem(34);
-      padding-bottom: pxToRem(36);
-    }
-    @include mq($from: desktop4k) {
-      padding-top: pxToRem(51);
-      padding-bottom: pxToRem(54);
-    }
-    @include mq($from: desktop5k) {
-      padding-top: pxToRem(70);
-      padding-bottom: pxToRem(70);
-    }
-  }
+  padding-top: var(--sbb-expansion-panel-header-padding-top);
+  padding-bottom: var(--sbb-expansion-panel-header-padding-bottom);
 
   :where(html.sbb-lean) & {
-    padding-top: calc(#{pxToRem(12)} - var(--sbb-border-width-thin));
     padding-bottom: calc(#{pxToRem(12)} - var(--sbb-border-width-thin));
   }
 
@@ -69,9 +53,9 @@
     height: 0;
     bottom: 0;
     width: calc(
-      100% - var(--sbb-expansion-panel-horizontal-padding) * 2 + var(--sbb-border-width-thin) * 2
+      100% - var(--sbb-expansion-panel-padding-horizontal) * 2 + var(--sbb-border-width-thin) * 2
     );
-    left: calc(var(--sbb-expansion-panel-horizontal-padding) - var(--sbb-border-width-thin));
+    left: calc(var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
     border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   }
 
@@ -126,26 +110,8 @@
   flex: 1;
   overflow: hidden;
   font-family: var(--sbb-font-light);
-  font-size: pxToRem(20);
-  line-height: pxToRem(28);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: tablet) {
-      font-size: pxToRem(21);
-      line-height: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
-    }
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(32);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(42);
-    }
-  }
-
-  :where(html.sbb-lean) & {
-    font-size: pxToRem(21);
-    line-height: pxToRem(25);
-  }
+  font-size: var(--sbb-expansion-panel-font-size);
+  line-height: var(--sbb-expansion-panel-line-height);
 }
 
 .sbb-expansion-panel-content {

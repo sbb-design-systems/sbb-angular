@@ -150,9 +150,9 @@
 }
 
 @mixin sbbMenuItemRedLean() {
-  color: var(--sbb-color-red125);
+  color: var(--sbb-color-call-to-action-hover);
   background-color: var(--sbb-color-milk);
-  @include borderLeftAsBefore(var(--sbb-color-red125));
+  @include borderLeftAsBefore(var(--sbb-color-call-to-action-hover));
 }
 
 @mixin sbbAbsoluteFill() {

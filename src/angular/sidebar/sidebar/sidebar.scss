@@ -3,9 +3,6 @@
 
 // Standard styles for sbb-sidebar are taken from NBC definitions and are a simple
 // modification to achieve a minimal acceptable look of the sbb-sidebar in standard.
-// There are no 4k and 5k styles.
-
-$sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
 
 .sbb-sidebar-container {
   @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
@@ -16,15 +13,10 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
 
   // Hide the sidebars when they're closed.
   overflow: hidden;
-
-  &.sbb-sidebar-container-has-open {
-    overflow: hidden;
-  }
 }
 
-.sbb-sidebar-container.sbb-sidebar-after-header,
-.sbb-header-lean + .sbb-sidebar-container {
-  top: pxToRem($sbb-sidebar-after-header-top);
+:is(.sbb-sidebar-container.sbb-sidebar-after-header, .sbb-header-lean + .sbb-sidebar-container) {
+  top: var(--sbb-header-lean-height);
 }
 
 .sbb-sidebar-backdrop {
@@ -34,7 +26,7 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
 
   // Because of the new stacking context, the z-index stack is new and we can use our own
   // numbers.
-  z-index: $sbb-sidebar-backdrop-z-index;
+  z-index: 3;
 
   // We use 'visibility: hidden | visible' because 'display: none' will not animate any
   // transitions, while visibility will interpolate transitions properly.
@@ -47,25 +39,31 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
   }
 }
 
-.sbb-sidebar-transition .sbb-sidebar-backdrop {
-  transition: {
-    duration: $swift-ease-out-duration;
-    timing-function: $swift-ease-out-timing-function;
-    property: background-color, visibility;
+.sbb-sidebar-backdrop {
+  .sbb-sidebar-transition & {
+    transition: {
+      duration: var(--sbb-transition-duration-default);
+      timing-function: var(--sbb-transition-timing-default);
+      property: background-color, visibility;
+    }
   }
 }
 
 .sbb-sidebar-content {
   @include sbb-sidebar-content;
-  z-index: $sbb-sidebar-content-z-index;
+  z-index: 1;
   height: 100%;
 
   .sbb-sidebar-transition & {
     transition: {
-      duration: $swift-ease-out-duration;
-      timing-function: $swift-ease-out-timing-function;
+      duration: var(--sbb-transition-duration-default);
+      timing-function: var(--sbb-transition-timing-default);
       property: transform, margin-left, margin-right;
     }
+  }
+
+  .sbb-sidebar-container-mobile & {
+    margin-top: var(--sbb-border-width-thin);
   }
 }
 
@@ -74,94 +72,62 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
   position: absolute;
   top: 0;
   bottom: 0;
-  width: pxToRem(300);
+  width: pxToEm(300);
   transform: translate3d(-100%, 0, 0);
-  border-right: pxToRem(1) solid var(--sbb-color-cloud);
+  border-right: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   background-color: var(--sbb-color-white);
+}
 
-  .sbb-sidebar-link {
-    position: relative;
-    text-decoration: none;
-    color: var(--sbb-color-iron);
-    font-size: var(--sbb-font-size);
-    line-height: pxToRem(20);
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: calc(100% + #{pxToRem(24 - 1)});
-    padding: pxToRem(5) pxToRem(16) pxToRem(7) pxToRem(16);
+.sbb-sidebar-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--sbb-color-iron);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  // Overlap spacing of expansion panel padding
+  width: calc(100% + var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
+  padding: pxToEm(5) var(--sbb-expansion-panel-padding-horizontal) pxToEm(7) pxToEm(16);
 
-    &:hover,
-    &:focus {
-      @include sbbMenuItemRedLean();
-    }
+  &:is(:hover, :focus) {
+    @include sbbMenuItemRedLean();
+  }
 
-    &.sbb-active {
-      @include sbbMenuItemBlackLean();
-      pointer-events: none;
-      cursor: default;
-    }
+  &.sbb-active {
+    @include sbbMenuItemBlackLean();
+    pointer-events: none;
+    cursor: default;
+  }
 
-    &:not(.sbb-active) {
-      outline: 0;
-    }
-
-    :where(html.sbb-lean) & {
-      width: calc(100% + #{pxToRem(16 - 1)});
-
-      // Redefined to be more specific
-      line-height: pxToRem(20);
-    }
+  &:not(.sbb-active) {
+    outline: 0;
   }
 }
 
 .sbb-sidebar-side {
-  z-index: $sbb-sidebar-side-sidebar-z-index;
+  z-index: 2;
 }
 
 .sbb-sidebar-over {
-  z-index: $sbb-sidebar-over-sidebar-z-index;
-  box-shadow: pxToRem(4) 0 0 0 rgba(0, 0, 0, 0.15);
-  border-right: pxToRem(1) solid var(--sbb-color-granite);
+  z-index: 4;
+  box-shadow: var(--sbb-) 0 0 0 rgba(0, 0, 0, 0.15);
+  border-right: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
 }
 
 .sbb-sidebar-inner-container {
   @include sbb-sidebar-inner-container();
 
+  .sbb-sidebar-container-mobile & {
+    padding-top: var(--sbb-sidebar-mobile-menu-bar-height);
+  }
+
+  // Overwrites of expansion panel
   .sbb-expansion-panel-header {
     background-color: inherit;
 
-    :where(html:not(.sbb-lean)) & {
-      padding: pxToRem(24 - 1) pxToRem(24 - 1) pxToRem(26 - 1) pxToRem(24 - 1);
-
-      .sbb-expansion-panel-header-indicator {
-        width: pxToRem(24);
-        height: pxToRem(24);
-        border-width: pxToRem(1);
-        padding: pxToRem(3);
-        margin-left: pxToRem(24);
-      }
-
-      .sbb-expansion-panel-header-content {
-        font-size: pxToRem(21);
-        line-height: pxToRem(25.2);
-      }
-
-      &::after {
-        left: pxToRem(24);
-        width: calc(100% - #{pxToRem(2 * 24)});
-      }
-
-      &.sbb-expanded::after {
-        border-width: pxToRem(1);
-        left: pxToRem(24);
-        width: calc(100% - #{pxToRem(2 * 24)});
-      }
-    }
-
     /**
-     animate line below legend when collapsing.
-     styles are copied from .sbb-expansion-panel-header
+     Animate line below legend when collapsing.
+     Base styles are copied from .sbb-expansion-panel-header
     */
     &::after {
       content: '';
@@ -169,42 +135,43 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
       position: absolute;
       height: 0;
       bottom: 0;
-      width: calc(100% - #{pxToRem(2 * 16)});
-      left: pxToRem(16);
-      border-bottom: pxToRem(1) solid transparent;
-      transition: border-bottom $swift-ease-out-duration $swift-ease-out-timing-function;
+      width: calc(
+        100% - var(--sbb-expansion-panel-padding-horizontal) * 2 + var(--sbb-border-width-thin) * 2
+      );
+      left: calc(var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
+      border-bottom: var(--sbb-border-width-thin) solid transparent;
+
+      transition: border-bottom var(--sbb-transition-duration-default)
+        var(--sbb-transition-timing-default);
     }
   }
 
-  :where(html:not(.sbb-lean)) & {
-    > fieldset,
-    .sbb-expansion-panel-body {
-      padding: pxToRem(24 - 1);
-    }
-
-    > fieldset {
-      & > legend {
-        font-size: pxToRem(21);
-      }
-    }
-  }
-
-  > sbb-expansion-panel,
+  // Apply Expansion panel styles to fieldset
   > fieldset {
-    // Used standard and lean selectors to be more specific than typography styles
-    :where(html.sbb-lean) &,
-    :where(html:not(.sbb-lean)) & {
-      border: none;
-      border-bottom: pxToRem(1) solid var(--sbb-color-cloud);
-    }
+    padding: var(--sbb-expansion-panel-header-padding-top)
+      calc(var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin))
+      var(--sbb-divider-medium);
 
-    + fieldset,
-    + sbb-expansion-panel {
-      margin-top: pxToRem(12);
+    > legend {
+      font-size: var(--sbb-expansion-panel-font-size);
+      line-height: var(--sbb-expansion-panel-line-height);
     }
+  }
 
-    + fieldset fieldset {
-      margin-top: 0;
+  > :is(.sbb-expansion-panel, fieldset) {
+    border: none;
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
+
+    + :is(.sbb-expansion-panel, fieldset) {
+      margin-top: calc(
+        var(--sbb-divider-medium) - var(--sbb-expansion-panel-header-padding-top) - #{pxToEm(3)}
+      );
+
+      :where(html.sbb-lean) & {
+        margin-top: calc(
+          var(--sbb-divider-big) - var(--sbb-expansion-panel-header-padding-top) - #{pxToEm(3)}
+        );
+      }
     }
 
     &:last-child {
@@ -218,61 +185,39 @@ $sbb-sidebar-mobile-menu-bar-height: pxToRem(48);
   flex: 1 1;
 }
 
-sbb-icon.sbb-sidebar-link-arrow {
-  display: inline-flex;
-  height: pxToRem(24);
-  width: pxToRem(24);
-}
-
 .sbb-sidebar-container-mobile {
-  padding-top: $sbb-sidebar-mobile-menu-bar-height;
-
-  .sbb-sidebar-mobile-menu-bar,
-  .sbb-sidebar-mobile-menu-bar-close-wrapper {
-    display: flex;
-  }
-
-  .sbb-sidebar .sbb-sidebar-inner-container {
-    padding-top: $sbb-sidebar-mobile-menu-bar-height;
-  }
-
-  .sbb-sidebar-content {
-    padding-top: pxToRem(1);
-  }
+  padding-top: var(--sbb-sidebar-mobile-menu-bar-height);
 }
 
-.sbb-sidebar-mobile-menu-bar,
-.sbb-sidebar-mobile-menu-bar-close-wrapper {
+:is(.sbb-sidebar-mobile-menu-bar, .sbb-sidebar-mobile-menu-bar-close-wrapper) {
   display: none;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+
+  .sbb-sidebar-container-mobile & {
+    display: flex;
+  }
 }
 
 .sbb-sidebar-mobile-menu-bar {
   z-index: 2;
-  border-bottom: pxToRem(1) solid var(--sbb-color-cloud);
+  border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
 }
 
-.sbb-sidebar-mobile-menu-bar-trigger,
-.sbb-sidebar-mobile-menu-bar-close {
+:is(.sbb-sidebar-mobile-menu-bar-trigger, .sbb-sidebar-mobile-menu-bar-close) {
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 0;
-  width: pxToRem(54);
-  height: $sbb-sidebar-mobile-menu-bar-height;
+  width: calc(#{pxToRem(54)} * var(--sbb-scaling-factor));
+  height: var(--sbb-sidebar-mobile-menu-bar-height);
   cursor: pointer;
   outline: none;
 
-  .sbb-icon {
-    width: pxToRem(24);
-    height: pxToRem(24);
-  }
-
   &:focus {
-    color: var(--sbb-color-red125);
+    color: var(--sbb-color-call-to-action-hover);
   }
 }
 

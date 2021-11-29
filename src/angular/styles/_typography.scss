@@ -136,7 +136,17 @@
   --sbb-form-input-min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
 
   // Expansion Panel
-  --sbb-expansion-panel-horizontal-padding: #{pxToRem(24)};
+  --sbb-expansion-panel-padding-horizontal: #{pxToRem(24)};
+  --sbb-expansion-panel-header-padding-top: #{pxToRem(23)};
+  --sbb-expansion-panel-header-padding-bottom: #{pxToRem(26)};
+  --sbb-expansion-panel-font-size: #{pxToRem(20)};
+  --sbb-expansion-panel-line-height: #{pxToRem(28)};
+
+  // Header
+  --sbb-header-lean-height: #{pxToRem(54)};
+
+  // Sidebar
+  --sbb-sidebar-mobile-menu-bar-height: #{pxToRem(48)};
 
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
@@ -162,14 +172,21 @@
       --sbb-divider-big: #{pxToRem(72)};
 
       // Expansion Panel
-      --sbb-expansion-panel-horizontal-padding: #{pxToRem(48)};
+      --sbb-expansion-panel-padding-horizontal: #{pxToRem(48)};
+      --sbb-expansion-panel-header-padding-top: #{pxToRem(34)};
+      --sbb-expansion-panel-header-padding-bottom: #{pxToRem(36)};
+      --sbb-expansion-panel-font-size: #{pxToRem(21)};
+      --sbb-expansion-panel-line-height: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
     }
     @include mq($from: desktop) {
       // Dividers
       --sbb-divider-big: calc(#{pxToRem(96)} * var(--sbb-scaling-factor));
 
       // Expansion Panel
-      --sbb-expansion-panel-horizontal-padding: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+      --sbb-expansion-panel-padding-horizontal: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+
+      // Sidebar
+      --sbb-sidebar-mobile-menu-bar-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
     }
     @include mq($from: desktop4k) {
       // Scaling
@@ -179,6 +196,11 @@
       --sbb-border-width-thin: #{pxToRem(2)};
       --sbb-font-size: #{pxToRem($sizeFontDefault4k)};
       --sbb-line-height: #{pxToRem($sizeLineHeightDefault4k)};
+
+      // Expansion Panel
+      --sbb-expansion-panel-header-padding-top: #{pxToRem(51)};
+      --sbb-expansion-panel-header-padding-bottom: #{pxToRem(54)};
+      --sbb-expansion-panel-font-size: #{pxToRem(32)};
     }
     @include mq($from: desktop5k) {
       // Scaling
@@ -187,6 +209,11 @@
       // Sizings
       --sbb-font-size: #{pxToRem($sizeFontDefault5k)};
       --sbb-line-height: #{pxToRem($sizeLineHeightDefault5k)};
+
+      // Expansion Panel
+      --sbb-expansion-panel-header-padding-top: #{pxToRem(70)};
+      --sbb-expansion-panel-header-padding-bottom: #{pxToRem(70)};
+      --sbb-expansion-panel-font-size: #{pxToRem(42)};
     }
   }
   &:where(.sbb-lean) {
@@ -209,7 +236,11 @@
     --sbb-form-input-min-height: #{pxToRem(36)};
 
     // Expansion Panel
-    --sbb-expansion-panel-horizontal-padding: #{pxToRem(16)};
+    --sbb-expansion-panel-padding-horizontal: #{pxToRem(16)};
+    --sbb-expansion-panel-header-padding-top: calc(#{pxToRem(12)} - var(--sbb-border-width-thin));
+    --sbb-expansion-panel-header-padding-bottom: var(--sbb-expansion-panel-header-padding-top);
+    --sbb-expansion-panel-font-size: #{pxToRem(21)};
+    --sbb-expansion-panel-line-height: #{pxToRem(25)};
 
     @include mq($from: desktop) {
       // Dividers

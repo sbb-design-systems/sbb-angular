@@ -13,7 +13,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
 
 .sbb-icon-sidebar-container.sbb-icon-sidebar-after-header,
 .sbb-header-lean + .sbb-icon-sidebar-container {
-  top: pxToRem($sbb-sidebar-after-header-top);
+  top: var(--sbb-header-lean-height);
 }
 
 .sbb-icon-sidebar-content {
@@ -25,7 +25,7 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
   @include sbb-sidebar;
   position: relative;
   background-color: var(--sbb-color-milk);
-  transition: width $swift-ease-out-duration $swift-ease-out-timing-function;
+  transition: width var(--sbb-transition-duration-default) var(--sbb-transition-timing-default);
 
   hr {
     margin-top: pxToRem(8);
@@ -92,7 +92,8 @@ $sbb-icon-sidebar-collapsed-width: pxToRem(48);
       }
 
       .sbb-icon-sidebar-item-icon {
-        transition: transform $swift-ease-out-duration $swift-ease-out-timing-function;
+        transition: transform var(--sbb-transition-duration-default)
+          var(--sbb-transition-timing-default);
       }
     }
   }
