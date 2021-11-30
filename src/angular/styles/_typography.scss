@@ -109,6 +109,7 @@
   --sbb-border-width: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
   --sbb-border-width-negative: calc(var(--sbb-border-width) * -1);
   --sbb-border-width-thin: #{pxToRem(1)};
+  --sbb-border-width-thin-negative: calc(var(--sbb-border-width-thin) * -1);
   --sbb-font-size-constant: #{pxToRem($sizeFontDefault)};
   --sbb-font-size: var(--sbb-font-size-constant);
   --sbb-line-height-constant: #{pxToRem($sizeLineHeightDefault)};
