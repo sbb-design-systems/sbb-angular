@@ -136,7 +136,7 @@
     content: '';
     position: absolute;
     height: 100%;
-    width: pxToRem(1);
+    width: var(--sbb-border-width-thin);
     left: 0;
     top: 0;
     background-color: $color;
