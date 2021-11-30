@@ -148,6 +148,12 @@
   --sbb-table-sticky-shadow-width: #{pxToRem(8)};
   --sbb-table-sticky-shadow-offset: #{pxToRem(-9)};
 
+  // Usermenu
+  --sbb-usermenu-color: var(--sbb-color-grey);
+  --sbb-usermenu-panel-width: calc(#{pxToRem(288)} * var(--sbb-scaling-factor));
+  --sbb-usermenu-trigger-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  --sbb-usermenu-trigger-padding: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+
   // Icons
   --sbb-icon-size-default: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
   // Chevron-small-down-small with color #666 (grey) applied
@@ -210,6 +216,10 @@
 
     // Expansion Panel
     --sbb-expansion-panel-horizontal-padding: #{pxToRem(16)};
+
+    // Usermenu
+    --sbb-usermenu-color: var(--sbb-color-iron);
+    --sbb-usermenu-trigger-padding: #{pxToRem(8)};
 
     @include mq($from: desktop) {
       // Dividers

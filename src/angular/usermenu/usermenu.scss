@@ -1,100 +1,27 @@
 @import '../styles/common';
 
-$textColor: var(--sbb-color-grey);
-$textColorLean: var(--sbb-color-iron);
-
-$triggerHeight: 48;
-
-$borderWidth: 2;
-$borderWidth4k: 3;
-$borderWidth5k: 4;
-$borderWidthLean: 1;
-
-$panelWidth: 288;
-$panelTriggerPadding: 12;
-$panelTriggerPaddingLean: 8;
-
-$imageBaseSize: 30;
-$imageBaseSizeLean: 24;
-
-$animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
-
-@mixin imageSize() {
-  width: pxToRem($imageBaseSize);
-  height: pxToRem($imageBaseSize);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      width: pxToRem($imageBaseSize * $scalingFactor4k);
-      height: pxToRem($imageBaseSize * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      width: pxToRem($imageBaseSize * $scalingFactor5k);
-      height: pxToRem($imageBaseSize * $scalingFactor5k);
-    }
-  }
-
-  :where(html.sbb-lean) & {
-    width: pxToRem($imageBaseSizeLean);
-    height: pxToRem($imageBaseSizeLean);
-  }
-}
-
 .sbb-usermenu {
   display: inline-block;
-  max-width: pxToRem($panelWidth);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      max-width: pxToRem($panelWidth * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      max-width: pxToRem($panelWidth * $scalingFactor5k);
-    }
-  }
+  max-width: calc(#{pxToRem(288)} * var(--sbb-scaling-factor));
 }
 
-.sbb-usermenu-trigger,
-.sbb-menu-panel-type-usermenu .sbb-menu-panel-trigger {
+:is(.sbb-usermenu-trigger, .sbb-menu-panel-type-usermenu .sbb-menu-panel-trigger) {
   display: flex;
   align-items: center;
-  color: $textColor;
+  color: var(--sbb-usermenu-color);
   outline: 0;
   width: 100%;
-  height: pxToRem($triggerHeight);
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeLineHeightDefault);
-  padding: 0 pxToRem($borderWidth);
+  height: var(--sbb-usermenu-trigger-height);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
+  padding: 0 var(--sbb-border-width);
 
   &:where(button) {
     cursor: pointer;
   }
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      height: pxToRem($triggerHeight * $scalingFactor4k);
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-      padding: 0 pxToRem($borderWidth4k);
-    }
-
-    @include mq($from: desktop5k) {
-      height: pxToRem($triggerHeight * $scalingFactor5k);
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
-      padding: 0 pxToRem($borderWidth5k);
-    }
-  }
-
-  :where(html.sbb-lean) & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-  }
-
-  &:hover,
-  &:focus {
-    color: var(--sbb-color-red125);
+  &:is(:hover, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 
   // applies to custom icons and arrow icon
@@ -119,34 +46,11 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
   flex-grow: 0;
   flex-shrink: 0;
   padding: 0 !important; // Overwrite default menu styles
-  height: pxToRem($triggerHeight - $borderWidth);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      height: pxToRem(($triggerHeight - $borderWidth) * $scalingFactor5k);
-    }
-  }
-
-  :where(html.sbb-lean) & {
-    height: pxToRem($triggerHeight - $borderWidthLean);
-  }
+  height: calc(var(--sbb-usermenu-trigger-height) - var(--sbb-border-width));
 }
 
 .sbb-usermenu-logged-out-icon {
-  margin-right: pxToRem(4);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      margin-right: pxToRem(4 * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      margin-right: pxToRem(4 * $scalingFactor5k);
-    }
-  }
+  margin-right: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
 }
 
 .sbb-usermenu-logged-out-label {
@@ -160,48 +64,25 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
   display: flex;
   flex-grow: 0;
   flex-shrink: 0;
-  color: $textColor;
-
-  :where(html.sbb-lean) & {
-    color: $textColorLean;
-  }
+  color: var(--sbb-usermenu-color);
 
   .sbb-menu-panel-wrapper & {
-    padding-left: pxToRem($panelTriggerPadding);
-
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        padding-left: pxToRem($panelTriggerPadding * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        padding-left: pxToRem($panelTriggerPadding * $scalingFactor5k);
-      }
-    }
-
-    :where(html.sbb-lean) & {
-      padding-left: pxToRem($panelTriggerPaddingLean);
-    }
+    padding-left: var(--sbb-usermenu-trigger-padding);
   }
 
   img {
     border-radius: 50%;
-    border: pxToRem($borderWidth) solid var(--sbb-color-cloud);
-    @include imageSize();
+    border: var(--sbb-border-width) solid var(--sbb-color-cloud);
+  }
+}
 
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        border-width: pxToRem($borderWidth4k);
-      }
+:is(.sbb-usermenu-identification img, .sbb-usermenu-initial-letters) {
+  width: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+  height: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
 
-      @include mq($from: desktop5k) {
-        border-width: pxToRem($borderWidth5k);
-      }
-    }
-
-    :where(html.sbb-lean) & {
-      border-width: pxToRem($borderWidthLean);
-    }
+  :where(html.sbb-lean) & {
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
   }
 }
 
@@ -211,27 +92,17 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
   justify-content: center;
   flex-grow: 0;
   flex-shrink: 0;
-  @include imageSize();
   border-radius: 50%;
   background-color: var(--sbb-color-cloud);
   color: var(--sbb-color-metal);
   font-family: var(--sbb-font-bold);
   font-weight: 700;
   text-align: center;
-  font-size: pxToRem(13);
+  font-size: calc(#{pxToRem(13)} * var(--sbb-scaling-factor));
 
   :where(html:not(.sbb-lean)) & {
     line-height: 1;
-
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(13 * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(13 * $scalingFactor5k);
-    }
   }
-
   :where(html.sbb-lean) & {
     font-size: pxToRem(10);
   }
@@ -243,31 +114,15 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
-  color: $textColor;
-  padding-left: pxToRem(8);
+  color: var(--sbb-usermenu-color);
+  padding-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      padding-left: pxToRem(8 * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      padding-left: pxToRem(8 * $scalingFactor5k);
-    }
-  }
-
-  :where(html.sbb-lean) & {
-    color: $textColorLean;
-  }
-
-  .sbb-usermenu-user-info-has-display-name &,
-  .sbb-menu-panel-wrapper & {
+  :is(.sbb-usermenu-user-info-has-display-name, .sbb-menu-panel-wrapper) & {
     display: flex;
   }
 }
 
-.sbb-usermenu-user-info-display-name,
-.sbb-usermenu-user-info-name {
+:is(.sbb-usermenu-user-info-display-name, .sbb-usermenu-user-info-name) {
   display: none;
   text-align: left;
   @include ellipsis();
@@ -295,23 +150,11 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
   }
 
   color: var(--sbb-color-metal);
-  font-size: pxToRem(13);
-  line-height: pxToRem(14);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(13 * $scalingFactor4k);
-      line-height: pxToRem(14 * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(13 * $scalingFactor5k);
-      line-height: pxToRem(14 * $scalingFactor5k);
-    }
-  }
+  font-size: calc(#{pxToRem(13)} * var(--sbb-scaling-factor));
+  line-height: pxToEm(14, 13);
 
   :where(html.sbb-lean) & {
-    color: $textColorLean;
+    color: var(--sbb-color-iron);
   }
 }
 
@@ -319,8 +162,8 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
   display: none;
   flex-shrink: 0;
   flex-grow: 0;
-  margin-right: pxToRem(8);
-  transition: transform $animationTiming;
+  margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  transition: transform var(--sbb-transition-default);
 
   @include mq($from: tablet) {
     display: inline-block;
@@ -334,8 +177,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
     transform: rotate(90deg);
   }
 
-  .sbb-menu-trigger-menu-open &,
-  .sbb-menu-panel-wrapper & {
+  :is(.sbb-menu-trigger-menu-open, .sbb-menu-panel-wrapper) & {
     transform: rotate(-180deg);
 
     :where(html.sbb-lean) & {
@@ -352,7 +194,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
         transform: rotate(-180deg);
       }
     }
-    animation: $animationTiming 0s 1 arrowRotate;
+    animation: var(--sbb-transition-default) 0s 1 arrowRotate;
 
     :where(html.sbb-lean) & {
       @keyframes arrowRotateLean {
@@ -363,7 +205,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
           transform: rotate(-90deg);
         }
       }
-      animation: $animationTiming 0s 1 arrowRotateLean;
+      animation: var(--sbb-transition-default) 0s 1 arrowRotateLean;
     }
   }
 
@@ -376,7 +218,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
         transform: rotate(0);
       }
     }
-    animation: $animationTiming 0s 1 arrowRotateBackwards;
+    animation: var(--sbb-transition-default) 0s 1 arrowRotateBackwards;
 
     :where(html.sbb-lean) & {
       @keyframes arrowRotateBackwardsLean {
@@ -387,17 +229,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
           transform: rotate(90deg);
         }
       }
-      animation: $animationTiming 0s 1 arrowRotateBackwardsLean;
-    }
-  }
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      margin-right: pxToRem(8 * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      margin-right: pxToRem(8 * $scalingFactor5k);
+      animation: var(--sbb-transition-default) 0s 1 arrowRotateBackwardsLean;
     }
   }
 }
@@ -408,44 +240,11 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
   right: 0;
   --sbb-menu-trigger-width: #{pxToRem(48)}; // Only fallback, will normally be defined programmatically
   --sbb-menu-trigger-height: #{pxToRem(48)}; // Only fallback, will normally be defined programmatically
-  min-width: calc(var(--sbb-menu-trigger-width) + #{pxToRem($panelTriggerPadding)});
+  min-width: calc(var(--sbb-menu-trigger-width) + var(--sbb-usermenu-trigger-padding));
   min-height: var(--sbb-menu-trigger-height);
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      min-width: calc(
-        var(--sbb-menu-trigger-width) + #{pxToRem($panelTriggerPadding * $scalingFactor4k)}
-      );
-      min-height: calc(var(--sbb-menu-trigger-height) * #{$scalingFactor4k});
-    }
-    @include mq($from: desktop5k) {
-      min-width: calc(
-        var(--sbb-menu-trigger-width) + #{pxToRem($panelTriggerPadding * $scalingFactor5k)}
-      );
-      min-height: calc(var(--sbb-menu-trigger-height) * #{$scalingFactor5k});
-    }
-  }
-
-  :where(html.sbb-lean) & {
-    min-width: calc(var(--sbb-menu-trigger-width) + #{pxToRem($panelTriggerPaddingLean)});
-  }
-
   .sbb-menu-item {
-    min-width: pxToRem($panelWidth - 2 * $borderWidth);
-
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        min-width: pxToRem(($panelWidth * $scalingFactor4k) - 2 * $borderWidth4k);
-      }
-
-      @include mq($from: desktop5k) {
-        min-width: pxToRem(($panelWidth * $scalingFactor5k) - 2 * $borderWidth5k);
-      }
-    }
-
-    :where(html.sbb-lean) & {
-      min-width: pxToRem($panelWidth - 2 * $borderWidthLean);
-    }
+    min-width: calc(var(--sbb-usermenu-panel-width) - var(--sbb-border-width) * 2);
   }
 
   &.ng-animating {
@@ -455,7 +254,7 @@ $animationTiming: 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
     &.sbb-menu-panel-closing .sbb-panel {
       padding: 0;
-      transition: padding $animationTiming;
+      transition: padding var(--sbb-transition-default);
     }
   }
 }
