@@ -3,6 +3,7 @@
 1. Make sure you have both `node` and `yarn` installed.
    We recommend using `nvm` to manage your node versions.
 2. sbb-angular uses Bazel which requires certain Bash and UNIX tools.
+   - On Windows we recommend using WSL2, with which no special setup should be necessary
    - On Windows on SBB Managed Devices: Follow the guide to install on windows below, but install MSYS2 to `C:\devsbb\msys64`
      and add `.bazelrc` to your user directory (`C:\Users\{user}\.bazelrc`) with the following content:
      ```
@@ -41,7 +42,7 @@ In order to automatically generate BUILD.bazel files, we implemented a schematic
 
 To run unit tests, run `yarn test <target>`. The `target` can be either a short name (e.g. `yarn test button`) or an explicit path `yarn test src/angular/menu`.
 You can also directly use bazel: `bazel test src/...` (to test everything) or `bazel test src/angular/...`
-(e.g. to test the public package) or `bazel test src/angular/button:unit_tests` (e.g. to test the public button module).
+(e.g. to test the angular package) or `bazel test src/angular/button:unit_tests` (e.g. to test the button module).
 
 To run lint, run `yarn lint`.
 
