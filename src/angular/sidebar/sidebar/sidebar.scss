@@ -1,9 +1,6 @@
 @import '../../styles/common';
 @import '../sidebar';
 
-// Standard styles for sbb-sidebar are taken from NBC definitions and are a simple
-// modification to achieve a minimal acceptable look of the sbb-sidebar in standard.
-
 .sbb-sidebar-container {
   @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
 
@@ -122,6 +119,16 @@
   }
 
   // Overwrites of expansion panel
+
+  :where(html:not(.sbb-lean)) & {
+    // Standard styles for sbb-sidebar are taken from NBC definitions and are a simple
+    // modification to achieve a minimal acceptable look of the sbb-sidebar in standard.
+    --sbb-expansion-panel-padding-horizontal: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    --sbb-expansion-panel-header-padding-top: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    --sbb-expansion-panel-header-padding-bottom: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    --sbb-divider-medium: var(--sbb-divider-small);
+  }
+
   .sbb-expansion-panel-header {
     background-color: inherit;
 
