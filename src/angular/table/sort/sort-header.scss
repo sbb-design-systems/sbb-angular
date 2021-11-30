@@ -11,15 +11,7 @@ $sbb-sort-header-arrow-container-size: 24;
   // active, the arrow will always be shown so the user has no way of telling the difference.
   &.cdk-keyboard-focused,
   &.cdk-program-focused {
-    &:before {
-      content: '';
-      border: pxToEm(1) solid var(--sbb-color-iron);
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
+    @include sbbFocusOutline();
   }
 
   &:hover .sbb-sort-header-container {

@@ -1,17 +1,6 @@
 @import '../../styles/common';
 @import '../sidebar';
 
-.sbb-sidebar-container {
-  @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
-
-  // Need this to take up space in the layout.
-  display: flex;
-  flex-direction: column;
-
-  // Hide the sidebars when they're closed.
-  overflow: hidden;
-}
-
 :is(.sbb-sidebar-container.sbb-sidebar-after-header, .sbb-header-lean + .sbb-sidebar-container) {
   top: var(--sbb-header-lean-height);
 }
@@ -34,9 +23,7 @@
   &.sbb-sidebar-shown {
     visibility: visible;
   }
-}
 
-.sbb-sidebar-backdrop {
   .sbb-sidebar-transition & {
     transition: {
       duration: var(--sbb-transition-duration-default);
@@ -44,6 +31,21 @@
       property: background-color, visibility;
     }
   }
+}
+
+.sbb-sidebar-container {
+  @include sbb-sidebar-container('.sbb-sidebar-backdrop, .sbb-sidebar-content');
+
+  // Need this to take up space in the layout.
+  display: flex;
+  flex-direction: column;
+
+  // Hide the sidebars when they're closed.
+  overflow: hidden;
+}
+
+.sbb-sidebar-container-mobile {
+  padding-top: var(--sbb-sidebar-mobile-menu-bar-height);
 }
 
 .sbb-sidebar-content {
@@ -73,32 +75,6 @@
   transform: translate3d(-100%, 0, 0);
   border-right: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
   background-color: var(--sbb-color-white);
-}
-
-.sbb-sidebar-link {
-  position: relative;
-  text-decoration: none;
-  color: var(--sbb-color-iron);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  // Overlap spacing of expansion panel padding
-  width: calc(100% + var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
-  padding: pxToEm(5) var(--sbb-expansion-panel-padding-horizontal) pxToEm(7) pxToEm(16);
-
-  &:is(:hover, :focus) {
-    @include sbbMenuItemRedLean();
-  }
-
-  &.sbb-active {
-    @include sbbMenuItemBlackLean();
-    pointer-events: none;
-    cursor: default;
-  }
-
-  &:not(.sbb-active) {
-    outline: 0;
-  }
 }
 
 .sbb-sidebar-side {
@@ -187,13 +163,41 @@
   }
 }
 
+.sbb-sidebar-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--sbb-color-iron);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  // Overlap spacing of expansion panel padding
+  width: calc(100% + var(--sbb-expansion-panel-padding-horizontal) - var(--sbb-border-width-thin));
+  padding: pxToEm(5) var(--sbb-expansion-panel-padding-horizontal) pxToEm(7) pxToEm(16);
+
+  &:is(:hover, :focus) {
+    @include sbbMenuItemRedLean();
+  }
+
+  &.sbb-active {
+    @include sbbMenuItemBlackLean();
+    pointer-events: none;
+    cursor: default;
+
+    &:focus-visible {
+      @include sbbFocusOutline();
+    }
+  }
+
+  // Styles with non-active limitation to display an outline in safari where focus-visible is not working
+  // TODO: Remove limitation once Safari supports focus-visible
+  &:not(.sbb-active) {
+    outline: 0;
+  }
+}
+
 .sbb-sidebar-link-label {
   @include ellipsis();
   flex: 1 1;
-}
-
-.sbb-sidebar-container-mobile {
-  padding-top: var(--sbb-sidebar-mobile-menu-bar-height);
 }
 
 :is(.sbb-sidebar-mobile-menu-bar, .sbb-sidebar-mobile-menu-bar-close-wrapper) {
