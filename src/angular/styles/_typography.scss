@@ -174,6 +174,13 @@
   --sbb-table-sticky-shadow-width: #{pxToRem(8)};
   --sbb-table-sticky-shadow-offset: #{pxToRem(-9)};
 
+  // Tooltip
+  --sbb-tooltip-border-color: var(--sbb-color-grey);
+  --sbb-tooltip-padding: calc(#{pxToRem(23)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-arrow-offset: calc(#{pxToRem(7.2)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-content-arrow-size: calc(#{pxToRem(17.7)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-shadow-arrow-size: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+
   // Usermenu
   --sbb-usermenu-color: var(--sbb-color-grey);
   --sbb-usermenu-panel-width: calc(#{pxToRem(288)} * var(--sbb-scaling-factor));
@@ -277,6 +284,12 @@
     --sbb-pagination-base-color: var(--sbb-color-granite);
     --sbb-pagination-disabled-color: var(--sbb-color-storm);
     --sbb-pagination-paginator-size: #{pxToRem(30)};
+
+    // Tooltip
+    --sbb-tooltip-border-color: var(--sbb-color-iron);
+    --sbb-tooltip-padding: #{pxToRem(8)};
+    --sbb-tooltip-content-arrow-size: #{pxToRem(16.665)};
+    --sbb-tooltip-shadow-arrow-size: #{pxToRem(13.333)};
 
     // Usermenu
     --sbb-usermenu-color: var(--sbb-color-iron);
