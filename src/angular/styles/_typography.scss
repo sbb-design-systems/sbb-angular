@@ -107,6 +107,7 @@
   // Sizings
   --sbb-border-radius: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
   --sbb-border-width: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+  --sbb-border-width-negative: calc(var(--sbb-border-width) * -1);
   --sbb-border-width-thin: #{pxToRem(1)};
   --sbb-font-size-constant: #{pxToRem($sizeFontDefault)};
   --sbb-font-size: var(--sbb-font-size-constant);
@@ -150,6 +151,10 @@
   --sbb-sidebar-mobile-menu-bar-height: #{pxToRem(48)};
   --sbb-icon-sidebar-item-dimension: #{pxToEm(48)};
 
+  // Menu
+  // (36 (Desired width) - 24 (icon width)) / 2
+  --sbb-menu-trigger-padding: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+
   // Table
   --sbb-table-background-color: var(--sbb-color-background);
   --sbb-table-thead-background-color: var(--sbb-color-cloud);
@@ -176,6 +181,7 @@
   // Shadow
   --sbb-box-shadow-width: calc(var(--sbb-border-width) * 4);
   --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
+  --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
 
   &:where(:not(.sbb-lean)) {
     @include mq($from: tablet) {
