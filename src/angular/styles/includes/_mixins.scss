@@ -131,28 +131,28 @@
 // Sbb Menu
 // ----------------------------------------------------------------------------------------------------
 
-@mixin borderLeftAsBefore($color) {
+@mixin borderLeftAsBefore($color, $width) {
   &::before {
     content: '';
     position: absolute;
     height: 100%;
-    width: pxToRem(1);
+    width: $width;
     left: 0;
     top: 0;
     background-color: $color;
   }
 }
 
-@mixin sbbMenuItemBlackLean() {
+@mixin sbbMenuItemBlackLean($width: var(--sbb-border-width-thin)) {
   color: var(--sbb-color-black);
   background-color: var(--sbb-color-cloud);
-  @include borderLeftAsBefore(var(--sbb-color-black));
+  @include borderLeftAsBefore(var(--sbb-color-black), $width);
 }
 
-@mixin sbbMenuItemRedLean() {
-  color: var(--sbb-color-red125);
+@mixin sbbMenuItemRedLean($width: var(--sbb-border-width-thin)) {
+  color: var(--sbb-color-call-to-action-hover);
   background-color: var(--sbb-color-milk);
-  @include borderLeftAsBefore(var(--sbb-color-red125));
+  @include borderLeftAsBefore(var(--sbb-color-call-to-action-hover), $width);
 }
 
 @mixin sbbAbsoluteFill() {
@@ -161,4 +161,9 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+@mixin sbbFocusOutline() {
+  outline: var(--sbb-border-width-thin) solid var(--sbb-color-iron);
+  outline-offset: calc(-1 * var(--sbb-border-width-thin));
 }

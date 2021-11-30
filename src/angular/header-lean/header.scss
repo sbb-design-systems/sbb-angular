@@ -1,6 +1,6 @@
 @import '../styles/common';
 
-$sbbHeaderHeight: pxToRem(54);
+$sbbHeaderHeight: var(--sbb-header-lean-height);
 $sbbHeaderMenuWidth: 300px;
 $sbbHeaderBaseZIndex: 1000;
 $sbbHeaderSideMenuZIndex: 800;

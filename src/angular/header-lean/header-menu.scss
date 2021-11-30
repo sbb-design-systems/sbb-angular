@@ -1,6 +1,6 @@
 @import '../styles/common';
 
-$sbbHeaderMenuSectionHeight: pxToRem(54);
+$sbbHeaderMenuSectionHeight: var(--sbb-header-lean-height);
 $sbbHeaderBaseZIndex: 1000;
 $sbbHeaderSideMenuZIndex: 800;
 $sbbHeaderMenuMobileZIndex: 1100;
@@ -64,7 +64,7 @@ button.sbb-header-menu-back {
 }
 
 .sbb-header-menu > div.sbb-header-menu-panel-container {
-  height: calc(100% - #{$sbbHeaderMenuSectionHeight * 2});
+  height: calc(100% - #{$sbbHeaderMenuSectionHeight} * 2);
 
   @include mq($from: tabletPortrait) {
     height: calc(100% - #{$sbbHeaderMenuSectionHeight});
