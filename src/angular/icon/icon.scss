@@ -30,13 +30,6 @@
     width: inherit;
   }
 
-  // If any ancestor has .sbb-icon-scaled as a class, width and height will be set to the default icon size.
-  :where(.sbb-icon-scaled) &,
-  &:where(.sbb-icon-scaled) {
-    width: var(--sbb-icon-size-default);
-    height: var(--sbb-icon-size-default);
-  }
-
   // If any ancestor has .sbb-icon-fit as a class, width and height will be set to 100%.
   // With both .sbb-icon-scaled and .sbb-icon-fit the width and height of the nested svg will be set to 100%.
   :where(.sbb-icon-fit) &,
@@ -45,5 +38,12 @@
   &:where(.sbb-icon-fit, .sbb-icon-scaled) svg {
     width: 100%;
     height: 100%;
+  }
+
+  // If any ancestor has .sbb-icon-scaled as a class, width and height will be set to the default icon size.
+  :where(.sbb-icon-scaled) &,
+  &:where(.sbb-icon-scaled) {
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
   }
 }
