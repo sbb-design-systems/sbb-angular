@@ -2,7 +2,7 @@
 
 .sbb-usermenu {
   display: inline-block;
-  max-width: calc(#{pxToRem(288)} * var(--sbb-scaling-factor));
+  max-width: var(--sbb-usermenu-panel-width);
 }
 
 :is(.sbb-usermenu-trigger, .sbb-menu-panel-type-usermenu .sbb-menu-panel-trigger) {
