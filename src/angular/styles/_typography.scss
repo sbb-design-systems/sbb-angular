@@ -112,6 +112,8 @@
   --sbb-font-size: var(--sbb-font-size-constant);
   --sbb-line-height-constant: #{pxToRem($sizeLineHeightDefault)};
   --sbb-line-height: var(--sbb-line-height-constant);
+  --sbb-font-size-small: #{pxToRem(13)};
+  --sbb-line-height-small: #{pxToRem(20)};
 
   // Dividers
   --sbb-divider-thin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
@@ -145,6 +147,12 @@
 
   // Header
   --sbb-header-lean-height: #{pxToRem(54)};
+
+  // Pagination
+  --sbb-pagination-base-color: var(--sbb-color-grey);
+  --sbb-pagination-disabled-color: var(--sbb-color-silver);
+  --sbb-pagination-paginator-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
+  --sbb-pagination-navigation-item-margin: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
 
   // Sidebar
   --sbb-sidebar-mobile-menu-bar-height: #{pxToRem(48)};
@@ -208,6 +216,8 @@
       --sbb-border-width-thin: #{pxToRem(2)};
       --sbb-font-size: #{pxToRem($sizeFontDefault4k)};
       --sbb-line-height: #{pxToRem($sizeLineHeightDefault4k)};
+      --sbb-font-size-small: #{pxToRem(20)};
+      --sbb-line-height-small: #{pxToRem(30)};
 
       // Expansion Panel
       --sbb-expansion-panel-header-padding-top: #{pxToRem(51)};
@@ -221,6 +231,8 @@
       // Sizings
       --sbb-font-size: #{pxToRem($sizeFontDefault5k)};
       --sbb-line-height: #{pxToRem($sizeLineHeightDefault5k)};
+      --sbb-font-size-small: #{pxToRem(26)};
+      --sbb-line-height-small: #{pxToRem(40)};
 
       // Expansion Panel
       --sbb-expansion-panel-header-padding-top: #{pxToRem(70)};
@@ -253,6 +265,11 @@
     --sbb-expansion-panel-header-padding-bottom: var(--sbb-expansion-panel-header-padding-top);
     --sbb-expansion-panel-font-size: #{pxToRem(21)};
     --sbb-expansion-panel-line-height: #{pxToRem(25)};
+
+    // Pagination
+    --sbb-pagination-base-color: var(--sbb-color-granite);
+    --sbb-pagination-disabled-color: var(--sbb-color-storm);
+    --sbb-pagination-paginator-size: #{pxToRem(30)};
 
     // Usermenu
     --sbb-usermenu-color: var(--sbb-color-iron);
@@ -536,32 +553,42 @@ textarea {
 }
 
 // ----------------------------------------------------------------------------------------------------
-// Lists TODO: add 4k, 5k styles and check every usage of our angular modules for specificity
+// Lists TODO: check every usage of our angular modules for specificity
 // ----------------------------------------------------------------------------------------------------
 
 :is(ul, .sbb-unordered-list, ol, .sbb-ordered-list) {
   font-size: var(--sbb-font-size);
-  margin-left: pxToRem(8);
-  margin-top: pxToRem(17);
-  margin-bottom: pxToRem(30);
+  line-height: var(--sbb-line-height);
+  margin-top: calc(#{pxToRem(17)} * var(--sbb-scaling-factor));
+  margin-bottom: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
 
   @include mq($from: desktop) {
-    margin-top: pxToRem(25);
+    margin-top: calc(#{pxToRem(25)} * var(--sbb-scaling-factor));
   }
 
   li {
-    margin-top: pxToRem(8);
+    margin-top: var(--sbb-divider-thin);
+  }
+
+  :is(ol, ul) {
+    margin: calc(#{pxToRem(6)} * var(--sbb-scaling-factor)) 0 0
+      calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   }
 }
 
-ul,
-.sbb-unordered-list {
+:is(ul, .sbb-unordered-list) {
   list-style-type: disc;
-  padding-left: pxToRem(16);
-}
+  padding-left: calc(pxToRem(16) * var(--sbb-scaling-factor));
 
-:is(ul, .sbb-unordered-list) li {
-  padding-left: pxToRem(16 - 6);
+  li {
+    padding-left: calc(pxToRem(16 - 6) * var(--sbb-scaling-factor));
+
+    // if ol is nested inside ul, we need just 1 hierarchy level for the counter
+    ol > li::before {
+      content: counter(item) '.';
+    }
+  }
 }
 
 :is(ol, .sbb-ordered-list) {
@@ -579,17 +606,19 @@ ul,
     counter-increment: item;
 
     display: table-cell;
-    padding-right: pxToRem(13);
+    padding-right: calc(pxToRem(13) * var(--sbb-scaling-factor));
   }
 }
 
-:is(ol, .sbb-ordered-list, ul, .sbb-unordered-list) :is(ol, ul) {
-  margin: pxToRem(6) 0 0 pxToRem(8);
-}
+.sbb-clean-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
 
-// if ol is nested inside ul, we need just 1 hierarchy level for the counter
-:is(ul, .sbb-unordered-list) li ol > li::before {
-  content: counter(item) '.';
+  li {
+    margin: 0;
+    padding-left: 0;
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -1495,19 +1524,10 @@ textarea {
 }
 
 .sbb-selection-panel-subtitle {
-  font-size: pxToRem(13);
-  line-height: pxToRem(20);
+  font-size: var(--sbb-font-size-small);
+  line-height: var(--sbb-line-height-small);
   color: var(--sbb-color-grey);
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(20);
-      line-height: 1.5;
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(26);
-    }
-  }
   :where(html.sbb-lean) {
     color: var(--sbb-color-granite);
   }
@@ -1583,21 +1603,11 @@ textarea {
   resize: none;
   background-color: transparent;
   font-family: var(--sbb-font-roman);
-  font-size: pxToRem(13);
-  line-height: pxToRem(16);
+  font-size: var(--sbb-font-size-small);
+  line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-grey);
   display: block;
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(20);
-      line-height: pxToRem(24);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(26);
-      line-height: pxToRem(32);
-    }
-  }
   :where(html.sbb-lean) & {
     color: var(--sbb-color-granite);
   }
@@ -1755,7 +1765,7 @@ textarea {
   }
 
   caption {
-    font-size: pxToRem(13);
+    font-size: var(--sbb-font-size-small);
     color: var(--sbb-table-caption-color);
   }
 
@@ -1765,7 +1775,7 @@ textarea {
 }
 
 .sbb-table-caption > * {
-  font-size: pxToEm(13);
+  font-size: var(--sbb-font-size-small);
   color: var(--sbb-table-caption-color);
 }
 
