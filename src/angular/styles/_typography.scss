@@ -166,6 +166,10 @@
   // Chevron-small-right-small color #686868 (granite) applied
   --sbb-url-icon-chevron-small-down-small-granite: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4K');
 
+  // Shadow
+  --sbb-box-shadow-width: calc(var(--sbb-border-width) * 4);
+  --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
+
   &:where(:not(.sbb-lean)) {
     @include mq($from: tablet) {
       // Dividers

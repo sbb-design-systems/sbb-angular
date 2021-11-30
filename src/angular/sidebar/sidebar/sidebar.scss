@@ -83,7 +83,7 @@
 
 .sbb-sidebar-over {
   z-index: 4;
-  box-shadow: var(--sbb-) 0 0 0 rgba(0, 0, 0, 0.15);
+  box-shadow: var(--sbb-box-shadow-width) 0 0 0 var(--sbb-box-shadow-color);
   border-right: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
 }
 
