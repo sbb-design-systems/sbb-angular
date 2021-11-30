@@ -56,7 +56,7 @@
 
 .sbb-navigation-item-boundary-arrow {
   line-height: 0;
-  flex: 0 0 calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  flex: 0 0 var(--sbb-icon-size-default);
 
   .sbb-navigation-item-boundary-right & {
     margin-left: var(--sbb-pagination-navigation-item-margin);

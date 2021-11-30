@@ -44,8 +44,6 @@
 }
 
 .sbb-file-selector-list-type-icon {
-  width: var(--sbb-icon-size-default);
-  height: var(--sbb-icon-size-default);
   margin-right: pxToEm(8);
 
   :where(html.sbb-lean) & {
