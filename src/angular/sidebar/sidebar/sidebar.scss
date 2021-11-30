@@ -74,7 +74,7 @@
   width: pxToEm(300);
   transform: translate3d(-100%, 0, 0);
   border-right: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
-  background-color: var(--sbb-color-white);
+  background-color: var(--sbb-color-background);
 }
 
 .sbb-sidebar-side {
@@ -233,6 +233,6 @@
 }
 
 .sbb-sidebar-mobile-menu-bar-close-wrapper {
-  background-color: var(--sbb-color-white);
+  background-color: var(--sbb-color-background);
   z-index: 1;
 }

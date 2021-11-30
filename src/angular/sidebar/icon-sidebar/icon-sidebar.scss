@@ -108,7 +108,7 @@
 
   &.sbb-active {
     @include sbbMenuItemBlackLean(calc(var(--sbb-border-width-thin) * 2));
-    background-color: var(--sbb-color-white);
+    background-color: var(--sbb-color-background);
     cursor: default;
     pointer-events: none;
 
