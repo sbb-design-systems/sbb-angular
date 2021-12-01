@@ -1,9 +1,5 @@
 @import '../styles/common';
 
-$toggleOptionRadius: 2;
-$toggleOptionBorderSize: 1;
-$toggleOptionBorderSize4kAndAbove: 2;
-
 .sbb-toggle {
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
@@ -26,19 +22,16 @@ $toggleOptionBorderSize4kAndAbove: 2;
   height: 100%;
   background-color: var(--sbb-color-milk);
   color: var(--sbb-color-grey);
-  border-radius: pxToEm($toggleOptionRadius);
+  border-radius: var(--sbb-border-radius);
   padding: pxToEm(8) pxToEm(15) pxToEm(9);
   line-height: 1.5;
-  border: pxToRem($toggleOptionBorderSize) solid transparent;
+  border: var(--sbb-border-width-thin) solid transparent;
 
   :where(html:not(.sbb-lean)) & {
     min-height: pxToEm(65);
 
     @include mq($from: desktop) {
       padding: pxToEm(8) pxToEm(23) pxToEm(9);
-    }
-    @include mq($from: desktop4k) {
-      border-width: pxToRem($toggleOptionBorderSize4kAndAbove);
     }
   }
   :where(html.sbb-lean) & {
@@ -88,19 +81,14 @@ $toggleOptionBorderSize4kAndAbove: 2;
     background-color: var(--sbb-color-white);
     border-color: var(--sbb-color-black);
     color: var(--sbb-color-black);
-
-    // Required to be more specific.
-    :where(html.sbb-lean) & {
-      border-color: var(--sbb-color-black);
-    }
   }
 }
 
 .sbb-toggle-option-button-icon {
   display: inline-block;
   vertical-align: middle;
-  max-width: pxToEm(24);
-  max-height: pxToEm(24);
+  max-width: var(--sbb-icon-size-default);
+  max-height: var(--sbb-icon-size-default);
 }
 
 .sbb-toggle-option-button-label-wrapper {
@@ -113,7 +101,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
   vertical-align: middle;
 
   .sbb-toggle-option-has-icon & {
-    max-width: calc(100% - #{pxToEm(24)});
+    max-width: calc(100% - var(--sbb-icon-size-default));
     text-align: left;
     padding-left: 0.5em;
   }
@@ -122,11 +110,11 @@ $toggleOptionBorderSize4kAndAbove: 2;
 .sbb-toggle-option-button-subtitle {
   display: block;
   color: inherit;
-  font-size: pxToEm(13);
+  font-size: var(--sbb-font-size-small);
   max-height: 3em;
   opacity: 1;
   overflow: hidden;
-  transition: max-height 0.25s linear, opacity 0.25s ease;
+  transition: max-height var(--sbb-transition-default), opacity var(--sbb-transition-default);
 
   .sbb-toggle-option-selected & {
     opacity: 0;
@@ -144,14 +132,9 @@ $toggleOptionBorderSize4kAndAbove: 2;
   transition: opacity 0.25s ease, visibility 0.25s ease, padding 0.2s ease, max-height 0.2s ease;
   margin-top: pxToEm(-2);
   position: relative;
-  border: pxToRem($toggleOptionBorderSize) solid var(--sbb-color-black);
-  border-radius: pxToEm($toggleOptionRadius);
+  border: var(--sbb-border-width-thin) solid var(--sbb-color-black);
+  border-radius: var(--sbb-border-radius);
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      border-width: pxToRem($toggleOptionBorderSize4kAndAbove);
-    }
-  }
   :where(html.sbb-lean) & {
     padding: pxToEm(15);
   }
@@ -167,24 +150,12 @@ $toggleOptionBorderSize4kAndAbove: 2;
     content: '';
     position: absolute;
     height: 0;
-    top: pxToRem(-$toggleOptionBorderSize);
-    width: calc(50% - #{pxToRem($toggleOptionBorderSize)});
+    top: var(--sbb-border-width-thin-negative);
+    width: calc(50% - var(--sbb-border-width-thin));
     border-bottom: pxToRem(1) solid var(--sbb-color-silver);
 
     .sbb-toggle-triple & {
-      width: calc(33.33333% - #{pxToRem($toggleOptionBorderSize)});
-    }
-
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        top: pxToRem(-$toggleOptionBorderSize4kAndAbove);
-        width: calc(50% - #{pxToRem($toggleOptionBorderSize4kAndAbove)});
-        border-bottom-width: pxToRem($toggleOptionBorderSize4kAndAbove);
-
-        .sbb-toggle-triple & {
-          width: calc(33.33333% - #{pxToRem($toggleOptionBorderSize4kAndAbove)});
-        }
-      }
+      width: calc(33.33333% - var(--sbb-border-width-thin));
     }
   }
 
@@ -196,13 +167,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
   }
 
   .sbb-toggle-middle-option-selected &::before {
-    left: calc(33.33333% + #{pxToRem($toggleOptionBorderSize)});
-
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        left: calc(33.33333% + #{pxToRem($toggleOptionBorderSize4kAndAbove)});
-      }
-    }
+    left: calc(33.33333% + var(--sbb-border-width-thin));
   }
 
   .sbb-toggle-last-option-selected & {
