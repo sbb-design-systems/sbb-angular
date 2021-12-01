@@ -1,111 +1,79 @@
 @import '../styles/common';
 
-$chipsRightPadding: 8;
-
 .sbb-chip-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   background: transparent;
+  padding: 0;
 
-  &.sbb-input-element {
-    padding: 0;
-
-    .sbb-input-with-open-panel & {
-      border-color: var(--sbb-color-grey);
-
-      :where(html.sbb-lean) & {
-        border-color: var(--sbb-color-iron);
-      }
-    }
-
-    input.sbb-chip-input {
-      max-width: 100%;
-      border: none;
-      width: pxToEm(150);
-      flex: 1 0 pxToEm(150);
-      min-height: pxToEm(34);
-
-      :where(html.sbb-lean) & {
-        padding-bottom: pxToEm(6);
-      }
-    }
+  .sbb-input-with-open-panel & {
+    border-color: var(--sbb-form-input-color);
   }
 }
 
-.sbb-chip-list-disabled.sbb-input-element {
-  input.sbb-chip-input {
+// Selector .sbb-form-field is needed to be specific enough in form-field context
+:is(.sbb-chip-input, .sbb-form-field .sbb-chip-input) {
+  max-width: 100%;
+  border: none;
+  width: var(--sbb-chips-input-width);
+  flex: 1 0 var(--sbb-chips-input-width);
+  min-height: calc(var(--sbb-chips-list-height) - 2 * var(--sbb-border-width));
+
+  .sbb-chip-list-disabled & {
     display: none;
   }
-}
 
-.sbb-chip {
-  // Chips could be set on buttons so we need to reset the user agent styles.
-  @include buttonResetFrameless();
+  :where(html.sbb-lean) & {
+    padding-bottom: pxToEm(6);
+  }
 }
 
 .sbb-standard-chip {
   @include ellipsis();
+  font-size: var(--sbb-font-size);
+  line-height: 1;
 
-  height: pxToEm(36);
-  border-radius: pxToEm(private-div(36, 2));
+  height: var(--sbb-chips-chip-height);
+  border-radius: var(--sbb-chips-chip-height);
   color: var(--sbb-color-iron);
   background-color: var(--sbb-color-cloud);
   max-width: 100%;
-  margin: pxToEm(4);
-  padding: pxToEm(10.25) pxToEm(14);
-  font-size: var(--sbb-font-size);
+  margin: var(--sbb-chips-chip-margin-vertical);
 
-  &,
-  :where(html:not(.sbb-lean)) &,
-  :where(html.sbb-lean) & {
-    line-height: 1;
-  }
+  // Subtraction of 1px needed to correctly align the content vertically as in specs
+  padding: calc(
+      0.5 *
+        (
+          var(--sbb-chips-chip-height) - var(--sbb-font-size) - #{pxToRem(1)} * var(--sbb-scaling-factor)
+        )
+    )
+    calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-    }
-  }
-
-  :where(html.sbb-lean) & {
-    height: pxToEm(30);
-    border-radius: pxToEm(private-div(30, 2));
-    margin: pxToEm(2);
-    padding-top: pxToEm(7);
-    padding-bottom: pxToEm(6);
-  }
-
-  &:not(.sbb-chip-disabled) {
-    &:hover,
-    &:focus {
-      background-color: var(--sbb-color-aluminum);
-    }
+  &:not(.sbb-chip-disabled):is(:hover, :focus) {
+    background-color: var(--sbb-color-aluminum);
   }
 
   &.sbb-chip-disabled {
     opacity: 0.6;
 
-    .sbb-chip-remove,
-    .sbb-chip-trailing-icon {
+    :is(.sbb-chip-remove, .sbb-chip-trailing-icon) {
       cursor: default;
     }
   }
 
   &.sbb-chip-with-trailing-icon {
-    padding-right: pxToEm(4 + 24 + $chipsRightPadding);
+    padding-right: calc(
+      #{pxToRem(4)} * var(--sbb-scaling-factor) + var(--sbb-icon-size-default) + var(--sbb-chips-chip-padding-horizontal)
+    );
     position: relative;
   }
 
-  .sbb-chip-remove,
-  .sbb-chip-trailing-icon {
+  :is(.sbb-chip-remove, .sbb-chip-trailing-icon) {
     @include absoluteCenterY();
     cursor: pointer;
-    margin-left: pxToEm(8);
-    right: pxToEm($chipsRightPadding);
+    margin-left: var(--sbb-chips-chip-padding-horizontal);
+    right: var(--sbb-chips-chip-padding-horizontal);
   }
 }
