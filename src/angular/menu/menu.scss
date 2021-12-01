@@ -92,11 +92,6 @@ sbb-menu {
       height: 100%;
     }
   }
-
-  :where(html:not(.sbb-lean)) & {
-    // TODO: Is this necessary?
-    border-width: var(--sbb-border-width);
-  }
 }
 
 // Trigger styles for opened (copied) state
