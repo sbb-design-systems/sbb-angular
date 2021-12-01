@@ -17,11 +17,11 @@
   />
   {{ _labelUploadFile }}
   <span class="sbb-file-selector-upload-icon">
-    <sbb-icon class="sbb-icon-fit" svgIcon="kom:upload-small"></sbb-icon>
+    <sbb-icon class="sbb-icon-scaled" svgIcon="kom:upload-small"></sbb-icon>
   </span>
 </label>
 
-<ul *ngIf="filesList?.length" class="sbb-file-selector-list sbb-icon-fit">
+<ul *ngIf="filesList?.length" class="sbb-file-selector-list sbb-clean-list sbb-icon-scaled">
   <li *ngFor="let file of filesList">
     <div
       role="presentation"
