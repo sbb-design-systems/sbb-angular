@@ -37,19 +37,9 @@
   background: transparent;
   color: var(--sbb-color-black);
   letter-spacing: 0;
-  font-size: pxToRem(13);
+  font-size: var(--sbb-font-size-small);
   line-height: 1;
   font-family: var(--sbb-font-roman);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(20);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(26);
-    }
-  }
 
   :where(html.sbb-lean) & {
     color: var(--sbb-color-metal);
