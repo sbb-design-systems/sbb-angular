@@ -26,11 +26,22 @@
     border: var(--sbb-border-width) solid transparent;
     border-right-color: var(--sbb-tooltip-border-color);
     border-bottom-color: var(--sbb-tooltip-border-color);
+    z-index: 2;
+
+    :where(html.sbb-lean) & {
+      // We need to slightly move the arrow upwards in order for it to correctly align
+      // with the tooltip border.
+      top: pxToRem(-0.6);
+    }
   }
   .sbb-tooltip-panel-above &::after {
     top: auto;
     bottom: pxToEm(12.9);
     transform: rotate(45deg);
+
+    :where(html.sbb-lean) & {
+      bottom: pxToRem(8.25);
+    }
   }
   .sbb-tooltip-panel-left &::after {
     margin-right: pxToEm(6);
@@ -38,20 +49,19 @@
   .sbb-tooltip-panel-right &::after {
     margin-left: pxToEm(6);
   }
-  :where(html.sbb-lean) &::after {
-    bottom: pxToRem(8.25);
-  }
 }
 
 .sbb-tooltip {
   max-width: pxToEm(460);
   padding: var(--sbb-tooltip-padding);
+  position: relative;
   overflow: hidden;
   color: var(--sbb-color-grey);
   text-overflow: ellipsis;
   background-color: var(--sbb-color-background);
   border: var(--sbb-border-width) solid var(--sbb-tooltip-border-color);
   border-radius: var(--sbb-border-radius);
+  z-index: 2;
 
   @include cdk.high-contrast(active, off) {
     outline: solid 1px;
@@ -67,19 +77,17 @@
 }
 
 .sbb-tooltip-shadow {
-  height: var(--sbb-box-shadow-width);
+  height: calc(var(--sbb-box-shadow-width) + var(--sbb-border-width));
+  margin-top: var(--sbb-border-width-negative);
   background-color: var(--sbb-box-shadow-color);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
-
-  :where(html.sbb-lean) & {
-    border-radius: 0 0 pxToRem(1) pxToRem(1);
-  }
+  z-index: 1;
 
   .sbb-tooltip-panel-above & {
-    margin-bottom: pxToEm(12);
+    margin-bottom: var(--sbb-tooltip-shadow-arrow-size);
 
     &::after {
-      top: calc(100% - #{pxToEm(12)});
+      top: calc(100% - var(--sbb-tooltip-shadow-arrow-size));
       left: 0;
       right: 0;
       margin-left: auto;
@@ -90,7 +98,7 @@
       height: 0;
       border: var(--sbb-tooltip-shadow-arrow-size) solid transparent;
       border-bottom: 0;
-      border-top-color: rgba(0, 0, 0, 0.15);
+      border-top-color: var(--sbb-box-shadow-color);
     }
   }
   .sbb-tooltip-panel-above.sbb-tooltip-panel-left &::after {

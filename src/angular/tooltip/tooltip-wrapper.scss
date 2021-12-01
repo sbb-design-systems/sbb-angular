@@ -22,35 +22,21 @@
 }
 
 .sbb-tooltip-close-icon {
-  border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
-  border-radius: 50%;
   color: var(--sbb-color-granite);
   float: right;
   position: absolute;
-  top: calc(var(--sbb-tooltip-padding) + var(--sbb-tooltip-arrow-offset) + var(--sbb-border-width));
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  top: var(--sbb-tooltip-padding);
   right: var(--sbb-tooltip-padding);
   line-height: 0;
 
-  :where(html.sbb-lean) & {
-    top: calc(var(--sbb-tooltip-padding) + var(--sbb-tooltip-arrow-offset));
-    color: var(--sbb-color-iron);
-
-    &,
-    &:is(:hover, :focus) {
-      border-color: transparent;
-    }
-
-    &:is(:hover, :focus) {
-      color: var(--sbb-color-call-to-action-hover);
-    }
+  :where(html:not(.sbb-lean)) & {
+    border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
+    border-radius: 50%;
   }
-
-  .sbb-tooltip-panel-above & {
-    top: calc(var(--sbb-tooltip-padding) + var(--sbb-border-width));
-
-    :where(html.sbb-lean) & {
-      top: var(--sbb-tooltip-padding);
-    }
+  :where(html.sbb-lean) & {
+    color: var(--sbb-color-iron);
   }
 
   .sbb-tooltip-trigger-hover & {

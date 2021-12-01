@@ -1,4 +1,5 @@
 @use 'external/npm/node_modules/@angular/cdk' as cdk;
+@use 'sass:math';
 @import './common';
 
 // ----------------------------------------------------------------------------------------------------
@@ -178,8 +179,12 @@
   --sbb-tooltip-border-color: var(--sbb-color-grey);
   --sbb-tooltip-padding: calc(#{pxToRem(23)} * var(--sbb-scaling-factor));
   --sbb-tooltip-arrow-offset: calc(#{pxToRem(7.2)} * var(--sbb-scaling-factor));
-  --sbb-tooltip-content-arrow-size: calc(#{pxToRem(17.7)} * var(--sbb-scaling-factor));
-  --sbb-tooltip-shadow-arrow-size: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+  // The diagonal of the indicator square is 24 pixel. The width and height of the
+  // indicator square is therefore d / √2 = a.
+  --sbb-tooltip-content-arrow-size: calc(
+    #{pxToRem(math.div(24, math.sqrt(2)))} * var(--sbb-scaling-factor)
+  );
+  --sbb-tooltip-shadow-arrow-size: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
 
   // Usermenu
   --sbb-usermenu-color: var(--sbb-color-grey);
@@ -288,8 +293,6 @@
     // Tooltip
     --sbb-tooltip-border-color: var(--sbb-color-iron);
     --sbb-tooltip-padding: #{pxToRem(8)};
-    --sbb-tooltip-content-arrow-size: #{pxToRem(16.665)};
-    --sbb-tooltip-shadow-arrow-size: #{pxToRem(13.333)};
 
     // Usermenu
     --sbb-usermenu-color: var(--sbb-color-iron);
