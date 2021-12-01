@@ -116,6 +116,7 @@
   --sbb-line-height: var(--sbb-line-height-constant);
   --sbb-font-size-small: #{pxToRem(13)};
   --sbb-line-height-small: #{pxToRem(20)};
+  --sbb-line-height-medium: #{pxToRem(23)};
 
   // Dividers
   --sbb-divider-thin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
@@ -131,6 +132,7 @@
     var(--sbb-transition-timing-default);
   --sbb-transition-panel: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --sbb-animation-link: var(--sbb-transition-default);
+  --sbb-transition-tag: 225ms cubic-bezier(0.4, 0, 0.2, 1);
 
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-mild);
@@ -225,6 +227,7 @@
       --sbb-line-height: #{pxToRem($sizeLineHeightDefault4k)};
       --sbb-font-size-small: #{pxToRem(20)};
       --sbb-line-height-small: #{pxToRem(30)};
+      --sbb-line-height-medium: #{pxToRem(35)};
 
       // Expansion Panel
       --sbb-expansion-panel-header-padding-top: #{pxToRem(51)};
@@ -240,6 +243,7 @@
       --sbb-line-height: #{pxToRem($sizeLineHeightDefault5k)};
       --sbb-font-size-small: #{pxToRem(26)};
       --sbb-line-height-small: #{pxToRem(40)};
+      --sbb-line-height-medium: #{pxToRem(45)};
 
       // Expansion Panel
       --sbb-expansion-panel-header-padding-top: #{pxToRem(70)};
@@ -257,6 +261,7 @@
     // Sizings
     --sbb-border-width: #{pxToRem(1)};
     --sbb-line-height: #{pxToRem($sizeLineHeightDefaultLean)};
+    --sbb-line-height-medium: #{pxToRem(20)};
 
     // Forms
     --sbb-form-background-color-readonly: transparent;
@@ -642,22 +647,19 @@ textarea {
   border-radius: var(--sbb-border-radius);
   color: var(--sbb-form-input-color);
   font-size: var(--sbb-font-size);
-  line-height: pxToRem(23);
+  line-height: var(--sbb-line-height-medium);
   min-height: var(--sbb-form-input-min-height);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       padding: pxToRem(15) pxToRem(21) pxToRem(16);
-      line-height: pxToRem(35);
     }
     @include mq($from: desktop5k) {
       padding: pxToRem(21) pxToRem(28) pxToRem(22);
-      line-height: pxToRem(45);
     }
   }
   :where(html.sbb-lean) & {
     padding: pxToRem(6) pxToRem(7) pxToRem(8);
-    line-height: pxToRem(20);
   }
 
   &::-webkit-input-placeholder {
@@ -2047,20 +2049,11 @@ $menuItemPaddingTopBottom: 4;
   outline: 0;
   color: var(--sbb-color-grey);
   font-size: var(--sbb-font-size);
-  line-height: pxToRem(23);
+  line-height: var(--sbb-line-height-medium);
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      line-height: pxToRem(35);
-    }
-    @include mq($from: desktop5k) {
-      line-height: pxToRem(45);
-    }
-  }
   :where(html.sbb-lean) & {
     padding-left: pxToRem(8);
     padding-right: pxToRem(8);
-    line-height: pxToRem(20);
     color: var(--sbb-color-iron);
   }
 
