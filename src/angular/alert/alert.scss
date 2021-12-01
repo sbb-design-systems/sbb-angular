@@ -4,7 +4,6 @@
   display: flex;
   background-color: var(--sbb-color-iron);
   color: var(--sbb-color-white);
-  padding: pxToRem(16);
   justify-content: center;
   align-items: flex-start;
   font-size: var(--sbb-font-size);
@@ -12,81 +11,81 @@
   outline: none;
   overflow-y: hidden;
 
+  padding: pxToRem(16);
   @include mq($from: tablet) {
     padding: pxToRem(36) pxToRem(24) pxToRem(36) pxToRem(48);
   }
   @include mq($from: desktop) {
-    padding: pxToEm(40) pxToEm(56);
+    padding: calc(#{pxToRem(40)} * var(--sbb-scaling-factor))
+      calc(#{pxToRem(56)} * var(--sbb-scaling-factor));
   }
 
-  &.sbb-alert-link {
-    text-decoration: none;
-    transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-
-    &:hover,
-    &:focus,
-    &:focus-within,
-    &:active {
-      background-color: var(--sbb-color-black);
-      color: var(--sbb-color-white);
-    }
+  :is(a, a:is(:hover, :focus)) {
+    color: var(--sbb-color-white);
   }
 }
 
-.sbb-alert-icon,
-.sbb-alert-close {
-  flex: 0 0 pxToRem(24);
+.sbb-alert-link {
+  text-decoration: none;
+  transition: background-color var(--sbb-transition-duration-default)
+    var(--sbb-transition-timing-default);
+
+  &:is(:hover, :focus, :focus-within, :active) {
+    background-color: var(--sbb-color-black);
+    color: var(--sbb-color-white);
+  }
+}
+
+:is(.sbb-alert-icon, .sbb-alert-close) {
+  flex: 0 0 var(--sbb-icon-size-default);
   line-height: 0;
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
-      flex: 1 1 pxToRem(36);
+      flex-shrink: 1;
+      flex-grow: 1;
       text-align: right;
-    }
-    @include mq($from: desktop5k) {
-      flex-basis: pxToRem(48);
     }
   }
 }
 
 .sbb-alert-content {
   flex: 1 1 auto;
-  margin: pxToRem(-2) pxToRem(12) pxToRem(0);
+  margin: calc(#{pxToRem(-2)} * var(--sbb-scaling-factor)) pxToRem(12) pxToRem(0);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tablet) {
-      margin: pxToRem(-2) pxToEm(24) pxToRem(0);
+      margin-left: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+      margin-right: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
     }
     @include mq($from: desktop4k) {
       flex: 0 0 50%;
     }
   }
+
+  :where(html.sbb-lean) & {
+    margin-top: 0;
+  }
 }
 
 .sbb-alert-content-link-icon {
   vertical-align: middle;
-  margin-left: pxToEm(3);
+  margin-left: calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
 }
 
 .sbb-alert-close-button {
   cursor: pointer;
   color: var(--sbb-color-white);
-  width: pxToEm(24);
-  height: pxToEm(24);
 
   @include mq($from: desktop) {
     align-self: center;
   }
 }
 
-.sbb-alert-close-button .sbb-icon {
-  padding: pxToEm(3);
-  border: var(--sbb-color-white) solid pxToEm(1);
+.sbb-alert-close-button-icon {
+  padding: calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
+  border: var(--sbb-color-white) solid var(--sbb-border-width-thin);
   border-radius: 50%;
-}
-
-.sbb-alert a {
-  color: var(--sbb-color-white);
 }
 
 .sbb-alert-outlet {
