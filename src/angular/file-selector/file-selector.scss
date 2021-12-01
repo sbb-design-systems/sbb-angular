@@ -33,7 +33,7 @@
     margin-top: var(--sbb-divider-thin);
   }
 
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     margin-top: var(--sbb-divider-medium);
   }
 }
