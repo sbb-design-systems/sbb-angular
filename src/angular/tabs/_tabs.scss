@@ -63,7 +63,7 @@
     }
     :where(html.sbb-lean) & {
       border-color: var(--sbb-color-graphite);
-      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 calc(var(--sbb-border-width) * -1)
+      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 var(--sbb-border-width-negative)
         var(--sbb-color-background);
     }
   }
@@ -78,7 +78,7 @@
       }
     }
     :where(html.sbb-lean) & {
-      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 calc(var(--sbb-border-width) * -1)
+      box-shadow: 0 calc(var(--sbb-border-width) * 2) 0 var(--sbb-border-width-negative)
         var(--sbb-color-call-to-action-hover);
     }
   }
