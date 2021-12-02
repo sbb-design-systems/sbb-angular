@@ -211,7 +211,7 @@
 @mixin tab-body-wrapper {
   position: relative;
   overflow: hidden;
-  transition: height var(--sbb-transition-duration-tags-body);
+  transition: height var(--sbb-transition-duration-slow);
 
   :where(html.sbb-lean) & {
     border: pxToRem(1) solid var(--sbb-color-graphite);

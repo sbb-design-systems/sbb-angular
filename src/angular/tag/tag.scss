@@ -4,11 +4,14 @@
   .sbb-badge {
     display: flex;
     align-self: center;
+    // In order to align in the center, we need to slightly move the badge downwards.
+    // This is due to the padding of the label inside the sbb-tag.
+    margin-top: pxToRem(1);
   }
   .sbb-badge-content {
     position: relative;
     display: block;
-    transition: background-color var(--sbb-transition-tag);
+    transition: background-color var(--sbb-transition-fast-start);
   }
 }
 
@@ -24,8 +27,11 @@
 
 .sbb-tag-base {
   display: flex;
-  transition: border-color var(--sbb-transition-tag), background-color var(--sbb-transition-tag),
-    color var(--sbb-transition-tag);
+  transition: {
+    duration: var(--sbb-transition-duration-fast);
+    timing-function: var(--sbb-transition-timing-fast-start);
+    property: border-color, background-color, color;
+  }
   cursor: pointer;
   background-color: var(--sbb-color-milk);
   border: var(--sbb-border-width-thin) solid transparent;
@@ -34,7 +40,6 @@
 
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height-medium);
-  // TODO
   padding: pxToRem(4) pxToRem(8) pxToRem(6) pxToRem(15);
 
   :where(html:not(.sbb-lean)) & {
@@ -48,7 +53,7 @@
 
   :where(html.sbb-lean) & {
     color: var(--sbb-color-granite);
-    line-height: pxToRem(23);
+    line-height: var(--sbb-line-height);
     padding: pxToRem(2) pxToRem(6) pxToRem(3) pxToRem(13);
   }
 }

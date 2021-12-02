@@ -125,14 +125,15 @@
   --sbb-divider-big: #{pxToRem(48)};
 
   // Animation
+  --sbb-transition-duration-fast: 250ms;
   --sbb-transition-duration-default: 300ms;
-  --sbb-transition-duration-tags-body: 500ms;
+  --sbb-transition-duration-slow: 500ms;
+  --sbb-transition-timing-fast-start: cubic-bezier(0.4, 0, 0.2, 1);
   --sbb-transition-timing-default: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --sbb-transition-fast-start: var(--sbb-transition-duration-fast)
+    var(--sbb-transition-timing-fast-start);
   --sbb-transition-default: var(--sbb-transition-duration-default)
     var(--sbb-transition-timing-default);
-  --sbb-transition-panel: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --sbb-animation-link: var(--sbb-transition-default);
-  --sbb-transition-tag: 225ms cubic-bezier(0.4, 0, 0.2, 1);
 
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-mild);
@@ -1170,8 +1171,11 @@ textarea {
 // bleed and scale accordingly with 4k and 5k.
 
 .sbb-button-indicator-icon {
-  transition: opacity var(--sbb-animation-link), transform var(--sbb-animation-link),
-    right var(--sbb-animation-link);
+  transition: {
+    duration: var(--sbb-transition-duration-default);
+    timing-function: var(--sbb-transition-timing-default);
+    property: opacity, transform, right;
+  }
   backface-visibility: hidden;
   pointer-events: none;
   position: absolute;
@@ -1223,8 +1227,11 @@ textarea {
 
 :where(html:not(.sbb-lean))
   .sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled) {
-  transition: transform var(--sbb-animation-link), padding-left var(--sbb-animation-link),
-    padding-right var(--sbb-animation-link);
+  transition: {
+    duration: var(--sbb-transition-duration-default);
+    timing-function: var(--sbb-transition-timing-default);
+    property: transform, padding-left, padding-right;
+  }
   padding-left: pxToEm(39);
   padding-right: pxToEm(69);
 
@@ -1246,8 +1253,11 @@ textarea {
 
 :where(html:not(.sbb-lean))
   .sbb-button-base:is(.sbb-frameless-button, .sbb-link):not(.sbb-disabled) {
-  transition: transform var(--sbb-animation-link), padding-left var(--sbb-animation-link),
-    padding-right var(--sbb-animation-link);
+  transition: {
+    duration: var(--sbb-transition-duration-default);
+    timing-function: var(--sbb-transition-timing-default);
+    property: transform, padding-left, padding-right;
+  }
   padding-left: pxToEm(0);
   padding-right: pxToEm(30);
 
@@ -1958,7 +1968,7 @@ $panelBorderRadius: 2;
   border: var(--sbb-border-width) solid var(--sbb-color-grey);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
-  transition: height var(--sbb-transition-panel), opacity var(--sbb-transition-panel);
+  transition: height var(--sbb-transition-fast-start), opacity var(--sbb-transition-fast-start);
   color: var(--sbb-color-grey);
 
   @include panelShadow();
