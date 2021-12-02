@@ -5,20 +5,13 @@
   align-items: center;
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  height: pxToEm(24);
 }
 
 .sbb-status-icon {
-  width: pxToEm(24);
-  height: pxToEm(24);
-  border-radius: pxToRem(1);
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  border-radius: var(--sbb-border-radius);
   color: var(--sbb-color-white);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      border-radius: pxToRem(2);
-    }
-  }
 }
 
 // Variant for .sbb-status-icon
@@ -39,7 +32,9 @@
 .sbb-status-message {
   background-color: var(--sbb-color-milk);
   color: var(--sbb-color-granite);
+  line-height: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
   font-family: var(--sbb-font-roman);
-  margin-left: pxToEm(6);
-  padding: pxToEm(0) pxToEm(8) pxToEm(1) pxToEm(8);
+  margin-left: pxToEm(8);
+  padding: calc(#{pxToRem(1)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(8)} * var(--sbb-scaling-factor)) calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
 }
