@@ -99,6 +99,7 @@
   border-color: var(--sbb-color-black);
   color: var(--sbb-color-black);
   outline: 0;
+  text-decoration: none;
 
   &:is(:hover, :focus, :active, .sbb-active) {
     border-color: var(--sbb-color-call-to-action-hover);
