@@ -10,44 +10,45 @@
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
 
-  &::after {
-    top: 0;
+  &::after,
+  &::before {
+    // Slightly move down arrow to avoid artifacts on certain zoom levels
+    top: calc(0.25 * var(--sbb-border-width));
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    content: ' ';
+    content: '';
     height: var(--sbb-tooltip-content-arrow-size);
     width: var(--sbb-tooltip-content-arrow-size);
     position: absolute;
     pointer-events: none;
-    transform: rotate(-135deg);
-    background-color: var(--sbb-color-background);
-    border: var(--sbb-border-width) solid transparent;
-    border-right-color: var(--sbb-tooltip-border-color);
-    border-bottom-color: var(--sbb-tooltip-border-color);
-    z-index: 2;
-
-    :where(html.sbb-lean) & {
-      // We need to slightly move the arrow upwards in order for it to correctly align
-      // with the tooltip border.
-      top: pxToRem(-0.6);
-    }
-  }
-  .sbb-tooltip-panel-above &::after {
-    top: auto;
-    bottom: pxToEm(12.9);
     transform: rotate(45deg);
+    border: var(--sbb-border-width) solid transparent;
 
-    :where(html.sbb-lean) & {
-      bottom: pxToRem(8.25);
+    .sbb-tooltip-panel-above & {
+      top: auto;
+      bottom: calc(0.5 * var(--sbb-tooltip-shadow-arrow-size) + var(--sbb-box-shadow-width));
+    }
+
+    .sbb-tooltip-panel-left & {
+      margin-right: var(--sbb-tooltip-arrow-horizontal-space);
+    }
+
+    .sbb-tooltip-panel-right & {
+      margin-left: var(--sbb-tooltip-arrow-horizontal-space);
     }
   }
-  .sbb-tooltip-panel-left &::after {
-    margin-right: pxToEm(6);
+
+  &::before {
+    border-color: var(--sbb-tooltip-border-color);
+    z-index: 1;
   }
-  .sbb-tooltip-panel-right &::after {
-    margin-left: pxToEm(6);
+
+  &::after {
+    background-color: var(--sbb-color-background);
+    background-clip: padding-box;
+    z-index: 2;
   }
 }
 
@@ -77,8 +78,8 @@
 }
 
 .sbb-tooltip-shadow {
-  height: calc(var(--sbb-box-shadow-width) + var(--sbb-border-width));
-  margin-top: var(--sbb-border-width-negative);
+  height: calc(var(--sbb-box-shadow-width) + var(--sbb-border-radius));
+  margin-top: calc(-1 * var(--sbb-border-radius));
   background-color: var(--sbb-box-shadow-color);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   z-index: 1;
@@ -92,7 +93,7 @@
       right: 0;
       margin-left: auto;
       margin-right: auto;
-      content: ' ';
+      content: '';
       position: absolute;
       width: 0;
       height: 0;
@@ -102,9 +103,9 @@
     }
   }
   .sbb-tooltip-panel-above.sbb-tooltip-panel-left &::after {
-    margin-right: pxToEm(1);
+    margin-right: calc(var(--sbb-tooltip-arrow-horizontal-space) - 2 * var(--sbb-border-width));
   }
   .sbb-tooltip-panel-above.sbb-tooltip-panel-right &::after {
-    margin-left: pxToEm(1);
+    margin-left: calc(var(--sbb-tooltip-arrow-horizontal-space) - 2 * var(--sbb-border-width));
   }
 }
