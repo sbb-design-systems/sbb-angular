@@ -187,6 +187,7 @@
   --sbb-table-caption-color: var(--sbb-color-grey);
   --sbb-table-sticky-shadow-width: #{pxToRem(8)};
   --sbb-table-sticky-shadow-offset: #{pxToRem(-9)};
+  --sbb-table-sort-header-arrow-margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   // Tooltip
   --sbb-tooltip-border-color: var(--sbb-color-grey);
@@ -1805,13 +1806,14 @@ textarea {
 
       &:hover :is(td, th) {
         background-color: var(--sbb-color-milk);
-        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-red125);
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-call-to-action-hover);
       }
     }
   }
 
   caption {
     font-size: var(--sbb-font-size-small);
+    line-height: var(--sbb-line-height-small);
     color: var(--sbb-table-caption-color);
   }
 
@@ -1822,6 +1824,7 @@ textarea {
 
 .sbb-table-caption > * {
   font-size: var(--sbb-font-size-small);
+  line-height: var(--sbb-line-height-small);
   color: var(--sbb-table-caption-color);
 }
 
@@ -1841,7 +1844,6 @@ textarea {
   // Note that the table can either set this class or an inline style to make something sticky.
   // We set the style as `!important` so that we get an identical specificity in both cases
   // and to avoid cases where user styles have a higher specificity.
-  position: -webkit-sticky !important;
   position: sticky !important;
 }
 
