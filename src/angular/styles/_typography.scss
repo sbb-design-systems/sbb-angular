@@ -164,6 +164,10 @@
   // Header
   --sbb-header-lean-height: #{pxToRem(54)};
 
+  // Notification
+  --sbb-notification-message-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-notification-message-padding-horizontal: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+
   // Pagination
   --sbb-pagination-base-color: var(--sbb-color-grey);
   --sbb-pagination-disabled-color: var(--sbb-color-silver);
@@ -295,6 +299,10 @@
     --sbb-form-input-color: var(--sbb-color-iron);
     --sbb-form-input-color-disabled: var(--sbb-color-granite);
     --sbb-form-input-min-height: #{pxToRem(36)};
+
+    // Notification
+    --sbb-notification-message-padding: #{pxToRem(11)};
+    --sbb-notification-message-padding-horizontal: #{pxToRem(15)};
 
     // Expansion Panel
     --sbb-expansion-panel-padding-horizontal: #{pxToRem(16)};
