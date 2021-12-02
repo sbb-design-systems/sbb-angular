@@ -5,7 +5,6 @@
   align-items: center;
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height);
-  height: pxToEm(24);
 }
 
 .sbb-status-icon {
@@ -33,7 +32,9 @@
 .sbb-status-message {
   background-color: var(--sbb-color-milk);
   color: var(--sbb-color-granite);
+  line-height: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
   font-family: var(--sbb-font-roman);
   margin-left: pxToEm(8);
-  padding: pxToEm(0) pxToEm(8) pxToEm(1);
+  padding: calc(#{pxToRem(1)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(8)} * var(--sbb-scaling-factor)) calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
 }
