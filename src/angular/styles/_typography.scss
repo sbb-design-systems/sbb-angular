@@ -179,6 +179,7 @@
   --sbb-tooltip-border-color: var(--sbb-color-grey);
   --sbb-tooltip-padding: calc(#{pxToRem(23)} * var(--sbb-scaling-factor));
   --sbb-tooltip-arrow-offset: calc(#{pxToRem(7.2)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-arrow-horizontal-space: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   // The diagonal of the indicator square is 24 pixel. The width and height of the
   // indicator square is therefore d / √2 = a.
   --sbb-tooltip-content-arrow-size: calc(
