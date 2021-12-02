@@ -9,16 +9,10 @@
 }
 
 .sbb-status-icon {
-  width: pxToEm(24);
-  height: pxToEm(24);
-  border-radius: pxToRem(1);
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  border-radius: var(--sbb-border-radius);
   color: var(--sbb-color-white);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      border-radius: pxToRem(2);
-    }
-  }
 }
 
 // Variant for .sbb-status-icon
@@ -40,6 +34,6 @@
   background-color: var(--sbb-color-milk);
   color: var(--sbb-color-granite);
   font-family: var(--sbb-font-roman);
-  margin-left: pxToEm(6);
-  padding: pxToEm(0) pxToEm(8) pxToEm(1) pxToEm(8);
+  margin-left: pxToEm(8);
+  padding: pxToEm(0) pxToEm(8) pxToEm(1);
 }
