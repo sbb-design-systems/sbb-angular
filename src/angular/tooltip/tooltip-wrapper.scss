@@ -1,10 +1,5 @@
 @import '../styles/common';
 
-$sbbTooltipPadding: 23;
-$sbbTooltipPaddingLean: 8;
-$sbbTooltipStandardBorderWidth: 2;
-$sbbTooltipArrowOffset: 7.2;
-
 .sbb-tooltip-content-close-button {
   padding-right: pxToEm(48);
 
@@ -19,51 +14,29 @@ $sbbTooltipArrowOffset: 7.2;
   cursor: pointer;
 }
 
-.sbb-tooltip-icon:active,
-.sbb-tooltip-icon:hover,
-.sbb-tooltip-icon:focus,
-.sbb-tooltip-trigger:active,
-.sbb-tooltip-trigger:hover,
-.sbb-tooltip-trigger:focus,
+:is(.sbb-tooltip-icon, .sbb-tooltip-trigger):is(:active, :hover, :focus),
 .sbb-tooltip-trigger-active {
   outline: none;
-  color: var(--sbb-color-red125);
-  border-color: var(--sbb-color-red125);
+  color: var(--sbb-color-call-to-action-hover);
+  border-color: var(--sbb-color-call-to-action-hover);
 }
 
 .sbb-tooltip-close-icon {
-  border: pxToEm(1) solid var(--sbb-color-storm);
-  border-radius: 50%;
   color: var(--sbb-color-granite);
   float: right;
   position: absolute;
-  top: pxToEm($sbbTooltipPadding + $sbbTooltipArrowOffset + $sbbTooltipStandardBorderWidth);
-  right: pxToEm($sbbTooltipPadding);
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  top: var(--sbb-tooltip-padding);
+  right: var(--sbb-tooltip-padding);
   line-height: 0;
 
-  :where(html.sbb-lean) & {
-    top: pxToRem($sbbTooltipPaddingLean + $sbbTooltipArrowOffset);
-    right: pxToRem($sbbTooltipPaddingLean);
-    color: var(--sbb-color-iron);
-
-    &,
-    &:hover,
-    &:focus {
-      border-color: transparent;
-    }
-
-    &:hover,
-    &:focus {
-      color: var(--sbb-color-red125);
-    }
+  :where(html:not(.sbb-lean)) & {
+    border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
+    border-radius: 50%;
   }
-
-  .sbb-tooltip-panel-above & {
-    top: pxToEm($sbbTooltipPadding + $sbbTooltipStandardBorderWidth);
-
-    :where(html.sbb-lean) & {
-      top: pxToRem($sbbTooltipPaddingLean);
-    }
+  :where(html.sbb-lean) & {
+    color: var(--sbb-color-iron);
   }
 
   .sbb-tooltip-trigger-hover & {
