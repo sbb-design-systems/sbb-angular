@@ -13,7 +13,7 @@
   &::after,
   &::before {
     // Slightly move down arrow to avoid artifacts on certain zoom levels
-    top: calc(0.25 * var(--sbb-border-width));
+    top: calc(0.5 * var(--sbb-border-width));
     left: 0;
     right: 0;
     margin-left: auto;
