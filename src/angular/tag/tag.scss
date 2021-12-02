@@ -1,19 +1,17 @@
 @import '../styles/common';
 
-$tagActiveBgColor: var(--sbb-color-white);
-$tagActiveColor: var(--sbb-color-black);
-$tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
-
-.sbb-tag,
-.sbb-tag-link {
+:is(.sbb-tag, .sbb-tag-link) {
   .sbb-badge {
     display: flex;
     align-self: center;
+    // In order to align in the center, we need to slightly move the badge downwards.
+    // This is due to the padding of the label inside the sbb-tag.
+    margin-top: pxToRem(1);
   }
   .sbb-badge-content {
     position: relative;
     display: block;
-    transition: background-color $tagTransitionTiming;
+    transition: background-color var(--sbb-transition-fast-start);
   }
 }
 
@@ -21,46 +19,49 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
 }
 
+.sbb-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+}
+
 .sbb-tag-base {
   display: flex;
-  transition: border-color $tagTransitionTiming, background-color $tagTransitionTiming,
-    color $tagTransitionTiming;
+  transition: {
+    duration: var(--sbb-transition-duration-fast);
+    timing-function: var(--sbb-transition-timing-fast-start);
+    property: border-color, background-color, color;
+  }
   cursor: pointer;
   background-color: var(--sbb-color-milk);
-  border: pxToRem(1) solid transparent;
+  border: var(--sbb-border-width-thin) solid transparent;
   border-radius: 1.2em;
   color: var(--sbb-color-grey);
 
   font-size: var(--sbb-font-size);
-  line-height: pxToRem(23);
+  line-height: var(--sbb-line-height-medium);
   padding: pxToRem(4) pxToRem(8) pxToRem(6) pxToRem(15);
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem(35);
       padding: pxToRem(6) pxToRem(12) pxToRem(7) pxToRem(22);
-      border-width: pxToRem(2);
     }
     @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem(45);
       padding: pxToRem(9) pxToRem(16) pxToRem(12) pxToRem(30);
     }
   }
 
   :where(html.sbb-lean) & {
     color: var(--sbb-color-granite);
+    line-height: var(--sbb-line-height);
     padding: pxToRem(2) pxToRem(6) pxToRem(3) pxToRem(13);
   }
 }
 
 .sbb-tag-label {
-  .sbb-tag:not(.sbb-tag-disabled):hover &,
-  .sbb-tag:not(.sbb-tag-disabled):focus &,
-  .sbb-tag:not(.sbb-tag-disabled).cdk-focused & {
+  .sbb-tag:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-focused) & {
     background-color: var(--sbb-color-cloud);
-    color: $tagActiveColor;
+    color: var(--sbb-color-black);
 
     .sbb-badge-content {
       background-color: var(--sbb-color-cement);
@@ -68,18 +69,12 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .sbb-tag-active & {
-    background-color: $tagActiveBgColor;
-    border-color: $tagActiveColor;
-    &,
-    :where(html.sbb-lean) & {
-      // Redefine for specificity
-      color: $tagActiveColor;
-    }
+    background-color: var(--sbb-color-background);
+    border-color: var(--sbb-color-black);
+    color: var(--sbb-color-black);
   }
 
-  .sbb-tag-active:not(.sbb-tag-disabled):hover &,
-  .sbb-tag-active:not(.sbb-tag-disabled):focus &,
-  .sbb-tag-active:not(.sbb-tag-disabled).cdk-focused & {
+  .sbb-tag-active:not(.sbb-tag-disabled):is(:hover, :focus, .cdk-focused) & {
     background-color: transparent;
     border-color: var(--sbb-color-graphite);
     color: var(--sbb-color-grey);
@@ -96,36 +91,19 @@ $tagTransitionTiming: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   .sbb-tag-disabled & {
     cursor: default;
   }
-
-  .sbb-tags & {
-    margin-right: pxToEm(8);
-    margin-bottom: pxToEm(8);
-  }
 }
 
 .sbb-tag-link {
   display: inline-flex;
-  background-color: $tagActiveBgColor;
-  border-color: $tagActiveColor;
+  background-color: var(--sbb-color-background);
+  border-color: var(--sbb-color-black);
+  color: var(--sbb-color-black);
   outline: 0;
+  text-decoration: none;
 
-  &,
-  :where(html.sbb-lean) & {
-    // Redefine for specificity
-    color: $tagActiveColor;
-  }
-
-  &:hover,
-  &:focus,
-  &:active,
-  .sbb-active {
+  &:is(:hover, :focus, :active, .sbb-active) {
     border-color: var(--sbb-color-call-to-action-hover);
-
-    &,
-    :where(html.sbb-lean) & {
-      // Redefine for specificity
-      color: var(--sbb-color-call-to-action-hover);
-    }
+    color: var(--sbb-color-call-to-action-hover);
 
     .sbb-badge-content {
       :where(html.sbb-lean) & {
