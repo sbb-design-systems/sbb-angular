@@ -111,6 +111,7 @@
   display: block;
   color: inherit;
   font-size: var(--sbb-font-size-small);
+  line-height: var(--sbb-line-height-small);
   max-height: 3em;
   opacity: 1;
   overflow: hidden;
@@ -152,7 +153,7 @@
     height: 0;
     top: var(--sbb-border-width-thin-negative);
     width: calc(50% - var(--sbb-border-width-thin));
-    border-bottom: pxToRem(1) solid var(--sbb-color-silver);
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 
     .sbb-toggle-triple & {
       width: calc(33.33333% - var(--sbb-border-width-thin));
