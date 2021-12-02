@@ -1,37 +1,23 @@
 @import '../styles/common';
 
 .sbb-textexpand {
-  font-size: pxToRem(13);
+  font-size: var(--sbb-font-size-small);
   line-height: 1.5;
   letter-spacing: 0;
   color: var(--sbb-color-metal);
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(20);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(26);
-    }
-  }
-
   :where(html.sbb-lean) & {
     font-size: var(--sbb-font-size);
-    line-height: pxToRem(23);
-    color: var(--sbb-color-black);
+    line-height: var(--sbb-line-height);
+    color: var(--sbb-color-text);
   }
 }
 
 .sbb-textexpand-button {
-  color: inherit;
+  cursor: pointer;
   letter-spacing: inherit;
-  line-height: inherit;
-  font-size: inherit;
 
-  &:focus,
-  &:hover {
-    cursor: pointer;
+  &:is(:focus, :hover) {
     color: var(--sbb-color-call-to-action-hover);
   }
 }
