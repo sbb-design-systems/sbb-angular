@@ -84,7 +84,7 @@ export class SbbChipTrailingIcon {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'sbb-chip sbb-icon-scaled',
+    class: 'sbb-chip sbb-icon-scaled sbb-button-reset-frameless',
     '[attr.tabindex]': 'disabled ? null : tabIndex',
     role: 'option',
     '[class.sbb-chip-with-trailing-icon]': 'trailingIcon || removable',
