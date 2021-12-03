@@ -4,41 +4,35 @@
   display: flex;
   align-items: center;
   min-height: pxToRem(51);
-  border-radius: pxToRem(2);
+  border-radius: var(--sbb-border-radius);
   color: var(--sbb-color-white);
-  background-color: var(--sbb-color-white);
-  font-size: pxToRem($sizeFontDefault);
+  background-color: var(--sbb-color-background);
+  font-size: var(--sbb-font-size);
   padding-top: pxToRem(12);
   padding-bottom: pxToRem(12);
   margin: pxToRem(20);
 }
 
 .sbb-notification-toast-error {
-  background-color: var(--sbb-color-red);
+  background-color: var(--sbb-color-error);
 
-  &,
-  a,
-  button {
+  :is(&, & :is(a, button)) {
     color: var(--sbb-color-white);
   }
 }
 
 .sbb-notification-toast-success {
-  border: pxToRem(1) solid var(--sbb-color-green);
+  border: var(--sbb-border-width-thin) solid var(--sbb-color-green);
 
-  &,
-  a,
-  button {
+  :is(&, & :is(a, button)) {
     color: var(--sbb-color-green);
   }
 }
 
 .sbb-notification-toast-info {
-  border: pxToRem(1) solid var(--sbb-color-granite);
+  border: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
 
-  &,
-  a,
-  button {
+  :is(&, & :is(a, button)) {
     color: var(--sbb-color-granite);
   }
 }
@@ -46,9 +40,7 @@
 .sbb-notification-toast-warn {
   background-color: var(--sbb-color-orange);
 
-  &,
-  a,
-  button {
+  :is(&, & :is(a, button)) {
     color: var(--sbb-color-white);
   }
 }
@@ -59,9 +51,9 @@
 }
 
 .sbb-notification-toast-icon-wrapper {
-  min-width: pxToRem(24);
-  width: pxToRem(24);
-  height: pxToRem(24);
+  min-width: var(--sbb-icon-size-default);
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
   margin-left: pxToRem(16);
   border: none;
   background: none;
