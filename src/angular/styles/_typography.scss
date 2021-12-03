@@ -112,6 +112,7 @@
   --sbb-border-width-negative: calc(var(--sbb-border-width) * -1);
   --sbb-border-width-thin: #{pxToRem(1)};
   --sbb-border-width-thin-negative: calc(var(--sbb-border-width-thin) * -1);
+  --sbb-button-gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   --sbb-font-size-constant: #{pxToRem($sizeFontDefault)};
   --sbb-font-size: var(--sbb-font-size-constant);
   --sbb-line-height-constant: #{pxToRem($sizeLineHeightDefault)};
@@ -146,6 +147,9 @@
   );
   --sbb-chips-chip-padding-horizontal: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   --sbb-chips-input-width: calc(#{pxToRem(150)} * var(--sbb-scaling-factor));
+
+  // Dialog
+  --sbb-dialog-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-mild);

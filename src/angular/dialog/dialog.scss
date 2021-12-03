@@ -1,22 +1,19 @@
 @use 'external/npm/node_modules/@angular/cdk' as cdk;
 @import '../styles/common';
 
-$sbb-dialog-padding: pxToRem(16);
-$sbb-dialog-button-margin: pxToRem(8);
-
 .sbb-overlay-background {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--sbb-color-white-alpha70);
   align-items: center;
 }
 
 .sbb-dialog-container {
   display: flex;
   flex-direction: column;
-  border: pxToRem(2) solid var(--sbb-color-grey);
+  border: var(--sbb-border-width) solid var(--sbb-color-grey);
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;
-  background-color: var(--sbb-color-white);
+  background-color: var(--sbb-color-background);
 
   // The dialog container should completely fill its parent overlay element.
   width: 100%;
@@ -27,13 +24,8 @@ $sbb-dialog-button-margin: pxToRem(8);
   min-height: inherit;
   max-height: inherit;
 
-  :where(html:not(.sbb-lean)) {
-    @include mq($from: desktop4k) {
-      border-width: pxToRem(4);
-    }
-  }
   :where(html.sbb-lean) & {
-    border: pxToRem(1) solid var(--sbb-color-iron);
+    border-color: var(--sbb-color-iron);
   }
 
   @include cdk.high-contrast(active, off) {
@@ -52,7 +44,7 @@ $sbb-dialog-button-margin: pxToRem(8);
 
 .sbb-dialog-content {
   display: block;
-  padding: $sbb-dialog-padding;
+  padding: var(--sbb-dialog-padding);
   flex: 1 1 auto;
   max-height: 80vh;
   overflow: auto;
@@ -60,7 +52,9 @@ $sbb-dialog-button-margin: pxToRem(8);
 }
 
 .sbb-dialog-title {
-  padding: pxToRem(15) pxToRem(40) pxToRem(15) $sbb-dialog-padding;
+  padding: calc(#{pxToRem(15)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(40)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(15)} * var(--sbb-scaling-factor)) var(--sbb-dialog-padding);
   flex: 0 0 auto;
   display: block;
   position: relative;
@@ -70,21 +64,22 @@ $sbb-dialog-button-margin: pxToRem(8);
 
 .sbb-dialog-title-close-button {
   position: absolute;
-  right: pxToRem(16);
+  right: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   cursor: pointer;
   line-height: 0;
 
-  &:hover,
-  &:focus {
-    color: var(--sbb-color-red125);
+  &:is(:hover, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 }
 
 .sbb-dialog-actions {
-  padding: pxToRem(7) pxToRem(16);
-  flex: 0 0 auto;
+  padding: calc(#{pxToRem(7)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   display: flex;
+  flex: 0 0 auto;
   flex-wrap: wrap;
+  gap: var(--sbb-button-gap);
   align-items: center;
   justify-content: flex-end;
 
@@ -100,9 +95,5 @@ $sbb-dialog-button-margin: pxToRem(8);
 
   &[align='center'] {
     justify-content: center;
-  }
-
-  .sbb-button-base + .sbb-button-base {
-    margin-left: $sbb-dialog-button-margin;
   }
 }

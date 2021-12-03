@@ -107,7 +107,7 @@
   display: flex;
   flex: 0 0 auto;
   flex-flow: column wrap;
-  gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  gap: var(--sbb-button-gap);
   align-items: center;
   justify-content: space-between;
 
