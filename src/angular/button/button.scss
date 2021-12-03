@@ -2,34 +2,19 @@
 
 .sbb-link-group {
   display: inline-flex;
-  width: pxToRem(250);
+  width: calc(#{pxToRem(250)} * var(--sbb-scaling-factor));
   flex-direction: column;
-  border-top: pxToRem(1) solid var(--sbb-color-silver);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      border-top-width: pxToRem(2);
-    }
-  }
+  border-top: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 
   .sbb-link {
-    padding: pxToRem(8) pxToRem(28) pxToRem(8) 0;
-    border-bottom: pxToRem(1) solid var(--sbb-color-silver);
+    padding: var(--sbb-divider-thin) calc(#{pxToRem(28)} * var(--sbb-scaling-factor))
+      var(--sbb-divider-thin) 0;
+    min-width: calc(#{pxToRem(240)} * var(--sbb-scaling-factor));
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        padding: pxToRem(12) pxToRem(42) pxToRem(12) 0;
-        border-bottom-width: pxToRem(2);
-        min-width: pxToRem(320);
-      }
-      @include mq($from: desktop5k) {
-        padding: pxToRem(16) pxToRem(55) pxToRem(16) 0;
-        min-width: pxToRem(400);
-      }
-
-      // Disable transitions from default behavior
-      &,
-      &:hover {
+    // Disable transitions from default behavior
+    :is(&, &:hover) {
+      :where(html:not(.sbb-lean)) & {
         transition: none;
         padding-left: 0;
         padding-right: 0;
@@ -49,6 +34,7 @@
         }
       }
     }
+
     :where(html.sbb-lean) & {
       .sbb-button-right-icon {
         right: 0;
