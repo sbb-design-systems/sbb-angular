@@ -21,16 +21,10 @@
 
   :where(html:not(.sbb-lean)) & {
     @include mq($from: tabletPortrait) {
-      font-size: pxToRem(21);
+      font-size: calc(#{pxToRem(21)} * var(--sbb-scaling-factor));
     }
     @include mq($from: desktop) {
       padding-bottom: 1em;
-    }
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(32);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(42);
     }
   }
   :where(html.sbb-lean) & {
@@ -46,7 +40,7 @@
 
 .sbb-step-label-active {
   cursor: pointer;
-  color: var(--sbb-color-black);
+  color: var(--sbb-color-text);
 
   &::after {
     content: '';
@@ -56,19 +50,15 @@
     width: 0;
     left: 50%;
     height: pxToRem(1);
-    border-bottom: pxToRem(1) solid currentColor;
-    transition: width 0.3s, left 0.3s;
-
-    :where(html:not(.sbb-lean)) & {
-      @include mq($from: desktop4k) {
-        border-bottom-width: pxToRem(2);
-      }
+    border-bottom: var(--sbb-border-width-thin) solid currentColor;
+    transition: {
+      duration: var(--sbb-transition-duration-default);
+      property: left, width;
     }
   }
 
-  .sbb-step-header:focus &,
-  .sbb-step-header:hover & {
-    color: var(--sbb-color-red125);
+  .sbb-step-header:is(:focus, :hover) & {
+    color: var(--sbb-color-call-to-action-hover);
 
     &::after {
       left: 0;
@@ -77,11 +67,9 @@
   }
 }
 
-.sbb-step-label-selected {
-  &::after {
-    left: 0;
-    width: 100%;
-  }
+.sbb-step-label-selected::after {
+  left: 0;
+  width: 100%;
 }
 
 .sbb-step-label-active.sbb-step-label-locked {
