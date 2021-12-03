@@ -151,6 +151,36 @@
   // Dialog
   --sbb-dialog-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
+  // Datepicker
+  --sbb-datepicker-toggle-or-arrows-padding: calc(
+    #{pxToRem(44)} * var(--sbb-scaling-factor) - var(--sbb-border-width)
+  );
+  --sbb-datepicker-toggle-and-arrows-padding: calc(
+    #{pxToRem(72)} * var(--sbb-scaling-factor) - var(--sbb-border-width)
+  );
+  --sbb-datepicker-toggle-arrow-color: var(--sbb-color-grey);
+  --sbb-datepicker-button-offset: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-button-gap: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-adjacent-button-offset: calc(
+    var(--sbb-datepicker-button-offset) + var(--sbb-icon-size-default) +
+      var(--sbb-datepicker-button-gap)
+  );
+  --sbb-datepicker-content-offset: calc(#{pxToRem(17)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calender-border-color: var(--sbb-color-grey);
+  --sbb-datepicker-calender-header-height: calc(#{pxToRem(68)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calender-header-color: var(--sbb-color-metal);
+  --sbb-datepicker-calender-line-color: var(--sbb-color-platinum);
+  --sbb-datepicker-calender-table-range-bg-color: var(--sbb-color-milk);
+  --sbb-datepicker-calender-table-content-padding-width: #{pxToRem(11)};
+  --sbb-datepicker-calender-arrow-width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calender-arrow-offset: calc(var(--sbb-datepicker-calender-arrow-width) / -2.5);
+  --sbb-datepicker-calender-width: #{pxToRem(340)};
+  --sbb-datepicker-calender-height: calc(#{pxToRem(428)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calender-controls-padding: #{pxToRem(6)};
+  --sbb-datepicker-calender-body-cell-padding: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calender-body-cell-disabled-offset: #{pxToRem(12)};
+  --sbb-datepicker-calender-body-cell-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
+
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-mild);
   --sbb-form-border-color-focused: var(--sbb-color-grey);
@@ -245,6 +275,7 @@
 
   // Shadow
   --sbb-box-shadow-width: calc(var(--sbb-border-width) * 4);
+  --sbb-box-shadow-after-width: calc(var(--sbb-border-width) * 2);
   --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
   --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
 
@@ -253,6 +284,16 @@
       // Dividers
       --sbb-divider-medium: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
       --sbb-divider-big: #{pxToRem(72)};
+
+      // Datepicker
+      --sbb-datepicker-calender-table-content-padding-width: calc(
+        #{pxToRem(18)} * var(--sbb-scaling-factor)
+      );
+      --sbb-datepicker-calender-width: calc(#{pxToRem(428)} * var(--sbb-scaling-factor));
+      --sbb-datepicker-calender-controls-padding: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+      --sbb-datepicker-calender-body-cell-disabled-offset: calc(
+        #{pxToRem(17)} * var(--sbb-scaling-factor)
+      );
 
       // Expansion Panel
       --sbb-expansion-panel-padding-horizontal: #{pxToRem(48)};
@@ -319,6 +360,28 @@
     --sbb-border-width: #{pxToRem(1)};
     --sbb-line-height: #{pxToRem($sizeLineHeightDefaultLean)};
     --sbb-line-height-medium: #{pxToRem(20)};
+
+    // Datepicker
+    --sbb-datepicker-toggle-or-arrows-padding: calc(#{pxToRem(38)} - var(--sbb-border-width));
+    --sbb-datepicker-toggle-and-arrows-padding: calc(#{pxToRem(62)} - var(--sbb-border-width));
+    --sbb-datepicker-toggle-arrow-color: var(--sbb-color-iron);
+    --sbb-datepicker-button-offset: #{pxToRem(6)};
+    // rem (or any unit) is necessary for correct calc calculation.
+    --sbb-datepicker-button-gap: 0rem;
+    --sbb-datepicker-content-offset: #{pxToRem(8)};
+    --sbb-datepicker-calender-border-color: var(--sbb-color-iron);
+    --sbb-datepicker-calender-header-height: #{pxToRem(36)};
+    --sbb-datepicker-calender-header-color: var(--sbb-color-iron);
+    --sbb-datepicker-calender-line-color: var(--sbb-color-cloud);
+    --sbb-datepicker-calender-table-content-padding-width: #{pxToRem(8)};
+    // TODO: Discuss size with jeripeierSBB
+    --sbb-datepicker-calender-arrow-width: #{pxToRem(10)};
+    --sbb-datepicker-calender-width: #{pxToRem(303)};
+    --sbb-datepicker-calender-height: #{pxToRem(303)};
+    --sbb-datepicker-calender-controls-padding: #{pxToRem(8)};
+    --sbb-datepicker-calender-body-cell-padding: #{pxToRem(16.5)};
+    --sbb-datepicker-calender-body-cell-disabled-offset: #{pxToRem(17)};
+    --sbb-datepicker-calender-body-cell-size: #{pxToRem(30)};
 
     // Forms
     --sbb-form-background-color-readonly: transparent;

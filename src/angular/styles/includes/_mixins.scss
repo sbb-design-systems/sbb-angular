@@ -77,11 +77,6 @@
     rgba(0, 0, 0, 0.15);
 }
 
-@function boxShadowEm($sign, $borderWidth) {
-  @return 0 calc(#{pxToEm($sign * $borderWidth * 4)} * var(--sbb-scaling-factor)) 0
-    rgba(0, 0, 0, 0.15);
-}
-
 @function horizontalBorderBoxShadow($sign, $borderWidth) {
   @return 0 calc(#{pxToRem($sign * ($borderWidth + 1))} * var(--sbb-scaling-factor)) 0
     calc(#{pxToRem(-$borderWidth)} * var(--sbb-scaling-factor)) var(--sbb-color-cloud);
