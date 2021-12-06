@@ -6,7 +6,7 @@
 
 .sbb-autocomplete-hidden {
   visibility: hidden;
-  padding: 0 !important;
+  padding: 0 !important; // Overwrite sbb-panel-padded styles
 }
 
 .sbb-autocomplete-panel {
