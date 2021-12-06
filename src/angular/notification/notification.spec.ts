@@ -197,7 +197,7 @@ describe('SbbNotification', () => {
         testComponent.readonly = false;
         testFixture.detectChanges();
         const closeButton = testFixture.nativeElement.querySelector(
-          '.sbb-notification-dismiss-icon'
+          '.sbb-notification-dismiss-icon-button'
         ) as HTMLElement;
 
         expect(closeButton).toBeDefined();

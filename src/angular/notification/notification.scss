@@ -57,7 +57,7 @@
     line-height: var(--sbb-line-height-medium);
 
     :where(html.sbb-lean) & {
-      line-height: pxToRem(23);
+      line-height: var(--sbb-line-height);
     }
   }
 
@@ -72,10 +72,10 @@
 }
 
 .sbb-notification-icon-wrapper {
-  flex: 0 0 calc(1.5 * var(--sbb-icon-size-default));
+  flex: 0 0 var(--sbb-icon-size-large);
   align-self: flex-start;
-  width: calc(1.5 * var(--sbb-icon-size-default));
-  height: calc(1.5 * var(--sbb-icon-size-default));
+  width: var(--sbb-icon-size-large);
+  height: var(--sbb-icon-size-large);
 
   :where(html.sbb-lean) & {
     flex-basis: var(--sbb-icon-size-default);
@@ -99,12 +99,13 @@
   }
 }
 
-:is(.sbb-notification-content :is(a, a:is(:hover, :active)), .sbb-notification-dismiss-icon) {
+:is(.sbb-notification-content
+    :is(a, a:is(:hover, :active)), .sbb-notification-dismiss-icon-button) {
   color: inherit;
   cursor: pointer;
 }
 
-.sbb-notification-dismiss-icon {
+.sbb-notification-dismiss-icon-button {
   flex: 0 0 var(--sbb-icon-size-default);
   align-self: flex-start;
   width: var(--sbb-icon-size-default);
