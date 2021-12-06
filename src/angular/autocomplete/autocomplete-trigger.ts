@@ -733,7 +733,6 @@ export class SbbAutocompleteTrigger
       scrollStrategy: this._scrollStrategy(),
       width: this._getPanelWidth(),
       panelClass: coerceStringArray(this._defaults?.overlayPanelClass).concat('sbb-overlay-panel'),
-      minHeight: 30,
     });
   }
 
