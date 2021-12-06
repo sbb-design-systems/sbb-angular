@@ -138,6 +138,10 @@
   --sbb-transition-default: var(--sbb-transition-duration-default)
     var(--sbb-transition-timing-default);
 
+  // Breadcrumb
+  --sbb-breadcrumb-trigger-padding-x: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+  --sbb-breadcrumb-trigger-padding-y: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+
   // Chips
   --sbb-chips-list-height: var(--sbb-form-input-min-height);
   --sbb-chips-chip-margin-vertical: calc(2 * var(--sbb-border-width));
