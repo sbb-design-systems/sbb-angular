@@ -1,12 +1,5 @@
 @import '../styles/common';
 
-$sbbHeaderMenuSectionHeight: var(--sbb-header-lean-height);
-$sbbHeaderBaseZIndex: 1000;
-$sbbHeaderSideMenuZIndex: 800;
-$sbbHeaderMenuMobileZIndex: 1100;
-$sbbHeaderMenuTabletZIndex: 700;
-$sbbHeaderMenuWidth: pxToRem(300);
-
 .sbb-header-menu {
   display: none;
   position: fixed;
@@ -15,11 +8,11 @@ $sbbHeaderMenuWidth: pxToRem(300);
   height: 100vh;
   width: 100vw;
   background-color: var(--sbb-color-milk);
-  z-index: $sbbHeaderMenuMobileZIndex;
+  z-index: var(--sbb-header-lean-menu-mobile-z-index);
 
   @include mq($from: tabletPortrait) {
-    width: calc(100vw - #{$sbbHeaderMenuWidth});
-    z-index: $sbbHeaderMenuTabletZIndex;
+    width: calc(100vw - var(--sbb-header-lean-menu-width));
+    z-index: var(--sbb-header-lean-menu-tablet-z-index);
   }
 
   &.sbb-header-menus-collapsed {
@@ -30,44 +23,42 @@ $sbbHeaderMenuWidth: pxToRem(300);
 button.sbb-header-menu-back,
 .sbb-header-menu > div.sbb-header-menu-title {
   @include buttonResetFrameless();
-  height: $sbbHeaderMenuSectionHeight;
+  height: var(--sbb-header-lean-height);
   width: 100%;
-  line-height: pxToRem($sizeLineHeightDefaultLean);
-  font-size: pxToRem($sizeFontDefault);
-  color: var(--sbb-color-black);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
+  color: var(--sbb-color-text);
   background-color: var(--sbb-color-white);
-  border-bottom: pxToRem(1) solid var(--sbb-color-silver);
+  border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 }
 
 button.sbb-header-menu-back {
   display: flex;
-  padding-top: pxToRem(15);
-  padding-left: pxToRem(8);
+  padding-top: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+  padding-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   cursor: pointer;
 
   @include mq($from: tabletPortrait) {
     display: none;
   }
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: var(--sbb-color-red125);
+  &:is(:hover, :active, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 }
 
 .sbb-header-menu > div.sbb-header-menu-title {
-  font-size: pxToRem(21);
-  line-height: pxToRem(25);
-  padding-top: pxToRem(15);
-  padding-left: pxToRem(15);
+  font-size: var(--sbb-header-lean-label-font-size);
+  line-height: var(--sbb-header-lean-label-line-height);
+  padding-top: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+  padding-left: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
 }
 
 .sbb-header-menu > div.sbb-header-menu-panel-container {
-  height: calc(100% - #{$sbbHeaderMenuSectionHeight} * 2);
+  height: calc(100% - var(--sbb-header-lean-height) * 2);
 
   @include mq($from: tabletPortrait) {
-    height: calc(100% - #{$sbbHeaderMenuSectionHeight});
+    height: calc(100% - var(--sbb-header-lean-height));
   }
 
   .sbb-header-menu-panel {
@@ -75,7 +66,7 @@ button.sbb-header-menu-back {
     flex-direction: column;
     overflow-y: auto;
     padding: 0;
-    margin-top: pxToRem(32);
+    margin-top: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
     box-shadow: none;
     border: 0;
 
@@ -84,39 +75,39 @@ button.sbb-header-menu-back {
     }
 
     & > :is(a, button) {
-      padding: pxToRem(7) pxToRem(48) pxToRem(11) pxToRem(16);
+      padding: calc(#{pxToRem(7)} * var(--sbb-scaling-factor))
+        calc(#{pxToRem(48)} * var(--sbb-scaling-factor))
+        calc(#{pxToRem(11)} * var(--sbb-scaling-factor))
+        calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
       color: var(--sbb-color-iron);
-      line-height: pxToRem(20);
-      font-size: pxToRem(15);
+      line-height: var(--sbb-line-height-medium);
+      font-size: var(--sbb-font-size);
       text-decoration: none;
       outline: 0;
       position: relative;
 
       &::after {
-        content: url($sbbIconArrowRightSmallBlack);
+        content: var(--sbb-url-icon-arrow-right-small-black);
         display: inline-block;
-        width: pxToRem(24);
-        height: pxToRem(24);
+        width: var(--sbb-icon-size-default);
+        height: var(--sbb-icon-size-default);
         position: absolute;
-        right: pxToRem(16);
+        right: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
         vertical-align: middle;
       }
 
       &:hover::after {
-        content: url($sbbIconArrowRightSmallRed125);
+        content: var(--sbb-url-icon-arrow-right-small-red125);
       }
 
-      &.sbb-active,
-      &:hover,
-      &:active,
-      &:focus {
-        color: var(--sbb-color-red125);
+      &:is(:hover, :active, :focus, .sbb-active) {
+        color: var(--sbb-color-call-to-action-hover);
       }
     }
   }
 }
 
 .cdk-overlay-container .sbb-header-menu-panel .sbb-header-menu-item {
-  line-height: pxToRem(20);
-  font-size: pxToRem(15);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height-medium);
 }

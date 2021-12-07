@@ -1,22 +1,15 @@
 @import '../styles/common';
 
-$sbbHeaderHeight: var(--sbb-header-lean-height);
-$sbbHeaderMenuWidth: 300px;
-$sbbHeaderBaseZIndex: 1000;
-$sbbHeaderSideMenuZIndex: 800;
-$sbbHeaderMenuMobileZIndex: 1100;
-$sbbHeaderMenuTabletZIndex: 700;
-
 .sbb-header-lean {
   display: flex;
   align-items: center;
   position: fixed;
   top: 0;
-  height: $sbbHeaderHeight;
+  height: var(--sbb-header-lean-height);
   width: 100%;
-  z-index: $sbbHeaderBaseZIndex;
+  z-index: var(--sbb-header-lean-base-z-index);
   background-color: var(--sbb-color-white);
-  border-bottom: solid 1px var(--sbb-color-silver);
+  border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 }
 
 /** Top positioned menu. */
@@ -24,18 +17,18 @@ $sbbHeaderMenuTabletZIndex: 700;
   overflow-x: hidden;
   display: flex;
   flex-grow: 1;
-}
-
-.sbb-header-lean-main-menu > :is(a, button) {
-  margin-right: 1rem;
-}
-
-.sbb-header-fixed-columns .sbb-header-lean-main-menu {
-  margin-left: pxToRem(50);
 
   > :is(a, button) {
-    flex: 0 0 20%;
-    margin-right: unset;
+    margin-right: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+  }
+
+  .sbb-header-fixed-columns & {
+    margin-left: calc(#{pxToRem(50)} * var(--sbb-scaling-factor));
+
+    > :is(a, button) {
+      flex: 0 0 20%;
+      margin-right: unset;
+    }
   }
 }
 
@@ -43,14 +36,14 @@ $sbbHeaderMenuTabletZIndex: 700;
 .sbb-header-environment {
   z-index: 1;
   pointer-events: none;
-  width: pxToRem(80);
+  width: calc(#{pxToRem(80)} * var(--sbb-scaling-factor));
   position: absolute;
-  top: pxToRem(12);
-  left: pxToRem(-20);
+  top: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  left: calc(#{pxToRem(-20)} * var(--sbb-scaling-factor));
   text-align: center;
-  line-height: pxToRem(12);
+  line-height: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
   letter-spacing: 0;
-  font-size: pxToRem(10);
+  font-size: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-white);
   transform: rotate(-45deg);
 }
@@ -73,14 +66,14 @@ $sbbHeaderMenuTabletZIndex: 700;
 :is(.sbb-header-lean-open-menu, .sbb-header-lean-close-menu) {
   flex-grow: 0;
   flex-shrink: 0;
-  width: pxToRem(24);
-  height: pxToRem(24);
-  margin-left: pxToRem(15);
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  margin-left: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
   cursor: pointer;
   position: relative;
   outline: none;
 
-  &:where(:focus, :hover) {
+  &:is(:focus, :hover) {
     color: var(--sbb-color-red125);
   }
 }
@@ -98,12 +91,12 @@ $sbbHeaderMenuTabletZIndex: 700;
   flex-grow: 0;
   flex-direction: column;
   width: auto;
-  margin-left: pxToRem(15);
-  margin-right: 2.5rem;
+  margin-left: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{pxToRem(38)} * var(--sbb-scaling-factor));
   font-family: var(--sbb-font-light);
 
   .sbb-header-fixed-columns & {
-    width: pxToRem(200);
+    width: calc(#{pxToRem(200)} * var(--sbb-scaling-factor));
     margin-right: unset;
   }
 }
@@ -114,15 +107,16 @@ $sbbHeaderMenuTabletZIndex: 700;
 }
 
 .sbb-header-lean-label {
-  line-height: pxToRem(23);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
   color: var(--sbb-color-black);
   font-family: var(--sbb-font-roman);
 }
 
 .sbb-header-lean-subtitle {
-  font-size: pxToRem(13);
+  font-size: var(--sbb-font-size-small);
   font-weight: 300;
-  line-height: pxToRem(16);
+  line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-anthracite);
 }
 
@@ -134,58 +128,56 @@ $sbbHeaderMenuTabletZIndex: 700;
     @include buttonResetFrameless();
   }
   > :is(a, button) {
-    line-height: pxToRem(23);
-    font-size: pxToRem(15);
-    border: transparent solid pxToRem(1);
-    padding: pxToRem(6) pxToRem(8);
+    font-size: var(--sbb-font-size);
+    line-height: var(--sbb-line-height);
+    border: var(--sbb-border-width-thin) solid transparent;
+    padding: calc(#{pxToRem(6)} * var(--sbb-scaling-factor))
+      calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
     outline: none;
-    color: var(--sbb-color-black);
+    color: var(--sbb-color-text);
     font-family: var(--sbb-font-roman);
     text-align: left;
     cursor: pointer;
 
-    &:hover,
-    &:active,
-    &:focus,
-    &.sbb-active {
-      color: var(--sbb-color-red125);
+    &:is(:hover, :active, :focus, .sbb-active) {
+      color: var(--sbb-color-call-to-action-hover);
     }
   }
 }
 
 // Menu integration
-.sbb-menu-trigger.sbb-menu-trigger-header,
-.sbb-menu-panel-type-header .sbb-menu-panel-trigger {
+:is(.sbb-menu-trigger.sbb-menu-trigger-header, .sbb-menu-panel-type-header
+    .sbb-menu-panel-trigger) {
   position: relative;
-  padding-right: pxToRem(24);
-  line-height: pxToRem(23);
-  font-size: pxToRem(15);
+  padding-right: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
 
   &::after {
-    content: url($sbbIconChevronSmallDownSmallBlack);
+    content: var(--sbb-url-icon-chevron-small-down-small-black);
     display: inline-block;
-    width: pxToRem(24);
-    height: pxToRem(24);
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
     position: absolute;
     right: 0;
     vertical-align: middle;
-    transition: transform 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: transform var(--sbb-transition-default);
     transform: rotate(0deg);
   }
 
-  &:where(:focus, :hover)::after {
-    content: url($sbbIconChevronSmallDownSmallRed125);
+  &:is(:focus, :hover)::after {
+    content: var(--sbb-url-icon-chevron-small-down-small-red125);
   }
 }
 
 // We want the chevron roation animation to happen after the menu animation is finished.
-.sbb-menu-panel-type-header:where(:not(.ng-animating)) .sbb-menu-panel-trigger::after {
+.sbb-menu-panel-type-header:is(:not(.ng-animating)) .sbb-menu-panel-trigger::after {
   transform: rotate(180deg);
 }
 
 .sbb-header-lean-side-menu .sbb-menu-trigger.sbb-menu-trigger-header {
   &::after,
-  &:where(:focus, :hover)::after {
+  &:is(:focus, :hover)::after {
     transform: rotate(-90deg);
   }
 }
@@ -193,8 +185,8 @@ $sbbHeaderMenuTabletZIndex: 700;
 .sbb-menu-panel-type-header .sbb-menu-panel-trigger {
   width: 100%;
   text-align: left;
-  padding-left: pxToRem(8);
-  padding-right: pxToRem(8);
+  padding-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 }
 
 .sbb-header-lean-container-end {
@@ -202,21 +194,21 @@ $sbbHeaderMenuTabletZIndex: 700;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-right: pxToRem(35);
+  margin-right: calc(#{pxToRem(35)} * var(--sbb-scaling-factor));
 
   > .sbb-header-lean-usermenu {
     z-index: 1;
-    margin-left: pxToRem(15);
-    margin-right: pxToRem(15);
+    margin-left: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
+    margin-right: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
   }
 }
 
 .sbb-header-lean-logo {
   display: flex;
-  height: $sbbHeaderHeight;
+  height: var(--sbb-header-lean-height);
 
   > svg {
-    width: pxToRem(80);
+    width: calc(#{pxToRem(80)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -237,27 +229,27 @@ $sbbHeaderMenuTabletZIndex: 700;
   display: flex;
   flex-direction: column;
   position: fixed;
-  width: $sbbHeaderMenuWidth;
+  width: var(--sbb-header-lean-menu-width);
   height: 100vh;
   top: 0;
   background-color: var(--sbb-color-white);
-  border-right: 1px solid var(--sbb-color-granite);
-  box-shadow: pxToRem(4) 0 0 0 rgba(0, 0, 0, 0.15);
-  z-index: $sbbHeaderSideMenuZIndex;
+  border-right: var(--sbb-border-width-thin) solid var(--sbb-color-granite);
+  box-shadow: var(--sbb-box-shadow-width) 0 0 0 var(--sbb-box-shadow-color);
+  z-index: var(--sbb-header-lean-side-menu-z-index);
   overflow-y: auto;
 }
 
 .sbb-header-lean-side-menu-title-section {
   display: flex;
   align-items: center;
-  height: $sbbHeaderHeight;
-  margin-bottom: pxToRem(12);
+  height: var(--sbb-header-lean-height);
+  margin-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
   flex: 0 0 auto;
 }
 
 .sbb-header-lean-side-menu {
   flex-direction: column;
-  margin: 0 pxToRem(15);
+  margin: 0 calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
 
   > :is(a, button) {
     display: block;
