@@ -69,7 +69,6 @@ const _SbbButtonMixinBase = mixinDisabled(
     '[class.sbb-disabled]': 'disabled',
   },
   templateUrl: 'button.html',
-  styleUrls: ['button.css'],
   inputs: ['disabled'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
