@@ -172,7 +172,9 @@
   --sbb-datepicker-calender-table-range-bg-color: var(--sbb-color-milk);
   --sbb-datepicker-calender-table-content-padding-width: #{pxToRem(11)};
   --sbb-datepicker-calender-arrow-width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
-  --sbb-datepicker-calender-arrow-offset: calc(var(--sbb-datepicker-calender-arrow-width) / -2.5);
+  --sbb-datepicker-calender-arrow-offset: calc(
+    var(--sbb-datepicker-calender-arrow-width) / -2 + var(--sbb-border-width)
+  );
   --sbb-datepicker-calender-width: #{pxToRem(340)};
   --sbb-datepicker-calender-height: calc(#{pxToRem(428)} * var(--sbb-scaling-factor));
   --sbb-datepicker-calender-controls-padding: #{pxToRem(6)};
@@ -274,7 +276,18 @@
 
   // Shadow
   --sbb-box-shadow-width: calc(var(--sbb-border-width) * 4);
-  --sbb-box-shadow-after-width: calc(var(--sbb-border-width) * 2);
+  --sbb-box-shadow-arrow-width: calc(var(--sbb-border-width) * 2);
+  // Cut out obsolete triangle and also overlapping shadow so it does not collide with calendar content
+  // `-0.4px` fixes calculation issue in Firefox
+  --sbb-box-shadow-arrow-clip-path: polygon(
+    -0.4px 100%,
+    100% -0.4px,
+    100% 71%,
+    150% 21%,
+    150% 150%,
+    21% 150%,
+    71% 100%
+  );
   --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
   --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
 
@@ -372,8 +385,6 @@
     --sbb-datepicker-calender-header-color: var(--sbb-color-iron);
     --sbb-datepicker-calender-line-color: var(--sbb-color-cloud);
     --sbb-datepicker-calender-table-content-padding-width: #{pxToRem(8)};
-    // TODO: Discuss size with jeripeierSBB
-    --sbb-datepicker-calender-arrow-width: #{pxToRem(10)};
     --sbb-datepicker-calender-width: #{pxToRem(303)};
     --sbb-datepicker-calender-height: #{pxToRem(303)};
     --sbb-datepicker-calender-controls-padding: #{pxToRem(8)};
@@ -411,6 +422,17 @@
     // Usermenu
     --sbb-usermenu-color: var(--sbb-color-iron);
     --sbb-usermenu-trigger-padding: #{pxToRem(8)};
+
+    // Shadow
+    --sbb-box-shadow-arrow-clip-path: polygon(
+      -0.4px 100%,
+      100% -0.4px,
+      100% 35%,
+      150% -15%,
+      150% 150%,
+      -15% 150%,
+      35% 100%
+    );
 
     @include mq($from: desktop) {
       // Dividers

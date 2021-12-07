@@ -1,6 +1,5 @@
 @import '../../styles/common';
 
-
 @mixin datePickerCellContentBase() {
   position: absolute;
   top: 12.5%;
@@ -19,13 +18,6 @@
   position: relative;
   top: var(--sbb-datepicker-content-offset);
   font-size: var(--sbb-font-size);
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k, $to: desktop5k) {
-      // Using $sizeFontDefault4k here would mean to replace em definitions with media queries in whole datepicker-content.scss
-      font-size: pxToRem(22.5);
-    }
-  }
 
   .sbb-datepicker-panel-above & {
     top: auto;
@@ -63,20 +55,9 @@
       bottom: var(--sbb-datepicker-calender-arrow-offset);
       transform: rotate(45deg);
 
-      // Cut out obsolete triangle and also overlapping shadow so it does not collide with calendar content
-      // `-0.4px` fixes calculation issue in Firefox
-      clip-path: polygon(
-        -0.4px 100%,
-        100% -0.4px,
-        100% 71%,
-        150% 21%,
-        150% 150%,
-        21% 150%,
-        71% 100%,
-        100% 100%
-      );
-      box-shadow: var(--sbb-box-shadow-after-width) var(--sbb-box-shadow-after-width) 0
-        var(--sbb-box-shadow-after-width) var(--sbb-box-shadow-color);
+      clip-path: var(--sbb-box-shadow-arrow-clip-path);
+      box-shadow: var(--sbb-box-shadow-arrow-width) var(--sbb-box-shadow-arrow-width) 0
+        var(--sbb-box-shadow-arrow-width) var(--sbb-box-shadow-color);
     }
   }
 }
