@@ -80,6 +80,7 @@
   --sbb-color-iron-alpha40: #{rgba($sbbColorIron, 0.4)};
   --sbb-color-iron-alpha50: #{rgba($sbbColorIron, 0.5)};
   --sbb-color-white-alpha50: #{rgba($sbbColorWhite, 0.5)};
+  --sbb-color-white-alpha70: #{rgba($sbbColorWhite, 0.7)};
 
   // Extended Colors
   --sbb-color-sky: #{$sbbColorSky};
@@ -111,6 +112,7 @@
   --sbb-border-width-negative: calc(var(--sbb-border-width) * -1);
   --sbb-border-width-thin: #{pxToRem(1)};
   --sbb-border-width-thin-negative: calc(var(--sbb-border-width-thin) * -1);
+  --sbb-button-gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   --sbb-font-size-constant: #{pxToRem($sizeFontDefault)};
   --sbb-font-size: var(--sbb-font-size-constant);
   --sbb-line-height-constant: #{pxToRem($sizeLineHeightDefault)};
@@ -146,6 +148,9 @@
   --sbb-chips-chip-padding-horizontal: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   --sbb-chips-input-width: calc(#{pxToRem(150)} * var(--sbb-scaling-factor));
 
+  // Dialog
+  --sbb-dialog-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-mild);
   --sbb-form-border-color-focused: var(--sbb-color-grey);
@@ -163,6 +168,10 @@
 
   // Header
   --sbb-header-lean-height: #{pxToRem(54)};
+
+  // Lightbox
+  --sbb-lightbox-padding-horizontal: #{pxToRem(24)};
+  --sbb-lightbox-actions-padding-vertical: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
 
   // Notification
   --sbb-notification-message-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
@@ -243,6 +252,9 @@
 
       // Expansion Panel
       --sbb-expansion-panel-padding-horizontal: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+
+      // Lightbox
+      --sbb-lightbox-padding-horizontal: calc(#{pxToRem(136)} * var(--sbb-scaling-factor));
 
       // Sidebar
       --sbb-sidebar-mobile-menu-bar-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
