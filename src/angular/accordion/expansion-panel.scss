@@ -131,7 +131,8 @@
   padding-top: var(--sbb-divider-medium);
   padding-bottom: var(--sbb-divider-medium);
 
-  > :is(h1, .sbb-headline1, h2, .sbb-headline2, h3, .sbb-headline3, h4, .sbb-headline4, p, .sbb-copy, .sbb-text-lead):first-child {
+  // Remove the top margin from the first element inside the body.
+  > *:first-child {
     margin-top: 0;
   }
 }

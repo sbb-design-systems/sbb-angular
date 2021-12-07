@@ -43,8 +43,8 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 
-  // Remove the top margin from headings if it is the first element inside the content.
-  :is(h1, h2, h3, h4):first-child {
+  // Remove the top margin from the first element inside the content.
+  > *:first-child {
     margin-top: 0;
   }
 }

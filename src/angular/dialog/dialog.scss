@@ -49,9 +49,15 @@
   max-height: 80vh;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+
+  // Remove the top margin from the first element inside the content.
+  > *:first-child {
+    margin-top: 0;
+  }
 }
 
 .sbb-dialog-title {
+  font-size: var(--sbb-font-size);
   padding: calc(#{pxToRem(15)} * var(--sbb-scaling-factor))
     calc(#{pxToRem(40)} * var(--sbb-scaling-factor))
     calc(#{pxToRem(15)} * var(--sbb-scaling-factor)) var(--sbb-dialog-padding);
