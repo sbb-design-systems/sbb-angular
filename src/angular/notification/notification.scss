@@ -1,61 +1,46 @@
 @import '../styles/common';
 
-$notificationMessagePadding: 16;
-$notificationMessagePaddingRight: 24;
-
 .sbb-notification {
   display: flex;
   align-items: center;
   color: var(--sbb-color-white);
   width: 100%;
-  border-radius: pxToEm(2);
-  padding: pxToEm($notificationMessagePadding) pxToEm($notificationMessagePaddingRight)
-    pxToEm($notificationMessagePadding) pxToEm($notificationMessagePadding);
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeLineHeightDefault);
+  border-radius: var(--sbb-border-radius);
+  padding: var(--sbb-notification-message-padding)
+    var(--sbb-notification-message-padding-horizontal) var(--sbb-notification-message-padding)
+    var(--sbb-notification-message-padding);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
   overflow-y: hidden;
 
   :where(html:not(.sbb-lean)) & {
     &:not(.ng-animating) {
-      min-height: pxToEm(68);
-    }
-
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
+      min-height: calc(#{pxToRem(68)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-    padding: pxToRem(11) pxToRem(15);
-    border: pxToRem(1) solid transparent;
-    border-radius: pxToRem(2);
+    padding-left: var(--sbb-notification-message-padding-horizontal);
+    border: var(--sbb-border-width-thin) solid transparent;
   }
 }
 
-.sbb-notification-success,
-.sbb-notification-info {
+:is(.sbb-notification-success, .sbb-notification-info) {
   background-color: var(--sbb-color-grey);
 }
 
-.sbb-notification-error,
-.sbb-notification-warn {
+:is(.sbb-notification-error, .sbb-notification-warn) {
   background-color: var(--sbb-color-red);
 }
 
 :where(html.sbb-lean) .sbb-notification-success {
   color: var(--sbb-color-green);
-  background-color: var(--sbb-color-white);
+  background-color: var(--sbb-color-background);
   border-color: var(--sbb-color-green);
 }
 
 :where(html.sbb-lean) .sbb-notification-info {
   color: var(--sbb-color-granite);
-  background-color: var(--sbb-color-white);
+  background-color: var(--sbb-color-background);
   border-color: var(--sbb-color-granite);
 }
 
@@ -64,17 +49,21 @@ $notificationMessagePaddingRight: 24;
 }
 
 .sbb-notification-has-jump-marks {
-  padding: pxToEm(23) pxToEm($notificationMessagePaddingRight) pxToEm(23)
-    pxToEm($notificationMessagePadding);
+  padding: calc(#{pxToRem(23)} * var(--sbb-scaling-factor))
+    var(--sbb-notification-message-padding-horizontal)
+    calc(#{pxToRem(23)} * var(--sbb-scaling-factor)) var(--sbb-notification-message-padding);
 
-  &,
-  a {
-    line-height: pxToEm(23);
+  :is(&, & a) {
+    line-height: var(--sbb-line-height-medium);
+
+    :where(html.sbb-lean) & {
+      line-height: var(--sbb-line-height);
+    }
   }
 
   :where(html:not(.sbb-lean)) & {
     &:not(.ng-animating) {
-      min-height: pxToEm(92);
+      min-height: calc(#{pxToRem(92)} * var(--sbb-scaling-factor));
     }
   }
   :where(html.sbb-lean) & {
@@ -83,55 +72,42 @@ $notificationMessagePaddingRight: 24;
 }
 
 .sbb-notification-icon-wrapper {
-  flex: 0 0 pxToEm(36);
+  flex: 0 0 var(--sbb-icon-size-large);
   align-self: flex-start;
-  width: pxToEm(36);
-  height: pxToEm(36);
-
-  * {
-    max-width: 100%;
-    max-height: 100%;
-  }
+  width: var(--sbb-icon-size-large);
+  height: var(--sbb-icon-size-large);
 
   :where(html.sbb-lean) & {
-    flex-basis: pxToRem(24);
-    width: pxToEm(24);
-    height: pxToEm(24);
+    flex-basis: var(--sbb-icon-size-default);
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
   }
 }
 
 .sbb-notification-content {
   flex: 1 1 auto;
-  margin-left: pxToEm($notificationMessagePadding);
+  margin-left: var(--sbb-notification-message-padding);
 
   :where(html.sbb-lean) & {
     margin-left: pxToRem(8);
   }
 }
 
-:where(html:not(.sbb-lean)) .sbb-notification-content-title {
-  font-family: var(--sbb-font-bold);
-}
-
-.sbb-notification-content a {
-  &,
-  &:hover,
-  &:active {
-    color: inherit;
-    cursor: pointer;
+.sbb-notification-content-title {
+  :where(html:not(.sbb-lean)) & {
+    font-family: var(--sbb-font-bold);
   }
 }
 
-:where(html.sbb-lean) .sbb-notification-dismiss-icon {
-  flex: 0 0 pxToEm(24);
-  align-self: flex-start;
-  width: pxToEm(24);
-  height: pxToEm(24);
-  cursor: pointer;
+:is(.sbb-notification-content
+    :is(a, a:is(:hover, :active)), .sbb-notification-dismiss-icon-button) {
   color: inherit;
+  cursor: pointer;
+}
 
-  * {
-    max-width: 100%;
-    max-height: 100%;
-  }
+.sbb-notification-dismiss-icon-button {
+  flex: 0 0 var(--sbb-icon-size-default);
+  align-self: flex-start;
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
 }
