@@ -42,7 +42,7 @@ $breadcrumbBorderWidthLean: 1;
     // Last user defined breadcrumb
     :is(&, & :is(a, button)) {
       :where(html.sbb-lean) & {
-        color: var(--sbb-color-black);
+        color: var(--sbb-color-text);
 
         &:is(:hover, :focus) {
           color: var(--sbb-color-call-to-action-hover);
@@ -79,8 +79,8 @@ $breadcrumbBorderWidthLean: 1;
   display: flex;
 
   a {
-    height: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
-    width: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    height: var(--sbb-icon-size-default);
+    width: var(--sbb-icon-size-default);
   }
 }
 
@@ -175,7 +175,7 @@ $breadcrumbBorderWidthLean: 1;
 
       animation: var(--sbb-transition-fast-start) 0s 1 arrowRotate;
       transform: translateY(-50%) rotate(-180deg);
-      margin-top: calc(var(--sbb-border-width-negative) + #{pxToRem(1)});
+      margin-top: calc(#{pxToRem(1)} * var(--sbb-scaling-factor));
       background-image: url($sbbIconChevronSmallDownCircleSmallRed125);
     }
   }
@@ -216,7 +216,7 @@ $breadcrumbBorderWidthLean: 1;
 }
 
 .sbb-menu-panel-type-breadcrumb .sbb-menu-item {
-  font-size: var(--sbb-font-size-smal);
+  font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-line-height-small);
   padding-left: calc(var(--sbb-breadcrumb-trigger-padding-x) - var(--sbb-border-width));
   padding-right: var(--sbb-breadcrumb-trigger-padding-x);
