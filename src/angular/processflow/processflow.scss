@@ -14,7 +14,7 @@
 .sbb-processflow-separator {
   line-height: 0;
   color: var(--sbb-color-grey);
-  font-size: pxToRem(18);
+  font-size: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
   margin: pxToRem(3) pxToRem(15);
   // We use em here to reduce redeclarations
   width: 1em;
@@ -26,15 +26,11 @@
       margin: pxToRem(3) pxToRem(19);
     }
     @include mq($from: desktop) {
-      margin: pxToRem(3) pxToRem(27);
+      margin: calc(#{pxToRem(3)} * var(--sbb-scaling-factor))
+        calc(#{pxToRem(27)} * var(--sbb-scaling-factor));
     }
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(27);
+    @include mq($from: desktop4k, $to: desktop5k) {
       margin: pxToRem(4) pxToRem(40);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(36);
-      margin: pxToRem(6) pxToRem(54);
     }
   }
   :where(html.sbb-lean) & {
@@ -61,27 +57,17 @@
   overflow: hidden;
 }
 
-.sbb-step:last-child {
-  .sbb-vertical-content-container {
-    border: none;
-  }
+.sbb-step:last-child .sbb-vertical-content-container {
+  border: none;
 }
 
-.sbb-processflow-previous + .sbb-processflow-next,
-.sbb-processflow-previous + .sbb-button-base {
+// We want to display a gap between buttons. Vertically for mobile resolution
+// and horizontally for above.
+.sbb-processflow-previous + :is(.sbb-processflow-next, .sbb-button-base) {
   @include mq($to: tabletPortrait) {
     margin-top: pxToRem(8);
   }
   @include mq($from: tabletPortrait) {
-    margin-left: pxToRem(8);
-  }
-
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: desktop4k) {
-      margin-left: pxToRem(12);
-    }
-    @include mq($from: desktop5k) {
-      margin-left: pxToRem(16);
-    }
+    margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
   }
 }
