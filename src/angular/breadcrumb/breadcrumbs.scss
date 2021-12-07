@@ -1,10 +1,5 @@
 @import '../styles/common';
 
-$breadcrumbHeightDesktop: 48;
-$breadcrumbLabelHeightDesktop: 24;
-$breadcrumbAnimationTiming: 0.225s cubic-bezier(0.4, 0, 0.2, 1);
-$breadcrumbDropdownIconWidth: 24;
-$breadcrumbPaddingX: 30;
 $breadcrumbBorderWidthStandard: 2;
 $breadcrumbBorderWidthLean: 1;
 
@@ -55,7 +50,7 @@ $breadcrumbBorderWidthLean: 1;
   & + .sbb-breadcrumb::before {
     content: '';
     display: inline-block;
-    background: url($sbbIconChevronSmallRightSmallPlatinum) no-repeat center;
+    background: var(--sbb-url-icon-chevron-small-right-small-platinum) no-repeat center;
     background-size: var(--sbb-icon-size-default) var(--sbb-icon-size-default);
     width: var(--sbb-icon-size-default);
     height: var(--sbb-icon-size-default);
@@ -63,7 +58,7 @@ $breadcrumbBorderWidthLean: 1;
     flex-shrink: 0;
 
     :where(html.sbb-lean) & {
-      background-image: url($sbbIconChevronSmallRightSmallGranite);
+      background-image: var(--sbb-url-icon-chevron-small-right-small-granite);
       margin-right: pxToRem(4);
     }
   }
@@ -125,42 +120,36 @@ $breadcrumbBorderWidthLean: 1;
 }
 
 // Menu trigger and copied menu trigger (inside panel)
-.sbb-breadcrumb .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root,
-.sbb-menu-panel-type-breadcrumb .sbb-menu-panel-trigger {
+:is(.sbb-breadcrumb
+    .sbb-menu-trigger-breadcrumb.sbb-menu-trigger-root, .sbb-menu-panel-type-breadcrumb
+    .sbb-menu-panel-trigger) {
   position: relative;
   padding-right: var(--sbb-icon-size-default);
 
   &:is(:focus, :hover)::after {
-    background-image: url($sbbIconChevronSmallDownCircleSmallRed125);
+    background-image: var(--sbb-url-icon-chevron-small-down-circle-small-red125);
   }
 
   &::after {
     content: '';
     display: inline-block;
     @include absoluteCenterY;
-    background: url($sbbIconChevronSmallDownCircleSmallGranite) no-repeat center;
+    background: var(--sbb-url-icon-chevron-small-down-circle-small-granite) no-repeat center;
     background-size: var(--sbb-icon-size-default) var(--sbb-icon-size-default);
     width: var(--sbb-icon-size-default);
     height: var(--sbb-icon-size-default);
     flex-shrink: 0;
     transition: transform var(--sbb-transition-fast-start);
-
-    :where(html.sbb-lean) & {
-      background-image: url($sbbIconChevronSmallDownCircleSmallGranite);
-    }
   }
 }
 
 // Copied menu trigger (inside panel)
 .sbb-menu-panel-trigger {
-  $triggerPaddingY: 14;
-  $breadcrumbPaddingX: 30;
-
   .sbb-menu-panel-type-breadcrumb & {
-    padding: calc(var(--sbb-breadcrumb-trigger-padding-y) - var(--sbb-border-width))
-      calc(var(--sbb-breadcrumb-trigger-padding-x) + var(--sbb-icon-size-default))
-      calc(var(--sbb-breadcrumb-trigger-padding-y) - var(--sbb-border-width))
-      calc(var(--sbb-breadcrumb-trigger-padding-x) - var(--sbb-border-width));
+    padding: calc(var(--sbb-breadcrumb-trigger-padding-vertical) - var(--sbb-border-width))
+      calc(var(--sbb-breadcrumb-trigger-padding-horizontal) + var(--sbb-icon-size-default))
+      calc(var(--sbb-breadcrumb-trigger-padding-vertical) - var(--sbb-border-width))
+      calc(var(--sbb-breadcrumb-trigger-padding-horizontal) - var(--sbb-border-width));
     color: var(--sbb-color-call-to-action-hover);
 
     &::after {
@@ -176,12 +165,12 @@ $breadcrumbBorderWidthLean: 1;
       animation: var(--sbb-transition-fast-start) 0s 1 arrowRotate;
       transform: translateY(-50%) rotate(-180deg);
       margin-top: calc(#{pxToRem(1)} * var(--sbb-scaling-factor));
-      background-image: url($sbbIconChevronSmallDownCircleSmallRed125);
+      background-image: var(--sbb-url-icon-chevron-small-down-circle-small-red125);
     }
   }
 
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-below & {
-    padding-bottom: var(--sbb-breadcrumb-trigger-padding-y);
+    padding-bottom: var(--sbb-breadcrumb-trigger-padding-vertical);
     box-shadow: horizontalBorderBoxShadow(1, $breadcrumbBorderWidthStandard);
 
     :where(html.sbb-lean) & {
@@ -189,7 +178,7 @@ $breadcrumbBorderWidthLean: 1;
     }
   }
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
-    padding-top: var(--sbb-breadcrumb-trigger-padding-y);
+    padding-top: var(--sbb-breadcrumb-trigger-padding-vertical);
     box-shadow: boxShadow(1, $breadcrumbBorderWidthStandard),
       horizontalBorderBoxShadow(-1, $breadcrumbBorderWidthStandard);
 
@@ -218,6 +207,6 @@ $breadcrumbBorderWidthLean: 1;
 .sbb-menu-panel-type-breadcrumb .sbb-menu-item {
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-line-height-small);
-  padding-left: calc(var(--sbb-breadcrumb-trigger-padding-x) - var(--sbb-border-width));
-  padding-right: var(--sbb-breadcrumb-trigger-padding-x);
+  padding-left: calc(var(--sbb-breadcrumb-trigger-padding-horizontal) - var(--sbb-border-width));
+  padding-right: var(--sbb-breadcrumb-trigger-padding-horizontal);
 }
