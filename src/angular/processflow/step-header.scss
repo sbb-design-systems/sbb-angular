@@ -34,8 +34,7 @@
 }
 
 .sbb-step-text-label {
-  text-overflow: ellipsis;
-  overflow: hidden;
+  @include ellipsis;
 }
 
 .sbb-step-label-active {
@@ -75,8 +74,8 @@
 .sbb-step-label-active.sbb-step-label-locked {
   cursor: default;
 
-  .sbb-step-header:hover & {
-    color: var(--sbb-color-black);
+  .sbb-step-header:is(:focus, :hover) & {
+    color: var(--sbb-color-text);
   }
 
   &::after {
