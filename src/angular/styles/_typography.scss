@@ -158,7 +158,6 @@
   --sbb-datepicker-toggle-and-arrows-padding: calc(
     #{pxToRem(72)} * var(--sbb-scaling-factor) - var(--sbb-border-width)
   );
-  --sbb-datepicker-toggle-arrow-color: var(--sbb-color-grey);
   --sbb-datepicker-button-offset: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
   --sbb-datepicker-button-gap: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
   --sbb-datepicker-adjacent-button-offset: calc(
@@ -364,7 +363,6 @@
     // Datepicker
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{pxToRem(38)} - var(--sbb-border-width));
     --sbb-datepicker-toggle-and-arrows-padding: calc(#{pxToRem(62)} - var(--sbb-border-width));
-    --sbb-datepicker-toggle-arrow-color: var(--sbb-color-iron);
     --sbb-datepicker-button-offset: #{pxToRem(6)};
     // rem (or any unit) is necessary for correct calc calculation.
     --sbb-datepicker-button-gap: 0rem;
@@ -380,7 +378,6 @@
     --sbb-datepicker-calender-height: #{pxToRem(303)};
     --sbb-datepicker-calender-controls-padding: #{pxToRem(8)};
     --sbb-datepicker-calender-body-cell-padding: #{pxToRem(16.5)};
-    --sbb-datepicker-calender-body-cell-disabled-offset: #{pxToRem(17)};
     --sbb-datepicker-calender-body-cell-size: #{pxToRem(30)};
 
     // Forms

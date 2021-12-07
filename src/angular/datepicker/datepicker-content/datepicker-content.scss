@@ -1,6 +1,5 @@
 @import '../../styles/common';
 
-$datePickerCalendarBorderWidth: 2;
 
 @mixin datePickerCellContentBase() {
   position: absolute;
@@ -45,8 +44,8 @@ $datePickerCalendarBorderWidth: 2;
     transform: rotate(-135deg);
     background-color: var(--sbb-color-background);
     border: var(--sbb-border-width) solid transparent;
-    border-right-color: var(--sbb-datepicker-toggle-arrow-color);
-    border-bottom-color: var(--sbb-datepicker-toggle-arrow-color);
+    border-right-color: var(--sbb-datepicker-calender-border-color);
+    border-bottom-color: var(--sbb-datepicker-calender-border-color);
 
     // Cut out obsolete triangle so it does not collide with calendar content
     // `-0.4px` fixes calculation issue in Firefox
