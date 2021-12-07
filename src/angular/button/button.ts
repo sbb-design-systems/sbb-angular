@@ -177,7 +177,6 @@ export class SbbButton
   },
   inputs: ['disabled'],
   templateUrl: 'button.html',
-  styleUrls: ['button.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
