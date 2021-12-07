@@ -3,14 +3,25 @@
 .sbb-notification-toast {
   display: flex;
   align-items: center;
-  min-height: pxToRem(51);
+  min-height: calc(#{pxToRem(51)} * var(--sbb-scaling-factor));
   border-radius: var(--sbb-border-radius);
   color: var(--sbb-color-white);
   background-color: var(--sbb-color-background);
   font-size: var(--sbb-font-size);
-  padding-top: pxToRem(12);
-  padding-bottom: pxToRem(12);
-  margin: pxToRem(20);
+  padding-top: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  padding-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  margin: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+
+  .sbb-notification-toast-mobile & {
+    margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.sbb-notification-toast-mobile {
+  width: 100%;
 }
 
 .sbb-notification-toast-error {
@@ -46,15 +57,15 @@
 }
 
 .sbb-notification-toast-content {
-  margin-left: pxToRem(8);
-  margin-right: pxToRem(24);
+  margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
 }
 
 .sbb-notification-toast-icon-wrapper {
   min-width: var(--sbb-icon-size-default);
   width: var(--sbb-icon-size-default);
   height: var(--sbb-icon-size-default);
-  margin-left: pxToRem(16);
+  margin-left: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   border: none;
   background: none;
   padding: 0;
@@ -64,16 +75,5 @@
 .sbb-notification-toast-icon-close-wrapper {
   cursor: pointer;
   margin-left: auto;
-  margin-right: pxToRem(22);
-}
-
-.sbb-notification-toast-mobile {
-  width: 100%;
-
-  .sbb-notification-toast {
-    margin: pxToRem(8);
-    max-width: 100%;
-    min-width: 0;
-    width: 100%;
-  }
+  margin-right: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
 }
