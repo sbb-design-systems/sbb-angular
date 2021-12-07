@@ -1047,8 +1047,8 @@ textarea {
   @include mq($from: tabletPortrait) {
     width: auto;
     // We use em here, in order to scale for 4k and 5k
-    min-width: pxToEm(60);
-    max-width: pxToEm(400);
+    min-width: calc(#{pxToRem(60)} * var(--sbb-scaling-factor));
+    max-width: calc(#{pxToRem(400)} * var(--sbb-scaling-factor));
   }
 
   :where(html:not(.sbb-lean)) & {
@@ -1135,6 +1135,34 @@ textarea {
   }
 }
 
+// Icon animation for primary/secondary button.
+.sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled) {
+  :where(html:not(.sbb-lean)) & {
+    transition: {
+      duration: var(--sbb-transition-duration-default);
+      timing-function: var(--sbb-transition-timing-default);
+      property: transform, padding-left, padding-right;
+    }
+    padding-left: calc(#{pxToRem(39)} * var(--sbb-scaling-factor));
+    padding-right: calc(#{pxToRem(69)} * var(--sbb-scaling-factor));
+
+    // This solves a bug with the placement of the right icon, which is otherwise displayed
+    // inside the text.
+    .sbb-button-right-icon {
+      right: calc(#{pxToRem(39)} * var(--sbb-scaling-factor));
+    }
+
+    &:hover {
+      padding-left: calc(#{pxToRem(69)} * var(--sbb-scaling-factor));
+      padding-right: calc(#{pxToRem(39)} * var(--sbb-scaling-factor));
+
+      .sbb-button-right-icon {
+        right: 0;
+      }
+    }
+  }
+}
+
 .sbb-ghost-button {
   background-color: transparent;
   color: var(--sbb-color-grey);
@@ -1185,6 +1213,45 @@ textarea {
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
     color: var(--sbb-color-call-to-action-hover);
   }
+
+  // Icon animation for links and frameless buttons for standard
+  &.sbb-button-base:not(:disabled):not(.sbb-disabled) {
+    :where(html:not(.sbb-lean)) & {
+      transition: {
+        duration: var(--sbb-transition-duration-default);
+        timing-function: var(--sbb-transition-timing-default);
+        property: transform, padding-left, padding-right;
+      }
+      padding-left: calc(#{pxToRem(0)} * var(--sbb-scaling-factor));
+      padding-right: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+
+      &:hover {
+        padding-left: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+        padding-right: calc(#{pxToRem(0)} * var(--sbb-scaling-factor));
+      }
+    }
+  }
+}
+
+.sbb-link.sbb-button-base {
+  :where(html.sbb-lean) & {
+    padding-right: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+  }
+
+  .sbb-link-group &:not(:disabled):not(.sbb-disabled) {
+    padding: var(--sbb-divider-thin) calc(#{pxToRem(28)} * var(--sbb-scaling-factor))
+      var(--sbb-divider-thin) 0;
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
+
+    // Disable transitions from default behavior
+    :is(&, &:hover) {
+      :where(html:not(.sbb-lean)) & {
+        transition: none;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
 }
 
 .sbb-frameless-button {
@@ -1194,9 +1261,6 @@ textarea {
     display: none;
   }
 }
-
-// We're using pxToEm for the rules below, since the used values do not
-// bleed and scale accordingly with 4k and 5k.
 
 .sbb-button-indicator-icon {
   transition: {
@@ -1211,20 +1275,30 @@ textarea {
   margin-top: pxToEm(-12.5);
 
   &.sbb-icon-fit {
-    width: pxToEm(24);
-    height: pxToEm(24);
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
   }
 
   :is(.sbb-button-base.sbb-disabled, .sbb-button-base.sbb-disabled:hover) & {
     opacity: 0;
   }
 
-  :where(html:not(.sbb-lean)) .sbb-button-base.sbb-link & {
-    color: var(--sbb-color-call-to-action);
+  .sbb-button-base.sbb-link & {
+    :where(html:not(.sbb-lean)) & {
+      color: var(--sbb-color-call-to-action);
+    }
+
+    &:hover {
+      :where(html:not(.sbb-lean)) & {
+        color: inherit;
+      }
+    }
   }
 
-  :where(html:not(.sbb-lean)) .sbb-button-base.sbb-link:hover & {
-    color: inherit;
+  .sbb-link-group :is(&, &:hover) {
+    transition: none;
+    // !important is necessary here to overwrite the transform rules below.
+    transform: none !important;
   }
 }
 
@@ -1237,70 +1311,45 @@ textarea {
     transform: translateX(0);
     opacity: 1;
   }
+
+  .sbb-link-group :is(&, &:hover) {
+    display: none;
+  }
 }
 
 .sbb-button-right-icon {
-  margin-left: pxToEm(6);
+  margin-left: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
   transform: translateX(0);
   opacity: 1;
 
-  :where(html:not(.sbb-lean)) .sbb-button-base:hover & {
-    transform: translateX(pxToEm(26));
-    opacity: 0;
-  }
   :where(html.sbb-lean) & {
     transform: translateX(pxToEm(-24));
   }
-}
 
-:where(html:not(.sbb-lean))
-  .sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled) {
-  transition: {
-    duration: var(--sbb-transition-duration-default);
-    timing-function: var(--sbb-transition-timing-default);
-    property: transform, padding-left, padding-right;
-  }
-  padding-left: pxToEm(39);
-  padding-right: pxToEm(69);
-
-  // This solves a bug with the placement of the right icon, which is otherwise displayed
-  // inside the text.
-  .sbb-button-right-icon {
-    right: pxToEm(39);
-  }
-
-  &:hover {
-    padding-left: pxToEm(69);
-    padding-right: pxToEm(39);
-
-    .sbb-button-right-icon {
-      right: 0;
+  .sbb-button-base:hover & {
+    :where(html:not(.sbb-lean)) & {
+      transform: translateX(calc(#{pxToRem(26)} * var(--sbb-scaling-factor)));
+      opacity: 0;
     }
   }
-}
 
-:where(html:not(.sbb-lean))
-  .sbb-button-base:is(.sbb-frameless-button, .sbb-link):not(.sbb-disabled) {
-  transition: {
-    duration: var(--sbb-transition-duration-default);
-    timing-function: var(--sbb-transition-timing-default);
-    property: transform, padding-left, padding-right;
+  .sbb-button-base.sbb-link & {
+    :where(html.sbb-lean) & {
+      transform: none;
+    }
   }
-  padding-left: pxToEm(0);
-  padding-right: pxToEm(30);
 
-  &:hover {
-    padding-left: pxToEm(30);
-    padding-right: pxToEm(0);
+  .sbb-link-group :is(&, &:hover) {
+    opacity: 1;
+    right: 0;
   }
 }
 
-:where(html.sbb-lean) .sbb-button-base.sbb-link {
-  padding-right: pxToEm(30);
-
-  .sbb-button-right-icon {
-    transform: none;
-  }
+.sbb-link-group {
+  display: inline-flex;
+  width: calc(#{pxToRem(250)} * var(--sbb-scaling-factor));
+  flex-direction: column;
+  border-top: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 }
 
 // ----------------------------------------------------------------------------------------------------

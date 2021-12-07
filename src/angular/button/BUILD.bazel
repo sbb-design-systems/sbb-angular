@@ -4,7 +4,6 @@ load(
     "ng_module",
     "ng_test_library",
     "ng_web_test_suite",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -15,7 +14,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":button.css"] + glob(["**/*.html"]),
+    assets = glob(["**/*.html"]),
     deps = [
         "//src/angular/core",
         "//src/angular/icon",
@@ -24,14 +23,6 @@ ng_module(
         "@npm//@angular/core",
         "@npm//@angular/platform-browser",
         "@npm//rxjs",
-    ],
-)
-
-sass_binary(
-    name = "button_scss",
-    src = "button.scss",
-    deps = [
-        "//src/angular/styles:common_scss_lib",
     ],
 )
 
