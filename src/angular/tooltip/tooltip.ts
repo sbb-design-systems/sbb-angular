@@ -483,11 +483,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
 
       if (
         this._tooltipInstance &&
-        change.scrollableViewProperties.isOverlayClipped &&
+        change.scrollableViewProperties.isOriginOutsideView &&
         this._tooltipInstance.isVisible()
       ) {
-        // After position changes occur and the overlay is clipped by
-        // a parent scrollable then close the tooltip.
+        // After position changes occur and the origin is outside the view then close the tooltip.
         this._ngZone.run(() => this.hide(0));
       }
     });
