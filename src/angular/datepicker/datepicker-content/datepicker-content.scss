@@ -143,9 +143,15 @@
   flex-grow: 1;
   flex-shrink: 1;
   font-family: var(--sbb-font-light);
-  font-size: calc(#{pxToRem(21)} * var(--sbb-scaling-factor));
+  font-size: #{pxToRem(21)};
   line-height: 3.2;
   color: var(--sbb-datepicker-calendar-header-color);
+
+  :where(html:not(.sbb-lean)) & {
+    @include mq($from: tablet) {
+      font-size: var(--sbb-font-size-large);
+    }
+  }
 
   :where(html.sbb-lean) & {
     font-size: var(--sbb-font-size);
