@@ -803,12 +803,12 @@ select {
   display: inline-flex;
   box-sizing: border-box;
   // We need to specify !important, due to being less specific than .sbb-input-element
-  padding-right: pxToEm(44) !important;
+  padding-right: calc(#{pxToRem(44)} * var(--sbb-scaling-factor)) !important;
 
   // Custom select expand icon
   align-items: center;
   background: transparent var(--sbb-url-icon-chevron-small-down-small-grey) no-repeat center right
-    pxToEm(9);
+    calc(#{pxToRem(9)} * var(--sbb-scaling-factor));
   background-size: var(--sbb-icon-size-default);
 
   :where(html.sbb-lean) & {
@@ -1272,7 +1272,7 @@ textarea {
   pointer-events: none;
   position: absolute;
   top: 50%;
-  margin-top: pxToEm(-12.5);
+  margin-top: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
 
   &.sbb-icon-fit {
     width: var(--sbb-icon-size-default);
@@ -1303,8 +1303,8 @@ textarea {
 }
 
 .sbb-button-left-icon {
-  margin-left: pxToEm(-30);
-  transform: translateX(pxToEm(-26));
+  margin-left: calc(#{pxToRem(-30)} * var(--sbb-scaling-factor));
+  transform: translateX(calc(#{pxToRem(-26)} * var(--sbb-scaling-factor)));
   opacity: 0;
 
   .sbb-button-base:hover & {
@@ -1323,7 +1323,7 @@ textarea {
   opacity: 1;
 
   :where(html.sbb-lean) & {
-    transform: translateX(pxToEm(-24));
+    transform: translateX(calc(#{pxToRem(-24)} * var(--sbb-scaling-factor)));
   }
 
   .sbb-button-base:hover & {
@@ -1611,8 +1611,8 @@ textarea {
   flex-direction: column;
   display: flex;
   flex: 1 1 50%;
-  padding-right: pxToEm(8);
-  margin-bottom: pxToEm(8);
+  padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-bottom: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   @include mq($from: tablet) {
     margin-bottom: 0;
@@ -1635,8 +1635,8 @@ textarea {
   color: var(--sbb-color-grey);
 
   @include mq($from: tablet) {
-    padding-left: pxToEm(24);
-    padding-right: pxToEm(8);
+    padding-left: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
     flex-basis: auto;
     order: initial;
   }
@@ -1648,14 +1648,14 @@ textarea {
 
 .sbb-selection-panel-note {
   margin-left: auto;
-  margin-bottom: pxToEm(8);
+  margin-bottom: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   @include mq($from: tablet) {
     margin-bottom: 0;
   }
 
   img {
-    max-height: pxToEm(24);
+    max-height: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
   }
 }
 
@@ -1665,7 +1665,8 @@ textarea {
 :is(.sbb-checkbox-panel-group, .sbb-radio-panel-group) {
   display: grid;
   grid-template-columns: 1fr;
-  gap: pxToEm(8) pxToEm(6);
+  gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
   font-size: var(--sbb-font-size);
 
   // The number indicates the max number of columns for the resolution
@@ -1763,10 +1764,13 @@ textarea {
 
     :is(thead, tfoot) > tr :is(th, td) {
       background-color: var(--sbb-table-thead-background-color);
-      padding: pxToEm(29) pxToEm(12) pxToEm(30) pxToEm(12);
+      padding: pxToRem(29) pxToRem(12) pxToRem(30) pxToRem(12);
 
       @include mq($from: tabletPortrait) {
-        padding: pxToEm(29) pxToEm(16) pxToEm(30) pxToEm(16);
+        padding: calc(#{pxToRem(29)} * var(--sbb-scaling-factor))
+          calc(#{pxToRem(16)} * var(--sbb-scaling-factor))
+          calc(#{pxToRem(30)} * var(--sbb-scaling-factor))
+          calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
         &:first-child {
           border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
@@ -1784,10 +1788,13 @@ textarea {
       }
 
       :is(th, td) {
-        padding: pxToEm(18) pxToEm(12) pxToEm(19) pxToEm(12);
+        padding: pxToRem(18) pxToRem(12) pxToRem(19) pxToRem(12);
 
         @include mq($from: tabletPortrait) {
-          padding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
+          padding: calc(#{pxToRem(18)} * var(--sbb-scaling-factor))
+            calc(#{pxToRem(16)} * var(--sbb-scaling-factor))
+            calc(#{pxToRem(19)} * var(--sbb-scaling-factor))
+            calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
           &:first-child {
             border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
@@ -1955,7 +1962,7 @@ textarea {
 // ----------------------------------------------------------------------------------------------------
 
 input.sbb-input-element.sbb-time-input {
-  width: pxToEm(84);
+  width: calc(#{pxToRem(84)} * var(--sbb-scaling-factor));
   height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
   text-align: center;
 
