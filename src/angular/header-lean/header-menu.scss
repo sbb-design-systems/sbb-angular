@@ -48,7 +48,7 @@ button.sbb-header-menu-back {
 }
 
 .sbb-header-menu > div.sbb-header-menu-title {
-  font-size: var(--sbb-header-lean-label-font-size);
+  font-size: var(--sbb-font-size-large);
   line-height: var(--sbb-header-lean-label-line-height);
   padding-top: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));
   padding-left: calc(#{pxToRem(15)} * var(--sbb-scaling-factor));

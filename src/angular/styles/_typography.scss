@@ -120,6 +120,7 @@
   --sbb-font-size-small: #{pxToRem(13)};
   --sbb-line-height-small: #{pxToRem(20)};
   --sbb-line-height-medium: #{pxToRem(23)};
+  --sbb-font-size-large: #{pxToRem(20)};
 
   // Dividers
   --sbb-divider-thin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
@@ -198,7 +199,6 @@
   --sbb-expansion-panel-padding-horizontal: #{pxToRem(24)};
   --sbb-expansion-panel-header-padding-top: #{pxToRem(23)};
   --sbb-expansion-panel-header-padding-bottom: #{pxToRem(26)};
-  --sbb-expansion-panel-font-size: #{pxToRem(20)};
   --sbb-expansion-panel-line-height: #{pxToRem(28)};
 
   // Header
@@ -208,7 +208,6 @@
   --sbb-header-lean-menu-mobile-z-index: 1100;
   --sbb-header-lean-menu-tablet-z-index: 700;
   --sbb-header-lean-menu-width: calc(#{pxToRem(300)} * var(--sbb-scaling-factor));
-  --sbb-header-lean-label-font-size: calc(#{pxToRem(21)} * var(--sbb-scaling-factor));
   --sbb-header-lean-label-line-height: calc(#{pxToRem(25)} * var(--sbb-scaling-factor));
 
   // Lightbox
@@ -309,6 +308,9 @@
       --sbb-divider-medium: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
       --sbb-divider-big: #{pxToRem(72)};
 
+      // Sizings
+      --sbb-font-size-large: #{pxToRem(21)};
+
       // Datepicker
       --sbb-datepicker-calendar-table-content-padding-width: calc(
         #{pxToRem(18)} * var(--sbb-scaling-factor)
@@ -323,7 +325,6 @@
       --sbb-expansion-panel-padding-horizontal: #{pxToRem(48)};
       --sbb-expansion-panel-header-padding-top: #{pxToRem(34)};
       --sbb-expansion-panel-header-padding-bottom: #{pxToRem(36)};
-      --sbb-expansion-panel-font-size: #{pxToRem(21)};
       --sbb-expansion-panel-line-height: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
     }
     @include mq($from: desktop) {
@@ -350,11 +351,11 @@
       --sbb-font-size-small: #{pxToRem(20)};
       --sbb-line-height-small: #{pxToRem(30)};
       --sbb-line-height-medium: #{pxToRem(35)};
+      --sbb-font-size-large: #{pxToRem(32)};
 
       // Expansion Panel
       --sbb-expansion-panel-header-padding-top: #{pxToRem(51)};
       --sbb-expansion-panel-header-padding-bottom: #{pxToRem(54)};
-      --sbb-expansion-panel-font-size: #{pxToRem(32)};
     }
     @include mq($from: desktop5k) {
       // Scaling
@@ -366,11 +367,11 @@
       --sbb-font-size-small: #{pxToRem(26)};
       --sbb-line-height-small: #{pxToRem(40)};
       --sbb-line-height-medium: #{pxToRem(45)};
+      --sbb-font-size-large: #{pxToRem(42)};
 
       // Expansion Panel
       --sbb-expansion-panel-header-padding-top: #{pxToRem(70)};
       --sbb-expansion-panel-header-padding-bottom: #{pxToRem(70)};
-      --sbb-expansion-panel-font-size: #{pxToRem(42)};
     }
   }
   &:where(.sbb-lean) {
@@ -384,6 +385,7 @@
     --sbb-border-width: #{pxToRem(1)};
     --sbb-line-height: #{pxToRem($sizeLineHeightDefaultLean)};
     --sbb-line-height-medium: #{pxToRem(20)};
+    --sbb-font-size-large: #{pxToRem(21)};
 
     // Datepicker
     --sbb-datepicker-toggle-or-arrows-padding: calc(#{pxToRem(38)} - var(--sbb-border-width));
@@ -419,7 +421,6 @@
     --sbb-expansion-panel-padding-horizontal: #{pxToRem(16)};
     --sbb-expansion-panel-header-padding-top: calc(#{pxToRem(12)} - var(--sbb-border-width-thin));
     --sbb-expansion-panel-header-padding-bottom: var(--sbb-expansion-panel-header-padding-top);
-    --sbb-expansion-panel-font-size: #{pxToRem(21)};
     --sbb-expansion-panel-line-height: #{pxToRem(25)};
 
     // Pagination
@@ -608,21 +609,10 @@ textarea {
 :is(h3, .sbb-headline3) {
   font-family: var(--sbb-font-light);
   font-weight: normal;
-  font-size: pxToRem(20);
+  font-size: var(--sbb-font-size-large);
   line-height: 1.2;
   margin: var(--sbb-divider-small) 0 var(--sbb-divider-thin);
 
-  :where(html:not(.sbb-lean)) & {
-    @include mq($from: tablet) {
-      font-size: pxToRem(21);
-    }
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(32);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(42);
-    }
-  }
   :where(html.sbb-lean) & {
     font-size: pxToRem(16);
     line-height: pxToRem(17);
@@ -676,24 +666,17 @@ textarea {
   font-family: var(--sbb-font-light);
   font-weight: normal;
   color: $sbbColorText;
-  font-size: pxToRem(20);
-  line-height: pxToRem(26);
+  font-size: var(--sbb-font-size-large);
+  line-height: 1.3;
   margin: var(--sbb-divider-medium) 0;
 
-  @include mq($from: tablet) {
-    font-size: pxToRem(21);
-    line-height: pxToRem(27.3);
-  }
-  @include mq($from: desktop) {
-    line-height: pxToRem(32);
-  }
-  @include mq($from: desktop4k) {
-    font-size: pxToRem(32);
-    line-height: pxToRem(41.6);
-  }
-  @include mq($from: desktop5k) {
-    font-size: pxToRem(40);
-    line-height: pxToRem(52);
+  :where(html:not(.sbb-lean)) & {
+    @include mq($from: desktop, $to: desktop4k) {
+      line-height: pxToRem(32);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(40);
+    }
   }
 }
 

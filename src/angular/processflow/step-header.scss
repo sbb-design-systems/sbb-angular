@@ -16,13 +16,10 @@
   color: var(--sbb-color-metal);
   cursor: default;
   padding-bottom: 0.5em;
-  font-size: pxToRem(20);
+  font-size: var(--sbb-font-size-large);
   line-height: 1;
 
   :where(html:not(.sbb-lean)) & {
-    @include mq($from: tabletPortrait) {
-      font-size: calc(#{pxToRem(21)} * var(--sbb-scaling-factor));
-    }
     @include mq($from: desktop) {
       padding-bottom: 1em;
     }
