@@ -164,7 +164,7 @@ $breadcrumbBorderWidthLean: 1;
 
       animation: var(--sbb-transition-fast-start) 0s 1 arrowRotate;
       transform: translateY(-50%) rotate(-180deg);
-      margin-top: calc(#{pxToRem(1)} * var(--sbb-scaling-factor));
+      margin-top: calc(#{pxToRem(-1)} * var(--sbb-scaling-factor));
       background-image: var(--sbb-url-icon-chevron-small-down-circle-small-red125);
     }
   }
