@@ -7,8 +7,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--sbb-datepicker-calender-body-cell-size);
-  height: var(--sbb-datepicker-calender-body-cell-size);
+  width: var(--sbb-datepicker-calendar-body-cell-size);
+  height: var(--sbb-datepicker-calendar-body-cell-size);
   line-height: 1;
   padding-left: calc(#{pxToRem(1)} * var(--sbb-scaling-factor));
   padding-bottom: calc(#{pxToRem(1)} * var(--sbb-scaling-factor));
@@ -26,18 +26,18 @@
 
   // Arrow
   &::after {
-    top: var(--sbb-datepicker-calender-arrow-offset);
+    top: var(--sbb-datepicker-calendar-arrow-offset);
     left: calc(var(--sbb-datepicker-button-offset) + var(--sbb-border-width));
     content: '';
-    height: var(--sbb-datepicker-calender-arrow-width);
-    width: var(--sbb-datepicker-calender-arrow-width);
+    height: var(--sbb-datepicker-calendar-arrow-width);
+    width: var(--sbb-datepicker-calendar-arrow-width);
     position: absolute;
     pointer-events: none;
     transform: rotate(-135deg);
     background-color: var(--sbb-color-background);
     border: var(--sbb-border-width) solid transparent;
-    border-right-color: var(--sbb-datepicker-calender-border-color);
-    border-bottom-color: var(--sbb-datepicker-calender-border-color);
+    border-right-color: var(--sbb-datepicker-calendar-border-color);
+    border-bottom-color: var(--sbb-datepicker-calendar-border-color);
 
     // Cut out obsolete triangle so it does not collide with calendar content
     // `-0.4px` fixes calculation issue in Firefox
@@ -52,7 +52,7 @@
 
     .sbb-datepicker-panel-above & {
       top: auto;
-      bottom: var(--sbb-datepicker-calender-arrow-offset);
+      bottom: var(--sbb-datepicker-calendar-arrow-offset);
       transform: rotate(45deg);
 
       clip-path: var(--sbb-box-shadow-arrow-clip-path);
@@ -65,29 +65,29 @@
 .sbb-calendar {
   display: block;
   max-width: 100%;
-  width: var(--sbb-datepicker-calender-width);
-  height: var(--sbb-datepicker-calender-height);
+  width: var(--sbb-datepicker-calendar-width);
+  height: var(--sbb-datepicker-calendar-height);
   background-color: var(--sbb-color-background);
-  border: var(--sbb-border-width) solid var(--sbb-datepicker-calender-border-color);
+  border: var(--sbb-border-width) solid var(--sbb-datepicker-calendar-border-color);
   border-radius: var(--sbb-border-radius);
   box-shadow: var(--sbb-box-shadow-below);
 }
 
 .sbb-calendar-header {
   display: block;
-  border-bottom: var(--sbb-border-width-thin) solid var(--sbb-datepicker-calender-line-color);
+  border-bottom: var(--sbb-border-width-thin) solid var(--sbb-datepicker-calendar-line-color);
 }
 
 .sbb-calendar-controls {
   display: flex;
-  height: var(--sbb-datepicker-calender-header-height);
+  height: var(--sbb-datepicker-calendar-header-height);
   align-items: center;
 }
 
 .sbb-calendar-controls-months,
 .sbb-calendar-controls-years {
   display: flex;
-  height: var(--sbb-datepicker-calender-header-height);
+  height: var(--sbb-datepicker-calendar-header-height);
   flex: 1 0 50%;
   text-align: center;
   position: relative;
@@ -101,10 +101,10 @@
   height: 100%;
   top: 0;
   right: 0;
-  border-right: var(--sbb-border-width-thin) solid var(--sbb-datepicker-calender-line-color);
+  border-right: var(--sbb-border-width-thin) solid var(--sbb-datepicker-calendar-line-color);
 }
 
-.sbb-calender-controls-button {
+.sbb-calendar-controls-button {
   @include buttonResetFrameless();
 
   display: flex;
@@ -113,11 +113,11 @@
   flex-shrink: 0;
   flex-grow: 0;
   outline: 0;
-  padding-left: var(--sbb-datepicker-calender-controls-padding);
-  padding-right: var(--sbb-datepicker-calender-controls-padding);
-  height: var(--sbb-datepicker-calender-header-height);
+  padding-left: var(--sbb-datepicker-calendar-controls-padding);
+  padding-right: var(--sbb-datepicker-calendar-controls-padding);
+  height: var(--sbb-datepicker-calendar-header-height);
   cursor: pointer;
-  color: var(--sbb-datepicker-calender-header-color);
+  color: var(--sbb-datepicker-calendar-header-color);
 
   &:is(:hover, :focus, :active) {
     color: var(--sbb-color-call-to-action-hover);
@@ -129,12 +129,12 @@
   }
 }
 
-.sbb-calender-controls-button-previous {
+.sbb-calendar-controls-button-previous {
   float: left;
   padding-right: 0; // Only affects mobile view of standard variant (on purpose)
 }
 
-.sbb-calender-controls-button-next {
+.sbb-calendar-controls-button-next {
   float: right;
   padding-left: 0; // Only affects mobile view of standard variant (on purpose)
 }
@@ -145,7 +145,7 @@
   font-family: var(--sbb-font-light);
   font-size: calc(#{pxToRem(21)} * var(--sbb-scaling-factor));
   line-height: 3.2;
-  color: var(--sbb-datepicker-calender-header-color);
+  color: var(--sbb-datepicker-calendar-header-color);
 
   :where(html.sbb-lean) & {
     font-size: var(--sbb-font-size);
@@ -154,7 +154,7 @@
 }
 
 .sbb-calendar-content {
-  padding: 0 var(--sbb-datepicker-calender-table-content-padding-width);
+  padding: 0 var(--sbb-datepicker-calendar-table-content-padding-width);
 }
 
 .sbb-calendar-table {
@@ -181,9 +181,9 @@
     display: block;
     position: absolute;
     top: calc(#{pxToRem(33)} * var(--sbb-scaling-factor));
-    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-datepicker-calender-line-color);
-    width: calc(100% + var(--sbb-datepicker-calender-table-content-padding-width) * 2);
-    left: calc(var(--sbb-datepicker-calender-table-content-padding-width) * -1);
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-datepicker-calendar-line-color);
+    width: calc(100% + var(--sbb-datepicker-calendar-table-content-padding-width) * 2);
+    left: calc(var(--sbb-datepicker-calendar-table-content-padding-width) * -1);
   }
 
   tr th {
@@ -192,7 +192,7 @@
     font-size: var(--sbb-font-size-small);
     text-transform: uppercase;
     padding: calc(#{pxToRem(7)} * var(--sbb-scaling-factor));
-    color: var(--sbb-datepicker-calender-header-color);
+    color: var(--sbb-datepicker-calendar-header-color);
   }
 }
 
@@ -211,7 +211,7 @@
   &:is(.sbb-calendar-body-range-background, .sbb-calendar-body-selected-begin, .sbb-calendar-body-selected-end)::before {
     @include datePickerCellContentBase();
     content: '';
-    background-color: var(--sbb-datepicker-calender-table-range-bg-color);
+    background-color: var(--sbb-datepicker-calendar-table-range-bg-color);
     width: 100%;
     left: 0;
   }
@@ -228,7 +228,7 @@
   &:is(.sbb-calendar-body-range-background:is(:last-child, :first-child), .sbb-calendar-body-range-background-offset-start)::after {
     @include datePickerCellContentBase();
     content: '';
-    background-color: var(--sbb-datepicker-calender-table-range-bg-color);
+    background-color: var(--sbb-datepicker-calendar-table-range-bg-color);
   }
 
   &:is(.sbb-calendar-body-range-background:first-child, .sbb-calendar-body-range-background-offset-start)::after {
@@ -252,8 +252,8 @@
 
 .sbb-calendar-body-cell,
 .sbb-calendar-body-label {
-  padding-top: var(--sbb-datepicker-calender-body-cell-padding);
-  padding-bottom: var(--sbb-datepicker-calender-body-cell-padding);
+  padding-top: var(--sbb-datepicker-calendar-body-cell-padding);
+  padding-bottom: var(--sbb-datepicker-calendar-body-cell-padding);
 }
 
 // Use .sbb-calendar-body-cell selector to be specific enough
@@ -270,7 +270,7 @@
     width: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
     height: calc(#{pxToRem(1)} * var(--sbb-scaling-factor));
     top: calc(#{pxToRem(25)} * var(--sbb-scaling-factor));
-    left: calc(50% - var(--sbb-datepicker-calender-body-cell-disabled-offset));
+    left: calc(50% - var(--sbb-datepicker-calendar-body-cell-disabled-offset));
     background-color: var(--sbb-color-cement);
     display: block;
     position: absolute;

@@ -2,7 +2,7 @@
   <div class="sbb-calendar-controls-months">
     <button
       type="button"
-      class="sbb-calender-controls-button sbb-calender-controls-button-previous"
+      class="sbb-calendar-controls-button sbb-calendar-controls-button-previous"
       [disabled]="!previousMonthEnabled()"
       (click)="previousMonthClicked()"
       [attr.aria-label]="_labelSwitchToPreviousMonth"
@@ -14,7 +14,7 @@
     >
     <button
       type="button"
-      class="sbb-calender-controls-button sbb-calender-controls-button-next"
+      class="sbb-calendar-controls-button sbb-calendar-controls-button-next"
       [disabled]="!nextMonthEnabled()"
       (click)="nextMonthClicked()"
       [attr.aria-label]="_labelSwitchToNextMonth"
@@ -25,7 +25,7 @@
   <div class="sbb-calendar-controls-years">
     <button
       type="button"
-      class="sbb-calender-controls-button sbb-calender-controls-button-previous"
+      class="sbb-calendar-controls-button sbb-calendar-controls-button-previous"
       [disabled]="!previousYearEnabled()"
       (click)="previousYearClicked()"
       [attr.aria-label]="_labelSwitchToPreviousYear"
@@ -37,7 +37,7 @@
     >
     <button
       type="button"
-      class="sbb-calender-controls-button sbb-calender-controls-button-next"
+      class="sbb-calendar-controls-button sbb-calendar-controls-button-next"
       [disabled]="!nextYearEnabled()"
       (click)="nextYearClicked()"
       [attr.aria-label]="_labelSwitchToNextYear"
