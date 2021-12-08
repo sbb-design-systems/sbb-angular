@@ -97,11 +97,11 @@
   --sbb-color-grey-medium: #{$sbbColorGreyMedium};
 
   // Context Colors
-  --sbb-color-background: var(--sbb-color-white);
-  --sbb-color-call-to-action: var(--sbb-color-red);
-  --sbb-color-call-to-action-hover: var(--sbb-color-red125);
-  --sbb-color-error: var(--sbb-color-red);
-  --sbb-color-text: var(--sbb-color-black);
+  --sbb-color-background: #{$sbbColorWhite};
+  --sbb-color-call-to-action: #{$sbbColorRed};
+  --sbb-color-call-to-action-hover: #{$sbbColorRed125};
+  --sbb-color-error: #{$sbbColorError};
+  --sbb-color-text: #{$sbbColorBlack};
 
   // Scaling
   --sbb-scaling-factor: 1;
