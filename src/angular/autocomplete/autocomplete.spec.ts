@@ -2362,7 +2362,7 @@ describe('SbbAutocomplete', () => {
       );
     }));
 
-    it('should fall back to above position when requested if options are added while the panel is open', fakeAsync(() => {
+    fit('should fall back to above position when requested if options are added while the panel is open', fakeAsync(() => {
       const fixture = createComponent(SimpleAutocomplete);
       fixture.componentInstance.numbers = fixture.componentInstance.numbers.slice(0, 1);
       fixture.componentInstance.filteredNumbers = fixture.componentInstance.numbers.slice();
@@ -2384,8 +2384,7 @@ describe('SbbAutocomplete', () => {
       let inputRect = inputEl.getBoundingClientRect();
       let panelRect = panel.getBoundingClientRect();
 
-      // add 2px border
-      expect(Math.floor(panelRect.top + 2)).toBe(
+      expect(Math.floor(panelRect.top + 1)).toBe(
         Math.floor(inputRect.bottom),
         `Expected panel top to be below input before repositioning.`
       );
