@@ -1222,12 +1222,12 @@ textarea {
         timing-function: var(--sbb-transition-timing-default);
         property: transform, padding-left, padding-right;
       }
-      padding-left: calc(#{pxToRem(0)} * var(--sbb-scaling-factor));
+      padding-left: 0;
       padding-right: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
 
       &:hover {
         padding-left: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
-        padding-right: calc(#{pxToRem(0)} * var(--sbb-scaling-factor));
+        padding-right: 0;
       }
     }
   }
