@@ -2,15 +2,23 @@
 
 .sbb-notification-toast {
   display: flex;
-  align-items: center;
-  min-height: calc(#{pxToRem(51)} * var(--sbb-scaling-factor));
+  min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
   border-radius: var(--sbb-border-radius);
   color: var(--sbb-color-white);
   background-color: var(--sbb-color-background);
   font-size: var(--sbb-font-size);
-  padding-top: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
-  padding-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  line-height: var(--sbb-line-height);
+  padding-top: calc(#{pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
+  padding-bottom: calc(
+    #{pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin) - var(
+        --sbb-line-height
+      ) + var(--sbb-icon-size-default)
+  );
   margin: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+
+  :where(html.sbb-lean) & {
+    padding-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
+  }
 
   .sbb-notification-toast-mobile & {
     margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
