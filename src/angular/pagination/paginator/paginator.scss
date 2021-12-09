@@ -1,3 +1,5 @@
+@import '../../styles/common';
+
 .sbb-paginator {
   display: inline-block;
 }
@@ -29,7 +31,6 @@
   height: 100%;
   line-height: 1;
   outline: 0;
-  padding: 0 0.5em;
 
   &:is(:hover, :focus):not(.sbb-paginator-item-selected) {
     color: var(--sbb-color-call-to-action-hover);
@@ -37,7 +38,6 @@
 
   :where(html.sbb-lean) & {
     border-width: pxToRem(2);
-    padding: 0 pxToRem(5);
   }
 }
 
@@ -47,7 +47,7 @@
 }
 
 .sbb-paginator-item-boundary {
-  color: var(--sbb-color-granite);
+  color: var(--sbb-color-weak-accent);
   width: var(--sbb-pagination-paginator-size);
   height: var(--sbb-pagination-paginator-size);
 
@@ -55,10 +55,6 @@
 
   &:hover {
     color: var(--sbb-color-call-to-action-hover);
-  }
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-iron);
   }
 }
 

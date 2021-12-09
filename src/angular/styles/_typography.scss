@@ -97,11 +97,12 @@
   --sbb-color-grey-medium: #{$sbbColorGreyMedium};
 
   // Context Colors
-  --sbb-color-background: #{$sbbColorWhite};
-  --sbb-color-call-to-action: #{$sbbColorRed};
-  --sbb-color-call-to-action-hover: #{$sbbColorRed125};
+  --sbb-color-background: var(--sbb-color-white);
+  --sbb-color-call-to-action: var(--sbb-color-red);
+  --sbb-color-call-to-action-hover: var(--sbb-color-red125);
   --sbb-color-error: #{$sbbColorError};
-  --sbb-color-text: #{$sbbColorBlack};
+  --sbb-color-text: var(--sbb-color-black);
+  --sbb-color-weak-accent: var(--sbb-color-grey);
 
   // Scaling
   --sbb-scaling-factor: 1;
@@ -170,7 +171,6 @@
       var(--sbb-datepicker-button-gap)
   );
   --sbb-datepicker-content-offset: calc(#{pxToRem(17)} * var(--sbb-scaling-factor));
-  --sbb-datepicker-calendar-border-color: var(--sbb-color-grey);
   --sbb-datepicker-calendar-header-height: calc(#{pxToRem(68)} * var(--sbb-scaling-factor));
   --sbb-datepicker-calendar-header-color: var(--sbb-color-metal);
   --sbb-datepicker-calendar-line-color: var(--sbb-color-platinum);
@@ -189,9 +189,8 @@
 
   // Forms
   --sbb-form-background-color-readonly: var(--sbb-color-mild);
-  --sbb-form-border-color-focused: var(--sbb-color-grey);
   --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
-  --sbb-form-input-color: var(--sbb-color-grey);
+  --sbb-form-input-color: var(--sbb-color-weak-accent);
   --sbb-form-input-color-disabled: var(--sbb-color-grey);
   --sbb-form-input-min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
 
@@ -238,13 +237,11 @@
   --sbb-table-tbody-stripe-background-color: var(--sbb-color-milk);
   --sbb-table-thead-padding: #{pxToEm(16)};
   --sbb-table-tbody-padding: #{pxToEm(16)};
-  --sbb-table-caption-color: var(--sbb-color-grey);
   --sbb-table-sticky-shadow-width: #{pxToRem(8)};
   --sbb-table-sticky-shadow-offset: #{pxToRem(-9)};
   --sbb-table-sort-header-arrow-margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   // Tooltip
-  --sbb-tooltip-border-color: var(--sbb-color-grey);
   --sbb-tooltip-padding: calc(#{pxToRem(23)} * var(--sbb-scaling-factor));
   --sbb-tooltip-arrow-offset: calc(#{pxToRem(7.2)} * var(--sbb-scaling-factor));
   --sbb-tooltip-arrow-horizontal-space: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
@@ -256,7 +253,6 @@
   --sbb-tooltip-shadow-arrow-size: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
 
   // Usermenu
-  --sbb-usermenu-color: var(--sbb-color-grey);
   --sbb-usermenu-panel-width: calc(#{pxToRem(288)} * var(--sbb-scaling-factor));
   --sbb-usermenu-trigger-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
   --sbb-usermenu-trigger-padding: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
@@ -388,6 +384,15 @@
     }
   }
   &:where(.sbb-lean) {
+    // Colors
+
+    // Grey is always translated into granite color in lean.
+    // We globally overwrite grey color with granite so we don't have to redefine it in every usage.
+    --sbb-color-grey: var(--sbb-color-granite);
+
+    // Context Colors
+    --sbb-color-weak-accent: var(--sbb-color-iron);
+
     // Dividers
     --sbb-divider-thin: #{pxToRem(4)};
     --sbb-divider-small: #{pxToRem(8)};
@@ -407,7 +412,6 @@
     // rem (or any unit) is necessary for correct calc calculation.
     --sbb-datepicker-button-gap: 0rem;
     --sbb-datepicker-content-offset: #{pxToRem(8)};
-    --sbb-datepicker-calendar-border-color: var(--sbb-color-iron);
     --sbb-datepicker-calendar-header-height: #{pxToRem(36)};
     --sbb-datepicker-calendar-header-color: var(--sbb-color-iron);
     --sbb-datepicker-calendar-line-color: var(--sbb-color-cloud);
@@ -420,10 +424,7 @@
 
     // Forms
     --sbb-form-background-color-readonly: transparent;
-    --sbb-form-border-color-focused: var(--sbb-color-iron);
     --sbb-form-border-color-readonly: transparent;
-    --sbb-form-input-color: var(--sbb-color-iron);
-    --sbb-form-input-color-disabled: var(--sbb-color-granite);
     --sbb-form-input-min-height: #{pxToRem(36)};
 
     // Notification
@@ -437,16 +438,13 @@
     --sbb-expansion-panel-line-height: #{pxToRem(25)};
 
     // Pagination
-    --sbb-pagination-base-color: var(--sbb-color-granite);
     --sbb-pagination-disabled-color: var(--sbb-color-storm);
     --sbb-pagination-paginator-size: #{pxToRem(30)};
 
     // Tooltip
-    --sbb-tooltip-border-color: var(--sbb-color-iron);
     --sbb-tooltip-padding: #{pxToRem(8)};
 
     // Usermenu
-    --sbb-usermenu-color: var(--sbb-color-iron);
     --sbb-usermenu-trigger-padding: #{pxToRem(8)};
 
     // Shadow
@@ -874,7 +872,7 @@ textarea {
   }
 
   &:is(:focus, .sbb-focused) {
-    border-color: var(--sbb-form-border-color-focused);
+    border-color: var(--sbb-color-weak-accent);
   }
 
   &:is(:disabled, [disabled], .sbb-disabled) {
@@ -1294,10 +1292,6 @@ textarea {
   color: var(--sbb-color-grey);
   border-color: var(--sbb-color-storm);
 
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
-  }
-
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
     border-color: var(--sbb-color-iron);
   }
@@ -1516,11 +1510,7 @@ textarea {
   .sbb-selection-input:focus + &,
   // Applies focus highlight for pseudo-checkbox
   .sbb-menu-item.sbb-active .sbb-pseudo-checkbox & {
-    border-color: var(--sbb-color-grey);
-
-    :where(html.sbb-lean) & {
-      border-color: var(--sbb-color-iron);
-    }
+    border-color: var(--sbb-color-weak-accent);
   }
 
   :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
@@ -1601,10 +1591,6 @@ textarea {
 
   .sbb-selection-disabled & {
     color: var(--sbb-color-grey);
-
-    :where(html.sbb-lean) & {
-      color: var(--sbb-color-granite);
-    }
   }
 
   .sbb-selection-checked & {
@@ -1622,7 +1608,6 @@ textarea {
   transition: color var(--sbb-transition-default);
 
   :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
     line-height: pxToRem(21);
   }
 
@@ -1749,10 +1734,6 @@ textarea {
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-line-height-small);
   color: var(--sbb-color-grey);
-
-  :where(html.sbb-lean) {
-    color: var(--sbb-color-granite);
-  }
 }
 
 .sbb-selection-panel-warning {
@@ -1765,10 +1746,6 @@ textarea {
     padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
     flex-basis: auto;
     order: initial;
-  }
-
-  :where(html.sbb-lean) {
-    color: var(--sbb-color-granite);
   }
 }
 
@@ -1829,10 +1806,6 @@ textarea {
   line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-grey);
   display: block;
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
-  }
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -1995,7 +1968,7 @@ textarea {
   caption {
     font-size: var(--sbb-font-size-small);
     line-height: var(--sbb-line-height-small);
-    color: var(--sbb-table-caption-color);
+    color: var(--sbb-color-weak-accent);
   }
 
   .sbb-selection-item {
@@ -2006,7 +1979,7 @@ textarea {
 .sbb-table-caption > * {
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-line-height-small);
-  color: var(--sbb-table-caption-color);
+  color: var(--sbb-color-weak-accent);
 }
 
 .sbb-table-align-center {
@@ -2175,19 +2148,14 @@ $panelBorderRadius: 2;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: var(--sbb-color-background);
-  border: var(--sbb-border-width) solid var(--sbb-color-grey);
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
   transition: height var(--sbb-transition-fast-start), opacity var(--sbb-transition-fast-start);
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-weak-accent);
   position: relative;
   top: var(--sbb-box-shadow-horizontal-border-offset-top-below);
   box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border-bottom);
-
-  :where(html.sbb-lean) & {
-    border-color: var(--sbb-color-iron);
-    color: var(--sbb-color-iron);
-  }
 
   hr {
     margin: pxToRem(10) 0;
@@ -2206,7 +2174,7 @@ $panelBorderRadius: 2;
       calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      color: var(--sbb-color-granite); // Redefine color to be more specific than standard variant
+      color: var(--sbb-color-granite);
       padding: pxToRem(4) pxToRem(8);
     }
   }
@@ -2265,14 +2233,13 @@ $menuItemPaddingTopBottom: 4;
   max-width: 100%;
   cursor: pointer;
   outline: 0;
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-weak-accent);
   font-size: var(--sbb-font-size);
   line-height: var(--sbb-line-height-medium);
 
   :where(html.sbb-lean) & {
     padding-left: pxToRem(8);
     padding-right: pxToRem(8);
-    color: var(--sbb-color-iron);
   }
 
   &:not(.sbb-focused) strong {

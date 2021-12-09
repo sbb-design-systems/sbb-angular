@@ -41,7 +41,7 @@
   }
 
   &::before {
-    border-color: var(--sbb-tooltip-border-color);
+    border-color: var(--sbb-color-weak-accent);
     z-index: 1;
   }
 
@@ -60,7 +60,7 @@
   color: var(--sbb-color-grey);
   text-overflow: ellipsis;
   background-color: var(--sbb-color-background);
-  border: var(--sbb-border-width) solid var(--sbb-tooltip-border-color);
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: var(--sbb-border-radius);
   z-index: 2;
 

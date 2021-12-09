@@ -131,6 +131,6 @@
 }
 
 @mixin sbbFocusOutline() {
-  outline: var(--sbb-border-width-thin) solid var(--sbb-color-iron);
+  outline: var(--sbb-border-width-thin) solid var(--sbb-color-weak-accent);
   outline-offset: var(--sbb-border-width-thin-negative);
 }

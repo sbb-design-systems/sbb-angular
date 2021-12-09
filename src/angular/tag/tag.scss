@@ -52,7 +52,6 @@
   }
 
   :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
     line-height: var(--sbb-line-height);
     padding: pxToRem(2) pxToRem(6) pxToRem(3) pxToRem(13);
   }

@@ -23,11 +23,7 @@
   }
 
   &.sbb-focused::after {
-    border-color: var(--sbb-color-grey);
-
-    :where(html.sbb-lean) & {
-      border-color: var(--sbb-color-iron);
-    }
+    border-color: var(--sbb-color-weak-accent);
   }
 
   &.sbb-autocomplete-panel-open:not(.sbb-input-with-open-panel-above)::after {
