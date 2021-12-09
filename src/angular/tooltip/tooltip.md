@@ -22,6 +22,18 @@ Additionally we provide a directive usage for the tooltip. This is also internal
 
 By default the `sbbTooltip` will be shown on hover.
 
+#### Template usage
+
+It is also possible to use a `TemplateRef` as a tooltip content.
+
+```html
+<span sbbTooltip="tooltipContent">Short description.</span>
+
+<ng-template #tooltipContent>
+  Display additional information about a topic, input or something else.
+</ng-template>
+```
+
 #### Show and hide delays
 
 To add a delay before showing or hiding the tooltip, you can use the inputs `hoverShowDelay` and
