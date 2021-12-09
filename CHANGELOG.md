@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-rc.3](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.2...13.0.0-rc.3) (2021-12-09)
+
+
+### Features
+
+* add opened output to tooltip ([#979](https://github.com/sbb-design-systems/sbb-angular/issues/979)) ([c6797fb](https://github.com/sbb-design-systems/sbb-angular/commit/c6797fb6b6428bedca7109872a953b9c8b1ece7e))
+* switch to css properties/:is/:where usage ([#890](https://github.com/sbb-design-systems/sbb-angular/issues/890)) ([df19c86](https://github.com/sbb-design-systems/sbb-angular/commit/df19c865d9c4f410b345c7d00b8ac8c09fdd8046)), closes [#926](https://github.com/sbb-design-systems/sbb-angular/issues/926) [#515](https://github.com/sbb-design-systems/sbb-angular/issues/515)
+
+
+### Bug Fixes
+
+* avoid closing tooltip on clipping parent container ([#972](https://github.com/sbb-design-systems/sbb-angular/issues/972)) ([38329bb](https://github.com/sbb-design-systems/sbb-angular/commit/38329bb061c470ac9c24442210666d2be52b23cb))
+* remove height of autocomplete overlay if not visible ([#967](https://github.com/sbb-design-systems/sbb-angular/issues/967)) ([16834e7](https://github.com/sbb-design-systems/sbb-angular/commit/16834e7930ae2446cb3effa5803cfd80e4e77b78))
+* **showcase:** fix stackblitz i18n and RouterModule ([#936](https://github.com/sbb-design-systems/sbb-angular/issues/936)) ([211f1bc](https://github.com/sbb-design-systems/sbb-angular/commit/211f1bc1893303b7820773bd40f625ba6e0e9ff1))
+
+
+### Documentation
+
+* add documentation for TemplateRef usage for tooltip ([#981](https://github.com/sbb-design-systems/sbb-angular/issues/981)) ([0f047e4](https://github.com/sbb-design-systems/sbb-angular/commit/0f047e4fe1c2de8b52950d22459905e28f85ab7d))
+* recommend WSL2 for developer setup on Windows ([#944](https://github.com/sbb-design-systems/sbb-angular/issues/944)) ([8a558d7](https://github.com/sbb-design-systems/sbb-angular/commit/8a558d7b89658b2d8fc97a52638b977d6d08482b))
+
 ## [13.0.0-rc.2](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.1...13.0.0-rc.2) (2021-11-24)
 
 
