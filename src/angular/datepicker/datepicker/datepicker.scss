@@ -1,92 +1,31 @@
-@import '../../../angular/styles/common';
-
-$buttonOffset: 12;
-$buttonOffsetLean: 6;
+@import '../../styles/common';
 
 .sbb-datepicker {
   display: inline-block;
   position: relative;
   width: 100%;
-  color: $sbbColorGrey;
-
-  html.sbb-lean & {
-    color: $sbbColorIron;
-  }
+  color: var(--sbb-color-weak-accent);
 }
 
 .sbb-datepicker-disabled {
-  color: $sbbColorGrey;
-
-  html.sbb-lean & {
-    color: $sbbColorGranite;
-  }
+  color: var(--sbb-color-grey);
 }
 
 .sbb-date-input {
-  $borderWidth: 2;
-  $arrowsOnlyOrToggleOnlyPadding: 44;
-  $arrowsOnlyOrToggleOnlyPaddingLean: 38;
-
-  .sbb-datepicker-toggle-enabled > &,
-  .sbb-datepicker-arrows-enabled > & {
-    padding-left: pxToRem($arrowsOnlyOrToggleOnlyPadding - $borderWidth);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding-left: pxToRem(($arrowsOnlyOrToggleOnlyPadding - $borderWidth) * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        padding-left: pxToRem(($arrowsOnlyOrToggleOnlyPadding - $borderWidth) * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      padding-left: pxToRem($arrowsOnlyOrToggleOnlyPaddingLean);
-    }
+  :is(.sbb-datepicker-toggle-enabled, .sbb-datepicker-arrows-enabled) > & {
+    padding-left: var(--sbb-datepicker-toggle-or-arrows-padding);
   }
 
   .sbb-datepicker-arrows-enabled > & {
-    padding-right: pxToRem($arrowsOnlyOrToggleOnlyPadding - $borderWidth);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding-right: pxToRem(($arrowsOnlyOrToggleOnlyPadding - $borderWidth) * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        padding-right: pxToRem(($arrowsOnlyOrToggleOnlyPadding - $borderWidth) * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      padding-right: pxToRem($arrowsOnlyOrToggleOnlyPaddingLean);
-    }
+    padding-right: var(--sbb-datepicker-toggle-or-arrows-padding);
   }
 
   .sbb-datepicker-arrows-enabled.sbb-datepicker-toggle-enabled > & {
-    $arrowsAndTogglePadding: 72;
-
-    padding-left: pxToRem($arrowsAndTogglePadding - $borderWidth);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding-left: pxToRem(($arrowsAndTogglePadding - $borderWidth) * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        padding-left: pxToRem(($arrowsAndTogglePadding - $borderWidth) * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      padding-left: pxToRem(62);
-    }
+    padding-left: var(--sbb-datepicker-toggle-and-arrows-padding);
   }
 }
 
-.sbb-datepicker-arrow-button,
-.sbb-datepicker-toggle-button {
+:is(.sbb-datepicker-arrow-button, .sbb-datepicker-toggle-button) {
   @include buttonResetFrameless();
   @include absoluteCenterY();
   outline: 0;
@@ -96,66 +35,21 @@ $buttonOffsetLean: 6;
   &:not(:disabled) {
     cursor: pointer;
 
-    &:hover,
-    &:focus,
-    &:active {
-      color: $sbbColorRed125;
+    &:is(:hover, :focus, :active) {
+      color: var(--sbb-color-call-to-action-hover);
     }
   }
 }
 
 .sbb-datepicker-arrow-button-left,
 .sbb-datepicker-toggle-button {
-  left: pxToRem($buttonOffset);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      left: pxToRem($buttonOffset * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      left: pxToRem($buttonOffset * $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
-    left: pxToRem($buttonOffsetLean);
-  }
-}
-
-.sbb-datepicker-arrow-button-right {
-  right: pxToRem($buttonOffset);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      right: pxToRem($buttonOffset * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      right: pxToRem($buttonOffset * $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
-    right: pxToRem($buttonOffsetLean);
-  }
+  left: var(--sbb-datepicker-button-offset);
 }
 
 .sbb-datepicker-arrows-enabled .sbb-datepicker-toggle-button {
-  $buttonOffset: 40;
-  left: pxToRem($buttonOffset);
+  left: var(--sbb-datepicker-adjacent-button-offset);
+}
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      left: pxToRem($buttonOffset * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      left: pxToRem($buttonOffset * $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
-    left: pxToRem(30);
-  }
+.sbb-datepicker-arrow-button-right {
+  right: var(--sbb-datepicker-button-offset);
 }

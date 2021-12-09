@@ -1,7 +1,4 @@
-@import '../../../angular/styles/common';
-
-$sbb-sort-header-arrow-margin: 8;
-$sbb-sort-header-arrow-container-size: 24;
+@import '../../styles/common';
 
 .sbb-sort-header {
   cursor: pointer;
@@ -9,26 +6,17 @@ $sbb-sort-header-arrow-container-size: 24;
 
   // Usually we could rely on the arrow showing up to be focus indication, but if a header is
   // active, the arrow will always be shown so the user has no way of telling the difference.
-  &.cdk-keyboard-focused,
-  &.cdk-program-focused {
-    &:before {
-      content: '';
-      border: pxToEm(1) solid $sbbColorIron;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
+  &:is(.cdk-keyboard-focused, .cdk-program-focused) {
+    @include sbbFocusOutline();
   }
 
   &:hover .sbb-sort-header-container {
-    color: $sbbColorRed125;
+    color: var(--sbb-color-call-to-action-hover);
   }
 }
 
 .sbb-sort-header-sorted {
-  color: $sbbColorBlack;
+  color: var(--sbb-color-black);
 }
 
 .sbb-sort-header-container {
@@ -60,18 +48,19 @@ $sbb-sort-header-arrow-container-size: 24;
 }
 
 .sbb-sort-header-arrow {
-  height: pxToEm($sbb-sort-header-arrow-container-size);
-  width: pxToEm($sbb-sort-header-arrow-container-size);
-  min-width: pxToEm($sbb-sort-header-arrow-container-size);
+  height: var(--sbb-icon-size-default);
+  width: var(--sbb-icon-size-default);
+  min-width: var(--sbb-icon-size-default);
   position: relative;
 
   // Start off at 0 since the arrow may become visible while parent are animating.
   // This will be overwritten when the arrow animations kick in. See #11819.
   opacity: 0;
 
-  margin: pxToEm(-1) pxToEm(-8) pxToEm(-1) pxToEm($sbb-sort-header-arrow-margin);
+  margin: pxToEm(-1) pxToEm(-8) pxToEm(-1) var(--sbb-table-sort-header-arrow-margin);
+
   .sbb-sort-header-position-before & {
-    margin: pxToEm(-1) pxToEm($sbb-sort-header-arrow-margin) pxToEm(-1) pxToEm(-8);
+    margin: pxToEm(-1) var(--sbb-table-sort-header-arrow-margin) pxToEm(-1) pxToEm(-8);
   }
 
   svg {

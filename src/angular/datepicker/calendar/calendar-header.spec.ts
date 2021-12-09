@@ -53,10 +53,10 @@ describe('SbbCalendarHeader', () => {
       const calendarDebugElement = fixture.debugElement.query(By.directive(SbbCalendar));
       calendarElement = calendarDebugElement.nativeElement;
       prevButton = calendarElement.querySelector(
-        '.sbb-calender-controls-button-previous'
+        '.sbb-calendar-controls-button-previous'
       ) as HTMLElement;
       nextButton = calendarElement.querySelector(
-        '.sbb-calender-controls-button-next'
+        '.sbb-calendar-controls-button-next'
       ) as HTMLElement;
 
       calendarInstance = calendarDebugElement.componentInstance;

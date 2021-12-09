@@ -3,7 +3,7 @@
 .sbb-step-header {
   outline: none;
   position: relative;
-  font-family: $fontSbbLight;
+  font-family: var(--sbb-font-light);
   -webkit-tap-highlight-color: transparent;
   // Create a buffer space in order for the scrollbar to not be adjacent to the active underline.
   margin-bottom: pxToRem(8);
@@ -13,40 +13,30 @@
   display: inline-block;
   @include ellipsis;
   vertical-align: middle;
-  color: $sbbColorMetal;
+  color: var(--sbb-color-metal);
   cursor: default;
   padding-bottom: 0.5em;
-  font-size: pxToRem(20);
+  font-size: var(--sbb-font-size-large);
   line-height: 1;
 
-  html:not(.sbb-lean) & {
-    @include mq($from: tabletPortrait) {
-      font-size: pxToRem(21);
-    }
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop) {
       padding-bottom: 1em;
     }
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(32);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(42);
-    }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     font-size: pxToRem(16);
     padding-bottom: pxToRem(5);
   }
 }
 
 .sbb-step-text-label {
-  text-overflow: ellipsis;
-  overflow: hidden;
+  @include ellipsis;
 }
 
 .sbb-step-label-active {
   cursor: pointer;
-  color: $sbbColorBlack;
+  color: var(--sbb-color-text);
 
   &::after {
     content: '';
@@ -56,19 +46,15 @@
     width: 0;
     left: 50%;
     height: pxToRem(1);
-    border-bottom: pxToRem(1) solid currentColor;
-    transition: width 0.3s, left 0.3s;
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        border-bottom-width: pxToRem(2);
-      }
+    border-bottom: var(--sbb-border-width-thin) solid currentColor;
+    transition: {
+      duration: var(--sbb-transition-duration-default);
+      property: left, width;
     }
   }
 
-  .sbb-step-header:focus &,
-  .sbb-step-header:hover & {
-    color: $sbbColorRed125;
+  .sbb-step-header:is(:focus, :hover) & {
+    color: var(--sbb-color-call-to-action-hover);
 
     &::after {
       left: 0;
@@ -77,18 +63,16 @@
   }
 }
 
-.sbb-step-label-selected {
-  &::after {
-    left: 0;
-    width: 100%;
-  }
+.sbb-step-label-selected::after {
+  left: 0;
+  width: 100%;
 }
 
 .sbb-step-label-active.sbb-step-label-locked {
   cursor: default;
 
-  .sbb-step-header:hover & {
-    color: $sbbColorBlack;
+  .sbb-step-header:is(:focus, :hover) & {
+    color: var(--sbb-color-text);
   }
 
   &::after {

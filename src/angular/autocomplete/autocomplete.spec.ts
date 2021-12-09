@@ -2384,8 +2384,7 @@ describe('SbbAutocomplete', () => {
       let inputRect = inputEl.getBoundingClientRect();
       let panelRect = panel.getBoundingClientRect();
 
-      // add 2px border
-      expect(Math.floor(panelRect.top + 2)).toBe(
+      expect(Math.floor(panelRect.top + 1)).toBe(
         Math.floor(inputRect.bottom),
         `Expected panel top to be below input before repositioning.`
       );
@@ -2765,9 +2764,8 @@ describe('SbbAutocomplete', () => {
       const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
       const panelTop = panel.getBoundingClientRect().top;
 
-      // add 2px border to panel top
       expect(Math.floor(inputBottom)).toBe(
-        Math.floor(panelTop + 2),
+        Math.floor(panelTop + 1),
         `Expected panel top to match input bottom when there is only one option.`
       );
 

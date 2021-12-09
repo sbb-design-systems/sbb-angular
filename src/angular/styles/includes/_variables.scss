@@ -33,37 +33,6 @@ $sizeBreakpointDesktop4k: 2561px;
 $sizeBreakpointDesktop5k: 3841px;
 
 /**
- * Offsets
- */
-$offset5k: 19%;
-$offsetLarge: 8.5%;
-$offsetPreLarge: 5.5%;
-$offsetMedium: 24;
-$offsetSmall: 12;
-
-/**
- * Scaling Factors
- */
-$scalingFactorDefault: 1;
-$scalingFactor4k: 1.5;
-$scalingFactor5k: 2;
-
-/**
- * Grid
- */
-$gutterMobile: 12;
-$gutterTablet: 24;
-$gutterDesktop: 16;
-$gutterDesktop4k: 26;
-$gutterDesktop5k: 32;
-
-/* Vertical Spacings */
-$gutterHeight: 8;
-$innerComponentSpacing: 24;
-$interComponentSpacing: 80;
-$interComponentSpacingSmall: 40;
-
-/**
  * Typo
  */
 $sizeFontDefault: 15;
@@ -74,62 +43,9 @@ $sizeLineHeightDefaultLean: 23;
 $sizeLineHeightDefault4k: 39;
 $sizeLineHeightDefault5k: 52;
 
-$fontSizeHeaderDefault: 14;
-$fontSizeHeaderDesktop4k: $fontSizeHeaderDefault * $scalingFactor4k;
-$fontSizeHeaderDesktop5k: $fontSizeHeaderDefault * $scalingFactor5k;
-
-$fontSizeFooterBottomContainerDefault: 12;
-$fontSizeFooterDefault: $fontSizeHeaderDefault;
-
-/* lead text font sizes */
-$sizeFontLeadTextDefault: 20;
-$sizeFontLeadTextTablet: 21;
-
 /* form element sizing */
 $formElementMaxWidth: 320;
 $formElementMinWidth: 240;
-$formElementSpacing: private-div($gutterDesktop, 2);
-
-/**
- * Animation-Stuff
- */
-$defaultTransitionDuration: 300ms;
-$shortDistanceTransitionDuration: 225ms;
-
-$defaultLinkIconTransitionTimingFunction: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-
-$linkiconAnimationDuration: $defaultTransitionDuration;
-$linkiconAnimation: $linkiconAnimationDuration $defaultLinkIconTransitionTimingFunction;
-$linksocialAnimation: background $defaultTransitionDuration ease-in;
-
-$imageLazyloadFadeAnimation: opacity 0.35s ease-in;
-$imageLazyloadFadeAnimationTablet: opacity 0.45s ease-in;
-
-/**
- * Layers
- */
-
-$zIndexFocusedElement: 999;
-
-/**
- * Footer
- */
-$footerAnimation: 0.3s; // This has to match the delay in the corresponding JS
-$fontSizeFooterSectionTitleDefault: 16;
-
-/**
- * Timetable Breakpoints
- */
-$sizeBreakpointTimetableMobile: 960px;
-
-/**
- * Timetable Cells
- */
-$cellSmall: 52;
-$cellCtaSmall: 72;
-$cellCtaSmallMedium: 96;
-$cellCTAMedium: 160;
-$cellCTALarge: 332;
 
 /**
  * Colors
@@ -175,40 +91,3 @@ $sbbColorCallToAction: $sbbColorRed;
 $sbbColorCallToActionHover: $sbbColorRed125;
 $sbbColorError: $sbbColorRed;
 $sbbColorText: $sbbColorBlack;
-
-/**
- * Icons
- *
- * Basically icons should embedded by using sbb-icon.
- * Due to various styling reasons there are some copied exceptions which are listed here.
- */
-
-// Chevron-right-small rotated and with color #686868 (granite) applied
-$sbbIconChevronRightSmallRotatedDownGranite: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaXQ9IiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgZm9jdXNhYmxlPSJmYWxzZSI+CiAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzY4Njg2OCIgcG9pbnRzPSI0IDggMTIgMTYgMjAgOCI+PC9wb2x5bGluZT4KPC9zdmc+';
-
-// Chevron-small-down-small with color #666 (grey) applied
-$sbbIconChevronSmallDownSmallGrey: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBwb2ludHM9IjguMDkyIDEwLjM1IDExLjk5NiAxNC4zIDE1LjkgMTAuMzUyIi8+Cjwvc3ZnPg==';
-
-// Chevron-small-right-small color #686868 (granite) applied
-$sbbIconChevronSmallRightSmallGranite: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4K';
-
-// Chevron-small-right-small color #cdcdcd (platinum) applied
-$sbbIconChevronSmallRightSmallPlatinum: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2RjZGNkIiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4=';
-
-// Chevron-small-down-circle-small color #686868 (granite) applied
-$sbbIconChevronSmallDownCircleSmallGranite: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM2ODY4NjgiIGQ9Ik0xMiw0LjQ5OTcgQzE2LjE0Myw0LjQ5OTcgMTkuNSw3Ljg1NzcgMTkuNSwxMS45OTk3IEMxOS41LDE2LjE0MjcgMTYuMTQzLDE5LjQ5OTcgMTIsMTkuNDk5NyBDNy44NTgsMTkuNDk5NyA0LjUsMTYuMTQyNyA0LjUsMTEuOTk5NyBDNC41LDcuODU3NyA3Ljg1OCw0LjQ5OTcgMTIsNC40OTk3IFogTTguMDkyMywxMC4zNDk4IEwxMS45OTYzLDE0LjI5OTggTDE1LjkwMDMsMTAuMzUxOCIvPgo8L3N2Zz4K';
-
-// Chevron-small-down-circle-small color #c60018 (red 125) applied
-$sbbIconChevronSmallDownCircleSmallRed125: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNjNjAwMTgiIGQ9Ik0xMiw0LjQ5OTcgQzE2LjE0Myw0LjQ5OTcgMTkuNSw3Ljg1NzcgMTkuNSwxMS45OTk3IEMxOS41LDE2LjE0MjcgMTYuMTQzLDE5LjQ5OTcgMTIsMTkuNDk5NyBDNy44NTgsMTkuNDk5NyA0LjUsMTYuMTQyNyA0LjUsMTEuOTk5NyBDNC41LDcuODU3NyA3Ljg1OCw0LjQ5OTcgMTIsNC40OTk3IFogTTguMDkyMywxMC4zNDk4IEwxMS45OTYzLDE0LjI5OTggTDE1LjkwMDMsMTAuMzUxOCIvPgo8L3N2Zz4K';
-
-// Arrow-right-small color black applied
-$sbbIconArrowRightSmallBlack: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBkPSJNNSAxMi40OTFoMTIuNDlNMTMuNSAxNi41bDMuOTktNC4wMDhMMTMuNSA4LjUiLz48L3N2Zz4=';
-
-// Arrow-right-small color #c60018 (red 125) applied
-$sbbIconArrowRightSmallRed125: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzYwMDE4IiBkPSJNNSAxMi40OTFoMTIuNDlNMTMuNSAxNi41bDMuOTktNC4wMDhMMTMuNSA4LjUiLz48L3N2Zz4=';
-
-// Chevron-small-down-small color black applied
-$sbbIconChevronSmallDownSmallBlack: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgcG9pbnRzPSI4LjA5MiAxMC4zNSAxMS45OTYgMTQuMyAxNS45IDEwLjM1MiIvPjwvc3ZnPg==';
-
-// Chevron-small-down-small color #c60018 (red 125) applied
-$sbbIconChevronSmallDownSmallRed125: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M2MDAxOCIgcG9pbnRzPSI4LjA5MiAxMC4zNSAxMS45OTYgMTQuMyAxNS45IDEwLjM1MiIvPjwvc3ZnPg==';

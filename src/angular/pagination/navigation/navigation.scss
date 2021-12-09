@@ -1,19 +1,10 @@
-@import '../pagination';
-
-$navigationIconTextMargin: 4;
+@import '../../styles/common';
 
 .sbb-navigation {
-  margin: 0; // Overwrite styles from typography (ul)
-  padding-left: 0; // Overwrite styles from typography (ul)
-
   display: flex;
-  list-style: none;
 }
 
 .sbb-navigation-item {
-  margin: 0; // Overwrite styles from typography (li)
-  padding-left: 0; // Overwrite styles from typography (li)
-
   display: flex;
   position: relative;
   width: 50%;
@@ -36,38 +27,16 @@ $navigationIconTextMargin: 4;
 
 .sbb-navigation-item-button {
   cursor: pointer;
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-background);
   max-width: 100%;
   height: 100%;
   outline: 0;
-  font-size: pxToRem(13);
-  line-height: pxToRem(20);
-  color: $paginationBaseColor;
+  font-size: var(--sbb-font-size-small);
+  line-height: var(--sbb-line-height-small);
+  color: var(--sbb-pagination-base-color);
 
-  &:hover,
-  &:focus {
-    color: $paginationActiveHoverColor;
-  }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(20);
-      line-height: pxToRem(30);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(26);
-      line-height: pxToRem(19);
-    }
-  }
-
-  html.sbb-lean & {
-    color: $paginationBaseColorLean;
-
-    &:hover,
-    &:focus {
-      color: $paginationActiveHoverColorLean;
-    }
+  &:is(:hover, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 }
 
@@ -87,73 +56,26 @@ $navigationIconTextMargin: 4;
 
 .sbb-navigation-item-boundary-arrow {
   line-height: 0;
-  flex: 0 0 pxToRem(24);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      flex: 0 0 pxToRem(24 * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      flex: 0 0 pxToRem(24 * $scalingFactor5k);
-    }
-  }
+  flex: 0 0 var(--sbb-icon-size-default);
 
   .sbb-navigation-item-boundary-right & {
-    margin-left: pxToRem($navigationIconTextMargin);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        margin-left: pxToRem($navigationIconTextMargin * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        margin-left: pxToRem($navigationIconTextMargin * $scalingFactor5k);
-      }
-    }
+    margin-left: var(--sbb-pagination-navigation-item-margin);
   }
 
   .sbb-navigation-item-boundary-left & {
-    margin-right: pxToRem($navigationIconTextMargin);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        margin-right: pxToRem($navigationIconTextMargin * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        margin-right: pxToRem($navigationIconTextMargin * $scalingFactor5k);
-      }
-    }
+    margin-right: var(--sbb-pagination-navigation-item-margin);
   }
 }
 
 .sbb-navigation-item-boundary-text {
-  $spaceBetweenTextEntries: 4;
   @include ellipsis;
   max-width: 100%;
 
   .sbb-navigation-item-boundary-left & {
-    padding-right: pxToRem($spaceBetweenTextEntries);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding-right: pxToRem($spaceBetweenTextEntries * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        padding-right: pxToRem($spaceBetweenTextEntries * $scalingFactor5k);
-      }
-    }
+    padding-right: var(--sbb-pagination-navigation-item-margin);
   }
 
   .sbb-navigation-item-boundary-right & {
-    padding-left: pxToRem($spaceBetweenTextEntries);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding-left: pxToRem($spaceBetweenTextEntries * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        padding-left: pxToRem($spaceBetweenTextEntries * $scalingFactor5k);
-      }
-    }
+    padding-left: var(--sbb-pagination-navigation-item-margin);
   }
 }

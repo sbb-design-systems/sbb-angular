@@ -3,10 +3,8 @@
 .sbb-header-menu-trigger {
   position: relative;
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: $sbbColorRed125;
+  &:is(:hover, :active, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 
   .sbb-header-lean-main-menu & {
@@ -19,23 +17,24 @@
 
 .sbb-header-menu-trigger-content {
   @include ellipsis();
-  border: transparent solid pxToRem(1);
+  border: var(--sbb-border-width-thin) solid transparent;
   display: block;
-  padding-right: pxToRem(24);
-  background-color: $sbbColorWhite;
+  padding-right: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  background-color: var(--sbb-color-background);
 
   .sbb-header-lean-main-menu & {
     display: inline-block;
     position: relative;
-    padding: pxToRem(6) pxToRem(8);
+    padding: calc(#{pxToRem(6)} * var(--sbb-scaling-factor))
+      calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
     padding-right: pxToRem(32);
     max-width: 100%;
   }
   .sbb-header-lean-main-menu .sbb-header-menu-trigger[aria-expanded='true'] & {
-    border: $sbbColorIron solid pxToRem(1);
-    border-top-left-radius: pxToRem(2);
-    border-top-right-radius: pxToRem(2);
-    border-bottom: $sbbColorCloud solid pxToRem(1);
+    border: var(--sbb-border-width-thin) solid var(--sbb-color-weak-accent);
+    border-top-left-radius: var(--sbb-border-radius);
+    border-top-right-radius: var(--sbb-border-radius);
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
     width: 150%;
     max-width: unset;
     z-index: 1000;
@@ -45,11 +44,11 @@
   }
 }
 
-.sbb-header-menu-trigger .sbb-header-menu-trigger-indicator.sbb-icon {
+.sbb-header-menu-trigger .sbb-header-menu-trigger-indicator {
   display: inline-block;
   position: absolute;
-  width: pxToRem(24);
-  height: pxToRem(24);
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
   top: 50%;
   right: 0;
   transform: translateY(-50%) rotate(-90deg);
@@ -57,7 +56,7 @@
   .sbb-header-lean-main-menu & {
     right: pxToRem(8);
     transform: translateY(-50%) rotate(0);
-    transition: transform 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: transform var(--sbb-transition-default);
   }
   .sbb-header-lean-main-menu .sbb-header-menu-trigger[aria-expanded='true'] & {
     transform: translateY(-50%) rotate(180deg);

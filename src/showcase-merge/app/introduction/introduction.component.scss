@@ -8,20 +8,9 @@
 :host nav {
   padding: 0;
   margin: pxToEm(50) 0 pxToEm(50) 0;
-  font-size: 1rem;
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-    }
-  }
+  font-size: var(--sbb-font-size);
 
   ul {
-    margin: 0;
-    padding: 0;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -41,7 +30,6 @@
       cursor: pointer;
       position: relative;
       display: flex;
-      padding-left: 0;
 
       &::before {
         content: '';

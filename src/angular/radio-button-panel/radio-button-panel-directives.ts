@@ -23,7 +23,7 @@ export class SbbRadioButtonPanelWarning {}
   selector: 'sbb-radio-button-panel-note',
   exportAs: 'sbbRadioButtonPanelNote',
   host: {
-    class: 'sbb-radio-button-panel-note sbb-selection-panel-note',
+    class: 'sbb-radio-button-panel-note sbb-selection-panel-note sbb-icon-scaled',
   },
 })
 export class SbbRadioButtonPanelNote {}

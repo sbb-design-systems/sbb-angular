@@ -1,27 +1,9 @@
 @import '../styles/common';
 
-$toggleOptionRadius: 2;
-$toggleOptionBorderSize: 1;
-$toggleOptionBorderSize4kAndAbove: 2;
-
 .sbb-toggle {
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeLineHeightDefault);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
   display: block;
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
-    }
-  }
-  html.sbb-lean & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-  }
 }
 
 .sbb-toggle-label-wrapper {
@@ -38,26 +20,23 @@ $toggleOptionBorderSize4kAndAbove: 2;
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: $sbbColorMilk;
-  color: $sbbColorGrey;
-  border-radius: pxToEm($toggleOptionRadius);
+  background-color: var(--sbb-color-milk);
+  color: var(--sbb-color-grey);
+  border-radius: var(--sbb-border-radius);
   padding: pxToEm(8) pxToEm(15) pxToEm(9);
   line-height: 1.5;
-  border: pxToRem($toggleOptionBorderSize) solid transparent;
+  border: var(--sbb-border-width-thin) solid transparent;
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     min-height: pxToEm(65);
 
     @include mq($from: desktop) {
       padding: pxToEm(8) pxToEm(23) pxToEm(9);
     }
-    @include mq($from: desktop4k) {
-      border-width: pxToRem($toggleOptionBorderSize4kAndAbove);
-    }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding: pxToEm(5) pxToEm(15) pxToEm(6);
-    border-color: $sbbColorAluminum;
+    border-color: var(--sbb-color-aluminum);
   }
 
   &:hover {
@@ -65,7 +44,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
   }
 
   .sbb-toggle-option:not(.sbb-toggle-option-selected):first-child & {
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       border-right-color: transparent;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -73,25 +52,25 @@ $toggleOptionBorderSize4kAndAbove: 2;
   }
 
   .sbb-toggle-option:not(.sbb-toggle-option-selected):not(:last-child):not(:first-child) & {
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       border-radius: 0;
     }
 
     .sbb-toggle-option-selected + & {
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         border-left-color: transparent;
       }
     }
 
     .sbb-toggle-option:not(.sbb-toggle-option-selected) + & {
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         border-right-color: transparent;
       }
     }
   }
 
   .sbb-toggle-option:not(.sbb-toggle-option-selected):last-child & {
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       border-left-color: transparent;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -99,22 +78,17 @@ $toggleOptionBorderSize4kAndAbove: 2;
   }
 
   .sbb-toggle-option-selected & {
-    background-color: $sbbColorWhite;
-    border-color: $sbbColorBlack;
-    color: $sbbColorBlack;
-
-    // Required to be more specific.
-    html.sbb-lean & {
-      border-color: $sbbColorBlack;
-    }
+    background-color: var(--sbb-color-white);
+    border-color: var(--sbb-color-black);
+    color: var(--sbb-color-black);
   }
 }
 
 .sbb-toggle-option-button-icon {
   display: inline-block;
   vertical-align: middle;
-  max-width: pxToEm(24);
-  max-height: pxToEm(24);
+  max-width: var(--sbb-icon-size-default);
+  max-height: var(--sbb-icon-size-default);
 }
 
 .sbb-toggle-option-button-label-wrapper {
@@ -127,7 +101,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
   vertical-align: middle;
 
   .sbb-toggle-option-has-icon & {
-    max-width: calc(100% - #{pxToEm(24)});
+    max-width: calc(100% - var(--sbb-icon-size-default));
     text-align: left;
     padding-left: 0.5em;
   }
@@ -136,11 +110,12 @@ $toggleOptionBorderSize4kAndAbove: 2;
 .sbb-toggle-option-button-subtitle {
   display: block;
   color: inherit;
-  font-size: pxToEm(13);
+  font-size: var(--sbb-font-size-small);
+  line-height: var(--sbb-line-height-small);
   max-height: 3em;
   opacity: 1;
   overflow: hidden;
-  transition: max-height 0.25s linear, opacity 0.25s ease;
+  transition: max-height var(--sbb-transition-default), opacity var(--sbb-transition-default);
 
   .sbb-toggle-option-selected & {
     opacity: 0;
@@ -150,7 +125,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
 
 .sbb-toggle-option-content {
   display: flex;
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-white);
   padding: pxToEm(24);
   max-height: pxToEm(600);
   visibility: visible;
@@ -158,15 +133,10 @@ $toggleOptionBorderSize4kAndAbove: 2;
   transition: opacity 0.25s ease, visibility 0.25s ease, padding 0.2s ease, max-height 0.2s ease;
   margin-top: pxToEm(-2);
   position: relative;
-  border: pxToRem($toggleOptionBorderSize) solid $sbbColorBlack;
-  border-radius: pxToEm($toggleOptionRadius);
+  border: var(--sbb-border-width-thin) solid var(--sbb-color-black);
+  border-radius: var(--sbb-border-radius);
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      border-width: pxToRem($toggleOptionBorderSize4kAndAbove);
-    }
-  }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding: pxToEm(15);
   }
 
@@ -181,24 +151,12 @@ $toggleOptionBorderSize4kAndAbove: 2;
     content: '';
     position: absolute;
     height: 0;
-    top: pxToRem(-$toggleOptionBorderSize);
-    width: calc(50% - #{pxToRem($toggleOptionBorderSize)});
-    border-bottom: pxToRem(1) solid $sbbColorSilver;
+    top: var(--sbb-border-width-thin-negative);
+    width: calc(50% - var(--sbb-border-width-thin));
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 
     .sbb-toggle-triple & {
-      width: calc(33.33333% - #{pxToRem($toggleOptionBorderSize)});
-    }
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        top: pxToRem(-$toggleOptionBorderSize4kAndAbove);
-        width: calc(50% - #{pxToRem($toggleOptionBorderSize4kAndAbove)});
-        border-bottom-width: pxToRem($toggleOptionBorderSize4kAndAbove);
-
-        .sbb-toggle-triple & {
-          width: calc(33.33333% - #{pxToRem($toggleOptionBorderSize4kAndAbove)});
-        }
-      }
+      width: calc(33.33333% - var(--sbb-border-width-thin));
     }
   }
 
@@ -210,13 +168,7 @@ $toggleOptionBorderSize4kAndAbove: 2;
   }
 
   .sbb-toggle-middle-option-selected &::before {
-    left: calc(33.33333% + #{pxToRem($toggleOptionBorderSize)});
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        left: calc(33.33333% + #{pxToRem($toggleOptionBorderSize4kAndAbove)});
-      }
-    }
+    left: calc(33.33333% + var(--sbb-border-width-thin));
   }
 
   .sbb-toggle-last-option-selected & {

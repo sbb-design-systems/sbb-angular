@@ -1,4 +1,5 @@
 @use 'external/npm/node_modules/@angular/cdk' as cdk;
+@use 'sass:math';
 @import './common';
 
 // ----------------------------------------------------------------------------------------------------
@@ -41,8 +42,456 @@
 }
 
 // ----------------------------------------------------------------------------------------------------
+// Global CSS properties
+// ----------------------------------------------------------------------------------------------------
+
+:root {
+  // Fonts
+  --sbb-font-roman: #{$fontSbbRoman};
+  --sbb-font-bold: #{$fontSbbBold};
+  --sbb-font-light: #{$fontSbbLight};
+  --sbb-font-thin: #{$fontSbbThin};
+
+  // Colors
+  --sbb-color-red: #{$sbbColorRed};
+  --sbb-color-red125: #{$sbbColorRed125};
+  --sbb-color-red150: #{$sbbColorRed150};
+  --sbb-color-white: #{$sbbColorWhite};
+  --sbb-color-milk: #{$sbbColorMilk};
+  --sbb-color-cloud: #{$sbbColorCloud};
+  --sbb-color-silver: #{$sbbColorSilver};
+  --sbb-color-aluminum: #{$sbbColorAluminum};
+  --sbb-color-platinum: #{$sbbColorPlatinum};
+  --sbb-color-cement: #{$sbbColorCement};
+  --sbb-color-graphite: #{$sbbColorGraphite};
+  --sbb-color-storm: #{$sbbColorStorm};
+  --sbb-color-metal: #{$sbbColorMetal};
+  --sbb-color-granite: #{$sbbColorGranite};
+  --sbb-color-anthracite: #{$sbbColorAnthracite};
+  --sbb-color-iron: #{$sbbColorIron};
+  --sbb-color-black: #{$sbbColorBlack};
+  --sbb-color-blue: #{$sbbColorBlue};
+
+  // With Alpha
+  --sbb-color-granite-alpha40: #{rgba($sbbColorGranite, 0.4)};
+  --sbb-color-red-alpha40: #{rgba($sbbColorRed, 0.4)};
+  --sbb-color-silver-alpha40: #{rgba($sbbColorSilver, 0.4)};
+  --sbb-color-storm-alpha40: #{rgba($sbbColorStorm, 0.4)};
+  --sbb-color-iron-alpha40: #{rgba($sbbColorIron, 0.4)};
+  --sbb-color-iron-alpha50: #{rgba($sbbColorIron, 0.5)};
+  --sbb-color-white-alpha50: #{rgba($sbbColorWhite, 0.5)};
+  --sbb-color-white-alpha70: #{rgba($sbbColorWhite, 0.7)};
+
+  // Extended Colors
+  --sbb-color-sky: #{$sbbColorSky};
+  --sbb-color-night: #{$sbbColorNight};
+  --sbb-color-violet: #{$sbbColorViolet};
+  --sbb-color-autumn: #{$sbbColorAutumn};
+  --sbb-color-orange: #{$sbbColorOrange};
+  --sbb-color-peach: #{$sbbColorPeach};
+  --sbb-color-lemon: #{$sbbColorLemon};
+  --sbb-color-green: #{$sbbColorGreen};
+
+  // Non-Standard Colors
+  --sbb-color-grey: #{$sbbColorGrey};
+  --sbb-color-grey-medium: #{$sbbColorGreyMedium};
+
+  // Context Colors
+  --sbb-color-background: var(--sbb-color-white);
+  --sbb-color-call-to-action: var(--sbb-color-red);
+  --sbb-color-call-to-action-hover: var(--sbb-color-red125);
+  --sbb-color-error: #{$sbbColorError};
+  --sbb-color-text: var(--sbb-color-black);
+  --sbb-color-weak-accent: var(--sbb-color-grey);
+
+  // Scaling
+  --sbb-scaling-factor: 1;
+
+  // Sizings
+  --sbb-border-radius: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+  --sbb-border-width: calc(#{pxToRem(2)} * var(--sbb-scaling-factor));
+  --sbb-border-width-negative: calc(var(--sbb-border-width) * -1);
+  --sbb-border-width-thin: #{pxToRem(1)};
+  --sbb-border-width-thin-negative: calc(var(--sbb-border-width-thin) * -1);
+  --sbb-button-gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  --sbb-font-size-constant: #{pxToRem($sizeFontDefault)};
+  --sbb-font-size: var(--sbb-font-size-constant);
+  --sbb-line-height-constant: #{pxToRem($sizeLineHeightDefault)};
+  --sbb-line-height: var(--sbb-line-height-constant);
+  --sbb-font-size-small: #{pxToRem(13)};
+  --sbb-line-height-small: #{pxToRem(20)};
+  --sbb-line-height-medium: #{pxToRem(23)};
+  --sbb-font-size-large: #{pxToRem(20)};
+
+  // Dividers
+  --sbb-divider-thin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  --sbb-divider-small: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-divider-medium: #{pxToRem(36)};
+  --sbb-divider-big: #{pxToRem(48)};
+
+  // Animation
+  --sbb-transition-duration-fast: 225ms;
+  --sbb-transition-duration-default: 300ms;
+  --sbb-transition-duration-slow: 500ms;
+  --sbb-transition-timing-fast-start: cubic-bezier(0.4, 0, 0.2, 1);
+  --sbb-transition-timing-default: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --sbb-transition-fast-start: var(--sbb-transition-duration-fast)
+    var(--sbb-transition-timing-fast-start);
+  --sbb-transition-default: var(--sbb-transition-duration-default)
+    var(--sbb-transition-timing-default);
+
+  // Breadcrumb
+  --sbb-breadcrumb-trigger-padding-horizontal: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+  --sbb-breadcrumb-trigger-padding-vertical: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+
+  // Chips
+  --sbb-chips-list-height: var(--sbb-form-input-min-height);
+  --sbb-chips-chip-margin-vertical: calc(2 * var(--sbb-border-width));
+  --sbb-chips-chip-height: calc(
+    var(--sbb-chips-list-height) - 2 * var(--sbb-chips-chip-margin-vertical) - 2 *
+      var(--sbb-border-width)
+  );
+  --sbb-chips-chip-padding-horizontal: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  --sbb-chips-input-width: calc(#{pxToRem(150)} * var(--sbb-scaling-factor));
+
+  // Dialog
+  --sbb-dialog-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+
+  // Datepicker
+  --sbb-datepicker-toggle-or-arrows-padding: calc(
+    #{pxToRem(44)} * var(--sbb-scaling-factor) - var(--sbb-border-width)
+  );
+  --sbb-datepicker-toggle-and-arrows-padding: calc(
+    #{pxToRem(72)} * var(--sbb-scaling-factor) - var(--sbb-border-width)
+  );
+  --sbb-datepicker-button-offset: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-button-gap: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-adjacent-button-offset: calc(
+    var(--sbb-datepicker-button-offset) + var(--sbb-icon-size-default) +
+      var(--sbb-datepicker-button-gap)
+  );
+  --sbb-datepicker-content-offset: calc(#{pxToRem(17)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-header-height: calc(#{pxToRem(68)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-header-color: var(--sbb-color-metal);
+  --sbb-datepicker-calendar-line-color: var(--sbb-color-platinum);
+  --sbb-datepicker-calendar-table-range-bg-color: var(--sbb-color-milk);
+  --sbb-datepicker-calendar-table-content-padding-width: #{pxToRem(11)};
+  --sbb-datepicker-calendar-arrow-width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-arrow-offset: calc(
+    var(--sbb-datepicker-calendar-arrow-width) / -2 + var(--sbb-border-width)
+  );
+  --sbb-datepicker-calendar-width: #{pxToRem(340)};
+  --sbb-datepicker-calendar-height: calc(#{pxToRem(428)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-controls-padding: #{pxToRem(6)};
+  --sbb-datepicker-calendar-body-cell-padding: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-datepicker-calendar-body-cell-disabled-offset: #{pxToRem(12)};
+  --sbb-datepicker-calendar-body-cell-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
+
+  // Forms
+  --sbb-form-background-color-readonly: var(--sbb-color-mild);
+  --sbb-form-border-color-readonly: var(--sbb-color-aluminum);
+  --sbb-form-input-color: var(--sbb-color-weak-accent);
+  --sbb-form-input-color-disabled: var(--sbb-color-grey);
+  --sbb-form-input-min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+
+  // Expansion Panel
+  --sbb-expansion-panel-padding-horizontal: #{pxToRem(24)};
+  --sbb-expansion-panel-header-padding-top: #{pxToRem(23)};
+  --sbb-expansion-panel-header-padding-bottom: #{pxToRem(26)};
+  --sbb-expansion-panel-line-height: #{pxToRem(28)};
+
+  // Header
+  --sbb-header-lean-height: calc(#{pxToRem(54)} * var(--sbb-scaling-factor));
+  --sbb-header-lean-base-z-index: 1000;
+  --sbb-header-lean-side-menu-z-index: 800;
+  --sbb-header-lean-menu-mobile-z-index: 1100;
+  --sbb-header-lean-menu-tablet-z-index: 700;
+  --sbb-header-lean-menu-width: calc(#{pxToRem(300)} * var(--sbb-scaling-factor));
+  --sbb-header-lean-label-line-height: calc(#{pxToRem(25)} * var(--sbb-scaling-factor));
+
+  // Lightbox
+  --sbb-lightbox-padding-horizontal: #{pxToRem(24)};
+  --sbb-lightbox-actions-padding-vertical: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+
+  // Notification
+  --sbb-notification-message-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-notification-message-padding-horizontal: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+
+  // Pagination
+  --sbb-pagination-base-color: var(--sbb-color-grey);
+  --sbb-pagination-disabled-color: var(--sbb-color-silver);
+  --sbb-pagination-paginator-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
+  --sbb-pagination-navigation-item-margin: calc(#{pxToRem(4)} * var(--sbb-scaling-factor));
+
+  // Sidebar
+  --sbb-sidebar-mobile-menu-bar-height: #{pxToRem(48)};
+  --sbb-icon-sidebar-item-dimension: #{pxToEm(48)};
+
+  // Menu
+  // (36 (Desired width) - 24 (icon width)) / 2
+  --sbb-menu-trigger-padding: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+
+  // Table
+  --sbb-table-background-color: var(--sbb-color-background);
+  --sbb-table-thead-background-color: var(--sbb-color-cloud);
+  --sbb-table-tbody-stripe-background-color: var(--sbb-color-milk);
+  --sbb-table-thead-padding: #{pxToEm(16)};
+  --sbb-table-tbody-padding: #{pxToEm(16)};
+  --sbb-table-sticky-shadow-width: #{pxToRem(8)};
+  --sbb-table-sticky-shadow-offset: #{pxToRem(-9)};
+  --sbb-table-sort-header-arrow-margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+
+  // Tooltip
+  --sbb-tooltip-padding: calc(#{pxToRem(23)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-arrow-offset: calc(#{pxToRem(7.2)} * var(--sbb-scaling-factor));
+  --sbb-tooltip-arrow-horizontal-space: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  // The diagonal of the indicator square is 24 pixel. The width and height of the
+  // indicator square is therefore d / √2 = a.
+  --sbb-tooltip-content-arrow-size: calc(
+    #{pxToRem(math.div(24, math.sqrt(2)))} * var(--sbb-scaling-factor)
+  );
+  --sbb-tooltip-shadow-arrow-size: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+
+  // Usermenu
+  --sbb-usermenu-panel-width: calc(#{pxToRem(288)} * var(--sbb-scaling-factor));
+  --sbb-usermenu-trigger-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  --sbb-usermenu-trigger-padding: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+
+  // Icons
+  --sbb-icon-size-default: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+  --sbb-icon-size-large: calc(1.5 * var(--sbb-icon-size-default));
+
+  // Arrow-right-small color black applied
+  --sbb-url-icon-arrow-right-small-black: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBkPSJNNSAxMi40OTFoMTIuNDlNMTMuNSAxNi41bDMuOTktNC4wMDhMMTMuNSA4LjUiLz48L3N2Zz4=');
+  // Arrow-right-small color #c60018 (red 125) applied
+  --sbb-url-icon-arrow-right-small-red125: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzYwMDE4IiBkPSJNNSAxMi40OTFoMTIuNDlNMTMuNSAxNi41bDMuOTktNC4wMDhMMTMuNSA4LjUiLz48L3N2Zz4=');
+  // Chevron-down-small color #686868 (granite) applied
+  --sbb-url-icon-chevron-down-small-granite: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjQgMjQiPgogICAgPHBvbHlsaW5lIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjNjg2ODY4IiBzdHJva2Utd2lkdGg9IjEiIHBvaW50cz0iMjAgNy45OTkgMTIgMTUuOTk5IDQgNy45OTkiLz4KPC9zdmc+');
+  // Chevron-small-down-circle-small color #686868 (granite) applied
+  --sbb-url-icon-chevron-small-down-circle-small-granite: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM2ODY4NjgiIGQ9Ik0xMiw0LjQ5OTcgQzE2LjE0Myw0LjQ5OTcgMTkuNSw3Ljg1NzcgMTkuNSwxMS45OTk3IEMxOS41LDE2LjE0MjcgMTYuMTQzLDE5LjQ5OTcgMTIsMTkuNDk5NyBDNy44NTgsMTkuNDk5NyA0LjUsMTYuMTQyNyA0LjUsMTEuOTk5NyBDNC41LDcuODU3NyA3Ljg1OCw0LjQ5OTcgMTIsNC40OTk3IFogTTguMDkyMywxMC4zNDk4IEwxMS45OTYzLDE0LjI5OTggTDE1LjkwMDMsMTAuMzUxOCIvPgo8L3N2Zz4K');
+  // Chevron-small-down-circle-small color #c60018 (red 125) applied
+  --sbb-url-icon-chevron-small-down-circle-small-red125: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNjNjAwMTgiIGQ9Ik0xMiw0LjQ5OTcgQzE2LjE0Myw0LjQ5OTcgMTkuNSw3Ljg1NzcgMTkuNSwxMS45OTk3IEMxOS41LDE2LjE0MjcgMTYuMTQzLDE5LjQ5OTcgMTIsMTkuNDk5NyBDNy44NTgsMTkuNDk5NyA0LjUsMTYuMTQyNyA0LjUsMTEuOTk5NyBDNC41LDcuODU3NyA3Ljg1OCw0LjQ5OTcgMTIsNC40OTk3IFogTTguMDkyMywxMC4zNDk4IEwxMS45OTYzLDE0LjI5OTggTDE1LjkwMDMsMTAuMzUxOCIvPgo8L3N2Zz4K');
+  // Chevron-small-down-small color black applied
+  --sbb-url-icon-chevron-small-down-small-black: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgcG9pbnRzPSI4LjA5MiAxMC4zNSAxMS45OTYgMTQuMyAxNS45IDEwLjM1MiIvPjwvc3ZnPg==');
+  // Chevron-small-down-small color #666 (grey) applied
+  --sbb-url-icon-chevron-small-down-small-grey: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBwb2ludHM9IjguMDkyIDEwLjM1IDExLjk5NiAxNC4zIDE1LjkgMTAuMzUyIi8+Cjwvc3ZnPg==');
+  // Chevron-small-down-small color #c60018 (red 125) applied
+  --sbb-url-icon-chevron-small-down-small-red125: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M2MDAxOCIgcG9pbnRzPSI4LjA5MiAxMC4zNSAxMS45OTYgMTQuMyAxNS45IDEwLjM1MiIvPjwvc3ZnPg==');
+  // Chevron-small-right-small color #686868 (granite) applied
+  --sbb-url-icon-chevron-small-right-small-granite: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg2ODY4IiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4K');
+  // Chevron-small-right-small color #cdcdcd (platinum) applied
+  --sbb-url-icon-chevron-small-right-small-platinum: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2RjZGNkIiBwb2ludHM9IjEwLjMyNSAxNS45MDQgMTQuMjc1IDEyIDEwLjMyNiA4LjA5NiIvPgo8L3N2Zz4=');
+
+  // Shadow
+  --sbb-box-shadow-width: calc(var(--sbb-border-width) * 4);
+  --sbb-box-shadow-arrow-width: calc(var(--sbb-border-width) * 2);
+  // Cut out obsolete triangle and also overlapping shadow so it does not collide with calendar content
+  // `-0.4px` fixes calculation issue in Firefox
+  --sbb-box-shadow-arrow-clip-path: polygon(
+    -0.4px 100%,
+    100% -0.4px,
+    100% 71%,
+    150% 21%,
+    150% 150%,
+    21% 150%,
+    71% 100%
+  );
+  --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
+  --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
+  --sbb-box-shadow-horizontal-border-top: 0
+    calc(var(--sbb-border-width) + calc(#{pxToRem(1)} * var(--sbb-scaling-factor))) 0
+    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+  --sbb-box-shadow-horizontal-border-bottom: 0
+    calc(var(--sbb-border-width) * -1 - calc(#{pxToRem(1)} * var(--sbb-scaling-factor))) 0
+    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+  --sbb-box-shadow-horizontal-border-offset-top-above: calc(
+    calc(var(--sbb-border-width) - #{pxToRem(1)}) * var(--sbb-scaling-factor)
+  );
+  --sbb-box-shadow-horizontal-border-offset-top-below: calc(
+    var(--sbb-box-shadow-horizontal-border-offset-top-above) * -1
+  );
+
+  &:where(:not(.sbb-lean)) {
+    @include mq($from: tablet) {
+      // Dividers
+      --sbb-divider-medium: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+      --sbb-divider-big: #{pxToRem(72)};
+
+      // Sizings
+      --sbb-font-size-large: #{pxToRem(21)};
+
+      // Datepicker
+      --sbb-datepicker-calendar-table-content-padding-width: calc(
+        #{pxToRem(18)} * var(--sbb-scaling-factor)
+      );
+      --sbb-datepicker-calendar-width: calc(#{pxToRem(428)} * var(--sbb-scaling-factor));
+      --sbb-datepicker-calendar-controls-padding: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+      --sbb-datepicker-calendar-body-cell-disabled-offset: calc(
+        #{pxToRem(17)} * var(--sbb-scaling-factor)
+      );
+
+      // Expansion Panel
+      --sbb-expansion-panel-padding-horizontal: #{pxToRem(48)};
+      --sbb-expansion-panel-header-padding-top: #{pxToRem(34)};
+      --sbb-expansion-panel-header-padding-bottom: #{pxToRem(36)};
+      --sbb-expansion-panel-line-height: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+    }
+    @include mq($from: desktop) {
+      // Dividers
+      --sbb-divider-big: calc(#{pxToRem(96)} * var(--sbb-scaling-factor));
+
+      // Expansion Panel
+      --sbb-expansion-panel-padding-horizontal: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+
+      // Lightbox
+      --sbb-lightbox-padding-horizontal: calc(#{pxToRem(136)} * var(--sbb-scaling-factor));
+
+      // Sidebar
+      --sbb-sidebar-mobile-menu-bar-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+    }
+    @include mq($from: desktop4k) {
+      // Scaling
+      --sbb-scaling-factor: 1.5;
+
+      // Sizings
+      --sbb-border-width-thin: #{pxToRem(2)};
+      --sbb-font-size: #{pxToRem($sizeFontDefault4k)};
+      --sbb-line-height: #{pxToRem($sizeLineHeightDefault4k)};
+      --sbb-font-size-small: #{pxToRem(20)};
+      --sbb-line-height-small: #{pxToRem(30)};
+      --sbb-line-height-medium: #{pxToRem(35)};
+      --sbb-font-size-large: #{pxToRem(32)};
+
+      // Expansion Panel
+      --sbb-expansion-panel-header-padding-top: #{pxToRem(51)};
+      --sbb-expansion-panel-header-padding-bottom: #{pxToRem(54)};
+    }
+    @include mq($from: desktop5k) {
+      // Scaling
+      --sbb-scaling-factor: 2;
+
+      // Sizings
+      --sbb-font-size: #{pxToRem($sizeFontDefault5k)};
+      --sbb-line-height: #{pxToRem($sizeLineHeightDefault5k)};
+      --sbb-font-size-small: #{pxToRem(26)};
+      --sbb-line-height-small: #{pxToRem(40)};
+      --sbb-line-height-medium: #{pxToRem(45)};
+      --sbb-font-size-large: #{pxToRem(42)};
+
+      // Expansion Panel
+      --sbb-expansion-panel-header-padding-top: #{pxToRem(70)};
+      --sbb-expansion-panel-header-padding-bottom: #{pxToRem(70)};
+    }
+  }
+  &:where(.sbb-lean) {
+    // Colors
+
+    // Grey is always translated into granite color in lean.
+    // We globally overwrite grey color with granite so we don't have to redefine it in every usage.
+    --sbb-color-grey: var(--sbb-color-granite);
+
+    // Context Colors
+    --sbb-color-weak-accent: var(--sbb-color-iron);
+
+    // Dividers
+    --sbb-divider-thin: #{pxToRem(4)};
+    --sbb-divider-small: #{pxToRem(8)};
+    --sbb-divider-medium: #{pxToRem(16)};
+    --sbb-divider-big: #{pxToRem(24)};
+
+    // Sizings
+    --sbb-border-width: #{pxToRem(1)};
+    --sbb-line-height: #{pxToRem($sizeLineHeightDefaultLean)};
+    --sbb-line-height-medium: #{pxToRem(20)};
+    --sbb-font-size-large: #{pxToRem(21)};
+
+    // Datepicker
+    --sbb-datepicker-toggle-or-arrows-padding: calc(#{pxToRem(38)} - var(--sbb-border-width));
+    --sbb-datepicker-toggle-and-arrows-padding: calc(#{pxToRem(62)} - var(--sbb-border-width));
+    --sbb-datepicker-button-offset: #{pxToRem(6)};
+    // rem (or any unit) is necessary for correct calc calculation.
+    --sbb-datepicker-button-gap: 0rem;
+    --sbb-datepicker-content-offset: #{pxToRem(8)};
+    --sbb-datepicker-calendar-header-height: #{pxToRem(36)};
+    --sbb-datepicker-calendar-header-color: var(--sbb-color-iron);
+    --sbb-datepicker-calendar-line-color: var(--sbb-color-cloud);
+    --sbb-datepicker-calendar-table-content-padding-width: #{pxToRem(8)};
+    --sbb-datepicker-calendar-width: #{pxToRem(303)};
+    --sbb-datepicker-calendar-height: #{pxToRem(303)};
+    --sbb-datepicker-calendar-controls-padding: #{pxToRem(8)};
+    --sbb-datepicker-calendar-body-cell-padding: #{pxToRem(16.5)};
+    --sbb-datepicker-calendar-body-cell-size: #{pxToRem(30)};
+
+    // Forms
+    --sbb-form-background-color-readonly: transparent;
+    --sbb-form-border-color-readonly: transparent;
+    --sbb-form-input-min-height: #{pxToRem(36)};
+
+    // Notification
+    --sbb-notification-message-padding: #{pxToRem(11)};
+    --sbb-notification-message-padding-horizontal: #{pxToRem(15)};
+
+    // Expansion Panel
+    --sbb-expansion-panel-padding-horizontal: #{pxToRem(16)};
+    --sbb-expansion-panel-header-padding-top: calc(#{pxToRem(12)} - var(--sbb-border-width-thin));
+    --sbb-expansion-panel-header-padding-bottom: var(--sbb-expansion-panel-header-padding-top);
+    --sbb-expansion-panel-line-height: #{pxToRem(25)};
+
+    // Pagination
+    --sbb-pagination-disabled-color: var(--sbb-color-storm);
+    --sbb-pagination-paginator-size: #{pxToRem(30)};
+
+    // Tooltip
+    --sbb-tooltip-padding: #{pxToRem(8)};
+
+    // Usermenu
+    --sbb-usermenu-trigger-padding: #{pxToRem(8)};
+
+    // Shadow
+    --sbb-box-shadow-arrow-clip-path: polygon(
+      -0.4px 100%,
+      100% -0.4px,
+      100% 35%,
+      150% -15%,
+      150% 150%,
+      -15% 150%,
+      35% 100%
+    );
+
+    @include mq($from: desktop) {
+      // Dividers
+      --sbb-divider-thin: #{pxToRem(8)};
+      --sbb-divider-small: #{pxToRem(16)};
+      --sbb-divider-medium: #{pxToRem(24)};
+      --sbb-divider-big: #{pxToRem(32)};
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
 // Reset HTML
 // ----------------------------------------------------------------------------------------------------
+
+:root {
+  // Defaults
+  background: var(--sbb-color-background);
+  color: var(--sbb-color-text);
+  // !important is required, as arcgis defines its own font-family and we need to overwrite it.
+  font-family: var(--sbb-font-roman) !important;
+  font-size: private-div($sizeFontBase, 16px) * 100%;
+  line-height: var(--sbb-line-height);
+
+  @include fontSmoothing;
+
+  &:where(:not(.sbb-lean)) {
+    @include mq($from: desktop4k) {
+      line-height: var(--sbb-line-height-4k);
+    }
+    @include mq($from: desktop5k) {
+      line-height: var(--sbb-line-height-5k);
+    }
+  }
+}
 
 *,
 *::before,
@@ -63,37 +512,6 @@ section {
   display: block;
 }
 
-html {
-  background: $sbbColorBg;
-  color: $sbbColorText;
-  // !important is required, as arcgis defines its own font-family and we need to overwrite it.
-  font-family: $fontSbbRoman !important;
-  font-size: private-div($sizeFontBase, 16px) * 100%;
-  line-height: pxToRem($sizeLineHeightDefault);
-
-  @include fontSmoothing;
-
-  b,
-  strong,
-  optgroup[label='*'] {
-    font-family: $fontSbbBold;
-    font-weight: normal;
-  }
-
-  &:not(.sbb-lean) {
-    @include mq($from: desktop4k) {
-      line-height: pxToRem($sizeLineHeightDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      line-height: pxToRem($sizeLineHeightDefault5k);
-    }
-  }
-
-  &.sbb-lean {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-  }
-}
-
 body {
   margin: 0;
 }
@@ -105,6 +523,13 @@ body {
 // Credit: https://github.com/suitcss/base
 [tabindex='-1']:focus {
   outline: 0 !important;
+}
+
+b,
+strong,
+optgroup[label='*'] {
+  font-family: var(--sbb-font-bold);
+  font-weight: normal;
 }
 
 input,
@@ -141,200 +566,90 @@ textarea {
 // Headings
 // ----------------------------------------------------------------------------------------------------
 
-h1,
-.sbb-headline1 {
-  font-family: $fontSbbThin;
+:is(h1, .sbb-headline1) {
+  font-family: var(--sbb-font-thin);
   font-weight: normal;
   font-size: pxToRem(28);
-  line-height: pxToRem(28 * 1.2);
-  margin: pxToRem(48) 0 pxToRem(36) 0;
+  line-height: 1.2;
+  margin: var(--sbb-divider-big) 0 var(--sbb-divider-medium);
 
-  html:not(.sbb-lean) & {
-    $sizes: (
-      tablet: (
-        30,
-        72,
-        48,
-      ),
-      desktop: (
-        40,
-        96,
-        48,
-      ),
-      desktop4k: (
-        60,
-        144,
-        72,
-      ),
-      desktop5k: (
-        80,
-        192,
-        96,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $marginTop, $marginBottom) {
-      font-size: pxToRem($fontSize);
-      line-height: pxToRem($fontSize * 1.2);
-      margin-top: pxToRem($marginTop);
-      margin-bottom: pxToRem($marginBottom);
+  :where(html:not(.sbb-lean)) & {
+    @include mq($from: tablet) {
+      font-size: pxToRem(30);
+    }
+    @include mq($from: desktop) {
+      font-size: calc(#{pxToRem(40)} * var(--sbb-scaling-factor));
     }
   }
-  html.sbb-lean & {
-    font-family: $fontSbbLight;
+  :where(html.sbb-lean) & {
+    font-family: var(--sbb-font-light);
     font-weight: normal;
     font-size: pxToRem(21);
     line-height: pxToRem(25);
-    margin-top: pxToRem(24);
-    margin-bottom: pxToRem(16);
 
     @include mq($from: desktop) {
       font-size: pxToRem(28);
       line-height: pxToRem(34);
-      margin-top: pxToRem(32);
-      margin-bottom: pxToRem(24);
     }
   }
 }
 
-h2,
-.sbb-headline2 {
-  font-family: $fontSbbLight;
+:is(h2, .sbb-headline2) {
+  font-family: var(--sbb-font-light);
   font-weight: normal;
   font-size: pxToRem(24);
-  line-height: pxToRem(24 * 1.2);
-  margin: pxToRem(36) 0 pxToRem(24) 0;
+  line-height: 1.2;
+  margin: var(--sbb-divider-medium) 0 var(--sbb-divider-small);
 
-  html:not(.sbb-lean) & {
-    $sizes: (
-      tablet: (
-        24,
-        48,
-        24,
-      ),
-      desktop: (
-        32,
-        48,
-        24,
-      ),
-      desktop4k: (
-        48,
-        72,
-        36,
-      ),
-      desktop5k: (
-        64,
-        96,
-        48,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $marginTop, $marginBottom) {
-      font-size: pxToRem($fontSize);
-      line-height: pxToRem($fontSize * 1.2);
-      margin-top: pxToRem($marginTop);
-      margin-bottom: pxToRem($marginBottom);
+  :where(html:not(.sbb-lean)) & {
+    @include mq($from: desktop) {
+      font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     font-size: pxToRem(18);
     line-height: pxToRem(19);
-    margin-top: pxToRem(16);
-    margin-bottom: pxToRem(8);
 
     @include mq($from: desktop) {
       font-size: pxToRem(21);
       line-height: pxToRem(25);
-      margin-top: pxToRem(24);
-      margin-bottom: pxToRem(16);
     }
   }
 }
 
-h3,
-.sbb-headline3 {
-  font-family: $fontSbbLight;
+:is(h3, .sbb-headline3) {
+  font-family: var(--sbb-font-light);
   font-weight: normal;
-  font-size: pxToRem(20);
-  line-height: pxToRem(20 * 1.2);
-  margin: pxToRem(24) 0 pxToRem(8) 0;
+  font-size: var(--sbb-font-size-large);
+  line-height: 1.2;
+  margin: var(--sbb-divider-small) 0 var(--sbb-divider-thin);
 
-  html:not(.sbb-lean) & {
-    $sizes: (
-      tablet: (
-        21,
-        24,
-        8,
-      ),
-      desktop4k: (
-        32,
-        36,
-        12,
-      ),
-      desktop5k: (
-        42,
-        48,
-        16,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $marginTop, $marginBottom) {
-      font-size: pxToRem($fontSize);
-      line-height: pxToRem($fontSize * 1.2);
-      margin-top: pxToRem($marginTop);
-      margin-bottom: pxToRem($marginBottom);
-    }
-  }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     font-size: pxToRem(16);
     line-height: pxToRem(17);
-    margin-top: pxToRem(8);
-    margin-bottom: pxToRem(4);
 
     @include mq($from: desktop) {
       font-size: pxToRem(18);
       line-height: pxToRem(22);
-      margin-top: pxToRem(16);
-      margin-bottom: pxToRem(8);
     }
   }
 }
 
-h4,
-.sbb-headline4 {
-  font-family: $fontSbbBold;
+:is(h4, .sbb-headline4) {
+  font-family: var(--sbb-font-bold);
   font-weight: normal;
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeFontDefault * 1.5);
-  margin: pxToRem(24) 0 pxToRem(8);
+  font-size: var(--sbb-font-size);
+  line-height: 1.5;
+  margin: var(--sbb-divider-small) 0 var(--sbb-divider-thin);
 
-  html:not(.sbb-lean) & {
-    $sizes: (
-      desktop4k: (
-        $sizeFontDefault4k,
-        36,
-        12,
-      ),
-      desktop5k: (
-        $sizeFontDefault5k,
-        48,
-        16,
-      ),
-    );
-    @include mqSequence($sizes) using ($fontSize, $marginTop, $marginBottom) {
-      font-size: pxToRem($fontSize);
-      line-height: pxToRem($fontSize * 1.5);
-      margin-top: pxToRem($marginTop);
-      margin-bottom: pxToRem($marginBottom);
-    }
-  }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     line-height: pxToRem(17);
-    margin-top: pxToRem(8);
-    margin-bottom: pxToRem(4);
+    margin: pxToRem(8) 0 pxToRem(4);
 
     @include mq($from: desktop) {
       font-size: pxToRem(16);
       line-height: pxToRem(19);
-      margin-top: pxToRem(16);
-      margin-bottom: pxToRem(8);
+      margin: pxToRem(16) 0 pxToRem(8);
     }
   }
 }
@@ -343,72 +658,36 @@ h4,
 // Text
 // ----------------------------------------------------------------------------------------------------
 
-.sbb-text-lead {
-  font-family: $fontSbbLight;
-  font-weight: normal;
-  color: $sbbColorText;
-  font-size: pxToRem(20);
-  line-height: pxToRem(26);
-  margin: pxToRem(36) 0 pxToRem(36) 0;
-
-  // To allow usage with p tag (p.sbb-text-lead), use variant selectors which guarantee overwriting p/copy styles
-  html:not(.sbb-lean) &,
-  html.sbb-lean & {
-    $sizes: (
-      tablet: (
-        21,
-        27.3,
-        48,
-      ),
-      desktop: (
-        21,
-        32,
-        48,
-      ),
-      desktop4k: (
-        32,
-        41.6,
-        72,
-      ),
-      desktop5k: (
-        40,
-        52,
-        96,
-      ),
-    );
-    @include mqSequence($sizes) using($fontSize, $lineHeight, $margin) {
-      font-size: pxToRem($fontSize);
-      line-height: pxToRem($lineHeight);
-      margin-top: pxToRem($margin);
-      margin-bottom: pxToRem($margin);
-    }
-  }
+.sbb-text-scaled {
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
 }
 
-p,
-.sbb-copy {
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeLineHeightDefault);
-  margin: pxToRem(8) 0 pxToRem(8) 0;
+.sbb-text-ellipsis {
+  @include ellipsis();
+}
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-      margin-top: pxToRem(12);
-      margin-bottom: pxToRem(12);
+:is(p, .sbb-copy) {
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
+  margin: var(--sbb-divider-thin) 0;
+}
+
+.sbb-text-lead {
+  font-family: var(--sbb-font-light);
+  font-weight: normal;
+  color: $sbbColorText;
+  font-size: var(--sbb-font-size-large);
+  line-height: 1.3;
+  margin: var(--sbb-divider-medium) 0;
+
+  :where(html:not(.sbb-lean)) & {
+    @include mq($from: desktop, $to: desktop4k) {
+      line-height: pxToRem(32);
     }
     @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
-      margin-top: pxToRem(16);
-      margin-bottom: pxToRem(16);
+      font-size: pxToRem(40);
     }
-  }
-  html.sbb-lean & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-    margin-top: pxToRem(4);
-    margin-bottom: pxToRem(4);
   }
 }
 
@@ -416,20 +695,14 @@ p,
 // Link
 // ----------------------------------------------------------------------------------------------------
 
-a,
-.sbb-link {
-  color: $sbbColorText;
+:is(a:where(:not(.sbb-link-reset)), .sbb-link) {
+  color: var(--sbb-color-text);
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
-  line-height: 1.733;
+  line-height: var(--sbb-line-height);
 
-  html.sbb-lean & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-  }
-
-  &:hover,
-  &:focus {
-    color: $sbbColorRed125;
+  &:is(:hover, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
 
     @media screen and (-ms-high-contrast: active) {
       color: windowText;
@@ -444,67 +717,46 @@ a,
   // TODO: 4k, 5k
 }
 
-// Reset <a> styles for specific scenarios.
-.sbb-link-reset {
-  color: unset;
-  text-decoration: unset;
-  text-decoration-skip-ink: unset;
-  line-height: unset;
+// ----------------------------------------------------------------------------------------------------
+// Lists
+// ----------------------------------------------------------------------------------------------------
 
-  html.sbb-lean & {
-    line-height: unset;
+:is(ul, .sbb-unordered-list, ol, .sbb-ordered-list) {
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
+  margin-top: calc(#{pxToRem(17)} * var(--sbb-scaling-factor));
+  margin-bottom: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  margin-left: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
+
+  @include mq($from: desktop) {
+    margin-top: calc(#{pxToRem(25)} * var(--sbb-scaling-factor));
   }
 
-  &:hover,
-  &:focus {
-    color: unset;
+  li {
+    margin-top: var(--sbb-divider-thin);
+  }
 
-    @media screen and (-ms-high-contrast: active) {
-      color: unset;
+  :is(ol, ul) {
+    margin: calc(#{pxToRem(6)} * var(--sbb-scaling-factor)) 0 0
+      calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  }
+}
 
-      &::before,
-      &::after {
-        border-color: unset;
-      }
+:is(ul, .sbb-unordered-list) {
+  list-style-type: disc;
+  padding-left: calc(pxToRem(16) * var(--sbb-scaling-factor));
+
+  li {
+    padding-left: calc(pxToRem(16 - 6) * var(--sbb-scaling-factor));
+
+    // if ol is nested inside ul, we need just 1 hierarchy level for the counter
+    ol > li::before {
+      content: counter(item) '.';
     }
   }
 }
 
-// ----------------------------------------------------------------------------------------------------
-// Lists TODO: add 4k, 5k styles and check every usage of our angular modules for specificity
-// ----------------------------------------------------------------------------------------------------
-
-ul,
-.sbb-unordered-list,
-ol,
-.sbb-ordered-list {
-  font-size: pxToRem($sizeFontDefault);
-  margin-left: pxToRem(8);
-  margin-top: pxToRem(17);
-  margin-bottom: pxToRem(30);
-
-  @include mq($from: desktop) {
-    margin-top: pxToRem(25);
-  }
-
-  li {
-    margin-top: pxToRem(8);
-  }
-}
-
-ul,
-.sbb-unordered-list {
-  list-style-type: disc;
-  padding-left: pxToRem(16);
-}
-
-ul li,
-.sbb-unordered-list li {
-  padding-left: pxToRem(16 - 6);
-}
-
-ol,
-.sbb-ordered-list {
+:is(ol, .sbb-ordered-list) {
   list-style-type: none;
   counter-reset: item;
   padding-left: 0;
@@ -519,83 +771,64 @@ ol,
     counter-increment: item;
 
     display: table-cell;
-    padding-right: pxToRem(13);
+    padding-right: calc(pxToRem(13) * var(--sbb-scaling-factor));
   }
 }
 
-ol ol,
-.sbb-ordered-list ol,
-ol ul,
-.sbb-ordered-list ul,
-ul ul,
-.sbb-unordered-list ul,
-ul ol,
-.sbb-unordered-list ol {
-  margin: pxToRem(6) 0 0 pxToRem(8);
-}
+.sbb-clean-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
 
-// if ol is nested inside ul, we need just 1 hierarchy level for the counter
-ul li ol > li::before,
-.sbb-unordered-list li ol > li::before {
-  content: counter(item) '.';
+  li {
+    margin: 0;
+    padding-left: 0;
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------
 // Form Elements
 // ----------------------------------------------------------------------------------------------------
 
-$sbbInputMinHeightStandard: 48;
-
-.sbb-input-element {
+:is(.sbb-input-element, input:where([type='email'], [type='password'], [type='search'], [type='text'], [type='number'], [type='tel'], [type='time'], [type='datetime'], [type='datetime-local'], [type='url'], :not([type]))) {
   @include ellipsis;
-  @include placeholder($sbbColorStorm);
 
   outline: none;
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-background);
   padding: pxToRem(10) pxToRem(14) pxToRem(11);
-  border: pxToRem(2) solid $sbbColorGraphite;
-  border-radius: pxToRem(2);
-  color: $sbbColorGrey;
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem(23);
-  min-height: pxToRem($sbbInputMinHeightStandard);
+  border: var(--sbb-border-width) solid var(--sbb-color-graphite);
+  border-radius: var(--sbb-border-radius);
+  color: var(--sbb-form-input-color);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height-medium);
+  min-height: var(--sbb-form-input-min-height);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       padding: pxToRem(15) pxToRem(21) pxToRem(16);
-      border-width: pxToRem(2 * $scalingFactor4k);
-      border-radius: pxToRem(2 * $scalingFactor4k);
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem(35);
-      min-height: pxToRem($sbbInputMinHeightStandard * $scalingFactor4k);
     }
     @include mq($from: desktop5k) {
       padding: pxToRem(21) pxToRem(28) pxToRem(22);
-      border-width: pxToRem(2 * $scalingFactor5k);
-      border-radius: pxToRem(2 * $scalingFactor5k);
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem(45);
-      min-height: pxToRem($sbbInputMinHeightStandard * $scalingFactor5k);
     }
   }
-  html.sbb-lean & {
-    color: $sbbColorIron;
-    border-width: pxToRem(1);
+  :where(html.sbb-lean) & {
     padding: pxToRem(6) pxToRem(7) pxToRem(8);
-    line-height: pxToRem(20);
-    min-height: pxToRem(36);
+  }
+
+  &::-webkit-input-placeholder {
+    color: var(--sbb-color-storm);
+  }
+
+  &::-moz-placeholder {
+    // Firefox 19+
+    color: var(--sbb-color-storm);
+    opacity: 1;
   }
 
   // Undo the red box-shadow glow added by Firefox on invalid inputs.
   // See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
   &:-moz-ui-invalid {
     box-shadow: none;
-  }
-
-  // Remove IE's default clear and reveal icons.
-  &::-ms-clear,
-  &::-ms-reveal {
-    display: none;
   }
 
   // Clear Safari's decorations for search fields.
@@ -615,12 +848,7 @@ $sbbInputMinHeightStandard: 48;
     visibility: hidden;
   }
 
-  &[type='date'],
-  &[type='datetime'],
-  &[type='datetime-local'],
-  &[type='month'],
-  &[type='week'],
-  &[type='time'] {
+  &:where([type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='time']) {
     // Due to the native input masking these inputs can be slightly taller than
     // the plain text inputs. We normalize it by resetting the line height.
     line-height: 1;
@@ -643,64 +871,42 @@ $sbbInputMinHeightStandard: 48;
     font-size: 0.75em;
   }
 
-  &:focus,
-  &.sbb-focused {
-    border-color: $sbbColorGrey;
-
-    html.sbb-lean & {
-      border-color: $sbbColorIron;
-    }
+  &:is(:focus, .sbb-focused) {
+    border-color: var(--sbb-color-weak-accent);
   }
 
-  &:disabled,
-  &[disabled],
-  &.sbb-disabled {
-    background-color: $sbbColorMilk;
-    border-color: $sbbColorAluminum;
-    color: $sbbColorGrey;
-    -webkit-text-fill-color: $sbbColorGrey;
+  &:is(:disabled, [disabled], .sbb-disabled) {
+    background-color: var(--sbb-color-milk);
+    border-color: var(--sbb-color-aluminum);
+    color: var(--sbb-form-input-color-disabled);
+    -webkit-text-fill-color: var(--sbb-form-input-color-disabled);
     opacity: 1;
     cursor: default;
     pointer-events: none;
-
-    html.sbb-lean & {
-      color: $sbbColorGranite;
-      -webkit-text-fill-color: $sbbColorGranite;
-    }
   }
 
-  &[readonly],
-  &.sbb-readonly {
+  &:is([readonly], .sbb-readonly) {
     &,
     &:focus {
-      background: $sbbColorMilk;
-      border-color: $sbbColorAluminum;
-
-      html.sbb-lean & {
-        background: transparent;
-        border-color: transparent;
-      }
+      background-color: var(--sbb-form-background-color-readonly);
+      border-color: var(--sbb-form-border-color-readonly);
     }
   }
 
   // We want to provide the error styles both for invalid state
   // in a sbb-form-field and also for Angular Form Validation.
-  .sbb-form-field-invalid &:not([aria-expanded='true']),
-  &.ng-touched.ng-invalid:not([aria-expanded='true']) {
-    color: $sbbColorError;
-    border-color: $sbbColorError;
+  :is(.sbb-form-field-invalid
+      &:not([aria-expanded='true']), &.ng-touched.ng-invalid:not([aria-expanded='true'])) {
+    color: var(--sbb-color-error);
+    border-color: var(--sbb-color-error);
   }
 }
 
-input[placeholder],
-.sbb-input-element[placeholder] {
+:is(input, .sbb-input-element)[placeholder] {
   text-overflow: ellipsis;
 }
 
-input[type='number'],
-input[type='time'],
-input[type='datetime'],
-input[type='datetime-local'] {
+input:where([type='number'], [type='time'], [type='datetime'], [type='datetime-local']) {
   -moz-appearance: textfield;
 
   &::-webkit-inner-spin-button,
@@ -720,25 +926,19 @@ select {
   position: relative;
   display: inline-flex;
   box-sizing: border-box;
-  padding-right: pxToEm(44);
+  // We need to specify !important, due to being less specific than .sbb-input-element
+  padding-right: calc(#{pxToRem(44)} * var(--sbb-scaling-factor)) !important;
 
   // Custom select expand icon
   align-items: center;
-  background: transparent url($sbbIconChevronSmallDownSmallGrey) no-repeat center right pxToEm(9);
-  background-size: pxToRem(24) pxToRem(24);
+  background: transparent var(--sbb-url-icon-chevron-small-down-small-grey) no-repeat center right
+    calc(#{pxToRem(9)} * var(--sbb-scaling-factor));
+  background-size: var(--sbb-icon-size-default);
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      background-size: pxToRem(24 * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      background-size: pxToRem(24 * $scalingFactor5k);
-    }
-  }
-  html.sbb-lean & {
-    padding-right: pxToRem(38);
+  :where(html.sbb-lean) & {
+    padding-right: pxToRem(38) !important;
     background-position: center right pxToRem(6);
-    background-image: url($sbbIconChevronRightSmallRotatedDownGranite);
+    background-image: var(--sbb-url-icon-chevron-down-small-granite);
   }
 
   &::-ms-expand {
@@ -790,25 +990,39 @@ textarea {
 // Fieldset
 // ----------------------------------------------------------------------------------------------------
 
-fieldset,
-.sbb-fieldset {
+:is(fieldset, .sbb-fieldset) {
   $borderWidth: 1;
   margin: 0;
   min-width: 0;
-  border: pxToRem($borderWidth) solid $sbbColorSilver;
-  padding: pxToRem(36 - $borderWidth) pxToRem(24 - $borderWidth);
+  font-size: var(--sbb-font-size);
+  border: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
+  padding: var(--sbb-divider-medium) calc(var(--sbb-divider-small) - var(--sbb-border-width-thin));
+
+  :where(html.sbb-lean) & {
+    border-color: var(--sbb-color-graphite);
+    padding: pxToRem(15);
+  }
 
   > legend {
     display: block;
     width: 100%;
     max-width: 100%;
     padding: 0;
-    font-family: $fontSbbLight;
+    font-family: var(--sbb-font-light);
     font-weight: 400;
     line-height: 1.2;
     font-size: pxToRem(24);
-    margin: 0 0 pxToRem(24);
+    margin: 0 0 var(--sbb-divider-small);
     float: left;
+
+    :where(html:not(.sbb-lean)) & {
+      @include mq($from: desktop) {
+        font-size: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
+      }
+    }
+    :where(html.sbb-lean) & {
+      font-size: pxToRem(21);
+    }
   }
 
   fieldset {
@@ -822,62 +1036,19 @@ fieldset,
       border-bottom: none;
     }
 
+    :where(html.sbb-lean) & {
+      border-color: var(--sbb-color-cloud);
+    }
+
     > legend {
       font-size: pxToRem(20);
-    }
-  }
 
-  html:not(.sbb-lean) & {
-    > legend {
-      @include mq($from: desktop) {
-        font-size: pxToRem(32);
-      }
-      @include mq($from: desktop4k) {
-        font-size: pxToRem(48);
-        margin: 0 0 pxToRem(36);
-      }
-      @include mq($from: desktop5k) {
-        font-size: pxToRem(64);
-        margin: 0 0 pxToRem(48);
-      }
-    }
-
-    fieldset {
-      > legend {
-        $fontSizes: (
-          desktop: pxToRem(22),
-          desktop4k: pxToRem(32),
-          desktop5k: pxToRem(42),
-        );
-        @include mqSequence($fontSizes) using ($value) {
-          font-size: $value;
+      :where(html:not(.sbb-lean)) & {
+        @include mq($from: desktop) {
+          font-size: calc(#{pxToRem(20)} * var(--sbb-scaling-factor) + #{pxToRem(2)});
         }
       }
-    }
-
-    @include mq($from: tabletPortrait) {
-      padding: pxToRem(48) pxToRem(24);
-    }
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontBase * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontBase * $scalingFactor5k);
-    }
-  }
-  html.sbb-lean & {
-    border: pxToRem($borderWidth) solid $sbbColorGraphite;
-    padding: pxToRem(16 - $borderWidth);
-
-    > legend {
-      font-size: pxToRem(21);
-      margin: 0 0 pxToRem(8);
-    }
-
-    fieldset {
-      border-color: $sbbColorCloud;
-
-      > legend {
+      :where(html.sbb-lean) & {
         font-size: pxToRem(16);
       }
     }
@@ -904,36 +1075,6 @@ fieldset,
   position: relative;
 }
 
-.sbb-badge-above {
-  .sbb-badge-content {
-    top: pxToEm(-2, 11);
-  }
-}
-
-.sbb-badge-after {
-  .sbb-badge-content {
-    right: 0;
-  }
-}
-
-.sbb-badge-hidden {
-  .sbb-badge-content {
-    display: none;
-  }
-}
-
-.sbb-badge-disabled,
-.sbb-tab-disabled {
-  .sbb-badge-content {
-    background-color: $sbbColorMetal;
-    color: $sbbColorWhite;
-
-    html.sbb-lean & {
-      background-color: $sbbColorGranite;
-    }
-  }
-}
-
 .sbb-badge-content {
   position: absolute;
   text-align: center;
@@ -949,14 +1090,14 @@ fieldset,
   border-radius: 1em; // 1em ensures the borders are always fully rounded, but not oval.
   padding: pxToEm(4, 11) pxToEm(5, 11);
   margin-left: pxToEm(2, 11);
-  background-color: $sbbColorRed;
-  color: $sbbColorWhite;
-  font-family: $fontSbbBold;
+  background-color: var(--sbb-color-red);
+  color: var(--sbb-color-white);
+  font-family: var(--sbb-font-bold);
   line-height: 1;
   font-size: pxToRem(11);
   height: pxToEm(18, 11);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       font-size: pxToRem(17);
     }
@@ -964,33 +1105,49 @@ fieldset,
       font-size: pxToRem(22);
     }
   }
-
-  html.sbb-lean & {
-    background-color: $sbbColorBlack;
+  :where(html.sbb-lean) & {
+    background-color: var(--sbb-color-black);
   }
-}
 
-.ng-animate-disabled .sbb-badge-content,
-.sbb-badge-content._sbb-animation-noopable {
-  transition: none;
-}
+  .sbb-badge-above & {
+    top: pxToEm(-2, 11);
+  }
 
-// The active class is added after the element is added
-// so it can animate scale to default
-.sbb-badge-content.sbb-badge-active {
-  // Scale to `none` instead of `1` to avoid blurry text in some browsers.
-  transform: none;
+  .sbb-badge-after & {
+    right: 0;
+  }
+
+  .sbb-badge-hidden & {
+    display: none;
+  }
+
+  :is(.sbb-badge-disabled, .sbb-tab-disabled) & {
+    background-color: var(--sbb-color-metal);
+    color: var(--sbb-color-white);
+
+    :where(html.sbb-lean) & {
+      background-color: var(--sbb-color-granite);
+    }
+  }
+
+  .ng-animate-disabled &,
+  &._sbb-animation-noopable {
+    transition: none;
+  }
+
+  // The active class is added after the element is added
+  // so it can animate scale to default
+  &.sbb-badge-active {
+    // Scale to `none` instead of `1` to avoid blurry text in some browsers.
+    transform: none;
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------
 // SBB Button
 // ----------------------------------------------------------------------------------------------------
 
-.sbb-button,
-.sbb-alt-button,
-.sbb-secondary-button,
-.sbb-ghost-button,
-.sbb-icon-button {
+:is(.sbb-button, .sbb-alt-button, .sbb-secondary-button, .sbb-ghost-button, .sbb-icon-button) {
   @include ellipsis;
   width: 100%;
   background: none;
@@ -1000,10 +1157,10 @@ fieldset,
   display: inline-block;
   position: relative;
   text-align: center;
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem(26);
-  border: pxToRem(1) solid transparent;
-  border-radius: pxToEm(2);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
+  border: var(--sbb-border-width-thin) solid transparent;
+  border-radius: var(--sbb-border-radius);
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
   padding: pxToRem(9) pxToRem(39) pxToRem(11);
@@ -1014,30 +1171,23 @@ fieldset,
   @include mq($from: tabletPortrait) {
     width: auto;
     // We use em here, in order to scale for 4k and 5k
-    min-width: pxToEm(60);
-    max-width: pxToEm(400);
+    min-width: calc(#{pxToRem(60)} * var(--sbb-scaling-factor));
+    max-width: calc(#{pxToRem(400)} * var(--sbb-scaling-factor));
   }
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem(39);
-      border-width: pxToRem(2);
       // Subtract 2 from the padding values, since we always use the border
       // in order to avoid tearing on state changes.
       padding: pxToRem(14) pxToRem(58) pxToRem(15);
     }
     @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem(52);
       // Subtract 2 from the padding values, since we always use the border
       // in order to avoid tearing on state changes.
       padding: pxToRem(19) pxToRem(78) pxToRem(21);
     }
   }
-
-  html.sbb-lean & {
-    line-height: pxToRem(23);
+  :where(html.sbb-lean) & {
     // Subtract 1 from the padding values, since we always use the border
     // in order to avoid tearing on state changes.
     padding: pxToRem(5) pxToRem(15) pxToRem(6);
@@ -1047,12 +1197,11 @@ fieldset,
     cursor: pointer;
   }
 
-  &:disabled,
-  &.sbb-disabled {
-    html:not(.sbb-lean) & {
+  &:is(:disabled, .sbb-disabled) {
+    :where(html:not(.sbb-lean)) & {
       background-color: transparent;
-      color: $sbbColorGrey;
-      border-color: $sbbColorGreyMedium;
+      color: var(--sbb-color-grey);
+      border-color: var(--sbb-color-grey-medium);
 
       &,
       & * {
@@ -1063,91 +1212,97 @@ fieldset,
 }
 
 .sbb-button {
-  background-color: $sbbColorRed;
-  color: $sbbColorWhite;
+  background-color: var(--sbb-color-call-to-action);
+  color: var(--sbb-color-white);
 
-  &:not(:disabled):not(.sbb-disabled) {
-    &:hover,
-    &:focus {
-      background: $sbbColorRed125;
-    }
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
+    background-color: var(--sbb-color-call-to-action-hover);
   }
 
-  &:disabled,
-  &.sbb-disabled {
-    html.sbb-lean & {
-      background-color: rgba($sbbColorRed, 0.4);
-      color: rgba($sbbColorWhite, 0.5);
+  &:is(:disabled, .sbb-disabled) {
+    :where(html.sbb-lean) & {
+      background-color: var(--sbb-color-red-alpha40);
+      color: var(--sbb-color-white-alpha50);
     }
   }
 }
 
 .sbb-alt-button {
-  background-color: $sbbColorGranite;
-  color: $sbbColorWhite;
+  background-color: var(--sbb-color-granite);
+  color: var(--sbb-color-white);
 
-  &:not(:disabled):not(.sbb-disabled) {
-    &:hover,
-    &:focus {
-      background: $sbbColorIron;
-    }
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
+    background-color: var(--sbb-color-iron);
   }
 
-  &:disabled,
-  &.sbb-disabled {
-    html.sbb-lean & {
-      background-color: rgba($sbbColorGranite, 0.4);
-      color: rgba($sbbColorWhite, 0.5);
+  &:is(:disabled, .sbb-disabled) {
+    :where(html.sbb-lean) & {
+      background-color: var(--sbb-color-granite-alpha40);
+      color: var(--sbb-color-white-alpha50);
     }
   }
 }
 
-.sbb-secondary-button,
-.sbb-icon-button {
-  background-color: $sbbColorSilver;
-  color: $sbbColorIron;
+:is(.sbb-secondary-button, .sbb-icon-button) {
+  background-color: var(--sbb-color-silver);
+  color: var(--sbb-color-iron);
 
-  &:not(:disabled):not(.sbb-disabled) {
-    &:hover,
-    &:focus {
-      background: $sbbColorPlatinum;
-    }
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
+    background-color: var(--sbb-color-platinum);
   }
 
-  &:disabled,
-  &.sbb-disabled {
-    html.sbb-lean & {
-      background-color: rgba($sbbColorSilver, 0.4);
-      color: rgba($sbbColorIron, 0.5);
+  &:is(:disabled, .sbb-disabled) {
+    :where(html.sbb-lean) & {
+      background-color: var(--sbb-color-silver-alpha40);
+      color: var(--sbb-color-iron-alpha50);
+    }
+  }
+}
+
+// Icon animation for primary/secondary button.
+.sbb-button-base:is(.sbb-button, .sbb-secondary-button):not(.sbb-disabled) {
+  :where(html:not(.sbb-lean)) & {
+    transition: {
+      duration: var(--sbb-transition-duration-default);
+      timing-function: var(--sbb-transition-timing-default);
+      property: transform, padding-left, padding-right;
+    }
+    padding-left: calc(#{pxToRem(39)} * var(--sbb-scaling-factor));
+    padding-right: calc(#{pxToRem(69)} * var(--sbb-scaling-factor));
+
+    // This solves a bug with the placement of the right icon, which is otherwise displayed
+    // inside the text.
+    .sbb-button-right-icon {
+      right: calc(#{pxToRem(39)} * var(--sbb-scaling-factor));
+    }
+
+    &:hover {
+      padding-left: calc(#{pxToRem(69)} * var(--sbb-scaling-factor));
+      padding-right: calc(#{pxToRem(39)} * var(--sbb-scaling-factor));
+
+      .sbb-button-right-icon {
+        right: 0;
+      }
     }
   }
 }
 
 .sbb-ghost-button {
   background-color: transparent;
-  color: $sbbColorGrey;
-  border-color: $sbbColorStorm;
+  color: var(--sbb-color-grey);
+  border-color: var(--sbb-color-storm);
 
-  html.sbb-lean & {
-    color: $sbbColorGranite;
-    border-color: $sbbColorStorm;
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
+    border-color: var(--sbb-color-iron);
   }
 
-  &:not(:disabled):not(.sbb-disabled) {
-    &:hover,
-    &:focus {
-      border-color: $sbbColorIron;
-    }
-  }
-
-  &:disabled,
-  &.sbb-disabled {
-    html:not(.sbb-lean) & {
+  &:is(:disabled, .sbb-disabled) {
+    :where(html:not(.sbb-lean)) & {
       display: none;
     }
-    html.sbb-lean & {
-      color: rgba($sbbColorIron, 0.4);
-      border-color: rgba($sbbColorStorm, 0.4);
+    :where(html.sbb-lean) & {
+      color: var(--sbb-color-iron-alpha40);
+      border-color: var(--sbb-color-storm-alpha40);
     }
   }
 }
@@ -1160,144 +1315,161 @@ fieldset,
   line-height: 0 !important;
 }
 
-.sbb-frameless-button,
-// We only want to style .sbb-link classes which use the sbb-link component
-.sbb-link.sbb-button-base {
+:is(
+  .sbb-frameless-button,
+  // We only want to style .sbb-link classes which use the sbb-link component
+  .sbb-link:where(.sbb-button-base)) {
   @include buttonResetFrameless();
   @include ellipsis;
   position: relative;
   display: inline-block;
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
   text-decoration: none;
   text-align: left;
   cursor: pointer;
   outline: none;
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault * $scalingFactor4k);
-      line-height: pxToRem(39);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault * $scalingFactor5k);
-      line-height: pxToRem(52);
-    }
+  &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 
-  &:not(:disabled):not(.sbb-disabled) {
-    &:hover,
-    &:focus {
-      color: $sbbColorRed125;
+  // Icon animation for links and frameless buttons for standard
+  &.sbb-button-base:not(:disabled):not(.sbb-disabled) {
+    :where(html:not(.sbb-lean)) & {
+      transition: {
+        duration: var(--sbb-transition-duration-default);
+        timing-function: var(--sbb-transition-timing-default);
+        property: transform, padding-left, padding-right;
+      }
+      padding-left: 0;
+      padding-right: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+
+      &:hover {
+        padding-left: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.sbb-link.sbb-button-base {
+  :where(html.sbb-lean) & {
+    padding-right: calc(#{pxToRem(30)} * var(--sbb-scaling-factor));
+  }
+
+  .sbb-link-group &:not(:disabled):not(.sbb-disabled) {
+    padding: var(--sbb-divider-thin) calc(#{pxToRem(28)} * var(--sbb-scaling-factor))
+      var(--sbb-divider-thin) 0;
+    border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
+
+    // Disable transitions from default behavior
+    :is(&, &:hover) {
+      :where(html:not(.sbb-lean)) & {
+        transition: none;
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
   }
 }
 
 .sbb-frameless-button {
-  color: $sbbColorIron;
+  color: var(--sbb-color-iron);
 
-  &:disabled,
-  &.sbb-disabled {
+  &:is(:disabled, .sbb-disabled) {
     display: none;
   }
 }
 
-// We're using pxToEm for the rules below, since the used values do not
-// bleed and scale accordingly with 4k and 5k.
-
 .sbb-button-indicator-icon {
-  transition: opacity $linkiconAnimation, transform $linkiconAnimation, right $linkiconAnimation;
+  transition: {
+    duration: var(--sbb-transition-duration-default);
+    timing-function: var(--sbb-transition-timing-default);
+    property: opacity, transform, right;
+  }
   backface-visibility: hidden;
   pointer-events: none;
   position: absolute;
   top: 50%;
-  margin-top: pxToEm(-12.5);
+  margin-top: calc(#{pxToRem(-12.5)} * var(--sbb-scaling-factor));
 
   &.sbb-icon-fit {
-    width: pxToEm(24);
-    height: pxToEm(24);
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
   }
 
-  .sbb-button-base.sbb-disabled &,
-  .sbb-button-base.sbb-disabled:hover & {
+  :is(.sbb-button-base.sbb-disabled, .sbb-button-base.sbb-disabled:hover) & {
     opacity: 0;
   }
 
-  html:not(.sbb-lean) .sbb-button-base.sbb-link & {
-    color: $sbbColorRed;
+  .sbb-button-base.sbb-link & {
+    :where(html:not(.sbb-lean)) & {
+      color: var(--sbb-color-call-to-action);
+    }
+
+    &:hover {
+      :where(html:not(.sbb-lean)) & {
+        color: inherit;
+      }
+    }
   }
 
-  html:not(.sbb-lean) .sbb-button-base.sbb-link:hover & {
-    color: inherit;
+  .sbb-link-group :is(&, &:hover) {
+    transition: none;
+    // !important is necessary here to overwrite the transform rules below.
+    transform: none !important;
   }
 }
 
 .sbb-button-left-icon {
-  margin-left: pxToEm(-30);
-  transform: translateX(pxToEm(-26));
+  margin-left: calc(#{pxToRem(-30)} * var(--sbb-scaling-factor));
+  transform: translateX(calc(#{pxToRem(-26)} * var(--sbb-scaling-factor)));
   opacity: 0;
 
   .sbb-button-base:hover & {
     transform: translateX(0);
     opacity: 1;
   }
+
+  .sbb-link-group :is(&, &:hover) {
+    display: none;
+  }
 }
 
 .sbb-button-right-icon {
-  margin-left: pxToEm(6);
+  margin-left: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
   transform: translateX(0);
   opacity: 1;
 
-  html:not(.sbb-lean) .sbb-button-base:hover & {
-    transform: translateX(pxToEm(26));
-    opacity: 0;
+  :where(html.sbb-lean) & {
+    transform: translateX(calc(#{pxToRem(-24)} * var(--sbb-scaling-factor)));
   }
 
-  html.sbb-lean & {
-    transform: translateX(pxToEm(-24));
-  }
-}
-
-html:not(.sbb-lean)
-  .sbb-button-base:is(.sbb-button, .sbb-secondary-button):where(:not(.sbb-disabled)) {
-  transition: transform $linkiconAnimation, padding-left $linkiconAnimation,
-    padding-right $linkiconAnimation;
-  padding-left: pxToEm(39);
-  padding-right: pxToEm(69);
-
-  // This solves a bug with the placement of the right icon, which is otherwise displayed
-  // inside the text.
-  .sbb-button-right-icon {
-    right: pxToEm(39);
-  }
-
-  &:hover {
-    padding-left: pxToEm(69);
-    padding-right: pxToEm(39);
-
-    .sbb-button-right-icon {
-      right: 0;
+  .sbb-button-base:hover & {
+    :where(html:not(.sbb-lean)) & {
+      transform: translateX(calc(#{pxToRem(26)} * var(--sbb-scaling-factor)));
+      opacity: 0;
     }
   }
-}
 
-html:not(.sbb-lean)
-  .sbb-button-base:is(.sbb-frameless-button, .sbb-link):where(:not(.sbb-disabled)) {
-  transition: transform $linkiconAnimation, padding-left $linkiconAnimation,
-    padding-right $linkiconAnimation;
-  padding-left: pxToEm(0);
-  padding-right: pxToEm(30);
+  .sbb-button-base.sbb-link & {
+    :where(html.sbb-lean) & {
+      transform: none;
+    }
+  }
 
-  &:hover {
-    padding-left: pxToEm(30);
-    padding-right: pxToEm(0);
+  .sbb-link-group :is(&, &:hover) {
+    opacity: 1;
+    right: 0;
   }
 }
 
-html.sbb-lean .sbb-button-base.sbb-link {
-  padding-right: pxToEm(30);
-
-  .sbb-button-right-icon {
-    transform: none;
-  }
+.sbb-link-group {
+  display: inline-flex;
+  width: calc(#{pxToRem(250)} * var(--sbb-scaling-factor));
+  flex-direction: column;
+  border-top: var(--sbb-border-width-thin) solid var(--sbb-color-silver);
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -1315,96 +1487,80 @@ html.sbb-lean .sbb-button-base.sbb-link {
   display: flex;
   position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-    }
-  }
-}
-
-@mixin sbbSelectionDimension($factor) {
-  width: pxToRem(20 * $factor);
-  min-width: pxToRem(20 * $factor);
-  height: pxToRem(20 * $factor);
-  min-height: pxToRem(20 * $factor);
-  border: pxToRem(2 * $factor) solid $sbbColorGraphite;
-  margin-right: pxToRem(8 * $factor);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
 }
 
 .sbb-selection-container {
   display: inline-block;
-  background-color: $sbbColorWhite;
-  margin-top: pxToRem(3);
-  @include sbbSelectionDimension(1);
+  background-color: var(--sbb-color-background);
+  margin-top: calc(#{pxToRem(2)} * var(--sbb-scaling-factor) + #{pxToRem(1)});
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      margin-top: pxToRem(4);
-      @include sbbSelectionDimension($scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      margin-top: pxToRem(5);
-      @include sbbSelectionDimension($scalingFactor5k);
+  width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  min-width: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  height: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  min-height: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  border: var(--sbb-border-width) solid var(--sbb-color-graphite);
+  margin-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+
+  :where(html.sbb-lean) & {
+    margin-top: pxToRem(1);
+  }
+
+  .sbb-selection-input:focus + &,
+  // Applies focus highlight for pseudo-checkbox
+  .sbb-menu-item.sbb-active .sbb-pseudo-checkbox & {
+    border-color: var(--sbb-color-weak-accent);
+  }
+
+  :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
+    border-radius: var(--sbb-border-radius);
+  }
+
+  .sbb-radio-button & {
+    border-radius: 50%;
+
+    :where(html.sbb-lean) & {
+      margin-top: 0;
     }
   }
-  html.sbb-lean & {
-    border-width: pxToRem(1);
-    margin-top: pxToRem(1);
+
+  .sbb-selection-disabled & {
+    border-color: var(--sbb-color-aluminum);
+    background-color: var(--sbb-color-milk);
+  }
+
+  .sbb-selection-indeterminate &::before {
+    content: '';
+    position: relative;
+    height: pxToRem(1);
+    width: pxToRem(10);
+    left: calc(50% - #{pxToRem(5)});
+    top: calc(50% - #{pxToRem(0.5)});
+    border: pxToRem(1) solid var(--sbb-color-red);
+    display: block;
+
+    :where(html.sbb-lean) & {
+      border-color: var(--sbb-color-granite);
+    }
   }
 }
 
 .sbb-selection-container-checked {
-  color: $sbbColorRed;
+  color: var(--sbb-color-red);
   line-height: 0;
   height: 100%;
   width: 100%;
-  transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition: opacity var(--sbb-transition-default);
   position: relative;
 
-  html.sbb-lean & {
-    color: $sbbColorIron;
+  :where(html.sbb-lean) & {
+    color: var(--sbb-color-iron);
   }
-}
 
-.sbb-selection-content {
-  user-select: auto;
-  color: $sbbColorGrey;
-  transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-
-  html.sbb-lean & {
-    color: $sbbColorGranite;
-    line-height: pxToRem(21);
-  }
-}
-
-.sbb-selection-input:focus + .sbb-selection-container {
-  border-color: $sbbColorGrey;
-
-  html.sbb-lean & {
-    border-color: $sbbColorIron;
-  }
-}
-
-// Applies focus highlight for pseudo-checkbox
-.sbb-menu-item.sbb-active .sbb-pseudo-checkbox .sbb-selection-container {
-  border-color: $sbbColorGrey;
-
-  html.sbb-lean & {
-    border-color: $sbbColorIron;
-  }
-}
-
-.sbb-checkbox-input + .sbb-selection-container,
-.sbb-pseudo-checkbox > .sbb-selection-container {
-  border-radius: pxToRem(2);
-
-  & > .sbb-selection-container-checked {
+  :is(.sbb-checkbox, .sbb-pseudo-checkbox) & {
     display: none;
-    border-radius: pxToRem(2);
+    border-radius: var(--sbb-border-radius);
     transform: scale(1.3);
 
     & > svg {
@@ -1421,175 +1577,81 @@ html.sbb-lean .sbb-button-base.sbb-link {
       }
     }
   }
-}
 
-.sbb-radio-input + .sbb-selection-container {
-  border-radius: 50%;
-
-  html.sbb-lean & {
-    margin-top: 0;
-  }
-
-  & > .sbb-selection-container-checked {
+  .sbb-radio-button & {
     display: none;
     border-radius: 50%;
     transform: scale(0.65);
-    background-color: $sbbColorRed;
+    background-color: var(--sbb-color-red);
 
-    html.sbb-lean & {
-      background-color: $sbbColorIron;
+    :where(html.sbb-lean) & {
+      background-color: var(--sbb-color-iron);
     }
+  }
+
+  .sbb-selection-disabled & {
+    color: var(--sbb-color-grey);
+  }
+
+  .sbb-selection-checked & {
+    display: block;
+  }
+
+  .sbb-selection-indeterminate & {
+    display: none;
   }
 }
 
-.sbb-selection-checked {
-  .sbb-selection-container {
-    & > .sbb-selection-container-checked {
-      display: block;
-    }
+.sbb-selection-content {
+  user-select: auto;
+  color: var(--sbb-color-grey);
+  transition: color var(--sbb-transition-default);
 
-    & + .sbb-selection-content {
-      color: $sbbColorBlack;
+  :where(html.sbb-lean) & {
+    line-height: pxToRem(21);
+  }
+
+  :is(.sbb-selection-checked, .sbb-selection-indeterminate) & {
+    color: var(--sbb-color-text);
+
+    :where(html.sbb-lean) & {
+      color: var(--sbb-color-iron);
     }
   }
 
-  html.sbb-lean & {
-    .sbb-selection-container + .sbb-selection-content {
-      color: $sbbColorIron;
+  .sbb-selection-disabled & {
+    color: var(--sbb-color-grey);
+
+    :where(html.sbb-lean) & {
+      color: var(--sbb-color-storm);
     }
   }
-}
-
-.sbb-selection-indeterminate {
-  .sbb-selection-container {
-    &::before {
-      content: '';
-      position: relative;
-      height: pxToRem(1);
-      width: pxToRem(10);
-      left: calc(50% - #{pxToRem(5)});
-      top: calc(50% - #{pxToRem(0.5)});
-      border: pxToRem(1) solid $sbbColorRed;
-      display: block;
-    }
-
-    & > .sbb-selection-container-checked {
-      display: none;
-    }
-
-    & + .sbb-selection-content {
-      color: $sbbColorBlack;
-    }
-  }
-
-  html.sbb-lean & {
-    .sbb-selection-container {
-      &::before {
-        border: pxToRem(1) solid $sbbColorGranite;
-      }
-
-      & + .sbb-selection-content {
-        color: $sbbColorIron;
-      }
-    }
-  }
-}
-
-// Applies indeterminate styles for pseudo-checkbox
-html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-indeterminate .sbb-selection-container::before {
-  border: pxToRem(1) solid $sbbColorGranite;
 }
 
 .sbb-selection-disabled {
   pointer-events: none;
-
-  .sbb-selection-container {
-    border-color: $sbbColorAluminum;
-    background-color: $sbbColorMilk;
-
-    & > .sbb-selection-container-checked {
-      color: $sbbColorGrey;
-    }
-
-    & + .sbb-selection-content {
-      color: $sbbColorGrey;
-    }
-  }
-
-  .sbb-radio-input + .sbb-selection-container > .sbb-selection-container-checked {
-    background-color: $sbbColorGrey;
-  }
-
-  html.sbb-lean & {
-    .sbb-selection-container {
-      & > .sbb-selection-container-checked {
-        color: $sbbColorGranite;
-      }
-
-      & + .sbb-selection-content {
-        color: $sbbColorStorm;
-      }
-    }
-
-    .sbb-radio-input + .sbb-selection-container > .sbb-selection-container-checked {
-      background-color: $sbbColorGranite;
-    }
-  }
 }
 
-// Applies disabled styles for pseudo-checkbox
-html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-container-checked {
-  color: $sbbColorGranite;
-}
-
-.sbb-checkbox-group-vertical,
-.sbb-radio-group-vertical {
+:is(.sbb-checkbox-group-vertical, .sbb-radio-group-vertical) {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: flex-start;
+  row-gap: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
-  .sbb-selection-item + .sbb-selection-item {
-    margin-top: pxToRem(16);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        margin-top: pxToRem(16 * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        margin-top: pxToRem(16 * $scalingFactor5k);
-      }
-    }
-    html.sbb-lean & {
-      margin-top: pxToRem(3);
-    }
+  :where(html.sbb-lean) & {
+    row-gap: pxToRem(3);
   }
 }
 
-.sbb-checkbox-group-horizontal,
-.sbb-radio-group-horizontal {
+:is(.sbb-checkbox-group-horizontal, .sbb-radio-group-horizontal) {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  column-gap: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
 
-  .sbb-selection-item {
-    margin-right: pxToRem(32);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        margin-right: pxToRem(32 * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        margin-right: pxToRem(32 * $scalingFactor5k);
-      }
-    }
-    html.sbb-lean & {
-      margin-right: pxToRem(15);
-    }
-
-    &:last-of-type {
-      margin-right: 0;
-    }
+  :where(html.sbb-lean) & {
+    column-gap: pxToRem(15);
   }
 }
 
@@ -1599,54 +1661,38 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
 
 .sbb-selection-panel-item {
   display: inline-block;
-  background-color: $sbbColorMilk;
-  border: pxToRem(1) solid transparent;
-  border-radius: pxToRem(2);
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem(26);
-  color: $sbbColorGrey;
+  background-color: var(--sbb-color-milk);
+  border: var(--sbb-border-width-thin) solid transparent;
+  border-radius: var(--sbb-border-radius);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
+  color: var(--sbb-color-grey);
   width: 100%;
   transition: border-color 0.15s ease-in-out;
   user-select: none;
   position: relative;
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      border-radius: pxToRem(3);
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem(39);
-    }
-    @include mq($from: desktop5k) {
-      border-radius: pxToRem(4);
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem(52);
-    }
-  }
-
   &.sbb-selection-checked {
-    background-color: $sbbColorWhite;
-    border-color: $sbbColorBlack;
-    color: $sbbColorBlack;
+    background-color: var(--sbb-color-background);
+    border-color: var(--sbb-color-black);
+    color: var(--sbb-color-text);
   }
 
   // We need to provide error styling for both on the element
   // or on a wrapper (e.g. sbb-radio-group) with both manual
   // classes and Angular Form Validation classes.
-  &.sbb-selection-error,
-  .sbb-selection-error &,
-  &.ng-touched.ng-invalid,
-  .ng-touched.ng-invalid & {
-    border-color: $sbbColorRed;
-    color: $sbbColorRed;
+  &:is(.sbb-selection-error, .ng-touched.ng-invalid),
+  :is(.sbb-selection-error, .ng-touched.ng-invalid) & {
+    border-color: var(--sbb-color-error);
+    color: var(--sbb-color-error);
   }
 
   &.sbb-selection-disabled {
-    background-color: $sbbColorWhite;
-    border-color: $sbbColorAluminum;
+    background-color: var(--sbb-color-background);
+    border-color: var(--sbb-color-aluminum);
   }
 
-  .sbb-selection-container,
-  .sbb-selection-panel-icon {
+  :is(.sbb-selection-container, .sbb-selection-panel-icon) {
     display: inline-block;
     flex: 0 0 auto;
   }
@@ -1662,7 +1708,7 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
 .sbb-selection-panel-item .sbb-selection-item-label {
   padding: pxToRem(19) pxToRem(24);
 
-  html:not(.sbb-lean) & {
+  :where(html:not(.sbb-lean)) & {
     @include mq($from: desktop4k) {
       padding: pxToRem(29) pxToRem(36) pxToRem(28);
     }
@@ -1676,8 +1722,8 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
   flex-direction: column;
   display: flex;
   flex: 1 1 50%;
-  padding-right: pxToEm(8);
-  margin-bottom: pxToEm(8);
+  padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-bottom: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   @include mq($from: tablet) {
     margin-bottom: 0;
@@ -1685,94 +1731,45 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
 }
 
 .sbb-selection-panel-subtitle {
-  font-size: pxToRem(13);
-  line-height: pxToRem(20);
-  color: $sbbColorGrey;
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(20);
-      line-height: pxToRem(30);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(26);
-      line-height: pxToRem(39);
-    }
-  }
-  html.sbb-lean {
-    color: $sbbColorGranite;
-  }
+  font-size: var(--sbb-font-size-small);
+  line-height: var(--sbb-line-height-small);
+  color: var(--sbb-color-grey);
 }
 
 .sbb-selection-panel-warning {
   flex: 1 100%;
   order: 3;
-  color: $sbbColorGrey;
+  color: var(--sbb-color-grey);
 
   @include mq($from: tablet) {
-    padding-left: pxToEm(24);
-    padding-right: pxToEm(8);
+    padding-left: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
+    padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
     flex-basis: auto;
     order: initial;
-  }
-
-  html.sbb-lean {
-    color: $sbbColorGranite;
   }
 }
 
 .sbb-selection-panel-note {
   margin-left: auto;
-  margin-bottom: pxToEm(8);
+  margin-bottom: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   @include mq($from: tablet) {
     margin-bottom: 0;
   }
 
   img {
-    max-height: pxToEm(24);
-  }
-  sbb-icon {
-    width: pxToEm(24);
-    height: pxToEm(24);
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
+    max-height: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
   }
 }
 
 // These are the css classes to group sbb-checkbox-panel & sbb-radio-button-panel
 // We use em here to reduce media query usage.
-.sbb-checkbox-panel-group,
-.sbb-radio-panel-group {
-  display: flex;
-  flex-direction: column;
-  font-size: pxToRem($sizeFontDefault);
-
-  $sbbSelectionPanelMargin: 3;
-  @include mq($from: tablet) {
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-start;
-    margin-left: pxToEm($sbbSelectionPanelMargin * -1);
-    margin-right: pxToEm($sbbSelectionPanelMargin * -1);
-  }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-    }
-  }
-
-  .sbb-selection-panel-item {
-    flex: 1 1 100%;
-    margin: 0 pxToEm($sbbSelectionPanelMargin) pxToEm(8);
-  }
+:is(.sbb-checkbox-panel-group, .sbb-radio-panel-group) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(#{pxToRem(8)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
+  font-size: var(--sbb-font-size);
 
   // The number indicates the max number of columns for the resolution
   $sbbSelectionPanelResolutions: (
@@ -1785,12 +1782,10 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
   );
 
   @each $from, $max in $sbbSelectionPanelResolutions {
-    @for $i from 2 through $max {
-      &.sbb-col-#{$from}-#{$i} .sbb-selection-panel-item {
-        $percentage: toPercent(private-div(1, $i));
-        @include mq($from: $from) {
-          flex-basis: calc(#{$percentage} - #{pxToEm($sbbSelectionPanelMargin * 2)});
-          max-width: calc(#{$percentage} - #{pxToEm($sbbSelectionPanelMargin * 2)});
+    @include mq($from: $from) {
+      @for $i from 2 through $max {
+        &.sbb-col-#{$from}-#{$i} {
+          grid-template-columns: repeat(#{$i}, 1fr);
         }
       }
     }
@@ -1806,42 +1801,16 @@ html.sbb-lean .sbb-pseudo-checkbox.sbb-selection-disabled .sbb-selection-contain
   outline: 0;
   resize: none;
   background-color: transparent;
-  font-family: $fontSbbRoman;
-  font-size: pxToRem(13);
-  line-height: pxToRem(16);
-  color: $sbbColorGrey;
+  font-family: var(--sbb-font-roman);
+  font-size: var(--sbb-font-size-small);
+  line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  color: var(--sbb-color-grey);
   display: block;
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(20);
-      line-height: pxToRem(24);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(26);
-      line-height: pxToRem(32);
-    }
-  }
-  html.sbb-lean & {
-    color: $sbbColorGranite;
-  }
 }
 
 // ----------------------------------------------------------------------------------------------------
 // SBB Table
 // ----------------------------------------------------------------------------------------------------
-
-$tableBg: $sbbColorWhite;
-$tableTheadBgColor: $sbbColorCloud;
-$tableTbodyStripesBgColor: $sbbColorMilk;
-$tableTheadPadding: pxToEm(16);
-$tableTbodyPadding: pxToEm(16);
-$tableTheadCellPaddingMobile: pxToEm(29) pxToEm(12) pxToEm(30) pxToEm(12);
-$tableTheadCellPadding: pxToEm(29) pxToEm(16) pxToEm(30) pxToEm(16);
-$tableTbodyCellPaddingMobile: pxToEm(18) pxToEm(12) pxToEm(19) pxToEm(12);
-$tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
-$tableCaptionColor: $sbbColorGrey;
-$tableStickyShadowWidth: 8;
 
 .sbb-table-wrapper {
   display: block;
@@ -1851,30 +1820,30 @@ $tableStickyShadowWidth: 8;
 .sbb-table {
   border-spacing: 0;
   width: 100%;
-  font-size: pxToRem($sizeFontDefault);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
 
   thead {
     text-align: left;
   }
 
-  th,
-  td {
-    color: $sbbColorBlack;
-    background-color: $sbbColorWhite;
+  :is(th, td) {
+    color: var(--sbb-color-text);
+    background-color: var(--sbb-color-background);
     vertical-align: top;
   }
 
   th {
-    font-family: $fontSbbBold;
+    font-family: var(--sbb-font-bold);
     font-weight: 400;
 
     .sbb-table-header-subtitle {
-      font-family: $fontSbbRoman;
+      font-family: var(--sbb-font-roman);
     }
 
     // Selector is placed here to be specific enough
     &.sbb-header-cell.sbb-table-filter {
-      font-family: $fontSbbRoman;
+      font-family: var(--sbb-font-roman);
       font-weight: normal;
       padding-top: 0;
 
@@ -1888,165 +1857,118 @@ $tableStickyShadowWidth: 8;
     }
   }
 
-  html:not(.sbb-lean) & {
-    line-height: pxToRem($sizeLineHeightDefault);
-    padding-bottom: $tableTbodyPadding;
+  :where(html:not(.sbb-lean)) & {
+    padding-bottom: var(--sbb-table-tbody-padding);
 
-    thead,
-    tfoot {
-      > tr {
-        th,
-        td {
-          background-color: $tableTheadBgColor;
-          padding: $tableTheadCellPaddingMobile;
+    :is(thead, tfoot) > tr :is(th, td) {
+      background-color: var(--sbb-table-thead-background-color);
+      padding: pxToRem(29) pxToRem(12) pxToRem(30) pxToRem(12);
 
-          @include mq($from: tabletPortrait) {
-            padding: $tableTheadCellPadding;
+      @include mq($from: tabletPortrait) {
+        padding: calc(#{pxToRem(29)} * var(--sbb-scaling-factor))
+          calc(#{pxToRem(16)} * var(--sbb-scaling-factor))
+          calc(#{pxToRem(30)} * var(--sbb-scaling-factor))
+          calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
-            &:first-child {
-              border-left: $tableTheadPadding solid $tableTheadBgColor;
-            }
+        &:first-child {
+          border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
+        }
 
-            &:last-child {
-              border-right: $tableTheadPadding solid $tableTheadBgColor;
-            }
-          }
+        &:last-child {
+          border-right: var(--sbb-table-thead-padding) solid var(--sbb-table-thead-background-color);
         }
       }
     }
 
-    tbody {
-      > tr {
-        &:nth-child(even) {
-          td,
-          th {
-            background-color: $tableTbodyStripesBgColor;
-          }
-        }
-
-        th,
-        td {
-          padding: $tableTbodyCellPaddingMobile;
-
-          @include mq($from: tabletPortrait) {
-            padding: $tableTbodyCellPadding;
-
-            &:first-child {
-              border-left: $tableTheadPadding solid $tableBg;
-            }
-
-            &:last-child {
-              border-right: $tableTheadPadding solid $tableBg;
-            }
-          }
-        }
+    tbody > tr {
+      &:nth-child(even) :is(td, th) {
+        background-color: var(--sbb-table-tbody-stripe-background-color);
       }
-    }
 
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
-    }
-  }
+      :is(th, td) {
+        padding: pxToRem(18) pxToRem(12) pxToRem(19) pxToRem(12);
 
-  html.sbb-lean & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-
-    th {
-      color: $sbbColorGranite;
-    }
-
-    tbody,
-    tfoot {
-      > tr {
-        th,
-        td {
-          border-right: pxToRem(1) solid $sbbColorAluminum;
-        }
-      }
-    }
-
-    thead,
-    tbody,
-    tfoot {
-      > tr {
-        th,
-        td {
-          padding: pxToRem(6) $tableTbodyPadding pxToRem(6);
-
-          &.sbb-table-group-with-next {
-            border-right: none;
-          }
+        @include mq($from: tabletPortrait) {
+          padding: calc(#{pxToRem(18)} * var(--sbb-scaling-factor))
+            calc(#{pxToRem(16)} * var(--sbb-scaling-factor))
+            calc(#{pxToRem(19)} * var(--sbb-scaling-factor))
+            calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
           &:first-child {
-            padding-left: $tableTbodyPadding;
-            border-left: none;
+            border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
           }
 
           &:last-child {
-            padding-right: $tableTbodyPadding;
-            border-right: none;
+            border-right: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
           }
         }
+      }
+    }
+  }
+
+  :where(html.sbb-lean) & {
+    th {
+      color: var(--sbb-color-granite);
+    }
+
+    :is(tbody, tfoot) > tr :is(th, td) {
+      border-right: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
+    }
+
+    :is(thead, tbody, tfoot) > tr :is(th, td) {
+      padding: pxToRem(6) var(--sbb-table-tbody-padding) pxToRem(6);
+
+      &.sbb-table-group-with-next {
+        border-right: none;
+      }
+
+      &:first-child {
+        padding-left: var(--sbb-table-tbody-padding);
+        border-left: none;
+      }
+
+      &:last-child {
+        padding-right: var(--sbb-table-tbody-padding);
+        border-right: none;
       }
     }
 
     thead {
-      > tr:last-child {
-        th,
-        td {
-          border-bottom: pxToRem(1) solid $sbbColorGraphite;
-        }
+      > tr:last-child :is(th, td) {
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
       }
 
-      > tr {
-        th,
-        td {
-          border-right: pxToRem(1) solid $sbbColorGraphite;
+      > tr :is(th, td) {
+        border-right: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
 
+        :is(.sbb-table-wrapper-offset-right, .sbb-table-wrapper-offset-both)
           &.sbb-table-sticky-border-elem-right {
-            .sbb-table-wrapper-offset-right &,
-            .sbb-table-wrapper-offset-both & {
-              border-left: pxToRem(1) solid $sbbColorGraphite;
-            }
-          }
+          border-left: var(--sbb-border-width-thin) solid var(--sbb-color-graphite);
         }
       }
     }
 
-    tbody {
-      > tr {
-        td,
-        th {
-          border-bottom: pxToRem(1) solid $sbbColorAluminum;
-        }
+    tbody > tr {
+      :is(td, th) {
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
+      }
 
-        &.sbb-table-row-selected {
-          td,
-          th {
-            background-color: $sbbColorCloud;
-            border-bottom: pxToRem(1) solid $sbbColorBlack;
-          }
-        }
+      &.sbb-table-row-selected :is(td, th) {
+        background-color: var(--sbb-color-cloud);
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-black);
+      }
 
-        &:hover {
-          td,
-          th {
-            background-color: $sbbColorMilk;
-            border-bottom: pxToRem(1) solid $sbbColorRed125;
-          }
-        }
+      &:hover :is(td, th) {
+        background-color: var(--sbb-color-milk);
+        border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-call-to-action-hover);
       }
     }
   }
 
   caption {
-    font-size: pxToRem(13);
-    color: $tableCaptionColor;
+    font-size: var(--sbb-font-size-small);
+    line-height: var(--sbb-line-height-small);
+    color: var(--sbb-color-weak-accent);
   }
 
   .sbb-selection-item {
@@ -2054,11 +1976,10 @@ $tableStickyShadowWidth: 8;
   }
 }
 
-.sbb-table-caption {
-  > * {
-    font-size: pxToEm(13);
-    color: $tableCaptionColor;
-  }
+.sbb-table-caption > * {
+  font-size: var(--sbb-font-size-small);
+  line-height: var(--sbb-line-height-small);
+  color: var(--sbb-color-weak-accent);
 }
 
 .sbb-table-align-center {
@@ -2077,61 +1998,53 @@ $tableStickyShadowWidth: 8;
   // Note that the table can either set this class or an inline style to make something sticky.
   // We set the style as `!important` so that we get an identical specificity in both cases
   // and to avoid cases where user styles have a higher specificity.
-  position: -webkit-sticky !important;
   position: sticky !important;
 }
 
-.sbb-table-sticky-border-elem-left,
-.sbb-table-sticky-border-elem-right {
-  &::after {
-    content: '';
-    transition: visibility, opacity 0.2s ease-in;
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    width: pxToRem($tableStickyShadowWidth);
-    top: 0;
-    bottom: 0;
-  }
+:is(.sbb-table-sticky-border-elem-left, .sbb-table-sticky-border-elem-right)::after {
+  content: '';
+  transition: visibility, opacity 0.2s ease-in;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  width: var(--sbb-table-sticky-shadow-width);
+  top: 0;
+  bottom: 0;
 }
 
 .sbb-table-sticky-border-elem-left {
-  .sbb-table-wrapper-offset-left &,
-  .sbb-table-wrapper-offset-both & {
+  :is(.sbb-table-wrapper-offset-left, .sbb-table-wrapper-offset-both) & {
     &::after {
       visibility: visible;
       opacity: 1;
       background-image: linear-gradient(-270deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
-      right: pxToRem(-$tableStickyShadowWidth - 1);
+      right: var(--sbb-table-sticky-shadow-offset);
     }
   }
 }
 
 .sbb-table-sticky-border-elem-right {
-  .sbb-table-wrapper-offset-right &,
-  .sbb-table-wrapper-offset-both & {
-    html.sbb-lean & {
-      border-left: pxToRem(1) solid $sbbColorAluminum;
+  :is(.sbb-table-wrapper-offset-right, .sbb-table-wrapper-offset-both) & {
+    :where(html.sbb-lean) & {
+      border-left: var(--sbb-border-width-thin) solid var(--sbb-color-aluminum);
     }
 
     &::after {
       visibility: visible;
       opacity: 1;
       background-image: linear-gradient(270deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
-      left: pxToRem(-$tableStickyShadowWidth - 1);
+      left: var(--sbb-table-sticky-shadow-offset);
     }
   }
 }
 
-html.sbb-lean .sbb-table-sticky-border-elem-bottom {
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: pxToRem(-1);
-    border-top: pxToRem(1) solid $sbbColorAluminum;
-  }
+:where(html.sbb-lean) .sbb-table-sticky-border-elem-bottom::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: pxToRem(-1);
+  border-top: pxToRem(1) solid var(--sbb-color-aluminum);
 }
 
 .sbb-table-fixed-layout {
@@ -2139,7 +2052,7 @@ html.sbb-lean .sbb-table-sticky-border-elem-bottom {
 }
 
 .sbb-table-divider-title {
-  font-family: $fontSbbBold;
+  font-family: var(--sbb-font-bold);
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -2147,25 +2060,11 @@ html.sbb-lean .sbb-table-sticky-border-elem-bottom {
 // ----------------------------------------------------------------------------------------------------
 
 input.sbb-input-element.sbb-time-input {
-  $timeInputWidthStandard: 84;
-  $timeInputHeightStandard: 48;
-
-  width: pxToRem($timeInputWidthStandard);
-  height: pxToRem($timeInputHeightStandard);
+  width: calc(#{pxToRem(84)} * var(--sbb-scaling-factor));
+  height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
   text-align: center;
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      width: pxToRem(128);
-      height: pxToRem($timeInputHeightStandard * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      width: pxToRem($timeInputWidthStandard * $scalingFactor5k);
-      height: pxToRem($timeInputHeightStandard * $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     width: pxToRem(70);
     height: pxToRem(36);
   }
@@ -2175,31 +2074,27 @@ input.sbb-input-element.sbb-time-input {
 // SBB scrollbar
 // ----------------------------------------------------------------------------------------------------
 
-$thumbColor: $sbbColorPlatinum;
-$trackColor: $sbbColorMilk;
-
-@mixin scrollbarColor($thumbColor, $trackColor) {
-  scrollbar-color: $thumbColor $trackColor;
-  &::-webkit-scrollbar-thumb {
-    background-color: $thumbColor;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: $trackColor;
-  }
-}
-
 .sbb-scrollbar {
-  @include scrollbarColor(transparent, transparent);
+  --sbb-scrollbar-thumb-color: transparent;
+  --sbb-scrollbar-track-color: transparent;
 
-  &:hover,
-  &.sbb-scrollbar-opaque {
-    @include scrollbarColor($thumbColor, $trackColor);
+  &:is(:hover, .sbb-scrollbar-opaque) {
+    --sbb-scrollbar-thumb-color: var(--sbb-color-platinum);
+    --sbb-scrollbar-track-color: var(--sbb-color-milk);
   }
 
   scrollbar-width: thin;
+  scrollbar-color: var(--sbb-scrollbar-thumb-color) var(--sbb-scrollbar-track-color);
+
   &::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--sbb-scrollbar-thumb-color);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--sbb-scrollbar-track-color);
   }
 
   @supports (-webkit-touch-callout: none) {
@@ -2213,7 +2108,7 @@ $trackColor: $sbbColorMilk;
   }
 
   &:hover::-webkit-scrollbar-thumb:hover {
-    background-color: $sbbColorStorm;
+    background-color: var(--sbb-color-storm);
   }
 }
 
@@ -2221,8 +2116,23 @@ $trackColor: $sbbColorMilk;
 // Utility
 // ----------------------------------------------------------------------------------------------------
 
+/**
+ * Contain floats with clearfix
+ *
+ * http://nicolasgallagher.com/micro-clearfix-hack/
+ */
 .clearfix {
-  @include clearfix;
+  zoom: 1;
+
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -2237,116 +2147,53 @@ $panelBorderRadius: 2;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: $sbbColorWhite;
-  border: pxToRem($panelBorderWidthStandard) solid $sbbColorGrey;
-  border-radius: 0 0 pxToRem($panelBorderRadius) pxToRem($panelBorderRadius);
+  background-color: var(--sbb-color-background);
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
+  border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
   border-top: none;
-  transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  color: $sbbColorGrey;
-
-  @include panelShadow();
+  transition: height var(--sbb-transition-fast-start), opacity var(--sbb-transition-fast-start);
+  color: var(--sbb-color-weak-accent);
+  position: relative;
+  top: var(--sbb-box-shadow-horizontal-border-offset-top-below);
+  box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border-bottom);
 
   hr {
     margin: pxToRem(10) 0;
     padding: 0;
     border: none;
-    border-top: solid pxToRem(1) $sbbColorCloud;
+    border-top: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
+
+    :where(html.sbb-lean) & {
+      margin: pxToRem(4) 0;
+    }
   }
 
   .sbb-label {
-    color: $sbbColorMetal;
-    padding: pxToRem(5) pxToRem(14);
+    color: var(--sbb-color-metal);
+    padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor))
+      calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding: pxToRem(5 * $scalingFactor4k) pxToRem(14 * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        padding: pxToRem(5 * $scalingFactor5k) pxToRem(14 * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      color: $sbbColorGranite; // Redefine color to be more specific than standard variant
+    :where(html.sbb-lean) & {
+      color: var(--sbb-color-granite);
       padding: pxToRem(4) pxToRem(8);
-    }
-  }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      border-width: pxToRem($panelBorderWidthStandard * $scalingFactor4k);
-      border-radius: 0 0 pxToRem($panelBorderRadius * $scalingFactor4k)
-        pxToRem($panelBorderRadius * $scalingFactor4k);
-      @include panelShadow($scalingFactor: $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      border-width: pxToRem($panelBorderWidthStandard * $scalingFactor5k);
-      border-radius: 0 0 pxToRem($panelBorderRadius * $scalingFactor5k)
-        pxToRem($panelBorderRadius * $scalingFactor5k);
-      @include panelShadow($scalingFactor: $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
-    border-width: pxToRem($panelBorderWidthLean);
-    border-color: $sbbColorIron;
-    color: $sbbColorIron;
-    @include panelShadow($borderWidth: $panelBorderWidthLean);
-
-    hr {
-      margin: pxToRem(4) 0;
     }
   }
 }
 
 .sbb-panel-above {
-  border-radius: pxToRem($panelBorderRadius) pxToRem($panelBorderRadius) 0 0;
-  border-top-width: pxToRem($panelBorderWidthStandard);
+  border-radius: var(--sbb-border-radius) var(--sbb-border-radius) 0 0;
+  border-top-width: var(--sbb-border-width);
   border-top-style: solid;
   border-bottom: none;
-  @include panelShadow($attached: above);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      border-radius: pxToRem($panelBorderRadius * $scalingFactor4k)
-        pxToRem($panelBorderRadius * $scalingFactor4k) 0 0;
-      border-top-width: pxToRem($panelBorderRadius * $scalingFactor4k);
-      @include panelShadow($attached: above, $scalingFactor: $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      border-radius: pxToRem($panelBorderRadius * $scalingFactor5k)
-        pxToRem($panelBorderRadius * $scalingFactor5k) 0 0;
-      border-top-width: pxToRem($panelBorderRadius * $scalingFactor5k);
-      @include panelShadow($attached: above, $scalingFactor: $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
-    border-width: pxToRem($panelBorderWidthLean);
-    border-bottom: none;
-    @include panelShadow($attached: above, $borderWidth: $panelBorderWidthLean);
-  }
+  top: var(--sbb-box-shadow-horizontal-border-offset-top-above);
+  box-shadow: var(--sbb-box-shadow-horizontal-border-top);
 }
 
 .sbb-panel-padded {
-  padding-top: pxToRem(10);
-  padding-bottom: pxToRem(10);
+  padding-top: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
+  padding-bottom: calc(#{pxToRem(10)} * var(--sbb-scaling-factor));
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      padding-top: pxToRem(10 * $scalingFactor4k);
-      padding-bottom: pxToRem(10 * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      padding-top: pxToRem(10 * $scalingFactor5k);
-      padding-bottom: pxToRem(10 * $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-top: pxToRem(4);
     padding-bottom: pxToRem(4);
   }
@@ -2362,6 +2209,8 @@ $panelBorderRadius: 2;
 .sbb-input-with-open-panel-above > .sbb-input-element {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
+
+  box-shadow: var(--sbb-box-shadow-below);
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -2378,63 +2227,44 @@ $menuItemPaddingTopBottom: 4;
   position: relative;
   display: block;
   text-decoration: none;
-  padding: pxToRem($menuItemPaddingTopBottom) pxToRem($menuItemPaddingLeftRightStandard);
+  padding: calc(#{pxToRem(4)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
   text-align: left;
   max-width: 100%;
   cursor: pointer;
   outline: 0;
-  color: $sbbColorGrey;
-  line-height: pxToRem(23);
+  color: var(--sbb-color-weak-accent);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height-medium);
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem(35);
-      padding: pxToRem($menuItemPaddingTopBottom * $scalingFactor4k)
-        pxToRem($menuItemPaddingLeftRightStandard * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem(45);
-      padding: pxToRem($menuItemPaddingTopBottom * $scalingFactor5k)
-        pxToRem($menuItemPaddingLeftRightStandard * $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding-left: pxToRem(8);
     padding-right: pxToRem(8);
-    line-height: pxToRem(20);
-    color: $sbbColorIron;
   }
 
   &:not(.sbb-focused) strong {
-    color: $sbbColorBlack;
+    color: var(--sbb-color-text);
   }
 
-  &.sbb-selected,
-  &.sbb-active {
-    color: $sbbColorBlack;
-    html.sbb-lean & {
+  &:is(.sbb-selected, .sbb-active) {
+    color: var(--sbb-color-text);
+
+    :where(html.sbb-lean) & {
       @include sbbMenuItemBlackLean();
     }
   }
 
-  &:disabled,
-  &[disabled],
-  &.sbb-disabled {
+  &:is(:disabled, [disabled], .sbb-disabled) {
     cursor: default;
     opacity: 0.5;
     user-select: none;
   }
 
-  &:not(:disabled):not([disabled]):not(.sbb-disabled):hover,
-  &:not(:disabled):not([disabled]):not(.sbb-disabled):focus,
-  &:not(:disabled):not([disabled]):not(.sbb-disabled):hover strong,
-  &:not(:disabled):not([disabled]):not(.sbb-disabled):focus strong,
-  &.sbb-focused {
-    color: $sbbColorRed;
-    html.sbb-lean & {
+  &:is(:not(:disabled):not([disabled]):not(.sbb-disabled):is(:hover, :focus, :hover strong, :focus
+        strong), .sbb-focused) {
+    color: var(--sbb-color-red);
+
+    :where(html.sbb-lean) & {
       @include sbbMenuItemRedLean();
     }
   }
@@ -2442,51 +2272,31 @@ $menuItemPaddingTopBottom: 4;
   .sbb-icon {
     line-height: 0;
     margin: pxToRem(-7) 0 pxToRem(-7) 0;
-    transform: translateY(pxToRem(7));
-    width: pxToRem(24);
-    height: pxToRem(24);
+    transform: translateY(calc(#{pxToRem(7)} * var(--sbb-scaling-factor)));
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
 
-    html:not(.sbb-lean) & {
+    :where(html:not(.sbb-lean)) & {
       @include mq($from: desktop4k) {
         margin-top: pxToRem(-12);
         margin-bottom: pxToRem(-12);
-        transform: translateY(pxToRem(7 * $scalingFactor4k));
-        width: pxToRem(36);
-        height: pxToRem(36);
       }
-
       @include mq($from: desktop5k) {
         margin-top: pxToRem(-15);
         margin-bottom: pxToRem(-15);
-        transform: translateY(pxToRem(7 * $scalingFactor5k));
-        width: pxToRem(48);
-        height: pxToRem(48);
       }
     }
-
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       margin: pxToRem(-9) 0 pxToRem(-9) 0;
     }
   }
 
   > .sbb-icon:first-child {
     float: left; // used to ignore users whitespace and to ensure margin is correct
-    margin-right: pxToRem(11);
-    margin-left: pxToRem(-1);
+    margin-right: calc(#{pxToRem(11)} * var(--sbb-scaling-factor));
+    margin-left: calc(#{pxToRem(-1)} * var(--sbb-scaling-factor));
 
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        margin-right: pxToRem(11 * $scalingFactor4k);
-        margin-left: pxToRem(-1 * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        margin-right: pxToRem(11 * $scalingFactor5k);
-        margin-left: pxToRem(-1 * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       margin-right: pxToRem(8);
       margin-left: 0;
     }
@@ -2497,122 +2307,50 @@ $menuItemPaddingTopBottom: 4;
   display: block;
 
   .sbb-menu-item {
-    padding-left: pxToRem(22);
+    padding-left: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
 
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding-left: pxToRem(22 * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        padding-left: pxToRem(22 * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       padding-left: pxToRem(16);
     }
   }
 
   &:first-child > .sbb-label:first-child {
-    padding-top: pxToRem(16);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding-top: pxToRem(16 * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        padding-top: pxToRem(16 * $scalingFactor5k);
-      }
-    }
+    padding-top: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
     .sbb-panel-padded > & {
-      padding-top: pxToRem(6);
-
-      html:not(.sbb-lean) & {
-        @include mq($from: desktop4k) {
-          padding-top: pxToRem(6 * $scalingFactor4k);
-        }
-        @include mq($from: desktop5k) {
-          padding-top: pxToRem(6 * $scalingFactor5k);
-        }
-      }
+      padding-top: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
     }
   }
 
   .sbb-label {
-    padding-top: pxToRem(22);
+    padding-top: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
 
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding-top: pxToRem(22 * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        padding-top: pxToRem(22 * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       padding-top: pxToRem(12);
     }
   }
 
-  & + &,
-  .sbb-menu-item + &,
-  & + .sbb-menu-item {
-    border-top: pxToRem(1) solid $sbbColorCloud;
-    margin-top: pxToRem(8);
+  :is(& + &, .sbb-menu-item + &, & + .sbb-menu-item) {
+    border-top: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);
+    margin-top: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+
+    :where(html.sbb-lean) & {
+      margin-top: pxToRem(4);
+    }
 
     .sbb-label {
-      padding-top: pxToRem(16);
+      padding-top: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
-      html:not(.sbb-lean) & {
-        @include mq($from: desktop4k) {
-          padding-top: pxToRem(16 * $scalingFactor4k);
-        }
-
-        @include mq($from: desktop5k) {
-          padding-top: pxToRem(16 * $scalingFactor5k);
-        }
-      }
-
-      html.sbb-lean & {
+      :where(html.sbb-lean) & {
         padding-top: pxToRem(8);
       }
-    }
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        border-top-width: pxToRem(1 * $scalingFactor4k);
-        margin-top: pxToRem(8 * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        border-top-width: pxToRem(1 * $scalingFactor5k);
-        margin-top: pxToRem(8 * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      margin-top: pxToRem(4);
     }
   }
 
   & + .sbb-menu-item {
-    padding-top: pxToRem(14);
+    padding-top: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        padding-top: pxToRem(14 * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        padding-top: pxToRem(14 * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
+    :where(html.sbb-lean) & {
       padding-top: pxToRem(8);
     }
   }

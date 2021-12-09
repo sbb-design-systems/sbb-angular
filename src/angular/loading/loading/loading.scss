@@ -1,4 +1,4 @@
-@import '../../../angular/styles/common';
+@import '../../styles/common';
 
 // Standard settings
 $numberOfItems: 5;
@@ -34,7 +34,7 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
         display: flex;
 
         & > div {
-          background: $sbbColorRed;
+          background: var(--sbb-color-red);
 
           // disable backface visibility
           backface-visibility: hidden;
@@ -95,8 +95,7 @@ $loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5
   }
 }
 
-.sbb-loading-fullbox,
-.sbb-loading-fullscreen {
+:is(.sbb-loading-fullbox, .sbb-loading-fullscreen) {
   top: 0;
   left: 0;
   height: 100%;

@@ -2,7 +2,7 @@
 @import '../styles/common';
 
 .sbb-overlay-background {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--sbb-color-white-alpha70);
   align-items: center;
 }
 
@@ -12,7 +12,7 @@
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-background);
 
   // The dialog container should completely fill its parent overlay element.
   width: 100%;
@@ -38,61 +38,46 @@
 
 .sbb-lightbox-content {
   display: block;
-  padding: pxToRem(54) pxToRem(24) pxToRem(45);
+  padding: var(--sbb-divider-big) var(--sbb-lightbox-padding-horizontal);
   flex: 1 1 auto;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 
-  @include mq($from: tablet) {
-    padding: pxToRem(72) pxToRem(24) pxToRem(48);
-  }
-  @include mq($from: desktop) {
-    padding: pxToRem(96) pxToRem(136) pxToRem(48);
-  }
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      padding: pxToRem(144) pxToRem(204) pxToRem(72);
-    }
-    @include mq($from: desktop5k) {
-      padding: pxToRem(192) pxToRem(272) pxToRem(96);
-    }
-  }
-
-  // Remove the top margin from headings if it is the first element inside the content.
-  h1,
-  h2,
-  h3,
-  h4 {
-    &:first-child {
-      margin-top: 0;
-    }
+  // Remove the top margin from the first element inside the content.
+  > *:first-child {
+    margin-top: 0;
   }
 }
 
 .sbb-lightbox-title {
-  padding: pxToRem(21) pxToRem(44) pxToRem(17) pxToRem(20);
+  // The right padding considers original padding, plus additional padding
+  // to not let text touch the icon.
+  padding: calc(#{pxToRem(21)} * var(--sbb-scaling-factor)) pxToRem(56)
+    calc(#{pxToRem(17)} * var(--sbb-scaling-factor)) pxToRem(20);
   flex: 0 0 auto;
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
   display: block;
   position: relative;
-  box-shadow: horizontalBorderBoxShadow(1, 1, 1);
+  box-shadow: var(--sbb-box-shadow-horizontal-border-top);
   @include ellipsis;
 
   @include mq($from: tablet) {
     padding-left: pxToRem(24);
-    padding-right: pxToRem(48);
+    // The right padding considers original padding, plus additional padding
+    // to not let text touch the icon.
+    padding-right: pxToRem(60);
   }
   @include mq($from: desktop) {
-    padding-left: pxToRem(80);
-    padding-right: pxToRem(80);
+    padding-left: calc(#{pxToRem(80)} * var(--sbb-scaling-factor));
+    // The right padding considers original padding, plus additional padding
+    // to not let text touch the icon.
+    padding-right: calc(#{pxToRem(92)} * var(--sbb-scaling-factor));
   }
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      padding: pxToRem(28) pxToRem(120);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      padding: pxToRem(42) pxToRem(160) pxToRem(34);
+  :where(html:not(.sbb-lean)) & {
+    @include mq($from: desktop4k, $to: desktop5k) {
+      padding-top: pxToRem(28);
+      padding-bottom: pxToRem(28);
     }
   }
 }
@@ -102,62 +87,36 @@
   right: pxToRem(20);
   cursor: pointer;
   line-height: 0;
-  color: $sbbColorStorm;
+  color: var(--sbb-color-storm);
   outline: 0;
 
-  &:hover,
-  &:focus {
-    color: $sbbColorRed125;
+  &:is(:hover, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 
   @include mq($from: tablet) {
     right: pxToRem(24);
   }
   @include mq($from: desktop) {
-    right: pxToRem(56);
-  }
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      right: pxToRem(84);
-    }
-    @include mq($from: desktop5k) {
-      right: pxToRem(112);
-    }
+    right: calc(#{pxToRem(56)} * var(--sbb-scaling-factor));
   }
 }
 
 .sbb-lightbox-actions {
-  padding: pxToRem(24);
-  flex: 0 0 auto;
+  padding: var(--sbb-lightbox-actions-padding-vertical) var(--sbb-lightbox-padding-horizontal);
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex: 0 0 auto;
+  flex-flow: column wrap;
+  gap: var(--sbb-button-gap);
   align-items: center;
   justify-content: space-between;
 
   // Explicitly set a box-sizing since people commonly set `border-box`
   // on all elements which will break the height of the lightbox actions.
   box-sizing: content-box;
-  box-shadow: horizontalBorderBoxShadow(-1, 1, 1);
+  box-shadow: var(--sbb-box-shadow-horizontal-border-bottom);
 
   @include mq($from: tablet) {
     flex-direction: row;
-  }
-  @include mq($from: desktop) {
-    padding: pxToRem(24) pxToRem(136);
-  }
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      padding: pxToRem(36) pxToRem(204);
-    }
-    @include mq($from: desktop5k) {
-      padding: pxToRem(48) pxToRem(272);
-    }
-  }
-
-  .sbb-button-base + .sbb-button-base {
-    @include mq($to: tablet) {
-      margin-top: pxToRem(8);
-    }
   }
 }

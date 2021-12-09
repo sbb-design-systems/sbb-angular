@@ -1,134 +1,111 @@
 @use 'external/npm/node_modules/@angular/cdk' as cdk;
 @import '../styles/common';
 
-$tooltipContentArrowSize: 17.7;
-$tooltipContentArrowSizeLean: 16.665;
-$tooltipShadowArrowSize: 14;
-$tooltipShadowArrowSizeLean: 13.333;
-
 .sbb-tooltip-component {
   display: block;
 }
 
 .sbb-tooltip-container {
   height: 100%;
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeLineHeightDefault);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
-    }
-  }
-  html.sbb-lean & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-  }
-
-  &::after {
-    top: 0;
+  &::after,
+  &::before {
+    // Slightly move down arrow to avoid artifacts on certain zoom levels
+    top: calc(0.5 * var(--sbb-border-width));
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    content: ' ';
-    height: pxToEm($tooltipContentArrowSize);
-    width: pxToEm($tooltipContentArrowSize);
+    content: '';
+    height: var(--sbb-tooltip-content-arrow-size);
+    width: var(--sbb-tooltip-content-arrow-size);
     position: absolute;
     pointer-events: none;
-    transform: rotate(-135deg);
-    background-color: $sbbColorWhite;
-    border: pxToEm(2) solid transparent;
-    border-right-color: $sbbColorGrey;
-    border-bottom-color: $sbbColorGrey;
-  }
-  .sbb-tooltip-panel-above &::after {
-    top: auto;
-    bottom: pxToEm(12.9);
     transform: rotate(45deg);
+    border: var(--sbb-border-width) solid transparent;
+
+    .sbb-tooltip-panel-above & {
+      top: auto;
+      bottom: calc(0.5 * var(--sbb-tooltip-shadow-arrow-size) + var(--sbb-box-shadow-width));
+    }
+
+    .sbb-tooltip-panel-left & {
+      margin-right: var(--sbb-tooltip-arrow-horizontal-space);
+    }
+
+    .sbb-tooltip-panel-right & {
+      margin-left: var(--sbb-tooltip-arrow-horizontal-space);
+    }
   }
-  .sbb-tooltip-panel-left &::after {
-    margin-right: pxToEm(6);
+
+  &::before {
+    border-color: var(--sbb-color-weak-accent);
+    z-index: 1;
   }
-  .sbb-tooltip-panel-right &::after {
-    margin-left: pxToEm(6);
-  }
-  html.sbb-lean &::after {
-    bottom: pxToRem(8.25);
-    height: pxToRem($tooltipContentArrowSizeLean);
-    width: pxToRem($tooltipContentArrowSizeLean);
-    border-width: pxToRem(1);
-    border-right-color: $sbbColorIron;
-    border-bottom-color: $sbbColorIron;
+
+  &::after {
+    background-color: var(--sbb-color-background);
+    background-clip: padding-box;
+    z-index: 2;
   }
 }
 
 .sbb-tooltip {
   max-width: pxToEm(460);
-  padding: pxToEm(23);
+  padding: var(--sbb-tooltip-padding);
+  position: relative;
   overflow: hidden;
-  color: $sbbColorGrey;
+  color: var(--sbb-color-grey);
   text-overflow: ellipsis;
-  background-color: $sbbColorWhite;
-  border: pxToEm(2) solid $sbbColorGrey;
-  border-radius: pxToEm(2);
+  background-color: var(--sbb-color-background);
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
+  border-radius: var(--sbb-border-radius);
+  z-index: 2;
 
   @include cdk.high-contrast(active, off) {
     outline: solid 1px;
   }
 
   .sbb-tooltip-panel-below & {
-    margin-top: pxToEm(7.2);
+    margin-top: var(--sbb-tooltip-arrow-offset);
   }
 
-  html.sbb-lean & {
-    color: $sbbColorBlack;
-    padding: pxToRem(8);
-    border: pxToRem(1) solid $sbbColorIron;
+  :where(html.sbb-lean) & {
+    color: var(--sbb-color-text);
   }
 }
 
 .sbb-tooltip-shadow {
-  height: pxToEm(8);
-  background-color: rgba(0, 0, 0, 0.15);
-  border-radius: 0 0 pxToEm(2) pxToEm(2);
+  height: calc(var(--sbb-box-shadow-width) + var(--sbb-border-radius));
+  margin-top: calc(-1 * var(--sbb-border-radius));
+  background-color: var(--sbb-box-shadow-color);
+  border-radius: 0 0 var(--sbb-border-radius) var(--sbb-border-radius);
+  z-index: 1;
 
   .sbb-tooltip-panel-above & {
-    margin-bottom: pxToEm(12);
+    margin-bottom: var(--sbb-tooltip-shadow-arrow-size);
 
     &::after {
-      top: calc(100% - #{pxToEm(12)});
+      top: calc(100% - var(--sbb-tooltip-shadow-arrow-size));
       left: 0;
       right: 0;
       margin-left: auto;
       margin-right: auto;
-      content: ' ';
+      content: '';
       position: absolute;
       width: 0;
       height: 0;
-      border: pxToEm($tooltipShadowArrowSize) solid transparent;
+      border: var(--sbb-tooltip-shadow-arrow-size) solid transparent;
       border-bottom: 0;
-      border-top-color: rgba(0, 0, 0, 0.15);
-
-      html.sbb-lean & {
-        border-width: pxToRem($tooltipShadowArrowSizeLean);
-        border-bottom: 0;
-      }
+      border-top-color: var(--sbb-box-shadow-color);
     }
   }
   .sbb-tooltip-panel-above.sbb-tooltip-panel-left &::after {
-    margin-right: pxToEm(1);
+    margin-right: calc(var(--sbb-tooltip-arrow-horizontal-space) - 2 * var(--sbb-border-width));
   }
   .sbb-tooltip-panel-above.sbb-tooltip-panel-right &::after {
-    margin-left: pxToEm(1);
-  }
-
-  html.sbb-lean & {
-    height: pxToRem(4);
-    border-radius: 0 0 pxToRem(1) pxToRem(1);
+    margin-left: calc(var(--sbb-tooltip-arrow-horizontal-space) - 2 * var(--sbb-border-width));
   }
 }

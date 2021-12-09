@@ -1,62 +1,28 @@
-@import '../pagination';
-
-$paginatorSize: 40;
-$paginatorSize4K: $paginatorSize * $scalingFactor4k;
-$paginatorSize5K: $paginatorSize * $scalingFactor5k;
-$paginatorSizeLean: 30;
-
-$paginatorDisabledColor: $sbbColorSilver;
-$paginatorDisabledColorLean: $sbbColorStorm;
+@import '../../styles/common';
 
 .sbb-paginator {
   display: inline-block;
 }
 
 .sbb-paginator-list {
-  margin: 0; // Overwrite styles from typography (ul)
-  padding-left: 0; // Overwrite styles from typography (ul)
-
   display: flex;
-  list-style: none;
+  color: var(--sbb-pagination-base-color);
 }
 
 .sbb-paginator-item {
-  margin: 0; // Overwrite styles from typography (li)
-  padding-left: 0; // Overwrite styles from typography (li)
-
   position: relative;
   line-height: 0;
   text-align: center;
   outline: 0;
   flex-shrink: 0;
-  font-size: pxToRem($sizeFontDefault);
-  min-width: pxToRem($paginatorSize);
-  height: pxToRem($paginatorSize);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      min-width: pxToRem($paginatorSize4K);
-      height: pxToRem($paginatorSize4K);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      min-width: pxToRem($paginatorSize5K);
-      height: pxToRem($paginatorSize5K);
-    }
-  }
-
-  html.sbb-lean & {
-    min-width: pxToRem($paginatorSizeLean);
-    height: pxToRem($paginatorSizeLean);
-  }
+  min-width: var(--sbb-pagination-paginator-size);
+  height: var(--sbb-pagination-paginator-size);
 }
 
 .sbb-paginator-item-button {
   cursor: pointer;
   border-radius: 1.5em;
-  border: pxToRem(2) solid transparent;
+  border: var(--sbb-border-width) solid transparent;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -65,106 +31,40 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   height: 100%;
   line-height: 1;
   outline: 0;
-  color: $paginationBaseColor;
-  padding: 0 pxToRem(private-div($sizeFontDefault, 2));
 
-  &:hover,
-  &:focus {
-    color: $paginationActiveHoverColor;
+  &:is(:hover, :focus):not(.sbb-paginator-item-selected) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      border-width: pxToRem(2 * $scalingFactor4k);
-      padding: 0 pxToRem(private-div($sizeFontDefault4k, 2));
-    }
-    @include mq($from: desktop5k) {
-      border-width: pxToRem(2 * $scalingFactor5k);
-      padding: 0 pxToRem(private-div($sizeFontDefault5k, 2));
-    }
-  }
-
-  html.sbb-lean & {
-    color: $paginationBaseColorLean;
-    padding: 0 pxToRem(5);
-
-    &:hover,
-    &:focus {
-      color: $paginationActiveHoverColorLean;
-    }
+  :where(html.sbb-lean) & {
+    border-width: pxToRem(2);
   }
 }
 
 .sbb-paginator-item-selected {
-  border-color: $paginationBaseColor;
+  border-color: var(--sbb-pagination-base-color);
   cursor: default;
-
-  &:hover,
-  &:focus {
-    color: $paginationBaseColor;
-  }
-
-  html.sbb-lean & {
-    border-color: $paginationBaseColorLean;
-
-    &:hover,
-    &:focus {
-      color: $paginationBaseColorLean;
-    }
-  }
 }
 
 .sbb-paginator-item-boundary {
-  color: $sbbColorGranite;
-  width: pxToRem($paginatorSize);
-  height: pxToRem($paginatorSize);
+  color: var(--sbb-color-weak-accent);
+  width: var(--sbb-pagination-paginator-size);
+  height: var(--sbb-pagination-paginator-size);
+
   padding: 0;
 
   &:hover {
-    color: $paginationActiveHoverColor;
-  }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      width: pxToRem($paginatorSize4K);
-      height: pxToRem($paginatorSize4K);
-      padding: 0;
-    }
-
-    @include mq($from: desktop5k) {
-      width: pxToRem($paginatorSize5K);
-      height: pxToRem($paginatorSize5K);
-      padding: 0;
-    }
-  }
-
-  html.sbb-lean & {
-    color: $sbbColorIron;
-    height: pxToRem($paginatorSizeLean);
-    width: pxToRem($paginatorSizeLean);
-    padding: 0;
-
-    &:hover {
-      color: $paginationActiveHoverColorLean;
-    }
+    color: var(--sbb-color-call-to-action-hover);
   }
 }
 
 .sbb-paginator-item-disabled {
-  color: $paginatorDisabledColor;
+  color: var(--sbb-pagination-disabled-color);
   cursor: default;
   pointer-events: none;
 
   &.sbb-paginator-item-selected {
-    border-color: $paginatorDisabledColor;
-
-    html.sbb-lean & {
-      border-color: $paginatorDisabledColorLean;
-    }
-  }
-
-  html.sbb-lean & {
-    color: $paginatorDisabledColorLean;
+    border-color: var(--sbb-pagination-disabled-color);
   }
 }
 
@@ -172,17 +72,8 @@ $paginatorDisabledColorLean: $sbbColorStorm;
   cursor: default;
   display: block;
   margin-top: 54%;
-  color: $paginationBaseColor;
-
-  html.sbb-lean & {
-    color: $paginationBaseColorLean;
-  }
 }
 
 .sbb-paginator-item-ellipsis-disabled {
-  color: $paginatorDisabledColor;
-
-  html.sbb-lean & {
-    color: $paginatorDisabledColorLean;
-  }
+  color: var(--sbb-pagination-disabled-color);
 }

@@ -2,67 +2,78 @@
 
 .sbb-notification-toast {
   display: flex;
-  align-items: center;
-  min-height: pxToRem(51);
-  border-radius: pxToRem(2);
-  color: $sbbColorWhite;
-  background-color: $sbbColorWhite;
-  font-size: pxToRem($sizeFontDefault);
-  padding-top: pxToRem(12);
-  padding-bottom: pxToRem(12);
-  margin: pxToRem(20);
+  min-height: calc(#{pxToRem(48)} * var(--sbb-scaling-factor));
+  border-radius: var(--sbb-border-radius);
+  color: var(--sbb-color-white);
+  background-color: var(--sbb-color-background);
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
+  padding-top: calc(#{pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
+  padding-bottom: calc(
+    #{pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin) - var(
+        --sbb-line-height
+      ) + var(--sbb-icon-size-default)
+  );
+  margin: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+
+  :where(html.sbb-lean) & {
+    padding-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor) - var(--sbb-border-width-thin));
+  }
+
+  .sbb-notification-toast-mobile & {
+    margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.sbb-notification-toast-mobile {
+  width: 100%;
 }
 
 .sbb-notification-toast-error {
-  background-color: $sbbColorRed;
+  background-color: var(--sbb-color-error);
 
-  &,
-  a,
-  button {
-    color: $sbbColorWhite;
+  :is(&, & :is(a, button)) {
+    color: var(--sbb-color-white);
   }
 }
 
 .sbb-notification-toast-success {
-  border: pxToRem(1) solid $sbbColorGreen;
+  border: var(--sbb-border-width-thin) solid var(--sbb-color-green);
 
-  &,
-  a,
-  button {
-    color: $sbbColorGreen;
+  :is(&, & :is(a, button)) {
+    color: var(--sbb-color-green);
   }
 }
 
 .sbb-notification-toast-info {
-  border: pxToRem(1) solid $sbbColorGranite;
+  border: var(--sbb-border-width-thin) solid var(--sbb-color-grey);
 
-  &,
-  a,
-  button {
-    color: $sbbColorGranite;
+  :is(&, & :is(a, button)) {
+    color: var(--sbb-color-grey);
   }
 }
 
 .sbb-notification-toast-warn {
-  background-color: $sbbColorOrange;
+  background-color: var(--sbb-color-orange);
 
-  &,
-  a,
-  button {
-    color: $sbbColorWhite;
+  :is(&, & :is(a, button)) {
+    color: var(--sbb-color-white);
   }
 }
 
 .sbb-notification-toast-content {
-  margin-left: pxToRem(8);
-  margin-right: pxToRem(24);
+  margin-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
+  margin-right: calc(#{pxToRem(24)} * var(--sbb-scaling-factor));
 }
 
 .sbb-notification-toast-icon-wrapper {
-  min-width: pxToRem(24);
-  width: pxToRem(24);
-  height: pxToRem(24);
-  margin-left: pxToRem(16);
+  min-width: var(--sbb-icon-size-default);
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  margin-left: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   border: none;
   background: none;
   padding: 0;
@@ -72,16 +83,5 @@
 .sbb-notification-toast-icon-close-wrapper {
   cursor: pointer;
   margin-left: auto;
-  margin-right: pxToRem(22);
-}
-
-.sbb-notification-toast-mobile {
-  width: 100%;
-
-  .sbb-notification-toast {
-    margin: pxToRem(8);
-    max-width: 100%;
-    min-width: 0;
-    width: 100%;
-  }
+  margin-right: calc(#{pxToRem(22)} * var(--sbb-scaling-factor));
 }

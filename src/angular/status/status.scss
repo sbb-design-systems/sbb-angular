@@ -3,57 +3,38 @@
 .sbb-status {
   display: inline-flex;
   align-items: center;
-  font-size: pxToRem($sizeFontDefault);
-  line-height: pxToRem($sizeLineHeightDefault);
-  height: pxToEm(24);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem($sizeFontDefault4k);
-      line-height: pxToRem($sizeLineHeightDefault4k);
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem($sizeFontDefault5k);
-      line-height: pxToRem($sizeLineHeightDefault5k);
-    }
-  }
-  html.sbb-lean & {
-    line-height: pxToRem($sizeLineHeightDefaultLean);
-  }
+  font-size: var(--sbb-font-size);
+  line-height: var(--sbb-line-height);
 }
 
 .sbb-status-icon {
-  width: pxToEm(24);
-  height: pxToEm(24);
-  border-radius: pxToRem(1);
-  color: $sbbColorWhite;
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      border-radius: pxToRem(2);
-    }
-  }
+  width: var(--sbb-icon-size-default);
+  height: var(--sbb-icon-size-default);
+  border-radius: var(--sbb-border-radius);
+  color: var(--sbb-color-white);
 }
 
 // Variant for .sbb-status-icon
 .sbb-status-icon-valid {
-  background-color: $sbbColorGreen;
+  background-color: var(--sbb-color-green);
 }
 
 // Variant for .sbb-status-icon
 .sbb-status-icon-warning {
-  background-color: $sbbColorOrange;
+  background-color: var(--sbb-color-orange);
 }
 
 // Variant for .sbb-status-icon
 .sbb-status-icon-invalid {
-  background-color: $sbbColorRed;
+  background-color: var(--sbb-color-red);
 }
 
 .sbb-status-message {
-  background-color: $sbbColorMilk;
-  color: $sbbColorGranite;
-  font-family: $fontSbbRoman;
-  margin-left: pxToEm(6);
-  padding: pxToEm(0) pxToEm(8) pxToEm(1) pxToEm(8);
+  background-color: var(--sbb-color-milk);
+  color: var(--sbb-color-grey);
+  line-height: calc(#{pxToRem(20)} * var(--sbb-scaling-factor));
+  font-family: var(--sbb-font-roman);
+  margin-left: pxToEm(8);
+  padding: calc(#{pxToRem(1)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(8)} * var(--sbb-scaling-factor)) calc(#{pxToRem(3)} * var(--sbb-scaling-factor));
 }

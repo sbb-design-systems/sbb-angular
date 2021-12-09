@@ -3,31 +3,23 @@
 .sbb-header-search {
   display: inline-flex;
   cursor: pointer;
-  color: $sbbColorMetal;
-  font-size: pxToRem(14);
-  line-height: pxToRem(17);
+  color: var(--sbb-color-metal);
+  font-size: calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
+  line-height: calc(#{pxToRem(17)} * var(--sbb-scaling-factor));
   outline: none;
-  padding: pxToRem(12) 0;
+  padding: calc(#{pxToRem(12)} * var(--sbb-scaling-factor)) 0;
 
-  &:hover,
-  &:focus {
-    color: $sbbColorRed125;
-  }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(21);
+  :where(html:not(.sbb-lean)) & {
+    @include mq($from: desktop4k, $to: desktop5k) {
       line-height: pxToRem(25);
-      padding: pxToRem(12 * $scalingFactor4k) 0;
-    }
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(28);
-      line-height: pxToRem(34);
-      padding: pxToRem(12 * $scalingFactor5k) 0;
     }
   }
-  html.sbb-lean & {
+  :where(html.sbb-lean) & {
     padding: pxToRem(6) 0;
+  }
+
+  &:is(:hover, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 }
 

@@ -1,22 +1,19 @@
 @use 'external/npm/node_modules/@angular/cdk' as cdk;
 @import '../styles/common';
 
-$sbb-dialog-padding: pxToRem(16);
-$sbb-dialog-button-margin: pxToRem(8);
-
 .sbb-overlay-background {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--sbb-color-white-alpha70);
   align-items: center;
 }
 
 .sbb-dialog-container {
   display: flex;
   flex-direction: column;
-  border: pxToRem(2) solid $sbbColorGrey;
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-background);
 
   // The dialog container should completely fill its parent overlay element.
   width: 100%;
@@ -26,15 +23,6 @@ $sbb-dialog-button-margin: pxToRem(8);
   // isn't set, we have to inherit the min and max values explicitly.
   min-height: inherit;
   max-height: inherit;
-
-  html:not(.sbb-lean) {
-    @include mq($from: desktop4k) {
-      border-width: pxToRem(4);
-    }
-  }
-  html.sbb-lean & {
-    border: pxToRem(1) solid $sbbColorIron;
-  }
 
   @include cdk.high-contrast(active, off) {
     outline: solid pxToRem(1);
@@ -52,46 +40,55 @@ $sbb-dialog-button-margin: pxToRem(8);
 
 .sbb-dialog-content {
   display: block;
-  padding: $sbb-dialog-padding;
+  padding: var(--sbb-dialog-padding);
   flex: 1 1 auto;
   max-height: 80vh;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+
+  // Remove the top margin from the first element inside the content.
+  > *:first-child {
+    margin-top: 0;
+  }
 }
 
 .sbb-dialog-title {
-  padding: pxToRem(15) pxToRem(40) pxToRem(15) $sbb-dialog-padding;
+  font-size: var(--sbb-font-size);
+  padding: calc(#{pxToRem(15)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(40)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(15)} * var(--sbb-scaling-factor)) var(--sbb-dialog-padding);
   flex: 0 0 auto;
   display: block;
   position: relative;
-  box-shadow: horizontalBorderBoxShadow(1, 1, 1);
+  box-shadow: var(--sbb-box-shadow-horizontal-border-top);
   @include ellipsis;
 }
 
 .sbb-dialog-title-close-button {
   position: absolute;
-  right: pxToRem(16);
+  right: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   cursor: pointer;
   line-height: 0;
 
-  &:hover,
-  &:focus {
-    color: $sbbColorRed125;
+  &:is(:hover, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 }
 
 .sbb-dialog-actions {
-  padding: pxToRem(7) pxToRem(16);
-  flex: 0 0 auto;
+  padding: calc(#{pxToRem(7)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   display: flex;
+  flex: 0 0 auto;
   flex-wrap: wrap;
+  gap: var(--sbb-button-gap);
   align-items: center;
   justify-content: flex-end;
 
   // Explicitly set a box-sizing since people commonly set `border-box`
   // on all elements which will break the height of the dialog actions.
   box-sizing: content-box;
-  box-shadow: horizontalBorderBoxShadow(-1, 1, 1);
+  box-shadow: var(--sbb-box-shadow-horizontal-border-bottom);
 
   &[align='start'],
   &[align='left'] {
@@ -100,9 +97,5 @@ $sbb-dialog-button-margin: pxToRem(8);
 
   &[align='center'] {
     justify-content: center;
-  }
-
-  .sbb-button-base + .sbb-button-base {
-    margin-left: $sbb-dialog-button-margin;
   }
 }

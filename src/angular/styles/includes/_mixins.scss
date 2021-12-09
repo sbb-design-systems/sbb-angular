@@ -3,48 +3,6 @@
 // ----------------------------------------------------------------------------------------------------
 
 /**
- * Contain floats with clearfix
- *
- * http://nicolasgallagher.com/micro-clearfix-hack/
- */
-
-@mixin clearfix() {
-  *zoom: 1;
-
-  &:before,
-  &:after {
-    content: '';
-    display: table;
-  }
-
-  &:after {
-    clear: both;
-  }
-}
-
-/**
- * Lists with layout purpose
- */
-
-@mixin resetList() {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: inherit;
-}
-
-/**
- * Replace text
- */
-
-@mixin replaceText() {
-  display: block;
-  overflow: hidden;
-  text-indent: 100%;
-  white-space: nowrap;
-}
-
-/**
  * Better font rendering (on OS X)
  * http://maximilianhoffmann.com/posts/better-font-rendering-on-osx
  *
@@ -68,54 +26,13 @@
   -moz-osx-font-smoothing: auto;
 }
 
-/**
- * Placeholder in input fields
- */
-@mixin placeholder($color: $sbbColorGrey) {
-  &::-webkit-input-placeholder {
-    color: $color;
-  }
-
-  &::-moz-placeholder {
-    // Firefox 19+
-    color: $color;
-    opacity: 1;
-  }
-
-  &:-ms-input-placeholder {
-    color: $color;
-  }
-}
-
 // Typo Styles
 // ----------------------------------------------------------------------------------------------------
-
-@mixin breakOutOfCenterAndGoFullBleed() {
-  // https://cloudfour.com/thinks/breaking-out-with-viewport-units-and-calc/
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-}
-
-// Centered tab module
-@mixin centeredTabModule() {
-  display: flex;
-  justify-content: center;
-}
 
 @mixin ellipsis() {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-@mixin inlineSVG() {
-  // TODO: remove or change em to rem
-  float: none;
-  display: inline-block;
-  width: pxToEm(16, $sizeFontDefault);
-  height: pxToEm(16, $sizeFontDefault);
-  margin-bottom: pxToEm(-4, $sizeFontDefault);
-  border-radius: 1px;
 }
 
 @mixin absoluteCenterXY() {
@@ -135,43 +52,6 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-}
-
-@mixin setFullBleed($offset) {
-  margin-left: -$offset;
-  margin-right: -$offset;
-}
-
-@mixin panelShadow($attached: below, $borderWidth: 2, $scalingFactor: 1) {
-  $sign: 1;
-  @if $attached == above {
-    $sign: -1;
-  }
-  $offset-top: -$sign * ($borderWidth - 1) * $scalingFactor;
-
-  @if $offset-top < 0 {
-    $offset-top: $offset-top - 0.05; // better rendering e.g. in 4k mode
-  }
-  @if $offset-top > 0 {
-    $offset-top: ceil($offset-top);
-  }
-  position: relative;
-  top: pxToRem($offset-top);
-  box-shadow: boxShadow($sign, $borderWidth, $scalingFactor),
-    horizontalBorderBoxShadow(-$sign, $borderWidth, $scalingFactor);
-}
-
-@function boxShadow($sign, $borderWidth, $scalingFactor) {
-  @return 0 pxToRem($sign * $borderWidth * 4 * $scalingFactor) 0 rgba(0, 0, 0, 0.15);
-}
-
-@function boxShadowEm($sign, $borderWidth, $scalingFactor) {
-  @return 0 pxToEm($sign * $borderWidth * 4 * $scalingFactor) 0 rgba(0, 0, 0, 0.15);
-}
-
-@function horizontalBorderBoxShadow($sign, $borderWidth, $scalingFactor) {
-  @return 0 pxToRem($sign * ($borderWidth + 1) * $scalingFactor) 0
-    pxToRem(-$borderWidth * $scalingFactor) $sbbColorCloud;
 }
 
 /**
@@ -218,28 +98,28 @@
 // Sbb Menu
 // ----------------------------------------------------------------------------------------------------
 
-@mixin borderLeftAsBefore($color) {
+@mixin borderLeftAsBefore($color, $width) {
   &::before {
     content: '';
     position: absolute;
     height: 100%;
-    width: pxToRem(1);
+    width: $width;
     left: 0;
     top: 0;
     background-color: $color;
   }
 }
 
-@mixin sbbMenuItemBlackLean() {
-  color: $sbbColorBlack;
-  background-color: $sbbColorCloud;
-  @include borderLeftAsBefore($sbbColorBlack);
+@mixin sbbMenuItemBlackLean($width: var(--sbb-border-width-thin)) {
+  color: var(--sbb-color-black);
+  background-color: var(--sbb-color-cloud);
+  @include borderLeftAsBefore(var(--sbb-color-black), $width);
 }
 
-@mixin sbbMenuItemRedLean() {
-  color: $sbbColorRed125;
-  background-color: $sbbColorMilk;
-  @include borderLeftAsBefore($sbbColorRed125);
+@mixin sbbMenuItemRedLean($width: var(--sbb-border-width-thin)) {
+  color: var(--sbb-color-call-to-action-hover);
+  background-color: var(--sbb-color-milk);
+  @include borderLeftAsBefore(var(--sbb-color-call-to-action-hover), $width);
 }
 
 @mixin sbbAbsoluteFill() {
@@ -248,4 +128,9 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+@mixin sbbFocusOutline() {
+  outline: var(--sbb-border-width-thin) solid var(--sbb-color-weak-accent);
+  outline-offset: var(--sbb-border-width-thin-negative);
 }

@@ -1,4 +1,4 @@
-@import '../../../angular/styles/common';
+@import '../../styles/common';
 
 .sbb-textarea {
   display: inline-block;
@@ -27,7 +27,7 @@
   // in a sbb-form-field and also for Angular Form Validation.
   .sbb-form-field-invalid & textarea,
   &.ng-touched.ng-invalid textarea {
-    color: $sbbColorError;
+    color: var(--sbb-color-error);
   }
 }
 
@@ -35,23 +35,13 @@
   position: relative;
   float: right;
   background: transparent;
-  color: $sbbColorBlack;
+  color: var(--sbb-color-text);
   letter-spacing: 0;
-  font-size: pxToRem(13);
+  font-size: var(--sbb-font-size-small);
   line-height: 1;
-  font-family: $fontSbbRoman;
+  font-family: var(--sbb-font-roman);
 
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      font-size: pxToRem(20);
-    }
-
-    @include mq($from: desktop5k) {
-      font-size: pxToRem(26);
-    }
-  }
-
-  html.sbb-lean & {
-    color: $sbbColorMetal;
+  :where(html.sbb-lean) & {
+    color: var(--sbb-color-metal);
   }
 }

@@ -5,7 +5,6 @@ load(
     "ng_test_library",
     "ng_web_test_suite",
     "sass_binary",
-    "sass_library",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -31,17 +30,11 @@ ng_module(
     ],
 )
 
-sass_library(
-    name = "pagination_scss_lib",
-    srcs = glob(["**/_*.scss"]),
-    deps = ["//src/angular/styles:common_scss_lib"],
-)
-
 sass_binary(
     name = "navigation_navigation_scss",
     src = "navigation/navigation.scss",
     deps = [
-        ":pagination_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 
@@ -49,7 +42,7 @@ sass_binary(
     name = "paginator_paginator_scss",
     src = "paginator/paginator.scss",
     deps = [
-        ":pagination_scss_lib",
+        "//src/angular/styles:common_scss_lib",
     ],
 )
 

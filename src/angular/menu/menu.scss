@@ -1,8 +1,4 @@
-@import '../../angular/styles/common';
-
-$borderWidthStandard: 2;
-$borderWidthLean: 1;
-$triggerPadding: private-div((36 - 24), 2); // (Desired width - icon width) / 2
+@import '../styles/common';
 
 // Prevent rendering sbb-menu as it can affect the flex layout.
 sbb-menu {
@@ -13,8 +9,8 @@ sbb-menu {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: pxToRem(150);
-  max-width: pxToRem(400);
+  min-width: calc(#{pxToRem(150)} * var(--sbb-scaling-factor));
+  max-width: calc(#{pxToRem(400)} * var(--sbb-scaling-factor));
   outline: 0;
 
   // Give the menu a minimum height so that the user can't
@@ -31,18 +27,6 @@ sbb-menu {
   &.ng-animating {
     pointer-events: none;
   }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      min-width: pxToRem(150 * $scalingFactor4k);
-      max-width: pxToRem(400 * $scalingFactor4k);
-    }
-
-    @include mq($from: desktop5k) {
-      min-width: pxToRem(150 * $scalingFactor5k);
-      max-width: pxToRem(400 * $scalingFactor5k);
-    }
-  }
 }
 
 .sbb-menu-panel-above {
@@ -57,27 +41,9 @@ sbb-menu {
   border-top-style: solid;
   width: 100%;
 
-  border-radius: pxToRem(2);
-  box-shadow: boxShadow(1, $borderWidthStandard, 1);
-  border-top-width: pxToRem($borderWidthStandard);
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      border-radius: pxToRem(2 * $scalingFactor4k);
-      box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
-      border-top-width: pxToRem($borderWidthStandard * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      border-radius: pxToRem(2 * $scalingFactor5k);
-      box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k);
-      border-top-width: pxToRem($borderWidthStandard * $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
-    box-shadow: boxShadow(1, $borderWidthLean, 1);
-    border-top-width: pxToRem($borderWidthLean);
-  }
+  border-radius: var(--sbb-border-radius);
+  box-shadow: var(--sbb-box-shadow-below);
+  border-top-width: var(--sbb-border-width);
 
   button.sbb-menu-item {
     width: 100%;
@@ -108,200 +74,80 @@ sbb-menu {
   max-width: none;
   min-width: 0;
   border: none;
-  padding: pxToRem($triggerPadding);
+  padding: var(--sbb-menu-trigger-padding);
   outline: 0;
   cursor: pointer;
-  color: $sbbColorBlack;
+  color: var(--sbb-color-black);
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: $sbbColorRed125;
+  &:is(:hover, :active, :focus) {
+    color: var(--sbb-color-call-to-action-hover);
   }
 
   .sbb-icon {
-    width: pxToRem(24);
-    height: pxToRem(24);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        width: pxToRem(24 * $scalingFactor4k);
-        height: pxToRem(24 * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        width: pxToRem(24 * $scalingFactor5k);
-        height: pxToRem(24 * $scalingFactor5k);
-      }
-    }
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
 
     svg {
       width: 100%;
       height: 100%;
     }
   }
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      padding: pxToRem(6 * $scalingFactor4k);
-      border-width: pxToRem($borderWidthStandard * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      padding: pxToRem(6 * $scalingFactor5k);
-      border-width: pxToRem($borderWidthStandard * $scalingFactor5k);
-    }
-  }
 }
 
 // Trigger styles for opened (copied) state
 .sbb-menu-panel-trigger {
-  background-color: $sbbColorWhite;
+  background-color: var(--sbb-color-background);
   position: relative;
   z-index: 1;
-  padding: pxToRem($triggerPadding - $borderWidthStandard);
-  border: pxToRem($borderWidthStandard) solid $sbbColorGrey;
-  border-radius: pxToRem(2);
+  padding: calc(var(--sbb-menu-trigger-padding) - var(--sbb-border-width));
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
+  border-radius: var(--sbb-border-radius);
   width: 100%;
-
-  html:not(.sbb-lean) & {
-    @include mq($from: desktop4k) {
-      padding: pxToRem(($triggerPadding - $borderWidthStandard) * $scalingFactor4k);
-      border-width: pxToRem($borderWidthStandard * $scalingFactor4k);
-      border-radius: pxToRem(2 * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      padding: pxToRem(($triggerPadding - $borderWidthStandard) * $scalingFactor5k);
-      border-width: pxToRem($borderWidthStandard * $scalingFactor5k);
-      border-radius: pxToRem(2 * $scalingFactor5k);
-    }
-  }
-
-  html.sbb-lean & {
-    padding: pxToRem($triggerPadding - $borderWidthLean);
-    border-width: pxToRem($borderWidthLean);
-    border-color: $sbbColorIron;
-  }
 
   .sbb-menu-panel-below & {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    padding-bottom: pxToRem($triggerPadding);
+    padding-bottom: var(--sbb-menu-trigger-padding);
     border-bottom-width: 0;
-
-    html:not(.sbb-lean) & {
-      border-bottom-width: 0; // Redefined to be more specific
-
-      @include mq($from: desktop4k) {
-        padding-bottom: pxToRem($triggerPadding * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        padding-bottom: pxToRem($triggerPadding * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      border-bottom-width: 0; // Redefined to be more specific
-    }
   }
   .sbb-menu-panel-above & {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    padding-top: pxToRem($triggerPadding);
+    padding-top: var(--sbb-menu-trigger-padding);
     border-top-width: 0;
 
-    box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactorDefault);
-    html:not(.sbb-lean) & {
-      border-top-width: 0; // Redefined to be more specific
-
-      @include mq($from: desktop4k) {
-        padding-top: pxToRem($triggerPadding * $scalingFactor4k);
-        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        padding-top: pxToRem($triggerPadding * $scalingFactor5k);
-        box-shadow: boxShadow(1, $borderWidthStandard, $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      border-top-width: 0; // Redefined because of specificity
-      box-shadow: boxShadow(1, $borderWidthLean, $scalingFactorDefault);
-    }
+    box-shadow: var(--sbb-box-shadow-below);
   }
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: $sbbColorBlack;
+  &:is(:hover, :active, :focus) {
+    color: var(--sbb-color-black);
   }
 }
 
 .sbb-menu-panel-trigger + .sbb-menu-panel {
   .sbb-menu-panel-below & {
-    top: pxToRem(-$borderWidthStandard);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        top: pxToRem(-$borderWidthStandard * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        top: pxToRem(-$borderWidthStandard * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      top: pxToRem(-$borderWidthLean);
-    }
+    top: var(--sbb-border-width-negative);
   }
 
   .sbb-menu-panel-above & {
-    top: pxToRem($borderWidthStandard);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        top: pxToRem($borderWidthStandard * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        top: pxToRem($borderWidthStandard * $scalingFactor5k);
-      }
-    }
-
-    html.sbb-lean & {
-      top: pxToRem($borderWidthLean);
-    }
+    top: var(--sbb-border-width);
   }
 }
 
 .sbb-menu-item-submenu-trigger {
   // We have to overwrite typography styles
   &,
-  html.sbb-lean &.sbb-menu-item {
-    padding-right: pxToRem(32);
-  }
-
-  html:not(.sbb-lean) &.sbb-menu-item {
-    @include mq($from: desktop4k) {
-      padding-right: pxToRem(32 * $scalingFactor4k);
-    }
-    @include mq($from: desktop5k) {
-      padding-right: pxToRem(32 * $scalingFactor5k);
-    }
+  :where(html.sbb-lean) &.sbb-menu-item {
+    padding-right: calc(#{pxToRem(32)} * var(--sbb-scaling-factor));
   }
 
   &.sbb-menu-item .sbb-menu-item-submenu-trigger-icon.sbb-icon {
     @include absoluteCenterY;
-    margin: 0 !important; // Without important it would need redefinitions for all sizes and variants. It only affects submenu trigger icon, which should be ok.
+    // Without important it would need redefinitions for all sizes and variants.
+    // It only affects submenu trigger icon, which should be ok.
+    margin: 0 !important;
     float: none;
-    right: pxToRem(5);
-
-    html:not(.sbb-lean) & {
-      @include mq($from: desktop4k) {
-        right: pxToRem(5 * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        right: pxToRem(5 * $scalingFactor5k);
-      }
-    }
+    right: calc(#{pxToRem(5)} * var(--sbb-scaling-factor));
   }
 }
 

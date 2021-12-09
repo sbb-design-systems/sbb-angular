@@ -16,7 +16,7 @@ export class NotificationToastDurationExample {
   constructor(private _notification: SbbNotificationToast) {}
 
   showNotification() {
-    this._notification.open('test', {
+    this._notification.open('This is a simple test message', {
       duration: this.duration,
     });
   }
