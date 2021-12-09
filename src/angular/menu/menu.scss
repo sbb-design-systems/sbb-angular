@@ -100,13 +100,9 @@ sbb-menu {
   position: relative;
   z-index: 1;
   padding: calc(var(--sbb-menu-trigger-padding) - var(--sbb-border-width));
-  border: var(--sbb-border-width) solid var(--sbb-color-grey);
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: var(--sbb-border-radius);
   width: 100%;
-
-  :where(html.sbb-lean) & {
-    border-color: var(--sbb-color-iron);
-  }
 
   .sbb-menu-panel-below & {
     border-bottom-left-radius: 0;

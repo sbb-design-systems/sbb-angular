@@ -4,11 +4,7 @@
   display: inline-block;
   position: relative;
   width: 100%;
-  color: var(--sbb-color-grey);
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-iron);
-  }
+  color: var(--sbb-color-weak-accent);
 }
 
 .sbb-datepicker-disabled {

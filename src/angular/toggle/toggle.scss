@@ -37,6 +37,7 @@
   :where(html.sbb-lean) & {
     padding: pxToEm(5) pxToEm(15) pxToEm(6);
     border-color: var(--sbb-color-aluminum);
+    color: var(--sbb-color-granite);
   }
 
   &:hover {

@@ -8,7 +8,7 @@
 :is(.sbb-usermenu-trigger, .sbb-menu-panel-type-usermenu .sbb-menu-panel-trigger) {
   display: flex;
   align-items: center;
-  color: var(--sbb-usermenu-color);
+  color: var(--sbb-color-weak-accent);
   outline: 0;
   width: 100%;
   height: var(--sbb-usermenu-trigger-height);
@@ -64,7 +64,7 @@
   display: flex;
   flex-grow: 0;
   flex-shrink: 0;
-  color: var(--sbb-usermenu-color);
+  color: var(--sbb-color-weak-accent);
 
   .sbb-menu-panel-wrapper & {
     padding-left: var(--sbb-usermenu-trigger-padding);
@@ -114,7 +114,7 @@
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
-  color: var(--sbb-usermenu-color);
+  color: var(--sbb-color-weak-accent);
   padding-left: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
 
   :is(.sbb-usermenu-user-info-has-display-name, .sbb-menu-panel-wrapper) & {

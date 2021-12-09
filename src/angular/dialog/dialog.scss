@@ -9,7 +9,7 @@
 .sbb-dialog-container {
   display: flex;
   flex-direction: column;
-  border: var(--sbb-border-width) solid var(--sbb-color-grey);
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   box-sizing: border-box;
   overflow: hidden;
   outline: 0;
@@ -23,10 +23,6 @@
   // isn't set, we have to inherit the min and max values explicitly.
   min-height: inherit;
   max-height: inherit;
-
-  :where(html.sbb-lean) & {
-    border-color: var(--sbb-color-iron);
-  }
 
   @include cdk.high-contrast(active, off) {
     outline: solid pxToRem(1);

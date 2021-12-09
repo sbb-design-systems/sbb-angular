@@ -36,8 +36,8 @@
     transform: rotate(-135deg);
     background-color: var(--sbb-color-background);
     border: var(--sbb-border-width) solid transparent;
-    border-right-color: var(--sbb-datepicker-calendar-border-color);
-    border-bottom-color: var(--sbb-datepicker-calendar-border-color);
+    border-right-color: var(--sbb-color-weak-accent);
+    border-bottom-color: var(--sbb-color-weak-accent);
 
     // Cut out obsolete triangle so it does not collide with calendar content
     // `-0.4px` fixes calculation issue in Firefox
@@ -68,7 +68,7 @@
   width: var(--sbb-datepicker-calendar-width);
   height: var(--sbb-datepicker-calendar-height);
   background-color: var(--sbb-color-background);
-  border: var(--sbb-border-width) solid var(--sbb-datepicker-calendar-border-color);
+  border: var(--sbb-border-width) solid var(--sbb-color-weak-accent);
   border-radius: var(--sbb-border-radius);
   box-shadow: var(--sbb-box-shadow-below);
 }
@@ -171,13 +171,9 @@
   position: relative;
 
   :is(td, th) {
-    color: var(--sbb-color-grey);
+    color: var(--sbb-color-weak-accent);
     font-size: var(--sbb-font-size);
     line-height: 1.5;
-
-    :where(html.sbb-lean) & {
-      color: var(--sbb-color-iron);
-    }
   }
 }
 
@@ -310,12 +306,7 @@
   :is(.sbb-calendar-body-cell:not(.sbb-calendar-body-disabled).sbb-calendar-body-selected, .sbb-calendar-body-selected-begin, .sbb-calendar-body-selected-end)
     & {
     background-color: var(--sbb-color-background);
-    color: var(--sbb-color-grey);
-    border-color: var(--sbb-color-grey);
-
-    :where(html.sbb-lean) & {
-      color: var(--sbb-color-iron);
-      border-color: var(--sbb-color-iron);
-    }
+    color: var(--sbb-color-weak-accent);
+    border-color: var(--sbb-color-weak-accent);
   }
 }
