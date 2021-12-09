@@ -38,7 +38,7 @@
     margin: pxToRem(1) pxToRem(22) 0;
   }
 
-  // This matches all separator after the currently active step.
+  // This matches all separators after the currently active step.
   [aria-selected='true'] ~ & {
     color: var(--sbb-color-grey);
   }
