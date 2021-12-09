@@ -29,7 +29,6 @@
   color: var(--sbb-color-grey);
 
   :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
     right: pxToRem(6);
   }
 }

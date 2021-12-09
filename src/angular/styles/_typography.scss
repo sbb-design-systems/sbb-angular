@@ -384,6 +384,12 @@
     }
   }
   &:where(.sbb-lean) {
+    // Colors
+
+    // Grey is always translated into granite color in lean.
+    // We globally overwrite grey color with granite so we don't have to redefine it in every usage.
+    --sbb-color-grey: var(--sbb-color-granite);
+
     // Context Colors
     --sbb-color-weak-accent: var(--sbb-color-iron);
 
@@ -1288,10 +1294,6 @@ textarea {
   color: var(--sbb-color-grey);
   border-color: var(--sbb-color-storm);
 
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
-  }
-
   &:not(:disabled):not(.sbb-disabled):is(:hover, :focus) {
     border-color: var(--sbb-color-iron);
   }
@@ -1591,10 +1593,6 @@ textarea {
 
   .sbb-selection-disabled & {
     color: var(--sbb-color-grey);
-
-    :where(html.sbb-lean) & {
-      color: var(--sbb-color-granite);
-    }
   }
 
   .sbb-selection-checked & {
@@ -1612,7 +1610,6 @@ textarea {
   transition: color var(--sbb-transition-default);
 
   :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
     line-height: pxToRem(21);
   }
 
@@ -1743,10 +1740,6 @@ textarea {
   font-size: var(--sbb-font-size-small);
   line-height: var(--sbb-line-height-small);
   color: var(--sbb-color-grey);
-
-  :where(html.sbb-lean) {
-    color: var(--sbb-color-granite);
-  }
 }
 
 .sbb-selection-panel-warning {
@@ -1759,10 +1752,6 @@ textarea {
     padding-right: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
     flex-basis: auto;
     order: initial;
-  }
-
-  :where(html.sbb-lean) {
-    color: var(--sbb-color-granite);
   }
 }
 
@@ -1823,10 +1812,6 @@ textarea {
   line-height: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
   color: var(--sbb-color-grey);
   display: block;
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
-  }
 }
 
 // ----------------------------------------------------------------------------------------------------

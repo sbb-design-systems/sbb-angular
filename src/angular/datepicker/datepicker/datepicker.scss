@@ -9,10 +9,6 @@
 
 .sbb-datepicker-disabled {
   color: var(--sbb-color-grey);
-
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
-  }
 }
 
 .sbb-date-input {

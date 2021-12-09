@@ -101,7 +101,6 @@
   text-decoration: none;
 
   :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
     line-height: pxToRem(16);
   }
 
