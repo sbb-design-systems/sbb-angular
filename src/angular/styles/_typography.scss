@@ -302,6 +302,18 @@
   );
   --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
   --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
+  --sbb-box-shadow-horizontal-border-top: 0
+    calc(var(--sbb-border-width) + calc(#{pxToRem(1)} * var(--sbb-scaling-factor))) 0
+    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+  --sbb-box-shadow-horizontal-border-bottom: 0
+    calc(var(--sbb-border-width) * -1 - calc(#{pxToRem(1)} * var(--sbb-scaling-factor))) 0
+    calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
+  --sbb-box-shadow-horizontal-border-offset-top-above: calc(
+    calc(var(--sbb-border-width) - #{pxToRem(1)}) * var(--sbb-scaling-factor)
+  );
+  --sbb-box-shadow-horizontal-border-offset-top-below: calc(
+    var(--sbb-box-shadow-horizontal-border-offset-top-above) * -1
+  );
 
   &:where(:not(.sbb-lean)) {
     @include mq($from: tablet) {
@@ -1775,7 +1787,6 @@ textarea {
 
 // These are the css classes to group sbb-checkbox-panel & sbb-radio-button-panel
 // We use em here to reduce media query usage.
-// TODO: Check if this can be refactored with grid.
 :is(.sbb-checkbox-panel-group, .sbb-radio-panel-group) {
   display: grid;
   grid-template-columns: 1fr;
@@ -2169,13 +2180,13 @@ $panelBorderRadius: 2;
   border-top: none;
   transition: height var(--sbb-transition-fast-start), opacity var(--sbb-transition-fast-start);
   color: var(--sbb-color-grey);
-
-  @include panelShadow();
+  position: relative;
+  top: var(--sbb-box-shadow-horizontal-border-offset-top-below);
+  box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border-bottom);
 
   :where(html.sbb-lean) & {
     border-color: var(--sbb-color-iron);
     color: var(--sbb-color-iron);
-    @include panelShadow($borderWidth: $panelBorderWidthLean);
   }
 
   hr {
@@ -2206,12 +2217,8 @@ $panelBorderRadius: 2;
   border-top-width: var(--sbb-border-width);
   border-top-style: solid;
   border-bottom: none;
-  @include panelShadow($attached: above);
-
-  :where(html.sbb-lean) & {
-    border-bottom: none;
-    @include panelShadow($attached: above, $borderWidth: $panelBorderWidthLean);
-  }
+  top: var(--sbb-box-shadow-horizontal-border-offset-top-above);
+  box-shadow: var(--sbb-box-shadow-horizontal-border-top);
 }
 
 .sbb-panel-padded {
@@ -2234,6 +2241,8 @@ $panelBorderRadius: 2;
 .sbb-input-with-open-panel-above > .sbb-input-element {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
+
+  box-shadow: var(--sbb-box-shadow-below);
 }
 
 // ----------------------------------------------------------------------------------------------------

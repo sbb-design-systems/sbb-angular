@@ -1109,6 +1109,10 @@ export class SbbSelect
       this._changeDetectorRef.markForCheck();
     }
 
+    if (!isOpen) {
+      this._elementRef.nativeElement.classList.remove('sbb-input-with-open-panel-above');
+    }
+
     this.openedChange.emit(isOpen);
   }
 
