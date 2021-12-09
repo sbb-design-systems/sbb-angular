@@ -21,7 +21,7 @@ import {
 } from '@sbb-esta/angular/core/testing';
 import { SbbIconTestingModule } from '@sbb-esta/angular/icon/testing';
 
-import { SbbTooltipModule, SbbTooltipWrapper } from './index';
+import { SbbTooltipChangeEvent, SbbTooltipModule, SbbTooltipWrapper } from './index';
 
 describe('SbbTooltipWrapper', () => {
   describe('', () => {
@@ -159,6 +159,17 @@ describe('SbbTooltipWrapper', () => {
       flush();
 
       expect(component.tooltip._tooltip._isTooltipVisible()).toBeFalse();
+    }));
+
+    it('should emit event on showing tooltip', fakeAsync(() => {
+      let event: SbbTooltipChangeEvent | null = null;
+      component.tooltip.opened.subscribe((e) => (event = e));
+
+      component.tooltip.show();
+      tick();
+      fixture.detectChanges();
+
+      expect(event!.instance).toBe(component.tooltip._tooltip);
     }));
   });
 

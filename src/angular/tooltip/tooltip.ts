@@ -25,12 +25,14 @@ import {
   Component,
   Directive,
   ElementRef,
+  EventEmitter,
   Inject,
   InjectionToken,
   Input,
   NgZone,
   OnDestroy,
   Optional,
+  Output,
   TemplateRef,
   ViewContainerRef,
   ViewEncapsulation,
@@ -125,6 +127,14 @@ export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions 
     autoFocus: true,
     restoreFocus: true,
   };
+}
+
+/** Tooltip event, which is emitted for certain events. */
+export class SbbTooltipChangeEvent {
+  constructor(
+    /** Instance of tooltip component. */
+    public instance: _SbbTooltipBase<_TooltipComponentBase>
+  ) {}
 }
 
 @Directive()
@@ -259,6 +269,10 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
   /** Emits when the component is destroyed. */
   private readonly _destroyed = new Subject<void>();
 
+  /** Event emitted when the tooltip is opened. */
+  @Output() readonly opened: EventEmitter<SbbTooltipChangeEvent> =
+    new EventEmitter<SbbTooltipChangeEvent>();
+
   constructor(
     private _overlay: Overlay,
     private _elementRef: ElementRef<HTMLElement>,
@@ -374,6 +388,7 @@ export abstract class _SbbTooltipBase<T extends _TooltipComponentBase>
     } else {
       this._tooltipInstance._config = undefined;
     }
+    this.opened.emit(new SbbTooltipChangeEvent(this));
     this._tooltipInstance!.show(delay);
   }
 

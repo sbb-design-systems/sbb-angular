@@ -37,6 +37,7 @@ import { Subject } from 'rxjs';
 
 import {
   SbbTooltip,
+  SbbTooltipChangeEvent,
   SbbTooltipModule,
   SBB_TOOLTIP_DEFAULT_OPTIONS,
   SCROLL_THROTTLE_MS,
@@ -651,6 +652,24 @@ describe('SbbTooltip', () => {
 
       tooltipDirective.hide(1000);
       fixture.detectChanges();
+
+      // Note that we aren't asserting anything, but `fakeAsync` will
+      // throw if we have any timers by the end of the test.
+      fixture.destroy();
+    }));
+
+    it('should emit event on showing tooltip', fakeAsync(() => {
+      assertTooltipInstance(tooltipDirective, false);
+
+      let event: SbbTooltipChangeEvent | null = null;
+      tooltipDirective.opened.subscribe((e) => (event = e));
+
+      tooltipDirective.show();
+      tick(0);
+      fixture.detectChanges();
+      tick(500);
+
+      expect(event!.instance).toBe(tooltipDirective);
 
       // Note that we aren't asserting anything, but `fakeAsync` will
       // throw if we have any timers by the end of the test.
