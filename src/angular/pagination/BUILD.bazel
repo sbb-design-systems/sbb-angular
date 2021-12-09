@@ -41,6 +41,9 @@ sass_binary(
 sass_binary(
     name = "paginator_paginator_scss",
     src = "paginator/paginator.scss",
+    deps = [
+        "//src/angular/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

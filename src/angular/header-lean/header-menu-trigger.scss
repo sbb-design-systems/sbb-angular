@@ -31,7 +31,7 @@
     max-width: 100%;
   }
   .sbb-header-lean-main-menu .sbb-header-menu-trigger[aria-expanded='true'] & {
-    border: var(--sbb-border-width-thin) solid var(--sbb-color-iron);
+    border: var(--sbb-border-width-thin) solid var(--sbb-color-weak-accent);
     border-top-left-radius: var(--sbb-border-radius);
     border-top-right-radius: var(--sbb-border-radius);
     border-bottom: var(--sbb-border-width-thin) solid var(--sbb-color-cloud);

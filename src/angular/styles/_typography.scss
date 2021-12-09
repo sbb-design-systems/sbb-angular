@@ -425,7 +425,6 @@
     // Forms
     --sbb-form-background-color-readonly: transparent;
     --sbb-form-border-color-readonly: transparent;
-    --sbb-form-input-color-disabled: var(--sbb-color-granite);
     --sbb-form-input-min-height: #{pxToRem(36)};
 
     // Notification
@@ -439,7 +438,6 @@
     --sbb-expansion-panel-line-height: #{pxToRem(25)};
 
     // Pagination
-    --sbb-pagination-base-color: var(--sbb-color-granite);
     --sbb-pagination-disabled-color: var(--sbb-color-storm);
     --sbb-pagination-paginator-size: #{pxToRem(30)};
 
@@ -1674,10 +1672,6 @@ textarea {
   user-select: none;
   position: relative;
 
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-granite);
-  }
-
   &.sbb-selection-checked {
     background-color: var(--sbb-color-background);
     border-color: var(--sbb-color-black);
@@ -2180,7 +2174,7 @@ $panelBorderRadius: 2;
       calc(#{pxToRem(14)} * var(--sbb-scaling-factor));
 
     :where(html.sbb-lean) & {
-      color: var(--sbb-color-granite); // Redefine color to be more specific than standard variant
+      color: var(--sbb-color-granite);
       padding: pxToRem(4) pxToRem(8);
     }
   }

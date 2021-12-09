@@ -22,7 +22,7 @@
 }
 
 .sbb-tooltip-close-icon {
-  color: var(--sbb-color-granite);
+  color: var(--sbb-color-weak-accent);
   float: right;
   position: absolute;
   width: var(--sbb-icon-size-default);
@@ -34,9 +34,6 @@
   :where(html:not(.sbb-lean)) & {
     border: var(--sbb-border-width-thin) solid var(--sbb-color-storm);
     border-radius: 50%;
-  }
-  :where(html.sbb-lean) & {
-    color: var(--sbb-color-iron);
   }
 
   .sbb-tooltip-trigger-hover & {
