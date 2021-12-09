@@ -2,13 +2,18 @@ import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  OnDestroy,
+  OnInit,
+  Output,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { mixinDisabled } from '@sbb-esta/angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
-import { SbbTooltip } from './tooltip';
+import { SbbTooltip, SbbTooltipChangeEvent } from './tooltip';
 
 // Boilerplate for applying mixins to SbbTooltipWrapper.
 // tslint:disable-next-line: naming-convention
@@ -29,7 +34,7 @@ let nextId = 1;
     '[attr.aria-expanded]': '_tooltip._isTooltipVisible()',
   },
 })
-export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase {
+export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase implements OnInit, OnDestroy {
   /** Identifier of tooltip. */
   @Input() id: string = `sbb-tooltip-id-${nextId++}`;
 
@@ -56,6 +61,8 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase {
   }
   private _hoverHideDelay: number;
 
+  private _destroyed = new Subject<void>();
+
   /**
    * The indicator icon, which will be shown as the tooltip indicator.
    * Must be a valid svgIcon input for sbb-icon.
@@ -65,6 +72,19 @@ export class SbbTooltipWrapper extends _SbbTooltipWrapperMixinBase {
   @Input() svgIcon: string = 'kom:circle-question-mark-small';
 
   @ViewChild(SbbTooltip, { static: true }) _tooltip!: SbbTooltip;
+
+  /** Event emitted when the tooltip is opened. */
+  @Output() readonly opened: EventEmitter<SbbTooltipChangeEvent> =
+    new EventEmitter<SbbTooltipChangeEvent>();
+
+  ngOnInit(): void {
+    this._tooltip.opened.pipe(takeUntil(this._destroyed)).subscribe((e) => this.opened.emit(e));
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed.next();
+    this._destroyed.complete();
+  }
 
   /** Shows the tooltip. */
   show() {
