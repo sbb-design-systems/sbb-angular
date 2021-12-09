@@ -24,7 +24,7 @@ export class SimpleNotificationToastExample {
 
   showNotification() {
     this._notification
-      .open('test', {
+      .open('This is a simple test message', {
         type: this.type,
         verticalPosition: this.position,
       })
