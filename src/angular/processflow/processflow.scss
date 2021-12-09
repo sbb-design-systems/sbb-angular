@@ -13,7 +13,7 @@
 
 .sbb-processflow-separator {
   line-height: 0;
-  color: var(--sbb-color-grey);
+  color: var(--sbb-color-text);
   font-size: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
   margin: pxToRem(3) pxToRem(15);
   // We use em here to reduce redeclarations
@@ -36,6 +36,11 @@
   :where(html.sbb-lean) & {
     font-size: pxToRem(12);
     margin: pxToRem(1) pxToRem(22) 0;
+  }
+
+  // This matches all separators after the currently active step.
+  [aria-selected='true'] ~ & {
+    color: var(--sbb-color-grey);
   }
 }
 
