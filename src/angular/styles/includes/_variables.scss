@@ -33,37 +33,6 @@ $sizeBreakpointDesktop4k: 2561px;
 $sizeBreakpointDesktop5k: 3841px;
 
 /**
- * Offsets
- */
-$offset5k: 19%;
-$offsetLarge: 8.5%;
-$offsetPreLarge: 5.5%;
-$offsetMedium: 24;
-$offsetSmall: 12;
-
-/**
- * Scaling Factors
- */
-$scalingFactorDefault: 1;
-$scalingFactor4k: 1.5;
-$scalingFactor5k: 2;
-
-/**
- * Grid
- */
-$gutterMobile: 12;
-$gutterTablet: 24;
-$gutterDesktop: 16;
-$gutterDesktop4k: 26;
-$gutterDesktop5k: 32;
-
-/* Vertical Spacings */
-$gutterHeight: 8;
-$innerComponentSpacing: 24;
-$interComponentSpacing: 80;
-$interComponentSpacingSmall: 40;
-
-/**
  * Typo
  */
 $sizeFontDefault: 15;
@@ -74,62 +43,9 @@ $sizeLineHeightDefaultLean: 23;
 $sizeLineHeightDefault4k: 39;
 $sizeLineHeightDefault5k: 52;
 
-$fontSizeHeaderDefault: 14;
-$fontSizeHeaderDesktop4k: $fontSizeHeaderDefault * $scalingFactor4k;
-$fontSizeHeaderDesktop5k: $fontSizeHeaderDefault * $scalingFactor5k;
-
-$fontSizeFooterBottomContainerDefault: 12;
-$fontSizeFooterDefault: $fontSizeHeaderDefault;
-
-/* lead text font sizes */
-$sizeFontLeadTextDefault: 20;
-$sizeFontLeadTextTablet: 21;
-
 /* form element sizing */
 $formElementMaxWidth: 320;
 $formElementMinWidth: 240;
-$formElementSpacing: private-div($gutterDesktop, 2);
-
-/**
- * Animation-Stuff
- */
-$defaultTransitionDuration: 300ms;
-$shortDistanceTransitionDuration: 225ms;
-
-$defaultLinkIconTransitionTimingFunction: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-
-$linkiconAnimationDuration: $defaultTransitionDuration;
-$linkiconAnimation: $linkiconAnimationDuration $defaultLinkIconTransitionTimingFunction;
-$linksocialAnimation: background $defaultTransitionDuration ease-in;
-
-$imageLazyloadFadeAnimation: opacity 0.35s ease-in;
-$imageLazyloadFadeAnimationTablet: opacity 0.45s ease-in;
-
-/**
- * Layers
- */
-
-$zIndexFocusedElement: 999;
-
-/**
- * Footer
- */
-$footerAnimation: 0.3s; // This has to match the delay in the corresponding JS
-$fontSizeFooterSectionTitleDefault: 16;
-
-/**
- * Timetable Breakpoints
- */
-$sizeBreakpointTimetableMobile: 960px;
-
-/**
- * Timetable Cells
- */
-$cellSmall: 52;
-$cellCtaSmall: 72;
-$cellCtaSmallMedium: 96;
-$cellCTAMedium: 160;
-$cellCTALarge: 332;
 
 /**
  * Colors
