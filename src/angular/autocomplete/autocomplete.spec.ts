@@ -2362,7 +2362,7 @@ describe('SbbAutocomplete', () => {
       );
     }));
 
-    fit('should fall back to above position when requested if options are added while the panel is open', fakeAsync(() => {
+    it('should fall back to above position when requested if options are added while the panel is open', fakeAsync(() => {
       const fixture = createComponent(SimpleAutocomplete);
       fixture.componentInstance.numbers = fixture.componentInstance.numbers.slice(0, 1);
       fixture.componentInstance.filteredNumbers = fixture.componentInstance.numbers.slice();

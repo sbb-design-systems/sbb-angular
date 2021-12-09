@@ -1,8 +1,5 @@
 @import '../styles/common';
 
-$breadcrumbBorderWidthStandard: 2;
-$breadcrumbBorderWidthLean: 1;
-
 .sbb-breadcrumbs-wrapper {
   display: flex;
   align-items: center;
@@ -170,11 +167,11 @@ $breadcrumbBorderWidthLean: 1;
 
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-below & {
     padding-bottom: var(--sbb-breadcrumb-trigger-padding-vertical);
-    box-shadow: var(--sbb-box-shadow-horizontal-border-inverted);
+    box-shadow: var(--sbb-box-shadow-horizontal-border-top);
   }
   .sbb-menu-panel-type-breadcrumb.sbb-menu-panel-above & {
     padding-top: var(--sbb-breadcrumb-trigger-padding-vertical);
-    box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border);
+    box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border-bottom);
 
     &::after {
       margin-top: calc(var(--sbb-border-width) - #{pxToRem(1)});

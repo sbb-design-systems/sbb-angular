@@ -302,17 +302,17 @@
   );
   --sbb-box-shadow-color: rgba(0, 0, 0, 0.15);
   --sbb-box-shadow-below: 0 var(--sbb-box-shadow-width) 0 var(--sbb-box-shadow-color);
-  --sbb-box-shadow-horizontal-border-inverted: 0
+  --sbb-box-shadow-horizontal-border-top: 0
     calc(var(--sbb-border-width) + calc(#{pxToRem(1)} * var(--sbb-scaling-factor))) 0
     calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
-  --sbb-box-shadow-horizontal-border: 0
+  --sbb-box-shadow-horizontal-border-bottom: 0
     calc(var(--sbb-border-width) * -1 - calc(#{pxToRem(1)} * var(--sbb-scaling-factor))) 0
     calc(var(--sbb-border-width) * -1) var(--sbb-color-cloud);
-  --sbb-box-shadow-horizontal-border-offset-top-inverted: calc(
+  --sbb-box-shadow-horizontal-border-offset-top-above: calc(
     calc(var(--sbb-border-width) - #{pxToRem(1)}) * var(--sbb-scaling-factor)
   );
-  --sbb-box-shadow-horizontal-border-offset-top: calc(
-    var(--sbb-box-shadow-horizontal-border-offset-top-inverted) * -1
+  --sbb-box-shadow-horizontal-border-offset-top-below: calc(
+    var(--sbb-box-shadow-horizontal-border-offset-top-above) * -1
   );
 
   &:where(:not(.sbb-lean)) {
@@ -2197,8 +2197,8 @@ $panelBorderRadius: 2;
   transition: height var(--sbb-transition-fast-start), opacity var(--sbb-transition-fast-start);
   color: var(--sbb-color-grey);
   position: relative;
-  top: var(--sbb-box-shadow-horizontal-border-offset-top);
-  box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border);
+  top: var(--sbb-box-shadow-horizontal-border-offset-top-below);
+  box-shadow: var(--sbb-box-shadow-below), var(--sbb-box-shadow-horizontal-border-bottom);
 
   :where(html.sbb-lean) & {
     border-color: var(--sbb-color-iron);
@@ -2233,8 +2233,8 @@ $panelBorderRadius: 2;
   border-top-width: var(--sbb-border-width);
   border-top-style: solid;
   border-bottom: none;
-  top: var(--sbb-box-shadow-horizontal-border-offset-top-inverted);
-  box-shadow: var(--sbb-box-shadow-horizontal-border-inverted);
+  top: var(--sbb-box-shadow-horizontal-border-offset-top-above);
+  box-shadow: var(--sbb-box-shadow-horizontal-border-top);
 }
 
 .sbb-panel-padded {

@@ -64,7 +64,7 @@
   flex: 0 0 auto;
   display: block;
   position: relative;
-  box-shadow: var(--sbb-box-shadow-horizontal-border-inverted);
+  box-shadow: var(--sbb-box-shadow-horizontal-border-top);
   @include ellipsis;
 }
 
@@ -92,7 +92,7 @@
   // Explicitly set a box-sizing since people commonly set `border-box`
   // on all elements which will break the height of the dialog actions.
   box-sizing: content-box;
-  box-shadow: var(--sbb-box-shadow-horizontal-border);
+  box-shadow: var(--sbb-box-shadow-horizontal-border-bottom);
 
   &[align='start'],
   &[align='left'] {
