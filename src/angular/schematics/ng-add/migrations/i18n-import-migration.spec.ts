@@ -39,6 +39,13 @@ describe('i18n import migration', () => {
 
     tree.create('src/locales/messages.de-CH.xlf', messageFileContent);
     tree.create('src/locales/messages.en-CH.xlf', messageFileContent);
+
+    // Update main.ts with i18n import
+    const mainTs = tree.read('projects/cdk-testing/src/main.ts')!.toString('utf-8');
+    tree.overwrite(
+      'projects/cdk-testing/src/main.ts',
+      `import '@sbb-esta/angular-core/i18n';\n${mainTs}`
+    );
   });
 
   /** Assert that file exists and parse json file to object */
@@ -99,6 +106,16 @@ describe('i18n import migration', () => {
       expect(content).not.toContain('sbbGhettoboxCloseGhettobox');
       expect(content).toContain('sbbAlertCloseAlert');
     });
+  });
+
+  it('should migrate @sbb-esta/angular-core/i18n import in main.ts', async () => {
+    let mainTs = tree.read('projects/cdk-testing/src/main.ts')!.toString('utf-8');
+    expect(mainTs).toContain('@sbb-esta/angular-core/i18n');
+
+    await runMigration();
+
+    mainTs = tree.read('projects/cdk-testing/src/main.ts')!.toString('utf-8');
+    expect(mainTs).toContain('@sbb-esta/angular/i18n');
   });
 });
 
