@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SbbCommonModule } from '@sbb-esta/angular/core';
+
+import { SbbCommonModule } from '../common-behaviors/common.module';
 
 import { SbbOptgroup } from './optgroup';
 import { SbbOption } from './option';
