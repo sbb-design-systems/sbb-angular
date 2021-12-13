@@ -18,6 +18,7 @@ ng_module(
     assets = [":textexpand.css"] + glob(["**/*.html"]),
     deps = [
         "//src:dev_mode_types",
+        "//src/angular/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/localize",

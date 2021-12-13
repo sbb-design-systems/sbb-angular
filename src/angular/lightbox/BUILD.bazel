@@ -17,6 +17,7 @@ ng_module(
     ),
     assets = [":lightbox.css"] + glob(["**/*.html"]),
     deps = [
+        "//src/angular/core",
         "//src/angular/dialog",
         "//src/angular/icon",
         "@npm//@angular/animations",

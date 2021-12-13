@@ -16,6 +16,7 @@ ng_module(
     ),
     assets = glob(["**/*.html"]),
     deps = [
+        "//src/angular/core",
         "//src/angular/radio-button",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

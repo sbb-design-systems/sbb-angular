@@ -19,6 +19,7 @@ ng_module(
     deps = [
         "//src/angular/badge",
         "//src/angular/checkbox",
+        "//src/angular/core",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
