@@ -8,7 +8,11 @@ import { Component, NgModule, ViewChild } from '@angular/core';
 
 @Component({
   template: `
-    <sbb-pagination (pageChange)="changePage($event)" length="5"></sbb-pagination>
+    <sbb-pagination
+      class="app-paginator"
+      (pageChange)="changePage($event)"
+      length="5"
+    ></sbb-pagination>
     <sbb-pagination length="10" [pageIndex]="2"></sbb-pagination>
     <sbb-pagination (pageChange)="changePage($event)" [length]="getLength()"></sbb-pagination>
     <sbb-pagination

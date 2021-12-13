@@ -583,3 +583,24 @@ If you have a custom caption or legend, don't forget to use proper aria-describe
   </fieldset>
 </form>
 ```
+
+## Dividers
+
+The following divider css classes are available to define vertical space either as top or bottom margin.
+
+- .sbb-divider-thin-top
+- .sbb-divider-thin-bottom
+- .sbb-divider-small-top
+- .sbb-divider-small-bottom
+- .sbb-divider-medium-top
+- .sbb-divider-medium-bottom
+- .sbb-divider-big-top
+- .sbb-divider-big-bottom
+
+<div>Content</div>
+<div class="sbb-divider-thin-top">Content with space to other content</div>
+
+```html
+<div>Content</div>
+<div class="sbb-divider-thin-top">Content with space to other content</div>
+```
