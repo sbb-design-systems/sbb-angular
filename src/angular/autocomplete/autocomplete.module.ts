@@ -3,6 +3,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SbbOptionModule } from '@sbb-esta/angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 
 import { SbbAutocomplete } from './autocomplete';
 import { SbbAutocompleteHint } from './autocomplete-hint';
@@ -13,7 +14,7 @@ import {
 } from './autocomplete-trigger';
 
 @NgModule({
-  imports: [SbbOptionModule, CommonModule, A11yModule, OverlayModule],
+  imports: [CommonModule, A11yModule, OverlayModule, SbbCommonModule, SbbOptionModule],
   declarations: [
     SbbAutocomplete,
     SbbAutocompleteOrigin,

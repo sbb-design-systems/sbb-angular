@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 
 import { SbbOptgroup } from './optgroup';
 import { SbbOption } from './option';
 import { SbbPseudoCheckbox } from './pseudo-checkbox';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, SbbCommonModule],
   declarations: [SbbOption, SbbOptgroup, SbbPseudoCheckbox],
   exports: [SbbOption, SbbOptgroup, SbbPseudoCheckbox],
 })

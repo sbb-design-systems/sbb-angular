@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbRadioButtonModule } from '@sbb-esta/angular/radio-button';
 
 import { SbbRadioButtonPanel } from './radio-button-panel';
@@ -10,7 +11,7 @@ import {
 } from './radio-button-panel-directives';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, SbbCommonModule],
   declarations: [
     SbbRadioButtonPanel,
     SbbRadioButtonPanelSubtitle,
