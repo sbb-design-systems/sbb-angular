@@ -362,6 +362,8 @@ The `sbb-pagination` component has been removed. From now on, only the `sbb-pagi
 With the sbb-pagination component, the `length` property stood for the number of pages. With the sbb-paginator component,
 the `length` property stands for the total number of items that are being paginated.
 There is a new property `pageSize`, which determines the number of items on a page.
+Additionally, the margin of `sbb-paginator` has been removed and can now be achieved by applying css divider classes.
+Following design specs, `sbb-divider-small-top` should be used.
 
 **Previous**
 
@@ -372,7 +374,12 @@ There is a new property `pageSize`, which determines the number of items on a pa
 **New**
 
 ```html
-<sbb-paginator (page)="pageChange($event)" [pageSize]="10" [length]="50"></sbb-paginator>
+<sbb-paginator
+  (page)="pageChange($event)"
+  [pageSize]="10"
+  [length]="50"
+  class="sbb-divider-small-top"
+></sbb-paginator>
 ```
 
 If you have used the `selectByIndex` method, you should now use the setter `pageIndex` of SbbPaginator.
