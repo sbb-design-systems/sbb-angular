@@ -105,7 +105,8 @@ function mergeSymbols() {
       SbbSort: "table",
       NotificationType: "notification",
       SbbUsermenuItem: "menu",
-      SbbHeader: "header-lean"
+      SbbHeader: "header-lean",
+      StepperSelectionEvent: "@angular/cdk/stepper"
     };
     extractExportsForModule("src/angular/");
     extractExportsForModule("src/angular-maps/");

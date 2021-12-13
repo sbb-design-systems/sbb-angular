@@ -1,10 +1,10 @@
 import { Component, NgModule, QueryList, ViewChildren } from '@angular/core';
-import { SbbProcessflow, SbbProcessflowModule, SbbProcessflowStep } from '@sbb-esta/angular-public';
+import { SbbProcessflow, SbbProcessflowModule, SbbProcessflowStep, SbbProcessflowStepDescriptor } from '@sbb-esta/angular-public';
 
 @Component({
   selector: 'sbb-processflow-test',
   template: `
-    <sbb-processflow #processflow>
+    <sbb-processflow #processflow (stepChange)="stepChange($event)">
       <sbb-processflow-step i18n-title="@@processFlowTitleLocation" title="1. Standort"></sbb-processflow-step>
       <sbb-processflow-step i18n-title="@@processFlowTitleVehicle" title="2. Fahrzeug"></sbb-processflow-step>
     </sbb-processflow>
@@ -39,6 +39,8 @@ import { SbbProcessflow, SbbProcessflowModule, SbbProcessflowStep } from '@sbb-e
 export class ProcessflowTestComponent {
   @ViewChildren(SbbProcessflow) processflows: QueryList<SbbProcessflow>;
   @ViewChildren(SbbProcessflowStep) steps: QueryList<SbbProcessflowStep>;
+
+  stepChange($event: SbbProcessflowStepDescriptor) {}
 }
 
 @NgModule({

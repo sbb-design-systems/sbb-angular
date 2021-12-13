@@ -138,7 +138,9 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
 
       // The module name where the symbol is defined e.g. card, dialog. The
       // first capture group is contains the module name.
-      const fullModuleName = `@sbb-esta/${destinationPackageName}/${moduleName}`;
+      const fullModuleName = moduleName.startsWith('@')
+        ? moduleName
+        : `@sbb-esta/${destinationPackageName}/${moduleName}`;
       if (importMap.has(fullModuleName)) {
         importMap.get(fullModuleName)!.push(element);
       } else {

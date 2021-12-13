@@ -15,6 +15,9 @@ export class ProcessflowMigration extends RefactorMigration {
   }
 
   protected _migrate(element: MigrationElement) {
+    const stepChange = element.findProperty('stepChange');
+    stepChange?.rename('(selectionChange)');
+
     const skippable = element.findProperty('skippable');
     if (skippable) {
       skippable.remove();

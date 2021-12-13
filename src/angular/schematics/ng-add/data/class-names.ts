@@ -189,6 +189,10 @@ export const classNames: VersionChanges<ClassNameUpgradeData> = {
           replace: 'SbbHeader',
           replaceWith: 'SbbHeaderLean',
         },
+        {
+          replace: 'SbbProcessflowStepDescriptor',
+          replaceWith: 'StepperSelectionEvent',
+        },
       ],
     },
   ],

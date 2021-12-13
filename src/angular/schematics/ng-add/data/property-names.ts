@@ -82,6 +82,13 @@ export const propertyNames: VersionChanges<PropertyNameUpgradeData> = {
             classes: ['SbbSortDirective', 'SbbSort'],
           },
         },
+        {
+          replace: 'stepChange',
+          replaceWith: 'selectionChange',
+          limitedTo: {
+            classes: ['SbbProcessflow'],
+          },
+        },
       ],
     },
   ],

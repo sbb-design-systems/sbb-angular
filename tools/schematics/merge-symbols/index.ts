@@ -65,6 +65,7 @@ export function mergeSymbols(): Rule {
       NotificationType: 'notification',
       SbbUsermenuItem: 'menu',
       SbbHeader: 'header-lean',
+      StepperSelectionEvent: '@angular/cdk/stepper',
     };
 
     extractExportsForModule('src/angular/');
