@@ -1,11 +1,16 @@
 import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
-import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { getProjectFromWorkspace } from '@angular/cdk/schematics';
-import { updateWorkspace } from '@schematics/angular/utility/workspace';
+import { getProjectMainFile } from '@angular/cdk/schematics/utils/project-main-file';
+import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 
 import { Schema } from '../schema';
 
-export function migrateI18nInAngularJson(options: Schema): Rule {
+export function migrateI18n(options: Schema): Rule {
+  return chain([migrateAngularJson(options), migrateMainTs(options)]);
+}
+
+function migrateAngularJson(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
     return updateWorkspace((workspace) => {
       const project = getProjectFromWorkspace(workspace, options.project) as ProjectDefinition;
@@ -75,5 +80,20 @@ export function migrateI18nInAngularJson(options: Schema): Rule {
         }
       });
     });
+  };
+}
+
+function migrateMainTs(options: Schema): Rule {
+  return async (tree: Tree) => {
+    const workspace = await getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace, options.project);
+    const mainTsPath = getProjectMainFile(project);
+    if (tree.exists(mainTsPath)) {
+      const mainTsContent = tree.read(mainTsPath)!.toString('utf8');
+      tree.overwrite(
+        mainTsPath,
+        mainTsContent.replace('@sbb-esta/angular-core/i18n', '@sbb-esta/angular/i18n')
+      );
+    }
   };
 }

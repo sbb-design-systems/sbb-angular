@@ -12,7 +12,7 @@ import {
 import { sbbAngularUpgradeData } from './add-data';
 import { ClassNamesMigration } from './migrations/class-names';
 import { EnumToStringLiteralMigration } from './migrations/enum-to-string-literal-migration';
-import { migrateI18nInAngularJson } from './migrations/i18n-import-migration';
+import { migrateI18n } from './migrations/i18n-import-migration';
 import { MenuMigration } from './migrations/menu-migration';
 import { MergeRefactorMigration } from './migrations/merge-refactor-migration';
 import { SecondaryEntryPointsMigration } from './migrations/secondary-entry-points-migration';
@@ -28,7 +28,7 @@ export function mergePublicAndBusiness(options: Schema): Rule {
   patchClassNamesMigration();
   return chain([
     migrateTypographyInAngularJson(options),
-    migrateI18nInAngularJson(options),
+    migrateI18n(options),
     createMigrationSchematicRule(
       'merge' as TargetVersion,
       [
