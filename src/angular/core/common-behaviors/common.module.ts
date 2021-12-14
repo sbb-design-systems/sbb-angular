@@ -28,7 +28,7 @@ export type SanityChecks = boolean | GranularSanityChecks;
 /** Object that can be used to configure the sanity checks granularly. */
 export interface GranularSanityChecks {
   doctype: boolean;
-  theme: boolean;
+  typography: boolean;
   version: boolean;
 }
 
@@ -66,7 +66,7 @@ export class SbbCommonModule {
           _checkDoctypeIsDefined(this._document);
         }
 
-        if (this._checkIsEnabled('theme')) {
+        if (this._checkIsEnabled('typography')) {
           _checkTypographyIsPresent(this._document);
         }
 
@@ -130,13 +130,8 @@ function _checkTypographyIsPresent(doc: Document): void {
 function _checkCdkVersionMatch(): void {
   if (VERSION.major !== CDK_VERSION.major) {
     console.warn(
-      'The @sbb-esta/angular version (' +
-        VERSION.full +
-        ') does not match ' +
-        'the Angular CDK major version (' +
-        CDK_VERSION.full +
-        ').\n' +
-        'Please ensure the major versions of these two packages match.'
+      `The @sbb-esta/angular version (${VERSION.full}) does not match the Angular CDK major version` +
+        ` (${CDK_VERSION.full}).\nPlease ensure the major versions of these two packages match.`
     );
   }
 }
