@@ -21,18 +21,18 @@ import { SbbTabGroup, SbbTabsModule } from '@sbb-esta/angular/tabs';
     </sbb-tab-group>
 
     <sbb-tab-group #tabs>
-      <sbb-tab [active]="setTrainrunTabAsActive()"
+      <sbb-tab
                i18n-label="desc@@id"
                label="{{selectedTrainrun.getCategoryShortName()}}{{selectedTrainrun.getTitle()}}" id="trainrun-tab"
                #tabTrainrun>
         <div>content</div>
-      </sbb-tab>
-      <sbb-tab [active]="setTrainrunSectionTabAsActive()"
+      <!-- TODO: [active] property is no longer supported. Please use selectedIndex of <sbb-tab-group> to set a tab active. --></sbb-tab>
+      <sbb-tab
                i18n-label="desc@@id"
                label="{{selectedTrainrunSectionName}}" id="trainrun-section-tab"
                #tabTrainrunSection>
         <div>content</div>
-      </sbb-tab>
+      <!-- TODO: [active] property is no longer supported. Please use selectedIndex of <sbb-tab-group> to set a tab active. --></sbb-tab>
     </sbb-tab-group>
 
     <sbb-tab-group #tabs2 (selectedIndexChange)="onChangeTab($event)">
