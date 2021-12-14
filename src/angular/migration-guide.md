@@ -572,7 +572,7 @@ If using sticky rows or columns, the `<sbb-table-wrapper>` is mandatory.
 
 Lean styles have slightly changed due to new specifications.
 
-We don't provide default styles anymore for a native `<table>` in the typography.
+**We don't provide default styles anymore for a native `<table>` in the typography.**
 Please always add the `sbb-table` css class to your `<table>` if you need a sbb styled table (e.g. `<table class="sbb-table">`).
 
 As a new feature, the css class `sbb-table-row-selected` was introduced which can conditionally be applied on a `<tr>`-tag.
