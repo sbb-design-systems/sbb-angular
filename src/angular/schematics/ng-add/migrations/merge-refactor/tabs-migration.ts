@@ -18,6 +18,14 @@ export class TabsMigration extends RefactorMigration {
   }
 
   protected _migrate(element: MigrationElement) {
+    const active = element.findProperty('active');
+    active?.remove();
+    if (active) {
+      element.insertBeforeEnd(
+        '<!-- TODO: [active] property is no longer supported. Please use selectedIndex of <sbb-tab-group> to set a tab active. -->'
+      );
+    }
+
     const labelId = element.findProperty('labelId');
     labelId?.remove();
 
