@@ -1068,19 +1068,6 @@ textarea {
 }
 
 // ----------------------------------------------------------------------------------------------------
-// Dividers
-// ----------------------------------------------------------------------------------------------------
-
-@each $size in thin, small, medium, big {
-  @each $position in top, bottom {
-    .sbb-divider-#{$size}-vertical,
-    .sbb-divider-#{$size}-#{$position} {
-      margin-#{$position}: var(--sbb-divider-#{$size});
-    }
-  }
-}
-
-// ----------------------------------------------------------------------------------------------------
 // SBB Badge
 // ----------------------------------------------------------------------------------------------------
 
@@ -2365,6 +2352,19 @@ $menuItemPaddingTopBottom: 4;
 
     :where(html.sbb-lean) & {
       padding-top: pxToRem(8);
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Dividers (should to be at the very bottom of the typography to ensure overwriting styles which have already a margin defined)
+// ----------------------------------------------------------------------------------------------------
+
+@each $size in thin, small, medium, big {
+  @each $position in top, bottom {
+    .sbb-divider-#{$size}-vertical,
+    .sbb-divider-#{$size}-#{$position} {
+      margin-#{$position}: var(--sbb-divider-#{$size});
     }
   }
 }

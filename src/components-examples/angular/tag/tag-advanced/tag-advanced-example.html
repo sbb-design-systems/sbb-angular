@@ -12,11 +12,9 @@
   <button type="button" sbb-ghost-button (click)="addOneItem()">Add one tag</button>
 </p>
 <p><button type="button" sbb-ghost-button (click)="reset()">Reset</button></p>
-<p>
-  <sbb-form-field label="Amount of first item">
-    <input type="number" [formControl]="amountFirstItem" sbbInput />
-  </sbb-form-field>
-</p>
+<sbb-form-field label="Amount of first item">
+  <input type="number" [formControl]="amountFirstItem" sbbInput />
+</sbb-form-field>
 
 <h4>Model</h4>
 <pre>{{ tags | json }}</pre>
