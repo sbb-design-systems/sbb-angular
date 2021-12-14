@@ -4,6 +4,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 
 import { SbbTab } from './tab';
 import { SbbTabBody, SbbTabBodyPortal } from './tab-body';
@@ -15,7 +16,14 @@ import { SbbTabLabelWrapper } from './tab-label-wrapper';
 import { SbbTabLink, SbbTabNav } from './tab-nav-bar';
 
 @NgModule({
-  imports: [CommonModule, PortalModule, ObserversModule, A11yModule, CdkScrollableModule],
+  imports: [
+    CommonModule,
+    PortalModule,
+    ObserversModule,
+    A11yModule,
+    CdkScrollableModule,
+    SbbCommonModule,
+  ],
   // Don't export all components because some are only to be used internally.
   exports: [SbbTabGroup, SbbTabLabel, SbbTab, SbbTabNav, SbbTabLink, SbbTabContent],
   declarations: [

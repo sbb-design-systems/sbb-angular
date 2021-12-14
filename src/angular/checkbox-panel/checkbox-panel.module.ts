@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 
 import { SbbCheckboxPanel } from './checkbox-panel';
 import {
@@ -9,7 +10,7 @@ import {
 } from './checkbox-panel-directives';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, SbbCommonModule],
   declarations: [
     SbbCheckboxPanel,
     SbbCheckboxPanelSubtitle,

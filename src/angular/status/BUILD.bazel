@@ -17,6 +17,7 @@ ng_module(
     ),
     assets = [":status.css"] + glob(["**/*.html"]),
     deps = [
+        "//src/angular/core",
         "//src/angular/icon",
         "@npm//@angular/common",
         "@npm//@angular/core",

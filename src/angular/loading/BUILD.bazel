@@ -17,6 +17,7 @@ ng_module(
     ),
     assets = [":loading/loading.css"] + glob(["**/*.html"]),
     deps = [
+        "//src/angular/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],

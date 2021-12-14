@@ -13,6 +13,7 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     deps = [
+        "//src/angular/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

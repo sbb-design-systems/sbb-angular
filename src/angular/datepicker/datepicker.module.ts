@@ -9,6 +9,7 @@ import {
   SBB_DATE_FORMATS,
   SBB_DATE_PIPE_DATE_FORMATS,
 } from '@sbb-esta/angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbCalendarBody } from './calendar-body/calendar-body';
@@ -23,7 +24,7 @@ import {
 import { SbbMonthView } from './month-view/month-view';
 
 @NgModule({
-  imports: [CommonModule, SbbIconModule, PortalModule, A11yModule, OverlayModule],
+  imports: [CommonModule, PortalModule, A11yModule, OverlayModule, SbbCommonModule, SbbIconModule],
   declarations: [
     SbbDatepicker,
     SbbDatepickerToggle,

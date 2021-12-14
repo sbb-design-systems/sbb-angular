@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import { SbbStatus } from './status';
 
 @NgModule({
-  imports: [CommonModule, SbbIconModule],
+  imports: [CommonModule, SbbCommonModule, SbbIconModule],
   declarations: [SbbStatus],
   exports: [SbbStatus],
 })

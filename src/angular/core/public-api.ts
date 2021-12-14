@@ -1,4 +1,5 @@
 export * from './breakpoints/breakpoints';
+export * from './common-behaviors/common.module';
 export * from './common-behaviors/constructor';
 export * from './common-behaviors/disabled';
 export * from './common-behaviors/error-state';
@@ -19,3 +20,4 @@ export * from './option/option';
 export * from './option/option-parent';
 export * from './option/optgroup';
 export * from './option/pseudo-checkbox';
+export * from './version';

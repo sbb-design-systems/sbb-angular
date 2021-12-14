@@ -4,6 +4,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 
 import {
@@ -14,7 +15,7 @@ import {
 import { SbbTooltipWrapper } from './tooltip-wrapper';
 
 @NgModule({
-  imports: [A11yModule, CommonModule, OverlayModule, PortalModule, SbbIconModule],
+  imports: [A11yModule, CommonModule, OverlayModule, PortalModule, SbbCommonModule, SbbIconModule],
   exports: [SbbTooltip, TooltipComponent, SbbTooltipWrapper, CdkScrollableModule],
   declarations: [SbbTooltip, TooltipComponent, SbbTooltipWrapper],
   entryComponents: [TooltipComponent],

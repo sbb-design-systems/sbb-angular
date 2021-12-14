@@ -1,12 +1,13 @@
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { NgModule } from '@angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 import { SbbFormFieldModule } from '@sbb-esta/angular/form-field';
 
 import { SbbInput } from './input';
 
 @NgModule({
   declarations: [SbbInput],
-  imports: [TextFieldModule, SbbFormFieldModule],
+  imports: [TextFieldModule, SbbCommonModule, SbbFormFieldModule],
   exports: [
     TextFieldModule,
     // We re-export the `SbbFormFieldModule` since `SbbInput` will almost always

@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SbbCheckboxModule } from '@sbb-esta/angular/checkbox';
+import { GranularSanityChecks, SBB_SANITY_CHECKS } from '@sbb-esta/angular/core';
 import { SbbHeaderLeanModule } from '@sbb-esta/angular/header-lean';
 import { SbbIconModule } from '@sbb-esta/angular/icon';
 import { SbbNotificationModule } from '@sbb-esta/angular/notification';
@@ -31,6 +32,12 @@ import { IntroductionComponent } from './introduction/introduction.component';
     SbbIconModule,
     SbbRadioButtonModule,
     SbbNotificationModule,
+  ],
+  providers: [
+    {
+      provide: SBB_SANITY_CHECKS,
+      useValue: { doctype: true, typography: true, version: false } as GranularSanityChecks,
+    },
   ],
   exports: [AppComponent],
   bootstrap: [AppComponent],

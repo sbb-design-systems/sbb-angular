@@ -1,6 +1,7 @@
 import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SbbCommonModule } from '@sbb-esta/angular/core';
 
 import { SbbSort } from './sort/sort';
 import { SbbSortHeader } from './sort/sort-header';
@@ -58,7 +59,7 @@ const EXPORTED_DECLARATIONS = [
 ];
 
 @NgModule({
-  imports: [CdkTableModule, CommonModule],
+  imports: [CdkTableModule, CommonModule, SbbCommonModule],
   declarations: EXPORTED_DECLARATIONS,
   exports: EXPORTED_DECLARATIONS,
 })
