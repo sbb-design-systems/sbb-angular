@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-rc.4](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.3...13.0.0-rc.4) (2021-12-14)
+
+
+### Features
+
+* allow custom root in sbb-breadcrumbs ([#990](https://github.com/sbb-design-systems/sbb-angular/issues/990)) ([729f1de](https://github.com/sbb-design-systems/sbb-angular/commit/729f1de84023cea57212559bd76b7f682df15cba))
+* provide dividers as css classes ([#984](https://github.com/sbb-design-systems/sbb-angular/issues/984)) ([ee48a22](https://github.com/sbb-design-systems/sbb-angular/commit/ee48a22a5f1199bd8dc4c4acc47846e16ac6e6c9))
+
+
+### Bug Fixes
+
+* create SbbCommonModule for initialization and sanity checks ([#986](https://github.com/sbb-design-systems/sbb-angular/issues/986)) ([70a7946](https://github.com/sbb-design-systems/sbb-angular/commit/70a79469aaf0f0504cc77072955de7713be26558))
+* migrate i18n path in main.ts ([#983](https://github.com/sbb-design-systems/sbb-angular/issues/983)) ([e69e2e8](https://github.com/sbb-design-systems/sbb-angular/commit/e69e2e82d71a3e1815a39378f4443a0dad1c329c))
+
+
+### Documentation
+
+* explain icon usage in button ([#989](https://github.com/sbb-design-systems/sbb-angular/issues/989)) ([f77bdac](https://github.com/sbb-design-systems/sbb-angular/commit/f77bdac2b191cfe0b166457866b4f659f789489e))
+
 ## [13.0.0-rc.3](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.2...13.0.0-rc.3) (2021-12-09)
 
 
