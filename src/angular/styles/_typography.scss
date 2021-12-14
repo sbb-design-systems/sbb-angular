@@ -1073,6 +1073,7 @@ textarea {
 
 @each $size in thin, small, medium, big {
   @each $position in top, bottom {
+    .sbb-divider-#{$size}-vertical,
     .sbb-divider-#{$size}-#{$position} {
       margin-#{$position}: var(--sbb-divider-#{$size});
     }

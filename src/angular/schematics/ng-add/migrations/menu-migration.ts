@@ -60,22 +60,14 @@ export class MenuMigration extends Migration<null, DevkitContext> {
   }
 
   private _handleBreadcrumbs(breadcrumbs: MigrationElement) {
-    let couldMigrateRoot = false;
-
     breadcrumbs
       .findElements((node) => nodeCheck(node).is('sbb-breadcrumb'))
-      .forEach((breadcrumb) => {
-        if (!couldMigrateRoot) {
-          couldMigrateRoot = this._replaceBreadcrumbRoot(breadcrumb);
+      .forEach((breadcrumb, index) => {
+        if (index === 0 && !this._replaceBreadcrumbRoot(breadcrumb)) {
+          breadcrumb.appendProperty('root');
         }
         this._addBreadcrumbTriggerAndReplaceActiveClass(breadcrumb);
       });
-
-    if (!couldMigrateRoot) {
-      breadcrumbs.insertStart(
-        `<!-- TODO: It seems that your sbb-breadcrumbs is missing the root element (home icon) or the automatic migration could not perform correctly. Please manually add your root element like this: <a routerLink="/" routerLinkActive="sbb-active" aria-label="Back to the homepage" sbb-breadcrumb-root></a> -->`
-      );
-    }
   }
 
   private _handleDropdown(dropdown: MigrationElement) {

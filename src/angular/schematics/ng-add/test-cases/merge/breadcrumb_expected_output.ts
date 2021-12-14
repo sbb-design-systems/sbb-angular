@@ -34,7 +34,7 @@ import { SbbMenuModule } from '@sbb-esta/angular/menu';
         </sbb-menu>
 </sbb-breadcrumb>
     </sbb-breadcrumbs>
-    <sbb-breadcrumbs><!-- TODO: It seems that your sbb-breadcrumbs is missing the root element (home icon) or the automatic migration could not perform correctly. Please manually add your root element like this: <a routerLink="/" routerLinkActive="sbb-active" aria-label="Back to the homepage" sbb-breadcrumb-root></a> --></sbb-breadcrumbs>
+    <sbb-breadcrumbs><sbb-breadcrumb root></sbb-breadcrumb><sbb-breadcrumb></sbb-breadcrumb></sbb-breadcrumbs>
   `,
 })
 export class BreadcrumbTestComponent {}

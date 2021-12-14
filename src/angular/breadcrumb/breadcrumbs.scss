@@ -1,17 +1,20 @@
 @import '../styles/common';
 
+.sbb-breadcrumbs {
+  display: block;
+}
+
 .sbb-breadcrumbs-wrapper {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  padding-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  gap: calc(#{pxToRem(12)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
 }
 
 .sbb-breadcrumb {
   display: none;
   align-items: center;
-  margin-top: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
-  margin-right: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
   max-width: 100%;
 
   :where(html.sbb-lean) & {
@@ -23,6 +26,10 @@
   }
 
   .sbb-breadcrumbs-expanded & {
+    display: flex;
+  }
+
+  &[root] {
     display: flex;
   }
 
@@ -44,7 +51,7 @@
   }
 
   // Arrow between breadcrumb entries
-  & + .sbb-breadcrumb::before {
+  & + .sbb-breadcrumb:not([root])::before {
     content: '';
     display: inline-block;
     background: var(--sbb-url-icon-chevron-small-right-small-platinum) no-repeat center;
@@ -73,6 +80,10 @@
   a {
     height: var(--sbb-icon-size-default);
     width: var(--sbb-icon-size-default);
+  }
+
+  &:empty {
+    display: none;
   }
 }
 
