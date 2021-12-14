@@ -597,19 +597,21 @@ Please also consult the working example in the examples section of the table.
 
 ### Tabs
 
-_Automatic migration available_
+_Partial migration available_
 
 The tabs module has been refactored to improve programmatic access. We have also created a
 separate variant that can be used with `<router-outlet>`.
 Due to a structural change, we have renamed `<sbb-tabs>` to `<sbb-tab-group>`.
-The `labelId` and `badgePill` properties on `<sbb-tab>` have been removed. A badge pill
+The `active`, `labelId` and `badgePill` properties on `<sbb-tab>` have been removed. A badge pill
 can be applied with the `sbbBadge` directive from the `SbbBadgeModule`.
+To set a tab active, use the `selectedIndex` input on `sbb-tab-group`. Hint: Each `sbb-tab` has a `position` property
+which represents the index in its parent `sbb-tab-group`.
 
 **Previous**
 
 ```html
 <sbb-tabs>
-  <sbb-tab label="Notes"></sbb-tab>
+  <sbb-tab label="Notes" [active]="true"></sbb-tab>
   <sbb-tab label="Messages" [badgePill]="5"></sbb-tab>
 </sbb-tabs>
 ```
@@ -617,7 +619,7 @@ can be applied with the `sbbBadge` directive from the `SbbBadgeModule`.
 **New**
 
 ```html
-<sbb-tab-group>
+<sbb-tab-group [selectedIndex]="0">
   <sbb-tab label="Notes"></sbb-tab>
   <sbb-tab>
     <span *sbb-tab-label sbbBadge="5">Messages</span>
