@@ -20,9 +20,6 @@ import { SelectionModel } from '@angular/cdk/collections';
       ></tr>
       <tr sbb-footer-row></tr>
     </table>
-    <table class="sbb-table"></table><!-- TODO: Check if table styles are still as desired -->
-    <table class="special-table sbb-table"></table><!-- TODO: Check if table styles are still as desired -->
-    <table class="sbb-table"></table>
   `,
 })
 export class TableTestComponent {

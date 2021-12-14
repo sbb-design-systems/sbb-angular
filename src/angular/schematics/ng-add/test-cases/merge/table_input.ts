@@ -25,9 +25,6 @@ import { SelectionModel } from '@angular/cdk/collections';
       ></tr>
       <tr sbbFooterRow></tr>
     </table>
-    <table></table>
-    <table class="special-table"></table>
-    <table class="sbb-table"></table>
   `,
 })
 export class TableTestComponent {
