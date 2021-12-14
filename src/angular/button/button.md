@@ -30,6 +30,8 @@ There are several button variants, each applied as an attribute:
 The standard variants of `sbb-button`, `sbb-secondary-button`, `sbb-frameless-button` and
 `sbb-link` and the lean variant of `sbb-link` have an indicator icon. This can be customized
 by using the `svgIcon` input. Any registered SVG icon of the `SbbIconRegistry` can be used.
+Any icons specified on `svgIcon` input will be animated in standard design.
+To place an icon inside the button which shouldn't be animated, use `<sbb-icon>` inside the button content.
 
 See [here](/angular/icon-overview) for our available icons.
 
