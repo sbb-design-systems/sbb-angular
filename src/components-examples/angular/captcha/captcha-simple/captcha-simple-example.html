@@ -1,8 +1,8 @@
 <sbb-captcha #captcha (resolved)="resolved($event)" [siteKey]="testSiteKey"></sbb-captcha>
 
-<p>
-  <button type="button" sbb-ghost-button (click)="captcha.reset()">Reset</button>
-</p>
+<button type="button" sbb-ghost-button (click)="captcha.reset()" class="sbb-divider-thin-top">
+  Reset
+</button>
 
 <h4>Captcha response</h4>
 <pre>{{ basicCaptchaResponse | json }}</pre>
