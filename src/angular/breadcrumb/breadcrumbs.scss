@@ -4,14 +4,13 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  padding-bottom: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
+  gap: calc(#{pxToRem(12)} * var(--sbb-scaling-factor))
+    calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
 }
 
 .sbb-breadcrumb {
   display: none;
   align-items: center;
-  margin-top: calc(#{pxToRem(12)} * var(--sbb-scaling-factor));
-  margin-right: calc(#{pxToRem(6)} * var(--sbb-scaling-factor));
   max-width: 100%;
 
   :where(html.sbb-lean) & {
