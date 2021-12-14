@@ -1,4 +1,5 @@
 {
+  "StepperSelectionEvent": "@angular/cdk/stepper",
   "ɵɵtsModuleIndicatorApiExtractorWorkaround": "/src/angular",
   "SBB_ACCORDION": "accordion",
   "SBB_EXPANSION_PANEL_ANIMATION_TIMING": "accordion",
@@ -471,7 +472,7 @@
   "mergePublicAndBusiness": "schematics",
   "MergeRefactorMigration": "schematics",
   "methodCallChecks": "schematics",
-  "migrateI18nInAngularJson": "schematics",
+  "migrateI18n": "schematics",
   "migrateTypographyInAngularJson": "schematics",
   "MIGRATION_PATH": "schematics",
   "MigrationElement": "schematics",
