@@ -127,7 +127,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
 
   /**
    * If exactly one link with one sbb-icon with attribute svgIcon=kom:houses-small is inside
-   * a sbb-breadcrumb, migrate to new sbb-breadcrumb-root directive.
+   * an sbb-breadcrumb, migrate to new sbb-breadcrumb-root directive.
    */
   private _replaceBreadcrumbRoot(breadcrumb: MigrationElement): boolean {
     const links = breadcrumb.findElements((node) => node.tagName === 'a');
@@ -151,6 +151,7 @@ export class MenuMigration extends Migration<null, DevkitContext> {
 
     return true;
   }
+
   private _setReferenceOnDropdown(dropdown: MigrationElement, migrationElement: MigrationElement) {
     const dropdownReference = dropdown.findPropertyByValue('sbbDropdown');
     let menuReferenceName = this._nextMenuReferenceName(migrationElement);
