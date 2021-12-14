@@ -75,6 +75,7 @@ to accessibility were made. All changes are handled by automatic migration.
 - To define your root element (home icon) you can now simply define a
   link and apply the directive `<a sbb-breadcrumb-root>`.
   The responsibility to place the icon is taken over by the `sbb-breadcrumb` component.
+  If you need a custom root, you have to add the `root` attribute to `sbb-breadcrumb` (`<sbb-breadcrumb root>`).
 
 - All `<a sbbDropdownItem>` become `<a sbb-menu-item>` elements wrapped by a `<sbb-menu>`.
   The Trigger has to be defined by the developer and linked with

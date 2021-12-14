@@ -1077,6 +1077,10 @@ textarea {
       margin-#{$position}: var(--sbb-divider-#{$size});
     }
   }
+  .sbb-divider-#{$size}-vertical {
+    margin-top: var(--sbb-divider-#{$size});
+    margin-bottom: var(--sbb-divider-#{$size});
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------

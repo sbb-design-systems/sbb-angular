@@ -22,6 +22,14 @@ by applying `sbb-breadcrumb-root` directive to a link.
 <a sbb-breadcrumb-root routerLink="/" aria-label="Back to the homepage"></a>
 ```
 
+As an alternative you can specify a normal `<sbb-breadcrumb>` with the `root` attribute.
+
+```html
+<sbb-breadcrumb root>
+  <a routerLink="/level1" routerLinkActive="sbb-active">Level 1</a>
+</sbb-breadcrumb>
+```
+
 #### Last entry
 
 The last `<sbb-breadcrumb>` entry has always to be the currently displayed page.
@@ -73,3 +81,7 @@ which is typically done by the `routerLinkActive` attribute.
   (e.g. `<a aria-label="Back to the homepage" ...>`).
 - The active link (normally the last entry) should receive the `aria-current="location"`
   attribute to indicate that this site is currently being displayed.
+
+### Dividers
+
+As divider space to other content you should use the `sbb-divider-small-vertical` class.

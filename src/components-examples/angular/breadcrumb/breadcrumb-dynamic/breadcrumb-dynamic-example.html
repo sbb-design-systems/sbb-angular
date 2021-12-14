@@ -1,4 +1,4 @@
-<sbb-breadcrumbs>
+<sbb-breadcrumbs class="sbb-divider-small-vertical">
   <a sbb-breadcrumb-root routerLink="/" aria-label="Back to the homepage"></a>
   <sbb-breadcrumb *ngFor="let group of groups; last as isLast">
     <button [sbbMenuTriggerFor]="menu">{{groupTitle(group)}}</button>

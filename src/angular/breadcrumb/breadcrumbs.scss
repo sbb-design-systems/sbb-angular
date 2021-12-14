@@ -1,5 +1,9 @@
 @import '../styles/common';
 
+.sbb-breadcrumbs {
+  display: block;
+}
+
 .sbb-breadcrumbs-wrapper {
   display: flex;
   align-items: center;
@@ -25,6 +29,10 @@
     display: flex;
   }
 
+  &[root] {
+    display: flex;
+  }
+
   // Last user defined breadcrumb
   &:last-child {
     display: flex;
@@ -43,7 +51,7 @@
   }
 
   // Arrow between breadcrumb entries
-  & + .sbb-breadcrumb::before {
+  & + .sbb-breadcrumb:not([root])::before {
     content: '';
     display: inline-block;
     background: var(--sbb-url-icon-chevron-small-right-small-platinum) no-repeat center;
@@ -72,6 +80,10 @@
   a {
     height: var(--sbb-icon-size-default);
     width: var(--sbb-icon-size-default);
+  }
+
+  &:empty {
+    display: none;
   }
 }
 
