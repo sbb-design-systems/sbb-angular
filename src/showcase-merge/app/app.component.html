@@ -4,6 +4,14 @@
   collapseBreakpoint="mobile"
 >
   <sbb-header-environment>dev</sbb-header-environment>
+  <sbb-app-chooser-section label="Previous Versions" *ngIf="shouldShowPreviousVersions">
+    <a
+      target="_blank"
+      *ngFor="let version of previousMajorVersions"
+      href="https://angular-v{{ version }}.app.sbb.ch/"
+      >Version {{ version }}</a
+    >
+  </sbb-app-chooser-section>
   <sbb-app-chooser-section label="Links">
     <a target="_blank" href="https://github.com/sbb-design-systems/sbb-angular">GitHub</a>
     <a target="_blank" href="https://angular.io/">Angular {{ angularVersion }}</a>
