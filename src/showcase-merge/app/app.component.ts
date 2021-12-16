@@ -1,5 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AfterContentInit, Component, OnDestroy } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { AfterContentInit, Component, Inject, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Breakpoints, ɵvariant } from '@sbb-esta/angular/core';
@@ -11,7 +12,6 @@ import { ROUTER_ANIMATION } from './shared/animations';
 import { PACKAGES } from './shared/meta';
 // @ts-ignore versions.ts is generated automatically by bazel
 import { angularVersion, libraryVersion } from './versions';
-
 const variantLocalstorageKey = 'sbbAngularVariant';
 
 @Component({
@@ -28,13 +28,21 @@ export class AppComponent implements AfterContentInit, OnDestroy {
     localStorage.getItem(variantLocalstorageKey) || 'standard'
   );
   packages = PACKAGES;
+  previousMajorVersions: number[];
+  shouldShowPreviousVersions: boolean;
   private _destroyed = new Subject<void>();
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
     iconRegistry: SbbIconRegistry,
-    sanitizer: DomSanitizer
+    sanitizer: DomSanitizer,
+    @Inject(DOCUMENT) document
   ) {
+    const currentLibraryMajorVersion = parseInt(libraryVersion.split('.')[0], 10);
+    this.previousMajorVersions = [currentLibraryMajorVersion - 1, currentLibraryMajorVersion - 2];
+    this.shouldShowPreviousVersions =
+      document.domain === 'localhost' || /angular(-next)?.app.sbb.ch/.test(document.domain);
+
     iconRegistry.addSvgIconResolver((name, namespace) => {
       if (namespace === 'showcase') {
         return sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${name}.svg`);
