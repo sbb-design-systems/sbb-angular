@@ -170,6 +170,10 @@ describe('SbbTooltipWrapper', () => {
       fixture.detectChanges();
 
       expect(event!.instance).toBe(component.tooltip._tooltip);
+
+      // Note that we aren't asserting anything, but `fakeAsync` will
+      // throw if we have any timers by the end of the test.
+      fixture.destroy();
     }));
   });
 
@@ -218,7 +222,7 @@ describe('SbbTooltipWrapper', () => {
   template: `
     <sbb-tooltip #t1>
       <p>This is a tooltip with a button inside.</p>
-      <button sbb-secondary-button (click)="t1.hide(true)">Close tooltip</button>
+      <button sbb-secondary-button (click)="t1.hide()">Close tooltip</button>
     </sbb-tooltip>
   `,
 })
@@ -231,11 +235,11 @@ class TooltipTestComponent {
   template: `
     <sbb-tooltip #t1>
       <p>This is a tooltip with a button inside.</p>
-      <button sbb-secondary-button (click)="t1.hide(true)">Close tooltip</button>
+      <button sbb-secondary-button (click)="t1.hide()">Close tooltip</button>
     </sbb-tooltip>
     <sbb-tooltip #t2>
       <p>This is another tooltip with a link!</p>
-      <a href="#" sbbLink>I am a link</a>
+      <a href="#" sbb-link>I am a link</a>
     </sbb-tooltip>
   `,
 })

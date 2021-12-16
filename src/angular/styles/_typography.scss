@@ -235,8 +235,9 @@
   --sbb-table-background-color: var(--sbb-color-background);
   --sbb-table-thead-background-color: var(--sbb-color-cloud);
   --sbb-table-tbody-stripe-background-color: var(--sbb-color-milk);
-  --sbb-table-thead-padding: #{pxToEm(16)};
-  --sbb-table-tbody-padding: #{pxToEm(16)};
+  --sbb-table-thead-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-table-tbody-padding: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+  --sbb-table-cell-padding-vertical: calc(#{pxToRem(18)} * var(--sbb-scaling-factor));
   --sbb-table-sticky-shadow-width: #{pxToRem(8)};
   --sbb-table-sticky-shadow-offset: #{pxToRem(-9)};
   --sbb-table-sort-header-arrow-margin: calc(#{pxToRem(8)} * var(--sbb-scaling-factor));
@@ -440,6 +441,9 @@
     // Pagination
     --sbb-pagination-disabled-color: var(--sbb-color-storm);
     --sbb-pagination-paginator-size: #{pxToRem(30)};
+
+    // Table
+    --sbb-table-cell-padding-vertical: #{pxToRem(6)};
 
     // Tooltip
     --sbb-tooltip-padding: #{pxToRem(8)};
@@ -1310,9 +1314,20 @@ textarea {
 .sbb-icon-button {
   // Subtract 1 from the padding values, since we always use the border
   // in order to avoid tearing on state changes.
-  padding: pxToRem(5) !important;
+  padding: calc(#{pxToRem(5)} * var(--sbb-scaling-factor)) !important;
   min-width: auto;
   line-height: 0 !important;
+
+  // .sbb-icon-scaled styles
+  .sbb-icon {
+    width: var(--sbb-icon-size-default);
+    height: var(--sbb-icon-size-default);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 :is(
@@ -1857,6 +1872,34 @@ textarea {
     }
   }
 
+  // Position buttons and contextmenu over padding of cell
+  // Only in lean design: Additionally reduce size of buttons to fit into cell
+  .sbb-button-base {
+    :where(html:not(.sbb-lean)) & {
+      margin: -100% 0;
+    }
+    :where(html.sbb-lean) & {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+
+      &:not(.sbb-ghost-button) {
+        border: none;
+      }
+    }
+  }
+
+  .sbb-icon-button {
+    :where(html.sbb-lean) & {
+      padding: 0 !important;
+    }
+  }
+
+  .sbb-icon-button,
+  .sbb-menu-trigger-contextmenu {
+    margin: -100% 0;
+    transform: translateY(calc(#{pxToRem(6)} * var(--sbb-scaling-factor)));
+  }
+
   :where(html:not(.sbb-lean)) & {
     padding-bottom: var(--sbb-table-tbody-padding);
 
@@ -1886,13 +1929,13 @@ textarea {
       }
 
       :is(th, td) {
-        padding: pxToRem(18) pxToRem(12) pxToRem(19) pxToRem(12);
+        padding: var(--sbb-table-cell-padding-vertical) pxToRem(12)
+          calc(var(--sbb-table-cell-padding-vertical) + #{pxToRem(1)} * var(--sbb-scaling-factor))
+          pxToRem(12);
 
         @include mq($from: tabletPortrait) {
-          padding: calc(#{pxToRem(18)} * var(--sbb-scaling-factor))
-            calc(#{pxToRem(16)} * var(--sbb-scaling-factor))
-            calc(#{pxToRem(19)} * var(--sbb-scaling-factor))
-            calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+          padding-left: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
+          padding-right: calc(#{pxToRem(16)} * var(--sbb-scaling-factor));
 
           &:first-child {
             border-left: var(--sbb-table-thead-padding) solid var(--sbb-table-background-color);
@@ -1916,7 +1959,7 @@ textarea {
     }
 
     :is(thead, tbody, tfoot) > tr :is(th, td) {
-      padding: pxToRem(6) var(--sbb-table-tbody-padding) pxToRem(6);
+      padding: var(--sbb-table-cell-padding-vertical) var(--sbb-table-tbody-padding);
 
       &.sbb-table-group-with-next {
         border-right: none;
