@@ -1,7 +1,6 @@
 import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { getProjectFromWorkspace } from '@angular/cdk/schematics';
-import { getProjectMainFile } from '@angular/cdk/schematics/utils/project-main-file';
+import { getProjectFromWorkspace, getProjectMainFile } from '@angular/cdk/schematics';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 
 import { Schema } from '../schema';
