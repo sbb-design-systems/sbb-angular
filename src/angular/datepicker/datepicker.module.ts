@@ -50,6 +50,5 @@ import { SbbMonthView } from './month-view/month-view';
     { provide: SbbDateAdapter, useClass: SbbNativeDateAdapter },
     { provide: SBB_DATE_FORMATS, useValue: SBB_DATE_PIPE_DATE_FORMATS },
   ],
-  entryComponents: [SbbDatepickerContent, SbbCalendarHeader],
 })
 export class SbbDatepickerModule {}

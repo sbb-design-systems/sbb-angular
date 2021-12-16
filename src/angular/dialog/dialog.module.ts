@@ -25,6 +25,5 @@ import {
     SbbDialogContent,
   ],
   providers: [SbbDialog, SBB_DIALOG_SCROLL_STRATEGY_PROVIDER],
-  entryComponents: [SbbDialogContainer],
 })
 export class SbbDialogModule {}

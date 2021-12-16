@@ -18,7 +18,6 @@ import { SbbTooltipWrapper } from './tooltip-wrapper';
   imports: [A11yModule, CommonModule, OverlayModule, PortalModule, SbbCommonModule, SbbIconModule],
   exports: [SbbTooltip, TooltipComponent, SbbTooltipWrapper, CdkScrollableModule],
   declarations: [SbbTooltip, TooltipComponent, SbbTooltipWrapper],
-  entryComponents: [TooltipComponent],
   providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
 })
 export class SbbTooltipModule {}

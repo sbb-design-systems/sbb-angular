@@ -12,6 +12,5 @@ const EXAMPLES = [BadgeOverviewExample];
   imports: [SbbBadgeModule, SbbButtonModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  entryComponents: EXAMPLES,
 })
 export class BadgeExamplesModule {}
