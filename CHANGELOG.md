@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-rc.5](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.4...13.0.0-rc.5) (2021-12-16)
+
+
+### Bug Fixes
+
+* position of divider classes in typography ([#992](https://github.com/sbb-design-systems/sbb-angular/issues/992)) ([a213a4b](https://github.com/sbb-design-systems/sbb-angular/commit/a213a4b6249643ff98f9f9ae1206bf46d918465b))
+* reduce space of buttons inside table cells ([#994](https://github.com/sbb-design-systems/sbb-angular/issues/994)) ([14d6885](https://github.com/sbb-design-systems/sbb-angular/commit/14d68857026e04e1f7f5efc3769eeace0600485f))
+
+
+### Documentation
+
+* **showcase:** show links to previous showcase versions ([#995](https://github.com/sbb-design-systems/sbb-angular/issues/995)) ([70a04eb](https://github.com/sbb-design-systems/sbb-angular/commit/70a04eb2e4faa1e23e9ea0615214de86ac4ff57b))
+
 ## [13.0.0-rc.4](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.3...13.0.0-rc.4) (2021-12-14)
 
 
