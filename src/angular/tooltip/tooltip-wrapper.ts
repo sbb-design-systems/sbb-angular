@@ -11,7 +11,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { mixinDisabled } from '@sbb-esta/angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { SbbTooltip, SbbTooltipChangeEvent } from './tooltip';
 
