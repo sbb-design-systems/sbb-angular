@@ -1873,7 +1873,7 @@ textarea {
   }
 
   // Position buttons and contextmenu over padding of cell
-  // Only in Lean: Additionally reduce size of buttons to fit into cell
+  // Only in lean design: Additionally reduce size of buttons to fit into cell
   .sbb-button-base {
     :where(html:not(.sbb-lean)) & {
       margin: -100% 0;
