@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-rc.6](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.5...13.0.0-rc.6) (2021-12-16)
+
+
+### Bug Fixes
+
+* fix import in i18n migration ([#997](https://github.com/sbb-design-systems/sbb-angular/issues/997)) ([67d1ee3](https://github.com/sbb-design-systems/sbb-angular/commit/67d1ee31997afe46d4c6abb58463c113380f4333))
+
 ## [13.0.0-rc.5](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.4...13.0.0-rc.5) (2021-12-16)
 
 
