@@ -26,6 +26,5 @@ const EXAMPLES = [
   imports: [CommonModule, FormsModule, ReactiveFormsModule, SbbInputModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  entryComponents: EXAMPLES,
 })
 export class InputExamplesModule {}

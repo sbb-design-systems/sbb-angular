@@ -484,7 +484,6 @@
   "MigrationElement": "schematics",
   "MigrationElementProperty": "schematics",
   "MigrationRecorderRegistry": "schematics",
-  "NativeTableMigration": "schematics",
   "ngAdd": "schematics",
   "nodeCheck": "schematics",
   "NodeCheck": "schematics",

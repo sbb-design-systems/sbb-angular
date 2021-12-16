@@ -116,7 +116,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
     for (const element of declaration.importClause.namedBindings.elements) {
       let elementName = element.propertyName ? element.propertyName : element.name;
       if (CLASS_NAME_RENAMES.has(elementName.text)) {
-        elementName = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
+        elementName = ts.factory.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
       }
 
       // Try to resolve the module name via our list of symbol to entry point mappings, and, if it fails, fall back to
@@ -158,10 +158,14 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
       const newImportStatements = Array.from(importMap.entries())
         .sort()
         .map(([name, elements]) => {
-          const newImport = ts.createImportDeclaration(
+          const newImport = ts.factory.createImportDeclaration(
             undefined,
             undefined,
-            ts.createImportClause(undefined, ts.createNamedImports(applyRenames(elements))),
+            ts.factory.createImportClause(
+              false,
+              undefined,
+              ts.factory.createNamedImports(applyRenames(elements))
+            ),
             createStringLiteral(name, singleQuoteImport)
           );
           return this.printer.printNode(ts.EmitHint.Unspecified, newImport, file);
@@ -191,7 +195,7 @@ export class SecondaryEntryPointsMigration extends Migration<null, DevkitContext
  * @param singleQuotes Whether single quotes should be used when printing the literal node.
  */
 function createStringLiteral(text: string, singleQuotes: boolean): ts.StringLiteral {
-  const literal = ts.createStringLiteral(text);
+  const literal = ts.factory.createStringLiteral(text);
   // See: https://github.com/microsoft/TypeScript/blob/master/src/compiler/utilities.ts#L584-L590
   literal['singleQuote'] = singleQuotes;
   return literal;
@@ -254,10 +258,12 @@ function applyRenames(elements: ts.ImportSpecifier[]) {
           return element;
         }
 
-        const nameIdentifier = ts.createIdentifier(CLASS_NAME_RENAMES.get(elementName.text)!);
+        const nameIdentifier = ts.factory.createIdentifier(
+          CLASS_NAME_RENAMES.get(elementName.text)!
+        );
         return element.propertyName
-          ? ts.createImportSpecifier(nameIdentifier, element.name)
-          : ts.createImportSpecifier(undefined, nameIdentifier);
+          ? ts.factory.createImportSpecifier(false, nameIdentifier, element.name)
+          : ts.factory.createImportSpecifier(false, undefined, nameIdentifier);
       })
       // If the import name occurs multiple times, filter out the duplicates.
       // (e.g. both SbbLinksModule and SbbButtonModule will be SbbButtonModule,

@@ -31,6 +31,5 @@ import {
     SbbLightboxContent,
   ],
   providers: [SbbLightbox, SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER],
-  entryComponents: [SbbLightboxContainer],
 })
 export class SbbLightboxModule {}

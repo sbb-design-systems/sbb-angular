@@ -12,6 +12,5 @@ import { SbbSimpleNotification } from './simple-notification';
   imports: [CommonModule, PortalModule, OverlayModule, SbbCommonModule, SbbIconModule],
   declarations: [SbbNotificationToastContainer, SbbSimpleNotification],
   exports: [SbbNotificationToastContainer, SbbSimpleNotification],
-  entryComponents: [SbbNotificationToastContainer, SbbSimpleNotification],
 })
 export class SbbNotificationToastModule {}

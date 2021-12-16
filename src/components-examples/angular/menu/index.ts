@@ -21,6 +21,5 @@ const EXAMPLES = [
   imports: [SbbButtonModule, SbbIconModule, SbbMenuModule],
   declarations: EXAMPLES,
   exports: EXAMPLES,
-  entryComponents: EXAMPLES,
 })
 export class MenuExamplesModule {}

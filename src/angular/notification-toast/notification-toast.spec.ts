@@ -941,6 +941,5 @@ const TEST_DIRECTIVES = [
   imports: [CommonModule, SbbNotificationToastModule],
   exports: TEST_DIRECTIVES,
   declarations: TEST_DIRECTIVES,
-  entryComponents: [ComponentWithChildViewContainer, BurritosNotification],
 })
 class NotificationToastTestModule {}

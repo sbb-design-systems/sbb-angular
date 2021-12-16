@@ -11,6 +11,5 @@ import { SbbAlertOutlet } from './alert-outlet';
   declarations: [SbbAlert, SbbAlertOutlet],
   imports: [CommonModule, RouterModule, SbbCommonModule, SbbIconModule],
   exports: [SbbAlert, SbbAlertOutlet],
-  entryComponents: [SbbAlert],
 })
 export class SbbAlertModule {}
