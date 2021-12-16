@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.6...13.0.0) (2021-12-16)
+
+
+### Bug Fixes
+
+* fix takeUntil import in tooltip ([0ff7fbe](https://github.com/sbb-design-systems/sbb-angular/commit/0ff7fbe14fe34b90498d14e572ceaef5541b8bb1))
+
 ## [13.0.0-rc.6](https://github.com/sbb-design-systems/sbb-angular/compare/13.0.0-rc.5...13.0.0-rc.6) (2021-12-16)
 
 
