@@ -338,6 +338,7 @@ export class SbbDatepicker<D> implements OnDestroy {
         tap(() => {
           if (this.connected!.datepickerInput.value) {
             this.connected!.datepickerInput.value = null;
+            this.connected!.datepickerInput._cvaOnChange(null);
           }
         })
       )
